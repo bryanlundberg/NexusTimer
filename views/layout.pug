@@ -8,18 +8,18 @@ html
   body
     nav.navbar.navbar-expand-md.navbar-dark.bg-dark
       .container-fluid
-        a.navbar-brand(href='#') Navbar
+        a.navbar-brand(href='/') Navbar
         button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
           span.navbar-toggler-icon
         #navbarNav.collapse.navbar-collapse
           ul.navbar-nav
             li.nav-item
-              a.nav-link.active(aria-current='page' href='#') Home
+              a.nav-link.active(aria-current='page' href='/') Home
             li.nav-item
-              a.nav-link(href='#') Features
+              a.nav-link(href='/login') Login
             li.nav-item
-              a.nav-link(href='#') Pricing
+              a.nav-link(href='/register') Register
             li.nav-item
-              a.nav-link.disabled Disabled
+              a.nav-item(href='/profile')
     block content
     
