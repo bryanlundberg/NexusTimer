@@ -8,6 +8,16 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
+// Set up mongoose connection
+const mongoose = require('mongoose');
+
+mongoose.set('strictQuery', false);
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb+srv://usernametest:passwordtest@cluster0.dltd4ag.mongodb.net/projectWithUsers?retryWrites=true&w=majority');
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
