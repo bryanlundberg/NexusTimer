@@ -12,4 +12,5 @@ router.post("/register", registerController.register_post);
 router.get("/login", loginController.login_get);
 router.post("/login", loginController.login_post);
 router.get("/profile", profileController.profile_get)
+router.get("/profile/:idUser", profileController.profileUser_get)
 module.exports = router;
