@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const favicon = require('serve-favicon');
+
 
 const indexRouter = require('./routes/index');
 
@@ -17,6 +19,10 @@ main().catch(err => console.log(err));
 async function main() {
   await mongoose.connect('mongodb+srv://usernametest:passwordtest@cluster0.dltd4ag.mongodb.net/projectWithUsers?retryWrites=true&w=majority');
 }
+
+//favicon
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
