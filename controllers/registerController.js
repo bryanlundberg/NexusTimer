@@ -1,5 +1,7 @@
 exports.register_get = (req, res) => {
-	res.json({msg: "pagina en blanco"})
+	res.render("register", {
+		title: "register page"
+	})
 }
 
 exports.register_post = (req, res) => {
