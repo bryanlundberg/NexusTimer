@@ -1,3 +1,14 @@
 extends layout
 
 block content
+	div.container.d-flex.justify-content-center.mx-auto.mt-5
+		form.border.p-4(action='/login' method='post')
+			.mb-3
+				label.form-label(for='username') Username
+				input#username.form-control(type='text' name='username' value='rojonaitor')
+			.mb-3
+				label.form-label(for='exampleInputPassword1') Password
+				input#exampleInputPassword1.form-control(type='password' name='password' value='contrase123')
+			button.btn.btn-primary(type='submit') Submit
+			if (customError)
+				p #{customError}
