@@ -1,3 +1,5 @@
+bcrypt = require('bcryptjs');
+
 exports.login_get = async (req, res) => {
   res.render("login", {
 	title: "login page"
@@ -7,17 +9,15 @@ exports.login_get = async (req, res) => {
 exports.login_post = async (req, res) => {
 	try {
 		const { username, password } = req.body;
-		const userUsername = await User.findOne({username: username})
-		if (!userUsername) {
-			const customError = new Error("Username not found")
-			res.render("login", {
-				title: "login page",
-				customError
-			})
-			return
+		const user = await User.findOne({username: username})
+		console.log(user)
+		if (!user) {
+			return res.status(401).json({error: "Username not found"})
+		} else {
+			console.log(user)
 		}
 
-		res.redirect("/profile/"+newAcount._id)
+		res.redirect("/profile/"+user._id)
 
 	} catch (error) {
 		console.log(error.message)
