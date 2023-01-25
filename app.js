@@ -2,6 +2,7 @@ const createError = require('http-errors');
 const express = require('express');
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -13,15 +14,29 @@ const indexRouter = require('./routes/index');
 const app = express();
 
 //sessions
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false,
-  name: "secret-name-bla"
-}))
+app.use(
+    session({
+        secret: "sessionSecreta",
+        resave: false,
+        saveUninitialized: false,
+        name: "secreto-nombre-session",
+    })
+);
 
 //flash
 app.use(flash());
+
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(
+    (user, done) => done(null, { id: user._id, username: user.username }) //se guardará en req.user
+);//req.user se envia
+
+passport.deserializeUser(async (user, done) => {
+    return done(null, user); //se guardará en req.user
+});
 
 // Set up mongoose connection
 const mongoose = require('mongoose');

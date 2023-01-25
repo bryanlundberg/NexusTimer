@@ -20,7 +20,16 @@ exports.login_post = async (req, res) => {
 		const user = await User.findOne({username: username})
 		if (!user) { throw new Error("Username not found") }
 		if (!(await user.comparePassword(password))) { throw new Error("Password incorrect") }
-		res.redirect("/profile/"+user._id)
+		
+		req.login(user, function(err) {
+			if (err) {
+				throw new Error("Error creating session")
+				return res.redirect("/login")
+			}
+			
+			res.redirect("/profile/"+user._id)
+		})
+		
 
 	} catch (error) {
 		req.flash("mensajes", [{ msg: error.message }]);
