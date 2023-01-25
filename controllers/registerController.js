@@ -28,13 +28,10 @@ exports.register_post = async (req, res) => {
 			return
 		}	
 		
-		const salt = bcrypt.genSaltSync(10);
-		const hash = bcrypt.hashSync(password, salt);
-		
  		const newAcount = new User({
 				username, 
 				email, 
-				password: hash
+				password,
 			})
 		const saveUser = await newAcount.save()
 		res.redirect("/profile/"+newAcount._id)

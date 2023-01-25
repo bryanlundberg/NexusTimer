@@ -1,3 +1,4 @@
+const User = require("../models/User")
 bcrypt = require('bcryptjs');
 
 exports.login_get = async (req, res) => {
