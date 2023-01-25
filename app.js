@@ -23,17 +23,6 @@ app.use(session({
 //flash
 app.use(flash());
 
-app.get("/mensaje-flash", (req, res) => {
-    res.json(req.flash("mensaje"))
-})
-
-app.get("/crear-mensaje", (req, res) => {
-    req.flash("mensaje", "esto es un mensaje flash")
-    req.flash("mensaje", "esto es un mensaje flash")
-    req.flash("mensaje", "esto es un mensaje flash")
-    res.redirect("/mensaje-flash")
-})
-
 // Set up mongoose connection
 const mongoose = require('mongoose');
 

@@ -4,24 +4,23 @@ const { validationResult } = require("express-validator");
 
 exports.register_get = (req, res) => {
   res.render("register", {
-	title: "register page"
+	title: "register page",
+	mensajes: req.flash().mensajes
   })
 }
 
 exports.register_post = async (req, res) => {
 	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.json(errors)
+	if (!errors.isEmpty()) { 
+		req.flash("mensajes", errors.array());
+		return res.redirect("/register");
 	}
 	try {
 		const { username, email, password } = req.body;
 		const userUsername = await User.findOne({username: username})
 		const userEmail = await User.findOne({ email: email})
-		if (userUsername) {
-			return res.status(401).json({ error: "Username already in use" })
-		} else if (userEmail) {
-			return res.status(401).json({ error: "Email already in use" })
-		}	
+		if (userUsername) { throw new Error("Username already in use")} 
+		if (userEmail) { throw new Error("Email already in use")}	
 		
  		const newAcount = new User({
 				username, 
@@ -32,6 +31,7 @@ exports.register_post = async (req, res) => {
 		res.redirect("/profile/"+newAcount._id)
 
 	} catch (error) {
-		console.log(error.message)
+		req.flash("mensajes", [{ msg: error.message }]);
+		res.redirect("/register");
 	}
 }

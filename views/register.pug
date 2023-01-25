@@ -1,8 +1,14 @@
 extends layout
 
 block content
+	if (mensajes)
+		for error in mensajes
+			.container.mt-5
+				.alert.alert-danger(role="alert") #{error.msg}
 	div.container.d-flex.justify-content-center.mx-auto.mt-5
 		form.border.p-4(action='/register' method='post')
+			.mb-3
+				h1 Register
 			.mb-3
 				label.form-label(for='username') Username
 				input#username.form-control(type='text' name='username' value='rojonaitor')
