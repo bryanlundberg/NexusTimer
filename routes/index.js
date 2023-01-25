@@ -1,4 +1,5 @@
 const express = require('express');
+const { body } = require('express-validator');
 const router = express.Router();
 
 const homeController = require("../controllers/homeController")
@@ -8,9 +9,22 @@ const profileController = require("../controllers/profileController")
 
 router.get("/", homeController.home_get);
 router.get("/register", registerController.register_get);
-router.post("/register", registerController.register_post);
+
+router.post("/register", [
+		body("username", "Invalid username").trim().notEmpty().escape(),
+		body("email", "Invalid email").trim().notEmpty().normalizeEmail(),
+		body("password", "Invalid password").trim().isLength({ min: 6}).escape()
+		],
+	registerController.register_post);
+	
 router.get("/login", loginController.login_get);
-router.post("/login", loginController.login_post);
+
+router.post("/login", [
+		body("username", "Invalid username").trim().notEmpty().escape(),
+		body("password", "Invalid password").trim().isLength({ min: 6}).escape()
+		],
+	loginController.login_post);
+	
 router.get("/profile", profileController.profile_get)
 router.get("/profile/:idUser", profileController.profileUser_get)
 module.exports = router;

@@ -1,5 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
+const session = require("express-session");
+const flash = require("connect-flash");
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -9,6 +11,28 @@ const favicon = require('serve-favicon');
 const indexRouter = require('./routes/index');
 
 const app = express();
+
+//sessions
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  name: "secret-name-bla"
+}))
+
+//flash
+app.use(flash());
+
+app.get("/mensaje-flash", (req, res) => {
+    res.json(req.flash("mensaje"))
+})
+
+app.get("/crear-mensaje", (req, res) => {
+    req.flash("mensaje", "esto es un mensaje flash")
+    req.flash("mensaje", "esto es un mensaje flash")
+    req.flash("mensaje", "esto es un mensaje flash")
+    res.redirect("/mensaje-flash")
+})
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
