@@ -3,6 +3,7 @@ const UserRecord = require("../models/Record");
 exports.profile_get = async (req, res) => {
 	try {
 		const times = await UserRecord.find();
+		console.log(times)
 		if (!times) throw new Error("No records");
 		res.render("profile", {
 			title: "Profile",
@@ -12,9 +13,6 @@ exports.profile_get = async (req, res) => {
 		//req.flash("messsages", [{ msg: error.message }]);
 		console.log(error)
 	}
-/*   res.render("profile", {
-	title: "profile page"
-  }) */
 }
 exports.profileUser_get = async (req, res) => {
   try {
