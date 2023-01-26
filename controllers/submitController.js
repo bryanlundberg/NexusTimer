@@ -1,9 +1,14 @@
 const User = require("../models/User");
-const UserRecord = require("../models/Record");
+const CubeTime = require("../models/CubeTime");
 
 exports.newTime_post = async (req, res) => {
-	const { time, category} = req.body;
-	const newTime = new UserRecord({time, category})
+	console.log(req.user)
+	const { time, category } = req.body;
+	const newTime = new CubeTime({
+		time, 
+		category, 
+		author: req.user.id
+	})
 	await newTime.save()
 	res.redirect("/profile")
 } 

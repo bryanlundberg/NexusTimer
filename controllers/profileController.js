@@ -1,8 +1,9 @@
 const User = require("../models/User");
-const UserRecord = require("../models/Record");
+const CubeTime = require("../models/CubeTime");
 exports.profile_get = async (req, res) => {
+	console.log(req.user)
 	try {
-		const times = await UserRecord.find();
+		const times = await CubeTime.find({ author: req.user.id });
 		console.log(times)
 		if (!times) throw new Error("No records");
 		res.render("profile", {
@@ -12,6 +13,7 @@ exports.profile_get = async (req, res) => {
 	} catch (error) {
 		//req.flash("messsages", [{ msg: error.message }]);
 		console.log(error)
+		res.redirect("/login")
 	}
 }
 exports.profileUser_get = async (req, res) => {
