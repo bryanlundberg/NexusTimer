@@ -11,6 +11,7 @@
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
+    "csurf": "^1.11.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-session": "^1.17.3",

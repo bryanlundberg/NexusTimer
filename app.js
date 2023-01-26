@@ -3,6 +3,7 @@ const express = require('express');
 const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
+const csrf = require('csurf')
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -61,6 +62,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//csrf - - Habilita un token para los formularios garantizar que vienen de nuestra pagina.
+app.use(csrf());
+//csrf - - Aqui aplica el token de forma global automatico
+app.use((req, res, next) => {
+    res.locals.csrfToken = req.csrfToken();
+    next(); //pasa a lo siguiente dice
+});
 
 app.use('/', indexRouter);
 
