@@ -6,7 +6,7 @@ const homeController = require("../controllers/homeController")
 const loginController = require("../controllers/loginController")
 const registerController = require("../controllers/registerController")
 const profileController = require("../controllers/profileController")
-
+const submitController = require("../controllers/submitController")
 const verifyUser = require("../middlewares/verifyUser")
 
 router.get("/", verifyUser, homeController.home_get);
@@ -27,8 +27,11 @@ router.post("/login", [
 		],
 	loginController.login_post);
 	
-router.get("/profile", verifyUser, profileController.profile_get)
 router.get("/profile/:idUser", profileController.profileUser_get)
+router.get("/profile", verifyUser, profileController.profile_get)
+
+
+router.post("/submit/times", submitController.newTime_post)
 
 router.get("/logout", profileController.logout_get)
 module.exports = router;

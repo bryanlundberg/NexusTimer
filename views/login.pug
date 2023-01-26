@@ -6,7 +6,7 @@ block content
 			.container.mt-5
 				.alert.alert-danger(role="alert") #{error.msg}
 	div.container.d-flex.justify-content-center.mx-auto.mt-5
-		form.border.p-4(action='/login' method='post')
+		form.shadow.p-4(action='/login' method='post')
 			input(type="hidden" name="_csrf" value=csrfToken)
 			.mb-3
 				h1 Login
