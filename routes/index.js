@@ -9,7 +9,7 @@ const profileController = require("../controllers/profileController");
 const submitController = require("../controllers/submitController");
 const verifyUser = require("../middlewares/verifyUser");
 
-router.get("/", verifyUser, homeController.home_get);
+router.get("/", homeController.home_get);
 router.get("/register", registerController.register_get);
 
 router.post(
