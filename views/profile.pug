@@ -2,10 +2,7 @@ extends layout
 
 block content
 
-	.container.mt-5
-		.container.text-center
-			h1 Welcome back #{userSession.username}!
-			img(src="/images/profile/guest-user.png")
-			
-		
+	.container.mt-5.text-center.d-flex.align-items-center.gap-3.justify-content-center
+		img(src="/images/profile/guest-user.png" width="28" height="28")
+		h1 Welcome back #{userSession.username}!
 			
