@@ -34,8 +34,7 @@ passport.serializeUser(
   (user, done) =>
     done(null, {
       id: user._id,
-      username: user.username,
-      pass: user.password
+      username: user.username
     }) //se guardará en req.user
 ); //req.user se envia
 
@@ -74,6 +73,7 @@ app.use(csrf());
 app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   req.user ? res.locals.loggedIn = true : res.locals.loggedIn = false; //checa si hay alguien iniciado sesion.
+  req.user ? res.locals.userSession = req.user : '';
   next(); //pasa a lo siguiente dice
 });
 

@@ -33,8 +33,8 @@ router.post(
   loginController.login_post
 );
 
-router.get("/profile/:idUser", profileController.profileUser_get);
-router.get("/profile", verifyUser, profileController.profile_get);
+router.get("/profile/:idUser", verifyUser, profileController.profileUser_get);
+router.get("/profile/:idUser/times", verifyUser, profileController.profile_get);
 
 router.get("/submit/:id/delete", verifyUser, submitController.deleteTime);
 router.post("/submit/times", verifyUser, submitController.newTime_post);

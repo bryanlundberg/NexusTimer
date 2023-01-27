@@ -24,7 +24,7 @@ html
                 a.nav-link(href='/register') Register
             else
               li.nav-item
-                a.nav-link(href='/profile') Profile
+                a.nav-link(href='/profile/'+userSession.id+'/times') My times
               li.nav-item
                 a.nav-link(href='/logout') Logout
     block content
