@@ -35,6 +35,7 @@ passport.serializeUser(
     done(null, {
       id: user._id,
       username: user.username,
+      pass: user.password
     }) //se guardará en req.user
 ); //req.user se envia
 
@@ -72,6 +73,7 @@ app.use(csrf());
 //csrf - - Aqui aplica el token de forma global automatico
 app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
+  req.user ? res.locals.loggedIn = true : res.locals.loggedIn = false; //checa si hay alguien iniciado sesion.
   next(); //pasa a lo siguiente dice
 });
 

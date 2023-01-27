@@ -15,15 +15,17 @@ html
           span.navbar-toggler-icon
         #navbarNav.collapse.navbar-collapse
           ul.navbar-nav
-            li.nav-item
-              a.nav-link.active(aria-current='page' href='/') Home
-            li.nav-item
-              a.nav-link(href='/login') Login
-            li.nav-item
-              a.nav-link(href='/register') Register
-            li.nav-item
-              a.nav-link(href='/profile') Profile
-            li.nav-item
-              a.nav-link(href='/logout') Logout
+            if (!loggedIn)
+              li.nav-item
+                a.nav-link.active(aria-current='page' href='/') Home
+              li.nav-item
+                a.nav-link(href='/login') Login
+              li.nav-item
+                a.nav-link(href='/register') Register
+            else
+              li.nav-item
+                a.nav-link(href='/profile') Profile
+              li.nav-item
+                a.nav-link(href='/logout') Logout
     block content
     
