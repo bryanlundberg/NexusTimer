@@ -26,11 +26,8 @@ exports.login_post = async (req, res) => {
 				throw new Error("Error creating session")
 				return res.redirect("/login")
 			}
-			
 			res.redirect("/profile/"+user._id)
 		})
-		
-
 	} catch (error) {
 		req.flash("mensajes", [{ msg: error.message }]);
 		res.redirect("/login")

@@ -10,7 +10,9 @@ html
   body
     nav.navbar.navbar-expand-md.navbar-dark.bg-dark
       .container-fluid
-        a.navbar-brand(href='/') Navbar
+        a.navbar-brand(href='/')
+          img(src="/images/logo.png" alt="logo" width="24" height="24" class="d-inline-block")
+          |     Cube Stats
         button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
           span.navbar-toggler-icon
         #navbarNav.collapse.navbar-collapse
@@ -24,8 +26,13 @@ html
                 a.nav-link(href='/register') Register
             else
               li.nav-item
+                a.nav-link(href='/profile/'+userSession.id) Profile
+              li.nav-item
                 a.nav-link(href='/profile/'+userSession.id+'/times') My times
               li.nav-item
                 a.nav-link(href='/logout') Logout
     block content
-    
+    <a class="" href="#">
+      <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      Bootstrap
+    </a>

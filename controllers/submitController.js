@@ -10,7 +10,7 @@ exports.newTime_post = async (req, res) => {
 		author: req.user.id
 	})
 	await newTime.save()
-	res.redirect("/profile")
+	res.redirect("/profile/"+req.user.id+"/times")
 }
 
 exports.deleteTime = async (req, res) => {
@@ -22,9 +22,9 @@ exports.deleteTime = async (req, res) => {
 			throw new Error("That is not your time")
 		}
 		await deleteTimeId.remove();
-		res.redirect("/profile")
+		res.redirect("/profile/"+req.user.id+"/times")
 	} catch (error) {
 		console.log(error)
-		res.redirect("/profile")
+		res.redirect("/profile/"+req.user.id+"/times")
 	}
 }

@@ -1,0 +1,30 @@
+extends layout
+
+block content
+	.container.mx-5.mt-5
+		form(action="/submit/times" method="post")
+			input(type="hidden" name="_csrf" value=csrfToken)
+			h1.text-center Add new times
+			.row.g-3.d-flex.justify-content-evenly
+				.col-md
+					input.form-control(type='text' name="time" placeholder='Time' aria-label='time')
+				.col-md
+					select.form-select(name="category" aria-label='Default select')
+						option(selected='Select cube') Select cube
+						option(value='2x2') 2x2
+						option(value='3x3') 3x3
+						option(value='4x4') 4x4
+				.col-md
+					button.btn.btn-primary(type='submit') Button
+		hr.my-5
+		
+		
+		if (times)
+			.container
+				for value in times
+					div(class="card text-bg-light mb-3 position-relative" style="max-width: 18rem;")
+						.card-header Cube #{value.category} - Moyu Dayan
+						.card-body 
+							h5.card-title #{value.time}	seg
+						a(class="btn btn-danger position-absolute bottom-0 end-0" href='/submit/'+value._id+'/delete' role="button") Remove
+

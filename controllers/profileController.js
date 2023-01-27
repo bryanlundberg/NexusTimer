@@ -1,14 +1,14 @@
 const User = require("../models/User");
 const CubeTime = require("../models/CubeTime");
 
-exports.profile_get = async (req, res) => {
+exports.userTimes_get = async (req, res) => {
 	console.log(req.user)
 	try {
 		const times = await CubeTime.find({ 
 			author: req.user.id 
 		});
 		if (!times) throw new Error("No records");
-		res.render("profile", {
+		res.render("user_times", {
 			title: "Profile",
 			times
 		})
