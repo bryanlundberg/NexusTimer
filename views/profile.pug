@@ -22,11 +22,9 @@ block content
 		if (times)
 			.container
 				for value in times
-					div(class="card text-bg-light mb-3" style="max-width: 18rem;")
+					div(class="card text-bg-light mb-3 position-relative" style="max-width: 18rem;")
 						.card-header Cube #{value.category} - Moyu Dayan
 						.card-body 
-							h5.card-title #{value.time}	seg		
-					
-					
-
+							h5.card-title #{value.time}	seg
+						a(class="btn btn-danger position-absolute bottom-0 end-0" href='/submit/'+value._id+'/delete' role="button") Remove
 

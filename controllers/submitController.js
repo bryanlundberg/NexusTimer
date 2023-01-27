@@ -11,4 +11,20 @@ exports.newTime_post = async (req, res) => {
 	})
 	await newTime.save()
 	res.redirect("/profile")
-} 
+}
+
+exports.deleteTime = async (req, res) => {
+	try {
+		const { id } = req.params;
+		
+		const deleteTimeId = await CubeTime.findById(id);
+		if (!deleteTimeId.author.equals(req.user.id)) {
+			throw new Error("That is not your time")
+		}
+		await deleteTimeId.remove();
+		res.redirect("/profile")
+	} catch (error) {
+		console.log(error)
+		res.redirect("/profile")
+	}
+}
