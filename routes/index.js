@@ -8,6 +8,7 @@ const registerController = require("../controllers/registerController");
 const profileController = require("../controllers/profileController");
 const submitController = require("../controllers/submitController");
 const verifyUser = require("../middlewares/verifyUser");
+const timerController = require("../controllers/timerController");
 
 router.get("/", homeController.home_get);
 router.get("/register", registerController.register_get);
@@ -32,6 +33,8 @@ router.post(
   ],
   loginController.login_post
 );
+
+router.get("/timer", verifyUser, timerController.load_page)
 
 router.get("/profile/:idUser", verifyUser, profileController.profileUser_get);
 router.get("/profile/:idUser/historial", verifyUser, profileController.userTimes_get);
