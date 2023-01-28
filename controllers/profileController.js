@@ -8,7 +8,7 @@ exports.userTimes_get = async (req, res) => {
 			author: req.user.id 
 		});
 		if (!times) throw new Error("No records");
-		res.render("user_times", {
+		res.render("historial", {
 			title: "Profile",
 			times
 		})

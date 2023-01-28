@@ -34,7 +34,7 @@ router.post(
 );
 
 router.get("/profile/:idUser", verifyUser, profileController.profileUser_get);
-router.get("/profile/:idUser/times", verifyUser, profileController.userTimes_get);
+router.get("/profile/:idUser/historial", verifyUser, profileController.userTimes_get);
 
 router.get("/submit/:id/delete", verifyUser, submitController.deleteTime);
 router.post("/submit/times", verifyUser, submitController.newTime_post);
