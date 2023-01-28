@@ -5,14 +5,52 @@ block content
 	.container.mt-5.text-center.d-flex.align-items-center.gap-3.justify-content-center
 		img(src="/images/profile/guest-user.png" width="28" height="28")
 		h1 Welcome back #{userSession.username}!
-	.container.mt-5.d-flex.align-items-center.gap-3.justify-content-center.text-center
-		.card(style="width: 18rem;")
-			.card-header Featured: Member
-			.card-header Nationality: Mexico
-			ul.list-group.list-group-flush
-				li.list-group-item Total solves all cubes: 11,234
-				li.list-group-item Prefered category: 3x3
-				li.list-group-item Total solves prefered cube: 2,323
-				li.list-group-item Gobal solve ratio: 97.15%
-				li.list-group-item Prefered cube: XuangGon
-				
+
+	.container.my-5
+		.row
+			.col-md-12.col-lg-4.my-1
+				.card
+					.card-body
+						ul.list-group.list-group-flush
+							li.list-group-item.d-flex.justify-content-between
+								span Featured:
+								span Member
+							li.list-group-item.d-flex.justify-content-between
+								span Nationality:
+								span Mexico
+							li.list-group-item.d-flex.justify-content-between
+								span Total solves all cubes:
+								span 11,234
+							li.list-group-item.d-flex.justify-content-between
+								span Prefered category:
+								span 3x3
+							li.list-group-item.d-flex.justify-content-between
+								span Total solves prefered cube:
+								span 2,323323234
+							li.list-group-item.d-flex.justify-content-between
+								span Gobal solve ratio:
+								span 97.15%
+							li.list-group-item.d-flex.justify-content-between
+								span Prefered cube:
+								span XuangGon
+			.col-md-12.col-lg-8.my-1
+				.card
+					.card-body
+						.card-title Featured: Member
+						.card-title Nationality: Mexico
+						ul.list-group.list-group-flush
+							li.list-group-item.d-flex.justify-content-between
+								span Total solves all cubes:
+								span 11,234
+							li.list-group-item.d-flex.justify-content-between
+								span Prefered category:
+								span 3x3
+							li.list-group-item.d-flex.justify-content-between
+								span Total solves prefered cube:
+								span 2,323323234
+							li.list-group-item.d-flex.justify-content-between
+								span Gobal solve ratio:
+								span 97.15%
+							li.list-group-item.d-flex.justify-content-between
+								span Prefered cube:
+								span XuangGon
