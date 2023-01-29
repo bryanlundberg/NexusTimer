@@ -32,6 +32,13 @@ exports.profileUser_get = async (req, res) => {
   }
 }
 
+exports.editProfile_get = async (req, res) => {
+	res.render("profile_edit", {
+		title: "Your profile"
+	})
+}
+
+
 exports.algCollection_get = async (req, res) => {
 	res.render("profile_alg-collection", {
 		title: "Collection"

@@ -34,6 +34,7 @@ router.post(
   loginController.login_post
 );
 
+router.get("/profile/:idUser/settings", profileController.editProfile_get)
 router.get("/profile/:idUser/alg-collection", profileController.algCollection_get)
 router.get("/timer", verifyUser, timerController.load_page)
 
