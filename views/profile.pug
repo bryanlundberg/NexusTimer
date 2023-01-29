@@ -2,13 +2,10 @@ extends layout
 
 block content
 
-	.container.mt-5.text-center.d-flex.align-items-center.gap-3.justify-content-center
-		img(src="/images/profile/guest-user.png" width="28" height="28")
-		h1 Welcome back #{userSession.username}!
-
 	.container.my-5
 		.row
 			.col-md-12.col-lg-4.my-1
+				p.fs-1.text-center #{userSession.username}
 				img(src="/images/profile/gears.jpg" class="my-3 object-fit rounded-circle mx-auto d-block" alt="user profile photo" width="296" height="296")
 				.card
 					.card-body
@@ -29,17 +26,23 @@ block content
 								span Total solves prefered cube:
 								span 2,323323234
 							li.list-group-item.d-flex.justify-content-between
-								span Gobal solve ratio:
+								span Solve ratio:
 								span 97.15%
+							li.list-group-item.d-flex.justify-content-between
+								span Cubes Most used brand:
+								span Moyu
 							li.list-group-item.d-flex.justify-content-between
 								span Prefered cube:
 								span XuangGon
+							li.list-group-item.d-flex.justify-content-between
+								span Cubes owned:
+								span 19
 				a(class="btn btn-secondary w-100 d-block my-1" href="#" role="button") Edit
 			.col-md-12.col-lg-8.my-1
 				.nav.nav-tabs
 					.nav.item
 						a.nav-link.active(aria-current="page" href="#") Overview
 					.nav-item
-						.nav-link(href="#") Methods
+						.nav-link(href="#") Algorithm collections
 					.nav-item
-						.nav-link(href="#") Link
+						.nav-link(href="#") Achievements
