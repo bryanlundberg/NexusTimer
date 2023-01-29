@@ -24,7 +24,7 @@ block content
 								span 3x3
 							li.list-group-item.d-flex.justify-content-between
 								span Total solves prefered cube:
-								span 2,323323234
+								span 2,323
 							li.list-group-item.d-flex.justify-content-between
 								span Solve ratio:
 								span 97.15%
@@ -41,8 +41,12 @@ block content
 			.col-md-12.col-lg-8.my-1
 				.nav.nav-tabs
 					.nav.item
-						a.nav-link.active(aria-current="page" href="#") Overview
+						a.nav-link.active(aria-current="page" href='/profile/'+userSession.id) Overview
 					.nav-item
-						.nav-link(href="#") Algorithm collections
+						a.nav-link(href='/profile/'+userSession.id+'/alg-collection') Algorithm collections
 					.nav-item
-						.nav-link(href="#") Achievements
+						a.nav-link(href="#") Achievements
+				.container.my-3
+					div(class="row row-cols-1 row-cols-md-2 g-4")
+						div(class="col")
+							img(src="/images/graphs/img4.png" class="object-fit" alt="" width="400" height="400")

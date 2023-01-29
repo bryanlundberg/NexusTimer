@@ -22,7 +22,7 @@ exports.profileUser_get = async (req, res) => {
   try {
 	const user = await User.findById(req.params.idUser)
 	if (user) {
-	  res.render("profile_methods", {
+	  res.render("profile", {
 		  title: user.username,
 		  user
 	  })
@@ -33,7 +33,9 @@ exports.profileUser_get = async (req, res) => {
 }
 
 exports.algCollection_get = async (req, res) => {
-	
+	res.render("profile_alg-collection", {
+		title: "Collection"
+	})
 }
 
 exports.logout_get = (req, res) => {
