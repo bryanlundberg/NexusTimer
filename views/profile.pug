@@ -9,6 +9,7 @@ block content
 	.container.my-5
 		.row
 			.col-md-12.col-lg-4.my-1
+				img(src="/images/profile/gears.jpg" class="my-3 object-fit rounded-circle mx-auto d-block" alt="user profile photo" width="296" height="296")
 				.card
 					.card-body
 						ul.list-group.list-group-flush
@@ -33,24 +34,12 @@ block content
 							li.list-group-item.d-flex.justify-content-between
 								span Prefered cube:
 								span XuangGon
+				a(class="btn btn-secondary w-100 d-block my-1" href="#" role="button") Edit
 			.col-md-12.col-lg-8.my-1
-				.card
-					.card-body
-						.card-title Featured: Member
-						.card-title Nationality: Mexico
-						ul.list-group.list-group-flush
-							li.list-group-item.d-flex.justify-content-between
-								span Total solves all cubes:
-								span 11,234
-							li.list-group-item.d-flex.justify-content-between
-								span Prefered category:
-								span 3x3
-							li.list-group-item.d-flex.justify-content-between
-								span Total solves prefered cube:
-								span 2,323323234
-							li.list-group-item.d-flex.justify-content-between
-								span Gobal solve ratio:
-								span 97.15%
-							li.list-group-item.d-flex.justify-content-between
-								span Prefered cube:
-								span XuangGon
+				.nav.nav-tabs
+					.nav.item
+						a.nav-link.active(aria-current="page" href="#") Overview
+					.nav-item
+						.nav-link(href="#") Methods
+					.nav-item
+						.nav-link(href="#") Link
