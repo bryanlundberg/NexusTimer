@@ -9,6 +9,47 @@ block content
 			.col-md-12.col-lg-8.my-1
 				include profile_navbar
 				.container.my-3
-					div(class="row row-cols-1 row-cols-md-2 g-4")
+					div(class="row row-cols-1 g-2")
+	
+								
 						div(class="col")
-							img(src="/images/graphs/img4.png" class="object-fit" alt="" width="400" height="400")
+							.container.border.rounded.d-flex.justify-content-between.p-2.bg-light
+								.card-body 3x3 2H
+								.card-body Moyu
+								.card-body Dayan Zanchi
+								.card-body 12,452 solves
+								.card-body 8.98 sec
+								
+
+						div(class="col")
+							.container.border.rounded.d-flex.justify-content-between.p-2.bg-light
+								.card-body 3x3 2H
+								.card-body Gan
+								.card-body Gan 356
+								.card-body 452 solves
+								.card-body 12.92 sec
+								
+						div(class="col")
+							form(action="" method="post")
+								div(class="row g-2")
+									div(class="col-md")
+										div(class="form-floating")
+											input(type="email" class="form-control" id="floatingInputGrid" placeholder="Cube name")
+											label(for="floatingInputGrid") Cube name
+									div(class="col-md")
+										div(class="form-floating")
+											input(type="email" class="form-control" id="floatingInputGrid" placeholder="Brand")
+											label(for="floatingInputGrid") Brand
+											
+									div(class="col-md")
+										div(class="form-floating")
+											select(class="form-select" id="floatingSelectGrid")
+												option(selected) Choose category
+												option 2x2
+												option 3x3 2H
+												option 3x3 1H
+												option 3X3 Blind
+												option 4x4
+												option 5x5
+											label(for="floatingSelectGrid") Choose a category
+									button.btn.btn-outline-primary Add it to the collection!
