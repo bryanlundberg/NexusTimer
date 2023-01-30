@@ -5,47 +5,10 @@ block content
 	.container.my-5
 		.row
 			.col-md-12.col-lg-4.my-1
-				p.fs-1.text-center #{userSession.username}
-				img(src="/images/profile/gears.jpg" class="my-3 object-fit rounded-circle mx-auto d-block" alt="user profile photo" width="296" height="296")
-				.card
-					.card-body
-						ul.list-group.list-group-flush
-							li.list-group-item.d-flex.justify-content-between
-								span Featured:
-								span Member
-							li.list-group-item.d-flex.justify-content-between
-								span Nationality:
-								span Mexico
-							li.list-group-item.d-flex.justify-content-between
-								span Total solves all cubes:
-								span 11,234
-							li.list-group-item.d-flex.justify-content-between
-								span Prefered category:
-								span 3x3
-							li.list-group-item.d-flex.justify-content-between
-								span Total solves prefered cube:
-								span 2,323
-							li.list-group-item.d-flex.justify-content-between
-								span Solve ratio:
-								span 97.15%
-							li.list-group-item.d-flex.justify-content-between
-								span Cubes Most used brand:
-								span Moyu
-							li.list-group-item.d-flex.justify-content-between
-								span Prefered cube:
-								span XuangGon
-							li.list-group-item.d-flex.justify-content-between
-								span Cubes owned:
-								span 19
-				a(class="btn btn-secondary w-100 d-block my-1" href="/profile/"+userSession.id+"/settings" role="button") Edit
+				include profile_sidebar
 			.col-md-12.col-lg-8.my-1
-				.nav.nav-tabs
-					.nav.item
-						a.nav-link(href='/profile/'+userSession.id) Overview
-					.nav-item
-						a.nav-link.active(aria-current="page" href='/profile/'+userSession.id+'/alg-collection') Algorithm collections
-					.nav-item
-						a.nav-link(href="#") Achievements
+			
+				include profile_navbar
 					
 				.container.my-3
 					div(class="row row-cols-1 row-cols-md-2 g-4")
@@ -58,75 +21,32 @@ block content
 									p.fs-6 Permutation of the Last Layer
 									p Algorithm set 20
 									.progress.my-1
-										.progress-bar(role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100") 45/57
+										.progress-bar.progress-bar-striped.progress-bar-animated(role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100") 45/57
 									button(type="button" class="btn btn-light btn-sm my-1") View more
 									
 						div(class="col")
 							.container.d-flex.border.rounded.bg-light
-								div.d-flex.align-items-center(width="100" height="100")
+								div.d-flex.align-items-center
 									img(src="/images/collection/pll.png" class="object-fit" alt="" width="100" height="100")
 								div.p-3.d-flex.flex-column.justify-content-center.w-100.text-center
 									h5 PLL
 									p.fs-6 Permutation of the Last Layer
 									p Algorithm set 20
 									.progress.my-1
-										.progress-bar(role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100") 45/57
+										.progress-bar.progress-bar-striped(role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100") 45/57
 									button(type="button" class="btn btn-light btn-sm my-1") View more
 									
 						div(class="col")
 							.container.d-flex.border.rounded.bg-light
-								div.d-flex.align-items-center(width="100" height="100")
+								div.d-flex.align-items-center
 									img(src="/images/collection/pll.png" class="object-fit" alt="" width="100" height="100")
 								div.p-3.d-flex.flex-column.justify-content-center.w-100.text-center
 									h5 PLL
 									p.fs-6 Permutation of the Last Layer
 									p Algorithm set 20
 									.progress.my-1
-										.progress-bar(role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100") 45/57
+										.progress-bar.progress-bar-striped(role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100") 45/57
 									button(type="button" class="btn btn-light btn-sm my-1") View more
-									
-									
-						div(class="col")
-							.container.d-flex.border.rounded.bg-light
-								div.d-flex.align-items-center(width="100" height="100")
-									img(src="/images/collection/pll.png" class="object-fit" alt="" width="100" height="100")
-								div.p-3.d-flex.flex-column.justify-content-center.w-100.text-center
-									h5 PLL
-									p.fs-6 Permutation of the Last Layer
-									p Algorithm set 20
-									.progress.my-1
-										.progress-bar(role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100") 45/57
-									button(type="button" class="btn btn-light btn-sm my-1") View more
-									
-									
-						div(class="col")
-							.container.d-flex.border.rounded.bg-light
-								div.d-flex.align-items-center(width="100" height="100")
-									img(src="/images/collection/pll.png" class="object-fit" alt="" width="100" height="100")
-								div.p-3.d-flex.flex-column.justify-content-center.w-100.text-center
-									h5 PLL
-									p.fs-6 Permutation of the Last Layer
-									p Algorithm set 20
-									.progress.my-1
-										.progress-bar(role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100") 45/57
-									button(type="button" class="btn btn-light btn-sm my-1") View more
-									
-									
-						div(class="col")
-							.container.d-flex.border.rounded.bg-light
-								div.d-flex.align-items-center(width="100" height="100")
-									img(src="/images/collection/pll.png" class="object-fit" alt="" width="100" height="100")
-								div.p-3.d-flex.flex-column.justify-content-center.w-100.text-center
-									h5 PLL
-									p.fs-6 Permutation of the Last Layer
-									p Algorithm set 20
-									.progress.my-1
-										.progress-bar(role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100") 45/57
-									button(type="button" class="btn btn-light btn-sm my-1") View more
-									
-									
-									
-									
 									
 									
 									

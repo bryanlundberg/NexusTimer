@@ -32,6 +32,18 @@ exports.profileUser_get = async (req, res) => {
   }
 }
 
+exports.cubes_get = async (req, res) => {
+	res.render("profile_cubes", {
+		title: "Your cubes"
+	})
+}
+
+exports.achievements_get = async (req, res) => {
+	res.render("profile_achievements", {
+		title: "Your achievements"
+	})
+}
+
 exports.editProfile_get = async (req, res) => {
 	res.render("profile_edit", {
 		title: "Your profile"

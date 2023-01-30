@@ -36,6 +36,8 @@ router.post(
 
 router.get("/profile/:idUser/settings", profileController.editProfile_get)
 router.get("/profile/:idUser/alg-collection", profileController.algCollection_get)
+router.get("/profile/:idUser/achievements", profileController.achievements_get)
+router.get("/profile/:idUser/my-cubes", profileController.cubes_get)
 router.get("/timer", verifyUser, timerController.load_page)
 
 router.get("/profile/:idUser", verifyUser, profileController.profileUser_get);
