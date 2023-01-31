@@ -1,0 +1,37 @@
+extends layout
+
+block content
+	
+	.container.my-5
+		h1 Public profile
+		hr
+		form.row.g-3
+			.col-md-6
+				label(for="formGroupExampleInput" class="form-label") Name
+				input(type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder")
+				
+				label(for="floatingTextarea2") Bio
+				textarea(class="form-control" id="floatingTextarea2")
+				
+				label(for="formGroupExampleInput" class="form-label") Bio
+				input(type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder")
+				
+				label(for="formGroupExampleInput" class="form-label") Website
+				input(type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder")
+				
+				label(for="formGroupExampleInput" class="form-label") Youtube channel
+				input(type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder")
+				
+				label(for="formGroupExampleInput" class="form-label") Contact e-mail
+				input(type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder")
+				
+				label(for="formGroupExampleInput" class="form-label") Location
+				input(type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder")
+				
+				
+
+			.col-md-6
+				img(src="/images/profile/gears.jpg" class="my-3 object-fit rounded-circle mx-auto d-block" alt="user profile photo" width="296" height="296")
+				label(for="formFile" class="form-label") Change profile picture
+				input(class="form-control" type="file" id="formFile")
+			button(type="submit" class="btn btn-primary") Update profile
