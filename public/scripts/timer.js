@@ -1,5 +1,5 @@
 
-document.querySelector("p").textContent = generateScramble(20)
+/* document.querySelector("p").textContent = generateScramble(20) */
 
 function generateScramble(scrambleLength) {
   const possibleMoves = ["U", "U2", "U'", "R", "R2", "R'", "F", "F2", "F'", "D", "D2", "D'", "L", "L2", "L'", "B", "B2", "B'"];

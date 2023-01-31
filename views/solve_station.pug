@@ -1,8 +1,59 @@
 extends layout
 
 block content
-	.container-fluid.min-vh-100.bg-dark.text-bg-dark
-		p hola
-
-	script(src="/scripts/timer.js")
+	.container.d-flex.d-block.pt-3.gap-3
+		div(class="form-floating")
+			select(class="form-select" id="floatingSelect" aria-label="Floating label select example")
+				option(selected) Open this select menu
+				option(value="1") 2x2
+				option(value="2") 3x3
+				option(value="3") 4x4
+				option(value="4") 5x5
+			label(for="floatingSelect") Category
+			
+		div(class="form-floating")
+			select(class="form-select" id="floatingSelect" aria-label="Floating label select example")
+				option(selected) Open this select menu
+				option(value="1") Zenhua
+				option(value="2") Gan 356
+				option(value="3") Gan 999
+				option(value="4") Tornado V2
+			label(for="floatingSelect") Cube
+			
+			
+	.container
+		div(class="shadow-sm p-3 mb-5 bg-body-tertiary rounded fs-3 text-center my-5 bg-dark text-bg-dark") B L' D F2 D' B2 D2 F2 L2 U F2 R2 D B' F U F' D F D2
 		
+	.container
+		h1(class="display-1 text-center my-5") 0.000
+		
+
+	.container.fixed-bottom.d-flex.justify-content-center
+		.card(style="width: 400px")
+			.card-body
+				ul.list-group.list-group-flush
+					li.list-group-item.d-flex.justify-content-between.p-0
+						span Count:
+						span 86
+					li.list-group-item.d-flex.justify-content-between.p-0
+						span Best time:
+						span 9.34
+					li.list-group-item.d-flex.justify-content-between.p-0
+						span Avg5:
+						span 10.32
+					li.list-group-item.d-flex.justify-content-between.p-0
+						span Avg12:
+						span 10.94
+					li.list-group-item.d-flex.justify-content-between.p-0
+						span Avg50:
+						span 12.32
+					li.list-group-item.d-flex.justify-content-between.p-0
+						span Desviation:
+						span 1.32
+					li.list-group-item.d-flex.justify-content-between.p-0
+						span Average:
+						span 12.32
+						
+
+						
+	script(src="/scripts/timer.js")
