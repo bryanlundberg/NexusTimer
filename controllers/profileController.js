@@ -50,6 +50,11 @@ exports.editProfile_get = async (req, res) => {
 	})
 }
 
+exports.help_get = async (req, res) => {
+	res.render("profile_alg-set", {
+		title: "Profile alg set help section"
+	})
+}
 
 exports.algCollection_get = async (req, res) => {
 	res.render("profile_alg-collection", {
