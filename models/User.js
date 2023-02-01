@@ -8,14 +8,61 @@ const UserSchema = new Schema({
 	unique: true,
 	required: true
   },
+  
   email: {
 	type: String,
 	//unique: true,
 	required: true
   },
+  
   password: {
 	type: String,
 	required: true
+  },
+  
+  theme: {
+	  type: String,
+	  default: "light"
+  },
+  
+  nationality: {
+	  type: String,
+	  default: "-"
+  },
+  
+  preferedCategory: {
+	  type: String,
+	  default: "-"
+  },
+  
+  totalSolvesPreferedCube: {
+	  type: Number,
+	  default: 0
+  },
+  
+  solveRatio: {
+	  type: String,
+	  default: "0.00%"
+  },
+  
+  mostUsedBrand: {
+	  type: String,
+	  default: "-"
+  },
+  
+  preferedCube: {
+	  type: String,
+	  default: "-"
+  },
+  
+  cubesOwned: {
+	  type: Number,
+	  default: 0
+  },
+  
+  profile_img: {
+	  type: String,
+	  default: "/images/profile/gears.jpg"
   }
   
 })

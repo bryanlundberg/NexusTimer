@@ -50,7 +50,7 @@ main().catch((err) => console.log(err));
 
 async function main() {
   await mongoose.connect(
-    "mongodb+srv://usernametest:passwordtest@cluster0.dltd4ag.mongodb.net/projectWithUsers?retryWrites=true&w=majority"
+    "mongodb+srv://usernametest:passwordtest@cluster0.dltd4ag.mongodb.net/cubestats?retryWrites=true&w=majority"
   );
 }
 
