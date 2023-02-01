@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const SpeedcubeSchema = new Schema({
+const CubeSchema = new Schema({
 	
 	
 	owner: { 
@@ -36,4 +36,4 @@ const SpeedcubeSchema = new Schema({
 	
 })
 
-module.exports = mongoose.model("Speedcube", SpeedcubeSchema)
+module.exports = mongoose.model("Cube", CubeSchema)

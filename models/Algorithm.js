@@ -12,6 +12,14 @@ const AlgorithmSchema = new Schema({
 	learned: {
 		type: boolean,
 		default: false
+	},
+	
+	thumbnail: {
+		type: String
+	},
+	
+	alg: {
+		type: String
 	}
 
 })

@@ -20,9 +20,19 @@ const UserSchema = new Schema({
 	required: true
   },
   
+  role: {
+	  type: String,
+	  default: "Member"
+  },
+  
   theme: {
 	  type: String,
-	  default: "light"
+	  default: "off"
+  },
+  
+  name: {
+	  type: String,
+	  default: "--DF6A872H43--"
   },
   
   nationality: {
@@ -35,10 +45,19 @@ const UserSchema = new Schema({
 	  default: "-"
   },
   
-  totalSolvesPreferedCube: {
-	  type: Number,
-	  default: 0
-  },
+  totalSolves: [
+		{
+			type: Schema.Types.ObjectId, 
+			ref: "Solve", 
+		}
+	],
+  
+  totalSolvesPreferedCube: [
+		{
+			type: Schema.Types.ObjectId, 
+			ref: "Solve", 
+		}
+	],
   
   solveRatio: {
 	  type: String,
@@ -63,9 +82,34 @@ const UserSchema = new Schema({
   profile_img: {
 	  type: String,
 	  default: "/images/profile/gears.jpg"
+  },
+  
+  website: {
+	  type: String,
+	  default: "-"
+  },
+  
+  youtube: {
+	  type: String,
+	  default: "-"
+  },
+  
+  contactEmail: {
+	  type: String,
+	  default: "-"
+  },
+  
+  bio: {
+	  type: String,
+	  default: "-"
   }
   
 })
+
+/* Schema.virtual("totalSolves").get(function () {
+  const totalSolves = await Solve.find
+  return `${this._id}`;
+}); */
 
 UserSchema.pre("save", async function(next) {
     const user = this;

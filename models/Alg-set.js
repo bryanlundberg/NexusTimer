@@ -11,7 +11,10 @@ const AlgSetSchema = new Schema({
 	
 	set_name: {
 		type: String,
-		default: "oll"
+	},
+	
+	thumbnail: {
+		type: String
 	},
 	
 	algorithms: [

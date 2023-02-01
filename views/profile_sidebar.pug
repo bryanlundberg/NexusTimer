@@ -1,33 +1,33 @@
-p.fs-1.text-center #{userSession.username}
-img(src="/images/profile/gears.jpg" class="my-3 object-fit rounded-circle mx-auto d-block" alt="user profile photo" width="296" height="296")
+p.fs-1.text-center #{user.name}
+img(src=user.profile_img class="my-3 object-fit rounded-circle mx-auto d-block" alt="user profile photo" width="296" height="296")
 .card
 	.card-body
 		ul.list-group.list-group-flush
 			li.list-group-item.d-flex.justify-content-between
 				span Featured:
-				span Member
+				span #{user.role}
 			li.list-group-item.d-flex.justify-content-between
 				span Nationality:
-				span Mexico
+				span #{user.nationality}
 			li.list-group-item.d-flex.justify-content-between
 				span Total solves all cubes:
-				span 11,234
+				span #{user.totalSolves.length}
 			li.list-group-item.d-flex.justify-content-between
 				span Prefered category:
-				span 3x3
+				span #{user.preferedCategory}
 			li.list-group-item.d-flex.justify-content-between
 				span Total solves prefered cube:
-				span 2,323
+				span #{user.totalSolvesPreferedCube.length}
 			li.list-group-item.d-flex.justify-content-between
 				span Solve ratio:
-				span 97.15%
+				span #{user.solveRatio}
 			li.list-group-item.d-flex.justify-content-between
 				span Most used brand:
-				span Moyu
+				span #{user.mostUsedBrand}
 			li.list-group-item.d-flex.justify-content-between
 				span Prefered cube:
-				span XuangGon
+				span #{user.preferedCube}
 			li.list-group-item.d-flex.justify-content-between
 				span Cubes owned:
-				span 19
+				span #{user.cubesOwned}
 a(class="btn btn-secondary w-100 d-block my-1" href="/profile/"+userSession.id+"/settings" role="button") Edit

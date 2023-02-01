@@ -28,3 +28,32 @@ exports.deleteTime = async (req, res) => {
 		res.redirect("/profile/"+req.user.id+"/historial")
 	}
 }
+
+exports.settings_post = async (req, res) => {
+	try {
+		const { name, bio, website, youtube, contactEmail, nationality, theme } = req.body;
+		console.log(theme)
+		const { id } = req.params;
+		const user = await User.findById(id);
+		
+		if (!user) {
+			throw new Error("User not found")
+		}
+		
+		user.name = name;
+		user.bio = bio;
+		user.website = website;
+		user.youtube = youtube;
+		user.contactEmail = contactEmail;
+		user.nationality = nationality;
+		user.theme = theme;
+		
+		const saveUser = await user.save();
+		
+		res.redirect("/profile/"+user._id)
+		
+	} catch (error) {
+		console.log(error)
+		res.redirect("/profile"+user._id)
+	}
+}

@@ -46,6 +46,7 @@ router.get("/profile/:idUser/historial", verifyUser, profileController.userTimes
 
 router.get("/submit/:id/delete", verifyUser, submitController.deleteTime);
 router.post("/submit/times", verifyUser, submitController.newTime_post);
+router.post("/submit/:id/settings", verifyUser, submitController.settings_post);
 
 router.get("/logout", profileController.logout_get);
 module.exports = router;

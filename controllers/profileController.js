@@ -33,33 +33,80 @@ exports.profileUser_get = async (req, res) => {
 }
 
 exports.cubes_get = async (req, res) => {
-	res.render("profile_cubes", {
-		title: "Your cubes"
-	})
+  try {
+	const user = await User.findById(req.params.idUser)
+	if (user) {
+		res.render("profile_cubes", {
+			title: "Your cubes",
+			user
+		})
+	}
+  } catch (error) {
+	  console.log(error)	
+  }
+	
 }
 
 exports.achievements_get = async (req, res) => {
-	res.render("profile_achievements", {
-		title: "Your achievements"
-	})
+  try {
+	const user = await User.findById(req.params.idUser)
+	if (user) {
+		res.render("profile_achievements", {
+			title: "Your achievements",
+			user
+		})
+	}
+  } catch (error) {
+	  console.log(error)	
+  }
+	
 }
 
 exports.editProfile_get = async (req, res) => {
-	res.render("profile_edit", {
-		title: "Your profile"
-	})
+  try {
+	const user = await User.findById(req.params.idUser)
+	if (user) {
+		res.render("profile_edit", {
+			title: "Your profile",
+			user
+		})
+	}
+  } catch (error) {
+	  console.log(error)	
+  }
+	
 }
 
 exports.help_get = async (req, res) => {
-	res.render("profile_alg-set", {
-		title: "Profile alg set help section"
-	})
+	
+  try {
+	const user = await User.findById(req.params.idUser)
+	if (user) {
+		res.render("profile_alg-set", {
+			title: "Profile alg set help section",
+			user
+		})
+	}
+  } catch (error) {
+	  console.log(error)	
+  }
+
 }
 
 exports.algCollection_get = async (req, res) => {
-	res.render("profile_alg-collection", {
-		title: "Collection"
-	})
+	
+  try {
+	const user = await User.findById(req.params.idUser)
+	if (user) {
+		res.render("profile_alg-collection", {
+			title: "Collection",
+			user
+		})
+	}
+  } catch (error) {
+	  console.log(error)	
+  }
+	
 }
 
 exports.logout_get = (req, res) => {
