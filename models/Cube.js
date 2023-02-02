@@ -3,7 +3,6 @@ const Schema = mongoose.Schema;
 
 const CubeSchema = new Schema({
 	
-	
 	owner: { 
 		type: Schema.Types.ObjectId, 
 		ref: "User", 
@@ -13,16 +12,6 @@ const CubeSchema = new Schema({
 	solve_counter: {
 		type: Number,
 		default: 0
-	},
-	
-	best_ao5: {
-		type: String,
-		default: "0.00"
-	},
-	
-	best_time: {
-		type: String,
-		default: "0.00"
 	},
 	
 	brand: {
@@ -35,5 +24,6 @@ const CubeSchema = new Schema({
 	}
 	
 })
+
 
 module.exports = mongoose.model("Cube", CubeSchema)

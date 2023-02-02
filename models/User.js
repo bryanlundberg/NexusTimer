@@ -45,20 +45,6 @@ const UserSchema = new Schema({
 	  default: "-"
   },
   
-  totalSolves: [
-		{
-			type: Schema.Types.ObjectId, 
-			ref: "Solve", 
-		}
-	],
-  
-  totalSolvesPreferedCube: [
-		{
-			type: Schema.Types.ObjectId, 
-			ref: "Solve", 
-		}
-	],
-  
   solveRatio: {
 	  type: String,
 	  default: "0.00%"
@@ -105,11 +91,6 @@ const UserSchema = new Schema({
   }
   
 })
-
-/* Schema.virtual("totalSolves").get(function () {
-  const totalSolves = await Solve.find
-  return `${this._id}`;
-}); */
 
 UserSchema.pre("save", async function(next) {
     const user = this;

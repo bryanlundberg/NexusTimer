@@ -21,8 +21,18 @@ const SolveSchema = new Schema({
 	
 	cube: {
 		type: Schema.Types.ObjectId, 
-		ref: "Speedcube", 
+		ref: "Cube", 
 		required: true 
+	}
+	
+	date: {
+		type: Date,
+		default Date.now
+	}
+	
+	scramble: {
+		type: String,
+		default: `F U R U'`
 	}
 	
 })
