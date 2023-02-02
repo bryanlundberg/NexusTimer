@@ -3,26 +3,25 @@ const Schema = mongoose.Schema;
 
 const AlgSetSchema = new Schema({
 	
-	owner: { 
-		type: Schema.Types.ObjectId, 
-		ref: "User", 
-		required: true 
-	},
-	
-	set_name: {
-		type: String,
-	},
-	
-	thumbnail: {
+	collection: {
+		type: Schema.Types.ObjectId,
+		ref: "Collection"
+	}
+	name: {
 		type: String
 	},
 	
-	algorithms: [
-	  {
-		type: Schema.Types.ObjectId, 
-		ref: "Algorithm"
-	  }
-	]
+	thumbnail: {
+		type: String,
+		default: "/images/collection/pll.png"
+	},
+	
+	algorithms:  [
+		{
+			type: Schema.Types.ObjectId, 
+			ref: "Algorithm"
+		}
+	],
 	
 })
 
