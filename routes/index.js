@@ -8,6 +8,7 @@ const registerController = require("../controllers/registerController");
 const profileController = require("../controllers/profileController");
 const submitController = require("../controllers/submitController");
 const verifyUser = require("../middlewares/verifyUser");
+const updateAlgSets = require("../middlewares/updateAlgSets");
 const timerController = require("../controllers/timerController");
 const AlgSetController = require("../controllers/AlgSetController");
 
@@ -44,7 +45,7 @@ router.get("/profile/:idUser/achievements", profileController.achievements_get)
 router.get("/profile/:idUser/my-cubes", profileController.cubes_get)
 router.get("/timer", verifyUser, timerController.load_page)
 
-router.get("/profile/:idUser", verifyUser, profileController.profileUser_get);
+router.get("/profile/:idUser", verifyUser, updateAlgSets, profileController.profileUser_get);
 router.get("/profile/:idUser/historial", verifyUser, profileController.userTimes_get);
 
 router.get("/submit/:id/delete", verifyUser, submitController.deleteTime);
