@@ -37,6 +37,7 @@ router.post(
 );
 
 router.get("/profile/:idUser/oll", AlgSetController.oll_get)
+router.get("/profile/:idUser/pll", AlgSetController.pll_get)
 
 router.get("/profile/:idUser/help", profileController.help_get)
 router.get("/profile/:idUser/settings", profileController.editProfile_get)

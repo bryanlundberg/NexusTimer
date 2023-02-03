@@ -20,6 +20,11 @@ const AlgorithmSchema = new Schema({
 		default: "/images/collection/pll.png"
 	},
 	
+	alg: {
+		type: String,
+		default: "(R U2 R') (U' R U R') (U' R U' R')"
+	},
+	
 	learnStatus: [{
 		user: { 
 			type: Schema.Types.ObjectId, 
@@ -33,12 +38,7 @@ const AlgorithmSchema = new Schema({
 			default: "off"
 		}
 
-	}],
-
-	alg: {
-		type: String,
-		default: "(R U2 R') (U' R U R') (U' R U' R')"
-	}
+	}]
 
 })
 
