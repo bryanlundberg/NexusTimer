@@ -23,8 +23,9 @@ const AlgorithmSchema = new Schema({
 	learnStatus: [{
 		user: { 
 			type: Schema.Types.ObjectId, 
-			ref: "User", 
-			required: true,
+			ref: "User",
+			unique: true,
+			index: true
 		},
 		
 		status: {
