@@ -1,5 +1,4 @@
 const User = require("../models/User");
-const AlgSet = require("../models/AlgSet");
 const Algorithm = require("../models/Algorithm");
 
 exports.oll_get = async (req, res) => {
@@ -13,19 +12,20 @@ exports.oll_get = async (req, res) => {
 	if (!set) {
 	  throw new Error("OLL set not found");
 	}
-
-	const algs = await Algorithm.find({
-	  algSet: set._id,
-	  "learnStatus.user": user._id
-	});
 	
-	console.log(`fOUND ${algs.length}`)
-	console.log(algs[1])
+	const algs = await Algorithm.find({ algSet: set._id });
+	if (!algs) {
+	  throw new Error("algs set not found");
+	}
+	const sdsa = await algs.filter(e => { e.user == user._id})
+	
+	console.log(`fOUND ${learnState.length}`)
+	console.log(learnState[1])
 	
 	res.render("profile_alg-set", {
 		title: "Your profile",
 		user,
-		algs,
+		learnState,
 		set
 	})
 	

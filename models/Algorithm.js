@@ -3,16 +3,24 @@ const Schema = mongoose.Schema;
 
 const AlgorithmSchema = new Schema({
 	
-	algSet: {
+	owner: {
 		type: Schema.Types.ObjectId, 
-		ref: "AlgSet", 
+		ref: "User", 
+	},
+	
+	algSet: {
+		type: String, 
 		required: true
+	},
+	
+	img: {
+		type: String,
+		default: "/images/collection/pll.png"
 	},
 
 	name: {
 		type: String,
 		default: "ollx",
-		unique: true
 	},
 			
 	thumbnail: {
@@ -25,20 +33,10 @@ const AlgorithmSchema = new Schema({
 		default: "(R U2 R') (U' R U R') (U' R U' R')"
 	},
 	
-	learnStatus: [{
-		user: { 
-			type: Schema.Types.ObjectId, 
-			ref: "User",
-			unique: true,
-			index: true
-		},
-		
-		status: {
-			type: String, 
-			default: "off"
-		}
-
-	}]
+	status: {
+		type: String,
+		default: "off"
+	}
 
 })
 

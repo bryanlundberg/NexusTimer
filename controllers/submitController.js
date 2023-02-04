@@ -1,5 +1,8 @@
 const User = require("../models/User");
+const Algorithm = require("../models/Algorithm");
 const CubeTime = require("../models/CubeTime");
+const ollAlgorithms = require("../algs/ollAlgs");
+const pllAlgorithms = require("../algs/pllAlgs");
 
 exports.newTime_post = async (req, res) => {
 	console.log(req.user)
@@ -57,3 +60,38 @@ exports.settings_post = async (req, res) => {
 		res.redirect("/profile"+user._id)
 	}
 }
+
+exports.updateOll = async (req, res) => {
+  try {
+    let data = req.body;
+    let form = {};
+    for (let i = 1; i <= 57; i++) {
+      let key = `OLL${i}`;
+      if (data[key] === "on") {
+        form[key] = true;
+      }
+    }
+
+    const { id } = req.params;
+    const user = await User.findById(id);
+    const set = await AlgSet.findOne({ name: "OLL" });
+    const algorithms = await Algorithm.find({ algSet: set._id });
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+    if (!set) {
+      throw new Error("Set not found");
+    }
+    if (!algorithms) {
+      throw new Error("Algorithms not found");
+    }
+
+    
+
+    res.redirect(`/profile/${user._id}`);
+  } catch (error) {
+    console.log(error);
+    res.redirect(`/profile/${user._id}`);
+  }
+};

@@ -49,6 +49,8 @@ router.get("/timer", verifyUser, timerController.load_page)
 router.get("/profile/:idUser", verifyUser, updateAlgSets, profileController.profileUser_get);
 router.get("/profile/:idUser/historial", verifyUser, profileController.userTimes_get);
 
+
+router.post("/submit/:id/oll", verifyUser, submitController.updateOll);
 router.get("/submit/:id/delete", verifyUser, submitController.deleteTime);
 router.post("/submit/times", verifyUser, submitController.newTime_post);
 router.post("/submit/:id/settings", verifyUser, submitController.settings_post);
