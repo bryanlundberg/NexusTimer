@@ -9,7 +9,7 @@ block content
 			input(type="hidden" name="_csrf" value=csrfToken)
 			for element in userAlgs
 				.col.d-flex.flex-column.justifiy-content-center.align-items-center
-					input(type="checkbox" class="btn-check" id=element.name name=element.name checked=element.learnStatus==='on' autocomplete="off")
+					input(type="checkbox" class="btn-check" id=element.name name=element.name checked=element.status==='on' autocomplete="off")
 					label(class="btn btn-outline-primary w-100" for=element.name) #{element.alg}
 						img.d-block.mx-auto(src=element.thumbnail class="img-fluid")
 					

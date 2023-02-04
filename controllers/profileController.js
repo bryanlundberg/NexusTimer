@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const CubeTime = require("../models/CubeTime");
+const Algorithm = require("../models/Algorithm");
 
 exports.userTimes_get = async (req, res) => {
 	console.log(req.user)
@@ -97,12 +98,31 @@ exports.algCollection_get = async (req, res) => {
 	
   try {
 	const user = await User.findById(req.params.idUser)
-	if (user) {
-		res.render("profile_alg-collection", {
-			title: "Collection",
-			user
-		})
-	}
+	if (!user) { throw new Error("Usernot found") }
+		
+	const setOLL = await Algorithm.find({owner: user._id, algSet: "OLL"})
+	const setPLL = await Algorithm.find({owner: user._id, algSet: "PLL"})
+	const setCMLL = await Algorithm.find({owner: user._id, algSet: "CMLL"})
+	const setCOLL = await Algorithm.find({owner: user._id, algSet: "COLL"})
+	
+	const learnedOLL = setOLL.filter(e => e.status === "on").length;
+	const learnedPLL = setPLL.filter(e => e.status === "on").length;
+	const learnedCMLL = setCMLL.filter(e => e.status === "on").length;
+	const learnedCOLL = setCOLL.filter(e => e.status === "on").length;
+	
+	res.render("profile_alg-collection", {
+		title: "Collection",
+		user,
+		setOLL,
+		setPLL,
+		setCMLL,
+		setCOLL,
+		learnedOLL,
+		learnedPLL,
+		learnedCMLL,
+		learnedCOLL
+	})
+	
   } catch (error) {
 	  console.log(error)	
   }
