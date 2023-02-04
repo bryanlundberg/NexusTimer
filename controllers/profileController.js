@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const CubeTime = require("../models/CubeTime");
 const Algorithm = require("../models/Algorithm");
+const Cube = require("../models/Cube");
 
 exports.userTimes_get = async (req, res) => {
 	console.log(req.user)
@@ -36,10 +37,15 @@ exports.profileUser_get = async (req, res) => {
 exports.cubes_get = async (req, res) => {
   try {
 	const user = await User.findById(req.params.idUser)
+	
+	const cubes = await Cube.find({ owner: user._id })
+	
+	
 	if (user) {
 		res.render("profile_cubes", {
 			title: "Your cubes",
-			user
+			user,
+			cubes
 		})
 	}
   } catch (error) {

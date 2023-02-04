@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const Algorithm = require("../models/Algorithm");
 const CubeTime = require("../models/CubeTime");
+const Cube = require("../models/Cube");
 const ollAlgorithms = require("../algs/ollAlgs");
 const pllAlgorithms = require("../algs/pllAlgs");
 
@@ -43,6 +44,32 @@ exports.deleteTime = async (req, res) => {
 	} catch (error) {
 		console.log(error)
 		res.redirect("/profile/"+req.user.id+"/historial")
+	}
+}
+
+exports.newCube = async (req, res) => {
+	try {
+		const id = req.params.idUser;
+		const { name, brand, category } = req.body;
+		
+		const user = await User.findById(id);
+		if (!user) {throw new Error("User not found")}
+		
+		console.log(user._id)
+		
+		const cube = await Cube.create({
+			owner: user._id,
+			name: name,
+			brand: brand,
+			category: category
+		})
+		console.log(id)
+		console.log(cube)
+
+		
+		res.redirect("/profile/"+id+"/my-cubes")
+	} catch (error) {
+		console.log(error)
 	}
 }
 

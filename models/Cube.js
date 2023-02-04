@@ -5,13 +5,13 @@ const CubeSchema = new Schema({
 	
 	owner: { 
 		type: Schema.Types.ObjectId, 
-		ref: "User", 
-		required: true 
+		ref: "User",
+		required: true
 	},
 	
-	solve_counter: {
-		type: Number,
-		default: 0
+	name: {
+		type: String,
+		default: "-"
 	},
 	
 	brand: {
@@ -21,6 +21,11 @@ const CubeSchema = new Schema({
 	category: {
 		type: String,
 		default: "-"
+	},
+	
+	createdAt: {
+		type: Date,
+		default: Date.now
 	}
 	
 })

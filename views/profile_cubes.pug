@@ -11,46 +11,44 @@ block content
 				.container.my-3
 					div(class="row row-cols-1 g-2")
 	
-								
-						div(class="col")
-							.container.border.rounded.d-flex.justify-content-between.p-2.bg-light.text-center.wrap
-								.card-body 3x3 2H
-								.card-body Moyu
-								.card-body Dayan Zanchi
-								.card-body 12,452 solves
-								.card-body.d-none.d-md-block 8.98 sec
-								.card-body.d-none.d-md-block 11.23 sec
+						for element in cubes
+							div(class="col")
+								.container.border.rounded.d-flex.justify-content-between.p-2.bg-light.text-center.wrap
+									.card-body #{element.category}
+									.card-body #{element.brand}
+									.card-body #{element.name}
+									.card-body 12,452 solves
+									.card-body.d-none.d-md-block 8.98 sec
+									.card-body.d-none.d-md-block 11.23 sec
 
-						div(class="col")
-							.container.border.rounded.d-flex.justify-content-between.p-2.bg-light.text-center
-								.card-body 3x3 2H
-								.card-body Gan
-								.card-body Gan 356
-								.card-body 452 solves
-								.card-body.d-none.d-md-block 8.98 sec
-								.card-body.d-none.d-md-block 11.23 sec
+
 								
 						div(class="col")
-							form(action="" method="post")
+							form(action="/submit/"+user._id+"/newcube" method="post")
 								div(class="row g-2")
 									div(class="col-md")
 										div(class="form-floating")
-											input(type="email" class="form-control" id="floatingInputGrid" placeholder="Cube name")
-											label(for="floatingInputGrid") Cube name
+											input(type="text" class="form-control" id="name" name="name" placeholder="Cube name")
+											label(for="name") Cube name
 									div(class="col-md")
 										div(class="form-floating")
-											input(type="email" class="form-control" id="floatingInputGrid" placeholder="Brand")
-											label(for="floatingInputGrid") Brand
+											input(type="text" class="form-control" id="brand" name="brand" placeholder="Brand")
+											label(for="brand") Brand
 											
 									div(class="col-md")
 										div(class="form-floating")
-											select(class="form-select" id="floatingSelectGrid")
-												option(selected) Choose category
-												option 2x2
-												option 3x3 2H
-												option 3x3 1H
-												option 3X3 Blind
-												option 4x4
-												option 5x5
-											label(for="floatingSelectGrid") Choose a category
-									button.btn.btn-outline-primary Add it to the collection!
+											select(class="form-select" id="category" name="category")
+												option(selected value="Choose category") Choose category
+												option(value="2x2") 2x2
+												option(value="3x3") 3x3
+												option(value="3x3 OH") 3x3 OH
+												option(value="3X3 Blind") 3X3 Blind
+												option(value="4x4") 4x4
+												option(value="5x5") 5x5
+												option(value="6x6") 6x6
+												option(value="7x7") 7x7
+												option(value="Megaminx") Megaminx
+												option(value="SQ-1") SQ-1
+											label(for="category") Choose a category
+									input(type="hidden" name="_csrf" value=csrfToken)
+									button.btn.btn-outline-primary Add cube!

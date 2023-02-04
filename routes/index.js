@@ -49,6 +49,7 @@ router.get("/timer", verifyUser, timerController.load_page)
 router.get("/profile/:idUser", verifyUser, updateAlgSets, profileController.profileUser_get);
 router.get("/profile/:idUser/historial", verifyUser, profileController.userTimes_get);
 
+router.post("/submit/:idUser/newcube", verifyUser, submitController.newCube)
 router.post("/submit/:id/pll", verifyUser, submitController.updatePll);
 router.post("/submit/:id/oll", verifyUser, submitController.updateOll);
 router.get("/submit/:id/delete", verifyUser, submitController.deleteTime);
