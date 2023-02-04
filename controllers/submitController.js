@@ -4,6 +4,20 @@ const CubeTime = require("../models/CubeTime");
 const ollAlgorithms = require("../algs/ollAlgs");
 const pllAlgorithms = require("../algs/pllAlgs");
 
+const updateStatusAlgorithms = async (userId, method, algorithms) => {
+
+    const userAlgs = await Algorithm.find({ algSet: `${method}`, owner: userId });
+    if (!userAlgs) { throw new Error("OLL set not found") }
+    
+	for (let i = 1; i < algorithms.length; i++) {
+	  const algo = userAlgs[i-1];
+	  algo.algSet = `${method}`;
+	  algo.status = req.body[`${method}${i}`];
+	  await algo.save();
+	}
+
+}
+
 exports.newTime_post = async (req, res) => {
 	console.log(req.user)
 	const { time, category } = req.body;
@@ -50,6 +64,7 @@ exports.settings_post = async (req, res) => {
 		user.contactEmail = contactEmail;
 		user.nationality = nationality;
 		user.theme = theme;
+		console.log(user.theme)
 		
 		const saveUser = await user.save();
 		
@@ -63,35 +78,59 @@ exports.settings_post = async (req, res) => {
 
 exports.updateOll = async (req, res) => {
   try {
-    let data = req.body;
-    let form = {};
-    for (let i = 1; i <= 57; i++) {
-      let key = `OLL${i}`;
-      if (data[key] === "on") {
-        form[key] = true;
-      }
-    }
-
     const { id } = req.params;
     const user = await User.findById(id);
-    const set = await AlgSet.findOne({ name: "OLL" });
-    const algorithms = await Algorithm.find({ algSet: set._id });
-
     if (!user) {
       throw new Error("User not found");
     }
-    if (!set) {
-      throw new Error("Set not found");
-    }
-    if (!algorithms) {
-      throw new Error("Algorithms not found");
-    }
 
+    const userAlgs = await Algorithm.find({ algSet: "OLL", owner: user._id });
+    if (!userAlgs) {
+      throw new Error("OLL set not found");
+    }
     
-
+	for (let i = 1; i < ollAlgorithms.length; i++) {
+	  const algo = userAlgs[i-1];
+	  algo.algSet = "OLL";
+	  algo.status = req.body[`OLL${i}`];
+	  await algo.save();
+	}
+	
     res.redirect(`/profile/${user._id}`);
   } catch (error) {
     console.log(error);
     res.redirect(`/profile/${user._id}`);
   }
 };
+
+exports.updatePll = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if (!user) {
+      throw new Error("User not found");
+    }
+	
+	const updateStatusAlgorithms = async (userId, method, algorithms) => {
+
+		const userAlgs = await Algorithm.find({ algSet: `${method}`, owner: userId });
+		if (!userAlgs) { throw new Error("OLL set not found") }
+		
+		for (let i = 1; i < algorithms.length; i++) {
+		  const algo = userAlgs[i-1];
+		  algo.algSet = `${method}`;
+		  algo.status = req.body[`${method}${i}`];
+		  await algo.save();
+		}
+
+	}
+	
+	await updateStatusAlgorithms(user._id, "PLL", pllAlgorithms)
+	
+    res.redirect(`/profile/${user._id}`);
+  } catch (error) {
+    console.log(error);
+    res.redirect(`/profile/${user._id}`);
+  }
+};
+

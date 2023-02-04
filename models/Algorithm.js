@@ -9,8 +9,8 @@ const AlgorithmSchema = new Schema({
 	},
 	
 	algSet: {
-		type: String, 
-		required: true
+		type: String,
+		default: "ALGX"
 	},
 	
 	img: {

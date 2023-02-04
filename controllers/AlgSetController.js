@@ -12,7 +12,8 @@ exports.oll_get = async (req, res) => {
 	res.render("profile_alg-set", {
 		title: "Your profile",
 		user,
-		userAlgs
+		userAlgs,
+		method: userAlgs[0].algSet
 	})
 	
   } catch (error) {
@@ -32,7 +33,8 @@ exports.pll_get = async (req, res) => {
 	res.render("profile_alg-set", {
 		title: "Your profile",
 		user,
-		userAlgs
+		userAlgs,
+		method: userAlgs[0].algSet
 	})
 	
   } catch (error) {
