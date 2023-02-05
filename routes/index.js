@@ -39,12 +39,11 @@ router.post(
 router.get("/profile/:idUser/oll", AlgSetController.oll_get)
 router.get("/profile/:idUser/pll", AlgSetController.pll_get)
 
-router.get("/profile/:idUser/help", profileController.help_get)
 router.get("/profile/:idUser/settings", profileController.editProfile_get)
 router.get("/profile/:idUser/alg-collection", profileController.algCollection_get)
 router.get("/profile/:idUser/achievements", profileController.achievements_get)
 router.get("/profile/:idUser/my-cubes", profileController.cubes_get)
-router.get("/timer", verifyUser, timerController.load_page)
+router.get("/timer", verifyUser, timerController.timer)
 
 router.get("/profile/:idUser", verifyUser, updateAlgSets, profileController.profileUser_get);
 router.get("/profile/:idUser/historial", verifyUser, profileController.userTimes_get);

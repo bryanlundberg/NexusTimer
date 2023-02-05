@@ -116,7 +116,7 @@ exports.updateOll = async (req, res) => {
       throw new Error("OLL set not found");
     }
     
-	for (let i = 1; i < ollAlgorithms.length; i++) {
+	for (let i = 1; i <= ollAlgorithms.length; i++) {
 	  const algo = userAlgs[i-1];
 	  algo.algSet = "OLL";
 	  algo.status = req.body[`OLL${i}`];
@@ -143,7 +143,7 @@ exports.updatePll = async (req, res) => {
 		const userAlgs = await Algorithm.find({ algSet: `${method}`, owner: userId });
 		if (!userAlgs) { throw new Error("OLL set not found") }
 		
-		for (let i = 1; i < algorithms.length; i++) {
+		for (let i = 1; i <= algorithms.length; i++) {
 		  const algo = userAlgs[i-1];
 		  algo.algSet = `${method}`;
 		  algo.status = req.body[`${method}${i}`];
