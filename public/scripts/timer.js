@@ -15,33 +15,15 @@ function generateScramble(scrambleLength) {
   return scramble.join(" ");
 }
 
-
-document.querySelector("#scramble").textContent = generateScramble(20)
-
-let timerId;
-let startTime;
-let currentTime;
-let elapsedTime = 0;
-
-document.addEventListener("keydown", function(event) {
-	if (event.code === "Space") {
-		document.querySelector("#timer").classList.add("text-success")
-	}
-});
-document.addEventListener("keyup", function(event) {
-  runTimer()
-});
-
-
 function runTimer() {
-  if (event.code === "Space") {
+  
     if (!timerId) {
 	  document.querySelector("#timer").classList.remove("text-success")
       startTime = Date.now();
       timerId = setInterval(() => {
         currentTime = Date.now();
         elapsedTime = currentTime - startTime;
-        document.getElementById("timer").innerHTML = (elapsedTime / 1000).toFixed(2) + "s";
+        document.querySelector("#timer").innerHTML = (elapsedTime / 1000).toFixed(2);
       }, 10);
     } else {
       clearInterval(timerId);
@@ -49,7 +31,88 @@ function runTimer() {
 	  document.querySelector("#timer").classList.remove("text-success")
 	  document.querySelector("#scramble").textContent = generateScramble(20)
     }
-  }
+  
 }
+
+
+document.querySelector("#scramble").textContent = generateScramble(20)
+
+let timerId;
+let startTime;
+let currentTime;
+let elapsedTime = 0;
+let running = false;
+
+document.addEventListener("keydown", function(event) {
+	if (event.code === "Space") {
+		document.querySelector("#timer").classList.add("text-success")
+	}
+});
+
+document.addEventListener("keyup", function(event) {
+	if (event.code === "Space" && running == false) {
+	  runTimer()
+	}
+});
+
+document.addEventListener("click", (e) => {
+	const timeBody = document.querySelector("#timer-vh")
+	if (e.target == timeBody) {
+		runTimer();
+	}
+})
+
+document.addEventListener("keydown", function(event) {
+	if (event.code === "Escape") {
+		document.querySelector("#timer").textContent = `0.00`
+	}
+});
+
+
+/*
+
+let timerId;
+let startTime;
+let currentTime;
+let elapsedTime = 0;
+
+document.addEventListener("keyup", function(event) {
+	if (event.code === "Space") {
+		if (!timerId) {
+			startTime = Date.now();
+			timerId = setInterval(() => {
+				currentTime = Date.now();
+				elapsedTime = currentTime - startTime;
+				document.getElementById("timer").innerHTML = (elapsedTime / 1000).toFixed(2) + "s";
+			}, 10);
+		} else {
+			clearInterval(timerId);
+			timerId = null;
+			let solveTime = (elapsedTime / 1000).toFixed(2);
+			let input1 = document.getElementById("input1").value;
+			let input2 = document.getElementById("input2").value;
+			fetch('/api/registerSolve', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					solveTime,
+					input1,
+					input2
+				})
+			})
+				.then(response => response.json())
+				.then(data => {
+					console.log(data);
+				})
+				.catch(error => {
+					console.error(error);
+				});
+		}
+	}
+});
+
+*/
 
 
