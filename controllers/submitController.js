@@ -19,6 +19,14 @@ const updateStatusAlgorithms = async (userId, method, algorithms) => {
 
 }
 
+
+exports.newSolve = async (req, res) => {
+	const {id, category, cube, scramble, solveTime} = req.body;
+	console.log("llego aqui")
+	console.log(id, category, cube, scramble, solveTime)
+}
+
+
 exports.newTime_post = async (req, res) => {
 	console.log(req.user)
 	const { time, category } = req.body;

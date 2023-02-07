@@ -14,7 +14,8 @@ exports.timer = async (req, res) => {
 	res.render("timer", {
 		title: "Solve station",
 		cubes,
-		categories
+		categories,
+		user
 	})
 		
 	} catch (error) {

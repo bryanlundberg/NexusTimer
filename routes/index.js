@@ -55,5 +55,7 @@ router.get("/submit/:id/delete", verifyUser, submitController.deleteTime);
 router.post("/submit/times", verifyUser, submitController.newTime_post);
 router.post("/submit/:id/settings", verifyUser, submitController.settings_post);
 
+router.post("/api/submit/solve", submitController.newSolve)
+
 router.get("/logout", profileController.logout_get);
 module.exports = router;

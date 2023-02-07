@@ -4,18 +4,21 @@ block content
 	.container.vh-100(id="timer-vh")
 		.container.d-flex.d-block.pt-3.gap-3
 			div(class="form-floating")
-				select(class="form-select" id="floatingSelect" aria-label="Floating label select example")
+				input(type="hidden" name="_csrf" value=csrfToken)
+				input(type="hidden" name="id" value=user._id)
+				
+				select(class="form-select" id="category" name="category" aria-label="Floating label for category select")
 					option(selected) Open this select menu
 					for element in cubes
 						option(value=element._id) #{element.category}
-				label(for="floatingSelect") Category
+				label(for="category") Category
 				
 			div(class="form-floating")
-				select(class="form-select" id="floatingSelect" aria-label="Floating label select example")
+				select(class="form-select" id="cube" name="cube" aria-label="Floating label for cube select")
 					option(selected) Open this select menu
 					for element in cubes
 						option(value=element._id) #{element.name} | #{element.category}
-				label(for="floatingSelect") Cube
+				label(for="cube") Cube
 				
 				
 		.container

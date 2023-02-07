@@ -9,7 +9,7 @@ const SolveSchema = new Schema({
 		required: true 
 	},
 	
-	time: { 
+	solveTime: { 
 		type: String,
 		default: "-"
 	},
