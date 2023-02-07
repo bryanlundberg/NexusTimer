@@ -2,17 +2,21 @@ const User = require("../models/User");
 const CubeTime = require("../models/CubeTime");
 const Algorithm = require("../models/Algorithm");
 const Cube = require("../models/Cube");
+const Solve = require("../models/Solve");
 
 exports.userTimes_get = async (req, res) => {
 	console.log(req.user)
 	try {
-		const times = await CubeTime.find({ 
-			author: req.user.id 
-		});
-		if (!times) throw new Error("No records");
+		const id = req.params.idUser;
+		const userSolves = await Solve.find({ owner: id });
+		
+		const ordered = userSolves.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+		
+
 		res.render("historial", {
 			title: "Profile",
-			times
+			userSolves,
+			ordered
 		})
 	} catch (error) {
 		//req.flash("messsages", [{ msg: error.message }]);

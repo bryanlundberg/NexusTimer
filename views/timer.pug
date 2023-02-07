@@ -10,15 +10,15 @@ block content
 				select(class="form-select" id="category" name="category" aria-label="Floating label for category select")
 					option(selected) Open this select menu
 					for element in cubes
-						option(value=element._id) #{element.category}
-				label(for="category") Category
+						option(value=element.category) #{element.category}
+				label(for="category") Scramble type:
 				
 			div(class="form-floating")
 				select(class="form-select" id="cube" name="cube" aria-label="Floating label for cube select")
 					option(selected) Open this select menu
 					for element in cubes
 						option(value=element._id) #{element.name} | #{element.category}
-				label(for="cube") Cube
+				label(for="cube") Cube:
 				
 				
 		.container

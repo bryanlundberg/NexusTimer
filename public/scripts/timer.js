@@ -54,7 +54,6 @@ let scramble = document.querySelector(`#scramble`).textContent;
 let category = document.querySelector(`select[name="category"]`).value;
 let cube = document.querySelector(`select[name="cube"]`).value;
 
-	
   fetch(url+"/api/submit/solve", {
     method: "POST",
     body: JSON.stringify({
@@ -94,31 +93,25 @@ document.addEventListener("keydown", function (event) {
     if (isRunning === false && isHolding === false) {
       holdStartTime = Date.now();
       isHolding = true;
-    }
-
-    if (isRunning === true && isHolding === false) {
+	  document.querySelector("#timer").classList.add("text-danger");
+    } else if (isRunning === true && isHolding === false) {
       stopTimer();
 	  submitTime();
       isRunning = false;
       document.querySelector("#timer").classList.remove("text-success");
       document.querySelector("#timer").classList.remove("text-danger");
-      scrambleField = document.querySelector("#scramble").textContent =
-        generateScramble(20);
-    }
-
-    if (
+      scrambleField = document.querySelector("#scramble").textContent = generateScramble(20);
+    } else if (
       isRunning === false &&
       isHolding === true &&
-      (Date.now() - holdStartTime) / 1000 <= 1
+      (Date.now() - holdStartTime) / 1000 <= 0.4
     ) {
       document.querySelector("#timer").classList.remove("text-success");
       document.querySelector("#timer").classList.add("text-danger");
-    }
-
-    if (
+    } else if (
       isRunning === false &&
       isHolding === true &&
-      (Date.now() - holdStartTime) / 1000 >= 1
+      (Date.now() - holdStartTime) / 1000 >= 0.4
     ) {
       document.querySelector("#timer").classList.remove("text-danger");
       document.querySelector("#timer").classList.add("text-success");
@@ -129,14 +122,12 @@ document.addEventListener("keydown", function (event) {
 document.addEventListener("keyup", function (event) {
   if (event.code === "Space") {
     let difference = (Date.now() - holdStartTime) / 1000;
-    if (isRunning === false && isHolding === true && difference >= 1) {
+    if (isRunning === false && isHolding === true && difference >= 0.4) {
       console.log("hold 1+s");
       isRunning = true;
       isHolding = false;
       runTimer();
-    }
-
-    if (difference <= 1) {
+    } else if (difference <= 0.4) {
       isRunning = false;
       isHolding = false;
       document.querySelector("#timer").classList.remove("text-danger");
@@ -144,10 +135,3 @@ document.addEventListener("keyup", function (event) {
     }
   }
 });
-
-/* document.addEventListener("click", (e) => {
-	const timeBody = document.querySelector("#timer-vh")
-	if (e.target == timeBody) {
-		runTimer();
-	}
-}) */

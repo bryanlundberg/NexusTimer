@@ -19,25 +19,23 @@ block content
 		hr.my-5
 		
 		
-	if (times)
+	if (userSolves)
 		.container
 			table.table.table-striped
 				caption List of recent solves
 				thead
 					tr
 						th(scope="col") Category
-						th(scope="col") Cube
 						th(scope="col") Scramble
 						th(scope="col") Result
 						th.text-center(scope="col") Options
 
 				tbody
-					for value in times
+					for value in ordered
 						tr
 							th(scope="row") #{value.category}
-							td Dayan Zanchi
-							td R D F2 U2 F' R2 D2 B U2 F' L2 U2 F' R' D' L' F' L' U' R
-							td #{value.time}
+							td #{value.scramble}
+							td #{value.solveTime}
 							td
 								.d-flex.gap-2.justify-content-center
 

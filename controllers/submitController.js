@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Algorithm = require("../models/Algorithm");
 const CubeTime = require("../models/CubeTime");
 const Cube = require("../models/Cube");
+const Solve = require("../models/Solve");
 const ollAlgorithms = require("../algs/ollAlgs");
 const pllAlgorithms = require("../algs/pllAlgs");
 
@@ -21,11 +22,37 @@ const updateStatusAlgorithms = async (userId, method, algorithms) => {
 
 
 exports.newSolve = async (req, res) => {
-	const {id, category, cube, scramble, solveTime} = req.body;
-	console.log("llego aqui")
-	console.log(id, category, cube, scramble, solveTime)
+	try {
+		
+		const {id, cube, scramble, solveTime} = req.body;
+		console.log("llego aqui")
+		console.log(id, cube, scramble, solveTime)
+		
+		
+		const user = await User.findById(id)
+		const cubeSolve = await Cube.findById(cube)
+		
+		const solve = Solve.create({
+			owner: user._id,
+			cube: cubeSolve._id,
+			scramble: scramble,
+			solveTime: solveTime,
+			category: cubeSolve.category,
+			brand: cubeSolve.brand
+
+		})
+		
+		
+		
+		res.json("listo")
+		
+	} catch (err) {
+		console.log(err)
+	}
+	
 }
 
+	
 
 exports.newTime_post = async (req, res) => {
 	console.log(req.user)

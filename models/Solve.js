@@ -10,25 +10,27 @@ const SolveSchema = new Schema({
 	},
 	
 	solveTime: { 
-		type: String,
-		default: "-"
-	},
-	
-	category: {
-		type: String,
-		default: "-"
+		type: Number
 	},
 	
 	cube: {
 		type: Schema.Types.ObjectId, 
 		ref: "Cube", 
 		required: true 
-	}
+	},
+	
+	category: { 
+		type: String
+	},
+	
+	brand: { 
+		type: String
+	},
 	
 	date: {
 		type: Date,
-		default Date.now
-	}
+		default: Date.now()
+	},
 	
 	scramble: {
 		type: String,
