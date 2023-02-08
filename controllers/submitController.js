@@ -24,13 +24,13 @@ const updateStatusAlgorithms = async (userId, method, algorithms) => {
 exports.newSolve = async (req, res) => {
 	try {
 		
-		const {id, cube, scramble, solveTime} = req.body;
+		const {id, cubeName, scramble, solveTime} = req.body;
 		console.log("llego aqui")
-		console.log(id, cube, scramble, solveTime)
+		console.log(id, cubeName, scramble, solveTime)
 		
 		
 		const user = await User.findById(id)
-		const cubeSolve = await Cube.findById(cube)
+		const cubeSolve = await Cube.findById(cubeName)
 		
 		const solve = Solve.create({
 			owner: user._id,

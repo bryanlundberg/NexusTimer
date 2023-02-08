@@ -9,9 +9,16 @@ block content
 				
 				select(class="form-select" id="category" name="category" aria-label="Floating label for category select")
 					option(selected) Open this select menu
-					for element in cubes
-						option(value=element.category) #{element.category}
-				label(for="category") Scramble type:
+					option 2x2
+					option 3x3
+					option 4x4
+					option 5x5
+					option 6x6
+					option 7x7
+					option SQ-1
+					option Megaminx
+					
+				label(for="category") Scramble:
 				
 			div(class="form-floating")
 				select(class="form-select" id="cube" name="cube" aria-label="Floating label for cube select")
@@ -22,7 +29,7 @@ block content
 				
 				
 		.container
-			div(id="scramble" class="shadow-sm p-3 mb-5 bg-body-tertiary rounded fs-3 text-center my-5 bg-dark text-bg-dark") B L' D F2 D' B2 D2 F2 L2 U F2 R2 D B' F U F' D F D2
+			div(id="scramble" class="shadow-sm p-3 mb-5 bg-body-tertiary rounded fs-3 text-center my-5 bg-dark text-bg-dark") Pick a scramble type to START cubing!
 			
 		.container
 			h1(id="timer" class="display-1 text-center my-5") 0.000
@@ -56,4 +63,4 @@ block content
 						
 
 						
-	script(src="/scripts/timer.js")
+	script(src="/scripts/timer.js" type="module")

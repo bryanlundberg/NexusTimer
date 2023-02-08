@@ -33,6 +33,32 @@ function generateScramble(scrambleLength) {
   }
   return scramble.join(" ");
 }
+function generateScramble2x2(scrambleLength) {
+  const possibleMoves = [
+    "U",
+    "U2",
+    "U'",
+    "R",
+    "R2",
+    "R'",
+    "F",
+    "F2",
+    "F'",
+  ];
+  const scramble = [];
+  let lastMove = "";
+
+  for (let i = 0; i < scrambleLength; i++) {
+    let move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+    while (move.charAt(0) === lastMove.charAt(0)) {
+      move = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+    }
+    scramble.push(move);
+    lastMove = move;
+  }
+  return scramble.join(" ");
+}
+
 
 function updateTimer() {
   solveTime = Date.now() - startTime;
@@ -51,16 +77,14 @@ function stopTimer() {
 function submitTime() {
 const url = "http://localhost:3000";
 let scramble = document.querySelector(`#scramble`).textContent;
-let category = document.querySelector(`select[name="category"]`).value;
-let cube = document.querySelector(`select[name="cube"]`).value;
+let cubeName = document.querySelector(`select[name="cube"]`).value;
 
   fetch(url+"/api/submit/solve", {
     method: "POST",
     body: JSON.stringify({
       solveTime,
       scramble,
-	  category,
-	  cube,
+	  cubeName,
       id,
       _csrf,
     }),
@@ -72,8 +96,23 @@ let cube = document.querySelector(`select[name="cube"]`).value;
     .then((json) => console.log(json));
 }
 
+function setNewScramble(event) {
+	if (event.target.value == "Open this select menu") {
+		console.log("cant start")
+		document.querySelector("#scramble").textContent = "Pick a scramble type to START cubing!";
+	}
+	if (event.target.value == "2x2") {
+		document.querySelector("#scramble").textContent = generateScramble2x2(10);
+	}
+	
+	if (event.target.value == "3x3") {
+		console.log("ready 3x3  start")
+		document.querySelector("#scramble").textContent = generateScramble(20);
+	}
+}
 
-let genScramble = document.querySelector("#scramble").textContent = generateScramble(20);
+
+let genScramble = document.querySelector("#scramble")
 let holdStartTime = 0;
 let isRunning = false;
 let isHolding = false;
@@ -81,10 +120,13 @@ let solveTime = 0;
 const id = document.querySelector(`input[name="id"]`).value;
 const _csrf = document.querySelector(`input[name="_csrf"]`).value;
 
-
-
+const category = document.querySelector("#category")
+const cube = document.querySelector("#cube")
+category.addEventListener("change", setNewScramble)
 
 document.addEventListener("keydown", function (event) {
+  if (category.value === "Open this select menu") {return;}
+  if (cube.value === "Open this select menu") {return;}
   if (event.code === "Escape") {
     document.querySelector("#timer").textContent = `0.00`;
   }
