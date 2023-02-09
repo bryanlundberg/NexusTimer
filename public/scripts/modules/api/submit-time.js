@@ -1,6 +1,4 @@
-import { solveTime } from "../timer/update-timer.js";
-
-export function submitTime() {
+export function submitTime(solveTime) {
   const url = "http://localhost:3000";
   const scramble = document.querySelector(`#scramble`).textContent;
   const cube = document.querySelector(`select[name="cube"]`).value;
