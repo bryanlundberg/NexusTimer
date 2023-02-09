@@ -3,6 +3,7 @@ import { submitTime } from "../api/submit-time.js";
 import { startTimer } from "./start-timer.js";
 import { stopTimer } from "./stop-timer.js";
 import { updateTimer, solveTime } from "./update-timer.js";
+import { setActiveColor, setPendingColor, setResetColor } from "./toggle-color.js";
 
 let holdStartTime = 0;
 let isRunning = false;
@@ -21,30 +22,19 @@ export const handleDownKeys = (event) => {
   }
 
   if (keyPress === "Space") {
-    if (isRunning === false && isHolding === false) {
+    if (!isRunning && !isHolding) {
       holdStartTime = Date.now();
       isHolding = true;
-      document.querySelector("#timer").classList.add("text-danger");
-    } else if (isRunning === true && isHolding === false) {
+      setPendingColor()
+    } else if (isRunning && !isHolding) {
       stopTimer();
       submitTime(solveTime);
+	  setResetColor();
       isRunning = false;
-      document.querySelector("#timer").classList.remove("text-success");
-      document.querySelector("#timer").classList.remove("text-danger");
-    } else if (
-      isRunning === false &&
-      isHolding === true &&
-      (Date.now() - holdStartTime) / 1000 <= 0.4
-    ) {
-      document.querySelector("#timer").classList.remove("text-success");
-      document.querySelector("#timer").classList.add("text-danger");
-    } else if (
-      isRunning === false &&
-      isHolding === true &&
-      (Date.now() - holdStartTime) / 1000 >= 0.4
-    ) {
-      document.querySelector("#timer").classList.remove("text-danger");
-      document.querySelector("#timer").classList.add("text-success");
+    } else if (!isRunning && isHolding && (Date.now() - holdStartTime) / 1000 <= 0.4) {
+      setPendingColor()
+    } else if (!isRunning && isHolding && (Date.now() - holdStartTime) / 1000 >= 0.4) {
+      setActiveColor()
     }
   }
 };
@@ -53,15 +43,14 @@ export const handleUpKeys = (event) => {
   const keyPress = event.code;
   if (keyPress === "Space") {
     let difference = (Date.now() - holdStartTime) / 1000;
-    if (isRunning === false && isHolding === true && difference >= 0.4) {
+    if (!isRunning && isHolding && difference >= 0.4) {
       isRunning = true;
       isHolding = false;
       startTimer();
     } else if (difference <= 0.4) {
       isRunning = false;
       isHolding = false;
-      document.querySelector("#timer").classList.remove("text-danger");
-      document.querySelector("#timer").classList.remove("text-success");
+      setResetColor()
     }
   }
 };
