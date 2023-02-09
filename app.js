@@ -17,8 +17,8 @@ const submitRouter = require("./routes/submitRouter");
 const authRouter = require("./routes/authRouter");
 const logoutRouter = require("./routes/logoutRouter");
 
-const { catch404, errorHandler } = require("./middlewares/errorHandler")
-
+const { logError, errorHandler } = require("./middlewares/errorHandler")
+const { startMongooseDB } = require("./mongo")
 
 const app = express();
 
@@ -51,17 +51,10 @@ passport.deserializeUser(async (user, done) => {
   return done(null, user); //se guardará en req.user
 });
 
-// Set up mongoose connection
-const mongoose = require("mongoose");
 
-mongoose.set("strictQuery", false);
-main().catch((err) => console.log(err));
+startMongooseDB().catch((err) => console.log(err));
 
-async function main() {
-  await mongoose.connect(
-    "mongodb+srv://usernametest:passwordtest@cluster0.dltd4ag.mongodb.net/cubestats?retryWrites=true&w=majority"
-  );
-}
+
 
 //favicon
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
@@ -94,7 +87,7 @@ app.use("/api", apiRouter);
 app.use("/auth", authRouter);
 app.use("/logout", logoutRouter)
 
-app.use(catch404);
+app.use(logError);
 app.use(errorHandler);
 
 module.exports = app;
