@@ -1,11 +1,11 @@
-export function submitTime(solveTime) {
+export async function submitTime(solveTime) {
   const url = "http://localhost:3000";
   const scramble = document.querySelector(`#scramble`).textContent;
   const cube = document.querySelector(`select[name="cube"]`).value;
   const idUser = document.querySelector(`input[name="id"]`).value;
   const csrf = document.querySelector(`input[name="_csrf"]`).value;
 
-  fetch(`${url}/api/submit/solve`, {
+  await fetch(`${url}/api/submit/solve`, {
     method: "POST",
     body: JSON.stringify({
       solveTime: solveTime,

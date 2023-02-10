@@ -32,6 +32,7 @@ export const handleDownKeys = async (event) => {
 		  stopTimer();
 		  isRunning = false;
 		  await submitTime(solveTime);
+		  setNewScramble()
 		  await updateStatistics();
 		  setResetColor();
 		  

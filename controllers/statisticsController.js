@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const Solve = require("../models/Solve");
 
-exports.categoryStats = async (req, res) => {
+exports.categoryTimerStats = async (req, res) => {
   try {
     const category = req.params.category;
     const userId = req.params.idUser;
@@ -38,7 +38,7 @@ exports.categoryStats = async (req, res) => {
       lastSolves.forEach((element) => {
         x += element.solveTime;
       });
-      return (x / avgNumber / 1000).toFixed(3);
+      return (x / avgNumber / 1000).toFixed(2);
     };
 	
 	const pb = result.sort((a, b) => a.timeSolve - b.timeSolve);
@@ -47,7 +47,7 @@ exports.categoryStats = async (req, res) => {
       array.forEach((element) => {
         x += element.solveTime;
       });
-      return (x / result.length / 1000).toFixed(3);
+      return (x / array.length / 1000).toFixed(2);
 	};
 	
 	const avg = avgMean(result);
@@ -62,7 +62,7 @@ exports.categoryStats = async (req, res) => {
       avg12: result12,
       avg50: result50,
       avg100: result100,
-	  pb: (pb[0].solveTime/1000).toFixed(3),
+	  pb: (pb[0].solveTime/1000).toFixed(2),
 	  counter: result.length,
 	  desviation: 1.5,
 	  avg: avg,
@@ -71,3 +71,34 @@ exports.categoryStats = async (req, res) => {
     console.log(err);
   }
 };
+
+exports.overallProfileStats = async (req, res) => {
+  try {
+    console.log("hola");
+    const userId = req.params.idUser;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
+
+    const totalSolves = await Solve.find({ owner: user._id });
+    let time = 0;
+    const solvingTime = totalSolves.reduce((acc, element) => {
+      if (typeof element.solveTime !== "number") {
+        console.log("element.solveTime is not a number");
+        return acc;
+      }
+      return acc + element.solveTime;
+    }, 0);
+    console.log(solvingTime);
+
+    res.json({
+      totalSolves: totalSolves.length,
+      solvingTime: solvingTime,
+      hola: "hola",
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+

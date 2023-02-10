@@ -9,6 +9,43 @@ block content
 			.col-md-12.col-lg-8.my-1
 				include profile_navbar
 				.container.my-3
+					h4.my-3 Overall performance
+					hr
 					div(class="row row-cols-1 row-cols-md-2 g-4")
 						div(class="col")
-							img(src="/images/graphs/img4.png" class="object-fit" alt="" width="400" height="400")
+							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
+								h5.card-title Solving time
+								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
+									.card-body 45d 18h 19s
+						div(class="col")
+							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
+								h5.card-title Total solves:
+								div.d-flex.gap-3.justify-content-between.align-items-center
+									.card-body 11,563
+						div(class="col")
+							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
+								h5.card-title Categories:
+								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
+									.container
+										canvas
+									.card-body 3x3
+						
+						div(class="col")
+							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
+								h5.card-title Cubes:
+								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
+									.container
+										canvas
+									.card-body 5
+
+						div(class="col")
+							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
+								h5.card-title Most used brand:
+								div.d-flex.gap-3.justify-content-between.align-items-center
+									.card-body Moyu
+						div(class="col")
+							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
+								h5.card-title Solves per Day:
+								div.d-flex.gap-3.justify-content-between.align-items-center
+									.card-body 152
+									

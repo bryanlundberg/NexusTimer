@@ -41,10 +41,8 @@ exports.newSolve = async (req, res) => {
 			brand: cubeSolve.brand
 
 		})
-		
-		
-		
-		res.json("listo")
+
+		res.json("Successfully added new time")
 		
 	} catch (err) {
 		console.log(err)
