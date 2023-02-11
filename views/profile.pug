@@ -9,53 +9,82 @@ block content
 			.col-md-12.col-lg-8.my-1
 				include profile_navbar
 				.container.my-3
-					h4.my-3 Overall performance
+					div(class="form-floating")
+						select(id="time-filter" class="form-select" aria-label="Floating label select example")
+							option(value="overall") Overall
+							option 2x2
+							option 3x3
+							option 3x3 OH
+							option 4x4
+							option 5x5
+							option Megaminx
+						label(for="time-filter") Category-based Statistic Selection
 					hr
-					
-					.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light.my-4
-						h5.card-title Activity
-						div
-							label(for="time-filter") Timelapse
-							select(id="time-filter")
-								option(value="day") day
-								option(value="week") week
-								option(value="month") month
+					.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light.my-4.text-center
+						h5.card-title Overall stats
+						div(class="btn-group" role="group" aria-label="Basic example")
+							button(type="button" class="btn btn-dark" id="day") Day
+							button(type="button" class="btn btn-dark" id="week") Week
+							button(type="button" class="btn btn-dark" id="month") Month
+							
 						canvas.w-100(class="height: 300px;" id="myChart3")
+						table.table
+							thead
+								tr
+									th(scope="col") Type
+									th(scope="col") Global
+									th(scope="col") Sesion
+							tbody
+								tr
+									td(scope="row") Desviation
+									td 1.34
+									td 2.63
+								tr
+									td(scope="row") Ao3
+									td 1.34
+									td 2.63
+								tr
+									td(scope="row") Ao5
+									td 1.34
+									td 2.63
+								tr
+									td(scope="row") Ao12
+									td 1.34
+									td 2.63
+								tr
+									td(scope="row") Ao50
+									td 1.34
+									td 2.63
+								tr
+									td(scope="row") Ao100
+									td 1.34
+									td 2.63
+									
+								tr
+									td(scope="row") Ao1000
+									td 1.34
+									td 2.63
+									
+								tr
+									td(scope="row") Mean
+									td 1.34
+									td 2.63
+									
+								tr
+									td(scope="row") Counter
+									td 1.34
+									td 2.63
 					
 					div(class="row row-cols-1 row-cols-md-2 g-4")
 						div(class="col")
 							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
-								h5.card-title Solving time
+								h5.card-title Brand:
 								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
-									.card-body(id="solvingTime") 
-						div(class="col")
-							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
-								h5.card-title Total solves:
-								div.d-flex.gap-3.justify-content-between.align-items-center
-									.card-body(id="solveCounter") 
-						div(class="col")
-							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
-								h5.card-title Most used brand:
-								div.d-flex.gap-3.justify-content-between.align-items-center
-									.card-body Moyu
-						div(class="col")
-							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
-								h5.card-title Solves per Day:
-								div.d-flex.gap-3.justify-content-between.align-items-center
-									.card-body 152
-									
+									.container
+										canvas(id="myChart2" class="height: 600px;")
 						div(class="col")
 							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
 								h5.card-title Categories:
 								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
 									.container
-										canvas.w-100(id="myChart")
-
-						
-						div(class="col")
-							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
-								h5.card-title Cubes:
-								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
-									.container
-										canvas(id="myChart2")
-
+										canvas(id="myChart" class="height: 600px;")

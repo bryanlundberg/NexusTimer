@@ -5,8 +5,6 @@ export async function fillGraphs() {
 		const solveCounter = document.querySelector("#solveCounter")
 		const solvingTime = document.querySelector("#solvingTime")
 		const userStat = await fetchProfileStats();
-		solveCounter.textContent = userStat.totalSolves;
-		solvingTime.textContent = convertMStoDHMS(userStat.solvingTime);
 		draw();
 		draw2();
 		draw3()
