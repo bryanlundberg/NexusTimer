@@ -1,12 +1,10 @@
-
-
-export async function fetchSolves() {
-  try {
-	  
 	  const url = window.location.href;
-const urlParts = url.split('/');
-const userId = urlParts[urlParts.length - 1];
-const apiUrl = "http://localhost:3000/api/"
+	  const urlParts = url.split('/');
+	  const userId = urlParts[urlParts.length - 1];
+	  const apiUrl = "http://localhost:3000/api/"
+
+export async function fetchProfileStats() {
+  try {
 	  console.log(`${apiUrl}${userId}aa`)
 	  const result = await fetch(`${apiUrl}${userId}`)
 	  if (!result.ok) {throw new Error("Ha ocurrido un error al obtener los datos.");}

@@ -16,19 +16,18 @@ exports.categoryTimerStats = async (req, res) => {
       category: `${category}`,
     });
 
-	if (result.length === 0) {
-		
-	return res.json({
-		  avg5: 0.000,
-		  avg12: 0.000,
-		  avg50: 0.000,
-		  avg100: 0.000,
-		  pb: 0.000,
-		  counter: 0,
-		  desviation: 0,
-		  avg: 0,
-		});
-	}
+    if (result.length === 0) {
+      return res.json({
+        avg5: 0.0,
+        avg12: 0.0,
+        avg50: 0.0,
+        avg100: 0.0,
+        pb: 0.0,
+        counter: 0,
+        desviation: 0,
+        avg: 0,
+      });
+    }
 
     function getAvg(solutions, avgNumber) {
       const lastSolves = solutions
@@ -39,33 +38,32 @@ exports.categoryTimerStats = async (req, res) => {
         x += element.solveTime;
       });
       return (x / avgNumber / 1000).toFixed(2);
-    };
-	
-	const pb = result.sort((a, b) => a.timeSolve - b.timeSolve);
-	function avgMean(array) {
-	  let x = 0;
+    }
+
+    const pb = result.sort((a, b) => a.timeSolve - b.timeSolve);
+    function avgMean(array) {
+      let x = 0;
       array.forEach((element) => {
         x += element.solveTime;
       });
       return (x / array.length / 1000).toFixed(2);
-	};
-	
-	const avg = avgMean(result);
+    }
+
+    const avg = avgMean(result);
     const result5 = getAvg(result, 5);
     const result12 = getAvg(result, 12);
     const result50 = getAvg(result, 50);
     const result100 = getAvg(result, 100);
-
 
     res.json({
       avg5: result5,
       avg12: result12,
       avg50: result50,
       avg100: result100,
-	  pb: (pb[0].solveTime/1000).toFixed(2),
-	  counter: result.length,
-	  desviation: 1.5,
-	  avg: avg,
+      pb: (pb[0].solveTime / 1000).toFixed(2),
+      counter: result.length,
+      desviation: 1.5,
+      avg: avg,
     });
   } catch (err) {
     console.log(err);
@@ -90,15 +88,12 @@ exports.overallProfileStats = async (req, res) => {
       }
       return acc + element.solveTime;
     }, 0);
-    console.log(solvingTime);
 
     res.json({
       totalSolves: totalSolves.length,
       solvingTime: solvingTime,
-      hola: "hola",
     });
   } catch (err) {
     console.log(err);
   }
 };
-
