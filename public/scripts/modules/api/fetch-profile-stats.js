@@ -5,10 +5,9 @@
 
 export async function fetchProfileStats() {
   try {
-	  console.log(`${apiUrl}${userId}aa`)
+	  console.log(`${apiUrl}${userId}`)
 	  const result = await fetch(`${apiUrl}${userId}`)
 	  if (!result.ok) {throw new Error("Ha ocurrido un error al obtener los datos.");}
-	  console.log(result)
 	  return await result.json();
     } catch (err) {
 	  console.log(error);

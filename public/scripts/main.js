@@ -14,7 +14,6 @@ if (currentUrl.includes('/timer')) {
   document.addEventListener("keyup", handleUpKeys);
   
 } else if (currentUrl.includes('/profile')) {
-  
-  document.addEventListener("DOMContentLoaded", fillGraphs);
-  
+  const a = document.querySelector("#myChart2")
+  if (a) {document.addEventListener("DOMContentLoaded", fillGraphs);}
 }

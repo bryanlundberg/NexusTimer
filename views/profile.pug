@@ -11,6 +11,17 @@ block content
 				.container.my-3
 					h4.my-3 Overall performance
 					hr
+					
+					.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light.my-4
+						h5.card-title Activity
+						div
+							label(for="time-filter") Timelapse
+							select(id="time-filter")
+								option(value="day") day
+								option(value="week") week
+								option(value="month") month
+						canvas.w-100(class="height: 300px;" id="myChart3")
+					
 					div(class="row row-cols-1 row-cols-md-2 g-4")
 						div(class="col")
 							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
@@ -24,22 +35,6 @@ block content
 									.card-body(id="solveCounter") 
 						div(class="col")
 							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
-								h5.card-title Categories:
-								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
-									.container
-										canvas
-									.card-body 3x3
-						
-						div(class="col")
-							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
-								h5.card-title Cubes:
-								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
-									.container
-										canvas
-									.card-body 5
-
-						div(class="col")
-							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
 								h5.card-title Most used brand:
 								div.d-flex.gap-3.justify-content-between.align-items-center
 									.card-body Moyu
@@ -49,3 +44,18 @@ block content
 								div.d-flex.gap-3.justify-content-between.align-items-center
 									.card-body 152
 									
+						div(class="col")
+							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
+								h5.card-title Categories:
+								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
+									.container
+										canvas.w-100(id="myChart")
+
+						
+						div(class="col")
+							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
+								h5.card-title Cubes:
+								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
+									.container
+										canvas(id="myChart2")
+
