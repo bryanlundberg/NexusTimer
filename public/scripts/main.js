@@ -2,7 +2,7 @@
 import { setNewScramble } from "./modules/scramble/scramble-generator.js";
 import { handleDownKeys, handleUpKeys } from "./modules/timer/handle-keys.js";
 import { generateStatistics } from "./modules/api/fetch-statistics.js";
-import { fillGraphs } from "./modules/graph/graphs.js";
+import { fillGraphs, changeCurrentCharts } from "./modules/graph/graphs.js";
 import { toggleActiveNavBar } from "./modules/toggle/toggle.js";
 
 
@@ -19,8 +19,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
 	  
 	} else if (currentUrl.includes('/profile')) {
 		toggleActiveNavBar()
-	  const a = document.querySelector("#time-filter")
-	  if (a) {
+	  const timeFilterInput = document.querySelector("#time-filter")
+	  
+	  if (timeFilterInput) {
+		  timeFilterInput.addEventListener("change", changeCurrentCharts)
 		  fillGraphs()
 	  }
 	}

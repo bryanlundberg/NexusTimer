@@ -1,15 +1,15 @@
-	  const url = window.location.href;
-	  const urlParts = url.split('/');
-	  const userId = urlParts[urlParts.length - 1];
-	  const apiUrl = "http://localhost:3000/api/"
+const url = window.location.href;
+const urlParts = url.split('/');
+const userId = urlParts[urlParts.length - 1];
+const apiUrl = "http://localhost:3000/api/"
 
-export async function fetchProfileStats() {
+export async function fetchOverallProfileStats() {
   try {
-	  console.log(`${apiUrl}${userId}`)
-	  const result = await fetch(`${apiUrl}${userId}`)
+	  const result = await fetch(`${apiUrl}overall/${userId}`)
 	  if (!result.ok) {throw new Error("Ha ocurrido un error al obtener los datos.");}
 	  return await result.json();
     } catch (err) {
 	  console.log(error);
   }
+
 }

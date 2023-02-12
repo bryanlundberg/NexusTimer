@@ -23,25 +23,26 @@ block content
 					.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light.my-4.text-center
 						h5.card-title Overall stats
 						div(class="btn-group" role="group" aria-label="Basic example")
-							button(type="button" class="btn btn-dark active" id="day") Day
-							button(type="button" class="btn btn-dark" id="week") Week
-							button(type="button" class="btn btn-dark" id="month") Month
+							button(type="button" class="btn btn-dark active" id="day") All times
+							button(type="button" class="btn btn-dark" id="day") Last 24 hours
+							button(type="button" class="btn btn-dark" id="week") Last week
+							button(type="button" class="btn btn-dark" id="month") Last Month
 							
 						canvas.w-100(class="height: 300px;" id="myChart3")
 						table.table
 							thead
-								tr
+								tr(id="tr1")
 									th(scope="col") Type
 									th(scope="col") Global
 									th(scope="col") Sesion
 							tbody
-								tr
-									td(scope="row") Counter
-									td 34,159
+								tr(id="tr2")
+									td(scope="row") Count
+									td 
 									td 1,302
-								tr
+								tr(id="tr3")
 									td(scope="row") Total time
-									td 73d 3m 1d
+									td 
 									td 1h 19min
 					
 					div(class="row row-cols-1 row-cols-md-2 g-4")
