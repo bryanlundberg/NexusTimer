@@ -1,8 +1,8 @@
-.nav.nav-tabs
-	.nav.item
+.nav.nav-tabs(id="profile-nav")
+	.nav-item
 		a.nav-link(href='/profile/'+userSession.id) Overview
 	.nav-item
-		a.nav-link.active(aria-current="page" href='/profile/'+userSession.id+'/alg-collection') Algorithm collections
+		a.nav-link(aria-current="page" href='/profile/'+userSession.id+'/alg-collection') Algorithm collections
 	.nav-item
 		a.nav-link(href='/profile/'+userSession.id+'/achievements') Achievements
 	.nav-item

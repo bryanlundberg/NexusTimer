@@ -3,17 +3,29 @@ import { setNewScramble } from "./modules/scramble/scramble-generator.js";
 import { handleDownKeys, handleUpKeys } from "./modules/timer/handle-keys.js";
 import { generateStatistics } from "./modules/api/fetch-statistics.js";
 import { fillGraphs } from "./modules/graph/graphs.js";
+import { toggleActiveNavBar } from "./modules/toggle/toggle.js";
 
-const currentUrl = window.location.href;
 
-if (currentUrl.includes('/timer')) {
+document.addEventListener("DOMContentLoaded", (e) => {
 	
-  document.querySelector("#category").addEventListener("input", setNewScramble);
-  document.querySelector("#category").addEventListener("input", generateStatistics);
-  document.addEventListener("keydown", handleDownKeys);
-  document.addEventListener("keyup", handleUpKeys);
-  
-} else if (currentUrl.includes('/profile')) {
-  const a = document.querySelector("#myChart2")
-  if (a) {document.addEventListener("DOMContentLoaded", fillGraphs);}
-}
+	const currentUrl = window.location.href;
+
+	if (currentUrl.includes('/timer')) {
+		
+	  document.querySelector("#category").addEventListener("input", setNewScramble);
+	  document.querySelector("#category").addEventListener("input", generateStatistics);
+	  document.addEventListener("keydown", handleDownKeys);
+	  document.addEventListener("keyup", handleUpKeys);
+	  
+	} else if (currentUrl.includes('/profile')) {
+		toggleActiveNavBar()
+	  const a = document.querySelector("#time-filter")
+	  if (a) {
+		  fillGraphs()
+	  }
+	}
+	
+	
+});
+
+
