@@ -8,9 +8,9 @@ export async function fillGraphs() {
 		console.log(userStat)
 		solveCounter.textContent = userStat.totalSolves;
 		solvingTime.textContent = convertMStoDHMS(userStat.solvingTime)
-		draw();
-		draw2();
-		draw3()
+		drawMainGraph()
+		
+		
 		
 	} catch (err) {
 		console.log(err)
@@ -23,15 +23,15 @@ export function changeCurrentCharts() {
 	
 }
 
-function draw3() {
-var ctx = document.getElementById('myChart3').getContext('2d');
-var myChart = new Chart(ctx, {
+function drawMainGraph(labels, ) {
+const ctx = document.querySelector('#grapthMain').getContext('2d');
+const myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ['1', '2', '3', '4', '5', '6', '7'],
+        labels: ['Sunday', 'Monday', "Tuesday", 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         datasets: [{
-            label: '# de resoluciones de cubo de Rubik',
-            data: [12, 19, 3, 5, 2, 3, 20],
+            label: '# Solves',
+            data: [3244, 4376,5442,4345,7876,1645,8436],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)'
             ],
@@ -54,8 +54,8 @@ var myChart = new Chart(ctx, {
 });
 
 document.getElementById('time-filter').addEventListener('change', function() {
-  var selectedFilter = this.value;
-  var labels, data;
+  const selectedFilter = this.value;
+  let labels, data;
 
   switch (selectedFilter) {
     case 'day':
@@ -114,8 +114,8 @@ function draw() {
 }
 
 function draw2() {
-	      var ctx = document.getElementById('myChart2').getContext('2d');
-      var myChart = new Chart(ctx, {
+	  const ctx = document.getElementById('myChart2').getContext('2d');
+      const myChart = new Chart(ctx, {
         type: 'polarArea',
         data: {
           labels: ['Cubo 1', 'Cubo 2', 'Cubo 3', 'Cubo 4', 'Cubo 5'],

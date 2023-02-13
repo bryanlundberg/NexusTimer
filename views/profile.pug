@@ -9,33 +9,71 @@ block content
 			.col-md-12.col-lg-8.my-1
 				include profile_navbar
 				.container.my-3
-					div(class="form-floating")
-						select(id="time-filter" class="form-select" aria-label="Floating label select example")
-							option(value="overall") Overall
-							option 2x2
-							option 3x3
-							option 3x3 OH
-							option 4x4
-							option 5x5
-							option Megaminx
-						label(for="time-filter") Category-based Statistic Selection
-					hr
 					.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light.my-4.text-center
 						h5.card-title Overall stats
-						div(class="btn-group" role="group" aria-label="Basic example")
-							button(type="button" class="btn btn-dark active" id="day") All times
-							button(type="button" class="btn btn-dark" id="day") Last 24 hours
-							button(type="button" class="btn btn-dark" id="week") Last week
-							button(type="button" class="btn btn-dark" id="month") Last Month
+						div.w-75(class="form-floating")
+							select(id="time-filter" class="form-select" aria-label="Floating label select example")
+								option(value="overall") Overall
+								option 2x2
+								option 3x3
+								option 3x3 OH
+								option 4x4
+								option 5x5
+								option 6x6
+								option 7x7
+								option SQ-1
+								option Megaminx
+							label(for="time-filter") Category-based Statistic Selection
 							
-						canvas.w-100(class="height: 300px;" id="myChart3")
+						div.w-75(class="form-floating")
+							select(id="time-filter" class="form-select" aria-label="Floating label select example")
+								option(value="overall") Overall
+								option Tornavo V3
+							label(for="time-filter") Cube-based Statistic Selection
+							
 						table.table
 							thead
 								tr(id="tr1")
 									th(scope="col") Type
 									th(scope="col") Global
-									th(scope="col") Sesion
+									th(scope="col") Current
 							tbody
+								tr(id="tr12")
+									td(scope="row") Best
+									td 
+									td 1h 19min
+								tr(id="tr10")
+									td(scope="row") Mean
+									td 
+									td 1h 19min
+								tr(id="tr4")
+									td(scope="row") Ao3
+									td 
+									td 1h 19min
+								tr(id="tr5")
+									td(scope="row") Ao5
+									td 
+									td 1h 19min
+								tr(id="tr6")
+									td(scope="row") Ao12
+									td 
+									td 1h 19min
+								tr(id="tr7")
+									td(scope="row") Ao50
+									td 
+									td 1h 19min
+								tr(id="tr8")
+									td(scope="row") Ao100
+									td 
+									td 1h 19min
+								tr(id="tr9")
+									td(scope="row") Ao1000
+									td 
+									td 1h 19min
+								tr(id="tr11")
+									td(scope="row") Desviation
+									td 
+									td 1h 19min
 								tr(id="tr2")
 									td(scope="row") Count
 									td 
@@ -44,17 +82,3 @@ block content
 									td(scope="row") Total time
 									td 
 									td 1h 19min
-					
-					div(class="row row-cols-1 row-cols-md-2 g-4")
-						div(class="col")
-							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
-								h5.card-title Brand:
-								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
-									.container
-										canvas(id="myChart2" class="height: 600px;")
-						div(class="col")
-							.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.bg-light
-								h5.card-title Categories:
-								div.d-flex.gap-3.justify-content-between.align-items-center.d-flex.flex-column
-									.container
-										canvas(id="myChart" class="height: 600px;")
