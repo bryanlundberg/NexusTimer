@@ -1,13 +1,12 @@
-import { fetchProfileStats } from "../api/fetch-profile-stats.js";
+import { fetchProfileStats, fetchProfileFilters } from "../api/fetch-profile-stats.js";
 import { convertMStoDHMS } from "../utils/time-converter.js";
-export async function fillGraphs() {
+export async function updateStatisticsProfileChart() {
 	try {
+		generateValidListOptions()
+		
 		const category = document.querySelector("#category-filter").value
 		const cube = document.querySelector("#cube-filter").value
-		
 		const userStat = await fetchProfileStats(category,cube);
-		
-		console.log(userStat)
 		
 		const solvingTime = document.querySelector("#solving-time").textContent = convertMStoDHMS(userStat.solvingTime)
 		const pb = document.querySelector("#best-time").textContent = userStat.pb
@@ -20,7 +19,6 @@ export async function fillGraphs() {
 		const desviation = document.querySelector("#desviation").textContent = userStat.desviation
 		const solvesCount = document.querySelector("#count").textContent = userStat.solvesCount
 		
-
 		
 	} catch (err) {
 		console.log(err)
@@ -28,130 +26,109 @@ export async function fillGraphs() {
 }
 
 
-export function changeCurrentCharts() {
+
+async function generateValidListOptions() {
 	
-	
+	try {
+		
+	  console.log("blockInvalidListOptions called");
+	  const category = document.querySelector("#category-filter");
+	  const cube = document.querySelector("#cube-filter");
+	  console.log(cube.value);
+	  
+	  const filter = await fetchProfileFilters();
+	  if (!filter) { throw new Error("error al obtener filtros")}
+	  
+	  if (category.value.toLowerCase() === "overall" && cube.value.toLowerCase() === "overall") {
+		cube.setAttribute("disabled", true);
+		
+		clearFilterCategory()
+
+		filter.categories.forEach(element => { 
+			const newOptionCategory = document.createElement("option");
+			newOptionCategory.setAttribute("value", element);
+			newOptionCategory.textContent = element;
+			category.appendChild(newOptionCategory);
+		})
+		
+		return;
+
+	  } 
+	  
+	  if (category.value.toLowerCase() !== "overall") {
+		cube.removeAttribute("disabled");
+
+		clearFilterCube()
+
+		filter.cubes.forEach(element => { 
+			if (element.category === category.value) {
+				const newOptionCube = document.createElement("option");
+				newOptionCube.setAttribute("value", element._id);
+				newOptionCube.textContent = element.name + " | " + element.category;
+				cube.appendChild(newOptionCube);
+				
+			}
+
+		})
+		
+		return;
+	  }
+	  
+	  
+
+	  console.log(filter)
+	} catch (error) {
+		console.log(error)
+	}
+}
+function clearFilterCategory() {
+	const category = document.querySelector("#category-filter");
+		while (category.firstChild) {
+			category.removeChild(category.firstChild);
+		}
+		const defaultOptionCategory = document.createElement("option")
+		defaultOptionCategory.setAttribute("value", "overall");
+		defaultOptionCategory.textContent = "Overall";
+		category.appendChild(defaultOptionCategory);
 }
 
-function drawMainGraph(labels, ) {
-const ctx = document.querySelector('#grapthMain').getContext('2d');
-const myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Sunday', 'Monday', "Tuesday", 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        datasets: [{
-            label: '# Solves',
-            data: [3244, 4376,5442,4345,7876,1645,8436],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1,
-            fill: 'start'
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
+function clearFilterCube() {
+	  
+	 const cube = document.querySelector("#cube-filter");
+	
+	while (cube.firstChild) {
+		cube.removeChild(cube.firstChild);
+	}
+
+	const defaultOptionCube = document.createElement("option")
+	defaultOptionCube.setAttribute("value", "overall");
+	defaultOptionCube.textContent = "Overall";
+	cube.appendChild(defaultOptionCube);	
+}
+
+
+
+/* function generateValidListOptions() {
+  const category = document.querySelector("#category-filter").value;
+  const cube = document.querySelector("#cube-filter");
+
+  const indexMidReference = cube.value.indexOf("|");
+
+  const selectedCubes = cube.querySelectorAll("option");
+  console.log(selectedCubes);
+
+  for (let i = 0; i < selectedCubes.length; i++) {
+    const optionValue = selectedCubes[i].textContent;
+    if (optionValue !== "overall" && optionValue.indexOf("|") !== -1) {
+      const cubeName = optionValue.split("|")[1].trim();
+      if (cubeName && cubeName === category) {
+        // Opción válida, no se elimina
+      } else {
+        selectedCubes[i].remove();
+      }
     }
-});
-
-document.getElementById('time-filter').addEventListener('change', function() {
-  const selectedFilter = this.value;
-  let labels, data;
-
-  switch (selectedFilter) {
-    case 'day':
-      labels = ['1', '2', '3', '4', '5', '6', '7'];
-      data = [12, 19, 3, 5, 2, 3, 20];
-      break;
-    case 'week':
-      labels = ['Semana 1', 'Semana 2', 'Semana 3'];
-      data = [50, 35, 20];
-      break;
-    case 'month':
-      labels = ['Enero', 'Febrero', 'Marzo'];
-      data = [150, 100, 60];
-      break;
   }
+} */
 
-  myChart.data.labels = labels;
-  myChart.data.datasets[0].data = data;
-  myChart.update();
-});
-}
 
-function draw() {
-	const ctx = document.querySelector('#myChart').getContext('2d');
-	const myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ['2x2', '3x3', '3x3 OH', '4X4', '5X5', 'Megaminx'],
-        datasets: [{
-            label: '# solves',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-		options: {
-		  scales: {
-		  }
-		}
-});
-}
 
-function draw2() {
-	  const ctx = document.getElementById('myChart2').getContext('2d');
-      const myChart = new Chart(ctx, {
-        type: 'polarArea',
-        data: {
-          labels: ['Cubo 1', 'Cubo 2', 'Cubo 3', 'Cubo 4', 'Cubo 5'],
-          datasets: [{
-            label: '# de veces utilizado',
-            data: [12, 19, 3, 5, 2],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-		options: {
-		  scales: {
-		  }
-		}
-      });
-}

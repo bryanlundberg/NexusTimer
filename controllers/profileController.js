@@ -158,3 +158,28 @@ exports.logout_get = (req, res) => {
     res.redirect('/');
   });
 }
+
+exports.filters = async (req, res) => {
+  try {
+	const user = await User.findById(req.params.idUser)
+	const cubes = await Cube.find({owner: user._id})
+	
+	function getUniqueCategories(array) {
+	  const categories = new Set();
+	  array.forEach((element) => {
+		categories.add(element.category);
+	  });
+	  return Array.from(categories);
+	}
+	
+	const categories = getUniqueCategories(cubes);
+
+	res.json({
+		cubes,
+		categories,
+	})
+	
+  } catch (error) {
+	  console.log(error)	
+  }
+}

@@ -2,7 +2,7 @@
 import { setNewScramble } from "./modules/scramble/scramble-generator.js";
 import { handleDownKeys, handleUpKeys } from "./modules/timer/handle-keys.js";
 import { generateStatistics } from "./modules/api/fetch-statistics.js";
-import { fillGraphs, changeCurrentCharts } from "./modules/graph/graphs.js";
+import { updateStatisticsProfileChart } from "./modules/graph/graphs.js";
 import { toggleActiveNavBar } from "./modules/toggle/toggle.js";
 
 
@@ -19,14 +19,14 @@ document.addEventListener("DOMContentLoaded", (e) => {
 	  
 	} else if (currentUrl.includes('/profile')) {
 		toggleActiveNavBar()
-	  const filterSelector = document.querySelector("form")
-	  
-	  if (filterSelector) {
-		  fillGraphs();
-		  filterSelector.addEventListener("change", fillGraphs)
+	  const filterCategory = document.querySelector("#category-filter")
+	  const filterCube = document.querySelector("#cube-filter")
+	  if (filterCategory) {
+		  updateStatisticsProfileChart();
+		  filterCategory.addEventListener("change", updateStatisticsProfileChart)
+		  filterCube.addEventListener("change", updateStatisticsProfileChart)
 	  }
 	}
-	
 	
 });
 

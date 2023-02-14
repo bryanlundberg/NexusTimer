@@ -15,14 +15,12 @@ block content
 							div.w-100(class="form-floating")
 								select(id="category-filter" class="form-select" aria-label="Floating label category select")
 									option(value="overall" selected) Overall
-									for value in categories
-										option(value=value) #{value}
+
 								label(for="time-filter") Category-based Statistic
 							div.w-100(class="form-floating")
 								select(id="cube-filter" class="form-select" aria-label="Floating label cube select")
 									option(value="overall" selected) Overall
-									for value in cubes
-										option(value=value._id) #{value.name} | #{value.category}
+
 								label(for="time-filter") Cube-based Statistic
 							
 						table.table

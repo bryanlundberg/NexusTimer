@@ -13,3 +13,13 @@ export async function fetchProfileStats(category,cube) {
   }
 
 }
+
+export async function fetchProfileFilters() {
+  try {
+	  const result = await fetch(`${apiUrl}/${userId}`)
+	  if (!result.ok) {throw new Error("Ha ocurrido un error al obtener los datos.");}
+	  return await result.json();
+    } catch (err) {
+	  console.log(error);
+  }
+}
