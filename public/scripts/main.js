@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
 	  
 	} else if (currentUrl.includes('/profile')) {
 		toggleActiveNavBar()
-	  const timeFilterInput = document.querySelector("#time-filter")
+	  const filterSelector = document.querySelector("form")
 	  
-	  if (timeFilterInput) {
-		  timeFilterInput.addEventListener("change", changeCurrentCharts)
-		  fillGraphs()
+	  if (filterSelector) {
+		  fillGraphs();
+		  filterSelector.addEventListener("change", fillGraphs)
 	  }
 	}
 	

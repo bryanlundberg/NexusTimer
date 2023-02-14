@@ -1,16 +1,26 @@
-import { fetchOverallProfileStats } from "../api/fetch-profile-stats.js";
+import { fetchProfileStats } from "../api/fetch-profile-stats.js";
 import { convertMStoDHMS } from "../utils/time-converter.js";
 export async function fillGraphs() {
 	try {
-		const solveCounter = document.querySelector("#tr2 td:nth-of-type(2)")
-		const solvingTime = document.querySelector("#tr3 td:nth-of-type(2)")
-		const userStat = await fetchOverallProfileStats();
+		const category = document.querySelector("#category-filter").value
+		const cube = document.querySelector("#cube-filter").value
+		
+		const userStat = await fetchProfileStats(category,cube);
+		
 		console.log(userStat)
-		solveCounter.textContent = userStat.totalSolves;
-		solvingTime.textContent = convertMStoDHMS(userStat.solvingTime)
-		drawMainGraph()
 		
+		const solvingTime = document.querySelector("#solving-time").textContent = convertMStoDHMS(userStat.solvingTime)
+		const pb = document.querySelector("#best-time").textContent = userStat.pb
+		const avg = document.querySelector("#mean").textContent = userStat.avg
+		const result5 = document.querySelector("#best-ao5").textContent = userStat.result5
+		const result12 = document.querySelector("#best-ao12").textContent = userStat.result12
+		const result50 = document.querySelector("#best-ao50").textContent = userStat.result50
+		const result100 = document.querySelector("#best-ao100").textContent = userStat.result100
+		const result1000 = document.querySelector("#best-ao1000").textContent = userStat.result1000
+		const desviation = document.querySelector("#desviation").textContent = userStat.desviation
+		const solvesCount = document.querySelector("#count").textContent = userStat.solvesCount
 		
+
 		
 	} catch (err) {
 		console.log(err)

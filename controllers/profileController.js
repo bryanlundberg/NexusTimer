@@ -12,7 +12,6 @@ exports.userTimes_get = async (req, res) => {
 		
 		const ordered = userSolves.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 		
-
 		res.render("historial", {
 			title: "Profile",
 			userSolves,
@@ -27,10 +26,24 @@ exports.userTimes_get = async (req, res) => {
 exports.profileUser_get = async (req, res) => {
   try {
 	const user = await User.findById(req.params.idUser)
+	const cubes = await Cube.find({owner: user._id})
+	
+	function getUniqueCategories(array) {
+	  const categories = new Set();
+	  array.forEach((element) => {
+		categories.add(element.category);
+	  });
+	  return Array.from(categories);
+	}
+	
+	const categories = getUniqueCategories(cubes);
+
 	if (user) {
 	  res.render("profile", {
 		  title: user.username,
-		  user
+		  user,
+		  cubes,
+		  categories,
 	  })
 	}
   } catch (error) {

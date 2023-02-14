@@ -4,7 +4,7 @@ img(src=user.profile_img class="my-3 object-fit rounded-circle mx-auto d-block" 
 	.card-body
 		ul.list-group.list-group-flush
 			li.list-group-item.d-flex.justify-content-between
-				span Featured:
+				span Role:
 				span #{user.role}
 			li.list-group-item.d-flex.justify-content-between
 				span Nationality:
@@ -21,4 +21,4 @@ img(src=user.profile_img class="my-3 object-fit rounded-circle mx-auto d-block" 
 			li.list-group-item.d-flex.justify-content-between
 				span Contact email:
 				span sdasg@gmail.com
-a(class="btn btn-secondary w-100 d-block my-1" href="/profile/"+userSession.id+"/settings" role="button") Edit
+a(class="btn btn-outline-warning w-100 d-block my-1" href="/profile/"+userSession.id+"/settings" role="button") Edit
