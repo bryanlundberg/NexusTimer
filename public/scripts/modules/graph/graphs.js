@@ -7,7 +7,7 @@ export async function updateStatisticsProfileChart() {
 		const category = document.querySelector("#category-filter").value
 		const cube = document.querySelector("#cube-filter").value
 		const userStat = await fetchProfileStats(category,cube);
-		
+		console.log(userStat)
 		const solvingTime = document.querySelector("#solving-time").textContent = convertMStoDHMS(userStat.solvingTime)
 		const pb = document.querySelector("#best-time").textContent = userStat.pb
 		const avg = document.querySelector("#mean").textContent = userStat.avg
@@ -53,29 +53,45 @@ async function generateValidListOptions() {
 		
 		return;
 
-	  } 
-	  
-	  if (category.value.toLowerCase() !== "overall") {
+	  } else if (category.value.toLowerCase() !== "overall") {
 		cube.removeAttribute("disabled");
 
-		clearFilterCube()
+		// Obtener el valor seleccionado del elemento "#cube-filter"
+		const selectedCube = cube.value;
+
+		clearFilterCube();
 
 		filter.cubes.forEach(element => { 
-			if (element.category === category.value) {
-				const newOptionCube = document.createElement("option");
-				newOptionCube.setAttribute("value", element._id);
-				newOptionCube.textContent = element.name + " | " + element.category;
-				cube.appendChild(newOptionCube);
-				
-			}
+		  if (element.category === category.value) {
+			const newOptionCube = document.createElement("option");
+			newOptionCube.setAttribute("value", element._id);
+			newOptionCube.textContent = element.name + " | " + element.category;
+			cube.appendChild(newOptionCube);
+		  }
+		});
 
+		// Establece el valor seleccionado del elemento "#cube-filter" como el valor seleccionado previamente
+		cube.value = selectedCube;
+		
+
+		// Obtener el valor seleccionado del elemento "#cube-filter"
+		const selectedCategory = category.value;
+
+		clearFilterCategory();
+
+		filter.categories.forEach(element => { 
+			const newOptionCategory = document.createElement("option");
+			newOptionCategory.setAttribute("value", element);
+			newOptionCategory.textContent = element;
+			category.appendChild(newOptionCategory);
 		})
+
+		// Establece el valor seleccionado del elemento "#cube-filter" como el valor seleccionado previamente
+		category.value = selectedCategory;
 		
 		return;
-	  }
+	  } 
 	  
-	  
-
 	  console.log(filter)
 	} catch (error) {
 		console.log(error)
@@ -103,32 +119,6 @@ function clearFilterCube() {
 	const defaultOptionCube = document.createElement("option")
 	defaultOptionCube.setAttribute("value", "overall");
 	defaultOptionCube.textContent = "Overall";
-	cube.appendChild(defaultOptionCube);	
+	cube.appendChild(defaultOptionCube);
+	
 }
-
-
-
-/* function generateValidListOptions() {
-  const category = document.querySelector("#category-filter").value;
-  const cube = document.querySelector("#cube-filter");
-
-  const indexMidReference = cube.value.indexOf("|");
-
-  const selectedCubes = cube.querySelectorAll("option");
-  console.log(selectedCubes);
-
-  for (let i = 0; i < selectedCubes.length; i++) {
-    const optionValue = selectedCubes[i].textContent;
-    if (optionValue !== "overall" && optionValue.indexOf("|") !== -1) {
-      const cubeName = optionValue.split("|")[1].trim();
-      if (cubeName && cubeName === category) {
-        // Opción válida, no se elimina
-      } else {
-        selectedCubes[i].remove();
-      }
-    }
-  }
-} */
-
-
-

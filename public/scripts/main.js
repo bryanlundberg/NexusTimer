@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 	  if (filterCategory) {
 		  updateStatisticsProfileChart();
 		  filterCategory.addEventListener("change", updateStatisticsProfileChart)
-		  
+		  filterCube.addEventListener("change", updateStatisticsProfileChart)
 	  }
 	}
 	
