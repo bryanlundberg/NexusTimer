@@ -90,7 +90,30 @@ async function generateValidListOptions() {
 		category.value = selectedCategory;
 		
 		return;
-	  } 
+	  } else if (category.value.toLowerCase() === "overall" && (cube.value.toLowerCase() !== "overall")) {
+		  cube.setAttribute("disabled", true);
+		clearFilterCube();
+
+		filter.cubes.forEach(element => { 
+		  if (element.category === category.value) {
+			const newOptionCube = document.createElement("option");
+			newOptionCube.setAttribute("value", element._id);
+			newOptionCube.textContent = element.name + " | " + element.category;
+			cube.appendChild(newOptionCube);
+		  }
+		});
+		
+		clearFilterCategory()
+
+		filter.categories.forEach(element => { 
+			const newOptionCategory = document.createElement("option");
+			newOptionCategory.setAttribute("value", element);
+			newOptionCategory.textContent = element;
+			category.appendChild(newOptionCategory);
+		})
+		
+		
+	  }
 	  
 	  console.log(filter)
 	} catch (error) {
