@@ -1,13 +1,18 @@
 import { fetchProfileStats, fetchProfileFilters } from "../api/fetch-profile-stats.js";
 import { convertMStoDHMS } from "../utils/time-converter.js";
+
+let selectedCube;
+let selectedCategory;
+
 export async function updateStatisticsProfileChart() {
 	try {
-		generateValidListOptions()
+		generateOptionList()
 		
 		const category = document.querySelector("#category-filter").value
 		const cube = document.querySelector("#cube-filter").value
 		const userStat = await fetchProfileStats(category,cube);
 		console.log(userStat)
+		console.log(cube, category)
 		const solvingTime = document.querySelector("#solving-time").textContent = convertMStoDHMS(userStat.solvingTime)
 		const pb = document.querySelector("#best-time").textContent = userStat.pb
 		const avg = document.querySelector("#mean").textContent = userStat.avg
@@ -26,12 +31,98 @@ export async function updateStatisticsProfileChart() {
 }
 
 
+async function generateOptionList() {
+	
+	try {
+	  const category = document.querySelector("#category-filter");
+	  const cube = document.querySelector("#cube-filter");
+	  
+	  const filter = await fetchProfileFilters();
+	  if (!filter) { throw new Error("error al obtener filtros")}
+	  
+	  if (category.value.toLowerCase() === "overall" && cube.value.toLowerCase() === "overall") {
+		cube.setAttribute("disabled", true);
+		
+		clearFilterCategory()
+
+		filter.categories.forEach(element => { 
+			const newOptionCategory = document.createElement("option");
+			newOptionCategory.setAttribute("value", element);
+			newOptionCategory.textContent = element;
+			category.appendChild(newOptionCategory);
+		})
+		
+		return;
+		
+	  } else if (category.value.toLowerCase() === "overall" && cube.value.toLowerCase() !== "overall") {
+		  cube.setAttribute("disabled", true);
+		  
+		  clearFilterCategory()
+		  clearFilterCube()
+		  
+		filter.categories.forEach(element => { 
+			const newOptionCategory = document.createElement("option");
+			newOptionCategory.setAttribute("value", element);
+			newOptionCategory.textContent = element;
+			category.appendChild(newOptionCategory);
+		})
+		  
+		  return;
+		  
+	  } else if (category.value.toLowerCase() !== "overall" && cube.value.toLowerCase() === "overall") {
+		  
+		cube.removeAttribute("disabled");
+		selectedCube = cube.value;
+
+		clearFilterCube();
+
+		filter.cubes.forEach(element => { 
+		  if (element.category === category.value) {
+			const newOptionCube = document.createElement("option");
+			newOptionCube.setAttribute("value", element._id);
+			newOptionCube.textContent = element.name + " | " + element.category;
+			cube.appendChild(newOptionCube);
+		  }
+		});
+
+		cube.value = selectedCube;
+		  
+		  return;
+		  
+	  } else if (category.value.toLowerCase() !== "overall" && cube.value.toLowerCase() !== "overall") {
+		  
+		cube.removeAttribute("disabled");
+		clearFilterCube();
+		  
+		selectedCategory = category.value;
+
+		clearFilterCategory();
+
+		filter.categories.forEach(element => { 
+			const newOptionCategory = document.createElement("option");
+			newOptionCategory.setAttribute("value", element);
+			newOptionCategory.textContent = element;
+			category.appendChild(newOptionCategory);
+		})
+
+		category.value = selectedCategory;
+		  
+		  return;
+	  }
+	  
+		
+	} catch (error) {
+		
+		console.log(error)
+	}
+}
+
 
 async function generateValidListOptions() {
 	
 	try {
 		
-	  console.log("blockInvalidListOptions called");
+	  
 	  const category = document.querySelector("#category-filter");
 	  const cube = document.querySelector("#cube-filter");
 	  console.log(cube.value);
@@ -53,6 +144,11 @@ async function generateValidListOptions() {
 		
 		return;
 
+	  } else if (category.value.toLowerCase() === "overall" && cube.value.toLowerCase() !== "overall") {
+		  
+		  
+		  console.log("catche")
+		  return;
 	  } else if (category.value.toLowerCase() !== "overall") {
 		cube.removeAttribute("disabled");
 

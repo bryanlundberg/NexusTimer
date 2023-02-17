@@ -19,12 +19,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
 	  
 	} else if (currentUrl.includes('/profile')) {
 		toggleActiveNavBar()
-	  const filterCategory = document.querySelector("#category-filter")
-	  const filterCube = document.querySelector("#cube-filter")
-	  if (filterCategory) {
+	  const fromFilterStats = document.querySelector("form")
+	 
+	  if (fromFilterStats) {
 		  updateStatisticsProfileChart();
-		  filterCategory.addEventListener("change", updateStatisticsProfileChart)
-		  filterCube.addEventListener("change", updateStatisticsProfileChart)
+		  fromFilterStats.addEventListener("change", updateStatisticsProfileChart)
+		  
 	  }
 	}
 	
