@@ -1,5 +1,8 @@
 export const categories = [
   {
+    cat: "Overall",
+  },
+  {
     cat: "2x2",
   },
   {
@@ -11,16 +14,19 @@ export const categories = [
     {
     cat: "4x4",
   },
-    {
+  {
     cat: "5x5",
   },
-    {
+  {
     cat: "6x6",
   },
-    {
+  {
+    cat: "7x7",
+  },
+  {
     cat: "SQ-1",
   },
-    {
+  {
     cat: "Megaminx",
   },
  ];

@@ -2,7 +2,7 @@
 import { setNewScramble } from "./modules/scramble/scramble-generator.js";
 import { handleDownKeys, handleUpKeys } from "./modules/timer/handle-keys.js";
 import { generateStatistics } from "./modules/api/fetch-statistics.js";
-import { updateStatisticsProfileChart, categoryFilter, cubeFilter , generateOptionList } from "./modules/graph/graphs.js";
+import { updateStatisticsProfileChart, categoryFilterGen, cubeFilterGen , generateCategoryList } from "./modules/graph/graphs.js";
 import { toggleActiveNavBar } from "./modules/toggle/toggle.js";
 
 
@@ -25,10 +25,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
 	  if (categoryFilter) {
 		  const cube = document.querySelector("#cube-filter");
 		  cube.setAttribute("disabled", true);
-		  generateOptionList();
+		  generateCategoryList();
 		  updateStatisticsProfileChart();
-		  categoryFilter.addEventListener("change", categoryFilter)
-		  cubeFilter.addEventListener("change", cubeFilter)
+		  categoryFilter.addEventListener("change", categoryFilterGen)
+		  cubeFilter.addEventListener("change", cubeFilterGen)
 		  
 	  }
 	}

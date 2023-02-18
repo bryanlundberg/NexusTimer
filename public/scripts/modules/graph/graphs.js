@@ -1,11 +1,8 @@
 import { fetchProfileStats, fetchProfileFilters } from "../api/fetch-profile-stats.js";
 import { convertMStoDHMS } from "../utils/time-converter.js";
+import { categories } from "../utils/categories.js";
 
-let selectedCubeTemporal = document.querySelector("#category-filter").value;
-let selectedCategoryTemporal = document.querySelector("#cube-filter").value;
 let filter;
-console.log(selectedCategoryTemporal)
-
 
 export async function updateStatisticsProfileChart() {
 	try {
@@ -28,115 +25,79 @@ export async function updateStatisticsProfileChart() {
 	}
 }
 
-export async function categoryFilter() {
+export async function categoryFilterGen() {
 	try {
-    
-		const category = document.querySelector("#category-filter");
-		const cube = document.querySelector("#cube-filter");
-		selectedCategoryTemporal = category.value;
-		selectedCubeTemporal = cube.value;
+		console.log("gholaa")
 		
-		if (selectedCategoryTemporal === "overall" && selectedCubeTemporal === "overall") {
-		  cube.setAttribute("disabled", true);
-
-		  clearFilterCategory();
-		  clearFilterCube();
-
-		  filter.categories.forEach((element) => {
-			const newOptionCategory = document.createElement("option");
-			newOptionCategory.setAttribute("value", element);
-			newOptionCategory.textContent = element;
-			category.appendChild(newOptionCategory);
-		  });
-		  
-		  console.log("1");
-
-		  return;
-		} else if (selectedCategoryTemporal === "overall" && selectedCubeTemporal !== "overall") {
-		  cube.setAttribute("disabled", true);
-
-		  clearFilterCategory();
-		  clearFilterCube();
-
-		  filter.categories.forEach((element) => {
-			const newOptionCategory = document.createElement("option");
-			newOptionCategory.setAttribute("value", element);
-			newOptionCategory.textContent = element;
-			category.appendChild(newOptionCategory);
-		  });
-	console.log("2");
-		  return;
-		} else if (selectedCategoryTemporal !== "overall" && selectedCubeTemporal === "overall") {
-		  cube.removeAttribute("disabled");
-
-		  clearFilterCube();
-
-		  filter.cubes.forEach((element) => {
-			if (element.category === category.value) {
-			  const newOptionCube = document.createElement("option");
-			  newOptionCube.setAttribute("value", element._id);
-			  newOptionCube.textContent = element.name + " | " + element.category;
-			  cube.appendChild(newOptionCube);
-			}
-		  });
-	console.log("3");
-		  return;
-		} else if (selectedCategoryTemporal !== "overall" && selectedCubeTemporal !== "overall") {
-		  cube.removeAttribute("disabled");
-		  // Desmenuzar y comparar las categorías
-		  const categoryText = category.options[category.selectedIndex].textContent;
-		  const cubeText = cube.options[cube.selectedIndex].textContent;
-		  const categoryParts = categoryText.split(" | ");
-		  const cubeParts = cubeText.split(" | ");
-		  if (categoryParts[1] !== cubeParts[1]) {
-			clearFilterCategory();
-			clearFilterCube();
-			return;
-		  }
-
-		  console.log("4");
-		  return;
+		const cube = document.querySelector("#cube-filter");
+		const category = document.querySelector("#category-filter");
+		
+		if (category.value.toLowerCase() === "overall") {
+			clearFilterCategory()
+			clearFilterCube()
+			cube.setAttribute("disabled", true);
+			generateCategoryList();
+			//set default overall
+			const defaultOverall = document.createElement("option");
+			defaultOverall.setAttribute("value", "overall");
+			defaultOverall.textContent = "Overall";
+			cube.appendChild(defaultOverall);
 		}
 		
+		if (category.value.toLowerCase() !== "overall") {
+			cube.removeAttribute('disabled');
+			const cubes = await generateCubesOptions();
+		}
+
 	} catch (error) {
-		
+		console.log(error)
 		
 	}
 }
 
-export async function cubeFilter() {
+export async function cubeFilterGen() {
 	try {
 		
 		
 	} catch (error) {
 		
-		
+		console.log(error)
 	}
 }
 
-export async function generateOptionList() {
-  try {
-    
-    const category = document.querySelector("#category-filter");
-    const cube = document.querySelector("#cube-filter");
-	selectedCategory = category.value;
-	selectedCube = cube.value;
+async function generateCubesOptions() {
+	try {
+		
+		const category = document.querySelector("#category-filter");
+		const cube = document.querySelector("#cube-filter");
+		
+		filter.cubes.forEach(element => { 
+		  if (element.category === category.value) {
+			const newOptionCube = document.createElement("option");
+			newOptionCube.setAttribute("value", element._id);
+			newOptionCube.textContent = element.name + " | " + element.category;
+			cube.appendChild(newOptionCube);
+		  }
+		});
+		
+	} catch (error) {
+		console.log(error)
+		
+	}
 	
-    if (selectedCategory === "overall" && selectedCube === "overall") {
-      cube.setAttribute("disabled", true);
+}
 
-      clearFilterCategory();
-      clearFilterCube();
-
-      filter.categories.forEach((element) => {
-        const newOptionCategory = document.createElement("option");
-        newOptionCategory.setAttribute("value", element);
-        newOptionCategory.textContent = element;
-        category.appendChild(newOptionCategory);
-      });
-	  
-	  console.log("1");
-    } 
+export async function generateCategoryList() {
+  try {
+    const category = document.querySelector("#category-filter");
+	if (!category) { throw new Error("Fallo encontrnado category filter")}
+	categories.forEach(element => {
+		const optionElement = document.createElement("option");
+		optionElement.textContent = element.cat;
+		optionElement.value = element.cat;
+		category.appendChild(optionElement)
+	})
+    
   } catch (error) {
     console.log(error);
   }
@@ -147,21 +108,11 @@ function clearFilterCategory() {
   while (category.firstChild) {
     category.removeChild(category.firstChild);
   }
-  const defaultOptionCategory = document.createElement("option");
-  defaultOptionCategory.setAttribute("value", "overall");
-  defaultOptionCategory.textContent = "Overall";
-  category.appendChild(defaultOptionCategory);
 }
 
 function clearFilterCube() {
   const cube = document.querySelector("#cube-filter");
-
   while (cube.firstChild) {
     cube.removeChild(cube.firstChild);
   }
-
-  const defaultOptionCube = document.createElement("option");
-  defaultOptionCube.setAttribute("value", "overall");
-  defaultOptionCube.textContent = "Overall";
-  cube.appendChild(defaultOptionCube);
 }
