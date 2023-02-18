@@ -1,18 +1,18 @@
 import { fetchProfileStats, fetchProfileFilters } from "../api/fetch-profile-stats.js";
 import { convertMStoDHMS } from "../utils/time-converter.js";
 
-let selectedCube;
-let selectedCategory;
+let selectedCubeTemporal = document.querySelector("#category-filter").value;
+let selectedCategoryTemporal = document.querySelector("#cube-filter").value;
+let filter;
+console.log(selectedCategoryTemporal)
+
 
 export async function updateStatisticsProfileChart() {
 	try {
-		generateOptionList()
-		
+		filter = await fetchProfileFilters();
 		const category = document.querySelector("#category-filter").value
 		const cube = document.querySelector("#cube-filter").value
 		const userStat = await fetchProfileStats(category,cube);
-		console.log(userStat)
-		console.log(cube, category)
 		const solvingTime = document.querySelector("#solving-time").textContent = convertMStoDHMS(userStat.solvingTime)
 		const pb = document.querySelector("#best-time").textContent = userStat.pb
 		const avg = document.querySelector("#mean").textContent = userStat.avg
@@ -23,221 +23,145 @@ export async function updateStatisticsProfileChart() {
 		const result1000 = document.querySelector("#best-ao1000").textContent = userStat.result1000
 		const desviation = document.querySelector("#desviation").textContent = userStat.desviation
 		const solvesCount = document.querySelector("#count").textContent = userStat.solvesCount
-		
-		
 	} catch (err) {
 		console.log(err)
 	}
 }
 
-
-async function generateOptionList() {
-	
+export async function categoryFilter() {
 	try {
-	  const category = document.querySelector("#category-filter");
-	  const cube = document.querySelector("#cube-filter");
-	  
-	  const filter = await fetchProfileFilters();
-	  if (!filter) { throw new Error("error al obtener filtros")}
-	  
-	  if (category.value.toLowerCase() === "overall" && cube.value.toLowerCase() === "overall") {
-		cube.setAttribute("disabled", true);
+    
+		const category = document.querySelector("#category-filter");
+		const cube = document.querySelector("#cube-filter");
+		selectedCategoryTemporal = category.value;
+		selectedCubeTemporal = cube.value;
 		
-		clearFilterCategory()
-
-		filter.categories.forEach(element => { 
-			const newOptionCategory = document.createElement("option");
-			newOptionCategory.setAttribute("value", element);
-			newOptionCategory.textContent = element;
-			category.appendChild(newOptionCategory);
-		})
-		
-		return;
-		
-	  } else if (category.value.toLowerCase() === "overall" && cube.value.toLowerCase() !== "overall") {
+		if (selectedCategoryTemporal === "overall" && selectedCubeTemporal === "overall") {
 		  cube.setAttribute("disabled", true);
-		  
-		  clearFilterCategory()
-		  clearFilterCube()
-		  
-		filter.categories.forEach(element => { 
+
+		  clearFilterCategory();
+		  clearFilterCube();
+
+		  filter.categories.forEach((element) => {
 			const newOptionCategory = document.createElement("option");
 			newOptionCategory.setAttribute("value", element);
 			newOptionCategory.textContent = element;
 			category.appendChild(newOptionCategory);
-		})
+		  });
 		  
+		  console.log("1");
+
 		  return;
-		  
-	  } else if (category.value.toLowerCase() !== "overall" && cube.value.toLowerCase() === "overall") {
-		  
-		cube.removeAttribute("disabled");
-		selectedCube = cube.value;
-
-		clearFilterCube();
-
-		filter.cubes.forEach(element => { 
-		  if (element.category === category.value) {
-			const newOptionCube = document.createElement("option");
-			newOptionCube.setAttribute("value", element._id);
-			newOptionCube.textContent = element.name + " | " + element.category;
-			cube.appendChild(newOptionCube);
-		  }
-		});
-
-		cube.value = selectedCube;
-		  
-		  return;
-		  
-	  } else if (category.value.toLowerCase() !== "overall" && cube.value.toLowerCase() !== "overall") {
-		  
-		cube.removeAttribute("disabled");
-		clearFilterCube();
-		  
-		selectedCategory = category.value;
-
-		clearFilterCategory();
-
-		filter.categories.forEach(element => { 
-			const newOptionCategory = document.createElement("option");
-			newOptionCategory.setAttribute("value", element);
-			newOptionCategory.textContent = element;
-			category.appendChild(newOptionCategory);
-		})
-
-		category.value = selectedCategory;
-		  
-		  return;
-	  }
-	  
-		
-	} catch (error) {
-		
-		console.log(error)
-	}
-}
-
-
-async function generateValidListOptions() {
-	
-	try {
-		
-	  
-	  const category = document.querySelector("#category-filter");
-	  const cube = document.querySelector("#cube-filter");
-	  console.log(cube.value);
-	  
-	  const filter = await fetchProfileFilters();
-	  if (!filter) { throw new Error("error al obtener filtros")}
-	  
-	  if (category.value.toLowerCase() === "overall" && cube.value.toLowerCase() === "overall") {
-		cube.setAttribute("disabled", true);
-		
-		clearFilterCategory()
-
-		filter.categories.forEach(element => { 
-			const newOptionCategory = document.createElement("option");
-			newOptionCategory.setAttribute("value", element);
-			newOptionCategory.textContent = element;
-			category.appendChild(newOptionCategory);
-		})
-		
-		return;
-
-	  } else if (category.value.toLowerCase() === "overall" && cube.value.toLowerCase() !== "overall") {
-		  
-		  
-		  console.log("catche")
-		  return;
-	  } else if (category.value.toLowerCase() !== "overall") {
-		cube.removeAttribute("disabled");
-
-		// Obtener el valor seleccionado del elemento "#cube-filter"
-		const selectedCube = cube.value;
-
-		clearFilterCube();
-
-		filter.cubes.forEach(element => { 
-		  if (element.category === category.value) {
-			const newOptionCube = document.createElement("option");
-			newOptionCube.setAttribute("value", element._id);
-			newOptionCube.textContent = element.name + " | " + element.category;
-			cube.appendChild(newOptionCube);
-		  }
-		});
-
-		// Establece el valor seleccionado del elemento "#cube-filter" como el valor seleccionado previamente
-		cube.value = selectedCube;
-		
-
-		// Obtener el valor seleccionado del elemento "#cube-filter"
-		const selectedCategory = category.value;
-
-		clearFilterCategory();
-
-		filter.categories.forEach(element => { 
-			const newOptionCategory = document.createElement("option");
-			newOptionCategory.setAttribute("value", element);
-			newOptionCategory.textContent = element;
-			category.appendChild(newOptionCategory);
-		})
-
-		// Establece el valor seleccionado del elemento "#cube-filter" como el valor seleccionado previamente
-		category.value = selectedCategory;
-		
-		return;
-	  } else if (category.value.toLowerCase() === "overall" && (cube.value.toLowerCase() !== "overall")) {
+		} else if (selectedCategoryTemporal === "overall" && selectedCubeTemporal !== "overall") {
 		  cube.setAttribute("disabled", true);
-		clearFilterCube();
 
-		filter.cubes.forEach(element => { 
-		  if (element.category === category.value) {
-			const newOptionCube = document.createElement("option");
-			newOptionCube.setAttribute("value", element._id);
-			newOptionCube.textContent = element.name + " | " + element.category;
-			cube.appendChild(newOptionCube);
-		  }
-		});
-		
-		clearFilterCategory()
+		  clearFilterCategory();
+		  clearFilterCube();
 
-		filter.categories.forEach(element => { 
+		  filter.categories.forEach((element) => {
 			const newOptionCategory = document.createElement("option");
 			newOptionCategory.setAttribute("value", element);
 			newOptionCategory.textContent = element;
 			category.appendChild(newOptionCategory);
-		})
-		
-		
-	  }
-	  
-	  console.log(filter)
-	} catch (error) {
-		console.log(error)
-	}
-}
-function clearFilterCategory() {
-	const category = document.querySelector("#category-filter");
-		while (category.firstChild) {
-			category.removeChild(category.firstChild);
+		  });
+	console.log("2");
+		  return;
+		} else if (selectedCategoryTemporal !== "overall" && selectedCubeTemporal === "overall") {
+		  cube.removeAttribute("disabled");
+
+		  clearFilterCube();
+
+		  filter.cubes.forEach((element) => {
+			if (element.category === category.value) {
+			  const newOptionCube = document.createElement("option");
+			  newOptionCube.setAttribute("value", element._id);
+			  newOptionCube.textContent = element.name + " | " + element.category;
+			  cube.appendChild(newOptionCube);
+			}
+		  });
+	console.log("3");
+		  return;
+		} else if (selectedCategoryTemporal !== "overall" && selectedCubeTemporal !== "overall") {
+		  cube.removeAttribute("disabled");
+		  // Desmenuzar y comparar las categorías
+		  const categoryText = category.options[category.selectedIndex].textContent;
+		  const cubeText = cube.options[cube.selectedIndex].textContent;
+		  const categoryParts = categoryText.split(" | ");
+		  const cubeParts = cubeText.split(" | ");
+		  if (categoryParts[1] !== cubeParts[1]) {
+			clearFilterCategory();
+			clearFilterCube();
+			return;
+		  }
+
+		  console.log("4");
+		  return;
 		}
-		const defaultOptionCategory = document.createElement("option")
-		defaultOptionCategory.setAttribute("value", "overall");
-		defaultOptionCategory.textContent = "Overall";
-		category.appendChild(defaultOptionCategory);
+		
+	} catch (error) {
+		
+		
+	}
+}
+
+export async function cubeFilter() {
+	try {
+		
+		
+	} catch (error) {
+		
+		
+	}
+}
+
+export async function generateOptionList() {
+  try {
+    
+    const category = document.querySelector("#category-filter");
+    const cube = document.querySelector("#cube-filter");
+	selectedCategory = category.value;
+	selectedCube = cube.value;
+	
+    if (selectedCategory === "overall" && selectedCube === "overall") {
+      cube.setAttribute("disabled", true);
+
+      clearFilterCategory();
+      clearFilterCube();
+
+      filter.categories.forEach((element) => {
+        const newOptionCategory = document.createElement("option");
+        newOptionCategory.setAttribute("value", element);
+        newOptionCategory.textContent = element;
+        category.appendChild(newOptionCategory);
+      });
+	  
+	  console.log("1");
+    } 
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function clearFilterCategory() {
+  const category = document.querySelector("#category-filter");
+  while (category.firstChild) {
+    category.removeChild(category.firstChild);
+  }
+  const defaultOptionCategory = document.createElement("option");
+  defaultOptionCategory.setAttribute("value", "overall");
+  defaultOptionCategory.textContent = "Overall";
+  category.appendChild(defaultOptionCategory);
 }
 
 function clearFilterCube() {
-	  
-	 const cube = document.querySelector("#cube-filter");
-	
-	while (cube.firstChild) {
-		cube.removeChild(cube.firstChild);
-	}
+  const cube = document.querySelector("#cube-filter");
 
-	const defaultOptionCube = document.createElement("option")
-	defaultOptionCube.setAttribute("value", "overall");
-	defaultOptionCube.textContent = "Overall";
-	cube.appendChild(defaultOptionCube);
-	
+  while (cube.firstChild) {
+    cube.removeChild(cube.firstChild);
+  }
+
+  const defaultOptionCube = document.createElement("option");
+  defaultOptionCube.setAttribute("value", "overall");
+  defaultOptionCube.textContent = "Overall";
+  cube.appendChild(defaultOptionCube);
 }
