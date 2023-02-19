@@ -2,7 +2,7 @@
 import { setNewScramble } from "./modules/scramble/scramble-generator.js";
 import { handleDownKeys, handleUpKeys } from "./modules/timer/handle-keys.js";
 import { generateStatistics } from "./modules/api/fetch-statistics.js";
-import { updateStatisticsProfileChart, categoryFilterGen, cubeFilterGen , generateCategoryList } from "./modules/graph/graphs.js";
+import { updateStatisticsProfileChart, categoryFilterGen, cubeFilterGen , generateCategoryList } from "./modules/toggle/profileFilter.js";
 import { toggleActiveNavBar } from "./modules/toggle/toggle.js";
 
 
@@ -21,15 +21,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
 		toggleActiveNavBar()
 		const categoryFilter = document.querySelector("#category-filter");
 		const cubeFilter = document.querySelector("#cube-filter");
-
-	  if (categoryFilter) {
-		  const cube = document.querySelector("#cube-filter");
-		  cube.setAttribute("disabled", true);
+	  if (categoryFilter || cubeFilter) {
+		  cubeFilter.setAttribute("disabled", true);
 		  generateCategoryList();
 		  updateStatisticsProfileChart();
 		  categoryFilter.addEventListener("change", categoryFilterGen)
 		  cubeFilter.addEventListener("change", cubeFilterGen)
-		  
 	  }
 	}
 	
