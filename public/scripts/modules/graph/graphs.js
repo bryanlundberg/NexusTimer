@@ -3,10 +3,11 @@ import { convertMStoDHMS } from "../utils/time-converter.js";
 import { categories } from "../utils/categories.js";
 
 let filter;
-
+let currentCategory = "overall";
 export async function updateStatisticsProfileChart() {
 	try {
 		filter = await fetchProfileFilters();
+		console.log(filter)
 		const category = document.querySelector("#category-filter").value
 		const cube = document.querySelector("#cube-filter").value
 		const userStat = await fetchProfileStats(category,cube);
@@ -27,14 +28,12 @@ export async function updateStatisticsProfileChart() {
 
 export async function categoryFilterGen() {
 	try {
-		console.log("gholaa")
-		
 		const cube = document.querySelector("#cube-filter");
 		const category = document.querySelector("#category-filter");
 		
 		if (category.value.toLowerCase() === "overall") {
-			clearFilterCategory()
-			clearFilterCube()
+			clearFilterCategory();
+			clearFilterCube();
 			cube.setAttribute("disabled", true);
 			generateCategoryList();
 			//set default overall
@@ -42,16 +41,22 @@ export async function categoryFilterGen() {
 			defaultOverall.setAttribute("value", "overall");
 			defaultOverall.textContent = "Overall";
 			cube.appendChild(defaultOverall);
+			console.log("1")
 		}
 		
 		if (category.value.toLowerCase() !== "overall") {
-			cube.removeAttribute('disabled');
-			const cubes = await generateCubesOptions();
+			console.log(category.value, currentCategory)
+			if (category.value.toLowerCase() !== currentCategory) {
+				currentCategory = category.value.toLowerCase();
+				clearFilterCube();
+				console.log("algo")
+			}
+			cube.removeAttribute("disabled");
+			await generateCubesOptions();
+			console.log("2")
 		}
-
 	} catch (error) {
-		console.log(error)
-		
+		console.log(error);
 	}
 }
 
@@ -67,24 +72,29 @@ export async function cubeFilterGen() {
 
 async function generateCubesOptions() {
 	try {
-		
 		const category = document.querySelector("#category-filter");
 		const cube = document.querySelector("#cube-filter");
+		console.log("pase")
 		
-		filter.cubes.forEach(element => { 
-		  if (element.category === category.value) {
-			const newOptionCube = document.createElement("option");
-			newOptionCube.setAttribute("value", element._id);
-			newOptionCube.textContent = element.name + " | " + element.category;
-			cube.appendChild(newOptionCube);
-		  }
+		if (category.value.toLowerCase() === "overall") return;
+		
+		
+		const defaultOverall = document.createElement("option");
+		defaultOverall.setAttribute("value", "overall");
+		defaultOverall.textContent = "Overall";
+		cube.appendChild(defaultOverall);
+		
+		filter.cubes.forEach((element) => {
+			if (element.category === currentCategory) {
+				const newOptionCube = document.createElement("option");
+				newOptionCube.setAttribute("value", element._id);
+				newOptionCube.textContent = element.name + " | " + element.category;
+				cube.appendChild(newOptionCube);
+			}
 		});
-		
 	} catch (error) {
-		console.log(error)
-		
+		console.log(error);
 	}
-	
 }
 
 export async function generateCategoryList() {
