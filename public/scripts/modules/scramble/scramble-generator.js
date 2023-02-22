@@ -35,12 +35,16 @@ export function generateScramble(category) {
 
 export function setNewScramble() {
 	const scrambleCategory = document.querySelector("#category").value
+	const scrambleCube = document.querySelector("#cube").value
 	const scrambleArea = document.querySelector("#scramble")
 	if (scrambleCategory == "Open this select menu") {
-		scrambleArea.textContent = "Pick a scramble type to START cubing!";
+		scrambleArea.textContent = "Pick a category before START cubing!";
+	} 
+	
+	if (scrambleCube == "Open this select menu") {
+		scrambleArea.textContent = "Pick a cube before START cubing!";
 	} else {
 		scrambleArea.textContent = generateScramble(scrambleCategory);
 	}
-	
 	updateStatistics();
 }

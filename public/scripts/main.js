@@ -12,8 +12,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
 	if (currentUrl.includes('/timer')) {
 		
-	  document.querySelector("#category").addEventListener("input", setNewScramble);
-	  document.querySelector("#category").addEventListener("input", generateStatistics);
+	  document.querySelector("#category").addEventListener("change", setNewScramble);
+	  document.querySelector("#category").addEventListener("change", generateStatistics);
+	  document.querySelector("#cube").addEventListener("change", setNewScramble);
+	  document.querySelector("#cube").addEventListener("change", generateStatistics);
 	  document.addEventListener("keydown", handleDownKeys);
 	  document.addEventListener("keyup", handleUpKeys);
 	  

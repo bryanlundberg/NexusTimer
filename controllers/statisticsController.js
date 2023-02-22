@@ -214,7 +214,7 @@ exports.stats = async (req, res) => {
 
     return res.json({
       solvingTime,
-      pb: (pb[0].solveTime / 1000).toFixed(2),
+      pb: (pb[0] / 1000).toFixed(2),
       avg,
       result5,
       result12,
