@@ -51,21 +51,25 @@ export async function categoryFilterGen() {
       cube.removeAttribute("disabled");
       await generateCubesOptions();
     }
+	await updateStatisticsProfileChart()
   } catch (error) {
     console.log(error);
   }
 }
 
-export function cubeFilterGen() {}
+export async function cubeFilterGen() {
+	try {
+		await updateStatisticsProfileChart()
+	} catch (error) {
+		console.log(error)
+	}
+}
 
 async function generateCubesOptions() {
   try {
     const category = document.querySelector("#category-filter");
     const cube = document.querySelector("#cube-filter");
-    console.log("pase");
-
     if (category.value.toLowerCase() === "overall") return;
-
     const defaultOverall = document.createElement("option");
     defaultOverall.setAttribute("value", "overall");
     defaultOverall.textContent = "Overall";
