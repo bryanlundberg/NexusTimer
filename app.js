@@ -43,7 +43,8 @@ passport.serializeUser(
   (user, done) =>
     done(null, {
       id: user._id,
-      username: user.username
+      username: user.username,
+	  theme: user.theme
     }) //se guardará en req.user
 ); //req.user se envia
 

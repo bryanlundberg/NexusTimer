@@ -56,13 +56,12 @@ exports.cubes_get = async (req, res) => {
 	const user = await User.findById(req.params.idUser)
 	
 	const cubes = await Cube.find({ owner: user._id })
-	
-	
+	 
 	if (user) {
 		res.render("profile_cubes", {
 			title: "Your cubes",
 			user,
-			cubes
+			cubes,
 		})
 	}
   } catch (error) {
