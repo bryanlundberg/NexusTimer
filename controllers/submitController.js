@@ -156,10 +156,10 @@ exports.updateOll = async (req, res) => {
 	  await algo.save();
 	}
 	
-    res.redirect(`/profile/${user._id}`);
+    res.redirect(`/profile/${user._id}/alg-collection`);
   } catch (error) {
     console.log(error);
-    res.redirect(`/profile/${user._id}`);
+    res.redirect(`/profile/${user._id}/alg-collection`);
   }
 };
 
@@ -187,10 +187,10 @@ exports.updatePll = async (req, res) => {
 	
 	await updateStatusAlgorithms(user._id, "PLL", pllAlgorithms)
 	
-    res.redirect(`/profile/${user._id}`);
+    res.redirect(`/profile/${user._id}/alg-collection`);
   } catch (error) {
     console.log(error);
-    res.redirect(`/profile/${user._id}`);
+    res.redirect(`/profile/${user._id}/alg-collection`);
   }
 };
 
