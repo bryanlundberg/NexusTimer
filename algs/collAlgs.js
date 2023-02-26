@@ -1,235 +1,165 @@
 module.exports = [
   {
-    name: "OLL1",
-    alg: "R U2 R' U' R U' R'",
+    name: "COLL",
+    alg: "R U R' U R U2' R' ",
   },
   {
-    name: "OLL2",
-    alg: "R U R' U R U2' R'",
+    name: "COLL",
+    alg: "F' (R U2' R' U2) R' F2 (R U R U') R' F'",
   },
   {
-    name: "OLL3",
-    alg: "(R U2 R') (U' R U R') (U' R U' R')",
+    name: "COLL",
+    alg: "R U' L' U R' U' L",
   },
   {
-    name: "OLL4",
-    alg: "R U2' R2' U' R2 U' R2' U2' R",
+    name: "COLL",
+    alg: "L' (R U R' U') L (U2 R U2' R')",
   },
   {
-    name: "OLL5",
-    alg: "r U R' U') (r' F R F')",
+    name: "COLL",
+    alg: "(L' U2 L U2') R (U' L' U L) R'",
   },
   {
-    name: "OLL6",
-    alg: "y F' (r U R' U') r' F R",
+    name: "COLL",
+    alg: "y' (R U R' U) (R U' R D) (R' U' R D') R2'",
   },
   {
-    name: "OLL7",
-    alg: "R2 D (R' U2 R) D' (R' U2 R')",
+    name: "COLL",
+    alg: "y R U2' R' U' R U' R'",
   },
   {
-    name: "OLL8",
-    alg: "(R U R' U') (R' F R F')",
+    name: "COLL",
+    alg: "(R U' R' U2) (R U' R' U2) (R' D' R) U (R' D R)",
   },
   {
-    name: "OLL9",
-    alg: "F (R U R' U') F'",
+    name: "COLL",
+    alg: "y2 L' U R U' L U R'",
   },
   {
-    name: "OLL10",
-    alg: "(r' U2' R U R' U r)",
+    name: "COLL",
+    alg: "y2 R (L' U' L U) R' (U2' L' U2 L)",
   },
   {
-    name: "OLL11",
-    alg: "(r U2 R' U' R U' r')",
+    name: "COLL",
+    alg: "y2 (R U2 R' U2') L' (U R U' R') L",
   },
   {
-    name: "OLL12",
-    alg: "(R U R2' U') (R' F R U) R U' F'",
+    name: "COLL",
+    alg: "y (R' U' R U') (R' U R' D') (R U R' D) R2",
   },
   {
-    name: "OLL13",
-    alg: "R' U' (R' F R F') U R",
+    name: "COLL",
+    alg: "y (R U R' U) (R U' R' U) (R U' R' U) R U2' R'",
   },
   {
-    name: "OLL14",
-    alg: "(R' U' R U') (R' U R U) l U' R' U x",
+    name: "COLL",
+    alg: "y' r U2' (R2' F R F') R U2' r'",
   },
   {
-    name: "OLL15",
-    alg: "(R U R' U) (R U' R' U') (R' F R F') ",
+    name: "COLL",
+    alg: "y' (R U2 R D) (R' U2 R D') R2'",
   },
   {
-    name: "OLL16",
-    alg: "(r U R' U') M (U R U' R')",
+    name: "COLL",
+    alg: "y2 (R' U2 R' D') (R U2 R' D) R2",
   },
   {
-    name: "OLL17",
-    alg: "(R U R' U') M' (U R U' r') ",
-  },
-
-  {
-    name: "OLL17",
-    alg: "(R' U' F) (U R U' R') F' R",
+    name: "COLL",
+    alg: "y' (F R' F' r) (U R U' r')",
   },
 
   {
-    name: "OLL17",
-    alg: "R U B' (U' R' U) (R B R')",
+    name: "COLL",
+    alg: "F' (r U R' U') (r' F R)",
   },
 
   {
-    name: "OLL17",
-    alg: "y R' U' F' U F R ",
-  },
-  {
-    name: "OLL17",
-    alg: "f (R U R' U') f'",
-  },
-  {
-    name: "OLL17",
-    alg: "f (R U R' U') (R U R' U') f'",
-  },
-  {
-    name: "OLL17",
-    alg: "r' U' r (U' R' U R) (U' R' U R) r' U r",
-  },
-  {
-    name: "OLL17",
-    alg: "(R' U' R U' R' U) y' (R' U R) B",
-  },
-  {
-    name: "OLL17",
-    alg: "y (R' F R U) (R U' R2' F') R2 U' R' (U R U R')",
-  },
-  {
-    name: "OLL17",
-    alg: "(R U R' U') R' F (R2 U R' U') F'",
-  },
-  {
-    name: "OLL17",
-    alg: "(R U R' U) (R' F R F') (R U2' R')",
-  },
-  {
-    name: "OLL17",
-    alg: "(R U2') (R2' F R F') (R U2' R') ",
-  },
-  {
-    name: "OLL17",
-    alg: "F (R U' R' U') (R U R' F')",
-  },
-  {
-    name: "OLL17",
-    alg: "(r U' r') (U' r U r') y' (R' U R)",
-  },
-  {
-    name: "OLL17",
-    alg: "(R' F R) (U R' F' R) (F U' F') ",
-  },
-  {
-    name: "OLL17",
-    alg: "(r U r') (R U R' U') (r U' r') ",
-  },
-  {
-    name: "OLL17",
-    alg: "(r' U' r) (R' U' R U) (r' U r) ",
-  },
-  {
-    name: "OLL17",
-    alg: "y (R U R' U') (R U' R') (F' U' F) (R U R')",
-  },
-  {
-    name: "OLL17",
-    alg: "y' F U (R U2 R' U') (R U2 R' U') F'",
-  },
-  {
-    name: "OLL17",
-    alg: "R U R' U R U2' R') F (R U R' U') F'",
-  },
-  {
-    name: "OLL17",
-    alg: "(R' U' R U' R' U2 R) F (R U R' U') F'",
-  },
-  {
-    name: "OLL17",
-    alg: "F (R U R' U') (R U R' U') F'",
-  },
-  {
-    name: "OLL17",
-    alg: "F' (L' U' L U) (L' U' L U) F",
-  },
-  {
-    name: "OLL17",
-    alg: "r U' r2' U r2 U r2' U' r",
-  },
-  {
-    name: "OLL17",
-    alg: "r' U r2 U' r2' U' r2 U r'",
+    name: "COLL",
+    alg: "(R U2' R' U' R U' R2') (U2' R U R' U R)",
   },
 
   {
-    name: "OLL17",
-    alg: "(r' U' R U') (R' U R U') R' U2 r",
+    name: "COLL",
+    alg: "y2 F (R U R' U') (R U' R' U') (R U R' F')",
   },
   {
-    name: "OLL17",
-    alg: "(r U R' U) (R U' R' U) R U2' r'",
+    name: "COLL",
+    alg: "(R' U R) U2' L' (R' U R U') L",
   },
   {
-    name: "OLL17",
-    alg: "(r U R' U R U2' r')",
+    name: "COLL",
+    alg: "(R' U R2 D) (r' U2 r) (D' R2' U' R)",
   },
   {
-    name: "OLL17",
-    alg: "(r' U' R U' R' U2 r)",
-  },
-
-  {
-    name: "OLL17",
-    alg: "r' (R2 U R' U R U2 R') U M'",
+    name: "COLL",
+    alg: "y (l' U' L U) (R U' r' F) ",
   },
   {
-    name: "OLL17",
-    alg: "M' (R' U' R U' R' U2 R) U' M",
+    name: "COLL",
+    alg: "y' (r U R' U') (r' F R F')",
   },
   {
-    name: "OLL17",
-    alg: "(L F') (L' U' L U) F U' L'",
+    name: "COLL",
+    alg: "y2 (R U R' U R U2' R2') (U' R U' R' U2 R)",
   },
   {
-    name: "OLL17",
-    alg: "(R' F) (R U R' U') F' U R",
+    name: "COLL",
+    alg: "F (R U' R' U) (R U R' U) (R U' R' F')",
   },
   {
-    name: "OLL17",
-    alg: "(R U2') (R2' F R F') U2' (R' F R F') ",
+    name: "COLL",
+    alg: "y2 R2 D (R' U2 R) D' (R' U2 R') ",
   },
   {
-    name: "OLL17",
-    alg: "F (R U R' U') F' f (R U R' U') f'",
+    name: "COLL",
+    alg: "R2' D' (R U2 R') D (R U2 R)",
   },
   {
-    name: "OLL17",
-    alg: "f (R U R' U') f' U' F (R U R' U') F'",
+    name: "COLL",
+    alg: "R' F (R U' R' U') (R U R' F') (R U R' U') (R' F R F' R)",
   },
   {
-    name: "OLL17",
-    alg: "f (R U R' U') f' U F (R U R' U') F'",
+    name: "COLL",
+    alg: "(R' U2 R) F (U' R' U' R) U F'",
   },
   {
-    name: "OLL17",
-    alg: "y R U2' (R2' F R F') U2' M' (U R U' r')",
+    name: "COLL",
+    alg: "R U2' R2' U' R2 U' R2' U2' R ",
   },
   {
-    name: "OLL17",
-    alg: "M U (R U R' U') M' (R' F R F')",
+    name: "COLL",
+    alg: "(R U D') (R U R' D) (R2 U' R' U') R2' U2' R",
   },
   {
-    name: "OLL17",
-    alg: "(R U R' U) (R' F R F') U2' (R' F R F')",
+    name: "COLL",
+    alg: "y F (U R U' R') (U R U' R2') F' R (U R U' R')",
   },
   {
-    name: "OLL17",
-    alg: "M U (R U R' U') M2' (U R U' r')",
+    name: "COLL",
+    alg: "(R U R' U') R' F (R2 U R' U') (R U R' U') F'",
+  },
+  {
+    name: "COLL",
+    alg: "y' (R U R' U) F' (R U2' R' U2') (R' F R)",
+  },
+  {
+    name: "COLL",
+    alg: "y F (U R U' R') (U R U2' R') (U' R U R') F'",
+  },
+  {
+    name: "COLL",
+    alg: "(R U R' U) (R U' R' U) R U2' R'",
+  },
+  {
+    name: "COLL",
+    alg: "y F (R U R' U') (R U R' U') (R U R' U') F'",
+  },
+  {
+    name: "COLL",
+    alg: "F (R U' R' U) (R U2 R' U') (R U R' U') F'",
+  },
+  {
+    name: "COLL",
+    alg: "(R U R' U) (R U L' U) R' U' L",
   },
 ];
