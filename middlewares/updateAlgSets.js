@@ -5,7 +5,6 @@ const pllAlgorithms = require("../algs/pllAlgs");
 const cmllAlgorithms = require("../algs/cmllAlgs");
 const collAlgorithms = require("../algs/collAlgs");
 
-
 module.exports = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.idUser);
@@ -20,11 +19,13 @@ module.exports = async (req, res, next) => {
         await Algorithm.deleteMany({ algSet: method, user: userId });
         for (let i = 0; i < algorithms.length; i++) {
           const newAlgorithm = new Algorithm({
-			owner: userId,
+            owner: userId,
             algSet: `${method}`,
             img: `/images/collection/${method.toLowerCase()}.png`,
             name: `${method}${i + 1}`,
-            thumbnail: `/images/collection/${method.toLowerCase()}/${i + 1}.png`,
+            thumbnail: `/images/collection/${method.toLowerCase()}/${
+              i + 1
+            }.png`,
             alg: algorithms[i].alg,
             status: "off",
             user: userId,
@@ -35,9 +36,9 @@ module.exports = async (req, res, next) => {
     };
 
     await fillUserAlgs(user._id, "OLL", ollAlgorithms);
-	await fillUserAlgs(user._id, "PLL", pllAlgorithms);
-	await fillUserAlgs(user._id, "CMLL", cmllAlgorithms);
-	await fillUserAlgs(user._id, "COLL", collAlgorithms);
+    await fillUserAlgs(user._id, "PLL", pllAlgorithms);
+    await fillUserAlgs(user._id, "CMLL", cmllAlgorithms);
+    await fillUserAlgs(user._id, "COLL", collAlgorithms);
 
     return next();
   } catch (error) {

@@ -9,6 +9,8 @@ const AlgSetController = require("../controllers/algSetController");
 
 profileRouter.get("/:idUser/oll", AlgSetController.oll_get)
 profileRouter.get("/:idUser/pll", AlgSetController.pll_get)
+profileRouter.get("/:idUser/coll", AlgSetController.coll_get)
+profileRouter.get("/:idUser/cmll", AlgSetController.cmll_get)
 profileRouter.get("/:idUser/settings", profileController.editProfile_get)
 profileRouter.get("/:idUser/alg-collection", profileController.algCollection_get)
 profileRouter.get("/:idUser/achievements", profileController.achievements_get)

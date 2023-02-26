@@ -5,6 +5,7 @@ const Cube = require("../models/Cube");
 const Solve = require("../models/Solve");
 const ollAlgorithms = require("../algs/ollAlgs");
 const pllAlgorithms = require("../algs/pllAlgs");
+const collAlgorithms = require("../algs/collAlgs");
 
 const updateStatusAlgorithms = async (userId, method, algorithms) => {
 
@@ -193,4 +194,39 @@ exports.updatePll = async (req, res) => {
     res.redirect(`/profile/${user._id}/alg-collection`);
   }
 };
+
+exports.updateColl = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    const updateStatusAlgorithms = async (userId, method, algorithms) => {
+      const userAlgs = await Algorithm.find({
+        algSet: `${method}`,
+        owner: userId,
+      });
+      if (!userAlgs) {
+        throw new Error("Coll set not found");
+      }
+
+      for (let i = 1; i <= algorithms.length; i++) {
+        const algo = userAlgs[i - 1];
+        algo.algSet = `${method}`;
+        algo.status = req.body[`${method}${i}`];
+        await algo.save();
+      }
+    };
+
+    await updateStatusAlgorithms(user._id, "COLL", collAlgorithms);
+
+    res.redirect(`/profile/${user._id}/alg-collection`);
+  } catch (error) {
+    console.log(error);
+    res.redirect(`/profile/${user._id}/alg-collection`);
+  }
+};
+
 
