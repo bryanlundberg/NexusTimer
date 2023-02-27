@@ -1,0 +1,63 @@
+extends layout
+
+block content
+	.container.vh-100(id="timer-vh")
+		.container.d-flex.d-block.pt-3.gap-3
+			div(class="form-floating")
+				input(type="hidden" name="_csrf" value=csrfToken)
+				input(type="hidden" name="id" id=user._id value=user._id)
+				
+				select(class="form-select" id="category" name="category" aria-label="Floating label for category select")
+					option(selected) Open this select menu
+					option 2x2
+					option 3x3
+					option 3x3 OH
+					option 4x4
+					option 5x5
+					option 6x6
+					option 7x7
+					option SQ-1
+					option Megaminx
+					
+				label(for="category") Scramble:
+				
+			div(class="form-floating")
+				select(class="form-select" id="cube" name="cube" aria-label="Floating label for cube select")
+					option(selected) Open this select menu
+					for element in cubes
+						option(value=element._id) #{element.name} | #{element.category}
+				label(for="cube") Cube:
+				
+				
+		.container
+			div(id="scramble" class="shadow-sm p-3 mb-5 bg-body-tertiary rounded fs-3 text-center my-5 bg-dark") Pick a category before START cubing!
+			
+		.container
+			h1(id="timer" class="display-1 text-center my-5") 0.000
+			
+
+		.container.fixed-bottom.d-flex.justify-content-center
+			.card(style="width: 400px")
+				.card-body
+					ul.list-group.list-group-flush
+						li.list-group-item.d-flex.justify-content-between.p-0
+							span Count:
+							span(id="count") 0
+						li.list-group-item.d-flex.justify-content-between.p-0
+							span Best time:
+							span(id="pb") 0.00
+						li.list-group-item.d-flex.justify-content-between.p-0
+							span Avg5:
+							span(id="avg5") 0.00
+						li.list-group-item.d-flex.justify-content-between.p-0
+							span Avg12:
+							span(id="avg12") 0.00
+						li.list-group-item.d-flex.justify-content-between.p-0
+							span Avg50:
+							span(id="avg50") 0.00
+						li.list-group-item.d-flex.justify-content-between.p-0
+							span Desviation:
+							span(id="desviation") 0.00
+						li.list-group-item.d-flex.justify-content-between.p-0
+							span Average:
+							span(id="avg") 0.00

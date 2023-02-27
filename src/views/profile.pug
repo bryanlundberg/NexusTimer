@@ -1,0 +1,72 @@
+extends layout
+
+block content
+
+	.container.my-5
+		.row
+			.col-md-12.col-lg-4.my-1
+				include profile_sidebar
+			.col-md-12.col-lg-8.my-1
+				include profile_navbar
+				.container.my-3
+					.container.border.rounded.d-flex.flex-column.align-items-center.p-4.gap-3.my-4.text-center
+						h5.card-title STATS
+						form.d-flex.gap-3.w-75.justify-content-around
+							div.w-100(class="form-floating")
+								select(id="category-filter" class="form-select" aria-label="Floating label category select")
+									
+
+								label(for="time-filter") Category-based Statistic
+							div.w-100(class="form-floating")
+								select(id="cube-filter" class="form-select" aria-label="Floating label cube select")
+									option(value="overall" selected) Overall
+
+								label(for="time-filter") Cube-based Statistic
+							
+						table.table
+							thead
+								tr(id="tr1")
+									th(scope="col") Type
+									th(scope="col") Global
+									th(scope="col") Current
+							tbody
+								tr
+									td(scope="row") Best time
+									td(id="best-time") -
+									td(id="best-time-session") -
+								tr(id="tr10")
+									td(scope="row") Mean time
+									td(id="mean") -
+									td(id="mean-session") -
+								tr(id="tr5")
+									td(scope="row") Ao5
+									td(id="best-ao5") -
+									td(id="best-ao5-session") -
+								tr(id="tr6")
+									td(scope="row") Ao12
+									td(id="best-ao12") -
+									td(id="best-ao12-session") -
+								tr(id="tr7")
+									td(scope="row") Ao50
+									td(id="best-ao50") -
+									td(id="best-ao50-session") -
+								tr(id="tr8")
+									td(scope="row") Ao100
+									td(id="best-ao100") -
+									td(id="best-ao100-session") -
+								tr(id="tr9")
+									td(scope="row") Ao1000
+									td(id="best-ao1000") -
+									td(id="best-ao1000-session") -
+								tr(id="tr11")
+									td(scope="row") Desviation
+									td(id="desviation") -
+									td(id="desviation-session") -
+								tr(id="tr2")
+									td(scope="row") Count
+									td(id="count") -
+									td(id="count-session") -
+								tr(id="tr3")
+									td(scope="row") Total time
+									td(id="solving-time") -
+									td(id="solving-time-session") -

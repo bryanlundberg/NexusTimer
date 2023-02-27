@@ -1,0 +1,24 @@
+p.fs-1.text-center #{user.name}
+img(src=user.profile_img class="my-3 object-fit rounded-circle mx-auto d-block" alt="user profile photo" width="296" height="296")
+.card
+	.card-body
+		ul.list-group.list-group-flush
+			li.list-group-item.d-flex.justify-content-between
+				span Role:
+				span #{user.role}
+			li.list-group-item.d-flex.justify-content-between
+				span Nationality:
+				span #{user.nationality}
+			li.list-group-item.d-flex.justify-content-between
+				span Website:
+				span Link
+			li.list-group-item.d-flex.justify-content-between
+				span Youtube:
+				span Link
+			li.list-group-item.d-flex.justify-content-between
+				span Bio:
+				span Blasha bLAH
+			li.list-group-item.d-flex.justify-content-between
+				span Contact email:
+				span sdasg@gmail.com
+a(class="btn btn-warning w-100 d-block my-1" href="/profile/"+userSession.id+"/settings" role="button") Edit
