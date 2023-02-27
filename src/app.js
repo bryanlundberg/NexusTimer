@@ -7,8 +7,8 @@ const csrf = require("csurf");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const favicon = require("serve-favicon");
-
+const { loadFavicon } = require("./middlewares/favicon")
+const { sessionsExpress } = require("./middlewares/sessions")
 const indexRouter = require("./routes/index");
 const profileRouter = require("./routes/profileRouter");
 const timerRouter = require("./routes/timerRouter");
@@ -22,42 +22,23 @@ const { startMongooseDB } = require("./mongo")
 
 const app = express();
 
-//sessions - express
-app.use(
-  session({
-    secret: "sessionSecreta",
-    resave: false,
-    saveUninitialized: false,
-    name: "secreto-nombre-session",
-  })
-);
+//express-sessions
+app.use(sessionsExpress);
 
-//flash
+//flash - alerts
 app.use(flash());
 
 //passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(
-  (user, done) =>
-    done(null, {
-      id: user._id,
-      username: user.username,
-    }) //se guardará en req.user
-); //req.user se envia
+require("./passport/index.js")
 
-passport.deserializeUser(async (user, done) => {
-  return done(null, user); //se guardará en req.user
-});
-
-
+//db
 startMongooseDB().catch((err) => console.log(err));
 
-
-
 //favicon
-app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+app.use(loadFavicon);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -69,16 +50,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-//csrf - - Habilita un token para los formularios garantizar que vienen de nuestra pagina.
+// variables
 app.use(csrf());
-//csrf - - Aqui aplica el token de forma global automatico
 app.use((req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
-  req.user ? res.locals.loggedIn = true : res.locals.loggedIn = false; //checa si hay alguien iniciado sesion.
+  req.user ? res.locals.loggedIn = true : res.locals.loggedIn = false;
   req.user ? res.locals.userSession = req.user : '';
-  next(); //pasa a lo siguiente dice
+  next();
 });
 
+//routes
 app.use("/", indexRouter);
 app.use("/profile", profileRouter);
 app.use("/timer", timerRouter);
@@ -87,6 +68,7 @@ app.use("/api", apiRouter);
 app.use("/auth", authRouter);
 app.use("/logout", logoutRouter)
 
+//errors
 app.use(logError);
 app.use(errorHandler);
 

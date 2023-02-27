@@ -40,31 +40,6 @@ const UserSchema = new Schema({
 	  default: "-"
   },
   
-  preferedCategory: {
-	  type: String,
-	  default: "-"
-  },
-  
-  solveRatio: {
-	  type: String,
-	  default: "0.00%"
-  },
-  
-  mostUsedBrand: {
-	  type: String,
-	  default: "-"
-  },
-  
-  preferedCube: {
-	  type: String,
-	  default: "-"
-  },
-  
-  cubesOwned: {
-	  type: Number,
-	  default: 0
-  },
-  
   profile_img: {
 	  type: String,
 	  default: "/images/profile/gears.jpg"
@@ -112,7 +87,6 @@ UserSchema.pre("save", async function(next) {
 UserSchema.methods.comparePassword = async function(candidatePassword) {
     return await bcrypt.compare(candidatePassword, this.password);
 };
-
 
 module.exports = mongoose.model("User", UserSchema)
 
