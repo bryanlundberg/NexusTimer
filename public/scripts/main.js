@@ -4,7 +4,7 @@ import { handleDownKeys, handleUpKeys } from "./modules/timer/handle-keys.js";
 import { generateStatistics } from "./modules/api/fetch-statistics.js";
 import { updateStatisticsProfileChart, categoryFilterGen, cubeFilterGen , generateCategoryList } from "./modules/toggle/profile-filter.js";
 import { toggleActiveNavBar } from "./modules/toggle/toggle.js";
-import { loadTimerFilterOptions, toggleTimerCategory, toggleTimerCube } from "./modules/toggle/timer-filter.js";
+import { loadTimerFilterOptions, toggleTimerCategory, toggleTimerCube } from "./modules/timer/timer-filter.js";
 import { changeTheme } from "./modules/toggle/change-theme.js";
 
 document.addEventListener("DOMContentLoaded", (e) => {
