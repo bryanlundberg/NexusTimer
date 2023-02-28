@@ -151,13 +151,6 @@ exports.algCollection_get = async (req, res) => {
 	
 }
 
-exports.logout_get = (req, res) => {
-  req.logout(function(err) {
-    if (err) { return next(err); }
-    res.redirect('/');
-  });
-}
-
 exports.filters = async (req, res) => {
   try {
 	const user = await User.findById(req.params.idUser)

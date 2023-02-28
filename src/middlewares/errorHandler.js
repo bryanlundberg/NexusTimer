@@ -1,5 +1,5 @@
 // LogError and forward to error-handler
-function logError(req, res, next) {
+function logError(err, req, res, next) {
   console.error(err)
   next(err)
 }

@@ -1,15 +1,22 @@
-const User = require("../models/User");
+const User = require("../models/User")
 const bcrypt = require('bcryptjs');
 const { validationResult } = require("express-validator"); 
 
-exports.register_get = (req, res) => {
+exports.login = (req, res) => {
+  res.render("login", {
+	title: "login page",
+	mensajes: req.flash().mensajes
+  })
+}
+
+exports.register = (req, res) => {
   res.render("register", {
 	title: "register page",
 	mensajes: req.flash().mensajes
   })
 }
 
-exports.register_post = async (req, res) => {
+exports.registerNewAccount = async (req, res) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) { 
 		req.flash("mensajes", errors.array());
@@ -28,10 +35,19 @@ exports.register_post = async (req, res) => {
 				password,
 			})
 		const saveUser = await newAcount.save()
-		res.redirect("/profile/"+newAcount._id)
+		res.redirect("/profile/timer")
 
 	} catch (error) {
 		req.flash("mensajes", [{ msg: error.message }]);
 		res.redirect("/register");
 	}
 }
+
+exports.logout = (req, res) => {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+}
+
+

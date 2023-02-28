@@ -14,7 +14,6 @@ const profileRouter = require("./routes/profileRouter");
 const timerRouter = require("./routes/timerRouter");
 const apiRouter = require("./routes/apiRouter");
 const submitRouter = require("./routes/submitRouter");
-const authRouter = require("./routes/authRouter");
 const logoutRouter = require("./routes/logoutRouter");
 
 const { logError, errorHandler } = require("./middlewares/errorHandler")
@@ -65,7 +64,6 @@ app.use("/profile", profileRouter);
 app.use("/timer", timerRouter);
 app.use("/submit", submitRouter);
 app.use("/api", apiRouter);
-app.use("/auth", authRouter);
 app.use("/logout", logoutRouter)
 
 //errors
