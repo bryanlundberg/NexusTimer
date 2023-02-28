@@ -1,6 +1,5 @@
 const User = require("../models/User");
 const Algorithm = require("../models/Algorithm");
-const CubeTime = require("../models/CubeTime");
 const Cube = require("../models/Cube");
 const Solve = require("../models/Solve");
 const ollAlgorithms = require("../algs/ollAlgs");
@@ -54,7 +53,7 @@ exports.newSolve = async (req, res) => {
 	
 
 exports.newTime_post = async (req, res) => {
-	console.log(req.user)
+/* 	console.log(req.user)
 	const { time, category } = req.body;
 	const newTime = new CubeTime({
 		time, 
@@ -62,11 +61,11 @@ exports.newTime_post = async (req, res) => {
 		author: req.user.id
 	})
 	await newTime.save()
-	res.redirect("/profile/"+req.user.id+"/historial")
+	res.redirect("/profile/"+req.user.id+"/historial") */
 }
 
 exports.deleteTime = async (req, res) => {
-	try {
+/* 	try {
 		const { id } = req.params;
 		
 		const deleteTimeId = await CubeTime.findById(id);
@@ -78,7 +77,7 @@ exports.deleteTime = async (req, res) => {
 	} catch (error) {
 		console.log(error)
 		res.redirect("/profile/"+req.user.id+"/historial")
-	}
+	} */
 }
 
 exports.newCube = async (req, res) => {

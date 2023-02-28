@@ -2,10 +2,10 @@ const express = require("express");
 const timerRouter = express.Router();
 const { body } = require("express-validator");
 
-const verifyUser = require("../middlewares/verifyUser");
+const isAuthenticated = require("../middlewares/isAuthenticated");
 const timerController = require("../controllers/timerController");
 
 
-timerRouter.get("/", verifyUser, timerController.timer)
+timerRouter.get("/", isAuthenticated, timerController.timer)
 
 module.exports = timerRouter;
