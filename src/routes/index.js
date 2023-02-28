@@ -4,9 +4,13 @@ const passport = require("passport");
 const { body } = require("express-validator");
 
 const authController = require("../controllers/AuthController");
-const homeController = require("../controllers/homeController");
 
-router.get("/", homeController.home_get);
+router.get("/", (req, res) => {
+	console.log(req.user)
+	res.render("home", {
+	title: "Index"
+  })
+});
 
 router.get("/register", authController.register);
 router.get("/login", authController.login);
