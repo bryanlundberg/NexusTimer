@@ -17,7 +17,7 @@ const localStrategy = new LocalStrategy(async function (username, password, done
     if (!user) {
       return done(null, false);
     }
-    if (!user.comparePassword(password)) {
+    if (!(await user.comparePassword(password))) {
       return done(null, false);
     }
     return done(null, user);
