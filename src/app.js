@@ -39,10 +39,11 @@ app.use((req, res, next) => {
   req.user ? res.locals.userSession = req.user : '';
   next();
 });
-app.use("/", indexRouter);
+
 app.use("/submit", submitRouter);
 app.use("/api", apiRouter);
 app.use("/logout", logoutRouter)
+app.use("/", indexRouter);
 app.use(logError);
 app.use(errorHandler);
 

@@ -38,11 +38,11 @@ router.post(
 );
 
 router.get("/timer", isAuthenticated, timerController.timer)
-router.get("/:userName", isAuthenticated, userController.userProfileTab);
+router.get("/:userName", userController.userProfileTab);
 router.get("/:userName/settings", isAuthenticated, userController.settings)
 router.get("/:userName/alg-collection", userController.algCollection)
 router.get("/:userName/my-cubes", userController.myCubes)
-router.get("/:userName/historial", isAuthenticated, userController.historial);
+router.get("/:userName/historial", userController.historial);
 router.get("/:userName/:method", algSetController.userMethod)
 
 module.exports = router;
