@@ -4,6 +4,11 @@ const passport = require("passport");
 const { body } = require("express-validator");
 
 const authController = require("../controllers/AuthController");
+const userController = require("../controllers/UserController");
+const isAuthenticated = require("../middlewares/isAuthenticated");
+const updateAlgSets = require("../middlewares/updateAlgSets");
+const algSetController = require("../controllers/AlgSetController");
+const timerController = require("../controllers/timerController");
 
 router.get("/", (req, res) => {
 	console.log(req.user)
@@ -13,8 +18,6 @@ router.get("/", (req, res) => {
 });
 
 router.get("/register", authController.register);
-router.get("/login", authController.login);
-
 router.post(
   "/register",
   [
@@ -25,12 +28,21 @@ router.post(
   authController.registerNewAccount
 );
 
+router.get("/login", authController.login);
 router.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/login" }),
   function (req, res) {
-    res.redirect("/timer");
+    res.redirect(`/${req.user.username}`);
   }
 );
+
+router.get("/timer", isAuthenticated, timerController.timer)
+router.get("/:userName", isAuthenticated, userController.userProfileTab);
+router.get("/:userName/settings", isAuthenticated, userController.settings)
+router.get("/:userName/alg-collection", userController.algCollection)
+router.get("/:userName/my-cubes", userController.myCubes)
+router.get("/:userName/historial", isAuthenticated, userController.historial);
+router.get("/:userName/:method", algSetController.userMethod)
 
 module.exports = router;

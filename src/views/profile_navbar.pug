@@ -1,7 +1,7 @@
 .nav.nav-tabs(id="profile-nav")
 	.nav-item
-		a.nav-link(href='/profile/'+userSession.id) Overview
+		a.nav-link(href='/'+userSession.username) Overview
 	.nav-item
-		a.nav-link(aria-current="page" href='/profile/'+userSession.id+'/alg-collection') Algorithm collections
+		a.nav-link(aria-current="page" href='/'+userSession.username+'/alg-collection') Algorithm collections
 	.nav-item
-		a.nav-link(href='/profile/'+userSession.id+'/my-cubes') Cubes
+		a.nav-link(href='/'+userSession.username+'/my-cubes') Cubes

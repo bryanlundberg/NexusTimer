@@ -104,7 +104,7 @@ exports.help_get = async (req, res) => {
 
 exports.algCollection = async (req, res) => {
   try {
-    const user = await User.findById(req.params.idUser);
+    const user = await User.findOne({ username: req.params.userName });
     if (!user) {
       throw new Error("Usernot found");
     }

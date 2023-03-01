@@ -8,8 +8,6 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const indexRouter = require("./routes/index");
-const userRouter = require("./routes/UserRouter");
-const timerRouter = require("./routes/timerRouter");
 const apiRouter = require("./routes/apiRouter");
 const submitRouter = require("./routes/submitRouter");
 const logoutRouter = require("./routes/logoutRouter");
@@ -42,8 +40,6 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/", indexRouter);
-app.use("/user", userRouter);
-app.use("/timer", timerRouter);
 app.use("/submit", submitRouter);
 app.use("/api", apiRouter);
 app.use("/logout", logoutRouter)
