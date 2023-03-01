@@ -5,7 +5,7 @@ block content
 	.container.my-5
 		h1 #{user.name} #{method} (#{userAlgs.length})
 		hr
-		form.row.row-cols-1.row-cols-lg-4.row-cols-md-3.row-cols-sm-2.g-4(action="/submit/"+user._id+"/"+method method="post")
+		form.row.row-cols-1.row-cols-lg-4.row-cols-md-3.row-cols-sm-2.g-4(action="/submit/"+user.username+"/"+method method="post")
 			input(type="hidden" name="_csrf" value=csrfToken)
 			for element in userAlgs
 				.col.d-flex.flex-column.justifiy-content-center.align-items-center

@@ -6,12 +6,10 @@ const submitController = require("../controllers/submitController");
 const isAuthenticated = require("../middlewares/isAuthenticated");
 
 
-submitRouter.post("/:idUser/newcube", isAuthenticated, submitController.newCube)
-submitRouter.post("/:id/pll", isAuthenticated, submitController.updatePll);
-submitRouter.post("/:id/oll", isAuthenticated, submitController.updateOll);
-submitRouter.post("/:id/coll", isAuthenticated, submitController.updateColl);
-submitRouter.get("/:id/delete", isAuthenticated, submitController.deleteTime);
-submitRouter.post("/times", isAuthenticated, submitController.newTime_post);
-submitRouter.post("/:id/settings", isAuthenticated, submitController.settings_post);
+submitRouter.post("/:userName/newcube", isAuthenticated, submitController.newCube)
+submitRouter.post("/:userName/:method", isAuthenticated, submitController.updateMethod);
+submitRouter.get("/:userName/delete", isAuthenticated, submitController.deleteTime);
+submitRouter.post("/time", isAuthenticated, submitController.newTime_post);
+submitRouter.post("/:userName/settings", isAuthenticated, submitController.settings_post);
 
 module.exports = submitRouter;

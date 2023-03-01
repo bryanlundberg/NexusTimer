@@ -6,9 +6,9 @@ const submitController = require("../controllers/submitController");
 const statisticsController = require("../controllers/statisticsController");
 const userController = require("../controllers/UserController");
 
+apiRouter.get("/stats/:category/:cube/:idUser", statisticsController.stats)
+apiRouter.get("/:category/:idUser", statisticsController.categoryTimerStats)
 apiRouter.post("/submit/solve", submitController.newSolve);
 apiRouter.get("/:idUser", userController.filters)
-apiRouter.get("/:category/:idUser", statisticsController.categoryTimerStats)
-apiRouter.get("/stats/:category/:cube/:idUser", statisticsController.stats)
 
 module.exports = apiRouter;
