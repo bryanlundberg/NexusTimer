@@ -4,6 +4,23 @@ block content
 	if (userSolves)
 		.container.my-5
 			h1.text-center.my-5.display-6 List of recent solves
+			form.d-flex.gap-3.w-75.justify-content-around
+				div.w-100(class="form-floating")
+					select(id="category-filter" class="form-select" aria-label="Floating label category select")
+						option 2x2
+						option 3x3
+						option 3x3 OH
+						option 4x4
+						option 5x5
+						option 6x6
+						option 7x7
+						option SQ-1
+						option Megaminx
+					label(for="time-filter") Category-based Statistic
+				div.w-100(class="form-floating")
+					select(id="cube-filter" class="form-select" aria-label="Floating label cube select")
+						option(value="overall" selected) Overall
+					label(for="time-filter") Cube-based Statistic
 			table.table.table-striped
 				caption List of recent solves
 				thead
