@@ -6,7 +6,7 @@ const submitController = require("../controllers/submitController");
 const isAuthenticated = require("../middlewares/isAuthenticated");
 
 submitRouter.post("/:userName/newcube", isAuthenticated, submitController.updateUserCubes)
-submitRouter.get("/:userName/delete", isAuthenticated, submitController.deleteTime); //pending
+submitRouter.get("/:cubeId/delete", isAuthenticated, submitController.deleteCube);
 submitRouter.post("/:userName/settings", isAuthenticated, submitController.updateSettings);
 submitRouter.post("/:userName/:method", isAuthenticated, submitController.updateMethod);
 

@@ -11,3 +11,4 @@ de momento solo sirve en el settings
 - Correcciones en las estadisticas del timer
 - Falta crear la seccion help
 - Falta corregir bastantes modelos, estan muy feos
+- El formulario de añadir un cubo agregar una validacion cuando valla vacio o mal

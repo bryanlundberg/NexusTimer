@@ -49,20 +49,21 @@ exports.newSolve = async (req, res) => {
 	
 }
 
-exports.deleteTime = async (req, res) => {
-/* 	try {
-		const { id } = req.params;
-		
-		const deleteTimeId = await CubeTime.findById(id);
-		if (!deleteTimeId.author.equals(req.user.id)) {
+exports.deleteCube = async (req, res) => {
+	try {
+		const user = req.user
+		console.log(user)
+		const cubeId = req.params.cubeId;
+		const deleteCubeId = await Cube.findById(cubeId);
+		if (!deleteCubeId.owner.equals(user._id)) {
 			throw new Error("That is not your time")
 		}
-		await deleteTimeId.remove();
-		res.redirect("/profile/"+req.user.id+"/historial")
+		await deleteCubeId.remove();
+		res.redirect(`/${user.username}/my-cubes`);
 	} catch (error) {
 		console.log(error)
-		res.redirect("/profile/"+req.user.id+"/historial")
-	} */
+		res.redirect(`/${user.username}/my-cubes`);
+	}
 }
 
 exports.updateUserCubes = async (req, res) => {
