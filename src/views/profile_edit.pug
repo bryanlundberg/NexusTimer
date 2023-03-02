@@ -5,7 +5,7 @@ block content
 	.container.my-5
 		h1 Public profile
 		hr
-		form.row.g-3(action="/submit/"+user._id+"/settings" method="post")
+		form.row.g-3(action="/submit/"+user.username+"/settings" method="post")
 			input(type="hidden" name="_csrf" value=csrfToken)
 			.col-md-6
 				label(for="name" class="form-label") Name

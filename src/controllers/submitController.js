@@ -6,7 +6,7 @@ const ollAlgorithms = require("../algs/ollAlgs");
 const pllAlgorithms = require("../algs/pllAlgs");
 const collAlgorithms = require("../algs/collAlgs");
 
-const updateStatusAlgorithms = async (userId, method, algorithms) => {
+/* const updateStatusAlgorithms = async (userId, method, algorithms) => {
 
     const userAlgs = await Algorithm.find({ algSet: `${method}`, owner: userId });
     if (!userAlgs) { throw new Error("OLL set not found") }
@@ -18,8 +18,7 @@ const updateStatusAlgorithms = async (userId, method, algorithms) => {
 	  await algo.save();
 	}
 
-}
-
+} */
 
 exports.newSolve = async (req, res) => {
 	try {
@@ -50,20 +49,6 @@ exports.newSolve = async (req, res) => {
 	
 }
 
-	
-
-exports.newTime_post = async (req, res) => {
-/* 	console.log(req.user)
-	const { time, category } = req.body;
-	const newTime = new CubeTime({
-		time, 
-		category, 
-		author: req.user.id
-	})
-	await newTime.save()
-	res.redirect("/profile/"+req.user.id+"/historial") */
-}
-
 exports.deleteTime = async (req, res) => {
 /* 	try {
 		const { id } = req.params;
@@ -80,61 +65,57 @@ exports.deleteTime = async (req, res) => {
 	} */
 }
 
-exports.newCube = async (req, res) => {
-	try {
-		const id = req.params.idUser;
-		const { name, brand, category } = req.body;
-		
-		const user = await User.findById(id);
-		if (!user) {throw new Error("User not found")}
-		
-		console.log(user._id)
-		
-		const cube = await Cube.create({
-			owner: user._id,
-			name: name,
-			brand: brand,
-			category: category
-		})
-		console.log(id)
-		console.log(cube)
+exports.updateUserCubes = async (req, res) => {
+  try {
+    const { name, brand, category } = req.body;
+    const userName = req.params.userName;
+    const user = await User.findOne({ username: userName });
+    if (!user) {
+      throw new Error("User not found");
+    }
 
-		
-		res.redirect("/profile/"+id+"/my-cubes")
-	} catch (error) {
-		console.log(error)
-	}
-}
+    const cube = await Cube.create({
+      owner: user._id,
+      name: name,
+      brand: brand,
+      category: category,
+    });
 
-exports.settings_post = async (req, res) => {
-	try {
-		const { name, bio, website, youtube, contactEmail, nationality, theme } = req.body;
-		console.log(theme)
-		const { id } = req.params;
-		const user = await User.findById(id);
-		
-		if (!user) {
-			throw new Error("User not found")
-		}
-		
-		user.name = name;
-		user.bio = bio;
-		user.website = website;
-		user.youtube = youtube;
-		user.contactEmail = contactEmail;
-		user.nationality = nationality;
-		user.theme = theme;
-		console.log(user.theme)
-		
-		const saveUser = await user.save();
-		
-		res.redirect("/profile/"+user._id)
-		
-	} catch (error) {
-		console.log(error)
-		res.redirect("/profile"+user._id)
-	}
-}
+    res.redirect(`/${user.username}/my-cubes`);
+  } catch (error) {
+    console.log(error);
+    res.redirect(`/${user.username}/my-cubes`);
+  }
+};
+
+exports.updateSettings = async (req, res) => {
+  try {
+    const { name, bio, website, youtube, contactEmail, nationality, theme } =
+      req.body;
+    console.log(theme);
+    const userName = req.params.userName;
+    const user = await User.findOne({ username: userName });
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    user.name = name;
+    user.bio = bio;
+    user.website = website;
+    user.youtube = youtube;
+    user.contactEmail = contactEmail;
+    user.nationality = nationality;
+    user.theme = theme;
+    console.log(user.theme);
+
+    const saveUser = await user.save();
+
+    res.redirect(`/${user.username}`);
+  } catch (error) {
+    console.log(error);
+    res.redirect(`/${user.username}`);
+  }
+};
 
 exports.updateMethod = async (req, res) => {
   try {
