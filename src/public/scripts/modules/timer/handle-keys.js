@@ -1,10 +1,10 @@
-import { generateScramble, setNewScramble } from "../scramble/scramble-generator.js";
-import { submitTime } from "../api/submit-time.js";
-import { startTimer } from "./start-timer.js";
-import { stopTimer } from "./stop-timer.js";
-import { updateTimer, solveTime } from "./update-timer.js";
+import { setScramble } from "../scramble/scramble-generator.js";
+import { submitNewSolve } from "../api/fetch-post.js";
+import { startTimer, startDate } from "./timer-start.js";
+import { stopTimer } from "./timer-stop.js";
+import { solveTime } from "./timer-update.js";
 import { setActiveColor, setPendingColor, setResetColor } from "./toggle-color.js";
-import { updateStatistics } from "./update-statistics.js";
+import { updateDisplayTimerStats } from "../page/timer-page.js";
 
 let holdStartTime = 0;
 let isRunning = false;
@@ -12,41 +12,35 @@ let isHolding = false;
 
 export const handleDownKeys = async (event) => {
 	try {
-	  const keyPress = event.code;
-	  if (category.value === "Open this select menu") {
-		return;
-	  }
-	  if (cube.value === "Open this select menu") {
-		return;
-	  }
-	  if (keyPress === "Escape") {
-		document.querySelector("#timer").textContent = `0.000`;
-	  }
+		const keyPress = event.code;
 
-	  if (keyPress === "Space") {
-		if (!isRunning && !isHolding) {
-		  holdStartTime = Date.now();
-		  isHolding = true;
-		  setPendingColor()
-		} else if (isRunning && !isHolding) {
-		  stopTimer();
-		  isRunning = false;
-		  await submitTime(solveTime);
-		  setNewScramble()
-		  await updateStatistics();
-		  setResetColor();
-		  
-		} else if (!isRunning && isHolding && (Date.now() - holdStartTime) / 1000 <= 0.4) {
-		  setPendingColor()
-		} else if (!isRunning && isHolding && (Date.now() - holdStartTime) / 1000 >= 0.4) {
-		  setActiveColor()
+		if (keyPress === "Escape") {
+			document.querySelector("#timer").textContent = `0.000`;
 		}
-	  }
-	} catch (err) {
-		console.log(err)
-	}
 
+		if (keyPress === "Space") {
+			if (!isRunning && !isHolding) {
+				holdStartTime = Date.now();
+				isHolding = true;
+				setPendingColor();
+			} else if (isRunning && !isHolding) {
+				stopTimer();
+				isRunning = false;
+				await submitNewSolve(solveTime, startDate);
+				setScramble();
+				await updateDisplayTimerStats();
+				setResetColor();  
+			} else if (!isRunning && isHolding && (Date.now() - holdStartTime) / 1000 <= 0.4) {
+				setPendingColor();
+			} else if (!isRunning && isHolding && (Date.now() - holdStartTime) / 1000 >= 0.4) {
+				setActiveColor();
+			}
+		}
+	} catch (err) {
+		console.log(err);
+	}
 };
+
 
 export const handleUpKeys = (event) => {
   const keyPress = event.code;

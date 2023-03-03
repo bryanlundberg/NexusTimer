@@ -1,5 +1,15 @@
-//Convert Miliseconds to Days/Hours/Minutes/Seconds
-export function convertMStoDHMS(ms) {
+export const deleteChilds = (idParent) => {
+  const parentTag = document.querySelector(`#${idParent}`);
+  if (!parentTag) {
+    console.log("Parent #id Not Found");
+		return;
+  }
+  while (parentTag.firstChild) {
+    parentTag.removeChild(parentTag.firstChild);
+  }
+};
+
+export const convertMStoDHMS = (ms) => {
   let time = {};
   time.days = Math.floor(ms / (1000 * 60 * 60 * 24));
   time.hours = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));

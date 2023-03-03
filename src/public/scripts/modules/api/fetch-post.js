@@ -1,13 +1,16 @@
-export async function submitTime(solveTime) {
-  const url = "http://localhost:3000";
+import { URL } from "../utils/constants.js";
+
+export const submitNewSolve = (solveTime, startDate) => {
+
   const scramble = document.querySelector(`#scramble`).textContent;
   const cube = document.querySelector(`select[name="cube"]`).value;
   const idUser = document.querySelector(`input[name="id"]`).value;
   const csrf = document.querySelector(`input[name="_csrf"]`).value;
 
-  await fetch(`${url}/api/submit/solve`, {
+  fetch(`${URL}/api/submit/solve`, {
     method: "POST",
     body: JSON.stringify({
+			startDate: startDate,
       solveTime: solveTime,
       scramble: scramble,
       cubeName: cube,

@@ -1,9 +1,8 @@
-import {possibleMoves2x2} from "./moves/possible-moves-2x2.js";
-import {possibleMoves3x3} from "./moves/possible-moves-3x3.js";
-import {possibleMoves4x4} from "./moves/possible-moves-4x4.js";
-import { updateStatistics } from "../timer/update-statistics.js";
+import { possibleMoves2x2 } from "./moves/possible-moves-2x2.js";
+import { possibleMoves3x3 } from "./moves/possible-moves-3x3.js";
+import { possibleMoves4x4 } from "./moves/possible-moves-4x4.js";
 
-export function generateScramble(category) {
+const scrambleGenerator = (category) => {
   let possibleMoves;
   let scrambleSize;
   if (category === "2x2") {
@@ -33,18 +32,8 @@ export function generateScramble(category) {
   return scramble.join(" ");
 }
 
-export function setNewScramble() {
-	const scrambleCategory = document.querySelector("#category").value
-	const scrambleCube = document.querySelector("#cube").value
-	const scrambleArea = document.querySelector("#scramble")
-	if (scrambleCategory == "Open this select menu") {
-		scrambleArea.textContent = "Pick a category before START cubing!";
-	} 
-	
-	if (scrambleCube == "Open this select menu") {
-		scrambleArea.textContent = "Pick a cube before START cubing!";
-	} else {
-		scrambleArea.textContent = generateScramble(scrambleCategory);
-	}
-	updateStatistics();
+export const setScramble = () => {
+	const scrambleArea = document.querySelector("#scramble");
+	const scrambleCategory = document.querySelector("#category").value;
+	scrambleArea.textContent = scrambleGenerator(scrambleCategory);
 }

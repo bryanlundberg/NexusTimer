@@ -25,11 +25,6 @@ const SolveSchema = new Schema({
   brand: {
     type: String,
   },
-
-  endDate: {
-    type: Number,
-    required: true,
-  },
 	
 	startDate: {
 		type: Number,

@@ -1,6 +1,6 @@
 import { fetchProfileStats, fetchProfileFilters } from "../api/fetch-profile-stats.js";
-import { convertMStoDHMS } from "../utils/time-converter.js";
-import { categories } from "../utils/categories.js";
+import { convertMStoDHMS } from "../utils/functions.js";
+import { categories } from "../utils/constants.js";
 
 let filter;
 let currentCategory = "overall";

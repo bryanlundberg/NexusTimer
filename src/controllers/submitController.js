@@ -21,33 +21,24 @@ const collAlgorithms = require("../algs/collAlgs");
 } */
 
 exports.newSolve = async (req, res) => {
-	try {
-		
-		const {id, cubeName, scramble, solveTime} = req.body;
-		console.log("llego aqui")
-		console.log(id, cubeName, scramble, solveTime)
-		
-		
-		const user = await User.findById(id)
-		const cubeSolve = await Cube.findById(cubeName)
-		
-		const solve = Solve.create({
-			owner: user._id,
-			cube: cubeSolve._id,
-			scramble: scramble,
-			solveTime: solveTime,
-			category: cubeSolve.category,
-			brand: cubeSolve.brand
-
-		})
-
-		res.json("Successfully added new time")
-		
-	} catch (err) {
-		console.log(err)
-	}
-	
-}
+  try {
+    const { id, cubeName, scramble, solveTime, startDate } = req.body;
+    const user = await User.findById(id);
+    const cubeSolve = await Cube.findById(cubeName);
+    const solve = Solve.create({
+      owner: user._id,
+      cube: cubeSolve._id,
+      scramble: scramble,
+      solveTime: solveTime,
+      category: cubeSolve.category,
+      brand: cubeSolve.brand,
+      startDate: startDate,
+    });
+    res.json("Successfully added new time");
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 exports.deleteCube = async (req, res) => {
 	try {
