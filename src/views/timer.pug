@@ -6,26 +6,14 @@ block content
 			div(class="form-floating")
 				input(type="hidden" name="_csrf" value=csrfToken)
 				input(type="hidden" name="id" id=user._id value=user._id)
-				
+			div.w-100(class="form-floating")
 				select(class="form-select" id="category" name="category" aria-label="Floating label for category select")
-					option(selected) Open this select menu
-					option 2x2
-					option 3x3
-					option 3x3 OH
-					option 4x4
-					option 5x5
-					option 6x6
-					option 7x7
-					option SQ-1
-					option Megaminx
-					
-				label(for="category") Scramble:
+					option 
+				label(for="category") Category:
 				
-			div(class="form-floating")
+			div.w-100(class="form-floating")
 				select(class="form-select" id="cube" name="cube" aria-label="Floating label for cube select")
-					option(selected) Open this select menu
-					for element in cubes
-						option(value=element._id) #{element.name} | #{element.category}
+					option
 				label(for="cube") Cube:
 				
 				
