@@ -5,23 +5,24 @@ const Solve = require("../models/Solve");
 
 exports.historial = async (req, res) => {
   try {
-    const id = req.params.idUser;
-    const userSolves = await Solve.find({ owner: id });
+    const user = await User.findOne({ username: req.params.userName });
+    if (!user) {
+      return res.status(404).json({ message: "User not found." });
+    }
 
-    const ordered = userSolves.sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    );
+    const solves = await Solve.find({
+      owner: user._id,
+    }).sort({ startDate: -1 });
+		
+		let userSolves = (solves.length > 0);
 
     res.render("historial", {
       title: "Profile",
-      userSolves,
-      ordered,
+      solves,
+			userSolves,
     });
-		
   } catch (error) {
-    //req.flash("messsages", [{ msg: error.message }]);
     console.log(error);
-    res.redirect("/login");
   }
 };
 

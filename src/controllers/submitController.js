@@ -40,6 +40,22 @@ exports.newSolve = async (req, res) => {
   }
 };
 
+exports.deleteSolve = async (req, res) => {
+	try {
+		const user = req.user
+		const solveId = req.params.solveId;
+		const deleteSolveId = await Solve.findById(solveId);
+		if (!deleteSolveId.owner.equals(user._id)) {
+			throw new Error("That is not your time")
+		}
+		await deleteSolveId.remove();
+		res.redirect(`/${user.username}/historial`);
+	} catch (error) {
+		console.log(error)
+		res.redirect(`/${user.username}/historial`);
+	}
+}
+
 exports.deleteCube = async (req, res) => {
 	try {
 		const user = req.user
@@ -47,7 +63,7 @@ exports.deleteCube = async (req, res) => {
 		const cubeId = req.params.cubeId;
 		const deleteCubeId = await Cube.findById(cubeId);
 		if (!deleteCubeId.owner.equals(user._id)) {
-			throw new Error("That is not your time")
+			throw new Error("That is not your cube")
 		}
 		await deleteCubeId.remove();
 		res.redirect(`/${user.username}/my-cubes`);
