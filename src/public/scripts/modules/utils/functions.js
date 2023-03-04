@@ -31,3 +31,20 @@ export const convertMStoDHMS = (ms) => {
   }
   return result.trim();
 }
+
+export const convertMsToTime = (milliseconds) => {
+	
+  let seconds = Math.floor((milliseconds / 1000) % 60);
+  let minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
+
+  let timeInSeconds = (milliseconds / 1000).toFixed(3);
+
+  if (minutes === 0) {
+    return timeInSeconds;
+  }
+
+  let timeInMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+  let timeInSecondsFormatted = seconds < 10 ? `0${seconds}` : `${seconds}`;
+  let time = `${timeInMinutes}:${timeInSecondsFormatted}`;
+  return time;
+}

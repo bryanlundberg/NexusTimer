@@ -1,4 +1,4 @@
-import { changeTheme } from "../toggle/change-theme.js";
+import { changeTheme } from "../toggle/toggle-theme.js";
 
 export const settingsPage = () => {
 	const theme = document.querySelector("#theme")

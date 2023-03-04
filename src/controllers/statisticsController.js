@@ -166,15 +166,15 @@ exports.stats = async (req, res) => {
     const cCount = solvesByCategory.length;
     const cCubingTime = calculateCubingTime(solvesByCategory);
 
-    const uPb = findBestTime(solvesByCategory);
-    const uMean = calculateAverage(solvesByCategory);
-    const uAo5 = getBestAverage(solvesByCategory, 5);
-    const uAo12 = getBestAverage(solvesByCategory, 12);
-    const uAo50 = getBestAverage(solvesByCategory, 50);
-    const uAo100 = getBestAverage(solvesByCategory, 100);
-    const uAo1000 = getBestAverage(solvesByCategory, 1000);
-    const uCount = solvesByCategory.length;
-    const uCubingTime = calculateCubingTime(solvesByCategory);
+    const uPb = findBestTime(solvesByCube);
+    const uMean = calculateAverage(solvesByCube);
+    const uAo5 = getBestAverage(solvesByCube, 5);
+    const uAo12 = getBestAverage(solvesByCube, 12);
+    const uAo50 = getBestAverage(solvesByCube, 50);
+    const uAo100 = getBestAverage(solvesByCube, 100);
+    const uAo1000 = getBestAverage(solvesByCube, 1000);
+    const uCount = solvesByCube.length;
+    const uCubingTime = calculateCubingTime(solvesByCube);
 
     return res.json({
 			cPb: cPb,

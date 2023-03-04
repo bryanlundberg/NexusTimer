@@ -1,5 +1,5 @@
 import { toggleActiveProfileTab } from "../toggle/toggle-profile-tabs.js";
-import { deleteChilds } from "../utils/functions.js";
+import { deleteChilds, convertMStoDHMS, convertMsToTime } from "../utils/functions.js";
 import { getUserById, getUserCubeStatistics } from "../api/fetch-get.js";
 
 let user;
@@ -16,22 +16,22 @@ export const profilePage = async () => {
 		const userId = findUserId();
 		user = await getUserById(userId);
 		generateInitialFilters();
-		stats = await getUserCubeStatistics(userId, categoryFilter.value, cubeFilter.value);
-		updateStatistics();
-		console.log(stats)
+		await updateStatistics();
     categoryFilter.addEventListener("change", executeChangeCategory);
-    cubeFilter.addEventListener("change", executeChangeCube);
+    cubeFilter.addEventListener("change", async () => {
+			await executeChangeCube();
+		});
   }
 };
 
 const executeChangeCategory = () => {
 	toggleCategoryFilter();
-	
+	updateStatistics();
 }
 
-const executeChangeCube = () => {
+const executeChangeCube = async () => {
 	toggleCubeFilter();
-	
+	await updateStatistics();
 }
 	
 const findUserId = () => {
@@ -46,7 +46,14 @@ const toggleCubeFilter = () => {
 	
 };
 
-const updateStatistics = () => {
+const updateStatistics = async () => {
+	
+	const categoryFilter = document.querySelector("#category-filter");
+  const cubeFilter = document.querySelector("#cube-filter");
+	const userId = findUserId();
+	console.log(categoryFilter.value,cubeFilter.value,userId)
+	stats = await getUserCubeStatistics(userId, categoryFilter.value, cubeFilter.value);
+	console.log(stats)
 	const cPb = document.querySelector("#best-time-category");
 	const cMean = document.querySelector("#mean-category");
 	const cAo5 = document.querySelector("#best-ao5-category");
@@ -69,29 +76,27 @@ const updateStatistics = () => {
 	const uCount = document.querySelector("#count-cube");
 	const uCubingTime = document.querySelector("#solving-time-cube");
 	
-	cPb.textContent = stats.cPb;
-	cMean.textContent = stats.cMean;
-	cAo5.textContent = stats.cAo5;
-	cAo12.textContent = stats.cAo12;
-	cAo50.textContent = stats.cAo50;
-	cAo100.textContent = stats.cAo100;
-	cAo1000.textContent = stats.cAo1000;
+	cPb.textContent = convertMsToTime(stats.cPb);
+	cMean.textContent = convertMsToTime(stats.cMean);
+	cAo5.textContent = convertMsToTime(stats.cAo5);
+	cAo12.textContent = convertMsToTime(stats.cAo12);
+	cAo50.textContent = convertMsToTime(stats.cAo50);
+	cAo100.textContent = convertMsToTime(stats.cAo100);
+	cAo1000.textContent = convertMsToTime(stats.cAo1000);
 	cDesviation.textContent = stats.cDesviation;
 	cCount.textContent = stats.cCount;
-	cCubingTime.textContent = stats.cCubingTime;
+	cCubingTime.textContent = convertMStoDHMS(stats.cCubingTime);
 	
-	uPb.textContent = stats.uPb;
-	uMean.textContent = stats.uMean;
-	uAo5.textContent = stats.uAo5;
-	uAo12.textContent = stats.uAo12;
-	uAo50.textContent = stats.uAo50;
-	uAo100.textContent = stats.uAo100;
-	uAo1000.textContent = stats.uAo1000;
+	uPb.textContent = convertMsToTime(stats.uPb);
+	uMean.textContent = convertMsToTime(stats.uMean);
+	uAo5.textContent = convertMsToTime(stats.uAo5);
+	uAo12.textContent = convertMsToTime(stats.uAo12);
+	uAo50.textContent = convertMsToTime(stats.uAo50);
+	uAo100.textContent = convertMsToTime(stats.uAo100);
+	uAo1000.textContent = convertMsToTime(stats.uAo1000);
 	uDesviation.textContent = stats.uDesviation;
 	uCount.textContent = stats.uCount;
-	uCubingTime.textContent = stats.uCubingTime;
-	
-	
+	uCubingTime.textContent = convertMStoDHMS(stats.uCubingTime);
 	
 }
 
@@ -107,7 +112,7 @@ const toggleCategoryFilter = () => {
     if (element.category == selectedCategory) {
       const cubeOption = document.createElement("option");
       cubeOption.value = element._id;
-      cubeOption.textContent = element.name + "|" + element.category;
+      cubeOption.textContent = element.name + " | " + element.category;
       cubeList.appendChild(cubeOption);
     }
   });
