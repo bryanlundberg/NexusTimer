@@ -19,24 +19,28 @@ export const timerPage = async () => {
   const categoryList = document.querySelector("#category");
   const cubeList = document.querySelector("#cube");
 	
-  categoryList.addEventListener("change", executeCategoryListChange);
-  cubeList.addEventListener("change", executeCubeListChange);
+  categoryList.addEventListener("change", async () => { 
+		await executeCategoryListChange();
+	});
+  cubeList.addEventListener("change", async () => { 
+		executeCubeListChange();
+	});
 	
-  document.addEventListener("keydown", handleDownKeys);
+  document.addEventListener("keydown", async (event) => { await handleDownKeys(event); });
   document.addEventListener("keyup", handleUpKeys);
 	
 };
 
-const executeCategoryListChange = () => {
+const executeCategoryListChange = async () => {
 	toggleCategoryFilter()
 	setScramble()
-	updateDisplayTimerStats()
+	await updateDisplayTimerStats()
 }
 
-const executeCubeListChange = () => {
+const executeCubeListChange = async () => {
 	toggleCubeFilter()
 	setScramble()
-	updateDisplayTimerStats()
+	await updateDisplayTimerStats()
 }
 
 export const updateDisplayTimerStats = async () => {
@@ -47,8 +51,10 @@ export const updateDisplayTimerStats = async () => {
     if (currentCategory) {
       const userStats = await getUserCategoryStatistics(
         userId,
-        currentCategory.value
+        selectedCategory
       );
+			
+			console.log(userStats)
 
       const count = document.querySelector("#count");
       const bestTime = document.querySelector("#pb");
@@ -106,18 +112,18 @@ const generateInitialFilters = () => {
 };
 
 const toggleCategoryFilter = () => {
-	
-  const categoryList = document.querySelector("#category");
+
   const cubeList = document.querySelector("#cube");
 	
 	selectedCategory = document.querySelector("#category").value;
+	selectedCube = document.querySelector("#cube").value;
 	
 	deleteChilds("cube");
   user.cubes.forEach((element) => {
 		if (element.category == selectedCategory) {
 			const cubeOption = document.createElement("option");
 			cubeOption.value = element._id;
-			cubeOption.textContent = element.name + "|" + element.category;
+			cubeOption.textContent = element.name + " | " + element.category;
 			cubeList.appendChild(cubeOption);
 		}
   });

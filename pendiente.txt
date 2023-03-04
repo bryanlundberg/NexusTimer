@@ -12,3 +12,4 @@ de momento solo sirve en el settings
 - Falta crear la seccion help
 - Falta corregir bastantes modelos, estan muy feos
 - El formulario de añadir un cubo agregar una validacion cuando valla vacio o mal
+-falta añadir metas semanales en el perfil tambien si se me olvida deje un buen dashboard de eejmplo en los pin de chrome

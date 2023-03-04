@@ -25,7 +25,7 @@ exports.newSolve = async (req, res) => {
     const { id, cubeName, scramble, solveTime, startDate } = req.body;
     const user = await User.findById(id);
     const cubeSolve = await Cube.findById(cubeName);
-    const solve = Solve.create({
+    const solve = await Solve.create({
       owner: user._id,
       cube: cubeSolve._id,
       scramble: scramble,
