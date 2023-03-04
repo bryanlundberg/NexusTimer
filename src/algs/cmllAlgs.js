@@ -1,235 +1,235 @@
 module.exports = [
   {
-    name: "OLL1",
+    id: "1",
     alg: "R U2 R' U' R U' R'",
   },
   {
-    name: "OLL2",
+    id: "2",
     alg: "R U R' U R U2' R'",
   },
   {
-    name: "OLL3",
+    id: "3",
     alg: "(R U2 R') (U' R U R') (U' R U' R')",
   },
   {
-    name: "OLL4",
+    id: "4",
     alg: "R U2' R2' U' R2 U' R2' U2' R",
   },
   {
-    name: "OLL5",
+    id: "5",
     alg: "r U R' U') (r' F R F')",
   },
   {
-    name: "OLL6",
+    id: "6",
     alg: "y F' (r U R' U') r' F R",
   },
   {
-    name: "OLL7",
+    id: "7",
     alg: "R2 D (R' U2 R) D' (R' U2 R')",
   },
   {
-    name: "OLL8",
+    id: "8",
     alg: "(R U R' U') (R' F R F')",
   },
   {
-    name: "OLL9",
+    id: "9",
     alg: "F (R U R' U') F'",
   },
   {
-    name: "OLL10",
+    id: "10",
     alg: "(r' U2' R U R' U r)",
   },
   {
-    name: "OLL11",
+    id: "11",
     alg: "(r U2 R' U' R U' r')",
   },
   {
-    name: "OLL12",
+    id: "12",
     alg: "(R U R2' U') (R' F R U) R U' F'",
   },
   {
-    name: "OLL13",
+    id: "13",
     alg: "R' U' (R' F R F') U R",
   },
   {
-    name: "OLL14",
+    id: "14",
     alg: "(R' U' R U') (R' U R U) l U' R' U x",
   },
   {
-    name: "OLL15",
+    id: "15",
     alg: "(R U R' U) (R U' R' U') (R' F R F') ",
   },
   {
-    name: "OLL16",
+    id: "16",
     alg: "(r U R' U') M (U R U' R')",
   },
   {
-    name: "OLL17",
+    id: "17",
     alg: "(R U R' U') M' (U R U' r') ",
   },
 
   {
-    name: "OLL17",
+    id: "18",
     alg: "(R' U' F) (U R U' R') F' R",
   },
 
   {
-    name: "OLL17",
+    id: "19",
     alg: "R U B' (U' R' U) (R B R')",
   },
 
   {
-    name: "OLL17",
+    id: "20",
     alg: "y R' U' F' U F R ",
   },
   {
-    name: "OLL17",
+    id: "21",
     alg: "f (R U R' U') f'",
   },
   {
-    name: "OLL17",
+    id: "22",
     alg: "f (R U R' U') (R U R' U') f'",
   },
   {
-    name: "OLL17",
+    id: "23",
     alg: "r' U' r (U' R' U R) (U' R' U R) r' U r",
   },
   {
-    name: "OLL17",
+    id: "24",
     alg: "(R' U' R U' R' U) y' (R' U R) B",
   },
   {
-    name: "OLL17",
+    id: "25",
     alg: "y (R' F R U) (R U' R2' F') R2 U' R' (U R U R')",
   },
   {
-    name: "OLL17",
+    id: "26",
     alg: "(R U R' U') R' F (R2 U R' U') F'",
   },
   {
-    name: "OLL17",
+    id: "27",
     alg: "(R U R' U) (R' F R F') (R U2' R')",
   },
   {
-    name: "OLL17",
+    id: "28",
     alg: "(R U2') (R2' F R F') (R U2' R') ",
   },
   {
-    name: "OLL17",
+    id: "29",
     alg: "F (R U' R' U') (R U R' F')",
   },
   {
-    name: "OLL17",
+    id: "30",
     alg: "(r U' r') (U' r U r') y' (R' U R)",
   },
   {
-    name: "OLL17",
+    id: "31",
     alg: "(R' F R) (U R' F' R) (F U' F') ",
   },
   {
-    name: "OLL17",
+    id: "32",
     alg: "(r U r') (R U R' U') (r U' r') ",
   },
   {
-    name: "OLL17",
+    id: "33",
     alg: "(r' U' r) (R' U' R U) (r' U r) ",
   },
   {
-    name: "OLL17",
+    id: "34",
     alg: "y (R U R' U') (R U' R') (F' U' F) (R U R')",
   },
   {
-    name: "OLL17",
+    id: "35",
     alg: "y' F U (R U2 R' U') (R U2 R' U') F'",
   },
   {
-    name: "OLL17",
+    id: "36",
     alg: "R U R' U R U2' R') F (R U R' U') F'",
   },
   {
-    name: "OLL17",
+    id: "37",
     alg: "(R' U' R U' R' U2 R) F (R U R' U') F'",
   },
   {
-    name: "OLL17",
+    id: "38",
     alg: "F (R U R' U') (R U R' U') F'",
   },
   {
-    name: "OLL17",
+    id: "39",
     alg: "F' (L' U' L U) (L' U' L U) F",
   },
   {
-    name: "OLL17",
+    id: "40",
     alg: "r U' r2' U r2 U r2' U' r",
   },
   {
-    name: "OLL17",
+    id: "41",
     alg: "r' U r2 U' r2' U' r2 U r'",
   },
 
   {
-    name: "OLL17",
+    id: "42",
     alg: "(r' U' R U') (R' U R U') R' U2 r",
   },
   {
-    name: "OLL17",
+    id: "43",
     alg: "(r U R' U) (R U' R' U) R U2' r'",
   },
   {
-    name: "OLL17",
+    id: "44",
     alg: "(r U R' U R U2' r')",
   },
   {
-    name: "OLL17",
+    id: "45",
     alg: "(r' U' R U' R' U2 r)",
   },
 
   {
-    name: "OLL17",
+    id: "46",
     alg: "r' (R2 U R' U R U2 R') U M'",
   },
   {
-    name: "OLL17",
+    id: "47",
     alg: "M' (R' U' R U' R' U2 R) U' M",
   },
   {
-    name: "OLL17",
+    id: "48",
     alg: "(L F') (L' U' L U) F U' L'",
   },
   {
-    name: "OLL17",
+    id: "49",
     alg: "(R' F) (R U R' U') F' U R",
   },
   {
-    name: "OLL17",
+    id: "50",
     alg: "(R U2') (R2' F R F') U2' (R' F R F') ",
   },
   {
-    name: "OLL17",
+    id: "51",
     alg: "F (R U R' U') F' f (R U R' U') f'",
   },
   {
-    name: "OLL17",
+    id: "52",
     alg: "f (R U R' U') f' U' F (R U R' U') F'",
   },
   {
-    name: "OLL17",
+    id: "53",
     alg: "f (R U R' U') f' U F (R U R' U') F'",
   },
   {
-    name: "OLL17",
+    id: "54",
     alg: "y R U2' (R2' F R F') U2' M' (U R U' r')",
   },
   {
-    name: "OLL17",
+    id: "55",
     alg: "M U (R U R' U') M' (R' F R F')",
   },
   {
-    name: "OLL17",
+    id: "56",
     alg: "(R U R' U) (R' F R F') U2' (R' F R F')",
   },
   {
-    name: "OLL17",
+    id: "57",
     alg: "M U (R U R' U') M2' (U R U' r')",
   },
 ];

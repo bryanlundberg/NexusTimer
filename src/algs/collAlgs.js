@@ -1,165 +1,165 @@
 module.exports = [
   {
-    name: "COLL",
+    id: "1",
     alg: "R U R' U R U2' R' ",
   },
   {
-    name: "COLL",
+    id: "2",
     alg: "F' (R U2' R' U2) R' F2 (R U R U') R' F'",
   },
   {
-    name: "COLL",
+    id: "3",
     alg: "R U' L' U R' U' L",
   },
   {
-    name: "COLL",
+    id: "4",
     alg: "L' (R U R' U') L (U2 R U2' R')",
   },
   {
-    name: "COLL",
+    id: "5",
     alg: "(L' U2 L U2') R (U' L' U L) R'",
   },
   {
-    name: "COLL",
+    id: "6",
     alg: "y' (R U R' U) (R U' R D) (R' U' R D') R2'",
   },
   {
-    name: "COLL",
+    id: "7",
     alg: "y R U2' R' U' R U' R'",
   },
   {
-    name: "COLL",
+    id: "8",
     alg: "(R U' R' U2) (R U' R' U2) (R' D' R) U (R' D R)",
   },
   {
-    name: "COLL",
+    id: "9",
     alg: "y2 L' U R U' L U R'",
   },
   {
-    name: "COLL",
+    id: "10",
     alg: "y2 R (L' U' L U) R' (U2' L' U2 L)",
   },
   {
-    name: "COLL",
+    id: "11",
     alg: "y2 (R U2 R' U2') L' (U R U' R') L",
   },
   {
-    name: "COLL",
+    id: "12",
     alg: "y (R' U' R U') (R' U R' D') (R U R' D) R2",
   },
   {
-    name: "COLL",
+    id: "13",
     alg: "y (R U R' U) (R U' R' U) (R U' R' U) R U2' R'",
   },
   {
-    name: "COLL",
+    id: "14",
     alg: "y' r U2' (R2' F R F') R U2' r'",
   },
   {
-    name: "COLL",
+    id: "15",
     alg: "y' (R U2 R D) (R' U2 R D') R2'",
   },
   {
-    name: "COLL",
+    id: "16",
     alg: "y2 (R' U2 R' D') (R U2 R' D) R2",
   },
   {
-    name: "COLL",
+    id: "17",
     alg: "y' (F R' F' r) (U R U' r')",
   },
 
   {
-    name: "COLL",
+    id: "18",
     alg: "F' (r U R' U') (r' F R)",
   },
 
   {
-    name: "COLL",
+    id: "19",
     alg: "(R U2' R' U' R U' R2') (U2' R U R' U R)",
   },
 
   {
-    name: "COLL",
+    id: "20",
     alg: "y2 F (R U R' U') (R U' R' U') (R U R' F')",
   },
   {
-    name: "COLL",
+    id: "21",
     alg: "(R' U R) U2' L' (R' U R U') L",
   },
   {
-    name: "COLL",
+    id: "22",
     alg: "(R' U R2 D) (r' U2 r) (D' R2' U' R)",
   },
   {
-    name: "COLL",
+    id: "23",
     alg: "y (l' U' L U) (R U' r' F) ",
   },
   {
-    name: "COLL",
+    id: "24",
     alg: "y' (r U R' U') (r' F R F')",
   },
   {
-    name: "COLL",
+    id: "25",
     alg: "y2 (R U R' U R U2' R2') (U' R U' R' U2 R)",
   },
   {
-    name: "COLL",
+    id: "26",
     alg: "F (R U' R' U) (R U R' U) (R U' R' F')",
   },
   {
-    name: "COLL",
+    id: "27",
     alg: "y2 R2 D (R' U2 R) D' (R' U2 R') ",
   },
   {
-    name: "COLL",
+    id: "28",
     alg: "R2' D' (R U2 R') D (R U2 R)",
   },
   {
-    name: "COLL",
+    id: "29",
     alg: "R' F (R U' R' U') (R U R' F') (R U R' U') (R' F R F' R)",
   },
   {
-    name: "COLL",
+    id: "30",
     alg: "(R' U2 R) F (U' R' U' R) U F'",
   },
   {
-    name: "COLL",
+    id: "31",
     alg: "R U2' R2' U' R2 U' R2' U2' R ",
   },
   {
-    name: "COLL",
+    id: "32",
     alg: "(R U D') (R U R' D) (R2 U' R' U') R2' U2' R",
   },
   {
-    name: "COLL",
+    id: "33",
     alg: "y F (U R U' R') (U R U' R2') F' R (U R U' R')",
   },
   {
-    name: "COLL",
+    id: "34",
     alg: "(R U R' U') R' F (R2 U R' U') (R U R' U') F'",
   },
   {
-    name: "COLL",
+    id: "35",
     alg: "y' (R U R' U) F' (R U2' R' U2') (R' F R)",
   },
   {
-    name: "COLL",
+    id: "36",
     alg: "y F (U R U' R') (U R U2' R') (U' R U R') F'",
   },
   {
-    name: "COLL",
+    id: "37",
     alg: "(R U R' U) (R U' R' U) R U2' R'",
   },
   {
-    name: "COLL",
+    id: "38",
     alg: "y F (R U R' U') (R U R' U') (R U R' U') F'",
   },
   {
-    name: "COLL",
+    id: "39",
     alg: "F (R U' R' U) (R U2 R' U') (R U R' U') F'",
   },
   {
-    name: "COLL",
+    id: "40",
     alg: "(R U R' U) (R U L' U) R' U' L",
   },
 ];

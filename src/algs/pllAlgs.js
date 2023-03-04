@@ -1,86 +1,86 @@
 module.exports = [
   {
-    name: "PLL1",
+    id: "1",
     alg: "R2 U (R U R' U') R' U' (R' U R')",
   },
   {
-    name: "PLL1",
+    id: "2",
     alg: "(R U' R U) R U (R U' R' U') R2",
   },
   {
-    name: "PLL1",
+    id: "3",
     alg: "(M2' U M2' U) (M' U2) (M2' U2 M') [U2]",
   },
   {
-    name: "PLL1",
+    id: "4",
     alg: "(M2' U M2') U2 (M2' U M2')",
   },
   {
-    name: "PLL1",
+    id: "5",
     alg: "x (R' U R') D2 (R U' R') D2 R2 x'",
   },
   {
-    name: "PLL1",
+    id: "6",
     alg: "x R2' D2 (R U R') D2 (R U' R) x'",
   },
   {
-    name: "PLL1",
+    id: "7",
     alg: "x' (R U' R' D) (R U R' D') (R U R' D) (R U' R' D') x",
   },
   {
-    name: "PLL1",
+    id: "8",
     alg: "(R U' R' U') (R U R D) (R' U' R D') (R' U2 R') [U']",
   },
   {
-    name: "PLL1",
+    id: "9",
     alg: "(R' U2 R U2') R' F (R U R' U') R' F' R2 [U']",
   },
   {
-    name: "PLL1",
+    id: "10",
     alg: "(R' U L' U2) (R U' R' U2 R) L [U']",
   },
   {
-    name: "PLL1",
+    id: "11",
     alg: "(R U R' F') (R U R' U') R' F R2 U' R' [U']",
   },
   {
-    name: "PLL1",
+    id: "12",
     alg: "(R U R' U') (R' F R2 U') R' U' (R U R' F')",
   },
   {
-    name: "PLL1",
+    id: "13",
     alg: "(R' U' F')(R U R' U')(R' F R2 U')(R' U' R U)(R' U R)",
   },
   {
-    name: "PLL1",
+    id: "14",
     alg: "(R' U R' U') y (R' F' R2 U') (R' U R' F) R F",
   },
   {
-    name: "PLL1",
+    id: "15",
     alg: "F (R U' R' U') (R U R' F') (R U R' U') (R' F R F') ",
   },
   {
-    name: "PLL1",
+    id: "16",
     alg: "(R U R 'U)(R U R' F')(R U R' U')(R'F R2 U') R' U2 (R U'R')",
   },
   {
-    name: "PLL1",
+    id: "17",
     alg: "(R' U R U') (R' F' U' F) (R U R' F) R' F' (R U' R)",
   },
   {
-    name: "PLL1",
+    id: "18",
     alg: "R2 U (R' U R' U') (R U' R2) D U' (R' U R D') [U]",
   },
   {
-    name: "PLL1",
+    id: "19",
     alg: "(F' U' F) (R2 u R' U) (R U' R u') R2'",
   },
   {
-    name: "PLL1",
+    id: "20",
     alg: "R2 U' (R U' R U) (R' U R2 D') (U R U' R') D [U']",
   },
   {
-    name: "PLL1",
+    id: "21",
     alg: "D' (R U R' U') D (R2 U' R U') (R' U R' U) R2 [U]",
   },
 ];
