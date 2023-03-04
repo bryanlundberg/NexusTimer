@@ -21,3 +21,15 @@ export const getUserCategoryStatistics = async (userId, category) => {
     console.error(error);
   }
 };
+
+export const getUserCubeStatistics = async (userId, category, cubeId) => {
+	try {
+    const result = await fetch(`${URL}/api/${category}/${cubeId}/${userId}`);
+    if (!result.ok) {
+      throw new Error("Something wrong happen getting the data.");
+    }
+    return result.json();
+	} catch (error) {
+		console.log(error)
+	}
+}

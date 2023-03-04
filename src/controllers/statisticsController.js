@@ -72,160 +72,135 @@ exports.categoryTimerStats = async (req, res) => {
 };
 
 exports.overallProfileStats = async (req, res) => {
-  try {
+  /*   try {
     console.log("hola");
     const userId = req.params.idUser;
     const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
-
-
-
-
   } catch (err) {
     console.log(err);
-  }
+  } */
 };
 
 exports.stats = async (req, res) => {
   try {
-    const { category, cube, idUser } = req.params;
-    const user = await User.findById(idUser);
+    const { category, cubeId, userId } = req.params;
+    const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
-    console.log(category, cube);
+    console.log(category, cubeId);
 
-    function solvesTime(arraySolves) {
-      const result = arraySolves.reduce((acc, element) => {
-        if (typeof element.solveTime !== "number") {
-          console.log("element.solveTime is not a number");
-          return acc;
-        }
-        return acc + element.solveTime;
-      }, 0);
-      return result;
-    }
-
-    function mean(arraySolves) {
-      let x = 0;
-      arraySolves.forEach((element) => {
-        x += element.solveTime;
-      });
-      return (x / arraySolves.length / 1000).toFixed(2);
-    }
-
-    function getAvg(solutions, avgNumber) {
-      if (solutions.length < avgNumber) {
-        return "-";
-      }
-      const lastSolves = solutions
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
-        .slice(0, avgNumber);
-      let x = 0;
-      lastSolves.forEach((element) => {
-        x += element.solveTime;
-      });
-      return (x / avgNumber / 1000).toFixed(2);
-    }
-
-    if (category === "overall" && cube === "overall") {
-      const totalSolves = await Solve.find({ owner: user._id });
-      const solvingTime = solvesTime(totalSolves);
-
-      return res.json({
-        solvingTime,
-        pb: "-",
-        avg: "-",
-        result5: "-",
-        result12: "-",
-        result50: "-",
-        result100: "-",
-        result1000: "-",
-        desviation: "-",
-        solvesCount: totalSolves.length,
-      });
-    }
-
-    const solves = await Solve.find({ owner: user._id, category: category });
-    if (!solves) {
-      return res.json({
-        solvingTime,
-        pb: "-",
-        avg: "-",
-        result5: "-",
-        result12: "-",
-        result50: "-",
-        result100: "-",
-        result1000: "-",
-        desviation: "-",
-        solvesCount: "-",
-      });
-    }
-
-    if (cube !== "overall") {
-      const solvesByCube = await Solve.find({
-        owner: user._id,
-        category: category,
-        cube: cube,
-      });
-
-      const solvingTime = solvesTime(solvesByCube);
-      const pb = solvesByCube.sort((a, b) => a.solveTime - b.solveTime);
-      const avg = mean(solvesByCube);
-      const result5 = getAvg(solvesByCube, 5);
-      const result12 = getAvg(solvesByCube, 12);
-      const result50 = getAvg(solvesByCube, 50);
-      const result100 = getAvg(solvesByCube, 100);
-      const result1000 = getAvg(solvesByCube, 1000);
-      const desviation = "1";
-      const solvesCount = solvesByCube.length;
-
-      return res.json({
-        solvingTime,
-        pb: (pb[0] / 1000).toFixed(2),
-        avg,
-        result5,
-        result12,
-        result50,
-        result100,
-        result1000,
-        desviation,
-        solvesCount,
-      });
-    }
-
-    const solvesCategory = await Solve.find({
+    const solvesByCategory = await Solve.find({
       owner: user._id,
       category: category,
-    });
+    }).sort({ startDate: -1 });
+    const solvesByCube = await Solve.find({
+      owner: user._id,
+      category: category,
+      cube: cubeId,
+    }).sort({ startDate: -1 });
 
-    const solvingTime = solvesTime(solvesCategory);
-    const pb = solvesCategory.sort((a, b) => a.timeSolve - b.timeSolve);
-    const avg = mean(solvesCategory);
-    const result5 = getAvg(solvesCategory, 5);
-    const result12 = getAvg(solvesCategory, 12);
-    const result50 = getAvg(solvesCategory, 50);
-    const result100 = getAvg(solvesCategory, 100);
-    const result1000 = getAvg(solvesCategory, 1000);
-    const desviation = "1";
-    const solvesCount = solvesCategory.length;
+    function findBestTime(solveTimes) {
+      if (solveTimes.length === 0) {
+        return 0;
+      }
+      let bestTime = solveTimes[0].solveTime;
+      solveTimes.forEach((time) => {
+        if (time.solveTime < bestTime) {
+          bestTime = time.solveTime;
+        }
+      });
+      return bestTime;
+    }
+
+    function getBestAverage(array, ao) {
+      if (array.length === 0 || array.length < ao) {
+        return 0;
+      }
+      let lowestAvg = Infinity;
+      const maxIndex = array.length - ao;
+      for (let i = maxIndex; i >= 0; i--) {
+        const group = array.slice(i, i + ao);
+        const groupAvg = group.reduce((sum, x) => sum + x.solveTime, 0) / ao;
+        if (groupAvg < lowestAvg) {
+          lowestAvg = groupAvg;
+        }
+      }
+      return lowestAvg;
+    }
+
+    function calculateCubingTime(array) {
+      if (array.length === 0) {
+        return 0;
+      }
+      let cubingTime = 0;
+      array.forEach(element => {
+				cubingTime += element.solveTime;
+			})
+      return cubingTime;
+    }
+
+    function calculateAverage(array) {
+      if (array.length === 0) {
+        return 0;
+      }
+      const sum = array.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.solveTime,
+        0
+      );
+      const length = array.length;
+      const average = sum / length;
+      return average;
+    }
+
+    const cPb = findBestTime(solvesByCategory);
+    const cMean = calculateAverage(solvesByCategory);
+    const cAo5 = getBestAverage(solvesByCategory, 5);
+    const cAo12 = getBestAverage(solvesByCategory, 12);
+    const cAo50 = getBestAverage(solvesByCategory, 50);
+    const cAo100 = getBestAverage(solvesByCategory, 100);
+    const cAo1000 = getBestAverage(solvesByCategory, 1000);
+    const cCount = solvesByCategory.length;
+    const cCubingTime = calculateCubingTime(solvesByCategory);
+
+    const uPb = findBestTime(solvesByCategory);
+    const uMean = calculateAverage(solvesByCategory);
+    const uAo5 = getBestAverage(solvesByCategory, 5);
+    const uAo12 = getBestAverage(solvesByCategory, 12);
+    const uAo50 = getBestAverage(solvesByCategory, 50);
+    const uAo100 = getBestAverage(solvesByCategory, 100);
+    const uAo1000 = getBestAverage(solvesByCategory, 1000);
+    const uCount = solvesByCategory.length;
+    const uCubingTime = calculateCubingTime(solvesByCategory);
 
     return res.json({
-      solvingTime,
-      pb: (pb[0] / 1000).toFixed(2),
-      avg,
-      result5,
-      result12,
-      result50,
-      result100,
-      result1000,
-      desviation,
-      solvesCount,
-    });
-
-    console.log("llego a stats");
+			cPb: cPb,
+			cMean: cMean,
+			cAo5: cAo5,
+			cAo12: cAo12,
+			cAo50: cAo50,
+			cAo100: cAo100,
+			cAo1000: cAo1000,
+			cDesviation: "Pending",
+			cCount: cCount,
+			cCubingTime: cCubingTime,
+			
+			uPb: uPb,
+			uMean: uMean,
+			uAo5: uAo5,
+			uAo12: uAo12,
+			uAo50: uAo50,
+			uAo100: uAo100,
+			uAo1000: uAo1000,
+			uDesviation: "Pending",
+			uCount: uCount,
+			uCubingTime: uCubingTime,
+			
+		});
+		
   } catch (error) {
     console.log(error);
   }
