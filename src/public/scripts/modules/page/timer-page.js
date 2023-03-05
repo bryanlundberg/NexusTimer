@@ -1,7 +1,7 @@
 import { setScramble } from "../scramble/scramble-generator.js";
 import { handleDownKeys, handleUpKeys } from "../timer/handle-keys.js";
 import { getUserById, getUserCategoryStatistics } from "../api/fetch-get.js";
-import { deleteChilds } from "../utils/functions.js";
+import { deleteChilds, convertMsToTime } from "../utils/functions.js";
 
 export let user;
 let selectedCategory;
@@ -64,13 +64,13 @@ export const updateDisplayTimerStats = async () => {
       const desviation = document.querySelector("#desviation");
       const average = document.querySelector("#avg");
 
-      count.textContent = userStats.counter;
-      avg5.textContent = userStats.avg5;
-      avg12.textContent = userStats.avg12;
-      avg50.textContent = userStats.avg50;
-      desviation.textContent = userStats.desviation;
-      average.textContent = userStats.avg;
-      bestTime.textContent = userStats.pb;
+      count.textContent = userStats.tCount;
+      avg5.textContent = convertMsToTime(userStats.tAo5);
+      avg12.textContent = convertMsToTime(userStats.tAo12);
+      avg50.textContent = convertMsToTime(userStats.tAo50);
+      desviation.textContent = "Pending";
+      average.textContent = convertMsToTime(userStats.tMean);
+      bestTime.textContent = convertMsToTime(userStats.tPb);
     }
   } catch (error) {
     console.log(error);

@@ -54,14 +54,14 @@ block content
 										th.text-center(scope="col") Options
 
 								tbody
-									for value in cubes
+									for value in dataEachCube
 										tr
 											th(scope="row") #{value.category}
 											td #{value.name}
 											td #{value.brand}
-											td 234
-											td 3.342
-											td 11.342
+											td #{value.solves}
+											td #{value.bestTime}
+											td #{value.bestAo5}
 											td
 												.d-flex.gap-2.justify-content-center
 

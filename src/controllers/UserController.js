@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Algorithm = require("../models/Algorithm");
 const Cube = require("../models/Cube");
 const Solve = require("../models/Solve");
+const { findBestTime, getBestAverage, calculateCubingTime, calculateAverage, calculateCurrentAo, convertMsToTime} = require("../extras/formulas"); 
 
 exports.historial = async (req, res) => {
   try {
@@ -64,11 +65,38 @@ exports.myCubes = async (req, res) => {
       throw new Error("Usernot found");
     }
     const cubes = await Cube.find({ owner: user._id });
-
+		
+		
+		
+		let dataEachCube = [];
+		
+		for (const element of cubes) {
+			
+			const solvesByCube = await Solve.find({
+				owner: user._id,
+				cube: element._id,
+			}).sort({ startDate: -1 });
+			
+			const bestTime = findBestTime(solvesByCube)
+			const bestAo5 = getBestAverage(solvesByCube, 5)
+			
+			dataEachCube.push({
+				cubeId: element._id,
+				owner: user._id,
+				name: element.name,
+				brand: element.brand,
+				category: element.category,
+				solves: solvesByCube.length,
+				bestTime: convertMsToTime(bestTime),
+				bestAo5: convertMsToTime(bestAo5),
+			})
+			
+		}
+		
     res.render("profile_cubes", {
       title: "Your cubes",
       user,
-      cubes,
+      dataEachCube,
     });
   } catch (error) {
     console.log(error);

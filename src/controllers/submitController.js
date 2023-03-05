@@ -6,20 +6,6 @@ const ollAlgorithms = require("../algs/ollAlgs");
 const pllAlgorithms = require("../algs/pllAlgs");
 const collAlgorithms = require("../algs/collAlgs");
 
-/* const updateStatusAlgorithms = async (userId, method, algorithms) => {
-
-    const userAlgs = await Algorithm.find({ algSet: `${method}`, owner: userId });
-    if (!userAlgs) { throw new Error("OLL set not found") }
-    
-	for (let i = 1; i < algorithms.length; i++) {
-	  const algo = userAlgs[i-1];
-	  algo.algSet = `${method}`;
-	  algo.status = req.body[`${method}${i}`];
-	  await algo.save();
-	}
-
-} */
-
 exports.newSolve = async (req, res) => {
   try {
     const { id, cubeName, scramble, solveTime, startDate } = req.body;
@@ -40,11 +26,14 @@ exports.newSolve = async (req, res) => {
   }
 };
 
-exports.deleteSolve = async (req, res) => {
+exports.deleteSolve = async (req, res, next) => {
 	try {
 		const user = req.user
 		const solveId = req.params.solveId;
 		const deleteSolveId = await Solve.findById(solveId);
+		if (!deleteSolveId) {
+			return next();
+		}
 		if (!deleteSolveId.owner.equals(user._id)) {
 			throw new Error("That is not your time")
 		}
