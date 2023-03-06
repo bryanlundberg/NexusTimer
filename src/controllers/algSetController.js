@@ -7,7 +7,10 @@ exports.userMethod = async (req, res) => {
     if (!user) {
       throw new Error("User not found");
     }
-
+		let owner = false;
+		if (req.user && req.user._id.equals(user._id)) {
+			owner = true;
+		}
     const algSet = req.params.method.toUpperCase();
     let userAlgs = await Algorithm.find({ algSet: algSet, owner: user._id });
     if (!userAlgs) {
@@ -19,6 +22,7 @@ exports.userMethod = async (req, res) => {
       user,
       userAlgs,
       method: userAlgs[0].algSet,
+			owner,
     });
   } catch (error) {
     console.log(error);

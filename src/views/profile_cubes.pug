@@ -10,35 +10,36 @@ block content
 				include profile_navbar
 				.container.my-3
 					div(class="row row-cols-1 g-2")
-						div(class="col")
-							form(action="/submit/"+user.username+"/newcube" method="post")
-								div(class="row g-2")
-									div(class="col-md")
-										div(class="form-floating")
-											input(type="text" class="form-control" id="name" name="name" placeholder="Cube name")
-											label(for="name") Cube name
-									div(class="col-md")
-										div(class="form-floating")
-											input(type="text" class="form-control" id="brand" name="brand" placeholder="Brand")
-											label(for="brand") Brand
-											
-									div(class="col-md")
-										div(class="form-floating")
-											select(class="form-select" id="category" name="category")
-												option(selected value="Choose category") Choose category
-												option(value="2x2") 2x2
-												option(value="3x3") 3x3
-												option(value="3x3 OH") 3x3 OH
-												option(value="3X3 Blind") 3X3 Blind
-												option(value="4x4") 4x4
-												option(value="5x5") 5x5
-												option(value="6x6") 6x6
-												option(value="7x7") 7x7
-												option(value="Megaminx") Megaminx
-												option(value="SQ-1") SQ-1
-											label(for="category") Choose a category
-									input(type="hidden" name="_csrf" value=csrfToken)
-									button.btn.btn-outline-primary Add cube!
+						if (owner==true)
+							div(class="col")
+								form(action="/submit/"+user.username+"/newcube" method="post")
+									div(class="row g-2")
+										div(class="col-md")
+											div(class="form-floating")
+												input(type="text" class="form-control" id="name" name="name" placeholder="Cube name")
+												label(for="name") Cube name
+										div(class="col-md")
+											div(class="form-floating")
+												input(type="text" class="form-control" id="brand" name="brand" placeholder="Brand")
+												label(for="brand") Brand
+												
+										div(class="col-md")
+											div(class="form-floating")
+												select(class="form-select" id="category" name="category")
+													option(selected value="Choose category") Choose category
+													option(value="2x2") 2x2
+													option(value="3x3") 3x3
+													option(value="3x3 OH") 3x3 OH
+													option(value="3X3 Blind") 3X3 Blind
+													option(value="4x4") 4x4
+													option(value="5x5") 5x5
+													option(value="6x6") 6x6
+													option(value="7x7") 7x7
+													option(value="Megaminx") Megaminx
+													option(value="SQ-1") SQ-1
+												label(for="category") Choose a category
+										input(type="hidden" name="_csrf" value=csrfToken)
+										button.btn.btn-outline-primary Add cube!
 
 						div(class="col")
 							table.table.table-striped
@@ -51,7 +52,8 @@ block content
 										th(scope="col") Solves
 										th(scope="col") Best Time
 										th(scope="col") Best Ao5
-										th.text-center(scope="col") Options
+										if (owner==true)
+											th.text-center(scope="col") Options
 
 								tbody
 									for value in dataEachCube
@@ -62,9 +64,9 @@ block content
 											td #{value.solves}
 											td #{value.bestTime}
 											td #{value.bestAo5}
-											td
-												.d-flex.gap-2.justify-content-center
-
-													a(class="btn btn-sm btn-danger" href='/submit/'+value._id+'/delete' role="button") 
-														svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16")
-															path(d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z")
+											if (owner==true)
+												td
+													.d-flex.gap-2.justify-content-center
+														a(class="btn btn-sm btn-danger" href='/submit/'+value._id+'/delete' role="button") 
+															svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16")
+																path(d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z")

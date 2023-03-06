@@ -12,5 +12,5 @@ block content
 					input(type="checkbox" class="btn-check" id=element.name name=element.name checked=element.status==='on' autocomplete="off")
 					label(class="btn btn-outline-primary w-100" for=element.name) #{element.alg}
 						img.d-block.mx-auto(src=element.thumbnail class="img-fluid")
-					
-			button(type="submit" class="btn btn-warning w-100") Update
+			if (owner==true)
+				button(type="submit" class="btn btn-warning w-100") Update

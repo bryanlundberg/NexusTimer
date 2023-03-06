@@ -4,14 +4,10 @@ export function toggleActiveProfileTab() {
   );
   const current = window.location.pathname;
   const currentUrl = window.location.href;
-  console.log("Current path:", current);
-  console.log("Current URL:", currentUrl);
-
   if (navigation.length === 0) {
     console.warn("No navigation links found");
     return;
   }
-
   for (let i = 0; i < navigation.length; i++) {
     let navLink = navigation[i].getAttribute("href");
     if (!navLink) {

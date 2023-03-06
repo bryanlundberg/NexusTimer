@@ -1,12 +1,10 @@
 import { URL } from "../utils/constants.js";
 
 export const submitNewSolve = async (solveTime, startDate) => {
-
   const scramble = document.querySelector(`#scramble`).textContent;
   const cube = document.querySelector(`select[name="cube"]`).value;
   const idUser = document.querySelector(`input[name="id"]`).value;
   const csrf = document.querySelector(`input[name="_csrf"]`).value;
-
   await fetch(`${URL}/api/submit/solve`, {
     method: "POST",
     body: JSON.stringify({

@@ -2,7 +2,7 @@ export const deleteChilds = (idParent) => {
   const parentTag = document.querySelector(`#${idParent}`);
   if (!parentTag) {
     console.log("Parent #id Not Found");
-		return;
+    return;
   }
   while (parentTag.firstChild) {
     parentTag.removeChild(parentTag.firstChild);
@@ -16,24 +16,23 @@ export const convertMStoDHMS = (ms) => {
   time.minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
   time.seconds = Math.floor((ms % (1000 * 60)) / 1000);
 
-  let result = '';
+  let result = "";
   if (time.days > 0) {
-    result += time.days + (time.days === 1 ? ' day ' : ' days ');
+    result += time.days + (time.days === 1 ? " day " : " days ");
   }
   if (time.hours > 0) {
-    result += time.hours + (time.hours === 1 ? ' hour ' : ' hours ');
+    result += time.hours + (time.hours === 1 ? " hour " : " hours ");
   }
   if (time.minutes > 0) {
-    result += time.minutes + (time.minutes === 1 ? ' minute ' : ' minutes ');
+    result += time.minutes + (time.minutes === 1 ? " minute " : " minutes ");
   }
   if (time.seconds > 0) {
-    result += time.seconds + (time.seconds === 1 ? ' second ' : ' seconds ');
+    result += time.seconds + (time.seconds === 1 ? " second " : " seconds ");
   }
   return result.trim();
-}
+};
 
 export const convertMsToTime = (milliseconds) => {
-	
   let seconds = Math.floor((milliseconds / 1000) % 60);
   let minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
 
@@ -47,4 +46,12 @@ export const convertMsToTime = (milliseconds) => {
   let timeInSecondsFormatted = seconds < 10 ? `0${seconds}` : `${seconds}`;
   let time = `${timeInMinutes}:${timeInSecondsFormatted}`;
   return time;
-}
+};
+
+export const findUserId = () => {
+  const userInput = document.querySelector("input[name=id]");
+  if (userInput) {
+    const userId = userInput.value;
+    return userId;
+  }
+};
