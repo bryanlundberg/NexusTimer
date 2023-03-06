@@ -17,7 +17,10 @@ exports.historial = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
-
+		let owner = false;
+		if (req.user && req.user._id.equals(user._id)) {
+			owner = true;
+		}
     const solves = await Solve.find({
       owner: user._id,
     }).sort({ startDate: -1 });
@@ -28,6 +31,8 @@ exports.historial = async (req, res) => {
       title: "Profile",
       solves,
       userSolves,
+			owner,
+			user,
     });
   } catch (error) {
     console.log(error);
