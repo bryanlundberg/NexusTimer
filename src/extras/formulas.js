@@ -67,7 +67,6 @@ function calculateCurrentAo(arraySolves, ao) {
 }
 
 const convertMsToTime = (milliseconds) => {
-	
   let seconds = Math.floor((milliseconds / 1000) % 60);
   let minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
 
@@ -81,8 +80,13 @@ const convertMsToTime = (milliseconds) => {
   let timeInSecondsFormatted = seconds < 10 ? `0${seconds}` : `${seconds}`;
   let time = `${timeInMinutes}:${timeInSecondsFormatted}`;
   return time;
-}
+};
 
-		
-
-module.exports = { findBestTime, getBestAverage, calculateCubingTime, calculateAverage, calculateCurrentAo, convertMsToTime}
+module.exports = {
+  findBestTime,
+  getBestAverage,
+  calculateCubingTime,
+  calculateAverage,
+  calculateCurrentAo,
+  convertMsToTime,
+};

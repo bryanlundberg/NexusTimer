@@ -27,40 +27,40 @@ exports.newSolve = async (req, res) => {
 };
 
 exports.deleteSolve = async (req, res, next) => {
-	try {
-		const user = req.user
-		const solveId = req.params.solveId;
-		const deleteSolveId = await Solve.findById(solveId);
-		if (!deleteSolveId) {
-			return next();
-		}
-		if (!deleteSolveId.owner.equals(user._id)) {
-			throw new Error("That is not your time")
-		}
-		await deleteSolveId.remove();
-		res.redirect(`/${user.username}/historial`);
-	} catch (error) {
-		console.log(error)
-		res.redirect(`/${user.username}/historial`);
-	}
-}
+  try {
+    const user = req.user;
+    const solveId = req.params.solveId;
+    const deleteSolveId = await Solve.findById(solveId);
+    if (!deleteSolveId) {
+      return next();
+    }
+    if (!deleteSolveId.owner.equals(user._id)) {
+      throw new Error("That is not your time");
+    }
+    await deleteSolveId.remove();
+    res.redirect(`/${user.username}/historial`);
+  } catch (error) {
+    console.log(error);
+    res.redirect(`/${user.username}/historial`);
+  }
+};
 
 exports.deleteCube = async (req, res) => {
-	try {
-		const user = req.user
-		console.log(user)
-		const cubeId = req.params.cubeId;
-		const deleteCubeId = await Cube.findById(cubeId);
-		if (!deleteCubeId.owner.equals(user._id)) {
-			throw new Error("That is not your cube")
-		}
-		await deleteCubeId.remove();
-		res.redirect(`/${user.username}/my-cubes`);
-	} catch (error) {
-		console.log(error)
-		res.redirect(`/${user.username}/my-cubes`);
-	}
-}
+  try {
+    const user = req.user;
+    console.log(user);
+    const cubeId = req.params.cubeId;
+    const deleteCubeId = await Cube.findById(cubeId);
+    if (!deleteCubeId.owner.equals(user._id)) {
+      throw new Error("That is not your cube");
+    }
+    await deleteCubeId.remove();
+    res.redirect(`/${user.username}/my-cubes`);
+  } catch (error) {
+    console.log(error);
+    res.redirect(`/${user.username}/my-cubes`);
+  }
+};
 
 exports.updateUserCubes = async (req, res) => {
   try {
@@ -147,5 +147,3 @@ exports.updateMethod = async (req, res) => {
     res.redirect(`/${user.username}/alg-collection`);
   }
 };
-
-

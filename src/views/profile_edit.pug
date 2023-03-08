@@ -6,29 +6,21 @@ block content
 		h1 Public profile
 		hr
 		form.row.g-3(action="/submit/"+user.username+"/settings" method="post")
-
 			.col-md-6
 				label(for="name" class="form-label") Name
 				input(type="text" class="form-control" id="name" name="name" placeholder="Name" value=user.name)
-				
 				label(for="bio") Bio
 				textarea(class="form-control" id="bio" name="bio" placeholder="About you" value=user.bio)
-
 				label(for="contactEmail" class="form-label") Contact e-mail
 				input(type="text" class="form-control" id="contactEmail" name="contactEmail" placeholder="Link your public email" value=user.contactEmail)
-				
 				label(for="nationality" class="form-label") Nationality
 				input(type="text" class="form-control" id="nationality" name="nationality" placeholder="Where are you from?" value=user.nationality)
-				
 				input(type="hidden" name="_csrf" value=csrfToken)
-
 			.col-md-6
 				img(src="/images/profile/gears.jpg" class="my-3 object-fit rounded-circle mx-auto d-block" alt="user profile photo" width="240" height="240")
 				label(for="formFile" class="form-label") Change profile picture
 				input(class="form-control" type="file" id="formFile")
-				
 				.form-check.form-switch.my-1
 					input.form-check-input(type="checkbox" role="switch" name="theme" id="theme" checked=user.theme==='on')
 					label(class="form-check-label" for="theme") Theme color
-
 			button(type="submit" class="btn btn-warning") Update profile

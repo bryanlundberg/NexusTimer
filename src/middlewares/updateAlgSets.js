@@ -7,8 +7,10 @@ const collAlgorithms = require("../algs/collAlgs");
 
 module.exports = async (req, res, next) => {
   try {
-		const user = await User.findOne({ username: req.params.userName });
-		if (!user) {throw new Error("User not found");}
+    const user = await User.findOne({ username: req.params.userName });
+    if (!user) {
+      throw new Error("User not found");
+    }
 
     const fillUserAlgs = async (userId, method, algorithms) => {
       let foundAlgs = await Algorithm.find({ algSet: method, owner: userId });
@@ -42,4 +44,3 @@ module.exports = async (req, res, next) => {
     return next(error);
   }
 };
-

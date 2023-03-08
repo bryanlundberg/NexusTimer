@@ -17,10 +17,10 @@ exports.historial = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
-		let owner = false;
-		if (req.user && req.user._id.equals(user._id)) {
-			owner = true;
-		}
+    let owner = false;
+    if (req.user && req.user._id.equals(user._id)) {
+      owner = true;
+    }
     const solves = await Solve.find({
       owner: user._id,
     }).sort({ startDate: -1 });
@@ -31,8 +31,8 @@ exports.historial = async (req, res) => {
       title: "Profile",
       solves,
       userSolves,
-			owner,
-			user,
+      owner,
+      user,
     });
   } catch (error) {
     console.log(error);
@@ -45,10 +45,10 @@ exports.userProfileTab = async (req, res) => {
     if (!user) {
       throw new Error("Usernot found");
     }
-		let owner = false;
-		if (req.user && req.user._id.equals(user._id)) {
-			owner = true;
-		}
+    let owner = false;
+    if (req.user && req.user._id.equals(user._id)) {
+      owner = true;
+    }
     const cubes = await Cube.find({ owner: user._id });
     function getUniqueCategories(array) {
       const categories = new Set();
@@ -64,7 +64,7 @@ exports.userProfileTab = async (req, res) => {
         user,
         cubes,
         categories,
-				owner,
+        owner,
       });
     }
   } catch (error) {
@@ -78,10 +78,10 @@ exports.myCubes = async (req, res) => {
     if (!user) {
       throw new Error("Usernot found");
     }
-		let owner = false;
-		if (req.user && req.user._id.equals(user._id)) {
-			owner = true;
-		}
+    let owner = false;
+    if (req.user && req.user._id.equals(user._id)) {
+      owner = true;
+    }
     const cubes = await Cube.find({ owner: user._id });
     let dataEachCube = [];
     for (const element of cubes) {
@@ -106,7 +106,7 @@ exports.myCubes = async (req, res) => {
       title: "Your cubes",
       user,
       dataEachCube,
-			owner,
+      owner,
     });
   } catch (error) {
     console.log(error);
@@ -116,12 +116,12 @@ exports.myCubes = async (req, res) => {
 exports.settings = async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.userName });
-		let owner = false;
-		if (req.user && req.user._id.equals(user._id)) {
-			owner = true;
-		} else {
-			res.redirect("/")
-		}
+    let owner = false;
+    if (req.user && req.user._id.equals(user._id)) {
+      owner = true;
+    } else {
+      res.redirect("/");
+    }
     if (user) {
       res.render("profile_edit", {
         title: "Your profile",
@@ -153,10 +153,10 @@ exports.algCollection = async (req, res) => {
     if (!user) {
       throw new Error("Usernot found");
     }
-		let owner = false;
-		if (req.user && req.user._id.equals(user._id)) {
-			owner = true;
-		}
+    let owner = false;
+    if (req.user && req.user._id.equals(user._id)) {
+      owner = true;
+    }
     const setOLL = await Algorithm.find({ owner: user._id, algSet: "OLL" });
     const setPLL = await Algorithm.find({ owner: user._id, algSet: "PLL" });
     const setCMLL = await Algorithm.find({ owner: user._id, algSet: "CMLL" });
@@ -176,7 +176,7 @@ exports.algCollection = async (req, res) => {
       learnedPLL,
       learnedCMLL,
       learnedCOLL,
-			owner,
+      owner,
     });
   } catch (error) {
     console.log(error);

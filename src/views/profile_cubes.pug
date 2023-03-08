@@ -22,7 +22,6 @@ block content
 											div(class="form-floating")
 												input(type="text" class="form-control" id="brand" name="brand" placeholder="Brand")
 												label(for="brand") Brand
-												
 										div(class="col-md")
 											div(class="form-floating")
 												select(class="form-select" id="category" name="category")
@@ -40,7 +39,6 @@ block content
 												label(for="category") Choose a category
 										input(type="hidden" name="_csrf" value=csrfToken)
 										button.btn.btn-outline-primary Add cube!
-
 						div(class="col")
 							table.table.table-striped
 								caption List of #{user.username} cubes
@@ -54,7 +52,6 @@ block content
 										th(scope="col") Best Ao5
 										if (owner==true)
 											th.text-center(scope="col") Options
-
 								tbody
 									for value in dataEachCube
 										tr

@@ -1,17 +1,21 @@
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy
-const User = require("../../models/User")
+const LocalStrategy = require("passport-local").Strategy;
+const User = require("../../models/User");
 
 passport.serializeUser((user, done) => {
-  done(null, user._id)
+  done(null, user._id);
 });
 
-passport.deserializeUser( async (id, done) => {
-	const user = await User.findById(id)
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findById(id);
   done(null, user);
 });
 
-const localStrategy = new LocalStrategy(async function (username, password, done) {
+const localStrategy = new LocalStrategy(async function (
+  username,
+  password,
+  done
+) {
   try {
     const user = await User.findOne({ username: username });
     if (!user) {
@@ -26,5 +30,4 @@ const localStrategy = new LocalStrategy(async function (username, password, done
   }
 });
 
-
-module.exports = localStrategy
+module.exports = localStrategy;

@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 
 mongoose.set("strictQuery", false);
 
-const USER = "usernametest"
-const PASSWORD = "passwordtest"
-const DB = "cubestats"
+const USER = "usernametest";
+const PASSWORD = "passwordtest";
+const DB = "cubestats";
 
 async function startMongooseDB() {
   await mongoose.connect(
@@ -13,4 +13,4 @@ async function startMongooseDB() {
   );
 }
 
-module.exports = { startMongooseDB }
+module.exports = { startMongooseDB };

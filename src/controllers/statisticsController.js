@@ -1,7 +1,13 @@
 const User = require("../models/User");
 const Solve = require("../models/Solve");
 const Cube = require("../models/Cube");
-const { findBestTime, getBestAverage, calculateCubingTime, calculateAverage, calculateCurrentAo } = require("../extras/formulas"); 
+const {
+  findBestTime,
+  getBestAverage,
+  calculateCubingTime,
+  calculateAverage,
+  calculateCurrentAo,
+} = require("../extras/formulas");
 
 exports.categoryTimerStats = async (req, res) => {
   try {
@@ -91,30 +97,28 @@ exports.stats = async (req, res) => {
     const uCubingTime = calculateCubingTime(solvesByCube);
 
     return res.json({
-			cPb: cPb,
-			cMean: cMean,
-			cAo5: cAo5,
-			cAo12: cAo12,
-			cAo50: cAo50,
-			cAo100: cAo100,
-			cAo1000: cAo1000,
-			cDesviation: "Pending",
-			cCount: cCount,
-			cCubingTime: cCubingTime,
-			
-			uPb: uPb,
-			uMean: uMean,
-			uAo5: uAo5,
-			uAo12: uAo12,
-			uAo50: uAo50,
-			uAo100: uAo100,
-			uAo1000: uAo1000,
-			uDesviation: "Pending",
-			uCount: uCount,
-			uCubingTime: uCubingTime,
-			
-		});
-		
+      cPb: cPb,
+      cMean: cMean,
+      cAo5: cAo5,
+      cAo12: cAo12,
+      cAo50: cAo50,
+      cAo100: cAo100,
+      cAo1000: cAo1000,
+      cDesviation: "Pending",
+      cCount: cCount,
+      cCubingTime: cCubingTime,
+
+      uPb: uPb,
+      uMean: uMean,
+      uAo5: uAo5,
+      uAo12: uAo12,
+      uAo50: uAo50,
+      uAo100: uAo100,
+      uAo1000: uAo1000,
+      uDesviation: "Pending",
+      uCount: uCount,
+      uCubingTime: uCubingTime,
+    });
   } catch (error) {
     console.log(error);
   }

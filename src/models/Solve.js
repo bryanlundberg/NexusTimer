@@ -25,11 +25,11 @@ const SolveSchema = new Schema({
   brand: {
     type: String,
   },
-	
-	startDate: {
-		type: Number,
-		required: true,
-	},
+
+  startDate: {
+    type: Number,
+    required: true,
+  },
 
   scramble: {
     type: String,
@@ -38,22 +38,21 @@ const SolveSchema = new Schema({
 });
 
 SolveSchema.virtual("formatedTime").get(function () {
-	const convertMsToTime = (milliseconds) => {
-		let seconds = Math.floor((milliseconds / 1000) % 60);
-		let minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
-		let timeInSeconds = (milliseconds / 1000).toFixed(3);
-		if (minutes === 0) {
-			return timeInSeconds;
-		}
-		let timeInMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-		let timeInSecondsFormatted = seconds < 10 ? `0${seconds}` : `${seconds}`;
-		let time = `${timeInMinutes}:${timeInSecondsFormatted}`;
-		return time;
-	}
-	
-	const time = convertMsToTime(this.solveTime);
-	return time;
-	
+  const convertMsToTime = (milliseconds) => {
+    let seconds = Math.floor((milliseconds / 1000) % 60);
+    let minutes = Math.floor((milliseconds / (1000 * 60)) % 60);
+    let timeInSeconds = (milliseconds / 1000).toFixed(3);
+    if (minutes === 0) {
+      return timeInSeconds;
+    }
+    let timeInMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    let timeInSecondsFormatted = seconds < 10 ? `0${seconds}` : `${seconds}`;
+    let time = `${timeInMinutes}:${timeInSecondsFormatted}`;
+    return time;
+  };
+
+  const time = convertMsToTime(this.solveTime);
+  return time;
 });
 
 module.exports = mongoose.model("Solve", SolveSchema);

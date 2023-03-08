@@ -7,9 +7,7 @@ block content
 			.col-md-12.col-lg-4.my-1
 				include profile_sidebar
 			.col-md-12.col-lg-8.my-1
-			
 				include profile_navbar
-					
 				.container.my-3
 					div(class="card border-primary mb-3")
 						div(class="card-header") CFOP
@@ -26,7 +24,6 @@ block content
 											.progress.my-1
 												.progress-bar.progress-bar-striped.progress-bar-animated(role="progressbar" style=`width:${(learnedOLL / setOLL.length) * 100}%` aria-valuenow=`${(learnedOLL / setOLL.length) * 100}` aria-valuemin="0" aria-valuemax="100") #{((learnedOLL / setOLL.length) * 100).toFixed(1)}%
 											a(class="btn btn-outline-primary my-1" href="/"+user.username+"/oll" role="button") View
-											
 								div(class="col")
 									.container.d-flex.border.rounded
 										div.d-flex.align-items-center
@@ -38,12 +35,10 @@ block content
 											.progress.my-1
 												.progress-bar.progress-bar-striped.progress-bar-animated(role="progressbar" style=`width:${(learnedPLL / setPLL.length) * 100}%` aria-valuenow=`${(learnedPLL / setPLL.length) * 100}` aria-valuemin="0" aria-valuemax="100") #{((learnedPLL / setPLL.length) * 100).toFixed(1)}%
 											a(class="btn btn-outline-primary my-1" href="/"+user.username+"/pll" role="button") View
-											
 					div(class="card border-primary mb-3")
 						div(class="card-header") ROUX
 						div(class="card-body")
 							div(class="row row-cols-1 row-cols-md-2 g-4")
-											
 								div(class="col")
 									.container.d-flex.border.rounded
 										div.d-flex.align-items-center
@@ -55,7 +50,6 @@ block content
 											.progress.my-1
 												.progress-bar.progress-bar-striped.progress-bar-animated(role="progressbar" style=`width:${(learnedCOLL / setCOLL.length) * 100}%` aria-valuenow=`${(learnedCOLL / setCOLL.length) * 100}` aria-valuemin="0" aria-valuemax="100") #{((learnedCOLL / setCOLL.length) * 100).toFixed(1)}%
 											a(class="btn btn-outline-primary my-1" href="/"+user.username+"/coll" role="button") View
-											
 								div(class="col")
 									.container.d-flex.border.rounded
 										div.d-flex.align-items-center
