@@ -9,11 +9,7 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-dark
       ul.navbar-nav
         if (!loggedIn)
           li.nav-item
-            a.nav-link.active(aria-current='page' href='/') Home
-          li.nav-item
-            a.nav-link(href='/login') Login
-          li.nav-item
-            a.nav-link(href='/register') Register
+            a.nav-link(href='/login') Sign In
         else
           li.nav-item
             a.nav-link(href='/timer') Cube station
