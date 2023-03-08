@@ -10,16 +10,11 @@ img(src=user.profile_img class="my-3 object-fit rounded-circle mx-auto d-block" 
 				span Nationality:
 				span #{user.nationality}
 			li.list-group-item.d-flex.justify-content-between
-				span Website:
-				span Link
-			li.list-group-item.d-flex.justify-content-between
-				span Youtube:
-				span Link
-			li.list-group-item.d-flex.justify-content-between
 				span Bio:
-				span Blasha bLAH
+				span #{user.bio}
 			li.list-group-item.d-flex.justify-content-between
-				span Contact email:
-				span sdasg@gmail.com
+				span Contact:
+				span 
+					a(href=`mailto:${user.contactEmail}`) #{user.contactEmail}
 if (owner==true)
 	a(class="btn btn-warning w-100 d-block my-3" href="/"+user.username+"/settings" role="button") Edit

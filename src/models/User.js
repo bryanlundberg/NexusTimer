@@ -11,7 +11,7 @@ const UserSchema = new Schema({
 
   email: {
     type: String,
-    //unique: true,
+    unique: true,
     required: true,
   },
 
@@ -32,12 +32,12 @@ const UserSchema = new Schema({
 
   name: {
     type: String,
-    default: "--DF6A872H43--",
+    default: "new user",
   },
 
   nationality: {
     type: String,
-    default: "-",
+    default: "",
   },
 
   profile_img: {
@@ -45,24 +45,14 @@ const UserSchema = new Schema({
     default: "/images/profile/gears.jpg",
   },
 
-  website: {
-    type: String,
-    default: "-",
-  },
-
-  youtube: {
-    type: String,
-    default: "-",
-  },
-
   contactEmail: {
     type: String,
-    default: "-",
+    default: "",
   },
 
   bio: {
     type: String,
-    default: "-",
+    default: "",
   },
 });
 
