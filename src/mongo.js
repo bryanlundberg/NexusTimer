@@ -1,11 +1,10 @@
-// Set up mongoose connection
+require("dotenv").config()
 const mongoose = require("mongoose");
+const USER = process.env.USER
+const PASSWORD = process.env.PASSWORD
+const DB = process.env.DB
 
 mongoose.set("strictQuery", false);
-
-const USER = "usernametest";
-const PASSWORD = "passwordtest";
-const DB = "cubestats";
 
 async function startMongooseDB() {
   await mongoose.connect(

@@ -1,3 +1,4 @@
+require('dotenv').config()
 const createError = require("http-errors");
 const express = require("express");
 const session = require("express-session");
@@ -15,7 +16,6 @@ const { loadFavicon } = require("./middlewares/favicon");
 const { sessionsExpress } = require("./middlewares/sessions");
 const { logError, errorHandler } = require("./middlewares/errorHandler");
 const { startMongooseDB } = require("./mongo");
-
 const app = express();
 
 app.use(sessionsExpress);
@@ -39,7 +39,6 @@ app.use((req, res, next) => {
   req.user ? (res.locals.userSession = req.user) : "";
   next();
 });
-
 app.use("/submit", submitRouter);
 app.use("/api", apiRouter);
 app.use("/logout", logoutRouter);
