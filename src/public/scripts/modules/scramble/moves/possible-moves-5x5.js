@@ -1,4 +1,4 @@
-export const possibleMoves4x4 = [
+export const possibleMoves5x5 = [
   "U",
   "U2",
   "U'",
