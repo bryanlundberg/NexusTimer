@@ -35,7 +35,6 @@ export const possibleMoves6x6 = [
   "Uw",
   "Uw'",
   "Uw2",
-	
   "3Rw2",
   "3Rw",
   "3Rw'",

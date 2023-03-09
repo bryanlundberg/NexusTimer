@@ -4,6 +4,8 @@ import { possibleMoves4x4 } from "./moves/possible-moves-4x4.js";
 import { possibleMoves5x5 } from "./moves/possible-moves-5x5.js";
 import { possibleMoves6x6 } from "./moves/possible-moves-6x6.js";
 import { possibleMoves7x7 } from "./moves/possible-moves-7x7.js";
+import { possibleMovesPyraminx } from "./moves/possible-moves-pyraminx.js";
+import { possibleMovesSkewb } from "./moves/possible-moves-skewb.js";
 
 const scrambleGenerator = (category) => {
   let possibleMoves;
@@ -26,15 +28,12 @@ const scrambleGenerator = (category) => {
   } else if (category === "7x7") {
     possibleMoves = possibleMoves7x7;
     scrambleSize = 100;
-  } else if (category === "SQ-1") {
-    possibleMoves = possibleMoves7x7;
-    scrambleSize = 100;
+  } else if (category === "Skewb") {
+    possibleMoves = possibleMovesSkewb;
+    scrambleSize = 8;
   } else if (category === "Pyraminx") {
-    possibleMoves = possibleMoves7x7;
-    scrambleSize = 100;
-  } else if (category === "Megaminx") {
-    possibleMoves = possibleMoves7x7;
-    scrambleSize = 100;
+    possibleMoves = possibleMovesPyraminx;
+    scrambleSize = 11;
   } else {
     return "Invalid category";
   }

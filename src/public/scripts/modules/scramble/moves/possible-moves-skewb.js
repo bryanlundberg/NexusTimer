@@ -1,20 +1,14 @@
-export const possibleMoves3x3 = [
+export const possibleMovesSkewb = [
   "U",
-  "U2",
   "U'",
   "R",
-  "R2",
   "R'",
   "F",
-  "F2",
   "F'",
   "D",
-  "D2",
   "D'",
   "L",
-  "L2",
   "L'",
   "B",
-  "B2",
   "B'",
 ];
