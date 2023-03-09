@@ -1,8 +1,8 @@
-import { URL } from "../utils/constants.js";
+import { domain } from "../utils/constants.js";
 
 export const getUserById = async (userId) => {
   try {
-    const userData = await fetch(`${URL}/api/${userId}`);
+    const userData = await fetch(`${domain}/api/${userId}`);
     const data = await userData.json();
     return data;
   } catch (error) {
@@ -12,7 +12,7 @@ export const getUserById = async (userId) => {
 
 export const getUserCategoryStatistics = async (userId, category) => {
   try {
-    const result = await fetch(`${URL}/api/${category}/${userId}`);
+    const result = await fetch(`${domain}/api/${category}/${userId}`);
     if (!result.ok) {
       throw new Error("Something wrong happen getting the data.");
     }
@@ -24,7 +24,7 @@ export const getUserCategoryStatistics = async (userId, category) => {
 
 export const getUserCubeStatistics = async (userId, category, cubeId) => {
   try {
-    const result = await fetch(`${URL}/api/${category}/${cubeId}/${userId}`);
+    const result = await fetch(`${domain}/api/${category}/${cubeId}/${userId}`);
     if (!result.ok) {
       throw new Error("Something wrong happen getting the data.");
     }

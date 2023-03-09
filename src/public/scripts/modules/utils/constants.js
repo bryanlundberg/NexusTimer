@@ -1,5 +1,5 @@
-export const URL = "http://localhost:3000";
-export const categories = [
+export const domain = new URL(location.href).origin;
+/* export const categories = [
   {
     cat: "Overall",
   },
@@ -30,4 +30,4 @@ export const categories = [
   {
     cat: "Megaminx",
   },
- ];
+ ]; */
