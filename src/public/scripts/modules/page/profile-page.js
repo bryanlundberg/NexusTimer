@@ -21,9 +21,7 @@ export const profilePage = async () => {
       generateInitialFilters();
       await updateStatistics();
       categoryFilter.addEventListener("change", executeChangeCategory);
-      cubeFilter.addEventListener("change", async () => {
-        await executeChangeCube();
-      });
+      cubeFilter.addEventListener("change", executeChangeCube)
     }
   } catch (error) {
     console.log(error);

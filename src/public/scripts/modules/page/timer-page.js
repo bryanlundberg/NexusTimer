@@ -16,15 +16,9 @@ export const timerPage = async () => {
     updateDisplayTimerStats();
     const categoryList = document.querySelector("#category");
     const cubeList = document.querySelector("#cube");
-    categoryList.addEventListener("change", async () => {
-      await executeCategoryListChange();
-    });
-    cubeList.addEventListener("change", async () => {
-      executeCubeListChange();
-    });
-    document.addEventListener("keydown", async (event) => {
-      await handleDownKeys(event);
-    });
+    categoryList.addEventListener("change", executeCategoryListChange)
+    cubeList.addEventListener("change", executeCubeListChange)
+    document.addEventListener("keydown", handleDownKeys)
     document.addEventListener("keyup", handleUpKeys);
   } catch (error) {
     console.log(error);

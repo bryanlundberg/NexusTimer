@@ -3,18 +3,25 @@ const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
 
 exports.login = (req, res) => {
-  res.render("login", {
-    title: "login page",
-    mensajes: req.flash().mensajes,
-  });
+  if (!req.user) {
+    return res.render("login", {
+      title: "login page",
+      mensajes: req.flash().mensajes,
+    });
+  }
+  return res.redirect(`/${req.user.username}`);
 };
 
 exports.register = (req, res) => {
-  res.render("register", {
-    title: "register page",
-    mensajes: req.flash().mensajes,
-  });
+  if (!req.user) {
+    return res.render("register", {
+      title: "register page",
+      mensajes: req.flash().mensajes,
+    });
+  }
+  return res.redirect(`/${req.user.username}`);
 };
+
 
 exports.registerNewAccount = async (req, res) => {
   const errors = validationResult(req);
