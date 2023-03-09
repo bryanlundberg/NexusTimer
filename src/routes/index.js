@@ -6,7 +6,7 @@ const { body } = require("express-validator");
 const authController = require("../controllers/AuthController");
 const userController = require("../controllers/UserController");
 const isAuthenticated = require("../middlewares/isAuthenticated");
-const algSetController = require("../controllers/AlgSetController");
+const algSetController = require("../controllers/algSetController");
 const timerController = require("../controllers/timerController");
 
 router.get("/", (req, res) => {
