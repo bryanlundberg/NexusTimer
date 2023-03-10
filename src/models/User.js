@@ -1,4 +1,3 @@
-require("dotenv").config()
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
@@ -79,8 +78,7 @@ UserSchema.methods.comparePassword = async function (candidatePassword) {
 };
 
 UserSchema.methods.setImgUrl = function setImgUrl(filename) {
-	const url = process.env.URL;
-	this.profile_img = `${url}/public/tmp/img/${filename}`
+	this.profile_img = `/tmp/img/${filename}`
 }
 
 UserSchema.virtual("url").get(function () {
