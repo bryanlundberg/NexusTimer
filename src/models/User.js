@@ -1,6 +1,7 @@
+require("dotenv").config()
+const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const bcrypt = require("bcryptjs");
 
 const UserSchema = new Schema({
   username: {
@@ -32,7 +33,7 @@ const UserSchema = new Schema({
 
   name: {
     type: String,
-    default: "new user",
+    default: "New user",
   },
 
   nationality: {
@@ -42,7 +43,7 @@ const UserSchema = new Schema({
 
   profile_img: {
     type: String,
-    default: "/images/profile/gears.jpg",
+    default: "/images/profile/default.png",
   },
 
   contactEmail: {
@@ -76,5 +77,14 @@ UserSchema.pre("save", async function (next) {
 UserSchema.methods.comparePassword = async function (candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
+
+UserSchema.methods.setImgUrl = function setImgUrl(filename) {
+	const url = process.env.URL;
+	this.profile_img = `${url}/public/tmp/img/${filename}`
+}
+
+UserSchema.virtual("url").get(function () {
+  return `${this.profile_img}`;
+});
 
 module.exports = mongoose.model("User", UserSchema);

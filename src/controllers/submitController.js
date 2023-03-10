@@ -95,7 +95,12 @@ exports.updateSettings = async (req, res) => {
     if (!user) {
       throw new Error("User not found");
     }
-
+		
+		if (req.file) {
+			const { filename } = req.file;
+			user.setImgUrl(filename);
+		}
+		
     user.name = name;
     user.bio = bio;
     user.website = website;
@@ -103,7 +108,6 @@ exports.updateSettings = async (req, res) => {
     user.contactEmail = contactEmail;
     user.nationality = nationality;
     user.theme = theme;
-    console.log(user.theme);
 
     const saveUser = await user.save();
 

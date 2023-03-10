@@ -15,7 +15,7 @@ nav.navbar.navbar-expand-md.navbar-dark.bg-dark
             a.nav-link(href='/timer') Cube station
           li.nav-item.dropdown
             a.nav-link.dropdown-toggle(href='#' data-bs-toggle="dropdown" aria-expanded="false")
-              img.rounded-circle(src="/images/profile/gears.jpg", width="24" height="24" class="img-cover")
+              img.rounded-circle(src=userSession.profile_img, width="24" height="24" class="img-cover")
             ul.dropdown-menu.dropdown-menu-end.dropdown-menu-dark
               li
                 a.dropdown-item(href='/'+userSession.username) Signed in as 
