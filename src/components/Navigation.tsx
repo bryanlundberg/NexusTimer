@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Navigation() {
   return (
     <nav>
-      <ul className="flex p-3 gap-5 justify-center bg-gray-300">
+      <ul className="flex p-3 gap-5 justify-center">
         <li>
           <Link href="/">
             <Clock />

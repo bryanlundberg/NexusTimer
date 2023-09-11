@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="min-h-screen flex flex-col justify-between">
+        <main className="min-h-screen flex flex-col justify-between bg-slate-900 text-zinc-50">
           {children}
           <Navigation />
         </main>
