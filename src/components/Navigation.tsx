@@ -1,4 +1,5 @@
 import Clock from "@/icons/Clock";
+import Cubes from "@/icons/Cubes";
 import Metrics from "@/icons/Metrics";
 import Stack from "@/icons/Stack";
 import Link from "next/link";
@@ -20,6 +21,11 @@ export default function Navigation() {
         <li>
           <Link href="/stats">
             <Metrics />
+          </Link>
+        </li>
+        <li>
+          <Link href="/cubes">
+            <Cubes />
           </Link>
         </li>
       </ul>
