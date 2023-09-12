@@ -8,22 +8,22 @@ export default function Navigation() {
   return (
     <nav>
       <ul className="flex p-3 gap-5 justify-center">
-        <li>
+        <li className="p-4 hover:bg-gray-800">
           <Link href="/">
             <Clock />
           </Link>
         </li>
-        <li>
+        <li className="p-4 hover:bg-gray-800">
           <Link href="/solves">
             <Stack />
           </Link>
         </li>
-        <li>
+        <li className="p-4 hover:bg-gray-800">
           <Link href="/stats">
             <Metrics />
           </Link>
         </li>
-        <li>
+        <li className="p-4 hover:bg-gray-800">
           <Link href="/cubes">
             <Cubes />
           </Link>

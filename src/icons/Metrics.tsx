@@ -2,8 +2,8 @@ export default function Metrics() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
+      width="28"
+      height="28"
       fill="currentColor"
       className="bi bi-bar-chart-fill"
       viewBox="0 0 16 16"
