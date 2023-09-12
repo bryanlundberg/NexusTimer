@@ -1,8 +1,15 @@
-export default function Button({ children }: { children: React.ReactNode }) {
+export default function Button({
+  children,
+  disabled,
+}: {
+  children: React.ReactNode;
+  disabled: boolean;
+}) {
   return (
     <button
+      disabled={disabled}
       type="button"
-      className="h-8 px-3 py-1 rounded-md border border-zinc-800 font-medium justify-center align-middle hover:bg-zinc-900 text-sm"
+      className="h-8 px-3 py-1 rounded-md border border-zinc-800 font-medium justify-center align-middle hover:bg-zinc-900 text-sm disabled:bg-zinc-900"
     >
       {children}
     </button>
