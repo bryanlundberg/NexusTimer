@@ -26,7 +26,7 @@ export default function ModalCreate({
     setSelectedCategory(category);
   };
 
-  const handleWriteCubeName = (newText) => {
+  const handleWriteCubeName = (newText: string) => {
     setCubeName(newText);
   };
 
@@ -48,6 +48,7 @@ export default function ModalCreate({
           name: cubeName,
           category: selectedCategory,
           solves: [],
+          created: Date.now(),
         };
 
         const newCubes = [...loadedCubes, newCube];

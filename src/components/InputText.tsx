@@ -3,7 +3,7 @@ export default function InputText({
   onChange,
 }: {
   placeholder: string;
-  onChange?: any;
+  onChange: any;
 }) {
   return (
     <input

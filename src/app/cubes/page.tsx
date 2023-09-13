@@ -36,6 +36,23 @@ export default function CubesPage() {
     setCubes(newCubelist);
   };
 
+  const handleSearchFilter = (searchCube: string) => {
+    const cubesDB = window.localStorage.getItem("cubes");
+    if (!cubesDB) return;
+    const parseCubes = JSON.parse(cubesDB);
+
+    if (searchCube === "") {
+      return setCubes(parseCubes);
+    }
+    const filterCubes = parseCubes.filter((cube: Cube) =>
+      cube.name.toLowerCase().startsWith(searchCube.toLowerCase())
+    );
+
+    if (filterCubes) {
+      setCubes(filterCubes);
+    }
+  };
+
   return (
     <>
       <div className="w-full md:w-10/12 mx-auto">
@@ -51,7 +68,10 @@ export default function CubesPage() {
 
         <div className="flex align-middle gap-3">
           {/* Options */}
-          <InputText placeholder="Filter your cubes" />
+          <InputText
+            placeholder="Filter your cubes"
+            onChange={handleSearchFilter}
+          />
           <Button disabled={false} handleClick={handleClick}>
             + Cube
           </Button>
