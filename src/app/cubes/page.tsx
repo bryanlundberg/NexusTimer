@@ -10,7 +10,7 @@ import ModalCreate from "@/components/ModalCreate";
 
 export default function CubesPage() {
   const [cubes, setCubes] = useState<Cube[]>([]);
-  const [isCreatingCube, setIsCreatingCube] = useState<boolean>(true);
+  const [isCreatingCube, setIsCreatingCube] = useState<boolean>(false);
 
   const handleClick = () => {
     setIsCreatingCube(true);
@@ -35,7 +35,7 @@ export default function CubesPage() {
 
         <div className="flex align-middle gap-3">
           {/* Options */}
-          <InputText />
+          <InputText placeholder="Filter your cubes" />
           <Button disabled={false} handleClick={handleClick}>
             + Cube
           </Button>
