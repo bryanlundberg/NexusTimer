@@ -1,4 +1,3 @@
-import Image from "next/image";
 import InputText from "./InputText";
 import cube333 from "@/images/categories/cube333.png";
 import cube222 from "@/images/categories/cube222.png";
@@ -6,16 +5,59 @@ import cube444 from "@/images/categories/cube444.png";
 import CheckboxImage from "./CheckboxImage";
 import { useState } from "react";
 import { Categories } from "@/interfaces/Categories";
+import { Cube } from "@/interfaces/Cube";
+import genId from "@/lib/genId";
 
-export default function ModalCreate({ handleClose }: { handleClose: any }) {
+export default function ModalCreate({
+  handleClose,
+  handleAddCube,
+}: {
+  handleClose: any;
+  handleAddCube: any;
+}) {
   const [selectedCategory, setSelectedCategory] = useState<Categories>("2x2");
+  const [cubeName, setCubeName] = useState<string>("");
+
   const handleClickDismiss = () => {
     handleClose();
   };
 
   const handleClickRadio = (category: Categories) => {
     setSelectedCategory(category);
-    console.log("asds");
+  };
+
+  const handleWriteCubeName = (newText) => {
+    setCubeName(newText);
+  };
+
+  const handleCreateCube = () => {
+    if (cubeName === "") return;
+
+    const cubes = window.localStorage.getItem("cubes");
+
+    if (cubes) {
+      const loadedCubes = JSON.parse(cubes);
+
+      const preventRepeatCube = loadedCubes.find(
+        (cube: Cube) => cube.name === cubeName
+      );
+
+      if (!preventRepeatCube) {
+        const newCube: Cube = {
+          id: genId(),
+          name: cubeName,
+          category: selectedCategory,
+          solves: [],
+        };
+
+        const newCubes = [...loadedCubes, newCube];
+        window.localStorage.setItem("cubes", JSON.stringify(newCubes));
+        handleAddCube(newCubes);
+        handleClose();
+      }
+    }
+
+    window.localStorage;
   };
 
   return (
@@ -35,7 +77,10 @@ export default function ModalCreate({ handleClose }: { handleClose: any }) {
               <h3 className="text-xl font-semibold text-neutral-50 ">
                 New Cube:
               </h3>
-              <InputText placeholder="Gan 356, Moro, Xeun" />
+              <InputText
+                placeholder="Gan 356, Moro, Xeun"
+                onChange={handleWriteCubeName}
+              />
               <button
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
@@ -102,6 +147,7 @@ export default function ModalCreate({ handleClose }: { handleClose: any }) {
               </button>
 
               <button
+                onClick={() => handleCreateCube()}
                 data-modal-hide="defaultModal"
                 type="button"
                 className="text-gray-800 bg-neutral-50 hover:bg-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"

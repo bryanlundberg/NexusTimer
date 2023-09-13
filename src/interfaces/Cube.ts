@@ -2,7 +2,7 @@ import { Categories } from "./Categories";
 import { Solve } from "./Solve";
 
 export interface Cube {
-  id: number;
+  id: string;
   name: string;
   category: Categories;
   solves: Solve[];

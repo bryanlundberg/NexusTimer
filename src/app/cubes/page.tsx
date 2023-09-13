@@ -12,12 +12,28 @@ export default function CubesPage() {
   const [cubes, setCubes] = useState<Cube[]>([]);
   const [isCreatingCube, setIsCreatingCube] = useState<boolean>(false);
 
+  useEffect(() => {
+    const cubesDB = window.localStorage.getItem("cubes");
+    if (!cubesDB) {
+      window.localStorage.setItem("cubes", "[]");
+    }
+
+    if (cubesDB) {
+      const parseCubes = JSON.parse(cubesDB);
+      setCubes(parseCubes);
+    }
+  }, []);
+
   const handleClick = () => {
     setIsCreatingCube(true);
   };
 
   const handleClose = () => {
     setIsCreatingCube(false);
+  };
+
+  const handleNewCube = (newCubelist: Cube[]) => {
+    setCubes(newCubelist);
   };
 
   return (
@@ -50,25 +66,17 @@ export default function CubesPage() {
             <TableHeader />
             <div className="table-row-group h-10 border-b border-zinc-800 text-white text-sm">
               {cubes.map((cube) => {
-                return (
-                  <TableRow
-                    key={genId()}
-                    cube="Gualong"
-                    category="2x2"
-                    best={2.33}
-                    ao3={2.33}
-                    ao5={2.33}
-                    ao12={2.33}
-                    ao50={2.33}
-                    ao100={2.33}
-                    ao1000={2.33}
-                  />
-                );
+                return <TableRow key={genId()} cubeData={cube} />;
               })}
             </div>
           </div>
         </div>
-        {isCreatingCube && <ModalCreate handleClose={handleClose} />}
+        {isCreatingCube && (
+          <ModalCreate
+            handleClose={handleClose}
+            handleAddCube={handleNewCube}
+          />
+        )}
       </div>
     </>
   );
