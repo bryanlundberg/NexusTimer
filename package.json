@@ -1,32 +1,29 @@
 {
-  "name": "express-login",
-  "version": "0.0.0",
+  "name": "gfdhgfd",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./src/bin/www",
-    "devstart": "nodemon ./src/bin/www",
-    "dev": "SET DEBUG=express-login:* & npm start"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "connect-flash": "^0.1.1",
-    "connect-mongo": "^4.6.0",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "dotenv": "^16.0.3",
-    "express": "~4.16.1",
-    "express-session": "^1.17.3",
-    "express-validator": "^6.14.3",
-    "http-errors": "~1.6.3",
-    "mongoose": "^6.8.4",
-    "morgan": "~1.9.1",
-    "multer": "^1.4.5-lts.1",
-    "passport": "^0.6.0",
-    "passport-local": "^1.0.0",
-    "pug": "2.0.0-beta11",
-    "serve-favicon": "^2.5.0"
+    "@types/node": "20.6.0",
+    "@types/react": "18.2.21",
+    "@types/react-dom": "18.2.7",
+    "autoprefixer": "10.4.15",
+    "eslint": "8.49.0",
+    "eslint-config-next": "13.4.19",
+    "next": "13.4.19",
+    "postcss": "8.4.29",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.2.2",
+    "uuid": "9.0.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "@types/uuid": "9.0.3"
   }
 }
