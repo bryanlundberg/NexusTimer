@@ -1,0 +1,16 @@
+export const possibleMovesPyraminx = [
+  "R",
+  "L'",
+  "L",
+  "U",
+  "B'",
+  "b",
+  "u'",
+  "R'",
+  "B",
+  "l",
+	"l'",
+  "b'",
+  "r'",
+  "r",
+];

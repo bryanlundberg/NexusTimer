@@ -1,34 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CubeStats [![Netlify Status](https://api.netlify.com/api/v1/badges/2583bc15-3bd3-4ea1-baf5-641b3cf8ff94/deploy-status)](https://app.netlify.com/sites/bucolic-narwhal-d39359/deploys)
 
-## Getting Started
+CubeStats is a versatile timer and statistics tracker designed specifically for speedcubers. Whether you're a seasoned cuber looking to track your progress or a beginner aiming to improve your solve times, CubeStats has you covered. With a user-friendly interface and a range of features, it's the perfect tool for cubing enthusiasts of all levels.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- [Features](#features)
+- [License](#license)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+CubeStats offers a variety of features to enhance your speedcubing experience: - **Timer:** Accurately time your solves with precision, including inspection time and solve time tracking.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Session Tracking:** Log and review your solves within a session to analyze your progress over time.
+- **Statistics:** Track and visualize your solving statistics, including average solve times, best solves, and more.
+- **Customization:** Personalize your timer with different themes and preferences to suit your style.
+- **Scramble Generator:** Get random scrambles for various cube types, including 2x2, 3x3, 4x4, and more.
+- **History:** Keep a history of your solves and easily refer back to them for analysis or comparison.
+- **Export Data:** Export your session data for further analysis or sharing with the cubing community.
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.
