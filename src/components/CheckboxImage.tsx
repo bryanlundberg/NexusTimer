@@ -31,7 +31,9 @@ export default function CheckboxImage({
         htmlFor={id}
         onClick={() => handleClickRadio(value)}
         className={`cursor-pointer ${
-          selectedCategory === value ? "bg-orange-500" : "bg-transparent"
+          selectedCategory === value
+            ? "outline-dashed outline-amber-300 rounded-sm"
+            : "bg-transparent border-0"
         }`}
       >
         <Image src={src} alt={alt} />

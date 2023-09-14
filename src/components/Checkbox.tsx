@@ -12,7 +12,7 @@ export default function Checkbox() {
       onClick={handleCheckboxClick}
       aria-pressed={isChecked}
       type="button"
-      className={`w-6 h-6 mx-auto rounded-md border ${
+      className={`w-4 h-4 mx-auto rounded-md border ${
         isChecked
           ? "bg-white text-black"
           : "border-zinc-800 text-transparent hover:bg-zinc-900"
