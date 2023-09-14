@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import SolveOptions from "./SolveOptions";
 import { Solve } from "@/interfaces/Solve";
 import { TimerStatus } from "@/interfaces/TimerStatus";
+import genId from "@/lib/genId";
 
 export default function Timer() {
   const [solvingTime, setSolvingTime] = useState<number>(0);
@@ -36,9 +37,11 @@ export default function Timer() {
       clearInterval(runningTimeId.current);
       isSolving.current = false;
       const lastSolve: Solve = {
+        id: genId(),
         startTime: startTime.current,
         endTime: Date.now(),
         scramble: "F' U' F2 U2 R2 U' R' F R'",
+        bookmark: false,
       };
       setSolves([...solves, lastSolve]);
       startTime.current = 0;

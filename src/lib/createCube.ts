@@ -17,7 +17,8 @@ export default function createCube({
     name: cubeName,
     category: category,
     solves: [],
-    created: Date.now(),
+    createdAt: Date.now(),
+    favorite: false,
   };
 
   const newCubes = [...cubesDB, newCube];

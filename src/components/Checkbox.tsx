@@ -1,4 +1,5 @@
 import Check from "@/icons/Check";
+import Favorite from "@/icons/Favorite";
 import { useState } from "react";
 
 export default function Checkbox() {
@@ -18,7 +19,7 @@ export default function Checkbox() {
           : "border-zinc-800 text-transparent hover:bg-zinc-900"
       } text-sm flex justify-center items-center`}
     >
-      <Check />
+      <Favorite />
     </button>
   );
 }

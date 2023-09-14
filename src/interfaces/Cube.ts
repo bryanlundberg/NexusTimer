@@ -6,5 +6,6 @@ export interface Cube {
   name: string;
   category: Categories;
   solves: Solve[];
-  created: number;
+  createdAt: number;
+  favorite: boolean;
 }
