@@ -5,8 +5,7 @@ import cube444 from "@/images/categories/cube444.png";
 import CheckboxImage from "./CheckboxImage";
 import { useState } from "react";
 import { Categories } from "@/interfaces/Categories";
-import { Cube } from "@/interfaces/Cube";
-import genId from "@/lib/genId";
+import createCube from "@/lib/createCube";
 
 export default function ModalCreate({
   handleClose,
@@ -32,33 +31,12 @@ export default function ModalCreate({
 
   const handleCreateCube = () => {
     if (cubeName === "") return;
-
-    const cubes = window.localStorage.getItem("cubes");
-
-    if (cubes) {
-      const loadedCubes = JSON.parse(cubes);
-
-      const preventRepeatCube = loadedCubes.find(
-        (cube: Cube) => cube.name === cubeName
-      );
-
-      if (!preventRepeatCube) {
-        const newCube: Cube = {
-          id: genId(),
-          name: cubeName,
-          category: selectedCategory,
-          solves: [],
-          created: Date.now(),
-        };
-
-        const newCubes = [...loadedCubes, newCube];
-        window.localStorage.setItem("cubes", JSON.stringify(newCubes));
-        handleAddCube(newCubes);
-        handleClose();
-      }
-    }
-
-    window.localStorage;
+    const newCubes = createCube({
+      cubeName: cubeName,
+      category: selectedCategory,
+    });
+    handleAddCube(newCubes);
+    handleClose();
   };
 
   return (

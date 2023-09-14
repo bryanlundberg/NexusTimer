@@ -7,21 +7,15 @@ import { Cube } from "@/interfaces/Cube";
 import genId from "@/lib/genId";
 import TableHeader from "@/components/TableHeader";
 import ModalCreate from "@/components/ModalCreate";
+import loadCubes from "@/lib/loadCubes";
 
 export default function CubesPage() {
   const [cubes, setCubes] = useState<Cube[]>([]);
   const [isCreatingCube, setIsCreatingCube] = useState<boolean>(false);
 
   useEffect(() => {
-    const cubesDB = window.localStorage.getItem("cubes");
-    if (!cubesDB) {
-      window.localStorage.setItem("cubes", "[]");
-    }
-
-    if (cubesDB) {
-      const parseCubes = JSON.parse(cubesDB);
-      setCubes(parseCubes);
-    }
+    const cubesDB = loadCubes();
+    setCubes(cubesDB);
   }, []);
 
   const handleClick = () => {
