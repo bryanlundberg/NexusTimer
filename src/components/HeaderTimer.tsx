@@ -36,12 +36,6 @@ export default function HeaderTimer() {
       {/* Selectors category/cube */}
       <div className="flex flex-row justify-center gap-5 p-4">
         <Select
-          type="Category"
-          options={category}
-          handleChange={handleChange}
-          currentSelection={currentCategory}
-        />
-        <Select
           type="Cube"
           options={cubes}
           handleChange={handleChange}
