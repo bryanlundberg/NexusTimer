@@ -8,6 +8,7 @@ import genId from "@/lib/genId";
 import TableHeader from "@/components/TableHeader";
 import ModalCreate from "@/components/ModalCreate";
 import loadCubes from "@/lib/loadCubes";
+import updateCube from "@/lib/updateCube";
 
 export default function CubesPage() {
   const [cubes, setCubes] = useState<Cube[]>([]);
@@ -28,6 +29,11 @@ export default function CubesPage() {
 
   const handleNewCube = (newCubelist: Cube[]) => {
     setCubes(newCubelist);
+  };
+
+  const handleNewFavCube = (cubeId: string) => {
+    const updatedCube = updateCube({ cubeId, cubes });
+    setCubes(updatedCube);
   };
 
   const handleSearchFilter = (searchCube: string) => {
@@ -80,7 +86,13 @@ export default function CubesPage() {
             <TableHeader />
             <div className="table-row-group h-10 border-b border-zinc-800 text-white text-sm">
               {cubes.map((cube) => {
-                return <TableRow key={genId()} cubeData={cube} />;
+                return (
+                  <TableRow
+                    key={genId()}
+                    cubeData={cube}
+                    handleNewFavCube={handleNewFavCube}
+                  />
+                );
               })}
             </div>
           </div>

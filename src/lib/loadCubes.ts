@@ -1,12 +1,15 @@
 export default function loadCubes() {
   const cubesDB = window.localStorage.getItem("cubes");
   if (!cubesDB) {
-    window.localStorage.setItem("cubes", "[]");
+    window.localStorage.setItem("cubes", JSON.stringify([]));
     return [];
   }
 
-  if (cubesDB) {
-    const parseCubes = JSON.parse(cubesDB);
-    return parseCubes;
+  const parsedCubes = JSON.parse(cubesDB);
+  if (!Array.isArray(parsedCubes)) {
+    window.localStorage.setItem("cubes", JSON.stringify([]));
+    return [];
   }
+
+  return parsedCubes;
 }
