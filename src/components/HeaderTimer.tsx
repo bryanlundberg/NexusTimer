@@ -4,7 +4,13 @@ import { Cube } from "@/interfaces/Cube";
 import loadCubes from "@/lib/loadCubes";
 import findCube from "@/lib/findCube";
 
-export default function HeaderTimer() {
+export default function HeaderTimer({
+  handleSelectedCube,
+  cubeName,
+}: {
+  handleSelectedCube: any;
+  cubeName: string;
+}) {
   const [cubes, setCubes] = useState<Cube[]>([]);
   const [currentCube, setCurrentCube] = useState<Cube>();
 
@@ -17,6 +23,7 @@ export default function HeaderTimer() {
   const handleChange = (cubeId: string) => {
     const cube = findCube({ cubeId });
     setCurrentCube(cube);
+    handleSelectedCube(cube);
   };
 
   const validCubeStatus = currentCube !== undefined;
@@ -26,7 +33,7 @@ export default function HeaderTimer() {
     <>
       {/* Selectors category/cube */}
       <div className="flex flex-row justify-center gap-5 p-4">
-        <Select options={cubes} handleChange={handleChange} />
+        <Select text={cubeName} options={cubes} handleChange={handleChange} />
       </div>
     </>
   );

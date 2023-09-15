@@ -12,16 +12,22 @@ import genId from "@/lib/genId";
 export default function Select({
   options,
   handleChange,
+  text,
 }: {
   options: any[];
   handleChange: any;
+  text: string;
 }) {
   const [open, setOpen] = useState<boolean>(false);
   const [choosedId, setChoosedId] = useState<string>("");
-  console.log(choosedId);
+
   const handleChoosed = (cubeId: string) => {
     setChoosedId(cubeId);
     handleChange(cubeId);
+  };
+
+  const handleClosingSelect = () => {
+    setOpen(false);
   };
 
   return (
@@ -32,7 +38,7 @@ export default function Select({
           className="min-w-[250px] text-xs appearance-none border bg-transparent hover:bg-zinc-800 border-zinc-800 font-medium rounded-md px-4 py-2"
         >
           <div className="flex justify-between">
-            <div className="">Select Cube</div>
+            <div className="">{text}</div>
             <SelectOptions />
           </div>
         </button>
@@ -53,6 +59,7 @@ export default function Select({
                     choosedCube={choosedId}
                     handleChoosed={handleChoosed}
                     cubeId={cube.id}
+                    handleClosingSelect={handleClosingSelect}
                   />
                 );
               }
@@ -67,6 +74,7 @@ export default function Select({
                   choosedCube={choosedId}
                   handleChoosed={handleChoosed}
                   cubeId={cube.id}
+                  handleClosingSelect={handleClosingSelect}
                 />
               );
             })}
@@ -80,12 +88,12 @@ export default function Select({
 
 function MiniatureIcon({ category }: { category: Categories }) {
   const images = cubeCollection.map((option) => {
-    if (option.id === category) {
+    if (option.name === category) {
       return (
         <Image
           key={genId()}
           src={option.src}
-          alt={option.id}
+          alt={option.name}
           width={24}
           height={24}
         />
@@ -104,16 +112,21 @@ function Option({
   choosedCube,
   cubeId,
   handleChoosed,
+  handleClosingSelect,
 }: {
   name: string;
   category: Categories;
   choosedCube: string;
   cubeId: string;
   handleChoosed: any;
+  handleClosingSelect: any;
 }) {
   return (
     <div
-      onClick={() => handleChoosed(cubeId)}
+      onClick={() => {
+        handleChoosed(cubeId);
+        handleClosingSelect();
+      }}
       className={`hover:bg-zinc-800 p-1 select-none rounded-md ps-2 flex items-center justify-between overflow-hidden ${
         choosedCube === cubeId ? "bg-zinc-800" : null
       }`}
