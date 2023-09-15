@@ -7,7 +7,7 @@ import { possibleMoves7x7 } from "./moves/possible-moves-7x7.js";
 import { possibleMovesPyraminx } from "./moves/possible-moves-pyraminx.js";
 import { possibleMovesSkewb } from "./moves/possible-moves-skewb.js";
 
-const scrambleGenerator = (category) => {
+export default function genScramble(category) {
   let possibleMoves;
   let scrambleSize;
   if (category === "2x2") {
@@ -50,10 +50,4 @@ const scrambleGenerator = (category) => {
     lastMove = move;
   }
   return scramble.join(" ");
-};
-
-export const setScramble = () => {
-  const scrambleArea = document.querySelector("#scramble");
-  const scrambleCategory = document.querySelector("#category").value;
-  scrambleArea.textContent = scrambleGenerator(scrambleCategory);
-};
+}

@@ -75,25 +75,24 @@ export default function CubesPage() {
           <Button disabled={false} handleClick={handleClick}>
             + Cube
           </Button>
-          <Button disabled={true} handleClick={handleClick}>
-            - Delete
-          </Button>
         </div>
 
         <div>
           {/* table */}
-          <div className="table w-full mt-4 border rounded-lg text-sm border-zinc-800">
-            <TableHeader />
-            <div className="table-row-group h-10 border-b border-zinc-800 text-white text-sm">
-              {cubes.map((cube) => {
-                return (
-                  <TableRow
-                    key={genId()}
-                    cubeData={cube}
-                    handleNewFavCube={handleNewFavCube}
-                  />
-                );
-              })}
+          <div className="overflow-auto">
+            <div className="table w-full mt-4 border rounded-lg text-sm border-zinc-800">
+              <TableHeader />
+              <div className="table-row-group h-10 border-b border-zinc-800 text-white text-sm">
+                {cubes.map((cube) => {
+                  return (
+                    <TableRow
+                      key={genId()}
+                      cubeData={cube}
+                      handleNewFavCube={handleNewFavCube}
+                    />
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
