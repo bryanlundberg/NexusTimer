@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import "./globals.css";
 import type { Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "CubeStats",
@@ -20,6 +21,10 @@ export default function RootLayout({
           {children}
           <Navigation />
         </main>
+        <Script
+          src="https://cdn.cubing.net/js/scramble-display"
+          type="module"
+        />
       </body>
     </html>
   );

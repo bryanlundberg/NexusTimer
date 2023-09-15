@@ -98,7 +98,7 @@ export default function Timer() {
       {/* Timer */}
       <section className="flex flex-col items-center justify-center">
         <div
-          className={`text-9xl font-mono ${timerStatusClasses[timerStatus]}`}
+          className={`text-9xl font-mono select-none ${timerStatusClasses[timerStatus]}`}
         >
           {(solvingTime / 1000).toFixed(3)}
         </div>
