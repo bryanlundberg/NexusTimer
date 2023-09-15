@@ -1,28 +1,28 @@
 import PlusIcon from "@/icons/PlusIcon";
 import SelectOptions from "@/icons/SelectOptions";
-import genId from "@/lib/genId";
-import { useEffect, useState } from "react";
-import cube222 from "@/images/categories/cube444.png";
+import { useState } from "react";
 import Image from "next/image";
 import Check from "@/icons/Check";
 import Link from "next/link";
-
-type TypesSelect = "Category" | "Cube";
+import { Cube } from "@/interfaces/Cube";
+import { Categories } from "@/interfaces/Categories";
+import { cubeCollection } from "@/lib/cubeCollection";
+import genId from "@/lib/genId";
 
 export default function Select({
-  type,
   options,
   handleChange,
-  currentSelection,
-  children,
 }: {
-  type: TypesSelect;
   options: any[];
   handleChange: any;
-  currentSelection: any;
-  children?: React.ReactNode;
 }) {
   const [open, setOpen] = useState<boolean>(false);
+  const [choosedId, setChoosedId] = useState<string>("");
+  console.log(choosedId);
+  const handleChoosed = (cubeId: string) => {
+    setChoosedId(cubeId);
+    handleChange(cubeId);
+  };
 
   return (
     <>
@@ -41,19 +41,35 @@ export default function Select({
             id="list-options"
             className="absolute overflow-auto max-h-[400px] p-1 top-12 left-0 min-w-full max-w-full bg-zinc-950 text-slate-100 h-auto border border-zinc-800 rounded-md"
           >
+            {/* Favorites */}
             <LabelSection description="Favorite" />
-            <Option />
-            <Option />
-            <Option />
+            {options.map((cube) => {
+              if (cube.favorite) {
+                return (
+                  <Option
+                    key={genId()}
+                    name={cube.name}
+                    category={cube.category}
+                    choosedCube={choosedId}
+                    handleChoosed={handleChoosed}
+                    cubeId={cube.id}
+                  />
+                );
+              }
+            })}
             <LabelSection description="Cubes" />
-            <Option />
-            <Option />
-            <Option />
-            <Option />
-            <Option />
-            <Option />
-            <Option />
-            <Option />
+            {options.map((cube) => {
+              return (
+                <Option
+                  key={genId()}
+                  name={cube.name}
+                  category={cube.category}
+                  choosedCube={choosedId}
+                  handleChoosed={handleChoosed}
+                  cubeId={cube.id}
+                />
+              );
+            })}
             <AddCubeOption />
           </div>
         ) : null}
@@ -62,20 +78,55 @@ export default function Select({
   );
 }
 
-function MiniatureIcon() {
-  return <Image src={cube222} alt="dsafd" width={24} height={24} />;
+function MiniatureIcon({ category }: { category: Categories }) {
+  const images = cubeCollection.map((option) => {
+    if (option.id === category) {
+      return (
+        <Image
+          key={genId()}
+          src={option.src}
+          alt={option.id}
+          width={24}
+          height={24}
+        />
+      );
+    } else {
+      return null;
+    }
+  });
+
+  return <>{images}</>;
 }
 
-function Option() {
+function Option({
+  name,
+  category,
+  choosedCube,
+  cubeId,
+  handleChoosed,
+}: {
+  name: string;
+  category: Categories;
+  choosedCube: string;
+  cubeId: string;
+  handleChoosed: any;
+}) {
   return (
-    <div className="hover:bg-zinc-800 p-1 select-none rounded-md ps-2 flex justify-between overflow-hidden">
+    <div
+      onClick={() => handleChoosed(cubeId)}
+      className={`hover:bg-zinc-800 p-1 select-none rounded-md ps-2 flex items-center justify-between overflow-hidden ${
+        choosedCube === cubeId ? "bg-zinc-800" : null
+      }`}
+    >
       <div className="flex justify-start gap-3">
-        <MiniatureIcon />
-        <div className="overflow-hidden">X-man tornado v3</div>
+        <MiniatureIcon category={category} />
+        <div className="overflow-hidden">{name}</div>
       </div>
-      <div className="w-4 h-4 me-3 text-xs">
-        <Check />
-      </div>
+      {choosedCube === cubeId && (
+        <div className="w-4 h-4 me-3 text-xs">
+          <Check />
+        </div>
+      )}
     </div>
   );
 }
