@@ -6,41 +6,49 @@ import Link from "next/link";
 
 export default function Navigation() {
   return (
-    <nav>
-      <ul className="flex p-3 gap-5 justify-center">
-        <li className="p-4 hover:bg-gray-800">
+    <nav className="">
+      <ul className="flex gap-5 justify-center">
+        <li className="flex items-center">
           <Link
             href="/"
-            className="flex flex-col justify-center items-center font-medium"
+            className="min-w-[70px] p-1 rounded-md hover:bg-zinc-800 flex flex-col justify-center items-center font-medium"
           >
-            <Clock />
+            <div className="w-10 h-10">
+              <Clock />
+            </div>
             <div>Timer</div>
           </Link>
         </li>
-        <li className="p-4 hover:bg-gray-800">
+        <li className="flex items-center">
           <Link
             href="/solves"
-            className="flex flex-col justify-center items-center font-medium"
+            className="min-w-[70px] p-1 rounded-md hover:bg-zinc-800 flex flex-col justify-center items-center font-medium"
           >
-            <Stack />
+            <div className="w-10 h-10">
+              <Stack />
+            </div>
             <div>Historial</div>
           </Link>
         </li>
-        <li className="p-4 hover:bg-gray-800">
+        <li className="flex items-center">
           <Link
             href="/stats"
-            className="flex flex-col justify-center items-center font-medium"
+            className="min-w-[70px] p-1 rounded-md hover:bg-zinc-800 flex flex-col justify-center items-center font-medium"
           >
-            <Metrics />
+            <div className="w-10 h-10">
+              <Metrics />
+            </div>
             <div>Statistics</div>
           </Link>
         </li>
-        <li className="p-4 hover:bg-gray-800">
+        <li className="flex items-center">
           <Link
             href="/cubes"
-            className="flex flex-col justify-center items-center font-medium"
+            className="min-w-[70px] p-1 rounded-md hover:bg-zinc-800 flex flex-col justify-center items-center font-medium"
           >
-            <Cubes />
+            <div className="w-10 h-10">
+              <Cubes />
+            </div>
             <div>Cubes</div>
           </Link>
         </li>

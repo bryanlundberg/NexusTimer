@@ -1,6 +1,6 @@
 {
-  "name": "gfdhgfd",
-  "version": "0.1.0",
+  "name": "cubestats",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -15,6 +15,7 @@
     "autoprefixer": "10.4.15",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
+    "fast-sort": "3.4.0",
     "next": "13.4.19",
     "postcss": "8.4.29",
     "react": "18.2.0",

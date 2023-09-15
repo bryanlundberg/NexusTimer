@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="min-h-screen flex flex-col justify-between bg-zinc-950 text-slate-50 py-3 px-5">
+        <main className="min-h-screen flex flex-col gap-5 justify-between bg-zinc-950 text-slate-50 py-3 px-5">
           {children}
           <Navigation />
         </main>
