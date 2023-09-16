@@ -1,19 +1,24 @@
 import { useEffect, useRef, useState } from "react";
-import SolveOptions from "./SolveOptions";
 import { Solve } from "@/interfaces/Solve";
 import { TimerStatus } from "@/interfaces/TimerStatus";
 import genId from "@/lib/genId";
+import { Cube } from "@/interfaces/Cube";
 
-export default function Timer() {
+export default function Timer({
+  scramble,
+  cube,
+  handleNewSolve,
+}: {
+  scramble: string | null;
+  cube: Cube | null;
+  handleNewSolve: any;
+}) {
   const [solvingTime, setSolvingTime] = useState<number>(0);
+  const [timerStatus, setTimerStatus] = useState<TimerStatus>("idle");
   const holdingTimeRef = useRef<number>(0);
   const startTime = useRef<number>(0);
   const runningTimeId = useRef<any>(null);
-  const [solves, setSolves] = useState<Solve[]>([]);
   const delayHold = useRef<number>(500);
-
-  const [timerStatus, setTimerStatus] = useState<TimerStatus>("idle");
-
   const isSolving = useRef<boolean>(false);
   const isHoldingSpace = useRef<boolean>(false);
 
@@ -36,14 +41,16 @@ export default function Timer() {
     if (!isHoldingSpace.current && isSolving.current) {
       clearInterval(runningTimeId.current);
       isSolving.current = false;
-      const lastSolve: Solve = {
-        id: genId(),
-        startTime: startTime.current,
-        endTime: Date.now(),
-        scramble: "F' U' F2 U2 R2 U' R' F R'",
-        bookmark: false,
-      };
-      setSolves([...solves, lastSolve]);
+      if (cube !== null && scramble !== null) {
+        const lastSolve: Solve = {
+          id: genId(),
+          startTime: startTime.current,
+          endTime: Date.now(),
+          scramble: scramble,
+          bookmark: false,
+        };
+        handleNewSolve(lastSolve);
+      }
       startTime.current = 0;
       holdingTimeRef.current = 0;
       setTimerStatus("idle");
@@ -84,7 +91,11 @@ export default function Timer() {
     console.log("Effect setup");
     window.addEventListener("keydown", handleSpaceKeyDown);
     window.addEventListener("keyup", handleSpaceKeyUp);
-  }, []);
+    return () => {
+      window.removeEventListener("keydown", handleSpaceKeyDown);
+      window.removeEventListener("keyup", handleSpaceKeyUp);
+    };
+  });
 
   const timerStatusClasses = {
     idle: "text-stone-50",
@@ -102,7 +113,7 @@ export default function Timer() {
         >
           {(solvingTime / 1000).toFixed(3)}
         </div>
-        <SolveOptions />
+        {/* <SolveOptions /> */}
       </section>
     </>
   );
