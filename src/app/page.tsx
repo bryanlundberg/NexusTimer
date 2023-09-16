@@ -26,6 +26,8 @@ export default function Home() {
 
   const handleNewSolve = (solve: Solve) => {
     if (selectedCube) addSolve({ cubeId: selectedCube?.id, solve });
+    const newScramble = genScramble(selectedCube?.category);
+    setScramble(newScramble);
   };
 
   const cubeName = selectedCube === null ? "Select cube" : selectedCube.name;
