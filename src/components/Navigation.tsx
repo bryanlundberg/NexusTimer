@@ -27,7 +27,7 @@ export default function Navigation() {
             <div className="w-10 h-10">
               <Stack />
             </div>
-            <div>Historial</div>
+            <div>Solves</div>
           </Link>
         </li>
         <li className="flex items-center">

@@ -107,9 +107,9 @@ export default function Timer({
   return (
     <>
       {/* Timer */}
-      <section className="flex flex-col items-center justify-center">
+      <section className="flex flex-col items-center justify-center my-16">
         <div
-          className={`text-9xl font-mono select-none ${timerStatusClasses[timerStatus]}`}
+          className={`text-6xl sm:text-7xl md:text-8xl font-mono select-none ${timerStatusClasses[timerStatus]}`}
         >
           {(solvingTime / 1000).toFixed(3)}
         </div>

@@ -21,9 +21,9 @@ export default function TimerWidgets({
   }, [scramble, event]);
 
   return (
-    <div className="h-10 flex justify-between">
+    <div className="h-20 md:h-32 lg:h-40 flex justify-between">
       <div className="w-10 h-10 "></div>
-      <div className="w-40 h-40 " id="scramble-display"></div>
+      <div className="w-full h-full" id="scramble-display"></div>
       <div className="w-10 h-10 "></div>
     </div>
   );

@@ -6,6 +6,8 @@ import CheckboxImage from "./CheckboxImage";
 import { useState } from "react";
 import { Categories } from "@/interfaces/Categories";
 import createCube from "@/lib/createCube";
+import { cubeCollection } from "@/lib/cubeCollection";
+import genId from "@/lib/genId";
 
 export default function ModalCreate({
   handleClose,
@@ -87,31 +89,20 @@ export default function ModalCreate({
             {/* <!-- Modal body --> */}
             <div className="p-6 space-y-6"></div>
 
-            <div className="flex flex-wrap justify-evenly">
-              <CheckboxImage
-                src={cube222}
-                alt="sss"
-                id={2}
-                value="2x2"
-                handleClickRadio={handleClickRadio}
-                selectedCategory={selectedCategory}
-              />
-              <CheckboxImage
-                src={cube333}
-                alt="sss"
-                id={3}
-                value="3x3"
-                handleClickRadio={handleClickRadio}
-                selectedCategory={selectedCategory}
-              />
-              <CheckboxImage
-                src={cube444}
-                alt="sss"
-                id={4}
-                value="4x4"
-                handleClickRadio={handleClickRadio}
-                selectedCategory={selectedCategory}
-              />
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6">
+              {cubeCollection.map((category) => {
+                return (
+                  <CheckboxImage
+                    key={genId()}
+                    src={category.src}
+                    alt={category.name}
+                    id={category.id}
+                    value={category.name}
+                    handleClickRadio={handleClickRadio}
+                    selectedCategory={selectedCategory}
+                  />
+                );
+              })}
             </div>
 
             {/* <!-- Modal footer --> */}
