@@ -6,10 +6,13 @@ import { Cube } from "@/interfaces/Cube";
 import genScramble from "@/lib/timer/genScramble";
 import TimerWidgets from "@/components/TimerWidgets";
 import { cubeCollection } from "@/lib/cubeCollection";
+import { Solve } from "@/interfaces/Solve";
+import addSolve from "@/lib/addSolve";
 
 export default function Home() {
   const [selectedCube, setSelectedCube] = useState<Cube | null>(null);
   const [scramble, setScramble] = useState<string | null>(null);
+
   const eventRef = useRef<any>(null);
 
   const handleSelectedCube = (cube: Cube) => {
@@ -21,7 +24,9 @@ export default function Home() {
     );
   };
 
-  console.log("eventRef" + eventRef.current);
+  const handleNewSolve = (solve: Solve) => {
+    if (selectedCube) addSolve({ cubeId: selectedCube?.id, solve });
+  };
 
   const cubeName = selectedCube === null ? "Select cube" : selectedCube.name;
 
@@ -32,7 +37,11 @@ export default function Home() {
         cubeName={cubeName}
         scramble={scramble}
       />
-      <Timer />
+      <Timer
+        scramble={scramble}
+        cube={selectedCube}
+        handleNewSolve={handleNewSolve}
+      />
       <TimerWidgets scramble={scramble} event={eventRef.current} />
     </>
   );

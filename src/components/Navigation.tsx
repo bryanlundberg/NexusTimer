@@ -6,53 +6,46 @@ import Link from "next/link";
 
 export default function Navigation() {
   return (
-    <nav className="">
-      <ul className="flex gap-5 justify-center">
-        <li className="flex items-center">
-          <Link
-            href="/"
-            className="min-w-[70px] p-1 rounded-md hover:bg-zinc-800 flex flex-col justify-center items-center font-medium"
-          >
-            <div className="w-10 h-10">
-              <Clock />
-            </div>
-            <div>Timer</div>
-          </Link>
-        </li>
-        <li className="flex items-center">
-          <Link
-            href="/solves"
-            className="min-w-[70px] p-1 rounded-md hover:bg-zinc-800 flex flex-col justify-center items-center font-medium"
-          >
-            <div className="w-10 h-10">
-              <Stack />
-            </div>
-            <div>Historial</div>
-          </Link>
-        </li>
-        <li className="flex items-center">
-          <Link
-            href="/stats"
-            className="min-w-[70px] p-1 rounded-md hover:bg-zinc-800 flex flex-col justify-center items-center font-medium"
-          >
-            <div className="w-10 h-10">
-              <Metrics />
-            </div>
-            <div>Statistics</div>
-          </Link>
-        </li>
-        <li className="flex items-center">
-          <Link
-            href="/cubes"
-            className="min-w-[70px] p-1 rounded-md hover:bg-zinc-800 flex flex-col justify-center items-center font-medium"
-          >
-            <div className="w-10 h-10">
-              <Cubes />
-            </div>
-            <div>Cubes</div>
-          </Link>
-        </li>
+    <nav>
+      <ul className="flex gap-5 justify-center ">
+        <NavItem url="/">
+          <Clock />
+          <div>Timer</div>
+        </NavItem>
+        <NavItem url="/solves">
+          <Stack />
+          <div>Solves</div>
+        </NavItem>
+        <NavItem url="/stats">
+          <Metrics />
+          <div>Metrics</div>
+        </NavItem>
+        <NavItem url="/cubes">
+          <Cubes />
+          <div>Cubes</div>
+        </NavItem>
       </ul>
     </nav>
+  );
+}
+
+function NavItem({
+  children,
+  url,
+}: {
+  children: React.ReactNode;
+  url: string;
+}) {
+  return (
+    <>
+      <li>
+        <Link
+          href={url}
+          className="min-w-[70px] py-2 rounded-md hover:bg-zinc-800 flex flex-col justify-center items-center font-medium"
+        >
+          {children}
+        </Link>
+      </li>
+    </>
   );
 }

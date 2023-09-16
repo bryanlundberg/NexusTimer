@@ -30,7 +30,7 @@ export default function CheckboxImage({
       <label
         htmlFor={id}
         onClick={() => handleClickRadio(value)}
-        className={`cursor-pointer ${
+        className={`mx-auto cursor-pointer ${
           selectedCategory === value
             ? "outline-dashed outline-amber-300 rounded-sm"
             : "bg-transparent border-0"
