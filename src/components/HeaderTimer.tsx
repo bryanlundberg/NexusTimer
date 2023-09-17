@@ -1,31 +1,9 @@
-import { useEffect, useState } from "react";
 import Select from "./Select";
-import { Cube } from "@/interfaces/Cube";
-import loadCubes from "@/lib/loadCubes";
-import findCube from "@/lib/findCube";
 import Settings from "@/icons/Settings";
+import { useTimerStore } from "@/store/timerStore";
 
-export default function HeaderTimer({
-  handleSelectedCube,
-  cubeName,
-  scramble,
-}: {
-  handleSelectedCube: any;
-  cubeName: string;
-  scramble: string | null;
-}) {
-  const [cubes, setCubes] = useState<Cube[]>([]);
-
-  useEffect(() => {
-    const cubesDB = loadCubes();
-    setCubes(cubesDB);
-  }, []);
-
-  const handleChange = (cubeId: string) => {
-    const cube = findCube({ cubeId });
-    handleSelectedCube(cube);
-  };
-
+export default function HeaderTimer() {
+  const { scramble, selectedCube } = useTimerStore();
   return (
     <>
       {/* Selectors category/cube */}
@@ -38,11 +16,11 @@ export default function HeaderTimer({
             <Settings />
           </div>
 
-          <Select text={cubeName} options={cubes} handleChange={handleChange} />
+          <Select />
         </div>
 
         <div className="text-center font-medium text-2xl">
-          {scramble ? scramble : "Pick a Cube to load a scramble."}
+          {selectedCube ? scramble : "Pick a Cube to load a scramble."}
         </div>
       </div>
     </>

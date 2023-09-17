@@ -4,4 +4,5 @@ export interface Solve {
   startTime: number;
   endTime: number;
   bookmark: boolean;
+  time: number;
 }

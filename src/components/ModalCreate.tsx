@@ -1,27 +1,19 @@
 import InputText from "./InputText";
-import cube333 from "@/images/categories/cube333.png";
-import cube222 from "@/images/categories/cube222.png";
-import cube444 from "@/images/categories/cube444.png";
 import CheckboxImage from "./CheckboxImage";
 import { useState } from "react";
 import { Categories } from "@/interfaces/Categories";
-import createCube from "@/lib/createCube";
 import { cubeCollection } from "@/lib/cubeCollection";
 import genId from "@/lib/genId";
 
 export default function ModalCreate({
+  handleCreateCube,
   handleClose,
-  handleAddCube,
 }: {
+  handleCreateCube: any;
   handleClose: any;
-  handleAddCube: any;
 }) {
   const [selectedCategory, setSelectedCategory] = useState<Categories>("2x2");
   const [cubeName, setCubeName] = useState<string>("");
-
-  const handleClickDismiss = () => {
-    handleClose();
-  };
 
   const handleClickRadio = (category: Categories) => {
     setSelectedCategory(category);
@@ -29,16 +21,6 @@ export default function ModalCreate({
 
   const handleWriteCubeName = (newText: string) => {
     setCubeName(newText);
-  };
-
-  const handleCreateCube = () => {
-    if (cubeName === "") return;
-    const newCubes = createCube({
-      cubeName: cubeName,
-      category: selectedCategory,
-    });
-    handleAddCube(newCubes);
-    handleClose();
   };
 
   return (
@@ -66,7 +48,7 @@ export default function ModalCreate({
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
                 data-modal-hide="defaultModal"
-                onClick={() => handleClickDismiss()}
+                onClick={() => handleClose(false)}
               >
                 <svg
                   className="w-3 h-3"
@@ -108,7 +90,7 @@ export default function ModalCreate({
             {/* <!-- Modal footer --> */}
             <div className="flex items-center justify-end p-6 space-x-2 border-zinc-800 rounded-b ">
               <button
-                onClick={handleClickDismiss}
+                onClick={() => handleClose(false)}
                 data-modal-hide="defaultModal"
                 type="button"
                 className="text-neutral-100 border border-zinc-800 bg-transparent hover:bg-zinc-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -117,7 +99,7 @@ export default function ModalCreate({
               </button>
 
               <button
-                onClick={() => handleCreateCube()}
+                onClick={() => handleCreateCube(cubeName, selectedCategory)}
                 data-modal-hide="defaultModal"
                 type="button"
                 className="text-gray-800 bg-neutral-50 hover:bg-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"

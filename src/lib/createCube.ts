@@ -16,7 +16,10 @@ export default function createCube({
     id: genId(),
     name: cubeName,
     category: category,
-    solves: [],
+    solves: {
+      session: [],
+      all: [],
+    },
     createdAt: Date.now(),
     favorite: false,
   };
