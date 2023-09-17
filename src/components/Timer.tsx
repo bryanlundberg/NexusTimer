@@ -15,6 +15,7 @@ export default function Timer({
 }) {
   const [solvingTime, setSolvingTime] = useState<number>(0);
   const [timerStatus, setTimerStatus] = useState<TimerStatus>("idle");
+  const endTimeRef = useRef<number>(0);
   const holdingTimeRef = useRef<number>(0);
   const startTime = useRef<number>(0);
   const runningTimeId = useRef<any>(null);
@@ -45,9 +46,10 @@ export default function Timer({
         const lastSolve: Solve = {
           id: genId(),
           startTime: startTime.current,
-          endTime: Date.now(),
+          endTime: endTimeRef.current,
           scramble: scramble,
           bookmark: false,
+          time: solvingTime,
         };
         handleNewSolve(lastSolve);
       }
@@ -70,7 +72,8 @@ export default function Timer({
           holdingTimeRef.current = 0;
           startTime.current = Date.now();
           runningTimeId.current = setInterval(() => {
-            setSolvingTime(Date.now() - (startTime.current || 0));
+            endTimeRef.current = Date.now();
+            setSolvingTime(endTimeRef.current - (startTime.current || 0));
           });
           setTimerStatus("solving");
           return;

@@ -1,6 +1,7 @@
 import { Cube } from "@/interfaces/Cube";
 import BookmarkFav from "./BookmarkFav";
 import Ellipsis from "@/icons/Ellipsis";
+import { sort } from "fast-sort";
 
 export default function TableRow({
   cubeData,
@@ -12,6 +13,9 @@ export default function TableRow({
   const handleChange = (cubeId: string) => {
     handleNewFavCube(cubeId);
   };
+
+  const bestTime = sort(cubeData.solves.all).asc((u) => u.time);
+  const bestTimeCube = (bestTime[0].time / 1000).toFixed(2);
 
   return (
     <>
@@ -28,9 +32,11 @@ export default function TableRow({
           {cubeData.category}
         </div>
         <div className="table-cell align-middle text-center">
-          {cubeData.solves.length}
+          {cubeData.solves.all.length}
         </div>
-        <div className="table-cell align-middle text-center">{1.32}</div>
+        <div className="table-cell align-middle text-center">
+          {bestTimeCube}
+        </div>
         <div className="table-cell align-middle text-center">
           {cubeData.createdAt}
         </div>
