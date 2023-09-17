@@ -1,4 +1,6 @@
-export default function loadCubes() {
+import { Cube } from "@/interfaces/Cube";
+
+export default function loadCubes(): Cube[] {
   const cubesDB = window.localStorage.getItem("cubes");
   if (!cubesDB) {
     window.localStorage.setItem("cubes", JSON.stringify([]));

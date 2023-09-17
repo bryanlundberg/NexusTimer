@@ -1,50 +1,24 @@
 "use client";
 import Timer from "@/components/Timer";
 import HeaderTimer from "@/components/HeaderTimer";
-import { useRef, useState } from "react";
-import { Cube } from "@/interfaces/Cube";
-import genScramble from "@/lib/timer/genScramble";
+import { useEffect } from "react";
 import TimerWidgets from "@/components/TimerWidgets";
-import { cubeCollection } from "@/lib/cubeCollection";
-import { Solve } from "@/interfaces/Solve";
-import addSolve from "@/lib/addSolve";
+import { useTimerStore } from "@/store/timerStore";
+import loadCubes from "@/lib/loadCubes";
 
 export default function Home() {
-  const [selectedCube, setSelectedCube] = useState<Cube | null>(null);
-  const [scramble, setScramble] = useState<string | null>(null);
+  const { setCubes } = useTimerStore();
 
-  const eventRef = useRef<any>(null);
-
-  const handleSelectedCube = (cube: Cube) => {
-    setSelectedCube(cube);
-    const newScramble = genScramble(cube.category);
-    setScramble(newScramble);
-    eventRef.current = cubeCollection.find(
-      (item) => item.name === cube.category
-    );
-  };
-
-  const handleNewSolve = (solve: Solve) => {
-    if (selectedCube) addSolve({ cubeId: selectedCube?.id, solve });
-    const newScramble = genScramble(selectedCube?.category);
-    setScramble(newScramble);
-  };
-
-  const cubeName = selectedCube === null ? "Select cube" : selectedCube.name;
+  useEffect(() => {
+    const getCubes = loadCubes();
+    if (setCubes) setCubes(getCubes);
+  }, []);
 
   return (
     <>
-      <HeaderTimer
-        handleSelectedCube={handleSelectedCube}
-        cubeName={cubeName}
-        scramble={scramble}
-      />
-      <Timer
-        scramble={scramble}
-        cube={selectedCube}
-        handleNewSolve={handleNewSolve}
-      />
-      <TimerWidgets scramble={scramble} event={eventRef.current} />
+      <HeaderTimer />
+      <Timer />
+      <TimerWidgets />
     </>
   );
 }

@@ -2,17 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { Solve } from "@/interfaces/Solve";
 import { TimerStatus } from "@/interfaces/TimerStatus";
 import genId from "@/lib/genId";
-import { Cube } from "@/interfaces/Cube";
+import { useTimerStore } from "@/store/timerStore";
+import addSolve from "@/lib/addSolve";
 
-export default function Timer({
-  scramble,
-  cube,
-  handleNewSolve,
-}: {
-  scramble: string | null;
-  cube: Cube | null;
-  handleNewSolve: any;
-}) {
+export default function Timer() {
+  const { selectedCube, scramble, setNewScramble } = useTimerStore();
+
   const [solvingTime, setSolvingTime] = useState<number>(0);
   const [timerStatus, setTimerStatus] = useState<TimerStatus>("idle");
   const endTimeRef = useRef<number>(0);
@@ -42,7 +37,7 @@ export default function Timer({
     if (!isHoldingSpace.current && isSolving.current) {
       clearInterval(runningTimeId.current);
       isSolving.current = false;
-      if (cube !== null && scramble !== null) {
+      if (selectedCube !== null && scramble) {
         const lastSolve: Solve = {
           id: genId(),
           startTime: startTime.current,
@@ -51,7 +46,11 @@ export default function Timer({
           bookmark: false,
           time: solvingTime,
         };
-        handleNewSolve(lastSolve);
+
+        if (selectedCube) {
+          addSolve({ cubeId: selectedCube?.id, solve: lastSolve });
+        }
+        setNewScramble;
       }
       startTime.current = 0;
       holdingTimeRef.current = 0;

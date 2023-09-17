@@ -4,29 +4,17 @@ import { useState } from "react";
 import Image from "next/image";
 import Check from "@/icons/Check";
 import Link from "next/link";
-import { Cube } from "@/interfaces/Cube";
 import { Categories } from "@/interfaces/Categories";
 import { cubeCollection } from "@/lib/cubeCollection";
 import genId from "@/lib/genId";
+import { useTimerStore } from "@/store/timerStore";
+import findCube from "@/lib/findCube";
 
-export default function Select({
-  options,
-  handleChange,
-  text,
-}: {
-  options: any[];
-  handleChange: any;
-  text: string;
-}) {
+export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
-  const [choosedId, setChoosedId] = useState<string>("");
+  const { selectedCube, cubes } = useTimerStore();
 
-  const handleChoosed = (cubeId: string) => {
-    setChoosedId(cubeId);
-    handleChange(cubeId);
-  };
-
-  const handleClosingSelect = () => {
+  const handleClose = () => {
     setOpen(false);
   };
 
@@ -38,7 +26,9 @@ export default function Select({
           className="min-w-[250px] text-xs appearance-none border bg-transparent hover:bg-zinc-800 border-zinc-800 font-medium rounded-md px-4 py-2"
         >
           <div className="flex justify-between">
-            <div className="">{text}</div>
+            <div className="">
+              {selectedCube ? selectedCube.name : "Select"}
+            </div>
             <SelectOptions />
           </div>
         </button>
@@ -49,32 +39,28 @@ export default function Select({
           >
             {/* Favorites */}
             <LabelSection description="Favorite" />
-            {options.map((cube) => {
+            {cubes?.map((cube) => {
               if (cube.favorite) {
                 return (
                   <Option
                     key={genId()}
                     name={cube.name}
                     category={cube.category}
-                    choosedCube={choosedId}
-                    handleChoosed={handleChoosed}
                     cubeId={cube.id}
-                    handleClosingSelect={handleClosingSelect}
+                    handleClose={handleClose}
                   />
                 );
               }
             })}
             <LabelSection description="Cubes" />
-            {options.map((cube) => {
+            {cubes?.map((cube) => {
               return (
                 <Option
                   key={genId()}
                   name={cube.name}
                   category={cube.category}
-                  choosedCube={choosedId}
-                  handleChoosed={handleChoosed}
                   cubeId={cube.id}
-                  handleClosingSelect={handleClosingSelect}
+                  handleClose={handleClose}
                 />
               );
             })}
@@ -109,33 +95,37 @@ function MiniatureIcon({ category }: { category: Categories }) {
 function Option({
   name,
   category,
-  choosedCube,
   cubeId,
-  handleChoosed,
-  handleClosingSelect,
+  handleClose,
 }: {
   name: string;
   category: Categories;
-  choosedCube: string;
   cubeId: string;
-  handleChoosed: any;
-  handleClosingSelect: any;
+  handleClose: () => void;
 }) {
+  const { selectedCube, setSelectedCube, setNewScramble } = useTimerStore();
+
   return (
     <div
       onClick={() => {
-        handleChoosed(cubeId);
-        handleClosingSelect();
+        if (setSelectedCube && setNewScramble) {
+          const cube = findCube({ cubeId: cubeId });
+          if (cube) {
+            setSelectedCube(cube);
+            setNewScramble(cube);
+          }
+        }
+        handleClose();
       }}
       className={`hover:bg-zinc-800 p-1 select-none rounded-md ps-2 flex items-center justify-between overflow-hidden ${
-        choosedCube === cubeId ? "bg-zinc-800" : null
+        selectedCube?.id === cubeId ? "bg-zinc-800" : null
       }`}
     >
       <div className="flex justify-start gap-3">
         <MiniatureIcon category={category} />
         <div className="overflow-hidden">{name}</div>
       </div>
-      {choosedCube === cubeId && (
+      {selectedCube?.id === cubeId && (
         <div className="w-4 h-4 me-3 text-xs">
           <Check />
         </div>
