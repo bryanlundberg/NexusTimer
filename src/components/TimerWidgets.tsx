@@ -1,24 +1,16 @@
-import { cubeCollection } from "@/lib/cubeCollection";
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect } from "react";
 
 export default function TimerWidgets() {
-  const { selectedCube, scramble } = useTimerStore();
-
-  const event: any = selectedCube
-    ? cubeCollection.find((item) => item.name === selectedCube?.category)
-    : null;
-
+  const { scramble, event } = useTimerStore();
   useEffect(() => {
     const display = document.querySelector("scramble-display");
-    if (!display) {
-      const display = document.createElement("scramble-display");
-      document.querySelector("#scramble-display")?.appendChild(display);
-    }
-
-    display?.setAttribute("event", event?.event);
-    display?.setAttribute("scramble", scramble ? scramble : "");
-  }, [scramble, selectedCube, event]);
+    display?.remove();
+    const child = document.createElement("scramble-display");
+    child.setAttribute("event", event);
+    child.setAttribute("scramble", scramble ? scramble : "");
+    document.querySelector("#scramble-display")?.appendChild(child);
+  });
 
   return (
     <div className="h-20 md:h-32 lg:h-40 flex justify-between">

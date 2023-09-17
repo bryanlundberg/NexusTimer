@@ -90,7 +90,6 @@ export default function Timer() {
   };
 
   useEffect(() => {
-    console.log("Effect setup");
     window.addEventListener("keydown", handleSpaceKeyDown);
     window.addEventListener("keyup", handleSpaceKeyUp);
     return () => {

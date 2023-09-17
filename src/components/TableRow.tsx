@@ -14,8 +14,8 @@ export default function TableRow({
     handleNewFavCube(cubeId);
   };
 
-  const bestTime = sort(cubeData.solves.all).asc((u) => u.time);
-  const bestTimeCube = (bestTime[0].time / 1000).toFixed(2);
+  // const bestTime = sort(cubeData.solves.all).asc((u) => u.time);
+  // const bestTimeCube = (bestTime[0].time / 1000).toFixed(2);
 
   return (
     <>
@@ -34,9 +34,7 @@ export default function TableRow({
         <div className="table-cell align-middle text-center">
           {cubeData.solves.all.length}
         </div>
-        <div className="table-cell align-middle text-center">
-          {bestTimeCube}
-        </div>
+        <div className="table-cell align-middle text-center">{32543}</div>
         <div className="table-cell align-middle text-center">
           {cubeData.createdAt}
         </div>

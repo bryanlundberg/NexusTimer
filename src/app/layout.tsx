@@ -1,7 +1,11 @@
+"use client";
 import Navigation from "@/components/Navigation";
 import "./globals.css";
 import type { Metadata } from "next";
 import Script from "next/script";
+import { useTimerStore } from "@/store/timerStore";
+import { useEffect } from "react";
+import loadCubes from "@/lib/loadCubes";
 
 export const metadata: Metadata = {
   title: "CubeStats",
@@ -14,6 +18,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { setCubes } = useTimerStore();
+
+  useEffect(() => {
+    const getCubes = loadCubes();
+    if (setCubes) setCubes(getCubes);
+  }, [setCubes]);
+
   return (
     <html lang="en">
       <body>
