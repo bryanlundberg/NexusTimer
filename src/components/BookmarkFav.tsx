@@ -3,11 +3,11 @@ import { useState } from "react";
 
 export default function BookmarkFav({
   isChecked,
-  handleChange,
+  setFavorite,
   cubeId,
 }: {
   isChecked: boolean;
-  handleChange: any;
+  setFavorite: any;
   cubeId: string;
 }) {
   const [checked, setChecked] = useState(isChecked);
@@ -15,7 +15,7 @@ export default function BookmarkFav({
   return (
     <button
       onClick={() => {
-        handleChange(cubeId);
+        setFavorite(cubeId);
         setChecked(!checked);
       }}
       aria-pressed={checked}

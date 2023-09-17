@@ -9,7 +9,6 @@ export default function addSolve({
   solve: Solve;
 }) {
   const cubesDB = loadCubes();
-  console.log(cubesDB);
   const cubesAddedSolve = cubesDB.map((cube) => {
     if (cube.id === cubeId) {
       cube.solves.session.push(solve);
