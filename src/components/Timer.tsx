@@ -50,7 +50,7 @@ export default function Timer() {
         if (selectedCube) {
           addSolve({ cubeId: selectedCube?.id, solve: lastSolve });
         }
-        setNewScramble;
+        setNewScramble(selectedCube);
       }
       startTime.current = 0;
       holdingTimeRef.current = 0;

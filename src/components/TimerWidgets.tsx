@@ -26,7 +26,9 @@ export default function TimerWidgets() {
         count: totalCount,
       });
     }
-  }, [scramble, event, selectedCube, statistics]);
+  }, [scramble, event, selectedCube]);
+
+  console.log(statistics);
 
   return (
     <div className="h-20 md:h-32 lg:h-40 w-full flex justify-between">
