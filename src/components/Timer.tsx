@@ -4,9 +4,11 @@ import { TimerStatus } from "@/interfaces/TimerStatus";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import addSolve from "@/lib/addSolve";
+import findCube from "@/lib/findCube";
 
 export default function Timer() {
-  const { selectedCube, scramble, setNewScramble } = useTimerStore();
+  const { selectedCube, scramble, setNewScramble, setCubes, setSelectedCube } =
+    useTimerStore();
 
   const [solvingTime, setSolvingTime] = useState<number>(0);
   const [timerStatus, setTimerStatus] = useState<TimerStatus>("idle");
@@ -48,7 +50,13 @@ export default function Timer() {
         };
 
         if (selectedCube) {
-          addSolve({ cubeId: selectedCube?.id, solve: lastSolve });
+          const newCubes = addSolve({
+            cubeId: selectedCube?.id,
+            solve: lastSolve,
+          });
+          setCubes(newCubes);
+          const currectCube = findCube({ cubeId: selectedCube.id });
+          if (currectCube) setSelectedCube(currectCube);
         }
         setNewScramble(selectedCube);
       }

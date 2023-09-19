@@ -1,6 +1,38 @@
+"use client";
+import EmptySolves from "@/components/EmptySolves";
 import SingleSolveItem from "@/components/SingleSolveItem";
+import { Solve } from "@/interfaces/Solve";
+import genId from "@/lib/genId";
+import { useTimerStore } from "@/store/timerStore";
 
 export default function SolvesPage() {
+  const { selectedCube } = useTimerStore();
+
+  const renderSolvesArea = () => {
+    console.log(selectedCube);
+
+    if (selectedCube && selectedCube.solves.session.length >= 1) {
+      console.log(selectedCube.solves.session.length);
+      return (
+        <div className="w-full gap-3 grid grid-cols-5">
+          {selectedCube.solves.session.map((solve: Solve) => {
+            return <SingleSolveItem key={genId()} solve={solve} />;
+          })}
+        </div>
+      );
+    }
+
+    if (selectedCube === null) {
+      console.log("asdsad");
+      return <EmptySolves message="No cube selected." />;
+    }
+
+    if (selectedCube && selectedCube.solves.session.length <= 0) {
+      console.log(selectedCube.solves.session.length);
+      return <EmptySolves message="Nothing here yet!" />;
+    }
+  };
+
   return (
     <>
       <div className="w-full md:w-10/12 mx-auto mt-10">
@@ -38,48 +70,7 @@ export default function SolvesPage() {
         </div>
 
         <div className="mt-8"></div>
-        <div className="w-full gap-3 flex flex-wrap justify-center">
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-          <SingleSolveItem />
-        </div>
+        {renderSolvesArea()}
       </div>
     </>
   );
