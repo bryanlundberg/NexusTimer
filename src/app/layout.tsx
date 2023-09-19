@@ -4,9 +4,9 @@ import Script from "next/script";
 import type { Metadata } from "next";
 import PreloadSettings from "@/components/PreloadSettings";
 export const metadata: Metadata = {
-  title: "CubeStats",
+  title: "Nexus Timer | For SpeedCubers",
   description:
-    "Cubing Stats is a platform for recording and viewing Rubik's cube statistics. It also includes tools to improve Rubik's cube skills.",
+    "Nexus Timer is a platform for recording and viewing Rubik's cube statistics. It also includes tools to improve Rubik's cube skills.",
 };
 
 export default function RootLayout({

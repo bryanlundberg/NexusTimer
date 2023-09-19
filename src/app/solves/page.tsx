@@ -1,36 +1,47 @@
 "use client";
 import EmptySolves from "@/components/EmptySolves";
 import SingleSolveItem from "@/components/SingleSolveItem";
+import ToggleSolvesButton from "@/components/ToggleSolvesButton";
 import { Solve } from "@/interfaces/Solve";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
+import { useState } from "react";
+import { SolveTab } from "@/interfaces/types/SolveTabs";
+import Button from "@/components/Button";
+import MoveAll from "@/icons/MoveAll";
+import Trash from "@/icons/Trash";
+import Plus from "@/icons/Plus";
+import Import from "@/icons/Import";
 
 export default function SolvesPage() {
+  const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
   const { selectedCube } = useTimerStore();
 
-  const renderSolvesArea = () => {
-    console.log(selectedCube);
+  const handleTabClick = (newTab: SolveTab) => {
+    setCurrentTab(newTab);
+  };
 
-    if (selectedCube && selectedCube.solves.session.length >= 1) {
-      console.log(selectedCube.solves.session.length);
-      return (
-        <div className="w-full gap-3 grid grid-cols-5">
-          {selectedCube.solves.session.map((solve: Solve) => {
-            return <SingleSolveItem key={genId()} solve={solve} />;
-          })}
-        </div>
-      );
-    }
+  const renderSolvesArea = (tab: SolveTab) => {
+    const selectedSolves =
+      tab === "Session"
+        ? selectedCube?.solves.session
+        : selectedCube?.solves.all;
 
-    if (selectedCube === null) {
-      console.log("asdsad");
+    if (!selectedCube) {
       return <EmptySolves message="No cube selected." />;
     }
 
-    if (selectedCube && selectedCube.solves.session.length <= 0) {
-      console.log(selectedCube.solves.session.length);
+    if (!selectedSolves || selectedSolves.length === 0) {
       return <EmptySolves message="Nothing here yet!" />;
     }
+
+    return (
+      <div className="w-full gap-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6">
+        {selectedSolves.map((solve: Solve) => (
+          <SingleSolveItem key={genId()} solve={solve} />
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -38,39 +49,54 @@ export default function SolvesPage() {
       <div className="w-full md:w-10/12 mx-auto mt-10">
         <div className="flex justify-between text-sm">
           {/* Options Show session/ History/bookmark */}
-          <div className="font-medium rounded-md p-1 flex h-8 bg-zinc-800 gap-1">
-            <button
-              type="button"
-              className="px-8 appearance-none rounded-md bg-zinc-950 "
+          <div className="font-medium rounded-md p-1 flex h-8 bg-zinc-800 gap-1 w-56">
+            <ToggleSolvesButton
+              handleClick={() => handleTabClick("Session")}
+              active={currentTab === "Session"}
             >
               Session
-            </button>
-            <button
-              type="button"
-              className="px-8 appearance-none rounded-md bg-zinc-800"
+            </ToggleSolvesButton>
+            <ToggleSolvesButton
+              handleClick={() => handleTabClick("All")}
+              active={currentTab === "All"}
             >
-              All time
-            </button>
-            <button
-              type="button"
-              className="px-8 appearance-none rounded-md bg-zinc-800"
-            >
-              Bookmark
-            </button>
+              All Time
+            </ToggleSolvesButton>
           </div>
-
-          <div className="flex gap-2 h-8">
-            <button className="px-4 appearance-none rounded-md border border-zinc-800 bg-zinc-950 hover:bg-zinc-800 font-medium">
-              Import
-            </button>
-            <button className="px-4 appearance-none rounded-md bg-neutral-200 hover:bg-neutral-300 text-zinc-800 font-medium">
-              + Add Solve
-            </button>
+          {/* buttons manage solves */}
+          <div className="flex gap-2">
+            <Button
+              disabled={false}
+              handleClick={() => console.log("a")}
+              className="font-normal"
+            >
+              <div className="flex items-center justify-center text-xs">
+                <MoveAll /> <div>Move All</div>
+              </div>
+            </Button>
+            <Button disabled={false} handleClick={() => console.log("a")}>
+              <div className="flex items-center justify-center text-xs">
+                <Trash />
+                <div> Trash</div>
+              </div>
+            </Button>
+            <Button disabled={false} handleClick={() => console.log("a")}>
+              <div className="flex items-center justify-center text-xs">
+                <Plus />
+                <div> New Solve</div>
+              </div>
+            </Button>
+            <Button disabled={false} handleClick={() => console.log("a")}>
+              <div className="flex items-center justify-center text-xs">
+                <Import />
+                <div> Import</div>
+              </div>
+            </Button>
           </div>
         </div>
 
         <div className="mt-8"></div>
-        {renderSolvesArea()}
+        {renderSolvesArea(currentTab)}
       </div>
     </>
   );
