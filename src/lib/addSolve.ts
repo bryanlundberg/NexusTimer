@@ -11,8 +11,8 @@ export default function addSolve({
   const cubesDB = loadCubes();
   const cubesAddedSolve = cubesDB.map((cube) => {
     if (cube.id === cubeId) {
-      cube.solves.session.push(solve);
-      cube.solves.all.push(solve);
+      cube.solves.session.unshift(solve);
+      cube.solves.all.unshift(solve);
     }
     return cube;
   });
