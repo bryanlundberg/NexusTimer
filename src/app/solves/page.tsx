@@ -14,6 +14,7 @@ import Plus from "@/icons/Plus";
 import Import from "@/icons/Import";
 import findCube from "@/lib/findCube";
 import updateSessions from "@/lib/updateSessions";
+import deleteSession from "@/lib/deleteSession";
 
 export default function SolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
@@ -28,6 +29,17 @@ export default function SolvesPage() {
       const updateCubes = updateSessions(selectedCube);
       if (updateCubes) {
         setCubes(updateCubes);
+        const updatedCube = findCube({ cubeId: selectedCube.id });
+        if (updatedCube) setSelectedCube(updatedCube);
+      }
+    }
+  };
+
+  const handleTrashAll = () => {
+    if (selectedCube) {
+      const cubeSession = deleteSession(selectedCube);
+      if (cubeSession) {
+        setCubes(cubeSession);
         const updatedCube = findCube({ cubeId: selectedCube.id });
         if (updatedCube) setSelectedCube(updatedCube);
       }
@@ -87,22 +99,10 @@ export default function SolvesPage() {
                 <MoveAll /> <div>Move All</div>
               </div>
             </Button>
-            <Button disabled={false} handleClick={() => console.log("a")}>
+            <Button disabled={false} handleClick={() => handleTrashAll()}>
               <div className="flex items-center justify-center text-xs">
                 <Trash />
-                <div> Trash</div>
-              </div>
-            </Button>
-            <Button disabled={false} handleClick={() => console.log("a")}>
-              <div className="flex items-center justify-center text-xs">
-                <Plus />
-                <div> New Solve</div>
-              </div>
-            </Button>
-            <Button disabled={false} handleClick={() => console.log("a")}>
-              <div className="flex items-center justify-center text-xs">
-                <Import />
-                <div> Import</div>
+                <div> Trash All</div>
               </div>
             </Button>
           </div>

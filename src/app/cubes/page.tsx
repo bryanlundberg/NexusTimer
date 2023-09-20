@@ -70,7 +70,7 @@ export default function CubesPage() {
 
         {/* table */}
         <div className="overflow-auto">
-          <div className="table w-full mt-4 border rounded-lg text-sm border-zinc-800">
+          <div className="table w-full mt-4 border rounded-lg text-sm border-zinc-800 overflow-hidden">
             <TableHeader />
             <div className="table-row-group h-10 border-b border-zinc-800 text-white text-sm">
               {cubes?.map((cube) => {
