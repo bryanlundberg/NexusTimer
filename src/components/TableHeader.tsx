@@ -9,8 +9,12 @@ export default function TableHeader() {
           <div className="table-cell text-left align-middle">Cube</div>
           <div className="table-cell text-center align-middle">Category</div>
           <div className="table-cell text-center align-middle">Solves</div>
-          <div className="table-cell text-center align-middle">Created At</div>
-          <div className="table-cell text-center align-middle">Status</div>
+          <div className=" text-center align-middle hidden md:table-cell">
+            Created At
+          </div>
+          <div className="text-center align-middle hidden md:table-cell">
+            Status
+          </div>
           <div className="table-cell text-center align-middle w-20"></div>
         </div>
       </div>
