@@ -31,7 +31,7 @@ export default function TimerWidgets() {
   console.log(statistics);
 
   return (
-    <div className="h-20 md:h-32 lg:h-40 w-full flex justify-between">
+    <div className="h-20 md:h-32 lg:h-40 w-full flex justify-between text-xs md:text-sm">
       <div className="w-full h-full">
         <div className="font-medium">Desviation: 1.56</div>
         <div className="font-medium">Mean: 1.50</div>

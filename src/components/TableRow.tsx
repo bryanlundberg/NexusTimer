@@ -33,11 +33,12 @@ export default function TableRow({ cube }: { cube: Cube }) {
         <div className="table-cell align-middle text-center">
           {cube.solves.all.length}
         </div>
-        <div className="table-cell align-middle text-center">{32543}</div>
-        <div className="table-cell align-middle text-center">
+        <div className="align-middle text-center hidden md:table-cell">
           {cube.createdAt}
         </div>
-        <div className="table-cell align-middle text-center">Used</div>
+        <div className="align-middle text-center hidden md:table-cell">
+          Used
+        </div>
         <div className="table-cell align-middle text-center">
           <button className="hover:bg-zinc-800 p-1 px-4 rounded-md">
             <Ellipsis />

@@ -6,9 +6,11 @@ import TimerWidgets from "@/components/TimerWidgets";
 export default function Home() {
   return (
     <>
-      <HeaderTimer />
-      <Timer />
-      <TimerWidgets />
+      <div className="grow flex flex-col justify-between">
+        <HeaderTimer />
+        <Timer />
+        <TimerWidgets />
+      </div>
     </>
   );
 }

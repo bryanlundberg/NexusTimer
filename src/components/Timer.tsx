@@ -116,7 +116,7 @@ export default function Timer() {
   return (
     <>
       {/* Timer */}
-      <section className="flex flex-col items-center justify-center my-16">
+      <section className="text-center my-16">
         <div
           className={`text-6xl sm:text-7xl md:text-8xl font-mono select-none ${timerStatusClasses[timerStatus]}`}
         >
