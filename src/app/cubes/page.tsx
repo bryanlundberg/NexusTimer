@@ -53,24 +53,27 @@ export default function CubesPage() {
 
   return (
     <>
-      <div className="w-full md:w-10/12 mx-auto">
-        {/* Filters table */}
-        <div className="mt-8"></div>
-
-        <div className="flex justify-end gap-3">
-          {/* Options */}
-          <InputText
-            placeholder="Filter your cubes"
-            onChange={handleSearchFilter}
-          />
-          <Button disabled={false} handleClick={handleClick}>
-            + Cube
-          </Button>
+      <div className="grow flex flex-col border border-zinc-800 rounded-md min-h-full">
+        <div className="border-b border-zinc-800 py-4 ">
+          <div className="w-full md:w-10/12 mx-auto">
+            <div className="flex justify-between items-center">
+              <div className="font-medium text-2xl">Cubes</div>
+              <div className="flex justify-end gap-3">
+                {/* Options */}
+                <InputText
+                  placeholder="Filter your cubes"
+                  onChange={handleSearchFilter}
+                />
+                <Button disabled={false} handleClick={handleClick}>
+                  + Cube
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* table */}
-        <div className="overflow-auto">
-          <div className="table w-full mt-4 border rounded-lg text-sm border-zinc-800 overflow-hidden">
+        {/* content */}
+        <div className="h-full overflow-auto">
+          <div className="table w-full mt-4 border rounded-lg text-sm border-zinc-800">
             <TableHeader />
             <div className="table-row-group h-10 border-b border-zinc-800 text-white text-sm">
               {cubes?.map((cube) => {
