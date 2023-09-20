@@ -10,11 +10,10 @@ import { SolveTab } from "@/interfaces/types/SolveTabs";
 import Button from "@/components/Button";
 import MoveAll from "@/icons/MoveAll";
 import Trash from "@/icons/Trash";
-import Plus from "@/icons/Plus";
-import Import from "@/icons/Import";
 import findCube from "@/lib/findCube";
 import updateSessions from "@/lib/updateSessions";
 import deleteSession from "@/lib/deleteSession";
+import Select from "@/components/Select";
 
 export default function SolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
@@ -61,7 +60,7 @@ export default function SolvesPage() {
     }
 
     return (
-      <div className="w-full gap-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6">
+      <div className="px-3 pb-3 w-full h-full overflow-auto gap-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6">
         {selectedSolves.map((solve: Solve) => (
           <SingleSolveItem key={genId()} solve={solve} />
         ))}
@@ -71,8 +70,18 @@ export default function SolvesPage() {
 
   return (
     <>
-      <div className="h-full w-full mt-8 md:w-10/12 mx-auto flex flex-col justify-between gap-4">
-        <div className="flex justify-between text-sm flex-col md:flex-row gap-3">
+      <div className="grow flex flex-col gap-3 border border-zinc-800 rounded-md min-h-full">
+        <div className="border-b border-zinc-800 py-4 ">
+          <div className="w-full md:w-10/12 mx-auto">
+            <div className="flex justify-between items-center">
+              <div className="font-medium text-2xl">Solves</div>
+              <Select />
+            </div>
+          </div>
+        </div>
+
+        {/* content */}
+        <div className="px-3 flex justify-between text-sm flex-col md:flex-row gap-3">
           {/* Options Show session/ History/bookmark */}
           <div className="font-medium rounded-md p-1 flex h-8 bg-zinc-800 gap-1 w-full md:w-56 xl:w-96">
             <ToggleSolvesButton
@@ -111,4 +120,9 @@ export default function SolvesPage() {
       </div>
     </>
   );
+  // return (
+  //   <>
+
+  //   </>
+  // );
 }

@@ -6,7 +6,7 @@ export default function EmptySolves({ message }: { message: string }) {
     <>
       <Link
         href="/"
-        className="gap-3 justify-center items-center w-full border rounded-md border-zinc-800 h-96 border-dashed flex flex-col"
+        className="m-3 grow gap-3 justify-center items-center border rounded-md border-zinc-600 border-dashed flex flex-col"
       >
         <CubeIcon />
         <div>{message}</div>

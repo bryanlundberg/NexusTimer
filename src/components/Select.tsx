@@ -23,7 +23,7 @@ export default function Select() {
       <div className="relative p-2">
         <button
           onClick={() => setOpen(!open)}
-          className="min-w-[250px] text-xs appearance-none border bg-transparent hover:bg-zinc-800 border-zinc-800 font-medium rounded-md px-4 py-2"
+          className="min-w-[250px] text-xs appearance-none border bg-zinc-950 hover:bg-zinc-800 border-zinc-800 font-medium rounded-md px-4 py-2"
         >
           <div className="flex justify-between">
             <div className="">
@@ -35,7 +35,7 @@ export default function Select() {
         {open === true ? (
           <div
             id="list-options"
-            className="absolute overflow-auto max-h-[400px] p-1 top-12 left-0 min-w-full max-w-full bg-zinc-950 text-slate-100 h-auto border border-zinc-800 rounded-md"
+            className="absolute z-40 overflow-auto max-h-[400px] p-1 top-12 left-0 min-w-full max-w-full bg-zinc-950 text-slate-100 h-auto border border-zinc-800 rounded-md"
           >
             {/* Favorites */}
             <LabelSection description="Favorite" />
