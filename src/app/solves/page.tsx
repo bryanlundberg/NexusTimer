@@ -12,13 +12,26 @@ import MoveAll from "@/icons/MoveAll";
 import Trash from "@/icons/Trash";
 import Plus from "@/icons/Plus";
 import Import from "@/icons/Import";
+import findCube from "@/lib/findCube";
+import updateSessions from "@/lib/updateSessions";
 
 export default function SolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
-  const { selectedCube } = useTimerStore();
+  const { selectedCube, setCubes, setSelectedCube } = useTimerStore();
 
   const handleTabClick = (newTab: SolveTab) => {
     setCurrentTab(newTab);
+  };
+
+  const handleMoveAll = () => {
+    if (selectedCube) {
+      const updateCubes = updateSessions(selectedCube);
+      if (updateCubes) {
+        setCubes(updateCubes);
+        const updatedCube = findCube({ cubeId: selectedCube.id });
+        if (updatedCube) setSelectedCube(updatedCube);
+      }
+    }
   };
 
   const renderSolvesArea = (tab: SolveTab) => {
@@ -46,10 +59,10 @@ export default function SolvesPage() {
 
   return (
     <>
-      <div className="w-full md:w-10/12 mx-auto mt-10">
-        <div className="flex justify-between text-sm">
+      <div className="h-full w-full mt-8 md:w-10/12 mx-auto flex flex-col justify-between gap-4">
+        <div className="flex justify-between text-sm flex-col md:flex-row gap-3">
           {/* Options Show session/ History/bookmark */}
-          <div className="font-medium rounded-md p-1 flex h-8 bg-zinc-800 gap-1 w-56">
+          <div className="font-medium rounded-md p-1 flex h-8 bg-zinc-800 gap-1 w-full md:w-56 xl:w-96">
             <ToggleSolvesButton
               handleClick={() => handleTabClick("Session")}
               active={currentTab === "Session"}
@@ -67,7 +80,7 @@ export default function SolvesPage() {
           <div className="flex gap-2">
             <Button
               disabled={false}
-              handleClick={() => console.log("a")}
+              handleClick={() => handleMoveAll()}
               className="font-normal"
             >
               <div className="flex items-center justify-center text-xs">
@@ -94,8 +107,6 @@ export default function SolvesPage() {
             </Button>
           </div>
         </div>
-
-        <div className="mt-8"></div>
         {renderSolvesArea(currentTab)}
       </div>
     </>

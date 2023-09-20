@@ -33,7 +33,6 @@ export default function TableRow({ cube }: { cube: Cube }) {
         <div className="table-cell align-middle text-center">
           {cube.solves.all.length}
         </div>
-        <div className="table-cell align-middle text-center">{32543}</div>
         <div className="table-cell align-middle text-center">
           {cube.createdAt}
         </div>

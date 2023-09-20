@@ -54,16 +54,10 @@ export default function CubesPage() {
   return (
     <>
       <div className="w-full md:w-10/12 mx-auto">
-        {/* Header */}
-        <h1 className="text-4xl font-bold mt-5">Welcome back!</h1>
-        <p className="text-lg text-gray-400">
-          Here&rsquo;s a list of your cubes!
-        </p>
-
         {/* Filters table */}
         <div className="mt-8"></div>
 
-        <div className="flex align-middle gap-3">
+        <div className="flex justify-end gap-3">
           {/* Options */}
           <InputText
             placeholder="Filter your cubes"
@@ -74,16 +68,14 @@ export default function CubesPage() {
           </Button>
         </div>
 
-        <div>
-          {/* table */}
-          <div className="overflow-auto">
-            <div className="table w-full mt-4 border rounded-lg text-sm border-zinc-800">
-              <TableHeader />
-              <div className="table-row-group h-10 border-b border-zinc-800 text-white text-sm">
-                {cubes?.map((cube) => {
-                  return <TableRow key={genId()} cube={cube} />;
-                })}
-              </div>
+        {/* table */}
+        <div className="overflow-auto">
+          <div className="table w-full mt-4 border rounded-lg text-sm border-zinc-800">
+            <TableHeader />
+            <div className="table-row-group h-10 border-b border-zinc-800 text-white text-sm">
+              {cubes?.map((cube) => {
+                return <TableRow key={genId()} cube={cube} />;
+              })}
             </div>
           </div>
         </div>
