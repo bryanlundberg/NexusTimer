@@ -52,11 +52,18 @@ export default function SolvesPage() {
         : selectedCube?.solves.all;
 
     if (!selectedCube) {
-      return <EmptySolves message="No cube selected." />;
+      return (
+        <EmptySolves
+          message="No cube selected, pick one..."
+          icon="no-cube-selected"
+        />
+      );
     }
 
     if (!selectedSolves || selectedSolves.length === 0) {
-      return <EmptySolves message="Nothing here yet!" />;
+      return (
+        <EmptySolves message="There's no solves to show!" icon="no-solves" />
+      );
     }
 
     return (
