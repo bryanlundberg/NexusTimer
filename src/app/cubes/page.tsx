@@ -55,8 +55,8 @@ export default function CubesPage() {
     <>
       <div className="grow w-full md:max-w-6xl mx-auto flex flex-col border border-zinc-800 rounded-md min-h-full">
         <div className="border-b border-zinc-800 py-4 ">
-          <div className="w-full md:w-10/12 mx-auto">
-            <div className="flex justify-between items-center">
+          <div className="w-full mx-auto">
+            <div className="flex justify-between items-center mx-3">
               <div className="font-medium text-2xl">Cubes</div>
               <div className="flex justify-end gap-3">
                 {/* Options */}
