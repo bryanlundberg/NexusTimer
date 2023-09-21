@@ -1,12 +1,26 @@
-export default function getBestTime() {
+import { sort } from "fast-sort";
+import findCube from "./findCube";
+
+export default function getBestTime({
+  cubeId,
+  typeSearch,
+}: {
+  cubeId: string;
+  typeSearch: "session" | "all";
+}) {
   // que entre parametro cubeId y category default false
 
-  // load cubes
+  let sortByTime = null;
+  const cube = findCube({ cubeId: cubeId });
+  if (!cube) return;
 
-  //sort endDate
+  if (typeSearch === "session") {
+    sortByTime = sort(cube.solves.session).asc((u) => u.time);
+  } else {
+    sortByTime = sort(cube.solves.session).asc((u) => u.time);
+  }
 
-  //slice(0,1)
-  // return
+  if (sortByTime.length <= 0) return 0;
 
-  return 1.22;
+  return sortByTime[0].time;
 }
