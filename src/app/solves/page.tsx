@@ -80,7 +80,7 @@ export default function SolvesPage() {
       <div className="grow w-full md:max-w-6xl mx-auto flex flex-col gap-3 border border-zinc-800 rounded-md min-h-full">
         <div className="border-b border-zinc-800 py-4 ">
           <div className="w-full mx-auto">
-            <div className="flex justify-between items-center mx-3">
+            <div className="flex justify-between items-center mx-3 gap-2">
               <div className="font-medium text-2xl">Solves</div>
               <Select />
             </div>

@@ -20,10 +20,10 @@ export default function Select() {
 
   return (
     <>
-      <div className="relative p-2">
+      <div className="relative grow min-w-[200px]">
         <button
           onClick={() => setOpen(!open)}
-          className="min-w-[250px] text-xs appearance-none border bg-zinc-950 hover:bg-zinc-800 border-zinc-800 font-medium rounded-md px-4 py-2"
+          className="max-w-[250px] w-full text-xs appearance-none border bg-zinc-950 hover:bg-zinc-800 border-zinc-800 font-medium rounded-md px-4 py-2"
         >
           <div className="flex justify-between">
             <div className="">

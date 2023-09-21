@@ -8,7 +8,7 @@ export default function HeaderTimer() {
     <>
       {/* Selectors category/cube */}
       <div className="flex flex-col items-center justify-center gap-5 p-4">
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <div
             className="w-6 h-6 text-netral-50 hover:text-neutral-200 hover:cursor-pointer"
             onClick={() => alert("Settings modal pending")}
