@@ -77,7 +77,7 @@ export default function SolvesPage() {
 
   return (
     <>
-      <div className="grow flex flex-col gap-3 border border-zinc-800 rounded-md min-h-full">
+      <div className="grow w-full md:max-w-6xl mx-auto flex flex-col gap-3 border border-zinc-800 rounded-md min-h-full">
         <div className="border-b border-zinc-800 py-4 ">
           <div className="w-full md:w-10/12 mx-auto">
             <div className="flex justify-between items-center">
