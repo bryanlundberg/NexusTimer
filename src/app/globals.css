@@ -9,19 +9,19 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: rgb(39 39 42);
+  background: rgb(9 9 11);
   border-radius: 5px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(9 9 11);
+  background: rgb(39 39 42);
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(9 9 11);
+  background: rgb(39 39 42);
 }
 
 scramble-display {

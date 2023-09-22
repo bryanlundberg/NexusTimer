@@ -19,7 +19,7 @@ export default function HeaderTimer() {
           <Select />
         </div>
 
-        <div className="text-center font-medium text-2xl">
+        <div className="text-center font-medium text-2xl h-auto max-h-52 overflow-auto p-2 bg-zinc-900 rounded-md">
           {selectedCube ? scramble : "Pick a Cube to load a scramble."}
         </div>
       </div>
