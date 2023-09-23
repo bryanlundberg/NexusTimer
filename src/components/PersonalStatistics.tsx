@@ -36,7 +36,7 @@ export default function PersonalStatistics() {
 
   return (
     <>
-      <div className="flex flex-col gap-3 px-3 py-3">
+      <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <CardStatistic label="Cuber Classification" total={"Rookie"} />
           <CardStatistic label="Rating Points" total={0} />

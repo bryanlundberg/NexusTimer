@@ -12,7 +12,7 @@ export default function StatsPage() {
   console.log(currentTab);
 
   return (
-    <div className="grow w-full md:max-w-6xl mx-auto flex flex-col border border-zinc-800 rounded-md overflow-auto">
+    <div className="grow w-full md:max-w-6xl mx-auto flex flex-col border border-zinc-800 rounded-md min-h-full">
       <div className="border-b border-zinc-800 py-4 ">
         <div className="w-full mx-auto">
           <div className="flex justify-between items-center mx-3">

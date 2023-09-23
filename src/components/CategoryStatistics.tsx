@@ -3,6 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { useTimerStore } from "@/store/timerStore";
 import CardStatistic from "./CardStatistic";
 import { cubeCollection } from "@/lib/cubeCollection";
+import LineChart from "./LineChart";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -65,29 +66,32 @@ export default function CategoryStatistics() {
           <CardStatistic label="Best Ao1000" total={16.75} />
         </div>
         <div className="flex flex-col md:flex-row gap-3">
-          <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full md:w-96">
-            {cubes && <Doughnut data={data} />}
+          <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full">
+            <LineChart />
             <div className="text-2xl font-medium text-center my-3">
-              Events distribution
+              Category distribution
             </div>
           </div>
-          <div className="border rounded-md border-zinc-800 p-3 w-full grow overflow-hidden">
-            <div className="text-2xl font-medium">Last activity</div>
-            <div className="text-md">1. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">2. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">3. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">4. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">5. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">6. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">7. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">8. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">9. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">10. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">1. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">2. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">3. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">4. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">5. 3x3 Weilong 9.59 9 hours ago</div>
+        </div>
+
+        <div className="bg-zinc-800 rounded-md text-sm w-full">
+          <div className="flex bg-zinc-700 p-1 rounded-md text-zinc-200 h-10 items-center">
+            <div className="w-1/4"></div>
+            <div className="w-1/4 text-center">All</div>
+            <div className="w-1/4 text-center">Session</div>
+            <div className="w-1/4 text-center">Cube</div>
+          </div>
+          <div className="flex rounded-md text-zinc-400 text-xs h-10 items-center">
+            <div className="ps-3 w-1/4">Desviation</div>
+            <div className="w-1/4 text-center">1.54</div>
+            <div className="w-1/4 text-center">0.96</div>
+            <div className="w-1/4 text-center">3.49</div>
+          </div>
+          <div className="flex rounded-md text-zinc-400 text-xs h-10 items-center">
+            <div className="ps-3 w-1/4">Desviation</div>
+            <div className="w-1/4 text-center">1.54</div>
+            <div className="w-1/4 text-center">0.96</div>
+            <div className="w-1/4 text-center">3.49</div>
           </div>
         </div>
       </div>
