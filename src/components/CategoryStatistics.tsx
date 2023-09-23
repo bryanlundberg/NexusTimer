@@ -38,7 +38,7 @@ export default function CategoryStatistics() {
 
   return (
     <>
-      <div className="flex flex-col gap-3 px-3 py-3">
+      <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
         <div className="flex gap-3">
           <select className="bg-zinc-900 w-full border rounded-md p-1 border-zinc-800">
             {cubeCollection.map((cube) => (
