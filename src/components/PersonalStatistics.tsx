@@ -1,6 +1,7 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { useTimerStore } from "@/store/timerStore";
+import Clock from "@/icons/Clock";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function PersonalStatistics() {
@@ -34,17 +35,38 @@ export default function PersonalStatistics() {
 
   return (
     <>
-      {" "}
-      <div className="flex justify-center max-h-[300px]">
-        <div className="">{cubes && <Doughnut data={data} />}</div>
-      </div>
-      <div className="grow w-full grid grid-cols-1 md:grid-cols-2">
-        <CardStatistic label="Total Cubing Time" total={"72h 45min"} />
-        <CardStatistic label="Total Solves" total={1233} />
-        <CardStatistic label="Total Algorithms" total={1233} />
-        <CardStatistic label="Most played" total={"3x3"} />
-        <CardStatistic label="Total Solves" total={1233} />
-        <CardStatistic label="Total Solves" total={1233} />
+      <div className="flex flex-col gap-3 px-3 py-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <CardStatistic label="Cuber Classification" total={"Rookie"} />
+          <CardStatistic label="Rating Points" total={0} />
+          <CardStatistic label="Time Spent Cubing" total={"72h 45min"} />
+          <CardStatistic label="Total Cubes Solved" total={1233} />
+          <CardStatistic label="Sessions in progress" total={"3/12 [392]"} />
+          <CardStatistic label="Total Events" total={"4"} />
+          <CardStatistic label="Most Played" total={"3x3"} />
+          <CardStatistic label="Success Rate" total={"98.8%"} />
+        </div>
+        <div className="flex flex-col md:flex-row gap-3">
+          <div className="border rounded-md border-zinc-800 p-3 w-full">
+            {cubes && <Doughnut data={data} />}
+            <div className="text-2xl font-medium text-center mt-3">
+              Events distribution
+            </div>
+          </div>
+          <div className="border rounded-md border-zinc-800 p-3 w-full">
+            <div className="text-2xl font-medium">Last activity</div>
+            <div className="text-md">1. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">2. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">3. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">4. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">5. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">6. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">7. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">8. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">9. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">10. 3x3 Weilong 9.59 9 hours ago</div>
+          </div>
+        </div>
       </div>
     </>
   );
@@ -59,9 +81,12 @@ function CardStatistic({
 }) {
   return (
     <>
-      <div className="border border-zinc-800">
-        <div>{label}</div>
-        <div>{total}</div>
+      <div className="border border-zinc-800 rounded-lg flex justify-between items-center p-3">
+        <div className="grow">
+          <div className="text-3xl font-medium">{total}</div>
+          <div className="text-md mt-3">{label}</div>
+        </div>
+        <Clock />
       </div>
     </>
   );
