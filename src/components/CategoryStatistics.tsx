@@ -2,10 +2,11 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { useTimerStore } from "@/store/timerStore";
 import CardStatistic from "./CardStatistic";
+import { cubeCollection } from "@/lib/cubeCollection";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function PersonalStatistics() {
+export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
   const data = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
@@ -37,15 +38,31 @@ export default function PersonalStatistics() {
   return (
     <>
       <div className="flex flex-col gap-3 px-3 py-3">
+        <div className="flex gap-3">
+          <select className="bg-zinc-900 w-full border rounded-md p-1 border-zinc-800">
+            {cubeCollection.map((cube) => (
+              <option key={cube.name} value={cube.name}>
+                {cube.name}
+              </option>
+            ))}
+          </select>
+
+          <select className="bg-zinc-900 w-full border rounded-md p-1 border-zinc-800">
+            <option value="all">All</option>
+            <option value="123ds">Weilong</option>
+            <option value="wilon">Moulong</option>
+            <option value="gan-55">Gan 355</option>
+          </select>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <CardStatistic label="Cuber Classification" total={"Rookie"} />
-          <CardStatistic label="Rating Points" total={0} />
-          <CardStatistic label="Time Spent Cubing" total={"72h 45min"} />
-          <CardStatistic label="Total Cubes Solved" total={1233} />
-          <CardStatistic label="Sessions in progress" total={"3/12 [392]"} />
-          <CardStatistic label="Total Events" total={"4"} />
-          <CardStatistic label="Most Played" total={"3x3"} />
-          <CardStatistic label="Success Rate" total={"98.8%"} />
+          <CardStatistic label="Total Cubes Solved" total={933} />
+          <CardStatistic label="Total Cubes" total={"41"} />
+          <CardStatistic label="Most Used Cube" total={"Meilong"} />
+          <CardStatistic label="Time Spent Cubing" total={"16h 12min"} />
+          <CardStatistic label="Best Time" total={9.91} />
+          <CardStatistic label="Best Ao5" total={13.75} />
+          <CardStatistic label="Best Ao100" total={15.75} />
+          <CardStatistic label="Best Ao1000" total={16.75} />
         </div>
         <div className="flex flex-col md:flex-row gap-3">
           <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full md:w-96">
