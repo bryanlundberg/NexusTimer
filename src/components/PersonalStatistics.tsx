@@ -1,7 +1,9 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { useTimerStore } from "@/store/timerStore";
-import Clock from "@/icons/Clock";
+import CardStatistic from "./CardStatistic";
+import AreaChart from "./AreaChart";
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function PersonalStatistics() {
@@ -35,7 +37,7 @@ export default function PersonalStatistics() {
 
   return (
     <>
-      <div className="flex flex-col gap-3 px-3 py-3">
+      <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <CardStatistic label="Cuber Classification" total={"Rookie"} />
           <CardStatistic label="Rating Points" total={0} />
@@ -46,52 +48,28 @@ export default function PersonalStatistics() {
           <CardStatistic label="Most Played" total={"3x3"} />
           <CardStatistic label="Success Rate" total={"98.8%"} />
         </div>
-        <div className="flex flex-col md:flex-row gap-3">
-          <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full md:w-96">
+        <div className="flex flex-col lg:flex-row gap-3">
+          <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full sm:h-96 justify-between items-center mx-auto">
             {cubes && <Doughnut data={data} />}
-            <div className="text-2xl font-medium text-center my-3">
-              Events distribution
-            </div>
           </div>
-          <div className="border rounded-md border-zinc-800 p-3 w-full grow overflow-hidden">
-            <div className="text-2xl font-medium">Last activity</div>
-            <div className="text-md">1. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">2. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">3. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">4. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">5. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">6. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">7. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">8. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">9. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">10. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">1. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">2. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">3. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">4. 3x3 Weilong 9.59 9 hours ago</div>
-            <div className="text-md">5. 3x3 Weilong 9.59 9 hours ago</div>
+          <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full sm:h-96 justify-center items-center mx-auto">
+            {cubes && <AreaChart />}
           </div>
         </div>
+        <LastActivity />
       </div>
     </>
   );
 }
 
-function CardStatistic({
-  label,
-  total,
-}: {
-  label: string;
-  total: number | string;
-}) {
+function LastActivity() {
   return (
     <>
-      <div className="border border-zinc-800 rounded-lg flex justify-between items-center p-3">
-        <div className="grow">
-          <div className="text-3xl font-medium">{total}</div>
-          <div className="text-md mt-3">{label}</div>
+      <div className="border rounded-md border-zinc-800 p-3 w-full text-left sm:text-center">
+        <div className="text-xl font-medium mb-3">Last activity</div>
+        <div className="text-sm">
+          1. 3x3 Weilong 9.59 9 hours ago +4 rating points
         </div>
-        <Clock />
       </div>
     </>
   );
