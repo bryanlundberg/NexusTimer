@@ -47,13 +47,13 @@ export default function PersonalStatistics() {
           <CardStatistic label="Success Rate" total={"98.8%"} />
         </div>
         <div className="flex flex-col md:flex-row gap-3">
-          <div className="border rounded-md border-zinc-800 p-3 w-full">
+          <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full md:w-96">
             {cubes && <Doughnut data={data} />}
-            <div className="text-2xl font-medium text-center mt-3">
+            <div className="text-2xl font-medium text-center my-3">
               Events distribution
             </div>
           </div>
-          <div className="border rounded-md border-zinc-800 p-3 w-full">
+          <div className="border rounded-md border-zinc-800 p-3 w-full grow overflow-hidden">
             <div className="text-2xl font-medium">Last activity</div>
             <div className="text-md">1. 3x3 Weilong 9.59 9 hours ago</div>
             <div className="text-md">2. 3x3 Weilong 9.59 9 hours ago</div>
@@ -65,6 +65,11 @@ export default function PersonalStatistics() {
             <div className="text-md">8. 3x3 Weilong 9.59 9 hours ago</div>
             <div className="text-md">9. 3x3 Weilong 9.59 9 hours ago</div>
             <div className="text-md">10. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">1. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">2. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">3. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">4. 3x3 Weilong 9.59 9 hours ago</div>
+            <div className="text-md">5. 3x3 Weilong 9.59 9 hours ago</div>
           </div>
         </div>
       </div>
