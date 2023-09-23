@@ -1,7 +1,12 @@
 "use client";
+
+import PersonalStatistics from "@/components/PersonalStatistics";
+import { useTimerStore } from "@/store/timerStore";
+
 export default function StatsPage() {
+  const { cubes } = useTimerStore();
   return (
-    <div className="grow w-full md:max-w-6xl mx-auto flex flex-col gap-3 border border-zinc-800 rounded-md">
+    <div className="grow w-full md:max-w-6xl mx-auto flex flex-col border border-zinc-800 rounded-md overflow-auto">
       <div className="border-b border-zinc-800 py-4 ">
         <div className="w-full mx-auto">
           <div className="flex justify-between items-center mx-3">
@@ -13,10 +18,7 @@ export default function StatsPage() {
           </div>
         </div>
       </div>
-      <div className="flex">
-        <div id="chart" className="bg-gray-500 grow"></div>
-        <div className="w-96 bg-zinc-100"></div>
-      </div>
+      <PersonalStatistics />
     </div>
   );
 }

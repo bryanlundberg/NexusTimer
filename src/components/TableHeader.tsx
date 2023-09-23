@@ -1,7 +1,7 @@
 export default function TableHeader() {
   return (
     <>
-      <div className="table-header-group mb-10 h-10 border-b border-zinc-800 text-zinc-800 bg-neutral-200 font-medium text-sm">
+      <div className="table-header-group mb-10 h-10 border-b border-zinc-900 text-zinc-300 bg-zinc-900 font-medium text-sm">
         <div className="table-row">
           <div className="table-cell w-20 align-middle text-center">
             Favorite

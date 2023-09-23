@@ -18,7 +18,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
 
   return (
     <>
-      <div className="table-row h-10 hover:bg-zinc-900">
+      <div className="table-row h-10 hover:bg-zinc-800 bg-zinc-950">
         <div className="table-cell w-10 align-middle">
           <BookmarkFav
             cubeId={cube.id}
@@ -31,7 +31,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
           {cube.category}
         </div>
         <div className="table-cell align-middle text-center">
-          {cube.solves.all.length}
+          {`${cube.solves.session.length}/${cube.solves.all.length}`}
         </div>
         <div className="align-middle text-center hidden md:table-cell">
           {cube.createdAt}

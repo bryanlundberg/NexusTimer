@@ -73,9 +73,9 @@ export default function CubesPage() {
         </div>
         {/* content */}
         <div className="h-full overflow-auto">
-          <div className="table w-full text-sm border-zinc-800">
+          <div className="px-3 py-3 table w-full text-sm ">
             <TableHeader />
-            <div className="table-row-group h-10 border-b border-zinc-800 text-white text-sm">
+            <div className="table-row-group h-10 border-zinc-800 text-white text-sm ">
               {cubes?.map((cube) => {
                 return <TableRow key={genId()} cube={cube} />;
               })}
