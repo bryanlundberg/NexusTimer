@@ -60,8 +60,7 @@ export default function PersonalStatistics() {
         }
       });
     });
-    console.log(played);
-    return played[0].category;
+    return played[0].resolutions === 0 ? "0 Solves" : played[0].category;
   };
 
   return (
@@ -69,16 +68,13 @@ export default function PersonalStatistics() {
       <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <CardStatistic label="Cuber Classification" total={"Rookie"} />
-          <CardStatistic label="Rating Points" total={0} />
+          <CardStatistic label="Rating Points" total={23220} />
           <CardStatistic label="Time Spent Cubing" total={totalTimeCubing()} />
-          <CardStatistic
-            label="Total Cubes Solved"
-            total={totalCubesSolved()}
-          />
-          <CardStatistic label="Sessions in progress" total={"3/12 [392]"} />
-          <CardStatistic label="Total Events" total={totalEvents()} />
+          <CardStatistic label="Total Solves" total={totalCubesSolved()} />
           <CardStatistic label="Most Played" total={mostPlayedEvent()} />
+          <CardStatistic label="Sessions in progress" total={"3/12 [392]"} />
           <CardStatistic label="Success Rate" total={"98.8%"} />
+          <CardStatistic label="Total Events" total={totalEvents()} />
         </div>
         <div className="flex flex-col lg:flex-row gap-3">
           <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full sm:h-96 justify-center items-center">

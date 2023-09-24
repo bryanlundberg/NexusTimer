@@ -5,4 +5,5 @@ export interface Solve {
   endTime: number;
   bookmark: boolean;
   time: number;
+  rating: number;
 }
