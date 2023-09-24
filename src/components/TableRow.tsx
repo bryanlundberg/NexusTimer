@@ -40,7 +40,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
           Used
         </div>
         <div className="table-cell align-middle text-center">
-          <button className="hover:bg-zinc-800 p-1 px-4 rounded-md">
+          <button className="hover:bg-zinc-800 p-1 px-2 sm:px-2 rounded-md">
             <Ellipsis />
           </button>
         </div>
