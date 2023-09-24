@@ -11,6 +11,7 @@ import loadCubes from "@/lib/loadCubes";
 import { useTimerStore } from "@/store/timerStore";
 import { Categories } from "@/interfaces/Categories";
 import createCube from "@/lib/createCube";
+import RectangleGroup from "@/icons/RectangleGroup";
 
 export default function CubesPage() {
   const { cubes, setCubes } = useTimerStore();
@@ -51,6 +52,8 @@ export default function CubesPage() {
     }
   };
 
+  console.log(cubes?.length);
+
   return (
     <>
       <div className="grow w-full md:max-w-6xl mx-auto flex flex-col border border-zinc-800 rounded-md min-h-full">
@@ -72,16 +75,26 @@ export default function CubesPage() {
           </div>
         </div>
         {/* content */}
-        <div className="h-full overflow-auto">
-          <div className="px-3 py-3 table w-full text-sm ">
-            <TableHeader />
-            <div className="table-row-group h-10 border-zinc-800 text-white text-sm ">
-              {cubes?.map((cube) => {
-                return <TableRow key={genId()} cube={cube} />;
-              })}
+        {cubes && cubes.length > 0 ? (
+          <div className="h-full overflow-auto grow m-3">
+            <div className="px-3 py-3 table w-full text-sm">
+              <TableHeader />
+              <div className="table-row-group h-10 border-zinc-800 text-white text-sm">
+                {cubes.map((cube) => (
+                  <TableRow key={genId()} cube={cube} />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div className="h-full overflow-auto grow m-3 border border-zinc-800 border-dashed rounded-md justify-center items-center flex flex-col">
+            <div className="flex flex-col justify-center items-center gap-1 p-3 font-medium">
+              <RectangleGroup />
+              <div>No cubes available.</div>
+            </div>
+          </div>
+        )}
+
         {isCreatingCube && (
           <ModalCreate
             handleCreateCube={handleCreateCube}
