@@ -59,7 +59,7 @@ export default function CubesPage() {
       <div className="grow w-full md:max-w-6xl mx-auto flex flex-col border border-zinc-800 rounded-md min-h-full">
         <div className="border-b border-zinc-800 py-4 ">
           <div className="w-full mx-auto">
-            <div className="flex justify-between items-center mx-3">
+            <div className="flex flex-col sm:flex-row gap-3 justify-between items-center mx-3">
               <div className="font-medium text-2xl">Cubes</div>
               <div className="flex justify-end gap-3">
                 {/* Options */}
@@ -77,7 +77,7 @@ export default function CubesPage() {
         {/* content */}
         {cubes && cubes.length > 0 ? (
           <div className="h-full overflow-auto grow m-3">
-            <div className="px-3 py-3 table w-full text-sm">
+            <div className="table w-full text-sm">
               <TableHeader />
               <div className="table-row-group h-10 border-zinc-800 text-white text-sm">
                 {cubes.map((cube) => (
