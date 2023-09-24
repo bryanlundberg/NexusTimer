@@ -13,8 +13,15 @@ export default function TableRow({ cube }: { cube: Cube }) {
     setCubes(updatedCube);
   };
 
-  // const bestTime = sort(cube.solves.all).asc((u) => u.time);
-  // const bestTimeCube = (bestTime[0].time / 1000).toFixed(2);
+  function formatDate(msDate: number) {
+    const creationDate = new Date(cube.createdAt);
+    const month = creationDate.getMonth() + 1;
+    const day = creationDate.getDate();
+    const year = creationDate.getFullYear();
+    return `${month.toString().padStart(2, "0")}/${day
+      .toString()
+      .padStart(2, "0")}/${year}`;
+  }
 
   return (
     <>
@@ -34,7 +41,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
           {`${cube.solves.session.length}/${cube.solves.all.length}`}
         </div>
         <div className="align-middle text-center hidden md:table-cell">
-          {cube.createdAt}
+          {formatDate(cube.createdAt)}
         </div>
         <div className="align-middle text-center hidden md:table-cell">
           Used
