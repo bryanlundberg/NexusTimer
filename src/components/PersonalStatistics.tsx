@@ -7,6 +7,7 @@ import getMostPlayedEvent from "@/lib/getMostPlayedEvent";
 import getTotalRatingPoints from "@/lib/getTotalRatingPoints";
 import getSessionInProgress from "@/lib/getSessionInProgress";
 import LastActivity from "./LastActivity";
+import getTitleByPoints from "@/lib/getTitleByPoints";
 
 export default function PersonalStatistics() {
   const { cubes } = useTimerStore();
@@ -16,16 +17,13 @@ export default function PersonalStatistics() {
   const mostPlayedEvent = getMostPlayedEvent(cubes);
   const totalRatingPoints = getTotalRatingPoints(cubes);
   const sessionsInProgress = getSessionInProgress(cubes);
+  const cuberTitle = getTitleByPoints(totalRatingPoints);
 
   return (
     <>
       <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <CardStatistic
-            label="Cuber Classification"
-            total={"Rookie"}
-            className="border-blue-400"
-          />
+          <CardStatistic label="Cuber Classification" total={cuberTitle} />
           <CardStatistic label="Rating Points" total={totalRatingPoints} />
           <CardStatistic label="Time Spent Cubing" total={totalTimeCubing} />
           <CardStatistic label="Total Solves" total={totalCubesSolved} />
