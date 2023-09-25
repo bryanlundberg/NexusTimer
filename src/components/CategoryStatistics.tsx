@@ -23,16 +23,6 @@ export default function CategoryStatistics() {
             <option value="gan-55">Gan 355</option>
           </select>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <CardStatistic label="Total Cubes Solved" total={933} />
-          <CardStatistic label="Total Cubes" total={"41"} />
-          <CardStatistic label="Most Used Cube" total={"Meilong"} />
-          <CardStatistic label="Time Spent Cubing" total={"16h 12min"} />
-          <CardStatistic label="Best Time" total={9.91} />
-          <CardStatistic label="Best Ao5" total={13.75} />
-          <CardStatistic label="Best Ao100" total={15.75} />
-          <CardStatistic label="Best Ao1000" total={16.75} />
-        </div>
         <div className="flex flex-col md:flex-row gap-3">
           <div className="flex flex-col justify-center items-center h-96 border rounded-md border-zinc-800 p-3 w-full">
             <div>Pending Line Chart</div>
@@ -40,26 +30,95 @@ export default function CategoryStatistics() {
         </div>
 
         <div className="bg-zinc-800 rounded-md text-sm w-full">
-          <div className="flex bg-zinc-700 p-1 rounded-md text-zinc-200 h-10 items-center">
+          <div className="flex bg-zinc-900 p-1 rounded-md text-zinc-200 h-10 items-center">
             <div className="w-1/4"></div>
             <div className="w-1/4 text-center">All</div>
             <div className="w-1/4 text-center">Session</div>
             <div className="w-1/4 text-center">Cube</div>
           </div>
-          <div className="flex rounded-md text-zinc-400 text-xs h-10 items-center">
-            <div className="ps-3 w-1/4">Desviation</div>
-            <div className="w-1/4 text-center">1.54</div>
-            <div className="w-1/4 text-center">0.96</div>
-            <div className="w-1/4 text-center">3.49</div>
-          </div>
-          <div className="flex rounded-md text-zinc-400 text-xs h-10 items-center">
-            <div className="ps-3 w-1/4">Desviation</div>
-            <div className="w-1/4 text-center">1.54</div>
-            <div className="w-1/4 text-center">0.96</div>
-            <div className="w-1/4 text-center">3.49</div>
-          </div>
+          <StatisticRow
+            label="Desviation"
+            valueAll={1.96}
+            valueCube={1.55}
+            valueSession={0.93}
+          />
+          <StatisticRow
+            label="Ao5"
+            valueAll={1.96}
+            valueCube={1.55}
+            valueSession={0.93}
+          />
+          <StatisticRow
+            label="Ao12"
+            valueAll={1.96}
+            valueCube={1.55}
+            valueSession={0.93}
+          />
+          <StatisticRow
+            label="Ao50"
+            valueAll={1.96}
+            valueCube={1.55}
+            valueSession={0.93}
+          />
+          <StatisticRow
+            label="Ao100"
+            valueAll={1.96}
+            valueCube={1.55}
+            valueSession={0.93}
+          />
+          <StatisticRow
+            label="Ao1000"
+            valueAll={1.96}
+            valueCube={1.55}
+            valueSession={0.93}
+          />
+          <StatisticRow
+            label="Best Time"
+            valueAll={1.96}
+            valueCube={1.55}
+            valueSession={0.93}
+          />
+          <StatisticRow
+            label="Mean"
+            valueAll={1.96}
+            valueCube={1.55}
+            valueSession={0.93}
+          />
+          <StatisticRow
+            label="Time Spent"
+            valueAll={1.96}
+            valueCube={1.55}
+            valueSession={0.93}
+          />
+          <StatisticRow
+            label="Counter"
+            valueAll={1.96}
+            valueCube={1.55}
+            valueSession={0.93}
+          />
         </div>
       </div>
     </>
+  );
+}
+
+function StatisticRow({
+  label,
+  valueAll,
+  valueSession,
+  valueCube,
+}: {
+  label: string;
+  valueAll: number | string;
+  valueSession: number | string;
+  valueCube: number | string;
+}) {
+  return (
+    <div className="flex rounded-md text-zinc-400 text-xs h-10 items-center hover:bg-zinc-700">
+      <div className="ps-3 w-1/4">{label}</div>
+      <div className="w-1/4 text-center">{valueAll}</div>
+      <div className="w-1/4 text-center">{valueSession}</div>
+      <div className="w-1/4 text-center">{valueCube}</div>
+    </div>
   );
 }
