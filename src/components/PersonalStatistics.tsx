@@ -34,7 +34,7 @@ export default function PersonalStatistics() {
           />
           <CardStatistic
             label="Success Rate"
-            total={"98.8%"}
+            total={"0.00%"}
             className="border-blue-400"
           />
           <CardStatistic label="Total Events" total={totalEvents} />

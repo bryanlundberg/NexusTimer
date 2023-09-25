@@ -7,5 +7,5 @@ export default function getTotalCubesSolved(cubes: Cube[] | null) {
     total + cubes.reduce((acc, total) => acc + total.solves.all.length, 0);
   total =
     total + cubes.reduce((acc, total) => acc + total.solves.session.length, 0);
-  return total;
+  return total.toLocaleString();
 }

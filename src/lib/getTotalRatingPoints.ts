@@ -13,5 +13,5 @@ export default function getTotalRatingPoints(cubes: Cube[] | null) {
     });
   }
 
-  return totalRating;
+  return totalRating.toLocaleString();
 }
