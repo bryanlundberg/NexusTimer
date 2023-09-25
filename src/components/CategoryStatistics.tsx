@@ -1,14 +1,31 @@
 import { useTimerStore } from "@/store/timerStore";
-import CardStatistic from "./CardStatistic";
 import { cubeCollection } from "@/lib/cubeCollection";
+import { useState } from "react";
+import { Categories } from "@/interfaces/Categories";
+import genId from "@/lib/genId";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
+  const [filterCategory, setFilterCategory] = useState<Categories>("3x3");
+  const [filterCube, setFilterCube] = useState<string>("All");
+
+  const handleChangeCategory = (value: any) => {
+    setFilterCategory(value);
+    setFilterCube("All");
+  };
+
+  const handleChangeCube = (value: any) => {
+    setFilterCube(value);
+  };
+
   return (
     <>
       <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
         <div className="flex gap-3">
-          <select className="bg-zinc-900 w-full border rounded-md p-1 border-zinc-800">
+          <select
+            onChange={(e) => handleChangeCategory(e.target.value)}
+            className="bg-zinc-900 w-full border rounded-md p-1 border-zinc-800"
+          >
             {cubeCollection.map((cube) => (
               <option key={cube.name} value={cube.name}>
                 {cube.name}
@@ -16,11 +33,23 @@ export default function CategoryStatistics() {
             ))}
           </select>
 
-          <select className="bg-zinc-900 w-full border rounded-md p-1 border-zinc-800">
-            <option value="all">All</option>
-            <option value="123ds">Weilong</option>
-            <option value="wilon">Moulong</option>
-            <option value="gan-55">Gan 355</option>
+          <select
+            onChange={(e) => handleChangeCube(e.target.value)}
+            className="bg-zinc-900 w-full border rounded-md p-1 border-zinc-800"
+            value={filterCube}
+          >
+            <option value="All">All</option>
+            {cubes
+              ? cubes.map((cube) => {
+                  if (cube.category === filterCategory) {
+                    return (
+                      <option key={genId()} value={cube.name}>
+                        {cube.name}
+                      </option>
+                    );
+                  }
+                })
+              : null}
           </select>
         </div>
         <div className="flex flex-col md:flex-row gap-3">
@@ -79,7 +108,7 @@ export default function CategoryStatistics() {
             valueSession={0.93}
           />
           <StatisticRow
-            label="Mean"
+            label="Average"
             valueAll={1.96}
             valueCube={1.55}
             valueSession={0.93}
