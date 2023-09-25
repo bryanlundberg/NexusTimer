@@ -1,7 +1,12 @@
 import { Cube } from "@/interfaces/Cube";
 
 export default function getTotalRatingPoints(cubes: Cube[] | null) {
-  if (!cubes) return 0;
+  if (!cubes) {
+    return {
+      totalNumeric: 0,
+      totalFormatted: 0,
+    };
+  }
 
   let totalRating = 0;
   for (const cube of cubes) {
@@ -13,5 +18,8 @@ export default function getTotalRatingPoints(cubes: Cube[] | null) {
     });
   }
 
-  return totalRating.toLocaleString();
+  return {
+    totalNumeric: totalRating,
+    totalFormatted: totalRating.toLocaleString(),
+  };
 }
