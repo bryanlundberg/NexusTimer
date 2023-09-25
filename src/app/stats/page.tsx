@@ -9,7 +9,6 @@ type PersonalStatisticsTab = "Personal" | "Category";
 export default function StatsPage() {
   const [currentTab, setCurrentTab] =
     useState<PersonalStatisticsTab>("Personal");
-  console.log(currentTab);
 
   return (
     <div className="grow w-full md:max-w-6xl mx-auto flex flex-col border border-zinc-800 rounded-md min-h-full">
