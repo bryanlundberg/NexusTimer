@@ -52,8 +52,6 @@ export default function CubesPage() {
     }
   };
 
-  console.log(cubes?.length);
-
   return (
     <>
       <div className="grow w-full md:max-w-6xl mx-auto flex flex-col border border-zinc-800 rounded-md min-h-full">
@@ -67,7 +65,11 @@ export default function CubesPage() {
                   placeholder="Filter your cubes"
                   onChange={handleSearchFilter}
                 />
-                <Button disabled={false} handleClick={handleClick}>
+                <Button
+                  disabled={false}
+                  handleClick={handleClick}
+                  className="w-28"
+                >
                   + Cube
                 </Button>
               </div>

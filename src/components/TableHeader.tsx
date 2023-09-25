@@ -15,7 +15,7 @@ export default function TableHeader() {
           <div className="text-center align-middle hidden md:table-cell">
             Status
           </div>
-          <div className="table-cell text-center align-middle w-20"></div>
+          <div className="table-cell text-center align-middle w-10 sm:w-20"></div>
         </div>
       </div>
     </>

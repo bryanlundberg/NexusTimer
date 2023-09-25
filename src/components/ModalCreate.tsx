@@ -37,11 +37,11 @@ export default function ModalCreate({
           <div className="relative bg-zinc-950 border border-zinc-800 rounded-lg">
             {/* <!-- Modal header --> */}
             <div className="flex gap-3 items-start justify-between p-4 border-b border-zinc-800 rounded-t">
-              <h3 className="text-xl font-semibold text-neutral-50 ">
+              <h3 className="text-sm font-semibold text-neutral-50 w-32 flex items-center justify-center h-8">
                 New Cube:
               </h3>
               <InputText
-                placeholder="Gan 356, Moro, Xeun"
+                placeholder="Brand | Model | Version | Magenetic?"
                 onChange={handleWriteCubeName}
               />
               <button
