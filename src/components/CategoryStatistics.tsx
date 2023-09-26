@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Categories } from "@/interfaces/Categories";
 import genId from "@/lib/genId";
 import calcAverageStatistics from "@/lib/calcAverageStatistics";
+import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
@@ -20,6 +21,7 @@ export default function CategoryStatistics() {
   };
 
   const average = calcAverageStatistics(filterCategory, filterCube);
+  const timeSpent = calcTimeSpentStatistics(filterCategory, filterCube);
 
   return (
     <>
@@ -118,9 +120,9 @@ export default function CategoryStatistics() {
           />
           <StatisticRow
             label="Time Spent"
-            valueAll={1.96}
-            valueCube={1.55}
-            valueSession={0.93}
+            valueAll={timeSpent.global}
+            valueCube={timeSpent.cube}
+            valueSession={timeSpent.session}
           />
           <StatisticRow
             label="Counter"
