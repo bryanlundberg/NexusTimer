@@ -8,6 +8,7 @@ import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
 import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
 import calcAoStatistics from "@/lib/calcAoStatistics";
 import calcDesviation from "@/lib/calcDesviation";
+import calcBestTime from "@/lib/calcBestTime";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
@@ -28,6 +29,7 @@ export default function CategoryStatistics() {
   const counter = calcTotalSolvesStatistics(filterCategory, filterCube);
   const stats = calcAoStatistics(filterCategory, filterCube);
   const desviation = calcDesviation(filterCategory, filterCube);
+  const best = calcBestTime(filterCategory, filterCube);
   return (
     <>
       <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
@@ -113,9 +115,9 @@ export default function CategoryStatistics() {
           />
           <StatisticRow
             label="Best Time"
-            valueAll={1.96}
-            valueCube={1.55}
-            valueSession={0.93}
+            valueAll={best.global}
+            valueCube={best.cube}
+            valueSession={best.session}
           />
           <StatisticRow
             label="Average"
