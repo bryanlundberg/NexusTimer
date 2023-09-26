@@ -7,6 +7,7 @@ import calcAverageStatistics from "@/lib/calcAverageStatistics";
 import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
 import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
 import calcAoStatistics from "@/lib/calcAoStatistics";
+import calcDesviation from "@/lib/calcDesviation";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
@@ -26,6 +27,7 @@ export default function CategoryStatistics() {
   const timeSpent = calcTimeSpentStatistics(filterCategory, filterCube);
   const counter = calcTotalSolvesStatistics(filterCategory, filterCube);
   const stats = calcAoStatistics(filterCategory, filterCube);
+  const desviation = calcDesviation(filterCategory, filterCube);
   return (
     <>
       <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
@@ -75,9 +77,9 @@ export default function CategoryStatistics() {
           </div>
           <StatisticRow
             label="Desviation"
-            valueAll={"--"}
-            valueCube={"--"}
-            valueSession={"--"}
+            valueAll={desviation.global}
+            valueCube={desviation.cube}
+            valueSession={desviation.session}
           />
           <StatisticRow
             label="Ao5"
