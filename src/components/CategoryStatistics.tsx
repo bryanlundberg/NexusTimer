@@ -3,6 +3,7 @@ import { cubeCollection } from "@/lib/cubeCollection";
 import { useState } from "react";
 import { Categories } from "@/interfaces/Categories";
 import genId from "@/lib/genId";
+import calcAverageStatistics from "@/lib/calcAverageStatistics";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
@@ -17,6 +18,8 @@ export default function CategoryStatistics() {
   const handleChangeCube = (value: any) => {
     setFilterCube(value);
   };
+
+  const average = calcAverageStatistics(filterCategory, filterCube);
 
   return (
     <>
@@ -62,8 +65,8 @@ export default function CategoryStatistics() {
           <div className="flex bg-zinc-900 p-1 rounded-md text-zinc-200 h-10 items-center">
             <div className="w-1/4"></div>
             <div className="w-1/4 text-center">All</div>
-            <div className="w-1/4 text-center">Session</div>
-            <div className="w-1/4 text-center">Cube</div>
+            <div className="w-1/4 text-center">C All</div>
+            <div className="w-1/4 text-center">C Session</div>
           </div>
           <StatisticRow
             label="Desviation"
@@ -109,9 +112,9 @@ export default function CategoryStatistics() {
           />
           <StatisticRow
             label="Average"
-            valueAll={1.96}
-            valueCube={1.55}
-            valueSession={0.93}
+            valueAll={average.global}
+            valueCube={average.cube}
+            valueSession={average.session}
           />
           <StatisticRow
             label="Time Spent"
@@ -146,8 +149,8 @@ function StatisticRow({
     <div className="flex rounded-md text-zinc-400 text-xs h-10 items-center hover:bg-zinc-700">
       <div className="ps-3 w-1/4">{label}</div>
       <div className="w-1/4 text-center">{valueAll}</div>
-      <div className="w-1/4 text-center">{valueSession}</div>
       <div className="w-1/4 text-center">{valueCube}</div>
+      <div className="w-1/4 text-center">{valueSession}</div>
     </div>
   );
 }
