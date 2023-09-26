@@ -6,6 +6,7 @@ import genId from "@/lib/genId";
 import calcAverageStatistics from "@/lib/calcAverageStatistics";
 import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
 import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
+import calcAoStatistics from "@/lib/calcAoStatistics";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
@@ -24,7 +25,7 @@ export default function CategoryStatistics() {
   const average = calcAverageStatistics(filterCategory, filterCube);
   const timeSpent = calcTimeSpentStatistics(filterCategory, filterCube);
   const counter = calcTotalSolvesStatistics(filterCategory, filterCube);
-
+  const stats = calcAoStatistics(filterCategory, filterCube);
   return (
     <>
       <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
@@ -74,39 +75,39 @@ export default function CategoryStatistics() {
           </div>
           <StatisticRow
             label="Desviation"
-            valueAll={1.96}
-            valueCube={1.55}
-            valueSession={0.93}
+            valueAll={"--"}
+            valueCube={"--"}
+            valueSession={"--"}
           />
           <StatisticRow
             label="Ao5"
-            valueAll={1.96}
-            valueCube={1.55}
-            valueSession={0.93}
+            valueAll={stats.global.ao5}
+            valueCube={stats.cube.ao5}
+            valueSession={stats.session.ao5}
           />
           <StatisticRow
             label="Ao12"
-            valueAll={1.96}
-            valueCube={1.55}
-            valueSession={0.93}
+            valueAll={stats.global.ao12}
+            valueCube={stats.cube.ao12}
+            valueSession={stats.session.ao12}
           />
           <StatisticRow
             label="Ao50"
-            valueAll={1.96}
-            valueCube={1.55}
-            valueSession={0.93}
+            valueAll={stats.global.ao50}
+            valueCube={stats.cube.ao50}
+            valueSession={stats.session.ao50}
           />
           <StatisticRow
             label="Ao100"
-            valueAll={1.96}
-            valueCube={1.55}
-            valueSession={0.93}
+            valueAll={stats.global.ao100}
+            valueCube={stats.cube.ao100}
+            valueSession={stats.session.ao100}
           />
           <StatisticRow
             label="Ao1000"
-            valueAll={1.96}
-            valueCube={1.55}
-            valueSession={0.93}
+            valueAll={stats.global.ao1000}
+            valueCube={stats.cube.ao1000}
+            valueSession={stats.session.ao1000}
           />
           <StatisticRow
             label="Best Time"

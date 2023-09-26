@@ -1,6 +1,6 @@
 import { sort } from "fast-sort";
 import findCube from "./findCube";
-import { Solve } from "@/interfaces/Solve";
+import calculateCurrentAo from "./calculateCurrentAo";
 
 export default function calcStatistics({
   cubeId,
@@ -53,19 +53,4 @@ export default function calcStatistics({
     defaultResult.best = sortByTime[0].time;
   }
   return defaultResult;
-}
-
-function calculateCurrentAo(solves: Solve[], ao: number) {
-  let result = 0;
-  if (solves.length < ao) {
-    return result;
-  }
-
-  const cubeAo = solves.slice(0, ao);
-  const sum = cubeAo.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.time,
-    0
-  );
-  result = sum / ao;
-  return result;
 }
