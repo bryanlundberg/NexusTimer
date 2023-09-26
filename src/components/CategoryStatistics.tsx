@@ -5,6 +5,7 @@ import { Categories } from "@/interfaces/Categories";
 import genId from "@/lib/genId";
 import calcAverageStatistics from "@/lib/calcAverageStatistics";
 import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
+import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
@@ -22,6 +23,7 @@ export default function CategoryStatistics() {
 
   const average = calcAverageStatistics(filterCategory, filterCube);
   const timeSpent = calcTimeSpentStatistics(filterCategory, filterCube);
+  const counter = calcTotalSolvesStatistics(filterCategory, filterCube);
 
   return (
     <>
@@ -126,9 +128,9 @@ export default function CategoryStatistics() {
           />
           <StatisticRow
             label="Counter"
-            valueAll={1.96}
-            valueCube={1.55}
-            valueSession={0.93}
+            valueAll={counter.global}
+            valueCube={counter.cube}
+            valueSession={counter.session}
           />
         </div>
       </div>
