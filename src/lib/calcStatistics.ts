@@ -1,6 +1,8 @@
 import { sort } from "fast-sort";
 import findCube from "./findCube";
 import calculateCurrentAo from "./calculateCurrentAo";
+import getDesviation from "./getDesviation";
+import getMean from "./getMean";
 
 export default function calcStatistics({
   cubeId,
@@ -18,6 +20,8 @@ export default function calcStatistics({
     ao50: 0,
     ao100: 0,
     ao1000: 0,
+    desviation: 0,
+    mean: 0,
   };
 
   const cube = findCube({ cubeId: cubeId });
@@ -29,6 +33,8 @@ export default function calcStatistics({
     if (sortByTime.length <= 0) return defaultResult;
     defaultResult.best = sortByTime[0].time;
     const sortByDate = sort(cube.solves.session).desc((u) => u.endTime);
+    defaultResult.desviation = getDesviation(sortByDate);
+    defaultResult.mean = getMean(sortByDate);
     if (sortByDate.length >= 3) {
       defaultResult.ao3 = calculateCurrentAo(sortByDate, 3);
     }
