@@ -41,7 +41,7 @@ export default function ModalCreate({
                 New Cube:
               </h3>
               <InputText
-                placeholder="Brand | Model | Version | Magenetic?"
+                placeholder="Brand | Model | Version | Magnetic?"
                 onChange={handleWriteCubeName}
               />
               <button
