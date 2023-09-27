@@ -79,39 +79,75 @@ export default function CategoryStatistics() {
           </div>
           <StatisticRow
             label="Desviation"
-            valueAll={desviation.global}
-            valueCube={desviation.cube}
-            valueSession={desviation.session}
+            valueAll={
+              desviation.global === 0 ? "--" : desviation.global.toFixed(3)
+            }
+            valueCube={
+              desviation.cube === 0 ? "--" : desviation.cube.toFixed(3)
+            }
+            valueSession={
+              desviation.session === 0 ? "--" : desviation.session.toFixed(3)
+            }
           />
           <StatisticRow
             label="Ao5"
-            valueAll={stats.global.ao5}
-            valueCube={stats.cube.ao5}
-            valueSession={stats.session.ao5}
+            valueAll={
+              stats.global.ao5 === 0 ? "--" : stats.global.ao5.toFixed(3)
+            }
+            valueCube={stats.cube.ao5 === 0 ? "--" : stats.cube.ao5.toFixed(3)}
+            valueSession={
+              stats.session.ao5 === 0 ? "--" : stats.session.ao5.toFixed(3)
+            }
           />
           <StatisticRow
             label="Ao12"
-            valueAll={stats.global.ao12}
-            valueCube={stats.cube.ao12}
-            valueSession={stats.session.ao12}
+            valueAll={
+              stats.global.ao12 === 0 ? "--" : stats.global.ao12.toFixed(3)
+            }
+            valueCube={
+              stats.cube.ao12 === 0 ? "--" : stats.cube.ao12.toFixed(3)
+            }
+            valueSession={
+              stats.session.ao12 === 0 ? "--" : stats.session.ao12.toFixed(3)
+            }
           />
           <StatisticRow
             label="Ao50"
-            valueAll={stats.global.ao50}
-            valueCube={stats.cube.ao50}
-            valueSession={stats.session.ao50}
+            valueAll={
+              stats.global.ao50 === 0 ? "--" : stats.global.ao50.toFixed(3)
+            }
+            valueCube={
+              stats.cube.ao50 === 0 ? "--" : stats.cube.ao50.toFixed(3)
+            }
+            valueSession={
+              stats.session.ao50 === 0 ? "--" : stats.session.ao50.toFixed(3)
+            }
           />
           <StatisticRow
             label="Ao100"
-            valueAll={stats.global.ao100}
-            valueCube={stats.cube.ao100}
-            valueSession={stats.session.ao100}
+            valueAll={
+              stats.global.ao100 === 0 ? "--" : stats.global.ao100.toFixed(3)
+            }
+            valueCube={
+              stats.cube.ao100 === 0 ? "--" : stats.cube.ao100.toFixed(3)
+            }
+            valueSession={
+              stats.session.ao100 === 0 ? "--" : stats.session.ao100.toFixed(3)
+            }
           />
           <StatisticRow
             label="Ao1000"
-            valueAll={stats.global.ao1000}
-            valueCube={stats.cube.ao1000}
-            valueSession={stats.session.ao1000}
+            valueAll={
+              stats.global.ao1000 === 0 ? "--" : stats.global.ao1000.toFixed(3)
+            }
+            valueCube={
+              stats.cube.ao1000 === 0 ? "--" : stats.cube.ao1000.toFixed(3)
+            }
+            valueSession={
+              stats.session.ao1000 === 0
+                ? "--"
+                : stats.session.ao1000.toFixed(3)
+            }
           />
           <StatisticRow
             label="Best Time"
@@ -121,9 +157,11 @@ export default function CategoryStatistics() {
           />
           <StatisticRow
             label="Average"
-            valueAll={average.global}
-            valueCube={average.cube}
-            valueSession={average.session}
+            valueAll={average.global === 0 ? "--" : average.global.toFixed(3)}
+            valueCube={average.cube === 0 ? "--" : average.cube.toFixed(3)}
+            valueSession={
+              average.session === 0 ? "--" : average.session.toFixed(3)
+            }
           />
           <StatisticRow
             label="Time Spent"
@@ -133,9 +171,9 @@ export default function CategoryStatistics() {
           />
           <StatisticRow
             label="Counter"
-            valueAll={counter.global}
-            valueCube={counter.cube}
-            valueSession={counter.session}
+            valueAll={counter.global === 0 ? "--" : counter.global}
+            valueCube={counter.cube === 0 ? "--" : counter.cube}
+            valueSession={counter.session === 0 ? "--" : counter.session}
           />
         </div>
       </div>
