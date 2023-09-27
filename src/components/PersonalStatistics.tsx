@@ -8,6 +8,8 @@ import getTotalRatingPoints from "@/lib/getTotalRatingPoints";
 import getSessionInProgress from "@/lib/getSessionInProgress";
 import LastActivity from "./LastActivity";
 import getTitleByPoints from "@/lib/getTitleByPoints";
+import Image from "next/image";
+import fail from "@/images/no-data.png";
 
 export default function PersonalStatistics() {
   const { cubes } = useTimerStore();
@@ -41,10 +43,12 @@ export default function PersonalStatistics() {
         </div>
         <div className="flex flex-col lg:flex-row gap-3">
           <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full sm:h-96 justify-center items-center">
-            <div>Pending Dounough Chart</div>
+            <Image src={fail} alt="no-data" />
+            <div className="text-zinc-500">Pending Dounough Chart</div>
           </div>
           <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full sm:h-96 justify-center items-center">
-            <div>Pending Area Chart</div>
+            <Image src={fail} alt="no-data" />
+            <div className="text-zinc-500">Pending Area Chart</div>
           </div>
         </div>
         <LastActivity />

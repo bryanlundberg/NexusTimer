@@ -92,7 +92,7 @@ export default function CubesPage() {
           <div className="h-full overflow-auto grow m-3 border border-zinc-800 border-dashed rounded-md justify-center items-center flex flex-col">
             <div className="flex flex-col justify-center items-center gap-1 p-3 font-medium">
               <RectangleGroup />
-              <div>No cubes available.</div>
+              <div>No cubes for display.</div>
             </div>
           </div>
         )}
