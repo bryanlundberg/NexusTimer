@@ -11,6 +11,7 @@ import calcDesviation from "@/lib/calcDesviation";
 import calcBestTime from "@/lib/calcBestTime";
 import fail from "@/images/no-data.png";
 import Image from "next/image";
+import SelectMetrics from "./SelectMetrics";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
@@ -26,6 +27,26 @@ export default function CategoryStatistics() {
     setFilterCube(value);
   };
 
+  const categoyOptions = loadCategoryOptions();
+  const cubeOptions = loadCubeOptions();
+  function loadCategoryOptions(): Categories[] {
+    const categoryOptions: Categories[] = [];
+    cubeCollection.map((cat) => {
+      categoryOptions.push(cat.name);
+    });
+    return categoryOptions;
+  }
+
+  function loadCubeOptions() {
+    const cubesList = ["All"];
+    cubes?.map((cube) => {
+      if (cube.category === filterCategory) {
+        cubesList.push(cube.name);
+      }
+    });
+    return cubesList;
+  }
+
   const average = calcAverageStatistics(filterCategory, filterCube);
   const timeSpent = calcTimeSpentStatistics(filterCategory, filterCube);
   const counter = calcTotalSolvesStatistics(filterCategory, filterCube);
@@ -36,35 +57,18 @@ export default function CategoryStatistics() {
     <>
       <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
         <div className="flex gap-3">
-          <select
-            onChange={(e) => handleChangeCategory(e.target.value)}
-            className="bg-zinc-900 w-full border rounded-md p-1 border-zinc-800"
-          >
-            {cubeCollection.map((cube) => (
-              <option key={cube.name} value={cube.name}>
-                {cube.name}
-              </option>
-            ))}
-          </select>
-
-          <select
-            onChange={(e) => handleChangeCube(e.target.value)}
-            className="bg-zinc-900 w-full border rounded-md p-1 border-zinc-800"
-            value={filterCube}
-          >
-            <option value="All">All</option>
-            {cubes
-              ? cubes.map((cube) => {
-                  if (cube.category === filterCategory) {
-                    return (
-                      <option key={genId()} value={cube.name}>
-                        {cube.name}
-                      </option>
-                    );
-                  }
-                })
-              : null}
-          </select>
+          <SelectMetrics
+            label={filterCategory}
+            options={categoyOptions}
+            handleChange={handleChangeCategory}
+            extraClass="w-full"
+          />
+          <SelectMetrics
+            label={filterCube}
+            options={cubeOptions}
+            handleChange={handleChangeCube}
+            extraClass="w-full"
+          />
         </div>
         <div className="flex flex-col md:flex-row gap-3">
           <div className="flex flex-col justify-center items-center h-96 border rounded-md border-zinc-800 p-3 w-full">
