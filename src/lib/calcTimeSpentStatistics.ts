@@ -8,22 +8,28 @@ export default function calcTimeSpentStatistics(
 ) {
   const solveMetrics = getSolvesMetrics(category, cubeName);
 
-  const globalTime = solveMetrics.global.reduce(
+  const global = solveMetrics.global.reduce(
     (total, acc) => total + acc.time,
     0
   );
-  const cubeSessionTime = solveMetrics.session.reduce(
+
+  const session = solveMetrics.session.reduce(
     (total, acc) => total + acc.time,
     0
   );
-  const cubeAllTime = solveMetrics.cube.reduce(
+  const cubeSession = solveMetrics.cubeSession.reduce(
+    (total, acc) => total + acc.time,
+    0
+  );
+  const cubeAll = solveMetrics.cubeAll.reduce(
     (total, acc) => total + acc.time,
     0
   );
 
   return {
-    global: prettyMilliseconds(globalTime),
-    session: prettyMilliseconds(cubeSessionTime),
-    cube: prettyMilliseconds(cubeAllTime),
+    global: prettyMilliseconds(global),
+    session: prettyMilliseconds(session),
+    cubeAll: prettyMilliseconds(cubeAll),
+    cubeSession: prettyMilliseconds(cubeSession),
   };
 }

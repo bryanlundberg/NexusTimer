@@ -5,11 +5,15 @@ export default function calcTotalSolvesStatistics(
   category: Categories,
   cubeName: string
 ) {
-  const { global, session, cube } = getSolvesMetrics(category, cubeName);
+  const { global, session, cubeAll, cubeSession } = getSolvesMetrics(
+    category,
+    cubeName
+  );
 
   return {
     global: global.length,
     session: session.length,
-    cube: cube.length,
+    cubeAll: cubeAll.length,
+    cubeSession: cubeSession.length,
   };
 }

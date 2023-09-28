@@ -11,18 +11,23 @@ export default function calcAverageStatistics(
     solveMetrics.global.reduce((total, acc) => total + acc.time, 0) /
     1000 /
     solveMetrics.global.length;
-  const cubeSessionTime =
+  const sessionTime =
     solveMetrics.session.reduce((total, acc) => total + acc.time, 0) /
     1000 /
     solveMetrics.session.length;
-  const cubeAllTime =
-    solveMetrics.cube.reduce((total, acc) => total + acc.time, 0) /
+  const cubeSessionTime =
+    solveMetrics.cubeSession.reduce((total, acc) => total + acc.time, 0) /
     1000 /
-    solveMetrics.cube.length;
+    solveMetrics.cubeSession.length;
+  const cubeAllTime =
+    solveMetrics.cubeAll.reduce((total, acc) => total + acc.time, 0) /
+    1000 /
+    solveMetrics.cubeAll.length;
 
   return {
     global: globalTime > 0 ? globalTime : 0,
-    session: cubeSessionTime > 0 ? cubeSessionTime : 0,
-    cube: cubeAllTime > 0 ? cubeAllTime : 0,
+    session: sessionTime > 0 ? sessionTime : 0,
+    cubeSession: cubeSessionTime > 0 ? cubeSessionTime : 0,
+    cubeAll: cubeAllTime > 0 ? cubeAllTime : 0,
   };
 }
