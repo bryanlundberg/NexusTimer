@@ -6,7 +6,10 @@ export default function calcAoStatistics(
   category: Categories,
   cubeName: string
 ) {
-  const { global, session, cube } = getSolvesMetrics(category, cubeName);
+  const { global, session, cubeAll, cubeSession } = getSolvesMetrics(
+    category,
+    cubeName
+  );
 
   return {
     global: {
@@ -25,13 +28,21 @@ export default function calcAoStatistics(
       ao100: calculateBestAo(session, 100),
       ao1000: calculateBestAo(session, 1000),
     },
-    cube: {
-      ao3: calculateBestAo(cube, 3),
-      ao5: calculateBestAo(cube, 5),
-      ao12: calculateBestAo(cube, 12),
-      ao50: calculateBestAo(cube, 50),
-      ao100: calculateBestAo(cube, 100),
-      ao1000: calculateBestAo(cube, 1000),
+    cubeAll: {
+      ao3: calculateBestAo(cubeAll, 3),
+      ao5: calculateBestAo(cubeAll, 5),
+      ao12: calculateBestAo(cubeAll, 12),
+      ao50: calculateBestAo(cubeAll, 50),
+      ao100: calculateBestAo(cubeAll, 100),
+      ao1000: calculateBestAo(cubeAll, 1000),
+    },
+    cubeSession: {
+      ao3: calculateBestAo(cubeSession, 3),
+      ao5: calculateBestAo(cubeSession, 5),
+      ao12: calculateBestAo(cubeSession, 12),
+      ao50: calculateBestAo(cubeSession, 50),
+      ao100: calculateBestAo(cubeSession, 100),
+      ao1000: calculateBestAo(cubeSession, 1000),
     },
   };
 }

@@ -12,13 +12,15 @@ export default function getSolvesMetrics(
   interface Result {
     global: Solve[];
     session: Solve[];
-    cube: Solve[];
+    cubeAll: Solve[];
+    cubeSession: Solve[];
   }
 
   const result: Result = {
     global: [],
     session: [],
-    cube: [],
+    cubeAll: [],
+    cubeSession: [],
   };
 
   const filterCubesByCategory = cubesDB.filter(
@@ -28,19 +30,20 @@ export default function getSolvesMetrics(
   for (const cube of filterCubesByCategory) {
     cube.solves.all.map((i) => result.global.push(i));
     cube.solves.session.map((i) => result.global.push(i));
+    cube.solves.session.map((i) => result.session.push(i));
   }
 
   sort(result.global).asc((u) => u.endTime);
-
+  sort(result.session).asc((u) => u.endTime);
   if (cubeName === "All") return result;
 
   const targetCube = cubesDB.find((cube) => cube.name === cubeName);
   if (targetCube) {
-    targetCube.solves.all.map((i) => result.cube.push(i));
-    targetCube.solves.session.map((i) => result.cube.push(i));
-    targetCube.solves.session.map((i) => result.session.push(i));
-    sort(result.session).asc((u) => u.endTime);
-    sort(result.cube).asc((u) => u.endTime);
+    targetCube.solves.all.map((i) => result.cubeAll.push(i));
+    targetCube.solves.session.map((i) => result.cubeAll.push(i));
+    targetCube.solves.session.map((i) => result.cubeSession.push(i));
+    sort(result.cubeAll).asc((u) => u.endTime);
+    sort(result.cubeSession).asc((u) => u.endTime);
   }
 
   return result;

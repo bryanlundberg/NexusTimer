@@ -79,108 +79,145 @@ export default function CategoryStatistics() {
 
         <div className="bg-zinc-800 rounded-md text-sm w-full">
           <div className="flex bg-zinc-900 p-1 rounded-md text-zinc-200 h-10 items-center">
-            <div className="w-1/4"></div>
-            <div className="w-1/4 text-center">All</div>
-            <div className="w-1/4 text-center">C All</div>
-            <div className="w-1/4 text-center">C Session</div>
+            <div className="w-1/5"></div>
+            <div className="w-1/5 text-center">Global</div>
+            <div className="w-1/5 text-center">Sessions</div>
+            <div className="w-1/5 text-center">C All</div>
+            <div className="w-1/5 text-center">C Session</div>
           </div>
           <StatisticRow
             label="Desviation"
-            valueAll={
+            global={
               desviation.global === 0 ? "--" : desviation.global.toFixed(3)
             }
-            valueCube={
-              desviation.cube === 0 ? "--" : desviation.cube.toFixed(3)
-            }
-            valueSession={
+            session={
               desviation.session === 0 ? "--" : desviation.session.toFixed(3)
+            }
+            cubeAll={
+              desviation.cubeAll === 0 ? "--" : desviation.cubeAll.toFixed(3)
+            }
+            cubeSession={
+              desviation.cubeSession === 0
+                ? "--"
+                : desviation.cubeSession.toFixed(3)
             }
           />
           <StatisticRow
             label="Ao5"
-            valueAll={
-              stats.global.ao5 === 0 ? "--" : stats.global.ao5.toFixed(3)
-            }
-            valueCube={stats.cube.ao5 === 0 ? "--" : stats.cube.ao5.toFixed(3)}
-            valueSession={
+            global={stats.global.ao5 === 0 ? "--" : stats.global.ao5.toFixed(3)}
+            session={
               stats.session.ao5 === 0 ? "--" : stats.session.ao5.toFixed(3)
+            }
+            cubeAll={
+              stats.cubeAll.ao5 === 0 ? "--" : stats.cubeAll.ao5.toFixed(3)
+            }
+            cubeSession={
+              stats.cubeSession.ao5 === 0
+                ? "--"
+                : stats.cubeSession.ao5.toFixed(3)
             }
           />
           <StatisticRow
             label="Ao12"
-            valueAll={
+            global={
               stats.global.ao12 === 0 ? "--" : stats.global.ao12.toFixed(3)
             }
-            valueCube={
-              stats.cube.ao12 === 0 ? "--" : stats.cube.ao12.toFixed(3)
-            }
-            valueSession={
+            session={
               stats.session.ao12 === 0 ? "--" : stats.session.ao12.toFixed(3)
+            }
+            cubeAll={
+              stats.cubeAll.ao12 === 0 ? "--" : stats.cubeAll.ao12.toFixed(3)
+            }
+            cubeSession={
+              stats.cubeSession.ao12 === 0
+                ? "--"
+                : stats.cubeSession.ao12.toFixed(3)
             }
           />
           <StatisticRow
             label="Ao50"
-            valueAll={
+            global={
               stats.global.ao50 === 0 ? "--" : stats.global.ao50.toFixed(3)
             }
-            valueCube={
-              stats.cube.ao50 === 0 ? "--" : stats.cube.ao50.toFixed(3)
-            }
-            valueSession={
+            session={
               stats.session.ao50 === 0 ? "--" : stats.session.ao50.toFixed(3)
+            }
+            cubeAll={
+              stats.cubeAll.ao50 === 0 ? "--" : stats.cubeAll.ao50.toFixed(3)
+            }
+            cubeSession={
+              stats.cubeSession.ao50 === 0
+                ? "--"
+                : stats.cubeSession.ao50.toFixed(3)
             }
           />
           <StatisticRow
             label="Ao100"
-            valueAll={
+            global={
               stats.global.ao100 === 0 ? "--" : stats.global.ao100.toFixed(3)
             }
-            valueCube={
-              stats.cube.ao100 === 0 ? "--" : stats.cube.ao100.toFixed(3)
-            }
-            valueSession={
+            session={
               stats.session.ao100 === 0 ? "--" : stats.session.ao100.toFixed(3)
+            }
+            cubeAll={
+              stats.cubeAll.ao100 === 0 ? "--" : stats.cubeAll.ao100.toFixed(3)
+            }
+            cubeSession={
+              stats.cubeSession.ao100 === 0
+                ? "--"
+                : stats.cubeSession.ao100.toFixed(3)
             }
           />
           <StatisticRow
             label="Ao1000"
-            valueAll={
+            global={
               stats.global.ao1000 === 0 ? "--" : stats.global.ao1000.toFixed(3)
             }
-            valueCube={
-              stats.cube.ao1000 === 0 ? "--" : stats.cube.ao1000.toFixed(3)
-            }
-            valueSession={
+            session={
               stats.session.ao1000 === 0
                 ? "--"
                 : stats.session.ao1000.toFixed(3)
             }
+            cubeAll={
+              stats.cubeAll.ao1000 === 0
+                ? "--"
+                : stats.cubeAll.ao1000.toFixed(3)
+            }
+            cubeSession={
+              stats.cubeSession.ao1000 === 0
+                ? "--"
+                : stats.cubeSession.ao1000.toFixed(3)
+            }
           />
           <StatisticRow
             label="Best Time"
-            valueAll={best.global}
-            valueCube={best.cube}
-            valueSession={best.session}
+            global={best.global}
+            session={best.session}
+            cubeAll={best.cubeAll}
+            cubeSession={best.cubeSession}
           />
           <StatisticRow
             label="Average"
-            valueAll={average.global === 0 ? "--" : average.global.toFixed(3)}
-            valueCube={average.cube === 0 ? "--" : average.cube.toFixed(3)}
-            valueSession={
-              average.session === 0 ? "--" : average.session.toFixed(3)
+            global={average.global === 0 ? "--" : average.global.toFixed(3)}
+            session={average.session === 0 ? "--" : average.session.toFixed(3)}
+            cubeAll={average.cubeAll === 0 ? "--" : average.cubeAll.toFixed(3)}
+            cubeSession={
+              average.cubeSession === 0 ? "--" : average.cubeSession.toFixed(3)
             }
           />
           <StatisticRow
             label="Time Spent"
-            valueAll={timeSpent.global}
-            valueCube={timeSpent.cube}
-            valueSession={timeSpent.session}
+            global={timeSpent.global}
+            session={timeSpent.session}
+            cubeAll={timeSpent.cubeAll}
+            cubeSession={timeSpent.cubeSession}
           />
           <StatisticRow
             label="Counter"
-            valueAll={counter.global === 0 ? "--" : counter.global}
-            valueCube={counter.cube === 0 ? "--" : counter.cube}
-            valueSession={counter.session === 0 ? "--" : counter.session}
+            global={counter.global === 0 ? "--" : counter.global}
+            session={counter.session === 0 ? "--" : counter.session}
+            cubeAll={counter.cubeAll === 0 ? "--" : counter.cubeAll}
+            cubeSession={counter.cubeSession === 0 ? "--" : counter.cubeSession}
           />
         </div>
       </div>
@@ -190,21 +227,24 @@ export default function CategoryStatistics() {
 
 function StatisticRow({
   label,
-  valueAll,
-  valueSession,
-  valueCube,
+  global,
+  session,
+  cubeAll,
+  cubeSession,
 }: {
   label: string;
-  valueAll: number | string;
-  valueSession: number | string;
-  valueCube: number | string;
+  global: number | string;
+  session: number | string;
+  cubeAll: number | string;
+  cubeSession: number | string;
 }) {
   return (
     <div className="flex rounded-md text-zinc-400 text-xs h-10 items-center hover:bg-zinc-700">
-      <div className="ps-3 w-1/4">{label}</div>
-      <div className="w-1/4 text-center">{valueAll}</div>
-      <div className="w-1/4 text-center">{valueCube}</div>
-      <div className="w-1/4 text-center">{valueSession}</div>
+      <div className="ps-3 w-1/5">{label}</div>
+      <div className="w-1/5 text-center">{global}</div>
+      <div className="w-1/5 text-center">{session}</div>
+      <div className="w-1/5 text-center">{cubeAll}</div>
+      <div className="w-1/5 text-center">{cubeSession}</div>
     </div>
   );
 }
