@@ -21,12 +21,13 @@ export default function StatsPage() {
     <div className="grow w-full md:max-w-6xl mx-auto flex flex-col border border-zinc-800 rounded-md min-h-full">
       <div className="border-b border-zinc-800 py-4 ">
         <div className="w-full mx-auto">
-          <div className="flex justify-between items-center mx-3">
+          <div className="flex justify-between items-center mx-3 gap-3">
             <div className="font-medium text-2xl">Metrics</div>
             <SelectMetrics
               label={currentTab}
               options={options}
               handleChange={handleChange}
+              extraClass="w-36 sm:w-56"
             />
           </div>
         </div>

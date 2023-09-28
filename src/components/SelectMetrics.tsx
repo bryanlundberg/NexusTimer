@@ -1,15 +1,18 @@
 import Check from "@/icons/Check";
 import SelectOptions from "@/icons/SelectOptions";
+import genId from "@/lib/genId";
 import { useEffect, useState } from "react";
 
 export default function SelectMetrics({
   label,
   options,
   handleChange,
+  extraClass,
 }: {
   label: string;
   options: any[];
   handleChange: any;
+  extraClass?: string;
 }) {
   const [open, setOpen] = useState<boolean>(false);
   const [select, setSelect] = useState(label);
@@ -25,22 +28,25 @@ export default function SelectMetrics({
   };
 
   const renderOption = (opt: any, selected: string) => {
+    const active = opt === selected;
     return (
       <div
+        key={genId()}
         onClick={() => handleSelect(opt)}
-        className="flex justify-between items-center bg-zinc-950 hover:bg-zinc-900 hover:text-neutral-200 text-neutral-300 p-1 cursor-pointer rounded-md"
+        className={`flex justify-between items-center hover:text-neutral-200 text-neutral-300 p-1 cursor-pointer rounded-md ${
+          active ? "bg-zinc-800" : "bg-zinc-950 hover:bg-zinc-900"
+        }`}
       >
         <div>{opt}</div>
-        {opt === selected ? <Check /> : null}
       </div>
     );
   };
   return (
     <>
-      <div className="relative">
+      <div className={`relative ${extraClass ? extraClass : null}`}>
         <button
           onClick={handleOpen}
-          className="bg-zinc-950 hover:bg-zinc-900 hover:text-neutral-200 text-neutral-300 border rounded-md p-1 border-zinc-800 w-48 flex justify-between items-center px-2"
+          className={`w-full bg-zinc-950 hover:bg-zinc-900 hover:text-neutral-200 text-neutral-300 border rounded-md p-1 border-zinc-800 flex justify-between items-center px-2`}
         >
           {label}
           <SelectOptions />
