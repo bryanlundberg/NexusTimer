@@ -2,7 +2,6 @@ import { useTimerStore } from "@/store/timerStore";
 import { cubeCollection } from "@/lib/cubeCollection";
 import { useState } from "react";
 import { Categories } from "@/interfaces/Categories";
-import genId from "@/lib/genId";
 import calcAverageStatistics from "@/lib/calcAverageStatistics";
 import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
 import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";

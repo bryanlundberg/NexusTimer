@@ -9,5 +9,7 @@ export interface Solve {
   bookmark: boolean;
   time: number;
   rating: number;
+  dnf: boolean;
+  plus2: boolean;
   category: Categories;
 }

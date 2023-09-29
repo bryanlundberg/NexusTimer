@@ -1,5 +1,4 @@
 import { Cube } from "@/interfaces/Cube";
-import findCube from "./findCube";
 import { Solve } from "@/interfaces/Solve";
 import loadCubes from "./loadCubes";
 

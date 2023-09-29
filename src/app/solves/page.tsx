@@ -14,10 +14,13 @@ import findCube from "@/lib/findCube";
 import updateSessions from "@/lib/updateSessions";
 import deleteSession from "@/lib/deleteSession";
 import Select from "@/components/Select";
+import ModalSolve from "@/components/ModalSolve";
+import { useSolvesStore } from "@/store/SolvesStore";
 
 export default function SolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
   const { selectedCube, setCubes, setSelectedCube } = useTimerStore();
+  const { status } = useSolvesStore();
 
   const handleTabClick = (newTab: SolveTab) => {
     setCurrentTab(newTab);
@@ -89,7 +92,7 @@ export default function SolvesPage() {
 
         {/* content */}
         <div className="px-3 flex justify-between text-sm flex-col md:flex-row gap-3">
-          {/* Options Show session/ History/bookmark */}
+          {/* Options Show Session / Global */}
           <div className="font-medium rounded-md p-1 flex h-8 bg-zinc-800 gap-1 w-full md:w-56 xl:w-96">
             <ToggleSolvesButton
               handleClick={() => handleTabClick("Session")}
@@ -124,12 +127,8 @@ export default function SolvesPage() {
           </div>
         </div>
         {renderSolvesArea(currentTab)}
+        {status && <ModalSolve />}
       </div>
     </>
   );
-  // return (
-  //   <>
-
-  //   </>
-  // );
 }

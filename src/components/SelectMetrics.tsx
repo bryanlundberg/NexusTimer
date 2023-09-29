@@ -1,7 +1,7 @@
 import Check from "@/icons/Check";
 import SelectOptions from "@/icons/SelectOptions";
 import genId from "@/lib/genId";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function SelectMetrics({
   label,

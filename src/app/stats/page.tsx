@@ -1,5 +1,4 @@
 "use client";
-
 import CategoryStatistics from "@/components/CategoryStatistics";
 import PersonalStatistics from "@/components/PersonalStatistics";
 import SelectMetrics from "@/components/SelectMetrics";
