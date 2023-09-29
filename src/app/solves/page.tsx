@@ -20,7 +20,7 @@ import { useSolvesStore } from "@/store/SolvesStore";
 export default function SolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
   const { selectedCube, setCubes, setSelectedCube } = useTimerStore();
-  const { status, setStatus } = useSolvesStore();
+  const { status } = useSolvesStore();
 
   const handleTabClick = (newTab: SolveTab) => {
     setCurrentTab(newTab);
