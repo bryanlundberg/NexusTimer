@@ -1,6 +1,7 @@
 import deleteSolve from "@/lib/deleteSolve";
 import findCube from "@/lib/findCube";
 import formatDate from "@/lib/formatDate";
+import updateSolve from "@/lib/updateSolve";
 import { useSolvesStore } from "@/store/SolvesStore";
 import { useTimerStore } from "@/store/timerStore";
 
@@ -10,6 +11,18 @@ export default function ModalSolve() {
   if (!solve) return null;
   const handleDelete = () => {
     const newCubes = deleteSolve(solve.id);
+    if (selectedCube) {
+      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
+      if (updatedSelectedCube) {
+        setSelectedCube(updatedSelectedCube);
+      }
+    }
+    setCubes(newCubes);
+    setStatus();
+  };
+
+  const handlePlusTwo = () => {
+    const newCubes = updateSolve(solve.id, "+2");
     if (selectedCube) {
       const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
       if (updatedSelectedCube) {
@@ -42,6 +55,7 @@ export default function ModalSolve() {
             <button
               type="button"
               className="border border-zinc-800 p-1 w-16 rounded-md bg-yellow-500"
+              onClick={() => handlePlusTwo()}
             >
               +2
             </button>
