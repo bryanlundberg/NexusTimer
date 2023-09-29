@@ -1,37 +1,23 @@
+import deleteSolve from "@/lib/deleteSolve";
+import findCube from "@/lib/findCube";
 import formatDate from "@/lib/formatDate";
-import loadCubes from "@/lib/loadCubes";
-import updateCubes from "@/lib/updateCubes";
 import { useSolvesStore } from "@/store/SolvesStore";
 import { useTimerStore } from "@/store/timerStore";
 
 export default function ModalSolve() {
   const { solve, setStatus } = useSolvesStore();
-  const { setCubes, setSelectedCube } = useTimerStore();
+  const { setCubes, setSelectedCube, selectedCube } = useTimerStore();
   if (!solve) return null;
   const handleDelete = () => {
-    const cubesDB = loadCubes();
-    for (const cube of cubesDB) {
-      for (const allSolve of cube.solves.all) {
-        if (allSolve.id === solve.id) {
-          const solveIndex = cube.solves.all.indexOf(allSolve);
-          if (solveIndex !== -1) {
-            cube.solves.all.splice(solveIndex, 1);
-          }
-        }
+    const newCubes = deleteSolve(solve.id);
+    if (selectedCube) {
+      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
+      if (updatedSelectedCube) {
+        setSelectedCube(updatedSelectedCube);
       }
-      for (const sessionSolve of cube.solves.session) {
-        if (sessionSolve.id === solve.id) {
-          const solveIndex = cube.solves.session.indexOf(sessionSolve);
-          if (solveIndex !== -1) {
-            cube.solves.session.splice(solveIndex, 1);
-          }
-        }
-      }
-      updateCubes(cubesDB);
-      setCubes(cubesDB);
-      setSelectedCube(cube);
-      setStatus();
     }
+    setCubes(newCubes);
+    setStatus();
   };
 
   return (
@@ -48,16 +34,16 @@ export default function ModalSolve() {
           <div className="flex justify-center gap-3 items-center border-b border-zinc-800 p-3">
             <button
               type="button"
-              className="border border-zinc-800 p-1 w-16 rounded-md bg-yellow-500"
-            >
-              +2
-            </button>
-            <button
-              type="button"
               className="border border-zinc-800 p-1 w-16 rounded-md bg-red-500"
               onClick={() => handleDelete()}
             >
               X
+            </button>
+            <button
+              type="button"
+              className="border border-zinc-800 p-1 w-16 rounded-md bg-yellow-500"
+            >
+              +2
             </button>
             <button
               type="button"
