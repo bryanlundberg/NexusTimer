@@ -8,8 +8,6 @@ export default function getBestTime({
   cubeId: string;
   typeSearch: "session" | "all";
 }) {
-  // que entre parametro cubeId y category default false
-
   let sortByTime = null;
   const cube = findCube({ cubeId: cubeId });
   if (!cube) return;

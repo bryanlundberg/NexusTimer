@@ -1,6 +1,5 @@
 import { Categories } from "@/interfaces/Categories";
 import Image from "next/image";
-import { useState } from "react";
 
 export default function CheckboxImage({
   id,
