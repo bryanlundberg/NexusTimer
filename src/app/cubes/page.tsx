@@ -2,38 +2,18 @@
 import Button from "@/components/Button";
 import InputText from "@/components/InputText";
 import TableRow from "@/components/TableRow";
-import { useState } from "react";
 import { Cube } from "@/interfaces/Cube";
 import genId from "@/lib/genId";
 import TableHeader from "@/components/TableHeader";
 import ModalCreate from "@/components/ModalCreate";
 import loadCubes from "@/lib/loadCubes";
 import { useTimerStore } from "@/store/timerStore";
-import { Categories } from "@/interfaces/Categories";
-import createCube from "@/lib/createCube";
 import RectangleGroup from "@/icons/RectangleGroup";
+import { useCubesModalStore } from "@/store/CubesModalStore";
 
 export default function CubesPage() {
   const { cubes, setCubes } = useTimerStore();
-  const [isCreatingCube, setIsCreatingCube] = useState<boolean>(false);
-
-  const handleClick = () => {
-    setIsCreatingCube(true);
-  };
-
-  const handleCreateCube = (name: string, category: Categories) => {
-    if (name === "") return;
-    const newCubes = createCube({
-      cubeName: name,
-      category: category,
-    });
-    setCubes(newCubes);
-    setIsCreatingCube(false);
-  };
-
-  const handleClose = () => {
-    setIsCreatingCube(false);
-  };
+  const { modalOpen, setModalOpen } = useCubesModalStore();
 
   const handleSearchFilter = (searchCube: string) => {
     const cubesDB = loadCubes();
@@ -67,7 +47,7 @@ export default function CubesPage() {
                 />
                 <Button
                   disabled={false}
-                  handleClick={handleClick}
+                  handleClick={() => setModalOpen(true)}
                   className="w-28"
                 >
                   + Cube
@@ -97,12 +77,7 @@ export default function CubesPage() {
           </div>
         )}
 
-        {isCreatingCube && (
-          <ModalCreate
-            handleCreateCube={handleCreateCube}
-            handleClose={handleClose}
-          />
-        )}
+        {modalOpen && <ModalCreate />}
       </div>
     </>
   );

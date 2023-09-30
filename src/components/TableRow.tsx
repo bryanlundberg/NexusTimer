@@ -1,13 +1,13 @@
 import { Cube } from "@/interfaces/Cube";
 import BookmarkFav from "./BookmarkFav";
 import Ellipsis from "@/icons/Ellipsis";
-import { sort } from "fast-sort";
 import updateCube from "@/lib/updateCube";
 import { useTimerStore } from "@/store/timerStore";
+import { useCubesModalStore } from "@/store/CubesModalStore";
 
 export default function TableRow({ cube }: { cube: Cube }) {
   const { setCubes } = useTimerStore();
-
+  const { setEditingCube, setModalOpen } = useCubesModalStore();
   const setFavorite = (cubeId: string) => {
     const updatedCube = updateCube({ cubeId });
     setCubes(updatedCube);
@@ -47,7 +47,13 @@ export default function TableRow({ cube }: { cube: Cube }) {
           Used
         </div>
         <div className="table-cell align-middle text-center">
-          <button className="hover:bg-zinc-800 p-1 px-2 sm:px-2 rounded-md">
+          <button
+            className="hover:bg-zinc-800 p-1 px-2 sm:px-2 rounded-md"
+            onClick={() => {
+              setEditingCube(cube);
+              setModalOpen(true);
+            }}
+          >
             <Ellipsis />
           </button>
         </div>

@@ -1,19 +1,24 @@
 import InputText from "./InputText";
 import CheckboxImage from "./CheckboxImage";
-import { useState } from "react";
 import { Categories } from "@/interfaces/Categories";
 import { cubeCollection } from "@/lib/cubeCollection";
 import genId from "@/lib/genId";
+import { useCubesModalStore } from "@/store/CubesModalStore";
+import createCube from "@/lib/createCube";
+import { useTimerStore } from "@/store/timerStore";
+import loadCubes from "@/lib/loadCubes";
 
-export default function ModalCreate({
-  handleCreateCube,
-  handleClose,
-}: {
-  handleCreateCube: any;
-  handleClose: any;
-}) {
-  const [selectedCategory, setSelectedCategory] = useState<Categories>("2x2");
-  const [cubeName, setCubeName] = useState<string>("");
+export default function ModalCreate() {
+  const {
+    setModalOpen,
+    editingCube,
+    setEditingCube,
+    selectedCategory,
+    setSelectedCategory,
+    cubeName,
+    setCubeName,
+  } = useCubesModalStore();
+  const { setCubes } = useTimerStore();
 
   const handleClickRadio = (category: Categories) => {
     setSelectedCategory(category);
@@ -21,6 +26,33 @@ export default function ModalCreate({
 
   const handleWriteCubeName = (newText: string) => {
     setCubeName(newText);
+  };
+
+  const handleCreateCube = (name: string, category: Categories) => {
+    if (name === "") return;
+    const newCubes = createCube({
+      cubeName: name,
+      category: category,
+    });
+    setCubes(newCubes);
+    setModalOpen(false);
+  };
+
+  const handleEditCube = (name: string, category: Categories) => {
+    if (name === "") return;
+    if (!editingCube) return;
+    const cubeDB = loadCubes();
+
+    for (const cube of cubeDB) {
+      if (cube.id === editingCube.id) {
+        cube.name = name;
+        cube.category = category;
+      }
+    }
+
+    window.localStorage.setItem("cubes", JSON.stringify(cubeDB));
+    setCubes(cubeDB);
+    setModalOpen(false);
   };
 
   return (
@@ -38,17 +70,21 @@ export default function ModalCreate({
             {/* <!-- Modal header --> */}
             <div className="flex gap-3 items-start justify-between p-4 border-b border-zinc-800 rounded-t">
               <h3 className="text-sm font-semibold text-neutral-50 w-32 flex items-center justify-center h-8">
-                New Cube:
+                {editingCube ? "Edit Cube:" : "New Cube:"}
               </h3>
               <InputText
                 placeholder="Brand | Model | Version | Magnetic?"
                 onChange={handleWriteCubeName}
+                value={editingCube ? cubeName : ""}
               />
               <button
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
                 data-modal-hide="defaultModal"
-                onClick={() => handleClose(false)}
+                onClick={() => {
+                  setModalOpen(false);
+                  setEditingCube(null);
+                }}
               >
                 <svg
                   className="w-3 h-3"
@@ -90,7 +126,10 @@ export default function ModalCreate({
             {/* <!-- Modal footer --> */}
             <div className="flex items-center justify-end p-6 space-x-2 border-zinc-800 rounded-b ">
               <button
-                onClick={() => handleClose(false)}
+                onClick={() => {
+                  setModalOpen(false);
+                  setEditingCube(null);
+                }}
                 data-modal-hide="defaultModal"
                 type="button"
                 className="text-neutral-100 border border-zinc-800 bg-transparent hover:bg-zinc-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -99,12 +138,16 @@ export default function ModalCreate({
               </button>
 
               <button
-                onClick={() => handleCreateCube(cubeName, selectedCategory)}
+                onClick={() =>
+                  editingCube
+                    ? handleEditCube(cubeName, selectedCategory)
+                    : handleCreateCube(cubeName, selectedCategory)
+                }
                 data-modal-hide="defaultModal"
                 type="button"
                 className="text-gray-800 bg-neutral-50 hover:bg-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
-                Create
+                {editingCube ? "Save" : "Create"}
               </button>
             </div>
           </div>
