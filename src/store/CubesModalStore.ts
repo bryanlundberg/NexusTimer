@@ -22,7 +22,7 @@ export const useCubesModalStore = create<Modal>((set) => ({
     set({ modalOpen: status });
   },
   setEditingCube: (cube: Cube | null) => {
-    set({ editingCube: cube, cubeName: cube ? cube.name : "" });
+    set({ editingCube: cube });
   },
   setCubeName: (name: string) => {
     set({ cubeName: name });
