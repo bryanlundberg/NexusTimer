@@ -7,7 +7,8 @@ import { useCubesModalStore } from "@/store/CubesModalStore";
 
 export default function TableRow({ cube }: { cube: Cube }) {
   const { setCubes } = useTimerStore();
-  const { setEditingCube, setModalOpen } = useCubesModalStore();
+  const { setEditingCube, setModalOpen, setCubeName, setSelectedCategory } =
+    useCubesModalStore();
   const setFavorite = (cubeId: string) => {
     const updatedCube = updateCube({ cubeId });
     setCubes(updatedCube);
@@ -22,6 +23,8 @@ export default function TableRow({ cube }: { cube: Cube }) {
       .toString()
       .padStart(2, "0")}/${year}`;
   }
+
+  const status = cube.solves.session.length > 0;
 
   return (
     <>
@@ -44,13 +47,15 @@ export default function TableRow({ cube }: { cube: Cube }) {
           {formatDate(cube.createdAt)}
         </div>
         <div className="align-middle text-center hidden md:table-cell">
-          Used
+          {status ? "Using" : "Idle"}
         </div>
         <div className="table-cell align-middle text-center">
           <button
             className="hover:bg-zinc-800 p-1 px-2 sm:px-2 rounded-md"
             onClick={() => {
               setEditingCube(cube);
+              setCubeName(cube.name);
+              setSelectedCategory(cube.category);
               setModalOpen(true);
             }}
           >
