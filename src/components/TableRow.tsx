@@ -4,6 +4,8 @@ import Ellipsis from "@/icons/Ellipsis";
 import updateCube from "@/lib/updateCube";
 import { useTimerStore } from "@/store/timerStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
+import Play from "@/icons/Play";
+import Stop from "@/icons/Stop";
 
 export default function TableRow({ cube }: { cube: Cube }) {
   const { setCubes } = useTimerStore();
@@ -47,11 +49,21 @@ export default function TableRow({ cube }: { cube: Cube }) {
           {formatDate(cube.createdAt)}
         </div>
         <div className="align-middle text-center hidden md:table-cell">
-          {status ? "Using" : "Idle"}
+          {status ? (
+            <div className="flex justify-center items-center gap-1">
+              <Play />
+              <span>Using</span>
+            </div>
+          ) : (
+            <div className="flex justify-center items-center gap-1">
+              <Stop />
+              <span>Idle</span>
+            </div>
+          )}
         </div>
         <div className="table-cell align-middle text-center">
           <button
-            className="hover:bg-zinc-800 p-1 px-2 sm:px-2 rounded-md"
+            className="hover:bg-zinc-800 p-1 px-2 sm:px-2 rounded-md text-white"
             onClick={() => {
               setEditingCube(cube);
               setCubeName(cube.name);

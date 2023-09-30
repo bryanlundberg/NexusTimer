@@ -10,6 +10,8 @@ import loadCubes from "@/lib/loadCubes";
 import { useTimerStore } from "@/store/timerStore";
 import RectangleGroup from "@/icons/RectangleGroup";
 import { useCubesModalStore } from "@/store/CubesModalStore";
+import Plus from "@/icons/Plus";
+import PlusIcon from "@/icons/PlusIcon";
 
 export default function CubesPage() {
   const { cubes, setCubes } = useTimerStore();
@@ -48,9 +50,12 @@ export default function CubesPage() {
                 <Button
                   disabled={false}
                   handleClick={() => setModalOpen(true)}
-                  className="w-28"
+                  className="w-28 border-dashed hover:border-solid"
                 >
-                  + Cube
+                  <div className="flex justify-between items-center">
+                    <Plus />
+                    <div>Cube</div>
+                  </div>
                 </Button>
               </div>
             </div>
