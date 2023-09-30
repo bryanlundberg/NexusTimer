@@ -36,6 +36,7 @@ export default function ModalCreate() {
     });
     setCubes(newCubes);
     setModalOpen(false);
+    setCubeName("");
   };
 
   const handleEditCube = (name: string, category: Categories) => {
@@ -53,6 +54,7 @@ export default function ModalCreate() {
     window.localStorage.setItem("cubes", JSON.stringify(cubeDB));
     setCubes(cubeDB);
     setModalOpen(false);
+    setCubeName("");
   };
 
   return (
@@ -75,7 +77,7 @@ export default function ModalCreate() {
               <InputText
                 placeholder="Brand | Model | Version | Magnetic?"
                 onChange={handleWriteCubeName}
-                value={editingCube ? cubeName : ""}
+                value={cubeName}
               />
               <button
                 type="button"
@@ -84,6 +86,7 @@ export default function ModalCreate() {
                 onClick={() => {
                   setModalOpen(false);
                   setEditingCube(null);
+                  setCubeName("");
                 }}
               >
                 <svg
@@ -129,6 +132,7 @@ export default function ModalCreate() {
                 onClick={() => {
                   setModalOpen(false);
                   setEditingCube(null);
+                  setCubeName("");
                 }}
                 data-modal-hide="defaultModal"
                 type="button"
