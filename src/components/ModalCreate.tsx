@@ -64,6 +64,7 @@ export default function ModalCreate() {
     window.localStorage.setItem("cubes", JSON.stringify(updatedCubeDB));
     setCubes(updatedCubeDB);
     setModalOpen(false);
+    setEditingCube(null);
     setCubeName("");
   };
 
