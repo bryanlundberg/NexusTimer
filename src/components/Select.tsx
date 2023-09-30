@@ -2,7 +2,6 @@ import PlusIcon from "@/icons/PlusIcon";
 import SelectOptions from "@/icons/SelectOptions";
 import { useState } from "react";
 import Image from "next/image";
-import Check from "@/icons/Check";
 import Link from "next/link";
 import { Categories } from "@/interfaces/Categories";
 import { cubeCollection } from "@/lib/cubeCollection";
@@ -25,7 +24,10 @@ export default function Select() {
           onClick={() => setOpen(!open)}
           className="max-w-[250px] w-full text-xs appearance-none border bg-zinc-950 hover:bg-zinc-800 border-zinc-800 font-medium rounded-md px-4 py-2"
         >
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
+            {selectedCube ? (
+              <MiniatureIcon category={selectedCube.category} />
+            ) : null}
             <div className="">
               {selectedCube ? selectedCube.name : "Select"}
             </div>
@@ -125,11 +127,6 @@ function Option({
         <MiniatureIcon category={category} />
         <div className="overflow-hidden">{name}</div>
       </div>
-      {selectedCube?.id === cubeId && (
-        <div className="w-4 h-4 me-3 text-xs">
-          <Check />
-        </div>
-      )}
     </div>
   );
 }

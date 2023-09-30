@@ -108,23 +108,25 @@ export default function SolvesPage() {
             </ToggleSolvesButton>
           </div>
           {/* buttons manage solves */}
-          <div className="flex gap-2">
-            <Button
-              disabled={false}
-              handleClick={() => handleMoveAll()}
-              className="font-normal"
-            >
-              <div className="flex items-center justify-center text-xs">
-                <MoveAll /> <div>Move All</div>
-              </div>
-            </Button>
-            <Button disabled={false} handleClick={() => handleTrashAll()}>
-              <div className="flex items-center justify-center text-xs">
-                <Trash />
-                <div> Trash All</div>
-              </div>
-            </Button>
-          </div>
+          {currentTab === "Session" ? (
+            <div className="flex gap-2">
+              <Button
+                disabled={false}
+                handleClick={() => handleMoveAll()}
+                className="font-normal"
+              >
+                <div className="flex items-center justify-center text-xs">
+                  <MoveAll /> <div>Move All</div>
+                </div>
+              </Button>
+              <Button disabled={false} handleClick={() => handleTrashAll()}>
+                <div className="flex items-center justify-center text-xs">
+                  <Trash />
+                  <div> Trash All</div>
+                </div>
+              </Button>
+            </div>
+          ) : null}
         </div>
         {renderSolvesArea(currentTab)}
         {status && <ModalSolve />}
