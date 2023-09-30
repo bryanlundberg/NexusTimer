@@ -101,6 +101,7 @@ export default function ModalCreate() {
                 placeholder="Brand | Model | Version | Magnetic?"
                 onChange={handleWriteCubeName}
                 value={cubeName}
+                focus={true}
               />
               <button
                 type="button"
@@ -127,7 +128,6 @@ export default function ModalCreate() {
               </button>
             </div>
             {/* <!-- Modal body --> */}
-            <div className="p-6 space-y-6"></div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6">
               {cubeCollection.map((category) => {
@@ -143,6 +143,10 @@ export default function ModalCreate() {
                   />
                 );
               })}
+            </div>
+
+            <div className="px-6 text-zinc-400 text-sm">
+              Current selection: {selectedCategory}
             </div>
 
             {/* <!-- Modal footer --> */}
