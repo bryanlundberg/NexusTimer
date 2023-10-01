@@ -4,10 +4,12 @@ export default function CardStatistic({
   label,
   total,
   className,
+  children,
 }: {
   label: string;
   total: number | string;
   className?: string;
+  children?: React.ReactNode;
 }) {
   return (
     <>
@@ -21,7 +23,7 @@ export default function CardStatistic({
           <div className="text-3xl font-medium">{total}</div>
           <div className="text-md mt-3">{label}</div>
         </div>
-        <Clock />
+        {children}
       </div>
     </>
   );
