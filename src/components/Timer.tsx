@@ -20,7 +20,7 @@ export default function Timer() {
   const isSolving = useRef<boolean>(false);
   const isHoldingSpace = useRef<boolean>(false);
 
-  const handleSpaceKeyDown = (event: KeyboardEvent) => {
+  const handleHold = (event: KeyboardEvent) => {
     if (event.code !== "Space") return;
     const now = Date.now();
     const difference = now - (holdingTimeRef.current || 0);
@@ -72,7 +72,7 @@ export default function Timer() {
     }
   };
 
-  const handleSpaceKeyUp = (event: KeyboardEvent) => {
+  const handleRelease = (event: KeyboardEvent) => {
     if (event.code === "Space") {
       const now = Date.now();
       const difference: number = now - holdingTimeRef.current;
@@ -103,11 +103,11 @@ export default function Timer() {
   };
 
   useEffect(() => {
-    window.addEventListener("keydown", handleSpaceKeyDown);
-    window.addEventListener("keyup", handleSpaceKeyUp);
+    window.addEventListener("keydown", handleHold);
+    window.addEventListener("keyup", handleRelease);
     return () => {
-      window.removeEventListener("keydown", handleSpaceKeyDown);
-      window.removeEventListener("keyup", handleSpaceKeyUp);
+      window.removeEventListener("keydown", handleHold);
+      window.removeEventListener("keyup", handleRelease);
     };
   });
 

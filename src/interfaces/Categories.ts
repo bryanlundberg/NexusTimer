@@ -6,4 +6,6 @@ export type Categories =
   | "5x5"
   | "6x6"
   | "7x7"
-  | "SQ1";
+  | "SQ1"
+  | "Skewb"
+  | "Pyraminx";

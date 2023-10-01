@@ -7,6 +7,8 @@ import cube555 from "@/images/categories/cube555.png";
 import cube666 from "@/images/categories/cube666.png";
 import cube777 from "@/images/categories/cube777.png";
 import cubesq1 from "@/images/categories/cubesq1.png";
+import cubeskewb from "@/images/categories/skewb.png";
+import cubepyramix from "@/images/categories/pyramix.png";
 
 export const cubeCollection: CubeCollection[] = [
   {
@@ -56,5 +58,17 @@ export const cubeCollection: CubeCollection[] = [
     id: 8,
     name: "SQ1",
     src: cubesq1,
+  },
+  {
+    event: "skewb",
+    id: 9,
+    name: "Skewb",
+    src: cubeskewb,
+  },
+  {
+    event: "pyram",
+    id: 10,
+    name: "Pyraminx",
+    src: cubepyramix,
   },
 ];
