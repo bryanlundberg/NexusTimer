@@ -6,7 +6,7 @@ import calcAverageStatistics from "@/lib/calcAverageStatistics";
 import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
 import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
 import calcAoStatistics from "@/lib/calcAoStatistics";
-import calcDesviation from "@/lib/calcDesviation";
+import calcDeviation from "@/lib/calcDeviation";
 import calcBestTime from "@/lib/calcBestTime";
 import fail from "@/images/no-data.png";
 import Image from "next/image";
@@ -50,7 +50,7 @@ export default function CategoryStatistics() {
   const timeSpent = calcTimeSpentStatistics(filterCategory, filterCube);
   const counter = calcTotalSolvesStatistics(filterCategory, filterCube);
   const stats = calcAoStatistics(filterCategory, filterCube);
-  const desviation = calcDesviation(filterCategory, filterCube);
+  const deviation = calcDeviation(filterCategory, filterCube);
   const best = calcBestTime(filterCategory, filterCube);
   return (
     <>
@@ -85,20 +85,18 @@ export default function CategoryStatistics() {
             <div className="w-1/5 text-center">C Session</div>
           </div>
           <StatisticRow
-            label="Desviation"
-            global={
-              desviation.global === 0 ? "--" : desviation.global.toFixed(3)
-            }
+            label="Deviation"
+            global={deviation.global === 0 ? "--" : deviation.global.toFixed(3)}
             session={
-              desviation.session === 0 ? "--" : desviation.session.toFixed(3)
+              deviation.session === 0 ? "--" : deviation.session.toFixed(3)
             }
             cubeAll={
-              desviation.cubeAll === 0 ? "--" : desviation.cubeAll.toFixed(3)
+              deviation.cubeAll === 0 ? "--" : deviation.cubeAll.toFixed(3)
             }
             cubeSession={
-              desviation.cubeSession === 0
+              deviation.cubeSession === 0
                 ? "--"
-                : desviation.cubeSession.toFixed(3)
+                : deviation.cubeSession.toFixed(3)
             }
           />
           <StatisticRow

@@ -1,6 +1,6 @@
 import { Solve } from "@/interfaces/Solve";
 
-export default function getDesviation(solves: Solve[]) {
+export default function getDeviation(solves: Solve[]) {
   if (solves.length < 1) return 0;
   const n = solves.length;
   const totalSolves = solves.reduce(

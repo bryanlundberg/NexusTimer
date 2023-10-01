@@ -7,6 +7,6 @@ interface CubeStatistics {
   ao50: number;
   ao100: number;
   ao1000: number;
-  desviation: number;
+  deviation: number;
   mean: number;
 }

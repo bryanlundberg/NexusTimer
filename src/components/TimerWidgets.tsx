@@ -14,7 +14,7 @@ export default function TimerWidgets() {
     ao50: 0,
     ao100: 0,
     ao1000: 0,
-    desviation: 0,
+    deviation: 0,
     mean: 0,
   });
 
@@ -27,7 +27,7 @@ export default function TimerWidgets() {
     document.querySelector("#scramble-display")?.appendChild(child);
 
     if (selectedCube) {
-      const { count, best, ao3, ao5, ao12, ao50, ao1000, desviation, mean } =
+      const { count, best, ao3, ao5, ao12, ao50, ao1000, deviation, mean } =
         calcStatistics({
           cubeId: selectedCube.id,
           typeSearch: "session",
@@ -41,7 +41,7 @@ export default function TimerWidgets() {
         ao12,
         ao50,
         ao1000,
-        desviation,
+        deviation,
         mean,
       });
     }
@@ -51,7 +51,7 @@ export default function TimerWidgets() {
     <div className="h-20 md:h-32 lg:h-40 w-full flex justify-between text-xs md:text-sm">
       <div className="w-full h-full">
         <div className="font-medium">
-          Desviation: {statistics.desviation.toFixed(2)}
+          Deviation: {statistics.deviation.toFixed(2)}
         </div>
         <div className="font-medium">Mean: {statistics.mean.toFixed(2)}</div>
         <div className="font-medium">
