@@ -17,7 +17,7 @@ export default function StatsPage() {
   };
 
   return (
-    <div className="grow w-full md:max-w-6xl mx-auto flex flex-col border border-zinc-800 rounded-md min-h-full">
+    <div className="mt-3 grow w-full md:max-w-6xl mx-auto flex flex-col xl:border border-zinc-800 rounded-md min-h-full">
       <div className="border-b border-zinc-800 py-4 ">
         <div className="w-full mx-auto">
           <div className="flex justify-between items-center mx-3 gap-3">
