@@ -2,6 +2,8 @@
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect } from "react";
 import loadCubes from "@/lib/loadCubes";
+import loadSettings from "@/lib/loadSettings";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function PreloadSettings({
   children,
@@ -9,11 +11,14 @@ export default function PreloadSettings({
   children: React.ReactNode;
 }) {
   const { setCubes } = useTimerStore();
+  const { setSettings } = useSettingsModalStore();
 
   useEffect(() => {
     const getCubes = loadCubes();
+    const getSettings = loadSettings();
+    setSettings(getSettings);
     if (setCubes) setCubes(getCubes);
-  }, [setCubes]);
+  }, [setCubes, setSettings]);
 
   return <>{children}</>;
 }

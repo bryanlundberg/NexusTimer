@@ -6,12 +6,14 @@ import CpuChip from "@/icons/CpuChip";
 import BellAlert from "@/icons/BellAlert";
 import Clock from "@/icons/Clock";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import genId from "@/lib/genId";
 
 export default function SettingsMenu() {
-  const { setSettingsOpen } = useSettingsModalStore();
+  const { setSettingsOpen, settings } = useSettingsModalStore();
+
   return (
     <>
-      <div className="bg-neutral-50 text-zinc-800 grow w-full sm:w-96 flex flex-col gap-3 min-h-full max-h-full z-10 overflow-auto absolute">
+      <div className="transition bg-neutral-50 text-zinc-800 grow w-full sm:w-96 flex flex-col gap-3 min-h-full max-h-full z-10 overflow-auto absolute">
         <div className="flex items-center my-3">
           <div
             onClick={() => setSettingsOpen(false)}
@@ -36,25 +38,39 @@ export default function SettingsMenu() {
           </div>
         </Section>
         <Section icon={<Clock />} title={"Timer"}>
-          <Option label="Inspection" />
-          <Option label="Start cue" />
-          <Option label="Hold to start" />
-          <Option label="Back cancels solve" />
-          <Option label="Manual mode" />
+          {settings.timer.map((item) => (
+            <Option
+              key={genId()}
+              status={item.status}
+              label={item.desc}
+              read={item.desc}
+              id={item.id}
+            />
+          ))}
         </Section>
 
         <Section icon={<CpuChip />} title={"Features"}>
-          <Option label="Scramble image" />
-          <Option label="Session stats" />
-          <Option label="Quick action buttons" />
-          <Option label="Hide time while solving" />
-          <Option label="Scramble background" />
+          {settings.features.map((item) => (
+            <Option
+              key={genId()}
+              status={item.status}
+              label={item.desc}
+              read={item.desc}
+              id={item.id}
+            />
+          ))}
         </Section>
 
         <Section icon={<BellAlert />} title={"Alerts"}>
-          <Option label="Best time" />
-          <Option label="Best Average" />
-          <Option label="Worst time" />
+          {settings.alerts.map((item) => (
+            <Option
+              key={genId()}
+              status={item.status}
+              label={item.desc}
+              read={item.desc}
+              id={item.id}
+            />
+          ))}
         </Section>
       </div>
     </>
@@ -72,7 +88,7 @@ function Section({
 }) {
   return (
     <div className="mb-3">
-      <div className="text-blue-500 mb-3 flex">
+      <div className="text-blue-500 mb-3 flex font-medium">
         <div className="w-6 mx-3">{icon}</div>
         <div className="w-full">{title}</div>
       </div>
@@ -81,12 +97,22 @@ function Section({
   );
 }
 
-function Option({ label, status }: { label: string; status?: boolean }) {
+function Option({
+  label,
+  status,
+  read,
+  id,
+}: {
+  label: string;
+  status: boolean;
+  read?: string;
+  id: number;
+}) {
   return (
     <div className="flex justify-between mb-1">
       <div className="ms-12">{label}</div>
       <div className="me-6">
-        <Toggle />
+        <Toggle status={status} read={read} id={id} />
       </div>
     </div>
   );

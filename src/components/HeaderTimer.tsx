@@ -5,14 +5,14 @@ import { useTimerStore } from "@/store/timerStore";
 
 export default function HeaderTimer() {
   const { scramble, selectedCube } = useTimerStore();
-  const { setSettingsOpen } = useSettingsModalStore();
+  const { setSettingsOpen, settingsOpen } = useSettingsModalStore();
   return (
     <>
       {/* Selectors category/cube */}
       <div className="flex flex-col items-center justify-center gap-5 p-4">
         <div className="flex items-center gap-2">
           <div
-            onClick={() => setSettingsOpen(true)}
+            onClick={() => setSettingsOpen(!settingsOpen)}
             className="w-6 h-6 text-netral-50 hover:text-neutral-200 hover:cursor-pointer"
           >
             <Settings />
