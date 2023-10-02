@@ -1,23 +1,30 @@
 "use client";
-
 import ArrowLeft from "@/icons/ArrowLeft";
 import Toggle from "@/components/headless/Toggle";
-import Link from "next/link";
 import Language from "@/icons/Language";
 import CpuChip from "@/icons/CpuChip";
 import BellAlert from "@/icons/BellAlert";
 import Clock from "@/icons/Clock";
+import { useState } from "react";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
-export default function SettingsPage() {
+export default function SettingsMenu() {
+  const { setSettingsOpen } = useSettingsModalStore();
   return (
     <>
-      <div className="bg-neutral-50 text-zinc-800 grow w-full md:max-w-6xl mx-auto flex flex-col gap-3 min-h-full">
-        <div className="text-center font-medium text-2xl mt-3">Settings</div>
-        <div className="absolute top-8 left-8">
-          <Link href="/">
+      <div className="bg-neutral-50 text-zinc-800 grow w-96 flex flex-col gap-3 min-h-full max-h-full z-10 overflow-auto absolute">
+        <div className="flex items-center mt-3">
+          <div
+            onClick={() => setSettingsOpen(false)}
+            className="flex items-center ms-3 cursor-pointer"
+          >
             <ArrowLeft />
-          </Link>
+          </div>
+          <div className="flex-1 text-center font-medium text-2xl">
+            Settings
+          </div>
         </div>
+
         <div className="ps-20 pe-10 overflow-auto">
           <div className="mb-3">
             <div className="text-blue-500 mb-3 relative">
