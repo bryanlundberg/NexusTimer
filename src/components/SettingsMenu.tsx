@@ -8,7 +8,7 @@ import Clock from "@/icons/Clock";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function SettingsMenu() {
-  const { setSettingsOpen } = useSettingsModalStore();
+  const { setSettingsOpen, settings } = useSettingsModalStore();
   return (
     <>
       <div className="transition bg-neutral-50 text-zinc-800 grow w-full sm:w-96 flex flex-col gap-3 min-h-full max-h-full z-10 overflow-auto absolute">
@@ -36,25 +36,37 @@ export default function SettingsMenu() {
           </div>
         </Section>
         <Section icon={<Clock />} title={"Timer"}>
-          <Option label="Inspection" />
-          <Option label="Start cue" />
-          <Option label="Hold to start" />
-          <Option label="Back cancels solve" />
-          <Option label="Manual mode" />
+          <Option status={settings.inspection} label="Inspection" />
+          <Option status={settings.startCue} label="Start cue" />
+          <Option status={settings.holdToStart} label="Hold to start" />
+          <Option
+            status={settings.backCancelsSolve}
+            label="Back cancels solve"
+          />
+          <Option status={settings.manualMode} label="Manual mode" />
         </Section>
 
         <Section icon={<CpuChip />} title={"Features"}>
-          <Option label="Scramble image" />
-          <Option label="Session stats" />
-          <Option label="Quick action buttons" />
-          <Option label="Hide time while solving" />
-          <Option label="Scramble background" />
+          <Option status={settings.scrambleImage} label="Scramble image" />
+          <Option status={settings.sessionStats} label="Session stats" />
+          <Option
+            status={settings.quickActionButtons}
+            label="Quick action buttons"
+          />
+          <Option
+            status={settings.hideTimeWhileSolving}
+            label="Hide time while solving"
+          />
+          <Option
+            status={settings.scrambleBackground}
+            label="Scramble background"
+          />
         </Section>
 
         <Section icon={<BellAlert />} title={"Alerts"}>
-          <Option label="Best time" />
-          <Option label="Best Average" />
-          <Option label="Worst time" />
+          <Option status={settings.bestAverage} label="Best time" />
+          <Option status={settings.bestAverage} label="Best Average" />
+          <Option status={settings.worstTime} label="Worst time" />
         </Section>
       </div>
     </>
@@ -81,12 +93,20 @@ function Section({
   );
 }
 
-function Option({ label, status }: { label: string; status?: boolean }) {
+function Option({
+  label,
+  status,
+  read,
+}: {
+  label: string;
+  status: boolean;
+  read?: string;
+}) {
   return (
     <div className="flex justify-between mb-1">
       <div className="ms-12">{label}</div>
       <div className="me-6">
-        <Toggle />
+        <Toggle status={status} read={read} />
       </div>
     </div>
   );
