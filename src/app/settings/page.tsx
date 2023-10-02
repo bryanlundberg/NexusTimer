@@ -11,7 +11,7 @@ import Clock from "@/icons/Clock";
 export default function SettingsPage() {
   return (
     <>
-      <div className="bg-neutral-50 rounded-lg text-zinc-800 grow w-full md:max-w-6xl mx-auto flex flex-col gap-3 min-h-full">
+      <div className="bg-neutral-50 text-zinc-800 grow w-full md:max-w-6xl mx-auto flex flex-col gap-3 min-h-full">
         <div className="text-center font-medium text-2xl mt-3">Settings</div>
         <div className="absolute top-8 left-8">
           <Link href="/">

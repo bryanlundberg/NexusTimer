@@ -3,6 +3,8 @@ import "./globals.css";
 import Script from "next/script";
 import type { Metadata } from "next";
 import PreloadSettings from "@/components/PreloadSettings";
+import PreloadNav from "@/components/PreloadNav";
+
 export const metadata: Metadata = {
   title: "Nexus Timer | For SpeedCubers",
   description:
@@ -19,7 +21,9 @@ export default function RootLayout({
       <body>
         <main className="min-h-screen max-h-screen flex flex-col gap-2 justify-between bg-zinc-950 text-slate-50">
           <PreloadSettings>{children}</PreloadSettings>
-          <Navigation />
+          <PreloadNav>
+            <Navigation />
+          </PreloadNav>
         </main>
         <Script
           src="https://cdn.cubing.net/js/scramble-display"
