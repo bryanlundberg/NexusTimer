@@ -11,7 +11,7 @@ export default function SettingsMenu() {
   const { setSettingsOpen } = useSettingsModalStore();
   return (
     <>
-      <div className="bg-neutral-50 text-zinc-800 grow w-full sm:w-96 flex flex-col gap-3 min-h-full max-h-full z-10 overflow-auto absolute">
+      <div className="transition bg-neutral-50 text-zinc-800 grow w-full sm:w-96 flex flex-col gap-3 min-h-full max-h-full z-10 overflow-auto absolute">
         <div className="flex items-center my-3">
           <div
             onClick={() => setSettingsOpen(false)}

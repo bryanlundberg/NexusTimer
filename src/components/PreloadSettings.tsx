@@ -2,6 +2,7 @@
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect } from "react";
 import loadCubes from "@/lib/loadCubes";
+import loadSettings from "@/lib/loadSettings";
 
 export default function PreloadSettings({
   children,
@@ -12,6 +13,7 @@ export default function PreloadSettings({
 
   useEffect(() => {
     const getCubes = loadCubes();
+    loadSettings();
     if (setCubes) setCubes(getCubes);
   }, [setCubes]);
 
