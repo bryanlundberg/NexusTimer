@@ -11,7 +11,6 @@ import { useTimerStore } from "@/store/timerStore";
 import RectangleGroup from "@/icons/RectangleGroup";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import Plus from "@/icons/Plus";
-import PlusIcon from "@/icons/PlusIcon";
 
 export default function CubesPage() {
   const { cubes, setCubes } = useTimerStore();
@@ -36,7 +35,7 @@ export default function CubesPage() {
 
   return (
     <>
-      <div className="grow w-full md:max-w-6xl mx-auto flex flex-col border border-zinc-800 rounded-md min-h-full">
+      <div className="mt-3 grow w-full md:max-w-6xl mx-auto flex flex-col xl:border border-zinc-800 rounded-md min-h-full">
         <div className="border-b border-zinc-800 py-4 ">
           <div className="w-full mx-auto">
             <div className="flex flex-col sm:flex-row gap-3 justify-between items-center mx-3">
@@ -81,7 +80,6 @@ export default function CubesPage() {
             </div>
           </div>
         )}
-
         {modalOpen && <ModalCreate />}
       </div>
     </>
