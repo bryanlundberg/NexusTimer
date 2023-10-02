@@ -5,15 +5,14 @@ import Language from "@/icons/Language";
 import CpuChip from "@/icons/CpuChip";
 import BellAlert from "@/icons/BellAlert";
 import Clock from "@/icons/Clock";
-import { useState } from "react";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function SettingsMenu() {
   const { setSettingsOpen } = useSettingsModalStore();
   return (
     <>
-      <div className="bg-neutral-50 text-zinc-800 grow w-96 flex flex-col gap-3 min-h-full max-h-full z-10 overflow-auto absolute">
-        <div className="flex items-center mt-3">
+      <div className="bg-neutral-50 text-zinc-800 grow w-full sm:w-96 flex flex-col gap-3 min-h-full max-h-full z-10 overflow-auto absolute">
+        <div className="flex items-center my-3">
           <div
             onClick={() => setSettingsOpen(false)}
             className="flex items-center ms-3 cursor-pointer"
@@ -25,106 +24,70 @@ export default function SettingsMenu() {
           </div>
         </div>
 
-        <div className="ps-20 pe-10 overflow-auto">
-          <div className="mb-3">
-            <div className="text-blue-500 mb-3 relative">
-              <div>Locale</div>
-              <div className="absolute right-56 bottom-0">
-                <Language />
-              </div>
-            </div>
-            <div className="flex justify-between">
-              <div>language</div>
-              <select name="a" id="a">
-                <option value="a">US</option>
+        <Section icon={<Language />} title="Locale">
+          <div className="flex justify-between">
+            <div className="ms-12">Language</div>
+            <div className="me-6">
+              <select>
+                <option value="en">English</option>
+                <option value="es">Español</option>
               </select>
             </div>
           </div>
+        </Section>
+        <Section icon={<Clock />} title={"Timer"}>
+          <Option label="Inspection" />
+          <Option label="Start cue" />
+          <Option label="Hold to start" />
+          <Option label="Back cancels solve" />
+          <Option label="Manual mode" />
+        </Section>
 
-          <div className="mb-3">
-            <div className="text-blue-500 mb-3 relative">
-              <div>Timer</div>
-              <div className="absolute right-56 bottom-0">
-                <Clock />
-              </div>
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Inspection</div>
-              <Toggle />
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Inspection duration</div>
-              <input type="number" className="w-10" value={15} />
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Start cue</div>
-              <Toggle />
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Hold to start</div>
-              <Toggle />
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Back cancels solve</div>
-              <Toggle />
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Manual mode</div>
-              <Toggle />
-            </div>
-          </div>
+        <Section icon={<CpuChip />} title={"Features"}>
+          <Option label="Scramble image" />
+          <Option label="Session stats" />
+          <Option label="Quick action buttons" />
+          <Option label="Hide time while solving" />
+          <Option label="Scramble background" />
+        </Section>
 
-          <div className="mb-3">
-            <div className="text-blue-500 mb-3 relative">
-              <div>Timer</div>
-              <div className="absolute right-56 bottom-0">
-                <BellAlert />
-              </div>
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Best time</div>
-              <Toggle />
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Best average</div>
-              <Toggle />
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Worst time</div>
-              <Toggle />
-            </div>
-          </div>
-
-          <div className="mb-3">
-            <div className="text-blue-500 mb-3 relative">
-              <div>Features</div>
-              <div className="absolute right-56 bottom-0">
-                <CpuChip />
-              </div>
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Scramble image</div>
-              <Toggle />
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Session stats</div>
-              <Toggle />
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Quick action buttons</div>
-              <Toggle />
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Hide time while solving</div>
-              <Toggle />
-            </div>
-            <div className="flex justify-between mb-2">
-              <div>Scramble background</div>
-              <Toggle />
-            </div>
-          </div>
-        </div>
+        <Section icon={<BellAlert />} title={"Alerts"}>
+          <Option label="Best time" />
+          <Option label="Best Average" />
+          <Option label="Worst time" />
+        </Section>
       </div>
     </>
+  );
+}
+
+function Section({
+  children,
+  icon,
+  title,
+}: {
+  children: React.ReactNode;
+  icon: React.ReactNode;
+  title: string;
+}) {
+  return (
+    <div className="mb-3">
+      <div className="text-blue-500 mb-3 flex">
+        <div className="w-6 mx-3">{icon}</div>
+        <div className="w-full">{title}</div>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function Option({ label, status }: { label: string; status?: boolean }) {
+  return (
+    <div className="flex justify-between mb-1">
+      <div className="ms-12">{label}</div>
+      <div className="me-6">
+        <Toggle />
+      </div>
+    </div>
   );
 }
