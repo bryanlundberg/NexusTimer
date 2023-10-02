@@ -6,6 +6,7 @@ import CpuChip from "@/icons/CpuChip";
 import BellAlert from "@/icons/BellAlert";
 import Clock from "@/icons/Clock";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import genId from "@/lib/genId";
 
 export default function SettingsMenu() {
   const { setSettingsOpen, settings } = useSettingsModalStore();
@@ -37,37 +38,39 @@ export default function SettingsMenu() {
           </div>
         </Section>
         <Section icon={<Clock />} title={"Timer"}>
-          <Option status={settings.inspection} label="Inspection" />
-          <Option status={settings.startCue} label="Start cue" />
-          <Option status={settings.holdToStart} label="Hold to start" />
-          <Option
-            status={settings.backCancelsSolve}
-            label="Back cancels solve"
-          />
-          <Option status={settings.manualMode} label="Manual mode" />
+          {settings.timer.map((item) => (
+            <Option
+              key={genId()}
+              status={item.status}
+              label={item.desc}
+              read={item.desc}
+              id={item.id}
+            />
+          ))}
         </Section>
 
         <Section icon={<CpuChip />} title={"Features"}>
-          <Option status={settings.scrambleImage} label="Scramble image" />
-          <Option status={settings.sessionStats} label="Session stats" />
-          <Option
-            status={settings.quickActionButtons}
-            label="Quick action buttons"
-          />
-          <Option
-            status={settings.hideTimeWhileSolving}
-            label="Hide time while solving"
-          />
-          <Option
-            status={settings.scrambleBackground}
-            label="Scramble background"
-          />
+          {settings.features.map((item) => (
+            <Option
+              key={genId()}
+              status={item.status}
+              label={item.desc}
+              read={item.desc}
+              id={item.id}
+            />
+          ))}
         </Section>
 
         <Section icon={<BellAlert />} title={"Alerts"}>
-          <Option status={settings.bestAverage} label="Best time" />
-          <Option status={settings.bestAverage} label="Best Average" />
-          <Option status={settings.worstTime} label="Worst time" />
+          {settings.alerts.map((item) => (
+            <Option
+              key={genId()}
+              status={item.status}
+              label={item.desc}
+              read={item.desc}
+              id={item.id}
+            />
+          ))}
         </Section>
       </div>
     </>
@@ -98,16 +101,18 @@ function Option({
   label,
   status,
   read,
+  id,
 }: {
   label: string;
   status: boolean;
   read?: string;
+  id: number;
 }) {
   return (
     <div className="flex justify-between mb-1">
       <div className="ms-12">{label}</div>
       <div className="me-6">
-        <Toggle status={status} read={read} />
+        <Toggle status={status} read={read} id={id} />
       </div>
     </div>
   );

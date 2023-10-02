@@ -1,16 +1,15 @@
+import { Language } from "./types/Language";
+
 export interface Settings {
-  language: "en" | "es";
-  inspection: boolean;
-  startCue: boolean;
-  holdToStart: boolean;
-  backCancelsSolve: boolean;
-  manualMode: boolean;
-  scrambleImage: boolean;
-  sessionStats: boolean;
-  quickActionButtons: boolean;
-  hideTimeWhileSolving: boolean;
-  scrambleBackground: boolean;
-  bestTime: boolean;
-  bestAverage: boolean;
-  worstTime: boolean;
+  locale: Item[];
+  timer: Item[];
+  features: Item[];
+  alerts: Item[];
+}
+
+interface Item {
+  id: number;
+  status: boolean;
+  lang?: Language;
+  desc: string;
 }
