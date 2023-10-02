@@ -72,7 +72,7 @@ function Section({
 }) {
   return (
     <div className="mb-3">
-      <div className="text-blue-500 mb-3 flex">
+      <div className="text-blue-500 mb-3 flex font-medium">
         <div className="w-6 mx-3">{icon}</div>
         <div className="w-full">{title}</div>
       </div>
