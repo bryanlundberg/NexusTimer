@@ -9,6 +9,7 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function SettingsMenu() {
   const { setSettingsOpen, settings } = useSettingsModalStore();
+
   return (
     <>
       <div className="transition bg-neutral-50 text-zinc-800 grow w-full sm:w-96 flex flex-col gap-3 min-h-full max-h-full z-10 overflow-auto absolute">

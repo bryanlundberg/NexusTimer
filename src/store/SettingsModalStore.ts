@@ -1,18 +1,20 @@
 import { Settings } from "@/interfaces/Settings";
-import loadSettings from "@/lib/loadSettings";
+import { defaultSettings } from "@/lib/defaultSettings";
 import { create } from "zustand";
 
 interface Modal {
   settingsOpen: boolean;
   setSettingsOpen: (status: boolean) => void;
   settings: Settings;
-  setSettings: () => void;
+  setSettings: (settings: Settings) => void;
 }
 
 export const useSettingsModalStore = create<Modal>((set) => ({
   settingsOpen: false,
-  settings: loadSettings(),
-  setSettings: () => {},
+  settings: defaultSettings,
+  setSettings: (settings: Settings) => {
+    set({ settings: settings });
+  },
   setSettingsOpen: (status: boolean) => {
     set({ settingsOpen: status });
   },
