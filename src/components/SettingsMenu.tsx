@@ -7,6 +7,7 @@ import BellAlert from "@/icons/BellAlert";
 import Clock from "@/icons/Clock";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import genId from "@/lib/genId";
+import { langCollection } from "@/lib/langCollection";
 
 export default function SettingsMenu() {
   const { setSettingsOpen, settings } = useSettingsModalStore();
@@ -30,9 +31,17 @@ export default function SettingsMenu() {
           <div className="flex justify-between">
             <div className="ms-12">Language</div>
             <div className="me-6">
-              <select>
-                <option value="en">English</option>
-                <option value="es">Español</option>
+              <select
+                value={settings.locale[0].lang}
+                className="w-36 py-1 px-2 bg-gray-200 outline-none rounded-md"
+              >
+                {langCollection.map((lang) => {
+                  return (
+                    <option key={genId()} value={lang.tag}>
+                      {lang.name}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>
