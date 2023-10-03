@@ -6,8 +6,11 @@ import { useTimerStore } from "@/store/timerStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import Play from "@/icons/Play";
 import Stop from "@/icons/Stop";
+import translation from "@/translations/global.json";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function TableRow({ cube }: { cube: Cube }) {
+  const { settings } = useSettingsModalStore();
   const { setCubes } = useTimerStore();
   const { setEditingCube, setModalOpen, setCubeName, setSelectedCategory } =
     useCubesModalStore();
@@ -52,12 +55,16 @@ export default function TableRow({ cube }: { cube: Cube }) {
           {status ? (
             <div className="flex justify-center items-center gap-1">
               <Play />
-              <span>Using</span>
+              <span>
+                {translation.cubes.table["using"][settings.locale[0].lang]}
+              </span>
             </div>
           ) : (
             <div className="flex justify-center items-center gap-1">
               <Stop />
-              <span>Idle</span>
+              <span>
+                {translation.cubes.table["idle"][settings.locale[0].lang]}
+              </span>
             </div>
           )}
         </div>
