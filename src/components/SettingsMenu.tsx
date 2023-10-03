@@ -10,8 +10,12 @@ import genId from "@/lib/genId";
 import { langCollection } from "@/lib/langCollection";
 
 export default function SettingsMenu() {
-  const { setSettingsOpen, settings } = useSettingsModalStore();
-
+  const { setSettingsOpen, settings, setSettings } = useSettingsModalStore();
+  const handleChangeLang = (tagLang: any) => {
+    settings.locale[0].lang = tagLang;
+    window.localStorage.setItem("settings", JSON.stringify(settings));
+    setSettings(settings);
+  };
   return (
     <>
       <div className="transition bg-neutral-50 text-zinc-800 grow w-full sm:w-96 flex flex-col gap-3 min-h-full max-h-full z-10 overflow-auto absolute">
@@ -34,6 +38,7 @@ export default function SettingsMenu() {
               <select
                 value={settings.locale[0].lang}
                 className="w-36 py-1 px-2 bg-gray-200 outline-none rounded-md"
+                onChange={(e) => handleChangeLang(e.target.value)}
               >
                 {langCollection.map((lang) => {
                   return (
