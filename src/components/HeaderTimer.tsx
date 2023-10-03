@@ -2,10 +2,11 @@ import Select from "./Select";
 import Settings from "@/icons/Settings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
+import translation from "@/translations/global.json";
 
 export default function HeaderTimer() {
   const { scramble, selectedCube } = useTimerStore();
-  const { setSettingsOpen, settingsOpen } = useSettingsModalStore();
+  const { setSettingsOpen, settingsOpen, settings } = useSettingsModalStore();
   return (
     <>
       {/* Selectors category/cube */}
@@ -21,7 +22,9 @@ export default function HeaderTimer() {
         </div>
 
         <div className="text-center font-medium text-2xl h-auto max-h-52 overflow-auto p-2 bg-zinc-900 rounded-md">
-          {selectedCube ? scramble : "Pick a Cube to load a scramble."}
+          {selectedCube
+            ? scramble
+            : translation.timer["empty-scramble"][settings.locale[0].lang]}
         </div>
       </div>
     </>

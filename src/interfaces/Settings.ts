@@ -10,6 +10,6 @@ export interface Settings {
 interface Item {
   id: number;
   status: boolean;
-  lang?: Language;
+  lang: Language;
   desc: string;
 }
