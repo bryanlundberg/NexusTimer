@@ -18,9 +18,12 @@ import CalendarDays from "@/icons/CalentarDays";
 import Fire from "@/icons/Fire";
 import Flag from "@/icons/Flag";
 import Trophy from "@/icons/Trophy";
+import translation from "@/translations/global.json";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function PersonalStatistics() {
   const { cubes } = useTimerStore();
+  const { settings } = useSettingsModalStore();
   const totalCubesSolved = getTotalCubesSolved(cubes);
   const totalEvents = getTotalEvents(cubes);
   const totalTimeCubing = getTotalTimeCubing(cubes);
@@ -33,35 +36,77 @@ export default function PersonalStatistics() {
     <>
       <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <CardStatistic label="Cuber Classification" total={cuberTitle}>
+          <CardStatistic
+            label={
+              translation.metrics.cards["classification"][
+                settings.locale[0].lang
+              ]
+            }
+            total={cuberTitle}
+          >
             <Trophy />
           </CardStatistic>
-          <CardStatistic label="Rating Points" total={totalFormatted}>
+          <CardStatistic
+            label={
+              translation.metrics.cards["rating-points"][
+                settings.locale[0].lang
+              ]
+            }
+            total={totalFormatted}
+          >
             <PresentationChart />
           </CardStatistic>
-          <CardStatistic label="Time Spent Cubing" total={totalTimeCubing}>
+          <CardStatistic
+            label={
+              translation.metrics.cards["time-spent-cubing"][
+                settings.locale[0].lang
+              ]
+            }
+            total={totalTimeCubing}
+          >
             <Clock />
           </CardStatistic>
-          <CardStatistic label="Total Solves" total={totalCubesSolved}>
+          <CardStatistic
+            label={
+              translation.metrics.cards["total-solves"][settings.locale[0].lang]
+            }
+            total={totalCubesSolved}
+          >
             <Hashtag />
           </CardStatistic>
-          <CardStatistic label="Most Played" total={mostPlayedEvent}>
+          <CardStatistic
+            label={
+              translation.metrics.cards["most-played"][settings.locale[0].lang]
+            }
+            total={mostPlayedEvent}
+          >
             <ChartPie />
           </CardStatistic>
           <CardStatistic
-            label="Sessions in progress"
+            label={
+              translation.metrics.cards["sessions-in-progress"][
+                settings.locale[0].lang
+              ]
+            }
             total={sessionsInProgress}
           >
             <CalendarDays />
           </CardStatistic>
           <CardStatistic
-            label="Success Rate"
+            label={
+              translation.metrics.cards["success-rate"][settings.locale[0].lang]
+            }
             total={"0.00%"}
             className="border-blue-400"
           >
             <Fire />{" "}
           </CardStatistic>
-          <CardStatistic label="Total Events" total={totalEvents}>
+          <CardStatistic
+            label={
+              translation.metrics.cards["total-events"][settings.locale[0].lang]
+            }
+            total={totalEvents}
+          >
             <Flag />
           </CardStatistic>
         </div>

@@ -11,15 +11,20 @@ import calcBestTime from "@/lib/calcBestTime";
 import fail from "@/images/no-data.png";
 import Image from "next/image";
 import SelectMetrics from "./SelectMetrics";
+import translation from "@/translations/global.json";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
+  const { settings } = useSettingsModalStore();
   const [filterCategory, setFilterCategory] = useState<Categories>("3x3");
-  const [filterCube, setFilterCube] = useState<string>("All");
+  const [filterCube, setFilterCube] = useState<string>(
+    translation.solves.filter["all"][settings.locale[0].lang]
+  );
 
   const handleChangeCategory = (value: any) => {
     setFilterCategory(value);
-    setFilterCube("All");
+    setFilterCube(translation.solves.filter["all"][settings.locale[0].lang]);
   };
 
   const handleChangeCube = (value: any) => {
@@ -37,7 +42,9 @@ export default function CategoryStatistics() {
   }
 
   function loadCubeOptions() {
-    const cubesList = ["All"];
+    const cubesList = [
+      translation.solves.filter["all"][settings.locale[0].lang],
+    ];
     cubes?.map((cube) => {
       if (cube.category === filterCategory) {
         cubesList.push(cube.name);
@@ -79,13 +86,17 @@ export default function CategoryStatistics() {
         <div className="bg-zinc-800 rounded-md text-sm w-full">
           <div className="flex bg-zinc-900 p-1 rounded-md text-zinc-200 h-10 items-center">
             <div className="w-1/5"></div>
-            <div className="w-1/5 text-center">Global</div>
-            <div className="w-1/5 text-center">Sessions</div>
+            <div className="w-1/5 text-center">
+              {translation.metrics["global"][settings.locale[0].lang]}
+            </div>
+            <div className="w-1/5 text-center">
+              {translation.metrics["sessions"][settings.locale[0].lang]}
+            </div>
             <div className="w-1/5 text-center">C All</div>
             <div className="w-1/5 text-center">C Session</div>
           </div>
           <StatisticRow
-            label="Deviation"
+            label={translation.timer["deviation"][settings.locale[0].lang]}
             global={deviation.global === 0 ? "--" : deviation.global.toFixed(3)}
             session={
               deviation.session === 0 ? "--" : deviation.session.toFixed(3)
@@ -187,14 +198,14 @@ export default function CategoryStatistics() {
             }
           />
           <StatisticRow
-            label="Best Time"
+            label={translation.metrics["best-time"][settings.locale[0].lang]}
             global={best.global}
             session={best.session}
             cubeAll={best.cubeAll}
             cubeSession={best.cubeSession}
           />
           <StatisticRow
-            label="Average"
+            label={translation.metrics["average"][settings.locale[0].lang]}
             global={average.global === 0 ? "--" : average.global.toFixed(3)}
             session={average.session === 0 ? "--" : average.session.toFixed(3)}
             cubeAll={average.cubeAll === 0 ? "--" : average.cubeAll.toFixed(3)}
@@ -203,14 +214,14 @@ export default function CategoryStatistics() {
             }
           />
           <StatisticRow
-            label="Time Spent"
+            label={translation.metrics["time-spent"][settings.locale[0].lang]}
             global={timeSpent.global}
             session={timeSpent.session}
             cubeAll={timeSpent.cubeAll}
             cubeSession={timeSpent.cubeSession}
           />
           <StatisticRow
-            label="Counter"
+            label={translation.timer["counter"][settings.locale[0].lang]}
             global={counter.global === 0 ? "--" : counter.global}
             session={counter.session === 0 ? "--" : counter.session}
             cubeAll={counter.cubeAll === 0 ? "--" : counter.cubeAll}
