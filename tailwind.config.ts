@@ -15,6 +15,16 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss/plugin")(function ({
+      addVariant,
+    }: {
+      addVariant: any;
+    }) {
+      addVariant("blue", `:is(.blue &)`);
+      addVariant("red", `:is(.red &)`);
+      addVariant("green", `:is(.green &)`);
+    }),
+  ],
 };
 export default config;
