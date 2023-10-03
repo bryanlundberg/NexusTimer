@@ -2,12 +2,13 @@
 import CategoryStatistics from "@/components/CategoryStatistics";
 import PersonalStatistics from "@/components/PersonalStatistics";
 import SelectMetrics from "@/components/SelectMetrics";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function StatsPage() {
   const { settings } = useSettingsModalStore();
+
   const [currentTab, setCurrentTab] = useState(
     translation.metrics["header-select"]["personal"][settings.locale[0].lang]
   );
@@ -16,6 +17,12 @@ export default function StatsPage() {
     translation.metrics["header-select"]["personal"][settings.locale[0].lang],
     translation.metrics["header-select"]["category"][settings.locale[0].lang],
   ];
+
+  useEffect(() => {
+    setCurrentTab(
+      translation.metrics["header-select"]["personal"][settings.locale[0].lang]
+    );
+  }, [settings]);
 
   const handleChange = (view: any) => {
     setCurrentTab(view);

@@ -7,9 +7,9 @@ export interface Settings {
   alerts: Item[];
 }
 
-interface Item {
+export interface Item {
   id: number;
   status: boolean;
   lang: Language;
-  desc: string;
+  translationKey: string;
 }

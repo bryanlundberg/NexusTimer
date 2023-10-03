@@ -8,6 +8,8 @@ import Clock from "@/icons/Clock";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import genId from "@/lib/genId";
 import { langCollection } from "@/lib/langCollection";
+import translation from "@/translations/global.json";
+import { Settings } from "@/interfaces/Settings";
 
 export default function SettingsMenu() {
   const { setSettingsOpen, settings, setSettings } = useSettingsModalStore();
@@ -27,13 +29,18 @@ export default function SettingsMenu() {
             <ArrowLeft />
           </div>
           <div className="flex-1 text-center font-medium text-2xl">
-            Settings
+            {translation.settings["settings"][settings.locale[0].lang]}
           </div>
         </div>
 
-        <Section icon={<Language />} title="Locale">
+        <Section
+          icon={<Language />}
+          title={translation.settings["locale"][settings.locale[0].lang]}
+        >
           <div className="flex justify-between">
-            <div className="ms-12">Language</div>
+            <div className="ms-12">
+              {translation.settings["language"][settings.locale[0].lang]}
+            </div>
             <div className="me-6">
               <select
                 value={settings.locale[0].lang}
@@ -51,37 +58,70 @@ export default function SettingsMenu() {
             </div>
           </div>
         </Section>
-        <Section icon={<Clock />} title={"Timer"}>
+        <Section
+          icon={<Clock />}
+          title={translation.settings["timer"][settings.locale[0].lang]}
+        >
           {settings.timer.map((item) => (
             <Option
               key={genId()}
               status={item.status}
-              label={item.desc}
-              read={item.desc}
+              label={
+                translation.settings[item.translationKey as keyof Settings][
+                  settings.locale[0].lang
+                ]
+              }
+              read={
+                translation.settings[item.translationKey as keyof Settings][
+                  settings.locale[0].lang
+                ]
+              }
               id={item.id}
             />
           ))}
         </Section>
 
-        <Section icon={<CpuChip />} title={"Features"}>
+        <Section
+          icon={<CpuChip />}
+          title={translation.settings["features"][settings.locale[0].lang]}
+        >
           {settings.features.map((item) => (
             <Option
               key={genId()}
               status={item.status}
-              label={item.desc}
-              read={item.desc}
+              label={
+                translation.settings[item.translationKey as keyof Settings][
+                  settings.locale[0].lang
+                ]
+              }
+              read={
+                translation.settings[item.translationKey as keyof Settings][
+                  settings.locale[0].lang
+                ]
+              }
               id={item.id}
             />
           ))}
         </Section>
 
-        <Section icon={<BellAlert />} title={"Alerts"}>
+        <Section
+          icon={<BellAlert />}
+          title={translation.settings["alerts"][settings.locale[0].lang]}
+        >
           {settings.alerts.map((item) => (
             <Option
               key={genId()}
               status={item.status}
-              label={item.desc}
-              read={item.desc}
+              label={
+                translation.settings[item.translationKey as keyof Settings][
+                  settings.locale[0].lang
+                ]
+              }
+              read={
+                translation.settings[item.translationKey as keyof Settings][
+                  settings.locale[0].lang
+                ]
+              }
               id={item.id}
             />
           ))}

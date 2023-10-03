@@ -21,8 +21,7 @@ export default function ModalSolve() {
     }
 
     const name = cubeCollection.find((item) => item.name === solve.category);
-    console.log(name);
-    console.log(solve.scramble);
+
     if (name) {
       const child = document.createElement("scramble-display");
       child.setAttribute("event", name.event || "222");
