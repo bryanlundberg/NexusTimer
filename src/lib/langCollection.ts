@@ -32,10 +32,6 @@ export const langCollection: Languages[] = [
     name: "Chinese",
   },
   {
-    tag: "ar",
-    name: "Arabic",
-  },
-  {
     tag: "ru",
     name: "Russian",
   },
@@ -86,10 +82,6 @@ export const langCollection: Languages[] = [
   {
     tag: "fi",
     name: "Finnish",
-  },
-  {
-    tag: "he",
-    name: "Hebrew",
   },
   {
     tag: "uk",
