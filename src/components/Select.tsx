@@ -8,10 +8,13 @@ import { cubeCollection } from "@/lib/cubeCollection";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import findCube from "@/lib/findCube";
+import translation from "@/translations/global.json";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
   const { selectedCube, cubes } = useTimerStore();
+  const { settings } = useSettingsModalStore();
 
   const handleClose = () => {
     setOpen(false);
@@ -29,7 +32,9 @@ export default function Select() {
               <MiniatureIcon category={selectedCube.category} />
             ) : null}
             <div className="">
-              {selectedCube ? selectedCube.name : "Select"}
+              {selectedCube
+                ? selectedCube.name
+                : translation.inputs["select-cube"][settings.locale[0].lang]}
             </div>
             <SelectOptions />
           </div>

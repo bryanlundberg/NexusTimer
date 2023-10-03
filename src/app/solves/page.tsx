@@ -16,11 +16,14 @@ import deleteSession from "@/lib/deleteSession";
 import Select from "@/components/Select";
 import ModalSolve from "@/components/ModalSolve";
 import { useSolvesStore } from "@/store/SolvesStore";
+import translation from "@/translations/global.json";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function SolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
   const { selectedCube, setCubes, setSelectedCube } = useTimerStore();
   const { status } = useSolvesStore();
+  const { settings } = useSettingsModalStore();
 
   const handleTabClick = (newTab: SolveTab) => {
     setCurrentTab(newTab);
@@ -57,7 +60,9 @@ export default function SolvesPage() {
     if (!selectedCube) {
       return (
         <EmptySolves
-          message="No cube selected, pick one..."
+          message={
+            translation.solves["no-cube-selection"][settings.locale[0].lang]
+          }
           icon="no-cube-selected"
         />
       );
@@ -65,7 +70,10 @@ export default function SolvesPage() {
 
     if (!selectedSolves || selectedSolves.length === 0) {
       return (
-        <EmptySolves message="There's no solves to show!" icon="no-solves" />
+        <EmptySolves
+          message={translation.solves["no-solves"][settings.locale[0].lang]}
+          icon="no-solves"
+        />
       );
     }
 
@@ -84,7 +92,9 @@ export default function SolvesPage() {
         <div className="border-b border-zinc-800 py-4 ">
           <div className="w-full mx-auto">
             <div className="flex justify-between items-center mx-3 gap-2">
-              <div className="font-medium text-2xl">Solves</div>
+              <div className="font-medium text-2xl">
+                {translation.solves["header"][settings.locale[0].lang]}
+              </div>
               <Select />
             </div>
           </div>
@@ -98,13 +108,13 @@ export default function SolvesPage() {
               handleClick={() => handleTabClick("Session")}
               active={currentTab === "Session"}
             >
-              Session
+              {translation.solves.filter["session"][settings.locale[0].lang]}
             </ToggleSolvesButton>
             <ToggleSolvesButton
               handleClick={() => handleTabClick("All")}
               active={currentTab === "All"}
             >
-              All Time
+              {translation.solves.filter["all"][settings.locale[0].lang]}
             </ToggleSolvesButton>
           </div>
           {/* buttons manage solves */}
@@ -115,14 +125,19 @@ export default function SolvesPage() {
                 handleClick={() => handleMoveAll()}
                 className="font-normal"
               >
-                <div className="flex items-center justify-center text-xs">
-                  <MoveAll /> <div>Move All</div>
+                <div className="flex items-center justify-center text-xs gap-2">
+                  <MoveAll />{" "}
+                  <div>
+                    {translation.inputs["move-all"][settings.locale[0].lang]}
+                  </div>
                 </div>
               </Button>
               <Button disabled={false} handleClick={() => handleTrashAll()}>
-                <div className="flex items-center justify-center text-xs">
+                <div className="flex items-center justify-center text-xs gap-2">
                   <Trash />
-                  <div> Trash All</div>
+                  <div>
+                    {translation.inputs["trash-all"][settings.locale[0].lang]}
+                  </div>
                 </div>
               </Button>
             </div>
