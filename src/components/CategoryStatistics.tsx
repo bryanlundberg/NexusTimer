@@ -8,11 +8,11 @@ import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
 import calcAoStatistics from "@/lib/calcAoStatistics";
 import calcDeviation from "@/lib/calcDeviation";
 import calcBestTime from "@/lib/calcBestTime";
-import fail from "@/images/no-data.png";
-import Image from "next/image";
 import SelectMetrics from "./SelectMetrics";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import LineCharter from "./charts/LineCharter";
+import getSolvesMetrics from "@/lib/getSolvesMetrics";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
@@ -59,6 +59,7 @@ export default function CategoryStatistics() {
   const stats = calcAoStatistics(filterCategory, filterCube);
   const deviation = calcDeviation(filterCategory, filterCube);
   const best = calcBestTime(filterCategory, filterCube);
+  const data = getSolvesMetrics(filterCategory, filterCube);
   return (
     <>
       <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
@@ -78,8 +79,7 @@ export default function CategoryStatistics() {
         </div>
         <div className="flex flex-col md:flex-row gap-3">
           <div className="flex flex-col justify-center items-center h-96 border rounded-md border-zinc-800 p-3 w-full">
-            <Image src={fail} alt="no-data" />
-            <div className="text-zinc-500">Pending Line Chart</div>
+            <LineCharter data={data} />
           </div>
         </div>
 
