@@ -1,5 +1,4 @@
 import { Categories } from "./Categories";
-import { Solve } from "./Solve";
 import { Solves } from "./Solves";
 
 export interface Cube {

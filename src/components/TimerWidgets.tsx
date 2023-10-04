@@ -1,9 +1,12 @@
 import calcStatistics from "@/lib/calcStatistics";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect, useState } from "react";
+import translation from "@/translations/global.json";
 
 export default function TimerWidgets() {
   const { scramble, event, selectedCube } = useTimerStore();
+  const { settings } = useSettingsModalStore();
 
   const [statistics, setStatistics] = useState({
     best: 0,
@@ -51,13 +54,25 @@ export default function TimerWidgets() {
     <div className="h-20 md:h-32 lg:h-40 w-full flex justify-between text-xs md:text-sm">
       <div className="w-full h-full">
         <div className="font-medium">
-          Deviation: {statistics.deviation.toFixed(2)}
+          {translation.timer["deviation"][settings.locale[0].lang]}
+          {": "}
+          {statistics.deviation.toFixed(2)}
         </div>
-        <div className="font-medium">Mean: {statistics.mean.toFixed(2)}</div>
         <div className="font-medium">
-          Best: {(statistics.best / 1000).toFixed(2)}
+          {translation.timer["mean"][settings.locale[0].lang]}
+          {": "}
+          {statistics.mean.toFixed(2)}
         </div>
-        <div className="font-medium">Count: {statistics.count}</div>
+        <div className="font-medium">
+          {translation.timer["best"][settings.locale[0].lang]}
+          {": "}
+          {(statistics.best / 1000).toFixed(2)}
+        </div>
+        <div className="font-medium">
+          {translation.timer["counter"][settings.locale[0].lang]}
+          {": "}
+          {statistics.count}
+        </div>
       </div>
       <div className="w-full h-full" id="scramble-display"></div>
       <div className="w-full h-full">

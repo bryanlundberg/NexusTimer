@@ -4,9 +4,12 @@ import { formatDistanceToNow } from "date-fns";
 import { Cube } from "@/interfaces/Cube";
 import { sort } from "fast-sort";
 import findCube from "@/lib/findCube";
+import translation from "@/translations/global.json";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function LastActivity() {
   const { cubes } = useTimerStore();
+  const { settings } = useSettingsModalStore();
 
   const renderLastAct = () => {
     if (cubes) {
@@ -29,7 +32,9 @@ export default function LastActivity() {
             {index + 1}. {cube?.category} {cube?.name}{" "}
             {(solve.time / 1000).toFixed(3)}{" "}
             {formatDistanceToNow(new Date(solve.endTime))} ago +{solve.rating}{" "}
-            rating points
+            {translation.metrics.cards["rating-points"][
+              settings.locale[0].lang
+            ].toLowerCase()}
           </div>
         );
       });
@@ -39,7 +44,9 @@ export default function LastActivity() {
   return (
     <>
       <div className="border rounded-md border-zinc-800 p-3 w-full text-left sm:text-center">
-        <div className="text-xl font-medium mb-3">Last activity</div>
+        <div className="text-xl font-medium mb-3">
+          {translation.metrics["last-activity"][settings.locale[0].lang]}
+        </div>
         {renderLastAct()}
       </div>
     </>

@@ -11,10 +11,13 @@ import { useTimerStore } from "@/store/timerStore";
 import RectangleGroup from "@/icons/RectangleGroup";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import Plus from "@/icons/Plus";
+import translation from "@/translations/global.json";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function CubesPage() {
   const { cubes, setCubes } = useTimerStore();
   const { modalOpen, setModalOpen } = useCubesModalStore();
+  const { settings } = useSettingsModalStore();
 
   const handleSearchFilter = (searchCube: string) => {
     const cubesDB = loadCubes();
@@ -39,11 +42,17 @@ export default function CubesPage() {
         <div className="border-b border-zinc-800 py-4 ">
           <div className="w-full mx-auto">
             <div className="flex flex-col sm:flex-row gap-3 justify-between items-center mx-3">
-              <div className="font-medium text-2xl">Cubes</div>
+              <div className="font-medium text-2xl">
+                {translation.cubes["header"][settings.locale[0].lang]}
+              </div>
               <div className="flex justify-end gap-3">
                 {/* Options */}
                 <InputText
-                  placeholder="Filter your cubes"
+                  placeholder={
+                    translation.inputs.placeholders["filter-cubes"][
+                      settings.locale[0].lang
+                    ]
+                  }
                   onChange={handleSearchFilter}
                 />
                 <Button
@@ -53,7 +62,9 @@ export default function CubesPage() {
                 >
                   <div className="flex justify-between items-center">
                     <Plus />
-                    <div>Cube</div>
+                    <div>
+                      {translation.cubes["cube"][settings.locale[0].lang]}
+                    </div>
                   </div>
                 </Button>
               </div>
@@ -76,7 +87,13 @@ export default function CubesPage() {
           <div className="h-full overflow-auto grow m-3 border border-zinc-800 border-dashed rounded-md justify-center items-center flex flex-col">
             <div className="flex flex-col justify-center items-center gap-1 p-3 font-medium">
               <RectangleGroup />
-              <div>No cubes for display.</div>
+              <div>
+                {
+                  translation.cubes["no-cubes-for-display"][
+                    settings.locale[0].lang
+                  ]
+                }
+              </div>
             </div>
           </div>
         )}

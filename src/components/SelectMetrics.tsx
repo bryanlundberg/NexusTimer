@@ -1,4 +1,3 @@
-import Check from "@/icons/Check";
 import SelectOptions from "@/icons/SelectOptions";
 import genId from "@/lib/genId";
 import { useState } from "react";
@@ -9,7 +8,7 @@ export default function SelectMetrics({
   handleChange,
   extraClass,
 }: {
-  label: string;
+  label: any;
   options: any[];
   handleChange: any;
   extraClass?: string;
