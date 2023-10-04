@@ -13,115 +13,115 @@ export const langCollection: Languages[] = [
   },
   {
     tag: "es",
-    name: "Spanish",
+    name: "Español",
   },
   {
     tag: "fr",
-    name: "French",
+    name: "Français",
   },
   {
     tag: "de",
-    name: "German",
+    name: "Deutsch",
   },
   {
     tag: "ja",
-    name: "Japanese",
+    name: "日本語",
   },
   {
     tag: "zh",
-    name: "Chinese",
+    name: "中文",
   },
   {
     tag: "ru",
-    name: "Russian",
+    name: "Русский",
   },
   {
     tag: "hi",
-    name: "Hindi",
+    name: "हिन्दी",
   },
   {
     tag: "pt",
-    name: "Portuguese",
+    name: "Português",
   },
   {
     tag: "it",
-    name: "Italian",
+    name: "Italiano",
   },
   {
     tag: "ko",
-    name: "Korean",
+    name: "한국어",
   },
   {
     tag: "nl",
-    name: "Dutch",
+    name: "Nederlands",
   },
   {
     tag: "sv",
-    name: "Swedish",
+    name: "Svenska",
   },
   {
     tag: "tr",
-    name: "Turkish",
+    name: "Türkçe",
   },
   {
     tag: "pl",
-    name: "Polish",
+    name: "Polski",
   },
   {
     tag: "vi",
-    name: "Vietnamese",
+    name: "Tiếng Việt",
   },
   {
     tag: "th",
-    name: "Thai",
+    name: "ไทย",
   },
   {
     tag: "el",
-    name: "Greek",
+    name: "Ελληνικά",
   },
   {
     tag: "fi",
-    name: "Finnish",
+    name: "Suomi",
   },
   {
     tag: "uk",
-    name: "Ukrainian",
+    name: "Українська",
   },
   {
     tag: "cs",
-    name: "Czech",
+    name: "Čeština",
   },
   {
     tag: "ro",
-    name: "Romanian",
+    name: "Română",
   },
   {
     tag: "no",
-    name: "Norwegian",
+    name: "Norsk",
   },
   {
     tag: "da",
-    name: "Danish",
+    name: "Dansk",
   },
   {
     tag: "ms",
-    name: "Malay",
+    name: "Bahasa Melayu",
   },
   {
     tag: "hu",
-    name: "Hungarian",
+    name: "Magyar",
   },
   {
     tag: "id",
-    name: "Indonesian",
+    name: "Bahasa Indonesia",
   },
   {
     tag: "bn",
-    name: "Bengali",
+    name: "বাংলা",
   },
   {
     tag: "sk",
-    name: "Slovak",
+    name: "Slovenčina",
   },
   {
     tag: "fil",
@@ -129,6 +129,6 @@ export const langCollection: Languages[] = [
   },
   {
     tag: "et",
-    name: "Estonian",
+    name: "Eesti",
   },
 ];
