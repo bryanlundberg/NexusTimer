@@ -8,8 +8,6 @@ import getTotalRatingPoints from "@/lib/getTotalRatingPoints";
 import getSessionInProgress from "@/lib/getSessionInProgress";
 import LastActivity from "./LastActivity";
 import getTitleByPoints from "@/lib/getTitleByPoints";
-import Image from "next/image";
-import fail from "@/images/no-data.png";
 import Hashtag from "@/icons/Hashtag";
 import PresentationChart from "@/icons/PresentationChart";
 import Clock from "@/icons/Clock";
@@ -20,6 +18,10 @@ import Flag from "@/icons/Flag";
 import Trophy from "@/icons/Trophy";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import RadarCharter from "./charts/RadarCharter";
+import PieCharter from "./charts/PieCharter";
+import getCategoryTotalSolves from "@/lib/getCategoryTotalSolves";
+import getCategoryTotalRatingPoints from "@/lib/getCategoryTotalRatingPoints";
 
 export default function PersonalStatistics() {
   const { cubes } = useTimerStore();
@@ -31,7 +33,8 @@ export default function PersonalStatistics() {
   const { totalNumeric, totalFormatted } = getTotalRatingPoints(cubes);
   const sessionsInProgress = getSessionInProgress(cubes);
   const cuberTitle = getTitleByPoints(totalNumeric);
-
+  const data01 = getCategoryTotalSolves(cubes);
+  const data02 = getCategoryTotalRatingPoints(cubes);
   return (
     <>
       <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
@@ -112,12 +115,10 @@ export default function PersonalStatistics() {
         </div>
         <div className="flex flex-col lg:flex-row gap-3">
           <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full sm:h-96 justify-center items-center">
-            <Image src={fail} alt="no-data" />
-            <div className="text-zinc-500">Pending Dounough Chart</div>
+            <RadarCharter data={data01} />
           </div>
           <div className="flex flex-col border rounded-md border-zinc-800 p-3 w-full sm:h-96 justify-center items-center">
-            <Image src={fail} alt="no-data" />
-            <div className="text-zinc-500">Pending Area Chart</div>
+            <PieCharter data={data02} />
           </div>
         </div>
         <LastActivity />
