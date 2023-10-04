@@ -42,7 +42,7 @@ export default function Select() {
         {open === true ? (
           <div
             id="list-options"
-            className="absolute z-40 overflow-auto max-h-[400px] p-1 top-10 right-0 w-full bg-zinc-950 text-slate-100 h-auto border border-zinc-800 rounded-md"
+            className="absolute z-40 overflow-auto max-h-[400px] p-1 top-12 right-0 w-full bg-zinc-950 text-slate-100 h-auto border border-zinc-800 rounded-md"
           >
             {/* Favorites */}
             <LabelSection
