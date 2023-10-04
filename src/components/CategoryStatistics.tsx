@@ -92,8 +92,12 @@ export default function CategoryStatistics() {
             <div className="w-1/5 text-center">
               {translation.metrics["sessions"][settings.locale[0].lang]}
             </div>
-            <div className="w-1/5 text-center">C All</div>
-            <div className="w-1/5 text-center">C Session</div>
+            <div className="w-1/5 text-center">
+              C {translation.solves.filter["all"][settings.locale[0].lang]}
+            </div>
+            <div className="w-1/5 text-center">
+              C {translation.solves.filter["session"][settings.locale[0].lang]}
+            </div>
           </div>
           <StatisticRow
             label={translation.timer["deviation"][settings.locale[0].lang]}

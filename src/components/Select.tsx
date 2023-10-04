@@ -45,7 +45,11 @@ export default function Select() {
             className="absolute z-40 overflow-auto max-h-[400px] p-1 top-10 right-0 w-full bg-zinc-950 text-slate-100 h-auto border border-zinc-800 rounded-md"
           >
             {/* Favorites */}
-            <LabelSection description="Favorite" />
+            <LabelSection
+              description={
+                translation.inputs["favorites"][settings.locale[0].lang]
+              }
+            />
             {cubes?.map((cube) => {
               if (cube.favorite) {
                 return (
@@ -59,7 +63,9 @@ export default function Select() {
                 );
               }
             })}
-            <LabelSection description="Cubes" />
+            <LabelSection
+              description={translation.inputs["list"][settings.locale[0].lang]}
+            />
             {cubes?.map((cube) => {
               return (
                 <Option
@@ -141,12 +147,13 @@ function LabelSection({ description }: { description: string }) {
 }
 
 function AddCubeOption() {
+  const { settings } = useSettingsModalStore();
   return (
     <div className=" mt-1 cursor-pointer hover:bg-zinc-800 p-1 select-none rounded-md ps-2 border-t border-zinc-800">
       <Link href="/cubes">
         <div className="flex justify-start items-center align-middle gap-2">
           <PlusIcon />
-          <div>Add Cube</div>
+          <div>{translation.inputs["add-cube"][settings.locale[0].lang]}</div>
         </div>
       </Link>
     </div>

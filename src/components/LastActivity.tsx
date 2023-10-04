@@ -32,7 +32,9 @@ export default function LastActivity() {
             {index + 1}. {cube?.category} {cube?.name}{" "}
             {(solve.time / 1000).toFixed(3)}{" "}
             {formatDistanceToNow(new Date(solve.endTime))} ago +{solve.rating}{" "}
-            rating points
+            {translation.metrics.cards["rating-points"][
+              settings.locale[0].lang
+            ].toLowerCase()}
           </div>
         );
       });
