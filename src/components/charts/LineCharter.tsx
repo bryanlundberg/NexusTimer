@@ -10,18 +10,35 @@ import {
 } from "recharts";
 import { Solve } from "@/interfaces/Solve";
 
-export default function LineCharter({ data }: { data: any }) {
+export default function LineCharter({
+  data,
+  cubeSelected,
+}: {
+  data: any;
+  cubeSelected: boolean;
+}) {
   const transformData = () => {
     interface Data {
       Time: number;
     }
 
     const newData: Data[] = [];
-    if (data.global.length <= 0) return [{ id: 0, time: 0 }];
-    data.global.map((item: Solve) => {
-      newData.unshift({ Time: item.time / 1000 });
-    });
-    return newData;
+
+    if (cubeSelected) {
+      if (data.cubeAll.length <= 0) return [{ Time: 0 }];
+      data.cubeAll.map((item: Solve) => {
+        newData.unshift({ Time: item.time / 1000 });
+      });
+      return newData;
+    }
+
+    if (!cubeSelected) {
+      if (data.global.length <= 0) return [{ Time: 0 }];
+      data.global.map((item: Solve) => {
+        newData.unshift({ Time: item.time / 1000 });
+      });
+      return newData;
+    }
   };
 
   return (

@@ -79,7 +79,13 @@ export default function CategoryStatistics() {
         </div>
         <div className="flex flex-col md:flex-row gap-3">
           <div className="flex flex-col justify-center items-center h-96 border rounded-md border-zinc-800 p-3 w-full">
-            <LineCharter data={data} />
+            <LineCharter
+              data={data}
+              cubeSelected={
+                translation.solves.filter["all"][settings.locale[0].lang] !==
+                filterCube
+              }
+            />
           </div>
         </div>
 
