@@ -22,8 +22,8 @@ export default function RadarCharter({ data }: { data: any }) {
         <Radar
           name={translation.metrics["total"][settings.locale[0].lang]}
           dataKey="resolutions"
-          stroke="#8884d8"
-          fill="#8884d8"
+          stroke="aqua"
+          fill="aqua"
           fillOpacity={0.6}
         />
         <Tooltip
