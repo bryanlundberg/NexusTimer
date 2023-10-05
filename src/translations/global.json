@@ -975,6 +975,40 @@
       "et": "Mõõdikud"
     },
 
+    "total": {
+      "en": "Total",
+      "es": "Total",
+      "fr": "Total",
+      "de": "Total",
+      "ja": "合計",
+      "zh": "总计",
+      "ru": "Итого",
+      "hi": "कुल",
+      "pt": "Total",
+      "it": "Totale",
+      "ko": "합계",
+      "nl": "Totaal",
+      "sv": "Totalt",
+      "tr": "Toplam",
+      "pl": "Całkowity",
+      "vi": "Tổng cộng",
+      "th": "รวม",
+      "el": "Σύνολο",
+      "fi": "Yhteensä",
+      "uk": "Загалом",
+      "cs": "Celkem",
+      "ro": "Total",
+      "no": "Total",
+      "da": "Total",
+      "ms": "Jumlah",
+      "hu": "Összesen",
+      "id": "Total",
+      "bn": "মোট",
+      "sk": "Celkom",
+      "fil": "Kabuuang",
+      "et": "Kokku"
+    },
+
     "header-select": {
       "personal": {
         "en": "Personal",

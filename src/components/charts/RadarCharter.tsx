@@ -1,3 +1,4 @@
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import {
   Legend,
   ResponsiveContainer,
@@ -8,8 +9,10 @@ import {
   Radar,
   Tooltip,
 } from "recharts";
+import translation from "@/translations/global.json";
 
 export default function RadarCharter({ data }: { data: any }) {
+  const { settings } = useSettingsModalStore();
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
@@ -17,7 +20,7 @@ export default function RadarCharter({ data }: { data: any }) {
         <PolarAngleAxis dataKey="category" />
         <PolarRadiusAxis />
         <Radar
-          name="Total Solves"
+          name={translation.metrics["total"][settings.locale[0].lang]}
           dataKey="resolutions"
           stroke="#8884d8"
           fill="#8884d8"
