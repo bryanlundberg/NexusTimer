@@ -22,6 +22,7 @@ import RadarCharter from "./charts/RadarCharter";
 import PieCharter from "./charts/PieCharter";
 import getCategoryTotalSolves from "@/lib/getCategoryTotalSolves";
 import getCategoryTotalRatingPoints from "@/lib/getCategoryTotalRatingPoints";
+import getSuccessRate from "@/lib/getSuccessRate";
 
 export default function PersonalStatistics() {
   const { cubes } = useTimerStore();
@@ -33,6 +34,7 @@ export default function PersonalStatistics() {
   const { totalNumeric, totalFormatted } = getTotalRatingPoints(cubes);
   const sessionsInProgress = getSessionInProgress(cubes);
   const cuberTitle = getTitleByPoints(totalNumeric);
+  const rate = getSuccessRate(cubes);
   const data01 = getCategoryTotalSolves(cubes);
   const data02 = getCategoryTotalRatingPoints(cubes);
   return (
@@ -99,7 +101,7 @@ export default function PersonalStatistics() {
             label={
               translation.metrics.cards["success-rate"][settings.locale[0].lang]
             }
-            total={"0.00%"}
+            total={rate + "%"}
             className="border-blue-400"
           >
             <Fire />{" "}

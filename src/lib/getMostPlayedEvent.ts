@@ -25,5 +25,5 @@ export default function getMostPlayedEvent(cubes: Cube[] | null) {
   });
 
   const sorted = sort(played).desc((u) => u.resolutions);
-  return sorted[0].resolutions === 0 ? "0 Solves" : sorted[0].category;
+  return sorted[0].resolutions === 0 ? "-" : sorted[0].category;
 }
