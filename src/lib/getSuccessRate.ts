@@ -13,7 +13,7 @@ export default function getSuccessRate(cubes: Cube[] | null) {
 
   const totalPlus2 = calcPlus2Rate(globalSolves);
 
-  const successRate = 100 - (totalPlus2 * 100) / globalSolves.length;
+  const successRate: number = 100 - (totalPlus2 * 100) / globalSolves.length;
 
-  return globalSolves.length <= 0 ? 0 : successRate;
+  return globalSolves.length <= 0 ? 0 : successRate.toFixed(2);
 }
