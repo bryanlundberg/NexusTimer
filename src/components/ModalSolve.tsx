@@ -1,3 +1,5 @@
+import Check from "@/icons/Check";
+import NoSymbol from "@/icons/NoSymbol";
 import { cubeCollection } from "@/lib/cubeCollection";
 import deleteSolve from "@/lib/deleteSolve";
 import findCube from "@/lib/findCube";
@@ -61,7 +63,12 @@ export default function ModalSolve() {
       <div className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full flex flex-col items-center">
         <div className="w-full sm:w-96 h-auto bg-zinc-950 border border-zinc-800 rounded-md text-xs">
           <div className="flex justify-between items-center border-b border-zinc-800 p-3">
-            <div className="text-lg font-medium">{solve.time / 1000}</div>
+            <div className="text-lg font-medium flex items-center">
+              {solve.time / 1000}
+              <span className="text-red-500 text-xs">
+                {solve.plus2 ? "+2" : null}
+              </span>
+            </div>
             <div>{formatDate(solve.endTime)}</div>
           </div>
           <div className="flex flex-col justify-between items-center border-b border-zinc-800 p-3 text-md font-medium">
@@ -72,24 +79,24 @@ export default function ModalSolve() {
           <div className="flex justify-center gap-3 items-center border-b border-zinc-800 p-3">
             <button
               type="button"
-              className="border border-zinc-800 p-1 w-16 rounded-md bg-red-500"
+              className="border border-zinc-800 p-1 w-12 h-8 rounded-md bg-red-500 hover:bg-red-600 flex justify-center items-center"
               onClick={() => handleDelete()}
             >
-              X
+              <NoSymbol />
             </button>
             <button
               type="button"
-              className="border border-zinc-800 p-1 w-16 rounded-md bg-yellow-500"
+              className="border border-zinc-800 p-1 w-12 h-8 rounded-md bg-yellow-500 hover:bg-yellow-600 font-medium"
               onClick={() => handlePlusTwo()}
             >
               +2
             </button>
             <button
               type="button"
-              className="border border-zinc-800 p-1 w-16 rounded-md bg-green-500"
+              className="border border-zinc-800 p-1 w-12 h-8 rounded-md bg-green-500 hover:bg-green-600 flex justify-center items-center"
               onClick={() => setStatus()}
             >
-              OK
+              <Check />
             </button>
           </div>
         </div>

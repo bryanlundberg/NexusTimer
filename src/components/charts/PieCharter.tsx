@@ -10,8 +10,11 @@ export default function PieCharter({ data }: { data: any }) {
           cx="50%"
           cy="50%"
           innerRadius={100}
-          fill="#8884d8"
-          paddingAngle={5}
+          fill="#049D9D"
+          stroke="#969696"
+          strokeWidth={1.5}
+          cornerRadius={2}
+          paddingAngle={1}
         />
         <Tooltip contentStyle={{ borderRadius: 10 }} />
       </PieChart>

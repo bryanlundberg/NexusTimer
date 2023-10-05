@@ -17,6 +17,7 @@ export default function LineCharter({
   data: any;
   cubeSelected: boolean;
 }) {
+  let interval = 1;
   const transformData = () => {
     interface Data {
       Time: number;
@@ -29,6 +30,7 @@ export default function LineCharter({
       data.cubeAll.map((item: Solve) => {
         newData.unshift({ Time: item.time / 1000 });
       });
+      interval = parseInt((newData.length / 4).toFixed(0));
       return newData;
     }
 
@@ -37,6 +39,7 @@ export default function LineCharter({
       data.global.map((item: Solve) => {
         newData.unshift({ Time: item.time / 1000 });
       });
+      interval = parseInt((newData.length / 4).toFixed(0));
       return newData;
     }
   };
@@ -47,8 +50,8 @@ export default function LineCharter({
         data={transformData()}
         margin={{ top: 30, right: 0, left: 30, bottom: 10 }}
       >
-        <CartesianGrid strokeDasharray="5 5 5" fillOpacity={0.05} fill="gray" />
-        <XAxis interval={5} />
+        <CartesianGrid strokeDasharray="4 4 4" fillOpacity={0.3} fill="black" />
+        <XAxis interval={interval} />
         <YAxis dataKey="Time" orientation="right" />
         <Tooltip
           contentStyle={{ backgroundColor: "black", borderRadius: 10 }}

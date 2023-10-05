@@ -1,6 +1,6 @@
 import PlusIcon from "@/icons/PlusIcon";
 import SelectOptions from "@/icons/SelectOptions";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Categories } from "@/interfaces/Categories";
@@ -15,6 +15,23 @@ export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
   const { selectedCube, cubes } = useTimerStore();
   const { settings } = useSettingsModalStore();
+  const componentRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        componentRef.current &&
+        !componentRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleClose = () => {
     setOpen(false);
@@ -22,7 +39,10 @@ export default function Select() {
 
   return (
     <>
-      <div className="flex justify-end relative w-[200px] sm:w-[250px]">
+      <div
+        className="flex justify-end relative w-[200px] sm:w-[250px]"
+        ref={componentRef}
+      >
         <button
           onClick={() => setOpen(!open)}
           className="max-w-[250px] w-full text-xs appearance-none border bg-zinc-950 hover:bg-zinc-800 border-zinc-800 font-medium rounded-md px-4 py-2 transition duration-200"

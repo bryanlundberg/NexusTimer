@@ -1,6 +1,6 @@
 import SelectOptions from "@/icons/SelectOptions";
 import genId from "@/lib/genId";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function SelectMetrics({
   label,
@@ -15,6 +15,23 @@ export default function SelectMetrics({
 }) {
   const [open, setOpen] = useState<boolean>(false);
   const [select, setSelect] = useState(label);
+  const componentRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        componentRef.current &&
+        !componentRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -40,9 +57,13 @@ export default function SelectMetrics({
       </div>
     );
   };
+
   return (
     <>
-      <div className={`relative ${extraClass ? extraClass : null}`}>
+      <div
+        className={`relative ${extraClass ? extraClass : ""}`}
+        ref={componentRef}
+      >
         <button
           onClick={handleOpen}
           className={`w-full bg-zinc-950 hover:bg-zinc-900 hover:text-neutral-200 text-neutral-300 border rounded-md p-1 border-zinc-800 flex justify-between items-center px-2`}
