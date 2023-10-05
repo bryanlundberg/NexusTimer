@@ -13,6 +13,7 @@ import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import LineCharter from "./charts/LineCharter";
 import getSolvesMetrics from "@/lib/getSolvesMetrics";
+import calcSuccessRate from "@/lib/calcSuccessRate";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
@@ -58,6 +59,7 @@ export default function CategoryStatistics() {
   const counter = calcTotalSolvesStatistics(filterCategory, filterCube);
   const stats = calcAoStatistics(filterCategory, filterCube);
   const deviation = calcDeviation(filterCategory, filterCube);
+  const successRate = calcSuccessRate(filterCategory, filterCube);
   const best = calcBestTime(filterCategory, filterCube);
   const data = getSolvesMetrics(filterCategory, filterCube);
   return (
@@ -229,6 +231,23 @@ export default function CategoryStatistics() {
             session={timeSpent.session}
             cubeAll={timeSpent.cubeAll}
             cubeSession={timeSpent.cubeSession}
+          />
+          <StatisticRow
+            label={
+              translation.metrics.cards["success-rate"][settings.locale[0].lang]
+            }
+            global={successRate.global === 0 ? "--" : successRate.global + "%"}
+            session={
+              successRate.session === 0 ? "--" : successRate.session + "%"
+            }
+            cubeAll={
+              successRate.cubeAll === 0 ? "--" : successRate.cubeAll + "%"
+            }
+            cubeSession={
+              successRate.cubeSession === 0
+                ? "--"
+                : successRate.cubeSession + "%"
+            }
           />
           <StatisticRow
             label={translation.timer["counter"][settings.locale[0].lang]}

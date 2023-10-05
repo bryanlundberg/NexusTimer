@@ -35,7 +35,6 @@ export default function getSolvesMetrics(
 
   sort(result.global).asc((u) => u.endTime);
   sort(result.session).asc((u) => u.endTime);
-  if (cubeName === "All") return result;
 
   const targetCube = cubesDB.find((cube) => cube.name === cubeName);
   if (targetCube) {
