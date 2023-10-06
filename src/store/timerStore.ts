@@ -1,4 +1,5 @@
 import { Cube } from "@/interfaces/Cube";
+import { Solve } from "@/interfaces/Solve";
 import { cubeCollection } from "@/lib/cubeCollection";
 import genScramble from "@/lib/timer/genScramble";
 import { create } from "zustand";
@@ -8,9 +9,11 @@ type TimerStore = {
   selectedCube: Cube | null;
   scramble: string | null;
   event: string;
+  lastSolve: Solve | null;
   setNewScramble: (cube: Cube) => void;
   setCubes: (cubes: Cube[]) => void;
   setSelectedCube: (cube: Cube) => void;
+  setLastSolve: (solve: Solve | null) => void;
 };
 
 export const useTimerStore = create<TimerStore>((set) => ({
@@ -18,6 +21,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
   scramble: null,
   cubes: null,
   event: "333",
+  lastSolve: null,
   setNewScramble: (cube: Cube) => {
     set((state) => ({
       ...state,
@@ -34,5 +38,8 @@ export const useTimerStore = create<TimerStore>((set) => ({
       );
       return { ...state, event: selectedEvent?.event, selectedCube: cube };
     });
+  },
+  setLastSolve: (solve: Solve | null) => {
+    set({ lastSolve: solve });
   },
 }));

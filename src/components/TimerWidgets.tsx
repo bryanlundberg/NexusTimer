@@ -7,7 +7,7 @@ import createScrambleImage from "@/lib/createScrambleImage";
 import { defaultTimerStatistics } from "@/lib/const/defaultTimerStatistics";
 
 export default function TimerWidgets() {
-  const { scramble, event, selectedCube } = useTimerStore();
+  const { scramble, event, selectedCube, lastSolve } = useTimerStore();
   const { settings } = useSettingsModalStore();
 
   const [statistics, setStatistics] = useState(defaultTimerStatistics);
@@ -31,7 +31,7 @@ export default function TimerWidgets() {
         mean,
       });
     }
-  }, [scramble, event, selectedCube]);
+  }, [scramble, event, selectedCube, lastSolve]);
 
   return (
     <div className="h-20 md:h-32 lg:h-40 w-full flex justify-between text-xs md:text-sm">

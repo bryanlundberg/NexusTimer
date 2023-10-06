@@ -5,10 +5,18 @@ import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import addSolve from "@/lib/addSolve";
 import findCube from "@/lib/findCube";
+import SolveOptions from "./SolveOptions";
 
 export default function Timer() {
-  const { selectedCube, scramble, setNewScramble, setCubes, setSelectedCube } =
-    useTimerStore();
+  const {
+    selectedCube,
+    scramble,
+    setNewScramble,
+    setCubes,
+    setSelectedCube,
+    lastSolve,
+    setLastSolve,
+  } = useTimerStore();
 
   const [solvingTime, setSolvingTime] = useState<number>(0);
   const [timerStatus, setTimerStatus] = useState<TimerStatus>("idle");
@@ -53,6 +61,8 @@ export default function Timer() {
           category: selectedCube.category,
           cubeId: selectedCube.id,
         };
+
+        setLastSolve(lastSolve);
 
         if (selectedCube) {
           const newCubes = addSolve({
@@ -120,14 +130,15 @@ export default function Timer() {
 
   return (
     <>
-      {/* Timer */}
       <section className="grow flex flex-col justify-center items-center">
         <div
           className={`text-6xl sm:text-7xl md:text-8xl font-mono select-none ${timerStatusClasses[timerStatus]}`}
         >
           {(solvingTime / 1000).toFixed(3)}
         </div>
-        {/* <SolveOptions /> */}
+        {lastSolve && timerStatus === "idle" && (
+          <SolveOptions solve={lastSolve} />
+        )}
       </section>
     </>
   );
