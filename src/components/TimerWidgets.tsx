@@ -3,47 +3,30 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect, useState } from "react";
 import translation from "@/translations/global.json";
+import createScrambleImage from "@/lib/createScrambleImage";
+import { defaultTimerStatistics } from "@/lib/const/defaultTimerStatistics";
 
 export default function TimerWidgets() {
   const { scramble, event, selectedCube } = useTimerStore();
   const { settings } = useSettingsModalStore();
 
-  const [statistics, setStatistics] = useState({
-    best: 0,
-    count: 0,
-    ao3: 0,
-    ao5: 0,
-    ao12: 0,
-    ao50: 0,
-    ao100: 0,
-    ao1000: 0,
-    deviation: 0,
-    mean: 0,
-  });
+  const [statistics, setStatistics] = useState(defaultTimerStatistics);
 
   useEffect(() => {
-    const display = document.querySelector("scramble-display");
-    display?.remove();
-    const child = document.createElement("scramble-display");
-    child.setAttribute("event", event);
-    child.setAttribute("scramble", scramble ? scramble : "");
-    document.querySelector("#scramble-display")?.appendChild(child);
-
+    createScrambleImage(event, scramble ? scramble : "");
     if (selectedCube) {
-      const { count, best, ao3, ao5, ao12, ao50, ao1000, deviation, mean } =
+      const { count, best, ao3, ao5, ao12, ao50, ao100, deviation, mean } =
         calcStatistics({
           cubeId: selectedCube.id,
-          typeSearch: "session",
         });
       setStatistics({
-        ...statistics,
         count,
         best,
         ao3,
         ao5,
         ao12,
         ao50,
-        ao1000,
+        ao100,
         deviation,
         mean,
       });
