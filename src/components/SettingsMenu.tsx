@@ -10,6 +10,7 @@ import genId from "@/lib/genId";
 import { langCollection } from "@/lib/langCollection";
 import translation from "@/translations/global.json";
 import { Settings } from "@/interfaces/Settings";
+import { sort } from "fast-sort";
 
 export default function SettingsMenu() {
   const { setSettingsOpen, settings, setSettings } = useSettingsModalStore();
@@ -47,13 +48,15 @@ export default function SettingsMenu() {
                 className="w-36 py-1 px-2 bg-gray-200 outline-none rounded-md"
                 onChange={(e) => handleChangeLang(e.target.value)}
               >
-                {langCollection.map((lang) => {
-                  return (
-                    <option key={genId()} value={lang.tag}>
-                      {lang.name}
-                    </option>
-                  );
-                })}
+                {sort(langCollection)
+                  .asc((u) => u.name)
+                  .map((lang) => {
+                    return (
+                      <option key={genId()} value={lang.tag}>
+                        {lang.name}
+                      </option>
+                    );
+                  })}
               </select>
             </div>
           </div>

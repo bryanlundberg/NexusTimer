@@ -1,12 +1,17 @@
 import { Cube } from "@/interfaces/Cube";
 import { cubeCollection } from "./cubeCollection";
 import { sort } from "fast-sort";
-import { PlayedCubes } from "@/interfaces/PlayedCube";
+import { Categories } from "@/interfaces/Categories";
 
 export default function getMostPlayedEvent(cubes: Cube[] | null) {
   if (!cubes) return "No solves";
 
-  const played: PlayedCubes[] = [];
+  interface Played {
+    category: Categories;
+    resolutions: number;
+  }
+
+  const played: Played[] = [];
 
   for (const category of cubeCollection) {
     played.push({

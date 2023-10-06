@@ -17,9 +17,13 @@ export default function calcSuccessRate(
   const cubeSessionRate = calcPlus2Rate(cubeSession);
 
   return {
-    global: 100 - (globalRate * 100) / global.length || 100,
-    session: 100 - (sessionRate * 100) / session.length || 100,
-    cubeAll: 100 - (cubeAllRate * 100) / cubeAll.length || 100,
-    cubeSession: 100 - (cubeSessionRate * 100) / cubeSession.length || 100,
+    global: calculatePercentage(globalRate, global.length),
+    session: calculatePercentage(sessionRate, session.length),
+    cubeAll: calculatePercentage(cubeAllRate, cubeAll.length),
+    cubeSession: calculatePercentage(cubeSessionRate, cubeSession.length),
   };
+}
+
+function calculatePercentage(rate: number, length: number) {
+  return length === 0 ? 100 : (100 - (rate * 100) / length).toFixed(2);
 }

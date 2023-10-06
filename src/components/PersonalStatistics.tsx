@@ -20,7 +20,7 @@ import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import RadarCharter from "./charts/RadarCharter";
 import PieCharter from "./charts/PieCharter";
-import getCategoryTotalSolves from "@/lib/getCategoryTotalSolves";
+import getTotalCategoryPlay from "@/lib/getTotalCategoryPlay";
 import getCategoryTotalRatingPoints from "@/lib/getCategoryTotalRatingPoints";
 import getSuccessRate from "@/lib/getSuccessRate";
 
@@ -35,7 +35,7 @@ export default function PersonalStatistics() {
   const sessionsInProgress = getSessionInProgress(cubes);
   const cuberTitle = getTitleByPoints(totalNumeric);
   const rate = getSuccessRate(cubes);
-  const data01 = getCategoryTotalSolves(cubes);
+  const data01 = getTotalCategoryPlay(cubes);
   const data02 = getCategoryTotalRatingPoints(cubes);
   return (
     <>

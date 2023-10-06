@@ -1,9 +1,8 @@
 import { Cube } from "@/interfaces/Cube";
 import { cubeCollection } from "./cubeCollection";
-import { sort } from "fast-sort";
 import { PlayedCubes } from "@/interfaces/PlayedCube";
 
-export default function getCategoryTotalSolves(cubes: Cube[] | null) {
+export default function getTotalCategoryPlay(cubes: Cube[] | null) {
   if (!cubes) return [];
 
   const played: PlayedCubes[] = [];
@@ -11,19 +10,22 @@ export default function getCategoryTotalSolves(cubes: Cube[] | null) {
   for (const category of cubeCollection) {
     played.push({
       category: category.name,
-      resolutions: 0,
+      time: 0,
     });
   }
 
   cubes.map((cube) => {
     played.forEach((element) => {
       if (element.category === cube.category) {
-        element.resolutions += cube.solves.all.length;
-        element.resolutions += cube.solves.session.length;
+        cube.solves.all.map((c) => (element.time += c.time));
+        cube.solves.session.map((c) => (element.time += c.time));
       }
     });
   });
 
-  // const sorted = sort(played).desc((u) => u.resolutions);
+  played.forEach((element) => {
+    element.time = element.time / 1000 / 60;
+  });
+
   return played;
 }

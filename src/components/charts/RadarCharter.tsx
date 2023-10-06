@@ -21,7 +21,7 @@ export default function RadarCharter({ data }: { data: any }) {
         <PolarRadiusAxis />
         <Radar
           name={translation.metrics["total"][settings.locale[0].lang]}
-          dataKey="resolutions"
+          dataKey="time"
           stroke="aqua"
           fill="aqua"
           fillOpacity={0.6}
