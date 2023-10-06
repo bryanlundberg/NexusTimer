@@ -40,14 +40,14 @@ export default function Select() {
   return (
     <>
       <div
-        className="flex justify-end relative w-[200px] sm:w-[250px]"
+        className="flex justify-end relative w-[200px] sm:w-[300px]"
         ref={componentRef}
       >
         <button
           onClick={() => setOpen(!open)}
-          className="max-w-[250px] w-full text-xs appearance-none border bg-zinc-950 hover:bg-zinc-800 border-zinc-800 font-medium rounded-md px-4 py-2 transition duration-200"
+          className="max-w-[300px] w-full text-xs sm:text-sm appearance-none border bg-zinc-950 hover:bg-zinc-800 border-zinc-800 font-medium rounded-md px-4 py-2 transition duration-200"
         >
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center gap-2">
             {selectedCube ? (
               <MiniatureIcon category={selectedCube.category} />
             ) : null}
@@ -115,6 +115,7 @@ function MiniatureIcon({ category }: { category: Categories }) {
           alt={option.name}
           width={24}
           height={24}
+          className="object-contain"
         />
       );
     } else {
