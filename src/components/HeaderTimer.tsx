@@ -4,6 +4,7 @@ import Settings from "@/icons/Settings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import translation from "@/translations/global.json";
+import HeaderOption from "./HeaderOption";
 
 export default function HeaderTimer() {
   const { scramble, selectedCube, setNewScramble } = useTimerStore();
@@ -11,25 +12,20 @@ export default function HeaderTimer() {
   return (
     <div className="flex flex-col items-center justify-center gap-5 p-4">
       <div className="flex items-center gap-3">
-        <div
-          onClick={() => setSettingsOpen(!settingsOpen)}
-          className="w-6 h-6 text-netral-50 hover:text-neutral-200 hover:cursor-pointer"
-        >
-          <Settings />
-        </div>
+        <HeaderOption
+          icon={<Settings />}
+          handleClick={() => setSettingsOpen(!settingsOpen)}
+        />
         <Select />
-        <div
-          onClick={() => {
+        <HeaderOption
+          icon={<Reload />}
+          handleClick={() => {
             if (selectedCube) {
               setNewScramble(selectedCube);
             }
           }}
-          className="w-6 h-6 text-netral-50 hover:text-neutral-200 hover:cursor-pointer"
-        >
-          <Reload />
-        </div>
+        />
       </div>
-
       <div className="text-center font-medium text-2xl h-auto max-h-52 overflow-auto p-2 bg-zinc-900 rounded-md">
         {selectedCube
           ? scramble
