@@ -16,9 +16,10 @@ export default function Timer() {
     setSelectedCube,
     lastSolve,
     setLastSolve,
+    solvingTime,
+    setSolvingTime,
   } = useTimerStore();
 
-  const [solvingTime, setSolvingTime] = useState<number>(0);
   const [timerStatus, setTimerStatus] = useState<TimerStatus>("idle");
   const endTimeRef = useRef<number>(0);
   const holdingTimeRef = useRef<number>(0);

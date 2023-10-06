@@ -6,8 +6,14 @@ import updateSolve from "@/lib/updateSolve";
 import { useTimerStore } from "@/store/timerStore";
 
 export default function SolveOptions({ solve }: { solve: Solve }) {
-  const { setCubes, setLastSolve, selectedCube, setSelectedCube } =
-    useTimerStore();
+  const {
+    setCubes,
+    setLastSolve,
+    selectedCube,
+    setSelectedCube,
+    setSolvingTime,
+    solvingTime,
+  } = useTimerStore();
   if (!selectedCube) return null;
   return (
     <>
@@ -20,6 +26,7 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
             setCubes(updatedCubes);
             const currectCube = findCube({ cubeId: selectedCube.id });
             if (currectCube) setSelectedCube(currectCube);
+            setSolvingTime(0);
             setLastSolve(null);
           }}
         >
@@ -33,6 +40,7 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
             setCubes(updatedCubes);
             const currectCube = findCube({ cubeId: selectedCube.id });
             if (currectCube) setSelectedCube(currectCube);
+            setSolvingTime(solvingTime + 2000);
             setLastSolve(null);
           }}
         >
