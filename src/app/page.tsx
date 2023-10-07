@@ -4,6 +4,7 @@ import HeaderTimer from "@/components/HeaderTimer";
 import TimerWidgets from "@/components/TimerWidgets";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import SettingsMenu from "@/components/SettingsMenu";
+import Navigation from "@/components/Navigation";
 
 export default function Home() {
   const { settingsOpen } = useSettingsModalStore();
@@ -14,6 +15,7 @@ export default function Home() {
         <Timer />
         <TimerWidgets />
       </div>
+      <Navigation />
       {settingsOpen && <SettingsMenu />}
     </>
   );

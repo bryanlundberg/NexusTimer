@@ -13,6 +13,7 @@ import { useCubesModalStore } from "@/store/CubesModalStore";
 import Plus from "@/icons/Plus";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import Navigation from "@/components/Navigation";
 
 export default function CubesPage() {
   const { cubes, setCubes } = useTimerStore();
@@ -98,6 +99,7 @@ export default function CubesPage() {
           </div>
         )}
         {modalOpen && <ModalCreate />}
+        <Navigation />
       </div>
     </>
   );

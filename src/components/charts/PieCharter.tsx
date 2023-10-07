@@ -21,7 +21,6 @@ const COLORS = [
 ];
 
 export default function PieCharter({ data }: { data: any }) {
-  console.log(data.length);
   return (
     <ResponsiveContainer width="100%" height="100%">
       <PieChart>

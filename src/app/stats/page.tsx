@@ -5,6 +5,7 @@ import SelectMetrics from "@/components/SelectMetrics";
 import { useEffect, useState } from "react";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import Navigation from "@/components/Navigation";
 
 export default function StatsPage() {
   const { settings } = useSettingsModalStore();
@@ -53,6 +54,7 @@ export default function StatsPage() {
       ) : (
         <CategoryStatistics />
       )}
+      <Navigation />
     </div>
   );
 }
