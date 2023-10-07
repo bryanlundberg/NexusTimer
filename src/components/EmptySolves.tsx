@@ -1,8 +1,9 @@
 import ArrowRays from "@/icons/ArrowRays";
 import CubeIcon from "@/icons/Cube";
-import Squares from "@/icons/Squares";
 import Link from "next/link";
+
 type Icon = "no-cube-selected" | "no-solves";
+
 export default function EmptySolves({
   message,
   icon,

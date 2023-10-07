@@ -8,11 +8,14 @@ import TableHeader from "@/components/TableHeader";
 import ModalCreate from "@/components/ModalCreate";
 import loadCubes from "@/lib/loadCubes";
 import { useTimerStore } from "@/store/timerStore";
-import RectangleGroup from "@/icons/RectangleGroup";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import Plus from "@/icons/Plus";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import Navigation from "@/components/Navigation";
+import Image from "next/image";
+import nodata from "@/images/no-data.png";
+import { useEffect } from "react";
 
 export default function CubesPage() {
   const { cubes, setCubes } = useTimerStore();
@@ -35,6 +38,12 @@ export default function CubesPage() {
       setCubes(filterCubes);
     }
   };
+
+  useEffect(() => {
+    setModalOpen(false);
+    const cubes = loadCubes();
+    setCubes(cubes);
+  }, [setCubes, setModalOpen]);
 
   return (
     <>
@@ -84,9 +93,19 @@ export default function CubesPage() {
             </div>
           </div>
         ) : (
-          <div className="h-full overflow-auto grow m-3 border border-zinc-800 border-dashed rounded-md justify-center items-center flex flex-col">
+          <div
+            onClick={() => {
+              setModalOpen(true);
+            }}
+            className="cursor-pointer h-full overflow-auto grow m-3 border border-zinc-800 border-dashed rounded-md justify-center items-center flex flex-col"
+          >
             <div className="flex flex-col justify-center items-center gap-1 p-3 font-medium">
-              <RectangleGroup />
+              <Image
+                src={nodata}
+                alt={"no-cubes-for-display"}
+                width={56}
+                height={61}
+              />
               <div>
                 {
                   translation.cubes["no-cubes-for-display"][
@@ -99,6 +118,7 @@ export default function CubesPage() {
         )}
         {modalOpen && <ModalCreate />}
       </div>
+      <Navigation />
     </>
   );
 }
