@@ -99,8 +99,8 @@ export default function CubesPage() {
           </div>
         )}
         {modalOpen && <ModalCreate />}
-        <Navigation />
       </div>
+      <Navigation />
     </>
   );
 }

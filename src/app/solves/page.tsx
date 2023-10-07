@@ -146,8 +146,8 @@ export default function SolvesPage() {
         </div>
         {renderSolvesArea(currentTab)}
         {status && <ModalSolve />}
-        <Navigation />
       </div>
+      <Navigation />
     </>
   );
 }

@@ -15,8 +15,8 @@ export default function Home() {
         <Timer />
         <TimerWidgets />
       </div>
-      <Navigation />
       {settingsOpen && <SettingsMenu />}
+      <Navigation />
     </>
   );
 }
