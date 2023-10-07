@@ -41,26 +41,26 @@ export default function TableRow({ cube }: { cube: Cube }) {
             setFavorite={setFavorite}
           />
         </div>
-        <div className="table-cell align-middle text-left">{cube.name}</div>
-        <div className="table-cell align-middle text-center">
+        <div className="table-cell text-left align-middle">{cube.name}</div>
+        <div className="table-cell text-center align-middle">
           {cube.category}
         </div>
-        <div className="table-cell align-middle text-center">
+        <div className="table-cell text-center align-middle">
           {`${cube.solves.session.length}/${cube.solves.all.length}`}
         </div>
-        <div className="align-middle text-center hidden md:table-cell">
+        <div className="hidden text-center align-middle md:table-cell">
           {formatDate(cube.createdAt)}
         </div>
-        <div className="align-middle text-center hidden md:table-cell">
+        <div className="hidden text-center align-middle md:table-cell">
           {status ? (
-            <div className="flex justify-center items-center gap-1">
+            <div className="flex items-center justify-center gap-1">
               <Play />
               <span>
                 {translation.cubes.table["using"][settings.locale[0].lang]}
               </span>
             </div>
           ) : (
-            <div className="flex justify-center items-center gap-1">
+            <div className="flex items-center justify-center gap-1">
               <Stop />
               <span>
                 {translation.cubes.table["idle"][settings.locale[0].lang]}
@@ -68,9 +68,9 @@ export default function TableRow({ cube }: { cube: Cube }) {
             </div>
           )}
         </div>
-        <div className="table-cell align-middle text-center">
+        <div className="table-cell text-center align-middle">
           <button
-            className="hover:bg-zinc-800 p-1 px-2 sm:px-2 rounded-md text-white"
+            className="p-1 px-2 text-white rounded-md hover:bg-zinc-800 sm:px-2"
             onClick={() => {
               setEditingCube(cube);
               setCubeName(cube.name);

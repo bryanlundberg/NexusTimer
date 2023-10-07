@@ -64,7 +64,7 @@ export default function CategoryStatistics() {
   const data = getSolvesMetrics(filterCategory, filterCube);
   return (
     <>
-      <div className="flex flex-col gap-3 px-3 py-3 grow overflow-auto">
+      <div className="flex flex-col gap-3 px-3 py-3 overflow-auto grow">
         <div className="flex gap-3">
           <SelectMetrics
             label={filterCategory}
@@ -79,8 +79,8 @@ export default function CategoryStatistics() {
             extraClass="w-full"
           />
         </div>
-        <div className="flex flex-col md:flex-row gap-3">
-          <div className="flex flex-col justify-center items-center h-96 border rounded-md border-zinc-800 p-3 w-full">
+        <div className="flex flex-col gap-3 md:flex-row">
+          <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md h-96 border-zinc-800">
             <LineCharter
               data={data}
               cubeSelected={
@@ -91,8 +91,8 @@ export default function CategoryStatistics() {
           </div>
         </div>
 
-        <div className="bg-zinc-800 rounded-md text-sm w-full">
-          <div className="flex bg-zinc-900 p-1 rounded-md text-zinc-200 h-10 items-center">
+        <div className="w-full text-sm rounded-md bg-zinc-800">
+          <div className="flex items-center h-10 p-1 rounded-md bg-zinc-900 text-zinc-200">
             <div className="w-1/5"></div>
             <div className="w-1/5 text-center">
               {translation.metrics["global"][settings.locale[0].lang]}
@@ -276,8 +276,8 @@ function StatisticRow({
   cubeSession: number | string;
 }) {
   return (
-    <div className="flex rounded-md text-zinc-400 text-xs h-10 items-center hover:bg-zinc-700">
-      <div className="ps-3 w-1/5">{label}</div>
+    <div className="flex items-center h-10 text-xs rounded-md text-zinc-400 hover:bg-zinc-700">
+      <div className="w-1/5 ps-3">{label}</div>
       <div className="w-1/5 text-center">{global}</div>
       <div className="w-1/5 text-center">{session}</div>
       <div className="w-1/5 text-center">{cubeAll}</div>

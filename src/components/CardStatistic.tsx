@@ -21,7 +21,7 @@ export default function CardStatistic({
       >
         <div className="grow">
           <div className="text-3xl font-medium">{total}</div>
-          <div className="text-md mt-3">{label}</div>
+          <div className="mt-3 text-md">{label}</div>
         </div>
         {children}
       </div>

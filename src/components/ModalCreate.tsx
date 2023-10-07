@@ -94,10 +94,10 @@ export default function ModalCreate() {
       >
         <div className="relative w-full max-w-2xl max-h-full">
           {/* <!-- Modal content --> */}
-          <div className="relative bg-zinc-950 border border-zinc-800 rounded-lg">
+          <div className="relative border rounded-lg bg-zinc-950 border-zinc-800">
             {/* <!-- Modal header --> */}
-            <div className="flex gap-3 items-start justify-between p-4 border-b border-zinc-800 rounded-t">
-              <h3 className="text-sm font-semibold text-neutral-50 w-32 flex items-center justify-center h-8">
+            <div className="flex items-start justify-between gap-3 p-4 border-b rounded-t border-zinc-800">
+              <h3 className="flex items-center justify-center w-32 h-8 text-sm font-semibold text-neutral-50">
                 {editingCube
                   ? translation.cubes.modal["title-editing"][
                       settings.locale[0].lang
@@ -118,7 +118,7 @@ export default function ModalCreate() {
               />
               <button
                 type="button"
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
+                className="inline-flex items-center justify-center w-8 h-8 ml-auto text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900"
                 data-modal-hide="defaultModal"
                 onClick={handleCloseModal}
               >
@@ -144,7 +144,7 @@ export default function ModalCreate() {
             </div>
             {/* <!-- Modal body --> */}
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6">
+            <div className="grid grid-cols-2 gap-4 p-6 sm:grid-cols-4">
               {cubeCollection.map((category) => {
                 return (
                   <CheckboxImage
@@ -160,7 +160,7 @@ export default function ModalCreate() {
               })}
             </div>
 
-            <div className="px-6 text-zinc-400 text-sm">
+            <div className="px-6 text-sm text-zinc-400">
               {
                 translation.cubes.modal["current-select"][
                   settings.locale[0].lang
@@ -170,7 +170,7 @@ export default function ModalCreate() {
             </div>
 
             {/* <!-- Modal footer --> */}
-            <div className="flex items-center justify-end p-6 space-x-2 border-zinc-800 rounded-b ">
+            <div className="flex items-center justify-end p-6 space-x-2 rounded-b border-zinc-800 ">
               {editingCube ? (
                 <button
                   onClick={handleDeleteCube}

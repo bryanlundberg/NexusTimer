@@ -19,17 +19,18 @@ export default function SettingsMenu() {
     window.localStorage.setItem("settings", JSON.stringify(settings));
     setSettings(settings);
   };
+
   return (
     <>
-      <div className="transition bg-neutral-50 text-zinc-800 grow w-full sm:w-96 flex flex-col gap-3 min-h-full max-h-full z-10 overflow-auto absolute">
+      <div className="absolute z-10 flex flex-col w-full h-screen gap-3 overflow-auto transition bg-neutral-50 text-zinc-800 grow sm:w-96">
         <div className="flex items-center my-3">
           <div
             onClick={() => setSettingsOpen(false)}
-            className="flex items-center ms-3 cursor-pointer"
+            className="flex items-center cursor-pointer ms-3"
           >
             <ArrowLeft />
           </div>
-          <div className="flex-1 text-center font-medium text-2xl">
+          <div className="flex-1 text-2xl font-medium text-center">
             {translation.settings["settings"][settings.locale[0].lang]}
           </div>
         </div>
@@ -45,7 +46,7 @@ export default function SettingsMenu() {
             <div className="me-6">
               <select
                 value={settings.locale[0].lang}
-                className="w-36 py-1 px-2 bg-gray-200 outline-none rounded-md"
+                className="px-2 py-1 bg-gray-200 rounded-md outline-none w-36"
                 onChange={(e) => handleChangeLang(e.target.value)}
               >
                 {sort(langCollection)
@@ -145,7 +146,7 @@ function Section({
 }) {
   return (
     <div className="mb-3">
-      <div className="text-blue-500 mb-3 flex font-medium">
+      <div className="flex mb-3 font-medium text-blue-500">
         <div className="w-6 mx-3">{icon}</div>
         <div className="w-full">{title}</div>
       </div>
