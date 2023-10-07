@@ -59,7 +59,7 @@ export default function LineCharter({
           cursor={{ stroke: "gray", strokeWidth: 2 }}
         />
         <Legend />
-        <Line type="monotone" dataKey="Time" stroke="aqua" />
+        <Line type="monotone" dataKey="Time" stroke="#F4D03F" />
       </LineChart>
     </ResponsiveContainer>
   );
