@@ -12,7 +12,7 @@ export default function InputText({
   return (
     <input
       type="text"
-      className=" px-3 py-1 rounded-md text-sm bg-zinc-950 border border-zinc-800 shadow-sm h-8 w-full"
+      className="w-full h-8 px-3 py-1 text-sm border rounded-md shadow-sm  bg-zinc-950 border-zinc-800"
       value={value}
       placeholder={placeholder}
       autoFocus={focus}

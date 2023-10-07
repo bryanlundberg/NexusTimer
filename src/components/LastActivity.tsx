@@ -43,8 +43,8 @@ export default function LastActivity() {
   };
   return (
     <>
-      <div className="border rounded-md border-zinc-800 p-3 w-full text-left sm:text-center">
-        <div className="text-xl font-medium mb-3">
+      <div className="w-full p-3 text-left border rounded-md border-zinc-800 sm:text-center">
+        <div className="mb-3 text-xl font-medium">
           {translation.metrics["last-activity"][settings.locale[0].lang]}
         </div>
         {renderLastAct()}

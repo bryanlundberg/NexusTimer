@@ -11,11 +11,11 @@ export default function SingleSolveItem({ solve }: { solve: Solve }) {
           setSolve(solve);
           setStatus();
         }}
-        className="z-1 text-lg font-medium relative flex items-center justify-center p-1 rounded-md bg-neutral-300 hover:bg-neutral-400 cursor-pointer text-zinc-800 text-center w-auto h-14"
+        className="relative flex items-center justify-center w-auto p-1 text-lg font-medium text-center rounded-md cursor-pointer z-1 bg-neutral-300 hover:bg-neutral-400 text-zinc-800 h-14"
       >
         {(solve.time / 1000).toFixed(2)}
-        {solve.plus2 ? <span className="text-red-600 text-sm">+2</span> : null}
-        <div className="absolute top-1 left-1 text-xs z-20">
+        {solve.plus2 ? <span className="text-sm text-red-600">+2</span> : null}
+        <div className="absolute z-20 text-xs top-1 left-1">
           {formatDate(solve.endTime).slice(0, 5)}
         </div>
       </div>

@@ -72,7 +72,7 @@ export default function SelectMetrics({
           <SelectOptions />
         </button>
         {open ? (
-          <div className="absolute z-10 top-10 p-1 left-0 w-full rounded-md bg-zinc-950 border border-zinc-800">
+          <div className="absolute left-0 z-10 w-full p-1 border rounded-md top-10 bg-zinc-950 border-zinc-800">
             {options.map((opt) => renderOption(opt, select))}
           </div>
         ) : null}

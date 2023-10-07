@@ -61,39 +61,39 @@ export default function ModalSolve() {
   return (
     <>
       <div className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full flex flex-col items-center">
-        <div className="w-full sm:w-96 h-auto bg-zinc-950 border border-zinc-800 rounded-md text-xs">
-          <div className="flex justify-between items-center border-b border-zinc-800 p-3">
-            <div className="text-lg font-medium flex items-center">
+        <div className="w-full h-auto text-xs border rounded-md sm:w-96 bg-zinc-950 border-zinc-800">
+          <div className="flex items-center justify-between p-3 border-b border-zinc-800">
+            <div className="flex items-center text-lg font-medium">
               {solve.time / 1000}
-              <span className="text-red-500 text-xs">
+              <span className="text-xs text-red-500">
                 {solve.plus2 ? "+2" : null}
               </span>
             </div>
             <div>{formatDate(solve.endTime)}</div>
           </div>
-          <div className="flex flex-col justify-between items-center border-b border-zinc-800 p-3 text-md font-medium">
+          <div className="flex flex-col items-center justify-between p-3 font-medium border-b border-zinc-800 text-md">
             <div>{solve.scramble}</div>
             <div className="w-full h-32 my-3" id="scramble-display"></div>
           </div>
 
-          <div className="flex justify-center gap-3 items-center border-b border-zinc-800 p-3">
+          <div className="flex items-center justify-center gap-3 p-3 border-b border-zinc-800">
             <button
               type="button"
-              className="border border-zinc-800 p-1 w-12 h-8 rounded-md bg-red-500 hover:bg-red-600 flex justify-center items-center"
+              className="flex items-center justify-center w-12 h-8 p-1 bg-red-500 border rounded-md border-zinc-800 hover:bg-red-600"
               onClick={() => handleDelete()}
             >
               <NoSymbol />
             </button>
             <button
               type="button"
-              className="border border-zinc-800 p-1 w-12 h-8 rounded-md bg-yellow-500 hover:bg-yellow-600 font-medium"
+              className="w-12 h-8 p-1 font-medium bg-yellow-500 border rounded-md border-zinc-800 hover:bg-yellow-600"
               onClick={() => handlePlusTwo()}
             >
               +2
             </button>
             <button
               type="button"
-              className="border border-zinc-800 p-1 w-12 h-8 rounded-md bg-green-500 hover:bg-green-600 flex justify-center items-center"
+              className="flex items-center justify-center w-12 h-8 p-1 bg-green-500 border rounded-md border-zinc-800 hover:bg-green-600"
               onClick={() => setStatus()}
             >
               <Check />

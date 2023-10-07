@@ -47,7 +47,7 @@ export default function Select() {
           onClick={() => setOpen(!open)}
           className="max-w-[300px] w-full text-xs sm:text-sm appearance-none border bg-zinc-950 hover:bg-zinc-800 border-zinc-800 font-medium rounded-md px-4 py-2 transition duration-200"
         >
-          <div className="flex justify-between items-center gap-2">
+          <div className="flex items-center justify-between gap-2">
             {selectedCube ? (
               <MiniatureIcon category={selectedCube.category} />
             ) : null}
@@ -164,15 +164,15 @@ function Option({
 }
 
 function LabelSection({ description }: { description: string }) {
-  return <div className="p-1 ps-2 text-xs text-neutral-500">{description}</div>;
+  return <div className="p-1 text-xs ps-2 text-neutral-500">{description}</div>;
 }
 
 function AddCubeOption() {
   const { settings } = useSettingsModalStore();
   return (
-    <div className=" mt-1 cursor-pointer hover:bg-zinc-800 p-1 select-none rounded-md ps-2 border-t border-zinc-800">
+    <div className="p-1 mt-1 border-t rounded-md cursor-pointer select-none  hover:bg-zinc-800 ps-2 border-zinc-800">
       <Link href="/cubes">
-        <div className="flex justify-start items-center align-middle gap-2">
+        <div className="flex items-center justify-start gap-2 align-middle">
           <PlusIcon />
           <div>{translation.inputs["add-cube"][settings.locale[0].lang]}</div>
         </div>

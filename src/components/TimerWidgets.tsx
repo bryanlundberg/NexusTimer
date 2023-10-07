@@ -34,7 +34,7 @@ export default function TimerWidgets() {
   }, [scramble, event, selectedCube, lastSolve]);
 
   return (
-    <div className="h-20 md:h-32 lg:h-40 w-full flex justify-between text-xs md:text-sm">
+    <div className="flex justify-between w-full h-20 text-xs md:h-32 lg:h-40 md:text-sm">
       <div className="w-full h-full">
         <div className="font-medium">
           {translation.timer["deviation"][settings.locale[0].lang]}
@@ -59,19 +59,19 @@ export default function TimerWidgets() {
       </div>
       <div className="w-full h-full" id="scramble-display"></div>
       <div className="w-full h-full">
-        <div className="text-right font-medium">
+        <div className="font-medium text-right">
           Ao5:{" "}
           {statistics.ao5 === 0 ? "--" : (statistics.ao5 / 1000).toFixed(2)}
         </div>
-        <div className="text-right font-medium">
+        <div className="font-medium text-right">
           Ao12:{" "}
           {statistics.ao12 === 0 ? "--" : (statistics.ao12 / 1000).toFixed(2)}
         </div>
-        <div className="text-right font-medium">
+        <div className="font-medium text-right">
           Ao50:{" "}
           {statistics.ao50 === 0 ? "--" : (statistics.ao50 / 1000).toFixed(2)}
         </div>
-        <div className="text-right font-medium">
+        <div className="font-medium text-right">
           Ao100:{" "}
           {statistics.ao100 === 0 ? "--" : (statistics.ao100 / 1000).toFixed(2)}
         </div>

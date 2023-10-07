@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Navigation() {
   return (
     <nav>
-      <ul className="flex gap-5 justify-center ">
+      <ul className="flex justify-center gap-5 ">
         <NavItem url="/">
           <Clock />
           <div>Timer</div>
