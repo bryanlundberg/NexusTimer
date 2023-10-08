@@ -1,5 +1,7 @@
 ## About The Project
+
 For those new to speedcubing, it's a puzzle-solving challenge where cubers aim to solve the Rubik's Cube as quickly as possible. The objective is to align all the cube's colors correctly while racing against the clock for the fastest solve time. Achieving a fast solve time is the goal.
+
 <div align="center">
   <a href="https://github.com/bryanlundberg/NexusTimer/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/bryanlundberg/NexusTimer.svg?style=for-the-badge" alt="Contributors">
@@ -21,6 +23,7 @@ For those new to speedcubing, it's a puzzle-solving challenge where cubers aim t
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
 ## Preview
+
 <div align="center"> 
 <img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/preview.gif" alt="preview" />
 <div>
@@ -45,9 +48,9 @@ For those new to speedcubing, it's a puzzle-solving challenge where cubers aim t
 </div>
 
 ## Overview
+
 This timer is carefully designed to keep track of solving times, giving valuable information and making the speedcubing experience even better. It's an essential tool for speedcubers who appreciate quality.
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
-
 
 ## What's the difference?
 
@@ -66,7 +69,8 @@ This is what makes unique and versatile **Nexus Timer**.
 ## Getting Started
 
 ### Prerequisites
-- Node & NPM Installed 
+
+- Node & NPM Installed
 
 ### Installation of NexusTimer
 
@@ -74,33 +78,37 @@ This is what makes unique and versatile **Nexus Timer**.
    ```sh
    git clone https://github.com/bryanlundberg/NexusTimer.git
    ```
-3. Install NPM packages
+2. Install NPM packages
    ```sh
    npm install
    ```
-4. Run a script available (`npm run dev` - `npm run build` - `npm run start`)
+3. Run a script available (`npm run dev` - `npm run build` - `npm run start`)
    ```sh
    npm run dev
    ```
-![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
-## Roadmap
-- [x] Enhance User Experience
-	- [ ] Implement zoom functionality for graphs
-	- [ ] Optimize component structure and organization
-- [x] Localization and Accessibility
-	- [ ] Enhance and expand translations
-	- [ ] Add touch support for mobile devices
-	- [ ] Implement a multi-theme feature
-- [x] User Preferences and Interaction
-	- [ ] Create settings states with timer options
-- [x] Incorporate smooth animations and transitions
-	- [ ] Modal opening and closing animations
-	- [ ] Personal best (PB) alert animations
-	- [ ] Other interactive animations
+   ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
+## Roadmap
+
+- [x] Enhance User Experience
+  - [ ] Implement zoom functionality for graphs
+  - [ ] Optimize component structure and organization
+- [x] Localization and Accessibility
+  - [ ] Enhance and expand translations
+  - [ ] Add touch support for mobile devices
+  - [ ] Implement a multi-theme feature
+  - [ ] Improve times readability example 93.03s to 1:33.03
+- [x] User Preferences and Interaction
+  - [ ] Create settings states with timer options
+  - [ ] Import / Export times
+- [x] Incorporate smooth animations and transitions
+  - [ ] Modal opening and closing
+  - [ ] Doing a personal best (PB)
+  - [ ] Other interactive alerts
 
 See the [open issues](https://github.com/bryanlundberg/NexusTimer/issues) for a full list of proposed features (and known issues).
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
