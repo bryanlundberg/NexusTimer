@@ -90,6 +90,12 @@ This is what makes unique and versatile **Nexus Timer**.
 
 ## Roadmap
 
+- [x] Scrambles
+  - [ ] Support WCA regulations
+  - [ ] Add logic to avoid cancel moves
+  - [ ] Add Megaminx
+  - [ ] Add SQ-1
+  - [ ] Some others possible categories
 - [x] Enhance User Experience
   - [ ] Implement zoom functionality for graphs
   - [ ] Optimize component structure and organization
@@ -105,6 +111,8 @@ This is what makes unique and versatile **Nexus Timer**.
   - [ ] Modal opening and closing
   - [ ] Doing a personal best (PB)
   - [ ] Other interactive alerts
+- [x] Cloud support (Backend)
+  - [ ] Move from localStorage to server storage
 
 See the [open issues](https://github.com/bryanlundberg/NexusTimer/issues) for a full list of proposed features (and known issues).
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
