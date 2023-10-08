@@ -2,27 +2,30 @@ import Clock from "@/icons/Clock";
 import Cubes from "@/icons/Cubes";
 import Metrics from "@/icons/Metrics";
 import Stack from "@/icons/Stack";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import Link from "next/link";
+import translation from "@/translations/global.json";
 
 export default function Navigation() {
+  const { settings } = useSettingsModalStore();
   return (
     <nav>
       <ul className="flex justify-center gap-5 ">
         <NavItem url="/">
           <Clock />
-          <div>Timer</div>
+          <div>{translation.timer["header"][settings.locale[0].lang]}</div>
         </NavItem>
         <NavItem url="/solves">
           <Stack />
-          <div>Solves</div>
+          <div>{translation.solves["header"][settings.locale[0].lang]}</div>
         </NavItem>
         <NavItem url="/stats">
           <Metrics />
-          <div>Metrics</div>
+          <div>{translation.metrics["header"][settings.locale[0].lang]}</div>
         </NavItem>
         <NavItem url="/cubes">
           <Cubes />
-          <div>Cubes</div>
+          <div>{translation.cubes["header"][settings.locale[0].lang]}</div>
         </NavItem>
       </ul>
     </nav>
