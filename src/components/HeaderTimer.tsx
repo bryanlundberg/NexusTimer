@@ -26,7 +26,7 @@ export default function HeaderTimer() {
           }}
         />
       </div>
-      <div className="h-auto p-2 overflow-auto text-2xl font-medium text-center rounded-md max-h-52 bg-zinc-900">
+      <div className="h-auto p-2 overflow-auto text-2xl font-medium text-center rounded-md min-w-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg max-h-52 bg-zinc-900">
         {selectedCube
           ? scramble
           : translation.timer["empty-scramble"][settings.locale[0].lang]}
