@@ -11,6 +11,7 @@ import { langCollection } from "@/lib/langCollection";
 import translation from "@/translations/global.json";
 import { Settings } from "@/interfaces/Settings";
 import { sort } from "fast-sort";
+import Sparkles from "@/icons/Sparkles";
 
 export default function SettingsMenu() {
   const { setSettingsOpen, settings, setSettings } = useSettingsModalStore();
@@ -19,6 +20,33 @@ export default function SettingsMenu() {
     window.localStorage.setItem("settings", JSON.stringify(settings));
     setSettings(settings);
   };
+
+  const variation = [
+    {
+      bg: "bg-neutral-100",
+      text: "text-white",
+      name: "Dark",
+      key: "dark",
+    },
+    {
+      bg: "bg-zinc-950",
+      text: "text-white",
+      name: "Light",
+      key: "light",
+    },
+    {
+      bg: "bg-gradient-to-b from-cyan-500 to-blue-500",
+      text: "text-white",
+      name: "Cyan - Blue",
+      key: "cyanblue",
+    },
+    {
+      bg: "bg-gradient-to-b from-red-500 to-blue-500",
+      text: "text-white",
+      name: "Cyan - Blue",
+      key: "cyanblue",
+    },
+  ];
 
   return (
     <>
@@ -130,6 +158,22 @@ export default function SettingsMenu() {
             />
           ))}
         </Section>
+
+        <Section
+          icon={<Sparkles />}
+          title={translation.settings["theme"][settings.locale[0].lang]}
+        >
+          <div className="ms-10 me-10 gap-3 grid grid-cols-4">
+            {variation.map((item, index) => {
+              return (
+                <div
+                  className={`w-auto h-24 rounded-md border border-black ${variation[index].bg}`}
+                  key={genId()}
+                ></div>
+              );
+            })}
+          </div>
+        </Section>
       </div>
     </>
   );
@@ -163,7 +207,7 @@ function Option({
 }: {
   label: string;
   status: boolean;
-  read?: string;
+  read: string;
   id: number;
 }) {
   return (
