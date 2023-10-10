@@ -11,6 +11,8 @@ import { langCollection } from "@/lib/langCollection";
 import translation from "@/translations/global.json";
 import { Settings } from "@/interfaces/Settings";
 import { sort } from "fast-sort";
+import Sparkles from "@/icons/Sparkles";
+import ThemeSelect from "./ThemeSelect";
 
 export default function SettingsMenu() {
   const { setSettingsOpen, settings, setSettings } = useSettingsModalStore();
@@ -19,6 +21,57 @@ export default function SettingsMenu() {
     window.localStorage.setItem("settings", JSON.stringify(settings));
     setSettings(settings);
   };
+
+  const variation = [
+    {
+      bg: "bg-neutral-100",
+      text: "text-white",
+      name: "Light",
+      key: "light",
+    },
+    {
+      bg: "bg-zinc-950",
+      text: "text-white",
+      name: "Dark",
+      key: "dark",
+    },
+    {
+      bg: "bg-gradient-to-b from-gray-950 to-gray-700",
+      text: "text-white",
+      name: "Gray",
+      key: "graygray",
+    },
+    {
+      bg: "bg-gradient-to-b from-cyan-500 to-violet-400",
+      text: "text-white",
+      name: "Cyan",
+      key: "cyanviolet",
+    },
+    {
+      bg: "bg-gradient-to-b from-amber-500 to-pink-400",
+      text: "text-white",
+      name: "Amber",
+      key: "amberpink",
+    },
+    {
+      bg: "bg-gradient-to-b from-red-500 to-blue-500",
+      text: "text-white",
+      name: "Red",
+      key: "redblue",
+    },
+    {
+      bg: "bg-gradient-to-b from-pink-200 to-neutral-200",
+      text: "text-white",
+      name: "Pink",
+      key: "pinkneutral",
+    },
+    {
+      bg: "bg-gradient-to-b from-green-400 to-amber-300",
+      text: "text-white",
+      name: "Green",
+      key: "greenamber",
+    },
+  ];
 
   return (
     <>
@@ -130,6 +183,13 @@ export default function SettingsMenu() {
             />
           ))}
         </Section>
+
+        <Section
+          icon={<Sparkles />}
+          title={translation.settings["theme"][settings.locale[0].lang]}
+        >
+          <ThemeSelect />
+        </Section>
       </div>
     </>
   );
@@ -163,7 +223,7 @@ function Option({
 }: {
   label: string;
   status: boolean;
-  read?: string;
+  read: string;
   id: number;
 }) {
   return (
