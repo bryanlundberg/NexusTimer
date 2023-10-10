@@ -35,7 +35,19 @@ export default function SettingsMenu() {
       key: "light",
     },
     {
-      bg: "bg-gradient-to-b from-cyan-500 to-blue-500",
+      bg: "bg-gradient-to-b from-gray-950 to-gray-700",
+      text: "text-white",
+      name: "Cyan - Blue",
+      key: "cyanblue",
+    },
+    {
+      bg: "bg-gradient-to-b from-cyan-500 to-violet-400",
+      text: "text-white",
+      name: "Red - Blue",
+      key: "redblue",
+    },
+    {
+      bg: "bg-gradient-to-b from-amber-500 to-pink-400",
       text: "text-white",
       name: "Cyan - Blue",
       key: "cyanblue",
@@ -43,8 +55,20 @@ export default function SettingsMenu() {
     {
       bg: "bg-gradient-to-b from-red-500 to-blue-500",
       text: "text-white",
+      name: "Red - Blue",
+      key: "redblue",
+    },
+    {
+      bg: "bg-gradient-to-b from-pink-200 to-neutral-200",
+      text: "text-white",
       name: "Cyan - Blue",
       key: "cyanblue",
+    },
+    {
+      bg: "bg-gradient-to-b from-green-400 to-amber-300",
+      text: "text-white",
+      name: "Red - Blue",
+      key: "redblue",
     },
   ];
 
