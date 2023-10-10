@@ -12,6 +12,7 @@ import translation from "@/translations/global.json";
 import { Settings } from "@/interfaces/Settings";
 import { sort } from "fast-sort";
 import Sparkles from "@/icons/Sparkles";
+import ThemeSelect from "./ThemeSelect";
 
 export default function SettingsMenu() {
   const { setSettingsOpen, settings, setSettings } = useSettingsModalStore();
@@ -25,50 +26,50 @@ export default function SettingsMenu() {
     {
       bg: "bg-neutral-100",
       text: "text-white",
-      name: "Dark",
-      key: "dark",
-    },
-    {
-      bg: "bg-zinc-950",
-      text: "text-white",
       name: "Light",
       key: "light",
     },
     {
+      bg: "bg-zinc-950",
+      text: "text-white",
+      name: "Dark",
+      key: "dark",
+    },
+    {
       bg: "bg-gradient-to-b from-gray-950 to-gray-700",
       text: "text-white",
-      name: "Cyan - Blue",
-      key: "cyanblue",
+      name: "Gray",
+      key: "graygray",
     },
     {
       bg: "bg-gradient-to-b from-cyan-500 to-violet-400",
       text: "text-white",
-      name: "Red - Blue",
-      key: "redblue",
+      name: "Cyan",
+      key: "cyanviolet",
     },
     {
       bg: "bg-gradient-to-b from-amber-500 to-pink-400",
       text: "text-white",
-      name: "Cyan - Blue",
-      key: "cyanblue",
+      name: "Amber",
+      key: "amberpink",
     },
     {
       bg: "bg-gradient-to-b from-red-500 to-blue-500",
       text: "text-white",
-      name: "Red - Blue",
+      name: "Red",
       key: "redblue",
     },
     {
       bg: "bg-gradient-to-b from-pink-200 to-neutral-200",
       text: "text-white",
-      name: "Cyan - Blue",
-      key: "cyanblue",
+      name: "Pink",
+      key: "pinkneutral",
     },
     {
       bg: "bg-gradient-to-b from-green-400 to-amber-300",
       text: "text-white",
-      name: "Red - Blue",
-      key: "redblue",
+      name: "Green",
+      key: "greenamber",
     },
   ];
 
@@ -187,16 +188,7 @@ export default function SettingsMenu() {
           icon={<Sparkles />}
           title={translation.settings["theme"][settings.locale[0].lang]}
         >
-          <div className="ms-10 me-10 gap-3 grid grid-cols-4">
-            {variation.map((item, index) => {
-              return (
-                <div
-                  className={`w-auto h-24 rounded-md border border-black ${variation[index].bg}`}
-                  key={genId()}
-                ></div>
-              );
-            })}
-          </div>
+          <ThemeSelect />
         </Section>
       </div>
     </>

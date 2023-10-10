@@ -21,7 +21,7 @@ export const defaultSettings: Settings = {
     { id: 13, status: false, translationKey: "worst-time" },
   ],
   theme: [
-    { id: 14, bg: "light", translationKey: "background-color" },
+    { id: 14, bg: "dark", translationKey: "background-color" },
     { id: 15, text: "dark", translationKey: "letter-color" },
   ],
 };
