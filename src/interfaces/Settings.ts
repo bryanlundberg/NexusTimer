@@ -2,33 +2,28 @@ import { Language } from "./types/Language";
 
 interface LocaleItem {
   lang: Language;
-  translationKey: string;
-  id: number;
+  key: string;
 }
 
 interface TimerItem {
   status: boolean;
-  translationKey: string;
-  id: number;
+  key: string;
 }
 
 interface FeatureItem {
   status: boolean;
-  translationKey: string;
-  id: number;
+  key: string;
 }
 
 interface AlertItem {
   status: boolean;
-  translationKey: string;
-  id: number;
+  key: string;
 }
 
 export interface ThemeItem {
   bg?: string;
   text?: string;
-  translationKey: string;
-  id: number;
+  key: string;
 }
 
 export interface Settings {

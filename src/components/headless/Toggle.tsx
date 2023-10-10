@@ -8,27 +8,27 @@ function Toggle({
   id,
 }: {
   status: boolean;
-  read?: string;
-  id: number;
+  read: string;
+  id: string;
 }) {
   const { setSettings } = useSettingsModalStore();
 
   const saveSettings = () => {
     const currentSettings = loadSettings();
     for (const setting of currentSettings.timer) {
-      if (setting.id === id) {
+      if (setting.key === id) {
         setting.status = !status;
       }
     }
 
     for (const setting of currentSettings.alerts) {
-      if (setting.id === id) {
+      if (setting.key === id) {
         setting.status = !status;
       }
     }
 
     for (const setting of currentSettings.features) {
-      if (setting.id === id) {
+      if (setting.key === id) {
         setting.status = !status;
       }
     }

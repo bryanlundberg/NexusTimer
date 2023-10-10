@@ -124,16 +124,16 @@ export default function SettingsMenu() {
               key={genId()}
               status={item.status}
               label={
-                translation.settings[item.translationKey as keyof Settings][
+                translation.settings[item.key as keyof Settings][
                   settings.locale[0].lang
                 ]
               }
               read={
-                translation.settings[item.translationKey as keyof Settings][
+                translation.settings[item.key as keyof Settings][
                   settings.locale[0].lang
                 ]
               }
-              id={item.id}
+              id={item.key}
             />
           ))}
         </Section>
@@ -147,16 +147,16 @@ export default function SettingsMenu() {
               key={genId()}
               status={item.status}
               label={
-                translation.settings[item.translationKey as keyof Settings][
+                translation.settings[item.key as keyof Settings][
                   settings.locale[0].lang
                 ]
               }
               read={
-                translation.settings[item.translationKey as keyof Settings][
+                translation.settings[item.key as keyof Settings][
                   settings.locale[0].lang
                 ]
               }
-              id={item.id}
+              id={item.key}
             />
           ))}
         </Section>
@@ -170,16 +170,16 @@ export default function SettingsMenu() {
               key={genId()}
               status={item.status}
               label={
-                translation.settings[item.translationKey as keyof Settings][
+                translation.settings[item.key as keyof Settings][
                   settings.locale[0].lang
                 ]
               }
               read={
-                translation.settings[item.translationKey as keyof Settings][
+                translation.settings[item.key as keyof Settings][
                   settings.locale[0].lang
                 ]
               }
-              id={item.id}
+              id={item.key}
             />
           ))}
         </Section>
@@ -224,7 +224,7 @@ function Option({
   label: string;
   status: boolean;
   read: string;
-  id: number;
+  id: string;
 }) {
   return (
     <div className="flex justify-between mb-1">
