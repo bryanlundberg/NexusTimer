@@ -85,8 +85,6 @@ export default function Timer() {
       }
     } else {
       if (difference >= holdTimeRequired) {
-        console.log(difference, holdTimeRequired);
-        console.log("read");
         setTimerStatus("ready");
       }
     }
@@ -146,9 +144,9 @@ export default function Timer() {
         >
           {(solvingTime / 1000).toFixed(3)}
         </div>
-        {lastSolve && timerStatus === "idle" && (
-          <SolveOptions solve={lastSolve} />
-        )}
+        {lastSolve &&
+          settings.features.quickActionButtons.status &&
+          timerStatus === "idle" && <SolveOptions solve={lastSolve} />}
       </section>
     </>
   );
