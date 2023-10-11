@@ -16,7 +16,6 @@ export const useSettingsModalStore = create<Modal>((set) => ({
   settings: defaultSettings,
   lang: "en",
   setSettings: (settings: Settings) => {
-    console.log(settings);
     set({
       settings: settings,
       lang: settings.locale.language.lang,

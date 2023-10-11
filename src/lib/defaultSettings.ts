@@ -7,7 +7,7 @@ export const defaultSettings: Settings = {
   timer: {
     inspection: { status: true, key: "inspection" },
     startCue: { status: false, key: "start-cue" },
-    holdToStart: { status: true, key: "hold-to-start" },
+    holdToStart: { status: false, key: "hold-to-start" },
     manualMode: { status: false, key: "manual-mode" },
   },
   features: {
