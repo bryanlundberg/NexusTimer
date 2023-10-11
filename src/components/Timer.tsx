@@ -21,32 +21,21 @@ export default function Timer() {
     setSolvingTime,
   } = useTimerStore();
 
+  const { settings } = useSettingsModalStore();
+
+  const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
   const [timerStatus, setTimerStatus] = useState<TimerStatus>("idle");
   const endTimeRef = useRef<number>(0);
   const holdingTimeRef = useRef<number>(0);
   const startTime = useRef<number>(0);
   const runningTimeId = useRef<any>(null);
-  const delayHold = useRef<number>(500);
   const isSolving = useRef<boolean>(false);
-  const isHoldingSpace = useRef<boolean>(false);
+  const isHolding = useRef<boolean>(false);
 
   const handleHold = (event: KeyboardEvent) => {
     if (event.code !== "Space") return;
-    const now = Date.now();
-    const difference = now - (holdingTimeRef.current || 0);
 
-    if (isHoldingSpace.current && difference >= delayHold.current) {
-      setTimerStatus("ready");
-    }
-
-    if (!isHoldingSpace.current && !isSolving.current) {
-      holdingTimeRef.current = now;
-      isHoldingSpace.current = true;
-      setTimerStatus("holdingKey");
-      return;
-    }
-
-    if (!isHoldingSpace.current && isSolving.current) {
+    if (isSolving.current) {
       clearInterval(runningTimeId.current);
       isSolving.current = false;
       if (selectedCube !== null && scramble) {
@@ -82,6 +71,25 @@ export default function Timer() {
       setTimerStatus("idle");
       return;
     }
+
+    const now = Date.now();
+    const difference = now - holdingTimeRef.current;
+
+    if (!isHolding.current) {
+      holdingTimeRef.current = now;
+      isHolding.current = true;
+      if (settings.timer.holdToStart.status) {
+        setTimerStatus("holdingKey");
+      } else {
+        setTimerStatus("ready");
+      }
+    } else {
+      if (difference >= holdTimeRequired) {
+        console.log(difference, holdTimeRequired);
+        console.log("read");
+        setTimerStatus("ready");
+      }
+    }
   };
 
   const handleRelease = (event: KeyboardEvent) => {
@@ -89,10 +97,10 @@ export default function Timer() {
       const now = Date.now();
       const difference: number = now - holdingTimeRef.current;
 
-      if (isHoldingSpace.current && !isSolving.current) {
-        if (difference >= delayHold.current) {
+      if (isHolding.current && !isSolving.current) {
+        if (difference >= holdTimeRequired) {
           isSolving.current = true;
-          isHoldingSpace.current = false;
+          isHolding.current = false;
           holdingTimeRef.current = 0;
           startTime.current = Date.now();
           runningTimeId.current = setInterval(() => {
@@ -103,9 +111,9 @@ export default function Timer() {
           return;
         }
 
-        if (difference <= delayHold.current) {
+        if (difference <= holdTimeRequired) {
           isSolving.current = false;
-          isHoldingSpace.current = false;
+          isHolding.current = false;
           holdingTimeRef.current = 0;
           setTimerStatus("idle");
           return;
