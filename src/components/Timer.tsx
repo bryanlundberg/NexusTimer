@@ -6,6 +6,7 @@ import { useTimerStore } from "@/store/timerStore";
 import addSolve from "@/lib/addSolve";
 import findCube from "@/lib/findCube";
 import SolveOptions from "./SolveOptions";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function Timer() {
   const {

@@ -24,7 +24,7 @@ export default function SolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
   const { selectedCube, setCubes, setSelectedCube } = useTimerStore();
   const { status } = useSolvesStore();
-  const { settings } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
 
   const handleTabClick = (newTab: SolveTab) => {
     setCurrentTab(newTab);
@@ -61,9 +61,7 @@ export default function SolvesPage() {
     if (!selectedCube) {
       return (
         <EmptySolves
-          message={
-            translation.solves["no-cube-selection"][settings.locale[0].lang]
-          }
+          message={translation.solves["no-cube-selection"][lang]}
           icon="no-cube-selected"
         />
       );
@@ -72,7 +70,7 @@ export default function SolvesPage() {
     if (!selectedSolves || selectedSolves.length === 0) {
       return (
         <EmptySolves
-          message={translation.solves["no-solves"][settings.locale[0].lang]}
+          message={translation.solves["no-solves"][lang]}
           icon="no-solves"
         />
       );
@@ -94,7 +92,7 @@ export default function SolvesPage() {
           <div className="w-full mx-auto">
             <div className="flex justify-between items-center mx-3 gap-2">
               <div className="font-medium text-2xl">
-                {translation.solves["header"][settings.locale[0].lang]}
+                {translation.solves["header"][lang]}
               </div>
               <Select />
             </div>
@@ -109,13 +107,13 @@ export default function SolvesPage() {
               handleClick={() => handleTabClick("Session")}
               active={currentTab === "Session"}
             >
-              {translation.solves.filter["session"][settings.locale[0].lang]}
+              {translation.solves.filter["session"][lang]}
             </ToggleSolvesButton>
             <ToggleSolvesButton
               handleClick={() => handleTabClick("All")}
               active={currentTab === "All"}
             >
-              {translation.solves.filter["all"][settings.locale[0].lang]}
+              {translation.solves.filter["all"][lang]}
             </ToggleSolvesButton>
           </div>
           {/* buttons manage solves */}
@@ -127,18 +125,13 @@ export default function SolvesPage() {
                 className="font-normal"
               >
                 <div className="flex items-center justify-center text-xs gap-2">
-                  <MoveAll />{" "}
-                  <div>
-                    {translation.inputs["move-all"][settings.locale[0].lang]}
-                  </div>
+                  <MoveAll /> <div>{translation.inputs["move-all"][lang]}</div>
                 </div>
               </Button>
               <Button disabled={false} handleClick={() => handleTrashAll()}>
                 <div className="flex items-center justify-center text-xs gap-2">
                   <Trash />
-                  <div>
-                    {translation.inputs["trash-all"][settings.locale[0].lang]}
-                  </div>
+                  <div>{translation.inputs["trash-all"][lang]}</div>
                 </div>
               </Button>
             </div>

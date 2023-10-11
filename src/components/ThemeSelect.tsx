@@ -1,7 +1,7 @@
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function ThemeSelect() {
-  const { settings, setSettings } = useSettingsModalStore();
+  const { settings } = useSettingsModalStore();
   const variation = [
     {
       bg: "bg-neutral-100",
@@ -53,8 +53,7 @@ export default function ThemeSelect() {
     },
   ];
 
-  const selectedKey = settings.theme[0].bg;
-  console.log(selectedKey);
+  const selectedKey = settings.theme.background;
 
   return (
     <div className="grid grid-cols-4 gap-3 ms-10 me-10">
@@ -64,7 +63,9 @@ export default function ThemeSelect() {
             <div
               className={`cursor-pointer w-full h-24 rounded-md border border-black ${
                 item.bg
-              } ${item.key === selectedKey ? "outline outline-blue-600" : ""}`}
+              } ${
+                item.bg === selectedKey.color ? "outline outline-blue-600" : ""
+              }`}
             ></div>
             <div className="text-xs font-medium">{item.name}</div>
           </div>

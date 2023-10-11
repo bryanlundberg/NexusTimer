@@ -8,22 +8,20 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import Navigation from "@/components/Navigation";
 
 export default function StatsPage() {
-  const { settings } = useSettingsModalStore();
+  const { settings, lang } = useSettingsModalStore();
 
   const [currentTab, setCurrentTab] = useState(
-    translation.metrics["header-select"]["personal"][settings.locale[0].lang]
+    translation.metrics["header-select"]["personal"][lang]
   );
 
   const options = [
-    translation.metrics["header-select"]["personal"][settings.locale[0].lang],
-    translation.metrics["header-select"]["category"][settings.locale[0].lang],
+    translation.metrics["header-select"]["personal"][lang],
+    translation.metrics["header-select"]["category"][lang],
   ];
 
   useEffect(() => {
-    setCurrentTab(
-      translation.metrics["header-select"]["personal"][settings.locale[0].lang]
-    );
-  }, [settings]);
+    setCurrentTab(translation.metrics["header-select"]["personal"][lang]);
+  }, [settings, lang]);
 
   const handleChange = (view: any) => {
     setCurrentTab(view);
@@ -36,7 +34,7 @@ export default function StatsPage() {
           <div className="w-full mx-auto">
             <div className="flex justify-between items-center mx-3 gap-3">
               <div className="font-medium text-2xl">
-                {translation.metrics["header"][settings.locale[0].lang]}
+                {translation.metrics["header"][lang]}
               </div>
               <SelectMetrics
                 label={currentTab}
@@ -48,9 +46,7 @@ export default function StatsPage() {
           </div>
         </div>
         {currentTab ===
-        translation.metrics["header-select"]["personal"][
-          settings.locale[0].lang
-        ] ? (
+        translation.metrics["header-select"]["personal"][lang] ? (
           <PersonalStatistics />
         ) : (
           <CategoryStatistics />

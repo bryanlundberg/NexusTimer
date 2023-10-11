@@ -17,15 +17,15 @@ import calcSuccessRate from "@/lib/calcSuccessRate";
 
 export default function CategoryStatistics() {
   const { cubes } = useTimerStore();
-  const { settings } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
   const [filterCategory, setFilterCategory] = useState<Categories>("3x3");
   const [filterCube, setFilterCube] = useState<string>(
-    translation.solves.filter["all"][settings.locale[0].lang]
+    translation.solves.filter["all"][lang]
   );
 
   const handleChangeCategory = (value: any) => {
     setFilterCategory(value);
-    setFilterCube(translation.solves.filter["all"][settings.locale[0].lang]);
+    setFilterCube(translation.solves.filter["all"][lang]);
   };
 
   const handleChangeCube = (value: any) => {
@@ -43,9 +43,7 @@ export default function CategoryStatistics() {
   }
 
   function loadCubeOptions() {
-    const cubesList = [
-      translation.solves.filter["all"][settings.locale[0].lang],
-    ];
+    const cubesList = [translation.solves.filter["all"][lang]];
     cubes?.map((cube) => {
       if (cube.category === filterCategory) {
         cubesList.push(cube.name);
@@ -84,8 +82,7 @@ export default function CategoryStatistics() {
             <LineCharter
               data={data}
               cubeSelected={
-                translation.solves.filter["all"][settings.locale[0].lang] !==
-                filterCube
+                translation.solves.filter["all"][lang] !== filterCube
               }
             />
           </div>
@@ -95,20 +92,20 @@ export default function CategoryStatistics() {
           <div className="flex items-center h-10 p-1 rounded-md bg-zinc-900 text-zinc-200">
             <div className="w-1/5"></div>
             <div className="w-1/5 text-center">
-              {translation.metrics["global"][settings.locale[0].lang]}
+              {translation.metrics["global"][lang]}
             </div>
             <div className="w-1/5 text-center">
-              {translation.metrics["sessions"][settings.locale[0].lang]}
+              {translation.metrics["sessions"][lang]}
             </div>
             <div className="w-1/5 text-center">
-              C {translation.solves.filter["all"][settings.locale[0].lang]}
+              C {translation.solves.filter["all"][lang]}
             </div>
             <div className="w-1/5 text-center">
-              C {translation.solves.filter["session"][settings.locale[0].lang]}
+              C {translation.solves.filter["session"][lang]}
             </div>
           </div>
           <StatisticRow
-            label={translation.timer["deviation"][settings.locale[0].lang]}
+            label={translation.timer["deviation"][lang]}
             global={deviation.global === 0 ? "--" : deviation.global.toFixed(3)}
             session={
               deviation.session === 0 ? "--" : deviation.session.toFixed(3)
@@ -210,14 +207,14 @@ export default function CategoryStatistics() {
             }
           />
           <StatisticRow
-            label={translation.metrics["best-time"][settings.locale[0].lang]}
+            label={translation.metrics["best-time"][lang]}
             global={best.global}
             session={best.session}
             cubeAll={best.cubeAll}
             cubeSession={best.cubeSession}
           />
           <StatisticRow
-            label={translation.metrics["average"][settings.locale[0].lang]}
+            label={translation.metrics["average"][lang]}
             global={average.global === 0 ? "--" : average.global.toFixed(3)}
             session={average.session === 0 ? "--" : average.session.toFixed(3)}
             cubeAll={average.cubeAll === 0 ? "--" : average.cubeAll.toFixed(3)}
@@ -226,16 +223,14 @@ export default function CategoryStatistics() {
             }
           />
           <StatisticRow
-            label={translation.metrics["time-spent"][settings.locale[0].lang]}
+            label={translation.metrics["time-spent"][lang]}
             global={timeSpent.global}
             session={timeSpent.session}
             cubeAll={timeSpent.cubeAll}
             cubeSession={timeSpent.cubeSession}
           />
           <StatisticRow
-            label={
-              translation.metrics.cards["success-rate"][settings.locale[0].lang]
-            }
+            label={translation.metrics.cards["success-rate"][lang]}
             global={successRate.global === 0 ? "--" : successRate.global + "%"}
             session={
               successRate.session === 0 ? "--" : successRate.session + "%"
@@ -250,7 +245,7 @@ export default function CategoryStatistics() {
             }
           />
           <StatisticRow
-            label={translation.timer["counter"][settings.locale[0].lang]}
+            label={translation.timer["counter"][lang]}
             global={counter.global === 0 ? "--" : counter.global}
             session={counter.session === 0 ? "--" : counter.session}
             cubeAll={counter.cubeAll === 0 ? "--" : counter.cubeAll}

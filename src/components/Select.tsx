@@ -14,7 +14,7 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
   const { selectedCube, cubes } = useTimerStore();
-  const { settings } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
   const componentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function Select() {
             <div className="">
               {selectedCube
                 ? selectedCube.name
-                : translation.inputs["select-cube"][settings.locale[0].lang]}
+                : translation.inputs["select-cube"][lang]}
             </div>
             <SelectOptions />
           </div>
@@ -65,11 +65,7 @@ export default function Select() {
             className="absolute z-40 overflow-auto max-h-[400px] p-1 top-12 right-0 w-full bg-zinc-950 text-slate-100 h-auto border border-zinc-800 rounded-md"
           >
             {/* Favorites */}
-            <LabelSection
-              description={
-                translation.inputs["favorites"][settings.locale[0].lang]
-              }
-            />
+            <LabelSection description={translation.inputs["favorites"][lang]} />
             {cubes?.map((cube) => {
               if (cube.favorite) {
                 return (
@@ -83,9 +79,7 @@ export default function Select() {
                 );
               }
             })}
-            <LabelSection
-              description={translation.inputs["list"][settings.locale[0].lang]}
-            />
+            <LabelSection description={translation.inputs["list"][lang]} />
             {cubes?.map((cube) => {
               return (
                 <Option
@@ -168,13 +162,13 @@ function LabelSection({ description }: { description: string }) {
 }
 
 function AddCubeOption() {
-  const { settings } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
   return (
     <div className="p-1 mt-1 border-t rounded-md cursor-pointer select-none  hover:bg-zinc-800 ps-2 border-zinc-800">
       <Link href="/cubes">
         <div className="flex items-center justify-start gap-2 align-middle">
           <PlusIcon />
-          <div>{translation.inputs["add-cube"][settings.locale[0].lang]}</div>
+          <div>{translation.inputs["add-cube"][lang]}</div>
         </div>
       </Link>
     </div>

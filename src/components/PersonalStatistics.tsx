@@ -26,7 +26,7 @@ import getSuccessRate from "@/lib/getSuccessRate";
 
 export default function PersonalStatistics() {
   const { cubes } = useTimerStore();
-  const { settings } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
   const totalCubesSolved = getTotalCubesSolved(cubes);
   const totalEvents = getTotalEvents(cubes);
   const totalTimeCubing = getTotalTimeCubing(cubes);
@@ -42,74 +42,50 @@ export default function PersonalStatistics() {
       <div className="flex flex-col gap-3 px-3 py-3 overflow-auto grow">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <CardStatistic
-            label={
-              translation.metrics.cards["classification"][
-                settings.locale[0].lang
-              ]
-            }
+            label={translation.metrics.cards["classification"][lang]}
             total={cuberTitle}
           >
             <Trophy />
           </CardStatistic>
           <CardStatistic
-            label={
-              translation.metrics.cards["rating-points"][
-                settings.locale[0].lang
-              ]
-            }
+            label={translation.metrics.cards["rating-points"][lang]}
             total={totalFormatted}
           >
             <PresentationChart />
           </CardStatistic>
           <CardStatistic
-            label={
-              translation.metrics.cards["time-spent-cubing"][
-                settings.locale[0].lang
-              ]
-            }
+            label={translation.metrics.cards["time-spent-cubing"][lang]}
             total={totalTimeCubing}
           >
             <Clock />
           </CardStatistic>
           <CardStatistic
-            label={
-              translation.metrics.cards["total-solves"][settings.locale[0].lang]
-            }
+            label={translation.metrics.cards["total-solves"][lang]}
             total={totalCubesSolved}
           >
             <Hashtag />
           </CardStatistic>
           <CardStatistic
-            label={
-              translation.metrics.cards["most-played"][settings.locale[0].lang]
-            }
+            label={translation.metrics.cards["most-played"][lang]}
             total={mostPlayedEvent}
           >
             <ChartPie />
           </CardStatistic>
           <CardStatistic
-            label={
-              translation.metrics.cards["sessions-in-progress"][
-                settings.locale[0].lang
-              ]
-            }
+            label={translation.metrics.cards["sessions-in-progress"][lang]}
             total={sessionsInProgress}
           >
             <CalendarDays />
           </CardStatistic>
           <CardStatistic
-            label={
-              translation.metrics.cards["success-rate"][settings.locale[0].lang]
-            }
+            label={translation.metrics.cards["success-rate"][lang]}
             total={rate + "%"}
             className="border-blue-400"
           >
             <Fire />{" "}
           </CardStatistic>
           <CardStatistic
-            label={
-              translation.metrics.cards["total-events"][settings.locale[0].lang]
-            }
+            label={translation.metrics.cards["total-events"][lang]}
             total={totalEvents}
           >
             <Flag />
@@ -119,13 +95,13 @@ export default function PersonalStatistics() {
           <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md border-zinc-800 md:w-1/2 h-96">
             <RadarCharter data={data01} />
             <div className="mb-3 text-2xl font-medium text-center">
-              {translation.metrics["cube-insights"][settings.locale[0].lang]}
+              {translation.metrics["cube-insights"][lang]}
             </div>
           </div>
           <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md border-zinc-800 md:w-1/2 h-96">
             <PieCharter data={data02} />
             <div className="mb-3 text-2xl font-medium text-center">
-              {translation.metrics["rating-spread"][settings.locale[0].lang]}
+              {translation.metrics["rating-spread"][lang]}
             </div>
           </div>
         </div>

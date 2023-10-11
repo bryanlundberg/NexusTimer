@@ -9,7 +9,7 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function LastActivity() {
   const { cubes } = useTimerStore();
-  const { settings } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
 
   const renderLastAct = () => {
     if (cubes) {
@@ -32,9 +32,7 @@ export default function LastActivity() {
             {index + 1}. {cube?.category} {cube?.name}{" "}
             {(solve.time / 1000).toFixed(3)}{" "}
             {formatDistanceToNow(new Date(solve.endTime))} ago +{solve.rating}{" "}
-            {translation.metrics.cards["rating-points"][
-              settings.locale[0].lang
-            ].toLowerCase()}
+            {translation.metrics.cards["rating-points"][lang].toLowerCase()}
           </div>
         );
       });
@@ -45,7 +43,7 @@ export default function LastActivity() {
     <>
       <div className="w-full p-3 text-left border rounded-md border-zinc-800 sm:text-center">
         <div className="mb-3 text-xl font-medium">
-          {translation.metrics["last-activity"][settings.locale[0].lang]}
+          {translation.metrics["last-activity"][lang]}
         </div>
         {renderLastAct()}
       </div>

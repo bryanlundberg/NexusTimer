@@ -10,7 +10,7 @@ import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function TableRow({ cube }: { cube: Cube }) {
-  const { settings } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
   const { setCubes } = useTimerStore();
   const { setEditingCube, setModalOpen, setCubeName, setSelectedCategory } =
     useCubesModalStore();
@@ -55,16 +55,12 @@ export default function TableRow({ cube }: { cube: Cube }) {
           {status ? (
             <div className="flex items-center justify-center gap-1">
               <Play />
-              <span>
-                {translation.cubes.table["using"][settings.locale[0].lang]}
-              </span>
+              <span>{translation.cubes.table["using"][lang]}</span>
             </div>
           ) : (
             <div className="flex items-center justify-center gap-1">
               <Stop />
-              <span>
-                {translation.cubes.table["idle"][settings.locale[0].lang]}
-              </span>
+              <span>{translation.cubes.table["idle"][lang]}</span>
             </div>
           )}
         </div>

@@ -1,27 +1,29 @@
 import { Settings } from "@/interfaces/Settings";
 
 export const defaultSettings: Settings = {
-  locale: [{ lang: "en", key: "language" }],
-  timer: [
-    { status: true, key: "inspection" },
-    { status: false, key: "start-cue" },
-    { status: true, key: "hold-to-start" },
-    { status: false, key: "manual-mode" },
-  ],
-  features: [
-    { status: true, key: "scramble-image" },
-    { status: true, key: "session-stats" },
-    { status: true, key: "quick-action-buttons" },
-    { status: false, key: "hide-while-solving" },
-    { status: true, key: "scramble-background" },
-  ],
-  alerts: [
-    { status: false, key: "best-time" },
-    { status: false, key: "best-average" },
-    { status: false, key: "worst-time" },
-  ],
-  theme: [
-    { bg: "dark", key: "background-color" },
-    { text: "dark", key: "letter-color" },
-  ],
+  locale: {
+    language: { lang: "en", key: "language" },
+  },
+  timer: {
+    inspection: { status: true, key: "inspection" },
+    startCue: { status: false, key: "start-cue" },
+    holdToStart: { status: true, key: "hold-to-start" },
+    manualMode: { status: false, key: "manual-mode" },
+  },
+  features: {
+    scrambleImage: { status: true, key: "scramble-image" },
+    sessionStats: { status: true, key: "session-stats" },
+    quickActionButtons: { status: true, key: "quick-action-buttons" },
+    hideWhileSolving: { status: false, key: "hide-while-solving" },
+    scrambleBackground: { status: true, key: "scramble-background" },
+  },
+  alerts: {
+    bestTime: { status: false, key: "best-time" },
+    bestAverage: { status: false, key: "best-average" },
+    worstTime: { status: false, key: "worst-time" },
+  },
+  theme: {
+    background: { color: "dark", key: "background-color" },
+    content: { color: "dark", key: "letter-color" },
+  },
 };

@@ -15,23 +15,23 @@ function Toggle({
 
   const saveSettings = () => {
     const currentSettings = loadSettings();
-    for (const setting of currentSettings.timer) {
-      if (setting.key === id) {
-        setting.status = !status;
-      }
-    }
 
-    for (const setting of currentSettings.alerts) {
+    Object.values(currentSettings.timer).forEach((setting: any) => {
       if (setting.key === id) {
-        setting.status = !status;
+        setting.status = !setting.status;
       }
-    }
+    });
 
-    for (const setting of currentSettings.features) {
+    Object.values(currentSettings.alerts).forEach((setting: any) => {
       if (setting.key === id) {
-        setting.status = !status;
+        setting.status = !setting.status;
       }
-    }
+    });
+    Object.values(currentSettings.features).forEach((setting: any) => {
+      if (setting.key === id) {
+        setting.status = !setting.status;
+      }
+    });
 
     window.localStorage.setItem("settings", JSON.stringify(currentSettings));
     setSettings(currentSettings);
