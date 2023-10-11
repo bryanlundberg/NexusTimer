@@ -15,63 +15,16 @@ import Sparkles from "@/icons/Sparkles";
 import ThemeSelect from "./ThemeSelect";
 
 export default function SettingsMenu() {
-  const { setSettingsOpen, settings, setSettings } = useSettingsModalStore();
+  const { setSettingsOpen, settings, setSettings, lang } =
+    useSettingsModalStore();
   const handleChangeLang = (tagLang: any) => {
-    settings.locale[0].lang = tagLang;
-    window.localStorage.setItem("settings", JSON.stringify(settings));
-    setSettings(settings);
-  };
+    const newSettings = { ...settings };
 
-  const variation = [
-    {
-      bg: "bg-neutral-100",
-      text: "text-white",
-      name: "Light",
-      key: "light",
-    },
-    {
-      bg: "bg-zinc-950",
-      text: "text-white",
-      name: "Dark",
-      key: "dark",
-    },
-    {
-      bg: "bg-gradient-to-b from-gray-950 to-gray-700",
-      text: "text-white",
-      name: "Gray",
-      key: "graygray",
-    },
-    {
-      bg: "bg-gradient-to-b from-cyan-500 to-violet-400",
-      text: "text-white",
-      name: "Cyan",
-      key: "cyanviolet",
-    },
-    {
-      bg: "bg-gradient-to-b from-amber-500 to-pink-400",
-      text: "text-white",
-      name: "Amber",
-      key: "amberpink",
-    },
-    {
-      bg: "bg-gradient-to-b from-red-500 to-blue-500",
-      text: "text-white",
-      name: "Red",
-      key: "redblue",
-    },
-    {
-      bg: "bg-gradient-to-b from-pink-200 to-neutral-200",
-      text: "text-white",
-      name: "Pink",
-      key: "pinkneutral",
-    },
-    {
-      bg: "bg-gradient-to-b from-green-400 to-amber-300",
-      text: "text-white",
-      name: "Green",
-      key: "greenamber",
-    },
-  ];
+    newSettings.locale.language.lang = tagLang;
+
+    window.localStorage.setItem("settings", JSON.stringify(newSettings));
+    setSettings(newSettings);
+  };
 
   return (
     <>
@@ -84,21 +37,21 @@ export default function SettingsMenu() {
             <ArrowLeft />
           </div>
           <div className="flex-1 text-2xl font-medium text-center">
-            {translation.settings["settings"][settings.locale[0].lang]}
+            {translation.settings["settings"][lang]}
           </div>
         </div>
 
         <Section
           icon={<Language />}
-          title={translation.settings["locale"][settings.locale[0].lang]}
+          title={translation.settings["locale"][lang]}
         >
           <div className="flex justify-between">
             <div className="ms-12">
-              {translation.settings["language"][settings.locale[0].lang]}
+              {translation.settings["language"][lang]}
             </div>
             <div className="me-6">
               <select
-                value={settings.locale[0].lang}
+                value={lang}
                 className="px-2 py-1 bg-gray-200 rounded-md outline-none w-36"
                 onChange={(e) => handleChangeLang(e.target.value)}
               >
@@ -115,78 +68,51 @@ export default function SettingsMenu() {
             </div>
           </div>
         </Section>
-        <Section
-          icon={<Clock />}
-          title={translation.settings["timer"][settings.locale[0].lang]}
-        >
-          {settings.timer.map((item) => (
+        <Section icon={<Clock />} title={translation.settings["timer"][lang]}>
+          {Object.values(settings.timer).map((item) => (
             <Option
               key={genId()}
               status={item.status}
-              label={
-                translation.settings[item.translationKey as keyof Settings][
-                  settings.locale[0].lang
-                ]
-              }
-              read={
-                translation.settings[item.translationKey as keyof Settings][
-                  settings.locale[0].lang
-                ]
-              }
-              id={item.id}
+              label={translation.settings[item.key as keyof Settings][lang]}
+              read={translation.settings[item.key as keyof Settings][lang]}
+              id={item.key}
             />
           ))}
         </Section>
 
         <Section
           icon={<CpuChip />}
-          title={translation.settings["features"][settings.locale[0].lang]}
+          title={translation.settings["features"][lang]}
         >
-          {settings.features.map((item) => (
+          {Object.values(settings.features).map((item) => (
             <Option
               key={genId()}
               status={item.status}
-              label={
-                translation.settings[item.translationKey as keyof Settings][
-                  settings.locale[0].lang
-                ]
-              }
-              read={
-                translation.settings[item.translationKey as keyof Settings][
-                  settings.locale[0].lang
-                ]
-              }
-              id={item.id}
+              label={translation.settings[item.key as keyof Settings][lang]}
+              read={translation.settings[item.key as keyof Settings][lang]}
+              id={item.key}
             />
           ))}
         </Section>
 
         <Section
           icon={<BellAlert />}
-          title={translation.settings["alerts"][settings.locale[0].lang]}
+          title={translation.settings["alerts"][lang]}
         >
-          {settings.alerts.map((item) => (
+          {Object.values(settings.alerts).map((item) => (
             <Option
               key={genId()}
               status={item.status}
-              label={
-                translation.settings[item.translationKey as keyof Settings][
-                  settings.locale[0].lang
-                ]
-              }
-              read={
-                translation.settings[item.translationKey as keyof Settings][
-                  settings.locale[0].lang
-                ]
-              }
-              id={item.id}
+              label={translation.settings[item.key as keyof Settings][lang]}
+              read={translation.settings[item.key as keyof Settings][lang]}
+              id={item.key}
             />
           ))}
         </Section>
 
         <Section
           icon={<Sparkles />}
-          title={translation.settings["theme"][settings.locale[0].lang]}
+          title={translation.settings["theme"][lang]}
         >
           <ThemeSelect />
         </Section>
@@ -224,7 +150,7 @@ function Option({
   label: string;
   status: boolean;
   read: string;
-  id: number;
+  id: string;
 }) {
   return (
     <div className="flex justify-between mb-1">

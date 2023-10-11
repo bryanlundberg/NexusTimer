@@ -12,7 +12,7 @@ import {
 import translation from "@/translations/global.json";
 
 export default function RadarCharter({ data }: { data: any }) {
-  const { settings } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
@@ -20,7 +20,7 @@ export default function RadarCharter({ data }: { data: any }) {
         <PolarAngleAxis dataKey="category" />
         <PolarRadiusAxis />
         <Radar
-          name={translation.metrics["total"][settings.locale[0].lang]}
+          name={translation.metrics["total"][lang]}
           dataKey="time"
           stroke="#F4D03F"
           strokeWidth={1.25}

@@ -1,40 +1,39 @@
 import { Language } from "./types/Language";
 
-interface LocaleItem {
-  lang: Language;
-  translationKey: string;
-  id: number;
+interface Locale {
+  language: { lang: Language; key: string };
 }
 
-interface TimerItem {
-  status: boolean;
-  translationKey: string;
-  id: number;
+interface Timer {
+  inspection: { status: boolean; key: string };
+  startCue: { status: boolean; key: string };
+  holdToStart: { status: boolean; key: string };
+  manualMode: { status: boolean; key: string };
 }
 
-interface FeatureItem {
-  status: boolean;
-  translationKey: string;
-  id: number;
+interface Features {
+  scrambleImage: { status: boolean; key: string };
+  sessionStats: { status: boolean; key: string };
+  quickActionButtons: { status: boolean; key: string };
+  hideWhileSolving: { status: boolean; key: string };
+  scrambleBackground: { status: boolean; key: string };
 }
 
-interface AlertItem {
-  status: boolean;
-  translationKey: string;
-  id: number;
+interface Alerts {
+  bestTime: { status: boolean; key: string };
+  bestAverage: { status: boolean; key: string };
+  worstTime: { status: boolean; key: string };
 }
 
-export interface ThemeItem {
-  bg?: string;
-  text?: string;
-  translationKey: string;
-  id: number;
+interface Theme {
+  background: { color: string; key: string };
+  content: { color: string; key: string };
 }
 
 export interface Settings {
-  locale: LocaleItem[];
-  timer: TimerItem[];
-  features: FeatureItem[];
-  alerts: AlertItem[];
-  theme: ThemeItem[];
+  locale: Locale;
+  timer: Timer;
+  features: Features;
+  alerts: Alerts;
+  theme: Theme;
 }

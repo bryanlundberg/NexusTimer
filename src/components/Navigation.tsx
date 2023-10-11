@@ -7,25 +7,25 @@ import Link from "next/link";
 import translation from "@/translations/global.json";
 
 export default function Navigation() {
-  const { settings } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
   return (
     <nav>
       <ul className="flex justify-center gap-5 ">
         <NavItem url="/">
           <Clock />
-          <div>{translation.timer["header"][settings.locale[0].lang]}</div>
+          <div>{translation.timer["header"][lang]}</div>
         </NavItem>
         <NavItem url="/solves">
           <Stack />
-          <div>{translation.solves["header"][settings.locale[0].lang]}</div>
+          <div>{translation.solves["header"][lang]}</div>
         </NavItem>
         <NavItem url="/stats">
           <Metrics />
-          <div>{translation.metrics["header"][settings.locale[0].lang]}</div>
+          <div>{translation.metrics["header"][lang]}</div>
         </NavItem>
         <NavItem url="/cubes">
           <Cubes />
-          <div>{translation.cubes["header"][settings.locale[0].lang]}</div>
+          <div>{translation.cubes["header"][lang]}</div>
         </NavItem>
       </ul>
     </nav>

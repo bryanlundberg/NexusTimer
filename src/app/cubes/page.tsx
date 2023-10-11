@@ -20,7 +20,7 @@ import { useEffect } from "react";
 export default function CubesPage() {
   const { cubes, setCubes } = useTimerStore();
   const { modalOpen, setModalOpen } = useCubesModalStore();
-  const { settings } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
 
   const handleSearchFilter = (searchCube: string) => {
     const cubesDB = loadCubes();
@@ -52,15 +52,13 @@ export default function CubesPage() {
           <div className="w-full mx-auto">
             <div className="flex flex-col sm:flex-row gap-3 justify-between items-center mx-3">
               <div className="font-medium text-2xl">
-                {translation.cubes["header"][settings.locale[0].lang]}
+                {translation.cubes["header"][lang]}
               </div>
               <div className="flex justify-end gap-3">
                 {/* Options */}
                 <InputText
                   placeholder={
-                    translation.inputs.placeholders["filter-cubes"][
-                      settings.locale[0].lang
-                    ]
+                    translation.inputs.placeholders["filter-cubes"][lang]
                   }
                   onChange={handleSearchFilter}
                 />
@@ -71,9 +69,7 @@ export default function CubesPage() {
                 >
                   <div className="flex justify-between items-center">
                     <Plus />
-                    <div>
-                      {translation.cubes["cube"][settings.locale[0].lang]}
-                    </div>
+                    <div>{translation.cubes["cube"][lang]}</div>
                   </div>
                 </Button>
               </div>
@@ -106,13 +102,7 @@ export default function CubesPage() {
                 width={56}
                 height={61}
               />
-              <div>
-                {
-                  translation.cubes["no-cubes-for-display"][
-                    settings.locale[0].lang
-                  ]
-                }
-              </div>
+              <div>{translation.cubes["no-cubes-for-display"][lang]}</div>
             </div>
           </div>
         )}

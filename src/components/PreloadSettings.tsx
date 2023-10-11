@@ -17,6 +17,7 @@ export default function PreloadSettings({
     const getCubes = loadCubes();
     const getSettings = loadSettings();
     setSettings(getSettings);
+    console.log(getSettings);
     if (setCubes) setCubes(getCubes);
   }, [setCubes, setSettings]);
 

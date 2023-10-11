@@ -20,7 +20,7 @@ export default function ModalCreate() {
     cubeName,
     setCubeName,
   } = useCubesModalStore();
-  const { settings } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
   const { setCubes } = useTimerStore();
 
   const handleClickRadio = (category: Categories) => {
@@ -99,18 +99,12 @@ export default function ModalCreate() {
             <div className="flex items-start justify-between gap-3 p-4 border-b rounded-t border-zinc-800">
               <h3 className="flex items-center justify-center w-32 h-8 text-sm font-semibold text-neutral-50">
                 {editingCube
-                  ? translation.cubes.modal["title-editing"][
-                      settings.locale[0].lang
-                    ]
-                  : translation.cubes.modal["title-creating"][
-                      settings.locale[0].lang
-                    ]}
+                  ? translation.cubes.modal["title-editing"][lang]
+                  : translation.cubes.modal["title-creating"][lang]}
               </h3>
               <InputText
                 placeholder={
-                  translation.inputs.placeholders["modal-cubes"][
-                    settings.locale[0].lang
-                  ]
+                  translation.inputs.placeholders["modal-cubes"][lang]
                 }
                 onChange={handleWriteCubeName}
                 value={cubeName}
@@ -138,7 +132,7 @@ export default function ModalCreate() {
                   />
                 </svg>
                 <span className="sr-only">
-                  {translation.inputs["cancel"][settings.locale[0].lang]}
+                  {translation.inputs["cancel"][lang]}
                 </span>
               </button>
             </div>
@@ -161,11 +155,7 @@ export default function ModalCreate() {
             </div>
 
             <div className="px-6 text-sm text-zinc-400">
-              {
-                translation.cubes.modal["current-select"][
-                  settings.locale[0].lang
-                ]
-              }{" "}
+              {translation.cubes.modal["current-select"][lang]}{" "}
               {selectedCategory}
             </div>
 
@@ -178,7 +168,7 @@ export default function ModalCreate() {
                   type="button"
                   className="text-neutral-100 border border-red-900 bg-red-800 hover:bg-red-900 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
-                  {translation.inputs["delete"][settings.locale[0].lang]}
+                  {translation.inputs["delete"][lang]}
                 </button>
               ) : null}
               {!editingCube ? (
@@ -188,7 +178,7 @@ export default function ModalCreate() {
                   type="button"
                   className="text-neutral-100 border border-zinc-800 bg-transparent hover:bg-zinc-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
-                  {translation.inputs["cancel"][settings.locale[0].lang]}
+                  {translation.inputs["cancel"][lang]}
                 </button>
               ) : null}
 
@@ -203,8 +193,8 @@ export default function ModalCreate() {
                 className="text-gray-800 bg-neutral-50 hover:bg-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 {editingCube
-                  ? translation.inputs["save"][settings.locale[0].lang]
-                  : translation.inputs["create"][settings.locale[0].lang]}
+                  ? translation.inputs["save"][lang]
+                  : translation.inputs["create"][lang]}
               </button>
             </div>
           </div>

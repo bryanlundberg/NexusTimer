@@ -8,30 +8,30 @@ function Toggle({
   id,
 }: {
   status: boolean;
-  read?: string;
-  id: number;
+  read: string;
+  id: string;
 }) {
   const { setSettings } = useSettingsModalStore();
 
   const saveSettings = () => {
     const currentSettings = loadSettings();
-    for (const setting of currentSettings.timer) {
-      if (setting.id === id) {
-        setting.status = !status;
-      }
-    }
 
-    for (const setting of currentSettings.alerts) {
-      if (setting.id === id) {
-        setting.status = !status;
+    Object.values(currentSettings.timer).forEach((setting: any) => {
+      if (setting.key === id) {
+        setting.status = !setting.status;
       }
-    }
+    });
 
-    for (const setting of currentSettings.features) {
-      if (setting.id === id) {
-        setting.status = !status;
+    Object.values(currentSettings.alerts).forEach((setting: any) => {
+      if (setting.key === id) {
+        setting.status = !setting.status;
       }
-    }
+    });
+    Object.values(currentSettings.features).forEach((setting: any) => {
+      if (setting.key === id) {
+        setting.status = !setting.status;
+      }
+    });
 
     window.localStorage.setItem("settings", JSON.stringify(currentSettings));
     setSettings(currentSettings);

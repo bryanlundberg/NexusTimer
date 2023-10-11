@@ -1,27 +1,29 @@
 import { Settings } from "@/interfaces/Settings";
 
 export const defaultSettings: Settings = {
-  locale: [{ id: 1, lang: "en", translationKey: "language" }],
-  timer: [
-    { id: 2, status: true, translationKey: "inspection" },
-    { id: 3, status: false, translationKey: "start-cue" },
-    { id: 4, status: true, translationKey: "hold-to-start" },
-    { id: 5, status: false, translationKey: "manual-mode" },
-  ],
-  features: [
-    { id: 6, status: true, translationKey: "scramble-image" },
-    { id: 7, status: true, translationKey: "session-stats" },
-    { id: 8, status: true, translationKey: "quick-action-buttons" },
-    { id: 9, status: false, translationKey: "hide-while-solving" },
-    { id: 10, status: true, translationKey: "scramble-background" },
-  ],
-  alerts: [
-    { id: 11, status: false, translationKey: "best-time" },
-    { id: 12, status: false, translationKey: "best-average" },
-    { id: 13, status: false, translationKey: "worst-time" },
-  ],
-  theme: [
-    { id: 14, bg: "dark", translationKey: "background-color" },
-    { id: 15, text: "dark", translationKey: "letter-color" },
-  ],
+  locale: {
+    language: { lang: "en", key: "language" },
+  },
+  timer: {
+    inspection: { status: true, key: "inspection" },
+    startCue: { status: false, key: "start-cue" },
+    holdToStart: { status: true, key: "hold-to-start" },
+    manualMode: { status: false, key: "manual-mode" },
+  },
+  features: {
+    scrambleImage: { status: true, key: "scramble-image" },
+    sessionStats: { status: true, key: "session-stats" },
+    quickActionButtons: { status: true, key: "quick-action-buttons" },
+    hideWhileSolving: { status: false, key: "hide-while-solving" },
+    scrambleBackground: { status: true, key: "scramble-background" },
+  },
+  alerts: {
+    bestTime: { status: false, key: "best-time" },
+    bestAverage: { status: false, key: "best-average" },
+    worstTime: { status: false, key: "worst-time" },
+  },
+  theme: {
+    background: { color: "dark", key: "background-color" },
+    content: { color: "dark", key: "letter-color" },
+  },
 };
