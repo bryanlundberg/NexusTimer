@@ -33,59 +33,69 @@ export default function Timer() {
   const isHolding = useRef<boolean>(false);
 
   const handleHold = (event: KeyboardEvent) => {
-    if (event.code !== "Space") return;
-
-    if (isSolving.current) {
-      clearInterval(runningTimeId.current);
-      isSolving.current = false;
-      if (selectedCube !== null && scramble) {
-        const lastSolve: Solve = {
-          id: genId(),
-          startTime: startTime.current,
-          endTime: endTimeRef.current,
-          scramble: scramble,
-          bookmark: false,
-          time: solvingTime,
-          dnf: false,
-          plus2: false,
-          rating: Math.floor(Math.random() * 20) + scramble.length,
-          category: selectedCube.category,
-          cubeId: selectedCube.id,
-        };
-
-        setLastSolve(lastSolve);
-
-        if (selectedCube) {
-          const newCubes = addSolve({
-            cubeId: selectedCube?.id,
-            solve: lastSolve,
-          });
-          setCubes(newCubes);
-          const currectCube = findCube({ cubeId: selectedCube.id });
-          if (currectCube) setSelectedCube(currectCube);
+    if (event.code === "Space" || event.code === "Escape") {
+      if (isSolving.current) {
+        if (event.code === "Escape") {
+          clearInterval(runningTimeId.current);
+          isSolving.current = false;
+          setLastSolve(null);
+          startTime.current = 0;
+          holdingTimeRef.current = 0;
+          setTimerStatus("idle");
+          setSolvingTime(0);
+          return;
         }
-        setNewScramble(selectedCube);
+        clearInterval(runningTimeId.current);
+        isSolving.current = false;
+        if (selectedCube !== null && scramble) {
+          const lastSolve: Solve = {
+            id: genId(),
+            startTime: startTime.current,
+            endTime: endTimeRef.current,
+            scramble: scramble,
+            bookmark: false,
+            time: solvingTime,
+            dnf: false,
+            plus2: false,
+            rating: Math.floor(Math.random() * 20) + scramble.length,
+            category: selectedCube.category,
+            cubeId: selectedCube.id,
+          };
+
+          setLastSolve(lastSolve);
+
+          if (selectedCube) {
+            const newCubes = addSolve({
+              cubeId: selectedCube?.id,
+              solve: lastSolve,
+            });
+            setCubes(newCubes);
+            const currectCube = findCube({ cubeId: selectedCube.id });
+            if (currectCube) setSelectedCube(currectCube);
+          }
+          setNewScramble(selectedCube);
+        }
+        startTime.current = 0;
+        holdingTimeRef.current = 0;
+        setTimerStatus("idle");
+        return;
       }
-      startTime.current = 0;
-      holdingTimeRef.current = 0;
-      setTimerStatus("idle");
-      return;
-    }
 
-    const now = Date.now();
-    const difference = now - holdingTimeRef.current;
+      const now = Date.now();
+      const difference = now - holdingTimeRef.current;
 
-    if (!isHolding.current) {
-      holdingTimeRef.current = now;
-      isHolding.current = true;
-      if (settings.timer.holdToStart.status) {
-        setTimerStatus("holdingKey");
+      if (!isHolding.current) {
+        holdingTimeRef.current = now;
+        isHolding.current = true;
+        if (settings.timer.holdToStart.status) {
+          setTimerStatus("holdingKey");
+        } else {
+          setTimerStatus("ready");
+        }
       } else {
-        setTimerStatus("ready");
-      }
-    } else {
-      if (difference >= holdTimeRequired) {
-        setTimerStatus("ready");
+        if (difference >= holdTimeRequired) {
+          setTimerStatus("ready");
+        }
       }
     }
   };
