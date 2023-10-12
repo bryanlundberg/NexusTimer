@@ -15,28 +15,20 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import Navigation from "@/components/Navigation";
 import Image from "next/image";
 import nodata from "@/images/no-data.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function CubesPage() {
   const { cubes, setCubes } = useTimerStore();
+  const [filterCubes, setFilterCubes] = useState(cubes);
   const { modalOpen, setModalOpen } = useCubesModalStore();
   const { lang } = useSettingsModalStore();
 
   const handleSearchFilter = (searchCube: string) => {
-    const cubesDB = loadCubes();
-    if (!cubesDB) return;
-    if (searchCube === "") {
-      const cubesDB = loadCubes();
-      setCubes(cubesDB);
-      return;
-    }
-    const filterCubes = cubesDB.filter((cube: Cube) =>
-      cube.name.toLowerCase().startsWith(searchCube.toLowerCase())
+    setFilterCubes(
+      cubes!.filter((cube: Cube) =>
+        cube.name.toLowerCase().startsWith(searchCube.toLowerCase())
+      )
     );
-
-    if (filterCubes) {
-      setCubes(filterCubes);
-    }
   };
 
   useEffect(() => {
@@ -44,6 +36,10 @@ export default function CubesPage() {
     const cubes = loadCubes();
     setCubes(cubes);
   }, [setCubes, setModalOpen]);
+
+  useEffect(() => {
+    setFilterCubes(cubes);
+  }, [modalOpen, cubes]);
 
   return (
     <>
@@ -77,12 +73,12 @@ export default function CubesPage() {
           </div>
         </div>
         {/* content */}
-        {cubes && cubes.length > 0 ? (
+        {filterCubes && filterCubes.length > 0 ? (
           <div className="h-full overflow-auto grow m-3">
             <div className="table w-full text-sm">
               <TableHeader />
               <div className="table-row-group h-10 border-zinc-800 text-white text-sm">
-                {cubes.map((cube) => (
+                {filterCubes.map((cube) => (
                   <TableRow key={genId()} cube={cube} />
                 ))}
               </div>
