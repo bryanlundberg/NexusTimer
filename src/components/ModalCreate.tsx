@@ -9,6 +9,7 @@ import { useTimerStore } from "@/store/timerStore";
 import loadCubes from "@/lib/loadCubes";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import { useState } from "react";
 
 export default function ModalCreate() {
   const {
@@ -22,17 +23,22 @@ export default function ModalCreate() {
   } = useCubesModalStore();
   const { lang } = useSettingsModalStore();
   const { setCubes } = useTimerStore();
+  const [error, setError] = useState<boolean>(false);
 
   const handleClickRadio = (category: Categories) => {
     setSelectedCategory(category);
   };
 
   const handleWriteCubeName = (newText: string) => {
+    if (newText.trim().length > 0) setError(false);
     setCubeName(newText);
   };
 
   const handleCreateCube = (name: string, category: Categories) => {
-    if (name === "") return;
+    if (name.trim() === "") {
+      setError(true);
+      return;
+    }
     const newCubes = createCube({
       cubeName: name,
       category: category,
@@ -102,14 +108,21 @@ export default function ModalCreate() {
                   ? translation.cubes.modal["title-editing"][lang]
                   : translation.cubes.modal["title-creating"][lang]}
               </h3>
-              <InputText
-                placeholder={
-                  translation.inputs.placeholders["modal-cubes"][lang]
-                }
-                onChange={handleWriteCubeName}
-                value={cubeName}
-                focus={true}
-              />
+              <div className="flex flex-col w-full">
+                <InputText
+                  placeholder={
+                    translation.inputs.placeholders["modal-cubes"][lang]
+                  }
+                  onChange={handleWriteCubeName}
+                  value={cubeName}
+                  focus={true}
+                />
+                {error && (
+                  <p className="text-sm text-red-500 px-2">
+                    Cube name is missing.
+                  </p>
+                )}
+              </div>
               <button
                 type="button"
                 className="inline-flex items-center justify-center w-8 h-8 ml-auto text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900"
