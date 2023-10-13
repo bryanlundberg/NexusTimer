@@ -90,7 +90,7 @@ export default function ModalCreate() {
         id="defaultModal"
         tabIndex={2}
         aria-hidden={false}
-        className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full flex flex-col items-center"
+        className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center"
       >
         <div className="relative w-full max-w-2xl max-h-full">
           {/* <!-- Modal content --> */}
