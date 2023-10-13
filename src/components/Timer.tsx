@@ -29,8 +29,8 @@ export default function Timer() {
   const holdingTimeRef = useRef<number>(0);
   const startTime = useRef<number>(0);
   const runningTimeId = useRef<any>(null);
-  const isSolving = useRef<boolean>(false);
-  const isHolding = useRef<boolean>(false);
+  const isSolving = useRef(false);
+  const isHolding = useRef(false);
 
   const handleHold = (event: KeyboardEvent) => {
     if (event.code === "Space" || event.code === "Escape") {
@@ -45,9 +45,11 @@ export default function Timer() {
           setSolvingTime(0);
           return;
         }
+
         clearInterval(runningTimeId.current);
         isSolving.current = false;
-        if (selectedCube !== null && scramble) {
+
+        if (selectedCube && scramble) {
           const lastSolve: Solve = {
             id: genId(),
             startTime: startTime.current,
@@ -66,15 +68,20 @@ export default function Timer() {
 
           if (selectedCube) {
             const newCubes = addSolve({
-              cubeId: selectedCube?.id,
+              cubeId: selectedCube.id,
               solve: lastSolve,
             });
+
             setCubes(newCubes);
-            const currectCube = findCube({ cubeId: selectedCube.id });
-            if (currectCube) setSelectedCube(currectCube);
+
+            const currentCube = findCube({ cubeId: selectedCube.id });
+
+            if (currentCube) setSelectedCube(currentCube);
           }
+
           setNewScramble(selectedCube);
         }
+
         startTime.current = 0;
         holdingTimeRef.current = 0;
         setTimerStatus("idle");
@@ -87,6 +94,7 @@ export default function Timer() {
       if (!isHolding.current) {
         holdingTimeRef.current = now;
         isHolding.current = true;
+
         if (settings.timer.holdToStart.status) {
           setTimerStatus("holdingKey");
         } else {
@@ -148,7 +156,7 @@ export default function Timer() {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center grow">
+      <div className="flex flex-col items-center justify-center grow">
         <div
           className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-mono select-none ${timerStatusClasses[timerStatus]}`}
         >
@@ -157,7 +165,7 @@ export default function Timer() {
         {lastSolve &&
           settings.features.quickActionButtons.status &&
           timerStatus === "idle" && <SolveOptions solve={lastSolve} />}
-      </section>
+      </div>
     </>
   );
 }
