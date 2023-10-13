@@ -4,8 +4,7 @@ export default function formatTime(timeInMs: number): string {
   const minutes = Math.floor((timeInMs / (60 * 1000)) % 60);
 
   const formattedTime =
-    (minutes > 0 ? padTo2Digits(minutes) + ":" : "") +
-    padTo2Digits(seconds) +
+    (minutes > 0 ? minutes + ":" + padTo2Digits(seconds) : seconds) +
     "." +
     (milliseconds / 1000).toFixed(2).slice(2);
 
