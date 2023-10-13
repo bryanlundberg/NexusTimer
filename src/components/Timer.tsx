@@ -7,6 +7,7 @@ import addSolve from "@/lib/addSolve";
 import findCube from "@/lib/findCube";
 import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import formatTime from "@/lib/formatTime";
 
 export default function Timer() {
   const {
@@ -152,7 +153,7 @@ export default function Timer() {
         <div
           className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-mono select-none ${timerStatusClasses[timerStatus]}`}
         >
-          {(solvingTime / 1000).toFixed(3)}
+          {formatTime(solvingTime)}
         </div>
         {lastSolve &&
           settings.features.quickActionButtons.status &&
