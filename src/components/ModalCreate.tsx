@@ -118,8 +118,8 @@ export default function ModalCreate() {
                   focus={true}
                 />
                 {error && (
-                  <p className="text-sm text-red-500 px-2">
-                    Cube name is missing.
+                  <p className="text-sm text-red-500 px-2 mt-2">
+                    {translation.cubes.modal["error-name"][lang]}
                   </p>
                 )}
               </div>
