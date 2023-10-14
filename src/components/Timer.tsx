@@ -31,23 +31,26 @@ export default function Timer() {
   const runningTimeId = useRef<any>(null);
   const isSolving = useRef(false);
   const isHolding = useRef(false);
+  const isReleased = useRef(true);
 
   const handleHold = (event: KeyboardEvent) => {
     if (event.code === "Space" || event.code === "Escape") {
-      if (isSolving.current) {
-        if (event.code === "Escape") {
-          clearInterval(runningTimeId.current);
-          isSolving.current = false;
-          setLastSolve(null);
-          startTime.current = 0;
-          holdingTimeRef.current = 0;
-          setTimerStatus("idle");
-          setSolvingTime(0);
-          return;
-        }
-
+      if (event.code === "Escape") {
         clearInterval(runningTimeId.current);
         isSolving.current = false;
+        isReleased.current = false;
+        startTime.current = 0;
+        holdingTimeRef.current = 0;
+        setLastSolve(null);
+        setTimerStatus("idle");
+        setSolvingTime(0);
+        return;
+      }
+
+      if (isSolving.current) {
+        clearInterval(runningTimeId.current);
+        isSolving.current = false;
+        isReleased.current = false;
 
         if (selectedCube && scramble) {
           const lastSolve: Solve = {
@@ -91,6 +94,8 @@ export default function Timer() {
       const now = Date.now();
       const difference = now - holdingTimeRef.current;
 
+      if (!isReleased.current) return;
+
       if (!isHolding.current) {
         holdingTimeRef.current = now;
         isHolding.current = true;
@@ -109,7 +114,10 @@ export default function Timer() {
   };
 
   const handleRelease = (event: KeyboardEvent) => {
-    if (event.code === "Space") {
+    if (event.code === "Space" || event.code === "Escape") {
+      isReleased.current = true;
+      if (event.code === "Escape") return;
+
       const now = Date.now();
       const difference: number = now - holdingTimeRef.current;
 
