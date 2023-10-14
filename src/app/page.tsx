@@ -10,7 +10,7 @@ export default function Home() {
   const { settingsOpen } = useSettingsModalStore();
   return (
     <>
-      <div className="grow flex flex-col justify-between py-3 px-5">
+      <div className="flex flex-col justify-between px-5 py-3 grow">
         <HeaderTimer />
         <Timer />
         <TimerWidgets />
