@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <div
-        onClick={() => setSettingsOpen(!settingsOpen)}
+        onClick={() => settingsOpen && setSettingsOpen(!settingsOpen)}
         className="grow flex flex-col justify-between py-3 px-5"
       >
         <HeaderTimer />
