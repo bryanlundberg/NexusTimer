@@ -7,10 +7,13 @@ import SettingsMenu from "@/components/SettingsMenu";
 import Navigation from "@/components/Navigation";
 
 export default function Home() {
-  const { settingsOpen } = useSettingsModalStore();
+  const { settingsOpen, setSettingsOpen } = useSettingsModalStore();
   return (
     <>
-      <div className="grow flex flex-col justify-between py-3 px-5">
+      <div
+        onClick={() => setSettingsOpen(!settingsOpen)}
+        className="grow flex flex-col justify-between py-3 px-5"
+      >
         <HeaderTimer />
         <Timer />
         <TimerWidgets />
