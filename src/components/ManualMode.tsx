@@ -1,38 +1,59 @@
+import { Solve } from "@/interfaces/Solve";
 import addSolve from "@/lib/addSolve";
 import convertToMs from "@/lib/convertToMs";
+import findCube from "@/lib/findCube";
 import formatTime from "@/lib/formatTime";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import { useState } from "react";
+import SolveOptions from "./SolveOptions";
 
 export default function ManualMode() {
   const [value, setValue] = useState<string>("");
-  const { selectedCube } = useTimerStore();
+  const {
+    selectedCube,
+    scramble,
+    lastSolve,
+    setNewScramble,
+    setLastSolve,
+    setCubes,
+    setSelectedCube,
+  } = useTimerStore();
 
   return (
     <>
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          if (!selectedCube) return;
+          if (!scramble) return;
+          if (parseInt(value) === 0 || value === "") return;
           setValue("");
 
-          if (!selectedCube) return;
-
           const msTime = convertToMs(value);
-          // const lastSolve: Solve = {
-          //   id: genId(),
-          //   startTime: startTime.current,
-          //   endTime: endTimeRef.current,
-          //   scramble: scramble,
-          //   bookmark: false,
-          //   time: solvingTime,
-          //   dnf: false,
-          //   plus2: false,
-          //   rating: Math.floor(Math.random() * 20) + scramble.length,
-          //   category: selectedCube.category,
-          //   cubeId: selectedCube.id,
-          // };
-          // addSolve({cubeId: selectedCube.id, solve: })
+          const now = Date.now();
+          const newSolve: Solve = {
+            id: genId(),
+            startTime: now - msTime,
+            endTime: now + msTime,
+            scramble: scramble,
+            bookmark: false,
+            time: msTime,
+            dnf: false,
+            plus2: false,
+            rating: Math.floor(Math.random() * 20) + scramble.length,
+            category: selectedCube.category,
+            cubeId: selectedCube.id,
+          };
+          setLastSolve(newSolve);
+          const newCubes = addSolve({
+            cubeId: selectedCube.id,
+            solve: newSolve,
+          });
+          setCubes(newCubes);
+          const currentCube = findCube({ cubeId: selectedCube.id });
+          if (currentCube) setSelectedCube(currentCube);
+          setNewScramble(selectedCube);
         }}
         className="flex flex-col items-center"
       >
@@ -55,6 +76,7 @@ export default function ManualMode() {
             Preview: {formatTime(convertToMs(value))}{" "}
           </div>
         ) : null}
+        {lastSolve ? <SolveOptions solve={lastSolve} /> : null}
       </form>
     </>
   );
