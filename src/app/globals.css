@@ -24,6 +24,11 @@
   background: rgb(39 39 42);
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 scramble-display {
   width: 100%;
   height: 100%;
