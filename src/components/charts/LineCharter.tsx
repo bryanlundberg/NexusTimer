@@ -52,14 +52,14 @@ export default function LineCharter({
         const cubeAllStructuredData: any = sort(cubeAll).asc(
           (u: any) => u.time
         );
-        const cubeAllLine = chart.addLineSeries({ color: "#ffffff" });
+        const cubeAllLine = chart.addLineSeries({ color: "#2962FF" });
         cubeAllLine.setData(cubeAllStructuredData);
       } else {
         data.global.map((i: Solve, index: number) => {
           global.push({ time: index, value: i.time / 1000 });
         });
         const globalStructuredData: any = sort(global).asc((u: any) => u.time);
-        const globalLine = chart.addLineSeries({ color: "#2962FF" });
+        const globalLine = chart.addLineSeries({ color: "#F4D03F" });
         globalLine.setData(globalStructuredData);
       }
       chart.autoSizeActive();
