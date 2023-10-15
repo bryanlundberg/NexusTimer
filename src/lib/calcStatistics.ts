@@ -16,8 +16,7 @@ export default function calcStatistics({
     return defaultTimerStatistics;
   }
 
-  const sortedSolves = sort(cube.solves.session).desc((u) => u.endTime);
-
+  const sortedSolves = sort(cube.solves.session).asc((u) => u.time);
   if (sortedSolves.length === 0) {
     return defaultTimerStatistics;
   }
