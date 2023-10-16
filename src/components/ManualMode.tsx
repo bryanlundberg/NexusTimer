@@ -11,6 +11,7 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function ManualMode() {
   const [value, setValue] = useState<string>("");
+  const [isValidValue, setIsValidValue] = useState<boolean>(true)
   const {
     selectedCube,
     scramble,
@@ -29,6 +30,7 @@ export default function ManualMode() {
           e.preventDefault();
           if (!selectedCube) return;
           if (!scramble) return;
+          if(!isValidValue) return
           if (parseInt(value) === 0 || value === "") return;
           setValue("");
 
@@ -67,7 +69,9 @@ export default function ManualMode() {
           value={value}
           className="w-full max-w-[750px] h-20 text-6xl font-medium text-center border rounded-md outline-none appearance-none cursor-pointer bg-zinc-900 focus:cursor-text py-14 border-zinc-800 focus:border-neutral-300 text-nexutral-200"
           onChange={(e) => {
+            setIsValidValue(true)
             if (!selectedCube) return;
+            if(parseInt(e.target.value) <= 0) setIsValidValue(false)
             if (parseInt(e.target.value) <= 595959 || e.target.value === "") {
               setValue(e.target.value);
             }
@@ -75,7 +79,7 @@ export default function ManualMode() {
         />
         {value !== "" ? (
           <div className="mt-1 text-center">
-            Preview: {formatTime(convertToMs(value))}{" "}
+            {isValidValue ? <span>Preview: {formatTime(convertToMs(value))}{" "}</span> : <span>Please enter a number greater than 1</span>}
           </div>
         ) : null}
         {lastSolve && settings.features.quickActionButtons.status ? (
