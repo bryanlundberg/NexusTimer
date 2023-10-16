@@ -16,5 +16,5 @@ export default function getDeviation(solves: Solve[]) {
 
   const desvStandard = Math.sqrt(diff / n);
 
-  return desvStandard / 1000;
+  return desvStandard;
 }
