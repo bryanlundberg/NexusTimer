@@ -14,9 +14,9 @@ export default function calcBestTime(category: Categories, cubeName: string) {
   const bestCubeSession = sort(cubeSession).asc((u) => u.time);
 
   return {
-    global: global.length > 0 ? bestGlobal[0].time / 1000 : "--",
-    session: session.length > 0 ? bestSession[0].time / 1000 : "--",
-    cubeAll: cubeAll.length > 0 ? bestCubeAll[0].time / 1000 : "--",
-    cubeSession: cubeSession.length > 0 ? bestCubeSession[0].time / 1000 : "--",
+    global: bestGlobal[0]?.time || 0,
+    session: bestSession[0]?.time || 0,
+    cubeAll: bestCubeAll[0]?.time || 0,
+    cubeSession: bestCubeSession[0]?.time || 0,
   };
 }
