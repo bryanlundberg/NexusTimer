@@ -1,7 +1,8 @@
+import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function ThemeSelect() {
-  const { settings } = useSettingsModalStore();
+  const { settings, setSettings } = useSettingsModalStore();
   const variation = [
     {
       bg: "bg-neutral-100",
@@ -55,11 +56,21 @@ export default function ThemeSelect() {
 
   const selectedKey = settings.theme.background;
 
+  const handleSelectTheme = (newThemeKey: string) => {
+    const currentSettings = loadSettings();
+    currentSettings.theme.background.color = newThemeKey;
+    window.localStorage.setItem("settings", JSON.stringify(currentSettings));
+    setSettings(currentSettings);
+  };
+
   return (
     <div className="grid grid-cols-4 gap-3 ms-10 me-10">
       {variation.map((item) => (
         <div key={item.key}>
-          <div className="flex flex-col items-center justify-center">
+          <div
+            onClick={() => handleSelectTheme(item.key)}
+            className="flex flex-col items-center justify-center"
+          >
             <div
               className={`cursor-pointer w-full h-24 rounded-md border border-black ${
                 item.bg

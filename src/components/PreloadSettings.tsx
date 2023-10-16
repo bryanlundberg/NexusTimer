@@ -17,9 +17,16 @@ export default function PreloadSettings({
     const getCubes = loadCubes();
     const getSettings = loadSettings();
     setSettings(getSettings);
-    console.log(getSettings);
     if (setCubes) setCubes(getCubes);
   }, [setCubes, setSettings]);
 
-  return <>{children}</>;
+  return (
+    <>
+      <div
+        className={`blue select-none min-h-screen max-h-screen flex flex-col gap-2 justify-between blue:bg-purple-500`}
+      >
+        {children}{" "}
+      </div>
+    </>
+  );
 }
