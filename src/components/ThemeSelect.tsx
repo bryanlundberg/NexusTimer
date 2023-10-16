@@ -25,7 +25,7 @@ export default function ThemeSelect() {
       key: "dark",
     },
     {
-      bg: "bg-gradient-to-b from-gray-950 to-gray-700",
+      bg: "bg-gradient-to-b from-gray-900 to-gray-700",
       text: "text-white",
       name: "Gray",
       key: "graygray",
