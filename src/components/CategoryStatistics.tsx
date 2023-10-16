@@ -107,120 +107,120 @@ export default function CategoryStatistics() {
           </div>
           <StatisticRow
             label={translation.timer["deviation"][lang]}
-            global={deviation.global === 0 ? "--" : formatTime(deviation.global * 1000)}
+            global={deviation.global === 0 ? "--" : formatTime(deviation.global)}
             session={
-              deviation.session === 0 ? "--" : formatTime(deviation.session * 1000)
+              deviation.session === 0 ? "--" : formatTime(deviation.session)
             }
             cubeAll={
-              deviation.cubeAll === 0 ? "--" : formatTime(deviation.cubeAll * 1000)
+              deviation.cubeAll === 0 ? "--" : formatTime(deviation.cubeAll)
             }
             cubeSession={
               deviation.cubeSession === 0
                 ? "--"
-                : formatTime(deviation.cubeSession * 1000)
+                : formatTime(deviation.cubeSession)
             }
           />
           <StatisticRow
             label="Ao5"
-            global={stats.global.ao5 === 0 ? "--" : formatTime(stats.global.ao5 * 1000)}
+            global={stats.global.ao5 === 0 ? "--" : formatTime(stats.global.ao5)}
             session={
-              stats.session.ao5 === 0 ? "--" : formatTime(stats.session.ao5 * 1000)
+              stats.session.ao5 === 0 ? "--" : formatTime(stats.session.ao5)
             }
             cubeAll={
-              stats.cubeAll.ao5 === 0 ? "--" : formatTime(stats.cubeAll.ao5 * 1000)
+              stats.cubeAll.ao5 === 0 ? "--" : formatTime(stats.cubeAll.ao5)
             }
             cubeSession={
               stats.cubeSession.ao5 === 0
                 ? "--"
-                : formatTime(stats.cubeSession.ao5 * 1000)
+                : formatTime(stats.cubeSession.ao5)
             }
           />
           <StatisticRow
             label="Ao12"
             global={
-              stats.global.ao12 === 0 ? "--" : formatTime(stats.global.ao12 * 1000)
+              stats.global.ao12 === 0 ? "--" : formatTime(stats.global.ao12)
             }
             session={
-              stats.session.ao12 === 0 ? "--" : formatTime(stats.session.ao12 * 1000)
+              stats.session.ao12 === 0 ? "--" : formatTime(stats.session.ao12)
             }
             cubeAll={
-              stats.cubeAll.ao12 === 0 ? "--" : formatTime(stats.cubeAll.ao12 * 1000)
+              stats.cubeAll.ao12 === 0 ? "--" : formatTime(stats.cubeAll.ao12)
             }
             cubeSession={
               stats.cubeSession.ao12 === 0
                 ? "--"
-                : formatTime(stats.cubeSession.ao12 * 1000)
+                : formatTime(stats.cubeSession.ao12)
             }
           />
           <StatisticRow
             label="Ao50"
             global={
-              stats.global.ao50 === 0 ? "--" : formatTime(stats.global.ao50 * 1000)
+              stats.global.ao50 === 0 ? "--" : formatTime(stats.global.ao50)
             }
             session={
-              stats.session.ao50 === 0 ? "--" : formatTime(stats.session.ao50 * 1000)
+              stats.session.ao50 === 0 ? "--" : formatTime(stats.session.ao50)
             }
             cubeAll={
-              stats.cubeAll.ao50 === 0 ? "--" : formatTime(stats.cubeAll.ao50 * 1000)
+              stats.cubeAll.ao50 === 0 ? "--" : formatTime(stats.cubeAll.ao50)
             }
             cubeSession={
               stats.cubeSession.ao50 === 0
                 ? "--"
-                : formatTime(stats.cubeSession.ao50 * 1000)
+                : formatTime(stats.cubeSession.ao50)
             }
           />
           <StatisticRow
             label="Ao100"
             global={
-              stats.global.ao100 === 0 ? "--" : formatTime(stats.global.ao100 * 1000)
+              stats.global.ao100 === 0 ? "--" : formatTime(stats.global.ao100)
             }
             session={
-              stats.session.ao100 === 0 ? "--" : formatTime(stats.session.ao100 * 1000)
+              stats.session.ao100 === 0 ? "--" : formatTime(stats.session.ao100)
             }
             cubeAll={
-              stats.cubeAll.ao100 === 0 ? "--" : formatTime(stats.cubeAll.ao100 * 1000)
+              stats.cubeAll.ao100 === 0 ? "--" : formatTime(stats.cubeAll.ao100)
             }
             cubeSession={
               stats.cubeSession.ao100 === 0
                 ? "--"
-                : formatTime(stats.cubeSession.ao100 * 1000)
+                : formatTime(stats.cubeSession.ao100)
             }
           />
           <StatisticRow
             label="Ao1000"
             global={
-              stats.global.ao1000 === 0 ? "--" : formatTime(stats.global.ao1000 * 1000)
+              stats.global.ao1000 === 0 ? "--" : formatTime(stats.global.ao1000)
             }
             session={
               stats.session.ao1000 === 0
                 ? "--"
-                : formatTime(stats.session.ao1000 * 1000)
+                : formatTime(stats.session.ao1000)
             }
             cubeAll={
               stats.cubeAll.ao1000 === 0
                 ? "--"
-                : formatTime(stats.cubeAll.ao1000 * 1000)
+                : formatTime(stats.cubeAll.ao1000)
             }
             cubeSession={
               stats.cubeSession.ao1000 === 0
                 ? "--"
-                : formatTime(stats.cubeSession.ao1000 * 1000)
+                : formatTime(stats.cubeSession.ao1000)
             }
           />
           <StatisticRow
             label={translation.metrics["best-time"][lang]}
-            global={best.global}
-            session={best.session}
-            cubeAll={best.cubeAll}
-            cubeSession={best.cubeSession}
+            global={best.global > 0 ? formatTime(best.global) : "--"}
+            session={best.session > 0 ? formatTime(best.session) : "--"}
+            cubeAll={best.cubeAll > 0 ? formatTime(best.cubeAll) : "--"}
+            cubeSession={best.cubeSession > 0 ? formatTime(best.cubeSession) : "--"}
           />
           <StatisticRow
             label={translation.metrics["average"][lang]}
-            global={average.global === 0 ? "--" : formatTime(average.global * 1000)}
-            session={average.session === 0 ? "--" : formatTime(average.session * 1000)}
-            cubeAll={average.cubeAll === 0 ? "--" : formatTime(average.cubeAll * 1000)}
+            global={average.global === 0 ? "--" : formatTime(average.global)}
+            session={average.session === 0 ? "--" : formatTime(average.session)}
+            cubeAll={average.cubeAll === 0 ? "--" : formatTime(average.cubeAll)}
             cubeSession={
-              average.cubeSession === 0 ? "--" : formatTime(average.cubeSession * 1000)
+              average.cubeSession === 0 ? "--" : formatTime(average.cubeSession)
             }
           />
           <StatisticRow
