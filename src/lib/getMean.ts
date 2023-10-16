@@ -9,5 +9,5 @@ export default function getMean(solves: Solve[]) {
   );
   const mean = totalSolvingTime / n;
 
-  return mean / 1000;
+  return mean;
 }

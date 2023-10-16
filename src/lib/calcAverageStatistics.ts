@@ -7,22 +7,13 @@ export default function calcAverageStatistics(
 ) {
   const solveMetrics = getSolvesMetrics(category, cubeName);
 
-  const globalTime =
-    solveMetrics.global.reduce((total, acc) => total + acc.time, 0) /
-    1000 /
-    solveMetrics.global.length;
-  const sessionTime =
-    solveMetrics.session.reduce((total, acc) => total + acc.time, 0) /
-    1000 /
-    solveMetrics.session.length;
-  const cubeSessionTime =
-    solveMetrics.cubeSession.reduce((total, acc) => total + acc.time, 0) /
-    1000 /
-    solveMetrics.cubeSession.length;
-  const cubeAllTime =
-    solveMetrics.cubeAll.reduce((total, acc) => total + acc.time, 0) /
-    1000 /
-    solveMetrics.cubeAll.length;
+  const globalTime = solveMetrics.global.reduce((total, acc) => total + acc.time, 0) / solveMetrics.global.length;
+
+  const sessionTime = solveMetrics.session.reduce((total, acc) => total + acc.time, 0) / solveMetrics.session.length;
+
+  const cubeSessionTime = solveMetrics.cubeSession.reduce((total, acc) => total + acc.time, 0) / solveMetrics.cubeSession.length;
+  
+  const cubeAllTime = solveMetrics.cubeAll.reduce((total, acc) => total + acc.time, 0) / solveMetrics.cubeAll.length;
 
   return {
     global: globalTime > 0 ? globalTime : 0,
