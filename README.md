@@ -3,9 +3,9 @@
 For those new to speedcubing, it's a puzzle-solving challenge where cubers aim to solve the Rubik's Cube as quickly as possible. The objective is to align all the cube's colors correctly while racing against the clock for the fastest solve time. Achieving a fast solve time is the goal.
 
 <div align="center">
-  <img src="https://media.discordapp.net/attachments/1137527038366978078/1163625234725863455/rubiks-cube.gif?ex=65404173&is=652dcc73&hm=82d22a5c3b85ef5fe1e15ae58d98c23a67db03c28b1eeb30ef9373dd897b14e2&=" alt="Speedcubing preview">
+  <img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/wr.gif" alt="Speedcubing preview">
 </div>
-
+<br>
 <div align="center">
   <a href="https://github.com/bryanlundberg/NexusTimer/graphs/contributors">
     <img src="https://img.shields.io/github/contributors/bryanlundberg/NexusTimer.svg?style=for-the-badge" alt="Contributors">
