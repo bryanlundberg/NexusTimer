@@ -38,12 +38,12 @@ export default function OverviewPanel() {
           <div className="font-medium">
             {translation.timer["deviation"][lang]}
             {": "}
-            {statistics.deviation.toFixed(2)}
+            {formatTime(statistics.deviation * 1000)}
           </div>
           <div className="font-medium">
             {translation.timer["mean"][lang]}
             {": "}
-            {statistics.mean.toFixed(2)}
+            {formatTime(statistics.mean * 1000)}
           </div>
           <div className="font-medium">
             {translation.timer["best"][lang]}
