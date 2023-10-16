@@ -7,6 +7,7 @@ import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import { useState } from "react";
 import SolveOptions from "./SolveOptions";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function ManualMode() {
   const [value, setValue] = useState<string>("");
@@ -19,6 +20,7 @@ export default function ManualMode() {
     setCubes,
     setSelectedCube,
   } = useTimerStore();
+  const { settings } = useSettingsModalStore();
 
   return (
     <>
@@ -76,7 +78,9 @@ export default function ManualMode() {
             Preview: {formatTime(convertToMs(value))}{" "}
           </div>
         ) : null}
-        {lastSolve ? <SolveOptions solve={lastSolve} /> : null}
+        {lastSolve && settings.features.quickActionButtons.status ? (
+          <SolveOptions solve={lastSolve} />
+        ) : null}
       </form>
     </>
   );
