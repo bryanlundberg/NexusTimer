@@ -1,9 +1,17 @@
+import { Themes } from "@/interfaces/types/Themes";
 import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
+interface Variation {
+  bg: string;
+  text: string;
+  name: string;
+  key: Themes;
+}
+
 export default function ThemeSelect() {
   const { settings, setSettings } = useSettingsModalStore();
-  const variation = [
+  const variation: Variation[] = [
     {
       bg: "bg-neutral-100",
       text: "text-white",
@@ -54,8 +62,6 @@ export default function ThemeSelect() {
     },
   ];
 
-  const selectedKey = settings.theme.background;
-
   const handleSelectTheme = (newThemeKey: string) => {
     const currentSettings = loadSettings();
     currentSettings.theme.background.color = newThemeKey;
@@ -72,10 +78,10 @@ export default function ThemeSelect() {
             className="flex flex-col items-center justify-center"
           >
             <div
-              className={`cursor-pointer w-full h-24 rounded-md border border-black ${
-                item.bg
-              } ${
-                item.bg === selectedKey.color ? "outline outline-blue-600" : ""
+              className={`cursor-pointer w-full h-24 rounded-md ${item.bg} ${
+                item.key === settings.theme.background.color
+                  ? "outline outline-blue-600"
+                  : "border border-black"
               }`}
             ></div>
             <div className="text-xs font-medium">{item.name}</div>

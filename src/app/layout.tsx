@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="relative">
+        <main>
           <PreloadSettings>{children}</PreloadSettings>
         </main>
         <Script

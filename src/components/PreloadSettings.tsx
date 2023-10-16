@@ -11,7 +11,7 @@ export default function PreloadSettings({
   children: React.ReactNode;
 }) {
   const { setCubes } = useTimerStore();
-  const { setSettings } = useSettingsModalStore();
+  const { setSettings, settings } = useSettingsModalStore();
 
   useEffect(() => {
     const getCubes = loadCubes();
@@ -23,9 +23,11 @@ export default function PreloadSettings({
   return (
     <>
       <div
-        className={`blue select-none min-h-screen max-h-screen flex flex-col gap-2 justify-between blue:bg-purple-500`}
+        className={`${settings ? settings.theme.background.color : "light"}`}
       >
-        {children}{" "}
+        <div className="select-none min-h-screen max-h-screen flex flex-col gap-2 justify-between light:bg-neutral-200 dark:bg-zinc-950 cyanviolet:bg-blue-500">
+          {children}{" "}
+        </div>
       </div>
     </>
   );
