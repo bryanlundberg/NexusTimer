@@ -1,7 +1,11 @@
 import Clock from "@/icons/Clock";
+import ClockSolid from "@/icons/ClockSolid";
 import Cubes from "@/icons/Cubes";
+import CubesSolid from "@/icons/CubesSolid";
 import Metrics from "@/icons/Metrics";
+import MetricsSolid from "@/icons/MetricsSolid";
 import Stack from "@/icons/Stack";
+import StackSolid from "@/icons/StackSolid";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import Link from "next/link";
 import translation from "@/translations/global.json";
@@ -14,19 +18,19 @@ export default function Navigation() {
     <nav>
       <ul className="flex justify-center gap-5 ">
         <NavItem pathname={pathname} url="/">
-          <Clock />
+          {pathname === "/" ? <ClockSolid /> : <Clock />}
           <div>{translation.timer["header"][lang]}</div>
         </NavItem>
         <NavItem pathname={pathname} url="/solves">
-          <Stack />
+          {pathname === "/solves" ? <StackSolid /> : <Stack />}
           <div>{translation.solves["header"][lang]}</div>
         </NavItem>
         <NavItem pathname={pathname} url="/stats">
-          <Metrics />
+          {pathname === "/stats" ? <MetricsSolid /> : <Metrics />}
           <div>{translation.metrics["header"][lang]}</div>
         </NavItem>
         <NavItem pathname={pathname} url="/cubes">
-          <Cubes />
+          {pathname === "/cubes" ? <CubesSolid /> : <Cubes />}
           <div>{translation.cubes["header"][lang]}</div>
         </NavItem>
       </ul>
