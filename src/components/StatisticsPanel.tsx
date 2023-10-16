@@ -3,6 +3,7 @@ import { defaultTimerStatistics } from "@/lib/const/defaultTimerStatistics";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useState, useEffect } from "react";
+import formatTime from "@/lib/formatTime";
 
 export default function StatisticsPanel() {
   const { scramble, selectedCube } = useTimerStore();
@@ -36,25 +37,25 @@ export default function StatisticsPanel() {
           <>
             <div className="font-medium text-right">
               Ao5:{" "}
-              {statistics.ao5 === 0 ? "--" : (statistics.ao5 / 1000).toFixed(2)}
+              {statistics.ao5 === 0 ? "--" : formatTime(statistics.ao5)}
             </div>
             <div className="font-medium text-right">
               Ao12:{" "}
               {statistics.ao12 === 0
                 ? "--"
-                : (statistics.ao12 / 1000).toFixed(2)}
+                : formatTime(statistics.ao12)}
             </div>
             <div className="font-medium text-right">
               Ao50:{" "}
               {statistics.ao50 === 0
                 ? "--"
-                : (statistics.ao50 / 1000).toFixed(2)}
+                : formatTime(statistics.ao50)}
             </div>
             <div className="font-medium text-right">
               Ao100:{" "}
               {statistics.ao100 === 0
                 ? "--"
-                : (statistics.ao100 / 1000).toFixed(2)}
+                : formatTime(statistics.ao100)}
             </div>
           </>
         ) : null}
