@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { Solve } from "@/interfaces/Solve";
 import { TimerStatus } from "@/interfaces/TimerStatus";
 import genId from "@/lib/genId";
@@ -9,7 +9,11 @@ import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
 
-export default function Timer() {
+export default function Timer({
+  setIsSolving,
+}: {
+  setIsSolving: Dispatch<SetStateAction<boolean>>;
+}) {
   const {
     selectedCube,
     scramble,
@@ -39,6 +43,7 @@ export default function Timer() {
       if (event.code === "Escape") {
         clearInterval(runningTimeId.current);
         isSolving.current = false;
+        setIsSolving(false);
         isReleased.current = false;
         startTime.current = 0;
         holdingTimeRef.current = 0;
@@ -51,6 +56,7 @@ export default function Timer() {
       if (isSolving.current) {
         clearInterval(runningTimeId.current);
         isSolving.current = false;
+        setIsSolving(false);
         isReleased.current = false;
 
         if (selectedCube && scramble) {
@@ -125,6 +131,7 @@ export default function Timer() {
       if (isHolding.current && !isSolving.current) {
         if (difference >= holdTimeRequired) {
           isSolving.current = true;
+          setIsSolving(true);
           isHolding.current = false;
           holdingTimeRef.current = 0;
           startTime.current = Date.now();
@@ -138,6 +145,7 @@ export default function Timer() {
 
         if (difference <= holdTimeRequired) {
           isSolving.current = false;
+          setIsSolving(false);
           isHolding.current = false;
           holdingTimeRef.current = 0;
           setTimerStatus("idle");
