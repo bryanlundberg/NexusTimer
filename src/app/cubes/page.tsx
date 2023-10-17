@@ -57,6 +57,7 @@ export default function CubesPage() {
                     translation.inputs.placeholders["filter-cubes"][lang]
                   }
                   onChange={handleSearchFilter}
+                  className="light:bg-neutral-50 light:border-neutral-200 dark:bg-zinc-950 dark:border-zinc-800"
                 />
                 <Button
                   disabled={false}
