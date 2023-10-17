@@ -11,7 +11,7 @@ export default function Button({
   className?: string;
 }) {
   const finalClassName =
-    "h-8 px-3 rounded-md border border-zinc-800 font-medium justify-center align-middle hover:bg-zinc-900 text-sm disabled:bg-zinc-900 " +
+    "h-8 px-3 transition duration-200 rounded-md border font-medium justify-center align-middle light:hover:bg-neutral-200 light:text-neutral-950 light:border-neutral-200 dark:hover:bg-zinc-900 dark:border-zinc-800 text-sm disabled:bg-zinc-900 " +
     className;
 
   return (

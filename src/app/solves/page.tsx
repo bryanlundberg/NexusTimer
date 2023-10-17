@@ -77,7 +77,7 @@ export default function SolvesPage() {
     }
 
     return (
-      <div className="px-3 pb-3 w-full h-full overflow-auto gap-3 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6">
+      <div className="grid w-full h-full grid-cols-3 gap-3 px-3 py-3 overflow-auto sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6">
         {selectedSolves.map((solve: Solve) => (
           <SingleSolveItem key={genId()} solve={solve} />
         ))}
@@ -87,11 +87,11 @@ export default function SolvesPage() {
 
   return (
     <>
-      <div className="mt-3 grow w-full md:max-w-6xl mx-auto flex flex-col gap-3 xl:border border-zinc-800 rounded-md min-h-full">
-        <div className="border-b border-zinc-800 py-4 ">
+      <div className="flex flex-col w-full min-h-full mx-auto mt-3 rounded-md grow md:max-w-6xl xl:border light:border-neutral-200 dark:border-zinc-800">
+        <div className="py-4 border-b light:border-neutral-200 dark:border-zinc-800 ">
           <div className="w-full mx-auto">
-            <div className="flex justify-between items-center mx-3 gap-2">
-              <div className="font-medium text-2xl">
+            <div className="flex items-center justify-between gap-2 mx-3">
+              <div className="text-2xl font-medium">
                 {translation.solves["header"][lang]}
               </div>
               <Select />
@@ -100,9 +100,9 @@ export default function SolvesPage() {
         </div>
 
         {/* content */}
-        <div className="px-3 flex justify-between text-sm flex-col md:flex-row gap-3">
+        <div className="flex flex-col justify-between gap-3 px-3 py-2 text-sm rounded-b-lg shadow-sm light:shadow-neutral-200 dark:shadow-zinc-800 md:flex-row">
           {/* Options Show Session / Global */}
-          <div className="font-medium rounded-md p-1 flex h-8 bg-zinc-800 gap-1 w-full md:w-56 xl:w-96">
+          <div className="flex w-full h-8 gap-1 p-1 font-medium rounded-md light:bg-neutral-200 light:text-neutral-700 dark:bg-zinc-800 md:w-56 xl:w-96">
             <ToggleSolvesButton
               handleClick={() => handleTabClick("Session")}
               active={currentTab === "Session"}
@@ -124,12 +124,12 @@ export default function SolvesPage() {
                 handleClick={() => handleMoveAll()}
                 className="font-normal"
               >
-                <div className="flex items-center justify-center text-xs gap-2">
+                <div className="flex items-center justify-center gap-2 text-xs">
                   <MoveAll /> <div>{translation.inputs["move-all"][lang]}</div>
                 </div>
               </Button>
               <Button disabled={false} handleClick={() => handleTrashAll()}>
-                <div className="flex items-center justify-center text-xs gap-2">
+                <div className="flex items-center justify-center gap-2 text-xs">
                   <Trash />
                   <div>{translation.inputs["trash-all"][lang]}</div>
                 </div>

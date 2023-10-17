@@ -60,8 +60,8 @@ export default function ModalSolve() {
 
   return (
     <>
-      <div className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center">
-        <div className="w-full h-auto text-xs border rounded-md sm:w-96 bg-zinc-950 border-zinc-800">
+      <div className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center text-neutral-950">
+        <div className="w-full h-auto text-xs border rounded-md sm:w-96 bg-neutral-200 border-neutral-800 ">
           <div className="flex items-center justify-between p-3 border-b border-zinc-800">
             <div className="flex items-center text-lg font-medium">
               {solve.time / 1000}
