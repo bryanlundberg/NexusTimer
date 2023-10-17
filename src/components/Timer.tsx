@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Solve } from "@/interfaces/Solve";
 import { TimerStatus } from "@/interfaces/TimerStatus";
 import genId from "@/lib/genId";
@@ -9,11 +9,7 @@ import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
 
-export default function Timer({
-  setIsSolving,
-}: {
-  setIsSolving: Dispatch<SetStateAction<boolean>>;
-}) {
+export default function Timer() {
   const {
     selectedCube,
     scramble,
@@ -24,6 +20,8 @@ export default function Timer({
     setLastSolve,
     solvingTime,
     setSolvingTime,
+    isSolving,
+    setIsSolving,
   } = useTimerStore();
 
   const { settings } = useSettingsModalStore();
@@ -34,7 +32,6 @@ export default function Timer({
   const holdingTimeRef = useRef<number>(0);
   const startTime = useRef<number>(0);
   const runningTimeId = useRef<any>(null);
-  const isSolving = useRef(false);
   const isHolding = useRef(false);
   const isReleased = useRef(true);
 
@@ -42,7 +39,6 @@ export default function Timer({
     if (event.code === "Space" || event.code === "Escape") {
       if (event.code === "Escape") {
         clearInterval(runningTimeId.current);
-        isSolving.current = false;
         setIsSolving(false);
         isReleased.current = false;
         startTime.current = 0;
@@ -53,9 +49,8 @@ export default function Timer({
         return;
       }
 
-      if (isSolving.current) {
+      if (isSolving) {
         clearInterval(runningTimeId.current);
-        isSolving.current = false;
         setIsSolving(false);
         isReleased.current = false;
 
@@ -128,9 +123,8 @@ export default function Timer({
       const now = Date.now();
       const difference: number = now - holdingTimeRef.current;
 
-      if (isHolding.current && !isSolving.current) {
+      if (isHolding.current && !isSolving) {
         if (difference >= holdTimeRequired) {
-          isSolving.current = true;
           setIsSolving(true);
           isHolding.current = false;
           holdingTimeRef.current = 0;
@@ -144,7 +138,6 @@ export default function Timer({
         }
 
         if (difference <= holdTimeRequired) {
-          isSolving.current = false;
           setIsSolving(false);
           isHolding.current = false;
           holdingTimeRef.current = 0;
