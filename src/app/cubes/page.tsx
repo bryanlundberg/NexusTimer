@@ -43,11 +43,11 @@ export default function CubesPage() {
 
   return (
     <>
-      <div className="mt-3 grow w-full md:max-w-6xl mx-auto flex flex-col xl:border border-zinc-800 rounded-md min-h-full">
-        <div className="border-b border-zinc-800 py-4 ">
+      <div className="flex flex-col w-full min-h-full mx-auto mt-3 rounded-md grow md:max-w-6xl xl:border light:border-neutral-200 dark:border-zinc-800">
+        <div className="py-4 border-b light:border-neutral-200 dark:border-zinc-800 ">
           <div className="w-full mx-auto">
-            <div className="flex flex-col sm:flex-row gap-3 justify-between items-center mx-3">
-              <div className="font-medium text-2xl">
+            <div className="flex flex-col items-center justify-between gap-3 mx-3 sm:flex-row">
+              <div className="text-2xl font-medium">
                 {translation.cubes["header"][lang]}
               </div>
               <div className="flex justify-end gap-3">
@@ -61,9 +61,9 @@ export default function CubesPage() {
                 <Button
                   disabled={false}
                   handleClick={() => setModalOpen(true)}
-                  className="w-28 border-dashed hover:border-solid"
+                  className="border-dashed w-28 hover:border-solid"
                 >
-                  <div className="flex justify-between items-center">
+                  <div className="flex items-center justify-between">
                     <Plus />
                     <div>{translation.cubes["cube"][lang]}</div>
                   </div>
@@ -74,10 +74,10 @@ export default function CubesPage() {
         </div>
         {/* content */}
         {filterCubes && filterCubes.length > 0 ? (
-          <div className="h-full overflow-auto grow m-3">
+          <div className="h-full m-3 overflow-auto grow">
             <div className="table w-full text-sm">
               <TableHeader />
-              <div className="table-row-group h-10 border-zinc-800 text-white text-sm">
+              <div className="table-row-group h-10 text-sm">
                 {filterCubes.map((cube) => (
                   <TableRow key={genId()} cube={cube} />
                 ))}
@@ -89,9 +89,9 @@ export default function CubesPage() {
             onClick={() => {
               setModalOpen(true);
             }}
-            className="cursor-pointer h-full overflow-auto grow m-3 border border-zinc-800 border-dashed rounded-md justify-center items-center flex flex-col"
+            className="flex flex-col items-center justify-center h-full m-3 overflow-auto border border-dashed rounded-md cursor-pointer grow border-zinc-800"
           >
-            <div className="flex flex-col justify-center items-center gap-1 p-3 font-medium">
+            <div className="flex flex-col items-center justify-center gap-1 p-3 font-medium">
               <Image
                 src={nodata}
                 alt={"no-cubes-for-display"}
