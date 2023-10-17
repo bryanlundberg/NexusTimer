@@ -41,24 +41,12 @@ export default function Select() {
   const variation: Record<Themes, string> = {
     light: "shadow-black bg-neutral-100 hover:bg-neutral-200",
     dark: "bg-zinc-950 hover:bg-zinc-800 border-zinc-800",
-    graygray: "",
-    cyanviolet: "",
-    amberpink: "",
-    redblue: "",
-    pinkneutral: "",
-    greenamber: "",
   };
 
   // split components in diferent files.
   const variation2: Record<Themes, string> = {
     light: "bg-neutral-100",
     dark: "border-zinc-800 bg-zinc-950 text-slate-100",
-    graygray: "",
-    cyanviolet: "",
-    amberpink: "",
-    redblue: "",
-    pinkneutral: "",
-    greenamber: "",
   };
 
   return (
@@ -165,23 +153,11 @@ function Option({
   const variation: Record<Themes, string> = {
     light: "hover:bg-zinc-700 hover:text-neutral-100",
     dark: "hover:bg-zinc-800",
-    graygray: "",
-    cyanviolet: "",
-    amberpink: "",
-    redblue: "",
-    pinkneutral: "",
-    greenamber: "",
   };
 
   const variation2: Record<Themes, string> = {
     light: "bg-zinc-800 text-neutral-200",
     dark: "bg-zinc-800",
-    graygray: "",
-    cyanviolet: "",
-    amberpink: "",
-    redblue: "",
-    pinkneutral: "",
-    greenamber: "",
   };
 
   return (
@@ -226,12 +202,6 @@ function AddCubeOption() {
   const variation: Record<Themes, string> = {
     light: "border-zinc-800 hover:bg-zinc-700 hover:text-neutral-100",
     dark: "border-zinc-800 hover:bg-zinc-800",
-    graygray: "",
-    cyanviolet: "",
-    amberpink: "",
-    redblue: "",
-    pinkneutral: "",
-    greenamber: "",
   };
   return (
     <div

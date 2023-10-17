@@ -23,12 +23,6 @@ const config: Config = {
     }) {
       addVariant("light", `:is(.light &)`);
       addVariant("dark", `:is(.dark &)`);
-      addVariant("graygray", `:is(.graygray &)`);
-      addVariant("cyanviolet", `:is(.cyanviolet &)`);
-      addVariant("amberpink", `:is(.amberpink &)`);
-      addVariant("redblue", `:is(.redblue &)`);
-      addVariant("pinkneutral", `:is(.pinkneutral &)`);
-      addVariant("greenamber", `:is(.greenamber &)`);
     }),
   ],
 };

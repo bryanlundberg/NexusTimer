@@ -14,12 +14,6 @@ import { usePathname } from "next/navigation";
 const variation: Record<Themes, string> = {
   light: "shadow-black bg-neutral-100 shadow-sm shadow-black",
   dark: "bg-zinc-900",
-  graygray: "",
-  cyanviolet: "",
-  amberpink: "",
-  redblue: "",
-  pinkneutral: "",
-  greenamber: "",
 };
 
 export default function Navigation() {

@@ -14,12 +14,6 @@ const variation: Record<Themes, string> = {
   light:
     "bg-zinc-200 border-zinc-200 focus:border-neutral-300 text-nexutral-200",
   dark: "bg-zinc-900 border-zinc-800 focus:border-neutral-300 text-nexutral-200",
-  graygray: "",
-  cyanviolet: "",
-  amberpink: "",
-  redblue: "",
-  pinkneutral: "",
-  greenamber: "",
 };
 
 export default function ManualMode() {
@@ -36,9 +30,9 @@ export default function ManualMode() {
   const { settings } = useSettingsModalStore();
 
   const isValidInput = (input: string) => {
-    if(/^[0-9]*$/.test(input) && parseInt(input) > 0) return true
-    else return false
-  }
+    if (/^[0-9]*$/.test(input) && parseInt(input) > 0) return true;
+    else return false;
+  };
 
   return (
     <>
@@ -88,7 +82,11 @@ export default function ManualMode() {
           }`}
           onChange={(e) => {
             if (!selectedCube) return;
-            if (isValidInput(e.target.value) && parseInt(e.target.value) <= 595959 || e.target.value === "") {
+            if (
+              (isValidInput(e.target.value) &&
+                parseInt(e.target.value) <= 595959) ||
+              e.target.value === ""
+            ) {
               setValue(e.target.value);
             }
           }}
