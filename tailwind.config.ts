@@ -21,9 +21,8 @@ const config: Config = {
     }: {
       addVariant: any;
     }) {
-      addVariant("blue", `:is(.blue &)`);
-      addVariant("red", `:is(.red &)`);
-      addVariant("green", `:is(.green &)`);
+      addVariant("light", `:is(.light &)`);
+      addVariant("dark", `:is(.dark &)`);
     }),
   ],
 };

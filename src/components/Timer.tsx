@@ -9,6 +9,13 @@ import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
 
+const timerStatusClasses = {
+  idle: "light:text-neutral-900 dark:text-white",
+  holdingKey: "light:text-pink-600 dark:text-pink-600",
+  solving: "light:text-neutral-700 dark:text-slate-200",
+  ready: "text-emerald-400",
+};
+
 export default function Timer() {
   const {
     selectedCube,
@@ -155,13 +162,6 @@ export default function Timer() {
       window.removeEventListener("keyup", handleRelease);
     };
   });
-
-  const timerStatusClasses = {
-    idle: "text-stone-50",
-    holdingKey: "text-pink-600",
-    solving: "text-stone-50",
-    ready: "text-emerald-400",
-  };
 
   return (
     <>

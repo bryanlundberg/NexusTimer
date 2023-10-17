@@ -30,8 +30,7 @@ export default function LastActivity() {
         const cube = findCube({ cubeId: solve.cubeId });
         return (
           <div className="text-sm" key={solve.id}>
-            {index + 1}. {cube?.category} {cube?.name}{" "}
-            {formatTime(solve.time)}{" "}
+            {index + 1}. {cube?.category} {cube?.name} {formatTime(solve.time)}{" "}
             {formatDistanceToNow(new Date(solve.endTime))} ago +{solve.rating}{" "}
             {translation.metrics.cards["rating-points"][lang].toLowerCase()}
           </div>
@@ -42,7 +41,7 @@ export default function LastActivity() {
   };
   return (
     <>
-      <div className="w-full p-3 text-left border rounded-md border-zinc-800 sm:text-center">
+      <div className="w-full p-3 text-left border rounded-md dark:border-zinc-800 light:border-neutral-200 sm:text-center">
         <div className="mb-3 text-xl font-medium">
           {translation.metrics["last-activity"][lang]}
         </div>

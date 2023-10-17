@@ -49,8 +49,10 @@ export default function SelectMetrics({
       <div
         key={genId()}
         onClick={() => handleSelect(opt)}
-        className={`flex justify-between items-center hover:text-neutral-200 text-neutral-300 p-1 cursor-pointer rounded-md ${
-          active ? "bg-zinc-800" : "bg-zinc-950 hover:bg-zinc-900"
+        className={`flex justify-between items-center dark:hover:text-neutral-200 dark:text-neutral-300 p-1  rounded-md ${
+          active
+            ? "dark:bg-zinc-800 light:bg-zinc-900 light:text-neutral-200"
+            : "dark:bg-zinc-950 dark:hover:bg-zinc-900 light:bg-transparent light:hover:bg-zinc-200 light:hover:text-neutral-950 light:text-neutral-800"
         }`}
       >
         <div>{opt}</div>
@@ -66,13 +68,13 @@ export default function SelectMetrics({
       >
         <button
           onClick={handleOpen}
-          className={`w-full bg-zinc-950 hover:bg-zinc-900 hover:text-neutral-200 text-neutral-300 border rounded-md p-1 border-zinc-800 flex justify-between items-center px-2`}
+          className={`transition duration-300 w-full dark:bg-zinc-950 dark:hover:bg-zinc-900 dark:hover:text-neutral-200 dark:text-neutral-300 border rounded-md p-1 dark:border-zinc-800 light:bg-neutral-100 light:hover:bg-neutral-200 light:hover:text-neutral-950 light:text-neutral-800  light:border-neutral-200 flex justify-between items-center px-2`}
         >
           {label}
           <SelectOptions />
         </button>
         {open ? (
-          <div className="absolute left-0 z-10 w-full p-1 border rounded-md top-10 bg-zinc-950 border-zinc-800">
+          <div className="absolute left-0 z-10 w-full p-1 border rounded-md top-10 dark:bg-zinc-950 dark:border-zinc-800 light:bg-neutral-100 light:border-neutral-200">
             {options.map((opt) => renderOption(opt, select))}
           </div>
         ) : null}

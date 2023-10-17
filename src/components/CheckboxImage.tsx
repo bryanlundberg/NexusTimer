@@ -31,8 +31,8 @@ export default function CheckboxImage({
         onClick={() => handleClickRadio(value)}
         className={`mx-auto cursor-pointer ${
           selectedCategory === value
-            ? "outline-dashed outline-amber-300 rounded-sm"
-            : "bg-transparent border-0"
+            ? "outline outline-neutral-700 rounded-sm"
+            : "bg-transparent"
         }`}
       >
         <Image src={src} alt={alt} />

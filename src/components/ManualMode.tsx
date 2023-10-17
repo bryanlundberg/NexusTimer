@@ -8,6 +8,13 @@ import { useTimerStore } from "@/store/timerStore";
 import { useState } from "react";
 import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import { Themes } from "@/interfaces/types/Themes";
+
+const variation: Record<Themes, string> = {
+  light:
+    "bg-zinc-200 border-zinc-200 focus:border-neutral-300 text-nexutral-200",
+  dark: "bg-zinc-900 border-zinc-800 focus:border-neutral-300 text-nexutral-200",
+};
 
 export default function ManualMode() {
   const [value, setValue] = useState<string>("");
@@ -23,9 +30,9 @@ export default function ManualMode() {
   const { settings } = useSettingsModalStore();
 
   const isValidInput = (input: string) => {
-    if(/^[0-9]*$/.test(input) && parseInt(input) > 0) return true
-    else return false
-  }
+    if (/^[0-9]*$/.test(input) && parseInt(input) > 0) return true;
+    else return false;
+  };
 
   return (
     <>
@@ -70,10 +77,16 @@ export default function ManualMode() {
           type="text"
           placeholder="..."
           value={value}
-          className="w-full max-w-[750px] h-20 text-6xl font-medium text-center border rounded-md outline-none appearance-none cursor-pointer bg-zinc-900 focus:cursor-text py-14 border-zinc-800 focus:border-neutral-300 text-nexutral-200"
+          className={`w-full max-w-[750px] h-20 text-6xl font-medium text-center border rounded-md outline-none appearance-none cursor-pointer focus:cursor-text py-14 ${
+            variation[settings.theme.background.color]
+          }`}
           onChange={(e) => {
             if (!selectedCube) return;
-            if (isValidInput(e.target.value) && parseInt(e.target.value) <= 595959 || e.target.value === "") {
+            if (
+              (isValidInput(e.target.value) &&
+                parseInt(e.target.value) <= 595959) ||
+              e.target.value === ""
+            ) {
               setValue(e.target.value);
             }
           }}

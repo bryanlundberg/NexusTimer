@@ -3,16 +3,18 @@ export default function InputText({
   onChange,
   value,
   focus,
+  className,
 }: {
   placeholder: string;
   onChange: any;
   value?: string;
   focus?: boolean;
+  className?: string;
 }) {
   return (
     <input
       type="text"
-      className="w-full h-8 px-3 py-1 text-sm border rounded-md shadow-sm  bg-zinc-950 border-zinc-800"
+      className={`appearance-none transition duration-300 w-full h-8 px-3 py-1 text-sm rounded-md shadow-sm ${className}`}
       value={value}
       placeholder={placeholder}
       autoFocus={focus}

@@ -1,4 +1,5 @@
 import { Language } from "./types/Language";
+import { Themes } from "./types/Themes";
 
 interface Locale {
   language: { lang: Language; key: string };
@@ -26,7 +27,7 @@ interface Alerts {
 }
 
 interface Theme {
-  background: { color: string; key: string };
+  background: { color: Themes; key: string };
   content: { color: string; key: string };
 }
 

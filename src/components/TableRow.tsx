@@ -48,7 +48,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
     <>
       <div
         onClick={(e) => redirectToHome(e)}
-        className="table-row h-10 hover:bg-zinc-800 bg-zinc-950"
+        className="table-row h-10 transition duration-200 dark:hover:bg-zinc-800 dark:bg-zinc-950 dark:text-neutral-200 light:text-neutral-900 light:bg-neutral-100 light:hover:bg-neutral-200"
       >
         <div className="table-cell w-10 align-middle">
           <BookmarkFav
@@ -66,7 +66,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
         <div className="table-cell text-center align-middle cursor-pointer">
           {`${cube.solves.session.length}/${cube.solves.all.length}`}
         </div>
-        <div className="hidden text-center align-middle md:table-cell cursor-pointer">
+        <div className="hidden text-center align-middle cursor-pointer md:table-cell">
           {formatDate(cube.createdAt)}
         </div>
         <div className="hidden text-center align-middle md:table-cell">
@@ -84,7 +84,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
         </div>
         <div className="table-cell text-center align-middle">
           <button
-            className="p-1 px-2 text-white rounded-md hover:bg-zinc-800 sm:px-2"
+            className="p-1 px-2 transition duration-300 rounded-md dark:text-neutral-200 dark:hover:text-white dark:hover:bg-zinc-900 light:hover:bg-neutral-900 light:text-neutral-800 light:hover:text-white sm:px-2"
             onClick={() => {
               setEditingCube(cube);
               setCubeName(cube.name);

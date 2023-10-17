@@ -20,10 +20,8 @@ export default function BookmarkFav({
       }}
       aria-pressed={checked}
       type="button"
-      className={`w-4 h-4 mx-auto rounded-md border ${
-        checked
-          ? "bg-zinc-800 text-yellow-500 border-yellow-500"
-          : "border-zinc-800 text-transparent hover:bg-zinc-900"
+      className={`w-4 h-4 mx-auto rounded-md border light:border-neutral-300 dark:border-zinc-800 ${
+        checked ? "bg-transparent text-yellow-500" : "text-transparent"
       } text-sm flex justify-center items-center`}
     >
       <Favorite />

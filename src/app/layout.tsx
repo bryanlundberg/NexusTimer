@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="relative select-none min-h-screen max-h-screen flex flex-col gap-2 justify-between bg-zinc-950 text-slate-50">
+        <main>
           <PreloadSettings>{children}</PreloadSettings>
         </main>
         <Script
