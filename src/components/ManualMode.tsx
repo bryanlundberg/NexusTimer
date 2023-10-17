@@ -22,6 +22,11 @@ export default function ManualMode() {
   } = useTimerStore();
   const { settings } = useSettingsModalStore();
 
+  const isValidInput = (input: string) => {
+    if(/^[0-9]*$/.test(input) && parseInt(input) > 0) return true
+    else return false
+  }
+
   return (
     <>
       <form
@@ -62,13 +67,13 @@ export default function ManualMode() {
         <input
           autoComplete="off"
           name="time"
-          type="number"
+          type="text"
           placeholder="..."
           value={value}
           className="w-full max-w-[750px] h-20 text-6xl font-medium text-center border rounded-md outline-none appearance-none cursor-pointer bg-zinc-900 focus:cursor-text py-14 border-zinc-800 focus:border-neutral-300 text-nexutral-200"
           onChange={(e) => {
             if (!selectedCube) return;
-            if (parseInt(e.target.value) <= 595959 || e.target.value === "") {
+            if (isValidInput(e.target.value) && parseInt(e.target.value) <= 595959 || e.target.value === "") {
               setValue(e.target.value);
             }
           }}
