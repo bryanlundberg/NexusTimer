@@ -92,13 +92,13 @@ export default function PersonalStatistics() {
           </CardStatistic>
         </div>
         <div className="flex flex-col gap-3 md:flex-row">
-          <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md border-zinc-800 md:w-1/2 h-96">
+          <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md light:border-neutral-200 dark:border-zinc-800 md:w-1/2 h-96">
             <RadarCharter data={data01} />
             <div className="mb-3 text-2xl font-medium text-center">
               {translation.metrics["cube-insights"][lang]}
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md border-zinc-800 md:w-1/2 h-96">
+          <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md light:border-neutral-200 dark:border-zinc-800 md:w-1/2 h-96">
             <PieCharter data={data02} />
             <div className="mb-3 text-2xl font-medium text-center">
               {translation.metrics["rating-spread"][lang]}

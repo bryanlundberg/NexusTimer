@@ -15,7 +15,7 @@ export default function CardStatistic({
     <>
       <div
         className={
-          "border border-zinc-800 rounded-lg flex justify-between items-center p-3 " +
+          "border dark:border-zinc-800 light:border-neutral-200 rounded-lg flex justify-between items-center p-3 " +
           className
         }
       >

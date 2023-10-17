@@ -100,7 +100,7 @@ export default function SolvesPage() {
         </div>
 
         {/* content */}
-        <div className="flex flex-col justify-between gap-3 px-3 py-2 text-sm rounded-b-lg shadow-sm light:shadow-neutral-200 dark:shadow-zinc-800 md:flex-row">
+        <div className="z-10 flex flex-col justify-between gap-3 px-3 py-2 text-sm rounded-b-lg shadow-sm light:shadow-neutral-200 dark:shadow-zinc-800 md:flex-row">
           {/* Options Show Session / Global */}
           <div className="flex w-full h-8 gap-1 p-1 font-medium rounded-md light:bg-neutral-200 light:text-neutral-700 dark:bg-zinc-800 md:w-56 xl:w-96">
             <ToggleSolvesButton

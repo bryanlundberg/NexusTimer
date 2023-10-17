@@ -79,7 +79,7 @@ export default function CategoryStatistics() {
           />
         </div>
         <div className="flex flex-col gap-3 md:flex-row">
-          <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md h-96 border-zinc-800">
+          <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md h-96 light:border-neutral-200 dark:border-zinc-800 dark:bg-zinc-950 light:bg-neutral-950">
             <LineCharter
               data={data}
               cubeSelected={
@@ -89,8 +89,8 @@ export default function CategoryStatistics() {
           </div>
         </div>
 
-        <div className="w-full text-sm rounded-md bg-zinc-800">
-          <div className="flex items-center h-10 p-1 rounded-md bg-zinc-900 text-zinc-200">
+        <div className="w-full text-sm rounded-md light:bg-neutral-200 dark:bg-zinc-800">
+          <div className="flex items-center h-10 p-1 font-medium rounded-md dark:bg-zinc-900 dark:text-zinc-200 light:bg-neutral-300 light:text-neutral-950">
             <div className="w-1/5"></div>
             <div className="w-1/5 text-center">
               {translation.metrics["global"][lang]}
@@ -107,7 +107,9 @@ export default function CategoryStatistics() {
           </div>
           <StatisticRow
             label={translation.timer["deviation"][lang]}
-            global={deviation.global === 0 ? "--" : formatTime(deviation.global)}
+            global={
+              deviation.global === 0 ? "--" : formatTime(deviation.global)
+            }
             session={
               deviation.session === 0 ? "--" : formatTime(deviation.session)
             }
@@ -122,7 +124,9 @@ export default function CategoryStatistics() {
           />
           <StatisticRow
             label="Ao5"
-            global={stats.global.ao5 === 0 ? "--" : formatTime(stats.global.ao5)}
+            global={
+              stats.global.ao5 === 0 ? "--" : formatTime(stats.global.ao5)
+            }
             session={
               stats.session.ao5 === 0 ? "--" : formatTime(stats.session.ao5)
             }
@@ -212,7 +216,9 @@ export default function CategoryStatistics() {
             global={best.global > 0 ? formatTime(best.global) : "--"}
             session={best.session > 0 ? formatTime(best.session) : "--"}
             cubeAll={best.cubeAll > 0 ? formatTime(best.cubeAll) : "--"}
-            cubeSession={best.cubeSession > 0 ? formatTime(best.cubeSession) : "--"}
+            cubeSession={
+              best.cubeSession > 0 ? formatTime(best.cubeSession) : "--"
+            }
           />
           <StatisticRow
             label={translation.metrics["average"][lang]}
@@ -272,7 +278,7 @@ function StatisticRow({
   cubeSession: number | string;
 }) {
   return (
-    <div className="flex items-center h-10 text-xs rounded-md text-zinc-400 hover:bg-zinc-700">
+    <div className="flex items-center h-10 text-xs rounded-md dark:text-zinc-400 dark:hover:bg-zinc-700 light:light:text-neutral-950 light:hover:bg-neutral-300">
       <div className="w-1/5 ps-3">{label}</div>
       <div className="w-1/5 text-center">{global}</div>
       <div className="w-1/5 text-center">{session}</div>
