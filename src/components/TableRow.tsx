@@ -8,9 +8,12 @@ import Play from "@/icons/Play";
 import Stop from "@/icons/Stop";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import { useRouter } from "next/navigation";
 
 export default function TableRow({ cube }: { cube: Cube }) {
   const { lang } = useSettingsModalStore();
+  const router = useRouter();
+  const { setSelectedCube } = useTimerStore();
   const { setCubes } = useTimerStore();
   const { setEditingCube, setModalOpen, setCubeName, setSelectedCategory } =
     useCubesModalStore();
@@ -31,9 +34,22 @@ export default function TableRow({ cube }: { cube: Cube }) {
 
   const status = cube.solves.session.length > 0;
 
+  const handleClick = (e: any) => {
+    const targetDiv = e.target;
+    const divIndex = Array.from(e.currentTarget.children).indexOf(targetDiv);
+
+    if (divIndex > 0 && divIndex < e.currentTarget.children.length - 1) {
+      setSelectedCube(cube);
+      router.push("/");
+    }
+  };
+
   return (
     <>
-      <div className="table-row h-10 hover:bg-zinc-800 bg-zinc-950">
+      <div
+        onClick={(e) => handleClick(e)}
+        className="table-row h-10 hover:bg-zinc-800 bg-zinc-950"
+      >
         <div className="table-cell w-10 align-middle">
           <BookmarkFav
             cubeId={cube.id}
