@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 export default function TableRow({ cube }: { cube: Cube }) {
   const { lang } = useSettingsModalStore();
   const router = useRouter();
-  const { setSelectedCube } = useTimerStore();
+  const { setSelectedCube, setNewScramble } = useTimerStore();
   const { setCubes } = useTimerStore();
   const { setEditingCube, setModalOpen, setCubeName, setSelectedCategory } =
     useCubesModalStore();
@@ -34,12 +34,12 @@ export default function TableRow({ cube }: { cube: Cube }) {
 
   const status = cube.solves.session.length > 0;
 
-  const handleClick = (e: any) => {
+  const redirectToHome = (e: any) => {
     const targetDiv = e.target;
     const divIndex = Array.from(e.currentTarget.children).indexOf(targetDiv);
-
     if (divIndex > 0 && divIndex < e.currentTarget.children.length - 1) {
       setSelectedCube(cube);
+      setNewScramble(cube);
       router.push("/");
     }
   };
@@ -47,7 +47,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
   return (
     <>
       <div
-        onClick={(e) => handleClick(e)}
+        onClick={(e) => redirectToHome(e)}
         className="table-row h-10 hover:bg-zinc-800 bg-zinc-950"
       >
         <div className="table-cell w-10 align-middle">
@@ -57,14 +57,16 @@ export default function TableRow({ cube }: { cube: Cube }) {
             setFavorite={setFavorite}
           />
         </div>
-        <div className="table-cell text-left align-middle">{cube.name}</div>
-        <div className="table-cell text-center align-middle">
+        <div className="table-cell text-left align-middle cursor-pointer">
+          {cube.name}
+        </div>
+        <div className="table-cell text-center align-middle cursor-pointer">
           {cube.category}
         </div>
-        <div className="table-cell text-center align-middle">
+        <div className="table-cell text-center align-middle cursor-pointer">
           {`${cube.solves.session.length}/${cube.solves.all.length}`}
         </div>
-        <div className="hidden text-center align-middle md:table-cell">
+        <div className="hidden text-center align-middle md:table-cell cursor-pointer">
           {formatDate(cube.createdAt)}
         </div>
         <div className="hidden text-center align-middle md:table-cell">
