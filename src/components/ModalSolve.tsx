@@ -8,6 +8,7 @@ import updateSolve from "@/lib/updateSolve";
 import { useSolvesStore } from "@/store/SolvesStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect } from "react";
+import formatTime from "@/lib/formatTime";
 
 export default function ModalSolve() {
   const { solve, setStatus } = useSolvesStore();
@@ -64,7 +65,7 @@ export default function ModalSolve() {
         <div className="w-full h-auto text-xs border rounded-md sm:w-96 bg-neutral-200 border-neutral-800 ">
           <div className="flex items-center justify-between p-3 border-b border-zinc-800">
             <div className="flex items-center text-lg font-medium">
-              {solve.time / 1000}
+              {formatTime(solve.time)}
               <span className="text-xs text-red-500">
                 {solve.plus2 ? "+2" : null}
               </span>

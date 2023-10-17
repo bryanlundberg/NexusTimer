@@ -4,6 +4,7 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import translation from "@/translations/global.json";
 import { useState, useEffect } from "react";
+import formatTime from "@/lib/formatTime";
 
 export default function OverviewPanel() {
   const { lang, settings } = useSettingsModalStore();
@@ -37,17 +38,17 @@ export default function OverviewPanel() {
           <div className="font-medium">
             {translation.timer["deviation"][lang]}
             {": "}
-            {statistics.deviation.toFixed(2)}
+            {formatTime(statistics.deviation * 1000)}
           </div>
           <div className="font-medium">
             {translation.timer["mean"][lang]}
             {": "}
-            {statistics.mean.toFixed(2)}
+            {formatTime(statistics.mean * 1000)}
           </div>
           <div className="font-medium">
             {translation.timer["best"][lang]}
             {": "}
-            {(statistics.best / 1000).toFixed(2)}
+            {formatTime(statistics.best)}
           </div>
           <div className="font-medium">
             {translation.timer["counter"][lang]}

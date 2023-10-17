@@ -6,6 +6,7 @@ import { sort } from "fast-sort";
 import findCube from "@/lib/findCube";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import formatTime from "@/lib/formatTime";
 
 export default function LastActivity() {
   const { cubes } = useTimerStore();
@@ -30,7 +31,7 @@ export default function LastActivity() {
         return (
           <div className="text-sm" key={solve.id}>
             {index + 1}. {cube?.category} {cube?.name}{" "}
-            {(solve.time / 1000).toFixed(3)}{" "}
+            {formatTime(solve.time)}{" "}
             {formatDistanceToNow(new Date(solve.endTime))} ago +{solve.rating}{" "}
             {translation.metrics.cards["rating-points"][lang].toLowerCase()}
           </div>

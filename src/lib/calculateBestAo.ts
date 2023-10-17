@@ -20,5 +20,5 @@ export default function calculateBestAo(solves: Solve[], ao: number) {
 
   const averagesSorted = sort(averages).asc();
 
-  return averagesSorted[0] / 1000;
+  return averagesSorted[0];
 }
