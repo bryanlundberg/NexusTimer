@@ -116,7 +116,7 @@ export default function ModalCreate() {
                   onChange={handleWriteCubeName}
                   value={cubeName}
                   focus={true}
-                  className={`bg-neutral-300 focus:bg-neutral-200 text-neutral-900 `}
+                  className={`bg-neutral-200 focus:bg-neutral-100 text-neutral-900 border border-neutral-300`}
                 />
                 {error && (
                   <p className="px-2 mt-2 text-sm text-red-600">

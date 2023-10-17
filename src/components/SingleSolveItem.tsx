@@ -12,7 +12,7 @@ export default function SingleSolveItem({ solve }: { solve: Solve }) {
           setSolve(solve);
           setStatus();
         }}
-        className="relative flex items-center justify-center w-auto p-1 text-lg font-medium text-center transition duration-200 rounded-md cursor-pointer z-1 h-14 light:bg-neutral-50 light:shadow-sm light:shadow-neutral-400 light:hover:bg-neutral-100 light:text-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:shadow-sm dark:shadow-neutral-700 dark:text-neutral-200"
+        className="relative flex items-center justify-center w-auto p-1 text-lg font-medium text-center transition duration-200 rounded-md cursor-pointer z-1 h-14 light:bg-neutral-50 light:shadow-sm light:shadow-neutral-400 light:hover:bg-neutral-100 light:text-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:shadow-sm dark:text-neutral-200"
       >
         {formatTime(solve.time)}
         {solve.plus2 ? <span className="text-sm text-red-600">+2</span> : null}
