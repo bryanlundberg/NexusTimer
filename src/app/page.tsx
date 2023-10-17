@@ -6,18 +6,20 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import SettingsMenu from "@/components/SettingsMenu";
 import Navigation from "@/components/Navigation";
 import ManualMode from "@/components/ManualMode";
+import { useTimerStore } from "@/store/timerStore";
 
 export default function Home() {
   const { settingsOpen, settings } = useSettingsModalStore();
+  const { isSolving } = useTimerStore();
   return (
     <>
       <div className="flex flex-col justify-between px-5 py-3 grow">
-        <HeaderTimer />
+        {!isSolving && <HeaderTimer />}
         {settings.timer.manualMode.status ? <ManualMode /> : <Timer />}
-        <TimerWidgets />
+        {!isSolving && <TimerWidgets />}
       </div>
-      {settingsOpen && <SettingsMenu />}
-      <Navigation />
+      {settingsOpen && !isSolving && <SettingsMenu />}
+      {!isSolving && <Navigation />}
     </>
   );
 }

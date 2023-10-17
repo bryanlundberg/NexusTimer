@@ -11,11 +11,13 @@ type TimerStore = {
   event: string;
   lastSolve: Solve | null;
   solvingTime: number;
+  isSolving: boolean;
   setNewScramble: (cube: Cube) => void;
   setCubes: (cubes: Cube[]) => void;
   setSelectedCube: (cube: Cube) => void;
   setLastSolve: (solve: Solve | null) => void;
   setSolvingTime: (newTime: number) => void;
+  setIsSolving: (isSolving: boolean) => void;
 };
 
 export const useTimerStore = create<TimerStore>((set) => ({
@@ -25,6 +27,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
   event: "333",
   lastSolve: null,
   solvingTime: 0,
+  isSolving: false,
   setNewScramble: (cube: Cube) => {
     set((state) => ({
       ...state,
@@ -47,5 +50,8 @@ export const useTimerStore = create<TimerStore>((set) => ({
   },
   setSolvingTime: (newTime: number) => {
     set({ solvingTime: newTime });
+  },
+  setIsSolving: (isSolving: boolean) => {
+    set({ isSolving: isSolving });
   },
 }));
