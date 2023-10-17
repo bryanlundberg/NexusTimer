@@ -13,7 +13,7 @@ export default function HeaderTimer() {
   const scrambleStyles = {
     plain:
       "h-auto p-2 overflow-auto text-2xl font-medium text-center rounded-md min-w-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg max-h-52",
-    bg: "h-auto p-2 overflow-auto text-2xl font-medium text-center rounded-md min-w-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg max-h-52 bg-zinc-900",
+    bg: "h-auto p-2 overflow-auto text-2xl font-medium text-center rounded-md min-w-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg max-h-52 dark:bg-zinc-900 light:bg-neutral-100",
   };
   return (
     <div className="flex flex-col items-center justify-center gap-5 p-4">
