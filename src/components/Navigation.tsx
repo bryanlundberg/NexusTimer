@@ -6,32 +6,25 @@ import Metrics from "@/icons/Metrics";
 import MetricsSolid from "@/icons/MetricsSolid";
 import Stack from "@/icons/Stack";
 import StackSolid from "@/icons/StackSolid";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import Link from "next/link";
-import translation from "@/translations/global.json";
 import { usePathname } from "next/navigation";
 
 export default function Navigation() {
-  const { lang } = useSettingsModalStore();
   const pathname = usePathname();
   return (
     <nav>
-      <ul className="flex justify-center gap-5 ">
+      <ul className="flex justify-center w-full gap-5 bg-black rounded-t-xl sm:mx-auto sm:w-96">
         <NavItem pathname={pathname} url="/">
           {pathname === "/" ? <ClockSolid /> : <Clock />}
-          <div>{translation.timer["header"][lang]}</div>
         </NavItem>
         <NavItem pathname={pathname} url="/solves">
           {pathname === "/solves" ? <StackSolid /> : <Stack />}
-          <div>{translation.solves["header"][lang]}</div>
         </NavItem>
         <NavItem pathname={pathname} url="/stats">
           {pathname === "/stats" ? <MetricsSolid /> : <Metrics />}
-          <div>{translation.metrics["header"][lang]}</div>
         </NavItem>
         <NavItem pathname={pathname} url="/cubes">
           {pathname === "/cubes" ? <CubesSolid /> : <Cubes />}
-          <div>{translation.cubes["header"][lang]}</div>
         </NavItem>
       </ul>
     </nav>
