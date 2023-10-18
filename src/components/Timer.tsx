@@ -43,7 +43,7 @@ export default function Timer() {
   const isReleased = useRef(true);
 
   const handleHold = (event: KeyboardEvent) => {
-    if (event.code === "Space" || event.code === "Escape") {
+    if (selectedCube && event.code === "Space" || event.code === "Escape") {
       if (event.code === "Escape") {
         clearInterval(runningTimeId.current);
         setIsSolving(false);
@@ -167,11 +167,10 @@ export default function Timer() {
   return (
     <>
       <div className="flex flex-col items-center justify-center grow">
-        <div
-          className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-mono select-none ${timerStatusClasses[timerStatus]}`}
-        >
+        {selectedCube &&
+        <div className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-mono select-none ${timerStatusClasses[timerStatus]}`}>
           {formatTime(solvingTime)}
-        </div>
+        </div>}
         {lastSolve &&
           settings.features.quickActionButtons.status &&
           timerStatus === "idle" && <SolveOptions solve={lastSolve} />}
