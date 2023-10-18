@@ -37,33 +37,27 @@ export default function LineCharter({
 }) {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const global: any = [];
-  const cubeAll: any = [];
-
   useEffect(() => {
     const container = chartContainerRef.current;
     if (container) {
       container.innerHTML = "";
       const chart = createChart(container, chartOptions);
-      if (cubeSelected) {
-        data.cubeAll.map((i: Solve, index: number) => {
-          cubeAll.push({ time: index, value: i.time / 1000 });
-        });
-        const cubeAllStructuredData: any = sort(cubeAll).asc(
-          (u: any) => u.time
-        );
-        const cubeAllLine = chart.addLineSeries({ color: "#2962FF" });
-        cubeAllLine.setData(cubeAllStructuredData);
-      } else {
-        data.global.map((i: Solve, index: number) => {
-          global.push({ time: index, value: i.time / 1000 });
-        });
-        const globalStructuredData: any = sort(global).asc((u: any) => u.time);
-        const globalLine = chart.addLineSeries({ color: "#F4D03F" });
-        globalLine.setData(globalStructuredData);
-      }
+      const dataArray = cubeSelected ? data.cubeAll : data.global;
+      const structuredData: any = sort(
+        dataArray.map((i: Solve, index: number) => ({
+          time: index,
+          value: i.time / 1000,
+        }))
+      ).asc((u: any) => u.time);
+
+      const lineSeries = chart.addLineSeries({
+        color: cubeSelected ? "#2962FF" : "#F4D03F",
+      });
+      lineSeries.setData(structuredData);
+
       chart.autoSizeActive();
       chart.timeScale().fitContent();
+
       // Make chart responsive with screen resize
       new ResizeObserver((entries) => {
         if (entries.length === 0 || entries[0].target !== container) {
@@ -73,7 +67,7 @@ export default function LineCharter({
         chart.applyOptions({ height: newRect.height, width: newRect.width });
       }).observe(container);
     }
-  });
+  }, [data, cubeSelected]);
 
   return <div ref={chartContainerRef} className="w-full h-full"></div>;
 }
