@@ -43,7 +43,7 @@ export default function Timer() {
   const isReleased = useRef(true);
 
   const handleHold = (event: KeyboardEvent) => {
-    if (event.code === "Space" || event.code === "Escape") {
+    if (selectedCube && event.code === "Space" || event.code === "Escape") {
       if (event.code === "Escape") {
         clearInterval(runningTimeId.current);
         setIsSolving(false);
