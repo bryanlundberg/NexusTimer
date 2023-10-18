@@ -51,7 +51,10 @@ export default function ModalCreate() {
   };
 
   const handleEditCube = (name: string, category: Categories) => {
-    if (name === "") return;
+    if (name.trim() === "") {
+      setError(true);
+      return;
+    }
     if (!editingCube) return;
     const cubeDB = loadCubes();
 
