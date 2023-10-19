@@ -15,6 +15,8 @@ import ThemeSelect from "./ThemeSelect";
 import { MenuSection } from "./MenuSection";
 import { MenuOption } from "./MenuOption";
 import { useTimerStore } from "@/store/timerStore";
+import { Button } from "@/components/button";
+import Export from "@/icons/Export";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
@@ -123,6 +125,24 @@ export default function MenuSettings() {
             title={translation.settings["theme"][lang]}
           >
             <ThemeSelect />
+          </MenuSection>
+
+          <MenuSection
+            icon={<Export />}
+            title={translation.settings["import-export-data"][lang]}
+          >
+            <div className="flex gap-2 justify-center">
+              <Button
+                className="font-normal"
+                label={translation.settings["import-from-file"][lang]}
+                onClick={() => {}}
+              />
+              <Button
+                onClick={() => {}}
+                label={translation.settings["export-to-file"][lang]}
+                className="font-normal"
+              />
+            </div>
           </MenuSection>
         </div>
         {/* Area to the right  -> Its a transparent layer next to menu */}
