@@ -17,6 +17,7 @@ import { MenuOption } from "./MenuOption";
 import { useTimerStore } from "@/store/timerStore";
 import { Button } from "@/components/button";
 import Export from "@/icons/Export";
+import exportDataToFile from "@/lib/exportDataToFile";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
@@ -138,9 +139,9 @@ export default function MenuSettings() {
                 onClick={() => {}}
               />
               <Button
-                onClick={() => {}}
-                label={translation.settings["export-to-file"][lang]}
                 className="font-normal"
+                label={translation.settings["export-to-file"][lang]}
+                onClick={exportDataToFile}
               />
             </div>
           </MenuSection>
