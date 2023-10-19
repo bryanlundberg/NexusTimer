@@ -8,6 +8,7 @@ import findCube from "@/lib/findCube";
 import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
+import translation from "@/translations/global.json";
 
 const timerStatusClasses = {
   idle: "light:text-neutral-900 dark:text-white",
@@ -31,7 +32,7 @@ export default function Timer() {
     setIsSolving,
   } = useTimerStore();
 
-  const { settings } = useSettingsModalStore();
+  const { settings, lang } = useSettingsModalStore();
 
   const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
   const [timerStatus, setTimerStatus] = useState<TimerStatus>("idle");
@@ -41,10 +42,10 @@ export default function Timer() {
   const runningTimeId = useRef<any>(null);
   const isHolding = useRef(false);
   const isReleased = useRef(true);
-  const hideWhileSolving = settings.features.hideWhileSolving.status
+  const hideWhileSolving = settings.features.hideWhileSolving.status;
 
   const handleHold = (event: KeyboardEvent) => {
-    if (selectedCube && event.code === "Space" || event.code === "Escape") {
+    if ((selectedCube && event.code === "Space") || event.code === "Escape") {
       if (event.code === "Escape") {
         clearInterval(runningTimeId.current);
         setIsSolving(false);
@@ -169,11 +170,16 @@ export default function Timer() {
     <>
       <div className="flex flex-col items-center justify-center grow">
         {selectedCube && (
-          <div className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-mono select-none ${timerStatusClasses[timerStatus]}`}>
-            {hideWhileSolving && isSolving ?
-              <span className="sm:text-5xl md:text-6xl lg:text-7xl">Solving...</span>
-              :
-              formatTime(solvingTime)}
+          <div
+            className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-mono select-none ${timerStatusClasses[timerStatus]}`}
+          >
+            {hideWhileSolving && isSolving ? (
+              <span className="sm:text-5xl md:text-6xl lg:text-7xl">
+                {translation.timer["solving"][lang]}
+              </span>
+            ) : (
+              formatTime(solvingTime)
+            )}
           </div>
         )}
         {lastSolve &&
