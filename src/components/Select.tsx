@@ -11,6 +11,7 @@ import findCube from "@/lib/findCube";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Themes } from "@/interfaces/types/Themes";
+import { useCubesModalStore } from "@/store/CubesModalStore";
 
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
@@ -199,6 +200,8 @@ function LabelSection({ description }: { description: string }) {
 function AddCubeOption() {
   const { lang } = useSettingsModalStore();
   const { settings } = useSettingsModalStore();
+  const { setModalOpen } = useCubesModalStore();
+
   const variation: Record<Themes, string> = {
     light: "border-zinc-800 hover:bg-zinc-700 hover:text-neutral-100",
     dark: "border-zinc-800 hover:bg-zinc-800",
@@ -209,7 +212,7 @@ function AddCubeOption() {
         variation[settings.theme.background.color]
       }`}
     >
-      <Link href="/cubes">
+      <Link href="/cubes" onClick={() => setModalOpen(true)}>
         <div className="flex items-center justify-start gap-2 align-middle">
           <PlusIcon />
           <div>{translation.inputs["add-cube"][lang]}</div>
