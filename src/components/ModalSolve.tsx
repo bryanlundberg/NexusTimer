@@ -44,7 +44,7 @@ export default function ModalSolve() {
       }
     }
     setCubes(newCubes);
-    setStatus();
+    setStatus(false);
   };
 
   const handlePlusTwo = () => {
@@ -56,12 +56,13 @@ export default function ModalSolve() {
       }
     }
     setCubes(newCubes);
-    setStatus();
+    setStatus(false);
   };
 
   return (
     <>
-      <div className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center text-neutral-950">
+      <div className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center text-neutral-950"
+        onClick={(e) => {if(e.target === e.currentTarget) setStatus(false)}}>
         <div className="w-full h-auto text-xs border rounded-md sm:w-96 bg-neutral-200 border-neutral-800 ">
           <div className="flex items-center justify-between p-3 border-b border-zinc-800">
             <div className="flex items-center text-lg font-medium">
@@ -95,7 +96,7 @@ export default function ModalSolve() {
             <button
               type="button"
               className="flex items-center justify-center w-12 h-8 p-1 bg-green-500 border rounded-md border-zinc-800 hover:bg-green-600"
-              onClick={() => setStatus()}
+              onClick={() => setStatus(false)}
             >
               <Check />
             </button>
