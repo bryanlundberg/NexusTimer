@@ -9,7 +9,7 @@ import cube777 from "@/images/categories/cube777.png";
 import cubesq1 from "@/images/categories/cubesq1.png";
 import cubeskewb from "@/images/categories/skewb.png";
 import cubepyramix from "@/images/categories/pyramix.png";
-
+import cubemegaminx from "@/images/categories/minx.png";
 export const cubeCollection: CubeCollection[] = [
   {
     event: "222",
@@ -70,5 +70,11 @@ export const cubeCollection: CubeCollection[] = [
     id: 10,
     name: "Pyraminx",
     src: cubepyramix,
+  },
+  {
+    event: "minx",
+    id: 11,
+    name: "Megaminx",
+    src: cubemegaminx,
   },
 ];

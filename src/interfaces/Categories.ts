@@ -8,4 +8,5 @@ export type Categories =
   | "7x7"
   | "SQ1"
   | "Skewb"
-  | "Pyraminx";
+  | "Pyraminx"
+  | "Megaminx";
