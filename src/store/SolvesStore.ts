@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 type Modal = {
   status: boolean;
-  setStatus: () => void;
+  setStatus: (status: boolean) => void;
   solve: Solve | null;
   setSolve: (solve: Solve | null) => void;
 };
@@ -11,10 +11,10 @@ type Modal = {
 export const useSolvesStore = create<Modal>((set) => ({
   status: false,
   solve: null,
-  setStatus: () => {
+  setStatus: (status: boolean) => {
     set((state) => ({
       ...state,
-      status: !state.status,
+      status: status,
     }));
   },
   setSolve: (solve) => {
