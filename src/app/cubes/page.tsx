@@ -32,7 +32,6 @@ export default function CubesPage() {
   };
 
   useEffect(() => {
-    setModalOpen(false);
     const cubes = loadCubes();
     setCubes(cubes);
   }, [setCubes, setModalOpen]);
@@ -57,7 +56,7 @@ export default function CubesPage() {
                     translation.inputs.placeholders["filter-cubes"][lang]
                   }
                   onChange={handleSearchFilter}
-                  className="border light:bg-neutral-100 light:border-neutral-200 dark:bg-zinc-950 dark:border-zinc-800"
+                  className="border light:bg-neutral-100 light:border-neutral-200 light:focus:bg-neutral-50 dark:bg-zinc-950 dark:border-zinc-800 dark:focus:bg-zinc-900"
                 />
                 <Button
                   disabled={false}
