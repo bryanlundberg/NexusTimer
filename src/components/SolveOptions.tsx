@@ -20,7 +20,7 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
       <div className="flex items-center justify-center gap-3 p-3 mt-3 border-t border-zinc-800">
         <button
           type="button"
-          className="flex items-center justify-center w-12 h-8 p-1 bg-red-500 border rounded-md border-zinc-800 hover:bg-red-600"
+          className="flex items-center justify-center w-12 h-8 p-1 transition duration-500 border rounded-md dark:text-neutral-200 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:bg-red-600 light:text-neutral-200 light:bg-zinc-800 light:border-zinc-800 light:hover:bg-red-600"
           onClick={() => {
             const updatedCubes = deleteSolve(solve.id);
             setCubes(updatedCubes);
@@ -34,7 +34,7 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
         </button>
         <button
           type="button"
-          className="w-12 h-8 p-1 font-medium bg-yellow-500 border rounded-md border-zinc-800 hover:bg-yellow-600"
+          className="flex items-center justify-center w-12 h-8 p-1 transition duration-500 border rounded-md dark:text-neutral-200 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:bg-yellow-600 light:text-neutral-200 light:bg-zinc-800 light:border-zinc-800 light:hover:bg-yellow-600"
           onClick={() => {
             const updatedCubes = updateSolve(solve.id, "+2");
             setCubes(updatedCubes);
