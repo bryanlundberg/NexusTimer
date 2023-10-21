@@ -1,7 +1,6 @@
 "use client";
 import CategoryStatistics from "@/components/CategoryStatistics";
 import PersonalStatistics from "@/components/PersonalStatistics";
-import SelectMetrics from "@/components/SelectMetrics";
 import { useEffect, useState } from "react";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";

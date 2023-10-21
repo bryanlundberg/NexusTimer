@@ -7,7 +7,7 @@ import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import { useState } from "react";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
-import Button from "@/components/Button";
+import Button from "@/components/button/Button";
 import MoveAll from "@/icons/MoveAll";
 import Trash from "@/icons/Trash";
 import findCube from "@/lib/findCube";
