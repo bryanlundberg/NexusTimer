@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/components/button/Button";
-import InputText from "@/components/InputText";
+import InputText from "@/components/input-text/InputText";
 import TableRow from "@/components/TableRow";
 import { Cube } from "@/interfaces/Cube";
 import genId from "@/lib/genId";
