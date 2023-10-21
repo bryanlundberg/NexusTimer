@@ -10,7 +10,7 @@ export default function HeaderTimer() {
   const { selectedCube, setNewScramble, isSolving } = useTimerStore();
   const { setSettingsOpen, settingsOpen } = useSettingsModalStore();
 
-  if (isSolving) return;
+  if (isSolving) return null;
   return (
     <div className="flex flex-col items-center justify-center gap-5 p-4">
       <div className="flex items-center gap-3">

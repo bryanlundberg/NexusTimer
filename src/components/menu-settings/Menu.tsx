@@ -1,6 +1,5 @@
 "use client";
 import ArrowLeft from "@/icons/ArrowLeft";
-import Toggle from "@/components/headless/Toggle";
 import Language from "@/icons/Language";
 import CpuChip from "@/icons/CpuChip";
 import BellAlert from "@/icons/BellAlert";
@@ -12,19 +11,24 @@ import translation from "@/translations/global.json";
 import { Settings } from "@/interfaces/Settings";
 import { sort } from "fast-sort";
 import Sparkles from "@/icons/Sparkles";
-import ThemeSelect from "./ThemeSelect";
+import ThemeSelect from "../ThemeSelect";
+import { MenuSection } from "./MenuSection";
+import { MenuOption } from "./MenuOption";
+import { useTimerStore } from "@/store/timerStore";
 
-export default function SettingsMenu() {
-  const { setSettingsOpen, settings, setSettings, lang } =
+export default function MenuSettings() {
+  const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
     useSettingsModalStore();
   const handleChangeLang = (tagLang: any) => {
     const newSettings = { ...settings };
-
     newSettings.locale.language.lang = tagLang;
-
     window.localStorage.setItem("settings", JSON.stringify(newSettings));
     setSettings(newSettings);
   };
+
+  const { isSolving } = useTimerStore();
+
+  if (!settingsOpen || isSolving) return null;
 
   return (
     <>
@@ -42,7 +46,7 @@ export default function SettingsMenu() {
             </div>
           </div>
 
-          <Section
+          <MenuSection
             icon={<Language />}
             title={translation.settings["locale"][lang]}
           >
@@ -68,10 +72,13 @@ export default function SettingsMenu() {
                 </select>
               </div>
             </div>
-          </Section>
-          <Section icon={<Clock />} title={translation.settings["timer"][lang]}>
+          </MenuSection>
+          <MenuSection
+            icon={<Clock />}
+            title={translation.settings["timer"][lang]}
+          >
             {Object.values(settings.timer).map((item) => (
-              <Option
+              <MenuOption
                 key={genId()}
                 status={item.status}
                 label={translation.settings[item.key as keyof Settings][lang]}
@@ -79,14 +86,14 @@ export default function SettingsMenu() {
                 id={item.key}
               />
             ))}
-          </Section>
+          </MenuSection>
 
-          <Section
+          <MenuSection
             icon={<CpuChip />}
             title={translation.settings["features"][lang]}
           >
             {Object.values(settings.features).map((item) => (
-              <Option
+              <MenuOption
                 key={genId()}
                 status={item.status}
                 label={translation.settings[item.key as keyof Settings][lang]}
@@ -94,14 +101,14 @@ export default function SettingsMenu() {
                 id={item.key}
               />
             ))}
-          </Section>
+          </MenuSection>
 
-          <Section
+          <MenuSection
             icon={<BellAlert />}
             title={translation.settings["alerts"][lang]}
           >
             {Object.values(settings.alerts).map((item) => (
-              <Option
+              <MenuOption
                 key={genId()}
                 status={item.status}
                 label={translation.settings[item.key as keyof Settings][lang]}
@@ -109,59 +116,18 @@ export default function SettingsMenu() {
                 id={item.key}
               />
             ))}
-          </Section>
+          </MenuSection>
 
-          <Section
+          <MenuSection
             icon={<Sparkles />}
             title={translation.settings["theme"][lang]}
           >
             <ThemeSelect />
-          </Section>
+          </MenuSection>
         </div>
         {/* Area to the right  -> Its a transparent layer next to menu */}
         <div onClick={() => setSettingsOpen(false)} className="sm:grow"></div>
       </div>
     </>
-  );
-}
-
-function Section({
-  children,
-  icon,
-  title,
-}: {
-  children: React.ReactNode;
-  icon: React.ReactNode;
-  title: string;
-}) {
-  return (
-    <div className="mb-3">
-      <div className="flex mb-3 font-medium text-blue-500">
-        <div className="w-6 mx-3">{icon}</div>
-        <div className="w-full">{title}</div>
-      </div>
-      {children}
-    </div>
-  );
-}
-
-function Option({
-  label,
-  status,
-  read,
-  id,
-}: {
-  label: string;
-  status: boolean;
-  read: string;
-  id: string;
-}) {
-  return (
-    <div className="flex justify-between mb-1">
-      <div className="ms-12">{label}</div>
-      <div className="me-6">
-        <Toggle status={status} read={read} id={id} />
-      </div>
-    </div>
   );
 }
