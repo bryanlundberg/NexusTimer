@@ -1,10 +1,10 @@
-import useOpenClose from "../hooks/useOpenClose";
+import useOpenClose from "@/hooks/useOpenClose";
+import useSelect from "@/hooks/useSelect";
+import genId from "@/lib/genId";
 import { SelectContainer } from "./SelectContainer";
 import { SelectToggleButton } from "./SelectToggleButton";
 import { SelectOptionList } from "./SelectOptionList";
 import { SelectOption } from "./SelectOption";
-import useSelect from "../hooks/useSelect";
-import genId from "@/lib/genId";
 
 interface Select {
   list: Item[];

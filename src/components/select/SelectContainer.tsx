@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import useClickOutside from "../hooks/useClickOutside";
+import useClickOutside from "@/hooks/useClickOutside";
 
 interface SelectContainer {
   handleClickOutside: () => void;
