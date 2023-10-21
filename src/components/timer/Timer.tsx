@@ -5,7 +5,7 @@ import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import addSolve from "@/lib/addSolve";
 import findCube from "@/lib/findCube";
-import SolveOptions from "./SolveOptions";
+import SolveOptions from "../SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
 import translation from "@/translations/global.json";

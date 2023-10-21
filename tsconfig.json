@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/components/TimerWidgets.tsx"
+    "src/components/timer/TimerWidgets.tsx"
   ],
   "exclude": ["node_modules"]
 }

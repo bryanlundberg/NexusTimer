@@ -1,10 +1,9 @@
-export default function HeaderOption({
-  icon,
-  handleClick,
-}: {
+interface InteractiveIcon {
   icon: React.ReactNode;
   handleClick: () => void;
-}) {
+}
+
+export function InteractiveIcon({ icon, handleClick }: InteractiveIcon) {
   return (
     <div
       onClick={handleClick}

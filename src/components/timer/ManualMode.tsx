@@ -6,7 +6,7 @@ import formatTime from "@/lib/formatTime";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import { useState } from "react";
-import SolveOptions from "./SolveOptions";
+import SolveOptions from "../SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Themes } from "@/interfaces/types/Themes";
 

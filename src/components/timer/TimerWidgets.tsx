@@ -1,6 +1,6 @@
 import StatisticsPanel from "./StatisticsPanel";
 import OverviewPanel from "./OverviewPanel";
-import ScramblePanel from "./ScramblePanel";
+import ScramblePanel from "./ScrambleImagePanel";
 
 export default function TimerWidgets() {
   return (

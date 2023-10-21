@@ -1,35 +1,11 @@
-import calcStatistics from "@/lib/calcStatistics";
-import { defaultTimerStatistics } from "@/lib/const/defaultTimerStatistics";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import { useTimerStore } from "@/store/timerStore";
 import translation from "@/translations/global.json";
-import { useState, useEffect } from "react";
 import formatTime from "@/lib/formatTime";
+import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 
 export default function OverviewPanel() {
   const { lang, settings } = useSettingsModalStore();
-  const { scramble, selectedCube } = useTimerStore();
-  const [statistics, setStatistics] = useState(defaultTimerStatistics);
-
-  useEffect(() => {
-    if (selectedCube) {
-      const { count, best, ao3, ao5, ao12, ao50, ao100, deviation, mean } =
-        calcStatistics({
-          cubeId: selectedCube.id,
-        });
-      setStatistics({
-        count,
-        best,
-        ao3,
-        ao5,
-        ao12,
-        ao50,
-        ao100,
-        deviation,
-        mean,
-      });
-    }
-  }, [scramble, selectedCube]);
+  const statistics = useTimerStatistics();
 
   return (
     <div className="flex flex-col justify-center w-full h-full">
