@@ -8,7 +8,7 @@ import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
 import calcAoStatistics from "@/lib/calcAoStatistics";
 import calcDeviation from "@/lib/calcDeviation";
 import calcBestTime from "@/lib/calcBestTime";
-import SelectMetrics from "./SelectMetrics";
+import SelectMetrics from "./select/Select";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import LineCharter from "./charts/LineCharter";
