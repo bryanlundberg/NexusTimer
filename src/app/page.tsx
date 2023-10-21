@@ -4,7 +4,7 @@ import HeaderTimer from "@/components/HeaderTimer";
 import TimerWidgets from "@/components/TimerWidgets";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import SettingsMenu from "@/components/SettingsMenu";
-import Navigation from "@/components/Navigation";
+import Navigation from "@/components/navbar/Navbar";
 import ManualMode from "@/components/ManualMode";
 import { useTimerStore } from "@/store/timerStore";
 

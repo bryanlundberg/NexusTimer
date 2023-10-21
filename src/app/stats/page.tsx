@@ -4,7 +4,7 @@ import PersonalStatistics from "@/components/PersonalStatistics";
 import { useEffect, useState } from "react";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import Navigation from "@/components/Navigation";
+import Navigation from "@/components/navbar/Navbar";
 
 export default function StatsPage() {
   const { settings, lang } = useSettingsModalStore();

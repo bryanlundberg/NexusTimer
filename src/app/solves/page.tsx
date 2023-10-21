@@ -18,7 +18,7 @@ import ModalSolve from "@/components/ModalSolve";
 import { useSolvesStore } from "@/store/SolvesStore";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import Navigation from "@/components/Navigation";
+import Navigation from "@/components/navbar/Navbar";
 
 export default function SolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");

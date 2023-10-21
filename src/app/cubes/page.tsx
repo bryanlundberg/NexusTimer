@@ -12,7 +12,7 @@ import { useCubesModalStore } from "@/store/CubesModalStore";
 import Plus from "@/icons/Plus";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import Navigation from "@/components/Navigation";
+import Navigation from "@/components/navbar/Navbar";
 import Image from "next/image";
 import nodata from "@/images/no-data.png";
 import { useEffect, useState } from "react";
