@@ -10,11 +10,7 @@ export default function HeaderTimer() {
   const { scramble, selectedCube, setNewScramble } = useTimerStore();
   const { setSettingsOpen, settingsOpen, lang, settings } =
     useSettingsModalStore();
-  const scrambleStyles = {
-    plain:
-      "h-auto p-2 overflow-auto text-2xl font-medium text-center rounded-md min-w-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg max-h-52",
-    bg: "h-auto p-2 overflow-auto text-2xl font-medium text-center rounded-md min-w-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg max-h-52 dark:bg-zinc-900 light:bg-neutral-100",
-  };
+
   return (
     <div className="flex flex-col items-center justify-center gap-5 p-4">
       <div className="flex items-center gap-3">
@@ -35,8 +31,8 @@ export default function HeaderTimer() {
       <div
         className={
           settings.features.scrambleBackground.status
-            ? scrambleStyles.bg
-            : scrambleStyles.plain
+            ? "h-auto p-2 overflow-auto text-2xl font-medium text-center rounded-md min-w-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg max-h-52 dark:bg-zinc-900 light:bg-neutral-100"
+            : "h-auto p-2 overflow-auto text-2xl font-medium text-center rounded-md min-w-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg max-h-52"
         }
       >
         {selectedCube ? scramble : translation.timer["empty-scramble"][lang]}
