@@ -1,6 +1,5 @@
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import {
-  Legend,
   ResponsiveContainer,
   RadarChart,
   PolarGrid,
