@@ -7,5 +7,5 @@ export default function useSelect(initialValue: any) {
     setSelectedValue(value);
   };
 
-  return { selectedValue, setSelectedValue, handleSelect };
+  return { selectedValue, handleSelect };
 }

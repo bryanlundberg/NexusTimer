@@ -6,9 +6,11 @@ import { SelectToggleButton } from "./SelectToggleButton";
 import { SelectOptionList } from "./SelectOptionList";
 import { SelectOption } from "./SelectOption";
 
-interface Select {
+interface SelectProps {
   list: Item[];
   defaultLabel: string;
+  className?: string;
+  onChange: (selectedValue: string) => void;
 }
 
 interface Item {
@@ -16,12 +18,25 @@ interface Item {
   id: string;
 }
 
-export default function Select({ list, defaultLabel }: Select) {
+export default function Select({
+  list,
+  defaultLabel,
+  className,
+  onChange,
+}: SelectProps) {
   const { isOpen, close, toggle } = useOpenClose(false);
   const { selectedValue, handleSelect } = useSelect(defaultLabel);
+
+  const handleOptionSelect = (item: Item) => {
+    handleSelect(item.name);
+    close();
+    onChange(item.name);
+  };
+
   return (
     <>
       <SelectContainer
+        className={className}
         handleClickOutside={() => {
           close();
         }}
@@ -33,10 +48,7 @@ export default function Select({ list, defaultLabel }: Select) {
               key={genId()}
               label={item.name}
               selected={selectedValue}
-              onSelect={() => {
-                handleSelect(item.name);
-                close();
-              }}
+              onSelect={() => handleOptionSelect(item)}
             />
           ))}
         </SelectOptionList>
