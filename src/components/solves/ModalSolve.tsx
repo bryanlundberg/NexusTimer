@@ -1,39 +1,20 @@
 import Check from "@/icons/Check";
 import NoSymbol from "@/icons/NoSymbol";
-import { cubeCollection } from "@/lib/cubeCollection";
 import deleteSolve from "@/lib/deleteSolve";
 import findCube from "@/lib/findCube";
 import formatDate from "@/lib/formatDate";
 import updateSolve from "@/lib/updateSolve";
 import { useSolvesStore } from "@/store/SolvesStore";
 import { useTimerStore } from "@/store/timerStore";
-import { useEffect } from "react";
 import formatTime from "@/lib/formatTime";
+import useModalScramble from "@/hooks/useModalScramble";
 
 export default function ModalSolve() {
-  const { solve, setStatus } = useSolvesStore();
+  const { status, solve, setStatus } = useSolvesStore();
   const { setCubes, setSelectedCube, selectedCube } = useTimerStore();
+  useModalScramble();
 
-  useEffect(() => {
-    if (!solve) return;
-
-    const display = document.querySelector("scramble-display");
-
-    if (display) {
-      display.remove();
-    }
-
-    const name = cubeCollection.find((item) => item.name === solve.category);
-
-    if (name) {
-      const child = document.createElement("scramble-display");
-      child.setAttribute("event", name.event || "222");
-      child.setAttribute("scramble", solve.scramble || "");
-      document.querySelector("#scramble-display")?.appendChild(child);
-    }
-  }, [solve]);
-
-  if (!solve) return null;
+  if (!solve || !status) return null;
 
   const handleDelete = () => {
     const newCubes = deleteSolve(solve.id);
@@ -61,8 +42,12 @@ export default function ModalSolve() {
 
   return (
     <>
-      <div className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center text-neutral-950"
-        onClick={(e) => {if(e.target === e.currentTarget) setStatus(false)}}>
+      <div
+        className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center text-neutral-950"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) setStatus(false);
+        }}
+      >
         <div className="w-full h-auto text-xs border rounded-md sm:w-96 bg-neutral-200 border-neutral-800 ">
           <div className="flex items-center justify-between p-3 border-b border-zinc-800">
             <div className="flex items-center text-lg font-medium">

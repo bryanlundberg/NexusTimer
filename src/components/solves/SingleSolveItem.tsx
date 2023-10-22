@@ -3,7 +3,11 @@ import formatDate from "@/lib/formatDate";
 import { useSolvesStore } from "@/store/SolvesStore";
 import formatTime from "@/lib/formatTime";
 
-export default function SingleSolveItem({ solve }: { solve: Solve }) {
+interface SingleSolveItem {
+  solve: Solve;
+}
+
+export default function SingleSolveItem({ solve }: SingleSolveItem) {
   const { setStatus, setSolve } = useSolvesStore();
   return (
     <>

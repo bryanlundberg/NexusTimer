@@ -13,11 +13,11 @@ import genId from "@/lib/genId";
 const navigation: Navigation = [
   {
     path: "/",
-    normalIcon: <ClockSolid />,
-    solidIcon: <Clock />,
+    normalIcon: <Clock />,
+    solidIcon: <ClockSolid />,
   },
   {
-    path: "/solve",
+    path: "/solves",
     normalIcon: <Stack />,
     solidIcon: <StackSolid />,
   },

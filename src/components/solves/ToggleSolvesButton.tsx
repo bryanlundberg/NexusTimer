@@ -1,13 +1,14 @@
+interface ToggleSolvesButton {
+  label: string;
+  handleClick: () => void;
+  active?: boolean;
+}
+
 export default function ToggleSolvesButton({
-  children,
+  label,
   handleClick,
   active,
-  ...props
-}: {
-  children: React.ReactNode;
-  handleClick: any;
-  active: boolean;
-}) {
+}: ToggleSolvesButton) {
   return (
     <>
       <button
@@ -18,9 +19,8 @@ export default function ToggleSolvesButton({
             ? "light:bg-neutral-400 light:text-neutral-950 dark:bg-zinc-950"
             : "dark:bg-transparent"
         }`}
-        {...props}
       >
-        {children}
+        {label}
       </button>
     </>
   );
