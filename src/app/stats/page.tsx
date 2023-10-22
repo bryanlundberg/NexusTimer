@@ -1,15 +1,14 @@
 "use client";
-import { useEffect } from "react";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Select } from "@/components/select/index";
 import useSelect from "@/hooks/useSelect";
 import { OverallContainer } from "@/components/OverallContainer";
 import { OverallHeader } from "@/components/OverallHeader";
-import { StatsContent } from "@/components/stats/StatsContent";
+import { MetricsContent } from "@/components/stats/StatsContent";
 
 export default function StatsPage() {
-  const { settings, lang } = useSettingsModalStore();
+  const { lang } = useSettingsModalStore();
   const { selectedValue, handleSelect } = useSelect(
     translation.metrics["header-select"]["personal"][lang]
   );
@@ -24,10 +23,6 @@ export default function StatsPage() {
     },
   ];
 
-  useEffect(() => {
-    handleSelect(translation.metrics["header-select"]["personal"][lang]);
-  }, [settings, lang, handleSelect]);
-
   return (
     <>
       <OverallContainer>
@@ -39,7 +34,7 @@ export default function StatsPage() {
             onChange={(selection) => handleSelect(selection)}
           />
         </OverallHeader>
-        <StatsContent selectedValue={selectedValue} />
+        <MetricsContent selectedValue={selectedValue} />
       </OverallContainer>
     </>
   );

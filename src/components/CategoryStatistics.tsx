@@ -1,7 +1,3 @@
-import { useTimerStore } from "@/store/timerStore";
-import { cubeCollection } from "@/lib/cubeCollection";
-import { useState } from "react";
-import { Categories } from "@/interfaces/Categories";
 import calcAverageStatistics from "@/lib/calcAverageStatistics";
 import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
 import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
@@ -15,43 +11,18 @@ import LineCharter from "./charts/LineCharter";
 import getSolvesMetrics from "@/lib/getSolvesMetrics";
 import calcSuccessRate from "@/lib/calcSuccessRate";
 import formatTime from "@/lib/formatTime";
+import useMetricsSwitch from "@/hooks/useMetricsSwitch";
 
 export default function CategoryStatistics() {
-  const { cubes } = useTimerStore();
   const { lang } = useSettingsModalStore();
-  const [filterCategory, setFilterCategory] = useState<Categories>("3x3");
-  const [filterCube, setFilterCube] = useState<string>(
-    translation.solves.filter["all"][lang]
-  );
-
-  const handleChangeCategory = (value: any) => {
-    setFilterCategory(value);
-    setFilterCube(translation.solves.filter["all"][lang]);
-  };
-
-  const handleChangeCube = (value: any) => {
-    setFilterCube(value);
-  };
-
-  const categoyOptions = loadCategoryOptions();
-  const cubeOptions = loadCubeOptions();
-  function loadCategoryOptions(): Categories[] {
-    const categoryOptions: Categories[] = [];
-    cubeCollection.map((cat) => {
-      categoryOptions.push(cat.name);
-    });
-    return categoryOptions;
-  }
-
-  function loadCubeOptions() {
-    const cubesList = [translation.solves.filter["all"][lang]];
-    cubes?.map((cube) => {
-      if (cube.category === filterCategory) {
-        cubesList.push(cube.name);
-      }
-    });
-    return cubesList;
-  }
+  const {
+    filterCategory,
+    filterCube,
+    handleChangeCategory,
+    handleChangeCube,
+    categoyOptions,
+    cubeOptions,
+  } = useMetricsSwitch();
 
   const average = calcAverageStatistics(filterCategory, filterCube);
   const timeSpent = calcTimeSpentStatistics(filterCategory, filterCube);
@@ -66,16 +37,16 @@ export default function CategoryStatistics() {
       <div className="flex flex-col gap-3 px-3 py-3 overflow-auto grow">
         <div className="flex gap-3">
           <SelectMetrics
-            label={filterCategory}
-            options={categoyOptions}
-            handleChange={handleChangeCategory}
-            extraClass="w-full"
+            list={categoyOptions}
+            defaultLabel={filterCategory}
+            onChange={(e) => handleChangeCategory(e)}
+            className={"w-full"}
           />
           <SelectMetrics
-            label={filterCube}
-            options={cubeOptions}
-            handleChange={handleChangeCube}
-            extraClass="w-full"
+            defaultLabel={filterCube}
+            list={cubeOptions}
+            onChange={(e) => handleChangeCube(e)}
+            className={"w-full"}
           />
         </div>
         <div className="flex flex-col gap-3 md:flex-row">

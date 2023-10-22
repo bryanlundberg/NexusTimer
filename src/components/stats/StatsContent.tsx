@@ -3,12 +3,13 @@ import translation from "@/translations/global.json";
 import PersonalStatistics from "./PersonalStatistics";
 import CategoryStatistics from "../CategoryStatistics";
 
-interface StatsContentProps {
+interface MetricsContent {
   selectedValue: string;
 }
 
-export function StatsContent({ selectedValue }: StatsContentProps) {
+export function MetricsContent({ selectedValue }: MetricsContent) {
   const { lang } = useSettingsModalStore();
+
   return (
     <>
       {selectedValue ===
