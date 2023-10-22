@@ -4,7 +4,7 @@ import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
 import calcAoStatistics from "@/lib/calcAoStatistics";
 import calcDeviation from "@/lib/calcDeviation";
 import calcBestTime from "@/lib/calcBestTime";
-import SelectMetrics from "../select/Select";
+import { Select } from "../select/index";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import LineCharter from "../charts/LineCharter";
@@ -23,7 +23,7 @@ export default function CategoryStatistics() {
     filterCube,
     handleChangeCategory,
     handleChangeCube,
-    categoyOptions,
+    categoryOptions,
     cubeOptions,
   } = useMetricsSwitch();
 
@@ -36,18 +36,17 @@ export default function CategoryStatistics() {
   const best = calcBestTime(filterCategory, filterCube);
   const data = getSolvesMetrics(filterCategory, filterCube);
 
-  console.log(filterCube);
   return (
     <>
       <div className="flex flex-col gap-3 px-3 py-3 overflow-auto grow">
         <div className="flex gap-3">
-          <SelectMetrics
+          <Select
             defaultLabel={filterCategory}
-            list={categoyOptions}
+            list={categoryOptions}
             onChange={(e) => handleChangeCategory(e)}
             className={"w-full"}
           />
-          <SelectMetrics
+          <Select
             defaultLabel={filterCube}
             list={cubeOptions}
             onChange={(e) => handleChangeCube(e)}

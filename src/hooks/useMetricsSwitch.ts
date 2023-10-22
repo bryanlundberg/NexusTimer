@@ -13,16 +13,7 @@ export default function useMetricsSwitch() {
     translation.solves.filter["all"][lang]
   );
 
-  const handleChangeCategory = (value: any) => {
-    setFilterCube(translation.solves.filter["all"][lang]);
-    setFilterCategory(value);
-  };
-
-  const handleChangeCube = (value: any) => {
-    setFilterCube(value);
-  };
-
-  const categoyOptions = loadCategoryOptions();
+  const categoryOptions = loadCategoryOptions();
   const cubeOptions = loadCubeOptions();
 
   function loadCategoryOptions() {
@@ -48,12 +39,21 @@ export default function useMetricsSwitch() {
     return CubeOptions;
   }
 
+  const handleChangeCategory = (value: any) => {
+    setFilterCube(translation.solves.filter["all"][lang]);
+    setFilterCategory(value);
+  };
+
+  const handleChangeCube = (value: any) => {
+    setFilterCube(value);
+  };
+
   return {
     filterCategory,
     filterCube,
     handleChangeCategory,
     handleChangeCube,
-    categoyOptions,
-    cubeOptions,
+    categoryOptions, // Corrected variable name
+    cubeOptions, // Corrected variable name
   };
 }
