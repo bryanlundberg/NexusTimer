@@ -12,6 +12,9 @@ import getSolvesMetrics from "@/lib/getSolvesMetrics";
 import calcSuccessRate from "@/lib/calcSuccessRate";
 import formatTime from "@/lib/formatTime";
 import useMetricsSwitch from "@/hooks/useMetricsSwitch";
+import { StatisticRow } from "./StatisticRow";
+import { CustomTableContainer } from "./CustomTableContainer";
+import { StatisticHeader } from "./StatisticsHeader";
 
 export default function CategoryStatistics() {
   const { lang } = useSettingsModalStore();
@@ -62,22 +65,8 @@ export default function CategoryStatistics() {
           </div>
         </div>
 
-        <div className="w-full text-sm rounded-md">
-          <div className="flex items-center h-10 p-1 font-medium rounded-md dark:bg-zinc-900 dark:text-zinc-200 light:bg-neutral-200 light:text-neutral-950">
-            <div className="w-1/5"></div>
-            <div className="w-1/5 text-center">
-              {translation.metrics["global"][lang]}
-            </div>
-            <div className="w-1/5 text-center">
-              {translation.metrics["sessions"][lang]}
-            </div>
-            <div className="w-1/5 text-center">
-              C {translation.solves.filter["all"][lang]}
-            </div>
-            <div className="w-1/5 text-center">
-              C {translation.solves.filter["session"][lang]}
-            </div>
-          </div>
+        <CustomTableContainer>
+          <StatisticHeader />
           <StatisticRow
             label={translation.timer["deviation"][lang]}
             global={
@@ -231,32 +220,8 @@ export default function CategoryStatistics() {
             cubeAll={counter.cubeAll === 0 ? "--" : counter.cubeAll}
             cubeSession={counter.cubeSession === 0 ? "--" : counter.cubeSession}
           />
-        </div>
+        </CustomTableContainer>
       </div>
     </>
-  );
-}
-
-function StatisticRow({
-  label,
-  global,
-  session,
-  cubeAll,
-  cubeSession,
-}: {
-  label: string;
-  global: number | string;
-  session: number | string;
-  cubeAll: number | string;
-  cubeSession: number | string;
-}) {
-  return (
-    <div className="flex items-center h-10 text-xs rounded-md dark:text-zinc-400 dark:hover:bg-zinc-900 light:text-neutral-950 light:hover:bg-neutral-200 light:bg-neutral-100">
-      <div className="w-1/5 ps-3">{label}</div>
-      <div className="w-1/5 text-center">{global}</div>
-      <div className="w-1/5 text-center">{session}</div>
-      <div className="w-1/5 text-center">{cubeAll}</div>
-      <div className="w-1/5 text-center">{cubeSession}</div>
-    </div>
   );
 }
