@@ -14,8 +14,8 @@ export default function useMetricsSwitch() {
   );
 
   const handleChangeCategory = (value: any) => {
-    setFilterCategory(value);
     setFilterCube(translation.solves.filter["all"][lang]);
+    setFilterCategory(value);
   };
 
   const handleChangeCube = (value: any) => {
@@ -34,7 +34,7 @@ export default function useMetricsSwitch() {
   }
 
   function loadCubeOptions() {
-    const cubesList: any[] = [
+    const CubeOptions: any[] = [
       {
         name: translation.solves.filter["all"][lang],
         id: translation.solves.filter["all"][lang],
@@ -42,10 +42,10 @@ export default function useMetricsSwitch() {
     ];
     cubes?.map((cube) => {
       if (cube.category === filterCategory) {
-        cubesList.push({ name: cube.name, id: cube.name });
+        CubeOptions.push({ name: cube.name, id: cube.name });
       }
     });
-    return cubesList;
+    return CubeOptions;
   }
 
   return {

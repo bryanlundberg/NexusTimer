@@ -4,10 +4,10 @@ import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
 import calcAoStatistics from "@/lib/calcAoStatistics";
 import calcDeviation from "@/lib/calcDeviation";
 import calcBestTime from "@/lib/calcBestTime";
-import SelectMetrics from "./select/Select";
+import SelectMetrics from "../select/Select";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import LineCharter from "./charts/LineCharter";
+import LineCharter from "../charts/LineCharter";
 import getSolvesMetrics from "@/lib/getSolvesMetrics";
 import calcSuccessRate from "@/lib/calcSuccessRate";
 import formatTime from "@/lib/formatTime";
@@ -32,13 +32,15 @@ export default function CategoryStatistics() {
   const successRate = calcSuccessRate(filterCategory, filterCube);
   const best = calcBestTime(filterCategory, filterCube);
   const data = getSolvesMetrics(filterCategory, filterCube);
+
+  console.log(filterCube);
   return (
     <>
       <div className="flex flex-col gap-3 px-3 py-3 overflow-auto grow">
         <div className="flex gap-3">
           <SelectMetrics
-            list={categoyOptions}
             defaultLabel={filterCategory}
+            list={categoyOptions}
             onChange={(e) => handleChangeCategory(e)}
             className={"w-full"}
           />
