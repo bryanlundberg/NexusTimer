@@ -1,4 +1,4 @@
-import InputText from "./input-text/InputText";
+import InputText from "../input-text/InputText";
 import CheckboxImage from "./CheckboxImage";
 import { Categories } from "@/interfaces/Categories";
 import { cubeCollection } from "@/lib/cubeCollection";

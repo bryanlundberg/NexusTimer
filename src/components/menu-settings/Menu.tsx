@@ -11,7 +11,7 @@ import translation from "@/translations/global.json";
 import { Settings } from "@/interfaces/Settings";
 import { sort } from "fast-sort";
 import Sparkles from "@/icons/Sparkles";
-import ThemeSelect from "../ThemeSelect";
+import ThemeSelect from "./ThemeSelect";
 import { MenuSection } from "./MenuSection";
 import { MenuOption } from "./MenuOption";
 import { useTimerStore } from "@/store/timerStore";

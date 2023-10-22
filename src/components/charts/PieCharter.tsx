@@ -2,7 +2,6 @@ import { ResponsiveContainer, PieChart, Pie, Tooltip, Cell } from "recharts";
 
 const COLORS = [
   "#F5B041",
-
   "#F9E79F",
   "#2E86C1",
   "#7D3C98",
@@ -33,8 +32,6 @@ export default function PieCharter({ data }: { data: any }) {
           fill="aqua"
           fillOpacity={1}
           strokeWidth={0}
-          cornerRadius={2}
-          paddingAngle={1}
         >
           {data.map((entry: any, index: any) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
