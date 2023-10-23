@@ -62,9 +62,9 @@ I have a passion for statistics and find immense value in extracting meaning fro
 
 The core concept of the **Category Aggregation Principle** centers around the systematic consolidation and unification of statistical data from multiple items within the same category. This principle advocates for treating these data points as both a collective analysis and as a singular category simultaneously.
 
-In practical terms, the **Category Aggregation Principle** empowers speedcubers to compute and analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations.T his approach unveils valuable insights into a cuber's performance across a range of cubes, providing a comprehensive understanding of their skills and achievements within specific speedcubing categories. This is especially valuable for individuals looking to enhance their performance, monitor their progress and maintain a detailed history of their cube-solving journey with variations for cube, methods or both at the same time, without modify final category calculation!
+In practical terms, the **Category Aggregation Principle** empowers speedcubers to compute and analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations. This is especially valuable for individuals looking to enhance their performance, monitor their progress and maintain a detailed history of their cube-solving journey with variations in cubes, methods or both at the same time, without modify final category calculation!
 
-> You can enjoy solving the **GAN 356 CFOP** cube using the **CFOP** method, and later switch to the **GAN 356 ROUX** cube, employing the **ROUX** method. After completing 10,000 solves, you'll still have accurate category calculations, including Best Time, Deviation, Mean, Ao3 - Ao1000, and more. Additionally, you can access specific and filtered detailed statistics for each cube, giving you a comprehensive understanding of your performance with the GAN 356 CFOP and GAN 356 ROUX cubes.
+> You can enjoy solving the **GAN 356 CFOP** cube using the **CFOP** method, and later switch to the **GAN 356 ROUX** cube, employing the **ROUX** method. After completing a round of solves, you'll still have accurate category calculations, including Best Time, Deviation, Mean, Ao3 - Ao1000, and more. Additionally, you can access specific and filtered detailed statistics for each cube, giving you a comprehensive understanding of your performance with the GAN 356 CFOP and GAN 356 ROUX cubes and others.
 
 This is what makes unique and versatile **Nexus Timer**.
 
@@ -97,21 +97,15 @@ This is what makes unique and versatile **Nexus Timer**.
 - [x] Scrambles
   - [ ] Support WCA regulations
   - [ ] Add logic to avoid cancel moves
-  - [ ] Add Megaminx
-  - [ ] Add SQ-1
+  - [ ] Add Megaminx - Scrambles
+  - [ ] Add SQ-1 - Scrambles
   - [ ] Some others possible categories
-- [x] Enhance User Experience
-  - [ ] Implement zoom functionality for graphs
-  - [ ] Optimize component structure and organization
 - [x] Localization and Accessibility
   - [ ] Enhance and expand translations
-  - [ ] Add touch support for mobile devices
-  - [ ] Implement a multi-theme feature
-  - [ ] Improve times readability example 93.03s to 1:33.03
+  - [ ] Add touch support for timer in mobile devices
 - [x] User Preferences and Interaction
-  - [ ] Create settings states with timer options
   - [ ] Import / Export times
-- [x] Incorporate smooth animations and transitions
+- [x] Incorporate smooth animations
   - [ ] Modal opening and closing
   - [ ] Doing a personal best (PB)
   - [ ] Other interactive alerts
@@ -133,6 +127,10 @@ Don't forget to give the project a star! Thanks again!
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+## Community
+[![Stargazers repo roster for @bryanlundberg/NexusTimer](https://reporoster.com/stars/dark/bryanlundberg/NexusTimer)](https://github.com/bryanlundberg/NexusTimer/stargazers)
+[![Forkers repo roster for @bryanlundberg/NexusTimer](https://reporoster.com/forks/dark/bryanlundberg/NexusTimer)](https://github.com/bryanlundberg/NexusTimer/network/members)
 
 ## License
 
