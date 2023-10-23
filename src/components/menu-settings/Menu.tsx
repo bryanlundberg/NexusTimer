@@ -14,10 +14,9 @@ import Sparkles from "@/icons/Sparkles";
 import ThemeSelect from "./ThemeSelect";
 import { MenuSection } from "./MenuSection";
 import { MenuOption } from "./MenuOption";
+import { DataImportExport } from "./DataImportExport";
 import { useTimerStore } from "@/store/timerStore";
-import { Button } from "@/components/button";
 import Export from "@/icons/Export";
-import exportDataToFile from "@/lib/exportDataToFile";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
@@ -132,18 +131,7 @@ export default function MenuSettings() {
             icon={<Export />}
             title={translation.settings["import-export-data"][lang]}
           >
-            <div className="flex gap-2 justify-center">
-              <Button
-                className="font-normal"
-                label={translation.settings["import-from-file"][lang]}
-                onClick={() => {}}
-              />
-              <Button
-                className="font-normal"
-                label={translation.settings["export-to-file"][lang]}
-                onClick={exportDataToFile}
-              />
-            </div>
+            <DataImportExport lang={lang} />
           </MenuSection>
         </div>
         {/* Area to the right  -> Its a transparent layer next to menu */}
