@@ -16,7 +16,7 @@ import { MenuSection } from "./MenuSection";
 import { MenuOption } from "./MenuOption";
 import { DataImportExport } from "./DataImportExport";
 import { useTimerStore } from "@/store/timerStore";
-import Export from "@/icons/Export";
+import Folder from "@/icons/Folder";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
@@ -128,7 +128,7 @@ export default function MenuSettings() {
           </MenuSection>
 
           <MenuSection
-            icon={<Export />}
+            icon={<Folder />}
             title={translation.settings["import-export-data"][lang]}
           >
             <DataImportExport lang={lang} />
