@@ -14,7 +14,9 @@ import Sparkles from "@/icons/Sparkles";
 import ThemeSelect from "./ThemeSelect";
 import { MenuSection } from "./MenuSection";
 import { MenuOption } from "./MenuOption";
+import { DataImportExport } from "./DataImportExport";
 import { useTimerStore } from "@/store/timerStore";
+import Folder from "@/icons/Folder";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
@@ -123,6 +125,13 @@ export default function MenuSettings() {
             title={translation.settings["theme"][lang]}
           >
             <ThemeSelect />
+          </MenuSection>
+
+          <MenuSection
+            icon={<Folder />}
+            title={translation.settings["data"][lang]}
+          >
+            <DataImportExport lang={lang} />
           </MenuSection>
         </div>
         {/* Area to the right  -> Its a transparent layer next to menu */}
