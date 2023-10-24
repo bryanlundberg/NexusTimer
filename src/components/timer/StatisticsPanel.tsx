@@ -4,7 +4,7 @@ import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 
 export default function StatisticsPanel() {
   const { settings } = useSettingsModalStore();
-  const statistics = useTimerStatistics();
+  const { session } = useTimerStatistics();
 
   return (
     <>
@@ -12,17 +12,16 @@ export default function StatisticsPanel() {
         {settings.features.sessionStats.status ? (
           <>
             <div className="font-medium text-right">
-              Ao5: {statistics.ao5 === 0 ? "--" : formatTime(statistics.ao5)}
+              Ao5: {session.ao5 === 0 ? "--" : formatTime(session.ao5)}
             </div>
             <div className="font-medium text-right">
-              Ao12: {statistics.ao12 === 0 ? "--" : formatTime(statistics.ao12)}
+              Ao12: {session.ao12 === 0 ? "--" : formatTime(session.ao12)}
             </div>
             <div className="font-medium text-right">
-              Ao50: {statistics.ao50 === 0 ? "--" : formatTime(statistics.ao50)}
+              Ao50: {session.ao50 === 0 ? "--" : formatTime(session.ao50)}
             </div>
             <div className="font-medium text-right">
-              Ao100:{" "}
-              {statistics.ao100 === 0 ? "--" : formatTime(statistics.ao100)}
+              Ao100: {session.ao100 === 0 ? "--" : formatTime(session.ao100)}
             </div>
           </>
         ) : null}

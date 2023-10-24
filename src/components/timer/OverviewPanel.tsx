@@ -5,7 +5,7 @@ import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 
 export default function OverviewPanel() {
   const { lang, settings } = useSettingsModalStore();
-  const statistics = useTimerStatistics();
+  const { session } = useTimerStatistics();
 
   return (
     <div className="flex flex-col justify-center w-full h-full">
@@ -14,22 +14,22 @@ export default function OverviewPanel() {
           <div className="font-medium">
             {translation.timer["deviation"][lang]}
             {": "}
-            {formatTime(statistics.deviation)}
+            {formatTime(session.deviation)}
           </div>
           <div className="font-medium">
             {translation.timer["mean"][lang]}
             {": "}
-            {formatTime(statistics.mean)}
+            {formatTime(session.mean)}
           </div>
           <div className="font-medium">
             {translation.timer["best"][lang]}
             {": "}
-            {formatTime(statistics.best)}
+            {formatTime(session.best)}
           </div>
           <div className="font-medium">
             {translation.timer["counter"][lang]}
             {": "}
-            {statistics.count}
+            {session.count}
           </div>
         </>
       ) : null}

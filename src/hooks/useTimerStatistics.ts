@@ -5,27 +5,24 @@ import { useEffect, useState } from "react";
 
 export function useTimerStatistics() {
   const { scramble, selectedCube } = useTimerStore();
-  const [statistics, setStatistics] = useState(defaultTimerStatistics);
+  const [statistics, setStatistics] = useState({
+    global: defaultTimerStatistics,
+    session: defaultTimerStatistics,
+    cubeSession: defaultTimerStatistics,
+  });
 
   useEffect(() => {
     if (selectedCube) {
-      const { count, best, ao3, ao5, ao12, ao50, ao100, deviation, mean } =
-        calcStatistics({
-          cubeId: selectedCube.id,
-        });
-      setStatistics({
-        count,
-        best,
-        ao3,
-        ao5,
-        ao12,
-        ao50,
-        ao100,
-        deviation,
-        mean,
+      const { global, session, cubeSession } = calcStatistics({
+        cube: selectedCube,
       });
+      setStatistics({ global, session, cubeSession });
     }
   }, [scramble, selectedCube]);
 
-  return statistics;
+  return {
+    global: statistics.global,
+    session: statistics.session,
+    cubeSession: statistics.cubeSession,
+  };
 }
