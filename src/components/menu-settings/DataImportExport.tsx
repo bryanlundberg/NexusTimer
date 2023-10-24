@@ -15,7 +15,7 @@ export function DataImportExport({ lang }: DataImportExport) {
   const dataInputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="flex justify-center gap-2">
+    <div className="light flex justify-center gap-2">
       <input
         type="file"
         accept=".txt"
