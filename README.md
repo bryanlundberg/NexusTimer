@@ -128,10 +128,11 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## Community
-[![Stargazers repo roster for @bryanlundberg/NexusTimer](https://reporoster.com/stars/dark/bryanlundberg/NexusTimer)](https://github.com/bryanlundberg/NexusTimer/stargazers)
-[![Forkers repo roster for @bryanlundberg/NexusTimer](https://reporoster.com/forks/dark/bryanlundberg/NexusTimer)](https://github.com/bryanlundberg/NexusTimer/network/members)
+## Contributors
 
-## License
+Meet the talented individuals who have contributed to NexusTimer:
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+<a href="https://github.com/bryanlundberg/NexusTimer/graphs/contributors">
+ <img src="https://contrib.rocks/image?repo=bryanlundberg/NexusTimer" />
+</a>
+
