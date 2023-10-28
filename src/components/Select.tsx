@@ -12,6 +12,7 @@ import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Themes } from "@/interfaces/types/Themes";
 import { useCubesModalStore } from "@/store/CubesModalStore";
+import useClickOutside from "@/hooks/useClickOutside";
 
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
@@ -19,25 +20,11 @@ export default function Select() {
   const { lang, settings } = useSettingsModalStore();
   const componentRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        componentRef.current &&
-        !componentRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   const handleClose = () => {
     setOpen(false);
   };
+
+  useClickOutside(componentRef, handleClose);
 
   const variation: Record<Themes, string> = {
     light: "shadow-black bg-neutral-100 hover:bg-neutral-200",
@@ -152,12 +139,12 @@ function Option({
   const { settings } = useSettingsModalStore();
 
   const variation: Record<Themes, string> = {
-    light: "hover:bg-zinc-700 hover:text-neutral-100",
+    light: "hover:bg-neutral-600 hover:text-neutral-100",
     dark: "hover:bg-zinc-800",
   };
 
   const variation2: Record<Themes, string> = {
-    light: "bg-zinc-800 text-neutral-200",
+    light: "bg-neutral-600 text-neutral-100",
     dark: "bg-zinc-800",
   };
 
@@ -173,7 +160,7 @@ function Option({
         }
         handleClose();
       }}
-      className={` p-1 select-none rounded-md ps-2 flex items-center justify-between overflow-hidden ${
+      className={`transition duration-200 p-1 select-none rounded-md ps-2 flex items-center justify-between overflow-hidden ${
         variation[settings.theme.background.color]
       } ${
         selectedCube?.id === cubeId
