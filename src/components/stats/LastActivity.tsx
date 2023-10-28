@@ -7,7 +7,7 @@ export default function LastActivity() {
 
   return (
     <>
-      <div className="w-full p-3 text-left border rounded-md dark:border-zinc-800 light:border-neutral-200 sm:text-center dark:bg-neutral-900 light:bg-neutral-100">
+      <div className="w-full p-3 text-left border rounded-md dark:border-zinc-800 light:border-neutral-200 sm:text-center dark:bg-neutral-950 light:bg-neutral-100">
         <div className="mb-3 text-xl font-medium">
           {translation.metrics["last-activity"][lang]}
         </div>
