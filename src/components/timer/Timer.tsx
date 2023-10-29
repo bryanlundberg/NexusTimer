@@ -274,6 +274,8 @@ export default function Timer() {
     };
   });
 
+  if (selectedCube === null) return;
+
   return (
     <>
       <div
