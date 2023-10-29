@@ -12,9 +12,9 @@ type TimerStore = {
   lastSolve: Solve | null;
   solvingTime: number;
   isSolving: boolean;
-  setNewScramble: (cube: Cube) => void;
+  setNewScramble: (cube: Cube | null) => void;
   setCubes: (cubes: Cube[]) => void;
-  setSelectedCube: (cube: Cube) => void;
+  setSelectedCube: (cube: Cube | null) => void;
   setLastSolve: (solve: Solve | null) => void;
   setSolvingTime: (newTime: number) => void;
   setIsSolving: (isSolving: boolean) => void;
