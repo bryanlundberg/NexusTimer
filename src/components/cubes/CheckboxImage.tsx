@@ -13,7 +13,7 @@ export default function CheckboxImage({
   value: string;
   src: any;
   alt: string;
-  handleClickRadio: any;
+  handleClickRadio?: any;
   selectedCategory: Categories;
 }) {
   return (
@@ -28,7 +28,7 @@ export default function CheckboxImage({
       />
       <label
         htmlFor={id}
-        onClick={() => handleClickRadio(value)}
+        onClick={() => handleClickRadio && handleClickRadio(value)}
         className={`mx-auto cursor-pointer ${
           selectedCategory === value
             ? "outline outline-neutral-700 rounded-sm"
