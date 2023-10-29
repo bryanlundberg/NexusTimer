@@ -157,18 +157,129 @@ export default function Timer() {
     }
   };
 
+  const handleTouchStart = (event: any) => {
+    event.preventDefault();
+    if (isSolving) {
+      clearInterval(runningTimeId.current);
+      setIsSolving(false);
+      isReleased.current = false;
+
+      if (selectedCube && scramble) {
+        const lastSolve: Solve = {
+          id: genId(),
+          startTime: startTime.current,
+          endTime: endTimeRef.current,
+          scramble: scramble,
+          bookmark: false,
+          time: solvingTime,
+          dnf: false,
+          plus2: false,
+          rating: Math.floor(Math.random() * 20) + scramble.length,
+          category: selectedCube.category,
+          cubeId: selectedCube.id,
+        };
+
+        setLastSolve(lastSolve);
+
+        if (selectedCube) {
+          const newCubes = addSolve({
+            cubeId: selectedCube.id,
+            solve: lastSolve,
+          });
+
+          setCubes(newCubes);
+
+          const currentCube = findCube({ cubeId: selectedCube.id });
+
+          if (currentCube) setSelectedCube(currentCube);
+        }
+
+        setNewScramble(selectedCube);
+      }
+
+      startTime.current = 0;
+      holdingTimeRef.current = 0;
+      setTimerStatus("idle");
+    }
+    const now = Date.now();
+    const difference = now - holdingTimeRef.current;
+
+    if (!isReleased.current) return;
+
+    console.log("asdawsa");
+
+    if (!isHolding.current) {
+      holdingTimeRef.current = now;
+      isHolding.current = true;
+
+      if (settings.timer.holdToStart.status) {
+        setTimerStatus("holdingKey");
+      } else {
+        setTimerStatus("ready");
+      }
+    } else {
+      if (difference >= holdTimeRequired) {
+        setTimerStatus("ready");
+      }
+    }
+  };
+
+  const handleTouchEnd = (event: any) => {
+    event.preventDefault();
+    isReleased.current = true;
+
+    const now = Date.now();
+    const difference: number = now - holdingTimeRef.current;
+
+    if (isHolding.current && !isSolving) {
+      if (difference >= holdTimeRequired) {
+        setIsSolving(true);
+        isHolding.current = false;
+        holdingTimeRef.current = 0;
+        startTime.current = Date.now();
+        runningTimeId.current = setInterval(() => {
+          endTimeRef.current = Date.now();
+          setSolvingTime(endTimeRef.current - (startTime.current || 0));
+        });
+        setTimerStatus("solving");
+        return;
+      }
+
+      if (difference <= holdTimeRequired) {
+        setIsSolving(false);
+        isHolding.current = false;
+        holdingTimeRef.current = 0;
+        setTimerStatus("idle");
+        return;
+      }
+    }
+  };
+
   useEffect(() => {
     window.addEventListener("keydown", handleHold);
     window.addEventListener("keyup", handleRelease);
+    const touchElements = document.querySelectorAll("#touch");
+
+    touchElements.forEach((element) => {
+      element.addEventListener("touchstart", handleTouchStart);
+      element.addEventListener("touchend", handleTouchEnd);
+    });
     return () => {
       window.removeEventListener("keydown", handleHold);
       window.removeEventListener("keyup", handleRelease);
+      touchElements.forEach((element) => {
+        element.removeEventListener("touchstart", handleTouchStart);
+        element.removeEventListener("touchend", handleTouchEnd);
+      });
     };
   });
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center grow">
+      <div
+        id="touch"
+        className="flex flex-col items-center justify-center grow"
+      >
         {selectedCube && (
           <div
             className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-mono select-none ${timerStatusClasses[timerStatus]}`}
