@@ -4,7 +4,6 @@ import { cubeCollection } from "../cubeCollection";
 export default function genScramble(category) {
   const eventId = cubeCollection.find((cube) => cube.name === category);
   if (!eventId) {
-    console.error("Evento no encontrado");
     return "Error: Scrambler not available for this category.";
   }
   const scramble = new Scrambow(eventId.event);
