@@ -28,21 +28,17 @@ export const useTimerStore = create<TimerStore>((set) => ({
   lastSolve: null,
   solvingTime: 0,
   isSolving: false,
-  setNewScramble: (cube: Cube | null) => {
+  setNewScramble: (cube: Cube) => {
     set((state) => ({
       ...state,
-      scramble: cube ? genScramble(cube.category) : null,
+      scramble: genScramble(cube.category),
     }));
   },
   setCubes: (cubes: Cube[]) => {
     set((state) => ({ ...state, cubes }));
   },
-  setSelectedCube: (cube: Cube | null) => {
+  setSelectedCube: (cube: Cube) => {
     set((state: any) => {
-      if (!cube) {
-        return { ...state, event: null, selectedCube: null };
-      }
-
       const selectedEvent = cubeCollection.find(
         (item) => item.name === cube.category
       );
