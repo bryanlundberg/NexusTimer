@@ -116,7 +116,9 @@ export default function Modal() {
                     alt={category.name}
                     id={category.id}
                     value={category.name}
-                    handleClickRadio={!editingCube ? handleClickRadio : undefined}
+                    handleClickRadio={
+                      !editingCube ? handleClickRadio : () => {}
+                    }
                     selectedCategory={selectedCategory}
                   />
                 );
