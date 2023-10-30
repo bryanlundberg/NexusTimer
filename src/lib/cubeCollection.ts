@@ -24,7 +24,7 @@ export const cubeCollection: CubeCollection[] = [
     src: cube333,
   },
   {
-    event: "333oh",
+    event: "333",
     id: 3,
     name: "3x3 OH",
     src: cube333oh,

@@ -17,7 +17,7 @@ export default function useModalCube() {
     setCubeName,
   } = useCubesModalStore();
   const { lang } = useSettingsModalStore();
-  const { setCubes } = useTimerStore();
+  const { setCubes, setSelectedCube, setNewScramble, selectedCube } = useTimerStore();
   const [error, setError] = useState<boolean>(false);
   // Add state for the confirmation message
   const [deleteConfirmationMessage, setDeleteConfirmationMessage] = useState("");
@@ -89,6 +89,12 @@ export default function useModalCube() {
     if (!editingCube) return;
     const updatedCubeDB = cubeDB.filter((cube) => cube.id !== editingCube.id);
     window.localStorage.setItem("cubes", JSON.stringify(updatedCubeDB));
+
+    if (selectedCube && selectedCube.id === editingCube.id) {
+      setSelectedCube(null);
+      setNewScramble(null);
+    }
+
     setCubes(updatedCubeDB);
     setModalOpen(false);
     setEditingCube(null);
