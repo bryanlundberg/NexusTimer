@@ -8,6 +8,8 @@ import { useSolvesStore } from "@/store/SolvesStore";
 import { useTimerStore } from "@/store/timerStore";
 import formatTime from "@/lib/formatTime";
 import useModalScramble from "@/hooks/useModalScramble";
+import moveSolve from "@/lib/moveSolve";
+import MoveAll from "@/icons/MoveAll";
 
 export default function ModalSolve() {
   const { status, solve, setStatus } = useSolvesStore();
@@ -15,6 +17,24 @@ export default function ModalSolve() {
   useModalScramble();
 
   if (!solve || !status) return null;
+
+  const isAllSolve = () => {
+    return selectedCube?.solves.all.find((allSolve) => allSolve.id === solve.id)
+  }
+
+  const handleMove = () => {
+    if (selectedCube) {
+      const newCubes = moveSolve(solve, selectedCube);
+      const updatedCube = findCube({ cubeId: selectedCube.id });
+      if (updatedCube) {
+        setSelectedCube(updatedCube);
+      }
+
+      setCubes(newCubes);
+    }
+
+    setStatus(false);
+  };
 
   const handleDelete = () => {
     const newCubes = deleteSolve(solve.id);
@@ -78,6 +98,17 @@ export default function ModalSolve() {
             >
               +2
             </button>
+            {
+              !isAllSolve() && (
+                <button
+                  type="button"
+                  className="flex items-center justify-center w-12 h-8 p-1 bg-neutral-200 border rounded-md border-zinc-800 hover:bg-neutral-300"
+                  onClick={() => handleMove()}
+                >
+                  <MoveAll />
+                </button>
+              )
+            }
             <button
               type="button"
               className="flex items-center justify-center w-12 h-8 p-1 bg-green-500 border rounded-md border-zinc-800 hover:bg-green-600"
