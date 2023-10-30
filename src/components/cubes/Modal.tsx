@@ -5,6 +5,7 @@ import genId from "@/lib/genId";
 import translation from "@/translations/global.json";
 import useModalCube from "@/hooks/useModalCube";
 import { useCubesModalStore } from "@/store/CubesModalStore";
+import { useState } from 'react';
 
 export default function Modal() {
   const { editingCube } = useCubesModalStore();
@@ -19,7 +20,26 @@ export default function Modal() {
     selectedCategory,
     cubeName,
     lang,
+    handleMessage,
+    deleteConfirmationMessage
   } = useModalCube();
+  const [showDeleteConfirmation,setShowDeleteConfirmation]=useState(false);
+  const handleDeleteClick = () => {
+    // Show the delete confirmation dialog
+    handleMessage();
+    setShowDeleteConfirmation(true);
+  };
+
+  const confirmDelete = () => {
+    // User confirmed deletion, call the handleDeleteCube function
+    handleDeleteCube();
+    setShowDeleteConfirmation(false);
+  };
+
+  const cancelDelete = () => {
+    // User canceled deletion, hide the confirmation dialog
+    setShowDeleteConfirmation(false);
+  };
 
   return (
     <>
@@ -112,7 +132,7 @@ export default function Modal() {
             <div className="flex items-center justify-end p-6 mt-2 space-x-2 border-t rounded-b border-zinc-800">
               {editingCube ? (
                 <button
-                  onClick={handleDeleteCube}
+                  onClick={handleDeleteClick}
                   data-modal-hide="defaultModal"
                   type="button"
                   className="text-neutral-950 border border-zinc-800 bg-red-500 hover:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -120,6 +140,30 @@ export default function Modal() {
                   {translation.inputs["delete"][lang]}
                 </button>
               ) : null}
+
+              {showDeleteConfirmation && (
+                <div className="fixed top-0 left-0 z-50 w-full h-screen flex items-center justify-center bg-opacity-80 bg-neutral-900">
+                  <div className="bg-white p-4 rounded-lg shadow-lg text-center">
+                    <p className="text-neutral-900 text-lg font-semibold mb-4">
+                      {deleteConfirmationMessage}
+                    </p>
+                    <div className="flex justify-center space-x-4">
+                      <button
+                        onClick={confirmDelete}
+                        className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                      >
+                        Confirm
+                      </button>
+                      <button
+                        onClick={cancelDelete}
+                        className="px-4 py-2 bg-neutral-300 text-neutral-900 rounded-lg hover:bg-neutral-400"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
               {!editingCube ? (
                 <button
                   onClick={handleCloseModal}
