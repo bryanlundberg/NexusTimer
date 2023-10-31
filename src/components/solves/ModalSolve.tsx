@@ -8,6 +8,7 @@ import { useSolvesStore } from "@/store/SolvesStore";
 import { useTimerStore } from "@/store/timerStore";
 import formatTime from "@/lib/formatTime";
 import useModalScramble from "@/hooks/useModalScramble";
+import moveSolve from "@/lib/moveSolve";
 
 export default function ModalSolve() {
   const { status, solve, setStatus } = useSolvesStore();
@@ -15,6 +16,26 @@ export default function ModalSolve() {
   useModalScramble();
 
   if (!solve || !status) return null;
+
+  const isAllSolve = () => {
+    return selectedCube?.solves.all.find(
+      (allSolve) => allSolve.id === solve.id
+    );
+  };
+
+  const handleMove = () => {
+    if (selectedCube) {
+      const newCubes = moveSolve(solve, selectedCube);
+      const updatedCube = findCube({ cubeId: selectedCube.id });
+      if (updatedCube) {
+        setSelectedCube(updatedCube);
+      }
+
+      setCubes(newCubes);
+    }
+
+    setStatus(false);
+  };
 
   const handleDelete = () => {
     const newCubes = deleteSolve(solve.id);
@@ -63,24 +84,46 @@ export default function ModalSolve() {
             <div className="w-full h-32 my-3" id="scramble-display"></div>
           </div>
 
-          <div className="flex items-center justify-center gap-3 p-3 border-b border-zinc-800">
+          <div className="relative flex items-center justify-center gap-3 p-3 border-b light border-zinc-800">
+            {!isAllSolve() && (
+              <button
+                type="button"
+                className="absolute flex items-center justify-center w-12 h-8 p-1 transition duration-500 border rounded-md left-3 top-3 hover:text-neutral-800 bg-neutral-300 hover:border-zinc-400 border-zinc-600"
+                onClick={() => handleMove()}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-4 h-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
+                  />
+                </svg>
+              </button>
+            )}
             <button
               type="button"
-              className="flex items-center justify-center w-12 h-8 p-1 bg-red-500 border rounded-md border-zinc-800 hover:bg-red-600"
+              className="flex items-center justify-center w-12 h-8 p-1 transition duration-500 bg-red-500 border rounded-md hover:text-neutral-800 hover:border-zinc-400 border-zinc-600"
               onClick={() => handleDelete()}
             >
               <NoSymbol />
             </button>
             <button
               type="button"
-              className="w-12 h-8 p-1 font-medium bg-yellow-500 border rounded-md border-zinc-800 hover:bg-yellow-600"
+              className="w-12 h-8 p-1 font-medium transition duration-500 bg-yellow-500 border rounded-md hover:text-neutral-800 hover:border-zinc-400 border-zinc-600"
               onClick={() => handlePlusTwo()}
             >
               +2
             </button>
             <button
               type="button"
-              className="flex items-center justify-center w-12 h-8 p-1 bg-green-500 border rounded-md border-zinc-800 hover:bg-green-600"
+              className="flex items-center justify-center w-12 h-8 p-1 transition duration-500 bg-green-500 border rounded-md hover:border-zinc-400 border-zinc-600 hover:text-neutral-800"
               onClick={() => setStatus(false)}
             >
               <Check />
