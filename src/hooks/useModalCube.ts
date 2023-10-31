@@ -19,6 +19,8 @@ export default function useModalCube() {
   const { lang } = useSettingsModalStore();
   const { setCubes, setSelectedCube, setNewScramble, selectedCube } = useTimerStore();
   const [error, setError] = useState<boolean>(false);
+  // Add state for the confirmation message
+  const [deleteConfirmationMessage, setDeleteConfirmationMessage] = useState("");
 
   const handleClickRadio = (category: Categories) => {
     setSelectedCategory(category);
@@ -68,6 +70,20 @@ export default function useModalCube() {
     setSelectedCategory("2x2");
   };
 
+  const handleMessage = () => {
+    const cubeDB = loadCubes();
+    if (!editingCube) return;
+    
+      // Get the solve count for the cube
+      const cubeToBeDeleted = cubeDB.find((cube) => cube.id === editingCube.id);
+      const solveCount = cubeToBeDeleted ? cubeToBeDeleted.solves.session.length : 0;
+  
+      // Construct the message with the solve count
+      const message = `You have solved this cube ${solveCount} time(s). Are you sure you want to delete it?`;
+      // Show the delete confirmation dialog with the message
+      setDeleteConfirmationMessage(message);
+  }
+
   const handleDeleteCube = () => {
     const cubeDB = loadCubes();
     if (!editingCube) return;
@@ -93,6 +109,24 @@ export default function useModalCube() {
     setSelectedCategory("2x2");
   };
 
+  const [showDeleteConfirmation,setShowDeleteConfirmation]=useState(false);
+  const handleDeleteClick = () => {
+    // Show the delete confirmation dialog
+    handleMessage();
+    setShowDeleteConfirmation(true);
+  };
+
+  const confirmDelete = () => {
+    // User confirmed deletion, call the handleDeleteCube function
+    handleDeleteCube();
+    setShowDeleteConfirmation(false);
+  };
+
+  const cancelDelete = () => {
+    // User canceled deletion, hide the confirmation dialog
+    setShowDeleteConfirmation(false);
+  };
+
   return {
     error,
     handleClickRadio,
@@ -104,5 +138,11 @@ export default function useModalCube() {
     selectedCategory,
     cubeName,
     lang,
+    handleMessage,
+    deleteConfirmationMessage,
+    handleDeleteClick,
+    confirmDelete,
+    cancelDelete,
+    showDeleteConfirmation
   };
 }
