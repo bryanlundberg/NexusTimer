@@ -128,29 +128,6 @@ export default function Modal() {
                 </button>
               ) : null}
 
-              {showDeleteConfirmation && (
-                <div className="fixed top-0 left-0 z-50 w-full h-screen flex items-center justify-center bg-opacity-80 bg-neutral-900">
-                  <div className="bg-white p-4 rounded-lg shadow-lg text-center">
-                    <p className="text-neutral-900 text-lg font-semibold mb-4">
-                      {deleteConfirmationMessage}
-                    </p>
-                    <div className="flex justify-center space-x-4">
-                      <button
-                        onClick={cancelDelete}
-                        className="px-4 py-2 bg-neutral-300 text-neutral-900 rounded-lg hover:bg-neutral-400"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        onClick={confirmDelete}
-                        className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
-                      >
-                        Confirm
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
               {!editingCube ? (
                 <button
                   onClick={handleCloseModal}
@@ -180,6 +157,29 @@ export default function Modal() {
           </div>
         </div>
       </div>
+      {showDeleteConfirmation && (
+                <div className="fixed top-0 left-0 z-50 w-full h-screen flex items-center justify-center bg-opacity-80 bg-neutral-900">
+                  <div className="bg-white p-4 rounded-lg shadow-lg text-center">
+                    <p className="text-neutral-900 text-lg font-semibold mb-4">
+                      {deleteConfirmationMessage}
+                    </p>
+                    <div className="flex justify-center space-x-4">
+                      <button
+                        onClick={cancelDelete}
+                        className="px-4 py-2 bg-neutral-300 text-neutral-900 rounded-lg hover:bg-neutral-400"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={confirmDelete}
+                        className="px-4 py-2 bg-red-600 text-white rounded-lg hover-bg-red-700"
+                      >
+                        Confirm
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
     </>
   );
 }
