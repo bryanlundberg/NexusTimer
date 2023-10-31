@@ -20,27 +20,12 @@ export default function Modal() {
     selectedCategory,
     cubeName,
     lang,
-    handleMessage,
+    handleDeleteClick,
+    confirmDelete,
+    cancelDelete,
+    showDeleteConfirmation,
     deleteConfirmationMessage
   } = useModalCube();
-  const [showDeleteConfirmation,setShowDeleteConfirmation]=useState(false);
-  const handleDeleteClick = () => {
-    // Show the delete confirmation dialog
-    handleMessage();
-    setShowDeleteConfirmation(true);
-  };
-
-  const confirmDelete = () => {
-    // User confirmed deletion, call the handleDeleteCube function
-    handleDeleteCube();
-    setShowDeleteConfirmation(false);
-  };
-
-  const cancelDelete = () => {
-    // User canceled deletion, hide the confirmation dialog
-    setShowDeleteConfirmation(false);
-  };
-
   return (
     <>
       {/* <!-- Main modal --> */}
@@ -117,7 +102,7 @@ export default function Modal() {
                     id={category.id}
                     value={category.name}
                     handleClickRadio={
-                      !editingCube ? handleClickRadio : () => {}
+                      !editingCube ? handleClickRadio : () => { }
                     }
                     selectedCategory={selectedCategory}
                   />
@@ -151,16 +136,16 @@ export default function Modal() {
                     </p>
                     <div className="flex justify-center space-x-4">
                       <button
-                        onClick={confirmDelete}
-                        className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
-                      >
-                        Confirm
-                      </button>
-                      <button
                         onClick={cancelDelete}
                         className="px-4 py-2 bg-neutral-300 text-neutral-900 rounded-lg hover:bg-neutral-400"
                       >
                         Cancel
+                      </button>
+                      <button
+                        onClick={confirmDelete}
+                        className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                      >
+                        Confirm
                       </button>
                     </div>
                   </div>

@@ -103,6 +103,24 @@ export default function useModalCube() {
     setSelectedCategory("2x2");
   };
 
+  const [showDeleteConfirmation,setShowDeleteConfirmation]=useState(false);
+  const handleDeleteClick = () => {
+    // Show the delete confirmation dialog
+    handleMessage();
+    setShowDeleteConfirmation(true);
+  };
+
+  const confirmDelete = () => {
+    // User confirmed deletion, call the handleDeleteCube function
+    handleDeleteCube();
+    setShowDeleteConfirmation(false);
+  };
+
+  const cancelDelete = () => {
+    // User canceled deletion, hide the confirmation dialog
+    setShowDeleteConfirmation(false);
+  };
+
   return {
     error,
     handleClickRadio,
@@ -116,5 +134,9 @@ export default function useModalCube() {
     lang,
     handleMessage,
     deleteConfirmationMessage,
+    handleDeleteClick,
+    confirmDelete,
+    cancelDelete,
+    showDeleteConfirmation
   };
 }
