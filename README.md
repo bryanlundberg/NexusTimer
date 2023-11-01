@@ -94,20 +94,16 @@ This is what makes unique and versatile **Nexus Timer**.
 
 ## Roadmap
 
-- [x] Scrambles
-  - [ ] Support WCA regulations
-  - [ ] Add logic to avoid cancel moves
-  - [ ] Add Megaminx - Scrambles
-  - [ ] Add SQ-1 - Scrambles
-  - [ ] Some others possible categories
+- [x] WCA
+  - [ ] Include optional 15s inspection
+  - [ ] Add voice alerts for inspection
+  - [ ] Handle penalties exceeding inspection time
 - [x] Localization and Accessibility
   - [ ] Enhance and expand translations
-  - [ ] Add touch support for timer in mobile devices
-- [x] User Preferences and Interaction
-  - [ ] Import / Export times
-- [x] Incorporate smooth animations
+  - [ ] Sounds for application
+- [x] Animations
   - [ ] Modal opening and closing
-  - [ ] Doing a personal best (PB)
+  - [ ] Doing a personal best (PB) Conffeti or similar.
   - [ ] Other interactive alerts
 - [x] Cloud support (Backend)
   - [ ] Move from localStorage to server storage
@@ -128,11 +124,6 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## Contributors
 
-Meet the talented individuals who have contributed to NexusTimer:
 
-<a href="https://github.com/bryanlundberg/NexusTimer/graphs/contributors">
- <img src="https://contrib.rocks/image?repo=bryanlundberg/NexusTimer" />
-</a>
 
