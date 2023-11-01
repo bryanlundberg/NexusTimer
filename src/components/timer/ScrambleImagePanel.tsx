@@ -1,13 +1,21 @@
-import { useTimerScrambleEffect } from "@/hooks/useTimerScrambleEffect";
+import { ScrambleDisplay } from "../scramble-display";
+import { useTimerStore } from "@/store/timerStore";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function ScrambleImagePanel() {
-  const showScramble = useTimerScrambleEffect();
+  const { settings } = useSettingsModalStore();
+  const { scramble, event } = useTimerStore();
+
+  const showScramble = settings.features.scrambleImage.status;
 
   return (
     <>
-      {showScramble ? (
-        <div className="w-full h-full" id="scramble-display"></div>
-      ) : null}
+      <ScrambleDisplay
+        className="w-full h-full"
+        show={showScramble}
+        scramble={scramble}
+        event={event}
+      ></ScrambleDisplay>
     </>
   );
 }
