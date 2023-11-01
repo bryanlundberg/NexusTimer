@@ -7,15 +7,17 @@ import updateSolve from "@/lib/updateSolve";
 import { useSolvesStore } from "@/store/SolvesStore";
 import { useTimerStore } from "@/store/timerStore";
 import formatTime from "@/lib/formatTime";
-import useModalScramble from "@/hooks/useModalScramble";
 import moveSolve from "@/lib/moveSolve";
+import { ScrambleDisplay } from "../scramble-display";
+import { cubeCollection } from "@/lib/cubeCollection";
 
 export default function ModalSolve() {
   const { status, solve, setStatus } = useSolvesStore();
   const { setCubes, setSelectedCube, selectedCube } = useTimerStore();
-  useModalScramble();
 
   if (!solve || !status) return null;
+
+  const cubeObj = cubeCollection.find((item) => item.name === solve?.category);
 
   const isAllSolve = () => {
     return selectedCube?.solves.all.find(
@@ -81,7 +83,12 @@ export default function ModalSolve() {
           </div>
           <div className="flex flex-col items-center justify-between p-3 font-medium border-b border-zinc-800 text-md">
             <div>{solve.scramble}</div>
-            <div className="w-full h-32 my-3" id="scramble-display"></div>
+            <ScrambleDisplay
+              className="w-full h-32 my-3"
+              show={status}
+              scramble={solve.scramble}
+              event={cubeObj?.event || ""}
+            ></ScrambleDisplay>
           </div>
 
           <div className="relative flex items-center justify-center gap-3 p-3 border-b light border-zinc-800">
