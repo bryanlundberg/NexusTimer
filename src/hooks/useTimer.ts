@@ -154,7 +154,11 @@ export default function useTimer() {
 
   const handleTouchStart = (event: any) => {
     event.preventDefault();
-    holding();
+    const quickActionButtons = document.querySelector("#quick-action-buttons");
+    if (quickActionButtons && quickActionButtons.contains(event.target)) {
+    } else {
+      holding();
+    }
   };
 
   const handleTouchEnd = (event: any) => {
