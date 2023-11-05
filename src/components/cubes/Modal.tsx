@@ -40,7 +40,7 @@ export default function Modal() {
           {/* <!-- Modal content --> */}
           <div className="relative border rounded-lg bg-neutral-200 border-neutral-800">
             {/* <!-- Modal header --> */}
-            <div className="flex items-start justify-between gap-3 p-4 border-b rounded-t border-neutral-800">
+            <div className="flex items-start justify-between gap-3 p-4 border-b rounded-t border-neutral-400">
               <h3 className="flex items-center justify-center w-32 h-8 text-sm font-semibold text-neutral-950">
                 {editingCube
                   ? translation.cubes.modal["title-editing"][lang]
@@ -114,7 +114,7 @@ export default function Modal() {
             </div>
 
             {/* <!-- Modal footer --> */}
-            <div className="flex items-center justify-end p-6 mt-2 space-x-2 border-t rounded-b border-zinc-800">
+            <div className="flex items-center justify-end p-6 mt-2 space-x-2 border-t rounded-b border-neutral-400">
               {editingCube ? (
                 <button
                   onClick={handleDeleteClick}
