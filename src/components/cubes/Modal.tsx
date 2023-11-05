@@ -5,7 +5,6 @@ import genId from "@/lib/genId";
 import translation from "@/translations/global.json";
 import useModalCube from "@/hooks/useModalCube";
 import { useCubesModalStore } from "@/store/CubesModalStore";
-import { useState } from 'react';
 
 export default function Modal() {
   const { editingCube } = useCubesModalStore();
@@ -15,7 +14,6 @@ export default function Modal() {
     handleWriteCubeName,
     handleCreateCube,
     handleEditCube,
-    handleDeleteCube,
     handleCloseModal,
     selectedCategory,
     cubeName,
@@ -24,7 +22,7 @@ export default function Modal() {
     confirmDelete,
     cancelDelete,
     showDeleteConfirmation,
-    deleteConfirmationMessage
+    deleteConfirmationMessage,
   } = useModalCube();
   return (
     <>
@@ -42,7 +40,7 @@ export default function Modal() {
           {/* <!-- Modal content --> */}
           <div className="relative border rounded-lg bg-neutral-200 border-neutral-800">
             {/* <!-- Modal header --> */}
-            <div className="flex items-start justify-between gap-3 p-4 border-b rounded-t border-neutral-800">
+            <div className="flex items-start justify-between gap-3 p-4 border-b rounded-t border-neutral-400">
               <h3 className="flex items-center justify-center w-32 h-8 text-sm font-semibold text-neutral-950">
                 {editingCube
                   ? translation.cubes.modal["title-editing"][lang]
@@ -92,7 +90,7 @@ export default function Modal() {
             </div>
             {/* <!-- Modal body --> */}
 
-            <div className="grid grid-cols-2 gap-4 p-6 sm:grid-cols-4">
+            <div className="flex flex-wrap gap-3 p-6">
               {cubeCollection.map((category) => {
                 return (
                   <CheckboxImage
@@ -102,7 +100,7 @@ export default function Modal() {
                     id={category.id}
                     value={category.name}
                     handleClickRadio={
-                      !editingCube ? handleClickRadio : () => { }
+                      !editingCube ? handleClickRadio : () => {}
                     }
                     selectedCategory={selectedCategory}
                   />
@@ -116,7 +114,7 @@ export default function Modal() {
             </div>
 
             {/* <!-- Modal footer --> */}
-            <div className="flex items-center justify-end p-6 mt-2 space-x-2 border-t rounded-b border-zinc-800">
+            <div className="flex items-center justify-end p-6 mt-2 space-x-2 border-t rounded-b border-neutral-400">
               {editingCube ? (
                 <button
                   onClick={handleDeleteClick}
@@ -158,28 +156,28 @@ export default function Modal() {
         </div>
       </div>
       {showDeleteConfirmation && (
-                <div className="fixed top-0 left-0 z-50 w-full h-screen flex items-center justify-center bg-opacity-80 bg-neutral-900">
-                  <div className="bg-white p-4 rounded-lg shadow-lg text-center">
-                    <p className="text-neutral-900 text-lg font-semibold mb-4">
-                      {deleteConfirmationMessage}
-                    </p>
-                    <div className="flex justify-center space-x-4">
-                      <button
-                        onClick={cancelDelete}
-                        className="px-4 py-2 bg-neutral-300 text-neutral-900 rounded-lg hover:bg-neutral-400"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        onClick={confirmDelete}
-                        className="px-4 py-2 bg-red-600 text-white rounded-lg hover-bg-red-700"
-                      >
-                        Confirm
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
+        <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen bg-opacity-80 bg-neutral-900">
+          <div className="p-4 text-center bg-white rounded-lg shadow-lg">
+            <p className="mb-4 text-lg font-semibold text-neutral-900">
+              {deleteConfirmationMessage}
+            </p>
+            <div className="flex justify-center space-x-4">
+              <button
+                onClick={cancelDelete}
+                className="px-4 py-2 rounded-lg bg-neutral-300 text-neutral-900 hover:bg-neutral-400"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="px-4 py-2 text-white bg-red-600 rounded-lg hover-bg-red-700"
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
