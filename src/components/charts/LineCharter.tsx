@@ -1,4 +1,5 @@
 import { Solve } from "@/interfaces/Solve";
+import formatTime from "@/lib/formatTime";
 import { sort } from "fast-sort";
 import { createChart } from "lightweight-charts";
 import { useEffect, useRef } from "react";
@@ -17,6 +18,11 @@ const chartOptions: any = {
     },
   },
   localization: {
+    priceFormatter: (time: number) => {
+      const timeT = formatTime(time);
+      console.log(time);
+      return timeT;
+    },
     timeFormatter: (time: number) => {
       return time.toString();
     },
@@ -25,6 +31,9 @@ const chartOptions: any = {
     tickMarkFormatter: (time: number) => {
       return time.toString();
     },
+  },
+  priceScale: {
+    autoScale: false,
   },
 };
 
@@ -46,13 +55,14 @@ export default function LineCharter({
       const structuredData: any = sort(
         dataArray.map((i: Solve, index: number) => ({
           time: index,
-          value: i.time / 1000,
+          value: i.time,
         }))
       ).asc((u: any) => u.time);
 
       const lineSeries = chart.addLineSeries({
         color: cubeSelected ? "#2962FF" : "#F4D03F",
       });
+
       lineSeries.setData(structuredData);
 
       chart.autoSizeActive();
