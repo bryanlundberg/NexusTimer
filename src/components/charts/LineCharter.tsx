@@ -1,6 +1,5 @@
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
-import { sort } from "fast-sort";
 import { createChart } from "lightweight-charts";
 import { useEffect, useRef } from "react";
 
@@ -52,12 +51,14 @@ export default function LineCharter({
       container.innerHTML = "";
       const chart = createChart(container, chartOptions);
       const dataArray = cubeSelected ? data.cubeAll : data.global;
-      const structuredData: any = sort(
-        dataArray.map((i: Solve, index: number) => ({
-          time: index,
+      const structuredData: any[] = [];
+      dataArray.forEach((i: Solve, index: number) => {
+        console.log({ time: index, value: i.time });
+        structuredData.unshift({
+          time: dataArray.length - index,
           value: i.time,
-        }))
-      ).asc((u: any) => u.time);
+        });
+      });
 
       const lineSeries = chart.addLineSeries({
         color: cubeSelected ? "#2962FF" : "#F4D03F",
