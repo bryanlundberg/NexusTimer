@@ -58,13 +58,20 @@ This timer is carefully designed to keep track of solving times, giving valuable
 
 ## What's the difference?
 
-I have a passion for statistics and find immense value in extracting meaning from data. This process often unveils insights you may not have even been aware of. In pursuit of this goal, I have included what I called the **"Category Aggregation Principle."**
+### Cool Stats
+We like to find interesting data about you by extracting meaning from your training sessions, not like a conventional timer. This process often unveils insights you may not have even been aware of. 
 
-The core concept of the **Category Aggregation Principle** centers around the systematic consolidation and unification of statistical data from multiple items within the same category. This principle advocates for treating these data points as both a collective analysis and as a singular category simultaneously.
+**Metrics by cube or method**
+We have included what I called the **"Category Aggregation Principle."** To empower speedcubers to compute and analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations. 
 
-In practical terms, the **Category Aggregation Principle** empowers speedcubers to compute and analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations. This is especially valuable for individuals looking to enhance their performance, monitor their progress and maintain a detailed history of their cube-solving journey with variations in cubes, methods or both at the same time, without modify final category calculation!
+### No DNF
+Who likes? We won't cover calculations using DNF, instead delete the solve or add you a +2 penalty.
 
-> You can enjoy solving the **GAN 356 CFOP** cube using the **CFOP** method, and later switch to the **GAN 356 ROUX** cube, employing the **ROUX** method. After completing a round of solves, you'll still have accurate category calculations, including Best Time, Deviation, Mean, Ao3 - Ao1000, and more. Additionally, you can access specific and filtered detailed statistics for each cube, giving you a comprehensive understanding of your performance with the GAN 356 CFOP and GAN 356 ROUX cubes and others.
+### Portability
+While our primary focus is on delivering an optimal experience for desktop training, we are actively striving to extend this functionality to cater to the needs of mobile users.
+
+### Modern design
+Our UI is heavily inspired by Twisty Timer, the ultimate timer on mobile category. However, we've added more features, with even more on the way.
 
 This is what makes unique and versatile **Nexus Timer**.
 
