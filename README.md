@@ -61,7 +61,7 @@ This timer is carefully designed to keep track of solving times, giving valuable
 ### Cool Stats
 We like to find interesting data about you by extracting meaning from your training sessions, not like a conventional timer. This process often unveils insights you may not have even been aware of. 
 
-**Metrics by cube or method**
+### Metrics by cube or method
 We have included what I called the **"Category Aggregation Principle."** To empower speedcubers to compute and analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations. 
 
 ### No DNF
