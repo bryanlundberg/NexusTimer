@@ -1,7 +1,9 @@
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { CreatePriceLineOptions, createChart } from "lightweight-charts";
 import { useEffect, useRef } from "react";
+import translation from "@/translations/global.json";
 
 const chartOptions: any = {
   layout: {
@@ -37,9 +39,9 @@ const chartOptions: any = {
 };
 
 type TimeObject = {
-  time: number
-  value: number
-}
+  time: number;
+  value: number;
+};
 
 export default function LineCharter({
   data,
@@ -48,6 +50,7 @@ export default function LineCharter({
   data: any;
   cubeSelected: boolean;
 }) {
+  const { lang } = useSettingsModalStore();
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -83,11 +86,11 @@ export default function LineCharter({
 
       const meanTimeLine: CreatePriceLineOptions = {
         price: getMeanTime(structuredData),
-        color: "red",
-        lineWidth: 2,
+        color: "#ff4d4d",
+        lineWidth: 1,
         lineStyle: 0,
         axisLabelVisible: true,
-        title: "Mean Time",
+        title: `${translation.timer["mean"][lang]}`,
       };
 
       lineSeries.setData(structuredData);
@@ -105,7 +108,7 @@ export default function LineCharter({
         chart.applyOptions({ height: newRect.height, width: newRect.width });
       }).observe(container);
     }
-  }, [data, cubeSelected]);
+  }, [data, cubeSelected, lang]);
 
   return <div ref={chartContainerRef} className="w-full h-full"></div>;
 }
