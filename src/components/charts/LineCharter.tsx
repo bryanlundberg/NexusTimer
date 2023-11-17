@@ -1,7 +1,9 @@
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
-import { createChart } from "lightweight-charts";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import { CreatePriceLineOptions, createChart } from "lightweight-charts";
 import { useEffect, useRef } from "react";
+import translation from "@/translations/global.json";
 
 const chartOptions: any = {
   layout: {
@@ -36,6 +38,11 @@ const chartOptions: any = {
   },
 };
 
+type TimeObject = {
+  time: number;
+  value: number;
+};
+
 export default function LineCharter({
   data,
   cubeSelected,
@@ -43,6 +50,7 @@ export default function LineCharter({
   data: any;
   cubeSelected: boolean;
 }) {
+  const { lang } = useSettingsModalStore();
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -62,9 +70,31 @@ export default function LineCharter({
 
       const lineSeries = chart.addLineSeries({
         color: cubeSelected ? "#2962FF" : "#F4D03F",
+        lastValueVisible: false,
+        priceLineVisible: false,
       });
 
+      const getMeanTime = (data: TimeObject[]) => {
+        return data.length
+          ? data.reduce(
+              (total: number, timeObject: TimeObject) =>
+                total + timeObject.value,
+              0
+            ) / data.length
+          : 0;
+      };
+
+      const meanTimeLine: CreatePriceLineOptions = {
+        price: getMeanTime(structuredData),
+        color: "#ff4d4d",
+        lineWidth: 1,
+        lineStyle: 0,
+        axisLabelVisible: true,
+        title: `${translation.timer["mean"][lang]}`,
+      };
+
       lineSeries.setData(structuredData);
+      lineSeries.createPriceLine(meanTimeLine);
 
       chart.autoSizeActive();
       chart.timeScale().fitContent();
@@ -78,7 +108,7 @@ export default function LineCharter({
         chart.applyOptions({ height: newRect.height, width: newRect.width });
       }).observe(container);
     }
-  }, [data, cubeSelected]);
+  }, [data, cubeSelected, lang]);
 
   return <div ref={chartContainerRef} className="w-full h-full"></div>;
 }
