@@ -1,6 +1,6 @@
 import PlusIcon from "@/icons/PlusIcon";
 import SelectOptions from "@/icons/SelectOptions";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Categories } from "@/interfaces/Categories";
@@ -135,7 +135,8 @@ function Option({
   cubeId: string;
   handleClose: () => void;
 }) {
-  const { selectedCube, setSelectedCube, setNewScramble } = useTimerStore();
+  const { selectedCube, setSelectedCube, setNewScramble, setLastSolve } =
+    useTimerStore();
   const { settings } = useSettingsModalStore();
 
   const variation: Record<Themes, string> = {
@@ -156,6 +157,7 @@ function Option({
           if (cube) {
             setSelectedCube(cube);
             setNewScramble(cube);
+            setLastSolve(null);
           }
         }
         handleClose();

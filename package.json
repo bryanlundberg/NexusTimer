@@ -24,6 +24,7 @@
     "pretty-ms": "^8.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dom-confetti": "^0.2.0",
     "recharts": "^2.8.0",
     "scrambow": "^1.8.1",
     "sharp": "0.32.6",

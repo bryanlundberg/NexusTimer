@@ -40,13 +40,21 @@ export const useTimerStore = create<TimerStore>((set) => ({
   setSelectedCube: (cube: Cube | null) => {
     set((state: any) => {
       if (!cube) {
-        return { ...state, event: null, selectedCube: null };
+        return {
+          ...state,
+          event: null,
+          selectedCube: null,
+        };
       }
 
       const selectedEvent = cubeCollection.find(
         (item) => item.name === cube.category
       );
-      return { ...state, event: selectedEvent?.event, selectedCube: cube };
+      return {
+        ...state,
+        event: selectedEvent?.event,
+        selectedCube: cube,
+      };
     });
   },
   setLastSolve: (solve: Solve | null) => {

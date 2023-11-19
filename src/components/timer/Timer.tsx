@@ -4,6 +4,8 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
 import translation from "@/translations/global.json";
 import useTimer from "@/hooks/useTimer";
+import Confetti from "react-dom-confetti";
+import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 
 const timerStatusClasses = {
   idle: "light:text-neutral-900 dark:text-white",
@@ -12,12 +14,27 @@ const timerStatusClasses = {
   ready: "text-emerald-400",
 };
 
+const config: any = {
+  angle: 90,
+  spread: 180,
+  startVelocity: 40,
+  elementCount: 70,
+  dragFriction: 0.12,
+  duration: 5000,
+  stagger: 3,
+  width: "10px",
+  height: "10px",
+  perspective: "500px",
+  colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
+};
+
 export default function Timer() {
   const { lang, settings } = useSettingsModalStore();
   const { selectedCube, isSolving, lastSolve } = useTimerStore();
   const { timerStatus, hideWhileSolving, solvingTime } = useTimer();
+  const { global } = useTimerStatistics();
 
-  if (selectedCube === null) return;
+  if (selectedCube === null) return <></>;
 
   return (
     <>
@@ -38,6 +55,10 @@ export default function Timer() {
             )}
           </div>
         )}
+        <Confetti
+          active={global.best === lastSolve?.time && !isSolving}
+          config={config}
+        />
         {lastSolve &&
           settings.features.quickActionButtons.status &&
           timerStatus === "idle" && <SolveOptions solve={lastSolve} />}
