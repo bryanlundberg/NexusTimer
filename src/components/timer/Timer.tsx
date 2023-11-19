@@ -5,7 +5,7 @@ import formatTime from "@/lib/formatTime";
 import translation from "@/translations/global.json";
 import useTimer from "@/hooks/useTimer";
 import Confetti from "react-dom-confetti";
-import { useState } from "react";
+import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 
 const timerStatusClasses = {
   idle: "light:text-neutral-900 dark:text-white",
@@ -32,8 +32,9 @@ export default function Timer() {
   const { lang, settings } = useSettingsModalStore();
   const { selectedCube, isSolving, lastSolve } = useTimerStore();
   const { timerStatus, hideWhileSolving, solvingTime } = useTimer();
-  const [a, seta] = useState(false);
-  if (selectedCube === null) return;
+  const { global } = useTimerStatistics();
+
+  if (selectedCube === null) return <></>;
 
   return (
     <>
@@ -54,14 +55,10 @@ export default function Timer() {
             )}
           </div>
         )}
-        <Confetti active={a} config={config} />
-        <button
-          onClick={() => {
-            seta(!a);
-          }}
-        >
-          asdasd
-        </button>
+        <Confetti
+          active={global.best === lastSolve?.time && !isSolving}
+          config={config}
+        />
         {lastSolve &&
           settings.features.quickActionButtons.status &&
           timerStatus === "idle" && <SolveOptions solve={lastSolve} />}
