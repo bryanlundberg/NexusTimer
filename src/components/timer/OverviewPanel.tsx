@@ -8,7 +8,7 @@ export default function OverviewPanel() {
   const { session } = useTimerStatistics();
 
   return (
-    <div className="flex flex-col justify-center w-full h-full">
+    <div className="flex flex-col justify-center w-full h-full gap-1">
       {settings.features.sessionStats.status ? (
         <>
           <div className="font-medium">
