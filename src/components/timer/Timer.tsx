@@ -52,7 +52,7 @@ export default function Timer() {
               </span>
             ) : (
               <div>
-                <span>{formatTime(solvingTime).split(".")[0]}</span>.<span className="sm:text-2xl md:text-3xl lg:text-5xl">{formatTime(solvingTime).split(".")[1]}</span>
+                <span className="sm:text-5xl md:text-6xl lg:text-7xl">{formatTime(solvingTime).split(".")[0]}</span><span className="sm:text-2xl md:text-3xl lg:text-5xl">.{formatTime(solvingTime).split(".")[1]}</span>
               </div>
             )}
           </div>
