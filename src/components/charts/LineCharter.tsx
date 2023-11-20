@@ -4,11 +4,12 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { CreatePriceLineOptions, createChart } from "lightweight-charts";
 import { useEffect, useRef } from "react";
 import translation from "@/translations/global.json";
+import getBestTime from "@/lib/getBestTime";
 
 const chartOptions: any = {
   layout: {
     textColor: "white",
-    background: { type: "solid", color: "transparent" },
+    background: { type: "solid", color: "black" },
   },
   grid: {
     vertLines: {
@@ -21,7 +22,6 @@ const chartOptions: any = {
   localization: {
     priceFormatter: (time: number) => {
       const timeT = formatTime(time);
-      console.log(time);
       return timeT;
     },
     timeFormatter: (time: number) => {
@@ -61,7 +61,6 @@ export default function LineCharter({
       const dataArray = cubeSelected ? data.cubeAll : data.global;
       const structuredData: any[] = [];
       dataArray.forEach((i: Solve, index: number) => {
-        console.log({ time: index, value: i.time });
         structuredData.unshift({
           time: dataArray.length - index,
           value: i.time,
@@ -69,9 +68,10 @@ export default function LineCharter({
       });
 
       const lineSeries = chart.addLineSeries({
-        color: cubeSelected ? "#2962FF" : "#F4D03F",
+        color: cubeSelected ? "cyan" : "white",
         lastValueVisible: false,
         priceLineVisible: false,
+        lineWidth: 1,
       });
 
       const getMeanTime = (data: TimeObject[]) => {
@@ -86,15 +86,25 @@ export default function LineCharter({
 
       const meanTimeLine: CreatePriceLineOptions = {
         price: getMeanTime(structuredData),
-        color: "#ff4d4d",
-        lineWidth: 1,
-        lineStyle: 0,
+        color: "yellow",
+        lineWidth: 2,
+        lineStyle: 1,
         axisLabelVisible: true,
         title: `${translation.timer["mean"][lang]}`,
       };
 
+      const bestTimeLine: CreatePriceLineOptions = {
+        price: getBestTime({ solves: dataArray }),
+        color: "green",
+        lineWidth: 2,
+        lineStyle: 1,
+        axisLabelVisible: true,
+        title: `${translation.timer["best"][lang]}`,
+      };
+
       lineSeries.setData(structuredData);
       lineSeries.createPriceLine(meanTimeLine);
+      lineSeries.createPriceLine(bestTimeLine);
 
       chart.autoSizeActive();
       chart.timeScale().fitContent();
