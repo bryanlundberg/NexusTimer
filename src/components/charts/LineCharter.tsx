@@ -87,8 +87,8 @@ export default function LineCharter({
       const meanTimeLine: CreatePriceLineOptions = {
         price: getMeanTime(structuredData),
         color: "yellow",
-        lineWidth: 2,
-        lineStyle: 1,
+        lineWidth: 1,
+        lineStyle: 2,
         axisLabelVisible: true,
         title: `${translation.timer["mean"][lang]}`,
       };
@@ -96,15 +96,15 @@ export default function LineCharter({
       const bestTimeLine: CreatePriceLineOptions = {
         price: getBestTime({ solves: dataArray }),
         color: "green",
-        lineWidth: 2,
-        lineStyle: 1,
+        lineWidth: 1,
+        lineStyle: 0,
         axisLabelVisible: true,
         title: `${translation.timer["best"][lang]}`,
       };
 
       lineSeries.setData(structuredData);
       lineSeries.createPriceLine(meanTimeLine);
-      lineSeries.createPriceLine(bestTimeLine);
+      cubeSelected ? null : lineSeries.createPriceLine(bestTimeLine);
 
       chart.autoSizeActive();
       chart.timeScale().fitContent();
