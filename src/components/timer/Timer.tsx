@@ -43,15 +43,20 @@ export default function Timer() {
         className="flex flex-col items-center justify-center grow"
       >
         {selectedCube && (
-          <div
-            className={`text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-mono select-none ${timerStatusClasses[timerStatus]}`}
-          >
+          <div className={`${timerStatusClasses[timerStatus]}`}>
             {hideWhileSolving && isSolving ? (
               <span className="sm:text-5xl md:text-6xl lg:text-7xl">
                 {translation.timer["solving"][lang]}
               </span>
             ) : (
-              formatTime(solvingTime)
+              <div className="font-mono">
+                <span className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl">
+                  {formatTime(solvingTime).split(".")[0]}
+                </span>
+                <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+                  .{formatTime(solvingTime).split(".")[1]}
+                </span>
+              </div>
             )}
           </div>
         )}
