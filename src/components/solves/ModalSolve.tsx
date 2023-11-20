@@ -74,9 +74,14 @@ export default function ModalSolve() {
       >
         <div className="w-full h-auto text-xs border rounded-md sm:w-96 bg-neutral-200 border-neutral-800 ">
           <div className="flex items-center justify-between p-3 border-b border-neutral-400">
-            <div className="flex items-center text-lg font-bold">
-              <div>
-                <span className="text-base sm:text-sm">{formatTime(solve.time).split(".")[0]}</span><span className="text-sm sm:text-xs">.{formatTime(solve.time).split(".")[1]}</span>
+            <div className="flex items-center text-lg font-medium">
+              <div className="tracking-wider">
+                <span className="text-xl">
+                  {formatTime(solve.time).split(".")[0]}
+                </span>
+                <span className="text-sm">
+                  .{formatTime(solve.time).split(".")[1]}
+                </span>
               </div>
               <span className="text-xs text-red-500">
                 {solve.plus2 ? "+2" : null}
