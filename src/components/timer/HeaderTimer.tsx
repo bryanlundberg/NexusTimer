@@ -5,10 +5,15 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { InteractiveIcon } from "./InteractiveIcon";
 import { ScrambleZone } from "./ScrambleZone";
+import { useTimerStatistics } from "@/hooks/useTimerStatistics";
+import translation from "@/translations/global.json";
 
 export default function HeaderTimer() {
   const { selectedCube, setNewScramble, isSolving } = useTimerStore();
-  const { setSettingsOpen, settingsOpen } = useSettingsModalStore();
+  const { setSettingsOpen, settingsOpen, lang, settings } =
+    useSettingsModalStore();
+  const { global } = useTimerStatistics();
+  const { lastSolve } = useTimerStore();
 
   if (isSolving) return null;
   return (
@@ -29,6 +34,14 @@ export default function HeaderTimer() {
         />
       </div>
       <ScrambleZone />
+      {lastSolve != null &&
+      lastSolve.time <= global.best &&
+      settings.alerts.bestTime ? (
+        <div id="touch" className="text-center mt-10">
+          <p>{translation.timer["congrats"][lang]}</p>
+          <p>{translation.timer["personal_best"][lang]}</p>
+        </div>
+      ) : null}
     </div>
   );
 }
