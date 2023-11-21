@@ -35,7 +35,7 @@ export default function HeaderTimer() {
       <ScrambleZone />
       {
         lastSolve != null && lastSolve.time <= global.best ?
-          <div className="text-center mt-10">
+          <div id="touch" className="text-center mt-10">
             <p>Congratulations!</p>
             <p>You have beaten your previous personal best.</p>
           </div>
