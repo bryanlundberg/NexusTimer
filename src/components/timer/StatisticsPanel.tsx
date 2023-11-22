@@ -29,10 +29,7 @@ export default function StatisticsPanel() {
                     : ""
                 }`}
               >
-                Ao12:{" "}
-                {global.ao12 !== 0 && session.ao12 === 0
-                  ? "--"
-                  : formatTime(session.ao12)}
+                Ao12: {session.ao12 === 0 ? "--" : formatTime(session.ao12)}
               </div>
             </div>
             <div className="flex justify-end w-full font-medium text-right">
