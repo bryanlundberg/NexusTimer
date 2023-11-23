@@ -15,7 +15,11 @@ export default function StatisticsPanel() {
             <div className="flex justify-end w-full font-medium text-right">
               <div
                 className={`w-fit px-[5px] rounded-md ${
-                  global.ao5 !== 0 && global.ao5 === session.ao5 ? bgRecord : ""
+                  global.ao5 !== 0 &&
+                  global.ao5 === session.ao5 &&
+                  settings.alerts.bestAverage.status
+                    ? bgRecord
+                    : ""
                 }`}
               >
                 Ao5: {session.ao5 === 0 ? "--" : formatTime(session.ao5)}
@@ -24,7 +28,9 @@ export default function StatisticsPanel() {
             <div className="flex justify-end w-full font-medium text-right">
               <div
                 className={`w-fit px-[5px] rounded-md ${
-                  global.ao12 !== 0 && global.ao12 === session.ao12
+                  global.ao12 !== 0 &&
+                  global.ao12 === session.ao12 &&
+                  settings.alerts.bestAverage.status
                     ? bgRecord
                     : ""
                 }`}
@@ -35,7 +41,9 @@ export default function StatisticsPanel() {
             <div className="flex justify-end w-full font-medium text-right">
               <div
                 className={`w-fit px-[5px] rounded-md ${
-                  global.ao50 !== 0 && global.ao50 === session.ao50
+                  global.ao50 !== 0 &&
+                  global.ao50 === session.ao50 &&
+                  settings.alerts.bestAverage.status
                     ? bgRecord
                     : ""
                 }`}
@@ -46,7 +54,9 @@ export default function StatisticsPanel() {
             <div className="flex justify-end w-full font-medium text-right">
               <div
                 className={`w-fit px-[5px] rounded-md ${
-                  global.ao100 !== 0 && global.ao100 === session.ao100
+                  global.ao100 !== 0 &&
+                  global.ao100 === session.ao100 &&
+                  settings.alerts.bestAverage.status
                     ? bgRecord
                     : ""
                 }`}
