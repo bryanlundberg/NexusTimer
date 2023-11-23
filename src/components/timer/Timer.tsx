@@ -61,7 +61,11 @@ export default function Timer() {
           </div>
         )}
         <Confetti
-          active={global.best === lastSolve?.time && !isSolving}
+          active={
+            global.best === lastSolve?.time &&
+            !isSolving &&
+            settings.alerts.bestTime.status
+          }
           config={config}
         />
         {lastSolve &&
