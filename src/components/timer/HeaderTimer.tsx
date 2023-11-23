@@ -36,7 +36,7 @@ export default function HeaderTimer() {
       <ScrambleZone />
       {lastSolve != null &&
       lastSolve.time <= global.best &&
-      settings.alerts.bestTime ? (
+      settings.alerts.bestTime.status ? (
         <div id="touch" className="text-center mt-10">
           <p>{translation.timer["congrats"][lang]}</p>
           <p>{translation.timer["personal_best"][lang]}</p>
