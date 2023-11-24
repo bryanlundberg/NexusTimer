@@ -14,7 +14,7 @@ export default function TimerWidgets() {
       <div className="flex flex-col gap-1" id="touch">
         {settings.alerts.bestAverage.status && (
           <div className="flex justify-end">
-            <div className="px-1 text-xs border rounded-md">
+            <div className="p-1 text-xs border rounded-md light:bg-neutral-100 light:border-neutral-900 dark:bg-zinc-900 dark:border-neutral-400">
               {translation.timer["new_best_average"][lang]}
             </div>
           </div>
