@@ -6,20 +6,20 @@ export const defaultSettings: Settings = {
   },
   timer: {
     inspection: { status: true, key: "inspection" },
-    startCue: { status: false, key: "start-cue" },
+    startCue: { status: true, key: "start-cue" },
     holdToStart: { status: false, key: "hold-to-start" },
     manualMode: { status: false, key: "manual-mode" },
   },
   features: {
     scrambleImage: { status: true, key: "scramble-image" },
     sessionStats: { status: true, key: "session-stats" },
-    quickActionButtons: { status: true, key: "quick-action-buttons" },
+    quickActionButtons: { status: false, key: "quick-action-buttons" },
     hideWhileSolving: { status: false, key: "hide-while-solving" },
-    scrambleBackground: { status: true, key: "scramble-background" },
+    scrambleBackground: { status: false, key: "scramble-background" },
   },
   alerts: {
-    bestTime: { status: false, key: "best-time" },
-    bestAverage: { status: false, key: "best-average" },
+    bestTime: { status: true, key: "best-time" },
+    bestAverage: { status: true, key: "best-average" },
     worstTime: { status: false, key: "worst-time" },
   },
   theme: {
