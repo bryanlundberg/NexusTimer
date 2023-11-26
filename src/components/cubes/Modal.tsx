@@ -5,6 +5,7 @@ import genId from "@/lib/genId";
 import translation from "@/translations/global.json";
 import useModalCube from "@/hooks/useModalCube";
 import { useCubesModalStore } from "@/store/CubesModalStore";
+import DeleteModal from "./DeleteModal";
 
 export default function Modal() {
   const { editingCube } = useCubesModalStore();
@@ -22,7 +23,7 @@ export default function Modal() {
     confirmDelete,
     cancelDelete,
     showDeleteConfirmation,
-    deleteConfirmationMessage,
+    cubeData,
   } = useModalCube();
   return (
     <>
@@ -156,27 +157,11 @@ export default function Modal() {
         </div>
       </div>
       {showDeleteConfirmation && (
-        <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen bg-opacity-80 bg-neutral-900">
-          <div className="p-4 text-center bg-white rounded-lg shadow-lg">
-            <p className="mb-4 text-lg font-semibold text-neutral-900">
-              {deleteConfirmationMessage}
-            </p>
-            <div className="flex justify-center space-x-4">
-              <button
-                onClick={cancelDelete}
-                className="px-4 py-2 rounded-lg bg-neutral-300 text-neutral-900 hover:bg-neutral-400"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={confirmDelete}
-                className="px-4 py-2 text-white bg-red-600 rounded-lg hover-bg-red-700"
-              >
-                Confirm
-              </button>
-            </div>
-          </div>
-        </div>
+        <DeleteModal
+          confirmDelete={confirmDelete}
+          cancelDelete={cancelDelete}
+          cubeData={cubeData}
+        />
       )}
     </>
   );

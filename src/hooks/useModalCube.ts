@@ -5,6 +5,10 @@ import createCube from "@/lib/createCube";
 import { useTimerStore } from "@/store/timerStore";
 import loadCubes from "@/lib/loadCubes";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import calcBestTime from "@/lib/calcBestTime";
+import calcAoStatistics from "@/lib/calcAoStatistics";
+import { DeleteCubeDetails } from "@/interfaces/DeleteCubeDetails";
+import formatTime from "@/lib/formatTime";
 
 export default function useModalCube() {
   const {
@@ -16,11 +20,13 @@ export default function useModalCube() {
     cubeName,
     setCubeName,
   } = useCubesModalStore();
+
   const { lang } = useSettingsModalStore();
-  const { setCubes, setSelectedCube, setNewScramble, selectedCube } = useTimerStore();
+  const { setCubes, setSelectedCube, setNewScramble, selectedCube } =
+    useTimerStore();
   const [error, setError] = useState<boolean>(false);
-  // Add state for the confirmation message
-  const [deleteConfirmationMessage, setDeleteConfirmationMessage] = useState("");
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [cubeData, setCubeData] = useState<DeleteCubeDetails | null>(null);
 
   const handleClickRadio = (category: Categories) => {
     setSelectedCategory(category);
@@ -70,19 +76,31 @@ export default function useModalCube() {
     setSelectedCategory("2x2");
   };
 
-  const handleMessage = () => {
-    const cubeDB = loadCubes();
+  const handleCubeDetails = () => {
     if (!editingCube) return;
-    
-      // Get the solve count for the cube
-      const cubeToBeDeleted = cubeDB.find((cube) => cube.id === editingCube.id);
-      const solveCount = cubeToBeDeleted ? cubeToBeDeleted.solves.session.length : 0;
-  
-      // Construct the message with the solve count
-      const message = `You have solved this cube ${solveCount} time(s). Are you sure you want to delete it?`;
-      // Show the delete confirmation dialog with the message
-      setDeleteConfirmationMessage(message);
-  }
+    const cubeDB = loadCubes();
+    const cubeToBeDeleted = cubeDB.find((cube) => cube.id === editingCube.id);
+    if (!cubeToBeDeleted) return;
+    const name = cubeToBeDeleted ? cubeToBeDeleted.name : "Undefined";
+    const solveCount = cubeToBeDeleted
+      ? cubeToBeDeleted.solves.session.length +
+        cubeToBeDeleted.solves.all.length
+      : 0;
+    const bestTime = cubeToBeDeleted
+      ? calcBestTime(cubeToBeDeleted.category, cubeToBeDeleted.name)
+      : null;
+    const bestAo = cubeToBeDeleted
+      ? calcAoStatistics(cubeToBeDeleted.category, cubeToBeDeleted.name)
+      : null;
+
+    setCubeData({
+      name: name,
+      category: cubeToBeDeleted.category,
+      count: solveCount,
+      best: bestTime ? formatTime(bestTime.cubeAll) : "--",
+      ao5: bestAo ? formatTime(bestAo.cubeAll.ao5) : "--",
+    });
+  };
 
   const handleDeleteCube = () => {
     const cubeDB = loadCubes();
@@ -109,10 +127,9 @@ export default function useModalCube() {
     setSelectedCategory("2x2");
   };
 
-  const [showDeleteConfirmation,setShowDeleteConfirmation]=useState(false);
   const handleDeleteClick = () => {
     // Show the delete confirmation dialog
-    handleMessage();
+    handleCubeDetails();
     setShowDeleteConfirmation(true);
   };
 
@@ -138,11 +155,10 @@ export default function useModalCube() {
     selectedCategory,
     cubeName,
     lang,
-    handleMessage,
-    deleteConfirmationMessage,
+    cubeData,
     handleDeleteClick,
     confirmDelete,
     cancelDelete,
-    showDeleteConfirmation
+    showDeleteConfirmation,
   };
 }
