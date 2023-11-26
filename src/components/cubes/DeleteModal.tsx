@@ -13,23 +13,23 @@ export default function DeleteModal({
     <>
       <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-screen text-black bg-opacity-80 bg-neutral-900">
         <div className="flex flex-col w-full h-auto gap-3 p-3 m-8 bg-white rounded-lg shadow-lg sm:w-96">
-          <div className="text-lg font-bold text-center">
+          <div className="text-lg font-medium text-center">
             Are you sure you want to delete?
           </div>
 
-          <div className="flex gap-2">
-            <div className="flex-1 text-end">
-              <div className="w-full h-5 text-black">Name:</div>
+          <div className="px-2 mx-auto font-mono text-center text-black bg-yellow-300 w-fit text-md ">
+            {cubeData.name}
+          </div>
+
+          <div className="flex justify-center gap-2 ">
+            <div className="flex flex-col text-end">
               <div className="text-black">Category: </div>
               <div className="text-black">Best time: </div>
               <div className="text-black">Best Ao5: </div>
               <div className="text-black">Count: </div>
             </div>
 
-            <div className="flex-1 overflow-hidden">
-              <div className="w-full h-5 overflow-hidden text-black">
-                {cubeData.name}
-              </div>
+            <div className="flex flex-col text-start">
               <div className="w-full overflow-hidden text-black">
                 {cubeData.category}
               </div>
