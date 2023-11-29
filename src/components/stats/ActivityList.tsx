@@ -7,12 +7,13 @@ import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
 import { useTimerStore } from "@/store/timerStore";
+import NoActivity from "./NoActivity";
 
 export function ActivityList() {
   const { lang } = useSettingsModalStore();
   const { cubes } = useTimerStore();
 
-  if (!cubes) return null;
+  if (!cubes || cubes.length === 0) return <NoActivity />;
 
   const lastAct: Solve[] = [];
   cubes.forEach((cube: Cube) => {
@@ -23,6 +24,8 @@ export function ActivityList() {
       lastAct.push(i);
     });
   });
+
+  if (lastAct.length === 0) return <NoActivity />;
 
   const sorted = sort(lastAct).desc((u) => u.endTime);
   return sorted.slice(0, 10).map((solve, index) => {

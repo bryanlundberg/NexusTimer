@@ -19,9 +19,7 @@ import Trophy from "@/icons/Trophy";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import RadarCharter from "../charts/RadarCharter";
-import PieCharter from "../charts/PieCharter";
 import getTotalCategoryPlay from "@/lib/getTotalCategoryPlay";
-import getCategoryTotalRatingPoints from "@/lib/getCategoryTotalRatingPoints";
 import getSuccessRate from "@/lib/getSuccessRate";
 import { PersonalContainer } from "./PersonalContainer";
 import { PersonalCardsContainer } from "./PersonalCardsContainer";
@@ -39,7 +37,7 @@ export default function PersonalStatistics() {
   const cuberTitle = getTitleByPoints(totalNumeric);
   const rate = getSuccessRate(cubes);
   const data01 = getTotalCategoryPlay(cubes);
-  const data02 = getCategoryTotalRatingPoints(cubes);
+
   return (
     <>
       <PersonalContainer>
@@ -93,17 +91,11 @@ export default function PersonalStatistics() {
           />
         </PersonalCardsContainer>
         <PersonalChartsContainer>
-          <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md light:border-neutral-200 dark:border-zinc-800 md:w-1/2 h-96 dark:bg-zinc-950 light:bg-neutral-100">
+          <div className="w-full h-96">
             <RadarCharter data={data01} />
-            <div className="mb-3 text-2xl font-medium text-center">
-              {translation.metrics["cube-insights"][lang]}
-            </div>
           </div>
-          <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md light:border-neutral-200 dark:border-zinc-800 md:w-1/2 h-96 dark:bg-zinc-950 light:bg-neutral-100">
-            <PieCharter data={data02} />
-            <div className="mb-3 text-2xl font-medium text-center">
-              {translation.metrics["rating-spread"][lang]}
-            </div>
+          <div className="mb-3 text-2xl font-medium text-center">
+            {translation.metrics["cube-insights"][lang]}
           </div>
         </PersonalChartsContainer>
         <LastActivity />
