@@ -7,6 +7,7 @@ import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
 import { useTimerStore } from "@/store/timerStore";
+import NoActivity from "./NoActivity";
 
 export function ActivityList() {
   const { lang } = useSettingsModalStore();
@@ -37,15 +38,4 @@ export function ActivityList() {
       </div>
     );
   });
-}
-
-function NoActivity() {
-  return (
-    <>
-      <div className="flex flex-col items-center justify-center w-full text-sm h-28">
-        <div>No activity found</div>
-        <div>There is no activity to display</div>
-      </div>
-    </>
-  );
 }
