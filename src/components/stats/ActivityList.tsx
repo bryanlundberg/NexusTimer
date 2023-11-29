@@ -12,7 +12,7 @@ export function ActivityList() {
   const { lang } = useSettingsModalStore();
   const { cubes } = useTimerStore();
 
-  if (!cubes) return null;
+  if (!cubes || cubes.length === 0) return <NoActivity />;
 
   const lastAct: Solve[] = [];
   cubes.forEach((cube: Cube) => {
@@ -23,6 +23,8 @@ export function ActivityList() {
       lastAct.push(i);
     });
   });
+
+  if (lastAct.length === 0) return <NoActivity />;
 
   const sorted = sort(lastAct).desc((u) => u.endTime);
   return sorted.slice(0, 10).map((solve, index) => {
@@ -35,4 +37,15 @@ export function ActivityList() {
       </div>
     );
   });
+}
+
+function NoActivity() {
+  return (
+    <>
+      <div className="flex flex-col items-center justify-center w-full text-sm h-28">
+        <div>No activity found</div>
+        <div>There is no activity to display</div>
+      </div>
+    </>
+  );
 }
