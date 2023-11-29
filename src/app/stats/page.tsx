@@ -5,7 +5,7 @@ import { Select } from "@/components/select/index";
 import useSelect from "@/hooks/useSelect";
 import { OverallContainer } from "@/components/OverallContainer";
 import { OverallHeader } from "@/components/OverallHeader";
-import { MetricsContent } from "@/components/stats/StatsContent";
+import { MetricsContent } from "@/components/stats/MetricsContent";
 
 export default function StatsPage() {
   const { lang } = useSettingsModalStore();
