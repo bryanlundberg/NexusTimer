@@ -136,11 +136,13 @@ export default function MenuSettings() {
           >
             <DataImportExport lang={lang} />
           </MenuSection>
-          <MenuSection icon={<Shield />} title="About">
+          <MenuSection
+            icon={<Shield />}
+            title={translation.settings["about"][lang]}
+          >
             <div className="flex flex-col justify-center items-center gap-3">
               <div className="text-center w-11/12 italic">
-                &rdquo;NexusTimer is a fast, unopinionated, minimalist and
-                opensource web tool for SpeedCubing.&rdquo;
+                &rdquo;{translation.settings["legend"][lang]}&rdquo;
               </div>
 
               <Link
@@ -156,14 +158,14 @@ export default function MenuSettings() {
                   target="_blank"
                   className="hover:text-zinc-500 text-blue-600 transition duration-300"
                 >
-                  Suggest a change
+                  {translation.settings["suggest"][lang]}
                 </Link>
                 <Link
                   href="https://github.com/bryanlundberg/NexusTimer/issues"
                   target="_blank"
                   className="hover:text-zinc-500 text-blue-600 transition duration-300"
                 >
-                  Report a bug
+                  {translation.settings["report-bug"][lang]}
                 </Link>
               </div>
             </div>
