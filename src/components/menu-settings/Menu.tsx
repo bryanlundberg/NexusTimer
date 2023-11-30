@@ -139,11 +139,10 @@ export default function MenuSettings() {
           <MenuSection icon={<Shield />} title="About">
             <div className="flex flex-col justify-center items-center gap-3">
               <div className="text-center w-11/12 italic">
-                NexusTimer is a fast, unopinionated, minimalist and opensource
-                web tool for SpeedCubing.
+                &rdquo;NexusTimer is a fast, unopinionated, minimalist and
+                opensource web tool for SpeedCubing.&rdquo;
               </div>
-              <div>Suggest a feature</div>
-              <div>Report a bug</div>
+
               <Link
                 href="https://github.com/bryanlundberg/NexusTimer"
                 target="_blank"
@@ -151,6 +150,22 @@ export default function MenuSettings() {
               >
                 <GithubIcon />
               </Link>
+              <div className="flex gap-3 underline">
+                <Link
+                  href="https://github.com/bryanlundberg/NexusTimer/issues"
+                  target="_blank"
+                  className="hover:text-zinc-500 text-blue-600 transition duration-300"
+                >
+                  Suggest a change
+                </Link>
+                <Link
+                  href="https://github.com/bryanlundberg/NexusTimer/issues"
+                  target="_blank"
+                  className="hover:text-zinc-500 text-blue-600 transition duration-300"
+                >
+                  Report a bug
+                </Link>
+              </div>
             </div>
           </MenuSection>
         </div>
