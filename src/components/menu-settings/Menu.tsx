@@ -17,6 +17,9 @@ import { MenuOption } from "./MenuOption";
 import { DataImportExport } from "./DataImportExport";
 import { useTimerStore } from "@/store/timerStore";
 import Folder from "@/icons/Folder";
+import Shield from "@/icons/Shield";
+import GithubIcon from "@/icons/GithubIcon";
+import Link from "next/link";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
@@ -132,6 +135,40 @@ export default function MenuSettings() {
             title={translation.settings["data"][lang]}
           >
             <DataImportExport lang={lang} />
+          </MenuSection>
+          <MenuSection
+            icon={<Shield />}
+            title={translation.settings["about"][lang]}
+          >
+            <div className="flex flex-col justify-center items-center gap-3">
+              <div className="text-center w-11/12 italic">
+                &rdquo;{translation.settings["legend"][lang]}&rdquo;
+              </div>
+
+              <Link
+                href="https://github.com/bryanlundberg/NexusTimer"
+                target="_blank"
+                className="hover:text-zinc-500 transition duration-300"
+              >
+                <GithubIcon />
+              </Link>
+              <div className="flex gap-3 underline">
+                <Link
+                  href="https://github.com/bryanlundberg/NexusTimer/issues"
+                  target="_blank"
+                  className="hover:text-zinc-500 text-blue-600 transition duration-300"
+                >
+                  {translation.settings["suggest"][lang]}
+                </Link>
+                <Link
+                  href="https://github.com/bryanlundberg/NexusTimer/issues"
+                  target="_blank"
+                  className="hover:text-zinc-500 text-blue-600 transition duration-300"
+                >
+                  {translation.settings["report-bug"][lang]}
+                </Link>
+              </div>
+            </div>
           </MenuSection>
         </div>
         {/* Area to the right  -> Its a transparent layer next to menu */}
