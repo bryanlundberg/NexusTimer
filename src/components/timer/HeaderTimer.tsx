@@ -9,13 +9,14 @@ import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 import translation from "@/translations/global.json";
 
 export default function HeaderTimer() {
-  const { selectedCube, setNewScramble, isSolving } = useTimerStore();
+  const { selectedCube, setNewScramble, isSolving, timerStatus } =
+    useTimerStore();
   const { setSettingsOpen, settingsOpen, lang, settings } =
     useSettingsModalStore();
   const { global } = useTimerStatistics();
   const { lastSolve } = useTimerStore();
 
-  if (isSolving) return null;
+  if (isSolving || timerStatus === "ready") return null;
   return (
     <div className="flex flex-col items-center justify-center gap-5 p-4">
       <div className="flex items-center gap-3">
@@ -37,7 +38,7 @@ export default function HeaderTimer() {
       {lastSolve != null &&
       lastSolve.time <= global.best &&
       settings.alerts.bestTime.status ? (
-        <div id="touch" className="text-center mt-10">
+        <div id="touch" className="mt-10 text-center">
           <p>{translation.timer["congrats"][lang]}</p>
           <p>{translation.timer["personal_best"][lang]}</p>
         </div>

@@ -1,5 +1,6 @@
 import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
+import { TimerStatus } from "@/interfaces/TimerStatus";
 import { cubeCollection } from "@/lib/cubeCollection";
 import genScramble from "@/lib/timer/genScramble";
 import { create } from "zustand";
@@ -12,12 +13,14 @@ type TimerStore = {
   lastSolve: Solve | null;
   solvingTime: number;
   isSolving: boolean;
+  timerStatus: TimerStatus;
   setNewScramble: (cube: Cube | null) => void;
   setCubes: (cubes: Cube[]) => void;
   setSelectedCube: (cube: Cube | null) => void;
   setLastSolve: (solve: Solve | null) => void;
   setSolvingTime: (newTime: number) => void;
   setIsSolving: (isSolving: boolean) => void;
+  setTimerStatus: (timerStatus: TimerStatus) => void;
 };
 
 export const useTimerStore = create<TimerStore>((set) => ({
@@ -28,14 +31,12 @@ export const useTimerStore = create<TimerStore>((set) => ({
   lastSolve: null,
   solvingTime: 0,
   isSolving: false,
+  timerStatus: "idle",
   setNewScramble: (cube: Cube | null) => {
-    set((state) => ({
-      ...state,
-      scramble: cube ? genScramble(cube.category) : null,
-    }));
+    set({ scramble: cube ? genScramble(cube.category) : null });
   },
   setCubes: (cubes: Cube[]) => {
-    set((state) => ({ ...state, cubes }));
+    set({ cubes });
   },
   setSelectedCube: (cube: Cube | null) => {
     set((state: any) => {
@@ -65,5 +66,8 @@ export const useTimerStore = create<TimerStore>((set) => ({
   },
   setIsSolving: (isSolving: boolean) => {
     set({ isSolving: isSolving });
+  },
+  setTimerStatus: (timerStatus: TimerStatus) => {
+    set({ timerStatus });
   },
 }));

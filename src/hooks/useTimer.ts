@@ -19,12 +19,13 @@ export default function useTimer() {
     setSolvingTime,
     isSolving,
     setIsSolving,
+    setTimerStatus,
+    timerStatus,
   } = useTimerStore();
 
   const { settings } = useSettingsModalStore();
 
   const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
-  const [timerStatus, setTimerStatus] = useState<TimerStatus>("idle");
   const endTimeRef = useRef<number>(0);
   const holdingTimeRef = useRef<number>(0);
   const startTime = useRef<number>(0);
