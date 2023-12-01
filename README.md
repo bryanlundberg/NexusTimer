@@ -109,9 +109,9 @@ This is what makes unique and versatile **Nexus Timer**.
   - [ ] Enhance and expand translations
   - [ ] Sounds for application
 - [x] Animations
-  - [ ] Modal opening and closing
-  - [ ] Doing a personal best (PB) Conffeti or similar.
-  - [ ] Other interactive alerts
+  - [ ] Opening and closing modals (Fade in, out)
+  - [ ] Opening and closing menu-settings (smooth scroll left to right)
+  - [ ] Loading screen effect, only first time
 - [x] Cloud support (Backend)
   - [ ] Move from localStorage to server storage
 
