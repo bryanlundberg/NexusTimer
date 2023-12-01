@@ -2,7 +2,6 @@ import "./globals.css";
 import Script from "next/script";
 import type { Metadata } from "next";
 import PreloadSettings from "@/components/PreloadSettings";
-import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: "Nexus Timer | For SpeedCubers",

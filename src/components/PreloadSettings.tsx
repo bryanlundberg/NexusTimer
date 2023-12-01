@@ -12,13 +12,14 @@ export default function PreloadSettings({
 }) {
   usePreloadSettings();
   const { settings } = useSettingsModalStore();
-  const { isSolving } = useTimerStore();
+  const { isSolving, timerStatus } = useTimerStore();
   const theme = settings ? settings.theme.background.color : "light";
   return (
     <>
       <div className={`${theme}`}>
-        <div className="flex flex-col justify-between max-h-screen min-h-screen gap-2 select-none light:bg-neutral-50 light:text-zinc-950 dark:bg-zinc-950 dark:text-slate-50 overflow-hidden">
-          {children} <>{!isSolving && <Navbar />}</>
+        <div className="flex flex-col justify-between max-h-screen min-h-screen gap-2 overflow-hidden select-none light:bg-neutral-50 light:text-zinc-950 dark:bg-zinc-950 dark:text-slate-50">
+          {children}{" "}
+          <>{!isSolving || (timerStatus === "ready" && <Navbar />)}</>
         </div>
       </div>
     </>

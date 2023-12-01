@@ -7,10 +7,10 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 
 export default function TimerWidgets() {
-  const { isSolving } = useTimerStore();
+  const { isSolving, timerStatus } = useTimerStore();
   const { lang, settings } = useSettingsModalStore();
   const { global, session } = useTimerStatistics();
-  if (isSolving) return null;
+  if (isSolving || timerStatus === "ready") return null;
   return (
     <>
       <div className="flex flex-col gap-1" id="touch">
