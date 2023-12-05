@@ -32,9 +32,8 @@ const chartOptions: any = {
     tickMarkFormatter: (time: number) => {
       return time.toString();
     },
-  },
-  priceScale: {
-    autoScale: false,
+    fixRightEdge: true,
+    fixLeftEdge: true,
   },
 };
 
