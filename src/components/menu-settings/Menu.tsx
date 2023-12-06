@@ -134,7 +134,7 @@ export default function MenuSettings() {
             icon={<Folder />}
             title={translation.settings["data"][lang]}
           >
-            <DataImportExport lang={lang} />
+            <DataImportExport />
           </MenuSection>
           <MenuSection
             icon={<Shield />}
