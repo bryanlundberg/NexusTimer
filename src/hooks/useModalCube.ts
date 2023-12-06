@@ -66,6 +66,9 @@ export default function useModalCube() {
         cube.name = name;
         cube.category = category;
       }
+      if (editingCube.id === selectedCube?.id) {
+        setSelectedCube(null);
+      }
     }
 
     window.localStorage.setItem("cubes", JSON.stringify(cubeDB));
