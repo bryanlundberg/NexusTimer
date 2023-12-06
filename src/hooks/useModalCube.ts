@@ -74,6 +74,7 @@ export default function useModalCube() {
     setEditingCube(null);
     setCubeName("");
     setSelectedCategory("2x2");
+    setSelectedCube(null);
   };
 
   const handleCubeDetails = () => {
