@@ -1,3 +1,4 @@
+import React from 'react';
 import Reload from "@/icons/Reload";
 import Select from "../Select";
 import Settings from "@/icons/Settings";
@@ -16,14 +17,22 @@ export default function HeaderTimer() {
   const { global } = useTimerStatistics();
   const { lastSolve } = useTimerStore();
 
+  const changeContent = (page) => {
+    if (page === 'settings') {
+      setSettingsOpen(!settingsOpen);
+    }
+    window.history.pushState({ page }, null, `#${page}`);
+  };
+
   if (isSolving || timerStatus === "ready") return null;
   return (
     <div className="flex flex-col items-center justify-center gap-5 p-4">
       <div className="flex items-center gap-3">
-        <InteractiveIcon
-          icon={<Settings />}
-          handleClick={() => setSettingsOpen(!settingsOpen)}
-        />
+        <a href="#" onClick={() => changeContent('settings')}>
+          <InteractiveIcon
+            icon={<Settings />}
+          />
+        </a>
         <Select />
         <InteractiveIcon
           icon={<Reload />}

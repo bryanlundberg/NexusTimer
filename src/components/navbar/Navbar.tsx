@@ -31,6 +31,11 @@ const navigation: Navigation = [
     normalIcon: <Cubes />,
     solidIcon: <CubesSolid />,
   },
+  {
+    path: "/settings",
+    normalIcon: <Clock />,
+    solidIcon: <ClockSolid />,
+  },
 ];
 
 type Navigation = NavItem[];
