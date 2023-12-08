@@ -1,4 +1,3 @@
-import React from 'react';
 import Reload from "@/icons/Reload";
 import Select from "../Select";
 import Settings from "@/icons/Settings";
@@ -9,6 +8,7 @@ import { ScrambleZone } from "./ScrambleZone";
 import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 import translation from "@/translations/global.json";
 
+
 export default function HeaderTimer() {
   const { selectedCube, setNewScramble, isSolving, timerStatus } =
     useTimerStore();
@@ -18,21 +18,19 @@ export default function HeaderTimer() {
   const { lastSolve } = useTimerStore();
 
   const changeContent = (page) => {
-    if (page === 'settings') {
-      setSettingsOpen(!settingsOpen);
-    }
-    window.history.pushState({ page }, null, `#${page}`);
+    window.history.pushState({ page }, `#${page}`);
   };
 
   if (isSolving || timerStatus === "ready") return null;
   return (
     <div className="flex flex-col items-center justify-center gap-5 p-4">
       <div className="flex items-center gap-3">
-        <a href="#" onClick={() => changeContent('settings')}>
+      <a href="#settings" onClick={() => changeContent('settings')}>
           <InteractiveIcon
             icon={<Settings />}
+            handleClick={() => setSettingsOpen(!settingsOpen)}
           />
-        </a>
+          </a>
         <Select />
         <InteractiveIcon
           icon={<Reload />}
