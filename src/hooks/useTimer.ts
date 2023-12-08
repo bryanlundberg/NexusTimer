@@ -23,7 +23,7 @@ export default function useTimer() {
     timerStatus,
   } = useTimerStore();
 
-  const { settings } = useSettingsModalStore();
+  const { settings, setSettingsOpen } = useSettingsModalStore();
 
   const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
   const endTimeRef = useRef<number>(0);
@@ -169,6 +169,10 @@ export default function useTimer() {
   };
 
   useEffect(() => {
+    window.addEventListener("popstate", (event) => {
+      setSettingsOpen(false);
+    });
+
     window.addEventListener("keydown", handleHold);
     window.addEventListener("keyup", handleRelease);
     const touchElements = document.querySelectorAll("#touch");
@@ -183,6 +187,9 @@ export default function useTimer() {
       touchElements.forEach((element) => {
         element.removeEventListener("touchstart", handleTouchStart);
         element.removeEventListener("touchend", handleTouchEnd);
+      });
+      window.removeEventListener("popstate", (event) => {
+        setSettingsOpen(false);
       });
     };
   });

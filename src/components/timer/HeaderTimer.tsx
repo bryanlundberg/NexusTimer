@@ -7,6 +7,7 @@ import { InteractiveIcon } from "./InteractiveIcon";
 import { ScrambleZone } from "./ScrambleZone";
 import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 import translation from "@/translations/global.json";
+import Link from "next/link";
 
 export default function HeaderTimer() {
   const { selectedCube, setNewScramble, isSolving, timerStatus } =
@@ -20,10 +21,20 @@ export default function HeaderTimer() {
   return (
     <div className="flex flex-col items-center justify-center gap-5 p-4">
       <div className="flex items-center gap-3">
-        <InteractiveIcon
-          icon={<Settings />}
-          handleClick={() => setSettingsOpen(!settingsOpen)}
-        />
+        <Link
+          href={{
+            pathname: "/",
+            hash: `${translation.settings["settings"][lang]}`,
+          }}
+        >
+          <InteractiveIcon
+            icon={<Settings />}
+            handleClick={() => {
+              setSettingsOpen(!settingsOpen);
+            }}
+          />
+        </Link>
+
         <Select />
         <InteractiveIcon
           icon={<Reload />}

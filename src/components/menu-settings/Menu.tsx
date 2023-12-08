@@ -40,12 +40,13 @@ export default function MenuSettings() {
       <div className="absolute z-10 flex w-full h-full overflow-auto">
         <div className="flex flex-col w-full gap-3 overflow-auto bg-neutral-50 text-zinc-800 sm:w-96">
           <div className="flex items-center my-3">
-            <div
+            <Link
+              href={"/"}
               onClick={() => setSettingsOpen(false)}
               className="flex items-center cursor-pointer ms-3"
             >
               <ArrowLeft />
-            </div>
+            </Link>
             <div className="flex-1 text-2xl font-medium text-center">
               {translation.settings["settings"][lang]}
             </div>
@@ -172,7 +173,13 @@ export default function MenuSettings() {
           </MenuSection>
         </div>
         {/* Area to the right  -> Its a transparent layer next to menu */}
-        <div onClick={() => setSettingsOpen(false)} className="sm:grow"></div>
+        <Link
+          href={"/"}
+          onClick={() => {
+            setSettingsOpen(false);
+          }}
+          className="sm:grow"
+        ></Link>
       </div>
     </>
   );
