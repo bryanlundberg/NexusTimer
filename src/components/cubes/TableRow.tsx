@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 export default function TableRow({ cube }: { cube: Cube }) {
   const { lang } = useSettingsModalStore();
   const router = useRouter();
-  const { setSelectedCube, setNewScramble } = useTimerStore();
+  const { setSelectedCube, setNewScramble, setLastSolve } = useTimerStore();
   const { setCubes } = useTimerStore();
   const { setEditingCube, setModalOpen, setCubeName, setSelectedCategory } =
     useCubesModalStore();
@@ -40,6 +40,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
     if (divIndex > 0 && divIndex < e.currentTarget.children.length - 1) {
       setSelectedCube(cube);
       setNewScramble(cube);
+      setLastSolve(null);
       router.push("/");
     }
   };
