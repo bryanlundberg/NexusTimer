@@ -14,10 +14,16 @@ export default function useClickOutside(
       }
     }
 
+    function handlePressEsc(event: KeyboardEvent) {
+      if (event.code === "Escape") clickOutsideCallback();
+    }
+
+    document.addEventListener("keydown", handlePressEsc);
     document.addEventListener("mousedown", handleOutsideClick);
 
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
+      document.removeEventListener("keydown", handlePressEsc);
     };
   }, [targetRef, clickOutsideCallback]);
 }
