@@ -62,8 +62,8 @@ export default function Timer() {
                   {!lastSolve && timerStatus === "idle" ? (
                     <div className="text-xs text-center animate-pulse">
                       {device === "Desktop"
-                        ? "Press 'Space' to start!"
-                        : "Tap to start!"}
+                        ? `${translation.timer["space-to-start"][lang]}`
+                        : `${translation.timer["tap-to-start"][lang]}`}
                     </div>
                   ) : null}
                 </div>
