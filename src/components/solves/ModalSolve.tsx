@@ -11,10 +11,13 @@ import moveSolve from "@/lib/moveSolve";
 import { ScrambleDisplay } from "../scramble-display";
 import { cubeCollection } from "@/lib/cubeCollection";
 import CalendarDays from "@/icons/CalentarDays";
+import useEscape from "@/hooks/useEscape";
 
 export default function ModalSolve() {
   const { status, solve, setStatus } = useSolvesStore();
   const { setCubes, setSelectedCube, selectedCube } = useTimerStore();
+
+  useEscape(() => setStatus(false));
 
   if (!solve || !status) return null;
 

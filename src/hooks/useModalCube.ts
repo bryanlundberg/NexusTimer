@@ -9,6 +9,7 @@ import calcBestTime from "@/lib/calcBestTime";
 import calcAoStatistics from "@/lib/calcAoStatistics";
 import { DeleteCubeDetails } from "@/interfaces/DeleteCubeDetails";
 import formatTime from "@/lib/formatTime";
+import useEscape from "./useEscape";
 
 export default function useModalCube() {
   const {
@@ -27,6 +28,8 @@ export default function useModalCube() {
   const [error, setError] = useState<boolean>(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [cubeData, setCubeData] = useState<DeleteCubeDetails | null>(null);
+
+  useEscape(() => setModalOpen(false));
 
   const handleClickRadio = (category: Categories) => {
     setSelectedCategory(category);

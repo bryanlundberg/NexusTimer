@@ -20,6 +20,7 @@ import Folder from "@/icons/Folder";
 import Shield from "@/icons/Shield";
 import GithubIcon from "@/icons/GithubIcon";
 import Link from "next/link";
+import useEscape from "@/hooks/useEscape";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
@@ -30,12 +31,11 @@ export default function MenuSettings() {
     window.localStorage.setItem("settings", JSON.stringify(newSettings));
     setSettings(newSettings);
   };
-
   const { isSolving } = useTimerStore();
 
-  if (!settingsOpen || isSolving) return null;
+  useEscape(() => setSettingsOpen(false));
 
-  return (
+  return settingsOpen && !isSolving ? (
     <>
       <div className="absolute z-10 flex w-full h-full overflow-auto">
         <div className="flex flex-col w-full gap-3 overflow-auto bg-neutral-50 text-zinc-800 sm:w-96">
@@ -182,5 +182,5 @@ export default function MenuSettings() {
         ></Link>
       </div>
     </>
-  );
+  ) : null;
 }
