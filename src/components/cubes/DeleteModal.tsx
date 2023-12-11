@@ -72,6 +72,7 @@ export default function DeleteModal({
             <button
               onClick={confirmDelete}
               className="px-4 py-2 text-white transition duration-200 bg-red-600 rounded-lg hover:bg-red-700"
+              autoFocus={true}
             >
               {translation.inputs["confirm"][lang]}
             </button>
