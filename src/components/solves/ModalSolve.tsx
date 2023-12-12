@@ -8,7 +8,7 @@ import { useSolvesStore } from "@/store/SolvesStore";
 import { useTimerStore } from "@/store/timerStore";
 import formatTime from "@/lib/formatTime";
 import moveSolve from "@/lib/moveSolve";
-import { ScrambleDisplay } from "../scramble-display";
+import { ScrambleDisplay } from "@/components/scramble-display/index";
 import { cubeCollection } from "@/lib/cubeCollection";
 import CalendarDays from "@/icons/CalentarDays";
 import useEscape from "@/hooks/useEscape";

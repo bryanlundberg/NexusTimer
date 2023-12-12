@@ -7,7 +7,7 @@ import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
 import { useTimerStore } from "@/store/timerStore";
-import NoActivity from "./NoActivity";
+import NoActivity from "@/components/stats/NoActivity";
 
 export function ActivityList() {
   const { lang } = useSettingsModalStore();

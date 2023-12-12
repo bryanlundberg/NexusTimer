@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/button/index";
-import InputText from "@/components/input-text/InputText";
-import ModalCreate from "@/components/cubes/Modal";
+import { InputText } from "@/components/input-text/index";
+import ModalCreate from "@/components/cubes/ModalCreate";
 import Plus from "@/icons/Plus";
 import translation from "@/translations/global.json";
 import { OverallContainer } from "@/components/OverallContainer";

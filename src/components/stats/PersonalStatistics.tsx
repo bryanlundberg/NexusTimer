@@ -1,12 +1,12 @@
 import { useTimerStore } from "@/store/timerStore";
-import CardStatistic from "./CardStatistic";
+import CardStatistic from "@/components/stats/CardStatistic";
 import getTotalCubesSolved from "@/lib/getTotalCubesSolved";
 import getTotalEvents from "@/lib/getTotalEvents";
 import getTotalTimeCubing from "@/lib/getTotalTimeCubing";
 import getMostPlayedEvent from "@/lib/getMostPlayedEvent";
 import getTotalRatingPoints from "@/lib/getTotalRatingPoints";
 import getSessionInProgress from "@/lib/getSessionInProgress";
-import LastActivity from "./LastActivity";
+import LastActivity from "@/components/stats/LastActivity";
 import getTitleByPoints from "@/lib/getTitleByPoints";
 import Hashtag from "@/icons/Hashtag";
 import PresentationChart from "@/icons/PresentationChart";
@@ -18,12 +18,12 @@ import Flag from "@/icons/Flag";
 import Trophy from "@/icons/Trophy";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import RadarCharter from "../charts/RadarCharter";
+import RadarCharter from "@/components/charts/RadarCharter";
 import getTotalCategoryPlay from "@/lib/getTotalCategoryPlay";
 import getSuccessRate from "@/lib/getSuccessRate";
-import { PersonalContainer } from "./PersonalContainer";
-import { PersonalCardsContainer } from "./PersonalCardsContainer";
-import { PersonalChartsContainer } from "./PersonalChartsContainer";
+import { PersonalContainer } from "@/components/stats/PersonalContainer";
+import { PersonalCardsContainer } from "@/components/stats/PersonalCardsContainer";
+import { PersonalChartsContainer } from "@/components/stats/PersonalChartsContainer";
 
 export default function PersonalStatistics() {
   const { cubes } = useTimerStore();

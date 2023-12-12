@@ -1,5 +1,5 @@
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import ToggleSolvesButton from "./ToggleSolvesButton";
+import ToggleSolvesButton from "@/components/solves/ToggleSolvesButton";
 import translation from "@/translations/global.json";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
 

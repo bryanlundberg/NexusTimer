@@ -1,7 +1,7 @@
 import { SolveTab } from "@/interfaces/types/SolveTabs";
-import SingleSolveItem from "./SingleSolveItem";
+import SingleSolveItem from "@/components/solves/SingleSolveItem";
 import { useTimerStore } from "@/store/timerStore";
-import EmptySolves from "./EmptySolves";
+import EmptySolves from "@/components/solves/EmptySolves";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Solve } from "@/interfaces/Solve";

@@ -1,6 +1,6 @@
 import { Cube } from "@/interfaces/Cube";
-import TableHeader from "./TableHeader";
-import TableRow from "./TableRow";
+import TableHeader from "@/components/cubes/TableHeader";
+import TableRow from "@/components/cubes/TableRow";
 import genId from "@/lib/genId";
 
 interface CubesSection {

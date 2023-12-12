@@ -1,10 +1,10 @@
 import useOpenClose from "@/hooks/useOpenClose";
 import useSelect from "@/hooks/useSelect";
 import genId from "@/lib/genId";
-import { SelectContainer } from "./SelectContainer";
-import { SelectToggleButton } from "./SelectToggleButton";
-import { SelectOptionList } from "./SelectOptionList";
-import { SelectOption } from "./SelectOption";
+import { SelectContainer } from "@/components/select/SelectContainer";
+import { SelectToggleButton } from "@/components/select/SelectToggleButton";
+import { SelectOptionList } from "@/components/select/SelectOptionList";
+import { SelectOption } from "@/components/select/SelectOption";
 
 interface SelectProps {
   list: Item[];

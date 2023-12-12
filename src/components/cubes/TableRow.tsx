@@ -1,5 +1,5 @@
 import { Cube } from "@/interfaces/Cube";
-import BookmarkFav from "./BookmarkFav";
+import BookmarkFav from "@/components/cubes/BookmarkFav";
 import Ellipsis from "@/icons/Ellipsis";
 import updateCube from "@/lib/updateCube";
 import { useTimerStore } from "@/store/timerStore";

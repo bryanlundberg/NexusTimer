@@ -4,7 +4,7 @@ import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
 import calcAoStatistics from "@/lib/calcAoStatistics";
 import calcDeviation from "@/lib/calcDeviation";
 import calcBestTime from "@/lib/calcBestTime";
-import { Select } from "../select/index";
+import { Select } from "@/components/select/index";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import LineCharter from "../charts/LineCharter";
@@ -12,9 +12,9 @@ import getSolvesMetrics from "@/lib/getSolvesMetrics";
 import calcSuccessRate from "@/lib/calcSuccessRate";
 import formatTime from "@/lib/formatTime";
 import useMetricsSwitch from "@/hooks/useMetricsSwitch";
-import { StatisticRow } from "./StatisticRow";
-import { CustomTableContainer } from "./CustomTableContainer";
-import { StatisticHeader } from "./StatisticsHeader";
+import { StatisticRow } from "@/components/stats/StatisticRow";
+import { CustomTableContainer } from "@/components/stats/CustomTableContainer";
+import { StatisticHeader } from "@/components/stats/StatisticsHeader";
 
 export default function CategoryStatistics() {
   const { lang } = useSettingsModalStore();
@@ -54,7 +54,7 @@ export default function CategoryStatistics() {
           />
         </div>
         <div className="flex flex-col gap-3 md:flex-row">
-          <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md h-96 light:border-neutral-200 dark:border-zinc-800 bg-black">
+          <div className="flex flex-col items-center justify-center w-full p-3 bg-black border rounded-md h-96 light:border-neutral-200 dark:border-zinc-800">
             <LineCharter
               data={data}
               cubeSelected={

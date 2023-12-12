@@ -1,6 +1,6 @@
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import { ActivityList } from "./ActivityList";
+import { ActivityList } from "@/components/stats/ActivityList";
 
 export default function LastActivity() {
   const { lang } = useSettingsModalStore();

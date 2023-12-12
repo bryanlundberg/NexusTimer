@@ -1,13 +1,13 @@
-import InputText from "../input-text/InputText";
-import CheckboxImage from "./CheckboxImage";
+import { InputText } from "@/components/input-text/index";
+import CheckboxImage from "@/components/cubes/CheckboxImage";
 import { cubeCollection } from "@/lib/cubeCollection";
 import genId from "@/lib/genId";
 import translation from "@/translations/global.json";
 import useModalCube from "@/hooks/useModalCube";
 import { useCubesModalStore } from "@/store/CubesModalStore";
-import DeleteModal from "./DeleteModal";
+import DeleteModal from "@/components/cubes/DeleteModal";
 
-export default function Modal() {
+export default function ModalCreate() {
   const { editingCube } = useCubesModalStore();
   const {
     error,

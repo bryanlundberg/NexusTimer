@@ -1,7 +1,6 @@
 "use client";
-
 import { usePreloadSettings } from "@/hooks/usePreloadSettings";
-import { Navbar } from "./navbar";
+import { Navbar } from "@/components/navbar/index";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 

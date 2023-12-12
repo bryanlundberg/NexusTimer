@@ -1,7 +1,7 @@
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import translation from "@/translations/global.json";
-import PersonalStatistics from "./PersonalStatistics";
-import CategoryStatistics from "./CategoryStatistics";
+import PersonalStatistics from "@/components/stats/PersonalStatistics";
+import CategoryStatistics from "@/components/stats/CategoryStatistics";
 
 interface MetricsContent {
   selectedValue: string;
