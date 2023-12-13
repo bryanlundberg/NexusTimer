@@ -1,1 +1,6 @@
-export type TimerStatus = "idle" | "solving" | "holdingKey" | "ready";
+export type TimerStatus =
+  | "IDLE"
+  | "SOLVING"
+  | "HOLDING"
+  | "READY"
+  | "INSPECTING";

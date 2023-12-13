@@ -10,7 +10,7 @@ export default function TimerWidgets() {
   const { isSolving, timerStatus } = useTimerStore();
   const { lang, settings } = useSettingsModalStore();
   const { global, session } = useTimerStatistics();
-  if (isSolving || timerStatus === "ready") return null;
+  if (isSolving || timerStatus === "READY") return null;
   return (
     <>
       <div className="flex flex-col gap-1" id="touch">

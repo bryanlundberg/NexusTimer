@@ -17,7 +17,7 @@ export default function HeaderTimer() {
   const { global } = useTimerStatistics();
   const { lastSolve } = useTimerStore();
 
-  if (isSolving || timerStatus === "ready") return null;
+  if (isSolving || timerStatus === "READY") return null;
   return (
     <div className="flex flex-col items-center justify-center gap-5 p-4">
       <div className="flex items-center gap-3">
