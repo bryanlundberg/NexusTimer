@@ -33,13 +33,23 @@ const config: any = {
 export default function Timer() {
   const { lang, settings } = useSettingsModalStore();
   const { selectedCube, isSolving, lastSolve } = useTimerStore();
-  const { timerStatus, displayValue, inspectionTime } = useTimer();
+  const { timerStatus, displayValue, inspectionTime, holdingTime } = useTimer();
   const { global } = useTimerStatistics();
   const { device } = useDeviceMatch();
   const hideWhileSolving = settings.features.hideWhileSolving.status;
 
   return (
-    <div className="text-white text-lg text-center">{displayValue}</div>
+    <>
+      <div className="text-white text-lg text-center">
+        display: {displayValue}
+      </div>
+      <div className="text-white text-lg text-center">
+        inspection: {inspectionTime}
+      </div>
+      <div className="text-white text-lg text-center">
+        holding: {holdingTime}
+      </div>
+    </>
     // selectedCube && (
     //   <>
     //     <div
