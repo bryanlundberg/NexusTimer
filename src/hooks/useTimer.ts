@@ -13,10 +13,11 @@ export default function useTimer() {
   } = useTimerStore();
 
   const { settings, setSettingsOpen } = useSettingsModalStore();
+  const [displayValue, setDisplayValue] = useState<any>("0.00");
 
   // user-settings
   const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
-  const hideWhileSolving = settings.features.hideWhileSolving.status;
+
   const inspectionRequired = settings.timer.inspection.status;
   const inspectionDuration = 15000;
 
@@ -41,6 +42,8 @@ export default function useTimer() {
         const now = Date.now();
         const difference = now - startSolveTime.current;
         setSolvingTime(difference);
+      } else {
+        clearInterval(solveTimeId.current);
       }
     });
   };
@@ -67,9 +70,6 @@ export default function useTimer() {
     clearInterval(holdingTimeId.current);
     clearInterval(solveTimeId.current);
     clearInterval(inspectionId.current);
-    startHoldingTime.current = null;
-    inspectionId.current = null;
-    holdingTimeId.current = null;
     setInspectionTime(inspectionDuration);
     setTimerStatus("IDLE");
     setIsSolving(false);
@@ -94,6 +94,8 @@ export default function useTimer() {
         if (holdingTime.current < holdTimeRequired) {
           setTimerStatus("HOLDING");
         }
+      } else {
+        clearInterval(holdingTimeId.current);
       }
     }, 10);
   };
@@ -160,8 +162,7 @@ export default function useTimer() {
 
   return {
     timerStatus,
-    hideWhileSolving,
-    solvingTime,
+    displayValue,
     inspectionTime,
   };
 }
