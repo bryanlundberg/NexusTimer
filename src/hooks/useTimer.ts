@@ -34,6 +34,8 @@ export default function useTimer() {
   const holdingTimeId = useRef<any>(null);
   const [holdingTime, setHoldingTime] = useState<number | null>(10);
 
+  const relasedKey = useRef<boolean>(true);
+
   useEffect(() => {
     const startTimer = () => {
       setIsSolving(true);
@@ -44,8 +46,6 @@ export default function useTimer() {
           const difference = now - startSolveTime.current;
           setSolvingTime(difference);
           setDisplayValue(difference);
-        } else {
-          return clearInterval(solveTimeId.current);
         }
       });
     };
@@ -58,11 +58,9 @@ export default function useTimer() {
           const difference =
             inspectionDuration - (now - startInspectionTime.current);
           setInspectionTime(difference / 1000);
-          console.log(difference + " inspection");
           if (difference <= 0) {
             setDisplayValue(0); // reset display value
             resetTimer();
-            return clearInterval(inspectionId.current);
           }
         }
       });
@@ -75,6 +73,9 @@ export default function useTimer() {
       startHoldingTime.current = null;
       setInspectionTime(inspectionDuration);
       setIsSolving(false);
+      holdingTimeId.current = null;
+      solveTimeId.current = null;
+      inspectionId.current = null;
     };
 
     const startHold = () => {
@@ -85,7 +86,6 @@ export default function useTimer() {
             const now = Date.now();
             const difference = now - startHoldingTime.current;
             setHoldingTime(difference);
-            console.log(difference);
           }
         }, 10);
       }
@@ -93,6 +93,7 @@ export default function useTimer() {
     const removeInspection = () => {
       startInspectionTime.current = null;
       clearInterval(inspectionId.current);
+      inspectionId.current = null;
       setInspectionTime(inspectionDuration);
       setIsSolving(false);
     };
@@ -106,6 +107,7 @@ export default function useTimer() {
 
     const stopTimer = () => {
       clearInterval(solveTimeId.current);
+      solveTimeId.current = null;
       startSolveTime.current = null;
     };
 
@@ -120,18 +122,17 @@ export default function useTimer() {
         return;
       }
 
-      // if (isSolving) {
-      //   stopTimer();
-      // }
+      if (!inspectionId.current && isSolving && relasedKey.current) {
+        stopTimer();
+        resetTimer();
+        relasedKey.current = false;
+      }
 
-      startHold();
+      if (!relasedKey.current) return;
 
-      console.log(holdingTimeId.current);
-
-      // if (inspectionId.current || !inspectionRequired) {
-      //   startHold();
-      //   return;
-      // }
+      if (!isSolving) {
+        startHold();
+      }
     };
 
     // MAIN RELEASE CONTROL
@@ -145,24 +146,30 @@ export default function useTimer() {
         return;
       }
 
-      if (holdingTimeId.current) {
+      relasedKey.current = true;
+      if (!holdingTimeId.current) return;
+
+      // verificar si corresponde a comenzar la inspeccion
+
+      if (!inspectionId.current && inspectionRequired) {
+        startInspection();
         removeHolding();
+        return;
       }
 
-      // // verificar si corresponde a comenzar la inspeccion
-      // if (!inspectionId.current && inspectionRequired) {
-      //   startInspection();
-      // }
+      if (inspectionId.current && inspectionRequired) {
+        removeInspection();
+        removeHolding();
+        startTimer();
+        return;
+      }
 
-      // // verificar si corresponde a comenzar el cotronometro
-      // if (inspectionId.current && inspectionRequired) {
-      //   removeInspection();
-      //   startTimer();
-      // }
-
-      // if (!inspectionRequired) {
-      //   startTimer();
-      // }
+      if (!inspectionRequired) {
+        removeInspection();
+        removeHolding();
+        startTimer();
+        return;
+      }
     };
 
     const closeModal = () => {
@@ -185,6 +192,7 @@ export default function useTimer() {
     setIsSolving,
     setSettingsOpen,
     setSolvingTime,
+    inspectionRequired,
   ]);
 
   return {
