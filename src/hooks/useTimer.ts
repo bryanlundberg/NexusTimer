@@ -1,3 +1,7 @@
+import { Solve } from "@/interfaces/Solve";
+import addSolve from "@/lib/addSolve";
+import findCube from "@/lib/findCube";
+import genId from "@/lib/genId";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect, useRef, useState } from "react";
@@ -9,7 +13,13 @@ export default function useTimer() {
     isSolving,
     setIsSolving,
     setTimerStatus,
+    setNewScramble,
     timerStatus,
+    selectedCube,
+    scramble,
+    setCubes,
+    setSelectedCube,
+    setLastSolve,
   } = useTimerStore();
 
   const { settings, setSettingsOpen } = useSettingsModalStore();
@@ -107,6 +117,41 @@ export default function useTimer() {
 
     const stopTimer = () => {
       clearInterval(solveTimeId.current);
+
+      // save solve
+      if (
+        selectedCube &&
+        scramble &&
+        typeof startSolveTime.current === "number"
+      ) {
+        const lastSolve: Solve = {
+          id: genId(),
+          startTime: startSolveTime.current,
+          endTime: Date.now(),
+          scramble: scramble,
+          bookmark: false,
+          time: solvingTime,
+          dnf: false,
+          plus2: false,
+          rating: Math.floor(Math.random() * 20) + scramble.length,
+          category: selectedCube.category,
+          cubeId: selectedCube.id,
+        };
+
+        setLastSolve(lastSolve);
+
+        if (selectedCube) {
+          const newCubes = addSolve({
+            cubeId: selectedCube.id,
+            solve: lastSolve,
+          });
+
+          setCubes(newCubes);
+          const currentCube = findCube({ cubeId: selectedCube.id });
+          if (currentCube) setSelectedCube(currentCube);
+        }
+        setNewScramble(selectedCube);
+      }
       solveTimeId.current = null;
       startSolveTime.current = null;
     };
@@ -122,7 +167,9 @@ export default function useTimer() {
         return;
       }
 
-      if (!inspectionId.current && isSolving && relasedKey.current) {
+      if (!selectedCube) return;
+
+      if (isSolving && relasedKey.current) {
         stopTimer();
         resetTimer();
         relasedKey.current = false;
@@ -145,6 +192,7 @@ export default function useTimer() {
       if (event.code !== "Space") {
         return;
       }
+      if (!selectedCube) return;
 
       relasedKey.current = true;
       if (!holdingTimeId.current) return;
@@ -193,6 +241,13 @@ export default function useTimer() {
     setSettingsOpen,
     setSolvingTime,
     inspectionRequired,
+    selectedCube,
+    setCubes,
+    scramble,
+    setLastSolve,
+    setNewScramble,
+    setSelectedCube,
+    solvingTime,
   ]);
 
   return {
