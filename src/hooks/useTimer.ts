@@ -14,7 +14,6 @@ export default function useTimer() {
     setIsSolving,
     setTimerStatus,
     setNewScramble,
-    timerStatus,
     selectedCube,
     scramble,
     setCubes,
@@ -23,22 +22,21 @@ export default function useTimer() {
   } = useTimerStore();
 
   const { settings, setSettingsOpen } = useSettingsModalStore();
-  const [displayValue, setDisplayValue] = useState<any>("0.00");
+  const [displayValue, setDisplayValue] = useState<any>(0);
 
   // user-settings
   const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
 
   const inspectionRequired = settings.timer.inspection.status;
-  const inspectionDuration = 15000;
+  const inspectionDuration = 16000;
 
   const startSolveTime = useRef<number | null>(null);
   const solveTimeId = useRef<any>(null);
 
   const startInspectionTime = useRef<number | null>(null);
   const inspectionId = useRef<any>(null);
-  const [inspectionTime, setInspectionTime] = useState<number | string>(
-    inspectionDuration
-  );
+  const [inspectionTime, setInspectionTime] =
+    useState<number>(inspectionDuration);
 
   const startHoldingTime = useRef<number | null>(null);
   const holdingTimeId = useRef<any>(null);
@@ -256,9 +254,7 @@ export default function useTimer() {
   ]);
 
   return {
-    timerStatus,
     displayValue,
     inspectionTime,
-    holdingTime,
   };
 }
