@@ -197,6 +197,11 @@ export default function useTimer() {
       relasedKey.current = true;
       if (!holdingTimeId.current) return;
 
+      if (typeof holdingTime === "number" && holdingTime <= holdTimeRequired) {
+        removeHolding();
+        return;
+      }
+
       // verificar si corresponde a comenzar la inspeccion
 
       if (!inspectionId.current && inspectionRequired) {
