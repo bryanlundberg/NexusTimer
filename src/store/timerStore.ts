@@ -31,7 +31,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
   lastSolve: null,
   solvingTime: 0,
   isSolving: false,
-  timerStatus: "idle",
+  timerStatus: "IDLE",
   setNewScramble: (cube: Cube | null) => {
     set({ scramble: cube ? genScramble(cube.category) : null });
   },
