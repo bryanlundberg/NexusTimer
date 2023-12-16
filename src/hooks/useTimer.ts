@@ -23,25 +23,18 @@ export default function useTimer() {
 
   const { settings, setSettingsOpen } = useSettingsModalStore();
   const [displayValue, setDisplayValue] = useState<any>(0);
-
-  // user-settings
   const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
-
   const inspectionRequired = settings.timer.inspection.status;
   const inspectionDuration = 16000;
-
   const startSolveTime = useRef<number | null>(null);
   const solveTimeId = useRef<any>(null);
-
   const startInspectionTime = useRef<number | null>(null);
   const inspectionId = useRef<any>(null);
   const [inspectionTime, setInspectionTime] =
     useState<number>(inspectionDuration);
-
   const startHoldingTime = useRef<number | null>(null);
   const holdingTimeId = useRef<any>(null);
   const [holdingTime, setHoldingTime] = useState<number | null>(10);
-
   const relasedKey = useRef<boolean>(true);
 
   useEffect(() => {
@@ -107,6 +100,7 @@ export default function useTimer() {
         }, 10);
       }
     };
+
     const removeInspection = () => {
       startInspectionTime.current = null;
       clearInterval(inspectionId.current);
@@ -114,6 +108,7 @@ export default function useTimer() {
       setInspectionTime(inspectionDuration);
       setIsSolving(false);
     };
+
     const removeHolding = () => {
       clearInterval(holdingTimeId.current);
       holdingTimeId.current = null;
@@ -124,7 +119,6 @@ export default function useTimer() {
 
     const stopTimer = () => {
       clearInterval(solveTimeId.current);
-
       // save solve
       if (
         selectedCube &&
@@ -144,15 +138,12 @@ export default function useTimer() {
           category: selectedCube.category,
           cubeId: selectedCube.id,
         };
-
         setLastSolve(lastSolve);
-
         if (selectedCube) {
           const newCubes = addSolve({
             cubeId: selectedCube.id,
             solve: lastSolve,
           });
-
           setCubes(newCubes);
           const currentCube = findCube({ cubeId: selectedCube.id });
           if (currentCube) setSelectedCube(currentCube);
@@ -164,46 +155,24 @@ export default function useTimer() {
     };
 
     // MAIN HOLD CONTROL
-    const handleHold = (event: KeyboardEvent) => {
-      if (event.code === "Escape") {
-        resetTimer();
-        return;
-      }
-
-      if (event.code !== "Space") {
-        return;
-      }
-
+    const handleHold = () => {
       if (!selectedCube) return;
-
       if (isSolving && relasedKey.current) {
         stopTimer();
         resetTimer();
         relasedKey.current = false;
       }
-
       if (!relasedKey.current) return;
-
       if (!isSolving) {
         startHold();
       }
     };
 
     // MAIN RELEASE CONTROL
-    const handleRelease = (event: KeyboardEvent) => {
-      if (event.code === "Escape") {
-        resetTimer();
-        return;
-      }
-
-      if (event.code !== "Space") {
-        return;
-      }
+    const handleRelease = () => {
       if (!selectedCube) return;
-
       relasedKey.current = true;
       if (!holdingTimeId.current) return;
-
       if (typeof holdingTime === "number" && holdingTime <= holdTimeRequired) {
         removeHolding();
         inspectionId.current
@@ -211,14 +180,12 @@ export default function useTimer() {
           : setTimerStatus("IDLE");
         return;
       }
-
       if (!inspectionId.current && inspectionRequired) {
         startInspection();
         removeHolding();
         setTimerStatus("SOLVING");
         return;
       }
-
       if (inspectionId.current && inspectionRequired) {
         removeInspection();
         removeHolding();
@@ -226,7 +193,6 @@ export default function useTimer() {
         startTimer();
         return;
       }
-
       if (!inspectionRequired) {
         removeInspection();
         removeHolding();
@@ -236,18 +202,68 @@ export default function useTimer() {
       }
     };
 
+    const handleTouchStart = (event: TouchEvent): void => {
+      event.preventDefault();
+      const quickActionButtons = document.querySelector(
+        "#quick-action-buttons"
+      ) as HTMLElement | null;
+      if (
+        quickActionButtons &&
+        quickActionButtons.contains(event.target as Node)
+      ) {
+        // nothing
+      } else {
+        handleHold();
+      }
+    };
+
+    const handleTouchEnd = (event: TouchEvent): void => {
+      event.preventDefault();
+      handleRelease();
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === "Escape") {
+        resetTimer();
+        return;
+      }
+      if (event.code !== "Space") {
+        return;
+      }
+      handleHold();
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (event.code === "Escape") {
+        resetTimer();
+        return;
+      }
+      if (event.code !== "Space") {
+        return;
+      }
+      handleRelease();
+    };
+
     const closeModal = () => {
       setSettingsOpen(false);
     };
 
+    const touchElements = document.querySelectorAll("#touch");
     window.addEventListener("popstate", closeModal);
-    window.addEventListener("keydown", handleHold);
-    window.addEventListener("keyup", handleRelease);
-
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+    touchElements.forEach((element: any) => {
+      element.addEventListener("touchstart", handleTouchStart);
+      element.addEventListener("touchend", handleTouchEnd);
+    });
     return () => {
-      window.removeEventListener("keydown", handleHold);
-      window.removeEventListener("keyup", handleRelease);
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
       window.removeEventListener("popstate", closeModal);
+      touchElements.forEach((element: any) => {
+        element.removeEventListener("touchstart", handleTouchStart);
+        element.removeEventListener("touchend", handleTouchEnd);
+      });
     };
   }, [
     holdingTime,
