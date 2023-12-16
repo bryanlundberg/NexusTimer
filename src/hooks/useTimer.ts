@@ -47,6 +47,7 @@ export default function useTimer() {
   useEffect(() => {
     const startTimer = () => {
       setIsSolving(true);
+      setTimerStatus("SOLVING");
       startSolveTime.current = Date.now() - 1;
       solveTimeId.current = setInterval(() => {
         if (startSolveTime.current) {
@@ -60,6 +61,7 @@ export default function useTimer() {
 
     const startInspection = () => {
       startInspectionTime.current = Date.now() - 1;
+      setTimerStatus("INSPECTING");
       inspectionId.current = setInterval(() => {
         if (startInspectionTime.current) {
           const now = Date.now();
@@ -67,11 +69,12 @@ export default function useTimer() {
             inspectionDuration - (now - startInspectionTime.current);
           setInspectionTime(difference / 1000);
           if (difference <= 0) {
-            setDisplayValue(0); // reset display value
+            setTimerStatus("INSPECTING");
+            setDisplayValue(0);
             resetTimer();
           }
         }
-      });
+      }, 10);
     };
 
     const resetTimer = () => {
@@ -84,6 +87,7 @@ export default function useTimer() {
       holdingTimeId.current = null;
       solveTimeId.current = null;
       inspectionId.current = null;
+      setTimerStatus("IDLE");
     };
 
     const startHold = () => {
@@ -94,6 +98,11 @@ export default function useTimer() {
             const now = Date.now();
             const difference = now - startHoldingTime.current;
             setHoldingTime(difference);
+            if (difference >= holdTimeRequired) {
+              setTimerStatus("READY");
+            } else {
+              setTimerStatus("HOLDING");
+            }
           }
         }, 10);
       }
@@ -197,20 +206,23 @@ export default function useTimer() {
 
       if (typeof holdingTime === "number" && holdingTime <= holdTimeRequired) {
         removeHolding();
+        inspectionId.current
+          ? setTimerStatus("SOLVING")
+          : setTimerStatus("IDLE");
         return;
       }
-
-      // verificar si corresponde a comenzar la inspeccion
 
       if (!inspectionId.current && inspectionRequired) {
         startInspection();
         removeHolding();
+        setTimerStatus("SOLVING");
         return;
       }
 
       if (inspectionId.current && inspectionRequired) {
         removeInspection();
         removeHolding();
+        setTimerStatus("READY");
         startTimer();
         return;
       }
@@ -218,6 +230,7 @@ export default function useTimer() {
       if (!inspectionRequired) {
         removeInspection();
         removeHolding();
+        setTimerStatus("READY");
         startTimer();
         return;
       }
@@ -251,6 +264,7 @@ export default function useTimer() {
     setNewScramble,
     setSelectedCube,
     solvingTime,
+    setTimerStatus,
   ]);
 
   return {
