@@ -22,7 +22,6 @@ export default function useTimer() {
   } = useTimerStore();
 
   const { settings, setSettingsOpen } = useSettingsModalStore();
-  const [displayValue, setDisplayValue] = useState<any>(0);
   const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
   const inspectionRequired = settings.timer.inspection.status;
   const inspectionDuration = 16000;
@@ -47,7 +46,6 @@ export default function useTimer() {
           const now = Date.now();
           const difference = now - startSolveTime.current;
           setSolvingTime(difference);
-          setDisplayValue(difference);
         }
       });
     };
@@ -63,7 +61,7 @@ export default function useTimer() {
           setInspectionTime(difference / 1000);
           if (difference <= 0) {
             setTimerStatus("INSPECTING");
-            setDisplayValue(0);
+            setSolvingTime(0);
             resetTimer();
           }
         }
@@ -284,7 +282,6 @@ export default function useTimer() {
   ]);
 
   return {
-    displayValue,
     inspectionTime,
   };
 }

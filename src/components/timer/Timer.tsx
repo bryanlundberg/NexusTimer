@@ -32,8 +32,9 @@ const config: any = {
 
 export default function Timer() {
   const { lang, settings } = useSettingsModalStore();
-  const { selectedCube, isSolving, lastSolve, timerStatus } = useTimerStore();
-  const { displayValue, inspectionTime } = useTimer();
+  const { selectedCube, isSolving, lastSolve, timerStatus, solvingTime } =
+    useTimerStore();
+  const { inspectionTime } = useTimer();
   const { global } = useTimerStatistics();
   const { device } = useDeviceMatch();
   const hideWhileSolving = settings.features.hideWhileSolving.status;
@@ -63,10 +64,10 @@ export default function Timer() {
                     ) : (
                       <>
                         <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl">
-                          {formatTime(displayValue).split(".")[0]}
+                          {formatTime(solvingTime).split(".")[0]}
                         </div>
                         <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
-                          .{formatTime(displayValue).split(".")[1]}
+                          .{formatTime(solvingTime).split(".")[1]}
                         </div>
                       </>
                     )}
