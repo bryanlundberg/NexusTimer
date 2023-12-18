@@ -1,5 +1,5 @@
 import Image from "next/image";
-import nodata from "@/images/no-data.png";
+import nodata from "@/images/no-data.svg";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
@@ -21,6 +21,7 @@ export default function EmptyCubes({ onClick }: EmptyCubes) {
             alt={"no-cubes-for-display"}
             width={56}
             height={61}
+            draggable={false}
           />
           <div>{translation.cubes["no-cubes-for-display"][lang]}</div>
         </div>
