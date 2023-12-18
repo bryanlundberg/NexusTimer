@@ -12,6 +12,7 @@ import { ScrambleDisplay } from "@/components/scramble-display/index";
 import { cubeCollection } from "@/lib/cubeCollection";
 import CalendarDays from "@/icons/CalentarDays";
 import useEscape from "@/hooks/useEscape";
+import Copy from "@/icons/Copy";
 
 export default function ModalSolve() {
   const { status, solve, setStatus } = useSolvesStore();
@@ -66,6 +67,15 @@ export default function ModalSolve() {
     setCubes(newCubes);
     setStatus(false);
   };
+
+  const handleCopyToClipboard = async (text: string) => {
+    if ('clipboard' in navigator) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      document.execCommand('copy', true, text);
+    }
+    setStatus(false)
+  }
 
   return (
     <>
@@ -156,6 +166,13 @@ export default function ModalSolve() {
               onClick={() => setStatus(false)}
             >
               <Check />
+            </button>
+            <button
+              type="button"
+              className="flex items-center justify-center w-12 h-8 p-1 transition duration-500 border rounded-md hover:border-zinc-400 border-zinc-600 hover:text-neutral-800"
+              onClick={() => handleCopyToClipboard(`[${formatTime(solve.time)}] - ${solve.scramble}`)}
+            >
+              <Copy />
             </button>
           </div>
         </div>
