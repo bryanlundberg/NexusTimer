@@ -102,6 +102,7 @@ function MiniatureIcon({ category }: { category: Categories }) {
           width={24}
           height={24}
           className="object-contain"
+          draggable={false}
         />
       );
     } else {

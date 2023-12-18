@@ -1,15 +1,15 @@
 import { CubeCollection } from "@/interfaces/cubeCollection";
-import cube222 from "@/images/categories/cube222.png";
-import cube333 from "@/images/categories/cube333.png";
-import cube333oh from "@/images/categories/cube333oh.png";
-import cube444 from "@/images/categories/cube444.png";
-import cube555 from "@/images/categories/cube555.png";
-import cube666 from "@/images/categories/cube666.png";
-import cube777 from "@/images/categories/cube777.png";
-import cubesq1 from "@/images/categories/cubesq1.png";
-import cubeskewb from "@/images/categories/skewb.png";
-import cubepyramix from "@/images/categories/pyramix.png";
-import cubemegaminx from "@/images/categories/minx.png";
+import cube222 from "@/images/categories/cube222.svg";
+import cube333 from "@/images/categories/cube333.svg";
+import cube333oh from "@/images/categories/cube333oh.svg";
+import cube444 from "@/images/categories/cube444.svg";
+import cube555 from "@/images/categories/cube555.svg";
+import cube666 from "@/images/categories/cube666.svg";
+import cube777 from "@/images/categories/cube777.svg";
+import cubesq1 from "@/images/categories/cubesq1.svg";
+import cubeskewb from "@/images/categories/skewb.svg";
+import cubepyramix from "@/images/categories/pyramix.svg";
+import cubemegaminx from "@/images/categories/minx.svg";
 export const cubeCollection: CubeCollection[] = [
   {
     event: "222",
