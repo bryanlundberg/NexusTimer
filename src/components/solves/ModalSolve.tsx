@@ -79,6 +79,13 @@ export default function ModalSolve() {
     setStatus(false);
   };
 
+  const handleCopyToClipboard = async (text: string) => {
+    if ("clipboard" in navigator) {
+      await navigator.clipboard.writeText(text);
+    }
+    setStatus(false);
+  };
+
   return (
     <>
       <div
@@ -174,7 +181,14 @@ export default function ModalSolve() {
                 </div>
                 <div>Archive</div>
               </div>
-              <div className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer">
+              <div
+                className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={() =>
+                  handleCopyToClipboard(
+                    `[${formatTime(solve.time)}s] - ${solve.scramble}`
+                  )
+                }
+              >
                 <div className="w-4 h-4">
                   <DocumentDuplicate />
                 </div>
