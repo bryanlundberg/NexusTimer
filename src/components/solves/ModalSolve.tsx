@@ -1,8 +1,5 @@
-import Check from "@/icons/Check";
-import NoSymbol from "@/icons/NoSymbol";
 import deleteSolve from "@/lib/deleteSolve";
 import findCube from "@/lib/findCube";
-import formatDate from "@/lib/formatDate";
 import updateSolve from "@/lib/updateSolve";
 import { useSolvesStore } from "@/store/SolvesStore";
 import { useTimerStore } from "@/store/timerStore";
@@ -12,10 +9,27 @@ import { ScrambleDisplay } from "@/components/scramble-display/index";
 import { cubeCollection } from "@/lib/cubeCollection";
 import CalendarDays from "@/icons/CalentarDays";
 import useEscape from "@/hooks/useEscape";
+import { format } from "date-fns";
+import CubeTransparent from "@/icons/CubeTransparent";
+import ChevronDown from "@/icons/ChevronDown";
+import ChatBubble from "@/icons/ChatBubble";
+import ElipsisHorizontal from "@/icons/ElipsisHorizontal";
+import ArchiveBox from "@/icons/ArchiveBox";
+import DocumentDuplicate from "@/icons/DocumentDuplicate";
+import Trash from "@/icons/Trash";
+import { useEffect, useState } from "react";
+import ChevronUp from "@/icons/ChevronUp";
 
 export default function ModalSolve() {
+  const [showOptions, setShowOptions] = useState<boolean>(false);
+  const [showScramble, setShowScramble] = useState<boolean>(false);
   const { status, solve, setStatus } = useSolvesStore();
   const { setCubes, setSelectedCube, selectedCube } = useTimerStore();
+
+  useEffect(() => {
+    setShowOptions(false);
+    setShowScramble(false);
+  }, [status, solve]);
 
   useEscape(() => setStatus(false));
 
@@ -23,11 +37,11 @@ export default function ModalSolve() {
 
   const cubeObj = cubeCollection.find((item) => item.name === solve?.category);
 
-  const isAllSolve = () => {
-    return selectedCube?.solves.all.find(
-      (allSolve) => allSolve.id === solve.id
-    );
-  };
+  // const isAllSolve = () => {
+  //   return selectedCube?.solves.all.find(
+  //     (allSolve) => allSolve.id === solve.id
+  //   );
+  // };
 
   const handleMove = () => {
     if (selectedCube) {
@@ -36,10 +50,8 @@ export default function ModalSolve() {
       if (updatedCube) {
         setSelectedCube(updatedCube);
       }
-
       setCubes(newCubes);
     }
-
     setStatus(false);
   };
 
@@ -67,97 +79,132 @@ export default function ModalSolve() {
     setStatus(false);
   };
 
+  const handleCopyToClipboard = async (text: string) => {
+    if ("clipboard" in navigator) {
+      await navigator.clipboard.writeText(text);
+    }
+    setStatus(false);
+  };
+
   return (
     <>
       <div
-        className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center text-neutral-950 justify-center"
+        className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full px-8 py-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center text-neutral-950 justify-center"
         onClick={(e) => {
           if (e.target === e.currentTarget) setStatus(false);
         }}
       >
-        <div className="w-full h-auto text-xs border rounded-md sm:w-96 bg-neutral-200 border-neutral-800 ">
-          <div className="flex items-center justify-between p-3 border-b border-neutral-400">
-            <div className="flex items-center text-lg font-medium">
+        <div className="relative w-full h-auto text-xs bg-white rounded-md sm:w-96">
+          <div className="flex items-center justify-between px-3 py-2 border-b border-neutral-200">
+            <div className="flex items-center ">
               <div className="tracking-wider">
-                <span className="text-xl">
+                <span className="text-3xl font-semibold">
                   {formatTime(solve.time).split(".")[0]}
                 </span>
-                <span className="text-sm">
+                <span className="text-2xl font-semibold">
                   .{formatTime(solve.time).split(".")[1]}
                 </span>
               </div>
-              <span className="text-xs text-red-500">
+              <span className="text-sm font-bold text-red-500">
                 {solve.plus2 ? "+2" : null}
               </span>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="text-neutral-600">
-                <CalendarDays />
-              </div>
+            <div className="flex items-center gap-3 text-neutral-500">
+              <CalendarDays />
               <div className="flex flex-col text-end">
-                <div>{formatDate(solve.endTime)}</div>
                 <div>
+                  {format(solve.endTime, "dd/MMM/yyyy").replace(/\//g, " ")}
+                </div>
+                <div className="text-start">
                   {new Date(solve.endTime).getHours()}:
                   {new Date(solve.endTime).getMinutes()}
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-center justify-between p-3 font-medium border-b border-neutral-400 text-md">
-            <div className="text-md">{solve.scramble}</div>
-            <ScrambleDisplay
-              className="w-full h-32 my-3"
-              show={status}
-              scramble={solve.scramble}
-              event={cubeObj?.event || ""}
-            ></ScrambleDisplay>
+          <div className="flex flex-col items-center justify-between p-3 font-medium border-b border-neutral-200 text-md">
+            <div className="flex items-center justify-center gap-5">
+              <div className="w-4 h-4">
+                <CubeTransparent />
+              </div>
+              <div className="text-base font-normal">{solve.scramble}</div>
+              <div
+                className="w-4 h-4 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={() => setShowScramble(!showScramble)}
+              >
+                {showScramble ? <ChevronUp /> : <ChevronDown />}
+              </div>
+            </div>
+            {showScramble && (
+              <ScrambleDisplay
+                className="w-full h-32 my-3"
+                show={status}
+                scramble={solve.scramble}
+                event={cubeObj?.event || ""}
+              ></ScrambleDisplay>
+            )}
           </div>
 
-          <div className="flex items-center justify-center gap-3 p-3 border-b light border-zinc-800">
-            {!isAllSolve() && (
-              <button
-                type="button"
-                className="flex items-center justify-center w-12 h-8 p-1 transition duration-500 border rounded-md left-3 top-3 hover:text-neutral-800 bg-neutral-300 hover:border-zinc-400 border-zinc-600"
-                onClick={() => handleMove()}
+          <div className="flex items-center justify-between gap-3 px-3 py-2 text-black">
+            <div>
+              <div
+                className="w-5 h-5 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={() => setShowOptions(!showOptions)}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
-                  />
-                </svg>
-              </button>
-            )}
-            <button
-              type="button"
-              className="flex items-center justify-center w-12 h-8 p-1 transition duration-500 bg-red-500 border rounded-md hover:text-neutral-800 hover:border-zinc-400 border-zinc-600"
-              onClick={() => handleDelete()}
-            >
-              <NoSymbol />
-            </button>
-            <button
-              type="button"
-              className="w-12 h-8 p-1 font-medium transition duration-500 bg-yellow-500 border rounded-md hover:text-neutral-800 hover:border-zinc-400 border-zinc-600"
-              onClick={() => handlePlusTwo()}
-            >
-              +2
-            </button>
-            <button
-              type="button"
-              className="flex items-center justify-center w-12 h-8 p-1 transition duration-500 bg-green-500 border rounded-md hover:border-zinc-400 border-zinc-600 hover:text-neutral-800"
-              onClick={() => setStatus(false)}
-            >
-              <Check />
-            </button>
+                <ElipsisHorizontal />
+              </div>
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <div
+                className="w-5 h-5 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={() => window.prompt("Enter a comment")}
+              >
+                <ChatBubble />
+              </div>
+              <div
+                className="text-lg font-medium transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={handlePlusTwo}
+              >
+                +2
+              </div>
+            </div>
           </div>
+          {/* options menu */}
+          {showOptions && (
+            <div className="absolute flex flex-col w-32 gap-3 py-2 mt-1 bg-white rounded-md">
+              <div
+                className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={handleMove}
+              >
+                <div className="w-4 h-4">
+                  <ArchiveBox />
+                </div>
+                <div>Archive</div>
+              </div>
+              <div
+                className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={() =>
+                  handleCopyToClipboard(
+                    `[${formatTime(solve.time)}s] - ${solve.scramble}`
+                  )
+                }
+              >
+                <div className="w-4 h-4">
+                  <DocumentDuplicate />
+                </div>
+                <div>Copy</div>
+              </div>
+              <div
+                className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={handleDelete}
+              >
+                <div className="w-4 h-4">
+                  <Trash />
+                </div>
+                <div>Remove</div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>

@@ -36,7 +36,11 @@ export default function SolvesPage() {
             />
             <Button
               onClick={() => handleTrashAll()}
-              icon={<Trash />}
+              icon={
+                <div className="w-4 h-4">
+                  <Trash />
+                </div>
+              }
               label={translation.inputs["trash-all"][lang]}
             />
           </ButtonsSection>
