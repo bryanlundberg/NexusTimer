@@ -13,15 +13,23 @@ import { format } from "date-fns";
 import CubeTransparent from "@/icons/CubeTransparent";
 import ChevronDown from "@/icons/ChevronDown";
 import ChatBubble from "@/icons/ChatBubble";
-import FlagModal from "@/icons/FlagModal";
 import ElipsisHorizontal from "@/icons/ElipsisHorizontal";
 import ArchiveBox from "@/icons/ArchiveBox";
 import DocumentDuplicate from "@/icons/DocumentDuplicate";
 import Trash from "@/icons/Trash";
+import { useEffect, useState } from "react";
+import ChevronUp from "@/icons/ChevronUp";
 
 export default function ModalSolve() {
+  const [showOptions, setShowOptions] = useState<boolean>(false);
+  const [showScramble, setShowScramble] = useState<boolean>(false);
   const { status, solve, setStatus } = useSolvesStore();
   const { setCubes, setSelectedCube, selectedCube } = useTimerStore();
+
+  useEffect(() => {
+    setShowOptions(false);
+    setShowScramble(false);
+  }, [status, solve]);
 
   useEscape(() => setStatus(false));
 
@@ -29,11 +37,11 @@ export default function ModalSolve() {
 
   const cubeObj = cubeCollection.find((item) => item.name === solve?.category);
 
-  const isAllSolve = () => {
-    return selectedCube?.solves.all.find(
-      (allSolve) => allSolve.id === solve.id
-    );
-  };
+  // const isAllSolve = () => {
+  //   return selectedCube?.solves.all.find(
+  //     (allSolve) => allSolve.id === solve.id
+  //   );
+  // };
 
   const handleMove = () => {
     if (selectedCube) {
@@ -112,63 +120,77 @@ export default function ModalSolve() {
               <div className="w-4 h-4">
                 <CubeTransparent />
               </div>
-              <div className="font-medium text-md">{solve.scramble}</div>
-              <div className="w-4 h-4 transition duration-200 hover:text-neutral-500 hover:cursor-pointer">
-                <ChevronDown />
+              <div className="text-base font-normal">{solve.scramble}</div>
+              <div
+                className="w-4 h-4 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={() => setShowScramble(!showScramble)}
+              >
+                {showScramble ? <ChevronUp /> : <ChevronDown />}
               </div>
             </div>
-
-            {/* <ScrambleDisplay
-              className="w-full h-32 my-3"
-              show={status}
-              scramble={solve.scramble}
-              event={cubeObj?.event || ""}
-            ></ScrambleDisplay> */}
+            {showScramble && (
+              <ScrambleDisplay
+                className="w-full h-32 my-3"
+                show={status}
+                scramble={solve.scramble}
+                event={cubeObj?.event || ""}
+              ></ScrambleDisplay>
+            )}
           </div>
 
           <div className="flex items-center justify-between gap-3 px-3 py-2 text-black">
             <div>
-              <div className="w-5 h-5 transition duration-200 hover:text-neutral-500 hover:cursor-pointer">
+              <div
+                className="w-5 h-5 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={() => setShowOptions(!showOptions)}
+              >
                 <ElipsisHorizontal />
               </div>
             </div>
-            <div className="flex gap-3">
-              <div className="w-5 h-5 transition duration-200 hover:text-neutral-500 hover:cursor-pointer">
+            <div className="flex items-center justify-center gap-3">
+              <div
+                className="w-5 h-5 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={() => window.prompt("Enter a comment")}
+              >
                 <ChatBubble />
               </div>
-              <div className="w-5 h-5 transition duration-200 hover:text-neutral-500 hover:cursor-pointer">
-                <FlagModal />
+              <div
+                className="text-lg font-medium transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={handlePlusTwo}
+              >
+                +2
               </div>
             </div>
           </div>
-          <Options />
-        </div>
-      </div>
-    </>
-  );
-}
-
-function Options() {
-  return (
-    <>
-      <div className="absolute flex flex-col w-32 gap-3 py-2 mt-1 bg-white rounded-md">
-        <div className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer">
-          <div className="w-4 h-4">
-            <ArchiveBox />
-          </div>
-          <div>Archive</div>
-        </div>
-        <div className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer">
-          <div className="w-4 h-4">
-            <DocumentDuplicate />
-          </div>
-          <div>Copy</div>
-        </div>
-        <div className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer">
-          <div className="w-4 h-4">
-            <Trash />
-          </div>
-          <div>Remove</div>
+          {/* options menu */}
+          {showOptions && (
+            <div className="absolute flex flex-col w-32 gap-3 py-2 mt-1 bg-white rounded-md">
+              <div
+                className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={handleMove}
+              >
+                <div className="w-4 h-4">
+                  <ArchiveBox />
+                </div>
+                <div>Archive</div>
+              </div>
+              <div className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer">
+                <div className="w-4 h-4">
+                  <DocumentDuplicate />
+                </div>
+                <div>Copy</div>
+              </div>
+              <div
+                className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                onClick={handleDelete}
+              >
+                <div className="w-4 h-4">
+                  <Trash />
+                </div>
+                <div>Remove</div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
