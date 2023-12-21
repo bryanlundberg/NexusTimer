@@ -7,7 +7,7 @@ export default function NoActivity() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center w-full text-sm text-white h-28">
+      <div className="flex flex-col items-center justify-center w-full text-sm dark:text-white light:text-neutral-950 h-28">
         <InformationBell />
         <div className="font-thin">
           {translation.metrics["no-activity-found"][lang]}

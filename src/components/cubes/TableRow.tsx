@@ -73,12 +73,16 @@ export default function TableRow({ cube }: { cube: Cube }) {
         <div className="hidden text-center align-middle md:table-cell">
           {status ? (
             <div className="flex items-center justify-center gap-1">
-              <Play />
+              <div className="w-4 h-4">
+                <Play />
+              </div>
               <span>{translation.cubes.table["using"][lang]}</span>
             </div>
           ) : (
             <div className="flex items-center justify-center gap-1">
-              <Stop />
+              <div className="w-4 h-4">
+                <Stop />
+              </div>
               <span>{translation.cubes.table["idle"][lang]}</span>
             </div>
           )}
