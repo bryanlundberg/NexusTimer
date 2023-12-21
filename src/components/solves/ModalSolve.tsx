@@ -89,7 +89,7 @@ export default function ModalSolve() {
   return (
     <>
       <div
-        className="fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full px-8 py-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center text-neutral-950 justify-center"
+        className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-screen px-8 py-4 overflow-x-hidden overflow-y-auto bg-black bg-opacity-75 md:inset-0 text-neutral-950"
         onClick={(e) => {
           if (e.target === e.currentTarget) setStatus(false);
         }}
