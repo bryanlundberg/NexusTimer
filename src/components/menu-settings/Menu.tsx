@@ -177,7 +177,7 @@ export default function MenuSettings() {
           onClick={() => {
             setSettingsOpen(false);
           }}
-          className="sm:grow"
+          className="sm:grow cursor-default"
         ></Link>
       </div>
     </>
