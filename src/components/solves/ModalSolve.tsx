@@ -123,13 +123,15 @@ export default function ModalSolve() {
             </div>
           </div>
           <div className="flex flex-col items-center justify-between p-3 font-medium border-b border-neutral-200 text-md">
-            <div className="flex items-center justify-center gap-5">
-              <div className="w-4 h-4">
+            <div className="flex items-center justify-between w-full gap-5 md:gap-5">
+              <div>
                 <CubeTransparent />
               </div>
-              <div className="text-base font-normal">{solve.scramble}</div>
+              <div className="text-base font-normal text-justify">
+                {solve.scramble}
+              </div>
               <div
-                className="w-4 h-4 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                className="transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
                 onClick={() => setShowScramble(!showScramble)}
               >
                 {showScramble ? <ChevronUp /> : <ChevronDown />}

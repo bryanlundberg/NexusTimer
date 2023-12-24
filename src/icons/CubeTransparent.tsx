@@ -6,7 +6,7 @@ export default function CubeTransparent() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-auto h-auto"
+      className="w-4 h-4"
     >
       <path
         strokeLinecap="round"
