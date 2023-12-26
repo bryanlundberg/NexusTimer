@@ -6,37 +6,6 @@ import { useEffect, useRef } from "react";
 import translation from "@/translations/global.json";
 import getBestTime from "@/lib/getBestTime";
 
-const chartOptions: any = {
-  layout: {
-    textColor: "white",
-    background: { type: "solid", color: "black" },
-  },
-  grid: {
-    vertLines: {
-      color: "rgb(41, 44, 58)",
-    },
-    horzLines: {
-      color: "rgb(41, 44, 58)",
-    },
-  },
-  localization: {
-    priceFormatter: (time: number) => {
-      const timeT = formatTime(time);
-      return timeT;
-    },
-    timeFormatter: (time: number) => {
-      return time.toString();
-    },
-  },
-  timeScale: {
-    tickMarkFormatter: (time: number) => {
-      return time.toString();
-    },
-    fixRightEdge: true,
-    fixLeftEdge: true,
-  },
-};
-
 type TimeObject = {
   time: number;
   value: number;
@@ -45,14 +14,65 @@ type TimeObject = {
 export default function LineCharter({
   data,
   cubeSelected,
+  optInChart,
 }: {
   data: any;
   cubeSelected: boolean;
+  optInChart: {
+    mean: boolean;
+    best: boolean;
+  };
 }) {
   const { lang } = useSettingsModalStore();
+  const { settings } = useSettingsModalStore();
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const chartOptions: any = {
+      layout: {
+        textColor:
+          settings.theme.background.color === "dark" ? "white" : "gray",
+        background: {
+          type: "solid",
+          color:
+            settings.theme.background.color === "dark" ? "#09090B" : "#F5F5F5",
+        },
+      },
+      grid: {
+        vertLines: {
+          color:
+            settings.theme.background.color === "dark"
+              ? "rgb(41, 44, 58)"
+              : "rgb(229 229 229)",
+        },
+        horzLines: {
+          color:
+            settings.theme.background.color === "dark"
+              ? "rgb(41, 44, 58)"
+              : "rgb(229 229 229)",
+        },
+      },
+      localization: {
+        priceFormatter: (time: number) => {
+          const timeT = formatTime(time);
+          return timeT;
+        },
+        timeFormatter: (time: number) => {
+          return time.toString();
+        },
+      },
+      timeScale: {
+        tickMarkFormatter: (time: number) => {
+          return time.toString();
+        },
+        fixRightEdge: true,
+        fixLeftEdge: true,
+      },
+      areaStyle: {
+        lineColor: "black",
+      },
+    };
+
     const container = chartContainerRef.current;
     if (container) {
       container.innerHTML = "";
@@ -67,7 +87,11 @@ export default function LineCharter({
       });
 
       const lineSeries = chart.addLineSeries({
-        color: cubeSelected ? "cyan" : "white",
+        color: cubeSelected
+          ? "#0891B2"
+          : settings.theme.background.color === "dark"
+          ? "white"
+          : "black",
         lastValueVisible: false,
         priceLineVisible: false,
         lineWidth: 1,
@@ -85,8 +109,8 @@ export default function LineCharter({
 
       const meanTimeLine: CreatePriceLineOptions = {
         price: getMeanTime(structuredData),
-        color: "yellow",
-        lineWidth: 1,
+        color: "#FBBF24",
+        lineWidth: 2,
         lineStyle: 2,
         axisLabelVisible: true,
         title: `${translation.timer["mean"][lang]}`,
@@ -94,7 +118,7 @@ export default function LineCharter({
 
       const bestTimeLine: CreatePriceLineOptions = {
         price: getBestTime({ solves: dataArray }),
-        color: "green",
+        color: "#059669",
         lineWidth: 1,
         lineStyle: 0,
         axisLabelVisible: true,
@@ -102,8 +126,8 @@ export default function LineCharter({
       };
 
       lineSeries.setData(structuredData);
-      lineSeries.createPriceLine(meanTimeLine);
-      cubeSelected ? null : lineSeries.createPriceLine(bestTimeLine);
+      optInChart.mean ? lineSeries.createPriceLine(meanTimeLine) : null;
+      optInChart.best ? lineSeries.createPriceLine(bestTimeLine) : null;
 
       chart.autoSizeActive();
       chart.timeScale().fitContent();
@@ -117,7 +141,14 @@ export default function LineCharter({
         chart.applyOptions({ height: newRect.height, width: newRect.width });
       }).observe(container);
     }
-  }, [data, cubeSelected, lang]);
+  }, [
+    data,
+    cubeSelected,
+    lang,
+    settings.theme.background.color,
+    optInChart.best,
+    optInChart.mean,
+  ]);
 
   return <div ref={chartContainerRef} className="w-full h-full"></div>;
 }

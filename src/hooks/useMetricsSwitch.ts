@@ -12,6 +12,10 @@ export default function useMetricsSwitch() {
   const [filterCube, setFilterCube] = useState(
     translation.solves.filter["all"][lang]
   );
+  const [optInChart, setOptInChart] = useState({
+    mean: true,
+    best: false,
+  });
 
   const categoryOptions = loadCategoryOptions();
   const cubeOptions = loadCubeOptions();
@@ -55,5 +59,7 @@ export default function useMetricsSwitch() {
     handleChangeCube,
     categoryOptions, // Corrected variable name
     cubeOptions, // Corrected variable name
+    optInChart,
+    setOptInChart,
   };
 }
