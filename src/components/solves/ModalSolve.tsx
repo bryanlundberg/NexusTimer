@@ -19,12 +19,15 @@ import DocumentDuplicate from "@/icons/DocumentDuplicate";
 import Trash from "@/icons/Trash";
 import { useEffect, useState } from "react";
 import ChevronUp from "@/icons/ChevronUp";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import translation from "@/translations/global.json";
 
 export default function ModalSolve() {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [showScramble, setShowScramble] = useState<boolean>(false);
   const { status, solve, setStatus } = useSolvesStore();
   const { setCubes, setSelectedCube, selectedCube } = useTimerStore();
+  const { lang } = useSettingsModalStore();
 
   useEffect(() => {
     setShowOptions(false);
@@ -159,7 +162,11 @@ export default function ModalSolve() {
             <div className="flex items-center justify-center gap-3">
               <div
                 className="w-5 h-5 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
-                onClick={() => window.prompt("Enter a comment")}
+                onClick={() =>
+                  window.prompt(
+                    `${translation.solves["enter-a-comment"][lang]}`
+                  )
+                }
               >
                 <ChatBubble />
               </div>
@@ -181,7 +188,7 @@ export default function ModalSolve() {
                 <div className="w-4 h-4">
                   <ArchiveBox />
                 </div>
-                <div>Archive</div>
+                <div>{translation.solves["archive"][lang]}</div>
               </div>
               <div
                 className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
@@ -194,7 +201,7 @@ export default function ModalSolve() {
                 <div className="w-4 h-4">
                   <DocumentDuplicate />
                 </div>
-                <div>Copy</div>
+                <div>{translation.solves["copy"][lang]}</div>
               </div>
               <div
                 className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
@@ -203,7 +210,7 @@ export default function ModalSolve() {
                 <div className="w-4 h-4">
                   <Trash />
                 </div>
-                <div>Remove</div>
+                <div>{translation.solves["remove"][lang]}</div>
               </div>
             </div>
           )}
