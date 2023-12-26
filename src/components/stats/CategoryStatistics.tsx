@@ -54,7 +54,7 @@ export default function CategoryStatistics() {
           />
         </div>
         <div className="flex flex-col gap-3 md:flex-row">
-          <div className="flex flex-col items-center justify-center w-full p-3 bg-black border rounded-md h-96 light:border-neutral-200 dark:border-zinc-800">
+          <div className="flex flex-col items-center justify-center w-full p-3 light:bg-neutral-100 dark:bg-zinc-950 border rounded-md h-96 light:border-neutral-200 dark:border-zinc-800">
             <LineCharter
               data={data}
               cubeSelected={
