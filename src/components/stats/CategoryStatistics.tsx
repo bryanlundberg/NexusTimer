@@ -25,6 +25,8 @@ export default function CategoryStatistics() {
     handleChangeCube,
     categoryOptions,
     cubeOptions,
+    optInChart,
+    setOptInChart,
   } = useMetricsSwitch();
 
   const average = calcAverageStatistics(filterCategory, filterCube);
@@ -54,13 +56,44 @@ export default function CategoryStatistics() {
           />
         </div>
         <div className="flex flex-col gap-3 md:flex-row">
-          <div className="flex flex-col items-center justify-center w-full p-3 light:bg-neutral-100 dark:bg-zinc-950 border rounded-md h-96 light:border-neutral-200 dark:border-zinc-800">
+          <div className="flex flex-col w-full p-3 border rounded-md light:bg-neutral-100 dark:bg-zinc-950 h-96 light:border-neutral-200 dark:border-zinc-800">
             <LineCharter
               data={data}
+              optInChart={optInChart}
               cubeSelected={
                 translation.solves.filter["all"][lang] !== filterCube
               }
             />
+            <div className="flex gap-5">
+              <label htmlFor="mean-average" className="hover:cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="mean-average"
+                  checked={optInChart.mean}
+                  onChange={() =>
+                    setOptInChart({
+                      mean: !optInChart.mean,
+                      best: optInChart.best,
+                    })
+                  }
+                />{" "}
+                {translation.metrics["average"][lang]}
+              </label>
+              <label htmlFor="best-time" className="hover:cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="best-time"
+                  checked={optInChart.best}
+                  onChange={() =>
+                    setOptInChart({
+                      mean: optInChart.mean,
+                      best: !optInChart.best,
+                    })
+                  }
+                />{" "}
+                {translation.metrics["best-time"][lang]}
+              </label>
+            </div>
           </div>
         </div>
 

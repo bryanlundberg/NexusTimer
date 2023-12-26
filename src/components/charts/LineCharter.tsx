@@ -14,9 +14,14 @@ type TimeObject = {
 export default function LineCharter({
   data,
   cubeSelected,
+  optInChart,
 }: {
   data: any;
   cubeSelected: boolean;
+  optInChart: {
+    mean: boolean;
+    best: boolean;
+  };
 }) {
   const { lang } = useSettingsModalStore();
   const { settings } = useSettingsModalStore();
@@ -121,8 +126,8 @@ export default function LineCharter({
       };
 
       lineSeries.setData(structuredData);
-      lineSeries.createPriceLine(meanTimeLine);
-      cubeSelected ? null : lineSeries.createPriceLine(bestTimeLine);
+      optInChart.mean ? lineSeries.createPriceLine(meanTimeLine) : null;
+      optInChart.best ? lineSeries.createPriceLine(bestTimeLine) : null;
 
       chart.autoSizeActive();
       chart.timeScale().fitContent();
@@ -136,7 +141,14 @@ export default function LineCharter({
         chart.applyOptions({ height: newRect.height, width: newRect.width });
       }).observe(container);
     }
-  }, [data, cubeSelected, lang, settings.theme.background.color]);
+  }, [
+    data,
+    cubeSelected,
+    lang,
+    settings.theme.background.color,
+    optInChart.best,
+    optInChart.mean,
+  ]);
 
   return <div ref={chartContainerRef} className="w-full h-full"></div>;
 }
