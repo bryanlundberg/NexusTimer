@@ -11,12 +11,19 @@ type TimeObject = {
   value: number;
 };
 
+interface ChartData {
+  global: Solve[];
+  session: Solve[];
+  cubeSession: Solve[];
+  cubeAll: Solve[];
+}
+
 export default function LineCharter({
   data,
   cubeSelected,
   optInChart,
 }: {
-  data: any;
+  data: ChartData;
   cubeSelected: boolean;
   optInChart: {
     mean: boolean;
@@ -72,7 +79,6 @@ export default function LineCharter({
         lineColor: "black",
       },
     };
-
     const container = chartContainerRef.current;
     if (container) {
       container.innerHTML = "";

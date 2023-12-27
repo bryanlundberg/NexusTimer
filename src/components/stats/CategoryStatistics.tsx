@@ -1,15 +1,7 @@
-import calcAverageStatistics from "@/lib/calcAverageStatistics";
-import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
-import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
-import calcAoStatistics from "@/lib/calcAoStatistics";
-import calcDeviation from "@/lib/calcDeviation";
-import calcBestTime from "@/lib/calcBestTime";
 import { Select } from "@/components/select/index";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import LineCharter from "../charts/LineCharter";
-import getSolvesMetrics from "@/lib/getSolvesMetrics";
-import calcSuccessRate from "@/lib/calcSuccessRate";
 import formatTime from "@/lib/formatTime";
 import useMetricsSwitch from "@/hooks/useMetricsSwitch";
 import { StatisticRow } from "@/components/stats/StatisticRow";
@@ -27,16 +19,15 @@ export default function CategoryStatistics() {
     cubeOptions,
     optInChart,
     setOptInChart,
+    average,
+    timeSpent,
+    counter,
+    stats,
+    deviation,
+    successRate,
+    best,
+    data,
   } = useMetricsSwitch();
-
-  const average = calcAverageStatistics(filterCategory, filterCube);
-  const timeSpent = calcTimeSpentStatistics(filterCategory, filterCube);
-  const counter = calcTotalSolvesStatistics(filterCategory, filterCube);
-  const stats = calcAoStatistics(filterCategory, filterCube);
-  const deviation = calcDeviation(filterCategory, filterCube);
-  const successRate = calcSuccessRate(filterCategory, filterCube);
-  const best = calcBestTime(filterCategory, filterCube);
-  const data = getSolvesMetrics(filterCategory, filterCube);
 
   return (
     <>
