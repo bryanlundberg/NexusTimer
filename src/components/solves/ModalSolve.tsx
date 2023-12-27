@@ -161,7 +161,7 @@ export default function ModalSolve() {
             </div>
             <div className="flex items-center justify-center gap-3">
               <div
-                className="w-5 h-5 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                className="w-5 h-5 transition duration-200 hover:text-neutral-500 text-neutral-700 hover:cursor-pointer"
                 onClick={() =>
                   window.prompt(
                     `${translation.solves["enter-a-comment"][lang]}`
@@ -171,7 +171,7 @@ export default function ModalSolve() {
                 <ChatBubble />
               </div>
               <div
-                className="text-lg font-medium transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                className="text-lg font-medium transition duration-200 hover:text-neutral-500 hover:cursor-pointer text-neutral-700"
                 onClick={handlePlusTwo}
               >
                 +2

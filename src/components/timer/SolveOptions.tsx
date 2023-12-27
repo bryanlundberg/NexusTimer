@@ -1,3 +1,5 @@
+import ChatBubble from "@/icons/ChatBubble";
+import Flag from "@/icons/Flag";
 import NoSymbol from "@/icons/NoSymbol";
 import { Solve } from "@/interfaces/Solve";
 import deleteSolve from "@/lib/deleteSolve";
@@ -35,16 +37,19 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
     setLastSolve(null);
   }
 
+  const classButton =
+    "flex items-center justify-center w-12 h-8 p-1 font-normal transition duration-200 bg-transparent border border-transparent rounded-md dark:text-neutral-300 light:text-neutral-500 light:hover:text-neutral-900 dark:hover:text-neutral-100";
+
   if (!selectedCube) return null;
   return (
     <>
       <div
-        className="flex items-center justify-center gap-3 p-3 mt-3 border-t border-zinc-800"
+        className="flex items-center justify-center gap-3 p-3 mt-3"
         id="quick-action-buttons"
       >
         <button
           type="button"
-          className="flex items-center justify-center w-12 h-8 p-1 transition duration-500 border rounded-md dark:text-neutral-200 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:bg-red-600 light:text-neutral-200 light:bg-zinc-800 light:border-zinc-800 light:hover:bg-red-600"
+          className={classButton}
           onClick={handleDeleteSolve}
           onTouchStart={handleDeleteSolve}
         >
@@ -52,11 +57,31 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
         </button>
         <button
           type="button"
-          className="flex items-center justify-center w-12 h-8 p-1 transition duration-500 border rounded-md dark:text-neutral-200 dark:bg-zinc-900 dark:border-zinc-800 dark:hover:bg-yellow-600 light:text-neutral-200 light.bg-zinc-800 light.border-zinc-800 light:hover:bg-yellow-600"
+          className={classButton}
           onClick={handlePlusTwo}
           onTouchStart={handlePlusTwo}
         >
           +2
+        </button>
+
+        <button
+          type="button"
+          className={classButton}
+          onClick={handlePlusTwo}
+          onTouchStart={handlePlusTwo}
+        >
+          <Flag />
+        </button>
+
+        <button
+          type="button"
+          className={classButton}
+          onClick={handlePlusTwo}
+          onTouchStart={handlePlusTwo}
+        >
+          <div className="w-4 h-4">
+            <ChatBubble />
+          </div>
         </button>
       </div>
     </>

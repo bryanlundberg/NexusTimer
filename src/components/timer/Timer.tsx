@@ -63,10 +63,10 @@ export default function Timer() {
                       </>
                     ) : (
                       <>
-                        <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl">
+                        <div className="text-8xl md:text-9xl">
                           {formatTime(solvingTime).split(".")[0]}
                         </div>
-                        <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
+                        <div className="text-7xl md:text-8xl">
                           .{formatTime(solvingTime).split(".")[1]}
                         </div>
                       </>
