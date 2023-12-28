@@ -11,7 +11,7 @@ interface InputTextProps {
 export default function InputText({
   placeholder,
   value = "",
-  focus,
+  focus = false,
   className,
   onChange,
 }: InputTextProps) {

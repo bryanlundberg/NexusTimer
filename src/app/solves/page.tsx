@@ -13,6 +13,7 @@ import { Filter } from "@/components/solves/Filter";
 import { ButtonsSection } from "@/components/solves/ButtonsSection";
 import { SolvesArea } from "@/components/solves/SolvesArea";
 import useSolvesPage from "@/hooks/useSolvesPage";
+import { InputText } from "@/components/input-text/index";
 
 export default function SolvesPage() {
   const { handleTabClick, currentTab, handleMoveAll, handleTrashAll } =
@@ -28,22 +29,29 @@ export default function SolvesPage() {
 
         <SolveFilters>
           <Filter handleClick={handleTabClick} currentTab={currentTab} />
-          <ButtonsSection currentTab={currentTab}>
-            <Button
-              onClick={() => handleMoveAll()}
-              icon={<MoveAll />}
-              label={translation.inputs["move-all"][lang]}
+          <div className="flex gap-3 grow">
+            <InputText
+              className="border light:bg-neutral-50 light:border-neutral-200 light:focus:bg-white dark:bg-zinc-950 dark:border-zinc-800 dark:focus:bg-zinc-900"
+              placeholder="⏱︎ Search by time"
+              onChange={() => {}}
             />
-            <Button
-              onClick={() => handleTrashAll()}
-              icon={
-                <div className="w-4 h-4">
-                  <Trash />
-                </div>
-              }
-              label={translation.inputs["trash-all"][lang]}
-            />
-          </ButtonsSection>
+            <ButtonsSection currentTab={currentTab}>
+              <Button
+                onClick={() => handleMoveAll()}
+                icon={<MoveAll />}
+                label={translation.inputs["move-all"][lang]}
+              />
+              <Button
+                onClick={() => handleTrashAll()}
+                icon={
+                  <div className="w-4 h-4">
+                    <Trash />
+                  </div>
+                }
+                label={translation.inputs["trash-all"][lang]}
+              />
+            </ButtonsSection>
+          </div>
         </SolveFilters>
         <SolvesArea currentTab={currentTab} />
         <ModalSolve />

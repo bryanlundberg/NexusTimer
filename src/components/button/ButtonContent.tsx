@@ -8,7 +8,7 @@ export function ButtonContent({ icon, label }: ButtonContent) {
     <>
       <div className="flex items-center justify-between gap-1">
         <div>{icon}</div>
-        <div>{label}</div>
+        <div className="hidden">{label}</div>
       </div>
     </>
   );

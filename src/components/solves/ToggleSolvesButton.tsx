@@ -14,9 +14,9 @@ export default function ToggleSolvesButton({
       <button
         onClick={() => handleClick()}
         type="button"
-        className={`w-full appearance-none rounded-md ${
+        className={`grow w-auto px-4 appearance-none rounded-md ${
           active
-            ? "light:bg-neutral-400 light:text-neutral-950 dark:bg-zinc-950"
+            ? "light:bg-neutral-100 light:text-neutral-950 dark:bg-zinc-950"
             : "dark:bg-transparent"
         }`}
       >

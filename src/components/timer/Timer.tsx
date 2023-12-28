@@ -49,7 +49,7 @@ export default function Timer() {
           {selectedCube && (
             <div className={`${timerStatusClasses[timerStatus]}`}>
               {hideWhileSolving && isSolving ? (
-                <span className="sm:text-5xl md:text-6xl lg:text-7xl">
+                <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
                   {translation.timer["solving"][lang]}
                 </span>
               ) : (
