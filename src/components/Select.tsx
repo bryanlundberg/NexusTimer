@@ -171,7 +171,7 @@ function AddCubeOption() {
   return (
     <div
       className={
-        "p-1 mt-1 border-t rounded-md cursor-pointer select-none ps-2 light:border-neutral-400 light:hover:bg-zinc-700 light:hover:text-neutral-100 dark:bg-zinc-800 dark:border-zinc-700 dark:hover:border-zinc-500 dark:hover:bg-zinc-700 transition duration-200"
+        "p-1 mt-1 border-t rounded-md cursor-pointer select-none ps-2 light:border-neutral-400 light:hover:bg-zinc-900 light:bg-neutral-700 light:hover:text-neutral-100 light:text-neutral-100 dark:bg-zinc-800 dark:border-zinc-700 dark:hover:border-zinc-500 dark:hover:bg-zinc-700 transition duration-200"
       }
     >
       <Link href="/cubes" onClick={() => setModalOpen(true)}>
