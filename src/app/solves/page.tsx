@@ -16,8 +16,13 @@ import useSolvesPage from "@/hooks/useSolvesPage";
 import { InputText } from "@/components/input-text/index";
 
 export default function SolvesPage() {
-  const { handleTabClick, currentTab, handleMoveAll, handleTrashAll } =
-    useSolvesPage();
+  const {
+    handleTabClick,
+    currentTab,
+    handleMoveAll,
+    handleTrashAll,
+    handleSearch,
+  } = useSolvesPage();
   const { lang } = useSettingsModalStore();
 
   return (
@@ -33,7 +38,9 @@ export default function SolvesPage() {
             <InputText
               className="border light:bg-neutral-50 light:border-neutral-200 light:focus:bg-white dark:bg-zinc-950 dark:border-zinc-800 dark:focus:bg-zinc-900"
               placeholder="⏱︎ Search by time"
-              onChange={() => {}}
+              onChange={(e) => {
+                handleSearch(e);
+              }}
             />
             <ButtonsSection currentTab={currentTab}>
               <Button
