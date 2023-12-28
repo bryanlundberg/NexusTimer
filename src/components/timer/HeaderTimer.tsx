@@ -19,8 +19,8 @@ export default function HeaderTimer() {
 
   if (isSolving || timerStatus !== "IDLE") return null;
   return (
-    <div className="flex flex-col items-center justify-center gap-5 p-4">
-      <div className="flex items-center gap-3">
+    <div className="flex flex-col items-center justify-center gap-5 pt-4 px-3">
+      <div className="flex items-center justify-between w-full gap-4 sm:justify-center">
         <Link
           href={{
             pathname: "/",

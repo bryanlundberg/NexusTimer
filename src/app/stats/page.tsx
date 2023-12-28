@@ -11,7 +11,7 @@ export default function StatsPage() {
   return (
     <>
       <OverallContainer>
-        <OverallHeader title={translation.solves["header"][lang]} />
+        <OverallHeader title={translation.metrics["header"][lang]} />
         <CategoryStatistics />
       </OverallContainer>
     </>

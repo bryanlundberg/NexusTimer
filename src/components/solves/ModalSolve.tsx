@@ -71,7 +71,23 @@ export default function ModalSolve() {
   };
 
   const handlePlusTwo = () => {
-    const newCubes = updateSolve(solve.id, "+2");
+    const newCubes = updateSolve({ solveId: solve.id, type: "+2" });
+    if (selectedCube) {
+      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
+      if (updatedSelectedCube) {
+        setSelectedCube(updatedSelectedCube);
+      }
+    }
+    setCubes(newCubes);
+    setStatus(false);
+  };
+
+  const handleComment = (comment: string) => {
+    const newCubes = updateSolve({
+      solveId: solve.id,
+      type: "COMMENT",
+      comment: comment,
+    });
     if (selectedCube) {
       const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
       if (updatedSelectedCube) {
@@ -148,6 +164,7 @@ export default function ModalSolve() {
                 event={cubeObj?.event || ""}
               ></ScrambleDisplay>
             )}
+            <div>{solve.comment}</div>
           </div>
 
           <div className="flex items-center justify-between gap-3 px-3 py-2 text-black">
@@ -161,17 +178,20 @@ export default function ModalSolve() {
             </div>
             <div className="flex items-center justify-center gap-3">
               <div
-                className="w-5 h-5 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
-                onClick={() =>
-                  window.prompt(
+                className="w-5 h-5 transition duration-200 hover:text-neutral-500 text-neutral-700 hover:cursor-pointer"
+                onClick={() => {
+                  const comment = window.prompt(
                     `${translation.solves["enter-a-comment"][lang]}`
-                  )
-                }
+                  );
+                  if (comment) {
+                    handleComment(comment);
+                  }
+                }}
               >
                 <ChatBubble />
               </div>
               <div
-                className="text-lg font-medium transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
+                className="text-lg font-medium transition duration-200 hover:text-neutral-500 hover:cursor-pointer text-neutral-700"
                 onClick={handlePlusTwo}
               >
                 +2

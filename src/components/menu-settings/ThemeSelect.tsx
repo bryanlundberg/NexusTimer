@@ -45,7 +45,7 @@ export default function ThemeSelect() {
               className={`cursor-pointer w-full h-40 rounded-md ${item.bg} ${
                 item.key === settings.theme.background.color
                   ? "outline outline-blue-600"
-                  : "border border-black"
+                  : "border border-neutral-400"
               }`}
             ></div>
             <div className="mt-1 text-xs font-medium">{item.name}</div>

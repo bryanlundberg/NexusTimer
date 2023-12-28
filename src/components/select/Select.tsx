@@ -41,7 +41,11 @@ export default function Select({
           close();
         }}
       >
-        <SelectToggleButton text={defaultLabel} handleClick={toggle} />
+        <SelectToggleButton
+          text={defaultLabel}
+          handleClick={toggle}
+          isOpen={isOpen}
+        />
         <SelectOptionList isOpen={isOpen}>
           {list.map((item: Item) => (
             <SelectOption

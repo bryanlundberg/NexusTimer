@@ -15,7 +15,7 @@ export function DataImportExport() {
   const { setSelectedCube } = useTimerStore();
   const router = useRouter();
   return (
-    <div className="light flex justify-center gap-2">
+    <div className="flex justify-center w-11/12 gap-2 mx-auto light">
       <input
         type="file"
         accept=".txt"
@@ -31,12 +31,14 @@ export function DataImportExport() {
         className="font-normal transition duration-400"
         label={translation.settings["import-from-file"][lang]}
         onClick={() => dataInputRef.current && dataInputRef.current.click()}
+        minimalistic={false}
         icon={<Import />}
       />
       <Button
         className="font-normal transition duration-400"
         label={translation.settings["export-to-file"][lang]}
         onClick={exportDataToFile}
+        minimalistic={false}
         icon={<Export />}
       />
     </div>

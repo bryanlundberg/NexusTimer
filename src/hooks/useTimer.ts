@@ -135,6 +135,7 @@ export default function useTimer() {
           rating: Math.floor(Math.random() * 20) + scramble.length,
           category: selectedCube.category,
           cubeId: selectedCube.id,
+          comment: "",
         };
         setLastSolve(lastSolve);
         if (selectedCube) {

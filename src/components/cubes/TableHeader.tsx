@@ -5,7 +5,7 @@ export default function TableHeader() {
   const { lang } = useSettingsModalStore();
   return (
     <>
-      <div className="table-header-group h-10 mb-10 text-sm font-medium border-b dark:border-zinc-900 dark:text-zinc-300 dark:bg-zinc-900 light:bg-neutral-200 light:text-neutral-950">
+      <div className="table-header-group h-10 mb-10 text-sm font-medium border-b dark:bg-zinc-900 dark:text-zinc-200 light:bg-neutral-200 light:text-neutral-950">
         <div className="table-row">
           <div className="table-cell w-20 text-center align-middle">
             {translation.cubes.table["favorite"][lang]}
