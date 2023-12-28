@@ -26,7 +26,7 @@ export default function InputText({
   return (
     <input
       type="text"
-      className={`appearance-none outline-none transition duration-300 w-full h-8 px-3 py-1 text-sm rounded-md shadow-sm ${className}`}
+      className={`appearance-none outline-none transition duration-300 w-full h-9 px-3 text-md rounded-md shadow-sm ${className}`}
       value={valueText}
       placeholder={placeholder}
       autoFocus={focus}

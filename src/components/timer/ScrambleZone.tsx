@@ -8,7 +8,7 @@ export function ScrambleZone() {
   return (
     <>
       <div
-        className={`h-auto p-2 overflow-auto text-2xl font-medium text-center rounded-md min-w-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-md max-h-28 md:max-h-full ${
+        className={`h-auto p-2 overflow-auto text-2xl sm:text-3xl font-semilight text-center rounded-md min-w-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-md max-h-28 md:max-h-full ${
           settings.features.scrambleBackground.status
             ? "dark:bg-zinc-900 light:bg-neutral-100"
             : "bg-transparent"
