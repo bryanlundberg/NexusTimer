@@ -12,4 +12,5 @@ export interface Solve {
   dnf: boolean;
   plus2: boolean;
   category: Categories;
+  comment: string;
 }

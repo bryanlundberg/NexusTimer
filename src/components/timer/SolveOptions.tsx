@@ -5,7 +5,9 @@ import { Solve } from "@/interfaces/Solve";
 import deleteSolve from "@/lib/deleteSolve";
 import findCube from "@/lib/findCube";
 import updateSolve from "@/lib/updateSolve";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
+import translation from "@/translations/global.json";
 
 export default function SolveOptions({ solve }: { solve: Solve }) {
   const {
@@ -16,6 +18,7 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
     setSolvingTime,
     solvingTime,
   } = useTimerStore();
+  const { lang } = useSettingsModalStore();
 
   function handleDeleteSolve() {
     const updatedCubes = deleteSolve(solve.id);
@@ -28,13 +31,25 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
   }
 
   function handlePlusTwo() {
-    const updatedCubes = updateSolve(solve.id, "+2");
+    const updatedCubes = updateSolve({ solveId: solve.id, type: "+2" });
     setCubes(updatedCubes);
     if (!selectedCube) return;
     const currentCube = findCube({ cubeId: selectedCube.id });
     if (currentCube) setSelectedCube(currentCube);
     setSolvingTime(solvingTime + 2000);
     setLastSolve(null);
+  }
+
+  function handleComment(comment: string) {
+    const updatedCubes = updateSolve({
+      solveId: solve.id,
+      type: "COMMENT",
+      comment: comment,
+    });
+    setCubes(updatedCubes);
+    if (!selectedCube) return;
+    const currentCube = findCube({ cubeId: selectedCube.id });
+    if (currentCube) setSelectedCube(currentCube);
   }
 
   const classButton =
@@ -67,8 +82,8 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
         <button
           type="button"
           className={classButton}
-          onClick={handlePlusTwo}
-          onTouchStart={handlePlusTwo}
+          onClick={() => {}} // bookmark solve
+          onTouchStart={() => {}} // bookmark solve
         >
           <Flag />
         </button>
@@ -76,8 +91,24 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
         <button
           type="button"
           className={classButton}
-          onClick={handlePlusTwo}
-          onTouchStart={handlePlusTwo}
+          onClick={() => {
+            const comment = window.prompt(
+              `${translation.solves["enter-a-comment"][lang]}`
+            );
+            if (comment) {
+              console.log(comment);
+              handleComment(comment);
+            }
+          }}
+          onTouchStart={() => {
+            const comment = window.prompt(
+              `${translation.solves["enter-a-comment"][lang]}`
+            );
+            if (comment) {
+              console.log(comment);
+              handleComment(comment);
+            }
+          }}
         >
           <div className="w-4 h-4">
             <ChatBubble />
