@@ -15,7 +15,7 @@ export function DataImportExport() {
   const { setSelectedCube } = useTimerStore();
   const router = useRouter();
   return (
-    <div className="light flex justify-center gap-2">
+    <div className="flex justify-center w-11/12 gap-2 mx-auto light">
       <input
         type="file"
         accept=".txt"
