@@ -33,10 +33,10 @@ export default function Select() {
       >
         <button
           onClick={() => setOpen(!open)}
-          className={`grow text-md appearance-none border font-medium rounded-md px-3 transition duration-200 light:shadow-black  light:hover:bg-neutral-200  dark:hover:bg-zinc-800 dark:hover:border-zinc-500 dark:border-zinc-800 light:hover:border-neutral-400 light:border-neutral-200 h-10 ${
+          className={`grow text-md appearance-none border font-medium rounded-md px-3 transition duration-200 light:shadow-black  light:hover:bg-neutral-200 dark:hover:bg-zinc-800 dark:hover:border-zinc-500 light:hover:border-neutral-400 h-10 ${
             open
-              ? "dark:bg-zinc-900 opacity-80 light:bg-neutral-200 light:border-neutral-400"
-              : "dark:bg-zinc-950 light:bg-neutral-100"
+              ? "dark:bg-zinc-800 dark:border-zinc-500 light:bg-neutral-200 light:border-neutral-400"
+              : "dark:bg-zinc-900 dark:border-zinc-600 light:bg-neutral-100 light:border-neutral-300"
           }`}
         >
           <div className="flex items-center justify-between gap-2">

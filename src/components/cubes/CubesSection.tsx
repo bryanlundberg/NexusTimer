@@ -10,7 +10,7 @@ interface CubesSection {
 export function CubesSection({ filterCubes }: CubesSection) {
   return (
     <>
-      <div className="h-full m-3 overflow-auto grow">
+      <div className="h-full overflow-auto grow">
         <div className="table w-full text-sm">
           <TableHeader />
           <div className="table-row-group h-10 text-sm">
