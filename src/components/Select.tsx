@@ -33,9 +33,9 @@ export default function Select() {
       >
         <button
           onClick={() => setOpen(!open)}
-          className={`grow text-md appearance-none border font-medium rounded-md px-3 transition duration-200 light:shadow-black  light:hover:bg-neutral-200  dark:hover:bg-zinc-800 dark:border-zinc-800 light:border-neutral-200 h-10 ${
+          className={`grow text-md appearance-none border font-medium rounded-md px-3 transition duration-200 light:shadow-black  light:hover:bg-neutral-200  dark:hover:bg-zinc-800 dark:hover:border-zinc-500 dark:border-zinc-800 light:hover:border-neutral-400 light:border-neutral-200 h-10 ${
             open
-              ? "dark:bg-zinc-900 opacity-80 light:bg-neutral-200"
+              ? "dark:bg-zinc-900 opacity-80 light:bg-neutral-200 light:border-neutral-400"
               : "dark:bg-zinc-950 light:bg-neutral-100"
           }`}
         >
@@ -55,7 +55,7 @@ export default function Select() {
           <div
             id="list-options"
             className={
-              "absolute z-40 overflow-auto max-h-[400px] p-1 top-12 mt-1 right-0 w-full h-auto border rounded-md light:bg-neutral-100 light:border-neutral-400 light:text-neutral-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-slate-100"
+              "absolute z-40 overflow-auto max-h-[400px] p-1 top-12 mt-1 right-0 w-full h-auto border rounded-md light:bg-neutral-200 light:border-neutral-400 light:text-neutral-900 dark:bg-zinc-900 dark:border-zinc-700 dark:text-slate-100"
             }
           >
             {/* Favorites */}
@@ -142,10 +142,10 @@ function Option({
         }
         handleClose();
       }}
-      className={`transition duration-200 p-1 select-none rounded-md ps-2 flex items-center justify-between overflow-hidden ${
+      className={`cursor-pointer transition duration-200 p-1 select-none rounded-md ps-2 flex items-center justify-between overflow-hidden ${
         selectedCube?.id === cubeId
-          ? `light:bg-neutral-700 light:text-neutral-200 dark:bg-zinc-700 dark:text-neutral-200`
-          : "light:bg-neutral-100 light:text-neutral-900 light:hover:bg-neutral-500 light:hover:text-neutral-100 dark:bg-zinc-900 dark:text-neutral-100 dark:hover:bg-zinc-800 dark:hover:text-neutral-100"
+          ? `light:bg-neutral-700 light:text-neutral-200 dark:bg-zinc-500 dark:text-neutral-50`
+          : "light:bg-transparent light:text-neutral-900 light:hover:bg-neutral-500 light:hover:text-neutral-100 dark:bg-transparent dark:hover:bg-zinc-700 dark:text-neutral-50"
       }`}
     >
       <div className="flex justify-start gap-3">
@@ -171,7 +171,7 @@ function AddCubeOption() {
   return (
     <div
       className={
-        "p-1 mt-1 border-t rounded-md cursor-pointer select-none ps-2 light:border-neutral-400 light:hover:bg-zinc-700 light:hover:text-neutral-100 dark:border-zinc-800 dark:hover:bg-zinc-800"
+        "p-1 mt-1 border-t rounded-md cursor-pointer select-none ps-2 light:border-neutral-400 light:hover:bg-zinc-700 light:hover:text-neutral-100 dark:bg-zinc-800 dark:border-zinc-700 dark:hover:border-zinc-500 dark:hover:bg-zinc-700 transition duration-200"
       }
     >
       <Link href="/cubes" onClick={() => setModalOpen(true)}>

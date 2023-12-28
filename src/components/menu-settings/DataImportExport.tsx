@@ -31,12 +31,14 @@ export function DataImportExport() {
         className="font-normal transition duration-400"
         label={translation.settings["import-from-file"][lang]}
         onClick={() => dataInputRef.current && dataInputRef.current.click()}
+        minimalistic={false}
         icon={<Import />}
       />
       <Button
         className="font-normal transition duration-400"
         label={translation.settings["export-to-file"][lang]}
         onClick={exportDataToFile}
+        minimalistic={false}
         icon={<Export />}
       />
     </div>
