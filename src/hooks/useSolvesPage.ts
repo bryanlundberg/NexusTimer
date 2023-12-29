@@ -96,5 +96,6 @@ export default function useSolvesPage() {
     handleTrashAll,
     handleSearch,
     displaySolves,
+    selectedCube
   };
 }

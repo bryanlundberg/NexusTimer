@@ -23,6 +23,7 @@ export default function SolvesPage() {
     handleTrashAll,
     handleSearch,
     displaySolves,
+    selectedCube
   } = useSolvesPage();
   const { lang } = useSettingsModalStore();
 
@@ -49,6 +50,7 @@ export default function SolvesPage() {
                 onClick={() => handleMoveAll()}
                 icon={<MoveAll />}
                 label={translation.inputs["move-all"][lang]}
+                isDisabled={true ? selectedCube === null : false}
               />
               <Button
                 onClick={() => handleTrashAll()}
@@ -58,6 +60,7 @@ export default function SolvesPage() {
                   </div>
                 }
                 label={translation.inputs["trash-all"][lang]}
+                isDisabled={true ? selectedCube === null : false}
               />
             </ButtonsSection>
           </div>

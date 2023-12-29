@@ -7,6 +7,7 @@ interface Button {
   label: string;
   onClick: () => void;
   minimalistic?: boolean;
+  isDisabled?: boolean;
 }
 
 export default function Button({
@@ -15,10 +16,11 @@ export default function Button({
   label,
   onClick,
   minimalistic = true,
+  isDisabled
 }: Button) {
   return (
     <>
-      <ButtonContainer className={className} handleClick={onClick}>
+      <ButtonContainer className={className} handleClick={onClick} isDisabled={isDisabled}>
         <ButtonContent icon={icon} label={label} minimalistic={minimalistic} />
       </ButtonContainer>
     </>
