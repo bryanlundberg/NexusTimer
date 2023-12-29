@@ -34,6 +34,7 @@ export default function InputText({
       autoFocus={focus}
       onChange={handleChange}
       id={id}
+      autoComplete="off"
     />
   );
 }
