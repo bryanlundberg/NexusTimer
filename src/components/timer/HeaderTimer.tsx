@@ -1,6 +1,8 @@
 import Reload from "@/icons/Reload";
 import Select from "../Select";
 import Settings from "@/icons/Settings";
+import FullScreen from "@/icons/FullScreen";
+import ExitFullScreen from "@/icons/ExitFullScreen";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { InteractiveIcon } from "./InteractiveIcon";
@@ -8,6 +10,7 @@ import { ScrambleZone } from "./ScrambleZone";
 import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 import translation from "@/translations/global.json";
 import Link from "next/link";
+import useFullScreenStore from '@/store/fullscreenStore';
 
 export default function HeaderTimer() {
   const { selectedCube, setNewScramble, isSolving, timerStatus } =
@@ -16,6 +19,7 @@ export default function HeaderTimer() {
     useSettingsModalStore();
   const { global } = useTimerStatistics();
   const { lastSolve } = useTimerStore();
+  const { isFullScreen, toggleFullScreen } = useFullScreenStore();
 
   if (isSolving || timerStatus !== "IDLE") return null;
   return (
@@ -38,11 +42,14 @@ export default function HeaderTimer() {
         <Select />
         <InteractiveIcon
           icon={<Reload />}
-          handleClick={() => {
-            if (selectedCube) {
-              setNewScramble(selectedCube);
-            }
-          }}
+          handleClick={toggleFullScreen}
+        />
+
+        
+        <Select />
+        <InteractiveIcon
+          icon={isFullScreen ? <ExitFullScreen /> : <FullScreen />}
+          handleClick={toggleFullScreen}
         />
       </div>
       <ScrambleZone />
