@@ -11,7 +11,7 @@ export default function createCube({
   category: Categories;
 }) {
   const cubesDB = loadCubes();
-
+  
   const newCube: Cube = {
     id: genId(),
     name: cubeName,
