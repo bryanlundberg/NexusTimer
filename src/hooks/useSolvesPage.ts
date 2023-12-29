@@ -41,7 +41,21 @@ export default function useSolvesPage() {
 
   const handleSearch = (query: string) => {
     if (!selectedCube) return null;
-    const solves = searchQuery({ query, currentTab, cubeId: selectedCube.id });
+    if (query === "") {
+      if (currentTab === "All") {
+        setDisplaySolves(selectedCube.solves.all);
+      } else if (currentTab === "Session") {
+        setDisplaySolves(selectedCube.solves.session);
+      }
+      return;
+    }
+
+    const solves = searchQuery({
+      query,
+      currentTab,
+      cubeId: selectedCube.id,
+      sortByTime: true,
+    });
     setDisplaySolves(solves);
   };
 
@@ -57,14 +71,17 @@ export default function useSolvesPage() {
         solvesToDisplay = selectedCube.solves.session;
       }
 
-      const results = searchQuery({
-        query: searchBox.current.value,
-        currentTab,
-        cubeId: selectedCube.id,
-      });
+      if (searchBox.current.value !== "") {
+        const results = searchQuery({
+          query: searchBox.current.value,
+          currentTab,
+          cubeId: selectedCube.id,
+          sortByTime: true,
+        });
 
-      if (results) {
-        solvesToDisplay = results;
+        if (results) {
+          solvesToDisplay = results;
+        }
       }
 
       setDisplaySolves(solvesToDisplay);
