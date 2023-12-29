@@ -22,6 +22,7 @@ export default function SolvesPage() {
     handleMoveAll,
     handleTrashAll,
     handleSearch,
+    displaySolves,
   } = useSolvesPage();
   const { lang } = useSettingsModalStore();
 
@@ -41,6 +42,7 @@ export default function SolvesPage() {
               onChange={(e) => {
                 handleSearch(e);
               }}
+              id="search"
             />
             <ButtonsSection currentTab={currentTab}>
               <Button
@@ -60,7 +62,7 @@ export default function SolvesPage() {
             </ButtonsSection>
           </div>
         </SolveFilters>
-        <SolvesArea currentTab={currentTab} />
+        <SolvesArea displaySolves={displaySolves} />
         <ModalSolve />
       </OverallContainer>
     </>
