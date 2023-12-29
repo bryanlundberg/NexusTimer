@@ -6,6 +6,7 @@ interface InputTextProps {
   focus?: boolean;
   className?: string;
   onChange: (value: string) => void;
+  id?: string;
 }
 
 export default function InputText({
@@ -14,6 +15,7 @@ export default function InputText({
   focus = false,
   className,
   onChange,
+  id,
 }: InputTextProps) {
   const [valueText, setValueText] = useState(value);
 
@@ -31,6 +33,8 @@ export default function InputText({
       placeholder={placeholder}
       autoFocus={focus}
       onChange={handleChange}
+      id={id}
+      autoComplete="off"
     />
   );
 }
