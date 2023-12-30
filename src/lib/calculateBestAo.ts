@@ -1,5 +1,6 @@
 import { Solve } from "@/interfaces/Solve";
 import { sort } from "fast-sort";
+import calculateCurrentAo from "./calculateCurrentAo";
 
 export default function calculateBestAo(solves: Solve[], ao: number) {
   if (solves.length < ao) {
@@ -9,13 +10,8 @@ export default function calculateBestAo(solves: Solve[], ao: number) {
   const averages: number[] = [];
 
   for (let i = 0; i <= solves.length - ao; i++) {
-    const cubeAo = solves.slice(i, i + ao);
-    const sum = cubeAo.reduce(
-      (accumulator, currentValue) => accumulator + currentValue.time,
-      0
-    );
-    const average = sum / ao;
-    averages.push(average);
+    const currentAo = calculateCurrentAo(solves.slice(i, i + ao), ao);
+    averages.push(currentAo);
   }
 
   const averagesSorted = sort(averages).asc();
