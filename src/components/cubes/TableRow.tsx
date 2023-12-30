@@ -49,7 +49,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
     <>
       <div
         onClick={(e) => redirectToHome(e)}
-        className="table-row h-10 transition duration-200 bg-transparent dark:hover:bg-zinc-900 light:hover:bg-neutral-200 dark:text-neutral-100 light:text-neutral-950 "
+        className="table-row h-10 transition duration-200 bg-transparent dark:even:bg-zinc-900 light:even:bg-neutral-200 dark:hover:bg-zinc-800 light:hover:bg-neutral-300 dark:text-neutral-100 light:text-neutral-950 "
       >
         <div className="table-cell w-10 align-middle">
           <BookmarkFav
