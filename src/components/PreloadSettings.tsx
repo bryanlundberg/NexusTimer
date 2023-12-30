@@ -1,7 +1,6 @@
 "use client";
-
 import { usePreloadSettings } from "@/hooks/usePreloadSettings";
-import { Navbar } from "./navbar";
+import { Navbar } from "@/components/navbar/index";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 
@@ -17,9 +16,9 @@ export default function PreloadSettings({
   return (
     <>
       <div className={`${theme}`}>
-        <div className="flex flex-col justify-between max-h-screen min-h-screen gap-2 overflow-hidden select-none light:bg-neutral-50 light:text-zinc-950 dark:bg-zinc-950 dark:text-slate-50">
+        <div className="flex flex-col justify-between max-h-dvh min-h-dvh gap-2 overflow-hidden select-none light:bg-neutral-50 light:text-zinc-950 dark:bg-zinc-950 dark:text-slate-50">
           {children}{" "}
-          <>{!isSolving && timerStatus !== "ready" ? <Navbar /> : null}</>
+          <>{!isSolving && timerStatus === "IDLE" ? <Navbar /> : null}</>
         </div>
       </div>
     </>

@@ -1,4 +1,4 @@
-import Toggle from "../headless/Toggle";
+import Toggle from "@/components/headless/Toggle";
 
 interface MenuOption {
   label: string;

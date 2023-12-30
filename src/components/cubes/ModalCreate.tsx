@@ -1,13 +1,14 @@
-import InputText from "../input-text/InputText";
-import CheckboxImage from "./CheckboxImage";
+import { InputText } from "@/components/input-text/index";
+import CheckboxImage from "@/components/cubes/CheckboxImage";
 import { cubeCollection } from "@/lib/cubeCollection";
 import genId from "@/lib/genId";
 import translation from "@/translations/global.json";
 import useModalCube from "@/hooks/useModalCube";
 import { useCubesModalStore } from "@/store/CubesModalStore";
-import DeleteModal from "./DeleteModal";
+import DeleteModal from "@/components/cubes/DeleteModal";
+import CloseModal from "@/icons/CloseModal";
 
-export default function Modal() {
+export default function ModalCreate() {
   const { editingCube } = useCubesModalStore();
   const {
     error,
@@ -32,16 +33,16 @@ export default function Modal() {
         id="defaultModal"
         tabIndex={2}
         aria-hidden={false}
-        className={`fixed backdrop-blur-[2px] top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center`}
+        className={`fixed bg-opacity-75 bg-black top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center`}
         onClick={(e) => {
           if (e.target === e.currentTarget) handleCloseModal();
         }}
       >
         <div className="relative w-full max-w-2xl max-h-full">
           {/* <!-- Modal content --> */}
-          <div className="relative border rounded-lg bg-neutral-200 border-neutral-800">
+          <div className="relative bg-white border rounded-lg">
             {/* <!-- Modal header --> */}
-            <div className="flex items-start justify-between gap-3 p-4 border-b rounded-t border-neutral-400">
+            <div className="flex items-start justify-between gap-3 p-4 border-b rounded-t border-neutral-200">
               <h3 className="flex items-center justify-center w-32 h-8 text-sm font-semibold text-neutral-950">
                 {editingCube
                   ? translation.cubes.modal["title-editing"][lang]
@@ -55,7 +56,7 @@ export default function Modal() {
                   onChange={handleWriteCubeName}
                   value={cubeName}
                   focus={true}
-                  className={`bg-neutral-200 focus:bg-neutral-100 text-neutral-900 border border-neutral-300`}
+                  className={`bg-neutral-100 focus:bg-neutral-50 text-neutral-900 border border-neutral-300`}
                 />
                 {error && (
                   <p className="px-2 mt-2 text-sm text-red-600">
@@ -69,21 +70,7 @@ export default function Modal() {
                 data-modal-hide="defaultModal"
                 onClick={handleCloseModal}
               >
-                <svg
-                  className="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                  />
-                </svg>
+                <CloseModal />
                 <span className="sr-only">
                   {translation.inputs["cancel"][lang]}
                 </span>
@@ -115,13 +102,13 @@ export default function Modal() {
             </div>
 
             {/* <!-- Modal footer --> */}
-            <div className="flex items-center justify-end p-6 mt-2 space-x-2 border-t rounded-b border-neutral-400">
+            <div className="flex items-center justify-end px-6 py-3 mt-2 space-x-2 border-t rounded-b border-neutral-200">
               {editingCube ? (
                 <button
                   onClick={handleDeleteClick}
                   data-modal-hide="defaultModal"
                   type="button"
-                  className="text-neutral-950 border border-zinc-800 bg-red-500 hover:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  className="px-5 py-2 text-sm font-medium text-center text-white transition duration-200 bg-red-500 border border-red-500 rounded-md hover:border-red-600 hover:bg-red-600"
                 >
                   {translation.inputs["delete"][lang]}
                 </button>
@@ -132,7 +119,7 @@ export default function Modal() {
                   onClick={handleCloseModal}
                   data-modal-hide="defaultModal"
                   type="button"
-                  className="text-neutral-800 transition duration-300 bg-neutral-200 hover:bg-neutral-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                  className="px-5 py-2 text-sm font-medium text-center transition duration-300 rounded-lg text-neutral-800 bg-neutral-200 hover:bg-neutral-300"
                 >
                   {translation.inputs["cancel"][lang]}
                 </button>
@@ -146,7 +133,7 @@ export default function Modal() {
                 }
                 data-modal-hide="defaultModal"
                 type="button"
-                className="border border-zinc-800 bg-green-400 hover:bg-green-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center text-neutral-950"
+                className="px-5 py-2 text-sm font-medium text-center text-white transition duration-200 bg-green-600 border border-green-500 rounded-md hover:border-green-700 hover:bg-green-700"
               >
                 {editingCube
                   ? translation.inputs["save"][lang]

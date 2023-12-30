@@ -1,20 +1,12 @@
-import calcAverageStatistics from "@/lib/calcAverageStatistics";
-import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
-import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
-import calcAoStatistics from "@/lib/calcAoStatistics";
-import calcDeviation from "@/lib/calcDeviation";
-import calcBestTime from "@/lib/calcBestTime";
-import { Select } from "../select/index";
+import { Select } from "@/components/select/index";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import LineCharter from "../charts/LineCharter";
-import getSolvesMetrics from "@/lib/getSolvesMetrics";
-import calcSuccessRate from "@/lib/calcSuccessRate";
 import formatTime from "@/lib/formatTime";
 import useMetricsSwitch from "@/hooks/useMetricsSwitch";
-import { StatisticRow } from "./StatisticRow";
-import { CustomTableContainer } from "./CustomTableContainer";
-import { StatisticHeader } from "./StatisticsHeader";
+import { StatisticRow } from "@/components/stats/StatisticRow";
+import { CustomTableContainer } from "@/components/stats/CustomTableContainer";
+import { StatisticHeader } from "@/components/stats/StatisticsHeader";
 
 export default function CategoryStatistics() {
   const { lang } = useSettingsModalStore();
@@ -25,16 +17,17 @@ export default function CategoryStatistics() {
     handleChangeCube,
     categoryOptions,
     cubeOptions,
+    optInChart,
+    setOptInChart,
+    average,
+    timeSpent,
+    counter,
+    stats,
+    deviation,
+    successRate,
+    best,
+    data,
   } = useMetricsSwitch();
-
-  const average = calcAverageStatistics(filterCategory, filterCube);
-  const timeSpent = calcTimeSpentStatistics(filterCategory, filterCube);
-  const counter = calcTotalSolvesStatistics(filterCategory, filterCube);
-  const stats = calcAoStatistics(filterCategory, filterCube);
-  const deviation = calcDeviation(filterCategory, filterCube);
-  const successRate = calcSuccessRate(filterCategory, filterCube);
-  const best = calcBestTime(filterCategory, filterCube);
-  const data = getSolvesMetrics(filterCategory, filterCube);
 
   return (
     <>
@@ -54,13 +47,44 @@ export default function CategoryStatistics() {
           />
         </div>
         <div className="flex flex-col gap-3 md:flex-row">
-          <div className="flex flex-col items-center justify-center w-full p-3 border rounded-md h-96 light:border-neutral-200 dark:border-zinc-800 bg-black">
+          <div className="flex flex-col w-full p-3 border rounded-md light:bg-neutral-100 dark:bg-zinc-950 h-96 light:border-neutral-200 dark:border-zinc-800">
             <LineCharter
               data={data}
+              optInChart={optInChart}
               cubeSelected={
                 translation.solves.filter["all"][lang] !== filterCube
               }
             />
+            <div className="flex gap-5">
+              <label htmlFor="mean-average" className="hover:cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="mean-average"
+                  checked={optInChart.mean}
+                  onChange={() =>
+                    setOptInChart({
+                      mean: !optInChart.mean,
+                      best: optInChart.best,
+                    })
+                  }
+                />{" "}
+                {translation.metrics["average"][lang]}
+              </label>
+              <label htmlFor="best-time" className="hover:cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="best-time"
+                  checked={optInChart.best}
+                  onChange={() =>
+                    setOptInChart({
+                      mean: optInChart.mean,
+                      best: !optInChart.best,
+                    })
+                  }
+                />{" "}
+                {translation.metrics["best-time"][lang]}
+              </label>
+            </div>
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 import { Cube } from "@/interfaces/Cube";
-import { CubesSection } from "./CubesSection";
-import EmptyCubes from "./EmptyCubes";
+import { CubesSection } from "@/components/cubes/CubesSection";
+import EmptyCubes from "@/components/cubes/EmptyCubes";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 
 interface CubesContent {

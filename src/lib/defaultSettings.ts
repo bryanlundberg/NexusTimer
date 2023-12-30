@@ -5,8 +5,8 @@ export const defaultSettings: Settings = {
     language: { lang: "en", key: "language" },
   },
   timer: {
-    inspection: { status: true, key: "inspection" },
-    startCue: { status: true, key: "start-cue" },
+    inspection: { status: false, key: "inspection" },
+    startCue: { status: false, key: "start-cue" },
     holdToStart: { status: false, key: "hold-to-start" },
     manualMode: { status: false, key: "manual-mode" },
   },

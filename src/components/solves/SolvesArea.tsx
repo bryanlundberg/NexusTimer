@@ -1,17 +1,16 @@
-import { SolveTab } from "@/interfaces/types/SolveTabs";
-import SingleSolveItem from "./SingleSolveItem";
+import SingleSolveItem from "@/components/solves/SingleSolveItem";
 import { useTimerStore } from "@/store/timerStore";
-import EmptySolves from "./EmptySolves";
+import EmptySolves from "@/components/solves/EmptySolves";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Solve } from "@/interfaces/Solve";
 import genId from "@/lib/genId";
 
 interface SolvesArea {
-  currentTab: SolveTab;
+  displaySolves: Solve[] | null;
 }
 
-export function SolvesArea({ currentTab }: SolvesArea) {
+export function SolvesArea({ displaySolves }: SolvesArea) {
   const { selectedCube } = useTimerStore();
   const { lang } = useSettingsModalStore();
 
@@ -24,12 +23,7 @@ export function SolvesArea({ currentTab }: SolvesArea) {
     );
   }
 
-  const selectedSolves =
-    currentTab === "Session"
-      ? selectedCube?.solves.session
-      : selectedCube?.solves.all;
-
-  if (!selectedSolves || selectedSolves.length === 0) {
+  if (!displaySolves || displaySolves.length === 0) {
     return (
       <EmptySolves
         message={translation.solves["no-solves"][lang]}
@@ -41,7 +35,7 @@ export function SolvesArea({ currentTab }: SolvesArea) {
   return (
     <>
       <div className="grid w-full h-full grid-cols-3 gap-3 px-3 py-3 overflow-auto sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6">
-        {selectedSolves.map((solve: Solve) => (
+        {displaySolves.map((solve: Solve) => (
           <SingleSolveItem key={genId()} solve={solve} />
         ))}
       </div>

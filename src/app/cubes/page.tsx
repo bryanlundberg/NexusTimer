@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/button/index";
-import InputText from "@/components/input-text/InputText";
-import ModalCreate from "@/components/cubes/Modal";
+import { InputText } from "@/components/input-text/index";
+import ModalCreate from "@/components/cubes/ModalCreate";
 import Plus from "@/icons/Plus";
 import translation from "@/translations/global.json";
 import { OverallContainer } from "@/components/OverallContainer";
@@ -24,11 +24,10 @@ export default function CubesPage() {
                 translation.inputs.placeholders["filter-cubes"][lang]
               }
               onChange={handleSearchFilter}
-              className="border light:bg-neutral-100 light:border-neutral-200 light:focus:bg-neutral-50 dark:bg-zinc-950 dark:border-zinc-800 dark:focus:bg-zinc-900"
+              className="border light:bg-neutral-50 light:border-neutral-200 light:focus:bg-white dark:bg-zinc-950 dark:border-zinc-800 dark:focus:bg-zinc-900"
             />
             <Button
               onClick={() => setModalOpen(true)}
-              className="w-28"
               icon={<Plus />}
               label={translation.cubes["cube"][lang]}
             />

@@ -1,5 +1,5 @@
-import { Cube } from "@/interfaces/Cube";
-import { Solve } from "@/interfaces/Solve";
+// import { Cube } from "@/interfaces/Cube";
+// import { Solve } from "@/interfaces/Solve";
 import { ChangeEvent } from "react";
 
 export default function importDataFromFile(
@@ -48,9 +48,9 @@ export default function importDataFromFile(
   }
 }
 
-const keyChecker = (keysArr1: string[], keysArr2: string[]) =>
-  keysArr1.length === keysArr2.length &&
-  keysArr1.every((key) => keysArr2.includes(key));
+// const keyChecker = (keysArr1: string[], keysArr2: string[]) =>
+//   keysArr1.length === keysArr2.length &&
+//   keysArr1.every((key) => keysArr2.includes(key));
 
 // Function to validate 'cubes' data
 function isValidCubesData(uploadedFileData: string): boolean {
@@ -61,121 +61,123 @@ function isValidCubesData(uploadedFileData: string): boolean {
     return false;
   }
 
-  // Create a sample cube object to retrieve expected keys, this will also ensure type safety
-  const sampleCubeObject: Cube = {
-    id: "",
-    name: "",
-    category: "2x2",
-    solves: {
-      all: [
-        {
-          id: "",
-          startTime: 0,
-          endTime: 0,
-          scramble: "",
-          bookmark: false,
-          time: 1000,
-          dnf: false,
-          plus2: false,
-          rating: 0,
-          category: "3x3",
-          cubeId: "",
-        },
-      ],
-      session: [
-        {
-          id: "",
-          startTime: 0,
-          endTime: 0,
-          scramble: "",
-          bookmark: false,
-          time: 1000,
-          dnf: false,
-          plus2: false,
-          rating: 0,
-          category: "3x3",
-          cubeId: "",
-        },
-      ],
-    },
-    createdAt: 0,
-    favorite: false,
-  };
+  return true;
 
-  const expectedCubeKeys = Object.keys(sampleCubeObject);
+  // // Create a sample cube object to retrieve expected keys, this will also ensure type safety
+  // const sampleCubeObject: Cube = {
+  //   id: "",
+  //   name: "",
+  //   category: "2x2",
+  //   solves: {
+  //     all: [
+  //       {
+  //         id: "",
+  //         startTime: 0,
+  //         endTime: 0,
+  //         scramble: "",
+  //         bookmark: false,
+  //         time: 1000,
+  //         dnf: false,
+  //         plus2: false,
+  //         rating: 0,
+  //         category: "3x3",
+  //         cubeId: "",
+  //       },
+  //     ],
+  //     session: [
+  //       {
+  //         id: "",
+  //         startTime: 0,
+  //         endTime: 0,
+  //         scramble: "",
+  //         bookmark: false,
+  //         time: 1000,
+  //         dnf: false,
+  //         plus2: false,
+  //         rating: 0,
+  //         category: "3x3",
+  //         cubeId: "",
+  //       },
+  //     ],
+  //   },
+  //   createdAt: 0,
+  //   favorite: false,
+  // };
 
-  // Validate every instance of the cube data within the array
-  const isCubeDataValid = parsedCubeData.every((parsedCubeDataItem: any, i) => {
-    // Retrieve the keys of the uploaded data
-    const uploadedCubeDataKeys = Object.keys(parsedCubeDataItem);
+  // const expectedCubeKeys = Object.keys(sampleCubeObject);
 
-    // Check if the uploaded data has the correct keys
-    const doKeysMatch = keyChecker(expectedCubeKeys, uploadedCubeDataKeys);
+  // // Validate every instance of the cube data within the array
+  // const isCubeDataValid = parsedCubeData.every((parsedCubeDataItem: any, i) => {
+  //   // Retrieve the keys of the uploaded data
+  //   const uploadedCubeDataKeys = Object.keys(parsedCubeDataItem);
 
-    if (!doKeysMatch) return false;
+  //   // Check if the uploaded data has the correct keys
+  //   const doKeysMatch = keyChecker(expectedCubeKeys, uploadedCubeDataKeys);
 
-    // Perform type checking for the uploaded data
-    const isUploadedDataTypeSafe = expectedCubeKeys.every((expectedCubeKey) => {
-      if (expectedCubeKey !== "solves")
-        return (
-          typeof parsedCubeDataItem[expectedCubeKey] ===
-          typeof sampleCubeObject[expectedCubeKey as keyof Cube]
-        );
+  //   if (!doKeysMatch) return false;
 
-      // Check for the 'solves' key
-      // Get session solves and all solves
-      const solvedSessions = parsedCubeDataItem[expectedCubeKey].session,
-        allSolves = parsedCubeDataItem[expectedCubeKey].all;
+  //   // Perform type checking for the uploaded data
+  //   const isUploadedDataTypeSafe = expectedCubeKeys.every((expectedCubeKey) => {
+  //     if (expectedCubeKey !== "solves")
+  //       return (
+  //         typeof parsedCubeDataItem[expectedCubeKey] ===
+  //         typeof sampleCubeObject[expectedCubeKey as keyof Cube]
+  //       );
 
-      // If the solves are not arrays, return false
-      if (!Array.isArray(solvedSessions) || !Array.isArray(allSolves)) {
-        return false;
-      }
+  //     // Check for the 'solves' key
+  //     // Get session solves and all solves
+  //     const solvedSessions = parsedCubeDataItem[expectedCubeKey].session,
+  //       allSolves = parsedCubeDataItem[expectedCubeKey].all;
 
-      // Retrieve the keys of the solved sessions and all solves
-      const expectedSolvedSessionKeys = Object.keys(
-          sampleCubeObject.solves.session[0]
-        ),
-        expectedAllSolvesKeys = Object.keys(sampleCubeObject.solves.all[0]);
+  //     // If the solves are not arrays, return false
+  //     if (!Array.isArray(solvedSessions) || !Array.isArray(allSolves)) {
+  //       return false;
+  //     }
 
-      // Validate types of the solved sessions
-      const validateSolvedSessions = solvedSessions.every((solvedSession) => {
-        // Retrieve the keys of the solved session
-        const solvedSessionKeys = Object.keys(solvedSession);
-        return (
-          keyChecker(expectedSolvedSessionKeys, solvedSessionKeys) &&
-          solvedSessionKeys.every(
-            (solvedSessionKey) =>
-              typeof solvedSession[solvedSessionKey] ===
-              typeof sampleCubeObject.solves.session[0][
-                solvedSessionKey as keyof Solve
-              ]
-          )
-        );
-      });
+  //     // Retrieve the keys of the solved sessions and all solves
+  //     const expectedSolvedSessionKeys = Object.keys(
+  //         sampleCubeObject.solves.session[0]
+  //       ),
+  //       expectedAllSolvesKeys = Object.keys(sampleCubeObject.solves.all[0]);
 
-      if (!validateSolvedSessions) return false;
+  //     // Validate types of the solved sessions
+  //     const validateSolvedSessions = solvedSessions.every((solvedSession) => {
+  //       // Retrieve the keys of the solved session
+  //       const solvedSessionKeys = Object.keys(solvedSession);
+  //       return (
+  //         keyChecker(expectedSolvedSessionKeys, solvedSessionKeys) &&
+  //         solvedSessionKeys.every(
+  //           (solvedSessionKey) =>
+  //             typeof solvedSession[solvedSessionKey] ===
+  //             typeof sampleCubeObject.solves.session[0][
+  //               solvedSessionKey as keyof Solve
+  //             ]
+  //         )
+  //       );
+  //     });
 
-      // Validate types of the all solves
-      const validateAllSolves = allSolves.every((solvedItem) => {
-        const solvedItemKeys = Object.keys(solvedItem);
-        return (
-          keyChecker(expectedAllSolvesKeys, solvedItemKeys) &&
-          solvedItemKeys.every(
-            (solvedItemKey) =>
-              typeof solvedItem[solvedItemKey] ===
-              typeof sampleCubeObject.solves.all[0][
-                solvedItemKey as keyof Solve
-              ]
-          )
-        );
-      });
+  //     if (!validateSolvedSessions) return false;
 
-      return validateAllSolves;
-    });
+  //     // Validate types of the all solves
+  //     const validateAllSolves = allSolves.every((solvedItem) => {
+  //       const solvedItemKeys = Object.keys(solvedItem);
+  //       return (
+  //         keyChecker(expectedAllSolvesKeys, solvedItemKeys) &&
+  //         solvedItemKeys.every(
+  //           (solvedItemKey) =>
+  //             typeof solvedItem[solvedItemKey] ===
+  //             typeof sampleCubeObject.solves.all[0][
+  //               solvedItemKey as keyof Solve
+  //             ]
+  //         )
+  //       );
+  //     });
 
-    return isUploadedDataTypeSafe;
-  });
+  //     return validateAllSolves;
+  //   });
 
-  return isCubeDataValid;
+  //   return isUploadedDataTypeSafe;
+  // });
+
+  // return isCubeDataValid;
 }

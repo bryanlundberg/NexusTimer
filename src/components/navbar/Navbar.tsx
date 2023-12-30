@@ -6,8 +6,8 @@ import Metrics from "@/icons/Metrics";
 import MetricsSolid from "@/icons/MetricsSolid";
 import Stack from "@/icons/Stack";
 import StackSolid from "@/icons/StackSolid";
-import { NavContainer } from "./NavContainer";
-import { NavItem } from "./NavItem";
+import { NavContainer } from "@/components/navbar/NavContainer";
+import { NavItem } from "@/components/navbar/NavItem";
 import genId from "@/lib/genId";
 
 const navigation: Navigation = [

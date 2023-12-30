@@ -9,6 +9,7 @@ import { useState } from "react";
 import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Themes } from "@/interfaces/types/Themes";
+import translation from "@/translations/global.json";
 
 const variation: Record<Themes, string> = {
   light:
@@ -27,7 +28,7 @@ export default function ManualMode() {
     setCubes,
     setSelectedCube,
   } = useTimerStore();
-  const { settings } = useSettingsModalStore();
+  const { settings, lang } = useSettingsModalStore();
 
   const isValidInput = (input: string) => {
     if (/^[0-9]*$/.test(input) && parseInt(input) > 0) return true;
@@ -93,7 +94,8 @@ export default function ManualMode() {
         />
         {value !== "" ? (
           <div className="mt-1 text-center">
-            Preview: {formatTime(convertToMs(value))}{" "}
+            {translation.timer["preview"][lang]}:{" "}
+            {formatTime(convertToMs(value))}{" "}
           </div>
         ) : null}
         {lastSolve && settings.features.quickActionButtons.status ? (
