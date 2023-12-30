@@ -5,7 +5,7 @@ export function StatisticHeader() {
   const { lang } = useSettingsModalStore();
   return (
     <>
-      <div className="flex items-center h-10 p-1 font-medium rounded-md dark:bg-zinc-900 dark:text-zinc-200 light:bg-neutral-200 light:text-neutral-950">
+      <div className="flex items-center h-10 p-1 font-medium rounded-md dark:bg-zinc-700 dark:text-zinc-200 light:bg-neutral-200 light:text-neutral-950">
         <div className="w-1/5"></div>
         <div className="w-1/5 text-center">
           {translation.metrics["global"][lang]}
