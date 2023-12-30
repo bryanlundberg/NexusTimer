@@ -63,7 +63,6 @@ export default function ModalCreate() {
                     {translation.cubes.modal["error-name"][lang]}
                   </p>
                 )}
-
               </div>
               <button
                 type="button"
