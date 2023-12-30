@@ -1,12 +1,6 @@
-// fullscreenStore.ts
 import { useState, useEffect } from 'react';
 
-interface FullScreenState {
-  isFullScreen: boolean;
-  toggleFullScreen: () => void;
-}
-
-const useFullScreenStore = (): FullScreenState => {
+export function useFullScreen() {
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
 
   useEffect(() => {
@@ -56,6 +50,4 @@ const useFullScreenStore = (): FullScreenState => {
   };
 
   return { isFullScreen, toggleFullScreen };
-};
-
-export default useFullScreenStore;
+}
