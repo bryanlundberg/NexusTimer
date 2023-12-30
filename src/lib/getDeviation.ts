@@ -1,7 +1,7 @@
 import { Solve } from "@/interfaces/Solve";
 
 export default function getDeviation(solves: Solve[]) {
-  if (solves.length < 1) return 0;
+  if (solves.length < 2) return 0; // standard deviation require min 2 values
   const n = solves.length;
   const totalSolves = solves.reduce(
     (acumulador, solve) => acumulador + solve.time,
@@ -14,7 +14,7 @@ export default function getDeviation(solves: Solve[]) {
     return acumulador + difference ** 2;
   }, 0);
 
-  const desvStandard = Math.sqrt(diff / n);
+  const desvStandard = Math.sqrt(diff / (n - 1));
 
   return desvStandard;
 }
