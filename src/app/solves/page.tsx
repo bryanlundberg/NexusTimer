@@ -14,6 +14,7 @@ import { ButtonsSection } from "@/components/solves/ButtonsSection";
 import { SolvesArea } from "@/components/solves/SolvesArea";
 import useSolvesPage from "@/hooks/useSolvesPage";
 import { InputText } from "@/components/input-text/index";
+import { useTimerStore } from "@/store/timerStore";
 
 export default function SolvesPage() {
   const {
@@ -23,8 +24,8 @@ export default function SolvesPage() {
     handleTrashAll,
     handleSearch,
     displaySolves,
-    selectedCube
   } = useSolvesPage();
+  const {selectedCube } = useTimerStore();
   const { lang } = useSettingsModalStore();
 
   return (
@@ -50,7 +51,7 @@ export default function SolvesPage() {
                 onClick={() => handleMoveAll()}
                 icon={<MoveAll />}
                 label={translation.inputs["move-all"][lang]}
-                isDisabled={true ? selectedCube === null : false}
+                isDisabled={selectedCube === null || selectedCube.solves.session.length === 0}
               />
               <Button
                 onClick={() => handleTrashAll()}
@@ -60,7 +61,7 @@ export default function SolvesPage() {
                   </div>
                 }
                 label={translation.inputs["trash-all"][lang]}
-                isDisabled={true ? selectedCube === null : false}
+                isDisabled={selectedCube === null || selectedCube.solves.session.length === 0}
               />
             </ButtonsSection>
           </div>

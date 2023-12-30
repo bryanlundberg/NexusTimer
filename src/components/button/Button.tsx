@@ -16,7 +16,7 @@ export default function Button({
   label,
   onClick,
   minimalistic = true,
-  isDisabled
+  isDisabled = false 
 }: Button) {
   return (
     <>
