@@ -1,14 +1,11 @@
 import Reload from "@/icons/Reload";
 import Select from "../Select";
 import Settings from "@/icons/Settings";
-import FullScreen from "@/icons/FullScreen";
-import ExitFullScreen from "@/icons/ExitFullScreen";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { InteractiveIcon } from "./InteractiveIcon";
 import { ScrambleZone } from "./ScrambleZone";
 import { useTimerStatistics } from "@/hooks/useTimerStatistics";
-import { useFullScreen } from "@/hooks/useFullScreen";
 import translation from "@/translations/global.json";
 import Link from "next/link";
 
@@ -19,11 +16,10 @@ export default function HeaderTimer() {
     useSettingsModalStore();
   const { global } = useTimerStatistics();
   const { lastSolve } = useTimerStore();
-  const { isFullScreen, toggleFullScreen } = useFullScreen();
-  
+
   if (isSolving || timerStatus !== "IDLE") return null;
   return (
-    <div className="flex flex-col items-center justify-center gap-5 pt-4 px-3">
+    <div className="flex flex-col items-center justify-center gap-5 px-3 pt-4">
       <div className="flex items-center justify-between w-full gap-4 sm:justify-center">
         <Link
           href={{
@@ -47,11 +43,6 @@ export default function HeaderTimer() {
               setNewScramble(selectedCube);
             }
           }}
-        />
-
-        <InteractiveIcon
-          icon={isFullScreen ? <ExitFullScreen /> : <FullScreen />}
-          handleClick={toggleFullScreen}
         />
       </div>
       <ScrambleZone />

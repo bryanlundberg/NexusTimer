@@ -4,6 +4,7 @@ import TimerWidgets from "@/components/timer/TimerWidgets";
 import SettingsMenu from "@/components/menu-settings/Menu";
 import TimerContainer from "@/components/timer/TimerContainer";
 import { MainTimer } from "@/components/timer/MainTimer";
+import FullscreenOption from "@/components/timer/FullScreenOption";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
         <TimerWidgets />
       </TimerContainer>
       <SettingsMenu />
+      <FullscreenOption />
     </>
   );
 }
