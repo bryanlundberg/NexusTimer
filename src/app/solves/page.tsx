@@ -86,7 +86,7 @@ export default function SolvesPage() {
             setIsOpenMoveModal(false);
             handleMoveAll();
           }}
-          data={123}
+          data={handleGetMoveData}
         />
       )}
     </>

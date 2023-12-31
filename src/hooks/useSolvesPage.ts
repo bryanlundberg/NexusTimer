@@ -6,19 +6,30 @@ import searchQuery from "@/lib/searchQuery";
 import updateSessions from "@/lib/updateSessions";
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect, useRef, useState } from "react";
+import { useTimerStatistics } from "./useTimerStatistics";
+import { MoveData } from "@/components/solves/MoveModal";
 
 export default function useSolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
   const { selectedCube, setCubes, setSelectedCube, cubes } = useTimerStore();
   const [displaySolves, setDisplaySolves] = useState<Solve[] | null>(null);
   const [isOpenMoveModal, setIsOpenMoveModal] = useState(false);
+  const { session } = useTimerStatistics();
   const searchBox = useRef<any>(null);
 
   const handleTabClick = (clickedTab: SolveTab) => {
     setCurrentTab(clickedTab);
   };
 
-  const handleGetMoveData = () => {};
+  const handleGetMoveData = (): MoveData | null => {
+    if (!selectedCube) return null;
+    return {
+      category: selectedCube.category,
+      bestTime: session.best,
+      average: session.mean,
+      count: session.count,
+    };
+  };
 
   const handleMoveAll = () => {
     if (selectedCube) {
