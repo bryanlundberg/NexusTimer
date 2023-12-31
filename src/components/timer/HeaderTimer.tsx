@@ -19,7 +19,7 @@ export default function HeaderTimer() {
     useSettingsModalStore();
   const { global } = useTimerStatistics();
   const { lastSolve } = useTimerStore();
-
+  const {isFullScreen, toggleFullScreen} = useFullScreen();
   if (isSolving || timerStatus !== "IDLE") return null;
   return (
     <div className="flex flex-col items-center justify-center gap-5 px-3 pt-4">
