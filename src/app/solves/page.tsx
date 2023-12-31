@@ -15,6 +15,7 @@ import { SolvesArea } from "@/components/solves/SolvesArea";
 import useSolvesPage from "@/hooks/useSolvesPage";
 import { InputText } from "@/components/input-text/index";
 import { useTimerStore } from "@/store/timerStore";
+import MoveModal from "@/components/solves/MoveModal";
 
 export default function SolvesPage() {
   const {
@@ -24,8 +25,11 @@ export default function SolvesPage() {
     handleTrashAll,
     handleSearch,
     displaySolves,
+    isOpenMoveModal,
+    setIsOpenMoveModal,
+    handleGetMoveData,
   } = useSolvesPage();
-  const {selectedCube } = useTimerStore();
+  const { selectedCube } = useTimerStore();
   const { lang } = useSettingsModalStore();
 
   return (
@@ -48,10 +52,13 @@ export default function SolvesPage() {
             />
             <ButtonsSection currentTab={currentTab}>
               <Button
-                onClick={() => handleMoveAll()}
+                onClick={() => setIsOpenMoveModal(true)}
                 icon={<MoveAll />}
                 label={translation.inputs["move-all"][lang]}
-                isDisabled={selectedCube === null || selectedCube.solves.session.length === 0}
+                isDisabled={
+                  selectedCube === null ||
+                  selectedCube.solves.session.length === 0
+                }
               />
               <Button
                 onClick={() => handleTrashAll()}
@@ -61,7 +68,10 @@ export default function SolvesPage() {
                   </div>
                 }
                 label={translation.inputs["trash-all"][lang]}
-                isDisabled={selectedCube === null || selectedCube.solves.session.length === 0}
+                isDisabled={
+                  selectedCube === null ||
+                  selectedCube.solves.session.length === 0
+                }
               />
             </ButtonsSection>
           </div>
@@ -69,6 +79,16 @@ export default function SolvesPage() {
         <SolvesArea displaySolves={displaySolves} />
         <ModalSolve />
       </OverallContainer>
+      {isOpenMoveModal && (
+        <MoveModal
+          onCancel={() => setIsOpenMoveModal(false)}
+          onConfirm={() => {
+            setIsOpenMoveModal(false);
+            handleMoveAll();
+          }}
+          data={handleGetMoveData}
+        />
+      )}
     </>
   );
 }

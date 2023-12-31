@@ -1,13 +1,21 @@
 import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
-import updateCubeOnList from "./updateCubeOnList";
+import loadCubes from "./loadCubes";
 
 export default function updateSessions(selectedCube: Cube) {
-  const sessionSolves: Solve[] = selectedCube.solves.session;
-  const allSolves: Solve[] = selectedCube.solves.all;
-  const combinedSolves = [...allSolves, ...sessionSolves];
-  selectedCube.solves.all = combinedSolves;
-  selectedCube.solves.session = [];
+  const cubeDB = loadCubes();
 
-  return updateCubeOnList(selectedCube);
+  cubeDB.map((cube: Cube) => {
+    if (cube.category === selectedCube.category) {
+      if (cube.solves.session.length >= 1) {
+        const sessionSolves: Solve[] = cube.solves.session;
+        const allSolves: Solve[] = cube.solves.all;
+        const combinedSolves = [...allSolves, ...sessionSolves];
+        cube.solves.all = combinedSolves;
+        cube.solves.session = [];
+      }
+    }
+  });
+  window.localStorage.setItem("cubes", JSON.stringify(cubeDB));
+  return cubeDB;
 }
