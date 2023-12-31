@@ -32,6 +32,7 @@ export default function HeaderTimer() {
             handleClick={() => {
               setSettingsOpen(!settingsOpen);
             }}
+            animation={true}
           />
         </Link>
 
@@ -43,6 +44,7 @@ export default function HeaderTimer() {
               setNewScramble(selectedCube);
             }
           }}
+          animation={true}
         />
       </div>
       <ScrambleZone />
