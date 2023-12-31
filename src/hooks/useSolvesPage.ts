@@ -11,11 +11,14 @@ export default function useSolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
   const { selectedCube, setCubes, setSelectedCube, cubes } = useTimerStore();
   const [displaySolves, setDisplaySolves] = useState<Solve[] | null>(null);
+  const [isOpenMoveModal, setIsOpenMoveModal] = useState(false);
   const searchBox = useRef<any>(null);
 
   const handleTabClick = (clickedTab: SolveTab) => {
     setCurrentTab(clickedTab);
   };
+
+  const handleGetMoveData = () => {};
 
   const handleMoveAll = () => {
     if (selectedCube) {
@@ -96,5 +99,8 @@ export default function useSolvesPage() {
     handleTrashAll,
     handleSearch,
     displaySolves,
+    isOpenMoveModal,
+    setIsOpenMoveModal,
+    handleGetMoveData,
   };
 }
