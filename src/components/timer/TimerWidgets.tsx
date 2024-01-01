@@ -10,7 +10,7 @@ export default function TimerWidgets() {
   const { isSolving, timerStatus } = useTimerStore();
   const { lang, settings } = useSettingsModalStore();
   const { global, session } = useTimerStatistics();
-  if (isSolving || timerStatus !== "IDLE") return null;
+
   return (
     <>
       <div className="flex flex-col gap-1" id="touch">
@@ -25,7 +25,11 @@ export default function TimerWidgets() {
             </div>
           </div>
         ) : null}
-        <div className="flex items-center justify-between w-full h-20 text-xs sm:h-20 md:h-24 lg:h-32 md:text-sm">
+        <div
+          className={`items-center justify-between w-full h-20 text-xs sm:h-20 md:h-24 lg:h-32 md:text-sm ${
+            isSolving || timerStatus !== "IDLE" ? "hidden" : "flex"
+          }`}
+        >
           <OverviewPanel />
           <ScramblePanel />
           <StatisticsPanel />
