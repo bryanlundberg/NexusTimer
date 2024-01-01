@@ -1,3 +1,4 @@
+import { PuzzleID } from "cubing/twisty";
 import { Categories } from "./Categories";
 
 type Event =
@@ -26,4 +27,5 @@ export interface CubeCollection {
   id: number;
   name: Categories;
   src: any;
+  displayId: PuzzleID;
 }

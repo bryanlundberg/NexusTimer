@@ -1,5 +1,4 @@
 import "./globals.css";
-import Script from "next/script";
 import type { Metadata } from "next";
 import PreloadSettings from "@/components/PreloadSettings";
 
@@ -20,10 +19,6 @@ export default function RootLayout({
         <main>
           <PreloadSettings>{children}</PreloadSettings>
         </main>
-        <Script
-          src="https://cdn.cubing.net/js/scramble-display"
-          type="module"
-        />
       </body>
     </html>
   );
