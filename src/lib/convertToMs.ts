@@ -1,3 +1,10 @@
+/**
+ * The `convertToMs` function takes a string representing a time in various formats and converts it to
+ * milliseconds. This function is only used for manual mode in the timer and is not utilized elsewhere.
+ *
+ * @param {string} timeString - A string representing a time value.
+ * @returns {number} The total number of milliseconds represented by the input string.
+ */
 export default function convertToMs(number: string): number {
   const time = {
     hh: 0,

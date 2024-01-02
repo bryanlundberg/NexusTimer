@@ -1,19 +1,29 @@
 import { Cube } from "@/interfaces/Cube";
-import { Solve } from "@/interfaces/Solve";
 import loadCubes from "./loadCubes";
 
-export default function deleteSession(selectedCube: Cube) {
+/**
+ * Deletes the session solves of a selected cube and updates the list of cubes in local storage.
+ * @param {Cube} selectedCube - The cube whose session solves will be deleted.
+ * @returns {Cube[]} The updated list of cubes after deleting the session solves.
+ */
+export default function deleteSession(selectedCube: Cube): Cube[] {
+  // Clear the session solves of the selected cube
   selectedCube.solves.session = [];
 
+  // Load existing cubes from local storage
   const cubesDB = loadCubes();
-  if (cubesDB) {
-    const newCubesList: Cube[] = cubesDB.map((targetCube) => {
-      if (selectedCube.id === targetCube.id) {
-        return selectedCube;
-      }
-      return targetCube;
-    });
-    window.localStorage.setItem("cubes", JSON.stringify(newCubesList));
-    return newCubesList;
-  }
+
+  // If no cubes are present, return an empty array
+  if (!cubesDB) return [];
+
+  // Create a new list of cubes with the updated selected cube
+  const newCubesList: Cube[] = cubesDB.map((targetCube) =>
+    selectedCube.id === targetCube.id ? selectedCube : targetCube
+  );
+
+  // Update the list of cubes in local storage
+  window.localStorage.setItem("cubes", JSON.stringify(newCubesList));
+
+  // Return the updated list of cubes
+  return newCubesList;
 }

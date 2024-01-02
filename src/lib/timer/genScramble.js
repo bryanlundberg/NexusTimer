@@ -1,5 +1,5 @@
 import { Scrambow } from "scrambow";
-import { cubeCollection } from "../cubeCollection";
+import { cubeCollection } from "../const/cubeCollection";
 
 export default function genScramble(category) {
   const eventId = cubeCollection.find((cube) => cube.name === category);

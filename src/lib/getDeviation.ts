@@ -1,20 +1,33 @@
 import { Solve } from "@/interfaces/Solve";
 
-export default function getDeviation(solves: Solve[]) {
-  if (solves.length < 2) return 0; // standard deviation require min 2 values
+/**
+ * Calculates the standard deviation of solve times.
+ * @param {Solve[]} solves - An array of Solve objects.
+ * @returns {number} The standard deviation of solve times.
+ */
+export default function getDeviation(solves: Solve[]): number {
+  // If there are less than 2 solves, the standard deviation is 0.
+  if (solves.length < 2) {
+    return 0;
+  }
+
   const n = solves.length;
+
+  // Calculate the mean (average) of solve times.
   const totalSolves = solves.reduce(
-    (acumulador, solve) => acumulador + solve.time,
+    (accumulator, solve) => accumulator + solve.time,
     0
   );
   const mean = totalSolves / n;
 
-  const diff = solves.reduce((acumulador, solve) => {
+  // Calculate the sum of squared differences from the mean.
+  const diffSquaredSum = solves.reduce((accumulator, solve) => {
     const difference = solve.time - mean;
-    return acumulador + difference ** 2;
+    return accumulator + difference ** 2;
   }, 0);
 
-  const desvStandard = Math.sqrt(diff / (n - 1));
+  // Calculate the standard deviation.
+  const standardDeviation = Math.sqrt(diffSquaredSum / (n - 1));
 
-  return desvStandard;
+  return standardDeviation;
 }

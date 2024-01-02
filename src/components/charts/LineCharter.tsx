@@ -5,18 +5,12 @@ import { CreatePriceLineOptions, createChart } from "lightweight-charts";
 import { useEffect, useRef } from "react";
 import translation from "@/translations/global.json";
 import getBestTime from "@/lib/getBestTime";
+import { ChartData } from "@/interfaces/ChartData";
 
 type TimeObject = {
   time: number;
   value: number;
 };
-
-interface ChartData {
-  global: Solve[];
-  session: Solve[];
-  cubeSession: Solve[];
-  cubeAll: Solve[];
-}
 
 export default function LineCharter({
   data,
@@ -74,9 +68,6 @@ export default function LineCharter({
         },
         fixRightEdge: true,
         fixLeftEdge: true,
-      },
-      areaStyle: {
-        lineColor: "black",
       },
     };
     const container = chartContainerRef.current;

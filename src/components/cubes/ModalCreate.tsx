@@ -1,6 +1,6 @@
 import { InputText } from "@/components/input-text/index";
 import CheckboxImage from "@/components/cubes/CheckboxImage";
-import { cubeCollection } from "@/lib/cubeCollection";
+import { cubeCollection } from "@/lib/const/cubeCollection";
 import genId from "@/lib/genId";
 import translation from "@/translations/global.json";
 import useModalCube from "@/hooks/useModalCube";

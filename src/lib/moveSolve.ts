@@ -2,15 +2,32 @@ import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
 import updateCubeOnList from "./updateCubeOnList";
 
-export default function moveSolve(solve: Solve, selectedCube: Cube) {
-  const sessionSolves: Solve[] = selectedCube.solves.session;
-  const allSolves: Solve[] = selectedCube.solves.all;
-  const combinedSolves = [...allSolves, solve];
+/**
+ * Moves a solve from session solves to all solves within a given cube and updates the cube on the list.
+ * @param {Solve} solve - The solve to be moved.
+ * @param {Cube} selectedCube - The cube containing the solves.
+ * @returns {Cube[]} The updated list of cubes.
+ */
+export default function moveSolve(solve: Solve, selectedCube: Cube): Cube[] {
+  const { session, all } = selectedCube.solves;
 
-  selectedCube.solves.all = combinedSolves;
-  selectedCube.solves.session = sessionSolves.filter((sessionSolve) => {
-    return sessionSolve.id !== solve.id;
-  });
+  // Check if the solve is in the session solves
+  const solveIndexInSession = session.findIndex(
+    (sessionSolve) => sessionSolve.id === solve.id
+  );
 
-  return updateCubeOnList(selectedCube);
+  if (solveIndexInSession !== -1) {
+    // Move the solve from session to all solves
+    selectedCube.solves.all = [...all, solve];
+    selectedCube.solves.session = session.filter(
+      (sessionSolve) => sessionSolve.id !== solve.id
+    );
+
+    // Update the cube on the list
+    return updateCubeOnList(selectedCube);
+  } else {
+    // Handle the case where the solve is not found in session solves
+    console.warn("Solve not found in session solves.");
+    return updateCubeOnList(selectedCube);
+  }
 }

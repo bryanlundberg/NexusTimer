@@ -9,11 +9,11 @@ export default function CheckboxImage({
   handleClickRadio,
   selectedCategory,
 }: {
-  id: any;
+  id: string | number;
   value: string;
-  src: any;
+  src: string;
   alt: string;
-  handleClickRadio?: any;
+  handleClickRadio?: (value: any) => void;
   selectedCategory: Categories;
 }) {
   return (
@@ -27,14 +27,14 @@ export default function CheckboxImage({
       >
         <input
           type="radio"
-          id={id}
+          id={`${id}`}
           name="category"
           value={value}
           className="hidden peer"
           required
         />
         <label
-          htmlFor={id}
+          htmlFor={`${id}`}
           onClick={() => handleClickRadio && handleClickRadio(value)}
         >
           <Image src={src} alt={alt} draggable={false} />

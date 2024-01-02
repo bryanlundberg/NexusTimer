@@ -223,15 +223,15 @@ export default function CategoryStatistics() {
           />
           <StatisticRow
             label={translation.metrics.cards["success-rate"][lang]}
-            global={successRate.global === 0 ? "--" : successRate.global + "%"}
+            global={successRate.global === "" ? "--" : successRate.global + "%"}
             session={
-              successRate.session === 0 ? "--" : successRate.session + "%"
+              successRate.session === "" ? "--" : successRate.session + "%"
             }
             cubeAll={
-              successRate.cubeAll === 0 ? "--" : successRate.cubeAll + "%"
+              successRate.cubeAll === "" ? "--" : successRate.cubeAll + "%"
             }
             cubeSession={
-              successRate.cubeSession === 0
+              successRate.cubeSession === ""
                 ? "--"
                 : successRate.cubeSession + "%"
             }

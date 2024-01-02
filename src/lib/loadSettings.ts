@@ -1,4 +1,4 @@
-import { defaultSettings } from "./defaultSettings";
+import { defaultSettings } from "./const/defaultSettings";
 
 export default function loadSettings() {
   const data = window.localStorage.getItem("settings");

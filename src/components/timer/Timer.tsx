@@ -7,6 +7,7 @@ import useTimer from "@/hooks/useTimer";
 import Confetti from "react-dom-confetti";
 import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 import useDeviceMatch from "@/hooks/useDeviceMatch";
+import { confettiConfig } from "@/lib/const/confettiConfig";
 
 const timerStatusClasses = {
   IDLE: "light:text-neutral-900 dark:text-white",
@@ -14,20 +15,6 @@ const timerStatusClasses = {
   SOLVING: "light:text-neutral-700 dark:text-slate-200",
   READY: "text-emerald-400",
   INSPECTING: "text-orange-500",
-};
-
-const config: any = {
-  angle: 90,
-  spread: 180,
-  startVelocity: 40,
-  elementCount: 70,
-  dragFriction: 0.12,
-  duration: 5000,
-  stagger: 3,
-  width: "10px",
-  height: "10px",
-  perspective: "500px",
-  colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
 };
 
 export default function Timer() {
@@ -89,7 +76,7 @@ export default function Timer() {
               !isSolving &&
               settings.alerts.bestTime.status
             }
-            config={config}
+            config={confettiConfig}
           />
           {lastSolve &&
             settings.features.quickActionButtons.status &&
