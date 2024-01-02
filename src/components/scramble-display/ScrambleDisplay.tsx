@@ -21,16 +21,16 @@ export default function ScrambleDisplay({
     const display = document.querySelector("twisty-player");
     display?.remove();
 
-    const getDisplayId = (): PuzzleID => {
+    const getDisplayId = (): PuzzleID | null => {
       const category = cubeCollection.filter((u) => u.event === event);
-      console.log(category[0].displayId);
-      return category[0].displayId;
+      if (category.length >= 1) return category[0].displayId;
+      return null;
     };
 
     const displayId = getDisplayId();
 
     const player = new TwistyPlayer({
-      puzzle: displayId,
+      puzzle: displayId || "3x3x3",
       alg: scramble ? scramble : "",
       hintFacelets: "none",
       background: "none",
