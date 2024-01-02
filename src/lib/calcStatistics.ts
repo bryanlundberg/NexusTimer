@@ -7,8 +7,60 @@ import getSolvesMetrics from "./getSolvesMetrics";
 import { defaultTimerStatistics } from "./const/defaultTimerStatistics";
 import { Cube } from "@/interfaces/Cube";
 
-export default function calcStatistics({ cube }: { cube: Cube | null }) {
+/**
+ * Calculates various statistics for a cube solving session, including
+ * best time, average of X solves, deviation, and mean.
+ * @param {Object} params - The parameters for calculating statistics.
+ * @param {Cube | null} params.cube - The cube object for which statistics will be calculated.
+ * @returns {DisplayTimerStatistics} An object containing the calculated statistics for global, session, and cubeSession.
+ */
+export default function calcStatistics({
+  cube,
+}: {
+  cube: Cube | null;
+}): DisplayTimerStatistics {
+  // Array containing the values for average of X (AoX) calculations
+  const aoValues: number[] = [3, 5, 12, 50, 100];
+
+  /**
+   * Calculates the statistics for a given set of solves (global, session, cubeSession).
+   * @param {Solve[]} solves - The array of solves for which statistics will be calculated.
+   * @param {string} type - The type of solves (global, session, cubeSession).
+   * @returns {CubeStatistics} The calculated statistics for the given set of solves.
+   */
+  const calculateStatistics = (solves: any[], type: string): CubeStatistics => {
+    // Sort solves in ascending order based on solve times
+    const pbSolves = sort(solves).asc((solve) => solve.time);
+
+    // Object to store calculated statistics
+    const statistics: CubeStatistics = {
+      count: solves.length,
+      best: pbSolves[0]?.time || 0,
+      deviation: getDeviation(solves),
+      mean: getMean(solves),
+      ao3: 0,
+      ao5: 0,
+      ao12: 0,
+      ao50: 0,
+      ao100: 0,
+    };
+
+    // Calculate average of X (AoX) statistics
+    for (const aoValue of aoValues) {
+      if (solves.length >= aoValue) {
+        statistics[`ao${aoValue}` as keyof CubeStatistics] =
+          type === "global"
+            ? calculateBestAo(solves, aoValue)
+            : calculateCurrentAo(solves, aoValue);
+      }
+    }
+
+    return statistics;
+  };
+
+  // Check if the cube object is null
   if (!cube) {
+    // Return default statistics if cube is null
     return {
       global: defaultTimerStatistics,
       session: defaultTimerStatistics,
@@ -16,99 +68,16 @@ export default function calcStatistics({ cube }: { cube: Cube | null }) {
     };
   }
 
+  // Get solve metrics for global, session, and cubeSession
   const { global, session, cubeSession } = getSolvesMetrics(
     cube.category,
     cube.name
   );
 
-  const aoValues: number[] = [3, 5, 12, 50, 100];
-
-  const globalDefault: CubeStatistics = {
-    count: 0,
-    best: 0,
-    ao3: 0,
-    ao5: 0,
-    ao12: 0,
-    ao50: 0,
-    ao100: 0,
-    deviation: getDeviation(cubeSession),
-    mean: getMean(cubeSession),
-  };
-
-  const sessionDefault: CubeStatistics = {
-    count: 0,
-    best: 0,
-    ao3: 0,
-    ao5: 0,
-    ao12: 0,
-    ao50: 0,
-    ao100: 0,
-    deviation: getDeviation(session),
-    mean: getMean(session),
-  };
-
-  const cubeSessionDefault: CubeStatistics = {
-    count: 0,
-    best: 0,
-    ao3: 0,
-    ao5: 0,
-    ao12: 0,
-    ao50: 0,
-    ao100: 0,
-    deviation: 0,
-    mean: getMean(cubeSession),
-  };
-
-  if (session.length > 0) {
-    const sessionPB = sort(session).asc((u) => u.time);
-    sessionDefault.count = session.length;
-    sessionDefault.best = sessionPB[0].time;
-    sessionDefault.deviation = getDeviation(session);
-    sessionDefault.mean = getMean(session);
-
-    for (const aoValue of aoValues) {
-      if (session.length >= aoValue) {
-        sessionDefault[`ao${aoValue}` as keyof CubeStatistics] =
-          calculateCurrentAo(session, aoValue);
-      }
-    }
-  }
-
-  if (global.length > 0) {
-    const globalPB = sort(global).asc((u) => u.time);
-    globalDefault.count = global.length;
-    globalDefault.best = globalPB[0].time;
-    globalDefault.deviation = getDeviation(global);
-    globalDefault.mean = getMean(global);
-
-    for (const aoValue of aoValues) {
-      if (global.length >= aoValue) {
-        globalDefault[`ao${aoValue}` as keyof CubeStatistics] = calculateBestAo(
-          global,
-          aoValue
-        );
-      }
-    }
-  }
-
-  if (cubeSession.length > 0) {
-    const cubeSessionPB = sort(cubeSession).asc((u) => u.time);
-    cubeSessionDefault.count = cubeSession.length;
-    cubeSessionDefault.best = cubeSessionPB[0].time;
-    cubeSessionDefault.deviation = getDeviation(cubeSession);
-    cubeSessionDefault.mean = getMean(cubeSession);
-
-    for (const aoValue of aoValues) {
-      if (cubeSession.length >= aoValue) {
-        cubeSessionDefault[`ao${aoValue}` as keyof CubeStatistics] =
-          calculateCurrentAo(cubeSession, aoValue);
-      }
-    }
-  }
-
+  // Calculate and return statistics for global, session, and cubeSession
   return {
-    global: globalDefault,
-    session: sessionDefault,
-    cubeSession: cubeSessionDefault,
+    global: calculateStatistics(global, "global"),
+    session: calculateStatistics(session, "session"),
+    cubeSession: calculateStatistics(cubeSession, "cubeSession"),
   };
 }

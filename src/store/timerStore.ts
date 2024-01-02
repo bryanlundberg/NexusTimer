@@ -1,7 +1,7 @@
 import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
 import { TimerStatus } from "@/interfaces/TimerStatus";
-import { cubeCollection } from "@/lib/cubeCollection";
+import { cubeCollection } from "@/lib/const/cubeCollection";
 import genScramble from "@/lib/timer/genScramble";
 import { create } from "zustand";
 

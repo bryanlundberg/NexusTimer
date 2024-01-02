@@ -7,7 +7,7 @@ export default function BookmarkFav({
   cubeId,
 }: {
   isChecked: boolean;
-  setFavorite: any;
+  setFavorite: (cubeId: string) => void;
   cubeId: string;
 }) {
   const [checked, setChecked] = useState(isChecked);

@@ -13,7 +13,7 @@ export const defaultSettings: Settings = {
   features: {
     scrambleImage: { status: true, key: "scramble-image" },
     sessionStats: { status: true, key: "session-stats" },
-    quickActionButtons: { status: false, key: "quick-action-buttons" },
+    quickActionButtons: { status: true, key: "quick-action-buttons" },
     hideWhileSolving: { status: false, key: "hide-while-solving" },
     scrambleBackground: { status: false, key: "scramble-background" },
   },

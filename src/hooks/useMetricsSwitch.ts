@@ -1,5 +1,4 @@
 import { Categories } from "@/interfaces/Categories";
-import { Solve } from "@/interfaces/Solve";
 import calcAoStatistics from "@/lib/calcAoStatistics";
 import calcAverageStatistics from "@/lib/calcAverageStatistics";
 import calcBestTime from "@/lib/calcBestTime";
@@ -7,7 +6,13 @@ import calcDeviation from "@/lib/calcDeviation";
 import calcSuccessRate from "@/lib/calcSuccessRate";
 import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
 import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
-import { cubeCollection } from "@/lib/cubeCollection";
+import { cubeCollection } from "@/lib/const/cubeCollection";
+import {
+  defaultChartValuesA,
+  defaultChartValuesS,
+  defaultChartValuesN,
+  defaulCharAoValues,
+} from "@/lib/const/defaultChartValues";
 import getSolvesMetrics from "@/lib/getSolvesMetrics";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
@@ -27,35 +32,14 @@ export default function useMetricsSwitch() {
     best: false,
   });
 
-  const defaultValues: any = {
-    global: 0,
-    session: 0,
-    cubeSession: 0,
-    cubeAll: 0,
-  };
-
-  interface ChartData {
-    global: Solve[];
-    session: Solve[];
-    cubeSession: Solve[];
-    cubeAll: Solve[];
-  }
-
-  const defaultChartValues: ChartData = {
-    global: [],
-    session: [],
-    cubeSession: [],
-    cubeAll: [],
-  };
-
-  const [average, setAverage] = useState(defaultValues);
-  const [timeSpent, setTimeSpent] = useState(defaultValues);
-  const [counter, setCounter] = useState(defaultValues);
-  const [stats, setStats] = useState(defaultValues);
-  const [deviation, setDeviation] = useState(defaultValues);
-  const [successRate, setSuccessRate] = useState(defaultValues);
-  const [best, setBest] = useState(defaultValues);
-  const [data, setData] = useState(defaultChartValues);
+  const [average, setAverage] = useState(defaultChartValuesN);
+  const [timeSpent, setTimeSpent] = useState(defaultChartValuesS);
+  const [counter, setCounter] = useState(defaultChartValuesN);
+  const [stats, setStats] = useState(defaulCharAoValues);
+  const [deviation, setDeviation] = useState(defaultChartValuesN);
+  const [successRate, setSuccessRate] = useState(defaultChartValuesS);
+  const [best, setBest] = useState(defaultChartValuesN);
+  const [data, setData] = useState(defaultChartValuesA);
 
   const categoryOptions = loadCategoryOptions();
   const cubeOptions = loadCubeOptions();

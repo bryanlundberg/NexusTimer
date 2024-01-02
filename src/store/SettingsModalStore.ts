@@ -1,6 +1,6 @@
 import { Settings } from "@/interfaces/Settings";
 import { Language } from "@/interfaces/types/Language";
-import { defaultSettings } from "@/lib/defaultSettings";
+import { defaultSettings } from "@/lib/const/defaultSettings";
 import { create } from "zustand";
 
 interface Modal {

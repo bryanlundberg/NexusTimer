@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Categories } from "@/interfaces/Categories";
-import { cubeCollection } from "@/lib/cubeCollection";
+import { cubeCollection } from "@/lib/const/cubeCollection";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import findCube from "@/lib/findCube";

@@ -5,7 +5,7 @@ import BellAlert from "@/icons/BellAlert";
 import Clock from "@/icons/Clock";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import genId from "@/lib/genId";
-import { langCollection } from "@/lib/langCollection";
+import { langCollection } from "@/lib/const/langCollection";
 import translation from "@/translations/global.json";
 import { Settings } from "@/interfaces/Settings";
 import { sort } from "fast-sort";
@@ -17,9 +17,9 @@ import { DataImportExport } from "@/components/menu-settings/DataImportExport";
 import { useTimerStore } from "@/store/timerStore";
 import Folder from "@/icons/Folder";
 import Shield from "@/icons/Shield";
-import GithubIcon from "@/icons/GithubIcon";
 import Link from "next/link";
 import useEscape from "@/hooks/useEscape";
+import Image from "next/image";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
@@ -141,17 +141,17 @@ export default function MenuSettings() {
             title={translation.settings["about"][lang]}
           >
             <div className="flex flex-col justify-center items-center gap-3">
+              <Image
+                src={"/brand_logo.svg"}
+                alt="logo"
+                width={320}
+                height={100}
+              />
+
               <div className="text-center w-11/12 italic">
                 &rdquo;{translation.settings["legend"][lang]}&rdquo;
               </div>
 
-              <Link
-                href="https://github.com/bryanlundberg/NexusTimer"
-                target="_blank"
-                className="hover:text-zinc-500 transition duration-300"
-              >
-                <GithubIcon />
-              </Link>
               <div className="flex gap-3 underline">
                 <Link
                   href="https://github.com/bryanlundberg/NexusTimer/issues"

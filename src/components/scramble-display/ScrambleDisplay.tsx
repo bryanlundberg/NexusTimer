@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { TwistyPlayer, PuzzleID } from "cubing/twisty";
-import { cubeCollection } from "@/lib/cubeCollection";
+import { cubeCollection } from "@/lib/const/cubeCollection";
 
 interface ScrambleDisplay {
   className: string;

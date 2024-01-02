@@ -2,14 +2,23 @@ import { Categories } from "@/interfaces/Categories";
 import getSolvesMetrics from "./getSolvesMetrics";
 import calculateBestAo from "./calculateBestAo";
 
+/**
+ * Calculates various average of X (AoX) statistics for a specific cube and category.
+ * @param {Categories} category - The category of the cube solves.
+ * @param {string} cubeName - The name of the cube.
+ * @returns {AoStatistics} The calculated AoX statistics for global, session, cubeAll, and cubeSession.
+ */
+
 export default function calcAoStatistics(
   category: Categories,
   cubeName: string
-) {
+): AoStatistics {
+  // Get solve metrics for global, session, cubeAll, and cubeSession
   const { global, session, cubeAll, cubeSession } = getSolvesMetrics(
     category,
     cubeName
   );
+  // Calculate AoX statistics for global, session, cubeAll, and cubeSession
 
   return {
     global: {
