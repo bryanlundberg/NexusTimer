@@ -1,7 +1,6 @@
 import { Solve } from "@/interfaces/Solve";
 import loadCubes from "./loadCubes";
 import { Categories } from "@/interfaces/Categories";
-import { sort } from "fast-sort";
 
 export default function getSolvesMetrics(
   category: Categories,
@@ -33,17 +32,17 @@ export default function getSolvesMetrics(
     cube.solves.session.map((i) => result.session.push(i));
   }
 
-  sort(result.global).asc((u) => u.endTime);
-  sort(result.session).asc((u) => u.endTime);
-
   const targetCube = cubesDB.find((cube) => cube.name === cubeName);
   if (targetCube) {
     targetCube.solves.all.map((i) => result.cubeAll.push(i));
     targetCube.solves.session.map((i) => result.cubeAll.push(i));
     targetCube.solves.session.map((i) => result.cubeSession.push(i));
-    sort(result.cubeAll).asc((u) => u.endTime);
-    sort(result.cubeSession).asc((u) => u.endTime);
   }
+
+  result.global.sort((a, b) => b.endTime - a.endTime);
+  result.session.sort((a, b) => b.endTime - a.endTime);
+  result.cubeAll.sort((a, b) => b.endTime - a.endTime);
+  result.cubeSession.sort((a, b) => b.endTime - a.endTime);
 
   return result;
 }
