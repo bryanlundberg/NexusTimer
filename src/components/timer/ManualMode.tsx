@@ -50,7 +50,7 @@ export default function ManualMode() {
           const newSolve: Solve = {
             id: genId(),
             startTime: now - msTime,
-            endTime: now + msTime,
+            endTime: now,
             scramble: scramble,
             bookmark: false,
             time: msTime,
