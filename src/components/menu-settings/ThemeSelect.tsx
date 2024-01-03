@@ -26,9 +26,21 @@ export default function ThemeSelect() {
     },
   ];
 
-  const handleSelectTheme = (newThemeKey: string) => {
+  const stringToThemes = (themeKey: string): Themes => {
+    switch (themeKey) {
+      case "light":
+        return "light";
+      case "dark":
+        return "dark";
+      default:
+        return "dark";
+    }
+  };
+
+  const handleSelectTheme = (themeKey: string) => {
     const currentSettings = loadSettings();
-    currentSettings.theme.background.color = newThemeKey;
+    const theme = stringToThemes(themeKey);
+    currentSettings.theme.background.color = theme;
     window.localStorage.setItem("settings", JSON.stringify(currentSettings));
     setSettings(currentSettings);
   };

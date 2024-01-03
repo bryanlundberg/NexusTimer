@@ -1,7 +1,7 @@
 export interface DeleteCubeDetails {
   name: string;
-  best: any;
-  ao5: any;
+  best: number | string;
+  ao5: number | string;
   count: number;
   category: string;
 }
