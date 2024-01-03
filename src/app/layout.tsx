@@ -9,7 +9,7 @@ const APP_DESCRIPTION =
   "Nexus Timer is a platform for recording and viewing Rubik's cube statistics. It also includes tools to improve Rubik's cube skills.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://acme.com"),
+  metadataBase: new URL("https://www.nexustimer.pro/"),
   applicationName: APP_NAME,
   title: {
     default: APP_DEFAULT_TITLE,
