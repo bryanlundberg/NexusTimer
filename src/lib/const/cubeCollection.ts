@@ -1,4 +1,4 @@
-import { CubeCollection } from "@/interfaces/CubeCollection";
+import { CubeCollection } from "@/interfaces/cubeCollection";
 import cube222 from "@/images/categories/cube222.svg";
 import cube333 from "@/images/categories/cube333.svg";
 import cube333oh from "@/images/categories/cube333oh.svg";

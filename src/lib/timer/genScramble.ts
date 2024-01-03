@@ -1,7 +1,7 @@
 import { Scrambow } from "scrambow";
 import { cubeCollection } from "../const/cubeCollection";
 import { Categories } from "@/interfaces/Categories";
-import { CubeCollection } from "@/interfaces/CubeCollection";
+import { CubeCollection } from "@/interfaces/cubeCollection";
 
 /**
  * Generates a scramble for the given cube category using Scrambow.
