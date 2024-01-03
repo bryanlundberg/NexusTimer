@@ -11,6 +11,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ducanh2912/next-pwa": "^10.0.2",
     "@headlessui/react": "^1.7.17",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
@@ -19,14 +20,14 @@
     "cubing": "^0.44.1",
     "date-fns": "^2.30.0",
     "eslint": "8.49.0",
-    "eslint-config-next": "13.4.19",
+    "eslint-config-next": "^14.0.4",
     "fast-sort": "3.4.0",
     "lightweight-charts": "^4.1.0",
-    "next": "13.5.1",
+    "next": "^14.0.4",
     "postcss": "8.4.31",
     "pretty-ms": "^8.0.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-dom-confetti": "^0.2.0",
     "recharts": "^2.8.0",
     "scrambow": "^1.8.1",
@@ -37,6 +38,7 @@
     "zustand": "4.4.1"
   },
   "devDependencies": {
-    "@types/uuid": "9.0.3"
+    "@types/uuid": "9.0.3",
+    "webpack": "^5.89.0"
   }
 }
