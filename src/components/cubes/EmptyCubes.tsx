@@ -1,5 +1,4 @@
 import Image from "next/image";
-import nodata from "@/images/no-data.svg";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
@@ -17,7 +16,7 @@ export default function EmptyCubes({ onClick }: EmptyCubes) {
       >
         <div className="flex flex-col items-center justify-center gap-1 p-3 font-medium">
           <Image
-            src={nodata}
+            src={"/no-data.svg"}
             alt={"no-cubes-for-display"}
             width={56}
             height={61}

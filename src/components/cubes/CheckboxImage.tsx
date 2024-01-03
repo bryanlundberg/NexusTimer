@@ -37,7 +37,13 @@ export default function CheckboxImage({
           htmlFor={`${id}`}
           onClick={() => handleClickRadio && handleClickRadio(value)}
         >
-          <Image src={src} alt={alt} draggable={false} />
+          <Image
+            src={src}
+            alt={alt}
+            width={128}
+            height={128}
+            draggable={false}
+          />
         </label>
       </div>
     </>
