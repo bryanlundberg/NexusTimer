@@ -9,6 +9,7 @@ import { CubesContent } from "@/components/cubes/CubesContent";
 import { OverallHeader } from "@/components/OverallHeader";
 import { OptionsContainer } from "@/components/cubes/OptionsContainer";
 import { useCubes } from "@/hooks/useCubes";
+import { AnimatePresence } from "framer-motion";
 
 export default function CubesPage() {
   const { filterCubes, modalOpen, setModalOpen, lang, handleSearchFilter } =
@@ -34,7 +35,7 @@ export default function CubesPage() {
           </OptionsContainer>
         </OverallHeader>
         <CubesContent filterCubes={filterCubes} />
-        {modalOpen && <ModalCreate />}
+        <AnimatePresence>{modalOpen && <ModalCreate />}</AnimatePresence>
       </OverallContainer>
     </>
   );

@@ -21,6 +21,7 @@
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "fast-sort": "3.4.0",
+    "framer-motion": "^10.17.4",
     "lightweight-charts": "^4.1.0",
     "next": "13.5.1",
     "postcss": "8.4.31",
