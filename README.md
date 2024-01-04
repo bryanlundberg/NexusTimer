@@ -1,3 +1,9 @@
+## Overview
+![enter image description here](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/public/portrait.png)
+This app is carefully designed to keep track of solving times, giving valuable information and making the speedcubing experience even better. It's an essential tool for who appreciate quality.
+![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
+
+
 ## About The Project
 
 For those new to speedcubing, it's a puzzle-solving challenge where cubers aim to solve the Rubik's Cube as quickly as possible. The objective is to align all the cube's colors correctly while racing against the clock for the fastest solve time. Achieving a fast solve time is the goal.
@@ -51,27 +57,23 @@ For those new to speedcubing, it's a puzzle-solving challenge where cubers aim t
 </div>
 </div>
 
-## Overview
-
-This timer is carefully designed to keep track of solving times, giving valuable information and making the speedcubing experience even better. It's an essential tool for speedcubers who appreciate quality.
-![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
 ## What's the difference?
 
 ### Cool Stats
-We like to find interesting data about you by extracting meaning from your training sessions, not like a conventional timer. This process often unveils insights you may not have even been aware of. 
+We like to find interesting data about you by extracting meaning from your training sessions, not like a conventional timer. 
 
-### Metrics by cube or method
+### Metrics by cube
 We have included what I called the **"Category Aggregation Principle."** To empower speedcubers to compute and analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations. 
 
-### No DNF
+### No more DNF
 Who likes? We won't cover calculations using DNF, instead delete the solve or add you a +2 penalty.
 
 ### Portability
-While our primary focus is on delivering an optimal experience for desktop training, we are actively striving to extend this functionality to cater to the needs of mobile users.
+Although our main emphasis lies in providing an exceptional experience for desktop training, we are actively working towards expanding this functionality to meet the requirements of mobile users.
 
 ### Modern design
-Our UI is heavily inspired by Twisty Timer, the ultimate timer on mobile category. However, we've added more features, with even more on the way.
+Our user interface draws significant inspiration from Twisty Timer, aiming to deliver a comparable and user-friendly experience for desktop users.
 
 This is what makes unique and versatile **Nexus Timer**.
 
@@ -81,7 +83,7 @@ This is what makes unique and versatile **Nexus Timer**.
 
 ### Prerequisites
 
-- Node & NPM Installed
+- Node >21.5.0 & NPM Installed
 
 ### Installation of NexusTimer
 
@@ -102,21 +104,18 @@ This is what makes unique and versatile **Nexus Timer**.
 ## Roadmap
 
 - [x] WCA
-  - [ ] Include optional 15s inspection
-  - [ ] Add voice alerts for inspection
-  - [ ] Handle penalties exceeding inspection time
+  - [ ] Incorporate voice alerts for inspection.
 - [x] Localization and Accessibility
-  - [ ] Enhance and expand translations
-  - [ ] Sounds for application
+  - [ ] Improve and extend translations.
 - [x] Animations
-  - [ ] Opening and closing modals (Fade in, out)
-  - [ ] Opening and closing menu-settings (smooth scroll left to right)
-  - [ ] Loading screen effect, only first time
-- [x] Cloud support (Backend)
-  - [ ] Move from localStorage to server storage
+  - [ ] Implement a loading screen effect, only on the first use.
+  - [ ] Enhance overall smoothness of transitions.
+- [x] Cloud features
+  - [ ] Integrate server storage for backups.
 
 See the [open issues](https://github.com/bryanlundberg/NexusTimer/issues) for a full list of proposed features (and known issues).
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
+
 
 ## Contributing
 
@@ -124,13 +123,6 @@ Contributions are what make the open source community such an amazing place to l
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
 
 
 
