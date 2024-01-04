@@ -21,6 +21,7 @@ import { useEffect, useState } from "react";
 import ChevronUp from "@/icons/ChevronUp";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import translation from "@/translations/global.json";
+import { motion } from "framer-motion";
 
 export default function ModalSolve() {
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -108,12 +109,17 @@ export default function ModalSolve() {
   return (
     <>
       <div
-        className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-screen px-8 py-4 overflow-x-hidden overflow-y-auto bg-black bg-opacity-75 md:inset-0 text-neutral-950"
+        className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-screen px-8 py-4 overflow-x-hidden overflow-y-auto bg-black bg-opacity-10 md:inset-0 text-neutral-950"
         onClick={(e) => {
           if (e.target === e.currentTarget) setStatus(false);
         }}
       >
-        <div className="relative w-full h-auto text-xs bg-white rounded-md sm:w-96">
+        <motion.div
+          initial={{ y: 0, scale: 0.9, opacity: 0.8 }}
+          animate={{ y: 0, scale: 1, opacity: 1 }}
+          exit={{ x: 0, scale: 0.9, opacity: 0 }}
+          className="relative w-full h-auto text-xs bg-white rounded-md sm:w-96"
+        >
           <div className="flex items-center justify-between px-3 py-2 border-b border-neutral-200">
             <div className="flex items-center ">
               <div className="tracking-wider">
@@ -234,7 +240,7 @@ export default function ModalSolve() {
               </div>
             </div>
           )}
-        </div>
+        </motion.div>
       </div>
     </>
   );

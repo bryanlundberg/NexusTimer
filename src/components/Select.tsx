@@ -12,6 +12,7 @@ import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import useClickOutside from "@/hooks/useClickOutside";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
@@ -51,17 +52,36 @@ export default function Select() {
             <SelectOptions />
           </div>
         </button>
-        {open === true ? (
-          <div
-            id="list-options"
-            className={
-              "absolute z-40 overflow-auto max-h-[400px] p-1 top-12 mt-1 right-0 w-full h-auto border rounded-md light:bg-neutral-200 light:border-neutral-400 light:text-neutral-900 dark:bg-zinc-900 dark:border-zinc-700 dark:text-slate-100"
-            }
-          >
-            {/* Favorites */}
-            <LabelSection description={translation.inputs["favorites"][lang]} />
-            {cubes?.map((cube) => {
-              if (cube.favorite) {
+        <AnimatePresence>
+          {open === true ? (
+            <motion.div
+              initial={{ y: 0, scale: 0.9, opacity: 0.8 }}
+              animate={{ y: 0, scale: 1, opacity: 1 }}
+              exit={{ x: 0, scale: 0.9, opacity: 0 }}
+              id="list-options"
+              className={
+                "absolute z-40 overflow-auto max-h-[400px] p-1 top-12 mt-1 right-0 w-full h-auto border rounded-md light:bg-neutral-200 light:border-neutral-400 light:text-neutral-900 dark:bg-zinc-900 dark:border-zinc-700 dark:text-slate-100"
+              }
+            >
+              {/* Favorites */}
+              <LabelSection
+                description={translation.inputs["favorites"][lang]}
+              />
+              {cubes?.map((cube) => {
+                if (cube.favorite) {
+                  return (
+                    <Option
+                      key={genId()}
+                      name={cube.name}
+                      category={cube.category}
+                      cubeId={cube.id}
+                      handleClose={handleClose}
+                    />
+                  );
+                }
+              })}
+              <LabelSection description={translation.inputs["list"][lang]} />
+              {cubes?.map((cube) => {
                 return (
                   <Option
                     key={genId()}
@@ -71,23 +91,11 @@ export default function Select() {
                     handleClose={handleClose}
                   />
                 );
-              }
-            })}
-            <LabelSection description={translation.inputs["list"][lang]} />
-            {cubes?.map((cube) => {
-              return (
-                <Option
-                  key={genId()}
-                  name={cube.name}
-                  category={cube.category}
-                  cubeId={cube.id}
-                  handleClose={handleClose}
-                />
-              );
-            })}
-            <AddCubeOption />
-          </div>
-        ) : null}
+              })}
+              <AddCubeOption />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
       </div>
     </>
   );

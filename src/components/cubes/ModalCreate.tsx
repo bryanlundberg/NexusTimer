@@ -7,6 +7,7 @@ import useModalCube from "@/hooks/useModalCube";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import DeleteModal from "@/components/cubes/DeleteModal";
 import CloseModal from "@/icons/CloseModal";
+import { motion } from "framer-motion";
 
 export default function ModalCreate() {
   const { editingCube } = useCubesModalStore();
@@ -33,14 +34,19 @@ export default function ModalCreate() {
         id="defaultModal"
         tabIndex={2}
         aria-hidden={false}
-        className={`fixed bg-opacity-75 bg-black top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center`}
+        className={`absolute bg-opacity-10 bg-black top-0 left-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-screen flex flex-col items-center`}
         onClick={(e) => {
           if (e.target === e.currentTarget) handleCloseModal();
         }}
       >
         <div className="relative w-full max-w-2xl max-h-full">
           {/* <!-- Modal content --> */}
-          <div className="relative bg-white border rounded-lg">
+          <motion.div
+            initial={{ y: 0, scale: 0.9, opacity: 0.8 }}
+            animate={{ y: 0, scale: 1, opacity: 1 }}
+            exit={{ x: 0, scale: 0.9, opacity: 0 }}
+            className="relative bg-white border rounded-lg"
+          >
             {/* <!-- Modal header --> */}
             <div className="flex items-start justify-between gap-3 p-4 border-b rounded-t border-neutral-200">
               <h3 className="flex items-center justify-center w-32 h-8 text-sm font-semibold text-neutral-950">
@@ -140,7 +146,7 @@ export default function ModalCreate() {
                   : translation.inputs["create"][lang]}
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       {showDeleteConfirmation && (
