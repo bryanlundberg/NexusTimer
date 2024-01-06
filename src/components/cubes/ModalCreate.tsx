@@ -28,7 +28,7 @@ export default function ModalCreate() {
     showDeleteConfirmation,
     cubeData,
   } = useModalCube();
-  console.log(cubeName)
+
   return (
     <>
       {/* <!-- Main modal --> */}
@@ -70,10 +70,12 @@ export default function ModalCreate() {
                   <p className="px-2 mt-2 text-sm text-red-600">
                     {translation.cubes.modal["error-name"][lang]}
                   </p>
-                ) : isDuplicate && (
-                  <p className="px-2 mt-2 text-sm text-red-600">
-                    {translation.cubes.modal["error-duplicate"]["en"]}
-                  </p>
+                ) : (
+                  isDuplicate && (
+                    <p className="px-2 mt-2 text-sm text-red-600">
+                      {translation.cubes.modal["error-duplicate"]["en"]}
+                    </p>
+                  )
                 )}
               </div>
               <button
