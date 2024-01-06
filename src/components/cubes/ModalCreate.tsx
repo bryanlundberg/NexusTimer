@@ -73,7 +73,7 @@ export default function ModalCreate() {
                 ) : (
                   isDuplicate && (
                     <p className="px-2 mt-2 text-sm text-red-600">
-                      {translation.cubes.modal["error-duplicate"]["en"]}
+                      {translation.cubes.modal["error-duplicate"][lang]}
                     </p>
                   )
                 )}
