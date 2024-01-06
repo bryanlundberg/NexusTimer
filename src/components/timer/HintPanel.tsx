@@ -1,15 +1,17 @@
 import useClickOutside from "@/hooks/useClickOutside";
 import LightBulb from "@/icons/LightBulb";
-import { Layers } from "@/interfaces/types/Layers";
 import genId from "@/lib/genId";
 import genSolution from "@/lib/timer/genSolution";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRef } from "react";
+import translation from "@/translations/global.json";
 
 export default function HintPanel() {
   const { displayHint, setDisplayHint, scramble, selectedCube } =
     useTimerStore();
+  const { lang } = useSettingsModalStore();
   const componentRef = useRef<HTMLDivElement | null>(null);
   useClickOutside(componentRef, () => setDisplayHint(false));
   const solutions = genSolution("3x3", scramble, "yellow");
@@ -27,13 +29,13 @@ export default function HintPanel() {
               className="bg-yellow-100 bottom-0 rounded-t-lg w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-sm mx-auto h-full"
             >
               <div className="p-2 border-b text-2xl border-gray-300 flex justify-between items-center">
-                <div>Hint</div>
+                <div>{translation.timer["hint"][lang]}</div>
                 <div className="text-black">
                   <LightBulb />
                 </div>
               </div>
               <div className="p-3 max-h-full overflow-auto">
-                <div>Optimal Yellow</div>
+                <div>{translation.timer["optimal-layer-yellow"][lang]}</div>
                 {solutions.cross.map((i) => {
                   return (
                     <OptimalCrossLayer
