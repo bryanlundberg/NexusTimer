@@ -2939,6 +2939,10 @@
         "et": "Kuubi nimi puudub"
       },
 
+      "error-duplicate":{
+        "en": "Cube name already in use"
+      },
+
       "current-select": {
         "en": "Current selection:",
         "es": "Selección actual:",

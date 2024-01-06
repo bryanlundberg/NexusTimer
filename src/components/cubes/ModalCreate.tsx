@@ -13,6 +13,7 @@ export default function ModalCreate() {
   const { editingCube } = useCubesModalStore();
   const {
     error,
+    isDuplicate,
     handleClickRadio,
     handleWriteCubeName,
     handleCreateCube,
@@ -27,6 +28,7 @@ export default function ModalCreate() {
     showDeleteConfirmation,
     cubeData,
   } = useModalCube();
+  console.log(cubeName)
   return (
     <>
       {/* <!-- Main modal --> */}
@@ -64,9 +66,13 @@ export default function ModalCreate() {
                   focus={true}
                   className={`bg-neutral-100 focus:bg-neutral-50 text-neutral-900 border border-neutral-300`}
                 />
-                {error && (
+                {error ? (
                   <p className="px-2 mt-2 text-sm text-red-600">
                     {translation.cubes.modal["error-name"][lang]}
+                  </p>
+                ) : isDuplicate && (
+                  <p className="px-2 mt-2 text-sm text-red-600">
+                    {translation.cubes.modal["error-duplicate"]["en"]}
                   </p>
                 )}
               </div>
