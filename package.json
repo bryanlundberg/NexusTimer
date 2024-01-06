@@ -16,6 +16,7 @@
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
+    "cube-solver": "^2.4.1",
     "cubing": "^0.44.1",
     "date-fns": "^2.30.0",
     "eslint": "8.49.0",
