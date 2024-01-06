@@ -26,6 +26,7 @@ export default function useModalCube() {
   const { setCubes, setSelectedCube, setNewScramble, selectedCube } =
     useTimerStore();
   const [error, setError] = useState<boolean>(false);
+  const [isDuplicate, setDuplicate] = useState<boolean>(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [cubeData, setCubeData] = useState<DeleteCubeDetails | null>(null);
 
@@ -41,8 +42,14 @@ export default function useModalCube() {
   };
 
   const handleCreateCube = (name: string, category: Categories) => {
+    const cubeDB = loadCubes();
+    const isDuplicate = cubeDB.some(cube => cube.name === name);
     if (name.trim() === "") {
       setError(true);
+      return;
+    }
+    if(isDuplicate) {
+      setDuplicate(true);
       return;
     }
     const newCubes = createCube({
@@ -57,12 +64,17 @@ export default function useModalCube() {
   };
 
   const handleEditCube = (name: string, category: Categories) => {
+    const cubeDB = loadCubes();
+    const isDuplicate = cubeDB.some(cube => cube.name === name);
     if (name.trim() === "") {
       setError(true);
       return;
     }
+    if(isDuplicate) {
+      setDuplicate(true);
+      return;
+    }
     if (!editingCube) return;
-    const cubeDB = loadCubes();
 
     for (const cube of cubeDB) {
       if (cube.id === editingCube.id) {
@@ -152,6 +164,7 @@ export default function useModalCube() {
 
   return {
     error,
+    isDuplicate,
     handleClickRadio,
     handleWriteCubeName,
     handleCreateCube,
