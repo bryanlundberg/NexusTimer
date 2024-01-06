@@ -19,6 +19,7 @@ export default function useTimer() {
     setCubes,
     setSelectedCube,
     setLastSolve,
+    displayHint,
   } = useTimerStore();
 
   const { settings, setSettingsOpen } = useSettingsModalStore();
@@ -247,6 +248,8 @@ export default function useTimer() {
       setSettingsOpen(false);
     };
 
+    if (displayHint) return;
+
     const touchElements = document.querySelectorAll("#touch");
     window.addEventListener("popstate", closeModal);
     window.addEventListener("keydown", handleKeyDown);
@@ -280,6 +283,7 @@ export default function useTimer() {
     setSelectedCube,
     solvingTime,
     setTimerStatus,
+    displayHint,
   ]);
 
   return {
