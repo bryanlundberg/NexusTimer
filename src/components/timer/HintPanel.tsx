@@ -14,7 +14,10 @@ export default function HintPanel() {
   const { lang } = useSettingsModalStore();
   const componentRef = useRef<HTMLDivElement | null>(null);
   useClickOutside(componentRef, () => setDisplayHint(false));
-  const solutions = genSolution("3x3", scramble, "yellow");
+
+  if (!selectedCube) return null;
+  const solutions = genSolution(selectedCube.category, scramble, "yellow");
+
   return (
     <>
       <AnimatePresence>

@@ -23,17 +23,18 @@ export default function genSolution(
     eoline: [],
   };
 
-  if (event === "3x3" && scramble) {
-    if (layer === "yellow") {
-      solution.cross.push(cubeSolver.solve(`${scramble}`, "cross"));
-      solution.cross.push(cubeSolver.solve(`y ${scramble}`, "cross"));
-      solution.cross.push(cubeSolver.solve(`y y ${scramble}`, "cross"));
-      solution.cross.push(cubeSolver.solve(`y' ${scramble}`, "cross"));
-      solution.xcross.push(cubeSolver.solve(`${scramble}`, "xcross"));
-      solution.xcross.push(cubeSolver.solve(`y ${scramble}`, "xcross"));
-      solution.xcross.push(cubeSolver.solve(`y y ${scramble}`, "xcross"));
-      solution.xcross.push(cubeSolver.solve(`y' ${scramble}`, "xcross"));
-    }
+  if (event !== "3x3") return solution;
+
+  if (layer === "yellow") {
+    solution.cross.push(cubeSolver.solve(`${scramble}`, "cross"));
+    solution.cross.push(cubeSolver.solve(`y ${scramble}`, "cross"));
+    solution.cross.push(cubeSolver.solve(`y y ${scramble}`, "cross"));
+    solution.cross.push(cubeSolver.solve(`y' ${scramble}`, "cross"));
+    solution.xcross.push(cubeSolver.solve(`${scramble}`, "xcross"));
+    solution.xcross.push(cubeSolver.solve(`y ${scramble}`, "xcross"));
+    solution.xcross.push(cubeSolver.solve(`y y ${scramble}`, "xcross"));
+    solution.xcross.push(cubeSolver.solve(`y' ${scramble}`, "xcross"));
   }
+
   return solution;
 }
