@@ -17,7 +17,7 @@ import ElipsisHorizontal from "@/icons/ElipsisHorizontal";
 import ArchiveBox from "@/icons/ArchiveBox";
 import DocumentDuplicate from "@/icons/DocumentDuplicate";
 import Trash from "@/icons/Trash";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ChevronUp from "@/icons/ChevronUp";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import translation from "@/translations/global.json";
@@ -29,6 +29,17 @@ export default function ModalSolve() {
   const { status, solve, setStatus } = useSolvesStore();
   const { setCubes, setSelectedCube, selectedCube } = useTimerStore();
   const { lang } = useSettingsModalStore();
+  const elementRef = useRef(null);
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    if (elementRef.current && 
+      (elementRef.current as HTMLElement).scrollHeight > (elementRef.current as HTMLElement).clientHeight) {
+      setScrolling(true);
+    } else {
+      setScrolling(false);
+    }
+  }, [showOptions])
 
   useEffect(() => {
     setShowOptions(false);
@@ -113,6 +124,7 @@ export default function ModalSolve() {
         onClick={(e) => {
           if (e.target === e.currentTarget) setStatus(false);
         }}
+        ref={elementRef}
       >
         <motion.div
           initial={{ y: 0, scale: 0.9, opacity: 0.8 }}
@@ -206,7 +218,7 @@ export default function ModalSolve() {
           </div>
           {/* options menu */}
           {showOptions && (
-            <div className="absolute flex flex-col w-32 gap-3 py-2 mt-1 bg-white rounded-md">
+            <div className={`absolute flex flex-col ${scrolling && 'bottom-10'} shadow-lg w-32 gap-3 py-2 mt-1 bg-white rounded-md`}>
               <div
                 className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
                 onClick={handleMove}
