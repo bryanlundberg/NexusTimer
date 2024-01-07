@@ -5,18 +5,35 @@ import genSolution from "@/lib/timer/genSolution";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import translation from "@/translations/global.json";
 
 export default function HintPanel() {
-  const { displayHint, setDisplayHint, scramble, selectedCube } =
+  const { displayHint, setDisplayHint, scramble, selectedCube, isSolving } =
     useTimerStore();
   const { lang } = useSettingsModalStore();
   const componentRef = useRef<HTMLDivElement | null>(null);
   useClickOutside(componentRef, () => setDisplayHint(false));
+  const prevScramble = useRef<string | null>(null);
+  const [cachedSolutions, setCachedSolutions] = useState<CrossSolutions | null>(
+    null
+  );
 
-  if (!selectedCube) return null;
-  const solutions = genSolution(selectedCube.category, scramble, "yellow");
+  useEffect(() => {
+    if (selectedCube && !isSolving) {
+      if (scramble !== prevScramble.current) {
+        const newSolutions = genSolution(
+          selectedCube.category,
+          scramble,
+          "yellow"
+        );
+        setCachedSolutions(newSolutions);
+        prevScramble.current = scramble;
+      }
+    }
+  }, [selectedCube, isSolving, scramble]);
+
+  if (!selectedCube || isSolving) return null;
 
   return (
     <>
@@ -39,24 +56,12 @@ export default function HintPanel() {
               </div>
               <div className="p-3 max-h-full overflow-auto">
                 <div>{translation.timer["optimal-layer-yellow"][lang]}</div>
-                {solutions.cross.map((i) => {
-                  return (
-                    <OptimalCrossLayer
-                      key={genId()}
-                      solution={i}
-                      type="cross"
-                    />
-                  );
-                })}
-                {solutions.xcross.map((i) => {
-                  return (
-                    <OptimalCrossLayer
-                      key={genId()}
-                      solution={i}
-                      type="xcross"
-                    />
-                  );
-                })}
+                {cachedSolutions?.cross.map((i) => (
+                  <OptimalCrossLayer key={genId()} solution={i} type="cross" />
+                ))}
+                {cachedSolutions?.xcross.map((i) => (
+                  <OptimalCrossLayer key={genId()} solution={i} type="xcross" />
+                ))}
               </div>
             </motion.div>
           </div>
