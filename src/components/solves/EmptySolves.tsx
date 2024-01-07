@@ -18,7 +18,7 @@ export default function EmptySolves({
         className="flex flex-col items-center justify-center gap-3 m-3 text-lg border border-dashed rounded-md grow border-zinc-600"
       >
         {icon === "no-cube-selected" ? <ArrowRays /> : <CubeIcon />}
-        <div>{message}</div>
+        <div className="text-center">{message}</div>
       </Link>
     </>
   );
