@@ -21,7 +21,8 @@ import { useEffect, useState, useRef } from "react";
 import ChevronUp from "@/icons/ChevronUp";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import translation from "@/translations/global.json";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import useClickOutside from "@/hooks/useClickOutside";
 
 export default function ModalSolve() {
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -29,34 +30,20 @@ export default function ModalSolve() {
   const { status, solve, setStatus } = useSolvesStore();
   const { setCubes, setSelectedCube, selectedCube } = useTimerStore();
   const { lang } = useSettingsModalStore();
-  const elementRef = useRef(null);
-  const [scrolling, setScrolling] = useState(false);
-
-  useEffect(() => {
-    if (elementRef.current && 
-      (elementRef.current as HTMLElement).scrollHeight > (elementRef.current as HTMLElement).clientHeight) {
-      setScrolling(true);
-    } else {
-      setScrolling(false);
-    }
-  }, [showOptions])
+  const submenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setShowOptions(false);
     setShowScramble(false);
   }, [status, solve]);
 
+  useClickOutside(submenuRef, () => setShowOptions(false));
+
   useEscape(() => setStatus(false));
 
   if (!solve || !status) return null;
 
   const cubeObj = cubeCollection.find((item) => item.name === solve?.category);
-
-  // const isAllSolve = () => {
-  //   return selectedCube?.solves.all.find(
-  //     (allSolve) => allSolve.id === solve.id
-  //   );
-  // };
 
   const handleMove = () => {
     if (selectedCube) {
@@ -120,11 +107,10 @@ export default function ModalSolve() {
   return (
     <>
       <div
-        className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-screen px-8 py-4 overflow-x-hidden overflow-y-auto bg-black bg-opacity-10 md:inset-0 text-neutral-950"
+        className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-screen px-4 py-10 overflow-x-hidden overflow-y-auto bg-black bg-opacity-10 md:inset-0 text-neutral-950"
         onClick={(e) => {
           if (e.target === e.currentTarget) setStatus(false);
         }}
-        ref={elementRef}
       >
         <motion.div
           initial={{ y: 0, scale: 0.9, opacity: 0.8 }}
@@ -167,7 +153,11 @@ export default function ModalSolve() {
               <div>
                 <CubeTransparent />
               </div>
-              <div className="text-base font-normal text-justify">
+              <div
+                className={`${
+                  solve.scramble.length > 100 ? "text-sm" : "text-base"
+                } font-normal text-justify`}
+              >
                 {solve.scramble}
               </div>
               <div className="transition duration-200 hover:text-neutral-500 hover:cursor-pointer">
@@ -189,7 +179,10 @@ export default function ModalSolve() {
             <div>
               <div
                 className="w-5 h-5 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
-                onClick={() => setShowOptions(!showOptions)}
+                onClick={() => {
+                  setShowOptions(!showOptions);
+                  setShowScramble(false);
+                }}
               >
                 <ElipsisHorizontal />
               </div>
@@ -217,41 +210,49 @@ export default function ModalSolve() {
             </div>
           </div>
           {/* options menu */}
-          {showOptions && (
-            <div className={`absolute flex flex-col ${scrolling && 'bottom-10'} shadow-lg w-32 gap-3 py-2 mt-1 bg-white rounded-md`}>
-              <div
-                className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
-                onClick={handleMove}
+          <AnimatePresence>
+            {showOptions && (
+              <motion.div
+                initial={{ y: 0, scale: 0.9, opacity: 0.8 }}
+                animate={{ y: 0, scale: 1, opacity: 1 }}
+                exit={{ x: 0, scale: 0.9, opacity: 0 }}
+                ref={submenuRef}
+                className="absolute flex flex-col w-32 gap-3 py-2 mt-1 bg-white rounded-md"
               >
-                <div className="w-4 h-4">
-                  <ArchiveBox />
+                <div
+                  className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                  onClick={handleMove}
+                >
+                  <div className="w-4 h-4">
+                    <ArchiveBox />
+                  </div>
+                  <div>{translation.solves["archive"][lang]}</div>
                 </div>
-                <div>{translation.solves["archive"][lang]}</div>
-              </div>
-              <div
-                className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
-                onClick={() =>
-                  handleCopyToClipboard(
-                    `[${formatTime(solve.time)}s] - ${solve.scramble}`
-                  )
-                }
-              >
-                <div className="w-4 h-4">
-                  <DocumentDuplicate />
+                <div
+                  className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                  onClick={() =>
+                    handleCopyToClipboard(
+                      `[${formatTime(solve.time)}s] - ${solve.scramble}`
+                    )
+                  }
+                >
+                  <div className="w-4 h-4">
+                    <DocumentDuplicate />
+                  </div>
+                  <div>{translation.solves["copy"][lang]}</div>
                 </div>
-                <div>{translation.solves["copy"][lang]}</div>
-              </div>
-              <div
-                className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
-                onClick={handleDelete}
-              >
-                <div className="w-4 h-4">
-                  <Trash />
+                <div
+                  className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                  onClick={handleDelete}
+                >
+                  <div className="w-4 h-4">
+                    <Trash />
+                  </div>
+                  <div>{translation.solves["remove"][lang]}</div>
                 </div>
-                <div>{translation.solves["remove"][lang]}</div>
-              </div>
-            </div>
-          )}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
       </div>
     </>
