@@ -1,7 +1,7 @@
 import { PuzzleID } from "cubing/twisty";
 import { Categories } from "./Categories";
 
-type Event =
+export type Event =
   | null
   | "222"
   | "333"

@@ -4,7 +4,7 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function ScrambleImagePanel() {
   const { settings } = useSettingsModalStore();
-  const { scramble, event } = useTimerStore();
+  const { scramble, selectedCube } = useTimerStore();
 
   const showScramble = settings.features.scrambleImage.status;
 
@@ -14,7 +14,7 @@ export default function ScrambleImagePanel() {
         className="w-full h-full"
         show={showScramble}
         scramble={scramble}
-        event={event}
+        event={selectedCube ? selectedCube.category : "3x3"}
       ></ScrambleDisplay>
     </>
   );

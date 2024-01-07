@@ -13,13 +13,13 @@ export default function TimerWidgets() {
 
   return (
     <>
-      <div className="flex flex-col gap-1" id="touch">
+      <div className="flex flex-col gap-1">
         {settings.alerts.bestAverage.status &&
         ((global.ao5 !== 0 && global.ao5 === session.ao5) ||
           (global.ao12 !== 0 && global.ao12 === session.ao12) ||
           (global.ao50 !== 0 && global.ao50 === session.ao50) ||
           (global.ao100 !== 0 && global.ao100 === session.ao100)) ? (
-          <div className="flex justify-end">
+          <div className="flex justify-end" id="touch">
             <div className="p-1 text-xs border rounded-md light:bg-neutral-100 light:border-neutral-900 dark:bg-zinc-900 dark:border-neutral-400">
               {translation.timer["new_best_average"][lang]}
             </div>

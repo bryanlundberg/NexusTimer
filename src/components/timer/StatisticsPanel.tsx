@@ -9,7 +9,10 @@ export default function StatisticsPanel() {
 
   return (
     <>
-      <div className="flex flex-col justify-center w-full h-full gap-1">
+      <div
+        className="flex flex-col justify-center w-full h-full gap-1"
+        id="touch"
+      >
         {settings.features.sessionStats.status ? (
           <>
             <div className="flex justify-end w-full font-medium text-right">
