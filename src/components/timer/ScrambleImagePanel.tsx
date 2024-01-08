@@ -13,7 +13,7 @@ export default function ScrambleImagePanel() {
     <>
       {!zoomInScramble && (
         <ScrambleDisplay
-          className="w-full h-full"
+          className="w-full h-full cursor-pointer"
           show={showScramble}
           scramble={scramble}
           event={selectedCube ? selectedCube.category : "3x3"}

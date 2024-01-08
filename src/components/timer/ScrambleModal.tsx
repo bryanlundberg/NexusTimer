@@ -13,7 +13,7 @@ export default function ScrambleModal() {
           onClick={() => setZoomInScramble(false)}
         >
           <ScrambleDisplay
-            className="w-96 h-96"
+            className="w-full h-[30rem] mx-auto"
             show={true}
             event={selectedCube ? selectedCube.category : "3x3"}
             scramble={scramble}
