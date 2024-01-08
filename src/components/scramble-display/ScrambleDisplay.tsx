@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { TwistyPlayer } from "cubing/twisty";
 import getDisplayId from "@/lib/getDisplayId";
 import { Categories } from "@/interfaces/Categories";
+import { useTimerStore } from "@/store/timerStore";
 
 interface ScrambleDisplay {
   className: string;
   show: boolean;
   scramble: string | null;
   event: Categories;
+  handleClick?: () => void;
 }
 
 export default function ScrambleDisplay({
@@ -15,6 +17,7 @@ export default function ScrambleDisplay({
   scramble,
   event,
   className,
+  handleClick,
 }: ScrambleDisplay) {
   useEffect(() => {
     if (!show) return;
@@ -44,6 +47,14 @@ export default function ScrambleDisplay({
   }, [show, event, scramble]);
 
   return (
-    <>{show ? <div className={className} id="scramble-display"></div> : null}</>
+    <>
+      {show ? (
+        <div
+          onClick={handleClick}
+          className={className}
+          id="scramble-display"
+        ></div>
+      ) : null}
+    </>
   );
 }
