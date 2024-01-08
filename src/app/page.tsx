@@ -7,8 +7,10 @@ import { MainTimer } from "@/components/timer/MainTimer";
 import FullscreenOption from "@/components/timer/FullscreenOption";
 import HintPanel from "@/components/timer/HintPanel";
 import ScrambleModal from "@/components/timer/ScrambleModal";
+import useInitializeTimer from "@/hooks/useInitializeHint";
 
 export default function Home() {
+  useInitializeTimer();
   return (
     <>
       <TimerContainer>
