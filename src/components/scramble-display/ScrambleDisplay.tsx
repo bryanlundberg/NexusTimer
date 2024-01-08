@@ -1,12 +1,15 @@
 import { useEffect } from "react";
-import { TwistyPlayer, PuzzleID } from "cubing/twisty";
-import { cubeCollection } from "@/lib/const/cubeCollection";
+import { TwistyPlayer } from "cubing/twisty";
+import getDisplayId from "@/lib/getDisplayId";
+import { Categories } from "@/interfaces/Categories";
+import { useTimerStore } from "@/store/timerStore";
 
 interface ScrambleDisplay {
   className: string;
   show: boolean;
   scramble: string | null;
-  event: string;
+  event: Categories;
+  handleClick?: () => void;
 }
 
 export default function ScrambleDisplay({
@@ -14,6 +17,7 @@ export default function ScrambleDisplay({
   scramble,
   event,
   className,
+  handleClick,
 }: ScrambleDisplay) {
   useEffect(() => {
     if (!show) return;
@@ -21,13 +25,7 @@ export default function ScrambleDisplay({
     const display = document.querySelector("twisty-player");
     display?.remove();
 
-    const getDisplayId = (): PuzzleID | null => {
-      const category = cubeCollection.filter((u) => u.event === event);
-      if (category.length >= 1) return category[0].displayId;
-      return null;
-    };
-
-    const displayId = getDisplayId();
+    const displayId = getDisplayId(event);
 
     const player = new TwistyPlayer({
       puzzle: displayId || "3x3x3",
@@ -49,6 +47,14 @@ export default function ScrambleDisplay({
   }, [show, event, scramble]);
 
   return (
-    <>{show ? <div className={className} id="scramble-display"></div> : null}</>
+    <>
+      {show ? (
+        <div
+          onClick={handleClick}
+          className={className}
+          id="scramble-display"
+        ></div>
+      ) : null}
+    </>
   );
 }

@@ -6,7 +6,6 @@ import { useTimerStore } from "@/store/timerStore";
 import formatTime from "@/lib/formatTime";
 import moveSolve from "@/lib/moveSolve";
 import { ScrambleDisplay } from "@/components/scramble-display/index";
-import { cubeCollection } from "@/lib/const/cubeCollection";
 import CalendarDays from "@/icons/CalentarDays";
 import useEscape from "@/hooks/useEscape";
 import { format } from "date-fns";
@@ -168,7 +167,7 @@ export default function ModalSolve() {
                     className="w-full h-32 my-3"
                     show={status}
                     scramble={solve.scramble}
-                    event={solve.category || ""}
+                    event={solve ? solve.category : "3x3"}
                   ></ScrambleDisplay>
                 )}
                 <div>{solve.comment}</div>

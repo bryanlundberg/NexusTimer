@@ -4,18 +4,22 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function ScrambleImagePanel() {
   const { settings } = useSettingsModalStore();
-  const { scramble, event } = useTimerStore();
+  const { scramble, selectedCube, setZoomInScramble, zoomInScramble } =
+    useTimerStore();
 
   const showScramble = settings.features.scrambleImage.status;
 
   return (
     <>
-      <ScrambleDisplay
-        className="w-full h-full"
-        show={showScramble}
-        scramble={scramble}
-        event={event}
-      ></ScrambleDisplay>
+      {!zoomInScramble && (
+        <ScrambleDisplay
+          className="w-full h-full cursor-pointer"
+          show={showScramble}
+          scramble={scramble}
+          event={selectedCube ? selectedCube.category : "3x3"}
+          handleClick={() => setZoomInScramble(true)}
+        ></ScrambleDisplay>
+      )}
     </>
   );
 }
