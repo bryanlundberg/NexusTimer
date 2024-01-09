@@ -30,6 +30,7 @@ type TimerStore = {
   setZoomInScramble: (status: boolean) => void;
   setHints: (solutions: CrossSolutions) => void;
   setInitializing: (status: boolean) => void;
+  setCustomScramble: (scramble: string) => void;
 };
 
 export const useTimerStore = create<TimerStore>((set) => ({
@@ -47,6 +48,9 @@ export const useTimerStore = create<TimerStore>((set) => ({
   initializing: true,
   setNewScramble: (cube: Cube | null) => {
     set({ scramble: cube ? genScramble(cube.category) : null });
+  },
+  setCustomScramble: (scramble: string) => {
+    set({ scramble: scramble });
   },
   setCubes: (cubes: Cube[]) => {
     set({ cubes });
