@@ -4,6 +4,8 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import translation from "@/translations/global.json";
 import Loading from "../Loading";
+import Pencil from "@/icons/Pencil";
+import { AnimatePresence, motion } from "framer-motion";
 
 export function ScrambleZone() {
   const {
@@ -14,6 +16,7 @@ export function ScrambleZone() {
     setHints,
     initializing,
     isSolving,
+    setCustomScramble,
   } = useTimerStore();
   const { lang, settings } = useSettingsModalStore();
 
@@ -39,24 +42,48 @@ export function ScrambleZone() {
             </div>
           )}
         </div>
+        <AnimatePresence>
+          {selectedCube?.category && !isSolving && !displayHint && (
+            <motion.div
+              initial={{ opacity: 0.1 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0.1 }}
+              className="absolute bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3"
+            >
+              <div
+                onClick={() => {
+                  const newScramble = window.prompt(`Enter a new scramble`);
+                  if (newScramble?.trim()) {
+                    console.log(newScramble);
+                    setCustomScramble(newScramble);
+                  }
+                }}
+                className="hover:scale-105 light:hover:text-neutral-500 dark:hover:text-neutral-200 duration-200 transition"
+              >
+                <Pencil />
+              </div>
 
-        {selectedCube &&
-        (selectedCube.category === "3x3" ||
-          selectedCube.category === "3x3 OH") &&
-        !displayHint &&
-        !isSolving ? (
-          <div
-            onClick={() => {
-              setDisplayHint(true);
-              genSolution(selectedCube.category, scramble, "yellow").then(
-                (res: CrossSolutions) => setHints(res)
-              );
-            }}
-            className="absolute bottom-0 right-0 cursor-pointer hover:text-yellow-400 duration-300 transition translate-y-10 hover:scale-105"
-          >
-            <LightBulb />
-          </div>
-        ) : null}
+              {selectedCube?.category &&
+                ["3x3", "3x3 OH"].includes(selectedCube.category) &&
+                !displayHint &&
+                !isSolving && (
+                  <div
+                    onClick={() => {
+                      setDisplayHint(true);
+                      genSolution(
+                        selectedCube.category,
+                        scramble,
+                        "yellow"
+                      ).then((res: CrossSolutions) => setHints(res));
+                    }}
+                    className="hover:scale-105 hover:text-yellow-600 duration-200 transition"
+                  >
+                    <LightBulb />
+                  </div>
+                )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
