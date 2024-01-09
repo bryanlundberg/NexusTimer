@@ -8,33 +8,46 @@ import cubeSolver from "cube-solver";
  * @param {Categories} event - The event category.
  * @param {string | null} scramble - The scramble string or null if not provided.
  * @param {Layers} layer - The layer color (e.g., "yellow").
- * @returns {CrossSolutions} - Object containing different cross solutions.
+ * @returns {Promise<CrossSolutions>} - Promise resolving to an object containing different cross solutions.
  */
 
 export default function genSolution(
   event: Categories,
   scramble: string | null,
   layer: Layers
-): CrossSolutions {
-  const solution: CrossSolutions = {
-    cross: [],
-    xcross: [],
-    fb: [],
-    eoline: [],
-  };
+): Promise<CrossSolutions> {
+  return new Promise((resolve) => {
+    const solution: CrossSolutions = {
+      cross: [],
+      xcross: [],
+      fb: [],
+      eoline: [],
+    };
 
-  if (event !== "3x3") return solution;
+    if (event === "3x3" || event === "3x3 OH") {
+      if (layer === "yellow") {
+        const crossPromises = [
+          cubeSolver.solve(`${scramble}`, "cross"),
+          cubeSolver.solve(`y ${scramble}`, "cross"),
+          cubeSolver.solve(`y y ${scramble}`, "cross"),
+          cubeSolver.solve(`y' ${scramble}`, "cross"),
+        ];
 
-  if (layer === "yellow") {
-    solution.cross.push(cubeSolver.solve(`${scramble}`, "cross"));
-    solution.cross.push(cubeSolver.solve(`y ${scramble}`, "cross"));
-    solution.cross.push(cubeSolver.solve(`y y ${scramble}`, "cross"));
-    solution.cross.push(cubeSolver.solve(`y' ${scramble}`, "cross"));
-    solution.xcross.push(cubeSolver.solve(`${scramble}`, "xcross"));
-    solution.xcross.push(cubeSolver.solve(`y ${scramble}`, "xcross"));
-    solution.xcross.push(cubeSolver.solve(`y y ${scramble}`, "xcross"));
-    solution.xcross.push(cubeSolver.solve(`y' ${scramble}`, "xcross"));
-  }
+        const xcrossPromises = [
+          cubeSolver.solve(`${scramble}`, "xcross"),
+          cubeSolver.solve(`y ${scramble}`, "xcross"),
+          cubeSolver.solve(`y y ${scramble}`, "xcross"),
+          cubeSolver.solve(`y' ${scramble}`, "xcross"),
+        ];
 
-  return solution;
+        Promise.all([...crossPromises, ...xcrossPromises]).then((results) => {
+          solution.cross = results.slice(0, 4);
+          solution.xcross = results.slice(4, 8);
+          resolve(solution);
+        });
+      }
+    } else {
+      resolve(solution);
+    }
+  });
 }

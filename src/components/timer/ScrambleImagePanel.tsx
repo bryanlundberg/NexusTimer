@@ -4,14 +4,19 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function ScrambleImagePanel() {
   const { settings } = useSettingsModalStore();
-  const { scramble, selectedCube, setZoomInScramble, zoomInScramble } =
-    useTimerStore();
+  const {
+    scramble,
+    selectedCube,
+    setZoomInScramble,
+    zoomInScramble,
+    isSolving,
+  } = useTimerStore();
 
   const showScramble = settings.features.scrambleImage.status;
 
   return (
     <>
-      {!zoomInScramble && (
+      {!zoomInScramble && !isSolving && (
         <ScrambleDisplay
           className="w-full h-full cursor-pointer"
           show={showScramble}

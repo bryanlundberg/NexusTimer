@@ -1,12 +1,22 @@
 import LightBulb from "@/icons/LightBulb";
+import genSolution from "@/lib/timer/genSolution";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import translation from "@/translations/global.json";
+import Loading from "../Loading";
 
 export function ScrambleZone() {
-  const { selectedCube, scramble, setDisplayHint, displayHint } =
-    useTimerStore();
+  const {
+    selectedCube,
+    scramble,
+    setDisplayHint,
+    displayHint,
+    setHints,
+    initializing,
+    isSolving,
+  } = useTimerStore();
   const { lang, settings } = useSettingsModalStore();
+
   return (
     <>
       <div className="relative">
@@ -17,12 +27,31 @@ export function ScrambleZone() {
               : "bg-transparent"
           }`}
         >
-          {selectedCube ? scramble : translation.timer["empty-scramble"][lang]}
+          {initializing
+            ? "Initializing please wait."
+            : selectedCube
+            ? scramble
+            : translation.timer["empty-scramble"][lang]}
+
+          {initializing && (
+            <div className="flex w-full justify-center my-3">
+              <Loading />
+            </div>
+          )}
         </div>
 
-        {selectedCube && selectedCube.category === "3x3" && !displayHint ? (
+        {selectedCube &&
+        (selectedCube.category === "3x3" ||
+          selectedCube.category === "3x3 OH") &&
+        !displayHint &&
+        !isSolving ? (
           <div
-            onClick={() => setDisplayHint(true)}
+            onClick={() => {
+              setDisplayHint(true);
+              genSolution(selectedCube.category, scramble, "yellow").then(
+                (res: CrossSolutions) => setHints(res)
+              );
+            }}
             className="absolute bottom-0 right-0 cursor-pointer hover:text-yellow-400 duration-300 transition translate-y-10 hover:scale-105"
           >
             <LightBulb />

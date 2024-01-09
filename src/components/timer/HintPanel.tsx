@@ -1,44 +1,23 @@
 import useClickOutside from "@/hooks/useClickOutside";
 import LightBulb from "@/icons/LightBulb";
 import genId from "@/lib/genId";
-import genSolution from "@/lib/timer/genSolution";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import translation from "@/translations/global.json";
 
 export default function HintPanel() {
-  const { displayHint, setDisplayHint, scramble, selectedCube, isSolving } =
+  const { displayHint, setDisplayHint, selectedCube, isSolving, hint } =
     useTimerStore();
   const { lang } = useSettingsModalStore();
   const componentRef = useRef<HTMLDivElement | null>(null);
   useClickOutside(componentRef, () => setDisplayHint(false));
-  const prevScramble = useRef<string | null>(null);
-  const [cachedSolutions, setCachedSolutions] = useState<CrossSolutions | null>(
-    null
-  );
-
-  useEffect(() => {
-    if (selectedCube && !isSolving) {
-      if (scramble !== prevScramble.current) {
-        const newSolutions = genSolution(
-          selectedCube.category,
-          scramble,
-          "yellow"
-        );
-        setCachedSolutions(newSolutions);
-        prevScramble.current = scramble;
-      }
-    }
-  }, [selectedCube, isSolving, scramble]);
-
-  if (!selectedCube || isSolving) return null;
 
   return (
     <>
       <AnimatePresence>
-        {displayHint && selectedCube ? (
+        {displayHint && selectedCube && !isSolving ? (
           <div className="absolute w-full h-auto font-medium text-black bottom-0 overflow-hidden z-20">
             <motion.div
               initial={{ y: 400, opacity: 0.8 }}
@@ -56,10 +35,10 @@ export default function HintPanel() {
               </div>
               <div className="p-3 max-h-full overflow-auto">
                 <div>{translation.timer["optimal-layer-yellow"][lang]}</div>
-                {cachedSolutions?.cross.map((i) => (
+                {hint?.cross.map((i) => (
                   <OptimalCrossLayer key={genId()} solution={i} type="cross" />
                 ))}
-                {cachedSolutions?.xcross.map((i) => (
+                {hint?.xcross.map((i) => (
                   <OptimalCrossLayer key={genId()} solution={i} type="xcross" />
                 ))}
               </div>
