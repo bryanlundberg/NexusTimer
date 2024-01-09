@@ -2,8 +2,8 @@ import { Solve } from "@/interfaces/Solve";
 import formatDate from "@/lib/formatDate";
 import { useSolvesStore } from "@/store/SolvesStore";
 import formatTime from "@/lib/formatTime";
-import Favorite from "@/icons/Favorite";
 import ChatBubble from "@/icons/ChatBubble";
+import FavoriteSolid from "@/icons/FavoriteSolid";
 
 interface SingleSolveItem {
   solve: Solve;
@@ -33,12 +33,12 @@ export default function SingleSolveItem({ solve }: SingleSolveItem) {
           {formatDate(solve.endTime).slice(0, 5)}
         </div>
         {solve.bookmark && (
-          <div className="absolute z-20 text-xs right-1 top-1 text-yellow-500">
-            <Favorite />
+          <div className="absolute z-20 text-xs right-1 top-1 text-yellow-500 w-4 h-4">
+            <FavoriteSolid />
           </div>
         )}
 
-        {solve.bookmark && (
+        {solve.comment && (
           <div className="absolute z-20 text-xs bottom-1 left-1 light:text-neutral-500 dark:text-neutral-300 w-4 h-4">
             <ChatBubble />
           </div>

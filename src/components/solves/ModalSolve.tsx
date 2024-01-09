@@ -23,6 +23,8 @@ import translation from "@/translations/global.json";
 import { AnimatePresence, motion } from "framer-motion";
 import useClickOutside from "@/hooks/useClickOutside";
 import { Solve } from "@/interfaces/Solve";
+import Favorite from "@/icons/Favorite";
+import FavoriteSolid from "@/icons/FavoriteSolid";
 
 export default function ModalSolve() {
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -83,6 +85,18 @@ export default function ModalSolve() {
       type: "COMMENT",
       comment: comment,
     });
+    if (selectedCube) {
+      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
+      if (updatedSelectedCube) {
+        setSelectedCube(updatedSelectedCube);
+      }
+    }
+    setCubes(newCubes);
+    setStatus(false);
+  };
+
+  const handleBookmark = (solve: Solve) => {
+    const newCubes = updateSolve({ solveId: solve.id, type: "BOOKMARK" });
     if (selectedCube) {
       const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
       if (updatedSelectedCube) {
@@ -186,6 +200,12 @@ export default function ModalSolve() {
                   </div>
                 </div>
                 <div className="flex items-center justify-center gap-3">
+                  <div
+                    className="w-5 h-5 transition duration-200 hover:text-neutral-500 text-neutral-700 hover:cursor-pointer"
+                    onClick={() => handleBookmark(solve)}
+                  >
+                    {solve.bookmark ? <FavoriteSolid /> : <Favorite />}
+                  </div>
                   <div
                     className="w-5 h-5 transition duration-200 hover:text-neutral-500 text-neutral-700 hover:cursor-pointer"
                     onClick={() => {

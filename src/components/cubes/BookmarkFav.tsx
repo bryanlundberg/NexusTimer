@@ -1,4 +1,4 @@
-import Favorite from "@/icons/Favorite";
+import FavoriteSolid from "@/icons/FavoriteSolid";
 import { useState } from "react";
 
 export default function BookmarkFav({
@@ -20,11 +20,11 @@ export default function BookmarkFav({
       }}
       aria-pressed={checked}
       type="button"
-      className={`w-4 h-4 mx-auto rounded-md border light:border-neutral-400 dark:border-zinc-600 ${
+      className={`w-4 h-4 mx-auto rounded-md border light:border-neutral-400  dark:border-zinc-600 ${
         checked ? "bg-transparent text-yellow-500" : "text-transparent"
       } text-sm flex justify-center items-center`}
     >
-      <Favorite />
+      <FavoriteSolid />
     </button>
   );
 }
