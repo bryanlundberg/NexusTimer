@@ -40,6 +40,15 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
     setLastSolve(null);
   }
 
+  function handleBookmark() {
+    const updatedCubes = updateSolve({ solveId: solve.id, type: "BOOKMARK" });
+    setCubes(updatedCubes);
+    if (!selectedCube) return;
+    const currentCube = findCube({ cubeId: selectedCube.id });
+    if (currentCube) setSelectedCube(currentCube);
+    setLastSolve(null);
+  }
+
   function handleComment(comment: string) {
     const updatedCubes = updateSolve({
       solveId: solve.id,
@@ -82,8 +91,8 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
         <button
           type="button"
           className={classButton}
-          onClick={() => {}} // bookmark solve
-          onTouchStart={() => {}} // bookmark solve
+          onClick={handleBookmark}
+          onTouchStart={handleBookmark}
         >
           <Flag />
         </button>

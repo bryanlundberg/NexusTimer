@@ -30,6 +30,8 @@ export default function updateSolve({
           solveToUpdate.time += solveToUpdate.plus2 ? 2000 : -2000;
         } else if (type === "COMMENT") {
           solveToUpdate.comment = comment ?? "";
+        } else if (type === "BOOKMARK") {
+          solveToUpdate.bookmark = !solveToUpdate.bookmark;
         }
       }
     };
