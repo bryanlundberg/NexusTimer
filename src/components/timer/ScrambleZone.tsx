@@ -52,9 +52,10 @@ export function ScrambleZone() {
             >
               <div
                 onClick={() => {
-                  const newScramble = window.prompt(`Enter a new scramble`);
+                  const newScramble = window.prompt(
+                    `${translation.solves["enter-custom-scramble"][lang]}`
+                  );
                   if (newScramble?.trim()) {
-                    console.log(newScramble);
                     setCustomScramble(newScramble);
                   }
                 }}
