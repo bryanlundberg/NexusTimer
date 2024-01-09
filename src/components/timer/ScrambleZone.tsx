@@ -3,10 +3,18 @@ import genSolution from "@/lib/timer/genSolution";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import translation from "@/translations/global.json";
+import Loading from "../Loading";
 
 export function ScrambleZone() {
-  const { selectedCube, scramble, setDisplayHint, displayHint, setHints } =
-    useTimerStore();
+  const {
+    selectedCube,
+    scramble,
+    setDisplayHint,
+    displayHint,
+    setHints,
+    initializing,
+    isSolving,
+  } = useTimerStore();
   const { lang, settings } = useSettingsModalStore();
 
   return (
@@ -19,13 +27,24 @@ export function ScrambleZone() {
               : "bg-transparent"
           }`}
         >
-          {selectedCube ? scramble : translation.timer["empty-scramble"][lang]}
+          {initializing
+            ? "Initializing please wait."
+            : selectedCube
+            ? scramble
+            : translation.timer["empty-scramble"][lang]}
+
+          {initializing && (
+            <div className="flex w-full justify-center my-3">
+              <Loading />
+            </div>
+          )}
         </div>
 
         {selectedCube &&
         (selectedCube.category === "3x3" ||
           selectedCube.category === "3x3 OH") &&
-        !displayHint ? (
+        !displayHint &&
+        !isSolving ? (
           <div
             onClick={() => {
               setDisplayHint(true);
