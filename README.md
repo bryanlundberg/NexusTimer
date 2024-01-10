@@ -1,12 +1,14 @@
 ## Overview
 ![enter image description here](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/public/portrait.png)
-This app is carefully designed to keep track of solving times, giving valuable information and making the speedcubing experience even better. It's an essential tool for who appreciate quality.
+
+Nexus Timer tracks Rubik's Cube solving times, enhancing speedcubing with a user interface inspired by [Twisty Timer](https://github.com/aricneto/TwistyTimer) for a comparable desktop experience.
+
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
 
 ## About The Project
 
-For those new to speedcubing, it's a puzzle-solving challenge where cubers aim to solve the Rubik's Cube as quickly as possible. The objective is to align all the cube's colors correctly while racing against the clock for the fastest solve time. Achieving a fast solve time is the goal.
+For those new to speedcubing, it's a puzzle-solving challenge where cubers aim to solve the Rubik's Cube as quickly as possible. Achieving a fast solve time is the goal.
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/wr.gif" alt="Speedcubing preview">
@@ -58,24 +60,31 @@ For those new to speedcubing, it's a puzzle-solving challenge where cubers aim t
 </div>
 
 
-## What's the difference?
-
-### Cool Stats
-We like to find interesting data about you by extracting meaning from your training sessions, not like a conventional timer. 
+## What's new?
 
 ### Metrics by cube
-We have included what I called the **"Category Aggregation Principle."** To empower speedcubers to compute and analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations. 
+We have included what I called the **"Category Aggregation Principle."** To empower speedcubers to compute and analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations.
+
+### Unique Cross and X-Cross trainer
+We are the only tool online that offer cross and x-cross solutions. 
+
+Each scramble 3x3 offers: 4 cross and 4 x-cross solutions
+In this last case, each X-cross solution represents the slot where your first F2L pair would be placed.
+
+- 1st x-cross option => Front - Left
+- 2nd x-cross option => Back  - Left
+- 3rd x-cross option => Back  - Right
+- 4th x-cross option => Front - Right
+
+At the moment only works for Yellow layer.
 
 ### No more DNF
 Who likes? We won't cover calculations using DNF, instead delete the solve or add you a +2 penalty.
 
 ### Portability
-Although our main emphasis lies in providing an exceptional experience for desktop training, we are actively working towards expanding this functionality to meet the requirements of mobile users.
+Being able to transfer all your previous solves is of the utmost importance to us. We are currently working to add support from timers such as csTimer, Twisty Timer, and Cubedesk backups.
 
-### Modern design
-Our user interface draws significant inspiration from Twisty Timer, aiming to deliver a comparable and user-friendly experience for desktop users.
-
-This is what makes unique and versatile **Nexus Timer**.
+This is what makes unique and versatile **Nexus Timer** 💪
 
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
@@ -85,7 +94,7 @@ This is what makes unique and versatile **Nexus Timer**.
 
 - Node >21.5.0 & NPM Installed
 
-### Installation of NexusTimer
+### Installation
 
 1. Clone the repo
    ```sh
@@ -108,7 +117,6 @@ This is what makes unique and versatile **Nexus Timer**.
 - [x] Localization and Accessibility
   - [ ] Improve and extend translations.
 - [x] Animations
-  - [ ] Implement a loading screen effect, only on the first use.
   - [ ] Enhance overall smoothness of transitions.
 - [x] Cloud features
   - [ ] Integrate server storage for backups.
@@ -121,8 +129,10 @@ See the [open issues](https://github.com/bryanlundberg/NexusTimer/issues) for a 
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
 
 
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](https://github.com/bryanlundberg/NexusTimer/blob/main/LICENSE) file for details.
 
