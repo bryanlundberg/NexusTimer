@@ -78,7 +78,7 @@ export default function ThemeSelect() {
         >
           <div
             onClick={deleteBackgroundImage}
-            className="absolute top-0 right-0 w-6 h-6 text-white rounded-xl bg-red-600 text-center align-middle hover:scale-110 transition duration-200"
+            className="absolute top-0 right-0 w-6 h-6 text-white rounded-xl bg-red-600 text-center align-middle hover:scale-110 transition duration-200 mt-1 me-1"
           >
             X
           </div>
