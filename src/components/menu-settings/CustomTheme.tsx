@@ -15,7 +15,7 @@ export default function CustomTheme() {
     if (!newBackgroundImage) return;
 
     const allowedImageTypes = ["image/jpeg", "image/png", "image/gif"];
-    const maxSizeInBytes = 4 * 1024 * 1024; // 4.5MB
+    const maxSizeInBytes = 4 * 1024 * 1024; // 4MB
 
     if (!allowedImageTypes.includes(newBackgroundImage.type)) {
       alert(`${translation.settings["allowed-file-types"][lang]}`);

@@ -13,12 +13,14 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import useClickOutside from "@/hooks/useClickOutside";
 import { AnimatePresence, motion } from "framer-motion";
+import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
   const { selectedCube, cubes } = useTimerStore();
   const { lang } = useSettingsModalStore();
   const componentRef = useRef<HTMLDivElement | null>(null);
+  const { backgroundImage } = useBackgroundImageStore();
 
   const handleClose = () => {
     setOpen(false);
@@ -35,6 +37,8 @@ export default function Select() {
         <button
           onClick={() => setOpen(!open)}
           className={`grow text-md appearance-none border font-medium rounded-md px-3 transition duration-200 light:shadow-black  light:hover:bg-neutral-200 dark:hover:bg-zinc-800 dark:hover:border-zinc-500 light:hover:border-neutral-400 h-10 ${
+            backgroundImage ? "opacity-90 hover:opacity-100" : ""
+          } ${
             open
               ? "dark:bg-zinc-800 dark:border-zinc-500 light:bg-neutral-200 light:border-neutral-400"
               : "dark:bg-zinc-900 dark:border-zinc-600 light:bg-neutral-100 light:border-neutral-300"
