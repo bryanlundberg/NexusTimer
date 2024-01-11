@@ -15,10 +15,10 @@ export default function CustomTheme() {
     if (!newBackgroundImage) return;
 
     const allowedImageTypes = ["image/jpeg", "image/png", "image/gif"];
-    const maxSizeInBytes = 4 * 1024 * 1024; // 4MB
+    const maxSizeInBytes = 4.5 * 1024 * 1024; // 4.5MB
 
     if (!allowedImageTypes.includes(newBackgroundImage.type)) {
-      alert(`${translation.settings["custom-background-image"][lang]}`);
+      alert(`${translation.settings["allowed-file-types"][lang]}`);
       if (dataInputRef.current) {
         dataInputRef.current.value = "";
       }
@@ -26,7 +26,7 @@ export default function CustomTheme() {
     }
 
     if (newBackgroundImage.size > maxSizeInBytes) {
-      alert(`${translation.settings["max-file-size"][lang]}`);
+      alert(`${translation.settings["max-file-size"][lang]} 4.5 Mb`);
       if (dataInputRef.current) {
         dataInputRef.current.value = "";
       }
