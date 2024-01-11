@@ -21,6 +21,7 @@ import Link from "next/link";
 import useEscape from "@/hooks/useEscape";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import CustomTheme from "./CustomTheme";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
@@ -45,7 +46,7 @@ export default function MenuSettings() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -400, opacity: 0.6 }}
               transition={{ type: "lineal" }}
-              className="flex flex-col w-full gap-3 overflow-auto bg-neutral-50 text-zinc-800 sm:w-96"
+              className="flex flex-col w-full gap-3 overflow-auto bg-neutral-50 text-zinc-800 sm:w-96 light"
             >
               <div className="flex items-center my-3">
                 <Link
@@ -149,6 +150,7 @@ export default function MenuSettings() {
                 title={translation.settings["theme"][lang]}
               >
                 <ThemeSelect />
+                <CustomTheme />
               </MenuSection>
 
               <MenuSection

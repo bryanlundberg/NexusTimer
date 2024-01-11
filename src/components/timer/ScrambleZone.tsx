@@ -6,6 +6,7 @@ import translation from "@/translations/global.json";
 import Loading from "../Loading";
 import Pencil from "@/icons/Pencil";
 import { AnimatePresence, motion } from "framer-motion";
+import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 
 export function ScrambleZone() {
   const {
@@ -19,12 +20,15 @@ export function ScrambleZone() {
     setCustomScramble,
   } = useTimerStore();
   const { lang, settings } = useSettingsModalStore();
+  const { backgroundImage } = useBackgroundImageStore();
 
   return (
     <>
       <div className="relative">
         <div
           className={`h-auto text-balance p-2 overflow-auto text-2xl sm:text-3xl font-semilight text-center rounded-md min-w-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-md max-h-28 md:max-h-full ${
+            backgroundImage ? "opacity-90" : ""
+          } ${
             settings.features.scrambleBackground.status
               ? "dark:bg-zinc-900 light:bg-neutral-200"
               : "bg-transparent"

@@ -1,5 +1,6 @@
 import { Themes } from "@/interfaces/types/Themes";
 import loadSettings from "@/lib/loadSettings";
+import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 interface Variation {
@@ -11,6 +12,7 @@ interface Variation {
 
 export default function ThemeSelect() {
   const { settings, setSettings } = useSettingsModalStore();
+  const { backgroundImage, deleteBackgroundImage } = useBackgroundImageStore();
   const variation: Variation[] = [
     {
       bg: "bg-neutral-100",
@@ -64,6 +66,24 @@ export default function ThemeSelect() {
           </div>
         </div>
       ))}
+      {backgroundImage && (
+        <div
+          className="relative cursor-pointer w-full h-40 rounded-md"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        >
+          <div
+            onClick={deleteBackgroundImage}
+            className="absolute top-0 right-0 w-6 h-6 text-white rounded-xl bg-red-600 text-center align-middle hover:scale-110 transition duration-200 mt-1 me-1"
+          >
+            X
+          </div>
+        </div>
+      )}
     </div>
   );
 }
