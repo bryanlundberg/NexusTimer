@@ -25,8 +25,9 @@ import useClickOutside from "@/hooks/useClickOutside";
 import { Solve } from "@/interfaces/Solve";
 import Favorite from "@/icons/Favorite";
 import FavoriteSolid from "@/icons/FavoriteSolid";
+import { SolveTab } from "@/interfaces/types/SolveTabs";
 
-export default function ModalSolve() {
+export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [showScramble, setShowScramble] = useState<boolean>(false);
   const { status, solve, setStatus } = useSolvesStore();
@@ -43,9 +44,9 @@ export default function ModalSolve() {
 
   useEscape(() => setStatus(false));
 
-  const handleMove = (solve: Solve) => {
+  const handleMove = (solve: Solve, currentTab: SolveTab) => {
     if (selectedCube) {
-      const newCubes = moveSolve(solve, selectedCube);
+      const newCubes = moveSolve(solve, selectedCube, currentTab);
       const updatedCube = findCube({ cubeId: selectedCube.id });
       if (updatedCube) {
         setSelectedCube(updatedCube);
@@ -239,12 +240,20 @@ export default function ModalSolve() {
                   >
                     <div
                       className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
-                      onClick={() => handleMove(solve)}
+                      onClick={() =>
+                        currentTab === "Session"
+                          ? handleMove(solve, "Session")
+                          : handleMove(solve, "All")
+                      }
                     >
                       <div className="w-4 h-4">
                         <ArchiveBox />
                       </div>
-                      <div>{translation.solves["archive"][lang]}</div>
+                      <div>
+                        {currentTab === "Session"
+                          ? translation.solves["archive"][lang]
+                          : translation.solves["unarchive"][lang]}
+                      </div>
                     </div>
                     <div
                       className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
