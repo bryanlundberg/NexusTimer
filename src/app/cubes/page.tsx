@@ -10,10 +10,12 @@ import { OverallHeader } from "@/components/OverallHeader";
 import { OptionsContainer } from "@/components/cubes/OptionsContainer";
 import { useCubes } from "@/hooks/useCubes";
 import { AnimatePresence } from "framer-motion";
+import useModalCube from "@/hooks/useModalCube";
 
 export default function CubesPage() {
   const { filterCubes, modalOpen, setModalOpen, lang, handleSearchFilter } =
     useCubes();
+  const { setSelectedCategory } = useModalCube();
 
   return (
     <>
@@ -28,7 +30,10 @@ export default function CubesPage() {
               className="border light:bg-neutral-50 light:border-neutral-200 light:focus:bg-white dark:bg-zinc-950 dark:border-zinc-800 dark:focus:bg-zinc-900"
             />
             <Button
-              onClick={() => setModalOpen(true)}
+              onClick={() => {
+                setSelectedCategory("2x2");
+                setModalOpen(true);
+              }}
               icon={<Plus />}
               label={translation.cubes["cube"][lang]}
             />

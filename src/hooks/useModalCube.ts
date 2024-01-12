@@ -43,12 +43,12 @@ export default function useModalCube() {
 
   const handleCreateCube = (name: string, category: Categories) => {
     const cubeDB = loadCubes();
-    const isDuplicate = cubeDB.some(cube => cube.name === name);
+    const isDuplicate = cubeDB.some((cube) => cube.name === name);
     if (name.trim() === "") {
       setError(true);
       return;
     }
-    if(isDuplicate) {
+    if (isDuplicate) {
       setDuplicate(true);
       return;
     }
@@ -65,12 +65,12 @@ export default function useModalCube() {
 
   const handleEditCube = (name: string, category: Categories) => {
     const cubeDB = loadCubes();
-    const isDuplicate = cubeDB.some(cube => cube.name === name);
+    const isDuplicate = cubeDB.some((cube) => cube.name === name);
     if (name.trim() === "") {
       setError(true);
       return;
     }
-    if(isDuplicate) {
+    if (isDuplicate) {
       setDuplicate(true);
       return;
     }
@@ -142,7 +142,7 @@ export default function useModalCube() {
     setModalOpen(false);
     setEditingCube(null);
     setCubeName("");
-    setSelectedCategory("2x2");
+    // setSelectedCategory("2x2");
   };
 
   const handleDeleteClick = () => {
@@ -179,5 +179,6 @@ export default function useModalCube() {
     confirmDelete,
     cancelDelete,
     showDeleteConfirmation,
+    setSelectedCategory,
   };
 }
