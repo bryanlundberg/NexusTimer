@@ -20,9 +20,7 @@ export default function CheckboxImage({
     <>
       <div
         className={`mx-auto cursor-pointer w-20 h-20 sm:w-22 sm:h-22 md:w-32 md:h-32 ${
-          selectedCategory === value
-            ? "outline outline-neutral-700 rounded-sm"
-            : "bg-transparent"
+          selectedCategory === value ? "invert" : "bg-transparent"
         }`}
       >
         <input
