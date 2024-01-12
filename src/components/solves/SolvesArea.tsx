@@ -5,6 +5,7 @@ import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Solve } from "@/interfaces/Solve";
 import genId from "@/lib/genId";
+import { sort } from "fast-sort";
 
 interface SolvesArea {
   displaySolves: Solve[] | null;
@@ -35,9 +36,11 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   return (
     <>
       <div className="grid w-full h-full grid-cols-3 gap-3 px-3 py-3 overflow-auto sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6">
-        {displaySolves.map((solve: Solve) => (
-          <SingleSolveItem key={genId()} solve={solve} />
-        ))}
+        {sort(displaySolves)
+          .desc((u) => u.endTime)
+          .map((solve: Solve) => (
+            <SingleSolveItem key={genId()} solve={solve} />
+          ))}
       </div>
     </>
   );

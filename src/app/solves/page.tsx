@@ -81,7 +81,7 @@ export default function SolvesPage() {
           </div>
         </SolveFilters>
         <SolvesArea displaySolves={displaySolves} />
-        <ModalSolve />
+        <ModalSolve currentTab={currentTab} />
       </OverallContainer>
       {isOpenMoveModal && (
         <MoveModal
