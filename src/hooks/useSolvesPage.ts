@@ -8,13 +8,15 @@ import { useTimerStore } from "@/store/timerStore";
 import { useEffect, useRef, useState } from "react";
 import { useTimerStatistics } from "./useTimerStatistics";
 import { MoveData } from "@/components/solves/MoveModal";
+import { ConfirmDeleteData } from "@/components/solves/ConfirmDelete";
 
 export default function useSolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
   const { selectedCube, setCubes, setSelectedCube, cubes } = useTimerStore();
   const [displaySolves, setDisplaySolves] = useState<Solve[] | null>(null);
   const [isOpenMoveModal, setIsOpenMoveModal] = useState(false);
-  const { session } = useTimerStatistics();
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const { session, cubeSession } = useTimerStatistics();
   const searchBox = useRef<any>(null);
 
   const handleTabClick = (clickedTab: SolveTab) => {
@@ -28,6 +30,16 @@ export default function useSolvesPage() {
       bestTime: session.best,
       average: session.mean,
       count: session.count,
+    };
+  };
+
+  const handleGetDeleteData = (): ConfirmDeleteData | null => {
+    if (!selectedCube) return null;
+    return {
+      category: selectedCube.category,
+      bestTime: cubeSession.best,
+      average: cubeSession.mean,
+      count: cubeSession.count,
     };
   };
 
@@ -113,5 +125,8 @@ export default function useSolvesPage() {
     isOpenMoveModal,
     setIsOpenMoveModal,
     handleGetMoveData,
+    handleGetDeleteData,
+    setIsOpenDeleteModal,
+    isOpenDeleteModal,
   };
 }

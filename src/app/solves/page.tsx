@@ -16,6 +16,7 @@ import useSolvesPage from "@/hooks/useSolvesPage";
 import { InputText } from "@/components/input-text/index";
 import { useTimerStore } from "@/store/timerStore";
 import MoveModal from "@/components/solves/MoveModal";
+import ConfirmDelete from "@/components/solves/ConfirmDelete";
 
 export default function SolvesPage() {
   const {
@@ -28,6 +29,9 @@ export default function SolvesPage() {
     isOpenMoveModal,
     setIsOpenMoveModal,
     handleGetMoveData,
+    setIsOpenDeleteModal,
+    handleGetDeleteData,
+    isOpenDeleteModal,
   } = useSolvesPage();
   const { selectedCube } = useTimerStore();
   const { lang } = useSettingsModalStore();
@@ -61,7 +65,7 @@ export default function SolvesPage() {
                 }
               />
               <Button
-                onClick={() => handleTrashAll()}
+                onClick={() => setIsOpenDeleteModal(true)}
                 icon={
                   <div className="w-4 h-4">
                     <Trash />
@@ -87,6 +91,16 @@ export default function SolvesPage() {
             handleMoveAll();
           }}
           data={handleGetMoveData}
+        />
+      )}
+      {isOpenDeleteModal && (
+        <ConfirmDelete
+          onCancel={() => setIsOpenDeleteModal(false)}
+          onConfirm={() => {
+            setIsOpenDeleteModal(false);
+            handleTrashAll();
+          }}
+          data={handleGetDeleteData}
         />
       )}
     </>
