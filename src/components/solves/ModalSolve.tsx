@@ -182,7 +182,9 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                     className="w-full h-32 my-3"
                     show={status}
                     scramble={solve.scramble}
-                    event={solve ? solve.category : "3x3"}
+                    event={
+                      solve && selectedCube ? selectedCube.category : "3x3"
+                    }
                   ></ScrambleDisplay>
                 )}
                 <div>{solve.comment}</div>

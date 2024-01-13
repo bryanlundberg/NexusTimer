@@ -57,7 +57,6 @@ export default function ManualMode() {
             dnf: false,
             plus2: false,
             rating: Math.floor(Math.random() * 20) + scramble.length,
-            category: selectedCube.category,
             cubeId: selectedCube.id,
           };
           setLastSolve(newSolve);

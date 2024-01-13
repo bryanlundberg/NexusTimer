@@ -1,6 +1,7 @@
 import { Cube } from "@/interfaces/Cube";
 import { ChangeEvent } from "react";
 import genId from "./genId";
+import { Solve } from "@/interfaces/Solve";
 
 export default function importDataFromFile(
   event: ChangeEvent<HTMLInputElement>
@@ -116,7 +117,7 @@ function isValidCubesData(uploadedFileData: string): boolean {
       console.log(endTime - solvingTime, endTime, solvingTime);
 
       // adjust the calculations trying to match the data structure
-      const newSolve = {
+      const newSolve: Solve = {
         id: genId(),
         startTime: endTime - solvingTime,
         endTime: endTime,
@@ -126,7 +127,6 @@ function isValidCubesData(uploadedFileData: string): boolean {
         dnf: hasDNF,
         plus2: plus2,
         rating: Math.floor(Math.random() * 20) + scramble.length,
-        category: newCube.category,
         cubeId: newCube.id,
         comment: comment,
       };
