@@ -41,7 +41,7 @@ export default function ImportModal() {
                   ref={dataInputRef}
                   onChange={(e) => {
                     alert("Testing");
-                    // importDataFromFile(e);
+                    importDataFromFile(e);
                     // router.push("/cubes");
                     // setSelectedCube(null);
                   }}

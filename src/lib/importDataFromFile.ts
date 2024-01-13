@@ -1,6 +1,6 @@
-// import { Cube } from "@/interfaces/Cube";
-// import { Solve } from "@/interfaces/Solve";
+import { Cube } from "@/interfaces/Cube";
 import { ChangeEvent } from "react";
+import genId from "./genId";
 
 export default function importDataFromFile(
   event: ChangeEvent<HTMLInputElement>
@@ -27,9 +27,6 @@ export default function importDataFromFile(
             throw new Error("Invalid data in the file.");
           }
 
-          // Save the valid data to local storage
-          window.localStorage.setItem("cubes", cubes);
-
           // Inform the user that the import was successful
           alert("Data imported successfully.");
         } catch (error: any) {
@@ -48,136 +45,105 @@ export default function importDataFromFile(
   }
 }
 
-// const keyChecker = (keysArr1: string[], keysArr2: string[]) =>
-//   keysArr1.length === keysArr2.length &&
-//   keysArr1.every((key) => keysArr2.includes(key));
-
 // Function to validate 'cubes' data
 function isValidCubesData(uploadedFileData: string): boolean {
+  console.log(uploadedFileData);
   const parsedCubeData = JSON.parse(uploadedFileData);
 
+  let validData = false;
+
+  // ### validate nexusTimer
   // Check if the data is a valid array
-  if (!Array.isArray(parsedCubeData) || parsedCubeData.length === 0) {
-    return false;
-  }
+  // if (!Array.isArray(parsedCubeData) || parsedCubeData.length === 0) {
+  //   validData = false;
+  // }
 
-  return true;
+  // ### validate cstimer
+  //Eliminate app properties section from backup
+  const csTimerSessions = Object.keys(parsedCubeData).slice(
+    0,
+    Object.keys(parsedCubeData).length - 1
+  );
 
-  // // Create a sample cube object to retrieve expected keys, this will also ensure type safety
-  // const sampleCubeObject: Cube = {
-  //   id: "",
-  //   name: "",
-  //   category: "2x2",
-  //   solves: {
-  //     all: [
-  //       {
-  //         id: "",
-  //         startTime: 0,
-  //         endTime: 0,
-  //         scramble: "",
-  //         bookmark: false,
-  //         time: 1000,
-  //         dnf: false,
-  //         plus2: false,
-  //         rating: 0,
-  //         category: "3x3",
-  //         cubeId: "",
-  //       },
-  //     ],
-  //     session: [
-  //       {
-  //         id: "",
-  //         startTime: 0,
-  //         endTime: 0,
-  //         scramble: "",
-  //         bookmark: false,
-  //         time: 1000,
-  //         dnf: false,
-  //         plus2: false,
-  //         rating: 0,
-  //         category: "3x3",
-  //         cubeId: "",
-  //       },
-  //     ],
-  //   },
-  //   createdAt: 0,
-  //   favorite: false,
-  // };
+  // create a virtual object to place new data sctructure
+  const newCubeList: Cube[] = [];
 
-  // const expectedCubeKeys = Object.keys(sampleCubeObject);
+  csTimerSessions.forEach((session: any) => {
+    // later will be updated to the date of the first solve
+    // registered on this session
+    let createdAt = Date.now();
 
-  // // Validate every instance of the cube data within the array
-  // const isCubeDataValid = parsedCubeData.every((parsedCubeDataItem: any, i) => {
-  //   // Retrieve the keys of the uploaded data
-  //   const uploadedCubeDataKeys = Object.keys(parsedCubeDataItem);
+    // create a virtual cube session
+    const newCube: Cube = {
+      id: genId(),
+      name: session,
+      category: "3x3",
+      solves: {
+        session: [],
+        all: [],
+      },
+      createdAt: createdAt,
+      favorite: false,
+    };
 
-  //   // Check if the uploaded data has the correct keys
-  //   const doKeysMatch = keyChecker(expectedCubeKeys, uploadedCubeDataKeys);
+    // Get and convert all the solves into a compatible format
+    parsedCubeData[session].forEach((solve: any, index: number) => {
+      if (index === 0) {
+        createdAt = solve[3];
+      }
 
-  //   if (!doKeysMatch) return false;
+      // DNF solves wont be registered on system will be excluded
+      let hasDNF = false;
 
-  //   // Perform type checking for the uploaded data
-  //   const isUploadedDataTypeSafe = expectedCubeKeys.every((expectedCubeKey) => {
-  //     if (expectedCubeKey !== "solves")
-  //       return (
-  //         typeof parsedCubeDataItem[expectedCubeKey] ===
-  //         typeof sampleCubeObject[expectedCubeKey as keyof Cube]
-  //       );
+      // cstimer has very deep array storage items ...
+      let plus2 = false;
+      let solvingTime = 0;
 
-  //     // Check for the 'solves' key
-  //     // Get session solves and all solves
-  //     const solvedSessions = parsedCubeDataItem[expectedCubeKey].session,
-  //       allSolves = parsedCubeDataItem[expectedCubeKey].all;
+      if (solve[0][0] === -1) {
+        hasDNF = true;
+      } else if (solve[0][0] === 0) {
+        plus2 = false;
+      } else if (solve[0][0] === 2000) {
+        plus2 = true;
+      }
 
-  //     // If the solves are not arrays, return false
-  //     if (!Array.isArray(solvedSessions) || !Array.isArray(allSolves)) {
-  //       return false;
-  //     }
+      solvingTime = solve[0][1];
 
-  //     // Retrieve the keys of the solved sessions and all solves
-  //     const expectedSolvedSessionKeys = Object.keys(
-  //         sampleCubeObject.solves.session[0]
-  //       ),
-  //       expectedAllSolvesKeys = Object.keys(sampleCubeObject.solves.all[0]);
+      let scramble = solve[1];
+      let comment = solve[2];
+      let endTime = solve[3];
 
-  //     // Validate types of the solved sessions
-  //     const validateSolvedSessions = solvedSessions.every((solvedSession) => {
-  //       // Retrieve the keys of the solved session
-  //       const solvedSessionKeys = Object.keys(solvedSession);
-  //       return (
-  //         keyChecker(expectedSolvedSessionKeys, solvedSessionKeys) &&
-  //         solvedSessionKeys.every(
-  //           (solvedSessionKey) =>
-  //             typeof solvedSession[solvedSessionKey] ===
-  //             typeof sampleCubeObject.solves.session[0][
-  //               solvedSessionKey as keyof Solve
-  //             ]
-  //         )
-  //       );
-  //     });
+      console.log(endTime - solvingTime, endTime, solvingTime);
 
-  //     if (!validateSolvedSessions) return false;
+      // adjust the calculations trying to match the data structure
+      const newSolve = {
+        id: genId(),
+        startTime: endTime - solvingTime,
+        endTime: endTime,
+        scramble: scramble,
+        bookmark: false,
+        time: solvingTime,
+        dnf: hasDNF,
+        plus2: plus2,
+        rating: Math.floor(Math.random() * 20) + scramble.length,
+        category: newCube.category,
+        cubeId: newCube.id,
+        comment: comment,
+      };
 
-  //     // Validate types of the all solves
-  //     const validateAllSolves = allSolves.every((solvedItem) => {
-  //       const solvedItemKeys = Object.keys(solvedItem);
-  //       return (
-  //         keyChecker(expectedAllSolvesKeys, solvedItemKeys) &&
-  //         solvedItemKeys.every(
-  //           (solvedItemKey) =>
-  //             typeof solvedItem[solvedItemKey] ===
-  //             typeof sampleCubeObject.solves.all[0][
-  //               solvedItemKey as keyof Solve
-  //             ]
-  //         )
-  //       );
-  //     });
+      newCube.solves.session.push(newSolve);
+    });
 
-  //     return validateAllSolves;
-  //   });
+    newCubeList.push(newCube);
+  });
 
-  //   return isUploadedDataTypeSafe;
-  // });
+  // Update local storage with the modified list of cubes
+  window.localStorage.setItem("cubes", JSON.stringify(newCubeList));
+  validData = true;
 
-  // return isCubeDataValid;
+  // ### validate twisty timer
+
+  // ### validate cubedesk
+
+  return validData;
 }
