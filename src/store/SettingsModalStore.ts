@@ -5,16 +5,19 @@ import { create } from "zustand";
 
 interface Modal {
   settingsOpen: boolean;
+  importModalOpen: boolean;
   lang: Language;
   setSettingsOpen: (status: boolean) => void;
   settings: Settings;
   setSettings: (settings: Settings) => void;
+  setImportModalOpen: (status: boolean) => void;
 }
 
 export const useSettingsModalStore = create<Modal>((set) => ({
   settingsOpen: false,
   settings: defaultSettings,
   lang: "en",
+  importModalOpen: false,
   setSettings: (settings: Settings) => {
     set({
       settings: settings,
@@ -23,5 +26,8 @@ export const useSettingsModalStore = create<Modal>((set) => ({
   },
   setSettingsOpen: (status: boolean) => {
     set({ settingsOpen: status });
+  },
+  setImportModalOpen: (status: boolean) => {
+    set({ importModalOpen: status });
   },
 }));
