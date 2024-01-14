@@ -2,6 +2,7 @@ import { Cube } from "@/interfaces/Cube";
 import { ChangeEvent } from "react";
 import genId from "./genId";
 import { Solve } from "@/interfaces/Solve";
+import { CubeCollection, Event } from "@/interfaces/cubeCollection";
 
 export default function importDataFromFile(
   event: ChangeEvent<HTMLInputElement>
@@ -49,14 +50,96 @@ export default function importDataFromFile(
 // Function to validate 'cubes' data
 function isValidCubesData(uploadedFileData: string): boolean {
   const parsedCubeData = JSON.parse(uploadedFileData);
-
   if (importCstimerData(parsedCubeData)) return true;
   if (importNexusTimerData(parsedCubeData)) return true;
-
+  if (importCubedeskData(parsedCubeData)) return true;
   return false;
 }
 
 // cubedesk _> if (Object.keys(parsedCubeData).includes("sessions")) return false;
+
+function importCubedeskData(parsedCubeData: any): boolean {
+  console.log(typeof parsedCubeData);
+  console.log(parsedCubeData);
+
+  if (typeof parsedCubeData !== "object") return false;
+  if (!Object.keys(parsedCubeData).includes("solves")) return false;
+  if (!Object.keys(parsedCubeData).includes("sessions")) return false;
+
+  // Trying to force a return false > These props are not in
+  // cubedesk backup data structure
+  if (Object.keys(parsedCubeData).includes("id")) return false;
+  if (Object.keys(parsedCubeData).includes("properties")) return false;
+  if (Object.keys(parsedCubeData).includes("scramble")) return false;
+
+  const newCubeList: Cube[] = [];
+
+  parsedCubeData["sessions"].forEach(
+    (session: {
+      id: string;
+      name: string;
+      created_at: string;
+      order: number;
+    }) => {
+      // create a virtual cube session
+      const newCube: Cube = {
+        id: session.id,
+        name: session.name,
+        category: "3x3", // Not specified in cubedesk backup
+        solves: {
+          session: [],
+          all: [],
+        },
+        createdAt: Date.parse(session.created_at),
+        favorite: false,
+      };
+
+      parsedCubeData["solves"].forEach(
+        (solve: {
+          scramble: string;
+          started_at: number;
+          ended_at: number;
+          time: number;
+          raw_time: number;
+          cube_type: Event;
+          id: string;
+          dnf: boolean;
+          plus_two: boolean;
+          session_id: string;
+          from_timer: boolean;
+          inspection_time: number;
+          is_smart_cube: boolean;
+          smart_put_down_time: number;
+        }) => {
+          if (solve.session_id === session.id) {
+            const newSolve: Solve = {
+              id: solve.id,
+              startTime: solve.started_at,
+              endTime: solve.ended_at,
+              scramble: solve.scramble,
+              bookmark: false,
+              time: solve.time * 1000,
+              dnf: solve.dnf,
+              plus2: solve.plus_two,
+              rating: Math.floor(Math.random() * 20) + solve.scramble.length,
+              cubeId: session.id,
+              comment: "",
+            };
+
+            newCube.solves.session.push(newSolve);
+          }
+        }
+      );
+
+      newCubeList.push(newCube);
+    }
+  );
+
+  // Update local storage with the modified list of cubes
+  window.localStorage.setItem("cubes", JSON.stringify(newCubeList));
+
+  return true;
+}
 
 function importNexusTimerData(parsedCubeData: Cube[]): boolean {
   // ########################
@@ -65,8 +148,10 @@ function importNexusTimerData(parsedCubeData: Cube[]): boolean {
 
   // Verifying that the backup originates from Nexustimer
   // No adjustments to the data structure are required; direct saving is possible.
+
   if (typeof parsedCubeData !== "object") return false;
-  if (typeof parsedCubeData[0].solves.all === "undefined") return false;
+  if (Object.keys(parsedCubeData).includes("properties")) return false;
+  if (typeof parsedCubeData[0]?.solves.all === "undefined") return false;
 
   // Update local storage with the modified list of cubes
   window.localStorage.setItem("cubes", JSON.stringify(parsedCubeData));
@@ -106,7 +191,7 @@ function importCstimerData(parsedCubeData: any): boolean {
     const newCube: Cube = {
       id: genId(),
       name: session,
-      category: "3x3",
+      category: "3x3", // Not specified in cstimer backup
       solves: {
         session: [],
         all: [],
