@@ -48,16 +48,44 @@ export default function importDataFromFile(
 
 // Function to validate 'cubes' data
 function isValidCubesData(uploadedFileData: string): boolean {
-  console.log(uploadedFileData);
   const parsedCubeData = JSON.parse(uploadedFileData);
 
-  let validData = false;
+  if (importCstimerData(parsedCubeData)) return true;
+  if (importNexusTimerData(parsedCubeData)) return true;
 
-  // ### validate nexusTimer
-  // Check if the data is a valid array
-  // if (!Array.isArray(parsedCubeData) || parsedCubeData.length === 0) {
-  //   validData = false;
-  // }
+  return false;
+}
+
+// cubedesk _> if (Object.keys(parsedCubeData).includes("sessions")) return false;
+
+function importNexusTimerData(parsedCubeData: Cube[]): boolean {
+  // ########################
+  // ## IMPORT NEXUS TIMER ##
+  // ########################
+
+  // Verifying that the backup originates from Nexustimer
+  // No adjustments to the data structure are required; direct saving is possible.
+  if (typeof parsedCubeData !== "object") return false;
+  if (typeof parsedCubeData[0].solves.all === "undefined") return false;
+
+  // Update local storage with the modified list of cubes
+  window.localStorage.setItem("cubes", JSON.stringify(parsedCubeData));
+
+  return true;
+}
+
+function importCstimerData(parsedCubeData: any): boolean {
+  // ########################
+  // ### IMPORT CSTIMER #####
+  // ########################
+
+  if (typeof parsedCubeData !== "object") return false;
+
+  // Verify whether "cstimer" is the only one containing a
+  // property named "properties". This check helps determine
+  // if the parsedCubeData, correspond to cstimer or not.
+
+  if (!Object.keys(parsedCubeData).includes("properties")) return false;
 
   // ### validate cstimer
   //Eliminate app properties section from backup
@@ -108,13 +136,16 @@ function isValidCubesData(uploadedFileData: string): boolean {
         plus2 = true;
       }
 
+      if (typeof solve[0][0] !== "number")
+        throw new Error("Corrupted data type");
+      if (typeof solve[0][1] !== "number")
+        throw new Error("Corrupted data type");
+
       solvingTime = solve[0][1];
 
       let scramble = solve[1];
       let comment = solve[2];
       let endTime = solve[3];
-
-      console.log(endTime - solvingTime, endTime, solvingTime);
 
       // adjust the calculations trying to match the data structure
       const newSolve: Solve = {
@@ -139,11 +170,6 @@ function isValidCubesData(uploadedFileData: string): boolean {
 
   // Update local storage with the modified list of cubes
   window.localStorage.setItem("cubes", JSON.stringify(newCubeList));
-  validData = true;
 
-  // ### validate twisty timer
-
-  // ### validate cubedesk
-
-  return validData;
+  return true;
 }
