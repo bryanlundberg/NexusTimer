@@ -17,6 +17,7 @@ export const cubeCollection: CubeCollection[] = [
     name: "2x2",
     src: cube222,
     displayId: "2x2x2",
+    twistyId: "222",
   },
   {
     event: "333",
@@ -24,6 +25,7 @@ export const cubeCollection: CubeCollection[] = [
     name: "3x3",
     src: cube333,
     displayId: "3x3x3",
+    twistyId: "333",
   },
   {
     event: "333",
@@ -31,6 +33,7 @@ export const cubeCollection: CubeCollection[] = [
     name: "3x3 OH",
     src: cube333oh,
     displayId: "3x3x3",
+    twistyId: "333",
   },
   {
     event: "444",
@@ -38,6 +41,7 @@ export const cubeCollection: CubeCollection[] = [
     name: "4x4",
     src: cube444,
     displayId: "4x4x4",
+    twistyId: "444",
   },
   {
     event: "555",
@@ -45,6 +49,7 @@ export const cubeCollection: CubeCollection[] = [
     name: "5x5",
     src: cube555,
     displayId: "5x5x5",
+    twistyId: "555",
   },
   {
     event: "666",
@@ -52,6 +57,7 @@ export const cubeCollection: CubeCollection[] = [
     name: "6x6",
     src: cube666,
     displayId: "6x6x6",
+    twistyId: "666",
   },
   {
     event: "777",
@@ -59,6 +65,7 @@ export const cubeCollection: CubeCollection[] = [
     name: "7x7",
     src: cube777,
     displayId: "7x7x7",
+    twistyId: "777",
   },
   {
     event: "sq1",
@@ -66,6 +73,7 @@ export const cubeCollection: CubeCollection[] = [
     name: "SQ1",
     src: cubesq1,
     displayId: "square1",
+    twistyId: "sq1",
   },
   {
     event: "skewb",
@@ -73,6 +81,7 @@ export const cubeCollection: CubeCollection[] = [
     name: "Skewb",
     src: cubeskewb,
     displayId: "skewb",
+    twistyId: "skewb",
   },
   {
     event: "pyram",
@@ -80,6 +89,7 @@ export const cubeCollection: CubeCollection[] = [
     name: "Pyraminx",
     src: cubepyramix,
     displayId: "pyraminx",
+    twistyId: "pyra",
   },
   {
     event: "minx",
@@ -87,5 +97,6 @@ export const cubeCollection: CubeCollection[] = [
     name: "Megaminx",
     src: cubemegaminx,
     displayId: "megaminx",
+    twistyId: "mega",
   },
 ];

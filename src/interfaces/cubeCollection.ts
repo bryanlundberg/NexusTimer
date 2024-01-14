@@ -22,10 +22,24 @@ export type Event =
   | "333mbf"
   | "333ft";
 
+type TwistyTimerEvent =
+  | "222"
+  | "333"
+  | "444"
+  | "555"
+  | "666"
+  | "777"
+  | "skewb"
+  | "mega"
+  | "pyra"
+  | "sq1"
+  | "clock";
+
 export interface CubeCollection {
   event: Event;
   id: number;
   name: Categories;
   src: any;
   displayId: PuzzleID;
+  twistyId: TwistyTimerEvent;
 }
