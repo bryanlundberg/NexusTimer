@@ -42,8 +42,9 @@ export default function ImportModal() {
                   onChange={(e) => {
                     alert("Testing");
                     importDataFromFile(e);
-                    // router.push("/cubes");
-                    // setSelectedCube(null);
+                    router.push("/cubes");
+                    setSelectedCube(null);
+                    setImportModalOpen(false);
                   }}
                   className="absolute z-50 w-full h-full opacity-0 hover:cursor-pointer"
                 />
@@ -54,7 +55,7 @@ export default function ImportModal() {
               <div className="font-medium">Supported Timers:</div>
               <ul className="flex gap-2">
                 <Image
-                  src={"/timer-logos/nexustimer.png"}
+                  src={"/timer-logos/nexustimer.jpg"}
                   alt="nexustimer logo"
                   width={64}
                   height={64}
@@ -62,7 +63,7 @@ export default function ImportModal() {
                   draggable={false}
                 />
                 <Image
-                  src={"/timer-logos/cstimer.png"}
+                  src={"/timer-logos/cstimer.jpg"}
                   alt="cstimer logo"
                   width={64}
                   height={64}
@@ -71,7 +72,7 @@ export default function ImportModal() {
                 />
 
                 <Image
-                  src={"/timer-logos/twistytimer.png"}
+                  src={"/timer-logos/twistytimer.jpg"}
                   alt="twistytimer logo"
                   width={64}
                   height={64}
@@ -80,7 +81,7 @@ export default function ImportModal() {
                 />
 
                 <Image
-                  src={"/timer-logos/cubedesk.png"}
+                  src={"/timer-logos/cubedesk.jpg"}
                   alt="cubedesk logo"
                   width={64}
                   height={64}
