@@ -66,13 +66,12 @@ export default function ImportModal() {
                 </div>
               ) : (
                 <div className="text-center mx-auto flex-col items-center gap-2">
-                  <div className="flex justify-center">
+                  <div className="flex justify-center mt-3">
                     <Loading />
                   </div>
 
-                  <div className="text-balance w-9/12 mx-auto">
-                    This action can take several minutes restoring thousands of
-                    solves
+                  <div className="mx-auto mt-2">
+                    This action takes less of a minute.
                   </div>
 
                   <div className="font-bold">
@@ -80,7 +79,7 @@ export default function ImportModal() {
                   </div>
                 </div>
               )}
-              <div className="font-medium">Supported Timers:</div>
+              <div className="font-medium mt-3">Supported Timers:</div>
               <ul className="flex gap-2">
                 <Image
                   src={"/timer-logos/nexustimer.jpg"}
