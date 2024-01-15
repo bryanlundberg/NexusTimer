@@ -46,11 +46,12 @@ export default function ImportModal() {
                     onChange={async (e) => {
                       try {
                         setIsImporting(true);
-                        const res = await importDataFromFile(e);
-                        console.log(res);
-                        router.push("/cubes");
-                        setSelectedCube(null);
-                        setImportModalOpen(false);
+                        const response = await importDataFromFile(e);
+                        if (response) {
+                          router.push("/cubes");
+                          setSelectedCube(null);
+                          setImportModalOpen(false);
+                        }
                       } catch (error) {
                         console.error(error);
                       } finally {

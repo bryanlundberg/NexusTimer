@@ -23,6 +23,7 @@ export type Event =
   | "333ft";
 
 type TwistyTimerEvent =
+  | null
   | "222"
   | "333"
   | "444"
