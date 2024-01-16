@@ -1,5 +1,4 @@
 import { Cube } from "@/interfaces/Cube";
-import loadCubes from "./loadCubes";
 
 /**
  * Updates a cube in the list of cubes.

@@ -1,6 +1,4 @@
 import { Cube } from "@/interfaces/Cube";
-import { Solve } from "@/interfaces/Solve";
-import loadCubes from "./loadCubes";
 
 /**
  * Updates sessions for cubes of the same category.

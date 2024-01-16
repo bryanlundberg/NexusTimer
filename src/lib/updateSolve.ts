@@ -1,5 +1,4 @@
 import { Cube } from "@/interfaces/Cube";
-import loadCubes from "./loadCubes";
 import { Solve } from "@/interfaces/Solve";
 
 /**

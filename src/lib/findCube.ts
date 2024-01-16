@@ -1,5 +1,4 @@
 import { Cube } from "@/interfaces/Cube";
-import loadCubes from "./loadCubes";
 
 /**
  * Finds a cube with the specified ID from the list of cubes.
@@ -8,7 +7,7 @@ import loadCubes from "./loadCubes";
  * @returns {Cube | null} The found cube or null if not found.
  */
 export default function findCube({ cubeId }: { cubeId: string }): Cube | null {
-  // Load existing cubes from local storage
+  // Load existing cubes from indexDB
   const cubesDB = loadCubes();
 
   // Find the cube with the specified ID in the list

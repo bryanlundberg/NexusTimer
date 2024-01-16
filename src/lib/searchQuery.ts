@@ -1,5 +1,4 @@
 import { Solve } from "@/interfaces/Solve";
-import loadCubes from "./loadCubes";
 import formatTime from "./formatTime";
 import { sort } from "fast-sort";
 

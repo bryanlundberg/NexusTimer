@@ -9,12 +9,12 @@ import calculateBestAo from "./calculateBestAo";
  * @returns {AoStatistics} The calculated AoX statistics for global, session, cubeAll, and cubeSession.
  */
 
-export default function calcAoStatistics(
+export default async function calcAoStatistics(
   category: Categories,
   cubeName: string
-): AoStatistics {
+): Promise<AoStatistics> {
   // Get solve metrics for global, session, cubeAll, and cubeSession
-  const { global, session, cubeAll, cubeSession } = getSolvesMetrics(
+  const { global, session, cubeAll, cubeSession } = await getSolvesMetrics(
     category,
     cubeName
   );

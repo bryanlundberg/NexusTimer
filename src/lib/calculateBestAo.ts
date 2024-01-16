@@ -9,6 +9,8 @@ import calculateCurrentAo from "./calculateCurrentAo";
  * @returns {number} The best average of X (AoX) for the given solves.
  */
 export default function calculateBestAo(solves: Solve[], ao: number): number {
+  if (!solves) return 0;
+
   // If the number of solves is less than the desired average length, return 0
   if (solves.length < ao) {
     return 0;

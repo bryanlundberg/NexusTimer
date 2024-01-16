@@ -29,8 +29,8 @@ export async function getCubeById(id: string) {
   });
 }
 
-export async function getAllCubes() {
-  return new Promise<void>(async (resolve, reject) => {
+export async function getAllCubes(): Promise<Cube[]> {
+  return new Promise<Cube[]>(async (resolve, reject) => {
     const cubeDB = await new IDBStore({
       dbVersion,
       storeName,
@@ -68,8 +68,8 @@ export async function saveCube({
   };
   createdAt?: number;
   favorite?: boolean;
-}) {
-  return new Promise<void>(async (resolve, reject) => {
+}): Promise<Cube> {
+  return new Promise<Cube>(async (resolve, reject) => {
     const cubeDB = await new IDBStore({
       dbVersion,
       storeName,

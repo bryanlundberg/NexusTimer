@@ -1,5 +1,5 @@
+import { getAllCubes } from "@/db/dbOperations";
 import { Cube } from "@/interfaces/Cube";
-import loadCubes from "./loadCubes";
 
 /**
  * Gets the number of solves in the "session" category for a specific cube by its ID.
@@ -7,13 +7,13 @@ import loadCubes from "./loadCubes";
  * @param {string} params.cubeId - The ID of the cube for which to retrieve session solves.
  * @returns {number} The number of solves in the "session" category for the specified cube.
  */
-export default function getSessionSolves({
+export default async function getSessionSolves({
   cubeId,
 }: {
   cubeId: string;
-}): number {
-  // Load existing cubes from local storage
-  const cubesDB = loadCubes();
+}): Promise<number> {
+  // Load existing cubes from indexDB
+  const cubesDB = await getAllCubes();
 
   if (!cubesDB) return 0;
 

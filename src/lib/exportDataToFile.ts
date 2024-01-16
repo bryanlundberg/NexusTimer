@@ -1,5 +1,4 @@
 import { formatISO9075 } from "date-fns";
-import loadCubes from "./loadCubes";
 
 const OUTPUT_FILE_NAME = `Backup-NT-${formatISO9075(new Date(Date.now()))}`;
 

@@ -1,7 +1,6 @@
 import { Cube } from "@/interfaces/Cube";
 import BookmarkFav from "@/components/cubes/BookmarkFav";
 import Ellipsis from "@/icons/Ellipsis";
-import updateCube from "@/lib/updateCube";
 import { useTimerStore } from "@/store/timerStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import Play from "@/icons/Play";
@@ -9,6 +8,7 @@ import Stop from "@/icons/Stop";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useRouter } from "next/navigation";
+import { getAllCubes, saveCube } from "@/db/dbOperations";
 
 export default function TableRow({ cube }: { cube: Cube }) {
   const { lang } = useSettingsModalStore();
@@ -17,9 +17,15 @@ export default function TableRow({ cube }: { cube: Cube }) {
   const { setCubes } = useTimerStore();
   const { setEditingCube, setModalOpen, setCubeName, setSelectedCategory } =
     useCubesModalStore();
-  const setFavorite = (cubeId: string) => {
-    const updatedCube = updateCube({ cubeId });
-    setCubes(updatedCube);
+  const setFavorite = async (cube: Cube) => {
+    await saveCube({
+      id: cube.id,
+      name: cube.name,
+      category: cube.category,
+      favorite: !cube.favorite,
+    });
+    const updatedCubes = await getAllCubes();
+    setCubes(updatedCubes);
   };
 
   function formatDate(msDate: number) {
@@ -31,8 +37,6 @@ export default function TableRow({ cube }: { cube: Cube }) {
       .toString()
       .padStart(2, "0")}/${year}`;
   }
-
-  const status = cube.solves.session.length > 0;
 
   const redirectToHome = (e: any) => {
     const targetDiv = e.target;
@@ -53,7 +57,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
       >
         <div className="table-cell w-10 align-middle">
           <BookmarkFav
-            cubeId={cube.id}
+            cube={cube}
             isChecked={cube.favorite}
             setFavorite={setFavorite}
           />
@@ -71,7 +75,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
           {formatDate(cube.createdAt)}
         </div>
         <div className="hidden text-center align-middle md:table-cell">
-          {status ? (
+          {cube.solves.session.length > 0 ? (
             <div className="flex items-center justify-center gap-1">
               <div className="w-4 h-4">
                 <Play />

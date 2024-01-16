@@ -1,13 +1,12 @@
 import { Cube } from "@/interfaces/Cube";
-import loadCubes from "./loadCubes";
 
 /**
- * Deletes a solve with the specified ID from all cubes and updates the list of cubes in local storage.
+ * Deletes a solve with the specified ID from all cubes and updates the list of cubes in indexDB.
  * @param {string} solveId - The ID of the solve to be deleted.
  * @returns {Cube[]} The updated list of cubes after deleting the specified solve.
  */
 export default function deleteSolve(solveId: string): Cube[] {
-  // Load existing cubes from local storage
+  // Load existing cubes from indexDB
   const cubesDB = loadCubes();
 
   // Iterate through each cube in the list
@@ -41,7 +40,7 @@ export default function deleteSolve(solveId: string): Cube[] {
     }
   }
 
-  // Update the list of cubes in local storage
+  // Update the list of cubes in indexDB
   window.localStorage.setItem("cubes", JSON.stringify(cubesDB));
 
   // Return the updated list of cubes

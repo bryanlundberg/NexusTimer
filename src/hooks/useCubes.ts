@@ -2,29 +2,30 @@ import { useEffect, useState } from "react";
 import { useTimerStore } from "@/store/timerStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import loadCubes from "@/lib/loadCubes";
+import { getAllCubes } from "@/db/dbOperations";
 
 export function useCubes() {
   const { cubes, setCubes } = useTimerStore();
   const { modalOpen, setModalOpen } = useCubesModalStore();
   const { lang } = useSettingsModalStore();
-
   const [filterCubes, setFilterCubes] = useState(cubes);
-  const handleSearchFilter = (searchCube: string) => {
+
+  const handleSearchFilter = async (searchCube: string) => {
+    //Replace this function and use index search -> Its a lot more faster and efficient
+    const cubesDB = await getAllCubes();
     setFilterCubes(
-      cubes!.filter((cube) =>
+      cubesDB.filter((cube) =>
         cube.name.toLowerCase().startsWith(searchCube.toLowerCase())
       )
     );
   };
 
   useEffect(() => {
-    const cubes = loadCubes();
-    setCubes(cubes);
+    getAllCubes().then((res) => setCubes(res));
   }, [setCubes, setModalOpen]);
 
   useEffect(() => {
-    setFilterCubes(cubes);
+    getAllCubes().then((res) => setFilterCubes(res));
   }, [modalOpen, cubes]);
 
   return {

@@ -8,12 +8,12 @@ import { sort } from "fast-sort";
  * @param {string} cubeName - The name of the cube.
  * @returns {StatisticN} The best solve times for global, session, cubeSession, and cubeAll.
  */
-export default function calcBestTime(
+export default async function calcBestTime(
   category: Categories,
   cubeName: string
-): StatisticN {
+): Promise<StatisticN> {
   // Get solve metrics for global, session, cubeSession, and cubeAll
-  const { global, session, cubeAll, cubeSession } = getSolvesMetrics(
+  const { global, session, cubeAll, cubeSession } = await getSolvesMetrics(
     category,
     cubeName
   );

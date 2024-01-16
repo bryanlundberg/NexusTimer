@@ -1,4 +1,4 @@
-import loadCubes from "./loadCubes";
+import { getAllCubes } from "@/db/dbOperations";
 import { Categories } from "@/interfaces/Categories";
 import { CubeSolves } from "@/interfaces/CubeSolves";
 
@@ -8,12 +8,12 @@ import { CubeSolves } from "@/interfaces/CubeSolves";
  * @param {string} cubeName - The name of the cube to retrieve metrics for.
  * @returns {CubeSolves} An object containing solves metrics for global, session, cubeAll, and cubeSession.
  */
-export default function getSolvesMetrics(
+export default async function getSolvesMetrics(
   category: Categories,
   cubeName: string
-): CubeSolves {
-  // Load existing cubes from local storage
-  const cubesDB = loadCubes();
+): Promise<CubeSolves> {
+  // Load existing cubes from indexDB
+  const cubesDB = await getAllCubes();
 
   // Initialize an object to store solves metrics
   const result: CubeSolves = {
