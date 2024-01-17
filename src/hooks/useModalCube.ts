@@ -67,17 +67,21 @@ export default function useModalCube() {
   };
 
   const handleEditCube = async (name: string, category: Categories) => {
-    const cubeDB = await getAllCubes();
-    const isDuplicate = cubeDB.some((cube) => cube.name === name);
     if (name.trim() === "") {
       setError(true);
       return;
     }
+
+    if (!editingCube) return;
+
+    const cubeDB = await getAllCubes();
+    const isDuplicate = cubeDB.some(
+      (cube) => cube.name === name && name !== selectedCube?.name
+    );
     if (isDuplicate) {
       setDuplicate(true);
       return;
     }
-    if (!editingCube) return;
 
     for (const cube of cubeDB) {
       if (cube.id === editingCube.id) {
