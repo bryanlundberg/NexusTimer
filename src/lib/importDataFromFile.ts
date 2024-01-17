@@ -319,106 +319,100 @@ async function importNexusTimerData(parsedCubeData: Cube[]): Promise<boolean> {
   return true;
 }
 
-function importCstimerData(parsedCubeData: any): Promise<boolean> {
+async function importCstimerData(parsedCubeData: any): Promise<boolean> {
   // ########################
   // ### IMPORT CSTIMER #####
   // ########################
 
-  return new Promise<boolean>((resolve, reject) => {
-    // Check if parsedCubeData is an object
-    if (typeof parsedCubeData !== "object") return resolve(false);
+  // Check if parsedCubeData is an object
+  if (typeof parsedCubeData !== "object") return false;
 
-    // Verify whether "cstimer" is the only one containing a
-    // property named "properties". This check helps determine
-    // if the parsedCubeData corresponds to CSTimer or not.
+  // Verify whether "cstimer" is the only one containing a
+  // property named "properties". This check helps determine
+  // if the parsedCubeData corresponds to CSTimer or not.
 
-    if (!Object.keys(parsedCubeData).includes("properties"))
-      return resolve(false);
+  if (!Object.keys(parsedCubeData).includes("properties")) return false;
 
-    // ### validate cstimer
-    // Eliminate app properties section from the backup
-    const csTimerSessions = Object.keys(parsedCubeData).slice(
-      0,
-      Object.keys(parsedCubeData).length - 1
-    );
+  // ### validate cstimer
+  // Eliminate app properties section from the backup
+  const csTimerSessions = Object.keys(parsedCubeData).slice(
+    0,
+    Object.keys(parsedCubeData).length - 1
+  );
 
-    // Create a virtual object to place the new data structure
-    const newCubeList: Cube[] = [];
+  // Create a virtual object to place the new data structure
+  const newCubeList: Cube[] = [];
 
-    csTimerSessions.forEach((session: any) => {
-      // Later will be updated to the date of the first solve registered on this session
-      let createdAt = Date.now();
+  csTimerSessions.forEach((session: any) => {
+    // Later will be updated to the date of the first solve registered on this session
+    let createdAt = Date.now();
 
-      // Create a virtual cube session
-      const newCube: Cube = {
+    // Create a virtual cube session
+    const newCube: Cube = {
+      id: genId(),
+      name: session,
+      category: "3x3", // Not specified in CSTimer backup - Require manual fix by user later...
+      solves: {
+        session: [],
+        all: [],
+      },
+      createdAt: createdAt,
+      favorite: false,
+    };
+
+    // Get and convert all the solves into a compatible format
+    parsedCubeData[session].forEach((solve: any, index: number) => {
+      if (index === 0) {
+        createdAt = solve[3];
+      }
+
+      // DNF solves won't be registered in the system; they will be excluded
+      let hasDNF = false;
+
+      // CSTimer has a very deep array storage structure
+      let plus2 = false;
+      let solvingTime = 0;
+
+      if (solve[0][0] === -1) {
+        hasDNF = true;
+      } else if (solve[0][0] === 0) {
+        plus2 = false;
+      } else if (solve[0][0] === 2000) {
+        plus2 = true;
+      }
+
+      if (typeof solve[0][0] !== "number" || typeof solve[0][1] !== "number") {
+        return false; // new Error("Corrupted data type")
+      }
+
+      solvingTime = solve[0][1];
+
+      let scramble = solve[1];
+      let comment = solve[2];
+      let endTime = solve[3];
+
+      // Adjust the calculations trying to match the data structure
+      const newSolve: Solve = {
         id: genId(),
-        name: session,
-        category: "3x3", // Not specified in CSTimer backup - Require manual fix by user later...
-        solves: {
-          session: [],
-          all: [],
-        },
-        createdAt: createdAt,
-        favorite: false,
+        startTime: endTime - solvingTime,
+        endTime: endTime,
+        scramble: scramble,
+        bookmark: false,
+        time: solvingTime,
+        dnf: hasDNF,
+        plus2: plus2,
+        rating: Math.floor(Math.random() * 20) + scramble.length,
+        cubeId: newCube.id,
+        comment: comment,
       };
 
-      // Get and convert all the solves into a compatible format
-      parsedCubeData[session].forEach((solve: any, index: number) => {
-        if (index === 0) {
-          createdAt = solve[3];
-        }
-
-        // DNF solves won't be registered in the system; they will be excluded
-        let hasDNF = false;
-
-        // CSTimer has a very deep array storage structure
-        let plus2 = false;
-        let solvingTime = 0;
-
-        if (solve[0][0] === -1) {
-          hasDNF = true;
-        } else if (solve[0][0] === 0) {
-          plus2 = false;
-        } else if (solve[0][0] === 2000) {
-          plus2 = true;
-        }
-
-        if (
-          typeof solve[0][0] !== "number" ||
-          typeof solve[0][1] !== "number"
-        ) {
-          return resolve(false); // new Error("Corrupted data type")
-        }
-
-        solvingTime = solve[0][1];
-
-        let scramble = solve[1];
-        let comment = solve[2];
-        let endTime = solve[3];
-
-        // Adjust the calculations trying to match the data structure
-        const newSolve: Solve = {
-          id: genId(),
-          startTime: endTime - solvingTime,
-          endTime: endTime,
-          scramble: scramble,
-          bookmark: false,
-          time: solvingTime,
-          dnf: hasDNF,
-          plus2: plus2,
-          rating: Math.floor(Math.random() * 20) + scramble.length,
-          cubeId: newCube.id,
-          comment: comment,
-        };
-
-        newCube.solves.session.push(newSolve);
-      });
-
-      newCubeList.push(newCube);
+      newCube.solves.session.push(newSolve);
     });
 
-    // Update local storage with the modified list of cubes
-    window.localStorage.setItem("cubes", JSON.stringify(newCubeList));
-    return resolve(true);
+    newCubeList.push(newCube);
   });
+
+  // Update local storage with the modified list of cubes
+  await saveBatchCubes(newCubeList);
+  return true;
 }

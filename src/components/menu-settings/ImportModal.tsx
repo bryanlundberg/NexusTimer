@@ -47,11 +47,13 @@ export default function ImportModal() {
                       try {
                         setIsImporting(true);
                         const response = await importDataFromFile(e);
-                        console.log(response);
                         if (response) {
                           router.push("/cubes");
                           setSelectedCube(null);
                           setImportModalOpen(false);
+                          alert(
+                            "csTimer, cubedesk require manual adjustment of category!"
+                          );
                         }
                       } catch (error) {
                         console.error(error);
