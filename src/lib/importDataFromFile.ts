@@ -208,99 +208,95 @@ async function importTwistytimerData(parsedData: any): Promise<boolean> {
   return true;
 }
 
-function importCubedeskData(parsedCubeData: any): Promise<boolean> {
+async function importCubedeskData(parsedCubeData: any): Promise<boolean> {
   // #########################
   // #### IMPORT CUBEDESK ####
   // #########################
 
-  return new Promise<boolean>((resolve, reject) => {
-    // Check if parsedCubeData is an object
-    if (typeof parsedCubeData !== "object") return resolve(false);
+  // Check if parsedCubeData is an object
+  if (typeof parsedCubeData !== "object") return false;
 
-    // Ensure that required keys are present in the Cubedesk data structure
-    if (!Object.keys(parsedCubeData).includes("solves")) return resolve(false);
-    if (!Object.keys(parsedCubeData).includes("sessions"))
-      return resolve(false);
+  // Ensure that required keys are present in the Cubedesk data structure
+  if (!Object.keys(parsedCubeData).includes("solves")) return false;
+  if (!Object.keys(parsedCubeData).includes("sessions")) return false;
 
-    // Force a return of false if certain props are found in the Cubedesk backup data structure
-    if (Object.keys(parsedCubeData).includes("id")) return resolve(false);
-    if (Object.keys(parsedCubeData).includes("properties"))
-      return resolve(false);
-    if (Object.keys(parsedCubeData).includes("scramble")) return resolve(false);
+  // Force a return of false if certain props are found in the Cubedesk backup data structure
+  if (Object.keys(parsedCubeData).includes("id")) return false;
+  if (Object.keys(parsedCubeData).includes("properties")) return false;
+  if (Object.keys(parsedCubeData).includes("scramble")) return false;
 
-    // List to store new cubes
-    const newCubeList: Cube[] = [];
+  // List to store new cubes
+  const newCubeList: Cube[] = [];
 
-    // Iterate through Cubedesk sessions
-    parsedCubeData["sessions"].forEach(
-      (session: {
-        id: string;
-        name: string;
-        created_at: string;
-        order: number;
-      }) => {
-        // Create a virtual cube session
-        const newCube: Cube = {
-          id: session.id,
-          name: session.name,
-          category: "3x3", // Category not specified in Cubedesk backup -> Manual fix later by user...
-          solves: {
-            session: [],
-            all: [],
-          },
-          createdAt: Date.parse(session.created_at),
-          favorite: false,
-        };
+  // Iterate through Cubedesk sessions
+  parsedCubeData["sessions"].forEach(
+    (session: {
+      id: string;
+      name: string;
+      created_at: string;
+      order: number;
+    }) => {
+      // Create a virtual cube session
+      const newCube: Cube = {
+        id: session.id,
+        name: session.name,
+        category: "3x3", // Category not specified in Cubedesk backup -> Manual fix later by user...
+        solves: {
+          session: [],
+          all: [],
+        },
+        createdAt: Date.parse(session.created_at),
+        favorite: false,
+      };
 
-        // Iterate through Cubedesk solves
-        parsedCubeData["solves"].forEach(
-          (solve: {
-            scramble: string;
-            started_at: number;
-            ended_at: number;
-            time: number;
-            raw_time: number;
-            cube_type: Event;
-            id: string;
-            dnf: boolean;
-            plus_two: boolean;
-            session_id: string;
-            from_timer: boolean;
-            inspection_time: number;
-            is_smart_cube: boolean;
-            smart_put_down_time: number;
-          }) => {
-            // Check if the solve belongs to the current session
-            if (solve.session_id === session.id) {
-              // Create a new solve
-              const newSolve: Solve = {
-                id: solve.id,
-                startTime: solve.started_at,
-                endTime: solve.ended_at,
-                scramble: solve.scramble,
-                bookmark: false,
-                time: solve.time * 1000,
-                dnf: solve.dnf,
-                plus2: solve.plus_two,
-                rating: Math.floor(Math.random() * 20) + solve.scramble.length,
-                cubeId: session.id,
-                comment: "",
-              };
-              // Add the solve to the session
-              newCube.solves.session.push(newSolve);
-            }
+      // Iterate through Cubedesk solves
+      parsedCubeData["solves"].forEach(
+        (solve: {
+          scramble: string;
+          started_at: number;
+          ended_at: number;
+          time: number;
+          raw_time: number;
+          cube_type: Event;
+          id: string;
+          dnf: boolean;
+          plus_two: boolean;
+          session_id: string;
+          from_timer: boolean;
+          inspection_time: number;
+          is_smart_cube: boolean;
+          smart_put_down_time: number;
+        }) => {
+          // Check if the solve belongs to the current session
+          if (solve.session_id === session.id) {
+            // Create a new solve
+            const newSolve: Solve = {
+              id: solve.id,
+              startTime: solve.started_at,
+              endTime: solve.ended_at,
+              scramble: solve.scramble,
+              bookmark: false,
+              time: solve.time * 1000,
+              dnf: solve.dnf,
+              plus2: solve.plus_two,
+              rating: Math.floor(Math.random() * 20) + solve.scramble.length,
+              cubeId: session.id,
+              comment: "",
+            };
+            // Add the solve to the session
+            newCube.solves.session.push(newSolve);
           }
-        );
-        // Add the new cube to the list
-        newCubeList.push(newCube);
-      }
-    );
+        }
+      );
+      // Add the new cube to the list
+      newCubeList.push(newCube);
+    }
+  );
 
-    // Update local storage with the modified list of cubes
-    window.localStorage.setItem("cubes", JSON.stringify(newCubeList));
+  // Update local storage with the modified list of cubes
+  await saveBatchCubes(newCubeList);
 
-    return resolve(true);
-  });
+  return true;
 }
 
 function importNexusTimerData(parsedCubeData: Cube[]): Promise<boolean> {
