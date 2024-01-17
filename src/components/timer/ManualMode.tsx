@@ -58,7 +58,7 @@ export default function ManualMode() {
             rating: Math.floor(Math.random() * 20) + scramble.length,
             cubeId: selectedCube.id,
           };
-          setLastSolve(lastSolve);
+          setLastSolve(newSolve);
           const currentCube = await getCubeById(selectedCube.id);
           if (currentCube) {
             currentCube.solves.session.push(newSolve);
