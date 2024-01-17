@@ -5,6 +5,7 @@ import { Solve } from "@/interfaces/Solve";
 import { Event } from "@/interfaces/cubeCollection";
 import { cubeCollection } from "./const/cubeCollection";
 import { parse } from "papaparse";
+import { saveBatchCubes } from "@/db/dbOperations";
 
 export default async function importDataFromFile(
   event: ChangeEvent<HTMLInputElement>
@@ -84,133 +85,127 @@ async function isValidCubesData(fileContent: string): Promise<boolean> {
   return [cstimer, nextuTimer, cubedesk].some((result) => result === true);
 }
 
-function importTwistytimerData(parsedData: any): Promise<boolean> {
+async function importTwistytimerData(parsedData: any): Promise<boolean> {
   // #########################
   // ## IMPORT TWISTY TIMER ##
   // #########################
 
-  return new Promise<boolean>((resolve, reject) => {
-    // CSV to JSON
-    parsedData = parse(parsedData, {
-      dynamicTyping: true,
-    });
-
-    // Twisty Timer backup: Row structure
-    // Puzzle: 222, Category: Normal, Time: 0, Date: 1657657016937, Scramble: , Penalty: 0, Comment:
-
-    // Penalty:
-    // [1] - +2
-    // [0] - Nothing
-    // [2] - DNF
-
-    // List to store new cubes
-    const newCubeList: Cube[] = [];
-
-    setTimeout(() => {
-      for (let index = 0; index <= parsedData.data.length; index++) {
-        // Skip the first row which contains the headers of the chart
-        if (index === 0) {
-          continue;
-        }
-
-        // Extract individual data fields
-        const puzzle = parsedData.data[index][0];
-        const category = parsedData.data[index][1];
-        const time = parsedData.data[index][2];
-        const date = parsedData.data[index][3];
-        let scramble = parsedData.data[index][4];
-        const penalty = parsedData.data[index][5];
-        const comment = parsedData.data[index][6];
-
-        // Avoid solves with 0 time
-        if (time === 0) continue;
-
-        // Avoid clock category (not supported, not included in NexusTimer)
-        if (puzzle === "clock") {
-          console.warn(
-            "Clock, not supported on NexusTimer, backup won't restore it."
-          );
-          continue;
-        }
-
-        // Break loop if puzzle is null or empty
-        if (puzzle === null) break;
-
-        // Twisty Timer uses a different category classification
-        const event = cubeCollection.find(
-          (u) => u.twistyId === puzzle.toString()
-        );
-        if (!event) {
-          return resolve(false); // new Error("Unsupported category on Nexus Timer")
-        }
-
-        // Find the memory-cube corresponding to this solve
-        const cube = newCubeList.find(
-          (cube: Cube) =>
-            cube.name === `${puzzle}-${category}` &&
-            cube.category === event.name
-        );
-
-        // If the cube exists, add the solve to its session
-        if (cube) {
-          cube.solves.session.push({
-            id: genId(),
-            startTime: date - time,
-            endTime: date,
-            scramble: scramble,
-            bookmark: false,
-            time: time,
-            dnf: penalty === 2,
-            plus2: penalty === 1,
-            rating: scramble
-              ? Math.floor(Math.random() * 20) +
-                parseInt(scramble.toString().length)
-              : 10,
-            cubeId: cube.id,
-            comment: comment ? comment : "",
-          });
-          continue;
-        }
-
-        // If the cube doesn't exist, create it and append the solve
-        if (!cube) {
-          const newCube: Cube = {
-            id: genId(),
-            name: `${puzzle}-${category}`,
-            category: event.name,
-            solves: {
-              session: [],
-              all: [],
-            },
-            createdAt: date,
-            favorite: false,
-          };
-          // Add the current solve
-          newCube.solves.session.push({
-            id: genId(),
-            startTime: date - time,
-            endTime: date,
-            scramble: scramble,
-            bookmark: false,
-            time: time,
-            dnf: penalty === 2,
-            plus2: penalty === 1,
-            rating: scramble
-              ? Math.floor(Math.random() * 20) +
-                parseInt(scramble.toString().length)
-              : 10,
-            cubeId: newCube.id,
-            comment: comment ? comment : "",
-          });
-          // Add the new cube to the list
-          newCubeList.push(newCube);
-        }
-      }
-      // Update local storage with the modified list of cubes
-      window.localStorage.setItem("cubes", JSON.stringify(newCubeList));
-      return resolve(true);
-    }, 3000);
+  // CSV to JSON
+  parsedData = await parse(parsedData, {
+    dynamicTyping: true,
   });
+
+  // Twisty Timer backup: Row structure
+  // Puzzle: 222, Category: Normal, Time: 0, Date: 1657657016937, Scramble: , Penalty: 0, Comment:
+
+  // Penalty:
+  // [1] - +2
+  // [0] - Nothing
+  // [2] - DNF
+
+  // List to store new cubes
+  const newCubeList: Cube[] = [];
+
+  for (let index = 0; index <= parsedData.data.length; index++) {
+    // Skip the first row which contains the headers of the chart
+    if (index === 0) {
+      continue;
+    }
+
+    // Extract individual data fields
+    const puzzle = parsedData.data[index][0];
+    const category = parsedData.data[index][1];
+    const time = parsedData.data[index][2];
+    const date = parsedData.data[index][3];
+    let scramble = parsedData.data[index][4];
+    const penalty = parsedData.data[index][5];
+    const comment = parsedData.data[index][6];
+
+    // Avoid solves with 0 time
+    if (time === 0) continue;
+
+    // Avoid clock category (not supported, not included in NexusTimer)
+    if (puzzle === "clock") {
+      console.warn(
+        "Clock, not supported on NexusTimer, backup won't restore it."
+      );
+      continue;
+    }
+
+    // Break loop if puzzle is null or empty
+    if (puzzle === null) break;
+
+    // Twisty Timer uses a different category classification
+    const event = cubeCollection.find((u) => u.twistyId === puzzle.toString());
+    if (!event) {
+      return false; // throw new Error("Unsupported category on Nexus Timer");
+    }
+
+    // Find the memory-cube corresponding to this solve
+    const cube = newCubeList.find(
+      (cube: Cube) =>
+        cube.name === `${puzzle}-${category}` && cube.category === event.name
+    );
+
+    // If the cube exists, add the solve to its session
+    if (cube) {
+      cube.solves.session.push({
+        id: genId(),
+        startTime: date - time,
+        endTime: date,
+        scramble: scramble,
+        bookmark: false,
+        time: time,
+        dnf: penalty === 2,
+        plus2: penalty === 1,
+        rating: scramble
+          ? Math.floor(Math.random() * 20) +
+            parseInt(scramble.toString().length)
+          : 10,
+        cubeId: cube.id,
+        comment: comment ? comment : "",
+      });
+      continue;
+    }
+
+    // If the cube doesn't exist, create it and append the solve
+    if (!cube) {
+      const newCube: Cube = {
+        id: genId(),
+        name: `${puzzle}-${category}`,
+        category: event.name,
+        solves: {
+          session: [],
+          all: [],
+        },
+        createdAt: date,
+        favorite: false,
+      };
+      // Add the current solve
+      newCube.solves.session.push({
+        id: genId(),
+        startTime: date - time,
+        endTime: date,
+        scramble: scramble,
+        bookmark: false,
+        time: time,
+        dnf: penalty === 2,
+        plus2: penalty === 1,
+        rating: scramble
+          ? Math.floor(Math.random() * 20) +
+            parseInt(scramble.toString().length)
+          : 10,
+        cubeId: newCube.id,
+        comment: comment ? comment : "",
+      });
+      // Add the new cube to the list
+      newCubeList.push(newCube);
+    }
+  }
+  // Update local storage with the modified list of cubes
+  await saveBatchCubes(newCubeList);
+
+  return true;
 }
 
 function importCubedeskData(parsedCubeData: any): Promise<boolean> {

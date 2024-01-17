@@ -47,6 +47,7 @@ export default function ImportModal() {
                       try {
                         setIsImporting(true);
                         const response = await importDataFromFile(e);
+                        console.log(response);
                         if (response) {
                           router.push("/cubes");
                           setSelectedCube(null);
