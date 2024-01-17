@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { TwistyPlayer } from "cubing/twisty";
 import getDisplayId from "@/lib/getDisplayId";
 import { Categories } from "@/interfaces/Categories";
-import { useTimerStore } from "@/store/timerStore";
 
 interface ScrambleDisplay {
   className: string;

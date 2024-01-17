@@ -8,7 +8,7 @@ import Stop from "@/icons/Stop";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useRouter } from "next/navigation";
-import { getAllCubes, saveCube } from "@/db/dbOperations";
+import { saveCube } from "@/db/dbOperations";
 
 export default function TableRow({ cube }: { cube: Cube }) {
   const { lang } = useSettingsModalStore();

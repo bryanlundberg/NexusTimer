@@ -2,7 +2,6 @@ import { Solve } from "@/interfaces/Solve";
 import formatTime from "./formatTime";
 import { getCubeById } from "@/db/dbOperations";
 import { sort } from "fast-sort";
-import { solve } from "cube-solver";
 
 /**
  * Searches for solves in a specific cube based on the provided query and tab.

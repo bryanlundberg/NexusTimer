@@ -6,8 +6,14 @@ const IDBStore = require("idb-wrapper");
 
 const storeName = "nx-data";
 const keyPath = "id";
-const dbVersion = 1;
+const dbVersion = 2;
 const autoIncrement = false;
+const indexes = [
+  { name: "id" },
+  { name: "createdAt", unique: true },
+  { name: "category" },
+  { name: "favorite" },
+];
 
 export async function getCubeById(id: string): Promise<Cube | null> {
   return new Promise<Cube | null>(async (resolve, reject) => {
@@ -17,6 +23,7 @@ export async function getCubeById(id: string): Promise<Cube | null> {
       keyPath,
       autoIncrement,
       onStoreReady: () => getCube(),
+      indexes: indexes,
     });
 
     async function getCube() {
@@ -41,6 +48,7 @@ export async function getAllCubes(): Promise<Cube[]> {
       keyPath,
       autoIncrement,
       onStoreReady: () => getAll(),
+      indexes: indexes,
     });
 
     async function getAll() {
@@ -80,6 +88,7 @@ export async function saveCube({
       keyPath,
       autoIncrement,
       onStoreReady: () => save(),
+      indexes: indexes,
     });
 
     const newCube: Cube = {
@@ -112,6 +121,7 @@ export async function saveBatchCubes(cubesBatch: Cube[]) {
       keyPath,
       autoIncrement,
       onStoreReady: () => save(),
+      indexes: indexes,
     });
 
     async function save() {
@@ -132,11 +142,99 @@ export async function deleteCubeById(id: string) {
       keyPath,
       autoIncrement,
       onStoreReady: () => deleteCube(),
+      indexes: indexes,
     });
 
     async function deleteCube() {
       return await cubeDB.remove(
         id,
+        (success: any) => resolve(success),
+        (error: any) => reject(error)
+      );
+    }
+  });
+}
+
+// ### Testing area, experiment for query data from DB
+// directly with indexed data, results in a better performance
+
+// -> It can filter 68,349 objects in 1428 ms, and return sorted.
+
+export async function test(): Promise<any> {
+  // return data
+  const cubeDB = await new IDBStore({
+    dbVersion: 2,
+    storeName: "solves",
+    keyPath,
+    autoIncrement,
+    onStoreReady: save,
+    onError: function (err: any) {
+      console.log(err);
+    },
+    indexes: [
+      { name: "id" },
+      { name: "cube" },
+      { name: "date" },
+      { name: "number" },
+    ],
+  });
+
+  async function save(): Promise<any> {
+    const start = Date.now();
+
+    const onEnd = function (item: any[]) {
+      // console.table(item);
+      const end = Date.now();
+      console.log(`Execution time: ${end - start} ms`);
+      console.log(item.length);
+      return item;
+    };
+
+    const keyRange = cubeDB.makeKeyRange({
+      upper: 0,
+    });
+
+    return await cubeDB.query(onEnd, {
+      index: "date",
+      order: "ASC",
+      filterDuplicates: true,
+      writeAccess: false,
+      keyRange: keyRange,
+    });
+  }
+}
+
+export async function test2() {
+  return new Promise<void>(async (resolve, reject) => {
+    const cubeDB = await new IDBStore({
+      dbVersion: 2,
+      storeName: "solves",
+      keyPath,
+      autoIncrement,
+      onStoreReady: () => save(),
+      indexes: [
+        { name: "id" },
+        { name: "cube" },
+        { name: "date" },
+        { name: "number" },
+      ],
+    });
+
+    async function save() {
+      var onItem = function (item: any) {
+        console.log("got item:", item);
+      };
+      var onEnd = function (item: any) {
+        console.log("All done.");
+      };
+
+      return await cubeDB.put(
+        {
+          id: genId(),
+          cube: "ffff",
+          date: Date.now(),
+          number: Math.random(),
+        },
         (success: any) => resolve(success),
         (error: any) => reject(error)
       );
