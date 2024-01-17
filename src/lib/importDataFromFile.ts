@@ -299,28 +299,24 @@ async function importCubedeskData(parsedCubeData: any): Promise<boolean> {
   return true;
 }
 
-function importNexusTimerData(parsedCubeData: Cube[]): Promise<boolean> {
+async function importNexusTimerData(parsedCubeData: Cube[]): Promise<boolean> {
   // ########################
   // ## IMPORT NEXUS TIMER ##
   // ########################
 
-  return new Promise<boolean>((resolve, reject) => {
-    // Verify that the backup originates from Nexustimer
-    // Force a return of false if certain props are found in the Nexus Timer data structure
-    // Ensure that the data structure contains the expected properties
-    if (typeof parsedCubeData !== "object") return resolve(false);
-    if (Object.keys(parsedCubeData).includes("properties"))
-      return resolve(false);
-    if (typeof parsedCubeData[0]?.solves.all === "undefined")
-      return resolve(false);
+  // Verify that the backup originates from Nexustimer
+  // Force a return of false if certain props are found in the Nexus Timer data structure
+  // Ensure that the data structure contains the expected properties
+  if (typeof parsedCubeData !== "object") return false;
+  if (Object.keys(parsedCubeData).includes("properties")) return false;
+  if (typeof parsedCubeData[0]?.solves.all === "undefined") return false;
 
-    // No adjustments to the data structure are required;
+  // No adjustments to the data structure are required;
 
-    // Update local storage with the modified list of cubes
-    window.localStorage.setItem("cubes", JSON.stringify(parsedCubeData));
+  // Update local storage with the modified list of cubes
+  await saveBatchCubes(parsedCubeData);
 
-    return resolve(true);
-  });
+  return true;
 }
 
 function importCstimerData(parsedCubeData: any): Promise<boolean> {
