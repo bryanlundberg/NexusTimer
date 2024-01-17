@@ -24,12 +24,11 @@ export default function TableRow({ cube }: { cube: Cube }) {
       category: cube.category,
       favorite: !cube.favorite,
     });
-    const updatedCubes = await getAllCubes();
-    setCubes(updatedCubes);
+    await setCubes();
   };
 
   function formatDate(msDate: number) {
-    const creationDate = new Date(cube.createdAt);
+    const creationDate = new Date(msDate);
     const month = creationDate.getMonth() + 1;
     const day = creationDate.getDate();
     const year = creationDate.getFullYear();
@@ -66,16 +65,16 @@ export default function TableRow({ cube }: { cube: Cube }) {
           {cube.name}
         </div>
         <div className="table-cell text-center align-middle cursor-pointer">
-          {cube.category}
+          {cube?.category}
         </div>
         <div className="table-cell text-center align-middle cursor-pointer">
-          {`${cube.solves.session.length}/${cube.solves.all.length}`}
+          {`${cube?.solves?.session.length}/${cube?.solves?.all.length}`}
         </div>
         <div className="hidden text-center align-middle cursor-pointer md:table-cell">
-          {formatDate(cube.createdAt)}
+          {formatDate(cube?.createdAt)}
         </div>
         <div className="hidden text-center align-middle md:table-cell">
-          {cube.solves.session.length > 0 ? (
+          {cube?.solves?.session.length > 0 ? (
             <div className="flex items-center justify-center gap-1">
               <div className="w-4 h-4">
                 <Play />

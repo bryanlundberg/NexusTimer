@@ -81,29 +81,45 @@ export default function useMetricsSwitch() {
   }, [lang]);
 
   useEffect(() => {
-    const calculatedAverage = calcAverageStatistics(filterCategory, filterCube);
-    const calculatedTimeSpent = calcTimeSpentStatistics(
-      filterCategory,
-      filterCube
-    );
-    const calculatedCounter = calcTotalSolvesStatistics(
-      filterCategory,
-      filterCube
-    );
-    const calculatedStats = calcAoStatistics(filterCategory, filterCube);
-    const calculatedDeviation = calcDeviation(filterCategory, filterCube);
-    const calculatedSuccessRate = calcSuccessRate(filterCategory, filterCube);
-    const calculatedBest = calcBestTime(filterCategory, filterCube);
-    const calculatedData = getSolvesMetrics(filterCategory, filterCube);
+    const fetchData = async () => {
+      const calculatedAverage = await calcAverageStatistics(
+        filterCategory,
+        filterCube
+      );
+      const calculatedTimeSpent = await calcTimeSpentStatistics(
+        filterCategory,
+        filterCube
+      );
+      const calculatedCounter = await calcTotalSolvesStatistics(
+        filterCategory,
+        filterCube
+      );
+      const calculatedStats = await calcAoStatistics(
+        filterCategory,
+        filterCube
+      );
+      const calculatedDeviation = await calcDeviation(
+        filterCategory,
+        filterCube
+      );
+      const calculatedSuccessRate = await calcSuccessRate(
+        filterCategory,
+        filterCube
+      );
+      const calculatedBest = await calcBestTime(filterCategory, filterCube);
+      const calculatedData = await getSolvesMetrics(filterCategory, filterCube);
 
-    setAverage(calculatedAverage);
-    setTimeSpent(calculatedTimeSpent);
-    setCounter(calculatedCounter);
-    setStats(calculatedStats);
-    setDeviation(calculatedDeviation);
-    setSuccessRate(calculatedSuccessRate);
-    setBest(calculatedBest);
-    setData(calculatedData);
+      setAverage(calculatedAverage);
+      setTimeSpent(calculatedTimeSpent);
+      setCounter(calculatedCounter);
+      setStats(calculatedStats);
+      setDeviation(calculatedDeviation);
+      setSuccessRate(calculatedSuccessRate);
+      setBest(calculatedBest);
+      setData(calculatedData);
+    };
+
+    fetchData();
   }, [filterCategory, filterCube]);
 
   return {

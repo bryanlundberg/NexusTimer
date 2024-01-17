@@ -9,12 +9,12 @@ import calcPlus2Rate from "./calcPlus2Rate";
  * @param {string} cubeName - The name of the cube.
  * @returns {StatisticS} The success rate for global, session, cubeSession, and cubeAll.
  */
-export default function calcSuccessRate(
+export default async function calcSuccessRate(
   category: Categories,
   cubeName: string
-): StatisticS {
+): Promise<StatisticS> {
   // Get solve metrics for global, session, cubeSession, and cubeAll
-  const { global, session, cubeAll, cubeSession } = getSolvesMetrics(
+  const { global, session, cubeAll, cubeSession } = await getSolvesMetrics(
     category,
     cubeName
   );

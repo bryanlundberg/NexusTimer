@@ -1,5 +1,3 @@
-import deleteSolve from "@/lib/deleteSolve";
-import findCube from "@/lib/findCube";
 import updateSolve from "@/lib/updateSolve";
 import { useSolvesStore } from "@/store/SolvesStore";
 import { useTimerStore } from "@/store/timerStore";
@@ -26,6 +24,7 @@ import { Solve } from "@/interfaces/Solve";
 import Favorite from "@/icons/Favorite";
 import FavoriteSolid from "@/icons/FavoriteSolid";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
+import { getCubeById } from "@/db/dbOperations";
 
 export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -44,67 +43,63 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
 
   useEscape(() => setStatus(false));
 
-  const handleMove = (solve: Solve, currentTab: SolveTab) => {
+  const handleMove = async (solve: Solve, currentTab: SolveTab) => {
     if (selectedCube) {
-      const newCubes = moveSolve(solve, selectedCube, currentTab);
-      const updatedCube = findCube({ cubeId: selectedCube.id });
-      if (updatedCube) {
-        setSelectedCube(updatedCube);
-      }
-      setCubes(newCubes);
+      await moveSolve(solve, selectedCube, currentTab);
+      const currentCube = await getCubeById(selectedCube.id);
+      await setSelectedCube(currentCube);
+      await setCubes();
     }
     setStatus(false);
   };
 
-  const handleDelete = (solve: Solve) => {
-    const newCubes = deleteSolve(solve.id);
-    if (selectedCube) {
-      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
-      if (updatedSelectedCube) {
-        setSelectedCube(updatedSelectedCube);
-      }
-    }
-    setCubes(newCubes);
+  const handleDelete = async (solve: Solve) => {
+    if (!selectedCube) return;
+    await updateSolve({
+      cubeId: selectedCube.id,
+      solveId: solve.id,
+      type: "DELETE",
+    });
+    const currentCube = await getCubeById(selectedCube.id);
+    await setSelectedCube(currentCube);
     setStatus(false);
   };
 
-  const handlePlusTwo = (solve: Solve) => {
-    const newCubes = updateSolve({ solveId: solve.id, type: "+2" });
-    if (selectedCube) {
-      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
-      if (updatedSelectedCube) {
-        setSelectedCube(updatedSelectedCube);
-      }
-    }
-    setCubes(newCubes);
+  const handlePlusTwo = async (solve: Solve) => {
+    if (!selectedCube) return;
+    await updateSolve({
+      cubeId: selectedCube.id,
+      solveId: solve.id,
+      type: "+2",
+    });
+
+    const currentCube = await getCubeById(selectedCube.id);
+    await setSelectedCube(currentCube);
     setStatus(false);
   };
 
-  const handleComment = (comment: string, solve: Solve) => {
-    const newCubes = updateSolve({
+  const handleComment = async (comment: string, solve: Solve) => {
+    if (!selectedCube) return;
+    await updateSolve({
+      cubeId: selectedCube?.id,
       solveId: solve.id,
       type: "COMMENT",
       comment: comment,
     });
-    if (selectedCube) {
-      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
-      if (updatedSelectedCube) {
-        setSelectedCube(updatedSelectedCube);
-      }
-    }
-    setCubes(newCubes);
+    const currentCube = await getCubeById(selectedCube.id);
+    await setSelectedCube(currentCube);
     setStatus(false);
   };
 
-  const handleBookmark = (solve: Solve) => {
-    const newCubes = updateSolve({ solveId: solve.id, type: "BOOKMARK" });
-    if (selectedCube) {
-      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
-      if (updatedSelectedCube) {
-        setSelectedCube(updatedSelectedCube);
-      }
-    }
-    setCubes(newCubes);
+  const handleBookmark = async (solve: Solve) => {
+    if (!selectedCube) return;
+    const updatedCube = await updateSolve({
+      cubeId: selectedCube.id,
+      solveId: solve.id,
+      type: "BOOKMARK",
+    });
+    setSelectedCube(updatedCube);
+    await setCubes();
     setStatus(false);
   };
 
@@ -224,7 +219,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                   </div>
                   <div
                     className="text-lg font-medium transition duration-200 hover:text-neutral-500 hover:cursor-pointer text-neutral-700"
-                    onClick={() => handlePlusTwo(solve)}
+                    onClick={async () => await handlePlusTwo(solve)}
                   >
                     +2
                   </div>

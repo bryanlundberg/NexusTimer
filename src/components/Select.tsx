@@ -7,13 +7,13 @@ import { Categories } from "@/interfaces/Categories";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
-import findCube from "@/lib/findCube";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import useClickOutside from "@/hooks/useClickOutside";
 import { AnimatePresence, motion } from "framer-motion";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
+import { getCubeById } from "@/db/dbOperations";
 
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
@@ -143,9 +143,9 @@ function Option({
 
   return (
     <div
-      onClick={() => {
+      onClick={async () => {
         if (setSelectedCube && setNewScramble) {
-          const cube = findCube({ cubeId: cubeId });
+          const cube = await getCubeById(cubeId);
           if (cube) {
             setSelectedCube(cube);
             setNewScramble(cube);

@@ -1,7 +1,5 @@
 import { Solve } from "@/interfaces/Solve";
-import addSolve from "@/lib/addSolve";
 import convertToMs from "@/lib/convertToMs";
-import findCube from "@/lib/findCube";
 import formatTime from "@/lib/formatTime";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
@@ -10,6 +8,7 @@ import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Themes } from "@/interfaces/types/Themes";
 import translation from "@/translations/global.json";
+import { getCubeById, saveCube } from "@/db/dbOperations";
 
 const variation: Record<Themes, string> = {
   light:
@@ -38,7 +37,7 @@ export default function ManualMode() {
   return (
     <>
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
           if (!selectedCube) return;
           if (!scramble) return;
@@ -59,14 +58,21 @@ export default function ManualMode() {
             rating: Math.floor(Math.random() * 20) + scramble.length,
             cubeId: selectedCube.id,
           };
-          setLastSolve(newSolve);
-          const newCubes = addSolve({
-            cubeId: selectedCube.id,
-            solve: newSolve,
-          });
-          setCubes(newCubes);
-          const currentCube = findCube({ cubeId: selectedCube.id });
-          if (currentCube) setSelectedCube(currentCube);
+          setLastSolve(lastSolve);
+          const currentCube = await getCubeById(selectedCube.id);
+          if (currentCube) {
+            currentCube.solves.session.push(newSolve);
+            await saveCube({
+              id: currentCube.id,
+              name: currentCube.name,
+              category: currentCube.category,
+              solves: {
+                all: currentCube.solves.all,
+                session: currentCube.solves.session,
+              },
+            });
+            await setSelectedCube(currentCube);
+          }
           setNewScramble(selectedCube);
         }}
         className="flex flex-col items-center"

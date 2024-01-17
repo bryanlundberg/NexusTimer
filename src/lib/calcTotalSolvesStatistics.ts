@@ -7,12 +7,12 @@ import getSolvesMetrics from "./getSolvesMetrics";
  * @param {string} cubeName - The name of the cube.
  * @returns {StatisticN} The total number of solves for global, session, cubeSession, and cubeAll.
  */
-export default function calcTotalSolvesStatistics(
+export default async function calcTotalSolvesStatistics(
   category: Categories,
   cubeName: string
-): StatisticN {
+): Promise<StatisticN> {
   // Get solve metrics for global, session, cubeSession, and cubeAll
-  const { global, session, cubeAll, cubeSession } = getSolvesMetrics(
+  const { global, session, cubeAll, cubeSession } = await getSolvesMetrics(
     category,
     cubeName
   );

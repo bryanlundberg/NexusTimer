@@ -169,22 +169,6 @@ function importTwistytimerData(parsedData: any): Promise<boolean> {
             cubeId: cube.id,
             comment: comment ? comment : "",
           });
-          console.log(index, {
-            id: genId(),
-            startTime: date - time,
-            endTime: date,
-            scramble: scramble,
-            bookmark: false,
-            time: time,
-            dnf: penalty === 2,
-            plus2: penalty === 1,
-            rating: scramble
-              ? Math.floor(Math.random() * 20) +
-                parseInt(scramble.toString().length)
-              : 10,
-            cubeId: cube.id,
-            comment: comment ? comment : "",
-          });
           continue;
         }
 

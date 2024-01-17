@@ -1,7 +1,7 @@
 import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
-import updateCubeOnList from "./updateCubeOnList";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
+import { getAllCubes, getCubeById, saveCube } from "@/db/dbOperations";
 
 /**
  * Moves a solve from session solves to all solves within a given cube and updates the cube on the list and vice versa.
@@ -10,12 +10,18 @@ import { SolveTab } from "@/interfaces/types/SolveTabs";
  * @param {"session" | "all"} type - The type of solves to move the solve to ("session" or "all").
  * @returns {Cube[]} The updated list of cubes.
  */
-export default function moveSolve(
+export default async function moveSolve(
   solve: Solve,
   selectedCube: Cube,
   type: SolveTab
-): Cube[] {
-  const { session, all } = selectedCube.solves;
+): Promise<Cube[]> {
+  if (!selectedCube) return await getAllCubes();
+
+  const cube = await getCubeById(selectedCube.id);
+
+  if (!cube) return await getAllCubes();
+
+  const { session, all } = cube.solves;
 
   if (type === "Session") {
     // Check if the solve is in the session solves
@@ -25,13 +31,20 @@ export default function moveSolve(
 
     if (solveIndexInSession !== -1) {
       // Move the solve from session to all solves
-      selectedCube.solves.all = [...all, solve];
-      selectedCube.solves.session = session.filter(
+      cube.solves.all = [...all, solve];
+      cube.solves.session = session.filter(
         (sessionSolve) => sessionSolve.id !== solve.id
       );
 
-      // Update the cube on the list
-      return updateCubeOnList(selectedCube);
+      await saveCube({
+        id: cube.id,
+        name: cube.name,
+        category: cube.category,
+        solves: {
+          all: cube.solves.all,
+          session: cube.solves.session,
+        },
+      });
     } else {
       // Handle the case where the solve is not found in session solves
       console.warn("Solve not found in session solves storage.");
@@ -44,18 +57,24 @@ export default function moveSolve(
 
     if (solveIndexInAll !== -1) {
       // Move the solve from all to session solves
-      selectedCube.solves.session = [...session, solve];
-      selectedCube.solves.all = all.filter(
-        (allSolve) => allSolve.id !== solve.id
-      );
+      cube.solves.session = [...session, solve];
+      cube.solves.all = all.filter((allSolve) => allSolve.id !== solve.id);
       // Update the cube on the list
-      return updateCubeOnList(selectedCube);
+      await saveCube({
+        id: cube.id,
+        name: cube.name,
+        category: cube.category,
+        solves: {
+          all: cube.solves.all,
+          session: cube.solves.session,
+        },
+      });
     } else {
       // Handle the case where the solve is not found in all solves
       console.warn("Solve not found in All solves storage.");
     }
   }
 
-  // If the type is neither "session" nor "all", return the cube without updating the list
-  return [selectedCube];
+  // If the type is neither "session" nor "all", return the cube without updating
+  return await getAllCubes();
 }

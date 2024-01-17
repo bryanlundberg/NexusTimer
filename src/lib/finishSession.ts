@@ -1,3 +1,4 @@
+import { getAllCubes, saveBatchCubes } from "@/db/dbOperations";
 import { Cube } from "@/interfaces/Cube";
 
 /**
@@ -5,8 +6,10 @@ import { Cube } from "@/interfaces/Cube";
  * @param {Cube} selectedCube - The cube whose sessions will be updated.
  * @returns {Cube[]} The updated array of cubes.
  */
-export default function updateSessions(selectedCube: Cube): Cube[] {
-  const cubesDB = loadCubes();
+export default async function finishSession(
+  selectedCube: Cube
+): Promise<Cube[]> {
+  const cubesDB = await getAllCubes();
 
   cubesDB.forEach((cube: Cube) => {
     if (
@@ -18,7 +21,8 @@ export default function updateSessions(selectedCube: Cube): Cube[] {
     }
   });
 
-  window.localStorage.setItem("cubes", JSON.stringify(cubesDB));
+  await saveBatchCubes(cubesDB);
+
   return cubesDB;
 }
 

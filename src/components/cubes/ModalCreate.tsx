@@ -140,10 +140,10 @@ export default function ModalCreate() {
               ) : null}
 
               <button
-                onClick={() =>
+                onClick={async () =>
                   editingCube
-                    ? handleEditCube(cubeName, selectedCategory)
-                    : handleCreateCube(cubeName, selectedCategory)
+                    ? await handleEditCube(cubeName, selectedCategory)
+                    : await handleCreateCube(cubeName, selectedCategory)
                 }
                 data-modal-hide="defaultModal"
                 type="button"

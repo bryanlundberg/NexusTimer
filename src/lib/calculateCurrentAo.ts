@@ -11,6 +11,8 @@ export default function calculateCurrentAo(
   solves: Solve[],
   ao: number
 ): number {
+  if (!solves) return 0;
+
   let result = 0;
 
   // If the number of solves is less than the desired average length, return 0

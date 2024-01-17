@@ -1,3 +1,4 @@
+import { getAllCubes } from "@/db/dbOperations";
 import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
 import { TimerStatus } from "@/interfaces/TimerStatus";
@@ -20,7 +21,7 @@ type TimerStore = {
   hint: CrossSolutions | null;
   initializing: boolean;
   setNewScramble: (cube: Cube | null) => void;
-  setCubes: (cubes: Cube[]) => void;
+  setCubes: () => Promise<any>;
   setSelectedCube: (cube: Cube | null) => void;
   setLastSolve: (solve: Solve | null) => void;
   setSolvingTime: (newTime: number) => void;
@@ -33,7 +34,7 @@ type TimerStore = {
   setCustomScramble: (scramble: string) => void;
 };
 
-export const useTimerStore = create<TimerStore>((set) => ({
+export const useTimerStore = create<TimerStore>((set: any) => ({
   selectedCube: null,
   scramble: null,
   cubes: null,
@@ -52,27 +53,33 @@ export const useTimerStore = create<TimerStore>((set) => ({
   setCustomScramble: (scramble: string) => {
     set({ scramble: scramble });
   },
-  setCubes: (cubes: Cube[]) => {
-    set({ cubes });
+  setCubes: async () => {
+    const cubesDB: Cube[] = await getAllCubes();
+    if (!cubesDB) return [];
+    set({ cubes: cubesDB });
   },
   setSelectedCube: (cube: Cube | null) => {
-    set((state: any) => {
-      if (!cube) {
+    getAllCubes().then((res) => {
+      set((state: any) => {
+        if (!cube) {
+          return {
+            ...state,
+            event: null,
+            selectedCube: null,
+            cubes: res,
+          };
+        }
+
+        const selectedEvent = cubeCollection.find(
+          (item) => item.name === cube.category
+        );
         return {
           ...state,
-          event: null,
-          selectedCube: null,
+          event: selectedEvent?.event,
+          selectedCube: cube,
+          cubes: res,
         };
-      }
-
-      const selectedEvent = cubeCollection.find(
-        (item) => item.name === cube.category
-      );
-      return {
-        ...state,
-        event: selectedEvent?.event,
-        selectedCube: cube,
-      };
+      });
     });
   },
   setLastSolve: (solve: Solve | null) => {

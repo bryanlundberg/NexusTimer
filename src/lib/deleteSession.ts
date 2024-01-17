@@ -1,3 +1,4 @@
+import { getAllCubes, saveBatchCubes } from "@/db/dbOperations";
 import { Cube } from "@/interfaces/Cube";
 
 /**
@@ -5,12 +6,14 @@ import { Cube } from "@/interfaces/Cube";
  * @param {Cube} selectedCube - The cube whose session solves will be deleted.
  * @returns {Cube[]} The updated list of cubes after deleting the session solves.
  */
-export default function deleteSession(selectedCube: Cube): Cube[] {
+export default async function deleteSession(
+  selectedCube: Cube
+): Promise<Cube[]> {
   // Clear the session solves of the selected cube
   selectedCube.solves.session = [];
 
   // Load existing cubes from indexDB
-  const cubesDB = loadCubes();
+  const cubesDB = await getAllCubes();
 
   // If no cubes are present, return an empty array
   if (!cubesDB) return [];
@@ -21,7 +24,7 @@ export default function deleteSession(selectedCube: Cube): Cube[] {
   );
 
   // Update the list of cubes in indexDB
-  window.localStorage.setItem("cubes", JSON.stringify(newCubesList));
+  await saveBatchCubes(newCubesList);
 
   // Return the updated list of cubes
   return newCubesList;

@@ -8,12 +8,12 @@ import prettyMilliseconds from "pretty-ms";
  * @param {string} cubeName - The name of the cube.
  * @returns {StatisticS} The total time spent for global, session, cubeSession, and cubeAll.
  */
-export default function calcTimeSpentStatistics(
+export default async function calcTimeSpentStatistics(
   category: Categories,
   cubeName: string
-): StatisticS {
+): Promise<StatisticS> {
   // Get solve metrics for global, session, cubeSession, and cubeAll
-  const solveMetrics = getSolvesMetrics(category, cubeName);
+  const solveMetrics = await getSolvesMetrics(category, cubeName);
 
   // Calculate the total time spent for each solve set
   const global = solveMetrics.global.reduce(

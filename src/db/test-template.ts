@@ -2,7 +2,6 @@ import {
   deleteCubeById,
   getAllCubes,
   getCubeById,
-  saveBatchCubes,
   saveCube,
 } from "./dbOperations";
 

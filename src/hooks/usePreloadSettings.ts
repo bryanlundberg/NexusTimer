@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import { getAllCubes } from "@/db/dbOperations";
 
 export function usePreloadSettings() {
   const { setCubes } = useTimerStore();
@@ -11,6 +10,9 @@ export function usePreloadSettings() {
   useEffect(() => {
     const getSettings = loadSettings();
     setSettings(getSettings);
-    const getCubes = getAllCubes().then((res) => setCubes(res));
+    async function fetchData() {
+      await setCubes();
+    }
+    fetchData();
   }, [setCubes, setSettings]);
 }

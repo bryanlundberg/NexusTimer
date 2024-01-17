@@ -58,8 +58,8 @@ export default function useModalCube() {
       setDuplicate(true);
       return;
     }
-    const newCube = await saveCube({ name, category });
-    setCubes([...cubeDB, newCube]);
+    await saveCube({ name, category });
+    await setCubes();
     setModalOpen(false);
     setEditingCube(null);
     setCubeName("");
@@ -90,7 +90,7 @@ export default function useModalCube() {
     }
 
     await saveBatchCubes(cubeDB);
-    setCubes(cubeDB);
+    await setCubes();
     setModalOpen(false);
     setEditingCube(null);
     setCubeName("");
@@ -132,9 +132,7 @@ export default function useModalCube() {
     }
 
     await deleteCubeById(editingCube.id);
-    const cubeDB = await getAllCubes();
-
-    setCubes(cubeDB);
+    await setCubes();
     setModalOpen(false);
     setEditingCube(null);
     setCubeName("");

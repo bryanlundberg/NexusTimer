@@ -3,6 +3,7 @@ import { useTimerStore } from "@/store/timerStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { getAllCubes } from "@/db/dbOperations";
+import { setSeconds } from "date-fns";
 
 export function useCubes() {
   const { cubes, setCubes } = useTimerStore();
@@ -21,8 +22,11 @@ export function useCubes() {
   };
 
   useEffect(() => {
-    getAllCubes().then((res) => setCubes(res));
-  }, [setCubes, setModalOpen]);
+    async function fetchData() {
+      await setCubes();
+    }
+    fetchData();
+  }, [setCubes]);
 
   useEffect(() => {
     getAllCubes().then((res) => setFilterCubes(res));

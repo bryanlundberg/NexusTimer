@@ -9,8 +9,8 @@ const keyPath = "id";
 const dbVersion = 1;
 const autoIncrement = false;
 
-export async function getCubeById(id: string) {
-  return new Promise<void>(async (resolve, reject) => {
+export async function getCubeById(id: string): Promise<Cube | null> {
+  return new Promise<Cube | null>(async (resolve, reject) => {
     const cubeDB = await new IDBStore({
       dbVersion,
       storeName,
@@ -22,8 +22,12 @@ export async function getCubeById(id: string) {
     async function getCube() {
       return await cubeDB.get(
         id,
-        (success: any) => resolve(success),
-        (error: any) => reject(error)
+        (success: any) => {
+          success === undefined ? resolve(null) : resolve(success);
+        },
+        (error: any) => {
+          reject(error);
+        }
       );
     }
   });
