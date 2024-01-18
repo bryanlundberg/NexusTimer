@@ -6,11 +6,11 @@ const IDBStore = require("idb-wrapper");
 
 const storeName = "nx-data";
 const keyPath = "id";
-const dbVersion = 2;
+const dbVersion = 3;
 const autoIncrement = false;
 const indexes = [
   { name: "id" },
-  { name: "createdAt", unique: true },
+  { name: "createdAt" },
   { name: "category" },
   { name: "favorite" },
 ];

@@ -70,9 +70,7 @@ export default function useModalCube() {
   };
 
   const handleEditCube = async (name: string, category: Categories) => {
-    name.trim();
-
-    if (name === "") {
+    if (name.trim() === "") {
       setError(true);
       return;
     }
@@ -81,7 +79,9 @@ export default function useModalCube() {
 
     if (!cubes) return; // Some error pending to add with message, this should actually never occur.
     const isDuplicate = cubes.some(
-      (cube) => cube.name === name && name !== selectedCube?.name
+      (cube) =>
+        cube.name.trim() === name.trim() &&
+        name.trim() !== selectedCube?.name.trim()
     );
     if (isDuplicate) {
       setDuplicate(true);
@@ -90,11 +90,14 @@ export default function useModalCube() {
 
     const updatedCube = await saveCube({
       id: editingCube.id,
-      name: name,
+      name: name.trim(),
       category: category,
     });
 
-    mergeUpdateSelectedCube(updatedCube, cubes);
+    const cubesDB = await getAllCubes();
+    setCubes(cubesDB);
+
+    // mergeUpdateSelectedCube(updatedCube, cubes);
 
     if (editingCube.id === selectedCube?.id) {
       setSelectedCube(null);

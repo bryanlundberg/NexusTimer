@@ -58,7 +58,7 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
     set({ scramble: scramble });
   },
   setCubes: (cubesDB: Cube[]) => {
-    set({ cubes: cubesDB });
+    set({ cubes: [...cubesDB] });
   },
   setSelectedCube: (cube: Cube | null) => {
     set((state: any) => {
@@ -109,9 +109,10 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
     cubesDB: Cube[] | null
   ) => {
     const newList = mergeSelectedCube({ selectedCube, cubesDB });
-    const cloneSelectedCube = { ...selectedCube };
-    set({ cubes: newList, selectedCube: cloneSelectedCube });
+    //  clone data to force a refresh the state
+    set({
+      cubes: [...newList],
+      selectedCube: selectedCube ? { ...selectedCube } : null,
+    });
   },
 }));
-
-/// Retornar siempre el cubes y de ahi un get el selected cube

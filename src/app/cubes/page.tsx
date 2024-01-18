@@ -11,11 +11,14 @@ import { OptionsContainer } from "@/components/cubes/OptionsContainer";
 import { useCubes } from "@/hooks/useCubes";
 import { AnimatePresence } from "framer-motion";
 import useModalCube from "@/hooks/useModalCube";
+import { useCubesModalStore } from "@/store/CubesModalStore";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function CubesPage() {
-  const { filterCubes, modalOpen, setModalOpen, lang, handleSearchFilter } =
-    useCubes();
+  const { filterCubes, handleSearchFilter } = useCubes();
+  const { modalOpen, setModalOpen } = useCubesModalStore();
   const { setSelectedCategory } = useModalCube();
+  const { lang } = useSettingsModalStore();
 
   return (
     <>

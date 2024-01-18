@@ -8,13 +8,13 @@ import Stop from "@/icons/Stop";
 import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useRouter } from "next/navigation";
-import { saveCube } from "@/db/dbOperations";
+import { getAllCubes, saveCube } from "@/db/dbOperations";
 
 export default function TableRow({ cube }: { cube: Cube }) {
   const { lang } = useSettingsModalStore();
   const router = useRouter();
-  const { setSelectedCube, setNewScramble, setLastSolve } = useTimerStore();
-  const { mergeUpdateSelectedCube, cubes } = useTimerStore();
+  const { setSelectedCube, setNewScramble, setLastSolve, setCubes } =
+    useTimerStore();
   const { setEditingCube, setModalOpen, setCubeName, setSelectedCategory } =
     useCubesModalStore();
   const setFavorite = async (cube: Cube) => {
@@ -24,7 +24,9 @@ export default function TableRow({ cube }: { cube: Cube }) {
       category: cube.category,
       favorite: !cube.favorite,
     });
-    mergeUpdateSelectedCube(updatedCube, cubes);
+
+    const cubesDB = await getAllCubes();
+    setCubes(cubesDB);
   };
 
   function formatDate(msDate: number) {

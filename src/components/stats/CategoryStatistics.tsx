@@ -36,13 +36,13 @@ export default function CategoryStatistics() {
           <Select
             defaultLabel={filterCategory}
             list={categoryOptions}
-            onChange={(e) => handleChangeCategory(e)}
+            onChange={handleChangeCategory}
             className={"w-full"}
           />
           <Select
             defaultLabel={filterCube}
             list={cubeOptions}
-            onChange={(e) => handleChangeCube(e)}
+            onChange={handleChangeCube}
             className={"w-full"}
           />
         </div>
