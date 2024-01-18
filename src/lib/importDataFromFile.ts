@@ -5,7 +5,7 @@ import { Solve } from "@/interfaces/Solve";
 import { Event } from "@/interfaces/cubeCollection";
 import { cubeCollection } from "./const/cubeCollection";
 import { parse } from "papaparse";
-import { saveBatchCubes } from "@/db/dbOperations";
+import { clearCubes, saveBatchCubes } from "@/db/dbOperations";
 
 export default async function importDataFromFile(
   event: ChangeEvent<HTMLInputElement>
@@ -202,6 +202,8 @@ async function importTwistytimerData(parsedData: any): Promise<boolean> {
       newCubeList.push(newCube);
     }
   }
+
+  await clearCubes();
   // Update local storage with the modified list of cubes
   await saveBatchCubes(newCubeList);
 
@@ -292,7 +294,7 @@ async function importCubedeskData(parsedCubeData: any): Promise<boolean> {
       newCubeList.push(newCube);
     }
   );
-
+  await clearCubes();
   // Update local storage with the modified list of cubes
   await saveBatchCubes(newCubeList);
 
@@ -313,6 +315,7 @@ async function importNexusTimerData(parsedCubeData: Cube[]): Promise<boolean> {
 
   // No adjustments to the data structure are required;
 
+  await clearCubes();
   // Update local storage with the modified list of cubes
   await saveBatchCubes(parsedCubeData);
 
@@ -411,7 +414,7 @@ async function importCstimerData(parsedCubeData: any): Promise<boolean> {
 
     newCubeList.push(newCube);
   });
-
+  await clearCubes();
   // Update local storage with the modified list of cubes
   await saveBatchCubes(newCubeList);
   return true;

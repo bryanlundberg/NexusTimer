@@ -1,6 +1,7 @@
 import { Categories } from "@/interfaces/Categories";
 import getSolvesMetrics from "./getSolvesMetrics";
 import { sort } from "fast-sort";
+import { Cube } from "@/interfaces/Cube";
 
 /**
  * Calculates the best solve time for different solve sets (global, session, cubeSession, cubeAll) of a specific cube.
@@ -8,15 +9,21 @@ import { sort } from "fast-sort";
  * @param {string} cubeName - The name of the cube.
  * @returns {StatisticN} The best solve times for global, session, cubeSession, and cubeAll.
  */
-export default async function calcBestTime(
-  category: Categories,
-  cubeName: string
-): Promise<StatisticN> {
+export default function calcBestTime({
+  cubesDB,
+  category,
+  cubeName,
+}: {
+  cubesDB: Cube[] | null;
+  category: Categories;
+  cubeName: string;
+}): StatisticN {
   // Get solve metrics for global, session, cubeSession, and cubeAll
-  const { global, session, cubeAll, cubeSession } = await getSolvesMetrics(
+  const { global, session, cubeAll, cubeSession } = getSolvesMetrics({
+    cubesDB,
     category,
-    cubeName
-  );
+    cubeName,
+  });
 
   // Sort solve sets in ascending order based on solve times
   const bestGlobal = sort(global).asc((u) => u.time);

@@ -7,10 +7,11 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import Loading from "../Loading";
+import { getAllCubes } from "@/db/dbOperations";
 
 export default function ImportModal() {
   const { setImportModalOpen, importModalOpen } = useSettingsModalStore();
-  const { setSelectedCube } = useTimerStore();
+  const { setSelectedCube, setCubes } = useTimerStore();
   const [isImporting, setIsImporting] = useState(false);
   const dataInputRef = useRef<HTMLInputElement>(null);
   const componentRef = useRef<HTMLDivElement | null>(null);
@@ -48,11 +49,13 @@ export default function ImportModal() {
                         setIsImporting(true);
                         const response = await importDataFromFile(e);
                         if (response) {
+                          const cubesDB = await getAllCubes();
+                          setCubes(cubesDB);
                           router.push("/cubes");
                           setSelectedCube(null);
                           setImportModalOpen(false);
                           alert(
-                            "csTimer, cubedesk require manual adjustment of category!"
+                            "CSTimer and CubeDesk require manual adjustment of categories."
                           );
                         }
                       } catch (error) {

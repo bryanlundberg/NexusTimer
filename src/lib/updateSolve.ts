@@ -1,4 +1,4 @@
-import { getCubeById, saveCube } from "@/db/dbOperations";
+import { saveCube } from "@/db/dbOperations";
 import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
 
@@ -10,21 +10,16 @@ import { Solve } from "@/interfaces/Solve";
  * @returns {Cube[]} The updated array of cubes.
  */
 export default async function updateSolve({
-  cubeId,
+  selectedCube,
   solveId,
   type,
   comment,
 }: {
-  cubeId: string;
+  selectedCube: Cube;
   solveId: string;
   type: "+2" | "DNF" | "COMMENT" | "BOOKMARK" | "DELETE";
   comment?: string;
 }): Promise<Cube | null> {
-  if (typeof cubeId !== "string") return null;
-  const cube = await getCubeById(cubeId);
-
-  if (!cube) return null;
-
   const updateSolveArray = (solveArray: Solve[]) => {
     const solveIndex = solveArray.findIndex((solve) => solve.id === solveId);
 
@@ -44,18 +39,15 @@ export default async function updateSolve({
     }
   };
 
-  updateSolveArray(cube.solves.all);
-  updateSolveArray(cube.solves.session);
+  updateSolveArray(selectedCube.solves.all);
+  updateSolveArray(selectedCube.solves.session);
 
   await saveCube({
-    name: cube.name,
-    id: cube.id,
-    category: cube.category,
-    solves: {
-      all: cube.solves.all,
-      session: cube.solves.session,
-    },
+    name: selectedCube.name,
+    id: selectedCube.id,
+    category: selectedCube.category,
+    solves: selectedCube.solves,
   });
 
-  return cube;
+  return selectedCube;
 }

@@ -155,6 +155,26 @@ export async function deleteCubeById(id: string) {
   });
 }
 
+export async function clearCubes() {
+  return new Promise<void>(async (resolve, reject) => {
+    const cubeDB = await new IDBStore({
+      dbVersion,
+      storeName,
+      keyPath,
+      autoIncrement,
+      onStoreReady: () => initClearCubes(),
+      indexes: indexes,
+    });
+
+    async function initClearCubes() {
+      return await cubeDB.clear(
+        (success: any) => resolve(success),
+        (error: any) => reject(error)
+      );
+    }
+  });
+}
+
 // ### Testing area, experiment for query data from DB
 // directly with indexed data, results in a better performance
 

@@ -1,4 +1,3 @@
-import { getCubeById } from "@/db/dbOperations";
 import ChatBubble from "@/icons/ChatBubble";
 import Flag from "@/icons/Flag";
 import NoSymbol from "@/icons/NoSymbol";
@@ -12,60 +11,57 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
   const {
     setLastSolve,
     selectedCube,
-    setSelectedCube,
     setSolvingTime,
     solvingTime,
+    mergeUpdateSelectedCube,
+    cubes,
   } = useTimerStore();
   const { lang } = useSettingsModalStore();
 
   async function handleDeleteSolve() {
     if (!selectedCube) return;
-    await updateSolve({
-      cubeId: selectedCube.id,
+    const updatedCube = await updateSolve({
+      selectedCube: selectedCube,
       solveId: solve.id,
       type: "DELETE",
     });
-    const currentCube = await getCubeById(selectedCube.id);
-    await setSelectedCube(currentCube);
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setSolvingTime(0);
     setLastSolve(null);
   }
 
   async function handlePlusTwo() {
     if (!selectedCube) return;
-    await updateSolve({
-      cubeId: selectedCube.id,
+    const updatedCube = await updateSolve({
+      selectedCube: selectedCube,
       solveId: solve.id,
       type: "+2",
     });
-    const currentCube = await getCubeById(selectedCube.id);
-    await setSelectedCube(currentCube);
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setSolvingTime(solvingTime + 2000);
     setLastSolve(null);
   }
 
   async function handleBookmark() {
     if (!selectedCube) return;
-    await updateSolve({
-      cubeId: selectedCube.id,
+    const updatedCube = await updateSolve({
+      selectedCube: selectedCube,
       solveId: solve.id,
       type: "BOOKMARK",
     });
-    const currentCube = await getCubeById(selectedCube.id);
-    await setSelectedCube(currentCube);
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setLastSolve(null);
   }
 
   async function handleComment(comment: string) {
     if (!selectedCube) return;
-    await updateSolve({
-      cubeId: selectedCube.id,
+    const updatedCube = await updateSolve({
+      selectedCube: selectedCube,
       solveId: solve.id,
       type: "COMMENT",
       comment: comment,
     });
-    const currentCube = await getCubeById(selectedCube.id);
-    await setSelectedCube(currentCube);
+    mergeUpdateSelectedCube(updatedCube, cubes);
   }
 
   const classButton =

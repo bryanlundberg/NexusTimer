@@ -14,17 +14,17 @@ export default function TableRow({ cube }: { cube: Cube }) {
   const { lang } = useSettingsModalStore();
   const router = useRouter();
   const { setSelectedCube, setNewScramble, setLastSolve } = useTimerStore();
-  const { setCubes } = useTimerStore();
+  const { mergeUpdateSelectedCube, cubes } = useTimerStore();
   const { setEditingCube, setModalOpen, setCubeName, setSelectedCategory } =
     useCubesModalStore();
   const setFavorite = async (cube: Cube) => {
-    await saveCube({
+    const updatedCube = await saveCube({
       id: cube.id,
       name: cube.name,
       category: cube.category,
       favorite: !cube.favorite,
     });
-    await setCubes();
+    mergeUpdateSelectedCube(updatedCube, cubes);
   };
 
   function formatDate(msDate: number) {

@@ -1,9 +1,9 @@
-import { getAllCubes } from "@/db/dbOperations";
 import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
 import { TimerStatus } from "@/interfaces/TimerStatus";
 import { Event } from "@/interfaces/cubeCollection";
 import { cubeCollection } from "@/lib/const/cubeCollection";
+import { mergeSelectedCube } from "@/lib/mergeSelectedCube";
 import genScramble from "@/lib/timer/genScramble";
 import { create } from "zustand";
 
@@ -21,7 +21,7 @@ type TimerStore = {
   hint: CrossSolutions | null;
   initializing: boolean;
   setNewScramble: (cube: Cube | null) => void;
-  setCubes: () => Promise<any>;
+  setCubes: (cubesDB: Cube[]) => void;
   setSelectedCube: (cube: Cube | null) => void;
   setLastSolve: (solve: Solve | null) => void;
   setSolvingTime: (newTime: number) => void;
@@ -32,6 +32,10 @@ type TimerStore = {
   setHints: (solutions: CrossSolutions) => void;
   setInitializing: (status: boolean) => void;
   setCustomScramble: (scramble: string) => void;
+  mergeUpdateSelectedCube: (
+    selectedCube: Cube | null,
+    cubesDB: Cube[] | null
+  ) => void;
 };
 
 export const useTimerStore = create<TimerStore>((set: any) => ({
@@ -53,33 +57,27 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
   setCustomScramble: (scramble: string) => {
     set({ scramble: scramble });
   },
-  setCubes: async () => {
-    const cubesDB: Cube[] = await getAllCubes();
-    if (!cubesDB) return [];
+  setCubes: (cubesDB: Cube[]) => {
     set({ cubes: cubesDB });
   },
   setSelectedCube: (cube: Cube | null) => {
-    getAllCubes().then((res) => {
-      set((state: any) => {
-        if (!cube) {
-          return {
-            ...state,
-            event: null,
-            selectedCube: null,
-            cubes: res,
-          };
-        }
-
-        const selectedEvent = cubeCollection.find(
-          (item) => item.name === cube.category
-        );
+    set((state: any) => {
+      if (!cube) {
         return {
           ...state,
-          event: selectedEvent?.event,
-          selectedCube: cube,
-          cubes: res,
+          event: null,
+          selectedCube: null,
         };
-      });
+      }
+
+      const selectedEvent = cubeCollection.find(
+        (item) => item.name === cube.category
+      );
+      return {
+        ...state,
+        event: selectedEvent?.event,
+        selectedCube: cube,
+      };
     });
   },
   setLastSolve: (solve: Solve | null) => {
@@ -106,4 +104,14 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
   setInitializing: (status: boolean) => {
     set({ initializing: status });
   },
+  mergeUpdateSelectedCube: (
+    selectedCube: Cube | null,
+    cubesDB: Cube[] | null
+  ) => {
+    const newList = mergeSelectedCube({ selectedCube, cubesDB });
+    const cloneSelectedCube = { ...selectedCube };
+    set({ cubes: newList, selectedCube: cloneSelectedCube });
+  },
 }));
+
+/// Retornar siempre el cubes y de ahi un get el selected cube

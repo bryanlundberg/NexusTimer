@@ -8,7 +8,7 @@ import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Themes } from "@/interfaces/types/Themes";
 import translation from "@/translations/global.json";
-import { getCubeById, saveCube } from "@/db/dbOperations";
+import { saveCube } from "@/db/dbOperations";
 
 const variation: Record<Themes, string> = {
   light:
@@ -24,8 +24,8 @@ export default function ManualMode() {
     lastSolve,
     setNewScramble,
     setLastSolve,
-    setCubes,
-    setSelectedCube,
+    cubes,
+    mergeUpdateSelectedCube,
   } = useTimerStore();
   const { settings, lang } = useSettingsModalStore();
 
@@ -59,20 +59,14 @@ export default function ManualMode() {
             cubeId: selectedCube.id,
           };
           setLastSolve(newSolve);
-          const currentCube = await getCubeById(selectedCube.id);
-          if (currentCube) {
-            currentCube.solves.session.push(newSolve);
-            await saveCube({
-              id: currentCube.id,
-              name: currentCube.name,
-              category: currentCube.category,
-              solves: {
-                all: currentCube.solves.all,
-                session: currentCube.solves.session,
-              },
-            });
-            await setSelectedCube(currentCube);
-          }
+          selectedCube.solves.session.push(newSolve);
+          await saveCube({
+            id: selectedCube.id,
+            name: selectedCube.name,
+            category: selectedCube.category,
+            solves: selectedCube.solves,
+          });
+          mergeUpdateSelectedCube(selectedCube, cubes);
           setNewScramble(selectedCube);
         }}
         className="flex flex-col items-center"

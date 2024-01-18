@@ -4,7 +4,7 @@ import { useTimerStore } from "@/store/timerStore";
 import { useEffect, useState } from "react";
 
 export function useTimerStatistics() {
-  const { scramble, selectedCube } = useTimerStore();
+  const { selectedCube, cubes } = useTimerStore();
   const [statistics, setStatistics] = useState({
     global: defaultTimerStatistics,
     session: defaultTimerStatistics,
@@ -15,13 +15,14 @@ export function useTimerStatistics() {
     if (selectedCube) {
       const fetchData = async () => {
         const { global, session, cubeSession } = await calcStatistics({
-          cube: selectedCube,
+          cubesDB: cubes,
+          selectedCube,
         });
         setStatistics({ global, session, cubeSession });
       };
       fetchData();
     }
-  }, [scramble, selectedCube]);
+  }, [selectedCube, cubes]);
 
   return {
     global: statistics.global,

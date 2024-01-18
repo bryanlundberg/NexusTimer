@@ -1,7 +1,7 @@
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "./formatTime";
-import { getCubeById } from "@/db/dbOperations";
 import { sort } from "fast-sort";
+import { Cube } from "@/interfaces/Cube";
 
 /**
  * Searches for solves in a specific cube based on the provided query and tab.
@@ -12,31 +12,29 @@ import { sort } from "fast-sort";
  * @param {boolean} [options.sortByTime=false] - Whether to sort the results by time.
  * @returns {Solve[] | null} An array of solves or null if the cube is not found.
  */
-export default async function querySolves({
+export default function querySolves({
   query,
-  cubeId,
+  selectedCube,
   currentTab,
   sortByTime = false,
 }: {
   query: string;
-  cubeId: string | null;
+  selectedCube: Cube | null;
   currentTab: "Session" | "All";
   sortByTime?: boolean;
-}): Promise<Solve[] | null> {
-  if (!cubeId) return null;
-
-  const cube = await getCubeById(cubeId);
-
-  if (!cube) return null;
+}): Solve[] | null {
+  if (!selectedCube) return null;
 
   let solves = null;
 
   if (currentTab === "Session") {
-    solves = cube.solves.session.filter((u) =>
+    solves = selectedCube.solves.session.filter((u) =>
       formatTime(u.time).includes(query)
     );
   } else if (currentTab === "All") {
-    solves = cube.solves.all.filter((u) => formatTime(u.time).includes(query));
+    solves = selectedCube.solves.all.filter((u) =>
+      formatTime(u.time).includes(query)
+    );
   }
 
   if (!solves) return null;

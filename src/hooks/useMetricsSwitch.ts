@@ -81,46 +81,56 @@ export default function useMetricsSwitch() {
   }, [lang]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const calculatedAverage = await calcAverageStatistics(
-        filterCategory,
-        filterCube
-      );
-      const calculatedTimeSpent = await calcTimeSpentStatistics(
-        filterCategory,
-        filterCube
-      );
-      const calculatedCounter = await calcTotalSolvesStatistics(
-        filterCategory,
-        filterCube
-      );
-      const calculatedStats = await calcAoStatistics(
-        filterCategory,
-        filterCube
-      );
-      const calculatedDeviation = await calcDeviation(
-        filterCategory,
-        filterCube
-      );
-      const calculatedSuccessRate = await calcSuccessRate(
-        filterCategory,
-        filterCube
-      );
-      const calculatedBest = await calcBestTime(filterCategory, filterCube);
-      const calculatedData = await getSolvesMetrics(filterCategory, filterCube);
+    const calculatedAverage = calcAverageStatistics({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedTimeSpent = calcTimeSpentStatistics({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedCounter = calcTotalSolvesStatistics({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedStats = calcAoStatistics({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedDeviation = calcDeviation({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedSuccessRate = calcSuccessRate({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedBest = calcBestTime({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedData = getSolvesMetrics({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
 
-      setAverage(calculatedAverage);
-      setTimeSpent(calculatedTimeSpent);
-      setCounter(calculatedCounter);
-      setStats(calculatedStats);
-      setDeviation(calculatedDeviation);
-      setSuccessRate(calculatedSuccessRate);
-      setBest(calculatedBest);
-      setData(calculatedData);
-    };
-
-    fetchData();
-  }, [filterCategory, filterCube]);
+    setAverage(calculatedAverage);
+    setTimeSpent(calculatedTimeSpent);
+    setCounter(calculatedCounter);
+    setStats(calculatedStats);
+    setDeviation(calculatedDeviation);
+    setSuccessRate(calculatedSuccessRate);
+    setBest(calculatedBest);
+    setData(calculatedData);
+  }, [filterCategory, filterCube, cubes]);
 
   return {
     filterCategory,

@@ -1,5 +1,6 @@
 import { Categories } from "@/interfaces/Categories";
 import getSolvesMetrics from "./getSolvesMetrics";
+import { Cube } from "@/interfaces/Cube";
 
 /**
  * Calculates the total number of solves for different solve sets (global, session, cubeSession, cubeAll) of a specific cube.
@@ -7,15 +8,21 @@ import getSolvesMetrics from "./getSolvesMetrics";
  * @param {string} cubeName - The name of the cube.
  * @returns {StatisticN} The total number of solves for global, session, cubeSession, and cubeAll.
  */
-export default async function calcTotalSolvesStatistics(
-  category: Categories,
-  cubeName: string
-): Promise<StatisticN> {
+export default function calcTotalSolvesStatistics({
+  cubesDB,
+  category,
+  cubeName,
+}: {
+  cubesDB: Cube[] | null;
+  category: Categories;
+  cubeName: string;
+}): StatisticN {
   // Get solve metrics for global, session, cubeSession, and cubeAll
-  const { global, session, cubeAll, cubeSession } = await getSolvesMetrics(
+  const { global, session, cubeAll, cubeSession } = getSolvesMetrics({
+    cubesDB,
     category,
-    cubeName
-  );
+    cubeName,
+  });
 
   // Calculate the total number of solves for each solve set
   return {

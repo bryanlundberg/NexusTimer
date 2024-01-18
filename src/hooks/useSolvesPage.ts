@@ -8,12 +8,11 @@ import { useEffect, useRef, useState } from "react";
 import { useTimerStatistics } from "./useTimerStatistics";
 import { MoveData } from "@/components/solves/MoveModal";
 import { ConfirmDeleteData } from "@/components/solves/ConfirmDelete";
-import { getCubeById } from "@/db/dbOperations";
 import { sort } from "fast-sort";
 
 export default function useSolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
-  const { selectedCube, setSelectedCube } = useTimerStore();
+  const { selectedCube, cubes, mergeUpdateSelectedCube } = useTimerStore();
   const [displaySolves, setDisplaySolves] = useState<Solve[] | null>(null);
   const [isOpenMoveModal, setIsOpenMoveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -45,22 +44,18 @@ export default function useSolvesPage() {
   };
 
   const handleMoveAll = async () => {
-    if (selectedCube) {
-      await finishSession(selectedCube);
-      const updatedCube = await getCubeById(selectedCube.id);
-      await setSelectedCube(updatedCube);
-    }
+    if (!selectedCube) return;
+    const updatedCube = await finishSession({ selectedCube, cubesDB: cubes });
+    mergeUpdateSelectedCube(updatedCube, cubes);
   };
 
   const handleTrashAll = async () => {
-    if (selectedCube) {
-      await deleteSession(selectedCube);
-      const updatedCube = await getCubeById(selectedCube.id);
-      await setSelectedCube(updatedCube);
-    }
+    if (!selectedCube) return;
+    const updatedCube = await deleteSession({ selectedCube, cubesDB: cubes });
+    mergeUpdateSelectedCube(updatedCube, cubes);
   };
 
-  const handleSearch = async (query: string) => {
+  const handleSearch = (query: string) => {
     if (!selectedCube) return null;
     if (query === "") {
       if (currentTab === "All") {
@@ -71,46 +66,40 @@ export default function useSolvesPage() {
       return;
     }
 
-    const solves = await querySolves({
+    const solves = querySolves({
       query,
       currentTab,
-      cubeId: selectedCube.id,
+      selectedCube,
       sortByTime: true,
     });
     setDisplaySolves(solves);
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      searchBox.current = document.querySelector("#search");
+    searchBox.current = document.querySelector("#search");
 
-      let solvesToDisplay = null;
+    let solvesToDisplay = null;
 
-      if (selectedCube) {
-        if (currentTab === "All") {
-          solvesToDisplay = sort(selectedCube.solves.all).desc(
-            (u) => u.endTime
-          );
-        } else if (currentTab === "Session") {
-          solvesToDisplay = sort(selectedCube.solves.session).desc(
-            (u) => u.endTime
-          );
-        }
-
-        if (searchBox.current.value !== "") {
-          solvesToDisplay = await querySolves({
-            query: searchBox.current.value,
-            currentTab,
-            cubeId: selectedCube.id,
-            sortByTime: true,
-          });
-        }
-
-        setDisplaySolves(solvesToDisplay);
+    if (selectedCube) {
+      if (currentTab === "All") {
+        solvesToDisplay = sort(selectedCube.solves.all).desc((u) => u.endTime);
+      } else if (currentTab === "Session") {
+        solvesToDisplay = sort(selectedCube.solves.session).desc(
+          (u) => u.endTime
+        );
       }
-    };
 
-    fetchData();
+      if (searchBox.current.value !== "") {
+        solvesToDisplay = querySolves({
+          query: searchBox.current.value,
+          currentTab,
+          selectedCube,
+          sortByTime: true,
+        });
+      }
+
+      setDisplaySolves(solvesToDisplay);
+    }
   }, [currentTab, selectedCube]);
 
   return {

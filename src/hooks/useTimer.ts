@@ -1,4 +1,4 @@
-import { getCubeById, saveCube } from "@/db/dbOperations";
+import { saveCube } from "@/db/dbOperations";
 import { Solve } from "@/interfaces/Solve";
 import genId from "@/lib/genId";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
@@ -19,6 +19,8 @@ export default function useTimer() {
     setSelectedCube,
     setLastSolve,
     displayHint,
+    cubes,
+    mergeUpdateSelectedCube,
   } = useTimerStore();
 
   const { settings, setSettingsOpen } = useSettingsModalStore();
@@ -138,22 +140,18 @@ export default function useTimer() {
         };
 
         setLastSolve(lastSolve);
-        const currentCube = await getCubeById(selectedCube.id);
-        if (currentCube) {
-          currentCube.solves.session.push(lastSolve);
-          await saveCube({
-            id: currentCube.id,
-            name: currentCube.name,
-            category: currentCube.category,
-            solves: {
-              all: currentCube.solves.all,
-              session: currentCube.solves.session,
-            },
-          });
-          await setSelectedCube(currentCube);
-        }
-        setNewScramble(selectedCube);
+
+        selectedCube.solves.session.push(lastSolve);
+
+        await saveCube({
+          id: selectedCube.id,
+          name: selectedCube.name,
+          category: selectedCube.category,
+          solves: selectedCube.solves,
+        });
+        mergeUpdateSelectedCube(selectedCube, cubes);
       }
+      setNewScramble(selectedCube);
       solveTimeId.current = null;
       startSolveTime.current = null;
     };
@@ -288,6 +286,8 @@ export default function useTimer() {
     solvingTime,
     setTimerStatus,
     displayHint,
+    cubes,
+    mergeUpdateSelectedCube,
   ]);
 
   return {

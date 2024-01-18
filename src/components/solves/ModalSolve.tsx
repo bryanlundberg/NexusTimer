@@ -24,13 +24,12 @@ import { Solve } from "@/interfaces/Solve";
 import Favorite from "@/icons/Favorite";
 import FavoriteSolid from "@/icons/FavoriteSolid";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
-import { getCubeById } from "@/db/dbOperations";
 
 export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [showScramble, setShowScramble] = useState<boolean>(false);
   const { status, solve, setStatus } = useSolvesStore();
-  const { setCubes, setSelectedCube, selectedCube } = useTimerStore();
+  const { selectedCube, mergeUpdateSelectedCube, cubes } = useTimerStore();
   const { lang } = useSettingsModalStore();
   const submenuRef = useRef<HTMLDivElement | null>(null);
 
@@ -44,62 +43,58 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   useEscape(() => setStatus(false));
 
   const handleMove = async (solve: Solve, currentTab: SolveTab) => {
-    if (selectedCube) {
-      await moveSolve(solve, selectedCube, currentTab);
-      const currentCube = await getCubeById(selectedCube.id);
-      await setSelectedCube(currentCube);
-      await setCubes();
-    }
+    if (!selectedCube) return;
+    const updatedCube = await moveSolve({
+      solve,
+      selectedCube,
+      type: currentTab,
+    });
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
   };
 
   const handleDelete = async (solve: Solve) => {
     if (!selectedCube) return;
-    await updateSolve({
-      cubeId: selectedCube.id,
+    const updatedCube = await updateSolve({
+      selectedCube: selectedCube,
       solveId: solve.id,
       type: "DELETE",
     });
-    const currentCube = await getCubeById(selectedCube.id);
-    await setSelectedCube(currentCube);
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
   };
 
   const handlePlusTwo = async (solve: Solve) => {
     if (!selectedCube) return;
-    await updateSolve({
-      cubeId: selectedCube.id,
+    const updatedCube = await updateSolve({
+      selectedCube: selectedCube,
       solveId: solve.id,
       type: "+2",
     });
-
-    const currentCube = await getCubeById(selectedCube.id);
-    await setSelectedCube(currentCube);
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
   };
 
   const handleComment = async (comment: string, solve: Solve) => {
     if (!selectedCube) return;
-    await updateSolve({
-      cubeId: selectedCube?.id,
+    const updatedCube = await updateSolve({
+      selectedCube: selectedCube,
       solveId: solve.id,
       type: "COMMENT",
       comment: comment,
     });
-    const currentCube = await getCubeById(selectedCube.id);
-    await setSelectedCube(currentCube);
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
   };
 
   const handleBookmark = async (solve: Solve) => {
     if (!selectedCube) return;
     const updatedCube = await updateSolve({
-      cubeId: selectedCube.id,
+      selectedCube: selectedCube,
       solveId: solve.id,
       type: "BOOKMARK",
     });
-    setSelectedCube(updatedCube);
-    await setCubes();
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
   };
 
