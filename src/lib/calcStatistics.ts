@@ -6,6 +6,7 @@ import getMean from "./getMean";
 import getSolvesMetrics from "./getSolvesMetrics";
 import { defaultTimerStatistics } from "./const/defaultTimerStatistics";
 import { Cube } from "@/interfaces/Cube";
+import { Solve } from "@/interfaces/Solve";
 
 /**
  * Calculates various statistics for a cube solving session, including
@@ -21,20 +22,23 @@ export default function calcStatistics({
   selectedCube: Cube | null;
   cubesDB: Cube[] | null;
 }): DisplayTimerStatistics {
-  // Array containing the values for average of X (AoX) calculations
-  const aoValues: number[] = [3, 5, 12, 50, 100];
+  // Early return if selectedCube is null
+  if (!selectedCube) {
+    return {
+      global: defaultTimerStatistics,
+      session: defaultTimerStatistics,
+      cubeSession: defaultTimerStatistics,
+    };
+  }
 
-  /**
-   * Calculates the statistics for a given set of solves (global, session, cubeSession).
-   * @param {Solve[]} solves - The array of solves for which statistics will be calculated.
-   * @param {string} type - The type of solves (global, session, cubeSession).
-   * @returns {CubeStatistics} The calculated statistics for the given set of solves.
-   */
-  const calculateStatistics = (solves: any[], type: string): CubeStatistics => {
-    // Sort solves in ascending order based on solve times
+  // Reusable function for calculating statistics
+  const calculateStatistics = (
+    solves: Solve[],
+    type: string
+  ): CubeStatistics => {
     const pbSolves = sort(solves).asc((solve) => solve.time);
 
-    // Object to store calculated statistics
+    // Default object with initial values
     const statistics: CubeStatistics = {
       count: solves.length,
       best: pbSolves[0]?.time || 0,
@@ -48,27 +52,16 @@ export default function calcStatistics({
     };
 
     // Calculate average of X (AoX) statistics
+    const aoValues = [3, 5, 12, 50, 100];
     for (const aoValue of aoValues) {
-      if (solves.length >= aoValue) {
-        statistics[`ao${aoValue}` as keyof CubeStatistics] =
-          type === "global"
-            ? calculateBestAo(solves, aoValue)
-            : calculateCurrentAo(solves, aoValue);
-      }
+      statistics[`ao${aoValue}` as keyof CubeStatistics] =
+        type === "global"
+          ? calculateBestAo(solves, aoValue)
+          : calculateCurrentAo(solves, aoValue);
     }
 
     return statistics;
   };
-
-  // Check if the cube object is null
-  if (!selectedCube) {
-    // Return default statistics if cube is null
-    return {
-      global: defaultTimerStatistics,
-      session: defaultTimerStatistics,
-      cubeSession: defaultTimerStatistics,
-    };
-  }
 
   // Get solve metrics for global, session, and cubeSession
   const { global, session, cubeSession } = getSolvesMetrics({

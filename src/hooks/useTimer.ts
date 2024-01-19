@@ -21,6 +21,7 @@ export default function useTimer() {
     displayHint,
     cubes,
     mergeUpdateSelectedCube,
+    setTimerStatistics,
   } = useTimerStore();
 
   const { settings, setSettingsOpen } = useSettingsModalStore();
@@ -289,6 +290,12 @@ export default function useTimer() {
     cubes,
     mergeUpdateSelectedCube,
   ]);
+
+  useEffect(() => {
+    if (selectedCube && !isSolving) {
+      setTimerStatistics();
+    }
+  }, [selectedCube, isSolving, setTimerStatistics]);
 
   return {
     inspectionTime,

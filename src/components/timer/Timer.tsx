@@ -5,7 +5,6 @@ import formatTime from "@/lib/formatTime";
 import translation from "@/translations/global.json";
 import useTimer from "@/hooks/useTimer";
 import Confetti from "react-dom-confetti";
-import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 import useDeviceMatch from "@/hooks/useDeviceMatch";
 import { confettiConfig } from "@/lib/const/confettiConfig";
 
@@ -19,10 +18,15 @@ const timerStatusClasses = {
 
 export default function Timer() {
   const { lang, settings } = useSettingsModalStore();
-  const { selectedCube, isSolving, lastSolve, timerStatus, solvingTime } =
-    useTimerStore();
+  const {
+    selectedCube,
+    isSolving,
+    lastSolve,
+    timerStatus,
+    solvingTime,
+    timerStatistics,
+  } = useTimerStore();
   const { inspectionTime } = useTimer();
-  const { global } = useTimerStatistics();
   const { device } = useDeviceMatch();
   const hideWhileSolving = settings.features.hideWhileSolving.status;
 
@@ -72,7 +76,7 @@ export default function Timer() {
           )}
           <Confetti
             active={
-              global.best === lastSolve?.time &&
+              timerStatistics.global.best === lastSolve?.time &&
               !isSolving &&
               settings.alerts.bestTime.status
             }

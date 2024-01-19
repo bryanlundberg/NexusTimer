@@ -1,6 +1,4 @@
 import { Solve } from "@/interfaces/Solve";
-import { sort } from "fast-sort";
-import calculateCurrentAo from "./calculateCurrentAo";
 
 /**
  * Calculates the best average of X (AoX) from a given array of solves.
@@ -9,26 +7,26 @@ import calculateCurrentAo from "./calculateCurrentAo";
  * @returns {number} The best average of X (AoX) for the given solves.
  */
 export default function calculateBestAo(solves: Solve[], ao: number): number {
-  if (!solves) return 0;
-
   // If the number of solves is less than the desired average length, return 0
-  if (solves.length < ao) {
+  if (!solves || solves.length < ao) {
     return 0;
   }
 
-  // Array to store calculated averages
-  const averages: number[] = [];
+  const n = solves.length;
+  let bestAo = Infinity;
 
-  // Iterate through the solves to calculate the current AoX
-  for (let i = 0; i <= solves.length - ao; i++) {
-    // Calculate the current AoX and add it to the averages array
-    const currentAo = calculateCurrentAo(solves.slice(i, i + ao), ao);
-    averages.push(currentAo);
+  for (let i = 0; i <= n - ao; i++) {
+    let sum = 0;
+
+    // Calculate the sum of solve times directly in the loop
+    for (let j = i; j < i + ao; j++) {
+      sum += solves[j].time;
+    }
+
+    // Calculate the current AoX and update the bestAo if needed
+    const currentAo = sum / ao;
+    bestAo = Math.min(bestAo, currentAo);
   }
 
-  // Sort the averages in ascending order
-  const averagesSorted = sort(averages).asc();
-
-  // Return the best (minimum) average of X
-  return averagesSorted[0];
+  return bestAo;
 }

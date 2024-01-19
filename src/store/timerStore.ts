@@ -2,7 +2,9 @@ import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
 import { TimerStatus } from "@/interfaces/TimerStatus";
 import { Event } from "@/interfaces/cubeCollection";
+import calcStatistics from "@/lib/calcStatistics";
 import { cubeCollection } from "@/lib/const/cubeCollection";
+import { defaultTimerStatistics } from "@/lib/const/defaultTimerStatistics";
 import { mergeSelectedCube } from "@/lib/mergeSelectedCube";
 import genScramble from "@/lib/timer/genScramble";
 import { create } from "zustand";
@@ -20,6 +22,7 @@ type TimerStore = {
   zoomInScramble: boolean;
   hint: CrossSolutions | null;
   initializing: boolean;
+  timerStatistics: DisplayTimerStatistics;
   setNewScramble: (cube: Cube | null) => void;
   setCubes: (cubesDB: Cube[]) => void;
   setSelectedCube: (cube: Cube | null) => void;
@@ -36,6 +39,7 @@ type TimerStore = {
     selectedCube: Cube | null,
     cubesDB: Cube[] | null
   ) => void;
+  setTimerStatistics: () => void;
 };
 
 export const useTimerStore = create<TimerStore>((set: any) => ({
@@ -51,6 +55,11 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
   zoomInScramble: false,
   hint: null,
   initializing: true,
+  timerStatistics: {
+    global: defaultTimerStatistics,
+    session: defaultTimerStatistics,
+    cubeSession: defaultTimerStatistics,
+  },
   setNewScramble: (cube: Cube | null) => {
     set({ scramble: cube ? genScramble(cube.category) : null });
   },
@@ -113,6 +122,19 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
     set({
       cubes: [...newList],
       selectedCube: selectedCube ? { ...selectedCube } : null,
+    });
+  },
+  setTimerStatistics: () => {
+    const { global, session, cubeSession } = calcStatistics({
+      cubesDB: useTimerStore.getState().cubes,
+      selectedCube: useTimerStore.getState().selectedCube,
+    });
+    set({
+      timerStatistics: {
+        global,
+        session,
+        cubeSession,
+      },
     });
   },
 }));

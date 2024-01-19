@@ -1,11 +1,11 @@
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import translation from "@/translations/global.json";
 import formatTime from "@/lib/formatTime";
-import { useTimerStatistics } from "@/hooks/useTimerStatistics";
+import { useTimerStore } from "@/store/timerStore";
 
 export default function OverviewPanel() {
   const { lang, settings } = useSettingsModalStore();
-  const { session } = useTimerStatistics();
+  const { timerStatistics } = useTimerStore();
 
   return (
     <div
@@ -17,22 +17,22 @@ export default function OverviewPanel() {
           <div className="font-medium">
             {translation.timer["deviation"][lang]}
             {": "}
-            {formatTime(session.deviation)}
+            {formatTime(timerStatistics.session.deviation)}
           </div>
           <div className="font-medium">
             {translation.timer["mean"][lang]}
             {": "}
-            {formatTime(session.mean)}
+            {formatTime(timerStatistics.session.mean)}
           </div>
           <div className="font-medium">
             {translation.timer["best"][lang]}
             {": "}
-            {formatTime(session.best)}
+            {formatTime(timerStatistics.session.best)}
           </div>
           <div className="font-medium">
             {translation.timer["counter"][lang]}
             {": "}
-            {session.count}
+            {timerStatistics.session.count}
           </div>
         </>
       ) : null}

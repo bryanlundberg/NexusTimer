@@ -5,18 +5,17 @@ import querySolves from "@/lib/querySolves";
 import finishSession from "@/lib/finishSession";
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect, useRef, useState } from "react";
-import { useTimerStatistics } from "./useTimerStatistics";
 import { MoveData } from "@/components/solves/MoveModal";
 import { ConfirmDeleteData } from "@/components/solves/ConfirmDelete";
 import { sort } from "fast-sort";
 
 export default function useSolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
-  const { selectedCube, cubes, mergeUpdateSelectedCube } = useTimerStore();
+  const { selectedCube, cubes, mergeUpdateSelectedCube, timerStatistics } =
+    useTimerStore();
   const [displaySolves, setDisplaySolves] = useState<Solve[] | null>(null);
   const [isOpenMoveModal, setIsOpenMoveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-  const { session, cubeSession } = useTimerStatistics();
   const searchBox = useRef<any>(null);
 
   const handleTabClick = (clickedTab: SolveTab) => {
@@ -27,9 +26,9 @@ export default function useSolvesPage() {
     if (!selectedCube) return null;
     return {
       category: selectedCube.category,
-      bestTime: session.best,
-      average: session.mean,
-      count: session.count,
+      bestTime: timerStatistics.session.best,
+      average: timerStatistics.session.mean,
+      count: timerStatistics.session.count,
     };
   };
 
@@ -37,9 +36,9 @@ export default function useSolvesPage() {
     if (!selectedCube) return null;
     return {
       category: selectedCube.category,
-      bestTime: cubeSession.best,
-      average: cubeSession.mean,
-      count: cubeSession.count,
+      bestTime: timerStatistics.cubeSession.best,
+      average: timerStatistics.cubeSession.mean,
+      count: timerStatistics.cubeSession.count,
     };
   };
 
