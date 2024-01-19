@@ -71,7 +71,7 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
   },
   setSelectedCube: (cube: Cube | null) => {
     set((state: any) => {
-      if (!cube) {
+      if (!cube || typeof cube !== "object") {
         return {
           ...state,
           event: null,

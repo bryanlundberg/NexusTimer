@@ -22,14 +22,8 @@ export default function useModalCube() {
   } = useCubesModalStore();
 
   const { lang } = useSettingsModalStore();
-  const {
-    setCubes,
-    setSelectedCube,
-    setNewScramble,
-    selectedCube,
-    cubes,
-    mergeUpdateSelectedCube,
-  } = useTimerStore();
+  const { setCubes, setSelectedCube, setNewScramble, selectedCube, cubes } =
+    useTimerStore();
   const [error, setError] = useState<boolean>(false);
   const [isDuplicate, setDuplicate] = useState<boolean>(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
@@ -61,8 +55,9 @@ export default function useModalCube() {
       return;
     }
 
-    const updatedCube = await saveCube({ name, category });
-    mergeUpdateSelectedCube(updatedCube, cubes);
+    await saveCube({ name, category });
+    const cubesDB = await getAllCubes();
+    setCubes(cubesDB);
     setModalOpen(false);
     setEditingCube(null);
     setCubeName("");
@@ -96,8 +91,6 @@ export default function useModalCube() {
 
     const cubesDB = await getAllCubes();
     setCubes(cubesDB);
-
-    // mergeUpdateSelectedCube(updatedCube, cubes);
 
     if (editingCube.id === selectedCube?.id) {
       setSelectedCube(null);
