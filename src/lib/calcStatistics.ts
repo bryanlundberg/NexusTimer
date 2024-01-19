@@ -14,13 +14,13 @@ import { Cube } from "@/interfaces/Cube";
  * @param {Cube | null} params.cube - The cube object for which statistics will be calculated.
  * @returns {DisplayTimerStatistics} An object containing the calculated statistics for global, session, and cubeSession.
  */
-export default async function calcStatistics({
+export default function calcStatistics({
   selectedCube,
   cubesDB,
 }: {
   selectedCube: Cube | null;
   cubesDB: Cube[] | null;
-}): Promise<DisplayTimerStatistics> {
+}): DisplayTimerStatistics {
   // Array containing the values for average of X (AoX) calculations
   const aoValues: number[] = [3, 5, 12, 50, 100];
 
@@ -71,7 +71,7 @@ export default async function calcStatistics({
   }
 
   // Get solve metrics for global, session, and cubeSession
-  const { global, session, cubeSession } = await getSolvesMetrics({
+  const { global, session, cubeSession } = getSolvesMetrics({
     cubesDB,
     category: selectedCube.category,
     cubeName: selectedCube.name,

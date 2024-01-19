@@ -13,7 +13,7 @@ import { useCubesModalStore } from "@/store/CubesModalStore";
 import useClickOutside from "@/hooks/useClickOutside";
 import { AnimatePresence, motion } from "framer-motion";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
-import { getCubeById } from "@/db/dbOperations";
+import { Cube } from "@/interfaces/Cube";
 
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
@@ -138,19 +138,18 @@ function Option({
   cubeId: string;
   handleClose: () => void;
 }) {
-  const { selectedCube, setSelectedCube, setNewScramble, setLastSolve } =
+  const { selectedCube, setSelectedCube, setNewScramble, setLastSolve, cubes } =
     useTimerStore();
 
   return (
     <div
-      onClick={async () => {
+      onClick={() => {
         if (setSelectedCube && setNewScramble) {
-          const cube = await getCubeById(cubeId);
-          if (cube) {
-            setSelectedCube(cube);
-            setNewScramble(cube);
-            setLastSolve(null);
-          }
+          const selectCube = cubes?.find((cube: Cube) => cube.id === cubeId);
+          if (!selectCube) return;
+          setSelectedCube(selectCube);
+          setNewScramble(selectCube);
+          setLastSolve(null);
         }
         handleClose();
       }}

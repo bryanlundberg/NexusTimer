@@ -7,7 +7,7 @@ export function useCubes() {
   const { cubes } = useTimerStore();
   const [filterCubes, setFilterCubes] = useState(cubes);
 
-  const handleSearchFilter = async (searchCube: string) => {
+  const handleSearchFilter = (searchCube: string) => {
     if (!cubes) return;
     if (searchCube.trim() === "") return setFilterCubes(cubes);
     setFilterCubes(

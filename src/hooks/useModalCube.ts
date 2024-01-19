@@ -109,7 +109,7 @@ export default function useModalCube() {
     setSelectedCategory("2x2");
   };
 
-  const handleCubeDetails = async () => {
+  const handleCubeDetails = () => {
     if (!editingCube) return;
     if (!cubes) return; // Some error pending to add with message, this should actually never occur.
 

@@ -13,14 +13,11 @@ export function useTimerStatistics() {
 
   useEffect(() => {
     if (selectedCube) {
-      const fetchData = async () => {
-        const { global, session, cubeSession } = await calcStatistics({
-          cubesDB: cubes,
-          selectedCube,
-        });
-        setStatistics({ global, session, cubeSession });
-      };
-      fetchData();
+      const { global, session, cubeSession } = calcStatistics({
+        cubesDB: cubes,
+        selectedCube,
+      });
+      setStatistics({ global, session, cubeSession });
     }
   }, [selectedCube, cubes]);
 
