@@ -8,15 +8,15 @@ import { useEffect, useRef, useState } from "react";
 import { MoveData } from "@/components/solves/MoveModal";
 import { ConfirmDeleteData } from "@/components/solves/ConfirmDelete";
 import { sort } from "fast-sort";
+import calcStatistics from "@/lib/calcStatistics";
 
 export default function useSolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
-  const { selectedCube, cubes, mergeUpdateSelectedCube, timerStatistics } =
-    useTimerStore();
+  const { selectedCube, cubes, mergeUpdateSelectedCube } = useTimerStore();
   const [displaySolves, setDisplaySolves] = useState<Solve[] | null>(null);
   const [isOpenMoveModal, setIsOpenMoveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-  const searchBox = useRef<any>(null);
+  const searchBox = useRef<HTMLInputElement | null>(null);
 
   const handleTabClick = (clickedTab: SolveTab) => {
     setCurrentTab(clickedTab);
@@ -24,21 +24,23 @@ export default function useSolvesPage() {
 
   const handleGetMoveData = (): MoveData | null => {
     if (!selectedCube) return null;
+    const { session } = calcStatistics({ selectedCube, cubesDB: cubes });
     return {
       category: selectedCube.category,
-      bestTime: timerStatistics.session.best,
-      average: timerStatistics.session.mean,
-      count: timerStatistics.session.count,
+      bestTime: session.best,
+      average: session.mean,
+      count: session.count,
     };
   };
 
   const handleGetDeleteData = (): ConfirmDeleteData | null => {
     if (!selectedCube) return null;
+    const { cubeSession } = calcStatistics({ selectedCube, cubesDB: cubes });
     return {
       category: selectedCube.category,
-      bestTime: timerStatistics.cubeSession.best,
-      average: timerStatistics.cubeSession.mean,
-      count: timerStatistics.cubeSession.count,
+      bestTime: cubeSession.best,
+      average: cubeSession.mean,
+      count: cubeSession.count,
     };
   };
 
@@ -88,7 +90,7 @@ export default function useSolvesPage() {
         );
       }
 
-      if (searchBox.current.value !== "") {
+      if (searchBox.current && searchBox.current.value !== "") {
         solvesToDisplay = querySolves({
           query: searchBox.current.value,
           currentTab,
