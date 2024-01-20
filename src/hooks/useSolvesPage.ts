@@ -9,10 +9,17 @@ import { MoveData } from "@/components/solves/MoveModal";
 import { ConfirmDeleteData } from "@/components/solves/ConfirmDelete";
 import { sort } from "fast-sort";
 import calcStatistics from "@/lib/calcStatistics";
+import { getAllCubes, getCubeById } from "@/db/dbOperations";
 
 export default function useSolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
-  const { selectedCube, cubes, mergeUpdateSelectedCube } = useTimerStore();
+  const {
+    selectedCube,
+    cubes,
+    mergeUpdateSelectedCube,
+    setCubes,
+    setSelectedCube,
+  } = useTimerStore();
   const [displaySolves, setDisplaySolves] = useState<Solve[] | null>(null);
   const [isOpenMoveModal, setIsOpenMoveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
@@ -46,8 +53,11 @@ export default function useSolvesPage() {
 
   const handleMoveAll = async () => {
     if (!selectedCube) return;
-    const updatedCube = await finishSession({ selectedCube, cubesDB: cubes });
-    mergeUpdateSelectedCube(updatedCube, cubes);
+    await finishSession({ selectedCube, cubesDB: cubes });
+    const cubesDB = await getAllCubes();
+    setCubes(cubesDB);
+    const currentCube = await getCubeById(selectedCube.id);
+    setSelectedCube(currentCube);
   };
 
   const handleTrashAll = async () => {

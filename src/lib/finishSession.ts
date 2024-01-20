@@ -13,7 +13,7 @@ export default async function finishSession({
 }: {
   selectedCube: Cube | null;
   cubesDB: Cube[] | null;
-}): Promise<Cube | null> {
+}): Promise<Cube[] | null> {
   if (!selectedCube) return null;
   if (!cubesDB) return null;
 
@@ -29,11 +29,10 @@ export default async function finishSession({
         id: cube.id,
         name: cube.name,
         category: cube.category,
+        solves: cube.solves,
       });
-
-      return cube;
     }
   }
 
-  return null;
+  return cubesDB;
 }
