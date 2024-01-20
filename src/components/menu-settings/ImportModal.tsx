@@ -8,14 +8,15 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import Loading from "../Loading";
 import { getAllCubes } from "@/db/dbOperations";
-
+import translation from "@/translations/global.json";
 export default function ImportModal() {
-  const { setImportModalOpen, importModalOpen } = useSettingsModalStore();
+  const { setImportModalOpen, importModalOpen, lang } = useSettingsModalStore();
   const { setSelectedCube, setCubes } = useTimerStore();
   const [isImporting, setIsImporting] = useState(false);
   const dataInputRef = useRef<HTMLInputElement>(null);
   const componentRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
+
   useClickOutside(componentRef, () => setImportModalOpen(false));
 
   return (
@@ -31,11 +32,10 @@ export default function ImportModal() {
               ref={componentRef}
             >
               <div className="text-xl font-medium">
-                Intelligent Backup Restoration
+                {translation.backup["title"][lang]}
               </div>
               <div className="text-md text-balance">
-                Let NexusTimer smartly import everything; it will automatically
-                detect and recreate a compatible data structure.
+                {translation.backup["description"][lang]}
               </div>
 
               {!isImporting ? (
@@ -55,7 +55,7 @@ export default function ImportModal() {
                           setSelectedCube(null);
                           setImportModalOpen(false);
                           alert(
-                            "CSTimer and CubeDesk require manual adjustment of categories."
+                            `${translation.backup["alert-category"][lang]}`
                           );
                         }
                       } catch (error) {
@@ -67,7 +67,7 @@ export default function ImportModal() {
                     className="absolute z-50 w-full h-full opacity-0 hover:cursor-pointer"
                   />
                   <div className="absolute z-40 text-center">
-                    Drag and drop your files here, or click to select.
+                    {translation.backup["drag-drop"][lang]}
                   </div>
                 </div>
               ) : (
@@ -77,15 +77,17 @@ export default function ImportModal() {
                   </div>
 
                   <div className="mx-auto mt-2">
-                    This action takes less of a minute.
+                    {translation.backup["loading-part-1"][lang]}
                   </div>
 
                   <div className="font-bold">
-                    Please wait, dont close this window
+                    {translation.backup["loading-part-2"][lang]}
                   </div>
                 </div>
               )}
-              <div className="font-medium mt-3">Supported Timers:</div>
+              <div className="font-medium mt-3">
+                {translation.backup["welcome"][lang]}
+              </div>
               <ul className="flex gap-2">
                 <Image
                   src={"/timer-logos/nexustimer.jpg"}

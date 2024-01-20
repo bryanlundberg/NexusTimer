@@ -14,7 +14,6 @@ export function DataImportExport() {
         className="font-normal transition duration-400"
         label={translation.settings["import-from-file"][lang]}
         onClick={() => setImportModalOpen(true)}
-        // onClick={() => dataInputRef.current && dataInputRef.current.click()}
         minimalistic={false}
         icon={<Import />}
       />
