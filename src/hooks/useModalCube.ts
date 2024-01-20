@@ -73,14 +73,15 @@ export default function useModalCube() {
     if (!editingCube) return;
 
     if (!cubes) return; // Some error pending to add with message, this should actually never occur.
-    const isDuplicate = cubes.some(
-      (cube) =>
-        cube.name.trim() === name.trim() &&
-        name.trim() !== selectedCube?.name.trim()
-    );
-    if (isDuplicate) {
-      setDuplicate(true);
-      return;
+
+    if (editingCube.name.trim() !== name.trim()) {
+      const isDuplicate = cubes.some(
+        (cube) => cube.name.trim() === name.trim()
+      );
+      if (isDuplicate) {
+        setDuplicate(true);
+        return;
+      }
     }
 
     const updatedCube = await saveCube({
