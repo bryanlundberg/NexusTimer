@@ -1,5 +1,3 @@
-import { Categories } from "./Categories";
-
 export interface Solve {
   id: string;
   cubeId: string;
@@ -11,6 +9,5 @@ export interface Solve {
   rating: number;
   dnf: boolean;
   plus2: boolean;
-  category: Categories;
   comment?: string;
 }

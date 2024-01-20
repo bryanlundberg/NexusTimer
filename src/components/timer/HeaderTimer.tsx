@@ -5,7 +5,6 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { InteractiveIcon } from "./InteractiveIcon";
 import { ScrambleZone } from "./ScrambleZone";
-import { useTimerStatistics } from "@/hooks/useTimerStatistics";
 import translation from "@/translations/global.json";
 import Link from "next/link";
 
@@ -14,8 +13,7 @@ export default function HeaderTimer() {
     useTimerStore();
   const { setSettingsOpen, settingsOpen, lang, settings } =
     useSettingsModalStore();
-  const { global } = useTimerStatistics();
-  const { lastSolve } = useTimerStore();
+  const { lastSolve, timerStatistics } = useTimerStore();
 
   if (isSolving || timerStatus !== "IDLE") return null;
   return (
@@ -49,7 +47,7 @@ export default function HeaderTimer() {
       </div>
       <ScrambleZone />
       {lastSolve != null &&
-      lastSolve.time <= global.best &&
+      lastSolve.time <= timerStatistics.global.best &&
       settings.alerts.bestTime.status ? (
         <div id="touch" className="mt-10 text-center">
           <p>{translation.timer["congrats"][lang]}</p>

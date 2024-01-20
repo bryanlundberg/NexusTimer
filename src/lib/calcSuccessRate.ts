@@ -1,6 +1,7 @@
 import { Categories } from "@/interfaces/Categories";
 import getSolvesMetrics from "./getSolvesMetrics";
 import calcPlus2Rate from "./calcPlus2Rate";
+import { Cube } from "@/interfaces/Cube";
 
 /**
  * Calculates the success rate (percentage of solves with a "+2" penalty) for different solve sets
@@ -9,15 +10,21 @@ import calcPlus2Rate from "./calcPlus2Rate";
  * @param {string} cubeName - The name of the cube.
  * @returns {StatisticS} The success rate for global, session, cubeSession, and cubeAll.
  */
-export default function calcSuccessRate(
-  category: Categories,
-  cubeName: string
-): StatisticS {
+export default function calcSuccessRate({
+  cubesDB,
+  category,
+  cubeName,
+}: {
+  cubesDB: Cube[] | null;
+  category: Categories;
+  cubeName: string;
+}): StatisticS {
   // Get solve metrics for global, session, cubeSession, and cubeAll
-  const { global, session, cubeAll, cubeSession } = getSolvesMetrics(
+  const { global, session, cubeAll, cubeSession } = getSolvesMetrics({
+    cubesDB,
     category,
-    cubeName
-  );
+    cubeName,
+  });
 
   // Calculate the number of solves with a "+2" penalty for each solve set
   const globalRate = calcPlus2Rate(global);

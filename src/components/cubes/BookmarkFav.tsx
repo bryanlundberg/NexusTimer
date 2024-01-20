@@ -1,21 +1,22 @@
 import FavoriteSolid from "@/icons/FavoriteSolid";
+import { Cube } from "@/interfaces/Cube";
 import { useState } from "react";
 
 export default function BookmarkFav({
   isChecked,
   setFavorite,
-  cubeId,
+  cube,
 }: {
   isChecked: boolean;
-  setFavorite: (cubeId: string) => void;
-  cubeId: string;
+  setFavorite: (cube: Cube) => void;
+  cube: Cube;
 }) {
   const [checked, setChecked] = useState(isChecked);
 
   return (
     <button
       onClick={() => {
-        setFavorite(cubeId);
+        setFavorite(cube);
         setChecked(!checked);
       }}
       aria-pressed={checked}

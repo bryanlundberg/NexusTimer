@@ -1,38 +1,28 @@
 import { useEffect, useState } from "react";
 import { useTimerStore } from "@/store/timerStore";
-import { useCubesModalStore } from "@/store/CubesModalStore";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import loadCubes from "@/lib/loadCubes";
+import { getAllCubes } from "@/db/dbOperations";
+import { Cube } from "@/interfaces/Cube";
 
 export function useCubes() {
-  const { cubes, setCubes } = useTimerStore();
-  const { modalOpen, setModalOpen } = useCubesModalStore();
-  const { lang } = useSettingsModalStore();
-
+  const { cubes } = useTimerStore();
   const [filterCubes, setFilterCubes] = useState(cubes);
+
   const handleSearchFilter = (searchCube: string) => {
+    if (!cubes) return;
+    if (searchCube.trim() === "") return setFilterCubes(cubes);
     setFilterCubes(
-      cubes!.filter((cube) =>
+      cubes.filter((cube: Cube) =>
         cube.name.toLowerCase().startsWith(searchCube.toLowerCase())
       )
     );
   };
 
   useEffect(() => {
-    const cubes = loadCubes();
-    setCubes(cubes);
-  }, [setCubes, setModalOpen]);
-
-  useEffect(() => {
-    setFilterCubes(cubes);
-  }, [modalOpen, cubes]);
+    getAllCubes().then((res) => setFilterCubes(res));
+  }, [cubes]);
 
   return {
-    cubes,
     filterCubes,
-    modalOpen,
-    setModalOpen,
-    lang,
     handleSearchFilter,
   };
 }

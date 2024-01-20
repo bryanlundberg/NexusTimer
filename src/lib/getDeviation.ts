@@ -3,9 +3,11 @@ import { Solve } from "@/interfaces/Solve";
 /**
  * Calculates the standard deviation of solve times.
  * @param {Solve[]} solves - An array of Solve objects.
- * @returns {number} The standard deviation of solve times.
+ * @returns {number} The standard deviation of solve times. Returns 0 if there are less than 2 solves.
  */
 export default function getDeviation(solves: Solve[]): number {
+  if (!solves) return 0;
+
   // If there are less than 2 solves, the standard deviation is 0.
   if (solves.length < 2) {
     return 0;

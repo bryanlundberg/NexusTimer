@@ -1,23 +1,29 @@
 import { Solve } from "@/interfaces/Solve";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
 import deleteSession from "@/lib/deleteSession";
-import findCube from "@/lib/findCube";
-import searchQuery from "@/lib/searchQuery";
-import updateSessions from "@/lib/updateSessions";
+import querySolves from "@/lib/querySolves";
+import finishSession from "@/lib/finishSession";
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect, useRef, useState } from "react";
-import { useTimerStatistics } from "./useTimerStatistics";
 import { MoveData } from "@/components/solves/MoveModal";
 import { ConfirmDeleteData } from "@/components/solves/ConfirmDelete";
+import { sort } from "fast-sort";
+import calcStatistics from "@/lib/calcStatistics";
+import { getAllCubes, getCubeById } from "@/db/dbOperations";
 
 export default function useSolvesPage() {
   const [currentTab, setCurrentTab] = useState<SolveTab>("Session");
-  const { selectedCube, setCubes, setSelectedCube, cubes } = useTimerStore();
+  const {
+    selectedCube,
+    cubes,
+    mergeUpdateSelectedCube,
+    setCubes,
+    setSelectedCube,
+  } = useTimerStore();
   const [displaySolves, setDisplaySolves] = useState<Solve[] | null>(null);
   const [isOpenMoveModal, setIsOpenMoveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-  const { session, cubeSession } = useTimerStatistics();
-  const searchBox = useRef<any>(null);
+  const searchBox = useRef<HTMLInputElement | null>(null);
 
   const handleTabClick = (clickedTab: SolveTab) => {
     setCurrentTab(clickedTab);
@@ -25,6 +31,7 @@ export default function useSolvesPage() {
 
   const handleGetMoveData = (): MoveData | null => {
     if (!selectedCube) return null;
+    const { session } = calcStatistics({ selectedCube, cubesDB: cubes });
     return {
       category: selectedCube.category,
       bestTime: session.best,
@@ -35,6 +42,7 @@ export default function useSolvesPage() {
 
   const handleGetDeleteData = (): ConfirmDeleteData | null => {
     if (!selectedCube) return null;
+    const { cubeSession } = calcStatistics({ selectedCube, cubesDB: cubes });
     return {
       category: selectedCube.category,
       bestTime: cubeSession.best,
@@ -43,26 +51,19 @@ export default function useSolvesPage() {
     };
   };
 
-  const handleMoveAll = () => {
-    if (selectedCube) {
-      const updateCubes = updateSessions(selectedCube);
-      if (updateCubes) {
-        setCubes(updateCubes);
-        const updatedCube = findCube({ cubeId: selectedCube.id });
-        if (updatedCube) setSelectedCube(updatedCube);
-      }
-    }
+  const handleMoveAll = async () => {
+    if (!selectedCube) return;
+    await finishSession({ selectedCube, cubesDB: cubes });
+    const cubesDB = await getAllCubes();
+    setCubes(cubesDB);
+    const currentCube = await getCubeById(selectedCube.id);
+    setSelectedCube(currentCube);
   };
 
-  const handleTrashAll = () => {
-    if (selectedCube) {
-      const cubeSession = deleteSession(selectedCube);
-      if (cubeSession) {
-        setCubes(cubeSession);
-        const updatedCube = findCube({ cubeId: selectedCube.id });
-        if (updatedCube) setSelectedCube(updatedCube);
-      }
-    }
+  const handleTrashAll = async () => {
+    if (!selectedCube) return;
+    const updatedCube = await deleteSession({ selectedCube, cubesDB: cubes });
+    mergeUpdateSelectedCube(updatedCube, cubes);
   };
 
   const handleSearch = (query: string) => {
@@ -76,10 +77,10 @@ export default function useSolvesPage() {
       return;
     }
 
-    const solves = searchQuery({
+    const solves = querySolves({
       query,
       currentTab,
-      cubeId: selectedCube.id,
+      selectedCube,
       sortByTime: true,
     });
     setDisplaySolves(solves);
@@ -92,27 +93,25 @@ export default function useSolvesPage() {
 
     if (selectedCube) {
       if (currentTab === "All") {
-        solvesToDisplay = selectedCube.solves.all;
+        solvesToDisplay = sort(selectedCube.solves.all).desc((u) => u.endTime);
       } else if (currentTab === "Session") {
-        solvesToDisplay = selectedCube.solves.session;
+        solvesToDisplay = sort(selectedCube.solves.session).desc(
+          (u) => u.endTime
+        );
       }
 
-      if (searchBox.current.value !== "") {
-        const results = searchQuery({
+      if (searchBox.current && searchBox.current.value !== "") {
+        solvesToDisplay = querySolves({
           query: searchBox.current.value,
           currentTab,
-          cubeId: selectedCube.id,
+          selectedCube,
           sortByTime: true,
         });
-
-        if (results) {
-          solvesToDisplay = results;
-        }
       }
 
       setDisplaySolves(solvesToDisplay);
     }
-  }, [currentTab, selectedCube, cubes]);
+  }, [currentTab, selectedCube]);
 
   return {
     currentTab,

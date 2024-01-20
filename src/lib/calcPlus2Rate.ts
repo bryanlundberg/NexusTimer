@@ -6,6 +6,7 @@ import { Solve } from "@/interfaces/Solve";
  * @returns {number} The count of solves with a "+2" penalty.
  */
 export default function calcPlus2Rate(solves: Solve[]): number {
+  if (!solves) return 0;
   // Use the reduce function to count the number of solves with a "+2" penalty
   return solves.reduce((total, acc) => (acc.plus2 ? total + 1 : total), 0);
 }

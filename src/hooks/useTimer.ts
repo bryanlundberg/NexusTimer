@@ -1,6 +1,5 @@
+import { saveCube } from "@/db/dbOperations";
 import { Solve } from "@/interfaces/Solve";
-import addSolve from "@/lib/addSolve";
-import findCube from "@/lib/findCube";
 import genId from "@/lib/genId";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
@@ -20,6 +19,9 @@ export default function useTimer() {
     setSelectedCube,
     setLastSolve,
     displayHint,
+    cubes,
+    mergeUpdateSelectedCube,
+    setTimerStatistics,
   } = useTimerStore();
 
   const { settings, setSettingsOpen } = useSettingsModalStore();
@@ -116,7 +118,7 @@ export default function useTimer() {
       setIsSolving(false);
     };
 
-    const stopTimer = () => {
+    const stopTimer = async () => {
       clearInterval(solveTimeId.current);
       // save solve
       if (
@@ -134,22 +136,23 @@ export default function useTimer() {
           dnf: false,
           plus2: false,
           rating: Math.floor(Math.random() * 20) + scramble.length,
-          category: selectedCube.category,
           cubeId: selectedCube.id,
           comment: "",
         };
+
         setLastSolve(lastSolve);
-        if (selectedCube) {
-          const newCubes = addSolve({
-            cubeId: selectedCube.id,
-            solve: lastSolve,
-          });
-          setCubes(newCubes);
-          const currentCube = findCube({ cubeId: selectedCube.id });
-          if (currentCube) setSelectedCube(currentCube);
-        }
-        setNewScramble(selectedCube);
+
+        selectedCube.solves.session.push(lastSolve);
+
+        await saveCube({
+          id: selectedCube.id,
+          name: selectedCube.name,
+          category: selectedCube.category,
+          solves: selectedCube.solves,
+        });
+        mergeUpdateSelectedCube(selectedCube, cubes);
       }
+      setNewScramble(selectedCube);
       solveTimeId.current = null;
       startSolveTime.current = null;
     };
@@ -284,7 +287,15 @@ export default function useTimer() {
     solvingTime,
     setTimerStatus,
     displayHint,
+    cubes,
+    mergeUpdateSelectedCube,
   ]);
+
+  useEffect(() => {
+    if (selectedCube && !isSolving) {
+      setTimerStatistics();
+    }
+  }, [selectedCube, isSolving, setTimerStatistics]);
 
   return {
     inspectionTime,

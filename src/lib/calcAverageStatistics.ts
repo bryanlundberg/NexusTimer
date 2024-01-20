@@ -1,18 +1,26 @@
 import { Categories } from "@/interfaces/Categories";
 import getSolvesMetrics from "./getSolvesMetrics";
+import { Cube } from "@/interfaces/Cube";
 
 /**
  * Calculates the average solve time for different solve sets (global, session, cubeSession, cubeAll) of a specific cube.
- * @param {Categories} category - The category of the cube solves.
- * @param {string} cubeName - The name of the cube.
+ * @param {Object} params - Parameters for calculating average solve times.
+ * @param {Cube[] | null} params.cubesDB - The array of cubes.
+ * @param {Categories} params.category - The category of the cube solves.
+ * @param {string} params.cubeName - The name of the cube.
  * @returns {StatisticN} The calculated average solve times for global, session, cubeSession, and cubeAll.
  */
-export default function calcAverageStatistics(
-  category: Categories,
-  cubeName: string
-): StatisticN {
+export default function calcAverageStatistics({
+  cubesDB,
+  category,
+  cubeName,
+}: {
+  cubesDB: Cube[] | null;
+  category: Categories;
+  cubeName: string;
+}): StatisticN {
   // Get solve metrics for global, session, cubeSession, and cubeAll
-  const solveMetrics = getSolvesMetrics(category, cubeName);
+  const solveMetrics = getSolvesMetrics({ cubesDB, category, cubeName });
 
   // Calculate average solve time for global solves
   const globalTime =

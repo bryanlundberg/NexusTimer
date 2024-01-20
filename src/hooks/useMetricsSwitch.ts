@@ -81,20 +81,46 @@ export default function useMetricsSwitch() {
   }, [lang]);
 
   useEffect(() => {
-    const calculatedAverage = calcAverageStatistics(filterCategory, filterCube);
-    const calculatedTimeSpent = calcTimeSpentStatistics(
-      filterCategory,
-      filterCube
-    );
-    const calculatedCounter = calcTotalSolvesStatistics(
-      filterCategory,
-      filterCube
-    );
-    const calculatedStats = calcAoStatistics(filterCategory, filterCube);
-    const calculatedDeviation = calcDeviation(filterCategory, filterCube);
-    const calculatedSuccessRate = calcSuccessRate(filterCategory, filterCube);
-    const calculatedBest = calcBestTime(filterCategory, filterCube);
-    const calculatedData = getSolvesMetrics(filterCategory, filterCube);
+    const calculatedAverage = calcAverageStatistics({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedTimeSpent = calcTimeSpentStatistics({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedCounter = calcTotalSolvesStatistics({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedStats = calcAoStatistics({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedDeviation = calcDeviation({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedSuccessRate = calcSuccessRate({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedBest = calcBestTime({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
+    const calculatedData = getSolvesMetrics({
+      cubesDB: cubes,
+      category: filterCategory,
+      cubeName: filterCube,
+    });
 
     setAverage(calculatedAverage);
     setTimeSpent(calculatedTimeSpent);
@@ -104,7 +130,7 @@ export default function useMetricsSwitch() {
     setSuccessRate(calculatedSuccessRate);
     setBest(calculatedBest);
     setData(calculatedData);
-  }, [filterCategory, filterCube]);
+  }, [filterCategory, filterCube, cubes]);
 
   return {
     filterCategory,

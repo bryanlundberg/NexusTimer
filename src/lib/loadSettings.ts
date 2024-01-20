@@ -2,7 +2,7 @@ import { Settings } from "@/interfaces/Settings";
 import { defaultSettings } from "./const/defaultSettings";
 
 /**
- * Retrieves the user settings from the local storage.
+ * Retrieves the user settings from local storage.
  * If no settings are found, it initializes and saves the default settings.
  *
  * @returns {Settings} The user settings.

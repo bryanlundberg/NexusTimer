@@ -1,20 +1,24 @@
 import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
-import updateCubeOnList from "./updateCubeOnList";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
+import { saveCube } from "@/db/dbOperations";
 
 /**
  * Moves a solve from session solves to all solves within a given cube and updates the cube on the list and vice versa.
  * @param {Solve} solve - The solve to be moved.
  * @param {Cube} selectedCube - The cube containing the solves.
- * @param {"session" | "all"} type - The type of solves to move the solve to ("session" or "all").
- * @returns {Cube[]} The updated list of cubes.
+ * @param {"Session" | "All"} type - The type of solves to move the solve to ("Session" or "All").
+ * @returns {Cube} The updated cube.
  */
-export default function moveSolve(
-  solve: Solve,
-  selectedCube: Cube,
-  type: SolveTab
-): Cube[] {
+export default async function moveSolve({
+  solve,
+  selectedCube,
+  type,
+}: {
+  solve: Solve;
+  selectedCube: Cube;
+  type: SolveTab;
+}): Promise<Cube> {
   const { session, all } = selectedCube.solves;
 
   if (type === "Session") {
@@ -30,8 +34,12 @@ export default function moveSolve(
         (sessionSolve) => sessionSolve.id !== solve.id
       );
 
-      // Update the cube on the list
-      return updateCubeOnList(selectedCube);
+      await saveCube({
+        id: selectedCube.id,
+        name: selectedCube.name,
+        category: selectedCube.category,
+        solves: selectedCube.solves,
+      });
     } else {
       // Handle the case where the solve is not found in session solves
       console.warn("Solve not found in session solves storage.");
@@ -49,13 +57,18 @@ export default function moveSolve(
         (allSolve) => allSolve.id !== solve.id
       );
       // Update the cube on the list
-      return updateCubeOnList(selectedCube);
+      await saveCube({
+        id: selectedCube.id,
+        name: selectedCube.name,
+        category: selectedCube.category,
+        solves: selectedCube.solves,
+      });
     } else {
       // Handle the case where the solve is not found in all solves
       console.warn("Solve not found in All solves storage.");
     }
   }
 
-  // If the type is neither "session" nor "all", return the cube without updating the list
-  return [selectedCube];
+  // If the type is neither "session" nor "all", return the cube without updating
+  return selectedCube;
 }

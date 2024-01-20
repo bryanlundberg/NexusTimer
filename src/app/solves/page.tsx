@@ -60,8 +60,9 @@ export default function SolvesPage() {
                 icon={<MoveAll />}
                 label={translation.inputs["move-all"][lang]}
                 isDisabled={
-                  selectedCube === null ||
-                  selectedCube.solves.session.length === 0
+                  selectedCube && selectedCube.solves.session.length > 0
+                    ? false
+                    : true
                 }
               />
               <Button
@@ -73,8 +74,9 @@ export default function SolvesPage() {
                 }
                 label={translation.inputs["trash-all"][lang]}
                 isDisabled={
-                  selectedCube === null ||
-                  selectedCube.solves.session.length === 0
+                  selectedCube && selectedCube.solves.session.length > 0
+                    ? false
+                    : true
                 }
               />
             </ButtonsSection>

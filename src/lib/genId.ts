@@ -5,7 +5,6 @@ declare module "uuid";
  * Generates a new UUID (Universally Unique Identifier).
  * @returns {string} The generated UUID.
  */
-
 export default function genId() {
   return uuidv4();
 }

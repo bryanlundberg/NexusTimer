@@ -8,6 +8,7 @@ import FullscreenOption from "@/components/timer/FullscreenOption";
 import HintPanel from "@/components/timer/HintPanel";
 import ScrambleModal from "@/components/timer/ScrambleModal";
 import useInitializeTimer from "@/hooks/useInitializeHint";
+import ImportModal from "@/components/menu-settings/ImportModal";
 
 export default function Home() {
   useInitializeTimer();
@@ -22,6 +23,7 @@ export default function Home() {
       <HintPanel />
       <FullscreenOption />
       <ScrambleModal />
+      <ImportModal />
     </>
   );
 }

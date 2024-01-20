@@ -1,7 +1,7 @@
 import { Solve } from "@/interfaces/Solve";
-import loadCubes from "./loadCubes";
 import formatTime from "./formatTime";
 import { sort } from "fast-sort";
+import { Cube } from "@/interfaces/Cube";
 
 /**
  * Searches for solves in a specific cube based on the provided query and tab.
@@ -12,23 +12,17 @@ import { sort } from "fast-sort";
  * @param {boolean} [options.sortByTime=false] - Whether to sort the results by time.
  * @returns {Solve[] | null} An array of solves or null if the cube is not found.
  */
-export default function searchQuery({
+export default function querySolves({
   query,
-  cubeId,
+  selectedCube,
   currentTab,
   sortByTime = false,
 }: {
   query: string;
-  cubeId: string | null;
+  selectedCube: Cube | null;
   currentTab: "Session" | "All";
   sortByTime?: boolean;
 }): Solve[] | null {
-  if (!cubeId) return null;
-
-  const cubeDB = loadCubes();
-
-  const selectedCube = cubeDB.find((u) => u.id === cubeId);
-
   if (!selectedCube) return null;
 
   let solves = null;
@@ -44,8 +38,11 @@ export default function searchQuery({
   }
 
   if (!solves) return null;
+
   if (sortByTime) {
     solves = sort(solves).asc((u) => u.time);
+  } else {
+    solves = sort(solves).desc((u) => u.endTime);
   }
 
   return solves;

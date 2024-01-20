@@ -1,29 +1,33 @@
+import { saveCube } from "@/db/dbOperations";
 import { Cube } from "@/interfaces/Cube";
-import loadCubes from "./loadCubes";
 
 /**
- * Deletes the session solves of a selected cube and updates the list of cubes in local storage.
- * @param {Cube} selectedCube - The cube whose session solves will be deleted.
- * @returns {Cube[]} The updated list of cubes after deleting the session solves.
+ * Deletes the session solves of a selected cube and updates the list of cubes in indexDB.
+ * @param {Cube | null} selectedCube - The cube whose session solves will be deleted.
+ * @param {Cube[] | null} cubesDB - The array of cubes.
+ * @returns {Promise<Cube | null>} The updated cube or null.
  */
-export default function deleteSession(selectedCube: Cube): Cube[] {
+export default async function deleteSession({
+  selectedCube,
+  cubesDB,
+}: {
+  selectedCube: Cube | null;
+  cubesDB: Cube[] | null;
+}): Promise<Cube | null> {
+  if (!selectedCube) return null;
+  if (!cubesDB) return null;
+
   // Clear the session solves of the selected cube
   selectedCube.solves.session = [];
 
-  // Load existing cubes from local storage
-  const cubesDB = loadCubes();
-
-  // If no cubes are present, return an empty array
-  if (!cubesDB) return [];
-
-  // Create a new list of cubes with the updated selected cube
-  const newCubesList: Cube[] = cubesDB.map((targetCube) =>
-    selectedCube.id === targetCube.id ? selectedCube : targetCube
-  );
-
-  // Update the list of cubes in local storage
-  window.localStorage.setItem("cubes", JSON.stringify(newCubesList));
+  // Update the list of cubes in indexDB
+  await saveCube({
+    id: selectedCube.id,
+    name: selectedCube.name,
+    category: selectedCube.category,
+    solves: selectedCube.solves,
+  });
 
   // Return the updated list of cubes
-  return newCubesList;
+  return selectedCube;
 }

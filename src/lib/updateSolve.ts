@@ -1,45 +1,53 @@
+import { saveCube } from "@/db/dbOperations";
 import { Cube } from "@/interfaces/Cube";
-import loadCubes from "./loadCubes";
 import { Solve } from "@/interfaces/Solve";
 
 /**
  * Updates the specified solve in the cubes' solves arrays.
  * @param {string} solveId - The ID of the solve to be updated.
- * @param {string} type - The type of update: "+2", "DNF", "COMMENT", or "BOOKMARK".
+ * @param {string} type - The type of update: "+2", "DNF", "COMMENT", "BOOKMARK", or "DELETE".
  * @param {string} [comment] - The comment to be added or updated (optional).
- * @returns {Cube[]} The updated array of cubes.
+ * @returns {Cube | null} The updated cube or null if not found.
  */
-export default function updateSolve({
+export default async function updateSolve({
+  selectedCube,
   solveId,
   type,
   comment,
 }: {
+  selectedCube: Cube;
   solveId: string;
-  type: "+2" | "DNF" | "COMMENT" | "BOOKMARK";
+  type: "+2" | "DNF" | "COMMENT" | "BOOKMARK" | "DELETE";
   comment?: string;
-}): Cube[] {
-  const cubesDB = loadCubes();
+}): Promise<Cube | null> {
+  const updateSolveArray = (solveArray: Solve[]) => {
+    const solveIndex = solveArray.findIndex((solve) => solve.id === solveId);
 
-  for (const cube of cubesDB) {
-    const updateSolveArray = (solveArray: Solve[]) => {
-      const solveToUpdate = solveArray.find((solve) => solve.id === solveId);
+    if (solveIndex !== -1) {
+      const solveToUpdate = solveArray[solveIndex];
 
-      if (solveToUpdate) {
-        if (type === "+2") {
-          solveToUpdate.plus2 = !solveToUpdate.plus2;
-          solveToUpdate.time += solveToUpdate.plus2 ? 2000 : -2000;
-        } else if (type === "COMMENT") {
-          solveToUpdate.comment = comment ?? "";
-        } else if (type === "BOOKMARK") {
-          solveToUpdate.bookmark = !solveToUpdate.bookmark;
-        }
+      if (type === "+2") {
+        solveToUpdate.plus2 = !solveToUpdate.plus2;
+        solveToUpdate.time += solveToUpdate.plus2 ? 2000 : -2000;
+      } else if (type === "COMMENT") {
+        solveToUpdate.comment = comment ?? "";
+      } else if (type === "BOOKMARK") {
+        solveToUpdate.bookmark = !solveToUpdate.bookmark;
+      } else if (type === "DELETE") {
+        solveArray.splice(solveIndex, 1); // Remove the solve from the array
       }
-    };
+    }
+  };
 
-    updateSolveArray(cube.solves.all);
-    updateSolveArray(cube.solves.session);
-  }
+  updateSolveArray(selectedCube.solves.all);
+  updateSolveArray(selectedCube.solves.session);
 
-  window.localStorage.setItem("cubes", JSON.stringify(cubesDB));
-  return cubesDB;
+  await saveCube({
+    name: selectedCube.name,
+    id: selectedCube.id,
+    category: selectedCube.category,
+    solves: selectedCube.solves,
+  });
+
+  return selectedCube;
 }

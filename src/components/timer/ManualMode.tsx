@@ -1,7 +1,5 @@
 import { Solve } from "@/interfaces/Solve";
-import addSolve from "@/lib/addSolve";
 import convertToMs from "@/lib/convertToMs";
-import findCube from "@/lib/findCube";
 import formatTime from "@/lib/formatTime";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
@@ -10,6 +8,7 @@ import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Themes } from "@/interfaces/types/Themes";
 import translation from "@/translations/global.json";
+import { saveCube } from "@/db/dbOperations";
 
 const variation: Record<Themes, string> = {
   light:
@@ -25,8 +24,8 @@ export default function ManualMode() {
     lastSolve,
     setNewScramble,
     setLastSolve,
-    setCubes,
-    setSelectedCube,
+    cubes,
+    mergeUpdateSelectedCube,
   } = useTimerStore();
   const { settings, lang } = useSettingsModalStore();
 
@@ -38,7 +37,7 @@ export default function ManualMode() {
   return (
     <>
       <form
-        onSubmit={(e) => {
+        onSubmit={async (e) => {
           e.preventDefault();
           if (!selectedCube) return;
           if (!scramble) return;
@@ -57,17 +56,17 @@ export default function ManualMode() {
             dnf: false,
             plus2: false,
             rating: Math.floor(Math.random() * 20) + scramble.length,
-            category: selectedCube.category,
             cubeId: selectedCube.id,
           };
           setLastSolve(newSolve);
-          const newCubes = addSolve({
-            cubeId: selectedCube.id,
-            solve: newSolve,
+          selectedCube.solves.session.push(newSolve);
+          await saveCube({
+            id: selectedCube.id,
+            name: selectedCube.name,
+            category: selectedCube.category,
+            solves: selectedCube.solves,
           });
-          setCubes(newCubes);
-          const currentCube = findCube({ cubeId: selectedCube.id });
-          if (currentCube) setSelectedCube(currentCube);
+          mergeUpdateSelectedCube(selectedCube, cubes);
           setNewScramble(selectedCube);
         }}
         className="flex flex-col items-center"

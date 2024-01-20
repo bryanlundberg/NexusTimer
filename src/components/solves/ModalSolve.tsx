@@ -1,5 +1,3 @@
-import deleteSolve from "@/lib/deleteSolve";
-import findCube from "@/lib/findCube";
 import updateSolve from "@/lib/updateSolve";
 import { useSolvesStore } from "@/store/SolvesStore";
 import { useTimerStore } from "@/store/timerStore";
@@ -31,7 +29,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [showScramble, setShowScramble] = useState<boolean>(false);
   const { status, solve, setStatus } = useSolvesStore();
-  const { setCubes, setSelectedCube, selectedCube } = useTimerStore();
+  const { selectedCube, mergeUpdateSelectedCube, cubes } = useTimerStore();
   const { lang } = useSettingsModalStore();
   const submenuRef = useRef<HTMLDivElement | null>(null);
 
@@ -44,67 +42,59 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
 
   useEscape(() => setStatus(false));
 
-  const handleMove = (solve: Solve, currentTab: SolveTab) => {
-    if (selectedCube) {
-      const newCubes = moveSolve(solve, selectedCube, currentTab);
-      const updatedCube = findCube({ cubeId: selectedCube.id });
-      if (updatedCube) {
-        setSelectedCube(updatedCube);
-      }
-      setCubes(newCubes);
-    }
+  const handleMove = async (solve: Solve, currentTab: SolveTab) => {
+    if (!selectedCube) return;
+    const updatedCube = await moveSolve({
+      solve,
+      selectedCube,
+      type: currentTab,
+    });
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
   };
 
-  const handleDelete = (solve: Solve) => {
-    const newCubes = deleteSolve(solve.id);
-    if (selectedCube) {
-      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
-      if (updatedSelectedCube) {
-        setSelectedCube(updatedSelectedCube);
-      }
-    }
-    setCubes(newCubes);
+  const handleDelete = async (solve: Solve) => {
+    if (!selectedCube) return;
+    const updatedCube = await updateSolve({
+      selectedCube: selectedCube,
+      solveId: solve.id,
+      type: "DELETE",
+    });
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
   };
 
-  const handlePlusTwo = (solve: Solve) => {
-    const newCubes = updateSolve({ solveId: solve.id, type: "+2" });
-    if (selectedCube) {
-      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
-      if (updatedSelectedCube) {
-        setSelectedCube(updatedSelectedCube);
-      }
-    }
-    setCubes(newCubes);
+  const handlePlusTwo = async (solve: Solve) => {
+    if (!selectedCube) return;
+    const updatedCube = await updateSolve({
+      selectedCube: selectedCube,
+      solveId: solve.id,
+      type: "+2",
+    });
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
   };
 
-  const handleComment = (comment: string, solve: Solve) => {
-    const newCubes = updateSolve({
+  const handleComment = async (comment: string, solve: Solve) => {
+    if (!selectedCube) return;
+    const updatedCube = await updateSolve({
+      selectedCube: selectedCube,
       solveId: solve.id,
       type: "COMMENT",
       comment: comment,
     });
-    if (selectedCube) {
-      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
-      if (updatedSelectedCube) {
-        setSelectedCube(updatedSelectedCube);
-      }
-    }
-    setCubes(newCubes);
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
   };
 
-  const handleBookmark = (solve: Solve) => {
-    const newCubes = updateSolve({ solveId: solve.id, type: "BOOKMARK" });
-    if (selectedCube) {
-      const updatedSelectedCube = findCube({ cubeId: selectedCube.id });
-      if (updatedSelectedCube) {
-        setSelectedCube(updatedSelectedCube);
-      }
-    }
-    setCubes(newCubes);
+  const handleBookmark = async (solve: Solve) => {
+    if (!selectedCube) return;
+    const updatedCube = await updateSolve({
+      selectedCube: selectedCube,
+      solveId: solve.id,
+      type: "BOOKMARK",
+    });
+    mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
   };
 
@@ -182,7 +172,9 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                     className="w-full h-32 my-3"
                     show={status}
                     scramble={solve.scramble}
-                    event={solve ? solve.category : "3x3"}
+                    event={
+                      solve && selectedCube ? selectedCube.category : "3x3"
+                    }
                   ></ScrambleDisplay>
                 )}
                 <div>{solve.comment}</div>
@@ -222,7 +214,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                   </div>
                   <div
                     className="text-lg font-medium transition duration-200 hover:text-neutral-500 hover:cursor-pointer text-neutral-700"
-                    onClick={() => handlePlusTwo(solve)}
+                    onClick={async () => await handlePlusTwo(solve)}
                   >
                     +2
                   </div>

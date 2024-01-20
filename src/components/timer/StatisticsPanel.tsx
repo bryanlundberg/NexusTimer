@@ -1,10 +1,10 @@
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
-import { useTimerStatistics } from "@/hooks/useTimerStatistics";
+import { useTimerStore } from "@/store/timerStore";
 
 export default function StatisticsPanel() {
   const { settings } = useSettingsModalStore();
-  const { global, session } = useTimerStatistics();
+  const { timerStatistics } = useTimerStore();
   const bgRecord = "bg-yellow-500";
 
   return (
@@ -18,53 +18,68 @@ export default function StatisticsPanel() {
             <div className="flex justify-end w-full font-medium text-right">
               <div
                 className={`w-fit px-[5px] rounded-md ${
-                  global.ao5 !== 0 &&
-                  global.ao5 === session.ao5 &&
+                  timerStatistics.global.ao5 !== 0 &&
+                  timerStatistics.global.ao5 === timerStatistics.session.ao5 &&
                   settings.alerts.bestAverage.status
                     ? bgRecord
                     : ""
                 }`}
               >
-                Ao5: {session.ao5 === 0 ? "--" : formatTime(session.ao5)}
+                Ao5:{" "}
+                {timerStatistics.session.ao5 === 0
+                  ? "--"
+                  : formatTime(timerStatistics.session.ao5)}
               </div>
             </div>
             <div className="flex justify-end w-full font-medium text-right">
               <div
                 className={`w-fit px-[5px] rounded-md ${
-                  global.ao12 !== 0 &&
-                  global.ao12 === session.ao12 &&
+                  timerStatistics.global.ao12 !== 0 &&
+                  timerStatistics.global.ao12 ===
+                    timerStatistics.session.ao12 &&
                   settings.alerts.bestAverage.status
                     ? bgRecord
                     : ""
                 }`}
               >
-                Ao12: {session.ao12 === 0 ? "--" : formatTime(session.ao12)}
+                Ao12:{" "}
+                {timerStatistics.session.ao12 === 0
+                  ? "--"
+                  : formatTime(timerStatistics.session.ao12)}
               </div>
             </div>
             <div className="flex justify-end w-full font-medium text-right">
               <div
                 className={`w-fit px-[5px] rounded-md ${
-                  global.ao50 !== 0 &&
-                  global.ao50 === session.ao50 &&
+                  timerStatistics.global.ao50 !== 0 &&
+                  timerStatistics.global.ao50 ===
+                    timerStatistics.session.ao50 &&
                   settings.alerts.bestAverage.status
                     ? bgRecord
                     : ""
                 }`}
               >
-                Ao50: {session.ao50 === 0 ? "--" : formatTime(session.ao50)}
+                Ao50:{" "}
+                {timerStatistics.session.ao50 === 0
+                  ? "--"
+                  : formatTime(timerStatistics.session.ao50)}
               </div>
             </div>
             <div className="flex justify-end w-full font-medium text-right">
               <div
                 className={`w-fit px-[5px] rounded-md ${
-                  global.ao100 !== 0 &&
-                  global.ao100 === session.ao100 &&
+                  timerStatistics.global.ao100 !== 0 &&
+                  timerStatistics.global.ao100 ===
+                    timerStatistics.session.ao100 &&
                   settings.alerts.bestAverage.status
                     ? bgRecord
                     : ""
                 }`}
               >
-                Ao100: {session.ao100 === 0 ? "--" : formatTime(session.ao100)}
+                Ao100:{" "}
+                {timerStatistics.session.ao100 === 0
+                  ? "--"
+                  : formatTime(timerStatistics.session.ao100)}
               </div>
             </div>
           </>

@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { Categories } from "@/interfaces/Categories";
 import { useCubesModalStore } from "@/store/CubesModalStore";
-import createCube from "@/lib/createCube";
 import { useTimerStore } from "@/store/timerStore";
-import loadCubes from "@/lib/loadCubes";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import calcBestTime from "@/lib/calcBestTime";
 import calcAoStatistics from "@/lib/calcAoStatistics";
 import { DeleteCubeDetails } from "@/interfaces/DeleteCubeDetails";
 import formatTime from "@/lib/formatTime";
 import useEscape from "./useEscape";
+import { deleteCubeById, getAllCubes, saveCube } from "@/db/dbOperations";
 
 export default function useModalCube() {
   const {
@@ -23,7 +22,7 @@ export default function useModalCube() {
   } = useCubesModalStore();
 
   const { lang } = useSettingsModalStore();
-  const { setCubes, setSelectedCube, setNewScramble, selectedCube } =
+  const { setCubes, setSelectedCube, setNewScramble, selectedCube, cubes } =
     useTimerStore();
   const [error, setError] = useState<boolean>(false);
   const [isDuplicate, setDuplicate] = useState<boolean>(false);
@@ -41,53 +40,63 @@ export default function useModalCube() {
     setCubeName(newText);
   };
 
-  const handleCreateCube = (name: string, category: Categories) => {
-    const cubeDB = loadCubes();
-    const isDuplicate = cubeDB.some((cube) => cube.name === name);
+  const handleCreateCube = async (name: string, category: Categories) => {
     if (name.trim() === "") {
       setError(true);
       return;
     }
+
+    if (!cubes) return; // Some error pending to add with message, this should actually never occur.
+
+    const isDuplicate = cubes.some((cube) => cube.name === name.trim());
+
     if (isDuplicate) {
       setDuplicate(true);
       return;
     }
-    const newCubes = createCube({
-      cubeName: name,
-      category: category,
-    });
-    setCubes(newCubes);
+
+    await saveCube({ name, category });
+    const cubesDB = await getAllCubes();
+    setCubes(cubesDB);
     setModalOpen(false);
     setEditingCube(null);
     setCubeName("");
     setSelectedCategory("2x2");
   };
 
-  const handleEditCube = (name: string, category: Categories) => {
-    const cubeDB = loadCubes();
-    const isDuplicate = cubeDB.some((cube) => cube.name === name);
+  const handleEditCube = async (name: string, category: Categories) => {
     if (name.trim() === "") {
       setError(true);
       return;
     }
-    if (isDuplicate) {
-      setDuplicate(true);
-      return;
-    }
+
     if (!editingCube) return;
 
-    for (const cube of cubeDB) {
-      if (cube.id === editingCube.id) {
-        cube.name = name;
-        cube.category = category;
-      }
-      if (editingCube.id === selectedCube?.id) {
-        setSelectedCube(null);
+    if (!cubes) return; // Some error pending to add with message, this should actually never occur.
+
+    if (editingCube.name.trim() !== name.trim()) {
+      const isDuplicate = cubes.some(
+        (cube) => cube.name.trim() === name.trim()
+      );
+      if (isDuplicate) {
+        setDuplicate(true);
+        return;
       }
     }
 
-    window.localStorage.setItem("cubes", JSON.stringify(cubeDB));
-    setCubes(cubeDB);
+    const updatedCube = await saveCube({
+      id: editingCube.id,
+      name: name.trim(),
+      category: category,
+    });
+
+    const cubesDB = await getAllCubes();
+    setCubes(cubesDB);
+
+    if (editingCube.id === selectedCube?.id) {
+      setSelectedCube(null);
+    }
+
     setModalOpen(false);
     setEditingCube(null);
     setCubeName("");
@@ -96,19 +105,29 @@ export default function useModalCube() {
 
   const handleCubeDetails = () => {
     if (!editingCube) return;
-    const cubeDB = loadCubes();
-    const cubeToBeDeleted = cubeDB.find((cube) => cube.id === editingCube.id);
+    if (!cubes) return; // Some error pending to add with message, this should actually never occur.
+
+    const cubeToBeDeleted = cubes.find((cube) => cube.id === editingCube.id);
     if (!cubeToBeDeleted) return;
+
     const name = cubeToBeDeleted ? cubeToBeDeleted.name : "Undefined";
     const solveCount = cubeToBeDeleted
       ? cubeToBeDeleted.solves.session.length +
         cubeToBeDeleted.solves.all.length
       : 0;
     const bestTime = cubeToBeDeleted
-      ? calcBestTime(cubeToBeDeleted.category, cubeToBeDeleted.name)
+      ? calcBestTime({
+          cubeName: cubeToBeDeleted.name,
+          category: cubeToBeDeleted.category,
+          cubesDB: cubes,
+        })
       : null;
     const bestAo = cubeToBeDeleted
-      ? calcAoStatistics(cubeToBeDeleted.category, cubeToBeDeleted.name)
+      ? calcAoStatistics({
+          cubeName: cubeToBeDeleted.name,
+          category: cubeToBeDeleted.category,
+          cubesDB: cubes,
+        })
       : null;
 
     setCubeData({
@@ -120,18 +139,18 @@ export default function useModalCube() {
     });
   };
 
-  const handleDeleteCube = () => {
-    const cubeDB = loadCubes();
+  const handleDeleteCube = async () => {
     if (!editingCube) return;
-    const updatedCubeDB = cubeDB.filter((cube) => cube.id !== editingCube.id);
-    window.localStorage.setItem("cubes", JSON.stringify(updatedCubeDB));
 
     if (selectedCube && selectedCube.id === editingCube.id) {
       setSelectedCube(null);
       setNewScramble(null);
     }
 
-    setCubes(updatedCubeDB);
+    await deleteCubeById(editingCube.id);
+    const cubes = await getAllCubes();
+    setCubes(cubes);
+
     setModalOpen(false);
     setEditingCube(null);
     setCubeName("");
@@ -142,7 +161,6 @@ export default function useModalCube() {
     setModalOpen(false);
     setEditingCube(null);
     setCubeName("");
-    // setSelectedCategory("2x2");
   };
 
   const handleDeleteClick = () => {

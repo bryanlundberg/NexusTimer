@@ -1,18 +1,28 @@
 import { useEffect } from "react";
-import loadCubes from "@/lib/loadCubes";
 import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
+import { getAllCubes } from "@/db/dbOperations";
+import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 
 export function usePreloadSettings() {
   const { setCubes } = useTimerStore();
   const { setSettings } = useSettingsModalStore();
+  const { setBackgroundImage } = useBackgroundImageStore();
 
   useEffect(() => {
     const getSettings = loadSettings();
     setSettings(getSettings);
+  }, [setSettings]);
 
-    const getCubes = loadCubes();
-    if (setCubes) setCubes(getCubes);
-  }, [setCubes, setSettings]);
+  useEffect(() => {
+    getAllCubes().then((res) => setCubes(res));
+  }, [setCubes]);
+
+  useEffect(() => {
+    const storedImage = localStorage.getItem("customBackgroundImage");
+    if (storedImage) {
+      setBackgroundImage(storedImage);
+    }
+  }, [setBackgroundImage]);
 }

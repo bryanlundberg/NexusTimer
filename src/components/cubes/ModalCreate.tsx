@@ -101,9 +101,7 @@ export default function ModalCreate() {
                     alt={category.name}
                     id={category.id}
                     value={category.name}
-                    handleClickRadio={
-                      !editingCube ? handleClickRadio : () => {}
-                    }
+                    handleClickRadio={handleClickRadio}
                     selectedCategory={selectedCategory}
                   />
                 );
@@ -140,10 +138,10 @@ export default function ModalCreate() {
               ) : null}
 
               <button
-                onClick={() =>
+                onClick={async () =>
                   editingCube
-                    ? handleEditCube(cubeName, selectedCategory)
-                    : handleCreateCube(cubeName, selectedCategory)
+                    ? await handleEditCube(cubeName, selectedCategory)
+                    : await handleCreateCube(cubeName, selectedCategory)
                 }
                 data-modal-hide="defaultModal"
                 type="button"

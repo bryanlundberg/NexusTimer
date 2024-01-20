@@ -3,24 +3,18 @@ import { usePreloadSettings } from "@/hooks/usePreloadSettings";
 import { Navbar } from "@/components/navbar/index";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import { useEffect } from "react";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 export default function PreloadSettings({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  usePreloadSettings();
   const { settings } = useSettingsModalStore();
   const { isSolving, timerStatus } = useTimerStore();
   const theme = settings ? settings.theme.background.color : "light";
-  const { backgroundImage, setBackgroundImage } = useBackgroundImageStore();
-  useEffect(() => {
-    const storedImage = localStorage.getItem("customBackgroundImage");
-    if (storedImage) {
-      setBackgroundImage(storedImage);
-    }
-  }, [setBackgroundImage]);
+  const { backgroundImage } = useBackgroundImageStore();
+
+  usePreloadSettings();
 
   return (
     <>
