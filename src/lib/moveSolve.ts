@@ -1,14 +1,14 @@
 import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
-import { getCubeById, saveCube } from "@/db/dbOperations";
+import { saveCube } from "@/db/dbOperations";
 
 /**
  * Moves a solve from session solves to all solves within a given cube and updates the cube on the list and vice versa.
  * @param {Solve} solve - The solve to be moved.
  * @param {Cube} selectedCube - The cube containing the solves.
- * @param {"session" | "all"} type - The type of solves to move the solve to ("session" or "all").
- * @returns {Cube[]} The updated list of cubes.
+ * @param {"Session" | "All"} type - The type of solves to move the solve to ("Session" or "All").
+ * @returns {Cube} The updated cube.
  */
 export default async function moveSolve({
   solve,

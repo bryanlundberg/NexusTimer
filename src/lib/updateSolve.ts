@@ -5,9 +5,9 @@ import { Solve } from "@/interfaces/Solve";
 /**
  * Updates the specified solve in the cubes' solves arrays.
  * @param {string} solveId - The ID of the solve to be updated.
- * @param {string} type - The type of update: "+2", "DNF", "COMMENT", or "BOOKMARK".
+ * @param {string} type - The type of update: "+2", "DNF", "COMMENT", "BOOKMARK", or "DELETE".
  * @param {string} [comment] - The comment to be added or updated (optional).
- * @returns {Cube[]} The updated array of cubes.
+ * @returns {Cube | null} The updated cube or null if not found.
  */
 export default async function updateSolve({
   selectedCube,

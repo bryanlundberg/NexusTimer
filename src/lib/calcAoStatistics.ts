@@ -5,11 +5,12 @@ import { Cube } from "@/interfaces/Cube";
 
 /**
  * Calculates various average of X (AoX) statistics for a specific cube and category.
- * @param {Categories} category - The category of the cube solves.
- * @param {string} cubeName - The name of the cube.
+ * @param {Object} params - Parameters for calculating AoX statistics.
+ * @param {Cube[] | null} params.cubesDB - The array of cubes.
+ * @param {Categories} params.category - The category of the cube solves.
+ * @param {string} params.cubeName - The name of the cube.
  * @returns {AoStatistics} The calculated AoX statistics for global, session, cubeAll, and cubeSession.
  */
-
 export default function calcAoStatistics({
   cubesDB,
   category,

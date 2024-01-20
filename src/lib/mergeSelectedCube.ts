@@ -1,7 +1,12 @@
 import { Cube } from "@/interfaces/Cube";
 
-// combine the selected cube with the cubesDB returning the cubes array with the updated selected cube
-
+/**
+ * Combines the selected cube with the cubesDB, returning the cubes array with the updated selected cube.
+ * @param {Object} options - Options for the merge.
+ * @param {Cube | null} options.selectedCube - The selected cube to be merged.
+ * @param {Cube[] | null} options.cubesDB - The database of cubes to be merged with.
+ * @returns {Cube[]} The merged array of cubes.
+ */
 export function mergeSelectedCube({
   selectedCube,
   cubesDB,

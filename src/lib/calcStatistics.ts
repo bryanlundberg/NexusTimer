@@ -12,7 +12,8 @@ import { Solve } from "@/interfaces/Solve";
  * Calculates various statistics for a cube solving session, including
  * best time, average of X solves, deviation, and mean.
  * @param {Object} params - The parameters for calculating statistics.
- * @param {Cube | null} params.cube - The cube object for which statistics will be calculated.
+ * @param {Cube | null} params.selectedCube - The cube object for which statistics will be calculated.
+ * @param {Cube[] | null} params.cubesDB - The array of cubes.
  * @returns {DisplayTimerStatistics} An object containing the calculated statistics for global, session, and cubeSession.
  */
 export default function calcStatistics({

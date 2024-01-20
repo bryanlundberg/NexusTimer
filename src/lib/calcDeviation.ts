@@ -5,8 +5,10 @@ import { Cube } from "@/interfaces/Cube";
 
 /**
  * Calculates the standard deviation of solve times for different solve sets (global, session, cubeSession, cubeAll) of a specific cube.
- * @param {Categories} category - The category of the cube solves.
- * @param {string} cubeName - The name of the cube.
+ * @param {Object} params - Parameters for calculating standard deviation.
+ * @param {Cube[] | null} params.cubesDB - The array of cubes.
+ * @param {Categories} params.category - The category of the cube solves.
+ * @param {string} params.cubeName - The name of the cube.
  * @returns {StatisticN} The standard deviation of solve times for global, session, cubeSession, and cubeAll.
  */
 export default function calcDeviation({

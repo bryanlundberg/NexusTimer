@@ -3,7 +3,7 @@ import { Solve } from "@/interfaces/Solve";
 /**
  * Calculates the mean (average) of solve times.
  * @param {Solve[]} solves - An array of Solve objects.
- * @returns {number} The mean of solve times.
+ * @returns {number} The mean of solve times. Returns 0 if there are no solves.
  */
 export default function getMean(solves: Solve[]): number {
   const n = solves.length;

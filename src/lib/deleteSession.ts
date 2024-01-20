@@ -3,8 +3,9 @@ import { Cube } from "@/interfaces/Cube";
 
 /**
  * Deletes the session solves of a selected cube and updates the list of cubes in indexDB.
- * @param {Cube} selectedCube - The cube whose session solves will be deleted.
- * @returns {Cube[]} The updated list of cubes after deleting the session solves.
+ * @param {Cube | null} selectedCube - The cube whose session solves will be deleted.
+ * @param {Cube[] | null} cubesDB - The array of cubes.
+ * @returns {Promise<Cube | null>} The updated cube or null.
  */
 export default async function deleteSession({
   selectedCube,
