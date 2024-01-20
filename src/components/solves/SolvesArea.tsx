@@ -42,8 +42,9 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
       itemCount={displaySolves.length}
       rowHeight={60}
       cellWidth={150}
-      className="grid w-full h-full grid-cols-3 gap-3 px-3 py-3 overflow-y-auto sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-6 mx-auto overflow-x-hidden"
+      className="grid w-full grid-cols-3 gap-3 px-3 py-3 overflow-y-auto sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-6 mx-auto overflow-x-hidden"
       gridGap={10}
+      gridHeight={"minmax(60px, 100%)"}
     >
       {(index) => (
         <div
