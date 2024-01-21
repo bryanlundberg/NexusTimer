@@ -22,9 +22,7 @@ export default async function deleteSession({
 
   // Update the list of cubes in indexDB
   await saveCube({
-    id: selectedCube.id,
-    name: selectedCube.name,
-    category: selectedCube.category,
+    ...selectedCube,
     solves: selectedCube.solves,
   });
 

@@ -26,9 +26,7 @@ export default async function finishSession({
       cube.solves.session = [];
 
       await saveCube({
-        id: cube.id,
-        name: cube.name,
-        category: cube.category,
+        ...cube,
         solves: cube.solves,
       });
     }

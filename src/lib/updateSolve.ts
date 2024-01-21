@@ -43,9 +43,7 @@ export default async function updateSolve({
   updateSolveArray(selectedCube.solves.session);
 
   await saveCube({
-    name: selectedCube.name,
-    id: selectedCube.id,
-    category: selectedCube.category,
+    ...selectedCube,
     solves: selectedCube.solves,
   });
 

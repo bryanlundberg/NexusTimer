@@ -61,9 +61,7 @@ export default function ManualMode() {
           setLastSolve(newSolve);
           selectedCube.solves.session.push(newSolve);
           await saveCube({
-            id: selectedCube.id,
-            name: selectedCube.name,
-            category: selectedCube.category,
+            ...selectedCube,
             solves: selectedCube.solves,
           });
           mergeUpdateSelectedCube(selectedCube, cubes);
