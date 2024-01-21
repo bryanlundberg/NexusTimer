@@ -85,7 +85,7 @@ export default function useModalCube() {
     }
 
     const updatedCube = await saveCube({
-      id: editingCube.id,
+      ...editingCube,
       name: name.trim(),
       category: category,
     });

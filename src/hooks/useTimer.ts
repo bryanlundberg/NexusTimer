@@ -145,9 +145,7 @@ export default function useTimer() {
         selectedCube.solves.session.push(lastSolve);
 
         await saveCube({
-          id: selectedCube.id,
-          name: selectedCube.name,
-          category: selectedCube.category,
+          ...selectedCube,
           solves: selectedCube.solves,
         });
         mergeUpdateSelectedCube(selectedCube, cubes);

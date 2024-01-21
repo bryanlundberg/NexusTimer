@@ -19,9 +19,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
     useCubesModalStore();
   const setFavorite = async (cube: Cube) => {
     const updatedCube = await saveCube({
-      id: cube.id,
-      name: cube.name,
-      category: cube.category,
+      ...cube,
       favorite: !cube.favorite,
     });
 

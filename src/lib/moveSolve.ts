@@ -35,9 +35,7 @@ export default async function moveSolve({
       );
 
       await saveCube({
-        id: selectedCube.id,
-        name: selectedCube.name,
-        category: selectedCube.category,
+        ...selectedCube,
         solves: selectedCube.solves,
       });
     } else {
@@ -58,9 +56,7 @@ export default async function moveSolve({
       );
       // Update the cube on the list
       await saveCube({
-        id: selectedCube.id,
-        name: selectedCube.name,
-        category: selectedCube.category,
+        ...selectedCube,
         solves: selectedCube.solves,
       });
     } else {
