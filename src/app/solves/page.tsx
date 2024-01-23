@@ -48,7 +48,7 @@ export default function SolvesPage() {
           <div className="flex gap-3 grow">
             <InputText
               className="border light:bg-neutral-50 light:border-neutral-200 light:focus:bg-white dark:bg-zinc-950 dark:border-zinc-800 dark:focus:bg-zinc-900"
-              placeholder="⏱︎ Search by time"
+              placeholder={translation.solves["search-by-time"][lang]}
               onChange={(e) => {
                 handleSearch(e);
               }}
