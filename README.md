@@ -1,14 +1,14 @@
 ## Overview
 ![enter image description here](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/public/portrait.png)
 
-Nexus Timer tracks Rubik's Cube solving times, enhancing speedcubing with a user interface inspired by [Twisty Timer](https://github.com/aricneto/TwistyTimer) for a comparable desktop experience.
+Track your Rubik's Cube times with user interface inspired by [Twisty Timer](https://github.com/aricneto/TwistyTimer) for a comparable desktop experience.
 
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
 
 ## About The Project
 
-For those new to speedcubing, it's a puzzle-solving challenge where cubers aim to solve the Rubik's Cube as quickly as possible. Achieving a fast solve time is the goal.
+For those new to speedcubing, it's a challenge where cubers aim to solve the Rubik's Cube as quickly as possible. Achieving a fast solve time is the goal.
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/wr.gif" alt="Speedcubing preview">
@@ -82,9 +82,12 @@ At the moment only works for Yellow layer.
 Who likes? We won't cover calculations using DNF, instead delete the solve or add you a +2 penalty.
 
 ### Portability
-Being able to transfer all your previous solves is of the utmost importance to us. We are currently working to add support from timers such as csTimer, Twisty Timer, and Cubedesk backups.
+You can transfer all your previous data from timers such as csTimer, Twisty Timer, and Cubedesk!
 
 This is what makes unique and versatile **Nexus Timer** 💪
+
+> [!NOTE]  
+> We are working to enable you to sync your data from any device online.
 
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
