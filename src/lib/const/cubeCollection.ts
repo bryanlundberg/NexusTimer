@@ -10,6 +10,7 @@ import cubesq1 from "@/images/categories/cubesq1.svg";
 import cubeskewb from "@/images/categories/skewb.svg";
 import cubepyramix from "@/images/categories/pyramix.svg";
 import cubemegaminx from "@/images/categories/minx.svg";
+import cubeclock from "@/images/categories/clock.svg";
 export const cubeCollection: CubeCollection[] = [
   {
     event: "222",
@@ -98,5 +99,13 @@ export const cubeCollection: CubeCollection[] = [
     src: cubemegaminx,
     displayId: "megaminx",
     twistyId: "mega",
+  },
+  {
+    event: "clock",
+    id: 12,
+    name: "Clock",
+    src: cubeclock,
+    displayId: "clock",
+    twistyId: "clock",
   },
 ];
