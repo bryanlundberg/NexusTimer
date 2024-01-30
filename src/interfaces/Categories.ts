@@ -9,4 +9,5 @@ export type Categories =
   | "SQ1"
   | "Skewb"
   | "Pyraminx"
-  | "Megaminx";
+  | "Megaminx"
+  | "Clock";
