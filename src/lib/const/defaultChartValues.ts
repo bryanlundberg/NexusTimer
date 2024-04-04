@@ -21,7 +21,7 @@ export const defaultChartValuesA: ChartData = {
   cubeAll: [],
 };
 
-export const defaultCharAoValues: AoStatistics = {
+export const defaultChartAoValues: AoStatistics = {
   global: {
     ao3: 0,
     ao5: 0,

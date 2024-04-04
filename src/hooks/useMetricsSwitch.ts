@@ -11,7 +11,7 @@ import {
   defaultChartValuesA,
   defaultChartValuesS,
   defaultChartValuesN,
-  defaultCharAoValues,
+  defaultChartAoValues,
 } from "@/lib/const/defaultChartValues";
 import getSolvesMetrics from "@/lib/getSolvesMetrics";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
@@ -35,7 +35,7 @@ export default function useMetricsSwitch() {
   const [average, setAverage] = useState(defaultChartValuesN);
   const [timeSpent, setTimeSpent] = useState(defaultChartValuesS);
   const [counter, setCounter] = useState(defaultChartValuesN);
-  const [stats, setStats] = useState(defaultCharAoValues);
+  const [stats, setStats] = useState(defaultChartAoValues);
   const [deviation, setDeviation] = useState(defaultChartValuesN);
   const [successRate, setSuccessRate] = useState(defaultChartValuesS);
   const [best, setBest] = useState(defaultChartValuesN);
