@@ -26,6 +26,7 @@ export default function ManualMode() {
     setLastSolve,
     cubes,
     mergeUpdateSelectedCube,
+    setTimerStatistics,
   } = useTimerStore();
   const { settings, lang } = useSettingsModalStore();
 
@@ -66,6 +67,7 @@ export default function ManualMode() {
           });
           mergeUpdateSelectedCube(selectedCube, cubes);
           setNewScramble(selectedCube);
+          setTimerStatistics();
         }}
         className="flex flex-col items-center"
       >
