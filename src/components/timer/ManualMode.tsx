@@ -12,8 +12,8 @@ import { saveCube } from "@/db/dbOperations";
 
 const variation: Record<Themes, string> = {
   light:
-    "bg-zinc-200 border-zinc-200 focus:border-neutral-300 text-nexutral-200",
-  dark: "bg-zinc-900 border-zinc-800 focus:border-neutral-300 text-nexutral-200",
+    "bg-zinc-200 border-zinc-200 focus:border-neutral-300 text-neutral-200",
+  dark: "bg-zinc-900 border-zinc-800 focus:border-neutral-300 text-neutral-200",
 };
 
 export default function ManualMode() {
