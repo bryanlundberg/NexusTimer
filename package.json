@@ -43,6 +43,7 @@
     "zustand": "4.4.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.43.1",
     "@types/uuid": "9.0.3"
   }
 }
