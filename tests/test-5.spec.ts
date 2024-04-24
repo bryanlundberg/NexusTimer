@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("Should check all timer settings", () => {
+test.describe("Should try all settings", () => {
   test("Should change language", async ({ page }) => {
     await page.goto("http://localhost:3000/");
     await expect(page.getByText("Choose a cube to load a")).toBeVisible();
