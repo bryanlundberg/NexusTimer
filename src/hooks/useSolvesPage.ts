@@ -24,6 +24,7 @@ export default function useSolvesPage() {
   const [isOpenMoveModal, setIsOpenMoveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const searchBox = useRef<HTMLInputElement | null>(null);
+  const { setTimerStatistics } = useTimerStore();
 
   const handleTabClick = (clickedTab: SolveTab) => {
     setCurrentTab(clickedTab);
@@ -58,6 +59,7 @@ export default function useSolvesPage() {
     setCubes(cubesDB);
     const currentCube = await getCubeById(selectedCube.id);
     setSelectedCube(currentCube);
+    setTimerStatistics();
   };
 
   const handleTrashAll = async () => {
