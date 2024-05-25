@@ -26,9 +26,11 @@ export default function StatisticsPanel() {
                 }`}
               >
                 Ao5:{" "}
-                {timerStatistics.session.ao5 === 0
-                  ? "--"
-                  : formatTime(timerStatistics.session.ao5)}
+                <span data-testid={"timer-session-ao5"}>
+                  {timerStatistics.session.ao5 === 0
+                    ? "--"
+                    : formatTime(timerStatistics.session.ao5)}
+                </span>
               </div>
             </div>
             <div className="flex justify-end w-full font-medium text-right">
@@ -43,9 +45,11 @@ export default function StatisticsPanel() {
                 }`}
               >
                 Ao12:{" "}
-                {timerStatistics.session.ao12 === 0
-                  ? "--"
-                  : formatTime(timerStatistics.session.ao12)}
+                <span data-testid={"timer-session-ao12"}>
+                  {timerStatistics.session.ao12 === 0
+                    ? "--"
+                    : formatTime(timerStatistics.session.ao12)}
+                </span>
               </div>
             </div>
             <div className="flex justify-end w-full font-medium text-right">
@@ -60,9 +64,11 @@ export default function StatisticsPanel() {
                 }`}
               >
                 Ao50:{" "}
-                {timerStatistics.session.ao50 === 0
-                  ? "--"
-                  : formatTime(timerStatistics.session.ao50)}
+                <span data-testid={"timer-session-ao50"}>
+                  {timerStatistics.session.ao50 === 0
+                    ? "--"
+                    : formatTime(timerStatistics.session.ao50)}
+                </span>
               </div>
             </div>
             <div className="flex justify-end w-full font-medium text-right">
@@ -77,9 +83,11 @@ export default function StatisticsPanel() {
                 }`}
               >
                 Ao100:{" "}
-                {timerStatistics.session.ao100 === 0
-                  ? "--"
-                  : formatTime(timerStatistics.session.ao100)}
+                <span data-testid={"timer-session-ao100"}>
+                  {timerStatistics.session.ao100 === 0
+                    ? "--"
+                    : formatTime(timerStatistics.session.ao100)}
+                </span>
               </div>
             </div>
           </>

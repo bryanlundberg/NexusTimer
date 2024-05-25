@@ -17,7 +17,7 @@ import { Cube } from "@/interfaces/Cube";
 
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
-  const { selectedCube, cubes } = useTimerStore();
+  const { selectedCube, cubes, setTimerStatistics } = useTimerStore();
   const { lang } = useSettingsModalStore();
   const componentRef = useRef<HTMLDivElement | null>(null);
   const { backgroundImage } = useBackgroundImageStore();
@@ -138,8 +138,14 @@ function Option({
   cubeId: string;
   handleClose: () => void;
 }) {
-  const { selectedCube, setSelectedCube, setNewScramble, setLastSolve, cubes } =
-    useTimerStore();
+  const {
+    selectedCube,
+    setSelectedCube,
+    setNewScramble,
+    setLastSolve,
+    cubes,
+    setTimerStatistics,
+  } = useTimerStore();
 
   return (
     <div
@@ -148,6 +154,7 @@ function Option({
           const selectCube = cubes?.find((cube: Cube) => cube.id === cubeId);
           if (!selectCube) return;
           setSelectedCube(selectCube);
+          setTimerStatistics();
           setNewScramble(selectCube);
           setLastSolve(null);
         }

@@ -13,8 +13,13 @@ import { getAllCubes, saveCube } from "@/db/dbOperations";
 export default function TableRow({ cube }: { cube: Cube }) {
   const { lang } = useSettingsModalStore();
   const router = useRouter();
-  const { setSelectedCube, setNewScramble, setLastSolve, setCubes } =
-    useTimerStore();
+  const {
+    setSelectedCube,
+    setNewScramble,
+    setLastSolve,
+    setCubes,
+    setTimerStatistics,
+  } = useTimerStore();
   const { setEditingCube, setModalOpen, setCubeName, setSelectedCategory } =
     useCubesModalStore();
   const setFavorite = async (cube: Cube) => {
@@ -42,6 +47,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
     const divIndex = Array.from(e.currentTarget.children).indexOf(targetDiv);
     if (divIndex > 0 && divIndex < e.currentTarget.children.length - 1) {
       setSelectedCube(cube);
+      setTimerStatistics();
       setNewScramble(cube);
       setLastSolve(null);
       router.push("/");

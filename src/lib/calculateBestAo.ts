@@ -7,7 +7,7 @@ import { Solve } from "@/interfaces/Solve";
  * @returns {number} The best average of X (AoX) for the given solves.
  */
 export default function calculateBestAo(solves: Solve[], ao: number): number {
-  // If the number of solves is less than the desired average length, return 0
+  // If the number of solves is less than the desired average, return 0
   if (!solves || solves.length < ao) {
     return 0;
   }
@@ -17,14 +17,26 @@ export default function calculateBestAo(solves: Solve[], ao: number): number {
 
   for (let i = 0; i <= n - ao; i++) {
     let sum = 0;
+    let minTime = Infinity;
+    let maxTime = -Infinity;
 
-    // Calculate the sum of solve times directly in the loop
+    // Calculate the sum of solve times and find the min and max time in the range
     for (let j = i; j < i + ao; j++) {
-      sum += solves[j].time;
+      const time = solves[j].time;
+      sum += time;
+      if (time < minTime) {
+        minTime = time;
+      }
+      if (time > maxTime) {
+        maxTime = time;
+      }
     }
 
-    // Calculate the current AoX and update the bestAo if needed
-    const currentAo = sum / ao;
+    // Adjust the sum by removing the min and max time
+    sum -= minTime + maxTime;
+
+    // Calculate the adjusted average
+    const currentAo = sum / (ao - 2);
     bestAo = Math.min(bestAo, currentAo);
   }
 
