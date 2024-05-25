@@ -33,7 +33,7 @@ export default function SolvesPage() {
     handleGetDeleteData,
     isOpenDeleteModal,
   } = useSolvesPage();
-  const { selectedCube } = useTimerStore();
+  const { selectedCube, setTimerStatistics } = useTimerStore();
   const { lang } = useSettingsModalStore();
 
   return (
@@ -91,6 +91,7 @@ export default function SolvesPage() {
           onConfirm={() => {
             setIsOpenMoveModal(false);
             handleMoveAll();
+            setTimerStatistics();
           }}
           data={handleGetMoveData}
         />
@@ -101,6 +102,7 @@ export default function SolvesPage() {
           onConfirm={() => {
             setIsOpenDeleteModal(false);
             handleTrashAll();
+            setTimerStatistics();
           }}
           data={handleGetDeleteData}
         />

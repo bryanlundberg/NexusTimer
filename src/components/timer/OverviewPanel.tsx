@@ -17,22 +17,30 @@ export default function OverviewPanel() {
           <div className="font-medium">
             {translation.timer["deviation"][lang]}
             {": "}
-            {formatTime(timerStatistics.session.deviation)}
+            <span data-testid="timer-session-deviation">
+              {formatTime(timerStatistics.session.deviation)}
+            </span>
           </div>
           <div className="font-medium">
             {translation.timer["mean"][lang]}
             {": "}
-            {formatTime(timerStatistics.session.mean)}
+            <span data-testid="timer-session-mean">
+              {formatTime(timerStatistics.session.mean)}
+            </span>
           </div>
           <div className="font-medium">
             {translation.timer["best"][lang]}
             {": "}
-            {formatTime(timerStatistics.session.best)}
+            <span data-testid="timer-session-best">
+              {formatTime(timerStatistics.session.best)}
+            </span>
           </div>
           <div className="font-medium">
             {translation.timer["counter"][lang]}
             {": "}
-            {timerStatistics.session.count}
+            <span data-testid="timer-session-count">
+              {timerStatistics.session.count}
+            </span>
           </div>
         </>
       ) : null}

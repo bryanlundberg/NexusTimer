@@ -11,7 +11,7 @@ import { getAllCubes } from "@/db/dbOperations";
 import translation from "@/translations/global.json";
 export default function ImportModal() {
   const { setImportModalOpen, importModalOpen, lang } = useSettingsModalStore();
-  const { setSelectedCube, setCubes } = useTimerStore();
+  const { setSelectedCube, setCubes, setTimerStatistics } = useTimerStore();
   const [isImporting, setIsImporting] = useState(false);
   const dataInputRef = useRef<HTMLInputElement>(null);
   const componentRef = useRef<HTMLDivElement | null>(null);
@@ -53,6 +53,7 @@ export default function ImportModal() {
                           setCubes(cubesDB);
                           router.push("/cubes");
                           setSelectedCube(null);
+                          setTimerStatistics();
                           setImportModalOpen(false);
                           alert(
                             `${translation.backup["alert-category"][lang]}`
