@@ -50,6 +50,7 @@ export default function calcStatistics({
       ao12: 0,
       ao50: 0,
       ao100: 0,
+      worst: pbSolves[pbSolves.length - 1]?.time || 0,
     };
 
     // Calculate average of X (AoX) statistics

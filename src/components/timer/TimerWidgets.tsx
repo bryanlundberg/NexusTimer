@@ -6,7 +6,8 @@ import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function TimerWidgets() {
-  const { isSolving, timerStatus, timerStatistics } = useTimerStore();
+  const { isSolving, timerStatus, timerStatistics, lastSolve } =
+    useTimerStore();
   const { lang, settings } = useSettingsModalStore();
 
   return (
@@ -27,6 +28,14 @@ export default function TimerWidgets() {
             </div>
           </div>
         ) : null}
+        {settings.alerts.worstTime.status &&
+          timerStatistics.global.count > 1 &&
+          lastSolve &&
+          lastSolve.time >= timerStatistics.global.worst && (
+            <div className="p-1 text-xs border rounded-md light:bg-neutral-100 light:border-neutral-900 dark:bg-zinc-900 dark:border-neutral-400 w-fit ms-auto">
+              {translation.timer["new_worst_time"][lang]}
+            </div>
+          )}
         <div
           className={`items-center justify-between w-full h-20 text-xs sm:h-20 md:h-24 lg:h-32 md:text-sm ${
             isSolving || timerStatus !== "IDLE" ? "hidden" : "flex"

@@ -8,4 +8,5 @@ export const defaultTimerStatistics: CubeStatistics = {
   ao100: 0,
   deviation: 0,
   mean: 0,
+  worst: 0,
 };
