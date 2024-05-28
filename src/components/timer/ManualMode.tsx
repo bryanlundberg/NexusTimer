@@ -7,8 +7,8 @@ import { useState } from "react";
 import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Themes } from "@/interfaces/types/Themes";
-import translation from "@/translations/global.json";
 import { saveCube } from "@/db/dbOperations";
+import { useTranslations } from "next-intl";
 
 const variation: Record<Themes, string> = {
   light: "bg-zinc-200 border-zinc-200 focus:border-neutral-300 text-black",
@@ -27,7 +27,8 @@ export default function ManualMode() {
     mergeUpdateSelectedCube,
     setTimerStatistics,
   } = useTimerStore();
-  const { settings, lang } = useSettingsModalStore();
+  const { settings } = useSettingsModalStore();
+  const t = useTranslations("IndexPage");
 
   const isValidInput = (input: string) => {
     if (/^[0-9]*$/.test(input) && parseInt(input) > 0) return true;
@@ -92,8 +93,7 @@ export default function ManualMode() {
         />
         {value !== "" ? (
           <div className="mt-1 text-center">
-            {translation.timer["preview"][lang]}:{" "}
-            {formatTime(convertToMs(value))}{" "}
+            {t("preview")}: {formatTime(convertToMs(value))}{" "}
           </div>
         ) : null}
         {lastSolve && settings.features.quickActionButtons.status ? (

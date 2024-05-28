@@ -1,0 +1,137 @@
+{
+  "Index": {
+    "HomePage": {
+      "title": "Timer",
+      "hint": "Hint",
+      "optimal-yellow-layer": "Optimal Yellow Layer",
+      "solving": "Solving...",
+      "tap-to-start": "Tap to start",
+      "space-to-start": "Press SPACE to start",
+      "preview": "Preview",
+      "empty-scramble": "Choose a cube to load a scramble.",
+      "congratulations": "Congratulations!",
+      "new_best_average": "New best average!",
+      "new_worst_time": "Oops, you got your worst time!",
+      "personal_best": "You have beaten your previous personal best.",
+      "deviation": "Deviation",
+      "mean": "Mean",
+      "best": "Best",
+      "counter": "Counter",
+      "settings": "Settings",
+      "enter-custom-scramble": "Enter a custom scramble"
+    },
+
+    "SolvesPage": {
+      "title": "Solves",
+      "search-by-time": "⏱︎ Search by time",
+      "finalize-session": "Finalize session",
+      "eliminate-session": "Eliminate session",
+      "archive-sessions-legend": "This action will archive all ongoing sessions from the same category.",
+      "delete-session-legend": "This action will delete only your current solves with the selected cube.",
+      "archive": "Archive",
+      "unarchive": "Unarchive",
+      "copy": "Copy",
+      "remove": "Remove",
+      "enter-a-comment": "Enter a comment",
+      "session": "Session",
+      "all": "All",
+      "no-cube-selection": "No cube selected, choose one...",
+      "no-solves": "There's no solves to show!"
+    },
+
+    "StatsPage": {
+      "title": "Stats",
+      "total": "Total",
+      "category": "Category",
+      "global": "Global",
+      "sessions": "Sessions",
+      "best-time": "Best Time",
+      "average": "Average",
+      "time-spent": "Time Spent",
+      "success-rate": "Success Rate",
+      "counter": "Counter"
+    },
+
+    "CubesPage": {
+      "title": "Cubes",
+      "cube": "Cube",
+      "no-cubes-for-display": "No cubes for display.",
+      "favorite": "Favorite",
+      "category": "Category",
+      "solves": "Solves",
+      "created-at": "Created At",
+      "status": "Status",
+      "using": "Using",
+      "idle": "Idle",
+      "filter-cubes": "Filter your cubes"
+    },
+
+    "Cubes-modal": {
+      "title-editing": "Edit Cube",
+      "title-creating": "New Cube",
+      "error-name": "Cube name is missing",
+      "error-duplicate": "Cube name already in use",
+      "current-select": "Current selection:",
+      "question-delete": "Are you sure you want to delete?",
+      "warning-delete": "This irreversible action will delete all solve history for this cube and may impact your statistics.",
+      "placeholder": "Brand | Model | Version | Magnetic?"
+    },
+
+    "Inputs": {
+      "select": "Select",
+      "add-cube": "Add cube",
+      "favorites": "Favorites",
+      "list": "List",
+      "trash-all": "Trash All",
+      "move-all": "Move All",
+      "create": "Create",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "save": "Save",
+      "delete": "Delete"
+    },
+
+    "Settings-menu": {
+      "title": "Settings",
+      "locale": "Region",
+      "language": "Language",
+      "timer": "Timer",
+      "inspection": "Inspection",
+      "start-cue": "Start cue",
+      "hold-to-start": "Hold to start",
+      "manual-mode": "Manual mode",
+      "features": "Features",
+      "scramble-image": "Scramble image",
+      "session-stats": "Session stats",
+      "quick-action-buttons": "Quick action buttons",
+      "hide-while-solving": "Hide time while solving",
+      "scramble-background": "Show scramble background",
+      "alerts": "Alerts",
+      "best-time": "Best time",
+      "best-average": "Best average",
+      "worst-time": "Worst time",
+      "theme": "Theme",
+      "custom-background-image": "Custom background image",
+      "format": "Format",
+      "allowed-file-types": "Only image files (JPEG, PNG, GIF) are allowed.",
+      "max-file-size": "Maximum file size allowed is",
+      "data": "App Data",
+      "import-from-file": "Import from file",
+      "export-to-file": "Export to file",
+      "about": "About",
+      "legend": "NexusTimer is an unopinionated, minimalist and open source web tool for SpeedCubing.",
+      "suggest": "Suggest a change",
+      "report-bug": "Report a bug"
+    },
+
+    "backup-modal": {
+      "title": "Intelligent Backup Restoration",
+      "description": "Let NexusTimer smartly import everything; it will automatically detect and recreate a compatible data structure.",
+      "alert-category": "CSTimer and CubeDesk require manual adjustment of categories.",
+      "drag-drop": "Drag and drop your files here, or click to select.",
+      "loading-part-1": "This action takes less than a minute.",
+      "loading-part-2": "Please wait, don't close this window.",
+      "welcome": "Welcome:"
+    }
+  }
+}

@@ -2,12 +2,12 @@ import { InputText } from "@/components/input-text/index";
 import CheckboxImage from "@/components/cubes/CheckboxImage";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import genId from "@/lib/genId";
-import translation from "@/translations/global.json";
 import useModalCube from "@/hooks/useModalCube";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import DeleteModal from "@/components/cubes/DeleteModal";
 import CloseModal from "@/icons/CloseModal";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export default function ModalCreate() {
   const { editingCube } = useCubesModalStore();
@@ -21,13 +21,14 @@ export default function ModalCreate() {
     handleCloseModal,
     selectedCategory,
     cubeName,
-    lang,
     handleDeleteClick,
     confirmDelete,
     cancelDelete,
     showDeleteConfirmation,
     cubeData,
   } = useModalCube();
+
+  const t = useTranslations("Index");
 
   return (
     <>
@@ -53,14 +54,12 @@ export default function ModalCreate() {
             <div className="flex items-start justify-between gap-3 p-4 border-b rounded-t border-neutral-200">
               <h3 className="flex items-center justify-center w-32 h-8 text-sm font-semibold text-neutral-950">
                 {editingCube
-                  ? translation.cubes.modal["title-editing"][lang]
-                  : translation.cubes.modal["title-creating"][lang]}
+                  ? t("Cubes-modal.title-editing")
+                  : t("Cubes-modal.title-creating")}
               </h3>
               <div className="flex flex-col w-full">
                 <InputText
-                  placeholder={
-                    translation.inputs.placeholders["modal-cubes"][lang]
-                  }
+                  placeholder={t("Cubes-modal.placeholder")}
                   onChange={handleWriteCubeName}
                   value={cubeName}
                   focus={true}
@@ -68,12 +67,12 @@ export default function ModalCreate() {
                 />
                 {error ? (
                   <p className="px-2 mt-2 text-sm text-red-600">
-                    {translation.cubes.modal["error-name"][lang]}
+                    {t("Cubes-modal.error-name")}
                   </p>
                 ) : (
                   isDuplicate && (
                     <p className="px-2 mt-2 text-sm text-red-600">
-                      {translation.cubes.modal["error-duplicate"][lang]}
+                      {t("Cubes-modal.error-duplicate")}
                     </p>
                   )
                 )}
@@ -85,9 +84,7 @@ export default function ModalCreate() {
                 onClick={handleCloseModal}
               >
                 <CloseModal />
-                <span className="sr-only">
-                  {translation.inputs["cancel"][lang]}
-                </span>
+                <span className="sr-only">{t("Inputs.cancel")}</span>
               </button>
             </div>
             {/* <!-- Modal body --> */}
@@ -109,8 +106,7 @@ export default function ModalCreate() {
             </div>
 
             <div className="px-6 text-sm text-neutral-800">
-              {translation.cubes.modal["current-select"][lang]}{" "}
-              {selectedCategory}
+              {t("Cubes-modal.current-select")} {selectedCategory}
             </div>
 
             {/* <!-- Modal footer --> */}
@@ -122,7 +118,7 @@ export default function ModalCreate() {
                   type="button"
                   className="px-5 py-2 text-sm font-medium text-center text-white transition duration-200 bg-red-500 border border-red-500 rounded-md hover:border-red-600 hover:bg-red-600"
                 >
-                  {translation.inputs["delete"][lang]}
+                  {t("Inputs.delete")}
                 </button>
               ) : null}
 
@@ -133,7 +129,7 @@ export default function ModalCreate() {
                   type="button"
                   className="px-5 py-2 text-sm font-medium text-center transition duration-300 rounded-lg text-neutral-800 bg-neutral-200 hover:bg-neutral-300"
                 >
-                  {translation.inputs["cancel"][lang]}
+                  {t("Inputs.cancel")}
                 </button>
               ) : null}
 
@@ -147,9 +143,7 @@ export default function ModalCreate() {
                 type="button"
                 className="px-5 py-2 text-sm font-medium text-center text-white transition duration-200 bg-green-600 border border-green-500 rounded-md hover:border-green-700 hover:bg-green-700"
               >
-                {editingCube
-                  ? translation.inputs["save"][lang]
-                  : translation.inputs["create"][lang]}
+                {editingCube ? t("Inputs.cancel") : t("Inputs.create")}
               </button>
             </div>
           </motion.div>

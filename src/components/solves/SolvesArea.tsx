@@ -1,7 +1,5 @@
 import { useTimerStore } from "@/store/timerStore";
 import EmptySolves from "@/components/solves/EmptySolves";
-import translation from "@/translations/global.json";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Solve } from "@/interfaces/Solve";
 import { VirtualizedGrid } from "@mierak/react-virtualized-grid";
 import { useSolvesStore } from "@/store/SolvesStore";
@@ -9,6 +7,7 @@ import FavoriteSolid from "@/icons/FavoriteSolid";
 import ChatBubble from "@/icons/ChatBubble";
 import formatTime from "@/lib/formatTime";
 import formatDate from "@/lib/formatDate";
+import { useTranslations } from "next-intl";
 
 interface SolvesArea {
   displaySolves: Solve[] | null;
@@ -16,25 +15,17 @@ interface SolvesArea {
 
 export function SolvesArea({ displaySolves }: SolvesArea) {
   const { selectedCube } = useTimerStore();
-  const { lang } = useSettingsModalStore();
+  const t = useTranslations("Index.SolvesPage");
   const { setStatus, setSolve } = useSolvesStore();
 
   if (!selectedCube) {
     return (
-      <EmptySolves
-        message={translation.solves["no-cube-selection"][lang]}
-        icon="no-cube-selected"
-      />
+      <EmptySolves message={t("no-cube-selection")} icon="no-cube-selected" />
     );
   }
 
   if (!displaySolves || displaySolves.length === 0) {
-    return (
-      <EmptySolves
-        message={translation.solves["no-solves"][lang]}
-        icon="no-solves"
-      />
-    );
+    return <EmptySolves message={t("no-solves")} icon="no-solves" />;
   }
 
   return (

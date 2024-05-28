@@ -14,14 +14,14 @@ import useClickOutside from "@/hooks/useClickOutside";
 import { AnimatePresence, motion } from "framer-motion";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import { Cube } from "@/interfaces/Cube";
+import { useTranslations } from "next-intl";
 
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
-  const { selectedCube, cubes, setTimerStatistics } = useTimerStore();
-  const { lang } = useSettingsModalStore();
+  const { selectedCube, cubes } = useTimerStore();
   const componentRef = useRef<HTMLDivElement | null>(null);
   const { backgroundImage } = useBackgroundImageStore();
-
+  const t = useTranslations("Index.Inputs");
   const handleClose = () => {
     setOpen(false);
   };
@@ -48,11 +48,7 @@ export default function Select() {
             {selectedCube ? (
               <MiniatureIcon category={selectedCube.category} />
             ) : null}
-            <div>
-              {selectedCube
-                ? selectedCube.name
-                : translation.inputs["select-cube"][lang]}
-            </div>
+            <div>{selectedCube ? selectedCube.name : t("select")}</div>
             <SelectOptions />
           </div>
         </button>
@@ -68,9 +64,7 @@ export default function Select() {
               }
             >
               {/* Favorites */}
-              <LabelSection
-                description={translation.inputs["favorites"][lang]}
-              />
+              <LabelSection description={t("favorites")} />
               {cubes?.map((cube) => {
                 if (cube.favorite) {
                   return (
@@ -84,7 +78,7 @@ export default function Select() {
                   );
                 }
               })}
-              <LabelSection description={translation.inputs["list"][lang]} />
+              <LabelSection description={t("list")} />
               {cubes?.map((cube) => {
                 return (
                   <Option
@@ -183,8 +177,8 @@ function LabelSection({ description }: { description: string }) {
 }
 
 function AddCubeOption() {
-  const { lang } = useSettingsModalStore();
   const { setModalOpen } = useCubesModalStore();
+  const t = useTranslations("Index.Inputs");
 
   return (
     <div
@@ -195,7 +189,7 @@ function AddCubeOption() {
       <Link href="/cubes" onClick={() => setModalOpen(true)}>
         <div className="flex items-center justify-start gap-2 align-middle">
           <PlusIcon />
-          <div>{translation.inputs["add-cube"][lang]}</div>
+          <div>{t("add-cube")}</div>
         </div>
       </Link>
     </div>

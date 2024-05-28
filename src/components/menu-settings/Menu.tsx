@@ -22,6 +22,7 @@ import useEscape from "@/hooks/useEscape";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import CustomTheme from "./CustomTheme";
+import { useTranslations } from "next-intl";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
@@ -33,7 +34,7 @@ export default function MenuSettings() {
     setSettings(newSettings);
   };
   const { isSolving } = useTimerStore();
-
+  const t = useTranslations("Index.Settings-menu");
   useEscape(() => setSettingsOpen(false));
 
   return (
@@ -57,18 +58,13 @@ export default function MenuSettings() {
                   <ArrowLeft />
                 </Link>
                 <div className="flex-1 text-2xl font-medium text-center">
-                  {translation.settings["settings"][lang]}
+                  {t("title")}
                 </div>
               </div>
 
-              <MenuSection
-                icon={<Language />}
-                title={translation.settings["locale"][lang]}
-              >
+              <MenuSection icon={<Language />} title={t("locale")}>
                 <div className="flex justify-between">
-                  <div className="ms-12">
-                    {translation.settings["language"][lang]}
-                  </div>
+                  <div className="ms-12">{t("language")}</div>
                   <div className="me-6">
                     <select
                       value={lang}
@@ -88,10 +84,7 @@ export default function MenuSettings() {
                   </div>
                 </div>
               </MenuSection>
-              <MenuSection
-                icon={<Clock />}
-                title={translation.settings["timer"][lang]}
-              >
+              <MenuSection icon={<Clock />} title={t("title")}>
                 {Object.values(settings.timer).map((item) => (
                   <MenuOption
                     key={genId()}

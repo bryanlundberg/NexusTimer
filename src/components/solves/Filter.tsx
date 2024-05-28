@@ -1,7 +1,6 @@
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import ToggleSolvesButton from "@/components/solves/ToggleSolvesButton";
-import translation from "@/translations/global.json";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
+import { useTranslations } from "next-intl";
 
 interface Filter {
   currentTab: SolveTab;
@@ -9,19 +8,19 @@ interface Filter {
 }
 
 export function Filter({ currentTab, handleClick }: Filter) {
-  const { lang } = useSettingsModalStore();
+  const t = useTranslations("Index.SolvesPage");
   return (
     <>
       <div className="flex w-auto gap-1 p-1 font-medium rounded-md h-9 light:bg-neutral-200 light:text-neutral-700 dark:bg-zinc-800">
         <ToggleSolvesButton
           handleClick={() => handleClick("Session")}
           active={currentTab === "Session"}
-          label={translation.solves.filter["session"][lang]}
+          label={t("session")}
         />
         <ToggleSolvesButton
           handleClick={() => handleClick("All")}
           active={currentTab === "All"}
-          label={translation.solves.filter["all"][lang]}
+          label={t("all")}
         />
       </div>
     </>

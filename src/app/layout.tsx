@@ -1,6 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import PreloadSettings from "@/components/PreloadSettings";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.nexustimer.pro"),
@@ -71,17 +73,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await getLocale();
+
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body>
-        <main>
+        <NextIntlClientProvider messages={messages}>
           <PreloadSettings>{children}</PreloadSettings>
-        </main>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

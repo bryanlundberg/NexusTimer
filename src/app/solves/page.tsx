@@ -4,8 +4,6 @@ import MoveAll from "@/icons/MoveAll";
 import Trash from "@/icons/Trash";
 import Select from "@/components/Select";
 import ModalSolve from "@/components/solves/ModalSolve";
-import translation from "@/translations/global.json";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { OverallContainer } from "@/components/OverallContainer";
 import { OverallHeader } from "@/components/OverallHeader";
 import { SolveFilters } from "@/components/solves/SolveFilters";
@@ -17,6 +15,7 @@ import { InputText } from "@/components/input-text/index";
 import { useTimerStore } from "@/store/timerStore";
 import MoveModal from "@/components/solves/MoveModal";
 import ConfirmDelete from "@/components/solves/ConfirmDelete";
+import { useTranslations } from "next-intl";
 
 export default function SolvesPage() {
   const {
@@ -34,12 +33,12 @@ export default function SolvesPage() {
     isOpenDeleteModal,
   } = useSolvesPage();
   const { selectedCube, setTimerStatistics } = useTimerStore();
-  const { lang } = useSettingsModalStore();
+  const t = useTranslations("Index");
 
   return (
     <>
       <OverallContainer>
-        <OverallHeader title={translation.solves["header"][lang]}>
+        <OverallHeader title={t("SolvesPage.title")}>
           <Select />
         </OverallHeader>
 
@@ -48,7 +47,7 @@ export default function SolvesPage() {
           <div className="flex gap-3 grow">
             <InputText
               className="border light:bg-neutral-50 light:border-neutral-200 light:focus:bg-white dark:bg-zinc-950 dark:border-zinc-800 dark:focus:bg-zinc-900"
-              placeholder={translation.solves["search-by-time"][lang]}
+              placeholder={t("SolvesPage.search-by-time")}
               onChange={(e) => {
                 handleSearch(e);
               }}
@@ -58,7 +57,7 @@ export default function SolvesPage() {
               <Button
                 onClick={() => setIsOpenMoveModal(true)}
                 icon={<MoveAll />}
-                label={translation.inputs["move-all"][lang]}
+                label={t("Inputs.move-all")}
                 isDisabled={
                   selectedCube && selectedCube.solves.session.length > 0
                     ? false
@@ -72,7 +71,7 @@ export default function SolvesPage() {
                     <Trash />
                   </div>
                 }
-                label={translation.inputs["trash-all"][lang]}
+                label={t("Inputs.trash-all")}
                 isDisabled={
                   selectedCube && selectedCube.solves.session.length > 0
                     ? false

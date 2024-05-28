@@ -2,11 +2,11 @@ import LightBulb from "@/icons/LightBulb";
 import genSolution from "@/lib/timer/genSolution";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import translation from "@/translations/global.json";
 import Loading from "../Loading";
 import Pencil from "@/icons/Pencil";
 import { AnimatePresence, motion } from "framer-motion";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
+import { useTranslations } from "next-intl";
 
 export function ScrambleZone() {
   const {
@@ -19,9 +19,9 @@ export function ScrambleZone() {
     isSolving,
     setCustomScramble,
   } = useTimerStore();
-  const { lang, settings } = useSettingsModalStore();
+  const { settings } = useSettingsModalStore();
   const { backgroundImage } = useBackgroundImageStore();
-
+  const t = useTranslations("Index.HomePage");
   return (
     <>
       <div className="relative">
@@ -38,7 +38,7 @@ export function ScrambleZone() {
             ? "Initializing please wait."
             : selectedCube
             ? scramble
-            : translation.timer["empty-scramble"][lang]}
+            : t("empty-scramble")}
 
           {initializing && (
             <div className="flex w-full justify-center my-3">
@@ -57,7 +57,7 @@ export function ScrambleZone() {
               <div
                 onClick={() => {
                   const newScramble = window.prompt(
-                    `${translation.solves["enter-custom-scramble"][lang]}`
+                    `${t("enter-custom-scramble")}`
                   );
                   if (newScramble?.trim()) {
                     setCustomScramble(newScramble);

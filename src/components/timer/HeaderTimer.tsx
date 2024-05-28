@@ -5,15 +5,15 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { InteractiveIcon } from "./InteractiveIcon";
 import { ScrambleZone } from "./ScrambleZone";
-import translation from "@/translations/global.json";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function HeaderTimer() {
   const { selectedCube, setNewScramble, isSolving, timerStatus } =
     useTimerStore();
-  const { setSettingsOpen, settingsOpen, lang, settings } =
-    useSettingsModalStore();
+  const { setSettingsOpen, settingsOpen, settings } = useSettingsModalStore();
   const { lastSolve, timerStatistics } = useTimerStore();
+  const t = useTranslations("Index.HomePage");
 
   if (isSolving || timerStatus !== "IDLE") return null;
   return (
@@ -22,7 +22,7 @@ export default function HeaderTimer() {
         <Link
           href={{
             pathname: "/",
-            hash: `${translation.settings["settings"][lang]}`,
+            hash: `${t("settings")}`,
           }}
         >
           <InteractiveIcon
@@ -50,8 +50,8 @@ export default function HeaderTimer() {
       lastSolve.time <= timerStatistics.global.best &&
       settings.alerts.bestTime.status ? (
         <div id="touch" className="mt-10 text-center">
-          <p>{translation.timer["congrats"][lang]}</p>
-          <p>{translation.timer["personal_best"][lang]}</p>
+          <p>{t("congratulations")}</p>
+          <p>{t("personal_best")}</p>
         </div>
       ) : null}
     </div>

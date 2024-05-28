@@ -16,21 +16,20 @@ import DocumentDuplicate from "@/icons/DocumentDuplicate";
 import Trash from "@/icons/Trash";
 import { useEffect, useState, useRef } from "react";
 import ChevronUp from "@/icons/ChevronUp";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import translation from "@/translations/global.json";
 import { AnimatePresence, motion } from "framer-motion";
 import useClickOutside from "@/hooks/useClickOutside";
 import { Solve } from "@/interfaces/Solve";
 import Favorite from "@/icons/Favorite";
 import FavoriteSolid from "@/icons/FavoriteSolid";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
+import { useTranslations } from "next-intl";
 
 export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const [showScramble, setShowScramble] = useState<boolean>(false);
   const { status, solve, setStatus } = useSolvesStore();
   const { selectedCube, mergeUpdateSelectedCube, cubes } = useTimerStore();
-  const { lang } = useSettingsModalStore();
+  const t = useTranslations("Index.SolvesPage");
   const submenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -202,9 +201,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                   <div
                     className="w-5 h-5 transition duration-200 hover:text-neutral-500 text-neutral-700 hover:cursor-pointer"
                     onClick={() => {
-                      const comment = window.prompt(
-                        `${translation.solves["enter-a-comment"][lang]}`
-                      );
+                      const comment = window.prompt(`${t("enter-a-comment")}`);
                       if (comment) {
                         handleComment(comment, solve);
                       }
@@ -243,8 +240,8 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       </div>
                       <div>
                         {currentTab === "Session"
-                          ? translation.solves["archive"][lang]
-                          : translation.solves["unarchive"][lang]}
+                          ? t("archive")
+                          : t("unarchive")}
                       </div>
                     </div>
                     <div
@@ -258,7 +255,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       <div className="w-4 h-4">
                         <DocumentDuplicate />
                       </div>
-                      <div>{translation.solves["copy"][lang]}</div>
+                      <div>{t("copy")}</div>
                     </div>
                     <div
                       className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
@@ -267,7 +264,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       <div className="w-4 h-4">
                         <Trash />
                       </div>
-                      <div>{translation.solves["remove"][lang]}</div>
+                      <div>{t("remove")}</div>
                     </div>
                   </motion.div>
                 )}

@@ -1,14 +1,13 @@
 import Image from "next/image";
 import nodata from "@/images/no-data.svg";
-import translation from "@/translations/global.json";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import { useTranslations } from "next-intl";
 
 interface EmptyCubes {
   onClick: () => void;
 }
 
 export default function EmptyCubes({ onClick }: EmptyCubes) {
-  const { lang } = useSettingsModalStore();
+  const t = useTranslations("Index.CubesPage");
   return (
     <>
       <div
@@ -23,7 +22,7 @@ export default function EmptyCubes({ onClick }: EmptyCubes) {
             height={61}
             draggable={false}
           />
-          <div>{translation.cubes["no-cubes-for-display"][lang]}</div>
+          <div>{t("no-cubes-for-display")}</div>
         </div>
       </div>
     </>

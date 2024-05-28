@@ -5,13 +5,12 @@ import { useTimerStore } from "@/store/timerStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import Play from "@/icons/Play";
 import Stop from "@/icons/Stop";
-import translation from "@/translations/global.json";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useRouter } from "next/navigation";
 import { getAllCubes, saveCube } from "@/db/dbOperations";
+import { useTranslations } from "next-intl";
 
 export default function TableRow({ cube }: { cube: Cube }) {
-  const { lang } = useSettingsModalStore();
+  const t = useTranslations("Index.CubesPage");
   const router = useRouter();
   const {
     setSelectedCube,
@@ -85,14 +84,14 @@ export default function TableRow({ cube }: { cube: Cube }) {
               <div className="w-4 h-4">
                 <Play />
               </div>
-              <span>{translation.cubes.table["using"][lang]}</span>
+              <span>{t("using")}</span>
             </div>
           ) : (
             <div className="flex items-center justify-center gap-1">
               <div className="w-4 h-4">
                 <Stop />
               </div>
-              <span>{translation.cubes.table["idle"][lang]}</span>
+              <span>{t("idle")}</span>
             </div>
           )}
         </div>

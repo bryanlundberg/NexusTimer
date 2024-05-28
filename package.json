@@ -28,6 +28,7 @@
     "idb-wrapper": "^1.7.2",
     "lightweight-charts": "^4.1.4",
     "next": "14.1.1",
+    "next-intl": "^3.14.1",
     "papaparse": "^5.4.1",
     "postcss": "8.4.31",
     "pretty-ms": "^8.0.0",

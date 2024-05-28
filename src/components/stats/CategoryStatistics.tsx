@@ -1,15 +1,14 @@
 import { Select } from "@/components/select/index";
-import translation from "@/translations/global.json";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import LineCharter from "../charts/LineCharter";
 import formatTime from "@/lib/formatTime";
 import useMetricsSwitch from "@/hooks/useMetricsSwitch";
 import { StatisticRow } from "@/components/stats/StatisticRow";
 import { CustomTableContainer } from "@/components/stats/CustomTableContainer";
 import { StatisticHeader } from "@/components/stats/StatisticsHeader";
+import { useTranslations } from "next-intl";
 
 export default function CategoryStatistics() {
-  const { lang } = useSettingsModalStore();
+  const t = useTranslations("Index");
   const {
     filterCategory,
     filterCube,
@@ -51,9 +50,7 @@ export default function CategoryStatistics() {
             <LineCharter
               data={data}
               optInChart={optInChart}
-              cubeSelected={
-                translation.solves.filter["all"][lang] !== filterCube
-              }
+              cubeSelected={t("SolvesPage.all") !== filterCube}
             />
             <div className="flex gap-5">
               <label htmlFor="mean-average" className="hover:cursor-pointer">
@@ -68,7 +65,7 @@ export default function CategoryStatistics() {
                     })
                   }
                 />{" "}
-                {translation.metrics["average"][lang]}
+                {t("StatsPage.average")}
               </label>
               <label htmlFor="best-time" className="hover:cursor-pointer">
                 <input
@@ -82,7 +79,7 @@ export default function CategoryStatistics() {
                     })
                   }
                 />{" "}
-                {translation.metrics["best-time"][lang]}
+                {t("StatsPage.best-time")}
               </label>
             </div>
           </div>
@@ -91,7 +88,7 @@ export default function CategoryStatistics() {
         <CustomTableContainer>
           <StatisticHeader />
           <StatisticRow
-            label={translation.timer["deviation"][lang]}
+            label={t("HomePage.deviation")}
             global={
               deviation.global === 0 ? "--" : formatTime(deviation.global)
             }
@@ -197,7 +194,7 @@ export default function CategoryStatistics() {
             }
           />
           <StatisticRow
-            label={translation.metrics["best-time"][lang]}
+            label={t("StatsPage.best-time")}
             global={best.global > 0 ? formatTime(best.global) : "--"}
             session={best.session > 0 ? formatTime(best.session) : "--"}
             cubeAll={best.cubeAll > 0 ? formatTime(best.cubeAll) : "--"}
@@ -206,7 +203,7 @@ export default function CategoryStatistics() {
             }
           />
           <StatisticRow
-            label={translation.metrics["average"][lang]}
+            label={t("StatsPage.average")}
             global={average.global === 0 ? "--" : formatTime(average.global)}
             session={average.session === 0 ? "--" : formatTime(average.session)}
             cubeAll={average.cubeAll === 0 ? "--" : formatTime(average.cubeAll)}
@@ -215,14 +212,14 @@ export default function CategoryStatistics() {
             }
           />
           <StatisticRow
-            label={translation.metrics["time-spent"][lang]}
+            label={t("StatsPage.time-spent")}
             global={timeSpent.global}
             session={timeSpent.session}
             cubeAll={timeSpent.cubeAll}
             cubeSession={timeSpent.cubeSession}
           />
           <StatisticRow
-            label={translation.metrics.cards["success-rate"][lang]}
+            label={t("StatsPage.success-rate")}
             global={successRate.global === "" ? "--" : successRate.global + "%"}
             session={
               successRate.session === "" ? "--" : successRate.session + "%"
@@ -237,7 +234,7 @@ export default function CategoryStatistics() {
             }
           />
           <StatisticRow
-            label={translation.timer["counter"][lang]}
+            label={t("StatsPage.counter")}
             global={counter.global === 0 ? "--" : counter.global}
             session={counter.session === 0 ? "--" : counter.session}
             cubeAll={counter.cubeAll === 0 ? "--" : counter.cubeAll}
