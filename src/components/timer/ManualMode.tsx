@@ -11,8 +11,7 @@ import translation from "@/translations/global.json";
 import { saveCube } from "@/db/dbOperations";
 
 const variation: Record<Themes, string> = {
-  light:
-    "bg-zinc-200 border-zinc-200 focus:border-neutral-300 text-neutral-200",
+  light: "bg-zinc-200 border-zinc-200 focus:border-neutral-300 text-black",
   dark: "bg-zinc-900 border-zinc-800 focus:border-neutral-300 text-neutral-200",
 };
 
