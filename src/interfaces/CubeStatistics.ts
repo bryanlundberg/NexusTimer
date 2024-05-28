@@ -8,4 +8,5 @@ interface CubeStatistics {
   ao100: number;
   deviation: number;
   mean: number;
+  worst: number;
 }
