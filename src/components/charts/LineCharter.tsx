@@ -1,7 +1,12 @@
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import { CreatePriceLineOptions, createChart } from "lightweight-charts";
+import {
+  ChartOptions,
+  CreatePriceLineOptions,
+  DeepPartial,
+  createChart,
+} from "lightweight-charts";
 import { useEffect, useRef } from "react";
 import translation from "@/translations/global.json";
 import getBestTime from "@/lib/getBestTime";
@@ -29,12 +34,19 @@ export default function LineCharter({
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const chartOptions: any = {
+    const chartOptions: DeepPartial<ChartOptions> = {
+      watermark: {
+        visible: true,
+        fontSize: 24,
+        horzAlign: "center",
+        vertAlign: "center",
+        color: "rgba(120,120,120, 0.1)",
+        text: "nexustimer.pro",
+      },
       layout: {
         textColor:
           settings.theme.background.color === "dark" ? "white" : "gray",
         background: {
-          type: "solid",
           color:
             settings.theme.background.color === "dark" ? "#09090B" : "#F5F5F5",
         },
@@ -68,6 +80,15 @@ export default function LineCharter({
         },
         fixRightEdge: true,
         fixLeftEdge: true,
+        allowBoldLabels: false,
+      },
+      kineticScroll: {
+        mouse: true,
+      },
+      handleScale: {
+        axisPressedMouseMove: {
+          price: false,
+        },
       },
     };
     const container = chartContainerRef.current;
