@@ -35,42 +35,6 @@ export const metadata: Metadata = {
   ],
   referrer: "origin-when-cross-origin",
   generator: "Nextjs",
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-US": "/",
-      "es-ES": "/",
-      "fr-FR": "/",
-      "de-DE": "/",
-      "ja-JP": "/",
-      "zh-CN": "/",
-      "ru-RU": "/",
-      "hi-IN": "/",
-      "pt-PT": "/",
-      "it-IT": "/",
-      "ko-KR": "/",
-      "nl-NL": "/",
-      "sv-SE": "/",
-      "tr-TR": "/",
-      "pl-PL": "/",
-      "vi-VN": "/",
-      "th-TH": "/",
-      "el-GR": "/",
-      "fi-FI": "/",
-      "uk-UA": "/",
-      "cs-CZ": "/",
-      "ro-RO": "/",
-      "no-NO": "/",
-      "da-DK": "/",
-      "ms-MY": "/",
-      "hu-HU": "/",
-      "id-ID": "/",
-      "bn-BD": "/",
-      "sk-SK": "/",
-      "fil-PH": "/",
-      "et-EE": "/",
-    },
-  },
 };
 
 export default async function RootLayout({
@@ -80,8 +44,7 @@ export default async function RootLayout({
 }) {
   const locale = await getLocale();
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
+  // Provide all messages to the client
   const messages = await getMessages();
 
   return (

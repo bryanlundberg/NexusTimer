@@ -2,17 +2,15 @@ import Toggle from "@/components/headless/Toggle";
 
 interface MenuOption {
   label: string;
-  status: boolean;
-  read: string;
-  id: string;
+  setting: any;
 }
 
-export function MenuOption({ label, status, read, id }: MenuOption) {
+export function MenuOption({ label, setting }: MenuOption) {
   return (
     <div className="flex justify-between mb-1">
       <div className="ms-12">{label}</div>
       <div className="me-6">
-        <Toggle status={status} read={read} id={id} />
+        <Toggle setting={setting} />
       </div>
     </div>
   );

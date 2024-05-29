@@ -28,7 +28,7 @@ export default function ManualMode() {
     setTimerStatistics,
   } = useTimerStore();
   const { settings } = useSettingsModalStore();
-  const t = useTranslations("IndexPage");
+  const t = useTranslations("Index.HomePage");
 
   const isValidInput = (input: string) => {
     if (/^[0-9]*$/.test(input) && parseInt(input) > 0) return true;
