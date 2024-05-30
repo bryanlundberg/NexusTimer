@@ -41,7 +41,8 @@
       "space-to-start": "Druk op SPACE om te beginnen",
       "tap-to-start": "Klik om te beginnen",
       "title": "Timer",
-      "average": "Gemiddeld"
+      "average": "Gemiddeld",
+      "initializing-please-wait": "Initialiseren, even geduld a.u.b"
     },
     "Inputs": {
       "add-cube": "Kubus toevoegen",
@@ -143,7 +144,8 @@
       "key6": "online-timer",
       "key7": "webtimer",
       "key8": "rubiks",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "wereldcubingvereniging"
     },
     "title": "Nexus Timer - Professionele Rubik's Cube Timer"
   },

@@ -41,7 +41,8 @@
       "space-to-start": "Apăsați SPACE pentru a începe",
       "tap-to-start": "Atingeți pentru a începe",
       "title": "Temporizator",
-      "average": "In medie"
+      "average": "In medie",
+      "initializing-please-wait": "Inițializarea vă rugăm să așteptați"
     },
     "Inputs": {
       "add-cube": "Adăugați cubul",
@@ -143,7 +144,8 @@
       "key6": "cronometru online",
       "key7": "temporizator web",
       "key8": "rubiks",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "Asociația Mondială de Cubing"
     },
     "title": "Nexus Timer - Cronometru profesional cub Rubik"
   },

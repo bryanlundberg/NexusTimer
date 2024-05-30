@@ -41,7 +41,8 @@
       "space-to-start": "Tryck på MELLANSLAG för att starta",
       "tap-to-start": "Tryck för att starta",
       "title": "Timer",
-      "average": "Genomsnitt"
+      "average": "Genomsnitt",
+      "initializing-please-wait": "Initierar var god vänta"
     },
     "Inputs": {
       "add-cube": "Lägg till kub",
@@ -143,7 +144,8 @@
       "key6": "online timer",
       "key7": "webbtimer",
       "key8": "rubiks",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "världskubingföreningen"
     },
     "title": "Nexus Timer - Professionell Rubik's Cube Timer"
   },

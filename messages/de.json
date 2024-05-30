@@ -15,7 +15,7 @@
       "created-at": "Hergestellt in",
       "cube": "Würfel",
       "favorite": "Favorit",
-      "filter-cubes": "",
+      "filter-cubes": "Filtern Sie Ihre Würfel",
       "idle": "Leerlauf",
       "no-cubes-for-display": "Keine Würfel zur Präsentation.",
       "solves": "Löst",
@@ -41,7 +41,8 @@
       "space-to-start": "Drücken Sie zum Starten die LEERTASTE",
       "tap-to-start": "Tippe, um zu starten",
       "title": "Timer",
-      "average": "Durchschnitt"
+      "average": "Durchschnitt",
+      "initializing-please-wait": "Initialisierung, bitte warten"
     },
     "Inputs": {
       "add-cube": "Würfel hinzufügen",
@@ -68,15 +69,15 @@
       "features": "Merkmale",
       "format": "Format",
       "hide-while-solving": "Verstecken Sie Zeit beim Lösen",
-      "hold-to-start": "",
+      "hold-to-start": "Zum Starten gedrückt halten",
       "import-from-file": "Aus Datei importieren",
-      "inspection": "",
+      "inspection": "Inspektion",
       "language": "Sprache",
       "legend": "NexusTimer ist ein unabhängiges, minimalistisches und Open-Source-Webtool für SpeedCubing.",
       "locale": "Region",
       "manual-mode": "Manueller Modus",
       "max-file-size": "Die maximal zulässige Dateigröße beträgt",
-      "quick-action-buttons": "",
+      "quick-action-buttons": "Schnellaktionsschaltflächen",
       "report-bug": "Melde einen technischen Fehler",
       "scramble-background": "Scramble-Hintergrund anzeigen",
       "scramble-image": "Bild verschlüsseln",
@@ -118,7 +119,7 @@
       "total": "Gesamt"
     },
     "backup-modal": {
-      "alert-category": "",
+      "alert-category": "CSTimer und CubeDesk erfordern eine manuelle Anpassung der Kategorien.",
       "description": "Lassen Sie NexusTimer alles intelligent importieren. \nEs erkennt automatisch eine kompatible Datenstruktur und erstellt sie neu.",
       "drag-drop": "Ziehen Sie Ihre Dateien per Drag-and-Drop hierher oder klicken Sie, um sie auszuwählen.",
       "loading-part-1": "Dieser Vorgang dauert weniger als eine Minute.",
@@ -143,7 +144,8 @@
       "key6": "Online-Timer",
       "key7": "Web-Timer",
       "key8": "Rubiks",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "Weltwürfelverband"
     },
     "title": "Nexus Timer – Professioneller Zauberwürfel-Timer"
   },

@@ -41,7 +41,8 @@
       "space-to-start": "按空格键开始",
       "tap-to-start": "点击开始",
       "title": "定时器",
-      "average": "平均的"
+      "average": "平均的",
+      "initializing-please-wait": "正在初始化，请稍候"
     },
     "Inputs": {
       "add-cube": "添加立方体",
@@ -143,7 +144,8 @@
       "key6": "在线计时器",
       "key7": "网络定时器",
       "key8": "魔方",
-      "key9": "世界华人协会"
+      "key9": "世界华人协会",
+      "key14": "世界魔方协会"
     },
     "title": "Nexus Timer - 专业魔方计时器"
   },

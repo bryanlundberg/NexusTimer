@@ -41,7 +41,8 @@
       "space-to-start": "Tekan SPACE untuk bermula",
       "tap-to-start": "Ketik untuk bermula",
       "title": "Pemasa",
-      "average": "Purata"
+      "average": "Purata",
+      "initializing-please-wait": "Memulakan sila tunggu"
     },
     "Inputs": {
       "add-cube": "Tambah kiub",
@@ -143,7 +144,8 @@
       "key6": "pemasa dalam talian",
       "key7": "pemasa web",
       "key8": "rubik",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "persatuan cubing dunia"
     },
     "title": "Pemasa Nexus - Pemasa Kiub Rubik Profesional"
   },

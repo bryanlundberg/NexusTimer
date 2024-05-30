@@ -41,7 +41,8 @@
       "space-to-start": "শুরু করতে SPACE টিপুন",
       "tap-to-start": "শুরু করতে আলতো চাপুন",
       "title": "টাইমার",
-      "average": "গড়"
+      "average": "গড়",
+      "initializing-please-wait": "আরম্ভ হচ্ছে অনুগ্রহ করে অপেক্ষা করুন"
     },
     "Inputs": {
       "add-cube": "কিউব যোগ করুন",

@@ -41,7 +41,8 @@
       "space-to-start": "Pressione ESPAÇO para começar",
       "tap-to-start": "Clique para começar",
       "title": "Cronômetro",
-      "average": "Média"
+      "average": "Média",
+      "initializing-please-wait": "Inicializando, por favor aguarde"
     },
     "Inputs": {
       "add-cube": "Adicionar cubo",
@@ -143,7 +144,8 @@
       "key6": "cronômetro on-line",
       "key7": "temporizador da web",
       "key8": "rubis",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "associação mundial de cubagem"
     },
     "title": "Nexus Timer - Temporizador profissional de cubo de Rubik"
   },

@@ -41,7 +41,8 @@
       "space-to-start": "Nhấn SPACE để bắt đầu",
       "tap-to-start": "Nhấn để bắt đầu",
       "title": "hẹn giờ",
-      "average": "Trung bình"
+      "average": "Trung bình",
+      "initializing-please-wait": "Đang khởi tạo vui lòng đợi"
     },
     "Inputs": {
       "add-cube": "Thêm khối lập phương",
@@ -143,7 +144,8 @@
       "key6": "hẹn giờ trực tuyến",
       "key7": "hẹn giờ trên web",
       "key8": "khối rubik",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "hiệp hội cubing thế giới"
     },
     "title": "Đồng hồ bấm giờ Nexus - Đồng hồ bấm giờ khối Rubik chuyên nghiệp"
   },

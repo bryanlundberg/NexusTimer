@@ -41,7 +41,8 @@
       "space-to-start": "Premi SPAZIO per iniziare",
       "tap-to-start": "Tocca per iniziare",
       "title": "Timer",
-      "average": "Media"
+      "average": "Media",
+      "initializing-please-wait": "Inizializzazione in corso, attendere"
     },
     "Inputs": {
       "add-cube": "Aggiungi cubo",
@@ -143,7 +144,8 @@
       "key6": "timer in linea",
       "key7": "timer web",
       "key8": "rubik",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "associazione mondiale di cubing"
     },
     "title": "Nexus Timer: timer professionale per cubo di Rubik"
   },

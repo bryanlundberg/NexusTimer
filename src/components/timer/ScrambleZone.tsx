@@ -35,7 +35,7 @@ export function ScrambleZone() {
           }`}
         >
           {initializing
-            ? "Initializing please wait."
+            ? t("initializing-please-wait")
             : selectedCube
             ? scramble
             : t("empty-scramble")}

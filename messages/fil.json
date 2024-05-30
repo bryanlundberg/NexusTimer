@@ -41,7 +41,8 @@
       "space-to-start": "Pindutin ang SPACE para magsimula",
       "tap-to-start": "I-tap para magsimula",
       "title": "Timer",
-      "average": "Katamtaman"
+      "average": "Katamtaman",
+      "initializing-please-wait": "Sinisimulan mangyaring maghintay"
     },
     "Inputs": {
       "add-cube": "Magdagdag ng kubo",
@@ -143,7 +144,8 @@
       "key6": "online timer",
       "key7": "timer ng web",
       "key8": "rubiks",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "samahan ng mundo cubing"
     },
     "title": "Nexus Timer - Propesyonal na Rubik's Cube Timer"
   },

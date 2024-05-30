@@ -41,7 +41,8 @@
       "space-to-start": "Začnite stlačením SPACE",
       "tap-to-start": "Začnite klepnutím",
       "title": "Časovač",
-      "average": "Priemerná"
+      "average": "Priemerná",
+      "initializing-please-wait": "Inicializuje sa, prosím, počkajte"
     },
     "Inputs": {
       "add-cube": "Pridajte kocku",
@@ -143,7 +144,8 @@
       "key6": "online časovač",
       "key7": "webový časovač",
       "key8": "rubikov",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "svetovej kockovej asociácie"
     },
     "title": "Nexus Timer - Profesionálny časovač Rubikovej kocky"
   },

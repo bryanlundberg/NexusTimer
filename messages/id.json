@@ -18,7 +18,8 @@
       "new_best_average": "Rata-rata terbaik baru!",
       "new_worst_time": "Ups, kamu mengalami saat terburukmu!",
       "optimal-yellow-layer": "Lapisan Kuning Optimal",
-      "average": "Rata-rata"
+      "average": "Rata-rata",
+      "initializing-please-wait": "Inisialisasi harap tunggu"
     },
     "Inputs": {
       "add-cube": "Tambahkan kubus",
@@ -118,7 +119,7 @@
       "created-at": "Dibuat di",
       "cube": "kubus",
       "favorite": "Favorit",
-      "filter-cubes": "",
+      "filter-cubes": "Saring kubus Anda",
       "idle": "Menganggur",
       "no-cubes-for-display": "Tidak ada kubus untuk dipajang.",
       "solves": "Memecahkan",
@@ -143,7 +144,8 @@
       "key6": "pengatur waktu daring",
       "key7": "pengatur waktu web",
       "key8": "rubik",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "asosiasi cubing dunia"
     },
     "title": "Nexus Timer - Timer Kubus Rubik Profesional"
   },

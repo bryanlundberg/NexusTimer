@@ -41,7 +41,8 @@
       "space-to-start": "시작하려면 스페이스바를 누르세요",
       "tap-to-start": "시작하려면 탭하세요.",
       "title": "시간제 노동자",
-      "average": "평균"
+      "average": "평균",
+      "initializing-please-wait": "초기화 중입니다. 잠시만 기다려 주세요."
     },
     "Inputs": {
       "add-cube": "큐브 추가",
@@ -143,7 +144,8 @@
       "key6": "온라인 타이머",
       "key7": "웹 타이머",
       "key8": "루빅스",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "세계큐빙협회"
     },
     "title": "Nexus Timer - 전문 루빅스 큐브 타이머"
   },

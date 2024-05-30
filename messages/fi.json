@@ -41,7 +41,8 @@
       "space-to-start": "Aloita painamalla SPACE",
       "tap-to-start": "Aloita napauttamalla",
       "title": "Ajastin",
-      "average": "Keskiverto"
+      "average": "Keskiverto",
+      "initializing-please-wait": "Alustus, odota"
     },
     "Inputs": {
       "add-cube": "Lisää kuutio",
@@ -143,7 +144,8 @@
       "key6": "online-ajastin",
       "key7": "verkkoajastin",
       "key8": "rubiks",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "maailman kuutioliitto"
     },
     "title": "Nexus-ajastin – ammattimainen Rubikin kuutioajastin"
   },

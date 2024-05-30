@@ -41,7 +41,8 @@
       "space-to-start": "Appuyez sur ESPACE pour commencer",
       "tap-to-start": "Appuyez pour commencer",
       "title": "Minuteur",
-      "average": "Moyenne"
+      "average": "Moyenne",
+      "initializing-please-wait": "Initialisation, veuillez patienter"
     },
     "Inputs": {
       "add-cube": "Ajouter un cube",
@@ -143,7 +144,8 @@
       "key6": "minuterie en ligne",
       "key7": "minuterie Web",
       "key8": "rubis",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "association mondiale de cubage"
     },
     "title": "Nexus Timer - Minuteur professionnel Rubik's Cube"
   },

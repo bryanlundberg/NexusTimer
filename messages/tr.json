@@ -41,7 +41,8 @@
       "space-to-start": "Başlamak için SPACE tuşuna basın",
       "tap-to-start": "Başlamak için dokun",
       "title": "Zamanlayıcı",
-      "average": "Ortalama"
+      "average": "Ortalama",
+      "initializing-please-wait": "Başlatılıyor lütfen bekleyin"
     },
     "Inputs": {
       "add-cube": "Küp ekle",
@@ -143,7 +144,8 @@
       "key6": "çevrimiçi zamanlayıcı",
       "key7": "ağ zamanlayıcısı",
       "key8": "Rubikler",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "dünya küpleme derneği"
     },
     "title": "Nexus Zamanlayıcı - Profesyonel Rubik Küp Zamanlayıcısı"
   },

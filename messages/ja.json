@@ -41,7 +41,8 @@
       "space-to-start": "スペースを押して開始します",
       "tap-to-start": "タップして開始",
       "title": "タイマー",
-      "average": "平均"
+      "average": "平均",
+      "initializing-please-wait": "初期化中ですお待ちください"
     },
     "Inputs": {
       "add-cube": "立方体の追加",
@@ -143,7 +144,8 @@
       "key6": "オンラインタイマー",
       "key7": "ウェブタイマー",
       "key8": "ルービック",
-      "key9": "WCA"
+      "key9": "WCA",
+      "key14": "世界立方体協会"
     },
     "title": "Nexus Timer - プロフェッショナル ルービック キューブ タイマー"
   },

@@ -41,7 +41,8 @@
       "space-to-start": "Alustamiseks vajutage TÜHIKKU",
       "tap-to-start": "Alustamiseks puudutage",
       "title": "Taimer",
-      "average": "Keskmine"
+      "average": "Keskmine",
+      "initializing-please-wait": "Initsialiseerimine, palun oodake"
     },
     "Inputs": {
       "add-cube": "Lisa kuubik",
@@ -143,7 +144,8 @@
       "key6": "võrgutaimer",
       "key7": "veebitaimer",
       "key8": "rubikud",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "maailma kuubikuliit"
     },
     "title": "Nexuse taimer – professionaalne Rubiku kuubiku taimer"
   },

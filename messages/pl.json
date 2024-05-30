@@ -41,7 +41,8 @@
       "space-to-start": "Naciśnij SPACJĘ, aby rozpocząć",
       "tap-to-start": "Naciśnij aby zacząć",
       "title": "Regulator czasowy",
-      "average": "Przeciętny"
+      "average": "Przeciętny",
+      "initializing-please-wait": "Inicjowanie, proszę czekać"
     },
     "Inputs": {
       "add-cube": "Dodaj kostkę",
@@ -143,7 +144,8 @@
       "key6": "minutnik online",
       "key7": "zegar internetowy",
       "key8": "rubiki",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "Światowe Stowarzyszenie Cubingu"
     },
     "title": "Nexus Timer - Profesjonalny zegar z kostką Rubika"
   },

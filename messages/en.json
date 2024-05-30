@@ -18,7 +18,8 @@
       "best": "Best",
       "counter": "Counter",
       "settings": "Settings",
-      "enter-custom-scramble": "Enter a custom scramble"
+      "enter-custom-scramble": "Enter a custom scramble",
+      "initializing-please-wait": "Initializing please wait"
     },
     "SolvesPage": {
       "title": "Solves",

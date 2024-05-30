@@ -41,7 +41,8 @@
       "space-to-start": "Nyomja meg a SZÓKÖZ gombot az indításhoz",
       "tap-to-start": "Koppintson az indításhoz",
       "title": "Időzítő",
-      "average": "Átlagos"
+      "average": "Átlagos",
+      "initializing-please-wait": "Inicializálás, kérjük, várjon"
     },
     "Inputs": {
       "add-cube": "Kocka hozzáadása",
@@ -143,7 +144,8 @@
       "key6": "online időzítő",
       "key7": "web időzítő",
       "key8": "rubik",
-      "key9": "wca"
+      "key9": "wca",
+      "key14": "kockavilágszövetség"
     },
     "title": "Nexus időzítő – Professzionális Rubik-kocka időzítő"
   },
