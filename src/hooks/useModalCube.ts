@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Categories } from "@/interfaces/Categories";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import calcBestTime from "@/lib/calcBestTime";
 import calcAoStatistics from "@/lib/calcAoStatistics";
 import { DeleteCubeDetails } from "@/interfaces/DeleteCubeDetails";
@@ -21,7 +20,6 @@ export default function useModalCube() {
     setCubeName,
   } = useCubesModalStore();
 
-  const { lang } = useSettingsModalStore();
   const {
     setCubes,
     setSelectedCube,
@@ -199,7 +197,6 @@ export default function useModalCube() {
     handleCloseModal,
     selectedCategory,
     cubeName,
-    lang,
     cubeData,
     handleDeleteClick,
     confirmDelete,

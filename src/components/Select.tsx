@@ -7,8 +7,6 @@ import { Categories } from "@/interfaces/Categories";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
-import translation from "@/translations/global.json";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import useClickOutside from "@/hooks/useClickOutside";
 import { AnimatePresence, motion } from "framer-motion";

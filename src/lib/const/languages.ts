@@ -1,4 +1,11 @@
-export const languages = [
+import { locales } from "@/navigation";
+
+interface LanguageProp {
+  code: (typeof locales)[number];
+  name: string;
+}
+
+export const languages: LanguageProp[] = [
   { code: "en", name: "English" },
   { code: "es", name: "Español" },
   { code: "fr", name: "Français" },
@@ -15,19 +22,15 @@ export const languages = [
   { code: "tr", name: "Türkçe" },
   { code: "pl", name: "Polski" },
   { code: "vi", name: "Tiếng Việt" },
-  { code: "th", name: "ไทย" },
-  { code: "el", name: "Ελληνικά" },
   { code: "fi", name: "Suomi" },
   { code: "uk", name: "Українська" },
   { code: "cs", name: "Čeština" },
   { code: "ro", name: "Română" },
   { code: "no", name: "Norsk" },
-  { code: "da", name: "Dansk" },
   { code: "ms", name: "Bahasa Melayu" },
   { code: "hu", name: "Magyar" },
   { code: "id", name: "Bahasa Indonesia" },
   { code: "bn", name: "বাংলা" },
   { code: "sk", name: "Slovenčina" },
-  { code: "fil", name: "Filipino" },
   { code: "et", name: "Eesti" },
 ];
