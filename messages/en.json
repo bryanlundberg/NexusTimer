@@ -1,25 +1,4 @@
 {
-  "Metadata": {
-    "title": "Nexus Timer - Professional Rubik's Cube Timer",
-    "description": "Nexus Timer is a professional platform for training and analyzing your journey with the Rubik's Cube.",
-    "keywords": {
-      "key1": "timer",
-      "key2": "nxtimer",
-      "key3": "nexustimer",
-      "key4": "speedcubing timer",
-      "key5": "rubiks cube timer",
-      "key6": "online timer",
-      "key7": "web timer",
-      "key8": "rubiks",
-      "key9": "wca",
-      "key10": "online rubiks cube timer",
-      "key11": "speed cubing",
-      "key12": "cubing",
-      "key13": "cubing timer",
-      "key14": "world cubing association"
-    }
-  },
-
   "Index": {
     "HomePage": {
       "title": "Timer",
@@ -154,5 +133,30 @@
       "loading-part-2": "Please wait, don't close this window.",
       "welcome": "Welcome:"
     }
+  },
+
+  "Metadata": {
+    "title": "Nexus Timer - Professional Rubik's Cube Timer",
+    "description": "Nexus Timer is a professional platform for training and analyzing your journey with the Rubik's Cube.",
+    "keywords": {
+      "key1": "timer",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "speedcubing timer",
+      "key5": "rubiks cube timer",
+      "key6": "online timer",
+      "key7": "web timer",
+      "key8": "rubiks",
+      "key9": "wca",
+      "key10": "online rubiks cube timer",
+      "key11": "speed cubing",
+      "key12": "cubing",
+      "key13": "cubing timer",
+      "key14": "world cubing association"
+    }
+  },
+
+  "OpenGraphImage": {
+    "title": "Nexus Timer - Professional Rubik's Cube Timer"
   }
 }

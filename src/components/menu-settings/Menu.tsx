@@ -27,14 +27,6 @@ export default function MenuSettings() {
   const t = useTranslations("Index.Settings-menu");
 
   useEscape(() => setSettingsOpen(false));
-  console.log(settings);
-
-  const handleChangeLang = (code: any) => {
-    const newSettings = { ...settings };
-    newSettings.locale.language.lang = code;
-    window.localStorage.setItem("settings", JSON.stringify(newSettings));
-    setSettings(newSettings);
-  };
 
   return (
     <>
@@ -66,58 +58,58 @@ export default function MenuSettings() {
               <MenuSection icon={<Clock />} title={t("title")}>
                 <MenuOption
                   setting={settings.timer.inspection}
-                  label={"Inspection"}
+                  label={t("inspection")}
                 />
                 <MenuOption
                   setting={settings.timer.startCue}
-                  label={"startCue"}
+                  label={t("start-cue")}
                 />
                 <MenuOption
                   setting={settings.timer.holdToStart}
-                  label={"holdToStart"}
+                  label={t("hold-to-start")}
                 />
                 <MenuOption
                   setting={settings.timer.manualMode}
-                  label={"manualMode"}
+                  label={t("manual-mode")}
                 />
               </MenuSection>
 
               <MenuSection icon={<CpuChip />} title={t("features")}>
                 <MenuOption
                   setting={settings.features.scrambleImage}
-                  label={"scrambleImage"}
+                  label={t("scramble-image")}
                 />
                 <MenuOption
                   setting={settings.features.sessionStats}
-                  label={"sessionStats"}
+                  label={t("session-stats")}
                 />
                 <MenuOption
                   setting={settings.features.quickActionButtons}
-                  label={"quickActionButtons"}
+                  label={t("quick-action-buttons")}
                 />
                 <MenuOption
                   setting={settings.features.hideWhileSolving}
-                  label={"hideWhileSolving"}
+                  label={t("hide-while-solving")}
                 />
                 <MenuOption
                   setting={settings.features.scrambleBackground}
-                  label={"scrambleBackground"}
+                  label={t("scramble-background")}
                 />
               </MenuSection>
 
               <MenuSection icon={<BellAlert />} title={t("alerts")}>
                 <MenuOption
                   setting={settings.alerts.bestTime}
-                  label={"bestTime"}
+                  label={t("best-time")}
                 />
                 <MenuOption
                   setting={settings.alerts.bestAverage}
-                  label={"bestAverage"}
+                  label={t("best-average")}
                 />
 
                 <MenuOption
                   setting={settings.alerts.worstTime}
-                  label={"worstTime"}
+                  label={t("worst-time")}
                 />
               </MenuSection>
 
