@@ -1,9 +1,4 @@
-import { Language } from "./types/Language";
 import { Themes } from "./types/Themes";
-
-interface Locale {
-  language: { lang: Language; key: string };
-}
 
 interface Timer {
   inspection: { status: boolean; key: string };
@@ -32,7 +27,6 @@ interface Theme {
 }
 
 export interface Settings {
-  locale: Locale;
   timer: Timer;
   features: Features;
   alerts: Alerts;

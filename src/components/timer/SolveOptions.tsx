@@ -3,9 +3,8 @@ import Flag from "@/icons/Flag";
 import NoSymbol from "@/icons/NoSymbol";
 import { Solve } from "@/interfaces/Solve";
 import updateSolve from "@/lib/updateSolve";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import translation from "@/translations/global.json";
+import { useTranslations } from "next-intl";
 
 export default function SolveOptions({ solve }: { solve: Solve }) {
   const {
@@ -16,7 +15,7 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
     mergeUpdateSelectedCube,
     cubes,
   } = useTimerStore();
-  const { lang } = useSettingsModalStore();
+  const t = useTranslations("Index.SolvesPage");
 
   async function handleDeleteSolve() {
     if (!selectedCube) return;
@@ -104,17 +103,13 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
           type="button"
           className={classButton}
           onClick={() => {
-            const comment = window.prompt(
-              `${translation.solves["enter-a-comment"][lang]}`
-            );
+            const comment = window.prompt(`${t("enter-a-comment")}`);
             if (comment) {
               handleComment(comment);
             }
           }}
           onTouchStart={() => {
-            const comment = window.prompt(
-              `${translation.solves["enter-a-comment"][lang]}`
-            );
+            const comment = window.prompt(`${t("enter-a-comment")}`);
             if (comment) {
               handleComment(comment);
             }

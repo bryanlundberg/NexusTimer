@@ -8,14 +8,16 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import Loading from "../Loading";
 import { getAllCubes } from "@/db/dbOperations";
-import translation from "@/translations/global.json";
+import { useTranslations } from "next-intl";
+
 export default function ImportModal() {
-  const { setImportModalOpen, importModalOpen, lang } = useSettingsModalStore();
+  const { setImportModalOpen, importModalOpen } = useSettingsModalStore();
   const { setSelectedCube, setCubes, setTimerStatistics } = useTimerStore();
   const [isImporting, setIsImporting] = useState(false);
   const dataInputRef = useRef<HTMLInputElement>(null);
   const componentRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
+  const t = useTranslations("Index.backup-modal");
 
   useClickOutside(componentRef, () => setImportModalOpen(false));
 
@@ -31,12 +33,8 @@ export default function ImportModal() {
               className="relative w-full h-auto text-xs bg-white rounded-md sm:w-96 p-3 flex flex-col gap-2 items-center text-center"
               ref={componentRef}
             >
-              <div className="text-xl font-medium">
-                {translation.backup["title"][lang]}
-              </div>
-              <div className="text-md text-balance">
-                {translation.backup["description"][lang]}
-              </div>
+              <div className="text-xl font-medium">{t("title")}</div>
+              <div className="text-md text-balance">{t("description")}</div>
 
               {!isImporting ? (
                 <div className="relative border-2 border-dashed border-blue-900 w-full h-20 text-md flex justify-center items-center hover:border-blue-600 transition duration-200 ">
@@ -55,9 +53,7 @@ export default function ImportModal() {
                           setSelectedCube(null);
                           setTimerStatistics();
                           setImportModalOpen(false);
-                          alert(
-                            `${translation.backup["alert-category"][lang]}`
-                          );
+                          alert(`${t("alert-category")}`);
                         }
                       } catch (error) {
                         console.error(error);
@@ -68,7 +64,7 @@ export default function ImportModal() {
                     className="absolute z-50 w-full h-full opacity-0 hover:cursor-pointer"
                   />
                   <div className="absolute z-40 text-center">
-                    {translation.backup["drag-drop"][lang]}
+                    {t("drag-drop")}
                   </div>
                 </div>
               ) : (
@@ -77,18 +73,12 @@ export default function ImportModal() {
                     <Loading />
                   </div>
 
-                  <div className="mx-auto mt-2">
-                    {translation.backup["loading-part-1"][lang]}
-                  </div>
+                  <div className="mx-auto mt-2">{t("loading-part-1")}</div>
 
-                  <div className="font-bold">
-                    {translation.backup["loading-part-2"][lang]}
-                  </div>
+                  <div className="font-bold">{t("loading-part-2")}</div>
                 </div>
               )}
-              <div className="font-medium mt-3">
-                {translation.backup["welcome"][lang]}
-              </div>
+              <div className="font-medium mt-3">{t("welcome")}</div>
               <ul className="flex gap-2">
                 <Image
                   src={"/timer-logos/nexustimer.jpg"}

@@ -2,11 +2,11 @@ import { useTimerStore } from "@/store/timerStore";
 import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
-import translation from "@/translations/global.json";
 import useTimer from "@/hooks/useTimer";
 import Confetti from "react-dom-confetti";
 import useDeviceMatch from "@/hooks/useDeviceMatch";
 import { confettiConfig } from "@/lib/const/confettiConfig";
+import { useTranslations } from "next-intl";
 
 const timerStatusClasses = {
   IDLE: "light:text-neutral-900 dark:text-white",
@@ -17,7 +17,7 @@ const timerStatusClasses = {
 };
 
 export default function Timer() {
-  const { lang, settings } = useSettingsModalStore();
+  const { settings } = useSettingsModalStore();
   const {
     selectedCube,
     isSolving,
@@ -29,7 +29,7 @@ export default function Timer() {
   const { inspectionTime } = useTimer();
   const { device } = useDeviceMatch();
   const hideWhileSolving = settings.features.hideWhileSolving.status;
-
+  const t = useTranslations("Index.HomePage");
   return (
     selectedCube && (
       <>
@@ -41,7 +41,7 @@ export default function Timer() {
             <div className={`${timerStatusClasses[timerStatus]}`}>
               {hideWhileSolving && isSolving ? (
                 <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
-                  {translation.timer["solving"][lang]}
+                  {t("solving")}
                 </span>
               ) : (
                 <div className="relative flex flex-col gap-1 font-mono">
@@ -66,8 +66,8 @@ export default function Timer() {
                   {!lastSolve && timerStatus === "IDLE" ? (
                     <div className="text-xs text-center animate-pulse">
                       {device === "Desktop"
-                        ? `${translation.timer["space-to-start"][lang]}`
-                        : `${translation.timer["tap-to-start"][lang]}`}
+                        ? `${t("space-to-start")}`
+                        : `${t("tap-to-start")}`}
                     </div>
                   ) : null}
                 </div>

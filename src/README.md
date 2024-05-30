@@ -1,4 +1,5 @@
 ## This folder contains:
+
 This directory contains the following subfolders, each serving a specific purpose:
 |Folder| Contents |
 |--|--|
@@ -10,4 +11,3 @@ This directory contains the following subfolders, each serving a specific purpos
 | `./images` | General images used throughout the project. |
 | `./lib` | Multipurpose functions used in the project. |
 | `./store` | Global state management for the application. |
-| `./translations` | Language translations. |

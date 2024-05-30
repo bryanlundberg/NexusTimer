@@ -2,13 +2,12 @@ import { ChangeEvent, useRef } from "react";
 import { Button } from "../button";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import ImageIcon from "@/icons/ImageIcon";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import translation from "@/translations/global.json";
+import { useTranslations } from "next-intl";
 
 export default function CustomTheme() {
   const dataInputRef = useRef<HTMLInputElement>(null);
   const { setBackgroundImage } = useBackgroundImageStore();
-  const { lang } = useSettingsModalStore();
+  const t = useTranslations("Index.Settings-menu");
   const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const newBackgroundImage = event.target.files?.[0];
 
@@ -18,7 +17,7 @@ export default function CustomTheme() {
     const maxSizeInBytes = 4 * 1024 * 1024; // 4MB
 
     if (!allowedImageTypes.includes(newBackgroundImage.type)) {
-      alert(`${translation.settings["allowed-file-types"][lang]}`);
+      alert(`${t("allowed-file-types")}`);
       if (dataInputRef.current) {
         dataInputRef.current.value = "";
       }
@@ -26,7 +25,7 @@ export default function CustomTheme() {
     }
 
     if (newBackgroundImage.size > maxSizeInBytes) {
-      alert(`${translation.settings["max-file-size"][lang]} 4 Mb`);
+      alert(`${t("max-file-size")} 4 Mb`);
       if (dataInputRef.current) {
         dataInputRef.current.value = "";
       }
@@ -64,13 +63,13 @@ export default function CustomTheme() {
       />
       <Button
         className="ms-9 mt-3 font-normal"
-        label={translation.settings["custom-background-image"][lang]}
+        label={t("custom-background-image")}
         minimalistic={false}
         onClick={() => dataInputRef.current && dataInputRef.current.click()}
         icon={<ImageIcon />}
       />
       <div className="block ms-9 text-xs align-bottom">
-        {translation.settings["format"][lang]} .png .jpg .gif
+        {t("format")} .png .jpg .gif
       </div>
     </>
   );

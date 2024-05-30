@@ -1,9 +1,6 @@
 import { Settings } from "@/interfaces/Settings";
 
 export const defaultSettings: Settings = {
-  locale: {
-    language: { lang: "en", key: "language" },
-  },
   timer: {
     inspection: { status: false, key: "inspection" },
     startCue: { status: false, key: "start-cue" },

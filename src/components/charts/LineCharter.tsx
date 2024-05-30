@@ -8,9 +8,9 @@ import {
   createChart,
 } from "lightweight-charts";
 import { useEffect, useRef } from "react";
-import translation from "@/translations/global.json";
 import getBestTime from "@/lib/getBestTime";
 import { ChartData } from "@/interfaces/ChartData";
+import { useTranslations } from "next-intl";
 
 type TimeObject = {
   time: number;
@@ -29,7 +29,7 @@ export default function LineCharter({
     best: boolean;
   };
 }) {
-  const { lang } = useSettingsModalStore();
+  const t = useTranslations("Index.StatsPage");
   const { settings } = useSettingsModalStore();
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -131,7 +131,7 @@ export default function LineCharter({
         lineWidth: 2,
         lineStyle: 2,
         axisLabelVisible: true,
-        title: `${translation.timer["mean"][lang]}`,
+        title: `${t("average")}`,
       };
 
       const bestTimeLine: CreatePriceLineOptions = {
@@ -140,7 +140,7 @@ export default function LineCharter({
         lineWidth: 1,
         lineStyle: 0,
         axisLabelVisible: true,
-        title: `${translation.timer["best"][lang]}`,
+        title: `${t("best-time")}`,
       };
 
       lineSeries.setData(structuredData);
@@ -162,7 +162,7 @@ export default function LineCharter({
   }, [
     data,
     cubeSelected,
-    lang,
+    t,
     settings.theme.background.color,
     optInChart.best,
     optInChart.mean,

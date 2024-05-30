@@ -1,14 +1,8 @@
 import ArrowLeft from "@/icons/ArrowLeft";
-import Language from "@/icons/Language";
 import CpuChip from "@/icons/CpuChip";
 import BellAlert from "@/icons/BellAlert";
 import Clock from "@/icons/Clock";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import genId from "@/lib/genId";
-import { langCollection } from "@/lib/const/langCollection";
-import translation from "@/translations/global.json";
-import { Settings } from "@/interfaces/Settings";
-import { sort } from "fast-sort";
 import Sparkles from "@/icons/Sparkles";
 import ThemeSelect from "@/components/menu-settings/ThemeSelect";
 import { MenuSection } from "@/components/menu-settings/MenuSection";
@@ -22,17 +16,15 @@ import useEscape from "@/hooks/useEscape";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import CustomTheme from "./CustomTheme";
+import { useTranslations } from "next-intl";
+import MenuSelectLanguage from "./MenuSelectLanguage";
 
 export default function MenuSettings() {
-  const { settingsOpen, setSettingsOpen, settings, setSettings, lang } =
+  const { settingsOpen, setSettingsOpen, settings, setSettings } =
     useSettingsModalStore();
-  const handleChangeLang = (tagLang: any) => {
-    const newSettings = { ...settings };
-    newSettings.locale.language.lang = tagLang;
-    window.localStorage.setItem("settings", JSON.stringify(newSettings));
-    setSettings(newSettings);
-  };
+
   const { isSolving } = useTimerStore();
+  const t = useTranslations("Index.Settings-menu");
 
   useEscape(() => setSettingsOpen(false));
 
@@ -57,112 +49,79 @@ export default function MenuSettings() {
                   <ArrowLeft />
                 </Link>
                 <div className="flex-1 text-2xl font-medium text-center">
-                  {translation.settings["settings"][lang]}
+                  {t("title")}
                 </div>
               </div>
 
-              <MenuSection
-                icon={<Language />}
-                title={translation.settings["locale"][lang]}
-              >
-                <div className="flex justify-between">
-                  <div className="ms-12">
-                    {translation.settings["language"][lang]}
-                  </div>
-                  <div className="me-6">
-                    <select
-                      value={lang}
-                      className="px-2 py-1 bg-gray-200 rounded-md outline-none w-36"
-                      onChange={(e) => handleChangeLang(e.target.value)}
-                    >
-                      {sort(langCollection)
-                        .asc((u) => u.name)
-                        .map((lang) => {
-                          return (
-                            <option key={genId()} value={lang.tag}>
-                              {lang.name}
-                            </option>
-                          );
-                        })}
-                    </select>
-                  </div>
-                </div>
-              </MenuSection>
-              <MenuSection
-                icon={<Clock />}
-                title={translation.settings["timer"][lang]}
-              >
-                {Object.values(settings.timer).map((item) => (
-                  <MenuOption
-                    key={genId()}
-                    status={item.status}
-                    label={
-                      translation.settings[item.key as keyof Settings][lang]
-                    }
-                    read={
-                      translation.settings[item.key as keyof Settings][lang]
-                    }
-                    id={item.key}
-                  />
-                ))}
+              <MenuSelectLanguage settings={settings} />
+
+              <MenuSection icon={<Clock />} title={t("title")}>
+                <MenuOption
+                  setting={settings.timer.inspection}
+                  label={t("inspection")}
+                />
+                <MenuOption
+                  setting={settings.timer.startCue}
+                  label={t("start-cue")}
+                />
+                <MenuOption
+                  setting={settings.timer.holdToStart}
+                  label={t("hold-to-start")}
+                />
+                <MenuOption
+                  setting={settings.timer.manualMode}
+                  label={t("manual-mode")}
+                />
               </MenuSection>
 
-              <MenuSection
-                icon={<CpuChip />}
-                title={translation.settings["features"][lang]}
-              >
-                {Object.values(settings.features).map((item) => (
-                  <MenuOption
-                    key={genId()}
-                    status={item.status}
-                    label={
-                      translation.settings[item.key as keyof Settings][lang]
-                    }
-                    read={
-                      translation.settings[item.key as keyof Settings][lang]
-                    }
-                    id={item.key}
-                  />
-                ))}
+              <MenuSection icon={<CpuChip />} title={t("features")}>
+                <MenuOption
+                  setting={settings.features.scrambleImage}
+                  label={t("scramble-image")}
+                />
+                <MenuOption
+                  setting={settings.features.sessionStats}
+                  label={t("session-stats")}
+                />
+                <MenuOption
+                  setting={settings.features.quickActionButtons}
+                  label={t("quick-action-buttons")}
+                />
+                <MenuOption
+                  setting={settings.features.hideWhileSolving}
+                  label={t("hide-while-solving")}
+                />
+                <MenuOption
+                  setting={settings.features.scrambleBackground}
+                  label={t("scramble-background")}
+                />
               </MenuSection>
 
-              <MenuSection
-                icon={<BellAlert />}
-                title={translation.settings["alerts"][lang]}
-              >
-                {Object.values(settings.alerts).map((item) => (
-                  <MenuOption
-                    key={genId()}
-                    status={item.status}
-                    label={
-                      translation.settings[item.key as keyof Settings][lang]
-                    }
-                    read={
-                      translation.settings[item.key as keyof Settings][lang]
-                    }
-                    id={item.key}
-                  />
-                ))}
+              <MenuSection icon={<BellAlert />} title={t("alerts")}>
+                <MenuOption
+                  setting={settings.alerts.bestTime}
+                  label={t("best-time")}
+                />
+                <MenuOption
+                  setting={settings.alerts.bestAverage}
+                  label={t("best-average")}
+                />
+
+                <MenuOption
+                  setting={settings.alerts.worstTime}
+                  label={t("worst-time")}
+                />
               </MenuSection>
 
-              <MenuSection
-                icon={<Sparkles />}
-                title={translation.settings["theme"][lang]}
-              >
+              <MenuSection icon={<Sparkles />} title={t("theme")}>
                 <ThemeSelect />
                 <CustomTheme />
               </MenuSection>
 
-              <MenuSection
-                icon={<Folder />}
-                title={translation.settings["data"][lang]}
-              >
+              <MenuSection icon={<Folder />} title={t("data")}>
                 <DataImportExport />
               </MenuSection>
-              <MenuSection
-                icon={<Shield />}
-                title={translation.settings["about"][lang]}
-              >
+              <MenuSection icon={<Shield />} title={t("about")}>
                 <div className="flex flex-col justify-center items-center gap-3">
                   <Image
                     src={"/brand_logo.svg"}
@@ -172,7 +131,7 @@ export default function MenuSettings() {
                   />
 
                   <div className="text-center w-11/12 italic">
-                    &rdquo;{translation.settings["legend"][lang]}&rdquo;
+                    &rdquo;{t("legend")}&rdquo;
                   </div>
 
                   <div className="flex gap-3 underline">
@@ -181,14 +140,14 @@ export default function MenuSettings() {
                       target="_blank"
                       className="hover:text-zinc-500 text-blue-600 transition duration-300"
                     >
-                      {translation.settings["suggest"][lang]}
+                      {t("suggest")}
                     </Link>
                     <Link
                       href="https://github.com/bryanlundberg/NexusTimer/issues"
                       target="_blank"
                       className="hover:text-zinc-500 text-blue-600 transition duration-300"
                     >
-                      {translation.settings["report-bug"][lang]}
+                      {t("report-bug")}
                     </Link>
                   </div>
                 </div>

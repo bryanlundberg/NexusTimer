@@ -2,14 +2,14 @@ import StatisticsPanel from "./StatisticsPanel";
 import OverviewPanel from "./OverviewPanel";
 import ScramblePanel from "./ScrambleImagePanel";
 import { useTimerStore } from "@/store/timerStore";
-import translation from "@/translations/global.json";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import { useTranslations } from "next-intl";
 
 export default function TimerWidgets() {
   const { isSolving, timerStatus, timerStatistics, lastSolve } =
     useTimerStore();
-  const { lang, settings } = useSettingsModalStore();
-
+  const { settings } = useSettingsModalStore();
+  const t = useTranslations("Index.HomePage");
   return (
     <>
       <div className="flex flex-col gap-1">
@@ -24,7 +24,7 @@ export default function TimerWidgets() {
             timerStatistics.global.ao100 === timerStatistics.session.ao100)) ? (
           <div className="flex justify-end" id="touch">
             <div className="p-1 text-xs border rounded-md light:bg-neutral-100 light:border-neutral-900 dark:bg-zinc-900 dark:border-neutral-400">
-              {translation.timer["new_best_average"][lang]}
+              {t("new_best_average")}
             </div>
           </div>
         ) : null}
@@ -33,7 +33,7 @@ export default function TimerWidgets() {
           lastSolve &&
           lastSolve.time >= timerStatistics.global.worst && (
             <div className="p-1 text-xs border rounded-md light:bg-neutral-100 light:border-neutral-900 dark:bg-zinc-900 dark:border-neutral-400 w-fit ms-auto">
-              {translation.timer["new_worst_time"][lang]}
+              {t("new_worst_time")}
             </div>
           )}
         <div

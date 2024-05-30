@@ -14,18 +14,15 @@ import {
   defaultChartAoValues,
 } from "@/lib/const/defaultChartValues";
 import getSolvesMetrics from "@/lib/getSolvesMetrics";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import translation from "@/translations/global.json";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 export default function useMetricsSwitch() {
-  const { lang } = useSettingsModalStore();
+  const t = useTranslations("Index.SolvesPage");
   const { cubes } = useTimerStore();
   const [filterCategory, setFilterCategory] = useState<Categories>("3x3");
-  const [filterCube, setFilterCube] = useState(
-    translation.solves.filter["all"][lang]
-  );
+  const [filterCube, setFilterCube] = useState(t("all"));
 
   const [optInChart, setOptInChart] = useState({
     mean: true,
@@ -55,8 +52,8 @@ export default function useMetricsSwitch() {
   function loadCubeOptions() {
     const CubeOptions: any[] = [
       {
-        name: translation.solves.filter["all"][lang],
-        id: translation.solves.filter["all"][lang],
+        name: t("all"),
+        id: t("all"),
       },
     ];
     cubes?.map((cube) => {
@@ -68,7 +65,7 @@ export default function useMetricsSwitch() {
   }
 
   const handleChangeCategory = (value: any) => {
-    setFilterCube(translation.solves.filter["all"][lang]);
+    setFilterCube(t("all"));
     setFilterCategory(value);
   };
 
@@ -77,8 +74,8 @@ export default function useMetricsSwitch() {
   };
 
   useEffect(() => {
-    setFilterCube(translation.solves.filter["all"][lang]);
-  }, [lang]);
+    setFilterCube(t("all"));
+  }, [t]);
 
   useEffect(() => {
     const calculatedAverage = calcAverageStatistics({

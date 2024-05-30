@@ -2,15 +2,8 @@ import { Switch } from "@headlessui/react";
 import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
-function Toggle({
-  status,
-  read,
-  id,
-}: {
-  status: boolean;
-  read: string;
-  id: string;
-}) {
+function Toggle({ setting }: any) {
+  const { status, key: id } = setting;
   const { setSettings } = useSettingsModalStore();
 
   const saveSettings = () => {
@@ -47,7 +40,7 @@ function Toggle({
         status ? "bg-blue-600" : "bg-gray-200"
       } relative inline-flex h-6 w-11 items-center rounded-full`}
     >
-      <span className="sr-only">{read}</span>
+      <span className="sr-only">toggle/read</span>
       <span
         className={`${
           status ? "translate-x-6" : "translate-x-1"

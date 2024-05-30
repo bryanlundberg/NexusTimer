@@ -1,12 +1,12 @@
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import translation from "@/translations/global.json";
 import formatTime from "@/lib/formatTime";
 import { useTimerStore } from "@/store/timerStore";
+import { useTranslations } from "next-intl";
 
 export default function OverviewPanel() {
-  const { lang, settings } = useSettingsModalStore();
+  const { settings } = useSettingsModalStore();
   const { timerStatistics } = useTimerStore();
-
+  const t = useTranslations("Index");
   return (
     <div
       className="flex flex-col justify-center w-full h-full gap-1"
@@ -15,28 +15,28 @@ export default function OverviewPanel() {
       {settings.features.sessionStats.status ? (
         <>
           <div className="font-medium">
-            {translation.timer["deviation"][lang]}
+            {t("HomePage.deviation")}
             {": "}
             <span data-testid="timer-session-deviation">
               {formatTime(timerStatistics.session.deviation)}
             </span>
           </div>
           <div className="font-medium">
-            {translation.timer["mean"][lang]}
+            {t("HomePage.average")}
             {": "}
             <span data-testid="timer-session-mean">
               {formatTime(timerStatistics.session.mean)}
             </span>
           </div>
           <div className="font-medium">
-            {translation.timer["best"][lang]}
+            {t("HomePage.best")}
             {": "}
             <span data-testid="timer-session-best">
               {formatTime(timerStatistics.session.best)}
             </span>
           </div>
           <div className="font-medium">
-            {translation.timer["counter"][lang]}
+            {t("HomePage.counter")}
             {": "}
             <span data-testid="timer-session-count">
               {timerStatistics.session.count}
