@@ -31,7 +31,6 @@
       "empty-scramble": "Alegeți un cub pentru a încărca un scramble.",
       "enter-custom-scramble": "Introduceți un scramble personalizat",
       "hint": "Aluzie",
-      "mean": "Rău",
       "new_best_average": "Cea mai bună medie nouă!",
       "new_worst_time": "Hopa, ai avut cel mai rău moment!",
       "optimal-yellow-layer": "Strat galben optim",
@@ -41,7 +40,8 @@
       "solving": "Rezolvarea...",
       "space-to-start": "Apăsați SPACE pentru a începe",
       "tap-to-start": "Atingeți pentru a începe",
-      "title": "Temporizator"
+      "title": "Temporizator",
+      "average": "In medie"
     },
     "Inputs": {
       "add-cube": "Adăugați cubul",
@@ -126,5 +126,28 @@
       "title": "Restaurare inteligentă de rezervă",
       "welcome": "Bine ati venit:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer este o platformă profesională pentru antrenament și analiza călătoriei tale cu Cubul Rubik.",
+    "keywords": {
+      "key1": "temporizator",
+      "key10": "temporizator cub rubik online",
+      "key11": "viteza cubării",
+      "key12": "cubaj",
+      "key13": "cronometru cubing",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "cronometru speedcubing",
+      "key5": "temporizator cub rubiks",
+      "key6": "cronometru online",
+      "key7": "temporizator web",
+      "key8": "rubiks",
+      "key9": "wca"
+    },
+    "title": "Nexus Timer - Cronometru profesional cub Rubik"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - Cronometru profesional cub Rubik"
   }
 }

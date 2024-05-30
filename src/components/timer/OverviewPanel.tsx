@@ -22,7 +22,7 @@ export default function OverviewPanel() {
             </span>
           </div>
           <div className="font-medium">
-            {t("HomePage.mean")}
+            {t("HomePage.average")}
             {": "}
             <span data-testid="timer-session-mean">
               {formatTime(timerStatistics.session.mean)}

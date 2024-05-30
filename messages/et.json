@@ -31,7 +31,6 @@
       "empty-scramble": "Valige rüselus laadimiseks kuup.",
       "enter-custom-scramble": "Sisestage kohandatud rüselus",
       "hint": "Vihje",
-      "mean": "Tähendab",
       "new_best_average": "Uus parim keskmine!",
       "new_worst_time": "Oih, teil on halvim aeg!",
       "optimal-yellow-layer": "Optimaalne kollane kiht",
@@ -41,7 +40,8 @@
       "solving": "Lahendatakse...",
       "space-to-start": "Alustamiseks vajutage TÜHIKKU",
       "tap-to-start": "Alustamiseks puudutage",
-      "title": "Taimer"
+      "title": "Taimer",
+      "average": "Keskmine"
     },
     "Inputs": {
       "add-cube": "Lisa kuubik",
@@ -126,5 +126,28 @@
       "title": "Arukas varukoopia taastamine",
       "welcome": "Tere tulemast:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer on professionaalne platvorm Rubiku kuubikuga reisimise treenimiseks ja analüüsimiseks.",
+    "keywords": {
+      "key1": "taimer",
+      "key10": "Interneti-rubiks kuubiku taimer",
+      "key11": "kiirkuubik",
+      "key12": "kuubistamine",
+      "key13": "kuubiku taimer",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "speedcubing taimer",
+      "key5": "rubiku kuubiku taimer",
+      "key6": "võrgutaimer",
+      "key7": "veebitaimer",
+      "key8": "rubikud",
+      "key9": "wca"
+    },
+    "title": "Nexuse taimer – professionaalne Rubiku kuubiku taimer"
+  },
+  "OpenGraphImage": {
+    "title": "Nexuse taimer – professionaalne Rubiku kuubiku taimer"
   }
 }

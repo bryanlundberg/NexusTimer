@@ -31,7 +31,6 @@
       "empty-scramble": "Valitse kuutio ladataksesi sekoitus.",
       "enter-custom-scramble": "Anna mukautettu sekoitus",
       "hint": "Vihje",
-      "mean": "Tarkoittaa",
       "new_best_average": "Uusi paras keskiarvo!",
       "new_worst_time": "Hups, sinulla on pahin aika!",
       "optimal-yellow-layer": "Optimaalinen keltainen kerros",
@@ -41,7 +40,8 @@
       "solving": "Ratkaistaan...",
       "space-to-start": "Aloita painamalla SPACE",
       "tap-to-start": "Aloita napauttamalla",
-      "title": "Ajastin"
+      "title": "Ajastin",
+      "average": "Keskiverto"
     },
     "Inputs": {
       "add-cube": "Lisää kuutio",
@@ -127,7 +127,27 @@
       "welcome": "Tervetuloa:"
     }
   },
-  "keywords": {
-    "key3": ""
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer on ammattimainen alusta, jolla voit harjoitella ja analysoida matkaasi Rubikin kuution kanssa.",
+    "keywords": {
+      "key1": "ajastin",
+      "key10": "online rubiks kuutio ajastin",
+      "key11": "nopeus kuutioi",
+      "key12": "kuutioiminen",
+      "key13": "kuutioiden ajastin",
+      "key2": "nxtimer",
+      "key3": "seuraavaksi",
+      "key4": "speedcubing ajastin",
+      "key5": "rubikin kuutio ajastin",
+      "key6": "online-ajastin",
+      "key7": "verkkoajastin",
+      "key8": "rubiks",
+      "key9": "wca"
+    },
+    "title": "Nexus-ajastin – ammattimainen Rubikin kuutioajastin"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus-ajastin – ammattimainen Rubikin kuutioajastin"
   }
 }

@@ -31,7 +31,6 @@
       "empty-scramble": "Válasszon egy kockát a tülekedés betöltéséhez.",
       "enter-custom-scramble": "Adjon meg egy egyéni kódolást",
       "hint": "Célzás",
-      "mean": "Átlagos",
       "new_best_average": "Új legjobb átlag!",
       "new_worst_time": "Hoppá, a legrosszabb időszakod van!",
       "optimal-yellow-layer": "Optimális sárga réteg",
@@ -41,7 +40,8 @@
       "solving": "Megoldás...",
       "space-to-start": "Nyomja meg a SZÓKÖZ gombot az indításhoz",
       "tap-to-start": "Koppintson az indításhoz",
-      "title": "Időzítő"
+      "title": "Időzítő",
+      "average": "Átlagos"
     },
     "Inputs": {
       "add-cube": "Kocka hozzáadása",
@@ -126,5 +126,28 @@
       "title": "Intelligens biztonsági mentés visszaállítás",
       "welcome": "Üdvözöljük:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "A Nexus Timer egy professzionális platform az edzésekhez és a Rubik-kockával végzett utazás elemzéséhez.",
+    "keywords": {
+      "key1": "időzítő",
+      "key10": "online rubik kocka időzítő",
+      "key11": "sebességű kockavágás",
+      "key12": "kockás",
+      "key13": "kocka időzítő",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "speedcubing időzítő",
+      "key5": "rubik kocka időzítő",
+      "key6": "online időzítő",
+      "key7": "web időzítő",
+      "key8": "rubik",
+      "key9": "wca"
+    },
+    "title": "Nexus időzítő – Professzionális Rubik-kocka időzítő"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus időzítő – Professzionális Rubik-kocka időzítő"
   }
 }

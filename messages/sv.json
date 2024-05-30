@@ -31,7 +31,6 @@
       "empty-scramble": "Välj en kub för att ladda en scramble.",
       "enter-custom-scramble": "Ange en anpassad scramble",
       "hint": "Antydan",
-      "mean": "Betyda",
       "new_best_average": "Nytt bästa medelvärde!",
       "new_worst_time": "Oj, du har din värsta tid!",
       "optimal-yellow-layer": "Optimalt gult lager",
@@ -41,7 +40,8 @@
       "solving": "Lösning...",
       "space-to-start": "Tryck på MELLANSLAG för att starta",
       "tap-to-start": "Tryck för att starta",
-      "title": "Timer"
+      "title": "Timer",
+      "average": "Genomsnitt"
     },
     "Inputs": {
       "add-cube": "Lägg till kub",
@@ -126,5 +126,28 @@
       "title": "Intelligent Backup Restoration",
       "welcome": "Välkommen:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer är en professionell plattform för att träna och analysera din resa med Rubik's Cube.",
+    "keywords": {
+      "key1": "timer",
+      "key10": "online rubiks kub timer",
+      "key11": "speed cubing",
+      "key12": "kubning",
+      "key13": "kubningstimer",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "speedcubing timer",
+      "key5": "rubiks kub timer",
+      "key6": "online timer",
+      "key7": "webbtimer",
+      "key8": "rubiks",
+      "key9": "wca"
+    },
+    "title": "Nexus Timer - Professionell Rubik's Cube Timer"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - Professionell Rubik's Cube Timer"
   }
 }

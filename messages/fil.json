@@ -31,7 +31,6 @@
       "empty-scramble": "Pumili ng isang cube para magkarga ng scramble.",
       "enter-custom-scramble": "Maglagay ng custom scramble",
       "hint": "Pahiwatig",
-      "mean": "ibig sabihin",
       "new_best_average": "Bagong pinakamahusay na average!",
       "new_worst_time": "Oops, nakuha mo ang iyong pinakamasamang oras!",
       "optimal-yellow-layer": "Pinakamainam na Yellow Layer",
@@ -41,7 +40,8 @@
       "solving": "Paglutas...",
       "space-to-start": "Pindutin ang SPACE para magsimula",
       "tap-to-start": "I-tap para magsimula",
-      "title": "Timer"
+      "title": "Timer",
+      "average": "Katamtaman"
     },
     "Inputs": {
       "add-cube": "Magdagdag ng kubo",
@@ -126,5 +126,28 @@
       "title": "Intelligent Backup Restoration",
       "welcome": "Maligayang pagdating:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Ang Nexus Timer ay isang propesyonal na platform para sa pagsasanay at pagsusuri sa iyong paglalakbay gamit ang Rubik's Cube.",
+    "keywords": {
+      "key1": "timer",
+      "key10": "online na rubiks cube timer",
+      "key11": "bilis cubing",
+      "key12": "cubing",
+      "key13": "cubing timer",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "timer ng speedcubing",
+      "key5": "timer ng rubiks cube",
+      "key6": "online timer",
+      "key7": "timer ng web",
+      "key8": "rubiks",
+      "key9": "wca"
+    },
+    "title": "Nexus Timer - Propesyonal na Rubik's Cube Timer"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - Propesyonal na Rubik's Cube Timer"
   }
 }

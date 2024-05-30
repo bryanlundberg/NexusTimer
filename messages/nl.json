@@ -31,7 +31,6 @@
       "empty-scramble": "Kies een kubus om een ​​scramble te laden.",
       "enter-custom-scramble": "Voer een aangepaste scramble in",
       "hint": "Tip",
-      "mean": "Gemeen",
       "new_best_average": "Nieuw beste gemiddelde!",
       "new_worst_time": "Oeps, je hebt je slechtste tijd gehad!",
       "optimal-yellow-layer": "Optimale gele laag",
@@ -41,7 +40,8 @@
       "solving": "Oplossen...",
       "space-to-start": "Druk op SPACE om te beginnen",
       "tap-to-start": "Klik om te beginnen",
-      "title": "Timer"
+      "title": "Timer",
+      "average": "Gemiddeld"
     },
     "Inputs": {
       "add-cube": "Kubus toevoegen",
@@ -126,5 +126,28 @@
       "title": "Intelligent back-upherstel",
       "welcome": "Welkom:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer is een professioneel platform voor het trainen en analyseren van uw reis met de Rubik's Cube.",
+    "keywords": {
+      "key1": "timer",
+      "key10": "online rubiks kubustimer",
+      "key11": "snelheidscubering",
+      "key12": "kubusvormig",
+      "key13": "kubustimer",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "speedcubing-timer",
+      "key5": "rubiks kubus timer",
+      "key6": "online-timer",
+      "key7": "webtimer",
+      "key8": "rubiks",
+      "key9": "wca"
+    },
+    "title": "Nexus Timer - Professionele Rubik's Cube Timer"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - Professionele Rubik's Cube Timer"
   }
 }

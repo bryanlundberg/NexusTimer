@@ -31,7 +31,6 @@
       "empty-scramble": "Choisissez un cube pour charger un brouillage.",
       "enter-custom-scramble": "Entrez un brouillage personnalisé",
       "hint": "Indice",
-      "mean": "Signifier",
       "new_best_average": "Nouvelle meilleure moyenne !",
       "new_worst_time": "Oups, tu as vécu ton pire moment !",
       "optimal-yellow-layer": "Couche jaune optimale",
@@ -41,7 +40,8 @@
       "solving": "Résoudre...",
       "space-to-start": "Appuyez sur ESPACE pour commencer",
       "tap-to-start": "Appuyez pour commencer",
-      "title": "Minuteur"
+      "title": "Minuteur",
+      "average": "Moyenne"
     },
     "Inputs": {
       "add-cube": "Ajouter un cube",
@@ -126,5 +126,28 @@
       "title": "Restauration intelligente des sauvegardes",
       "welcome": "Accueillir:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer est une plateforme professionnelle pour entraîner et analyser votre parcours avec le Rubik's Cube.",
+    "keywords": {
+      "key1": "minuteur",
+      "key10": "minuterie rubiks cube en ligne",
+      "key11": "cubage rapide",
+      "key12": "cubage",
+      "key13": "minuterie de cubage",
+      "key2": "nxtimer",
+      "key3": "Nexustimer",
+      "key4": "minuterie de speedcubing",
+      "key5": "minuterie rubiks cube",
+      "key6": "minuterie en ligne",
+      "key7": "minuterie Web",
+      "key8": "rubis",
+      "key9": "wca"
+    },
+    "title": "Nexus Timer - Minuteur professionnel Rubik's Cube"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - Minuteur professionnel Rubik's Cube"
   }
 }

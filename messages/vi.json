@@ -31,7 +31,6 @@
       "empty-scramble": "Chọn một khối để tải một cuộc tranh giành.",
       "enter-custom-scramble": "Nhập một cuộc tranh giành tùy chỉnh",
       "hint": "Gợi ý",
-      "mean": "Nghĩa là",
       "new_best_average": "Mức trung bình mới tốt nhất!",
       "new_worst_time": "Rất tiếc, bạn đã có khoảng thời gian tồi tệ nhất!",
       "optimal-yellow-layer": "Lớp màu vàng tối ưu",
@@ -41,7 +40,8 @@
       "solving": "Giải quyết...",
       "space-to-start": "Nhấn SPACE để bắt đầu",
       "tap-to-start": "Nhấn để bắt đầu",
-      "title": "hẹn giờ"
+      "title": "hẹn giờ",
+      "average": "Trung bình"
     },
     "Inputs": {
       "add-cube": "Thêm khối lập phương",
@@ -126,5 +126,28 @@
       "title": "Khôi phục sao lưu thông minh",
       "welcome": "Chào mừng:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Hẹn giờ là một nền tảng chuyên nghiệp để đào tạo và phân tích hành trình của bạn với Khối Rubik.",
+    "keywords": {
+      "key1": "hẹn giờ",
+      "key10": "đồng hồ bấm giờ khối rubik trực tuyến",
+      "key11": "khối tốc độ",
+      "key12": "hình khối",
+      "key13": "đồng hồ bấm giờ",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "đồng hồ đo tốc độ",
+      "key5": "đồng hồ bấm giờ khối rubik",
+      "key6": "hẹn giờ trực tuyến",
+      "key7": "hẹn giờ trên web",
+      "key8": "khối rubik",
+      "key9": "wca"
+    },
+    "title": "Đồng hồ bấm giờ Nexus - Đồng hồ bấm giờ khối Rubik chuyên nghiệp"
+  },
+  "OpenGraphImage": {
+    "title": "Đồng hồ bấm giờ Nexus - Đồng hồ bấm giờ khối Rubik chuyên nghiệp"
   }
 }

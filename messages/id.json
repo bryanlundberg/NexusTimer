@@ -8,17 +8,17 @@
       "space-to-start": "Tekan SPASI untuk memulai",
       "tap-to-start": "Ketuk untuk memulai",
       "title": "pengatur waktu",
-      "best": "",
-      "congratulations": "",
-      "counter": "",
-      "deviation": "",
-      "empty-scramble": "",
-      "enter-custom-scramble": "",
-      "hint": "",
-      "mean": "",
-      "new_best_average": "",
-      "new_worst_time": "",
-      "optimal-yellow-layer": ""
+      "best": "Terbaik",
+      "congratulations": "Selamat!",
+      "counter": "Menangkal",
+      "deviation": "Deviasi",
+      "empty-scramble": "Pilih kubus untuk memuat pengacak.",
+      "enter-custom-scramble": "Masukkan perebutan khusus",
+      "hint": "Petunjuk",
+      "new_best_average": "Rata-rata terbaik baru!",
+      "new_worst_time": "Ups, kamu mengalami saat terburukmu!",
+      "optimal-yellow-layer": "Lapisan Kuning Optimal",
+      "average": "Rata-rata"
     },
     "Inputs": {
       "add-cube": "Tambahkan kubus",
@@ -104,27 +104,50 @@
       "welcome": "Selamat datang:"
     },
     "Cubes-modal": {
-      "current-select": "",
-      "error-duplicate": "",
-      "error-name": "",
-      "placeholder": "",
-      "question-delete": "",
-      "title-creating": "",
-      "title-editing": "",
-      "warning-delete": ""
+      "current-select": "Pilihan saat ini:",
+      "error-duplicate": "Nama kubus sudah digunakan",
+      "error-name": "Nama kubus tidak ada",
+      "placeholder": "merek | \nModel | \nVersi | \nMagnetik?",
+      "question-delete": "Apakah Anda yakin ingin menghapus?",
+      "title-creating": "Kubus Baru",
+      "title-editing": "Sunting Kubus",
+      "warning-delete": "Tindakan yang tidak dapat diubah ini akan menghapus semua riwayat penyelesaian kubus ini dan dapat memengaruhi statistik Anda."
     },
     "CubesPage": {
-      "category": "",
-      "created-at": "",
-      "cube": "",
-      "favorite": "",
+      "category": "Kategori",
+      "created-at": "Dibuat di",
+      "cube": "kubus",
+      "favorite": "Favorit",
       "filter-cubes": "",
-      "idle": "",
-      "no-cubes-for-display": "",
-      "solves": "",
-      "status": "",
-      "title": "",
-      "using": ""
+      "idle": "Menganggur",
+      "no-cubes-for-display": "Tidak ada kubus untuk dipajang.",
+      "solves": "Memecahkan",
+      "status": "Status",
+      "title": "Kotak",
+      "using": "Menggunakan"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer adalah platform profesional untuk melatih dan menganalisis perjalanan Anda dengan Kubus Rubik.",
+    "keywords": {
+      "key1": "pengatur waktu",
+      "key10": "pengatur waktu kubus rubik online",
+      "key11": "kecepatan kubik",
+      "key12": "potong dadu",
+      "key13": "pengatur waktu kubus",
+      "key2": "waktu berikutnya",
+      "key3": "waktu berikutnya",
+      "key4": "pengatur waktu speedcubing",
+      "key5": "pengatur waktu kubus rubik",
+      "key6": "pengatur waktu daring",
+      "key7": "pengatur waktu web",
+      "key8": "rubik",
+      "key9": "wca"
+    },
+    "title": "Nexus Timer - Timer Kubus Rubik Profesional"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - Timer Kubus Rubik Profesional"
   }
 }

@@ -31,7 +31,6 @@
       "empty-scramble": "スクランブルをロードするキューブを選択してください。",
       "enter-custom-scramble": "カスタムスクランブルを入力してください",
       "hint": "ヒント",
-      "mean": "平均",
       "new_best_average": "新しい最高の平均!",
       "new_worst_time": "おっと、最悪の時間を過ごしてしまったね！",
       "optimal-yellow-layer": "最適なイエローレイヤー",
@@ -41,7 +40,8 @@
       "solving": "解決中...",
       "space-to-start": "スペースを押して開始します",
       "tap-to-start": "タップして開始",
-      "title": "タイマー"
+      "title": "タイマー",
+      "average": "平均"
     },
     "Inputs": {
       "add-cube": "立方体の追加",
@@ -126,5 +126,28 @@
       "title": "インテリジェントなバックアップ復元",
       "welcome": "いらっしゃいませ："
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer は、ルービック キューブを使ったトレーニングと分析を行うためのプロフェッショナルなプラットフォームです。",
+    "keywords": {
+      "key1": "タイマー",
+      "key10": "オンラインルービックキューブタイマー",
+      "key11": "スピードキューブ",
+      "key12": "立方体化",
+      "key13": "キュービングタイマー",
+      "key2": "nxtimer",
+      "key3": "ネクサスタイマー",
+      "key4": "スピードキュービングタイマー",
+      "key5": "ルービックキューブタイマー",
+      "key6": "オンラインタイマー",
+      "key7": "ウェブタイマー",
+      "key8": "ルービック",
+      "key9": "WCA"
+    },
+    "title": "Nexus Timer - プロフェッショナル ルービック キューブ タイマー"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - プロフェッショナル ルービック キューブ タイマー"
   }
 }

@@ -34,7 +34,7 @@ export default function MoveModal({
             <div className="flex flex-col text-end">
               <div className="text-black">{t("CubesPage.category")}:</div>
               <div className="text-black">{t("Settings-menu.best-time")}:</div>
-              <div className="text-black">{t("HomePage.mean")}:</div>
+              <div className="text-black">{t("HomePage.average")}:</div>
               <div className="text-black">{t("HomePage.counter")}:</div>
             </div>
 

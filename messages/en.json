@@ -14,13 +14,12 @@
       "new_worst_time": "Oops, you got your worst time!",
       "personal_best": "You have beaten your previous personal best.",
       "deviation": "Deviation",
-      "mean": "Mean",
+      "average": "Average",
       "best": "Best",
       "counter": "Counter",
       "settings": "Settings",
       "enter-custom-scramble": "Enter a custom scramble"
     },
-
     "SolvesPage": {
       "title": "Solves",
       "search-by-time": "⏱︎ Search by time",
@@ -38,7 +37,6 @@
       "no-cube-selection": "No cube selected, choose one...",
       "no-solves": "There's no solves to show!"
     },
-
     "StatsPage": {
       "title": "Stats",
       "total": "Total",
@@ -51,7 +49,6 @@
       "success-rate": "Success Rate",
       "counter": "Counter"
     },
-
     "CubesPage": {
       "title": "Cubes",
       "cube": "Cube",
@@ -65,7 +62,6 @@
       "idle": "Idle",
       "filter-cubes": "Filter your cubes"
     },
-
     "Cubes-modal": {
       "title-editing": "Edit Cube",
       "title-creating": "New Cube",
@@ -76,7 +72,6 @@
       "warning-delete": "This irreversible action will delete all solve history for this cube and may impact your statistics.",
       "placeholder": "Brand | Model | Version | Magnetic?"
     },
-
     "Inputs": {
       "select": "Select",
       "add-cube": "Add cube",
@@ -90,7 +85,6 @@
       "save": "Save",
       "delete": "Delete"
     },
-
     "Settings-menu": {
       "title": "Settings",
       "locale": "Region",
@@ -123,7 +117,6 @@
       "suggest": "Suggest a change",
       "report-bug": "Report a bug"
     },
-
     "backup-modal": {
       "title": "Intelligent Backup Restoration",
       "description": "Let NexusTimer smartly import everything; it will automatically detect and recreate a compatible data structure.",
@@ -134,7 +127,6 @@
       "welcome": "Welcome:"
     }
   },
-
   "Metadata": {
     "title": "Nexus Timer - Professional Rubik's Cube Timer",
     "description": "Nexus Timer is a professional platform for training and analyzing your journey with the Rubik's Cube.",
@@ -155,7 +147,6 @@
       "key14": "world cubing association"
     }
   },
-
   "OpenGraphImage": {
     "title": "Nexus Timer - Professional Rubik's Cube Timer"
   }

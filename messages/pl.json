@@ -31,7 +31,6 @@
       "empty-scramble": "Wybierz kostkę, aby załadować mieszankę.",
       "enter-custom-scramble": "Wprowadź niestandardowe szyfrowanie",
       "hint": "Wskazówka",
-      "mean": "Mieć na myśli",
       "new_best_average": "Nowa najlepsza średnia!",
       "new_worst_time": "Ups, przeżyłeś najgorszy okres!",
       "optimal-yellow-layer": "Optymalna żółta warstwa",
@@ -41,7 +40,8 @@
       "solving": "Rozwiązywanie...",
       "space-to-start": "Naciśnij SPACJĘ, aby rozpocząć",
       "tap-to-start": "Naciśnij aby zacząć",
-      "title": "Regulator czasowy"
+      "title": "Regulator czasowy",
+      "average": "Przeciętny"
     },
     "Inputs": {
       "add-cube": "Dodaj kostkę",
@@ -126,5 +126,28 @@
       "title": "Inteligentne przywracanie kopii zapasowych",
       "welcome": "Powitanie:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer to profesjonalna platforma do treningu i analizy Twojej podróży z Kostką Rubika.",
+    "keywords": {
+      "key1": "regulator czasowy",
+      "key10": "internetowy licznik czasu na kostkę Rubika",
+      "key11": "szybkie kostki",
+      "key12": "krojenie w kostkę",
+      "key13": "licznik czasu kostkowania",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "licznik czasu speedcubingu",
+      "key5": "licznik czasu na kostkę Rubika",
+      "key6": "minutnik online",
+      "key7": "zegar internetowy",
+      "key8": "rubiki",
+      "key9": "wca"
+    },
+    "title": "Nexus Timer - Profesjonalny zegar z kostką Rubika"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - Profesjonalny zegar z kostką Rubika"
   }
 }

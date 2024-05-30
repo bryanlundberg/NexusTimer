@@ -31,7 +31,6 @@
       "empty-scramble": "Vyberte kocku na načítanie bitky.",
       "enter-custom-scramble": "Zadajte vlastný kódex",
       "hint": "Nápoveda",
-      "mean": "Priemerná",
       "new_best_average": "Nový najlepší priemer!",
       "new_worst_time": "Ups, máš najhorší čas!",
       "optimal-yellow-layer": "Optimálna žltá vrstva",
@@ -41,7 +40,8 @@
       "solving": "Riešenie...",
       "space-to-start": "Začnite stlačením SPACE",
       "tap-to-start": "Začnite klepnutím",
-      "title": "Časovač"
+      "title": "Časovač",
+      "average": "Priemerná"
     },
     "Inputs": {
       "add-cube": "Pridajte kocku",
@@ -126,5 +126,28 @@
       "title": "Inteligentná obnova zálohy",
       "welcome": "Vitajte:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer je profesionálna platforma na trénovanie a analýzu vašej cesty s Rubikovou kockou.",
+    "keywords": {
+      "key1": "časovač",
+      "key10": "online časovač rubikových kociek",
+      "key11": "rýchlostné kocky",
+      "key12": "kockovanie",
+      "key13": "kubický časovač",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "časovač speedcubing",
+      "key5": "časovač rubikovej kocky",
+      "key6": "online časovač",
+      "key7": "webový časovač",
+      "key8": "rubikov",
+      "key9": "wca"
+    },
+    "title": "Nexus Timer - Profesionálny časovač Rubikovej kocky"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - Profesionálny časovač Rubikovej kocky"
   }
 }

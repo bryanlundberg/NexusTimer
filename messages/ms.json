@@ -31,7 +31,6 @@
       "empty-scramble": "Pilih kiub untuk memuatkan perebutan.",
       "enter-custom-scramble": "Masukkan perebutan tersuai",
       "hint": "Petunjuk",
-      "mean": "Min",
       "new_best_average": "Purata terbaik baharu!",
       "new_worst_time": "Oops, anda mendapat masa yang paling teruk!",
       "optimal-yellow-layer": "Lapisan Kuning Optimum",
@@ -41,7 +40,8 @@
       "solving": "Menyelesaikan...",
       "space-to-start": "Tekan SPACE untuk bermula",
       "tap-to-start": "Ketik untuk bermula",
-      "title": "Pemasa"
+      "title": "Pemasa",
+      "average": "Purata"
     },
     "Inputs": {
       "add-cube": "Tambah kiub",
@@ -126,5 +126,28 @@
       "title": "Pemulihan Sandaran Pintar",
       "welcome": "selamat datang:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Pemasa Nexus ialah platform profesional untuk melatih dan menganalisis perjalanan anda dengan Rubik's Cube.",
+    "keywords": {
+      "key1": "pemasa",
+      "key10": "pemasa kiub rubik dalam talian",
+      "key11": "cubing laju",
+      "key12": "cubing",
+      "key13": "pemasa cubing",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "pemasa speedcubing",
+      "key5": "pemasa kiub rubik",
+      "key6": "pemasa dalam talian",
+      "key7": "pemasa web",
+      "key8": "rubik",
+      "key9": "wca"
+    },
+    "title": "Pemasa Nexus - Pemasa Kiub Rubik Profesional"
+  },
+  "OpenGraphImage": {
+    "title": "Pemasa Nexus - Pemasa Kiub Rubik Profesional"
   }
 }

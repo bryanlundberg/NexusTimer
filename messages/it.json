@@ -31,7 +31,6 @@
       "empty-scramble": "Scegli un cubo per caricare uno scramble.",
       "enter-custom-scramble": "Inserisci uno scramble personalizzato",
       "hint": "Suggerimento",
-      "mean": "Significare",
       "new_best_average": "Nuova migliore media!",
       "new_worst_time": "Oops, hai avuto il tuo momento peggiore!",
       "optimal-yellow-layer": "Strato giallo ottimale",
@@ -41,7 +40,8 @@
       "solving": "Risolvere...",
       "space-to-start": "Premi SPAZIO per iniziare",
       "tap-to-start": "Tocca per iniziare",
-      "title": "Timer"
+      "title": "Timer",
+      "average": "Media"
     },
     "Inputs": {
       "add-cube": "Aggiungi cubo",
@@ -126,5 +126,28 @@
       "title": "Ripristino intelligente del backup",
       "welcome": "Benvenuto:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer è una piattaforma professionale per allenarsi e analizzare il tuo viaggio con il Cubo di Rubik.",
+    "keywords": {
+      "key1": "Timer",
+      "key10": "timer online per il cubo di rubik",
+      "key11": "cubatura veloce",
+      "key12": "cubatura",
+      "key13": "timer per cubettare",
+      "key2": "nxtimer",
+      "key3": "prossimamente",
+      "key4": "timer per lo speedcubing",
+      "key5": "timer cubo di rubik",
+      "key6": "timer in linea",
+      "key7": "timer web",
+      "key8": "rubik",
+      "key9": "wca"
+    },
+    "title": "Nexus Timer: timer professionale per cubo di Rubik"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer: timer professionale per cubo di Rubik"
   }
 }

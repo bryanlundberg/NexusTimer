@@ -31,7 +31,6 @@
       "empty-scramble": "选择一个立方体来加载打乱。",
       "enter-custom-scramble": "输入自定义打乱",
       "hint": "暗示",
-      "mean": "意思是",
       "new_best_average": "新的最佳平均值！",
       "new_worst_time": "哎呀，你经历了最糟糕的时刻！",
       "optimal-yellow-layer": "最佳黄色层",
@@ -41,7 +40,8 @@
       "solving": "解决...",
       "space-to-start": "按空格键开始",
       "tap-to-start": "点击开始",
-      "title": "定时器"
+      "title": "定时器",
+      "average": "平均的"
     },
     "Inputs": {
       "add-cube": "添加立方体",
@@ -126,5 +126,28 @@
       "title": "智能备份恢复",
       "welcome": "欢迎："
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer 是一个专业平台，用于训练和分析您的魔方之旅。",
+    "keywords": {
+      "key1": "计时器",
+      "key10": "在线魔方计时器",
+      "key11": "速度魔方",
+      "key12": "立方体",
+      "key13": "立方定时器",
+      "key2": "NX定时器",
+      "key3": "联结定时器",
+      "key4": "魔方计时器",
+      "key5": "魔方计时器",
+      "key6": "在线计时器",
+      "key7": "网络定时器",
+      "key8": "魔方",
+      "key9": "世界华人协会"
+    },
+    "title": "Nexus Timer - 专业魔方计时器"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - 专业魔方计时器"
   }
 }

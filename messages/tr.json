@@ -31,7 +31,6 @@
       "empty-scramble": "Bir karıştırmayı yüklemek için bir küp seçin.",
       "enter-custom-scramble": "Özel bir mücadele girin",
       "hint": "İpucu",
-      "mean": "Anlam",
       "new_best_average": "Yeni en iyi ortalama!",
       "new_worst_time": "Oops, en kötü zamanını yaşadın!",
       "optimal-yellow-layer": "Optimum Sarı Katman",
@@ -41,7 +40,8 @@
       "solving": "Çözme...",
       "space-to-start": "Başlamak için SPACE tuşuna basın",
       "tap-to-start": "Başlamak için dokun",
-      "title": "Zamanlayıcı"
+      "title": "Zamanlayıcı",
+      "average": "Ortalama"
     },
     "Inputs": {
       "add-cube": "Küp ekle",
@@ -126,5 +126,28 @@
       "title": "Akıllı Yedekleme Restorasyonu",
       "welcome": "Hoş geldin:"
     }
+  },
+  "keywords": {},
+  "Metadata": {
+    "description": "Nexus Timer, Rubik Küpü ile yolculuğunuzu eğitmek ve analiz etmek için profesyonel bir platformdur.",
+    "keywords": {
+      "key1": "zamanlayıcı",
+      "key10": "çevrimiçi rubik küp zamanlayıcı",
+      "key11": "hız küpleme",
+      "key12": "küp haline getirme",
+      "key13": "küpleme zamanlayıcısı",
+      "key2": "zamanlayıcı",
+      "key3": "Nexustimer",
+      "key4": "hızlandırma zamanlayıcısı",
+      "key5": "rubik küp zamanlayıcı",
+      "key6": "çevrimiçi zamanlayıcı",
+      "key7": "ağ zamanlayıcısı",
+      "key8": "Rubikler",
+      "key9": "wca"
+    },
+    "title": "Nexus Zamanlayıcı - Profesyonel Rubik Küp Zamanlayıcısı"
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Zamanlayıcı - Profesyonel Rubik Küp Zamanlayıcısı"
   }
 }
