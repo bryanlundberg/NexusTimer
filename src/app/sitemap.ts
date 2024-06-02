@@ -1,7 +1,7 @@
 import { defaultLocale, locales } from "@/navigation";
 import { MetadataRoute } from "next";
 
-const pathnames = ["/", "/cubes", "/solves", "stats"];
+const pathnames = ["/", "/cubes", "/solves", "/stats"];
 const host = "https://nexustimer.pro";
 
 export default function sitemap(): MetadataRoute.Sitemap {
