@@ -10,7 +10,7 @@ export default function FullscreenOption() {
       <div className="absolute hidden sm:block right-4 top-4">
         <InteractiveIcon
           icon={isFullScreen ? <ExitFullScreen /> : <FullScreen />}
-          handleClick={toggleFullScreen}
+          onClick={toggleFullScreen}
         />
       </div>
     </>

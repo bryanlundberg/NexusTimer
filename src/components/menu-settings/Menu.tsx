@@ -20,8 +20,7 @@ import { useTranslations } from "next-intl";
 import MenuSelectLanguage from "./MenuSelectLanguage";
 
 export default function MenuSettings() {
-  const { settingsOpen, setSettingsOpen, settings, setSettings } =
-    useSettingsModalStore();
+  const { settingsOpen, setSettingsOpen, settings } = useSettingsModalStore();
 
   const { isSolving } = useTimerStore();
   const t = useTranslations("Index.Settings-menu");
@@ -53,7 +52,7 @@ export default function MenuSettings() {
                 </div>
               </div>
 
-              <MenuSelectLanguage settings={settings} />
+              <MenuSelectLanguage />
 
               <MenuSection icon={<Clock />} title={t("title")}>
                 <MenuOption

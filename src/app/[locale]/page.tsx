@@ -9,9 +9,11 @@ import HintPanel from "@/components/timer/HintPanel";
 import ScrambleModal from "@/components/timer/ScrambleModal";
 import useInitializeTimer from "@/hooks/useInitializeHint";
 import ImportModal from "@/components/menu-settings/ImportModal";
+import useForceHashSettings from "@/hooks/useForceHashSettings";
 
 export default function Home() {
   useInitializeTimer();
+  useForceHashSettings();
   return (
     <>
       <TimerContainer>

@@ -26,7 +26,6 @@
     "fast-sort": "3.4.0",
     "framer-motion": "^10.17.4",
     "idb-wrapper": "^1.7.2",
-    "js-cookie": "^3.0.5",
     "lightweight-charts": "^4.1.4",
     "next": "14.1.1",
     "next-intl": "^3.14.1",

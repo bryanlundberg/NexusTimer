@@ -5,7 +5,7 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { InteractiveIcon } from "./InteractiveIcon";
 import { ScrambleZone } from "./ScrambleZone";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 
 export default function HeaderTimer() {
@@ -24,20 +24,17 @@ export default function HeaderTimer() {
             pathname: "/",
             hash: `${t("settings")}`,
           }}
+          onClick={() => {
+            setSettingsOpen(!settingsOpen);
+          }}
         >
-          <InteractiveIcon
-            icon={<Settings />}
-            handleClick={() => {
-              setSettingsOpen(!settingsOpen);
-            }}
-            animation={true}
-          />
+          <InteractiveIcon icon={<Settings />} animation={true} />
         </Link>
 
         <Select />
         <InteractiveIcon
           icon={<Reload />}
-          handleClick={() => {
+          onClick={() => {
             if (selectedCube) {
               setNewScramble(selectedCube);
             }
