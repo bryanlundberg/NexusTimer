@@ -1,9 +1,11 @@
-import ChatBubble from "@/icons/ChatBubble";
-import Flag from "@/icons/Flag";
-import NoSymbol from "@/icons/NoSymbol";
 import { Solve } from "@/interfaces/Solve";
 import updateSolve from "@/lib/updateSolve";
 import { useTimerStore } from "@/store/timerStore";
+import {
+  ChatBubbleBottomCenterIcon,
+  FlagIcon,
+  NoSymbolIcon,
+} from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 
 export default function SolveOptions({ solve }: { solve: Solve }) {
@@ -79,7 +81,7 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
           onClick={handleDeleteSolve}
           onTouchStart={handleDeleteSolve}
         >
-          <NoSymbol />
+          <NoSymbolIcon className="w-4 h-4" />
         </button>
         <button
           type="button"
@@ -96,7 +98,7 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
           onClick={handleBookmark}
           onTouchStart={handleBookmark}
         >
-          <Flag />
+          <FlagIcon className="w-4 h-4" />
         </button>
 
         <button
@@ -115,9 +117,7 @@ export default function SolveOptions({ solve }: { solve: Solve }) {
             }
           }}
         >
-          <div className="w-4 h-4">
-            <ChatBubble />
-          </div>
+          <ChatBubbleBottomCenterIcon className="w-4 h-4" />
         </button>
       </div>
     </>

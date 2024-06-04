@@ -1,7 +1,10 @@
-import ExitFullScreen from "@/icons/ExitFullScreen";
+import {
+  ArrowDownCircleIcon,
+  ArrowDownLeftIcon,
+} from "@heroicons/react/24/outline";
 import { InteractiveIcon } from "./InteractiveIcon";
-import FullScreen from "@/icons/FullScreen";
 import { useFullScreen } from "@/hooks/useFullScreen";
+import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 
 export default function FullscreenOption() {
   const { isFullScreen, toggleFullScreen } = useFullScreen();
@@ -9,7 +12,13 @@ export default function FullscreenOption() {
     <>
       <div className="absolute hidden sm:block right-4 top-4">
         <InteractiveIcon
-          icon={isFullScreen ? <ExitFullScreen /> : <FullScreen />}
+          icon={
+            isFullScreen ? (
+              <ArrowDownLeftIcon className="w-6 h-6 hover:opacity-85 transition duration-200" />
+            ) : (
+              <ArrowUpRightIcon className="w-6 h-6 hover:opacity-85 transition duration-200" />
+            )
+          }
           onClick={toggleFullScreen}
         />
       </div>

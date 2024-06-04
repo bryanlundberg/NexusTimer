@@ -1,7 +1,5 @@
 "use client";
 import { Button } from "@/components/button/index";
-import MoveAll from "@/icons/MoveAll";
-import Trash from "@/icons/Trash";
 import Select from "@/components/Select";
 import ModalSolve from "@/components/solves/ModalSolve";
 import { OverallContainer } from "@/components/OverallContainer";
@@ -16,6 +14,7 @@ import { useTimerStore } from "@/store/timerStore";
 import MoveModal from "@/components/solves/MoveModal";
 import ConfirmDelete from "@/components/solves/ConfirmDelete";
 import { useTranslations } from "next-intl";
+import { FolderArrowDownIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 export default function SolvesPage() {
   const {
@@ -56,7 +55,7 @@ export default function SolvesPage() {
             <ButtonsSection currentTab={currentTab}>
               <Button
                 onClick={() => setIsOpenMoveModal(true)}
-                icon={<MoveAll />}
+                icon={<FolderArrowDownIcon className="w-4 h-4" />}
                 label={t("Inputs.move-all")}
                 isDisabled={
                   selectedCube && selectedCube.solves.session.length > 0
@@ -66,11 +65,7 @@ export default function SolvesPage() {
               />
               <Button
                 onClick={() => setIsOpenDeleteModal(true)}
-                icon={
-                  <div className="w-4 h-4">
-                    <Trash />
-                  </div>
-                }
+                icon={<TrashIcon className="w-4 h-4" />}
                 label={t("Inputs.trash-all")}
                 isDisabled={
                   selectedCube && selectedCube.solves.session.length > 0

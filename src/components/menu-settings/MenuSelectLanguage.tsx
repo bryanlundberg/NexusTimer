@@ -1,4 +1,3 @@
-import Language from "@/icons/Language";
 import { MenuSection } from "./MenuSection";
 import { useLocale, useTranslations } from "next-intl";
 import { languages } from "@/lib/const/languages";
@@ -6,6 +5,7 @@ import { sort } from "fast-sort";
 import { ChangeEvent } from "react";
 import { useRouter } from "next/navigation";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import { GlobeAltIcon, LanguageIcon } from "@heroicons/react/24/solid";
 
 export default function MenuSelectLanguage() {
   const { setSettingsOpen } = useSettingsModalStore();
@@ -21,7 +21,10 @@ export default function MenuSelectLanguage() {
 
   return (
     <>
-      <MenuSection icon={<Language />} title={t("locale")}>
+      <MenuSection
+        icon={<GlobeAltIcon className="w-6 h-6" />}
+        title={t("locale")}
+      >
         <div className="flex justify-between">
           <div className="ms-12">{t("language")}</div>
           <div className="me-6">

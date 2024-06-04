@@ -1,12 +1,11 @@
-import Reload from "@/icons/Reload";
 import Select from "../Select";
-import Settings from "@/icons/Settings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { InteractiveIcon } from "./InteractiveIcon";
 import { ScrambleZone } from "./ScrambleZone";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
+import { ArrowPathIcon, Cog6ToothIcon } from "@heroicons/react/24/solid";
 
 export default function HeaderTimer() {
   const { selectedCube, setNewScramble, isSolving, timerStatus } =
@@ -28,12 +27,15 @@ export default function HeaderTimer() {
             setSettingsOpen(!settingsOpen);
           }}
         >
-          <InteractiveIcon icon={<Settings />} animation={true} />
+          <InteractiveIcon
+            icon={<Cog6ToothIcon className="w-6 h-6" />}
+            animation={true}
+          />
         </Link>
 
         <Select />
         <InteractiveIcon
-          icon={<Reload />}
+          icon={<ArrowPathIcon className="w-6 h-6" />}
           onClick={() => {
             if (selectedCube) {
               setNewScramble(selectedCube);

@@ -1,4 +1,4 @@
-import SelectOptions from "@/icons/SelectOptions";
+import { ChevronUpDownIcon } from "@heroicons/react/16/solid";
 
 interface SelectToggleButton {
   text: string;
@@ -23,7 +23,7 @@ export function SelectToggleButton({
       >
         <div>{text}</div>
         <div>
-          <SelectOptions />
+          <ChevronUpDownIcon className="w-5 h-5" />
         </div>
       </button>
     </>

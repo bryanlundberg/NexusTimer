@@ -1,5 +1,4 @@
-import ArrowRays from "@/icons/ArrowRays";
-import CubeIcon from "@/icons/Cube";
+import { CubeIcon, CursorArrowRaysIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
 type Icon = "no-cube-selected" | "no-solves";
@@ -17,7 +16,11 @@ export default function EmptySolves({
         href="/"
         className="flex flex-col items-center justify-center gap-3 m-3 text-lg border border-dashed rounded-md grow border-zinc-600"
       >
-        {icon === "no-cube-selected" ? <ArrowRays /> : <CubeIcon />}
+        {icon === "no-cube-selected" ? (
+          <CursorArrowRaysIcon className="w-6 h-6" />
+        ) : (
+          <CubeIcon className="w-6 h-6" />
+        )}
         <div className="text-center">{message}</div>
       </Link>
     </>

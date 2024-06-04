@@ -1,9 +1,8 @@
 import exportDataToFile from "@/lib/exportDataToFile";
 import { Button } from "@/components/button";
-import Import from "@/icons/Import";
-import Export from "@/icons/Export";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTranslations } from "next-intl";
+import { BarsArrowDownIcon, BarsArrowUpIcon } from "@heroicons/react/24/solid";
 
 export function DataImportExport() {
   const t = useTranslations("Index.Settings-menu");
@@ -15,14 +14,14 @@ export function DataImportExport() {
         label={t("import-from-file")}
         onClick={() => setImportModalOpen(true)}
         minimalistic={false}
-        icon={<Import />}
+        icon={<BarsArrowDownIcon className="w-6 h-6" />}
       />
       <Button
         className="font-normal transition duration-400"
         label={t("export-to-file")}
         onClick={exportDataToFile}
         minimalistic={false}
-        icon={<Export />}
+        icon={<BarsArrowUpIcon className="w-6 h-6" />}
       />
     </div>
   );

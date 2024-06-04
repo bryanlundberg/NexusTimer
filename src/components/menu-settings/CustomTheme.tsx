@@ -1,8 +1,8 @@
 import { ChangeEvent, useRef } from "react";
 import { Button } from "../button";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
-import ImageIcon from "@/icons/ImageIcon";
 import { useTranslations } from "next-intl";
+import { GifIcon, PhotoIcon } from "@heroicons/react/24/solid";
 
 export default function CustomTheme() {
   const dataInputRef = useRef<HTMLInputElement>(null);
@@ -66,7 +66,7 @@ export default function CustomTheme() {
         label={t("custom-background-image")}
         minimalistic={false}
         onClick={() => dataInputRef.current && dataInputRef.current.click()}
-        icon={<ImageIcon />}
+        icon={<PhotoIcon className="w-6 h-6 text-neutral-600" />}
       />
       <div className="block ms-9 text-xs align-bottom">
         {t("format")} .png .jpg .gif

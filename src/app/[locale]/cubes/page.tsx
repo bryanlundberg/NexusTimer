@@ -2,7 +2,6 @@
 import { Button } from "@/components/button/index";
 import { InputText } from "@/components/input-text/index";
 import ModalCreate from "@/components/cubes/ModalCreate";
-import Plus from "@/icons/Plus";
 import { OverallContainer } from "@/components/OverallContainer";
 import { CubesContent } from "@/components/cubes/CubesContent";
 import { OverallHeader } from "@/components/OverallHeader";
@@ -12,6 +11,7 @@ import { AnimatePresence } from "framer-motion";
 import useModalCube from "@/hooks/useModalCube";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import { useTranslations } from "next-intl";
+import { PlusIcon } from "@heroicons/react/24/solid";
 
 export default function CubesPage() {
   const { filterCubes, handleSearchFilter } = useCubes();
@@ -33,7 +33,7 @@ export default function CubesPage() {
                 setSelectedCategory("2x2");
                 setModalOpen(true);
               }}
-              icon={<Plus />}
+              icon={<PlusIcon className="w-6 h-6" />}
               label={t("cube")}
             />
           </OptionsContainer>

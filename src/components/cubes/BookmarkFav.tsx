@@ -1,5 +1,5 @@
-import FavoriteSolid from "@/icons/FavoriteSolid";
 import { Cube } from "@/interfaces/Cube";
+import { StarIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
 export default function BookmarkFav({
@@ -25,7 +25,7 @@ export default function BookmarkFav({
         checked ? "bg-transparent text-yellow-500" : "text-transparent"
       } text-sm flex justify-center items-center`}
     >
-      <FavoriteSolid />
+      <StarIcon className="w-6 h-6" />
     </button>
   );
 }
