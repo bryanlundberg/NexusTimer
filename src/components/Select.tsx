@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { Categories } from "@/interfaces/Categories";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import genId from "@/lib/genId";

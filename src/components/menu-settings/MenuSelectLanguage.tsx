@@ -3,9 +3,9 @@ import { useLocale, useTranslations } from "next-intl";
 import { languages } from "@/lib/const/languages";
 import { sort } from "fast-sort";
 import { ChangeEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import { GlobeAltIcon, LanguageIcon } from "@heroicons/react/24/solid";
+import { GlobeAltIcon } from "@heroicons/react/24/solid";
 
 export default function MenuSelectLanguage() {
   const { setSettingsOpen } = useSettingsModalStore();

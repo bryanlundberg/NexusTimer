@@ -4,7 +4,7 @@ import { MenuSection } from "@/components/menu-settings/MenuSection";
 import { MenuOption } from "@/components/menu-settings/MenuOption";
 import { DataImportExport } from "@/components/menu-settings/DataImportExport";
 import { useTimerStore } from "@/store/timerStore";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import useEscape from "@/hooks/useEscape";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";

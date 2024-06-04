@@ -1,5 +1,5 @@
 import { usePathname } from "@/navigation";
-import Link from "next/link";
+import { Link } from "@/navigation";
 
 interface NavItem {
   path: string;

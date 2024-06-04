@@ -4,7 +4,7 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 import { useRef, useState } from "react";
 import Loading from "../Loading";
 import { getAllCubes } from "@/db/dbOperations";

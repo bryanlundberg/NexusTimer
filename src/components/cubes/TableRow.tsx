@@ -2,7 +2,7 @@ import { Cube } from "@/interfaces/Cube";
 import BookmarkFav from "@/components/cubes/BookmarkFav";
 import { useTimerStore } from "@/store/timerStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 import { getAllCubes, saveCube } from "@/db/dbOperations";
 import { useTranslations } from "next-intl";
 import {
