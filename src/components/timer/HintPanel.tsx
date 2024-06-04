@@ -1,7 +1,7 @@
 import useClickOutside from "@/hooks/useClickOutside";
-import LightBulb from "@/icons/LightBulb";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
+import { LightBulbIcon } from "@heroicons/react/24/solid";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
@@ -29,7 +29,7 @@ export default function HintPanel() {
               <div className="p-2 border-b text-2xl border-gray-300 flex justify-between items-center">
                 <div>{t("hint")}</div>
                 <div className="text-black">
-                  <LightBulb />
+                  <LightBulbIcon className="w-6 h-6" />
                 </div>
               </div>
               <div className="p-3 max-h-full overflow-auto">

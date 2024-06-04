@@ -3,11 +3,13 @@ import EmptySolves from "@/components/solves/EmptySolves";
 import { Solve } from "@/interfaces/Solve";
 import { VirtualizedGrid } from "@mierak/react-virtualized-grid";
 import { useSolvesStore } from "@/store/SolvesStore";
-import FavoriteSolid from "@/icons/FavoriteSolid";
-import ChatBubble from "@/icons/ChatBubble";
 import formatTime from "@/lib/formatTime";
 import formatDate from "@/lib/formatDate";
 import { useTranslations } from "next-intl";
+import {
+  ChatBubbleBottomCenterTextIcon,
+  StarIcon,
+} from "@heroicons/react/24/solid";
 
 interface SolvesArea {
   displaySolves: Solve[] | null;
@@ -60,14 +62,14 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
             {formatDate(displaySolves[index].endTime).slice(0, 5)}
           </div>
           {displaySolves[index].bookmark && (
-            <div className="absolute z-20 text-xs right-1 top-1 text-yellow-500 w-4 h-4">
-              <FavoriteSolid />
+            <div className="absolute z-20 text-xs right-1 top-1 text-yellow-500">
+              <StarIcon className="w-4 h-4" />
             </div>
           )}
 
           {displaySolves[index].comment && (
-            <div className="absolute z-20 text-xs bottom-1 left-1 light:text-neutral-500 dark:text-neutral-300 w-4 h-4">
-              <ChatBubble />
+            <div className="absolute z-20 text-xs bottom-1 left-1 light:text-neutral-500 dark:text-neutral-300">
+              <ChatBubbleBottomCenterTextIcon className="w-4 h-4" />
             </div>
           )}
         </div>

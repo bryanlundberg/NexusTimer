@@ -1,13 +1,15 @@
 import { Cube } from "@/interfaces/Cube";
 import BookmarkFav from "@/components/cubes/BookmarkFav";
-import Ellipsis from "@/icons/Ellipsis";
 import { useTimerStore } from "@/store/timerStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
-import Play from "@/icons/Play";
-import Stop from "@/icons/Stop";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/navigation";
 import { getAllCubes, saveCube } from "@/db/dbOperations";
 import { useTranslations } from "next-intl";
+import {
+  EllipsisHorizontalIcon,
+  PlayIcon,
+  StopIcon,
+} from "@heroicons/react/24/solid";
 
 export default function TableRow({ cube }: { cube: Cube }) {
   const t = useTranslations("Index.CubesPage");
@@ -81,16 +83,14 @@ export default function TableRow({ cube }: { cube: Cube }) {
         <div className="hidden text-center align-middle md:table-cell">
           {cube?.solves?.session.length > 0 ? (
             <div className="flex items-center justify-center gap-1">
-              <div className="w-4 h-4">
-                <Play />
-              </div>
+              <PlayIcon className="w-4 h-4" />
+
               <span>{t("using")}</span>
             </div>
           ) : (
             <div className="flex items-center justify-center gap-1">
-              <div className="w-4 h-4">
-                <Stop />
-              </div>
+              <StopIcon className="w-4 h-4" />
+
               <span>{t("idle")}</span>
             </div>
           )}
@@ -105,7 +105,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
               setModalOpen(true);
             }}
           >
-            <Ellipsis />
+            <EllipsisHorizontalIcon className="w-6 h-6" />
           </button>
         </div>
       </div>

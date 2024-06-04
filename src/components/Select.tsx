@@ -1,8 +1,6 @@
-import PlusIcon from "@/icons/PlusIcon";
-import SelectOptions from "@/icons/SelectOptions";
 import { useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { Categories } from "@/interfaces/Categories";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import genId from "@/lib/genId";
@@ -13,6 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import { Cube } from "@/interfaces/Cube";
 import { useTranslations } from "next-intl";
+import { ChevronUpDownIcon, PlusIcon } from "@heroicons/react/24/solid";
 
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
@@ -47,7 +46,7 @@ export default function Select() {
               <MiniatureIcon category={selectedCube.category} />
             ) : null}
             <div>{selectedCube ? selectedCube.name : t("select")}</div>
-            <SelectOptions />
+            <ChevronUpDownIcon className="w-5 h-5" />
           </div>
         </button>
         <AnimatePresence>
@@ -186,7 +185,7 @@ function AddCubeOption() {
     >
       <Link href="/cubes" onClick={() => setModalOpen(true)}>
         <div className="flex items-center justify-start gap-2 align-middle">
-          <PlusIcon />
+          <PlusIcon className="w-6 h-6" />
           <div>{t("add-cube")}</div>
         </div>
       </Link>

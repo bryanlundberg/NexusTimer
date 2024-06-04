@@ -5,9 +5,9 @@ import genId from "@/lib/genId";
 import useModalCube from "@/hooks/useModalCube";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import DeleteModal from "@/components/cubes/DeleteModal";
-import CloseModal from "@/icons/CloseModal";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 export default function ModalCreate() {
   const { editingCube } = useCubesModalStore();
@@ -83,7 +83,7 @@ export default function ModalCreate() {
                 data-modal-hide="defaultModal"
                 onClick={handleCloseModal}
               >
-                <CloseModal />
+                <XMarkIcon className="w-6 h-6" />
                 <span className="sr-only">{t("Inputs.cancel")}</span>
               </button>
             </div>
@@ -143,7 +143,7 @@ export default function ModalCreate() {
                 type="button"
                 className="px-5 py-2 text-sm font-medium text-center text-white transition duration-200 bg-green-600 border border-green-500 rounded-md hover:border-green-700 hover:bg-green-700"
               >
-                {editingCube ? t("Inputs.cancel") : t("Inputs.create")}
+                {editingCube ? t("Inputs.confirm") : t("Inputs.create")}
               </button>
             </div>
           </motion.div>

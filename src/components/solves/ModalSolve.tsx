@@ -4,25 +4,29 @@ import { useTimerStore } from "@/store/timerStore";
 import formatTime from "@/lib/formatTime";
 import moveSolve from "@/lib/moveSolve";
 import { ScrambleDisplay } from "@/components/scramble-display/index";
-import CalendarDays from "@/icons/CalentarDays";
 import useEscape from "@/hooks/useEscape";
 import { format } from "date-fns";
-import CubeTransparent from "@/icons/CubeTransparent";
-import ChevronDown from "@/icons/ChevronDown";
-import ChatBubble from "@/icons/ChatBubble";
-import ElipsisHorizontal from "@/icons/ElipsisHorizontal";
-import ArchiveBox from "@/icons/ArchiveBox";
-import DocumentDuplicate from "@/icons/DocumentDuplicate";
-import Trash from "@/icons/Trash";
 import { useEffect, useState, useRef } from "react";
-import ChevronUp from "@/icons/ChevronUp";
 import { AnimatePresence, motion } from "framer-motion";
 import useClickOutside from "@/hooks/useClickOutside";
 import { Solve } from "@/interfaces/Solve";
-import Favorite from "@/icons/Favorite";
-import FavoriteSolid from "@/icons/FavoriteSolid";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
 import { useTranslations } from "next-intl";
+import {
+  ArchiveBoxArrowDownIcon,
+  CalendarDaysIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  CubeTransparentIcon,
+  DocumentDuplicateIcon,
+  EllipsisHorizontalIcon,
+  StarIcon,
+  TrashIcon,
+} from "@heroicons/react/24/solid";
+import {
+  StarIcon as StarIconO,
+  ChatBubbleBottomCenterIcon as ChatBubbleBottomCenterIconO,
+} from "@heroicons/react/24/outline";
 
 export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -135,7 +139,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                   </span>
                 </div>
                 <div className="flex items-center gap-3 text-neutral-500">
-                  <CalendarDays />
+                  <CalendarDaysIcon className="w-6 h-6" />
                   <div className="flex flex-col text-end">
                     <div>
                       {format(solve.endTime, "dd/MMM/yyyy").replace(/\//g, " ")}
@@ -153,7 +157,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                   onClick={() => setShowScramble(!showScramble)}
                 >
                   <div>
-                    <CubeTransparent />
+                    <CubeTransparentIcon className="w-4 h-4" />
                   </div>
                   <div
                     className={`${
@@ -163,7 +167,11 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                     {solve.scramble}
                   </div>
                   <div className="transition duration-200 hover:text-neutral-500 hover:cursor-pointer">
-                    {showScramble ? <ChevronUp /> : <ChevronDown />}
+                    {showScramble ? (
+                      <ChevronUpIcon className="w-4 h-4" />
+                    ) : (
+                      <ChevronDownIcon className="w-4 h-4" />
+                    )}
                   </div>
                 </div>
                 {showScramble && (
@@ -188,18 +196,22 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       setShowScramble(false);
                     }}
                   >
-                    <ElipsisHorizontal />
+                    <EllipsisHorizontalIcon className="w-5 h-5" />
                   </div>
                 </div>
                 <div className="flex items-center justify-center gap-3">
                   <div
-                    className="w-5 h-5 transition duration-200 hover:text-neutral-500 text-neutral-700 hover:cursor-pointer"
+                    className="w-5 h-5 transition duration-200 hover:text-neutral-500 text-neutral-700 hover:cursor-pointer flex justify-center items-center"
                     onClick={() => handleBookmark(solve)}
                   >
-                    {solve.bookmark ? <FavoriteSolid /> : <Favorite />}
+                    {solve.bookmark ? (
+                      <StarIcon className="w-4 h-4" />
+                    ) : (
+                      <StarIconO className="w-4 h-4" />
+                    )}
                   </div>
                   <div
-                    className="w-5 h-5 transition duration-200 hover:text-neutral-500 text-neutral-700 hover:cursor-pointer"
+                    className="w-5 h-5 transition duration-200 hover:text-neutral-500 text-neutral-700 hover:cursor-pointer flex justify-center items-center"
                     onClick={() => {
                       const comment = window.prompt(`${t("enter-a-comment")}`);
                       if (comment) {
@@ -207,7 +219,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       }
                     }}
                   >
-                    <ChatBubble />
+                    <ChatBubbleBottomCenterIconO className="w-4 h-4" />
                   </div>
                   <div
                     className="text-lg font-medium transition duration-200 hover:text-neutral-500 hover:cursor-pointer text-neutral-700"
@@ -236,7 +248,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       }
                     >
                       <div className="w-4 h-4">
-                        <ArchiveBox />
+                        <ArchiveBoxArrowDownIcon className="w-6 h-6" />
                       </div>
                       <div>
                         {currentTab === "Session"
@@ -253,7 +265,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       }
                     >
                       <div className="w-4 h-4">
-                        <DocumentDuplicate />
+                        <DocumentDuplicateIcon className="w-6 h-6" />
                       </div>
                       <div>{t("copy")}</div>
                     </div>
@@ -262,7 +274,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       onClick={() => handleDelete(solve)}
                     >
                       <div className="w-4 h-4">
-                        <Trash />
+                        <TrashIcon className="w-6 h-6" />
                       </div>
                       <div>{t("remove")}</div>
                     </div>

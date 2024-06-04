@@ -1,35 +1,38 @@
-import Clock from "@/icons/Clock";
-import ClockSolid from "@/icons/ClockSolid";
-import Cubes from "@/icons/Cubes";
-import CubesSolid from "@/icons/CubesSolid";
-import Metrics from "@/icons/Metrics";
-import MetricsSolid from "@/icons/MetricsSolid";
-import Stack from "@/icons/Stack";
-import StackSolid from "@/icons/StackSolid";
 import { NavContainer } from "@/components/navbar/NavContainer";
 import { NavItem } from "@/components/navbar/NavItem";
-import genId from "@/lib/genId";
+import {
+  ClockIcon as ClockIconO,
+  CubeIcon as CubeIconO,
+  ChartBarIcon as ChartBarIconO,
+  Square3Stack3DIcon as Square3Stack3DIconO,
+} from "@heroicons/react/24/outline";
+import {
+  ChartBarIcon,
+  ClockIcon,
+  CubeIcon,
+  Square3Stack3DIcon,
+} from "@heroicons/react/24/solid";
 
 const navigation: Navigation = [
   {
     path: "/",
-    normalIcon: <Clock />,
-    solidIcon: <ClockSolid />,
+    normalIcon: <ClockIconO className="w-6 h-6" />,
+    solidIcon: <ClockIcon className="w-6 h-6" />,
   },
   {
     path: "/solves",
-    normalIcon: <Stack />,
-    solidIcon: <StackSolid />,
+    normalIcon: <Square3Stack3DIconO className="w-6 h-6" />,
+    solidIcon: <Square3Stack3DIcon className="w-6 h-6" />,
   },
   {
     path: "/stats",
-    normalIcon: <Metrics />,
-    solidIcon: <MetricsSolid />,
+    normalIcon: <ChartBarIconO className="w-6 h-6" />,
+    solidIcon: <ChartBarIcon className="w-6 h-6" />,
   },
   {
     path: "/cubes",
-    normalIcon: <Cubes />,
-    solidIcon: <CubesSolid />,
+    normalIcon: <CubeIconO className="w-6 h-6" />,
+    solidIcon: <CubeIcon className="w-6 h-6" />,
   },
 ];
 
@@ -47,7 +50,7 @@ export default function Navbar() {
       {navigation.map((item: NavItem) => {
         return (
           <NavItem
-            key={genId()}
+            key={item.path}
             path={item.path}
             solidIcon={item.solidIcon}
             normalIcon={item.normalIcon}

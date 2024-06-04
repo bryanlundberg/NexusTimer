@@ -1,12 +1,11 @@
-import LightBulb from "@/icons/LightBulb";
 import genSolution from "@/lib/timer/genSolution";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import Loading from "../Loading";
-import Pencil from "@/icons/Pencil";
 import { AnimatePresence, motion } from "framer-motion";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import { useTranslations } from "next-intl";
+import { LightBulbIcon, PencilIcon } from "@heroicons/react/24/solid";
 
 export function ScrambleZone() {
   const {
@@ -65,7 +64,7 @@ export function ScrambleZone() {
                 }}
                 className="hover:scale-105 light:hover:text-neutral-500 dark:hover:text-neutral-200 duration-200 transition"
               >
-                <Pencil />
+                <PencilIcon className="w-6 h-6" />
               </div>
 
               {selectedCube?.category &&
@@ -83,7 +82,7 @@ export function ScrambleZone() {
                     }}
                     className="hover:scale-105 hover:text-yellow-600 duration-200 transition"
                   >
-                    <LightBulb />
+                    <LightBulbIcon className="w-6 h-6" />
                   </div>
                 )}
             </motion.div>

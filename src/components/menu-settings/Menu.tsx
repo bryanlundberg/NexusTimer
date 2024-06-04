@@ -1,23 +1,27 @@
-import ArrowLeft from "@/icons/ArrowLeft";
-import CpuChip from "@/icons/CpuChip";
-import BellAlert from "@/icons/BellAlert";
-import Clock from "@/icons/Clock";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import Sparkles from "@/icons/Sparkles";
 import ThemeSelect from "@/components/menu-settings/ThemeSelect";
 import { MenuSection } from "@/components/menu-settings/MenuSection";
 import { MenuOption } from "@/components/menu-settings/MenuOption";
 import { DataImportExport } from "@/components/menu-settings/DataImportExport";
 import { useTimerStore } from "@/store/timerStore";
-import Folder from "@/icons/Folder";
-import Shield from "@/icons/Shield";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import useEscape from "@/hooks/useEscape";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import CustomTheme from "./CustomTheme";
 import { useTranslations } from "next-intl";
 import MenuSelectLanguage from "./MenuSelectLanguage";
+import {
+  ArrowLeftIcon,
+  BellAlertIcon,
+  ClockIcon,
+  CogIcon,
+  CpuChipIcon,
+  FolderIcon,
+  IdentificationIcon,
+  ShieldCheckIcon,
+  SparklesIcon,
+} from "@heroicons/react/24/solid";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings } = useSettingsModalStore();
@@ -45,7 +49,7 @@ export default function MenuSettings() {
                   onClick={() => setSettingsOpen(false)}
                   className="flex items-center cursor-pointer ms-3"
                 >
-                  <ArrowLeft />
+                  <ArrowLeftIcon className="w-6 h-6" />
                 </Link>
                 <div className="flex-1 text-2xl font-medium text-center">
                   {t("title")}
@@ -54,7 +58,10 @@ export default function MenuSettings() {
 
               <MenuSelectLanguage />
 
-              <MenuSection icon={<Clock />} title={t("title")}>
+              <MenuSection
+                icon={<CogIcon className="w-6 h-6" />}
+                title={t("timer")}
+              >
                 <MenuOption
                   setting={settings.timer.inspection}
                   label={t("inspection")}
@@ -73,7 +80,10 @@ export default function MenuSettings() {
                 />
               </MenuSection>
 
-              <MenuSection icon={<CpuChip />} title={t("features")}>
+              <MenuSection
+                icon={<CpuChipIcon className="w-6 h-6" />}
+                title={t("features")}
+              >
                 <MenuOption
                   setting={settings.features.scrambleImage}
                   label={t("scramble-image")}
@@ -96,7 +106,10 @@ export default function MenuSettings() {
                 />
               </MenuSection>
 
-              <MenuSection icon={<BellAlert />} title={t("alerts")}>
+              <MenuSection
+                icon={<BellAlertIcon className="w-6 h-6" />}
+                title={t("alerts")}
+              >
                 <MenuOption
                   setting={settings.alerts.bestTime}
                   label={t("best-time")}
@@ -112,15 +125,24 @@ export default function MenuSettings() {
                 />
               </MenuSection>
 
-              <MenuSection icon={<Sparkles />} title={t("theme")}>
+              <MenuSection
+                icon={<SparklesIcon className="w-6 h-6" />}
+                title={t("theme")}
+              >
                 <ThemeSelect />
                 <CustomTheme />
               </MenuSection>
 
-              <MenuSection icon={<Folder />} title={t("data")}>
+              <MenuSection
+                icon={<FolderIcon className="w-6 h-6" />}
+                title={t("data")}
+              >
                 <DataImportExport />
               </MenuSection>
-              <MenuSection icon={<Shield />} title={t("about")}>
+              <MenuSection
+                icon={<IdentificationIcon className="w-6 h-6" />}
+                title={t("about")}
+              >
                 <div className="flex flex-col justify-center items-center gap-3">
                   <Image
                     src={"/brand_logo.svg"}
