@@ -1,42 +1,27 @@
 import { useEffect } from "react";
-import cubeSolver from "cube-solver";
 import { useTimerStore } from "@/store/timerStore";
 
 export default function useInitializeTimer() {
   const { setInitializing } = useTimerStore();
 
   useEffect(() => {
-    let isMounted = true;
+    const worker = new Worker(
+      new URL("@/worker/solver333Worker.js", import.meta.url)
+    );
 
-    const initializePromises = [
-      cubeSolver.initialize("cross"),
-      cubeSolver.initialize("xcross"),
-    ];
+    worker.onmessage = (event) => {
+      const { success, error } = event.data;
 
-    const timer = setTimeout(() => {
-      if (isMounted) {
-        window.location.reload();
+      if (success) {
+        setInitializing(false);
       }
-    }, 5000);
+    };
 
-    Promise.all(initializePromises)
-      .then(() => {
-        if (isMounted) {
-          setInitializing(false);
-          clearTimeout(timer);
-        }
-      })
-      .catch((error) => {
-        console.error("Error during initialization:", error);
-
-        if (isMounted) {
-          window.location.reload();
-        }
-      });
+    worker.postMessage({ type: "cross" });
+    worker.postMessage({ type: "xcross" });
 
     return () => {
-      isMounted = false;
-      clearTimeout(timer);
+      worker.terminate();
     };
   }, [setInitializing]);
 }
