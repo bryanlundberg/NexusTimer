@@ -12,7 +12,7 @@ import useClickOutside from "@/hooks/useClickOutside";
 import useOpenClose from "@/hooks/useOpenClose";
 
 export default function MenuSelectLanguage() {
-  const { isOpen, close } = useOpenClose(false);
+  const { isOpen, close, toggle } = useOpenClose(false);
   const componentRef = useRef<HTMLDivElement | null>(null);
   useClickOutside(componentRef, () => close());
   const { setSettingsOpen } = useSettingsModalStore();
@@ -43,7 +43,7 @@ export default function MenuSelectLanguage() {
           <div className="ms-12">{t("language")}</div>
           <div className="me-6 relative">
             <Button
-              onClick={() => close()}
+              onClick={() => toggle()}
               label={labelData}
               icon={flagIcon}
               className="min-w-32 max-w-40 text-black font-mono"
