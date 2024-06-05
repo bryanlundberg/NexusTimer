@@ -57,7 +57,7 @@ export default function SolvesPage() {
                 onClick={() => setIsOpenMoveModal(true)}
                 icon={<FolderArrowDownIcon className="w-4 h-4" />}
                 label={t("Inputs.move-all")}
-                isDisabled={
+                disabled={
                   selectedCube && selectedCube.solves.session.length > 0
                     ? false
                     : true
@@ -67,7 +67,7 @@ export default function SolvesPage() {
                 onClick={() => setIsOpenDeleteModal(true)}
                 icon={<TrashIcon className="w-4 h-4" />}
                 label={t("Inputs.trash-all")}
-                isDisabled={
+                disabled={
                   selectedCube && selectedCube.solves.session.length > 0
                     ? false
                     : true
