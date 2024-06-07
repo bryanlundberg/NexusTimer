@@ -1,5 +1,6 @@
 import "./globals.css";
 import PreloadSettings from "@/components/PreloadSettings";
+import { roboto } from "@/fonts/fonts";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 
@@ -44,7 +45,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body>
+      <body className={roboto.className}>
         <NextIntlClientProvider messages={messages}>
           <PreloadSettings>{children}</PreloadSettings>
         </NextIntlClientProvider>
