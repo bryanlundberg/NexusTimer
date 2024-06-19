@@ -240,14 +240,14 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                     className="absolute flex flex-col w-32 gap-3 py-2 mt-1 bg-white rounded-md"
                   >
                     <div
-                      className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                      className="flex items-start justify-start gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
                       onClick={() =>
                         currentTab === "Session"
                           ? handleMove(solve, "Session")
                           : handleMove(solve, "All")
                       }
                     >
-                      <div className="w-4 h-4">
+                      <div className="w-4 mr-3 h-4">
                         <ArchiveBoxArrowDownIcon className="w-6 h-6" />
                       </div>
                       <div>
@@ -257,23 +257,23 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       </div>
                     </div>
                     <div
-                      className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                      className="flex items-start justify-start gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
                       onClick={() =>
                         handleCopyToClipboard(
                           `[${formatTime(solve.time)}s] - ${solve.scramble}`
                         )
                       }
                     >
-                      <div className="w-4 h-4">
+                      <div className="w-4 mr-3 h-4">
                         <DocumentDuplicateIcon className="w-6 h-6" />
                       </div>
                       <div>{t("copy")}</div>
                     </div>
                     <div
-                      className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+                      className="flex items-start justify-start gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
                       onClick={() => handleDelete(solve)}
                     >
-                      <div className="w-4 h-4">
+                      <div className="w-4 mr-3 h-4">
                         <TrashIcon className="w-6 h-6" />
                       </div>
                       <div>{t("remove")}</div>
