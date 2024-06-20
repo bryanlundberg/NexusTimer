@@ -248,7 +248,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       }
                     >
                       <div className="w-4 h-4">
-                        <ArchiveBoxArrowDownIcon className="w-6 h-6" />
+                        <ArchiveBoxArrowDownIcon className="w-4 h-4 fill-none stroke-black" />
                       </div>
                       <div>
                         {currentTab === "Session"
@@ -265,7 +265,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       }
                     >
                       <div className="w-4 h-4">
-                        <DocumentDuplicateIcon className="w-6 h-6" />
+                        <DocumentDuplicateIcon className="w-4 h-4 fill-none stroke-black" />
                       </div>
                       <div>{t("copy")}</div>
                     </div>
@@ -274,7 +274,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                       onClick={() => handleDelete(solve)}
                     >
                       <div className="w-4 h-4">
-                        <TrashIcon className="w-6 h-6" />
+                        <TrashIcon className="w-4 h-4 fill-none stroke-black" />
                       </div>
                       <div>{t("remove")}</div>
                     </div>
