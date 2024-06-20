@@ -76,7 +76,7 @@ export default function SolvesPage() {
             </ButtonsSection>
           </div>
         </SolveFilters>
-        <SolvesArea displaySolves={displaySolves} />
+        <SolvesArea displaySolves={displaySolves} currentTab={currentTab} />
         <ModalSolve currentTab={currentTab} />
       </OverallContainer>
       {isOpenMoveModal && (
