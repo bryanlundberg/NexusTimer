@@ -27,9 +27,15 @@ export function SolvesArea({ displaySolves, currentTab }: SolvesArea) {
   const { setStatus, solve, setSolve } = useSolvesStore();
   const submenuRef = useRef<HTMLDivElement | null>(null);
   const [showOptions, setShowOptions] = useState<boolean>(false);
-  const [selectSolve , setSelectSolve] = useState<boolean>(false);
+  const [selectSolve, setSelectSolve] = useState<boolean>(false);
+  const [menuPosition, setMenuPosition] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
 
-  useClickOutside(submenuRef, () => {setShowOptions(false),setSelectSolve(false)});
+  useClickOutside(submenuRef, () => {
+    setShowOptions(false), setSelectSolve(false);
+  });
 
   if (!selectedCube) {
     return (
@@ -45,9 +51,13 @@ export function SolvesArea({ displaySolves, currentTab }: SolvesArea) {
     index: number
   ) => {
     event.preventDefault();
+    const target = event.currentTarget.getBoundingClientRect();
+    const positionX = target.left;
+    const positionY = target.bottom;
     setShowOptions(true);
     setSelectSolve(true);
     setSolve(displaySolves[index]);
+    setMenuPosition({ x: positionX, y: positionY });
   };
 
   return (
@@ -55,7 +65,7 @@ export function SolvesArea({ displaySolves, currentTab }: SolvesArea) {
       itemCount={displaySolves.length}
       rowHeight={60}
       cellWidth={150}
-      className="grid w-full grid-cols-3 gap-3 px-3 py-3 overflow-y-auto sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-6 mx-auto overflow-x-hidden"
+      className="grid w-full h-full grid-cols-3 gap-3 px-3 py-3 overflow-y-auto sm:grid-cols-4 md:grid-cols-6 xl:grid-cols-6 mx-auto overflow-x-hidden"
       gridGap={10}
       gridHeight={"minmax(60px, 100%)"}
     >
@@ -70,7 +80,7 @@ export function SolvesArea({ displaySolves, currentTab }: SolvesArea) {
             light:bg-neutral-100 light:shadow-sm light:shadow-neutral-400 light:hover:bg-neutral-200 light:text-zinc-800 
             dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:shadow-sm dark:text-neutral-200 
             ${
-              displaySolves[index] === solve && selectSolve 
+              displaySolves[index] === solve && selectSolve
                 ? "border border-solid light:border-black dark:border-white"
                 : ""
             }`}
@@ -101,12 +111,18 @@ export function SolvesArea({ displaySolves, currentTab }: SolvesArea) {
             </div>
           )}
 
-          {showOptions && displaySolves[index] === solve && (
-            <div className="absolute top-full left-0 z-50">
+          {showOptions && displaySolves[index] === solve && menuPosition && (
+            <div
+              className="fixed z-50"
+              style={{
+                top: menuPosition.y,
+                left: menuPosition.x,
+              }}
+            >
               <ContextMenu
                 currentTab={currentTab}
+                solve={solve}
                 submenuRef={submenuRef}
-                solve={displaySolves[index]}
               />
             </div>
           )}
