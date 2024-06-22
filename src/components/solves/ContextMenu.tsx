@@ -12,18 +12,23 @@ import {
 } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import React, { useRef } from "react";
+import React from "react";
+import { twMerge } from "tailwind-merge";
 
-interface ContextMenuProps {
+interface ContextMenuProps extends React.HTMLAttributes<HTMLDivElement> {
   currentTab: SolveTab;
   submenuRef: React.RefObject<HTMLDivElement>;
   solve: Solve | null;
+  setShowOptions?: () => void;
 }
 
 export default function ContextMenu({
   currentTab,
   submenuRef,
   solve,
+  className,
+  setShowOptions,
+  ...rest
 }: ContextMenuProps) {
   const t = useTranslations("Index.SolvesPage");
   const { setStatus } = useSolvesStore();
@@ -38,6 +43,9 @@ export default function ContextMenu({
     });
     mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
+    if (typeof setShowOptions === "function") {
+      setShowOptions();
+    }
   };
 
   const handleDelete = async (solve: Solve) => {
@@ -49,6 +57,9 @@ export default function ContextMenu({
     });
     mergeUpdateSelectedCube(updatedCube, cubes);
     setStatus(false);
+    if (typeof setShowOptions === "function") {
+      setShowOptions();
+    }
   };
 
   const handleCopyToClipboard = async (text: string) => {
@@ -56,6 +67,9 @@ export default function ContextMenu({
       await navigator.clipboard.writeText(text);
     }
     setStatus(false);
+    if (typeof setShowOptions === "function") {
+      setShowOptions();
+    }
   };
 
   return (
@@ -67,7 +81,10 @@ export default function ContextMenu({
             animate={{ y: 0, scale: 1, opacity: 1 }}
             exit={{ x: 0, scale: 0.9, opacity: 0 }}
             ref={submenuRef}
-            className="absolute flex flex-col w-32 gap-3 py-2 mt-1 bg-white rounded-md"
+            className={twMerge(
+              "absolute w-full flex flex-col gap-3 py-2 mt-1 bg-white rounded-md text-xs text-black",
+              className
+            )}
           >
             <div
               className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
@@ -85,7 +102,7 @@ export default function ContextMenu({
               </div>
             </div>
             <div
-              className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500 hover:cursor-pointer"
+              className="flex items-center gap-1 py-1 transition duration-200 ps-2 hover:text-neutral-500  hover:cursor-pointer"
               onClick={() =>
                 handleCopyToClipboard(
                   `[${formatTime(solve.time)}s] - ${solve.scramble}`

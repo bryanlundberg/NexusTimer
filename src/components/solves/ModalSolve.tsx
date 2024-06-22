@@ -203,6 +203,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                   submenuRef={submenuRef}
                   currentTab={currentTab}
                   solve={solve}
+                  className="max-w-32"
                 />
               )}
             </motion.div>
