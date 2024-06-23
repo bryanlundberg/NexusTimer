@@ -69,7 +69,7 @@ export function SolvesArea({ displaySolves, currentTab }: SolvesArea) {
             light:bg-neutral-100 light:shadow-sm light:shadow-neutral-400 light:hover:bg-neutral-200 light:text-zinc-800 
             dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:shadow-sm dark:text-neutral-200 
             ${
-              displaySolves[index] === solve && solve !== null
+              displaySolves[index] === solve && showOptions
                 ? "border border-neutral-600"
                 : "border-none"
             }`}
