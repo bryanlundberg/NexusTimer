@@ -55,7 +55,7 @@ export function SolvesArea({ displaySolves, currentTab }: SolvesArea) {
       itemCount={displaySolves.length}
       rowHeight={60}
       cellWidth={150}
-      className="p-3 pb-[70dvh]"
+      className="p-3 pb-[70dvh] overflow-x-hidden"
       gridGap={10}
     >
       {(index) => (
