@@ -56,16 +56,37 @@ export default function useTimer() {
     const startInspection = () => {
       startInspectionTime.current = Date.now() - 1;
       setTimerStatus("INSPECTING");
+      let reproduced8 = false;
+      let reproduced12 = false;
       inspectionId.current = setInterval(() => {
         if (startInspectionTime.current) {
           const now = Date.now();
           const difference =
             inspectionDuration - (now - startInspectionTime.current);
-          setInspectionTime(difference / 1000);
+
+          const timeRemaining = difference / 1000;
+
+          if (settings.timer.startCue.status) {
+            if (timeRemaining <= 9 && !reproduced8) {
+              reproduced8 = true;
+              const audio12 = new Audio("./sounds/en/8.wav");
+              audio12.play();
+            }
+
+            if (timeRemaining <= 4 && !reproduced12) {
+              reproduced12 = true;
+              const audio12 = new Audio("./sounds/en/12.wav");
+              audio12.play();
+            }
+          }
+
+          setInspectionTime(timeRemaining);
           if (difference <= 0) {
             setTimerStatus("INSPECTING");
             setSolvingTime(0);
             resetTimer();
+            const audio = new Audio("./sounds/en/reset.wav");
+            audio.play();
           }
         }
       }, 10);
@@ -287,6 +308,7 @@ export default function useTimer() {
     displayHint,
     cubes,
     mergeUpdateSelectedCube,
+    settings.timer.startCue.status,
   ]);
 
   useEffect(() => {
