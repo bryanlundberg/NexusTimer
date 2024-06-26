@@ -65,16 +65,19 @@ export default function useTimer() {
             inspectionDuration - (now - startInspectionTime.current);
 
           const timeRemaining = difference / 1000;
-          if (timeRemaining <= 9 && !reproduced8) {
-            reproduced8 = true;
-            const audio12 = new Audio("./sounds/en/8.wav");
-            audio12.play();
-          }
 
-          if (timeRemaining <= 4 && !reproduced12) {
-            reproduced12 = true;
-            const audio12 = new Audio("./sounds/en/12.wav");
-            audio12.play();
+          if (settings.timer.startCue.status) {
+            if (timeRemaining <= 9 && !reproduced8) {
+              reproduced8 = true;
+              const audio12 = new Audio("./sounds/en/8.wav");
+              audio12.play();
+            }
+
+            if (timeRemaining <= 4 && !reproduced12) {
+              reproduced12 = true;
+              const audio12 = new Audio("./sounds/en/12.wav");
+              audio12.play();
+            }
           }
 
           setInspectionTime(timeRemaining);
@@ -305,6 +308,7 @@ export default function useTimer() {
     displayHint,
     cubes,
     mergeUpdateSelectedCube,
+    settings.timer.startCue.status,
   ]);
 
   useEffect(() => {
