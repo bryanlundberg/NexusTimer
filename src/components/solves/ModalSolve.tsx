@@ -24,6 +24,7 @@ import {
   ChatBubbleBottomCenterIcon as ChatBubbleBottomCenterIconO,
 } from "@heroicons/react/24/outline";
 import ContextMenu from "./ContextMenu";
+import useLocale from "@/hooks/useLocale";
 
 export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -32,6 +33,8 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   const { selectedCube, mergeUpdateSelectedCube, cubes } = useTimerStore();
   const t = useTranslations("Index.SolvesPage");
   const submenuRef = useRef<HTMLDivElement | null>(null);
+
+  const formattedDate = useLocale(solve);
 
   useEffect(() => {
     setShowOptions(false);
@@ -109,9 +112,8 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                 <div className="flex items-center gap-3 text-neutral-500">
                   <CalendarDaysIcon className="w-6 h-6" />
                   <div className="flex flex-col text-end">
-                    <div>
-                      {format(solve.endTime, "dd/MMM/yyyy").replace(/\//g, " ")}
-                    </div>
+                    <div>{formattedDate}</div>
+                   
                     <div className="text-start">
                       {new Date(solve.endTime).getHours()}:
                       {new Date(solve.endTime).getMinutes()}
