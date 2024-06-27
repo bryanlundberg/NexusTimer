@@ -4,12 +4,13 @@ import { useTimerStore } from "@/store/timerStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import { useRouter } from "@/navigation";
 import { getAllCubes, saveCube } from "@/db/dbOperations";
-import { useTranslations } from "next-intl";
+import {useTranslations } from "next-intl";
 import {
   EllipsisHorizontalIcon,
   PlayIcon,
   StopIcon,
 } from "@heroicons/react/24/solid";
+import useLocale from "@/hooks/useLocale";
 
 export default function TableRow({ cube }: { cube: Cube }) {
   const t = useTranslations("Index.CubesPage");
@@ -33,15 +34,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
     setCubes(cubesDB);
   };
 
-  function formatDate(msDate: number) {
-    const creationDate = new Date(msDate);
-    const month = creationDate.getMonth() + 1;
-    const day = creationDate.getDate();
-    const year = creationDate.getFullYear();
-    return `${month.toString().padStart(2, "0")}/${day
-      .toString()
-      .padStart(2, "0")}/${year}`;
-  }
+  const locale = useLocale(cube.createdAt);
 
   const redirectToHome = (e: any) => {
     const targetDiv = e.target;
@@ -78,7 +71,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
           {`${cube?.solves?.session.length}/${cube?.solves?.all.length}`}
         </div>
         <div className="hidden text-center align-middle cursor-pointer md:table-cell">
-          {formatDate(cube?.createdAt)}
+          {locale}
         </div>
         <div className="hidden text-center align-middle md:table-cell">
           {cube?.solves?.session.length > 0 ? (

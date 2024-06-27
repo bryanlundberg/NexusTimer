@@ -1,20 +1,19 @@
-import { Solve } from "@/interfaces/Solve";
 import { DateTime } from "luxon";
 import { useEffect, useState } from "react";
 
-export default function useLocale(solve: Solve | null): string | null {
+export default function useLocale(time: number | undefined): string | null {
   const [formattedDate, setFormattedDate] = useState<string>("");
 
   useEffect(() => {
-    if (solve && solve.endTime) {
-      const parsedDate = DateTime.fromMillis(solve.endTime)
+    if (time) {
+      const parsedDate = DateTime.fromMillis(time)
         .setLocale(navigator.language)
         .toLocaleString(DateTime.DATE_MED);
       setFormattedDate(parsedDate);
     }
-  }, [solve]);
+  }, [time]);
 
-  if (!solve) return null;
+  if (!time) return null;
 
   return formattedDate;
 }

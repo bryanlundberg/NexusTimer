@@ -34,7 +34,7 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   const t = useTranslations("Index.SolvesPage");
   const submenuRef = useRef<HTMLDivElement | null>(null);
 
-  const formattedDate = useLocale(solve);
+  const formattedDate = useLocale(solve?.endTime);
 
   useEffect(() => {
     setShowOptions(false);
