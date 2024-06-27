@@ -4,13 +4,12 @@ import { useTimerStore } from "@/store/timerStore";
 import formatTime from "@/lib/formatTime";
 import { ScrambleDisplay } from "@/components/scramble-display/index";
 import useEscape from "@/hooks/useEscape";
-import { format } from "date-fns";
 import { useEffect, useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useClickOutside from "@/hooks/useClickOutside";
 import { Solve } from "@/interfaces/Solve";
 import { SolveTab } from "@/interfaces/types/SolveTabs";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import {
   CalendarDaysIcon,
   ChevronDownIcon,
@@ -24,6 +23,7 @@ import {
   ChatBubbleBottomCenterIcon as ChatBubbleBottomCenterIconO,
 } from "@heroicons/react/24/outline";
 import ContextMenu from "./ContextMenu";
+import { DateTime } from "luxon";
 
 export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   const [showOptions, setShowOptions] = useState<boolean>(false);
@@ -32,6 +32,8 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
   const { selectedCube, mergeUpdateSelectedCube, cubes } = useTimerStore();
   const t = useTranslations("Index.SolvesPage");
   const submenuRef = useRef<HTMLDivElement | null>(null);
+
+  const locale = useLocale();
 
   useEffect(() => {
     setShowOptions(false);
@@ -110,7 +112,9 @@ export default function ModalSolve({ currentTab }: { currentTab: SolveTab }) {
                   <CalendarDaysIcon className="w-6 h-6" />
                   <div className="flex flex-col text-end">
                     <div>
-                      {format(solve.endTime, "dd/MMM/yyyy").replace(/\//g, " ")}
+                      {DateTime.fromMillis(solve.endTime)
+                        .setLocale(locale)
+                        .toLocaleString()}
                     </div>
                     <div className="text-start">
                       {new Date(solve.endTime).getHours()}:
