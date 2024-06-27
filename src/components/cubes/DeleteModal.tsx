@@ -65,7 +65,7 @@ export default function DeleteModal({
               className="px-5 py-2 text-sm font-medium text-center text-white transition duration-200 bg-red-500 border border-red-500 rounded-md hover:border-red-600 hover:bg-red-600"
               autoFocus={true}
             >
-              {t("Inputs.cancel")}
+              {t("Inputs.delete")}
             </button>
           </div>
         </div>
