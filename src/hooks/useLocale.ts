@@ -7,11 +7,9 @@ export default function useLocale(solve: Solve | null): string | null {
 
   useEffect(() => {
     if (solve && solve.endTime) {
-      console.log(navigator.language);
-      
-      const parsedDate = DateTime.fromMillis(solve.endTime).setLocale(navigator.language).toLocaleString(
-        DateTime.DATE_MED
-      );
+      const parsedDate = DateTime.fromMillis(solve.endTime)
+        .setLocale(navigator.language)
+        .toLocaleString(DateTime.DATE_MED);
       setFormattedDate(parsedDate);
     }
   }, [solve]);
