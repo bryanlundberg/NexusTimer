@@ -37,10 +37,10 @@ For those new to speedcubing, it's a challenge where cubers aim to solve the Rub
 ## Screenshots
 
 <div align="center">
-  <img src="./.github/images/Screenshot_1.png" width="25%" />
-  <img src="./.github/images/Screenshot_1.png" width="25%" />
-  <img src="./.github/images/Screenshot_1.png" width="25%" />
-  <img src="./.github/images/Screenshot_1.png" width="25%" />
+  <img src="./.github/images/Screenshot_1.png" width="24%" />
+  <img src="./.github/images/Screenshot_2.png" width="24%" />
+  <img src="./.github/images/Screenshot_3.png" width="24%" />
+  <img src="./.github/images/Screenshot_4.png" width="24%" />
 </div>
 
 ## Includes
