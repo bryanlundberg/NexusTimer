@@ -1,14 +1,14 @@
 ## Overview
+
 ![enter image description here](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/public/portrait.png)
 
-Track your Rubik's Cube times with user an interface inspired by [Twisty Timer](https://github.com/aricneto/TwistyTimer) for a comparable desktop experience.
+**NexusTimer** is an app designed for tracking your training sessions on the Rubik's Cube, featuring a user interface inspired by [Twisty Timer](https://github.com/aricneto/TwistyTimer) to provide a comparable desktop experience.
 
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
-
 ## About The Project
 
-For those new to speedcubing, it's a challenge where cubers aim to solve the Rubik's Cube as quickly as possible. Achieving a fast solve time is the goal.
+For those new to speedcubing, it's a challenge where cubers aim to solve the Rubik's Cube as quickly as possible. Currently, the world record stands at 3.13 seconds (51.12% faster than the video below by [Feliks Zemdegs](https://www.worldcubeassociation.org/persons/2009ZEMD01) 😁).
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/wr.gif" alt="Speedcubing preview">
@@ -34,113 +34,73 @@ For those new to speedcubing, it's a challenge where cubers aim to solve the Rub
 
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
-## Preview
+## Screenshots
 
-<div align="center"> 
-<img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/home.gif" alt="preview" />
-<img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/solves.gif" alt="preview" />
-<img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/metrics.gif" alt="preview" />
-<img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/cubes.gif" alt="preview" />
-<div>
-    <i align="center">Fast, unopinionated, minimalist web tool for SpeedCubing</i>
-    </div>
-    <div align="center"> 
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white" alt="JS badge" />
-<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TS badge" />
-<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TAILWIND badge" />
-<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="REACT badge" />
-<img src="https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=fff&style=for-the-badge" alt="NEXT badge" />
-</div>
 <div align="center">
-</a>
-    <a href="https://nexustimer-workspace23.koyeb.app/">View Demo »</a>
-    ·
-    <a href="https://github.com/bryanlundberg/NexusTimer/issues">Report Bug »</a>
-    ·
-    <a href="https://github.com/bryanlundberg/NexusTimer/issues">Request Feature »</a>
-  </p>
-</div>
+  <img src="./.github/images/Screenshot_1.png" width="24%" />
+  <img src="./.github/images/Screenshot_2.png" width="24%" />
+  <img src="./.github/images/Screenshot_3.png" width="24%" />
+  <img src="./.github/images/Screenshot_4.png" width="24%" />
 </div>
 
-
-## What's new?
+## Includes
 
 ### Metrics by cube
-We have included what I called the **"Category Aggregation Principle."** To empower speedcubers to compute and analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations.
 
-### Unique Cross and X-Cross trainer
-We are the only tool online that offer cross and x-cross solutions. 
-
-Each scramble 3x3 offers: 4 cross and 4 x-cross solutions
-In this last case, each X-cross solution represents the slot where your first F2L pair would be placed.
-
-- 1st x-cross option => Front - Left
-- 2nd x-cross option => Back  - Left
-- 3rd x-cross option => Back  - Right
-- 4th x-cross option => Front - Right
-
-At the moment only works for Yellow layer.
+We have included what I called the **"Category Aggregation Principle."** allowing analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations.
 
 ### No more DNF
+
 Who likes? We won't cover calculations using DNF, instead delete the solve or add you a +2 penalty.
 
 ### Portability
-We have an intelligent algorithm to detect, convert, and transfer all your previous data from timers such as csTimer, Twisty Timer, and CubeDesk!
 
-This is what makes unique and versatile **Nexus Timer** 💪
+We can detect, convert, and transfer all your previous data from timers such as csTimer, Twisty Timer, and CubeDesk!
 
-> [!NOTE]  
-> We are working to enable you to sync your data from any device online.
+## Languages available
 
-![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
-
-## Getting Started
-
-### Prerequisites
-
-- Node >21.5.0 & NPM Installed
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/bryanlundberg/NexusTimer.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-3. Run a script available (`npm run dev` - `npm run build` - `npm run start`)
-   ```sh
-   npm run dev
-   ```
-   ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
-
-## Roadmap
-
-- [x] WCA
-  - [ ] Incorporate voice alerts for inspection.
-- [x] Localization and Accessibility
-  - [ ] Improve and extend translations.
-  - [ ] Add Stackmat conection
-  - [ ] Add bluetooth cubes
-- [x] Animations
-  - [ ] Enhance overall smoothness of transitions.
-- [x] Cloud features
-  - [ ] Integrate server storage for backups.
-
-See the [open issues](https://github.com/bryanlundberg/NexusTimer/issues) for a full list of proposed features (and known issues).
-![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
-
+- English (en)
+- German (de)
+- Bengali (bn)
+- Czech (cs)
+- Spanish (es)
+- Estonian (et)
+- Finnish (fi)
+- French (fr)
+- Hindi (hi)
+- Hungarian (hu)
+- Indonesian (id)
+- Italian (it)
+- Japanese (ja)
+- Korean (ko)
+- Malay (ms)
+- Dutch (nl)
+- Norwegian (no)
+- Polish (pl)
+- Portuguese (pt)
+- Romanian (ro)
+- Russian (ru)
+- Slovak (sk)
+- Swedish (sv)
+- Turkish (tr)
+- Ukrainian (uk)
+- Vietnamese (vi)
+- Chinese (zh)
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+- If you want:
+  - to **report a bug** or **suggest a change**, please open an issue.
+  - to **develop new functions** or **fix a bug**, please request it in the issues section.
 
-Don't forget to give the project a star! Thanks again!
+## Acknowledgments
 
+I sincerely thank all contributors and tools that have made NexusTimer possible. 👌
+
+- [cubing](https://github.com/cubing/cubing.js) for rendering cube scramble states as SVG.
+- [scrambow](https://github.com/Owstin/scrambow) for generating a variety of scrambles.
+- [cube-solver](https://github.com/torjusti/cube-solver) for providing cross and x-cross solutions (3x3).
 
 ## License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](https://github.com/bryanlundberg/NexusTimer/blob/main/LICENSE) file for details.
-
