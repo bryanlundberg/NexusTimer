@@ -1,15 +1,14 @@
-
 ## Overview
+
 ![enter image description here](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/public/portrait.png)
 
 **NexusTimer** is an app designed for tracking your training sessions on the Rubik's Cube, featuring a user interface inspired by [Twisty Timer](https://github.com/aricneto/TwistyTimer) to provide a comparable desktop experience.
 
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
-
 ## About The Project
 
-For those new to speedcubing, it's a challenge where cubers aim to solve the Rubik's Cube as quickly as possible. Currently, the world record stands at 3.13 seconds (51.12% faster than the video below by [Feliks Zemdegs](https://www.worldcubeassociation.org/persons/2009ZEMD01)  😁).
+For those new to speedcubing, it's a challenge where cubers aim to solve the Rubik's Cube as quickly as possible. Currently, the world record stands at 3.13 seconds (51.12% faster than the video below by [Feliks Zemdegs](https://www.worldcubeassociation.org/persons/2009ZEMD01) 😁).
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/wr.gif" alt="Speedcubing preview">
@@ -35,29 +34,31 @@ For those new to speedcubing, it's a challenge where cubers aim to solve the Rub
 
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
-##  Screenshots
+## Screenshots
 
 <div align="center">
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg" width="15%" />
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg" width="15%" />
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg" width="15%" />
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/4.jpg" width="15%" />
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/5.jpg" width="15%" />
-  <img src="./fastlane/metadata/android/en-US/images/phoneScreenshots/6.jpg" width="15%" />
+  <img src="./.github/images/Screenshot_1.png" width="25%" />
+  <img src="./.github/images/Screenshot_1.png" width="25%" />
+  <img src="./.github/images/Screenshot_1.png" width="25%" />
+  <img src="./.github/images/Screenshot_1.png" width="25%" />
 </div>
 
-## What we do different?
+## Includes
 
 ### Metrics by cube
+
 We have included what I called the **"Category Aggregation Principle."** allowing analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations.
 
 ### No more DNF
+
 Who likes? We won't cover calculations using DNF, instead delete the solve or add you a +2 penalty.
 
 ### Portability
+
 We can detect, convert, and transfer all your previous data from timers such as csTimer, Twisty Timer, and CubeDesk!
 
 ## Languages available
+
 - English (en)
 - German (de)
 - Bengali (bn)
@@ -88,10 +89,9 @@ We can detect, convert, and transfer all your previous data from timers such as 
 
 ## Contributing
 
--   If you want:
-	-  to **report a bug** or **suggest a change**, please open an issue.
-    -  to  **develop new functions**  or  **fix a bug**, please request it in the issues section.
-
+- If you want:
+  - to **report a bug** or **suggest a change**, please open an issue.
+  - to **develop new functions** or **fix a bug**, please request it in the issues section.
 
 ## Acknowledgments
 
@@ -104,4 +104,3 @@ I sincerely thank all contributors and tools that have made NexusTimer possible.
 ## License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](https://github.com/bryanlundberg/NexusTimer/blob/main/LICENSE) file for details.
-
