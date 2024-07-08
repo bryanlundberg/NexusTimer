@@ -14,7 +14,14 @@ import { useTimerStore } from "@/store/timerStore";
 import MoveModal from "@/components/solves/MoveModal";
 import ConfirmDelete from "@/components/solves/ConfirmDelete";
 import { useTranslations } from "next-intl";
-import { FolderArrowDownIcon, TrashIcon } from "@heroicons/react/24/solid";
+import {
+  FolderArrowDownIcon,
+  TrashIcon,
+  AdjustmentsHorizontalIcon,
+} from "@heroicons/react/24/solid";
+import SortMenu from "@/components/solves/SortMenu";
+import { useRef, useState } from "react";
+import useClickOutside from "@/hooks/useClickOutside";
 
 export default function SolvesPage() {
   const {
@@ -31,8 +38,39 @@ export default function SolvesPage() {
     handleGetDeleteData,
     isOpenDeleteModal,
   } = useSolvesPage();
+
   const { selectedCube, setTimerStatistics } = useTimerStore();
   const t = useTranslations("Index");
+  const submenuRef = useRef<HTMLDivElement | null>(null);
+
+  const [isSorted, setIsSorted] = useState<boolean>(false);
+  const [sortType, setSortType] = useState("");
+  const [sortModal, setSortModal] = useState(false);
+  const sortedSolves = displaySolves ? [...displaySolves] : [];
+
+  if (isSorted) {
+    if (sortType == "NewestToOldest") sortedSolves.sort((a, b) => b.endTime - a.endTime);
+    else if (sortType == "OldestToNewest") sortedSolves.sort((a, b) => a.endTime - b.endTime);
+    else if (sortType == "FastestToSlowest") sortedSolves.sort((a, b) => a.time - b.time);
+    else if (sortType == "slowestToFastest") sortedSolves.sort((a, b) => b.time - a.time);
+    else if(sortType == "plus2"){
+      sortedSolves.sort((a,b)=>{
+        if (a.plus2 || b.plus2) {
+          return -1;
+        }
+        else if(!a.plus2 && !b.plus2){
+          return 1;
+        }
+        else{
+          return 0;
+        }
+      })
+    }
+  }
+
+  useClickOutside(submenuRef, () => {
+    setSortModal(false);
+  });
 
   return (
     <>
@@ -64,6 +102,17 @@ export default function SolvesPage() {
                 }
               />
               <Button
+                className="relative"
+                onClick={() => setSortModal((prev) => !prev)}
+                icon={<AdjustmentsHorizontalIcon className="w-4 h-4" />}
+                label={t("Inputs.move-all")}
+                disabled={
+                  selectedCube && selectedCube.solves.session.length > 0
+                    ? false
+                    : true
+                }
+              />
+              <Button
                 onClick={() => setIsOpenDeleteModal(true)}
                 icon={<TrashIcon className="w-4 h-4" />}
                 label={t("Inputs.trash-all")}
@@ -76,7 +125,11 @@ export default function SolvesPage() {
             </ButtonsSection>
           </div>
         </SolveFilters>
-        <SolvesArea displaySolves={displaySolves} currentTab={currentTab} />
+
+        <SolvesArea
+          displaySolves={isSorted ? sortedSolves : displaySolves}
+          currentTab={currentTab}
+        />
         <ModalSolve currentTab={currentTab} />
       </OverallContainer>
       {isOpenMoveModal && (
@@ -100,6 +153,17 @@ export default function SolvesPage() {
           }}
           data={handleGetDeleteData}
         />
+      )}
+
+      {sortModal && (
+        <div className="absolute top-28 right-0 ">
+          <SortMenu
+            setSortModal={setSortModal}
+            submenuRef={submenuRef}
+            setIsSorted={setIsSorted}
+            setSortType={setSortType}
+          />
+        </div>
       )}
     </>
   );
