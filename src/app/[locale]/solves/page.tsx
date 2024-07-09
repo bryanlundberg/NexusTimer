@@ -20,7 +20,7 @@ import {
   AdjustmentsHorizontalIcon,
 } from "@heroicons/react/24/solid";
 import SortMenu from "@/components/solves/SortMenu";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
 
 export default function SolvesPage() {
@@ -42,31 +42,38 @@ export default function SolvesPage() {
   const { selectedCube, setTimerStatistics } = useTimerStore();
   const t = useTranslations("Index");
   const submenuRef = useRef<HTMLDivElement | null>(null);
+  const sortButtonRef = useRef<HTMLDivElement | null>(null);
 
   const [isSorted, setIsSorted] = useState<boolean>(false);
   const [sortType, setSortType] = useState("");
   const [sortModal, setSortModal] = useState(false);
+  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
   const sortedSolves = displaySolves ? [...displaySolves] : [];
 
   if (isSorted) {
-    if (sortType == "NewestToOldest") sortedSolves.sort((a, b) => b.endTime - a.endTime);
-    else if (sortType == "OldestToNewest") sortedSolves.sort((a, b) => a.endTime - b.endTime);
-    else if (sortType == "FastestToSlowest") sortedSolves.sort((a, b) => a.time - b.time);
-    else if (sortType == "slowestToFastest") sortedSolves.sort((a, b) => b.time - a.time);
-    else if(sortType == "plus2"){
-      sortedSolves.sort((a,b)=>{
+    if (sortType === "NewestToOldest") sortedSolves.sort((a, b) => b.endTime - a.endTime);
+    else if (sortType === "OldestToNewest") sortedSolves.sort((a, b) => a.endTime - b.endTime);
+    else if (sortType === "FastestToSlowest") sortedSolves.sort((a, b) => a.time - b.time);
+    else if (sortType === "slowestToFastest") sortedSolves.sort((a, b) => b.time - a.time);
+    else if (sortType === "plus2") {
+      sortedSolves.sort((a, b) => {
         if (a.plus2 || b.plus2) {
           return -1;
-        }
-        else if(!a.plus2 && !b.plus2){
+        } else if (!a.plus2 && !b.plus2) {
           return 1;
-        }
-        else{
+        } else {
           return 0;
         }
-      })
+      });
     }
   }
+
+  useEffect(() => {
+    if (sortButtonRef.current) {
+      const rect = sortButtonRef.current.getBoundingClientRect();
+      setModalPosition({ top: rect.bottom + window.scrollY, left: rect.left + window.scrollX });
+    }
+  }, [sortModal]);
 
   useClickOutside(submenuRef, () => {
     setSortModal(false);
@@ -101,17 +108,18 @@ export default function SolvesPage() {
                     : true
                 }
               />
-              <Button
-                className="relative"
-                onClick={() => setSortModal((prev) => !prev)}
-                icon={<AdjustmentsHorizontalIcon className="w-4 h-4" />}
-                label={t("Inputs.move-all")}
-                disabled={
-                  selectedCube && selectedCube.solves.session.length > 0
-                    ? false
-                    : true
-                }
-              />
+              <div ref={sortButtonRef} className="relative">
+                <Button
+                  onClick={() => setSortModal((prev) => !prev)}
+                  icon={<AdjustmentsHorizontalIcon className="w-4 h-4" />}
+                  label={t("Inputs.move-all")}
+                  disabled={
+                    selectedCube && selectedCube.solves.session.length > 0
+                      ? false
+                      : true
+                  }
+                />
+              </div>
               <Button
                 onClick={() => setIsOpenDeleteModal(true)}
                 icon={<TrashIcon className="w-4 h-4" />}
@@ -156,7 +164,10 @@ export default function SolvesPage() {
       )}
 
       {sortModal && (
-        <div className="absolute top-28 right-0 ">
+        <div
+          className="absolute z-50"
+          style={{ top: `${modalPosition.top}px`, right : 0 }}
+        >
           <SortMenu
             setSortModal={setSortModal}
             submenuRef={submenuRef}
