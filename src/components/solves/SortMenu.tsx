@@ -5,26 +5,25 @@ import { PlayIcon } from "@heroicons/react/24/solid";
 interface SortMenuProps {
   submenuRef: React.RefObject<HTMLDivElement>;
   setSortBy: (type: string) => void;
+  setSortOn: (type: string) => void;
   setSubMenuModal: (prev: boolean) => void;
 }
 
 const SortMenu = ({
   submenuRef,
   setSortBy,
-  setSubMenuModal
+  setSortOn,
+  setSubMenuModal,
 }: SortMenuProps) => {
-  
+  const handleSortByTime = () => {
+    setSortBy("Time");
+    setSortOn("");
+    setSubMenuModal(true);
+  };
 
-const handleSortByTime = () => {
-  setSortBy("Time")
-  setSubMenuModal(true);
-};
-
-const handleSortByDate = () => {
-  setSortBy("Date")
-  setSubMenuModal(true);
-};
-
+  const handleSortByDate = () => {
+    setSortBy("Date"), setSortOn(""), setSubMenuModal(true);
+  };
 
   return (
     <div

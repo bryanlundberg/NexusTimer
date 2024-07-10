@@ -116,21 +116,22 @@ export default function SolvesPage() {
                     <SortMenu
                       submenuRef={submenuRef}
                       setSortBy={setSortBy}
-                      setSubMenuModal = {setSubMenuModal}
+                      setSubMenuModal={setSubMenuModal}
+                      setSortOn={setSortOn}
                     />
                   </div>
                 )}
 
                 {subMenuModal && (
                   <div className="absolute top-full right-0 z-50">
-                  <SortSubMenu
-                    title={sortBy}
-                    submenuRef={submenuRef}
-                    setIsSorted={setIsSorted}
-                    setSortOn={setSortOn}
-                    setSortModal={setSortModal}
-                    setSubMenuModal = {setSubMenuModal}
-                  />
+                    <SortSubMenu
+                      title={sortBy}
+                      submenuRef={submenuRef}
+                      setIsSorted={setIsSorted}
+                      setSortOn={setSortOn}
+                      setSortModal={setSortModal}
+                      setSubMenuModal={setSubMenuModal}
+                    />
                   </div>
                 )}
               </div>
