@@ -1,64 +1,34 @@
 import React, { useState } from "react";
 import { ClockIcon, CalendarIcon } from "@heroicons/react/24/outline";
 import { PlayIcon } from "@heroicons/react/24/solid";
-import SortSubMenu from "./SortSubMenu";
 
 interface SortMenuProps {
   submenuRef: React.RefObject<HTMLDivElement>;
-  setSortModal: (modal: boolean) => void;
-  setIsSorted: (sorted: boolean) => void;
-  setSortType: (type: string) => void;
+  setSortBy: (type: string) => void;
+  setSubMenuModal: (prev: boolean) => void;
 }
 
 const SortMenu = ({
   submenuRef,
-  setIsSorted,
-  setSortType,
-  setSortModal,
+  setSortBy,
+  setSubMenuModal
 }: SortMenuProps) => {
-  const [sortByTime, setSortByTime] = useState<boolean>(false);
-  const [sortByDate, setSortByDate] = useState<boolean>(false);
+  
 
-  const handleSortNewestToOldest = () => {
-    setSortModal(false);
-    setIsSorted(true);
-    setSortType("NewestToOldest");
-  };
+const handleSortByTime = () => {
+  setSortBy("Time")
+  setSubMenuModal(true);
+};
 
-  const handleSortOldestToNewest = () => {
-    setSortModal(false);
-    setIsSorted(true);
-    setSortType("OldestToNewest");
-  };
-  const handleSortByPlusTwo = () => {
-    setSortModal(false);
-    setIsSorted(true);
-    setSortType("plus2");
-  };
-  const handleSortFastestToSlowest = () => {
-    setIsSorted(true);
-    setSortModal(false);
-    setSortType("FastestToSlowest");
-  };
-  const handleSortSolwestToFastest = () => {
-    setSortModal(false);
-    setIsSorted(true);
-    setSortType("slowestToFastest");
-  };
-
-  const handleSortByTime = ()=>{
-    setSortByTime((prev)=>!prev);
-    setSortByDate(false);
-  }
+const handleSortByDate = () => {
+  setSortBy("Date")
+  setSubMenuModal(true);
+};
 
 
-  const handleSortByDate = ()=>{
-    setSortByDate((prev)=>!prev);
-    setSortByTime(false);
-  }
   return (
     <div
-      className="w-40 p-2 flex  flex-col gap-3 mt-1 bg-white rounded-md text-xs text-black"
+      className="w-40 p-2 z-50 flex  flex-col gap-3 mt-1 bg-white rounded-md text-xs text-black"
       ref={submenuRef}
     >
       <p className="text-sm">Sort By...</p>
@@ -72,7 +42,7 @@ const SortMenu = ({
           <span className="mx-1.5">Time</span>
         </div>
         <div>
-          <PlayIcon className="w-2 h-2 -mx-6"  />
+          <PlayIcon className="w-2 h-2 -mx-6" />
         </div>
       </div>
 
@@ -85,22 +55,9 @@ const SortMenu = ({
           <span className="mx-1.5">Date</span>
         </div>
         <div>
-          <PlayIcon  className="w-2 h-2 -mx-6" />
+          <PlayIcon className="w-2 h-2 -mx-6" />
         </div>
       </div>
-
-
-      {sortByTime && <div className="absolute top-0 left-0">
-        <SortSubMenu submenuRef={submenuRef} title="Time" onAscending={handleSortFastestToSlowest} 
-        onDescending={handleSortSolwestToFastest}/>
-      </div> }
-
-
-      {sortByDate && <div className="absolute top-0 left-0">
-        <SortSubMenu submenuRef={submenuRef} title="Date" onAscending={handleSortOldestToNewest} 
-        onDescending={handleSortNewestToOldest}/>
-      </div> }
-        
     </div>
   );
 };

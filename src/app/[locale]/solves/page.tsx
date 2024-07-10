@@ -22,6 +22,8 @@ import {
 import SortMenu from "@/components/solves/SortMenu";
 import { useRef, useState, useEffect } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
+import { SortSolve } from "@/lib/SortSolves";
+import SortSubMenu from "@/components/solves/SortSubMenu";
 
 export default function SolvesPage() {
   const {
@@ -42,41 +44,20 @@ export default function SolvesPage() {
   const { selectedCube, setTimerStatistics } = useTimerStore();
   const t = useTranslations("Index");
   const submenuRef = useRef<HTMLDivElement | null>(null);
-  const sortButtonRef = useRef<HTMLDivElement | null>(null);
 
-  const [isSorted, setIsSorted] = useState<boolean>(false);
-  const [sortType, setSortType] = useState("");
+  const [isSorted, setIsSorted] = useState(false);
+  const [sortBy, setSortBy] = useState("");
+  const [sortOn, setSortOn] = useState("");
   const [sortModal, setSortModal] = useState(false);
-  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
-  const sortedSolves = displaySolves ? [...displaySolves] : [];
+  const [subMenuModal, setSubMenuModal] = useState(false);
 
   if (isSorted) {
-    if (sortType === "NewestToOldest") sortedSolves.sort((a, b) => b.endTime - a.endTime);
-    else if (sortType === "OldestToNewest") sortedSolves.sort((a, b) => a.endTime - b.endTime);
-    else if (sortType === "FastestToSlowest") sortedSolves.sort((a, b) => a.time - b.time);
-    else if (sortType === "slowestToFastest") sortedSolves.sort((a, b) => b.time - a.time);
-    else if (sortType === "plus2") {
-      sortedSolves.sort((a, b) => {
-        if (a.plus2 || b.plus2) {
-          return -1;
-        } else if (!a.plus2 && !b.plus2) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-    }
+    SortSolve(displaySolves, sortBy, sortOn);
   }
-
-  useEffect(() => {
-    if (sortButtonRef.current) {
-      const rect = sortButtonRef.current.getBoundingClientRect();
-      setModalPosition({ top: rect.bottom + window.scrollY, left: rect.left + window.scrollX });
-    }
-  }, [sortModal]);
 
   useClickOutside(submenuRef, () => {
     setSortModal(false);
+    setSubMenuModal(false);
   });
 
   return (
@@ -97,29 +78,8 @@ export default function SolvesPage() {
               }}
               id="search"
             />
+
             <ButtonsSection currentTab={currentTab}>
-              <Button
-                onClick={() => setIsOpenMoveModal(true)}
-                icon={<FolderArrowDownIcon className="w-4 h-4" />}
-                label={t("Inputs.move-all")}
-                disabled={
-                  selectedCube && selectedCube.solves.session.length > 0
-                    ? false
-                    : true
-                }
-              />
-              <div ref={sortButtonRef} className="relative">
-                <Button
-                  onClick={() => setSortModal((prev) => !prev)}
-                  icon={<AdjustmentsHorizontalIcon className="w-4 h-4" />}
-                  label={t("Inputs.move-all")}
-                  disabled={
-                    selectedCube && selectedCube.solves.session.length > 0
-                      ? false
-                      : true
-                  }
-                />
-              </div>
               <Button
                 onClick={() => setIsOpenDeleteModal(true)}
                 icon={<TrashIcon className="w-4 h-4" />}
@@ -130,14 +90,55 @@ export default function SolvesPage() {
                     : true
                 }
               />
+              <Button
+                onClick={() => setIsOpenMoveModal(true)}
+                icon={<FolderArrowDownIcon className="w-4 h-4" />}
+                label={t("Inputs.move-all")}
+                disabled={
+                  selectedCube && selectedCube.solves.session.length > 0
+                    ? false
+                    : true
+                }
+              />
+              <div className="relative">
+                <Button
+                  onClick={() => setSortModal((prev) => !prev)}
+                  icon={<AdjustmentsHorizontalIcon className="w-4 h-4" />}
+                  label={t("Inputs.move-all")}
+                  disabled={
+                    selectedCube && selectedCube.solves.session.length > 0
+                      ? false
+                      : true
+                  }
+                />
+                {sortModal && (
+                  <div className="absolute top-full right-0 z-50">
+                    <SortMenu
+                      submenuRef={submenuRef}
+                      setSortBy={setSortBy}
+                      setSubMenuModal = {setSubMenuModal}
+                    />
+                  </div>
+                )}
+
+                {subMenuModal && (
+                  <div className="absolute top-full right-0 z-50">
+                  <SortSubMenu
+                    title={sortBy}
+                    submenuRef={submenuRef}
+                    setIsSorted={setIsSorted}
+                    setSortOn={setSortOn}
+                    setSortModal={setSortModal}
+                    setSubMenuModal = {setSubMenuModal}
+                  />
+                  </div>
+                )}
+              </div>
             </ButtonsSection>
           </div>
         </SolveFilters>
 
-        <SolvesArea
-          displaySolves={isSorted ? sortedSolves : displaySolves}
-          currentTab={currentTab}
-        />
+        <SolvesArea displaySolves={displaySolves} currentTab={currentTab} />
         <ModalSolve currentTab={currentTab} />
       </OverallContainer>
       {isOpenMoveModal && (
@@ -161,20 +162,6 @@ export default function SolvesPage() {
           }}
           data={handleGetDeleteData}
         />
-      )}
-
-      {sortModal && (
-        <div
-          className="absolute z-50"
-          style={{ top: `${modalPosition.top}px`, right : 0 }}
-        >
-          <SortMenu
-            setSortModal={setSortModal}
-            submenuRef={submenuRef}
-            setIsSorted={setIsSorted}
-            setSortType={setSortType}
-          />
-        </div>
       )}
     </>
   );
