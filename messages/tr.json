@@ -36,7 +36,12 @@
       "session": "Oturum",
       "all": "Tümü",
       "no-cube-selection": "Hiçbir küp seçilmedi, bir tane seçin...",
-      "no-solves": "Gösterilecek çözüm yok!"
+      "no-solves": "Gösterilecek çözüm yok!",
+      "descending": "Azalan",
+      "ascending": "Artan",
+      "date": "Tarih",
+      "sort-by": "Göre sırala...",
+      "time": "Zaman"
     },
     "StatsPage": {
       "title": "İstatistikler",
@@ -124,7 +129,8 @@
       "alert-category": "CSTimer ve CubeDesk kategorilerin elle ayarlanmasını gerektirir.",
       "drag-drop": "Dosyalarınızı buraya sürükleyip bırakın veya seçmek için tıklayın.",
       "loading-part-1": "Bu işlem bir dakikadan az sürer.",
-      "loading-part-2": "Lütfen bekleyin, bu pencereyi kapatmayın."
+      "loading-part-2": "Lütfen bekleyin, bu pencereyi kapatmayın.",
+      "welcome": "Hoş geldin:"
     }
   },
   "Metadata": {

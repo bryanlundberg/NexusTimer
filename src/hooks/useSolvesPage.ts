@@ -23,6 +23,7 @@ export default function useSolvesPage() {
   const [displaySolves, setDisplaySolves] = useState<Solve[] | null>(null);
   const [isOpenMoveModal, setIsOpenMoveModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
   const searchBox = useRef<HTMLInputElement | null>(null);
   const { setTimerStatistics } = useTimerStore();
 

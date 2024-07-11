@@ -36,7 +36,12 @@
       "session": "Sesi",
       "all": "Semua",
       "no-cube-selection": "Tidak ada kubus yang dipilih, pilih satu...",
-      "no-solves": "Tidak ada penyelesaian untuk ditampilkan!"
+      "no-solves": "Tidak ada penyelesaian untuk ditampilkan!",
+      "time": "Waktu",
+      "sort-by": "Sortir dengan...",
+      "descending": "Menurun",
+      "ascending": "Naik",
+      "date": "Tanggal"
     },
     "StatsPage": {
       "title": "Statistik",

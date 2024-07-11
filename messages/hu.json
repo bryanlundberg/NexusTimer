@@ -36,7 +36,12 @@
       "session": "Munkamenet",
       "all": "Mind",
       "no-cube-selection": "Nincs kiválasztott kocka, válasszon egyet...",
-      "no-solves": "Nincsenek megoldások megjelenítésre!"
+      "no-solves": "Nincsenek megoldások megjelenítésre!",
+      "ascending": "Emelkedő",
+      "date": "Dátum",
+      "descending": "Csökkenő",
+      "sort-by": "Rendezés...",
+      "time": "Idő"
     },
     "StatsPage": {
       "title": "Statisztikák",

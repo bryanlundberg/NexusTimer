@@ -36,7 +36,12 @@
       "session": "Økt",
       "all": "Alle",
       "no-cube-selection": "Ingen kube valgt, velg en...",
-      "no-solves": "Det er ingen løsninger å vise!"
+      "no-solves": "Det er ingen løsninger å vise!",
+      "time": "Tid",
+      "sort-by": "Sorter etter...",
+      "descending": "Synkende",
+      "date": "Dato",
+      "ascending": "Stigende"
     },
     "StatsPage": {
       "title": "Statistikk",

@@ -36,7 +36,12 @@
       "session": "Sesiune",
       "all": "Toate",
       "no-cube-selection": "Niciun cub selectat, alegeți unul...",
-      "no-solves": "Nu sunt soluții de afișat!"
+      "no-solves": "Nu sunt soluții de afișat!",
+      "time": "Timp",
+      "sort-by": "Filtrează după...",
+      "descending": "Descendentă",
+      "date": "Data",
+      "ascending": "Ascendent"
     },
     "StatsPage": {
       "title": "Statistici",

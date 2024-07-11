@@ -36,7 +36,12 @@
       "session": "Session",
       "all": "All",
       "no-cube-selection": "No cube selected, choose one...",
-      "no-solves": "There's no solves to show!"
+      "no-solves": "There's no solves to show!",
+      "time": "Time",
+      "date": "Date",
+      "ascending": "Ascending",
+      "descending": "Descending",
+      "sort-by": "Sort by..."
     },
     "StatsPage": {
       "title": "Stats",

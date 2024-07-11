@@ -36,7 +36,12 @@
       "session": "Phiên",
       "all": "Tất cả",
       "no-cube-selection": "Không có khối nào được chọn, hãy chọn một...",
-      "no-solves": "Không có giải pháp để hiển thị!"
+      "no-solves": "Không có giải pháp để hiển thị!",
+      "ascending": "Tăng dần",
+      "date": "Ngày",
+      "descending": "Giảm dần",
+      "sort-by": "Sắp xếp theo...",
+      "time": "Thời gian"
     },
     "StatsPage": {
       "title": "Thống kê",
@@ -124,7 +129,8 @@
       "alert-category": "Cần điều chỉnh thủ công các danh mục cho CSTimer và CubeDesk.",
       "drag-drop": "Kéo và thả tệp của bạn vào đây hoặc nhấn để chọn.",
       "loading-part-1": "Hành động này mất ít hơn một phút.",
-      "loading-part-2": "Vui lòng đợi, đừng đóng cửa sổ này."
+      "loading-part-2": "Vui lòng đợi, đừng đóng cửa sổ này.",
+      "welcome": "Chào mừng:"
     }
   },
   "Metadata": {
