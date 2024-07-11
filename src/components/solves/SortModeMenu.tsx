@@ -1,30 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { ClockIcon, CalendarIcon } from "@heroicons/react/24/outline";
 import { PlayIcon } from "@heroicons/react/24/solid";
+import { Modes } from "@/lib/SortSolves";
 
-interface SortMenuProps {
+interface SortModeMenuProps {
   submenuRef: React.RefObject<HTMLDivElement>;
-  setSortBy: (type: string) => void;
-  setSortOn: (type: string) => void;
-  setSubMenuModal: (prev: boolean) => void;
+  onSelectSortMode: (mode: Modes) => void;
 }
 
-const SortMenu = ({
+export default function SortModeMenu({
   submenuRef,
-  setSortBy,
-  setSortOn,
-  setSubMenuModal,
-}: SortMenuProps) => {
-  const handleSortByTime = () => {
-    setSortBy("Time");
-    setSortOn("");
-    setSubMenuModal(true);
-  };
-
-  const handleSortByDate = () => {
-    setSortBy("Date"), setSortOn(""), setSubMenuModal(true);
-  };
-
+  onSelectSortMode,
+}: SortModeMenuProps) {
   return (
     <div
       className="w-40 p-2 z-50 flex  flex-col gap-3 mt-1 bg-white rounded-md text-xs text-black"
@@ -34,7 +21,7 @@ const SortMenu = ({
 
       <div
         className="flex justify-between items-center p-0 gap-1 py-2 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
-        onClick={handleSortByTime}
+        onClick={() => onSelectSortMode("Time")}
       >
         <div className="flex flex-row p-0">
           <ClockIcon className="w-4 h-4" />
@@ -47,7 +34,7 @@ const SortMenu = ({
 
       <div
         className="flex justify-between items-center p-0 gap-1 py-1 transition duration-200 hover:text-neutral-500 hover:cursor-pointer"
-        onClick={handleSortByDate}
+        onClick={() => onSelectSortMode("Date")}
       >
         <div className="flex flex-row p-0">
           <CalendarIcon className="w-4 h-4" />
@@ -59,6 +46,4 @@ const SortMenu = ({
       </div>
     </div>
   );
-};
-
-export default SortMenu;
+}

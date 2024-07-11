@@ -19,11 +19,12 @@ import {
   TrashIcon,
   AdjustmentsHorizontalIcon,
 } from "@heroicons/react/24/solid";
-import SortMenu from "@/components/solves/SortMenu";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import useClickOutside from "@/hooks/useClickOutside";
-import { SortSolve } from "@/lib/SortSolves";
-import SortSubMenu from "@/components/solves/SortSubMenu";
+import { AnimatePresence, motion } from "framer-motion";
+import sortSolves, { SortMode } from "@/lib/SortSolves";
+import SortModeMenu from "@/components/solves/SortModeMenu";
+import SortOrderMenu from "@/components/solves/SortOrderMenu";
 
 export default function SolvesPage() {
   const {
@@ -43,21 +44,24 @@ export default function SolvesPage() {
 
   const { selectedCube, setTimerStatistics } = useTimerStore();
   const t = useTranslations("Index");
-  const submenuRef = useRef<HTMLDivElement | null>(null);
+  const sortMenuRef = useRef<HTMLDivElement | null>(null);
+  const sortSubMenuRef = useRef<HTMLDivElement | null>(null);
 
-  const [isSorted, setIsSorted] = useState(false);
-  const [sortBy, setSortBy] = useState("");
-  const [sortOn, setSortOn] = useState("");
+  const [sortOptions, setSortOptions] = useState<SortMode>({
+    order: "Ascending",
+    mode: "Time",
+  });
   const [sortModal, setSortModal] = useState(false);
   const [subMenuModal, setSubMenuModal] = useState(false);
 
-  if (isSorted) {
-    SortSolve(displaySolves, sortBy, sortOn);
-  }
+  sortSolves({ displaySolves, sortMode: sortOptions });
 
-  useClickOutside(submenuRef, () => {
-    setSortModal(false);
+  useClickOutside(sortSubMenuRef, () => {
     setSubMenuModal(false);
+  });
+
+  useClickOutside(sortMenuRef, () => {
+    setSortModal(false);
   });
 
   return (
@@ -104,36 +108,58 @@ export default function SolvesPage() {
                 <Button
                   onClick={() => setSortModal((prev) => !prev)}
                   icon={<AdjustmentsHorizontalIcon className="w-4 h-4" />}
-                  label={t("Inputs.move-all")}
+                  label={"Sort by"}
                   disabled={
                     selectedCube && selectedCube.solves.session.length > 0
                       ? false
                       : true
                   }
                 />
-                {sortModal && (
-                  <div className="absolute top-full right-0 z-50">
-                    <SortMenu
-                      submenuRef={submenuRef}
-                      setSortBy={setSortBy}
-                      setSubMenuModal={setSubMenuModal}
-                      setSortOn={setSortOn}
-                    />
-                  </div>
-                )}
+                <AnimatePresence>
+                  {sortModal && (
+                    <motion.div
+                      initial={{ y: 0, scale: 0.9, opacity: 0.8 }}
+                      animate={{ y: 0, scale: 1, opacity: 1 }}
+                      exit={{ x: 0, scale: 0.9, opacity: 0 }}
+                      className="absolute top-10 right-0 z-50"
+                    >
+                      <SortModeMenu
+                        submenuRef={sortMenuRef}
+                        onSelectSortMode={(e) => {
+                          setSortModal(false);
+                          setSubMenuModal(true);
+                          setSortOptions((options) => ({
+                            ...options,
+                            mode: e,
+                          }));
+                        }}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
-                {subMenuModal && (
-                  <div className="absolute top-full right-0 z-50">
-                    <SortSubMenu
-                      title={sortBy}
-                      submenuRef={submenuRef}
-                      setIsSorted={setIsSorted}
-                      setSortOn={setSortOn}
-                      setSortModal={setSortModal}
-                      setSubMenuModal={setSubMenuModal}
-                    />
-                  </div>
-                )}
+                <AnimatePresence>
+                  {subMenuModal && (
+                    <motion.div
+                      initial={{ y: 0, scale: 0.9, opacity: 0.8 }}
+                      animate={{ y: 0, scale: 1, opacity: 1 }}
+                      exit={{ x: 0, scale: 0.9, opacity: 0 }}
+                      className="absolute top-10 right-0 z-50"
+                    >
+                      <SortOrderMenu
+                        title={sortOptions.mode}
+                        submenuRef={sortSubMenuRef}
+                        onSelectSortOrder={(e) => {
+                          setSubMenuModal(false);
+                          setSortOptions((options) => ({
+                            ...options,
+                            order: e,
+                          }));
+                        }}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </ButtonsSection>
           </div>
