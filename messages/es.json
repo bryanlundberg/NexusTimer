@@ -36,7 +36,12 @@
       "session": "Sesión",
       "all": "Todos",
       "no-cube-selection": "No se ha seleccionado ningún cubo, elige uno...",
-      "no-solves": "¡No hay soluciones para mostrar!"
+      "no-solves": "¡No hay soluciones para mostrar!",
+      "ascending": "Ascendente",
+      "date": "Fecha",
+      "descending": "Descendente",
+      "sort-by": "Ordenar por...",
+      "time": "Tiempo"
     },
     "StatsPage": {
       "title": "Estadísticas",

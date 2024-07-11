@@ -36,7 +36,12 @@
       "session": "セッション",
       "all": "すべて",
       "no-cube-selection": "キューブが選択されていません。選択してください...",
-      "no-solves": "表示する解答はありません！"
+      "no-solves": "表示する解答はありません！",
+      "time": "時間",
+      "sort-by": "並べ替え...",
+      "descending": "降順",
+      "date": "日付",
+      "ascending": "上昇"
     },
     "StatsPage": {
       "title": "統計",

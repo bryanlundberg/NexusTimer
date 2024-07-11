@@ -36,7 +36,12 @@
       "session": "Relácia",
       "all": "Všetky",
       "no-cube-selection": "Nevybrali ste kocku, vyberte jednu...",
-      "no-solves": "Nie sú žiadne riešenia na zobrazenie!"
+      "no-solves": "Nie sú žiadne riešenia na zobrazenie!",
+      "ascending": "Vzostupne",
+      "date": "Dátum",
+      "descending": "Zostupne",
+      "sort-by": "Triediť podľa...",
+      "time": "Čas"
     },
     "StatsPage": {
       "title": "Štatistiky",

@@ -36,7 +36,12 @@
       "session": "Sessioon",
       "all": "Kõik",
       "no-cube-selection": "Kuupi pole valitud, valige üks...",
-      "no-solves": "Lahendusi pole näidata!"
+      "no-solves": "Lahendusi pole näidata!",
+      "ascending": "Kasvav",
+      "date": "Kuupäev",
+      "descending": "Langevad",
+      "sort-by": "Sorteerima...",
+      "time": "Aeg"
     },
     "StatsPage": {
       "title": "Statistika",
@@ -124,7 +129,8 @@
       "alert-category": "CSTimer ja CubeDesk nõuavad kategooriate käsitsi kohandamist.",
       "drag-drop": "Lohistage ja pange failid siia või klõpsake valimiseks.",
       "loading-part-1": "See toiming võtab vähem kui minut.",
-      "loading-part-2": "Palun oodake, ärge sulgege seda akent."
+      "loading-part-2": "Palun oodake, ärge sulgege seda akent.",
+      "welcome": "Tere tulemast:"
     }
   },
   "Metadata": {

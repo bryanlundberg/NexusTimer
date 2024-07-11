@@ -36,7 +36,12 @@
       "session": "Sesja",
       "all": "Wszystkie",
       "no-cube-selection": "Nie wybrano kostki, wybierz jedną...",
-      "no-solves": "Brak rozwiązań do wyświetlenia!"
+      "no-solves": "Brak rozwiązań do wyświetlenia!",
+      "time": "Czas",
+      "descending": "Malejąco",
+      "date": "Data",
+      "ascending": "Rosnąco",
+      "sort-by": "Sortuj według..."
     },
     "StatsPage": {
       "title": "Statystyki",

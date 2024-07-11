@@ -36,7 +36,12 @@
       "session": "Istunto",
       "all": "Kaikki",
       "no-cube-selection": "Ei valittua kuutiota, valitse yksi...",
-      "no-solves": "Ei ratkaisuja näytettäväksi!"
+      "no-solves": "Ei ratkaisuja näytettäväksi!",
+      "ascending": "Nouseva",
+      "date": "Päivämäärä",
+      "descending": "Laskeva",
+      "sort-by": "Järjestä...",
+      "time": "Aika"
     },
     "StatsPage": {
       "title": "Tilastot",

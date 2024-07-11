@@ -36,7 +36,12 @@
       "session": "Sessie",
       "all": "Alle",
       "no-cube-selection": "Geen kubus geselecteerd, kies er een...",
-      "no-solves": "Er zijn geen oplossingen om te tonen!"
+      "no-solves": "Er zijn geen oplossingen om te tonen!",
+      "time": "Tijd",
+      "sort-by": "Sorteer op...",
+      "descending": "Aflopend",
+      "date": "Datum",
+      "ascending": "Oplopend"
     },
     "StatsPage": {
       "title": "Statistieken",

@@ -36,7 +36,12 @@
       "session": "Session",
       "all": "Tout",
       "no-cube-selection": "Aucun cube sélectionné, choisissez-en un...",
-      "no-solves": "Il n'y a pas de résolutions à afficher !"
+      "no-solves": "Il n'y a pas de résolutions à afficher !",
+      "ascending": "Ascendant",
+      "date": "Date",
+      "descending": "Descendant",
+      "sort-by": "Trier par...",
+      "time": "Temps"
     },
     "StatsPage": {
       "title": "Statistiques",

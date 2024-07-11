@@ -36,7 +36,12 @@
       "session": "세션",
       "all": "모두",
       "no-cube-selection": "큐브가 선택되지 않았습니다. 하나를 선택하세요...",
-      "no-solves": "표시할 해결이 없습니다!"
+      "no-solves": "표시할 해결이 없습니다!",
+      "sort-by": "정렬 기준...",
+      "descending": "내림차순",
+      "date": "날짜",
+      "ascending": "오름차순",
+      "time": "시간"
     },
     "StatsPage": {
       "title": "통계",

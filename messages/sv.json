@@ -36,7 +36,12 @@
       "session": "Session",
       "all": "Alla",
       "no-cube-selection": "Ingen kub vald, välj en...",
-      "no-solves": "Det finns inga lösningar att visa!"
+      "no-solves": "Det finns inga lösningar att visa!",
+      "descending": "Nedåtgående",
+      "date": "Datum",
+      "ascending": "Stigande",
+      "sort-by": "Sortera efter...",
+      "time": "Tid"
     },
     "StatsPage": {
       "title": "Statistik",

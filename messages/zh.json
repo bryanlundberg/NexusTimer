@@ -36,7 +36,12 @@
       "session": "会话",
       "all": "全部",
       "no-cube-selection": "未选择魔方，请选择一个...",
-      "no-solves": "没有解决方案可显示！"
+      "no-solves": "没有解决方案可显示！",
+      "ascending": "上升",
+      "date": "日期",
+      "descending": "降序",
+      "sort-by": "排序方式...",
+      "time": "时间"
     },
     "StatsPage": {
       "title": "统计",
@@ -124,7 +129,8 @@
       "alert-category": "CSTimer和CubeDesk需要手动调整类别。",
       "drag-drop": "将您的文件拖放到此处，或单击以选择。",
       "loading-part-1": "此操作不到一分钟。",
-      "loading-part-2": "请稍候，不要关闭此窗口。"
+      "loading-part-2": "请稍候，不要关闭此窗口。",
+      "welcome": "欢迎："
     }
   },
   "Metadata": {
