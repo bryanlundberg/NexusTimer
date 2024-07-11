@@ -48,8 +48,8 @@ export default function SolvesPage() {
   const sortSubMenuRef = useRef<HTMLDivElement | null>(null);
 
   const [sortOptions, setSortOptions] = useState<SortMode>({
-    order: "Ascending",
-    mode: "Time",
+    order: "Descending",
+    mode: "Date",
   });
   const [sortModal, setSortModal] = useState(false);
   const [subMenuModal, setSubMenuModal] = useState(false);
