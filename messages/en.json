@@ -41,7 +41,10 @@
       "date": "Date",
       "ascending": "Ascending",
       "descending": "Descending",
-      "sort-by": "Sort by..."
+      "sort-by": "Sort by...",
+      "share-session" : "Share session...",
+      "ao5": "Ao5",
+      "ao12":"A012"
     },
     "StatsPage": {
       "title": "Stats",
