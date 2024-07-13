@@ -22,6 +22,7 @@ import {
   ShieldCheckIcon,
   SparklesIcon,
 } from "@heroicons/react/24/solid";
+import MenuSelectPreferences from "./MenuSelectPreferences";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings } = useSettingsModalStore();
@@ -139,6 +140,8 @@ export default function MenuSettings() {
               >
                 <DataImportExport />
               </MenuSection>
+
+              <MenuSelectPreferences />
               <MenuSection
                 icon={<IdentificationIcon className="w-6 h-6" />}
                 title={t("about")}

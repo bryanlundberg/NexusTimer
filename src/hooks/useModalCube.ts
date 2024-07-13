@@ -8,6 +8,8 @@ import { DeleteCubeDetails } from "@/interfaces/DeleteCubeDetails";
 import formatTime from "@/lib/formatTime";
 import useEscape from "./useEscape";
 import { deleteCubeById, getAllCubes, saveCube } from "@/db/dbOperations";
+import loadSettings from "@/lib/loadSettings";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 export default function useModalCube() {
   const {
@@ -19,6 +21,8 @@ export default function useModalCube() {
     cubeName,
     setCubeName,
   } = useCubesModalStore();
+
+  const { setSettings } = useSettingsModalStore();
 
   const {
     setCubes,
@@ -32,6 +36,8 @@ export default function useModalCube() {
   const [isDuplicate, setDuplicate] = useState<boolean>(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [cubeData, setCubeData] = useState<DeleteCubeDetails | null>(null);
+
+  const defaultCubeId = loadSettings().preferences.defaultCube.cube?.id;
 
   useEscape(() => setModalOpen(false));
 
@@ -86,6 +92,16 @@ export default function useModalCube() {
         setDuplicate(true);
         return;
       }
+    }
+
+    if (editingCube.id === defaultCubeId) {
+      const currentSettings = loadSettings();
+      if (currentSettings.preferences.defaultCube.cube) {
+        currentSettings.preferences.defaultCube.cube.name = name;
+        currentSettings.preferences.defaultCube.cube.category = category;
+      }
+      setSettings(currentSettings);
+      window.localStorage.setItem("settings", JSON.stringify(currentSettings));
     }
 
     const updatedCube = await saveCube({
@@ -151,6 +167,13 @@ export default function useModalCube() {
       setSelectedCube(null);
       setNewScramble(null);
       setTimerStatistics();
+    }
+
+    if (editingCube.id === defaultCubeId) {
+      const currentSettings = loadSettings();
+      currentSettings.preferences.defaultCube.cube = null;
+      setSettings(currentSettings);
+      window.localStorage.setItem("settings", JSON.stringify(currentSettings));
     }
 
     await deleteCubeById(editingCube.id);

@@ -96,7 +96,7 @@ export default function Select() {
   );
 }
 
-function MiniatureIcon({ category }: { category: Categories }) {
+export function MiniatureIcon({ category }: { category: Categories }) {
   const images = cubeCollection.map((option) => {
     if (option.name === category) {
       return (

@@ -1,3 +1,4 @@
+import { Cube } from "./Cube";
 import { Themes } from "./types/Themes";
 
 interface Timer {
@@ -26,9 +27,14 @@ interface Theme {
   content: { color: string; key: string };
 }
 
+interface Preferences {
+  defaultCube: { cube: Cube | null; key: string };
+}
+
 export interface Settings {
   timer: Timer;
   features: Features;
   alerts: Alerts;
   theme: Theme;
+  preferences: Preferences;
 }
