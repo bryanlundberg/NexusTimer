@@ -25,7 +25,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import sortSolves, { SortMode } from "@/lib/SortSolves";
 import SortModeMenu from "@/components/solves/SortModeMenu";
 import SortOrderMenu from "@/components/solves/SortOrderMenu";
-import SolvePageMenu from "@/components/solves/SolvePageMenu";
+import SolvesOptionsDropdown from "@/components/solves/SolvesOptionsDropdown";
 import ShareMenu from "@/components/solves/ShareMenu";
 
 export default function SolvesPage() {
@@ -57,7 +57,7 @@ export default function SolvesPage() {
   });
   const [sortModal, setSortModal] = useState(false);
   const [subMenuModal, setSubMenuModal] = useState(false);
-  const [solvesPageMenu, setSolvesPageMenu] = useState(false);
+  const [solvesOptionsMenu, setSolvesOptionsMenu] = useState(false);
   const [shareSolveModal, setShareSolveModal] = useState(false);
 
   sortSolves({ displaySolves, sortMode: sortOptions });
@@ -74,7 +74,7 @@ export default function SolvesPage() {
   });
 
   useClickOutside(solveMenuRef, () => {
-    setSolvesPageMenu(false);
+    setSolvesOptionsMenu(false);
   });
 
   return (
@@ -119,7 +119,7 @@ export default function SolvesPage() {
               />
               <div className="relative">
                 <Button
-                  onClick={() => setSolvesPageMenu((prev) => !prev)}
+                  onClick={() => setSolvesOptionsMenu((prev) => !prev)}
                   icon={<AdjustmentsHorizontalIcon className="w-4 h-4" />}
                   label={"Sort by"}
                   disabled={
@@ -130,14 +130,14 @@ export default function SolvesPage() {
                 />
 
                 <AnimatePresence>
-                  {solvesPageMenu && (
+                  {solvesOptionsMenu && (
                     <motion.div
                       initial={{ y: 0, scale: 0.9, opacity: 0.8 }}
                       animate={{ y: 0, scale: 1, opacity: 1 }}
                       exit={{ x: 0, scale: 0.9, opacity: 0 }}
                       className="absolute top-10 right-0 z-50"
                     >
-                      <SolvePageMenu
+                      <SolvesOptionsDropdown
                         solveMenuRef={solveMenuRef}
                         setSortModal={setSortModal}
                         setShareSolveModal={setShareSolveModal}

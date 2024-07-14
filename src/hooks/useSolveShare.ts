@@ -49,7 +49,7 @@ export default function useSolveShare() {
     if (solve.time === maxTimeAo5 || solve.time === minTimeAo5) {
       return `(${time}) : ${scramble} \n`;
     } else return `${time} : ${scramble} \n`;
-  });
+  }).join('\n');
 
   const formattedLast12Solves = last12Solves.map((solve) => {
     const time = `${formatTime(solve.time).split(".")[0]}.${
@@ -60,7 +60,7 @@ export default function useSolveShare() {
     if (solve.time === maxTimeAo12 || solve.time === minTimeAo12) {
       return `(${time}) : ${scramble} \n`;
     } else return `${time} : ${scramble} \n`;
-  });
+  }).join('\n');
 
   return {
     formatedAo5,

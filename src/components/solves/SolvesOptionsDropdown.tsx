@@ -1,19 +1,19 @@
 import React from "react";
-import { ClockIcon, ShareIcon } from "@heroicons/react/24/outline";
+import { BarsArrowDownIcon, ShareIcon } from "@heroicons/react/24/outline";
 import { PlayIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
 
-interface SolvePageMenuProps {
+interface SolvesOptionsDropdownProps {
   solveMenuRef: React.RefObject<HTMLDivElement>;
   setSortModal: (sort: boolean) => void;
   setShareSolveModal: (share: boolean) => void;
 }
 
-export default function SolvePageMenu({
+export default function SolvesOptionsDropdown({
   solveMenuRef,
   setSortModal,
   setShareSolveModal,
-}: SolvePageMenuProps) {
+}: SolvesOptionsDropdownProps) {
   const t = useTranslations("Index.SolvesPage");
 
   return (
@@ -26,7 +26,7 @@ export default function SolvePageMenu({
         onClick={() => setSortModal(true)}
       >
         <div className="flex flex-row p-0">
-          <ClockIcon className="w-4 h-4" />
+          <BarsArrowDownIcon className="w-4 h-4" />
           <span className="mx-1.5">{t("sort-by")}</span>
         </div>
         <div>
