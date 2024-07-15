@@ -40,26 +40,26 @@ export default function useSolveShare() {
   }
 
   // formatting each solves
-  const formattedLast5Solves = last5Solves.map((solve) => {
+  const formattedLast5Solves = last5Solves.map((solve,index) => {
     const time = `${formatTime(solve.time).split(".")[0]}.${
       formatTime(solve.time).split(".")[1]
     }`;
     const scramble = `${solve.scramble}`;
 
     if (solve.time === maxTimeAo5 || solve.time === minTimeAo5) {
-      return `(${time}) : ${scramble}`;
-    } else return `${time}  : ${scramble}`;
+      return `${Array(4).join(" ")}${index + 1}. (${time}) ${scramble}`;
+    } else return `${Array(4).join(" ")}${index + 1}. ${time} ${scramble}`;
   }).join('\n');
 
-  const formattedLast12Solves = last12Solves.map((solve) => {
+  const formattedLast12Solves = last12Solves.map((solve , index) => {
     const time = `${formatTime(solve.time).split(".")[0]}.${
       formatTime(solve.time).split(".")[1]
     }`;
     const scramble = `${solve.scramble}`;
 
     if (solve.time === maxTimeAo12 || solve.time === minTimeAo12) {
-      return `(${time}) : ${scramble}`;
-    } else return `${time}  : ${scramble}`;
+      return `${Array(4).join(" ")}${index + 1}. (${time}) ${scramble}`;
+    } else return `${Array(4).join(" ")}${index + 1}. ${time} ${scramble}`;
   }).join('\n');
 
   return {
