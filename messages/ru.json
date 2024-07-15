@@ -89,7 +89,8 @@
       "confirm": "Подтвердить",
       "cancel": "Отмена",
       "save": "Сохранить",
-      "delete": "Удалить"
+      "delete": "Удалить",
+      "none": "Нет"
     },
     "Settings-menu": {
       "title": "Настройки",
@@ -111,6 +112,8 @@
       "best-average": "Лучшая средняя",
       "worst-time": "Худшее время",
       "theme": "Тема",
+      "preferences": "Предпочтения",
+      "default-cube": "Кубик по умолчанию",
       "custom-background-image": "Пользовательское фоновое изображение",
       "format": "Формат",
       "allowed-file-types": "Разрешены только файлы изображений (JPEG, PNG, GIF).",

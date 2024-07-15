@@ -89,7 +89,8 @@
       "confirm": "Confirm",
       "cancel": "Cancel",
       "save": "Save",
-      "delete": "Delete"
+      "delete": "Delete",
+      "none": "None"
     },
     "Settings-menu": {
       "title": "Settings",
@@ -116,6 +117,8 @@
       "allowed-file-types": "Only image files (JPEG, PNG, GIF) are allowed.",
       "max-file-size": "Maximum file size allowed is",
       "data": "App Data",
+      "preferences": "Preferences",
+      "default-cube": "Default cube",
       "import-from-file": "Import from file",
       "export-to-file": "Export to file",
       "about": "About",

@@ -6,13 +6,18 @@ import { getAllCubes } from "@/db/dbOperations";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 
 export function usePreloadSettings() {
-  const { setCubes } = useTimerStore();
+  const { setCubes, setSelectedCube, setTimerStatistics, setNewScramble } =
+    useTimerStore();
   const { setSettings } = useSettingsModalStore();
   const { setBackgroundImage } = useBackgroundImageStore();
 
   useEffect(() => {
     const getSettings = loadSettings();
+    const defaultCube = getSettings.preferences.defaultCube.cube;
+    setSelectedCube(defaultCube);
     setSettings(getSettings);
+    setTimerStatistics();
+    setNewScramble(defaultCube);
   }, [setSettings]);
 
   useEffect(() => {
