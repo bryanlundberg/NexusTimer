@@ -14,15 +14,14 @@ import MenuSelectLanguage from "./MenuSelectLanguage";
 import {
   ArrowLeftIcon,
   BellAlertIcon,
-  ClockIcon,
   CogIcon,
   CpuChipIcon,
   FolderIcon,
   IdentificationIcon,
-  ShieldCheckIcon,
   SparklesIcon,
+  ViewColumnsIcon,
 } from "@heroicons/react/24/solid";
-import MenuSelectPreferences from "./MenuSelectPreferences";
+import MenuSelectDefaultStartCube from "./MenuSelectDefaultStartCube";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings } = useSettingsModalStore();
@@ -141,7 +140,13 @@ export default function MenuSettings() {
                 <DataImportExport />
               </MenuSection>
 
-              <MenuSelectPreferences />
+              <MenuSection
+                icon={<ViewColumnsIcon className="w-6 h-6" />}
+                title={t("preferences")}
+              >
+                <MenuSelectDefaultStartCube />
+              </MenuSection>
+
               <MenuSection
                 icon={<IdentificationIcon className="w-6 h-6" />}
                 title={t("about")}
