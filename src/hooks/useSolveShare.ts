@@ -47,8 +47,8 @@ export default function useSolveShare() {
     const scramble = `${solve.scramble}`;
 
     if (solve.time === maxTimeAo5 || solve.time === minTimeAo5) {
-      return `(${time}) : ${scramble} \n`;
-    } else return `${time} : ${scramble} \n`;
+      return `(${time}) : ${scramble}`;
+    } else return `${time}  : ${scramble}`;
   }).join('\n');
 
   const formattedLast12Solves = last12Solves.map((solve) => {
@@ -58,8 +58,8 @@ export default function useSolveShare() {
     const scramble = `${solve.scramble}`;
 
     if (solve.time === maxTimeAo12 || solve.time === minTimeAo12) {
-      return `(${time}) : ${scramble} \n`;
-    } else return `${time} : ${scramble} \n`;
+      return `(${time}) : ${scramble}`;
+    } else return `${time}  : ${scramble}`;
   }).join('\n');
 
   return {
