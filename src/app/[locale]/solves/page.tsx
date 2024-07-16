@@ -25,6 +25,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import sortSolves, { SortMode } from "@/lib/SortSolves";
 import SortModeMenu from "@/components/solves/SortModeMenu";
 import SortOrderMenu from "@/components/solves/SortOrderMenu";
+import SolvesOptionsDropdown from "@/components/solves/SolvesOptionsDropdown";
+import ShareMenu from "@/components/solves/ShareMenu";
 
 export default function SolvesPage() {
   const {
@@ -46,6 +48,8 @@ export default function SolvesPage() {
   const t = useTranslations("Index");
   const sortMenuRef = useRef<HTMLDivElement | null>(null);
   const sortSubMenuRef = useRef<HTMLDivElement | null>(null);
+  const solveMenuRef = useRef<HTMLDivElement | null>(null);
+  const shareMenuRef = useRef<HTMLDivElement | null>(null);
 
   const [sortOptions, setSortOptions] = useState<SortMode>({
     order: "Descending",
@@ -53,15 +57,24 @@ export default function SolvesPage() {
   });
   const [sortModal, setSortModal] = useState(false);
   const [subMenuModal, setSubMenuModal] = useState(false);
+  const [solvesOptionsMenu, setSolvesOptionsMenu] = useState(false);
+  const [shareSolveModal, setShareSolveModal] = useState(false);
 
   sortSolves({ displaySolves, sortMode: sortOptions });
 
+  useClickOutside(shareMenuRef, () => {
+    setShareSolveModal(false);
+  });
   useClickOutside(sortSubMenuRef, () => {
     setSubMenuModal(false);
   });
 
   useClickOutside(sortMenuRef, () => {
     setSortModal(false);
+  });
+
+  useClickOutside(solveMenuRef, () => {
+    setSolvesOptionsMenu(false);
   });
 
   return (
@@ -106,7 +119,7 @@ export default function SolvesPage() {
               />
               <div className="relative">
                 <Button
-                  onClick={() => setSortModal((prev) => !prev)}
+                  onClick={() => setSolvesOptionsMenu((prev) => !prev)}
                   icon={<AdjustmentsHorizontalIcon className="w-4 h-4" />}
                   label={"Sort by"}
                   disabled={
@@ -115,6 +128,40 @@ export default function SolvesPage() {
                       : true
                   }
                 />
+
+                <AnimatePresence>
+                  {solvesOptionsMenu && (
+                    <motion.div
+                      initial={{ y: 0, scale: 0.9, opacity: 0.8 }}
+                      animate={{ y: 0, scale: 1, opacity: 1 }}
+                      exit={{ x: 0, scale: 0.9, opacity: 0 }}
+                      className="absolute top-10 right-0 z-50"
+                    >
+                      <SolvesOptionsDropdown
+                        solveMenuRef={solveMenuRef}
+                        setSortModal={setSortModal}
+                        setShareSolveModal={setShareSolveModal}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <AnimatePresence>
+                  {shareSolveModal && (
+                    <motion.div
+                      initial={{ y: 0, scale: 0.9, opacity: 0.8 }}
+                      animate={{ y: 0, scale: 1, opacity: 1 }}
+                      exit={{ x: 0, scale: 0.9, opacity: 0 }}
+                      className="absolute top-10 right-0 z-50"
+                    >
+                      <ShareMenu
+                        submenuRef={shareMenuRef}
+                        setShareSolveModal={setShareSolveModal}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 <AnimatePresence>
                   {sortModal && (
                     <motion.div
