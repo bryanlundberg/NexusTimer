@@ -18,7 +18,7 @@ export default function SolvesOptionsDropdown({
 
   return (
     <div
-      className="w-40 p-2 z-50 flex flex-col gap-3 mt-1 bg-white rounded-md text-xs text-black"
+      className="w-40 p-2 z-50 flex flex-col gap-1 mt-1 bg-white rounded-md text-xs text-black"
       ref={solveMenuRef}
     >
       <div
@@ -40,7 +40,7 @@ export default function SolvesOptionsDropdown({
       >
         <div className="flex flex-row p-0">
           <ShareIcon className="w-4 h-4" />
-          <span className="mx-1.5">{t("share-session")}</span>
+          <span className="mx-1.5">{t("share")}</span>
         </div>
         <div>
           <PlayIcon className="w-2 h-2 -mx-6" />

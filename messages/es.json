@@ -41,7 +41,12 @@
       "date": "Fecha",
       "descending": "Descendente",
       "sort-by": "Ordenar por...",
-      "time": "Tiempo"
+      "time": "Tiempo",
+      "share-stats-title": "Generado por NexusTimer",
+      "average": "Promedio",
+      "share": "Compartir...",
+      "list-of-times": "Lista de tiempos",
+      "last": "Último"
     },
     "StatsPage": {
       "title": "Estadísticas",
