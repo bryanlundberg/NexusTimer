@@ -1,7 +1,7 @@
 import getMean from "../src/lib/getMean";
 import { FAKE_SESSION } from "../data/FAKE_SESSION";
 
-describe("Should get the mean from an array of solves", () => {
+describe("getMean Function Tests", () => {
   test("Empty array", () => {
     expect(getMean([])).toBe(0);
   });
@@ -22,7 +22,7 @@ describe("Should get the mean from an array of solves", () => {
     expect(getMean([...FAKE_SESSION].slice(0, 50))).toBe(13738.22);
   });
 
-  test("Empty usage of the function", () => {
+  test("Empty usage of the function (no parameters)", () => {
     expect(getMean()).toBe(0);
   });
 
