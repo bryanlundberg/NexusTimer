@@ -6,6 +6,7 @@ import { Solve } from "@/interfaces/Solve";
  * @returns {number} The mean of solve times. Returns 0 if there are no solves.
  */
 export default function getMean(solves: Solve[]): number {
+  if (!solves) return 0;
   const n = solves.length;
 
   // If there are no solves, the mean is 0.
