@@ -6,7 +6,7 @@ describe("getWorstTime Function Tests", () => {
     expect(getWorstTime([])).toBe(0);
   });
 
-  test("Array with multiple solves", () => {
+  test("Get the highest time", () => {
     expect(getWorstTime([...FAKE_SESSION])).toBe(16711);
   });
 });
