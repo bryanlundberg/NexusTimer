@@ -4,11 +4,11 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useRouter } from "@/navigation";
 import { useRef, useState } from "react";
 import Loading from "../Loading";
 import { getAllCubes } from "@/db/dbOperations";
 import { useTranslations } from "next-intl";
+import { useRouter } from "@/i18n/routing";
 
 export default function ImportModal() {
   const { setImportModalOpen, importModalOpen } = useSettingsModalStore();

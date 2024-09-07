@@ -1,4 +1,4 @@
-import { defaultLocale, locales } from "@/navigation";
+import { defaultLocale, locales } from "@/i18n/locales";
 import { MetadataRoute } from "next";
 
 const pathnames = ["/", "/cubes", "/solves", "/stats"];

@@ -1,5 +1,5 @@
 import { CubeIcon, CursorArrowRaysIcon } from "@heroicons/react/24/solid";
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 
 type Icon = "no-cube-selected" | "no-solves";
 
