@@ -18,7 +18,7 @@ export function usePreloadSettings() {
     setSettings(getSettings);
     setTimerStatistics();
     setNewScramble(defaultCube);
-  }, [setSettings]);
+  }, [setSettings, setSelectedCube, setNewScramble, setTimerStatistics]);
 
   useEffect(() => {
     getAllCubes().then((res) => setCubes(res));
