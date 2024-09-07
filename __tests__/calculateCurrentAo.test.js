@@ -1,7 +1,7 @@
 import calculateCurrentAo from "../src/lib/calculateCurrentAo";
 import { FAKE_SESSION } from "../data/FAKE_SESSION";
 
-describe("calculateCurrentAo", () => {
+describe("calculateCurrentAo Function Tests", () => {
   test("should return 0 if the number of solves is less than the desired average length (ao)", () => {
     const ao = 5;
     const limitedSolves = FAKE_SESSION.slice(0, 4);
