@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { Link } from "@/navigation";
 import { Categories } from "@/interfaces/Categories";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import genId from "@/lib/genId";
@@ -12,6 +11,7 @@ import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import { Cube } from "@/interfaces/Cube";
 import { useTranslations } from "next-intl";
 import { ChevronUpDownIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { Link } from "@/i18n/routing";
 
 export default function Select() {
   const [open, setOpen] = useState<boolean>(false);
