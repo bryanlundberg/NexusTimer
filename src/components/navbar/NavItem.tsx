@@ -1,5 +1,4 @@
-import { usePathname } from "@/navigation";
-import { Link } from "@/navigation";
+import { Link, usePathname } from "@/i18n/routing";
 
 interface NavItem {
   path: string;

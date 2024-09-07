@@ -4,7 +4,7 @@ import { MenuSection } from "./MenuSection";
 import { useLocale, useTranslations } from "next-intl";
 import { languages } from "@/lib/const/languages";
 import { useRef } from "react";
-import { useRouter } from "@/navigation";
+import { useRouter } from "@/i18n/routing";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { GlobeAltIcon } from "@heroicons/react/24/solid";
 import { Button } from "../button";

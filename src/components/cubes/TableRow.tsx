@@ -2,7 +2,7 @@ import { Cube } from "@/interfaces/Cube";
 import BookmarkFav from "@/components/cubes/BookmarkFav";
 import { useTimerStore } from "@/store/timerStore";
 import { useCubesModalStore } from "@/store/CubesModalStore";
-import { useRouter } from "@/navigation";
+import { useRouter } from "@/i18n/routing";
 import { getAllCubes, saveCube } from "@/db/dbOperations";
 import { useTranslations, useLocale } from "next-intl";
 import { DateTime } from "luxon";
@@ -72,8 +72,8 @@ export default function TableRow({ cube }: { cube: Cube }) {
         </div>
         <div className="hidden text-center align-middle cursor-pointer md:table-cell">
           {DateTime.fromMillis(cube?.createdAt)
-                        .setLocale(locale)
-                        .toLocaleString()}
+            .setLocale(locale)
+            .toLocaleString()}
         </div>
         <div className="hidden text-center align-middle md:table-cell">
           {cube?.solves?.session.length > 0 ? (

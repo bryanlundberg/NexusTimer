@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "@/navigation";
+import { useRouter } from "@/i18n/routing";
 import { useEffect } from "react";
 
 // Resets all hashes on first load
