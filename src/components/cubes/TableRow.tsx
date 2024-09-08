@@ -25,7 +25,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
   const { setEditingCube, setModalOpen, setCubeName, setSelectedCategory } =
     useCubesModalStore();
   const setFavorite = async (cube: Cube) => {
-    const updatedCube = await saveCube({
+    await saveCube({
       ...cube,
       favorite: !cube.favorite,
     });
@@ -58,7 +58,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
           <BookmarkFav
             cube={cube}
             isChecked={cube.favorite}
-            setFavorite={setFavorite}
+            setFavorite={() => setFavorite(cube)}
           />
         </div>
         <div className="table-cell text-left align-middle cursor-pointer">
@@ -100,7 +100,7 @@ export default function TableRow({ cube }: { cube: Cube }) {
               setModalOpen(true);
             }}
           >
-            <EllipsisHorizontalIcon className="w-6 h-6" />
+            <EllipsisHorizontalIcon className="w-4 h-4" />
           </button>
         </div>
       </div>

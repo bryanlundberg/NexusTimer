@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { Categories } from "@/interfaces/Categories";
 import { useCubesModalStore } from "@/store/CubesModalStore";
@@ -103,7 +104,7 @@ export default function useModalCube() {
       window.localStorage.setItem("settings", JSON.stringify(currentSettings));
     }
 
-    const updatedCube = await saveCube({
+    await saveCube({
       ...editingCube,
       name: name.trim(),
       category: category,

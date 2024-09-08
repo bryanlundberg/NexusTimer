@@ -90,7 +90,7 @@ export default function SolvesPage() {
             <InputText
               className="border light:bg-neutral-50 light:border-neutral-200 light:focus:bg-white dark:bg-zinc-950 dark:border-zinc-800 dark:focus:bg-zinc-900"
               placeholder={t("SolvesPage.search-by-time")}
-              onChange={(e) => {
+              onChangeCallback={(e) => {
                 handleSearch(e);
               }}
               id="search"

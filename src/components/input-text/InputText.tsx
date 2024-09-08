@@ -1,39 +1,40 @@
+"use client";
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
-interface InputTextProps {
-  placeholder: string;
+interface InputTextProps extends React.HTMLAttributes<HTMLInputElement> {
   value?: string;
-  focus?: boolean;
   className?: string;
-  onChange: (value: string) => void;
-  id?: string;
+  onChangeCallback: (value: string) => void;
 }
 
 export default function InputText({
-  placeholder,
   value = "",
-  focus = false,
   className,
+  onChangeCallback,
   onChange,
-  id,
+  ...rest
 }: InputTextProps) {
   const [valueText, setValueText] = useState(value);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValueText(newValue);
-    onChange(newValue);
+    onChangeCallback(newValue);
   };
 
   return (
     <input
+      {...rest}
       type="text"
-      className={`appearance-none outline-none transition duration-300 w-full h-9 px-3 text-md rounded-md shadow-sm ${className} light:hover:border-neutral-400 light:focus:border-neutral-400 dark:hover:border-zinc-500 dark:focus:border-zinc-500`}
+      className={twMerge(
+        "appearance-none outline-none transition duration-300 w-full h-9 px-3 text-md rounded-md shadow-sm light:hover:border-neutral-400 light:focus:border-neutral-400 dark:hover:border-zinc-500 dark:focus:border-zinc-500",
+        className
+      )}
       value={valueText}
-      placeholder={placeholder}
-      autoFocus={focus}
-      onChange={handleChange}
-      id={id}
+      onChange={(e) => {
+        handleChange(e);
+      }}
       autoComplete="off"
     />
   );

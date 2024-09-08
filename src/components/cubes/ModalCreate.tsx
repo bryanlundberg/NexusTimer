@@ -61,9 +61,8 @@ export default function ModalCreate() {
               <div className="flex flex-col w-full">
                 <InputText
                   placeholder={t("Cubes-modal.placeholder")}
-                  onChange={handleWriteCubeName}
+                  onChangeCallback={handleWriteCubeName}
                   value={cubeName}
-                  focus={true}
                   className={`bg-neutral-100 focus:bg-neutral-50 text-neutral-900 border border-neutral-300`}
                 />
                 {error ? (
@@ -94,7 +93,7 @@ export default function ModalCreate() {
               {cubeCollection.map((category) => {
                 return (
                   <CheckboxImage
-                    key={genId()}
+                    key={category.id}
                     src={category.src}
                     alt={category.name}
                     id={category.id}
