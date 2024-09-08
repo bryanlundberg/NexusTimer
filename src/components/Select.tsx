@@ -66,7 +66,7 @@ export default function Select() {
                 if (cube.favorite) {
                   return (
                     <Option
-                      key={genId()}
+                      key={cube.id}
                       name={cube.name}
                       category={cube.category}
                       cubeId={cube.id}
@@ -79,7 +79,7 @@ export default function Select() {
               {cubes?.map((cube) => {
                 return (
                   <Option
-                    key={genId()}
+                    key={cube.id}
                     name={cube.name}
                     category={cube.category}
                     cubeId={cube.id}
@@ -101,7 +101,7 @@ export function MiniatureIcon({ category }: { category: Categories }) {
     if (option.name === category) {
       return (
         <Image
-          key={genId()}
+          key={option.displayId}
           src={option.src}
           alt={option.name}
           width={24}

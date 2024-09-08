@@ -49,7 +49,7 @@ export default function Select({
         <SelectOptionList isOpen={isOpen}>
           {list.map((item: Item) => (
             <SelectOption
-              key={genId()}
+              key={item.id}
               label={item.name}
               selected={selectedValue}
               onSelect={() => handleOptionSelect(item)}

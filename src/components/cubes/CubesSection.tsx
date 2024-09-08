@@ -1,13 +1,12 @@
 import { Cube } from "@/interfaces/Cube";
 import TableHeader from "@/components/cubes/TableHeader";
 import TableRow from "@/components/cubes/TableRow";
-import genId from "@/lib/genId";
 
-interface CubesSection {
+interface CubesSectionProps {
   filterCubes: Cube[];
 }
 
-export function CubesSection({ filterCubes }: CubesSection) {
+export function CubesSection({ filterCubes }: CubesSectionProps) {
   return (
     <>
       <div className="h-full overflow-auto grow">
@@ -15,7 +14,7 @@ export function CubesSection({ filterCubes }: CubesSection) {
           <TableHeader />
           <div className="table-row-group h-10 text-sm">
             {filterCubes.map((cube) => (
-              <TableRow key={genId()} cube={cube} />
+              <TableRow key={cube.id} cube={cube} />
             ))}
           </div>
         </div>
