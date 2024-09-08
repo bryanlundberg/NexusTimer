@@ -37,8 +37,6 @@ export default function useModalCube() {
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [cubeData, setCubeData] = useState<DeleteCubeDetails | null>(null);
 
-  const defaultCubeId = loadSettings().preferences.defaultCube.cube?.id;
-
   useEscape(() => setModalOpen(false));
 
   const handleClickRadio = (category: Categories) => {
@@ -94,6 +92,7 @@ export default function useModalCube() {
       }
     }
 
+    const defaultCubeId = loadSettings().preferences.defaultCube.cube?.id;
     if (editingCube.id === defaultCubeId) {
       const currentSettings = loadSettings();
       if (currentSettings.preferences.defaultCube.cube) {
@@ -168,7 +167,7 @@ export default function useModalCube() {
       setNewScramble(null);
       setTimerStatistics();
     }
-
+    const defaultCubeId = loadSettings().preferences.defaultCube.cube?.id;
     if (editingCube.id === defaultCubeId) {
       const currentSettings = loadSettings();
       currentSettings.preferences.defaultCube.cube = null;
