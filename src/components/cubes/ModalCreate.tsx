@@ -1,3 +1,4 @@
+"use client";
 import { InputText } from "@/components/input-text/index";
 import CheckboxImage from "@/components/cubes/CheckboxImage";
 import { cubeCollection } from "@/lib/const/cubeCollection";
