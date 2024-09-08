@@ -8,15 +8,13 @@ import { OverallHeader } from "@/components/OverallHeader";
 import { OptionsContainer } from "@/components/cubes/OptionsContainer";
 import { useCubes } from "@/hooks/useCubes";
 import { AnimatePresence } from "framer-motion";
-import useModalCube from "@/hooks/useModalCube";
 import { useCubesModalStore } from "@/store/CubesModalStore";
 import { useTranslations } from "next-intl";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 export default function CubesPage() {
   const { filterCubes, handleSearchFilter } = useCubes();
-  const { modalOpen, setModalOpen } = useCubesModalStore();
-  const { setSelectedCategory } = useModalCube();
+  const { modalOpen, setModalOpen, setSelectedCategory } = useCubesModalStore();
   const t = useTranslations("Index.CubesPage");
   return (
     <>
