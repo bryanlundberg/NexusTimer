@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DateTime } from "luxon";
 import { useLocale } from "next-intl";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function Page() {
   const { filterCubes, handleSearchFilter } = useCubes();
@@ -44,7 +45,7 @@ export default function Page() {
               <Input
                 placeholder="Search your cube"
                 onChange={(e) => handleSearchFilter(e.target.value)}
-                className="max-w-[300px] w-full"
+                className="max-w-[300px] w-full bg-primary-foreground"
               />
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
@@ -64,11 +65,11 @@ export default function Page() {
 
         {/* cubes list */}
         {filterCubes ? (
-          <Card>
+          <Card className="overflow-hidden">
             <Table>
-              <TableHeader className="bg-secondary">
+              <TableHeader>
                 <TableRow>
-                  <TableHead>Fav</TableHead>
+                  <TableHead>Favorite</TableHead>
                   <TableHead>Name</TableHead>
                   <TableHead>Category</TableHead>
                   <TableHead>Created At</TableHead>
@@ -80,7 +81,9 @@ export default function Page() {
                 {filterCubes.map((cube) => {
                   return (
                     <TableRow key={cube.id}>
-                      <TableCell>P</TableCell>
+                      <TableCell className="ps-5">
+                        <Checkbox />
+                      </TableCell>
                       <TableCell>{cube.name}</TableCell>
                       <TableCell>{cube.category}</TableCell>
                       <TableCell>
