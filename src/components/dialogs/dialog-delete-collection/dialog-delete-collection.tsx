@@ -10,10 +10,38 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { deleteCubeById, getAllCubes } from "@/db/dbOperations";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
+import { useTimerStore } from "@/store/timerStore";
+import { useState } from "react";
 
 export default function DialogDeleteCollection() {
-  const { cube } = useDialogCubesOptions();
+  const { setCubes } = useTimerStore();
+  const { cube, closeDialog } = useDialogCubesOptions();
+  const [cubeName, setCubeName] = useState("");
+  const [error, setError] = useState({
+    status: false,
+    message: "",
+  });
+  const handleDeleteCube = async () => {
+    try {
+      if (cubeName.trim() !== cube?.name) {
+        setError((prev) => ({
+          ...prev,
+          status: true,
+          message: "The name does not match",
+        }));
+        return;
+      }
+
+      await deleteCubeById(cube.id);
+      const cubes = await getAllCubes();
+      setCubes(cubes);
+      closeDialog();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <DialogContent className="sm:max-w-[425px]">
@@ -37,14 +65,25 @@ export default function DialogDeleteCollection() {
           <span className="text-secondary-foreground">{cube?.name}</span> to
           continue:
         </Label>
-        <Input />
+        <Input
+          onChange={(e) => {
+            setError((prev) => ({ ...prev, status: false, message: "" }));
+            setCubeName(e.target.value);
+          }}
+        />
+
+        {error && error.status && (
+          <p className="text-destructive text-sm">{error.message}</p>
+        )}
         <DialogFooter>
           <div className="flex justify-between w-full">
             <DialogClose asChild>
               <Button variant={"outline"}>Cancel</Button>
             </DialogClose>
 
-            <Button variant={"default"}>Continue</Button>
+            <Button variant={"default"} onClick={handleDeleteCube}>
+              Continue
+            </Button>
           </div>
         </DialogFooter>
       </DialogContent>
