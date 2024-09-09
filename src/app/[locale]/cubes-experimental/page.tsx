@@ -34,7 +34,9 @@ export default function Page() {
   const locale = useLocale();
   return (
     <>
+      {/* container */}
       <div className="max-w-5xl mx-auto p-3 w-full">
+        {/* header */}
         <Card className="w-full mb-3 border p-3">
           <div className="flex gap-3 items-center justify-between">
             <h2 className="font-black text-xl">Cubes</h2>
@@ -60,6 +62,7 @@ export default function Page() {
           </div>
         </Card>
 
+        {/* cubes list */}
         {filterCubes ? (
           <Card>
             <Table>
