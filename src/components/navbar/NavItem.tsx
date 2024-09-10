@@ -3,11 +3,10 @@ import { twMerge } from "tailwind-merge";
 
 interface NavItem {
   path: string;
-  normalIcon: React.ReactNode;
-  solidIcon: React.ReactNode;
+  icon: React.ReactNode;
 }
 
-export function NavItem({ path, solidIcon, normalIcon }: NavItem) {
+export function NavItem({ path, icon }: NavItem) {
   const pathname = usePathname();
   return (
     <>
@@ -20,7 +19,7 @@ export function NavItem({ path, solidIcon, normalIcon }: NavItem) {
             } transition duration-300 py-2 rounded-md flex flex-col justify-center items-center font-medium`
           )}
         >
-          {pathname === path ? solidIcon : normalIcon}
+          {icon}
         </Link>
       </li>
     </>
