@@ -65,19 +65,9 @@
       "created-at": "생성일",
       "status": "상태",
       "using": "사용 중",
-      "idle": "유휴",
-      "filter-cubes": "큐브 필터링"
+      "idle": "유휴"
     },
-    "Cubes-modal": {
-      "title-editing": "큐브 수정",
-      "title-creating": "새로운 큐브",
-      "error-name": "큐브 이름이 없습니다",
-      "error-duplicate": "이미 사용 중인 큐브 이름입니다",
-      "current-select": "현재 선택:",
-      "question-delete": "정말로 삭제하시겠습니까?",
-      "warning-delete": "이 작업은 되돌릴 수 없습니다. 이 큐브의 모든 해결 기록이 삭제되며 통계에 영향을 줄 수 있습니다.",
-      "placeholder": "브랜드 | 모델 | 버전 | 자석?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "선택",
       "add-cube": "큐브 추가",

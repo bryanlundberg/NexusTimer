@@ -65,19 +65,9 @@
       "created-at": "创建于",
       "status": "状态",
       "using": "使用中",
-      "idle": "闲置",
-      "filter-cubes": "过滤你的魔方"
+      "idle": "闲置"
     },
-    "Cubes-modal": {
-      "title-editing": "编辑魔方",
-      "title-creating": "新魔方",
-      "error-name": "魔方名称丢失",
-      "error-duplicate": "魔方名称已被使用",
-      "current-select": "当前选择：",
-      "question-delete": "您确定要删除吗？",
-      "warning-delete": "此不可逆转的操作将删除此魔方的所有解决历史，可能会影响您的统计数据。",
-      "placeholder": "品牌 | 型号 | 版本 | 磁性？"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "选择",
       "add-cube": "添加魔方",

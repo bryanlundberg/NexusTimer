@@ -65,19 +65,9 @@
       "created-at": "Criado Em",
       "status": "Status",
       "using": "Usando",
-      "idle": "Inativo",
-      "filter-cubes": "Filtrar seus cubos"
+      "idle": "Inativo"
     },
-    "Cubes-modal": {
-      "title-editing": "Editar Cubo",
-      "title-creating": "Novo Cubo",
-      "error-name": "Falta o nome do cubo",
-      "error-duplicate": "Nome do cubo já em uso",
-      "current-select": "Seleção atual:",
-      "question-delete": "Tem certeza de que deseja excluir?",
-      "warning-delete": "Esta ação irreversível excluirá todo o histórico de soluções para este cubo e pode afetar suas estatísticas.",
-      "placeholder": "Marca | Modelo | Versão | Magnético?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Selecionar",
       "add-cube": "Adicionar cubo",

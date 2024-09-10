@@ -65,19 +65,9 @@
       "created-at": "Skapad",
       "status": "Status",
       "using": "Använder",
-      "idle": "Inaktiv",
-      "filter-cubes": "Filtrera dina kuber"
+      "idle": "Inaktiv"
     },
-    "Cubes-modal": {
-      "title-editing": "Redigera kub",
-      "title-creating": "Ny kub",
-      "error-name": "Kubnamn saknas",
-      "error-duplicate": "Kubnamnet används redan",
-      "current-select": "Nuvarande val:",
-      "question-delete": "Är du säker på att du vill radera?",
-      "warning-delete": "Denna åtgärd är inte återvinningsbar och kommer att radera all löshistorik för denna kub och kan påverka dina statistik.",
-      "placeholder": "Märke | Modell | Version | Magnetisk?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Välj",
       "add-cube": "Lägg till kub",

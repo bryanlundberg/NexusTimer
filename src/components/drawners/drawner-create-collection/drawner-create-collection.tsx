@@ -15,6 +15,7 @@ import { cubeCollection } from "@/lib/const/cubeCollection";
 import genId from "@/lib/genId";
 import { cn } from "@/lib/utils";
 import { useTimerStore } from "@/store/timerStore";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -28,6 +29,7 @@ export default function DrawerCreateCollection({
 }: {
   closeDrawer: () => void;
 }) {
+  const t = useTranslations("Index");
   const [newCollection, setNewCollection] = useState<FormProps>({
     category: "2x2",
     name: "",
@@ -44,7 +46,7 @@ export default function DrawerCreateCollection({
         setError((prev) => ({
           ...prev,
           error: true,
-          message: "There's a cube with the same name",
+          message: t("Errors.empty-input"),
         }));
         return;
       }
@@ -56,7 +58,7 @@ export default function DrawerCreateCollection({
         setError((prev) => ({
           ...prev,
           error: true,
-          message: "There's a cube with the same name",
+          message: t("Errors.repeated-name"),
         }));
         return;
       }
@@ -76,18 +78,16 @@ export default function DrawerCreateCollection({
   return (
     <DrawerContent className="max-w-[850px] mx-auto">
       <DrawerHeader>
-        <DrawerTitle>New collection</DrawerTitle>
+        <DrawerTitle>{t("Cubes-modal.new-collection")}</DrawerTitle>
         <DrawerDescription>
-          Cube collections allow you to keep track of your each cube historial
-          without affect overall category stats.
+          {t("Cubes-modal.new-collection-description")}
         </DrawerDescription>
       </DrawerHeader>
 
       <div className="p-3">
-        <Label htmlFor="name">Name</Label>
+        <Label htmlFor="name">{t("Cubes-modal.name")}</Label>
         <Input
           id="name"
-          title="Cube name"
           placeholder="E.g: X Man Tornado V3 M"
           onChange={(e) => {
             setNewCollection((prev) => ({ ...prev, name: e.target.value }));
@@ -98,7 +98,7 @@ export default function DrawerCreateCollection({
         {error && <p className="text-destructive mt-1">{error.message}</p>}
 
         <div className="mt-3"></div>
-        <Label>Category</Label>
+        <Label>{t("Cubes-modal.category")}</Label>
         <div className="grid md:grid-cols-6 grid-cols-4 gap-5 place-items-center mt-3">
           {cubeCollection.map((e) => {
             return (
@@ -125,14 +125,18 @@ export default function DrawerCreateCollection({
         </div>
 
         <div className="mt-3"></div>
-        <Label>Current selection: {newCollection.category}</Label>
+        <Label>
+          {t("Cubes-modal.current-selection")} {newCollection.category}
+        </Label>
       </div>
 
       <DrawerFooter>
-        <Button onClick={handleSubmitNewCollection}>Create</Button>
+        <Button onClick={handleSubmitNewCollection}>
+          {t("Inputs.create")}
+        </Button>
         <DrawerClose asChild>
           <Button variant="outline" className="w-full">
-            Cancel
+            {t("Inputs.cancel")}
           </Button>
         </DrawerClose>
       </DrawerFooter>

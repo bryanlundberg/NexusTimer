@@ -22,9 +22,11 @@ import { cubeCollection } from "@/lib/const/cubeCollection";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 export default function DialogEditCollection() {
+  const t = useTranslations("Index");
   const { cube, closeDialog } = useDialogCubesOptions();
   const { cubes, setCubes, selectedCube, setSelectedCube, setTimerStatistics } =
     useTimerStore();
@@ -44,7 +46,7 @@ export default function DialogEditCollection() {
         setError((prev) => ({
           ...prev,
           status: true,
-          message: "That name already exist.",
+          message: t("Errors.repeated-name"),
         }));
         return;
       }
@@ -103,17 +105,16 @@ export default function DialogEditCollection() {
     <>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit collection</DialogTitle>
+          <DialogTitle>{t("Cubes-modal.edit-collection")}</DialogTitle>
         </DialogHeader>
 
         <Alert className="bg-yellow-200/20 text-amber-700">
           <AlertDescription className="font-semibold">
-            <span className="font-black">Warning:</span> Modify the collection
-            category, changes the solves from their category too.
+            {t("Cubes-modal.danger-msg")}
           </AlertDescription>
         </Alert>
 
-        <Label>Name</Label>
+        <Label>{t("Cubes-modal.name")}</Label>
         <Input
           defaultValue={cube?.name}
           onChange={(e) => {
@@ -125,7 +126,7 @@ export default function DialogEditCollection() {
           <p className="text-destructive text-sm">{error.message}</p>
         )}
 
-        <Label>Category</Label>
+        <Label>{t("Cubes-modal.category")}</Label>
         <Select
           defaultValue={form.category}
           onValueChange={(e) =>
@@ -133,7 +134,7 @@ export default function DialogEditCollection() {
           }
         >
           <SelectTrigger>
-            <SelectValue placeholder="Select an option" />
+            <SelectValue placeholder={t("Cubes-modal.select-an-option")} />
           </SelectTrigger>
           <SelectContent>
             {cubeCollection.map((cube) => {
@@ -148,14 +149,14 @@ export default function DialogEditCollection() {
         <DialogFooter>
           <div className="flex justify-between w-full">
             <DialogClose asChild>
-              <Button variant={"outline"}>Cancel</Button>
+              <Button variant={"outline"}>{t("Inputs.cancel")}</Button>
             </DialogClose>
 
             <Button
               variant={"default"}
               onClick={handleSubmitEditCubeCollection}
             >
-              Continue
+              {t("Inputs.continue")}
             </Button>
           </div>
         </DialogFooter>

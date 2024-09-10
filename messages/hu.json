@@ -65,19 +65,9 @@
       "created-at": "Létrehozva",
       "status": "Állapot",
       "using": "Használ",
-      "idle": "Tétlen",
-      "filter-cubes": "Szűrje kockáit"
+      "idle": "Tétlen"
     },
-    "Cubes-modal": {
-      "title-editing": "Kocka szerkesztése",
-      "title-creating": "Új kocka",
-      "error-name": "A kocka neve hiányzik",
-      "error-duplicate": "A kocka neve már használatban van",
-      "current-select": "Jelenlegi kiválasztás:",
-      "question-delete": "Biztosan törölni szeretné?",
-      "warning-delete": "Ezzel a visszavonhatatlan művelettel törölni fogja az összes megoldási előzményt erre a kockára, és befolyásolhatja a statisztikáit.",
-      "placeholder": "Márka | Modell | Verzió | Mágneses?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Válasszon",
       "add-cube": "Kocka hozzáadása",

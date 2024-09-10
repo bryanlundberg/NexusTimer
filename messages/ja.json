@@ -65,19 +65,9 @@
       "created-at": "作成日",
       "status": "ステータス",
       "using": "使用中",
-      "idle": "アイドル",
-      "filter-cubes": "キューブをフィルタリング"
+      "idle": "アイドル"
     },
-    "Cubes-modal": {
-      "title-editing": "キューブを編集",
-      "title-creating": "新しいキューブ",
-      "error-name": "キューブ名がありません",
-      "error-duplicate": "キューブ名はすでに使用されています",
-      "current-select": "現在の選択:",
-      "question-delete": "削除してもよろしいですか？",
-      "warning-delete": "この操作は元に戻せません。このキューブのすべての解答履歴が削除され、統計に影響を与える可能性があります。",
-      "placeholder": "ブランド | モデル | バージョン | 磁石？"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "選択",
       "add-cube": "キューブを追加",

@@ -65,19 +65,9 @@
       "created-at": "Creato il",
       "status": "Stato",
       "using": "Utilizzando",
-      "idle": "Inattivo",
-      "filter-cubes": "Filtra i tuoi cubi"
+      "idle": "Inattivo"
     },
-    "Cubes-modal": {
-      "title-editing": "Modifica Cubo",
-      "title-creating": "Nuovo Cubo",
-      "error-name": "Nome cubo mancante",
-      "error-duplicate": "Nome cubo già in uso",
-      "current-select": "Selezione attuale:",
-      "question-delete": "Sei sicuro di voler eliminare?",
-      "warning-delete": "Questa azione irreversibile eliminerà tutto lo storico delle risoluzioni per questo cubo e potrebbe influenzare le tue statistiche.",
-      "placeholder": "Marca | Modello | Versione | Magnetico?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Seleziona",
       "add-cube": "Aggiungi cubo",

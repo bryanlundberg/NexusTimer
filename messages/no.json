@@ -65,19 +65,9 @@
       "created-at": "Opprettet På",
       "status": "Status",
       "using": "Bruker",
-      "idle": "Inaktiv",
-      "filter-cubes": "Filtrer kubene dine"
+      "idle": "Inaktiv"
     },
-    "Cubes-modal": {
-      "title-editing": "Rediger Kube",
-      "title-creating": "Ny Kube",
-      "error-name": "Kubenavn mangler",
-      "error-duplicate": "Kubenavn allerede i bruk",
-      "current-select": "Gjeldende valg:",
-      "question-delete": "Er du sikker på at du vil slette?",
-      "warning-delete": "Denne ugjenkallelige handlingen vil slette all løsningshistorikk for denne kuben og kan påvirke statistikken din.",
-      "placeholder": "Merk | Modell | Versjon | Magnetisk?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Velg",
       "add-cube": "Legg til kube",

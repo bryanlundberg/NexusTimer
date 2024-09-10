@@ -65,19 +65,9 @@
       "created-at": "Créé à",
       "status": "Statut",
       "using": "En cours d'utilisation",
-      "idle": "Inactif",
-      "filter-cubes": "Filtrer vos cubes"
+      "idle": "Inactif"
     },
-    "Cubes-modal": {
-      "title-editing": "Modifier le Cube",
-      "title-creating": "Nouveau Cube",
-      "error-name": "Le nom du cube est manquant",
-      "error-duplicate": "Le nom du cube est déjà utilisé",
-      "current-select": "Sélection actuelle :",
-      "question-delete": "Êtes-vous sûr de vouloir supprimer ?",
-      "warning-delete": "Cette action irréversible supprimera tout l'historique des résolutions pour ce cube et pourrait affecter vos statistiques.",
-      "placeholder": "Marque | Modèle | Version | Magnétique ?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Sélectionner",
       "add-cube": "Ajouter un cube",

@@ -65,19 +65,9 @@
       "created-at": "Utworzono",
       "status": "Status",
       "using": "Używając",
-      "idle": "Bezczynny",
-      "filter-cubes": "Filtruj swoje kostki"
+      "idle": "Bezczynny"
     },
-    "Cubes-modal": {
-      "title-editing": "Edytuj Kostkę",
-      "title-creating": "Nowa Kostka",
-      "error-name": "Brakuje nazwy kostki",
-      "error-duplicate": "Nazwa kostki jest już używana",
-      "current-select": "Aktualny wybór:",
-      "question-delete": "Czy na pewno chcesz usunąć?",
-      "warning-delete": "Ta nieodwracalna czynność spowoduje usunięcie całej historii rozwiązań dla tej kostki i może wpłynąć na Twoje statystyki.",
-      "placeholder": "Marka | Model | Wersja | Magnetyczna?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Wybierz",
       "add-cube": "Dodaj kostkę",

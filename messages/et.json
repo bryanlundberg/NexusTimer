@@ -65,19 +65,9 @@
       "created-at": "Loodud",
       "status": "Staatus",
       "using": "Kasutamine",
-      "idle": "Tööta",
-      "filter-cubes": "Filtreeri oma kuubikuid"
+      "idle": "Tööta"
     },
-    "Cubes-modal": {
-      "title-editing": "Kuubi muutmine",
-      "title-creating": "Uus kuup",
-      "error-name": "Kuubi nimi puudub",
-      "error-duplicate": "Kuubi nimi on juba kasutusel",
-      "current-select": "Praegune valik:",
-      "question-delete": "Olete kindel, et soovite kustutada?",
-      "warning-delete": "See pöördumatu toiming kustutab kõik selle kuubi jaoks mineviku lahendused ja võib mõjutada teie statistikat.",
-      "placeholder": "Bränd | Mudel | Versioon | Magnetiline?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Vali",
       "add-cube": "Lisa kuup",

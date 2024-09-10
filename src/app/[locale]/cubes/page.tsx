@@ -3,7 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { EllipsisHorizontalIcon, PlusIcon } from "@heroicons/react/24/solid";
+import {
+  EllipsisHorizontalIcon,
+  PlayIcon,
+  PlusIcon,
+  StopIcon,
+} from "@heroicons/react/24/solid";
 import { Dialog } from "@/components/ui/dialog";
 import {
   Table,
@@ -22,7 +27,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DateTime } from "luxon";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import DialogDeleteCollection from "@/components/dialogs/dialog-delete-collection/dialog-delete-collection";
@@ -42,6 +47,7 @@ export default function Page() {
     redirectToTimer,
   } = useCubes();
   const locale = useLocale();
+  const t = useTranslations("Index");
   return (
     <>
       {/* container */}
@@ -49,10 +55,10 @@ export default function Page() {
         {/* header */}
         <Card className="w-full mb-2 border p-3 border-none">
           <div className="flex gap-3 items-center justify-between">
-            <h2 className="font-black text-xl">Cubes</h2>
+            <h2 className="font-black text-xl">{t("CubesPage.title")}</h2>
             <div className="flex items-center justify-end gap-3 w-full">
               <Input
-                placeholder="Find your cube"
+                placeholder={t("CubesPage.find-your-cube")}
                 onChange={(e) => handleSearchFilter(e.target.value)}
                 className="max-w-[300px] w-full bg-background"
                 autoComplete="false"
@@ -64,7 +70,9 @@ export default function Page() {
                 <DrawerTrigger asChild>
                   <Button className="p-2">
                     <PlusIcon className="size-4" strokeWidth={5} />{" "}
-                    <span className="hidden sm:inline">New collection</span>
+                    <span className="hidden sm:inline">
+                      {t("CubesPage.new-collection")}
+                    </span>
                   </Button>
                 </DrawerTrigger>
                 <DrawerCreateCollection
@@ -82,15 +90,20 @@ export default function Page() {
               <TableHeader>
                 <TableRow>
                   <TableHead className="hidden sm:table-cell">
-                    Favorite
+                    {t("CubesPage.favorite")}
                   </TableHead>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Category</TableHead>
+                  <TableHead>{t("CubesPage.name")}</TableHead>
+                  <TableHead>{t("CubesPage.category")}</TableHead>
                   <TableHead className="hidden md:table-cell">
-                    Created At
+                    {t("CubesPage.created-at")}
                   </TableHead>
-                  <TableHead className="hidden md:table-cell">Solves</TableHead>
-                  <TableHead>Options</TableHead>
+                  <TableHead className="hidden md:table-cell">
+                    {t("CubesPage.solves")}
+                  </TableHead>
+                  <TableHead className="hidden md:table-cell">
+                    {t("CubesPage.status")}
+                  </TableHead>
+                  <TableHead>{t("CubesPage.options")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -130,6 +143,22 @@ export default function Page() {
                         className="hover:cursor-pointer hidden md:table-cell"
                       >
                         {cube.solves.session.length}/{cube.solves.all.length}
+                      </TableCell>
+                      <TableCell
+                        onClick={() => redirectToTimer(cube.id)}
+                        className="hover:cursor-pointer hidden md:table-cell"
+                      >
+                        {cube.solves.session.length > 0 ? (
+                          <div className="flex items-center gap-2">
+                            <PlayIcon className="w-4 h-4" />
+                            {t("CubesPage.using")}
+                          </div>
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <StopIcon className="w-4 h-4" />
+                            {t("CubesPage.idle")}
+                          </div>
+                        )}
                       </TableCell>
                       <TableCell>
                         <DropdownMenu>

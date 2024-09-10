@@ -65,19 +65,9 @@
       "created-at": "Creat la",
       "status": "Stare",
       "using": "Utilizând",
-      "idle": "Inactiv",
-      "filter-cubes": "Filtrare cuburi"
+      "idle": "Inactiv"
     },
-    "Cubes-modal": {
-      "title-editing": "Editare Cub",
-      "title-creating": "Cub Nou",
-      "error-name": "Lipsește numele cubului",
-      "error-duplicate": "Numele cubului este deja utilizat",
-      "current-select": "Selectare curentă:",
-      "question-delete": "Sigur doriți să ștergeți?",
-      "warning-delete": "Această acțiune ireversibilă va șterge întreaga istorie de soluții pentru acest cub și ar putea afecta statisticile dvs.",
-      "placeholder": "Marcă | Model | Versiune | Magnet?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Selectați",
       "add-cube": "Adăugați cub",

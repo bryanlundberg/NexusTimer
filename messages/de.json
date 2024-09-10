@@ -60,19 +60,9 @@
       "created-at": "Erstellt am",
       "status": "Status",
       "using": "Verwendet",
-      "idle": "Leerlauf",
-      "filter-cubes": "Filtern Sie Ihre Würfel"
+      "idle": "Leerlauf"
     },
-    "Cubes-modal": {
-      "title-editing": "Würfel bearbeiten",
-      "title-creating": "Neuer Würfel",
-      "error-name": "Würfelname fehlt",
-      "error-duplicate": "Würfelname bereits in Verwendung",
-      "current-select": "Aktuelle Auswahl:",
-      "question-delete": "Sind Sie sicher, dass Sie löschen möchten?",
-      "warning-delete": "Diese unumkehrbare Aktion löscht den gesamten Lösungshistorie für diesen Würfel und kann Ihre Statistiken beeinflussen.",
-      "placeholder": "Marke | Modell | Version | Magnetisch?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Auswählen",
       "add-cube": "Würfel hinzufügen",

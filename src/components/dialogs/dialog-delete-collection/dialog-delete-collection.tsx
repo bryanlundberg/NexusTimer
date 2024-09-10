@@ -13,9 +13,11 @@ import { Label } from "@/components/ui/label";
 import { deleteCubeById, getAllCubes } from "@/db/dbOperations";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { useTimerStore } from "@/store/timerStore";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
 export default function DialogDeleteCollection() {
+  const t = useTranslations("Index");
   const { setCubes } = useTimerStore();
   const { cube, closeDialog } = useDialogCubesOptions();
   const [cubeName, setCubeName] = useState("");
@@ -29,7 +31,7 @@ export default function DialogDeleteCollection() {
         setError((prev) => ({
           ...prev,
           status: true,
-          message: "The name does not match",
+          message: t("Errors.not-match"),
         }));
         return;
       }
@@ -46,24 +48,23 @@ export default function DialogDeleteCollection() {
     <>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Delete collection</DialogTitle>
+          <DialogTitle>{t("Cubes-modal.delete-collection")}</DialogTitle>
           <DialogDescription>
-            This cube collection will be deleted, along with all of its solves,
-            records, settings.
+            {t("Cubes-modal.delete-collection-description")}
           </DialogDescription>
         </DialogHeader>
 
         <Alert className="bg-red-200/20 text-red-500">
           <AlertDescription className="font-semibold">
-            <span className="font-black">Warning:</span> This action is not
-            reversible.
+            <span className="font-black">{t("Cubes-modal.warning-alert")}</span>{" "}
+            {t("Cubes-modal.warning-msg")}
           </AlertDescription>
         </Alert>
 
         <Label className="text-secondary-foreground/50">
-          Enter the collection name{" "}
-          <span className="text-secondary-foreground">{cube?.name}</span> to
-          continue:
+          {t("Cubes-modal.input-collection-name")}{" "}
+          <span className="text-secondary-foreground">{cube?.name}</span>{" "}
+          {t("Cubes-modal.to-continue")}
         </Label>
         <Input
           onChange={(e) => {
@@ -78,11 +79,11 @@ export default function DialogDeleteCollection() {
         <DialogFooter>
           <div className="flex justify-between w-full">
             <DialogClose asChild>
-              <Button variant={"outline"}>Cancel</Button>
+              <Button variant={"outline"}>{t("Inputs.cancel")}</Button>
             </DialogClose>
 
             <Button variant={"default"} onClick={handleDeleteCube}>
-              Continue
+              {t("Inputs.continue")}
             </Button>
           </div>
         </DialogFooter>

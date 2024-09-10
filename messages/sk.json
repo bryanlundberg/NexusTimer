@@ -65,19 +65,9 @@
       "created-at": "Vytvorené",
       "status": "Stav",
       "using": "Používanie",
-      "idle": "Neaktívne",
-      "filter-cubes": "Filtrovať kocky"
+      "idle": "Neaktívne"
     },
-    "Cubes-modal": {
-      "title-editing": "Upraviť kocku",
-      "title-creating": "Nová kocka",
-      "error-name": "Chýba názov kocky",
-      "error-duplicate": "Názov kocky už je použitý",
-      "current-select": "Aktuálny výber:",
-      "question-delete": "Naozaj chcete odstrániť?",
-      "warning-delete": "Táto nezvratná akcia vymaže celú históriu riešenia pre túto kocku a môže ovplyvniť vaše štatistiky.",
-      "placeholder": "Značka | Model | Verzia | Magnety?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Vybrať",
       "add-cube": "Pridať kocku",

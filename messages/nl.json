@@ -65,19 +65,9 @@
       "created-at": "Gemaakt Op",
       "status": "Status",
       "using": "Gebruikend",
-      "idle": "Inactief",
-      "filter-cubes": "Filter uw kubussen"
+      "idle": "Inactief"
     },
-    "Cubes-modal": {
-      "title-editing": "Kubus Bewerken",
-      "title-creating": "Nieuwe Kubus",
-      "error-name": "Kubusnaam ontbreekt",
-      "error-duplicate": "Kubusnaam is al in gebruik",
-      "current-select": "Huidige selectie:",
-      "question-delete": "Weet u zeker dat u wilt verwijderen?",
-      "warning-delete": "Deze onomkeerbare actie zal alle oplossingsgeschiedenis voor deze kubus verwijderen en kan invloed hebben op uw statistieken.",
-      "placeholder": "Merk | Model | Versie | Magnetisch?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Selecteer",
       "add-cube": "Kubus Toevoegen",

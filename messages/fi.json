@@ -65,19 +65,9 @@
       "created-at": "Luotu",
       "status": "Tila",
       "using": "Käytössä",
-      "idle": "Käyttämätön",
-      "filter-cubes": "Suodata kuutiosi"
+      "idle": "Käyttämätön"
     },
-    "Cubes-modal": {
-      "title-editing": "Muokkaa Kuutiota",
-      "title-creating": "Uusi Kuutio",
-      "error-name": "Kuution nimi puuttuu",
-      "error-duplicate": "Kuution nimi on jo käytössä",
-      "current-select": "Nykyinen valinta:",
-      "question-delete": "Haluatko varmasti poistaa?",
-      "warning-delete": "Tämä peruuttamaton toiminto poistaa kaiken ratkaisuhistorian tälle kuutiolle ja saattaa vaikuttaa tilastoihisi.",
-      "placeholder": "Brändi | Malli | Versio | Magneettinen?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Valitse",
       "add-cube": "Lisää kuutio",

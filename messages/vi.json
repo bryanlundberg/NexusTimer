@@ -65,19 +65,9 @@
       "created-at": "Đã tạo lúc",
       "status": "Trạng thái",
       "using": "Đang sử dụng",
-      "idle": "Trống",
-      "filter-cubes": "Lọc các khối của bạn"
+      "idle": "Trống"
     },
-    "Cubes-modal": {
-      "title-editing": "Chỉnh sửa khối",
-      "title-creating": "Khối mới",
-      "error-name": "Thiếu tên khối",
-      "error-duplicate": "Tên khối đã được sử dụng",
-      "current-select": "Lựa chọn hiện tại:",
-      "question-delete": "Bạn chắc chắn muốn xóa?",
-      "warning-delete": "Hành động này sẽ không thể hoàn tác và sẽ xóa toàn bộ lịch sử giải quyết cho khối này và có thể ảnh hưởng đến thống kê của bạn.",
-      "placeholder": "Thương hiệu | Mẫu | Phiên bản | Nam châm?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Chọn",
       "add-cube": "Thêm khối",

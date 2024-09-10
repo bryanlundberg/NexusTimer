@@ -65,19 +65,9 @@
       "created-at": "Dibuat Pada",
       "status": "Status",
       "using": "Menggunakan",
-      "idle": "Sedang Diam",
-      "filter-cubes": "Filter kubus Anda"
+      "idle": "Sedang Diam"
     },
-    "Cubes-modal": {
-      "title-editing": "Edit Kubus",
-      "title-creating": "Kubus Baru",
-      "error-name": "Nama kubus hilang",
-      "error-duplicate": "Nama kubus sudah digunakan",
-      "current-select": "Pilihan saat ini:",
-      "question-delete": "Apakah Anda yakin ingin menghapus?",
-      "warning-delete": "Tindakan ini tidak dapat dibatalkan dan akan menghapus semua riwayat penyelesaian untuk kubus ini dan mungkin mempengaruhi statistik Anda.",
-      "placeholder": "Merek | Model | Versi | Magnetik?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Pilih",
       "add-cube": "Tambahkan kubus",

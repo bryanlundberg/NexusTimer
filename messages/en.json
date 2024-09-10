@@ -71,19 +71,36 @@
       "status": "Status",
       "using": "Using",
       "idle": "Idle",
-      "filter-cubes": "Filter your cubes"
+      "find-your-cube": "Find your cube",
+      "new-collection": "New collection",
+      "name": "Name",
+      "options": "Options"
     },
     "Cubes-modal": {
-      "title-editing": "Edit Cube",
-      "title-creating": "New Cube",
-      "error-name": "Cube name is missing",
-      "error-duplicate": "Cube name already in use",
-      "current-select": "Current selection:",
-      "question-delete": "Are you sure you want to delete?",
-      "warning-delete": "This irreversible action will delete all solve history for this cube and may impact your statistics.",
-      "placeholder": "Brand | Model | Version | Magnetic?"
+      "delete-collection": "Delete collection",
+      "delete-collection-description": "This cube collection will be deleted, along with all of its solves, records, and settings.",
+      "warning-alert": "Warning:",
+      "warning-msg": "This action is not reversible.",
+      "input-collection-name": "Enter the collection name",
+      "to-continue": "to continue:",
+      "edit-collection": "Edit collection",
+      "danger-msg": "Modifying the collection category also changes the solves associated with that category.",
+      "name": "Name",
+      "category": "Category",
+      "select-an-option": "Select an option",
+      "new-collection": "New collection",
+      "new-collection-description": "Cube collections allow you to keep track of each cube's history without affecting overall category stats.",
+      "current-selection": "Current selection:"
     },
+
+    "Errors": {
+      "not-match": "The name does not match.",
+      "repeated-name": "That name collection already exist.",
+      "empty-input": "Please enter a value"
+    },
+
     "Inputs": {
+      "continue": "Continue",
       "select": "Select",
       "add-cube": "Add cube",
       "favorites": "Favorites",

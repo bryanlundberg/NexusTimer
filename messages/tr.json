@@ -65,19 +65,9 @@
       "created-at": "Oluşturulma Tarihi",
       "status": "Durum",
       "using": "Kullanma",
-      "idle": "Boşta",
-      "filter-cubes": "Küplerinizi filtreleyin"
+      "idle": "Boşta"
     },
-    "Cubes-modal": {
-      "title-editing": "Küpü Düzenle",
-      "title-creating": "Yeni Küp",
-      "error-name": "Küp adı eksik",
-      "error-duplicate": "Küp adı zaten kullanılıyor",
-      "current-select": "Mevcut seçim:",
-      "question-delete": "Silmek istediğinizden emin misiniz?",
-      "warning-delete": "Bu geri alınamaz bir işlemdir ve bu küp için tüm çözüm geçmişini siler ve istatistiklerinizi etkileyebilir.",
-      "placeholder": "Marka | Model | Sürüm | Manyetik?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Seç",
       "add-cube": "Küp ekle",

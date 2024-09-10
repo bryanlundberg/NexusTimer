@@ -60,19 +60,9 @@
       "created-at": "Vytvořeno",
       "status": "Stav",
       "using": "Používá se",
-      "idle": "Nečinný",
-      "filter-cubes": "Filtrovat kostky"
+      "idle": "Nečinný"
     },
-    "Cubes-modal": {
-      "title-editing": "Upravit kostku",
-      "title-creating": "Nová kostka",
-      "error-name": "Chybí název kostky",
-      "error-duplicate": "Název kostky je již použit",
-      "current-select": "Aktuální výběr:",
-      "question-delete": "Opravdu chcete smazat?",
-      "warning-delete": "Tato nevratná akce odstraní veškerou historii řešení pro tuto kostku a může ovlivnit vaše statistiky.",
-      "placeholder": "Značka | Model | Verze | Magnetická?"
-    },
+    "Cubes-modal": {},
     "Inputs": {
       "select": "Vybrat",
       "add-cube": "Přidat kostku",
