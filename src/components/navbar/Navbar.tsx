@@ -30,7 +30,7 @@ const navigation: Navigation = [
     solidIcon: <ChartBarIcon className="w-6 h-6" />,
   },
   {
-    path: "/cubes-experimental",
+    path: "/cubes",
     normalIcon: <CubeIconO className="w-6 h-6" />,
     solidIcon: <CubeIcon className="w-6 h-6" />,
   },
