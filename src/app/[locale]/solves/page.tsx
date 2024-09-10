@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/button/index";
-import Select from "@/components/Select";
+import MainCubeSelector from "@/components/MainCubeSelector";
 import ModalSolve from "@/components/solves/ModalSolve";
 import { OverallContainer } from "@/components/OverallContainer";
 import { OverallHeader } from "@/components/OverallHeader";
@@ -81,7 +81,7 @@ export default function SolvesPage() {
     <>
       <OverallContainer>
         <OverallHeader title={t("SolvesPage.title")}>
-          <Select />
+          <MainCubeSelector />
         </OverallHeader>
 
         <SolveFilters>

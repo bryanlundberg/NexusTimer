@@ -3,7 +3,6 @@ import { useRef, useState } from "react";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import useClickOutside from "@/hooks/useClickOutside";
 import { useTimerStore } from "@/store/timerStore";
-import { MiniatureIcon } from "../Select";
 import { AnimatePresence, motion } from "framer-motion";
 import loadSettings from "@/lib/loadSettings";
 import { Cube } from "@/interfaces/Cube";
@@ -47,7 +46,6 @@ export default function MenuSelectDefaultStartCube() {
               }`}
         >
           <div className="flex items-center gap-2">
-            {defaultCube && <MiniatureIcon category={defaultCube.category} />}
             <div className="truncate" title={defaultCube?.name}>
               {defaultCube ? defaultCube.name : t("Inputs.none")}
             </div>
@@ -83,7 +81,6 @@ export default function MenuSelectDefaultStartCube() {
                   }`}
                 >
                   <div className="flex justify-start gap-3">
-                    <MiniatureIcon category={cube.category} />
                     <div className="overflow-hidden">{cube.name}</div>
                   </div>
                 </div>

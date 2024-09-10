@@ -1,4 +1,4 @@
-import Select from "../Select";
+import MainCubeSelector from "../MainCubeSelector";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { InteractiveIcon } from "./InteractiveIcon";
@@ -33,7 +33,7 @@ export default function HeaderTimer() {
           />
         </Link>
 
-        <Select />
+        <MainCubeSelector />
         <InteractiveIcon
           icon={<ArrowPathIcon className="w-6 h-6" />}
           onClick={() => {
