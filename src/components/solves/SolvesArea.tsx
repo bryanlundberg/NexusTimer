@@ -5,7 +5,7 @@ import { VirtualizedGrid } from "@mierak/react-virtualized-grid";
 import formatTime from "@/lib/formatTime";
 import formatDate from "@/lib/formatDate";
 import { useTranslations } from "next-intl";
-
+import { CubeIcon, CursorArrowRaysIcon } from "@heroicons/react/24/solid";
 import {
   ChatBubbleBottomCenterTextIcon,
   StarIcon,
@@ -24,12 +24,20 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
 
   if (!selectedCube) {
     return (
-      <EmptySolves message={t("no-cube-selection")} icon="no-cube-selected" />
+      <EmptySolves
+        message={t("no-cube-selection")}
+        icon={<CubeIcon className="w-6 h-6" />}
+      />
     );
   }
 
   if (!displaySolves || displaySolves.length === 0) {
-    return <EmptySolves message={t("no-solves")} icon="no-solves" />;
+    return (
+      <EmptySolves
+        message={t("no-solves")}
+        icon={<CursorArrowRaysIcon className="w-6 h-6" />}
+      />
+    );
   }
 
   return (
