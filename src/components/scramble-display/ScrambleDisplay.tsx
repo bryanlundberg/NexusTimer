@@ -3,12 +3,11 @@ import { TwistyPlayer } from "cubing/twisty";
 import getDisplayId from "@/lib/getDisplayId";
 import { Categories } from "@/interfaces/Categories";
 
-interface ScrambleDisplay {
-  className: string;
+interface ScrambleDisplay extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string;
   show: boolean;
   scramble: string | null;
   event: Categories;
-  handleClick?: () => void;
 }
 
 export default function ScrambleDisplay({
@@ -16,7 +15,7 @@ export default function ScrambleDisplay({
   scramble,
   event,
   className,
-  handleClick,
+  ...rest
 }: ScrambleDisplay) {
   useEffect(() => {
     if (!show) return;
@@ -48,11 +47,7 @@ export default function ScrambleDisplay({
   return (
     <>
       {show ? (
-        <div
-          onClick={handleClick}
-          className={className}
-          id="scramble-display"
-        ></div>
+        <div {...rest} className={className} id="scramble-display"></div>
       ) : null}
     </>
   );

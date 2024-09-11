@@ -4,7 +4,7 @@
 
 /* width */
 ::-webkit-scrollbar {
-  width: 3px;
+  width: 6px;
 }
 
 /* Track */
@@ -16,7 +16,7 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgb(82 82 91);
-  border-radius: 5px;
+  border-radius: 2px;
 }
 
 scramble-display {
