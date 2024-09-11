@@ -78,22 +78,15 @@ export default function Page() {
                 <TabsTrigger value="session">Session</TabsTrigger>
                 <TabsTrigger value="all">All</TabsTrigger>
               </TabsList>
-
-              <Toggle
-                variant="outline"
-                aria-label="Toggle session"
-                className="flex items-center justify-center gap-1"
-              >
-                <BarsArrowDownIcon className="h-4 w-4" />
-                <span className="hidden sm:block">Options</span>
-              </Toggle>
             </div>
           </Card>
 
           <TabsContent value="session">
-            <SolvesArea displaySolves={FAKE_SESSION} currentTab={"Session"} />
+            <SolvesArea displaySolves={FAKE_SESSION} />
           </TabsContent>
-          <TabsContent value="all">Change your password here.</TabsContent>
+          <TabsContent value="all">
+            <SolvesArea displaySolves={FAKE_SESSION.slice(5, 20)} />
+          </TabsContent>
 
           <Sheet open={isDialogSolveOpen} onOpenChange={handleCloseDialogSolve}>
             <SheetSolveDetails />

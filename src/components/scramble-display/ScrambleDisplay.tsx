@@ -8,6 +8,7 @@ interface ScrambleDisplay extends React.HTMLAttributes<HTMLDivElement> {
   show: boolean;
   scramble: string | null;
   event: Categories;
+  visualization?: "2D" | "3D";
 }
 
 export default function ScrambleDisplay({
@@ -15,6 +16,7 @@ export default function ScrambleDisplay({
   scramble,
   event,
   className,
+  visualization = "2D",
   ...rest
 }: ScrambleDisplay) {
   useEffect(() => {
@@ -31,7 +33,7 @@ export default function ScrambleDisplay({
       hintFacelets: "none",
       background: "none",
       controlPanel: "none",
-      visualization: "2D",
+      visualization: visualization,
     });
 
     document.querySelector("#scramble-display")?.appendChild(player);
@@ -42,7 +44,7 @@ export default function ScrambleDisplay({
       twistyPlayerElement.style.maxWidth = "100%";
       twistyPlayerElement.style.minHeight = "100%";
     }
-  }, [show, event, scramble]);
+  }, [show, event, scramble, visualization]);
 
   return (
     <>

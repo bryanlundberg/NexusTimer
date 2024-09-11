@@ -10,16 +10,14 @@ import {
   ChatBubbleBottomCenterTextIcon,
   StarIcon,
 } from "@heroicons/react/24/solid";
-import { SolveTab } from "@/interfaces/types/SolveTabs";
 import { Card } from "../ui/card";
 import { useDialogSolve } from "@/store/DialogSolve";
 
 interface SolvesArea {
   displaySolves: Solve[] | null;
-  currentTab: SolveTab;
 }
 
-export function SolvesArea({ displaySolves, currentTab }: SolvesArea) {
+export function SolvesArea({ displaySolves }: SolvesArea) {
   const { handleOpenDialogSolve } = useDialogSolve();
   const { selectedCube } = useTimerStore();
   const t = useTranslations("Index.SolvesPage");

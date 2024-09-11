@@ -47,13 +47,11 @@ export default function SheetSolveDetails() {
           scramble={solve?.scramble || ""}
           event={selectedCube?.category || "3x3"}
           className="h-40"
+          visualization="3D"
         />
 
         <p className="font-black text-5xl text-center mx-auto pt-5 relative">
-          {formatTime(solve?.time || 0)}{" "}
-          <span className="text-secondary text-sm absolute top-5 -right-6 text-yellow-300">
-            Pb
-          </span>
+          {formatTime(solve?.time || 0)}
         </p>
 
         {/* comment */}
