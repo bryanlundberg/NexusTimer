@@ -10,7 +10,7 @@ import { useTimerStore } from "@/store/timerStore";
 import Image from "next/image";
 
 export default function MainCubeSelector() {
-  const { cubes, setSelectedCube, setNewScramble, setLastSolve } =
+  const { cubes, setSelectedCube, setNewScramble, setLastSolve, selectedCube } =
     useTimerStore();
   const handleChangeValue = (e: any) => {
     const choseCube = cubes?.find((cube) => cube.id === e);
@@ -21,7 +21,7 @@ export default function MainCubeSelector() {
   };
   return (
     <>
-      <Select onValueChange={handleChangeValue}>
+      <Select defaultValue={selectedCube?.id} onValueChange={handleChangeValue}>
         <SelectTrigger className="max-w-96">
           <SelectValue placeholder="Select an option" />
         </SelectTrigger>

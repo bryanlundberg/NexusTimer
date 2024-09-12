@@ -1,30 +1,31 @@
 import { Solve } from "@/interfaces/Solve";
 import { create } from "zustand";
 
-interface ConfigSolvesFiltersProps {
-  sort: "ascending" | "descending";
-  time: "ascending" | "descending";
-}
+type Direction = "asc" | "desc";
+type SortVariant = "date" | "time";
 
 interface SolvesFiltersProps {
   displayingSolves: Solve[] | null;
-  config: ConfigSolvesFiltersProps;
   query: string;
+  sortType: SortVariant;
+  order: Direction;
   handleSearch: (query: string) => void;
-  handleChangeConfig: (config: ConfigSolvesFiltersProps) => void;
+  handleChangeOrder: (order: Direction) => void;
+  handleChangeSortType: (sortType: SortVariant) => void;
 }
 
-export const useSolveFilters = create<SolvesFiltersProps>((set) => ({
+export const useSolveFiltersStore = create<SolvesFiltersProps>((set) => ({
   displayingSolves: null,
-  config: {
-    sort: "ascending",
-    time: "ascending",
-  },
+  sortType: "date",
+  order: "desc",
   query: "",
   handleSearch: (query: string) => {
     set((prev) => ({ ...prev, query }));
   },
-  handleChangeConfig: (config: ConfigSolvesFiltersProps) => {
-    set((prev) => ({ ...prev, ...config }));
+  handleChangeOrder: (order: Direction) => {
+    set((prev) => ({ ...prev, order }));
+  },
+  handleChangeSortType: (sortType: SortVariant) => {
+    set((prev) => ({ ...prev, sortType }));
   },
 }));

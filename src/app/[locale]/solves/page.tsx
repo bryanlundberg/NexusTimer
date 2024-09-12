@@ -4,15 +4,18 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import MainCubeSelector from "@/components/MainCubeSelector";
 import { SolvesArea } from "@/components/solves/SolvesArea";
-import { FAKE_SESSION } from "@/FAKE_SESSION";
 import { Sheet } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useDialogSolve } from "@/store/DialogSolve";
 import SheetSolveDetails from "@/components/sheets/sheet-solve-details/SheetSolveDetails";
 import DropdownFilterSolves from "@/components/dropdrowns/dropdown-filter-options/dropdown-filter-options";
+import { useTimerStore } from "@/store/timerStore";
+import { useSolveFiltersStore } from "@/store/SolvesFilters";
 
 export default function Page() {
   const { isDialogSolveOpen, handleCloseDialogSolve } = useDialogSolve();
+  const { handleSearch } = useSolveFiltersStore();
+  const { selectedCube } = useTimerStore();
 
   return (
     <>
@@ -33,16 +36,23 @@ export default function Page() {
                 <TabsTrigger value="session">Session</TabsTrigger>
                 <TabsTrigger value="all">All</TabsTrigger>
               </TabsList>
-              <Input placeholder="Filter by time" />
+              <Input
+                placeholder="Filter by time"
+                onChange={(e) => handleSearch(e.target.value)}
+              />
               <DropdownFilterSolves />
             </div>
           </Card>
 
           <TabsContent value="session">
-            <SolvesArea displaySolves={FAKE_SESSION} />
+            {selectedCube && (
+              <SolvesArea displaySolves={selectedCube.solves.session} />
+            )}
           </TabsContent>
           <TabsContent value="all">
-            <SolvesArea displaySolves={FAKE_SESSION.slice(5, 20)} />
+            {selectedCube && (
+              <SolvesArea displaySolves={selectedCube.solves.all} />
+            )}
           </TabsContent>
 
           <Sheet open={isDialogSolveOpen} onOpenChange={handleCloseDialogSolve}>

@@ -12,18 +12,18 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useSolveFilters } from "@/store/SolvesFilters";
+import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import {
   CalendarDaysIcon,
   ClockIcon,
   EllipsisVerticalIcon,
   ShareIcon,
 } from "@heroicons/react/24/solid";
-import { useState } from "react";
 
 export default function DropdownFilterSolves() {
-  const { config, handleChangeConfig } = useSolveFilters();
-  const [position, setPosition] = useState("top");
+  const { sortType, order, handleChangeOrder, handleChangeSortType } =
+    useSolveFiltersStore();
+
   return (
     <>
       <DropdownMenu>
@@ -38,20 +38,22 @@ export default function DropdownFilterSolves() {
             <DropdownMenuSubTrigger>
               <div className="flex items-center gap-1">
                 <ClockIcon className="w-4 h-4" />
-                <p>Time</p>
+                <p>Sort</p>
               </div>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
                 <DropdownMenuRadioGroup
-                  value={position}
-                  onValueChange={setPosition}
+                  value={sortType}
+                  onValueChange={(e) => {
+                    handleChangeSortType(e as any);
+                  }}
                 >
-                  <DropdownMenuRadioItem value="top">
-                    Ascending
+                  <DropdownMenuRadioItem value="time">
+                    Time
                   </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="bottom">
-                    Descending
+                  <DropdownMenuRadioItem value="date">
+                    Date
                   </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuSubContent>
@@ -63,19 +65,21 @@ export default function DropdownFilterSolves() {
             <DropdownMenuSubTrigger>
               <div className="flex items-center gap-1">
                 <CalendarDaysIcon className="w-4 h-4" />
-                <p>Date</p>
+                <p>Order</p>
               </div>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
                 <DropdownMenuRadioGroup
-                  value={position}
-                  onValueChange={setPosition}
+                  value={order}
+                  onValueChange={(e) => {
+                    handleChangeOrder(e as any);
+                  }}
                 >
-                  <DropdownMenuRadioItem value="top">
+                  <DropdownMenuRadioItem value="asc">
                     Ascending
                   </DropdownMenuRadioItem>
-                  <DropdownMenuRadioItem value="bottom">
+                  <DropdownMenuRadioItem value="desc">
                     Descending
                   </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
@@ -88,7 +92,7 @@ export default function DropdownFilterSolves() {
             <DropdownMenuSubTrigger>
               <div className="flex items-center gap-1">
                 <ShareIcon className="w-4 h-4" />
-                <p>Share by...</p>
+                <p>Share</p>
               </div>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>

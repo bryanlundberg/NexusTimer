@@ -15,6 +15,6 @@ export const useDialogSolve = create<DialogSolveProps>((set) => ({
     set((prev) => ({ ...prev, isDialogSolveOpen: true, solve: solve }));
   },
   handleCloseDialogSolve: () => {
-    set((prev) => ({ ...prev, isDialogSolveOpen: false, solve: null }));
+    set((prev) => ({ ...prev, isDialogSolveOpen: false }));
   },
 }));
