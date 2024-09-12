@@ -15,10 +15,9 @@ import { useDialogSolve } from "@/store/DialogSolve";
 import { sort } from "fast-sort";
 import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { filterData, SearchType } from "filter-data";
-import { Solves } from "@/interfaces/Solves";
 
 interface SolvesArea {
-  displaySolves: Solve[];
+  displaySolves: Solve[] | undefined;
 }
 
 export function SolvesArea({ displaySolves }: SolvesArea) {

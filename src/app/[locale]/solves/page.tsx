@@ -45,14 +45,10 @@ export default function Page() {
           </Card>
 
           <TabsContent value="session">
-            {selectedCube && (
-              <SolvesArea displaySolves={selectedCube.solves.session} />
-            )}
+            <SolvesArea displaySolves={selectedCube?.solves.session} />
           </TabsContent>
           <TabsContent value="all">
-            {selectedCube && (
-              <SolvesArea displaySolves={selectedCube.solves.all} />
-            )}
+            <SolvesArea displaySolves={selectedCube?.solves.all} />
           </TabsContent>
 
           <Sheet open={isDialogSolveOpen} onOpenChange={handleCloseDialogSolve}>
