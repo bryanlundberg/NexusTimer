@@ -8,15 +8,23 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import formatTime from "@/lib/formatTime";
 import { useDialogSolve } from "@/store/DialogSolve";
 import { useTimerStore } from "@/store/timerStore";
 import {
-  CalendarDaysIcon,
-  DocumentDuplicateIcon,
-  StarIcon,
+  BookmarkIcon,
+  CalendarIcon,
+  ClockIcon,
+  CodeSandboxLogoIcon,
+  CopyIcon,
   TrashIcon,
-} from "@heroicons/react/24/solid";
+} from "@radix-ui/react-icons";
 import { DateTime } from "luxon";
 import { useLocale } from "next-intl";
 import Image from "next/image";
@@ -31,10 +39,8 @@ export default function SheetSolveDetails() {
       <SheetHeader>
         <SheetTitle>
           <p className="flex items-center gap-1 font-medium mx-auto">
-            {selectedCube?.name} -{" "}
-            {DateTime.fromMillis(solve?.endTime || 0)
-              .setLocale(locale)
-              .toLocaleString()}
+            <CodeSandboxLogoIcon />
+            {selectedCube?.name}
           </p>
         </SheetTitle>
 
@@ -54,6 +60,21 @@ export default function SheetSolveDetails() {
           {formatTime(solve?.time || 0)}
         </p>
 
+        <div className="flex justify-center gap-2 text-xs">
+          <p className="flex items-center justify-center gap-1">
+            <CalendarIcon />
+            {DateTime.fromMillis(solve?.endTime || 0)
+              .setLocale(locale)
+              .toLocaleString()}
+          </p>
+          <p className="flex items-center justify-center gap-1">
+            <ClockIcon />
+            {DateTime.fromMillis(solve?.endTime || 0)
+              .setLocale(locale)
+              .toFormat("HH:mm")}
+          </p>
+        </div>
+
         {/* comment */}
         <div className="pt-5 flex justify-start flex-col">
           <Label className="text-start">Comment</Label>
@@ -61,19 +82,49 @@ export default function SheetSolveDetails() {
         </div>
 
         {/* options */}
-        <div className="flex items-center justify-center pt-5">
-          <Button variant={"ghost"}>
-            <TrashIcon className="w-5 h-5" />
-          </Button>
-          <Button variant={"ghost"} className="font-black text-lg">
-            +2
-          </Button>
-          <Button variant={"ghost"}>
-            <StarIcon className="w-5 h-5" />
-          </Button>
-          <Button variant={"ghost"}>
-            <DocumentDuplicateIcon className="w-5 h-5" />
-          </Button>
+        <div className="flex items-center justify-center pt-5 gap-2">
+          <TooltipProvider delayDuration={100}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant={"destructive"} className="me-10">
+                  <TrashIcon className="w-4 h-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Delete</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant={"ghost"} className="font-light text-md">
+                  +2
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>+2 Penalty</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant={"ghost"}>
+                  <BookmarkIcon className="w-4 h-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Bookmark</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant={"ghost"}>
+                  <CopyIcon className="w-4 h-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Copy</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
 
         <Image

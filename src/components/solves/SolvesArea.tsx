@@ -5,7 +5,6 @@ import { VirtualizedGrid } from "@mierak/react-virtualized-grid";
 import formatTime from "@/lib/formatTime";
 import formatDate from "@/lib/formatDate";
 import { useTranslations } from "next-intl";
-import { CubeIcon, CursorArrowRaysIcon } from "@heroicons/react/24/solid";
 import {
   ChatBubbleBottomCenterTextIcon,
   StarIcon,
@@ -16,6 +15,7 @@ import { sort } from "fast-sort";
 import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { filterData, SearchType } from "filter-data";
 import useRemoveGridHeight from "@/hooks/useRemoveGridHeight";
+import { ComponentNoneIcon, CubeIcon } from "@radix-ui/react-icons";
 
 interface SolvesArea {
   displaySolves: Solve[] | undefined;
@@ -29,20 +29,12 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   useRemoveGridHeight();
 
   if (!selectedCube) {
-    return (
-      <EmptySolves
-        message={t("no-cube-selection")}
-        icon={<CubeIcon className="w-6 h-6" />}
-      />
-    );
+    return <EmptySolves message={t("no-cube-selection")} icon={<CubeIcon />} />;
   }
 
   if (!displaySolves || displaySolves.length === 0) {
     return (
-      <EmptySolves
-        message={t("no-solves")}
-        icon={<CursorArrowRaysIcon className="w-6 h-6" />}
-      />
+      <EmptySolves message={t("no-solves")} icon={<ComponentNoneIcon />} />
     );
   }
 

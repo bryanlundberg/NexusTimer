@@ -3,12 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  EllipsisHorizontalIcon,
-  PlayIcon,
-  PlusIcon,
-  StopIcon,
-} from "@heroicons/react/24/solid";
 import { Dialog } from "@/components/ui/dialog";
 import {
   Table,
@@ -35,6 +29,12 @@ import DrawerCreateCollection from "@/components/drawners/drawner-create-collect
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import DialogEditCollection from "@/components/dialogs/dialog-edit-collection/dialog-edit-collection";
 import { useState } from "react";
+import {
+  DotsHorizontalIcon,
+  PlayIcon,
+  PlusIcon,
+  StopIcon,
+} from "@radix-ui/react-icons";
 
 export default function Page() {
   const [isOpenDrawerNewCollection, setIsOpenDrawerNewCollection] =
@@ -150,12 +150,12 @@ export default function Page() {
                       >
                         {cube.solves.session.length > 0 ? (
                           <div className="flex items-center gap-2">
-                            <PlayIcon className="w-4 h-4" />
+                            <PlayIcon />
                             {t("CubesPage.using")}
                           </div>
                         ) : (
                           <div className="flex items-center gap-2">
-                            <StopIcon className="w-4 h-4" />
+                            <StopIcon />
                             {t("CubesPage.idle")}
                           </div>
                         )}
@@ -164,7 +164,7 @@ export default function Page() {
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
                             <Button variant={"ghost"}>
-                              <EllipsisHorizontalIcon className="size-4" />
+                              <DotsHorizontalIcon />
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent>

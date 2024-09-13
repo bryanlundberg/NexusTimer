@@ -14,11 +14,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import {
-  CalendarDaysIcon,
-  ClockIcon,
-  EllipsisVerticalIcon,
-  ShareIcon,
-} from "@heroicons/react/24/solid";
+  CalendarIcon,
+  DividerHorizontalIcon,
+  DividerVerticalIcon,
+  DotsVerticalIcon,
+  LapTimerIcon,
+  Share1Icon,
+} from "@radix-ui/react-icons";
 
 export default function DropdownFilterSolves() {
   const { sortType, order, handleChangeOrder, handleChangeSortType } =
@@ -29,7 +31,7 @@ export default function DropdownFilterSolves() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant={"outline"}>
-            <EllipsisVerticalIcon className="w-4 h-4" />
+            <DotsVerticalIcon />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
@@ -37,7 +39,7 @@ export default function DropdownFilterSolves() {
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <div className="flex items-center gap-1">
-                <ClockIcon className="w-4 h-4" />
+                <DividerHorizontalIcon />
                 <p>Sort</p>
               </div>
             </DropdownMenuSubTrigger>
@@ -64,7 +66,7 @@ export default function DropdownFilterSolves() {
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <div className="flex items-center gap-1">
-                <CalendarDaysIcon className="w-4 h-4" />
+                <DividerVerticalIcon className="w-4 h-4" />
                 <p>Order</p>
               </div>
             </DropdownMenuSubTrigger>
@@ -91,7 +93,7 @@ export default function DropdownFilterSolves() {
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <div className="flex items-center gap-1">
-                <ShareIcon className="w-4 h-4" />
+                <Share1Icon className="w-4 h-4" />
                 <p>Share</p>
               </div>
             </DropdownMenuSubTrigger>
@@ -102,7 +104,7 @@ export default function DropdownFilterSolves() {
                 <DropdownMenuItem>Last Ao5</DropdownMenuItem>
                 <DropdownMenuItem>Last Ao12</DropdownMenuItem>
                 <DropdownMenuItem>Last Ao50</DropdownMenuItem>
-                <DropdownMenuItem>All session</DropdownMenuItem>
+                <DropdownMenuItem>All</DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
