@@ -1,4 +1,3 @@
-import { Solve } from "@/interfaces/Solve";
 import { create } from "zustand";
 
 type Direction = "asc" | "desc";
@@ -6,7 +5,6 @@ type SortVariant = "date" | "time";
 type TabVariant = "session" | "all";
 interface SolvesFiltersProps {
   tab: TabVariant;
-  displayingSolves: Solve[] | null;
   query: string;
   sortType: SortVariant;
   order: Direction;
@@ -18,7 +16,6 @@ interface SolvesFiltersProps {
 
 export const useSolveFiltersStore = create<SolvesFiltersProps>((set) => ({
   tab: "session",
-  displayingSolves: null,
   sortType: "date",
   order: "desc",
   query: "",

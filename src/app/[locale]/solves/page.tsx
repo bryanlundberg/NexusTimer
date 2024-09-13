@@ -13,19 +13,22 @@ import { useTimerStore } from "@/store/timerStore";
 import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { EnterIcon } from "@radix-ui/react-icons";
+import { EnterIcon, ExitIcon, Share2Icon } from "@radix-ui/react-icons";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { useState } from "react";
+import DialogMoveHistorial from "@/components/dialogs/dialog-move-historial/dialog-move-historial";
+import { Dialog } from "@/components/ui/dialog";
 
 export default function Page() {
   const { isDialogSolveOpen, handleCloseDialogSolve } = useDialogSolve();
   const { handleSearch, handleChangeTab, tab } = useSolveFiltersStore();
   const { selectedCube } = useTimerStore();
-
+  const [isOpen, setIsOpen] = useState(false); // Used for move-historial button
   return (
     <>
       {/* container */}
@@ -47,7 +50,7 @@ export default function Page() {
             >
               <TabsList>
                 <TabsTrigger value="session">Session</TabsTrigger>
-                <TabsTrigger value="all">All</TabsTrigger>
+                <TabsTrigger value="all">Historial</TabsTrigger>
               </TabsList>
             </Tabs>
 
@@ -58,8 +61,8 @@ export default function Page() {
             <TooltipProvider delayDuration={100}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant={"outline"}>
-                    <EnterIcon />
+                  <Button variant={"outline"} onClick={() => setIsOpen(true)}>
+                    {tab === "session" ? <EnterIcon /> : <ExitIcon />}
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -81,6 +84,10 @@ export default function Page() {
             }
           />
         </ScrollArea>
+
+        <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
+          <DialogMoveHistorial handleClose={() => setIsOpen(false)} />
+        </Dialog>
 
         <Sheet open={isDialogSolveOpen} onOpenChange={handleCloseDialogSolve}>
           <SheetSolveDetails />

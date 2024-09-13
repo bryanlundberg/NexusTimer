@@ -15,7 +15,8 @@ import { sort } from "fast-sort";
 import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { filterData, SearchType } from "filter-data";
 import useRemoveGridHeight from "@/hooks/useRemoveGridHeight";
-import { ComponentNoneIcon, CubeIcon } from "@radix-ui/react-icons";
+import { CubeIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 
 interface SolvesArea {
   displaySolves: Solve[] | undefined;
@@ -34,7 +35,21 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
 
   if (!displaySolves || displaySolves.length === 0) {
     return (
-      <EmptySolves message={t("no-solves")} icon={<ComponentNoneIcon />} />
+      <>
+        <div className="w-full flex flex-col items-center justify-center">
+          <Image
+            src={"/empty.png"}
+            alt="empty"
+            width={200}
+            height={200}
+            className="object-scale-down my-20"
+          />
+          <div>Nothing here yet!</div>
+          <div>
+            Tap the switch at the top of the screen to see your history.
+          </div>
+        </div>
+      </>
     );
   }
 
