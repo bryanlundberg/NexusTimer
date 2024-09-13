@@ -20,8 +20,8 @@ export default function Page() {
   return (
     <>
       {/* container */}
-      <div className="max-w-5xl mx-auto p-2 flex flex-col min-h-full w-full bg-background grow">
-        <Tabs defaultValue="session" className="grow">
+      <div className="max-w-5xl mx-auto p-2 flex flex-col w-full">
+        <Tabs defaultValue="session">
           {/* header */}
           <Card className="w-full mb-2 border p-3 flex flex-col gap-2">
             <div className="flex justify-between">

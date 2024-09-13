@@ -15,6 +15,7 @@ import { useDialogSolve } from "@/store/DialogSolve";
 import { sort } from "fast-sort";
 import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { filterData, SearchType } from "filter-data";
+import useRemoveGridHeight from "@/hooks/useRemoveGridHeight";
 
 interface SolvesArea {
   displaySolves: Solve[] | undefined;
@@ -25,6 +26,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   const { selectedCube } = useTimerStore();
   const t = useTranslations("Index.SolvesPage");
   const { query, order, sortType } = useSolveFiltersStore();
+  useRemoveGridHeight();
 
   if (!selectedCube) {
     return (
@@ -77,7 +79,6 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
       itemCount={sortedSolves.length}
       rowHeight={60}
       cellWidth={150}
-      className="p-3 pb-[70dvh] overflow-x-hidden z-0"
       gridGap={10}
     >
       {(index) => (

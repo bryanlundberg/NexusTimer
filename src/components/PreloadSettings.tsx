@@ -36,7 +36,7 @@ export default function PreloadSettings({
           }}
         >
           {children}
-          <>{!isSolving && timerStatus === "IDLE" ? <Navbar /> : null}</>
+          {!isSolving && timerStatus === "IDLE" ? <Navbar /> : null}
         </div>
       </ThemeProvider>
     </>
