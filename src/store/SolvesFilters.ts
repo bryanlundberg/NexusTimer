@@ -3,8 +3,9 @@ import { create } from "zustand";
 
 type Direction = "asc" | "desc";
 type SortVariant = "date" | "time";
-
+type TabVariant = "session" | "all";
 interface SolvesFiltersProps {
+  tab: TabVariant;
   displayingSolves: Solve[] | null;
   query: string;
   sortType: SortVariant;
@@ -12,9 +13,11 @@ interface SolvesFiltersProps {
   handleSearch: (query: string) => void;
   handleChangeOrder: (order: Direction) => void;
   handleChangeSortType: (sortType: SortVariant) => void;
+  handleChangeTab: (newTab: TabVariant) => void;
 }
 
 export const useSolveFiltersStore = create<SolvesFiltersProps>((set) => ({
+  tab: "session",
   displayingSolves: null,
   sortType: "date",
   order: "desc",
@@ -27,5 +30,8 @@ export const useSolveFiltersStore = create<SolvesFiltersProps>((set) => ({
   },
   handleChangeSortType: (sortType: SortVariant) => {
     set((prev) => ({ ...prev, sortType }));
+  },
+  handleChangeTab: (newTab: TabVariant) => {
+    set((prev) => ({ ...prev, tab: newTab }));
   },
 }));
