@@ -71,7 +71,7 @@ export default function SheetSolveDetails() {
             <ClockIcon />
             {DateTime.fromMillis(solve?.endTime || 0)
               .setLocale(locale)
-              .toFormat("HH:mm")}
+              .toFormat("HH:mm:ss")}
           </p>
         </div>
 

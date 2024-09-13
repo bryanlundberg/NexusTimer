@@ -1,29 +1,28 @@
 import { NavContainer } from "@/components/navbar/NavContainer";
 import { NavItem } from "@/components/navbar/NavItem";
-
 import {
-  ChartBarIcon,
+  BarChartIcon,
   ClockIcon,
   CubeIcon,
-  Square3Stack3DIcon,
-} from "@heroicons/react/24/solid";
+  StackIcon,
+} from "@radix-ui/react-icons";
 
 const navigation: Navigation = [
   {
     path: "/",
-    icon: <ClockIcon className="w-6 h-6" />,
+    icon: <ClockIcon />,
   },
   {
     path: "/solves",
-    icon: <Square3Stack3DIcon className="w-6 h-6" />,
+    icon: <StackIcon />,
   },
   {
     path: "/stats",
-    icon: <ChartBarIcon className="w-6 h-6" />,
+    icon: <BarChartIcon />,
   },
   {
     path: "/cubes",
-    icon: <CubeIcon className="w-6 h-6" />,
+    icon: <CubeIcon />,
   },
 ];
 

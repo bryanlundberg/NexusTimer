@@ -10,13 +10,13 @@ export function NavItem({ path, icon }: NavItem) {
   const pathname = usePathname();
   return (
     <>
-      <li className="grow">
+      <li className="grow first:rounded-s-md last:rounded-e-md overflow-hidden">
         <Link
           href={path}
           className={twMerge(
             `${
               pathname === path ? "bg-secondary" : ""
-            } transition duration-300 py-2 rounded-md flex flex-col justify-center items-center font-medium`
+            } transition duration-300 py-2 flex flex-col justify-center items-center font-medium  `
           )}
         >
           {icon}

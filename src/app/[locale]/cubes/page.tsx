@@ -54,7 +54,7 @@ export default function Page() {
       <div className="max-w-5xl mx-auto p-1 flex flex-col min-h-full w-full bg-background">
         {/* header */}
         <Card className="w-full mb-2 border p-3 border-none">
-          <div className="flex gap-3 items-center justify-between">
+          <div className="flex gap-10 items-center justify-between">
             <h2 className="font-black text-xl">{t("CubesPage.title")}</h2>
             <div className="flex items-center justify-end gap-3 w-full">
               <Input
