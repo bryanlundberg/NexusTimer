@@ -80,6 +80,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
       rowHeight={60}
       cellWidth={150}
       gridGap={10}
+      className="pb-52"
     >
       {(index) => (
         <Card
