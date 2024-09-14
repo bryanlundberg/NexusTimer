@@ -8,8 +8,8 @@ import {
 } from "@/components/ui/dialog";
 import { getAllCubes, getCubeById } from "@/db/dbOperations";
 import finishSession from "@/lib/finishSession";
-import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { useTimerStore } from "@/store/timerStore";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 export default function DialogMoveHistorial({
@@ -17,9 +17,9 @@ export default function DialogMoveHistorial({
 }: {
   handleClose: () => void;
 }) {
+  const t = useTranslations("Index");
   const { selectedCube, cubes, setCubes, setSelectedCube, setTimerStatistics } =
     useTimerStore();
-  const { tab } = useSolveFiltersStore();
 
   const handleMoveSessionToHistorial = async () => {
     if (selectedCube) {
@@ -33,8 +33,8 @@ export default function DialogMoveHistorial({
       return;
     }
 
-    toast("Unable action", {
-      description: "Please select a cube before.",
+    toast(t("SolvesPage.toast.unable-action"), {
+      description: t("SolvesPage.toast.warning-select-cube"),
     });
   };
 
@@ -42,17 +42,17 @@ export default function DialogMoveHistorial({
     <>
       <DialogContent className="max-w-96 rounded-md">
         <DialogHeader>
-          <DialogTitle>Move solves to history?</DialogTitle>
+          <DialogTitle>{t("SolvesPage.dialogs.move-to-history")}</DialogTitle>
           <DialogDescription>
-            You will be able to access them by tapping the history switch.
+            {t("SolvesPage.dialogs.move-to-history-para")}
           </DialogDescription>
           <DialogFooter>
-            <div className="flex gap-1 mt-5">
+            <div className="flex justify-end gap-1 mt-5">
               <Button variant={"ghost"} onClick={handleClose}>
-                Cancel
+                {t("Inputs.cancel")}
               </Button>
               <Button variant={"ghost"} onClick={handleMoveSessionToHistorial}>
-                Move
+                {t("Inputs.move")}
               </Button>
             </div>
           </DialogFooter>

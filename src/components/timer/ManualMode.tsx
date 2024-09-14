@@ -4,7 +4,6 @@ import formatTime from "@/lib/formatTime";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import { useState } from "react";
-import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Themes } from "@/interfaces/types/Themes";
 import { saveCube } from "@/db/dbOperations";
@@ -96,9 +95,9 @@ export default function ManualMode() {
             {t("preview")}: {formatTime(convertToMs(value))}{" "}
           </div>
         ) : null}
-        {lastSolve && settings.features.quickActionButtons.status ? (
+        {/* {lastSolve && settings.features.quickActionButtons.status ? (
           <SolveOptions solve={lastSolve} />
-        ) : null}
+        ) : null} */}
       </form>
     </>
   );

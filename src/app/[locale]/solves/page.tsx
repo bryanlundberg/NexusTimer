@@ -23,12 +23,14 @@ import {
 import { useState } from "react";
 import DialogMoveHistorial from "@/components/dialogs/dialog-move-historial/dialog-move-historial";
 import { Dialog } from "@/components/ui/dialog";
+import { useTranslations } from "next-intl";
 
 export default function Page() {
   const { isDialogSolveOpen, handleCloseDialogSolve } = useDialogSolve();
   const { handleSearch, handleChangeTab, tab } = useSolveFiltersStore();
   const { selectedCube } = useTimerStore();
   const [isOpen, setIsOpen] = useState(false); // Used for move-historial button
+  const t = useTranslations("Index");
   return (
     <>
       {/* container */}
@@ -36,7 +38,7 @@ export default function Page() {
         {/* header */}
         <Card className="w-full mb-2 border p-3 flex flex-col gap-2">
           <div className="flex justify-between gap-10">
-            <h2 className="font-black text-xl">Solves</h2>
+            <h2 className="font-black text-xl">{t("SolvesPage.title")}</h2>
             <div className="flex items-center gap-2 w-full justify-end">
               <MainCubeSelector />
             </div>
@@ -49,13 +51,17 @@ export default function Page() {
               onValueChange={(e: any) => handleChangeTab(e)}
             >
               <TabsList>
-                <TabsTrigger value="session">Session</TabsTrigger>
-                <TabsTrigger value="all">Historial</TabsTrigger>
+                <TabsTrigger value="session">
+                  {t("SolvesPage.session")}
+                </TabsTrigger>
+                <TabsTrigger value="all">
+                  {t("SolvesPage.historial")}
+                </TabsTrigger>
               </TabsList>
             </Tabs>
 
             <Input
-              placeholder="Filter by time"
+              placeholder={t("SolvesPage.filter-by-time")}
               onChange={(e) => handleSearch(e.target.value)}
             />
             <TooltipProvider delayDuration={100}>
@@ -66,7 +72,7 @@ export default function Page() {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Move solves to history</p>
+                  <p>{t("SolvesPage.tooltips.move-to-history")}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>

@@ -23,11 +23,6 @@
     },
     "SolvesPage": {
       "title": "Řešení",
-      "search-by-time": "⏱︎ Hledat podle času",
-      "finalize-session": "Dokončit relaci",
-      "eliminate-session": "Odstranit relaci",
-      "archive-sessions-legend": "Tato akce archivuje všechny probíhající relace ve stejné kategorii.",
-      "delete-session-legend": "Tato akce odstraní pouze vaše aktuální řešení s vybranou kostkou.",
       "archive": "Archivovat",
       "unarchive": "Zrušit archivaci",
       "copy": "Kopírovat",
@@ -35,8 +30,7 @@
       "enter-a-comment": "Zadejte komentář",
       "session": "Relace",
       "all": "Vše",
-      "no-cube-selection": "Není vybrána žádná kostka, vyberte jednu...",
-      "no-solves": "Nejsou k dispozici žádná řešení!"
+      "no-cube-selection": "Není vybrána žádná kostka, vyberte jednu..."
     },
     "StatsPage": {
       "title": "Statistiky",
@@ -68,8 +62,6 @@
       "add-cube": "Přidat kostku",
       "favorites": "Oblíbené",
       "list": "Seznam",
-      "trash-all": "Smazat vše",
-      "move-all": "Přesunout vše",
       "create": "Vytvořit",
       "confirm": "Potvrdit",
       "cancel": "Zrušit",

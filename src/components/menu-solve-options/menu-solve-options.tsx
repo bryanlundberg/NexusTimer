@@ -14,8 +14,10 @@ import {
   CopyIcon,
   Cross1Icon,
 } from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
 
 export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
+  const t = useTranslations("Index");
   const { selectedCube, cubes, mergeUpdateSelectedCube } = useTimerStore();
   if (!solve && !selectedCube) return null;
 
@@ -66,7 +68,7 @@ export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Delete</p>
+              <p>{t("tooltips.delete")}</p>
             </TooltipContent>
           </Tooltip>
           <Tooltip>
@@ -80,7 +82,7 @@ export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>+2 Penalty</p>
+              <p>{t("tooltips.plus-two")}</p>
             </TooltipContent>
           </Tooltip>
           <Tooltip>
@@ -90,7 +92,7 @@ export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Bookmark</p>
+              <p>{t("tooltips.bookmark")}</p>
             </TooltipContent>
           </Tooltip>
           <Tooltip>
@@ -100,7 +102,7 @@ export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Copy</p>
+              <p>{t("tooltips.copy")}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

@@ -23,11 +23,6 @@
     },
     "SolvesPage": {
       "title": "Lösungen",
-      "search-by-time": "⏱︎ Suche nach Zeit",
-      "finalize-session": "Sitzung abschließen",
-      "eliminate-session": "Sitzung löschen",
-      "archive-sessions-legend": "Diese Aktion archiviert alle laufenden Sitzungen derselben Kategorie.",
-      "delete-session-legend": "Diese Aktion löscht nur Ihre aktuellen Lösungen mit dem ausgewählten Würfel.",
       "archive": "Archivieren",
       "unarchive": "Archivierung aufheben",
       "copy": "Kopieren",
@@ -35,8 +30,7 @@
       "enter-a-comment": "Kommentar eingeben",
       "session": "Sitzung",
       "all": "Alle",
-      "no-cube-selection": "Kein Würfel ausgewählt, wählen Sie einen...",
-      "no-solves": "Es gibt keine Lösungen anzuzeigen!"
+      "no-cube-selection": "Kein Würfel ausgewählt, wählen Sie einen..."
     },
     "StatsPage": {
       "title": "Statistiken",
@@ -68,8 +62,6 @@
       "add-cube": "Würfel hinzufügen",
       "favorites": "Favoriten",
       "list": "Liste",
-      "trash-all": "Alles löschen",
-      "move-all": "Alles verschieben",
       "create": "Erstellen",
       "confirm": "Bestätigen",
       "cancel": "Abbrechen",

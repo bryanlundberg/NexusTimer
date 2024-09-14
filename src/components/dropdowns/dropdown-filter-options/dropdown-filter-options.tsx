@@ -21,9 +21,11 @@ import {
   DragHandleVerticalIcon,
   Share1Icon,
 } from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 export default function DropdownFilterSolves() {
+  const t = useTranslations("Index");
   const { sortType, order, handleChangeOrder, handleChangeSortType, tab } =
     useSolveFiltersStore();
   const { selectedCube } = useTimerStore();
@@ -47,12 +49,12 @@ export default function DropdownFilterSolves() {
         formattedLast5Solves,
         formattedLast12Solves
       );
-      toast("Copied successfully", {
-        description: "Has been copied to your clipboard.",
+      toast(t("SolvesPage.toast.success-copy"), {
+        description: t("SolvesPage.toast.success-copy-description"),
       });
     } else {
-      toast("Unable to copy", {
-        description: "Please select a cube before attempting to copy.",
+      toast(t("SolvesPage.toast.unable-action"), {
+        description: t("SolvesPage.toast.warning-select-cube"),
       });
     }
   };
@@ -66,12 +68,12 @@ export default function DropdownFilterSolves() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          {/* sort - time */}
+          {/* sort - type */}
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <div className="flex items-center gap-2">
                 <DragHandleHorizontalIcon />
-                <p>Sort</p>
+                <p>{t("SolvesPage.sort")}</p>
               </div>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
@@ -83,22 +85,22 @@ export default function DropdownFilterSolves() {
                   }}
                 >
                   <DropdownMenuRadioItem value="time">
-                    Time
+                    {t("SolvesPage.time")}
                   </DropdownMenuRadioItem>
                   <DropdownMenuRadioItem value="date">
-                    Date
+                    {t("SolvesPage.date")}
                   </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
 
-          {/* sort - date */}
+          {/* sort - direction */}
           <DropdownMenuSub>
             <DropdownMenuSubTrigger>
               <div className="flex items-center gap-2">
                 <DragHandleVerticalIcon />
-                <p>Order</p>
+                <p>{t("SolvesPage.order")}</p>
               </div>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
@@ -110,10 +112,10 @@ export default function DropdownFilterSolves() {
                   }}
                 >
                   <DropdownMenuRadioItem value="asc">
-                    Ascending
+                    {t("SolvesPage.ascending")}
                   </DropdownMenuRadioItem>
                   <DropdownMenuRadioItem value="desc">
-                    Descending
+                    {t("SolvesPage.descending")}
                   </DropdownMenuRadioItem>
                 </DropdownMenuRadioGroup>
               </DropdownMenuSubContent>
@@ -125,20 +127,20 @@ export default function DropdownFilterSolves() {
             <DropdownMenuSubTrigger>
               <div className="flex items-center gap-2">
                 <Share1Icon />
-                <p>Share</p>
+                <p>{t("SolvesPage.share")}</p>
               </div>
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuItem disabled>Share...</DropdownMenuItem>
-                <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={handleShare}>
-                  Last Ao5
+                  {t("SolvesPage.last")} Ao5
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={handleShare}>
-                  Last Ao12
+                  {t("SolvesPage.last")} Ao12
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleShare}>All</DropdownMenuItem>
+                <DropdownMenuItem onClick={handleShare}>
+                  {t("SolvesPage.all")}
+                </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>

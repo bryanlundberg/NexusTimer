@@ -30,7 +30,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   useRemoveGridHeight();
 
   if (!selectedCube) {
-    return <EmptySolves message={t("no-cube-selection")} icon={<CubeIcon />} />;
+    return <EmptySolves message={t("alert.empty-cubes")} icon={<CubeIcon />} />;
   }
 
   if (!displaySolves || displaySolves.length === 0) {
@@ -44,10 +44,8 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
             height={200}
             className="object-scale-down my-20"
           />
-          <div>Nothing here yet!</div>
-          <div>
-            Tap the switch at the top of the screen to see your history.
-          </div>
+          <div>{t("empty-solves")}</div>
+          <div>{t("empty-solves-description")}</div>
         </div>
       </>
     );

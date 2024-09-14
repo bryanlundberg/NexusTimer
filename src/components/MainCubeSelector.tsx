@@ -7,9 +7,11 @@ import {
 } from "@/components/ui/select";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import { useTimerStore } from "@/store/timerStore";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 export default function MainCubeSelector() {
+  const t = useTranslations("Index");
   const { cubes, setSelectedCube, setNewScramble, setLastSolve, selectedCube } =
     useTimerStore();
   const handleChangeValue = (e: any) => {
@@ -23,7 +25,7 @@ export default function MainCubeSelector() {
     <>
       <Select defaultValue={selectedCube?.id} onValueChange={handleChangeValue}>
         <SelectTrigger className="max-w-96">
-          <SelectValue placeholder="Select an option" />
+          <SelectValue placeholder={t("Inputs.select")} />
         </SelectTrigger>
         <SelectContent>
           {cubes

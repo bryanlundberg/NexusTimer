@@ -1,5 +1,4 @@
 import { useTimerStore } from "@/store/timerStore";
-import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
 import useTimer from "@/hooks/useTimer";
@@ -82,9 +81,9 @@ export default function Timer() {
             }
             config={confettiConfig}
           />
-          {lastSolve &&
+          {/* {lastSolve &&
             settings.features.quickActionButtons.status &&
-            timerStatus === "IDLE" && <SolveOptions solve={lastSolve} />}
+            timerStatus === "IDLE" && <SolveOptions solve={lastSolve} />} */}
         </div>
       </>
     )
