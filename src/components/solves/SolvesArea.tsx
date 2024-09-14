@@ -5,17 +5,17 @@ import { VirtualizedGrid } from "@mierak/react-virtualized-grid";
 import formatTime from "@/lib/formatTime";
 import formatDate from "@/lib/formatDate";
 import { useTranslations } from "next-intl";
-import {
-  ChatBubbleBottomCenterTextIcon,
-  StarIcon,
-} from "@heroicons/react/24/solid";
 import { Card } from "../ui/card";
 import { useDialogSolve } from "@/store/DialogSolve";
 import { sort } from "fast-sort";
 import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { filterData, SearchType } from "filter-data";
 import useRemoveGridHeight from "@/hooks/useRemoveGridHeight";
-import { CubeIcon } from "@radix-ui/react-icons";
+import {
+  BookmarkFilledIcon,
+  ChatBubbleIcon,
+  CubeIcon,
+} from "@radix-ui/react-icons";
 import Image from "next/image";
 
 interface SolvesArea {
@@ -107,20 +107,20 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
             </span>
           </div>
           {sortedSolves[index].plus2 ? (
-            <span className="text-sm text-red-600">+2</span>
+            <span className="text-xs font-black text-red-600 ms-1">+2</span>
           ) : null}
           <div className="absolute z-20 text-xs top-1 left-1">
             {formatDate(sortedSolves[index].endTime).slice(0, 5)}
           </div>
           {sortedSolves[index].bookmark && (
             <div className="absolute z-20 text-xs right-1 top-1 text-yellow-500">
-              <StarIcon className="w-4 h-4" />
+              <BookmarkFilledIcon />
             </div>
           )}
 
           {sortedSolves[index].comment && (
             <div className="absolute z-20 text-xs bottom-1 left-1">
-              <ChatBubbleBottomCenterTextIcon className="w-4 h-4" />
+              <ChatBubbleIcon />
             </div>
           )}
         </Card>

@@ -30,6 +30,9 @@ export default function SheetSolveDetails() {
           <p className="flex items-center gap-1 font-medium mx-auto">
             <CodeSandboxLogoIcon />
             {selectedCube?.name}
+            {solve?.plus2 && (
+              <span className="text-destructive text-sm font-black">+2</span>
+            )}
           </p>
         </SheetTitle>
 

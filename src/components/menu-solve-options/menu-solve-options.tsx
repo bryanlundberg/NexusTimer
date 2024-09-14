@@ -8,7 +8,12 @@ import {
 import { Solve } from "@/interfaces/Solve";
 import updateSolve from "@/lib/updateSolve";
 import { useTimerStore } from "@/store/timerStore";
-import { BookmarkIcon, CopyIcon, Cross1Icon } from "@radix-ui/react-icons";
+import {
+  BookmarkFilledIcon,
+  BookmarkIcon,
+  CopyIcon,
+  Cross1Icon,
+} from "@radix-ui/react-icons";
 
 export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
   const { selectedCube, cubes, mergeUpdateSelectedCube } = useTimerStore();
@@ -81,7 +86,7 @@ export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
           <Tooltip>
             <TooltipTrigger asChild>
               <Button variant={"ghost"} onClick={handleBookmarkSolve}>
-                <BookmarkIcon />
+                {!solve?.bookmark ? <BookmarkIcon /> : <BookmarkFilledIcon />}
               </Button>
             </TooltipTrigger>
             <TooltipContent>
