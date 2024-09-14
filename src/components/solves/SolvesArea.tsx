@@ -85,7 +85,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
     <VirtualizedGrid
       itemCount={sortedSolves.length}
       rowHeight={60}
-      cellWidth={150}
+      cellWidth={120}
       gridGap={10}
       className="pb-52"
     >

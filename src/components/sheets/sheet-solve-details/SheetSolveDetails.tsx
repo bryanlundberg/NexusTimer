@@ -1,29 +1,18 @@
+import MenuSolveOptions from "@/components/menu-solve-options/menu-solve-options";
 import { ScrambleDisplay } from "@/components/scramble-display";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
 import {
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import formatTime from "@/lib/formatTime";
 import { useDialogSolve } from "@/store/DialogSolve";
 import { useTimerStore } from "@/store/timerStore";
 import {
-  BookmarkIcon,
   CalendarIcon,
   ClockIcon,
   CodeSandboxLogoIcon,
-  CopyIcon,
-  TrashIcon,
 } from "@radix-ui/react-icons";
 import { DateTime } from "luxon";
 import { useLocale } from "next-intl";
@@ -56,9 +45,14 @@ export default function SheetSolveDetails() {
           visualization="3D"
         />
 
-        <p className="font-black text-5xl text-center mx-auto pt-5 relative">
-          {formatTime(solve?.time || 0)}
-        </p>
+        <div className="tracking-wider font-black  text-center mx-auto pt-5">
+          <span className="text-5xl">
+            {formatTime(solve?.time || 0).split(".")[0]}
+          </span>
+          <span className="text-4xl">
+            .{formatTime(solve?.time || 0).split(".")[1]}
+          </span>
+        </div>
 
         <div className="flex justify-center gap-2 text-xs">
           <p className="flex items-center justify-center gap-1">
@@ -76,56 +70,12 @@ export default function SheetSolveDetails() {
         </div>
 
         {/* comment */}
-        <div className="pt-5 flex justify-start flex-col">
+        {/* <div className="pt-5 flex justify-start flex-col">
           <Label className="text-start">Comment</Label>
           <Textarea className="mt-3 resize-none h-40" />
-        </div>
+        </div> */}
 
-        {/* options */}
-        <div className="flex items-center justify-center pt-5 gap-2">
-          <TooltipProvider delayDuration={100}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant={"destructive"} className="me-10">
-                  <TrashIcon className="w-4 h-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Delete</p>
-              </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant={"ghost"} className="font-light text-md">
-                  +2
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>+2 Penalty</p>
-              </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant={"ghost"}>
-                  <BookmarkIcon className="w-4 h-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Bookmark</p>
-              </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant={"ghost"}>
-                  <CopyIcon className="w-4 h-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Copy</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
+        <MenuSolveOptions solve={solve} />
 
         <Image
           src={"/brand_logo.svg"}
