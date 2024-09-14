@@ -34,7 +34,7 @@ export default function Page() {
   return (
     <>
       {/* container */}
-      <div className="max-w-5xl mx-auto p-2 flex flex-col w-full min-h-full">
+      <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
         {/* header */}
         <Card className="w-full mb-2 border p-3 flex flex-col gap-2">
           <div className="flex justify-between gap-10">

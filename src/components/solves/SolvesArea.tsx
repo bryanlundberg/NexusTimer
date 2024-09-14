@@ -83,7 +83,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
     <VirtualizedGrid
       itemCount={sortedSolves.length}
       rowHeight={60}
-      cellWidth={120}
+      cellWidth={90}
       gridGap={10}
       className="pb-52"
     >
@@ -93,10 +93,10 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
             handleOpenDialogSolve({ solve: sortedSolves[index] });
           }}
           className={
-            "relative grow flex items-center justify-center w-auto p-1 text-lg font-medium text-center transition duration-200 rounded-md cursor-pointer h-14 bg-accent/50 hover:bg-accent/80"
+            "relative grow flex items-center justify-center w-auto font-medium text-center transition duration-200 rounded-md cursor-pointer h-14 bg-accent/50 hover:bg-accent/80"
           }
         >
-          <div className="tracking-wider">
+          <div className="tracking-wider pt-2">
             <span className="text-md">
               {formatTime(sortedSolves[index].time).split(".")[0]}
             </span>
@@ -105,7 +105,9 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
             </span>
           </div>
           {sortedSolves[index].plus2 ? (
-            <span className="text-xs font-black text-red-600 ms-1">+2</span>
+            <span className="text-xs font-black text-red-600 ms-1 pt-2">
+              +2
+            </span>
           ) : null}
           <div className="absolute z-20 text-xs top-1 left-1">
             {formatDate(sortedSolves[index].endTime).slice(0, 5)}
