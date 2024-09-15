@@ -6,13 +6,12 @@ import {
   DropdownMenuPortal,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-  DropdownMenuSeparator,
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { shareSolves } from "@/lib/shareSolves";
+import { createShareMessage } from "@/lib/createShareMessage";
 import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { useTimerStore } from "@/store/timerStore";
 import {
@@ -21,7 +20,8 @@ import {
   DragHandleVerticalIcon,
   Share1Icon,
 } from "@radix-ui/react-icons";
-import { useTranslations } from "next-intl";
+import { DateTime } from "luxon";
+import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 export default function DropdownFilterSolves() {
@@ -29,26 +29,28 @@ export default function DropdownFilterSolves() {
   const { sortType, order, handleChangeOrder, handleChangeSortType, tab } =
     useSolveFiltersStore();
   const { selectedCube } = useTimerStore();
-
-  const handleShare = () => {
+  const locale = useLocale();
+  const date = DateTime.now().setLocale(locale).toLocaleString();
+  const handleShare = (type: "All" | "3" | "5" | "12" | "50" | "100") => {
     if (selectedCube) {
-      const {
-        formattedAo5,
-        formattedAo12,
-        formattedLast5Solves,
-        formattedLast12Solves,
-      } = shareSolves({
-        solves:
-          tab === "session"
-            ? selectedCube.solves.session
-            : selectedCube.solves.all,
+      const tempSolves =
+        tab === "all" ? selectedCube.solves.all : selectedCube.solves.session;
+
+      const message = createShareMessage({
+        type,
+        solves: tempSolves,
+        translations: {
+          statsTitle: t("SolvesPage.share-clipboard.header"),
+          avg: t("SolvesPage.share-clipboard.average"),
+          listOfTimes: t("SolvesPage.share-clipboard.list-of-times"),
+          date: date,
+        },
       });
-      console.log(
-        formattedAo5,
-        formattedAo12,
-        formattedLast5Solves,
-        formattedLast12Solves
-      );
+
+      if ("clipboard" in navigator) {
+        navigator.clipboard.writeText(message);
+      }
+
       toast(t("SolvesPage.toast.success-copy"), {
         description: t("SolvesPage.toast.success-copy-description"),
       });
@@ -132,13 +134,13 @@ export default function DropdownFilterSolves() {
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
-                <DropdownMenuItem onClick={handleShare}>
+                <DropdownMenuItem onClick={() => handleShare("5")}>
                   {t("SolvesPage.last")} Ao5
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleShare}>
+                <DropdownMenuItem onClick={() => handleShare("12")}>
                   {t("SolvesPage.last")} Ao12
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={handleShare}>
+                <DropdownMenuItem onClick={() => handleShare("All")}>
                   {t("SolvesPage.all")}
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
