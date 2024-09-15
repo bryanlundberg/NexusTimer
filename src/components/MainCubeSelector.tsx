@@ -28,7 +28,7 @@ export default function MainCubeSelector() {
         value={selectedCube?.id}
         onValueChange={handleChangeValue}
       >
-        <SelectTrigger className="max-w-96">
+        <SelectTrigger className="max-w-96 bg-background">
           <SelectValue placeholder={t("Inputs.select")} />
         </SelectTrigger>
         <SelectContent>

@@ -18,7 +18,7 @@ export default function Page() {
       {/* container */}
       <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
         {/* header */}
-        <Card className="w-full mb-2 border p-3 flex flex-col gap-2">
+        <Card className="w-full mb-2 border p-3 flex flex-col gap-2 bg-background">
           <div className="flex justify-between gap-10">
             <h2 className="font-black text-xl">{t("StatsPage.title")}</h2>
             <div className="flex items-center gap-2 w-full justify-end">

@@ -36,7 +36,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   if (!displaySolves || displaySolves.length === 0) {
     return (
       <>
-        <div className="w-full flex flex-col items-center justify-center">
+        <div className="w-full flex flex-col items-center justify-center text-center text-sm sm:text-md">
           <Image
             src={"/empty.png"}
             alt="empty"

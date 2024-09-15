@@ -36,7 +36,7 @@ export default function CategoryStatistics() {
       <div className="flex flex-col gap-3 pt-2 overflow-auto grow">
         <div className="flex gap-3">
           <Select value={filterCategory} onValueChange={handleChangeCategory}>
-            <SelectTrigger>
+            <SelectTrigger className="bg-background">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -50,7 +50,7 @@ export default function CategoryStatistics() {
             </SelectContent>
           </Select>
           <Select value={filterCube} onValueChange={handleChangeCube}>
-            <SelectTrigger>
+            <SelectTrigger className="bg-background">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -68,8 +68,8 @@ export default function CategoryStatistics() {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex flex-col gap-3 md:flex-row">
-          <div className="flex flex-col w-full p-3 border rounded-md h-96">
+        <div className="flex flex-col gap-3 md:flex-row ">
+          <div className="flex flex-col w-full p-3 border rounded-md h-96 bg-background">
             <LineCharter
               data={stats.data}
               cubeSelected={"all" !== filterCube}
@@ -77,7 +77,7 @@ export default function CategoryStatistics() {
           </div>
         </div>
 
-        <Table>
+        <Table className="bg-background rounded-md">
           <TableHeader>
             <TableRow>
               <TableHead></TableHead>
