@@ -20,16 +20,18 @@ export default function Page() {
         {/* header */}
         <Card className="w-full mb-2 border p-3 flex flex-col gap-2">
           <div className="flex justify-between gap-10">
-            <h2 className="font-black text-xl">Stats</h2>
+            <h2 className="font-black text-xl">{t("StatsPage.title")}</h2>
             <div className="flex items-center gap-2 w-full justify-end">
               <Select defaultValue="overall">
                 <SelectTrigger className="w-[180px]">
                   <SelectValue placeholder="Select" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="overall">Overall</SelectItem>
+                  <SelectItem value="overall">
+                    {t("StatsPage.overall")}
+                  </SelectItem>
                   <SelectItem value="advanced" disabled>
-                    Advanced
+                    {t("StatsPage.advanced")}
                   </SelectItem>
                 </SelectContent>
               </Select>

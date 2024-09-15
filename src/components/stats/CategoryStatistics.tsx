@@ -81,8 +81,8 @@ export default function CategoryStatistics() {
           <TableHeader>
             <TableRow>
               <TableHead></TableHead>
-              <TableHead>Global</TableHead>
-              <TableHead>Sessions</TableHead>
+              <TableHead>{t("StatsPage.global")}</TableHead>
+              <TableHead>{t("StatsPage.sessions")}</TableHead>
               <TableHead>C All</TableHead>
               <TableHead>C Session</TableHead>
             </TableRow>

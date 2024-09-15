@@ -62,6 +62,8 @@
     },
     "StatsPage": {
       "title": "Stats",
+      "overall": "Overall",
+      "advanced": "Advanced",
       "total": "Total",
       "category": "Category",
       "global": "Global",
