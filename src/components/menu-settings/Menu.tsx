@@ -11,20 +11,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import CustomTheme from "./CustomTheme";
 import { useTranslations } from "next-intl";
 import MenuSelectLanguage from "./MenuSelectLanguage";
-import {
-  ArrowLeftIcon,
-  BellAlertIcon,
-  CogIcon,
-  CpuChipIcon,
-  FolderIcon,
-  IdentificationIcon,
-  SparklesIcon,
-  ViewColumnsIcon,
-} from "@heroicons/react/24/solid";
 import MenuSelectDefaultStartCube from "./MenuSelectDefaultStartCube";
 import { ScrollArea } from "../ui/scroll-area";
 import { Button } from "../ui/button";
-import { ExternalLinkIcon } from "@radix-ui/react-icons";
+import {
+  ArrowLeftIcon,
+  BellIcon,
+  BoxModelIcon,
+  ComponentBooleanIcon,
+  ExternalLinkIcon,
+  FileTextIcon,
+  LapTimerIcon,
+  MagicWandIcon,
+  QuoteIcon,
+} from "@radix-ui/react-icons";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings } = useSettingsModalStore();
@@ -47,25 +47,22 @@ export default function MenuSettings() {
               className="flex flex-col w-full gap-3 sm:w-96 bg-background border-r"
             >
               <ScrollArea>
-                <div className="flex items-center my-3">
+                <div className="my-3 relative">
                   <Link
                     href={"/"}
                     onClick={() => setSettingsOpen(false)}
-                    className="flex items-center cursor-pointer ms-3"
+                    className="flex items-center cursor-pointer ms-3 absolute top-0 left-0"
                   >
-                    <ArrowLeftIcon className="w-6 h-6" />
+                    <ArrowLeftIcon />
                   </Link>
-                  <div className="flex-1 text-2xl text-center font-black">
+                  <div className="text-2xl text-center font-black">
                     {t("title")}
                   </div>
                 </div>
 
                 <MenuSelectLanguage />
 
-                <MenuSection
-                  icon={<CogIcon className="w-6 h-6" />}
-                  title={t("timer")}
-                >
+                <MenuSection icon={<LapTimerIcon />} title={t("timer")}>
                   <MenuOption
                     setting={settings.timer.inspection}
                     label={t("inspection")}
@@ -84,10 +81,7 @@ export default function MenuSettings() {
                   />
                 </MenuSection>
 
-                <MenuSection
-                  icon={<CpuChipIcon className="w-6 h-6" />}
-                  title={t("features")}
-                >
+                <MenuSection icon={<MagicWandIcon />} title={t("features")}>
                   <MenuOption
                     setting={settings.features.scrambleImage}
                     label={t("scramble-image")}
@@ -110,10 +104,7 @@ export default function MenuSettings() {
                   />
                 </MenuSection>
 
-                <MenuSection
-                  icon={<BellAlertIcon className="w-6 h-6" />}
-                  title={t("alerts")}
-                >
+                <MenuSection icon={<BellIcon />} title={t("alerts")}>
                   <MenuOption
                     setting={settings.alerts.bestTime}
                     label={t("best-time")}
@@ -129,32 +120,20 @@ export default function MenuSettings() {
                   />
                 </MenuSection>
 
-                <MenuSection
-                  icon={<SparklesIcon className="w-6 h-6" />}
-                  title={t("theme")}
-                >
+                <MenuSection icon={<ComponentBooleanIcon />} title={t("theme")}>
                   <ThemeSelect />
                   <CustomTheme />
                 </MenuSection>
 
-                <MenuSection
-                  icon={<FolderIcon className="w-6 h-6" />}
-                  title={t("data")}
-                >
+                <MenuSection icon={<FileTextIcon />} title={t("data")}>
                   <DataImportExport />
                 </MenuSection>
 
-                <MenuSection
-                  icon={<ViewColumnsIcon className="w-6 h-6" />}
-                  title={t("preferences")}
-                >
+                <MenuSection icon={<BoxModelIcon />} title={t("preferences")}>
                   <MenuSelectDefaultStartCube />
                 </MenuSection>
 
-                <MenuSection
-                  icon={<IdentificationIcon className="w-6 h-6" />}
-                  title={t("about")}
-                >
+                <MenuSection icon={<QuoteIcon />} title={t("about")}>
                   <div className="flex flex-col justify-center items-center gap-3">
                     <Image
                       src={"/brand_logo.svg"}
