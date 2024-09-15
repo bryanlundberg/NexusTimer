@@ -25,6 +25,7 @@ export default function Timer() {
     timerStatus,
     solvingTime,
     timerStatistics,
+    setLastSolve,
   } = useTimerStore();
   const { inspectionTime } = useTimer();
   const { device } = useDeviceMatch();
@@ -87,7 +88,13 @@ export default function Timer() {
           />
           {lastSolve &&
             settings.features.quickActionButtons.status &&
-            timerStatus === "IDLE" && <MenuSolveOptions solve={lastSolve} />}
+            timerStatus === "IDLE" && (
+              <MenuSolveOptions
+                solve={lastSolve}
+                onDeleteSolve={() => setLastSolve(null)}
+                caseOfUse="last-solve"
+              />
+            )}
         </div>
       </>
     )

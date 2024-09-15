@@ -5,9 +5,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { getAllCubes, getCubeById } from "@/db/dbOperations";
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
 import updateSolve from "@/lib/updateSolve";
+import { useDialogSolve } from "@/store/DialogSolve";
 import { useTimerStore } from "@/store/timerStore";
 import {
   BookmarkFilledIcon,
@@ -18,41 +20,108 @@ import {
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
+export default function MenuSolveOptions({
+  solve,
+  onDeleteSolve = () => {},
+  caseOfUse,
+}: {
+  solve: Solve | null;
+  onDeleteSolve?: () => void;
+  caseOfUse: "last-solve" | "modal-solve";
+}) {
   const t = useTranslations("Index");
-  const { selectedCube, cubes, mergeUpdateSelectedCube } = useTimerStore();
+  const { selectedCube, setCubes, setSelectedCube } = useTimerStore();
+  const dialog = useDialogSolve();
+  const { lastSolve, setLastSolve } = useTimerStore();
+
   if (!solve && !selectedCube) return null;
 
   const handleDeleteSolve = async () => {
     if (solve && selectedCube) {
-      const updatedCube = await updateSolve({
+      await updateSolve({
         solveId: solve.id,
         selectedCube: selectedCube,
         type: "DELETE",
       });
-      mergeUpdateSelectedCube(updatedCube, cubes);
+
+      const lastCubes = await getAllCubes();
+      setCubes([...lastCubes]);
+
+      const lastCube = await getCubeById(selectedCube.id);
+      if (lastCube) {
+        setSelectedCube({ ...lastCube });
+      }
+
+      toast("", {
+        description: "Deleted solve",
+        duration: 1000,
+      });
+
+      onDeleteSolve();
     }
   };
 
   const handlePenaltyPlus2 = async () => {
     if (solve && selectedCube) {
-      const updatedCube = await updateSolve({
+      await updateSolve({
         solveId: solve.id,
         selectedCube: selectedCube,
         type: "+2",
       });
-      mergeUpdateSelectedCube(updatedCube, cubes);
+      const lastCubes = await getAllCubes();
+      setCubes([...lastCubes]);
+
+      const lastCube = await getCubeById(selectedCube.id);
+      if (lastCube) {
+        setSelectedCube({ ...lastCube });
+      }
+
+      if (caseOfUse === "modal-solve") {
+        dialog.handleSetSolveInDialog({
+          solve: { ...solve, plus2: !solve.plus2 },
+        });
+      }
+
+      if (caseOfUse === "last-solve" && lastSolve) {
+        setLastSolve({ ...lastSolve, plus2: !lastSolve.plus2 });
+      }
+
+      toast("", {
+        description: "Penalty status updated.",
+        duration: 1000,
+      });
     }
   };
 
   const handleBookmarkSolve = async () => {
     if (solve && selectedCube) {
-      const updatedCube = await updateSolve({
+      await updateSolve({
         solveId: solve.id,
         selectedCube: selectedCube,
         type: "BOOKMARK",
       });
-      mergeUpdateSelectedCube(updatedCube, cubes);
+      const lastCubes = await getAllCubes();
+      setCubes([...lastCubes]);
+
+      const lastCube = await getCubeById(selectedCube.id);
+      if (lastCube) {
+        setSelectedCube({ ...lastCube });
+      }
+
+      if (caseOfUse === "modal-solve") {
+        dialog.handleSetSolveInDialog({
+          solve: { ...solve, bookmark: !solve.bookmark },
+        });
+      }
+
+      if (caseOfUse === "last-solve" && lastSolve) {
+        setLastSolve({ ...lastSolve, bookmark: !lastSolve.bookmark });
+      }
+
+      toast("", {
+        description: "Bookmark status updated.",
+        duration: 1000,
+      });
     }
   };
 
@@ -100,9 +169,23 @@ export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant={"ghost"} onClick={handleBookmarkSolve}>
-                {!solve?.bookmark ? <BookmarkIcon /> : <BookmarkFilledIcon />}
-              </Button>
+              {caseOfUse === "last-solve" ? (
+                <Button variant={"ghost"} onClick={handleBookmarkSolve}>
+                  {!lastSolve?.bookmark ? (
+                    <BookmarkIcon />
+                  ) : (
+                    <BookmarkFilledIcon />
+                  )}
+                </Button>
+              ) : (
+                <Button variant={"ghost"} onClick={handleBookmarkSolve}>
+                  {!dialog.solve?.bookmark ? (
+                    <BookmarkIcon />
+                  ) : (
+                    <BookmarkFilledIcon />
+                  )}
+                </Button>
+              )}
             </TooltipTrigger>
             <TooltipContent>
               <p>{t("tooltips.bookmark")}</p>

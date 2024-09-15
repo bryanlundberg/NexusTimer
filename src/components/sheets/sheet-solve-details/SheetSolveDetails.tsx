@@ -19,6 +19,7 @@ import { useLocale } from "next-intl";
 import Image from "next/image";
 
 export default function SheetSolveDetails() {
+  const { handleCloseDialogSolve } = useDialogSolve();
   const { solve } = useDialogSolve();
   const { selectedCube } = useTimerStore();
   const locale = useLocale();
@@ -78,7 +79,11 @@ export default function SheetSolveDetails() {
           <Textarea className="mt-3 resize-none h-40" />
         </div> */}
 
-        <MenuSolveOptions solve={solve} />
+        <MenuSolveOptions
+          solve={solve}
+          onDeleteSolve={handleCloseDialogSolve}
+          caseOfUse="modal-solve"
+        />
 
         <Image
           src={"/brand_logo.svg"}

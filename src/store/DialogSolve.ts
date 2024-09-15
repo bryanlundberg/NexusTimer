@@ -6,6 +6,7 @@ interface DialogSolveProps {
   isDialogSolveOpen: boolean;
   handleOpenDialogSolve: ({ solve }: { solve: Solve }) => void;
   handleCloseDialogSolve: () => void;
+  handleSetSolveInDialog: ({ solve }: { solve: Solve }) => void;
 }
 
 export const useDialogSolve = create<DialogSolveProps>((set) => ({
@@ -16,5 +17,8 @@ export const useDialogSolve = create<DialogSolveProps>((set) => ({
   },
   handleCloseDialogSolve: () => {
     set((prev) => ({ ...prev, isDialogSolveOpen: false }));
+  },
+  handleSetSolveInDialog: ({ solve }: { solve: Solve }) => {
+    set((prev) => ({ ...prev, solve: solve }));
   },
 }));

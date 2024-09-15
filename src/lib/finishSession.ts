@@ -17,9 +17,12 @@ export default async function finishSession({
   if (!selectedCube) return null;
   if (!cubesDB) return null;
 
-  for (const cube of cubesDB) {
+  const cubes = [...cubesDB];
+  const selection = { ...selectedCube };
+
+  for (const cube of cubes) {
     if (
-      cube.category === selectedCube.category &&
+      cube.category === selection.category &&
       cube.solves.session.length >= 1
     ) {
       cube.solves.all.push(...cube.solves.session);
@@ -32,5 +35,5 @@ export default async function finishSession({
     }
   }
 
-  return cubesDB;
+  return cubes;
 }

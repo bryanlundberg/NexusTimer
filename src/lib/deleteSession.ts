@@ -17,15 +17,17 @@ export default async function deleteSession({
   if (!selectedCube) return null;
   if (!cubesDB) return null;
 
+  const cube = { ...selectedCube };
+
   // Clear the session solves of the selected cube
-  selectedCube.solves.session = [];
+  cube.solves.session = [];
 
   // Update the list of cubes in indexDB
   await saveCube({
-    ...selectedCube,
-    solves: selectedCube.solves,
+    ...cube,
+    solves: cube.solves,
   });
 
   // Return the updated list of cubes
-  return selectedCube;
+  return cube;
 }

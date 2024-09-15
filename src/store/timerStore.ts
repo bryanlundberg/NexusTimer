@@ -5,7 +5,6 @@ import { Event } from "@/interfaces/cubeCollection";
 import calcStatistics from "@/lib/calcStatistics";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import { defaultTimerStatistics } from "@/lib/const/defaultTimerStatistics";
-import { mergeSelectedCube } from "@/lib/mergeSelectedCube";
 import genScramble from "@/lib/timer/genScramble";
 import { create } from "zustand";
 
@@ -35,10 +34,6 @@ type TimerStore = {
   setHints: (solutions: CrossSolutions) => void;
   setInitializing: (status: boolean) => void;
   setCustomScramble: (scramble: string) => void;
-  mergeUpdateSelectedCube: (
-    selectedCube: Cube | null,
-    cubesDB: Cube[] | null
-  ) => void;
   setTimerStatistics: () => void;
 };
 
@@ -112,17 +107,6 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
   },
   setInitializing: (status: boolean) => {
     set({ initializing: status });
-  },
-  mergeUpdateSelectedCube: (
-    selectedCube: Cube | null,
-    cubesDB: Cube[] | null
-  ) => {
-    const newList = mergeSelectedCube({ selectedCube, cubesDB });
-    //  clone data to force a refresh the state
-    set({
-      cubes: [...newList],
-      selectedCube: selectedCube ? { ...selectedCube } : null,
-    });
   },
   setTimerStatistics: () => {
     const { global, session, cubeSession } = calcStatistics({

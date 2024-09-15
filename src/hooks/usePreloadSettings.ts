@@ -4,14 +4,12 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { getAllCubes } from "@/db/dbOperations";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
-import { useSolveFiltersStore } from "@/store/SolvesFilters";
 
 export function usePreloadSettings() {
   const { setCubes, setSelectedCube, setTimerStatistics, setNewScramble } =
     useTimerStore();
   const { setSettings } = useSettingsModalStore();
   const { setBackgroundImage } = useBackgroundImageStore();
-  const {} = useSolveFiltersStore();
 
   useEffect(() => {
     const getSettings = loadSettings();
