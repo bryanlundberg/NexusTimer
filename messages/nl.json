@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Timer",
       "hint": "Hint",
       "optimal-yellow-layer": "Optimale Gele Laag",
       "solving": "Oplossen...",
@@ -28,23 +27,52 @@
       "time": "Tijd",
       "descending": "Aflopend",
       "date": "Datum",
-      "ascending": "Oplopend"
+      "ascending": "Oplopend",
+      "alert": {
+        "empty-cubes": "Geen kubus geselecteerd. \nKies er alstublieft één.",
+        "title": "Aandacht!"
+      },
+      "dialogs": {
+        "move-to-history": "Verplaats oplossingen naar de geschiedenis?",
+        "move-to-history-para": "Je kunt ze openen door op de geschiedenisschakelaar te tikken."
+      },
+      "empty-solves": "Hier nog niets!",
+      "empty-solves-description": "Tik op de schakelaar bovenaan het scherm om je geschiedenis te bekijken.",
+      "filter-by-time": "Filter op tijd",
+      "historial": "Historisch",
+      "last": "Laatst",
+      "order": "Volgorde",
+      "share": "Deel",
+      "share-clipboard": {
+        "average": "Gemiddeld",
+        "header": "Gegenereerd door NexusTimer",
+        "list-of-times": "Lijst met tijden"
+      },
+      "sort": "Soort",
+      "toast": {
+        "success-copy": "Gekopieerd",
+        "success-copy-description": "Is naar uw klembord gekopieerd.",
+        "unable-action": "Kan geen actie ondernemen",
+        "warning-select-cube": "Selecteer eerst een kubus."
+      },
+      "tooltips": {
+        "move-to-history": "Verplaats oplossingen voor de geschiedenis"
+      }
     },
     "StatsPage": {
       "title": "Statistieken",
-      "total": "Totaal",
-      "category": "Categorie",
       "global": "Globaal",
       "sessions": "Sessies",
       "best-time": "Beste Tijd",
       "average": "Gemiddelde",
       "time-spent": "Tijd besteed",
       "success-rate": "Succespercentage",
-      "counter": "Teller"
+      "counter": "Teller",
+      "advanced": "Geavanceerd",
+      "overall": "Algemeen"
     },
     "CubesPage": {
       "title": "Kubussen",
-      "cube": "Kubus",
       "no-cubes-for-display": "Geen kubussen om weer te geven.",
       "favorite": "Favoriet",
       "category": "Categorie",
@@ -52,19 +80,36 @@
       "created-at": "Gemaakt Op",
       "status": "Status",
       "using": "Gebruikend",
-      "idle": "Inactief"
+      "idle": "Inactief",
+      "find-your-cube": "Vind je kubus",
+      "name": "Naam",
+      "new-collection": "Nieuwe collectie",
+      "options": "Opties"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Categorie",
+      "current-selection": "Huidige selectie:",
+      "danger-msg": "Het wijzigen van de verzamelingscategorie verandert ook de oplossingen die aan die categorie zijn gekoppeld.",
+      "delete-collection": "Verzameling verwijderen",
+      "delete-collection-description": "Deze kubusverzameling wordt verwijderd, samen met alle oplossingen, records en instellingen ervan.",
+      "edit-collection": "Verzameling bewerken",
+      "input-collection-name": "Voer de collectienaam in",
+      "name": "Naam",
+      "new-collection": "Nieuwe collectie",
+      "new-collection-description": "Met kubuscollecties kunt u de geschiedenis van elke kubus bijhouden zonder de algemene categoriestatistieken te beïnvloeden.",
+      "select-an-option": "Selecteer een optie",
+      "to-continue": "doorgaan:",
+      "warning-alert": "Waarschuwing:",
+      "warning-msg": "Deze actie is niet omkeerbaar."
+    },
     "Inputs": {
       "select": "Selecteer",
-      "add-cube": "Kubus Toevoegen",
       "favorites": "Favorieten",
-      "list": "Lijst",
       "create": "Creëren",
-      "confirm": "Bevestigen",
       "cancel": "Annuleren",
-      "save": "Opslaan",
-      "delete": "Verwijderen"
+      "continue": "Doorgaan",
+      "move": "Beweging",
+      "none": "Geen"
     },
     "Settings-menu": {
       "title": "Instellingen",
@@ -89,7 +134,16 @@
       "custom-background-image": "Aangepaste achtergrondafbeelding",
       "format": "Formaat",
       "allowed-file-types": "Alleen afbeeldingsbestanden (JPEG, PNG, GIF) zijn toegestaan.",
-      "max-file-size": "Maximale bestandsgrootte toegestaan"
+      "max-file-size": "Maximale bestandsgrootte toegestaan",
+      "about": "Over",
+      "auto-select": "Automatische selectie bij opstarten",
+      "data": "App-gegevens",
+      "export-to-file": "Exporteren naar bestand",
+      "import-from-file": "Importeren uit bestand",
+      "legend": "NexusTimer is een meningloze, minimalistische en open source webtool voor SpeedCubing.",
+      "preferences": "Voorkeuren",
+      "report-bug": "Rapporteer een bug",
+      "suggest": "Stel een wijziging voor"
     },
     "backup-modal": {
       "title": "Intelligente Back-up Herstel",
@@ -99,6 +153,17 @@
       "loading-part-1": "Deze actie duurt minder dan een minuut.",
       "loading-part-2": "Even geduld aub, sluit dit venster niet.",
       "welcome": "Welkom:"
+    },
+    "Errors": {
+      "empty-input": "Voer een waarde in",
+      "not-match": "De naam komt niet overeen.",
+      "repeated-name": "Die naamverzameling bestaat al."
+    },
+    "tooltips": {
+      "bookmark": "Bladwijzer",
+      "copy": "Kopiëren",
+      "delete": "Verwijderen",
+      "plus-two": "2 Straf"
     }
   },
   "Metadata": {

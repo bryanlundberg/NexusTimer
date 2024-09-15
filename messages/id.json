@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Pengatur Waktu",
       "hint": "Petunjuk",
       "optimal-yellow-layer": "Lapisan Kuning Optimal",
       "solving": "Menyelesaikan...",
@@ -28,23 +27,52 @@
       "time": "Waktu",
       "descending": "Menurun",
       "ascending": "Naik",
-      "date": "Tanggal"
+      "date": "Tanggal",
+      "alert": {
+        "empty-cubes": "Tidak ada kubus yang dipilih. \nSilakan pilih salah satu.",
+        "title": "Perhatian!"
+      },
+      "dialogs": {
+        "move-to-history": "Pindahkan penyelesaian ke sejarah?",
+        "move-to-history-para": "Anda akan dapat mengaksesnya dengan mengetuk tombol riwayat."
+      },
+      "empty-solves": "Belum ada apa pun di sini!",
+      "empty-solves-description": "Ketuk tombol di bagian atas layar untuk melihat riwayat Anda.",
+      "filter-by-time": "Saring berdasarkan waktu",
+      "historial": "Sejarah",
+      "last": "Terakhir",
+      "order": "Memesan",
+      "share": "Membagikan",
+      "share-clipboard": {
+        "average": "Rata-rata",
+        "header": "Dihasilkan oleh NexusTimer",
+        "list-of-times": "Daftar waktu"
+      },
+      "sort": "Menyortir",
+      "toast": {
+        "success-copy": "Berhasil disalin",
+        "success-copy-description": "Telah disalin ke clipboard Anda.",
+        "unable-action": "Tidak dapat melakukan tindakan",
+        "warning-select-cube": "Silakan pilih kubus sebelumnya."
+      },
+      "tooltips": {
+        "move-to-history": "Pindahkan penyelesaian ke sejarah"
+      }
     },
     "StatsPage": {
       "title": "Statistik",
-      "total": "Total",
-      "category": "Kategori",
       "global": "Global",
       "sessions": "Sesi",
       "best-time": "Waktu Terbaik",
       "average": "Rata-rata",
       "time-spent": "Waktu yang Dihabiskan",
       "success-rate": "Tingkat Keberhasilan",
-      "counter": "Penghitung"
+      "counter": "Penghitung",
+      "advanced": "Canggih",
+      "overall": "Keseluruhan"
     },
     "CubesPage": {
       "title": "Kubus",
-      "cube": "Kubus",
       "no-cubes-for-display": "Tidak ada kubus untuk ditampilkan.",
       "favorite": "Favorit",
       "category": "Kategori",
@@ -52,19 +80,36 @@
       "created-at": "Dibuat Pada",
       "status": "Status",
       "using": "Menggunakan",
-      "idle": "Sedang Diam"
+      "idle": "Sedang Diam",
+      "find-your-cube": "Temukan kubus Anda",
+      "name": "Nama",
+      "new-collection": "Koleksi baru",
+      "options": "Pilihan"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Kategori",
+      "current-selection": "Pilihan saat ini:",
+      "danger-msg": "Memodifikasi kategori koleksi juga mengubah penyelesaian yang terkait dengan kategori tersebut.",
+      "delete-collection": "Hapus koleksi",
+      "delete-collection-description": "Koleksi kubus ini akan dihapus, beserta semua penyelesaian, catatan, dan pengaturannya.",
+      "edit-collection": "Sunting koleksi",
+      "input-collection-name": "Masukkan nama koleksi",
+      "name": "Nama",
+      "new-collection": "Koleksi baru",
+      "new-collection-description": "Koleksi kubus memungkinkan Anda melacak riwayat setiap kubus tanpa memengaruhi statistik kategori secara keseluruhan.",
+      "select-an-option": "Pilih sebuah opsi",
+      "to-continue": "untuk melanjutkan:",
+      "warning-alert": "Peringatan:",
+      "warning-msg": "Tindakan ini tidak dapat dibatalkan."
+    },
     "Inputs": {
       "select": "Pilih",
-      "add-cube": "Tambahkan kubus",
       "favorites": "Favorit",
-      "list": "Daftar",
       "create": "Buat",
-      "confirm": "Konfirmasi",
       "cancel": "Batal",
-      "save": "Simpan",
-      "delete": "Hapus"
+      "continue": "Melanjutkan",
+      "move": "Bergerak",
+      "none": "Tidak ada"
     },
     "Settings-menu": {
       "title": "Pengaturan",
@@ -89,7 +134,16 @@
       "custom-background-image": "Gambar Latar Belakang Kustom",
       "format": "Format",
       "allowed-file-types": "Hanya file gambar (JPEG, PNG, GIF) yang diizinkan.",
-      "max-file-size": "Ukuran file maksimum yang diizinkan"
+      "max-file-size": "Ukuran file maksimum yang diizinkan",
+      "about": "Tentang",
+      "auto-select": "Pilih otomatis saat startup",
+      "data": "Data Aplikasi",
+      "export-to-file": "Ekspor ke file",
+      "import-from-file": "Impor dari file",
+      "legend": "NexusTimer adalah alat web sumber terbuka, minimalis, dan terbuka untuk SpeedCubing.",
+      "preferences": "Preferensi",
+      "report-bug": "Laporkan bug",
+      "suggest": "Sarankan perubahan"
     },
     "backup-modal": {
       "title": "Pemulihan Cadangan Cerdas",
@@ -99,6 +153,17 @@
       "loading-part-1": "Tindakan ini membutuhkan waktu kurang dari satu menit.",
       "loading-part-2": "Harap tunggu, jangan tutup jendela ini.",
       "welcome": "Selamat Datang:"
+    },
+    "Errors": {
+      "empty-input": "Silakan masukkan nilai",
+      "not-match": "Namanya tidak cocok.",
+      "repeated-name": "Koleksi nama itu sudah ada."
+    },
+    "tooltips": {
+      "bookmark": "Penanda buku",
+      "copy": "Menyalin",
+      "delete": "Menghapus",
+      "plus-two": "2 Penalti"
     }
   },
   "Metadata": {

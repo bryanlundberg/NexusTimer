@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "タイマー",
       "hint": "ヒント",
       "optimal-yellow-layer": "最適なイエローレイヤー",
       "solving": "解く中...",
@@ -28,23 +27,52 @@
       "time": "時間",
       "descending": "降順",
       "date": "日付",
-      "ascending": "上昇"
+      "ascending": "上昇",
+      "alert": {
+        "empty-cubes": "キューブが選択されていません。 \n1 つお選びください。",
+        "title": "注意！"
+      },
+      "dialogs": {
+        "move-to-history": "ソルブを履歴に移動しますか?",
+        "move-to-history-para": "履歴スイッチをタップすると、それらにアクセスできるようになります。"
+      },
+      "empty-solves": "ここにはまだ何もありません!",
+      "empty-solves-description": "画面上部のスイッチをタップすると、履歴が表示されます。",
+      "filter-by-time": "時間でフィルタリングする",
+      "historial": "歴史的",
+      "last": "最後",
+      "order": "注文",
+      "share": "共有",
+      "share-clipboard": {
+        "average": "平均",
+        "header": "NexusTimer によって生成",
+        "list-of-times": "時間のリスト"
+      },
+      "sort": "選別",
+      "toast": {
+        "success-copy": "正常にコピーされました",
+        "success-copy-description": "クリップボードにコピーされました。",
+        "unable-action": "アクションが実行できません",
+        "warning-select-cube": "事前にキューブを選択してください。"
+      },
+      "tooltips": {
+        "move-to-history": "ソルブを履歴に移動する"
+      }
     },
     "StatsPage": {
       "title": "統計",
-      "total": "合計",
-      "category": "カテゴリー",
       "global": "グローバル",
       "sessions": "セッション",
       "best-time": "最速タイム",
       "average": "平均",
       "time-spent": "経過時間",
       "success-rate": "成功率",
-      "counter": "カウンター"
+      "counter": "カウンター",
+      "advanced": "高度な",
+      "overall": "全体"
     },
     "CubesPage": {
       "title": "キューブ",
-      "cube": "キューブ",
       "no-cubes-for-display": "表示するキューブがありません。",
       "favorite": "お気に入り",
       "category": "カテゴリー",
@@ -52,19 +80,36 @@
       "created-at": "作成日",
       "status": "ステータス",
       "using": "使用中",
-      "idle": "アイドル"
+      "idle": "アイドル",
+      "find-your-cube": "自分のキューブを見つけてください",
+      "name": "名前",
+      "new-collection": "新しいコレクション",
+      "options": "オプション"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "カテゴリ",
+      "current-selection": "現在の選択:",
+      "danger-msg": "コレクション カテゴリを変更すると、そのカテゴリに関連付けられたソルブも変更されます。",
+      "delete-collection": "コレクションの削除",
+      "delete-collection-description": "このキューブ コレクションは、そのすべてのソルブ、レコード、設定とともに削除されます。",
+      "edit-collection": "コレクションの編集",
+      "input-collection-name": "コレクション名を入力してください",
+      "name": "名前",
+      "new-collection": "新しいコレクション",
+      "new-collection-description": "キューブ コレクションを使用すると、カテゴリ全体の統計に影響を与えることなく、各キューブの履歴を追跡できます。",
+      "select-an-option": "オプションを選択してください",
+      "to-continue": "続けるには:",
+      "warning-alert": "警告：",
+      "warning-msg": "この操作は元に戻すことはできません。"
+    },
     "Inputs": {
       "select": "選択",
-      "add-cube": "キューブを追加",
       "favorites": "お気に入り",
-      "list": "リスト",
       "create": "作成",
-      "confirm": "確認",
       "cancel": "キャンセル",
-      "save": "保存",
-      "delete": "削除"
+      "continue": "続く",
+      "move": "動く",
+      "none": "なし"
     },
     "Settings-menu": {
       "title": "設定",
@@ -89,7 +134,16 @@
       "custom-background-image": "カスタム背景画像",
       "format": "フォーマット",
       "allowed-file-types": "画像ファイル（JPEG、PNG、GIF）のみが許可されています。",
-      "max-file-size": "許可される最大ファイルサイズ"
+      "max-file-size": "許可される最大ファイルサイズ",
+      "about": "について",
+      "auto-select": "起動時に自動選択",
+      "data": "アプリデータ",
+      "export-to-file": "ファイルにエクスポート",
+      "import-from-file": "ファイルからインポート",
+      "legend": "NexusTimer は、SpeedCubing 用の、偏見にとらわれないミニマリストのオープンソース Web ツールです。",
+      "preferences": "設定",
+      "report-bug": "バグを報告する",
+      "suggest": "変更を提案する"
     },
     "backup-modal": {
       "title": "インテリジェントバックアップの復元",
@@ -99,6 +153,17 @@
       "loading-part-1": "この操作には1分未満かかります。",
       "loading-part-2": "お待ちください。このウィンドウを閉じないでください。",
       "welcome": "ようこそ:"
+    },
+    "Errors": {
+      "empty-input": "値を入力してください",
+      "not-match": "名前が一致しません。",
+      "repeated-name": "その名前のコレクションはすでに存在します。"
+    },
+    "tooltips": {
+      "bookmark": "ブックマーク",
+      "copy": "コピー",
+      "delete": "消去",
+      "plus-two": "2 ペナルティ"
     }
   },
   "Metadata": {

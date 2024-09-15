@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Časovač",
       "hint": "Nápoveda",
       "optimal-yellow-layer": "Optimálna žltá vrstva",
       "solving": "Riešenie...",
@@ -28,23 +27,52 @@
       "ascending": "Vzostupne",
       "date": "Dátum",
       "descending": "Zostupne",
-      "time": "Čas"
+      "time": "Čas",
+      "alert": {
+        "empty-cubes": "Nie je vybratá žiadna kocka. \nVyberte si jednu.",
+        "title": "Pozor!"
+      },
+      "dialogs": {
+        "move-to-history": "Presun rieši históriu?",
+        "move-to-history-para": "Budete k nim mať prístup klepnutím na prepínač histórie."
+      },
+      "empty-solves": "Zatiaľ tu nič nie je!",
+      "empty-solves-description": "Klepnutím na prepínač v hornej časti obrazovky zobrazíte svoju históriu.",
+      "filter-by-time": "Filtrujte podľa času",
+      "historial": "Historický",
+      "last": "Posledný",
+      "order": "Objednať",
+      "share": "zdieľať",
+      "share-clipboard": {
+        "average": "Priemerná",
+        "header": "Generuje NexusTimer",
+        "list-of-times": "Zoznam časov"
+      },
+      "sort": "Triediť",
+      "toast": {
+        "success-copy": "Úspešne skopírované",
+        "success-copy-description": "Bol skopírovaný do vašej schránky.",
+        "unable-action": "Nemožná akcia",
+        "warning-select-cube": "Vyberte kocku predtým."
+      },
+      "tooltips": {
+        "move-to-history": "Move rieši históriu"
+      }
     },
     "StatsPage": {
       "title": "Štatistiky",
-      "total": "Celkom",
-      "category": "Kategória",
       "global": "Celosvetové",
       "sessions": "Relácie",
       "best-time": "Najlepší čas",
       "average": "Priemer",
       "time-spent": "Strávený čas",
       "success-rate": "Úspešnosť",
-      "counter": "Počítadlo"
+      "counter": "Počítadlo",
+      "advanced": "Pokročilé",
+      "overall": "Celkovo"
     },
     "CubesPage": {
       "title": "Kocky",
-      "cube": "Kocka",
       "no-cubes-for-display": "Žiadne kocky na zobrazenie.",
       "favorite": "Obľúbené",
       "category": "Kategória",
@@ -52,19 +80,36 @@
       "created-at": "Vytvorené",
       "status": "Stav",
       "using": "Používanie",
-      "idle": "Neaktívne"
+      "idle": "Neaktívne",
+      "find-your-cube": "Nájdite svoju kocku",
+      "name": "Meno",
+      "new-collection": "Nová kolekcia",
+      "options": "Možnosti"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Kategória",
+      "current-selection": "Aktuálny výber:",
+      "danger-msg": "Úpravou kategórie kolekcie sa menia aj riešenia súvisiace s touto kategóriou.",
+      "delete-collection": "Odstrániť zbierku",
+      "delete-collection-description": "Táto zbierka kociek bude vymazaná spolu so všetkými jej riešeniami, záznamami a nastaveniami.",
+      "edit-collection": "Upraviť kolekciu",
+      "input-collection-name": "Zadajte názov kolekcie",
+      "name": "Meno",
+      "new-collection": "Nová kolekcia",
+      "new-collection-description": "Kolekcie kociek vám umožňujú sledovať históriu každej kocky bez ovplyvnenia celkovej štatistiky kategórií.",
+      "select-an-option": "Vyberte možnosť",
+      "to-continue": "pokračovať:",
+      "warning-alert": "POZOR:",
+      "warning-msg": "Táto akcia nie je reverzibilná."
+    },
     "Inputs": {
       "select": "Vybrať",
-      "add-cube": "Pridať kocku",
       "favorites": "Obľúbené",
-      "list": "Zoznam",
       "create": "Vytvoriť",
-      "confirm": "Potvrdiť",
       "cancel": "Zrušiť",
-      "save": "Uložiť",
-      "delete": "Odstrániť"
+      "continue": "Pokračovať",
+      "move": "Pohybujte sa",
+      "none": "žiadne"
     },
     "Settings-menu": {
       "title": "Nastavenia",
@@ -89,7 +134,16 @@
       "custom-background-image": "Vlastný obrázok pozadia",
       "format": "Formát",
       "allowed-file-types": "Povolené sú iba obrazové súbory (JPEG, PNG, GIF).",
-      "max-file-size": "Maximálna veľkosť súboru"
+      "max-file-size": "Maximálna veľkosť súboru",
+      "about": "O",
+      "auto-select": "Automatický výber pri spustení",
+      "data": "Údaje aplikácie",
+      "export-to-file": "Exportovať do súboru",
+      "import-from-file": "Importovať zo súboru",
+      "legend": "NexusTimer je minimalistický webový nástroj s otvoreným zdrojom pre SpeedCubing bez názoru.",
+      "preferences": "Predvoľby",
+      "report-bug": "Nahlásiť chybu",
+      "suggest": "Navrhnite zmenu"
     },
     "backup-modal": {
       "title": "Inteligentná Obnova Zálohy",
@@ -99,6 +153,17 @@
       "loading-part-1": "Toto akcia trvá menej ako minútu.",
       "loading-part-2": "Prosím, čakajte, nezatvárajte toto okno.",
       "welcome": "Vitajte:"
+    },
+    "Errors": {
+      "empty-input": "Zadajte hodnotu",
+      "not-match": "Názov sa nezhoduje.",
+      "repeated-name": "Táto zbierka mien už existuje."
+    },
+    "tooltips": {
+      "bookmark": "Záložka",
+      "copy": "Kopírovať",
+      "delete": "Odstrániť",
+      "plus-two": "2 Pokuta"
     }
   },
   "Metadata": {

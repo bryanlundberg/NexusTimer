@@ -142,7 +142,7 @@ export default function MenuSettings() {
                       height={100}
                     />
 
-                    <div className="text-center w-11/12 italic">
+                    <div className="text-center w-11/12 italic mx-auto text-sm">
                       &rdquo;{t("legend")}&rdquo;
                     </div>
 

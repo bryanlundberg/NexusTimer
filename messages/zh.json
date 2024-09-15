@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "计时器",
       "hint": "提示",
       "optimal-yellow-layer": "最佳黄层",
       "solving": "解决中...",
@@ -28,23 +27,52 @@
       "ascending": "上升",
       "date": "日期",
       "descending": "降序",
-      "time": "时间"
+      "time": "时间",
+      "alert": {
+        "empty-cubes": "未选择立方体。\n请选择一项。",
+        "title": "注意力！"
+      },
+      "dialogs": {
+        "move-to-history": "将解决方案移至历史？",
+        "move-to-history-para": "您可以通过点击历史记录开关来访问它们。"
+      },
+      "empty-solves": "这里还什么都没有！",
+      "empty-solves-description": "点击屏幕顶部的开关即可查看您的历史记录。",
+      "filter-by-time": "按时间过滤",
+      "historial": "历史",
+      "last": "最后的",
+      "order": "命令",
+      "share": "分享",
+      "share-clipboard": {
+        "average": "平均的",
+        "header": "由 NexusTimer 生成",
+        "list-of-times": "时间列表"
+      },
+      "sort": "种类",
+      "toast": {
+        "success-copy": "复制成功",
+        "success-copy-description": "已复制到您的剪贴板。",
+        "unable-action": "无法行动",
+        "warning-select-cube": "请先选择一个立方体。"
+      },
+      "tooltips": {
+        "move-to-history": "将解决方案移至历史记录"
+      }
     },
     "StatsPage": {
       "title": "统计",
-      "total": "总计",
-      "category": "类别",
       "global": "全球",
       "sessions": "会话",
       "best-time": "最佳时间",
       "average": "平均",
       "time-spent": "花费时间",
       "success-rate": "成功率",
-      "counter": "计数器"
+      "counter": "计数器",
+      "advanced": "先进的",
+      "overall": "全面的"
     },
     "CubesPage": {
       "title": "魔方",
-      "cube": "魔方",
       "no-cubes-for-display": "没有可显示的魔方。",
       "favorite": "收藏",
       "category": "类别",
@@ -52,19 +80,36 @@
       "created-at": "创建于",
       "status": "状态",
       "using": "使用中",
-      "idle": "闲置"
+      "idle": "闲置",
+      "find-your-cube": "找到你的立方体",
+      "name": "姓名",
+      "new-collection": "新系列",
+      "options": "选项"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "类别",
+      "current-selection": "当前选择：",
+      "danger-msg": "修改集合类别也会更改与该类别关联的求解。",
+      "delete-collection": "删除集合",
+      "delete-collection-description": "该多维数据集集合及其所有求解、记录和设置都将被删除。",
+      "edit-collection": "编辑收藏",
+      "input-collection-name": "输入集合名称",
+      "name": "姓名",
+      "new-collection": "新系列",
+      "new-collection-description": "多维数据集集合允许您跟踪每个多维数据集的历史记录，而不会影响整体类别统计数据。",
+      "select-an-option": "选择一个选项",
+      "to-continue": "继续：",
+      "warning-alert": "警告：",
+      "warning-msg": "此操作不可逆转。"
+    },
     "Inputs": {
       "select": "选择",
-      "add-cube": "添加魔方",
       "favorites": "收藏夹",
-      "list": "列表",
       "create": "创建",
-      "confirm": "确认",
       "cancel": "取消",
-      "save": "保存",
-      "delete": "删除"
+      "continue": "继续",
+      "move": "移动",
+      "none": "没有任何"
     },
     "Settings-menu": {
       "title": "设置",
@@ -96,7 +141,9 @@
       "about": "关于",
       "legend": "NexusTimer是一个无偏见、简约和开源的SpeedCubing网络工具。",
       "suggest": "建议更改",
-      "report-bug": "报告错误"
+      "report-bug": "报告错误",
+      "auto-select": "启动时自动选择",
+      "preferences": "偏好设置"
     },
     "backup-modal": {
       "title": "智能备份恢复",
@@ -106,6 +153,17 @@
       "loading-part-1": "此操作不到一分钟。",
       "loading-part-2": "请稍候，不要关闭此窗口。",
       "welcome": "欢迎："
+    },
+    "Errors": {
+      "empty-input": "请输入一个值",
+      "not-match": "名称不匹配。",
+      "repeated-name": "该名称集合已经存在。"
+    },
+    "tooltips": {
+      "bookmark": "书签",
+      "copy": "复制",
+      "delete": "删除",
+      "plus-two": "2 处罚"
     }
   },
   "Metadata": {

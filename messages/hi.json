@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "टाइमर",
       "hint": "संकेत",
       "optimal-yellow-layer": "आदर्श पीला परत",
       "solving": "हल कर रहे हैं...",
@@ -28,23 +27,52 @@
       "ascending": "आरोही",
       "date": "तारीख",
       "descending": "अवरोही",
-      "time": "समय"
+      "time": "समय",
+      "alert": {
+        "empty-cubes": "कोई घन चयनित नहीं. \nएक का चयन करें।",
+        "title": "ध्यान!"
+      },
+      "dialogs": {
+        "move-to-history": "समाधानों को इतिहास में ले जाएँ?",
+        "move-to-history-para": "आप इतिहास स्विच पर टैप करके उन तक पहुंच पाएंगे।"
+      },
+      "empty-solves": "अभी तक यहाँ कुछ भी नहीं है!",
+      "empty-solves-description": "अपना इतिहास देखने के लिए स्क्रीन के शीर्ष पर स्थित स्विच को टैप करें।",
+      "filter-by-time": "समय के अनुसार फ़िल्टर करें",
+      "historial": "historial",
+      "last": "अंतिम",
+      "order": "आदेश",
+      "share": "शेयर करना",
+      "share-clipboard": {
+        "average": "औसत",
+        "header": "NexusTimer द्वारा जेनरेट किया गया",
+        "list-of-times": "समय की सूची"
+      },
+      "sort": "क्रम से लगाना",
+      "toast": {
+        "success-copy": "सफलतापूर्वक कॉपी किया गया",
+        "success-copy-description": "आपके क्लिपबोर्ड पर कॉपी कर दिया गया है.",
+        "unable-action": "असमर्थ कार्रवाई",
+        "warning-select-cube": "कृपया पहले एक घन चुनें."
+      },
+      "tooltips": {
+        "move-to-history": "समाधानों को इतिहास में ले जाएँ"
+      }
     },
     "StatsPage": {
       "title": "आंकड़े",
-      "total": "कुल",
-      "category": "श्रेणी",
       "global": "वैश्विक",
       "sessions": "सत्र",
       "best-time": "सर्वोत्तम समय",
       "average": "औसत",
       "time-spent": "बिताया हुआ समय",
       "success-rate": "सफलता दर",
-      "counter": "काउंटर"
+      "counter": "काउंटर",
+      "advanced": "विकसित",
+      "overall": "कुल मिलाकर"
     },
     "CubesPage": {
       "title": "क्यूब",
-      "cube": "क्यूब",
       "no-cubes-for-display": "प्रदर्शन के लिए कोई क्यूब नहीं।",
       "favorite": "पसंदीदा",
       "category": "श्रेणी",
@@ -52,19 +80,36 @@
       "created-at": "बनाया गया",
       "status": "स्थिति",
       "using": "उपयोग करना",
-      "idle": "आलसी"
+      "idle": "आलसी",
+      "find-your-cube": "अपना घन खोजें",
+      "name": "नाम",
+      "new-collection": "नया संग्रह",
+      "options": "विकल्प"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "वर्ग",
+      "current-selection": "वर्तमान चयन:",
+      "danger-msg": "संग्रह श्रेणी को संशोधित करने से उस श्रेणी से जुड़े समाधान भी बदल जाते हैं।",
+      "delete-collection": "संग्रह हटाएँ",
+      "delete-collection-description": "यह क्यूब संग्रह इसके सभी सॉल्व, रिकॉर्ड और सेटिंग्स के साथ हटा दिया जाएगा।",
+      "edit-collection": "संग्रह संपादित करें",
+      "input-collection-name": "संग्रह का नाम दर्ज करें",
+      "name": "नाम",
+      "new-collection": "नया संग्रह",
+      "new-collection-description": "क्यूब संग्रह आपको समग्र श्रेणी आँकड़ों को प्रभावित किए बिना प्रत्येक क्यूब के इतिहास पर नज़र रखने की अनुमति देता है।",
+      "select-an-option": "कोई विकल्प चुनें",
+      "to-continue": "जारी रखने के लिए:",
+      "warning-alert": "चेतावनी:",
+      "warning-msg": "यह क्रिया प्रतिवर्ती नहीं है."
+    },
     "Inputs": {
       "select": "चयन करें",
-      "add-cube": "क्यूब जोड़ें",
       "favorites": "पसंती",
-      "list": "सूची",
       "create": "बनाएं",
-      "confirm": "पुष्टि करें",
       "cancel": "रद्द करें",
-      "save": "सहेजें",
-      "delete": "हटाएं"
+      "continue": "जारी रखना",
+      "move": "कदम",
+      "none": "कोई नहीं"
     },
     "Settings-menu": {
       "title": "सेटिंग्स",
@@ -96,7 +141,9 @@
       "about": "के बारे में",
       "legend": "NexusTimer एक तटस्थ, लोकप्रिय और ओपन सोर्स वेब उपकरण है जो SpeedCubing के लिए है।",
       "suggest": "परिवर्तन सुझाएं",
-      "report-bug": "बग रिपोर्ट करें"
+      "report-bug": "बग रिपोर्ट करें",
+      "auto-select": "स्टार्टअप पर स्वतः चयन करें",
+      "preferences": "प्राथमिकताएँ"
     },
     "backup-modal": {
       "title": "बुद्धिमान बैकअप पुनर्स्थापन",
@@ -106,6 +153,17 @@
       "loading-part-1": "यह कार्रवाई एक मिनट से कम समय लेती है।",
       "loading-part-2": "कृपया प्रतीक्षा करें, इस विंडो को बंद न करें।",
       "welcome": "स्वागत है:"
+    },
+    "Errors": {
+      "empty-input": "कृपया एक मान दर्ज करें",
+      "not-match": "नाम मेल नहीं खाता.",
+      "repeated-name": "वह नाम संग्रह पहले से मौजूद है."
+    },
+    "tooltips": {
+      "bookmark": "बुकमार्क",
+      "copy": "प्रतिलिपि",
+      "delete": "मिटाना",
+      "plus-two": "2 जुर्माना"
     }
   },
   "Metadata": {

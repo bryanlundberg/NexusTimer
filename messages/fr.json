@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Chronomètre",
       "hint": "Indice",
       "optimal-yellow-layer": "Couche jaune optimale",
       "solving": "Résolution...",
@@ -28,23 +27,52 @@
       "ascending": "Ascendant",
       "date": "Date",
       "descending": "Descendant",
-      "time": "Temps"
+      "time": "Temps",
+      "alert": {
+        "empty-cubes": "Aucun cube sélectionné. \nVeuillez en choisir un.",
+        "title": "Attention!"
+      },
+      "dialogs": {
+        "move-to-history": "Déplacer les résolutions vers l'historique ?",
+        "move-to-history-para": "Vous pourrez y accéder en appuyant sur le bouton Historique."
+      },
+      "empty-solves": "Rien ici pour l'instant !",
+      "empty-solves-description": "Appuyez sur le commutateur en haut de l'écran pour voir votre historique.",
+      "filter-by-time": "Filtrer par heure",
+      "historial": "Historique",
+      "last": "Dernier",
+      "order": "Commande",
+      "share": "Partager",
+      "share-clipboard": {
+        "average": "Moyenne",
+        "header": "Généré par NexusTimer",
+        "list-of-times": "Liste des heures"
+      },
+      "sort": "Trier",
+      "toast": {
+        "success-copy": "Copié avec succès",
+        "success-copy-description": "A été copié dans votre presse-papiers.",
+        "unable-action": "Action impossible",
+        "warning-select-cube": "Veuillez sélectionner un cube avant."
+      },
+      "tooltips": {
+        "move-to-history": "Déplacer les résolutions vers l'historique"
+      }
     },
     "StatsPage": {
       "title": "Statistiques",
-      "total": "Total",
-      "category": "Catégorie",
       "global": "Global",
       "sessions": "Sessions",
       "best-time": "Meilleur temps",
       "average": "Moyenne",
       "time-spent": "Temps passé",
       "success-rate": "Taux de réussite",
-      "counter": "Compteur"
+      "counter": "Compteur",
+      "advanced": "Avancé",
+      "overall": "Dans l'ensemble"
     },
     "CubesPage": {
       "title": "Cubes",
-      "cube": "Cube",
       "no-cubes-for-display": "Aucun cube à afficher.",
       "favorite": "Favori",
       "category": "Catégorie",
@@ -52,19 +80,36 @@
       "created-at": "Créé à",
       "status": "Statut",
       "using": "En cours d'utilisation",
-      "idle": "Inactif"
+      "idle": "Inactif",
+      "find-your-cube": "Trouvez votre cube",
+      "name": "Nom",
+      "new-collection": "Nouvelle collection",
+      "options": "Possibilités"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Catégorie",
+      "current-selection": "Sélection actuelle :",
+      "danger-msg": "La modification de la catégorie de collection modifie également les résolutions associées à cette catégorie.",
+      "delete-collection": "Supprimer la collection",
+      "delete-collection-description": "Cette collection de cubes sera supprimée, ainsi que toutes ses résolutions, enregistrements et paramètres.",
+      "edit-collection": "Modifier la collection",
+      "input-collection-name": "Entrez le nom de la collection",
+      "name": "Nom",
+      "new-collection": "Nouvelle collection",
+      "new-collection-description": "Les collections de cubes vous permettent de suivre l'historique de chaque cube sans affecter les statistiques globales de la catégorie.",
+      "select-an-option": "Sélectionnez une option",
+      "to-continue": "pour continuer :",
+      "warning-alert": "Avertissement:",
+      "warning-msg": "Cette action n'est pas réversible."
+    },
     "Inputs": {
       "select": "Sélectionner",
-      "add-cube": "Ajouter un cube",
       "favorites": "Favoris",
-      "list": "Liste",
       "create": "Créer",
-      "confirm": "Confirmer",
       "cancel": "Annuler",
-      "save": "Enregistrer",
-      "delete": "Supprimer"
+      "continue": "Continuer",
+      "move": "Se déplacer",
+      "none": "Aucun"
     },
     "Settings-menu": {
       "title": "Paramètres",
@@ -96,7 +141,9 @@
       "about": "À propos",
       "legend": "NexusTimer est un outil Web minimaliste, impartial et open source pour le SpeedCubing.",
       "suggest": "Proposer un changement",
-      "report-bug": "Signaler un bug"
+      "report-bug": "Signaler un bug",
+      "auto-select": "Sélection automatique au démarrage",
+      "preferences": "Préférences"
     },
     "backup-modal": {
       "title": "Restauration de sauvegarde intelligente",
@@ -106,6 +153,17 @@
       "loading-part-1": "Cette action prend moins d'une minute.",
       "loading-part-2": "Veuillez patienter, ne fermez pas cette fenêtre.",
       "welcome": "Bienvenue :"
+    },
+    "Errors": {
+      "empty-input": "Veuillez saisir une valeur",
+      "not-match": "Le nom ne correspond pas.",
+      "repeated-name": "Cette collection de noms existe déjà."
+    },
+    "tooltips": {
+      "bookmark": "Marque-page",
+      "copy": "Copie",
+      "delete": "Supprimer",
+      "plus-two": "2 Pénalité"
     }
   },
   "Metadata": {

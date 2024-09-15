@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "টাইমার",
       "hint": "ইঙ্গিত",
       "optimal-yellow-layer": "সেরা হলুদ স্তর",
       "solving": "সমাধান হচ্ছে...",
@@ -24,23 +23,56 @@
     "SolvesPage": {
       "title": "সমাধান",
       "session": "সেশন",
-      "all": "সব"
+      "all": "সব",
+      "alert": {
+        "empty-cubes": "কোন ঘনক্ষেত্র নির্বাচন করা হয়নি. \nএকটি চয়ন করুন.",
+        "title": "মনোযোগ!"
+      },
+      "ascending": "আরোহী",
+      "date": "তারিখ",
+      "descending": "অবরোহী",
+      "dialogs": {
+        "move-to-history": "সরানো ইতিহাস সমাধান?",
+        "move-to-history-para": "আপনি ইতিহাস সুইচ আলতো চাপ দিয়ে সেগুলি অ্যাক্সেস করতে সক্ষম হবেন৷"
+      },
+      "empty-solves": "এখানে এখনো কিছুই নেই!",
+      "empty-solves-description": "আপনার ইতিহাস দেখতে স্ক্রিনের শীর্ষে থাকা সুইচটিতে আলতো চাপুন৷",
+      "filter-by-time": "সময় অনুযায়ী ফিল্টার করুন",
+      "historial": "ঐতিহাসিক",
+      "last": "শেষ",
+      "order": "অর্ডার",
+      "share": "শেয়ার করুন",
+      "share-clipboard": {
+        "average": "গড়",
+        "header": "NexusTimer দ্বারা উত্পন্ন",
+        "list-of-times": "সময়ের তালিকা"
+      },
+      "sort": "সাজান",
+      "time": "সময়",
+      "toast": {
+        "success-copy": "সফলভাবে অনুলিপি করা হয়েছে৷",
+        "success-copy-description": "আপনার ক্লিপবোর্ডে কপি করা হয়েছে।",
+        "unable-action": "অক্ষম কর্ম",
+        "warning-select-cube": "আগে একটি ঘনক নির্বাচন করুন."
+      },
+      "tooltips": {
+        "move-to-history": "সরানো ইতিহাস সমাধান"
+      }
     },
     "StatsPage": {
       "title": "পরিসংখ্যান",
-      "total": "মোট",
-      "category": "বিভাগ",
       "global": "গ্লোবাল",
       "sessions": "সেশন",
       "best-time": "সেরা সময়",
       "average": "গড়",
       "time-spent": "ব্যয়িত সময়",
       "success-rate": "সাফল্যের হার",
-      "counter": "কাউন্টার"
+      "counter": "কাউন্টার",
+      "advanced": "উন্নত",
+      "overall": "সামগ্রিকভাবে"
     },
     "CubesPage": {
       "title": "কিউব",
-      "cube": "কিউব",
       "no-cubes-for-display": "প্রদর্শনের জন্য কোনও কিউব নেই।",
       "favorite": "প্রিয়",
       "category": "বিভাগ",
@@ -48,19 +80,36 @@
       "created-at": "তৈরি করা হয়েছে",
       "status": "অবস্থা",
       "using": "ব্যবহার করা হচ্ছে",
-      "idle": "নিষ্ক্রিয়"
+      "idle": "নিষ্ক্রিয়",
+      "find-your-cube": "আপনার ঘনক্ষেত্র খুঁজুন",
+      "name": "নাম",
+      "new-collection": "নতুন সংগ্রহ",
+      "options": "অপশন"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "শ্রেণী",
+      "current-selection": "বর্তমান নির্বাচন:",
+      "danger-msg": "সংগ্রহ বিভাগ পরিবর্তন করা সেই বিভাগের সাথে সম্পর্কিত সমাধানগুলিও পরিবর্তন করে।",
+      "delete-collection": "সংগ্রহ মুছুন",
+      "delete-collection-description": "এই ঘনক্ষেত্র সংগ্রহ মুছে ফেলা হবে, এর সমস্ত সমাধান, রেকর্ড এবং সেটিংস সহ।",
+      "edit-collection": "সংগ্রহ সম্পাদনা করুন",
+      "input-collection-name": "সংগ্রহের নাম লিখুন",
+      "name": "নাম",
+      "new-collection": "নতুন সংগ্রহ",
+      "new-collection-description": "কিউব সংগ্রহ আপনাকে সামগ্রিক বিভাগের পরিসংখ্যানকে প্রভাবিত না করে প্রতিটি ঘনকের ইতিহাসের ট্র্যাক রাখতে দেয়।",
+      "select-an-option": "একটি বিকল্প নির্বাচন করুন",
+      "to-continue": "চালিয়ে যেতে:",
+      "warning-alert": "সতর্কতা:",
+      "warning-msg": "এই ক্রিয়াটি বিপরীত করা যায় না।"
+    },
     "Inputs": {
       "select": "নির্বাচন করুন",
-      "add-cube": "কিউব যোগ করুন",
       "favorites": "প্রিয়",
-      "list": "তালিকা",
       "create": "তৈরি করুন",
-      "confirm": "নিশ্চিত করুন",
       "cancel": "বাতিল করুন",
-      "save": "সংরক্ষণ করুন",
-      "delete": "মুছে ফেলুন"
+      "continue": "চালিয়ে যান",
+      "move": "সরান",
+      "none": "কোনোটিই নয়"
     },
     "Settings-menu": {
       "title": "সেটিংস",
@@ -92,7 +141,9 @@
       "about": "সম্পর্কিত",
       "legend": "NexusTimer হল একটি নিরপেক্ষ, সংক্ষিপ্ত এবং ওপেন সোর্স ওয়েব টুল স্পিডকিউবিংয়ের জন্য।",
       "suggest": "পরিবর্তন প্রস্তাব করুন",
-      "report-bug": "বাগ রিপোর্ট করুন"
+      "report-bug": "বাগ রিপোর্ট করুন",
+      "auto-select": "স্টার্টআপে স্বয়ংক্রিয়ভাবে নির্বাচন করুন",
+      "preferences": "পছন্দসমূহ"
     },
     "backup-modal": {
       "title": "বুদ্ধিমান ব্যাকআপ পুনরুদ্ধার",
@@ -102,6 +153,17 @@
       "loading-part-1": "এই ক্রিয়াটি এক মিনিটেরও কম সময় নেয়।",
       "loading-part-2": "অনুগ্রহ করে অপেক্ষা করুন, এই উইন্ডোটি বন্ধ করবেন না।",
       "welcome": "স্বাগতম:"
+    },
+    "Errors": {
+      "empty-input": "অনুগ্রহ করে একটি মান লিখুন",
+      "not-match": "নামের সাথে মিল নেই।",
+      "repeated-name": "সেই নামের সংগ্রহ ইতিমধ্যেই বিদ্যমান।"
+    },
+    "tooltips": {
+      "bookmark": "বুকমার্ক",
+      "copy": "কপি",
+      "delete": "মুছে দিন",
+      "plus-two": "2 শাস্তি"
     }
   },
   "Metadata": {

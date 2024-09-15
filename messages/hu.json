@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Időmérő",
       "hint": "Tipp",
       "optimal-yellow-layer": "Optimális Sárga Réteg",
       "solving": "Megoldás...",
@@ -28,23 +27,52 @@
       "ascending": "Emelkedő",
       "date": "Dátum",
       "descending": "Csökkenő",
-      "time": "Idő"
+      "time": "Idő",
+      "alert": {
+        "empty-cubes": "Nincs kiválasztva kocka. \nKérjük, válasszon egyet.",
+        "title": "Figyelem!"
+      },
+      "dialogs": {
+        "move-to-history": "Megoldásokat áthelyezni a történelembe?",
+        "move-to-history-para": "Az előzmények kapcsolójának megérintésével érheti el őket."
+      },
+      "empty-solves": "Itt még semmi!",
+      "empty-solves-description": "Érintse meg a képernyő tetején lévő kapcsolót az előzmények megtekintéséhez.",
+      "filter-by-time": "Szűrés idő szerint",
+      "historial": "Történelmi",
+      "last": "Utolsó",
+      "order": "Rendelés",
+      "share": "Részesedés",
+      "share-clipboard": {
+        "average": "Átlagos",
+        "header": "A NexusTimer generálta",
+        "list-of-times": "Idők listája"
+      },
+      "sort": "Fajta",
+      "toast": {
+        "success-copy": "Sikeres másolás",
+        "success-copy-description": "A vágólapra másolva.",
+        "unable-action": "A művelet nem lehetséges",
+        "warning-select-cube": "Kérjük, előbb válasszon egy kockát."
+      },
+      "tooltips": {
+        "move-to-history": "Mozgás megoldja a történelem"
+      }
     },
     "StatsPage": {
       "title": "Statisztikák",
-      "total": "Összesen",
-      "category": "Kategória",
       "global": "Globális",
       "sessions": "Munkamenetek",
       "best-time": "Legjobb Idő",
       "average": "Átlag",
       "time-spent": "Eltöltött Idő",
       "success-rate": "Sikerarány",
-      "counter": "Számláló"
+      "counter": "Számláló",
+      "advanced": "Fejlett",
+      "overall": "Átfogó"
     },
     "CubesPage": {
       "title": "Kockák",
-      "cube": "Kocka",
       "no-cubes-for-display": "Nincsenek kockák megjelenítésre.",
       "favorite": "Kedvenc",
       "category": "Kategória",
@@ -52,19 +80,36 @@
       "created-at": "Létrehozva",
       "status": "Állapot",
       "using": "Használ",
-      "idle": "Tétlen"
+      "idle": "Tétlen",
+      "find-your-cube": "Keresse meg a kockáját",
+      "name": "Név",
+      "new-collection": "Új kollekció",
+      "options": "Opciók"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Kategória",
+      "current-selection": "Jelenlegi választék:",
+      "danger-msg": "A gyűjteménykategória módosítása módosítja az adott kategóriához tartozó megoldásokat is.",
+      "delete-collection": "Gyűjtemény törlése",
+      "delete-collection-description": "Ez a kockagyűjtemény az összes megoldásával, rekordjával és beállításával együtt törlődik.",
+      "edit-collection": "Gyűjtemény szerkesztése",
+      "input-collection-name": "Adja meg a gyűjtemény nevét",
+      "name": "Név",
+      "new-collection": "Új kollekció",
+      "new-collection-description": "A kockagyűjtemények lehetővé teszik az egyes kockák előzményeinek nyomon követését anélkül, hogy ez befolyásolná a kategória általános statisztikáit.",
+      "select-an-option": "Válasszon egy lehetőséget",
+      "to-continue": "a folytatáshoz:",
+      "warning-alert": "Figyelmeztetés:",
+      "warning-msg": "Ez a művelet nem visszafordítható."
+    },
     "Inputs": {
       "select": "Válasszon",
-      "add-cube": "Kocka hozzáadása",
       "favorites": "Kedvencek",
-      "list": "Lista",
       "create": "Létrehoz",
-      "confirm": "Megerősít",
       "cancel": "Mégse",
-      "save": "Mentés",
-      "delete": "Törlés"
+      "continue": "Folytatás",
+      "move": "Mozog",
+      "none": "Egyik sem"
     },
     "Settings-menu": {
       "title": "Beállítások",
@@ -96,7 +141,9 @@
       "about": "Névjegy",
       "legend": "A NexusTimer egy véleményektől mentes, minimalista és nyílt forráskódú webes eszköz a SpeedCubing számára.",
       "suggest": "Javaslat küldése",
-      "report-bug": "Hiba bejelentése"
+      "report-bug": "Hiba bejelentése",
+      "auto-select": "Automatikus kiválasztás indításkor",
+      "preferences": "Preferences"
     },
     "backup-modal": {
       "title": "Intelligens Biztonsági Mentés Visszaállítása",
@@ -106,6 +153,17 @@
       "loading-part-1": "Ez a művelet kevesebb mint egy percet vesz igénybe.",
       "loading-part-2": "Kérjük, várjon, ne zárja be ezt az ablakot.",
       "welcome": "Üdvözöljük:"
+    },
+    "Errors": {
+      "empty-input": "Adjon meg egy értéket",
+      "not-match": "A név nem egyezik.",
+      "repeated-name": "Ez a névgyűjtemény már létezik."
+    },
+    "tooltips": {
+      "bookmark": "Könyvjelző",
+      "copy": "Másolat",
+      "delete": "Töröl",
+      "plus-two": "2 Büntetés"
     }
   },
   "Metadata": {

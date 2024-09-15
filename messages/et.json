@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Ajastin",
       "hint": "Vihje",
       "optimal-yellow-layer": "Optimaalne kollane kiht",
       "solving": "Lahendamine...",
@@ -28,23 +27,52 @@
       "ascending": "Kasvav",
       "date": "Kuupäev",
       "descending": "Langevad",
-      "time": "Aeg"
+      "time": "Aeg",
+      "alert": {
+        "empty-cubes": "Kuubikut pole valitud. \nPalun valige üks.",
+        "title": "Tähelepanu!"
+      },
+      "dialogs": {
+        "move-to-history": "Kas viia lahendused ajalukku?",
+        "move-to-history-para": "Pääsete neile juurde, kui puudutate ajaloo lülitit."
+      },
+      "empty-solves": "Siin pole veel midagi!",
+      "empty-solves-description": "Puudutage oma ajaloo vaatamiseks ekraani ülaosas olevat lülitit.",
+      "filter-by-time": "Filtreerige aja järgi",
+      "historial": "Ajalooline",
+      "last": "Viimane",
+      "order": "Telli",
+      "share": "Jaga",
+      "share-clipboard": {
+        "average": "Keskmine",
+        "header": "NexusTimeri poolt loodud",
+        "list-of-times": "Aegade loend"
+      },
+      "sort": "Sorteeri",
+      "toast": {
+        "success-copy": "Kopeerimine õnnestus",
+        "success-copy-description": "Kopeeriti teie lõikelauale.",
+        "unable-action": "Ei saa toimida",
+        "warning-select-cube": "Palun valige enne kuubik."
+      },
+      "tooltips": {
+        "move-to-history": "Lahenduste teisaldamine ajalukku"
+      }
     },
     "StatsPage": {
       "title": "Statistika",
-      "total": "Kokku",
-      "category": "Kategooria",
       "global": "Ülemaailmne",
       "sessions": "Sessioonid",
       "best-time": "Parim aeg",
       "average": "Keskmine",
       "time-spent": "Kulutatud aeg",
       "success-rate": "Edu määr",
-      "counter": "Lugeja"
+      "counter": "Lugeja",
+      "advanced": "Täpsemalt",
+      "overall": "Üldiselt"
     },
     "CubesPage": {
       "title": "Kuubikud",
-      "cube": "Kuup",
       "no-cubes-for-display": "Kuubikuid pole kuvamiseks.",
       "favorite": "Lemmik",
       "category": "Kategooria",
@@ -52,19 +80,36 @@
       "created-at": "Loodud",
       "status": "Staatus",
       "using": "Kasutamine",
-      "idle": "Tööta"
+      "idle": "Tööta",
+      "find-your-cube": "Leia oma kuubik",
+      "name": "Nimi",
+      "new-collection": "Uus kollektsioon",
+      "options": "Valikud"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Kategooria",
+      "current-selection": "Praegune valik:",
+      "danger-msg": "Kogu kategooria muutmine muudab ka selle kategooriaga seotud lahendusi.",
+      "delete-collection": "Kustuta kogu",
+      "delete-collection-description": "See kuubikukogu koos kõigi selle lahenduste, kirjete ja sätetega kustutatakse.",
+      "edit-collection": "Redigeeri kogu",
+      "input-collection-name": "Sisestage kogu nimi",
+      "name": "Nimi",
+      "new-collection": "Uus kollektsioon",
+      "new-collection-description": "Kuubikukogud võimaldavad teil jälgida iga kuubi ajalugu, ilma et see mõjutaks üldist kategooria statistikat.",
+      "select-an-option": "Valige suvand",
+      "to-continue": "jätkamiseks:",
+      "warning-alert": "Hoiatus:",
+      "warning-msg": "See toiming ei ole pöörduv."
+    },
     "Inputs": {
       "select": "Vali",
-      "add-cube": "Lisa kuup",
       "favorites": "Lemmikud",
-      "list": "Nimekiri",
       "create": "Loo",
-      "confirm": "Kinnita",
       "cancel": "Tühista",
-      "save": "Salvesta",
-      "delete": "Kustuta"
+      "continue": "Jätka",
+      "move": "Liiguta",
+      "none": "Mitte ühtegi"
     },
     "Settings-menu": {
       "title": "Sätted",
@@ -96,7 +141,9 @@
       "about": "Info",
       "legend": "NexusTimer on erapooletu, minimalistlik ja avatud lähtekoodiga veebiteenus SpeedCubingu jaoks.",
       "suggest": "Soovitage muudatust",
-      "report-bug": "Teata veast"
+      "report-bug": "Teata veast",
+      "auto-select": "Automaatne valimine käivitamisel",
+      "preferences": "Eelistused"
     },
     "backup-modal": {
       "title": "Intelligentne varundamise taastamine",
@@ -106,6 +153,17 @@
       "loading-part-1": "See toiming võtab vähem kui minut.",
       "loading-part-2": "Palun oodake, ärge sulgege seda akent.",
       "welcome": "Tere tulemast:"
+    },
+    "Errors": {
+      "empty-input": "Sisestage väärtus",
+      "not-match": "Nimi ei sobi.",
+      "repeated-name": "See nimekogu on juba olemas."
+    },
+    "tooltips": {
+      "bookmark": "Järjehoidja",
+      "copy": "Kopeeri",
+      "delete": "Kustuta",
+      "plus-two": "2 Karistus"
     }
   },
   "Metadata": {

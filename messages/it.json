@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Cronometro",
       "hint": "Suggerimento",
       "optimal-yellow-layer": "Strato Giallo Ottimale",
       "solving": "Risoluzione...",
@@ -28,23 +27,52 @@
       "time": "Tempo",
       "descending": "Discendente",
       "date": "Data",
-      "ascending": "Ascendente"
+      "ascending": "Ascendente",
+      "alert": {
+        "empty-cubes": "Nessun cubo selezionato. \nPer favore scegline uno.",
+        "title": "Attenzione!"
+      },
+      "dialogs": {
+        "move-to-history": "Spostare le soluzioni nella storia?",
+        "move-to-history-para": "Potrai accedervi toccando l'interruttore della cronologia."
+      },
+      "empty-solves": "Niente qui ancora!",
+      "empty-solves-description": "Tocca l'interruttore nella parte superiore dello schermo per visualizzare la cronologia.",
+      "filter-by-time": "Filtra per ora",
+      "historial": "Storico",
+      "last": "Scorso",
+      "order": "Ordine",
+      "share": "Condividere",
+      "share-clipboard": {
+        "average": "Media",
+        "header": "Generato da NexusTimer",
+        "list-of-times": "Elenco degli orari"
+      },
+      "sort": "Ordinare",
+      "toast": {
+        "success-copy": "Copiato con successo",
+        "success-copy-description": "È stato copiato negli appunti.",
+        "unable-action": "Azione impossibile",
+        "warning-select-cube": "Seleziona prima un cubo."
+      },
+      "tooltips": {
+        "move-to-history": "Lo spostamento risolve la storia"
+      }
     },
     "StatsPage": {
       "title": "Statistiche",
-      "total": "Totale",
-      "category": "Categoria",
       "global": "Globale",
       "sessions": "Sessioni",
       "best-time": "Miglior Tempo",
       "average": "Media",
       "time-spent": "Tempo Trascorso",
       "success-rate": "Tasso di Successo",
-      "counter": "Contatore"
+      "counter": "Contatore",
+      "advanced": "Avanzato",
+      "overall": "Complessivamente"
     },
     "CubesPage": {
       "title": "Cubi",
-      "cube": "Cubo",
       "no-cubes-for-display": "Nessun cubo da visualizzare.",
       "favorite": "Preferito",
       "category": "Categoria",
@@ -52,19 +80,36 @@
       "created-at": "Creato il",
       "status": "Stato",
       "using": "Utilizzando",
-      "idle": "Inattivo"
+      "idle": "Inattivo",
+      "find-your-cube": "Trova il tuo cubo",
+      "name": "Nome",
+      "new-collection": "Nuova collezione",
+      "options": "Opzioni"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Categoria",
+      "current-selection": "Selezione attuale:",
+      "danger-msg": "La modifica della categoria di raccolta modifica anche le soluzioni associate a tale categoria.",
+      "delete-collection": "Elimina raccolta",
+      "delete-collection-description": "Questa raccolta di cubi verrà eliminata, insieme a tutte le relative soluzioni, record e impostazioni.",
+      "edit-collection": "Modifica raccolta",
+      "input-collection-name": "Inserisci il nome della raccolta",
+      "name": "Nome",
+      "new-collection": "Nuova collezione",
+      "new-collection-description": "Le raccolte di cubi ti consentono di tenere traccia della cronologia di ciascun cubo senza influire sulle statistiche generali della categoria.",
+      "select-an-option": "Seleziona un'opzione",
+      "to-continue": "per continuare:",
+      "warning-alert": "Avvertimento:",
+      "warning-msg": "Questa azione non è reversibile."
+    },
     "Inputs": {
       "select": "Seleziona",
-      "add-cube": "Aggiungi cubo",
       "favorites": "Preferiti",
-      "list": "Lista",
       "create": "Crea",
-      "confirm": "Conferma",
       "cancel": "Annulla",
-      "save": "Salva",
-      "delete": "Elimina"
+      "continue": "Continuare",
+      "move": "Mossa",
+      "none": "Nessuno"
     },
     "Settings-menu": {
       "title": "Impostazioni",
@@ -89,7 +134,16 @@
       "custom-background-image": "Immagine di sfondo personalizzata",
       "format": "Formato",
       "allowed-file-types": "Sono consentiti solo file immagine (JPEG, PNG, GIF).",
-      "max-file-size": "Dimensione massima del file consentita"
+      "max-file-size": "Dimensione massima del file consentita",
+      "about": "Di",
+      "auto-select": "Selezione automatica all'avvio",
+      "data": "Dati dell'app",
+      "export-to-file": "Esporta su file",
+      "import-from-file": "Importa da file",
+      "legend": "NexusTimer è uno strumento web senza opinione, minimalista e open source per SpeedCubing.",
+      "preferences": "Preferenze",
+      "report-bug": "Segnala un bug",
+      "suggest": "Suggerisci un cambiamento"
     },
     "backup-modal": {
       "title": "Ripristino Backup Intelligente",
@@ -99,6 +153,17 @@
       "loading-part-1": "Questa azione richiede meno di un minuto.",
       "loading-part-2": "Attendere prego, non chiudere questa finestra.",
       "welcome": "Benvenuto:"
+    },
+    "Errors": {
+      "empty-input": "Inserisci un valore",
+      "not-match": "Il nome non corrisponde.",
+      "repeated-name": "Quella raccolta di nomi esiste già."
+    },
+    "tooltips": {
+      "bookmark": "Segnalibro",
+      "copy": "Copia",
+      "delete": "Eliminare",
+      "plus-two": "2 Penalità"
     }
   },
   "Metadata": {

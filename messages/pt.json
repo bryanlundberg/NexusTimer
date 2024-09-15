@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Cronômetro",
       "hint": "Dica",
       "optimal-yellow-layer": "Camada Amarela Ótima",
       "solving": "Resolvendo...",
@@ -28,23 +27,52 @@
       "time": "Tempo",
       "descending": "descendente",
       "date": "Data",
-      "ascending": "Ascendente"
+      "ascending": "Ascendente",
+      "alert": {
+        "empty-cubes": "Nenhum cubo selecionado. \nPor favor escolha um.",
+        "title": "Atenção!"
+      },
+      "dialogs": {
+        "move-to-history": "Mover resolve para a história?",
+        "move-to-history-para": "Você poderá acessá-los tocando no botão de histórico."
+      },
+      "empty-solves": "Nada aqui ainda!",
+      "empty-solves-description": "Toque no botão na parte superior da tela para ver seu histórico.",
+      "filter-by-time": "Filtrar por tempo",
+      "historial": "Histórico",
+      "last": "Durar",
+      "order": "Ordem",
+      "share": "Compartilhar",
+      "share-clipboard": {
+        "average": "Média",
+        "header": "Gerado por NexusTimer",
+        "list-of-times": "Lista de horários"
+      },
+      "sort": "Organizar",
+      "toast": {
+        "success-copy": "Copiado com sucesso",
+        "success-copy-description": "Foi copiado para sua área de transferência.",
+        "unable-action": "Ação impossível",
+        "warning-select-cube": "Selecione um cubo antes."
+      },
+      "tooltips": {
+        "move-to-history": "Mover resolve para a história"
+      }
     },
     "StatsPage": {
       "title": "Estatísticas",
-      "total": "Total",
-      "category": "Categoria",
       "global": "Global",
       "sessions": "Sessões",
       "best-time": "Melhor Tempo",
       "average": "Média",
       "time-spent": "Tempo Gasto",
       "success-rate": "Taxa de Sucesso",
-      "counter": "Contador"
+      "counter": "Contador",
+      "advanced": "Avançado",
+      "overall": "Geral"
     },
     "CubesPage": {
       "title": "Cubos",
-      "cube": "Cubo",
       "no-cubes-for-display": "Sem cubos para exibir.",
       "favorite": "Favorito",
       "category": "Categoria",
@@ -52,19 +80,36 @@
       "created-at": "Criado Em",
       "status": "Status",
       "using": "Usando",
-      "idle": "Inativo"
+      "idle": "Inativo",
+      "find-your-cube": "Encontre o seu cubo",
+      "name": "Nome",
+      "new-collection": "Nova coleção",
+      "options": "Opções"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Categoria",
+      "current-selection": "Seleção atual:",
+      "danger-msg": "Modificar a categoria da coleção também altera as soluções associadas a essa categoria.",
+      "delete-collection": "Excluir coleção",
+      "delete-collection-description": "Esta coleção de cubos será excluída, juntamente com todas as suas soluções, registros e configurações.",
+      "edit-collection": "Editar coleção",
+      "input-collection-name": "Digite o nome da coleção",
+      "name": "Nome",
+      "new-collection": "Nova coleção",
+      "new-collection-description": "As coleções de cubos permitem que você acompanhe o histórico de cada cubo sem afetar as estatísticas gerais da categoria.",
+      "select-an-option": "Selecione uma opção",
+      "to-continue": "para continuar:",
+      "warning-alert": "Aviso:",
+      "warning-msg": "Esta ação não é reversível."
+    },
     "Inputs": {
       "select": "Selecionar",
-      "add-cube": "Adicionar cubo",
       "favorites": "Favoritos",
-      "list": "Lista",
       "create": "Criar",
-      "confirm": "Confirmar",
       "cancel": "Cancelar",
-      "save": "Salvar",
-      "delete": "Excluir"
+      "continue": "Continuar",
+      "move": "Mover",
+      "none": "Nenhum"
     },
     "Settings-menu": {
       "title": "Configurações",
@@ -89,7 +134,16 @@
       "custom-background-image": "Imagem de fundo personalizada",
       "format": "Formato",
       "allowed-file-types": "Somente arquivos de imagem (JPEG, PNG, GIF) são permitidos.",
-      "max-file-size": "Tamanho máximo de arquivo permitido"
+      "max-file-size": "Tamanho máximo de arquivo permitido",
+      "about": "Sobre",
+      "auto-select": "Seleção automática na inicialização",
+      "data": "Dados do aplicativo",
+      "export-to-file": "Exportar para arquivo",
+      "import-from-file": "Importar do arquivo",
+      "legend": "NexusTimer é uma ferramenta web sem opinião, minimalista e de código aberto para SpeedCubing.",
+      "preferences": "Preferências",
+      "report-bug": "Reportar um bug",
+      "suggest": "Sugira uma mudança"
     },
     "backup-modal": {
       "title": "Restauração Inteligente de Backup",
@@ -99,6 +153,17 @@
       "loading-part-1": "Esta ação leva menos de um minuto.",
       "loading-part-2": "Por favor, aguarde, não feche esta janela.",
       "welcome": "Bem-vindo:"
+    },
+    "Errors": {
+      "empty-input": "Por favor insira um valor",
+      "not-match": "O nome não corresponde.",
+      "repeated-name": "Essa coleção de nomes já existe."
+    },
+    "tooltips": {
+      "bookmark": "Marcador",
+      "copy": "Cópia",
+      "delete": "Excluir",
+      "plus-two": "2 Penalidade"
     }
   },
   "Metadata": {

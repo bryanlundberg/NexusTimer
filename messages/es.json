@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Temporizador",
       "hint": "Consejo",
       "optimal-yellow-layer": "Capa Amarilla Óptima",
       "solving": "Resolviendo...",
@@ -30,23 +29,50 @@
       "descending": "Descendente",
       "time": "Tiempo",
       "share": "Compartir...",
-      "last": "Último"
+      "last": "Último",
+      "alert": {
+        "empty-cubes": "No se seleccionó ningún cubo. \nPor favor elige uno.",
+        "title": "¡Atención!"
+      },
+      "dialogs": {
+        "move-to-history": "¿Mover las soluciones al historial?",
+        "move-to-history-para": "Podrás acceder a ellos tocando el interruptor del historial."
+      },
+      "empty-solves": "¡Nada aquí todavía!",
+      "empty-solves-description": "Toque el interruptor en la parte superior de la pantalla para ver su historial.",
+      "filter-by-time": "Filtrar por tiempo",
+      "historial": "histórico",
+      "order": "Orden",
+      "share-clipboard": {
+        "average": "Promedio",
+        "header": "Generado por NexusTimer",
+        "list-of-times": "Lista de tiempos"
+      },
+      "sort": "Clasificar",
+      "toast": {
+        "success-copy": "Copiado exitosamente",
+        "success-copy-description": "Se ha copiado a su portapapeles.",
+        "unable-action": "Acción imposible",
+        "warning-select-cube": "Por favor seleccione un cubo antes."
+      },
+      "tooltips": {
+        "move-to-history": "Mover soluciones al historial"
+      }
     },
     "StatsPage": {
       "title": "Estadísticas",
-      "total": "Total",
-      "category": "Categoría",
       "global": "Global",
       "sessions": "Sesiones",
       "best-time": "Mejor Tiempo",
       "average": "Promedio",
       "time-spent": "Tiempo Gastado",
       "success-rate": "Tasa de Éxito",
-      "counter": "Contador"
+      "counter": "Contador",
+      "advanced": "Avanzado",
+      "overall": "En general"
     },
     "CubesPage": {
       "title": "Cubos",
-      "cube": "Cubo",
       "no-cubes-for-display": "No hay cubos para mostrar.",
       "favorite": "Favorito",
       "category": "Categoría",
@@ -54,19 +80,36 @@
       "created-at": "Creado En",
       "status": "Estado",
       "using": "Usando",
-      "idle": "Inactivo"
+      "idle": "Inactivo",
+      "find-your-cube": "Encuentra tu cubo",
+      "name": "Nombre",
+      "new-collection": "Nueva colección",
+      "options": "Opciones"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Categoría",
+      "current-selection": "Selección actual:",
+      "danger-msg": "Modificar la categoría de la colección también cambia las soluciones asociadas con esa categoría.",
+      "delete-collection": "Eliminar colección",
+      "delete-collection-description": "Esta colección de cubos se eliminará, junto con todas sus soluciones, registros y configuraciones.",
+      "edit-collection": "Editar colección",
+      "input-collection-name": "Introduzca el nombre de la colección",
+      "name": "Nombre",
+      "new-collection": "Nueva colección",
+      "new-collection-description": "Las colecciones de cubos le permiten realizar un seguimiento del historial de cada cubo sin afectar las estadísticas generales de la categoría.",
+      "select-an-option": "Seleccione una opción",
+      "to-continue": "para continuar:",
+      "warning-alert": "Advertencia:",
+      "warning-msg": "Esta acción no es reversible."
+    },
     "Inputs": {
       "select": "Seleccionar",
-      "add-cube": "Agregar cubo",
       "favorites": "Favoritos",
-      "list": "Lista",
       "create": "Crear",
-      "confirm": "Confirmar",
       "cancel": "Cancelar",
-      "save": "Guardar",
-      "delete": "Eliminar"
+      "continue": "Continuar",
+      "move": "Mover",
+      "none": "Ninguno"
     },
     "Settings-menu": {
       "title": "Configuración",
@@ -98,7 +141,9 @@
       "about": "Acerca de",
       "legend": "NexusTimer es una herramienta web minimalista, de código abierto y sin opiniones para SpeedCubing.",
       "suggest": "Sugerir un cambio",
-      "report-bug": "Reportar un error"
+      "report-bug": "Reportar un error",
+      "auto-select": "Selección automática al inicio",
+      "preferences": "Preferencias"
     },
     "backup-modal": {
       "title": "Restauración Inteligente de Respaldo",
@@ -108,6 +153,17 @@
       "loading-part-1": "Esta acción toma menos de un minuto.",
       "loading-part-2": "Por favor espera, no cierres esta ventana.",
       "welcome": "Bienvenido:"
+    },
+    "Errors": {
+      "empty-input": "Por favor introduce un valor",
+      "not-match": "El nombre no coincide.",
+      "repeated-name": "Esa colección de nombres ya existe."
+    },
+    "tooltips": {
+      "bookmark": "Marcador",
+      "copy": "Copiar",
+      "delete": "Borrar",
+      "plus-two": "2 Penalización"
     }
   },
   "Metadata": {

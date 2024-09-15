@@ -51,7 +51,7 @@ export default function MenuSelectDefaultStartCube() {
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="none">none</SelectItem>
+            <SelectItem value="none">{t("Inputs.none")}</SelectItem>
             {cubes?.map((cube) => {
               return (
                 <SelectItem value={cube.id} key={cube.id}>

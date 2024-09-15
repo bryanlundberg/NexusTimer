@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Timer",
       "hint": "Tips",
       "optimal-yellow-layer": "Optimalt gult lager",
       "solving": "Löser...",
@@ -28,23 +27,52 @@
       "descending": "Nedåtgående",
       "date": "Datum",
       "ascending": "Stigande",
-      "time": "Tid"
+      "time": "Tid",
+      "alert": {
+        "empty-cubes": "Ingen kub har valts. \nVänligen välj en.",
+        "title": "Uppmärksamhet!"
+      },
+      "dialogs": {
+        "move-to-history": "Flytta lösningar till historien?",
+        "move-to-history-para": "Du kommer att kunna komma åt dem genom att trycka på historikomkopplaren."
+      },
+      "empty-solves": "Inget här ännu!",
+      "empty-solves-description": "Tryck på reglaget längst upp på skärmen för att se din historik.",
+      "filter-by-time": "Filtrera efter tid",
+      "historial": "Historiskt",
+      "last": "Sista",
+      "order": "Beställa",
+      "share": "Dela",
+      "share-clipboard": {
+        "average": "Genomsnitt",
+        "header": "Genererad av NexusTimer",
+        "list-of-times": "Lista över tider"
+      },
+      "sort": "Sortera",
+      "toast": {
+        "success-copy": "Kopierades framgångsrikt",
+        "success-copy-description": "Har kopierats till ditt urklipp.",
+        "unable-action": "Det går inte att åtgärda",
+        "warning-select-cube": "Välj en kub innan."
+      },
+      "tooltips": {
+        "move-to-history": "Flytta löser till historien"
+      }
     },
     "StatsPage": {
       "title": "Statistik",
-      "total": "Totalt",
-      "category": "Kategori",
       "global": "Global",
       "sessions": "Sessioner",
       "best-time": "Bästa tid",
       "average": "Genomsnitt",
       "time-spent": "Tid spenderad",
       "success-rate": "Framgångsgrad",
-      "counter": "Räknare"
+      "counter": "Räknare",
+      "advanced": "Avancerad",
+      "overall": "Total"
     },
     "CubesPage": {
       "title": "Kuber",
-      "cube": "Kub",
       "no-cubes-for-display": "Inga kuber att visa.",
       "favorite": "Favorit",
       "category": "Kategori",
@@ -52,19 +80,36 @@
       "created-at": "Skapad",
       "status": "Status",
       "using": "Använder",
-      "idle": "Inaktiv"
+      "idle": "Inaktiv",
+      "find-your-cube": "Hitta din kub",
+      "name": "Namn",
+      "new-collection": "Ny kollektion",
+      "options": "Alternativ"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Kategori",
+      "current-selection": "Nuvarande urval:",
+      "danger-msg": "Genom att ändra insamlingskategorin ändras också lösningarna som är kopplade till den kategorin.",
+      "delete-collection": "Ta bort samling",
+      "delete-collection-description": "Denna kubsamling kommer att raderas, tillsammans med alla dess lösningar, poster och inställningar.",
+      "edit-collection": "Redigera samling",
+      "input-collection-name": "Ange samlingens namn",
+      "name": "Namn",
+      "new-collection": "Ny kollektion",
+      "new-collection-description": "Kubsamlingar låter dig hålla reda på varje kubs historia utan att påverka den övergripande kategoristatistiken.",
+      "select-an-option": "Välj ett alternativ",
+      "to-continue": "för att fortsätta:",
+      "warning-alert": "Varning:",
+      "warning-msg": "Denna åtgärd är inte reversibel."
+    },
     "Inputs": {
       "select": "Välj",
-      "add-cube": "Lägg till kub",
       "favorites": "Favoriter",
-      "list": "Lista",
       "create": "Skapa",
-      "confirm": "Bekräfta",
       "cancel": "Avbryt",
-      "save": "Spara",
-      "delete": "Radera"
+      "continue": "Fortsätta",
+      "move": "Flytta",
+      "none": "Ingen"
     },
     "Settings-menu": {
       "title": "Inställningar",
@@ -89,7 +134,16 @@
       "custom-background-image": "Anpassad bakgrundsbild",
       "format": "Format",
       "allowed-file-types": "Endast bildfiler tillåtna (JPEG, PNG, GIF).",
-      "max-file-size": "Maximal filstorlek"
+      "max-file-size": "Maximal filstorlek",
+      "about": "Om",
+      "auto-select": "Välj automatiskt vid start",
+      "data": "Appdata",
+      "export-to-file": "Exportera till fil",
+      "import-from-file": "Importera från fil",
+      "legend": "NexusTimer är ett ointressant, minimalistiskt och öppen källkodswebbverktyg för SpeedCubing.",
+      "preferences": "Inställningar",
+      "report-bug": "Rapportera ett fel",
+      "suggest": "Föreslå en förändring"
     },
     "backup-modal": {
       "title": "Intelligent Backup Restoration",
@@ -99,6 +153,17 @@
       "loading-part-1": "Denna åtgärd tar mindre än en minut.",
       "loading-part-2": "Vänta, stäng inte det här fönstret.",
       "welcome": "Välkommen:"
+    },
+    "Errors": {
+      "empty-input": "Ange ett värde",
+      "not-match": "Namnet stämmer inte.",
+      "repeated-name": "Den namnsamlingen finns redan."
+    },
+    "tooltips": {
+      "bookmark": "Bokmärke",
+      "copy": "Kopiera",
+      "delete": "Radera",
+      "plus-two": "2 Straff"
     }
   },
   "Metadata": {

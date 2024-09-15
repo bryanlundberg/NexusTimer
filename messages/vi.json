@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Bộ hẹn giờ",
       "hint": "Gợi ý",
       "optimal-yellow-layer": "Lớp Vàng Tối ưu",
       "solving": "Đang giải...",
@@ -28,23 +27,52 @@
       "ascending": "Tăng dần",
       "date": "Ngày",
       "descending": "Giảm dần",
-      "time": "Thời gian"
+      "time": "Thời gian",
+      "alert": {
+        "empty-cubes": "Không có khối nào được chọn. \nHãy chọn một.",
+        "title": "Chú ý!"
+      },
+      "dialogs": {
+        "move-to-history": "Di chuyển giải pháp vào lịch sử?",
+        "move-to-history-para": "Bạn sẽ có thể truy cập chúng bằng cách nhấn vào nút chuyển lịch sử."
+      },
+      "empty-solves": "Chưa có gì ở đây!",
+      "empty-solves-description": "Nhấn vào nút chuyển ở đầu màn hình để xem lịch sử của bạn.",
+      "filter-by-time": "Lọc theo thời gian",
+      "historial": "lịch sử",
+      "last": "Cuối cùng",
+      "order": "Đặt hàng",
+      "share": "Chia sẻ",
+      "share-clipboard": {
+        "average": "Trung bình",
+        "header": "Được tạo bởi NexusTimer",
+        "list-of-times": "Danh sách thời gian"
+      },
+      "sort": "Loại",
+      "toast": {
+        "success-copy": "Đã sao chép thành công",
+        "success-copy-description": "Đã được sao chép vào clipboard của bạn.",
+        "unable-action": "Hành động không thể",
+        "warning-select-cube": "Vui lòng chọn một khối trước."
+      },
+      "tooltips": {
+        "move-to-history": "Di chuyển các giải pháp vào lịch sử"
+      }
     },
     "StatsPage": {
       "title": "Thống kê",
-      "total": "Tổng cộng",
-      "category": "Danh mục",
       "global": "Toàn cầu",
       "sessions": "Phiên",
       "best-time": "Thời gian tốt nhất",
       "average": "Trung bình",
       "time-spent": "Thời gian đã dùng",
       "success-rate": "Tỷ lệ thành công",
-      "counter": "Bộ đếm"
+      "counter": "Bộ đếm",
+      "advanced": "Trình độ cao",
+      "overall": "Tổng thể"
     },
     "CubesPage": {
       "title": "Khối",
-      "cube": "Khối",
       "no-cubes-for-display": "Không có khối để hiển thị.",
       "favorite": "Yêu thích",
       "category": "Danh mục",
@@ -52,19 +80,36 @@
       "created-at": "Đã tạo lúc",
       "status": "Trạng thái",
       "using": "Đang sử dụng",
-      "idle": "Trống"
+      "idle": "Trống",
+      "find-your-cube": "Tìm khối lập phương của bạn",
+      "name": "Tên",
+      "new-collection": "Bộ sưu tập mới",
+      "options": "Tùy chọn"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Loại",
+      "current-selection": "Lựa chọn hiện tại:",
+      "danger-msg": "Việc sửa đổi danh mục bộ sưu tập cũng thay đổi các giải pháp liên quan đến danh mục đó.",
+      "delete-collection": "Xóa bộ sưu tập",
+      "delete-collection-description": "Bộ sưu tập khối này sẽ bị xóa cùng với tất cả các phép giải, bản ghi và cài đặt của nó.",
+      "edit-collection": "Chỉnh sửa bộ sưu tập",
+      "input-collection-name": "Nhập tên bộ sưu tập",
+      "name": "Tên",
+      "new-collection": "Bộ sưu tập mới",
+      "new-collection-description": "Bộ sưu tập khối cho phép bạn theo dõi lịch sử của từng khối mà không ảnh hưởng đến số liệu thống kê chung của danh mục.",
+      "select-an-option": "Chọn một tùy chọn",
+      "to-continue": "để tiếp tục:",
+      "warning-alert": "Cảnh báo:",
+      "warning-msg": "Hành động này không thể đảo ngược."
+    },
     "Inputs": {
       "select": "Chọn",
-      "add-cube": "Thêm khối",
       "favorites": "Yêu thích",
-      "list": "Danh sách",
       "create": "Tạo",
-      "confirm": "Xác nhận",
       "cancel": "Hủy",
-      "save": "Lưu",
-      "delete": "Xóa"
+      "continue": "Tiếp tục",
+      "move": "Di chuyển",
+      "none": "Không có"
     },
     "Settings-menu": {
       "title": "Cài đặt",
@@ -96,7 +141,9 @@
       "about": "Về",
       "legend": "NexusTimer là một công cụ web không phán đoán, tối giản và mã nguồn mở cho SpeedCubing.",
       "suggest": "Đề xuất thay đổi",
-      "report-bug": "Báo cáo lỗi"
+      "report-bug": "Báo cáo lỗi",
+      "auto-select": "Tự động chọn khi khởi động",
+      "preferences": "Tùy chọn"
     },
     "backup-modal": {
       "title": "Khôi phục sao lưu thông minh",
@@ -106,6 +153,17 @@
       "loading-part-1": "Hành động này mất ít hơn một phút.",
       "loading-part-2": "Vui lòng đợi, đừng đóng cửa sổ này.",
       "welcome": "Chào mừng:"
+    },
+    "Errors": {
+      "empty-input": "Vui lòng nhập một giá trị",
+      "not-match": "Tên không khớp.",
+      "repeated-name": "Bộ sưu tập tên đó đã tồn tại."
+    },
+    "tooltips": {
+      "bookmark": "Đánh dấu",
+      "copy": "Sao chép",
+      "delete": "Xóa bỏ",
+      "plus-two": "2 quả phạt đền"
     }
   },
   "Metadata": {

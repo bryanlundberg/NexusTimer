@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Kronometre",
       "hint": "İpucu",
       "optimal-yellow-layer": "Optimal Sarı Katman",
       "solving": "Çözülüyor...",
@@ -28,23 +27,52 @@
       "descending": "Azalan",
       "ascending": "Artan",
       "date": "Tarih",
-      "time": "Zaman"
+      "time": "Zaman",
+      "alert": {
+        "empty-cubes": "Hiçbir küp seçilmedi. \nLütfen birini seçin.",
+        "title": "Dikkat!"
+      },
+      "dialogs": {
+        "move-to-history": "Taşınma geçmişi çözer mi?",
+        "move-to-history-para": "Geçmiş anahtarına dokunarak bunlara erişebileceksiniz."
+      },
+      "empty-solves": "Burada henüz bir şey yok!",
+      "empty-solves-description": "Geçmişinizi görmek için ekranın üst kısmındaki anahtara dokunun.",
+      "filter-by-time": "Zamana göre filtrele",
+      "historial": "Tarihsel",
+      "last": "Son",
+      "order": "Emir",
+      "share": "Paylaşmak",
+      "share-clipboard": {
+        "average": "Ortalama",
+        "header": "NexusTimer tarafından oluşturuldu",
+        "list-of-times": "Zamanların listesi"
+      },
+      "sort": "Düzenlemek",
+      "toast": {
+        "success-copy": "Başarıyla kopyalandı",
+        "success-copy-description": "Panonuza kopyalandı.",
+        "unable-action": "İşlem yapılamıyor",
+        "warning-select-cube": "Lütfen önce bir küp seçin."
+      },
+      "tooltips": {
+        "move-to-history": "Taşıma geçmişi çözer"
+      }
     },
     "StatsPage": {
       "title": "İstatistikler",
-      "total": "Toplam",
-      "category": "Kategori",
       "global": "Genel",
       "sessions": "Oturumlar",
       "best-time": "En İyi Zaman",
       "average": "Ortalama",
       "time-spent": "Harcanan Zaman",
       "success-rate": "Başarı Oranı",
-      "counter": "Sayaç"
+      "counter": "Sayaç",
+      "advanced": "Gelişmiş",
+      "overall": "Etraflı"
     },
     "CubesPage": {
       "title": "Küpler",
-      "cube": "Küp",
       "no-cubes-for-display": "Görüntülenecek küp yok.",
       "favorite": "Favori",
       "category": "Kategori",
@@ -52,19 +80,36 @@
       "created-at": "Oluşturulma Tarihi",
       "status": "Durum",
       "using": "Kullanma",
-      "idle": "Boşta"
+      "idle": "Boşta",
+      "find-your-cube": "Küpünüzü bulun",
+      "name": "İsim",
+      "new-collection": "Yeni koleksiyon",
+      "options": "Seçenekler"
     },
-    "Cubes-modal": {},
+    "Cubes-modal": {
+      "category": "Kategori",
+      "current-selection": "Mevcut seçim:",
+      "danger-msg": "Koleksiyon kategorisini değiştirmek aynı zamanda o kategoriyle ilişkili çözümleri de değiştirir.",
+      "delete-collection": "Koleksiyonu sil",
+      "delete-collection-description": "Bu küp koleksiyonu, tüm çözümleri, kayıtları ve ayarlarıyla birlikte silinecek.",
+      "edit-collection": "Koleksiyonu düzenle",
+      "input-collection-name": "Koleksiyon adını girin",
+      "name": "İsim",
+      "new-collection": "Yeni koleksiyon",
+      "new-collection-description": "Küp koleksiyonları, genel kategori istatistiklerini etkilemeden her küpün geçmişini takip etmenize olanak tanır.",
+      "select-an-option": "Bir seçenek seçin",
+      "to-continue": "devam etmek için:",
+      "warning-alert": "Uyarı:",
+      "warning-msg": "Bu eylem geri alınamaz."
+    },
     "Inputs": {
       "select": "Seç",
-      "add-cube": "Küp ekle",
       "favorites": "Favoriler",
-      "list": "Liste",
       "create": "Oluştur",
-      "confirm": "Onayla",
       "cancel": "İptal",
-      "save": "Kaydet",
-      "delete": "Sil"
+      "continue": "Devam etmek",
+      "move": "Taşınmak",
+      "none": "Hiçbiri"
     },
     "Settings-menu": {
       "title": "Ayarlar",
@@ -96,7 +141,9 @@
       "about": "Hakkında",
       "legend": "NexusTimer, SpeedCubing için tarafsız, minimalist ve açık kaynaklı bir web aracıdır.",
       "suggest": "Bir değişiklik öner",
-      "report-bug": "Hata bildir"
+      "report-bug": "Hata bildir",
+      "auto-select": "Başlangıçta otomatik seç",
+      "preferences": "Tercihler"
     },
     "backup-modal": {
       "title": "Akıllı Yedekleme Kurtarma",
@@ -106,6 +153,17 @@
       "loading-part-1": "Bu işlem bir dakikadan az sürer.",
       "loading-part-2": "Lütfen bekleyin, bu pencereyi kapatmayın.",
       "welcome": "Hoş geldin:"
+    },
+    "Errors": {
+      "empty-input": "Lütfen bir değer girin",
+      "not-match": "İsim eşleşmiyor.",
+      "repeated-name": "Bu ad koleksiyonu zaten mevcut."
+    },
+    "tooltips": {
+      "bookmark": "Yer imi",
+      "copy": "Kopyala",
+      "delete": "Silmek",
+      "plus-two": "2 Penaltı"
     }
   },
   "Metadata": {
