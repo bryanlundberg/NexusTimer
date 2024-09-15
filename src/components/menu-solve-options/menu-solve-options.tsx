@@ -6,6 +6,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Solve } from "@/interfaces/Solve";
+import formatTime from "@/lib/formatTime";
 import updateSolve from "@/lib/updateSolve";
 import { useTimerStore } from "@/store/timerStore";
 import {
@@ -15,6 +16,7 @@ import {
   Cross1Icon,
 } from "@radix-ui/react-icons";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
   const t = useTranslations("Index");
@@ -54,7 +56,18 @@ export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
     }
   };
 
-  const handleClipboardSolve = () => {};
+  const handleClipboardSolve = () => {
+    if ("clipboard" in navigator) {
+      navigator.clipboard.writeText(
+        `${formatTime(solve?.time || 0)} - ${solve?.scramble}`
+      );
+    }
+
+    toast(t("SolvesPage.toast.success-copy"), {
+      description: t("SolvesPage.toast.success-copy-description"),
+      duration: 1000,
+    });
+  };
 
   return (
     <>
@@ -97,7 +110,7 @@ export default function MenuSolveOptions({ solve }: { solve: Solve | null }) {
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant={"ghost"}>
+              <Button variant={"ghost"} onClick={handleClipboardSolve}>
                 <CopyIcon />
               </Button>
             </TooltipTrigger>

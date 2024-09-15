@@ -6,6 +6,7 @@ import Confetti from "react-dom-confetti";
 import useDeviceMatch from "@/hooks/useDeviceMatch";
 import { confettiConfig } from "@/lib/const/confettiConfig";
 import { useTranslations } from "next-intl";
+import MenuSolveOptions from "../menu-solve-options/menu-solve-options";
 
 const timerStatusClasses = {
   IDLE: "light:text-neutral-900 dark:text-white",
@@ -59,6 +60,9 @@ export default function Timer() {
                         <div className="text-7xl md:text-8xl">
                           .{formatTime(solvingTime).split(".")[1]}
                         </div>
+                        {lastSolve?.plus2 && !isSolving && (
+                          <span className="text-destructive">+2</span>
+                        )}
                       </>
                     )}
                   </div>
@@ -81,9 +85,9 @@ export default function Timer() {
             }
             config={confettiConfig}
           />
-          {/* {lastSolve &&
+          {lastSolve &&
             settings.features.quickActionButtons.status &&
-            timerStatus === "IDLE" && <SolveOptions solve={lastSolve} />} */}
+            timerStatus === "IDLE" && <MenuSolveOptions solve={lastSolve} />}
         </div>
       </>
     )

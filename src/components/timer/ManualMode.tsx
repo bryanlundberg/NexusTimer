@@ -8,6 +8,7 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { Themes } from "@/interfaces/types/Themes";
 import { saveCube } from "@/db/dbOperations";
 import { useTranslations } from "next-intl";
+import MenuSolveOptions from "../menu-solve-options/menu-solve-options";
 
 const variation: Record<Themes, string> = {
   light: "bg-zinc-200 border-zinc-200 focus:border-neutral-300 text-black",
@@ -95,9 +96,9 @@ export default function ManualMode() {
             {t("preview")}: {formatTime(convertToMs(value))}{" "}
           </div>
         ) : null}
-        {/* {lastSolve && settings.features.quickActionButtons.status ? (
-          <SolveOptions solve={lastSolve} />
-        ) : null} */}
+        {lastSolve && settings.features.quickActionButtons.status ? (
+          <MenuSolveOptions solve={lastSolve} />
+        ) : null}
       </form>
     </>
   );
