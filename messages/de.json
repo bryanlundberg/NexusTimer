@@ -23,14 +23,8 @@
     },
     "SolvesPage": {
       "title": "Lösungen",
-      "archive": "Archivieren",
-      "unarchive": "Archivierung aufheben",
-      "copy": "Kopieren",
-      "remove": "Entfernen",
-      "enter-a-comment": "Kommentar eingeben",
       "session": "Sitzung",
-      "all": "Alle",
-      "no-cube-selection": "Kein Würfel ausgewählt, wählen Sie einen..."
+      "all": "Alle"
     },
     "StatsPage": {
       "title": "Statistiken",

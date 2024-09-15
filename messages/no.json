@@ -23,16 +23,9 @@
     },
     "SolvesPage": {
       "title": "Løsninger",
-      "archive": "Arkiv",
-      "unarchive": "Avarkiv",
-      "copy": "Kopiere",
-      "remove": "Fjerne",
-      "enter-a-comment": "Skriv en kommentar",
       "session": "Økt",
       "all": "Alle",
-      "no-cube-selection": "Ingen kube valgt, velg en...",
       "time": "Tid",
-      "sort-by": "Sorter etter...",
       "descending": "Synkende",
       "date": "Dato",
       "ascending": "Stigende"

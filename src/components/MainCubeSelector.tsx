@@ -23,7 +23,11 @@ export default function MainCubeSelector() {
   };
   return (
     <>
-      <Select defaultValue={selectedCube?.id} onValueChange={handleChangeValue}>
+      <Select
+        defaultValue={selectedCube?.id}
+        value={selectedCube?.id}
+        onValueChange={handleChangeValue}
+      >
         <SelectTrigger className="max-w-96">
           <SelectValue placeholder={t("Inputs.select")} />
         </SelectTrigger>

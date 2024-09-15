@@ -23,18 +23,11 @@
     },
     "SolvesPage": {
       "title": "Megoldások",
-      "archive": "Archiválás",
-      "unarchive": "Archiválás megszüntetése",
-      "copy": "Másolás",
-      "remove": "Eltávolítás",
-      "enter-a-comment": "Adjon meg egy megjegyzést",
       "session": "Munkamenet",
       "all": "Mind",
-      "no-cube-selection": "Nincs kiválasztott kocka, válasszon egyet...",
       "ascending": "Emelkedő",
       "date": "Dátum",
       "descending": "Csökkenő",
-      "sort-by": "Rendezés...",
       "time": "Idő"
     },
     "StatsPage": {

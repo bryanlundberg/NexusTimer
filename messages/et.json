@@ -23,18 +23,11 @@
     },
     "SolvesPage": {
       "title": "Lahendused",
-      "archive": "Arhiveeri",
-      "unarchive": "Arhiivita",
-      "copy": "Kopeeri",
-      "remove": "Eemalda",
-      "enter-a-comment": "Sisesta kommentaar",
       "session": "Sessioon",
       "all": "Kõik",
-      "no-cube-selection": "Kuupi pole valitud, valige üks...",
       "ascending": "Kasvav",
       "date": "Kuupäev",
       "descending": "Langevad",
-      "sort-by": "Sorteerima...",
       "time": "Aeg"
     },
     "StatsPage": {

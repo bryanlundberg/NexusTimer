@@ -23,16 +23,9 @@
     },
     "SolvesPage": {
       "title": "Penyelesaian",
-      "archive": "Arsip",
-      "unarchive": "Buka arsip",
-      "copy": "Salin",
-      "remove": "Hapus",
-      "enter-a-comment": "Masukkan komentar",
       "session": "Sesi",
       "all": "Semua",
-      "no-cube-selection": "Tidak ada kubus yang dipilih, pilih satu...",
       "time": "Waktu",
-      "sort-by": "Sortir dengan...",
       "descending": "Menurun",
       "ascending": "Naik",
       "date": "Tanggal"

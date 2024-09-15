@@ -23,18 +23,11 @@
     },
     "SolvesPage": {
       "title": "Soluciones",
-      "archive": "Archivar",
-      "unarchive": "Desarchivar",
-      "copy": "Copiar",
-      "remove": "Eliminar",
-      "enter-a-comment": "Introduce un comentario",
       "session": "Sesión",
       "all": "Todos",
-      "no-cube-selection": "No se ha seleccionado ningún cubo, elige uno...",
       "ascending": "Ascendente",
       "date": "Fecha",
       "descending": "Descendente",
-      "sort-by": "Ordenar por...",
       "time": "Tiempo",
       "share": "Compartir...",
       "last": "Último"

@@ -23,19 +23,12 @@
     },
     "SolvesPage": {
       "title": "Rozwiązania",
-      "archive": "Archiwum",
-      "unarchive": "Usuń z archiwum",
-      "copy": "Kopiuj",
-      "remove": "Usuń",
-      "enter-a-comment": "Wprowadź komentarz",
       "session": "Sesja",
       "all": "Wszystkie",
-      "no-cube-selection": "Nie wybrano kostki, wybierz jedną...",
       "time": "Czas",
       "descending": "Malejąco",
       "date": "Data",
-      "ascending": "Rosnąco",
-      "sort-by": "Sortuj według..."
+      "ascending": "Rosnąco"
     },
     "StatsPage": {
       "title": "Statystyki",

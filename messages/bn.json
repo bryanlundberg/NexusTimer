@@ -23,14 +23,8 @@
     },
     "SolvesPage": {
       "title": "সমাধান",
-      "archive": "আর্কাইভ",
-      "unarchive": "আনআর্কাইভ",
-      "copy": "কপি",
-      "remove": "অপসারণ",
-      "enter-a-comment": "একটি মন্তব্য প্রবেশ করুন",
       "session": "সেশন",
-      "all": "সব",
-      "no-cube-selection": "কোনও কিউব নির্বাচিত হয়নি, একটি বেছে নিন..."
+      "all": "সব"
     },
     "StatsPage": {
       "title": "পরিসংখ্যান",

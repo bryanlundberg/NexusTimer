@@ -161,7 +161,7 @@
       "max-file-size": "Maximum file size allowed is",
       "data": "App Data",
       "preferences": "Preferences",
-      "default-cube": "Default cube",
+      "auto-select": "Auto-select at startup",
       "import-from-file": "Import from file",
       "export-to-file": "Export to file",
       "about": "About",

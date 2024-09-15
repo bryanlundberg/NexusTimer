@@ -23,16 +23,9 @@
     },
     "SolvesPage": {
       "title": "解答",
-      "archive": "アーカイブ",
-      "unarchive": "アーカイブ解除",
-      "copy": "コピー",
-      "remove": "削除",
-      "enter-a-comment": "コメントを入力",
       "session": "セッション",
       "all": "すべて",
-      "no-cube-selection": "キューブが選択されていません。選択してください...",
       "time": "時間",
-      "sort-by": "並べ替え...",
       "descending": "降順",
       "date": "日付",
       "ascending": "上昇"

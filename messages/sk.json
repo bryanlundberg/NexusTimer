@@ -23,18 +23,11 @@
     },
     "SolvesPage": {
       "title": "Riešenia",
-      "archive": "Archív",
-      "unarchive": "Obnoviť archív",
-      "copy": "Kopírovať",
-      "remove": "Odstrániť",
-      "enter-a-comment": "Vložiť komentár",
       "session": "Relácia",
       "all": "Všetky",
-      "no-cube-selection": "Nevybrali ste kocku, vyberte jednu...",
       "ascending": "Vzostupne",
       "date": "Dátum",
       "descending": "Zostupne",
-      "sort-by": "Triediť podľa...",
       "time": "Čas"
     },
     "StatsPage": {

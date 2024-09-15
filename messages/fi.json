@@ -23,18 +23,11 @@
     },
     "SolvesPage": {
       "title": "Ratkaisut",
-      "archive": "Arkistoi",
-      "unarchive": "Poista arkisto",
-      "copy": "Kopioi",
-      "remove": "Poista",
-      "enter-a-comment": "Kirjoita kommentti",
       "session": "Istunto",
       "all": "Kaikki",
-      "no-cube-selection": "Ei valittua kuutiota, valitse yksi...",
       "ascending": "Nouseva",
       "date": "Päivämäärä",
       "descending": "Laskeva",
-      "sort-by": "Järjestä...",
       "time": "Aika"
     },
     "StatsPage": {

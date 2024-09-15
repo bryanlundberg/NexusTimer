@@ -23,18 +23,11 @@
     },
     "SolvesPage": {
       "title": "解决方案",
-      "archive": "存档",
-      "unarchive": "取消存档",
-      "copy": "复制",
-      "remove": "移除",
-      "enter-a-comment": "输入评论",
       "session": "会话",
       "all": "全部",
-      "no-cube-selection": "未选择魔方，请选择一个...",
       "ascending": "上升",
       "date": "日期",
       "descending": "降序",
-      "sort-by": "排序方式...",
       "time": "时间"
     },
     "StatsPage": {

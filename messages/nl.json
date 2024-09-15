@@ -23,16 +23,9 @@
     },
     "SolvesPage": {
       "title": "Oplossingen",
-      "archive": "Archiveren",
-      "unarchive": "De-archiveren",
-      "copy": "Kopiëren",
-      "remove": "Verwijderen",
-      "enter-a-comment": "Voer een opmerking in",
       "session": "Sessie",
       "all": "Alle",
-      "no-cube-selection": "Geen kubus geselecteerd, kies er een...",
       "time": "Tijd",
-      "sort-by": "Sorteer op...",
       "descending": "Aflopend",
       "date": "Datum",
       "ascending": "Oplopend"

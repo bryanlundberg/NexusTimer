@@ -23,18 +23,11 @@
     },
     "SolvesPage": {
       "title": "Giải quyết",
-      "archive": "Lưu trữ",
-      "unarchive": "Bỏ lưu trữ",
-      "copy": "Sao chép",
-      "remove": "Xóa bỏ",
-      "enter-a-comment": "Nhập bình luận",
       "session": "Phiên",
       "all": "Tất cả",
-      "no-cube-selection": "Không có khối nào được chọn, hãy chọn một...",
       "ascending": "Tăng dần",
       "date": "Ngày",
       "descending": "Giảm dần",
-      "sort-by": "Sắp xếp theo...",
       "time": "Thời gian"
     },
     "StatsPage": {

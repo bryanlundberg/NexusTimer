@@ -23,16 +23,9 @@
     },
     "SolvesPage": {
       "title": "Soluții",
-      "archive": "Arhivă",
-      "unarchive": "Dezarhivare",
-      "copy": "Copiere",
-      "remove": "Eliminare",
-      "enter-a-comment": "Introduceți un comentariu",
       "session": "Sesiune",
       "all": "Toate",
-      "no-cube-selection": "Niciun cub selectat, alegeți unul...",
       "time": "Timp",
-      "sort-by": "Filtrează după...",
       "descending": "Descendentă",
       "date": "Data",
       "ascending": "Ascendent"

@@ -23,18 +23,11 @@
     },
     "SolvesPage": {
       "title": "Розв'язки",
-      "archive": "Архівувати",
-      "unarchive": "Розархівувати",
-      "copy": "Копіювати",
-      "remove": "Видалити",
-      "enter-a-comment": "Введіть коментар",
       "session": "Сеанс",
       "all": "Bci",
-      "no-cube-selection": "Ky6 не вибрано, виберіть один...",
       "ascending": "Висхідний",
       "date": "Дата",
       "descending": "Спускається",
-      "sort-by": "Сортувати за...",
       "time": "час"
     },
     "StatsPage": {

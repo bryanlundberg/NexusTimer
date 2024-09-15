@@ -23,16 +23,9 @@
     },
     "SolvesPage": {
       "title": "Soluções",
-      "archive": "Arquivar",
-      "unarchive": "Desarquivar",
-      "copy": "Copiar",
-      "remove": "Remover",
-      "enter-a-comment": "Digite um comentário",
       "session": "Sessão",
       "all": "Todos",
-      "no-cube-selection": "Nenhum cubo selecionado, escolha um...",
       "time": "Tempo",
-      "sort-by": "Ordenar por...",
       "descending": "descendente",
       "date": "Data",
       "ascending": "Ascendente"

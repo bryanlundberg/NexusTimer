@@ -23,18 +23,11 @@
     },
     "SolvesPage": {
       "title": "Lösningar",
-      "archive": "Arkiv",
-      "unarchive": "Avarkivera",
-      "copy": "Kopiera",
-      "remove": "Ta bort",
-      "enter-a-comment": "Ange en kommentar",
       "session": "Session",
       "all": "Alla",
-      "no-cube-selection": "Ingen kub vald, välj en...",
       "descending": "Nedåtgående",
       "date": "Datum",
       "ascending": "Stigande",
-      "sort-by": "Sortera efter...",
       "time": "Tid"
     },
     "StatsPage": {

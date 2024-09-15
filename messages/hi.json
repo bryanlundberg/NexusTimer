@@ -23,18 +23,11 @@
     },
     "SolvesPage": {
       "title": "समाधान",
-      "archive": "संग्रहीत",
-      "unarchive": "संग्रह रद्द करें",
-      "copy": "प्रतिलिपि",
-      "remove": "हटाएं",
-      "enter-a-comment": "एक टिप्पणी दर्ज करें",
       "session": "सत्र",
       "all": "सभी",
-      "no-cube-selection": "कोई क्यूब चयनित नहीं है, कोई एक चुनें...",
       "ascending": "आरोही",
       "date": "तारीख",
       "descending": "अवरोही",
-      "sort-by": "इसके अनुसार क्रमबद्ध करें...",
       "time": "समय"
     },
     "StatsPage": {

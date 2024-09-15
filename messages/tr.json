@@ -23,18 +23,11 @@
     },
     "SolvesPage": {
       "title": "Çözümler",
-      "archive": "Arşiv",
-      "unarchive": "Arşivden çıkar",
-      "copy": "Kopyala",
-      "remove": "Kaldır",
-      "enter-a-comment": "Bir yorum girin",
       "session": "Oturum",
       "all": "Tümü",
-      "no-cube-selection": "Hiçbir küp seçilmedi, bir tane seçin...",
       "descending": "Azalan",
       "ascending": "Artan",
       "date": "Tarih",
-      "sort-by": "Göre sırala...",
       "time": "Zaman"
     },
     "StatsPage": {
