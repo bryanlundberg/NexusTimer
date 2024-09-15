@@ -5,7 +5,7 @@ import { InteractiveIcon } from "./InteractiveIcon";
 import { ScrambleZone } from "./ScrambleZone";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { ArrowPathIcon, Cog6ToothIcon } from "@heroicons/react/24/solid";
+import { GearIcon, ReloadIcon } from "@radix-ui/react-icons";
 
 export default function HeaderTimer() {
   const { selectedCube, setNewScramble, isSolving, timerStatus } =
@@ -28,14 +28,16 @@ export default function HeaderTimer() {
           }}
         >
           <InteractiveIcon
-            icon={<Cog6ToothIcon className="w-6 h-6" />}
+            icon={<GearIcon className="size-5" />}
             animation={true}
+            message="Settings"
           />
         </Link>
 
         <MainCubeSelector />
         <InteractiveIcon
-          icon={<ArrowPathIcon className="w-6 h-6" />}
+          message="Change scramble"
+          icon={<ReloadIcon className="size-5" />}
           onClick={() => {
             if (selectedCube) {
               setNewScramble(selectedCube);

@@ -1,7 +1,7 @@
 import useClickOutside from "@/hooks/useClickOutside";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
-import { LightBulbIcon } from "@heroicons/react/24/solid";
+import { RocketIcon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
@@ -24,16 +24,16 @@ export default function HintPanel() {
               exit={{ y: 400, opacity: 0.8 }}
               transition={{ type: "lineal" }}
               ref={componentRef}
-              className="bg-yellow-100 bottom-0 rounded-t-lg w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-sm mx-auto h-full"
+              className="bg-yellow-100 bottom-0 rounded-t-lg w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-sm mx-auto h-full border"
             >
-              <div className="p-2 border-b text-2xl border-gray-300 flex justify-between items-center">
-                <div>{t("hint")}</div>
+              <div className="p-2 text-2xl flex justify-between items-center">
+                <div className="font-black">{t("hint")}</div>
                 <div className="text-black">
-                  <LightBulbIcon className="w-6 h-6" />
+                  <RocketIcon className="size-5" />
                 </div>
               </div>
               <div className="p-3 max-h-full overflow-auto">
-                <div>{t("optimal-yellow-layer")}</div>
+                <div className="font-semibold">{t("optimal-yellow-layer")}</div>
                 {hint?.cross.map((i) => (
                   <OptimalCrossLayer key={genId()} solution={i} type="cross" />
                 ))}
