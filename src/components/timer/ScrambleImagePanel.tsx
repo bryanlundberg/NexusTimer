@@ -22,7 +22,7 @@ export default function ScrambleImagePanel() {
           show={showScramble}
           scramble={scramble}
           event={selectedCube ? selectedCube.category : "3x3"}
-          handleClick={() => setZoomInScramble(true)}
+          onClick={() => setZoomInScramble(true)}
         ></ScrambleDisplay>
       )}
     </>

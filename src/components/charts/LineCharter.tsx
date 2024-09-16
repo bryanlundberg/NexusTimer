@@ -1,3 +1,4 @@
+"use color";
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
@@ -20,20 +21,27 @@ type TimeObject = {
 export default function LineCharter({
   data,
   cubeSelected,
-  optInChart,
 }: {
   data: ChartData;
   cubeSelected: boolean;
-  optInChart: {
-    mean: boolean;
-    best: boolean;
-  };
 }) {
   const t = useTranslations("Index.StatsPage");
   const { settings } = useSettingsModalStore();
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const backgroundColor = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue("--background");
+
+    const gridColor = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue("--border");
+
+    const lineColor = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue("--primary");
+
     const chartOptions: DeepPartial<ChartOptions> = {
       watermark: {
         visible: true,
@@ -44,25 +52,17 @@ export default function LineCharter({
         text: "nexustimer.pro",
       },
       layout: {
-        textColor:
-          settings.theme.background.color === "dark" ? "white" : "gray",
+        textColor: "gray",
         background: {
-          color:
-            settings.theme.background.color === "dark" ? "#09090B" : "#F5F5F5",
+          color: `hsl(${backgroundColor})`,
         },
       },
       grid: {
         vertLines: {
-          color:
-            settings.theme.background.color === "dark"
-              ? "rgb(41, 44, 58)"
-              : "rgb(229 229 229)",
+          color: `hsl(${gridColor})`,
         },
         horzLines: {
-          color:
-            settings.theme.background.color === "dark"
-              ? "rgb(41, 44, 58)"
-              : "rgb(229 229 229)",
+          color: `hsl(${gridColor})`,
         },
       },
       localization: {
@@ -105,11 +105,7 @@ export default function LineCharter({
       });
 
       const lineSeries = chart.addLineSeries({
-        color: cubeSelected
-          ? "#0891B2"
-          : settings.theme.background.color === "dark"
-          ? "white"
-          : "black",
+        // color: cubeSelected ? "#0891B2" : lineColor,
         lastValueVisible: false,
         priceLineVisible: false,
         lineWidth: 1,
@@ -144,8 +140,6 @@ export default function LineCharter({
       };
 
       lineSeries.setData(structuredData);
-      optInChart.mean ? lineSeries.createPriceLine(meanTimeLine) : null;
-      optInChart.best ? lineSeries.createPriceLine(bestTimeLine) : null;
 
       chart.autoSizeActive();
       chart.timeScale().fitContent();
@@ -159,14 +153,7 @@ export default function LineCharter({
         chart.applyOptions({ height: newRect.height, width: newRect.width });
       }).observe(container);
     }
-  }, [
-    data,
-    cubeSelected,
-    t,
-    settings.theme.background.color,
-    optInChart.best,
-    optInChart.mean,
-  ]);
+  }, [data, cubeSelected, t, settings.theme.background.color]);
 
   return <div ref={chartContainerRef} className="w-full h-full"></div>;
 }

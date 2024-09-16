@@ -1,5 +1,4 @@
 import { useTimerStore } from "@/store/timerStore";
-import SolveOptions from "./SolveOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import formatTime from "@/lib/formatTime";
 import useTimer from "@/hooks/useTimer";
@@ -7,6 +6,7 @@ import Confetti from "react-dom-confetti";
 import useDeviceMatch from "@/hooks/useDeviceMatch";
 import { confettiConfig } from "@/lib/const/confettiConfig";
 import { useTranslations } from "next-intl";
+import MenuSolveOptions from "../menu-solve-options/menu-solve-options";
 
 const timerStatusClasses = {
   IDLE: "light:text-neutral-900 dark:text-white",
@@ -25,6 +25,7 @@ export default function Timer() {
     timerStatus,
     solvingTime,
     timerStatistics,
+    setLastSolve,
   } = useTimerStore();
   const { inspectionTime } = useTimer();
   const { device } = useDeviceMatch();
@@ -60,6 +61,9 @@ export default function Timer() {
                         <div className="text-7xl md:text-8xl">
                           .{formatTime(solvingTime).split(".")[1]}
                         </div>
+                        {lastSolve?.plus2 && !isSolving && (
+                          <span className="text-destructive">+2</span>
+                        )}
                       </>
                     )}
                   </div>
@@ -84,7 +88,13 @@ export default function Timer() {
           />
           {lastSolve &&
             settings.features.quickActionButtons.status &&
-            timerStatus === "IDLE" && <SolveOptions solve={lastSolve} />}
+            timerStatus === "IDLE" && (
+              <MenuSolveOptions
+                solve={lastSolve}
+                onDeleteSolve={() => setLastSolve(null)}
+                caseOfUse="last-solve"
+              />
+            )}
         </div>
       </>
     )

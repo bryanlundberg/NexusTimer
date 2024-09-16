@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Stoper",
       "hint": "Wskazówka",
       "optimal-yellow-layer": "Optymalna Żółta Warstwa",
       "solving": "Rozwiązywanie...",
@@ -23,41 +22,57 @@
     },
     "SolvesPage": {
       "title": "Rozwiązania",
-      "search-by-time": "⏱︎ Szukaj według czasu",
-      "finalize-session": "Zakończ sesję",
-      "eliminate-session": "Usuń sesję",
-      "archive-sessions-legend": "Ta czynność spowoduje zarchiwizowanie wszystkich trwających sesji z tej samej kategorii.",
-      "delete-session-legend": "Ta czynność usunie tylko Twoje aktualne rozwiązania z wybranej kostki.",
-      "archive": "Archiwum",
-      "unarchive": "Usuń z archiwum",
-      "copy": "Kopiuj",
-      "remove": "Usuń",
-      "enter-a-comment": "Wprowadź komentarz",
       "session": "Sesja",
       "all": "Wszystkie",
-      "no-cube-selection": "Nie wybrano kostki, wybierz jedną...",
-      "no-solves": "Brak rozwiązań do wyświetlenia!",
       "time": "Czas",
       "descending": "Malejąco",
       "date": "Data",
       "ascending": "Rosnąco",
-      "sort-by": "Sortuj według..."
+      "alert": {
+        "empty-cubes": "Nie wybrano kostki. \nProszę wybrać jeden.",
+        "title": "Uwaga!"
+      },
+      "dialogs": {
+        "move-to-history": "Przenieść rozwiązania do historii?",
+        "move-to-history-para": "Będziesz mieć do nich dostęp, dotykając przełącznika historii."
+      },
+      "empty-solves": "Jeszcze nic tu nie ma!",
+      "empty-solves-description": "Kliknij przełącznik u góry ekranu, aby zobaczyć swoją historię.",
+      "filter-by-time": "Filtruj według czasu",
+      "historial": "Historyczny",
+      "last": "Ostatni",
+      "order": "Zamówienie",
+      "share": "Udział",
+      "share-clipboard": {
+        "average": "Przeciętny",
+        "header": "Wygenerowane przez NexusTimer",
+        "list-of-times": "Lista razy"
+      },
+      "sort": "Sortować",
+      "toast": {
+        "success-copy": "Skopiowano pomyślnie",
+        "success-copy-description": "Został skopiowany do Twojego schowka.",
+        "unable-action": "Nie można wykonać działania",
+        "warning-select-cube": "Proszę wybrać kostkę wcześniej."
+      },
+      "tooltips": {
+        "move-to-history": "Przenieś rozwiązania do historii"
+      }
     },
     "StatsPage": {
       "title": "Statystyki",
-      "total": "Całkowity",
-      "category": "Kategoria",
       "global": "Globalne",
       "sessions": "Sesje",
       "best-time": "Najlepszy Czas",
       "average": "Średni",
       "time-spent": "Spędzony czas",
       "success-rate": "Wskaźnik sukcesu",
-      "counter": "Licznik"
+      "counter": "Licznik",
+      "advanced": "Zaawansowany",
+      "overall": "Ogólnie"
     },
     "CubesPage": {
       "title": "Kostki",
-      "cube": "Kostka",
       "no-cubes-for-display": "Brak kostek do wyświetlenia.",
       "favorite": "Ulubione",
       "category": "Kategoria",
@@ -66,30 +81,35 @@
       "status": "Status",
       "using": "Używając",
       "idle": "Bezczynny",
-      "filter-cubes": "Filtruj swoje kostki"
+      "find-your-cube": "Znajdź swoją kostkę",
+      "name": "Nazwa",
+      "new-collection": "Nowa kolekcja",
+      "options": "Opcje"
     },
     "Cubes-modal": {
-      "title-editing": "Edytuj Kostkę",
-      "title-creating": "Nowa Kostka",
-      "error-name": "Brakuje nazwy kostki",
-      "error-duplicate": "Nazwa kostki jest już używana",
-      "current-select": "Aktualny wybór:",
-      "question-delete": "Czy na pewno chcesz usunąć?",
-      "warning-delete": "Ta nieodwracalna czynność spowoduje usunięcie całej historii rozwiązań dla tej kostki i może wpłynąć na Twoje statystyki.",
-      "placeholder": "Marka | Model | Wersja | Magnetyczna?"
+      "category": "Kategoria",
+      "current-selection": "Aktualny wybór:",
+      "danger-msg": "Modyfikowanie kategorii kolekcji powoduje również zmianę rozwiązań skojarzonych z tą kategorią.",
+      "delete-collection": "Usuń kolekcję",
+      "delete-collection-description": "Ta kolekcja kostek zostanie usunięta wraz ze wszystkimi jej rozwiązaniami, rekordami i ustawieniami.",
+      "edit-collection": "Edytuj kolekcję",
+      "input-collection-name": "Wpisz nazwę kolekcji",
+      "name": "Nazwa",
+      "new-collection": "Nowa kolekcja",
+      "new-collection-description": "Kolekcje kostek umożliwiają śledzenie historii każdej kostki bez wpływu na ogólne statystyki kategorii.",
+      "select-an-option": "Wybierz opcję",
+      "to-continue": "kontynuować:",
+      "warning-alert": "Ostrzeżenie:",
+      "warning-msg": "To działanie nie jest odwracalne."
     },
     "Inputs": {
       "select": "Wybierz",
-      "add-cube": "Dodaj kostkę",
       "favorites": "Ulubione",
-      "list": "Lista",
-      "trash-all": "Wyrzuć wszystko",
-      "move-all": "Przenieś wszystko",
       "create": "Utwórz",
-      "confirm": "Potwierdź",
       "cancel": "Anuluj",
-      "save": "Zapisz",
-      "delete": "Usuń"
+      "continue": "Kontynuować",
+      "move": "Przenosić",
+      "none": "Nic"
     },
     "Settings-menu": {
       "title": "Ustawienia",
@@ -114,7 +134,16 @@
       "custom-background-image": "Niestandardowy obraz tła",
       "format": "Format",
       "allowed-file-types": "Dozwolone są tylko pliki obrazów (JPEG, PNG, GIF).",
-      "max-file-size": "Maksymalny dozwolony rozmiar pliku"
+      "max-file-size": "Maksymalny dozwolony rozmiar pliku",
+      "about": "O",
+      "auto-select": "Automatyczny wybór przy uruchomieniu",
+      "data": "Dane aplikacji",
+      "export-to-file": "Eksportuj do pliku",
+      "import-from-file": "Importuj z pliku",
+      "legend": "NexusTimer to bezstronne, minimalistyczne narzędzie internetowe typu open source dla SpeedCubing.",
+      "preferences": "Preferencje",
+      "report-bug": "Zgłoś błąd",
+      "suggest": "Zaproponuj zmianę"
     },
     "backup-modal": {
       "title": "Inteligentne Przywracanie Kopii Zapasowej",
@@ -124,6 +153,17 @@
       "loading-part-1": "Ta operacja zajmuje mniej niż minutę.",
       "loading-part-2": "Proszę czekać, nie zamykaj tego okna.",
       "welcome": "Witaj:"
+    },
+    "Errors": {
+      "empty-input": "Proszę wprowadzić wartość",
+      "not-match": "Imię nie pasuje.",
+      "repeated-name": "Ta kolekcja nazw już istnieje."
+    },
+    "tooltips": {
+      "bookmark": "Zakładka w książce",
+      "copy": "Kopia",
+      "delete": "Usuwać",
+      "plus-two": "2 Kara"
     }
   },
   "Metadata": {

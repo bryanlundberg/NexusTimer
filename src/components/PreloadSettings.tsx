@@ -4,6 +4,7 @@ import { Navbar } from "@/components/navbar/index";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
+import { ThemeProvider } from "./theme-provider";
 export default function PreloadSettings({
   children,
 }: {
@@ -18,9 +19,14 @@ export default function PreloadSettings({
 
   return (
     <>
-      <div className={`${theme}`}>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme={theme}
+        // enableSystem
+        disableTransitionOnChange
+      >
         <div
-          className="flex flex-col justify-between max-h-dvh min-h-dvh gap-2 overflow-hidden select-none light:bg-neutral-50 light:text-zinc-950 dark:bg-zinc-950 dark:text-slate-50"
+          className="flex flex-col justify-between max-h-dvh min-h-dvh gap-2  select-none bg-background overflow-hidden"
           style={{
             backgroundImage: backgroundImage ? `url(${backgroundImage})` : "",
             backgroundPosition: backgroundImage ? "center" : "",
@@ -29,10 +35,10 @@ export default function PreloadSettings({
             backgroundSize: backgroundImage ? "cover" : "",
           }}
         >
-          {children}{" "}
-          <>{!isSolving && timerStatus === "IDLE" ? <Navbar /> : null}</>
+          {children}
+          {!isSolving && timerStatus === "IDLE" ? <Navbar /> : null}
         </div>
-      </div>
+      </ThemeProvider>
     </>
   );
 }

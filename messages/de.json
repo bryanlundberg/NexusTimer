@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Timer",
       "hint": "Hinweis",
       "optimal-yellow-layer": "Optimale gelbe Schicht",
       "solving": "Löst...",
@@ -23,36 +22,57 @@
     },
     "SolvesPage": {
       "title": "Lösungen",
-      "search-by-time": "⏱︎ Suche nach Zeit",
-      "finalize-session": "Sitzung abschließen",
-      "eliminate-session": "Sitzung löschen",
-      "archive-sessions-legend": "Diese Aktion archiviert alle laufenden Sitzungen derselben Kategorie.",
-      "delete-session-legend": "Diese Aktion löscht nur Ihre aktuellen Lösungen mit dem ausgewählten Würfel.",
-      "archive": "Archivieren",
-      "unarchive": "Archivierung aufheben",
-      "copy": "Kopieren",
-      "remove": "Entfernen",
-      "enter-a-comment": "Kommentar eingeben",
       "session": "Sitzung",
       "all": "Alle",
-      "no-cube-selection": "Kein Würfel ausgewählt, wählen Sie einen...",
-      "no-solves": "Es gibt keine Lösungen anzuzeigen!"
+      "alert": {
+        "empty-cubes": "Kein Würfel ausgewählt. \nBitte wählen Sie eines aus.",
+        "title": "Aufmerksamkeit!"
+      },
+      "ascending": "Aufsteigend",
+      "date": "Datum",
+      "descending": "Absteigend",
+      "dialogs": {
+        "move-to-history": "Verschieben löst sich in den Verlauf auf?",
+        "move-to-history-para": "Sie können darauf zugreifen, indem Sie auf den Verlaufsschalter tippen."
+      },
+      "empty-solves": "Hier ist noch nichts!",
+      "empty-solves-description": "Tippen Sie auf den Schalter oben auf dem Bildschirm, um Ihren Verlauf anzuzeigen.",
+      "filter-by-time": "Nach Zeit filtern",
+      "historial": "Historisch",
+      "last": "Zuletzt",
+      "order": "Befehl",
+      "share": "Aktie",
+      "share-clipboard": {
+        "average": "Durchschnitt",
+        "header": "Erstellt von NexusTimer",
+        "list-of-times": "Liste der Zeiten"
+      },
+      "sort": "Sortieren",
+      "time": "Zeit",
+      "toast": {
+        "success-copy": "Erfolgreich kopiert",
+        "success-copy-description": "Wurde in Ihre Zwischenablage kopiert.",
+        "unable-action": "Aktion nicht möglich",
+        "warning-select-cube": "Bitte wählen Sie vorher einen Würfel aus."
+      },
+      "tooltips": {
+        "move-to-history": "Verschieben löst den Verlauf"
+      }
     },
     "StatsPage": {
       "title": "Statistiken",
-      "total": "Gesamt",
-      "category": "Kategorie",
       "global": "Global",
       "sessions": "Sitzungen",
       "best-time": "Beste Zeit",
       "average": "Durchschnitt",
       "time-spent": "Aufgewendete Zeit",
       "success-rate": "Erfolgsrate",
-      "counter": "Zähler"
+      "counter": "Zähler",
+      "advanced": "Fortschrittlich",
+      "overall": "Gesamt"
     },
     "CubesPage": {
       "title": "Würfel",
-      "cube": "Würfel",
       "no-cubes-for-display": "Keine Würfel zur Anzeige.",
       "favorite": "Favorit",
       "category": "Kategorie",
@@ -61,30 +81,35 @@
       "status": "Status",
       "using": "Verwendet",
       "idle": "Leerlauf",
-      "filter-cubes": "Filtern Sie Ihre Würfel"
+      "find-your-cube": "Finden Sie Ihren Würfel",
+      "name": "Name",
+      "new-collection": "Neue Kollektion",
+      "options": "Optionen"
     },
     "Cubes-modal": {
-      "title-editing": "Würfel bearbeiten",
-      "title-creating": "Neuer Würfel",
-      "error-name": "Würfelname fehlt",
-      "error-duplicate": "Würfelname bereits in Verwendung",
-      "current-select": "Aktuelle Auswahl:",
-      "question-delete": "Sind Sie sicher, dass Sie löschen möchten?",
-      "warning-delete": "Diese unumkehrbare Aktion löscht den gesamten Lösungshistorie für diesen Würfel und kann Ihre Statistiken beeinflussen.",
-      "placeholder": "Marke | Modell | Version | Magnetisch?"
+      "category": "Kategorie",
+      "current-selection": "Aktuelle Auswahl:",
+      "danger-msg": "Wenn Sie die Sammlungskategorie ändern, ändern sich auch die dieser Kategorie zugeordneten Lösungen.",
+      "delete-collection": "Sammlung löschen",
+      "delete-collection-description": "Diese Cube-Sammlung wird zusammen mit allen zugehörigen Lösungen, Datensätzen und Einstellungen gelöscht.",
+      "edit-collection": "Sammlung bearbeiten",
+      "input-collection-name": "Geben Sie den Sammlungsnamen ein",
+      "name": "Name",
+      "new-collection": "Neue Kollektion",
+      "new-collection-description": "Mit Cube-Sammlungen können Sie den Verlauf jedes Cubes verfolgen, ohne dass sich dies auf die allgemeinen Kategoriestatistiken auswirkt.",
+      "select-an-option": "Wählen Sie eine Option",
+      "to-continue": "um fortzufahren:",
+      "warning-alert": "Warnung:",
+      "warning-msg": "Diese Aktion ist nicht rückgängig zu machen."
     },
     "Inputs": {
       "select": "Auswählen",
-      "add-cube": "Würfel hinzufügen",
       "favorites": "Favoriten",
-      "list": "Liste",
-      "trash-all": "Alles löschen",
-      "move-all": "Alles verschieben",
       "create": "Erstellen",
-      "confirm": "Bestätigen",
       "cancel": "Abbrechen",
-      "save": "Speichern",
-      "delete": "Löschen"
+      "continue": "Weitermachen",
+      "move": "Bewegen",
+      "none": "Keiner"
     },
     "Settings-menu": {
       "title": "Einstellungen",
@@ -116,7 +141,9 @@
       "about": "Über",
       "legend": "NexusTimer ist ein unverfälschtes, minimalistisches und Open-Source-Webtool für SpeedCubing.",
       "suggest": "Änderung vorschlagen",
-      "report-bug": "Fehler melden"
+      "report-bug": "Fehler melden",
+      "auto-select": "Automatische Auswahl beim Start",
+      "preferences": "Präferenzen"
     },
     "backup-modal": {
       "title": "Intelligente Backup-Wiederherstellung",
@@ -126,6 +153,17 @@
       "loading-part-1": "Diese Aktion dauert weniger als eine Minute.",
       "loading-part-2": "Bitte warten Sie, schließen Sie dieses Fenster nicht.",
       "welcome": "Willkommen:"
+    },
+    "Errors": {
+      "empty-input": "Bitte geben Sie einen Wert ein",
+      "not-match": "Der Name stimmt nicht überein.",
+      "repeated-name": "Diese Namenssammlung existiert bereits."
+    },
+    "tooltips": {
+      "bookmark": "Lesezeichen",
+      "copy": "Kopie",
+      "delete": "Löschen",
+      "plus-two": "2 Strafe"
     }
   },
   "Metadata": {

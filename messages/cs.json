@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Časovač",
       "hint": "Nápověda",
       "optimal-yellow-layer": "Optimální žlutá vrstva",
       "solving": "Řešení...",
@@ -23,36 +22,57 @@
     },
     "SolvesPage": {
       "title": "Řešení",
-      "search-by-time": "⏱︎ Hledat podle času",
-      "finalize-session": "Dokončit relaci",
-      "eliminate-session": "Odstranit relaci",
-      "archive-sessions-legend": "Tato akce archivuje všechny probíhající relace ve stejné kategorii.",
-      "delete-session-legend": "Tato akce odstraní pouze vaše aktuální řešení s vybranou kostkou.",
-      "archive": "Archivovat",
-      "unarchive": "Zrušit archivaci",
-      "copy": "Kopírovat",
-      "remove": "Odstranit",
-      "enter-a-comment": "Zadejte komentář",
       "session": "Relace",
       "all": "Vše",
-      "no-cube-selection": "Není vybrána žádná kostka, vyberte jednu...",
-      "no-solves": "Nejsou k dispozici žádná řešení!"
+      "alert": {
+        "empty-cubes": "Nebyla vybrána žádná kostka. \nVyberte prosím jednu.",
+        "title": "Pozor!"
+      },
+      "ascending": "Vzestupně",
+      "date": "Datum",
+      "descending": "Klesající",
+      "dialogs": {
+        "move-to-history": "Přesun řeší historii?",
+        "move-to-history-para": "Budete k nim mít přístup klepnutím na přepínač historie."
+      },
+      "empty-solves": "Tady zatím nic!",
+      "empty-solves-description": "Klepnutím na přepínač v horní části obrazovky zobrazíte svou historii.",
+      "filter-by-time": "Filtrujte podle času",
+      "historial": "Historický",
+      "last": "Poslední",
+      "order": "Objednávka",
+      "share": "Podíl",
+      "share-clipboard": {
+        "average": "Průměrný",
+        "header": "Generováno NexusTimer",
+        "list-of-times": "Seznam časů"
+      },
+      "sort": "Seřadit",
+      "time": "Čas",
+      "toast": {
+        "success-copy": "Úspěšně zkopírováno",
+        "success-copy-description": "Byl zkopírován do vaší schránky.",
+        "unable-action": "Nemožná akce",
+        "warning-select-cube": "Vyberte prosím kostku předem."
+      },
+      "tooltips": {
+        "move-to-history": "Move řeší historii"
+      }
     },
     "StatsPage": {
       "title": "Statistiky",
-      "total": "Celkem",
-      "category": "Kategorie",
       "global": "Globální",
       "sessions": "Relace",
       "best-time": "Nejlepší čas",
       "average": "Průměr",
       "time-spent": "Strávený čas",
       "success-rate": "Úspěšnost",
-      "counter": "Počítadlo"
+      "counter": "Počítadlo",
+      "advanced": "Moderní",
+      "overall": "Celkově"
     },
     "CubesPage": {
       "title": "Kostky",
-      "cube": "Kostka",
       "no-cubes-for-display": "Nejsou k dispozici žádné kostky.",
       "favorite": "Oblíbené",
       "category": "Kategorie",
@@ -61,30 +81,35 @@
       "status": "Stav",
       "using": "Používá se",
       "idle": "Nečinný",
-      "filter-cubes": "Filtrovat kostky"
+      "find-your-cube": "Najděte svou kostku",
+      "name": "Jméno",
+      "new-collection": "Nová kolekce",
+      "options": "Možnosti"
     },
     "Cubes-modal": {
-      "title-editing": "Upravit kostku",
-      "title-creating": "Nová kostka",
-      "error-name": "Chybí název kostky",
-      "error-duplicate": "Název kostky je již použit",
-      "current-select": "Aktuální výběr:",
-      "question-delete": "Opravdu chcete smazat?",
-      "warning-delete": "Tato nevratná akce odstraní veškerou historii řešení pro tuto kostku a může ovlivnit vaše statistiky.",
-      "placeholder": "Značka | Model | Verze | Magnetická?"
+      "category": "Kategorie",
+      "current-selection": "Aktuální výběr:",
+      "danger-msg": "Úprava kategorie kolekce také změní řešení spojená s touto kategorií.",
+      "delete-collection": "Smazat sbírku",
+      "delete-collection-description": "Tato sbírka krychlí bude odstraněna spolu se všemi jejími řešeními, záznamy a nastaveními.",
+      "edit-collection": "Upravit sbírku",
+      "input-collection-name": "Zadejte název sbírky",
+      "name": "Jméno",
+      "new-collection": "Nová kolekce",
+      "new-collection-description": "Sbírky kostek vám umožňují sledovat historii každé kostky, aniž by to ovlivnilo celkové statistiky kategorií.",
+      "select-an-option": "Vyberte možnost",
+      "to-continue": "pokračovat:",
+      "warning-alert": "Varování:",
+      "warning-msg": "Tato akce není vratná."
     },
     "Inputs": {
       "select": "Vybrat",
-      "add-cube": "Přidat kostku",
       "favorites": "Oblíbené",
-      "list": "Seznam",
-      "trash-all": "Smazat vše",
-      "move-all": "Přesunout vše",
       "create": "Vytvořit",
-      "confirm": "Potvrdit",
       "cancel": "Zrušit",
-      "save": "Uložit",
-      "delete": "Smazat"
+      "continue": "Pokračovat",
+      "move": "Pohyb",
+      "none": "Žádný"
     },
     "Settings-menu": {
       "title": "Nastavení",
@@ -116,7 +141,9 @@
       "about": "O aplikaci",
       "legend": "NexusTimer je nezkreslený, minimalistický a open source webový nástroj pro SpeedCubing.",
       "suggest": "Navrhnout změnu",
-      "report-bug": "Nahlásit chybu"
+      "report-bug": "Nahlásit chybu",
+      "auto-select": "Automatický výběr při spuštění",
+      "preferences": "Předvolby"
     },
     "backup-modal": {
       "title": "Inteligentní Obnova Zálohy",
@@ -126,6 +153,17 @@
       "loading-part-1": "Tato akce trvá méně než minutu.",
       "loading-part-2": "Prosím čekejte, nezavírejte toto okno.",
       "welcome": "Vítejte:"
+    },
+    "Errors": {
+      "empty-input": "Zadejte hodnotu",
+      "not-match": "Název se neshoduje.",
+      "repeated-name": "Tato sbírka jmen již existuje."
+    },
+    "tooltips": {
+      "bookmark": "Záložka",
+      "copy": "Kopie",
+      "delete": "Vymazat",
+      "plus-two": "2 Pokuta"
     }
   },
   "Metadata": {

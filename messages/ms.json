@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Pemasa",
       "hint": "Petua",
       "optimal-yellow-layer": "Lapisan Kuning Optimum",
       "solving": "Menyelesaikan...",
@@ -23,41 +22,57 @@
     },
     "SolvesPage": {
       "title": "Penyelesaian",
-      "search-by-time": "⏱︎ Cari mengikut masa",
-      "finalize-session": "Selesai sesi",
-      "eliminate-session": "Hapus sesi",
-      "archive-sessions-legend": "Tindakan ini akan mengarkibkan semua sesi yang sedang berlangsung dari kategori yang sama.",
-      "delete-session-legend": "Tindakan ini hanya akan memadam penyelesaian semasa anda dengan kubus yang dipilih.",
-      "archive": "Arkib",
-      "unarchive": "Buka arkib",
-      "copy": "Salin",
-      "remove": "Alih keluar",
-      "enter-a-comment": "Masukkan komen",
       "session": "Sesi",
       "all": "Semua",
-      "no-cube-selection": "Tiada pemilihan kubus, pilih satu...",
-      "no-solves": "Tiada penyelesaian untuk dipaparkan!",
       "time": "Masa",
-      "sort-by": "Disusun mengikut...",
       "descending": "Menurun",
       "date": "Tarikh",
-      "ascending": "Menaik"
+      "ascending": "Menaik",
+      "alert": {
+        "empty-cubes": "Tiada kiub dipilih. \nSila pilih satu.",
+        "title": "Perhatian!"
+      },
+      "dialogs": {
+        "move-to-history": "Pindahkan penyelesaian kepada sejarah?",
+        "move-to-history-para": "Anda akan dapat mengaksesnya dengan mengetik suis sejarah."
+      },
+      "empty-solves": "Tiada apa-apa lagi di sini!",
+      "empty-solves-description": "Ketik suis di bahagian atas skrin untuk melihat sejarah anda.",
+      "filter-by-time": "Tapis mengikut masa",
+      "historial": "sejarah",
+      "last": "Terakhir",
+      "order": "Pesanan",
+      "share": "Kongsi",
+      "share-clipboard": {
+        "average": "Purata",
+        "header": "Dijana oleh NexusTimer",
+        "list-of-times": "Senarai masa"
+      },
+      "sort": "Isih",
+      "toast": {
+        "success-copy": "Berjaya disalin",
+        "success-copy-description": "Telah disalin ke papan keratan anda.",
+        "unable-action": "Tindakan tidak boleh",
+        "warning-select-cube": "Sila pilih kiub sebelum."
+      },
+      "tooltips": {
+        "move-to-history": "Bergerak menyelesaikan sejarah"
+      }
     },
     "StatsPage": {
       "title": "Statistik",
-      "total": "Jumlah",
-      "category": "Kategori",
       "global": "Global",
       "sessions": "Sesi",
       "best-time": "Masa Terbaik",
       "average": "Purata",
       "time-spent": "Masa Dibelanjakan",
       "success-rate": "Kadar Kejayaan",
-      "counter": "Pengira"
+      "counter": "Pengira",
+      "advanced": "Maju",
+      "overall": "Keseluruhannya"
     },
     "CubesPage": {
       "title": "Kubus",
-      "cube": "Kubus",
       "no-cubes-for-display": "Tiada kubus untuk paparan.",
       "favorite": "Kegemaran",
       "category": "Kategori",
@@ -66,30 +81,35 @@
       "status": "Status",
       "using": "Menggunakan",
       "idle": "Beberapa masa",
-      "filter-cubes": "Penapis kubus anda"
+      "find-your-cube": "Cari kiub anda",
+      "name": "Nama",
+      "new-collection": "Koleksi baru",
+      "options": "Pilihan"
     },
     "Cubes-modal": {
-      "title-editing": "Edit Kubus",
-      "title-creating": "Kubus Baru",
-      "error-name": "Nama kubus tidak ada",
-      "error-duplicate": "Nama kubus sudah digunakan",
-      "current-select": "Pilihan semasa:",
-      "question-delete": "Adakah anda pasti ingin memadam?",
-      "warning-delete": "Tindakan tidak dapat dikembalikan ini akan memadam semua sejarah penyelesaian untuk kubus ini dan mungkin memberi kesan kepada statistik anda.",
-      "placeholder": "Jenama | Model | Versi | Magnetik?"
+      "category": "kategori",
+      "current-selection": "Pilihan semasa:",
+      "danger-msg": "Mengubah suai kategori koleksi juga mengubah penyelesaian yang dikaitkan dengan kategori itu.",
+      "delete-collection": "Padamkan koleksi",
+      "delete-collection-description": "Koleksi kiub ini akan dipadamkan, bersama-sama dengan semua penyelesaian, rekod dan tetapannya.",
+      "edit-collection": "Edit koleksi",
+      "input-collection-name": "Masukkan nama koleksi",
+      "name": "Nama",
+      "new-collection": "Koleksi baru",
+      "new-collection-description": "Koleksi kiub membolehkan anda menjejaki sejarah setiap kiub tanpa menjejaskan statistik kategori keseluruhan.",
+      "select-an-option": "Pilih satu pilihan",
+      "to-continue": "untuk meneruskan:",
+      "warning-alert": "Amaran:",
+      "warning-msg": "Tindakan ini tidak boleh diterbalikkan."
     },
     "Inputs": {
       "select": "Pilih",
-      "add-cube": "Tambah kubus",
       "favorites": "Kegemaran",
-      "list": "Senarai",
-      "trash-all": "Buang Semua",
-      "move-all": "Pindahkan Semua",
       "create": "Cipta",
-      "confirm": "Sahkan",
       "cancel": "Batal",
-      "save": "Simpan",
-      "delete": "Padam"
+      "continue": "teruskan",
+      "move": "Bergerak",
+      "none": "tiada"
     },
     "Settings-menu": {
       "title": "Tetapan",
@@ -114,7 +134,16 @@
       "custom-background-image": "Gambar Latar Belakang Kustom",
       "format": "Format",
       "allowed-file-types": "Hanya fail imej (JPEG, PNG, GIF) yang dibenarkan.",
-      "max-file-size": "Saiz fail maksimum yang dibenarkan"
+      "max-file-size": "Saiz fail maksimum yang dibenarkan",
+      "about": "Tentang",
+      "auto-select": "Autopilih pada permulaan",
+      "data": "Data Apl",
+      "export-to-file": "Eksport ke fail",
+      "import-from-file": "Import daripada fail",
+      "legend": "NexusTimer ialah alat web tanpa pendapat, minimalis dan sumber terbuka untuk SpeedCubing.",
+      "preferences": "Keutamaan",
+      "report-bug": "Laporkan pepijat",
+      "suggest": "Cadangkan perubahan"
     },
     "backup-modal": {
       "title": "Pemulihan Pencadangan Pintar",
@@ -124,6 +153,17 @@
       "loading-part-1": "Tindakan ini mengambil masa kurang dari satu minit.",
       "loading-part-2": "Sila tunggu, jangan tutup tetingkap ini.",
       "welcome": "Selamat Datang:"
+    },
+    "Errors": {
+      "empty-input": "Sila masukkan nilai",
+      "not-match": "Nama tidak sepadan.",
+      "repeated-name": "Koleksi nama itu sudah wujud."
+    },
+    "tooltips": {
+      "bookmark": "Penanda buku",
+      "copy": "salin",
+      "delete": "Padam",
+      "plus-two": "2 Penalti"
     }
   },
   "Metadata": {

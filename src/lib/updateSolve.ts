@@ -39,13 +39,15 @@ export default async function updateSolve({
     }
   };
 
-  updateSolveArray(selectedCube.solves.all);
-  updateSolveArray(selectedCube.solves.session);
+  const selection = { ...selectedCube };
+
+  updateSolveArray(selection.solves.all);
+  updateSolveArray(selection.solves.session);
 
   await saveCube({
-    ...selectedCube,
-    solves: selectedCube.solves,
+    ...selection,
+    solves: selection.solves,
   });
 
-  return selectedCube;
+  return selection;
 }

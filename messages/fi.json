@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Ajastin",
       "hint": "Vihje",
       "optimal-yellow-layer": "Optimaalinen keltainen kerros",
       "solving": "Ratkaiseminen...",
@@ -23,41 +22,57 @@
     },
     "SolvesPage": {
       "title": "Ratkaisut",
-      "search-by-time": "⏱︎ Etsi ajan perusteella",
-      "finalize-session": "Päätä istunto",
-      "eliminate-session": "Poista istunto",
-      "archive-sessions-legend": "Tämä toiminto arkistoi kaikki saman luokan parhaillaan käynnissä olevat istunnot.",
-      "delete-session-legend": "Tämä toiminto poistaa vain nykyiset ratkaisusi valitulla kuutiolla.",
-      "archive": "Arkistoi",
-      "unarchive": "Poista arkisto",
-      "copy": "Kopioi",
-      "remove": "Poista",
-      "enter-a-comment": "Kirjoita kommentti",
       "session": "Istunto",
       "all": "Kaikki",
-      "no-cube-selection": "Ei valittua kuutiota, valitse yksi...",
-      "no-solves": "Ei ratkaisuja näytettäväksi!",
       "ascending": "Nouseva",
       "date": "Päivämäärä",
       "descending": "Laskeva",
-      "sort-by": "Järjestä...",
-      "time": "Aika"
+      "time": "Aika",
+      "alert": {
+        "empty-cubes": "Kuutiota ei ole valittu. \nValitse yksi.",
+        "title": "Huomio!"
+      },
+      "dialogs": {
+        "move-to-history": "Siirretäänkö ratkaisut historiaan?",
+        "move-to-history-para": "Voit käyttää niitä napauttamalla historiakytkintä."
+      },
+      "empty-solves": "Ei täällä vielä mitään!",
+      "empty-solves-description": "Näet historiasi napauttamalla näytön yläreunassa olevaa kytkintä.",
+      "filter-by-time": "Suodata ajan mukaan",
+      "historial": "Historiallinen",
+      "last": "Kestää",
+      "order": "Tilata",
+      "share": "Jakaa",
+      "share-clipboard": {
+        "average": "Keskimäärin",
+        "header": "Luonut NexusTimer",
+        "list-of-times": "Lista aikoja"
+      },
+      "sort": "Järjestellä",
+      "toast": {
+        "success-copy": "Kopiointi onnistui",
+        "success-copy-description": "On kopioitu leikepöydällesi.",
+        "unable-action": "Toiminto ei onnistu",
+        "warning-select-cube": "Valitse kuutio ennen."
+      },
+      "tooltips": {
+        "move-to-history": "Siirrä ratkaisut historiaan"
+      }
     },
     "StatsPage": {
       "title": "Tilastot",
-      "total": "Yhteensä",
-      "category": "Kategoria",
       "global": "Maailmanlaajuinen",
       "sessions": "Istunnot",
       "best-time": "Paras aika",
       "average": "Keskiarvo",
       "time-spent": "Kulunut aika",
       "success-rate": "Onnistumisprosentti",
-      "counter": "Laskuri"
+      "counter": "Laskuri",
+      "advanced": "Edistynyt",
+      "overall": "Kaiken kaikkiaan"
     },
     "CubesPage": {
       "title": "Kuutiot",
-      "cube": "Kuutio",
       "no-cubes-for-display": "Ei kuutioita näytettäväksi.",
       "favorite": "Suosikki",
       "category": "Kategoria",
@@ -66,30 +81,35 @@
       "status": "Tila",
       "using": "Käytössä",
       "idle": "Käyttämätön",
-      "filter-cubes": "Suodata kuutiosi"
+      "find-your-cube": "Etsi oma kuutiosi",
+      "name": "Nimi",
+      "new-collection": "Uusi kokoelma",
+      "options": "Vaihtoehdot"
     },
     "Cubes-modal": {
-      "title-editing": "Muokkaa Kuutiota",
-      "title-creating": "Uusi Kuutio",
-      "error-name": "Kuution nimi puuttuu",
-      "error-duplicate": "Kuution nimi on jo käytössä",
-      "current-select": "Nykyinen valinta:",
-      "question-delete": "Haluatko varmasti poistaa?",
-      "warning-delete": "Tämä peruuttamaton toiminto poistaa kaiken ratkaisuhistorian tälle kuutiolle ja saattaa vaikuttaa tilastoihisi.",
-      "placeholder": "Brändi | Malli | Versio | Magneettinen?"
+      "category": "Luokka",
+      "current-selection": "Nykyinen valinta:",
+      "danger-msg": "Kokoelman luokan muokkaaminen muuttaa myös kyseiseen luokkaan liittyviä ratkaisuja.",
+      "delete-collection": "Poista kokoelma",
+      "delete-collection-description": "Tämä kuutiokokoelma sekä kaikki sen ratkaisut, tietueet ja asetukset poistetaan.",
+      "edit-collection": "Muokkaa kokoelmaa",
+      "input-collection-name": "Kirjoita kokoelman nimi",
+      "name": "Nimi",
+      "new-collection": "Uusi kokoelma",
+      "new-collection-description": "Kuutiokokoelmien avulla voit seurata kunkin kuution historiaa vaikuttamatta yleisiin luokkatilastoihin.",
+      "select-an-option": "Valitse vaihtoehto",
+      "to-continue": "jatkamaan:",
+      "warning-alert": "Varoitus:",
+      "warning-msg": "Tätä toimintoa ei voi peruuttaa."
     },
     "Inputs": {
       "select": "Valitse",
-      "add-cube": "Lisää kuutio",
       "favorites": "Suosikit",
-      "list": "Lista",
-      "trash-all": "Roskakori kaikki",
-      "move-all": "Siirrä kaikki",
       "create": "Luo",
-      "confirm": "Vahvista",
       "cancel": "Peruuta",
-      "save": "Tallenna",
-      "delete": "Poista"
+      "continue": "Jatkaa",
+      "move": "Liikkua",
+      "none": "Ei mitään"
     },
     "Settings-menu": {
       "title": "Asetukset",
@@ -121,7 +141,9 @@
       "about": "Tietoa",
       "legend": "NexusTimer on puolueeton, minimalistinen ja avoimen lähdekoodin verkkotyökalu SpeedCubingille.",
       "suggest": "Ehdota muutosta",
-      "report-bug": "Ilmoita virheestä"
+      "report-bug": "Ilmoita virheestä",
+      "auto-select": "Automaattinen valinta käynnistyksen yhteydessä",
+      "preferences": "Asetukset"
     },
     "backup-modal": {
       "title": "Älykäs varmuuskopiointi ja palautus",
@@ -131,6 +153,17 @@
       "loading-part-1": "Tämä toiminto kestää alle minuutin.",
       "loading-part-2": "Odota hetki, älä sulje tätä ikkunaa.",
       "welcome": "Tervetuloa:"
+    },
+    "Errors": {
+      "empty-input": "Anna arvo",
+      "not-match": "Nimi ei täsmää.",
+      "repeated-name": "Tämä nimikokoelma on jo olemassa."
+    },
+    "tooltips": {
+      "bookmark": "Kirjanmerkki",
+      "copy": "Kopioida",
+      "delete": "Poistaa",
+      "plus-two": "2 Rangaistus"
     }
   },
   "Metadata": {
