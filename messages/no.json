@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Timer",
       "hint": "Hint",
       "optimal-yellow-layer": "Optimal Gul Lag",
       "solving": "Løser...",
@@ -23,41 +22,57 @@
     },
     "SolvesPage": {
       "title": "Løsninger",
-      "search-by-time": "⏱︎ Søk etter tid",
-      "finalize-session": "Fullfør økt",
-      "eliminate-session": "Fjern økt",
-      "archive-sessions-legend": "Denne handlingen vil arkivere alle pågående økter fra samme kategori.",
-      "delete-session-legend": "Denne handlingen vil bare slette dine gjeldende løsninger med den valgte kuben.",
-      "archive": "Arkiv",
-      "unarchive": "Avarkiv",
-      "copy": "Kopiere",
-      "remove": "Fjerne",
-      "enter-a-comment": "Skriv en kommentar",
       "session": "Økt",
       "all": "Alle",
-      "no-cube-selection": "Ingen kube valgt, velg en...",
-      "no-solves": "Det er ingen løsninger å vise!",
       "time": "Tid",
-      "sort-by": "Sorter etter...",
       "descending": "Synkende",
       "date": "Dato",
-      "ascending": "Stigende"
+      "ascending": "Stigende",
+      "alert": {
+        "empty-cubes": "Ingen kube valgt. \nVennligst velg en.",
+        "title": "Oppmerksomhet!"
+      },
+      "dialogs": {
+        "move-to-history": "Flytte løsninger til historien?",
+        "move-to-history-para": "Du vil få tilgang til dem ved å trykke på historiebryteren."
+      },
+      "empty-solves": "Ingenting her ennå!",
+      "empty-solves-description": "Trykk på bryteren øverst på skjermen for å se loggen din.",
+      "filter-by-time": "Filtrer etter tid",
+      "historial": "Historisk",
+      "last": "Siste",
+      "order": "Bestille",
+      "share": "Dele",
+      "share-clipboard": {
+        "average": "Gjennomsnittlig",
+        "header": "Generert av NexusTimer",
+        "list-of-times": "Liste over tider"
+      },
+      "sort": "Sortere",
+      "toast": {
+        "success-copy": "Kopiert vellykket",
+        "success-copy-description": "Har blitt kopiert til utklippstavlen din.",
+        "unable-action": "Kan ikke gjøres",
+        "warning-select-cube": "Vennligst velg en kube før."
+      },
+      "tooltips": {
+        "move-to-history": "Flytt løser til historien"
+      }
     },
     "StatsPage": {
       "title": "Statistikk",
-      "total": "Total",
-      "category": "Kategori",
       "global": "Global",
       "sessions": "Økter",
       "best-time": "Beste Tid",
       "average": "Gjennomsnitt",
       "time-spent": "Tid Brukt",
       "success-rate": "Suksessrate",
-      "counter": "Tellende"
+      "counter": "Tellende",
+      "advanced": "Avansert",
+      "overall": "Totalt sett"
     },
     "CubesPage": {
       "title": "Kuber",
-      "cube": "Kube",
       "no-cubes-for-display": "Ingen kuber å vise.",
       "favorite": "Favoritt",
       "category": "Kategori",
@@ -66,30 +81,35 @@
       "status": "Status",
       "using": "Bruker",
       "idle": "Inaktiv",
-      "filter-cubes": "Filtrer kubene dine"
+      "find-your-cube": "Finn kuben din",
+      "name": "Navn",
+      "new-collection": "Ny kolleksjon",
+      "options": "Alternativer"
     },
     "Cubes-modal": {
-      "title-editing": "Rediger Kube",
-      "title-creating": "Ny Kube",
-      "error-name": "Kubenavn mangler",
-      "error-duplicate": "Kubenavn allerede i bruk",
-      "current-select": "Gjeldende valg:",
-      "question-delete": "Er du sikker på at du vil slette?",
-      "warning-delete": "Denne ugjenkallelige handlingen vil slette all løsningshistorikk for denne kuben og kan påvirke statistikken din.",
-      "placeholder": "Merk | Modell | Versjon | Magnetisk?"
+      "category": "Kategori",
+      "current-selection": "Gjeldende utvalg:",
+      "danger-msg": "Ved å endre samlingskategorien endres også løsningene knyttet til den kategorien.",
+      "delete-collection": "Slett samling",
+      "delete-collection-description": "Denne kubesamlingen vil bli slettet, sammen med alle dens løsninger, poster og innstillinger.",
+      "edit-collection": "Rediger samling",
+      "input-collection-name": "Skriv inn samlingsnavnet",
+      "name": "Navn",
+      "new-collection": "Ny kolleksjon",
+      "new-collection-description": "Kubesamlinger lar deg holde styr på hver kubes historie uten å påvirke den generelle kategoristatistikken.",
+      "select-an-option": "Velg et alternativ",
+      "to-continue": "for å fortsette:",
+      "warning-alert": "Advarsel:",
+      "warning-msg": "Denne handlingen er ikke reversibel."
     },
     "Inputs": {
       "select": "Velg",
-      "add-cube": "Legg til kube",
       "favorites": "Favoritter",
-      "list": "Liste",
-      "trash-all": "Kast Alt",
-      "move-all": "Flytt Alt",
       "create": "Opprett",
-      "confirm": "Bekreft",
       "cancel": "Avbryt",
-      "save": "Lagre",
-      "delete": "Slett"
+      "continue": "Fortsette",
+      "move": "Flytte",
+      "none": "Ingen"
     },
     "Settings-menu": {
       "title": "Innstillinger",
@@ -114,7 +134,16 @@
       "custom-background-image": "Tilpasset bakgrunnsbilde",
       "format": "Format",
       "allowed-file-types": "Bare bildefiler (JPEG, PNG, GIF) er tillatt.",
-      "max-file-size": "Maksimal filstørrelse tillatt"
+      "max-file-size": "Maksimal filstørrelse tillatt",
+      "about": "Om",
+      "auto-select": "Automatisk valg ved oppstart",
+      "data": "Appdata",
+      "export-to-file": "Eksporter til fil",
+      "import-from-file": "Importer fra fil",
+      "legend": "NexusTimer er et meningsløst, minimalistisk og åpen kildekode-nettverktøy for SpeedCubing.",
+      "preferences": "Preferanser",
+      "report-bug": "Rapporter en feil",
+      "suggest": "Foreslå en endring"
     },
     "backup-modal": {
       "title": "Intelligent Sikkerhetskopiering Gjenoppretting",
@@ -124,6 +153,17 @@
       "loading-part-1": "Denne handlingen tar mindre enn ett minutt.",
       "loading-part-2": "Vennligst vent, ikke lukk dette vinduet.",
       "welcome": "Velkommen:"
+    },
+    "Errors": {
+      "empty-input": "Vennligst skriv inn en verdi",
+      "not-match": "Navnet stemmer ikke.",
+      "repeated-name": "Den navnesamlingen finnes allerede."
+    },
+    "tooltips": {
+      "bookmark": "Bokmerke",
+      "copy": "Kopiere",
+      "delete": "Slett",
+      "plus-two": "2 Straffe"
     }
   },
   "Metadata": {

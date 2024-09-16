@@ -11,17 +11,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import CustomTheme from "./CustomTheme";
 import { useTranslations } from "next-intl";
 import MenuSelectLanguage from "./MenuSelectLanguage";
+import MenuSelectDefaultStartCube from "./MenuSelectDefaultStartCube";
+import { ScrollArea } from "../ui/scroll-area";
+import { Button } from "../ui/button";
 import {
   ArrowLeftIcon,
-  BellAlertIcon,
-  CogIcon,
-  CpuChipIcon,
-  FolderIcon,
-  IdentificationIcon,
-  SparklesIcon,
-  ViewColumnsIcon,
-} from "@heroicons/react/24/solid";
-import MenuSelectDefaultStartCube from "./MenuSelectDefaultStartCube";
+  BellIcon,
+  BoxModelIcon,
+  ComponentBooleanIcon,
+  ExternalLinkIcon,
+  FileTextIcon,
+  LapTimerIcon,
+  MagicWandIcon,
+  QuoteIcon,
+} from "@radix-ui/react-icons";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings } = useSettingsModalStore();
@@ -35,152 +38,142 @@ export default function MenuSettings() {
     <>
       <AnimatePresence>
         {settingsOpen && !isSolving ? (
-          <div className="absolute z-10 flex w-full h-full overflow-auto">
+          <div className="absolute z-30 flex w-full h-full overflow-auto">
             <motion.div
               initial={{ x: -400, opacity: 0.8 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -400, opacity: 0.6 }}
               transition={{ type: "lineal" }}
-              className="flex flex-col w-full gap-3 overflow-auto bg-neutral-50 text-zinc-800 sm:w-96 light"
+              className="flex flex-col w-full gap-3 sm:w-96 bg-background border-r"
             >
-              <div className="flex items-center my-3">
-                <Link
-                  href={"/"}
-                  onClick={() => setSettingsOpen(false)}
-                  className="flex items-center cursor-pointer ms-3"
-                >
-                  <ArrowLeftIcon className="w-6 h-6" />
-                </Link>
-                <div className="flex-1 text-2xl font-medium text-center">
-                  {t("title")}
+              <ScrollArea>
+                <div className="my-3 relative">
+                  <Link
+                    href={"/"}
+                    onClick={() => setSettingsOpen(false)}
+                    className="flex items-center cursor-pointer ms-3 absolute top-0 left-0"
+                  >
+                    <ArrowLeftIcon />
+                  </Link>
+                  <div className="text-2xl text-center font-black">
+                    {t("title")}
+                  </div>
                 </div>
-              </div>
 
-              <MenuSelectLanguage />
+                <MenuSelectLanguage />
 
-              <MenuSection
-                icon={<CogIcon className="w-6 h-6" />}
-                title={t("timer")}
-              >
-                <MenuOption
-                  setting={settings.timer.inspection}
-                  label={t("inspection")}
-                />
-                <MenuOption
-                  setting={settings.timer.startCue}
-                  label={t("start-cue")}
-                />
-                <MenuOption
-                  setting={settings.timer.holdToStart}
-                  label={t("hold-to-start")}
-                />
-                <MenuOption
-                  setting={settings.timer.manualMode}
-                  label={t("manual-mode")}
-                />
-              </MenuSection>
+                <MenuSection icon={<LapTimerIcon />} title={t("timer")}>
+                  <MenuOption
+                    setting={settings.timer.inspection}
+                    label={t("inspection")}
+                  />
+                  <MenuOption
+                    setting={settings.timer.startCue}
+                    label={t("start-cue")}
+                  />
+                  <MenuOption
+                    setting={settings.timer.holdToStart}
+                    label={t("hold-to-start")}
+                  />
+                  <MenuOption
+                    setting={settings.timer.manualMode}
+                    label={t("manual-mode")}
+                  />
+                </MenuSection>
 
-              <MenuSection
-                icon={<CpuChipIcon className="w-6 h-6" />}
-                title={t("features")}
-              >
-                <MenuOption
-                  setting={settings.features.scrambleImage}
-                  label={t("scramble-image")}
-                />
-                <MenuOption
-                  setting={settings.features.sessionStats}
-                  label={t("session-stats")}
-                />
-                <MenuOption
-                  setting={settings.features.quickActionButtons}
-                  label={t("quick-action-buttons")}
-                />
-                <MenuOption
-                  setting={settings.features.hideWhileSolving}
-                  label={t("hide-while-solving")}
-                />
-                <MenuOption
-                  setting={settings.features.scrambleBackground}
-                  label={t("scramble-background")}
-                />
-              </MenuSection>
+                <MenuSection icon={<MagicWandIcon />} title={t("features")}>
+                  <MenuOption
+                    setting={settings.features.scrambleImage}
+                    label={t("scramble-image")}
+                  />
+                  <MenuOption
+                    setting={settings.features.sessionStats}
+                    label={t("session-stats")}
+                  />
+                  <MenuOption
+                    setting={settings.features.quickActionButtons}
+                    label={t("quick-action-buttons")}
+                  />
+                  <MenuOption
+                    setting={settings.features.hideWhileSolving}
+                    label={t("hide-while-solving")}
+                  />
+                  <MenuOption
+                    setting={settings.features.scrambleBackground}
+                    label={t("scramble-background")}
+                  />
+                </MenuSection>
 
-              <MenuSection
-                icon={<BellAlertIcon className="w-6 h-6" />}
-                title={t("alerts")}
-              >
-                <MenuOption
-                  setting={settings.alerts.bestTime}
-                  label={t("best-time")}
-                />
-                <MenuOption
-                  setting={settings.alerts.bestAverage}
-                  label={t("best-average")}
-                />
-
-                <MenuOption
-                  setting={settings.alerts.worstTime}
-                  label={t("worst-time")}
-                />
-              </MenuSection>
-
-              <MenuSection
-                icon={<SparklesIcon className="w-6 h-6" />}
-                title={t("theme")}
-              >
-                <ThemeSelect />
-                <CustomTheme />
-              </MenuSection>
-
-              <MenuSection
-                icon={<FolderIcon className="w-6 h-6" />}
-                title={t("data")}
-              >
-                <DataImportExport />
-              </MenuSection>
-
-              <MenuSection
-                icon={<ViewColumnsIcon className="w-6 h-6" />}
-                title={t("preferences")}
-              >
-                <MenuSelectDefaultStartCube />
-              </MenuSection>
-
-              <MenuSection
-                icon={<IdentificationIcon className="w-6 h-6" />}
-                title={t("about")}
-              >
-                <div className="flex flex-col justify-center items-center gap-3">
-                  <Image
-                    src={"/brand_logo.svg"}
-                    alt="logo"
-                    width={320}
-                    height={100}
+                <MenuSection icon={<BellIcon />} title={t("alerts")}>
+                  <MenuOption
+                    setting={settings.alerts.bestTime}
+                    label={t("best-time")}
+                  />
+                  <MenuOption
+                    setting={settings.alerts.bestAverage}
+                    label={t("best-average")}
                   />
 
-                  <div className="text-center w-11/12 italic">
-                    &rdquo;{t("legend")}&rdquo;
-                  </div>
+                  <MenuOption
+                    setting={settings.alerts.worstTime}
+                    label={t("worst-time")}
+                  />
+                </MenuSection>
 
-                  <div className="flex gap-3 underline">
-                    <Link
-                      href="https://github.com/bryanlundberg/NexusTimer/issues"
-                      target="_blank"
-                      className="hover:text-zinc-500 text-blue-600 transition duration-300"
-                    >
-                      {t("suggest")}
-                    </Link>
-                    <Link
-                      href="https://github.com/bryanlundberg/NexusTimer/issues"
-                      target="_blank"
-                      className="hover:text-zinc-500 text-blue-600 transition duration-300"
-                    >
-                      {t("report-bug")}
-                    </Link>
+                <MenuSection icon={<ComponentBooleanIcon />} title={t("theme")}>
+                  <ThemeSelect />
+                  <CustomTheme />
+                </MenuSection>
+
+                <MenuSection icon={<FileTextIcon />} title={t("data")}>
+                  <DataImportExport />
+                </MenuSection>
+
+                <MenuSection icon={<BoxModelIcon />} title={t("preferences")}>
+                  <MenuSelectDefaultStartCube />
+                </MenuSection>
+
+                <MenuSection icon={<QuoteIcon />} title={t("about")}>
+                  <div className="flex flex-col justify-center items-center gap-3">
+                    <Image
+                      src={"/brand_logo.svg"}
+                      alt="logo"
+                      width={320}
+                      height={100}
+                    />
+
+                    <div className="text-center w-11/12 italic mx-auto text-sm">
+                      &rdquo;{t("legend")}&rdquo;
+                    </div>
+
+                    <div className="flex gap-3 underline">
+                      <Link
+                        href={
+                          "https://github.com/bryanlundberg/NexusTimer/issues"
+                        }
+                        target="_blank"
+                      >
+                        <Button variant={"link"}>
+                          {t("suggest")}
+                          <ExternalLinkIcon />
+                        </Button>
+                      </Link>
+
+                      <Link
+                        href={
+                          "https://github.com/bryanlundberg/NexusTimer/issues"
+                        }
+                        target="_blank"
+                      >
+                        <Button variant={"link"}>
+                          {t("report-bug")}
+                          <ExternalLinkIcon />
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </MenuSection>
+                </MenuSection>
+              </ScrollArea>
             </motion.div>
             {/* Area to the right  -> Its a transparent layer next to menu */}
             <Link

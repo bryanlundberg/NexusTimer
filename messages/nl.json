@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Timer",
       "hint": "Hint",
       "optimal-yellow-layer": "Optimale Gele Laag",
       "solving": "Oplossen...",
@@ -23,41 +22,57 @@
     },
     "SolvesPage": {
       "title": "Oplossingen",
-      "search-by-time": "⏱︎ Zoek op tijd",
-      "finalize-session": "Sessie afronden",
-      "eliminate-session": "Sessie verwijderen",
-      "archive-sessions-legend": "Deze actie zal alle lopende sessies van dezelfde categorie archiveren.",
-      "delete-session-legend": "Deze actie verwijdert alleen uw huidige oplossingen met de geselecteerde kubus.",
-      "archive": "Archiveren",
-      "unarchive": "De-archiveren",
-      "copy": "Kopiëren",
-      "remove": "Verwijderen",
-      "enter-a-comment": "Voer een opmerking in",
       "session": "Sessie",
       "all": "Alle",
-      "no-cube-selection": "Geen kubus geselecteerd, kies er een...",
-      "no-solves": "Er zijn geen oplossingen om te tonen!",
       "time": "Tijd",
-      "sort-by": "Sorteer op...",
       "descending": "Aflopend",
       "date": "Datum",
-      "ascending": "Oplopend"
+      "ascending": "Oplopend",
+      "alert": {
+        "empty-cubes": "Geen kubus geselecteerd. \nKies er alstublieft één.",
+        "title": "Aandacht!"
+      },
+      "dialogs": {
+        "move-to-history": "Verplaats oplossingen naar de geschiedenis?",
+        "move-to-history-para": "Je kunt ze openen door op de geschiedenisschakelaar te tikken."
+      },
+      "empty-solves": "Hier nog niets!",
+      "empty-solves-description": "Tik op de schakelaar bovenaan het scherm om je geschiedenis te bekijken.",
+      "filter-by-time": "Filter op tijd",
+      "historial": "Historisch",
+      "last": "Laatst",
+      "order": "Volgorde",
+      "share": "Deel",
+      "share-clipboard": {
+        "average": "Gemiddeld",
+        "header": "Gegenereerd door NexusTimer",
+        "list-of-times": "Lijst met tijden"
+      },
+      "sort": "Soort",
+      "toast": {
+        "success-copy": "Gekopieerd",
+        "success-copy-description": "Is naar uw klembord gekopieerd.",
+        "unable-action": "Kan geen actie ondernemen",
+        "warning-select-cube": "Selecteer eerst een kubus."
+      },
+      "tooltips": {
+        "move-to-history": "Verplaats oplossingen voor de geschiedenis"
+      }
     },
     "StatsPage": {
       "title": "Statistieken",
-      "total": "Totaal",
-      "category": "Categorie",
       "global": "Globaal",
       "sessions": "Sessies",
       "best-time": "Beste Tijd",
       "average": "Gemiddelde",
       "time-spent": "Tijd besteed",
       "success-rate": "Succespercentage",
-      "counter": "Teller"
+      "counter": "Teller",
+      "advanced": "Geavanceerd",
+      "overall": "Algemeen"
     },
     "CubesPage": {
       "title": "Kubussen",
-      "cube": "Kubus",
       "no-cubes-for-display": "Geen kubussen om weer te geven.",
       "favorite": "Favoriet",
       "category": "Categorie",
@@ -66,30 +81,35 @@
       "status": "Status",
       "using": "Gebruikend",
       "idle": "Inactief",
-      "filter-cubes": "Filter uw kubussen"
+      "find-your-cube": "Vind je kubus",
+      "name": "Naam",
+      "new-collection": "Nieuwe collectie",
+      "options": "Opties"
     },
     "Cubes-modal": {
-      "title-editing": "Kubus Bewerken",
-      "title-creating": "Nieuwe Kubus",
-      "error-name": "Kubusnaam ontbreekt",
-      "error-duplicate": "Kubusnaam is al in gebruik",
-      "current-select": "Huidige selectie:",
-      "question-delete": "Weet u zeker dat u wilt verwijderen?",
-      "warning-delete": "Deze onomkeerbare actie zal alle oplossingsgeschiedenis voor deze kubus verwijderen en kan invloed hebben op uw statistieken.",
-      "placeholder": "Merk | Model | Versie | Magnetisch?"
+      "category": "Categorie",
+      "current-selection": "Huidige selectie:",
+      "danger-msg": "Het wijzigen van de verzamelingscategorie verandert ook de oplossingen die aan die categorie zijn gekoppeld.",
+      "delete-collection": "Verzameling verwijderen",
+      "delete-collection-description": "Deze kubusverzameling wordt verwijderd, samen met alle oplossingen, records en instellingen ervan.",
+      "edit-collection": "Verzameling bewerken",
+      "input-collection-name": "Voer de collectienaam in",
+      "name": "Naam",
+      "new-collection": "Nieuwe collectie",
+      "new-collection-description": "Met kubuscollecties kunt u de geschiedenis van elke kubus bijhouden zonder de algemene categoriestatistieken te beïnvloeden.",
+      "select-an-option": "Selecteer een optie",
+      "to-continue": "doorgaan:",
+      "warning-alert": "Waarschuwing:",
+      "warning-msg": "Deze actie is niet omkeerbaar."
     },
     "Inputs": {
       "select": "Selecteer",
-      "add-cube": "Kubus Toevoegen",
       "favorites": "Favorieten",
-      "list": "Lijst",
-      "trash-all": "Alles Verwijderen",
-      "move-all": "Alles Verplaatsen",
       "create": "Creëren",
-      "confirm": "Bevestigen",
       "cancel": "Annuleren",
-      "save": "Opslaan",
-      "delete": "Verwijderen"
+      "continue": "Doorgaan",
+      "move": "Beweging",
+      "none": "Geen"
     },
     "Settings-menu": {
       "title": "Instellingen",
@@ -114,7 +134,16 @@
       "custom-background-image": "Aangepaste achtergrondafbeelding",
       "format": "Formaat",
       "allowed-file-types": "Alleen afbeeldingsbestanden (JPEG, PNG, GIF) zijn toegestaan.",
-      "max-file-size": "Maximale bestandsgrootte toegestaan"
+      "max-file-size": "Maximale bestandsgrootte toegestaan",
+      "about": "Over",
+      "auto-select": "Automatische selectie bij opstarten",
+      "data": "App-gegevens",
+      "export-to-file": "Exporteren naar bestand",
+      "import-from-file": "Importeren uit bestand",
+      "legend": "NexusTimer is een meningloze, minimalistische en open source webtool voor SpeedCubing.",
+      "preferences": "Voorkeuren",
+      "report-bug": "Rapporteer een bug",
+      "suggest": "Stel een wijziging voor"
     },
     "backup-modal": {
       "title": "Intelligente Back-up Herstel",
@@ -124,6 +153,17 @@
       "loading-part-1": "Deze actie duurt minder dan een minuut.",
       "loading-part-2": "Even geduld aub, sluit dit venster niet.",
       "welcome": "Welkom:"
+    },
+    "Errors": {
+      "empty-input": "Voer een waarde in",
+      "not-match": "De naam komt niet overeen.",
+      "repeated-name": "Die naamverzameling bestaat al."
+    },
+    "tooltips": {
+      "bookmark": "Bladwijzer",
+      "copy": "Kopiëren",
+      "delete": "Verwijderen",
+      "plus-two": "2 Straf"
     }
   },
   "Metadata": {

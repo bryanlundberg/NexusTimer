@@ -5,7 +5,8 @@ import Loading from "../Loading";
 import { AnimatePresence, motion } from "framer-motion";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import { useTranslations } from "next-intl";
-import { LightBulbIcon, PencilIcon } from "@heroicons/react/24/solid";
+import { InteractiveIcon } from "./InteractiveIcon";
+import { Component1Icon, Pencil2Icon } from "@radix-ui/react-icons";
 
 export function ScrambleZone() {
   const {
@@ -53,7 +54,9 @@ export function ScrambleZone() {
               exit={{ opacity: 0.1 }}
               className="absolute bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3"
             >
-              <div
+              <InteractiveIcon
+                message={t("enter-custom-scramble")}
+                icon={<Pencil2Icon className="size-5" />}
                 onClick={() => {
                   const newScramble = window.prompt(
                     `${t("enter-custom-scramble")}`
@@ -62,16 +65,15 @@ export function ScrambleZone() {
                     setCustomScramble(newScramble);
                   }
                 }}
-                className="hover:scale-105 light:hover:text-neutral-500 dark:hover:text-neutral-200 duration-200 transition"
-              >
-                <PencilIcon className="w-6 h-6" />
-              </div>
+              />
 
               {selectedCube?.category &&
                 ["3x3", "3x3 OH"].includes(selectedCube.category) &&
                 !displayHint &&
                 !isSolving && (
-                  <div
+                  <InteractiveIcon
+                    message="Hints"
+                    icon={<Component1Icon className="size-5" />}
                     onClick={() => {
                       setDisplayHint(true);
                       genSolution(
@@ -80,10 +82,7 @@ export function ScrambleZone() {
                         "yellow"
                       ).then((res: CrossSolutions) => setHints(res));
                     }}
-                    className="hover:scale-105 hover:text-yellow-600 duration-200 transition"
-                  >
-                    <LightBulbIcon className="w-6 h-6" />
-                  </div>
+                  />
                 )}
             </motion.div>
           )}

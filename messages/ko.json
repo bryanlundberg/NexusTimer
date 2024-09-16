@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "타이머",
       "hint": "힌트",
       "optimal-yellow-layer": "최적의 옐로우 레이어",
       "solving": "풀이 중...",
@@ -23,41 +22,57 @@
     },
     "SolvesPage": {
       "title": "해결",
-      "search-by-time": "⏱︎ 시간별 검색",
-      "finalize-session": "세션 완료",
-      "eliminate-session": "세션 제거",
-      "archive-sessions-legend": "이 작업은 동일한 카테고리의 모든 진행 중인 세션을 아카이브합니다.",
-      "delete-session-legend": "이 작업은 선택한 큐브의 현재 해결만 삭제합니다.",
-      "archive": "아카이브",
-      "unarchive": "아카이브 해제",
-      "copy": "복사",
-      "remove": "제거",
-      "enter-a-comment": "코멘트 입력",
       "session": "세션",
       "all": "모두",
-      "no-cube-selection": "큐브가 선택되지 않았습니다. 하나를 선택하세요...",
-      "no-solves": "표시할 해결이 없습니다!",
-      "sort-by": "정렬 기준...",
       "descending": "내림차순",
       "date": "날짜",
       "ascending": "오름차순",
-      "time": "시간"
+      "time": "시간",
+      "alert": {
+        "empty-cubes": "선택한 큐브가 없습니다. \n하나를 선택해 주세요.",
+        "title": "주목!"
+      },
+      "dialogs": {
+        "move-to-history": "이동은 역사로 해결됩니까?",
+        "move-to-history-para": "기록 스위치를 탭하여 액세스할 수 있습니다."
+      },
+      "empty-solves": "아직 아무것도 없습니다!",
+      "empty-solves-description": "기록을 보려면 화면 상단의 스위치를 탭하세요.",
+      "filter-by-time": "시간별로 필터링",
+      "historial": "역사",
+      "last": "마지막",
+      "order": "주문하다",
+      "share": "공유하다",
+      "share-clipboard": {
+        "average": "평균",
+        "header": "NexusTimer에 의해 생성됨",
+        "list-of-times": "시간 목록"
+      },
+      "sort": "종류",
+      "toast": {
+        "success-copy": "성공적으로 복사되었습니다",
+        "success-copy-description": "클립보드에 복사되었습니다.",
+        "unable-action": "조치할 수 없음",
+        "warning-select-cube": "먼저 큐브를 선택하세요."
+      },
+      "tooltips": {
+        "move-to-history": "이동은 기록으로 해결됩니다."
+      }
     },
     "StatsPage": {
       "title": "통계",
-      "total": "총",
-      "category": "카테고리",
       "global": "전체",
       "sessions": "세션",
       "best-time": "최고 시간",
       "average": "평균",
       "time-spent": "소요 시간",
       "success-rate": "성공률",
-      "counter": "카운터"
+      "counter": "카운터",
+      "advanced": "고급의",
+      "overall": "전반적인"
     },
     "CubesPage": {
       "title": "큐브",
-      "cube": "큐브",
       "no-cubes-for-display": "표시할 큐브가 없습니다.",
       "favorite": "즐겨찾기",
       "category": "카테고리",
@@ -66,30 +81,35 @@
       "status": "상태",
       "using": "사용 중",
       "idle": "유휴",
-      "filter-cubes": "큐브 필터링"
+      "find-your-cube": "당신의 큐브를 찾아보세요",
+      "name": "이름",
+      "new-collection": "새로운 컬렉션",
+      "options": "옵션"
     },
     "Cubes-modal": {
-      "title-editing": "큐브 수정",
-      "title-creating": "새로운 큐브",
-      "error-name": "큐브 이름이 없습니다",
-      "error-duplicate": "이미 사용 중인 큐브 이름입니다",
-      "current-select": "현재 선택:",
-      "question-delete": "정말로 삭제하시겠습니까?",
-      "warning-delete": "이 작업은 되돌릴 수 없습니다. 이 큐브의 모든 해결 기록이 삭제되며 통계에 영향을 줄 수 있습니다.",
-      "placeholder": "브랜드 | 모델 | 버전 | 자석?"
+      "category": "범주",
+      "current-selection": "현재 선택:",
+      "danger-msg": "컬렉션 카테고리를 수정하면 해당 카테고리와 관련된 해결도 변경됩니다.",
+      "delete-collection": "컬렉션 삭제",
+      "delete-collection-description": "이 큐브 컬렉션은 모든 해결, 기록 및 설정과 함께 삭제됩니다.",
+      "edit-collection": "컬렉션 수정",
+      "input-collection-name": "컬렉션 이름을 입력하세요.",
+      "name": "이름",
+      "new-collection": "새로운 컬렉션",
+      "new-collection-description": "큐브 컬렉션을 사용하면 전체 카테고리 통계에 영향을 주지 않고 각 큐브의 기록을 추적할 수 있습니다.",
+      "select-an-option": "옵션을 선택하세요",
+      "to-continue": "계속하려면:",
+      "warning-alert": "경고:",
+      "warning-msg": "이 작업은 되돌릴 수 없습니다."
     },
     "Inputs": {
       "select": "선택",
-      "add-cube": "큐브 추가",
       "favorites": "즐겨찾기",
-      "list": "목록",
-      "trash-all": "모두 삭제",
-      "move-all": "모두 이동",
       "create": "생성",
-      "confirm": "확인",
       "cancel": "취소",
-      "save": "저장",
-      "delete": "삭제"
+      "continue": "계속하다",
+      "move": "이동하다",
+      "none": "없음"
     },
     "Settings-menu": {
       "title": "설정",
@@ -114,7 +134,16 @@
       "custom-background-image": "사용자 지정 배경 이미지",
       "format": "형식",
       "allowed-file-types": "이미지 파일(JPEG, PNG, GIF)만 허용됩니다.",
-      "max-file-size": "허용되는 최대 파일 크기"
+      "max-file-size": "허용되는 최대 파일 크기",
+      "about": "에 대한",
+      "auto-select": "시작 시 자동 선택",
+      "data": "앱 데이터",
+      "export-to-file": "파일로 내보내기",
+      "import-from-file": "파일에서 가져오기",
+      "legend": "NexusTimer는 SpeedCubing을 위한 독립적이고 미니멀한 오픈 소스 웹 도구입니다.",
+      "preferences": "환경설정",
+      "report-bug": "버그 신고",
+      "suggest": "변경 제안"
     },
     "backup-modal": {
       "title": "지능형 백업 복원",
@@ -124,6 +153,17 @@
       "loading-part-1": "이 작업은 1분 미만이 소요됩니다.",
       "loading-part-2": "기다려주세요. 이 창을 닫지 마세요.",
       "welcome": "환영합니다:"
+    },
+    "Errors": {
+      "empty-input": "값을 입력하세요.",
+      "not-match": "이름이 일치하지 않습니다.",
+      "repeated-name": "해당 이름 컬렉션이 이미 존재합니다."
+    },
+    "tooltips": {
+      "bookmark": "서표",
+      "copy": "복사",
+      "delete": "삭제",
+      "plus-two": "2 페널티"
     }
   },
   "Metadata": {

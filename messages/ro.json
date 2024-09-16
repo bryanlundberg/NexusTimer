@@ -1,7 +1,6 @@
 {
   "Index": {
     "HomePage": {
-      "title": "Cronometru",
       "hint": "Sugestie",
       "optimal-yellow-layer": "Stratul Galben Optim",
       "solving": "Rezolvare...",
@@ -23,41 +22,57 @@
     },
     "SolvesPage": {
       "title": "Soluții",
-      "search-by-time": "⏱️ Căutați după timp",
-      "finalize-session": "Finalizați sesiunea",
-      "eliminate-session": "Eliminați sesiunea",
-      "archive-sessions-legend": "Această acțiune va arhiva toate sesiunile în curs din aceeași categorie.",
-      "delete-session-legend": "Această acțiune va șterge doar soluțiile curente cu cubul selectat.",
-      "archive": "Arhivă",
-      "unarchive": "Dezarhivare",
-      "copy": "Copiere",
-      "remove": "Eliminare",
-      "enter-a-comment": "Introduceți un comentariu",
       "session": "Sesiune",
       "all": "Toate",
-      "no-cube-selection": "Niciun cub selectat, alegeți unul...",
-      "no-solves": "Nu sunt soluții de afișat!",
       "time": "Timp",
-      "sort-by": "Filtrează după...",
       "descending": "Descendentă",
       "date": "Data",
-      "ascending": "Ascendent"
+      "ascending": "Ascendent",
+      "alert": {
+        "empty-cubes": "Niciun cub selectat. \nVă rugăm să alegeți unul.",
+        "title": "Atenţie!"
+      },
+      "dialogs": {
+        "move-to-history": "Mutați soluțiile în istorie?",
+        "move-to-history-para": "Le veți putea accesa atingând comutatorul istoric."
+      },
+      "empty-solves": "Nimic aici încă!",
+      "empty-solves-description": "Atingeți comutatorul din partea de sus a ecranului pentru a vedea istoricul dvs.",
+      "filter-by-time": "Filtrați după timp",
+      "historial": "istoric",
+      "last": "Dura",
+      "order": "Comanda",
+      "share": "Distribuie",
+      "share-clipboard": {
+        "average": "Medie",
+        "header": "Generat de NexusTimer",
+        "list-of-times": "Lista de timpuri"
+      },
+      "sort": "Sorta",
+      "toast": {
+        "success-copy": "Copiat cu succes",
+        "success-copy-description": "A fost copiat în clipboard.",
+        "unable-action": "Acțiune imposibilă",
+        "warning-select-cube": "Vă rugăm să selectați un cub înainte."
+      },
+      "tooltips": {
+        "move-to-history": "Mutați rezolvările în istorie"
+      }
     },
     "StatsPage": {
       "title": "Statistici",
-      "total": "Total",
-      "category": "Categorie",
       "global": "Global",
       "sessions": "Sesiuni",
       "best-time": "Cel mai bun timp",
       "average": "Medie",
       "time-spent": "Timp petrecut",
       "success-rate": "Rată de succes",
-      "counter": "Contor"
+      "counter": "Contor",
+      "advanced": "Avansat",
+      "overall": "În general"
     },
     "CubesPage": {
       "title": "Cuburi",
-      "cube": "Cub",
       "no-cubes-for-display": "Nu există cuburi de afișat.",
       "favorite": "Favorit",
       "category": "Categorie",
@@ -66,30 +81,35 @@
       "status": "Stare",
       "using": "Utilizând",
       "idle": "Inactiv",
-      "filter-cubes": "Filtrare cuburi"
+      "find-your-cube": "Găsește-ți cubul",
+      "name": "Nume",
+      "new-collection": "Noua colectie",
+      "options": "Opțiuni"
     },
     "Cubes-modal": {
-      "title-editing": "Editare Cub",
-      "title-creating": "Cub Nou",
-      "error-name": "Lipsește numele cubului",
-      "error-duplicate": "Numele cubului este deja utilizat",
-      "current-select": "Selectare curentă:",
-      "question-delete": "Sigur doriți să ștergeți?",
-      "warning-delete": "Această acțiune ireversibilă va șterge întreaga istorie de soluții pentru acest cub și ar putea afecta statisticile dvs.",
-      "placeholder": "Marcă | Model | Versiune | Magnet?"
+      "category": "Categorie",
+      "current-selection": "Selecția curentă:",
+      "danger-msg": "Modificarea categoriei de colecție modifică și rezolvările asociate acelei categorii.",
+      "delete-collection": "Ștergeți colecția",
+      "delete-collection-description": "Această colecție de cuburi va fi ștearsă, împreună cu toate rezolvările, înregistrările și setările sale.",
+      "edit-collection": "Editați colecția",
+      "input-collection-name": "Introduceți numele colecției",
+      "name": "Nume",
+      "new-collection": "Noua colectie",
+      "new-collection-description": "Colecțiile de cub vă permit să urmăriți istoricul fiecărui cub fără a afecta statisticile generale ale categoriei.",
+      "select-an-option": "Selectați o opțiune",
+      "to-continue": "a continua:",
+      "warning-alert": "Avertizare:",
+      "warning-msg": "Această acțiune nu este reversibilă."
     },
     "Inputs": {
       "select": "Selectați",
-      "add-cube": "Adăugați cub",
       "favorites": "Favorite",
-      "list": "Listă",
-      "trash-all": "Aruncă tot",
-      "move-all": "Mută tot",
       "create": "Creează",
-      "confirm": "Confirmare",
       "cancel": "Anulare",
-      "save": "Salvare",
-      "delete": "Ștergere"
+      "continue": "Continua",
+      "move": "Mişcare",
+      "none": "Nici unul"
     },
     "Settings-menu": {
       "title": "Setări",
@@ -114,7 +134,16 @@
       "custom-background-image": "Imagine de fundal personalizată",
       "format": "Format",
       "allowed-file-types": "Sunt permise doar fișiere de imagine (JPEG, PNG, GIF).",
-      "max-file-size": "Dimensiunea maximă a fișierului permisă"
+      "max-file-size": "Dimensiunea maximă a fișierului permisă",
+      "about": "Despre",
+      "auto-select": "Selectare automată la pornire",
+      "data": "Date aplicației",
+      "export-to-file": "Exportați în fișier",
+      "import-from-file": "Import din fișier",
+      "legend": "NexusTimer este un instrument web fără păreri, minimalist și open source pentru SpeedCubing.",
+      "preferences": "Preferințe",
+      "report-bug": "Raportați o eroare",
+      "suggest": "Sugerați o schimbare"
     },
     "backup-modal": {
       "title": "Restaurare Inteligentă a Backup-ului",
@@ -124,6 +153,17 @@
       "loading-part-1": "Această acțiune durează mai puțin de un minut.",
       "loading-part-2": "Vă rugăm să așteptați, nu închideți această fereastră.",
       "welcome": "Bun venit:"
+    },
+    "Errors": {
+      "empty-input": "Vă rugăm să introduceți o valoare",
+      "not-match": "Numele nu se potrivește.",
+      "repeated-name": "Această colecție de nume există deja."
+    },
+    "tooltips": {
+      "bookmark": "Marcaj",
+      "copy": "Copie",
+      "delete": "Şterge",
+      "plus-two": "2 pedeapsa"
     }
   },
   "Metadata": {

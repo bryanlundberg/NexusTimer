@@ -1,25 +1,25 @@
 import { Link, usePathname } from "@/i18n/routing";
+import { twMerge } from "tailwind-merge";
 
 interface NavItem {
   path: string;
-  normalIcon: React.ReactNode;
-  solidIcon: React.ReactNode;
+  icon: React.ReactNode;
 }
 
-export function NavItem({ path, solidIcon, normalIcon }: NavItem) {
+export function NavItem({ path, icon }: NavItem) {
   const pathname = usePathname();
   return (
     <>
-      <li className="grow">
+      <li className="grow first:rounded-s-md last:rounded-e-md overflow-hidden">
         <Link
           href={path}
-          className={`${
-            pathname === path
-              ? "light:text-neutral-900 dark:text-neutral-200"
-              : "light:text-neutral-500 dark:text-neutral-400"
-          } transition-all duration-300 py-2 rounded-md hover:dark:text-neutral-300 light:hover:text-neutral-900 flex flex-col justify-center items-center font-medium`}
+          className={twMerge(
+            `${
+              pathname === path ? "bg-secondary" : ""
+            } transition duration-300 py-2 flex flex-col justify-center items-center font-medium  `
+          )}
         >
-          {pathname === path ? solidIcon : normalIcon}
+          {icon}
         </Link>
       </li>
     </>

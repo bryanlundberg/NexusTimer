@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import PreloadSettings from "@/components/PreloadSettings";
 import { roboto } from "@/fonts/fonts";
@@ -49,6 +50,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <PreloadSettings>{children}</PreloadSettings>
         </NextIntlClientProvider>
+        <Toaster />
       </body>
     </html>
   );

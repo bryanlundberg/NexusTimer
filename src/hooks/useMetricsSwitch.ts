@@ -6,7 +6,6 @@ import calcDeviation from "@/lib/calcDeviation";
 import calcSuccessRate from "@/lib/calcSuccessRate";
 import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
 import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
-import { cubeCollection } from "@/lib/const/cubeCollection";
 import {
   defaultChartValuesA,
   defaultChartValuesS,
@@ -22,60 +21,27 @@ export default function useMetricsSwitch() {
   const t = useTranslations("Index.SolvesPage");
   const { cubes } = useTimerStore();
   const [filterCategory, setFilterCategory] = useState<Categories>("3x3");
-  const [filterCube, setFilterCube] = useState(t("all"));
+  const [filterCube, setFilterCube] = useState<string>("all");
 
-  const [optInChart, setOptInChart] = useState({
-    mean: true,
-    best: false,
+  const [stats, setStats] = useState({
+    average: defaultChartValuesN,
+    timeSpent: defaultChartValuesS,
+    counter: defaultChartValuesN,
+    stats: defaultChartAoValues,
+    deviation: defaultChartValuesN,
+    successRate: defaultChartValuesS,
+    best: defaultChartValuesN,
+    data: defaultChartValuesA,
   });
 
-  const [average, setAverage] = useState(defaultChartValuesN);
-  const [timeSpent, setTimeSpent] = useState(defaultChartValuesS);
-  const [counter, setCounter] = useState(defaultChartValuesN);
-  const [stats, setStats] = useState(defaultChartAoValues);
-  const [deviation, setDeviation] = useState(defaultChartValuesN);
-  const [successRate, setSuccessRate] = useState(defaultChartValuesS);
-  const [best, setBest] = useState(defaultChartValuesN);
-  const [data, setData] = useState(defaultChartValuesA);
-
-  const categoryOptions = loadCategoryOptions();
-  const cubeOptions = loadCubeOptions();
-
-  function loadCategoryOptions() {
-    const categoryOptions: any[] = [];
-    cubeCollection.map((cat) => {
-      categoryOptions.push({ name: cat.name, id: cat.name });
-    });
-    return categoryOptions;
-  }
-
-  function loadCubeOptions() {
-    const CubeOptions: any[] = [
-      {
-        name: t("all"),
-        id: t("all"),
-      },
-    ];
-    cubes?.map((cube) => {
-      if (cube.category === filterCategory) {
-        CubeOptions.push({ name: cube.name, id: cube.name });
-      }
-    });
-    return CubeOptions;
-  }
-
   const handleChangeCategory = (value: any) => {
-    setFilterCube(t("all"));
+    setFilterCube("all");
     setFilterCategory(value);
   };
 
   const handleChangeCube = (value: any) => {
     setFilterCube(value);
   };
-
-  useEffect(() => {
-    setFilterCube(t("all"));
-  }, [t]);
 
   useEffect(() => {
     const calculatedAverage = calcAverageStatistics({
@@ -119,14 +85,17 @@ export default function useMetricsSwitch() {
       cubeName: filterCube,
     });
 
-    setAverage(calculatedAverage);
-    setTimeSpent(calculatedTimeSpent);
-    setCounter(calculatedCounter);
-    setStats(calculatedStats);
-    setDeviation(calculatedDeviation);
-    setSuccessRate(calculatedSuccessRate);
-    setBest(calculatedBest);
-    setData(calculatedData);
+    setStats((prev) => ({
+      ...prev,
+      average: calculatedAverage,
+      timeSpent: calculatedTimeSpent,
+      counter: calculatedCounter,
+      stats: calculatedStats,
+      deviation: calculatedDeviation,
+      successRate: calculatedSuccessRate,
+      best: calculatedBest,
+      data: calculatedData,
+    }));
   }, [filterCategory, filterCube, cubes]);
 
   return {
@@ -134,17 +103,6 @@ export default function useMetricsSwitch() {
     filterCube,
     handleChangeCategory,
     handleChangeCube,
-    categoryOptions,
-    cubeOptions,
-    optInChart,
-    setOptInChart,
-    average,
-    timeSpent,
-    counter,
     stats,
-    deviation,
-    successRate,
-    best,
-    data,
   };
 }

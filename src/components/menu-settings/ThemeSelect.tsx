@@ -2,6 +2,7 @@ import { Themes } from "@/interfaces/types/Themes";
 import loadSettings from "@/lib/loadSettings";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import { useTheme } from "next-themes";
 
 interface Variation {
   bg: string;
@@ -13,6 +14,7 @@ interface Variation {
 export default function ThemeSelect() {
   const { settings, setSettings } = useSettingsModalStore();
   const { backgroundImage, deleteBackgroundImage } = useBackgroundImageStore();
+  const { setTheme } = useTheme();
   const variation: Variation[] = [
     {
       bg: "bg-neutral-100",
@@ -45,30 +47,30 @@ export default function ThemeSelect() {
     currentSettings.theme.background.color = theme;
     window.localStorage.setItem("settings", JSON.stringify(currentSettings));
     setSettings(currentSettings);
+    setTheme(themeKey);
   };
 
   return (
-    <div className="grid justify-around grid-cols-2 gap-10 ms-10 me-10">
+    <div className="grid justify-around grid-cols-3 gap-10 ms-10 me-10">
       {variation.map((item) => (
-        <div key={item.key}>
+        <div
+          key={item.key}
+          onClick={() => handleSelectTheme(item.key)}
+          className="flex flex-col items-center justify-center"
+        >
           <div
-            onClick={() => handleSelectTheme(item.key)}
-            className="flex flex-col items-center justify-center"
-          >
-            <div
-              className={`cursor-pointer w-full h-40 rounded-md ${item.bg} ${
-                item.key === settings.theme.background.color
-                  ? "outline outline-blue-600"
-                  : "border border-neutral-400"
-              }`}
-            ></div>
-            <div className="mt-1 text-xs font-medium">{item.name}</div>
-          </div>
+            className={`cursor-pointer size-20 rounded-full ${item.bg} ${
+              item.key === settings.theme.background.color
+                ? "outline outline-blue-600"
+                : "border border-neutral-400"
+            }`}
+          ></div>
+          <div className="mt-1 text-xs font-medium">{item.name}</div>
         </div>
       ))}
       {backgroundImage && (
         <div
-          className="relative cursor-pointer w-full h-40 rounded-md"
+          className="relative cursor-pointer size-20 rounded-full"
           style={{
             backgroundImage: `url(${backgroundImage})`,
             backgroundPosition: "center",
@@ -78,7 +80,7 @@ export default function ThemeSelect() {
         >
           <div
             onClick={deleteBackgroundImage}
-            className="absolute top-0 right-0 w-6 h-6 text-white rounded-xl bg-red-600 text-center align-middle hover:scale-110 transition duration-200 mt-1 me-1"
+            className="absolute top-0 -right-2 w-6 h-6 text-white rounded-xl bg-red-600 text-center align-middle hover:scale-110 transition duration-200 mt-1 me-1"
           >
             X
           </div>
