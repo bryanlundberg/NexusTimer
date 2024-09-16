@@ -1,21 +1,23 @@
 import { useTranslations } from "next-intl";
-import { Alert, AlertDescription, AlertTitle } from "../ui/alert";
+import Image from "next/image";
 
-export default function EmptySolves({
-  message,
-  icon,
-}: {
-  message: string;
-  icon: React.ReactNode;
-}) {
-  const t = useTranslations("Index");
+export default function EmptySolves() {
+  const t = useTranslations("Index.SolvesPage");
   return (
     <>
-      <Alert variant={"destructive"}>
-        {icon}
-        <AlertTitle className="ms-2">{t("SolvesPage.alert.title")}</AlertTitle>
-        <AlertDescription className="ms-2">{message}</AlertDescription>
-      </Alert>
+      <>
+        <div className="w-full flex flex-col items-center justify-center text-center text-sm sm:text-md font-mono border border-dashed rounded-md py-20">
+          <Image
+            src={"/empty.png"}
+            alt="empty"
+            width={200}
+            height={200}
+            className="object-scale-down mb-10 size-40"
+          />
+          <div>{t("empty-solves")}</div>
+          <div className="w-10/12">{t("empty-solves-description")}</div>
+        </div>
+      </>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { useTimerStore } from "@/store/timerStore";
-import EmptySolves from "@/components/solves/EmptySolves";
+import AlertEmptySolves from "@/components/solves/AlertEmptySolves";
 import { Solve } from "@/interfaces/Solve";
 import { VirtualizedGrid } from "@mierak/react-virtualized-grid";
 import formatTime from "@/lib/formatTime";
@@ -16,7 +16,7 @@ import {
   ChatBubbleIcon,
   CubeIcon,
 } from "@radix-ui/react-icons";
-import Image from "next/image";
+import EmptySolves from "./EmptySolves";
 
 interface SolvesArea {
   displaySolves: Solve[] | undefined;
@@ -30,25 +30,13 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   useRemoveGridHeight();
 
   if (!selectedCube) {
-    return <EmptySolves message={t("alert.empty-cubes")} icon={<CubeIcon />} />;
+    return (
+      <AlertEmptySolves message={t("alert.empty-cubes")} icon={<CubeIcon />} />
+    );
   }
 
   if (!displaySolves || displaySolves.length === 0) {
-    return (
-      <>
-        <div className="w-full flex flex-col items-center justify-center text-center text-sm sm:text-md">
-          <Image
-            src={"/empty.png"}
-            alt="empty"
-            width={200}
-            height={200}
-            className="object-scale-down my-20"
-          />
-          <div>{t("empty-solves")}</div>
-          <div>{t("empty-solves-description")}</div>
-        </div>
-      </>
-    );
+    return <EmptySolves />;
   }
 
   const filterSolves = filterData(displaySolves, [

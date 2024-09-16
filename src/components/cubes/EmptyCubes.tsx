@@ -1,28 +1,26 @@
 import Image from "next/image";
-import nodata from "@/images/no-data.svg";
 import { useTranslations } from "next-intl";
 
-interface EmptyCubes {
-  onClick: () => void;
-}
+interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export default function EmptyCubes({ onClick }: EmptyCubes) {
+export default function EmptyCubes({ ...rest }: EmptyCubesProps) {
   const t = useTranslations("Index.CubesPage");
   return (
     <>
       <div
-        onClick={onClick}
-        className="flex flex-col items-center justify-center h-full m-3 overflow-auto border border-dashed rounded-md cursor-pointer grow border-zinc-800"
+        {...rest}
+        className="flex flex-col items-center justify-center h-full m-3 overflow-auto border border-dashed rounded-md cursor-pointer grow  min-h-96"
       >
         <div className="flex flex-col items-center justify-center gap-1 p-3 font-medium">
           <Image
-            src={nodata}
+            src={"/emp-cube.png"}
             alt={"no-cubes-for-display"}
-            width={56}
-            height={61}
+            width={180}
+            height={180}
             draggable={false}
+            className="size-60 object-scale-down"
           />
-          <div>{t("no-cubes-for-display")}</div>
+          <p className="font-mono">{t("no-cubes-for-display")}</p>
         </div>
       </div>
     </>
