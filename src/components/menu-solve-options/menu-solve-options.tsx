@@ -10,6 +10,7 @@ import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
 import updateSolve from "@/lib/updateSolve";
 import { useDialogSolve } from "@/store/DialogSolve";
+import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { useTimerStore } from "@/store/timerStore";
 import {
   BookmarkFilledIcon,
@@ -30,11 +31,11 @@ export default function MenuSolveOptions({
   caseOfUse: "last-solve" | "modal-solve";
 }) {
   const t = useTranslations("Index");
-  const { selectedCube, setCubes, setSelectedCube } = useTimerStore();
+  const { selectedCube, setCubes, setSelectedCube, lastSolve, setLastSolve } =
+    useTimerStore();
   const dialog = useDialogSolve();
-  const { lastSolve, setLastSolve } = useTimerStore();
 
-  if (!solve && !selectedCube) return null;
+  if (!selectedCube) return null;
 
   const handleDeleteSolve = async () => {
     if (solve && selectedCube) {
@@ -43,6 +44,20 @@ export default function MenuSolveOptions({
         selectedCube: selectedCube,
         type: "DELETE",
       });
+
+      if (caseOfUse === "last-solve") {
+        if (lastSolve?.id === dialog.solve?.id) {
+          dialog.handleSetSolveInDialog({ solve: null });
+        }
+        setLastSolve(null);
+      }
+
+      if (caseOfUse === "modal-solve") {
+        if (lastSolve?.id === dialog.solve?.id) {
+          setLastSolve(null);
+        }
+        dialog.handleSetSolveInDialog({ solve: null });
+      }
 
       const lastCubes = await getAllCubes();
       setCubes([...lastCubes]);
@@ -76,14 +91,22 @@ export default function MenuSolveOptions({
         setSelectedCube({ ...lastCube });
       }
 
-      if (caseOfUse === "modal-solve") {
-        dialog.handleSetSolveInDialog({
-          solve: { ...solve, plus2: !solve.plus2 },
-        });
-      }
+      if (lastCube) {
+        const solvesGlobal = [
+          ...lastCube.solves.session,
+          ...lastCube.solves.all,
+        ];
 
-      if (caseOfUse === "last-solve" && lastSolve) {
-        setLastSolve({ ...lastSolve, plus2: !lastSolve.plus2 });
+        const updatedSolve = solvesGlobal.find((i) => i.id === solve.id);
+
+        if (updatedSolve && lastSolve && updatedSolve.id === lastSolve.id) {
+          dialog.handleSetSolveInDialog({ solve: { ...updatedSolve } });
+          setLastSolve({ ...updatedSolve });
+        } else if (updatedSolve && caseOfUse === "modal-solve") {
+          dialog.handleSetSolveInDialog({ solve: { ...updatedSolve } });
+        } else if (updatedSolve && caseOfUse === "last-solve") {
+          setLastSolve({ ...updatedSolve });
+        }
       }
 
       toast("", {
@@ -100,6 +123,7 @@ export default function MenuSolveOptions({
         selectedCube: selectedCube,
         type: "BOOKMARK",
       });
+
       const lastCubes = await getAllCubes();
       setCubes([...lastCubes]);
 
@@ -108,19 +132,27 @@ export default function MenuSolveOptions({
         setSelectedCube({ ...lastCube });
       }
 
-      if (caseOfUse === "modal-solve") {
-        dialog.handleSetSolveInDialog({
-          solve: { ...solve, bookmark: !solve.bookmark },
-        });
-      }
+      if (lastCube) {
+        const solvesGlobal = [
+          ...lastCube.solves.session,
+          ...lastCube.solves.all,
+        ];
 
-      if (caseOfUse === "last-solve" && lastSolve) {
-        setLastSolve({ ...lastSolve, bookmark: !lastSolve.bookmark });
+        const updatedSolve = solvesGlobal.find((i) => i.id === solve.id);
+
+        if (updatedSolve && lastSolve && updatedSolve.id === lastSolve.id) {
+          dialog.handleSetSolveInDialog({ solve: { ...updatedSolve } });
+          setLastSolve({ ...updatedSolve });
+        } else if (updatedSolve && caseOfUse === "modal-solve") {
+          dialog.handleSetSolveInDialog({ solve: { ...updatedSolve } });
+        } else if (updatedSolve && caseOfUse === "last-solve") {
+          setLastSolve({ ...updatedSolve });
+        }
       }
 
       toast("", {
         description: "Bookmark status updated.",
-        duration: 1000,
+        duration: 500,
       });
     }
   };
