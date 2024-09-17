@@ -44,7 +44,7 @@ export default function MenuSettings() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -400, opacity: 0.6 }}
               transition={{ type: "lineal" }}
-              className="flex flex-col w-full gap-3 sm:w-96 bg-background border-r"
+              className="flex flex-col w-full gap-3 sm:max-w-[450px] bg-background border-r"
             >
               <ScrollArea>
                 <div className="my-3 relative">
