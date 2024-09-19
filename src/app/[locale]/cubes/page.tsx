@@ -35,7 +35,9 @@ export default function Page() {
         {/* header */}
         <Card className="w-full mb-2 border p-3 border-none">
           <div className="flex gap-10 items-center justify-between">
-            <h2 className="font-black text-xl">{t("CubesPage.title")}</h2>
+            <h2 className="font-black text-xl" data-testId="page-title-cubes">
+              {t("CubesPage.title")}
+            </h2>
             <div className="flex items-center justify-end gap-3 w-full">
               <Input
                 placeholder={t("CubesPage.find-your-cube")}
