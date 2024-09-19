@@ -79,11 +79,13 @@ export default function SheetSolveDetails() {
           <Textarea className="mt-3 resize-none h-40" />
         </div> */}
 
-        <MenuSolveOptions
-          solve={solve}
-          onDeleteSolve={handleCloseDialogSolve}
-          caseOfUse="modal-solve"
-        />
+        {solve && (
+          <MenuSolveOptions
+            solve={solve}
+            onDeleteSolve={handleCloseDialogSolve}
+            caseOfUse="modal-solve"
+          />
+        )}
 
         <Image
           src={"/brand_logo.svg"}

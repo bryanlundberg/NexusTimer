@@ -33,7 +33,7 @@ export function useCubes() {
     }
   };
 
-  const redirectToTimer = (cubeId: string) => {
+  const handleRedirectToTimer = (cubeId: string) => {
     const clickedCube = cubes?.find((i) => i.id === cubeId);
 
     // If the cube does not exist, do nothing
@@ -54,6 +54,6 @@ export function useCubes() {
     filterCubes,
     handleSearchFilter,
     handleFavoriteClick,
-    redirectToTimer,
+    handleRedirectToTimer,
   };
 }
