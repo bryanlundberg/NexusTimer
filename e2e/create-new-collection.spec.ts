@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("should create a cube", async ({ page }) => {
-  await page.locator("body").click();
+  await page.goto("http://localhost:3000/en");
   await expect(page.getByTestId("main-cube-selector")).toBeVisible();
   await page.getByTestId("main-cube-selector").click();
   await expect(
