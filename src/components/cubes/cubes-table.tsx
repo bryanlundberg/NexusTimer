@@ -37,7 +37,7 @@ export default function CubesTable({
   const { openDialogType } = useDialogCubesOptions();
   return (
     <>
-      <Card className="overflow-auto">
+      <Card className="overflow-auto" data-testId="table-of-cubes">
         <Table>
           <TableHeader>
             <TableRow>
@@ -73,6 +73,7 @@ export default function CubesTable({
                   <TableCell
                     onClick={() => handleRedirectToTimer(cube.id)}
                     className="hover:cursor-pointer"
+                    data-testId={"cube-name-" + cube.name}
                   >
                     {cube.name}
                   </TableCell>
@@ -115,12 +116,13 @@ export default function CubesTable({
                   <TableCell>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant={"ghost"}>
+                        <Button variant={"ghost"} data-testId="cube-options">
                           <DotsHorizontalIcon />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent>
+                      <DropdownMenuContent data-testId="dropdown-cube-options-container">
                         <DropdownMenuItem
+                          data-testId="dropdown-cube-options-edit"
                           onClick={() =>
                             openDialogType({
                               type: "edit",
@@ -131,6 +133,7 @@ export default function CubesTable({
                           Edit
                         </DropdownMenuItem>
                         <DropdownMenuItem
+                          data-testId="dropdown-cube-options-delete"
                           onClick={() =>
                             openDialogType({
                               type: "delete",

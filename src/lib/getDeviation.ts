@@ -6,7 +6,9 @@ import { Solve } from "@/interfaces/Solve";
  * @returns {number} The standard deviation of solve times. Returns 0 if there are less than 2 solves.
  */
 export default function getDeviation(solves: Solve[]): number {
-  if (!solves) return 0;
+  if (!solves || typeof solves === "string" || typeof solves === "number") {
+    return 0;
+  }
 
   // If there are less than 2 solves, the standard deviation is 0.
   if (solves.length < 2) {

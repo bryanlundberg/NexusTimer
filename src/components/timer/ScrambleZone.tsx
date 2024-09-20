@@ -34,11 +34,13 @@ export function ScrambleZone() {
               : "bg-transparent"
           }`}
         >
-          {initializing
-            ? t("initializing-please-wait")
-            : selectedCube
-            ? scramble
-            : t("empty-scramble")}
+          <p data-testid="scramble-text-zone">
+            {initializing
+              ? t("initializing-please-wait")
+              : selectedCube
+              ? scramble
+              : t("empty-scramble")}
+          </p>
 
           {initializing && (
             <div className="flex w-full justify-center my-3">

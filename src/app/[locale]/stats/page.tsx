@@ -20,7 +20,9 @@ export default function Page() {
         {/* header */}
         <Card className="w-full mb-2 border p-3 flex flex-col gap-2 bg-background">
           <div className="flex justify-between gap-10">
-            <h2 className="font-black text-xl">{t("StatsPage.title")}</h2>
+            <h2 className="font-black text-xl" data-testId="page-title-stats">
+              {t("StatsPage.title")}
+            </h2>
             <div className="flex items-center gap-2 w-full justify-end">
               <Select defaultValue="overall">
                 <SelectTrigger className="w-[180px]">

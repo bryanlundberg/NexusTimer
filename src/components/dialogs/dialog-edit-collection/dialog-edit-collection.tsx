@@ -103,7 +103,10 @@ export default function DialogEditCollection() {
 
   return (
     <>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent
+        className="sm:max-w-[425px]"
+        data-testId="drawer-edit-collection-container"
+      >
         <DialogHeader>
           <DialogTitle>{t("Cubes-modal.edit-collection")}</DialogTitle>
         </DialogHeader>
@@ -120,10 +123,16 @@ export default function DialogEditCollection() {
           onChange={(e) => {
             setForm((prev) => ({ ...prev, name: e.target.value }));
           }}
+          data-testId="drawer-edit-input-name"
         />
 
         {error && error.status && (
-          <p className="text-destructive text-sm">{error.message}</p>
+          <p
+            className="text-destructive text-sm"
+            data-testId="drawer-edit-collection-error-message"
+          >
+            {error.message}
+          </p>
         )}
 
         <Label>{t("Cubes-modal.category")}</Label>
@@ -133,7 +142,7 @@ export default function DialogEditCollection() {
             setForm((prev) => ({ ...prev, category: e as any }))
           }
         >
-          <SelectTrigger>
+          <SelectTrigger data-testId="drawer-edit-select-category">
             <SelectValue placeholder={t("Cubes-modal.select-an-option")} />
           </SelectTrigger>
           <SelectContent>
@@ -149,12 +158,18 @@ export default function DialogEditCollection() {
         <DialogFooter>
           <div className="flex justify-between w-full">
             <DialogClose asChild>
-              <Button variant={"outline"}>{t("Inputs.cancel")}</Button>
+              <Button
+                variant={"outline"}
+                data-testId="drawer-edit-cancel-button"
+              >
+                {t("Inputs.cancel")}
+              </Button>
             </DialogClose>
 
             <Button
               variant={"default"}
               onClick={handleSubmitEditCubeCollection}
+              data-testId="drawer-edit-accept-button"
             >
               {t("Inputs.continue")}
             </Button>

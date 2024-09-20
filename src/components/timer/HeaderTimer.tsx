@@ -26,6 +26,7 @@ export default function HeaderTimer() {
           onClick={() => {
             setSettingsOpen(!settingsOpen);
           }}
+          data-testid="settings-button"
         >
           <InteractiveIcon
             icon={<GearIcon className="size-5" />}
@@ -36,6 +37,7 @@ export default function HeaderTimer() {
 
         <MainCubeSelector />
         <InteractiveIcon
+          data-testid="change-scramble-button"
           message="Change scramble"
           icon={<ReloadIcon className="size-5" />}
           onClick={() => {

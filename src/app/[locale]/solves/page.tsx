@@ -13,7 +13,7 @@ import { useTimerStore } from "@/store/timerStore";
 import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
-import { EnterIcon, ExitIcon, Share2Icon } from "@radix-ui/react-icons";
+import { EnterIcon, ExitIcon } from "@radix-ui/react-icons";
 import {
   Tooltip,
   TooltipContent,
@@ -38,7 +38,9 @@ export default function Page() {
         {/* header */}
         <Card className="w-full mb-2 border p-3 flex flex-col gap-2">
           <div className="flex justify-between gap-10">
-            <h2 className="font-black text-xl">{t("SolvesPage.title")}</h2>
+            <h2 className="font-black text-xl" data-testId="page-title-solves">
+              {t("SolvesPage.title")}
+            </h2>
             <div className="flex items-center gap-2 w-full justify-end">
               <MainCubeSelector />
             </div>

@@ -10,6 +10,9 @@ export default function calculateCurrentAo(
   solves: Solve[],
   ao: number
 ): number {
+  if (ao <= 2) {
+    return 0;
+  }
   // If the number of solves is less than the desired average length, return 0
   if (!solves || solves.length < ao) {
     return 0;
