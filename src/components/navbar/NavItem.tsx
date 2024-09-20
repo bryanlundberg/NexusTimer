@@ -13,7 +13,7 @@ export function NavItem({ path, icon }: NavItem) {
       <li className="grow first:rounded-s-md last:rounded-e-md overflow-hidden">
         <Link
           href={path}
-          data-testId={"nav" + path}
+          data-testid={"nav" + path}
           className={twMerge(
             `${
               pathname === path ? "bg-secondary" : ""

@@ -48,20 +48,20 @@ export default function DialogDeleteCollection() {
     <>
       <DialogContent
         className="sm:max-w-[425px]"
-        data-testId="dialog-delete-cube-container"
+        data-testid="dialog-delete-cube-container"
       >
         <DialogHeader>
-          <DialogTitle data-testId="dialog-delete-cube-title">
+          <DialogTitle data-testid="dialog-delete-cube-title">
             {t("Cubes-modal.delete-collection")}
           </DialogTitle>
-          <DialogDescription data-testId="dialog-delete-cube-description">
+          <DialogDescription data-testid="dialog-delete-cube-description">
             {t("Cubes-modal.delete-collection-description")}
           </DialogDescription>
         </DialogHeader>
 
         <Alert
           className="bg-red-200/20 text-red-500"
-          data-testId="dialog-delete-cube-warning"
+          data-testid="dialog-delete-cube-warning"
         >
           <AlertDescription className="font-semibold">
             <span className="font-black">{t("Cubes-modal.warning-alert")}</span>{" "}
@@ -79,13 +79,13 @@ export default function DialogDeleteCollection() {
             setError((prev) => ({ ...prev, status: false, message: "" }));
             setCubeName(e.target.value);
           }}
-          data-testId="dialog-delete-cube-input"
+          data-testid="dialog-delete-cube-input"
         />
 
         {error && error.status && (
           <p
             className="text-destructive text-sm"
-            data-testId="dialog-delete-cube-error-message"
+            data-testid="dialog-delete-cube-error-message"
           >
             {error.message}
           </p>
@@ -95,7 +95,7 @@ export default function DialogDeleteCollection() {
             <DialogClose asChild>
               <Button
                 variant={"outline"}
-                data-testId="dialog-delete-cube-cancel-button"
+                data-testid="dialog-delete-cube-cancel-button"
               >
                 {t("Inputs.cancel")}
               </Button>
@@ -104,7 +104,7 @@ export default function DialogDeleteCollection() {
             <Button
               variant={"default"}
               onClick={handleDeleteCube}
-              data-testId="dialog-delete-cube-accept-button"
+              data-testid="dialog-delete-cube-accept-button"
             >
               {t("Inputs.continue")}
             </Button>

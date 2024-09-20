@@ -105,7 +105,7 @@ export default function DialogEditCollection() {
     <>
       <DialogContent
         className="sm:max-w-[425px]"
-        data-testId="drawer-edit-collection-container"
+        data-testid="drawer-edit-collection-container"
       >
         <DialogHeader>
           <DialogTitle>{t("Cubes-modal.edit-collection")}</DialogTitle>
@@ -123,13 +123,13 @@ export default function DialogEditCollection() {
           onChange={(e) => {
             setForm((prev) => ({ ...prev, name: e.target.value }));
           }}
-          data-testId="drawer-edit-input-name"
+          data-testid="drawer-edit-input-name"
         />
 
         {error && error.status && (
           <p
             className="text-destructive text-sm"
-            data-testId="drawer-edit-collection-error-message"
+            data-testid="drawer-edit-collection-error-message"
           >
             {error.message}
           </p>
@@ -142,7 +142,7 @@ export default function DialogEditCollection() {
             setForm((prev) => ({ ...prev, category: e as any }))
           }
         >
-          <SelectTrigger data-testId="drawer-edit-select-category">
+          <SelectTrigger data-testid="drawer-edit-select-category">
             <SelectValue placeholder={t("Cubes-modal.select-an-option")} />
           </SelectTrigger>
           <SelectContent>
@@ -160,7 +160,7 @@ export default function DialogEditCollection() {
             <DialogClose asChild>
               <Button
                 variant={"outline"}
-                data-testId="drawer-edit-cancel-button"
+                data-testid="drawer-edit-cancel-button"
               >
                 {t("Inputs.cancel")}
               </Button>
@@ -169,7 +169,7 @@ export default function DialogEditCollection() {
             <Button
               variant={"default"}
               onClick={handleSubmitEditCubeCollection}
-              data-testId="drawer-edit-accept-button"
+              data-testid="drawer-edit-accept-button"
             >
               {t("Inputs.continue")}
             </Button>

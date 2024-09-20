@@ -37,7 +37,7 @@ export default function CubesTable({
   const { openDialogType } = useDialogCubesOptions();
   return (
     <>
-      <Card className="overflow-auto" data-testId="table-of-cubes">
+      <Card className="overflow-auto" data-testid="table-of-cubes">
         <Table>
           <TableHeader>
             <TableRow>
@@ -73,7 +73,7 @@ export default function CubesTable({
                   <TableCell
                     onClick={() => handleRedirectToTimer(cube.id)}
                     className="hover:cursor-pointer"
-                    data-testId={"cube-name-" + cube.name}
+                    data-testid={"cube-name-" + cube.name}
                   >
                     {cube.name}
                   </TableCell>
@@ -116,13 +116,13 @@ export default function CubesTable({
                   <TableCell>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant={"ghost"} data-testId="cube-options">
+                        <Button variant={"ghost"} data-testid="cube-options">
                           <DotsHorizontalIcon />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent data-testId="dropdown-cube-options-container">
+                      <DropdownMenuContent data-testid="dropdown-cube-options-container">
                         <DropdownMenuItem
-                          data-testId="dropdown-cube-options-edit"
+                          data-testid="dropdown-cube-options-edit"
                           onClick={() =>
                             openDialogType({
                               type: "edit",
@@ -133,7 +133,7 @@ export default function CubesTable({
                           Edit
                         </DropdownMenuItem>
                         <DropdownMenuItem
-                          data-testId="dropdown-cube-options-delete"
+                          data-testid="dropdown-cube-options-delete"
                           onClick={() =>
                             openDialogType({
                               type: "delete",
