@@ -116,12 +116,13 @@ export default function CubesTable({
                   <TableCell>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant={"ghost"}>
+                        <Button variant={"ghost"} data-testId="cube-options">
                           <DotsHorizontalIcon />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent>
+                      <DropdownMenuContent data-testId="dropdown-cube-options-container">
                         <DropdownMenuItem
+                          data-testId="dropdown-cube-options-edit"
                           onClick={() =>
                             openDialogType({
                               type: "edit",
@@ -132,6 +133,7 @@ export default function CubesTable({
                           Edit
                         </DropdownMenuItem>
                         <DropdownMenuItem
+                          data-testId="dropdown-cube-options-delete"
                           onClick={() =>
                             openDialogType({
                               type: "delete",
