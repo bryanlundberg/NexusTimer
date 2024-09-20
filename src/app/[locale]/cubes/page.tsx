@@ -50,7 +50,10 @@ export default function Page() {
                 onOpenChange={setIsOpenDrawerNewCollection}
               >
                 <DrawerTrigger asChild>
-                  <Button className="p-2">
+                  <Button
+                    className="p-2"
+                    data-testId="create-collection-button"
+                  >
                     <PlusIcon className="size-4" strokeWidth={5} />{" "}
                     <span className="hidden sm:inline">
                       {t("CubesPage.new-collection")}

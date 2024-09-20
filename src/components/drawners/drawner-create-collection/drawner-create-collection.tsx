@@ -76,7 +76,10 @@ export default function DrawerCreateCollection({
   };
 
   return (
-    <DrawerContent className="max-w-[850px] mx-auto">
+    <DrawerContent
+      className="max-w-[850px] mx-auto"
+      data-testId="drawer-create-collection"
+    >
       <DrawerHeader>
         <DrawerTitle>{t("Cubes-modal.new-collection")}</DrawerTitle>
         <DrawerDescription>
@@ -87,6 +90,7 @@ export default function DrawerCreateCollection({
       <div className="p-3">
         <Label htmlFor="name">{t("Cubes-modal.name")}</Label>
         <Input
+          data-testId="drawer-input-name"
           id="name"
           placeholder="E.g: X Man Tornado V3 M"
           onChange={(e) => {
@@ -103,6 +107,7 @@ export default function DrawerCreateCollection({
           {cubeCollection.map((e) => {
             return (
               <Image
+                data-testId={"checkbox-category-" + e.name}
                 key={genId()}
                 src={e.src}
                 alt={e.event || ""}
@@ -131,11 +136,18 @@ export default function DrawerCreateCollection({
       </div>
 
       <DrawerFooter>
-        <Button onClick={handleSubmitNewCollection}>
+        <Button
+          onClick={handleSubmitNewCollection}
+          data-testId="drawer-accept-button"
+        >
           {t("Inputs.create")}
         </Button>
         <DrawerClose asChild>
-          <Button variant="outline" className="w-full">
+          <Button
+            variant="outline"
+            className="w-full"
+            data-testId="drawer-cancel-button"
+          >
             {t("Inputs.cancel")}
           </Button>
         </DrawerClose>
