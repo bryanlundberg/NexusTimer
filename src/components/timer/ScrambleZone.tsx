@@ -30,8 +30,8 @@ export function ScrambleZone() {
             backgroundImage ? "opacity-90" : ""
           } ${
             settings.features.scrambleBackground.status
-              ? "dark:bg-zinc-900 light:bg-neutral-200"
-              : "bg-transparent"
+              ? "bg-foreground/10"
+              : "bg-background"
           }`}
         >
           <p data-testid="scramble-text-zone">
