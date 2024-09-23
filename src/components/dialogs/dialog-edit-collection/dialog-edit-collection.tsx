@@ -41,8 +41,9 @@ export default function DialogEditCollection() {
   });
   const handleSubmitEditCubeCollection = async () => {
     try {
+      console.log('This is cube.name: ', cube?.name)
       // verify if its repeated the name
-      if (cubes?.some((e) => e.name === form.name)) {
+      if (cube?.name !== form.name && cubes?.some((e) => e.name === form.name)) {
         setError((prev) => ({
           ...prev,
           status: true,
