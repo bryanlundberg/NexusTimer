@@ -99,6 +99,11 @@ export default function DialogEditCollection() {
       category: cube?.category || "2x2",
       name: cube?.name || "",
     }));
+
+    setError({
+      status: false,
+      message: "",
+    })
   }, [cube]);
 
   return (

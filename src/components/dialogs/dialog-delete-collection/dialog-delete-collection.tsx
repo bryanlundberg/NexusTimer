@@ -14,7 +14,7 @@ import { deleteCubeById, getAllCubes } from "@/db/dbOperations";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function DialogDeleteCollection() {
   const t = useTranslations("Index");
@@ -44,6 +44,14 @@ export default function DialogDeleteCollection() {
       console.log(err);
     }
   };
+
+    // helps to refresh delete dialog when re-open the dialog
+    useEffect(() => {
+      setError({
+        status: false,
+        message: "",
+      })
+    }, [cube]);
   return (
     <>
       <DialogContent
