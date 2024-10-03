@@ -6,29 +6,7 @@ import {
   CubeIcon,
   StackIcon,
 } from "@radix-ui/react-icons";
-
-const navigation: Navigation = [
-  {
-    path: "/",
-    icon: <ClockIcon />,
-    toolTipMessage: "Index.HomePage.title",
-  },
-  {
-    path: "/solves",
-    icon: <StackIcon />,
-    toolTipMessage: "Index.SolvesPage.title",
-  },
-  {
-    path: "/stats",
-    icon: <BarChartIcon />,
-    toolTipMessage: "Index.StatsPage.title",
-  },
-  {
-    path: "/cubes",
-    icon: <CubeIcon />,
-    toolTipMessage: "Index.CubesPage.title",
-  },
-];
+import { useTranslations } from "next-intl";
 
 type Navigation = NavItem[];
 
@@ -39,6 +17,31 @@ interface NavItem {
 }
 
 export default function Navbar() {
+
+  const t = useTranslations("Index");
+
+  const navigation: Navigation = [
+    {
+      path: "/",
+      icon: <ClockIcon />,
+      toolTipMessage: t("HomePage.title"),
+    },
+    {
+      path: "/solves",
+      icon: <StackIcon />,
+      toolTipMessage: t("SolvesPage.title"),
+    },
+    {
+      path: "/stats",
+      icon: <BarChartIcon />,
+      toolTipMessage: t("StatsPage.title"),
+    },
+    {
+      path: "/cubes",
+      icon: <CubeIcon />,
+      toolTipMessage: t("CubesPage.title"),
+    },
+  ];
   return (
     <NavContainer>
       {navigation.map((item: NavItem) => {
