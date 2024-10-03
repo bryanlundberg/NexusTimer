@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
-export default function useErrorReset(isOpen:boolean , setError: React.Dispatch<React.SetStateAction<{ isOpen: boolean; message: string }>>) {
+export default function useErrorReset(isOpen:boolean , setError: React.Dispatch<React.SetStateAction<{ status: boolean; message: string }>>) {
   useEffect(() => {
     if(!isOpen){
-        setError({ isOpen: false, message: "" });
+        setError({ status: false, message: "" });
     }
   },[isOpen , setError]);
 }
