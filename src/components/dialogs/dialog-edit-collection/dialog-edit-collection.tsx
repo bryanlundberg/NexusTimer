@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getAllCubes, saveCube } from "@/db/dbOperations";
+import useErrorReset from "@/hooks/useErrorReset";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
@@ -27,7 +28,7 @@ import { useEffect, useState } from "react";
 
 export default function DialogEditCollection() {
   const t = useTranslations("Index");
-  const { cube, closeDialog } = useDialogCubesOptions();
+  const { cube, closeDialog , isOpen  } = useDialogCubesOptions();
   const { cubes, setCubes, selectedCube, setSelectedCube, setTimerStatistics } =
     useTimerStore();
   const { settings, setSettings } = useSettingsModalStore();
@@ -92,6 +93,9 @@ export default function DialogEditCollection() {
     }
   };
 
+  // helps to reset error state
+  useErrorReset(isOpen , setError);
+
   // helps to refresh input (name) when re-open the dialog
   useEffect(() => {
     setForm((prev) => ({
@@ -99,11 +103,6 @@ export default function DialogEditCollection() {
       category: cube?.category || "2x2",
       name: cube?.name || "",
     }));
-
-    setError({
-      status: false,
-      message: "",
-    })
   }, [cube]);
 
   return (
