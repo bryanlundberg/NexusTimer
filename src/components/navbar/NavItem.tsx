@@ -1,12 +1,14 @@
 import { Link, usePathname } from "@/i18n/routing";
 import { twMerge } from "tailwind-merge";
+import { InteractiveIcon } from "../timer/InteractiveIcon";
 
 interface NavItem {
   path: string;
   icon: React.ReactNode;
+  toolTipMessage:string;
 }
 
-export function NavItem({ path, icon }: NavItem) {
+export function NavItem({ path, icon , toolTipMessage}: NavItem) {
   const pathname = usePathname();
   return (
     <>
@@ -20,7 +22,11 @@ export function NavItem({ path, icon }: NavItem) {
             } transition duration-300 py-2 flex flex-col justify-center items-center font-medium  `
           )}
         >
-          {icon}
+          <InteractiveIcon
+              icon={icon}
+              animation={false}
+              message={toolTipMessage}
+            />
         </Link>
       </li>
     </>
