@@ -13,14 +13,15 @@ import useForceHashSettings from "@/hooks/useForceHashSettings";
 import { useEffect, useState } from "react";
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import exportDataToFile from "@/lib/exportDataToFile";
+import { Link } from "@/i18n/routing";
 
 export default function Home() {
   useInitializeTimer();
@@ -30,7 +31,7 @@ export default function Home() {
   const [openMigrationDialog, setOpenMigrationDialog] = useState(false);
   useEffect(() => {
     const hostname = window.location.hostname;
-    if (hostname === "www.nexustimer.pro") {
+    if (hostname === "www.nexustimer.pro" || "localhost") {
       setOpenMigrationDialog(true);
     }
   }, []);
@@ -64,8 +65,12 @@ export default function Home() {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Download Backup</AlertDialogCancel>
-            <AlertDialogAction>Continue</AlertDialogAction>
+            <Button variant={"outline"} onClick={exportDataToFile}>
+              Download Backup
+            </Button>
+            <Link href={"https://nexustimer.com/"}>
+              <Button>Continue</Button>
+            </Link>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
