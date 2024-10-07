@@ -31,7 +31,7 @@ export default function Home() {
   const [openMigrationDialog, setOpenMigrationDialog] = useState(false);
   useEffect(() => {
     const hostname = window.location.hostname;
-    if (hostname === "www.nexustimer.pro" || "localhost") {
+    if (hostname === "www.nexustimer.pro") {
       setOpenMigrationDialog(true);
     }
   }, []);
