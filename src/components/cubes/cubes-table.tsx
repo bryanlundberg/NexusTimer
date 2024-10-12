@@ -6,20 +6,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { DateTime } from "luxon";
 import { useLocale, useTranslations } from "next-intl";
 import { Checkbox } from "@/components/ui/checkbox";
-import { DotsHorizontalIcon, PlayIcon, StopIcon } from "@radix-ui/react-icons";
+import { GearIcon, PlayIcon, StopIcon, TrashIcon } from "@radix-ui/react-icons";
 import { Card } from "../ui/card";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { Cube } from "@/interfaces/Cube";
 import { Button } from "../ui/button";
+import { Dialog } from "../ui/dialog";
 
 interface CubesTableProps {
   handleRedirectToTimer: (cubeId: string) => void;
@@ -34,7 +29,8 @@ export default function CubesTable({
 }: CubesTableProps) {
   const locale = useLocale();
   const t = useTranslations("Index");
-  const { openDialogType } = useDialogCubesOptions();
+  const { isOpen, type, closeDialog, openDialogType } = useDialogCubesOptions();
+
   return (
     <>
       <Card className="overflow-auto" data-testid="table-of-cubes">
@@ -55,7 +51,7 @@ export default function CubesTable({
               <TableHead className="hidden md:table-cell">
                 {t("CubesPage.status")}
               </TableHead>
-              <TableHead>{t("CubesPage.options")}</TableHead>
+              <TableHead></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -114,37 +110,40 @@ export default function CubesTable({
                     )}
                   </TableCell>
                   <TableCell>
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <Button variant={"ghost"} data-testid="cube-options">
-                          <DotsHorizontalIcon />
-                        </Button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent data-testid="dropdown-cube-options-container">
-                        <DropdownMenuItem
-                          data-testid="dropdown-cube-options-edit"
-                          onClick={() =>
-                            openDialogType({
-                              type: "edit",
-                              cube: cube,
-                            })
-                          }
-                        >
-                          Edit
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          data-testid="dropdown-cube-options-delete"
-                          onClick={() =>
-                            openDialogType({
-                              type: "delete",
-                              cube: cube,
-                            })
-                          }
-                        >
-                          Delete
-                        </DropdownMenuItem>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                    <Dialog
+                      open={type === "edit" && isOpen}
+                      onOpenChange={closeDialog}
+                    >
+                      <Button
+                        variant={"ghost"}
+                        data-testid="cube-options"
+                        onClick={() => {
+                          openDialogType({
+                            type: "edit",
+                            cube: cube,
+                          });
+                        }}
+                      >
+                        <GearIcon />
+                      </Button>
+                    </Dialog>
+                    <Dialog
+                      open={type === "delete" && isOpen}
+                      onOpenChange={closeDialog}
+                    >
+                      <Button
+                        variant={"ghost"}
+                        data-testid="cube-options"
+                        onClick={() => {
+                          openDialogType({
+                            type: "delete",
+                            cube: cube,
+                          });
+                        }}
+                      >
+                        <TrashIcon />
+                      </Button>
+                    </Dialog>
                   </TableCell>
                 </TableRow>
               );
