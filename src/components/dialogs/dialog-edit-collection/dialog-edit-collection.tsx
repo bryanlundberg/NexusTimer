@@ -1,3 +1,4 @@
+"use client";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,6 +19,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getAllCubes, saveCube } from "@/db/dbOperations";
+import useErrorDialog from "@/hooks/useErrorDialog";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
@@ -25,7 +27,19 @@ import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
-export default function DialogEditCollection() {
+export default function DialogEditCollection({
+  error,
+  handleChangeError,
+}: {
+  error: { message: string; status: boolean };
+  handleChangeError: ({
+    message,
+    status,
+  }: {
+    message: string;
+    status: boolean;
+  }) => void;
+}) {
   const t = useTranslations("Index");
   const { cube, closeDialog } = useDialogCubesOptions();
   const { cubes, setCubes, selectedCube, setSelectedCube, setTimerStatistics } =
@@ -35,19 +49,18 @@ export default function DialogEditCollection() {
     name: cube?.name || "",
     category: cube?.category || "2x2",
   });
-  const [error, setError] = useState({
-    status: false,
-    message: "",
-  });
+
   const handleSubmitEditCubeCollection = async () => {
     try {
       // verify if its repeated the name
-      if (cube?.name !== form.name && cubes?.some((e) => e.name === form.name)) {
-        setError((prev) => ({
-          ...prev,
+      if (
+        cube?.name !== form.name &&
+        cubes?.some((e) => e.name === form.name)
+      ) {
+        handleChangeError({
           status: true,
           message: t("Errors.repeated-name"),
-        }));
+        });
         return;
       }
 
