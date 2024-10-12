@@ -1,3 +1,4 @@
+"use client";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,33 +12,36 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { deleteCubeById, getAllCubes } from "@/db/dbOperations";
-import useErrorReset from "@/hooks/useErrorReset";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
-export default function DialogDeleteCollection() {
+export default function DialogDeleteCollection({
+  error,
+  handleChangeError,
+}: {
+  error: { message: string; status: boolean };
+  handleChangeError: ({
+    message,
+    status,
+  }: {
+    message: string;
+    status: boolean;
+  }) => void;
+}) {
   const t = useTranslations("Index");
   const { setCubes } = useTimerStore();
-  const { cube, closeDialog , isOpen } = useDialogCubesOptions();
+  const { cube, closeDialog } = useDialogCubesOptions();
   const [cubeName, setCubeName] = useState("");
-  const [error, setError] = useState({
-    status: false,
-    message: "",
-  });
 
-    // helps to reset error state
-    useErrorReset(isOpen , setError);
-    
   const handleDeleteCube = async () => {
     try {
       if (cubeName.trim() !== cube?.name) {
-        setError((prev) => ({
-          ...prev,
+        handleChangeError({
           status: true,
           message: t("Errors.not-match"),
-        }));
+        });
         return;
       }
 
@@ -82,7 +86,7 @@ export default function DialogDeleteCollection() {
         </Label>
         <Input
           onChange={(e) => {
-            setError((prev) => ({ ...prev, status: false, message: "" }));
+            handleChangeError({ status: false, message: "" });
             setCubeName(e.target.value);
           }}
           data-testid="dialog-delete-cube-input"

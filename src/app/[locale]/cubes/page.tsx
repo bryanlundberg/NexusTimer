@@ -15,10 +15,12 @@ import DialogEditCollection from "@/components/dialogs/dialog-edit-collection/di
 import { useState } from "react";
 import { PlusIcon } from "@radix-ui/react-icons";
 import CubesTable from "@/components/cubes/cubes-table";
+import useErrorDialog from "@/hooks/useErrorDialog";
 
 export default function Page() {
   const [isOpenDrawerNewCollection, setIsOpenDrawerNewCollection] =
     useState(false);
+  const { handleResetError, error, handleChangeError } = useErrorDialog();
   const { isOpen, type, closeDialog } = useDialogCubesOptions();
   const {
     filterCubes,
@@ -80,11 +82,29 @@ export default function Page() {
         )}
 
         {/* dialogs */}
-        <Dialog open={type === "delete" && isOpen} onOpenChange={closeDialog}>
-          <DialogDeleteCollection />
+        <Dialog
+          open={type === "delete" && isOpen}
+          onOpenChange={() => {
+            handleResetError();
+            closeDialog();
+          }}
+        >
+          <DialogDeleteCollection
+            error={error}
+            handleChangeError={handleChangeError}
+          />
         </Dialog>
-        <Dialog open={type === "edit" && isOpen} onOpenChange={closeDialog}>
-          <DialogEditCollection />
+        <Dialog
+          open={type === "edit" && isOpen}
+          onOpenChange={() => {
+            handleResetError();
+            closeDialog();
+          }}
+        >
+          <DialogEditCollection
+            error={error}
+            handleChangeError={handleChangeError}
+          />
         </Dialog>
       </div>
     </>
