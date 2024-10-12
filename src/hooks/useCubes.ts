@@ -5,7 +5,7 @@ import { Cube } from "@/interfaces/Cube";
 import { useRouter } from "@/i18n/routing";
 
 export function useCubes() {
-  const { cubes, setSelectedCube, setNewScramble } = useTimerStore();
+  const { cubes, setSelectedCube, setNewScramble, setCubes } = useTimerStore();
   const [filterCubes, setFilterCubes] = useState(cubes);
   const router = useRouter();
   const handleSearchFilter = (searchCube: string) => {
@@ -28,6 +28,9 @@ export function useCubes() {
         ...editingCube,
         favorite: !editingCube.favorite,
       });
+
+      const loadCubes = await getAllCubes();
+      setCubes(loadCubes);
     } catch (error) {
       console.log(error);
     }
