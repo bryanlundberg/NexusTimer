@@ -1,6 +1,7 @@
 {
   "Index": {
     "HomePage": {
+      "title":"Home",
       "hint": "Hint",
       "optimal-yellow-layer": "Optimal Yellow Layer",
       "solving": "Solving...",

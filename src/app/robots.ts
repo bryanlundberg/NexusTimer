@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://www.nexustimer.pro/sitemap.xml",
+    sitemap: "https://nexustimer.com/sitemap.xml",
   };
 }
