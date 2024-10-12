@@ -30,7 +30,7 @@ export async function generateMetadata({
       t("keywords.key13"),
       t("keywords.key14"),
     ],
-    metadataBase: new URL("https://www.nexustimer.pro/" + locale),
+    metadataBase: new URL("https://nexustimer.com/" + locale),
   };
 }
 
