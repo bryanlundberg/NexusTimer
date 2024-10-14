@@ -31,7 +31,7 @@ export function NavItem({ path, icon, toolTipMessage }: NavItem) {
                   } transition duration-300 py-2 flex flex-col justify-center items-center font-medium  `
                 )}
               >
-                <InteractiveIcon icon={icon} animation={false} />
+                {icon}
               </Link>
             </li>
           </TooltipTrigger>
