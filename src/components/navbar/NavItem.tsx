@@ -1,6 +1,5 @@
 import { Link, usePathname } from "@/i18n/routing";
 import { twMerge } from "tailwind-merge";
-import { InteractiveIcon } from "../timer/InteractiveIcon";
 import {
   Tooltip,
   TooltipContent,
