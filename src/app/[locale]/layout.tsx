@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import PreloadSettings from "@/components/PreloadSettings";
-import { roboto } from "@/fonts/fonts";
+import { saira } from "@/fonts/fonts";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 
@@ -46,7 +46,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={roboto.className}>
+      <body className={saira.className}>
         <NextIntlClientProvider messages={messages}>
           <PreloadSettings>{children}</PreloadSettings>
         </NextIntlClientProvider>
