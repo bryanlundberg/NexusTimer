@@ -25,6 +25,7 @@ import {
   MagicWandIcon,
   QuoteIcon,
 } from "@radix-ui/react-icons";
+import { ThemeColorToggle } from "../theme-color-toggle";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings } = useSettingsModalStore();
@@ -122,6 +123,7 @@ export default function MenuSettings() {
 
                 <MenuSection icon={<ComponentBooleanIcon />} title={t("theme")}>
                   <ThemeSelect />
+                  <ThemeColorToggle />
                   <CustomTheme />
                 </MenuSection>
 

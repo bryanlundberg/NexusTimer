@@ -4,6 +4,7 @@ import PreloadSettings from "@/components/PreloadSettings";
 import { saira } from "@/fonts/fonts";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
+import ThemeDataProvider from "@/context/theme-data-provider";
 
 export async function generateMetadata({
   params: { locale },
@@ -48,7 +49,9 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={saira.className}>
         <NextIntlClientProvider messages={messages}>
-          <PreloadSettings>{children}</PreloadSettings>
+          <PreloadSettings>
+            <ThemeDataProvider>{children}</ThemeDataProvider>
+          </PreloadSettings>
         </NextIntlClientProvider>
         <Toaster />
       </body>
