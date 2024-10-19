@@ -23,7 +23,7 @@ export function InteractiveIcon({
         <TooltipTrigger asChild>
           <div
             {...props}
-            className={`light:text-neutral-800 light:hover:text-neutral-600 dark:text-neutral-100 dark:hover:text-neutral-200 hover:cursor-pointer duration-300 transition ${
+            className={`hover:cursor-pointer duration-300 transition ${
               animation ? "hover:rotate-45" : ""
             }`}
           >

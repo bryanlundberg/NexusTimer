@@ -23,7 +23,7 @@ export default function TimerWidgets() {
           (timerStatistics.global.ao100 !== 0 &&
             timerStatistics.global.ao100 === timerStatistics.session.ao100)) ? (
           <div className="flex justify-end" id="touch">
-            <div className="p-1 text-xs border rounded-md light:bg-neutral-100 light:border-neutral-900 dark:bg-zinc-900 dark:border-neutral-400">
+            <div className="p-1 text-xs border rounded-md bg-background">
               {t("new_best_average")}
             </div>
           </div>
@@ -32,7 +32,7 @@ export default function TimerWidgets() {
           timerStatistics.global.count > 1 &&
           lastSolve &&
           lastSolve.time >= timerStatistics.global.worst && (
-            <div className="p-1 text-xs border rounded-md light:bg-neutral-100 light:border-neutral-900 dark:bg-zinc-900 dark:border-neutral-400 w-fit ms-auto">
+            <div className="p-1 text-xs border rounded-md bg-background w-fit ms-auto">
               {t("new_worst_time")}
             </div>
           )}
