@@ -33,7 +33,7 @@ export default function Page() {
   return (
     <>
       {/* container */}
-      <div className="max-w-7xl mx-auto p-1 flex flex-col min-h-full w-full bg-background">
+      <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
         {/* header */}
         <Card className="w-full mb-2 border p-3 border-none">
           <div className="flex gap-10 items-center justify-between">
