@@ -10,7 +10,7 @@ export default function EmptyCubes({ ...rest }: EmptyCubesProps) {
       <div
         {...rest}
         data-testid="empty-cubes-container"
-        className="flex flex-col items-center justify-center h-full m-3 overflow-auto border border-dashed rounded-md cursor-pointer grow  min-h-96"
+        className="flex flex-col items-center justify-center h-full overflow-auto border border-dashed rounded-md cursor-pointer grow min-h-96 bg-background"
       >
         <div className="flex flex-col items-center justify-center gap-1 p-3 font-medium">
           <Image
