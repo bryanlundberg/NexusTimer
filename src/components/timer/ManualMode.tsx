@@ -36,7 +36,6 @@ export default function ManualMode() {
       <form
         className="flex flex-col items-center"
         onSubmit={async (e) => {
-          console.log(selectedCube);
           e.preventDefault();
           if (!selectedCube) return;
           if (!scramble) return;
@@ -111,14 +110,14 @@ export default function ManualMode() {
             {t("preview")}: {formatTime(convertToMs(value))}{" "}
           </div>
         ) : null}
-        {lastSolve && settings.features.quickActionButtons.status ? (
-          <MenuSolveOptions
-            solve={lastSolve}
-            onDeleteSolve={() => setLastSolve(null)}
-            caseOfUse="last-solve"
-          />
-        ) : null}
       </form>
+      {lastSolve && settings.features.quickActionButtons.status ? (
+        <MenuSolveOptions
+          solve={lastSolve}
+          onDeleteSolve={() => setLastSolve(null)}
+          caseOfUse="last-solve"
+        />
+      ) : null}
     </>
   );
 }
