@@ -88,7 +88,7 @@ export default function SheetSolveDetails() {
         )}
 
         <Image
-          src={"/brand_logo.svg"}
+          src={"/brand_logo.png"}
           alt="logo nexustimer"
           width={170}
           height={80}
