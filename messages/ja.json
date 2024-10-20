@@ -18,7 +18,8 @@
       "counter": "カウンター",
       "settings": "設定",
       "enter-custom-scramble": "カスタムスクランブルを入力",
-      "initializing-please-wait": "初期化中、お待ちください"
+      "initializing-please-wait": "初期化中、お待ちください",
+      "title": "遊ぶ"
     },
     "SolvesPage": {
       "title": "解答",
@@ -109,7 +110,9 @@
       "cancel": "キャンセル",
       "continue": "続く",
       "move": "動く",
-      "none": "なし"
+      "none": "なし",
+      "collections": "コレクション",
+      "empty": "空の"
     },
     "Settings-menu": {
       "title": "設定",

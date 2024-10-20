@@ -1,7 +1,7 @@
 {
   "Index": {
     "HomePage": {
-      "title":"Home",
+      "title": "Play",
       "hint": "Hint",
       "optimal-yellow-layer": "Optimal Yellow Layer",
       "solving": "Solving...",
@@ -115,7 +115,9 @@
       "move": "Move",
       "create": "Create",
       "cancel": "Cancel",
-      "none": "None"
+      "none": "None",
+      "collections": "Collections",
+      "empty": "Empty"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",

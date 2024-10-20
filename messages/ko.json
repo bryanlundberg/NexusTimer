@@ -18,7 +18,8 @@
       "counter": "카운터",
       "settings": "설정",
       "enter-custom-scramble": "사용자 정의 스크램블 입력",
-      "initializing-please-wait": "초기화 중, 잠시만 기다려주세요"
+      "initializing-please-wait": "초기화 중, 잠시만 기다려주세요",
+      "title": "놀다"
     },
     "SolvesPage": {
       "title": "해결",
@@ -109,7 +110,9 @@
       "cancel": "취소",
       "continue": "계속하다",
       "move": "이동하다",
-      "none": "없음"
+      "none": "없음",
+      "collections": "컬렉션",
+      "empty": "비어 있는"
     },
     "Settings-menu": {
       "title": "설정",

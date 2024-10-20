@@ -18,7 +18,8 @@
       "counter": "Počítadlo",
       "settings": "Nastavení",
       "enter-custom-scramble": "Zadejte vlastní scramble",
-      "initializing-please-wait": "Inicializace, prosím čekejte"
+      "initializing-please-wait": "Inicializace, prosím čekejte",
+      "title": "Hrát"
     },
     "SolvesPage": {
       "title": "Řešení",
@@ -109,7 +110,9 @@
       "cancel": "Zrušit",
       "continue": "Pokračovat",
       "move": "Pohyb",
-      "none": "Žádný"
+      "none": "Žádný",
+      "collections": "Sbírky",
+      "empty": "Prázdný"
     },
     "Settings-menu": {
       "title": "Nastavení",

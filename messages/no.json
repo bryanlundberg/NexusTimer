@@ -18,7 +18,8 @@
       "counter": "Tellende",
       "settings": "Innstillinger",
       "enter-custom-scramble": "Skriv inn en tilpasset miks",
-      "initializing-please-wait": "Initialiserer, vennligst vent"
+      "initializing-please-wait": "Initialiserer, vennligst vent",
+      "title": "Spille"
     },
     "SolvesPage": {
       "title": "Løsninger",
@@ -109,7 +110,9 @@
       "cancel": "Avbryt",
       "continue": "Fortsette",
       "move": "Flytte",
-      "none": "Ingen"
+      "none": "Ingen",
+      "collections": "Samlinger",
+      "empty": "Tømme"
     },
     "Settings-menu": {
       "title": "Innstillinger",

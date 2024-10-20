@@ -18,7 +18,8 @@
       "counter": "Contador",
       "settings": "Configuración",
       "enter-custom-scramble": "Introduce una mezcla personalizada",
-      "initializing-please-wait": "Inicializando, por favor espera"
+      "initializing-please-wait": "Inicializando, por favor espera",
+      "title": "Jugar"
     },
     "SolvesPage": {
       "title": "Soluciones",
@@ -109,7 +110,9 @@
       "cancel": "Cancelar",
       "continue": "Continuar",
       "move": "Mover",
-      "none": "Ninguno"
+      "none": "Ninguno",
+      "empty": "Vacío",
+      "collections": "Colecciones"
     },
     "Settings-menu": {
       "title": "Configuración",

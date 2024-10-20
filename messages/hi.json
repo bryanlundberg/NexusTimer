@@ -18,7 +18,8 @@
       "counter": "काउंटर",
       "settings": "सेटिंग्स",
       "enter-custom-scramble": "कस्टम तालिका दर्ज करें",
-      "initializing-please-wait": "आरंभिकरण कर रहा है कृपया प्रतीक्षा करें"
+      "initializing-please-wait": "आरंभिकरण कर रहा है कृपया प्रतीक्षा करें",
+      "title": "खेल"
     },
     "SolvesPage": {
       "title": "समाधान",
@@ -109,7 +110,9 @@
       "cancel": "रद्द करें",
       "continue": "जारी रखना",
       "move": "कदम",
-      "none": "कोई नहीं"
+      "none": "कोई नहीं",
+      "collections": "संग्रह",
+      "empty": "खाली"
     },
     "Settings-menu": {
       "title": "सेटिंग्स",

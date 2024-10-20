@@ -18,7 +18,8 @@
       "counter": "কাউন্টার",
       "settings": "সেটিংস",
       "enter-custom-scramble": "একটি কাস্টম স্ক্র্যাম্বল প্রবেশ করুন",
-      "initializing-please-wait": "আরম্ভ হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন"
+      "initializing-please-wait": "আরম্ভ হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন",
+      "title": "খেলা"
     },
     "SolvesPage": {
       "title": "সমাধান",
@@ -109,7 +110,9 @@
       "cancel": "বাতিল করুন",
       "continue": "চালিয়ে যান",
       "move": "সরান",
-      "none": "কোনোটিই নয়"
+      "none": "কোনোটিই নয়",
+      "collections": "সংগ্রহ",
+      "empty": "খালি"
     },
     "Settings-menu": {
       "title": "সেটিংস",

@@ -18,7 +18,8 @@
       "counter": "Laskuri",
       "settings": "Asetukset",
       "enter-custom-scramble": "Syötä mukautettu sekoitus",
-      "initializing-please-wait": "Alustetaan, odota hetki"
+      "initializing-please-wait": "Alustetaan, odota hetki",
+      "title": "Pelata"
     },
     "SolvesPage": {
       "title": "Ratkaisut",
@@ -109,7 +110,9 @@
       "cancel": "Peruuta",
       "continue": "Jatkaa",
       "move": "Liikkua",
-      "none": "Ei mitään"
+      "none": "Ei mitään",
+      "collections": "Kokoelmat",
+      "empty": "Tyhjä"
     },
     "Settings-menu": {
       "title": "Asetukset",

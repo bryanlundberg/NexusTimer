@@ -18,7 +18,8 @@
       "counter": "Räknare",
       "settings": "Inställningar",
       "enter-custom-scramble": "Ange en egen blandning",
-      "initializing-please-wait": "Initializing vänta"
+      "initializing-please-wait": "Initializing vänta",
+      "title": "Spela"
     },
     "SolvesPage": {
       "title": "Lösningar",
@@ -109,7 +110,9 @@
       "cancel": "Avbryt",
       "continue": "Fortsätta",
       "move": "Flytta",
-      "none": "Ingen"
+      "none": "Ingen",
+      "collections": "Samlingar",
+      "empty": "Tömma"
     },
     "Settings-menu": {
       "title": "Inställningar",

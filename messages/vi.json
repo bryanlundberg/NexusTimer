@@ -18,7 +18,8 @@
       "counter": "Bộ đếm",
       "settings": "Cài đặt",
       "enter-custom-scramble": "Nhập scramble tùy chỉnh",
-      "initializing-please-wait": "Đang khởi tạo, vui lòng đợi"
+      "initializing-please-wait": "Đang khởi tạo, vui lòng đợi",
+      "title": "Chơi"
     },
     "SolvesPage": {
       "title": "Giải quyết",
@@ -109,7 +110,9 @@
       "cancel": "Hủy",
       "continue": "Tiếp tục",
       "move": "Di chuyển",
-      "none": "Không có"
+      "none": "Không có",
+      "collections": "Bộ sưu tập",
+      "empty": "Trống"
     },
     "Settings-menu": {
       "title": "Cài đặt",

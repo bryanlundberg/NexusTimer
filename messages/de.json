@@ -18,7 +18,8 @@
       "counter": "Zähler",
       "settings": "Einstellungen",
       "enter-custom-scramble": "Geben Sie ein benutzerdefiniertes Scramble ein",
-      "initializing-please-wait": "Initialisierung, bitte warten"
+      "initializing-please-wait": "Initialisierung, bitte warten",
+      "title": "Spielen"
     },
     "SolvesPage": {
       "title": "Lösungen",
@@ -109,7 +110,9 @@
       "cancel": "Abbrechen",
       "continue": "Weitermachen",
       "move": "Bewegen",
-      "none": "Keiner"
+      "none": "Keiner",
+      "collections": "Sammlungen",
+      "empty": "Leer"
     },
     "Settings-menu": {
       "title": "Einstellungen",

@@ -18,7 +18,8 @@
       "counter": "Счетчик",
       "settings": "Настройки",
       "enter-custom-scramble": "Введите свою перетасовку",
-      "initializing-please-wait": "Инициализация, пожалуйста, подождите"
+      "initializing-please-wait": "Инициализация, пожалуйста, подождите",
+      "title": "Играть"
     },
     "SolvesPage": {
       "title": "Решения",
@@ -109,7 +110,9 @@
       "cancel": "Отмена",
       "none": "Нет",
       "continue": "Продолжать",
-      "move": "Двигаться"
+      "move": "Двигаться",
+      "collections": "Коллекции",
+      "empty": "Пустой"
     },
     "Settings-menu": {
       "title": "Настройки",

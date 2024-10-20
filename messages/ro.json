@@ -18,7 +18,8 @@
       "counter": "Contor",
       "settings": "Setări",
       "enter-custom-scramble": "Introduceți o amestecare personalizată",
-      "initializing-please-wait": "Se inițializează, vă rugăm să așteptați"
+      "initializing-please-wait": "Se inițializează, vă rugăm să așteptați",
+      "title": "Juca"
     },
     "SolvesPage": {
       "title": "Soluții",
@@ -109,7 +110,9 @@
       "cancel": "Anulare",
       "continue": "Continua",
       "move": "Mişcare",
-      "none": "Nici unul"
+      "none": "Nici unul",
+      "collections": "Colecții",
+      "empty": "Gol"
     },
     "Settings-menu": {
       "title": "Setări",

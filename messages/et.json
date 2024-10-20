@@ -18,7 +18,8 @@
       "counter": "Lugeja",
       "settings": "Sätted",
       "enter-custom-scramble": "Sisestage kohandatud segamine",
-      "initializing-please-wait": "Alustamine, palun oodake"
+      "initializing-please-wait": "Alustamine, palun oodake",
+      "title": "Mängi"
     },
     "SolvesPage": {
       "title": "Lahendused",
@@ -109,7 +110,9 @@
       "cancel": "Tühista",
       "continue": "Jätka",
       "move": "Liiguta",
-      "none": "Mitte ühtegi"
+      "none": "Mitte ühtegi",
+      "collections": "Kollektsioonid",
+      "empty": "Tühi"
     },
     "Settings-menu": {
       "title": "Sätted",

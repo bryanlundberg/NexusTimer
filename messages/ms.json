@@ -18,7 +18,8 @@
       "counter": "Pengira",
       "settings": "Tetapan",
       "enter-custom-scramble": "Masukkan acak khusus",
-      "initializing-please-wait": "Inisialisasi sila tunggu"
+      "initializing-please-wait": "Inisialisasi sila tunggu",
+      "title": "Main"
     },
     "SolvesPage": {
       "title": "Penyelesaian",
@@ -109,7 +110,9 @@
       "cancel": "Batal",
       "continue": "teruskan",
       "move": "Bergerak",
-      "none": "tiada"
+      "none": "tiada",
+      "collections": "Koleksi",
+      "empty": "kosong"
     },
     "Settings-menu": {
       "title": "Tetapan",

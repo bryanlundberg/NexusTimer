@@ -18,7 +18,8 @@
       "counter": "Penghitung",
       "settings": "Pengaturan",
       "enter-custom-scramble": "Masukkan scramble kustom",
-      "initializing-please-wait": "Menginisialisasi, harap tunggu"
+      "initializing-please-wait": "Menginisialisasi, harap tunggu",
+      "title": "Bermain"
     },
     "SolvesPage": {
       "title": "Penyelesaian",
@@ -109,7 +110,9 @@
       "cancel": "Batal",
       "continue": "Melanjutkan",
       "move": "Bergerak",
-      "none": "Tidak ada"
+      "none": "Tidak ada",
+      "collections": "Koleksi",
+      "empty": "Kosong"
     },
     "Settings-menu": {
       "title": "Pengaturan",
