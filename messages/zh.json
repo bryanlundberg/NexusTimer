@@ -18,7 +18,8 @@
       "counter": "计数器",
       "settings": "设置",
       "enter-custom-scramble": "输入自定义乱序",
-      "initializing-please-wait": "正在初始化，请稍候"
+      "initializing-please-wait": "正在初始化，请稍候",
+      "title": "玩"
     },
     "SolvesPage": {
       "title": "解决方案",
@@ -109,7 +110,9 @@
       "cancel": "取消",
       "continue": "继续",
       "move": "移动",
-      "none": "没有任何"
+      "none": "没有任何",
+      "collections": "收藏",
+      "empty": "空的"
     },
     "Settings-menu": {
       "title": "设置",

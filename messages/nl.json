@@ -18,7 +18,8 @@
       "counter": "Teller",
       "settings": "Instellingen",
       "enter-custom-scramble": "Voer een aangepast mengsel in",
-      "initializing-please-wait": "Initialiseren, even geduld aub"
+      "initializing-please-wait": "Initialiseren, even geduld aub",
+      "title": "Toneelstuk"
     },
     "SolvesPage": {
       "title": "Oplossingen",
@@ -109,7 +110,9 @@
       "cancel": "Annuleren",
       "continue": "Doorgaan",
       "move": "Beweging",
-      "none": "Geen"
+      "none": "Geen",
+      "collections": "Collecties",
+      "empty": "Leeg"
     },
     "Settings-menu": {
       "title": "Instellingen",

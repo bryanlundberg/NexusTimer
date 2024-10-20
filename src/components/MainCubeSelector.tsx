@@ -46,7 +46,7 @@ export default function MainCubeSelector() {
           {cubes && cubes.length > 0 && cubes.some((c: Cube) => c.favorite) && (
             <>
               <SelectGroup>
-                <SelectLabel>Favoritos</SelectLabel>
+                <SelectLabel>{t("Inputs.favorites")}</SelectLabel>
                 {cubes
                   .filter((cube: Cube) => cube.favorite)
                   .sort((a: Cube, b: Cube) =>
@@ -63,7 +63,8 @@ export default function MainCubeSelector() {
           {/* normal cubes list */}
           <SelectGroup>
             <SelectLabel>
-              Your collections {cubes && cubes.length <= 0 && "(Empty)"}
+              {t("Inputs.collections")}{" "}
+              {cubes && cubes.length <= 0 && "(" + t("Inputs.empty") + ")"}
             </SelectLabel>
             {cubes && cubes.length > 0 ? (
               cubes

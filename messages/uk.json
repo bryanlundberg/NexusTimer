@@ -18,7 +18,8 @@
       "counter": "Лічильник",
       "settings": "Налаштування",
       "enter-custom-scramble": "Введіть власне перемішування",
-      "initializing-please-wait": "Ініціалізація, зачекайте, будь ласка"
+      "initializing-please-wait": "Ініціалізація, зачекайте, будь ласка",
+      "title": "грати"
     },
     "SolvesPage": {
       "title": "Розв'язки",
@@ -109,7 +110,9 @@
       "cancel": "Скасувати",
       "continue": "Продовжити",
       "move": "рухатися",
-      "none": "Жодного"
+      "none": "Жодного",
+      "collections": "Колекції",
+      "empty": "Порожній"
     },
     "Settings-menu": {
       "title": "Налаштування",

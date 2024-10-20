@@ -18,7 +18,8 @@
       "counter": "Sayaç",
       "settings": "Ayarlar",
       "enter-custom-scramble": "Özel karıştırma girin",
-      "initializing-please-wait": "Başlatılıyor lütfen bekleyin"
+      "initializing-please-wait": "Başlatılıyor lütfen bekleyin",
+      "title": "Oynamak"
     },
     "SolvesPage": {
       "title": "Çözümler",
@@ -109,7 +110,9 @@
       "cancel": "İptal",
       "continue": "Devam etmek",
       "move": "Taşınmak",
-      "none": "Hiçbiri"
+      "none": "Hiçbiri",
+      "collections": "Koleksiyonlar",
+      "empty": "Boş"
     },
     "Settings-menu": {
       "title": "Ayarlar",

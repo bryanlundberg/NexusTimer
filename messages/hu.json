@@ -18,7 +18,8 @@
       "counter": "Számláló",
       "settings": "Beállítások",
       "enter-custom-scramble": "Adjon meg egyéni scramble-t",
-      "initializing-please-wait": "Inicializálás, kérjük várjon"
+      "initializing-please-wait": "Inicializálás, kérjük várjon",
+      "title": "Játék"
     },
     "SolvesPage": {
       "title": "Megoldások",
@@ -109,7 +110,9 @@
       "cancel": "Mégse",
       "continue": "Folytatás",
       "move": "Mozog",
-      "none": "Egyik sem"
+      "none": "Egyik sem",
+      "collections": "Gyűjtemények",
+      "empty": "Üres"
     },
     "Settings-menu": {
       "title": "Beállítások",
