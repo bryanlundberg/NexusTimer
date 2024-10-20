@@ -140,6 +140,11 @@ export default function MenuSettings() {
                       alt="logo"
                       width={320}
                       height={100}
+                      className={`${
+                        settings.theme.background.color === "light"
+                          ? "invert"
+                          : "invert-0"
+                      }`}
                     />
 
                     <div className="text-center w-11/12 italic mx-auto text-sm">
