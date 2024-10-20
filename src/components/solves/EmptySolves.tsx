@@ -6,7 +6,7 @@ export default function EmptySolves() {
   return (
     <>
       <>
-        <div className="w-full flex flex-col items-center justify-center text-center text-sm sm:text-md font-mono border border-dashed rounded-md py-20">
+        <div className="w-full flex flex-col items-center justify-center text-center text-sm sm:text-md font-mono border border-dashed rounded-md py-20 bg-background">
           <Image
             src={"/empty.png"}
             alt="empty"

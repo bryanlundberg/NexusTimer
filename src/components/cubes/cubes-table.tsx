@@ -16,6 +16,13 @@ import { Cube } from "@/interfaces/Cube";
 import { Button } from "../ui/button";
 import { Dialog } from "../ui/dialog";
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 interface CubesTableProps {
   handleRedirectToTimer: (cubeId: string) => void;
   handleFavoriteClick: (cubeId: string) => void;
@@ -114,35 +121,53 @@ export default function CubesTable({
                       open={type === "edit" && isOpen}
                       onOpenChange={closeDialog}
                     >
-                      <Button
-                        variant={"ghost"}
-                        data-testid="cube-options"
-                        onClick={() => {
-                          openDialogType({
-                            type: "edit",
-                            cube: cube,
-                          });
-                        }}
-                      >
-                        <GearIcon />
-                      </Button>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Button
+                              variant={"ghost"}
+                              data-testid="cube-options"
+                              onClick={() => {
+                                openDialogType({
+                                  type: "edit",
+                                  cube: cube,
+                                });
+                              }}
+                            >
+                              <GearIcon />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Edit `{cube.name}`</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </Dialog>
                     <Dialog
                       open={type === "delete" && isOpen}
                       onOpenChange={closeDialog}
                     >
-                      <Button
-                        variant={"ghost"}
-                        data-testid="cube-options"
-                        onClick={() => {
-                          openDialogType({
-                            type: "delete",
-                            cube: cube,
-                          });
-                        }}
-                      >
-                        <TrashIcon />
-                      </Button>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>
+                            <Button
+                              variant={"ghost"}
+                              data-testid="cube-options"
+                              onClick={() => {
+                                openDialogType({
+                                  type: "delete",
+                                  cube: cube,
+                                });
+                              }}
+                            >
+                              <TrashIcon />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Delete `{cube.name}`</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
                     </Dialog>
                   </TableCell>
                 </TableRow>

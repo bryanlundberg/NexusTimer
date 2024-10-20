@@ -81,7 +81,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
             handleOpenDialogSolve({ solve: sortedSolves[index] });
           }}
           className={
-            "relative grow flex items-center justify-center w-auto font-medium text-center transition duration-200 rounded-md cursor-pointer h-14 bg-accent/50 hover:bg-accent/80"
+            "relative grow flex items-center justify-center w-auto font-medium text-center transition duration-200 rounded-md cursor-pointer h-14 bg-secondary text-secondary-foreground hover:opacity-70"
           }
         >
           <div className="tracking-wider pt-2">

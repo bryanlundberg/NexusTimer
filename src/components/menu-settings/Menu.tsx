@@ -136,10 +136,15 @@ export default function MenuSettings() {
                 <MenuSection icon={<QuoteIcon />} title={t("about")}>
                   <div className="flex flex-col justify-center items-center gap-3">
                     <Image
-                      src={"/brand_logo.svg"}
+                      src={"/brand_logo.png"}
                       alt="logo"
                       width={320}
                       height={100}
+                      className={`${
+                        settings.theme.background.color === "light"
+                          ? "invert"
+                          : "invert-0"
+                      }`}
                     />
 
                     <div className="text-center w-11/12 italic mx-auto text-sm">
