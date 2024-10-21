@@ -37,11 +37,9 @@ export function MenuOption({ label, setting }: MenuOption) {
   };
 
   return (
-    <div className="flex justify-between mb-1">
-      <div className="ms-8">{label}</div>
-      <div className="me-6">
-        <Switch checked={status} onCheckedChange={saveSettings} />
-      </div>
+    <div className="ps-3 pe-3 flex items-center justify-between mb-1">
+      <div className="grow">{label}</div>
+      <Switch checked={status} onCheckedChange={saveSettings} />
     </div>
   );
 }

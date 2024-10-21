@@ -8,7 +8,7 @@ export function DataImportExport() {
   const t = useTranslations("Index.Settings-menu");
   const { setImportModalOpen } = useSettingsModalStore();
   return (
-    <div className="flex justify-center w-11/12 gap-2 mx-auto light">
+    <div className="flex gap-2 ps-3">
       <Button
         variant={"outline"}
         className="flex items-center gap-1"

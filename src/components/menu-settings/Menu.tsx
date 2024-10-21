@@ -47,11 +47,11 @@ export default function MenuSettings() {
               className="flex flex-col w-full gap-3 sm:max-w-[450px] bg-background border-r"
             >
               <ScrollArea>
-                <div className="my-3 relative">
+                <div className="py-5 relative">
                   <Link
                     href={"/"}
                     onClick={() => setSettingsOpen(false)}
-                    className="flex items-center cursor-pointer ms-3 absolute top-0 left-0"
+                    className="flex items-center cursor-pointer ps-3 absolute top-7 left-4"
                   >
                     <ArrowLeftIcon />
                   </Link>
@@ -135,7 +135,7 @@ export default function MenuSettings() {
 
                 <MenuSection icon={<QuoteIcon />} title={t("about")}>
                   <div className="flex flex-col justify-center items-center gap-3">
-                    <Logo />
+                    <Logo className="my-10" />
 
                     <div className="text-center w-11/12 italic mx-auto text-sm">
                       &rdquo;{t("legend")}&rdquo;

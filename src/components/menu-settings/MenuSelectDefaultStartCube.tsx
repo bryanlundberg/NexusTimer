@@ -39,29 +39,27 @@ export default function MenuSelectDefaultStartCube() {
   const defaultCube = settings.preferences.defaultCube.cube?.id;
 
   return (
-    <div className="flex justify-between items-center mb-1 w-full">
-      <div className="ms-12">{t("Settings-menu.auto-select")}</div>
-      <div className="relative me-6 w-fit mx-auto">
-        <Select
-          defaultValue="none"
-          value={defaultCube}
-          onValueChange={handleCubeSelect}
-        >
-          <SelectTrigger className="w-[180px]">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="none">{t("Inputs.none")}</SelectItem>
-            {cubes?.map((cube) => {
-              return (
-                <SelectItem value={cube.id} key={cube.id}>
-                  {cube.name}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
-      </div>
+    <div className="flex justify-between items-center mb-1 w-full mx-3">
+      <div className="grow">{t("Settings-menu.auto-select")}</div>
+      <Select
+        defaultValue="none"
+        value={defaultCube}
+        onValueChange={handleCubeSelect}
+      >
+        <SelectTrigger className="w-[180px]">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="none">{t("Inputs.none")}</SelectItem>
+          {cubes?.map((cube) => {
+            return (
+              <SelectItem value={cube.id} key={cube.id}>
+                {cube.name}
+              </SelectItem>
+            );
+          })}
+        </SelectContent>
+      </Select>
     </div>
   );
 }

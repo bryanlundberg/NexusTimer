@@ -51,7 +51,7 @@ export default function ThemeSelect() {
   };
 
   return (
-    <div className="grid justify-around grid-cols-3 gap-10 ms-10 me-10">
+    <div className="flex mx-3 gap-3">
       {variation.map((item) => (
         <div
           key={item.key}

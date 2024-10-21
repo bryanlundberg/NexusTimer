@@ -54,23 +54,25 @@ export default function CustomTheme() {
 
   return (
     <>
-      <input
-        type="file"
-        accept="image/*"
-        ref={dataInputRef}
-        className="hidden"
-        onChange={handleImageChange}
-      />
-      <Button
-        variant={"outline"}
-        className="ms-9 mt-3 flex items-center gap-1"
-        onClick={() => dataInputRef.current && dataInputRef.current.click()}
-      >
-        <ImageIcon className="w-4 h-4" />
-        {t("custom-background-image")}
-      </Button>
-      <div className="block ms-9 text-xs align-bottom">
-        {t("format")} .png .jpg .gif
+      <div className="ps-3">
+        <input
+          type="file"
+          accept="image/*"
+          ref={dataInputRef}
+          className="hidden"
+          onChange={handleImageChange}
+        />
+        <Button
+          variant={"outline"}
+          className="mt-3 flex items-center gap-1"
+          onClick={() => dataInputRef.current && dataInputRef.current.click()}
+        >
+          <ImageIcon className="w-4 h-4" />
+          {t("custom-background-image")}
+        </Button>
+        <div className="block text-xs align-bottom mt-1">
+          {t("format")} .png .jpg .gif
+        </div>
       </div>
     </>
   );
