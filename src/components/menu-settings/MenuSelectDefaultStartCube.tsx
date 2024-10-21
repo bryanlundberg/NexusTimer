@@ -39,7 +39,7 @@ export default function MenuSelectDefaultStartCube() {
   const defaultCube = settings.preferences.defaultCube.cube?.id;
 
   return (
-    <div className="flex justify-between items-center mb-1 w-full mx-3">
+    <div className="flex justify-between items-center mb-1 mx-3">
       <div className="grow">{t("Settings-menu.auto-select")}</div>
       <Select
         defaultValue="none"
