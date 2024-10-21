@@ -1,8 +1,8 @@
 ## Overview
 
-![enter image description here](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/public/portrait.png)
+![nexustimer logo](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/public/portrait-v2.png)
 
-**NexusTimer** is an app designed for tracking your training sessions on the Rubik's Cube, featuring a user interface inspired by [Twisty Timer](https://github.com/aricneto/TwistyTimer) to provide a comparable desktop experience.
+**NexusTimer** is an app designed for tracking your training sessions on the Rubik's Cube, with a user interface inspired by [Twisty Timer](https://github.com/aricneto/TwistyTimer) to provide a comparable desktop experience.
 
 ![rainbow](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/rainbow.png)
 
@@ -37,10 +37,10 @@ For those new to speedcubing, it's a challenge where cubers aim to solve the Rub
 ## Screenshots
 
 <div align="center">
-  <img src="./.github/images/Screenshot_1.png" width="24%" />
-  <img src="./.github/images/Screenshot_2.png" width="24%" />
-  <img src="./.github/images/Screenshot_3.png" width="24%" />
-  <img src="./.github/images/Screenshot_4.png" width="24%" />
+  <img src="./.github/images/v2/screencapture-nexustimer-en-1.png" width="24%" />
+  <img src="./.github/images/v2/screencapture-nexustimer-en-3.png" width="24%" />
+  <img src="./.github/images/v2/screencapture-nexustimer-en-4.png" width="24%" />
+  <img src="./.github/images/v2/screencapture-nexustimer-en-5.png" width="24%" />
 </div>
 
 ## Includes
