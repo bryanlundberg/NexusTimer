@@ -29,24 +29,22 @@ export default function MenuSelectLanguage() {
   return (
     <>
       <MenuSection icon={<GlobeIcon />} title={t("locale")}>
-        <div className="flex justify-between ">
-          <div className="ms-12">{t("language")}</div>
-          <div className="me-6 relative">
-            <Select defaultValue={locale} onValueChange={handleLanguageChange}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                {languages.map((item) => {
-                  return (
-                    <SelectItem value={item.code} key={item.code}>
-                      {item.name}
-                    </SelectItem>
-                  );
-                })}
-              </SelectContent>
-            </Select>
-          </div>
+        <div className="mx-3 flex items-center justify-between">
+          <div className="grow">{t("language")}</div>
+          <Select defaultValue={locale} onValueChange={handleLanguageChange}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {languages.map((item) => {
+                return (
+                  <SelectItem value={item.code} key={item.code}>
+                    {item.name}
+                  </SelectItem>
+                );
+              })}
+            </SelectContent>
+          </Select>
         </div>
       </MenuSection>
     </>

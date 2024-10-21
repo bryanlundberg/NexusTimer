@@ -6,7 +6,6 @@ import { DataImportExport } from "@/components/menu-settings/DataImportExport";
 import { useTimerStore } from "@/store/timerStore";
 import { Link } from "@/i18n/routing";
 import useEscape from "@/hooks/useEscape";
-import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import CustomTheme from "./CustomTheme";
 import { useTranslations } from "next-intl";
@@ -25,6 +24,7 @@ import {
   MagicWandIcon,
   QuoteIcon,
 } from "@radix-ui/react-icons";
+import Logo from "../logo/logo";
 
 export default function MenuSettings() {
   const { settingsOpen, setSettingsOpen, settings } = useSettingsModalStore();
@@ -47,11 +47,11 @@ export default function MenuSettings() {
               className="flex flex-col w-full gap-3 sm:max-w-[450px] bg-background border-r"
             >
               <ScrollArea>
-                <div className="my-3 relative">
+                <div className="py-5 relative">
                   <Link
                     href={"/"}
                     onClick={() => setSettingsOpen(false)}
-                    className="flex items-center cursor-pointer ms-3 absolute top-0 left-0"
+                    className="flex items-center cursor-pointer ps-3 absolute top-7 left-4"
                   >
                     <ArrowLeftIcon />
                   </Link>
@@ -135,17 +135,7 @@ export default function MenuSettings() {
 
                 <MenuSection icon={<QuoteIcon />} title={t("about")}>
                   <div className="flex flex-col justify-center items-center gap-3">
-                    <Image
-                      src={"/brand_logo.png"}
-                      alt="logo"
-                      width={320}
-                      height={100}
-                      className={`${
-                        settings.theme.background.color === "light"
-                          ? "invert"
-                          : "invert-0"
-                      }`}
-                    />
+                    <Logo className="my-10" />
 
                     <div className="text-center w-11/12 italic mx-auto text-sm">
                       &rdquo;{t("legend")}&rdquo;
