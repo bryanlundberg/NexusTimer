@@ -1,3 +1,4 @@
+import Logo from "@/components/logo/logo";
 import MenuSolveOptions from "@/components/menu-solve-options/menu-solve-options";
 import { ScrambleDisplay } from "@/components/scramble-display";
 import {
@@ -8,7 +9,6 @@ import {
 } from "@/components/ui/sheet";
 import formatTime from "@/lib/formatTime";
 import { useDialogSolve } from "@/store/DialogSolve";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import {
   CalendarIcon,
@@ -17,13 +17,11 @@ import {
 } from "@radix-ui/react-icons";
 import { DateTime } from "luxon";
 import { useLocale } from "next-intl";
-import Image from "next/image";
 
 export default function SheetSolveDetails() {
   const { handleCloseDialogSolve } = useDialogSolve();
   const { solve } = useDialogSolve();
   const { selectedCube } = useTimerStore();
-  const { settings } = useSettingsModalStore();
   const locale = useLocale();
 
   return (
@@ -89,16 +87,7 @@ export default function SheetSolveDetails() {
           />
         )}
 
-        <Image
-          src={"/brand_logo.png"}
-          alt="logo nexustimer"
-          width={170}
-          height={80}
-          className={`object-scale-down mx-auto pt-10 ${
-            settings.theme.background.color === "light" ? "invert" : "invert-0"
-          }`}
-          draggable={false}
-        />
+        <Logo className="pt-10" />
       </SheetHeader>
     </SheetContent>
   );
