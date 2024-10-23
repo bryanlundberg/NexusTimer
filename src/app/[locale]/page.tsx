@@ -4,7 +4,6 @@ import TimerWidgets from "@/components/timer/TimerWidgets";
 import SettingsMenu from "@/components/menu-settings/Menu";
 import TimerContainer from "@/components/timer/TimerContainer";
 import { MainTimer } from "@/components/timer/MainTimer";
-import FullscreenOption from "@/components/timer/FullscreenOption";
 import HintPanel from "@/components/timer/HintPanel";
 import ScrambleModal from "@/components/timer/ScrambleModal";
 import useInitializeTimer from "@/hooks/useInitializeHint";
@@ -45,7 +44,6 @@ export default function Home() {
       </TimerContainer>
       <SettingsMenu />
       <HintPanel />
-      <FullscreenOption />
       <ScrambleModal />
       <ImportModal />
 

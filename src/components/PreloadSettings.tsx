@@ -1,8 +1,6 @@
 "use client";
 import { usePreloadSettings } from "@/hooks/usePreloadSettings";
-import { Navbar } from "@/components/navbar/index";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import { useTimerStore } from "@/store/timerStore";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import { ThemeProvider } from "./theme-provider";
 export default function PreloadSettings({
@@ -11,7 +9,6 @@ export default function PreloadSettings({
   children: React.ReactNode;
 }) {
   const { settings } = useSettingsModalStore();
-  const { isSolving, timerStatus } = useTimerStore();
   const theme = settings ? settings.theme.background.color : "light";
   const { backgroundImage } = useBackgroundImageStore();
 
@@ -36,7 +33,6 @@ export default function PreloadSettings({
           }}
         >
           {children}
-          {!isSolving && timerStatus === "IDLE" ? <Navbar /> : null}
         </div>
       </ThemeProvider>
     </>

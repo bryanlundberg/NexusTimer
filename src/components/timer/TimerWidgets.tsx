@@ -12,7 +12,7 @@ export default function TimerWidgets() {
   const t = useTranslations("Index.HomePage");
   return (
     <>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 pb-1">
         {settings.alerts.bestAverage.status &&
         ((timerStatistics.global.ao5 !== 0 &&
           timerStatistics.global.ao5 === timerStatistics.session.ao5) ||
