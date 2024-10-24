@@ -22,25 +22,23 @@ export default function CategoryStatistics() {
   return (
     <>
       <div className="flex flex-col gap-3 grow">
-        <div className="flex flex-col gap-3 md:flex-row ">
-          <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-background">
-            {selectedCube && (
-              <>
-                <Tabs defaultValue="category" className="mb-3">
-                  <TabsList>
-                    <TabsTrigger value="category">Category</TabsTrigger>
-                    <TabsTrigger value="cube">Cube</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="category">
-                    <LineCharter dataSet={stats.data.global} />
-                  </TabsContent>
-                  <TabsContent value="cube">
-                    <LineCharter dataSet={stats.data.cubeAll} />
-                  </TabsContent>
-                </Tabs>
-              </>
-            )}
-          </div>
+        <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-background">
+          {selectedCube && (
+            <>
+              <Tabs defaultValue="category" className="mb-3">
+                <TabsList>
+                  <TabsTrigger value="category">Category</TabsTrigger>
+                  <TabsTrigger value="cube">Cube</TabsTrigger>
+                </TabsList>
+                <TabsContent value="category">
+                  <LineCharter dataSet={stats.data.global} />
+                </TabsContent>
+                <TabsContent value="cube">
+                  <LineCharter dataSet={stats.data.cubeAll} />
+                </TabsContent>
+              </Tabs>
+            </>
+          )}
         </div>
 
         <Table className="bg-background rounded-md">

@@ -20,7 +20,7 @@ export default function Page() {
   return (
     <>
       {/* container */}
-      <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
+      <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full overflow-auto">
         {/* header */}
         <Navigation />
 

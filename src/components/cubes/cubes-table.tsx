@@ -40,7 +40,7 @@ export default function CubesTable({
 
   return (
     <>
-      <Card className="overflow-auto" data-testid="table-of-cubes">
+      <Card data-testid="table-of-cubes">
         <Table>
           <TableHeader>
             <TableRow>

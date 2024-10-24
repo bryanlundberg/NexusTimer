@@ -7,7 +7,6 @@ import SheetSolveDetails from "@/components/sheets/sheet-solve-details/SheetSolv
 import DropdownFilterSolves from "@/components/dropdowns/dropdown-filter-options/dropdown-filter-options";
 import { useTimerStore } from "@/store/timerStore";
 import { useSolveFiltersStore } from "@/store/SolvesFilters";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import DialogMoveHistorial from "@/components/dialogs/dialog-move-historial/dialog-move-historial";
 import { Dialog } from "@/components/ui/dialog";
 import { useTranslations } from "next-intl";
@@ -27,7 +26,7 @@ export default function Page() {
   return (
     <>
       {/* container */}
-      <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
+      <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full overflow-auto">
         {/* header */}
         <Navigation>
           <div className="flex gap-2">
@@ -41,15 +40,13 @@ export default function Page() {
           </div>
         </Navigation>
 
-        <ScrollArea>
-          <SolvesArea
-            displaySolves={
-              tab === "session"
-                ? selectedCube?.solves.session
-                : selectedCube?.solves.all
-            }
-          />
-        </ScrollArea>
+        <SolvesArea
+          displaySolves={
+            tab === "session"
+              ? selectedCube?.solves.session
+              : selectedCube?.solves.all
+          }
+        />
 
         <Dialog
           open={isOpenMoveSolvesDialog}
