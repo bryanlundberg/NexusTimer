@@ -12,7 +12,7 @@ import DialogMoveHistorial from "@/components/dialogs/dialog-move-historial/dial
 import { Dialog } from "@/components/ui/dialog";
 import { useTranslations } from "next-intl";
 import Navigation from "@/components/navigation/navigation";
-import ButtonDisplayType from "@/components/navigation/buttons/button-display-type";
+import ButtonMoveSolves from "@/components/navigation/buttons/button-move-solves";
 
 export default function Page() {
   const { isDialogSolveOpen, handleCloseDialogSolve } = useDialogSolve();
@@ -31,7 +31,7 @@ export default function Page() {
         {/* header */}
         <Navigation>
           <div className="flex gap-2">
-            <ButtonDisplayType />
+            <ButtonMoveSolves />
             <Input
               placeholder={t("SolvesPage.filter-by-time")}
               onChange={(e) => handleSearch(e.target.value)}

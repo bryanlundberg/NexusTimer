@@ -1,11 +1,9 @@
 import Logo from "@/components/logo/logo";
 import {
-  Sheet,
   SheetContent,
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
 import { Link, usePathname } from "@/i18n/routing";
 import {

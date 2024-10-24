@@ -1,4 +1,3 @@
-import { Categories } from "@/interfaces/Categories";
 import calcAoStatistics from "@/lib/calcAoStatistics";
 import calcAverageStatistics from "@/lib/calcAverageStatistics";
 import calcBestTime from "@/lib/calcBestTime";
@@ -14,15 +13,10 @@ import {
 } from "@/lib/const/defaultChartValues";
 import getSolvesMetrics from "@/lib/getSolvesMetrics";
 import { useTimerStore } from "@/store/timerStore";
-import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 export default function useMetricsSwitch() {
-  const t = useTranslations("Index.SolvesPage");
-  const { cubes } = useTimerStore();
-  const [filterCategory, setFilterCategory] = useState<Categories>("3x3");
-  const [filterCube, setFilterCube] = useState<string>("all");
-
+  const { selectedCube, cubes } = useTimerStore();
   const [stats, setStats] = useState({
     average: defaultChartValuesN,
     timeSpent: defaultChartValuesS,
@@ -34,75 +28,64 @@ export default function useMetricsSwitch() {
     data: defaultChartValuesA,
   });
 
-  const handleChangeCategory = (value: any) => {
-    setFilterCube("all");
-    setFilterCategory(value);
-  };
-
-  const handleChangeCube = (value: any) => {
-    setFilterCube(value);
-  };
-
   useEffect(() => {
-    const calculatedAverage = calcAverageStatistics({
-      cubesDB: cubes,
-      category: filterCategory,
-      cubeName: filterCube,
-    });
-    const calculatedTimeSpent = calcTimeSpentStatistics({
-      cubesDB: cubes,
-      category: filterCategory,
-      cubeName: filterCube,
-    });
-    const calculatedCounter = calcTotalSolvesStatistics({
-      cubesDB: cubes,
-      category: filterCategory,
-      cubeName: filterCube,
-    });
-    const calculatedStats = calcAoStatistics({
-      cubesDB: cubes,
-      category: filterCategory,
-      cubeName: filterCube,
-    });
-    const calculatedDeviation = calcDeviation({
-      cubesDB: cubes,
-      category: filterCategory,
-      cubeName: filterCube,
-    });
-    const calculatedSuccessRate = calcSuccessRate({
-      cubesDB: cubes,
-      category: filterCategory,
-      cubeName: filterCube,
-    });
-    const calculatedBest = calcBestTime({
-      cubesDB: cubes,
-      category: filterCategory,
-      cubeName: filterCube,
-    });
-    const calculatedData = getSolvesMetrics({
-      cubesDB: cubes,
-      category: filterCategory,
-      cubeName: filterCube,
-    });
+    if (selectedCube) {
+      const calculatedAverage = calcAverageStatistics({
+        cubesDB: cubes,
+        category: selectedCube.category,
+        cubeName: selectedCube.name,
+      });
+      const calculatedTimeSpent = calcTimeSpentStatistics({
+        cubesDB: cubes,
+        category: selectedCube.category,
+        cubeName: selectedCube.name,
+      });
+      const calculatedCounter = calcTotalSolvesStatistics({
+        cubesDB: cubes,
+        category: selectedCube.category,
+        cubeName: selectedCube.name,
+      });
+      const calculatedStats = calcAoStatistics({
+        cubesDB: cubes,
+        category: selectedCube.category,
+        cubeName: selectedCube.name,
+      });
+      const calculatedDeviation = calcDeviation({
+        cubesDB: cubes,
+        category: selectedCube.category,
+        cubeName: selectedCube.name,
+      });
+      const calculatedSuccessRate = calcSuccessRate({
+        cubesDB: cubes,
+        category: selectedCube.category,
+        cubeName: selectedCube.name,
+      });
+      const calculatedBest = calcBestTime({
+        cubesDB: cubes,
+        category: selectedCube.category,
+        cubeName: selectedCube.name,
+      });
+      const calculatedData = getSolvesMetrics({
+        cubesDB: cubes,
+        category: selectedCube.category,
+        cubeName: selectedCube.name,
+      });
 
-    setStats((prev) => ({
-      ...prev,
-      average: calculatedAverage,
-      timeSpent: calculatedTimeSpent,
-      counter: calculatedCounter,
-      stats: calculatedStats,
-      deviation: calculatedDeviation,
-      successRate: calculatedSuccessRate,
-      best: calculatedBest,
-      data: calculatedData,
-    }));
-  }, [filterCategory, filterCube, cubes]);
+      setStats((prev) => ({
+        ...prev,
+        average: calculatedAverage,
+        timeSpent: calculatedTimeSpent,
+        counter: calculatedCounter,
+        stats: calculatedStats,
+        deviation: calculatedDeviation,
+        successRate: calculatedSuccessRate,
+        best: calculatedBest,
+        data: calculatedData,
+      }));
+    }
+  }, [cubes, selectedCube]);
 
   return {
-    filterCategory,
-    filterCube,
-    handleChangeCategory,
-    handleChangeCube,
     stats,
   };
 }

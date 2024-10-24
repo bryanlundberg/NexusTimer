@@ -125,6 +125,7 @@ export default function CubesTable({
                         <Tooltip>
                           <TooltipTrigger>
                             <Button
+                              className="py-0 px-3"
                               variant={"ghost"}
                               data-testid="cube-options"
                               onClick={() => {
@@ -151,6 +152,7 @@ export default function CubesTable({
                         <Tooltip>
                           <TooltipTrigger>
                             <Button
+                              className="py-0 px-3"
                               variant={"ghost"}
                               data-testid="cube-options"
                               onClick={() => {

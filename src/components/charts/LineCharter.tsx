@@ -10,7 +10,6 @@ import {
 } from "lightweight-charts";
 import { useEffect, useRef } from "react";
 import getBestTime from "@/lib/getBestTime";
-import { ChartData } from "@/interfaces/ChartData";
 import { useTranslations } from "next-intl";
 
 type TimeObject = {
@@ -18,13 +17,7 @@ type TimeObject = {
   value: number;
 };
 
-export default function LineCharter({
-  data,
-  cubeSelected,
-}: {
-  data: ChartData;
-  cubeSelected: boolean;
-}) {
+export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
   const t = useTranslations("Index.StatsPage");
   const { settings } = useSettingsModalStore();
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
@@ -49,7 +42,7 @@ export default function LineCharter({
         horzAlign: "center",
         vertAlign: "center",
         color: "rgba(120,120,120, 0.1)",
-        text: "nexustimer.pro",
+        text: "nexustimer.com",
       },
       layout: {
         textColor: "gray",
@@ -95,17 +88,15 @@ export default function LineCharter({
     if (container) {
       container.innerHTML = "";
       const chart = createChart(container, chartOptions);
-      const dataArray = cubeSelected ? data.cubeAll : data.global;
       const structuredData: any[] = [];
-      dataArray.forEach((i: Solve, index: number) => {
+      dataSet.forEach((i: Solve, index: number) => {
         structuredData.unshift({
-          time: dataArray.length - index,
+          time: dataSet.length - index,
           value: i.time,
         });
       });
 
       const lineSeries = chart.addLineSeries({
-        // color: cubeSelected ? "#0891B2" : lineColor,
         lastValueVisible: false,
         priceLineVisible: false,
         lineWidth: 1,
@@ -131,7 +122,7 @@ export default function LineCharter({
       };
 
       const bestTimeLine: CreatePriceLineOptions = {
-        price: getBestTime({ solves: dataArray }),
+        price: getBestTime({ solves: dataSet }),
         color: "#059669",
         lineWidth: 1,
         lineStyle: 0,
@@ -153,7 +144,7 @@ export default function LineCharter({
         chart.applyOptions({ height: newRect.height, width: newRect.width });
       }).observe(container);
     }
-  }, [data, cubeSelected, t, settings.theme.background.color]);
+  }, [dataSet, t, settings.theme.background.color]);
 
-  return <div ref={chartContainerRef} className="w-full h-full"></div>;
+  return <div ref={chartContainerRef} className="w-full h-96"></div>;
 }

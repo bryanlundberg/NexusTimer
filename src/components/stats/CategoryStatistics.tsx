@@ -3,15 +3,6 @@ import formatTime from "@/lib/formatTime";
 import useMetricsSwitch from "@/hooks/useMetricsSwitch";
 import { useTranslations } from "next-intl";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { cubeCollection } from "@/lib/const/cubeCollection";
-import { useTimerStore } from "@/store/timerStore";
-import {
   Table,
   TableBody,
   TableCell,
@@ -20,60 +11,35 @@ import {
   TableRow,
 } from "../ui/table";
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTimerStore } from "@/store/timerStore";
+
 export default function CategoryStatistics() {
   const t = useTranslations("Index");
-  const { cubes } = useTimerStore();
-  const {
-    filterCategory,
-    filterCube,
-    handleChangeCategory,
-    handleChangeCube,
-    stats,
-  } = useMetricsSwitch();
+  const { stats } = useMetricsSwitch();
+  const { selectedCube } = useTimerStore();
 
   return (
     <>
-      <div className="flex flex-col gap-3 pt-2 overflow-auto grow">
-        <div className="flex gap-3">
-          <Select value={filterCategory} onValueChange={handleChangeCategory}>
-            <SelectTrigger className="bg-background">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {cubeCollection.map((category) => {
-                return (
-                  <SelectItem key={category.name} value={category.name}>
-                    {category.name}
-                  </SelectItem>
-                );
-              })}
-            </SelectContent>
-          </Select>
-          <Select value={filterCube} onValueChange={handleChangeCube}>
-            <SelectTrigger className="bg-background">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">{t("SolvesPage.all")}</SelectItem>
-              {cubes &&
-                cubes
-                  .filter((cube) => cube.category === filterCategory)
-                  .map((item) => {
-                    return (
-                      <SelectItem key={item.id} value={item.name}>
-                        {item.name}
-                      </SelectItem>
-                    );
-                  })}
-            </SelectContent>
-          </Select>
-        </div>
+      <div className="flex flex-col gap-3 grow">
         <div className="flex flex-col gap-3 md:flex-row ">
-          <div className="flex flex-col w-full p-3 border rounded-md h-96 bg-background">
-            <LineCharter
-              data={stats.data}
-              cubeSelected={"all" !== filterCube}
-            />
+          <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-background">
+            {selectedCube && (
+              <>
+                <Tabs defaultValue="category" className="mb-3">
+                  <TabsList>
+                    <TabsTrigger value="category">Category</TabsTrigger>
+                    <TabsTrigger value="cube">Cube</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="category">
+                    <LineCharter dataSet={stats.data.global} />
+                  </TabsContent>
+                  <TabsContent value="cube">
+                    <LineCharter dataSet={stats.data.cubeAll} />
+                  </TabsContent>
+                </Tabs>
+              </>
+            )}
           </div>
         </div>
 

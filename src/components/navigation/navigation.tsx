@@ -5,7 +5,7 @@ import { RowsIcon } from "@radix-ui/react-icons";
 import { Sheet, SheetTrigger } from "@/components/ui/sheet";
 import SheetNavbar from "../sheets/sheet-navbar/sheet-navbar";
 import { usePathname } from "@/i18n/routing";
-import ButtonMoveSolves from "./buttons/button-move-solves";
+import ButtonDisplayType from "./buttons/button-display-type";
 
 export default function Navigation({
   children,
@@ -13,7 +13,6 @@ export default function Navigation({
   children?: React.ReactNode;
 }) {
   const path = usePathname();
-  console.log(path);
   return (
     <>
       <div className="w-full max-w-7xl border mx-auto flex flex-col rounded-lg bg-secondary/10 p-2 gap-2 mb-2">
@@ -29,7 +28,7 @@ export default function Navigation({
           </Sheet>
 
           <MainCubeSelector />
-          <ButtonMoveSolves />
+          <ButtonDisplayType />
         </div>
         {children}
       </div>
