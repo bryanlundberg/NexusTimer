@@ -2,7 +2,7 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { ScrambleZone } from "./ScrambleZone";
 import { useTranslations } from "next-intl";
-import Navigation from "../navbar/navigation/navigation";
+import Navigation from "../navigation/navigation";
 
 export default function HeaderTimer() {
   const { selectedCube, setNewScramble, isSolving, timerStatus } =
