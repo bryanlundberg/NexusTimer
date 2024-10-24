@@ -1,30 +1,37 @@
+"use client";
 import MainCubeSelector from "@/components/MainCubeSelector";
 import { Button } from "@/components/ui/button";
-import { SparklesIcon } from "@heroicons/react/24/outline";
-import { DashboardIcon, RowsIcon } from "@radix-ui/react-icons";
+import { RowsIcon } from "@radix-ui/react-icons";
 import { Sheet, SheetTrigger } from "@/components/ui/sheet";
 import SheetNavbar from "../sheets/sheet-navbar/sheet-navbar";
+import { usePathname } from "@/i18n/routing";
+import ButtonMoveSolves from "./buttons/button-move-solves";
 
-export default function Navigation() {
+export default function Navigation({
+  children,
+}: {
+  children?: React.ReactNode;
+}) {
+  const path = usePathname();
+  console.log(path);
   return (
     <>
-      <div className="w-full max-w-96 border mx-auto flex justify-center items-center p-2 gap-3 rounded-lg bg-secondary/10">
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant={"ghost"} size={"icon"}>
-              <RowsIcon />
-            </Button>
-          </SheetTrigger>
-          <SheetNavbar />
-        </Sheet>
+      <div className="w-full max-w-7xl border mx-auto flex flex-col rounded-lg bg-secondary/10 p-2 gap-2 mb-2">
+        <div className="flex justify-center items-center gap-2">
+          {/* menu button */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant={"ghost"} className="py-0 px-3">
+                <RowsIcon />
+              </Button>
+            </SheetTrigger>
+            <SheetNavbar />
+          </Sheet>
 
-        <MainCubeSelector />
-        <Button variant={"ghost"} size={"icon"}>
-          <DashboardIcon className="size-4" />
-        </Button>
-        <Button variant={"ghost"} size={"icon"}>
-          <SparklesIcon className="size-4" />
-        </Button>
+          <MainCubeSelector />
+          <ButtonMoveSolves />
+        </div>
+        {children}
       </div>
     </>
   );

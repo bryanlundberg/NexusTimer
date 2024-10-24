@@ -52,37 +52,35 @@ export default function SheetNavbar() {
   ];
 
   return (
-    <>
-      <SheetContent side={"left"}>
-        <SheetHeader className="mb-10">
-          <SheetTitle>
-            <Logo />
-          </SheetTitle>
-          <SheetDescription>
-            Explore your solves, track progress, and improve your speedcubing
-            skills with quick access to stats, timers, and tutorials.
-          </SheetDescription>
-        </SheetHeader>
+    <SheetContent side={"left"}>
+      <SheetHeader className="mb-10">
+        <SheetTitle>
+          <Logo />
+        </SheetTitle>
+        <SheetDescription>
+          Explore your solves, track progress, and improve your speedcubing
+          skills with quick access to stats, timers, and tutorials.
+        </SheetDescription>
+      </SheetHeader>
 
-        {navigation.map((item) => {
-          return (
-            <>
-              <Link
-                key={item.path}
-                href={item.path}
-                className="w-full flex items-center group/selection pb-2 mb-1 transition duration-500 gap-1"
-              >
-                <TriangleRightIcon
-                  className={` group-hover/selection:visible size-4 ${
-                    pathname === item.path ? "visible" : "invisible"
-                  }`}
-                />
-                <div className="grow text-2xl">{item.toolTipMessage}</div>
-              </Link>
-            </>
-          );
-        })}
-      </SheetContent>
-    </>
+      {navigation.map((item) => {
+        return (
+          <>
+            <Link
+              key={item.path}
+              href={item.path}
+              className="w-full flex items-center group/selection pb-2 mb-1 transition duration-500 gap-1"
+            >
+              <TriangleRightIcon
+                className={` group-hover/selection:visible size-4 ${
+                  pathname === item.path ? "visible" : "invisible"
+                }`}
+              />
+              <div className="grow text-2xl">{item.toolTipMessage}</div>
+            </Link>
+          </>
+        );
+      })}
+    </SheetContent>
   );
 }

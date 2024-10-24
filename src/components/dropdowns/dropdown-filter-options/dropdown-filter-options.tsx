@@ -65,7 +65,7 @@ export default function DropdownFilterSolves() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant={"outline"}>
+          <Button className="px-3 py-0" variant={"ghost"}>
             <DotsVerticalIcon />
           </Button>
         </DropdownMenuTrigger>

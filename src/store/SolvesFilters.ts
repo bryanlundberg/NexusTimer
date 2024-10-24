@@ -8,10 +8,12 @@ interface SolvesFiltersProps {
   query: string;
   sortType: SortVariant;
   order: Direction;
+  isOpenMoveSolvesDialog: boolean;
   handleSearch: (query: string) => void;
   handleChangeOrder: (order: Direction) => void;
   handleChangeSortType: (sortType: SortVariant) => void;
   handleChangeTab: (newTab: TabVariant) => void;
+  handleChangeIsOpenMoveSolvesDialog: () => void;
 }
 
 export const useSolveFiltersStore = create<SolvesFiltersProps>((set) => ({
@@ -19,6 +21,7 @@ export const useSolveFiltersStore = create<SolvesFiltersProps>((set) => ({
   sortType: "date",
   order: "desc",
   query: "",
+  isOpenMoveSolvesDialog: false,
   handleSearch: (query: string) => {
     set((prev) => ({ ...prev, query }));
   },
@@ -30,5 +33,11 @@ export const useSolveFiltersStore = create<SolvesFiltersProps>((set) => ({
   },
   handleChangeTab: (newTab: TabVariant) => {
     set((prev) => ({ ...prev, tab: newTab }));
+  },
+  handleChangeIsOpenMoveSolvesDialog: () => {
+    set((prev) => ({
+      ...prev,
+      isOpenMoveSolvesDialog: !prev.isOpenMoveSolvesDialog,
+    }));
   },
 }));
