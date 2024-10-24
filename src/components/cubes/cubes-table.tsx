@@ -123,7 +123,7 @@ export default function CubesTable({
                     >
                       <TooltipProvider>
                         <Tooltip>
-                          <TooltipTrigger>
+                          <TooltipTrigger asChild>
                             <Button
                               className="py-0 px-3"
                               variant={"ghost"}
@@ -150,7 +150,7 @@ export default function CubesTable({
                     >
                       <TooltipProvider>
                         <Tooltip>
-                          <TooltipTrigger>
+                          <TooltipTrigger asChild>
                             <Button
                               className="py-0 px-3"
                               variant={"ghost"}

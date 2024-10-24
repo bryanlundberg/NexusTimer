@@ -14,6 +14,7 @@ export default function Navigation({
   children?: React.ReactNode;
 }) {
   const path = usePathname();
+
   return (
     <>
       <div className="w-full max-w-7xl border mx-auto flex flex-col rounded-lg bg-secondary/10 p-2 gap-2 mb-2">
@@ -29,8 +30,12 @@ export default function Navigation({
           </Sheet>
 
           <MainCubeSelector />
-          <ButtonDisplayType />
-          <ButtonCreateCollection />
+
+          {path === "/stats" || path === "/solves" ? (
+            <ButtonDisplayType />
+          ) : null}
+
+          {path === "/cubes" && <ButtonCreateCollection />}
         </div>
         {children}
       </div>
