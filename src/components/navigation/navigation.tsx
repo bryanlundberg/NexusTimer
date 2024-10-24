@@ -6,6 +6,7 @@ import { Sheet, SheetTrigger } from "@/components/ui/sheet";
 import SheetNavbar from "../sheets/sheet-navbar/sheet-navbar";
 import { usePathname } from "@/i18n/routing";
 import ButtonDisplayType from "./buttons/button-display-type";
+import ButtonCreateCollection from "./buttons/button-create-collection";
 
 export default function Navigation({
   children,
@@ -29,6 +30,7 @@ export default function Navigation({
 
           <MainCubeSelector />
           <ButtonDisplayType />
+          <ButtonCreateCollection />
         </div>
         {children}
       </div>
