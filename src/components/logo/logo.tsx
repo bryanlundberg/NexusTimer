@@ -29,7 +29,7 @@ export default function Logo({ className, ...rest }: LogoProps) {
           draggable={false}
         />
 
-        <p className="text-3xl font-bold">Timer</p>
+        <p className="text-3xl font-bold">Timer ™</p>
       </div>
     </>
   );

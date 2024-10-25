@@ -22,7 +22,7 @@ export default function CategoryStatistics() {
   return (
     <>
       <div className="flex flex-col gap-3 grow">
-        <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-background">
+        <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-background/90 backdrop-blur-lg">
           {selectedCube && (
             <>
               <Tabs defaultValue="category" className="mb-3">
@@ -41,7 +41,7 @@ export default function CategoryStatistics() {
           )}
         </div>
 
-        <Table className="bg-background rounded-md">
+        <Table className="rounded-md overflow-hidden bg-background/90 backdrop-blur-lg">
           <TableHeader>
             <TableRow>
               <TableHead></TableHead>

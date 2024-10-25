@@ -40,7 +40,10 @@ export default function CubesTable({
 
   return (
     <>
-      <Card data-testid="table-of-cubes">
+      <Card
+        data-testid="table-of-cubes"
+        className="bg-background/90 backdrop-blur-lg"
+      >
         <Table>
           <TableHeader>
             <TableRow>

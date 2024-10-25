@@ -7,7 +7,6 @@ import { MainTimer } from "@/components/timer/MainTimer";
 import HintPanel from "@/components/timer/HintPanel";
 import ScrambleModal from "@/components/timer/ScrambleModal";
 import useInitializeTimer from "@/hooks/useInitializeHint";
-import ImportModal from "@/components/menu-settings/ImportModal";
 import useForceHashSettings from "@/hooks/useForceHashSettings";
 import { useEffect, useState } from "react";
 import {
@@ -45,7 +44,6 @@ export default function Home() {
       <SettingsMenu />
       <HintPanel />
       <ScrambleModal />
-      <ImportModal />
 
       {/* Temporal alert */}
       <AlertDialog

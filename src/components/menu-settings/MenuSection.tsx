@@ -7,15 +7,13 @@ interface MenuSection {
 export function MenuSection({ children, icon, title }: MenuSection) {
   return (
     <>
-      <div className="mb-3">
-        <div className="flex items-center gap-2 mx-3 mb-3 font-semibold sticky top-0 bg-background border-b pb-2 mt-10 z-10">
-          {icon}
-          <div className="w-full">
-            <span className="text-lg">{title}</span>
-          </div>
+      <div className="flex items-center gap-3 font-semibold sticky bg-background backdrop-blur-lg top-0 py-2 z-10 my-3 ps-3">
+        {icon}
+        <div className="w-full">
+          <span className="text-lg">{title}</span>
         </div>
-        {children}
       </div>
+      <div className="">{children}</div>
     </>
   );
 }

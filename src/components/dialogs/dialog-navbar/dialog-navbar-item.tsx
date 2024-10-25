@@ -18,9 +18,9 @@ export default function DialogNavbarItem({
         className="flex w-full h-20 relative rounded-ss-xl rounded-br-xl overflow-hidden border"
       >
         <Link
-          className={`absolute w-full h-full flex items-center justify-center  hover:bg-background/50 transition duration-200 hover:font-semibold ${
+          className={`absolute w-full h-full flex items-center justify-center  hover:bg-background/60 transition duration-200 hover:font-semibold text-2xl ${
             path === href
-              ? "bg-background/50 font-semibold"
+              ? "bg-background/60 font-semibold"
               : "bg-background/95"
           }`}
           href={href}

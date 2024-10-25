@@ -46,7 +46,7 @@ export default function MenuSelectDefaultStartCube() {
         value={defaultCube}
         onValueChange={handleCubeSelect}
       >
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px] bg-background">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

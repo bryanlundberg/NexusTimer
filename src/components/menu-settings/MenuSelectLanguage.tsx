@@ -32,7 +32,7 @@ export default function MenuSelectLanguage() {
         <div className="mx-3 flex items-center justify-between">
           <div className="grow">{t("language")}</div>
           <Select defaultValue={locale} onValueChange={handleLanguageChange}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] bg-background">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
