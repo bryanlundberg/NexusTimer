@@ -20,7 +20,7 @@ type Navigation = NavItem[];
 interface NavItem {
   path: string;
   icon: React.ReactNode;
-  toolTipMessage: string;
+  name: string;
 }
 
 export default function SheetNavbar() {
@@ -30,22 +30,22 @@ export default function SheetNavbar() {
     {
       path: "/",
       icon: <ClockIcon />,
-      toolTipMessage: t("HomePage.title"),
+      name: t("HomePage.title"),
     },
     {
       path: "/solves",
       icon: <StackIcon />,
-      toolTipMessage: t("SolvesPage.title"),
+      name: t("SolvesPage.title"),
     },
     {
       path: "/stats",
       icon: <BarChartIcon />,
-      toolTipMessage: t("StatsPage.title"),
+      name: t("StatsPage.title"),
     },
     {
       path: "/cubes",
       icon: <CubeIcon />,
-      toolTipMessage: t("CubesPage.title"),
+      name: t("CubesPage.title"),
     },
   ];
 
@@ -73,7 +73,7 @@ export default function SheetNavbar() {
                 pathname === item.path ? "visible" : "invisible"
               }`}
             />
-            <div className="grow text-2xl">{item.toolTipMessage}</div>
+            <div className="grow text-2xl">{item.name}</div>
           </Link>
         );
       })}
