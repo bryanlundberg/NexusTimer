@@ -10,10 +10,8 @@ test("Should be able to delete a cube collection", async ({ page }) => {
   await page.getByTestId("checkbox-category-6x6").click();
   await page.getByTestId("drawer-accept-button").click();
   await expect(page.getByTestId("cube-name-fake-cube-name")).toBeVisible();
-  await expect(page.getByTestId("cube-options")).toBeVisible();
-  await page.getByTestId("cube-options").click();
-  await expect(page.getByTestId("dropdown-cube-options-delete")).toBeVisible();
-  await page.getByTestId("dropdown-cube-options-delete").click();
+  await expect(page.getByTestId("cube-options-delete")).toBeVisible();
+  await page.getByTestId("cube-options-delete").click();
   await expect(page.getByTestId("dialog-delete-cube-container")).toBeVisible();
   await expect(page.getByTestId("dialog-delete-cube-title")).toBeVisible();
   await expect(

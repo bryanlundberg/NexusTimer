@@ -11,8 +11,7 @@ test("Should edit the cube collection name", async ({ page }) => {
   await page.getByTestId("checkbox-category-3x3").click();
   await page.getByTestId("drawer-accept-button").click();
   await expect(page.getByTestId("cube-name-test-changing-name")).toBeVisible();
-  await page.getByTestId("cube-options").click();
-  await page.getByTestId("dropdown-cube-options-edit").click();
+  await page.getByTestId("cube-options-edit").click();
   await expect(page.getByTestId("drawer-edit-input-name")).toBeVisible();
   await page.getByTestId("drawer-edit-input-name").click();
   await page.getByTestId("drawer-edit-input-name").fill("my-amazing-cube");
