@@ -11,7 +11,10 @@ export default function AlertEmptySolves({
   const t = useTranslations("Index");
   return (
     <>
-      <Alert variant={"destructive"} className="bg-background">
+      <Alert
+        variant={"destructive"}
+        className="bg-background/90 backdrop-blur-lg"
+      >
         {icon}
         <AlertTitle className="ms-2">{t("SolvesPage.alert.title")}</AlertTitle>
         <AlertDescription className="ms-2">{message}</AlertDescription>

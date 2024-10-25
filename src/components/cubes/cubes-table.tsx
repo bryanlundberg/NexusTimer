@@ -40,7 +40,10 @@ export default function CubesTable({
 
   return (
     <>
-      <Card className="overflow-auto" data-testid="table-of-cubes">
+      <Card
+        data-testid="table-of-cubes"
+        className="bg-background/90 backdrop-blur-lg"
+      >
         <Table>
           <TableHeader>
             <TableRow>
@@ -123,10 +126,11 @@ export default function CubesTable({
                     >
                       <TooltipProvider>
                         <Tooltip>
-                          <TooltipTrigger>
+                          <TooltipTrigger asChild>
                             <Button
+                              className="py-0 px-3"
                               variant={"ghost"}
-                              data-testid="cube-options"
+                              data-testid="cube-options-edit"
                               onClick={() => {
                                 openDialogType({
                                   type: "edit",
@@ -149,10 +153,11 @@ export default function CubesTable({
                     >
                       <TooltipProvider>
                         <Tooltip>
-                          <TooltipTrigger>
+                          <TooltipTrigger asChild>
                             <Button
+                              className="py-0 px-3"
                               variant={"ghost"}
-                              data-testid="cube-options"
+                              data-testid="cube-options-delete"
                               onClick={() => {
                                 openDialogType({
                                   type: "delete",

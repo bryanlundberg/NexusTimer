@@ -1,22 +1,12 @@
 import { useEffect, useState } from "react";
 import { useTimerStore } from "@/store/timerStore";
 import { getAllCubes, saveCube } from "@/db/dbOperations";
-import { Cube } from "@/interfaces/Cube";
 import { useRouter } from "@/i18n/routing";
 
 export function useCubes() {
   const { cubes, setSelectedCube, setNewScramble, setCubes } = useTimerStore();
   const [filterCubes, setFilterCubes] = useState(cubes);
   const router = useRouter();
-  const handleSearchFilter = (searchCube: string) => {
-    if (!cubes) return;
-    if (searchCube.trim() === "") return setFilterCubes(cubes);
-    setFilterCubes(
-      cubes.filter((cube: Cube) =>
-        cube.name.toLowerCase().startsWith(searchCube.toLowerCase())
-      )
-    );
-  };
 
   const handleFavoriteClick = async (cubeId: string) => {
     try {
@@ -55,7 +45,6 @@ export function useCubes() {
 
   return {
     filterCubes,
-    handleSearchFilter,
     handleFavoriteClick,
     handleRedirectToTimer,
   };
