@@ -24,23 +24,23 @@ export default function DialogNavbar() {
   const navigation: Navigation = [
     {
       path: "/",
-      image: "/menu/play.avif",
+      image: "/menu/play.webp",
       name: t("HomePage.title"),
     },
     {
       path: "/solves",
-      image: "/menu/clock.jpg",
+      image: "/menu/clock.webp",
 
       name: t("SolvesPage.title"),
     },
     {
       path: "/stats",
-      image: "/menu/blue.jpg",
+      image: "/menu/blue.webp",
       name: t("StatsPage.title"),
     },
     {
       path: "/cubes",
-      image: "/menu/collection.jpg",
+      image: "/menu/collection.webp",
       name: t("CubesPage.title"),
     },
   ];
@@ -74,7 +74,7 @@ export default function DialogNavbar() {
           href={"/settings"}
           label={"Settings"}
           key={"item.path"}
-          image={"/menu/rain.jpg"}
+          image={"/menu/rain.webp"}
         />
       </DialogContent>
     </>
