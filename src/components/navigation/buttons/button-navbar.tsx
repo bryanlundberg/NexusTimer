@@ -1,19 +1,19 @@
-import SheetNavbar from "@/components/sheets/sheet-navbar/sheet-navbar";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetTrigger } from "@/components/ui/sheet";
 import { RowsIcon } from "@radix-ui/react-icons";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import DialogNavbar from "@/components/dialogs/dialog-navbar/dialog-navbar";
 
 export default function ButtonNavbar() {
   return (
     <>
-      <Sheet>
-        <SheetTrigger asChild>
+      <Dialog>
+        <DialogTrigger asChild>
           <Button variant={"ghost"} className="py-0 px-3">
             <RowsIcon />
           </Button>
-        </SheetTrigger>
-        <SheetNavbar />
-      </Sheet>
+        </DialogTrigger>
+        <DialogNavbar />
+      </Dialog>
     </>
   );
 }
