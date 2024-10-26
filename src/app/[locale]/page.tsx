@@ -20,6 +20,8 @@ import {
 import { Button } from "@/components/ui/button";
 import exportDataToFile from "@/lib/exportDataToFile";
 import { Link } from "@/i18n/routing";
+import { createBackup } from "@/actions/actions";
+import { signIn } from "next-auth/react";
 
 export default function Home() {
   useInitializeTimer();
@@ -32,10 +34,13 @@ export default function Home() {
     if (hostname === "www.nexustimer.pro") {
       setOpenMigrationDialog(true);
     }
+
+    createBackup();
   }, []);
 
   return (
     <>
+      <Button onClick={() => signIn("google")}>Login Googlle</Button>
       <TimerContainer>
         <HeaderTimer />
         <MainTimer />
