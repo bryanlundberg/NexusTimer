@@ -1,6 +1,6 @@
 ## Overview
 
-![nexustimer logo](https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/public/portrait-v2.png)
+<img src="./.github/images/branding.png" width="100%" />
 
 **NexusTimer** is an app designed for tracking your training sessions on the Rubik's Cube, with a user interface inspired by [Twisty Timer](https://github.com/aricneto/TwistyTimer) to provide a comparable desktop experience.
 
@@ -37,10 +37,10 @@ For those new to speedcubing, it's a challenge where cubers aim to solve the Rub
 ## Screenshots
 
 <div align="center">
-  <img src="./.github/images/v2/screencapture-nexustimer-en-1.png" width="24%" />
-  <img src="./.github/images/v2/screencapture-nexustimer-en-3.png" width="24%" />
-  <img src="./.github/images/v2/screencapture-nexustimer-en-4.png" width="24%" />
-  <img src="./.github/images/v2/screencapture-nexustimer-en-5.png" width="24%" />
+  <img src="./.github/images/v3/Screenshot_4.png" width="24%" />
+  <img src="./.github/images/v3/Screenshot_5.png" width="24%" />
+  <img src="./.github/images/v3/Screenshot_7.png" width="24%" />
+  <img src="./.github/images/v3/Screenshot_8.png" width="24%" />
 </div>
 
 ## Includes
@@ -86,6 +86,9 @@ We can detect, convert, and transfer all your previous data from timers such as 
 - Ukrainian (uk)
 - Vietnamese (vi)
 - Chinese (zh)
+
+"Connecting the World, One User at a Time!"
+<img src="./.github/images/usage.png" width="100%" />
 
 ## Contributing
 
