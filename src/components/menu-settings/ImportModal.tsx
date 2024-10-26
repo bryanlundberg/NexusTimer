@@ -8,7 +8,7 @@ import { useRef, useState } from "react";
 import Loading from "../Loading";
 import { getAllCubes } from "@/db/dbOperations";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/routing";
+import { useRouter } from "next/navigation";
 
 export default function ImportModal() {
   const { setImportModalOpen, importModalOpen } = useSettingsModalStore();

@@ -1,6 +1,6 @@
-import { Link, usePathname } from "@/i18n/routing";
 import Image from "next/image";
-
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 export default function DialogNavbarItem({
   href,
   label,

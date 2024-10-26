@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Link } from "@/i18n/routing";
+import Link from "next/link";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";

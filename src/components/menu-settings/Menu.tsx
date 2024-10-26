@@ -4,7 +4,7 @@ import { MenuSection } from "@/components/menu-settings/MenuSection";
 import { MenuOption } from "@/components/menu-settings/MenuOption";
 import { DataImportExport } from "@/components/menu-settings/DataImportExport";
 import { useTimerStore } from "@/store/timerStore";
-import { Link } from "@/i18n/routing";
+import Link from "next/link";
 import useEscape from "@/hooks/useEscape";
 import { AnimatePresence, motion } from "framer-motion";
 import CustomTheme from "./CustomTheme";

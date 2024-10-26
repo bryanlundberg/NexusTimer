@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTimerStore } from "@/store/timerStore";
 import { getAllCubes, saveCube } from "@/db/dbOperations";
-import { useRouter } from "@/i18n/routing";
+import { useRouter } from "next/navigation";
 
 export function useCubes() {
   const { cubes, setSelectedCube, setNewScramble, setCubes } = useTimerStore();

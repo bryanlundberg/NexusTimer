@@ -4,8 +4,6 @@ import ThemeSelect from "@/components/menu-settings/ThemeSelect";
 import { MenuSection } from "@/components/menu-settings/MenuSection";
 import { MenuOption } from "@/components/menu-settings/MenuOption";
 import { DataImportExport } from "@/components/menu-settings/DataImportExport";
-import { Link } from "@/i18n/routing";
-import useEscape from "@/hooks/useEscape";
 import { useTranslations } from "next-intl";
 import {
   ArrowLeftIcon,
@@ -24,6 +22,7 @@ import MenuSelectDefaultStartCube from "@/components/menu-settings/MenuSelectDef
 import Logo from "@/components/logo/logo";
 import { Button } from "@/components/ui/button";
 import ImportModal from "@/components/menu-settings/ImportModal";
+import Link from "next/link";
 
 export default function Page() {
   const { settings } = useSettingsModalStore();

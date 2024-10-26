@@ -5,10 +5,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import DialogNavbarItem from "./dialog-navbar-item";
+import { usePathname } from "next/navigation";
 
 type Navigation = NavItem[];
 

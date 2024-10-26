@@ -3,7 +3,7 @@ import "./globals.css";
 import PreloadSettings from "@/components/PreloadSettings";
 import { saira } from "@/fonts/fonts";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 
 export async function generateMetadata({
   params: { locale },
@@ -36,11 +36,10 @@ export async function generateMetadata({
 
 export default async function RootLayout({
   children,
-  params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
 }) {
+  const locale = await getLocale();
   // Provide all messages to the client
   const messages = await getMessages();
 
