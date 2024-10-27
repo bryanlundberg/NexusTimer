@@ -4,6 +4,8 @@ import PreloadSettings from "@/components/PreloadSettings";
 import { saira } from "@/fonts/fonts";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
 
 export async function generateMetadata({
   params: { locale },
@@ -43,13 +45,17 @@ export default async function RootLayout({
   // Provide all messages to the client
   const messages = await getMessages();
 
+  const session = await auth();
+
   return (
     <html lang={locale}>
       <body className={saira.className}>
-        <NextIntlClientProvider messages={messages}>
-          <PreloadSettings>{children}</PreloadSettings>
-        </NextIntlClientProvider>
-        <Toaster />
+        <SessionProvider session={session}>
+          <NextIntlClientProvider messages={messages}>
+            <PreloadSettings>{children}</PreloadSettings>
+          </NextIntlClientProvider>
+          <Toaster />
+        </SessionProvider>
       </body>
     </html>
   );

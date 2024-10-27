@@ -8,6 +8,8 @@ import {
 import { useTranslations } from "next-intl";
 import DialogNavbarItem from "./dialog-navbar-item";
 import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 type Navigation = NavItem[];
 
@@ -56,25 +58,45 @@ export default function DialogNavbar() {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-          {navigation.map((item) => {
-            return (
-              <DialogNavbarItem
-                href={item.path}
-                label={item.name}
-                key={item.path}
-                image={item.image}
-              />
-            );
-          })}
-        </div>
+        <div>
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+            {navigation.map((item) => {
+              return (
+                <DialogNavbarItem
+                  href={item.path}
+                  label={item.name}
+                  key={item.path}
+                  image={item.image}
+                />
+              );
+            })}
+          </div>
 
-        <DialogNavbarItem
-          href={"/settings"}
-          label={"Settings"}
-          key={"item.path"}
-          image={"/menu/rain.webp"}
-        />
+          <div className="flex gap-2 my-2">
+            <DialogNavbarItem
+              href={"/settings"}
+              label={"Account"}
+              key={"item.path"}
+              image={"/menu/rain.webp"}
+            />
+            <DialogNavbarItem
+              href={"/settings"}
+              label={"Settings"}
+              key={"item.path"}
+              image={"/menu/rain.webp"}
+            />
+          </div>
+
+          <Button className="flex gap-2 items-center w-full">
+            <Image
+              src={"/timer-logos/google.svg"}
+              alt=""
+              width={20}
+              height={20}
+            />
+            Sign In with Google
+          </Button>
+        </div>
       </DialogContent>
     </>
   );

@@ -5,9 +5,8 @@ import { useTranslations } from "next-intl";
 import Navigation from "../navigation/navigation";
 
 export default function HeaderTimer() {
-  const { selectedCube, setNewScramble, isSolving, timerStatus } =
-    useTimerStore();
-  const { setSettingsOpen, settingsOpen, settings } = useSettingsModalStore();
+  const { isSolving, timerStatus } = useTimerStore();
+  const { settings } = useSettingsModalStore();
   const { lastSolve, timerStatistics } = useTimerStore();
   const t = useTranslations("Index.HomePage");
 

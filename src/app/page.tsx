@@ -1,7 +1,6 @@
 "use client";
 import HeaderTimer from "@/components/timer/HeaderTimer";
 import TimerWidgets from "@/components/timer/TimerWidgets";
-import SettingsMenu from "@/components/menu-settings/Menu";
 import TimerContainer from "@/components/timer/TimerContainer";
 import { MainTimer } from "@/components/timer/MainTimer";
 import HintPanel from "@/components/timer/HintPanel";
@@ -20,8 +19,12 @@ import {
 import { Button } from "@/components/ui/button";
 import exportDataToFile from "@/lib/exportDataToFile";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
+  const { data: session } = useSession();
+
+  console.log(session);
   useInitializeTimer();
   useForceHashSettings();
 
@@ -41,7 +44,6 @@ export default function Home() {
         <MainTimer />
         <TimerWidgets />
       </TimerContainer>
-      <SettingsMenu />
       <HintPanel />
       <ScrambleModal />
 
