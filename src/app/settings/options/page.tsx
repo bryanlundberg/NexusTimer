@@ -105,38 +105,6 @@ export default function Page() {
           <MenuSection icon={<BoxModelIcon />} title={t("preferences")}>
             <MenuSelectDefaultStartCube />
           </MenuSection>
-
-          <MenuSection icon={<QuoteIcon />} title={t("about")}>
-            <div className="flex flex-col justify-center items-center gap-3">
-              <Logo className="my-10" />
-
-              <div className="text-center w-11/12 italic mx-auto text-sm">
-                &rdquo;{t("legend")}&rdquo;
-              </div>
-
-              <div className="flex gap-3 underline">
-                <Link
-                  href={"https://github.com/bryanlundberg/NexusTimer/issues"}
-                  target="_blank"
-                >
-                  <Button variant={"link"}>
-                    {t("suggest")}
-                    <ExternalLinkIcon />
-                  </Button>
-                </Link>
-
-                <Link
-                  href={"https://github.com/bryanlundberg/NexusTimer/issues"}
-                  target="_blank"
-                >
-                  <Button variant={"link"}>
-                    {t("report-bug")}
-                    <ExternalLinkIcon />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </MenuSection>
         </div>
       </div>
       <ImportModal />
