@@ -1,14 +1,11 @@
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 export default function DialogNavbarItem({
   href,
   label,
-  image,
 }: {
   href: string;
   label: string;
-  image: string;
 }) {
   const path = usePathname();
   return (

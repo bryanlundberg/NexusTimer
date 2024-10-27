@@ -6,7 +6,6 @@ import { MenuOption } from "@/components/menu-settings/MenuOption";
 import { DataImportExport } from "@/components/menu-settings/DataImportExport";
 import { useTranslations } from "next-intl";
 import {
-  ArrowLeftIcon,
   BellIcon,
   BoxModelIcon,
   ComponentBooleanIcon,
@@ -23,6 +22,7 @@ import Logo from "@/components/logo/logo";
 import { Button } from "@/components/ui/button";
 import ImportModal from "@/components/menu-settings/ImportModal";
 import Link from "next/link";
+import AccountHeader from "@/components/account/account-header/account-header";
 
 export default function Page() {
   const { settings } = useSettingsModalStore();
@@ -31,15 +31,7 @@ export default function Page() {
     <>
       <div className="overflow-y-auto">
         <div className="max-w-md mx-auto bg-background/90 backdrop-blur-lg">
-          <div className="py-5 relative">
-            <Link
-              href={"/"}
-              className="flex items-center cursor-pointer ps-3 absolute top-7 left-4"
-            >
-              <ArrowLeftIcon />
-            </Link>
-            <div className="text-2xl text-center font-black">{t("title")}</div>
-          </div>
+          <AccountHeader back="/" label={t("title")} />
 
           <MenuSelectLanguage />
 
