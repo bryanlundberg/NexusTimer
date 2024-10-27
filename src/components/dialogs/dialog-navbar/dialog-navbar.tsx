@@ -50,7 +50,7 @@ export default function DialogNavbar() {
           </DialogDescription>
         </DialogHeader>
 
-        <div>
+        <div className="space-y-2">
           <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
             {navigation.map((item) => {
               return (
@@ -63,18 +63,11 @@ export default function DialogNavbar() {
             })}
           </div>
 
-          <div className="flex gap-2 my-2">
-            <DialogNavbarItem
-              href={"/account"}
-              label={"Account"}
-              key={"item.acccount"}
-            />
-            <DialogNavbarItem
-              href={"/settings"}
-              label={"Settings"}
-              key={"item.settings"}
-            />
-          </div>
+          <DialogNavbarItem
+            href={"/settings"}
+            label={"Settings"}
+            key={"item.settings"}
+          />
 
           <ButtonGoogle />
         </div>
