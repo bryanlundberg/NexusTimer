@@ -17,19 +17,19 @@ export default function Logo({ className, ...rest }: LogoProps) {
           className
         )}
       >
-        <p className="text-3xl font-bold">Nexus</p>
+        <p className="text-xl font-bold">Nexus</p>
         <Image
           src={"/logo.png"}
           alt="logo"
           width={320}
           height={100}
-          className={`size-9 ${
+          className={`size-5 ${
             settings.theme.background.color === "dark" ? "invert" : "invert-0"
           }`}
           draggable={false}
         />
 
-        <p className="text-3xl font-bold">Timer ™</p>
+        <p className="text-xl font-bold">Timer ™</p>
       </div>
     </>
   );
