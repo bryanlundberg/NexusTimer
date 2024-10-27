@@ -6,12 +6,13 @@ import AccountHeader from "../account-header/account-header";
 export default function AccountNotAuth() {
   return (
     <>
-      <div className="mx-auto w-fit mt-5 text-center">
-        <AccountHeader back="/" label="Account" />
+      <div className="max-w-md mx-auto bg-background/90 backdrop-blur-lg pt-2">
+        <AccountHeader back="/settings" label="Account" />
 
-        <ButtonGoogle />
-
-        <div className="text-xs mt-3">Please, authenticate first.</div>
+        <div className="space-y-2">
+          <ButtonGoogle />
+          <p className="text-center text-xs">Authenticate to grant access</p>
+        </div>
       </div>
     </>
   );

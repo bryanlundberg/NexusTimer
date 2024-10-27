@@ -2,14 +2,16 @@
 import { signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { redirect, useRouter } from "next/navigation";
 import AccountHeader from "@/components/account/account-header/account-header";
 import Link from "next/link";
+import AccountNotAuth from "@/components/account/account-not-auth/account-not-auth";
 
 export default function Page() {
   const { data: session } = useSession();
 
-  if (!session) redirect("/");
+  if (!session) {
+    return <AccountNotAuth />;
+  }
 
   return (
     <>
