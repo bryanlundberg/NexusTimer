@@ -47,9 +47,7 @@ export default function CubesTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="hidden sm:table-cell">
-                {t("CubesPage.favorite")}
-              </TableHead>
+              <TableHead>{t("CubesPage.favorite")}</TableHead>
               <TableHead>{t("CubesPage.name")}</TableHead>
               <TableHead>{t("CubesPage.category")}</TableHead>
               <TableHead className="hidden md:table-cell">
@@ -68,7 +66,7 @@ export default function CubesTable({
             {cubes.map((cube) => {
               return (
                 <TableRow key={cube.id}>
-                  <TableCell className="ps-5 hidden sm:table-cell">
+                  <TableCell className="ps-5">
                     <Checkbox
                       defaultChecked={cube.favorite}
                       onClick={(e) => {
