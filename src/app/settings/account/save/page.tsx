@@ -1,10 +1,17 @@
 "use client";
+import { createBackup } from "@/actions/actions";
 import AccountHeader from "@/components/account/account-header/account-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { getAllCubes } from "@/db/dbOperations";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { redirect, useRouter } from "next/navigation";
 
 export default function Page() {
+  const { data: session } = useSession();
+  const router = useRouter();
+  if (!session) redirect("/settings");
   return (
     <>
       <AccountHeader back="./" label="Save data" />
@@ -22,7 +29,21 @@ export default function Page() {
           <Link href={"./"}>
             <Button>Back</Button>
           </Link>
-          <Button>Continue</Button>
+          <Button
+            onClick={async () => {
+              const cubes = await getAllCubes();
+              if (!cubes) return; // send toast error to screen
+              const backup = await createBackup({
+                email: session.user?.email as string,
+                data: JSON.stringify(cubes),
+              });
+
+              if (!backup) return; // send toast error to screen
+              router.push("/settings/account");
+            }}
+          >
+            Continue
+          </Button>
         </div>
       </Card>
     </>

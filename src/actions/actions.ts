@@ -34,16 +34,25 @@ export async function createOrUpdateUser({
   }
 }
 
-export async function createBackup() {
+export async function createBackup({
+  email,
+  data,
+}: {
+  email: string;
+  data: string;
+}) {
   try {
     await connectDB();
-
-    const asd = await Backup.create({
-      data: Math.random().toString(),
+    const user = await User.findOne({ email: email });
+    if (!user) throw new Error("User not found");
+    const backup = await Backup.create({
+      user: user._id,
+      data: data,
     });
-
-    console.log(asd);
+    if (!backup) throw new Error("Backup not created");
+    return true;
   } catch (error: any) {
-    return { errMsg: error.message };
+    console.log(error);
+    return false;
   }
 }
