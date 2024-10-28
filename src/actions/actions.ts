@@ -2,9 +2,13 @@
 
 import connectDB from "@/db/mongodb";
 import Backup from "@/models/backup";
-import User from "@/models/user";
+import User, { Users } from "@/models/user";
 
-export async function createOrUpdateUser({ email, name, image }) {
+export async function createOrUpdateUser({
+  email,
+  name,
+  image,
+}: Pick<Users, "email" | "name" | "image">) {
   try {
     await connectDB();
 
@@ -39,7 +43,7 @@ export async function createBackup() {
     });
 
     console.log(asd);
-  } catch (error) {
+  } catch (error: any) {
     return { errMsg: error.message };
   }
 }

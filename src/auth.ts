@@ -7,9 +7,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     async signIn({ user, account, profile }) {
       return await createOrUpdateUser({
-        email: user.email,
-        image: user.image,
-        name: user.name,
+        email: user.email as string,
+        image: user.image as string,
+        name: user.name as string,
       });
     },
   },
