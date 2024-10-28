@@ -1,20 +1,32 @@
 "use server";
 
-import User from "@/models/user";
 import connectDB from "@/db/mongodb";
 import Backup from "@/models/backup";
+import User from "@/models/user";
 
-export async function createFake() {
+export async function createOrUpdateUser({ email, name, image }) {
   try {
     await connectDB();
 
-    const asd = await User.create({
-      msg: Math.random().toString(),
-    });
+    const user = await User.findOneAndUpdate(
+      {
+        email: email,
+      },
+      {
+        name,
+        image,
+      },
+      {
+        new: true,
+        upsert: true,
+      }
+    );
 
-    console.log(asd);
+    if (!user) throw new Error("Not user");
+
+    return true;
   } catch (error) {
-    return { errMsg: error.message };
+    return false;
   }
 }
 
