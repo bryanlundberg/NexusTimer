@@ -48,7 +48,7 @@ export default async function RootLayout({
   const session = await auth();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={saira.className}>
         <SessionProvider session={session}>
           <NextIntlClientProvider messages={messages}>
