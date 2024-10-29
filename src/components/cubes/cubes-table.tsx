@@ -47,9 +47,13 @@ export default function CubesTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>{t("CubesPage.favorite")}</TableHead>
-              <TableHead>{t("CubesPage.name")}</TableHead>
-              <TableHead>{t("CubesPage.category")}</TableHead>
+              <TableHead className="w-10">{t("CubesPage.favorite")}</TableHead>
+              <TableHead className="w-full md:w-auto">
+                {t("CubesPage.name")}
+              </TableHead>
+              <TableHead className="hidden sm:table-cell">
+                {t("CubesPage.category")}
+              </TableHead>
               <TableHead className="hidden md:table-cell">
                 {t("CubesPage.created-at")}
               </TableHead>
@@ -59,7 +63,7 @@ export default function CubesTable({
               <TableHead className="hidden md:table-cell">
                 {t("CubesPage.status")}
               </TableHead>
-              <TableHead></TableHead>
+              <TableHead className="flex justify-end w-fit ms-auto"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -76,14 +80,14 @@ export default function CubesTable({
                   </TableCell>
                   <TableCell
                     onClick={() => handleRedirectToTimer(cube.id)}
-                    className="hover:cursor-pointer"
+                    className="hover:cursor-pointer text-ellipsis overflow-hidden truncate max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96"
                     data-testid={"cube-name-" + cube.name}
                   >
                     {cube.name}
                   </TableCell>
                   <TableCell
                     onClick={() => handleRedirectToTimer(cube.id)}
-                    className="hover:cursor-pointer"
+                    className="hover:cursor-pointer hidden sm:table-cell"
                   >
                     {cube.category}
                   </TableCell>
@@ -117,7 +121,7 @@ export default function CubesTable({
                       </div>
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="flex justify-end w-fit ms-auto">
                     <Dialog
                       open={type === "edit" && isOpen}
                       onOpenChange={closeDialog}
