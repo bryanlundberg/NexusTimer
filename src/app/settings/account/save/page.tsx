@@ -4,6 +4,7 @@ import AccountHeader from "@/components/account/account-header/account-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getAllCubes } from "@/db/dbOperations";
+import { Backups } from "@/models/backup";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
@@ -33,9 +34,14 @@ export default function Page() {
             onClick={async () => {
               const cubes = await getAllCubes();
               if (!cubes) return; // send toast error to screen
-              const backup = await createBackup({
-                email: session.user?.email as string,
+
+              const backupData: Pick<Backups, "data"> = {
                 data: JSON.stringify(cubes),
+              };
+
+              const backup = await createBackup({
+                email: session.user?.email as any,
+                data: backupData,
               });
 
               if (!backup) return; // send toast error to screen
