@@ -1,7 +1,7 @@
 "use server";
 
 import connectDB from "@/db/mongodb";
-import Backup from "@/models/backup";
+import Backup, { Backups } from "@/models/backup";
 import User, { Users } from "@/models/user";
 
 export async function createOrUpdateUser({
@@ -38,17 +38,26 @@ export async function createBackup({
   email,
   data,
 }: {
-  email: string;
-  data: string;
+  email: Pick<Users, "email">;
+  data: Pick<Backups, "data">;
 }) {
   try {
     await connectDB();
     const user = await User.findOne({ email: email });
     if (!user) throw new Error("User not found");
-    const backup = await Backup.create({
-      user: user._id,
-      data: data,
-    });
+    const backup = await Backup.findOneAndUpdate(
+      {
+        user: user._id,
+      },
+      {
+        data: data,
+      },
+      {
+        upsert: true,
+        new: true,
+      }
+    );
+
     if (!backup) throw new Error("Backup not created");
     return true;
   } catch (error: any) {
