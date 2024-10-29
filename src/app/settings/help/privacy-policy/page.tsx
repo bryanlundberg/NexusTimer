@@ -1,3 +1,5 @@
+import { H2, Li, Para } from "@/components/helpers/helpers";
+
 export default function Page() {
   return (
     <>
@@ -131,16 +133,4 @@ export default function Page() {
       </Li>
     </>
   );
-}
-
-function H2({ children }: { children: React.ReactNode }) {
-  return <h2 className="font-bold mb-5 mt-8">{children}</h2>;
-}
-
-function Para({ children }: { children: React.ReactNode }) {
-  return <p className="mb-3">{children}</p>;
-}
-
-function Li({ children }: { children: React.ReactNode }) {
-  return <li className="mb-2">{children}</li>;
 }

@@ -15,6 +15,12 @@ export default function Page() {
           </Button>
         </Link>
 
+        <Link href={"./help/terms-of-service"} className="w-full">
+          <Button variant={"secondary"} className="w-full">
+            Terms of Service
+          </Button>
+        </Link>
+
         <Link
           href={"https://github.com/bryanlundberg/NexusTimer"}
           className="w-full"
