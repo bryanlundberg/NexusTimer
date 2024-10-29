@@ -397,7 +397,7 @@ export default function Page() {
         update third party software from time to time in order to receive the
         Service and play NexusTimer.
       </Para>
-      <H2>Disclaimer of Warranties</H2>
+      <H2>6. Disclaimer of Warranties</H2>
       <Para>
         WITHOUT LIMITING NexusTimer’S LIABILITY UNDER SECTION 7 BELOW, THE
         SERVICE IS PROVIDED ON AN “AS IS” AND “AS AVAILABLE” BASIS FOR YOUR USE,
