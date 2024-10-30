@@ -95,7 +95,7 @@ export default function Page() {
       setCubes(appData);
     }
     // redirect account page
-    router.push("/settings/account");
+    router.push("/");
   };
 
   return (
