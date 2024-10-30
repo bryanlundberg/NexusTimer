@@ -57,10 +57,10 @@ export default function CubesTable({
               <TableHead className="hidden md:table-cell">
                 {t("CubesPage.created-at")}
               </TableHead>
-              <TableHead className="hidden md:table-cell">
+              <TableHead className="hidden sm:table-cell">
                 {t("CubesPage.solves")}
               </TableHead>
-              <TableHead className="hidden md:table-cell">
+              <TableHead className="hidden sm:table-cell">
                 {t("CubesPage.status")}
               </TableHead>
               <TableHead className="flex justify-end w-fit ms-auto"></TableHead>
@@ -101,13 +101,13 @@ export default function CubesTable({
                   </TableCell>
                   <TableCell
                     onClick={() => handleRedirectToTimer(cube.id)}
-                    className="hover:cursor-pointer hidden md:table-cell"
+                    className="hover:cursor-pointer hidden sm:table-cell"
                   >
                     {cube.solves.session.length}/{cube.solves.all.length}
                   </TableCell>
                   <TableCell
                     onClick={() => handleRedirectToTimer(cube.id)}
-                    className="hover:cursor-pointer hidden md:table-cell"
+                    className="hover:cursor-pointer hidden sm:table-cell"
                   >
                     {cube.solves.session.length > 0 ? (
                       <div className="flex items-center gap-2">
