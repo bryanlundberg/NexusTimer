@@ -7,6 +7,17 @@ import Link from "next/link";
 import AccountNotAuth from "@/components/account/account-not-auth/account-not-auth";
 import AccountLastBackup from "@/components/account/account-last-backup/account-last-backup";
 import { useTranslations } from "next-intl";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { deleteCubeById, getAllCubes } from "@/db/dbOperations";
 
 export default function Page() {
   const { data: session } = useSession();
@@ -14,6 +25,15 @@ export default function Page() {
   if (!session) {
     return <AccountNotAuth />;
   }
+
+  const handleResetDeviceData = async () => {
+    const cubes = await getAllCubes();
+    if (cubes) {
+      cubes.map(async (cube) => await deleteCubeById(cube.id));
+    }
+
+    signOut({ redirectTo: "/" });
+  };
 
   return (
     <>
@@ -40,13 +60,35 @@ export default function Page() {
           </Button>
         </Link>
 
-        <Button
-          className="w-full"
-          variant={"destructive"}
-          onClick={() => signOut({ redirectTo: "/" })}
-        >
-          {t("SettingsPage.logout")}
-        </Button>
+        <Dialog>
+          <DialogTrigger className="w-full" asChild>
+            <Button className="w-full" variant={"destructive"}>
+              {t("SettingsPage.unlink-account")}
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{t("SettingsPage.unlink-account")}</DialogTitle>
+              <DialogDescription>
+                {t("SettingsPage.unlink-account-para1")}{" "}
+                <span className="text-primary">{session.user?.name}</span>
+              </DialogDescription>
+              <DialogDescription className="text-yellow-600">
+                {t("SettingsPage.unlink-account-para2")}
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="flex flex-col gap-2">
+              <DialogClose className="w-full">
+                <Button variant={"secondary"} className="w-full">
+                  {t("Inputs.cancel")}
+                </Button>
+              </DialogClose>
+              <Button className="w-full" onClick={handleResetDeviceData}>
+                {t("Inputs.continue")}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
 
         <AccountLastBackup session={session} />
       </div>

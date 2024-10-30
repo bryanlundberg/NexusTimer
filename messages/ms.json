@@ -180,7 +180,10 @@
       "save-data-warning": "Ini akan menimpa data yang disimpan sebelum ini.",
       "source": "Sumber",
       "title": "tetapan",
-      "tos": "Syarat Perkhidmatan"
+      "tos": "Syarat Perkhidmatan",
+      "unlink-account": "Nyahpaut akaun",
+      "unlink-account-para1": "Adakah anda pasti mahu menyahpaut daripada akaun",
+      "unlink-account-para2": "Menyahpaut akan memadamkan semua data daripada peranti ini."
     }
   },
   "Metadata": {

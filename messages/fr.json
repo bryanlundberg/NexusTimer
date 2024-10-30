@@ -180,7 +180,10 @@
       "save-data-warning": "Cela écrasera les données précédemment enregistrées.",
       "source": "Source",
       "title": "Paramètres",
-      "tos": "Conditions d'utilisation"
+      "tos": "Conditions d'utilisation",
+      "unlink-account": "Dissocier le compte",
+      "unlink-account-para1": "Etes-vous sûr de vouloir vous dissocier du compte",
+      "unlink-account-para2": "La dissociation supprimera toutes les données de cet appareil."
     }
   },
   "Metadata": {

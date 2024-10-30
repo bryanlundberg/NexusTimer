@@ -180,7 +180,10 @@
       "save-data-warning": "Dette vil overskrive tidligere lagrede data.",
       "source": "Kilde",
       "title": "Innstillinger",
-      "tos": "Vilkår for bruk"
+      "tos": "Vilkår for bruk",
+      "unlink-account": "Fjern tilknytningen til kontoen",
+      "unlink-account-para1": "Er du sikker på at du vil koble fra kontoen",
+      "unlink-account-para2": "Hvis du fjerner tilknytningen, slettes alle data fra denne enheten."
     }
   },
   "Metadata": {

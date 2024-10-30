@@ -180,7 +180,10 @@
       "save-data-warning": "Spowoduje to zastąpienie wcześniej zapisanych danych.",
       "source": "Źródło",
       "title": "Ustawienia",
-      "tos": "Warunki świadczenia usług"
+      "tos": "Warunki świadczenia usług",
+      "unlink-account": "Odłącz konto",
+      "unlink-account-para1": "Czy na pewno chcesz odłączyć się od konta?",
+      "unlink-account-para2": "Odłączenie spowoduje usunięcie wszystkich danych z tego urządzenia."
     }
   },
   "Metadata": {

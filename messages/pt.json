@@ -180,7 +180,10 @@
       "save-data-warning": "Isso substituirá os dados salvos anteriormente.",
       "source": "Fonte",
       "title": "Configurações",
-      "tos": "Termos de Serviço"
+      "tos": "Termos de Serviço",
+      "unlink-account": "Desvincular conta",
+      "unlink-account-para1": "Tem certeza de que deseja desvincular a conta",
+      "unlink-account-para2": "A desvinculação excluirá todos os dados deste dispositivo."
     }
   },
   "Metadata": {

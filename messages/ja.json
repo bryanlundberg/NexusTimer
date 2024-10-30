@@ -180,7 +180,10 @@
       "save-data-warning": "これにより、以前に保存されたデータが上書きされます。",
       "source": "ソース",
       "title": "設定",
-      "tos": "利用規約"
+      "tos": "利用規約",
+      "unlink-account": "アカウントのリンクを解除する",
+      "unlink-account-para1": "アカウントからのリンクを解除してもよろしいですか",
+      "unlink-account-para2": "リンクを解除すると、このデバイスからすべてのデータが削除されます。"
     }
   },
   "Metadata": {

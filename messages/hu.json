@@ -180,7 +180,10 @@
       "save-data-warning": "Ez felülírja a korábban elmentett adatokat.",
       "source": "Forrás",
       "title": "Beállítások elemre",
-      "tos": "Szolgáltatási feltételek"
+      "tos": "Szolgáltatási feltételek",
+      "unlink-account": "Fiók leválasztása",
+      "unlink-account-para1": "Biztosan le szeretné választani a kapcsolatot a fiókkal?",
+      "unlink-account-para2": "A leválasztással törli az összes adatot erről az eszközről."
     }
   },
   "Metadata": {

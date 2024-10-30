@@ -180,7 +180,10 @@
       "save-data-warning": "Detta kommer att skriva över tidigare sparad data.",
       "source": "Källa",
       "title": "Inställningar",
-      "tos": "Användarvillkor"
+      "tos": "Användarvillkor",
+      "unlink-account": "Ta bort länken till kontot",
+      "unlink-account-para1": "Är du säker på att du vill ta bort länken från kontot",
+      "unlink-account-para2": "Om du tar bort länken raderas all data från den här enheten."
     }
   },
   "Metadata": {

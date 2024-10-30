@@ -180,7 +180,10 @@
       "save-data-warning": "Ini akan menimpa data yang disimpan sebelumnya.",
       "source": "Sumber",
       "title": "Pengaturan",
-      "tos": "Ketentuan Layanan"
+      "tos": "Ketentuan Layanan",
+      "unlink-account": "Putuskan tautan akun",
+      "unlink-account-para1": "Apakah Anda yakin ingin membatalkan tautan dari akun tersebut",
+      "unlink-account-para2": "Membatalkan tautan akan menghapus semua data dari perangkat ini."
     }
   },
   "Metadata": {

@@ -180,7 +180,10 @@
       "save-data-warning": "Điều này sẽ ghi đè lên dữ liệu đã lưu trước đó.",
       "source": "Nguồn",
       "title": "Cài đặt",
-      "tos": "Điều khoản dịch vụ"
+      "tos": "Điều khoản dịch vụ",
+      "unlink-account": "Hủy liên kết tài khoản",
+      "unlink-account-para1": "Bạn có chắc chắn muốn hủy liên kết khỏi tài khoản",
+      "unlink-account-para2": "Việc hủy liên kết sẽ xóa tất cả dữ liệu khỏi thiết bị này."
     }
   },
   "Metadata": {

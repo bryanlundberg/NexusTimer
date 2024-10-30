@@ -180,7 +180,10 @@
       "save-data-warning": "Tämä korvaa aiemmin tallennetut tiedot.",
       "source": "Lähde",
       "title": "Asetukset",
-      "tos": "Palveluehdot"
+      "tos": "Palveluehdot",
+      "unlink-account": "Poista tilin linkitys",
+      "unlink-account-para1": "Haluatko varmasti poistaa linkityksen tilistä",
+      "unlink-account-para2": "Linkityksen poistaminen poistaa kaikki tiedot tältä laitteelta."
     }
   },
   "Metadata": {

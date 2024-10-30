@@ -180,7 +180,10 @@
       "save-data-warning": "Dadurch werden zuvor gespeicherte Daten überschrieben.",
       "source": "Quelle",
       "title": "Einstellungen",
-      "tos": "Nutzungsbedingungen"
+      "tos": "Nutzungsbedingungen",
+      "unlink-account": "Kontoverknüpfung aufheben",
+      "unlink-account-para1": "Sind Sie sicher, dass Sie die Verknüpfung mit dem Konto aufheben möchten?",
+      "unlink-account-para2": "Durch das Aufheben der Verknüpfung werden alle Daten von diesem Gerät gelöscht."
     }
   },
   "Metadata": {

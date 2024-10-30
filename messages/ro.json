@@ -180,7 +180,10 @@
       "save-data-warning": "Aceasta va suprascrie datele salvate anterior.",
       "source": "Sursă",
       "title": "Setări",
-      "tos": "Termeni și condiții"
+      "tos": "Termeni și condiții",
+      "unlink-account": "Deconectați contul",
+      "unlink-account-para1": "Sigur doriți să vă deconectați de la cont",
+      "unlink-account-para2": "Deconectarea va șterge toate datele de pe acest dispozitiv."
     }
   },
   "Metadata": {

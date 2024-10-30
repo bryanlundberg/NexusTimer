@@ -180,7 +180,10 @@
       "save-data-warning": "Tým sa prepíšu predtým uložené údaje.",
       "source": "Zdroj",
       "title": "Nastavenia",
-      "tos": "Zmluvné podmienky"
+      "tos": "Zmluvné podmienky",
+      "unlink-account": "Odpojiť účet",
+      "unlink-account-para1": "Naozaj chcete zrušiť prepojenie s účtom?",
+      "unlink-account-para2": "Odpojením sa odstránia všetky údaje z tohto zariadenia."
     }
   },
   "Metadata": {

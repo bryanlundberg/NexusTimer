@@ -180,7 +180,10 @@
       "save-data-warning": "See kirjutab üle varem salvestatud andmed.",
       "source": "Allikas",
       "title": "Seaded",
-      "tos": "Kasutustingimused"
+      "tos": "Kasutustingimused",
+      "unlink-account": "Tühistage konto linkimine",
+      "unlink-account-para1": "Kas olete kindel, et soovite konto linkimise tühistada?",
+      "unlink-account-para2": "Linkimise tühistamisel kustutatakse sellest seadmest kõik andmed."
     }
   },
   "Metadata": {

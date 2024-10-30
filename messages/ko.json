@@ -180,7 +180,10 @@
       "save-data-warning": "이전에 저장된 데이터를 덮어쓰게 됩니다.",
       "source": "원천",
       "title": "설정",
-      "tos": "서비스 약관"
+      "tos": "서비스 약관",
+      "unlink-account": "계정 연결 해제",
+      "unlink-account-para1": "정말로 계정에서 연결을 해제하시겠습니까?",
+      "unlink-account-para2": "연결을 해제하면 이 기기의 모든 데이터가 삭제됩니다."
     }
   },
   "Metadata": {

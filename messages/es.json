@@ -180,7 +180,10 @@
       "tos": "Términos de servicio",
       "not-authenticated": "Autenticarse para otorgar acceso",
       "options": "Opciones",
-      "privacy-policy": "política de privacidad"
+      "privacy-policy": "política de privacidad",
+      "unlink-account": "Desvincular cuenta",
+      "unlink-account-para1": "¿Estás seguro de que quieres desvincularte de la cuenta?",
+      "unlink-account-para2": "Al desvincularse se eliminarán todos los datos de este dispositivo."
     }
   },
   "Metadata": {

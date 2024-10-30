@@ -180,7 +180,10 @@
       "save-data-warning": "Ciò sovrascriverà i dati salvati in precedenza.",
       "source": "Fonte",
       "title": "Impostazioni",
-      "tos": "Termini di servizio"
+      "tos": "Termini di servizio",
+      "unlink-account": "Scollega account",
+      "unlink-account-para1": "Sei sicuro di volerti scollegare dall'account?",
+      "unlink-account-para2": "Lo scollegamento eliminerà tutti i dati da questo dispositivo."
     }
   },
   "Metadata": {

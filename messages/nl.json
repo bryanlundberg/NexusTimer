@@ -180,7 +180,10 @@
       "save-data-warning": "Hierdoor worden eerder opgeslagen gegevens overschreven.",
       "source": "Bron",
       "title": "Instellingen",
-      "tos": "Servicevoorwaarden"
+      "tos": "Servicevoorwaarden",
+      "unlink-account": "Account ontkoppelen",
+      "unlink-account-para1": "Weet u zeker dat u de account wilt ontkoppelen?",
+      "unlink-account-para2": "Als u de koppeling ontkoppelt, worden alle gegevens van dit apparaat verwijderd."
     }
   },
   "Metadata": {

@@ -180,7 +180,10 @@
       "save-data-warning": "这将覆盖以前保存的数据。",
       "source": "来源",
       "title": "设置",
-      "tos": "服务条款"
+      "tos": "服务条款",
+      "unlink-account": "取消账户关联",
+      "unlink-account-para1": "您确定要取消与帐户的关联吗",
+      "unlink-account-para2": "取消链接将删除该设备上的所有数据。"
     }
   },
   "Metadata": {

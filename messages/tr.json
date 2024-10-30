@@ -180,7 +180,10 @@
       "save-data-warning": "Bu, daha önce kaydedilen verilerin üzerine yazacaktır.",
       "source": "Kaynak",
       "title": "Ayarlar",
-      "tos": "Hizmet Şartları"
+      "tos": "Hizmet Şartları",
+      "unlink-account": "Hesabın bağlantısını kaldır",
+      "unlink-account-para1": "Hesapla bağlantıyı kaldırmak istediğinizden emin misiniz?",
+      "unlink-account-para2": "Bağlantının kaldırılması bu cihazdaki tüm verilerin silinmesine neden olacaktır."
     }
   },
   "Metadata": {
