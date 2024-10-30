@@ -82,3 +82,22 @@ export async function getLastBackupDate({ email }: { email: string }) {
     return false;
   }
 }
+
+export async function getLastBackup({ email }: { email: string }) {
+  try {
+    await connectDB();
+    const user = await User.findOne({ email: email });
+    if (!user) throw new Error("User not found");
+
+    const backup = await Backup.findOne({
+      user: user._id,
+    })
+      .select("data")
+      .lean();
+
+    return backup ? JSON.stringify(backup) : false;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
