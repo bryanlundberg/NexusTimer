@@ -7,10 +7,12 @@ import { deleteCubeById, getAllCubes, saveCube } from "@/db/dbOperations";
 import { Cube } from "@/interfaces/Cube";
 import { useTimerStore } from "@/store/timerStore";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const t = useTranslations("Index");
   const { data: session } = useSession();
   const router = useRouter();
   const { setCubes } = useTimerStore();
@@ -98,26 +100,21 @@ export default function Page() {
 
   return (
     <>
-      <AccountHeader back="./" label="Load data" />
+      <AccountHeader back="./" label={t("SettingsPage.load-data-title")} />
 
       <Card className="p-3 bg-secondary/10">
-        <p>
-          Do you want to <span className="text-green-700">download</span> your
-          account data from the <span className="text-blue-700">cloud</span>?
-        </p>
-        <p className="text-yellow-600">
-          This will merge current data with saved data.
-        </p>
+        <p>{t("SettingsPage.load-data-description")}</p>
+        <p className="text-yellow-600">{t("SettingsPage.load-data-warning")}</p>
 
         <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
           <Link href={"./"} className="w-full">
             <Button className="w-full" variant={"secondary"}>
-              Back
+              {t("Inputs.back")}
             </Button>
           </Link>
 
           <Button className="w-full" onClick={handleDownloadData}>
-            Continue
+            {t("Inputs.continue")}
           </Button>
         </div>
       </Card>

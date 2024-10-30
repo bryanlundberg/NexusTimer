@@ -2,9 +2,11 @@
 
 import { getLastBackupDate } from "@/actions/actions";
 import { Session } from "next-auth";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 export default function AccountLastBackup({ session }: { session: Session }) {
+  const t = useTranslations("Index");
   const [lastBackupDate, setLastBackupDate] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -22,8 +24,8 @@ export default function AccountLastBackup({ session }: { session: Session }) {
     <>
       <div>
         {!isLoading
-          ? "Last backup: " + lastBackupDate
-          : "Fetching information from server wait a moment..."}
+          ? t("SettingsPage.last-backup") + lastBackupDate
+          : t("SettingsPage.fetching-last-backup")}
       </div>
     </>
   );

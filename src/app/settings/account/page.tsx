@@ -6,10 +6,11 @@ import AccountHeader from "@/components/account/account-header/account-header";
 import Link from "next/link";
 import AccountNotAuth from "@/components/account/account-not-auth/account-not-auth";
 import AccountLastBackup from "@/components/account/account-last-backup/account-last-backup";
+import { useTranslations } from "next-intl";
 
 export default function Page() {
   const { data: session } = useSession();
-
+  const t = useTranslations("Index");
   if (!session) {
     return <AccountNotAuth />;
   }
@@ -29,13 +30,13 @@ export default function Page() {
 
         <Link href={"./account/save"} className="w-full">
           <Button className="w-full" variant={"secondary"}>
-            Save
+            {t("SettingsPage.save")}
           </Button>
         </Link>
 
         <Link href={"./account/load"} className="w-full">
           <Button className="w-full" variant={"secondary"}>
-            Load
+            {t("SettingsPage.load")}
           </Button>
         </Link>
 
@@ -44,7 +45,7 @@ export default function Page() {
           variant={"destructive"}
           onClick={() => signOut({ redirectTo: "/" })}
         >
-          Logout
+          {t("SettingsPage.logout")}
         </Button>
 
         <AccountLastBackup session={session} />

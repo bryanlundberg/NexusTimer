@@ -1,9 +1,11 @@
 "use client";
 import AccountHeader from "@/components/account/account-header/account-header";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 export default function Page() {
+  const t = useTranslations("Index");
   return (
     <>
       <AccountHeader back="./" label="Help" />
@@ -11,13 +13,13 @@ export default function Page() {
       <div className="flex flex-col gap-2">
         <Link href={"./help/privacy-policy"} className="w-full">
           <Button variant={"secondary"} className="w-full">
-            Privacy Policy
+            {t("SettingsPage.privacy-policy")}
           </Button>
         </Link>
 
         <Link href={"./help/terms-of-service"} className="w-full">
           <Button variant={"secondary"} className="w-full">
-            Terms of Service
+            {t("SettingsPage.tos")}
           </Button>
         </Link>
 
@@ -26,7 +28,7 @@ export default function Page() {
           className="w-full"
         >
           <Button variant={"secondary"} className="w-full">
-            Source
+            {t("SettingsPage.source")}
           </Button>
         </Link>
       </div>

@@ -84,8 +84,7 @@
       "idle": "Idle",
       "find-your-cube": "Find your cube",
       "new-collection": "New collection",
-      "name": "Name",
-      "options": "Options"
+      "name": "Name"
     },
     "Cubes-modal": {
       "delete-collection": "Delete collection",
@@ -117,7 +116,9 @@
       "cancel": "Cancel",
       "none": "None",
       "collections": "Collections",
-      "empty": "Empty"
+      "empty": "Empty",
+      "sign-in-google": "Sign In with Google",
+      "back": "Back"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",
@@ -167,6 +168,33 @@
       "loading-part-1": "This action takes less than a minute.",
       "loading-part-2": "Please wait, don't close this window.",
       "welcome": "Welcome:"
+    },
+
+    "SettingsPage": {
+      "title": "Settings",
+      "not-authenticated": "Authenticate to grant access",
+      "fetching-last-backup": "Fetching information from server wait a moment...",
+
+      "options": "Options",
+      "help": "Help",
+      "account": "Account",
+
+      "privacy-policy": "Privacy Policy",
+      "tos": "Terms of Service",
+      "source": "Source",
+
+      "save": "Save",
+      "load": "Load",
+      "logout": "Logout",
+      "last-backup": "Last backup:",
+
+      "save-data-title": "Save data",
+      "save-data-description": "Do you want save your account data on the cloud?",
+      "save-data-warning": "This will overwrite previously saved data.",
+
+      "load-data-title": "Load data",
+      "load-data-description": "Do you want to download your account data from the cloud?",
+      "load-data-warning": "This will merge current data with saved data."
     }
   },
   "Metadata": {

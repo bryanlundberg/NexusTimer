@@ -9,19 +9,14 @@ import {
   BellIcon,
   BoxModelIcon,
   ComponentBooleanIcon,
-  ExternalLinkIcon,
   FileTextIcon,
   LapTimerIcon,
   MagicWandIcon,
-  QuoteIcon,
 } from "@radix-ui/react-icons";
 import MenuSelectLanguage from "@/components/menu-settings/MenuSelectLanguage";
 import CustomTheme from "@/components/menu-settings/CustomTheme";
 import MenuSelectDefaultStartCube from "@/components/menu-settings/MenuSelectDefaultStartCube";
-import Logo from "@/components/logo/logo";
-import { Button } from "@/components/ui/button";
 import ImportModal from "@/components/menu-settings/ImportModal";
-import Link from "next/link";
 import AccountHeader from "@/components/account/account-header/account-header";
 
 export default function Page() {

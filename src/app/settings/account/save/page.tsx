@@ -5,30 +5,27 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getAllCubes } from "@/db/dbOperations";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
 
 export default function Page() {
   const { data: session } = useSession();
+  const t = useTranslations("Index");
   const router = useRouter();
   if (!session) redirect("/settings");
   return (
     <>
-      <AccountHeader back="./" label="Save data" />
+      <AccountHeader back="./" label={t("SettingsPage.save-data-title")} />
 
       <Card className="p-3 bg-secondary/10">
-        <p>
-          Do you want <span className="text-green-700">save</span> your account
-          data on the <span className="text-blue-700">cloud</span>?
-        </p>
-        <p className="text-yellow-600">
-          This will overwrite previously saved data.
-        </p>
+        <p>{t("SettingsPage.save-data-description")}</p>
+        <p className="text-yellow-600">{t("SettingsPage.save-data-warning")}</p>
 
         <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
           <Link href={"./"} className="w-full">
             <Button variant={"secondary"} className="w-full">
-              Back
+              {t("Inputs.back")}
             </Button>
           </Link>
           <Button
@@ -52,7 +49,7 @@ export default function Page() {
               router.push("/settings/account");
             }}
           >
-            Continue
+            {t("Inputs.continue")}
           </Button>
         </div>
       </Card>

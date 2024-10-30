@@ -65,7 +65,7 @@ export default function DialogNavbar() {
 
           <DialogNavbarItem
             href={"/settings"}
-            label={"Settings"}
+            label={t("SettingsPage.title")}
             key={"item.settings"}
           />
 
