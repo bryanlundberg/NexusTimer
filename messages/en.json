@@ -17,9 +17,7 @@
       "average": "Average",
       "best": "Best",
       "counter": "Counter",
-      "settings": "Settings",
-      "enter-custom-scramble": "Enter a custom scramble",
-      "initializing-please-wait": "Initializing please wait"
+      "enter-custom-scramble": "Enter a custom scramble"
     },
     "SolvesPage": {
       "title": "Solves",
@@ -62,8 +60,6 @@
     },
     "StatsPage": {
       "title": "Stats",
-      "overall": "Overall",
-      "advanced": "Advanced",
       "global": "Global",
       "sessions": "Sessions",
       "best-time": "Best Time",
@@ -82,7 +78,6 @@
       "status": "Status",
       "using": "Using",
       "idle": "Idle",
-      "find-your-cube": "Find your cube",
       "new-collection": "New collection",
       "name": "Name"
     },
@@ -127,7 +122,6 @@
       "copy": "Copy"
     },
     "Settings-menu": {
-      "title": "Settings",
       "locale": "Region",
       "language": "Language",
       "timer": "Timer",
@@ -155,7 +149,6 @@
       "auto-select": "Auto-select at startup",
       "import-from-file": "Import from file",
       "export-to-file": "Export to file",
-      "about": "About",
       "legend": "NexusTimer is an unopinionated, minimalist and open source web tool for SpeedCubing.",
       "suggest": "Suggest a change",
       "report-bug": "Report a bug"
@@ -169,29 +162,22 @@
       "loading-part-2": "Please wait, don't close this window.",
       "welcome": "Welcome:"
     },
-
     "SettingsPage": {
       "title": "Settings",
       "not-authenticated": "Authenticate to grant access",
       "fetching-last-backup": "Fetching information from server wait a moment...",
-
       "options": "Options",
       "help": "Help",
       "account": "Account",
-
       "privacy-policy": "Privacy Policy",
       "tos": "Terms of Service",
       "source": "Source",
-
-      "save": "Save",
       "load": "Load",
       "logout": "Logout",
       "last-backup": "Last backup:",
-
       "save-data-title": "Save data",
       "save-data-description": "Do you want save your account data on the cloud?",
       "save-data-warning": "This will overwrite previously saved data.",
-
       "load-data-title": "Load data",
       "load-data-description": "Do you want to download your account data from the cloud?",
       "load-data-warning": "This will merge current data with saved data."

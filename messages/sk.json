@@ -16,9 +16,7 @@
       "average": "Priemer",
       "best": "Najlepší",
       "counter": "Počítadlo",
-      "settings": "Nastavenia",
       "enter-custom-scramble": "Zadajte vlastné zamiešanie",
-      "initializing-please-wait": "Inicializácia, prosím, čakajte",
       "title": "Hrať"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Priemer",
       "time-spent": "Strávený čas",
       "success-rate": "Úspešnosť",
-      "counter": "Počítadlo",
-      "advanced": "Pokročilé",
-      "overall": "Celkovo"
+      "counter": "Počítadlo"
     },
     "CubesPage": {
       "title": "Kocky",
@@ -82,10 +78,8 @@
       "status": "Stav",
       "using": "Používanie",
       "idle": "Neaktívne",
-      "find-your-cube": "Nájdite svoju kocku",
       "name": "Meno",
-      "new-collection": "Nová kolekcia",
-      "options": "Možnosti"
+      "new-collection": "Nová kolekcia"
     },
     "Cubes-modal": {
       "category": "Kategória",
@@ -112,10 +106,11 @@
       "move": "Pohybujte sa",
       "none": "žiadne",
       "collections": "zbierky",
-      "empty": "Prázdny"
+      "empty": "Prázdny",
+      "back": "Späť",
+      "sign-in-google": "Prihláste sa cez Google"
     },
     "Settings-menu": {
-      "title": "Nastavenia",
       "locale": "Lokalita",
       "language": "Jazyk",
       "timer": "Časovač",
@@ -138,7 +133,6 @@
       "format": "Formát",
       "allowed-file-types": "Povolené sú iba obrazové súbory (JPEG, PNG, GIF).",
       "max-file-size": "Maximálna veľkosť súboru",
-      "about": "O",
       "auto-select": "Automatický výber pri spustení",
       "data": "Údaje aplikácie",
       "export-to-file": "Exportovať do súboru",
@@ -167,6 +161,26 @@
       "copy": "Kopírovať",
       "delete": "Odstrániť",
       "plus-two": "2 Pokuta"
+    },
+    "SettingsPage": {
+      "account": "účtu",
+      "fetching-last-backup": "Načítavajú sa informácie zo servera, chvíľu počkajte...",
+      "help": "Pomoc",
+      "last-backup": "Posledná záloha:",
+      "load": "Načítať",
+      "load-data-description": "Chcete si stiahnuť údaje účtu z cloudu?",
+      "load-data-title": "Načítať dáta",
+      "load-data-warning": "Tým sa zlúčia aktuálne údaje s uloženými údajmi.",
+      "logout": "Odhlásiť sa",
+      "not-authenticated": "Ak chcete udeliť prístup, overte totožnosť",
+      "options": "Možnosti",
+      "privacy-policy": "Zásady ochrany osobných údajov",
+      "save-data-description": "Chcete uložiť údaje svojho účtu do cloudu?",
+      "save-data-title": "Uložiť dáta",
+      "save-data-warning": "Tým sa prepíšu predtým uložené údaje.",
+      "source": "Zdroj",
+      "title": "Nastavenia",
+      "tos": "Zmluvné podmienky"
     }
   },
   "Metadata": {

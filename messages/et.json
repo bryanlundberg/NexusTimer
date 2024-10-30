@@ -16,9 +16,7 @@
       "average": "Keskmine",
       "best": "Parim",
       "counter": "Lugeja",
-      "settings": "Sätted",
       "enter-custom-scramble": "Sisestage kohandatud segamine",
-      "initializing-please-wait": "Alustamine, palun oodake",
       "title": "Mängi"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Keskmine",
       "time-spent": "Kulutatud aeg",
       "success-rate": "Edu määr",
-      "counter": "Lugeja",
-      "advanced": "Täpsemalt",
-      "overall": "Üldiselt"
+      "counter": "Lugeja"
     },
     "CubesPage": {
       "title": "Kuubikud",
@@ -82,10 +78,8 @@
       "status": "Staatus",
       "using": "Kasutamine",
       "idle": "Tööta",
-      "find-your-cube": "Leia oma kuubik",
       "name": "Nimi",
-      "new-collection": "Uus kollektsioon",
-      "options": "Valikud"
+      "new-collection": "Uus kollektsioon"
     },
     "Cubes-modal": {
       "category": "Kategooria",
@@ -112,10 +106,11 @@
       "move": "Liiguta",
       "none": "Mitte ühtegi",
       "collections": "Kollektsioonid",
-      "empty": "Tühi"
+      "empty": "Tühi",
+      "back": "Tagasi",
+      "sign-in-google": "Logige sisse Google'iga"
     },
     "Settings-menu": {
-      "title": "Sätted",
       "locale": "Piirkond",
       "language": "Keel",
       "timer": "Ajastin",
@@ -141,7 +136,6 @@
       "data": "Rakenduse andmed",
       "import-from-file": "Impordi failist",
       "export-to-file": "Ekspordi faili",
-      "about": "Info",
       "legend": "NexusTimer on erapooletu, minimalistlik ja avatud lähtekoodiga veebiteenus SpeedCubingu jaoks.",
       "suggest": "Soovitage muudatust",
       "report-bug": "Teata veast",
@@ -167,6 +161,26 @@
       "copy": "Kopeeri",
       "delete": "Kustuta",
       "plus-two": "2 Karistus"
+    },
+    "SettingsPage": {
+      "account": "konto",
+      "fetching-last-backup": "Teabe toomine serverist, oodake natuke...",
+      "help": "Abi",
+      "last-backup": "Viimane varukoopia:",
+      "load": "Laadige",
+      "load-data-description": "Kas soovite oma konto andmed pilvest alla laadida?",
+      "load-data-title": "Andmete laadimine",
+      "load-data-warning": "See liidab praegused andmed salvestatud andmetega.",
+      "logout": "Väljalogimine",
+      "not-authenticated": "Juurdepääsu andmiseks autentige",
+      "options": "Valikud",
+      "privacy-policy": "Privaatsuspoliitika",
+      "save-data-description": "Kas soovite oma konto andmed pilve salvestada?",
+      "save-data-title": "Salvestage andmed",
+      "save-data-warning": "See kirjutab üle varem salvestatud andmed.",
+      "source": "Allikas",
+      "title": "Seaded",
+      "tos": "Kasutustingimused"
     }
   },
   "Metadata": {

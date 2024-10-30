@@ -21,83 +21,92 @@ import AccountHeader from "@/components/account/account-header/account-header";
 
 export default function Page() {
   const { settings } = useSettingsModalStore();
-  const t = useTranslations("Index.Settings-menu");
+  const t = useTranslations("Index");
   return (
     <>
       <div className="overflow-y-auto">
         <div className="max-w-md mx-auto bg-background/90 backdrop-blur-lg">
-          <AccountHeader back="/settings" label={"Options"} />
+          <AccountHeader back="/settings" label={t("SettingsPage.options")} />
 
           <MenuSelectLanguage />
 
-          <MenuSection icon={<LapTimerIcon />} title={t("timer")}>
+          <MenuSection icon={<LapTimerIcon />} title={t("Settings-menu.timer")}>
             <MenuOption
               setting={settings.timer.inspection}
-              label={t("inspection")}
+              label={t("Settings-menu.inspection")}
             />
             <MenuOption
               setting={settings.timer.startCue}
-              label={t("start-cue")}
+              label={t("Settings-menu.start-cue")}
             />
             <MenuOption
               setting={settings.timer.holdToStart}
-              label={t("hold-to-start")}
+              label={t("Settings-menu.hold-to-start")}
             />
             <MenuOption
               setting={settings.timer.manualMode}
-              label={t("manual-mode")}
+              label={t("Settings-menu.manual-mode")}
             />
           </MenuSection>
 
-          <MenuSection icon={<MagicWandIcon />} title={t("features")}>
+          <MenuSection
+            icon={<MagicWandIcon />}
+            title={t("Settings-menu.features")}
+          >
             <MenuOption
               setting={settings.features.scrambleImage}
-              label={t("scramble-image")}
+              label={t("Settings-menu.scramble-image")}
             />
             <MenuOption
               setting={settings.features.sessionStats}
-              label={t("session-stats")}
+              label={t("Settings-menu.session-stats")}
             />
             <MenuOption
               setting={settings.features.quickActionButtons}
-              label={t("quick-action-buttons")}
+              label={t("Settings-menu.quick-action-buttons")}
             />
             <MenuOption
               setting={settings.features.hideWhileSolving}
-              label={t("hide-while-solving")}
+              label={t("Settings-menu.hide-while-solving")}
             />
             <MenuOption
               setting={settings.features.scrambleBackground}
-              label={t("scramble-background")}
+              label={t("Settings-menu.scramble-background")}
             />
           </MenuSection>
 
-          <MenuSection icon={<BellIcon />} title={t("alerts")}>
+          <MenuSection icon={<BellIcon />} title={t("Settings-menu.alerts")}>
             <MenuOption
               setting={settings.alerts.bestTime}
-              label={t("best-time")}
+              label={t("Settings-menu.best-time")}
             />
             <MenuOption
               setting={settings.alerts.bestAverage}
-              label={t("best-average")}
+              label={t("Settings-menu.best-average")}
             />
 
             <MenuOption
               setting={settings.alerts.worstTime}
-              label={t("worst-time")}
+              label={t("Settings-menu.worst-time")}
             />
           </MenuSection>
 
-          <MenuSection icon={<ComponentBooleanIcon />} title={t("theme")}>
+          <MenuSection
+            icon={<ComponentBooleanIcon />}
+            title={t("Settings-menu.theme")}
+          >
             <ThemeSelect />
             <CustomTheme />
           </MenuSection>
 
-          <MenuSection icon={<FileTextIcon />} title={t("data")}>
+          <MenuSection icon={<FileTextIcon />} title={t("Settings-menu.data")}>
             <DataImportExport />
           </MenuSection>
 
-          <MenuSection icon={<BoxModelIcon />} title={t("preferences")}>
+          <MenuSection
+            icon={<BoxModelIcon />}
+            title={t("Settings-menu.preferences")}
+          >
             <MenuSelectDefaultStartCube />
           </MenuSection>
         </div>

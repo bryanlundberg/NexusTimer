@@ -16,9 +16,7 @@
       "average": "Rata-rata",
       "best": "Terbaik",
       "counter": "Penghitung",
-      "settings": "Pengaturan",
       "enter-custom-scramble": "Masukkan scramble kustom",
-      "initializing-please-wait": "Menginisialisasi, harap tunggu",
       "title": "Bermain"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Rata-rata",
       "time-spent": "Waktu yang Dihabiskan",
       "success-rate": "Tingkat Keberhasilan",
-      "counter": "Penghitung",
-      "advanced": "Canggih",
-      "overall": "Keseluruhan"
+      "counter": "Penghitung"
     },
     "CubesPage": {
       "title": "Kubus",
@@ -82,10 +78,8 @@
       "status": "Status",
       "using": "Menggunakan",
       "idle": "Sedang Diam",
-      "find-your-cube": "Temukan kubus Anda",
       "name": "Nama",
-      "new-collection": "Koleksi baru",
-      "options": "Pilihan"
+      "new-collection": "Koleksi baru"
     },
     "Cubes-modal": {
       "category": "Kategori",
@@ -112,10 +106,11 @@
       "move": "Bergerak",
       "none": "Tidak ada",
       "collections": "Koleksi",
-      "empty": "Kosong"
+      "empty": "Kosong",
+      "back": "Kembali",
+      "sign-in-google": "Masuk dengan Google"
     },
     "Settings-menu": {
-      "title": "Pengaturan",
       "locale": "Lokal",
       "language": "Bahasa",
       "timer": "Pengaturan Timer",
@@ -138,7 +133,6 @@
       "format": "Format",
       "allowed-file-types": "Hanya file gambar (JPEG, PNG, GIF) yang diizinkan.",
       "max-file-size": "Ukuran file maksimum yang diizinkan",
-      "about": "Tentang",
       "auto-select": "Pilih otomatis saat startup",
       "data": "Data Aplikasi",
       "export-to-file": "Ekspor ke file",
@@ -167,6 +161,26 @@
       "copy": "Menyalin",
       "delete": "Menghapus",
       "plus-two": "2 Penalti"
+    },
+    "SettingsPage": {
+      "account": "Akun",
+      "fetching-last-backup": "Mengambil informasi dari server tunggu sebentar...",
+      "help": "Membantu",
+      "last-backup": "Cadangan terakhir:",
+      "load": "Memuat",
+      "load-data-description": "Apakah Anda ingin mengunduh data akun Anda dari cloud?",
+      "load-data-title": "Memuat data",
+      "load-data-warning": "Ini akan menggabungkan data saat ini dengan data yang disimpan.",
+      "logout": "Keluar",
+      "not-authenticated": "Otentikasi untuk memberikan akses",
+      "options": "Pilihan",
+      "privacy-policy": "Kebijakan Privasi",
+      "save-data-description": "Apakah Anda ingin menyimpan data akun Anda di cloud?",
+      "save-data-title": "Simpan data",
+      "save-data-warning": "Ini akan menimpa data yang disimpan sebelumnya.",
+      "source": "Sumber",
+      "title": "Pengaturan",
+      "tos": "Ketentuan Layanan"
     }
   },
   "Metadata": {

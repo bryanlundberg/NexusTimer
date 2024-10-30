@@ -12,7 +12,7 @@ export default function Page() {
   const t = useTranslations("Index");
   return (
     <>
-      <AccountHeader back="/" label="Settings" />
+      <AccountHeader back="/" label={t("SettingsPage.title")} />
       <div className="flex flex-col gap-3 justify-center items-center">
         {session ? (
           <>

@@ -16,9 +16,7 @@
       "average": "औसत",
       "best": "सर्वोत्तम",
       "counter": "काउंटर",
-      "settings": "सेटिंग्स",
       "enter-custom-scramble": "कस्टम तालिका दर्ज करें",
-      "initializing-please-wait": "आरंभिकरण कर रहा है कृपया प्रतीक्षा करें",
       "title": "खेल"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "औसत",
       "time-spent": "बिताया हुआ समय",
       "success-rate": "सफलता दर",
-      "counter": "काउंटर",
-      "advanced": "विकसित",
-      "overall": "कुल मिलाकर"
+      "counter": "काउंटर"
     },
     "CubesPage": {
       "title": "क्यूब",
@@ -82,10 +78,8 @@
       "status": "स्थिति",
       "using": "उपयोग करना",
       "idle": "आलसी",
-      "find-your-cube": "अपना घन खोजें",
       "name": "नाम",
-      "new-collection": "नया संग्रह",
-      "options": "विकल्प"
+      "new-collection": "नया संग्रह"
     },
     "Cubes-modal": {
       "category": "वर्ग",
@@ -112,10 +106,11 @@
       "move": "कदम",
       "none": "कोई नहीं",
       "collections": "संग्रह",
-      "empty": "खाली"
+      "empty": "खाली",
+      "back": "पीछे",
+      "sign-in-google": "Google से साइन इन करें"
     },
     "Settings-menu": {
-      "title": "सेटिंग्स",
       "locale": "क्षेत्र",
       "language": "भाषा",
       "timer": "टाइमर",
@@ -141,7 +136,6 @@
       "data": "ऐप डेटा",
       "import-from-file": "फ़ाइल से आयात करें",
       "export-to-file": "फ़ाइल में निर्यात करें",
-      "about": "के बारे में",
       "legend": "NexusTimer एक तटस्थ, लोकप्रिय और ओपन सोर्स वेब उपकरण है जो SpeedCubing के लिए है।",
       "suggest": "परिवर्तन सुझाएं",
       "report-bug": "बग रिपोर्ट करें",
@@ -167,6 +161,26 @@
       "copy": "प्रतिलिपि",
       "delete": "मिटाना",
       "plus-two": "2 जुर्माना"
+    },
+    "SettingsPage": {
+      "account": "खाता",
+      "fetching-last-backup": "सर्वर से जानकारी प्राप्त की जा रही है, एक क्षण प्रतीक्षा करें...",
+      "help": "मदद",
+      "last-backup": "अंतिम बैकअप:",
+      "load": "भार",
+      "load-data-description": "क्या आप क्लाउड से अपना खाता डेटा डाउनलोड करना चाहते हैं?",
+      "load-data-title": "डेटा लोड करें",
+      "load-data-warning": "यह वर्तमान डेटा को सहेजे गए डेटा के साथ मर्ज कर देगा।",
+      "logout": "लॉग आउट",
+      "not-authenticated": "पहुंच प्रदान करने के लिए प्रमाणित करें",
+      "options": "विकल्प",
+      "privacy-policy": "गोपनीयता नीति",
+      "save-data-description": "क्या आप अपने खाते का डेटा क्लाउड पर सहेजना चाहते हैं?",
+      "save-data-title": "डेटा सहेजें",
+      "save-data-warning": "यह पहले से सहेजे गए डेटा को अधिलेखित कर देगा.",
+      "source": "स्रोत",
+      "title": "सेटिंग्स",
+      "tos": "सेवा की शर्तें"
     }
   },
   "Metadata": {

@@ -16,9 +16,7 @@
       "average": "Purata",
       "best": "Terbaik",
       "counter": "Pengira",
-      "settings": "Tetapan",
       "enter-custom-scramble": "Masukkan acak khusus",
-      "initializing-please-wait": "Inisialisasi sila tunggu",
       "title": "Main"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Purata",
       "time-spent": "Masa Dibelanjakan",
       "success-rate": "Kadar Kejayaan",
-      "counter": "Pengira",
-      "advanced": "Maju",
-      "overall": "Keseluruhannya"
+      "counter": "Pengira"
     },
     "CubesPage": {
       "title": "Kubus",
@@ -82,10 +78,8 @@
       "status": "Status",
       "using": "Menggunakan",
       "idle": "Beberapa masa",
-      "find-your-cube": "Cari kiub anda",
       "name": "Nama",
-      "new-collection": "Koleksi baru",
-      "options": "Pilihan"
+      "new-collection": "Koleksi baru"
     },
     "Cubes-modal": {
       "category": "kategori",
@@ -112,10 +106,11 @@
       "move": "Bergerak",
       "none": "tiada",
       "collections": "Koleksi",
-      "empty": "kosong"
+      "empty": "kosong",
+      "back": "belakang",
+      "sign-in-google": "Log Masuk dengan Google"
     },
     "Settings-menu": {
-      "title": "Tetapan",
       "locale": "Lokaliti",
       "language": "Bahasa",
       "timer": "Pemasa",
@@ -138,7 +133,6 @@
       "format": "Format",
       "allowed-file-types": "Hanya fail imej (JPEG, PNG, GIF) yang dibenarkan.",
       "max-file-size": "Saiz fail maksimum yang dibenarkan",
-      "about": "Tentang",
       "auto-select": "Autopilih pada permulaan",
       "data": "Data Apl",
       "export-to-file": "Eksport ke fail",
@@ -167,6 +161,26 @@
       "copy": "salin",
       "delete": "Padam",
       "plus-two": "2 Penalti"
+    },
+    "SettingsPage": {
+      "account": "Akaun",
+      "fetching-last-backup": "Mengambil maklumat daripada pelayan tunggu sebentar...",
+      "help": "Tolong",
+      "last-backup": "Sandaran terakhir:",
+      "load": "Muatkan",
+      "load-data-description": "Adakah anda mahu memuat turun data akaun anda daripada awan?",
+      "load-data-title": "Muatkan data",
+      "load-data-warning": "Ini akan menggabungkan data semasa dengan data yang disimpan.",
+      "logout": "Log keluar",
+      "not-authenticated": "Sahkan untuk memberikan akses",
+      "options": "Pilihan",
+      "privacy-policy": "Dasar Privasi",
+      "save-data-description": "Adakah anda mahu menyimpan data akaun anda di awan?",
+      "save-data-title": "Simpan data",
+      "save-data-warning": "Ini akan menimpa data yang disimpan sebelum ini.",
+      "source": "Sumber",
+      "title": "tetapan",
+      "tos": "Syarat Perkhidmatan"
     }
   },
   "Metadata": {

@@ -16,9 +16,7 @@
       "average": "Gjennomsnitt",
       "best": "Beste",
       "counter": "Tellende",
-      "settings": "Innstillinger",
       "enter-custom-scramble": "Skriv inn en tilpasset miks",
-      "initializing-please-wait": "Initialiserer, vennligst vent",
       "title": "Spille"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Gjennomsnitt",
       "time-spent": "Tid Brukt",
       "success-rate": "Suksessrate",
-      "counter": "Tellende",
-      "advanced": "Avansert",
-      "overall": "Totalt sett"
+      "counter": "Tellende"
     },
     "CubesPage": {
       "title": "Kuber",
@@ -82,10 +78,8 @@
       "status": "Status",
       "using": "Bruker",
       "idle": "Inaktiv",
-      "find-your-cube": "Finn kuben din",
       "name": "Navn",
-      "new-collection": "Ny kolleksjon",
-      "options": "Alternativer"
+      "new-collection": "Ny kolleksjon"
     },
     "Cubes-modal": {
       "category": "Kategori",
@@ -112,10 +106,11 @@
       "move": "Flytte",
       "none": "Ingen",
       "collections": "Samlinger",
-      "empty": "Tømme"
+      "empty": "Tømme",
+      "back": "Tilbake",
+      "sign-in-google": "Logg på med Google"
     },
     "Settings-menu": {
-      "title": "Innstillinger",
       "locale": "Lokalitet",
       "language": "Språk",
       "timer": "Timer",
@@ -138,7 +133,6 @@
       "format": "Format",
       "allowed-file-types": "Bare bildefiler (JPEG, PNG, GIF) er tillatt.",
       "max-file-size": "Maksimal filstørrelse tillatt",
-      "about": "Om",
       "auto-select": "Automatisk valg ved oppstart",
       "data": "Appdata",
       "export-to-file": "Eksporter til fil",
@@ -167,6 +161,26 @@
       "copy": "Kopiere",
       "delete": "Slett",
       "plus-two": "2 Straffe"
+    },
+    "SettingsPage": {
+      "account": "Konto",
+      "fetching-last-backup": "Henter informasjon fra serveren, vent et øyeblikk...",
+      "help": "Hjelp",
+      "last-backup": "Siste sikkerhetskopi:",
+      "load": "Laste",
+      "load-data-description": "Vil du laste ned kontodataene dine fra skyen?",
+      "load-data-title": "Last inn data",
+      "load-data-warning": "Dette vil slå sammen gjeldende data med lagrede data.",
+      "logout": "Logg ut",
+      "not-authenticated": "Autentiser for å gi tilgang",
+      "options": "Alternativer",
+      "privacy-policy": "Personvernerklæring",
+      "save-data-description": "Vil du lagre kontodataene dine i skyen?",
+      "save-data-title": "Lagre data",
+      "save-data-warning": "Dette vil overskrive tidligere lagrede data.",
+      "source": "Kilde",
+      "title": "Innstillinger",
+      "tos": "Vilkår for bruk"
     }
   },
   "Metadata": {

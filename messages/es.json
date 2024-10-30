@@ -16,9 +16,7 @@
       "average": "Promedio",
       "best": "Mejor",
       "counter": "Contador",
-      "settings": "Configuración",
       "enter-custom-scramble": "Introduce una mezcla personalizada",
-      "initializing-please-wait": "Inicializando, por favor espera",
       "title": "Jugar"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Promedio",
       "time-spent": "Tiempo Gastado",
       "success-rate": "Tasa de Éxito",
-      "counter": "Contador",
-      "advanced": "Avanzado",
-      "overall": "En general"
+      "counter": "Contador"
     },
     "CubesPage": {
       "title": "Cubos",
@@ -82,10 +78,8 @@
       "status": "Estado",
       "using": "Usando",
       "idle": "Inactivo",
-      "find-your-cube": "Encuentra tu cubo",
       "name": "Nombre",
-      "new-collection": "Nueva colección",
-      "options": "Opciones"
+      "new-collection": "Nueva colección"
     },
     "Cubes-modal": {
       "category": "Categoría",
@@ -112,10 +106,11 @@
       "move": "Mover",
       "none": "Ninguno",
       "empty": "Vacío",
-      "collections": "Colecciones"
+      "collections": "Colecciones",
+      "back": "Atrás",
+      "sign-in-google": "Iniciar sesión con Google"
     },
     "Settings-menu": {
-      "title": "Configuración",
       "locale": "Región",
       "language": "Idioma",
       "timer": "Temporizador",
@@ -141,7 +136,6 @@
       "data": "Datos de la App",
       "import-from-file": "Importar desde archivo",
       "export-to-file": "Exportar a archivo",
-      "about": "Acerca de",
       "legend": "NexusTimer es una herramienta web minimalista, de código abierto y sin opiniones para SpeedCubing.",
       "suggest": "Sugerir un cambio",
       "report-bug": "Reportar un error",
@@ -167,6 +161,26 @@
       "copy": "Copiar",
       "delete": "Borrar",
       "plus-two": "2 Penalización"
+    },
+    "SettingsPage": {
+      "account": "Cuenta",
+      "fetching-last-backup": "Obteniendo información del servidor espera un momento...",
+      "help": "Ayuda",
+      "last-backup": "Última copia de seguridad:",
+      "load": "Carga",
+      "load-data-description": "¿Quieres descargar los datos de tu cuenta desde la nube?",
+      "load-data-title": "Cargar datos",
+      "load-data-warning": "Esto fusionará los datos actuales con los datos guardados.",
+      "logout": "Cerrar sesión",
+      "save-data-description": "¿Quieres guardar los datos de tu cuenta en la nube?",
+      "save-data-title": "guardar datos",
+      "save-data-warning": "Esto sobrescribirá los datos guardados previamente.",
+      "source": "Fuente",
+      "title": "Ajustes",
+      "tos": "Términos de servicio",
+      "not-authenticated": "Autenticarse para otorgar acceso",
+      "options": "Opciones",
+      "privacy-policy": "política de privacidad"
     }
   },
   "Metadata": {

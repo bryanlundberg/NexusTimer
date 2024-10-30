@@ -16,9 +16,7 @@
       "average": "Medie",
       "best": "Cel mai bun",
       "counter": "Contor",
-      "settings": "Setări",
       "enter-custom-scramble": "Introduceți o amestecare personalizată",
-      "initializing-please-wait": "Se inițializează, vă rugăm să așteptați",
       "title": "Juca"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Medie",
       "time-spent": "Timp petrecut",
       "success-rate": "Rată de succes",
-      "counter": "Contor",
-      "advanced": "Avansat",
-      "overall": "În general"
+      "counter": "Contor"
     },
     "CubesPage": {
       "title": "Cuburi",
@@ -82,10 +78,8 @@
       "status": "Stare",
       "using": "Utilizând",
       "idle": "Inactiv",
-      "find-your-cube": "Găsește-ți cubul",
       "name": "Nume",
-      "new-collection": "Noua colectie",
-      "options": "Opțiuni"
+      "new-collection": "Noua colectie"
     },
     "Cubes-modal": {
       "category": "Categorie",
@@ -112,10 +106,11 @@
       "move": "Mişcare",
       "none": "Nici unul",
       "collections": "Colecții",
-      "empty": "Gol"
+      "empty": "Gol",
+      "back": "Spate",
+      "sign-in-google": "Conectați-vă cu Google"
     },
     "Settings-menu": {
-      "title": "Setări",
       "locale": "Localizare",
       "language": "Limba",
       "timer": "Cronometru",
@@ -138,7 +133,6 @@
       "format": "Format",
       "allowed-file-types": "Sunt permise doar fișiere de imagine (JPEG, PNG, GIF).",
       "max-file-size": "Dimensiunea maximă a fișierului permisă",
-      "about": "Despre",
       "auto-select": "Selectare automată la pornire",
       "data": "Date aplicației",
       "export-to-file": "Exportați în fișier",
@@ -167,6 +161,26 @@
       "copy": "Copie",
       "delete": "Şterge",
       "plus-two": "2 pedeapsa"
+    },
+    "SettingsPage": {
+      "account": "Cont",
+      "fetching-last-backup": "Se preiau informații de pe server, așteptați un moment...",
+      "help": "Ajutor",
+      "last-backup": "Ultima copie de rezervă:",
+      "load": "Încărca",
+      "load-data-description": "Doriți să descărcați datele contului dvs. din cloud?",
+      "load-data-title": "Încărcați date",
+      "load-data-warning": "Aceasta va îmbina datele curente cu datele salvate.",
+      "logout": "Deconectare",
+      "not-authenticated": "Autentificați-vă pentru a acorda acces",
+      "options": "Opțiuni",
+      "privacy-policy": "Politica de confidențialitate",
+      "save-data-description": "Doriți să vă salvați datele contului în cloud?",
+      "save-data-title": "Salvați datele",
+      "save-data-warning": "Aceasta va suprascrie datele salvate anterior.",
+      "source": "Sursă",
+      "title": "Setări",
+      "tos": "Termeni și condiții"
     }
   },
   "Metadata": {

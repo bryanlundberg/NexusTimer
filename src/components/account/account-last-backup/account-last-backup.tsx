@@ -24,7 +24,7 @@ export default function AccountLastBackup({ session }: { session: Session }) {
     <>
       <div>
         {!isLoading
-          ? t("SettingsPage.last-backup") + lastBackupDate
+          ? t("SettingsPage.last-backup") + " " + lastBackupDate
           : t("SettingsPage.fetching-last-backup")}
       </div>
     </>

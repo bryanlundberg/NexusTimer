@@ -16,9 +16,7 @@
       "average": "Средний",
       "best": "Лучший",
       "counter": "Счетчик",
-      "settings": "Настройки",
       "enter-custom-scramble": "Введите свою перетасовку",
-      "initializing-please-wait": "Инициализация, пожалуйста, подождите",
       "title": "Играть"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Средний",
       "time-spent": "Проведенное время",
       "success-rate": "Успешность",
-      "counter": "Счетчик",
-      "advanced": "Передовой",
-      "overall": "Общий"
+      "counter": "Счетчик"
     },
     "CubesPage": {
       "title": "Кубики",
@@ -82,10 +78,8 @@
       "status": "Статус",
       "using": "Используется",
       "idle": "Неактивный",
-      "find-your-cube": "Найди свой куб",
       "name": "Имя",
-      "new-collection": "Новая коллекция",
-      "options": "Параметры"
+      "new-collection": "Новая коллекция"
     },
     "Cubes-modal": {
       "category": "Категория",
@@ -112,10 +106,11 @@
       "continue": "Продолжать",
       "move": "Двигаться",
       "collections": "Коллекции",
-      "empty": "Пустой"
+      "empty": "Пустой",
+      "back": "Назад",
+      "sign-in-google": "Войти через Google"
     },
     "Settings-menu": {
-      "title": "Настройки",
       "locale": "Локаль",
       "language": "Язык",
       "timer": "Таймер",
@@ -140,7 +135,6 @@
       "export-to-file": "Экспорт в файл",
       "custom-background-image": "Пользовательское фоновое изображение",
       "format": "Формат",
-      "about": "О приложении",
       "allowed-file-types": "Разрешены только файлы изображений (JPEG, PNG, GIF).",
       "max-file-size": "Максимальный размер файла",
       "suggest": "Предложить изменение",
@@ -167,6 +161,26 @@
       "copy": "Копировать",
       "delete": "Удалить",
       "plus-two": "2 пенальти"
+    },
+    "SettingsPage": {
+      "account": "Счет",
+      "fetching-last-backup": "Получение информации с сервера, подождите минутку...",
+      "help": "Помощь",
+      "last-backup": "Последняя резервная копия:",
+      "load": "Нагрузка",
+      "load-data-description": "Хотите загрузить данные своей учетной записи из облака?",
+      "load-data-title": "Загрузить данные",
+      "load-data-warning": "Это объединит текущие данные с сохраненными данными.",
+      "logout": "Выход из системы",
+      "not-authenticated": "Аутентификация для предоставления доступа",
+      "options": "Параметры",
+      "privacy-policy": "политика конфиденциальности",
+      "save-data-description": "Хотите сохранить данные своей учетной записи в облаке?",
+      "save-data-title": "Сохранить данные",
+      "save-data-warning": "Это приведет к перезаписи ранее сохраненных данных.",
+      "source": "Источник",
+      "title": "Настройки",
+      "tos": "Условия использования"
     }
   },
   "Metadata": {

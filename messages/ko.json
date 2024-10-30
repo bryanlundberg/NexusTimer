@@ -16,9 +16,7 @@
       "average": "평균",
       "best": "최고",
       "counter": "카운터",
-      "settings": "설정",
       "enter-custom-scramble": "사용자 정의 스크램블 입력",
-      "initializing-please-wait": "초기화 중, 잠시만 기다려주세요",
       "title": "놀다"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "평균",
       "time-spent": "소요 시간",
       "success-rate": "성공률",
-      "counter": "카운터",
-      "advanced": "고급의",
-      "overall": "전반적인"
+      "counter": "카운터"
     },
     "CubesPage": {
       "title": "큐브",
@@ -82,10 +78,8 @@
       "status": "상태",
       "using": "사용 중",
       "idle": "유휴",
-      "find-your-cube": "당신의 큐브를 찾아보세요",
       "name": "이름",
-      "new-collection": "새로운 컬렉션",
-      "options": "옵션"
+      "new-collection": "새로운 컬렉션"
     },
     "Cubes-modal": {
       "category": "범주",
@@ -112,10 +106,11 @@
       "move": "이동하다",
       "none": "없음",
       "collections": "컬렉션",
-      "empty": "비어 있는"
+      "empty": "비어 있는",
+      "back": "뒤쪽에",
+      "sign-in-google": "Google로 로그인"
     },
     "Settings-menu": {
-      "title": "설정",
       "locale": "로케일",
       "language": "언어",
       "timer": "타이머",
@@ -138,7 +133,6 @@
       "format": "형식",
       "allowed-file-types": "이미지 파일(JPEG, PNG, GIF)만 허용됩니다.",
       "max-file-size": "허용되는 최대 파일 크기",
-      "about": "에 대한",
       "auto-select": "시작 시 자동 선택",
       "data": "앱 데이터",
       "export-to-file": "파일로 내보내기",
@@ -167,6 +161,26 @@
       "copy": "복사",
       "delete": "삭제",
       "plus-two": "2 페널티"
+    },
+    "SettingsPage": {
+      "account": "계정",
+      "fetching-last-backup": "서버에서 정보를 가져오는 중입니다. 잠시만 기다려 주세요...",
+      "help": "돕다",
+      "last-backup": "마지막 백업:",
+      "load": "짐",
+      "load-data-description": "클라우드에서 계정 데이터를 다운로드하시겠습니까?",
+      "load-data-title": "데이터 로드",
+      "load-data-warning": "그러면 현재 데이터가 저장된 데이터와 병합됩니다.",
+      "logout": "로그아웃",
+      "not-authenticated": "액세스 권한을 부여하려면 인증하세요.",
+      "options": "옵션",
+      "privacy-policy": "개인 정보 보호 정책",
+      "save-data-description": "계정 데이터를 클라우드에 저장하시겠습니까?",
+      "save-data-title": "데이터 저장",
+      "save-data-warning": "이전에 저장된 데이터를 덮어쓰게 됩니다.",
+      "source": "원천",
+      "title": "설정",
+      "tos": "서비스 약관"
     }
   },
   "Metadata": {

@@ -17,7 +17,7 @@ export default function Page() {
 
   return (
     <>
-      <AccountHeader back="/settings" label="Account" />
+      <AccountHeader back="/settings" label={t("SettingsPage.account")} />
       <div className="flex flex-col gap-3 justify-center items-center">
         <Avatar className="size-20">
           <AvatarImage src={session.user?.image as string} />
@@ -30,13 +30,13 @@ export default function Page() {
 
         <Link href={"./account/save"} className="w-full">
           <Button className="w-full" variant={"secondary"}>
-            {t("SettingsPage.save")}
+            Save
           </Button>
         </Link>
 
         <Link href={"./account/load"} className="w-full">
           <Button className="w-full" variant={"secondary"}>
-            {t("SettingsPage.load")}
+            Load
           </Button>
         </Link>
 

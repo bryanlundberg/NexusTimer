@@ -16,9 +16,7 @@
       "average": "Média",
       "best": "Melhor",
       "counter": "Contador",
-      "settings": "Configurações",
       "enter-custom-scramble": "Digite uma mistura personalizada",
-      "initializing-please-wait": "Inicializando, por favor, aguarde",
       "title": "Jogar"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Média",
       "time-spent": "Tempo Gasto",
       "success-rate": "Taxa de Sucesso",
-      "counter": "Contador",
-      "advanced": "Avançado",
-      "overall": "Geral"
+      "counter": "Contador"
     },
     "CubesPage": {
       "title": "Cubos",
@@ -82,10 +78,8 @@
       "status": "Status",
       "using": "Usando",
       "idle": "Inativo",
-      "find-your-cube": "Encontre o seu cubo",
       "name": "Nome",
-      "new-collection": "Nova coleção",
-      "options": "Opções"
+      "new-collection": "Nova coleção"
     },
     "Cubes-modal": {
       "category": "Categoria",
@@ -112,10 +106,11 @@
       "move": "Mover",
       "none": "Nenhum",
       "collections": "Coleções",
-      "empty": "Vazio"
+      "empty": "Vazio",
+      "back": "Voltar",
+      "sign-in-google": "Faça login com o Google"
     },
     "Settings-menu": {
-      "title": "Configurações",
       "locale": "Localidade",
       "language": "Idioma",
       "timer": "Cronômetro",
@@ -138,7 +133,6 @@
       "format": "Formato",
       "allowed-file-types": "Somente arquivos de imagem (JPEG, PNG, GIF) são permitidos.",
       "max-file-size": "Tamanho máximo de arquivo permitido",
-      "about": "Sobre",
       "auto-select": "Seleção automática na inicialização",
       "data": "Dados do aplicativo",
       "export-to-file": "Exportar para arquivo",
@@ -167,6 +161,26 @@
       "copy": "Cópia",
       "delete": "Excluir",
       "plus-two": "2 Penalidade"
+    },
+    "SettingsPage": {
+      "account": "Conta",
+      "fetching-last-backup": "Buscando informações do servidor, aguarde um momento...",
+      "help": "Ajuda",
+      "last-backup": "Último backup:",
+      "load": "Carregar",
+      "load-data-description": "Quer baixar os dados da sua conta da nuvem?",
+      "load-data-title": "Carregar dados",
+      "load-data-warning": "Isso mesclará os dados atuais com os dados salvos.",
+      "logout": "Sair",
+      "not-authenticated": "Autenticar para conceder acesso",
+      "options": "Opções",
+      "privacy-policy": "política de Privacidade",
+      "save-data-description": "Você quer salve os dados da sua conta na nuvem?",
+      "save-data-title": "Salvar dados",
+      "save-data-warning": "Isso substituirá os dados salvos anteriormente.",
+      "source": "Fonte",
+      "title": "Configurações",
+      "tos": "Termos de Serviço"
     }
   },
   "Metadata": {

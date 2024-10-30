@@ -16,9 +16,7 @@
       "average": "Átlag",
       "best": "Legjobb",
       "counter": "Számláló",
-      "settings": "Beállítások",
       "enter-custom-scramble": "Adjon meg egyéni scramble-t",
-      "initializing-please-wait": "Inicializálás, kérjük várjon",
       "title": "Játék"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Átlag",
       "time-spent": "Eltöltött Idő",
       "success-rate": "Sikerarány",
-      "counter": "Számláló",
-      "advanced": "Fejlett",
-      "overall": "Átfogó"
+      "counter": "Számláló"
     },
     "CubesPage": {
       "title": "Kockák",
@@ -82,10 +78,8 @@
       "status": "Állapot",
       "using": "Használ",
       "idle": "Tétlen",
-      "find-your-cube": "Keresse meg a kockáját",
       "name": "Név",
-      "new-collection": "Új kollekció",
-      "options": "Opciók"
+      "new-collection": "Új kollekció"
     },
     "Cubes-modal": {
       "category": "Kategória",
@@ -112,10 +106,11 @@
       "move": "Mozog",
       "none": "Egyik sem",
       "collections": "Gyűjtemények",
-      "empty": "Üres"
+      "empty": "Üres",
+      "back": "Vissza",
+      "sign-in-google": "Jelentkezzen be a Google-lal"
     },
     "Settings-menu": {
-      "title": "Beállítások",
       "locale": "Terület",
       "language": "Nyelv",
       "timer": "Időmérő",
@@ -141,7 +136,6 @@
       "data": "App adatok",
       "import-from-file": "Importálás fájlból",
       "export-to-file": "Exportálás fájlba",
-      "about": "Névjegy",
       "legend": "A NexusTimer egy véleményektől mentes, minimalista és nyílt forráskódú webes eszköz a SpeedCubing számára.",
       "suggest": "Javaslat küldése",
       "report-bug": "Hiba bejelentése",
@@ -167,6 +161,26 @@
       "copy": "Másolat",
       "delete": "Töröl",
       "plus-two": "2 Büntetés"
+    },
+    "SettingsPage": {
+      "account": "fiók",
+      "fetching-last-backup": "Információk lekérése a szerverről, várjon egy kicsit...",
+      "help": "Segítség",
+      "last-backup": "Utolsó biztonsági mentés:",
+      "load": "Terhelés",
+      "load-data-description": "Szeretné letölteni fiókadatait a felhőből?",
+      "load-data-title": "Adatok betöltése",
+      "load-data-warning": "Ez egyesíti az aktuális adatokat a mentett adatokkal.",
+      "logout": "Kijelentkezés",
+      "not-authenticated": "A hozzáférés megadásához hitelesítsen",
+      "options": "Opciók",
+      "privacy-policy": "Adatvédelmi szabályzat",
+      "save-data-description": "Szeretné menteni fiókadatait a felhőben?",
+      "save-data-title": "Mentse az adatokat",
+      "save-data-warning": "Ez felülírja a korábban elmentett adatokat.",
+      "source": "Forrás",
+      "title": "Beállítások elemre",
+      "tos": "Szolgáltatási feltételek"
     }
   },
   "Metadata": {
