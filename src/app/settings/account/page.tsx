@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import AccountHeader from "@/components/account/account-header/account-header";
 import Link from "next/link";
 import AccountNotAuth from "@/components/account/account-not-auth/account-not-auth";
+import AccountLastBackup from "@/components/account/account-last-backup/account-last-backup";
 
 export default function Page() {
   const { data: session } = useSession();
@@ -46,7 +47,7 @@ export default function Page() {
           Logout
         </Button>
 
-        <div>Last update, 9 minutes ago</div>
+        <AccountLastBackup session={session} />
       </div>
     </>
   );

@@ -34,12 +34,12 @@ export async function createOrUpdateUser({
   }
 }
 
-export async function createBackup({
+export async function createOrUpdateBackup({
   email,
   data,
 }: {
-  email: Pick<Users, "email">;
-  data: Pick<Backups, "data">;
+  email: string;
+  data: string;
 }) {
   try {
     await connectDB();
@@ -61,6 +61,23 @@ export async function createBackup({
     if (!backup) throw new Error("Backup not created");
     return true;
   } catch (error: any) {
+    console.log(error);
+    return false;
+  }
+}
+
+export async function getLastBackupDate({ email }: { email: string }) {
+  try {
+    await connectDB();
+    const user = await User.findOne({ email: email });
+    if (!user) throw new Error("User not found");
+
+    const backup = await Backup.findOne({
+      user: user._id,
+    });
+
+    return backup ? backup.updatedAt.toString() : false;
+  } catch (error) {
     console.log(error);
     return false;
   }

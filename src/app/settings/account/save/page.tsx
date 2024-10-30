@@ -1,10 +1,9 @@
 "use client";
-import { createBackup } from "@/actions/actions";
+import { createOrUpdateBackup } from "@/actions/actions";
 import AccountHeader from "@/components/account/account-header/account-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getAllCubes } from "@/db/dbOperations";
-import { Backups } from "@/models/backup";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { redirect, useRouter } from "next/navigation";
@@ -26,25 +25,30 @@ export default function Page() {
           This will overwrite previously saved data.
         </p>
 
-        <div className=" flex gap-2 w-full justify-center mt-5">
-          <Link href={"./"}>
-            <Button>Back</Button>
+        <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
+          <Link href={"./"} className="w-full">
+            <Button variant={"secondary"} className="w-full">
+              Back
+            </Button>
           </Link>
           <Button
+            className="w-full"
             onClick={async () => {
               const cubes = await getAllCubes();
-              if (!cubes) return; // send toast error to screen
+              if (
+                !cubes ||
+                !session ||
+                !session.user ||
+                typeof session.user.email !== "string"
+              ) {
+                return; // send toast error to screen
+              }
 
-              const backupData: Pick<Backups, "data"> = {
+              await createOrUpdateBackup({
+                email: session.user.email,
                 data: JSON.stringify(cubes),
-              };
-
-              const backup = await createBackup({
-                email: session.user?.email as any,
-                data: backupData,
               });
 
-              if (!backup) return; // send toast error to screen
               router.push("/settings/account");
             }}
           >
