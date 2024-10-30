@@ -18,12 +18,14 @@ export default function Page() {
           This will merge current data with saved data.
         </p>
 
-        <div className="flex gap-2 w-full justify-between mt-5">
-          <Link href={"./"}>
-            <Button>Back</Button>
+        <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
+          <Link href={"./"} className="w-full">
+            <Button className="w-full" variant={"secondary"}>
+              Back
+            </Button>
           </Link>
 
-          <Button>Continue</Button>
+          <Button className="w-full">Continue</Button>
         </div>
       </Card>
     </>
