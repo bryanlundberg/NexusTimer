@@ -3,36 +3,34 @@ import { getLastBackup } from "@/actions/actions";
 import AccountHeader from "@/components/account/account-header/account-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { getAllCubes } from "@/db/dbOperations";
+import { deleteCubeById, getAllCubes, saveCube } from "@/db/dbOperations";
 import { Cube } from "@/interfaces/Cube";
+import { useTimerStore } from "@/store/timerStore";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const { data: session } = useSession();
-
+  const router = useRouter();
+  const { setCubes } = useTimerStore();
   const handleDownloadData = async () => {
     if (!session || !session.user || !session.user.email) return;
 
     // Get backup from server
     const backup = await getLastBackup({ email: session.user.email });
-
-    // Transform response plain text into JS, removing _id field
     if (!backup) return;
 
+    // Transform response plain text into JS, removing _id field
     const parsedBackup = JSON.parse(backup);
     const cloudBackup = JSON.parse(parsedBackup.data);
 
-    if (cloudBackup.length === 0) return;
-
     // Get local data from indexDB
-
     const cubes = await getAllCubes();
 
     if (!cubes) return;
 
     // Create new backup object
-
     const newBackup: Cube[] = [...cubes];
 
     cloudBackup.forEach((cubeCloud: Cube) => {
@@ -67,8 +65,9 @@ export default function Page() {
           if (cubeLocalIndex !== -1) {
             // If exists updates the local cube object with new solves data
             newBackup[cubeLocalIndex] = newCubeData;
-          } else {
           }
+
+          addedCube = true;
         }
       });
       if (!addedCube) {
@@ -77,12 +76,24 @@ export default function Page() {
     });
 
     // Clear app storage
+    cubes.forEach(async (c: Cube) => {
+      await deleteCubeById(c.id);
+    });
 
     // Replace storage with new Object Backup
+    newBackup.forEach(async (c: Cube) => {
+      await saveCube({
+        ...c,
+      });
+    });
 
     // Update global state
-
+    const appData = await getAllCubes();
+    if (appData) {
+      setCubes(appData);
+    }
     // redirect account page
+    router.push("/settings/account");
   };
 
   return (
