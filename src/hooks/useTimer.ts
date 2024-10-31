@@ -275,14 +275,10 @@ export default function useTimer() {
       handleRelease();
     };
 
-    const closeModal = () => {
-      setSettingsOpen(false);
-    };
-
     if (displayHint) return;
 
     const touchElements = document.querySelectorAll("#touch");
-    window.addEventListener("popstate", closeModal);
+
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
     touchElements.forEach((element: any) => {
@@ -292,7 +288,6 @@ export default function useTimer() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
-      window.removeEventListener("popstate", closeModal);
       touchElements.forEach((element: any) => {
         element.removeEventListener("touchstart", handleTouchStart);
         element.removeEventListener("touchend", handleTouchEnd);
