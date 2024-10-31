@@ -78,7 +78,7 @@ export default function Page() {
               </DialogDescription>
             </DialogHeader>
             <DialogFooter className="flex flex-col gap-2">
-              <DialogClose className="w-full">
+              <DialogClose className="w-full" asChild>
                 <Button variant={"secondary"} className="w-full">
                   {t("Inputs.cancel")}
                 </Button>
