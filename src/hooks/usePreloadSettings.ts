@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
@@ -11,11 +11,13 @@ export function usePreloadSettings() {
   const { setSettings } = useSettingsModalStore();
   const { setBackgroundImage } = useBackgroundImageStore();
 
+  const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
-    const getSettings = loadSettings();
-    const defaultCube = getSettings.preferences.defaultCube.cube;
+    const settings = loadSettings();
+    const defaultCube = settings.preferences.defaultCube.cube;
     setSelectedCube(defaultCube);
-    setSettings(getSettings);
+    setSettings(settings);
     setTimerStatistics();
     setNewScramble(defaultCube);
   }, [setSettings, setSelectedCube, setNewScramble, setTimerStatistics]);
@@ -30,4 +32,10 @@ export function usePreloadSettings() {
       setBackgroundImage(storedImage);
     }
   }, [setBackgroundImage]);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  return { isMounted };
 }

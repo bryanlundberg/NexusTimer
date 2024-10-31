@@ -1,3 +1,4 @@
+"use client";
 import { Solve } from "@/interfaces/Solve";
 import convertToMs from "@/lib/convertToMs";
 import formatTime from "@/lib/formatTime";
@@ -23,6 +24,7 @@ export default function ManualMode() {
     setTimerStatistics,
     setSelectedCube,
   } = useTimerStore();
+
   const { settings } = useSettingsModalStore();
   const t = useTranslations("Index.HomePage");
 
@@ -31,10 +33,12 @@ export default function ManualMode() {
     else return false;
   };
 
+  if (!selectedCube) return null;
+
   return (
     <>
       <form
-        className="flex flex-col items-center"
+        className="flex flex-col items-center grow justify-center"
         onSubmit={async (e) => {
           e.preventDefault();
           if (!selectedCube) return;
