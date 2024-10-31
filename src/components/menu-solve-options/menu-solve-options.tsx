@@ -179,11 +179,7 @@ export default function MenuSolveOptions({
         <TooltipProvider delayDuration={100}>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant={"ghost"}
-                onClick={handleDeleteSolve}
-                onTouchEnd={handleDeleteSolve}
-              >
+              <Button variant={"ghost"} onPointerDown={handleDeleteSolve}>
                 <Cross1Icon />
               </Button>
             </TooltipTrigger>
@@ -196,8 +192,7 @@ export default function MenuSolveOptions({
               <Button
                 variant={"ghost"}
                 className="font-light text-md"
-                onClick={handlePenaltyPlus2}
-                onTouchEnd={handlePenaltyPlus2}
+                onPointerDown={handlePenaltyPlus2}
               >
                 +2
               </Button>
@@ -209,11 +204,7 @@ export default function MenuSolveOptions({
           <Tooltip>
             <TooltipTrigger asChild>
               {caseOfUse === "last-solve" ? (
-                <Button
-                  variant={"ghost"}
-                  onClick={handleBookmarkSolve}
-                  onTouchEnd={handleBookmarkSolve}
-                >
+                <Button variant={"ghost"} onPointerDown={handleBookmarkSolve}>
                   {!lastSolve?.bookmark ? (
                     <BookmarkIcon />
                   ) : (
@@ -221,11 +212,7 @@ export default function MenuSolveOptions({
                   )}
                 </Button>
               ) : (
-                <Button
-                  variant={"ghost"}
-                  onClick={handleBookmarkSolve}
-                  onTouchEnd={handleBookmarkSolve}
-                >
+                <Button variant={"ghost"} onPointerDown={handleBookmarkSolve}>
                   {!dialog.solve?.bookmark ? (
                     <BookmarkIcon />
                   ) : (
@@ -240,11 +227,7 @@ export default function MenuSolveOptions({
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant={"ghost"}
-                onClick={handleClipboardSolve}
-                onTouchEnd={handleClipboardSolve}
-              >
+              <Button variant={"ghost"} onPointerDown={handleClipboardSolve}>
                 <CopyIcon />
               </Button>
             </TooltipTrigger>
