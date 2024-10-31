@@ -10,7 +10,6 @@ import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
 import updateSolve from "@/lib/updateSolve";
 import { useDialogSolve } from "@/store/DialogSolve";
-import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { useTimerStore } from "@/store/timerStore";
 import {
   BookmarkFilledIcon,
@@ -173,11 +172,18 @@ export default function MenuSolveOptions({
   return (
     <>
       {/* options */}
-      <div className="flex items-center justify-center pt-5 gap-2">
+      <div
+        className="flex items-center justify-center py-5 gap-2"
+        id="quick-action-buttons"
+      >
         <TooltipProvider delayDuration={100}>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant={"ghost"} onClick={handleDeleteSolve}>
+              <Button
+                variant={"ghost"}
+                onClick={handleDeleteSolve}
+                onTouchEnd={handleDeleteSolve}
+              >
                 <Cross1Icon />
               </Button>
             </TooltipTrigger>
@@ -191,6 +197,7 @@ export default function MenuSolveOptions({
                 variant={"ghost"}
                 className="font-light text-md"
                 onClick={handlePenaltyPlus2}
+                onTouchEnd={handlePenaltyPlus2}
               >
                 +2
               </Button>
@@ -202,7 +209,11 @@ export default function MenuSolveOptions({
           <Tooltip>
             <TooltipTrigger asChild>
               {caseOfUse === "last-solve" ? (
-                <Button variant={"ghost"} onClick={handleBookmarkSolve}>
+                <Button
+                  variant={"ghost"}
+                  onClick={handleBookmarkSolve}
+                  onTouchEnd={handleBookmarkSolve}
+                >
                   {!lastSolve?.bookmark ? (
                     <BookmarkIcon />
                   ) : (
@@ -210,7 +221,11 @@ export default function MenuSolveOptions({
                   )}
                 </Button>
               ) : (
-                <Button variant={"ghost"} onClick={handleBookmarkSolve}>
+                <Button
+                  variant={"ghost"}
+                  onClick={handleBookmarkSolve}
+                  onTouchEnd={handleBookmarkSolve}
+                >
                   {!dialog.solve?.bookmark ? (
                     <BookmarkIcon />
                   ) : (
@@ -225,7 +240,11 @@ export default function MenuSolveOptions({
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant={"ghost"} onClick={handleClipboardSolve}>
+              <Button
+                variant={"ghost"}
+                onClick={handleClipboardSolve}
+                onTouchEnd={handleClipboardSolve}
+              >
                 <CopyIcon />
               </Button>
             </TooltipTrigger>
