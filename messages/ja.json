@@ -16,9 +16,7 @@
       "average": "平均",
       "best": "最高",
       "counter": "カウンター",
-      "settings": "設定",
       "enter-custom-scramble": "カスタムスクランブルを入力",
-      "initializing-please-wait": "初期化中、お待ちください",
       "title": "遊ぶ"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "平均",
       "time-spent": "経過時間",
       "success-rate": "成功率",
-      "counter": "カウンター",
-      "advanced": "高度な",
-      "overall": "全体"
+      "counter": "カウンター"
     },
     "CubesPage": {
       "title": "キューブ",
@@ -82,10 +78,8 @@
       "status": "ステータス",
       "using": "使用中",
       "idle": "アイドル",
-      "find-your-cube": "自分のキューブを見つけてください",
       "name": "名前",
-      "new-collection": "新しいコレクション",
-      "options": "オプション"
+      "new-collection": "新しいコレクション"
     },
     "Cubes-modal": {
       "category": "カテゴリ",
@@ -112,10 +106,11 @@
       "move": "動く",
       "none": "なし",
       "collections": "コレクション",
-      "empty": "空の"
+      "empty": "空の",
+      "back": "戻る",
+      "sign-in-google": "Googleでサインイン"
     },
     "Settings-menu": {
-      "title": "設定",
       "locale": "ロケール",
       "language": "言語",
       "timer": "タイマー",
@@ -138,7 +133,6 @@
       "format": "フォーマット",
       "allowed-file-types": "画像ファイル（JPEG、PNG、GIF）のみが許可されています。",
       "max-file-size": "許可される最大ファイルサイズ",
-      "about": "について",
       "auto-select": "起動時に自動選択",
       "data": "アプリデータ",
       "export-to-file": "ファイルにエクスポート",
@@ -167,6 +161,29 @@
       "copy": "コピー",
       "delete": "消去",
       "plus-two": "2 ペナルティ"
+    },
+    "SettingsPage": {
+      "account": "アカウント",
+      "fetching-last-backup": "サーバーから情報を取得中です。しばらくお待ちください...",
+      "help": "ヘルプ",
+      "last-backup": "最後のバックアップ:",
+      "load": "負荷",
+      "load-data-description": "アカウント データをクラウドからダウンロードしますか?",
+      "load-data-title": "データのロード",
+      "load-data-warning": "これにより、現在のデータと保存されたデータがマージされます。",
+      "logout": "ログアウト",
+      "not-authenticated": "アクセスを許可するための認証",
+      "options": "オプション",
+      "privacy-policy": "プライバシーポリシー",
+      "save-data-description": "アカウント データをクラウドに保存しますか?",
+      "save-data-title": "セーブデータ",
+      "save-data-warning": "これにより、以前に保存されたデータが上書きされます。",
+      "source": "ソース",
+      "title": "設定",
+      "tos": "利用規約",
+      "unlink-account": "アカウントのリンクを解除する",
+      "unlink-account-para1": "アカウントからのリンクを解除してもよろしいですか",
+      "unlink-account-para2": "リンクを解除すると、このデバイスからすべてのデータが削除されます。"
     }
   },
   "Metadata": {

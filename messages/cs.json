@@ -16,9 +16,7 @@
       "average": "Průměr",
       "best": "Nejlepší",
       "counter": "Počítadlo",
-      "settings": "Nastavení",
       "enter-custom-scramble": "Zadejte vlastní scramble",
-      "initializing-please-wait": "Inicializace, prosím čekejte",
       "title": "Hrát"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Průměr",
       "time-spent": "Strávený čas",
       "success-rate": "Úspěšnost",
-      "counter": "Počítadlo",
-      "advanced": "Moderní",
-      "overall": "Celkově"
+      "counter": "Počítadlo"
     },
     "CubesPage": {
       "title": "Kostky",
@@ -82,10 +78,8 @@
       "status": "Stav",
       "using": "Používá se",
       "idle": "Nečinný",
-      "find-your-cube": "Najděte svou kostku",
       "name": "Jméno",
-      "new-collection": "Nová kolekce",
-      "options": "Možnosti"
+      "new-collection": "Nová kolekce"
     },
     "Cubes-modal": {
       "category": "Kategorie",
@@ -112,10 +106,11 @@
       "move": "Pohyb",
       "none": "Žádný",
       "collections": "Sbírky",
-      "empty": "Prázdný"
+      "empty": "Prázdný",
+      "back": "Zadní",
+      "sign-in-google": "Přihlaste se pomocí Google"
     },
     "Settings-menu": {
-      "title": "Nastavení",
       "locale": "Oblast",
       "language": "Jazyk",
       "timer": "Časovač",
@@ -141,7 +136,6 @@
       "data": "Data aplikace",
       "import-from-file": "Importovat ze souboru",
       "export-to-file": "Exportovat do souboru",
-      "about": "O aplikaci",
       "legend": "NexusTimer je nezkreslený, minimalistický a open source webový nástroj pro SpeedCubing.",
       "suggest": "Navrhnout změnu",
       "report-bug": "Nahlásit chybu",
@@ -167,6 +161,29 @@
       "copy": "Kopie",
       "delete": "Vymazat",
       "plus-two": "2 Pokuta"
+    },
+    "SettingsPage": {
+      "account": "Účet",
+      "fetching-last-backup": "Načítání informací ze serveru chvíli počkejte...",
+      "help": "Pomoc",
+      "last-backup": "Poslední záloha:",
+      "load": "Zatížení",
+      "load-data-description": "Chcete si stáhnout data svého účtu z cloudu?",
+      "load-data-title": "Načíst data",
+      "load-data-warning": "Tím se sloučí aktuální data s uloženými daty.",
+      "logout": "Odhlášení",
+      "not-authenticated": "Pro udělení přístupu se ověřte",
+      "options": "Možnosti",
+      "privacy-policy": "Zásady ochrany osobních údajů",
+      "save-data-description": "Chcete uložit data svého účtu do cloudu?",
+      "save-data-title": "Uložte data",
+      "save-data-warning": "Tím se přepíší dříve uložená data.",
+      "source": "Zdroj",
+      "title": "Nastavení",
+      "tos": "Podmínky služby",
+      "unlink-account": "Odpojit účet",
+      "unlink-account-para1": "Opravdu se chcete odpojit od účtu?",
+      "unlink-account-para2": "Odpojením smažete všechna data z tohoto zařízení."
     }
   },
   "Metadata": {

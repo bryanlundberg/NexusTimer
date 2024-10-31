@@ -16,9 +16,7 @@
       "average": "Gemiddelde",
       "best": "Beste",
       "counter": "Teller",
-      "settings": "Instellingen",
       "enter-custom-scramble": "Voer een aangepast mengsel in",
-      "initializing-please-wait": "Initialiseren, even geduld aub",
       "title": "Toneelstuk"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Gemiddelde",
       "time-spent": "Tijd besteed",
       "success-rate": "Succespercentage",
-      "counter": "Teller",
-      "advanced": "Geavanceerd",
-      "overall": "Algemeen"
+      "counter": "Teller"
     },
     "CubesPage": {
       "title": "Kubussen",
@@ -82,10 +78,8 @@
       "status": "Status",
       "using": "Gebruikend",
       "idle": "Inactief",
-      "find-your-cube": "Vind je kubus",
       "name": "Naam",
-      "new-collection": "Nieuwe collectie",
-      "options": "Opties"
+      "new-collection": "Nieuwe collectie"
     },
     "Cubes-modal": {
       "category": "Categorie",
@@ -112,10 +106,11 @@
       "move": "Beweging",
       "none": "Geen",
       "collections": "Collecties",
-      "empty": "Leeg"
+      "empty": "Leeg",
+      "back": "Rug",
+      "sign-in-google": "Log in met Google"
     },
     "Settings-menu": {
-      "title": "Instellingen",
       "locale": "Locatie",
       "language": "Taal",
       "timer": "Timer",
@@ -138,7 +133,6 @@
       "format": "Formaat",
       "allowed-file-types": "Alleen afbeeldingsbestanden (JPEG, PNG, GIF) zijn toegestaan.",
       "max-file-size": "Maximale bestandsgrootte toegestaan",
-      "about": "Over",
       "auto-select": "Automatische selectie bij opstarten",
       "data": "App-gegevens",
       "export-to-file": "Exporteren naar bestand",
@@ -167,6 +161,29 @@
       "copy": "Kopiëren",
       "delete": "Verwijderen",
       "plus-two": "2 Straf"
+    },
+    "SettingsPage": {
+      "account": "Rekening",
+      "fetching-last-backup": "Informatie ophalen van de server, wacht even...",
+      "help": "Hulp",
+      "last-backup": "Laatste back-up:",
+      "load": "Laden",
+      "load-data-description": "Wilt u uw accountgegevens downloaden vanuit de cloud?",
+      "load-data-title": "Gegevens laden",
+      "load-data-warning": "Hierdoor worden de huidige gegevens samengevoegd met opgeslagen gegevens.",
+      "logout": "Uitloggen",
+      "not-authenticated": "Authenticeer om toegang te verlenen",
+      "options": "Opties",
+      "privacy-policy": "Privacybeleid",
+      "save-data-description": "Wilt u uw accountgegevens in de cloud opslaan?",
+      "save-data-title": "Gegevens opslaan",
+      "save-data-warning": "Hierdoor worden eerder opgeslagen gegevens overschreven.",
+      "source": "Bron",
+      "title": "Instellingen",
+      "tos": "Servicevoorwaarden",
+      "unlink-account": "Account ontkoppelen",
+      "unlink-account-para1": "Weet u zeker dat u de account wilt ontkoppelen?",
+      "unlink-account-para2": "Als u de koppeling ontkoppelt, worden alle gegevens van dit apparaat verwijderd."
     }
   },
   "Metadata": {

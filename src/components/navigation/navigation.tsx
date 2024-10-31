@@ -1,10 +1,10 @@
 "use client";
 import MainCubeSelector from "@/components/MainCubeSelector";
-import { usePathname } from "@/i18n/routing";
 import ButtonDisplayType from "./buttons/button-display-type";
 import ButtonCreateCollection from "./buttons/button-create-collection";
 import ButtonNextScramble from "./buttons/button-next-scramble";
 import ButtonNavbar from "./buttons/button-navbar";
+import { usePathname } from "next/navigation";
 
 export default function Navigation({
   children,

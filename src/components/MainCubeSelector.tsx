@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Link } from "@/i18n/routing";
+import Link from "next/link";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
@@ -66,7 +66,8 @@ export default function MainCubeSelector() {
               {t("Inputs.collections")}{" "}
               {cubes && cubes.length <= 0 && "(" + t("Inputs.empty") + ")"}
             </SelectLabel>
-            {cubes && cubes.length > 0 ? (
+            {cubes &&
+              cubes.length > 0 &&
               cubes
                 .filter((cube: Cube) => !cube.favorite)
                 .sort((a: Cube, b: Cube) =>
@@ -74,17 +75,15 @@ export default function MainCubeSelector() {
                 )
                 .map((cube) => {
                   return <SelectCubeItemWidthImage cube={cube} key={cube.id} />;
-                })
-            ) : (
-              <Link href={"/cubes"} className="">
-                <Button variant={"outline"} className="w-full">
-                  <div className="flex items-center justify-center gap-1">
-                    <PlusIcon />
-                    {t("CubesPage.new-collection")}
-                  </div>
-                </Button>
-              </Link>
-            )}
+                })}
+            <Link href={"/cubes"} className="">
+              <Button variant={"outline"} className="w-full">
+                <div className="flex items-center justify-center gap-1">
+                  <PlusIcon />
+                  {t("CubesPage.new-collection")}
+                </div>
+              </Button>
+            </Link>
           </SelectGroup>
         </SelectContent>
       </Select>

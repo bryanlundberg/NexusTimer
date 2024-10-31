@@ -29,7 +29,7 @@
     ".next/types/**/*.ts",
     "src/components/timer/TimerWidgets.tsx",
     "jest.config.js",
-    "src/i18n/routing.js"
+    "src/models/backup.ts"
   ],
   "exclude": ["node_modules"]
 }

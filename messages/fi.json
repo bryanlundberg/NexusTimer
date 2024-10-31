@@ -16,9 +16,7 @@
       "average": "Keskiarvo",
       "best": "Paras",
       "counter": "Laskuri",
-      "settings": "Asetukset",
       "enter-custom-scramble": "Syötä mukautettu sekoitus",
-      "initializing-please-wait": "Alustetaan, odota hetki",
       "title": "Pelata"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Keskiarvo",
       "time-spent": "Kulunut aika",
       "success-rate": "Onnistumisprosentti",
-      "counter": "Laskuri",
-      "advanced": "Edistynyt",
-      "overall": "Kaiken kaikkiaan"
+      "counter": "Laskuri"
     },
     "CubesPage": {
       "title": "Kuutiot",
@@ -82,10 +78,8 @@
       "status": "Tila",
       "using": "Käytössä",
       "idle": "Käyttämätön",
-      "find-your-cube": "Etsi oma kuutiosi",
       "name": "Nimi",
-      "new-collection": "Uusi kokoelma",
-      "options": "Vaihtoehdot"
+      "new-collection": "Uusi kokoelma"
     },
     "Cubes-modal": {
       "category": "Luokka",
@@ -112,10 +106,11 @@
       "move": "Liikkua",
       "none": "Ei mitään",
       "collections": "Kokoelmat",
-      "empty": "Tyhjä"
+      "empty": "Tyhjä",
+      "back": "Takaisin",
+      "sign-in-google": "Kirjaudu sisään Googlella"
     },
     "Settings-menu": {
-      "title": "Asetukset",
       "locale": "Paikka",
       "language": "Kieli",
       "timer": "Ajastin",
@@ -141,7 +136,6 @@
       "data": "Sovelluksen tiedot",
       "import-from-file": "Tuo tiedostosta",
       "export-to-file": "Vie tiedostoon",
-      "about": "Tietoa",
       "legend": "NexusTimer on puolueeton, minimalistinen ja avoimen lähdekoodin verkkotyökalu SpeedCubingille.",
       "suggest": "Ehdota muutosta",
       "report-bug": "Ilmoita virheestä",
@@ -167,6 +161,29 @@
       "copy": "Kopioida",
       "delete": "Poistaa",
       "plus-two": "2 Rangaistus"
+    },
+    "SettingsPage": {
+      "account": "Tili",
+      "fetching-last-backup": "Haetaan tietoja palvelimelta, odota hetki...",
+      "help": "Auttaa",
+      "last-backup": "Viimeisin varmuuskopio:",
+      "load": "Ladata",
+      "load-data-description": "Haluatko ladata tilitietosi pilvestä?",
+      "load-data-title": "Lataa tiedot",
+      "load-data-warning": "Tämä yhdistää nykyiset tiedot tallennettuihin tietoihin.",
+      "logout": "Kirjaudu ulos",
+      "not-authenticated": "Todenna käyttöoikeus",
+      "options": "Vaihtoehdot",
+      "privacy-policy": "Tietosuojakäytäntö",
+      "save-data-description": "Haluatko tallentaa tilitietosi pilveen?",
+      "save-data-title": "Tallenna tiedot",
+      "save-data-warning": "Tämä korvaa aiemmin tallennetut tiedot.",
+      "source": "Lähde",
+      "title": "Asetukset",
+      "tos": "Palveluehdot",
+      "unlink-account": "Poista tilin linkitys",
+      "unlink-account-para1": "Haluatko varmasti poistaa linkityksen tilistä",
+      "unlink-account-para2": "Linkityksen poistaminen poistaa kaikki tiedot tältä laitteelta."
     }
   },
   "Metadata": {

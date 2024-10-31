@@ -47,28 +47,30 @@ export default function CubesTable({
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="hidden sm:table-cell">
-                {t("CubesPage.favorite")}
+              <TableHead className="w-10">{t("CubesPage.favorite")}</TableHead>
+              <TableHead className="w-full md:w-auto">
+                {t("CubesPage.name")}
               </TableHead>
-              <TableHead>{t("CubesPage.name")}</TableHead>
-              <TableHead>{t("CubesPage.category")}</TableHead>
+              <TableHead className="hidden sm:table-cell">
+                {t("CubesPage.category")}
+              </TableHead>
               <TableHead className="hidden md:table-cell">
                 {t("CubesPage.created-at")}
               </TableHead>
-              <TableHead className="hidden md:table-cell">
+              <TableHead className="hidden sm:table-cell">
                 {t("CubesPage.solves")}
               </TableHead>
-              <TableHead className="hidden md:table-cell">
+              <TableHead className="hidden sm:table-cell">
                 {t("CubesPage.status")}
               </TableHead>
-              <TableHead></TableHead>
+              <TableHead className="flex justify-end w-fit ms-auto"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {cubes.map((cube) => {
               return (
                 <TableRow key={cube.id}>
-                  <TableCell className="ps-5 hidden sm:table-cell">
+                  <TableCell className="ps-5">
                     <Checkbox
                       defaultChecked={cube.favorite}
                       onClick={(e) => {
@@ -78,14 +80,14 @@ export default function CubesTable({
                   </TableCell>
                   <TableCell
                     onClick={() => handleRedirectToTimer(cube.id)}
-                    className="hover:cursor-pointer"
+                    className="hover:cursor-pointer text-ellipsis overflow-hidden truncate max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96"
                     data-testid={"cube-name-" + cube.name}
                   >
                     {cube.name}
                   </TableCell>
                   <TableCell
                     onClick={() => handleRedirectToTimer(cube.id)}
-                    className="hover:cursor-pointer"
+                    className="hover:cursor-pointer hidden sm:table-cell"
                   >
                     {cube.category}
                   </TableCell>
@@ -99,13 +101,13 @@ export default function CubesTable({
                   </TableCell>
                   <TableCell
                     onClick={() => handleRedirectToTimer(cube.id)}
-                    className="hover:cursor-pointer hidden md:table-cell"
+                    className="hover:cursor-pointer hidden sm:table-cell"
                   >
                     {cube.solves.session.length}/{cube.solves.all.length}
                   </TableCell>
                   <TableCell
                     onClick={() => handleRedirectToTimer(cube.id)}
-                    className="hover:cursor-pointer hidden md:table-cell"
+                    className="hover:cursor-pointer hidden sm:table-cell"
                   >
                     {cube.solves.session.length > 0 ? (
                       <div className="flex items-center gap-2">
@@ -119,7 +121,7 @@ export default function CubesTable({
                       </div>
                     )}
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="flex justify-end w-fit ms-auto">
                     <Dialog
                       open={type === "edit" && isOpen}
                       onOpenChange={closeDialog}

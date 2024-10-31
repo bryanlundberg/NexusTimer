@@ -16,9 +16,7 @@
       "average": "Media",
       "best": "Migliore",
       "counter": "Contatore",
-      "settings": "Impostazioni",
       "enter-custom-scramble": "Inserisci uno scramble personalizzato",
-      "initializing-please-wait": "Inizializzazione, attendere prego",
       "title": "Giocare"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Media",
       "time-spent": "Tempo Trascorso",
       "success-rate": "Tasso di Successo",
-      "counter": "Contatore",
-      "advanced": "Avanzato",
-      "overall": "Complessivamente"
+      "counter": "Contatore"
     },
     "CubesPage": {
       "title": "Cubi",
@@ -82,10 +78,8 @@
       "status": "Stato",
       "using": "Utilizzando",
       "idle": "Inattivo",
-      "find-your-cube": "Trova il tuo cubo",
       "name": "Nome",
-      "new-collection": "Nuova collezione",
-      "options": "Opzioni"
+      "new-collection": "Nuova collezione"
     },
     "Cubes-modal": {
       "category": "Categoria",
@@ -112,10 +106,11 @@
       "move": "Mossa",
       "none": "Nessuno",
       "collections": "Collezioni",
-      "empty": "Vuoto"
+      "empty": "Vuoto",
+      "back": "Indietro",
+      "sign-in-google": "Accedi con Google"
     },
     "Settings-menu": {
-      "title": "Impostazioni",
       "locale": "Località",
       "language": "Lingua",
       "timer": "Timer",
@@ -138,7 +133,6 @@
       "format": "Formato",
       "allowed-file-types": "Sono consentiti solo file immagine (JPEG, PNG, GIF).",
       "max-file-size": "Dimensione massima del file consentita",
-      "about": "Di",
       "auto-select": "Selezione automatica all'avvio",
       "data": "Dati dell'app",
       "export-to-file": "Esporta su file",
@@ -167,6 +161,29 @@
       "copy": "Copia",
       "delete": "Eliminare",
       "plus-two": "2 Penalità"
+    },
+    "SettingsPage": {
+      "account": "Account",
+      "fetching-last-backup": "Recupero delle informazioni dal server, aspetta un attimo...",
+      "help": "Aiuto",
+      "last-backup": "Ultimo backup:",
+      "load": "Carico",
+      "load-data-description": "Vuoi scaricare i dati del tuo account dal cloud?",
+      "load-data-title": "Carica dati",
+      "load-data-warning": "Ciò unirà i dati correnti con i dati salvati.",
+      "logout": "Esci",
+      "not-authenticated": "Autenticarsi per concedere l'accesso",
+      "options": "Opzioni",
+      "privacy-policy": "politica sulla riservatezza",
+      "save-data-description": "Vuoi salvare i dati del tuo account sul cloud?",
+      "save-data-title": "Salva dati",
+      "save-data-warning": "Ciò sovrascriverà i dati salvati in precedenza.",
+      "source": "Fonte",
+      "title": "Impostazioni",
+      "tos": "Termini di servizio",
+      "unlink-account": "Scollega account",
+      "unlink-account-para1": "Sei sicuro di volerti scollegare dall'account?",
+      "unlink-account-para2": "Lo scollegamento eliminerà tutti i dati da questo dispositivo."
     }
   },
   "Metadata": {

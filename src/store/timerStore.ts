@@ -20,7 +20,6 @@ type TimerStore = {
   displayHint: boolean;
   zoomInScramble: boolean;
   hint: CrossSolutions | null;
-  initializing: boolean;
   timerStatistics: DisplayTimerStatistics;
   setNewScramble: (cube: Cube | null) => void;
   setCubes: (cubesDB: Cube[]) => void;
@@ -32,7 +31,6 @@ type TimerStore = {
   setDisplayHint: (status: boolean) => void;
   setZoomInScramble: (status: boolean) => void;
   setHints: (solutions: CrossSolutions) => void;
-  setInitializing: (status: boolean) => void;
   setCustomScramble: (scramble: string) => void;
   setTimerStatistics: () => void;
 };
@@ -49,7 +47,6 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
   displayHint: false,
   zoomInScramble: false,
   hint: null,
-  initializing: true,
   timerStatistics: {
     global: defaultTimerStatistics,
     session: defaultTimerStatistics,
@@ -104,9 +101,6 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
   },
   setHints: (solutions: CrossSolutions) => {
     set({ hint: solutions });
-  },
-  setInitializing: (status: boolean) => {
-    set({ initializing: status });
   },
   setTimerStatistics: () => {
     const { global, session, cubeSession } = calcStatistics({

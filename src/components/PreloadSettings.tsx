@@ -12,7 +12,7 @@ export default function PreloadSettings({
   const theme = settings ? settings.theme.background.color : "light";
   const { backgroundImage } = useBackgroundImageStore();
 
-  usePreloadSettings();
+  const { isMounted } = usePreloadSettings();
 
   return (
     <>
@@ -32,7 +32,7 @@ export default function PreloadSettings({
             backgroundSize: backgroundImage ? "cover" : "",
           }}
         >
-          {children}
+          {isMounted ? children : null}
         </div>
       </ThemeProvider>
     </>

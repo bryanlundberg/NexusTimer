@@ -2,6 +2,7 @@
   "name": "nexustimer",
   "version": "1.0.0",
   "description": "Nexus Timer is a powerful unopinionated, minimalist training tool for SpeedCubing.",
+  "license": "GPL-3.0-only",
   "author": "Bryan Lundberg",
   "private": true,
   "scripts": {
@@ -51,7 +52,9 @@
     "lightweight-charts": "^4.1.4",
     "lucide-react": "^0.439.0",
     "luxon": "^3.4.4",
-    "next": "^14.2.11",
+    "mongoose": "^8.7.3",
+    "next": "^15.0.2",
+    "next-auth": "^5.0.0-beta.25",
     "next-intl": "^3.19.1",
     "next-themes": "^0.3.0",
     "papaparse": "^5.4.1",

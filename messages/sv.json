@@ -16,9 +16,7 @@
       "average": "Genomsnitt",
       "best": "Bäst",
       "counter": "Räknare",
-      "settings": "Inställningar",
       "enter-custom-scramble": "Ange en egen blandning",
-      "initializing-please-wait": "Initializing vänta",
       "title": "Spela"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Genomsnitt",
       "time-spent": "Tid spenderad",
       "success-rate": "Framgångsgrad",
-      "counter": "Räknare",
-      "advanced": "Avancerad",
-      "overall": "Total"
+      "counter": "Räknare"
     },
     "CubesPage": {
       "title": "Kuber",
@@ -82,10 +78,8 @@
       "status": "Status",
       "using": "Använder",
       "idle": "Inaktiv",
-      "find-your-cube": "Hitta din kub",
       "name": "Namn",
-      "new-collection": "Ny kollektion",
-      "options": "Alternativ"
+      "new-collection": "Ny kollektion"
     },
     "Cubes-modal": {
       "category": "Kategori",
@@ -112,10 +106,11 @@
       "move": "Flytta",
       "none": "Ingen",
       "collections": "Samlingar",
-      "empty": "Tömma"
+      "empty": "Tömma",
+      "back": "Tillbaka",
+      "sign-in-google": "Logga in med Google"
     },
     "Settings-menu": {
-      "title": "Inställningar",
       "locale": "Region",
       "language": "Språk",
       "timer": "Timer",
@@ -138,7 +133,6 @@
       "format": "Format",
       "allowed-file-types": "Endast bildfiler tillåtna (JPEG, PNG, GIF).",
       "max-file-size": "Maximal filstorlek",
-      "about": "Om",
       "auto-select": "Välj automatiskt vid start",
       "data": "Appdata",
       "export-to-file": "Exportera till fil",
@@ -167,6 +161,29 @@
       "copy": "Kopiera",
       "delete": "Radera",
       "plus-two": "2 Straff"
+    },
+    "SettingsPage": {
+      "account": "Konto",
+      "fetching-last-backup": "Hämtar information från servern vänta ett ögonblick...",
+      "help": "Hjälp",
+      "last-backup": "Senaste backup:",
+      "load": "Ladda",
+      "load-data-description": "Vill du ladda ner din kontodata från molnet?",
+      "load-data-title": "Ladda data",
+      "load-data-warning": "Detta kommer att slå samman aktuell data med sparad data.",
+      "logout": "Utloggning",
+      "not-authenticated": "Autentisera för att ge åtkomst",
+      "options": "Alternativ",
+      "privacy-policy": "Sekretesspolicy",
+      "save-data-description": "Vill du spara dina kontodata i molnet?",
+      "save-data-title": "Spara data",
+      "save-data-warning": "Detta kommer att skriva över tidigare sparad data.",
+      "source": "Källa",
+      "title": "Inställningar",
+      "tos": "Användarvillkor",
+      "unlink-account": "Ta bort länken till kontot",
+      "unlink-account-para1": "Är du säker på att du vill ta bort länken från kontot",
+      "unlink-account-para2": "Om du tar bort länken raderas all data från den här enheten."
     }
   },
   "Metadata": {

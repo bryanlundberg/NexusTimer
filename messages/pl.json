@@ -16,9 +16,7 @@
       "average": "Średni",
       "best": "Najlepszy",
       "counter": "Licznik",
-      "settings": "Ustawienia",
       "enter-custom-scramble": "Wprowadź niestandardową mieszankę",
-      "initializing-please-wait": "Inicjowanie, proszę czekać",
       "title": "Grać"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Średni",
       "time-spent": "Spędzony czas",
       "success-rate": "Wskaźnik sukcesu",
-      "counter": "Licznik",
-      "advanced": "Zaawansowany",
-      "overall": "Ogólnie"
+      "counter": "Licznik"
     },
     "CubesPage": {
       "title": "Kostki",
@@ -82,10 +78,8 @@
       "status": "Status",
       "using": "Używając",
       "idle": "Bezczynny",
-      "find-your-cube": "Znajdź swoją kostkę",
       "name": "Nazwa",
-      "new-collection": "Nowa kolekcja",
-      "options": "Opcje"
+      "new-collection": "Nowa kolekcja"
     },
     "Cubes-modal": {
       "category": "Kategoria",
@@ -112,10 +106,11 @@
       "move": "Przenosić",
       "none": "Nic",
       "collections": "Kolekcje",
-      "empty": "Pusty"
+      "empty": "Pusty",
+      "back": "Z powrotem",
+      "sign-in-google": "Zaloguj się za pomocą Google"
     },
     "Settings-menu": {
-      "title": "Ustawienia",
       "locale": "Lokalizacja",
       "language": "Język",
       "timer": "Stoper",
@@ -138,7 +133,6 @@
       "format": "Format",
       "allowed-file-types": "Dozwolone są tylko pliki obrazów (JPEG, PNG, GIF).",
       "max-file-size": "Maksymalny dozwolony rozmiar pliku",
-      "about": "O",
       "auto-select": "Automatyczny wybór przy uruchomieniu",
       "data": "Dane aplikacji",
       "export-to-file": "Eksportuj do pliku",
@@ -167,6 +161,29 @@
       "copy": "Kopia",
       "delete": "Usuwać",
       "plus-two": "2 Kara"
+    },
+    "SettingsPage": {
+      "account": "Konto",
+      "fetching-last-backup": "Pobieram informacje z serwera, poczekaj chwilę...",
+      "help": "Pomoc",
+      "last-backup": "Ostatnia kopia zapasowa:",
+      "load": "Obciążenie",
+      "load-data-description": "Chcesz pobrać dane swojego konta z chmury?",
+      "load-data-title": "Załaduj dane",
+      "load-data-warning": "Spowoduje to połączenie bieżących danych z zapisanymi danymi.",
+      "logout": "Wyloguj się",
+      "not-authenticated": "Uwierzytelnij, aby przyznać dostęp",
+      "options": "Opcje",
+      "privacy-policy": "Polityka prywatności",
+      "save-data-description": "Chcesz zapisać dane swojego konta w chmurze?",
+      "save-data-title": "Zapisz dane",
+      "save-data-warning": "Spowoduje to zastąpienie wcześniej zapisanych danych.",
+      "source": "Źródło",
+      "title": "Ustawienia",
+      "tos": "Warunki świadczenia usług",
+      "unlink-account": "Odłącz konto",
+      "unlink-account-para1": "Czy na pewno chcesz odłączyć się od konta?",
+      "unlink-account-para2": "Odłączenie spowoduje usunięcie wszystkich danych z tego urządzenia."
     }
   },
   "Metadata": {

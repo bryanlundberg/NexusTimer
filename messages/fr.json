@@ -16,9 +16,7 @@
       "average": "Moyenne",
       "best": "Meilleur",
       "counter": "Compteur",
-      "settings": "Paramètres",
       "enter-custom-scramble": "Entrez un mélange personnalisé",
-      "initializing-please-wait": "Initialisation en cours, veuillez patienter",
       "title": "Jouer"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Moyenne",
       "time-spent": "Temps passé",
       "success-rate": "Taux de réussite",
-      "counter": "Compteur",
-      "advanced": "Avancé",
-      "overall": "Dans l'ensemble"
+      "counter": "Compteur"
     },
     "CubesPage": {
       "title": "Cubes",
@@ -82,10 +78,8 @@
       "status": "Statut",
       "using": "En cours d'utilisation",
       "idle": "Inactif",
-      "find-your-cube": "Trouvez votre cube",
       "name": "Nom",
-      "new-collection": "Nouvelle collection",
-      "options": "Possibilités"
+      "new-collection": "Nouvelle collection"
     },
     "Cubes-modal": {
       "category": "Catégorie",
@@ -112,10 +106,11 @@
       "move": "Se déplacer",
       "none": "Aucun",
       "collections": "Collections",
-      "empty": "Vide"
+      "empty": "Vide",
+      "back": "Dos",
+      "sign-in-google": "Connectez-vous avec Google"
     },
     "Settings-menu": {
-      "title": "Paramètres",
       "locale": "Région",
       "language": "Langue",
       "timer": "Chronomètre",
@@ -141,7 +136,6 @@
       "data": "Données de l'application",
       "import-from-file": "Importer depuis un fichier",
       "export-to-file": "Exporter vers un fichier",
-      "about": "À propos",
       "legend": "NexusTimer est un outil Web minimaliste, impartial et open source pour le SpeedCubing.",
       "suggest": "Proposer un changement",
       "report-bug": "Signaler un bug",
@@ -167,6 +161,29 @@
       "copy": "Copie",
       "delete": "Supprimer",
       "plus-two": "2 Pénalité"
+    },
+    "SettingsPage": {
+      "account": "Compte",
+      "fetching-last-backup": "Récupération des informations depuis le serveur, attendez un instant...",
+      "help": "Aide",
+      "last-backup": "Dernière sauvegarde :",
+      "load": "Charger",
+      "load-data-description": "Voulez-vous télécharger les données de votre compte depuis le cloud ?",
+      "load-data-title": "Charger des données",
+      "load-data-warning": "Cela fusionnera les données actuelles avec les données enregistrées.",
+      "logout": "Déconnexion",
+      "not-authenticated": "S'authentifier pour accorder l'accès",
+      "options": "Possibilités",
+      "privacy-policy": "politique de confidentialité",
+      "save-data-description": "Voulez-vous sauvegarder les données de votre compte sur le cloud ?",
+      "save-data-title": "Enregistrer les données",
+      "save-data-warning": "Cela écrasera les données précédemment enregistrées.",
+      "source": "Source",
+      "title": "Paramètres",
+      "tos": "Conditions d'utilisation",
+      "unlink-account": "Dissocier le compte",
+      "unlink-account-para1": "Etes-vous sûr de vouloir vous dissocier du compte",
+      "unlink-account-para2": "La dissociation supprimera toutes les données de cet appareil."
     }
   },
   "Metadata": {

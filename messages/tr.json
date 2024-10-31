@@ -16,9 +16,7 @@
       "average": "Ortalama",
       "best": "En İyi",
       "counter": "Sayaç",
-      "settings": "Ayarlar",
       "enter-custom-scramble": "Özel karıştırma girin",
-      "initializing-please-wait": "Başlatılıyor lütfen bekleyin",
       "title": "Oynamak"
     },
     "SolvesPage": {
@@ -68,9 +66,7 @@
       "average": "Ortalama",
       "time-spent": "Harcanan Zaman",
       "success-rate": "Başarı Oranı",
-      "counter": "Sayaç",
-      "advanced": "Gelişmiş",
-      "overall": "Etraflı"
+      "counter": "Sayaç"
     },
     "CubesPage": {
       "title": "Küpler",
@@ -82,10 +78,8 @@
       "status": "Durum",
       "using": "Kullanma",
       "idle": "Boşta",
-      "find-your-cube": "Küpünüzü bulun",
       "name": "İsim",
-      "new-collection": "Yeni koleksiyon",
-      "options": "Seçenekler"
+      "new-collection": "Yeni koleksiyon"
     },
     "Cubes-modal": {
       "category": "Kategori",
@@ -112,10 +106,11 @@
       "move": "Taşınmak",
       "none": "Hiçbiri",
       "collections": "Koleksiyonlar",
-      "empty": "Boş"
+      "empty": "Boş",
+      "back": "Geri",
+      "sign-in-google": "Google ile Oturum Açın"
     },
     "Settings-menu": {
-      "title": "Ayarlar",
       "locale": "Bölge",
       "language": "Dil",
       "timer": "Kronometre",
@@ -141,7 +136,6 @@
       "data": "Uygulama Verisi",
       "import-from-file": "Dosyadan içe aktar",
       "export-to-file": "Dosyaya dışa aktar",
-      "about": "Hakkında",
       "legend": "NexusTimer, SpeedCubing için tarafsız, minimalist ve açık kaynaklı bir web aracıdır.",
       "suggest": "Bir değişiklik öner",
       "report-bug": "Hata bildir",
@@ -167,6 +161,29 @@
       "copy": "Kopyala",
       "delete": "Silmek",
       "plus-two": "2 Penaltı"
+    },
+    "SettingsPage": {
+      "account": "Hesap",
+      "fetching-last-backup": "Sunucudan bilgi alınıyor, biraz bekleyin...",
+      "help": "Yardım",
+      "last-backup": "Son yedekleme:",
+      "load": "Yük",
+      "load-data-description": "Hesap verilerinizi buluttan indirmek ister misiniz?",
+      "load-data-title": "Verileri yükle",
+      "load-data-warning": "Bu, mevcut verileri kayıtlı verilerle birleştirecektir.",
+      "logout": "Oturumu kapat",
+      "not-authenticated": "Erişim izni vermek için kimlik doğrulaması yapın",
+      "options": "Seçenekler",
+      "privacy-policy": "Gizlilik Politikası",
+      "save-data-description": "Hesap verilerinizi buluta kaydetmek ister misiniz?",
+      "save-data-title": "Verileri kaydet",
+      "save-data-warning": "Bu, daha önce kaydedilen verilerin üzerine yazacaktır.",
+      "source": "Kaynak",
+      "title": "Ayarlar",
+      "tos": "Hizmet Şartları",
+      "unlink-account": "Hesabın bağlantısını kaldır",
+      "unlink-account-para1": "Hesapla bağlantıyı kaldırmak istediğinizden emin misiniz?",
+      "unlink-account-para2": "Bağlantının kaldırılması bu cihazdaki tüm verilerin silinmesine neden olacaktır."
     }
   },
   "Metadata": {

@@ -5,42 +5,35 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Link, usePathname } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
 import DialogNavbarItem from "./dialog-navbar-item";
+import ButtonGoogle from "@/components/buttons/button-google/button-google";
 
 type Navigation = NavItem[];
 
 interface NavItem {
   path: string;
   name: string;
-  image: string;
 }
 
 export default function DialogNavbar() {
   const t = useTranslations("Index");
-  const pathname = usePathname();
   const navigation: Navigation = [
     {
       path: "/",
-      image: "/menu/play.webp",
       name: t("HomePage.title"),
     },
     {
       path: "/solves",
-      image: "/menu/clock.webp",
 
       name: t("SolvesPage.title"),
     },
     {
       path: "/stats",
-      image: "/menu/blue.webp",
       name: t("StatsPage.title"),
     },
     {
       path: "/cubes",
-      image: "/menu/collection.webp",
       name: t("CubesPage.title"),
     },
   ];
@@ -57,25 +50,27 @@ export default function DialogNavbar() {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-          {navigation.map((item) => {
-            return (
-              <DialogNavbarItem
-                href={item.path}
-                label={item.name}
-                key={item.path}
-                image={item.image}
-              />
-            );
-          })}
-        </div>
+        <div className="space-y-2">
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+            {navigation.map((item) => {
+              return (
+                <DialogNavbarItem
+                  href={item.path}
+                  label={item.name}
+                  key={item.path}
+                />
+              );
+            })}
+          </div>
 
-        <DialogNavbarItem
-          href={"/settings"}
-          label={"Settings"}
-          key={"item.path"}
-          image={"/menu/rain.webp"}
-        />
+          <DialogNavbarItem
+            href={"/settings"}
+            label={t("SettingsPage.title")}
+            key={"item.settings"}
+          />
+
+          <ButtonGoogle />
+        </div>
       </DialogContent>
     </>
   );
