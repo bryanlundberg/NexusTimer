@@ -11,13 +11,17 @@ import { useTranslations } from "next-intl";
 
 export default function ButtonNextScramble() {
   const t = useTranslations("Index");
-  const { selectedCube } = useTimerStore();
+  const { selectedCube, setNewScramble } = useTimerStore();
   return (
     <>
       <TooltipProvider delayDuration={100}>
         <Tooltip>
           <TooltipTrigger asChild disabled={selectedCube === null}>
-            <Button variant={"ghost"} className="py-0 px-3" onClick={() => {}}>
+            <Button
+              variant={"ghost"}
+              className="py-0 px-3"
+              onClick={() => setNewScramble(selectedCube)}
+            >
               <UpdateIcon />
             </Button>
           </TooltipTrigger>
