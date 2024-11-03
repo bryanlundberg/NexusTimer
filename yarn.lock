@@ -5803,6 +5803,11 @@ stack-utils@^2.0.3:
   dependencies:
     escape-string-regexp "^2.0.0"
 
+stackmat@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/stackmat/-/stackmat-1.1.1.tgz#de4daed0e7e5311e46a778bf8988fa8e4766430f"
+  integrity sha512-rTJJ6m/DuxYp8k44MRzQA2Dc/Xz8Oe+PkOuSjak92fEz8zTZZeLQzJRS9OS1aBXYz+k1oIGSO0WODcFAnGnQxg==
+
 streamsearch@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-1.1.0.tgz#404dd1e2247ca94af554e841a8ef0eaa238da764"

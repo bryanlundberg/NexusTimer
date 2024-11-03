@@ -20,6 +20,7 @@ export default function useTimer() {
     setLastSolve,
     displayHint,
     cubes,
+    timerMode,
     setTimerStatistics,
   } = useTimerStore();
 
@@ -39,6 +40,7 @@ export default function useTimer() {
   const relasedKey = useRef<boolean>(true);
 
   useEffect(() => {
+    if (timerMode === "stackmat") return;
     const startTimer = () => {
       setIsSolving(true);
       setTimerStatus("SOLVING");
@@ -312,6 +314,7 @@ export default function useTimer() {
     displayHint,
     cubes,
     settings.timer.startCue.status,
+    timerMode,
   ]);
 
   useEffect(() => {
