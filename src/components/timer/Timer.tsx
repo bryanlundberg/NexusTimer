@@ -7,8 +7,9 @@ import { confettiConfig } from "@/lib/const/confettiConfig";
 import MenuSolveOptions from "../menu-solve-options/menu-solve-options";
 import DisplayContainer from "./display/display-container";
 import DisplayTime from "./display/display-time";
+import { ReactNode } from "react";
 
-export default function Timer() {
+export default function Timer({ children }: { children?: ReactNode }) {
   const { settings } = useSettingsModalStore();
   const {
     selectedCube,
@@ -52,6 +53,7 @@ export default function Timer() {
             caseOfUse="last-solve"
           />
         )}
+      {children}
     </DisplayContainer>
   );
 }

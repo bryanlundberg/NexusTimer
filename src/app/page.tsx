@@ -5,7 +5,6 @@ import TimerContainer from "@/components/timer/TimerContainer";
 import { MainTimer } from "@/components/timer/MainTimer";
 import HintPanel from "@/components/timer/HintPanel";
 import ScrambleModal from "@/components/timer/ScrambleModal";
-import Stackmat from "@/components/stackmat";
 
 export default function Home() {
   return (
@@ -17,7 +16,6 @@ export default function Home() {
       </TimerContainer>
       <HintPanel />
       <ScrambleModal />
-      <Stackmat />
     </>
   );
 }
