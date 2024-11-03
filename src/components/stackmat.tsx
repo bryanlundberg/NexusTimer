@@ -41,14 +41,13 @@ export default function Stackmat() {
       let startTime: any = null;
       const onStarted = (packet: Packet) => {
         if (!selectedCube || !scramble) {
-          return console.log("not selected | no scramble");
+          return;
         }
 
         setIsSolving(true);
         setTimerStatus("SOLVING");
         startTime = Date.now();
 
-        console.log(solvingIdRef.current);
         if (!solvingIdRef.current) {
           solvingIdRef.current = setInterval(() => {
             setSolvingTime(Date.now() - startTime);
@@ -76,8 +75,6 @@ export default function Stackmat() {
           cubeId: selectedCube.id,
           comment: "",
         };
-
-        console.log(newSolve);
 
         const cube = cubes?.find((u) => u.id === selectedCube.id);
 
