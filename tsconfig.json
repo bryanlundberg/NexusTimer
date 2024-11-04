@@ -29,7 +29,8 @@
     ".next/types/**/*.ts",
     "src/components/timer/TimerWidgets.tsx",
     "jest.config.js",
-    "src/models/backup.ts"
+    "src/models/backup.ts",
+    "src/components/stackmat.tsx"
   ],
   "exclude": ["node_modules"]
 }

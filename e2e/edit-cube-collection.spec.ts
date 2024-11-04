@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("Should edit the cube collection name", async ({ page }) => {
-  await page.goto("http://localhost:3000/en/cubes");
+  await page.goto("http://localhost:3000/cubes");
   await expect(page.getByTestId("empty-cubes-container")).toBeVisible();
   await expect(page.getByTestId("create-collection-button")).toBeVisible();
   await page.getByTestId("create-collection-button").click();

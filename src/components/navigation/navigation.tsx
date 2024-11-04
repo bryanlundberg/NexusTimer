@@ -5,6 +5,7 @@ import ButtonCreateCollection from "./buttons/button-create-collection";
 import ButtonNextScramble from "./buttons/button-next-scramble";
 import ButtonNavbar from "./buttons/button-navbar";
 import { usePathname } from "next/navigation";
+import ButtonSelectMode from "./buttons/button-select-mode";
 
 export default function Navigation({
   children,
@@ -29,6 +30,8 @@ export default function Navigation({
           ) : null}
 
           {path === "/cubes" && <ButtonCreateCollection />}
+
+          {path === "/" && <ButtonSelectMode />}
         </div>
         {children}
       </div>
