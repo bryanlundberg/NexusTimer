@@ -39,7 +39,7 @@ export default function ButtonDisplayType() {
           <TooltipContent>
             <p>
               Show:{" "}
-              {tab === "session"
+              {tab === "all"
                 ? t("SolvesPage.session")
                 : t("SolvesPage.historial")}
             </p>

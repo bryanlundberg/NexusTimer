@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import { getAllCubes } from "@/db/dbOperations";
+import { getAllCubes, getCubeById } from "@/db/dbOperations";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 
 export function usePreloadSettings() {
@@ -16,7 +16,16 @@ export function usePreloadSettings() {
   useEffect(() => {
     const settings = loadSettings();
     const defaultCube = settings.preferences.defaultCube.cube;
-    setSelectedCube(defaultCube);
+
+    if (defaultCube) {
+      getCubeById(defaultCube.id)
+        .then((c) => setSelectedCube(c))
+        .catch((e) => {
+          console.log(e);
+          setSelectedCube(null);
+        });
+    }
+
     setSettings(settings);
     setTimerStatistics();
     setNewScramble(defaultCube);
