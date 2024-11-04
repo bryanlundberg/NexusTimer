@@ -1,6 +1,7 @@
 import { Solve } from "@/interfaces/Solve";
 import { TimerStatus } from "@/interfaces/TimerStatus";
 import formatTime from "@/lib/formatTime";
+import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
 
 interface DisplayTimeProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -34,6 +35,7 @@ export default function DisplayTime({
   ...rest
 }: DisplayTimeProps) {
   const t = useTranslations("Index.HomePage");
+  const { timerMode } = useTimerStore();
   return (
     <>
       <div className={`${timerStatusClasses[timerStatus]}`} {...rest}>
@@ -66,9 +68,14 @@ export default function DisplayTime({
             </div>
             {!lastSolve && timerStatus === "IDLE" ? (
               <div className="text-xs text-center animate-pulse">
-                {device === "Desktop"
-                  ? `${t("space-to-start")}`
-                  : `${t("tap-to-start")}`}
+                {timerMode === "normal"
+                  ? device === "Desktop"
+                    ? `${t("space-to-start")}`
+                    : `${t("tap-to-start")}`
+                  : null}
+
+                {timerMode === "stackmat" &&
+                  "Start your stackmat to begging the clock"}
               </div>
             ) : null}
           </div>
