@@ -9,7 +9,14 @@ import {
 import { DateTime } from "luxon";
 import { useLocale, useTranslations } from "next-intl";
 import { Checkbox } from "@/components/ui/checkbox";
-import { GearIcon, PlayIcon, StopIcon, TrashIcon } from "@radix-ui/react-icons";
+import {
+  GearIcon,
+  HeartFilledIcon,
+  HeartIcon,
+  PlayIcon,
+  StopIcon,
+  TrashIcon,
+} from "@radix-ui/react-icons";
 import { Card } from "../ui/card";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { Cube } from "@/interfaces/Cube";
@@ -70,13 +77,21 @@ export default function CubesTable({
             {cubes.map((cube) => {
               return (
                 <TableRow key={cube.id}>
-                  <TableCell className="ps-5">
-                    <Checkbox
-                      defaultChecked={cube.favorite}
-                      onClick={(e) => {
+                  <TableCell className="flex items-center justify-center">
+                    <Button
+                      variant={"ghost"}
+                      className=""
+                      onClick={() => {
                         handleFavoriteClick(cube.id);
                       }}
-                    />
+                      size={"icon"}
+                    >
+                      {cube.favorite ? (
+                        <HeartFilledIcon className="text-rose-700" />
+                      ) : (
+                        <HeartIcon />
+                      )}
+                    </Button>
                   </TableCell>
                   <TableCell
                     onClick={() => handleRedirectToTimer(cube.id)}
