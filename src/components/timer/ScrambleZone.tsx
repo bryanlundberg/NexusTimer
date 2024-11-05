@@ -5,6 +5,18 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { InteractiveIcon } from "./InteractiveIcon";
 import { Component1Icon, Pencil2Icon } from "@radix-ui/react-icons";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import { Button } from "../ui/button";
+import DrawerHintPanel from "../drawners/drawer-hint-panel";
 
 export function ScrambleZone() {
   const {
@@ -31,7 +43,34 @@ export function ScrambleZone() {
             {selectedCube ? scramble : t("empty-scramble")}
           </p>
         </div>
-        <AnimatePresence>
+
+        <div className="absolute bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
+          {selectedCube?.category &&
+            ["3x3", "3x3 OH"].includes(selectedCube.category) &&
+            !displayHint &&
+            !isSolving && (
+              <Drawer>
+                <DrawerTrigger asChild>
+                  <Button
+                    variant={"ghost"}
+                    size={"icon"}
+                    onClick={() => {
+                      if (!selectedCube) return;
+                      genSolution(
+                        selectedCube.category,
+                        scramble,
+                        "yellow"
+                      ).then((res: CrossSolutions) => setHints(res));
+                    }}
+                  >
+                    <Component1Icon className="size-5" />
+                  </Button>
+                </DrawerTrigger>
+                <DrawerHintPanel />
+              </Drawer>
+            )}
+        </div>
+        {/* <AnimatePresence>
           {selectedCube?.category && !isSolving && !displayHint && (
             <motion.div
               initial={{ opacity: 0.1 }}
@@ -71,7 +110,7 @@ export function ScrambleZone() {
                 )}
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </div>
     </>
   );
