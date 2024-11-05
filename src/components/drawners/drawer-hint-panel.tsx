@@ -2,6 +2,7 @@ import genId from "@/lib/genId";
 import {
   DrawerContent,
   DrawerDescription,
+  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
 } from "../ui/drawer";
@@ -13,22 +14,30 @@ export default function DrawerHintPanel() {
 
   return (
     <>
-      <DrawerContent className="max-w-96 mx-auto">
+      <DrawerContent className="w-full max-w-[500px] mx-auto">
         <DrawerHeader>
           <DrawerTitle className="flex gap-2 items-center">
             <Cross1Icon className="rotate-45" />
             Hints: Yellow layer
           </DrawerTitle>
-          <DrawerDescription>
-            Position to start: White on top, Green facing forward.
+          <DrawerDescription className="text-start">
+            White on top - Green facing forward.
           </DrawerDescription>
-          {hint?.cross.map((i) => (
-            <OptimalCrossLayer key={genId()} solution={i} type="cross" />
-          ))}
-          {hint?.xcross.map((i) => (
-            <OptimalCrossLayer key={genId()} solution={i} type="xcross" />
-          ))}
         </DrawerHeader>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 pb-5">
+          <div className="px-3">
+            {hint?.cross.map((i) => (
+              <OptimalCrossLayer key={genId()} solution={i} type="cross" />
+            ))}
+          </div>
+
+          <div className="px-3 mt-1">
+            {hint?.xcross.map((i) => (
+              <OptimalCrossLayer key={genId()} solution={i} type="xcross" />
+            ))}
+          </div>
+        </div>
       </DrawerContent>
     </>
   );
@@ -44,8 +53,7 @@ function OptimalCrossLayer({
   return (
     <>
       <div className="select-text">
-        {type.charAt(0).toUpperCase()}
-        {type.slice(1)} - {solution}
+        {type} - {solution}
       </div>
     </>
   );
