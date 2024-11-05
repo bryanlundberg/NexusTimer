@@ -37,7 +37,7 @@ export function ScrambleZone() {
         <div className="absolute bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
           {!isSolving && selectedCube && (
             <Dialog>
-              <TooltipProvider>
+              <TooltipProvider delayDuration={250}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <DialogTrigger asChild>
@@ -61,7 +61,7 @@ export function ScrambleZone() {
             !displayHint &&
             !isSolving && (
               <Drawer>
-                <TooltipProvider>
+                <TooltipProvider delayDuration={250}>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <DrawerTrigger asChild>
