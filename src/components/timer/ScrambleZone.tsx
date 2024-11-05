@@ -1,33 +1,17 @@
 import genSolution from "@/lib/timer/genSolution";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { InteractiveIcon } from "./InteractiveIcon";
 import { Component1Icon, Pencil2Icon } from "@radix-ui/react-icons";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import { Button } from "../ui/button";
 import DrawerHintPanel from "../drawners/drawer-hint-panel";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import DialogEnterNewScramble from "../dialogs/dialog-enter-new-scramble/dialog-enter-new-scramble";
 
 export function ScrambleZone() {
-  const {
-    selectedCube,
-    scramble,
-    setDisplayHint,
-    displayHint,
-    setHints,
-    isSolving,
-    setCustomScramble,
-  } = useTimerStore();
+  const { selectedCube, scramble, displayHint, setHints, isSolving } =
+    useTimerStore();
 
   const { settings } = useSettingsModalStore();
   const t = useTranslations("Index.HomePage");
@@ -45,6 +29,17 @@ export function ScrambleZone() {
         </div>
 
         <div className="absolute bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
+          {!isSolving && selectedCube && (
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant={"ghost"} size={"icon"} onClick={() => {}}>
+                  <Pencil2Icon />
+                </Button>
+              </DialogTrigger>
+              <DialogEnterNewScramble />
+            </Dialog>
+          )}
+
           {selectedCube?.category &&
             ["3x3", "3x3 OH"].includes(selectedCube.category) &&
             !displayHint &&
@@ -63,54 +58,13 @@ export function ScrambleZone() {
                       ).then((res: CrossSolutions) => setHints(res));
                     }}
                   >
-                    <Component1Icon className="size-5" />
+                    <Component1Icon />
                   </Button>
                 </DrawerTrigger>
                 <DrawerHintPanel />
               </Drawer>
             )}
         </div>
-        {/* <AnimatePresence>
-          {selectedCube?.category && !isSolving && !displayHint && (
-            <motion.div
-              initial={{ opacity: 0.1 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0.1 }}
-              className="absolute bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3"
-            >
-              <InteractiveIcon
-                message={t("enter-custom-scramble")}
-                icon={<Pencil2Icon className="size-5" />}
-                onClick={() => {
-                  const newScramble = window.prompt(
-                    `${t("enter-custom-scramble")}`
-                  );
-                  if (newScramble?.trim()) {
-                    setCustomScramble(newScramble);
-                  }
-                }}
-              />
-
-              {selectedCube?.category &&
-                ["3x3", "3x3 OH"].includes(selectedCube.category) &&
-                !displayHint &&
-                !isSolving && (
-                  <InteractiveIcon
-                    message="Hints"
-                    icon={<Component1Icon className="size-5" />}
-                    onClick={() => {
-                      setDisplayHint(true);
-                      genSolution(
-                        selectedCube.category,
-                        scramble,
-                        "yellow"
-                      ).then((res: CrossSolutions) => setHints(res));
-                    }}
-                  />
-                )}
-            </motion.div>
-          )}
-        </AnimatePresence> */}
       </div>
     </>
   );
