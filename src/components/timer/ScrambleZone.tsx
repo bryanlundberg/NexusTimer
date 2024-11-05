@@ -35,10 +35,10 @@ export function ScrambleZone() {
         </div>
 
         <div className="absolute bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
-          {!isSolving && selectedCube && (
-            <Dialog>
-              <TooltipProvider delayDuration={250}>
-                <Tooltip>
+          <TooltipProvider delayDuration={250}>
+            {!isSolving && selectedCube && (
+              <Tooltip>
+                <Dialog>
                   <TooltipTrigger asChild>
                     <DialogTrigger asChild>
                       <Button variant={"ghost"} size={"icon"}>
@@ -51,17 +51,15 @@ export function ScrambleZone() {
                   <TooltipContent>
                     <p>Edit scramble</p>
                   </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </Dialog>
-          )}
+                </Dialog>
+              </Tooltip>
+            )}
 
-          {selectedCube?.category &&
-            ["3x3", "3x3 OH"].includes(selectedCube.category) &&
-            !displayHint &&
-            !isSolving && (
-              <Drawer>
-                <TooltipProvider delayDuration={250}>
+            {selectedCube?.category &&
+              ["3x3", "3x3 OH"].includes(selectedCube.category) &&
+              !displayHint &&
+              !isSolving && (
+                <Drawer>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <DrawerTrigger asChild>
@@ -87,9 +85,9 @@ export function ScrambleZone() {
                       <p>Hints</p>
                     </TooltipContent>
                   </Tooltip>
-                </TooltipProvider>
-              </Drawer>
-            )}
+                </Drawer>
+              )}
+          </TooltipProvider>
         </div>
       </div>
     </>
