@@ -19,7 +19,7 @@ export default function MenuSelectLanguage() {
 
   return (
     <>
-      <MenuSection icon={<GlobeIcon />} title={t("locale")}>
+      <MenuSection id="region" icon={<GlobeIcon />} title={t("locale")}>
         <div className="mx-3 flex items-center justify-between">
           <div className="grow">{t("language")}</div>
           <Select defaultValue={locale} onValueChange={syncTranslations}>

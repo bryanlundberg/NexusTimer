@@ -17,7 +17,11 @@
       "best": "Najlepší",
       "counter": "Počítadlo",
       "enter-custom-scramble": "Zadajte vlastné zamiešanie",
-      "title": "Hrať"
+      "title": "Hrať",
+      "edit-scramble": "Upraviť kódovanie",
+      "hints": "Tipy",
+      "mode": "Režim",
+      "new-scramble": "Nový ťahák"
     },
     "SolvesPage": {
       "title": "Riešenia",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "Move rieši históriu"
-      }
+      },
+      "show": "Zobraziť"
     },
     "StatsPage": {
       "title": "Štatistiky",
@@ -108,7 +113,9 @@
       "collections": "zbierky",
       "empty": "Prázdny",
       "back": "Späť",
-      "sign-in-google": "Prihláste sa cez Google"
+      "sign-in-google": "Prihláste sa cez Google",
+      "no-results": "Nenašli sa žiadne výsledky",
+      "search": "Hľadať..."
     },
     "Settings-menu": {
       "locale": "Lokalita",
@@ -140,7 +147,10 @@
       "legend": "NexusTimer je minimalistický webový nástroj s otvoreným zdrojom pre SpeedCubing bez názoru.",
       "preferences": "Predvoľby",
       "report-bug": "Nahlásiť chybu",
-      "suggest": "Navrhnite zmenu"
+      "suggest": "Navrhnite zmenu",
+      "dark": "Tmavý",
+      "light": "Svetlo",
+      "system": "Systém"
     },
     "backup-modal": {
       "title": "Inteligentná Obnova Zálohy",
@@ -184,6 +194,9 @@
       "unlink-account": "Odpojiť účet",
       "unlink-account-para1": "Naozaj chcete zrušiť prepojenie s účtom?",
       "unlink-account-para2": "Odpojením sa odstránia všetky údaje z tohto zariadenia."
+    },
+    "others": {
+      "suggestions": "Návrhy"
     }
   },
   "Metadata": {

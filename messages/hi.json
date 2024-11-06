@@ -17,7 +17,11 @@
       "best": "सर्वोत्तम",
       "counter": "काउंटर",
       "enter-custom-scramble": "कस्टम तालिका दर्ज करें",
-      "title": "खेल"
+      "title": "खेल",
+      "edit-scramble": "हाथापाई संपादित करें",
+      "hints": "संकेत",
+      "mode": "तरीका",
+      "new-scramble": "नई हाथापाई"
     },
     "SolvesPage": {
       "title": "समाधान",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "समाधानों को इतिहास में ले जाएँ"
-      }
+      },
+      "show": "दिखाओ"
     },
     "StatsPage": {
       "title": "आंकड़े",
@@ -108,7 +113,9 @@
       "collections": "संग्रह",
       "empty": "खाली",
       "back": "पीछे",
-      "sign-in-google": "Google से साइन इन करें"
+      "sign-in-google": "Google से साइन इन करें",
+      "no-results": "कोई परिणाम नहीं मिला",
+      "search": "खोज..."
     },
     "Settings-menu": {
       "locale": "क्षेत्र",
@@ -140,7 +147,10 @@
       "suggest": "परिवर्तन सुझाएं",
       "report-bug": "बग रिपोर्ट करें",
       "auto-select": "स्टार्टअप पर स्वतः चयन करें",
-      "preferences": "प्राथमिकताएँ"
+      "preferences": "प्राथमिकताएँ",
+      "dark": "अँधेरा",
+      "light": "रोशनी",
+      "system": "प्रणाली"
     },
     "backup-modal": {
       "title": "बुद्धिमान बैकअप पुनर्स्थापन",
@@ -184,6 +194,9 @@
       "unlink-account": "खाता अनलिंक करें",
       "unlink-account-para1": "क्या आप वाकई खाते से अनलिंक करना चाहते हैं?",
       "unlink-account-para2": "अनलिंक करने से इस डिवाइस से सारा डेटा हट जाएगा."
+    },
+    "others": {
+      "suggestions": "सुझाव"
     }
   },
   "Metadata": {

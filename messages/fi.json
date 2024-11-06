@@ -17,7 +17,11 @@
       "best": "Paras",
       "counter": "Laskuri",
       "enter-custom-scramble": "Syötä mukautettu sekoitus",
-      "title": "Pelata"
+      "title": "Pelata",
+      "edit-scramble": "Muokkaa sekoitusta",
+      "hints": "Vihjeitä",
+      "mode": "tila",
+      "new-scramble": "Uusi sekoitus"
     },
     "SolvesPage": {
       "title": "Ratkaisut",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "Siirrä ratkaisut historiaan"
-      }
+      },
+      "show": "Show"
     },
     "StatsPage": {
       "title": "Tilastot",
@@ -108,7 +113,9 @@
       "collections": "Kokoelmat",
       "empty": "Tyhjä",
       "back": "Takaisin",
-      "sign-in-google": "Kirjaudu sisään Googlella"
+      "sign-in-google": "Kirjaudu sisään Googlella",
+      "no-results": "Tuloksia ei löytynyt",
+      "search": "Haku..."
     },
     "Settings-menu": {
       "locale": "Paikka",
@@ -140,7 +147,10 @@
       "suggest": "Ehdota muutosta",
       "report-bug": "Ilmoita virheestä",
       "auto-select": "Automaattinen valinta käynnistyksen yhteydessä",
-      "preferences": "Asetukset"
+      "preferences": "Asetukset",
+      "dark": "Tumma",
+      "light": "Kevyt",
+      "system": "Järjestelmä"
     },
     "backup-modal": {
       "title": "Älykäs varmuuskopiointi ja palautus",
@@ -184,6 +194,9 @@
       "unlink-account": "Poista tilin linkitys",
       "unlink-account-para1": "Haluatko varmasti poistaa linkityksen tilistä",
       "unlink-account-para2": "Linkityksen poistaminen poistaa kaikki tiedot tältä laitteelta."
+    },
+    "others": {
+      "suggestions": "ehdotuksia"
     }
   },
   "Metadata": {

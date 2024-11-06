@@ -1,5 +1,8 @@
 {
   "Index": {
+    "others": {
+      "suggestions": "Suggestions"
+    },
     "HomePage": {
       "title": "Play",
       "hint": "Hint",
@@ -17,13 +20,18 @@
       "average": "Average",
       "best": "Best",
       "counter": "Counter",
-      "enter-custom-scramble": "Enter a custom scramble"
+      "enter-custom-scramble": "Enter a custom scramble",
+      "mode": "Mode",
+      "new-scramble": "New scramble",
+      "edit-scramble": "Edit scramble",
+      "hints": "Hints"
     },
     "SolvesPage": {
       "title": "Solves",
       "session": "Session",
       "historial": "Historial",
       "filter-by-time": "Filter by time",
+      "show": "Show",
       "tooltips": {
         "move-to-history": "Move solves to history"
       },
@@ -113,7 +121,9 @@
       "collections": "Collections",
       "empty": "Empty",
       "sign-in-google": "Sign In with Google",
-      "back": "Back"
+      "back": "Back",
+      "no-results": "No results found",
+      "search": "Search..."
     },
     "tooltips": {
       "plus-two": "+2 Penalty",
@@ -151,7 +161,10 @@
       "export-to-file": "Export to file",
       "legend": "NexusTimer is an unopinionated, minimalist and open source web tool for SpeedCubing.",
       "suggest": "Suggest a change",
-      "report-bug": "Report a bug"
+      "report-bug": "Report a bug",
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System"
     },
     "backup-modal": {
       "title": "Intelligent Backup Restoration",

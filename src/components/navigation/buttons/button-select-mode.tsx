@@ -1,14 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-} from "@/components/ui/select";
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
@@ -19,9 +11,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTimerStore } from "@/store/timerStore";
 import { MixIcon } from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
 
 export default function ButtonSelectMode() {
   const { timerMode, setTimerMode } = useTimerStore();
+  const t = useTranslations("Index");
   return (
     <>
       <DropdownMenu>
@@ -31,7 +25,7 @@ export default function ButtonSelectMode() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-fit">
-          <DropdownMenuLabel>Mode</DropdownMenuLabel>
+          <DropdownMenuLabel>{t("HomePage.mode")}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuRadioGroup
             value={timerMode}

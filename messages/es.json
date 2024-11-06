@@ -17,7 +17,11 @@
       "best": "Mejor",
       "counter": "Contador",
       "enter-custom-scramble": "Introduce una mezcla personalizada",
-      "title": "Jugar"
+      "title": "Jugar",
+      "edit-scramble": "Editar codificación",
+      "hints": "Consejos",
+      "mode": "Modo",
+      "new-scramble": "Nueva lucha"
     },
     "SolvesPage": {
       "title": "Soluciones",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "Mover soluciones al historial"
-      }
+      },
+      "show": "Espectáculo"
     },
     "StatsPage": {
       "title": "Estadísticas",
@@ -108,7 +113,9 @@
       "empty": "Vacío",
       "collections": "Colecciones",
       "back": "Atrás",
-      "sign-in-google": "Iniciar sesión con Google"
+      "sign-in-google": "Iniciar sesión con Google",
+      "no-results": "No se encontraron resultados",
+      "search": "Buscar..."
     },
     "Settings-menu": {
       "locale": "Región",
@@ -140,7 +147,10 @@
       "suggest": "Sugerir un cambio",
       "report-bug": "Reportar un error",
       "auto-select": "Selección automática al inicio",
-      "preferences": "Preferencias"
+      "preferences": "Preferencias",
+      "dark": "Oscuro",
+      "light": "Luz",
+      "system": "Sistema"
     },
     "backup-modal": {
       "title": "Restauración Inteligente de Respaldo",
@@ -184,6 +194,9 @@
       "unlink-account": "Desvincular cuenta",
       "unlink-account-para1": "¿Estás seguro de que quieres desvincularte de la cuenta?",
       "unlink-account-para2": "Al desvincularse se eliminarán todos los datos de este dispositivo."
+    },
+    "others": {
+      "suggestions": "Sugerencias"
     }
   },
   "Metadata": {

@@ -17,7 +17,11 @@
       "best": "Najlepszy",
       "counter": "Licznik",
       "enter-custom-scramble": "Wprowadź niestandardową mieszankę",
-      "title": "Grać"
+      "title": "Grać",
+      "edit-scramble": "Edytuj wyścig",
+      "hints": "Poradnik",
+      "mode": "Tryb",
+      "new-scramble": "Nowe starcie"
     },
     "SolvesPage": {
       "title": "Rozwiązania",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "Przenieś rozwiązania do historii"
-      }
+      },
+      "show": "Pokazywać"
     },
     "StatsPage": {
       "title": "Statystyki",
@@ -108,7 +113,9 @@
       "collections": "Kolekcje",
       "empty": "Pusty",
       "back": "Z powrotem",
-      "sign-in-google": "Zaloguj się za pomocą Google"
+      "sign-in-google": "Zaloguj się za pomocą Google",
+      "no-results": "Nie znaleziono żadnych wyników",
+      "search": "Szukaj..."
     },
     "Settings-menu": {
       "locale": "Lokalizacja",
@@ -140,7 +147,10 @@
       "legend": "NexusTimer to bezstronne, minimalistyczne narzędzie internetowe typu open source dla SpeedCubing.",
       "preferences": "Preferencje",
       "report-bug": "Zgłoś błąd",
-      "suggest": "Zaproponuj zmianę"
+      "suggest": "Zaproponuj zmianę",
+      "dark": "Ciemny",
+      "light": "Światło",
+      "system": "System"
     },
     "backup-modal": {
       "title": "Inteligentne Przywracanie Kopii Zapasowej",
@@ -184,6 +194,9 @@
       "unlink-account": "Odłącz konto",
       "unlink-account-para1": "Czy na pewno chcesz odłączyć się od konta?",
       "unlink-account-para2": "Odłączenie spowoduje usunięcie wszystkich danych z tego urządzenia."
+    },
+    "others": {
+      "suggestions": "Sugestie"
     }
   },
   "Metadata": {

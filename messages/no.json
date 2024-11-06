@@ -17,7 +17,11 @@
       "best": "Beste",
       "counter": "Tellende",
       "enter-custom-scramble": "Skriv inn en tilpasset miks",
-      "title": "Spille"
+      "title": "Spille",
+      "edit-scramble": "Rediger scramble",
+      "hints": "Hint",
+      "mode": "Modus",
+      "new-scramble": "Ny scramble"
     },
     "SolvesPage": {
       "title": "Løsninger",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "Flytt løser til historien"
-      }
+      },
+      "show": "Vise"
     },
     "StatsPage": {
       "title": "Statistikk",
@@ -108,7 +113,9 @@
       "collections": "Samlinger",
       "empty": "Tømme",
       "back": "Tilbake",
-      "sign-in-google": "Logg på med Google"
+      "sign-in-google": "Logg på med Google",
+      "no-results": "Ingen resultater funnet",
+      "search": "Søk..."
     },
     "Settings-menu": {
       "locale": "Lokalitet",
@@ -140,7 +147,10 @@
       "legend": "NexusTimer er et meningsløst, minimalistisk og åpen kildekode-nettverktøy for SpeedCubing.",
       "preferences": "Preferanser",
       "report-bug": "Rapporter en feil",
-      "suggest": "Foreslå en endring"
+      "suggest": "Foreslå en endring",
+      "dark": "Mørk",
+      "light": "Lys",
+      "system": "System"
     },
     "backup-modal": {
       "title": "Intelligent Sikkerhetskopiering Gjenoppretting",
@@ -184,6 +194,9 @@
       "unlink-account": "Fjern tilknytningen til kontoen",
       "unlink-account-para1": "Er du sikker på at du vil koble fra kontoen",
       "unlink-account-para2": "Hvis du fjerner tilknytningen, slettes alle data fra denne enheten."
+    },
+    "others": {
+      "suggestions": "Forslag"
     }
   },
   "Metadata": {

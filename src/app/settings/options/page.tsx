@@ -30,7 +30,11 @@ export default function Page() {
 
           <MenuSelectLanguage />
 
-          <MenuSection icon={<LapTimerIcon />} title={t("Settings-menu.timer")}>
+          <MenuSection
+            id="timer"
+            icon={<LapTimerIcon />}
+            title={t("Settings-menu.timer")}
+          >
             <MenuOption
               setting={settings.timer.inspection}
               label={t("Settings-menu.inspection")}
@@ -50,6 +54,7 @@ export default function Page() {
           </MenuSection>
 
           <MenuSection
+            id="features"
             icon={<MagicWandIcon />}
             title={t("Settings-menu.features")}
           >
@@ -75,7 +80,11 @@ export default function Page() {
             />
           </MenuSection>
 
-          <MenuSection icon={<BellIcon />} title={t("Settings-menu.alerts")}>
+          <MenuSection
+            id="alerts"
+            icon={<BellIcon />}
+            title={t("Settings-menu.alerts")}
+          >
             <MenuOption
               setting={settings.alerts.bestTime}
               label={t("Settings-menu.best-time")}
@@ -92,6 +101,7 @@ export default function Page() {
           </MenuSection>
 
           <MenuSection
+            id="background"
             icon={<ComponentBooleanIcon />}
             title={t("Settings-menu.theme")}
           >
@@ -99,11 +109,16 @@ export default function Page() {
             <CustomTheme />
           </MenuSection>
 
-          <MenuSection icon={<FileTextIcon />} title={t("Settings-menu.data")}>
+          <MenuSection
+            id="app-data"
+            icon={<FileTextIcon />}
+            title={t("Settings-menu.data")}
+          >
             <DataImportExport />
           </MenuSection>
 
           <MenuSection
+            id="preferences"
             icon={<BoxModelIcon />}
             title={t("Settings-menu.preferences")}
           >

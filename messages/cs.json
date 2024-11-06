@@ -17,7 +17,11 @@
       "best": "Nejlepší",
       "counter": "Počítadlo",
       "enter-custom-scramble": "Zadejte vlastní scramble",
-      "title": "Hrát"
+      "title": "Hrát",
+      "edit-scramble": "Upravit scramble",
+      "hints": "Rady",
+      "mode": "Režim",
+      "new-scramble": "Nový tahák"
     },
     "SolvesPage": {
       "title": "Řešení",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "Move řeší historii"
-      }
+      },
+      "show": "Show"
     },
     "StatsPage": {
       "title": "Statistiky",
@@ -108,7 +113,9 @@
       "collections": "Sbírky",
       "empty": "Prázdný",
       "back": "Zadní",
-      "sign-in-google": "Přihlaste se pomocí Google"
+      "sign-in-google": "Přihlaste se pomocí Google",
+      "no-results": "Nebyly nalezeny žádné výsledky",
+      "search": "Vyhledávání..."
     },
     "Settings-menu": {
       "locale": "Oblast",
@@ -140,7 +147,10 @@
       "suggest": "Navrhnout změnu",
       "report-bug": "Nahlásit chybu",
       "auto-select": "Automatický výběr při spuštění",
-      "preferences": "Předvolby"
+      "preferences": "Předvolby",
+      "dark": "Tmavý",
+      "light": "Světlo",
+      "system": "Systém"
     },
     "backup-modal": {
       "title": "Inteligentní Obnova Zálohy",
@@ -184,6 +194,9 @@
       "unlink-account": "Odpojit účet",
       "unlink-account-para1": "Opravdu se chcete odpojit od účtu?",
       "unlink-account-para2": "Odpojením smažete všechna data z tohoto zařízení."
+    },
+    "others": {
+      "suggestions": "Návrhy"
     }
   },
   "Metadata": {

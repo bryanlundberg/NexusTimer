@@ -17,7 +17,11 @@
       "best": "최고",
       "counter": "카운터",
       "enter-custom-scramble": "사용자 정의 스크램블 입력",
-      "title": "놀다"
+      "title": "놀다",
+      "edit-scramble": "스크램블 수정",
+      "hints": "힌트",
+      "mode": "방법",
+      "new-scramble": "새로운 스크램블"
     },
     "SolvesPage": {
       "title": "해결",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "이동은 기록으로 해결됩니다."
-      }
+      },
+      "show": "보여주다"
     },
     "StatsPage": {
       "title": "통계",
@@ -108,7 +113,9 @@
       "collections": "컬렉션",
       "empty": "비어 있는",
       "back": "뒤쪽에",
-      "sign-in-google": "Google로 로그인"
+      "sign-in-google": "Google로 로그인",
+      "no-results": "검색결과가 없습니다",
+      "search": "찾다..."
     },
     "Settings-menu": {
       "locale": "로케일",
@@ -140,7 +147,10 @@
       "legend": "NexusTimer는 SpeedCubing을 위한 독립적이고 미니멀한 오픈 소스 웹 도구입니다.",
       "preferences": "환경설정",
       "report-bug": "버그 신고",
-      "suggest": "변경 제안"
+      "suggest": "변경 제안",
+      "dark": "어두운",
+      "light": "빛",
+      "system": "체계"
     },
     "backup-modal": {
       "title": "지능형 백업 복원",
@@ -184,6 +194,9 @@
       "unlink-account": "계정 연결 해제",
       "unlink-account-para1": "정말로 계정에서 연결을 해제하시겠습니까?",
       "unlink-account-para2": "연결을 해제하면 이 기기의 모든 데이터가 삭제됩니다."
+    },
+    "others": {
+      "suggestions": "제안"
     }
   },
   "Metadata": {

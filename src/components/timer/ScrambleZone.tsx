@@ -49,7 +49,7 @@ export function ScrambleZone() {
 
                   <DialogEnterNewScramble />
                   <TooltipContent>
-                    <p>Edit scramble</p>
+                    <p>{t("HomePage.edit-scramble")}</p>
                   </TooltipContent>
                 </Dialog>
               </Tooltip>
@@ -82,7 +82,7 @@ export function ScrambleZone() {
 
                     <DrawerHintPanel />
                     <TooltipContent>
-                      <p>Hints</p>
+                      <p>{t("HomePage.hints")}</p>
                     </TooltipContent>
                   </Tooltip>
                 </Drawer>
