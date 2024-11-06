@@ -22,6 +22,7 @@ import {
   DesktopIcon,
   FileIcon,
   GearIcon,
+  MixerHorizontalIcon,
   MoonIcon,
   PersonIcon,
   SunIcon,
@@ -93,9 +94,9 @@ export default function ButtonNavbar() {
         url: "/cubes",
       },
       {
-        icon: <GearIcon />,
-        name: t("SettingsPage.options"),
-        url: "/settings/options",
+        icon: <MixerHorizontalIcon />,
+        name: t("SettingsPage.title"),
+        url: "/settings",
       },
     ],
     account: [
