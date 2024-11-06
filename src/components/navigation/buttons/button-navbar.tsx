@@ -20,6 +20,7 @@ import {
   CircleIcon,
   CubeIcon,
   DesktopIcon,
+  EnterFullScreenIcon,
   FileIcon,
   GearIcon,
   MixerHorizontalIcon,
@@ -36,6 +37,7 @@ import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import genId from "@/lib/genId";
 import { useTranslations } from "next-intl";
+import { useFullScreen } from "@/hooks/useFullScreen";
 
 interface ListItem {
   icon: React.ReactNode;
@@ -52,6 +54,7 @@ export default function ButtonNavbar() {
   const t = useTranslations("Index");
   const [open, setOpen] = React.useState(false);
   const { setTheme } = useTheme();
+  const { toggleFullScreen } = useFullScreen();
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -221,6 +224,10 @@ export default function ButtonNavbar() {
                 />
               );
             })}
+            <CommandItem onSelect={() => toggleFullScreen()}>
+              <EnterFullScreenIcon />
+              Fullscreen
+            </CommandItem>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading={t("SettingsPage.account")}>
