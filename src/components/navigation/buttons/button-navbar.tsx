@@ -27,11 +27,24 @@ import {
   SunIcon,
   TokensIcon,
 } from "@radix-ui/react-icons";
+
+import { Swords } from "lucide-react"; // Online mode
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
-import CubesTable from "@/components/cubes/cubes-table";
 import genId from "@/lib/genId";
+
+interface ListItem {
+  icon: React.ReactNode;
+  name: string;
+  url: string;
+  disabled?: boolean;
+}
+
+interface List {
+  [group: string]: ListItem[];
+}
 
 export default function ButtonNavbar() {
   const [open, setOpen] = React.useState(false);
@@ -47,7 +60,7 @@ export default function ButtonNavbar() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const list = {
+  const list: List = {
     suggestions: [
       {
         icon: (
@@ -201,6 +214,7 @@ export default function ButtonNavbar() {
                   label={c.name}
                   icon={c.icon}
                   key={c.url}
+                  disabled={c.disabled}
                 />
               );
             })}
@@ -269,15 +283,17 @@ function CommandLink({
   url,
   label,
   icon,
+  disabled = false,
 }: {
   url: string;
   label: string;
   icon: React.ReactNode;
+  disabled?: boolean;
 }) {
   const router = useRouter();
   return (
-    <Link href={url}>
-      <CommandItem onSelect={() => router.push(url)}>
+    <Link href={url} aria-disabled={disabled}>
+      <CommandItem onSelect={() => router.push(url)} disabled={disabled}>
         {icon}
         {label}
       </CommandItem>
