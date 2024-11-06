@@ -34,6 +34,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import genId from "@/lib/genId";
+import { useTranslations } from "next-intl";
 
 interface ListItem {
   icon: React.ReactNode;
@@ -47,6 +48,7 @@ interface List {
 }
 
 export default function ButtonNavbar() {
+  const t = useTranslations("Index");
   const [open, setOpen] = React.useState(false);
   const { setTheme } = useTheme();
   React.useEffect(() => {
@@ -72,44 +74,44 @@ export default function ButtonNavbar() {
             className="border rounded-full size-5 invert p-0.5 bg-white"
           />
         ),
-        name: "Play",
+        name: t("HomePage.title"),
         url: "/",
       },
       {
         icon: <TokensIcon />,
-        name: "Solves",
+        name: t("SolvesPage.title"),
         url: "/solves",
       },
       {
         icon: <BarChartIcon />,
-        name: "Stats",
+        name: t("StatsPage.title"),
         url: "/stats",
       },
       {
         icon: <CubeIcon />,
-        name: "Cubes",
+        name: t("CubesPage.title"),
         url: "/cubes",
       },
       {
         icon: <GearIcon />,
-        name: "Options",
+        name: t("SettingsPage.options"),
         url: "/settings/options",
       },
     ],
     account: [
       {
         icon: <PersonIcon />,
-        name: "Profile",
+        name: t("SettingsPage.account"),
         url: "/settings/account",
       },
       {
         icon: <CircleIcon />,
-        name: "Save",
+        name: t("SettingsPage.save-data-title"),
         url: "/settings/account/save",
       },
       {
         icon: <CircleIcon />,
-        name: "Load",
+        name: t("SettingsPage.load-data-title"),
         url: "/settings/account/load",
       },
     ],
@@ -130,27 +132,27 @@ export default function ButtonNavbar() {
     options: [
       {
         icon: <GearIcon />,
-        name: "Options",
+        name: t("SettingsPage.options"),
         url: "/settings/options",
       },
       {
         icon: <CircleIcon />,
-        name: "Region",
+        name: t("Settings-menu.locale"),
         url: "/settings/options#region",
       },
       {
         icon: <CircleIcon />,
-        name: "Timer",
+        name: t("Settings-menu.timer"),
         url: "/settings/options#timer",
       },
       {
         icon: <CircleIcon />,
-        name: "Features",
+        name: t("Settings-menu.features"),
         url: "/settings/options#features",
       },
       {
         icon: <CircleIcon />,
-        name: "Alerts",
+        name: t("Settings-menu.alerts"),
         url: "/settings/options#alerts",
       },
       {
@@ -160,12 +162,12 @@ export default function ButtonNavbar() {
       },
       {
         icon: <CircleIcon />,
-        name: "App data",
+        name: t("Settings-menu.data"),
         url: "/settings/options#app-data",
       },
       {
         icon: <CircleIcon />,
-        name: "Preferences",
+        name: t("Settings-menu.preferences"),
         url: "/settings/options#preferences",
       },
     ],
@@ -173,12 +175,12 @@ export default function ButtonNavbar() {
     cubes: [
       {
         icon: <CubeIcon />,
-        name: "Cubes",
+        name: t("CubesPage.title"),
         url: "/cubes",
       },
       {
         icon: <CircleIcon />,
-        name: "Create collection",
+        name: t("Cubes-modal.new-collection"),
         url: "/cubes",
       },
     ],
