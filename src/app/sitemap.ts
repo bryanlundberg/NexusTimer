@@ -1,21 +1,52 @@
-import { defaultLocale, locales } from "@/i18n/locales";
+import { locales } from "@/i18n/locales";
 import { MetadataRoute } from "next";
 
-const pathnames = ["/", "/cubes", "/solves", "/stats"];
-const host = "https://nexustimer.pro";
+const host = "https://nexustimer.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  function getUrl(pathname: string, locale: string) {
-    return `${host}/${locale}${pathname === "/" ? "" : pathname}`;
+  function generateAlternates(url: string) {
+    return {
+      languages: Object.fromEntries(
+        locales.map((locale) => [locale, `${host}/${url}`])
+      ),
+    };
   }
 
-  return pathnames.map((pathname) => ({
-    url: getUrl(pathname, defaultLocale),
-    lastModified: new Date(),
-    alternates: {
-      languages: Object.fromEntries(
-        locales.map((locale) => [locale, getUrl(pathname, locale)])
-      ),
+  return [
+    {
+      url: host,
+      lastModified: new Date(),
+      changeFrequency: "always",
+      priority: 1,
+      alternates: generateAlternates("/"),
     },
-  }));
+    {
+      url: `${host}/account`,
+      lastModified: new Date(),
+      changeFrequency: "always",
+      priority: 0.8,
+      alternates: generateAlternates("/account"),
+    },
+    {
+      url: `${host}/solves`,
+      lastModified: new Date(),
+      changeFrequency: "always",
+      priority: 0.8,
+      alternates: generateAlternates("/solves"),
+    },
+    {
+      url: `${host}/stats`,
+      lastModified: new Date(),
+      changeFrequency: "always",
+      priority: 0.8,
+      alternates: generateAlternates("/stats"),
+    },
+    {
+      url: `${host}/cubes`,
+      lastModified: new Date(),
+      changeFrequency: "always",
+      priority: 0.8,
+      alternates: generateAlternates("/cubes"),
+    },
+  ];
 }
