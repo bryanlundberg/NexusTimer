@@ -26,7 +26,7 @@ export default function ButtonNextScramble() {
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>{"New scramble"}</p>
+            <p>{t("HomePage.new-scramble")}</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>

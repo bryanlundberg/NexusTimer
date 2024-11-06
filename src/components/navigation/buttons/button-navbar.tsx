@@ -205,10 +205,10 @@ export default function ButtonNavbar() {
         <VisuallyHidden.Root>
           <DialogTitle>NexusTimer Navigation</DialogTitle>
         </VisuallyHidden.Root>
-        <CommandInput placeholder="Search..." />
+        <CommandInput placeholder={t("Inputs.search")} />
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Suggestions">
+          <CommandEmpty>{t("Inputs.no-results")}</CommandEmpty>
+          <CommandGroup heading={t("others.suggestions")}>
             {list.suggestions.map((c) => {
               return (
                 <CommandLink
@@ -222,7 +222,7 @@ export default function ButtonNavbar() {
             })}
           </CommandGroup>
           <CommandSeparator />
-          <CommandGroup heading="Account">
+          <CommandGroup heading={t("SettingsPage.account")}>
             {list.account.map((c) => {
               return (
                 <CommandLink
@@ -235,7 +235,7 @@ export default function ButtonNavbar() {
             })}
           </CommandGroup>
           <CommandSeparator />
-          <CommandGroup heading="Options">
+          <CommandGroup heading={t("SettingsPage.options")}>
             {list.options.map((c) => {
               return (
                 <CommandLink
@@ -248,7 +248,7 @@ export default function ButtonNavbar() {
             })}
           </CommandGroup>
           <CommandSeparator />
-          <CommandGroup heading="Cubes page">
+          <CommandGroup heading={t("CubesPage.title")}>
             {list.cubes.map((c) => {
               return (
                 <CommandLink
@@ -261,18 +261,18 @@ export default function ButtonNavbar() {
             })}
           </CommandGroup>
           <CommandSeparator />
-          <CommandGroup heading="Theme">
+          <CommandGroup heading={t("Settings-menu.theme")}>
             <CommandItem onPointerDown={() => setTheme("light")}>
               <SunIcon />
-              Light
+              {t("Settings-menu.light")}
             </CommandItem>
             <CommandItem onPointerDown={() => setTheme("dark")}>
               <MoonIcon />
-              Dark
+              {t("Settings-menu.dark")}
             </CommandItem>
             <CommandItem onPointerDown={() => setTheme("system")}>
               <DesktopIcon />
-              System
+              {t("Settings-menu.system")}
             </CommandItem>
           </CommandGroup>
         </CommandList>
