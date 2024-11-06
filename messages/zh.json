@@ -17,7 +17,11 @@
       "best": "最佳",
       "counter": "计数器",
       "enter-custom-scramble": "输入自定义乱序",
-      "title": "玩"
+      "title": "玩",
+      "edit-scramble": "编辑打乱",
+      "hints": "提示",
+      "mode": "模式",
+      "new-scramble": "新的争夺"
     },
     "SolvesPage": {
       "title": "解决方案",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "将解决方案移至历史记录"
-      }
+      },
+      "show": "展示"
     },
     "StatsPage": {
       "title": "统计",
@@ -108,7 +113,9 @@
       "collections": "收藏",
       "empty": "空的",
       "back": "后退",
-      "sign-in-google": "使用 Google 登录"
+      "sign-in-google": "使用 Google 登录",
+      "no-results": "没有找到结果",
+      "search": "搜索..."
     },
     "Settings-menu": {
       "locale": "区域",
@@ -140,7 +147,10 @@
       "suggest": "建议更改",
       "report-bug": "报告错误",
       "auto-select": "启动时自动选择",
-      "preferences": "偏好设置"
+      "preferences": "偏好设置",
+      "dark": "黑暗的",
+      "light": "光",
+      "system": "系统"
     },
     "backup-modal": {
       "title": "智能备份恢复",
@@ -184,6 +194,9 @@
       "unlink-account": "取消账户关联",
       "unlink-account-para1": "您确定要取消与帐户的关联吗",
       "unlink-account-para2": "取消链接将删除该设备上的所有数据。"
+    },
+    "others": {
+      "suggestions": "建议"
     }
   },
   "Metadata": {

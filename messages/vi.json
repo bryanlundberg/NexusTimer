@@ -17,7 +17,11 @@
       "best": "Tốt nhất",
       "counter": "Bộ đếm",
       "enter-custom-scramble": "Nhập scramble tùy chỉnh",
-      "title": "Chơi"
+      "title": "Chơi",
+      "edit-scramble": "Chỉnh sửa tranh giành",
+      "hints": "gợi ý",
+      "mode": "Cách thức",
+      "new-scramble": "Cuộc tranh giành mới"
     },
     "SolvesPage": {
       "title": "Giải quyết",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "Di chuyển các giải pháp vào lịch sử"
-      }
+      },
+      "show": "Trình diễn"
     },
     "StatsPage": {
       "title": "Thống kê",
@@ -108,7 +113,9 @@
       "collections": "Bộ sưu tập",
       "empty": "Trống",
       "back": "Mặt sau",
-      "sign-in-google": "Đăng nhập bằng Google"
+      "sign-in-google": "Đăng nhập bằng Google",
+      "no-results": "Không tìm thấy kết quả nào",
+      "search": "Tìm kiếm..."
     },
     "Settings-menu": {
       "locale": "Vùng",
@@ -140,7 +147,10 @@
       "suggest": "Đề xuất thay đổi",
       "report-bug": "Báo cáo lỗi",
       "auto-select": "Tự động chọn khi khởi động",
-      "preferences": "Tùy chọn"
+      "preferences": "Tùy chọn",
+      "dark": "Tối tăm",
+      "light": "Ánh sáng",
+      "system": "Hệ thống"
     },
     "backup-modal": {
       "title": "Khôi phục sao lưu thông minh",
@@ -184,6 +194,9 @@
       "unlink-account": "Hủy liên kết tài khoản",
       "unlink-account-para1": "Bạn có chắc chắn muốn hủy liên kết khỏi tài khoản",
       "unlink-account-para2": "Việc hủy liên kết sẽ xóa tất cả dữ liệu khỏi thiết bị này."
+    },
+    "others": {
+      "suggestions": "Đề xuất"
     }
   },
   "Metadata": {

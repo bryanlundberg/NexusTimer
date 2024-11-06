@@ -17,7 +17,11 @@
       "best": "Legjobb",
       "counter": "Számláló",
       "enter-custom-scramble": "Adjon meg egyéni scramble-t",
-      "title": "Játék"
+      "title": "Játék",
+      "edit-scramble": "A kód szerkesztése",
+      "hints": "Tippek",
+      "mode": "Mód",
+      "new-scramble": "Új tülekedés"
     },
     "SolvesPage": {
       "title": "Megoldások",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "Mozgás megoldja a történelem"
-      }
+      },
+      "show": "Megmutat"
     },
     "StatsPage": {
       "title": "Statisztikák",
@@ -108,7 +113,9 @@
       "collections": "Gyűjtemények",
       "empty": "Üres",
       "back": "Vissza",
-      "sign-in-google": "Jelentkezzen be a Google-lal"
+      "sign-in-google": "Jelentkezzen be a Google-lal",
+      "no-results": "Nincs találat",
+      "search": "Keresés..."
     },
     "Settings-menu": {
       "locale": "Terület",
@@ -140,7 +147,10 @@
       "suggest": "Javaslat küldése",
       "report-bug": "Hiba bejelentése",
       "auto-select": "Automatikus kiválasztás indításkor",
-      "preferences": "Preferences"
+      "preferences": "Preferences",
+      "dark": "Sötét",
+      "light": "Fény",
+      "system": "Rendszer"
     },
     "backup-modal": {
       "title": "Intelligens Biztonsági Mentés Visszaállítása",
@@ -184,6 +194,9 @@
       "unlink-account": "Fiók leválasztása",
       "unlink-account-para1": "Biztosan le szeretné választani a kapcsolatot a fiókkal?",
       "unlink-account-para2": "A leválasztással törli az összes adatot erről az eszközről."
+    },
+    "others": {
+      "suggestions": "Javaslatok"
     }
   },
   "Metadata": {

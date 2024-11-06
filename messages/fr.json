@@ -17,7 +17,11 @@
       "best": "Meilleur",
       "counter": "Compteur",
       "enter-custom-scramble": "Entrez un mélange personnalisé",
-      "title": "Jouer"
+      "title": "Jouer",
+      "edit-scramble": "Modifier le brouillage",
+      "hints": "Conseils",
+      "mode": "Mode",
+      "new-scramble": "Nouvelle ruée"
     },
     "SolvesPage": {
       "title": "Résolutions",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "Déplacer les résolutions vers l'historique"
-      }
+      },
+      "show": "Montrer"
     },
     "StatsPage": {
       "title": "Statistiques",
@@ -108,7 +113,9 @@
       "collections": "Collections",
       "empty": "Vide",
       "back": "Dos",
-      "sign-in-google": "Connectez-vous avec Google"
+      "sign-in-google": "Connectez-vous avec Google",
+      "no-results": "Aucun résultat trouvé",
+      "search": "Recherche..."
     },
     "Settings-menu": {
       "locale": "Région",
@@ -140,7 +147,10 @@
       "suggest": "Proposer un changement",
       "report-bug": "Signaler un bug",
       "auto-select": "Sélection automatique au démarrage",
-      "preferences": "Préférences"
+      "preferences": "Préférences",
+      "dark": "Sombre",
+      "light": "Lumière",
+      "system": "Système"
     },
     "backup-modal": {
       "title": "Restauration de sauvegarde intelligente",
@@ -184,6 +194,9 @@
       "unlink-account": "Dissocier le compte",
       "unlink-account-para1": "Etes-vous sûr de vouloir vous dissocier du compte",
       "unlink-account-para2": "La dissociation supprimera toutes les données de cet appareil."
+    },
+    "others": {
+      "suggestions": "Suggestions"
     }
   },
   "Metadata": {

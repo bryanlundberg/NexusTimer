@@ -17,7 +17,11 @@
       "best": "Beste",
       "counter": "Zähler",
       "enter-custom-scramble": "Geben Sie ein benutzerdefiniertes Scramble ein",
-      "title": "Spielen"
+      "title": "Spielen",
+      "edit-scramble": "Scramble bearbeiten",
+      "hints": "Hinweise",
+      "mode": "Modus",
+      "new-scramble": "Neues Gerangel"
     },
     "SolvesPage": {
       "title": "Lösungen",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "Verschieben löst den Verlauf"
-      }
+      },
+      "show": "Zeigen"
     },
     "StatsPage": {
       "title": "Statistiken",
@@ -108,7 +113,9 @@
       "collections": "Sammlungen",
       "empty": "Leer",
       "back": "Zurück",
-      "sign-in-google": "Melden Sie sich mit Google an"
+      "sign-in-google": "Melden Sie sich mit Google an",
+      "no-results": "Keine Ergebnisse gefunden",
+      "search": "Suchen..."
     },
     "Settings-menu": {
       "locale": "Region",
@@ -140,7 +147,10 @@
       "suggest": "Änderung vorschlagen",
       "report-bug": "Fehler melden",
       "auto-select": "Automatische Auswahl beim Start",
-      "preferences": "Präferenzen"
+      "preferences": "Präferenzen",
+      "dark": "Dunkel",
+      "light": "Licht",
+      "system": "System"
     },
     "backup-modal": {
       "title": "Intelligente Backup-Wiederherstellung",
@@ -184,6 +194,9 @@
       "unlink-account": "Kontoverknüpfung aufheben",
       "unlink-account-para1": "Sind Sie sicher, dass Sie die Verknüpfung mit dem Konto aufheben möchten?",
       "unlink-account-para2": "Durch das Aufheben der Verknüpfung werden alle Daten von diesem Gerät gelöscht."
+    },
+    "others": {
+      "suggestions": "Vorschläge"
     }
   },
   "Metadata": {

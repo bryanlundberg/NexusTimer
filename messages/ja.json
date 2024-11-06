@@ -17,7 +17,11 @@
       "best": "最高",
       "counter": "カウンター",
       "enter-custom-scramble": "カスタムスクランブルを入力",
-      "title": "遊ぶ"
+      "title": "遊ぶ",
+      "edit-scramble": "スクランブル編集",
+      "hints": "ヒント",
+      "mode": "モード",
+      "new-scramble": "新たなスクランブル"
     },
     "SolvesPage": {
       "title": "解答",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "ソルブを履歴に移動する"
-      }
+      },
+      "show": "見せる"
     },
     "StatsPage": {
       "title": "統計",
@@ -108,7 +113,9 @@
       "collections": "コレクション",
       "empty": "空の",
       "back": "戻る",
-      "sign-in-google": "Googleでサインイン"
+      "sign-in-google": "Googleでサインイン",
+      "no-results": "結果が見つかりませんでした",
+      "search": "検索..."
     },
     "Settings-menu": {
       "locale": "ロケール",
@@ -140,7 +147,10 @@
       "legend": "NexusTimer は、SpeedCubing 用の、偏見にとらわれないミニマリストのオープンソース Web ツールです。",
       "preferences": "設定",
       "report-bug": "バグを報告する",
-      "suggest": "変更を提案する"
+      "suggest": "変更を提案する",
+      "dark": "暗い",
+      "light": "ライト",
+      "system": "システム"
     },
     "backup-modal": {
       "title": "インテリジェントバックアップの復元",
@@ -184,6 +194,9 @@
       "unlink-account": "アカウントのリンクを解除する",
       "unlink-account-para1": "アカウントからのリンクを解除してもよろしいですか",
       "unlink-account-para2": "リンクを解除すると、このデバイスからすべてのデータが削除されます。"
+    },
+    "others": {
+      "suggestions": "提案"
     }
   },
   "Metadata": {

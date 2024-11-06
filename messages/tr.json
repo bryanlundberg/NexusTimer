@@ -17,7 +17,11 @@
       "best": "En İyi",
       "counter": "Sayaç",
       "enter-custom-scramble": "Özel karıştırma girin",
-      "title": "Oynamak"
+      "title": "Oynamak",
+      "edit-scramble": "Karıştırmayı düzenle",
+      "hints": "İpuçları",
+      "mode": "Mod",
+      "new-scramble": "Yeni mücadele"
     },
     "SolvesPage": {
       "title": "Çözümler",
@@ -56,7 +60,8 @@
       },
       "tooltips": {
         "move-to-history": "Taşıma geçmişi çözer"
-      }
+      },
+      "show": "Göstermek"
     },
     "StatsPage": {
       "title": "İstatistikler",
@@ -108,7 +113,9 @@
       "collections": "Koleksiyonlar",
       "empty": "Boş",
       "back": "Geri",
-      "sign-in-google": "Google ile Oturum Açın"
+      "sign-in-google": "Google ile Oturum Açın",
+      "no-results": "Sonuç bulunamadı",
+      "search": "Aramak..."
     },
     "Settings-menu": {
       "locale": "Bölge",
@@ -140,7 +147,10 @@
       "suggest": "Bir değişiklik öner",
       "report-bug": "Hata bildir",
       "auto-select": "Başlangıçta otomatik seç",
-      "preferences": "Tercihler"
+      "preferences": "Tercihler",
+      "dark": "Karanlık",
+      "light": "Işık",
+      "system": "Sistem"
     },
     "backup-modal": {
       "title": "Akıllı Yedekleme Kurtarma",
@@ -184,6 +194,9 @@
       "unlink-account": "Hesabın bağlantısını kaldır",
       "unlink-account-para1": "Hesapla bağlantıyı kaldırmak istediğinizden emin misiniz?",
       "unlink-account-para2": "Bağlantının kaldırılması bu cihazdaki tüm verilerin silinmesine neden olacaktır."
+    },
+    "others": {
+      "suggestions": "Öneriler"
     }
   },
   "Metadata": {
