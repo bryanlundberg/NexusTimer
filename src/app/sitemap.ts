@@ -25,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "always",
       priority: 0.8,
-      alternates: generateAlternates("/account"),
+      alternates: generateAlternates("/settings/account"),
     },
     {
       url: `${host}/solves`,
