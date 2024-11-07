@@ -1,8 +1,12 @@
 "use server";
 
+import Email from "@/components/email/email";
 import connectDB from "@/db/mongodb";
-import Backup, { Backups } from "@/models/backup";
+import Backup from "@/models/backup";
 import User, { Users } from "@/models/user";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function createOrUpdateUser({
   email,
@@ -12,21 +16,23 @@ export async function createOrUpdateUser({
   try {
     await connectDB();
 
-    const user = await User.findOneAndUpdate(
-      {
-        email: email,
-      },
-      {
-        name,
-        image,
-      },
-      {
-        new: true,
-        upsert: true,
-      }
-    );
+    const user = await User.findOne({ email });
 
-    if (!user) throw new Error("Not user");
+    if (user) {
+      user.image = image;
+      user.name = name;
+      await user.save();
+    }
+
+    if (!user) {
+      await User.create({ email, name, image });
+      const { data, error } = await resend.emails.send({
+        from: "NexusTimer <onboarding@nexustimer.com>",
+        to: [email],
+        subject: "Welcome to NexusTimer – Let's Get Cubing!",
+        react: Email({ name }) as React.ReactElement,
+      });
+    }
 
     return true;
   } catch (error) {
