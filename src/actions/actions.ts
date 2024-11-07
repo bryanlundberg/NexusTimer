@@ -6,7 +6,9 @@ import Backup from "@/models/backup";
 import User, { Users } from "@/models/user";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(
+  process.env.RESEND_API_KEY || "development-placeholder-no-email-sent"
+); // Optional: Allows other developers to work without configuring the email API. Simply its not going to connect to the API. Helps to avoid a pop-up error on screen.
 
 export async function createOrUpdateUser({
   email,
