@@ -14,7 +14,7 @@ export default function DrawerHintPanel() {
 
   return (
     <>
-      <DrawerContent className="w-full max-w-[500px] mx-auto">
+      <DrawerContent className="w-full max-w-[550px] mx-auto">
         <DrawerHeader>
           <DrawerTitle className="flex gap-2 items-center">
             <Cross1Icon className="rotate-45" />
