@@ -25,7 +25,7 @@ export default function ImportModal() {
     <>
       <AnimatePresence>
         {importModalOpen && (
-          <div className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-screen px-4 py-10 overflow-x-hidden overflow-y-auto bg-black bg-opacity-10 md:inset-0 text-neutral-950">
+          <div className="fixed top-0 left-0 z-50 flex flex-col items-center justify-center w-full h-full px-4 py-10 overflow-x-hidden overflow-y-auto backdrop-blur-sm md:inset-0 text-neutral-950">
             <motion.div
               initial={{ y: 100, scale: 0.9, opacity: 0 }}
               animate={{ y: 0, scale: 1, opacity: 1 }}
