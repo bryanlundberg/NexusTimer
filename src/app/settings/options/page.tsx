@@ -16,7 +16,6 @@ import {
 import MenuSelectLanguage from "@/components/menu-settings/MenuSelectLanguage";
 import CustomTheme from "@/components/menu-settings/CustomTheme";
 import MenuSelectDefaultStartCube from "@/components/menu-settings/MenuSelectDefaultStartCube";
-import ImportModal from "@/components/menu-settings/ImportModal";
 import AccountHeader from "@/components/account/account-header/account-header";
 
 export default function Page() {
@@ -126,7 +125,6 @@ export default function Page() {
           </MenuSection>
         </div>
       </div>
-      <ImportModal />
     </>
   );
 }

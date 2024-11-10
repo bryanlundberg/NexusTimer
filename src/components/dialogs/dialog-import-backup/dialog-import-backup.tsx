@@ -1,37 +1,30 @@
-import useClickOutside from "@/hooks/useClickOutside";
-import importDataFromFile from "@/lib/importDataFromFile";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import { useTimerStore } from "@/store/timerStore";
-import Image from "next/image";
-import { useRef, useState } from "react";
-import Loading from "../Loading";
-import { getAllCubes } from "@/db/dbOperations";
 import { useTranslations } from "next-intl";
+import { useRef, useState } from "react";
+import Image from "next/image";
+import { useTimerStore } from "@/store/timerStore";
+import importDataFromFile from "@/lib/importDataFromFile";
+import { getAllCubes } from "@/db/dbOperations";
+import Loading from "../../Loading";
 import { useRouter } from "next/navigation";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+  } from "@/components/ui/dialog"
 
-export default function ImportModal() {
-  const { setImportModalOpen, importModalOpen } = useSettingsModalStore();
-  const { setSelectedCube, setCubes, setTimerStatistics } = useTimerStore();
-  const [isImporting, setIsImporting] = useState(false);
-  const dataInputRef = useRef<HTMLInputElement>(null);
-  const componentRef = useRef<HTMLDivElement | null>(null);
-  const router = useRouter();
-  const t = useTranslations("Index.backup-modal");
+export default function DialogImportBackup() {
+    const t = useTranslations("Index.backup-modal");
+    const [isImporting, setIsImporting] = useState(false);
+    const dataInputRef = useRef<HTMLInputElement>(null);
+    const { setSelectedCube, setCubes, setTimerStatistics } = useTimerStore();
+    const router = useRouter();
 
-  useClickOutside(componentRef, () => setImportModalOpen(false));
-  return (
-    <>
-        {importModalOpen && (
-          <Dialog open={importModalOpen} onOpenChange={setImportModalOpen}>
+    return (
+        
+         
         <DialogContent className="sm:max-w-[425px]">
     <DialogHeader>
       <div className="flex flex-auto items-center justify-center">
@@ -57,7 +50,6 @@ export default function ImportModal() {
                       router.push("/cubes");
                       setSelectedCube(null);
                       setTimerStatistics();
-                      setImportModalOpen(false);
                       alert(`${t("alert-category")}`);
                     }
                   } catch (error) {
@@ -126,8 +118,9 @@ export default function ImportModal() {
     
     
   </DialogContent>
-  </Dialog>
-        )}      
-    </>
-  );
+  
+        
+    )
+
+
 }
