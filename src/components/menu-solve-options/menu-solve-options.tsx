@@ -35,6 +35,27 @@ export default function MenuSolveOptions({
   const dialog = useDialogSolve();
 
   if (!selectedCube) return null;
+  const handleUndoSolve = async (solve : Solve | null) => {
+    debugger
+     if (solve && selectedCube) {
+       await updateSolve({
+         solveId: solve.id,
+         selectedCube: selectedCube,
+         type: "UNDO",
+         deletedSolve:solve,
+       });
+     
+       toast("", {
+        description: "Restored last deleted Solve",
+        duration: 1000,
+      });
+
+      const lastCube = await getCubeById(selectedCube.id);
+      if (lastCube) {
+        setSelectedCube({ ...lastCube });
+      }
+     }
+  };
 
   const handleDeleteSolve = async () => {
     if (solve && selectedCube) {
@@ -68,7 +89,11 @@ export default function MenuSolveOptions({
 
       toast("", {
         description: "Deleted solve",
-        duration: 1000,
+        duration: 2000,
+        action: {
+          label: 'Undo',
+          onClick: () => handleUndoSolve(solve)
+        },
       });
 
       onDeleteSolve();
