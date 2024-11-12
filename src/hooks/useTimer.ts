@@ -24,7 +24,7 @@ export default function useTimer() {
     setTimerStatistics,
   } = useTimerStore();
 
-  const { settings, setSettingsOpen } = useSettingsModalStore();
+  const { settings } = useSettingsModalStore();
   const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
   const inspectionRequired = settings.timer.inspection.status;
   const inspectionDuration = 16000;
@@ -300,7 +300,6 @@ export default function useTimer() {
     holdTimeRequired,
     isSolving,
     setIsSolving,
-    setSettingsOpen,
     setSolvingTime,
     inspectionRequired,
     selectedCube,
