@@ -19,47 +19,49 @@ export default function Page() {
   const t = useTranslations("Index");
   return (
     <>
-      {/* container */}
-      <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full overflow-auto">
-        {/* header */}
-        <Navigation />
+      <div className="overflow-y-auto pb-4">
+        {/* container */}
+        <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
+          {/* header */}
+          <Navigation />
 
-        {/* cubes list */}
-        {filterCubes && filterCubes.length > 0 ? (
-          <CubesTable
-            handleFavoriteClick={handleFavoriteClick}
-            handleRedirectToTimer={handleRedirectToTimer}
-            cubes={filterCubes}
-          />
-        ) : (
-          <EmptyCubes />
-        )}
+          {/* cubes list */}
+          {filterCubes && filterCubes.length > 0 ? (
+            <CubesTable
+              handleFavoriteClick={handleFavoriteClick}
+              handleRedirectToTimer={handleRedirectToTimer}
+              cubes={filterCubes}
+            />
+          ) : (
+            <EmptyCubes />
+          )}
 
-        {/* dialogs */}
-        <Dialog
-          open={type === "delete" && isOpen}
-          onOpenChange={() => {
-            handleResetError();
-            closeDialog();
-          }}
-        >
-          <DialogDeleteCollection
-            error={error}
-            handleChangeError={handleChangeError}
-          />
-        </Dialog>
-        <Dialog
-          open={type === "edit" && isOpen}
-          onOpenChange={() => {
-            handleResetError();
-            closeDialog();
-          }}
-        >
-          <DialogEditCollection
-            error={error}
-            handleChangeError={handleChangeError}
-          />
-        </Dialog>
+          {/* dialogs */}
+          <Dialog
+            open={type === "delete" && isOpen}
+            onOpenChange={() => {
+              handleResetError();
+              closeDialog();
+            }}
+          >
+            <DialogDeleteCollection
+              error={error}
+              handleChangeError={handleChangeError}
+            />
+          </Dialog>
+          <Dialog
+            open={type === "edit" && isOpen}
+            onOpenChange={() => {
+              handleResetError();
+              closeDialog();
+            }}
+          >
+            <DialogEditCollection
+              error={error}
+              handleChangeError={handleChangeError}
+            />
+          </Dialog>
+        </div>
       </div>
     </>
   );
