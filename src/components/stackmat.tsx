@@ -111,16 +111,39 @@ export default function Stackmat() {
         toast("Device disconnected");
       };
 
+      /*
+        TESTED SECTION
+        ----------------
+        The following events have been thoroughly tested using the QIYI Timer V2.
+        They ensure controlled behavior for handling timer events:
+
+        - Issue reported: Some users are unable to stop the timer. 
+      */
+
       stackmat.on("started", onStarted);
       stackmat.on("reset", onReset);
       stackmat.on("timerConnected", onConnected);
       stackmat.on("timerDisconnected", onDisconnected);
+
+      /*
+        EXPERIMENTAL SECTION
+        ---------------------
+        The following event is experimental and has not been tested.
+        It was implemented based on the standard controller library's documentation
+        to handle potential edge cases where events might be missing for certain users.
+
+        Event:
+        - "stopped": This event is expected to trigger when the timer stops. 
+      */
+
+      stackmat.on("stopped", onReset);
 
       return () => {
         stackmat.off("started", onStarted);
         stackmat.off("reset", onReset);
         stackmat.off("timerConnected", onConnected);
         stackmat.off("timerDisconnected", onDisconnected);
+        stackmat.off("stopped", onReset);
       };
     }
   }, [
