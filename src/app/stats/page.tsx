@@ -4,7 +4,6 @@ import CategoryStatistics from "@/components/stats/CategoryStatistics";
 import { useTranslations } from "next-intl";
 
 export default function Page() {
-  const t = useTranslations("Index");
   return (
     <>
       {/* container */}
