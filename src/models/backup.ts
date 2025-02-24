@@ -1,4 +1,4 @@
-import { Document, Schema, model, models } from "mongoose";
+import { Schema, models, model, Document } from "mongoose";
 
 export interface Backups extends Document {
   user: string;
