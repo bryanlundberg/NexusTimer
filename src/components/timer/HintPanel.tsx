@@ -1,17 +1,13 @@
-import useClickOutside from "@/hooks/useClickOutside";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import { RocketIcon } from "@radix-ui/react-icons";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useRef } from "react";
 
 export default function HintPanel() {
-  const { displayHint, setDisplayHint, selectedCube, isSolving, hint } =
+  const { displayHint, selectedCube, isSolving, hint } =
     useTimerStore();
   const t = useTranslations("Index.HomePage");
-  const componentRef = useRef<HTMLDivElement | null>(null);
-  useClickOutside(componentRef, () => setDisplayHint(false));
 
   return (
     <>
@@ -23,7 +19,6 @@ export default function HintPanel() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 400, opacity: 0.8 }}
               transition={{ type: "lineal" }}
-              ref={componentRef}
               className="bg-yellow-100 bottom-0 rounded-t-lg w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-sm mx-auto h-full border"
             >
               <div className="p-2 text-2xl flex justify-between items-center">
