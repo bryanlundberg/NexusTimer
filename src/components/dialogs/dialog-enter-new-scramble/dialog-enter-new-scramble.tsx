@@ -5,7 +5,7 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
+  DialogTitle
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useTimerStore } from "@/store/timerStore";
@@ -23,18 +23,11 @@ export default function DialogEnterNewScramble() {
         <DialogDescription>
           This action will replace the current scramble
         </DialogDescription>
-        <Input ref={inputRef} />
+        <Input ref={inputRef}/>
       </DialogHeader>
       <DialogFooter>
         <DialogClose asChild>
-          <Button
-            onClick={() => {
-              if (inputRef.current) {
-                console.log(inputRef.current.value);
-                setCustomScramble(inputRef.current.value.trim());
-              }
-            }}
-          >
+          <Button onClick={() => inputRef.current && setCustomScramble(inputRef.current.value.trim())}>
             {t("Inputs.continue")}
           </Button>
         </DialogClose>
