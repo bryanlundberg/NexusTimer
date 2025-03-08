@@ -1,7 +1,6 @@
 "use client";
 import { Dialog } from "@/components/ui/dialog";
 import { useCubes } from "@/hooks/useCubes";
-import { useTranslations } from "next-intl";
 import DialogDeleteCollection from "@/components/dialogs/dialog-delete-collection/dialog-delete-collection";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import DialogEditCollection from "@/components/dialogs/dialog-edit-collection/dialog-edit-collection";
@@ -13,10 +12,8 @@ import EmptyCubes from "@/components/cubes/EmptyCubes";
 export default function Page() {
   const { handleResetError, error, handleChangeError } = useErrorDialog();
   const { isOpen, type, closeDialog } = useDialogCubesOptions();
-  const { filterCubes, handleFavoriteClick, handleRedirectToTimer } =
-    useCubes();
+  const { filterCubes, handleFavoriteClick, handleRedirectToTimer } = useCubes();
 
-  const t = useTranslations("Index");
   return (
     <>
       <div className="overflow-y-auto pb-4">
