@@ -10,42 +10,39 @@ export function useCubes() {
 
   const handleFavoriteClick = async (cubeId: string) => {
     try {
-      const editingCube = cubes?.find((i) => i.id === cubeId);
-
+      const editingCube = cubes?.find(cube => cube.id === cubeId);
       if (!editingCube) return;
 
-      await saveCube({
-        ...editingCube,
-        favorite: !editingCube.favorite,
-      });
+      const updatedCube = { ...editingCube, favorite: !editingCube.favorite };
+      await saveCube(updatedCube);
 
-      const loadCubes = await getAllCubes();
-      setCubes(loadCubes);
+      const updatedCubes = await getAllCubes();
+      setCubes(updatedCubes);
     } catch (error) {
-      console.log(error);
+      console.error("Error updating favorite cube:", error);
     }
   };
 
   const handleRedirectToTimer = (cubeId: string) => {
-    const clickedCube = cubes?.find((i) => i.id === cubeId);
-
-    // If the cube does not exist, do nothing
-    if (!clickedCube) {
-      return;
-    }
+    const clickedCube = cubes?.find(cube => cube.id === cubeId);
+    if (!clickedCube) return;
 
     setSelectedCube({ ...clickedCube });
     setNewScramble(clickedCube);
-    return router.push("/");
+    router.push("/");
   };
 
   useEffect(() => {
-    getAllCubes().then((res) => setFilterCubes(res));
+    const fetchCubes = async () => {
+      const allCubes = await getAllCubes();
+      setFilterCubes(allCubes);
+    };
+    fetchCubes();
   }, [cubes]);
 
   return {
     filterCubes,
     handleFavoriteClick,
-    handleRedirectToTimer,
+    handleRedirectToTimer
   };
 }
