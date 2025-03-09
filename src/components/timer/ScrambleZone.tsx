@@ -14,6 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
+import { Layer } from "@/enums/Layer";
 
 export function ScrambleZone() {
   const { selectedCube, scramble, displayHint, setHints, isSolving } =
@@ -71,7 +72,7 @@ export function ScrambleZone() {
                             genSolution(
                               selectedCube.category,
                               scramble,
-                              "yellow"
+                              Layer.YELLOW
                             ).then((res: CrossSolutions) => setHints(res));
                           }}
                         >

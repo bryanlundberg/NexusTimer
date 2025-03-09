@@ -1,20 +1,20 @@
 import { Categories } from "@/interfaces/Categories";
-import { Layers } from "@/interfaces/types/Layers";
 import cubeSolver from "cube-solver";
+import { Layer } from "@/enums/Layer";
 
 /**
  * Generates cross solutions based on the provided event, scramble, and layer.
  *
  * @param {Categories} event - The event category.
  * @param {string | null} scramble - The scramble string or null if not provided.
- * @param {Layers} layer - The layer color (e.g., "yellow").
+ * @param {Layer} layer - The layer color (e.g., "yellow").
  * @returns {Promise<CrossSolutions>} - Promise resolving to an object containing different cross solutions.
  */
 
 export default function genSolution(
   event: Categories,
   scramble: string | null,
-  layer: Layers
+  layer: Layer
 ): Promise<CrossSolutions> {
   return new Promise((resolve) => {
     const solution: CrossSolutions = {
