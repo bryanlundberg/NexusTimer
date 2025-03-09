@@ -24,15 +24,13 @@ export function createShareMessage({
 }: createShareMessage): string {
   if (!solves || solves.length === 0) return "";
 
-  let dataSet: Solve[];
-  if (type === SolveTab.ALL) {
-    dataSet = [...solves];
-  } else {
-    const solveCount = parseInt(type, 10);
-    dataSet = solves.slice(0, solveCount);
-  }
-
+  const dataSet: Solve[] = [...solves];
   dataSet.sort((a, b) => b.endTime - a.endTime);
+
+  if (type !== SolveTab.ALL) {
+    const solveCount = Number(type);
+    dataSet.splice(solveCount);
+  }
 
   const average = getMean([...dataSet]);
   const worstTime = getWorstTime([...dataSet]);
