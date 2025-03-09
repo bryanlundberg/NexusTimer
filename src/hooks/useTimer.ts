@@ -4,6 +4,7 @@ import genId from "@/lib/genId";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect, useRef, useState } from "react";
+import { TimerMode } from "@/enums/TimerMode";
 
 export default function useTimer() {
   const {
@@ -40,7 +41,7 @@ export default function useTimer() {
   const relasedKey = useRef<boolean>(true);
 
   useEffect(() => {
-    if (timerMode === "stackmat") return;
+    if (timerMode === TimerMode.STACKMAT) return;
     const startTimer = () => {
       setIsSolving(true);
       setTimerStatus("SOLVING");

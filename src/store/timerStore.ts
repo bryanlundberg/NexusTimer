@@ -7,6 +7,7 @@ import { cubeCollection } from "@/lib/const/cubeCollection";
 import { defaultTimerStatistics } from "@/lib/const/defaultTimerStatistics";
 import genScramble from "@/lib/timer/genScramble";
 import { create } from "zustand";
+import { TimerMode } from "@/enums/TimerMode";
 
 type TimerStore = {
   cubes: Cube[] | null;
@@ -21,7 +22,7 @@ type TimerStore = {
   zoomInScramble: boolean;
   hint: CrossSolutions | null;
   timerStatistics: DisplayTimerStatistics;
-  timerMode: "normal" | "stackmat";
+  timerMode: TimerMode.NORMAL | TimerMode.STACKMAT;
   setNewScramble: (cube: Cube | null) => void;
   setCubes: (cubesDB: Cube[]) => void;
   setSelectedCube: (cube: Cube | null) => void;
@@ -34,10 +35,10 @@ type TimerStore = {
   setHints: (solutions: CrossSolutions) => void;
   setCustomScramble: (scramble: string) => void;
   setTimerStatistics: () => void;
-  setTimerMode: (mode: "normal" | "stackmat") => void;
+  setTimerMode: (mode: TimerMode.NORMAL | TimerMode.STACKMAT) => void;
 };
 
-export const useTimerStore = create<TimerStore>((set: any) => ({
+export const useTimerStore = create<TimerStore>((set) => ({
   selectedCube: null,
   scramble: null,
   cubes: null,
@@ -54,7 +55,7 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
     session: defaultTimerStatistics,
     cubeSession: defaultTimerStatistics,
   },
-  timerMode: "normal",
+  timerMode: TimerMode.NORMAL,
   setNewScramble: (cube: Cube | null) => {
     set({ scramble: cube ? genScramble(cube.category) : null });
   },
@@ -118,7 +119,7 @@ export const useTimerStore = create<TimerStore>((set: any) => ({
       },
     });
   },
-  setTimerMode: (mode: "normal" | "stackmat") => {
+  setTimerMode: (mode: TimerMode.NORMAL | TimerMode.STACKMAT) => {
     set({ timerMode: mode });
   },
 }));

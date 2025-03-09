@@ -12,6 +12,7 @@ import {
 import { useTimerStore } from "@/store/timerStore";
 import { MixIcon } from "@radix-ui/react-icons";
 import { useTranslations } from "next-intl";
+import { TimerMode } from "@/enums/TimerMode";
 
 export default function ButtonSelectMode() {
   const { timerMode, setTimerMode } = useTimerStore();
@@ -31,14 +32,14 @@ export default function ButtonSelectMode() {
             value={timerMode}
             onValueChange={(e: any) => setTimerMode(e)}
           >
-            <DropdownMenuRadioItem value="normal">Normal</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="stackmat">
+            <DropdownMenuRadioItem value={TimerMode.NORMAL}>Normal</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value={TimerMode.STACKMAT}>
               Stackmat
             </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="virtual" disabled>
+            <DropdownMenuRadioItem value={TimerMode.VIRTUAL} disabled>
               Virtual
             </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value="smart-cube" disabled>
+            <DropdownMenuRadioItem value={TimerMode.SMART_CUBE} disabled>
               Smart cube
             </DropdownMenuRadioItem>
           </DropdownMenuRadioGroup>

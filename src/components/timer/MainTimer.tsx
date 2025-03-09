@@ -3,6 +3,7 @@ import ManualMode from "./ManualMode";
 import Timer from "./Timer";
 import { useTimerStore } from "@/store/timerStore";
 import Stackmat from "../stackmat";
+import { TimerMode } from "@/enums/TimerMode";
 
 export function MainTimer() {
   const { timerMode } = useTimerStore();
@@ -11,9 +12,9 @@ export function MainTimer() {
 
   return (
     <>
-      {timerMode === "normal" && <>{manualMode ? <ManualMode /> : <Timer />}</>}
+      {timerMode === TimerMode.NORMAL && <>{manualMode ? <ManualMode /> : <Timer />}</>}
 
-      {timerMode === "stackmat" && (
+      {timerMode === TimerMode.STACKMAT && (
         <Timer>
           <Stackmat />
         </Timer>
