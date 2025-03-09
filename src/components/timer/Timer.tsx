@@ -8,6 +8,7 @@ import MenuSolveOptions from "../menu-solve-options/menu-solve-options";
 import DisplayContainer from "./display/display-container";
 import DisplayTime from "./display/display-time";
 import { ReactNode } from "react";
+import { TimerStatus } from "@/enums/TimerStatus";
 
 export default function Timer({ children }: { children?: ReactNode }) {
   const { settings } = useSettingsModalStore();
@@ -46,7 +47,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
       />
       {lastSolve &&
         settings.features.quickActionButtons.status &&
-        timerStatus === "IDLE" && (
+        timerStatus === TimerStatus.IDLE && (
           <MenuSolveOptions
             solve={lastSolve}
             onDeleteSolve={() => setLastSolve(null)}

@@ -3,6 +3,7 @@ import { useTimerStore } from "@/store/timerStore";
 import { ScrambleZone } from "./ScrambleZone";
 import { useTranslations } from "next-intl";
 import Navigation from "../navigation/navigation";
+import { TimerStatus } from "@/enums/TimerStatus";
 
 export default function HeaderTimer() {
   const { isSolving, timerStatus } = useTimerStore();
@@ -10,7 +11,7 @@ export default function HeaderTimer() {
   const { lastSolve, timerStatistics } = useTimerStore();
   const t = useTranslations("Index.HomePage");
 
-  if (isSolving || timerStatus !== "IDLE") return null;
+  if (isSolving || timerStatus !== TimerStatus.IDLE) return null;
 
   return (
     <>

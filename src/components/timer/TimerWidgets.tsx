@@ -4,6 +4,7 @@ import ScramblePanel from "./ScrambleImagePanel";
 import { useTimerStore } from "@/store/timerStore";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTranslations } from "next-intl";
+import { TimerStatus } from "@/enums/TimerStatus";
 
 export default function TimerWidgets() {
   const { isSolving, timerStatus, timerStatistics, lastSolve } =
@@ -38,7 +39,7 @@ export default function TimerWidgets() {
           )}
         <div
           className={`items-center justify-between w-full h-20 text-xs sm:h-20 md:h-24 lg:h-32 md:text-sm ${
-            isSolving || timerStatus !== "IDLE" ? "hidden" : "flex"
+            isSolving || timerStatus !== TimerStatus.IDLE ? "hidden" : "flex"
           }`}
         >
           <OverviewPanel />

@@ -5,6 +5,7 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useEffect, useRef, useState } from "react";
 import { TimerMode } from "@/enums/TimerMode";
+import { TimerStatus } from "@/enums/TimerStatus";
 
 export default function useTimer() {
   const {
@@ -44,7 +45,7 @@ export default function useTimer() {
     if (timerMode === TimerMode.STACKMAT) return;
     const startTimer = () => {
       setIsSolving(true);
-      setTimerStatus("SOLVING");
+      setTimerStatus(TimerStatus.SOLVING);
       startSolveTime.current = Date.now() - 1;
       solveTimeId.current = setInterval(() => {
         if (startSolveTime.current) {
@@ -57,7 +58,7 @@ export default function useTimer() {
 
     const startInspection = () => {
       startInspectionTime.current = Date.now() - 1;
-      setTimerStatus("INSPECTING");
+      setTimerStatus(TimerStatus.INSPECTING);
       let reproduced8 = false;
       let reproduced12 = false;
       inspectionId.current = setInterval(() => {
@@ -84,7 +85,7 @@ export default function useTimer() {
 
           setInspectionTime(timeRemaining);
           if (difference <= 0) {
-            setTimerStatus("INSPECTING");
+            setTimerStatus(TimerStatus.INSPECTING);
             setSolvingTime(0);
             resetTimer();
             const audio = new Audio("./sounds/en/reset.wav");
@@ -104,7 +105,7 @@ export default function useTimer() {
       holdingTimeId.current = null;
       solveTimeId.current = null;
       inspectionId.current = null;
-      setTimerStatus("IDLE");
+      setTimerStatus(TimerStatus.IDLE);
     };
 
     const startHold = () => {
@@ -116,9 +117,9 @@ export default function useTimer() {
             const difference = now - startHoldingTime.current;
             setHoldingTime(difference);
             if (difference >= holdTimeRequired) {
-              setTimerStatus("READY");
+              setTimerStatus(TimerStatus.READY);
             } else {
-              setTimerStatus("HOLDING");
+              setTimerStatus(TimerStatus.HOLDING);
             }
           }
         }, 10);
@@ -210,27 +211,27 @@ export default function useTimer() {
       if (typeof holdingTime === "number" && holdingTime <= holdTimeRequired) {
         removeHolding();
         inspectionId.current
-          ? setTimerStatus("SOLVING")
-          : setTimerStatus("IDLE");
+          ? setTimerStatus(TimerStatus.SOLVING)
+          : setTimerStatus(TimerStatus.IDLE);
         return;
       }
       if (!inspectionId.current && inspectionRequired) {
         startInspection();
         removeHolding();
-        setTimerStatus("SOLVING");
+        setTimerStatus(TimerStatus.SOLVING);
         return;
       }
       if (inspectionId.current && inspectionRequired) {
         removeInspection();
         removeHolding();
-        setTimerStatus("READY");
+        setTimerStatus(TimerStatus.READY);
         startTimer();
         return;
       }
       if (!inspectionRequired) {
         removeInspection();
         removeHolding();
-        setTimerStatus("READY");
+        setTimerStatus(TimerStatus.READY);
         startTimer();
         return;
       }

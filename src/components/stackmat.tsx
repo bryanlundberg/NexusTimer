@@ -8,7 +8,7 @@ import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
 import { Packet } from "stackmat";
 import { toast } from "sonner";
-import { Button } from "./ui/button";
+import { TimerStatus } from "@/enums/TimerStatus";
 
 // more information: https://www.npmjs.com/package/stackmat
 declare global {
@@ -45,7 +45,7 @@ export default function Stackmat() {
         }
 
         setIsSolving(true);
-        setTimerStatus("SOLVING");
+        setTimerStatus(TimerStatus.SOLVING);
         startTime = Date.now();
 
         if (!solvingIdRef.current) {
@@ -61,7 +61,7 @@ export default function Stackmat() {
 
         setSolvingTime(packet.timeInMilliseconds);
         setIsSolving(false);
-        setTimerStatus("IDLE");
+        setTimerStatus(TimerStatus.IDLE);
         const newSolve: Solve = {
           id: genId(),
           startTime: Date.now() - packet.timeInMilliseconds,
@@ -117,7 +117,7 @@ export default function Stackmat() {
         The following events have been thoroughly tested using the QIYI Timer V2.
         They ensure controlled behavior for handling timer events:
 
-        - Issue reported: Some users are unable to stop the timer. 
+        - Issue reported: Some users are unable to stop the timer.
       */
 
       stackmat.on("started", onStarted);
@@ -133,7 +133,7 @@ export default function Stackmat() {
         to handle potential edge cases where events might be missing for certain users.
 
         Event:
-        - "stopped": This event is expected to trigger when the timer stops. 
+        - "stopped": This event is expected to trigger when the timer stops.
       */
 
       stackmat.on("stopped", onReset);
