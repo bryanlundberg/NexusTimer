@@ -1,12 +1,14 @@
-interface TimerContainer {
+import React from "react";
+import { twMerge } from "tailwind-merge";
+
+interface TimerContainer extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
 }
-export default function TimerContainer({ children }: TimerContainer) {
+
+export default function TimerContainer({ children, className, ...rest }: TimerContainer) {
   return (
-    <>
-      <div className="flex flex-col justify-between px-2 pt-2 sm:px-3 grow">
-        {children}
-      </div>
-    </>
+    <div {...rest} className={twMerge("flex flex-col justify-between px-2 pt-2 sm:px-3 grow", className)}>
+      {children}
+    </div>
   );
 }
