@@ -20,56 +20,55 @@ interface createShareMessage {
 export function createShareMessage({
   type,
   solves,
-  translations: { statsTitle, avg, listOfTimes, date },
-}: createShareMessage) {
-  if (!solves) return "";
+  translations: { statsTitle, avg, listOfTimes, date }
+}: createShareMessage): string {
+  if (!solves || solves.length === 0) return "";
 
-  let dataSet: Solve[] = [];
+  let dataSet: Solve[];
   if (type === SolveTab.ALL) {
     dataSet = [...solves];
   } else {
-    dataSet = solves.slice(0, parseInt(type));
+    const solveCount = parseInt(type, 10);
+    dataSet = solves.slice(0, solveCount);
   }
 
-  const average = getMean(dataSet);
-  const worstTime = getWorstTime(dataSet);
-  const bestTime = getBestTime({ solves: dataSet });
-  const deviation = getDeviation(dataSet);
+  dataSet.sort((a, b) => b.endTime - a.endTime);
+
+  const average = getMean([...dataSet]);
+  const worstTime = getWorstTime([...dataSet]);
+  const bestTime = getBestTime({ solves: [...dataSet] });
+  const deviation = getDeviation([...dataSet]);
 
   // Header
-  let content = `${statsTitle}: ${date} `;
+  let content = `${statsTitle}: ${date}`;
 
-  // summary
+  // Summary
   content += `\n${avg} ${dataSet.length}: ${formatTime(
     average
   )} (σ = ${formatTime(deviation)})`;
 
   // Space row
-  content += `\n \n`;
+  content += `\n\n`;
 
-  // subtitle
+  // Subtitle
   content += listOfTimes;
 
   // Space row
-  content += `\n \n`;
+  content += `\n\n`;
 
-  // formatSolves
+  // Format solves
+  const formattedDataSet = dataSet
+    .map((solve, index) => {
+      const highlight = solve.time === worstTime || solve.time === bestTime;
+      const formattedTime = `${highlight ? "(" : ""}${formatTime(
+        solve.time
+      )}${solve.plus2 ? "+" : ""}${highlight ? ")" : ""}`;
+      return `${index + 1}. ${formattedTime} ${solve.scramble}`;
+    })
+    .join("\n");
 
-  let formattedDataSet = "";
+  // Attach dataset
+  content += formattedDataSet;
 
-  dataSet.sort((a, b) => a.endTime - b.endTime);
-
-  for (let i = 0; i < dataSet.length; i++) {
-    const parenthesis =
-      worstTime === dataSet[i].time || bestTime === dataSet[i].time;
-
-    formattedDataSet += `${i + 1}. ${parenthesis ? "(" : ""}${formatTime(
-      dataSet[i].time
-    )}${dataSet[i].plus2 ? "+" : ""}${parenthesis ? ")" : ""} ${
-      dataSet[i].scramble
-    }\n`;
-  }
-
-  // attach dataset
-  return (content += formattedDataSet);
+  return content;
 }
