@@ -1,7 +1,7 @@
 import { Cube } from "@/interfaces/Cube";
 import { Solve } from "@/interfaces/Solve";
-import { SolveTab } from "@/interfaces/types/SolveTabs";
 import { saveCube } from "@/db/dbOperations";
+import { SolveTab } from "@/enums/SolveTab";
 
 /**
  * Moves a solve from session solves to all solves within a given cube and updates the cube on the list and vice versa.
@@ -21,7 +21,7 @@ export default async function moveSolve({
 }): Promise<Cube> {
   const { session, all } = selectedCube.solves;
 
-  if (type === "Session") {
+  if (type === SolveTab.SESSION) {
     // Check if the solve is in the session solves
     const solveIndexInSession = session.findIndex(
       (sessionSolve) => sessionSolve.id === solve.id
@@ -42,7 +42,7 @@ export default async function moveSolve({
       // Handle the case where the solve is not found in session solves
       console.warn("Solve not found in session solves storage.");
     }
-  } else if (type === "All") {
+  } else if (type === SolveTab.ALL) {
     // Check if the solve is in the all solves
     const solveIndexInAll = all.findIndex(
       (allSolve) => allSolve.id === solve.id

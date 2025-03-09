@@ -4,6 +4,7 @@ import getWorstTime from "./getWorstTime";
 import getBestTime from "./getBestTime";
 import getDeviation from "./getDeviation";
 import formatTime from "./formatTime";
+import { SolveTab } from "@/enums/SolveTab";
 
 interface createShareMessage {
   type: "All" | "3" | "5" | "12" | "50" | "100";
@@ -24,7 +25,7 @@ export function createShareMessage({
   if (!solves) return "";
 
   let dataSet: Solve[] = [];
-  if (type === "All") {
+  if (type === SolveTab.ALL) {
     dataSet = [...solves];
   } else {
     dataSet = solves.slice(0, parseInt(type));

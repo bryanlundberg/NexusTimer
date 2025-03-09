@@ -2,6 +2,7 @@ import { Solve } from "@/interfaces/Solve";
 import formatTime from "./formatTime";
 import { sort } from "fast-sort";
 import { Cube } from "@/interfaces/Cube";
+import { SolveTab } from "@/enums/SolveTab";
 
 /**
  * Searches for solves in a specific cube based on the provided query and tab.
@@ -20,18 +21,18 @@ export default function querySolves({
 }: {
   query: string;
   selectedCube: Cube | null;
-  currentTab: "Session" | "All";
+  currentTab: SolveTab;
   sortByTime?: boolean;
 }): Solve[] | null {
   if (!selectedCube) return null;
 
   let solves = null;
 
-  if (currentTab === "Session") {
+  if (currentTab === SolveTab.SESSION) {
     solves = selectedCube.solves.session.filter((u) =>
       formatTime(u.time).includes(query)
     );
-  } else if (currentTab === "All") {
+  } else if (currentTab === SolveTab.ALL) {
     solves = selectedCube.solves.all.filter((u) =>
       formatTime(u.time).includes(query)
     );
