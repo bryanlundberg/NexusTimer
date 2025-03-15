@@ -77,7 +77,7 @@ export default function DisplayTime({
                   : null}
 
                 {timerMode === TimerMode.STACKMAT &&
-                  "Start your stackmat to begging the clock"}
+                  t("start-stackmat")}
               </div>
             ) : null}
           </div>

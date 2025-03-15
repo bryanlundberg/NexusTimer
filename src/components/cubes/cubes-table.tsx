@@ -159,7 +159,7 @@ export default function CubesTable({
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Edit `{cube.name}`</p>
+                            <p>{t("CubesPage.edit")} `{cube.name}`</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
@@ -186,7 +186,7 @@ export default function CubesTable({
                             </Button>
                           </TooltipTrigger>
                           <TooltipContent>
-                            <p>Delete `{cube.name}`</p>
+                            <p>{t("CubesPage.delete")} `{cube.name}`</p>
                           </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>

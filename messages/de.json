@@ -21,7 +21,8 @@
       "edit-scramble": "Scramble bearbeiten",
       "hints": "Hinweise",
       "mode": "Modus",
-      "new-scramble": "Neues Gerangel"
+      "new-scramble": "Neues Gerangel",
+      "start-stackmat": "Starten Sie Ihren Stackmat, um die Uhr zu bitten"
     },
     "SolvesPage": {
       "title": "Lösungen",
@@ -84,7 +85,9 @@
       "using": "Verwendet",
       "idle": "Leerlauf",
       "name": "Name",
-      "new-collection": "Neue Kollektion"
+      "new-collection": "Neue Kollektion",
+      "delete": "Löschen",
+      "edit": "Bearbeiten"
     },
     "Cubes-modal": {
       "category": "Kategorie",

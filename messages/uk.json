@@ -21,7 +21,8 @@
       "edit-scramble": "Редагувати сутичку",
       "hints": "Підказки",
       "mode": "Режим",
-      "new-scramble": "Нова сутичка"
+      "new-scramble": "Нова сутичка",
+      "start-stackmat": "Почніть стакмат, щоб просити годинник"
     },
     "SolvesPage": {
       "title": "Розв'язки",
@@ -84,7 +85,9 @@
       "using": "Використання",
       "idle": "Неактивний",
       "name": "Ім'я",
-      "new-collection": "Нова колекція"
+      "new-collection": "Нова колекція",
+      "delete": "Видаляти",
+      "edit": "Редагувати"
     },
     "Cubes-modal": {
       "category": "Категорія",

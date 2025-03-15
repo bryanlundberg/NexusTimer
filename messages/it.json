@@ -21,7 +21,8 @@
       "edit-scramble": "Modifica codifica",
       "hints": "Suggerimenti",
       "mode": "Modalità",
-      "new-scramble": "Nuova corsa"
+      "new-scramble": "Nuova corsa",
+      "start-stackmat": "Inizia lo stackmat per chiedere l'orologio"
     },
     "SolvesPage": {
       "title": "Risoluzioni",
@@ -84,7 +85,9 @@
       "using": "Utilizzando",
       "idle": "Inattivo",
       "name": "Nome",
-      "new-collection": "Nuova collezione"
+      "new-collection": "Nuova collezione",
+      "delete": "Eliminare",
+      "edit": "Modificare"
     },
     "Cubes-modal": {
       "category": "Categoria",

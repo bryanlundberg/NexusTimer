@@ -21,7 +21,8 @@
       "edit-scramble": "हाथापाई संपादित करें",
       "hints": "संकेत",
       "mode": "तरीका",
-      "new-scramble": "नई हाथापाई"
+      "new-scramble": "नई हाथापाई",
+      "start-stackmat": "घड़ी की भीख माँगने के लिए अपना स्टैकमेट शुरू करें"
     },
     "SolvesPage": {
       "title": "समाधान",
@@ -84,7 +85,9 @@
       "using": "उपयोग करना",
       "idle": "आलसी",
       "name": "नाम",
-      "new-collection": "नया संग्रह"
+      "new-collection": "नया संग्रह",
+      "delete": "मिटाना",
+      "edit": "संपादन करना"
     },
     "Cubes-modal": {
       "category": "वर्ग",

@@ -21,7 +21,8 @@
       "edit-scramble": "스크램블 수정",
       "hints": "힌트",
       "mode": "방법",
-      "new-scramble": "새로운 스크램블"
+      "new-scramble": "새로운 스크램블",
+      "start-stackmat": "시계를 구걸하도록 stackmat를 시작하십시오"
     },
     "SolvesPage": {
       "title": "해결",
@@ -84,7 +85,9 @@
       "using": "사용 중",
       "idle": "유휴",
       "name": "이름",
-      "new-collection": "새로운 컬렉션"
+      "new-collection": "새로운 컬렉션",
+      "delete": "삭제",
+      "edit": "편집하다"
     },
     "Cubes-modal": {
       "category": "범주",

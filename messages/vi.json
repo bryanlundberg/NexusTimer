@@ -21,7 +21,8 @@
       "edit-scramble": "Chỉnh sửa tranh giành",
       "hints": "gợi ý",
       "mode": "Cách thức",
-      "new-scramble": "Cuộc tranh giành mới"
+      "new-scramble": "Cuộc tranh giành mới",
+      "start-stackmat": "Bắt đầu Stackmat của bạn để cầu xin đồng hồ"
     },
     "SolvesPage": {
       "title": "Giải quyết",
@@ -84,7 +85,9 @@
       "using": "Đang sử dụng",
       "idle": "Trống",
       "name": "Tên",
-      "new-collection": "Bộ sưu tập mới"
+      "new-collection": "Bộ sưu tập mới",
+      "delete": "Xóa bỏ",
+      "edit": "Biên tập"
     },
     "Cubes-modal": {
       "category": "Loại",

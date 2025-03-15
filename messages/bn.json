@@ -21,7 +21,8 @@
       "edit-scramble": "স্ক্র্যাম্বল সম্পাদনা করুন",
       "hints": "ইঙ্গিত",
       "mode": "মোড",
-      "new-scramble": "নতুন হাতাহাতি"
+      "new-scramble": "নতুন হাতাহাতি",
+      "start-stackmat": "ঘড়িটি ভিক্ষা করতে আপনার স্ট্যাকমেট শুরু করুন"
     },
     "SolvesPage": {
       "title": "সমাধান",
@@ -84,7 +85,9 @@
       "using": "ব্যবহার করা হচ্ছে",
       "idle": "নিষ্ক্রিয়",
       "name": "নাম",
-      "new-collection": "নতুন সংগ্রহ"
+      "new-collection": "নতুন সংগ্রহ",
+      "delete": "মুছুন",
+      "edit": "সম্পাদনা"
     },
     "Cubes-modal": {
       "category": "শ্রেণী",

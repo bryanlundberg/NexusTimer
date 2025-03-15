@@ -21,7 +21,8 @@
       "edit-scramble": "Scramble bewerken",
       "hints": "Tips",
       "mode": "Modus",
-      "new-scramble": "Nieuwe strijd"
+      "new-scramble": "Nieuwe strijd",
+      "start-stackmat": "Start je Stackmat om de klok te bedelen"
     },
     "SolvesPage": {
       "title": "Oplossingen",
@@ -84,7 +85,9 @@
       "using": "Gebruikend",
       "idle": "Inactief",
       "name": "Naam",
-      "new-collection": "Nieuwe collectie"
+      "new-collection": "Nieuwe collectie",
+      "delete": "Verwijderen",
+      "edit": "Bewerking"
     },
     "Cubes-modal": {
       "category": "Categorie",

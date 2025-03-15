@@ -24,7 +24,8 @@
       "mode": "Mode",
       "new-scramble": "New scramble",
       "edit-scramble": "Edit scramble",
-      "hints": "Hints"
+      "hints": "Hints",
+      "start-stackmat": "Start your stackmat to begging the clock"
     },
     "SolvesPage": {
       "title": "Solves",
@@ -87,7 +88,9 @@
       "using": "Using",
       "idle": "Idle",
       "new-collection": "New collection",
-      "name": "Name"
+      "name": "Name",
+      "edit": "Edit",
+      "delete": "Delete"
     },
     "Cubes-modal": {
       "delete-collection": "Delete collection",

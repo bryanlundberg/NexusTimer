@@ -21,7 +21,8 @@
       "edit-scramble": "Karıştırmayı düzenle",
       "hints": "İpuçları",
       "mode": "Mod",
-      "new-scramble": "Yeni mücadele"
+      "new-scramble": "Yeni mücadele",
+      "start-stackmat": "Saati dilenmek için yığın arkadaşınızı başlatın"
     },
     "SolvesPage": {
       "title": "Çözümler",
@@ -84,7 +85,9 @@
       "using": "Kullanma",
       "idle": "Boşta",
       "name": "İsim",
-      "new-collection": "Yeni koleksiyon"
+      "new-collection": "Yeni koleksiyon",
+      "delete": "Silmek",
+      "edit": "Düzenlemek"
     },
     "Cubes-modal": {
       "category": "Kategori",

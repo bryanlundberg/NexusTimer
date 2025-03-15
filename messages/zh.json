@@ -21,7 +21,8 @@
       "edit-scramble": "编辑打乱",
       "hints": "提示",
       "mode": "模式",
-      "new-scramble": "新的争夺"
+      "new-scramble": "新的争夺",
+      "start-stackmat": "启动您的stackmat乞讨时钟"
     },
     "SolvesPage": {
       "title": "解决方案",
@@ -84,7 +85,9 @@
       "using": "使用中",
       "idle": "闲置",
       "name": "姓名",
-      "new-collection": "新系列"
+      "new-collection": "新系列",
+      "delete": "删除",
+      "edit": "编辑"
     },
     "Cubes-modal": {
       "category": "类别",

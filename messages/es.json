@@ -21,7 +21,8 @@
       "edit-scramble": "Editar codificación",
       "hints": "Consejos",
       "mode": "Modo",
-      "new-scramble": "Nueva lucha"
+      "new-scramble": "Nueva lucha",
+      "start-stackmat": "Comience su Stackmat para mendigar el reloj"
     },
     "SolvesPage": {
       "title": "Soluciones",
@@ -84,7 +85,9 @@
       "using": "Usando",
       "idle": "Inactivo",
       "name": "Nombre",
-      "new-collection": "Nueva colección"
+      "new-collection": "Nueva colección",
+      "delete": "Borrar",
+      "edit": "Editar"
     },
     "Cubes-modal": {
       "category": "Categoría",

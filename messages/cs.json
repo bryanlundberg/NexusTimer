@@ -21,7 +21,8 @@
       "edit-scramble": "Upravit scramble",
       "hints": "Rady",
       "mode": "Režim",
-      "new-scramble": "Nový tahák"
+      "new-scramble": "Nový tahák",
+      "start-stackmat": "Začněte stackmat pro žebrání hodin"
     },
     "SolvesPage": {
       "title": "Řešení",
@@ -84,7 +85,9 @@
       "using": "Používá se",
       "idle": "Nečinný",
       "name": "Jméno",
-      "new-collection": "Nová kolekce"
+      "new-collection": "Nová kolekce",
+      "delete": "Vymazat",
+      "edit": "Upravit"
     },
     "Cubes-modal": {
       "category": "Kategorie",

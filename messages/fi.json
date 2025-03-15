@@ -21,7 +21,8 @@
       "edit-scramble": "Muokkaa sekoitusta",
       "hints": "Vihjeitä",
       "mode": "tila",
-      "new-scramble": "Uusi sekoitus"
+      "new-scramble": "Uusi sekoitus",
+      "start-stackmat": "Käynnistä StackMat kerjäämään kelloa"
     },
     "SolvesPage": {
       "title": "Ratkaisut",
@@ -84,7 +85,9 @@
       "using": "Käytössä",
       "idle": "Käyttämätön",
       "name": "Nimi",
-      "new-collection": "Uusi kokoelma"
+      "new-collection": "Uusi kokoelma",
+      "delete": "Poistaa",
+      "edit": "Muokata"
     },
     "Cubes-modal": {
       "category": "Luokka",
