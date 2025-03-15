@@ -21,7 +21,8 @@
       "edit-scramble": "Modifier le brouillage",
       "hints": "Conseils",
       "mode": "Mode",
-      "new-scramble": "Nouvelle ruée"
+      "new-scramble": "Nouvelle ruée",
+      "start-stackmat": "Démarrez votre Stackmat pour mendier l'horloge"
     },
     "SolvesPage": {
       "title": "Résolutions",
@@ -84,7 +85,9 @@
       "using": "En cours d'utilisation",
       "idle": "Inactif",
       "name": "Nom",
-      "new-collection": "Nouvelle collection"
+      "new-collection": "Nouvelle collection",
+      "delete": "Supprimer",
+      "edit": "Modifier"
     },
     "Cubes-modal": {
       "category": "Catégorie",

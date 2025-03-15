@@ -21,7 +21,8 @@
       "edit-scramble": "Editează scramble",
       "hints": "Sugestii",
       "mode": "Modul",
-      "new-scramble": "Noua luptă"
+      "new-scramble": "Noua luptă",
+      "start-stackmat": "Începeți Stackmat -ul pentru a implora ceasul"
     },
     "SolvesPage": {
       "title": "Soluții",
@@ -84,7 +85,9 @@
       "using": "Utilizând",
       "idle": "Inactiv",
       "name": "Nume",
-      "new-collection": "Noua colectie"
+      "new-collection": "Noua colectie",
+      "delete": "Şterge",
+      "edit": "Edita"
     },
     "Cubes-modal": {
       "category": "Categorie",

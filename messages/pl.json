@@ -21,7 +21,8 @@
       "edit-scramble": "Edytuj wyścig",
       "hints": "Poradnik",
       "mode": "Tryb",
-      "new-scramble": "Nowe starcie"
+      "new-scramble": "Nowe starcie",
+      "start-stackmat": "Rozpocznij swój StackMat, aby błagał zegar"
     },
     "SolvesPage": {
       "title": "Rozwiązania",
@@ -84,7 +85,9 @@
       "using": "Używając",
       "idle": "Bezczynny",
       "name": "Nazwa",
-      "new-collection": "Nowa kolekcja"
+      "new-collection": "Nowa kolekcja",
+      "delete": "Usuwać",
+      "edit": "Redagować"
     },
     "Cubes-modal": {
       "category": "Kategoria",

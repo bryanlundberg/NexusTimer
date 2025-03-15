@@ -21,7 +21,8 @@
       "edit-scramble": "A kód szerkesztése",
       "hints": "Tippek",
       "mode": "Mód",
-      "new-scramble": "Új tülekedés"
+      "new-scramble": "Új tülekedés",
+      "start-stackmat": "Indítsa el a StackMat -ot az órának könyörgésére"
     },
     "SolvesPage": {
       "title": "Megoldások",
@@ -84,7 +85,9 @@
       "using": "Használ",
       "idle": "Tétlen",
       "name": "Név",
-      "new-collection": "Új kollekció"
+      "new-collection": "Új kollekció",
+      "delete": "Töröl",
+      "edit": "Szerkeszt"
     },
     "Cubes-modal": {
       "category": "Kategória",

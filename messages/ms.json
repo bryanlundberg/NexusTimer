@@ -21,7 +21,8 @@
       "edit-scramble": "Edit perebutan",
       "hints": "Petunjuk",
       "mode": "Mod",
-      "new-scramble": "Perebutan baru"
+      "new-scramble": "Perebutan baru",
+      "start-stackmat": "Mulakan stackmat anda untuk memohon jam"
     },
     "SolvesPage": {
       "title": "Penyelesaian",
@@ -84,7 +85,9 @@
       "using": "Menggunakan",
       "idle": "Beberapa masa",
       "name": "Nama",
-      "new-collection": "Koleksi baru"
+      "new-collection": "Koleksi baru",
+      "delete": "Padam",
+      "edit": "Edit"
     },
     "Cubes-modal": {
       "category": "kategori",

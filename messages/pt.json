@@ -21,7 +21,8 @@
       "edit-scramble": "Editar embaralhamento",
       "hints": "Dicas",
       "mode": "Modo",
-      "new-scramble": "Nova corrida"
+      "new-scramble": "Nova corrida",
+      "start-stackmat": "Comece seu Stackmat para implorar o relógio"
     },
     "SolvesPage": {
       "title": "Soluções",
@@ -84,7 +85,9 @@
       "using": "Usando",
       "idle": "Inativo",
       "name": "Nome",
-      "new-collection": "Nova coleção"
+      "new-collection": "Nova coleção",
+      "delete": "Excluir",
+      "edit": "Editar"
     },
     "Cubes-modal": {
       "category": "Categoria",

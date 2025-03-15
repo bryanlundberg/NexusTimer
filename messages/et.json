@@ -21,7 +21,8 @@
       "edit-scramble": "Redigeeri rüselus",
       "hints": "Vihjed",
       "mode": "Režiim",
-      "new-scramble": "Uus rüselus"
+      "new-scramble": "Uus rüselus",
+      "start-stackmat": "Kella kerjamiseks alustage oma Stackmat"
     },
     "SolvesPage": {
       "title": "Lahendused",
@@ -84,7 +85,9 @@
       "using": "Kasutamine",
       "idle": "Tööta",
       "name": "Nimi",
-      "new-collection": "Uus kollektsioon"
+      "new-collection": "Uus kollektsioon",
+      "delete": "Kustutama",
+      "edit": "Redigeerima"
     },
     "Cubes-modal": {
       "category": "Kategooria",

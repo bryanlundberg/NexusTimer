@@ -21,7 +21,8 @@
       "edit-scramble": "スクランブル編集",
       "hints": "ヒント",
       "mode": "モード",
-      "new-scramble": "新たなスクランブル"
+      "new-scramble": "新たなスクランブル",
+      "start-stackmat": "Stackmatを開始して、時計を頼みます"
     },
     "SolvesPage": {
       "title": "解答",
@@ -84,7 +85,9 @@
       "using": "使用中",
       "idle": "アイドル",
       "name": "名前",
-      "new-collection": "新しいコレクション"
+      "new-collection": "新しいコレクション",
+      "delete": "消去",
+      "edit": "編集"
     },
     "Cubes-modal": {
       "category": "カテゴリ",

@@ -21,7 +21,8 @@
       "edit-scramble": "Upraviť kódovanie",
       "hints": "Tipy",
       "mode": "Režim",
-      "new-scramble": "Nový ťahák"
+      "new-scramble": "Nový ťahák",
+      "start-stackmat": "Začnite svoj balík, aby ste prosili hodiny"
     },
     "SolvesPage": {
       "title": "Riešenia",
@@ -84,7 +85,9 @@
       "using": "Používanie",
       "idle": "Neaktívne",
       "name": "Meno",
-      "new-collection": "Nová kolekcia"
+      "new-collection": "Nová kolekcia",
+      "delete": "Vymazať",
+      "edit": "Upraviť"
     },
     "Cubes-modal": {
       "category": "Kategória",

@@ -21,7 +21,8 @@
       "edit-scramble": "Redigera scramble",
       "hints": "Tips",
       "mode": "Läge",
-      "new-scramble": "Ny scramble"
+      "new-scramble": "Ny scramble",
+      "start-stackmat": "Börja din stackmat för att tigga klockan"
     },
     "SolvesPage": {
       "title": "Lösningar",
@@ -84,7 +85,9 @@
       "using": "Använder",
       "idle": "Inaktiv",
       "name": "Namn",
-      "new-collection": "Ny kollektion"
+      "new-collection": "Ny kollektion",
+      "delete": "Radera",
+      "edit": "Redigera"
     },
     "Cubes-modal": {
       "category": "Kategori",

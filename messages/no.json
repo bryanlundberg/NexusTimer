@@ -21,7 +21,8 @@
       "edit-scramble": "Rediger scramble",
       "hints": "Hint",
       "mode": "Modus",
-      "new-scramble": "Ny scramble"
+      "new-scramble": "Ny scramble",
+      "start-stackmat": "Start StackMat for å tigge klokken"
     },
     "SolvesPage": {
       "title": "Løsninger",
@@ -84,7 +85,9 @@
       "using": "Bruker",
       "idle": "Inaktiv",
       "name": "Navn",
-      "new-collection": "Ny kolleksjon"
+      "new-collection": "Ny kolleksjon",
+      "delete": "Slett",
+      "edit": "Redigere"
     },
     "Cubes-modal": {
       "category": "Kategori",

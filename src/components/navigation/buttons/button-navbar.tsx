@@ -123,12 +123,12 @@ export default function ButtonNavbar() {
     links: [
       {
         icon: <FileIcon />,
-        name: "Terms and conditions",
+        name: t("SettingsPage.tos"),
         url: "/settings/help/terms-and-conditions",
       },
       {
         icon: <FileIcon />,
-        name: "Policy privacy",
+        name: t("SettingsPage.privacy-policy"),
         url: "/settings/help/privacy-policy",
       },
     ],
