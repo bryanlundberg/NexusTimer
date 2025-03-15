@@ -1,13 +1,12 @@
 import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import DrawerCreateCollection from "@/components/drawners/drawner-create-collection/drawner-create-collection";
-import { useState } from "react";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
+import { useTimerStore } from "@/store/timerStore";
 
 export default function ButtonCreateCollection() {
-  const [isOpenDrawerNewCollection, setIsOpenDrawerNewCollection] =
-    useState(false);
+  const { isOpenDrawerNewCollection, setIsOpenDrawerNewCollection } = useTimerStore();
   const t = useTranslations("Index");
   return (
     <>

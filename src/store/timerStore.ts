@@ -23,6 +23,7 @@ type TimerStore = {
   hint: CrossSolutions | null;
   timerStatistics: DisplayTimerStatistics;
   timerMode: TimerMode.NORMAL | TimerMode.STACKMAT;
+  isOpenDrawerNewCollection: boolean;
   setNewScramble: (cube: Cube | null) => void;
   setCubes: (cubesDB: Cube[]) => void;
   setSelectedCube: (cube: Cube | null) => void;
@@ -36,6 +37,7 @@ type TimerStore = {
   setCustomScramble: (scramble: string) => void;
   setTimerStatistics: () => void;
   setTimerMode: (mode: TimerMode.NORMAL | TimerMode.STACKMAT) => void;
+  setIsOpenDrawerNewCollection: (status: boolean) => void;
 };
 
 export const useTimerStore = create<TimerStore>((set) => ({
@@ -56,6 +58,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
     cubeSession: defaultTimerStatistics,
   },
   timerMode: TimerMode.NORMAL,
+  isOpenDrawerNewCollection: false,
   setNewScramble: (cube: Cube | null) => {
     set({ scramble: cube ? genScramble(cube.category) : null });
   },
@@ -121,5 +124,8 @@ export const useTimerStore = create<TimerStore>((set) => ({
   },
   setTimerMode: (mode: TimerMode.NORMAL | TimerMode.STACKMAT) => {
     set({ timerMode: mode });
+  },
+  setIsOpenDrawerNewCollection: (status: boolean) => {
+    set({ isOpenDrawerNewCollection: status });
   },
 }));

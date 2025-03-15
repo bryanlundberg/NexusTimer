@@ -18,8 +18,14 @@ import { Cube } from "@/interfaces/Cube";
 
 export default function MainCubeSelector() {
   const t = useTranslations("Index");
-  const { cubes, setSelectedCube, setNewScramble, setLastSolve, selectedCube } =
-    useTimerStore();
+  const {
+    cubes,
+    setSelectedCube,
+    setNewScramble,
+    setLastSolve,
+    selectedCube,
+    setIsOpenDrawerNewCollection,
+  } = useTimerStore();
   const handleChangeValue = (e: any) => {
     const choseCube = cubes?.find((cube) => cube.id === e);
     if (!choseCube) return;
@@ -76,7 +82,10 @@ export default function MainCubeSelector() {
                 .map((cube) => {
                   return <SelectCubeItemWidthImage cube={cube} key={cube.id} />;
                 })}
-            <Link href={"/cubes"} className="">
+            <Link
+              href={"/cubes"}
+              onClick={() => setIsOpenDrawerNewCollection(true)}
+            >
               <Button variant={"outline"} className="w-full">
                 <div className="flex items-center justify-center gap-1">
                   <PlusIcon />
