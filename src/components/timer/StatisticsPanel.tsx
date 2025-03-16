@@ -7,91 +7,41 @@ export default function StatisticsPanel() {
   const { timerStatistics } = useTimerStore();
   const bgRecord = "bg-yellow-500";
 
+  const renderStatistic = (label: string, key: "ao5" | "ao12" | "ao50" | "ao100", testId: string) => (
+    <div className="flex justify-end w-full font-medium text-right">
+      <div
+        className={`w-fit px-[5px] rounded-md ${
+          timerStatistics.global[key] !== 0 &&
+          timerStatistics.global[key] === timerStatistics.session[key] &&
+          settings.alerts.bestAverage.status
+            ? bgRecord
+            : ""
+        }`}
+      >
+        {label}:{" "}
+        <span data-testid={testId}>
+          {timerStatistics.session[key] === 0
+            ? "--"
+            : formatTime(timerStatistics.session[key])}
+        </span>
+      </div>
+    </div>
+  );
+
   return (
     <>
       <div
         className="flex flex-col justify-center w-full h-full gap-1"
         id="touch"
       >
-        {settings.features.sessionStats.status ? (
+        {settings.features.sessionStats.status && (
           <>
-            <div className="flex justify-end w-full font-medium text-right">
-              <div
-                className={`w-fit px-[5px] rounded-md ${
-                  timerStatistics.global.ao5 !== 0 &&
-                  timerStatistics.global.ao5 === timerStatistics.session.ao5 &&
-                  settings.alerts.bestAverage.status
-                    ? bgRecord
-                    : ""
-                }`}
-              >
-                Ao5:{" "}
-                <span data-testid={"timer-session-ao5"}>
-                  {timerStatistics.session.ao5 === 0
-                    ? "--"
-                    : formatTime(timerStatistics.session.ao5)}
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-end w-full font-medium text-right">
-              <div
-                className={`w-fit px-[5px] rounded-md ${
-                  timerStatistics.global.ao12 !== 0 &&
-                  timerStatistics.global.ao12 ===
-                    timerStatistics.session.ao12 &&
-                  settings.alerts.bestAverage.status
-                    ? bgRecord
-                    : ""
-                }`}
-              >
-                Ao12:{" "}
-                <span data-testid={"timer-session-ao12"}>
-                  {timerStatistics.session.ao12 === 0
-                    ? "--"
-                    : formatTime(timerStatistics.session.ao12)}
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-end w-full font-medium text-right">
-              <div
-                className={`w-fit px-[5px] rounded-md ${
-                  timerStatistics.global.ao50 !== 0 &&
-                  timerStatistics.global.ao50 ===
-                    timerStatistics.session.ao50 &&
-                  settings.alerts.bestAverage.status
-                    ? bgRecord
-                    : ""
-                }`}
-              >
-                Ao50:{" "}
-                <span data-testid={"timer-session-ao50"}>
-                  {timerStatistics.session.ao50 === 0
-                    ? "--"
-                    : formatTime(timerStatistics.session.ao50)}
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-end w-full font-medium text-right">
-              <div
-                className={`w-fit px-[5px] rounded-md ${
-                  timerStatistics.global.ao100 !== 0 &&
-                  timerStatistics.global.ao100 ===
-                    timerStatistics.session.ao100 &&
-                  settings.alerts.bestAverage.status
-                    ? bgRecord
-                    : ""
-                }`}
-              >
-                Ao100:{" "}
-                <span data-testid={"timer-session-ao100"}>
-                  {timerStatistics.session.ao100 === 0
-                    ? "--"
-                    : formatTime(timerStatistics.session.ao100)}
-                </span>
-              </div>
-            </div>
+            {renderStatistic("Ao5", "ao5", "timer-session-ao5")}
+            {renderStatistic("Ao12", "ao12", "timer-session-ao12")}
+            {renderStatistic("Ao50", "ao50", "timer-session-ao50")}
+            {renderStatistic("Ao100", "ao100", "timer-session-ao100")}
           </>
-        ) : null}
+        )}
       </div>
     </>
   );
