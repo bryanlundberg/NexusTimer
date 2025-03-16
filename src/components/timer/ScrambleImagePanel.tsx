@@ -12,19 +12,15 @@ export default function ScrambleImagePanel() {
     isSolving,
   } = useTimerStore();
 
-  const showScramble = settings.features.scrambleImage.status;
+  if (zoomInScramble || isSolving) return null;
 
   return (
-    <>
-      {!zoomInScramble && !isSolving && (
-        <ScrambleDisplay
-          className="w-full h-full cursor-pointer"
-          show={showScramble}
-          scramble={scramble}
-          event={selectedCube ? selectedCube.category : "3x3"}
-          onClick={() => setZoomInScramble(true)}
-        ></ScrambleDisplay>
-      )}
-    </>
+    <ScrambleDisplay
+      className="w-full h-full cursor-pointer"
+      show={settings.features.scrambleImage.status}
+      scramble={scramble}
+      event={selectedCube?.category || "3x3"}
+      onClick={() => setZoomInScramble(true)}
+    />
   );
 }
