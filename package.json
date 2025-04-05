@@ -56,7 +56,7 @@
     "lucide-react": "^0.439.0",
     "luxon": "^3.5.0",
     "mongoose": "^8.10.1",
-    "next": "^15.2.3",
+    "next": "^15.2.4",
     "next-auth": "5.0.0-beta.25",
     "next-intl": "^3.26.5",
     "next-themes": "^0.3.0",
