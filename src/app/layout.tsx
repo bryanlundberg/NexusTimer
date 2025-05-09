@@ -14,6 +14,7 @@ export async function generateMetadata({
 }) {
   const t = await getTranslations({ locale, namespace: "Metadata" });
   return {
+    other: { "google-adsense-account": "ca-pub-8930797145324842" },
     title: t("title"),
     description: t("description"),
     keywords: [
