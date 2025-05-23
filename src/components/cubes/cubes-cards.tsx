@@ -89,7 +89,7 @@ const UsageGraph = ({ allSolves, sessionSolves }: { allSolves: Solve[], sessionS
         desktop: solvesByDay[key] || 0
       };
     });
-  }, [solves]);
+  }, [solves, locale]);
 
   const chartConfig = {
     desktop: {
