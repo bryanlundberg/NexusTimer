@@ -15,17 +15,17 @@ export default function TimerWidgets() {
     const { ao5, ao12, ao50, ao100 } = timerStatistics.global;
     const { ao5: sessionAo5, ao12: sessionAo12, ao50: sessionAo50, ao100: sessionAo100 } = timerStatistics.session;
 
-    if (
-      settings.alerts.bestAverage.status &&
-      ((ao5 !== 0 && ao5 === sessionAo5) ||
-        (ao12 !== 0 && ao12 === sessionAo12) ||
-        (ao50 !== 0 && ao50 === sessionAo50) ||
-        (ao100 !== 0 && ao100 === sessionAo100))
-    ) {
+    const newBestAverages = [];
+    if (ao5 !== 0 && ao5 === sessionAo5) newBestAverages.push("Ao5");
+    if (ao12 !== 0 && ao12 === sessionAo12) newBestAverages.push("Ao12");
+    if (ao50 !== 0 && ao50 === sessionAo50) newBestAverages.push("Ao50");
+    if (ao100 !== 0 && ao100 === sessionAo100) newBestAverages.push("Ao100");
+
+    if (settings.alerts.bestAverage.status && newBestAverages.length > 0) {
       return (
         <div className="flex justify-end" id="touch">
           <div className="p-1 text-xs border rounded-md bg-background">
-            {t("new_best_average")}
+            {t("new_best_average")}: {newBestAverages.join(", ")}
           </div>
         </div>
       );
