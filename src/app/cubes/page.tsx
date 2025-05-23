@@ -4,7 +4,7 @@ import { useCubes } from "@/hooks/useCubes";
 import DialogDeleteCollection from "@/components/dialogs/dialog-delete-collection/dialog-delete-collection";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import DialogEditCollection from "@/components/dialogs/dialog-edit-collection/dialog-edit-collection";
-import CubesTable from "@/components/cubes/cubes-table";
+import CubesCards from "@/components/cubes/cubes-cards";
 import useErrorDialog from "@/hooks/useErrorDialog";
 import Navigation from "@/components/navigation/navigation";
 import EmptyCubes from "@/components/cubes/EmptyCubes";
@@ -24,7 +24,7 @@ export default function Page() {
 
           {/* cubes list */}
           {filterCubes && filterCubes.length > 0 ? (
-            <CubesTable
+            <CubesCards
               handleFavoriteClick={handleFavoriteClick}
               handleRedirectToTimer={handleRedirectToTimer}
               cubes={filterCubes}
