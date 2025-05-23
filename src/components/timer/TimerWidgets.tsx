@@ -38,7 +38,7 @@ export default function TimerWidgets() {
       settings.alerts.worstTime.status &&
       timerStatistics.global.count > 1 &&
       lastSolve &&
-      lastSolve.time >= timerStatistics.global.worst
+      lastSolve.time > timerStatistics.global.worst
     ) {
       return (
         <div className="p-1 text-xs border rounded-md bg-background w-fit ms-auto">
