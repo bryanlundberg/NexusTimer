@@ -52,7 +52,7 @@
     "filter-data": "^0.6.1",
     "framer-motion": "^10.18.0",
     "idb-wrapper": "^1.7.2",
-    "lightweight-charts": "^4.2.3",
+    "lightweight-charts": "^5.0.7",
     "lucide-react": "^0.439.0",
     "luxon": "^3.5.0",
     "mongoose": "^8.10.1",
