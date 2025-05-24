@@ -12,18 +12,18 @@ export default function Ntloader({ onLoadingComplete }: NaroBaseLoaderProps) {
   const [currentMessage, setCurrentMessage] = useState('');
   const [startTime] = useState(Date.now());
 
-  const loadingMessages = [
-    "Solving the cube... almost there!",
-    "Twisting and turning to perfection!",
-    "NaroCube can solve faster than you blink!",
-    "Aligning the pieces... one move at a time!",
-    "The average cube solver rotates 50 times per solve!",
-    "Sharpening our algorithms for the perfect solve!",
-    "Did you know? The first Rubik's Cube was solved in 1974!",
-    "NaroCube - optimizing your experience one layer at a time!"
-  ];
-
   useEffect(() => {
+    const loadingMessages = [
+      "Solving the cube... almost there!",
+      "Twisting and turning to perfection!",
+      "NaroCube can solve faster than you blink!",
+      "Aligning the pieces... one move at a time!",
+      "The average cube solver rotates 50 times per solve!",
+      "Sharpening our algorithms for the perfect solve!",
+      "Did you know? The first Rubik's Cube was solved in 1974!",
+      "NaroCube - optimizing your experience one layer at a time!"
+    ];
+
     setCurrentMessage(loadingMessages[Math.floor(Math.random() * loadingMessages.length)]);
 
     const messageInterval = setInterval(() => {
