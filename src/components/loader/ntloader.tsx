@@ -16,12 +16,18 @@ export default function Ntloader({ onLoadingComplete }: NaroBaseLoaderProps) {
     const loadingMessages = [
       "Solving the cube... almost there!",
       "Twisting and turning to perfection!",
-      "NaroCube can solve faster than you blink!",
       "Aligning the pieces... one move at a time!",
       "The average cube solver rotates 50 times per solve!",
       "Sharpening our algorithms for the perfect solve!",
       "Did you know? The first Rubik's Cube was solved in 1974!",
-      "Optimizing your experience one layer at a time!"
+      "Optimizing your experience one layer at a time!",
+      "A world-class speedcuber can solve it in under 5 seconds!",
+      "A solved Rubik's Cube has 43 quintillion possible combinations!",
+      "The world record for 3x3 single solve is just over 3 seconds!",
+      "It took Erno Rubik a month to solve his first cube!",
+      "The term 'God's Number' refers to solving any cube in 20 moves or less!",
+      "Cubing competitions started in the early 1980s!",
+      "Magnets in cubes revolutionized speedcubing in the 2010s!"
     ];
 
     setCurrentMessage(loadingMessages[Math.floor(Math.random() * loadingMessages.length)]);
