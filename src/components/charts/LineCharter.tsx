@@ -3,22 +3,14 @@
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import {
-  ChartOptions,
-  createChart,
-  CreatePriceLineOptions,
-  createTextWatermark,
-  DeepPartial, HistogramSeries,
-  LineSeries
-} from 'lightweight-charts';
+import { ChartOptions, createChart, createTextWatermark, DeepPartial, HistogramSeries } from 'lightweight-charts';
 import { useEffect, useRef } from "react";
-import getBestTime from "@/lib/getBestTime";
 import { useTranslations } from "next-intl";
 
-type TimeObject = {
-  time: number;
-  value: number;
-};
+// type TimeObject = {
+//   time: number;
+//   value: number;
+// };
 
 export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
   const t = useTranslations("Index.StatsPage");
@@ -34,9 +26,9 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
       document.documentElement
     ).getPropertyValue("--border");
 
-    const lineColor = getComputedStyle(
-      document.documentElement
-    ).getPropertyValue("--primary");
+    // const lineColor = getComputedStyle(
+    //   document.documentElement
+    // ).getPropertyValue("--primary");
 
     const chartOptions: DeepPartial<ChartOptions> = {
       layout: {
@@ -56,8 +48,7 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
       },
       localization: {
         priceFormatter: (time: number) => {
-          const timeT = formatTime(time);
-          return timeT;
+          return formatTime(time);
         },
         timeFormatter: (time: number) => {
           return time.toString();
@@ -110,15 +101,15 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
         // lineWidth: 1,
       });
 
-      const getMeanTime = (data: TimeObject[]) => {
-        return data.length
-          ? data.reduce(
-              (total: number, timeObject: TimeObject) =>
-                total + timeObject.value,
-              0
-            ) / data.length
-          : 0;
-      };
+      // const getMeanTime = (data: TimeObject[]) => {
+      //   return data.length
+      //     ? data.reduce(
+      //         (total: number, timeObject: TimeObject) =>
+      //           total + timeObject.value,
+      //         0
+      //       ) / data.length
+      //     : 0;
+      // };
 
       // const meanTimeLine: CreatePriceLineOptions = {
       //   price: getMeanTime(structuredData),
