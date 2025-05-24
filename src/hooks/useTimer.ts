@@ -11,7 +11,6 @@ import useEventHandlers from "./useEventHandlers";
 export default function useTimer() {
   const {
     isSolving,
-    setIsSolving,
     setTimerStatus,
     selectedCube,
     setTimerStatistics,
