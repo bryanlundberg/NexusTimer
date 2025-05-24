@@ -21,7 +21,7 @@ export default function Ntloader({ onLoadingComplete }: NaroBaseLoaderProps) {
       "The average cube solver rotates 50 times per solve!",
       "Sharpening our algorithms for the perfect solve!",
       "Did you know? The first Rubik's Cube was solved in 1974!",
-      "NaroCube - optimizing your experience one layer at a time!"
+      "Optimizing your experience one layer at a time!"
     ];
 
     setCurrentMessage(loadingMessages[Math.floor(Math.random() * loadingMessages.length)]);
