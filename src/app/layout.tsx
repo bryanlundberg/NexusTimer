@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+import { LoaderProvider } from "@/components/loader/loader-context";
 
 export async function generateMetadata({
   params: { locale },
@@ -43,9 +44,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const locale = await getLocale();
-  // Provide all messages to the client
   const messages = await getMessages();
-
   const session = await auth();
 
   return (
@@ -53,7 +52,11 @@ export default async function RootLayout({
       <body className={saira.className}>
         <SessionProvider session={session}>
           <NextIntlClientProvider messages={messages}>
-            <PreloadSettings>{children}</PreloadSettings>
+            <PreloadSettings>
+              <LoaderProvider>
+                {children}
+              </LoaderProvider>
+            </PreloadSettings>
           </NextIntlClientProvider>
           <Toaster />
         </SessionProvider>
