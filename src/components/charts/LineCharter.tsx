@@ -1,21 +1,16 @@
-"use color";
+"use client";
+
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import {
-  ChartOptions,
-  CreatePriceLineOptions,
-  DeepPartial,
-  createChart,
-} from "lightweight-charts";
+import { ChartOptions, createChart, createTextWatermark, DeepPartial, HistogramSeries } from 'lightweight-charts';
 import { useEffect, useRef } from "react";
-import getBestTime from "@/lib/getBestTime";
 import { useTranslations } from "next-intl";
 
-type TimeObject = {
-  time: number;
-  value: number;
-};
+// type TimeObject = {
+//   time: number;
+//   value: number;
+// };
 
 export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
   const t = useTranslations("Index.StatsPage");
@@ -31,24 +26,17 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
       document.documentElement
     ).getPropertyValue("--border");
 
-    const lineColor = getComputedStyle(
-      document.documentElement
-    ).getPropertyValue("--primary");
+    // const lineColor = getComputedStyle(
+    //   document.documentElement
+    // ).getPropertyValue("--primary");
 
     const chartOptions: DeepPartial<ChartOptions> = {
-      watermark: {
-        visible: true,
-        fontSize: 24,
-        horzAlign: "center",
-        vertAlign: "center",
-        color: "rgba(120,120,120, 0.1)",
-        text: "nexustimer.com",
-      },
       layout: {
         textColor: "gray",
         background: {
           color: `hsl(${backgroundColor})`,
         },
+        attributionLogo: false
       },
       grid: {
         vertLines: {
@@ -60,8 +48,7 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
       },
       localization: {
         priceFormatter: (time: number) => {
-          const timeT = formatTime(time);
-          return timeT;
+          return formatTime(time);
         },
         timeFormatter: (time: number) => {
           return time.toString();
@@ -96,41 +83,55 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
         });
       });
 
-      const lineSeries = chart.addLineSeries({
-        lastValueVisible: false,
-        priceLineVisible: false,
-        lineWidth: 1,
+      const firstPane = chart.panes()[0];
+
+      createTextWatermark(firstPane, {
+        horzAlign: 'center',
+        vertAlign: 'center',
+        lines: [{
+          text: 'nexustimer.com',
+          color: 'rgba(120,120,120, 0.1)',
+          fontSize: 24,
+        }],
       });
 
-      const getMeanTime = (data: TimeObject[]) => {
-        return data.length
-          ? data.reduce(
-              (total: number, timeObject: TimeObject) =>
-                total + timeObject.value,
-              0
-            ) / data.length
-          : 0;
-      };
+      const lineSeries = chart.addSeries(HistogramSeries,{
+        lastValueVisible: false,
+        priceLineVisible: false,
+        // lineWidth: 1,
+      });
 
-      const meanTimeLine: CreatePriceLineOptions = {
-        price: getMeanTime(structuredData),
-        color: "#FBBF24",
-        lineWidth: 2,
-        lineStyle: 2,
-        axisLabelVisible: true,
-        title: `${t("average")}`,
-      };
+      // const getMeanTime = (data: TimeObject[]) => {
+      //   return data.length
+      //     ? data.reduce(
+      //         (total: number, timeObject: TimeObject) =>
+      //           total + timeObject.value,
+      //         0
+      //       ) / data.length
+      //     : 0;
+      // };
 
-      const bestTimeLine: CreatePriceLineOptions = {
-        price: getBestTime({ solves: dataSet }),
-        color: "#059669",
-        lineWidth: 1,
-        lineStyle: 0,
-        axisLabelVisible: true,
-        title: `${t("best-time")}`,
-      };
+      // const meanTimeLine: CreatePriceLineOptions = {
+      //   price: getMeanTime(structuredData),
+      //   color: "#FBBF24",
+      //   lineWidth: 2,
+      //   lineStyle: 2,
+      //   axisLabelVisible: true,
+      //   title: `${t("average")}`,
+      // };
+      //
+      // const bestTimeLine: CreatePriceLineOptions = {
+      //   price: getBestTime({ solves: dataSet }),
+      //   color: "#059669",
+      //   lineWidth: 1,
+      //   lineStyle: 0,
+      //   axisLabelVisible: true,
+      //   title: `${t("best-time")}`,
+      // };
 
       lineSeries.setData(structuredData);
+      // lineSeries.createPriceLine(meanTimeLine);
+      // lineSeries.createPriceLine(bestTimeLine);
 
       chart.autoSizeActive();
       chart.timeScale().fitContent();
