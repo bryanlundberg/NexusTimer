@@ -5,8 +5,9 @@ import { useTranslations } from "next-intl";
 import { TimerMode } from "@/enums/TimerMode";
 import { TimerStatus } from "@/enums/TimerStatus";
 import React from "react";
+import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
 
-interface DisplayTimeProps extends React.HTMLAttributes<HTMLDivElement> {
+interface DisplayTimeProps extends Omit<HTMLMotionProps<"div">, "ref"> {
   className?: string;
   isSolving: boolean;
   lastSolve: Solve | null;
@@ -38,51 +39,114 @@ export default function DisplayTime({
 }: DisplayTimeProps) {
   const t = useTranslations("Index.HomePage");
   const { timerMode } = useTimerStore();
+  console.log(lastSolve)
   return (
     <>
-      <div className={`${timerStatusClasses[timerStatus]}`} {...rest}>
-        {hideWhileSolving && isSolving ? (
-          <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
-            {t("solving")}
-          </span>
-        ) : (
-          <div className="relative flex flex-col gap-1 font-mono">
-            <div className="flex items-end justify-center">
-              {inspectionTime !== 16000 ? (
-                <>
-                  <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl">
-                    {Math.trunc(inspectionTime)}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="text-8xl md:text-9xl">
-                    {formatTime(solvingTime).split(".")[0]}
-                  </div>
-                  <div className="text-7xl md:text-8xl">
-                    .{formatTime(solvingTime).split(".")[1]}
-                  </div>
-                  {lastSolve?.plus2 && !isSolving && (
-                    <span className="text-destructive">+2</span>
-                  )}
-                </>
-              )}
-            </div>
-            {!lastSolve && timerStatus === TimerStatus.IDLE ? (
-              <div className="text-xs text-center animate-pulse">
-                {timerMode === TimerMode.NORMAL
-                  ? device === "Desktop"
-                    ? `${t("space-to-start")}`
-                    : `${t("tap-to-start")}`
-                  : null}
+      <motion.div
+        className={`${timerStatusClasses[timerStatus]}`}
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          scale: timerStatus === TimerStatus.READY ? 1.05 : 1,
+          transition: {
+            type: "spring",
+            stiffness: 300,
+            damping: 20
+          }
+        }}
+        {...rest}
+      >
+        <AnimatePresence mode="wait">
+          {hideWhileSolving && isSolving ? (
+            <motion.span
+              key="solving"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              {t("solving")}
+            </motion.span>
+          ) : (
+            <motion.div
+              key="timer"
+              className="relative flex flex-col gap-1 font-mono"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div
+                className="flex items-end justify-center"
+                animate={{
+                  scale: timerStatus === TimerStatus.HOLDING ? 0.95 : 1,
+                  transition: { type: "spring", stiffness: 500, damping: 30 }
+                }}
+              >
+                {inspectionTime !== 16000 ? (
+                  <>
+                    <motion.div
+                      className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
+                      initial={{ scale: 1.2 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {Math.trunc(inspectionTime)}
+                    </motion.div>
+                  </>
+                ) : (
+                  <>
+                    <motion.div
+                      className="text-8xl md:text-9xl"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {formatTime(solvingTime).split(".")[0]}
+                    </motion.div>
+                    <motion.div
+                      className="text-7xl md:text-8xl"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.1 }}
+                    >
+                      .{formatTime(solvingTime).split(".")[1]}
+                    </motion.div>
+                    {lastSolve?.plus2 && !isSolving && (
+                      <motion.span
+                        className="text-destructive"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.2 }}
+                      >
+                        +2
+                      </motion.span>
+                    )}
+                  </>
+                )}
+              </motion.div>
+                {!lastSolve && timerStatus === TimerStatus.IDLE ? (
+                  <motion.div
+                    className="text-xs text-center"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: [0.5, 1, 0.5], y: 0 }}
+                    exit={{ opacity: 0, y: -5 }}
+                  >
+                    {timerMode === TimerMode.NORMAL
+                      ? device === "Desktop"
+                        ? `${t("space-to-start")}`
+                        : `${t("tap-to-start")}`
+                      : null}
 
-                {timerMode === TimerMode.STACKMAT &&
-                  t("start-stackmat")}
-              </div>
-            ) : null}
-          </div>
-        )}
-      </div>
+                    {timerMode === TimerMode.STACKMAT &&
+                      t("start-stackmat")}
+                  </motion.div>
+                ): null}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </>
   );
 }
