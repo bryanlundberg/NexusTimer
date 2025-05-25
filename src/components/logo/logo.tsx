@@ -1,13 +1,12 @@
 import { cn } from "@/lib/utils";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import Image from "next/image";
+import React from "react";
 
 interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
 export default function Logo({ className, ...rest }: LogoProps) {
-  const { settings } = useSettingsModalStore();
   return (
     <>
       <div
@@ -23,9 +22,7 @@ export default function Logo({ className, ...rest }: LogoProps) {
           alt="logo"
           width={320}
           height={100}
-          className={`size-5 ${
-            settings.theme.background.color === "dark" ? "invert" : "invert-0"
-          }`}
+          className={"size-5 dark:invert invert-0"}
           draggable={false}
         />
 
