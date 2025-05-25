@@ -1,197 +1,52 @@
 import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { getAllCubes, getCubeById } from "@/db/dbOperations";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Solve } from "@/interfaces/Solve";
-import formatTime from "@/lib/formatTime";
-import updateSolve from "@/lib/updateSolve";
 import { useDialogSolve } from "@/store/DialogSolve";
 import { useTimerStore } from "@/store/timerStore";
-import {
-  BookmarkFilledIcon,
-  BookmarkIcon,
-  CopyIcon,
-  Cross1Icon,
-} from "@radix-ui/react-icons";
+import { useSolveActions } from "@/hooks/useSolveActions";
+import { BookmarkFilledIcon, BookmarkIcon, CopyIcon, Cross1Icon, CubeIcon } from "@radix-ui/react-icons";
 import { useTranslations } from "next-intl";
-import { toast } from "sonner";
 
 export default function MenuSolveOptions({
   solve,
-  onDeleteSolve = () => {},
-  caseOfUse,
+  onDeleteSolve = () => {
+  },
+  caseOfUse
 }: {
   solve: Solve | null;
   onDeleteSolve?: () => void;
   caseOfUse: "last-solve" | "modal-solve";
 }) {
   const t = useTranslations("Index");
-  const { selectedCube, setCubes, setSelectedCube, lastSolve, setLastSolve } =
-    useTimerStore();
+  const { selectedCube, lastSolve } = useTimerStore();
   const dialog = useDialogSolve();
+  const { handleDeleteSolve, handlePenaltyPlus2, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
 
   if (!selectedCube) return null;
-  const handleUndoSolve = async (solve : Solve | null) => {
-    debugger
-     if (solve && selectedCube) {
-       await updateSolve({
-         solveId: solve.id,
-         selectedCube: selectedCube,
-         type: "UNDO",
-         deletedSolve:solve,
-       });
-     
-       toast("", {
-        description: "Restored last deleted Solve",
-        duration: 1000,
-      });
 
-      const lastCube = await getCubeById(selectedCube.id);
-      if (lastCube) {
-        setSelectedCube({ ...lastCube });
-      }
-     }
+  const localHandleDeleteSolve = () => {
+    if (solve) handleDeleteSolve(solve, caseOfUse, onDeleteSolve);
   };
 
-  const handleDeleteSolve = async () => {
-    if (solve && selectedCube) {
-      await updateSolve({
-        solveId: solve.id,
-        selectedCube: selectedCube,
-        type: "DELETE",
-      });
-
-      if (caseOfUse === "last-solve") {
-        if (lastSolve?.id === dialog.solve?.id) {
-          dialog.handleSetSolveInDialog({ solve: null });
-        }
-        setLastSolve(null);
-      }
-
-      if (caseOfUse === "modal-solve") {
-        if (lastSolve?.id === dialog.solve?.id) {
-          setLastSolve(null);
-        }
-        dialog.handleSetSolveInDialog({ solve: null });
-      }
-
-      const lastCubes = await getAllCubes();
-      setCubes([...lastCubes]);
-
-      const lastCube = await getCubeById(selectedCube.id);
-      if (lastCube) {
-        setSelectedCube({ ...lastCube });
-      }
-
-      toast("", {
-        description: "Deleted solve",
-        duration: 2000,
-        action: {
-          label: 'Undo',
-          onClick: () => handleUndoSolve(solve)
-        },
-      });
-
-      onDeleteSolve();
-    }
+  const localHandlePenaltyPlus2 = () => {
+    if (solve) handlePenaltyPlus2(solve, caseOfUse);
   };
 
-  const handlePenaltyPlus2 = async () => {
-    if (solve && selectedCube) {
-      await updateSolve({
-        solveId: solve.id,
-        selectedCube: selectedCube,
-        type: "+2",
-      });
-      const lastCubes = await getAllCubes();
-      setCubes([...lastCubes]);
+  const localHandleBookmarkSolve = () => {
+    if (solve) handleBookmarkSolve(solve, caseOfUse);
+  };
 
-      const lastCube = await getCubeById(selectedCube.id);
-      if (lastCube) {
-        setSelectedCube({ ...lastCube });
-      }
-
-      if (lastCube) {
-        const solvesGlobal = [
-          ...lastCube.solves.session,
-          ...lastCube.solves.all,
-        ];
-
-        const updatedSolve = solvesGlobal.find((i) => i.id === solve.id);
-
-        if (updatedSolve && lastSolve && updatedSolve.id === lastSolve.id) {
-          dialog.handleSetSolveInDialog({ solve: { ...updatedSolve } });
-          setLastSolve({ ...updatedSolve });
-        } else if (updatedSolve && caseOfUse === "modal-solve") {
-          dialog.handleSetSolveInDialog({ solve: { ...updatedSolve } });
-        } else if (updatedSolve && caseOfUse === "last-solve") {
-          setLastSolve({ ...updatedSolve });
-        }
-      }
-
-      toast("", {
-        description: "Penalty status updated.",
-        duration: 1000,
+  const localHandleClipboardSolve = () => {
+    if (solve) {
+      handleClipboardSolve(solve, {
+        title: t("SolvesPage.toast.success-copy"),
+        description: t("SolvesPage.toast.success-copy-description")
       });
     }
   };
 
-  const handleBookmarkSolve = async () => {
-    if (solve && selectedCube) {
-      await updateSolve({
-        solveId: solve.id,
-        selectedCube: selectedCube,
-        type: "BOOKMARK",
-      });
-
-      const lastCubes = await getAllCubes();
-      setCubes([...lastCubes]);
-
-      const lastCube = await getCubeById(selectedCube.id);
-      if (lastCube) {
-        setSelectedCube({ ...lastCube });
-      }
-
-      if (lastCube) {
-        const solvesGlobal = [
-          ...lastCube.solves.session,
-          ...lastCube.solves.all,
-        ];
-
-        const updatedSolve = solvesGlobal.find((i) => i.id === solve.id);
-
-        if (updatedSolve && lastSolve && updatedSolve.id === lastSolve.id) {
-          dialog.handleSetSolveInDialog({ solve: { ...updatedSolve } });
-          setLastSolve({ ...updatedSolve });
-        } else if (updatedSolve && caseOfUse === "modal-solve") {
-          dialog.handleSetSolveInDialog({ solve: { ...updatedSolve } });
-        } else if (updatedSolve && caseOfUse === "last-solve") {
-          setLastSolve({ ...updatedSolve });
-        }
-      }
-
-      toast("", {
-        description: "Bookmark status updated.",
-        duration: 500,
-      });
-    }
-  };
-
-  const handleClipboardSolve = () => {
-    if ("clipboard" in navigator) {
-      navigator.clipboard.writeText(
-        `${formatTime(solve?.time || 0)} - ${solve?.scramble}`
-      );
-    }
-
-    toast(t("SolvesPage.toast.success-copy"), {
-      description: t("SolvesPage.toast.success-copy-description"),
-      duration: 1000,
-    });
+  const localHandleMoveToHistory = () => {
+    if (solve) handleMoveToHistory(solve, caseOfUse);
   };
 
   return (
@@ -204,8 +59,8 @@ export default function MenuSolveOptions({
         <TooltipProvider delayDuration={100}>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant={"ghost"} onPointerDown={handleDeleteSolve}>
-                <Cross1Icon />
+              <Button variant={"ghost"} onPointerDown={localHandleDeleteSolve}>
+                <Cross1Icon/>
               </Button>
             </TooltipTrigger>
             <TooltipContent>
@@ -217,7 +72,7 @@ export default function MenuSolveOptions({
               <Button
                 variant={"ghost"}
                 className="font-light text-md"
-                onPointerDown={handlePenaltyPlus2}
+                onPointerDown={localHandlePenaltyPlus2}
               >
                 +2
               </Button>
@@ -229,19 +84,19 @@ export default function MenuSolveOptions({
           <Tooltip>
             <TooltipTrigger asChild>
               {caseOfUse === "last-solve" ? (
-                <Button variant={"ghost"} onPointerDown={handleBookmarkSolve}>
+                <Button variant={"ghost"} onPointerDown={localHandleBookmarkSolve}>
                   {!lastSolve?.bookmark ? (
-                    <BookmarkIcon />
+                    <BookmarkIcon/>
                   ) : (
-                    <BookmarkFilledIcon />
+                    <BookmarkFilledIcon/>
                   )}
                 </Button>
               ) : (
-                <Button variant={"ghost"} onPointerDown={handleBookmarkSolve}>
+                <Button variant={"ghost"} onPointerDown={localHandleBookmarkSolve}>
                   {!dialog.solve?.bookmark ? (
-                    <BookmarkIcon />
+                    <BookmarkIcon/>
                   ) : (
-                    <BookmarkFilledIcon />
+                    <BookmarkFilledIcon/>
                   )}
                 </Button>
               )}
@@ -252,12 +107,22 @@ export default function MenuSolveOptions({
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button variant={"ghost"} onPointerDown={handleClipboardSolve}>
-                <CopyIcon />
+              <Button variant={"ghost"} onPointerDown={localHandleClipboardSolve}>
+                <CopyIcon/>
               </Button>
             </TooltipTrigger>
             <TooltipContent>
               <p>{t("tooltips.copy")}</p>
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant={"ghost"} onPointerDown={localHandleMoveToHistory}>
+                <CubeIcon/>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Move to History</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
