@@ -50,7 +50,7 @@
     "eslint-config-next": "^14.2.24",
     "fast-sort": "^3.4.1",
     "filter-data": "^0.6.1",
-    "framer-motion": "^10.18.0",
+    "framer-motion": "^12.12.2",
     "idb-wrapper": "^1.7.2",
     "lightweight-charts": "^5.0.7",
     "lucide-react": "^0.439.0",
