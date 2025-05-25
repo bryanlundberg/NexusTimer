@@ -2,17 +2,11 @@ import LineCharter from "../charts/LineCharter";
 import formatTime from "@/lib/formatTime";
 import useMetricsSwitch from "@/hooks/useMetricsSwitch";
 import { useTranslations } from "next-intl";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../ui/table";
-
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTimerStore } from "@/store/timerStore";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 export default function CategoryStatistics() {
   const t = useTranslations("Index");
@@ -31,10 +25,10 @@ export default function CategoryStatistics() {
                   <TabsTrigger value="cube">Cube</TabsTrigger>
                 </TabsList>
                 <TabsContent value="category">
-                  <LineCharter dataSet={stats.data.global} />
+                  <LineCharter dataSet={stats.data.global}/>
                 </TabsContent>
                 <TabsContent value="cube">
-                  <LineCharter dataSet={stats.data.cubeAll} />
+                  <LineCharter dataSet={stats.data.cubeAll}/>
                 </TabsContent>
               </Tabs>
             </>
@@ -45,10 +39,66 @@ export default function CategoryStatistics() {
           <TableHeader>
             <TableRow>
               <TableHead></TableHead>
-              <TableHead>{t("StatsPage.global")}</TableHead>
-              <TableHead>{t("StatsPage.sessions")}</TableHead>
-              <TableHead>C {t("SolvesPage.all")}</TableHead>
-              <TableHead>C {t("SolvesPage.session")}</TableHead>
+              <TableHead>
+                <TooltipProvider delayDuration={200}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className={"flex items-center gap-2"}>
+                        {t("StatsPage.global")}
+                        <InformationCircleIcon className={"size-5"}/>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side={"bottom"} className={"max-w-xs"}>
+                      <p>Combines all historical and session solves for every cube in the same category.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </TableHead>
+              <TableHead>
+                <TooltipProvider delayDuration={200}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className={"flex items-center gap-2"}>
+                        {t("StatsPage.sessions")}
+                        <InformationCircleIcon className={"size-5"}/>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side={"bottom"} className={"max-w-xs"}>
+                      <p>Counts only session solves for every cube in the same category.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </TableHead>
+              <TableHead>
+                <TooltipProvider delayDuration={200}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className={"flex items-center gap-2"}>
+                        C {t("SolvesPage.all")}
+                        <InformationCircleIcon className={"size-5"}/>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side={"bottom"} className={"max-w-xs"}>
+                      <p>Combines all historical and session solves for only the selected cube.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </TableHead>
+              <TableHead>
+                <TooltipProvider delayDuration={200}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className={"flex items-center gap-2"}>
+                        C {t("SolvesPage.session")}
+                        <InformationCircleIcon className={"size-5"}/>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side={"bottom"} className={"max-w-xs"}>
+                      <p>Counts only session solves for only the selected cube.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
