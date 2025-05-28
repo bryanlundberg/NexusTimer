@@ -8,7 +8,7 @@
 
 ## About The Project
 
-For those new to speedcubing, it's a challenge where cubers aim to solve the Rubik's Cube as quickly as possible. Currently, the world record stands at 3.13 seconds (51.12% faster than the video below by [Feliks Zemdegs](https://www.worldcubeassociation.org/persons/2009ZEMD01) 😁).
+For those new to speedcubing, it's a challenge where cubers aim to solve the Rubik's Cube as quickly as possible. Currently, the world record stands at 3.05 seconds (55.08% faster than the video below by [Feliks Zemdegs](https://www.worldcubeassociation.org/persons/2009ZEMD01) 😁).
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/wr.gif" alt="Speedcubing preview">
@@ -87,14 +87,20 @@ We can detect, convert, and transfer all your previous data from timers such as 
 - Vietnamese (vi)
 - Chinese (zh)
 
-"Connecting the World, One User at a Time!"
-<img src="./.github/images/usage.png" width="100%" />
-
 ## Contributing
 
 - If you want:
   - to **report a bug** or **suggest a change**, please open an issue.
   - to **develop new functions** or **fix a bug**, please request it in the issues section.
+  - to **translate the app** into your language, please open an issue.
+
+If you want to **contribute code**:
+
+1. Fork the repository.
+2. Rename the `.env.local.example` file to `.env.local` (secrets are optional in case you won't code on UI sections that don't need them, most part of the working areas are not related to them).
+3. Install the dependencies with `pnpm install`.
+4. Run the development server with `pnpm run dev`.
+5. Before submitting a pull request, ensure that your code compile by running `pnpm run build`.
 
 ## Acknowledgments
 
