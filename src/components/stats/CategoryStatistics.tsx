@@ -7,11 +7,13 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTimerStore } from "@/store/timerStore";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { useQueryState } from "nuqs";
 
 export default function CategoryStatistics() {
   const t = useTranslations("Index");
   const { stats } = useMetricsSwitch();
   const { selectedCube } = useTimerStore();
+  const [tabStats, setTabStats] = useQueryState("tab-stats", { defaultValue: "category" });
 
   return (
     <>
@@ -19,7 +21,7 @@ export default function CategoryStatistics() {
         <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-background/90 backdrop-blur-lg">
           {selectedCube && (
             <>
-              <Tabs defaultValue="category" className="mb-3">
+              <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3">
                 <TabsList>
                   <TabsTrigger value="category">Category</TabsTrigger>
                   <TabsTrigger value="cube">Cube</TabsTrigger>
