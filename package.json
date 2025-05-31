@@ -61,6 +61,7 @@
     "next-auth": "5.0.0-beta.25",
     "next-intl": "^3.26.5",
     "next-themes": "^0.3.0",
+    "nuqs": "^2.4.3",
     "papaparse": "^5.5.2",
     "postcss": "8.4.31",
     "pretty-ms": "^8.0.0",
