@@ -8,6 +8,7 @@ import CubesCards from "@/components/cubes/cubes-cards";
 import useErrorDialog from "@/hooks/useErrorDialog";
 import Navigation from "@/components/navigation/navigation";
 import EmptyCubes from "@/components/cubes/EmptyCubes";
+import FadeIn from "@/components/fade-in/fade-in";
 
 export default function Page() {
   const { handleResetError, error, handleChangeError } = useErrorDialog();
@@ -15,7 +16,7 @@ export default function Page() {
   const { filterCubes, handleFavoriteClick, handleRedirectToTimer } = useCubes();
 
   return (
-    <>
+    <FadeIn className="flex flex-col grow">
       <div className="overflow-y-auto pb-4">
         {/* container */}
         <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
@@ -60,6 +61,6 @@ export default function Page() {
           </Dialog>
         </div>
       </div>
-    </>
+    </FadeIn>
   );
 }
