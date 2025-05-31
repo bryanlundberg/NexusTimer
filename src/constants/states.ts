@@ -1,6 +1,7 @@
 import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
 import { Order } from "@/enums/Order";
 import { Sort } from "@/enums/Sort";
+import { StatisticsTabs } from "@/enums/StatisticsTabs";
 
 export const STATES = {
   SOLVES_PAGE: {
@@ -21,10 +22,10 @@ export const STATES = {
       DEFAULT_VALUE: Order.ASC,
     },
   },
-  // STATISTICS_PAGE: {
-  //   TAB_MODE: {
-  //     key: "tab-mode"
-  //     defaultValue: DisplaySolvesTabs.,
-  //   }
-  // }
+  STATISTICS_PAGE: {
+    TAB_MODE: {
+      KEY: "tab-stats",
+      DEFAULT_VALUE: StatisticsTabs.CATEGORY,
+    }
+  }
 }
