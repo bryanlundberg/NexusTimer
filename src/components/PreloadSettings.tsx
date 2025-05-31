@@ -23,7 +23,7 @@ export default function PreloadSettings({
         disableTransitionOnChange
       >
         <div
-          className="flex flex-col justify-between max-h-dvh min-h-dvh gap-2  select-none bg-background overflow-hidden"
+          className="flex flex-col justify-between max-h-dvh min-h-dvh gap-2 select-none bg-background overflow-hidden"
           style={{
             backgroundImage: backgroundImage ? `url(${backgroundImage})` : "",
             backgroundPosition: backgroundImage ? "center" : "",
