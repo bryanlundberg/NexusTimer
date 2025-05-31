@@ -16,6 +16,7 @@ import { useQueryState } from "nuqs";
 import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
 import { STATES } from "@/constants/states";
 import { useDebouncedCallback } from "use-debounce";
+import FadeIn from "@/components/fade-in/fade-in";
 
 export default function Page() {
   const { isDialogSolveOpen, handleCloseDialogSolve } = useDialogSolve();
@@ -27,7 +28,7 @@ export default function Page() {
   const handleSearch = useDebouncedCallback((value) => setQuery(value), 1000);
 
   return (
-    <>
+    <FadeIn className="flex flex-col grow">
       {/* container */}
       <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
         {/* header */}
@@ -64,6 +65,6 @@ export default function Page() {
           <SheetSolveDetails />
         </Sheet>
       </div>
-    </>
+    </FadeIn>
   );
 }
