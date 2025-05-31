@@ -7,6 +7,7 @@ import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import { LoaderProvider } from "@/components/loader/loader-context";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 export async function generateMetadata({
   params: { locale },
@@ -15,7 +16,6 @@ export async function generateMetadata({
 }) {
   const t = await getTranslations({ locale, namespace: "Metadata" });
   return {
-    other: { "google-adsense-account": "ca-pub-8930797145324842" },
     title: t("title"),
     description: t("description"),
     keywords: [
@@ -50,6 +50,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={saira.className}>
+      <NuqsAdapter>
         <SessionProvider session={session}>
           <NextIntlClientProvider messages={messages}>
             <PreloadSettings>
@@ -60,6 +61,7 @@ export default async function RootLayout({
           </NextIntlClientProvider>
           <Toaster />
         </SessionProvider>
+      </NuqsAdapter>
       </body>
     </html>
   );
