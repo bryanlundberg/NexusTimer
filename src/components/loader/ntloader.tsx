@@ -61,34 +61,43 @@ export default function Ntloader({ onLoadingComplete }: NaroBaseLoaderProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white dark:bg-black"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
     >
       <motion.div
         className="text-3xl font-bold mb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.2 }}
       >
         Nexus Timer
       </motion.div>
 
-      <div className="w-64 h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
+      <motion.div
+        className="w-64 h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden"
+        initial={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{ duration: 0.2 }}
+      >
         <motion.div
           className="h-full bg-black dark:bg-white rounded-full"
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}
-          transition={{ ease: "easeInOut" }}
+          exit={{ width: 0 }}
+          transition={{ ease: "easeInOut", duration: 0.2 }}
         />
-      </div>
+      </motion.div>
 
       <motion.div
         className="mt-4 text-sm text-gray-500 dark:text-gray-400 text-center max-w-md px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
+        exit={{ opacity: 0, y: 20 }}
+        transition={{ duration: 0.2 }}
       >
         {progress < 100 ? currentMessage : 'Ready!'}
       </motion.div>

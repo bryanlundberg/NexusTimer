@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
 import React, { createContext, useContext } from 'react';
 import Ntloader from './ntloader';
 import useInitialLoader from "@/store/InitialLoader";
+import { AnimatePresence } from "framer-motion";
 
 interface LoaderContextType {
   hasShownLoader: boolean;
@@ -28,8 +29,12 @@ export function LoaderProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <LoaderContext.Provider value={{ hasShownLoader, setHasShownLoader }}>
-      {showLoader ? <Ntloader onLoadingComplete={handleLoadingComplete} /> : children}
-    </LoaderContext.Provider>
+
+      <LoaderContext.Provider value={{ hasShownLoader, setHasShownLoader }}>
+        <AnimatePresence mode="wait">
+        {showLoader ? <Ntloader key="loader" onLoadingComplete={handleLoadingComplete}/> : children}
+        </AnimatePresence>
+      </LoaderContext.Provider>
+
   );
 }
