@@ -12,17 +12,20 @@ import { Dialog } from "@/components/ui/dialog";
 import { useTranslations } from "next-intl";
 import Navigation from "@/components/navigation/navigation";
 import ButtonMoveSolves from "@/components/navigation/buttons/button-move-solves";
+import { useQueryState } from "nuqs";
+import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
+import { STATES } from "@/constants/states";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function Page() {
   const { isDialogSolveOpen, handleCloseDialogSolve } = useDialogSolve();
-  const {
-    handleSearch,
-    tab,
-    isOpenMoveSolvesDialog,
-    handleChangeIsOpenMoveSolvesDialog,
-  } = useSolveFiltersStore();
+  const { isOpenMoveSolvesDialog, handleChangeIsOpenMoveSolvesDialog } = useSolveFiltersStore();
   const { selectedCube } = useTimerStore();
   const t = useTranslations("Index");
+  const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue : STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
+  const [, setQuery] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE });
+  const handleSearch = useDebouncedCallback((value) => setQuery(value), 1000);
+
   return (
     <>
       {/* container */}
@@ -42,7 +45,7 @@ export default function Page() {
 
         <SolvesArea
           displaySolves={
-            tab === "session"
+            tabMode === DisplaySolvesTabs.SESSION
               ? selectedCube?.solves.session
               : selectedCube?.solves.all
           }

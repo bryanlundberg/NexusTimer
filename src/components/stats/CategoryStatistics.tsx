@@ -8,12 +8,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTimerStore } from "@/store/timerStore";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useQueryState } from "nuqs";
+import { STATES } from "@/constants/states";
+import { StatisticsTabs } from "@/enums/StatisticsTabs";
 
 export default function CategoryStatistics() {
   const t = useTranslations("Index");
   const { stats } = useMetricsSwitch();
   const { selectedCube } = useTimerStore();
-  const [tabStats, setTabStats] = useQueryState("tab-stats", { defaultValue: "category" });
+  const [tabStats, setTabStats] = useQueryState(STATES.STATISTICS_PAGE.TAB_MODE.KEY, { defaultValue: STATES.STATISTICS_PAGE.TAB_MODE.DEFAULT_VALUE });
 
   return (
     <>
@@ -23,13 +25,13 @@ export default function CategoryStatistics() {
             <>
               <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3">
                 <TabsList>
-                  <TabsTrigger value="category">Category</TabsTrigger>
-                  <TabsTrigger value="cube">Cube</TabsTrigger>
+                  <TabsTrigger value={StatisticsTabs.CATEGORY}>Category</TabsTrigger>
+                  <TabsTrigger value={StatisticsTabs.CUBE}>Cube</TabsTrigger>
                 </TabsList>
-                <TabsContent value="category">
+                <TabsContent value={StatisticsTabs.CATEGORY}>
                   <LineCharter dataSet={stats.data.global}/>
                 </TabsContent>
-                <TabsContent value="cube">
+                <TabsContent value={StatisticsTabs.CUBE}>
                   <LineCharter dataSet={stats.data.cubeAll}/>
                 </TabsContent>
               </Tabs>

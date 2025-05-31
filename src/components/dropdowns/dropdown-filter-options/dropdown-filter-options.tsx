@@ -12,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { createShareMessage } from "@/lib/createShareMessage";
-import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { useTimerStore } from "@/store/timerStore";
 import {
   DotsVerticalIcon,
@@ -23,18 +22,23 @@ import {
 import { DateTime } from "luxon";
 import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { useQueryState } from "nuqs";
+import { STATES } from "@/constants/states";
+import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
 
 export default function DropdownFilterSolves() {
   const t = useTranslations("Index");
-  const { sortType, order, handleChangeOrder, handleChangeSortType, tab } =
-    useSolveFiltersStore();
+  const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
+  const [orderType, setOrderType] = useQueryState(STATES.SOLVES_PAGE.ORDER.KEY, { defaultValue: STATES.SOLVES_PAGE.ORDER.DEFAULT_VALUE });
+  const [sortType, setSortType] = useQueryState(STATES.SOLVES_PAGE.SORT.KEY, { defaultValue: STATES.SOLVES_PAGE.SORT.DEFAULT_VALUE });
+
   const { selectedCube } = useTimerStore();
   const locale = useLocale();
   const date = DateTime.now().setLocale(locale).toLocaleString();
   const handleShare = (type: "All" | "3" | "5" | "12" | "50" | "100") => {
     if (selectedCube) {
       const tempSolves =
-        tab === "all" ? selectedCube.solves.all : selectedCube.solves.session;
+        tabMode === DisplaySolvesTabs.ALL ? selectedCube.solves.all : selectedCube.solves.session;
 
       const message = createShareMessage({
         type,
@@ -82,9 +86,7 @@ export default function DropdownFilterSolves() {
               <DropdownMenuSubContent>
                 <DropdownMenuRadioGroup
                   value={sortType}
-                  onValueChange={(e) => {
-                    handleChangeSortType(e as any);
-                  }}
+                  onValueChange={setSortType}
                 >
                   <DropdownMenuRadioItem value="time">
                     {t("SolvesPage.time")}
@@ -108,10 +110,8 @@ export default function DropdownFilterSolves() {
             <DropdownMenuPortal>
               <DropdownMenuSubContent>
                 <DropdownMenuRadioGroup
-                  value={order}
-                  onValueChange={(e) => {
-                    handleChangeOrder(e as any);
-                  }}
+                  value={orderType}
+                  onValueChange={setOrderType}
                 >
                   <DropdownMenuRadioItem value="asc">
                     {t("SolvesPage.ascending")}

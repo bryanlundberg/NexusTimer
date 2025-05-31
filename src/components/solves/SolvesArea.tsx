@@ -8,7 +8,6 @@ import { useTranslations } from "next-intl";
 import { Card } from "../ui/card";
 import { useDialogSolve } from "@/store/DialogSolve";
 import { sort } from "fast-sort";
-import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { filterData, SearchType } from "filter-data";
 import useRemoveGridHeight from "@/hooks/useRemoveGridHeight";
 import { useSolveActions } from "@/hooks/useSolveActions";
@@ -28,6 +27,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { useQueryState } from "nuqs";
+import { STATES } from "@/constants/states";
+import { Order } from "@/enums/Order";
+import { Sort } from "@/enums/Sort";
 
 interface SolvesArea {
   displaySolves: Solve[] | undefined;
@@ -37,19 +40,14 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   const { handleOpenDialogSolve } = useDialogSolve();
   const { selectedCube } = useTimerStore();
   const t = useTranslations("Index.SolvesPage");
-  const { query, order, sortType } = useSolveFiltersStore();
+  const [query,] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE });
+  const [orderType,] = useQueryState(STATES.SOLVES_PAGE.ORDER.KEY, { defaultValue: STATES.SOLVES_PAGE.ORDER.DEFAULT_VALUE });
+  const [sortType,] = useQueryState(STATES.SOLVES_PAGE.SORT.KEY, { defaultValue: STATES.SOLVES_PAGE.SORT.DEFAULT_VALUE });
   const { handleDeleteSolve, handlePenaltyPlus2, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
   useRemoveGridHeight();
 
-  if (!selectedCube) {
-    return (
-      <AlertEmptySolves message={t("alert.empty-cubes")} icon={<CubeIcon/>}/>
-    );
-  }
-
-  if (!displaySolves || displaySolves.length === 0) {
-    return <EmptySolves/>;
-  }
+  if (!selectedCube) return <AlertEmptySolves message={t("alert.empty-cubes")} icon={<CubeIcon/>}/>
+  if (!displaySolves || displaySolves.length === 0) return <EmptySolves/>;
 
   const filterSolves = filterData(displaySolves, [
     {
@@ -61,22 +59,14 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
 
   let sortedSolves: Solve[] = [];
 
-  if (sortType === "date") {
-    if (order === "asc") {
-      sortedSolves = sort(filterSolves).asc((u) => u.endTime);
-    }
-    if (order === "desc") {
-      sortedSolves = sort(filterSolves).desc((u) => u.endTime);
-    }
+  if (sortType === Sort.DATE) {
+    if (orderType === Order.ASC) sortedSolves = sort(filterSolves).asc((u) => u.endTime);
+    if (orderType === Order.DESC) sortedSolves = sort(filterSolves).desc((u) => u.endTime);
   }
 
-  if (sortType === "time") {
-    if (order === "asc") {
-      sortedSolves = sort(filterSolves).asc((u) => u.time);
-    }
-    if (order === "desc") {
-      sortedSolves = sort(filterSolves).desc((u) => u.time);
-    }
+  if (sortType === Sort.TIME) {
+    if (orderType === Order.ASC) sortedSolves = sort(filterSolves).asc((u) => u.time);
+    if (orderType === Order.DESC) sortedSolves = sort(filterSolves).desc((u) => u.time);
   }
 
   return (

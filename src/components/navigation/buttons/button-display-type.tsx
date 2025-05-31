@@ -1,19 +1,17 @@
 import { Toggle } from "@/components/ui/toggle";
-import { useSolveFiltersStore } from "@/store/SolvesFilters";
 import { DashboardIcon } from "@radix-ui/react-icons";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useTranslations } from "next-intl";
 import { useTimerStore } from "@/store/timerStore";
+import { useQueryState } from "nuqs";
+import { STATES } from "@/constants/states";
+import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
 
 export default function ButtonDisplayType() {
-  const { handleChangeTab, tab } = useSolveFiltersStore();
   const { selectedCube } = useTimerStore();
   const t = useTranslations("Index");
+  const [tabMode, setTabMode] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
+
   return (
     <>
       <TooltipProvider delayDuration={100}>
@@ -22,26 +20,20 @@ export default function ButtonDisplayType() {
             {/* This <div> explained: https://github.com/shadcn-ui/ui/issues/1988#issuecomment-1980597269 */}
             <div>
               <Toggle
-                defaultPressed={tab === "all"}
+                defaultPressed={tabMode === DisplaySolvesTabs.ALL}
                 disabled={selectedCube === null}
-                onPressedChange={() => {
-                  if (tab === "session") {
-                    handleChangeTab("all");
-                  } else if (tab === "all") {
-                    handleChangeTab("session");
-                  }
-                }}
+                onPressedChange={(e) => setTabMode(e ? DisplaySolvesTabs.ALL : DisplaySolvesTabs.SESSION)}
               >
-                <DashboardIcon />
+                <DashboardIcon/>
               </Toggle>
             </div>
           </TooltipTrigger>
           <TooltipContent>
             <p>
               {t("SolvesPage.show")}:{" "}
-              {tab === "all"
-                ? t("SolvesPage.session")
-                : t("SolvesPage.historial")}
+              {tabMode === DisplaySolvesTabs.SESSION
+                ? t("SolvesPage.historial")
+                : t("SolvesPage.session")}
             </p>
           </TooltipContent>
         </Tooltip>
