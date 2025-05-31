@@ -24,8 +24,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { useQueryState } from "nuqs";
 import { STATES } from "@/constants/states";
-import { Order } from "@/enums/Order";
-import { Sort } from "@/enums/Sort";
 import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
 
 export default function DropdownFilterSolves() {
