@@ -80,6 +80,7 @@
     "tailwindcss-animate": "^1.0.7",
     "ts-deepmerge": "^7.0.2",
     "typescript": "5.2.2",
+    "use-debounce": "^10.0.4",
     "uuid": "9.0.1",
     "vaul": "^0.9.9",
     "zustand": "4.4.1"
