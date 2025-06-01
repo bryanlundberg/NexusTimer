@@ -16,7 +16,7 @@ export default function Page() {
   const { filterCubes, handleFavoriteClick, handleRedirectToTimer } = useCubes();
 
   return (
-    <FadeIn className="flex flex-col grow">
+    <FadeIn className="flex flex-col grow overflow-auto">
       <div className="overflow-y-auto pb-4">
         {/* container */}
         <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">

@@ -5,7 +5,7 @@ import FadeIn from "@/components/fade-in/fade-in";
 
 export default function Page() {
   return (
-    <FadeIn className="flex flex-col grow">
+    <FadeIn className="flex flex-col grow overflow-auto">
       {/* container */}
       <div className="overflow-auto pb-4">
         <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">

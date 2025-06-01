@@ -28,7 +28,7 @@ export default function Page() {
   const handleSearch = useDebouncedCallback((value) => setQuery(value), 1000);
 
   return (
-    <FadeIn className="flex flex-col grow">
+    <FadeIn className="flex flex-col grow overflow-auto">
       {/* container */}
       <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
         {/* header */}
