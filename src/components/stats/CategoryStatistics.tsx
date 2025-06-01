@@ -10,6 +10,7 @@ import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useQueryState } from "nuqs";
 import { STATES } from "@/constants/states";
 import { StatisticsTabs } from "@/enums/StatisticsTabs";
+import EmptyStatistics from "@/components/stats/EmptyStatistics";
 
 export default function CategoryStatistics() {
   const t = useTranslations("Index");
@@ -21,7 +22,7 @@ export default function CategoryStatistics() {
     <>
       <div className="flex flex-col gap-3 grow">
         <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-background/90 backdrop-blur-lg">
-          {selectedCube && (
+          {selectedCube && (selectedCube.solves.session.length || selectedCube.solves.all.length) ? (
             <>
               <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3">
                 <TabsList>
@@ -36,7 +37,7 @@ export default function CategoryStatistics() {
                 </TabsContent>
               </Tabs>
             </>
-          )}
+          ): <EmptyStatistics />}
         </div>
 
         <Table className="rounded-md overflow-hidden bg-background/90 backdrop-blur-lg">
