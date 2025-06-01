@@ -6,18 +6,18 @@ export default function EmptySolves() {
   return (
     <div className="w-full flex flex-col items-center justify-center text-center text-sm sm:text-md font-mono py-20 max-w-96 mx-auto">
       <Image
-        src={"/empty.png"}
+        src={"/utils/undraw_space-exploration_dhu1.svg"}
         alt="empty"
         width={200}
         height={200}
-        className="object-scale-down mb-10 size-40 "
+        className="object-scale-down mb-10 size-40"
       />
-      <div className="bg-background/90 backdrop-blur-lg">
+      <h2 className="text-2xl font-bold mb-4 text-center text-balance">
         {t("empty-solves")}
-      </div>
-      <div className="text-balance bg-background/90 backdrop-blur-lg">
+      </h2>
+      <p className="text-gray-600 text-center text-balance">
         {t("empty-solves-description")}
-      </div>
+      </p>
     </div>
   );
 }
