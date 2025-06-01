@@ -14,14 +14,17 @@ export default function EmptyCubes({ ...rest }: EmptyCubesProps) {
       >
         <div className="flex flex-col items-center justify-center gap-1 p-3 font-medium">
           <Image
-            src={"/emp-cube.png"}
+            src={"/utils/undraw_to-the-moon_w1wa.svg"}
             alt={"no-cubes-for-display"}
-            width={180}
-            height={180}
+            width={200}
+            height={200}
             draggable={false}
-            className="size-60 object-scale-down"
+            className="object-scale-down size-40"
           />
-          <p className="font-mono">{t("no-cubes-for-display")}</p>
+          <h2 className="text-2xl text-center text-balance font-bold">{t("no-cubes-for-display")}</h2>
+          <p className="text-gray-600 text-center text-balance">
+            Start adding cube collections to your vault to see them here.
+          </p>
         </div>
       </div>
     </>
