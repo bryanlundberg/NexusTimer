@@ -21,7 +21,7 @@ export default function Page() {
         {/* container */}
         <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
           {/* header */}
-          <Navigation />
+          <Navigation showButtonCreateCollection showMainCubeSelector />
 
           {/* cubes list */}
           {filterCubes && filterCubes.length > 0 ? (

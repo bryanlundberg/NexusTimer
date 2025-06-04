@@ -15,7 +15,7 @@ export default function HeaderTimer() {
 
   return (
     <>
-      <Navigation />
+      <Navigation showButtonNextScramble showButtonSelectMode showMainCubeSelector />
       <ScrambleZone />
       {isPersonalBest && (
         <div id="touch" className="mt-10 text-center">

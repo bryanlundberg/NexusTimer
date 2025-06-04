@@ -32,7 +32,7 @@ export default function Page() {
       {/* container */}
       <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
         {/* header */}
-        <Navigation>
+        <Navigation showMainCubeSelector showButtonDisplayType>
           <div className="flex gap-2">
             <ButtonMoveSolves />
             <Input
