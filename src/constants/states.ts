@@ -19,7 +19,7 @@ export const STATES = {
     },
     ORDER: {
       KEY: "order",
-      DEFAULT_VALUE: Order.ASC,
+      DEFAULT_VALUE: Order.DESC,
     },
   },
   STATISTICS_PAGE: {
