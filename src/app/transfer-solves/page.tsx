@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { useQueryState } from "nuqs";
 import { STATES } from "@/constants/states";
 import { sort } from "fast-sort";
+import { saveBatchCubes } from "@/db/dbOperations";
 
 export default function TransferSolvesPage() {
   const { cubes, setCubes } = useTimerStore();
@@ -49,20 +50,30 @@ export default function TransferSolvesPage() {
         const remainingSolves = sourceCube.solves.session.filter(solve => !selectedSolves.includes(solve.id));
         destinationCube.solves.session.push(...sourceCube.solves.session.filter(solve => selectedSolves.includes(solve.id)));
 
+        const updatedSourceCube = {
+          ...sourceCube,
+          solves: { ...sourceCube.solves, session: remainingSolves }
+        };
+
+        const updatedDestinationCube = {
+          ...destinationCube,
+          solves: { ...destinationCube.solves, session: destinationCube.solves.session }
+        };
+
         setCubes(cubes.map(cube =>
-          cube.id === sourceCollection ? { ...cube, solves: { ...cube.solves, session: remainingSolves } } :
-            cube.id === destinationCollection ? {
-                ...cube,
-                solves: { ...cube.solves, session: destinationCube.solves.session }
-              } :
+          cube.id === sourceCollection ? updatedSourceCube :
+            cube.id === destinationCollection ? updatedDestinationCube :
               cube
         ));
+
+        await saveBatchCubes([updatedSourceCube, updatedDestinationCube]);
 
         toast(`Successfully transferred ${selectedSolves.length} solves from ${sourceCube.name} to ${destinationCube.name}`);
         setSelectedSolves([]);
       }
     } catch (error) {
       console.error("Error transferring solves:", error);
+      toast.error("Failed to transfer solves. Please try again.");
     } finally {
       setIsTransferring(false);
     }
