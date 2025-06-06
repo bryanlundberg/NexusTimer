@@ -39,7 +39,6 @@ export default function DisplayTime({
 }: DisplayTimeProps) {
   const t = useTranslations("Index.HomePage");
   const { timerMode } = useTimerStore();
-  console.log(lastSolve)
   return (
     <>
       <motion.div
