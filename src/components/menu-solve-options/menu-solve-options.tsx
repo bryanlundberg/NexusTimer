@@ -8,6 +8,9 @@ import { BookmarkFilledIcon, BookmarkIcon, CopyIcon, Cross1Icon, CubeIcon } from
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { ArrowRightLeftIcon } from "lucide-react";
+import { useQueryState } from "nuqs";
+import { STATES } from "@/constants/states";
+import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
 
 export default function MenuSolveOptions({
   solve,
@@ -24,6 +27,7 @@ export default function MenuSolveOptions({
   const dialog = useDialogSolve();
   const { handleDeleteSolve, handlePenaltyPlus2, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
   const router = useRouter();
+  const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
 
   if (!selectedCube) return null;
 
@@ -132,16 +136,18 @@ export default function MenuSolveOptions({
               <p>Move to History</p>
             </TooltipContent>
           </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant={"ghost"} onPointerDown={handleMoveCollection}>
-                <ArrowRightLeftIcon size={12}/>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Transfer Collection</p>
-            </TooltipContent>
-          </Tooltip>
+          {tabMode === DisplaySolvesTabs.SESSION && (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant={"ghost"} onPointerDown={handleMoveCollection}>
+                  <ArrowRightLeftIcon size={12}/>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Transfer Collection</p>
+              </TooltipContent>
+            </Tooltip>
+          )}
         </TooltipProvider>
       </div>
     </>
