@@ -51,7 +51,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   const { handleDeleteSolve, handlePenaltyPlus2, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
   useRemoveGridHeight();
 
-  if (!selectedCube) return <AlertEmptySolves message={t("alert.empty-cubes")} icon={<CubeIcon/>}/>
+  if (!selectedCube) return <EmptySolves title={"Start selecting a cube!"} description={t("alert.empty-cubes")}/>;
   if (!displaySolves || displaySolves.length === 0) return <EmptySolves/>;
 
   const filterSolves = filterData(displaySolves, [
