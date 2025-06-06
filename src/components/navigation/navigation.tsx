@@ -28,14 +28,16 @@ export default function Navigation({
   return (
     <>
       <div className="w-full max-w-7xl border mx-auto flex flex-col rounded-lg bg-background/90 backdrop-blur-lg p-2 gap-2 mb-2 sticky top-1 left-0 z-50">
-        <div className="flex justify-center items-center gap-2">
-          {showMenu && <ButtonNavbar/>}
-          {showMainCubeSelector && <MainCubeSelector/>}
-          {showButtonNextScramble && <ButtonNextScramble/>}
-          {showButtonDisplayType && <ButtonDisplayType/>}
-          {showButtonCreateCollection && <ButtonCreateCollection/>}
-          {showButtonSelectMode && <ButtonSelectMode/>}
-        </div>
+        {(showMenu || showMainCubeSelector || showButtonNextScramble || showButtonDisplayType || showButtonCreateCollection || showButtonSelectMode) && (
+          <div className="flex justify-center items-center gap-2">
+            {showMenu && <ButtonNavbar/>}
+            {showMainCubeSelector && <MainCubeSelector/>}
+            {showButtonNextScramble && <ButtonNextScramble/>}
+            {showButtonDisplayType && <ButtonDisplayType/>}
+            {showButtonCreateCollection && <ButtonCreateCollection/>}
+            {showButtonSelectMode && <ButtonSelectMode/>}
+          </div>
+        )}
         {children}
       </div>
     </>
