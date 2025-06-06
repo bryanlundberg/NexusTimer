@@ -27,5 +27,15 @@ export const STATES = {
       KEY: "tab-stats",
       DEFAULT_VALUE: StatisticsTabs.CATEGORY,
     }
-  }
+  },
+  TRANSFER_SOLVES_PAGE: {
+    SOURCE_COLLECTION: {
+      KEY: "source-collection",
+      DEFAULT_VALUE: "",
+    },
+    DESTINATION_COLLECTION: {
+      KEY: "destination-collection",
+      DEFAULT_VALUE: "",
+    },
+  },
 }
