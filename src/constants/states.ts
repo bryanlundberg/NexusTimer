@@ -19,7 +19,7 @@ export const STATES = {
     },
     ORDER: {
       KEY: "order",
-      DEFAULT_VALUE: Order.ASC,
+      DEFAULT_VALUE: Order.DESC,
     },
   },
   STATISTICS_PAGE: {
@@ -27,5 +27,15 @@ export const STATES = {
       KEY: "tab-stats",
       DEFAULT_VALUE: StatisticsTabs.CATEGORY,
     }
-  }
+  },
+  TRANSFER_SOLVES_PAGE: {
+    SOURCE_COLLECTION: {
+      KEY: "source-collection",
+      DEFAULT_VALUE: "",
+    },
+    DESTINATION_COLLECTION: {
+      KEY: "destination-collection",
+      DEFAULT_VALUE: "",
+    },
+  },
 }

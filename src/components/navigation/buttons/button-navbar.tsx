@@ -30,7 +30,7 @@ import {
   TokensIcon,
 } from "@radix-ui/react-icons";
 
-import { Swords } from "lucide-react"; // Online mode
+import { ArrowRightLeftIcon } from "lucide-react";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -95,6 +95,11 @@ export default function ButtonNavbar() {
         icon: <CubeIcon />,
         name: t("CubesPage.title"),
         url: "/cubes",
+      },
+      {
+        icon: <ArrowRightLeftIcon/>,
+        name: "Transfer Solves",
+        url: "/transfer-solves",
       },
       {
         icon: <MixerHorizontalIcon />,

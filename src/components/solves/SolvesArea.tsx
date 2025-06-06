@@ -31,15 +31,20 @@ import { useQueryState } from "nuqs";
 import { STATES } from "@/constants/states";
 import { Order } from "@/enums/Order";
 import { Sort } from "@/enums/Sort";
+import { useRouter } from "next/navigation";
+import { ArrowRightLeftIcon } from "lucide-react";
+import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
 
 interface SolvesArea {
   displaySolves: Solve[] | undefined;
 }
 
 export function SolvesArea({ displaySolves }: SolvesArea) {
+  const router = useRouter();
   const { handleOpenDialogSolve } = useDialogSolve();
   const { selectedCube } = useTimerStore();
   const t = useTranslations("Index.SolvesPage");
+  const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
   const [query,] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE });
   const [orderType,] = useQueryState(STATES.SOLVES_PAGE.ORDER.KEY, { defaultValue: STATES.SOLVES_PAGE.ORDER.DEFAULT_VALUE });
   const [sortType,] = useQueryState(STATES.SOLVES_PAGE.SORT.KEY, { defaultValue: STATES.SOLVES_PAGE.SORT.DEFAULT_VALUE });
@@ -123,6 +128,13 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
               View Details
             </DropdownMenuItem>
             <DropdownMenuSeparator/>
+            {tabMode === DisplaySolvesTabs.SESSION && (
+              <DropdownMenuItem
+                onClick={() => router.push(`/transfer-solves?source-collection=${selectedCube.id}`)}
+              >
+                <ArrowRightLeftIcon className="mr-2 h-4 w-4"/> Transfer Collection
+              </DropdownMenuItem>
+            )}
             <DropdownMenuItem
               onClick={() => handleBookmarkSolve(sortedSolves[index], "solves-area")}
             >

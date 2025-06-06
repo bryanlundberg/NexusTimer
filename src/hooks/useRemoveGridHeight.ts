@@ -3,14 +3,14 @@ import { useEffect } from "react";
 import { useQueryState } from "nuqs";
 import { STATES } from "@/constants/states";
 
-const useRemoveGridHeight = () => {
+const useRemoveGridHeight = (otherStates: any = undefined) => {
   const { selectedCube } = useTimerStore();
   const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
 
   useEffect(() => {
     const container = document.querySelector(".container") as HTMLElement;
     if (container) container.style.setProperty("--grid-height", "auto");
-  }, [selectedCube, tabMode]);
+  }, [selectedCube, tabMode, otherStates]);
 };
 
 export default useRemoveGridHeight;
