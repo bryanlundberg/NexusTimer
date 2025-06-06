@@ -6,6 +6,8 @@ import { useTimerStore } from "@/store/timerStore";
 import { useSolveActions } from "@/hooks/useSolveActions";
 import { BookmarkFilledIcon, BookmarkIcon, CopyIcon, Cross1Icon, CubeIcon } from "@radix-ui/react-icons";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
+import { ArrowRightLeftIcon } from "lucide-react";
 
 export default function MenuSolveOptions({
   solve,
@@ -21,6 +23,7 @@ export default function MenuSolveOptions({
   const { selectedCube, lastSolve } = useTimerStore();
   const dialog = useDialogSolve();
   const { handleDeleteSolve, handlePenaltyPlus2, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
+  const router = useRouter();
 
   if (!selectedCube) return null;
 
@@ -48,6 +51,10 @@ export default function MenuSolveOptions({
   const localHandleMoveToHistory = () => {
     if (solve) handleMoveToHistory(solve, caseOfUse);
   };
+
+  const handleMoveCollection = () => {
+    router.push(`/transfer-solves?source-collection=${selectedCube.id}`)
+  }
 
   return (
     <>
@@ -123,6 +130,16 @@ export default function MenuSolveOptions({
             </TooltipTrigger>
             <TooltipContent>
               <p>Move to History</p>
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant={"ghost"} onPointerDown={handleMoveCollection}>
+                <ArrowRightLeftIcon size={12}/>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Transfer Collection</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
