@@ -15,6 +15,7 @@ import formatDate from "@/lib/formatDate";
 import { toast } from "sonner";
 import { useQueryState } from "nuqs";
 import { STATES } from "@/constants/states";
+import { sort } from "fast-sort";
 
 export default function TransferSolvesPage() {
   const { cubes, setCubes } = useTimerStore();
@@ -25,7 +26,7 @@ export default function TransferSolvesPage() {
   useRemoveGridHeight(sourceCollection);
 
   const displaySolves = useMemo(() => {
-    return cubes?.find(cube => cube.id === sourceCollection)?.solves.session || [];
+    return sort(cubes?.find(cube => cube.id === sourceCollection)?.solves.session || []).desc((solve) => solve.endTime);
   }, [sourceCollection, cubes]);
 
   const handleToggleAll = (type: "select" | "deselect") => {
