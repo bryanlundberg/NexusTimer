@@ -6,18 +6,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon } from "lucide-react";
 import { useTimerStore } from "@/store/timerStore";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useRemoveGridHeight from "@/hooks/useRemoveGridHeight";
 import { VirtualizedGrid } from "@mierak/react-virtualized-grid";
 import { Card } from "@/components/ui/card";
 import formatTime from "@/lib/formatTime";
 import formatDate from "@/lib/formatDate";
 import { toast } from "sonner";
+import { useQueryState } from "nuqs";
+import { STATES } from "@/constants/states";
 
 export default function TransferSolvesPage() {
   const { cubes, setCubes } = useTimerStore();
-  const [sourceCollection, setSourceCollection] = useState<string>("");
-  const [destinationCollection, setDestinationCollection] = useState<string>("");
+  const [sourceCollection, setSourceCollection] = useQueryState(STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.KEY, { defaultValue: STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.DEFAULT_VALUE });
+  const [destinationCollection, setDestinationCollection] = useQueryState(STATES.TRANSFER_SOLVES_PAGE.DESTINATION_COLLECTION.KEY, { defaultValue: STATES.TRANSFER_SOLVES_PAGE.DESTINATION_COLLECTION.DEFAULT_VALUE });
   const [selectedSolves, setSelectedSolves] = useState<string[]>([]);
   const [isTransferring, setIsTransferring] = useState<boolean>(false);
   useRemoveGridHeight(sourceCollection);
@@ -48,11 +50,14 @@ export default function TransferSolvesPage() {
 
         setCubes(cubes.map(cube =>
           cube.id === sourceCollection ? { ...cube, solves: { ...cube.solves, session: remainingSolves } } :
-          cube.id === destinationCollection ? { ...cube, solves: { ...cube.solves, session: destinationCube.solves.session } } :
-          cube
+            cube.id === destinationCollection ? {
+                ...cube,
+                solves: { ...cube.solves, session: destinationCube.solves.session }
+              } :
+              cube
         ));
 
-        toast(`Successfully transferred ${selectedSolves.length} solves from ${sourceCube.name} to ${destinationCube.name}`)
+        toast(`Successfully transferred ${selectedSolves.length} solves from ${sourceCube.name} to ${destinationCube.name}`);
         setSelectedSolves([]);
       }
     } catch (error) {
@@ -60,11 +65,21 @@ export default function TransferSolvesPage() {
     } finally {
       setIsTransferring(false);
     }
-  }
+  };
+
+  useEffect(() => {
+    if (!cubes || cubes.length === 0) {
+      setSourceCollection(null);
+      setDestinationCollection(null);
+      return;
+    }
+
+    if (sourceCollection && !cubes.some(cube => cube.id === sourceCollection)) setSourceCollection(null);
+    if (destinationCollection && !cubes.some(cube => cube.id === destinationCollection)) setDestinationCollection(null);
+  }, [sourceCollection, destinationCollection, cubes, setSourceCollection, setDestinationCollection]);
 
   return (
     <FadeIn className="flex flex-col grow overflow-auto">
-      {/* container */}
       <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
         <Navigation showMenu={false}>
           <div className={"flex gap-2 items-center"}>
@@ -119,7 +134,10 @@ export default function TransferSolvesPage() {
             <div className={"flex justify-between items-center mt-2 mb-4"}>
               <div>Solves: ({selectedSolves.length} selected)</div>
               <div className={"flex gap-2"}>
-                <Button variant={selectedSolves.length === displaySolves.length ? "default" : "outline"} onClick={() => handleToggleAll("select")}>Select All</Button>
+                <Button
+                  variant={selectedSolves.length === displaySolves.length ? "default" : "outline"}
+                  onClick={() => handleToggleAll("select")}
+                >Select All</Button>
                 <Button variant={"outline"} onClick={() => handleToggleAll("deselect")}>Deselect All</Button>
               </div>
             </div>
