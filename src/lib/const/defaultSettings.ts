@@ -19,11 +19,7 @@ export const defaultSettings: Settings = {
     bestAverage: { status: true, key: "best-average" },
     worstTime: { status: false, key: "worst-time" },
   },
-  theme: {
-    background: { color: "dark", key: "background-color" },
-    content: { color: "dark", key: "letter-color" },
-  },
   preferences: {
-    defaultCube: { cube: null, key: "default-cube" },
+    defaultCube: { id: null, key: "default-cube" },
   },
 };

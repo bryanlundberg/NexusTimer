@@ -1,20 +1,13 @@
 "use client";
-
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { ChartOptions, createChart, createTextWatermark, DeepPartial, HistogramSeries } from 'lightweight-charts';
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 
-// type TimeObject = {
-//   time: number;
-//   value: number;
-// };
 
 export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
   const t = useTranslations("Index.StatsPage");
-  const { settings } = useSettingsModalStore();
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -25,10 +18,6 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
     const gridColor = getComputedStyle(
       document.documentElement
     ).getPropertyValue("--border");
-
-    // const lineColor = getComputedStyle(
-    //   document.documentElement
-    // ).getPropertyValue("--primary");
 
     const chartOptions: DeepPartial<ChartOptions> = {
       layout: {
@@ -145,7 +134,7 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
         chart.applyOptions({ height: newRect.height, width: newRect.width });
       }).observe(container);
     }
-  }, [dataSet, t, settings.theme.background.color]);
+  }, [dataSet, t]);
 
   return <div ref={chartContainerRef} className="w-full h-96"></div>;
 }

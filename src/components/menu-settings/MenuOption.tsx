@@ -1,7 +1,7 @@
-import Toggle from "@/components/headless/Toggle";
 import { Switch } from "../ui/switch";
 import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import { getSetting, setSetting } from "@/lib/settingsUtils";
 
 interface MenuOption {
   label: string;
@@ -13,27 +13,10 @@ export function MenuOption({ label, setting }: MenuOption) {
   const { setSettings } = useSettingsModalStore();
 
   const saveSettings = () => {
-    const currentSettings = loadSettings();
-
-    Object.values(currentSettings.timer).forEach((setting: any) => {
-      if (setting.key === id) {
-        setting.status = !setting.status;
-      }
-    });
-
-    Object.values(currentSettings.alerts).forEach((setting: any) => {
-      if (setting.key === id) {
-        setting.status = !setting.status;
-      }
-    });
-    Object.values(currentSettings.features).forEach((setting: any) => {
-      if (setting.key === id) {
-        setting.status = !setting.status;
-      }
-    });
-
-    window.localStorage.setItem("settings", JSON.stringify(currentSettings));
-    setSettings(currentSettings);
+    const currentStatus = getSetting(id, status);
+    setSetting(id, !currentStatus);
+    const updatedSettings = loadSettings();
+    setSettings(updatedSettings);
   };
 
   return (

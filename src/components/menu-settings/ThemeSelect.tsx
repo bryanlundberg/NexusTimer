@@ -1,7 +1,5 @@
 import { Themes } from "@/interfaces/types/Themes";
-import loadSettings from "@/lib/loadSettings";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTheme } from "next-themes";
 
 interface Variation {
@@ -12,9 +10,8 @@ interface Variation {
 }
 
 export default function ThemeSelect() {
-  const { settings, setSettings } = useSettingsModalStore();
   const { backgroundImage, deleteBackgroundImage } = useBackgroundImageStore();
-  const { setTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const variation: Variation[] = [
     {
       bg: "bg-neutral-100",
@@ -30,38 +27,18 @@ export default function ThemeSelect() {
     },
   ];
 
-  const stringToThemes = (themeKey: string): Themes => {
-    switch (themeKey) {
-      case "light":
-        return "light";
-      case "dark":
-        return "dark";
-      default:
-        return "dark";
-    }
-  };
-
-  const handleSelectTheme = (themeKey: string) => {
-    const currentSettings = loadSettings();
-    const theme = stringToThemes(themeKey);
-    currentSettings.theme.background.color = theme;
-    window.localStorage.setItem("settings", JSON.stringify(currentSettings));
-    setSettings(currentSettings);
-    setTheme(themeKey);
-  };
-
   return (
     <div className="flex mx-3 gap-3">
       {variation.map((item) => (
         <div
           key={item.key}
-          onClick={() => handleSelectTheme(item.key)}
+          onClick={() => setTheme(item.key)}
           className="flex flex-col items-center justify-center"
         >
           <div
             className={`cursor-pointer size-20 rounded-full ${item.bg} ${
-              item.key === settings.theme.background.color
-                ? "outline outline-blue-600"
+              item.key === resolvedTheme
+                ? "ring"
                 : "border border-neutral-400"
             }`}
           ></div>

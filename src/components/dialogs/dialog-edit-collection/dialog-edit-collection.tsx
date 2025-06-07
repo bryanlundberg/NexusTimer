@@ -1,40 +1,26 @@
 "use client";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import {
-  DialogClose,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { getAllCubes, saveCube } from "@/db/dbOperations";
-import useErrorDialog from "@/hooks/useErrorDialog";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 export default function DialogEditCollection({
   error,
-  handleChangeError,
+  handleChangeError
 }: {
   error: { message: string; status: boolean };
   handleChangeError: ({
     message,
-    status,
+    status
   }: {
     message: string;
     status: boolean;
@@ -44,10 +30,9 @@ export default function DialogEditCollection({
   const { cube, closeDialog } = useDialogCubesOptions();
   const { cubes, setCubes, selectedCube, setSelectedCube, setTimerStatistics } =
     useTimerStore();
-  const { settings, setSettings } = useSettingsModalStore();
   const [form, setForm] = useState({
     name: cube?.name || "",
-    category: cube?.category || "2x2",
+    category: cube?.category || "2x2"
   });
 
   const handleSubmitEditCubeCollection = async () => {
@@ -59,35 +44,15 @@ export default function DialogEditCollection({
       ) {
         handleChangeError({
           status: true,
-          message: t("Errors.repeated-name"),
+          message: t("Errors.repeated-name")
         });
         return;
-      }
-
-      // update cube info that its linked to settings "preferences" the default start cube
-      if (cube && cube.id === settings.preferences.defaultCube.cube?.id) {
-        const newSettings = {
-          ...settings,
-          preferences: {
-            ...settings.preferences,
-            defaultCube: {
-              ...settings.preferences.defaultCube,
-              cube: {
-                ...settings.preferences.defaultCube.cube,
-                name: form.name,
-                category: form.category,
-              },
-            },
-          },
-        };
-        setSettings(newSettings);
-        window.localStorage.setItem("settings", JSON.stringify(newSettings));
       }
 
       await saveCube({
         ...cube,
         name: form.name.trim(),
-        category: form.category,
+        category: form.category
       });
 
       const cubesDB = await getAllCubes();
@@ -110,7 +75,7 @@ export default function DialogEditCollection({
     setForm((prev) => ({
       ...prev,
       category: cube?.category || "2x2",
-      name: cube?.name || "",
+      name: cube?.name || ""
     }));
   }, [cube]);
 
@@ -156,7 +121,7 @@ export default function DialogEditCollection({
           }
         >
           <SelectTrigger data-testid="drawer-edit-select-category">
-            <SelectValue placeholder={t("Cubes-modal.select-an-option")} />
+            <SelectValue placeholder={t("Cubes-modal.select-an-option")}/>
           </SelectTrigger>
           <SelectContent>
             {cubeCollection.map((cube) => {
