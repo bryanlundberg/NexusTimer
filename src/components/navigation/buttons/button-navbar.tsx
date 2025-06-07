@@ -21,8 +21,6 @@ import {
   CubeIcon,
   DesktopIcon,
   EnterFullScreenIcon,
-  FileIcon,
-  GearIcon,
   MixerHorizontalIcon,
   MoonIcon,
   PersonIcon,
@@ -124,75 +122,6 @@ export default function ButtonNavbar() {
         url: "/settings/account/load",
       },
     ],
-
-    links: [
-      {
-        icon: <FileIcon />,
-        name: t("SettingsPage.tos"),
-        url: "/settings/help/terms-and-conditions",
-      },
-      {
-        icon: <FileIcon />,
-        name: t("SettingsPage.privacy-policy"),
-        url: "/settings/help/privacy-policy",
-      },
-    ],
-
-    options: [
-      {
-        icon: <GearIcon />,
-        name: t("SettingsPage.options"),
-        url: "/settings/options",
-      },
-      {
-        icon: <CircleIcon />,
-        name: t("Settings-menu.locale"),
-        url: "/settings/options#region",
-      },
-      {
-        icon: <CircleIcon />,
-        name: t("Settings-menu.timer"),
-        url: "/settings/options#timer",
-      },
-      {
-        icon: <CircleIcon />,
-        name: t("Settings-menu.features"),
-        url: "/settings/options#features",
-      },
-      {
-        icon: <CircleIcon />,
-        name: t("Settings-menu.alerts"),
-        url: "/settings/options#alerts",
-      },
-      {
-        icon: <CircleIcon />,
-        name: "Colors",
-        url: "/settings/options#colors",
-      },
-      {
-        icon: <CircleIcon />,
-        name: t("Settings-menu.data"),
-        url: "/settings/options#app-data",
-      },
-      {
-        icon: <CircleIcon />,
-        name: t("Settings-menu.preferences"),
-        url: "/settings/options#preferences",
-      },
-    ],
-
-    cubes: [
-      {
-        icon: <CubeIcon />,
-        name: t("CubesPage.title"),
-        url: "/cubes",
-      },
-      {
-        icon: <CircleIcon />,
-        name: t("Cubes-modal.new-collection"),
-        url: "/cubes",
-      },
-    ],
   };
 
   return (
@@ -237,32 +166,6 @@ export default function ButtonNavbar() {
           <CommandSeparator />
           <CommandGroup heading={t("SettingsPage.account")}>
             {list.account.map((c) => {
-              return (
-                <CommandLink
-                  url={c.url}
-                  label={c.name}
-                  icon={c.icon}
-                  key={genId()}
-                />
-              );
-            })}
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading={t("SettingsPage.options")}>
-            {list.options.map((c) => {
-              return (
-                <CommandLink
-                  url={c.url}
-                  label={c.name}
-                  icon={c.icon}
-                  key={c.url}
-                />
-              );
-            })}
-          </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading={t("CubesPage.title")}>
-            {list.cubes.map((c) => {
               return (
                 <CommandLink
                   url={c.url}
