@@ -1,5 +1,6 @@
 import { Themes } from "@/interfaces/types/Themes";
 import loadSettings from "@/lib/loadSettings";
+import { setSetting } from "@/lib/settingsUtils";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTheme } from "next-themes";
@@ -30,23 +31,10 @@ export default function ThemeSelect() {
     },
   ];
 
-  const stringToThemes = (themeKey: string): Themes => {
-    switch (themeKey) {
-      case "light":
-        return "light";
-      case "dark":
-        return "dark";
-      default:
-        return "dark";
-    }
-  };
-
-  const handleSelectTheme = (themeKey: string) => {
-    const currentSettings = loadSettings();
-    const theme = stringToThemes(themeKey);
-    currentSettings.theme.background.color = theme;
-    window.localStorage.setItem("settings", JSON.stringify(currentSettings));
-    setSettings(currentSettings);
+  const handleSelectTheme = (themeKey: "light" | "dark") => {
+    setSetting(settings.theme.background.key, themeKey);
+    const updatedSettings = loadSettings();
+    setSettings(updatedSettings);
     setTheme(themeKey);
   };
 
@@ -61,7 +49,7 @@ export default function ThemeSelect() {
           <div
             className={`cursor-pointer size-20 rounded-full ${item.bg} ${
               item.key === settings.theme.background.color
-                ? "outline outline-blue-600"
+                ? "ring"
                 : "border border-neutral-400"
             }`}
           ></div>
