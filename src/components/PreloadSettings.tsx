@@ -1,15 +1,14 @@
 "use client";
 import { usePreloadSettings } from "@/hooks/usePreloadSettings";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import { ThemeProvider } from "./theme-provider";
+import { ReactNode } from "react";
+
 export default function PreloadSettings({
-  children,
+  children
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
-  const { settings } = useSettingsModalStore();
-  const theme = settings ? settings.theme.background.color : "light";
   const { backgroundImage } = useBackgroundImageStore();
 
   const { isMounted } = usePreloadSettings();
@@ -18,7 +17,7 @@ export default function PreloadSettings({
     <>
       <ThemeProvider
         attribute="class"
-        defaultTheme={theme}
+        defaultTheme={"system"}
         // enableSystem
         disableTransitionOnChange
       >
@@ -29,7 +28,7 @@ export default function PreloadSettings({
             backgroundPosition: backgroundImage ? "center" : "",
             backgroundAttachment: backgroundImage ? "fixed" : "",
             backgroundRepeat: backgroundImage ? "no-repeat" : "",
-            backgroundSize: backgroundImage ? "cover" : "",
+            backgroundSize: backgroundImage ? "cover" : ""
           }}
         >
           {isMounted ? children : null}
