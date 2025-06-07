@@ -49,9 +49,6 @@ export function buildSettingsObject(): Settings {
     settings.alerts[name as keyof typeof settings.alerts].status = getSetting(setting.key, setting.status);
   });
 
-  settings.theme.background.color = getSetting(settings.theme.background.key, settings.theme.background.color);
-  settings.theme.content.color = getSetting(settings.theme.content.key, settings.theme.content.color);
-
   settings.preferences.defaultCube.id = getSetting(settings.preferences.defaultCube.key, settings.preferences.defaultCube.id);
 
   return settings;
