@@ -24,6 +24,6 @@ export const defaultSettings: Settings = {
     content: { color: "dark", key: "letter-color" },
   },
   preferences: {
-    defaultCube: { cube: null, key: "default-cube" },
+    defaultCube: { id: null, key: "default-cube" },
   },
 };
