@@ -1,6 +1,3 @@
-import { Cube } from "./Cube";
-import { Themes } from "./types/Themes";
-
 interface Timer {
   inspection: { status: boolean; key: string };
   startCue: { status: boolean; key: string };
@@ -22,11 +19,6 @@ interface Alerts {
   worstTime: { status: boolean; key: string };
 }
 
-interface Theme {
-  background: { color: Themes; key: string };
-  content: { color: string; key: string };
-}
-
 interface Preferences {
   defaultCube: { id: string | null; key: string };
 }
@@ -35,6 +27,5 @@ export interface Settings {
   timer: Timer;
   features: Features;
   alerts: Alerts;
-  theme: Theme;
   preferences: Preferences;
 }
