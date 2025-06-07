@@ -6,20 +6,21 @@ import { getAllCubes, getCubeById } from "@/db/dbOperations";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 
 export function usePreloadSettings() {
-  const { setCubes, setSelectedCube, setTimerStatistics, setNewScramble } =
-    useTimerStore();
+  const { setCubes, setSelectedCube, setTimerStatistics, setNewScramble } = useTimerStore();
   const { setSettings } = useSettingsModalStore();
   const { setBackgroundImage } = useBackgroundImageStore();
-
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     const settings = loadSettings();
-    const defaultCube = settings.preferences.defaultCube.cube;
+    const defaultCubeId = settings.preferences.defaultCube.id;
 
-    if (defaultCube) {
-      getCubeById(defaultCube.id)
-        .then((c) => setSelectedCube(c))
+    if (defaultCubeId) {
+      getCubeById(defaultCubeId)
+        .then((c) => {
+          setSelectedCube(c);
+          setNewScramble(c);
+        })
         .catch((e) => {
           console.log(e);
           setSelectedCube(null);
@@ -28,7 +29,6 @@ export function usePreloadSettings() {
 
     setSettings(settings);
     setTimerStatistics();
-    setNewScramble(defaultCube);
   }, [setSettings, setSelectedCube, setNewScramble, setTimerStatistics]);
 
   useEffect(() => {
