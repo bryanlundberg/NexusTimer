@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import loadSettings from "@/lib/loadSettings";
-import { Cube } from "@/interfaces/Cube";
+import { setSetting } from "@/lib/settingsUtils";
 import {
   Select,
   SelectContent,
@@ -18,32 +18,27 @@ export default function MenuSelectDefaultStartCube() {
   const { cubes } = useTimerStore();
 
   const handleCubeSelect = (cubeId: string) => {
-    // if selected no cube at start
-    if (cubeId === "none") {
-      const currentSettings = loadSettings();
-      currentSettings.preferences.defaultCube.cube = null;
-      setSettings(currentSettings);
-      window.localStorage.setItem("settings", JSON.stringify(currentSettings));
-      return;
-    }
+    const defaultCubeKey = settings.preferences.defaultCube.key;
 
-    // if selected a cube for start
-    const selection = cubes?.find((i) => i.id === cubeId);
-    if (!selection) return;
-    const currentSettings = loadSettings();
-    currentSettings.preferences.defaultCube.cube = selection;
-    setSettings(currentSettings);
-    window.localStorage.setItem("settings", JSON.stringify(currentSettings));
+    if (cubeId === "none") {
+      setSetting(defaultCubeKey, null);
+    } else {
+      const selection = cubes?.find((i) => i.id === cubeId);
+      if (!selection) return;
+      setSetting(defaultCubeKey, cubeId);
+    }
+    const updatedSettings = loadSettings();
+    setSettings(updatedSettings);
   };
 
-  const defaultCube = settings.preferences.defaultCube.cube?.id;
+  const defaultCube = settings.preferences.defaultCube.id;
 
   return (
     <div className="flex justify-between items-center mb-1 mx-3">
       <div className="grow">{t("Settings-menu.auto-select")}</div>
       <Select
-        defaultValue="none"
-        value={defaultCube}
+        defaultValue={defaultCube || "none"}
+        value={defaultCube || "none"}
         onValueChange={handleCubeSelect}
       >
         <SelectTrigger className="w-[180px] bg-background">
