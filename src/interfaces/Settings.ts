@@ -28,7 +28,7 @@ interface Theme {
 }
 
 interface Preferences {
-  defaultCube: { cube: Cube | null; key: string };
+  defaultCube: { id: string | null; key: string };
 }
 
 export interface Settings {
