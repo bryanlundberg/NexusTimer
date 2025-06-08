@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 
 import * as React from "react";
+import { useEffect } from "react";
 
 import {
   CommandDialog,
@@ -10,7 +11,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
+  CommandSeparator
 } from "@/components/ui/command";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { DialogTitle } from "@/components/ui/dialog";
@@ -25,7 +26,7 @@ import {
   MoonIcon,
   PersonIcon,
   SunIcon,
-  TokensIcon,
+  TokensIcon
 } from "@radix-ui/react-icons";
 
 import { ArrowRightLeftIcon } from "lucide-react";
@@ -36,6 +37,8 @@ import { useTheme } from "next-themes";
 import genId from "@/lib/genId";
 import { useTranslations } from "next-intl";
 import { useFullScreen } from "@/hooks/useFullScreen";
+import useWebsiteColors from "@/hooks/useWebsiteColors";
+import loadSettings from "@/lib/loadSettings";
 
 interface ListItem {
   icon: React.ReactNode;
@@ -53,7 +56,9 @@ export default function ButtonNavbar() {
   const [open, setOpen] = React.useState(false);
   const { setTheme } = useTheme();
   const { toggleFullScreen } = useFullScreen();
-  React.useEffect(() => {
+  const { applyColorTheme } = useWebsiteColors();
+
+  useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
@@ -77,51 +82,56 @@ export default function ButtonNavbar() {
           />
         ),
         name: t("HomePage.title"),
-        url: "/",
+        url: "/"
       },
       {
-        icon: <TokensIcon />,
+        icon: <TokensIcon/>,
         name: t("SolvesPage.title"),
-        url: "/solves",
+        url: "/solves"
       },
       {
-        icon: <BarChartIcon />,
+        icon: <BarChartIcon/>,
         name: t("StatsPage.title"),
-        url: "/stats",
+        url: "/stats"
       },
       {
-        icon: <CubeIcon />,
+        icon: <CubeIcon/>,
         name: t("CubesPage.title"),
-        url: "/cubes",
+        url: "/cubes"
       },
       {
         icon: <ArrowRightLeftIcon/>,
         name: "Transfer Solves",
-        url: "/transfer-solves",
+        url: "/transfer-solves"
       },
       {
-        icon: <MixerHorizontalIcon />,
+        icon: <MixerHorizontalIcon/>,
         name: t("SettingsPage.title"),
-        url: "/settings",
-      },
+        url: "/settings"
+      }
     ],
     account: [
       {
-        icon: <PersonIcon />,
+        icon: <PersonIcon/>,
         name: t("SettingsPage.account"),
-        url: "/settings/account",
+        url: "/settings/account"
       },
       {
-        icon: <CircleIcon />,
+        icon: <CircleIcon/>,
         name: t("SettingsPage.save-data-title"),
-        url: "/settings/account/save",
+        url: "/settings/account/save"
       },
       {
-        icon: <CircleIcon />,
+        icon: <CircleIcon/>,
         name: t("SettingsPage.load-data-title"),
-        url: "/settings/account/load",
-      },
-    ],
+        url: "/settings/account/load"
+      }
+    ]
+  };
+
+  const handleThemeChange = (theme: string) => {
+    setTheme(theme);
+    applyColorTheme(loadSettings().preferences.colorTheme.value);
   };
 
   return (
@@ -143,7 +153,7 @@ export default function ButtonNavbar() {
         <VisuallyHidden.Root>
           <DialogTitle>NexusTimer Navigation</DialogTitle>
         </VisuallyHidden.Root>
-        <CommandInput placeholder={t("Inputs.search")} />
+        <CommandInput placeholder={t("Inputs.search")}/>
         <CommandList>
           <CommandEmpty>{t("Inputs.no-results")}</CommandEmpty>
           <CommandGroup heading={t("others.suggestions")}>
@@ -159,11 +169,11 @@ export default function ButtonNavbar() {
               );
             })}
             <CommandItem onSelect={() => toggleFullScreen()}>
-              <EnterFullScreenIcon />
+              <EnterFullScreenIcon/>
               Fullscreen
             </CommandItem>
           </CommandGroup>
-          <CommandSeparator />
+          <CommandSeparator/>
           <CommandGroup heading={t("SettingsPage.account")}>
             {list.account.map((c) => {
               return (
@@ -176,18 +186,18 @@ export default function ButtonNavbar() {
               );
             })}
           </CommandGroup>
-          <CommandSeparator />
+          <CommandSeparator/>
           <CommandGroup heading={t("Settings-menu.theme")}>
-            <CommandItem onPointerDown={() => setTheme("light")}>
-              <SunIcon />
+            <CommandItem onPointerDown={() => handleThemeChange("light")}>
+              <SunIcon/>
               {t("Settings-menu.light")}
             </CommandItem>
-            <CommandItem onPointerDown={() => setTheme("dark")}>
-              <MoonIcon />
+            <CommandItem onPointerDown={() => handleThemeChange("dark")}>
+              <MoonIcon/>
               {t("Settings-menu.dark")}
             </CommandItem>
-            <CommandItem onPointerDown={() => setTheme("system")}>
-              <DesktopIcon />
+            <CommandItem onPointerDown={() => handleThemeChange("system")}>
+              <DesktopIcon/>
               {t("Settings-menu.system")}
             </CommandItem>
           </CommandGroup>
@@ -201,7 +211,7 @@ function CommandLink({
   url,
   label,
   icon,
-  disabled = false,
+  disabled = false
 }: {
   url: string;
   label: string;
