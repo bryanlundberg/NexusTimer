@@ -50,6 +50,7 @@ export function buildSettingsObject(): Settings {
   });
 
   settings.preferences.defaultCube.id = getSetting(settings.preferences.defaultCube.key, settings.preferences.defaultCube.id);
+  settings.preferences.colorTheme.value = getSetting(settings.preferences.colorTheme.key, settings.preferences.colorTheme.value);
 
   return settings;
 }

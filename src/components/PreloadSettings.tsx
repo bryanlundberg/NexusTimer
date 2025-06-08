@@ -18,7 +18,7 @@ export default function PreloadSettings({
       <ThemeProvider
         attribute="class"
         defaultTheme={"system"}
-        // enableSystem
+        enableSystem
         disableTransitionOnChange
       >
         <div

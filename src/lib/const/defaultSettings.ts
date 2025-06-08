@@ -21,5 +21,6 @@ export const defaultSettings: Settings = {
   },
   preferences: {
     defaultCube: { id: null, key: "default-cube" },
+    colorTheme: { value: "blue", key: "color-theme" },
   },
 };
