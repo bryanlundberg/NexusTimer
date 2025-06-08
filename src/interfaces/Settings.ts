@@ -1,3 +1,5 @@
+import { Colors } from "@/interfaces/types/colors";
+
 interface Timer {
   inspection: { status: boolean; key: string };
   startCue: { status: boolean; key: string };
@@ -21,6 +23,7 @@ interface Alerts {
 
 interface Preferences {
   defaultCube: { id: string | null; key: string };
+  colorTheme: { value: Colors; key: string };
 }
 
 export interface Settings {
