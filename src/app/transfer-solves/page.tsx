@@ -174,7 +174,7 @@ export default function TransferSolvesPage() {
                     });
                   }}
                   className={
-                    `relative grow flex items-center justify-center w-auto font-medium text-center transition duration-200 rounded-md cursor-pointer h-full bg-secondary text-secondary-foreground hover:opacity-70 ${selectedSolves.find((solve) => solve === displaySolves[index].id) ? "ring ring-blue-600" : ""}`
+                    `relative grow flex items-center justify-center w-auto font-medium text-center transition duration-200 rounded-md cursor-pointer h-full bg-secondary text-secondary-foreground hover:opacity-70 ${selectedSolves.find((solve) => solve === displaySolves[index].id) ? "ring ring-primary" : ""}`
                   }
                 >
                   <div className="tracking-wider pt-2">
