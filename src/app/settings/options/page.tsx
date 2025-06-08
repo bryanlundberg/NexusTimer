@@ -17,6 +17,8 @@ import MenuSelectLanguage from "@/components/menu-settings/MenuSelectLanguage";
 import CustomTheme from "@/components/menu-settings/CustomTheme";
 import MenuSelectDefaultStartCube from "@/components/menu-settings/MenuSelectDefaultStartCube";
 import AccountHeader from "@/components/account/account-header/account-header";
+import { Separator } from "@/components/ui/separator";
+import MenuSelectColor from "@/components/menu-settings/MenuSelectColor";
 
 export default function Page() {
   const { settings } = useSettingsModalStore();
@@ -28,6 +30,8 @@ export default function Page() {
           <AccountHeader back="/settings" label={t("SettingsPage.options")} />
 
           <MenuSelectLanguage />
+
+          <Separator className="my-5" />
 
           <MenuSection
             id="timer"
@@ -51,6 +55,8 @@ export default function Page() {
               label={t("Settings-menu.manual-mode")}
             />
           </MenuSection>
+
+          <Separator className="my-5" />
 
           <MenuSection
             id="features"
@@ -79,6 +85,8 @@ export default function Page() {
             />
           </MenuSection>
 
+          <Separator className="my-5" />
+
           <MenuSection
             id="alerts"
             icon={<BellIcon />}
@@ -99,6 +107,8 @@ export default function Page() {
             />
           </MenuSection>
 
+          <Separator className="my-5" />
+
           <MenuSection
             id="background"
             icon={<ComponentBooleanIcon />}
@@ -106,7 +116,10 @@ export default function Page() {
           >
             <ThemeSelect />
             <CustomTheme />
+            <MenuSelectColor/>
           </MenuSection>
+
+          <Separator className="my-5" />
 
           <MenuSection
             id="app-data"
@@ -115,6 +128,8 @@ export default function Page() {
           >
             <DataImportExport />
           </MenuSection>
+
+          <Separator className="my-5" />
 
           <MenuSection
             id="preferences"
