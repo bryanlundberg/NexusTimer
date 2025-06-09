@@ -10,7 +10,7 @@ import FadeIn from "@/components/fade-in/fade-in";
 export default function Home() {
   return (
     <>
-      <FadeIn className={"flex flex-col grow overflow-auto"}>
+      <FadeIn className={"flex flex-col grow overflow-hidden"}>
         <TimerContainer>
           <HeaderTimer/>
           <MainTimer/>
