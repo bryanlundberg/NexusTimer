@@ -8,6 +8,7 @@ import moment from "moment/min/moment-with-locales";
 import getBestTime from "@/lib/getBestTime";
 import getWorstTime from "@/lib/getWorstTime";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useTheme } from "next-themes";
 
 interface TimeObject {
   time: number;
@@ -20,7 +21,7 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const locale = useLocale();
-
+  const { resolvedTheme } = useTheme();
   const [showBestTime, setShowBestTime] = useState(true);
   const [showWorstTime, setShowWorstTime] = useState(true);
   const [showAverageTime, setShowAverageTime] = useState(true);
@@ -293,7 +294,7 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
         chart.applyOptions({ height: newRect.height, width: newRect.width });
       }).observe(container);
     }
-  }, [dataSet, locale, t, showBestTime, showWorstTime, showAverageTime, showStandardDeviation]);
+  }, [dataSet, locale, t, showBestTime, showWorstTime, showAverageTime, showStandardDeviation, resolvedTheme]);
 
   return (
     <div className="relative w-full">
