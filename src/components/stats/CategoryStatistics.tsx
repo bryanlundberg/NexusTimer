@@ -24,10 +24,10 @@ export default function CategoryStatistics() {
         <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-background/90 backdrop-blur-lg">
           {selectedCube && (selectedCube.solves.session.length || selectedCube.solves.all.length) ? (
             <>
-              <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3">
-                <TabsList>
-                  <TabsTrigger value={StatisticsTabs.CATEGORY}>Category</TabsTrigger>
-                  <TabsTrigger value={StatisticsTabs.CUBE}>Cube</TabsTrigger>
+              <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3 w-full">
+                <TabsList className="w-full justify-between">
+                  <TabsTrigger value={StatisticsTabs.CATEGORY} className={"w-full"}>Category</TabsTrigger>
+                  <TabsTrigger value={StatisticsTabs.CUBE} className={"w-full"}>Cube</TabsTrigger>
                 </TabsList>
                 <TabsContent value={StatisticsTabs.CATEGORY}>
                   <LineCharter dataSet={stats.data.global}/>
