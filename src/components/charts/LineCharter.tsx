@@ -1,10 +1,18 @@
 "use client";
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
-import { ChartOptions, createChart, createTextWatermark, DeepPartial, HistogramSeries } from 'lightweight-charts';
-import { useEffect, useRef } from "react";
+import { ChartOptions, createChart, createTextWatermark, CreatePriceLineOptions, DeepPartial, HistogramSeries } from 'lightweight-charts';
+import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import moment from "moment/min/moment-with-locales";
+import getBestTime from "@/lib/getBestTime";
+import getWorstTime from "@/lib/getWorstTime";
+import { Checkbox } from "@/components/ui/checkbox";
+
+interface TimeObject {
+  time: number;
+  value: number;
+}
 
 
 export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
@@ -12,6 +20,11 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
   const chartContainerRef = useRef<HTMLDivElement | null>(null);
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const locale = useLocale();
+
+  const [showBestTime, setShowBestTime] = useState(true);
+  const [showWorstTime, setShowWorstTime] = useState(true);
+  const [showAverageTime, setShowAverageTime] = useState(true);
+  const [showStandardDeviation, setShowStandardDeviation] = useState(true);
 
   useEffect(() => {
     const backgroundColor = getComputedStyle(
@@ -95,8 +108,8 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
       const solveMap = new Map<number, Solve>();
 
       dataSet.forEach((i: Solve, index: number) => {
-        const timeIndex = dataSet.length - index;
-        structuredData.unshift({
+        const timeIndex = index + 1;
+        structuredData.push({
           time: timeIndex,
           value: i.time,
         });
@@ -122,38 +135,96 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
         color: `hsl(${primaryColor})`,
       });
 
-      // const getMeanTime = (data: TimeObject[]) => {
-      //   return data.length
-      //     ? data.reduce(
-      //         (total: number, timeObject: TimeObject) =>
-      //           total + timeObject.value,
-      //         0
-      //       ) / data.length
-      //     : 0;
-      // };
+      // Utility functions for statistics
+      const getMeanTime = (data: TimeObject[]): number => {
+        return data.length
+          ? data.reduce(
+              (total: number, timeObject: TimeObject) =>
+                total + timeObject.value,
+              0
+            ) / data.length
+          : 0;
+      };
 
-      // const meanTimeLine: CreatePriceLineOptions = {
-      //   price: getMeanTime(structuredData),
-      //   color: "#FBBF24",
-      //   lineWidth: 2,
-      //   lineStyle: 2,
-      //   axisLabelVisible: true,
-      //   title: `${t("average")}`,
-      // };
-      //
-      // const bestTimeLine: CreatePriceLineOptions = {
-      //   price: getBestTime({ solves: dataSet }),
-      //   color: "#059669",
-      //   lineWidth: 1,
-      //   lineStyle: 0,
-      //   axisLabelVisible: true,
-      //   title: `${t("best-time")}`,
-      // };
+      const getStandardDeviation = (data: TimeObject[]): number => {
+        if (data.length <= 1) return 0;
+
+        const mean = getMeanTime(data);
+        const squaredDifferences = data.map(item =>
+          Math.pow(item.value - mean, 2)
+        );
+
+        const variance = squaredDifferences.reduce((sum, squaredDiff) =>
+          sum + squaredDiff, 0
+        ) / data.length;
+
+        return Math.sqrt(variance);
+      };
+
+      if (showBestTime) {
+        const bestTimeLine: CreatePriceLineOptions = {
+          price: getBestTime({ solves: dataSet }),
+          color: "#059669", // Green
+          lineWidth: 1,
+          lineStyle: 0, // Solid
+          axisLabelVisible: true,
+          title: `${t("best-time")}`,
+        };
+        lineSeries.createPriceLine(bestTimeLine);
+      }
+
+      if (showWorstTime) {
+        const worstTimeLine: CreatePriceLineOptions = {
+          price: getWorstTime(dataSet),
+          color: "#DC2626", // Red
+          lineWidth: 1,
+          lineStyle: 0, // Solid
+          axisLabelVisible: true,
+          title: "Worst",
+        };
+        lineSeries.createPriceLine(worstTimeLine);
+      }
+
+      if (showAverageTime) {
+        const meanTimeLine: CreatePriceLineOptions = {
+          price: getMeanTime(structuredData),
+          color: "#FBBF24", // Yellow
+          lineWidth: 2,
+          lineStyle: 2, // Dashed
+          axisLabelVisible: true,
+          title: `${t("average")}`,
+        };
+        lineSeries.createPriceLine(meanTimeLine);
+      }
+
+      if (showStandardDeviation) {
+        const stdDev = getStandardDeviation(structuredData);
+        const meanTime = getMeanTime(structuredData);
+
+        // Upper bound (mean + stdDev)
+        const upperBoundLine: CreatePriceLineOptions = {
+          price: meanTime + stdDev,
+          color: "#8B5CF6", // Purple
+          lineWidth: 1,
+          lineStyle: 3, // Dotted
+          axisLabelVisible: true,
+          title: `+σ`,
+        };
+        lineSeries.createPriceLine(upperBoundLine);
+
+        // Lower bound (mean - stdDev)
+        const lowerBoundLine: CreatePriceLineOptions = {
+          price: Math.max(0, meanTime - stdDev),
+          color: "#8B5CF6", // Purple
+          lineWidth: 1,
+          lineStyle: 3, // Dotted
+          axisLabelVisible: true,
+          title: `-σ`,
+        };
+        lineSeries.createPriceLine(lowerBoundLine);
+      }
 
       lineSeries.setData(structuredData);
-      // lineSeries.createPriceLine(meanTimeLine);
-      // lineSeries.createPriceLine(bestTimeLine);
-
       chart.autoSizeActive();
       chart.timeScale().fitContent();
 
@@ -222,16 +293,76 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
         chart.applyOptions({ height: newRect.height, width: newRect.width });
       }).observe(container);
     }
-  }, [dataSet, locale, t]);
+  }, [dataSet, locale, t, showBestTime, showWorstTime, showAverageTime, showStandardDeviation]);
 
   return (
-    <div className="relative w-full h-96">
-      <div ref={chartContainerRef} className="w-full h-full"></div>
-      <div
-        ref={tooltipRef}
-        className="absolute hidden p-2 text-sm bg-black bg-opacity-80 rounded shadow-lg z-10 text-white"
-        style={{ pointerEvents: 'none' }}
-      ></div>
+    <div className="relative w-full">
+      <div className="h-96">
+        <div ref={chartContainerRef} className="w-full h-full"></div>
+        <div
+          ref={tooltipRef}
+          className="absolute hidden p-2 text-sm bg-black bg-opacity-80 rounded shadow-lg z-10 text-white"
+          style={{ pointerEvents: 'none' }}
+        ></div>
+      </div>
+
+      <div className="mb-4 flex flex-wrap gap-4">
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="best-time"
+            checked={showBestTime}
+            onCheckedChange={(e: boolean) => setShowBestTime(e)}
+          />
+          <label
+            htmlFor="best-time"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Best Time
+          </label>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="worst-time"
+            checked={showWorstTime}
+            onCheckedChange={(e: boolean) => setShowWorstTime(e)}
+          />
+          <label
+            htmlFor="worst-time"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Worst Time
+          </label>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="average-time"
+            checked={showAverageTime}
+            onCheckedChange={(e: boolean) => setShowAverageTime(e)}
+          />
+          <label
+            htmlFor="average-time"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Average
+          </label>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Checkbox
+            id="standard-deviation"
+            checked={showStandardDeviation}
+            onCheckedChange={(e: boolean) => setShowStandardDeviation(e)}
+          />
+          <label
+            htmlFor="standard-deviation"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Standard Deviation
+          </label>
+        </div>
+      </div>
     </div>
   );
 }
