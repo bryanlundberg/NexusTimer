@@ -26,9 +26,14 @@ interface Preferences {
   colorTheme: { value: Colors; key: string };
 }
 
+interface Sounds {
+  applauses: { status: boolean; key: string };
+}
+
 export interface Settings {
   timer: Timer;
   features: Features;
   alerts: Alerts;
   preferences: Preferences;
+  sounds: Sounds;
 }

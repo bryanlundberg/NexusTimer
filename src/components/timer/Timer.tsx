@@ -9,6 +9,7 @@ import DisplayContainer from "./display/display-container";
 import DisplayTime from "./display/display-time";
 import { ReactNode } from "react";
 import { TimerStatus } from "@/enums/TimerStatus";
+import { useAudioTrigger } from "@/hooks/useAudioTrigger";
 
 export default function Timer({ children }: { children?: ReactNode }) {
   const { settings } = useSettingsModalStore();
@@ -23,6 +24,13 @@ export default function Timer({ children }: { children?: ReactNode }) {
   } = useTimerStore();
   const { inspectionTime } = useTimer();
   const { device } = useDeviceMatch();
+
+  const isBestTime = timerStatistics.global.best === lastSolve?.time && !isSolving && settings.sounds.applauses.status;
+
+  useAudioTrigger({
+    audioSrc: "./sounds/applauses.mp3",
+    trigger: isBestTime,
+  });
 
   return (
     <DisplayContainer>
