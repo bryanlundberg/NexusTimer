@@ -52,5 +52,9 @@ export function buildSettingsObject(): Settings {
   settings.preferences.defaultCube.id = getSetting(settings.preferences.defaultCube.key, settings.preferences.defaultCube.id);
   settings.preferences.colorTheme.value = getSetting(settings.preferences.colorTheme.key, settings.preferences.colorTheme.value);
 
+  Object.entries(settings.sounds).forEach(([name, setting]) => {
+    settings.sounds[name as keyof typeof settings.sounds].status = getSetting(setting.key, setting.status);
+  });
+
   return settings;
 }
