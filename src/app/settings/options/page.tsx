@@ -12,6 +12,7 @@ import {
   FileTextIcon,
   LapTimerIcon,
   MagicWandIcon,
+  SpeakerLoudIcon,
 } from "@radix-ui/react-icons";
 import MenuSelectLanguage from "@/components/menu-settings/MenuSelectLanguage";
 import CustomTheme from "@/components/menu-settings/CustomTheme";
@@ -108,6 +109,17 @@ export default function Page() {
           </MenuSection>
 
           <Separator className="my-5" />
+
+          <MenuSection
+            id="sounds"
+            icon={<SpeakerLoudIcon />}
+            title={t("Settings-menu.sounds")}
+          >
+            <MenuOption
+              setting={settings.sounds.applauses}
+              label={t("Settings-menu.applause")}
+            />
+          </MenuSection>
 
           <MenuSection
             id="background"

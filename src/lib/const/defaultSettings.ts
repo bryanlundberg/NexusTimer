@@ -23,4 +23,7 @@ export const defaultSettings: Settings = {
     defaultCube: { id: null, key: "default-cube" },
     colorTheme: { value: "blue", key: "color-theme" },
   },
+  sounds: {
+    applauses: { status: false, key: "sounds-applauses" },
+  },
 };
