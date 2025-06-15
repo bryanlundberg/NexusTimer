@@ -1,5 +1,6 @@
 import { Settings } from "@/interfaces/Settings";
 import { defaultSettings } from "./const/defaultSettings";
+import _ from "lodash";
 
 /**
  * Gets a setting value from localStorage by its key
@@ -35,22 +36,43 @@ export function setSetting<T>(key: string, value: T): void {
  * @returns The complete settings object
  */
 export function buildSettingsObject(): Settings {
-  const settings: Settings = JSON.parse(JSON.stringify(defaultSettings));
+  const settings: Settings = _.cloneDeep(defaultSettings);
 
-  Object.entries(settings.timer).forEach(([name, setting]) => {
-    settings.timer[name as keyof typeof settings.timer].status = getSetting(setting.key, setting.status);
+  Object.entries(settings.timer).forEach(([name]) => {
+    settings.timer[name as keyof typeof settings.timer] = getSetting(`timer.${name}`, settings.timer[name as keyof typeof settings.timer]);
   });
 
-  Object.entries(settings.features).forEach(([name, setting]) => {
-    settings.features[name as keyof typeof settings.features].status = getSetting(setting.key, setting.status);
+  Object.entries(settings.features).forEach(([name]) => {
+    settings.features[name as keyof typeof settings.features] = getSetting(`features.${name}`, settings.features[name as keyof typeof settings.features]);
   });
 
-  Object.entries(settings.alerts).forEach(([name, setting]) => {
-    settings.alerts[name as keyof typeof settings.alerts].status = getSetting(setting.key, setting.status);
+  Object.entries(settings.alerts).forEach(([name]) => {
+    settings.alerts[name as keyof typeof settings.alerts] = getSetting(`alerts.${name}`, settings.alerts[name as keyof typeof settings.alerts]);
   });
 
-  settings.preferences.defaultCube.id = getSetting(settings.preferences.defaultCube.key, settings.preferences.defaultCube.id);
-  settings.preferences.colorTheme.value = getSetting(settings.preferences.colorTheme.key, settings.preferences.colorTheme.value);
+  settings.preferences.defaultCube = getSetting('preferences.defaultCube', settings.preferences.defaultCube);
+  settings.preferences.colorTheme = getSetting('preferences.colorTheme', settings.preferences.colorTheme);
 
-  return settings;
+  return _.cloneDeep(settings);
+}
+
+/**
+ * Saves the complete settings object to localStorage
+ * @param settings The settings object to save
+ */
+export function saveSettings(settings: Settings): void {
+  Object.entries(settings.timer).forEach(([name, value]) => {
+    setSetting(`timer.${name}`, value);
+  });
+
+  Object.entries(settings.features).forEach(([name, value]) => {
+    setSetting(`features.${name}`, value);
+  });
+
+  Object.entries(settings.alerts).forEach(([name, value]) => {
+    setSetting(`alerts.${name}`, value);
+  });
+
+  setSetting('preferences.defaultCube', settings.preferences.defaultCube);
+  setSetting('preferences.colorTheme', settings.preferences.colorTheme);
 }
