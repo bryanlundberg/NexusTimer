@@ -11,7 +11,7 @@ import {
   ComponentBooleanIcon,
   FileTextIcon,
   LapTimerIcon,
-  MagicWandIcon,
+  MagicWandIcon
 } from "@radix-ui/react-icons";
 import MenuSelectLanguage from "@/components/menu-settings/MenuSelectLanguage";
 import CustomTheme from "@/components/menu-settings/CustomTheme";
@@ -19,124 +19,150 @@ import MenuSelectDefaultStartCube from "@/components/menu-settings/MenuSelectDef
 import AccountHeader from "@/components/account/account-header/account-header";
 import { Separator } from "@/components/ui/separator";
 import MenuSelectColor from "@/components/menu-settings/MenuSelectColor";
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { saveSettings } from "@/lib/settingsUtils";
 
 export default function Page() {
-  const { settings } = useSettingsModalStore();
+  const { settings, setSettings } = useSettingsModalStore();
   const t = useTranslations("Index");
+  const { watch, control, getValues, formState: { isDirty }, reset } = useForm({ defaultValues: settings });
+  const formWatch = watch();
+
+  useEffect(() => {
+    if (isDirty) {
+      saveSettings(getValues());
+      setSettings(getValues());
+      reset(getValues());
+    }
+  }, [formWatch, getValues, isDirty, setSettings, reset]);
+
   return (
     <>
       <div className="overflow-y-auto">
         <div className="max-w-md mx-auto bg-background/90 backdrop-blur-lg">
-          <AccountHeader back="/settings" label={t("SettingsPage.options")} />
+          <AccountHeader back="/settings" label={t("SettingsPage.options")}/>
 
-          <MenuSelectLanguage />
+          <MenuSelectLanguage/>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
           <MenuSection
             id="timer"
-            icon={<LapTimerIcon />}
+            icon={<LapTimerIcon/>}
             title={t("Settings-menu.timer")}
           >
             <MenuOption
-              setting={settings.timer.inspection}
               label={t("Settings-menu.inspection")}
+              name={"timer.inspection"}
+              control={control}
             />
             <MenuOption
-              setting={settings.timer.startCue}
+              name={"timer.startCue"}
               label={t("Settings-menu.start-cue")}
+              control={control}
             />
             <MenuOption
-              setting={settings.timer.holdToStart}
+              name={("timer.holdToStart")}
               label={t("Settings-menu.hold-to-start")}
+              control={control}
             />
             <MenuOption
-              setting={settings.timer.manualMode}
+              name={("timer.manualMode")}
               label={t("Settings-menu.manual-mode")}
+              control={control}
             />
           </MenuSection>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
           <MenuSection
             id="features"
-            icon={<MagicWandIcon />}
+            icon={<MagicWandIcon/>}
             title={t("Settings-menu.features")}
           >
             <MenuOption
-              setting={settings.features.scrambleImage}
+              name={("features.scrambleImage")}
               label={t("Settings-menu.scramble-image")}
+              control={control}
             />
             <MenuOption
-              setting={settings.features.sessionStats}
+              name={("features.sessionStats")}
               label={t("Settings-menu.session-stats")}
+              control={control}
             />
             <MenuOption
-              setting={settings.features.quickActionButtons}
+              name={("features.quickActionButtons")}
               label={t("Settings-menu.quick-action-buttons")}
+              control={control}
             />
             <MenuOption
-              setting={settings.features.hideWhileSolving}
+              name={("features.hideWhileSolving")}
               label={t("Settings-menu.hide-while-solving")}
+              control={control}
             />
             <MenuOption
-              setting={settings.features.scrambleBackground}
+              name={("features.scrambleBackground")}
               label={t("Settings-menu.scramble-background")}
+              control={control}
             />
           </MenuSection>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
           <MenuSection
             id="alerts"
-            icon={<BellIcon />}
+            icon={<BellIcon/>}
             title={t("Settings-menu.alerts")}
           >
             <MenuOption
-              setting={settings.alerts.bestTime}
+              name={("alerts.bestTime")}
               label={t("Settings-menu.best-time")}
+              control={control}
             />
             <MenuOption
-              setting={settings.alerts.bestAverage}
+              name={("alerts.bestAverage")}
               label={t("Settings-menu.best-average")}
+              control={control}
             />
 
             <MenuOption
-              setting={settings.alerts.worstTime}
+              name={"alerts.worstTime"}
               label={t("Settings-menu.worst-time")}
+              control={control}
             />
           </MenuSection>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
           <MenuSection
             id="background"
-            icon={<ComponentBooleanIcon />}
+            icon={<ComponentBooleanIcon/>}
             title={t("Settings-menu.theme")}
           >
-            <ThemeSelect />
-            <CustomTheme />
+            <ThemeSelect/>
+            <CustomTheme/>
             <MenuSelectColor/>
           </MenuSection>
 
-          <Separator className="my-5" />
-
-          <MenuSection
-            id="app-data"
-            icon={<FileTextIcon />}
-            title={t("Settings-menu.data")}
-          >
-            <DataImportExport />
-          </MenuSection>
-
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
           <MenuSection
             id="preferences"
-            icon={<BoxModelIcon />}
+            icon={<BoxModelIcon/>}
             title={t("Settings-menu.preferences")}
           >
-            <MenuSelectDefaultStartCube />
+            <MenuSelectDefaultStartCube/>
+          </MenuSection>
+
+          <Separator className="my-5"/>
+
+          <MenuSection
+            id="app-data"
+            icon={<FileTextIcon/>}
+            title={t("Settings-menu.data")}
+          >
+            <DataImportExport/>
           </MenuSection>
         </div>
       </div>
