@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { useState } from "react";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import loadSettings from "@/lib/loadSettings";
@@ -18,20 +17,16 @@ export default function MenuSelectDefaultStartCube() {
   const { cubes } = useTimerStore();
 
   const handleCubeSelect = (cubeId: string) => {
-    const defaultCubeKey = settings.preferences.defaultCube.key;
+    const defaultCubeKey = "preferences.defaultCube";
+    const newValue = cubeId === "none" ? "" : cubes?.find((cube) => cube.id === cubeId)?.id;
 
-    if (cubeId === "none") {
-      setSetting(defaultCubeKey, null);
-    } else {
-      const selection = cubes?.find((i) => i.id === cubeId);
-      if (!selection) return;
-      setSetting(defaultCubeKey, cubeId);
-    }
-    const updatedSettings = loadSettings();
-    setSettings(updatedSettings);
+    if (newValue === undefined) return;
+
+    setSetting(defaultCubeKey, newValue);
+    setSettings(loadSettings());
   };
 
-  const defaultCube = settings.preferences.defaultCube.id;
+  const defaultCube = settings.preferences.defaultCube;
 
   return (
     <div className="flex justify-between items-center mb-1 mx-3">
