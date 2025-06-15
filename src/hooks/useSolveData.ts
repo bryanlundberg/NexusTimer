@@ -15,11 +15,11 @@ export default function useSolveData() {
     cubes,
   } = useTimerStore();
 
-  const saveSolveData = async (startTime: number) => {
+  const saveSolveMainTimer = async () => {
     if (selectedCube && scramble) {
       const lastSolve: Solve = {
         id: genId(),
-        startTime: startTime,
+        startTime: Date.now() - solvingTime,
         endTime: Date.now(),
         scramble: scramble,
         bookmark: false,
@@ -51,11 +51,11 @@ export default function useSolveData() {
       const updatedCube = await getCubeById(selectedCube.id);
       setSelectedCube(updatedCube);
     }
-    
+
     setNewScramble(selectedCube);
   };
 
   return {
-    saveSolveData,
+    saveSolveMainTimer,
   };
 }

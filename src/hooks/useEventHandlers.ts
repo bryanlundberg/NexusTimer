@@ -1,17 +1,25 @@
 import { useRef, useEffect, useCallback } from "react";
-import { useTimerStore } from "@/store/timerStore";
 import { TimerMode } from "@/enums/TimerMode";
 
 type HandleHoldFunction = (isReleased: boolean) => void;
 type HandleReleaseFunction = () => void;
 type ResetTimerFunction = () => void;
 
-export default function useEventHandlers(
-  handleHold: HandleHoldFunction,
-  handleRelease: HandleReleaseFunction,
-  resetTimer: ResetTimerFunction
-) {
-  const { displayHint, timerMode } = useTimerStore();
+interface UseEventHandlersProps {
+  displayHint: boolean;
+  timerMode: TimerMode;
+  handleHold: HandleHoldFunction;
+  handleRelease: HandleReleaseFunction;
+  resetTimer: ResetTimerFunction;
+}
+
+export default function useEventHandlers({
+  displayHint,
+  timerMode,
+  handleHold,
+  handleRelease,
+  resetTimer
+}: UseEventHandlersProps) {
   const releasedKey = useRef<boolean>(true);
 
   const handleHoldWithReleasedState = useCallback(() => {

@@ -1,42 +1,72 @@
-import { useEffect, useCallback } from "react";
-import { useTimerStore } from "@/store/timerStore";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import { useCallback, useEffect } from "react";
 import { TimerStatus } from "@/enums/TimerStatus";
 import useTimerControls from "./useTimerControls";
 import useInspection from "./useInspection";
 import useHoldToStart from "./useHoldToStart";
-import useSolveData from "./useSolveData";
 import useEventHandlers from "./useEventHandlers";
+import { Cube } from "@/interfaces/Cube";
 
-export default function useTimer() {
-  const {
-    isSolving,
+interface UseTimerProps {
+  isSolving: boolean;
+  setTimerStatus: (status: TimerStatus) => void;
+  selectedCube: Cube | null;
+  setTimerStatistics: () => void;
+  inspectionRequired: boolean;
+  setIsSolving: (isSolving: boolean) => void;
+  setSolvingTime: (time: number) => void;
+  displayHint?: boolean;
+  timerMode?: any;
+  settings?: any;
+  onFinishSolve: () => void;
+}
+
+export default function useTimer({
+  isSolving,
+  setTimerStatus,
+  selectedCube,
+  setTimerStatistics,
+  inspectionRequired,
+  setIsSolving,
+  setSolvingTime,
+  displayHint = false,
+  timerMode = 'NORMAL',
+  settings = { timer: { startCue: { status: false }, holdToStart: { status: false } } },
+  onFinishSolve
+}: UseTimerProps) {
+
+  const { startTimer, resetTimer, stopTimer } = useTimerControls({
+    setSolvingTime,
+    setIsSolving,
+    setTimerStatus
+  });
+
+  const { inspectionTime, startInspection, removeInspection, inspectionId } = useInspection({
     setTimerStatus,
-    selectedCube,
-    setTimerStatistics,
-  } = useTimerStore();
+    setSolvingTime,
+    settings
+  });
 
-  const { settings } = useSettingsModalStore();
-  const inspectionRequired = settings.timer.inspection.status;
-
-  const { startTimer, resetTimer, stopTimer, startSolveTime } = useTimerControls();
-  const { inspectionTime, startInspection, removeInspection, inspectionId } = useInspection();
-  const { startHold, removeHolding, holdingTime, holdTimeRequired, holdingTimeId } = useHoldToStart();
-  const { saveSolveData } = useSolveData();
+  const { startHold, removeHolding, holdingTime, holdTimeRequired, holdingTimeId } = useHoldToStart({
+    setTimerStatus,
+    settings
+  });
 
   // MAIN HOLD CONTROL
   const handleHold = useCallback((isReleased: boolean) => {
     if (!selectedCube) return;
     if (isSolving && isReleased) {
       stopTimer();
-      saveSolveData(startSolveTime.current as number);
-      resetTimer();
+      setTimerStatus(TimerStatus.IDLE);
+      requestAnimationFrame(() => {
+        onFinishSolve();
+        resetTimer();
+      });
     }
     if (!isReleased) return;
     if (!isSolving) {
       startHold();
     }
-  }, [isSolving, resetTimer, saveSolveData, selectedCube, startHold, startSolveTime, stopTimer]);
+  }, [isSolving, onFinishSolve, resetTimer, selectedCube, startHold, stopTimer, setTimerStatus]);
 
   // MAIN RELEASE CONTROL
   const handleRelease = useCallback(() => {
@@ -84,13 +114,19 @@ export default function useTimer() {
   ]);
 
   // Event handlers
-  useEventHandlers(handleHold, handleRelease, resetTimer);
+  useEventHandlers({
+    displayHint,
+    timerMode,
+    handleHold,
+    handleRelease,
+    resetTimer
+  });
 
   useEffect(() => {
     if (selectedCube && !isSolving) setTimerStatistics();
   }, [selectedCube, isSolving, setTimerStatistics]);
 
   return {
-    inspectionTime,
+    inspectionTime
   };
 }

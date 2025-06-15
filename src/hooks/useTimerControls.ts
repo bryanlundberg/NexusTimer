@@ -1,42 +1,57 @@
 import { useRef } from "react";
-import { useTimerStore } from "@/store/timerStore";
 import { TimerStatus } from "@/enums/TimerStatus";
 
-export default function useTimerControls() {
-  const {
-    setSolvingTime,
-    setIsSolving,
-    setTimerStatus,
-  } = useTimerStore();
+interface UseTimerControlsProps {
+  setSolvingTime: (time: number) => void;
+  setIsSolving: (isSolving: boolean) => void;
+  setTimerStatus: (status: TimerStatus) => void;
+}
+
+export default function useTimerControls({
+  setSolvingTime,
+  setIsSolving,
+  setTimerStatus,
+}: UseTimerControlsProps) {
 
   const startSolveTime = useRef<number | null>(null);
   const solveTimeId = useRef<any>(null);
 
   const startTimer = () => {
+    // Set state and references in a single batch to minimize renders
     setIsSolving(true);
     setTimerStatus(TimerStatus.SOLVING);
-    startSolveTime.current = Date.now() - 1;
-    solveTimeId.current = setInterval(() => {
-      if (startSolveTime.current) {
-        const now = Date.now();
-        const difference = now - startSolveTime.current;
-        setSolvingTime(difference);
-      }
-    });
+
+    startSolveTime.current = performance.now();
+
+    const updateTimer = () => {
+      if (!startSolveTime.current) return;
+
+      const now = performance.now();
+      const difference = now - startSolveTime.current;
+      setSolvingTime(difference);
+
+      solveTimeId.current = requestAnimationFrame(updateTimer);
+    };
+
+    solveTimeId.current = requestAnimationFrame(updateTimer);
   };
 
   const resetTimer = () => {
-    clearInterval(solveTimeId.current);
-    solveTimeId.current = null;
+    if (solveTimeId.current) {
+      cancelAnimationFrame(solveTimeId.current);
+      solveTimeId.current = null;
+    }
     startSolveTime.current = null;
     setIsSolving(false);
     setTimerStatus(TimerStatus.IDLE);
   };
 
   const stopTimer = () => {
-    clearInterval(solveTimeId.current);
-    solveTimeId.current = null;
-    startSolveTime.current = null;
+    if (solveTimeId.current) {
+      cancelAnimationFrame(solveTimeId.current);
+      solveTimeId.current = null;
+    }
+    // Keep the final time by not resetting startSolveTime here
   };
 
   return {
