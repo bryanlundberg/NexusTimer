@@ -25,7 +25,10 @@ export default function Timer({ children }: { children?: ReactNode }) {
   const { inspectionTime } = useTimer();
   const { device } = useDeviceMatch();
 
-  const isBestTime = timerStatistics.global.best === lastSolve?.time && !isSolving && settings.sounds.applauses.status;
+  const isBestTime =
+    timerStatistics.global.best === lastSolve?.time &&
+    !isSolving &&
+    settings.sounds.newPersonalBest.status;
 
   useAudioTrigger({
     audioSrc: "./sounds/applauses.mp3",

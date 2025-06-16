@@ -116,10 +116,12 @@ export default function Page() {
             title={t("Settings-menu.sounds")}
           >
             <MenuOption
-              setting={settings.sounds.applauses}
-              label={t("Settings-menu.applause")}
+              setting={settings.sounds.newPersonalBest}
+              label={t("Settings-menu.newPersonalBest")}
             />
           </MenuSection>
+
+          <Separator className="my-5" />
 
           <MenuSection
             id="background"
@@ -128,7 +130,7 @@ export default function Page() {
           >
             <ThemeSelect />
             <CustomTheme />
-            <MenuSelectColor/>
+            <MenuSelectColor />
           </MenuSection>
 
           <Separator className="my-5" />

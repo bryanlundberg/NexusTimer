@@ -27,7 +27,7 @@ interface Preferences {
 }
 
 interface Sounds {
-  applauses: { status: boolean; key: string };
+  newPersonalBest: { status: boolean; key: string };
 }
 
 export interface Settings {

@@ -24,6 +24,6 @@ export const defaultSettings: Settings = {
     colorTheme: { value: "blue", key: "color-theme" },
   },
   sounds: {
-    applauses: { status: false, key: "sounds-applauses" },
+    newPersonalBest: { status: false, key: "new-personal-best" },
   },
 };
