@@ -85,7 +85,7 @@ export default function DisplayTime({
                   transition: { type: "spring", stiffness: 500, damping: 30 }
                 }}
               >
-                {timerStatus === TimerStatus.INSPECTING ? (
+                {(settings.timer.inspection && (timerStatus === TimerStatus.INSPECTING || timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY)) ? (
                   <>
                     <motion.div
                       className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl"

@@ -74,9 +74,11 @@ export default function useTimer({
     if (!holdingTimeId.current) return;
     if (typeof holdingTime === "number" && holdingTime <= holdTimeRequired) {
       removeHolding();
-      inspectionId.current
-        ? setTimerStatus(TimerStatus.SOLVING)
-        : setTimerStatus(TimerStatus.IDLE);
+      if (inspectionId.current) {
+        setTimerStatus(TimerStatus.INSPECTING);
+      } else {
+        setTimerStatus(TimerStatus.IDLE);
+      }
       return;
     }
     if (!inspectionId.current && inspectionRequired) {
