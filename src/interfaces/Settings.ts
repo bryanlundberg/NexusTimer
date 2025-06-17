@@ -30,7 +30,7 @@ interface Preferences {
 }
 
 interface Sounds {
-  newPersonalBest: { status: boolean; key: string };
+  newPersonalBest: boolean;
 }
 
 export interface Settings {
