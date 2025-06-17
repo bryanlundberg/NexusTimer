@@ -22,6 +22,7 @@ import MenuSelectColor from "@/components/menu-settings/MenuSelectColor";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { saveSettings } from "@/lib/settingsUtils";
+import MenuInputOption from "@/components/menu-settings/MenuInputOption";
 
 export default function Page() {
   const { settings, setSettings } = useSettingsModalStore();
@@ -57,21 +58,44 @@ export default function Page() {
               name={"timer.inspection"}
               control={control}
             />
+
+            <MenuInputOption
+              name={"timer.inspectionTime"}
+              label={"Inspection time (ms)"}
+              control={control}
+            />
+
             <MenuOption
               name={"timer.startCue"}
               label={t("Settings-menu.start-cue")}
               control={control}
             />
+
             <MenuOption
               name={("timer.holdToStart")}
               label={t("Settings-menu.hold-to-start")}
               control={control}
             />
+
+            <MenuInputOption
+              name={"timer.holdToStartTime"}
+              label={"Hold to start time (ms)"}
+              control={control}
+            />
+
             <MenuOption
               name={("timer.manualMode")}
               label={t("Settings-menu.manual-mode")}
               control={control}
             />
+
+            <MenuInputOption
+              name={"timer.decimals"}
+              label={"Decimal places"}
+              control={control}
+              inputProps={{ max: 4 }}
+            />
+
           </MenuSection>
 
           <Separator className="my-5"/>
