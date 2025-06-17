@@ -139,7 +139,6 @@
       "best-average": "Nejlepší průměr",
       "worst-time": "Nejhorší čas",
       "sounds": "Zvuky",
-      "applause": "Potlesk",
       "theme": "Téma",
       "custom-background-image": "Vlastní obrázek pozadí",
       "format": "Formát",
@@ -155,7 +154,8 @@
       "preferences": "Předvolby",
       "dark": "Tmavý",
       "light": "Světlo",
-      "system": "Systém"
+      "system": "Systém",
+      "newPersonalBest": "Nový osobní nejlepší"
     },
     "backup-modal": {
       "title": "Inteligentní Obnova Zálohy",

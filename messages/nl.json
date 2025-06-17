@@ -139,7 +139,6 @@
       "best-average": "Beste Gemiddelde",
       "worst-time": "Slechtste Tijd",
       "sounds": "Geluid",
-      "applause": "Applaus",
       "theme": "Thema",
       "custom-background-image": "Aangepaste achtergrondafbeelding",
       "format": "Formaat",
@@ -155,7 +154,8 @@
       "suggest": "Stel een wijziging voor",
       "dark": "Donker",
       "light": "Licht",
-      "system": "Systeem"
+      "system": "Systeem",
+      "newPersonalBest": "Nieuw persoonlijk beste"
     },
     "backup-modal": {
       "title": "Intelligente Back-up Herstel",

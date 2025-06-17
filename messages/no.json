@@ -139,7 +139,6 @@
       "best-average": "Beste gjennomsnitt",
       "worst-time": "Verste tid",
       "sounds": "Lyder",
-      "applause": "Applaus",
       "theme": "Tema",
       "custom-background-image": "Tilpasset bakgrunnsbilde",
       "format": "Format",
@@ -155,7 +154,8 @@
       "suggest": "Foreslå en endring",
       "dark": "Mørk",
       "light": "Lys",
-      "system": "System"
+      "system": "System",
+      "newPersonalBest": "Nytt personlig beste"
     },
     "backup-modal": {
       "title": "Intelligent Sikkerhetskopiering Gjenoppretting",

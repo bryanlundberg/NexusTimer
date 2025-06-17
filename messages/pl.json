@@ -139,7 +139,6 @@
       "best-average": "Najlepsza średnia",
       "worst-time": "Najgorszy czas",
       "sounds": "Dźwięki",
-      "applause": "Oklaski",
       "theme": "Motyw",
       "custom-background-image": "Niestandardowy obraz tła",
       "format": "Format",
@@ -155,7 +154,8 @@
       "suggest": "Zaproponuj zmianę",
       "dark": "Ciemny",
       "light": "Światło",
-      "system": "System"
+      "system": "System",
+      "newPersonalBest": "Nowy osobisty najlepszy"
     },
     "backup-modal": {
       "title": "Inteligentne Przywracanie Kopii Zapasowej",

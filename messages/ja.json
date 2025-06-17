@@ -139,7 +139,6 @@
       "best-average": "最良平均",
       "worst-time": "最悪タイム",
       "sounds": "サウンド",
-      "applause": "拍手",
       "theme": "テーマ",
       "custom-background-image": "カスタム背景画像",
       "format": "フォーマット",
@@ -155,7 +154,8 @@
       "suggest": "変更を提案する",
       "dark": "暗い",
       "light": "ライト",
-      "system": "システム"
+      "system": "システム",
+      "newPersonalBest": "新しい個人的なベスト"
     },
     "backup-modal": {
       "title": "インテリジェントバックアップの復元",

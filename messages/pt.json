@@ -139,7 +139,6 @@
       "best-average": "Melhor média",
       "worst-time": "Pior tempo",
       "sounds": "Sons",
-      "applause": "Aplausos",
       "theme": "Tema",
       "custom-background-image": "Imagem de fundo personalizada",
       "format": "Formato",
@@ -155,7 +154,8 @@
       "suggest": "Sugira uma mudança",
       "dark": "Escuro",
       "light": "Luz",
-      "system": "Sistema"
+      "system": "Sistema",
+      "newPersonalBest": "Novo melhor pessoal"
     },
     "backup-modal": {
       "title": "Restauração Inteligente de Backup",

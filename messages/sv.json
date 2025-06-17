@@ -139,7 +139,6 @@
       "best-average": "Bästa genomsnitt",
       "worst-time": "Sämsta tid",
       "sounds": "Ljud",
-      "applause": "Applåder",
       "theme": "Tema",
       "custom-background-image": "Anpassad bakgrundsbild",
       "format": "Format",
@@ -155,7 +154,8 @@
       "suggest": "Föreslå en förändring",
       "dark": "Mörk",
       "light": "Ljus",
-      "system": "System"
+      "system": "System",
+      "newPersonalBest": "Nytt personligt bäst"
     },
     "backup-modal": {
       "title": "Intelligent Backup Restoration",

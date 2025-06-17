@@ -139,7 +139,6 @@
       "best-average": "Parim keskmine",
       "worst-time": "Halvim aeg",
       "sounds": "Helid",
-      "applause": "Aplaus",
       "theme": "Teema",
       "custom-background-image": "Kohandatud taustapilt",
       "format": "Formaat",
@@ -155,7 +154,8 @@
       "preferences": "Eelistused",
       "dark": "Tume",
       "light": "Valgus",
-      "system": "Süsteem"
+      "system": "Süsteem",
+      "newPersonalBest": "Uus isiklik parim"
     },
     "backup-modal": {
       "title": "Intelligentne varundamise taastamine",

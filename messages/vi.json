@@ -139,7 +139,6 @@
       "best-average": "Trung bình tốt nhất",
       "worst-time": "Thời gian tồi nhất",
       "sounds": "Âm thanh",
-      "applause": "Vỗ tay",
       "theme": "Chủ đề",
       "custom-background-image": "Hình nền tùy chỉnh",
       "format": "Định dạng",
@@ -155,7 +154,8 @@
       "preferences": "Tùy chọn",
       "dark": "Tối tăm",
       "light": "Ánh sáng",
-      "system": "Hệ thống"
+      "system": "Hệ thống",
+      "newPersonalBest": "Cá nhân mới tốt nhất"
     },
     "backup-modal": {
       "title": "Khôi phục sao lưu thông minh",
