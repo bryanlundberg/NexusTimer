@@ -84,6 +84,7 @@ export default function useTimer({
     if (!inspectionId.current && inspectionRequired) {
       startInspection();
       removeHolding();
+      setTimerStatus(TimerStatus.INSPECTING);
       return;
     }
     if (inspectionId.current && inspectionRequired) {
