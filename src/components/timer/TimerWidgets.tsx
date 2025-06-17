@@ -21,7 +21,7 @@ export default function TimerWidgets() {
     if (ao50 !== 0 && ao50 === sessionAo50) newBestAverages.push("Ao50");
     if (ao100 !== 0 && ao100 === sessionAo100) newBestAverages.push("Ao100");
 
-    if (settings.alerts.bestAverage.status && newBestAverages.length > 0) {
+    if (settings.alerts.bestAverage && newBestAverages.length > 0) {
       return (
         <div className="flex justify-end" id="touch">
           <div className="p-1 text-xs border rounded-md bg-background">
@@ -35,7 +35,7 @@ export default function TimerWidgets() {
 
   const renderWorstTimeAlert = () => {
     if (
-      settings.alerts.worstTime.status &&
+      settings.alerts.worstTime &&
       timerStatistics.global.count > 1 &&
       lastSolve &&
       lastSolve.time > timerStatistics.global.worst
