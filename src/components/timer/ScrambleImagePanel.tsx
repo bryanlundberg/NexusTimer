@@ -17,7 +17,7 @@ export default function ScrambleImagePanel() {
   return (
     <ScrambleDisplay
       className="w-full h-full cursor-pointer"
-      show={settings.features.scrambleImage.status}
+      show={settings.features.scrambleImage}
       scramble={scramble}
       event={selectedCube?.category || "3x3"}
       onClick={() => setZoomInScramble(true)}
