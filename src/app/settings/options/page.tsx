@@ -177,8 +177,9 @@ export default function Page() {
             title={t("Settings-menu.sounds")}
           >
             <MenuOption
-              setting={settings.sounds.newPersonalBest}
+              name={"sounds.newPersonalBest"}
               label={t("Settings-menu.newPersonalBest")}
+              control={control}
             />
           </MenuSection>
 
