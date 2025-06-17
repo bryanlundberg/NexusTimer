@@ -1,29 +1,32 @@
 import { Colors } from "@/interfaces/types/colors";
 
 interface Timer {
-  inspection: { status: boolean; key: string };
-  startCue: { status: boolean; key: string };
-  holdToStart: { status: boolean; key: string };
-  manualMode: { status: boolean; key: string };
+  inspection: boolean;
+  startCue: boolean;
+  holdToStart: boolean;
+  manualMode: boolean;
+  inspectionTime: number;
+  holdToStartTime: number;
+  decimals: number;
 }
 
 interface Features {
-  scrambleImage: { status: boolean; key: string };
-  sessionStats: { status: boolean; key: string };
-  quickActionButtons: { status: boolean; key: string };
-  hideWhileSolving: { status: boolean; key: string };
-  scrambleBackground: { status: boolean; key: string };
+  scrambleImage: boolean;
+  sessionStats: boolean;
+  quickActionButtons: boolean;
+  hideWhileSolving: boolean;
+  scrambleBackground: boolean;
 }
 
 interface Alerts {
-  bestTime: { status: boolean; key: string };
-  bestAverage: { status: boolean; key: string };
-  worstTime: { status: boolean; key: string };
+  bestTime: boolean;
+  bestAverage: boolean;
+  worstTime: boolean;
 }
 
 interface Preferences {
-  defaultCube: { id: string | null; key: string };
-  colorTheme: { value: Colors; key: string };
+  defaultCube: string;
+  colorTheme: Colors;
 }
 
 export interface Settings {

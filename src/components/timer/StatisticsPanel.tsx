@@ -13,7 +13,7 @@ export default function StatisticsPanel() {
         className={`w-fit px-[5px] rounded-md ${
           timerStatistics.global[key] !== 0 &&
           timerStatistics.global[key] === timerStatistics.session[key] &&
-          settings.alerts.bestAverage.status
+          settings.alerts.bestAverage
             ? bgRecord
             : ""
         }`}
@@ -34,7 +34,7 @@ export default function StatisticsPanel() {
         className="flex flex-col justify-center w-full h-full gap-1"
         id="touch"
       >
-        {settings.features.sessionStats.status && (
+        {settings.features.sessionStats && (
           <>
             {renderStatistic("Ao5", "ao5", "timer-session-ao5")}
             {renderStatistic("Ao12", "ao12", "timer-session-ao12")}

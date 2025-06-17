@@ -37,7 +37,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
     setTimerStatus,
     selectedCube,
     setTimerStatistics,
-    inspectionRequired: settings.timer.inspection.status,
+    inspectionRequired: settings.timer.inspection,
     setIsSolving,
     setSolvingTime,
     displayHint,
@@ -57,19 +57,19 @@ export default function Timer({ children }: { children?: ReactNode }) {
           solvingTime={solvingTime}
           device={device}
           inspectionTime={inspectionTime}
-          hideWhileSolving={settings.features.hideWhileSolving.status}
+          hideWhileSolving={settings.features.hideWhileSolving}
         />
       )}
       <Confetti
         active={
           timerStatistics.global.best === lastSolve?.time &&
           !isSolving &&
-          settings.alerts.bestTime.status
+          settings.alerts.bestTime
         }
         config={confettiConfig}
       />
       {lastSolve &&
-        settings.features.quickActionButtons.status &&
+        settings.features.quickActionButtons &&
         timerStatus === TimerStatus.IDLE && (
           <MenuSolveOptions
             solve={lastSolve}

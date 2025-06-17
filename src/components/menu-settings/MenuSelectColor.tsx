@@ -9,13 +9,12 @@ export default function MenuSelectColor() {
   const { applyColorTheme } = useWebsiteColors();
 
   const handleChooseColor = (newColor: Colors) => {
-    const colorTheme = settings.preferences.colorTheme.key;
-    setSetting(colorTheme, newColor);
+    setSetting("preferences.colorTheme", newColor);
     setSettings(loadSettings());
     applyColorTheme(newColor);
   };
 
-  const currentColor = settings.preferences.colorTheme.value;
+  const currentColor = settings.preferences.colorTheme;
 
   return (
     <div className="flex flex-col gap-2 px-2 mt-5">

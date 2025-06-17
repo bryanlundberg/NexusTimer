@@ -30,7 +30,7 @@ export default function useTimer({
   setSolvingTime,
   displayHint = false,
   timerMode = 'NORMAL',
-  settings = { timer: { startCue: { status: false }, holdToStart: { status: false } } },
+  settings = { timer: { startCue: false, holdToStart: false } },
   onFinishSolve
 }: UseTimerProps) {
 
@@ -82,7 +82,6 @@ export default function useTimer({
     if (!inspectionId.current && inspectionRequired) {
       startInspection();
       removeHolding();
-      setTimerStatus(TimerStatus.SOLVING);
       return;
     }
     if (inspectionId.current && inspectionRequired) {

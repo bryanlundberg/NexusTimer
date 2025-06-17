@@ -1,9 +1,10 @@
 import { useRef, useState } from "react";
 import { TimerStatus } from "@/enums/TimerStatus";
+import { Settings } from "@/interfaces/Settings";
 
 interface UseHoldToStartProps {
   setTimerStatus: (status: TimerStatus) => void;
-  settings: any;
+  settings: Settings;
 }
 
 export default function useHoldToStart({
@@ -11,7 +12,7 @@ export default function useHoldToStart({
   settings
 }: UseHoldToStartProps) {
 
-  const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
+  const holdTimeRequired = settings.timer.holdToStart ? Number(settings.timer.holdToStartTime) : 0;
   const startHoldingTime = useRef<number | null>(null);
   const holdingTimeId = useRef<any>(null);
   const [holdingTime, setHoldingTime] = useState<number | null>(10);
@@ -47,6 +48,6 @@ export default function useHoldToStart({
     holdingTime,
     holdTimeRequired,
     holdingTimeId,
-    startHoldingTime,
+    startHoldingTime
   };
 }
