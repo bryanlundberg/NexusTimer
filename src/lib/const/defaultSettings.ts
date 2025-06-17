@@ -3,9 +3,12 @@ import { Settings } from "@/interfaces/Settings";
 export const defaultSettings: Settings = {
   timer: {
     inspection: false,
+    inspectionTime: 15000,
     startCue: false,
     holdToStart: false,
-    manualMode: false
+    holdToStartTime: 1000,
+    manualMode: false,
+    decimals: 2,
   },
   features: {
     scrambleImage: true,
