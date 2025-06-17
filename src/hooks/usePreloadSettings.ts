@@ -13,9 +13,9 @@ export function usePreloadSettings() {
 
   useEffect(() => {
     const settings = loadSettings();
-    const defaultCubeId = settings.preferences.defaultCube.id;
+    const defaultCubeId = settings.preferences.defaultCube;
 
-    if (defaultCubeId) {
+    if (defaultCubeId && defaultCubeId !== "") {
       getCubeById(defaultCubeId)
         .then((c) => {
           setSelectedCube(c);

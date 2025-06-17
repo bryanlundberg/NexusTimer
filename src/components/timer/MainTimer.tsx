@@ -8,7 +8,7 @@ import { TimerMode } from "@/enums/TimerMode";
 export function MainTimer() {
   const { timerMode } = useTimerStore();
   const { settings } = useSettingsModalStore();
-  const manualMode = settings.timer.manualMode.status;
+  const manualMode = settings.timer.manualMode;
 
   return (
     <>

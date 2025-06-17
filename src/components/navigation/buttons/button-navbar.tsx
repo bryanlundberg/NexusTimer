@@ -131,7 +131,7 @@ export default function ButtonNavbar() {
 
   const handleThemeChange = (theme: string) => {
     setTheme(theme);
-    applyColorTheme(loadSettings().preferences.colorTheme.value);
+    applyColorTheme(loadSettings().preferences.colorTheme);
   };
 
   return (

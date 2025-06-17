@@ -1,5 +1,6 @@
 import { Settings } from "@/interfaces/Settings";
 import { defaultSettings } from "./const/defaultSettings";
+import _ from "lodash";
 
 /**
  * Gets a setting value from localStorage by its key
@@ -35,26 +36,47 @@ export function setSetting<T>(key: string, value: T): void {
  * @returns The complete settings object
  */
 export function buildSettingsObject(): Settings {
-  const settings: Settings = JSON.parse(JSON.stringify(defaultSettings));
+  const settings: Settings = _.cloneDeep(defaultSettings);
 
-  Object.entries(settings.timer).forEach(([name, setting]) => {
-    settings.timer[name as keyof typeof settings.timer].status = getSetting(setting.key, setting.status);
+  settings.timer.inspection = getSetting('timer.inspection', settings.timer.inspection);
+  settings.timer.inspectionTime = getSetting('timer.inspectionTime', settings.timer.inspectionTime);
+  settings.timer.startCue = getSetting('timer.startCue', settings.timer.startCue);
+  settings.timer.holdToStart = getSetting('timer.holdToStart', settings.timer.holdToStart);
+  settings.timer.holdToStartTime = getSetting('timer.holdToStartTime', settings.timer.holdToStartTime);
+  settings.timer.manualMode = getSetting('timer.manualMode', settings.timer.manualMode);
+  settings.timer.decimals = getSetting('timer.decimals', settings.timer.decimals);
+
+  Object.entries(settings.features).forEach(([name]) => {
+    settings.features[name as keyof typeof settings.features] = getSetting(`features.${name}`, settings.features[name as keyof typeof settings.features]);
   });
 
-  Object.entries(settings.features).forEach(([name, setting]) => {
-    settings.features[name as keyof typeof settings.features].status = getSetting(setting.key, setting.status);
+  Object.entries(settings.alerts).forEach(([name]) => {
+    settings.alerts[name as keyof typeof settings.alerts] = getSetting(`alerts.${name}`, settings.alerts[name as keyof typeof settings.alerts]);
   });
 
-  Object.entries(settings.alerts).forEach(([name, setting]) => {
-    settings.alerts[name as keyof typeof settings.alerts].status = getSetting(setting.key, setting.status);
+  settings.preferences.defaultCube = getSetting('preferences.defaultCube', settings.preferences.defaultCube);
+  settings.preferences.colorTheme = getSetting('preferences.colorTheme', settings.preferences.colorTheme);
+
+  return _.cloneDeep(settings);
+}
+
+/**
+ * Saves the complete settings object to localStorage
+ * @param settings The settings object to save
+ */
+export function saveSettings(settings: Settings): void {
+  Object.entries(settings.timer).forEach(([name, value]) => {
+    setSetting(`timer.${name}`, value);
   });
 
-  settings.preferences.defaultCube.id = getSetting(settings.preferences.defaultCube.key, settings.preferences.defaultCube.id);
-  settings.preferences.colorTheme.value = getSetting(settings.preferences.colorTheme.key, settings.preferences.colorTheme.value);
-
-  Object.entries(settings.sounds).forEach(([name, setting]) => {
-    settings.sounds[name as keyof typeof settings.sounds].status = getSetting(setting.key, setting.status);
+  Object.entries(settings.features).forEach(([name, value]) => {
+    setSetting(`features.${name}`, value);
   });
 
-  return settings;
+  Object.entries(settings.alerts).forEach(([name, value]) => {
+    setSetting(`alerts.${name}`, value);
+  });
+
+  setSetting('preferences.defaultCube', settings.preferences.defaultCube);
+  setSetting('preferences.colorTheme', settings.preferences.colorTheme);
 }

@@ -9,7 +9,7 @@ import DisplayContainer from "./display/display-container";
 import DisplayTime from "./display/display-time";
 import { ReactNode } from "react";
 import { TimerStatus } from "@/enums/TimerStatus";
-import { useAudioTrigger } from "@/hooks/useAudioTrigger";
+import useSolveData from "@/hooks/useSolveData";
 
 export default function Timer({ children }: { children?: ReactNode }) {
   const { settings } = useSettingsModalStore();
@@ -21,14 +21,36 @@ export default function Timer({ children }: { children?: ReactNode }) {
     solvingTime,
     timerStatistics,
     setLastSolve,
+    setTimerStatus,
+    setTimerStatistics,
+    setIsSolving,
+    setSolvingTime,
+    displayHint,
+    timerMode
   } = useTimerStore();
-  const { inspectionTime } = useTimer();
+
+  const { saveSolveMainTimer } = useSolveData();
+
+  const { inspectionTime } = useTimer({
+    onFinishSolve: () => saveSolveMainTimer(),
+    isSolving,
+    setTimerStatus,
+    selectedCube,
+    setTimerStatistics,
+    inspectionRequired: settings.timer.inspection,
+    setIsSolving,
+    setSolvingTime,
+    displayHint,
+    timerMode,
+    settings
+  });
+
   const { device } = useDeviceMatch();
 
   const isBestTime =
     timerStatistics.global.best === lastSolve?.time &&
     !isSolving &&
-    settings.sounds.newPersonalBest.status;
+    settings.sounds.newPersonalBest;
 
   useAudioTrigger({
     audioSrc: "./sounds/applauses.mp3",
@@ -45,19 +67,19 @@ export default function Timer({ children }: { children?: ReactNode }) {
           solvingTime={solvingTime}
           device={device}
           inspectionTime={inspectionTime}
-          hideWhileSolving={settings.features.hideWhileSolving.status}
+          hideWhileSolving={settings.features.hideWhileSolving}
         />
       )}
       <Confetti
         active={
           timerStatistics.global.best === lastSolve?.time &&
           !isSolving &&
-          settings.alerts.bestTime.status
+          settings.alerts.bestTime
         }
         config={confettiConfig}
       />
       {lastSolve &&
-        settings.features.quickActionButtons.status &&
+        settings.features.quickActionButtons &&
         timerStatus === TimerStatus.IDLE && (
           <MenuSolveOptions
             solve={lastSolve}

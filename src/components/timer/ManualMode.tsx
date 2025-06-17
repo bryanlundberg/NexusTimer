@@ -115,7 +115,7 @@ export default function ManualMode() {
           </div>
         ) : null}
       </form>
-      {lastSolve && settings.features.quickActionButtons.status ? (
+      {lastSolve && settings.features.quickActionButtons ? (
         <MenuSolveOptions
           solve={lastSolve}
           onDeleteSolve={() => setLastSolve(null)}

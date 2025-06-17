@@ -1,28 +1,23 @@
 import { Switch } from "../ui/switch";
-import loadSettings from "@/lib/loadSettings";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import { getSetting, setSetting } from "@/lib/settingsUtils";
+import { Controller } from "react-hook-form";
 
 interface MenuOption {
   label: string;
-  setting: any;
+  control: any;
+  name: string;
 }
 
-export function MenuOption({ label, setting }: MenuOption) {
-  const { status, key: id } = setting;
-  const { setSettings } = useSettingsModalStore();
-
-  const saveSettings = () => {
-    const currentStatus = getSetting(id, status);
-    setSetting(id, !currentStatus);
-    const updatedSettings = loadSettings();
-    setSettings(updatedSettings);
-  };
-
+export function MenuOption({ label, control, name }: MenuOption) {
   return (
     <div className="ps-3 pe-3 flex items-center justify-between mb-1">
       <div className="grow">{label}</div>
-      <Switch checked={status} onCheckedChange={saveSettings} />
+      <Controller
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <Switch checked={value} onCheckedChange={onChange}/>
+        )}
+        name={name}
+      />
     </div>
   );
 }

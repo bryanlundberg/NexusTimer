@@ -8,7 +8,7 @@ export default function OverviewPanel() {
   const { timerStatistics } = useTimerStore();
   const t = useTranslations("Index");
 
-  if (!settings.features.sessionStats.status) return null;
+  if (!settings.features.sessionStats) return null;
 
   const stats = [
     {

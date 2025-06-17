@@ -482,7 +482,7 @@ export default function useWebsiteColors() {
   }, [resolvedTheme]);
 
   useEffect(() => {
-    applyColorTheme(loadSettings().preferences.colorTheme.value);
+    applyColorTheme(loadSettings().preferences.colorTheme);
   }, [applyColorTheme, resolvedTheme]);
 
   return { applyColorTheme };
