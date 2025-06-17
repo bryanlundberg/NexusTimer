@@ -6,8 +6,8 @@ import { TimerStatus } from "@/enums/TimerStatus";
 export default function useHoldToStart() {
   const { setTimerStatus } = useTimerStore();
   const { settings } = useSettingsModalStore();
-  
-  const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
+
+  const holdTimeRequired = settings.timer.holdToStart ? Number(settings.timer.holdToStartTime || 0) : 0;
   const startHoldingTime = useRef<number | null>(null);
   const holdingTimeId = useRef<any>(null);
   const [holdingTime, setHoldingTime] = useState<number | null>(10);
@@ -43,6 +43,6 @@ export default function useHoldToStart() {
     holdingTime,
     holdTimeRequired,
     holdingTimeId,
-    startHoldingTime,
+    startHoldingTime
   };
 }
