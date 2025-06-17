@@ -10,6 +10,7 @@ import DisplayTime from "./display/display-time";
 import { ReactNode } from "react";
 import { TimerStatus } from "@/enums/TimerStatus";
 import useSolveData from "@/hooks/useSolveData";
+import { useAudioTrigger } from "@/hooks/useAudioTrigger";
 
 export default function Timer({ children }: { children?: ReactNode }) {
   const { settings } = useSettingsModalStore();
@@ -53,7 +54,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
     settings.sounds.newPersonalBest;
 
   useAudioTrigger({
-    audioSrc: "./sounds/applauses.mp3",
+    audioSrc: "./sounds/new-record.mp3",
     trigger: isBestTime,
   });
 
