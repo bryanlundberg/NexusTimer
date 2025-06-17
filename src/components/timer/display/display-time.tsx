@@ -6,6 +6,7 @@ import { TimerMode } from "@/enums/TimerMode";
 import { TimerStatus } from "@/enums/TimerStatus";
 import React from "react";
 import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
+import { useSettingsModalStore } from "@/store/SettingsModalStore";
 
 interface DisplayTimeProps extends Omit<HTMLMotionProps<"div">, "ref"> {
   className?: string;
@@ -39,6 +40,7 @@ export default function DisplayTime({
 }: DisplayTimeProps) {
   const t = useTranslations("Index.HomePage");
   const { timerMode } = useTimerStore();
+  const settings = useSettingsModalStore(store => store.settings);
   return (
     <>
       <motion.div
@@ -83,7 +85,7 @@ export default function DisplayTime({
                   transition: { type: "spring", stiffness: 500, damping: 30 }
                 }}
               >
-                {inspectionTime !== 16000 ? (
+                {timerStatus === TimerStatus.INSPECTING ? (
                   <>
                     <motion.div
                       className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
@@ -110,7 +112,7 @@ export default function DisplayTime({
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3, delay: 0.1 }}
                     >
-                      .{formatTime(solvingTime).split(".")[1]}
+                      .{formatTime(solvingTime, settings.timer.decimals).split(".")[1]}
                     </motion.div>
                     {lastSolve?.plus2 && !isSolving && (
                       <motion.span
