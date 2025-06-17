@@ -23,6 +23,7 @@ import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 import { saveSettings } from "@/lib/settingsUtils";
 import MenuInputOption from "@/components/menu-settings/MenuInputOption";
+import _ from "lodash";
 
 export default function Page() {
   const { settings, setSettings } = useSettingsModalStore();
@@ -31,11 +32,19 @@ export default function Page() {
   const formWatch = watch();
 
   useEffect(() => {
-    if (isDirty) {
-      saveSettings(getValues());
-      setSettings(getValues());
-      reset(getValues());
-    }
+    const debounceSave = _.debounce(() => {
+      if (isDirty) {
+        saveSettings(getValues());
+        setSettings(getValues());
+        reset(getValues());
+      }
+    }, 400);
+
+    debounceSave();
+
+    return () => {
+      debounceSave.cancel();
+    };
   }, [formWatch, getValues, isDirty, setSettings, reset]);
 
   return (
@@ -63,6 +72,7 @@ export default function Page() {
               name={"timer.inspectionTime"}
               label={"Inspection time (ms)"}
               control={control}
+              inputProps={{ min: 5000, max: 60000, step: 1000 }}
             />
 
             <MenuOption
@@ -81,6 +91,7 @@ export default function Page() {
               name={"timer.holdToStartTime"}
               label={"Hold to start time (ms)"}
               control={control}
+              inputProps={{ min: 300, max: 1000, step: 100 }}
             />
 
             <MenuOption
@@ -93,7 +104,7 @@ export default function Page() {
               name={"timer.decimals"}
               label={"Decimal places"}
               control={control}
-              inputProps={{ max: 4 }}
+              inputProps={{ max: 4, min: 1, step: 1 }}
             />
 
           </MenuSection>
