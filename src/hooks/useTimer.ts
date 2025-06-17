@@ -30,7 +30,7 @@ export default function useTimer({
   setSolvingTime,
   displayHint = false,
   timerMode = 'NORMAL',
-  settings = { timer: { startCue: { status: false }, holdToStart: { status: false } } },
+  settings = { timer: { startCue: false, holdToStart: false } },
   onFinishSolve
 }: UseTimerProps) {
 
