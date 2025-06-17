@@ -138,6 +138,7 @@
       "best-time": "Legjobb idő",
       "best-average": "Legjobb átlag",
       "worst-time": "Legrosszabb idő",
+      "sounds": "Hangok",
       "theme": "Téma",
       "custom-background-image": "Egyéni háttérkép",
       "format": "Formátum",
@@ -153,7 +154,8 @@
       "preferences": "Preferences",
       "dark": "Sötét",
       "light": "Fény",
-      "system": "Rendszer"
+      "system": "Rendszer",
+      "newPersonalBest": "Új személyes legjobb"
     },
     "backup-modal": {
       "title": "Intelligens Biztonsági Mentés Visszaállítása",

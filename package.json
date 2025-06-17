@@ -72,6 +72,7 @@
     "react-dom-confetti": "^0.2.0",
     "react-hook-form": "^7.58.0",
     "react-resizable-panels": "^2.1.7",
+    "react-use-audio-player": "^4.0.2",
     "recharts": "^2.15.1",
     "resend": "^4.1.2",
     "scrambow": "^1.8.1",

@@ -138,6 +138,7 @@
       "best-time": "Miglior tempo",
       "best-average": "Miglior media",
       "worst-time": "Peggior tempo",
+      "sounds": "Suoni",
       "theme": "Tema",
       "custom-background-image": "Immagine di sfondo personalizzata",
       "format": "Formato",
@@ -153,7 +154,8 @@
       "suggest": "Suggerisci un cambiamento",
       "dark": "Buio",
       "light": "Leggero",
-      "system": "Sistema"
+      "system": "Sistema",
+      "newPersonalBest": "Nuovo migliore personale"
     },
     "backup-modal": {
       "title": "Ripristino Backup Intelligente",

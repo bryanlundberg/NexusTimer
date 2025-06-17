@@ -138,6 +138,7 @@
       "best-time": "최고 시간",
       "best-average": "최고 평균",
       "worst-time": "최악 시간",
+      "sounds": "소리",
       "theme": "테마",
       "custom-background-image": "사용자 지정 배경 이미지",
       "format": "형식",
@@ -153,7 +154,8 @@
       "suggest": "변경 제안",
       "dark": "어두운",
       "light": "빛",
-      "system": "체계"
+      "system": "체계",
+      "newPersonalBest": "새로운 개인 최고"
     },
     "backup-modal": {
       "title": "지능형 백업 복원",

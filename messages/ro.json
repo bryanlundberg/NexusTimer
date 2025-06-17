@@ -138,6 +138,7 @@
       "best-time": "Cel mai bun timp",
       "best-average": "Cea mai bună medie",
       "worst-time": "Cel mai rău timp",
+      "sounds": "Sunete",
       "theme": "Temă",
       "custom-background-image": "Imagine de fundal personalizată",
       "format": "Format",
@@ -153,7 +154,8 @@
       "suggest": "Sugerați o schimbare",
       "dark": "Întuneric",
       "light": "Aprinde",
-      "system": "Sistem"
+      "system": "Sistem",
+      "newPersonalBest": "Cel mai bun personal nou"
     },
     "backup-modal": {
       "title": "Restaurare Inteligentă a Backup-ului",

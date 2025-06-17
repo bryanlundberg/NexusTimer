@@ -138,6 +138,7 @@
       "best-time": "Meilleur temps",
       "best-average": "Meilleure moyenne",
       "worst-time": "Pire temps",
+      "sounds": "Sons",
       "theme": "Thème",
       "custom-background-image": "Image d'arrière-plan personnalisée",
       "format": "Format",
@@ -153,7 +154,8 @@
       "preferences": "Préférences",
       "dark": "Sombre",
       "light": "Lumière",
-      "system": "Système"
+      "system": "Système",
+      "newPersonalBest": "Nouveau record personnel"
     },
     "backup-modal": {
       "title": "Restauration de sauvegarde intelligente",

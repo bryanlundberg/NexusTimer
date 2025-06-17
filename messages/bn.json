@@ -138,6 +138,7 @@
       "best-time": "সেরা সময়",
       "best-average": "সেরা গড়",
       "worst-time": "সবচেয়ে খারাপ সময়",
+      "sounds": "শব্দ",
       "theme": "থিম",
       "custom-background-image": "কাস্টম পটভূমি চিত্র",
       "format": "বিন্যাস",
@@ -153,7 +154,8 @@
       "preferences": "পছন্দসমূহ",
       "dark": "অন্ধকার",
       "light": "আলো",
-      "system": "সিস্টেম"
+      "system": "সিস্টেম",
+      "newPersonalBest": "নতুন ব্যক্তিগত সেরা"
     },
     "backup-modal": {
       "title": "বুদ্ধিমান ব্যাকআপ পুনরুদ্ধার",

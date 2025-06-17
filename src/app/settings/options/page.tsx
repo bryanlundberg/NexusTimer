@@ -11,7 +11,8 @@ import {
   ComponentBooleanIcon,
   FileTextIcon,
   LapTimerIcon,
-  MagicWandIcon
+  MagicWandIcon,
+  SpeakerLoudIcon,
 } from "@radix-ui/react-icons";
 import MenuSelectLanguage from "@/components/menu-settings/MenuSelectLanguage";
 import CustomTheme from "@/components/menu-settings/CustomTheme";
@@ -164,6 +165,20 @@ export default function Page() {
             <MenuOption
               name={"alerts.worstTime"}
               label={t("Settings-menu.worst-time")}
+              control={control}
+            />
+          </MenuSection>
+
+          <Separator className="my-5" />
+
+          <MenuSection
+            id="sounds"
+            icon={<SpeakerLoudIcon />}
+            title={t("Settings-menu.sounds")}
+          >
+            <MenuOption
+              name={"sounds.newPersonalBest"}
+              label={t("Settings-menu.newPersonalBest")}
               control={control}
             />
           </MenuSection>

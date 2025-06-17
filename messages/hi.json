@@ -138,6 +138,7 @@
       "best-time": "सर्वोत्तम समय",
       "best-average": "सर्वोत्तम औसत",
       "worst-time": "सबसे खराब समय",
+      "sounds": "ध्वनियाँ",
       "theme": "थीम",
       "custom-background-image": "कस्टम पृष्ठभूमि छवि",
       "format": "स्वरूप",
@@ -153,7 +154,8 @@
       "preferences": "प्राथमिकताएँ",
       "dark": "अँधेरा",
       "light": "रोशनी",
-      "system": "प्रणाली"
+      "system": "प्रणाली",
+      "newPersonalBest": "नया व्यक्तिगत सर्वश्रेष्ठ"
     },
     "backup-modal": {
       "title": "बुद्धिमान बैकअप पुनर्स्थापन",

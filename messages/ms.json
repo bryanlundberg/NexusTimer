@@ -138,6 +138,7 @@
       "best-time": "Masa Terbaik",
       "best-average": "Purata Terbaik",
       "worst-time": "Masa Terburuk",
+      "sounds": "Bunyi",
       "theme": "Tema",
       "custom-background-image": "Gambar Latar Belakang Kustom",
       "format": "Format",
@@ -153,7 +154,8 @@
       "suggest": "Cadangkan perubahan",
       "dark": "Gelap",
       "light": "Cahaya",
-      "system": "Sistem"
+      "system": "Sistem",
+      "newPersonalBest": "Best Peribadi Baru"
     },
     "backup-modal": {
       "title": "Pemulihan Pencadangan Pintar",

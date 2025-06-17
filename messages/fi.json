@@ -138,6 +138,7 @@
       "best-time": "Paras aika",
       "best-average": "Paras keskiarvo",
       "worst-time": "Huonoin aika",
+      "sounds": "Äänet",
       "theme": "Teema",
       "custom-background-image": "Mukautettu taustakuva",
       "format": "Muoto",
@@ -153,7 +154,8 @@
       "preferences": "Asetukset",
       "dark": "Tumma",
       "light": "Kevyt",
-      "system": "Järjestelmä"
+      "system": "Järjestelmä",
+      "newPersonalBest": "Uusi henkilökohtainen paras"
     },
     "backup-modal": {
       "title": "Älykäs varmuuskopiointi ja palautus",

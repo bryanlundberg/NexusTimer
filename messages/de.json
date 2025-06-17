@@ -138,6 +138,7 @@
       "best-time": "Beste Zeit",
       "best-average": "Bester Durchschnitt",
       "worst-time": "Schlechteste Zeit",
+      "sounds": "Töne",
       "theme": "Thema",
       "custom-background-image": "Benutzerdefiniertes Hintergrundbild",
       "format": "Format",
@@ -153,7 +154,8 @@
       "preferences": "Präferenzen",
       "dark": "Dunkel",
       "light": "Licht",
-      "system": "System"
+      "system": "System",
+      "newPersonalBest": "Neues persönliches Bestes"
     },
     "backup-modal": {
       "title": "Intelligente Backup-Wiederherstellung",

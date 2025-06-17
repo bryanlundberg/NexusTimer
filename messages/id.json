@@ -138,6 +138,7 @@
       "best-time": "Waktu Terbaik",
       "best-average": "Rata-rata Terbaik",
       "worst-time": "Waktu Terburuk",
+      "sounds": "Suara",
       "theme": "Tema",
       "custom-background-image": "Gambar Latar Belakang Kustom",
       "format": "Format",
@@ -153,7 +154,8 @@
       "suggest": "Sarankan perubahan",
       "dark": "Gelap",
       "light": "Lampu",
-      "system": "Sistem"
+      "system": "Sistem",
+      "newPersonalBest": "Terbaik pribadi baru"
     },
     "backup-modal": {
       "title": "Pemulihan Cadangan Cerdas",

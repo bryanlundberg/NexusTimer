@@ -138,6 +138,7 @@
       "best-time": "最佳时间",
       "best-average": "最佳平均",
       "worst-time": "最差时间",
+      "sounds": "声音",
       "theme": "主题",
       "custom-background-image": "自定义背景图像",
       "format": "格式",
@@ -153,7 +154,8 @@
       "preferences": "偏好设置",
       "dark": "黑暗的",
       "light": "光",
-      "system": "系统"
+      "system": "系统",
+      "newPersonalBest": "新的个人最好"
     },
     "backup-modal": {
       "title": "智能备份恢复",

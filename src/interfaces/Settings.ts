@@ -29,9 +29,14 @@ interface Preferences {
   colorTheme: Colors;
 }
 
+interface Sounds {
+  newPersonalBest: boolean;
+}
+
 export interface Settings {
   timer: Timer;
   features: Features;
   alerts: Alerts;
   preferences: Preferences;
+  sounds: Sounds;
 }
