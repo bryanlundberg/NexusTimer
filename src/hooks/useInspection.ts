@@ -1,11 +1,17 @@
 import { useRef, useState } from "react";
-import { useTimerStore } from "@/store/timerStore";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { TimerStatus } from "@/enums/TimerStatus";
 
-export default function useInspection() {
-  const { setTimerStatus, setSolvingTime } = useTimerStore();
-  const { settings } = useSettingsModalStore();
+interface UseInspectionProps {
+  setTimerStatus: (status: TimerStatus) => void;
+  setSolvingTime: (time: number) => void;
+  settings: any;
+}
+
+export default function useInspection({
+  setTimerStatus,
+  setSolvingTime,
+  settings
+}: UseInspectionProps) {
 
   const inspectionDuration = Number(settings.timer.inspectionTime || 15000);
   const startInspectionTime = useRef<number | null>(null);

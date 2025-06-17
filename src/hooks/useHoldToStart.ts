@@ -1,13 +1,17 @@
 import { useRef, useState } from "react";
-import { useTimerStore } from "@/store/timerStore";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { TimerStatus } from "@/enums/TimerStatus";
 
-export default function useHoldToStart() {
-  const { setTimerStatus } = useTimerStore();
-  const { settings } = useSettingsModalStore();
+interface UseHoldToStartProps {
+  setTimerStatus: (status: TimerStatus) => void;
+  settings: any;
+}
 
-  const holdTimeRequired = settings.timer.holdToStart ? Number(settings.timer.holdToStartTime || 0) : 0;
+export default function useHoldToStart({
+  setTimerStatus,
+  settings
+}: UseHoldToStartProps) {
+
+  const holdTimeRequired = settings.timer.holdToStart.status ? 500 : 0;
   const startHoldingTime = useRef<number | null>(null);
   const holdingTimeId = useRef<any>(null);
   const [holdingTime, setHoldingTime] = useState<number | null>(10);

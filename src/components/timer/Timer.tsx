@@ -9,6 +9,7 @@ import DisplayContainer from "./display/display-container";
 import DisplayTime from "./display/display-time";
 import { ReactNode } from "react";
 import { TimerStatus } from "@/enums/TimerStatus";
+import useSolveData from "@/hooks/useSolveData";
 
 export default function Timer({ children }: { children?: ReactNode }) {
   const { settings } = useSettingsModalStore();
@@ -20,8 +21,30 @@ export default function Timer({ children }: { children?: ReactNode }) {
     solvingTime,
     timerStatistics,
     setLastSolve,
+    setTimerStatus,
+    setTimerStatistics,
+    setIsSolving,
+    setSolvingTime,
+    displayHint,
+    timerMode
   } = useTimerStore();
-  const { inspectionTime } = useTimer();
+
+  const { saveSolveMainTimer } = useSolveData();
+
+  const { inspectionTime } = useTimer({
+    onFinishSolve: () => saveSolveMainTimer(),
+    isSolving,
+    setTimerStatus,
+    selectedCube,
+    setTimerStatistics,
+    inspectionRequired: settings.timer.inspection.status,
+    setIsSolving,
+    setSolvingTime,
+    displayHint,
+    timerMode,
+    settings
+  });
+
   const { device } = useDeviceMatch();
 
   return (
