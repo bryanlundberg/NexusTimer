@@ -38,9 +38,13 @@ export function setSetting<T>(key: string, value: T): void {
 export function buildSettingsObject(): Settings {
   const settings: Settings = _.cloneDeep(defaultSettings);
 
-  Object.entries(settings.timer).forEach(([name]) => {
-    settings.timer[name as keyof typeof settings.timer] = getSetting(`timer.${name}`, settings.timer[name as keyof typeof settings.timer]);
-  });
+  settings.timer.inspection = getSetting('timer.inspection', settings.timer.inspection);
+  settings.timer.inspectionTime = getSetting('timer.inspectionTime', settings.timer.inspectionTime);
+  settings.timer.startCue = getSetting('timer.startCue', settings.timer.startCue);
+  settings.timer.holdToStart = getSetting('timer.holdToStart', settings.timer.holdToStart);
+  settings.timer.holdToStartTime = getSetting('timer.holdToStartTime', settings.timer.holdToStartTime);
+  settings.timer.manualMode = getSetting('timer.manualMode', settings.timer.manualMode);
+  settings.timer.decimals = getSetting('timer.decimals', settings.timer.decimals);
 
   Object.entries(settings.features).forEach(([name]) => {
     settings.features[name as keyof typeof settings.features] = getSetting(`features.${name}`, settings.features[name as keyof typeof settings.features]);
