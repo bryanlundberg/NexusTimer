@@ -6,11 +6,11 @@ import { TimerStatus } from "@/enums/TimerStatus";
 export default function useInspection() {
   const { setTimerStatus, setSolvingTime } = useTimerStore();
   const { settings } = useSettingsModalStore();
-  
-  const inspectionDuration = 16000;
+
+  const inspectionDuration = Number(settings.timer.inspectionTime || 15000);
   const startInspectionTime = useRef<number | null>(null);
   const inspectionId = useRef<any>(null);
-  const [inspectionTime, setInspectionTime] = useState<number>(inspectionDuration);
+  const [inspectionTime, setInspectionTime] = useState<number>(inspectionDuration / 1000);
 
   const startInspection = () => {
     startInspectionTime.current = Date.now() - 1;
@@ -24,7 +24,7 @@ export default function useInspection() {
 
         const timeRemaining = difference / 1000;
 
-        if (settings.timer.startCue.status) {
+        if (settings.timer.startCue) {
           if (timeRemaining <= 9 && !reproduced8) {
             reproduced8 = true;
             const audio12 = new Audio("./sounds/en/8.wav");
@@ -40,7 +40,7 @@ export default function useInspection() {
 
         setInspectionTime(timeRemaining);
         if (difference <= 0) {
-          setTimerStatus(TimerStatus.INSPECTING);
+          setTimerStatus(TimerStatus.IDLE);
           setSolvingTime(0);
           removeInspection();
           const audio = new Audio("./sounds/en/reset.wav");
@@ -54,7 +54,7 @@ export default function useInspection() {
     startInspectionTime.current = null;
     clearInterval(inspectionId.current);
     inspectionId.current = null;
-    setInspectionTime(inspectionDuration);
+    setInspectionTime(inspectionDuration / 1000);
   };
 
   return {
