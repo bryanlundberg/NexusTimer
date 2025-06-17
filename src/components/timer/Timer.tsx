@@ -37,7 +37,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
     setTimerStatus,
     selectedCube,
     setTimerStatistics,
-    inspectionRequired: settings.timer.inspection.status,
+    inspectionRequired: settings.timer.inspection,
     setIsSolving,
     setSolvingTime,
     displayHint,
