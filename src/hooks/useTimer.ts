@@ -17,7 +17,7 @@ export default function useTimer() {
   } = useTimerStore();
 
   const { settings } = useSettingsModalStore();
-  const inspectionRequired = settings.timer.inspection.status;
+  const inspectionRequired = settings.timer.inspection;
 
   const { startTimer, resetTimer, stopTimer, startSolveTime } = useTimerControls();
   const { inspectionTime, startInspection, removeInspection, inspectionId } = useInspection();
@@ -52,7 +52,6 @@ export default function useTimer() {
     if (!inspectionId.current && inspectionRequired) {
       startInspection();
       removeHolding();
-      setTimerStatus(TimerStatus.SOLVING);
       return;
     }
     if (inspectionId.current && inspectionRequired) {
