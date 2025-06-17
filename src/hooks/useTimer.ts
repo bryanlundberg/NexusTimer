@@ -51,6 +51,11 @@ export default function useTimer({
     settings
   });
 
+  const resetAll = useCallback(() => {
+    if (inspectionId.current) removeInspection();
+    resetTimer();
+  }, [inspectionId, removeInspection, resetTimer]);
+
   // MAIN HOLD CONTROL
   const handleHold = useCallback((isReleased: boolean) => {
     if (!selectedCube) return;
@@ -62,11 +67,16 @@ export default function useTimer({
         resetTimer();
       });
     }
-    if (!isReleased) return;
+    if (!isReleased && !inspectionId.current) return;
     if (!isSolving) {
+      if (!inspectionId.current && inspectionRequired) {
+        startInspection();
+        setTimerStatus(TimerStatus.INSPECTING);
+        return;
+      }
       startHold();
     }
-  }, [isSolving, onFinishSolve, resetTimer, selectedCube, startHold, stopTimer, setTimerStatus]);
+  }, [isSolving, onFinishSolve, resetTimer, selectedCube, startHold, stopTimer, setTimerStatus, inspectionId, inspectionRequired, startInspection]);
 
   // MAIN RELEASE CONTROL
   const handleRelease = useCallback(() => {
@@ -79,12 +89,6 @@ export default function useTimer({
       } else {
         setTimerStatus(TimerStatus.IDLE);
       }
-      return;
-    }
-    if (!inspectionId.current && inspectionRequired) {
-      startInspection();
-      removeHolding();
-      setTimerStatus(TimerStatus.INSPECTING);
       return;
     }
     if (inspectionId.current && inspectionRequired) {
@@ -111,7 +115,6 @@ export default function useTimer({
     removeInspection,
     selectedCube,
     setTimerStatus,
-    startInspection,
     startTimer
   ]);
 
@@ -121,7 +124,7 @@ export default function useTimer({
     timerMode,
     handleHold,
     handleRelease,
-    resetTimer
+    resetTimer: resetAll
   });
 
   useEffect(() => {
@@ -129,6 +132,7 @@ export default function useTimer({
   }, [selectedCube, isSolving, setTimerStatistics]);
 
   return {
-    inspectionTime
+    inspectionTime,
+    resetAll
   };
 }
