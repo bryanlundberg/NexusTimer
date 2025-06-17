@@ -5,6 +5,9 @@ interface Timer {
   startCue: boolean;
   holdToStart: boolean;
   manualMode: boolean;
+  inspectionTime: number;
+  holdToStartTime: number;
+  decimals: number;
 }
 
 interface Features {
