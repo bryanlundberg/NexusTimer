@@ -22,7 +22,7 @@ export const useAudioTrigger = ({ audioSrc, trigger, autoplay = true }: UseAudio
   const { load } = useAudioPlayer();
 
   useEffect(() => {
-    if (trigger && !previousTriggerState.current) load(audioSrc, { autoplay });
+    if (trigger && !previousTriggerState.current) load(audioSrc, { autoplay, initialVolume: 0.25 });
     previousTriggerState.current = trigger;
   }, [trigger, audioSrc, autoplay, load]);
 };
