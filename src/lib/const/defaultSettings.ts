@@ -6,7 +6,7 @@ export const defaultSettings: Settings = {
     inspectionTime: 15000,
     startCue: false,
     holdToStart: false,
-    holdToStartTime: 1000,
+    holdToStartTime: 300,
     manualMode: false,
     decimals: 2,
   },
