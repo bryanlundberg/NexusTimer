@@ -31,15 +31,15 @@ export default function useInspection({
         const timeRemaining = difference / 1000;
 
         if (settings.timer.startCue) {
-          if (timeRemaining <= 9 && !reproduced8) {
+          if (timeRemaining <= 8 && !reproduced8) {
             reproduced8 = true;
-            const audio12 = new Audio("./sounds/en/8.wav");
-            audio12.play();
+            const audio8 = new Audio("/sounds/en/8.wav");
+            audio8.play();
           }
 
-          if (timeRemaining <= 4 && !reproduced12) {
+          if (timeRemaining <= 12 && !reproduced12) {
             reproduced12 = true;
-            const audio12 = new Audio("./sounds/en/12.wav");
+            const audio12 = new Audio("/sounds/en/12.wav");
             audio12.play();
           }
         }
@@ -49,7 +49,7 @@ export default function useInspection({
           setTimerStatus(TimerStatus.IDLE);
           setSolvingTime(0);
           removeInspection();
-          const audio = new Audio("./sounds/en/reset.wav");
+          const audio = new Audio("/sounds/en/reset.wav");
           audio.play();
         }
       }
