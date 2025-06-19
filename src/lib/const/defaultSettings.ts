@@ -27,6 +27,6 @@ export const defaultSettings: Settings = {
     colorTheme: "blue"
   },
   sounds: {
-    newPersonalBest: false,
+    newPersonalBest: true,
   },
 };
