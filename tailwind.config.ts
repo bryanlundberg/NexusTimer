@@ -62,6 +62,12 @@ const config: Config = {
         },
       },
     },
+    screens: {
+      tall: { raw: "(min-height: 800px)" },
+      normal: { raw: "(min-height: 640px)" },
+      short: { raw: "(min-height: 480px)" },
+      tiny: { raw: "(min-height: 360px)" },
+    },
   },
   plugins: [require("tailwindcss-animate")],
 };
