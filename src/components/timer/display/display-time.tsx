@@ -40,7 +40,7 @@ export default function DisplayTime({
 }: DisplayTimeProps) {
   const t = useTranslations("Index.HomePage");
   const { timerMode } = useTimerStore();
-  const settings = useSettingsModalStore(store => store.settings);
+  const settings = useSettingsModalStore((store) => store.settings);
   return (
     <>
       <motion.div
@@ -52,8 +52,8 @@ export default function DisplayTime({
           transition: {
             type: "spring",
             stiffness: 300,
-            damping: 20
-          }
+            damping: 20,
+          },
         }}
         {...rest}
       >
@@ -82,10 +82,13 @@ export default function DisplayTime({
                 className="flex items-end justify-center"
                 animate={{
                   scale: timerStatus === TimerStatus.HOLDING ? 0.95 : 1,
-                  transition: { type: "spring", stiffness: 500, damping: 30 }
+                  transition: { type: "spring", stiffness: 500, damping: 30 },
                 }}
               >
-                {(settings.timer.inspection && (timerStatus === TimerStatus.INSPECTING || timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY)) ? (
+                {settings.timer.inspection &&
+                (timerStatus === TimerStatus.INSPECTING ||
+                  timerStatus === TimerStatus.HOLDING ||
+                  timerStatus === TimerStatus.READY) ? (
                   <>
                     <motion.div
                       className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
@@ -99,7 +102,7 @@ export default function DisplayTime({
                 ) : (
                   <>
                     <motion.div
-                      className="text-8xl md:text-9xl"
+                      className="text-5xl tiny:text-8xl md:text-9xl"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2 }}
@@ -107,12 +110,17 @@ export default function DisplayTime({
                       {formatTime(solvingTime).split(".")[0]}
                     </motion.div>
                     <motion.div
-                      className="text-7xl md:text-8xl"
+                      className="text-4xl tiny:text-7xl md:text-8xl"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3, delay: 0.1 }}
                     >
-                      .{formatTime(solvingTime, settings.timer.decimals).split(".")[1]}
+                      .
+                      {
+                        formatTime(solvingTime, settings.timer.decimals).split(
+                          "."
+                        )[1]
+                      }
                     </motion.div>
                     {lastSolve?.plus2 && !isSolving && (
                       <motion.span
@@ -127,23 +135,22 @@ export default function DisplayTime({
                   </>
                 )}
               </motion.div>
-                {!lastSolve && timerStatus === TimerStatus.IDLE ? (
-                  <motion.div
-                    className="text-xs text-center"
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: [0.5, 1, 0.5], y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                  >
-                    {timerMode === TimerMode.NORMAL
-                      ? device === "Desktop"
-                        ? `${t("space-to-start")}`
-                        : `${t("tap-to-start")}`
-                      : null}
+              {!lastSolve && timerStatus === TimerStatus.IDLE ? (
+                <motion.div
+                  className="text-xs text-center"
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: [0.5, 1, 0.5], y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                >
+                  {timerMode === TimerMode.NORMAL
+                    ? device === "Desktop"
+                      ? `${t("space-to-start")}`
+                      : `${t("tap-to-start")}`
+                    : null}
 
-                    {timerMode === TimerMode.STACKMAT &&
-                      t("start-stackmat")}
-                  </motion.div>
-                ): null}
+                  {timerMode === TimerMode.STACKMAT && t("start-stackmat")}
+                </motion.div>
+              ) : null}
             </motion.div>
           )}
         </AnimatePresence>
