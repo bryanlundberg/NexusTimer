@@ -203,10 +203,6 @@ export async function test(): Promise<any> {
     const start = Date.now();
 
     const onEnd = function (item: any[]) {
-      // console.table(item);
-      const end = Date.now();
-      console.log(`Execution time: ${end - start} ms`);
-      console.log(item.length);
       return item;
     };
 

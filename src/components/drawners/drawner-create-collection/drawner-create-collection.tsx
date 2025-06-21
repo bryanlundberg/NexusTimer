@@ -87,7 +87,7 @@ export default function DrawerCreateCollection({
         </DrawerDescription>
       </DrawerHeader>
 
-      <div className="p-3">
+      <div className="p-3 space-y-2">
         <Label htmlFor="name">{t("Cubes-modal.name")}</Label>
         <Input
           data-testid="drawer-input-name"
@@ -108,20 +108,19 @@ export default function DrawerCreateCollection({
             return (
               <Image
                 data-testid={"checkbox-category-" + e.name}
-                key={genId()}
+                key={e.name}
                 src={e.src}
                 alt={e.event || ""}
                 className={cn(
-                  "w-full max-w-fit max-h-20 object-scale-down hover:outline-solid hover:outline-4 hover:outline-secondary-foreground hover:outline-offset-4 rounded hover:scale-105 transition duration-200",
+                  "w-full max-w-fit max-h-20 object-scale-down rounded hover:scale-105 transition duration-200",
                   `${
                     newCollection.category === e.name
-                      ? "outline-solid outline-4 outline-secondary-foreground outline-offset-4 rounded scale-105"
+                      ? "rounded scale-105 outline-primary outline-4"
                       : ""
                   }`
                 )}
                 draggable={false}
                 onClick={() => {
-                  console.log(e.name);
                   setNewCollection((prev) => ({ ...prev, category: e.name }));
                 }}
               />
