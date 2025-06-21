@@ -10,7 +10,6 @@ export default function PreloadSettings({
   children: ReactNode;
 }) {
   const { backgroundImage } = useBackgroundImageStore();
-
   const { isMounted } = usePreloadSettings();
 
   return (
