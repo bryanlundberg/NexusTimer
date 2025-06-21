@@ -9,6 +9,7 @@ import getBestTime from "@/lib/getBestTime";
 import getWorstTime from "@/lib/getWorstTime";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useTheme } from "next-themes";
+import { convert } from "colorizr";
 
 interface TimeObject {
   time: number;
@@ -27,33 +28,30 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
   const [showAverageTime, setShowAverageTime] = useState(true);
   const [showStandardDeviation, setShowStandardDeviation] = useState(true);
 
+
   useEffect(() => {
-    const backgroundColor = getComputedStyle(
+    const backgroundColor = convert(getComputedStyle(
       document.documentElement
-    ).getPropertyValue("--background");
-
-    const gridColor = getComputedStyle(
+    ).getPropertyValue("--background"), "rgb");
+    const gridColor = "rgba(78,78,78,0.22)";
+    const primaryColor = convert(getComputedStyle(
       document.documentElement
-    ).getPropertyValue("--border");
-
-    const primaryColor = getComputedStyle(
-      document.documentElement
-    ).getPropertyValue("--primary");
+    ).getPropertyValue("--primary"), "rgb");
 
     const chartOptions: DeepPartial<ChartOptions> = {
       layout: {
         textColor: "gray",
         background: {
-          color: `hsl(${backgroundColor})`,
+          color: backgroundColor,
         },
         attributionLogo: false
       },
       grid: {
         vertLines: {
-          color: `hsl(${gridColor})`,
+          color: gridColor,
         },
         horzLines: {
-          color: `hsl(${gridColor})`,
+          color: gridColor,
         },
       },
       localization: {
@@ -83,19 +81,19 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
       crosshair: {
         mode: 1, // CrosshairMode.Normal
         vertLine: {
-          color: `hsl(${primaryColor})`,
+          color: primaryColor,
           width: 1,
           style: 2, // LineStyle.Dashed
           visible: true,
           labelVisible: false,
         },
         horzLine: {
-          color: `hsl(${primaryColor})`,
+          color: primaryColor,
           width: 1,
           style: 2, // LineStyle.Dashed
           visible: true,
           labelVisible: true,
-          labelBackgroundColor: `hsl(${primaryColor})`,
+          labelBackgroundColor: primaryColor,
         },
       },
     };
@@ -133,7 +131,7 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
         lastValueVisible: false,
         priceLineVisible: false,
         // lineWidth: 1,
-        color: `hsl(${primaryColor})`,
+        color: primaryColor,
       });
 
       // Utility functions for statistics

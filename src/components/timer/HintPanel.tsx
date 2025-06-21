@@ -18,7 +18,7 @@ export default function HintPanel() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 400, opacity: 0.8 }}
           transition={{ type: "lineal" }}
-          className="bg-yellow-100 bottom-0 rounded-t-lg w-full sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-sm mx-auto h-full border"
+          className="bg-yellow-100 bottom-0 rounded-t-lg w-full sm:max-w-(--breakpoint-sm) md:max-w-(--breakpoint-md) lg:max-w-(--breakpoint-sm) mx-auto h-full border"
         >
           <div className="p-2 text-2xl flex justify-between items-center">
             <div className="font-black">{t("hint")}</div>

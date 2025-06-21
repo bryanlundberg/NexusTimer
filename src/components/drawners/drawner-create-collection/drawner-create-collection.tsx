@@ -112,10 +112,10 @@ export default function DrawerCreateCollection({
                 src={e.src}
                 alt={e.event || ""}
                 className={cn(
-                  "w-full max-w-fit max-h-20 object-scale-down hover:outline hover:outline-4 hover:outline-secondary-foreground hover:outline-offset-4 rounded hover:scale-105 transition duration-200",
+                  "w-full max-w-fit max-h-20 object-scale-down hover:outline-solid hover:outline-4 hover:outline-secondary-foreground hover:outline-offset-4 rounded hover:scale-105 transition duration-200",
                   `${
                     newCollection.category === e.name
-                      ? "outline outline-4 outline-secondary-foreground outline-offset-4 rounded scale-105"
+                      ? "outline-solid outline-4 outline-secondary-foreground outline-offset-4 rounded scale-105"
                       : ""
                   }`
                 )}

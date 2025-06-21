@@ -14,7 +14,7 @@ export default function ScrambleModal() {
       onClick={handleClose}
     >
       <ScrambleDisplay
-        className="w-full h-[30rem] mx-auto"
+        className="w-full h-120 mx-auto"
         show
         event={selectedCube?.category || "3x3"}
         scramble={scramble}
