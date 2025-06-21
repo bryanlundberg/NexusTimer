@@ -94,7 +94,7 @@ const UsageGraph = ({ allSolves, sessionSolves }: { allSolves: Solve[], sessionS
   const chartConfig = {
     desktop: {
       label: "Solves",
-      color: "hsl(var(--primary))"
+      color: "var(--primary)"
     }
   } satisfies ChartConfig;
 

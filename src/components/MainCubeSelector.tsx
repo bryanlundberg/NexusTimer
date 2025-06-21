@@ -41,7 +41,7 @@ export default function MainCubeSelector() {
         onValueChange={handleChangeValue}
       >
         <SelectTrigger
-          className="bg-background"
+          className="bg-background w-full"
           data-testid="main-cube-selector"
         >
           <SelectValue placeholder={t("Inputs.select")} />

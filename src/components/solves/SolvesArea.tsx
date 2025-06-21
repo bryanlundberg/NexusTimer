@@ -87,22 +87,22 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
           <DropdownMenuTrigger asChild>
             <Card
               className={
-                "relative grow flex items-center justify-center w-auto font-medium text-center transition duration-200 rounded-md cursor-pointer h-14 bg-secondary text-secondary-foreground hover:opacity-70"
+                "relative grow flex items-center justify-center w-auto font-medium text-center transition duration-200 rounded-md cursor-pointer h-14 hover:opacity-70"
               }
             >
-              <div className="tracking-wider pt-2">
+              <div className="pt-2 flex items-center">
                 <span className="text-md">
                   {formatTime(sortedSolves[index].time).split(".")[0]}
                 </span>
                 <span className="text-sm">
                   .{formatTime(sortedSolves[index].time).split(".")[1]}
                 </span>
+                {sortedSolves[index].plus2 ? (
+                  <span className="text-xs font-black text-red-600 ms-1">
+                    +2
+                  </span>
+                ) : null}
               </div>
-              {sortedSolves[index].plus2 ? (
-                <span className="text-xs font-black text-red-600 ms-1 pt-2">
-                  +2
-                </span>
-              ) : null}
               <div className="absolute z-20 text-xs top-1 left-1">
                 {formatDate(sortedSolves[index].endTime).slice(0, 5)}
               </div>

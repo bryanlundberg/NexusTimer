@@ -38,7 +38,7 @@ export default function ThemeSelect() {
           <div
             className={`cursor-pointer size-20 rounded-full ${item.bg} ${
               item.key === resolvedTheme
-                ? "ring"
+                ? "ring-3 ring-primary/50"
                 : "border border-neutral-400"
             }`}
           ></div>
