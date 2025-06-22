@@ -24,7 +24,7 @@ export default function MenuInputOption({ label, control, name, inputProps }: {
                 onChange(newValue);
               }
             }}
-            className="border rounded px-2 py-1 max-w-20 focus:outline-primary"
+            className="px-2 py-1 w-20 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-md border border-input dark:bg-input/30"
             min={0}
             {...inputProps}
           />
