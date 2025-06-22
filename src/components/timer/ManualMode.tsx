@@ -97,7 +97,7 @@ export default function ManualMode() {
           type="text"
           placeholder="..."
           value={value}
-          className={`w-full max-w-[500px] h-20 text-6xl font-medium text-center border rounded-md outline-hidden appearance-none cursor-pointer focus:cursor-text py-14`}
+          className={`w-full max-w-[500px] h-20 text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium text-center border rounded-md outline-hidden appearance-none cursor-pointer focus:cursor-text py-14`}
           onChange={(e) => {
             if (!selectedCube) return;
             if (
