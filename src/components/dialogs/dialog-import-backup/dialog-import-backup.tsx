@@ -30,7 +30,7 @@ export default function DialogImportBackup() {
         <DialogDescription>{t("description")}</DialogDescription>
       </DialogHeader>
       {!isImporting ? (
-        <div className="relative border-2 border-dashed border-blue-900 w-full h-20 text-md flex justify-center items-center hover:border-blue-600 transition duration-200 ">
+        <div className="relative border-1 border-dashed border-primary w-full h-20 text-md flex justify-center items-center hover:bg-primary/80 transition duration-200 text-bg-foreground cursor-pointer hover:border-none">
           <input
             type="file"
             accept=".txt"
