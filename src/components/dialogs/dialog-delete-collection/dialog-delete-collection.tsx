@@ -79,10 +79,10 @@ export default function DialogDeleteCollection({
           </AlertDescription>
         </Alert>
 
-        <Label className="text-secondary-foreground/50">
-          {t("Cubes-modal.input-collection-name")}{" "}
+        <Label className="text-secondary-foreground/50 flex flex-wrap">
+          <span>{t("Cubes-modal.input-collection-name")}{" "}</span>
           <span className="text-secondary-foreground">{cube?.name}</span>{" "}
-          {t("Cubes-modal.to-continue")}
+          <span>{t("Cubes-modal.to-continue")}</span>
         </Label>
         <Input
           onChange={(e) => {
