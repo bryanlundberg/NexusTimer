@@ -120,7 +120,7 @@ export default function DialogEditCollection({
             setForm((prev) => ({ ...prev, category: e as any }))
           }
         >
-          <SelectTrigger data-testid="drawer-edit-select-category">
+          <SelectTrigger className={"w-full"} data-testid="drawer-edit-select-category">
             <SelectValue placeholder={t("Cubes-modal.select-an-option")}/>
           </SelectTrigger>
           <SelectContent>
