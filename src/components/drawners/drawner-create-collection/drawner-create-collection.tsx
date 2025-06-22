@@ -77,7 +77,7 @@ export default function DrawerCreateCollection({
 
   return (
     <DrawerContent
-      className="max-w-[850px] mx-auto"
+      className="max-w-[800px] mx-auto"
       data-testid="drawer-create-collection"
     >
       <DrawerHeader>
@@ -103,7 +103,7 @@ export default function DrawerCreateCollection({
 
         <div className="mt-3"></div>
         <Label>{t("Cubes-modal.category")}</Label>
-        <div className="grid md:grid-cols-6 grid-cols-4 gap-5 place-items-center mt-3">
+        <div className="grid grid-cols-6 md:grid-cols-6 gap-5 place-items-center mt-3">
           {cubeCollection.map((e) => {
             return (
               <Image
@@ -112,7 +112,7 @@ export default function DrawerCreateCollection({
                 src={e.src}
                 alt={e.event || ""}
                 className={cn(
-                  "w-full max-w-fit max-h-20 object-scale-down rounded hover:scale-105 transition duration-200",
+                  "w-full max-w-fit max-h-14 md:max-h-20 object-scale-down rounded hover:scale-105 transition duration-200",
                   `${
                     newCollection.category === e.name
                       ? "rounded scale-105 outline-primary outline-4"
