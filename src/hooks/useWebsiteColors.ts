@@ -224,7 +224,7 @@ export default function useWebsiteColors() {
           },
           ".dark": generateDarkTheme({
             primary: "oklch(0.696 0.17 162.48)",
-            "primary-foreground": "oklch(0.985 0 0)",
+            "primary-foreground": "oklch(0.974 0.036 174.767)",
             ring: "oklch(0.527 0.154 150.069)",
             "sidebar-primary": "oklch(0.696 0.17 162.48)",
             "sidebar-primary-foreground": "oklch(0.393 0.095 152.535)",
