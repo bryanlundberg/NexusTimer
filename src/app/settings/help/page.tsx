@@ -9,7 +9,7 @@ export default function Page() {
   const t = useTranslations("Index");
   return (
     <>
-      <AccountHeader back="./" label={t("SettingsPage.help")} />
+      <AccountHeader back="/" label={t("SettingsPage.help")} />
 
       <div className="flex flex-col gap-2">
         <Link href={"./help/privacy-policy"} className="w-full">

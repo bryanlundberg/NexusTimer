@@ -52,7 +52,7 @@ export default function Page() {
     <>
       <div className="overflow-y-auto">
         <div className="max-w-md mx-auto bg-background/90 backdrop-blur-lg">
-          <AccountHeader back="/settings" label={t("SettingsPage.options")}/>
+          <AccountHeader back="/" label={t("SettingsPage.options")}/>
 
           <MenuSelectLanguage/>
 

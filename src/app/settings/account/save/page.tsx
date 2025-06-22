@@ -16,14 +16,14 @@ export default function Page() {
   if (!session) redirect("/settings");
   return (
     <>
-      <AccountHeader back="./" label={t("SettingsPage.save-data-title")} />
+      <AccountHeader back="/" label={t("SettingsPage.save-data-title")} />
 
       <Card className="p-3 bg-secondary/10">
         <p>{t("SettingsPage.save-data-description")}</p>
         <p className="text-yellow-600">{t("SettingsPage.save-data-warning")}</p>
 
         <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
-          <Link href={"./"} className="grow">
+          <Link href={"/"} className="grow">
             <Button variant={"secondary"} className="w-full">
               {t("Inputs.back")}
             </Button>
@@ -46,7 +46,7 @@ export default function Page() {
                 data: JSON.stringify(cubes),
               });
 
-              router.push("/settings/account");
+              router.push("/");
             }}
           >
             {t("Inputs.continue")}

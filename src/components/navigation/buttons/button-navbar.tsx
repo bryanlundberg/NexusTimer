@@ -103,14 +103,14 @@ export default function ButtonNavbar() {
         icon: <ArrowRightLeftIcon/>,
         name: "Transfer Solves",
         url: "/transfer-solves"
-      },
-      {
-        icon: <MixerHorizontalIcon/>,
-        name: t("SettingsPage.title"),
-        url: "/settings"
       }
     ],
-    account: [
+    settings: [
+      {
+        icon: <MixerHorizontalIcon/>,
+        name: t("SettingsPage.options"),
+        url: "/settings/options"
+      },
       {
         icon: <PersonIcon/>,
         name: t("SettingsPage.account"),
@@ -118,13 +118,8 @@ export default function ButtonNavbar() {
       },
       {
         icon: <CircleIcon/>,
-        name: t("SettingsPage.save-data-title"),
-        url: "/settings/account/save"
-      },
-      {
-        icon: <CircleIcon/>,
-        name: t("SettingsPage.load-data-title"),
-        url: "/settings/account/load"
+        name: t("SettingsPage.help"),
+        url: "/settings/help"
       }
     ]
   };
@@ -174,14 +169,15 @@ export default function ButtonNavbar() {
             </CommandItem>
           </CommandGroup>
           <CommandSeparator/>
-          <CommandGroup heading={t("SettingsPage.account")}>
-            {list.account.map((c) => {
+          <CommandGroup heading={t("SettingsPage.title")}>
+            {list.settings.map((c) => {
               return (
                 <CommandLink
                   url={c.url}
                   label={c.name}
                   icon={c.icon}
-                  key={genId()}
+                  key={c.url}
+                  disabled={c.disabled}
                 />
               );
             })}

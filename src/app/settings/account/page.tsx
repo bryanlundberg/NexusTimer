@@ -37,7 +37,7 @@ export default function Page() {
 
   return (
     <>
-      <AccountHeader back="/settings" label={t("SettingsPage.account")} />
+      <AccountHeader back="/" label={t("SettingsPage.account")} />
       <div className="flex flex-col gap-3 justify-center items-center">
         <Avatar className="size-20">
           <AvatarImage src={session.user?.image as string} />
@@ -78,12 +78,12 @@ export default function Page() {
               </DialogDescription>
             </DialogHeader>
             <DialogFooter className="flex flex-col gap-2">
-              <DialogClose className="w-full" asChild>
+              <DialogClose className="flex-1" asChild>
                 <Button variant={"secondary"} className="w-full">
                   {t("Inputs.cancel")}
                 </Button>
               </DialogClose>
-              <Button className="w-full" onClick={handleResetDeviceData}>
+              <Button className="flex-1" onClick={handleResetDeviceData}>
                 {t("Inputs.continue")}
               </Button>
             </DialogFooter>
