@@ -23,13 +23,13 @@ export default function Page() {
         <p className="text-yellow-600">{t("SettingsPage.save-data-warning")}</p>
 
         <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
-          <Link href={"./"} className="w-full">
+          <Link href={"./"} className="grow">
             <Button variant={"secondary"} className="w-full">
               {t("Inputs.back")}
             </Button>
           </Link>
           <Button
-            className="w-full"
+            className="grow"
             onClick={async () => {
               const cubes = await getAllCubes();
               if (

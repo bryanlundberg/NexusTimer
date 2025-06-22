@@ -78,16 +78,16 @@ export default function Page() {
     });
 
     // Clear app storage
-    cubes.forEach(async (c: Cube) => {
+    for (const c of cubes) {
       await deleteCubeById(c.id);
-    });
+    }
 
     // Replace storage with new Object Backup
-    newBackup.forEach(async (c: Cube) => {
+    for (const c of newBackup) {
       await saveCube({
         ...c,
       });
-    });
+    }
 
     // Update global state
     const appData = await getAllCubes();
@@ -107,13 +107,13 @@ export default function Page() {
         <p className="text-yellow-600">{t("SettingsPage.load-data-warning")}</p>
 
         <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
-          <Link href={"./"} className="w-full">
+          <Link href={"./"} className="flex-1">
             <Button className="w-full" variant={"secondary"}>
               {t("Inputs.back")}
             </Button>
           </Link>
 
-          <Button className="w-full" onClick={handleDownloadData}>
+          <Button className="flex-1" onClick={handleDownloadData}>
             {t("Inputs.continue")}
           </Button>
         </div>
