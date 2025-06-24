@@ -7,7 +7,7 @@ import { ImageIcon } from "@radix-ui/react-icons";
 export default function CustomTheme() {
   const dataInputRef = useRef<HTMLInputElement>(null);
   const { setBackgroundImage } = useBackgroundImageStore();
-  const t = useTranslations("Index.Settings-menu");
+  const t = useTranslations("Index");
   const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const newBackgroundImage = event.target.files?.[0];
 
@@ -17,7 +17,7 @@ export default function CustomTheme() {
     const maxSizeInBytes = 4 * 1024 * 1024; // 4MB
 
     if (!allowedImageTypes.includes(newBackgroundImage.type)) {
-      alert(`${t("allowed-file-types")}`);
+      alert(`${t("Settings-menu.allowed-file-types")}`);
       if (dataInputRef.current) {
         dataInputRef.current.value = "";
       }
@@ -25,7 +25,7 @@ export default function CustomTheme() {
     }
 
     if (newBackgroundImage.size > maxSizeInBytes) {
-      alert(`${t("max-file-size")} 4 Mb`);
+      alert(`${t("Settings-menu.max-file-size")} 4 Mb`);
       if (dataInputRef.current) {
         dataInputRef.current.value = "";
       }
@@ -54,7 +54,7 @@ export default function CustomTheme() {
 
   return (
     <>
-      <div className="ps-3">
+      <div className="ps-3 pe-3 mb-3">
         <input
           type="file"
           accept="image/*"
@@ -68,10 +68,10 @@ export default function CustomTheme() {
           onClick={() => dataInputRef.current && dataInputRef.current.click()}
         >
           <ImageIcon className="w-4 h-4" />
-          {t("custom-background-image")}
+          {t("Settings-menu.custom-background-image")}
         </Button>
-        <div className="block text-xs align-bottom mt-1">
-          {t("format")} .png .jpg .gif
+        <div className="text-xs text-muted-foreground mt-1">
+          {t("Settings-descriptions.custom-background-description")}
         </div>
       </div>
     </>
