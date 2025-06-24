@@ -30,7 +30,8 @@
       "all": "Alle",
       "alert": {
         "empty-cubes": "Kein Würfel ausgewählt. \nBitte wählen Sie eines aus.",
-        "title": "Aufmerksamkeit!"
+        "title": "Aufmerksamkeit!",
+        "select-cube": "Wählen Sie einen Würfel aus!"
       },
       "ascending": "Aufsteigend",
       "date": "Datum",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Verschieben löst den Verlauf"
       },
-      "show": "Zeigen"
+      "show": "Zeigen",
+      "dropdown": {
+        "add-bookmark": "Lesezeichen hinzufügen",
+        "add-penalty": "Strafe hinzufügen",
+        "copy-to-clipboard": "Kopieren Sie in die Zwischenablage",
+        "delete-solve": "Löschen löschen",
+        "move-to-history": "In die Geschichte wechseln",
+        "remove-bookmark": "Lesezeichen entfernen",
+        "remove-penalty": "Strafe entfernen",
+        "transfer-collection": "Übertragungssammlung",
+        "view-details": "Details anzeigen"
+      }
     },
     "StatsPage": {
       "title": "Statistiken",
@@ -72,7 +84,15 @@
       "average": "Durchschnitt",
       "time-spent": "Aufgewendete Zeit",
       "success-rate": "Erfolgsrate",
-      "counter": "Zähler"
+      "counter": "Zähler",
+      "category-tab": "Kategorie",
+      "cube-all-tooltip": "Kombiniert alle historischen und Sitzungen nur für den ausgewählten Würfel.",
+      "cube-session-tooltip": "Zählt nur Sitzungen nur für den ausgewählten Würfel.",
+      "cube-tab": "Würfel",
+      "empty-statistics": "Keine Statistiken verfügbar",
+      "empty-statistics-description": "Es sieht so aus, als ob Ihr Lösungs -Tresor derzeit leer ist.",
+      "global-tooltip": "Kombiniert alle historischen und Sitzungen für jeden Würfel in derselben Kategorie.",
+      "sessions-tooltip": "Zählt nur Sitzungen für jeden Würfel in derselben Kategorie."
     },
     "CubesPage": {
       "title": "Würfel",
@@ -87,7 +107,13 @@
       "name": "Name",
       "new-collection": "Neue Kollektion",
       "delete": "Löschen",
-      "edit": "Bearbeiten"
+      "edit": "Bearbeiten",
+      "chart-solves-label": "Löst",
+      "created": "Erstellt",
+      "no-cubes-description": "Fügen Sie Ihrem Tresor Cube -Sammlungen hinzu, um sie hier zu sehen.",
+      "no-solve-data": "Keine verfügbaren Daten verfügbar",
+      "solves-label": "Löst",
+      "total": "gesamt"
     },
     "Cubes-modal": {
       "category": "Kategorie",
@@ -118,7 +144,8 @@
       "back": "Zurück",
       "sign-in-google": "Melden Sie sich mit Google an",
       "no-results": "Keine Ergebnisse gefunden",
-      "search": "Suchen..."
+      "search": "Suchen...",
+      "menu": "Speisekarte"
     },
     "Settings-menu": {
       "locale": "Region",
@@ -141,7 +168,6 @@
       "sounds": "Töne",
       "theme": "Thema",
       "custom-background-image": "Benutzerdefiniertes Hintergrundbild",
-      "format": "Format",
       "allowed-file-types": "Nur Bilddateien (JPEG, PNG, GIF) sind erlaubt.",
       "max-file-size": "Maximale Dateigröße ist",
       "data": "App-Daten",
@@ -155,7 +181,12 @@
       "dark": "Dunkel",
       "light": "Licht",
       "system": "System",
-      "newPersonalBest": "Neues persönliches Bestes"
+      "newPersonalBest": "Neues persönliches Bestes",
+      "close": "X",
+      "decimal-places": "Dezimalstellen",
+      "fullscreen": "Vollbild",
+      "hold-to-start-time": "Halten Sie die Startzeit fest",
+      "inspection-time": "Inspektionszeit"
     },
     "backup-modal": {
       "title": "Intelligente Backup-Wiederherstellung",
@@ -182,11 +213,9 @@
       "fetching-last-backup": "Informationen werden vom Server abgerufen. Warten Sie einen Moment ...",
       "help": "Helfen",
       "last-backup": "Letzte Sicherung:",
-      "load": "Laden",
       "load-data-description": "Möchten Sie Ihre Kontodaten aus der Cloud herunterladen?",
       "load-data-title": "Daten laden",
       "load-data-warning": "Dadurch werden aktuelle Daten mit gespeicherten Daten zusammengeführt.",
-      "logout": "Abmelden",
       "not-authenticated": "Authentifizieren Sie sich, um Zugriff zu gewähren",
       "options": "Optionen",
       "privacy-policy": "Datenschutzrichtlinie",
@@ -202,6 +231,43 @@
     },
     "others": {
       "suggestions": "Vorschläge"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Wählen Sie automatisch einen Würfel bei Anwendungsstart aus",
+      "best-average-alert": "Zeigen Sie eine Warnung, wenn Sie einen neuen besten Durchschnitt erreichen",
+      "best-time-alert": "Zeigen Sie eine Warnung, wenn Sie eine neue Bestzeit erreichen",
+      "custom-background-description": "Laden Sie ein benutzerdefiniertes Hintergrundbild hoch, um Ihren Timer zu personalisieren (max 4 MB)",
+      "data-import-export": "Sichern Sie Ihre Daten in eine Datei oder stellen Sie eine vorherige Sicherung wieder her",
+      "decimal-places": "Stellen Sie die Anzahl der Dezimalstellen fest, die in Zeiten angezeigt werden sollen (1-4)",
+      "hide-while-solving": "Verstecken Sie die Timer- und UI -Elemente beim Lösen",
+      "hold-to-start": "Erfordern",
+      "hold-to-start-time": "Stellen Sie fest, wie lange die Leertaste vor dem Start gehalten werden soll (300-1000 ms)",
+      "inspection": "Aktivieren Sie die WCA -Inspektionszeit, bevor Sie die Lösung beginnen",
+      "inspection-time": "Setzen Sie die Dauer der Inspektionszeit in Millisekunden (5000-60000 ms)",
+      "language-description": "Ändern Sie die in der gesamte Anwendung verwendete Sprache",
+      "manual-mode": "Aktivieren Sie den manuellen Zeiteintrag anstatt den Timer zu verwenden",
+      "new-personal-best-sound": "Spielen Sie einen Sound, wenn Sie eine neue persönliche Bestzeit erreichen",
+      "quick-action-buttons": "Zeigen Sie Schaltflächen für gemeinsame Aktionen wie Löschen und DNF",
+      "scramble-background": "Zeigen Sie das Scramble als Hintergrundelement",
+      "scramble-image": "Zeigen Sie eine visuelle Darstellung des Scramble",
+      "session-stats": "Zeigen Sie Statistiken für die aktuelle Lösungssitzung an",
+      "start-cue": "Zeigen Sie einen visuellen Hinweis, wenn der Timer bereit ist zu starten",
+      "worst-time-alert": "Zeigen Sie eine Warnung, wenn Sie Ihre schlechteste Zeit in einer Sitzung haben"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Sammelziel",
+      "collection-origin": "Sammlung Herkunft",
+      "cubes-unavailable": "Cubes -Daten sind nicht verfügbar",
+      "deselect-all": "Alle entscheiden",
+      "empty-vault": "Ihr Lösungs -Tresor ist derzeit leer.",
+      "failed-transfer": "Übertragung von Lösungen nicht übertragen. \nBitte versuchen Sie es erneut.",
+      "no-solves": "Keine Lösungen verfügbar",
+      "select-all": "Wählen Sie alle aus",
+      "solves-selected": "Löst: ({count} ausgewählt)",
+      "success-transfer": "Erfolgreich übertragen {count} löst von {Source} auf {Ziel}",
+      "title": "Übertragung löst",
+      "transfer": "Überweisen",
+      "transferring": "Transfer ..."
     }
   },
   "Metadata": {

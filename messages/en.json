@@ -3,6 +3,28 @@
     "others": {
       "suggestions": "Suggestions"
     },
+    "Settings-descriptions": {
+      "inspection": "Enable WCA inspection time before starting the solve",
+      "inspection-time": "Set the duration of inspection time in milliseconds (5000-60000ms)",
+      "start-cue": "Show a visual cue when the timer is ready to start",
+      "hold-to-start": "Require holding the spacebar before starting the timer",
+      "hold-to-start-time": "Set how long to hold the spacebar before starting (300-1000ms)",
+      "manual-mode": "Enable manual time entry instead of using the timer",
+      "decimal-places": "Set the number of decimal places to display in times (1-4)",
+      "scramble-image": "Show a visual representation of the scramble",
+      "session-stats": "Display statistics for the current solving session",
+      "quick-action-buttons": "Show buttons for common actions like delete and DNF",
+      "hide-while-solving": "Hide the timer and UI elements while solving",
+      "scramble-background": "Show the scramble as a background element",
+      "best-time-alert": "Show an alert when you achieve a new best time",
+      "best-average-alert": "Show an alert when you achieve a new best average",
+      "worst-time-alert": "Show an alert when you get your worst time in a session",
+      "new-personal-best-sound": "Play a sound when you achieve a new personal best time",
+      "custom-background-description": "Upload a custom background image to personalize your timer (max 4MB)",
+      "data-import-export": "Backup your data to a file or restore from a previous backup",
+      "auto-select-description": "Automatically select a cube at application start",
+      "language-description": "Change the language used throughout the application"
+    },
     "HomePage": {
       "title": "Play",
       "hint": "Hint",
@@ -48,7 +70,19 @@
       },
       "alert": {
         "title": "Attention!",
-        "empty-cubes": "No cube selected. Please choose one."
+        "empty-cubes": "No cube selected. Please choose one.",
+        "select-cube": "Start selecting a cube!"
+      },
+      "dropdown": {
+        "view-details": "View Details",
+        "transfer-collection": "Transfer Collection",
+        "remove-bookmark": "Remove Bookmark",
+        "add-bookmark": "Add Bookmark",
+        "remove-penalty": "Remove Penalty",
+        "add-penalty": "Add Penalty",
+        "copy-to-clipboard": "Copy to Clipboard",
+        "move-to-history": "Move to History",
+        "delete-solve": "Delete Solve"
       },
       "empty-solves": "Nothing here yet!",
       "empty-solves-description": "Tap the switch at the top of the screen to see your history.",
@@ -75,11 +109,20 @@
       "average": "Average",
       "time-spent": "Time Spent",
       "success-rate": "Success Rate",
-      "counter": "Counter"
+      "counter": "Counter",
+      "category-tab": "Category",
+      "cube-tab": "Cube",
+      "global-tooltip": "Combines all historical and session solves for every cube in the same category.",
+      "sessions-tooltip": "Counts only session solves for every cube in the same category.",
+      "cube-all-tooltip": "Combines all historical and session solves for only the selected cube.",
+      "cube-session-tooltip": "Counts only session solves for only the selected cube.",
+      "empty-statistics": "No Statistics Available",
+      "empty-statistics-description": "It looks like your solve vault is currently empty."
     },
     "CubesPage": {
       "title": "Cubes",
       "no-cubes-for-display": "No cubes for display.",
+      "no-cubes-description": "Start adding cube collections to your vault to see them here.",
       "favorite": "Favorite",
       "category": "Category",
       "solves": "Solves",
@@ -90,7 +133,12 @@
       "new-collection": "New collection",
       "name": "Name",
       "edit": "Edit",
-      "delete": "Delete"
+      "delete": "Delete",
+      "created": "Created",
+      "solves-label": "Solves",
+      "total": "total",
+      "no-solve-data": "No solve data available",
+      "chart-solves-label": "Solves"
     },
     "Cubes-modal": {
       "delete-collection": "Delete collection",
@@ -126,7 +174,8 @@
       "sign-in-google": "Sign In with Google",
       "back": "Back",
       "no-results": "No results found",
-      "search": "Search..."
+      "search": "Search...",
+      "menu": "Menu"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",
@@ -139,9 +188,12 @@
       "language": "Language",
       "timer": "Timer",
       "inspection": "Inspection",
+      "inspection-time": "Inspection time",
       "start-cue": "Start cue",
       "hold-to-start": "Hold to start",
+      "hold-to-start-time": "Hold to start time",
       "manual-mode": "Manual mode",
+      "decimal-places": "Decimal places",
       "features": "Features",
       "scramble-image": "Scramble image",
       "session-stats": "Session stats",
@@ -156,7 +208,6 @@
       "newPersonalBest": "New personal best",
       "theme": "Theme",
       "custom-background-image": "Custom background image",
-      "format": "Format",
       "allowed-file-types": "Only image files (JPEG, PNG, GIF) are allowed.",
       "max-file-size": "Maximum file size allowed is",
       "data": "App Data",
@@ -169,7 +220,9 @@
       "report-bug": "Report a bug",
       "dark": "Dark",
       "light": "Light",
-      "system": "System"
+      "system": "System",
+      "close": "X",
+      "fullscreen": "Fullscreen"
     },
     "backup-modal": {
       "title": "Intelligent Backup Restoration",
@@ -193,8 +246,6 @@
       "privacy-policy": "Privacy Policy",
       "tos": "Terms of Service",
       "source": "Source",
-      "load": "Load",
-      "logout": "Logout",
       "last-backup": "Last backup:",
       "save-data-title": "Save data",
       "save-data-description": "Do you want save your account data on the cloud?",
@@ -202,6 +253,21 @@
       "load-data-title": "Load data",
       "load-data-description": "Do you want to download your account data from the cloud?",
       "load-data-warning": "This will merge current data with saved data."
+    },
+    "TransferSolvesPage": {
+      "title": "Transfer Solves",
+      "collection-origin": "Collection Origin",
+      "collection-destination": "Collection Destination",
+      "transfer": "Transfer",
+      "transferring": "Transferring...",
+      "solves-selected": "Solves: ({count} selected)",
+      "select-all": "Select All",
+      "deselect-all": "Deselect All",
+      "success-transfer": "Successfully transferred {count} solves from {source} to {destination}",
+      "failed-transfer": "Failed to transfer solves. Please try again.",
+      "no-solves": "No solves available",
+      "empty-vault": "Your solve vault is currently empty.",
+      "cubes-unavailable": "Cubes data is not available"
     }
   },
   "Metadata": {

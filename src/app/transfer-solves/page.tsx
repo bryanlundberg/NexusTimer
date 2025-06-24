@@ -17,8 +17,10 @@ import { useQueryState } from "nuqs";
 import { STATES } from "@/constants/states";
 import { sort } from "fast-sort";
 import { saveBatchCubes } from "@/db/dbOperations";
+import { useTranslations } from "next-intl";
 
 export default function TransferSolvesPage() {
+  const t = useTranslations("Index.TransferSolvesPage");
   const { cubes, setCubes } = useTimerStore();
   const [sourceCollection, setSourceCollection] = useQueryState(STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.KEY, { defaultValue: STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.DEFAULT_VALUE });
   const [destinationCollection, setDestinationCollection] = useQueryState(STATES.TRANSFER_SOLVES_PAGE.DESTINATION_COLLECTION.KEY, { defaultValue: STATES.TRANSFER_SOLVES_PAGE.DESTINATION_COLLECTION.DEFAULT_VALUE });
@@ -37,7 +39,7 @@ export default function TransferSolvesPage() {
 
   const handleTransfer = async () => {
     if (!sourceCollection || !destinationCollection || sourceCollection === destinationCollection || isTransferring || selectedSolves.length === 0) return;
-    if (!cubes) throw new Error("Cubes data is not available");
+    if (!cubes) throw new Error(t("cubes-unavailable"));
     setIsTransferring(true);
 
     try {
@@ -68,12 +70,12 @@ export default function TransferSolvesPage() {
 
         await saveBatchCubes([updatedSourceCube, updatedDestinationCube]);
 
-        toast(`Successfully transferred ${selectedSolves.length} solves from ${sourceCube.name} to ${destinationCube.name}`);
+        toast(t("success-transfer", { count: selectedSolves.length, source: sourceCube.name, destination: destinationCube.name }));
         setSelectedSolves([]);
       }
     } catch (error) {
       console.error("Error transferring solves:", error);
-      toast.error("Failed to transfer solves. Please try again.");
+      toast.error(t("failed-transfer"));
     } finally {
       setIsTransferring(false);
     }
@@ -104,7 +106,7 @@ export default function TransferSolvesPage() {
               }}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Collection Origin"/>
+                  <SelectValue placeholder={t("collection-origin")}/>
                 </SelectTrigger>
                 <SelectContent>
                   {cubes?.map((cube) => (
@@ -119,7 +121,7 @@ export default function TransferSolvesPage() {
               </div>
               <Select value={destinationCollection} onValueChange={setDestinationCollection}>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Collection Destination"/>
+                  <SelectValue placeholder={t("collection-destination")}/>
                 </SelectTrigger>
                 <SelectContent>
                   {cubes?.filter((cube) => cube.id !== sourceCollection).map((cube) => (
@@ -136,7 +138,7 @@ export default function TransferSolvesPage() {
               onClick={handleTransfer}
               disabled={!sourceCollection || !destinationCollection || sourceCollection === destinationCollection || isTransferring || selectedSolves.length === 0}
             >
-              {isTransferring ? "Transferring..." : "Transfer"}
+              {isTransferring ? t("transferring") : t("transfer")}
             </Button>
           </div>
         </Navigation>
@@ -144,13 +146,13 @@ export default function TransferSolvesPage() {
         {displaySolves.length > 0 ? (
           <>
             <div className={"flex justify-between items-center mt-2 mb-4"}>
-              <div>Solves: ({selectedSolves.length} selected)</div>
+              <div>{t("solves-selected", { count: selectedSolves.length })}</div>
               <div className={"flex gap-2"}>
                 <Button
                   variant={selectedSolves.length === displaySolves.length ? "default" : "outline"}
                   onClick={() => handleToggleAll("select")}
-                >Select All</Button>
-                <Button variant={"outline"} onClick={() => handleToggleAll("deselect")}>Deselect All</Button>
+                >{t("select-all")}</Button>
+                <Button variant={"outline"} onClick={() => handleToggleAll("deselect")}>{t("deselect-all")}</Button>
               </div>
             </div>
 
@@ -195,8 +197,8 @@ export default function TransferSolvesPage() {
           </>
         ) : (
           <div className="flex flex-col items-center justify-center grow mt-10">
-            <h2 className="text-2xl font-bold mb-4 text-center text-balance">No solves available</h2>
-            <p className="text-gray-600 text-center text-balance">Your solve vault is currently empty.</p>
+            <h2 className="text-2xl font-bold mb-4 text-center text-balance">{t("no-solves")}</h2>
+            <p className="text-gray-600 text-center text-balance">{t("empty-vault")}</p>
           </div>
         )}
       </div>

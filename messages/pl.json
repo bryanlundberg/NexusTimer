@@ -34,7 +34,8 @@
       "ascending": "Rosnąco",
       "alert": {
         "empty-cubes": "Nie wybrano kostki. \nProszę wybrać jeden.",
-        "title": "Uwaga!"
+        "title": "Uwaga!",
+        "select-cube": "Zacznij wybierać kostkę!"
       },
       "dialogs": {
         "move-to-history": "Przenieść rozwiązania do historii?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Przenieś rozwiązania do historii"
       },
-      "show": "Pokazywać"
+      "show": "Pokazywać",
+      "dropdown": {
+        "add-bookmark": "Dodaj zakładkę",
+        "add-penalty": "Dodaj karę",
+        "copy-to-clipboard": "Kopiuj do schowka",
+        "delete-solve": "Usuń rozwiązanie",
+        "move-to-history": "Przejdź do historii",
+        "remove-bookmark": "Usuń zakładkę",
+        "remove-penalty": "Usuń karę",
+        "transfer-collection": "Kolekcja transferowa",
+        "view-details": "Zobacz szczegóły"
+      }
     },
     "StatsPage": {
       "title": "Statystyki",
@@ -72,7 +84,15 @@
       "average": "Średni",
       "time-spent": "Spędzony czas",
       "success-rate": "Wskaźnik sukcesu",
-      "counter": "Licznik"
+      "counter": "Licznik",
+      "category-tab": "Kategoria",
+      "cube-all-tooltip": "Łączy wszystkie rozwiązania historyczne i sesyjne tylko dla wybranej kostki.",
+      "cube-session-tooltip": "Liczy tylko rozwiązania sesji tylko dla wybranej kostki.",
+      "cube-tab": "Sześcian",
+      "empty-statistics": "Brak dostępnych statystyk",
+      "empty-statistics-description": "Wygląda na to, że Twój Vault jest obecnie pusty.",
+      "global-tooltip": "Łączy wszystkie rozwiązania historyczne i sesji dla każdej kostki w tej samej kategorii.",
+      "sessions-tooltip": "Liczy tylko sesję dla każdej kostki w tej samej kategorii."
     },
     "CubesPage": {
       "title": "Kostki",
@@ -87,7 +107,13 @@
       "name": "Nazwa",
       "new-collection": "Nowa kolekcja",
       "delete": "Usuwać",
-      "edit": "Redagować"
+      "edit": "Redagować",
+      "chart-solves-label": "Rozwiązuje",
+      "created": "Stworzony",
+      "no-cubes-description": "Zacznij dodawać kolekcje kostki do swojego sklepienia, aby je zobaczyć tutaj.",
+      "no-solve-data": "Brak dostępnych danych",
+      "solves-label": "Rozwiązuje",
+      "total": "całkowity"
     },
     "Cubes-modal": {
       "category": "Kategoria",
@@ -118,7 +144,8 @@
       "back": "Z powrotem",
       "sign-in-google": "Zaloguj się za pomocą Google",
       "no-results": "Nie znaleziono żadnych wyników",
-      "search": "Szukaj..."
+      "search": "Szukaj...",
+      "menu": "Menu"
     },
     "Settings-menu": {
       "locale": "Lokalizacja",
@@ -141,7 +168,6 @@
       "sounds": "Dźwięki",
       "theme": "Motyw",
       "custom-background-image": "Niestandardowy obraz tła",
-      "format": "Format",
       "allowed-file-types": "Dozwolone są tylko pliki obrazów (JPEG, PNG, GIF).",
       "max-file-size": "Maksymalny dozwolony rozmiar pliku",
       "auto-select": "Automatyczny wybór przy uruchomieniu",
@@ -155,7 +181,12 @@
       "dark": "Ciemny",
       "light": "Światło",
       "system": "System",
-      "newPersonalBest": "Nowy osobisty najlepszy"
+      "newPersonalBest": "Nowy osobisty najlepszy",
+      "close": "X",
+      "decimal-places": "Miejsca dziesiętne",
+      "fullscreen": "Pełny ekran",
+      "hold-to-start-time": "Trzymaj się czasu rozpoczęcia",
+      "inspection-time": "Czas inspekcji"
     },
     "backup-modal": {
       "title": "Inteligentne Przywracanie Kopii Zapasowej",
@@ -182,11 +213,9 @@
       "fetching-last-backup": "Pobieram informacje z serwera, poczekaj chwilę...",
       "help": "Pomoc",
       "last-backup": "Ostatnia kopia zapasowa:",
-      "load": "Obciążenie",
       "load-data-description": "Chcesz pobrać dane swojego konta z chmury?",
       "load-data-title": "Załaduj dane",
       "load-data-warning": "Spowoduje to połączenie bieżących danych z zapisanymi danymi.",
-      "logout": "Wyloguj się",
       "not-authenticated": "Uwierzytelnij, aby przyznać dostęp",
       "options": "Opcje",
       "privacy-policy": "Polityka prywatności",
@@ -202,6 +231,43 @@
     },
     "others": {
       "suggestions": "Sugestie"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Automatycznie wybierz kostkę na start aplikacji",
+      "best-average-alert": "Pokaż alert, gdy osiągniesz nową najlepszą średnią",
+      "best-time-alert": "Pokaż alert, gdy osiągniesz nowy najlepszy czas",
+      "custom-background-description": "Prześlij niestandardowy obraz tła, aby spersonalizować licznik czasu (maks. 4 MB)",
+      "data-import-export": "Kopia zapasową danych do pliku lub przywróć z poprzedniej kopii zapasowej",
+      "decimal-places": "Ustaw liczbę miejsc dziesiętnych do wyświetlenia w czasach (1-4)",
+      "hide-while-solving": "Ukryj liczbę czasu i elementów interfejsu użytkownika podczas rozwiązywania",
+      "hold-to-start": "Wymaga trzymania paska kosmicznego przed uruchomieniem timera",
+      "hold-to-start-time": "Ustaw, jak długo przechowywać pasek spaceru przed uruchomieniem (300-1000ms)",
+      "inspection": "Włącz czas kontroli WCA przed rozpoczęciem rozwiązania",
+      "inspection-time": "Ustaw czas kontroli w milisekundach (5000-60000 ms)",
+      "language-description": "Zmień język używany w całej aplikacji",
+      "manual-mode": "Włącz wpis czasu ręcznego zamiast używania timera",
+      "new-personal-best-sound": "Zagraj w dźwięk, gdy osiągniesz nowy osobisty najlepszy czas",
+      "quick-action-buttons": "Pokaż przyciski dla typowych działań, takich jak Delete i DNF",
+      "scramble-background": "Pokaż Scramble jako element tła",
+      "scramble-image": "Pokaż wizualną reprezentację Scramble",
+      "session-stats": "Wyświetl statystyki bieżącej sesji rozwiązywania",
+      "start-cue": "Pokaż wizualną wskazówkę, gdy timer jest gotowy do rozpoczęcia",
+      "worst-time-alert": "Pokaż alert, gdy dostaniesz swój najgorszy czas na sesji"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Miejsce docelowe kolekcji",
+      "collection-origin": "Pochodzenie kolekcji",
+      "cubes-unavailable": "Dane kostki nie są dostępne",
+      "deselect-all": "Odznacz wszystko",
+      "empty-vault": "Twój skarbca rozwiązania jest obecnie pusta.",
+      "failed-transfer": "Nie udało się przenieść rozwiązań. \nSpróbuj ponownie.",
+      "no-solves": "Brak dostępnych rozwiązań",
+      "select-all": "Wybierz wszystko",
+      "solves-selected": "Rozwiązuje: ({count} wybrane)",
+      "success-transfer": "Pomyślnie przeniesiony {count} rozwiązuje od {źródło} do {destying}",
+      "title": "Rozwiązanie transferu",
+      "transfer": "Przenosić",
+      "transferring": "Przenoszenie ..."
     }
   },
   "Metadata": {

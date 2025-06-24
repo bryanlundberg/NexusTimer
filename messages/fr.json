@@ -34,7 +34,8 @@
       "time": "Temps",
       "alert": {
         "empty-cubes": "Aucun cube sélectionné. \nVeuillez en choisir un.",
-        "title": "Attention!"
+        "title": "Attention!",
+        "select-cube": "Commencez à sélectionner un cube!"
       },
       "dialogs": {
         "move-to-history": "Déplacer les résolutions vers l'historique ?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Déplacer les résolutions vers l'historique"
       },
-      "show": "Montrer"
+      "show": "Montrer",
+      "dropdown": {
+        "add-bookmark": "Ajouter des signets",
+        "add-penalty": "Ajouter une pénalité",
+        "copy-to-clipboard": "Copier dans le presse-papiers",
+        "delete-solve": "Supprimer la résolution",
+        "move-to-history": "Passer à l'histoire",
+        "remove-bookmark": "Supprimer les signets",
+        "remove-penalty": "Enlever la pénalité",
+        "transfer-collection": "Collection de transfert",
+        "view-details": "Afficher les détails"
+      }
     },
     "StatsPage": {
       "title": "Statistiques",
@@ -72,7 +84,15 @@
       "average": "Moyenne",
       "time-spent": "Temps passé",
       "success-rate": "Taux de réussite",
-      "counter": "Compteur"
+      "counter": "Compteur",
+      "category-tab": "Catégorie",
+      "cube-all-tooltip": "Combine toutes les résolus historiques et session pour le cube sélectionné.",
+      "cube-session-tooltip": "Count Seule la session résout uniquement pour le cube sélectionné.",
+      "cube-tab": "Cube",
+      "empty-statistics": "Aucune statistique disponible",
+      "empty-statistics-description": "Il semble que votre coffre-fort soit actuellement vide.",
+      "global-tooltip": "Combine toutes les résolus historiques et session pour chaque cube dans la même catégorie.",
+      "sessions-tooltip": "Le compte uniquement la session résout pour chaque cube de la même catégorie."
     },
     "CubesPage": {
       "title": "Cubes",
@@ -87,7 +107,13 @@
       "name": "Nom",
       "new-collection": "Nouvelle collection",
       "delete": "Supprimer",
-      "edit": "Modifier"
+      "edit": "Modifier",
+      "chart-solves-label": "Solution",
+      "created": "Créé",
+      "no-cubes-description": "Commencez à ajouter des collections de cubes à votre coffre-fort pour les voir ici.",
+      "no-solve-data": "Pas de données de résolution disponibles",
+      "solves-label": "Solution",
+      "total": "total"
     },
     "Cubes-modal": {
       "category": "Catégorie",
@@ -118,7 +144,8 @@
       "back": "Dos",
       "sign-in-google": "Connectez-vous avec Google",
       "no-results": "Aucun résultat trouvé",
-      "search": "Recherche..."
+      "search": "Recherche...",
+      "menu": "Menu"
     },
     "Settings-menu": {
       "locale": "Région",
@@ -141,7 +168,6 @@
       "sounds": "Sons",
       "theme": "Thème",
       "custom-background-image": "Image d'arrière-plan personnalisée",
-      "format": "Format",
       "allowed-file-types": "Seuls les fichiers image (JPEG, PNG, GIF) sont autorisés.",
       "max-file-size": "La taille maximale autorisée du fichier est",
       "data": "Données de l'application",
@@ -155,7 +181,12 @@
       "dark": "Sombre",
       "light": "Lumière",
       "system": "Système",
-      "newPersonalBest": "Nouveau record personnel"
+      "newPersonalBest": "Nouveau record personnel",
+      "close": "X",
+      "decimal-places": "Décimal",
+      "fullscreen": "Plein écran",
+      "hold-to-start-time": "Tenir à l'heure de début",
+      "inspection-time": "Temps d'inspection"
     },
     "backup-modal": {
       "title": "Restauration de sauvegarde intelligente",
@@ -182,11 +213,9 @@
       "fetching-last-backup": "Récupération des informations depuis le serveur, attendez un instant...",
       "help": "Aide",
       "last-backup": "Dernière sauvegarde :",
-      "load": "Charger",
       "load-data-description": "Voulez-vous télécharger les données de votre compte depuis le cloud ?",
       "load-data-title": "Charger des données",
       "load-data-warning": "Cela fusionnera les données actuelles avec les données enregistrées.",
-      "logout": "Déconnexion",
       "not-authenticated": "S'authentifier pour accorder l'accès",
       "options": "Possibilités",
       "privacy-policy": "politique de confidentialité",
@@ -202,6 +231,43 @@
     },
     "others": {
       "suggestions": "Suggestions"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Sélectionnez automatiquement un cube au début de l'application",
+      "best-average-alert": "Montrez une alerte lorsque vous obtenez une nouvelle meilleure moyenne",
+      "best-time-alert": "Montrez une alerte lorsque vous réalisez un nouveau meilleur moment",
+      "custom-background-description": "Téléchargez une image d'arrière-plan personnalisée pour personnaliser votre minuterie (max 4 Mo)",
+      "data-import-export": "Sauvegardez vos données dans un fichier ou restaurez à partir d'une sauvegarde précédente",
+      "decimal-places": "Définissez le nombre de décimales à afficher dans les temps (1-4)",
+      "hide-while-solving": "Cachez la minuterie et les éléments d'interface utilisateur tout en résolvant",
+      "hold-to-start": "Nécessitent de tenir la barre d'espace avant de démarrer la minuterie",
+      "hold-to-start-time": "Définissez combien de temps pour maintenir la barre d'espace avant de commencer (300-1000ms)",
+      "inspection": "Activer le temps d'inspection WCA avant de commencer la résolution",
+      "inspection-time": "Réglez la durée du temps d'inspection en millisecondes (5000-60000 ms)",
+      "language-description": "Modifier la langue utilisée tout au long de l'application",
+      "manual-mode": "Activer l'entrée de temps manuel au lieu d'utiliser la minuterie",
+      "new-personal-best-sound": "Jouez un son lorsque vous réalisez un nouveau meilleur moment personnel",
+      "quick-action-buttons": "Afficher les boutons pour des actions communes comme Delete et DNF",
+      "scramble-background": "Montrer la brouillage comme un élément d'arrière-plan",
+      "scramble-image": "Montrez une représentation visuelle de la course",
+      "session-stats": "Afficher les statistiques pour la session de résolution actuelle",
+      "start-cue": "Montrer un repère visuel lorsque la minuterie est prête à commencer",
+      "worst-time-alert": "Montrez une alerte lorsque vous obtenez votre pire moment dans une session"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Destination de collecte",
+      "collection-origin": "Collection Origin",
+      "cubes-unavailable": "Les données des cubes ne sont pas disponibles",
+      "deselect-all": "Désélectionner tout",
+      "empty-vault": "Votre coffre-fort est actuellement vide.",
+      "failed-transfer": "Échec du transfert des résolus. \nVeuillez réessayer.",
+      "no-solves": "Pas de résolution disponible",
+      "select-all": "Sélectionnez tout",
+      "solves-selected": "Résout: ({count} sélectionné)",
+      "success-transfer": "Transféré avec succès {count} résout de {source} vers {Destination}",
+      "title": "Solves de transfert",
+      "transfer": "Transfert",
+      "transferring": "Transfert ..."
     }
   },
   "Metadata": {

@@ -34,7 +34,8 @@
       "time": "Idő",
       "alert": {
         "empty-cubes": "Nincs kiválasztva kocka. \nKérjük, válasszon egyet.",
-        "title": "Figyelem!"
+        "title": "Figyelem!",
+        "select-cube": "Kezdje el a kocka kiválasztását!"
       },
       "dialogs": {
         "move-to-history": "Megoldásokat áthelyezni a történelembe?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Mozgás megoldja a történelem"
       },
-      "show": "Megmutat"
+      "show": "Megmutat",
+      "dropdown": {
+        "add-bookmark": "Könyvjelző hozzáadása",
+        "add-penalty": "Büntetést ad",
+        "copy-to-clipboard": "Másolja a vágólapra",
+        "delete-solve": "Törölje a megoldást",
+        "move-to-history": "Költözni a történelembe",
+        "remove-bookmark": "Távolítsa el a könyvjelzőt",
+        "remove-penalty": "Távolítsa el a büntetést",
+        "transfer-collection": "Átviteli gyűjtemény",
+        "view-details": "A részletek megtekintése"
+      }
     },
     "StatsPage": {
       "title": "Statisztikák",
@@ -72,7 +84,15 @@
       "average": "Átlag",
       "time-spent": "Eltöltött Idő",
       "success-rate": "Sikerarány",
-      "counter": "Számláló"
+      "counter": "Számláló",
+      "category-tab": "Kategória",
+      "cube-all-tooltip": "Kombinálja az összes történelmi és munkamenet -megoldást csak a kiválasztott kocka esetében.",
+      "cube-session-tooltip": "Csak a Session SeStion Solces csak a kiválasztott kocka oldja meg.",
+      "cube-tab": "Kocka",
+      "empty-statistics": "Nincs elérhető statisztika",
+      "empty-statistics-description": "Úgy tűnik, hogy a Solve boltozat jelenleg üres.",
+      "global-tooltip": "Összeegyesíti az összes történelmi és munkamenet -megoldást minden ugyanazon kategóriába tartozó kocka esetében.",
+      "sessions-tooltip": "Csak a munkamenet -oldási oldja meg az azonos kategóriában szereplő minden kocka esetét."
     },
     "CubesPage": {
       "title": "Kockák",
@@ -87,7 +107,13 @@
       "name": "Név",
       "new-collection": "Új kollekció",
       "delete": "Töröl",
-      "edit": "Szerkeszt"
+      "edit": "Szerkeszt",
+      "chart-solves-label": "Megoldás",
+      "created": "Létrehozott",
+      "no-cubes-description": "Kezdje el hozzáadni a kockagyűjteményeket a boltozatához, hogy itt lássa őket.",
+      "no-solve-data": "Nincs elérhető az adatok megoldása",
+      "solves-label": "Megoldás",
+      "total": "teljes"
     },
     "Cubes-modal": {
       "category": "Kategória",
@@ -118,7 +144,8 @@
       "back": "Vissza",
       "sign-in-google": "Jelentkezzen be a Google-lal",
       "no-results": "Nincs találat",
-      "search": "Keresés..."
+      "search": "Keresés...",
+      "menu": "Menü"
     },
     "Settings-menu": {
       "locale": "Terület",
@@ -141,7 +168,6 @@
       "sounds": "Hangok",
       "theme": "Téma",
       "custom-background-image": "Egyéni háttérkép",
-      "format": "Formátum",
       "allowed-file-types": "Csak képfájlok (JPEG, PNG, GIF) engedélyezettek.",
       "max-file-size": "A maximális fájlméret engedélyezett",
       "data": "App adatok",
@@ -155,7 +181,12 @@
       "dark": "Sötét",
       "light": "Fény",
       "system": "Rendszer",
-      "newPersonalBest": "Új személyes legjobb"
+      "newPersonalBest": "Új személyes legjobb",
+      "close": "X",
+      "decimal-places": "Tizedesjegyek",
+      "fullscreen": "Teljes képernyő",
+      "hold-to-start-time": "Tartsa a kezdési időt",
+      "inspection-time": "Ellenőrzési idő"
     },
     "backup-modal": {
       "title": "Intelligens Biztonsági Mentés Visszaállítása",
@@ -182,11 +213,9 @@
       "fetching-last-backup": "Információk lekérése a szerverről, várjon egy kicsit...",
       "help": "Segítség",
       "last-backup": "Utolsó biztonsági mentés:",
-      "load": "Terhelés",
       "load-data-description": "Szeretné letölteni fiókadatait a felhőből?",
       "load-data-title": "Adatok betöltése",
       "load-data-warning": "Ez egyesíti az aktuális adatokat a mentett adatokkal.",
-      "logout": "Kijelentkezés",
       "not-authenticated": "A hozzáférés megadásához hitelesítsen",
       "options": "Opciók",
       "privacy-policy": "Adatvédelmi szabályzat",
@@ -202,6 +231,43 @@
     },
     "others": {
       "suggestions": "Javaslatok"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Automatikusan válassza ki a kocka alkalmazását az alkalmazás indításakor",
+      "best-average-alert": "Mutasson riasztást, amikor új legjobb átlagot ér el",
+      "best-time-alert": "Mutasson riasztást, amikor új legjobb időt ér el",
+      "custom-background-description": "Töltsön fel egy egyedi háttérképet az időzítő személyre szabásához (Max 4MB)",
+      "data-import-export": "Biztonsági másolatot készítsen az adatok fájlba, vagy állítsa vissza az előző biztonsági másolatból",
+      "decimal-places": "Állítsa be a jelenlévő tizedes helyek számát a megjelenítéshez (1-4)",
+      "hide-while-solving": "Elrejteni az időzítőt és az UI elemeket a megoldás közben",
+      "hold-to-start": "Az időzítő megkezdése előtt megköveteli az űrtudat tartását",
+      "hold-to-start-time": "Állítsa be, meddig tartsa az űrtartalmat az indítás előtt (300-1000ms)",
+      "inspection": "Engedélyezze a WCA ellenőrzési időt a megoldás megkezdése előtt",
+      "inspection-time": "Állítsa be az ellenőrzési idő időtartamát milliszekundumban (5000-60000 ms)",
+      "language-description": "Változtassa meg az alkalmazás egészében használt nyelvet",
+      "manual-mode": "Engedélyezze a kézi időbejutást az időzítő használata helyett",
+      "new-personal-best-sound": "Játssz egy hangot, amikor új személyes legjobb időt ér el",
+      "quick-action-buttons": "Mutasd meg a gombokat olyan gyakori műveletekhez, mint a törlés és a DNF",
+      "scramble-background": "Mutassa meg a tulygást mint háttér elem",
+      "scramble-image": "Mutassa meg a tekercs vizuális ábrázolását",
+      "session-stats": "Jelenítse meg az aktuális megoldási munkamenet statisztikáit",
+      "start-cue": "Mutasson egy vizuális dátumot, amikor az időzítő készen áll a kezdésre",
+      "worst-time-alert": "Mutasson riasztást, amikor a legrosszabb idejét egy munkamenetben kapja meg"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Beszedési cél",
+      "collection-origin": "Gyűjtemény eredete",
+      "cubes-unavailable": "A kockák adatok nem állnak rendelkezésre",
+      "deselect-all": "Hagyja ki az összeset",
+      "empty-vault": "A Solve boltozat jelenleg üres.",
+      "failed-transfer": "Nem sikerült átvinni a megoldást. \nKérjük, próbálkozzon újra.",
+      "no-solves": "Nincs elérhető megoldás",
+      "select-all": "Válassza ki az összeset",
+      "solves-selected": "Megoldja: ({count} kiválasztva)",
+      "success-transfer": "Sikeresen átadta a {count} megoldást a {forrás} -ről a {célpontra} -re",
+      "title": "Az átviteli megoldás",
+      "transfer": "Átruházás",
+      "transferring": "Átadó..."
     }
   },
   "Metadata": {

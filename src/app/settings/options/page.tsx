@@ -67,45 +67,52 @@ export default function Page() {
               label={t("Settings-menu.inspection")}
               name={"timer.inspection"}
               control={control}
+              description={t("Settings-descriptions.inspection")}
             />
 
             <MenuInputOption
               name={"timer.inspectionTime"}
-              label={"Inspection time (ms)"}
+              label={t("Settings-menu.inspection-time")}
               control={control}
               inputProps={{ min: 5000, max: 60000, step: 1000 }}
+              description={t("Settings-descriptions.inspection-time")}
             />
 
             <MenuOption
               name={"timer.startCue"}
               label={t("Settings-menu.start-cue")}
               control={control}
+              description={t("Settings-descriptions.start-cue")}
             />
 
             <MenuOption
               name={("timer.holdToStart")}
               label={t("Settings-menu.hold-to-start")}
               control={control}
+              description={t("Settings-descriptions.hold-to-start")}
             />
 
             <MenuInputOption
               name={"timer.holdToStartTime"}
-              label={"Hold to start time (ms)"}
+              label={t("Settings-menu.hold-to-start-time")}
               control={control}
               inputProps={{ min: 300, max: 1000, step: 100 }}
+              description={t("Settings-descriptions.hold-to-start-time")}
             />
 
             <MenuOption
               name={("timer.manualMode")}
               label={t("Settings-menu.manual-mode")}
               control={control}
+              description={t("Settings-descriptions.manual-mode")}
             />
 
             <MenuInputOption
               name={"timer.decimals"}
-              label={"Decimal places"}
+              label={t("Settings-menu.decimal-places")}
               control={control}
               inputProps={{ max: 4, min: 1, step: 1 }}
+              description={t("Settings-descriptions.decimal-places")}
             />
 
           </MenuSection>
@@ -121,26 +128,31 @@ export default function Page() {
               name={("features.scrambleImage")}
               label={t("Settings-menu.scramble-image")}
               control={control}
+              description={t("Settings-descriptions.scramble-image")}
             />
             <MenuOption
               name={("features.sessionStats")}
               label={t("Settings-menu.session-stats")}
               control={control}
+              description={t("Settings-descriptions.session-stats")}
             />
             <MenuOption
               name={("features.quickActionButtons")}
               label={t("Settings-menu.quick-action-buttons")}
               control={control}
+              description={t("Settings-descriptions.quick-action-buttons")}
             />
             <MenuOption
               name={("features.hideWhileSolving")}
               label={t("Settings-menu.hide-while-solving")}
               control={control}
+              description={t("Settings-descriptions.hide-while-solving")}
             />
             <MenuOption
               name={("features.scrambleBackground")}
               label={t("Settings-menu.scramble-background")}
               control={control}
+              description={t("Settings-descriptions.scramble-background")}
             />
           </MenuSection>
 
@@ -155,17 +167,20 @@ export default function Page() {
               name={("alerts.bestTime")}
               label={t("Settings-menu.best-time")}
               control={control}
+              description={t("Settings-descriptions.best-time-alert")}
             />
             <MenuOption
               name={("alerts.bestAverage")}
               label={t("Settings-menu.best-average")}
               control={control}
+              description={t("Settings-descriptions.best-average-alert")}
             />
 
             <MenuOption
               name={"alerts.worstTime"}
               label={t("Settings-menu.worst-time")}
               control={control}
+              description={t("Settings-descriptions.worst-time-alert")}
             />
           </MenuSection>
 
@@ -180,6 +195,7 @@ export default function Page() {
               name={"sounds.newPersonalBest"}
               label={t("Settings-menu.newPersonalBest")}
               control={control}
+              description={t("Settings-descriptions.new-personal-best-sound")}
             />
           </MenuSection>
 

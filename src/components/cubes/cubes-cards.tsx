@@ -20,6 +20,7 @@ interface CubesCardsProps {
 }
 
 const UsageGraph = ({ allSolves, sessionSolves }: { allSolves: Solve[], sessionSolves: Solve[] }) => {
+  const t = useTranslations("Index");
   const locale = useLocale();
   const solves = useMemo(() => {
     const solvesMap = new Map<string, Solve>();
@@ -93,7 +94,7 @@ const UsageGraph = ({ allSolves, sessionSolves }: { allSolves: Solve[], sessionS
 
   const chartConfig = {
     desktop: {
-      label: "Solves",
+      label: t("CubesPage.chart-solves-label"),
       color: "var(--primary)"
     }
   } satisfies ChartConfig;
@@ -102,7 +103,7 @@ const UsageGraph = ({ allSolves, sessionSolves }: { allSolves: Solve[], sessionS
   if (solves.length === 0) {
     return (
       <div className="h-16 flex items-center justify-center text-muted-foreground text-xs">
-        No solve data available
+        {t("CubesPage.no-solve-data")}
       </div>
     );
   }
@@ -224,18 +225,18 @@ export default function CubesCards({
 
           <CardContent className="pb-2">
             <div className="text-sm mb-1">
-              <span className="text-muted-foreground">Created: </span>
+              <span className="text-muted-foreground">{t("CubesPage.created")}: </span>
               {DateTime.fromMillis(cube.createdAt).setLocale(locale).toLocaleString()}
             </div>
             <div className="text-sm mb-3">
-              <span className="text-muted-foreground">Solves: </span>
+              <span className="text-muted-foreground">{t("CubesPage.solves-label")}: </span>
               {cube.solves.session.length}/{cube.solves.all.length} (
               {(() => {
                 const uniqueSolveIds = new Set<string>();
                 cube.solves.all.forEach(solve => uniqueSolveIds.add(solve.id));
                 cube.solves.session.forEach(solve => uniqueSolveIds.add(solve.id));
                 return uniqueSolveIds.size;
-              })()} total)
+              })()} {t("CubesPage.total")})
             </div>
 
             {/* Usage graph */}

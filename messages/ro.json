@@ -34,7 +34,8 @@
       "ascending": "Ascendent",
       "alert": {
         "empty-cubes": "Niciun cub selectat. \nVă rugăm să alegeți unul.",
-        "title": "Atenţie!"
+        "title": "Atenţie!",
+        "select-cube": "Începeți să selectați un cub!"
       },
       "dialogs": {
         "move-to-history": "Mutați soluțiile în istorie?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Mutați rezolvările în istorie"
       },
-      "show": "Spectacol"
+      "show": "Spectacol",
+      "dropdown": {
+        "add-bookmark": "Adăugați marcaj",
+        "add-penalty": "Adăugați penalizare",
+        "copy-to-clipboard": "Copiați în clipboard",
+        "delete-solve": "Ștergeți rezolvați",
+        "move-to-history": "Treceți la istorie",
+        "remove-bookmark": "Eliminați marcajul",
+        "remove-penalty": "Eliminați pedeapsa",
+        "transfer-collection": "Colecția de transfer",
+        "view-details": "Vizualizați detalii"
+      }
     },
     "StatsPage": {
       "title": "Statistici",
@@ -72,7 +84,15 @@
       "average": "Medie",
       "time-spent": "Timp petrecut",
       "success-rate": "Rată de succes",
-      "counter": "Contor"
+      "counter": "Contor",
+      "category-tab": "Categorie",
+      "cube-all-tooltip": "Combină toate rezolvările istorice și de sesiune doar pentru cubul selectat.",
+      "cube-session-tooltip": "Numără sesiunea numai sesiunea rezolvă doar cubul selectat.",
+      "cube-tab": "Cub",
+      "empty-statistics": "Nu există statistici disponibile",
+      "empty-statistics-description": "Se pare că bolta de rezolvare este în prezent goală.",
+      "global-tooltip": "Combină toate rezolvările istorice și de sesiune pentru fiecare cub din aceeași categorie.",
+      "sessions-tooltip": "Numără sesiunea numai sesiunea rezolvă pentru fiecare cub din aceeași categorie."
     },
     "CubesPage": {
       "title": "Cuburi",
@@ -87,7 +107,13 @@
       "name": "Nume",
       "new-collection": "Noua colectie",
       "delete": "Şterge",
-      "edit": "Edita"
+      "edit": "Edita",
+      "chart-solves-label": "Rezolvă",
+      "created": "Creat",
+      "no-cubes-description": "Începeți să adăugați colecții de cuburi la seif pentru a le vedea aici.",
+      "no-solve-data": "Nu există date de rezolvare disponibile",
+      "solves-label": "Rezolvă",
+      "total": "total"
     },
     "Cubes-modal": {
       "category": "Categorie",
@@ -118,7 +144,8 @@
       "back": "Spate",
       "sign-in-google": "Conectați-vă cu Google",
       "no-results": "Nu s-au găsit rezultate",
-      "search": "Căutare..."
+      "search": "Căutare...",
+      "menu": "Meniu"
     },
     "Settings-menu": {
       "locale": "Localizare",
@@ -141,7 +168,6 @@
       "sounds": "Sunete",
       "theme": "Temă",
       "custom-background-image": "Imagine de fundal personalizată",
-      "format": "Format",
       "allowed-file-types": "Sunt permise doar fișiere de imagine (JPEG, PNG, GIF).",
       "max-file-size": "Dimensiunea maximă a fișierului permisă",
       "auto-select": "Selectare automată la pornire",
@@ -155,7 +181,12 @@
       "dark": "Întuneric",
       "light": "Aprinde",
       "system": "Sistem",
-      "newPersonalBest": "Cel mai bun personal nou"
+      "newPersonalBest": "Cel mai bun personal nou",
+      "close": "X",
+      "decimal-places": "Zecimale",
+      "fullscreen": "Ecran complet",
+      "hold-to-start-time": "Țineți timp de început",
+      "inspection-time": "Timp de inspecție"
     },
     "backup-modal": {
       "title": "Restaurare Inteligentă a Backup-ului",
@@ -182,11 +213,9 @@
       "fetching-last-backup": "Se preiau informații de pe server, așteptați un moment...",
       "help": "Ajutor",
       "last-backup": "Ultima copie de rezervă:",
-      "load": "Încărca",
       "load-data-description": "Doriți să descărcați datele contului dvs. din cloud?",
       "load-data-title": "Încărcați date",
       "load-data-warning": "Aceasta va îmbina datele curente cu datele salvate.",
-      "logout": "Deconectare",
       "not-authenticated": "Autentificați-vă pentru a acorda acces",
       "options": "Opțiuni",
       "privacy-policy": "Politica de confidențialitate",
@@ -202,6 +231,43 @@
     },
     "others": {
       "suggestions": "Sugestii"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Selectați automat un cub la începutul aplicației",
+      "best-average-alert": "Afișați o alertă atunci când obțineți o nouă medie cea mai bună",
+      "best-time-alert": "Afișați o alertă atunci când obțineți un nou timp cel mai bun",
+      "custom-background-description": "Încărcați o imagine de fundal personalizată pentru a vă personaliza cronometrul (maxim 4MB)",
+      "data-import-export": "Copia de rezervă a datelor într -un fișier sau restaurați dintr -o copie de rezervă anterioară",
+      "decimal-places": "Setați numărul de zecimale de afișat în timp (1-4)",
+      "hide-while-solving": "Ascundeți elementele cronometrului și UI în timp ce rezolvați",
+      "hold-to-start": "Necesită menținerea barei spațiale înainte de a începe cronometrul",
+      "hold-to-start-time": "Setați cât timp să mențineți bara de spațiu înainte de a începe (300-1000ms)",
+      "inspection": "Activați timpul de inspecție WCA înainte de a începe rezolvarea",
+      "inspection-time": "Setați durata timpului de inspecție în milisecunde (5000-60000ms)",
+      "language-description": "Schimbați limba folosită în întreaga aplicație",
+      "manual-mode": "Activați intrarea în timp manual în loc să utilizați cronometrul",
+      "new-personal-best-sound": "Joacă un sunet când realizezi un nou timp personal",
+      "quick-action-buttons": "Afișați butoane pentru acțiuni comune precum Ștergerea și DNF",
+      "scramble-background": "Afișați scramblul ca element de fundal",
+      "scramble-image": "Arată o reprezentare vizuală a scramblei",
+      "session-stats": "Afișați statistici pentru sesiunea de rezolvare curentă",
+      "start-cue": "Afișați un indiciu vizual când cronometrul este gata de pornire",
+      "worst-time-alert": "Afișați o alertă când veți obține cel mai rău moment într -o sesiune"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Destinație de colectare",
+      "collection-origin": "Colecția Origine",
+      "cubes-unavailable": "Datele cuburilor nu sunt disponibile",
+      "deselect-all": "Deselectați toate",
+      "empty-vault": "Vaultul dvs. de rezolvare este în prezent gol.",
+      "failed-transfer": "Nu a reușit să transfere rezolvări. \nVă rugăm să încercați din nou.",
+      "no-solves": "Nu există rezolvări",
+      "select-all": "Selectați toate",
+      "solves-selected": "Rezolvă: ({count} selectat)",
+      "success-transfer": "Transferat cu succes {count} rezolvă de la {sursă} la {destinație}",
+      "title": "Rezolvări de transfer",
+      "transfer": "Transfer",
+      "transferring": "Transferul ..."
     }
   },
   "Metadata": {

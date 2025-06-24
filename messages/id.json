@@ -34,7 +34,8 @@
       "date": "Tanggal",
       "alert": {
         "empty-cubes": "Tidak ada kubus yang dipilih. \nSilakan pilih salah satu.",
-        "title": "Perhatian!"
+        "title": "Perhatian!",
+        "select-cube": "Mulailah memilih kubus!"
       },
       "dialogs": {
         "move-to-history": "Pindahkan penyelesaian ke sejarah?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Pindahkan penyelesaian ke sejarah"
       },
-      "show": "Menunjukkan"
+      "show": "Menunjukkan",
+      "dropdown": {
+        "add-bookmark": "Tambahkan Bookmark",
+        "add-penalty": "Tambahkan penalti",
+        "copy-to-clipboard": "Salin ke clipboard",
+        "delete-solve": "Hapus penyelesaian",
+        "move-to-history": "Pindah ke sejarah",
+        "remove-bookmark": "Hapus bookmark",
+        "remove-penalty": "Hapus penalti",
+        "transfer-collection": "Koleksi transfer",
+        "view-details": "Lihat detail"
+      }
     },
     "StatsPage": {
       "title": "Statistik",
@@ -72,7 +84,15 @@
       "average": "Rata-rata",
       "time-spent": "Waktu yang Dihabiskan",
       "success-rate": "Tingkat Keberhasilan",
-      "counter": "Penghitung"
+      "counter": "Penghitung",
+      "category-tab": "Kategori",
+      "cube-all-tooltip": "Menggabungkan semua pemecahan historis dan sesi hanya untuk kubus yang dipilih.",
+      "cube-session-tooltip": "Hitung sesi hanya memecahkan hanya untuk kubus yang dipilih.",
+      "cube-tab": "Kubus",
+      "empty-statistics": "Tidak ada statistik yang tersedia",
+      "empty-statistics-description": "Sepertinya brankas pemecahan Anda saat ini kosong.",
+      "global-tooltip": "Menggabungkan semua pemecahan historis dan sesi untuk setiap kubus dalam kategori yang sama.",
+      "sessions-tooltip": "Hitung sesi hanya memecahkan untuk setiap kubus dalam kategori yang sama."
     },
     "CubesPage": {
       "title": "Kubus",
@@ -87,7 +107,13 @@
       "name": "Nama",
       "new-collection": "Koleksi baru",
       "delete": "Menghapus",
-      "edit": "Edit"
+      "edit": "Edit",
+      "chart-solves-label": "Memecahkan",
+      "created": "Dibuat",
+      "no-cubes-description": "Mulailah menambahkan koleksi kubus ke lemari besi Anda untuk melihatnya di sini.",
+      "no-solve-data": "Tidak ada data penyelesaian yang tersedia",
+      "solves-label": "Memecahkan",
+      "total": "total"
     },
     "Cubes-modal": {
       "category": "Kategori",
@@ -118,7 +144,8 @@
       "back": "Kembali",
       "sign-in-google": "Masuk dengan Google",
       "no-results": "Tidak ada hasil yang ditemukan",
-      "search": "Mencari..."
+      "search": "Mencari...",
+      "menu": "Menu"
     },
     "Settings-menu": {
       "locale": "Lokal",
@@ -141,7 +168,6 @@
       "sounds": "Suara",
       "theme": "Tema",
       "custom-background-image": "Gambar Latar Belakang Kustom",
-      "format": "Format",
       "allowed-file-types": "Hanya file gambar (JPEG, PNG, GIF) yang diizinkan.",
       "max-file-size": "Ukuran file maksimum yang diizinkan",
       "auto-select": "Pilih otomatis saat startup",
@@ -155,7 +181,12 @@
       "dark": "Gelap",
       "light": "Lampu",
       "system": "Sistem",
-      "newPersonalBest": "Terbaik pribadi baru"
+      "newPersonalBest": "Terbaik pribadi baru",
+      "close": "X",
+      "decimal-places": "Tempat desimal",
+      "fullscreen": "Layar penuh",
+      "hold-to-start-time": "Tahan waktu mulai",
+      "inspection-time": "Waktu inspeksi"
     },
     "backup-modal": {
       "title": "Pemulihan Cadangan Cerdas",
@@ -182,11 +213,9 @@
       "fetching-last-backup": "Mengambil informasi dari server tunggu sebentar...",
       "help": "Membantu",
       "last-backup": "Cadangan terakhir:",
-      "load": "Memuat",
       "load-data-description": "Apakah Anda ingin mengunduh data akun Anda dari cloud?",
       "load-data-title": "Memuat data",
       "load-data-warning": "Ini akan menggabungkan data saat ini dengan data yang disimpan.",
-      "logout": "Keluar",
       "not-authenticated": "Otentikasi untuk memberikan akses",
       "options": "Pilihan",
       "privacy-policy": "Kebijakan Privasi",
@@ -202,6 +231,43 @@
     },
     "others": {
       "suggestions": "Saran"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Secara otomatis pilih kubus di aplikasi mulai",
+      "best-average-alert": "Tunjukkan peringatan saat Anda mencapai rata -rata terbaik baru",
+      "best-time-alert": "Tunjukkan peringatan saat Anda mencapai waktu terbaik baru",
+      "custom-background-description": "Unggah gambar latar belakang khusus untuk mempersonalisasikan timer Anda (maks 4MB)",
+      "data-import-export": "Cadangkan data Anda ke file atau kembalikan dari cadangan sebelumnya",
+      "decimal-places": "Atur jumlah tempat desimal untuk ditampilkan dalam waktu (1-4)",
+      "hide-while-solving": "Sembunyikan elemen timer dan UI saat memecahkan",
+      "hold-to-start": "Membutuhkan memegang bilah spasi sebelum memulai timer",
+      "hold-to-start-time": "Setel berapa lama untuk menahan bilah spasi sebelum memulai (300-1000ms)",
+      "inspection": "Aktifkan waktu inspeksi WCA sebelum memulai pemecahan",
+      "inspection-time": "Tetapkan durasi waktu inspeksi dalam milidetik (5000-60000ms)",
+      "language-description": "Ubah bahasa yang digunakan di seluruh aplikasi",
+      "manual-mode": "Aktifkan entri waktu manual alih -alih menggunakan timer",
+      "new-personal-best-sound": "Mainkan suara saat Anda mencapai waktu terbaik pribadi baru",
+      "quick-action-buttons": "Tampilkan tombol untuk tindakan umum seperti Delete dan DNF",
+      "scramble-background": "Tunjukkan perebutan sebagai elemen latar belakang",
+      "scramble-image": "Tunjukkan representasi visual dari perebutan",
+      "session-stats": "Tampilkan statistik untuk sesi pemecahan saat ini",
+      "start-cue": "Tunjukkan isyarat visual saat timer siap untuk memulai",
+      "worst-time-alert": "Tunjukkan peringatan saat Anda mendapatkan waktu terburuk dalam suatu sesi"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Tujuan pengumpulan",
+      "collection-origin": "Asal Koleksi",
+      "cubes-unavailable": "Data kubus tidak tersedia",
+      "deselect-all": "Batalkan pilihan semua",
+      "empty-vault": "Kubah pemecahan Anda saat ini kosong.",
+      "failed-transfer": "Gagal mentransfer pemecahan. \nTolong coba lagi.",
+      "no-solves": "Tidak ada pemecahan yang tersedia",
+      "select-all": "Pilih semua",
+      "solves-selected": "Solves: ({count} dipilih)",
+      "success-transfer": "Berhasil ditransfer {count} memecahkan dari {source} ke {destination}",
+      "title": "Pemecahan transfer",
+      "transfer": "Transfer",
+      "transferring": "Mentransfer ..."
     }
   },
   "Metadata": {

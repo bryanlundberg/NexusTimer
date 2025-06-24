@@ -34,7 +34,8 @@
       "ascending": "Stigende",
       "alert": {
         "empty-cubes": "Ingen kube valgt. \nVennligst velg en.",
-        "title": "Oppmerksomhet!"
+        "title": "Oppmerksomhet!",
+        "select-cube": "Begynn å velge en kube!"
       },
       "dialogs": {
         "move-to-history": "Flytte løsninger til historien?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Flytt løser til historien"
       },
-      "show": "Vise"
+      "show": "Vise",
+      "dropdown": {
+        "add-bookmark": "Legg til bokmerke",
+        "add-penalty": "Legg til straff",
+        "copy-to-clipboard": "Kopier til utklippstavlen",
+        "delete-solve": "Slett løse",
+        "move-to-history": "Gå til historien",
+        "remove-bookmark": "Fjern bokmerket",
+        "remove-penalty": "Fjern straffen",
+        "transfer-collection": "Overføringssamling",
+        "view-details": "Vis detaljer"
+      }
     },
     "StatsPage": {
       "title": "Statistikk",
@@ -72,7 +84,15 @@
       "average": "Gjennomsnitt",
       "time-spent": "Tid Brukt",
       "success-rate": "Suksessrate",
-      "counter": "Tellende"
+      "counter": "Tellende",
+      "category-tab": "Kategori",
+      "cube-all-tooltip": "Kombinerer alle historiske og økt løser for bare den valgte kuben.",
+      "cube-session-tooltip": "Teller bare økt løser for bare den valgte kuben.",
+      "cube-tab": "Kube",
+      "empty-statistics": "Ingen statistikk tilgjengelig",
+      "empty-statistics-description": "Det ser ut som om du løser hvelvet for øyeblikket er tomt.",
+      "global-tooltip": "Kombinerer alle historiske og økt løser for hver kube i samme kategori.",
+      "sessions-tooltip": "Teller bare økt løser for hver kube i samme kategori."
     },
     "CubesPage": {
       "title": "Kuber",
@@ -87,7 +107,13 @@
       "name": "Navn",
       "new-collection": "Ny kolleksjon",
       "delete": "Slett",
-      "edit": "Redigere"
+      "edit": "Redigere",
+      "chart-solves-label": "Løser",
+      "created": "Opprettet",
+      "no-cubes-description": "Begynn å legge kubesamlinger til hvelvet ditt for å se dem her.",
+      "no-solve-data": "Ingen løs data tilgjengelig",
+      "solves-label": "Løser",
+      "total": "total"
     },
     "Cubes-modal": {
       "category": "Kategori",
@@ -118,7 +144,8 @@
       "back": "Tilbake",
       "sign-in-google": "Logg på med Google",
       "no-results": "Ingen resultater funnet",
-      "search": "Søk..."
+      "search": "Søk...",
+      "menu": "Meny"
     },
     "Settings-menu": {
       "locale": "Lokalitet",
@@ -141,7 +168,6 @@
       "sounds": "Lyder",
       "theme": "Tema",
       "custom-background-image": "Tilpasset bakgrunnsbilde",
-      "format": "Format",
       "allowed-file-types": "Bare bildefiler (JPEG, PNG, GIF) er tillatt.",
       "max-file-size": "Maksimal filstørrelse tillatt",
       "auto-select": "Automatisk valg ved oppstart",
@@ -155,7 +181,12 @@
       "dark": "Mørk",
       "light": "Lys",
       "system": "System",
-      "newPersonalBest": "Nytt personlig beste"
+      "newPersonalBest": "Nytt personlig beste",
+      "close": "X",
+      "decimal-places": "Desimaler",
+      "fullscreen": "Fullskjerm",
+      "hold-to-start-time": "Hold til starttid",
+      "inspection-time": "Inspeksjonstid"
     },
     "backup-modal": {
       "title": "Intelligent Sikkerhetskopiering Gjenoppretting",
@@ -182,11 +213,9 @@
       "fetching-last-backup": "Henter informasjon fra serveren, vent et øyeblikk...",
       "help": "Hjelp",
       "last-backup": "Siste sikkerhetskopi:",
-      "load": "Laste",
       "load-data-description": "Vil du laste ned kontodataene dine fra skyen?",
       "load-data-title": "Last inn data",
       "load-data-warning": "Dette vil slå sammen gjeldende data med lagrede data.",
-      "logout": "Logg ut",
       "not-authenticated": "Autentiser for å gi tilgang",
       "options": "Alternativer",
       "privacy-policy": "Personvernerklæring",
@@ -202,6 +231,43 @@
     },
     "others": {
       "suggestions": "Forslag"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Velg automatisk en kube ved applikasjonsstart",
+      "best-average-alert": "Vis et varsel når du oppnår et nytt beste gjennomsnitt",
+      "best-time-alert": "Vis et varsel når du oppnår en ny beste tid",
+      "custom-background-description": "Last opp et tilpasset bakgrunnsbilde for å tilpasse tidtakeren din (maks 4MB)",
+      "data-import-export": "Sikkerhetskopiere dataene dine til en fil eller gjenopprette fra en tidligere sikkerhetskopi",
+      "decimal-places": "Angi antall desimaler som skal vises i tider (1-4)",
+      "hide-while-solving": "Skjul tidtakeren og brukergrensesnittet mens du løser",
+      "hold-to-start": "Krever å holde romfeltet før du starter tidtakeren",
+      "hold-to-start-time": "Sett hvor lenge for å holde romfeltet før du starter (300-1000ms)",
+      "inspection": "Aktiver WCA -inspeksjonstid før du starter løsningen",
+      "inspection-time": "Sett varigheten av inspeksjonstid i millisekunder (5000-60000ms)",
+      "language-description": "Endre språket som brukes gjennom hele applikasjonen",
+      "manual-mode": "Aktiver manuell tidsoppføring i stedet for å bruke tidtakeren",
+      "new-personal-best-sound": "Spill en lyd når du oppnår en ny personlig beste tid",
+      "quick-action-buttons": "Vis knapper for vanlige handlinger som Delete og DNF",
+      "scramble-background": "Vis krypten som et bakgrunnselement",
+      "scramble-image": "Vis en visuell representasjon av krypteringen",
+      "session-stats": "Vis statistikk for den nåværende løsningsøkten",
+      "start-cue": "Vis en visuell signal når tidtakeren er klar til å starte",
+      "worst-time-alert": "Vis et varsel når du får din verste tid i en økt"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Samlingsmål",
+      "collection-origin": "Samlingsopprinnelse",
+      "cubes-unavailable": "Kubesdata er ikke tilgjengelig",
+      "deselect-all": "Fjern markeringen av alt",
+      "empty-vault": "Løsningshvelvet ditt er for øyeblikket tomt.",
+      "failed-transfer": "Kunne ikke overføre løser. \nVennligst prøv igjen.",
+      "no-solves": "Ingen løser tilgjengelig",
+      "select-all": "Velg alt",
+      "solves-selected": "Løser: ({count} valgt)",
+      "success-transfer": "Vellykket overført {count} løser fra {source} til {destination}",
+      "title": "Overføring løser",
+      "transfer": "Overføre",
+      "transferring": "Overføring ..."
     }
   },
   "Metadata": {

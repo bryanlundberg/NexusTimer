@@ -101,7 +101,7 @@ export default function ButtonNavbar() {
       },
       {
         icon: <ArrowRightLeftIcon/>,
-        name: "Transfer Solves",
+        name: t("TransferSolvesPage.title"),
         url: "/transfer-solves"
       }
     ],
@@ -137,7 +137,7 @@ export default function ButtonNavbar() {
         onClick={() => setOpen((open) => !open)}
       >
         <p className="text-sm text-muted-foreground">
-          Menu{" "}
+          {t("Inputs.menu")}{" "}
           <kbd className="hidden pointer-events-none sm:inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
             <span className="text-xs">⌘</span>K
           </kbd>
@@ -165,7 +165,7 @@ export default function ButtonNavbar() {
             })}
             <CommandItem onSelect={() => toggleFullScreen()}>
               <EnterFullScreenIcon/>
-              Fullscreen
+              {t("Settings-menu.fullscreen")}
             </CommandItem>
           </CommandGroup>
           <CommandSeparator/>

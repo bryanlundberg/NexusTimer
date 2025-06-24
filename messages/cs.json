@@ -30,7 +30,8 @@
       "all": "Vše",
       "alert": {
         "empty-cubes": "Nebyla vybrána žádná kostka. \nVyberte prosím jednu.",
-        "title": "Pozor!"
+        "title": "Pozor!",
+        "select-cube": "Začněte vybírat kostku!"
       },
       "ascending": "Vzestupně",
       "date": "Datum",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Move řeší historii"
       },
-      "show": "Show"
+      "show": "Show",
+      "dropdown": {
+        "add-bookmark": "Přidejte záložku",
+        "add-penalty": "Přidejte trest",
+        "copy-to-clipboard": "Kopírovat do schránky",
+        "delete-solve": "Odstranit",
+        "move-to-history": "Přesunout se do historie",
+        "remove-bookmark": "Odebrat záložku",
+        "remove-penalty": "Odstraňte trest",
+        "transfer-collection": "Sběr přenosu",
+        "view-details": "Zobrazit podrobnosti"
+      }
     },
     "StatsPage": {
       "title": "Statistiky",
@@ -72,7 +84,15 @@
       "average": "Průměr",
       "time-spent": "Strávený čas",
       "success-rate": "Úspěšnost",
-      "counter": "Počítadlo"
+      "counter": "Počítadlo",
+      "category-tab": "Kategorie",
+      "cube-all-tooltip": "Kombinuje všechny historické a relace řeší pouze vybranou krychli.",
+      "cube-session-tooltip": "Počítá se pouze relace řeší pouze vybranou krychli.",
+      "cube-tab": "Krychle",
+      "empty-statistics": "Není k dispozici žádné statistiky",
+      "empty-statistics-description": "Vypadá to, že váš řešení řešení je v současné době prázdné.",
+      "global-tooltip": "Kombinuje všechny historické a relace řeší pro každou kostku ve stejné kategorii.",
+      "sessions-tooltip": "Počítá se pouze relace řeší pro každou kostku ve stejné kategorii."
     },
     "CubesPage": {
       "title": "Kostky",
@@ -87,7 +107,13 @@
       "name": "Jméno",
       "new-collection": "Nová kolekce",
       "delete": "Vymazat",
-      "edit": "Upravit"
+      "edit": "Upravit",
+      "chart-solves-label": "Řeší",
+      "created": "Vytvořené",
+      "no-cubes-description": "Začněte přidávat sbírky krychů do svého trezoru a vidět je zde.",
+      "no-solve-data": "K dispozici nejsou žádná data vyřešit",
+      "solves-label": "Řeší",
+      "total": "celkový"
     },
     "Cubes-modal": {
       "category": "Kategorie",
@@ -118,7 +144,8 @@
       "back": "Zadní",
       "sign-in-google": "Přihlaste se pomocí Google",
       "no-results": "Nebyly nalezeny žádné výsledky",
-      "search": "Vyhledávání..."
+      "search": "Vyhledávání...",
+      "menu": "Menu"
     },
     "Settings-menu": {
       "locale": "Oblast",
@@ -141,7 +168,6 @@
       "sounds": "Zvuky",
       "theme": "Téma",
       "custom-background-image": "Vlastní obrázek pozadí",
-      "format": "Formát",
       "allowed-file-types": "Povoleny jsou pouze obrázky (JPEG, PNG, GIF).",
       "max-file-size": "Maximální povolená velikost souboru je",
       "data": "Data aplikace",
@@ -155,7 +181,12 @@
       "dark": "Tmavý",
       "light": "Světlo",
       "system": "Systém",
-      "newPersonalBest": "Nový osobní nejlepší"
+      "newPersonalBest": "Nový osobní nejlepší",
+      "close": "X",
+      "decimal-places": "Desetinná místa",
+      "fullscreen": "Celá obrazovka",
+      "hold-to-start-time": "Držte čas začátku",
+      "inspection-time": "Doba inspekce"
     },
     "backup-modal": {
       "title": "Inteligentní Obnova Zálohy",
@@ -182,11 +213,9 @@
       "fetching-last-backup": "Načítání informací ze serveru chvíli počkejte...",
       "help": "Pomoc",
       "last-backup": "Poslední záloha:",
-      "load": "Zatížení",
       "load-data-description": "Chcete si stáhnout data svého účtu z cloudu?",
       "load-data-title": "Načíst data",
       "load-data-warning": "Tím se sloučí aktuální data s uloženými daty.",
-      "logout": "Odhlášení",
       "not-authenticated": "Pro udělení přístupu se ověřte",
       "options": "Možnosti",
       "privacy-policy": "Zásady ochrany osobních údajů",
@@ -202,6 +231,43 @@
     },
     "others": {
       "suggestions": "Návrhy"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Automaticky vyberte krychli při startu aplikace",
+      "best-average-alert": "Ukažte upozornění, když dosáhnete nového nejlepšího průměru",
+      "best-time-alert": "Ukažte upozornění, když dosáhnete nového nejlepšího času",
+      "custom-background-description": "Nahrajte vlastní obrázek na pozadí pro přizpůsobení vašeho časovače (max 4 MB)",
+      "data-import-export": "Zálohujte svá data do souboru nebo obnovení z předchozí zálohy",
+      "decimal-places": "Nastavte počet desetinných míst, která se mají zobrazit v časech (1-4)",
+      "hide-while-solving": "Během řešení skrýt prvky časovače a uživatelského rozhraní",
+      "hold-to-start": "Před zahájením časovače vyžadujte držení kosmického panelu",
+      "hold-to-start-time": "Nastavte, jak dlouho drží mezerník před spuštěním (300-1000ms)",
+      "inspection": "Před zahájením řešení povolte dobu kontroly WCA",
+      "inspection-time": "Nastavte dobu trvání doby inspekce v milisekundách (5000-60000ms)",
+      "language-description": "Změňte jazyk použitý v celé aplikaci",
+      "manual-mode": "Povolte místo použití časovače manuálního času",
+      "new-personal-best-sound": "Přehrajte zvuk, když dosáhnete nového osobního nejlepšího času",
+      "quick-action-buttons": "Zobrazit tlačítka pro běžné akce, jako jsou smazání a DNF",
+      "scramble-background": "Zobrazit škrábající jako prvek na pozadí",
+      "scramble-image": "Zobrazit vizuální reprezentaci Scramble",
+      "session-stats": "Zobrazit statistiky pro aktuální řešení řešení",
+      "start-cue": "Zobrazit vizuální narážku, když je časovač připraven ke spuštění",
+      "worst-time-alert": "Ukažte upozornění, když dostanete nejhorší čas v relaci"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Cíl sběru",
+      "collection-origin": "Původ sběru",
+      "cubes-unavailable": "Údaje o kostkách nejsou k dispozici",
+      "deselect-all": "Zrušte výběr vše",
+      "empty-vault": "Váš řešení SOCT je v současné době prázdné.",
+      "failed-transfer": "Nepodařilo se to přenést. \nZkuste to prosím znovu.",
+      "no-solves": "K dispozici nejsou žádné řešení",
+      "select-all": "Vyberte všechny",
+      "solves-selected": "Řešení: ({Count} vybráno)",
+      "success-transfer": "Úspěšně přeneseno {count} řeší z {zdroje} na {destinace}",
+      "title": "Přenos řeší",
+      "transfer": "Převod",
+      "transferring": "Převod ..."
     }
   },
   "Metadata": {

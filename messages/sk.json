@@ -34,7 +34,8 @@
       "time": "Čas",
       "alert": {
         "empty-cubes": "Nie je vybratá žiadna kocka. \nVyberte si jednu.",
-        "title": "Pozor!"
+        "title": "Pozor!",
+        "select-cube": "Začnite vyberať kocku!"
       },
       "dialogs": {
         "move-to-history": "Presun rieši históriu?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Move rieši históriu"
       },
-      "show": "Zobraziť"
+      "show": "Zobraziť",
+      "dropdown": {
+        "add-bookmark": "Pridať záložku",
+        "add-penalty": "Pridať trest",
+        "copy-to-clipboard": "Kopírovať do schránky",
+        "delete-solve": "Vyriešiť",
+        "move-to-history": "Presťahovať sa do histórie",
+        "remove-bookmark": "Odstrániť záložku",
+        "remove-penalty": "Odstrániť trest",
+        "transfer-collection": "Prenosová zbierka",
+        "view-details": "Zobraziť podrobnosti"
+      }
     },
     "StatsPage": {
       "title": "Štatistiky",
@@ -72,7 +84,15 @@
       "average": "Priemer",
       "time-spent": "Strávený čas",
       "success-rate": "Úspešnosť",
-      "counter": "Počítadlo"
+      "counter": "Počítadlo",
+      "category-tab": "Kategória",
+      "cube-all-tooltip": "Kombinuje všetky historické a relácie riešenia iba pre vybranú kocku.",
+      "cube-session-tooltip": "Počíta sa iba relácie riešia iba pre vybranú kocku.",
+      "cube-tab": "Kocka",
+      "empty-statistics": "Nie sú k dispozícii žiadne štatistiky",
+      "empty-statistics-description": "Vyzerá to, že váš vyriešený trezor je momentálne prázdny.",
+      "global-tooltip": "Kombinuje všetky historické a relácie pre každú kocku v rovnakej kategórii.",
+      "sessions-tooltip": "Počíta sa iba riešenie relácie pre každú kocku v rovnakej kategórii."
     },
     "CubesPage": {
       "title": "Kocky",
@@ -87,7 +107,13 @@
       "name": "Meno",
       "new-collection": "Nová kolekcia",
       "delete": "Vymazať",
-      "edit": "Upraviť"
+      "edit": "Upraviť",
+      "chart-solves-label": "Riešiť",
+      "created": "Vytvorený",
+      "no-cubes-description": "Začnite pridávať kolekcie kocky do svojho trezoru, aby ste ich videli tu.",
+      "no-solve-data": "Žiadne riešenie údajov k dispozícii",
+      "solves-label": "Riešiť",
+      "total": "súčet"
     },
     "Cubes-modal": {
       "category": "Kategória",
@@ -118,7 +144,8 @@
       "back": "Späť",
       "sign-in-google": "Prihláste sa cez Google",
       "no-results": "Nenašli sa žiadne výsledky",
-      "search": "Hľadať..."
+      "search": "Hľadať...",
+      "menu": "Ponuka"
     },
     "Settings-menu": {
       "locale": "Lokalita",
@@ -141,7 +168,6 @@
       "sounds": "Zvuky",
       "theme": "Téma",
       "custom-background-image": "Vlastný obrázok pozadia",
-      "format": "Formát",
       "allowed-file-types": "Povolené sú iba obrazové súbory (JPEG, PNG, GIF).",
       "max-file-size": "Maximálna veľkosť súboru",
       "auto-select": "Automatický výber pri spustení",
@@ -155,7 +181,12 @@
       "dark": "Tmavý",
       "light": "Svetlo",
       "system": "Systém",
-      "newPersonalBest": "Nové osobné najlepšie"
+      "newPersonalBest": "Nové osobné najlepšie",
+      "close": "X",
+      "decimal-places": "Desatinné miesta",
+      "fullscreen": "Celá obrazovka",
+      "hold-to-start-time": "Podržte na začiatku času",
+      "inspection-time": "Čas inšpekcie"
     },
     "backup-modal": {
       "title": "Inteligentná Obnova Zálohy",
@@ -182,11 +213,9 @@
       "fetching-last-backup": "Načítavajú sa informácie zo servera, chvíľu počkajte...",
       "help": "Pomoc",
       "last-backup": "Posledná záloha:",
-      "load": "Načítať",
       "load-data-description": "Chcete si stiahnuť údaje účtu z cloudu?",
       "load-data-title": "Načítať dáta",
       "load-data-warning": "Tým sa zlúčia aktuálne údaje s uloženými údajmi.",
-      "logout": "Odhlásiť sa",
       "not-authenticated": "Ak chcete udeliť prístup, overte totožnosť",
       "options": "Možnosti",
       "privacy-policy": "Zásady ochrany osobných údajov",
@@ -202,6 +231,43 @@
     },
     "others": {
       "suggestions": "Návrhy"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Automaticky vyberte kocku pri spustení aplikácie",
+      "best-average-alert": "Ukážte upozornenie, keď dosiahnete nový najlepší priemer",
+      "best-time-alert": "Ukážte upozornenie, keď dosiahnete nový najlepší čas",
+      "custom-background-description": "Nahrajte vlastný obrázok na pozadí, aby ste si prispôsobili časovač (max 4MB)",
+      "data-import-export": "Zálohujte svoje údaje do súboru alebo obnovte pred predchádzajúcou zálohou",
+      "decimal-places": "Nastavte počet desatinných miest na zobrazenie v časoch (1-4)",
+      "hide-while-solving": "Skryť časovač a prvky používateľského rozhrania pri riešení",
+      "hold-to-start": "Pred začatím časovača vyžadujte držanie vesmírneho panela",
+      "hold-to-start-time": "Nastavte, ako dlho udržiavajte vesmírny panel pred začiatkom (300-1 000 ms)",
+      "inspection": "Povoliť čas inšpekcie WCA pred začatím riešenia",
+      "inspection-time": "Nastavte trvanie doby kontroly v milisekundách (5000-60000 ms)",
+      "language-description": "Zmeňte jazyk používaný v celej aplikácii",
+      "manual-mode": "Povoliť manuálne zadávanie času namiesto používania časovača",
+      "new-personal-best-sound": "Zahrajte zvuk, keď dosiahnete nový osobný najlepší čas",
+      "quick-action-buttons": "Ukážte tlačidlá pre bežné akcie ako Delete a DNF",
+      "scramble-background": "Ukážte bitku ako prvok na pozadí",
+      "scramble-image": "Ukážte vizuálnu reprezentáciu bitky",
+      "session-stats": "Zobraziť štatistiky pre aktuálnu reláciu riešenia",
+      "start-cue": "Ukážte vizuálnu narážku, keď je časovač pripravený na spustenie",
+      "worst-time-alert": "Ukážte upozornenie, keď dostanete najhorší čas na relácii"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Zberná destinácia",
+      "collection-origin": "Pôvod",
+      "cubes-unavailable": "Dáta kociek nie sú k dispozícii",
+      "deselect-all": "Zrušiť všetky",
+      "empty-vault": "Váš vyriešiť trezor je momentálne prázdny.",
+      "failed-transfer": "Nepodarilo sa prenášať riešenie. \nSkúste to znova.",
+      "no-solves": "Nie sú k dispozícii žiadne riešenia",
+      "select-all": "Vybrať všetko",
+      "solves-selected": "Rieši: ({count} vybrané)",
+      "success-transfer": "Úspešne prevedené {count} rieši z {source} do {cieľ}",
+      "title": "Riešenie prenosu",
+      "transfer": "Prenos",
+      "transferring": "Prevod ..."
     }
   },
   "Metadata": {

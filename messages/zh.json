@@ -34,7 +34,8 @@
       "time": "时间",
       "alert": {
         "empty-cubes": "未选择立方体。\n请选择一项。",
-        "title": "注意力！"
+        "title": "注意力！",
+        "select-cube": "开始选择一个立方体！"
       },
       "dialogs": {
         "move-to-history": "将解决方案移至历史？",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "将解决方案移至历史记录"
       },
-      "show": "展示"
+      "show": "展示",
+      "dropdown": {
+        "add-bookmark": "添加书签",
+        "add-penalty": "增加罚款",
+        "copy-to-clipboard": "复制到剪贴板",
+        "delete-solve": "删除解决方案",
+        "move-to-history": "转向历史",
+        "remove-bookmark": "删除书签",
+        "remove-penalty": "删除处罚",
+        "transfer-collection": "转移收集",
+        "view-details": "查看详细信息"
+      }
     },
     "StatsPage": {
       "title": "统计",
@@ -72,7 +84,15 @@
       "average": "平均",
       "time-spent": "花费时间",
       "success-rate": "成功率",
-      "counter": "计数器"
+      "counter": "计数器",
+      "category-tab": "类别",
+      "cube-all-tooltip": "将所有历史和会话求解仅用于选定的立方体。",
+      "cube-session-tooltip": "仅计数会话仅解决选择的立方体。",
+      "cube-tab": "立方体",
+      "empty-statistics": "没有可用的统计信息",
+      "empty-statistics-description": "看起来您的求解保险库当前为空。",
+      "global-tooltip": "结合了同一类别中每个立方体的所有历史和会话求解。",
+      "sessions-tooltip": "仅计数会话求解同一类别中的每个立方体。"
     },
     "CubesPage": {
       "title": "魔方",
@@ -87,7 +107,13 @@
       "name": "姓名",
       "new-collection": "新系列",
       "delete": "删除",
-      "edit": "编辑"
+      "edit": "编辑",
+      "chart-solves-label": "解决",
+      "created": "创建",
+      "no-cubes-description": "开始在您的保险库中添加多维数据集的收藏品，以便在此处查看它们。",
+      "no-solve-data": "没有可用的求解数据",
+      "solves-label": "解决",
+      "total": "全部的"
     },
     "Cubes-modal": {
       "category": "类别",
@@ -118,7 +144,8 @@
       "back": "后退",
       "sign-in-google": "使用 Google 登录",
       "no-results": "没有找到结果",
-      "search": "搜索..."
+      "search": "搜索...",
+      "menu": "菜单"
     },
     "Settings-menu": {
       "locale": "区域",
@@ -141,7 +168,6 @@
       "sounds": "声音",
       "theme": "主题",
       "custom-background-image": "自定义背景图像",
-      "format": "格式",
       "allowed-file-types": "仅允许图像文件 (JPEG、PNG、GIF)",
       "max-file-size": "最大文件大小允许",
       "data": "应用程序数据",
@@ -155,7 +181,12 @@
       "dark": "黑暗的",
       "light": "光",
       "system": "系统",
-      "newPersonalBest": "新的个人最好"
+      "newPersonalBest": "新的个人最好",
+      "close": "x",
+      "decimal-places": "十进制位置",
+      "fullscreen": "全屏",
+      "hold-to-start-time": "保持开始时间",
+      "inspection-time": "检查时间"
     },
     "backup-modal": {
       "title": "智能备份恢复",
@@ -182,11 +213,9 @@
       "fetching-last-backup": "正在从服务器获取信息，请稍等...",
       "help": "帮助",
       "last-backup": "上次备份：",
-      "load": "加载",
       "load-data-description": "您想从云端下载您的帐户数据吗？",
       "load-data-title": "加载数据",
       "load-data-warning": "这会将当前数据与保存的数据合并。",
-      "logout": "退出",
       "not-authenticated": "进行身份验证以授予访问权限",
       "options": "选项",
       "privacy-policy": "隐私政策",
@@ -202,6 +231,43 @@
     },
     "others": {
       "suggestions": "建议"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "在应用程序开始时自动选择一个立方体",
+      "best-average-alert": "当您获得新的最佳平均水平时显示警报",
+      "best-time-alert": "达到新的最佳时间时显示警报",
+      "custom-background-description": "上传自定义背景图像以个性化计时器（最大4MB）",
+      "data-import-export": "将数据备份到文件或从以前的备份还原",
+      "decimal-places": "设置在时间（1-4）的小数位数的数量",
+      "hide-while-solving": "求解计时器和UI元素时",
+      "hold-to-start": "在启动计时器之前需要握住空格键",
+      "hold-to-start-time": "设置多长时间持有空格键（300-1000ms）之前",
+      "inspection": "启用WCA检查时间，然后开始解决",
+      "inspection-time": "将检查时间设置为毫秒（5000-60000ms）",
+      "language-description": "更改整个应用程序中使用的语言",
+      "manual-mode": "启用手动时间输入而不是使用计时器",
+      "new-personal-best-sound": "实现新的个人最佳时光时播放声音",
+      "quick-action-buttons": "显示诸如DELETE和DNF等常见动作的按钮",
+      "scramble-background": "将争夺作为背景元素",
+      "scramble-image": "显示争夺的视觉表示",
+      "session-stats": "显示当前求解会话的统计信息",
+      "start-cue": "当计时器准备启动时显示视觉提示",
+      "worst-time-alert": "在会话中获得最糟糕的时间时显示警报"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "收集目的地",
+      "collection-origin": "收集起源",
+      "cubes-unavailable": "立方数据不可用",
+      "deselect-all": "取消选择",
+      "empty-vault": "您的求解保险库当前为空。",
+      "failed-transfer": "无法转移解决方案。\n请重试。",
+      "no-solves": "没有可用的解决方案",
+      "select-all": "选择全部",
+      "solves-selected": "解决方案：（ {count}选择）",
+      "success-transfer": "成功地将{count}从{source}求解到{destination}",
+      "title": "传输解决方案",
+      "transfer": "转移",
+      "transferring": "转移..."
     }
   },
   "Metadata": {

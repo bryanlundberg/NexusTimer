@@ -23,7 +23,7 @@ export default function EmptyCubes({ ...rest }: EmptyCubesProps) {
           />
           <h2 className="text-2xl text-center text-balance font-bold">{t("no-cubes-for-display")}</h2>
           <p className="text-gray-600 text-center text-balance">
-            Start adding cube collections to your vault to see them here.
+            {t("no-cubes-description")}
           </p>
         </div>
       </div>
