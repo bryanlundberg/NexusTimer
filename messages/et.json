@@ -141,7 +141,6 @@
       "sounds": "Helid",
       "theme": "Teema",
       "custom-background-image": "Kohandatud taustapilt",
-      "format": "Formaat",
       "allowed-file-types": "Lubatud on ainult pildifailid (JPEG, PNG, GIF).",
       "max-file-size": "Suurim lubatud failisuurus on",
       "data": "Rakenduse andmed",
@@ -155,7 +154,8 @@
       "dark": "Tume",
       "light": "Valgus",
       "system": "Süsteem",
-      "newPersonalBest": "Uus isiklik parim"
+      "newPersonalBest": "Uus isiklik parim",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Intelligentne varundamise taastamine",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Teabe toomine serverist, oodake natuke...",
       "help": "Abi",
       "last-backup": "Viimane varukoopia:",
-      "load": "Laadige",
       "load-data-description": "Kas soovite oma konto andmed pilvest alla laadida?",
       "load-data-title": "Andmete laadimine",
       "load-data-warning": "See liidab praegused andmed salvestatud andmetega.",
-      "logout": "Väljalogimine",
       "not-authenticated": "Juurdepääsu andmiseks autentige",
       "options": "Valikud",
       "privacy-policy": "Privaatsuspoliitika",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Ettepanekud"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Valige rakenduse käivitamisel automaatselt kuubik",
+      "best-average-alert": "Näidake hoiatust, kui saavutate uue parima keskmise",
+      "best-time-alert": "Näidake hoiatust, kui saavutate uue parima aja",
+      "custom-background-description": "Taimeri isikupärastamiseks laadige üles kohandatud taustpilt (max 4MB)",
+      "data-import-export": "Varundage oma andmed faili või taastage eelmisest varukoopiast",
+      "decimal-places": "Seadke koma kuvamiskohtade arv aegadel (1-4)",
+      "hide-while-solving": "Peidage lahendamise ajal taimeri ja kasutajaliidese elemendid",
+      "hold-to-start": "Enne taimeri alustamist nõuavad kosmoseriba",
+      "hold-to-start-time": "Seadke, kui kaua enne alustamist kosmoseriba hoidmine (300-1000ms)",
+      "inspection": "Luba WCA kontrolli aeg enne lahendamise alustamist",
+      "inspection-time": "Seadke ülevaatuse kestus millisekundites (5000-60000 ms)",
+      "language-description": "Muutke kogu rakenduse vältel kasutatavat keelt",
+      "manual-mode": "Luba käsitsi ajastu sisestamine taimeri kasutamise asemel",
+      "new-personal-best-sound": "Mängige heli, kui saavutate uue isikliku parima aja",
+      "quick-action-buttons": "Näita nuppe tavaliste toimingute jaoks nagu kustutamine ja DNF",
+      "scramble-background": "Näidake rüselust taustaelemendina",
+      "scramble-image": "Näidake rüseluse visuaalset esitust",
+      "session-stats": "Kuva statistika praeguse lahendamisseansi kohta",
+      "start-cue": "Näidake visuaalset näpunäidet, kui taimer on alustamiseks valmis",
+      "worst-time-alert": "Näidake hoiatust, kui saate seansis halvimat aega"
     }
   },
   "Metadata": {

@@ -141,7 +141,6 @@
       "sounds": "Töne",
       "theme": "Thema",
       "custom-background-image": "Benutzerdefiniertes Hintergrundbild",
-      "format": "Format",
       "allowed-file-types": "Nur Bilddateien (JPEG, PNG, GIF) sind erlaubt.",
       "max-file-size": "Maximale Dateigröße ist",
       "data": "App-Daten",
@@ -155,7 +154,8 @@
       "dark": "Dunkel",
       "light": "Licht",
       "system": "System",
-      "newPersonalBest": "Neues persönliches Bestes"
+      "newPersonalBest": "Neues persönliches Bestes",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Intelligente Backup-Wiederherstellung",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Informationen werden vom Server abgerufen. Warten Sie einen Moment ...",
       "help": "Helfen",
       "last-backup": "Letzte Sicherung:",
-      "load": "Laden",
       "load-data-description": "Möchten Sie Ihre Kontodaten aus der Cloud herunterladen?",
       "load-data-title": "Daten laden",
       "load-data-warning": "Dadurch werden aktuelle Daten mit gespeicherten Daten zusammengeführt.",
-      "logout": "Abmelden",
       "not-authenticated": "Authentifizieren Sie sich, um Zugriff zu gewähren",
       "options": "Optionen",
       "privacy-policy": "Datenschutzrichtlinie",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Vorschläge"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Wählen Sie automatisch einen Würfel bei Anwendungsstart aus",
+      "best-average-alert": "Zeigen Sie eine Warnung, wenn Sie einen neuen besten Durchschnitt erreichen",
+      "best-time-alert": "Zeigen Sie eine Warnung, wenn Sie eine neue Bestzeit erreichen",
+      "custom-background-description": "Laden Sie ein benutzerdefiniertes Hintergrundbild hoch, um Ihren Timer zu personalisieren (max 4 MB)",
+      "data-import-export": "Sichern Sie Ihre Daten in eine Datei oder stellen Sie eine vorherige Sicherung wieder her",
+      "decimal-places": "Stellen Sie die Anzahl der Dezimalstellen fest, die in Zeiten angezeigt werden sollen (1-4)",
+      "hide-while-solving": "Verstecken Sie die Timer- und UI -Elemente beim Lösen",
+      "hold-to-start": "Erfordern",
+      "hold-to-start-time": "Stellen Sie fest, wie lange die Leertaste vor dem Start gehalten werden soll (300-1000 ms)",
+      "inspection": "Aktivieren Sie die WCA -Inspektionszeit, bevor Sie die Lösung beginnen",
+      "inspection-time": "Setzen Sie die Dauer der Inspektionszeit in Millisekunden (5000-60000 ms)",
+      "language-description": "Ändern Sie die in der gesamte Anwendung verwendete Sprache",
+      "manual-mode": "Aktivieren Sie den manuellen Zeiteintrag anstatt den Timer zu verwenden",
+      "new-personal-best-sound": "Spielen Sie einen Sound, wenn Sie eine neue persönliche Bestzeit erreichen",
+      "quick-action-buttons": "Zeigen Sie Schaltflächen für gemeinsame Aktionen wie Löschen und DNF",
+      "scramble-background": "Zeigen Sie das Scramble als Hintergrundelement",
+      "scramble-image": "Zeigen Sie eine visuelle Darstellung des Scramble",
+      "session-stats": "Zeigen Sie Statistiken für die aktuelle Lösungssitzung an",
+      "start-cue": "Zeigen Sie einen visuellen Hinweis, wenn der Timer bereit ist zu starten",
+      "worst-time-alert": "Zeigen Sie eine Warnung, wenn Sie Ihre schlechteste Zeit in einer Sitzung haben"
     }
   },
   "Metadata": {

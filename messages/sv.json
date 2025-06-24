@@ -141,7 +141,6 @@
       "sounds": "Ljud",
       "theme": "Tema",
       "custom-background-image": "Anpassad bakgrundsbild",
-      "format": "Format",
       "allowed-file-types": "Endast bildfiler tillåtna (JPEG, PNG, GIF).",
       "max-file-size": "Maximal filstorlek",
       "auto-select": "Välj automatiskt vid start",
@@ -155,7 +154,8 @@
       "dark": "Mörk",
       "light": "Ljus",
       "system": "System",
-      "newPersonalBest": "Nytt personligt bäst"
+      "newPersonalBest": "Nytt personligt bäst",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Intelligent Backup Restoration",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Hämtar information från servern vänta ett ögonblick...",
       "help": "Hjälp",
       "last-backup": "Senaste backup:",
-      "load": "Ladda",
       "load-data-description": "Vill du ladda ner din kontodata från molnet?",
       "load-data-title": "Ladda data",
       "load-data-warning": "Detta kommer att slå samman aktuell data med sparad data.",
-      "logout": "Utloggning",
       "not-authenticated": "Autentisera för att ge åtkomst",
       "options": "Alternativ",
       "privacy-policy": "Sekretesspolicy",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Förslag"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Välj automatiskt en kub vid applikationsstart",
+      "best-average-alert": "Visa en varning när du uppnår ett nytt bästa genomsnitt",
+      "best-time-alert": "Visa en varning när du uppnår en ny bästa tid",
+      "custom-background-description": "Ladda upp en anpassad bakgrundsbild för att anpassa din timer (Max 4MB)",
+      "data-import-export": "Säkerhetskopiera dina data till en fil eller återställa från en tidigare säkerhetskopia",
+      "decimal-places": "Ställ in antalet decimaler att visa i tider (1-4)",
+      "hide-while-solving": "Dölj timer- och UI -elementen medan du löser",
+      "hold-to-start": "Kräva att du håller mellanslagsfältet innan du startar timern",
+      "hold-to-start-time": "Ställ in hur länge du ska hålla mellanslagstången innan du börjar (300-1000ms)",
+      "inspection": "Aktivera WCA -inspektionstid innan du startar lösningen",
+      "inspection-time": "Ställ in inspektionstidens varaktighet i millisekunder (5000-60000ms)",
+      "language-description": "Ändra språket som används under applikationen",
+      "manual-mode": "Aktivera manuell tidspost istället för att använda timern",
+      "new-personal-best-sound": "Spela ett ljud när du uppnår en ny personlig bästa tid",
+      "quick-action-buttons": "Visa knappar för vanliga åtgärder som Delete och DNF",
+      "scramble-background": "Visa förvrängningen som ett bakgrundselement",
+      "scramble-image": "Visa en visuell representation av förvrängningen",
+      "session-stats": "Visa statistik för den aktuella lösningssessionen",
+      "start-cue": "Visa en visuell ledtråd när timern är redo att starta",
+      "worst-time-alert": "Visa en varning när du får din värsta tid i en session"
     }
   },
   "Metadata": {

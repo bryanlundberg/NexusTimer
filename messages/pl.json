@@ -141,7 +141,6 @@
       "sounds": "Dźwięki",
       "theme": "Motyw",
       "custom-background-image": "Niestandardowy obraz tła",
-      "format": "Format",
       "allowed-file-types": "Dozwolone są tylko pliki obrazów (JPEG, PNG, GIF).",
       "max-file-size": "Maksymalny dozwolony rozmiar pliku",
       "auto-select": "Automatyczny wybór przy uruchomieniu",
@@ -155,7 +154,8 @@
       "dark": "Ciemny",
       "light": "Światło",
       "system": "System",
-      "newPersonalBest": "Nowy osobisty najlepszy"
+      "newPersonalBest": "Nowy osobisty najlepszy",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Inteligentne Przywracanie Kopii Zapasowej",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Pobieram informacje z serwera, poczekaj chwilę...",
       "help": "Pomoc",
       "last-backup": "Ostatnia kopia zapasowa:",
-      "load": "Obciążenie",
       "load-data-description": "Chcesz pobrać dane swojego konta z chmury?",
       "load-data-title": "Załaduj dane",
       "load-data-warning": "Spowoduje to połączenie bieżących danych z zapisanymi danymi.",
-      "logout": "Wyloguj się",
       "not-authenticated": "Uwierzytelnij, aby przyznać dostęp",
       "options": "Opcje",
       "privacy-policy": "Polityka prywatności",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Sugestie"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Automatycznie wybierz kostkę na start aplikacji",
+      "best-average-alert": "Pokaż alert, gdy osiągniesz nową najlepszą średnią",
+      "best-time-alert": "Pokaż alert, gdy osiągniesz nowy najlepszy czas",
+      "custom-background-description": "Prześlij niestandardowy obraz tła, aby spersonalizować licznik czasu (maks. 4 MB)",
+      "data-import-export": "Kopia zapasową danych do pliku lub przywróć z poprzedniej kopii zapasowej",
+      "decimal-places": "Ustaw liczbę miejsc dziesiętnych do wyświetlenia w czasach (1-4)",
+      "hide-while-solving": "Ukryj liczbę czasu i elementów interfejsu użytkownika podczas rozwiązywania",
+      "hold-to-start": "Wymaga trzymania paska kosmicznego przed uruchomieniem timera",
+      "hold-to-start-time": "Ustaw, jak długo przechowywać pasek spaceru przed uruchomieniem (300-1000ms)",
+      "inspection": "Włącz czas kontroli WCA przed rozpoczęciem rozwiązania",
+      "inspection-time": "Ustaw czas kontroli w milisekundach (5000-60000 ms)",
+      "language-description": "Zmień język używany w całej aplikacji",
+      "manual-mode": "Włącz wpis czasu ręcznego zamiast używania timera",
+      "new-personal-best-sound": "Zagraj w dźwięk, gdy osiągniesz nowy osobisty najlepszy czas",
+      "quick-action-buttons": "Pokaż przyciski dla typowych działań, takich jak Delete i DNF",
+      "scramble-background": "Pokaż Scramble jako element tła",
+      "scramble-image": "Pokaż wizualną reprezentację Scramble",
+      "session-stats": "Wyświetl statystyki bieżącej sesji rozwiązywania",
+      "start-cue": "Pokaż wizualną wskazówkę, gdy timer jest gotowy do rozpoczęcia",
+      "worst-time-alert": "Pokaż alert, gdy dostaniesz swój najgorszy czas na sesji"
     }
   },
   "Metadata": {

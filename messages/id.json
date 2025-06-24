@@ -141,7 +141,6 @@
       "sounds": "Suara",
       "theme": "Tema",
       "custom-background-image": "Gambar Latar Belakang Kustom",
-      "format": "Format",
       "allowed-file-types": "Hanya file gambar (JPEG, PNG, GIF) yang diizinkan.",
       "max-file-size": "Ukuran file maksimum yang diizinkan",
       "auto-select": "Pilih otomatis saat startup",
@@ -155,7 +154,8 @@
       "dark": "Gelap",
       "light": "Lampu",
       "system": "Sistem",
-      "newPersonalBest": "Terbaik pribadi baru"
+      "newPersonalBest": "Terbaik pribadi baru",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Pemulihan Cadangan Cerdas",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Mengambil informasi dari server tunggu sebentar...",
       "help": "Membantu",
       "last-backup": "Cadangan terakhir:",
-      "load": "Memuat",
       "load-data-description": "Apakah Anda ingin mengunduh data akun Anda dari cloud?",
       "load-data-title": "Memuat data",
       "load-data-warning": "Ini akan menggabungkan data saat ini dengan data yang disimpan.",
-      "logout": "Keluar",
       "not-authenticated": "Otentikasi untuk memberikan akses",
       "options": "Pilihan",
       "privacy-policy": "Kebijakan Privasi",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Saran"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Secara otomatis pilih kubus di aplikasi mulai",
+      "best-average-alert": "Tunjukkan peringatan saat Anda mencapai rata -rata terbaik baru",
+      "best-time-alert": "Tunjukkan peringatan saat Anda mencapai waktu terbaik baru",
+      "custom-background-description": "Unggah gambar latar belakang khusus untuk mempersonalisasikan timer Anda (maks 4MB)",
+      "data-import-export": "Cadangkan data Anda ke file atau kembalikan dari cadangan sebelumnya",
+      "decimal-places": "Atur jumlah tempat desimal untuk ditampilkan dalam waktu (1-4)",
+      "hide-while-solving": "Sembunyikan elemen timer dan UI saat memecahkan",
+      "hold-to-start": "Membutuhkan memegang bilah spasi sebelum memulai timer",
+      "hold-to-start-time": "Setel berapa lama untuk menahan bilah spasi sebelum memulai (300-1000ms)",
+      "inspection": "Aktifkan waktu inspeksi WCA sebelum memulai pemecahan",
+      "inspection-time": "Tetapkan durasi waktu inspeksi dalam milidetik (5000-60000ms)",
+      "language-description": "Ubah bahasa yang digunakan di seluruh aplikasi",
+      "manual-mode": "Aktifkan entri waktu manual alih -alih menggunakan timer",
+      "new-personal-best-sound": "Mainkan suara saat Anda mencapai waktu terbaik pribadi baru",
+      "quick-action-buttons": "Tampilkan tombol untuk tindakan umum seperti Delete dan DNF",
+      "scramble-background": "Tunjukkan perebutan sebagai elemen latar belakang",
+      "scramble-image": "Tunjukkan representasi visual dari perebutan",
+      "session-stats": "Tampilkan statistik untuk sesi pemecahan saat ini",
+      "start-cue": "Tunjukkan isyarat visual saat timer siap untuk memulai",
+      "worst-time-alert": "Tunjukkan peringatan saat Anda mendapatkan waktu terburuk dalam suatu sesi"
     }
   },
   "Metadata": {

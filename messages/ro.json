@@ -141,7 +141,6 @@
       "sounds": "Sunete",
       "theme": "Temă",
       "custom-background-image": "Imagine de fundal personalizată",
-      "format": "Format",
       "allowed-file-types": "Sunt permise doar fișiere de imagine (JPEG, PNG, GIF).",
       "max-file-size": "Dimensiunea maximă a fișierului permisă",
       "auto-select": "Selectare automată la pornire",
@@ -155,7 +154,8 @@
       "dark": "Întuneric",
       "light": "Aprinde",
       "system": "Sistem",
-      "newPersonalBest": "Cel mai bun personal nou"
+      "newPersonalBest": "Cel mai bun personal nou",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Restaurare Inteligentă a Backup-ului",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Se preiau informații de pe server, așteptați un moment...",
       "help": "Ajutor",
       "last-backup": "Ultima copie de rezervă:",
-      "load": "Încărca",
       "load-data-description": "Doriți să descărcați datele contului dvs. din cloud?",
       "load-data-title": "Încărcați date",
       "load-data-warning": "Aceasta va îmbina datele curente cu datele salvate.",
-      "logout": "Deconectare",
       "not-authenticated": "Autentificați-vă pentru a acorda acces",
       "options": "Opțiuni",
       "privacy-policy": "Politica de confidențialitate",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Sugestii"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Selectați automat un cub la începutul aplicației",
+      "best-average-alert": "Afișați o alertă atunci când obțineți o nouă medie cea mai bună",
+      "best-time-alert": "Afișați o alertă atunci când obțineți un nou timp cel mai bun",
+      "custom-background-description": "Încărcați o imagine de fundal personalizată pentru a vă personaliza cronometrul (maxim 4MB)",
+      "data-import-export": "Copia de rezervă a datelor într -un fișier sau restaurați dintr -o copie de rezervă anterioară",
+      "decimal-places": "Setați numărul de zecimale de afișat în timp (1-4)",
+      "hide-while-solving": "Ascundeți elementele cronometrului și UI în timp ce rezolvați",
+      "hold-to-start": "Necesită menținerea barei spațiale înainte de a începe cronometrul",
+      "hold-to-start-time": "Setați cât timp să mențineți bara de spațiu înainte de a începe (300-1000ms)",
+      "inspection": "Activați timpul de inspecție WCA înainte de a începe rezolvarea",
+      "inspection-time": "Setați durata timpului de inspecție în milisecunde (5000-60000ms)",
+      "language-description": "Schimbați limba folosită în întreaga aplicație",
+      "manual-mode": "Activați intrarea în timp manual în loc să utilizați cronometrul",
+      "new-personal-best-sound": "Joacă un sunet când realizezi un nou timp personal",
+      "quick-action-buttons": "Afișați butoane pentru acțiuni comune precum Ștergerea și DNF",
+      "scramble-background": "Afișați scramblul ca element de fundal",
+      "scramble-image": "Arată o reprezentare vizuală a scramblei",
+      "session-stats": "Afișați statistici pentru sesiunea de rezolvare curentă",
+      "start-cue": "Afișați un indiciu vizual când cronometrul este gata de pornire",
+      "worst-time-alert": "Afișați o alertă când veți obține cel mai rău moment într -o sesiune"
     }
   },
   "Metadata": {

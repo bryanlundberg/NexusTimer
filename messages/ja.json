@@ -141,7 +141,6 @@
       "sounds": "サウンド",
       "theme": "テーマ",
       "custom-background-image": "カスタム背景画像",
-      "format": "フォーマット",
       "allowed-file-types": "画像ファイル（JPEG、PNG、GIF）のみが許可されています。",
       "max-file-size": "許可される最大ファイルサイズ",
       "auto-select": "起動時に自動選択",
@@ -155,7 +154,8 @@
       "dark": "暗い",
       "light": "ライト",
       "system": "システム",
-      "newPersonalBest": "新しい個人的なベスト"
+      "newPersonalBest": "新しい個人的なベスト",
+      "close": "x"
     },
     "backup-modal": {
       "title": "インテリジェントバックアップの復元",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "サーバーから情報を取得中です。しばらくお待ちください...",
       "help": "ヘルプ",
       "last-backup": "最後のバックアップ:",
-      "load": "負荷",
       "load-data-description": "アカウント データをクラウドからダウンロードしますか?",
       "load-data-title": "データのロード",
       "load-data-warning": "これにより、現在のデータと保存されたデータがマージされます。",
-      "logout": "ログアウト",
       "not-authenticated": "アクセスを許可するための認証",
       "options": "オプション",
       "privacy-policy": "プライバシーポリシー",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "提案"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "アプリケーション開始時にキューブを自動的に選択します",
+      "best-average-alert": "新しい最高の平均を達成したときにアラートを表示する",
+      "best-time-alert": "新しいベストタイムを達成したらアラートを表示します",
+      "custom-background-description": "カスタム背景画像をアップロードしてタイマーをパーソナライズします（最大4MB）",
+      "data-import-export": "データをファイルにバックアップするか、以前のバックアップから復元します",
+      "decimal-places": "時間内に表示する小数点以下の場所の数を設定する（1-4）",
+      "hide-while-solving": "解決中にタイマーとUI要素を非表示にします",
+      "hold-to-start": "タイマーを開始する前に、スペースバーを保持する必要があります",
+      "hold-to-start-time": "開始する前にスペースバーを保持する時間を設定する（300-1000ms）",
+      "inspection": "解決を開始する前に、WCA検査時間を有効にします",
+      "inspection-time": "検査時間の期間をミリ秒（5000-60000ms）に設定します",
+      "language-description": "アプリケーション全体で使用される言語を変更します",
+      "manual-mode": "タイマーを使用する代わりに、手動の時間入力を有効にします",
+      "new-personal-best-sound": "あなたが新しい個人的なベストタイムを達成したらサウンドを再生してください",
+      "quick-action-buttons": "DeleteやDNFなどの一般的なアクションのボタンを表示します",
+      "scramble-background": "スクランブルを背景要素として表示します",
+      "scramble-image": "スクランブルの視覚的表現を示します",
+      "session-stats": "現在の解決セッションの統計を表示します",
+      "start-cue": "タイマーの開始準備ができたら視覚的な手がかりを表示する",
+      "worst-time-alert": "セッションで最悪の時間を取得したらアラートを表示します"
     }
   },
   "Metadata": {

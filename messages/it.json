@@ -141,7 +141,6 @@
       "sounds": "Suoni",
       "theme": "Tema",
       "custom-background-image": "Immagine di sfondo personalizzata",
-      "format": "Formato",
       "allowed-file-types": "Sono consentiti solo file immagine (JPEG, PNG, GIF).",
       "max-file-size": "Dimensione massima del file consentita",
       "auto-select": "Selezione automatica all'avvio",
@@ -155,7 +154,8 @@
       "dark": "Buio",
       "light": "Leggero",
       "system": "Sistema",
-      "newPersonalBest": "Nuovo migliore personale"
+      "newPersonalBest": "Nuovo migliore personale",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Ripristino Backup Intelligente",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Recupero delle informazioni dal server, aspetta un attimo...",
       "help": "Aiuto",
       "last-backup": "Ultimo backup:",
-      "load": "Carico",
       "load-data-description": "Vuoi scaricare i dati del tuo account dal cloud?",
       "load-data-title": "Carica dati",
       "load-data-warning": "Ciò unirà i dati correnti con i dati salvati.",
-      "logout": "Esci",
       "not-authenticated": "Autenticarsi per concedere l'accesso",
       "options": "Opzioni",
       "privacy-policy": "politica sulla riservatezza",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Suggerimenti"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Selezionare automaticamente un cubo all'inizio dell'applicazione",
+      "best-average-alert": "Mostra un avviso quando si ottiene una nuova media migliore",
+      "best-time-alert": "Mostra un avviso quando si ottiene un nuovo momento migliore",
+      "custom-background-description": "Carica un'immagine di sfondo personalizzata per personalizzare il timer (max 4MB)",
+      "data-import-export": "Eseguire il backup dei dati in un file o ripristinare da un backup precedente",
+      "decimal-places": "Imposta il numero di posti decimali da visualizzare in tempi (1-4)",
+      "hide-while-solving": "Nascondi gli elementi del timer e dell'interfaccia utente durante la risoluzione",
+      "hold-to-start": "Richiede di tenere la barra spaziale prima di iniziare il timer",
+      "hold-to-start-time": "Imposta quanto tempo per tenere la barra spaziale prima di iniziare (300-1000 ms)",
+      "inspection": "Abilita il tempo di ispezione WCA prima di iniziare la risoluzione",
+      "inspection-time": "Imposta la durata del tempo di ispezione in millisecondi (5000-60000ms)",
+      "language-description": "Cambia il linguaggio utilizzato in tutta l'applicazione",
+      "manual-mode": "Abilita la voce di tempo manuale invece di usare il timer",
+      "new-personal-best-sound": "Suona un suono quando si ottiene un nuovo miglior tempo personale",
+      "quick-action-buttons": "Mostra pulsanti per azioni comuni come ELETE e DNF",
+      "scramble-background": "Mostra lo scramble come elemento di sfondo",
+      "scramble-image": "Mostra una rappresentazione visiva dello scramble",
+      "session-stats": "Visualizza le statistiche per la sessione di risoluzione corrente",
+      "start-cue": "Mostra un segnale visivo quando il timer è pronto per iniziare",
+      "worst-time-alert": "Mostra un avviso quando ti diverti in una sessione"
     }
   },
   "Metadata": {

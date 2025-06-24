@@ -141,7 +141,6 @@
       "sounds": "Zvuky",
       "theme": "Téma",
       "custom-background-image": "Vlastní obrázek pozadí",
-      "format": "Formát",
       "allowed-file-types": "Povoleny jsou pouze obrázky (JPEG, PNG, GIF).",
       "max-file-size": "Maximální povolená velikost souboru je",
       "data": "Data aplikace",
@@ -155,7 +154,8 @@
       "dark": "Tmavý",
       "light": "Světlo",
       "system": "Systém",
-      "newPersonalBest": "Nový osobní nejlepší"
+      "newPersonalBest": "Nový osobní nejlepší",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Inteligentní Obnova Zálohy",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Načítání informací ze serveru chvíli počkejte...",
       "help": "Pomoc",
       "last-backup": "Poslední záloha:",
-      "load": "Zatížení",
       "load-data-description": "Chcete si stáhnout data svého účtu z cloudu?",
       "load-data-title": "Načíst data",
       "load-data-warning": "Tím se sloučí aktuální data s uloženými daty.",
-      "logout": "Odhlášení",
       "not-authenticated": "Pro udělení přístupu se ověřte",
       "options": "Možnosti",
       "privacy-policy": "Zásady ochrany osobních údajů",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Návrhy"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Automaticky vyberte krychli při startu aplikace",
+      "best-average-alert": "Ukažte upozornění, když dosáhnete nového nejlepšího průměru",
+      "best-time-alert": "Ukažte upozornění, když dosáhnete nového nejlepšího času",
+      "custom-background-description": "Nahrajte vlastní obrázek na pozadí pro přizpůsobení vašeho časovače (max 4 MB)",
+      "data-import-export": "Zálohujte svá data do souboru nebo obnovení z předchozí zálohy",
+      "decimal-places": "Nastavte počet desetinných míst, která se mají zobrazit v časech (1-4)",
+      "hide-while-solving": "Během řešení skrýt prvky časovače a uživatelského rozhraní",
+      "hold-to-start": "Před zahájením časovače vyžadujte držení kosmického panelu",
+      "hold-to-start-time": "Nastavte, jak dlouho drží mezerník před spuštěním (300-1000ms)",
+      "inspection": "Před zahájením řešení povolte dobu kontroly WCA",
+      "inspection-time": "Nastavte dobu trvání doby inspekce v milisekundách (5000-60000ms)",
+      "language-description": "Změňte jazyk použitý v celé aplikaci",
+      "manual-mode": "Povolte místo použití časovače manuálního času",
+      "new-personal-best-sound": "Přehrajte zvuk, když dosáhnete nového osobního nejlepšího času",
+      "quick-action-buttons": "Zobrazit tlačítka pro běžné akce, jako jsou smazání a DNF",
+      "scramble-background": "Zobrazit škrábající jako prvek na pozadí",
+      "scramble-image": "Zobrazit vizuální reprezentaci Scramble",
+      "session-stats": "Zobrazit statistiky pro aktuální řešení řešení",
+      "start-cue": "Zobrazit vizuální narážku, když je časovač připraven ke spuštění",
+      "worst-time-alert": "Ukažte upozornění, když dostanete nejhorší čas v relaci"
     }
   },
   "Metadata": {

@@ -141,7 +141,6 @@
       "sounds": "Lyder",
       "theme": "Tema",
       "custom-background-image": "Tilpasset bakgrunnsbilde",
-      "format": "Format",
       "allowed-file-types": "Bare bildefiler (JPEG, PNG, GIF) er tillatt.",
       "max-file-size": "Maksimal filstørrelse tillatt",
       "auto-select": "Automatisk valg ved oppstart",
@@ -155,7 +154,8 @@
       "dark": "Mørk",
       "light": "Lys",
       "system": "System",
-      "newPersonalBest": "Nytt personlig beste"
+      "newPersonalBest": "Nytt personlig beste",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Intelligent Sikkerhetskopiering Gjenoppretting",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Henter informasjon fra serveren, vent et øyeblikk...",
       "help": "Hjelp",
       "last-backup": "Siste sikkerhetskopi:",
-      "load": "Laste",
       "load-data-description": "Vil du laste ned kontodataene dine fra skyen?",
       "load-data-title": "Last inn data",
       "load-data-warning": "Dette vil slå sammen gjeldende data med lagrede data.",
-      "logout": "Logg ut",
       "not-authenticated": "Autentiser for å gi tilgang",
       "options": "Alternativer",
       "privacy-policy": "Personvernerklæring",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Forslag"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Velg automatisk en kube ved applikasjonsstart",
+      "best-average-alert": "Vis et varsel når du oppnår et nytt beste gjennomsnitt",
+      "best-time-alert": "Vis et varsel når du oppnår en ny beste tid",
+      "custom-background-description": "Last opp et tilpasset bakgrunnsbilde for å tilpasse tidtakeren din (maks 4MB)",
+      "data-import-export": "Sikkerhetskopiere dataene dine til en fil eller gjenopprette fra en tidligere sikkerhetskopi",
+      "decimal-places": "Angi antall desimaler som skal vises i tider (1-4)",
+      "hide-while-solving": "Skjul tidtakeren og brukergrensesnittet mens du løser",
+      "hold-to-start": "Krever å holde romfeltet før du starter tidtakeren",
+      "hold-to-start-time": "Sett hvor lenge for å holde romfeltet før du starter (300-1000ms)",
+      "inspection": "Aktiver WCA -inspeksjonstid før du starter løsningen",
+      "inspection-time": "Sett varigheten av inspeksjonstid i millisekunder (5000-60000ms)",
+      "language-description": "Endre språket som brukes gjennom hele applikasjonen",
+      "manual-mode": "Aktiver manuell tidsoppføring i stedet for å bruke tidtakeren",
+      "new-personal-best-sound": "Spill en lyd når du oppnår en ny personlig beste tid",
+      "quick-action-buttons": "Vis knapper for vanlige handlinger som Delete og DNF",
+      "scramble-background": "Vis krypten som et bakgrunnselement",
+      "scramble-image": "Vis en visuell representasjon av krypteringen",
+      "session-stats": "Vis statistikk for den nåværende løsningsøkten",
+      "start-cue": "Vis en visuell signal når tidtakeren er klar til å starte",
+      "worst-time-alert": "Vis et varsel når du får din verste tid i en økt"
     }
   },
   "Metadata": {

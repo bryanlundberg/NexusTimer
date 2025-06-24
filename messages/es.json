@@ -142,7 +142,6 @@
       "newPersonalBest": "Nuevo récord personal",
       "theme": "Tema",
       "custom-background-image": "Imagen de fondo personalizada",
-      "format": "Formato",
       "allowed-file-types": "Solo se permiten archivos de imagen (JPEG, PNG, GIF).",
       "max-file-size": "El tamaño máximo de archivo permitido es",
       "data": "Datos de la App",
@@ -155,7 +154,8 @@
       "preferences": "Preferencias",
       "dark": "Oscuro",
       "light": "Luz",
-      "system": "Sistema"
+      "system": "Sistema",
+      "close": "incógnita"
     },
     "backup-modal": {
       "title": "Restauración Inteligente de Respaldo",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Obteniendo información del servidor espera un momento...",
       "help": "Ayuda",
       "last-backup": "Última copia de seguridad:",
-      "load": "Carga",
       "load-data-description": "¿Quieres descargar los datos de tu cuenta desde la nube?",
       "load-data-title": "Cargar datos",
       "load-data-warning": "Esto fusionará los datos actuales con los datos guardados.",
-      "logout": "Cerrar sesión",
       "save-data-description": "¿Quieres guardar los datos de tu cuenta en la nube?",
       "save-data-title": "guardar datos",
       "save-data-warning": "Esto sobrescribirá los datos guardados previamente.",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Sugerencias"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Seleccione automáticamente un cubo al inicio de la aplicación",
+      "best-average-alert": "Muestre una alerta cuando logre un nuevo mejor promedio",
+      "best-time-alert": "Muestre una alerta cuando logre un nuevo mejor momento",
+      "custom-background-description": "Cargue una imagen de fondo personalizada para personalizar su temporizador (Max 4MB)",
+      "data-import-export": "Hacer copias de seguridad de sus datos a un archivo o restaurar desde una copia de seguridad anterior",
+      "decimal-places": "Establezca el número de lugares decimales para mostrar en tiempos (1-4)",
+      "hide-while-solving": "Ocultar el temporizador y los elementos de la interfaz de usuario mientras se resuelve",
+      "hold-to-start": "Requiere sostener la barra espaciadora antes de comenzar el temporizador",
+      "hold-to-start-time": "Establezca cuánto tiempo mantiene la barra espaciadora antes de comenzar (300-1000 ms)",
+      "inspection": "Habilite el tiempo de inspección de WCA antes de comenzar la resolución",
+      "inspection-time": "Establezca la duración del tiempo de inspección en milisegundos (5000-60000 ms)",
+      "language-description": "Cambiar el idioma utilizado en toda la aplicación",
+      "manual-mode": "Habilitar la entrada de tiempo manual en lugar de usar el temporizador",
+      "new-personal-best-sound": "Toca un sonido cuando logres un nuevo mejor momento personal",
+      "quick-action-buttons": "Mostrar botones para acciones comunes como Delete y DNF",
+      "scramble-background": "Muestre la lucha como un elemento de fondo",
+      "scramble-image": "Mostrar una representación visual de la lucha",
+      "session-stats": "Mostrar estadísticas para la sesión de resolución actual",
+      "start-cue": "Muestre una señal visual cuando el temporizador esté listo para comenzar",
+      "worst-time-alert": "Muestre una alerta cuando obtenga su peor momento en una sesión"
     }
   },
   "Metadata": {

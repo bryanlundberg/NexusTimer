@@ -141,7 +141,6 @@
       "sounds": "소리",
       "theme": "테마",
       "custom-background-image": "사용자 지정 배경 이미지",
-      "format": "형식",
       "allowed-file-types": "이미지 파일(JPEG, PNG, GIF)만 허용됩니다.",
       "max-file-size": "허용되는 최대 파일 크기",
       "auto-select": "시작 시 자동 선택",
@@ -155,7 +154,8 @@
       "dark": "어두운",
       "light": "빛",
       "system": "체계",
-      "newPersonalBest": "새로운 개인 최고"
+      "newPersonalBest": "새로운 개인 최고",
+      "close": "엑스"
     },
     "backup-modal": {
       "title": "지능형 백업 복원",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "서버에서 정보를 가져오는 중입니다. 잠시만 기다려 주세요...",
       "help": "돕다",
       "last-backup": "마지막 백업:",
-      "load": "짐",
       "load-data-description": "클라우드에서 계정 데이터를 다운로드하시겠습니까?",
       "load-data-title": "데이터 로드",
       "load-data-warning": "그러면 현재 데이터가 저장된 데이터와 병합됩니다.",
-      "logout": "로그아웃",
       "not-authenticated": "액세스 권한을 부여하려면 인증하세요.",
       "options": "옵션",
       "privacy-policy": "개인 정보 보호 정책",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "제안"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "응용 프로그램 시작시 큐브를 자동으로 선택하십시오",
+      "best-average-alert": "새로운 최고의 평균을 달성 할 때 경고 표시",
+      "best-time-alert": "새로운 최고의 시간을 달성 할 때 경고 표시",
+      "custom-background-description": "타이머를 개인화하려면 사용자 정의 배경 이미지를 업로드하십시오 (최대 4MB)",
+      "data-import-export": "데이터를 파일로 백업하거나 이전 백업에서 복원하십시오.",
+      "decimal-places": "시간 (1-4)으로 표시 할 소수점 자리 수를 설정하십시오.",
+      "hide-while-solving": "해결 중에 타이머 및 UI 요소를 숨 깁니다",
+      "hold-to-start": "타이머를 시작하기 전에 스페이스 바를 잡아야합니다",
+      "hold-to-start-time": "시작하기 전에 스페이스 바를 잡는 시간 (300-1000ms)",
+      "inspection": "해결을 시작하기 전에 WCA 검사 시간을 활성화하십시오",
+      "inspection-time": "검사 시간을 밀리 초 (5000-60000ms)로 설정하십시오.",
+      "language-description": "응용 프로그램 전체에서 사용되는 언어를 변경하십시오",
+      "manual-mode": "타이머를 사용하는 대신 수동 시간 입력을 활성화하십시오",
+      "new-personal-best-sound": "새로운 개인 최고의 시간을 달성 할 때 소리를냅니다.",
+      "quick-action-buttons": "Delete 및 DNF와 같은 일반적인 작업에 대한 버튼 표시",
+      "scramble-background": "스크램블을 배경 요소로 표시하십시오",
+      "scramble-image": "스크램블의 시각적 표현을 보여줍니다",
+      "session-stats": "현재 해결 세션에 대한 통계를 표시합니다",
+      "start-cue": "타이머가 시작될 때 시각적 신호 표시",
+      "worst-time-alert": "세션에서 최악의 시간을 보낼 때 경고 표시"
     }
   },
   "Metadata": {

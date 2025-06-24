@@ -141,7 +141,6 @@
       "sounds": "Sons",
       "theme": "Tema",
       "custom-background-image": "Imagem de fundo personalizada",
-      "format": "Formato",
       "allowed-file-types": "Somente arquivos de imagem (JPEG, PNG, GIF) são permitidos.",
       "max-file-size": "Tamanho máximo de arquivo permitido",
       "auto-select": "Seleção automática na inicialização",
@@ -155,7 +154,8 @@
       "dark": "Escuro",
       "light": "Luz",
       "system": "Sistema",
-      "newPersonalBest": "Novo melhor pessoal"
+      "newPersonalBest": "Novo melhor pessoal",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Restauração Inteligente de Backup",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Buscando informações do servidor, aguarde um momento...",
       "help": "Ajuda",
       "last-backup": "Último backup:",
-      "load": "Carregar",
       "load-data-description": "Quer baixar os dados da sua conta da nuvem?",
       "load-data-title": "Carregar dados",
       "load-data-warning": "Isso mesclará os dados atuais com os dados salvos.",
-      "logout": "Sair",
       "not-authenticated": "Autenticar para conceder acesso",
       "options": "Opções",
       "privacy-policy": "política de Privacidade",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Sugestões"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Selecione automaticamente um cubo no início do aplicativo",
+      "best-average-alert": "Mostre um alerta quando você conseguir uma nova melhor média",
+      "best-time-alert": "Mostre um alerta quando você conseguir um novo melhor momento",
+      "custom-background-description": "Carregue uma imagem de fundo personalizada para personalizar seu temporizador (máximo de 4 MB)",
+      "data-import-export": "Backup seus dados em um arquivo ou restauração de um backup anterior",
+      "decimal-places": "Defina o número de lugares decimais para exibir em horários (1-4)",
+      "hide-while-solving": "Esconder o timer e os elementos da interface do usuário enquanto resolve",
+      "hold-to-start": "Requer segurar a barra de espaço antes de iniciar o timer",
+      "hold-to-start-time": "Defina quanto tempo segura a barra de espaço antes de iniciar (300-1000ms)",
+      "inspection": "Habilite o tempo de inspeção da WCA antes de iniciar a solução",
+      "inspection-time": "Defina a duração do tempo de inspeção em milissegundos (5000-60000ms)",
+      "language-description": "Alterar o idioma usado em todo o aplicativo",
+      "manual-mode": "Ativar entrada de tempo manual em vez de usar o timer",
+      "new-personal-best-sound": "Jogue um som quando você conseguir um novo melhor horário pessoal",
+      "quick-action-buttons": "Mostre botões para ações comuns como excluir e dnf",
+      "scramble-background": "Mostre a luta como um elemento de fundo",
+      "scramble-image": "Mostre uma representação visual da disputa",
+      "session-stats": "Exibir estatísticas para a sessão de solução atual",
+      "start-cue": "Mostre uma sugestão visual quando o cronômetro estiver pronto para começar",
+      "worst-time-alert": "Mostre um alerta quando você tiver seu pior momento em uma sessão"
     }
   },
   "Metadata": {

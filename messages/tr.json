@@ -141,7 +141,6 @@
       "sounds": "Sesler",
       "theme": "Tema",
       "custom-background-image": "Özel arka plan resmi",
-      "format": "Biçim",
       "allowed-file-types": "Yalnızca resim dosyalarına izin verilir (JPEG, PNG, GIF)",
       "max-file-size": "İzin verilen maksimum dosya boyutu",
       "data": "Uygulama Verisi",
@@ -155,7 +154,8 @@
       "dark": "Karanlık",
       "light": "Işık",
       "system": "Sistem",
-      "newPersonalBest": "Yeni Kişisel En İyi"
+      "newPersonalBest": "Yeni Kişisel En İyi",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Akıllı Yedekleme Kurtarma",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Sunucudan bilgi alınıyor, biraz bekleyin...",
       "help": "Yardım",
       "last-backup": "Son yedekleme:",
-      "load": "Yük",
       "load-data-description": "Hesap verilerinizi buluttan indirmek ister misiniz?",
       "load-data-title": "Verileri yükle",
       "load-data-warning": "Bu, mevcut verileri kayıtlı verilerle birleştirecektir.",
-      "logout": "Oturumu kapat",
       "not-authenticated": "Erişim izni vermek için kimlik doğrulaması yapın",
       "options": "Seçenekler",
       "privacy-policy": "Gizlilik Politikası",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Öneriler"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Uygulama başlangıcında otomatik olarak bir küp seçin",
+      "best-average-alert": "Yeni bir en iyi ortalamaya ulaştığınızda bir uyarı gösterin",
+      "best-time-alert": "Yeni bir en iyi zamana ulaştığınızda bir uyarı gösterin",
+      "custom-background-description": "Zamanlayıcınızı kişiselleştirmek için özel bir arka plan resmi yükleyin (maksimum 4MB)",
+      "data-import-export": "Verilerinizi bir dosyaya yedekleyin veya önceki bir yedeklemeden geri yükleyin",
+      "decimal-places": "Zamanlarda gösterilecek ondalık basamak sayısını ayarlayın (1-4)",
+      "hide-while-solving": "Çözürken zamanlayıcıyı ve UI öğelerini gizleyin",
+      "hold-to-start": "Zamanlayıcıya başlamadan önce boşluk çubuğunu tutmayı gerektirin",
+      "hold-to-start-time": "Başlamadan önce boşluk çubuğunu ne kadar tutacağınızı ayarlayın (300-1000ms)",
+      "inspection": "Çözmeye başlamadan önce WCA denetim süresini etkinleştirin",
+      "inspection-time": "Milisaniye olarak denetim süresinin süresini ayarlayın (5000-60000ms)",
+      "language-description": "Uygulama boyunca kullanılan dili değiştirin",
+      "manual-mode": "Zamanlayıcıyı kullanmak yerine manuel zaman girişini etkinleştirin",
+      "new-personal-best-sound": "Yeni bir kişisel en iyi zamana ulaştığınızda bir ses oynayın",
+      "quick-action-buttons": "Delete ve DNF gibi yaygın eylemler için düğmeleri gösterin",
+      "scramble-background": "Kargaşayı bir arka plan öğesi olarak gösterin",
+      "scramble-image": "Kararın görsel bir temsilini göster",
+      "session-stats": "Mevcut çözme oturumu için istatistikleri görüntüleyin",
+      "start-cue": "Zamanlayıcı başlamaya hazır olduğunda görsel bir işaret gösterin",
+      "worst-time-alert": "Bir oturumda en kötü zamanınızı aldığınızda bir uyarı gösterin"
     }
   },
   "Metadata": {

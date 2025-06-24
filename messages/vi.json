@@ -141,7 +141,6 @@
       "sounds": "Âm thanh",
       "theme": "Chủ đề",
       "custom-background-image": "Hình nền tùy chỉnh",
-      "format": "Định dạng",
       "allowed-file-types": "Chỉ cho phép tập tin hình ảnh (JPEG, PNG, GIF)",
       "max-file-size": "Kích thước tập tin tối đa được phép",
       "data": "Dữ liệu ứng dụng",
@@ -155,7 +154,8 @@
       "dark": "Tối tăm",
       "light": "Ánh sáng",
       "system": "Hệ thống",
-      "newPersonalBest": "Cá nhân mới tốt nhất"
+      "newPersonalBest": "Cá nhân mới tốt nhất",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Khôi phục sao lưu thông minh",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Đang tìm nạp thông tin từ máy chủ, chờ một lát...",
       "help": "Giúp đỡ",
       "last-backup": "Sao lưu lần cuối:",
-      "load": "Trọng tải",
       "load-data-description": "Bạn có muốn tải xuống dữ liệu tài khoản của mình từ đám mây không?",
       "load-data-title": "Tải dữ liệu",
       "load-data-warning": "Điều này sẽ hợp nhất dữ liệu hiện tại với dữ liệu đã lưu.",
-      "logout": "Đăng xuất",
       "not-authenticated": "Xác thực để cấp quyền truy cập",
       "options": "Tùy chọn",
       "privacy-policy": "Chính sách bảo mật",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Đề xuất"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Tự động chọn một khối lập phương khi bắt đầu ứng dụng",
+      "best-average-alert": "Hiển thị cảnh báo khi bạn đạt được mức trung bình tốt nhất mới",
+      "best-time-alert": "Hiển thị cảnh báo khi bạn đạt được thời gian tốt nhất mới",
+      "custom-background-description": "Tải lên một hình nền tùy chỉnh để cá nhân hóa bộ đếm thời gian của bạn (tối đa 4MB)",
+      "data-import-export": "Sao lưu dữ liệu của bạn vào một tệp hoặc khôi phục từ bản sao lưu trước đó",
+      "decimal-places": "Đặt số lượng vị trí thập phân để hiển thị theo thời gian (1-4)",
+      "hide-while-solving": "Ẩn các yếu tố hẹn giờ và UI trong khi giải quyết",
+      "hold-to-start": "Yêu cầu giữ vũ trụ trước khi bắt đầu hẹn giờ",
+      "hold-to-start-time": "Đặt thời gian để giữ vũ trụ trước khi bắt đầu (300-1000ms)",
+      "inspection": "Bật thời gian kiểm tra WCA trước khi bắt đầu giải quyết",
+      "inspection-time": "Đặt thời gian kiểm tra tính bằng mili giây (5000-60000ms)",
+      "language-description": "Thay đổi ngôn ngữ được sử dụng trong suốt ứng dụng",
+      "manual-mode": "Bật mục nhập thời gian thủ công thay vì sử dụng bộ hẹn giờ",
+      "new-personal-best-sound": "Phát một âm thanh khi bạn đạt được thời gian tốt nhất cá nhân mới",
+      "quick-action-buttons": "Hiển thị các nút cho các hành động phổ biến như Xóa và DNF",
+      "scramble-background": "Hiển thị cuộc tranh giành dưới dạng phần tử nền",
+      "scramble-image": "Hiển thị một biểu diễn trực quan của Scramble",
+      "session-stats": "Hiển thị số liệu thống kê cho phiên giải quyết hiện tại",
+      "start-cue": "Hiển thị một gợi ý trực quan khi bộ hẹn giờ đã sẵn sàng để bắt đầu",
+      "worst-time-alert": "Hiển thị cảnh báo khi bạn có thời gian tồi tệ nhất trong một phiên"
     }
   },
   "Metadata": {

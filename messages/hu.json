@@ -141,7 +141,6 @@
       "sounds": "Hangok",
       "theme": "Téma",
       "custom-background-image": "Egyéni háttérkép",
-      "format": "Formátum",
       "allowed-file-types": "Csak képfájlok (JPEG, PNG, GIF) engedélyezettek.",
       "max-file-size": "A maximális fájlméret engedélyezett",
       "data": "App adatok",
@@ -155,7 +154,8 @@
       "dark": "Sötét",
       "light": "Fény",
       "system": "Rendszer",
-      "newPersonalBest": "Új személyes legjobb"
+      "newPersonalBest": "Új személyes legjobb",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Intelligens Biztonsági Mentés Visszaállítása",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Információk lekérése a szerverről, várjon egy kicsit...",
       "help": "Segítség",
       "last-backup": "Utolsó biztonsági mentés:",
-      "load": "Terhelés",
       "load-data-description": "Szeretné letölteni fiókadatait a felhőből?",
       "load-data-title": "Adatok betöltése",
       "load-data-warning": "Ez egyesíti az aktuális adatokat a mentett adatokkal.",
-      "logout": "Kijelentkezés",
       "not-authenticated": "A hozzáférés megadásához hitelesítsen",
       "options": "Opciók",
       "privacy-policy": "Adatvédelmi szabályzat",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Javaslatok"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Automatikusan válassza ki a kocka alkalmazását az alkalmazás indításakor",
+      "best-average-alert": "Mutasson riasztást, amikor új legjobb átlagot ér el",
+      "best-time-alert": "Mutasson riasztást, amikor új legjobb időt ér el",
+      "custom-background-description": "Töltsön fel egy egyedi háttérképet az időzítő személyre szabásához (Max 4MB)",
+      "data-import-export": "Biztonsági másolatot készítsen az adatok fájlba, vagy állítsa vissza az előző biztonsági másolatból",
+      "decimal-places": "Állítsa be a jelenlévő tizedes helyek számát a megjelenítéshez (1-4)",
+      "hide-while-solving": "Elrejteni az időzítőt és az UI elemeket a megoldás közben",
+      "hold-to-start": "Az időzítő megkezdése előtt megköveteli az űrtudat tartását",
+      "hold-to-start-time": "Állítsa be, meddig tartsa az űrtartalmat az indítás előtt (300-1000ms)",
+      "inspection": "Engedélyezze a WCA ellenőrzési időt a megoldás megkezdése előtt",
+      "inspection-time": "Állítsa be az ellenőrzési idő időtartamát milliszekundumban (5000-60000 ms)",
+      "language-description": "Változtassa meg az alkalmazás egészében használt nyelvet",
+      "manual-mode": "Engedélyezze a kézi időbejutást az időzítő használata helyett",
+      "new-personal-best-sound": "Játssz egy hangot, amikor új személyes legjobb időt ér el",
+      "quick-action-buttons": "Mutasd meg a gombokat olyan gyakori műveletekhez, mint a törlés és a DNF",
+      "scramble-background": "Mutassa meg a tulygást mint háttér elem",
+      "scramble-image": "Mutassa meg a tekercs vizuális ábrázolását",
+      "session-stats": "Jelenítse meg az aktuális megoldási munkamenet statisztikáit",
+      "start-cue": "Mutasson egy vizuális dátumot, amikor az időzítő készen áll a kezdésre",
+      "worst-time-alert": "Mutasson riasztást, amikor a legrosszabb idejét egy munkamenetben kapja meg"
     }
   },
   "Metadata": {

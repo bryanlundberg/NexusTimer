@@ -141,7 +141,6 @@
       "sounds": "Äänet",
       "theme": "Teema",
       "custom-background-image": "Mukautettu taustakuva",
-      "format": "Muoto",
       "allowed-file-types": "Vain kuvatiedostot (JPEG, PNG, GIF) ovat sallittuja.",
       "max-file-size": "Suurin sallittu tiedostokoko on",
       "data": "Sovelluksen tiedot",
@@ -155,7 +154,8 @@
       "dark": "Tumma",
       "light": "Kevyt",
       "system": "Järjestelmä",
-      "newPersonalBest": "Uusi henkilökohtainen paras"
+      "newPersonalBest": "Uusi henkilökohtainen paras",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Älykäs varmuuskopiointi ja palautus",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Haetaan tietoja palvelimelta, odota hetki...",
       "help": "Auttaa",
       "last-backup": "Viimeisin varmuuskopio:",
-      "load": "Ladata",
       "load-data-description": "Haluatko ladata tilitietosi pilvestä?",
       "load-data-title": "Lataa tiedot",
       "load-data-warning": "Tämä yhdistää nykyiset tiedot tallennettuihin tietoihin.",
-      "logout": "Kirjaudu ulos",
       "not-authenticated": "Todenna käyttöoikeus",
       "options": "Vaihtoehdot",
       "privacy-policy": "Tietosuojakäytäntö",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "ehdotuksia"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Valitse kuutio automaattisesti sovelluksen käynnistyksessä",
+      "best-average-alert": "Näytä hälytys, kun saavutat uuden parhaan keskiarvon",
+      "best-time-alert": "Näytä hälytys, kun saavutat uuden parhaan ajan",
+      "custom-background-description": "Lataa mukautettu taustakuva ajastimen mukauttamiseksi (Max 4MB)",
+      "data-import-export": "Varmuuskopioi tietosi tiedostoon tai palauta edellisestä varmuuskopiosta",
+      "decimal-places": "Aseta näytettävien desimaalien lukumäärä aikoina (1-4)",
+      "hide-while-solving": "Piilota ajastin- ja käyttöliittymäelementit ratkaisemalla",
+      "hold-to-start": "Vaativat välilyöntiä ennen ajastimen aloittamista",
+      "hold-to-start-time": "Aseta kuinka kauan tilapalkin pitäminen ennen aloittamista (300-1000 ms)",
+      "inspection": "Ota WCA: n tarkastusaika käyttöön ennen ratkaisun aloittamista",
+      "inspection-time": "Aseta tarkastusajan kesto millisekunnissa (5000-60000 ms)",
+      "language-description": "Vaihda koko sovelluksessa käytetty kieli",
+      "manual-mode": "Ota manuaalinen ajanjakso käyttöön ajastimen käytön sijasta",
+      "new-personal-best-sound": "Toista ääni, kun saavutat uuden henkilökohtaisen parhaan ajan",
+      "quick-action-buttons": "Näytä painikkeet yleisille toimille, kuten Poista ja DNF",
+      "scramble-background": "Näytä sekoitus taustaelementtinä",
+      "scramble-image": "Näytä scramble -visuaalinen esitys",
+      "session-stats": "Näytä nykyisen ratkaisuistunnon tilastot",
+      "start-cue": "Näytä visuaalinen vihje, kun ajastin on valmis aloittamaan",
+      "worst-time-alert": "Näytä hälytys, kun saat pahimman ajan istunnossa"
     }
   },
   "Metadata": {

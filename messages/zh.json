@@ -141,7 +141,6 @@
       "sounds": "声音",
       "theme": "主题",
       "custom-background-image": "自定义背景图像",
-      "format": "格式",
       "allowed-file-types": "仅允许图像文件 (JPEG、PNG、GIF)",
       "max-file-size": "最大文件大小允许",
       "data": "应用程序数据",
@@ -155,7 +154,8 @@
       "dark": "黑暗的",
       "light": "光",
       "system": "系统",
-      "newPersonalBest": "新的个人最好"
+      "newPersonalBest": "新的个人最好",
+      "close": "x"
     },
     "backup-modal": {
       "title": "智能备份恢复",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "正在从服务器获取信息，请稍等...",
       "help": "帮助",
       "last-backup": "上次备份：",
-      "load": "加载",
       "load-data-description": "您想从云端下载您的帐户数据吗？",
       "load-data-title": "加载数据",
       "load-data-warning": "这会将当前数据与保存的数据合并。",
-      "logout": "退出",
       "not-authenticated": "进行身份验证以授予访问权限",
       "options": "选项",
       "privacy-policy": "隐私政策",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "建议"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "在应用程序开始时自动选择一个立方体",
+      "best-average-alert": "当您获得新的最佳平均水平时显示警报",
+      "best-time-alert": "达到新的最佳时间时显示警报",
+      "custom-background-description": "上传自定义背景图像以个性化计时器（最大4MB）",
+      "data-import-export": "将数据备份到文件或从以前的备份还原",
+      "decimal-places": "设置在时间（1-4）的小数位数的数量",
+      "hide-while-solving": "求解计时器和UI元素时",
+      "hold-to-start": "在启动计时器之前需要握住空格键",
+      "hold-to-start-time": "设置多长时间持有空格键（300-1000ms）之前",
+      "inspection": "启用WCA检查时间，然后开始解决",
+      "inspection-time": "将检查时间设置为毫秒（5000-60000ms）",
+      "language-description": "更改整个应用程序中使用的语言",
+      "manual-mode": "启用手动时间输入而不是使用计时器",
+      "new-personal-best-sound": "实现新的个人最佳时光时播放声音",
+      "quick-action-buttons": "显示诸如DELETE和DNF等常见动作的按钮",
+      "scramble-background": "将争夺作为背景元素",
+      "scramble-image": "显示争夺的视觉表示",
+      "session-stats": "显示当前求解会话的统计信息",
+      "start-cue": "当计时器准备启动时显示视觉提示",
+      "worst-time-alert": "在会话中获得最糟糕的时间时显示警报"
     }
   },
   "Metadata": {

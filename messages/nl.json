@@ -141,7 +141,6 @@
       "sounds": "Geluid",
       "theme": "Thema",
       "custom-background-image": "Aangepaste achtergrondafbeelding",
-      "format": "Formaat",
       "allowed-file-types": "Alleen afbeeldingsbestanden (JPEG, PNG, GIF) zijn toegestaan.",
       "max-file-size": "Maximale bestandsgrootte toegestaan",
       "auto-select": "Automatische selectie bij opstarten",
@@ -155,7 +154,8 @@
       "dark": "Donker",
       "light": "Licht",
       "system": "Systeem",
-      "newPersonalBest": "Nieuw persoonlijk beste"
+      "newPersonalBest": "Nieuw persoonlijk beste",
+      "close": "X"
     },
     "backup-modal": {
       "title": "Intelligente Back-up Herstel",
@@ -182,11 +182,9 @@
       "fetching-last-backup": "Informatie ophalen van de server, wacht even...",
       "help": "Hulp",
       "last-backup": "Laatste back-up:",
-      "load": "Laden",
       "load-data-description": "Wilt u uw accountgegevens downloaden vanuit de cloud?",
       "load-data-title": "Gegevens laden",
       "load-data-warning": "Hierdoor worden de huidige gegevens samengevoegd met opgeslagen gegevens.",
-      "logout": "Uitloggen",
       "not-authenticated": "Authenticeer om toegang te verlenen",
       "options": "Opties",
       "privacy-policy": "Privacybeleid",
@@ -202,6 +200,28 @@
     },
     "others": {
       "suggestions": "Suggesties"
+    },
+    "Settings-descriptions": {
+      "auto-select-description": "Selecteer automatisch een kubus bij de start van de toepassing",
+      "best-average-alert": "Toon een waarschuwing wanneer u een nieuw beste gemiddelde bereikt",
+      "best-time-alert": "Toon een waarschuwing wanneer u een nieuwe beste tijd bereikt",
+      "custom-background-description": "Upload een aangepaste achtergrondafbeelding om uw timer te personaliseren (max 4MB)",
+      "data-import-export": "Back -up van uw gegevens naar een bestand of herstel van een eerdere back -up",
+      "decimal-places": "Stel het aantal decimale plaatsen in om in tijden (1-4) weer te geven (1-4)",
+      "hide-while-solving": "Verberg de timer- en UI -elementen tijdens het oplossen",
+      "hold-to-start": "Moet de spatiebalk vasthouden voordat u de timer start",
+      "hold-to-start-time": "Stel in hoe lang de spatiebalk vasthouden voordat u begint (300-1000ms)",
+      "inspection": "Schakel WCA -inspectietijd in voordat u begint met het oplossen",
+      "inspection-time": "Stel de duur van de inspectietijd in milliseconden in (5000-60000ms)",
+      "language-description": "Wijzig de taal die tijdens de toepassing wordt gebruikt",
+      "manual-mode": "Schakel handmatige tijd in plaats van het gebruik van de timer",
+      "new-personal-best-sound": "Speel een geluid als je een nieuw persoonlijk beste tijd bereikt",
+      "quick-action-buttons": "Toon knoppen voor veel voorkomende acties zoals Delete en DNF",
+      "scramble-background": "Laat de scramble zien als een achtergrondelement",
+      "scramble-image": "Toon een visuele weergave van de klauteren",
+      "session-stats": "Display statistieken voor de huidige oplossingssessie",
+      "start-cue": "Toon een visuele keu wanneer de timer klaar is om te beginnen",
+      "worst-time-alert": "Toon een waarschuwing wanneer u uw slechtste tijd krijgt in een sessie"
     }
   },
   "Metadata": {
