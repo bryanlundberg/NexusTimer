@@ -34,7 +34,8 @@
       "ascending": "Ascendente",
       "alert": {
         "empty-cubes": "Nessun cubo selezionato. \nPer favore scegline uno.",
-        "title": "Attenzione!"
+        "title": "Attenzione!",
+        "select-cube": "Inizia a selezionare un cubo!"
       },
       "dialogs": {
         "move-to-history": "Spostare le soluzioni nella storia?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Lo spostamento risolve la storia"
       },
-      "show": "Spettacolo"
+      "show": "Spettacolo",
+      "dropdown": {
+        "add-bookmark": "Aggiungi segnalibro",
+        "add-penalty": "Aggiungi penalità",
+        "copy-to-clipboard": "Copia negli appunti",
+        "delete-solve": "Elimina risolvere",
+        "move-to-history": "Passa alla storia",
+        "remove-bookmark": "Rimuovere il segnalibro",
+        "remove-penalty": "Rimuovere la penalità",
+        "transfer-collection": "Raccolta di trasferimento",
+        "view-details": "Visualizza i dettagli"
+      }
     },
     "StatsPage": {
       "title": "Statistiche",
@@ -72,7 +84,15 @@
       "average": "Media",
       "time-spent": "Tempo Trascorso",
       "success-rate": "Tasso di Successo",
-      "counter": "Contatore"
+      "counter": "Contatore",
+      "category-tab": "Categoria",
+      "cube-all-tooltip": "Combina tutte le risoluzione storica e di sessione solo per il cubo selezionato.",
+      "cube-session-tooltip": "Conta solo la sessione risolve solo per il cubo selezionato.",
+      "cube-tab": "Cubo",
+      "empty-statistics": "Nessuna statistica disponibile",
+      "empty-statistics-description": "Sembra che il tuo Vault Solve sia attualmente vuoto.",
+      "global-tooltip": "Combina tutti i risoluzioni storiche e di sessione per ogni cubo nella stessa categoria.",
+      "sessions-tooltip": "Conta solo la sessione risolve per ogni cubo nella stessa categoria."
     },
     "CubesPage": {
       "title": "Cubi",
@@ -87,7 +107,13 @@
       "name": "Nome",
       "new-collection": "Nuova collezione",
       "delete": "Eliminare",
-      "edit": "Modificare"
+      "edit": "Modificare",
+      "chart-solves-label": "Risolve",
+      "created": "Creato",
+      "no-cubes-description": "Inizia ad aggiungere raccolte di cube al tuo Vault per vederle qui.",
+      "no-solve-data": "Nessuna risoluzione dei dati disponibili",
+      "solves-label": "Risolve",
+      "total": "totale"
     },
     "Cubes-modal": {
       "category": "Categoria",
@@ -118,7 +144,8 @@
       "back": "Indietro",
       "sign-in-google": "Accedi con Google",
       "no-results": "Nessun risultato trovato",
-      "search": "Ricerca..."
+      "search": "Ricerca...",
+      "menu": "Menu"
     },
     "Settings-menu": {
       "locale": "Località",
@@ -155,7 +182,11 @@
       "light": "Leggero",
       "system": "Sistema",
       "newPersonalBest": "Nuovo migliore personale",
-      "close": "X"
+      "close": "X",
+      "decimal-places": "Luoghi decimali",
+      "fullscreen": "A schermo intero",
+      "hold-to-start-time": "Tieni premuto per iniziare",
+      "inspection-time": "Tempo di ispezione"
     },
     "backup-modal": {
       "title": "Ripristino Backup Intelligente",
@@ -222,6 +253,21 @@
       "session-stats": "Visualizza le statistiche per la sessione di risoluzione corrente",
       "start-cue": "Mostra un segnale visivo quando il timer è pronto per iniziare",
       "worst-time-alert": "Mostra un avviso quando ti diverti in una sessione"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Destinazione di raccolta",
+      "collection-origin": "Origine della raccolta",
+      "cubes-unavailable": "I dati dei cubi non sono disponibili",
+      "deselect-all": "Deselezionare tutto",
+      "empty-vault": "Il tuo Vault Solve è attualmente vuoto.",
+      "failed-transfer": "Impossibile trasferimento risolve. \nPer favore riprova.",
+      "no-solves": "Nessuna risoluzione disponibile",
+      "select-all": "Seleziona tutto",
+      "solves-selected": "Risolve: ({count} selezionato)",
+      "success-transfer": "Transfermly Transferly {count} risolve da {sorgente} a {destinazione}",
+      "title": "Il trasferimento risolve",
+      "transfer": "Trasferire",
+      "transferring": "Trasferimento ..."
     }
   },
   "Metadata": {

@@ -34,7 +34,8 @@
       "time": "Aeg",
       "alert": {
         "empty-cubes": "Kuubikut pole valitud. \nPalun valige üks.",
-        "title": "Tähelepanu!"
+        "title": "Tähelepanu!",
+        "select-cube": "Alustage kuubi valimist!"
       },
       "dialogs": {
         "move-to-history": "Kas viia lahendused ajalukku?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Lahenduste teisaldamine ajalukku"
       },
-      "show": "Näita"
+      "show": "Näita",
+      "dropdown": {
+        "add-bookmark": "Lisa järjehoidja",
+        "add-penalty": "Lisama trahvi",
+        "copy-to-clipboard": "Kopeeri lõikelauale",
+        "delete-solve": "Kustuta lahendamine",
+        "move-to-history": "Liikuda ajaloo juurde",
+        "remove-bookmark": "Eemaldage järjehoidja",
+        "remove-penalty": "Karistus eemaldama",
+        "transfer-collection": "Ülekandekogu",
+        "view-details": "Vaadake üksikasju"
+      }
     },
     "StatsPage": {
       "title": "Statistika",
@@ -72,7 +84,15 @@
       "average": "Keskmine",
       "time-spent": "Kulutatud aeg",
       "success-rate": "Edu määr",
-      "counter": "Lugeja"
+      "counter": "Lugeja",
+      "category-tab": "Kategooria",
+      "cube-all-tooltip": "Kombineerib kõik ajaloolised ja sessioonid ainult valitud kuubi jaoks.",
+      "cube-session-tooltip": "Loendab ainult seansi ainult valitud kuubi jaoks.",
+      "cube-tab": "Kuubik",
+      "empty-statistics": "Statistikat pole saadaval",
+      "empty-statistics-description": "Paistab, et teie lahendamise võlvi on praegu tühi.",
+      "global-tooltip": "Ühendab kõik ajaloolised ja seansid lahendused igas samas kategoorias sisalduva kuubiku jaoks.",
+      "sessions-tooltip": "Loendab ainult seansside lahendamist igas samas kategoorias sisalduva kuubiku jaoks."
     },
     "CubesPage": {
       "title": "Kuubikud",
@@ -87,7 +107,13 @@
       "name": "Nimi",
       "new-collection": "Uus kollektsioon",
       "delete": "Kustutama",
-      "edit": "Redigeerima"
+      "edit": "Redigeerima",
+      "chart-solves-label": "Lahendama",
+      "created": "Loodud",
+      "no-cubes-description": "Alustage oma võlvi lisamist oma võlvlisse, et neid siin näha.",
+      "no-solve-data": "Andmeid ei lahenda saadaval",
+      "solves-label": "Lahendama",
+      "total": "kogusumma"
     },
     "Cubes-modal": {
       "category": "Kategooria",
@@ -118,7 +144,8 @@
       "back": "Tagasi",
       "sign-in-google": "Logige sisse Google'iga",
       "no-results": "Tulemusi ei leitud",
-      "search": "Otsi..."
+      "search": "Otsi...",
+      "menu": "Menüü"
     },
     "Settings-menu": {
       "locale": "Piirkond",
@@ -155,7 +182,11 @@
       "light": "Valgus",
       "system": "Süsteem",
       "newPersonalBest": "Uus isiklik parim",
-      "close": "X"
+      "close": "X",
+      "decimal-places": "Kümnendkohad",
+      "fullscreen": "Täisekraaniga",
+      "hold-to-start-time": "Hoidke algusaega",
+      "inspection-time": "Ülevaatuse aeg"
     },
     "backup-modal": {
       "title": "Intelligentne varundamise taastamine",
@@ -222,6 +253,21 @@
       "session-stats": "Kuva statistika praeguse lahendamisseansi kohta",
       "start-cue": "Näidake visuaalset näpunäidet, kui taimer on alustamiseks valmis",
       "worst-time-alert": "Näidake hoiatust, kui saate seansis halvimat aega"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Kogumissihtkoht",
+      "collection-origin": "Kollektsiooni päritolu",
+      "cubes-unavailable": "Kuubikute andmed pole saadaval",
+      "deselect-all": "Valige kõik",
+      "empty-vault": "Teie lahendamise võlvi on praegu tühi.",
+      "failed-transfer": "Ülekandmine ei õnnestunud lahendada. \nProovige uuesti.",
+      "no-solves": "Lahendusi pole saadaval",
+      "select-all": "Valige kõik",
+      "solves-selected": "Lahendab: ({krahv} valitud)",
+      "success-transfer": "Edukalt ülekandes {count} lahendab {Source} saidile {Destination}",
+      "title": "Ülekandelahendus",
+      "transfer": "Ülekandmine",
+      "transferring": "Üleminek ..."
     }
   },
   "Metadata": {

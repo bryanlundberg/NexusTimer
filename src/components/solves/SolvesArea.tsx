@@ -43,7 +43,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   const router = useRouter();
   const { handleOpenDialogSolve } = useDialogSolve();
   const { selectedCube } = useTimerStore();
-  const t = useTranslations("Index.SolvesPage");
+  const t = useTranslations("Index");
   const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
   const [query,] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE });
   const [orderType,] = useQueryState(STATES.SOLVES_PAGE.ORDER.KEY, { defaultValue: STATES.SOLVES_PAGE.ORDER.DEFAULT_VALUE });
@@ -51,7 +51,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   const { handleDeleteSolve, handlePenaltyPlus2, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
   useRemoveGridHeight();
 
-  if (!selectedCube) return <EmptySolves title={"Start selecting a cube!"} description={t("alert.empty-cubes")}/>;
+  if (!selectedCube) return <EmptySolves title={t("SolvesPage.alert.select-cube")} description={t("SolvesPage.alert.empty-cubes")}/>;
   if (!displaySolves || displaySolves.length === 0) return <EmptySolves/>;
 
   const filterSolves = filterData(displaySolves, [
@@ -125,47 +125,47 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
                 handleOpenDialogSolve({ solve: sortedSolves[index] });
               }}
             >
-              View Details
+              {t("SolvesPage.dropdown.view-details")}
             </DropdownMenuItem>
             <DropdownMenuSeparator/>
             {tabMode === DisplaySolvesTabs.SESSION && (
               <DropdownMenuItem
                 onClick={() => router.push(`/transfer-solves?source-collection=${selectedCube.id}`)}
               >
-                <ArrowRightLeftIcon className="mr-2 h-4 w-4"/> Transfer Collection
+                <ArrowRightLeftIcon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.transfer-collection")}
               </DropdownMenuItem>
             )}
             <DropdownMenuItem
               onClick={() => handleBookmarkSolve(sortedSolves[index], "solves-area")}
             >
               {sortedSolves[index].bookmark ? (
-                <><BookmarkFilledIcon className="mr-2 h-4 w-4"/> Remove Bookmark</>
+                <><BookmarkFilledIcon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.remove-bookmark")}</>
               ) : (
-                <><BookmarkIcon className="mr-2 h-4 w-4"/> Add Bookmark</>
+                <><BookmarkIcon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.add-bookmark")}</>
               )}
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => handlePenaltyPlus2(sortedSolves[index], "solves-area")}
             >
               <span className="mr-2 font-bold">+2</span>
-              {sortedSolves[index].plus2 ? "Remove Penalty" : "Add Penalty"}
+              {sortedSolves[index].plus2 ? t("SolvesPage.dropdown.remove-penalty") : t("SolvesPage.dropdown.add-penalty")}
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => handleClipboardSolve(sortedSolves[index])}
             >
-              <CopyIcon className="mr-2 h-4 w-4"/> Copy to Clipboard
+              <CopyIcon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.copy-to-clipboard")}
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => handleMoveToHistory(sortedSolves[index], "solves-area")}
             >
-              <CubeIcon className="mr-2 h-4 w-4"/> Move to History
+              <CubeIcon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.move-to-history")}
             </DropdownMenuItem>
             <DropdownMenuSeparator/>
             <DropdownMenuItem
               onClick={() => handleDeleteSolve(sortedSolves[index], "solves-area")}
               className="text-red-500"
             >
-              <Cross1Icon className="mr-2 h-4 w-4"/> Delete Solve
+              <Cross1Icon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.delete-solve")}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

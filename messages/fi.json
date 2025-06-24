@@ -34,7 +34,8 @@
       "time": "Aika",
       "alert": {
         "empty-cubes": "Kuutiota ei ole valittu. \nValitse yksi.",
-        "title": "Huomio!"
+        "title": "Huomio!",
+        "select-cube": "Aloita kuution valitseminen!"
       },
       "dialogs": {
         "move-to-history": "Siirretäänkö ratkaisut historiaan?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Siirrä ratkaisut historiaan"
       },
-      "show": "Show"
+      "show": "Show",
+      "dropdown": {
+        "add-bookmark": "Lisää kirjanmerkki",
+        "add-penalty": "Lisätä rangaistusta",
+        "copy-to-clipboard": "Kopioi leikepöydälle",
+        "delete-solve": "Poistaa ratkaista",
+        "move-to-history": "Siirtyä historiaan",
+        "remove-bookmark": "Poista kirjanmerkki",
+        "remove-penalty": "Poistaa rangaistus",
+        "transfer-collection": "Siirtokokoelma",
+        "view-details": "Katso yksityiskohdat"
+      }
     },
     "StatsPage": {
       "title": "Tilastot",
@@ -72,7 +84,15 @@
       "average": "Keskiarvo",
       "time-spent": "Kulunut aika",
       "success-rate": "Onnistumisprosentti",
-      "counter": "Laskuri"
+      "counter": "Laskuri",
+      "category-tab": "Luokka",
+      "cube-all-tooltip": "Yhdistää kaikki historialliset ja istunnot ratkaisee vain valitulle kuutiolle.",
+      "cube-session-tooltip": "Laske vain istunto ratkaisee vain valitulle kuutiolle.",
+      "cube-tab": "Kuutio",
+      "empty-statistics": "Tilastoja ei ole käytettävissä",
+      "empty-statistics-description": "Näyttää siltä, ​​että Solve -holvi on tällä hetkellä tyhjä.",
+      "global-tooltip": "Yhdistää kaikki historialliset ja istunnot ratkaisee jokaiselle kuutiolle samassa luokassa.",
+      "sessions-tooltip": "Laskee vain istunnon ratkaisee jokaiselle kuutiolle samassa luokassa."
     },
     "CubesPage": {
       "title": "Kuutiot",
@@ -87,7 +107,13 @@
       "name": "Nimi",
       "new-collection": "Uusi kokoelma",
       "delete": "Poistaa",
-      "edit": "Muokata"
+      "edit": "Muokata",
+      "chart-solves-label": "Ratkaista",
+      "created": "Luotu",
+      "no-cubes-description": "Aloita kuutiokokoelmien lisääminen holviin nähdäksesi ne täällä.",
+      "no-solve-data": "Ei ratkaise tietoja",
+      "solves-label": "Ratkaista",
+      "total": "kokonais-"
     },
     "Cubes-modal": {
       "category": "Luokka",
@@ -118,7 +144,8 @@
       "back": "Takaisin",
       "sign-in-google": "Kirjaudu sisään Googlella",
       "no-results": "Tuloksia ei löytynyt",
-      "search": "Haku..."
+      "search": "Haku...",
+      "menu": "Valikko"
     },
     "Settings-menu": {
       "locale": "Paikka",
@@ -155,7 +182,11 @@
       "light": "Kevyt",
       "system": "Järjestelmä",
       "newPersonalBest": "Uusi henkilökohtainen paras",
-      "close": "X"
+      "close": "X",
+      "decimal-places": "Desimaalit",
+      "fullscreen": "Koko näytön",
+      "hold-to-start-time": "Pitää aloitusaika",
+      "inspection-time": "Tarkastusaika"
     },
     "backup-modal": {
       "title": "Älykäs varmuuskopiointi ja palautus",
@@ -222,6 +253,21 @@
       "session-stats": "Näytä nykyisen ratkaisuistunnon tilastot",
       "start-cue": "Näytä visuaalinen vihje, kun ajastin on valmis aloittamaan",
       "worst-time-alert": "Näytä hälytys, kun saat pahimman ajan istunnossa"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Keräyskohde",
+      "collection-origin": "Kokoelma",
+      "cubes-unavailable": "Kuutiotietoja ei ole saatavilla",
+      "deselect-all": "Poistaa kaikki valinta",
+      "empty-vault": "Ratkaisuholvi on tällä hetkellä tyhjä.",
+      "failed-transfer": "Ratkaisun siirtäminen epäonnistui. \nYritä uudelleen.",
+      "no-solves": "Ei ratkaisua saatavilla",
+      "select-all": "Valitse kaikki",
+      "solves-selected": "Ratkaisee: ({count} valittu)",
+      "success-transfer": "Siirretty onnistuneesti {kreivi} ratkaisee {lähde} - {kohde}",
+      "title": "Siirtoratkaisut",
+      "transfer": "Siirtää",
+      "transferring": "Siirtyminen ..."
     }
   },
   "Metadata": {

@@ -72,7 +72,7 @@ export default function Page() {
 
             <MenuInputOption
               name={"timer.inspectionTime"}
-              label={"Inspection time"}
+              label={t("Settings-menu.inspection-time")}
               control={control}
               inputProps={{ min: 5000, max: 60000, step: 1000 }}
               description={t("Settings-descriptions.inspection-time")}
@@ -94,7 +94,7 @@ export default function Page() {
 
             <MenuInputOption
               name={"timer.holdToStartTime"}
-              label={"Hold to start time"}
+              label={t("Settings-menu.hold-to-start-time")}
               control={control}
               inputProps={{ min: 300, max: 1000, step: 100 }}
               description={t("Settings-descriptions.hold-to-start-time")}
@@ -109,7 +109,7 @@ export default function Page() {
 
             <MenuInputOption
               name={"timer.decimals"}
-              label={"Decimal places"}
+              label={t("Settings-menu.decimal-places")}
               control={control}
               inputProps={{ max: 4, min: 1, step: 1 }}
               description={t("Settings-descriptions.decimal-places")}
@@ -195,7 +195,7 @@ export default function Page() {
               name={"sounds.newPersonalBest"}
               label={t("Settings-menu.newPersonalBest")}
               control={control}
-              description="Play a sound when you achieve a new personal best time"
+              description={t("Settings-descriptions.new-personal-best-sound")}
             />
           </MenuSection>
 

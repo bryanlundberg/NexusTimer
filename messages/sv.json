@@ -34,7 +34,8 @@
       "time": "Tid",
       "alert": {
         "empty-cubes": "Ingen kub har valts. \nVänligen välj en.",
-        "title": "Uppmärksamhet!"
+        "title": "Uppmärksamhet!",
+        "select-cube": "Börja välja en kub!"
       },
       "dialogs": {
         "move-to-history": "Flytta lösningar till historien?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Flytta löser till historien"
       },
-      "show": "Visa"
+      "show": "Visa",
+      "dropdown": {
+        "add-bookmark": "Lägg till bokmärke",
+        "add-penalty": "Lägga till påföljd",
+        "copy-to-clipboard": "Kopiera till Urklipp",
+        "delete-solve": "Ta bort lösa",
+        "move-to-history": "Flytta till historien",
+        "remove-bookmark": "Ta bort bokmärket",
+        "remove-penalty": "Ta bort straff",
+        "transfer-collection": "Överföring",
+        "view-details": "Visa detaljer"
+      }
     },
     "StatsPage": {
       "title": "Statistik",
@@ -72,7 +84,15 @@
       "average": "Genomsnitt",
       "time-spent": "Tid spenderad",
       "success-rate": "Framgångsgrad",
-      "counter": "Räknare"
+      "counter": "Räknare",
+      "category-tab": "Kategori",
+      "cube-all-tooltip": "Kombinerar alla historiska och sessionslösningar för endast den valda kuben.",
+      "cube-session-tooltip": "Räknar endast session löser för endast den valda kuben.",
+      "cube-tab": "Kub",
+      "empty-statistics": "Ingen statistik tillgänglig",
+      "empty-statistics-description": "Det ser ut som att ditt lös valv för närvarande är tomt.",
+      "global-tooltip": "Kombinerar alla historiska och sessionslösningar för varje kub i samma kategori.",
+      "sessions-tooltip": "Räknar endast session löser för varje kub i samma kategori."
     },
     "CubesPage": {
       "title": "Kuber",
@@ -87,7 +107,13 @@
       "name": "Namn",
       "new-collection": "Ny kollektion",
       "delete": "Radera",
-      "edit": "Redigera"
+      "edit": "Redigera",
+      "chart-solves-label": "Löser",
+      "created": "Skapad",
+      "no-cubes-description": "Börja lägga till kubsamlingar till ditt valv för att se dem här.",
+      "no-solve-data": "Inga tillgängliga data tillgängliga",
+      "solves-label": "Löser",
+      "total": "total"
     },
     "Cubes-modal": {
       "category": "Kategori",
@@ -118,7 +144,8 @@
       "back": "Tillbaka",
       "sign-in-google": "Logga in med Google",
       "no-results": "Inga resultat hittades",
-      "search": "Söka..."
+      "search": "Söka...",
+      "menu": "Meny"
     },
     "Settings-menu": {
       "locale": "Region",
@@ -155,7 +182,11 @@
       "light": "Ljus",
       "system": "System",
       "newPersonalBest": "Nytt personligt bäst",
-      "close": "X"
+      "close": "X",
+      "decimal-places": "Decimalplatser",
+      "fullscreen": "Fullskärm",
+      "hold-to-start-time": "Håll i starttid",
+      "inspection-time": "Inspektionstid"
     },
     "backup-modal": {
       "title": "Intelligent Backup Restoration",
@@ -222,6 +253,21 @@
       "session-stats": "Visa statistik för den aktuella lösningssessionen",
       "start-cue": "Visa en visuell ledtråd när timern är redo att starta",
       "worst-time-alert": "Visa en varning när du får din värsta tid i en session"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Samling",
+      "collection-origin": "Insamlings ursprung",
+      "cubes-unavailable": "Kuber Data är inte tillgängliga",
+      "deselect-all": "Avmarkera alla",
+      "empty-vault": "Ditt lösningsvalv är för närvarande tomt.",
+      "failed-transfer": "Det gick inte att överföra lösningar. \nFörsök igen.",
+      "no-solves": "Inga lösningar tillgängliga",
+      "select-all": "Välj alla",
+      "solves-selected": "Löser: ({greve} vald)",
+      "success-transfer": "Framgångsrikt överförd {count} löser från {källa} till {destination}",
+      "title": "Överföringslösningar",
+      "transfer": "Överföra",
+      "transferring": "Överföring ..."
     }
   },
   "Metadata": {

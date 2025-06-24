@@ -34,7 +34,8 @@
       "time": "Temps",
       "alert": {
         "empty-cubes": "Aucun cube sélectionné. \nVeuillez en choisir un.",
-        "title": "Attention!"
+        "title": "Attention!",
+        "select-cube": "Commencez à sélectionner un cube!"
       },
       "dialogs": {
         "move-to-history": "Déplacer les résolutions vers l'historique ?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Déplacer les résolutions vers l'historique"
       },
-      "show": "Montrer"
+      "show": "Montrer",
+      "dropdown": {
+        "add-bookmark": "Ajouter des signets",
+        "add-penalty": "Ajouter une pénalité",
+        "copy-to-clipboard": "Copier dans le presse-papiers",
+        "delete-solve": "Supprimer la résolution",
+        "move-to-history": "Passer à l'histoire",
+        "remove-bookmark": "Supprimer les signets",
+        "remove-penalty": "Enlever la pénalité",
+        "transfer-collection": "Collection de transfert",
+        "view-details": "Afficher les détails"
+      }
     },
     "StatsPage": {
       "title": "Statistiques",
@@ -72,7 +84,15 @@
       "average": "Moyenne",
       "time-spent": "Temps passé",
       "success-rate": "Taux de réussite",
-      "counter": "Compteur"
+      "counter": "Compteur",
+      "category-tab": "Catégorie",
+      "cube-all-tooltip": "Combine toutes les résolus historiques et session pour le cube sélectionné.",
+      "cube-session-tooltip": "Count Seule la session résout uniquement pour le cube sélectionné.",
+      "cube-tab": "Cube",
+      "empty-statistics": "Aucune statistique disponible",
+      "empty-statistics-description": "Il semble que votre coffre-fort soit actuellement vide.",
+      "global-tooltip": "Combine toutes les résolus historiques et session pour chaque cube dans la même catégorie.",
+      "sessions-tooltip": "Le compte uniquement la session résout pour chaque cube de la même catégorie."
     },
     "CubesPage": {
       "title": "Cubes",
@@ -87,7 +107,13 @@
       "name": "Nom",
       "new-collection": "Nouvelle collection",
       "delete": "Supprimer",
-      "edit": "Modifier"
+      "edit": "Modifier",
+      "chart-solves-label": "Solution",
+      "created": "Créé",
+      "no-cubes-description": "Commencez à ajouter des collections de cubes à votre coffre-fort pour les voir ici.",
+      "no-solve-data": "Pas de données de résolution disponibles",
+      "solves-label": "Solution",
+      "total": "total"
     },
     "Cubes-modal": {
       "category": "Catégorie",
@@ -118,7 +144,8 @@
       "back": "Dos",
       "sign-in-google": "Connectez-vous avec Google",
       "no-results": "Aucun résultat trouvé",
-      "search": "Recherche..."
+      "search": "Recherche...",
+      "menu": "Menu"
     },
     "Settings-menu": {
       "locale": "Région",
@@ -155,7 +182,11 @@
       "light": "Lumière",
       "system": "Système",
       "newPersonalBest": "Nouveau record personnel",
-      "close": "X"
+      "close": "X",
+      "decimal-places": "Décimal",
+      "fullscreen": "Plein écran",
+      "hold-to-start-time": "Tenir à l'heure de début",
+      "inspection-time": "Temps d'inspection"
     },
     "backup-modal": {
       "title": "Restauration de sauvegarde intelligente",
@@ -222,6 +253,21 @@
       "session-stats": "Afficher les statistiques pour la session de résolution actuelle",
       "start-cue": "Montrer un repère visuel lorsque la minuterie est prête à commencer",
       "worst-time-alert": "Montrez une alerte lorsque vous obtenez votre pire moment dans une session"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Destination de collecte",
+      "collection-origin": "Collection Origin",
+      "cubes-unavailable": "Les données des cubes ne sont pas disponibles",
+      "deselect-all": "Désélectionner tout",
+      "empty-vault": "Votre coffre-fort est actuellement vide.",
+      "failed-transfer": "Échec du transfert des résolus. \nVeuillez réessayer.",
+      "no-solves": "Pas de résolution disponible",
+      "select-all": "Sélectionnez tout",
+      "solves-selected": "Résout: ({count} sélectionné)",
+      "success-transfer": "Transféré avec succès {count} résout de {source} vers {Destination}",
+      "title": "Solves de transfert",
+      "transfer": "Transfert",
+      "transferring": "Transfert ..."
     }
   },
   "Metadata": {

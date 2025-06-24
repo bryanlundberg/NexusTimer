@@ -34,7 +34,8 @@
       "ascending": "上昇",
       "alert": {
         "empty-cubes": "キューブが選択されていません。 \n1 つお選びください。",
-        "title": "注意！"
+        "title": "注意！",
+        "select-cube": "キューブの選択を開始してください！"
       },
       "dialogs": {
         "move-to-history": "ソルブを履歴に移動しますか?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "ソルブを履歴に移動する"
       },
-      "show": "見せる"
+      "show": "見せる",
+      "dropdown": {
+        "add-bookmark": "ブックマークを追加します",
+        "add-penalty": "ペナルティを追加します",
+        "copy-to-clipboard": "クリップボードにコピーします",
+        "delete-solve": "削除しますsolve",
+        "move-to-history": "歴史に移動します",
+        "remove-bookmark": "ブックマークを削除します",
+        "remove-penalty": "ペナルティを削除します",
+        "transfer-collection": "転送コレクション",
+        "view-details": "詳細を表示します"
+      }
     },
     "StatsPage": {
       "title": "統計",
@@ -72,7 +84,15 @@
       "average": "平均",
       "time-spent": "経過時間",
       "success-rate": "成功率",
-      "counter": "カウンター"
+      "counter": "カウンター",
+      "category-tab": "カテゴリ",
+      "cube-all-tooltip": "選択したキューブのみについて、すべての履歴とセッションの解決を組み合わせます。",
+      "cube-session-tooltip": "選択したキューブのみのセッションのみが解決します。",
+      "cube-tab": "キューブ",
+      "empty-statistics": "統計はありません",
+      "empty-statistics-description": "Solve Vaultは現在空です。",
+      "global-tooltip": "同じカテゴリのすべてのキューブのすべての履歴とセッションの解決を組み合わせます。",
+      "sessions-tooltip": "同じカテゴリのすべてのキューブに対してのみセッションのみが解決します。"
     },
     "CubesPage": {
       "title": "キューブ",
@@ -87,7 +107,13 @@
       "name": "名前",
       "new-collection": "新しいコレクション",
       "delete": "消去",
-      "edit": "編集"
+      "edit": "編集",
+      "chart-solves-label": "解決します",
+      "created": "作成されました",
+      "no-cubes-description": "ボールトにキューブコレクションを追加して、ここで表示します。",
+      "no-solve-data": "利用可能なデータは解決しません",
+      "solves-label": "解決します",
+      "total": "合計"
     },
     "Cubes-modal": {
       "category": "カテゴリ",
@@ -118,7 +144,8 @@
       "back": "戻る",
       "sign-in-google": "Googleでサインイン",
       "no-results": "結果が見つかりませんでした",
-      "search": "検索..."
+      "search": "検索...",
+      "menu": "メニュー"
     },
     "Settings-menu": {
       "locale": "ロケール",
@@ -155,7 +182,11 @@
       "light": "ライト",
       "system": "システム",
       "newPersonalBest": "新しい個人的なベスト",
-      "close": "x"
+      "close": "x",
+      "decimal-places": "小数の場所",
+      "fullscreen": "全画面表示",
+      "hold-to-start-time": "開始時間を保持します",
+      "inspection-time": "検査時間"
     },
     "backup-modal": {
       "title": "インテリジェントバックアップの復元",
@@ -222,6 +253,21 @@
       "session-stats": "現在の解決セッションの統計を表示します",
       "start-cue": "タイマーの開始準備ができたら視覚的な手がかりを表示する",
       "worst-time-alert": "セッションで最悪の時間を取得したらアラートを表示します"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "収集先",
+      "collection-origin": "コレクションの起源",
+      "cubes-unavailable": "キューブのデータは利用できません",
+      "deselect-all": "すべてを解決します",
+      "empty-vault": "あなたのSolve Vaultは現在空です。",
+      "failed-transfer": "解決に失敗しました。\nもう一度やり直してください。",
+      "no-solves": "解決策はありません",
+      "select-all": "すべてを選択します",
+      "solves-selected": "解決：（ {count}選択）",
+      "success-transfer": "正常に転送された{count}解決{source}から{destination}に解決します",
+      "title": "転送は解決します",
+      "transfer": "移行",
+      "transferring": "転送..."
     }
   },
   "Metadata": {

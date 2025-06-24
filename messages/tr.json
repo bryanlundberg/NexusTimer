@@ -34,7 +34,8 @@
       "time": "Zaman",
       "alert": {
         "empty-cubes": "Hiçbir küp seçilmedi. \nLütfen birini seçin.",
-        "title": "Dikkat!"
+        "title": "Dikkat!",
+        "select-cube": "Bir küp seçmeye başlayın!"
       },
       "dialogs": {
         "move-to-history": "Taşınma geçmişi çözer mi?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Taşıma geçmişi çözer"
       },
-      "show": "Göstermek"
+      "show": "Göstermek",
+      "dropdown": {
+        "add-bookmark": "Yer İşareti Ekle",
+        "add-penalty": "Ceza Ekle",
+        "copy-to-clipboard": "Panoya Kopyala",
+        "delete-solve": "Sil Çözme",
+        "move-to-history": "Tarihe Taşın",
+        "remove-bookmark": "Bookmark'ı Kaldır",
+        "remove-penalty": "Cezayı kaldır",
+        "transfer-collection": "Transfer toplama",
+        "view-details": "Ayrıntıları Görüntüle"
+      }
     },
     "StatsPage": {
       "title": "İstatistikler",
@@ -72,7 +84,15 @@
       "average": "Ortalama",
       "time-spent": "Harcanan Zaman",
       "success-rate": "Başarı Oranı",
-      "counter": "Sayaç"
+      "counter": "Sayaç",
+      "category-tab": "Kategori",
+      "cube-all-tooltip": "Yalnızca seçilen küp için tüm geçmiş ve oturum çözmelerini birleştirir.",
+      "cube-session-tooltip": "Yalnızca seans sayılar, yalnızca seçilen küp için çözülür.",
+      "cube-tab": "Küp",
+      "empty-statistics": "İstatistik yok",
+      "empty-statistics-description": "Görünüşe göre Solve kasanız şu anda boş.",
+      "global-tooltip": "Aynı kategorideki her küp için tüm geçmiş ve oturum çözmelerini birleştirir.",
+      "sessions-tooltip": "Yalnızca Oturum sayar Aynı kategorideki her küp için çözülür."
     },
     "CubesPage": {
       "title": "Küpler",
@@ -87,7 +107,13 @@
       "name": "İsim",
       "new-collection": "Yeni koleksiyon",
       "delete": "Silmek",
-      "edit": "Düzenlemek"
+      "edit": "Düzenlemek",
+      "chart-solves-label": "Çözer",
+      "created": "Yaratılmış",
+      "no-cubes-description": "Burada görmek için kasanıza küp koleksiyonları eklemeye başlayın.",
+      "no-solve-data": "Çözme verisi yok",
+      "solves-label": "Çözer",
+      "total": "toplam"
     },
     "Cubes-modal": {
       "category": "Kategori",
@@ -118,7 +144,8 @@
       "back": "Geri",
       "sign-in-google": "Google ile Oturum Açın",
       "no-results": "Sonuç bulunamadı",
-      "search": "Aramak..."
+      "search": "Aramak...",
+      "menu": "Menü"
     },
     "Settings-menu": {
       "locale": "Bölge",
@@ -155,7 +182,11 @@
       "light": "Işık",
       "system": "Sistem",
       "newPersonalBest": "Yeni Kişisel En İyi",
-      "close": "X"
+      "close": "X",
+      "decimal-places": "Ondalık yerler",
+      "fullscreen": "Tam ekran",
+      "hold-to-start-time": "Başlamak için Tut Tut",
+      "inspection-time": "Denetim süresi"
     },
     "backup-modal": {
       "title": "Akıllı Yedekleme Kurtarma",
@@ -222,6 +253,21 @@
       "session-stats": "Mevcut çözme oturumu için istatistikleri görüntüleyin",
       "start-cue": "Zamanlayıcı başlamaya hazır olduğunda görsel bir işaret gösterin",
       "worst-time-alert": "Bir oturumda en kötü zamanınızı aldığınızda bir uyarı gösterin"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Toplama hedefi",
+      "collection-origin": "Toplama kökenli",
+      "cubes-unavailable": "Küp verileri mevcut değil",
+      "deselect-all": "Hepsini reddet",
+      "empty-vault": "Solve kasanız şu anda boş.",
+      "failed-transfer": "Çözme aktarılamadı. \nLütfen tekrar deneyin.",
+      "no-solves": "Çözme yok",
+      "select-all": "Hepsini seç",
+      "solves-selected": "Çözme: ({Count} seçildi)",
+      "success-transfer": "{Count} 'dan {source}' dan {obint} 'e çözülür başarıyla aktarıldı",
+      "title": "Transfer Çözüyor",
+      "transfer": "Transfer etmek",
+      "transferring": "Transfer ..."
     }
   },
   "Metadata": {

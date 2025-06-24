@@ -26,8 +26,8 @@ export default function CategoryStatistics() {
             <>
               <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3 w-full">
                 <TabsList className="w-full justify-between">
-                  <TabsTrigger value={StatisticsTabs.CATEGORY} className={"w-full"}>Category</TabsTrigger>
-                  <TabsTrigger value={StatisticsTabs.CUBE} className={"w-full"}>Cube</TabsTrigger>
+                  <TabsTrigger value={StatisticsTabs.CATEGORY} className={"w-full"}>{t("StatsPage.category-tab")}</TabsTrigger>
+                  <TabsTrigger value={StatisticsTabs.CUBE} className={"w-full"}>{t("StatsPage.cube-tab")}</TabsTrigger>
                 </TabsList>
                 <TabsContent value={StatisticsTabs.CATEGORY}>
                   <LineCharter dataSet={stats.data.global}/>
@@ -54,7 +54,7 @@ export default function CategoryStatistics() {
                       </div>
                     </TooltipTrigger>
                     <TooltipContent side={"bottom"} className={"max-w-xs"}>
-                      <p>Combines all historical and session solves for every cube in the same category.</p>
+                      <p>{t("StatsPage.global-tooltip")}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -69,7 +69,7 @@ export default function CategoryStatistics() {
                       </div>
                     </TooltipTrigger>
                     <TooltipContent side={"bottom"} className={"max-w-xs"}>
-                      <p>Counts only session solves for every cube in the same category.</p>
+                      <p>{t("StatsPage.sessions-tooltip")}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -84,7 +84,7 @@ export default function CategoryStatistics() {
                       </div>
                     </TooltipTrigger>
                     <TooltipContent side={"bottom"} className={"max-w-xs"}>
-                      <p>Combines all historical and session solves for only the selected cube.</p>
+                      <p>{t("StatsPage.cube-all-tooltip")}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -99,7 +99,7 @@ export default function CategoryStatistics() {
                       </div>
                     </TooltipTrigger>
                     <TooltipContent side={"bottom"} className={"max-w-xs"}>
-                      <p>Counts only session solves for only the selected cube.</p>
+                      <p>{t("StatsPage.cube-session-tooltip")}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>

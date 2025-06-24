@@ -36,7 +36,19 @@
       "last": "Último",
       "alert": {
         "empty-cubes": "No se seleccionó ningún cubo. \nPor favor elige uno.",
-        "title": "¡Atención!"
+        "title": "¡Atención!",
+        "select-cube": "¡Comienza seleccionando un cubo!"
+      },
+      "dropdown": {
+        "view-details": "Ver Detalles",
+        "transfer-collection": "Transferir Colección",
+        "remove-bookmark": "Eliminar Marcador",
+        "add-bookmark": "Añadir Marcador",
+        "remove-penalty": "Eliminar Penalización",
+        "add-penalty": "Añadir Penalización",
+        "copy-to-clipboard": "Copiar al Portapapeles",
+        "move-to-history": "Mover al Historial",
+        "delete-solve": "Eliminar Solución"
       },
       "dialogs": {
         "move-to-history": "¿Mover las soluciones al historial?",
@@ -72,7 +84,15 @@
       "average": "Promedio",
       "time-spent": "Tiempo Gastado",
       "success-rate": "Tasa de Éxito",
-      "counter": "Contador"
+      "counter": "Contador",
+      "category-tab": "Categoría",
+      "cube-all-tooltip": "Combina todas las resoluciones históricas y de sesión solo para el cubo seleccionado.",
+      "cube-session-tooltip": "Cuenta solo la sesión resuelve solo para el cubo seleccionado.",
+      "cube-tab": "Cubo",
+      "global-tooltip": "Combina todas las resoluciones históricas y de sesión para cada cubo en la misma categoría.",
+      "sessions-tooltip": "Contiene solo la sesión de la sesión para cada cubo en la misma categoría.",
+      "empty-statistics": "No hay estadísticas disponibles",
+      "empty-statistics-description": "Parece que tu bóveda de soluciones está actualmente vacía."
     },
     "CubesPage": {
       "title": "Cubos",
@@ -87,7 +107,13 @@
       "name": "Nombre",
       "new-collection": "Nueva colección",
       "delete": "Borrar",
-      "edit": "Editar"
+      "edit": "Editar",
+      "chart-solves-label": "Resolución",
+      "created": "Creado",
+      "no-cubes-description": "Comience a agregar colecciones de cubos a su bóveda para verlas aquí.",
+      "no-solve-data": "No hay datos de resolución disponibles",
+      "solves-label": "Resolución",
+      "total": "total"
     },
     "Cubes-modal": {
       "category": "Categoría",
@@ -118,7 +144,8 @@
       "back": "Atrás",
       "sign-in-google": "Iniciar sesión con Google",
       "no-results": "No se encontraron resultados",
-      "search": "Buscar..."
+      "search": "Buscar...",
+      "menu": "Menú"
     },
     "Settings-menu": {
       "locale": "Región",
@@ -155,7 +182,11 @@
       "dark": "Oscuro",
       "light": "Luz",
       "system": "Sistema",
-      "close": "incógnita"
+      "close": "incógnita",
+      "decimal-places": "Lugares decimales",
+      "fullscreen": "Pantalla completa",
+      "hold-to-start-time": "Mantenga a la hora de inicio",
+      "inspection-time": "Tiempo de inspección"
     },
     "backup-modal": {
       "title": "Restauración Inteligente de Respaldo",
@@ -222,6 +253,21 @@
       "session-stats": "Mostrar estadísticas para la sesión de resolución actual",
       "start-cue": "Muestre una señal visual cuando el temporizador esté listo para comenzar",
       "worst-time-alert": "Muestre una alerta cuando obtenga su peor momento en una sesión"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Destino de recolección",
+      "collection-origin": "Origen de la recolección",
+      "cubes-unavailable": "Los datos de cubos no están disponibles",
+      "deselect-all": "Deseleccionar todo",
+      "empty-vault": "Su bóveda de resolución está actualmente vacía.",
+      "failed-transfer": "No se pudo transferir soluciones. \nPor favor intente de nuevo.",
+      "no-solves": "No resueltos disponibles",
+      "select-all": "Seleccionar todo",
+      "solves-selected": "Resueltos: ({count} seleccionado)",
+      "success-transfer": "Transferido con éxito {Count} se resuelve de {fuente} a {Destino}",
+      "title": "Transferir resueltos",
+      "transfer": "Transferir",
+      "transferring": "Transferir ..."
     }
   },
   "Metadata": {

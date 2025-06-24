@@ -34,7 +34,8 @@
       "ascending": "Oplopend",
       "alert": {
         "empty-cubes": "Geen kubus geselecteerd. \nKies er alstublieft één.",
-        "title": "Aandacht!"
+        "title": "Aandacht!",
+        "select-cube": "Begin met het selecteren van een kubus!"
       },
       "dialogs": {
         "move-to-history": "Verplaats oplossingen naar de geschiedenis?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Verplaats oplossingen voor de geschiedenis"
       },
-      "show": "Show"
+      "show": "Show",
+      "dropdown": {
+        "add-bookmark": "Voeg een bladwijzer toe",
+        "add-penalty": "Voeg straf toe",
+        "copy-to-clipboard": "Kopieer naar klembord",
+        "delete-solve": "Verwijderen oplossen",
+        "move-to-history": "Ga naar de geschiedenis",
+        "remove-bookmark": "Verwijder een bladwijzer",
+        "remove-penalty": "Verwijder de straf",
+        "transfer-collection": "Overdrachtscollectie",
+        "view-details": "Bekijk details"
+      }
     },
     "StatsPage": {
       "title": "Statistieken",
@@ -72,7 +84,15 @@
       "average": "Gemiddelde",
       "time-spent": "Tijd besteed",
       "success-rate": "Succespercentage",
-      "counter": "Teller"
+      "counter": "Teller",
+      "category-tab": "Categorie",
+      "cube-all-tooltip": "Combineert alle historische en sessie lost alleen op voor de geselecteerde kubus.",
+      "cube-session-tooltip": "Tellingen alleen sessie lost alleen op voor de geselecteerde kubus.",
+      "cube-tab": "Kubus",
+      "empty-statistics": "Geen statistieken beschikbaar",
+      "empty-statistics-description": "Het lijkt erop dat je oplosbare kluis momenteel leeg is.",
+      "global-tooltip": "Combineert alle historische en sessie lost op voor elke kubus in dezelfde categorie.",
+      "sessions-tooltip": "Tellingen alleen sessie lost op voor elke kubus in dezelfde categorie."
     },
     "CubesPage": {
       "title": "Kubussen",
@@ -87,7 +107,13 @@
       "name": "Naam",
       "new-collection": "Nieuwe collectie",
       "delete": "Verwijderen",
-      "edit": "Bewerking"
+      "edit": "Bewerking",
+      "chart-solves-label": "Lost op",
+      "created": "Gecreëerd",
+      "no-cubes-description": "Begin met het toevoegen van kubuscollecties aan uw kluis om ze hier te zien.",
+      "no-solve-data": "Geen beschikbare gegevens opgelost",
+      "solves-label": "Lost op",
+      "total": "totaal"
     },
     "Cubes-modal": {
       "category": "Categorie",
@@ -118,7 +144,8 @@
       "back": "Rug",
       "sign-in-google": "Log in met Google",
       "no-results": "Geen resultaten gevonden",
-      "search": "Zoekopdracht..."
+      "search": "Zoekopdracht...",
+      "menu": "Menu"
     },
     "Settings-menu": {
       "locale": "Locatie",
@@ -155,7 +182,11 @@
       "light": "Licht",
       "system": "Systeem",
       "newPersonalBest": "Nieuw persoonlijk beste",
-      "close": "X"
+      "close": "X",
+      "decimal-places": "Decimale plaatsen",
+      "fullscreen": "Op volledig scherm",
+      "hold-to-start-time": "Houd vast aan de starttijd",
+      "inspection-time": "Inspectietijd"
     },
     "backup-modal": {
       "title": "Intelligente Back-up Herstel",
@@ -222,6 +253,21 @@
       "session-stats": "Display statistieken voor de huidige oplossingssessie",
       "start-cue": "Toon een visuele keu wanneer de timer klaar is om te beginnen",
       "worst-time-alert": "Toon een waarschuwing wanneer u uw slechtste tijd krijgt in een sessie"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Verzamelbestemming",
+      "collection-origin": "Collection Origin",
+      "cubes-unavailable": "Cubes -gegevens zijn niet beschikbaar",
+      "deselect-all": "Deselecteer alles",
+      "empty-vault": "Uw oplosbare kluis is momenteel leeg.",
+      "failed-transfer": "Niet overgedragen opgelosts. \nProbeer het opnieuw.",
+      "no-solves": "Geen losts beschikbaar",
+      "select-all": "Selecteer alles",
+      "solves-selected": "Lost op: ({count} geselecteerd)",
+      "success-transfer": "Succesvol overgedragen {count} lost van {source} op tot {bestemming}",
+      "title": "Overdracht lost op",
+      "transfer": "Overdracht",
+      "transferring": "Overbrengen ..."
     }
   },
   "Metadata": {

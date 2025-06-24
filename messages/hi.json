@@ -34,7 +34,8 @@
       "time": "समय",
       "alert": {
         "empty-cubes": "कोई घन चयनित नहीं. \nएक का चयन करें।",
-        "title": "ध्यान!"
+        "title": "ध्यान!",
+        "select-cube": "एक क्यूब का चयन शुरू करें!"
       },
       "dialogs": {
         "move-to-history": "समाधानों को इतिहास में ले जाएँ?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "समाधानों को इतिहास में ले जाएँ"
       },
-      "show": "दिखाओ"
+      "show": "दिखाओ",
+      "dropdown": {
+        "add-bookmark": "बुकमार्क जोड़ें",
+        "add-penalty": "दंड जोड़ें",
+        "copy-to-clipboard": "क्लिपबोर्ड पर कॉपी करें",
+        "delete-solve": "हल करें",
+        "move-to-history": "इतिहास के लिए आगे बढ़ें",
+        "remove-bookmark": "बुकमार्क निकालें",
+        "remove-penalty": "जुर्माना निकालो",
+        "transfer-collection": "अंतरण संग्रह",
+        "view-details": "विवरण देखें"
+      }
     },
     "StatsPage": {
       "title": "आंकड़े",
@@ -72,7 +84,15 @@
       "average": "औसत",
       "time-spent": "बिताया हुआ समय",
       "success-rate": "सफलता दर",
-      "counter": "काउंटर"
+      "counter": "काउंटर",
+      "category-tab": "वर्ग",
+      "cube-all-tooltip": "केवल चयनित क्यूब के लिए सभी ऐतिहासिक और सत्र समाधानों को जोड़ती है।",
+      "cube-session-tooltip": "केवल चयनित क्यूब के लिए केवल सत्र हल करता है।",
+      "cube-tab": "घनक्षेत्र",
+      "empty-statistics": "कोई आँकड़े उपलब्ध नहीं हैं",
+      "empty-statistics-description": "ऐसा लगता है कि आपका हल वॉल्ट वर्तमान में खाली है।",
+      "global-tooltip": "एक ही श्रेणी में प्रत्येक क्यूब के लिए सभी ऐतिहासिक और सत्र समाधानों को जोड़ती है।",
+      "sessions-tooltip": "एक ही श्रेणी में प्रत्येक क्यूब के लिए केवल सत्र हल करता है।"
     },
     "CubesPage": {
       "title": "क्यूब",
@@ -87,7 +107,13 @@
       "name": "नाम",
       "new-collection": "नया संग्रह",
       "delete": "मिटाना",
-      "edit": "संपादन करना"
+      "edit": "संपादन करना",
+      "chart-solves-label": "हल करती है",
+      "created": "बनाया था",
+      "no-cubes-description": "उन्हें देखने के लिए अपनी तिजोरी में क्यूब कलेक्शंस जोड़ना शुरू करें।",
+      "no-solve-data": "कोई समाधान उपलब्ध नहीं है",
+      "solves-label": "हल करती है",
+      "total": "कुल"
     },
     "Cubes-modal": {
       "category": "वर्ग",
@@ -118,7 +144,8 @@
       "back": "पीछे",
       "sign-in-google": "Google से साइन इन करें",
       "no-results": "कोई परिणाम नहीं मिला",
-      "search": "खोज..."
+      "search": "खोज...",
+      "menu": "मेनू"
     },
     "Settings-menu": {
       "locale": "क्षेत्र",
@@ -155,7 +182,11 @@
       "light": "रोशनी",
       "system": "प्रणाली",
       "newPersonalBest": "नया व्यक्तिगत सर्वश्रेष्ठ",
-      "close": "एक्स"
+      "close": "एक्स",
+      "decimal-places": "दशमलव स्थानों",
+      "fullscreen": "पूर्ण स्क्रीन",
+      "hold-to-start-time": "समय शुरू करने के लिए पकड़ो",
+      "inspection-time": "निरीक्षण काल"
     },
     "backup-modal": {
       "title": "बुद्धिमान बैकअप पुनर्स्थापन",
@@ -222,6 +253,21 @@
       "session-stats": "वर्तमान समाधान सत्र के लिए आंकड़े प्रदर्शित करें",
       "start-cue": "जब टाइमर शुरू करने के लिए तैयार हो तो एक दृश्य क्यू दिखाएं",
       "worst-time-alert": "एक सत्र में अपना सबसे खराब समय मिलने पर एक अलर्ट दिखाएं"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "संग्रह गंतव्य",
+      "collection-origin": "संग्रह उत्पत्ति",
+      "cubes-unavailable": "क्यूब्स डेटा उपलब्ध नहीं है",
+      "deselect-all": "सबको अचयनित करो",
+      "empty-vault": "आपका हल वॉल्ट वर्तमान में खाली है।",
+      "failed-transfer": "समाधानों को स्थानांतरित करने में विफल। \nकृपया पुन: प्रयास करें।",
+      "no-solves": "कोई समाधान उपलब्ध नहीं है",
+      "select-all": "सबका चयन करें",
+      "solves-selected": "हल: ({गिनती} चयनित)",
+      "success-transfer": "सफलतापूर्वक स्थानांतरित {गिनती} {स्रोत} से {गंतव्य} तक हल करता है",
+      "title": "अंतरण समाधान",
+      "transfer": "स्थानांतरण",
+      "transferring": "स्थानांतरण ..."
     }
   },
   "Metadata": {

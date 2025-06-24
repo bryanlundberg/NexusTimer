@@ -34,7 +34,8 @@
       "time": "Thời gian",
       "alert": {
         "empty-cubes": "Không có khối nào được chọn. \nHãy chọn một.",
-        "title": "Chú ý!"
+        "title": "Chú ý!",
+        "select-cube": "Bắt đầu chọn một khối lập phương!"
       },
       "dialogs": {
         "move-to-history": "Di chuyển giải pháp vào lịch sử?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "Di chuyển các giải pháp vào lịch sử"
       },
-      "show": "Trình diễn"
+      "show": "Trình diễn",
+      "dropdown": {
+        "add-bookmark": "Thêm dấu trang",
+        "add-penalty": "Thêm hình phạt",
+        "copy-to-clipboard": "Sao chép vào bảng tạm",
+        "delete-solve": "Xóa giải quyết",
+        "move-to-history": "Chuyển đến lịch sử",
+        "remove-bookmark": "Xóa dấu trang",
+        "remove-penalty": "Loại bỏ hình phạt",
+        "transfer-collection": "Bộ sưu tập chuyển nhượng",
+        "view-details": "Xem chi tiết"
+      }
     },
     "StatsPage": {
       "title": "Thống kê",
@@ -72,7 +84,15 @@
       "average": "Trung bình",
       "time-spent": "Thời gian đã dùng",
       "success-rate": "Tỷ lệ thành công",
-      "counter": "Bộ đếm"
+      "counter": "Bộ đếm",
+      "category-tab": "Loại",
+      "cube-all-tooltip": "Kết hợp tất cả các giải quyết lịch sử và phiên chỉ cho khối lập phương được chọn.",
+      "cube-session-tooltip": "Chỉ tính phiên giải quyết chỉ cho khối lập phương được chọn.",
+      "cube-tab": "Khối lập phương",
+      "empty-statistics": "Không có số liệu thống kê có sẵn",
+      "empty-statistics-description": "Có vẻ như kho tiền giải quyết của bạn hiện đang trống.",
+      "global-tooltip": "Kết hợp tất cả các giải quyết lịch sử và phiên cho mỗi khối trong cùng một danh mục.",
+      "sessions-tooltip": "Chỉ tính phiên giải quyết cho mỗi khối trong cùng một danh mục."
     },
     "CubesPage": {
       "title": "Khối",
@@ -87,7 +107,13 @@
       "name": "Tên",
       "new-collection": "Bộ sưu tập mới",
       "delete": "Xóa bỏ",
-      "edit": "Biên tập"
+      "edit": "Biên tập",
+      "chart-solves-label": "Giải quyết",
+      "created": "Tạo",
+      "no-cubes-description": "Bắt đầu thêm các bộ sưu tập khối vào hầm của bạn để xem chúng ở đây.",
+      "no-solve-data": "Không có khả năng giải quyết dữ liệu",
+      "solves-label": "Giải quyết",
+      "total": "tổng cộng"
     },
     "Cubes-modal": {
       "category": "Loại",
@@ -118,7 +144,8 @@
       "back": "Mặt sau",
       "sign-in-google": "Đăng nhập bằng Google",
       "no-results": "Không tìm thấy kết quả nào",
-      "search": "Tìm kiếm..."
+      "search": "Tìm kiếm...",
+      "menu": "Menu"
     },
     "Settings-menu": {
       "locale": "Vùng",
@@ -155,7 +182,11 @@
       "light": "Ánh sáng",
       "system": "Hệ thống",
       "newPersonalBest": "Cá nhân mới tốt nhất",
-      "close": "X"
+      "close": "X",
+      "decimal-places": "Vị trí thập phân",
+      "fullscreen": "Toàn màn hình",
+      "hold-to-start-time": "Giữ thời gian bắt đầu",
+      "inspection-time": "Thời gian kiểm tra"
     },
     "backup-modal": {
       "title": "Khôi phục sao lưu thông minh",
@@ -222,6 +253,21 @@
       "session-stats": "Hiển thị số liệu thống kê cho phiên giải quyết hiện tại",
       "start-cue": "Hiển thị một gợi ý trực quan khi bộ hẹn giờ đã sẵn sàng để bắt đầu",
       "worst-time-alert": "Hiển thị cảnh báo khi bạn có thời gian tồi tệ nhất trong một phiên"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "Điểm đến bộ sưu tập",
+      "collection-origin": "Nguồn gốc bộ sưu tập",
+      "cubes-unavailable": "Dữ liệu khối không có sẵn",
+      "deselect-all": "Bỏ chọn tất cả",
+      "empty-vault": "Vault giải quyết của bạn hiện đang trống.",
+      "failed-transfer": "Không chuyển giải quyết. \nHãy thử lại.",
+      "no-solves": "Không có khả năng giải quyết",
+      "select-all": "Chọn tất cả",
+      "solves-selected": "Giải quyết: ({đếm} Đã chọn)",
+      "success-transfer": "Đã chuyển thành công {Count} giải quyết từ {nguồn} sang {đích}",
+      "title": "Chuyển giải quyết",
+      "transfer": "Chuyển khoản",
+      "transferring": "Chuyển giao ..."
     }
   },
   "Metadata": {

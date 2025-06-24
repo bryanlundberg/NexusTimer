@@ -34,7 +34,8 @@
       "time": "시간",
       "alert": {
         "empty-cubes": "선택한 큐브가 없습니다. \n하나를 선택해 주세요.",
-        "title": "주목!"
+        "title": "주목!",
+        "select-cube": "큐브 선택을 시작하십시오!"
       },
       "dialogs": {
         "move-to-history": "이동은 역사로 해결됩니까?",
@@ -62,7 +63,18 @@
       "tooltips": {
         "move-to-history": "이동은 기록으로 해결됩니다."
       },
-      "show": "보여주다"
+      "show": "보여주다",
+      "dropdown": {
+        "add-bookmark": "북마크 추가",
+        "add-penalty": "페널티를 추가하십시오",
+        "copy-to-clipboard": "클립 보드에 복사하십시오",
+        "delete-solve": "해결을 삭제하십시오",
+        "move-to-history": "역사로 이동하십시오",
+        "remove-bookmark": "북마크를 제거하십시오",
+        "remove-penalty": "페널티를 제거하십시오",
+        "transfer-collection": "전송 수집",
+        "view-details": "자세한 내용을보십시오"
+      }
     },
     "StatsPage": {
       "title": "통계",
@@ -72,7 +84,15 @@
       "average": "평균",
       "time-spent": "소요 시간",
       "success-rate": "성공률",
-      "counter": "카운터"
+      "counter": "카운터",
+      "category-tab": "범주",
+      "cube-all-tooltip": "선택한 큐브에 대해서만 모든 역사 및 세션 해결을 결합합니다.",
+      "cube-session-tooltip": "세션 만 선택한 큐브 만 해결합니다.",
+      "cube-tab": "입방체",
+      "empty-statistics": "사용 가능한 통계가 없습니다",
+      "empty-statistics-description": "당신의 해결 금고가 현재 비어있는 것 같습니다.",
+      "global-tooltip": "모든 큐브에 대한 모든 역사 및 세션 해결을 동일한 범주로 결합합니다.",
+      "sessions-tooltip": "카운트 세션 만 동일한 범주로 모든 큐브에 대해 해결합니다."
     },
     "CubesPage": {
       "title": "큐브",
@@ -87,7 +107,13 @@
       "name": "이름",
       "new-collection": "새로운 컬렉션",
       "delete": "삭제",
-      "edit": "편집하다"
+      "edit": "편집하다",
+      "chart-solves-label": "해결합니다",
+      "created": "생성",
+      "no-cubes-description": "금고에 큐브 컬렉션을 추가하여 여기에서 볼 수 있습니다.",
+      "no-solve-data": "사용 가능한 데이터를 해결하지 못했습니다",
+      "solves-label": "해결합니다",
+      "total": "총"
     },
     "Cubes-modal": {
       "category": "범주",
@@ -118,7 +144,8 @@
       "back": "뒤쪽에",
       "sign-in-google": "Google로 로그인",
       "no-results": "검색결과가 없습니다",
-      "search": "찾다..."
+      "search": "찾다...",
+      "menu": "메뉴"
     },
     "Settings-menu": {
       "locale": "로케일",
@@ -155,7 +182,11 @@
       "light": "빛",
       "system": "체계",
       "newPersonalBest": "새로운 개인 최고",
-      "close": "엑스"
+      "close": "엑스",
+      "decimal-places": "소수점 자리",
+      "fullscreen": "전체 화면",
+      "hold-to-start-time": "시작 시간을 유지하십시오",
+      "inspection-time": "검사 시간"
     },
     "backup-modal": {
       "title": "지능형 백업 복원",
@@ -222,6 +253,21 @@
       "session-stats": "현재 해결 세션에 대한 통계를 표시합니다",
       "start-cue": "타이머가 시작될 때 시각적 신호 표시",
       "worst-time-alert": "세션에서 최악의 시간을 보낼 때 경고 표시"
+    },
+    "TransferSolvesPage": {
+      "collection-destination": "컬렉션 목적지",
+      "collection-origin": "컬렉션 원산지",
+      "cubes-unavailable": "큐브 데이터를 사용할 수 없습니다",
+      "deselect-all": "모든 것을 선택 해제하십시오",
+      "empty-vault": "해결 금고는 현재 비어 있습니다.",
+      "failed-transfer": "옮기지 못했습니다. \n다시 시도하십시오.",
+      "no-solves": "사용 가능한 해결이 없습니다",
+      "select-all": "모두를 선택하십시오",
+      "solves-selected": "해결 : ({count} 선택)",
+      "success-transfer": "{count}를 성공적으로 전송 {source}에서 {destination}으로 해결합니다.",
+      "title": "전송 해결",
+      "transfer": "옮기다",
+      "transferring": "전송 ..."
     }
   },
   "Metadata": {
