@@ -1,6 +1,7 @@
 import { Themes } from "@/interfaces/types/Themes";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 
 interface Variation {
   bg: string;
@@ -12,17 +13,18 @@ interface Variation {
 export default function ThemeSelect() {
   const { backgroundImage, deleteBackgroundImage } = useBackgroundImageStore();
   const { setTheme, resolvedTheme } = useTheme();
+  const t = useTranslations("Index.Settings-menu");
   const variation: Variation[] = [
     {
       bg: "bg-neutral-100",
       text: "text-white",
-      name: "Light",
+      name: t("light"),
       key: "light",
     },
     {
       bg: "bg-zinc-950",
       text: "text-white",
-      name: "Dark",
+      name: t("dark"),
       key: "dark",
     },
   ];
@@ -59,7 +61,7 @@ export default function ThemeSelect() {
             onClick={deleteBackgroundImage}
             className="absolute top-0 -right-2 w-6 h-6 text-white rounded-xl bg-red-600 text-center align-middle hover:scale-110 transition duration-200 mt-1 me-1"
           >
-            X
+            {t("close")}
           </div>
         </div>
       )}
