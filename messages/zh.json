@@ -113,7 +113,9 @@
       "no-cubes-description": "开始在您的保险库中添加多维数据集的收藏品，以便在此处查看它们。",
       "no-solve-data": "没有可用的求解数据",
       "solves-label": "解决",
-      "total": "全部的"
+      "total": "全部的",
+      "marked-as-favorite": "被标记为最爱",
+      "removed-from-favorites": "从收藏夹中删除"
     },
     "Cubes-modal": {
       "category": "类别",

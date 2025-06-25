@@ -113,7 +113,9 @@
       "no-cubes-description": "Начните добавлять коллекции Cube в свое хранилище, чтобы увидеть их здесь.",
       "no-solve-data": "Нет доступных данных",
       "solves-label": "Решает",
-      "total": "общий"
+      "total": "общий",
+      "marked-as-favorite": "Отмечен как любимый",
+      "removed-from-favorites": "Удалено из фаворитов"
     },
     "Cubes-modal": {
       "category": "Категория",

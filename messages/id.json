@@ -113,7 +113,9 @@
       "no-cubes-description": "Mulailah menambahkan koleksi kubus ke lemari besi Anda untuk melihatnya di sini.",
       "no-solve-data": "Tidak ada data penyelesaian yang tersedia",
       "solves-label": "Memecahkan",
-      "total": "total"
+      "total": "total",
+      "marked-as-favorite": "Ditandai sebagai favorit",
+      "removed-from-favorites": "Dihapus dari favorit"
     },
     "Cubes-modal": {
       "category": "Kategori",

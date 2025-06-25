@@ -113,7 +113,9 @@
       "no-cubes-description": "Începeți să adăugați colecții de cuburi la seif pentru a le vedea aici.",
       "no-solve-data": "Nu există date de rezolvare disponibile",
       "solves-label": "Rezolvă",
-      "total": "total"
+      "total": "total",
+      "marked-as-favorite": "Marcat ca favorit",
+      "removed-from-favorites": "Eliminat din favorite"
     },
     "Cubes-modal": {
       "category": "Categorie",

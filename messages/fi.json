@@ -113,7 +113,9 @@
       "no-cubes-description": "Aloita kuutiokokoelmien lisääminen holviin nähdäksesi ne täällä.",
       "no-solve-data": "Ei ratkaise tietoja",
       "solves-label": "Ratkaista",
-      "total": "kokonais-"
+      "total": "kokonais-",
+      "marked-as-favorite": "Merkitty suosikki",
+      "removed-from-favorites": "Poistettu suosikkeista"
     },
     "Cubes-modal": {
       "category": "Luokka",

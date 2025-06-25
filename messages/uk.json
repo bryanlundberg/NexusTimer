@@ -113,7 +113,9 @@
       "no-cubes-description": "Почніть додавати колекції куба до свого склепіння, щоб побачити їх тут.",
       "no-solve-data": "Немає вирішення даних",
       "solves-label": "Вирішувати",
-      "total": "загальний"
+      "total": "загальний",
+      "marked-as-favorite": "Позначений як улюблений",
+      "removed-from-favorites": "Видалено з фаворитів"
     },
     "Cubes-modal": {
       "category": "Категорія",

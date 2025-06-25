@@ -113,7 +113,9 @@
       "no-cubes-description": "Inizia ad aggiungere raccolte di cube al tuo Vault per vederle qui.",
       "no-solve-data": "Nessuna risoluzione dei dati disponibili",
       "solves-label": "Risolve",
-      "total": "totale"
+      "total": "totale",
+      "marked-as-favorite": "Contrassegnato come favorito",
+      "removed-from-favorites": "Rimosso dai preferiti"
     },
     "Cubes-modal": {
       "category": "Categoria",

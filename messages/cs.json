@@ -113,7 +113,9 @@
       "no-cubes-description": "Začněte přidávat sbírky krychů do svého trezoru a vidět je zde.",
       "no-solve-data": "K dispozici nejsou žádná data vyřešit",
       "solves-label": "Řeší",
-      "total": "celkový"
+      "total": "celkový",
+      "marked-as-favorite": "Označeno jako oblíbené",
+      "removed-from-favorites": "Odstraněno z oblíbených"
     },
     "Cubes-modal": {
       "category": "Kategorie",

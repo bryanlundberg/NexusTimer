@@ -113,7 +113,9 @@
       "no-cubes-description": "Fügen Sie Ihrem Tresor Cube -Sammlungen hinzu, um sie hier zu sehen.",
       "no-solve-data": "Keine verfügbaren Daten verfügbar",
       "solves-label": "Löst",
-      "total": "gesamt"
+      "total": "gesamt",
+      "marked-as-favorite": "Markiert als Favorit",
+      "removed-from-favorites": "Aus Favoriten entfernt"
     },
     "Cubes-modal": {
       "category": "Kategorie",

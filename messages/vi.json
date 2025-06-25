@@ -113,7 +113,9 @@
       "no-cubes-description": "Bắt đầu thêm các bộ sưu tập khối vào hầm của bạn để xem chúng ở đây.",
       "no-solve-data": "Không có khả năng giải quyết dữ liệu",
       "solves-label": "Giải quyết",
-      "total": "tổng cộng"
+      "total": "tổng cộng",
+      "marked-as-favorite": "Được đánh dấu là yêu thích",
+      "removed-from-favorites": "Loại bỏ khỏi yêu thích"
     },
     "Cubes-modal": {
       "category": "Loại",

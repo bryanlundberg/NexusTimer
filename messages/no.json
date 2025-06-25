@@ -113,7 +113,9 @@
       "no-cubes-description": "Begynn å legge kubesamlinger til hvelvet ditt for å se dem her.",
       "no-solve-data": "Ingen løs data tilgjengelig",
       "solves-label": "Løser",
-      "total": "total"
+      "total": "total",
+      "marked-as-favorite": "Merket som favoritt",
+      "removed-from-favorites": "Fjernet fra favoritter"
     },
     "Cubes-modal": {
       "category": "Kategori",

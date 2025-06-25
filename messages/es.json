@@ -113,7 +113,9 @@
       "no-cubes-description": "Comience a agregar colecciones de cubos a su bóveda para verlas aquí.",
       "no-solve-data": "No hay datos de resolución disponibles",
       "solves-label": "Resolución",
-      "total": "total"
+      "total": "total",
+      "marked-as-favorite": "Marcado como favorito",
+      "removed-from-favorites": "Eliminado de los favoritos"
     },
     "Cubes-modal": {
       "category": "Categoría",

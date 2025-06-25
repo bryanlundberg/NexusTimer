@@ -113,7 +113,9 @@
       "no-cubes-description": "Začnite pridávať kolekcie kocky do svojho trezoru, aby ste ich videli tu.",
       "no-solve-data": "Žiadne riešenie údajov k dispozícii",
       "solves-label": "Riešiť",
-      "total": "súčet"
+      "total": "súčet",
+      "marked-as-favorite": "Označený ako obľúbený",
+      "removed-from-favorites": "Odstránené z obľúbených položiek"
     },
     "Cubes-modal": {
       "category": "Kategória",

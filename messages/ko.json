@@ -113,7 +113,9 @@
       "no-cubes-description": "금고에 큐브 컬렉션을 추가하여 여기에서 볼 수 있습니다.",
       "no-solve-data": "사용 가능한 데이터를 해결하지 못했습니다",
       "solves-label": "해결합니다",
-      "total": "총"
+      "total": "총",
+      "marked-as-favorite": "좋아하는 것으로 표시됩니다",
+      "removed-from-favorites": "즐겨 찾기에서 제거되었습니다"
     },
     "Cubes-modal": {
       "category": "범주",

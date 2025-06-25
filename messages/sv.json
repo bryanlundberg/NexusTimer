@@ -113,7 +113,9 @@
       "no-cubes-description": "Börja lägga till kubsamlingar till ditt valv för att se dem här.",
       "no-solve-data": "Inga tillgängliga data tillgängliga",
       "solves-label": "Löser",
-      "total": "total"
+      "total": "total",
+      "marked-as-favorite": "Markerad som favorit",
+      "removed-from-favorites": "Bort från favoriter"
     },
     "Cubes-modal": {
       "category": "Kategori",

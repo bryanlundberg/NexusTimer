@@ -113,7 +113,9 @@
       "no-cubes-description": "এগুলি এখানে দেখতে আপনার ভল্টে কিউব সংগ্রহগুলি যুক্ত করা শুরু করুন।",
       "no-solve-data": "কোনও সমাধান ডেটা উপলব্ধ নেই",
       "solves-label": "সমাধান করে",
-      "total": "মোট"
+      "total": "মোট",
+      "marked-as-favorite": "প্রিয় হিসাবে চিহ্নিত",
+      "removed-from-favorites": "প্রিয় থেকে সরানো"
     },
     "Cubes-modal": {
       "category": "শ্রেণী",

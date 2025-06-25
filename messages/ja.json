@@ -113,7 +113,9 @@
       "no-cubes-description": "ボールトにキューブコレクションを追加して、ここで表示します。",
       "no-solve-data": "利用可能なデータは解決しません",
       "solves-label": "解決します",
-      "total": "合計"
+      "total": "合計",
+      "marked-as-favorite": "お気に入りとしてマークされています",
+      "removed-from-favorites": "お気に入りから削除されました"
     },
     "Cubes-modal": {
       "category": "カテゴリ",

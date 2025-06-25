@@ -113,7 +113,9 @@
       "no-cubes-description": "Comece a adicionar coleções de cubos ao seu cofre para vê -las aqui.",
       "no-solve-data": "Nenhum dado de resolução disponível",
       "solves-label": "Resolve",
-      "total": "total"
+      "total": "total",
+      "marked-as-favorite": "Marcado como favorito",
+      "removed-from-favorites": "Removido dos favoritos"
     },
     "Cubes-modal": {
       "category": "Categoria",

@@ -113,7 +113,9 @@
       "no-cubes-description": "Zacznij dodawać kolekcje kostki do swojego sklepienia, aby je zobaczyć tutaj.",
       "no-solve-data": "Brak dostępnych danych",
       "solves-label": "Rozwiązuje",
-      "total": "całkowity"
+      "total": "całkowity",
+      "marked-as-favorite": "Oznaczony jako ulubiony",
+      "removed-from-favorites": "Usunięte z ulubionych"
     },
     "Cubes-modal": {
       "category": "Kategoria",

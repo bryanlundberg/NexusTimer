@@ -113,7 +113,9 @@
       "no-cubes-description": "Alustage oma võlvi lisamist oma võlvlisse, et neid siin näha.",
       "no-solve-data": "Andmeid ei lahenda saadaval",
       "solves-label": "Lahendama",
-      "total": "kogusumma"
+      "total": "kogusumma",
+      "marked-as-favorite": "Tähistatud lemmikna",
+      "removed-from-favorites": "Eemaldatud lemmikutest"
     },
     "Cubes-modal": {
       "category": "Kategooria",

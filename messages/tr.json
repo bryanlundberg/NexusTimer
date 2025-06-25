@@ -113,7 +113,9 @@
       "no-cubes-description": "Burada görmek için kasanıza küp koleksiyonları eklemeye başlayın.",
       "no-solve-data": "Çözme verisi yok",
       "solves-label": "Çözer",
-      "total": "toplam"
+      "total": "toplam",
+      "marked-as-favorite": "Favori olarak işaretlenmiş",
+      "removed-from-favorites": "Favorilerden kaldırıldı"
     },
     "Cubes-modal": {
       "category": "Kategori",

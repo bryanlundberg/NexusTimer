@@ -113,7 +113,9 @@
       "no-cubes-description": "Begin met het toevoegen van kubuscollecties aan uw kluis om ze hier te zien.",
       "no-solve-data": "Geen beschikbare gegevens opgelost",
       "solves-label": "Lost op",
-      "total": "totaal"
+      "total": "totaal",
+      "marked-as-favorite": "Gemiddeld als favoriet",
+      "removed-from-favorites": "Verwijderd uit favorieten"
     },
     "Cubes-modal": {
       "category": "Categorie",

@@ -113,7 +113,9 @@
       "no-cubes-description": "Commencez à ajouter des collections de cubes à votre coffre-fort pour les voir ici.",
       "no-solve-data": "Pas de données de résolution disponibles",
       "solves-label": "Solution",
-      "total": "total"
+      "total": "total",
+      "marked-as-favorite": "Marqué comme préféré",
+      "removed-from-favorites": "Retiré des favoris"
     },
     "Cubes-modal": {
       "category": "Catégorie",

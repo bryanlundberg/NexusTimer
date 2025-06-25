@@ -113,7 +113,9 @@
       "no-cubes-description": "Mula menambah koleksi kiub ke peti besi anda untuk melihatnya di sini.",
       "no-solve-data": "Tiada data menyelesaikan yang ada",
       "solves-label": "Menyelesaikan",
-      "total": "Jumlah"
+      "total": "Jumlah",
+      "marked-as-favorite": "Ditandakan sebagai kegemaran",
+      "removed-from-favorites": "Dikeluarkan dari kegemaran"
     },
     "Cubes-modal": {
       "category": "kategori",

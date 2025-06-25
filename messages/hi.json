@@ -113,7 +113,9 @@
       "no-cubes-description": "उन्हें देखने के लिए अपनी तिजोरी में क्यूब कलेक्शंस जोड़ना शुरू करें।",
       "no-solve-data": "कोई समाधान उपलब्ध नहीं है",
       "solves-label": "हल करती है",
-      "total": "कुल"
+      "total": "कुल",
+      "marked-as-favorite": "पसंदीदा के रूप में चिह्नित",
+      "removed-from-favorites": "पसंदीदा से हटा दिया गया"
     },
     "Cubes-modal": {
       "category": "वर्ग",

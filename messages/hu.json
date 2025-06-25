@@ -113,7 +113,9 @@
       "no-cubes-description": "Kezdje el hozzáadni a kockagyűjteményeket a boltozatához, hogy itt lássa őket.",
       "no-solve-data": "Nincs elérhető az adatok megoldása",
       "solves-label": "Megoldás",
-      "total": "teljes"
+      "total": "teljes",
+      "marked-as-favorite": "Kedvencnek jelölve",
+      "removed-from-favorites": "Eltávolítva a kedvencektől"
     },
     "Cubes-modal": {
       "category": "Kategória",
