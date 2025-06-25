@@ -48,7 +48,7 @@ export default function CategoryStatistics() {
                 <TooltipProvider delayDuration={200}>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <div className={"flex items-center gap-2"}>
+                      <div className={"inline-flex items-center gap-2"}>
                         {t("StatsPage.global")}
                         <InformationCircleIcon className={"size-5"}/>
                       </div>
@@ -63,7 +63,7 @@ export default function CategoryStatistics() {
                 <TooltipProvider delayDuration={200}>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <div className={"flex items-center gap-2"}>
+                      <div className={"inline-flex items-center gap-2"}>
                         {t("StatsPage.sessions")}
                         <InformationCircleIcon className={"size-5"}/>
                       </div>
@@ -78,7 +78,7 @@ export default function CategoryStatistics() {
                 <TooltipProvider delayDuration={200}>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <div className={"flex items-center gap-2"}>
+                      <div className={"inline-flex items-center gap-2"}>
                         C {t("SolvesPage.all")}
                         <InformationCircleIcon className={"size-5"}/>
                       </div>
@@ -93,7 +93,7 @@ export default function CategoryStatistics() {
                 <TooltipProvider delayDuration={200}>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <div className={"flex items-center gap-2"}>
+                      <div className={"inline-flex items-center gap-2"}>
                         C {t("SolvesPage.session")}
                         <InformationCircleIcon className={"size-5"}/>
                       </div>
