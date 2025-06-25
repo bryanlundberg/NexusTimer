@@ -137,6 +137,8 @@
       "created": "Created",
       "solves-label": "Solves",
       "total": "total",
+      "marked-as-favorite": "Marked as favorite",
+      "removed-from-favorites": "Removed from favorites",
       "no-solve-data": "No solve data available",
       "chart-solves-label": "Solves"
     },

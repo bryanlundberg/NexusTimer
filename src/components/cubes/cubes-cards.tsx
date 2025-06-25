@@ -12,6 +12,7 @@ import { useMemo } from "react";
 import { Badge } from "../ui/badge";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
+import { toast } from "sonner";
 
 interface CubesCardsProps {
   handleRedirectToTimer: (cubeId: string) => void;
@@ -182,6 +183,18 @@ export default function CubesCards({
   const t = useTranslations("Index");
   const { isOpen, type, closeDialog, openDialogType } = useDialogCubesOptions();
 
+  const handleFavoriteClickWithToast = (cubeId: string) => {
+    handleFavoriteClick(cubeId);
+    const cube = cubes.find(c => c.id === cubeId);
+    if (cube) {
+      const isFavorite = !cube.favorite;
+      toast(isFavorite ? t("CubesPage.marked-as-favorite") : t("CubesPage.removed-from-favorites"), {
+        description: cube.name,
+        icon: isFavorite ? "❤️" : "🤍",
+      });
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {cubes.map((cube) => (
@@ -196,7 +209,7 @@ export default function CubesCards({
               </CardTitle>
               <Button
                 variant={"ghost"}
-                onClick={() => handleFavoriteClick(cube.id)}
+                onClick={() => handleFavoriteClickWithToast(cube.id)}
                 size={"icon"}
                 className="h-8 w-8"
               >
