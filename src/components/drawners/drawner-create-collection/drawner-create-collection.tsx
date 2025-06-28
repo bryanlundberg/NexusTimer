@@ -90,6 +90,7 @@ export default function DrawerCreateCollection({
       <div className="p-3 space-y-2">
         <Label htmlFor="name">{t("Cubes-modal.name")}</Label>
         <Input
+          autoComplete={"off"}
           data-testid="drawer-input-name"
           id="name"
           placeholder="E.g: X Man Tornado V3 M"
