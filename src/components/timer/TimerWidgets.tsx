@@ -55,15 +55,15 @@ export default function TimerWidgets() {
 
   return (
     <>
-      <div className="flex flex-col gap-1 pb-1">
-        {!(isSolving || timerStatus !== TimerStatus.IDLE) && bestAverageAlert}
-        {!(isSolving || timerStatus !== TimerStatus.IDLE) && worstTimeAlert}
+      <div className={`flex flex-col gap-1 pb-1 ${!(isSolving || timerStatus !== TimerStatus.IDLE) ? "visible" : "invisible"}`} id="touch">
+        {!isSolving && bestAverageAlert}
+        {!isSolving && worstTimeAlert}
         <div
-          className="items-center justify-between w-full h-20 text-xs sm:h-20 md:h-24 lg:h-32 md:text-sm flex"
+          className="items-center justify-between w-full text-xs md:text-sm flex"
         >
-          {settings.features.sessionStats && !(isSolving || timerStatus !== TimerStatus.IDLE) && <OverviewPanel/>}
-          {settings.features.scrambleImage && !(isSolving || timerStatus !== TimerStatus.IDLE) && (<ScramblePanel />)}
-          {settings.features.sessionStats && !(isSolving || timerStatus !== TimerStatus.IDLE) && <StatisticsPanel />}
+          {settings.features.sessionStats && !isSolving && <OverviewPanel/>}
+          {settings.features.scrambleImage && !isSolving && (<ScramblePanel />)}
+          {settings.features.sessionStats && !isSolving && <StatisticsPanel />}
         </div>
       </div>
     </>

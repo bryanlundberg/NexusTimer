@@ -23,11 +23,18 @@ export default function ScrambleImagePanel() {
           className="w-full h-full"
         >
           <ScrambleDisplay
-            className="w-full h-full cursor-pointer"
+            className="min-w-32 mx-auto cursor-pointer w-fit h-20 md:h-24"
             show={settings.features.scrambleImage}
             scramble={scramble}
             event={selectedCube?.category || "3x3"}
-            onClick={() => setZoomInScramble(true)}
+            onPointerDown={(e) => {
+              e.stopPropagation();
+              setZoomInScramble(true);
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoomInScramble(true);
+            }}
           />
         </motion.div>
       )}

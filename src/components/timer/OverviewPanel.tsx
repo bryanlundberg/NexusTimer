@@ -50,7 +50,6 @@ export default function OverviewPanel() {
   return (
     <motion.div
       className="flex flex-col justify-center w-full h-full gap-1"
-      id="touch"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
