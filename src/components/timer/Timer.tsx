@@ -13,22 +13,20 @@ import useSolveData from "@/hooks/useSolveData";
 import { useAudioTrigger } from "@/hooks/useAudioTrigger";
 
 export default function Timer({ children }: { children?: ReactNode }) {
-  const { settings } = useSettingsModalStore();
-  const {
-    selectedCube,
-    isSolving,
-    lastSolve,
-    timerStatus,
-    solvingTime,
-    timerStatistics,
-    setLastSolve,
-    setTimerStatus,
-    setTimerStatistics,
-    setIsSolving,
-    setSolvingTime,
-    displayHint,
-    timerMode
-  } = useTimerStore();
+  const settings = useSettingsModalStore(store => store.settings);
+  const selectedCube = useTimerStore(store => store.selectedCube);
+  const isSolving = useTimerStore(store => store.isSolving);
+  const lastSolve = useTimerStore(store => store.lastSolve);
+  const timerStatus = useTimerStore(store => store.timerStatus);
+  const solvingTime = useTimerStore(store => store.solvingTime);
+  const timerStatistics = useTimerStore(store => store.timerStatistics);
+  const setLastSolve = useTimerStore(store => store.setLastSolve);
+  const setTimerStatus = useTimerStore(store => store.setTimerStatus);
+  const setTimerStatistics = useTimerStore(store => store.setTimerStatistics);
+  const setIsSolving = useTimerStore(store => store.setIsSolving);
+  const setSolvingTime = useTimerStore(store => store.setSolvingTime);
+  const displayHint = useTimerStore(store => store.displayHint);
+  const timerMode = useTimerStore(store => store.timerMode);
 
   const { saveSolveMainTimer } = useSolveData();
 

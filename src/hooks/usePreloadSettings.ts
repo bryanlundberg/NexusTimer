@@ -6,9 +6,12 @@ import { getAllCubes, getCubeById } from "@/db/dbOperations";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
 
 export function usePreloadSettings() {
-  const { setCubes, setSelectedCube, setTimerStatistics, setNewScramble } = useTimerStore();
-  const { setSettings } = useSettingsModalStore();
-  const { setBackgroundImage } = useBackgroundImageStore();
+  const setCubes = useTimerStore(store => store.setCubes);
+  const setSelectedCube = useTimerStore(store => store.setSelectedCube);
+  const setTimerStatistics = useTimerStore(store => store.setTimerStatistics);
+  const setNewScramble = useTimerStore(store => store.setNewScramble);
+  const setSettings = useSettingsModalStore(store => store.setSettings);
+  const setBackgroundImage = useBackgroundImageStore(store => store.setBackgroundImage);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

@@ -2,7 +2,10 @@ import { ScrambleDisplay } from "../scramble-display";
 import { useTimerStore } from "@/store/timerStore";
 
 export default function ScrambleModal() {
-  const { zoomInScramble, setZoomInScramble, scramble, selectedCube } = useTimerStore();
+  const zoomInScramble = useTimerStore(store => store.zoomInScramble);
+  const setZoomInScramble = useTimerStore(store => store.setZoomInScramble);
+  const scramble = useTimerStore(store => store.scramble);
+  const selectedCube = useTimerStore(store => store.selectedCube);
 
   if (!zoomInScramble) return null;
 

@@ -13,19 +13,17 @@ import { Input } from "../ui/input";
 
 export default function ManualMode() {
   const [value, setValue] = useState<string>("");
-  const {
-    selectedCube,
-    scramble,
-    lastSolve,
-    cubes,
-    setNewScramble,
-    setLastSolve,
-    setCubes,
-    setTimerStatistics,
-    setSelectedCube,
-  } = useTimerStore();
+  const selectedCube = useTimerStore(store => store.selectedCube);
+  const scramble = useTimerStore(store => store.scramble);
+  const lastSolve = useTimerStore(store => store.lastSolve);
+  const cubes = useTimerStore(store => store.cubes);
+  const setNewScramble = useTimerStore(store => store.setNewScramble);
+  const setLastSolve = useTimerStore(store => store.setLastSolve);
+  const setCubes = useTimerStore(store => store.setCubes);
+  const setTimerStatistics = useTimerStore(store => store.setTimerStatistics);
+  const setSelectedCube = useTimerStore(store => store.setSelectedCube);
 
-  const { settings } = useSettingsModalStore();
+  const settings = useSettingsModalStore(store => store.settings);
   const t = useTranslations("Index.HomePage");
 
   const isValidInput = (input: string) => {

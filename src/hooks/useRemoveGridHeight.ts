@@ -4,7 +4,7 @@ import { useQueryState } from "nuqs";
 import { STATES } from "@/constants/states";
 
 const useRemoveGridHeight = (otherStates: any = undefined) => {
-  const { selectedCube } = useTimerStore();
+  const selectedCube = useTimerStore(store => store.selectedCube);
   const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
 
   useEffect(() => {

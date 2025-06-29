@@ -6,8 +6,8 @@ import Stackmat from "../stackmat";
 import { TimerMode } from "@/enums/TimerMode";
 
 export function MainTimer() {
-  const { timerMode } = useTimerStore();
-  const { settings } = useSettingsModalStore();
+  const timerMode = useTimerStore(store => store.timerMode);
+  const settings = useSettingsModalStore(store => store.settings);
   const manualMode = settings.timer.manualMode;
 
   return (

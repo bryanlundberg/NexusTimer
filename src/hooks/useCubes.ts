@@ -4,7 +4,10 @@ import { getAllCubes, saveCube } from "@/db/dbOperations";
 import { useRouter } from "next/navigation";
 
 export function useCubes() {
-  const { cubes, setSelectedCube, setNewScramble, setCubes } = useTimerStore();
+  const cubes = useTimerStore(store => store.cubes);
+  const setSelectedCube = useTimerStore(store => store.setSelectedCube);
+  const setNewScramble = useTimerStore(store => store.setNewScramble);
+  const setCubes = useTimerStore(store => store.setCubes);
   const [filterCubes, setFilterCubes] = useState(cubes);
   const router = useRouter();
 

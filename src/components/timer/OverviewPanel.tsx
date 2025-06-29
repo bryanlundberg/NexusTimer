@@ -4,8 +4,8 @@ import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
 
 export default function OverviewPanel() {
-  const { settings } = useSettingsModalStore();
-  const { timerStatistics } = useTimerStore();
+  const settings = useSettingsModalStore(store => store.settings);
+  const timerStatistics = useTimerStore(store => store.timerStatistics);
   const t = useTranslations("Index");
 
   if (!settings.features.sessionStats) return null;

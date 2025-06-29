@@ -5,8 +5,11 @@ import { useTranslations } from "next-intl";
 import Navigation from "../navigation/navigation";
 import { TimerStatus } from "@/enums/TimerStatus";
 export default function HeaderTimer() {
-  const { isSolving, timerStatus, lastSolve, timerStatistics } = useTimerStore();
-  const { settings } = useSettingsModalStore();
+  const isSolving = useTimerStore(store => store.isSolving);
+  const timerStatus = useTimerStore(store => store.timerStatus);
+  const lastSolve = useTimerStore(store => store.lastSolve);
+  const timerStatistics = useTimerStore(store => store.timerStatistics);
+  const settings = useSettingsModalStore(store => store.settings);
   const t = useTranslations("Index.HomePage");
 
   if (isSolving || timerStatus !== TimerStatus.IDLE) return null;

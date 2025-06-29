@@ -4,16 +4,14 @@ import { Solve } from "@/interfaces/Solve";
 import genId from "@/lib/genId";
 
 export default function useSolveData() {
-  const {
-    solvingTime,
-    selectedCube,
-    scramble,
-    setCubes,
-    setSelectedCube,
-    setLastSolve,
-    setNewScramble,
-    cubes,
-  } = useTimerStore();
+  const solvingTime = useTimerStore(store => store.solvingTime);
+  const selectedCube = useTimerStore(store => store.selectedCube);
+  const scramble = useTimerStore(store => store.scramble);
+  const setCubes = useTimerStore(store => store.setCubes);
+  const setSelectedCube = useTimerStore(store => store.setSelectedCube);
+  const setLastSolve = useTimerStore(store => store.setLastSolve);
+  const setNewScramble = useTimerStore(store => store.setNewScramble);
+  const cubes = useTimerStore(store => store.cubes);
 
   const saveSolveMainTimer = async () => {
     if (selectedCube && scramble) {

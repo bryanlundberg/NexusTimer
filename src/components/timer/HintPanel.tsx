@@ -5,7 +5,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 export default function HintPanel() {
-  const { displayHint, selectedCube, isSolving, hint } = useTimerStore();
+  const displayHint = useTimerStore(store => store.displayHint);
+  const selectedCube = useTimerStore(store => store.selectedCube);
+  const isSolving = useTimerStore(store => store.isSolving);
+  const hint = useTimerStore(store => store.hint);
   const t = useTranslations("Index.HomePage");
 
   if (!displayHint || !selectedCube || isSolving) return null;

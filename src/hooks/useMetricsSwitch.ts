@@ -16,7 +16,8 @@ import { useTimerStore } from "@/store/timerStore";
 import { useEffect, useState } from "react";
 
 export default function useMetricsSwitch() {
-  const { selectedCube, cubes } = useTimerStore();
+  const selectedCube = useTimerStore(store => store.selectedCube);
+  const cubes = useTimerStore(store => store.cubes);
   const [stats, setStats] = useState({
     average: defaultChartValuesN,
     timeSpent: defaultChartValuesS,

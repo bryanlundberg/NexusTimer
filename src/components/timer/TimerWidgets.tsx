@@ -7,8 +7,11 @@ import { useTranslations } from "next-intl";
 import { TimerStatus } from "@/enums/TimerStatus";
 
 export default function TimerWidgets() {
-  const { isSolving, timerStatus, timerStatistics, lastSolve } = useTimerStore();
-  const { settings } = useSettingsModalStore();
+  const isSolving = useTimerStore(store => store.isSolving);
+  const timerStatus = useTimerStore(store => store.timerStatus);
+  const timerStatistics = useTimerStore(store => store.timerStatistics);
+  const lastSolve = useTimerStore(store => store.lastSolve);
+  const settings = useSettingsModalStore(store => store.settings);
   const t = useTranslations("Index.HomePage");
 
   const renderBestAverageAlert = () => {

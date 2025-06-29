@@ -3,8 +3,8 @@ import formatTime from "@/lib/formatTime";
 import { useTimerStore } from "@/store/timerStore";
 
 export default function StatisticsPanel() {
-  const { settings } = useSettingsModalStore();
-  const { timerStatistics } = useTimerStore();
+  const settings = useSettingsModalStore(store => store.settings);
+  const timerStatistics = useTimerStore(store => store.timerStatistics);
   const bgRecord = "bg-yellow-500";
 
   const renderStatistic = (label: string, key: "ao5" | "ao12" | "ao50" | "ao100", testId: string) => (

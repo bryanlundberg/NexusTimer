@@ -13,10 +13,13 @@ import { Layer } from "@/enums/Layer";
 import { motion } from "framer-motion";
 
 export function ScrambleZone() {
-  const { selectedCube, scramble, displayHint, setHints, isSolving } =
-    useTimerStore();
+  const selectedCube = useTimerStore(store => store.selectedCube);
+  const scramble = useTimerStore(store => store.scramble);
+  const displayHint = useTimerStore(store => store.displayHint);
+  const setHints = useTimerStore(store => store.setHints);
+  const isSolving = useTimerStore(store => store.isSolving);
 
-  const { settings } = useSettingsModalStore();
+  const settings = useSettingsModalStore(store => store.settings);
   const t = useTranslations("Index");
   return (
     <>

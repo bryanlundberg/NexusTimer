@@ -9,7 +9,11 @@ import { toast } from "sonner";
 type CaseOfUse = "last-solve" | "modal-solve" | "solves-area";
 
 export const useSolveActions = () => {
-  const { selectedCube, setCubes, setSelectedCube, lastSolve, setLastSolve } = useTimerStore();
+  const selectedCube = useTimerStore(store => store.selectedCube);
+  const setCubes = useTimerStore(store => store.setCubes);
+  const setSelectedCube = useTimerStore(store => store.setSelectedCube);
+  const lastSolve = useTimerStore(store => store.lastSolve);
+  const setLastSolve = useTimerStore(store => store.setLastSolve);
   const dialog = useDialogSolve();
 
   const handleUndoSolve = async (solve: Solve) => {
