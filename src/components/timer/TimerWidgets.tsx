@@ -5,6 +5,7 @@ import { useTimerStore } from "@/store/timerStore";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTranslations } from "next-intl";
 import { TimerStatus } from "@/enums/TimerStatus";
+import { useMemo } from "react";
 
 export default function TimerWidgets() {
   const isSolving = useTimerStore(store => store.isSolving);
@@ -14,7 +15,7 @@ export default function TimerWidgets() {
   const settings = useSettingsModalStore(store => store.settings);
   const t = useTranslations("Index.HomePage");
 
-  const renderBestAverageAlert = () => {
+  const bestAverageAlert = useMemo(() => {
     const { ao5, ao12, ao50, ao100 } = timerStatistics.global;
     const { ao5: sessionAo5, ao12: sessionAo12, ao50: sessionAo50, ao100: sessionAo100 } = timerStatistics.session;
 
@@ -34,9 +35,9 @@ export default function TimerWidgets() {
       );
     }
     return null;
-  };
+  }, [timerStatistics, settings.alerts.bestAverage, t]);
 
-  const renderWorstTimeAlert = () => {
+  const worstTimeAlert = useMemo(() => {
     if (
       settings.alerts.worstTime &&
       timerStatistics.global.count > 1 &&
@@ -50,13 +51,13 @@ export default function TimerWidgets() {
       );
     }
     return null;
-  };
+  }, [settings.alerts.worstTime, timerStatistics.global.count, lastSolve, timerStatistics.global.worst, t]);
 
   return (
     <>
       <div className="flex flex-col gap-1 pb-1">
-        {renderBestAverageAlert()}
-        {renderWorstTimeAlert()}
+        {!(isSolving || timerStatus !== TimerStatus.IDLE) && bestAverageAlert}
+        {!(isSolving || timerStatus !== TimerStatus.IDLE) && worstTimeAlert}
         <div
           className="items-center justify-between w-full h-20 text-xs sm:h-20 md:h-24 lg:h-32 md:text-sm flex"
         >
