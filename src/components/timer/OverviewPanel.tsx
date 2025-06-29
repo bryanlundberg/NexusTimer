@@ -55,7 +55,7 @@ export default function OverviewPanel() {
       initial="hidden"
       animate="visible"
     >
-      {stats.map(({ label, value, testId }, index) => (
+      {stats.map(({ label, value, testId }) => (
         <motion.div
           className="font-medium"
           key={testId}
