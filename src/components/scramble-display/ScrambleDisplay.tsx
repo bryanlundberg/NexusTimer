@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { TwistyPlayer } from "cubing/twisty";
 import getDisplayId from "@/lib/getDisplayId";
 import { Categories } from "@/interfaces/Categories";
@@ -19,11 +19,15 @@ export default function ScrambleDisplay({
   visualization = "2D",
   ...rest
 }: ScrambleDisplay) {
-  useEffect(() => {
-    if (!show) return;
+  const containerRef = useRef<HTMLDivElement>(null);
 
-    const display = document.querySelector("twisty-player");
-    display?.remove();
+  useEffect(() => {
+    if (!show || !containerRef.current) return;
+
+    const existingPlayer = containerRef.current.querySelector("twisty-player");
+    if (existingPlayer) {
+      existingPlayer.remove();
+    }
 
     const displayId = getDisplayId(event);
 
@@ -36,21 +40,21 @@ export default function ScrambleDisplay({
       visualization: visualization,
     });
 
-    document.querySelector("#scramble-display")?.appendChild(player);
-    const twistyPlayerElement = document.querySelector("twisty-player");
-    if (twistyPlayerElement) {
-      twistyPlayerElement.style.width = "100%";
-      twistyPlayerElement.style.height = "auto";
-      twistyPlayerElement.style.maxWidth = "100%";
-      twistyPlayerElement.style.minHeight = "100%";
-    }
+    containerRef.current.appendChild(player);
+
+    player.style.width = "100%";
+    player.style.height = "auto";
+    player.style.maxWidth = "100%";
+    player.style.minHeight = "100%";
+
+    return () => {
+      player.remove();
+    };
   }, [show, event, scramble, visualization]);
 
+  if (!show) return null;
+
   return (
-    <>
-      {show ? (
-        <div {...rest} className={className} id="scramble-display"></div>
-      ) : null}
-    </>
+    <div {...rest} className={className} id="scramble-display" ref={containerRef}></div>
   );
 }
