@@ -2,6 +2,7 @@ import formatTime from "@/lib/formatTime";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
 import { useMemo } from "react";
+import { motion } from "framer-motion";
 
 export default function OverviewPanel() {
   const timerStatistics = useTimerStore(store => store.timerStatistics);
@@ -32,15 +33,39 @@ export default function OverviewPanel() {
     ]
   },[timerStatistics.session, t]);
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { x: -20, opacity: 0 },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.2 } }
+  };
+
   return (
-    <div className="flex flex-col justify-center w-full h-full gap-1" id="touch">
-      {stats.map(({ label, value, testId }) => (
-        <div className="font-medium" key={testId}>
+    <motion.div
+      className="flex flex-col justify-center w-full h-full gap-1"
+      id="touch"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {stats.map(({ label, value, testId }, index) => (
+        <motion.div
+          className="font-medium"
+          key={testId}
+          variants={itemVariants}
+        >
           {label}
           {": "}
           <span data-testid={testId}>{value}</span>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 }
