@@ -58,13 +58,11 @@ export default function TimerWidgets() {
         {renderBestAverageAlert()}
         {renderWorstTimeAlert()}
         <div
-          className={`items-center justify-between w-full h-20 text-xs sm:h-20 md:h-24 lg:h-32 md:text-sm ${
-            isSolving || timerStatus !== TimerStatus.IDLE ? "hidden" : "flex"
-          }`}
+          className="items-center justify-between w-full h-20 text-xs sm:h-20 md:h-24 lg:h-32 md:text-sm flex"
         >
-          <OverviewPanel />
-          <ScramblePanel />
-          <StatisticsPanel />
+          {settings.features.sessionStats && !(isSolving || timerStatus !== TimerStatus.IDLE) && <OverviewPanel/>}
+          {settings.features.scrambleImage && !(isSolving || timerStatus !== TimerStatus.IDLE) && (<ScramblePanel />)}
+          {settings.features.sessionStats && !(isSolving || timerStatus !== TimerStatus.IDLE) && <StatisticsPanel />}
         </div>
       </div>
     </>
