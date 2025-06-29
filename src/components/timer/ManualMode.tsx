@@ -29,8 +29,7 @@ export default function ManualMode() {
   const t = useTranslations("Index.HomePage");
 
   const isValidInput = (input: string) => {
-    if (/^[0-9]*$/.test(input) && parseInt(input) > 0) return true;
-    else return false;
+    return /^[0-9]*$/.test(input) && parseInt(input) > 0;
   };
 
   if (!selectedCube) return null;
