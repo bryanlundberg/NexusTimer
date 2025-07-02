@@ -273,26 +273,26 @@
     }
   },
   "Metadata": {
-    "title": "Nexus Timer - Temporizador Profesional de Cubo de Rubik",
+    "title": "Nexus Timer - Cronómetro Profesional para Cubo de Rubik",
     "description": "Nexus Timer es una plataforma profesional para entrenar y analizar tu progreso con el Cubo de Rubik.",
     "keywords": {
-      "key1": "temporizador",
+      "key1": "cronómetro cubo",
       "key2": "nxtimer",
       "key3": "nexustimer",
-      "key4": "temporizador de speedcubing",
-      "key5": "temporizador de cubo de rubik",
-      "key6": "temporizador en línea",
-      "key7": "temporizador web",
+      "key4": "cronómetro para speedcubing",
+      "key5": "cronómetro cubo de rubik",
+      "key6": "cronómetro en línea",
+      "key7": "app para cuberos",
       "key8": "rubik",
       "key9": "wca",
-      "key10": "temporizador de cubo de rubik en línea",
-      "key11": "speed cubing",
-      "key12": "cubing",
-      "key13": "temporizador de cubing",
-      "key14": "asociación mundial de cubing"
+      "key10": "cronómetro para cubo de rubik",
+      "key11": "speedcubing",
+      "key12": "cubero",
+      "key13": "resolver cubo rápido",
+      "key14": "asociación mundial de cuberos"
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - Temporizador Profesional de Cubo de Rubik"
+    "title": "Nexus Timer - Cronómetro Profesional para Cubo de Rubik"
   }
 }
