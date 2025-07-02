@@ -14,20 +14,36 @@ export default function Ntloader({ onLoadingComplete }: NaroBaseLoaderProps) {
 
   useEffect(() => {
     const loadingMessages = [
-      "Solving the cube... almost there!",
-      "Twisting and turning to perfection!",
-      "Aligning the pieces... one move at a time!",
-      "The average cube solver rotates 50 times per solve!",
-      "Sharpening our algorithms for the perfect solve!",
-      "Did you know? The first Rubik's Cube was solved in 1974!",
-      "Optimizing your experience one layer at a time!",
-      "A world-class speedcuber can solve it in under 5 seconds!",
-      "A solved Rubik's Cube has 43 quintillion possible combinations!",
-      "The world record for 3x3 single solve is just over 3 seconds!",
-      "It took Erno Rubik a month to solve his first cube!",
-      "The term 'God's Number' refers to solving any cube in 20 moves or less!",
-      "Cubing competitions started in the early 1980s!",
-      "Magnets in cubes revolutionized speedcubing in the 2010s!"
+      'Just a few more turns!',
+      'Cubes getting twisted!',
+      'Did you double-check your moves?',
+      'Focus is the key to solving quickly!',
+      'Almost at the finish line!',
+      'Rotating, rotating, rotating!',
+      'Every turn gets us closer!',
+      'Fast hands aid optimal solving!',
+      'Watch those pieces fall in place!',
+      'Don\'t blink, we\'re so close!',
+      'Transformation in progress!',
+      'Precision with every twist!',
+      'Perfect algorithms, perfect results!',
+      'Less than 20 moves to glory!',
+      'Here comes an amazing solve!',
+      'Alignment is everything!',
+      'The solution is near!',
+      'Watch your speed!',
+      'Practice makes perfect solving!',
+      'Keep your cool, it\'s happening!',
+      'Execute those algorithms smoothly!',
+      'A moment of brilliance awaits you!',
+      'Twist and turn your way to success!',
+      'The cube is no match for you!',
+      'Let each twist count!',
+      'Solving magic in action!',
+      'Perfection is coming your way!',
+      'Steady hands, great results!',
+      'Your mastery shines through!',
+      'Piece by piece, it\'s coming together!'
     ];
 
     setCurrentMessage(loadingMessages[Math.floor(Math.random() * loadingMessages.length)]);
@@ -48,13 +64,13 @@ export default function Ntloader({ onLoadingComplete }: NaroBaseLoaderProps) {
         });
       } else if (onLoadingComplete) {
         const elapsedTime = Date.now() - startTime;
-        const remainingTime = Math.max(0, 2000 - elapsedTime);
+        const remainingTime = Math.max(0, 1000 - elapsedTime);
 
         setTimeout(() => {
           onLoadingComplete();
-        }, remainingTime + 500);
+        }, remainingTime + 10);
       }
-    }, 200);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, [progress, onLoadingComplete, startTime]);
