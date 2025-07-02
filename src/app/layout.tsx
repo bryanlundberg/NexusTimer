@@ -8,13 +8,16 @@ import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
 import { LoaderProvider } from "@/components/loader/loader-context";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { locales } from "@/i18n/locales";
+import JsonLd from "./jsonld";
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export async function generateMetadata() {
+  const locale = await getLocale();
   const t = await getTranslations({ locale, namespace: "Metadata" });
+  const ogTitle = t("title");
+  const ogDescription = t("description");
+  const url = `https://nexustimer.com`;
+
   return {
     title: t("title"),
     description: t("description"),
@@ -34,7 +37,32 @@ export async function generateMetadata({
       t("keywords.key13"),
       t("keywords.key14"),
     ],
-    metadataBase: new URL("https://nexustimer.com/" + locale),
+    metadataBase: new URL("https://nexustimer.com"),
+    alternates: {
+      canonical: `/`,
+      languages: Object.fromEntries(
+        locales.map((l) => [l, `/`])
+      ),
+    },
+    openGraph: {
+      title: ogTitle,
+      description: ogDescription,
+      url: url,
+      siteName: "Nexus Timer",
+      locale: locale,
+      type: "website",
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+        "max-snippet": -1,
+      },
+    },
   };
 }
 
@@ -47,8 +75,21 @@ export default async function RootLayout({
   const messages = await getMessages();
   const session = await auth();
 
+  const t = await getTranslations({ locale, namespace: "Metadata" });
+  const title = t("title");
+  const description = t("description");
+  const url = `https://nexustimer.com`;
+
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <JsonLd
+          locale={locale}
+          title={title}
+          description={description}
+          url={url}
+        /><title></title>
+      </head>
       <body className={saira.className}>
       <NuqsAdapter>
         <SessionProvider session={session}>
