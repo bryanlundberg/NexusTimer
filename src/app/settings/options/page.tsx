@@ -13,6 +13,7 @@ import {
   LapTimerIcon,
   MagicWandIcon,
   SpeakerLoudIcon,
+  UpdateIcon,
 } from "@radix-ui/react-icons";
 import MenuSelectLanguage from "@/components/menu-settings/MenuSelectLanguage";
 import CustomTheme from "@/components/menu-settings/CustomTheme";
@@ -25,12 +26,25 @@ import { useEffect } from "react";
 import { saveSettings } from "@/lib/settingsUtils";
 import MenuInputOption from "@/components/menu-settings/MenuInputOption";
 import _ from "lodash";
+import { Button } from "@/components/ui/button";
+import { defaultSettings } from "@/lib/const/defaultSettings";
+import useWebsiteColors from '@/hooks/useWebsiteColors';
+import { toast } from "sonner";
 
 export default function Page() {
   const { settings, setSettings } = useSettingsModalStore();
   const t = useTranslations("Index");
   const { watch, control, getValues, formState: { isDirty }, reset } = useForm({ defaultValues: settings });
   const formWatch = watch();
+  const { applyColorTheme } = useWebsiteColors();
+
+  const handleResetSettings = () => {
+    saveSettings(defaultSettings);
+    setSettings(defaultSettings);
+    applyColorTheme(defaultSettings.preferences.colorTheme);
+    reset(defaultSettings);
+    toast.success('Settings have been reset to default');
+  };
 
   useEffect(() => {
     const debounceSave = _.debounce(() => {
@@ -230,6 +244,19 @@ export default function Page() {
           >
             <DataImportExport/>
           </MenuSection>
+
+          <Separator className="my-5"/>
+
+          <div className="flex justify-center mb-10">
+            <Button
+              variant="destructive"
+              onClick={handleResetSettings}
+              className="flex items-center gap-2"
+            >
+              <UpdateIcon className="size-4" />
+              {"Reset settings"}
+            </Button>
+          </div>
         </div>
       </div>
     </>
