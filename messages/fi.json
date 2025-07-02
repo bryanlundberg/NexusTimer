@@ -276,20 +276,20 @@
     "title": "Nexus Timer - Ammattimainen Rubikin Kuution Ajastin",
     "description": "Nexus Timer on ammattimainen alusta Rubikin kuution harjoitteluun ja analysointiin.",
     "keywords": {
-      "key1": "ajastin",
+      "key1": "kuutioajastin",
       "key2": "nxtimer",
       "key3": "nexustimer",
-      "key4": "nopeuskuutiokuution ajastin",
+      "key4": "speedcubing ajastin",
       "key5": "rubikin kuution ajastin",
-      "key6": "verkkoajastin",
-      "key7": "verkkosivustoajastin",
+      "key6": "kuutioharrastajien verkkoajastin",
+      "key7": "speedcuber sovellus",
       "key8": "rubik",
       "key9": "wca",
-      "key10": "verkkorubikin kuution ajastin",
-      "key11": "nopeuskuutio",
-      "key12": "kuutio",
-      "key13": "kuution ajastin",
-      "key14": "maailman kuutioiden liitto"
+      "key10": "kuution nopea ratkaisu",
+      "key11": "speedcubing",
+      "key12": "kuutioharrastaja",
+      "key13": "kuution harjoittelu",
+      "key14": "maailman speedcubing-yhdistys"
     }
   },
   "OpenGraphImage": {
