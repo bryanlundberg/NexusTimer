@@ -1,421 +1,285 @@
-import { Cube } from "@/interfaces/Cube";
-import { ChangeEvent } from "react";
-import genId from "./genId";
-import { Solve } from "@/interfaces/Solve";
-import { Event } from "@/interfaces/cubeCollection";
-import { cubeCollection } from "./const/cubeCollection";
-import { parse } from "papaparse";
-import { clearCubes, saveBatchCubes } from "@/db/dbOperations";
+import { Cube } from '@/interfaces/Cube';
+import { ChangeEvent } from 'react';
+import genId from './genId';
+import { Solve } from '@/interfaces/Solve';
+import { parse } from 'papaparse';
+import { z } from 'zod/v4';
+import { clearCubes, saveBatchCubes } from '@/db/dbOperations';
+import _ from 'lodash';
+
+const nxTimerSchema = z.array(
+  z.object({
+    id: z.string(),
+    name: z.string(),
+    category: z.string(),
+    solves: z.object({
+      session: z.array(
+        z.object({
+          id: z.string(),
+          startTime: z.number(),
+          endTime: z.number(),
+          scramble: z.string(),
+          bookmark: z.boolean(),
+          time: z.number(),
+          dnf: z.boolean().optional(),
+          plus2: z.boolean(),
+          rating: z.number(),
+          cubeId: z.string(),
+          comment: z.string().optional()
+        })
+      ),
+      all: z.array(
+        z.object({
+          id: z.string(),
+          startTime: z.number(),
+          endTime: z.number(),
+          scramble: z.string(),
+          bookmark: z.boolean(),
+          time: z.number(),
+          dnf: z.boolean(),
+          plus2: z.boolean(),
+          rating: z.number(),
+          cubeId: z.string(),
+          comment: z.string().optional()
+        })
+      )
+    }),
+    createdAt: z.number(),
+    favorite: z.boolean()
+  })
+);
+
+const csTimerSchema = z.object({
+  properties: z.looseObject({
+    sessionN: z.number()
+  }),
+})
+
+const cubeDeskSchema = z.object({
+  sessions: z.array(
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      created_at: z.string(),
+      order: z.number()
+    })
+  ),
+  solves: z.array(
+    z.object({
+      scramble: z.string(),
+      started_at: z.number(),
+      ended_at: z.number(),
+      time: z.number(),
+      raw_time: z.number(),
+      cube_type: z.string(),
+      id: z.string(),
+      dnf: z.boolean(),
+      plus_two: z.boolean(),
+      session_id: z.string(),
+      from_timer: z.boolean(),
+      inspection_time: z.number().optional(),
+      is_smart_cube: z.boolean().optional(),
+      smart_put_down_time: z.number().optional()
+    })
+  )
+});
 
 export default async function importDataFromFile(
   event: ChangeEvent<HTMLInputElement>
-): Promise<boolean> {
+) {
   try {
     const selectedFile = event.target.files?.[0];
+    if (!selectedFile) return false;
+    const fileContent = await selectedFile.text();
 
-    if (!selectedFile) {
-      throw new Error("No file selected");
-    }
+    let cubes;
 
-    // Check if the file is of type 'text/plain' (TXT file)
-    if (selectedFile.type !== "text/plain") {
-      throw new Error("Only .txt files are allowed.");
-    }
-
-    const fileContent = await readFileAsText(selectedFile);
-
-    if (!fileContent) {
-      throw new Error("Empty file content");
-    }
-
-    // Check if the data is CSV
-    if (fileContent.includes(";")) {
-      const backup = await importTwistytimerData(fileContent);
-      if (!backup) {
-        throw new Error("Invalid data in the file. (1)");
-      }
-    } else {
-      // Perform validation on the 'fileContent' data here
-      const backup = await isValidCubesData(fileContent);
-      if (!backup) {
-        throw new Error("Invalid data in the file. (2)");
+    try {
+      cubes = importNexusTimerData(fileContent);
+    } catch {
+      try {
+        cubes = importCsTimerData(fileContent);
+      } catch {
+        try {
+          cubes = importCubeDeskData(fileContent);
+        } catch {
+          cubes = importTwistyTimerData(fileContent);
+        }
       }
     }
 
-    // Inform the user that the import was successful
-    return true;
+    console.log(cubes)
+
+    cubes = uniqueData(cubes);
+    await clearCubes();
+    await saveBatchCubes(cubes);
+
+    return true
   } catch (error) {
-    console.error(error);
+    console.error('Error reading file:', error);
     return false;
   }
 }
 
-async function readFileAsText(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      const fileContent = e.target?.result as string;
-      resolve(fileContent);
-    };
-
-    reader.onerror = () => {
-      reject(new Error("Error reading the file."));
-    };
-
-    reader.readAsText(file);
-  });
+const importNexusTimerData = (fileContent: string) => {
+  const parsedData = JSON.parse(fileContent);
+  const result = nxTimerSchema.safeParse(parsedData);
+  if (!result.success) {
+    throw new Error(`Invalid Nexus Timer data: ${result.error.message}`);
+  }
+  return parsedData as Cube[];
 }
 
-// Function to validate 'cubes' data
-async function isValidCubesData(fileContent: string): Promise<boolean> {
-  const parsedData = await JSON.parse(fileContent);
+const importCsTimerData = (fileContent: string) => {
+  const parsedData = JSON.parse(fileContent);
+  const result = csTimerSchema.safeParse(parsedData);
+  if (!result.success) {
+    throw new Error(`Invalid csTimer data: ${result.error.message}`);
+  }
 
-  // Function list
-  const promiseFunctions = [
-    importCstimerData(parsedData),
-    importNexusTimerData(parsedData),
-    importCubedeskData(parsedData),
-  ];
+  const resultData = Object.values(parsedData).slice(0, -1) // Exclude the last property which is "properties"
 
-  // Wait for all promises
-  const [cstimer, nextuTimer, cubedesk] = await Promise.all(promiseFunctions);
+  return resultData.map((session: any, index) => {
+    const newCube: Cube = {
+      id: genId(),
+      name: 'CSTimer Session ' + (index + 1),
+      category: '3x3', // Not specified in CSTimer backup - Require manual fix by user later...
+      solves: {
+        session: [],
+        all: [],
+      },
+      createdAt: Date.now(),
+      favorite: false,
+    };
 
-  // Verify if some has resolve
-  return [cstimer, nextuTimer, cubedesk].some((result) => result === true);
+    session.forEach((solve: any) => {
+      const newSolve: Solve = {
+        id: genId(),
+        startTime: solve[3] - solve[0][1],
+        endTime: solve[3],
+        scramble: solve[1],
+        bookmark: false,
+        time: solve[0][1] + (solve[0][0] === 2000 ? 2000 : 0),
+        dnf: solve[0][0] === -1,
+        plus2: solve[0][0] === 2000,
+        rating: Math.floor(Math.random() * 20) + solve[1].length,
+        cubeId: newCube.id,
+        comment: '',
+      };
+      newCube.solves.session.push(newSolve);
+    });
+
+    return newCube;
+  })
 }
 
-async function importTwistytimerData(parsedData: any): Promise<boolean> {
-  // #########################
-  // ## IMPORT TWISTY TIMER ##
-  // #########################
+function importCubeDeskData(fileContent: string) {
+  const parsedData = JSON.parse(fileContent);
+  console.log(parsedData)
+  const result = cubeDeskSchema.safeParse(parsedData);
+  if (!result.success) {
+    throw new Error(`Invalid CubeDesk data: ${result.error.message}`);
+  }
 
-  // CSV to JSON
-  parsedData = await parse(parsedData, {
-    dynamicTyping: true,
+  const newCubeList: Cube[] = [];
+
+  result.data.sessions.forEach((session) => {
+    const newCube: Cube = {
+      id: session.id,
+      name: 'CubeDesk ' + session.name,
+      category: '3x3', // Category not specified in Cubedesk backup -> Manual fix later by user...
+      solves: {
+        session: [],
+        all: [],
+      },
+      createdAt: Date.parse(session.created_at),
+      favorite: false,
+    };
+
+    result.data.solves.forEach((solve) => {
+      if (solve.session_id === session.id) {
+        const newSolve: Solve = {
+          id: solve.id,
+          startTime: solve.started_at,
+          endTime: solve.ended_at,
+          scramble: solve.scramble,
+          bookmark: false,
+          time: solve.time * 1000,
+          dnf: solve.dnf,
+          plus2: solve.plus_two,
+          rating: Math.floor(Math.random() * 20) + solve.scramble.length,
+          cubeId: session.id,
+          comment: '',
+        };
+        newCube.solves.session.push(newSolve);
+      }
+    });
+    newCubeList.push(newCube);
   });
+
+  return newCubeList;
+}
+
+function importTwistyTimerData(fileContent: string) {
+  const parsedData = parse(fileContent, { dynamicTyping: true }).data.slice(1);
+
+  const newCubeList: Cube[] = [];
 
   // Twisty Timer backup: Row structure
-  // Puzzle: 222, Category: Normal, Time: 0, Date: 1657657016937, Scramble: , Penalty: 0, Comment:
+  // Puzzle: 222, Category: Normal, Time: 0, Date: 1657657016937, Scramble: R2 F2, Penalty: 0, Comment:
 
   // Penalty:
   // [1] - +2
   // [0] - Nothing
   // [2] - DNF
 
-  // List to store new cubes
-  const newCubeList: Cube[] = [];
+  parsedData.forEach((row: any) => {
+    const [puzzle, category, time, date, scramble, penalty, comment] = row;
 
-  for (let index = 0; index <= parsedData.data.length; index++) {
-    // Skip the first row which contains the headers of the chart
-    if (index === 0) {
-      continue;
-    }
+    if (time === 0 || puzzle === null) return;
 
-    // Extract individual data fields
-    const puzzle = parsedData.data[index][0];
-    const category = parsedData.data[index][1];
-    const time = parsedData.data[index][2];
-    const date = parsedData.data[index][3];
-    let scramble = parsedData.data[index][4];
-    const penalty = parsedData.data[index][5];
-    const comment = parsedData.data[index][6];
-
-    // Avoid solves with 0 time
-    if (time === 0) continue;
-
-    // Avoid clock category (not supported, not included in NexusTimer)
-    if (puzzle === "clock") {
-      console.warn(
-        "Clock, not supported on NexusTimer, backup won't restore it."
-      );
-      continue;
-    }
-
-    // Break loop if puzzle is null or empty
-    if (puzzle === null) break;
-
-    // Twisty Timer uses a different category classification
-    const event = cubeCollection.find((u) => u.twistyId === puzzle.toString());
-    if (!event) {
-      return false; // throw new Error("Unsupported category on Nexus Timer");
-    }
-
-    // Find the memory-cube corresponding to this solve
-    const cube = newCubeList.find(
-      (cube: Cube) =>
-        cube.name === `${puzzle}-${category}` && cube.category === event.name
+    // Find or create the cube
+    let cube = newCubeList.find(
+      (c) => c.name === `${puzzle}-${category}`
     );
 
-    // If the cube exists, add the solve to its session
-    if (cube) {
-      cube.solves.session.push({
-        id: genId(),
-        startTime: date - time,
-        endTime: date,
-        scramble: scramble,
-        bookmark: false,
-        time: time,
-        dnf: penalty === 2,
-        plus2: penalty === 1,
-        rating: scramble
-          ? Math.floor(Math.random() * 20) +
-            parseInt(scramble.toString().length)
-          : 10,
-        cubeId: cube.id,
-        comment: comment ? comment : "",
-      });
-      continue;
-    }
-
-    // If the cube doesn't exist, create it and append the solve
     if (!cube) {
-      const newCube: Cube = {
+      cube = {
         id: genId(),
         name: `${puzzle}-${category}`,
-        category: event.name,
-        solves: {
-          session: [],
-          all: [],
-        },
+        category: '3x3',
+        solves: { session: [], all: [] },
         createdAt: date,
         favorite: false,
       };
-      // Add the current solve
-      newCube.solves.session.push({
-        id: genId(),
-        startTime: date - time,
-        endTime: date,
-        scramble: scramble,
-        bookmark: false,
-        time: time,
-        dnf: penalty === 2,
-        plus2: penalty === 1,
-        rating: scramble
-          ? Math.floor(Math.random() * 20) +
-            parseInt(scramble.toString().length)
-          : 10,
-        cubeId: newCube.id,
-        comment: comment ? comment : "",
-      });
-      // Add the new cube to the list
-      newCubeList.push(newCube);
+      newCubeList.push(cube);
     }
-  }
 
-  await clearCubes();
-  // Update local storage with the modified list of cubes
-  await saveBatchCubes(newCubeList);
-
-  return true;
-}
-
-async function importCubedeskData(parsedCubeData: any): Promise<boolean> {
-  // #########################
-  // #### IMPORT CUBEDESK ####
-  // #########################
-
-  // Check if parsedCubeData is an object
-  if (typeof parsedCubeData !== "object") return false;
-
-  // Ensure that required keys are present in the Cubedesk data structure
-  if (!Object.keys(parsedCubeData).includes("solves")) return false;
-  if (!Object.keys(parsedCubeData).includes("sessions")) return false;
-
-  // Force a return of false if certain props are found in the Cubedesk backup data structure
-  if (Object.keys(parsedCubeData).includes("id")) return false;
-  if (Object.keys(parsedCubeData).includes("properties")) return false;
-  if (Object.keys(parsedCubeData).includes("scramble")) return false;
-
-  // List to store new cubes
-  const newCubeList: Cube[] = [];
-
-  // Iterate through Cubedesk sessions
-  parsedCubeData["sessions"].forEach(
-    (session: {
-      id: string;
-      name: string;
-      created_at: string;
-      order: number;
-    }) => {
-      // Create a virtual cube session
-      const newCube: Cube = {
-        id: session.id,
-        name: session.name,
-        category: "3x3", // Category not specified in Cubedesk backup -> Manual fix later by user...
-        solves: {
-          session: [],
-          all: [],
-        },
-        createdAt: Date.parse(session.created_at),
-        favorite: false,
-      };
-
-      // Iterate through Cubedesk solves
-      parsedCubeData["solves"].forEach(
-        (solve: {
-          scramble: string;
-          started_at: number;
-          ended_at: number;
-          time: number;
-          raw_time: number;
-          cube_type: Event;
-          id: string;
-          dnf: boolean;
-          plus_two: boolean;
-          session_id: string;
-          from_timer: boolean;
-          inspection_time: number;
-          is_smart_cube: boolean;
-          smart_put_down_time: number;
-        }) => {
-          // Check if the solve belongs to the current session
-          if (solve.session_id === session.id) {
-            // Create a new solve
-            const newSolve: Solve = {
-              id: solve.id,
-              startTime: solve.started_at,
-              endTime: solve.ended_at,
-              scramble: solve.scramble,
-              bookmark: false,
-              time: solve.time * 1000,
-              dnf: solve.dnf,
-              plus2: solve.plus_two,
-              rating: Math.floor(Math.random() * 20) + solve.scramble.length,
-              cubeId: session.id,
-              comment: "",
-            };
-            // Add the solve to the session
-            newCube.solves.session.push(newSolve);
-          }
-        }
-      );
-      // Add the new cube to the list
-      newCubeList.push(newCube);
-    }
-  );
-  await clearCubes();
-  // Update local storage with the modified list of cubes
-  await saveBatchCubes(newCubeList);
-
-  return true;
-}
-
-async function importNexusTimerData(parsedCubeData: Cube[]): Promise<boolean> {
-  // ########################
-  // ## IMPORT NEXUS TIMER ##
-  // ########################
-
-  // Verify that the backup originates from Nexustimer
-  // Force a return of false if certain props are found in the Nexus Timer data structure
-  // Ensure that the data structure contains the expected properties
-  if (typeof parsedCubeData !== "object") return false;
-  if (Object.keys(parsedCubeData).includes("properties")) return false;
-  if (typeof parsedCubeData[0]?.solves.all === "undefined") return false;
-
-  // No adjustments to the data structure are required;
-
-  await clearCubes();
-  // Update local storage with the modified list of cubes
-  await saveBatchCubes(parsedCubeData);
-
-  return true;
-}
-
-async function importCstimerData(parsedCubeData: any): Promise<boolean> {
-  // ########################
-  // ### IMPORT CSTIMER #####
-  // ########################
-
-  // Check if parsedCubeData is an object
-  if (typeof parsedCubeData !== "object") return false;
-
-  // Verify whether "cstimer" is the only one containing a
-  // property named "properties". This check helps determine
-  // if the parsedCubeData corresponds to CSTimer or not.
-
-  if (!Object.keys(parsedCubeData).includes("properties")) return false;
-
-  // ### validate cstimer
-  // Eliminate app properties section from the backup
-  const csTimerSessions = Object.keys(parsedCubeData).slice(
-    0,
-    Object.keys(parsedCubeData).length - 1
-  );
-
-  // Create a virtual object to place the new data structure
-  const newCubeList: Cube[] = [];
-
-  csTimerSessions.forEach((session: any) => {
-    // Later will be updated to the date of the first solve registered on this session
-    let createdAt = Date.now();
-
-    // Create a virtual cube session
-    const newCube: Cube = {
+    const newSolve: Solve = {
       id: genId(),
-      name: session,
-      category: "3x3", // Not specified in CSTimer backup - Require manual fix by user later...
-      solves: {
-        session: [],
-        all: [],
-      },
-      createdAt: createdAt,
-      favorite: false,
+      startTime: date - time,
+      endTime: date,
+      scramble,
+      bookmark: false,
+      time,
+      dnf: penalty === 2,
+      plus2: penalty === 1,
+      rating: scramble ? Math.floor(Math.random() * 20) + scramble.length : 10,
+      cubeId: cube.id,
+      comment: comment || '',
     };
-
-    // Get and convert all the solves into a compatible format
-    parsedCubeData[session].forEach((solve: any, index: number) => {
-      if (index === 0) {
-        createdAt = solve[3];
-      }
-
-      // DNF solves won't be registered in the system; they will be excluded
-      let hasDNF = false;
-
-      // CSTimer has a very deep array storage structure
-      let plus2 = false;
-      let solvingTime = 0;
-
-      if (solve[0][0] === -1) {
-        hasDNF = true;
-      } else if (solve[0][0] === 0) {
-        plus2 = false;
-      } else if (solve[0][0] === 2000) {
-        plus2 = true;
-      }
-
-      if (typeof solve[0][0] !== "number" || typeof solve[0][1] !== "number") {
-        return false; // new Error("Corrupted data type")
-      }
-
-      solvingTime = solve[0][1];
-
-      let scramble = solve[1];
-      let comment = solve[2];
-      let endTime = solve[3];
-
-      // Adjust the calculations trying to match the data structure
-      const newSolve: Solve = {
-        id: genId(),
-        startTime: endTime - solvingTime,
-        endTime: endTime,
-        scramble: scramble,
-        bookmark: false,
-        time: solvingTime,
-        dnf: hasDNF,
-        plus2: plus2,
-        rating: Math.floor(Math.random() * 20) + scramble.length,
-        cubeId: newCube.id,
-        comment: comment,
-      };
-
-      newCube.solves.session.push(newSolve);
-    });
-
-    newCubeList.push(newCube);
+    cube.solves.session.push(newSolve);
   });
-  await clearCubes();
-  // Update local storage with the modified list of cubes
-  await saveBatchCubes(newCubeList);
-  return true;
+
+  return newCubeList;
+}
+
+function uniqueData(cubes: Cube[]) {
+  return _.uniqBy(cubes, 'id').map((cube) => ({
+    ...cube,
+    solves: {
+      session: _.uniqBy(cube.solves.session, 'id'),
+      all: _.uniqBy(cube.solves.all, 'id'),
+    },
+  }));
 }
