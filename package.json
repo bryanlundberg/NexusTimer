@@ -89,6 +89,7 @@
     "use-debounce": "^10.0.4",
     "uuid": "9.0.1",
     "vaul": "^0.9.9",
+    "zod": "^3.25.71",
     "zustand": "4.4.1"
   },
   "devDependencies": {
