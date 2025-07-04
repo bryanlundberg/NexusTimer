@@ -22,11 +22,8 @@ export default function ScrambleImagePanel() {
           transition={{ duration: 0.3, ease: "easeOut" }}
           className="w-full h-full"
         >
-          <ScrambleDisplay
-            className="min-w-32 mx-auto cursor-pointer w-fit h-20 md:h-24"
-            show={settings.features.scrambleImage}
-            scramble={scramble}
-            event={selectedCube?.category || "3x3"}
+          <div
+            className={"w-fit mx-auto"}
             onPointerDown={(e) => {
               e.stopPropagation();
               setZoomInScramble(true);
@@ -35,7 +32,19 @@ export default function ScrambleImagePanel() {
               e.stopPropagation();
               setZoomInScramble(true);
             }}
-          />
+            onTouchStart={(e) => {
+              e.stopPropagation();
+              setZoomInScramble(true);
+            }}
+          >
+            <ScrambleDisplay
+              className="min-w-32 mx-auto cursor-pointer w-fit h-20 md:h-24"
+              show={settings.features.scrambleImage}
+              scramble={scramble}
+              event={selectedCube?.category || "3x3"}
+            />
+          </div>
+
         </motion.div>
       )}
     </AnimatePresence>
