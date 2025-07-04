@@ -1,18 +1,13 @@
-import { useTranslations } from "next-intl";
-import { useRef, useState } from "react";
-import Image from "next/image";
-import { useTimerStore } from "@/store/timerStore";
-import importDataFromFile from "@/lib/importDataFromFile";
-import { getAllCubes } from "@/db/dbOperations";
-import Loading from "../../Loading";
-import { useRouter } from "next/navigation";
-import {
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { useTranslations } from 'next-intl';
+import React, { useRef, useState } from 'react';
+import Image from 'next/image';
+import { useTimerStore } from '@/store/timerStore';
+import importDataFromFile from '@/lib/importDataFromFile';
+import { getAllCubes } from '@/db/dbOperations';
+import Loading from '../../Loading';
+import { useRouter } from 'next/navigation';
+import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, } from '@/components/ui/dialog';
+import { toast } from 'sonner';
 
 export default function DialogImportBackup() {
   const t = useTranslations("Index.backup-modal");
@@ -20,6 +15,31 @@ export default function DialogImportBackup() {
   const dataInputRef = useRef<HTMLInputElement>(null);
   const { setSelectedCube, setCubes, setTimerStatistics } = useTimerStore();
   const router = useRouter();
+
+  const handleImportBackup = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      try {
+        setIsImporting(true);
+        const response = await importDataFromFile(e);
+        if (response) {
+          toast.success('Backup imported successfully!');
+
+          const cubesDB = await getAllCubes();
+          setCubes(cubesDB);
+          router.push('/cubes');
+          setSelectedCube(null);
+          setTimerStatistics();
+          alert('Backup imported successfully! You can now view your cubes in the Cubes section. Organize your cubes categories before!');
+        }
+      } catch (error) {
+        toast.error('Backup import failed. Please try again.');
+
+        console.error(error);
+      } finally {
+        setIsImporting(false);
+      }
+    }
+  }
 
   return (
     <DialogContent className="sm:max-w-[425px]">
@@ -35,24 +55,7 @@ export default function DialogImportBackup() {
             type="file"
             accept=".txt"
             ref={dataInputRef}
-            onChange={async (e) => {
-              try {
-                setIsImporting(true);
-                const response = await importDataFromFile(e);
-                if (response) {
-                  const cubesDB = await getAllCubes();
-                  setCubes(cubesDB);
-                  router.push("/cubes");
-                  setSelectedCube(null);
-                  setTimerStatistics();
-                  alert(`${t("alert-category")}`);
-                }
-              } catch (error) {
-                console.error(error);
-              } finally {
-                setIsImporting(false);
-              }
-            }}
+            onChange={handleImportBackup}
             className="absolute z-50 w-full h-full opacity-0 hover:cursor-pointer"
           />
           <div className="absolute z-40 text-center text-xs">
