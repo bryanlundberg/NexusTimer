@@ -1,0 +1,37 @@
+{
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "./icon512_maskable.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "./icon512_rounded.png",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "any",
+  "display": "standalone",
+  "dir": "auto",
+  "lang": "en-EN",
+  "name": "Nexus Timer",
+  "short_name": "Nexus Timer",
+  "start_url": "/",
+  "scope": "/",
+  "description": "Nexus Timer is a professional platform for training and analyzing your journey with the Rubik's Cube. Installing it you will get access to a wide range of features, including a timer, statistics, and more offline.",
+  "id": "/",
+  "screenshots": [
+    {
+      "src": "/portrait-v1.png",
+      "sizes": "640x320",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Nexus Timer - Cover"
+    }
+  ]
+}
