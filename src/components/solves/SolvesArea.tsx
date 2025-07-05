@@ -1,5 +1,4 @@
 import { useTimerStore } from "@/store/timerStore";
-import AlertEmptySolves from "@/components/solves/AlertEmptySolves";
 import { Solve } from "@/interfaces/Solve";
 import { VirtualizedGrid } from "@mierak/react-virtualized-grid";
 import formatTime from "@/lib/formatTime";
@@ -48,7 +47,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   const [query,] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE });
   const [orderType,] = useQueryState(STATES.SOLVES_PAGE.ORDER.KEY, { defaultValue: STATES.SOLVES_PAGE.ORDER.DEFAULT_VALUE });
   const [sortType,] = useQueryState(STATES.SOLVES_PAGE.SORT.KEY, { defaultValue: STATES.SOLVES_PAGE.SORT.DEFAULT_VALUE });
-  const { handleDeleteSolve, handlePenaltyPlus2, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
+  const { handleDeleteSolve, handlePenaltyPlus2, handleDNF, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
   useRemoveGridHeight();
 
   if (!selectedCube) return <EmptySolves title={t("SolvesPage.alert.select-cube")} description={t("SolvesPage.alert.empty-cubes")}/>;
@@ -102,6 +101,11 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
                     +2
                   </span>
                 ) : null}
+                {sortedSolves[index].dnf ? (
+                  <span className="text-xs font-black text-red-600 ms-1">
+                    DNF
+                  </span>
+                ) : null}
               </div>
               <div className="absolute z-20 text-xs top-1 left-1">
                 {formatDate(sortedSolves[index].endTime).slice(0, 5)}
@@ -149,6 +153,12 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
             >
               <span className="mr-2 font-bold">+2</span>
               {sortedSolves[index].plus2 ? t("SolvesPage.dropdown.remove-penalty") : t("SolvesPage.dropdown.add-penalty")}
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => handleDNF(sortedSolves[index], "solves-area")}
+            >
+              <span className="mr-2 font-bold">DNF</span>
+              {sortedSolves[index].dnf ? 'Remove DNF' : 'Add DNF'}
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => handleClipboardSolve(sortedSolves[index])}
