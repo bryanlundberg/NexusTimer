@@ -21,7 +21,7 @@ import FadeIn from "@/components/fade-in/fade-in";
 export default function Page() {
   const { isDialogSolveOpen, handleCloseDialogSolve } = useDialogSolve();
   const { isOpenMoveSolvesDialog, handleChangeIsOpenMoveSolvesDialog } = useSolveFiltersStore();
-  const { selectedCube } = useTimerStore();
+  const selectedCube = useTimerStore((state) => state.selectedCube);
   const t = useTranslations("Index");
   const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue : STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
   const [, setQuery] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE });
