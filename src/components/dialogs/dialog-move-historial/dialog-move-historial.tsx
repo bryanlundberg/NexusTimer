@@ -18,8 +18,10 @@ export default function DialogMoveHistorial({
   handleClose: () => void;
 }) {
   const t = useTranslations("Index");
-  const { selectedCube, cubes, setCubes, setSelectedCube, setTimerStatistics } =
-    useTimerStore();
+  const selectedCube = useTimerStore((state) => state.selectedCube);
+  const cubes = useTimerStore((state) => state.cubes);
+  const setCubes = useTimerStore((state) => state.setCubes);
+  const setSelectedCube = useTimerStore((state) => state.setSelectedCube);
 
   const handleMoveSessionToHistorial = async () => {
     if (selectedCube) {
@@ -28,7 +30,6 @@ export default function DialogMoveHistorial({
       setCubes(cubesDB);
       const currentCube = await getCubeById(selectedCube.id);
       setSelectedCube(currentCube);
-      setTimerStatistics();
       handleClose();
       return;
     }
