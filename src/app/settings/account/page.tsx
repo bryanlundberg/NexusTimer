@@ -32,7 +32,7 @@ export default function Page() {
       cubes.map(async (cube) => await deleteCubeById(cube.id));
     }
 
-    signOut({ redirectTo: "/" });
+    await signOut({ redirectTo: "/" });
   };
 
   return (
