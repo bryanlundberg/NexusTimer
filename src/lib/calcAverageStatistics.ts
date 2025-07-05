@@ -3,7 +3,7 @@ import getSolvesMetrics from "./getSolvesMetrics";
 import { Cube } from "@/interfaces/Cube";
 
 /**
- * Calculates the average solve time for different solve sets (global, session, cubeSession, cubeAll) of a specific cube.
+ * Calculates the average solved time for different solve sets (global, session, cubeSession, cubeAll) of a specific cube.
  * @param {Object} params - Parameters for calculating average solve times.
  * @param {Cube[] | null} params.cubesDB - The array of cubes.
  * @param {Categories} params.category - The category of the cube solves.
@@ -22,25 +22,33 @@ export default function calcAverageStatistics({
   // Get solve metrics for global, session, cubeSession, and cubeAll
   const solveMetrics = getSolvesMetrics({ cubesDB, category, cubeName });
 
+  // Filter out DNF solves from each solve set
+  const filteredGlobal = solveMetrics.global.filter((solve) => !solve.dnf);
+  const filteredSession = solveMetrics.session.filter((solve) => !solve.dnf);
+  const filteredCubeSession = solveMetrics.cubeSession.filter(
+    (solve) => !solve.dnf
+  );
+  const filteredCubeAll = solveMetrics.cubeAll.filter((solve) => !solve.dnf);
+
   // Calculate average solve time for global solves
   const globalTime =
-    solveMetrics.global.reduce((total, acc) => total + acc.time, 0) /
-    solveMetrics.global.length;
+    filteredGlobal.reduce((total, acc) => total + acc.time, 0) /
+    filteredGlobal.length;
 
   // Calculate average solve time for session solves
   const sessionTime =
-    solveMetrics.session.reduce((total, acc) => total + acc.time, 0) /
-    solveMetrics.session.length;
+    filteredSession.reduce((total, acc) => total + acc.time, 0) /
+    filteredSession.length;
 
   // Calculate average solve time for cubeSession solves
   const cubeSessionTime =
-    solveMetrics.cubeSession.reduce((total, acc) => total + acc.time, 0) /
-    solveMetrics.cubeSession.length;
+    filteredCubeSession.reduce((total, acc) => total + acc.time, 0) /
+    filteredCubeSession.length;
 
   // Calculate average solve time for cubeAll solves
   const cubeAllTime =
-    solveMetrics.cubeAll.reduce((total, acc) => total + acc.time, 0) /
-    solveMetrics.cubeAll.length;
+    filteredCubeAll.reduce((total, acc) => total + acc.time, 0) /
+    filteredCubeAll.length;
 
   // Return the calculated average solve times for each solve set
   return {
