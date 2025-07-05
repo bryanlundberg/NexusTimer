@@ -112,17 +112,28 @@ export const useTimerStore = create<TimerStore>((set) => ({
     set({ hint: solutions });
   },
   setTimerStatistics: () => {
-    const { global, session, cubeSession } = calcStatistics({
-      cubesDB: useTimerStore.getState().cubes,
-      selectedCube: useTimerStore.getState().selectedCube,
-    });
-    set({
-      timerStatistics: {
-        global,
-        session,
-        cubeSession,
-      },
-    });
+    const calculateStatisticsAsync = async () => {
+      return new Promise<void>((resolve) => {
+        setTimeout(() => {
+          const { global, session, cubeSession } = calcStatistics({
+            cubesDB: useTimerStore.getState().cubes,
+            selectedCube: useTimerStore.getState().selectedCube,
+          });
+
+          set({
+            timerStatistics: {
+              global,
+              session,
+              cubeSession,
+            },
+          });
+
+          resolve();
+        }, 0);
+      });
+    };
+
+    calculateStatisticsAsync();
   },
   setTimerMode: (mode: TimerMode.NORMAL | TimerMode.STACKMAT) => {
     set({ timerMode: mode });
