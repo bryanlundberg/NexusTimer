@@ -28,16 +28,16 @@ export default function calcBestTime({
   });
 
   // Sort solve sets in ascending order based on solve times
-  const bestGlobal = sort(global).asc((u) => u.time);
-  const bestSession = sort(session).asc((u) => u.time);
-  const bestCubeAll = sort(cubeAll).asc((u) => u.time);
-  const bestCubeSession = sort(cubeSession).asc((u) => u.time);
+  const bestGlobal = sort(global).asc((u) => u.dnf ? Infinity : u.time);
+  const bestSession = sort(session).asc((u) => u.dnf ? Infinity : u.time);
+  const bestCubeAll = sort(cubeAll).asc((u) => u.dnf ? Infinity : u.time);
+  const bestCubeSession = sort(cubeSession).asc((u) => u.dnf ? Infinity : u.time);
 
-  // Return the best solve times for each solve set
+// Return the best solve times for each solve set
   return {
-    global: bestGlobal[0]?.time || 0,
-    session: bestSession[0]?.time || 0,
-    cubeAll: bestCubeAll[0]?.time || 0,
-    cubeSession: bestCubeSession[0]?.time || 0,
+    global: bestGlobal[0]?.dnf ? 0 : bestGlobal[0]?.time || 0,
+    session: bestSession[0]?.dnf ? 0 : bestSession[0]?.time || 0,
+    cubeAll: bestCubeAll[0]?.dnf ? 0 : bestCubeAll[0]?.time || 0,
+    cubeSession: bestCubeSession[0]?.dnf ? 0 : bestCubeSession[0]?.time || 0,
   };
 }
