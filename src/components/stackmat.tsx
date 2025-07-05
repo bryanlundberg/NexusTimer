@@ -29,7 +29,6 @@ export default function Stackmat() {
     setSelectedCube,
     setLastSolve,
     setNewScramble,
-    setTimerStatistics,
     timerStatus,
   } = useTimerStore();
 
@@ -101,7 +100,6 @@ export default function Stackmat() {
         setLastSolve({ ...newSolve });
 
         setNewScramble(selectedCube);
-        setTimerStatistics();
       };
 
       const onConnected = (packet: Packet) => {
@@ -158,7 +156,6 @@ export default function Stackmat() {
     setSelectedCube,
     setLastSolve,
     setNewScramble,
-    setTimerStatistics,
     timerStatus,
   ]);
 
