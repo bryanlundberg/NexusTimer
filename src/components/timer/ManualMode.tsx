@@ -20,7 +20,6 @@ export default function ManualMode() {
   const setNewScramble = useTimerStore(store => store.setNewScramble);
   const setLastSolve = useTimerStore(store => store.setLastSolve);
   const setCubes = useTimerStore(store => store.setCubes);
-  const setTimerStatistics = useTimerStore(store => store.setTimerStatistics);
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
 
   const settings = useSettingsModalStore(store => store.settings);
@@ -85,7 +84,6 @@ export default function ManualMode() {
 
           setNewScramble(selectedCube);
           setValue("");
-          setTimerStatistics();
         }}
       >
         <Input
