@@ -13,7 +13,8 @@ export default function DialogImportBackup() {
   const t = useTranslations("Index.backup-modal");
   const [isImporting, setIsImporting] = useState(false);
   const dataInputRef = useRef<HTMLInputElement>(null);
-  const { setSelectedCube, setCubes, setTimerStatistics } = useTimerStore();
+  const setSelectedCube = useTimerStore((state) => state.setSelectedCube);
+  const setCubes = useTimerStore((state) => state.setCubes);
   const router = useRouter();
 
   const handleImportBackup = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +29,6 @@ export default function DialogImportBackup() {
           setCubes(cubesDB);
           router.push('/cubes');
           setSelectedCube(null);
-          setTimerStatistics();
           alert('Backup imported successfully! You can now view your cubes in the Cubes section. Organize your cubes categories before!');
         }
       } catch (error) {
