@@ -22,7 +22,6 @@ export default function Timer({ children }: { children?: ReactNode }) {
   const timerStatistics = useTimerStore(store => store.timerStatistics);
   const setLastSolve = useTimerStore(store => store.setLastSolve);
   const setTimerStatus = useTimerStore(store => store.setTimerStatus);
-  const setTimerStatistics = useTimerStore(store => store.setTimerStatistics);
   const setIsSolving = useTimerStore(store => store.setIsSolving);
   const setSolvingTime = useTimerStore(store => store.setSolvingTime);
   const displayHint = useTimerStore(store => store.displayHint);
@@ -35,7 +34,6 @@ export default function Timer({ children }: { children?: ReactNode }) {
     isSolving,
     setTimerStatus,
     selectedCube,
-    setTimerStatistics,
     inspectionRequired: settings.timer.inspection,
     setIsSolving,
     setSolvingTime,
