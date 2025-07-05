@@ -4,6 +4,10 @@ import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { getAllCubes, getCubeById } from "@/db/dbOperations";
 import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
+import { useSession } from "next-auth/react";
+import { getLastBackup } from '@/actions/actions';
+import { Cube } from '@/interfaces/Cube';
+import { useSyncBackup } from '@/hooks/useSyncBackup';
 
 export function usePreloadSettings() {
   const setCubes = useTimerStore(store => store.setCubes);
@@ -13,6 +17,9 @@ export function usePreloadSettings() {
   const setSettings = useSettingsModalStore(store => store.setSettings);
   const setBackgroundImage = useBackgroundImageStore(store => store.setBackgroundImage);
   const [isMounted, setIsMounted] = useState(false);
+  const { data: session } = useSession();
+  const [synced, setSynced] = useState(false);
+  const { syncBackup } = useSyncBackup();
 
   useEffect(() => {
     const settings = loadSettings();
@@ -44,6 +51,44 @@ export function usePreloadSettings() {
       setBackgroundImage(storedImage);
     }
   }, [setBackgroundImage]);
+
+  useEffect(() => {
+    const checkCloudData = async () => {
+      if (session && session.user && session.user.email && !synced) {
+        setSynced(true);
+        try {
+          const localCubes = await getAllCubes();
+          const backup = await getLastBackup({ email: session.user.email });
+          if (!backup) {
+            return;
+          }
+
+          const parsedBackup = JSON.parse(backup);
+          const cloudBackup = JSON.parse(parsedBackup.data) as Cube[];
+
+          const localSolvesCount = localCubes.reduce((total, cube) => {
+            return total + cube.solves.all.length + cube.solves.session.length;
+          }, 0);
+
+          const cloudSolvesCount = cloudBackup.reduce((total, cube) => {
+            return total + cube.solves.all.length + cube.solves.session.length;
+          }, 0);
+
+          if (localSolvesCount === cloudSolvesCount) {
+            return;
+          }
+
+          const syncedCubes = await syncBackup(cloudBackup, localCubes);
+
+          setCubes(syncedCubes);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+
+    checkCloudData();
+  }, [session, setCubes, syncBackup, synced]);
 
   useEffect(() => {
     setIsMounted(true);
