@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
 import { TimerStatus } from "@/enums/TimerStatus";
 import useTimerControls from "./useTimerControls";
 import useInspection from "./useInspection";
@@ -10,7 +10,6 @@ interface UseTimerProps {
   isSolving: boolean;
   setTimerStatus: (status: TimerStatus) => void;
   selectedCube: Cube | null;
-  setTimerStatistics: () => void;
   inspectionRequired: boolean;
   setIsSolving: (isSolving: boolean) => void;
   setSolvingTime: (time: number) => void;
@@ -24,7 +23,6 @@ export default function useTimer({
   isSolving,
   setTimerStatus,
   selectedCube,
-  setTimerStatistics,
   inspectionRequired,
   setIsSolving,
   setSolvingTime,
@@ -126,10 +124,6 @@ export default function useTimer({
     handleRelease,
     resetTimer: resetAll
   });
-
-  useEffect(() => {
-    if (selectedCube && !isSolving) setTimerStatistics();
-  }, [selectedCube, isSolving, setTimerStatistics]);
 
   return {
     inspectionTime,
