@@ -280,7 +280,7 @@ function importTwistyTimerData(fileContent: string) {
   return newCubeList;
 }
 
-export function formatCubesDatesAndOrder(cubes: Cube[]) {
+export function formatCubesDatesAndOrder(cubes: Cube[]): Cube[] {
   return cubes.map((cube) => {
     const sortedSessionSolves = cube.solves.session.sort((a, b) => a.startTime - b.startTime);
     const sortedAllSolves = cube.solves.all.sort((a, b) => a.startTime - b.startTime);
