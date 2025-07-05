@@ -14,7 +14,7 @@ export default function HeaderTimer() {
 
   if (isSolving || timerStatus !== TimerStatus.IDLE) return null;
 
-  const isPersonalBest = lastSolve != null && lastSolve.time <= timerStatistics.global.best && settings.alerts.bestTime;
+  const isPersonalBest = lastSolve != null && !lastSolve.dnf && lastSolve.time <= timerStatistics.global.best && settings.alerts.bestTime;
 
   return (
     <>
