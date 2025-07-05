@@ -39,7 +39,7 @@ export default function StatisticsPanel() {
         {label}:{" "}
         <span data-testid={testId}>
           {timerStatistics.session[key] === 0
-            ? "--"
+            ? timerStatistics.session.count >= Number(key.replace("ao", "")) ? "DNF" : "--"
             : formatTime(timerStatistics.session[key])}
         </span>
       </div>
