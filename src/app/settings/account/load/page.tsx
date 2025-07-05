@@ -3,13 +3,15 @@ import { getLastBackup } from "@/actions/actions";
 import AccountHeader from "@/components/account/account-header/account-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { deleteCubeById, getAllCubes, saveCube } from "@/db/dbOperations";
+import { clearCubes, getAllCubes, saveBatchCubes } from '@/db/dbOperations';
 import { Cube } from "@/interfaces/Cube";
 import { useTimerStore } from "@/store/timerStore";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { importNexusTimerData } from '@/lib/importDataFromFile';
+import { merge } from 'ts-deepmerge';
 
 export default function Page() {
   const t = useTranslations("Index");
@@ -19,82 +21,28 @@ export default function Page() {
   const handleDownloadData = async () => {
     if (!session || !session.user || !session.user.email) return;
 
-    // Get backup from server
     const backup = await getLastBackup({ email: session.user.email });
     if (!backup) return;
 
-    // Transform response plain text into JS, removing _id field
-    const parsedBackup = JSON.parse(backup);
-    const cloudBackup = JSON.parse(parsedBackup.data);
+    const jsonBackup = JSON.parse(backup);
+    const backupData = importNexusTimerData(jsonBackup.data);
+    const existingCubes = await getAllCubes();
 
-    // Get local data from indexDB
-    const cubes = await getAllCubes();
+    const newCubes: Cube[] = [];
 
-    if (!cubes) return;
-
-    // Create new backup object
-    const newBackup: Cube[] = [...cubes];
-
-    cloudBackup.forEach((cubeCloud: Cube) => {
-      let addedCube = false;
-      cubes.forEach((cubeLocal: Cube) => {
-        // Compare cube x cube
-        if (cubeCloud.id === cubeLocal.id) {
-          // merge all solves from both local and cloud (session/historial)
-          const solves = [
-            ...cubeLocal.solves.all,
-            ...cubeCloud.solves.all,
-            ...cubeLocal.solves.session,
-            ...cubeCloud.solves.session,
-          ];
-
-          // remove duplicate solves
-          const uniqueSolves = Array.from(
-            new Map(solves.map((solve) => [solve.id, solve])).values()
-          );
-
-          // Create a copy of local cube to help maintain category, name, createdAt, etc...
-          const newCubeData: Cube = {
-            ...cubeLocal,
-            solves: { all: uniqueSolves, session: [] },
-          };
-
-          // Finds the index of the local cube into the new backup
-          const cubeLocalIndex = newBackup.findIndex(
-            (c) => c.id === cubeLocal.id
-          );
-
-          if (cubeLocalIndex !== -1) {
-            // If exists updates the local cube object with new solves data
-            newBackup[cubeLocalIndex] = newCubeData;
-          }
-
-          addedCube = true;
-        }
-      });
-      if (!addedCube) {
-        newBackup.push(cubeCloud);
+    for (const cube of backupData) {
+      const existingCube = existingCubes.find((c) => c.id === cube.id);
+      if (!existingCube) {
+        newCubes.push(cube);
+      } else {
+        const mergedCube = merge(existingCube, cube) as unknown as Cube;
+        newCubes.push(mergedCube);
       }
-    });
-
-    // Clear app storage
-    for (const c of cubes) {
-      await deleteCubeById(c.id);
     }
 
-    // Replace storage with new Object Backup
-    for (const c of newBackup) {
-      await saveCube({
-        ...c,
-      });
-    }
-
-    // Update global state
-    const appData = await getAllCubes();
-    if (appData) {
-      setCubes(appData);
-    }
-    // redirect account page
+    await clearCubes();
+    await saveBatchCubes(newCubes);
+    setCubes(newCubes);
     router.push("/");
   };
 
