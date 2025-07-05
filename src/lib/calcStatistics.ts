@@ -37,12 +37,14 @@ export default function calcStatistics({
     solves: Solve[],
     type: string
   ): CubeStatistics => {
-    const pbSolves = sort(solves).asc((solve) => solve.time);
+    // Filter out DNF solves for best time calculation
+    const validSolves = solves.filter(solve => !solve.dnf);
+    const pbSolves = sort(validSolves).asc((solve) => solve.time);
 
     // Default object with initial values
     const statistics: CubeStatistics = {
       count: solves.length,
-      best: pbSolves[0]?.time || 0,
+      best: validSolves.length > 0 ? pbSolves[0]?.time || 0 : 0,
       deviation: getDeviation(solves),
       mean: getMean(solves),
       ao3: 0,
@@ -50,7 +52,7 @@ export default function calcStatistics({
       ao12: 0,
       ao50: 0,
       ao100: 0,
-      worst: pbSolves[pbSolves.length - 1]?.time || 0,
+      worst: solves.some(solve => solve.dnf) ? 0 : (pbSolves[pbSolves.length - 1]?.time || 0),
     };
 
     // Calculate average of X (AoX) statistics
@@ -74,8 +76,8 @@ export default function calcStatistics({
 
   // Calculate and return statistics for global, session, and cubeSession
   return {
-    global: calculateStatistics(global, "global"),
-    session: calculateStatistics(session, "session"),
-    cubeSession: calculateStatistics(cubeSession, "cubeSession"),
+    global: global.length > 0 ? calculateStatistics(global, "global") : defaultTimerStatistics,
+    session: session.length > 0 ? calculateStatistics(session, "session") : defaultTimerStatistics,
+    cubeSession: cubeSession.length > 0 ? calculateStatistics(cubeSession, "cubeSession") : defaultTimerStatistics,
   };
 }

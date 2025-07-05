@@ -25,7 +25,7 @@ export default function MenuSolveOptions({
   const t = useTranslations("Index");
   const { selectedCube, lastSolve } = useTimerStore();
   const dialog = useDialogSolve();
-  const { handleDeleteSolve, handlePenaltyPlus2, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
+  const { handleDeleteSolve, handlePenaltyPlus2, handleDNF, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
   const router = useRouter();
   const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
 
@@ -37,6 +37,10 @@ export default function MenuSolveOptions({
 
   const localHandlePenaltyPlus2 = () => {
     if (solve) handlePenaltyPlus2(solve, caseOfUse);
+  };
+
+  const localHandleDNF = () => {
+    if (solve) handleDNF(solve, caseOfUse);
   };
 
   const localHandleBookmarkSolve = () => {
@@ -80,16 +84,50 @@ export default function MenuSolveOptions({
           </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button
-                variant={"ghost"}
-                className="font-light text-md"
-                onPointerDown={localHandlePenaltyPlus2}
-              >
-                +2
-              </Button>
+              {caseOfUse === "last-solve" ? (
+                <Button
+                  variant={"ghost"}
+                  className={`font-light text-md ${lastSolve?.plus2 ? "text-red-600 font-bold hover:text-red-600" : ""}`}
+                  onPointerDown={localHandlePenaltyPlus2}
+                >
+                  +2
+                </Button>
+              ) : (
+                <Button
+                  variant={"ghost"}
+                  className={`font-light text-md ${dialog.solve?.plus2 ? "text-red-600 font-bold hover:text-red-600" : ""}`}
+                  onPointerDown={localHandlePenaltyPlus2}
+                >
+                  +2
+                </Button>
+              )}
             </TooltipTrigger>
             <TooltipContent>
               <p>{t("tooltips.plus-two")}</p>
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              {caseOfUse === "last-solve" ? (
+                <Button
+                  variant={"ghost"}
+                  className={`font-light text-md ${lastSolve?.dnf ? "text-red-600 font-bold hover:text-red-600" : ""}`}
+                  onPointerDown={localHandleDNF}
+                >
+                  DNF
+                </Button>
+              ) : (
+                <Button
+                  variant={"ghost"}
+                  className={`font-light text-md ${dialog.solve?.dnf ? "text-red-600 font-bold hover:text-red-600" : ""}`}
+                  onPointerDown={localHandleDNF}
+                >
+                  DNF
+                </Button>
+              )}
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Did Not Finish</p>
             </TooltipContent>
           </Tooltip>
           <Tooltip>

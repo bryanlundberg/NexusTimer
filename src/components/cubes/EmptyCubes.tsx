@@ -10,7 +10,7 @@ interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export default function EmptyCubes({ ...rest }: EmptyCubesProps) {
   const t = useTranslations("Index.CubesPage");
-  const { setIsOpenDrawerNewCollection } = useTimerStore();
+  const setIsOpenDrawerNewCollection = useTimerStore((state) => state.setIsOpenDrawerNewCollection);
   return (
     <>
       <div

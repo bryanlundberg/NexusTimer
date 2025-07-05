@@ -1,6 +1,7 @@
 import { Cube } from "@/interfaces/Cube";
-import calcPlus2Rate from "./calcPlus2Rate";
 import { Solve } from "@/interfaces/Solve";
+import calcPenaltyRate from '@/lib/calcPenaltyRate';
+
 
 /**
  * Calculates the success rate based on plus2 solves for all cubes.
@@ -17,7 +18,7 @@ export default function getSuccessRate(cubes: Cube[] | null): number | string {
     globalSolves.push(...cube.solves.all, ...cube.solves.session);
   });
 
-  const totalPlus2 = calcPlus2Rate(globalSolves);
+  const totalPlus2 = calcPenaltyRate(globalSolves);
 
   if (globalSolves.length === 0) return 0;
 

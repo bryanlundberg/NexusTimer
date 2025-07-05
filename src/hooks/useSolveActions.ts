@@ -123,6 +123,47 @@ export const useSolveActions = () => {
     }
   };
 
+  const handleDNF = async (solve: Solve, caseOfUse?: CaseOfUse) => {
+    if (solve && selectedCube) {
+      await updateSolve({
+        solveId: solve.id,
+        selectedCube: selectedCube,
+        type: "DNF"
+      });
+
+      const lastCubes = await getAllCubes();
+      setCubes([...lastCubes]);
+
+      const lastCube = await getCubeById(selectedCube.id);
+      if (lastCube) {
+        setSelectedCube({ ...lastCube });
+      }
+
+      if (lastCube && (caseOfUse === "last-solve" || caseOfUse === "modal-solve")) {
+        const solvesGlobal = [
+          ...lastCube.solves.session,
+          ...lastCube.solves.all
+        ];
+
+        const updatedSolve = solvesGlobal.find((i) => i.id === solve.id);
+
+        if (updatedSolve && lastSolve && updatedSolve.id === lastSolve.id) {
+          dialog.handleSetSolveInDialog({ solve: { ...updatedSolve } });
+          setLastSolve({ ...updatedSolve });
+        } else if (updatedSolve && caseOfUse === "modal-solve") {
+          dialog.handleSetSolveInDialog({ solve: { ...updatedSolve } });
+        } else if (updatedSolve && caseOfUse === "last-solve") {
+          setLastSolve({ ...updatedSolve });
+        }
+      }
+
+      toast("", {
+        description: "DNF status updated.",
+        duration: 500
+      });
+    }
+  };
+
   const handleBookmarkSolve = async (solve: Solve, caseOfUse?: CaseOfUse) => {
     if (solve && selectedCube) {
       await updateSolve({
@@ -217,6 +258,7 @@ export const useSolveActions = () => {
   return {
     handleDeleteSolve,
     handlePenaltyPlus2,
+    handleDNF,
     handleBookmarkSolve,
     handleClipboardSolve,
     handleUndoSolve,

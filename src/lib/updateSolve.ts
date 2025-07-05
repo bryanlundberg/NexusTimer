@@ -34,8 +34,17 @@ export default async function updateSolve({
 
       if(solveToUpdate){
         if (type === "+2") {
+          if (!solveToUpdate.plus2 && solveToUpdate.dnf) {
+            solveToUpdate.dnf = false;
+          }
           solveToUpdate.plus2 = !solveToUpdate.plus2;
           solveToUpdate.time += solveToUpdate.plus2 ? 2000 : -2000;
+        } else if (type === "DNF") {
+          if (!solveToUpdate.dnf && solveToUpdate.plus2) {
+            solveToUpdate.plus2 = false;
+            solveToUpdate.time -= 2000;
+          }
+          solveToUpdate.dnf = !solveToUpdate.dnf;
         } else if (type === "COMMENT") {
           solveToUpdate.comment = comment ?? "";
         } else if (type === "BOOKMARK") {

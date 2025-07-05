@@ -67,6 +67,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
   },
   setCubes: (cubesDB: Cube[]) => {
     set({ cubes: [...cubesDB] });
+    useTimerStore.getState().setTimerStatistics();
   },
   setSelectedCube: (cube: Cube | null) => {
     set((state: any) => {
@@ -87,6 +88,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
         selectedCube: cube,
       };
     });
+    useTimerStore.getState().setTimerStatistics();
   },
   setLastSolve: (solve: Solve | null) => {
     set({ lastSolve: solve });
@@ -110,17 +112,28 @@ export const useTimerStore = create<TimerStore>((set) => ({
     set({ hint: solutions });
   },
   setTimerStatistics: () => {
-    const { global, session, cubeSession } = calcStatistics({
-      cubesDB: useTimerStore.getState().cubes,
-      selectedCube: useTimerStore.getState().selectedCube,
-    });
-    set({
-      timerStatistics: {
-        global,
-        session,
-        cubeSession,
-      },
-    });
+    const calculateStatisticsAsync = async () => {
+      return new Promise<void>((resolve) => {
+        setTimeout(() => {
+          const { global, session, cubeSession } = calcStatistics({
+            cubesDB: useTimerStore.getState().cubes,
+            selectedCube: useTimerStore.getState().selectedCube,
+          });
+
+          set({
+            timerStatistics: {
+              global,
+              session,
+              cubeSession,
+            },
+          });
+
+          resolve();
+        }, 0);
+      });
+    };
+
+    calculateStatisticsAsync();
   },
   setTimerMode: (mode: TimerMode.NORMAL | TimerMode.STACKMAT) => {
     set({ timerMode: mode });

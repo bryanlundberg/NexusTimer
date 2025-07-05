@@ -27,9 +27,13 @@ export default function DialogEditCollection({
   }) => void;
 }) {
   const t = useTranslations("Index");
-  const { cube, closeDialog } = useDialogCubesOptions();
-  const { cubes, setCubes, selectedCube, setSelectedCube, setTimerStatistics } =
-    useTimerStore();
+  const cube = useDialogCubesOptions((state) => state.cube);
+  const closeDialog = useDialogCubesOptions((state) => state.closeDialog);
+  const cubes = useTimerStore((state) => state.cubes);
+  const setCubes = useTimerStore((state) => state.setCubes);
+  const selectedCube = useTimerStore((state) => state.selectedCube);
+  const setSelectedCube = useTimerStore((state) => state.setSelectedCube);
+
   const [form, setForm] = useState({
     name: cube?.name || "",
     category: cube?.category || "2x2"
@@ -60,7 +64,6 @@ export default function DialogEditCollection({
 
       if (cube && cube.id === selectedCube?.id) {
         setSelectedCube(null);
-        setTimerStatistics();
       }
 
       // update states

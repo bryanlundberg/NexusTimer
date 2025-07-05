@@ -1,4 +1,4 @@
-import { Solve } from "@/interfaces/Solve";
+import { Solve } from '@/interfaces/Solve';
 
 /**
  * Calculates the mean (average) of solve times.
@@ -6,13 +6,15 @@ import { Solve } from "@/interfaces/Solve";
  * @returns {number} The mean of solve times. Returns 0 if there are no solves.
  */
 export default function getMean(solves: Solve[]): number {
-  if (!solves || typeof solves === "string" || typeof solves === "number") {
+  if (!solves) {
     return 0;
   }
 
-  const n = solves.length;
+  // Filter out DNF solves
+  const validSolves = solves.filter(solve => !solve.dnf);
+  const n = validSolves.length;
 
-  // If there are no solves, the mean is 0.
+  // If there are no valid solves, the mean is 0 (representing DNF).
   if (n === 0) {
     return 0;
   }
@@ -20,11 +22,9 @@ export default function getMean(solves: Solve[]): number {
   // Calculate the sum of solve times using a simple loop.
   let totalSolvingTime = 0;
   for (let i = 0; i < n; i++) {
-    totalSolvingTime += solves[i].time;
+    totalSolvingTime += validSolves[i].time;
   }
 
   // Calculate the mean, avoiding division if there is only one solve.
-  const mean = n === 1 ? totalSolvingTime : totalSolvingTime / n;
-
-  return mean;
+  return n === 1 ? totalSolvingTime : totalSolvingTime / n;
 }

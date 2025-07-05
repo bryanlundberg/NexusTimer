@@ -12,7 +12,6 @@ import { useSyncBackup } from '@/hooks/useSyncBackup';
 export function usePreloadSettings() {
   const setCubes = useTimerStore(store => store.setCubes);
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
-  const setTimerStatistics = useTimerStore(store => store.setTimerStatistics);
   const setNewScramble = useTimerStore(store => store.setNewScramble);
   const setSettings = useSettingsModalStore(store => store.setSettings);
   const setBackgroundImage = useBackgroundImageStore(store => store.setBackgroundImage);
@@ -38,8 +37,7 @@ export function usePreloadSettings() {
     }
 
     setSettings(settings);
-    setTimerStatistics();
-  }, [setSettings, setSelectedCube, setNewScramble, setTimerStatistics]);
+  }, [setSettings, setSelectedCube, setNewScramble]);
 
   useEffect(() => {
     getAllCubes().then((res) => setCubes(res));
