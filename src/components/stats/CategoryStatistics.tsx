@@ -17,12 +17,13 @@ export default function CategoryStatistics() {
   const { stats } = useMetricsSwitch();
   const { selectedCube } = useTimerStore();
   const [tabStats, setTabStats] = useQueryState(STATES.STATISTICS_PAGE.TAB_MODE.KEY, { defaultValue: STATES.STATISTICS_PAGE.TAB_MODE.DEFAULT_VALUE });
+  const cubes = useTimerStore((state) => state.cubes);
 
   return (
     <>
       <div className="flex flex-col gap-3 grow">
         <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-background/90 backdrop-blur-lg">
-          {selectedCube && (selectedCube.solves.session.length || selectedCube.solves.all.length) ? (
+          {selectedCube && (selectedCube.solves.session.length || selectedCube.solves.all.length || cubes?.some((cube) => cube.category === selectedCube.category && cube.solves.all.length)) ? (
             <>
               <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3 w-full">
                 <TabsList className="w-full justify-between">
