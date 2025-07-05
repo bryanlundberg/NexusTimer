@@ -5,8 +5,9 @@ import { Solve } from "@/interfaces/Solve";
 
 /**
  * Retrieves solves metrics for a specific category and cube name.
- * @param {Categories} category - The category of the solves to retrieve metrics for.
- * @param {string} cubeName - The name of the cube to retrieve metrics for.
+ * @param cubesDB
+ * @param category
+ * @param cubeName
  * @returns {CubeSolves} An object containing solves metrics for global, session, cubeAll, and cubeSession.
  */
 export default function getSolvesMetrics({
