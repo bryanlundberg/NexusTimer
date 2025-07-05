@@ -2,6 +2,11 @@ import { Solve } from "@/interfaces/Solve";
 
 /**
  * Calculates the best average of X (AoX) from a given array of solves.
+ * For averages, the best and worst times are removed, and the average of the remaining times is calculated.
+ * DNF solves are always considered the worst times. If there is more than one DNF, the average is DNF (represented as 0).
+ * If a DNF remains after removing the best and worst times, the average is DNF.
+ * This function checks all possible windows of 'ao' consecutive solves and returns the best one.
+ *
  * @param {Solve[]} solves - An array of Solve objects.
  * @param {number} ao - The desired average length (e.g., 3, 5, 12).
  * @returns {number} The best average of X (AoX) for the given solves.
@@ -16,27 +21,43 @@ export default function calculateBestAo(solves: Solve[], ao: number): number {
   let bestAo = Infinity;
 
   for (let i = 0; i <= n - ao; i++) {
-    let sum = 0;
-    let minTime = Infinity;
-    let maxTime = -Infinity;
+    // Get the current window of solves
+    const windowSolves = solves.slice(i, i + ao);
 
-    // Calculate the sum of solve times and find the min and max time in the range
-    for (let j = i; j < i + ao; j++) {
-      const time = solves[j].time;
-      sum += time;
-      if (time < minTime) {
-        minTime = time;
-      }
-      if (time > maxTime) {
-        maxTime = time;
-      }
+    // Count DNFs in the window
+    const dnfCount = windowSolves.filter(solve => solve.dnf).length;
+
+    // If more than one DNF, this window's average is DNF, so skip it
+    if (dnfCount > 1) {
+      continue;
     }
 
-    // Adjust the sum by removing the min and max time
-    sum -= minTime + maxTime;
+    // Sort solves by time, treating DNFs as worst times
+    const sortedSolves = [...windowSolves].sort((a, b) => {
+      if (a.dnf) return 1;
+      if (b.dnf) return -1;
+      return a.time - b.time;
+    });
 
-    // Calculate the adjusted average
-    const currentAo = sum / (ao - 2);
+    // Remove the best and worst time from the array
+    const trimmedSolves = sortedSolves.slice(1, ao - 1);
+
+    // Check if there's a DNF in the trimmed solves
+    if (trimmedSolves.some(solve => solve.dnf)) {
+      // If there's a DNF in the trimmed solves, this window's average is DNF, so skip it
+      continue;
+    }
+
+    // Calculate the sum of trimmed solve times
+    let sum = 0;
+    let validCount = 0;
+    for (const solve of trimmedSolves) {
+      sum += solve.time;
+      validCount++;
+    }
+
+    // Calculate the average of the trimmed solves
+    const currentAo = sum / validCount;
     bestAo = Math.min(bestAo, currentAo);
   }
 
