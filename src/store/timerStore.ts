@@ -67,6 +67,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
   },
   setCubes: (cubesDB: Cube[]) => {
     set({ cubes: [...cubesDB] });
+    useTimerStore.getState().setTimerStatistics();
   },
   setSelectedCube: (cube: Cube | null) => {
     set((state: any) => {
@@ -87,6 +88,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
         selectedCube: cube,
       };
     });
+    useTimerStore.getState().setTimerStatistics();
   },
   setLastSolve: (solve: Solve | null) => {
     set({ lastSolve: solve });
