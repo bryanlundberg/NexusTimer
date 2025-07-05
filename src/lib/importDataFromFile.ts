@@ -108,8 +108,6 @@ export default async function importDataFromFile(
       }
     }
 
-    console.log(cubes)
-
     cubes = uniqueData(cubes);
     await clearCubes();
     await saveBatchCubes(cubes);
@@ -121,12 +119,13 @@ export default async function importDataFromFile(
   }
 }
 
-const importNexusTimerData = (fileContent: string) => {
+export const importNexusTimerData = (fileContent: string) => {
   const parsedData = JSON.parse(fileContent);
   const result = nxTimerSchema.safeParse(parsedData);
   if (!result.success) {
     throw new Error(`Invalid Nexus Timer data: ${result.error.message}`);
   }
+
   return parsedData as Cube[];
 }
 
@@ -139,7 +138,7 @@ const importCsTimerData = (fileContent: string) => {
 
   const resultData = Object.values(parsedData).slice(0, -1) // Exclude the last property which is "properties"
 
-  return resultData.map((session: any, index) => {
+  let newCubeList = resultData.map((session: any, index) => {
     const newCube: Cube = {
       id: genId(),
       name: 'CSTimer Session ' + (index + 1),
@@ -171,17 +170,21 @@ const importCsTimerData = (fileContent: string) => {
 
     return newCube;
   })
+
+  newCubeList = formatCubesDatesAndOrder(newCubeList);
+  newCubeList = parseNXTimerSchema(newCubeList);
+
+  return newCubeList as Cube[];
 }
 
 function importCubeDeskData(fileContent: string) {
   const parsedData = JSON.parse(fileContent);
-  console.log(parsedData)
   const result = cubeDeskSchema.safeParse(parsedData);
   if (!result.success) {
     throw new Error(`Invalid CubeDesk data: ${result.error.message}`);
   }
 
-  const newCubeList: Cube[] = [];
+  let newCubeList: Cube[] = [];
 
   result.data.sessions.forEach((session) => {
     const newCube: Cube = {
@@ -217,13 +220,16 @@ function importCubeDeskData(fileContent: string) {
     newCubeList.push(newCube);
   });
 
+  newCubeList = formatCubesDatesAndOrder(newCubeList);
+  newCubeList = parseNXTimerSchema(newCubeList);
+
   return newCubeList;
 }
 
 function importTwistyTimerData(fileContent: string) {
   const parsedData = parse(fileContent, { dynamicTyping: true }).data.slice(1);
 
-  const newCubeList: Cube[] = [];
+  let newCubeList: Cube[] = [];
 
   // Twisty Timer backup: Row structure
   // Puzzle: 222, Category: Normal, Time: 0, Date: 1657657016937, Scramble: R2 F2, Penalty: 0, Comment:
@@ -236,12 +242,9 @@ function importTwistyTimerData(fileContent: string) {
   parsedData.forEach((row: any) => {
     const [puzzle, category, time, date, scramble, penalty, comment] = row;
 
-    if (time === 0 || puzzle === null) return;
+    if (time === 0 || puzzle == null || category == null || date == null || scramble == null || penalty == null) return;
 
-    // Find or create the cube
-    let cube = newCubeList.find(
-      (c) => c.name === `${puzzle}-${category}`
-    );
+    let cube = newCubeList.find((c) => c.name === `${puzzle}-${category}`);
 
     if (!cube) {
       cube = {
@@ -249,7 +252,7 @@ function importTwistyTimerData(fileContent: string) {
         name: `${puzzle}-${category}`,
         category: '3x3',
         solves: { session: [], all: [] },
-        createdAt: date,
+        createdAt: Number(date),
         favorite: false,
       };
       newCubeList.push(cube);
@@ -257,24 +260,51 @@ function importTwistyTimerData(fileContent: string) {
 
     const newSolve: Solve = {
       id: genId(),
-      startTime: date - time,
-      endTime: date,
-      scramble,
+      startTime: Number(date) - Number(time),
+      endTime: Number(date),
+      scramble: scramble.toString(),
       bookmark: false,
-      time,
+      time: Number(time),
       dnf: penalty === 2,
       plus2: penalty === 1,
-      rating: scramble ? Math.floor(Math.random() * 20) + scramble.length : 10,
+      rating: scramble ? Math.floor(Math.random() * 20) + scramble.toString().length : 10,
       cubeId: cube.id,
-      comment: comment || '',
+      comment: comment ? comment.toString() : '',
     };
     cube.solves.session.push(newSolve);
   });
 
+  newCubeList = formatCubesDatesAndOrder(newCubeList);
+  newCubeList = parseNXTimerSchema(newCubeList);
+
   return newCubeList;
 }
 
-function uniqueData(cubes: Cube[]) {
+export function formatCubesDatesAndOrder(cubes: Cube[]) {
+  return cubes.map((cube) => {
+    const sortedSessionSolves = cube.solves.session.sort((a, b) => a.startTime - b.startTime);
+    const sortedAllSolves = cube.solves.all.sort((a, b) => a.startTime - b.startTime);
+
+    return {
+      ...cube,
+      createdAt: sortedSessionSolves.length > 0 ? sortedSessionSolves[0].startTime : cube.createdAt,
+      solves: {
+        session: sortedSessionSolves,
+        all: sortedAllSolves,
+      },
+    };
+  });
+}
+
+export function parseNXTimerSchema(cubes: Cube[]): Cube[] {
+  const result = nxTimerSchema.safeParse(cubes);
+  if (!result.success) {
+    throw new Error(`Invalid Nexus Timer data: ${result.error.message}`);
+  }
+  return result.data as Cube[];
+}
+
+export function uniqueData(cubes: Cube[]) {
   return _.uniqBy(cubes, 'id').map((cube) => ({
     ...cube,
     solves: {
