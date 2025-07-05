@@ -10,8 +10,8 @@ import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { importNexusTimerData } from '@/lib/importDataFromFile';
-import { merge } from 'ts-deepmerge';
+import { formatCubesDatesAndOrder, importNexusTimerData } from '@/lib/importDataFromFile';
+import _, { uniqBy } from 'lodash';
 
 export default function Page() {
   const t = useTranslations("Index");
@@ -28,17 +28,23 @@ export default function Page() {
     const backupData = importNexusTimerData(jsonBackup.data);
     const existingCubes = await getAllCubes();
 
-    const newCubes: Cube[] = [];
+    let newCubes = _.cloneDeep(existingCubes) as Cube[];
 
-    for (const cube of backupData) {
-      const existingCube = existingCubes.find((c) => c.id === cube.id);
-      if (!existingCube) {
-        newCubes.push(cube);
+    for(let i = 0; i < backupData.length; i++) {
+      const backupCube = backupData[i];
+      const existingCube = newCubes.find(cube => cube.id === backupCube.id);
+
+      if (existingCube) {
+        newCubes[newCubes.indexOf(existingCube)].solves = {
+          session: uniqBy([...existingCube.solves.session, ...backupCube.solves.session], 'id'),
+          all: uniqBy([...existingCube.solves.all, ...backupCube.solves.all], 'id'),
+        }
       } else {
-        const mergedCube = merge(existingCube, cube) as unknown as Cube;
-        newCubes.push(mergedCube);
+        newCubes.push(backupCube);
       }
     }
+
+    newCubes = formatCubesDatesAndOrder(newCubes);
 
     await clearCubes();
     await saveBatchCubes(newCubes);
