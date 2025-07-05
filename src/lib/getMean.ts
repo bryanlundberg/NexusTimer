@@ -1,4 +1,4 @@
-import { Solve } from "@/interfaces/Solve";
+import { Solve } from '@/interfaces/Solve';
 
 /**
  * Calculates the mean (average) of solve times.
@@ -26,7 +26,5 @@ export default function getMean(solves: Solve[]): number {
   }
 
   // Calculate the mean, avoiding division if there is only one solve.
-  const mean = n === 1 ? totalSolvingTime : totalSolvingTime / n;
-
-  return mean;
+  return n === 1 ? totalSolvingTime : totalSolvingTime / n;
 }
