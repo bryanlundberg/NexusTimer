@@ -61,9 +61,9 @@ export default function Page() {
           />
         </Dialog>
 
-        <Sheet open={isDialogSolveOpen} onOpenChange={handleCloseDialogSolve}>
+        <Dialog open={isDialogSolveOpen} onOpenChange={handleCloseDialogSolve}>
           <SheetSolveDetails />
-        </Sheet>
+        </Dialog>
       </div>
     </FadeIn>
   );
