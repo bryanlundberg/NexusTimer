@@ -68,7 +68,7 @@ export default function MenuSolveOptions({
     <>
       {/* options */}
       <div
-        className="flex items-center justify-center py-5 gap-2"
+        className="flex flex-wrap items-center justify-center py-5 gap-2"
         id="quick-action-buttons"
       >
         <TooltipProvider delayDuration={100}>
