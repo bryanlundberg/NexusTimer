@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { TimerStatus } from "@/enums/TimerStatus";
 
 interface UseInspectionProps {
@@ -62,6 +62,15 @@ export default function useInspection({
     inspectionId.current = null;
     setInspectionTime(inspectionDuration / 1000);
   };
+
+  useEffect(() => {
+    return () => {
+      if (inspectionId.current) {
+        clearInterval(inspectionId.current);
+        inspectionId.current = null;
+      }
+    };
+  }, []);
 
   return {
     inspectionTime,

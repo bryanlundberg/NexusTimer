@@ -37,6 +37,7 @@ type TimerStore = {
   setTimerStatistics: () => void;
   setTimerMode: (mode: TimerMode.NORMAL | TimerMode.STACKMAT) => void;
   setIsOpenDrawerNewCollection: (status: boolean) => void;
+  reset: () => void;
 };
 
 export const useTimerStore = create<TimerStore>((set) => ({
@@ -124,4 +125,13 @@ export const useTimerStore = create<TimerStore>((set) => ({
   setIsOpenDrawerNewCollection: (status: boolean) => {
     set({ isOpenDrawerNewCollection: status });
   },
+  reset: () => set({
+    lastSolve: null,
+    isSolving: false,
+    timerStatus: TimerStatus.IDLE,
+    zoomInScramble: false,
+    hint: null,
+    timerMode: TimerMode.NORMAL,
+    isOpenDrawerNewCollection: false,
+  })
 }));

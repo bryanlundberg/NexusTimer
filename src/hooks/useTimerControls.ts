@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { TimerStatus } from "@/enums/TimerStatus";
+import { useTimerStore } from "@/store/timerStore";
 
 interface UseTimerControlsProps {
   setSolvingTime: (time: number) => void;
@@ -42,8 +43,8 @@ export default function useTimerControls({
       solveTimeId.current = null;
     }
     startSolveTime.current = null;
-    setIsSolving(false);
-    setTimerStatus(TimerStatus.IDLE);
+
+    useTimerStore.getState().reset();
   };
 
   const stopTimer = () => {
@@ -53,6 +54,15 @@ export default function useTimerControls({
     }
     // Keep the final time by not resetting startSolveTime here
   };
+
+  useEffect(() => {
+    return () => {
+      if (solveTimeId.current) {
+        cancelAnimationFrame(solveTimeId.current);
+        solveTimeId.current = null;
+      }
+    };
+  }, []);
 
   return {
     startTimer,

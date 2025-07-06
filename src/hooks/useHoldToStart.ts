@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { TimerStatus } from "@/enums/TimerStatus";
 import { Settings } from "@/interfaces/Settings";
 
@@ -41,6 +41,15 @@ export default function useHoldToStart({
     startHoldingTime.current = null;
     setHoldingTime(0);
   };
+
+  useEffect(() => {
+    return () => {
+      if (holdingTimeId.current) {
+        clearInterval(holdingTimeId.current);
+        holdingTimeId.current = null;
+      }
+    };
+  }, []);
 
   return {
     startHold,
