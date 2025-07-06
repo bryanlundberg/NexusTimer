@@ -1,22 +1,16 @@
-import Logo from "@/components/logo/logo";
 import MenuSolveOptions from "@/components/menu-solve-options/menu-solve-options";
 import { ScrambleDisplay } from "@/components/scramble-display";
-import {
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
 import formatTime from "@/lib/formatTime";
 import { useDialogSolve } from "@/store/DialogSolve";
 import { useTimerStore } from "@/store/timerStore";
 import {
   CalendarIcon,
   ClockIcon,
-  CodeSandboxLogoIcon,
 } from "@radix-ui/react-icons";
 import { DateTime } from "luxon";
 import { useLocale } from "next-intl";
+import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Badge } from '@/components/ui/badge';
 
 export default function SheetSolveDetails() {
   const { handleCloseDialogSolve } = useDialogSolve();
@@ -25,46 +19,35 @@ export default function SheetSolveDetails() {
   const locale = useLocale();
 
   return (
-    <SheetContent>
-      <SheetHeader>
-        <SheetTitle>
-          <p className="flex items-center gap-1 font-medium mx-auto">
-            <CodeSandboxLogoIcon />
-            {selectedCube?.name}
-            {solve?.plus2 && (
-              <span className="text-destructive text-sm font-black">+2</span>
-            )}
-          </p>
-        </SheetTitle>
-
-        <SheetDescription className="text-md text-start">
-          {solve?.scramble}
-        </SheetDescription>
-
-        <ScrambleDisplay
-          show={true}
-          scramble={solve?.scramble || ""}
-          event={selectedCube?.category || "3x3"}
-          className="h-40"
-          visualization="3D"
-        />
-
-        <div className="tracking-wider font-black  text-center mx-auto pt-5">
-          <span className="text-5xl">
-            {formatTime(solve?.time || 0).split(".")[0]}
-          </span>
-          <span className="text-4xl">
-            .{formatTime(solve?.time || 0).split(".")[1]}
-          </span>
-        </div>
-
-        <div className="flex justify-center gap-2 text-xs">
+    <DialogContent showCloseButton={false}>
+      <DialogHeader>
+        <DialogTitle className={"text-sm flex justify-between"}>
+          {formatTime(solve?.time || 0)}
           <p className="flex items-center justify-center gap-1">
             <CalendarIcon />
             {DateTime.fromMillis(solve?.endTime || 0)
               .setLocale(locale)
               .toLocaleString()}
           </p>
+        </DialogTitle>
+
+        <DialogDescription className="text-md text-start">
+          {solve?.scramble}
+        </DialogDescription>
+
+        <ScrambleDisplay
+          show={true}
+          scramble={solve?.scramble || ""}
+          event={selectedCube?.category || "3x3"}
+          className="h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36"
+          visualization="2D"
+        />
+
+        <div className="flex justify-center gap-2 text-xs">
+          <Badge>
+            {selectedCube?.category || 'Unknown'}
+          </Badge>
+
           <p className="flex items-center justify-center gap-1">
             <ClockIcon />
             {DateTime.fromMillis(solve?.endTime || 0)
@@ -73,12 +56,6 @@ export default function SheetSolveDetails() {
           </p>
         </div>
 
-        {/* comment */}
-        {/* <div className="pt-5 flex justify-start flex-col">
-          <Label className="text-start">Comment</Label>
-          <Textarea className="mt-3 resize-none h-40" />
-        </div> */}
-
         {solve && (
           <MenuSolveOptions
             solve={solve}
@@ -86,9 +63,7 @@ export default function SheetSolveDetails() {
             caseOfUse="modal-solve"
           />
         )}
-
-        <Logo className="pt-10" />
-      </SheetHeader>
-    </SheetContent>
+      </DialogHeader>
+    </DialogContent>
   );
 }
