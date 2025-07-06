@@ -31,7 +31,7 @@ export default function DialogDeleteCollection({
   }) => void;
 }) {
   const t = useTranslations("Index");
-  const { setCubes } = useTimerStore();
+  const setCubes = useTimerStore((state) => state.setCubes);
   const { cube, closeDialog } = useDialogCubesOptions();
   const [cubeName, setCubeName] = useState("");
 

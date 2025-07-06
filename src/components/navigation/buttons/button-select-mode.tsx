@@ -15,7 +15,8 @@ import { useTranslations } from "next-intl";
 import { TimerMode } from "@/enums/TimerMode";
 
 export default function ButtonSelectMode() {
-  const { timerMode, setTimerMode } = useTimerStore();
+  const timerMode = useTimerStore((state) => state.timerMode);
+  const setTimerMode = useTimerStore((state) => state.setTimerMode);
   const t = useTranslations("Index");
   return (
     <>

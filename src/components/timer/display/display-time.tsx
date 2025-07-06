@@ -39,7 +39,7 @@ export default function DisplayTime({
   ...rest
 }: DisplayTimeProps) {
   const t = useTranslations("Index.HomePage");
-  const { timerMode } = useTimerStore();
+  const timerMode = useTimerStore(store => store.timerMode);
   const settings = useSettingsModalStore(store => store.settings);
   return (
     <>

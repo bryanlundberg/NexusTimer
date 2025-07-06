@@ -16,7 +16,7 @@ export default function Page() {
   const t = useTranslations("Index");
   const { data: session } = useSession();
   const router = useRouter();
-  const { setCubes } = useTimerStore();
+  const setCubes = useTimerStore((state) => state.setCubes);
   const { syncBackup } = useSyncBackup();
 
   const handleDownloadData = async () => {

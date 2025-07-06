@@ -8,7 +8,7 @@ import { STATES } from "@/constants/states";
 import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
 
 export default function ButtonDisplayType() {
-  const { selectedCube } = useTimerStore();
+  const selectedCube = useTimerStore((state) => state.selectedCube);
   const t = useTranslations("Index");
   const [tabMode, setTabMode] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
 

@@ -6,7 +6,6 @@ type HandleReleaseFunction = () => void;
 type ResetTimerFunction = () => void;
 
 interface UseEventHandlersProps {
-  displayHint: boolean;
   timerMode: TimerMode;
   handleHold: HandleHoldFunction;
   handleRelease: HandleReleaseFunction;
@@ -14,7 +13,6 @@ interface UseEventHandlersProps {
 }
 
 export default function useEventHandlers({
-  displayHint,
   timerMode,
   handleHold,
   handleRelease,
@@ -33,7 +31,7 @@ export default function useEventHandlers({
   }, [handleRelease]);
 
   useEffect(() => {
-    if (timerMode === TimerMode.STACKMAT || displayHint) return;
+    if (timerMode === TimerMode.STACKMAT) return;
 
     const handleTouchStart = (event: TouchEvent): void => {
       event.preventDefault();
@@ -94,7 +92,7 @@ export default function useEventHandlers({
         element.removeEventListener("touchend", handleTouchEnd);
       });
     };
-  }, [displayHint, handleHoldWithReleasedState, handleReleaseWithReleasedState, resetTimer, timerMode]);
+  }, [handleHoldWithReleasedState, handleReleaseWithReleasedState, resetTimer, timerMode]);
 
   return {
     isReleased: () => releasedKey.current

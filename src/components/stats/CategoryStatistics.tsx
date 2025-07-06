@@ -15,7 +15,7 @@ import EmptyStatistics from "@/components/stats/EmptyStatistics";
 export default function CategoryStatistics() {
   const t = useTranslations("Index");
   const { stats } = useMetricsSwitch();
-  const { selectedCube } = useTimerStore();
+  const selectedCube = useTimerStore((state) => state.selectedCube);
   const [tabStats, setTabStats] = useQueryState(STATES.STATISTICS_PAGE.TAB_MODE.KEY, { defaultValue: STATES.STATISTICS_PAGE.TAB_MODE.DEFAULT_VALUE });
   const cubes = useTimerStore((state) => state.cubes);
 

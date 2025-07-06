@@ -18,14 +18,14 @@ import { Cube } from "@/interfaces/Cube";
 
 export default function MainCubeSelector() {
   const t = useTranslations("Index");
-  const {
-    cubes,
-    setSelectedCube,
-    setNewScramble,
-    setLastSolve,
-    selectedCube,
-    setIsOpenDrawerNewCollection,
-  } = useTimerStore();
+  const cubes = useTimerStore((state) => state.cubes);
+  const selectedCube = useTimerStore((state) => state.selectedCube);
+  const setSelectedCube = useTimerStore((state) => state.setSelectedCube);
+  const setNewScramble = useTimerStore((state) => state.setNewScramble);
+  const setLastSolve = useTimerStore((state) => state.setLastSolve);
+  const setIsOpenDrawerNewCollection = useTimerStore(
+    (state) => state.setIsOpenDrawerNewCollection
+  );
   const handleChangeValue = (e: any) => {
     const choseCube = cubes?.find((cube) => cube.id === e);
     if (!choseCube) return;

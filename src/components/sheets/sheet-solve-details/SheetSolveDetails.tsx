@@ -15,7 +15,7 @@ import { Badge } from '@/components/ui/badge';
 export default function SheetSolveDetails() {
   const { handleCloseDialogSolve } = useDialogSolve();
   const { solve } = useDialogSolve();
-  const { selectedCube } = useTimerStore();
+  const selectedCube = useTimerStore((state) => state.selectedCube);
   const locale = useLocale();
 
   return (

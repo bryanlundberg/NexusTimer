@@ -6,7 +6,12 @@ import { useTranslations } from "next-intl";
 import { useTimerStore } from "@/store/timerStore";
 
 export default function ButtonCreateCollection() {
-  const { isOpenDrawerNewCollection, setIsOpenDrawerNewCollection } = useTimerStore();
+  const isOpenDrawerNewCollection = useTimerStore(
+    (state) => state.isOpenDrawerNewCollection
+  );
+  const setIsOpenDrawerNewCollection = useTimerStore(
+    (state) => state.setIsOpenDrawerNewCollection
+  );
   const t = useTranslations("Index");
   return (
     <>

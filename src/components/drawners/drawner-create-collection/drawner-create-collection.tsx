@@ -34,7 +34,8 @@ export default function DrawerCreateCollection({
     category: "2x2",
     name: "",
   });
-  const { setCubes, cubes } = useTimerStore();
+  const cubes = useTimerStore((state) => state.cubes);
+  const setCubes = useTimerStore((state) => state.setCubes);
   const [error, setError] = useState({
     error: false,
     message: "",

@@ -23,7 +23,8 @@ export default function MenuSolveOptions({
   caseOfUse: "last-solve" | "modal-solve";
 }) {
   const t = useTranslations("Index");
-  const { selectedCube, lastSolve } = useTimerStore();
+  const selectedCube = useTimerStore((state) => state.selectedCube);
+  const lastSolve = useTimerStore((state) => state.lastSolve);
   const dialog = useDialogSolve();
   const { handleDeleteSolve, handlePenaltyPlus2, handleDNF, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
   const router = useRouter();

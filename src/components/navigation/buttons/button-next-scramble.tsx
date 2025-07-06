@@ -11,7 +11,8 @@ import { useTranslations } from "next-intl";
 
 export default function ButtonNextScramble() {
   const t = useTranslations("Index");
-  const { selectedCube, setNewScramble } = useTimerStore();
+  const selectedCube = useTimerStore((state) => state.selectedCube);
+  const setNewScramble = useTimerStore((state) => state.setNewScramble);
   return (
     <>
       <TooltipProvider delayDuration={100}>

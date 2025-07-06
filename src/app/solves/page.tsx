@@ -1,7 +1,6 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { SolvesArea } from "@/components/solves/SolvesArea";
-import { Sheet } from "@/components/ui/sheet";
 import { useDialogSolve } from "@/store/DialogSolve";
 import SheetSolveDetails from "@/components/sheets/sheet-solve-details/SheetSolveDetails";
 import DropdownFilterSolves from "@/components/dropdowns/dropdown-filter-options/dropdown-filter-options";
@@ -19,8 +18,10 @@ import { useDebouncedCallback } from "use-debounce";
 import FadeIn from "@/components/fade-in/fade-in";
 
 export default function Page() {
-  const { isDialogSolveOpen, handleCloseDialogSolve } = useDialogSolve();
-  const { isOpenMoveSolvesDialog, handleChangeIsOpenMoveSolvesDialog } = useSolveFiltersStore();
+  const isDialogSolveOpen = useDialogSolve((state) => state.isDialogSolveOpen);
+  const handleCloseDialogSolve = useDialogSolve((state) => state.handleCloseDialogSolve);
+  const isOpenMoveSolvesDialog = useSolveFiltersStore((state) => state.isOpenMoveSolvesDialog);
+  const handleChangeIsOpenMoveSolvesDialog = useSolveFiltersStore((state) => state.handleChangeIsOpenMoveSolvesDialog);
   const selectedCube = useTimerStore((state) => state.selectedCube);
   const t = useTranslations("Index");
   const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue : STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });

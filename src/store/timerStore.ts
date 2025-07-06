@@ -8,6 +8,7 @@ import genScramble from "@/lib/timer/genScramble";
 import { create } from "zustand";
 import { TimerMode } from "@/enums/TimerMode";
 import { TimerStatus } from "@/enums/TimerStatus";
+import _ from 'lodash';
 
 type TimerStore = {
   cubes: Cube[] | null;
@@ -18,7 +19,6 @@ type TimerStore = {
   solvingTime: number;
   isSolving: boolean;
   timerStatus: TimerStatus;
-  displayHint: boolean;
   zoomInScramble: boolean;
   hint: CrossSolutions | null;
   timerStatistics: DisplayTimerStatistics;
@@ -31,7 +31,6 @@ type TimerStore = {
   setSolvingTime: (newTime: number) => void;
   setIsSolving: (isSolving: boolean) => void;
   setTimerStatus: (timerStatus: TimerStatus) => void;
-  setDisplayHint: (status: boolean) => void;
   setZoomInScramble: (status: boolean) => void;
   setHints: (solutions: CrossSolutions) => void;
   setCustomScramble: (scramble: string) => void;
@@ -49,7 +48,6 @@ export const useTimerStore = create<TimerStore>((set) => ({
   solvingTime: 0,
   isSolving: false,
   timerStatus: TimerStatus.IDLE,
-  displayHint: false,
   zoomInScramble: false,
   hint: null,
   timerStatistics: {
@@ -66,14 +64,13 @@ export const useTimerStore = create<TimerStore>((set) => ({
     set({ scramble: scramble });
   },
   setCubes: (cubesDB: Cube[]) => {
-    set({ cubes: [...cubesDB] });
+    set({ cubes: _.cloneDeep(cubesDB) });
     useTimerStore.getState().setTimerStatistics();
   },
   setSelectedCube: (cube: Cube | null) => {
-    set((state: any) => {
+    set(() => {
       if (!cube || typeof cube !== "object") {
         return {
-          ...state,
           event: null,
           selectedCube: null,
         };
@@ -83,7 +80,6 @@ export const useTimerStore = create<TimerStore>((set) => ({
         (item) => item.name === cube.category
       );
       return {
-        ...state,
         event: selectedEvent?.event,
         selectedCube: cube,
       };
@@ -101,9 +97,6 @@ export const useTimerStore = create<TimerStore>((set) => ({
   },
   setTimerStatus: (timerStatus: TimerStatus) => {
     set({ timerStatus });
-  },
-  setDisplayHint: (status: boolean) => {
-    set({ displayHint: status });
   },
   setZoomInScramble: (status: boolean) => {
     set({ zoomInScramble: status });

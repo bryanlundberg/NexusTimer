@@ -26,10 +26,10 @@ export const useDialogCubesOptions = create<DialogCubesOptionsProps>((set) => ({
     type: "delete" | "edit" | null;
     cube: Cube;
   }) => {
-    set((state) => ({ ...state, isOpen: true, type, cube }));
+    set({ isOpen: true, type, cube });
   },
 
   closeDialog: () => {
-    set((state) => ({ ...state, isOpen: false, type: null, cube: null }));
+    set({ isOpen: false, type: null, cube: null });
   },
 }));

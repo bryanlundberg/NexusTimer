@@ -10,7 +10,7 @@ import { useTimerStore } from "@/store/timerStore";
 import { Cross1Icon } from "@radix-ui/react-icons";
 
 export default function DrawerHintPanel() {
-  const { hint } = useTimerStore();
+  const hint = useTimerStore((state) => state.hint);
 
   return (
     <>

@@ -13,7 +13,6 @@ interface UseTimerProps {
   inspectionRequired: boolean;
   setIsSolving: (isSolving: boolean) => void;
   setSolvingTime: (time: number) => void;
-  displayHint?: boolean;
   timerMode?: any;
   settings?: any;
   onFinishSolve: () => void;
@@ -26,7 +25,6 @@ export default function useTimer({
   inspectionRequired,
   setIsSolving,
   setSolvingTime,
-  displayHint = false,
   timerMode = 'NORMAL',
   settings = { timer: { startCue: false, holdToStart: false } },
   onFinishSolve
@@ -118,7 +116,6 @@ export default function useTimer({
 
   // Event handlers
   useEventHandlers({
-    displayHint,
     timerMode,
     handleHold,
     handleRelease,

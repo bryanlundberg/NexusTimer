@@ -21,7 +21,8 @@ import { useTranslations } from "next-intl";
 
 export default function TransferSolvesPage() {
   const t = useTranslations("Index.TransferSolvesPage");
-  const { cubes, setCubes } = useTimerStore();
+  const cubes = useTimerStore((state) => state.cubes);
+  const setCubes = useTimerStore((state) => state.setCubes);
   const [sourceCollection, setSourceCollection] = useQueryState(STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.KEY, { defaultValue: STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.DEFAULT_VALUE });
   const [destinationCollection, setDestinationCollection] = useQueryState(STATES.TRANSFER_SOLVES_PAGE.DESTINATION_COLLECTION.KEY, { defaultValue: STATES.TRANSFER_SOLVES_PAGE.DESTINATION_COLLECTION.DEFAULT_VALUE });
   const [selectedSolves, setSelectedSolves] = useState<string[]>([]);

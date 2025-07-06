@@ -13,12 +13,12 @@ export const useDialogSolve = create<DialogSolveProps>((set) => ({
   solve: null,
   isDialogSolveOpen: false,
   handleOpenDialogSolve: ({ solve }: { solve: Solve }) => {
-    set((prev) => ({ ...prev, isDialogSolveOpen: true, solve: solve }));
+    set({ isDialogSolveOpen: true, solve: solve });
   },
   handleCloseDialogSolve: () => {
-    set((prev) => ({ ...prev, isDialogSolveOpen: false }));
+    set({ isDialogSolveOpen: false, solve: null });
   },
   handleSetSolveInDialog: ({ solve }: { solve: Solve | null }) => {
-    set((prev) => ({ ...prev, solve: solve }));
+    set({ solve: solve });
   },
 }));

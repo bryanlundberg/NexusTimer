@@ -26,7 +26,7 @@ interface SolvesArea {
 
 export function SolvesArea({ displaySolves }: SolvesArea) {
   const { handleOpenDialogSolve } = useDialogSolve();
-  const { selectedCube } = useTimerStore();
+  const selectedCube = useTimerStore((state) => state.selectedCube);
   const t = useTranslations("Index");
   const [query,] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE });
   const [orderType,] = useQueryState(STATES.SOLVES_PAGE.ORDER.KEY, { defaultValue: STATES.SOLVES_PAGE.ORDER.DEFAULT_VALUE });

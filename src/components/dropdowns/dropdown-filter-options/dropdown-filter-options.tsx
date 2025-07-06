@@ -32,7 +32,7 @@ export default function DropdownFilterSolves() {
   const [orderType, setOrderType] = useQueryState(STATES.SOLVES_PAGE.ORDER.KEY, { defaultValue: STATES.SOLVES_PAGE.ORDER.DEFAULT_VALUE });
   const [sortType, setSortType] = useQueryState(STATES.SOLVES_PAGE.SORT.KEY, { defaultValue: STATES.SOLVES_PAGE.SORT.DEFAULT_VALUE });
 
-  const { selectedCube } = useTimerStore();
+  const selectedCube = useTimerStore((state) => state.selectedCube);
   const locale = useLocale();
   const date = DateTime.now().setLocale(locale).toLocaleString();
   const handleShare = (type: "All" | "3" | "5" | "12" | "50" | "100") => {

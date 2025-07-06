@@ -15,10 +15,8 @@ import { motion } from "framer-motion";
 export function ScrambleZone() {
   const selectedCube = useTimerStore(store => store.selectedCube);
   const scramble = useTimerStore(store => store.scramble);
-  const displayHint = useTimerStore(store => store.displayHint);
   const setHints = useTimerStore(store => store.setHints);
   const isSolving = useTimerStore(store => store.isSolving);
-
   const settings = useSettingsModalStore(store => store.settings);
   const t = useTranslations("Index");
   return (
@@ -61,9 +59,8 @@ export function ScrambleZone() {
             )}
 
             {selectedCube?.category &&
-              ["3x3", "3x3 OH"].includes(selectedCube.category) &&
-              !displayHint &&
-              !isSolving && (
+              ["3x3", "3x3 OH"].includes(selectedCube.category)
+              && !isSolving && (
                 <Drawer>
                   <Tooltip>
                     <TooltipTrigger asChild>

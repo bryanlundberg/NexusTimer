@@ -24,7 +24,6 @@ export default function Timer({ children }: { children?: ReactNode }) {
   const setTimerStatus = useTimerStore(store => store.setTimerStatus);
   const setIsSolving = useTimerStore(store => store.setIsSolving);
   const setSolvingTime = useTimerStore(store => store.setSolvingTime);
-  const displayHint = useTimerStore(store => store.displayHint);
   const timerMode = useTimerStore(store => store.timerMode);
 
   const { saveSolveMainTimer } = useSolveData();
@@ -37,7 +36,6 @@ export default function Timer({ children }: { children?: ReactNode }) {
     inspectionRequired: settings.timer.inspection,
     setIsSolving,
     setSolvingTime,
-    displayHint,
     timerMode,
     settings
   });

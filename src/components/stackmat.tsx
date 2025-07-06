@@ -18,19 +18,17 @@ declare global {
 }
 
 export default function Stackmat() {
-  const {
-    setIsSolving,
-    setSolvingTime,
-    setTimerStatus,
-    selectedCube,
-    scramble,
-    cubes,
-    setCubes,
-    setSelectedCube,
-    setLastSolve,
-    setNewScramble,
-    timerStatus,
-  } = useTimerStore();
+  const selectedCube = useTimerStore((state) => state.selectedCube);
+  const setSelectedCube = useTimerStore((state) => state.setSelectedCube);
+  const cubes = useTimerStore((state) => state.cubes);
+  const setCubes = useTimerStore((state) => state.setCubes);
+  const setNewScramble = useTimerStore((state) => state.setNewScramble);
+  const setLastSolve = useTimerStore((state) => state.setLastSolve);
+  const setSolvingTime = useTimerStore((state) => state.setSolvingTime);
+  const setIsSolving = useTimerStore((state) => state.setIsSolving);
+  const timerStatus = useTimerStore((state) => state.timerStatus);
+  const setTimerStatus = useTimerStore((state) => state.setTimerStatus);
+  const scramble = useTimerStore((state) => state.scramble);
 
   const [stackmat, setStackmat] = useState<any>(null);
   const solvingIdRef = useRef<any>(null);

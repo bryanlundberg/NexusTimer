@@ -14,7 +14,7 @@ import { useRef } from "react";
 
 export default function DialogEnterNewScramble() {
   const t = useTranslations("Index");
-  const { setCustomScramble } = useTimerStore();
+  const setCustomScramble = useTimerStore((state => state.setCustomScramble));
   const inputRef = useRef<HTMLInputElement>(null);
   return (
     <DialogContent>

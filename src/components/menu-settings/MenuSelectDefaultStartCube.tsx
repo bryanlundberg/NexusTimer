@@ -14,7 +14,7 @@ import {
 export default function MenuSelectDefaultStartCube() {
   const { settings, setSettings } = useSettingsModalStore();
   const t = useTranslations("Index");
-  const { cubes } = useTimerStore();
+  const cubes = useTimerStore((state) => state.cubes);
 
   const handleCubeSelect = (cubeId: string) => {
     const defaultCubeKey = "preferences.defaultCube";
