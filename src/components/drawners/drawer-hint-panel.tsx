@@ -2,7 +2,6 @@ import genId from "@/lib/genId";
 import {
   DrawerContent,
   DrawerDescription,
-  DrawerFooter,
   DrawerHeader,
   DrawerTitle,
 } from "../ui/drawer";

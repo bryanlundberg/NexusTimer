@@ -12,7 +12,6 @@ import { Label } from "@/components/ui/label";
 import { getAllCubes, saveCube } from "@/db/dbOperations";
 import { Categories } from "@/interfaces/Categories";
 import { cubeCollection } from "@/lib/const/cubeCollection";
-import genId from "@/lib/genId";
 import { cn } from "@/lib/utils";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";

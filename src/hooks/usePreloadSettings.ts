@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import { getAllCubes, getCubeById } from "@/db/dbOperations";
-import { useBackgroundImageStore } from "@/store/BackgroundThemeStore";
+import { getAllCubes, getCubeById, saveBatchCubes } from '@/db/dbOperations';
 import { useSession } from "next-auth/react";
 import { getLastBackup } from '@/actions/actions';
 import { Cube } from '@/interfaces/Cube';
@@ -14,7 +13,6 @@ export function usePreloadSettings() {
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const setNewScramble = useTimerStore(store => store.setNewScramble);
   const setSettings = useSettingsModalStore(store => store.setSettings);
-  const setBackgroundImage = useBackgroundImageStore(store => store.setBackgroundImage);
   const [isMounted, setIsMounted] = useState(false);
   const { data: session } = useSession();
   const [synced, setSynced] = useState(false);
@@ -42,13 +40,6 @@ export function usePreloadSettings() {
   useEffect(() => {
     getAllCubes().then((res) => setCubes(res));
   }, [setCubes]);
-
-  useEffect(() => {
-    const storedImage = localStorage.getItem("customBackgroundImage");
-    if (storedImage) {
-      setBackgroundImage(storedImage);
-    }
-  }, [setBackgroundImage]);
 
   useEffect(() => {
     const checkCloudData = async () => {

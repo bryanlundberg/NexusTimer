@@ -1,6 +1,5 @@
 import { Cube } from '@/interfaces/Cube';
 import { ChangeEvent } from 'react';
-import genId from './genId';
 import { Solve } from '@/interfaces/Solve';
 import { parse } from 'papaparse';
 import { z } from 'zod/v4';

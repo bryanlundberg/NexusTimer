@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface BackgroundImage {
   backgroundImage: string | null;
@@ -6,16 +7,19 @@ interface BackgroundImage {
   deleteBackgroundImage: () => void;
 }
 
-export const useBackgroundImageStore = create<BackgroundImage>((set) => ({
-  backgroundImage: null,
-  setBackgroundImage: (imgBase64: string) => {
-    set({ backgroundImage: imgBase64 });
-  },
-  deleteBackgroundImage: () => {
-    const storedImage = window.localStorage.getItem("customBackgroundImage");
-    if (storedImage) {
-      window.localStorage.removeItem("customBackgroundImage");
-      set({ backgroundImage: null });
+export const useBackgroundImageStore = create<BackgroundImage>()(
+  persist(
+    (set) => ({
+      backgroundImage: null,
+      setBackgroundImage: (imgBase64: string) => {
+        set({ backgroundImage: imgBase64 });
+      },
+      deleteBackgroundImage: () => {
+        set({ backgroundImage: null });
+      },
+    }),
+    {
+      name: 'customBackgroundImage',
     }
-  },
-}));
+  )
+);
