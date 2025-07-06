@@ -46,7 +46,7 @@
     "colorizr": "^3.0.8",
     "country-flag-icons": "^1.5.18",
     "cube-solver": "^2.4.1",
-    "cubing": "^0.44.1",
+    "cubing": "^0.56.0",
     "date-fns": "^2.30.0",
     "eslint": "8.49.0",
     "eslint-config-next": "^14.2.24",
