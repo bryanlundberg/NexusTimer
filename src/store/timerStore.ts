@@ -1,13 +1,13 @@
-import { Cube } from "@/interfaces/Cube";
-import { Solve } from "@/interfaces/Solve";
-import { Event } from "@/interfaces/cubeCollection";
-import calcStatistics from "@/lib/calcStatistics";
-import { cubeCollection } from "@/lib/const/cubeCollection";
-import { defaultTimerStatistics } from "@/lib/const/defaultTimerStatistics";
-import genScramble from "@/lib/timer/genScramble";
-import { create } from "zustand";
-import { TimerMode } from "@/enums/TimerMode";
-import { TimerStatus } from "@/enums/TimerStatus";
+import { Cube } from '@/interfaces/Cube';
+import { Solve } from '@/interfaces/Solve';
+import { Event } from '@/interfaces/cubeCollection';
+import calcStatistics from '@/lib/calcStatistics';
+import { cubeCollection } from '@/lib/const/cubeCollection';
+import { defaultTimerStatistics } from '@/lib/const/defaultTimerStatistics';
+import genScramble from '@/lib/timer/genScramble';
+import { create } from 'zustand';
+import { TimerMode } from '@/enums/TimerMode';
+import { TimerStatus } from '@/enums/TimerStatus';
 import _ from 'lodash';
 
 type TimerStore = {
@@ -43,7 +43,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
   selectedCube: null,
   scramble: null,
   cubes: null,
-  event: "333",
+  event: '333',
   lastSolve: null,
   solvingTime: 0,
   isSolving: false,
@@ -69,7 +69,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
   },
   setSelectedCube: (cube: Cube | null) => {
     set(() => {
-      if (!cube || typeof cube !== "object") {
+      if (!cube || typeof cube !== 'object') {
         return {
           event: null,
           selectedCube: null,
@@ -105,28 +105,18 @@ export const useTimerStore = create<TimerStore>((set) => ({
     set({ hint: solutions });
   },
   setTimerStatistics: () => {
-    const calculateStatisticsAsync = async () => {
-      return new Promise<void>((resolve) => {
-        setTimeout(() => {
-          const { global, session, cubeSession } = calcStatistics({
-            cubesDB: useTimerStore.getState().cubes,
-            selectedCube: useTimerStore.getState().selectedCube,
-          });
+    const { global, session, cubeSession } = calcStatistics({
+      cubesDB: useTimerStore.getState().cubes,
+      selectedCube: useTimerStore.getState().selectedCube,
+    });
 
-          set({
-            timerStatistics: {
-              global,
-              session,
-              cubeSession,
-            },
-          });
-
-          resolve();
-        }, 0);
-      });
-    };
-
-    calculateStatisticsAsync();
+    set({
+      timerStatistics: {
+        global,
+        session,
+        cubeSession,
+      },
+    });
   },
   setTimerMode: (mode: TimerMode.NORMAL | TimerMode.STACKMAT) => {
     set({ timerMode: mode });

@@ -139,8 +139,10 @@ const importCsTimerData = (fileContent: string) => {
   const resultData = Object.values(parsedData).slice(0, -1) // Exclude the last property which is "properties"
 
   let newCubeList = resultData.map((session: any, index) => {
+    if (session.length === 0) return;
+
     const newCube: Cube = {
-      id: genId(),
+      id: `cs-${Math.min(...session.map((solve: any) => solve[3]))}`,
       name: 'CSTimer Session ' + (index + 1),
       category: '3x3', // Not specified in CSTimer backup - Require manual fix by user later...
       solves: {
@@ -153,7 +155,7 @@ const importCsTimerData = (fileContent: string) => {
 
     session.forEach((solve: any) => {
       const newSolve: Solve = {
-        id: genId(),
+        id: `${newCube.id}-${solve[3]}`,
         startTime: solve[3] - solve[0][1],
         endTime: solve[3],
         scramble: solve[1],
@@ -169,7 +171,7 @@ const importCsTimerData = (fileContent: string) => {
     });
 
     return newCube;
-  })
+  }).filter((cube) => cube !== undefined) as Cube[];
 
   newCubeList = formatCubesDatesAndOrder(newCubeList);
   newCubeList = parseNXTimerSchema(newCubeList);
@@ -248,7 +250,7 @@ function importTwistyTimerData(fileContent: string) {
 
     if (!cube) {
       cube = {
-        id: genId(),
+        id: `tw-${Math.min(...parsedData.filter((row: any) => row[0] === puzzle && row[1] === category).map((row: any) => row[3]))}`,
         name: `${puzzle}-${category}`,
         category: '3x3',
         solves: { session: [], all: [] },
@@ -259,7 +261,7 @@ function importTwistyTimerData(fileContent: string) {
     }
 
     const newSolve: Solve = {
-      id: genId(),
+      id: `${cube.id}-${date}`,
       startTime: Number(date) - Number(time),
       endTime: Number(date),
       scramble: scramble.toString(),
