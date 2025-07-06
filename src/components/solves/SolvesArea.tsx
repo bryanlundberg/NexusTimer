@@ -9,45 +9,28 @@ import { useDialogSolve } from "@/store/DialogSolve";
 import { sort } from "fast-sort";
 import { filterData, SearchType } from "filter-data";
 import useRemoveGridHeight from "@/hooks/useRemoveGridHeight";
-import { useSolveActions } from "@/hooks/useSolveActions";
 import {
   BookmarkFilledIcon,
-  BookmarkIcon,
   ChatBubbleIcon,
-  CopyIcon,
-  Cross1Icon,
-  CubeIcon
 } from "@radix-ui/react-icons";
 import EmptySolves from "./EmptySolves";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu";
 import { useQueryState } from "nuqs";
 import { STATES } from "@/constants/states";
 import { Order } from "@/enums/Order";
 import { Sort } from "@/enums/Sort";
-import { useRouter } from "next/navigation";
-import { ArrowRightLeftIcon } from "lucide-react";
-import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
+
 
 interface SolvesArea {
   displaySolves: Solve[] | undefined;
 }
 
 export function SolvesArea({ displaySolves }: SolvesArea) {
-  const router = useRouter();
   const { handleOpenDialogSolve } = useDialogSolve();
   const { selectedCube } = useTimerStore();
   const t = useTranslations("Index");
-  const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
   const [query,] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE });
   const [orderType,] = useQueryState(STATES.SOLVES_PAGE.ORDER.KEY, { defaultValue: STATES.SOLVES_PAGE.ORDER.DEFAULT_VALUE });
   const [sortType,] = useQueryState(STATES.SOLVES_PAGE.SORT.KEY, { defaultValue: STATES.SOLVES_PAGE.SORT.DEFAULT_VALUE });
-  const { handleDeleteSolve, handlePenaltyPlus2, handleDNF, handleBookmarkSolve, handleClipboardSolve, handleMoveToHistory } = useSolveActions();
   useRemoveGridHeight();
 
   if (!selectedCube) return <EmptySolves title={t("SolvesPage.alert.select-cube")} description={t("SolvesPage.alert.empty-cubes")}/>;
@@ -82,9 +65,8 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
       className="pb-52"
     >
       {(index) => (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
             <Card
+              onClick={() => handleOpenDialogSolve({ solve: sortedSolves[index] })}
               className={
                 "relative grow flex items-center justify-center w-auto font-medium text-center transition duration-200 rounded-md cursor-pointer h-14 hover:opacity-70"
               }
@@ -122,63 +104,6 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
                 </div>
               )}
             </Card>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem
-              onClick={() => {
-                handleOpenDialogSolve({ solve: sortedSolves[index] });
-              }}
-            >
-              {t("SolvesPage.dropdown.view-details")}
-            </DropdownMenuItem>
-            <DropdownMenuSeparator/>
-            {tabMode === DisplaySolvesTabs.SESSION && (
-              <DropdownMenuItem
-                onClick={() => router.push(`/transfer-solves?source-collection=${selectedCube.id}`)}
-              >
-                <ArrowRightLeftIcon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.transfer-collection")}
-              </DropdownMenuItem>
-            )}
-            <DropdownMenuItem
-              onClick={() => handleBookmarkSolve(sortedSolves[index], "solves-area")}
-            >
-              {sortedSolves[index].bookmark ? (
-                <><BookmarkFilledIcon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.remove-bookmark")}</>
-              ) : (
-                <><BookmarkIcon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.add-bookmark")}</>
-              )}
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => handlePenaltyPlus2(sortedSolves[index], "solves-area")}
-            >
-              <span className="mr-2 font-bold">+2</span>
-              {sortedSolves[index].plus2 ? t("SolvesPage.dropdown.remove-penalty") : t("SolvesPage.dropdown.add-penalty")}
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => handleDNF(sortedSolves[index], "solves-area")}
-            >
-              <span className="mr-2 font-bold">DNF</span>
-              {sortedSolves[index].dnf ? 'Remove DNF' : 'Add DNF'}
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => handleClipboardSolve(sortedSolves[index])}
-            >
-              <CopyIcon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.copy-to-clipboard")}
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => handleMoveToHistory(sortedSolves[index], "solves-area")}
-            >
-              <CubeIcon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.move-to-history")}
-            </DropdownMenuItem>
-            <DropdownMenuSeparator/>
-            <DropdownMenuItem
-              onClick={() => handleDeleteSolve(sortedSolves[index], "solves-area")}
-              className="text-red-500"
-            >
-              <Cross1Icon className="mr-2 h-4 w-4"/> {t("SolvesPage.dropdown.delete-solve")}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
       )}
     </VirtualizedGrid>
   );
