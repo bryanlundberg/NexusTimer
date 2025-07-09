@@ -126,7 +126,6 @@ export const useTimerStore = create<TimerStore>((set) => ({
     set({ isOpenDrawerNewCollection: status });
   },
   reset: () => set({
-    lastSolve: null,
     isSolving: false,
     timerStatus: TimerStatus.IDLE,
     zoomInScramble: false,
