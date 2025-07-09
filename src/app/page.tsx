@@ -7,9 +7,11 @@ import ScrambleModal from "@/components/timer/ScrambleModal";
 import FadeIn from "@/components/fade-in/fade-in";
 import { useEffect } from 'react';
 import { useTimerStore } from '@/store/timerStore';
+import { useTranslations } from 'next-intl';
 
 export default function Home() {
   const resetTimerStore = useTimerStore((state) => state.reset);
+  const t = useTranslations("Metadata");
 
   useEffect(() => {
     resetTimerStore();
@@ -18,6 +20,7 @@ export default function Home() {
   return (
     <>
       <FadeIn className={"flex flex-col grow overflow-hidden"}>
+        <h1 className="sr-only">{t("description")}</h1>
         <TimerContainer>
           <HeaderTimer/>
           <MainTimer/>
