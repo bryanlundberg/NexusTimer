@@ -82,14 +82,14 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head>
-        <JsonLd
-          locale={locale}
-          title={title}
-          description={description}
-          url={url}
-        /><title></title>
-      </head>
+    <head>
+      <JsonLd
+        locale={locale}
+        title={title}
+        description={description}
+        url={url}
+      />
+    </head>
       <body className={saira.className}>
       <NuqsAdapter>
         <SessionProvider session={session}>
