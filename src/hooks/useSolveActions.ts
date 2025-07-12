@@ -1,14 +1,14 @@
 import { Solve } from "@/interfaces/Solve";
 import { useTimerStore } from "@/store/timerStore";
 import { useDialogSolve } from "@/store/DialogSolve";
-import updateSolve from "@/lib/updateSolve";
-import { getAllCubes, getCubeById } from "@/db/dbOperations";
 import formatTime from "@/lib/formatTime";
 import { toast } from "sonner";
+import { useNXData } from '@/hooks/useNXData';
 
 type CaseOfUse = "last-solve" | "modal-solve" | "solves-area";
 
 export const useSolveActions = () => {
+  const { getAllCubes, getCubeById, updateSolve } = useNXData();
   const selectedCube = useTimerStore(store => store.selectedCube);
   const setCubes = useTimerStore(store => store.setCubes);
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
