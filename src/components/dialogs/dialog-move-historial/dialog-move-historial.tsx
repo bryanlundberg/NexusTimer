@@ -6,17 +6,17 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { getAllCubes, getCubeById } from "@/db/dbOperations";
-import finishSession from "@/lib/finishSession";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { useNXData } from '@/hooks/useNXData';
 
 export default function DialogMoveHistorial({
   handleClose,
 }: {
   handleClose: () => void;
 }) {
+  const { getAllCubes, getCubeById, finishSession } = useNXData();
   const t = useTranslations("Index");
   const selectedCube = useTimerStore((state) => state.selectedCube);
   const cubes = useTimerStore((state) => state.cubes);
@@ -25,7 +25,7 @@ export default function DialogMoveHistorial({
 
   const handleMoveSessionToHistorial = async () => {
     if (selectedCube) {
-      await finishSession({ selectedCube, cubesDB: cubes });
+      await finishSession(selectedCube);
       const cubesDB = await getAllCubes();
       setCubes(cubesDB);
       const currentCube = await getCubeById(selectedCube.id);
