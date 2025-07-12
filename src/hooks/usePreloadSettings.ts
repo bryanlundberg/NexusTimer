@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import { getAllCubes, getCubeById } from '@/db/dbOperations';
+import { useNXData } from '@/hooks/useNXData';
 
 export function usePreloadSettings() {
   const setCubes = useTimerStore(store => store.setCubes);
@@ -10,6 +10,7 @@ export function usePreloadSettings() {
   const setNewScramble = useTimerStore(store => store.setNewScramble);
   const setSettings = useSettingsModalStore(store => store.setSettings);
   const [isMounted, setIsMounted] = useState(false);
+  const { getAllCubes, getCubeById} = useNXData();
 
   useEffect(() => {
     const settings = loadSettings();
@@ -28,11 +29,11 @@ export function usePreloadSettings() {
     }
 
     setSettings(settings);
-  }, [setSettings, setSelectedCube, setNewScramble]);
+  }, [setSettings, setSelectedCube, setNewScramble, getCubeById]);
 
   useEffect(() => {
     getAllCubes().then((res) => setCubes(res));
-  }, [setCubes]);
+  }, [getAllCubes, setCubes]);
 
 
   // TODO: Cloud sync functionality
