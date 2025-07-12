@@ -1,6 +1,4 @@
 "use client";
-
-import { getAllCubes, getCubeById, saveCube } from "@/db/dbOperations";
 import { Solve } from "@/interfaces/Solve";
 import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
@@ -9,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { Packet } from "stackmat";
 import { toast } from "sonner";
 import { TimerStatus } from "@/enums/TimerStatus";
+import { useNXData } from '@/hooks/useNXData';
 
 // more information: https://www.npmjs.com/package/stackmat
 declare global {
@@ -18,6 +17,7 @@ declare global {
 }
 
 export default function Stackmat() {
+  const { getAllCubes, getCubeById, saveCube } = useNXData();
   const selectedCube = useTimerStore((state) => state.selectedCube);
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube);
   const cubes = useTimerStore((state) => state.cubes);
