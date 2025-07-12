@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useTimerStore } from "@/store/timerStore";
 import { useRouter } from "next/navigation";
 import { useNXData } from '@/hooks/useNXData';
@@ -9,7 +8,6 @@ export function useCubes() {
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const setNewScramble = useTimerStore(store => store.setNewScramble);
   const setCubes = useTimerStore(store => store.setCubes);
-  const [filterCubes, setFilterCubes] = useState(cubes);
   const router = useRouter();
 
   const handleFavoriteClick = async (cubeId: string) => {
@@ -36,16 +34,7 @@ export function useCubes() {
     router.push("/");
   };
 
-  useEffect(() => {
-    const fetchCubes = async () => {
-      const allCubes = await getAllCubes();
-      setFilterCubes(allCubes);
-    };
-    fetchCubes();
-  }, [cubes, getAllCubes]);
-
   return {
-    filterCubes,
     handleFavoriteClick,
     handleRedirectToTimer
   };
