@@ -42,7 +42,7 @@ export function useCubes() {
       setFilterCubes(allCubes);
     };
     fetchCubes();
-  }, [cubes]);
+  }, [cubes, getAllCubes]);
 
   return {
     filterCubes,

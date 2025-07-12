@@ -19,7 +19,6 @@ export default function DialogMoveHistorial({
   const { getAllCubes, getCubeById, finishSession } = useNXData();
   const t = useTranslations("Index");
   const selectedCube = useTimerStore((state) => state.selectedCube);
-  const cubes = useTimerStore((state) => state.cubes);
   const setCubes = useTimerStore((state) => state.setCubes);
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube);
 
