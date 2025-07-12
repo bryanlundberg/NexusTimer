@@ -3,87 +3,16 @@ import genId from '@/lib/genId';
 import { Categories } from '@/interfaces/Categories';
 import { Solve } from '@/interfaces/Solve';
 import _ from 'lodash';
-import BoxDB from 'bxd';
-
-const DB_NAME = 'IDBWrapper-nx-data';
-const STORE_NAME = 'nx-data';
-
-const db = new BoxDB(DB_NAME, 5);
-
-const Cubes = db.create(STORE_NAME, {
-  id: {
-    type: BoxDB.Types.STRING,
-    key: true,
-  },
-  name: {
-    type: BoxDB.Types.STRING,
-    index: false,
-  },
-  category: {
-    type: BoxDB.Types.STRING,
-    index: true,
-  },
-  createdAt: {
-    type: BoxDB.Types.NUMBER,
-    index: true,
-    defaultValue: Date.now(),
-  },
-  favorite: {
-    type: BoxDB.Types.BOOLEAN,
-    index: false,
-    defaultValue: false,
-  },
-  solves: {
-    type: BoxDB.Types.OBJECT,
-    index: false,
-    properties: {
-      all: {
-        type: BoxDB.Types.ARRAY,
-        itemType: BoxDB.Types.OBJECT,
-        itemProperties: {
-          id: { type: BoxDB.Types.STRING, key: true },
-          time: { type: BoxDB.Types.NUMBER },
-          plus2: { type: BoxDB.Types.BOOLEAN, defaultValue: false },
-          dnf: { type: BoxDB.Types.BOOLEAN, defaultValue: false },
-          comment: { type: BoxDB.Types.STRING, defaultValue: '' },
-          bookmark: { type: BoxDB.Types.BOOLEAN, defaultValue: false },
-          scramble: { type: BoxDB.Types.STRING, defaultValue: '' },
-          startTime: { type: BoxDB.Types.NUMBER, defaultValue: 0 },
-          endTime: { type: BoxDB.Types.NUMBER, defaultValue: 0 },
-        }
-      },
-      session: {
-        type: BoxDB.Types.ARRAY,
-        itemType: BoxDB.Types.OBJECT,
-        itemProperties: {
-          id: { type: BoxDB.Types.STRING, key: true },
-          time: { type: BoxDB.Types.NUMBER },
-          plus2: { type: BoxDB.Types.BOOLEAN, defaultValue: false },
-          dnf: { type: BoxDB.Types.BOOLEAN, defaultValue: false },
-          comment: { type: BoxDB.Types.STRING, defaultValue: '' },
-          bookmark: { type: BoxDB.Types.BOOLEAN, defaultValue: false },
-          scramble: { type: BoxDB.Types.STRING, defaultValue: '' },
-          startTime: { type: BoxDB.Types.NUMBER, defaultValue: 0 },
-          endTime: { type: BoxDB.Types.NUMBER, defaultValue: 0 },
-        }
-      }
-    }
-  },
-});
-
+import Cubes from '@/models/indexdb/Cubes';
+import { database } from '@/db/indexdb';
 
 export const useNXData = () => {
   const getCubeById = async (id: string): Promise<Cube | null> => {
-    await db.open()
-
     return await Cubes.get(id) as Cube | null;
   }
 
   const getAllCubes = async (): Promise<Cube[]> => {
-    // const db = createStore(DB_NAME, STORE_NAME);
-    // return await values(db);
-    await db.open()
-
+    if (!database.ready) await database.open();
     return await Cubes.find().get() as Cube[];
   }
 
@@ -118,38 +47,21 @@ export const useNXData = () => {
       favorite,
     };
 
-    // const db = createStore(DB_NAME, STORE_NAME);
-    // return await set(id, newCube, db);
-    await db.open()
-
+    if (!database.ready) await database.open();
     return await Cubes.put(newCube);
   }
 
   const saveBatchCubes = async (cubesBatch: Cube[]) => {
-    // const db = createStore(DB_NAME, STORE_NAME);
-    // const entries = cubesBatch.map(cube => [cube.id, cube] as [string, Cube]);
-    //
-    // console.log(entries);
-    // return await setMany(entries, db);
-
      for (const cube of cubesBatch) {
        await Cubes.put(cube);
      }
   }
 
   const deleteCubeById = async (id: string): Promise<void> => {
-    // const db = createStore(DB_NAME, STORE_NAME);
-    // return await del(id, db);
-    await db.open()
-
     return await Cubes.delete(id);
   }
 
   const clearCubes = async (): Promise<void> => {
-    // const db = createStore(DB_NAME, STORE_NAME);
-    // return await clear(db);
-    await db.open()
-
     return await Cubes.clear();
   }
 
@@ -210,11 +122,7 @@ export const useNXData = () => {
     updateSolveArray(selection.solves.all);
     updateSolveArray(selection.solves.session);
 
-    await saveCube({
-      ...selection,
-      solves: selection.solves,
-    });
-
+    await saveCube({ ...selection, solves: selection.solves, });
     return selection;
   }
 
