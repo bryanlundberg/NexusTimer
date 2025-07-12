@@ -11,11 +11,11 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { deleteCubeById, getAllCubes } from "@/db/dbOperations";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { useNXData } from '@/hooks/useNXData';
 
 export default function DialogDeleteCollection({
   error,
@@ -30,6 +30,7 @@ export default function DialogDeleteCollection({
     status: boolean;
   }) => void;
 }) {
+  const { getAllCubes, deleteCubeById } = useNXData();
   const t = useTranslations("Index");
   const setCubes = useTimerStore((state) => state.setCubes);
   const { cube, closeDialog } = useDialogCubesOptions();
