@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useTimerStore } from "@/store/timerStore";
-import { getAllCubes, saveCube } from "@/db/dbOperations";
 import { useRouter } from "next/navigation";
+import { useNXData } from '@/hooks/useNXData';
 
 export function useCubes() {
+  const { getAllCubes, saveCube } = useNXData();
   const cubes = useTimerStore(store => store.cubes);
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const setNewScramble = useTimerStore(store => store.setNewScramble);
