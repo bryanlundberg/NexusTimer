@@ -29,12 +29,10 @@ export function LoaderProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-
       <LoaderContext.Provider value={{ hasShownLoader, setHasShownLoader }}>
         <AnimatePresence mode="wait">
         {showLoader ? <Ntloader key="loader" onLoadingComplete={handleLoadingComplete}/> : children}
         </AnimatePresence>
       </LoaderContext.Provider>
-
   );
 }
