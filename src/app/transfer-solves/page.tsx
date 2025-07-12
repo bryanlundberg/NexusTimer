@@ -16,10 +16,11 @@ import { toast } from "sonner";
 import { useQueryState } from "nuqs";
 import { STATES } from "@/constants/states";
 import { sort } from "fast-sort";
-import { saveBatchCubes } from "@/db/dbOperations";
 import { useTranslations } from "next-intl";
+import { useNXData } from '@/hooks/useNXData';
 
 export default function TransferSolvesPage() {
+  const { saveBatchCubes } = useNXData();
   const t = useTranslations("Index.TransferSolvesPage");
   const cubes = useTimerStore((state) => state.cubes);
   const setCubes = useTimerStore((state) => state.setCubes);
