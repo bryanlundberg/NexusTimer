@@ -4,14 +4,13 @@ import { Button } from "@/components/ui/button";
 import { DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { getAllCubes, saveCube } from "@/db/dbOperations";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import { useNXData } from '@/hooks/useNXData';
 
 export default function DialogEditCollection({
   error,
@@ -26,6 +25,7 @@ export default function DialogEditCollection({
     status: boolean;
   }) => void;
 }) {
+  const { getAllCubes, saveCube } = useNXData();
   const t = useTranslations("Index");
   const cube = useDialogCubesOptions((state) => state.cube);
   const closeDialog = useDialogCubesOptions((state) => state.closeDialog);
