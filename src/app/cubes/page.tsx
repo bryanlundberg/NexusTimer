@@ -9,11 +9,13 @@ import useErrorDialog from "@/hooks/useErrorDialog";
 import Navigation from "@/components/navigation/navigation";
 import EmptyCubes from "@/components/cubes/EmptyCubes";
 import FadeIn from "@/components/fade-in/fade-in";
+import { useTimerStore } from '@/store/timerStore';
 
 export default function Page() {
   const { handleResetError, error, handleChangeError } = useErrorDialog();
   const { isOpen, type, closeDialog } = useDialogCubesOptions();
-  const { filterCubes, handleFavoriteClick, handleRedirectToTimer } = useCubes();
+  const { handleFavoriteClick, handleRedirectToTimer } = useCubes();
+  const cubes = useTimerStore(store => store.cubes)
 
   return (
     <FadeIn className="flex flex-col grow overflow-auto">
@@ -24,11 +26,11 @@ export default function Page() {
           <Navigation showButtonCreateCollection showMainCubeSelector />
 
           {/* cubes list */}
-          {filterCubes && filterCubes.length > 0 ? (
+          {cubes?.length ? (
             <CubesCards
               handleFavoriteClick={handleFavoriteClick}
               handleRedirectToTimer={handleRedirectToTimer}
-              cubes={filterCubes}
+              cubes={cubes}
             />
           ) : (
             <EmptyCubes />
