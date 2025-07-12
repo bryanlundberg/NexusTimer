@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { getAllCubes, saveCube } from "@/db/dbOperations";
 import { Categories } from "@/interfaces/Categories";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import { cn } from "@/lib/utils";
@@ -17,6 +16,7 @@ import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useState } from "react";
+import { useNXData } from '@/hooks/useNXData';
 
 interface FormProps {
   category: Categories;
@@ -28,6 +28,7 @@ export default function DrawerCreateCollection({
 }: {
   closeDrawer: () => void;
 }) {
+  const { saveCube, getAllCubes } = useNXData();
   const t = useTranslations("Index");
   const [newCollection, setNewCollection] = useState<FormProps>({
     category: "2x2",
