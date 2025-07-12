@@ -1,18 +1,16 @@
-import { getAllCubes } from "@/db/dbOperations";
 import { formatISO9075 } from "date-fns";
+import { Cube } from '@/interfaces/Cube';
 
 const OUTPUT_FILE_NAME = `Backup-NT-${formatISO9075(new Date(Date.now()))}`;
 
 /**
  * Exports the cube data to a JSON file and initiates a download.
  */
-export default async function exportDataToFile(): Promise<void> {
+export default async function exportDataToFile(cubes: Cube[]): Promise<void> {
   /**
    * Load the list of cubes.
    * @type {Cube[] | null}
    */
-  const cubes = await getAllCubes();
-
   // If there are no cubes, return early.
   if (!cubes) return;
 
@@ -20,7 +18,7 @@ export default async function exportDataToFile(): Promise<void> {
    * Stringify the cubes with a formatted JSON structure.
    * @type {string}
    */
-  const stringifiedCubes = JSON.stringify(cubes, null, 2);
+  const stringifiedCubes = JSON.stringify(cubes);
 
   /**
    * Create a Blob with the stringified cubes.
