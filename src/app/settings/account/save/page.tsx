@@ -3,14 +3,15 @@ import { createOrUpdateBackup } from '@/actions/actions';
 import AccountHeader from '@/components/account/account-header/account-header';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { getAllCubes } from '@/db/dbOperations';
 import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { useNXData } from '@/hooks/useNXData';
 
 export default function Page() {
+  const { getAllCubes } = useNXData();
   const { data: session } = useSession();
   const t = useTranslations('Index');
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function Page() {
         <p>{t('SettingsPage.save-data-description')}</p>
         <p className="text-yellow-600">{t('SettingsPage.save-data-warning')}</p>
         <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
-          <Link href={'/'} className="grow">
+          <Link href={'/settings/account'} className="grow">
             <Button variant={'secondary'} className="w-full">
               {t('Inputs.back')}
             </Button>

@@ -3,7 +3,6 @@ import { getLastBackup } from "@/actions/actions";
 import AccountHeader from "@/components/account/account-header/account-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { clearCubes, getAllCubes, saveBatchCubes } from '@/db/dbOperations';
 import { useTimerStore } from "@/store/timerStore";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
@@ -11,8 +10,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { importNexusTimerData } from '@/lib/importDataFromFile';
 import { useSyncBackup } from '@/hooks/useSyncBackup';
+import { useNXData } from '@/hooks/useNXData';
 
 export default function Page() {
+  const { clearCubes, getAllCubes, saveBatchCubes } = useNXData();
   const t = useTranslations("Index");
   const { data: session } = useSession();
   const router = useRouter();
@@ -45,7 +46,7 @@ export default function Page() {
         <p className="text-yellow-600">{t("SettingsPage.load-data-warning")}</p>
 
         <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
-          <Link href={"/"} className="flex-1">
+          <Link href={"/settings/account"} className="flex-1">
             <Button className="w-full" variant={"secondary"}>
               {t("Inputs.back")}
             </Button>

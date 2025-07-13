@@ -17,10 +17,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { deleteCubeById, getAllCubes } from "@/db/dbOperations";
+import { useNXData } from '@/hooks/useNXData';
 
 export default function Page() {
   const { data: session } = useSession();
+  const { deleteCubeById, getAllCubes } = useNXData();
   const t = useTranslations("Index");
   if (!session) {
     return <AccountNotAuth />;
