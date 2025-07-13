@@ -72,7 +72,7 @@ export default function TransferSolvesPage() {
 
         await saveBatchCubes([updatedSourceCube, updatedDestinationCube]);
 
-        toast(t("success-transfer", { count: selectedSolves.length, source: sourceCube.name, destination: destinationCube.name }));
+        toast.success("Transfer successful");
         setSelectedSolves([]);
       }
     } catch (error) {
