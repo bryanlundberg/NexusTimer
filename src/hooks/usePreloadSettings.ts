@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import { getAllCubes, getCubeById } from '@/db/dbOperations';
+import { useNXData } from '@/hooks/useNXData';
 
 export function usePreloadSettings() {
   const setCubes = useTimerStore(store => store.setCubes);
@@ -10,29 +10,33 @@ export function usePreloadSettings() {
   const setNewScramble = useTimerStore(store => store.setNewScramble);
   const setSettings = useSettingsModalStore(store => store.setSettings);
   const [isMounted, setIsMounted] = useState(false);
+  const { getAllCubes, getCubeById} = useNXData();
 
-  useEffect(() => {
+  const initData = useCallback(async () => {
+    const cubes = await getAllCubes();
     const settings = loadSettings();
     const defaultCubeId = settings.preferences.defaultCube;
-
-    if (defaultCubeId && defaultCubeId !== "") {
-      getCubeById(defaultCubeId)
-        .then((c) => {
-          setSelectedCube(c);
-          setNewScramble(c);
-        })
-        .catch((e) => {
-          console.log(e);
-          setSelectedCube(null);
-        });
-    }
-
+    setCubes(cubes);
     setSettings(settings);
-  }, [setSettings, setSelectedCube, setNewScramble]);
+    if (defaultCubeId) {
+      const defaultCube = await getCubeById(defaultCubeId);
+      if (defaultCube) {
+        setSelectedCube(defaultCube);
+        setNewScramble(defaultCube);
+      } else {
+        console.warn("Default cube not found in the database, setting to null.");
+        setSelectedCube(null);
+      }
+    } else {
+      console.warn("No default cube ID set in settings, setting selected cube to null.");
+      setSelectedCube(null);
+    }
+    return cubes;
+  }, [getAllCubes, getCubeById, setCubes, setSelectedCube, setNewScramble, setSettings]);
 
   useEffect(() => {
-    getAllCubes().then((res) => setCubes(res));
-  }, [setCubes]);
+    initData()
+  }, [initData]);
 
 
   // TODO: Cloud sync functionality

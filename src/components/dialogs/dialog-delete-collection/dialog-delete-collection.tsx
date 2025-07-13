@@ -11,36 +11,33 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { deleteCubeById, getAllCubes } from "@/db/dbOperations";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useNXData } from '@/hooks/useNXData';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { useEffect } from 'react';
 
-export default function DialogDeleteCollection({
-  error,
-  handleChangeError,
-}: {
-  error: { message: string; status: boolean };
-  handleChangeError: ({
-    message,
-    status,
-  }: {
-    message: string;
-    status: boolean;
-  }) => void;
-}) {
+export default function DialogDeleteCollection() {
+  const { getAllCubes, deleteCubeById } = useNXData();
   const t = useTranslations("Index");
   const setCubes = useTimerStore((state) => state.setCubes);
   const { cube, closeDialog } = useDialogCubesOptions();
-  const [cubeName, setCubeName] = useState("");
+  const { handleSubmit, register, formState: { errors }, reset, setError } = useForm({
+    defaultValues: {
+      cubeName: cube?.name || "",
+    },
+  })
 
-  const handleDeleteCube = async () => {
+  const handleDeleteCube = async (form: { cubeName: string }) => {
+    if (!cube?.id) return;
+
     try {
-      if (cubeName.trim() !== cube?.name) {
-        handleChangeError({
-          status: true,
-          message: t("Errors.not-match"),
+      if (form.cubeName.trim() !== cube?.name) {
+        setError("cubeName", {
+          type: "manual",
+          message: "Collection name does not match.",
         });
         return;
       }
@@ -49,10 +46,23 @@ export default function DialogDeleteCollection({
       const cubes = await getAllCubes();
       setCubes(cubes);
       closeDialog();
+      toast.success('Collection deleted successfully')
     } catch (err) {
       console.log(err);
+      toast.error('Failed to delete collection');
     }
   };
+
+  useEffect(() => {
+    if (!cube?.id) {
+      closeDialog();
+      return;
+    }
+
+    reset({
+      cubeName: '',
+    });
+  }, [closeDialog, cube, reset]);
 
   return (
     <>
@@ -85,19 +95,19 @@ export default function DialogDeleteCollection({
           <span>{t("Cubes-modal.to-continue")}</span>
         </Label>
         <Input
-          onChange={(e) => {
-            handleChangeError({ status: false, message: "" });
-            setCubeName(e.target.value);
-          }}
+          {...register("cubeName", {
+            required: true,
+            validate: (value) => value.trim() !== "",
+          })}
           data-testid="dialog-delete-cube-input"
         />
 
-        {error && error.status && (
+        {errors && errors.cubeName && (
           <p
             className="text-destructive text-sm"
             data-testid="dialog-delete-cube-error-message"
           >
-            {error.message}
+            {errors.cubeName.message}
           </p>
         )}
         <DialogFooter>
@@ -113,7 +123,7 @@ export default function DialogDeleteCollection({
 
             <Button
               variant={"default"}
-              onClick={handleDeleteCube}
+              onClick={handleSubmit(handleDeleteCube)}
               data-testid="dialog-delete-cube-accept-button"
             >
               {t("Inputs.continue")}

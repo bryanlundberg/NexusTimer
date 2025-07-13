@@ -3,7 +3,6 @@ import { ChangeEvent } from 'react';
 import { Solve } from '@/interfaces/Solve';
 import { parse } from 'papaparse';
 import { z } from 'zod/v4';
-import { clearCubes, saveBatchCubes } from '@/db/dbOperations';
 import _ from 'lodash';
 
 const nxTimerSchema = z.array(
@@ -108,10 +107,7 @@ export default async function importDataFromFile(
     }
 
     cubes = uniqueData(cubes);
-    await clearCubes();
-    await saveBatchCubes(cubes);
-
-    return true
+    return cubes
   } catch (error) {
     console.error('Error reading file:', error);
     return false;

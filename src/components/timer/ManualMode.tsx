@@ -6,12 +6,13 @@ import genId from "@/lib/genId";
 import { useTimerStore } from "@/store/timerStore";
 import { useState } from "react";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import { getAllCubes, getCubeById, saveCube } from "@/db/dbOperations";
 import { useTranslations } from "next-intl";
 import MenuSolveOptions from "../menu-solve-options/menu-solve-options";
 import { Input } from "../ui/input";
+import { useNXData } from '@/hooks/useNXData';
 
 export default function ManualMode() {
+  const { getAllCubes, getCubeById, saveCube } = useNXData();
   const [value, setValue] = useState<string>("");
   const selectedCube = useTimerStore(store => store.selectedCube);
   const scramble = useTimerStore(store => store.scramble);

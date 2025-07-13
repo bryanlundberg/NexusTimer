@@ -1,15 +1,14 @@
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
-import PreloadSettings from "@/components/PreloadSettings";
 import { saira } from "@/fonts/fonts";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
-import { LoaderProvider } from "@/components/loader/loader-context";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { locales } from "@/i18n/locales";
 import JsonLd from "./jsonld";
+import Providers from '@/components/providers';
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -94,11 +93,9 @@ export default async function RootLayout({
       <NuqsAdapter>
         <SessionProvider session={session}>
           <NextIntlClientProvider messages={messages}>
-            <PreloadSettings>
-              <LoaderProvider>
-                {children}
-              </LoaderProvider>
-            </PreloadSettings>
+            <Providers>
+              {children}
+            </Providers>
           </NextIntlClientProvider>
           <Toaster />
         </SessionProvider>

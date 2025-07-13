@@ -3,13 +3,14 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { useTimerStore } from '@/store/timerStore';
 import importDataFromFile from '@/lib/importDataFromFile';
-import { getAllCubes } from '@/db/dbOperations';
 import Loading from '../../Loading';
 import { useRouter } from 'next/navigation';
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, } from '@/components/ui/dialog';
 import { toast } from 'sonner';
+import { useNXData } from '@/hooks/useNXData';
 
 export default function DialogImportBackup() {
+  const { getAllCubes, clearCubes, saveBatchCubes } = useNXData();
   const t = useTranslations("Index.backup-modal");
   const [isImporting, setIsImporting] = useState(false);
   const dataInputRef = useRef<HTMLInputElement>(null);
@@ -23,6 +24,8 @@ export default function DialogImportBackup() {
         setIsImporting(true);
         const response = await importDataFromFile(e);
         if (response) {
+          await clearCubes();
+          await saveBatchCubes(response);
           toast.success('Backup imported successfully!');
 
           const cubesDB = await getAllCubes();

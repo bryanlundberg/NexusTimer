@@ -5,15 +5,15 @@ import DialogDeleteCollection from "@/components/dialogs/dialog-delete-collectio
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import DialogEditCollection from "@/components/dialogs/dialog-edit-collection/dialog-edit-collection";
 import CubesCards from "@/components/cubes/cubes-cards";
-import useErrorDialog from "@/hooks/useErrorDialog";
 import Navigation from "@/components/navigation/navigation";
 import EmptyCubes from "@/components/cubes/EmptyCubes";
 import FadeIn from "@/components/fade-in/fade-in";
+import { useTimerStore } from '@/store/timerStore';
 
 export default function Page() {
-  const { handleResetError, error, handleChangeError } = useErrorDialog();
   const { isOpen, type, closeDialog } = useDialogCubesOptions();
-  const { filterCubes, handleFavoriteClick, handleRedirectToTimer } = useCubes();
+  const { handleFavoriteClick, handleRedirectToTimer } = useCubes();
+  const cubes = useTimerStore(store => store.cubes)
 
   return (
     <FadeIn className="flex flex-col grow overflow-auto">
@@ -24,11 +24,11 @@ export default function Page() {
           <Navigation showButtonCreateCollection showMainCubeSelector />
 
           {/* cubes list */}
-          {filterCubes && filterCubes.length > 0 ? (
+          {cubes?.length ? (
             <CubesCards
               handleFavoriteClick={handleFavoriteClick}
               handleRedirectToTimer={handleRedirectToTimer}
-              cubes={filterCubes}
+              cubes={cubes}
             />
           ) : (
             <EmptyCubes />
@@ -37,27 +37,15 @@ export default function Page() {
           {/* dialogs */}
           <Dialog
             open={type === "delete" && isOpen}
-            onOpenChange={() => {
-              handleResetError();
-              closeDialog();
-            }}
+            onOpenChange={closeDialog}
           >
-            <DialogDeleteCollection
-              error={error}
-              handleChangeError={handleChangeError}
-            />
+            <DialogDeleteCollection />
           </Dialog>
           <Dialog
             open={type === "edit" && isOpen}
-            onOpenChange={() => {
-              handleResetError();
-              closeDialog();
-            }}
+            onOpenChange={closeDialog}
           >
-            <DialogEditCollection
-              error={error}
-              handleChangeError={handleChangeError}
-            />
+            <DialogEditCollection />
           </Dialog>
         </div>
       </div>

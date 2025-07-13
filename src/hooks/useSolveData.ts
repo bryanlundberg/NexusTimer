@@ -1,9 +1,10 @@
 import { useTimerStore } from "@/store/timerStore";
-import { getAllCubes, getCubeById, saveCube } from "@/db/dbOperations";
 import { Solve } from "@/interfaces/Solve";
 import genId from "@/lib/genId";
+import { useNXData } from '@/hooks/useNXData';
 
 export default function useSolveData() {
+  const { getAllCubes, getCubeById, saveCube } = useNXData();
   const solvingTime = useTimerStore(store => store.solvingTime);
   const selectedCube = useTimerStore(store => store.selectedCube);
   const scramble = useTimerStore(store => store.scramble);

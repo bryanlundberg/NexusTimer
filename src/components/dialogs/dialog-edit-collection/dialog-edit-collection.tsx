@@ -4,28 +4,19 @@ import { Button } from "@/components/ui/button";
 import { DialogClose, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { getAllCubes, saveCube } from "@/db/dbOperations";
 import { cubeCollection } from "@/lib/const/cubeCollection";
 import { useDialogCubesOptions } from "@/store/DialogCubesOptions";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useNXData } from '@/hooks/useNXData';
+import { useForm, Controller } from 'react-hook-form';
+import { Categories } from '@/interfaces/Categories';
+import { toast } from 'sonner';
 
-export default function DialogEditCollection({
-  error,
-  handleChangeError
-}: {
-  error: { message: string; status: boolean };
-  handleChangeError: ({
-    message,
-    status
-  }: {
-    message: string;
-    status: boolean;
-  }) => void;
-}) {
+export default function DialogEditCollection() {
+  const { getAllCubes, saveCube } = useNXData();
   const t = useTranslations("Index");
   const cube = useDialogCubesOptions((state) => state.cube);
   const closeDialog = useDialogCubesOptions((state) => state.closeDialog);
@@ -33,54 +24,55 @@ export default function DialogEditCollection({
   const setCubes = useTimerStore((state) => state.setCubes);
   const selectedCube = useTimerStore((state) => state.selectedCube);
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube);
+  const { register, handleSubmit, formState : { errors }, reset, setError, control } = useForm({
+    defaultValues: {
+      name: cube?.name || "",
+      category: cube?.category || "2x2"
+    }
+  })
 
-  const [form, setForm] = useState({
-    name: cube?.name || "",
-    category: cube?.category || "2x2"
-  });
-
-  const handleSubmitEditCubeCollection = async () => {
+  const handleSubmitEditCubeCollection = async (form: { name: string, category: string }) => {
     try {
-      // verify if its repeated the name
-      if (
-        cube?.name !== form.name &&
-        cubes?.some((e) => e.name === form.name)
-      ) {
-        handleChangeError({
-          status: true,
-          message: t("Errors.repeated-name")
-        });
+      if (cube?.name !== form.name && cubes?.some((e) => e.name === form.name)) {
+        setError("name", {
+          type: "manual",
+          message: t("Cubes-modal.name-repeated")
+        })
         return;
       }
 
       await saveCube({
         ...cube,
         name: form.name.trim(),
-        category: form.category
+        category: form.category as Categories
       });
 
       const cubesDB = await getAllCubes();
       setCubes(cubesDB);
 
-      if (cube && cube.id === selectedCube?.id) {
+      if (cube?.id === selectedCube?.id) {
         setSelectedCube(null);
       }
 
-      // update states
       closeDialog();
+      toast.success("Cube edited successfully");
     } catch (err) {
       console.log(err);
+      toast.error("Failed to edit cube");
     }
   };
 
-  // helps to refresh input (name) when re-open the dialog
   useEffect(() => {
-    setForm((prev) => ({
-      ...prev,
-      category: cube?.category || "2x2",
-      name: cube?.name || ""
-    }));
-  }, [cube]);
+    if (!cube?.id) {
+      closeDialog();
+      return;
+    }
+
+    reset({
+      name: cube.name,
+      category: cube.category || "2x2"
+    });
+  }, [closeDialog, cube, reset]);
 
   return (
     <>
@@ -100,42 +92,52 @@ export default function DialogEditCollection({
 
         <Label>{t("Cubes-modal.name")}</Label>
         <Input
-          defaultValue={cube?.name}
-          onChange={(e) => {
-            setForm((prev) => ({ ...prev, name: e.target.value }));
-          }}
+          {...register("name", {
+            required: "Required field",
+            minLength: {
+              value: 2,
+              message: "Min length is 2 characters"
+            },
+            maxLength: {
+              value: 50,
+              message: "Max length is 50 characters"
+            }
+          })}
           data-testid="drawer-edit-input-name"
         />
 
-        {error && error.status && (
+        {errors?.name && (
           <p
             className="text-destructive text-sm"
             data-testid="drawer-edit-collection-error-message"
           >
-            {error.message}
+            {errors.name.message}
           </p>
         )}
 
         <Label>{t("Cubes-modal.category")}</Label>
-        <Select
-          defaultValue={form.category}
-          onValueChange={(e) =>
-            setForm((prev) => ({ ...prev, category: e as any }))
-          }
-        >
-          <SelectTrigger className={"w-full"} data-testid="drawer-edit-select-category">
-            <SelectValue placeholder={t("Cubes-modal.select-an-option")}/>
-          </SelectTrigger>
-          <SelectContent>
-            {cubeCollection.map((cube) => {
-              return (
-                <SelectItem key={cube.id} value={cube.name}>
-                  {cube.name}
-                </SelectItem>
-              );
-            })}
-          </SelectContent>
-        </Select>
+        <Controller
+          name="category"
+          control={control}
+          rules={{ required: 'Required field' }}
+          render={({ field }) => (
+            <Select
+              value={field.value}
+              onValueChange={field.onChange}
+            >
+              <SelectTrigger className={'w-full'} data-testid="drawer-edit-select-category">
+                <SelectValue placeholder={t('Cubes-modal.select-an-option')}/>
+              </SelectTrigger>
+              <SelectContent>
+                {cubeCollection.map((cube) => (
+                  <SelectItem key={cube.id} value={cube.name}>
+                    {cube.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
         <DialogFooter>
           <div className="flex justify-between w-full">
             <DialogClose asChild>
@@ -149,7 +151,7 @@ export default function DialogEditCollection({
 
             <Button
               variant={"default"}
-              onClick={handleSubmitEditCubeCollection}
+              onClick={handleSubmit(handleSubmitEditCubeCollection)}
               data-testid="drawer-edit-accept-button"
             >
               {t("Inputs.continue")}
