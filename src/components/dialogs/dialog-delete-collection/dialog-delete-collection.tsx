@@ -60,7 +60,7 @@ export default function DialogDeleteCollection() {
     }
 
     reset({
-      cubeName: cube?.name,
+      cubeName: '',
     });
   }, [closeDialog, cube, reset]);
 
