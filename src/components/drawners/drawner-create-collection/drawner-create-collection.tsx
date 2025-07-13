@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   DrawerClose,
   DrawerContent,
@@ -6,22 +6,19 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-} from "@/components/ui/drawer";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Categories } from "@/interfaces/Categories";
-import { cubeCollection } from "@/lib/const/cubeCollection";
-import { cn } from "@/lib/utils";
-import { useTimerStore } from "@/store/timerStore";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
-import { useState } from "react";
+} from '@/components/ui/drawer';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Categories } from '@/interfaces/Categories';
+import { cubeCollection } from '@/lib/const/cubeCollection';
+import { cn } from '@/lib/utils';
+import { useTimerStore } from '@/store/timerStore';
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
+import { useEffect } from 'react';
 import { useNXData } from '@/hooks/useNXData';
-
-interface FormProps {
-  category: Categories;
-  name: string;
-}
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 export default function DrawerCreateCollection({
   closeDrawer,
@@ -29,52 +26,58 @@ export default function DrawerCreateCollection({
   closeDrawer: () => void;
 }) {
   const { saveCube, getAllCubes } = useNXData();
-  const t = useTranslations("Index");
-  const [newCollection, setNewCollection] = useState<FormProps>({
-    category: "2x2",
-    name: "",
-  });
+  const t = useTranslations('Index');
   const cubes = useTimerStore((state) => state.cubes);
   const setCubes = useTimerStore((state) => state.setCubes);
-  const [error, setError] = useState({
-    error: false,
-    message: "",
-  });
+  const { handleSubmit, reset, setError, formState: { errors }, register, watch, setValue } = useForm({
+    defaultValues: {
+      category: '2x2',
+      name: '',
+    },
+  })
 
-  const handleSubmitNewCollection = async () => {
+  const formWatch = watch();
+
+  const handleSubmitNewCollection = async (form: { category: string, name: string }) => {
     try {
-      if (newCollection.name.trim() === "") {
-        setError((prev) => ({
-          ...prev,
-          error: true,
-          message: t("Errors.empty-input"),
-        }));
+      if (form.name.trim() === '') {
+        setError('category', {
+          type: 'manual',
+          message: t('Cubes-modal.name-required'),
+        })
         return;
       }
 
       if (
         cubes &&
-        cubes.some((cube) => cube.name === newCollection.name.trim())
+        cubes.some((cube) => cube.name === form.name.trim())
       ) {
-        setError((prev) => ({
-          ...prev,
-          error: true,
-          message: t("Errors.repeated-name"),
-        }));
+        setError('name', {
+          type: 'manual',
+          message: t('Cubes-modal.name-repeated'),
+        });
         return;
       }
 
       await saveCube({
-        name: newCollection.name,
-        category: newCollection.category,
+        name: form.name,
+        category: form.category as Categories,
       });
       const cubesDB = await getAllCubes();
       setCubes(cubesDB);
       closeDrawer();
+      toast.success('Cube collection created successfully');
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    reset({
+      category: '2x2',
+      name: '',
+    });
+  }, [reset]);
 
   return (
     <DrawerContent
@@ -82,48 +85,47 @@ export default function DrawerCreateCollection({
       data-testid="drawer-create-collection"
     >
       <DrawerHeader>
-        <DrawerTitle>{t("Cubes-modal.new-collection")}</DrawerTitle>
+        <DrawerTitle>{t('Cubes-modal.new-collection')}</DrawerTitle>
         <DrawerDescription>
-          {t("Cubes-modal.new-collection-description")}
+          {t('Cubes-modal.new-collection-description')}
         </DrawerDescription>
       </DrawerHeader>
 
       <div className="p-3 space-y-2">
-        <Label htmlFor="name">{t("Cubes-modal.name")}</Label>
+        <Label htmlFor="name">{t('Cubes-modal.name')}</Label>
         <Input
-          autoComplete={"off"}
+          autoComplete={'off'}
           data-testid="drawer-input-name"
           id="name"
           placeholder="E.g: X Man Tornado V3 M"
-          onChange={(e) => {
-            setNewCollection((prev) => ({ ...prev, name: e.target.value }));
-            setError((prev) => ({ ...prev, error: false, message: "" }));
-          }}
+          {...register('name', {
+            required: 'A name is required',
+          })}
         />
 
-        {error && <p className="text-destructive mt-1">{error.message}</p>}
+        {errors?.name && <p className="text-destructive mt-1 text-xs">{errors.name.message}</p>}
 
         <div className="mt-3"></div>
-        <Label>{t("Cubes-modal.category")}</Label>
+        <Label>{t('Cubes-modal.category')}</Label>
         <div className="grid grid-cols-6 md:grid-cols-6 gap-5 place-items-center mt-3">
           {cubeCollection.map((e) => {
             return (
               <Image
-                data-testid={"checkbox-category-" + e.name}
+                data-testid={'checkbox-category-' + e.name}
                 key={e.name}
                 src={e.src}
-                alt={e.event || ""}
+                alt={e.event || ''}
                 className={cn(
-                  "w-full max-w-fit max-h-14 md:max-h-20 object-scale-down rounded hover:scale-105 transition duration-200",
+                  'w-full max-w-fit max-h-14 md:max-h-20 object-scale-down rounded hover:scale-105 transition duration-200',
                   `${
-                    newCollection.category === e.name
-                      ? "rounded scale-105 outline-primary outline-4"
-                      : ""
+                    formWatch.category === e.name
+                      ? 'rounded scale-105 outline-primary outline-4'
+                      : ''
                   }`
                 )}
                 draggable={false}
                 onClick={() => {
-                  setNewCollection((prev) => ({ ...prev, category: e.name }));
+                  setValue('category', e.name);
                 }}
               />
             );
@@ -132,16 +134,16 @@ export default function DrawerCreateCollection({
 
         <div className="mt-3"></div>
         <Label>
-          {t("Cubes-modal.current-selection")} {newCollection.category}
+          {t('Cubes-modal.current-selection')} {formWatch.category}
         </Label>
       </div>
 
       <DrawerFooter>
         <Button
-          onClick={handleSubmitNewCollection}
+          onClick={handleSubmit(handleSubmitNewCollection)}
           data-testid="drawer-accept-button"
         >
-          {t("Inputs.create")}
+          {t('Inputs.create')}
         </Button>
         <DrawerClose asChild>
           <Button
@@ -149,7 +151,7 @@ export default function DrawerCreateCollection({
             className="w-full"
             data-testid="drawer-cancel-button"
           >
-            {t("Inputs.cancel")}
+            {t('Inputs.cancel')}
           </Button>
         </DrawerClose>
       </DrawerFooter>
