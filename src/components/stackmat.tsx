@@ -142,20 +142,7 @@ export default function Stackmat() {
         stackmat.off("stopped", onReset);
       };
     }
-  }, [
-    stackmat,
-    setIsSolving,
-    setSolvingTime,
-    setTimerStatus,
-    selectedCube,
-    scramble,
-    cubes,
-    setCubes,
-    setSelectedCube,
-    setLastSolve,
-    setNewScramble,
-    timerStatus,
-  ]);
+  }, [stackmat, setIsSolving, setSolvingTime, setTimerStatus, selectedCube, scramble, cubes, setCubes, setSelectedCube, setLastSolve, setNewScramble, timerStatus, getAllCubes, getCubeById, saveCube]);
 
   useEffect(() => {
     if (stackmat) {

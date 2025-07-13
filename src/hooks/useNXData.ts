@@ -143,6 +143,42 @@ export const useNXData = () => {
     await saveBatchCubes(newCubes);
   }
 
+  // TODO: Verify if this function is still needed
+  // const moveSolve = async ({
+  //   solve,
+  //   selectedCube,
+  //   type,
+  // }: {
+  //   solve: Solve;
+  //   selectedCube: Cube;
+  //   type: SolveTab;
+  // }): Promise<Cube> => {
+  //   const newSelectedCube = _.cloneDeep(selectedCube);
+  //   const { session, all } = newSelectedCube.solves;
+  //
+  //   if (type === SolveTab.SESSION) {
+  //     const solveIndexInSession = session.findIndex((sessionSolve) => sessionSolve.id === solve.id);
+  //
+  //     if (solveIndexInSession !== -1) {
+  //       newSelectedCube.solves.all = [...all, solve];
+  //       newSelectedCube.solves.session = session.filter((sessionSolve) => sessionSolve.id !== solve.id);
+  //       await saveCube({ ...newSelectedCube, solves: newSelectedCube.solves });
+  //     }
+  //   } else if (type === SolveTab.ALL) {
+  //     const solveIndexInAll = all.findIndex((allSolve) => allSolve.id === solve.id);
+  //
+  //     if (solveIndexInAll !== -1) {
+  //       newSelectedCube.solves.session = [...session, solve];
+  //       newSelectedCube.solves.all = all.filter((allSolve) => allSolve.id !== solve.id);
+  //       // Update the cube on the list
+  //       await saveCube({ ...newSelectedCube, solves: newSelectedCube.solves });
+  //     }
+  //   }
+  //
+  //   // If the type is neither "session" nor "all", return the cube without updating
+  //   return newSelectedCube;
+  // }
+
   return {
     getCubeById,
     saveCube,
@@ -151,6 +187,6 @@ export const useNXData = () => {
     deleteCubeById,
     clearCubes,
     updateSolve,
-    finishSession,
+    finishSession
   }
 }
