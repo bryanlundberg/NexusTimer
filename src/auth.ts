@@ -30,11 +30,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async signIn({ user }) {
       try {
         const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
-        const response = await fetch(`${baseUrl}/api/user`, {
+        const response = await fetch(`${baseUrl}/api/v1/users`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
           body: JSON.stringify({
             email: user.email as string,
             image: user.image as string,
