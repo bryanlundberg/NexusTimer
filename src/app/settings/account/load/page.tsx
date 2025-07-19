@@ -1,5 +1,4 @@
 "use client";
-import { getLastBackup } from "@/actions/actions";
 import AccountHeader from "@/components/account/account-header/account-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -23,18 +22,28 @@ export default function Page() {
   const handleDownloadData = async () => {
     if (!session || !session.user || !session.user.email) return;
 
-    const backup = await getLastBackup({ email: session.user.email });
-    if (!backup) return;
+    try {
+      const response = await fetch(`/api/v1/users/${session.user.id}/backup`);
 
-    const jsonBackup = JSON.parse(backup);
-    const backupData = importNexusTimerData(jsonBackup.data);
-    const existingCubes = await getAllCubes();
+      if (!response.ok) {
+        console.error('Failed to fetch backup');
+        return;
+      }
 
-    const newCubes = await syncBackup(backupData, existingCubes);
-    await clearCubes();
-    await saveBatchCubes(newCubes);
-    setCubes(newCubes);
-    router.push("/");
+      const backup = await response.json();
+      if (!backup) return;
+
+      const backupData = importNexusTimerData(backup.data);
+      const existingCubes = await getAllCubes();
+
+      const newCubes = await syncBackup(backupData, existingCubes);
+      await clearCubes();
+      await saveBatchCubes(newCubes);
+      setCubes(newCubes);
+      router.push("/");
+    } catch (error) {
+      console.error('Error loading backup:', error);
+    }
   };
 
   return (
