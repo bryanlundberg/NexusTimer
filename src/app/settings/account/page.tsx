@@ -18,37 +18,86 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useNXData } from '@/hooks/useNXData';
+import uploadFile from '@/utils/uploadFile';
+import { updateUser } from '@/actions/actions';
+import { toast } from 'sonner';
+import loader from '@/utils/loader';
 
 export default function Page() {
-  const { data: session } = useSession();
-  const { deleteCubeById, getAllCubes } = useNXData();
+  const { data: session, update } = useSession();
+  const { getAllCubes, clearCubes } = useNXData();
   const t = useTranslations("Index");
-  if (!session) {
-    return <AccountNotAuth />;
-  }
 
   const handleResetDeviceData = async () => {
-    const cubes = await getAllCubes();
-    if (cubes) {
-      cubes.map(async (cube) => await deleteCubeById(cube.id));
-    }
+    try {
+      loader.start();
+      const cubes = await getAllCubes();
+      if (cubes) {
+        await clearCubes();
+      }
 
-    await signOut({ redirectTo: "/" });
+      await signOut({ redirectTo: "/" });
+    } catch (error) {
+      console.error("Error resetting device data:", error);
+      toast.error("Error unlinking account");
+      loader.stop();
+    }
   };
+
+  const handleUpdateAvatar = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    try {
+      loader.start();
+      const urlImage = await uploadFile(file)
+
+      const updatedUserResponse = await updateUser({
+        email: session?.user?.email as string,
+        name: session?.user?.name as string,
+        image: urlImage.url,
+      });
+
+      if (!updatedUserResponse) {
+        toast.error("Error updating user image");
+        return;
+      }
+
+      const updatedUser = JSON.parse(updatedUserResponse);
+      await update({
+        user: {
+          image: updatedUser.image,
+        },
+      });
+      toast.success("Profile image updated successfully");
+    } catch (error) {
+      console.error("Error updating avatar:", error);
+      toast.error("Error updating profile image");
+    } finally {
+      loader.stop();
+    }
+  }
+
+  if (!session) return <AccountNotAuth />;
 
   return (
     <>
       <AccountHeader back="/" label={t("SettingsPage.account")} />
       <div className="flex flex-col gap-3 justify-center items-center">
-        <Avatar className="size-20">
+        <Avatar className="size-20 relative group/item">
           <AvatarImage src={session.user?.image as string} />
           <AvatarFallback>
             {session.user?.name?.slice(0, 2).toUpperCase()}
           </AvatarFallback>
+          <input
+            type={"file"}
+            accept="image/*"
+            className={"absolute z-10 inset-0 w-full h-full bg-neutral-900 hidden group-hover/item:flex justify-center items-center cursor-pointer hover:opacity-50 text-xs"}
+            onChange={handleUpdateAvatar}
+          />
         </Avatar>
 
         <div className="font-mono">{session.user?.email}</div>
-
         <Link href={"./account/save"} className="w-full">
           <Button className="w-full" variant={"secondary"}>
             Save
