@@ -81,6 +81,7 @@
     "sharp": "0.32.6",
     "sonner": "^1.7.4",
     "stackmat": "^1.1.1",
+    "swr": "^2.3.4",
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^4.1.10",
     "tailwindcss-animate": "^1.0.7",
