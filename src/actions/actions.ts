@@ -20,12 +20,6 @@ export async function createOrUpdateUser({
 
     const user = await User.findOne({ email });
 
-    if (user) {
-      user.image = image;
-      user.name = name;
-      await user.save();
-    }
-
     if (!user) {
       await User.create({ email, name, image });
       const { data, error } = await resend.emails.send({
@@ -107,5 +101,26 @@ export async function getLastBackup({ email }: { email: string }) {
   } catch (error) {
     console.log(error);
     return false;
+  }
+}
+
+export async function updateUser({ email, name, image }: { email: string; name: string; image: string }) {
+  try {
+    await connectDB();
+    const user = await User.findOne({ email: email });
+    if (!user) throw new Error("User not found");
+
+    const newUser = await User.findOneAndUpdate({
+      email: email,
+    }, {
+      name: name,
+      image: image,
+    }, {
+      new: true,
+    })
+
+    return newUser ? JSON.stringify(newUser) : false;
+  } catch (e) {
+    console.error("Error updating user:", e);
   }
 }
