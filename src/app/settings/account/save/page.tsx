@@ -1,5 +1,4 @@
 'use client';
-import { createOrUpdateBackup } from '@/actions/actions';
 import AccountHeader from '@/components/account/account-header/account-header';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -24,12 +23,24 @@ export default function Page() {
       return toast.error('Failed to retrieve cubes or session data.');
     }
 
-    await createOrUpdateBackup({
-      email: session.user.email,
-      data: JSON.stringify(cubes),
-    });
+    try {
+      const response = await fetch('/api/v1/backups', {
+        method: 'POST',
+        body: JSON.stringify({
+          _id: session.user.id,
+          data: JSON.stringify(cubes),
+        }),
+      });
 
-    router.push('/');
+      if (!response.ok) {
+        return toast.error('Failed to save backup.');
+      }
+
+      router.push('/');
+    } catch (error) {
+      console.error('Error saving backup:', error);
+      toast.error('Failed to save backup.');
+    }
   }
 
   return (
