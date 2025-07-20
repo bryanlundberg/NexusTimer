@@ -69,7 +69,6 @@ export default function Page() {
       await update({
         user: {
           image: updatedUser.image,
-          name: 'prueba'
         }
       });
 
