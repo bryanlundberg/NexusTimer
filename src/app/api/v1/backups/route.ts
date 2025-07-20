@@ -2,12 +2,18 @@ import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/db/mongodb';
 import User from '@/models/user';
 import Backup from '@/models/backup';
+import { auth } from '@/auth';
 
 export async function POST(request: NextRequest) {
   try {
     const { _id, data } = await request.json()
     if (!_id || !data) return NextResponse.json({ error: 'Incorrect params' }, { status: 400 });
     await connectDB();
+
+    const session = await auth();
+    if (!session || session.user.id !== _id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
 
     const user = await User.findById(_id);
     if (!user) {
