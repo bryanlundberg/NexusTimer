@@ -1,10 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/db/mongodb';
 import User from '@/models/user';
+import { auth } from '@/auth';
 
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const userId = (await params).id;
+
+    const session = await auth();
+    if (!session || session.user.id !== userId) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const body = await request.json();
 
     if (!userId) {
