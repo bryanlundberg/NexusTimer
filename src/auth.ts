@@ -15,7 +15,15 @@ declare module 'next-auth' {
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [Google],
   callbacks: {
-    jwt: async ({ token, user }) => {
+    jwt: async ({ token, user, trigger, session }) => {
+      if (trigger === 'update' && session && session?.user?.image) {
+        token.picture = session.user.image;
+      }
+
+      if (trigger === 'update' && session && session?.user?.name) {
+        token.name = session.user.name;
+      }
+
       if (user) {
         token.id = user.id;
       }
