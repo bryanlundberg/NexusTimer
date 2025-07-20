@@ -12,9 +12,18 @@ export const POST = async (request: Request) => {
 
   const formData = await request.formData();
   const file = formData.get('file') as File;
+  const path = formData.get('path') as string;
+  const filename = formData.get('filename') as string | null;
+
   if (!file) {
     return NextResponse.json({
       error: 'No file provided'
+    }, { status: 400 });
+  }
+
+  if (!path) {
+    return NextResponse.json({
+      error: 'No path provided'
     }, { status: 400 });
   }
 
@@ -23,10 +32,16 @@ export const POST = async (request: Request) => {
     const buffer = Buffer.from(bytes);
     const dataURI = `data:${file.type};base64,${buffer.toString('base64')}`;
 
-    const result = await cloudinary.uploader.upload(dataURI, {
-      folder: 'profile',
+    const uploadOptions: any = {
+      folder: path,
       resource_type: 'auto'
-    });
+    };
+
+    if (filename) {
+      uploadOptions.public_id = filename;
+    }
+
+    const result = await cloudinary.uploader.upload(dataURI, uploadOptions);
 
     return NextResponse.json({
       url: result.secure_url,
