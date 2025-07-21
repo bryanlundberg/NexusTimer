@@ -11,8 +11,8 @@ interface Variation {
 }
 
 export default function ThemeSelect() {
-  const backgroundImage = useBackgroundImageStore((state) => state.backgroundImage);
-  const deleteBackgroundImage = useBackgroundImageStore((state) => state.deleteBackgroundImage);
+  const { backgroundImage, deleteBackgroundImage } = useBackgroundImageStore();
+
   const { setTheme, resolvedTheme } = useTheme();
   const t = useTranslations("Index.Settings-menu");
   const variation: Variation[] = [
