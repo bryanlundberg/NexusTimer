@@ -6,7 +6,9 @@ import { ImageIcon } from "@radix-ui/react-icons";
 
 export default function CustomTheme() {
   const dataInputRef = useRef<HTMLInputElement>(null);
-  const setBackgroundImage = useBackgroundImageStore((state => state.setBackgroundImage));
+  const setBackgroundImage = useBackgroundImageStore(
+    (state) => state.setBackgroundImage
+  );
   const t = useTranslations("Index");
   const handleImageChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const newBackgroundImage = event.target.files?.[0];
@@ -35,7 +37,7 @@ export default function CustomTheme() {
     // Convert image to string base64
     const base64Image = await readFileAsBase64(newBackgroundImage);
 
-    // Save to local storage
+    // Save to IndexedDB
     setBackgroundImage(base64Image);
   };
 
