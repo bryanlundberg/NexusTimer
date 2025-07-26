@@ -6,6 +6,16 @@ export interface Users extends Document {
   image: string;
 }
 
+export interface UserDocument {
+  _id: string;
+  name: string;
+  email: string;
+  image: string;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}
+
 const UserSchema = new Schema(
   {
     name: {
