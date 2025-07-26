@@ -84,7 +84,7 @@ export default function Page() {
       <AccountHeader back="/" label={t('SettingsPage.account')}/>
       <div className="flex flex-col gap-3 justify-center items-center">
         <Avatar className="size-20 relative group/item">
-          <AvatarImage src={session.user?.image as string}/>
+          <AvatarImage className={"object-cover"} src={session.user?.image as string}/>
           <AvatarFallback>
             {session.user?.name?.slice(0, 2).toUpperCase()}
           </AvatarFallback>
