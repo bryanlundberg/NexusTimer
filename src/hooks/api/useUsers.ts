@@ -5,7 +5,7 @@ export const useUsers = () => {
   const { data, error, isLoading } = useSWR(`/api/v1/users`, fetcher)
 
   return {
-    users: data,
+    data,
     isLoading,
     isError: error
   }
