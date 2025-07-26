@@ -27,7 +27,6 @@ export default function Page() {
       const response = await fetch('/api/v1/backups', {
         method: 'POST',
         body: JSON.stringify({
-          _id: session.user.id,
           data: JSON.stringify(cubes),
         }),
       });
