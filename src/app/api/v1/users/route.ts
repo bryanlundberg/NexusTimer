@@ -3,6 +3,7 @@ import connectDB from '@/db/mongodb';
 import User from '@/models/user';
 import { Resend } from 'resend';
 import Email from '@/components/email/email';
+import { auth } from '@/auth';
 
 const resend = new Resend(
   process.env.RESEND_API_KEY || 'development-placeholder-no-email-sent'
@@ -54,6 +55,37 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(user);
   } catch (error) {
     console.error('Error creating user:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+
+export async function PATCH(request: NextRequest) {
+  try {
+    const session = await auth();
+    if (!session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const body = await request.json();
+
+    await connectDB();
+    const user = await User.findById(session.user.id)
+
+    if (!user) {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
+
+    const { email, createdAt, updatedAt, __v, ...rest } = body;
+
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: session.user.id },
+      { ...rest },
+      { new: true }
+    );
+
+    return NextResponse.json(updatedUser);
+  } catch (error) {
+    console.error('Error updating user:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
