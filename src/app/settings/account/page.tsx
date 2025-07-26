@@ -51,7 +51,7 @@ export default function Page() {
       loader.start();
       const urlImage = await uploadFile(file, `/avatars`, session?.user?.id);
 
-      const response = await fetch(`/api/v1/users/${session?.user?.id}`, {
+      const response = await fetch(`/api/v1/users`, {
         method: 'PATCH',
         body: JSON.stringify({
           image: urlImage.url,
