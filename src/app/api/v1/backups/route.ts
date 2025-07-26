@@ -6,26 +6,26 @@ import { auth } from '@/auth';
 
 export async function POST(request: NextRequest) {
   try {
-    const { _id, data } = await request.json()
-    if (!_id || !data) return NextResponse.json({ error: 'Incorrect params' }, { status: 400 });
+    const { data } = await request.json()
+    if (!data) return NextResponse.json({ error: 'Incorrect params' }, { status: 400 });
     await connectDB();
 
     const session = await auth();
-    if (!session || session.user.id !== _id) {
+    if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const user = await User.findById(_id);
+    const user = await User.findById(session.user.id);
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 
     const backup = await Backup.findOneAndUpdate(
       {
-        user: _id,
+        user: session.user.id,
       },
       {
-        user: _id,
+        user: session.user.id,
         data: data,
       },
       {
