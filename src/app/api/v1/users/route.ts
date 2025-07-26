@@ -21,7 +21,8 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       events: users,
       page: page,
-      pages: Math.max(0, (docsCount / PER_PAGE) - 1),
+      pages: Math.max(0, Math.floor((docsCount / PER_PAGE) - 1)),
+      docs: docsCount,
     });
   } catch (e) {
     console.error(e)
