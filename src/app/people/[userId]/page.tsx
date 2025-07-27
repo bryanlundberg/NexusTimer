@@ -25,6 +25,7 @@ import OverviewTabContent from '@/components/people/overview-tab-content';
 import UserInfo from '@/components/people/user-info';
 import { useSettingsModalStore } from '@/store/SettingsModalStore';
 import useWebsiteColors from '@/hooks/useWebsiteColors';
+import ButtonNavbar from '@/components/navigation/buttons/button-navbar';
 
 export default function Page() {
   const params = useParams<{ userId: string; }>()
@@ -70,9 +71,7 @@ export default function Page() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href={'/'}>Timer</Link>
-              </BreadcrumbLink>
+                <ButtonNavbar/>
             </BreadcrumbItem>
             <BreadcrumbSeparator/>
             <BreadcrumbItem>
