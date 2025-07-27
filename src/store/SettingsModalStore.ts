@@ -47,10 +47,17 @@ export const useSettingsModalStore = create<SettingsStoreProps>()(
         let current: any = settings;
 
         for (let i = 0; i < pathParts.length - 1; i++) {
-          current = current[pathParts[i]];
+          const key = pathParts[i];
+          if (key === "__proto__" || key === "constructor") {
+            throw new Error("Unsafe property name detected in path.");
+          }
+          current = current[key];
         }
 
         const lastKey = pathParts[pathParts.length - 1];
+        if (lastKey === "__proto__" || lastKey === "constructor") {
+          throw new Error("Unsafe property name detected in path.");
+        }
         current[lastKey] = value;
 
         set({ settings });
