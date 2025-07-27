@@ -4,12 +4,18 @@ import { cubeCollection } from '@/lib/const/cubeCollection';
 import * as React from 'react';
 import { Cube } from '@/interfaces/Cube';
 import moment from 'moment';
+import _ from 'lodash';
+import EmptyTabContent from '@/components/people/empty-tab-content';
 
 interface CubesTabContentProps {
   cubes: Cube[]
 }
 
 export default function CubesTabContent({ cubes }: CubesTabContentProps) {
+  if (_.isEmpty(cubes)) {
+    return <EmptyTabContent/>
+  }
+
   return (
     <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'}>
       {cubes?.length ? cubes.map((cube) => (
