@@ -11,13 +11,13 @@ interface CubesTabContentProps {
 
 export default function CubesTabContent({ cubes }: CubesTabContentProps) {
   return (
-    <div className={'grid grid-cols-2 gap-4'}>
+    <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'}>
       {cubes?.length ? cubes.map((cube) => (
         <Card key={cube.id} className={'flex flex-1 h-auto gap-2 flex-row items-center px-3'}>
           <Image
             src={cubeCollection.find((item) => item.name === cube.category)?.src || ''}
             alt={cube.name}
-            className={'size-20 object-scale-down rounded p-1'}
+            className={'size-14 object-scale-down rounded p-1'}
             draggable={false}
             width={64}
             height={64}
