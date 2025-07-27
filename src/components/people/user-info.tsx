@@ -12,10 +12,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { useUser } from '@/hooks/api/useUser';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { cn } from '@/lib/utils';
+import moment from 'moment';
 
 export default function UserInfo({ user }: { user: UserDocument }) {
   const { data: session } = useSession();
-  const {mutate} = useUser(user._id);
+  const { mutate } = useUser(user._id);
   const isCurrentUser = session?.user?.id === user._id;
   const timezones = useMemo(() => (Intl as any).supportedValuesOf('timeZone'), []);
   const { register, handleSubmit, formState: { errors, isSubmitting }, control } = useForm({
@@ -57,8 +60,6 @@ export default function UserInfo({ user }: { user: UserDocument }) {
       return;
     }
   };
-
-  console.log(user);
 
   return (
     <div className="flex flex-col gap-2 p-4 md:sticky md:top-4 h-fit w-full max-w-xs">
@@ -148,13 +149,33 @@ export default function UserInfo({ user }: { user: UserDocument }) {
         </>
       ) : (
         <>
-          <Avatar className="size-60 mb-2 shadow-lg mx-auto">
-            <AvatarImage className={'object-cover'} src={user.image} alt={user.name}/>
-            <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-          </Avatar>
-
+          <div className="relative">
+            <Avatar className="size-60 mb-2 shadow-lg mx-auto">
+              <AvatarImage className={'object-cover'} src={user.image} alt={user.name}/>
+              <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
+            </Avatar>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div
+                  className={cn(
+                    'size-4 rounded-full absolute bottom-5 right-5',
+                    user?.lastSeenAt && moment().diff(moment(user?.lastSeenAt), 'seconds') <= 60 && moment().diff(moment(user?.lastSeenAt), 'seconds') >= 0
+                      ? 'bg-green-400'
+                      : 'bg-gray-400'
+                  )}
+                ></div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>
+                  {user?.lastSeenAt && moment().diff(moment(user?.lastSeenAt), 'seconds') <= 60 && moment().diff(moment(user?.lastSeenAt), 'seconds') >= 0
+                    ? 'Online now'
+                    : 'Offline'}
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
           <h2 className="scroll-m-20 text-center text-xl font-extrabold tracking-tight text-balance flex items-center justify-center gap-2">
-            {user.name}  {user?.pronoun && (
+            {user.name} {user?.pronoun && (
             <div className="flex items-center gap-1 text-sm text-muted-foreground font-normal">
               <span>{user?.pronoun}</span>
             </div>
@@ -165,12 +186,12 @@ export default function UserInfo({ user }: { user: UserDocument }) {
             <div className={'flex items-center gap-1'}>
               <GlobeAmericasIcon className={'size-5'}/>
               {user?.timezone}
-              <span className={"opacity-50"}>({new Intl.DateTimeFormat('en-US', {
+              <span className={'opacity-50'}>({new Intl.DateTimeFormat('en-US', {
                 timeZone: user.timezone,
                 timeStyle: 'short'
               }).format(new Date())})</span>
             </div>}
-          {user?.goal && <Badge variant={'secondary'}>{user?.goal}</Badge>}
+          {user?.goal && <Badge>{user?.goal}</Badge>}
 
           {user?.bio && (
             <div className="w-full mt-2 text-sm">
