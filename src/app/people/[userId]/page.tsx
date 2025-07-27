@@ -8,15 +8,12 @@ import {
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb';
 import FadeIn from '@/components/fade-in/fade-in';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useUser } from '@/hooks/api/useUser';
 import * as React from 'react';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { useBackup } from '@/hooks/api/useBackup';
-import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { GlobeAmericasIcon } from '@heroicons/react/24/outline';
 import { PeopleTabs } from '@/enums/PeopleTabs';
 import { useQueryState } from 'nuqs';
 import { STATES } from '@/constants/states';
@@ -25,6 +22,7 @@ import { importNexusTimerData } from '@/lib/importDataFromFile';
 import LastActivityTabContent from '@/components/people/last-activity-tab-content';
 import CubesTabContent from '@/components/people/cubes-tab-content';
 import OverviewTabContent from '@/components/people/overview-tab-content';
+import UserInfo from '@/components/people/user-info';
 
 export default function Page() {
   const params = useParams<{ userId: string; }>()
@@ -81,15 +79,8 @@ export default function Page() {
           </BreadcrumbList>
         </Breadcrumb>
 
-        <div className="flex flex-col md:flex-row p-5">
-          <div className="flex flex-col gap-2 items-center p-4">
-            <Avatar className="size-40 mb-2 shadow-lg">
-              <AvatarImage className={'object-cover'} src={user.image} alt={user.name}/>
-              <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-            </Avatar>
-            <div className={'flex items-center gap-1'}><GlobeAmericasIcon className={'size-5'}/> Asia/ Jakarta</div>
-            <Badge variant={'secondary'}>Road Sub 10</Badge>
-          </div>
+        <div className="flex flex-col md:flex-row p-5 relative">
+          <UserInfo user={user}/>
 
           <div className="flex flex-col ml-4 grow">
             <Tabs defaultValue={tab} className="w-full">
