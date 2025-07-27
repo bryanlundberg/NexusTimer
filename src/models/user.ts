@@ -15,6 +15,7 @@ export interface UserDocument {
   pronoun?: string;
   timezone?: string;
   goal?: string;
+  lastSeenAt?: number;
   createdAt: Date;
   updatedAt: Date;
   __v: number;
@@ -45,7 +46,10 @@ const UserSchema = new Schema(
     },
     goal: {
       type: String,
-    }
+    },
+    lastSeenAt: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );
