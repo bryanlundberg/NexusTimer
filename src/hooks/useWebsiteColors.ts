@@ -1,10 +1,11 @@
 import { Colors } from "@/interfaces/types/colors";
 import { useTheme } from "next-themes";
 import { useCallback, useEffect } from "react";
-import loadSettings from "@/lib/loadSettings";
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
 
 export default function useWebsiteColors() {
   const { resolvedTheme } = useTheme();
+  const settings = useSettingsModalStore(store => store.settings);
 
   const generateDarkTheme = (lightTheme: Record<string, any>) => {
     const primaryColor = lightTheme.primary;
@@ -506,11 +507,14 @@ export default function useWebsiteColors() {
         document.documentElement.style.setProperty(`--${key}`, value as string);
       });
     }
+
   }, [resolvedTheme]);
 
   useEffect(() => {
-    applyColorTheme(loadSettings().preferences.colorTheme);
-  }, [applyColorTheme, resolvedTheme]);
+    if (settings.preferences.colorTheme) {
+      applyColorTheme(settings.preferences.colorTheme);
+    }
+  }, [settings.preferences.colorTheme, applyColorTheme]);
 
   return { applyColorTheme };
 }
