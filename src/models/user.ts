@@ -11,6 +11,10 @@ export interface UserDocument {
   name: string;
   email: string;
   image: string;
+  bio?: string;
+  pronoun?: string;
+  timezone?: string;
+  goal?: string;
   createdAt: Date;
   updatedAt: Date;
   __v: number;
@@ -30,6 +34,18 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
+    bio: {
+      type: String,
+    },
+    pronoun: {
+      type: String,
+    },
+    timezone: {
+      type: String,
+    },
+    goal: {
+      type: String,
+    }
   },
   { timestamps: true }
 );
