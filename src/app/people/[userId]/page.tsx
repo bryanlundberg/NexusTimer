@@ -22,9 +22,9 @@ import { useQueryState } from 'nuqs';
 import { STATES } from '@/constants/states';
 import { Cube } from '@/interfaces/Cube';
 import { importNexusTimerData } from '@/lib/importDataFromFile';
-import SolvesTabContent from '@/components/people/solves-tab-content';
-import OverviewTabContent from '@/components/people/overview-tab-content';
 import LastActivityTabContent from '@/components/people/last-activity-tab-content';
+import CubesTabContent from '@/components/people/cubes-tab-content';
+import OverviewTabContent from '@/components/people/overview-tab-content';
 
 export default function Page() {
   const params = useParams<{ userId: string; }>()
@@ -106,11 +106,11 @@ export default function Page() {
                 >Last activity</TabsTrigger>
               </TabsList>
               <TabsContent value={PeopleTabs.OVERVIEW}>
-                <SolvesTabContent cubes={backup}/>
+                <OverviewTabContent cubes={backup}/>
               </TabsContent>
               <TabsContent value={PeopleTabs.STATS}>Change your password here.</TabsContent>
               <TabsContent value={PeopleTabs.CUBES}>
-                <OverviewTabContent backup={backup}/>
+                <CubesTabContent cubes={backup}/>
               </TabsContent>
               <TabsContent value={PeopleTabs.LAST_ACTIVITY}>
                 <LastActivityTabContent cubes={backup}/>
@@ -118,7 +118,6 @@ export default function Page() {
             </Tabs>
           </div>
         </div>
-
       </div>
     </FadeIn>
   )
