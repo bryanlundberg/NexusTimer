@@ -1,37 +1,34 @@
-import { Card } from '@/components/ui/card';
-import Image from 'next/image';
-import { cubeCollection } from '@/lib/const/cubeCollection';
-import * as React from 'react';
+import SolveCard from '@/components/people/solve-card';
 import { Cube } from '@/interfaces/Cube';
+import { useMemo } from 'react';
+import _ from 'lodash';
 import moment from 'moment';
+import formatTime from '@/lib/formatTime';
+import { Categories } from '@/interfaces/Categories';
 
-interface OverviewTabContentProps {
-  backup: Cube[]
-}
+export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
+  const solvesByCategory = useMemo(() => {
+    return _.mapValues(
+      _.groupBy(
+        [...cubes.flatMap(cube => cube.solves.session.map(solve => ({ ...solve, category: cube.category }))),
+          ...cubes.flatMap(cube => cube.solves.all.map(solve => ({ ...solve, category: cube.category })))],
+        'category'
+      ),
+      solves => _.orderBy(solves, ['time'], ['asc'])
+    );
+  }, [cubes]);
 
-export default function OverviewTabContent({ backup }: OverviewTabContentProps) {
   return (
-    <div className={'grid grid-cols-2 gap-4'}>
-      {backup?.length ? backup.map((cube) => (
-        <Card key={cube.id} className={'flex flex-1 h-auto gap-2 flex-row items-center px-3'}>
-          <Image
-            src={cubeCollection.find((item) => item.name === cube.category)?.src || ''}
-            alt={cube.name}
-            className={'size-20 object-scale-down rounded p-1'}
-            draggable={false}
-            width={64}
-            height={64}
-          />
-          <div className={'flex flex-col space-y-2 grow'}>
-            <div className={'text-lg font-semibold'}>{cube.name}</div>
-            <div className={'text-sm text-muted-foreground'}>Created
-              at: {moment(cube.createdAt).format("DD/MM/YYYY")}</div>
-            <div className={'text-sm text-muted-foreground'}>Solves: {cube.solves.session.length}</div>
-          </div>
-        </Card>
-      )) : (
-        <div className="text-center text-gray-500">No cubes found.</div>
-      )}
+    <div className={'grid grid-cols-1 lg:grid-cols-2 gap-4'}>
+      {Object.entries(solvesByCategory).map(([category, solves]) => (
+        <SolveCard
+          key={solves[0].id}
+          scramble={solves[0].scramble}
+          event={category as Categories}
+          time={formatTime(solves[0].time)}
+          date={moment(solves[0].endTime).format('DD-MM-YYYY')}
+        />
+      ))}
     </div>
   )
 }
