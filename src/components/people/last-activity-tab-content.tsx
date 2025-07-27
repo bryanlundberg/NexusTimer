@@ -5,6 +5,7 @@ import _ from 'lodash';
 import formatTime from '@/lib/formatTime';
 import { ScrambleDisplay } from '@/components/scramble-display';
 import { Card } from '@/components/ui/card';
+import EmptyTabContent from '@/components/people/empty-tab-content';
 
 interface LastActivityTabContentProps {
   cubes: Cube[];
@@ -30,10 +31,14 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
 
   const solvesLength = useMemo(() => solves.length, [solves]);
 
+  if (_.isEmpty(solves)) {
+    return <EmptyTabContent/>;
+  }
+
   return (
-    <Card className="bg-background/90 backdrop-blur-lg h-96">
-      <div className="w-full h-96 [&>div]:!overflow-x-visible">
-        <Table className={'h-96'}>
+    <Card className="backdrop-blur-lg h-auto py-0">
+      <div className="w-full [&>div]:!overflow-x-visible">
+        <Table>
           <TableHeader>
             <TableRow>
               <TableHead className="w-10">#</TableHead>
@@ -44,8 +49,8 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
               <TableHead className="hidden sm:table-cell">Image</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody className={'h-96'}>
-            {solves.slice(0, 100).map((solve, index) => (
+          <TableBody>
+            {solves.slice(0, 25).map((solve, index) => (
               <TableRow key={solve.id}>
                 <TableCell className="font-medium">{solvesLength - index}</TableCell>
                 <TableCell className="font-medium overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">{solve.cubeName}</TableCell>
