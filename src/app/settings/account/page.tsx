@@ -97,6 +97,13 @@ export default function Page() {
         </Avatar>
 
         <div className="font-mono">{session.user?.email}</div>
+
+        <Link  href={`/people/${session.user?.id}`} className="w-full">
+          <Button className="w-full">
+            Open Profile
+          </Button>
+        </Link>
+
         <Link href={'./account/save'} className="w-full">
           <Button className="w-full" variant={'secondary'}>
             Save
