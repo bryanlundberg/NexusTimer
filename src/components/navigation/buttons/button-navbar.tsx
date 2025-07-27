@@ -37,7 +37,7 @@ import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { useFullScreen } from "@/hooks/useFullScreen";
 import useWebsiteColors from "@/hooks/useWebsiteColors";
-import loadSettings from "@/lib/loadSettings";
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
 
 interface ListItem {
   icon: React.ReactNode;
@@ -56,6 +56,7 @@ export default function ButtonNavbar() {
   const { setTheme } = useTheme();
   const { toggleFullScreen } = useFullScreen();
   const { applyColorTheme } = useWebsiteColors();
+  const settings = useSettingsModalStore((state => state.settings));
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -125,7 +126,7 @@ export default function ButtonNavbar() {
 
   const handleThemeChange = (theme: string) => {
     setTheme(theme);
-    applyColorTheme(loadSettings().preferences.colorTheme);
+    applyColorTheme(settings.preferences.colorTheme);
   };
 
   return (

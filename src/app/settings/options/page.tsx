@@ -23,7 +23,6 @@ import { Separator } from "@/components/ui/separator";
 import MenuSelectColor from "@/components/menu-settings/MenuSelectColor";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { saveSettings } from "@/lib/settingsUtils";
 import MenuInputOption from "@/components/menu-settings/MenuInputOption";
 import _ from "lodash";
 import { Button } from "@/components/ui/button";
@@ -39,7 +38,6 @@ export default function Page() {
   const { applyColorTheme } = useWebsiteColors();
 
   const handleResetSettings = () => {
-    saveSettings(defaultSettings);
     setSettings(defaultSettings);
     applyColorTheme(defaultSettings.preferences.colorTheme);
     reset(defaultSettings);
@@ -49,7 +47,6 @@ export default function Page() {
   useEffect(() => {
     const debounceSave = _.debounce(() => {
       if (isDirty) {
-        saveSettings(getValues());
         setSettings(getValues());
         reset(getValues());
       }

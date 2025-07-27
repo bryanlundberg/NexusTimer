@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useNXData } from '@/hooks/useNXData';
@@ -8,16 +7,14 @@ export function usePreloadSettings() {
   const setCubes = useTimerStore(store => store.setCubes);
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const setNewScramble = useTimerStore(store => store.setNewScramble);
-  const setSettings = useSettingsModalStore(store => store.setSettings);
+  const settings = useSettingsModalStore(store => store.settings);
   const [isMounted, setIsMounted] = useState(false);
   const { getAllCubes, getCubeById} = useNXData();
 
   const initData = useCallback(async () => {
     const cubes = await getAllCubes();
-    const settings = loadSettings();
     const defaultCubeId = settings.preferences.defaultCube;
     setCubes(cubes);
-    setSettings(settings);
     if (defaultCubeId) {
       const defaultCube = await getCubeById(defaultCubeId);
       if (defaultCube) {
@@ -32,7 +29,7 @@ export function usePreloadSettings() {
       setSelectedCube(null);
     }
     return cubes;
-  }, [getAllCubes, getCubeById, setCubes, setSelectedCube, setNewScramble, setSettings]);
+  }, [getAllCubes, settings.preferences.defaultCube, setCubes, getCubeById, setSelectedCube, setNewScramble]);
 
   useEffect(() => {
     initData()
