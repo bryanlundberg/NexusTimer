@@ -65,6 +65,12 @@ export default function Page() {
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
+                <Link href={'/'}>Timer</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator/>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
                 <Link href={'/people'}>People</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
@@ -93,10 +99,6 @@ export default function Page() {
                   value={PeopleTabs.OVERVIEW}
                 >Overview</TabsTrigger>
                 <TabsTrigger
-                  onClick={() => handleChangeTab(PeopleTabs.STATS)}
-                  value={PeopleTabs.STATS}
-                >Stats</TabsTrigger>
-                <TabsTrigger
                   onClick={() => handleChangeTab(PeopleTabs.CUBES)}
                   value={PeopleTabs.CUBES}
                 >Cubes</TabsTrigger>
@@ -108,7 +110,6 @@ export default function Page() {
               <TabsContent value={PeopleTabs.OVERVIEW}>
                 <OverviewTabContent cubes={backup}/>
               </TabsContent>
-              <TabsContent value={PeopleTabs.STATS}>Change your password here.</TabsContent>
               <TabsContent value={PeopleTabs.CUBES}>
                 <CubesTabContent cubes={backup}/>
               </TabsContent>
