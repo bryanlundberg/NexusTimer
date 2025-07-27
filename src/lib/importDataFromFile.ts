@@ -34,7 +34,7 @@ const nxTimerSchema = z.array(
           scramble: z.string(),
           bookmark: z.boolean(),
           time: z.number(),
-          dnf: z.boolean(),
+          dnf: z.boolean().optional(),
           plus2: z.boolean(),
           rating: z.number(),
           cubeId: z.string(),
