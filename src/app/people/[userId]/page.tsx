@@ -1,17 +1,9 @@
 'use client';
 import { useParams } from 'next/navigation';
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbSeparator
-} from '@/components/ui/breadcrumb';
 import FadeIn from '@/components/fade-in/fade-in';
 import { useUser } from '@/hooks/api/useUser';
 import * as React from 'react';
 import { useEffect } from 'react';
-import Link from 'next/link';
 import { useBackup } from '@/hooks/api/useBackup';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { PeopleTabs } from '@/enums/PeopleTabs';
