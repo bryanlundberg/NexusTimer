@@ -159,7 +159,7 @@ export default function UserInfo({ user }: { user: UserDocument }) {
                 <div
                   className={cn(
                     'size-4 rounded-full absolute bottom-5 right-5',
-                    user?.lastSeenAt && moment().diff(moment(user?.lastSeenAt), 'seconds') <= 60 && moment().diff(moment(user?.lastSeenAt), 'seconds') >= 0
+                    isCurrentUser || (user?.lastSeenAt && moment().diff(moment(user?.lastSeenAt), 'seconds') <= 60 && moment().diff(moment(user?.lastSeenAt), 'seconds') >= 0)
                       ? 'bg-green-400'
                       : 'bg-gray-400'
                   )}
@@ -167,7 +167,7 @@ export default function UserInfo({ user }: { user: UserDocument }) {
               </TooltipTrigger>
               <TooltipContent>
                 <p>
-                  {user?.lastSeenAt && moment().diff(moment(user?.lastSeenAt), 'seconds') <= 60 && moment().diff(moment(user?.lastSeenAt), 'seconds') >= 0
+                  {isCurrentUser || (user?.lastSeenAt && moment().diff(moment(user?.lastSeenAt), 'seconds') <= 60 && moment().diff(moment(user?.lastSeenAt), 'seconds') >= 0)
                     ? 'Online now'
                     : 'Offline'}
                 </p>
