@@ -25,7 +25,8 @@ import OverviewTabContent from '@/components/people/overview-tab-content';
 import UserInfo from '@/components/people/user-info';
 import { useSettingsModalStore } from '@/store/SettingsModalStore';
 import useWebsiteColors from '@/hooks/useWebsiteColors';
-import ButtonNavbar from '@/components/navigation/buttons/button-navbar';
+import PeopleBreadcrumb from '@/components/people/people-breadcrumb';
+import PeopleSkeleton from '@/components/people/people-skeleton';
 
 export default function Page() {
   const params = useParams<{ userId: string; }>()
@@ -59,36 +60,16 @@ export default function Page() {
 
   if (isLoadingUser || isLoadingBackup) {
     return (
-      <FadeIn className="flex flex-col grow items-center justify-center">
-        <div className="text-lg">Loading user data...</div>
-      </FadeIn>
+      <PeopleSkeleton/>
     );
   }
 
   return (
     <FadeIn className="flex flex-col grow overflow-auto">
       <div className="max-w-7xl mx-auto p-4 flex flex-col w-full min-h-full">
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-                <ButtonNavbar/>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator/>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href={'/people'}>People</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator/>
-            <BreadcrumbItem>
-              {user.name}
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-
+        <PeopleBreadcrumb userName={user?.name}/>
         <div className="flex flex-col md:flex-row p-5 relative">
           <UserInfo user={user}/>
-
           <div className="flex flex-col ml-4 grow">
             <Tabs defaultValue={tab} className="w-full">
               <TabsList>
