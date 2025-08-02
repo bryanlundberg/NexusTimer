@@ -139,7 +139,7 @@ export default function Page() {
           ))}
         </div>
 
-        <div className={'opacity-70 text-xs ps-4'}>Results: {data.docs}</div>
+        <div className={'opacity-70 text-xs ps-4 pt-2'}>Results: {data?.docs || 0}</div>
 
         {!isLoading && (
           <TablePagination
