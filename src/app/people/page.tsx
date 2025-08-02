@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import Navigation from '@/components/navigation/navigation';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { useUsers } from '@/hooks/api/useUsers';
@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import moment from 'moment';
 import FadeIn from '@/components/fade-in/fade-in';
 import { UserDocument } from '@/models/user';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import ButtonNavbar from '@/components/navigation/buttons/button-navbar';
 import { Input } from '@/components/ui/input';
 import { Calendar, ExternalLink } from 'lucide-react';
@@ -18,20 +18,39 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { TimeZones } from '@/enums/Timezones';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
+import { TablePagination } from '@/components/people/table-pagination';
 
 export default function Page() {
-  const { data, isLoading } = useUsers();
   const router = useRouter();
-  const [searchTerm, setSearchTerm] = React.useState('');
+  const searchParams = useSearchParams()
+  const search = searchParams.get('search')
+  const region = searchParams.get('region')
+  const page = searchParams.get('page')
+  const [searchTerm, setSearchTerm] = useState(search)
+  const [selectedRegion, setSelectedRegion] = useState(region || 'all');
 
-  const filteredUsers = React.useMemo(() => {
-    if (!data?.events?.length) return [];
-    return data.events.filter((user: UserDocument) =>
-      user.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [data, searchTerm]);
+  const { data, isLoading } = useUsers({
+    name: search || undefined,
+    region: region || undefined,
+    page: Number(page) || 0
+  });
 
   const regionOptions = useMemo(() => Object.values(TimeZones), []);
+
+  const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const newSearchParams = new URLSearchParams();
+    if (searchTerm) {
+      newSearchParams.set('search', searchTerm);
+    }
+    if (selectedRegion && selectedRegion !== 'all') {
+      newSearchParams.set('region', selectedRegion);
+    } else {
+      newSearchParams.delete('region');
+    }
+    newSearchParams.set('page', '0');
+    router.push(`/people?${newSearchParams.toString()}`);
+  };
 
   return (
     <FadeIn className="flex flex-col grow overflow-auto">
@@ -42,24 +61,24 @@ export default function Page() {
             <div className={'flex items-center gap-3 w-full justify-end'}>
               <Input
                 placeholder={'Search by name'}
-                value={searchTerm}
+                value={searchTerm || ''}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full md:max-w-sm"
               />
-              <Select>
+              <Select value={selectedRegion} onValueChange={setSelectedRegion}>
                 <SelectTrigger className="w-full sm:w-48">
                   <SelectValue placeholder="Region"/>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All</SelectItem>
-                  {regionOptions.map((region) => (
+                  {regionOptions.sort().map((region) => (
                     <SelectItem key={region} value={region}>
                       {region}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-              <Button size={'icon'}><MagnifyingGlassIcon/></Button>
+              <Button size={'icon'} onClick={handleSearch}><MagnifyingGlassIcon/></Button>
             </div>
           </div>
         </Navigation>
@@ -81,13 +100,13 @@ export default function Page() {
             </Card>
           ))}
 
-          {!isLoading && filteredUsers.length === 0 && searchTerm !== '' && (
+          {!isLoading && (!data?.events || data.events.length === 0) && (
             <div className="col-span-full text-center py-8">
-              <p className="text-muted-foreground">No users found matching &ldquo;{searchTerm}&rdquo;</p>
+              <p className="text-muted-foreground">No users found matching your criteria</p>
             </div>
           )}
 
-          {!isLoading && filteredUsers.length > 0 && filteredUsers.map((user: UserDocument) => (
+          {!isLoading && data?.events && data.events.length > 0 && data.events.map((user: UserDocument) => (
             <Card
               key={user._id}
               className="transition-all duration-200 animate-fadeIn h-auto"
@@ -116,6 +135,15 @@ export default function Page() {
             </Card>
           ))}
         </div>
+
+        {!isLoading && (
+          <TablePagination
+            page={data.page}
+            pages={data?.pages}
+            selectedRegion={selectedRegion}
+            searchTerm={searchTerm}
+          />
+        )}
       </div>
     </FadeIn>
   );
