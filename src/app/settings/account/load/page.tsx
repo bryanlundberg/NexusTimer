@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { importNexusTimerData } from '@/lib/importDataFromFile';
 import { useSyncBackup } from '@/hooks/useSyncBackup';
 import { useNXData } from '@/hooks/useNXData';
+import { toast } from 'sonner';
 
 export default function Page() {
   const { clearCubes, getAllCubes, saveBatchCubes } = useNXData();
@@ -41,6 +42,7 @@ export default function Page() {
       await saveBatchCubes(newCubes);
       setCubes(newCubes);
       router.push("/");
+      toast.success("Backup loaded successfully!");
     } catch (error) {
       console.error('Error loading backup:', error);
     }

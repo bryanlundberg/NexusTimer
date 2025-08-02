@@ -2,6 +2,7 @@ import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
 import { Order } from "@/enums/Order";
 import { Sort } from "@/enums/Sort";
 import { StatisticsTabs } from "@/enums/StatisticsTabs";
+import { PeopleTabs } from '@/enums/PeopleTabs';
 
 export const STATES = {
   SOLVES_PAGE: {
@@ -36,6 +37,12 @@ export const STATES = {
     DESTINATION_COLLECTION: {
       KEY: "destination-collection",
       DEFAULT_VALUE: "",
+    },
+  },
+  PEOPLE_PAGE: {
+    TAB_MODE: {
+      KEY: "tab",
+      DEFAULT_VALUE: PeopleTabs.OVERVIEW,
     },
   },
 }

@@ -19,14 +19,8 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     }
 
     await connectDB();
-    const user = await User.findById(userId)
-
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
-    }
 
     const { email, createdAt, updatedAt, __v, ...rest } = body;
-
     const updatedUser = await User.findOneAndUpdate(
       { _id: userId },
       { ...rest },

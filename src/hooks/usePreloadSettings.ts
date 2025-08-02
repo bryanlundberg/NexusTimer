@@ -1,23 +1,22 @@
 import { useCallback, useEffect, useState } from 'react';
-import loadSettings from "@/lib/loadSettings";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useNXData } from '@/hooks/useNXData';
+import { useSession } from 'next-auth/react';
 
 export function usePreloadSettings() {
   const setCubes = useTimerStore(store => store.setCubes);
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const setNewScramble = useTimerStore(store => store.setNewScramble);
-  const setSettings = useSettingsModalStore(store => store.setSettings);
+  const settings = useSettingsModalStore(store => store.settings);
   const [isMounted, setIsMounted] = useState(false);
   const { getAllCubes, getCubeById} = useNXData();
+  const { data: session } = useSession()
 
   const initData = useCallback(async () => {
     const cubes = await getAllCubes();
-    const settings = loadSettings();
     const defaultCubeId = settings.preferences.defaultCube;
     setCubes(cubes);
-    setSettings(settings);
     if (defaultCubeId) {
       const defaultCube = await getCubeById(defaultCubeId);
       if (defaultCube) {
@@ -32,12 +31,31 @@ export function usePreloadSettings() {
       setSelectedCube(null);
     }
     return cubes;
-  }, [getAllCubes, getCubeById, setCubes, setSelectedCube, setNewScramble, setSettings]);
+  }, [getAllCubes, settings.preferences.defaultCube, setCubes, getCubeById, setSelectedCube, setNewScramble]);
 
   useEffect(() => {
     initData()
   }, [initData]);
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (session?.user?.id) {
+        fetch(`/api/v1/users/${session.user.id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({
+            lastSeenAt: Date.now()
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).catch(error => {
+          console.error('Failed to update last seen at:', error);
+        });
+      }
+    }, 30000);
+
+    return () => clearInterval(intervalId);
+  }, [session]);
 
   // TODO: Cloud sync functionality
   // NEED MORE TIME FOR TESTING BEFORE RE-ENABLING IN PRODUCTION ENVIRONMENT

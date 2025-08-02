@@ -34,7 +34,7 @@ const nxTimerSchema = z.array(
           scramble: z.string(),
           bookmark: z.boolean(),
           time: z.number(),
-          dnf: z.boolean(),
+          dnf: z.boolean().optional(),
           plus2: z.boolean(),
           rating: z.number(),
           cubeId: z.string(),
@@ -84,7 +84,7 @@ const cubeDeskSchema = z.object({
 
 export default async function importDataFromFile(
   event: ChangeEvent<HTMLInputElement>
-) {
+): Promise<Cube[] | false> {
   try {
     const selectedFile = event.target.files?.[0];
     if (!selectedFile) return false;

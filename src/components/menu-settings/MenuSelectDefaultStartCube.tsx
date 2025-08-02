@@ -1,8 +1,6 @@
 import { useTranslations } from "next-intl";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
-import loadSettings from "@/lib/loadSettings";
-import { setSetting } from "@/lib/settingsUtils";
 import {
   Select,
   SelectContent,
@@ -12,9 +10,10 @@ import {
 } from "@/components/ui/select";
 
 export default function MenuSelectDefaultStartCube() {
-  const { settings, setSettings } = useSettingsModalStore();
+  const { settings } = useSettingsModalStore();
   const t = useTranslations("Index");
   const cubes = useTimerStore((state) => state.cubes);
+  const updateSetting = useSettingsModalStore((state) => state.updateSetting);
 
   const handleCubeSelect = (cubeId: string) => {
     const defaultCubeKey = "preferences.defaultCube";
@@ -22,8 +21,7 @@ export default function MenuSelectDefaultStartCube() {
 
     if (newValue === undefined) return;
 
-    setSetting(defaultCubeKey, newValue);
-    setSettings(loadSettings());
+    updateSetting(defaultCubeKey, newValue);
   };
 
   const defaultCube = settings.preferences.defaultCube;
