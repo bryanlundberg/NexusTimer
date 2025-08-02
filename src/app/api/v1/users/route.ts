@@ -13,15 +13,32 @@ export async function GET(request: NextRequest) {
     await connectDB();
     const searchParams = request.nextUrl.searchParams;
     const page = Math.max(0, Number(searchParams.get('page')) || 0);
-    const PER_PAGE = 50
+    const PER_PAGE = 50;
+    const name = searchParams.get('name') || '';
+    const region = searchParams.get('region') || '';
 
-    const users = await User.find().limit(PER_PAGE).skip(page * PER_PAGE).sort({ createdAt: -1 })
-    const docsCount = await User.find().countDocuments()
+    const query: any = {};
+
+    if (name) {
+      query.name = { $regex: name, $options: 'i' };
+    }
+
+    if (region && region !== 'all') {
+      query.timezone = { $regex: `^${region}`, $options: 'i' };
+    }
+
+    const [users, docsCount] = await Promise.all([
+      User.find(query)
+        .limit(PER_PAGE)
+        .skip(page * PER_PAGE)
+        .sort({ createdAt: -1 }),
+      User.find(query).countDocuments()
+    ]);
 
     return NextResponse.json({
       events: users,
       page: page,
-      pages: Math.max(0, Math.floor((docsCount / PER_PAGE) - 1)),
+      pages: Math.ceil(docsCount / PER_PAGE) - 1 > 0 ? Math.ceil(docsCount / PER_PAGE) - 1 : 0,
       docs: docsCount,
     });
   } catch (e) {
