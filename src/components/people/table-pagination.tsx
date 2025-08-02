@@ -37,7 +37,7 @@ export const TablePagination = ({
   }
 
   return (
-    <Pagination>
+    <Pagination className={"pb-2"}>
       <PaginationContent>
         <PaginationItem>
           {page > 0 && <PaginationPrevious
