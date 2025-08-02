@@ -58,30 +58,33 @@ export default function Page() {
         <Navigation showMenu={false}>
           <div className={'flex flex-col sm:flex-row items-center justify-between gap-2'}>
             <ButtonNavbar/>
-            <div className={'flex items-center gap-3 w-full justify-end'}>
-              <Input
-                placeholder={'Search by name'}
-                value={searchTerm || ''}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full md:max-w-sm"
-              />
-              <Select value={selectedRegion} onValueChange={setSelectedRegion}>
-                <SelectTrigger className="w-full sm:w-48">
-                  <SelectValue placeholder="Region"/>
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All</SelectItem>
-                  {regionOptions.sort().map((region) => (
-                    <SelectItem key={region} value={region}>
-                      {region}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+            <div className={'flex sm:flex-row items-center gap-3 w-full justify-end'}>
+              <div className={'flex flex-col sm:flex-row items-center gap-2 grow justify-end'}>
+                <Input
+                  placeholder={'Search by name'}
+                  value={searchTerm || ''}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full md:max-w-sm"
+                />
+                <Select value={selectedRegion} onValueChange={setSelectedRegion}>
+                  <SelectTrigger className="w-full sm:w-48">
+                    <SelectValue placeholder="Region"/>
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All</SelectItem>
+                    {regionOptions.sort().map((region) => (
+                      <SelectItem key={region} value={region}>
+                        {region}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
               <Button size={'icon'} onClick={handleSearch}><MagnifyingGlassIcon/></Button>
             </div>
           </div>
         </Navigation>
+
         <div className={'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-2 overflow-auto pb-10'}>
           {isLoading && Array(10).fill(0).map((_, index) => (
             <Card key={index} className="overflow-hidden min-h-96">
@@ -135,6 +138,8 @@ export default function Page() {
             </Card>
           ))}
         </div>
+
+        <div className={'opacity-70 text-xs ps-4'}>Results: {data.docs}</div>
 
         {!isLoading && (
           <TablePagination
