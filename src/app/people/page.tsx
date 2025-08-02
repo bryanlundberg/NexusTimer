@@ -5,20 +5,18 @@ import { useMemo, useState } from 'react';
 import Navigation from '@/components/navigation/navigation';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { useUsers } from '@/hooks/api/useUsers';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import moment from 'moment';
 import FadeIn from '@/components/fade-in/fade-in';
 import { UserDocument } from '@/models/user';
 import { useRouter, useSearchParams } from 'next/navigation';
 import ButtonNavbar from '@/components/navigation/buttons/button-navbar';
 import { Input } from '@/components/ui/input';
-import { Calendar, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { TimeZones } from '@/enums/Timezones';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { TablePagination } from '@/components/people/table-pagination';
+import { UserCard } from '@/components/people/user-card';
 
 export default function Page() {
   const router = useRouter();
@@ -109,34 +107,8 @@ export default function Page() {
             </div>
           )}
 
-          {!isLoading && data?.events && data.events.length > 0 && data.events.map((user: UserDocument) => (
-            <Card
-              key={user._id}
-              className="transition-all duration-200 animate-fadeIn h-auto"
-            >
-              <CardHeader className="pb-2 flex flex-col items-center">
-                <Avatar className="size-24 mb-2 ring-2 ring-primary/30">
-                  <AvatarImage className={'object-cover'} src={user.image} alt={user.name}/>
-                  <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-                </Avatar>
-                <h2 className="text-xl font-semibold text-center">{user.name}</h2>
-              </CardHeader>
-              <CardContent className="pb-2 pt-0 flex flex-col items-center">
-                <div className="flex items-center gap-1 text-muted-foreground text-sm mb-2">
-                  <Calendar className="size-3.5"/>
-                  <span>Joined {moment(user.createdAt).format('MMM Do YYYY')}</span>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="gap-1 text-xs"
-                  onClick={() => router.push(`/people/${user._id}`)}
-                >
-                  View Profile <ExternalLink className="size-3.5"/>
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+          {!isLoading && data?.events && data.events.length > 0 && data.events.map((user: UserDocument) =>
+            <UserCard key={user._id} user={user}/>)}
         </div>
 
         <div className={'opacity-70 text-xs ps-4 pt-2'}>Results: {data?.docs || 0}</div>
