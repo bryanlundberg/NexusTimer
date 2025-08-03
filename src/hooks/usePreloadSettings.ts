@@ -23,19 +23,20 @@ export function usePreloadSettings() {
         setSelectedCube(defaultCube);
         setNewScramble(defaultCube);
       } else {
-        console.warn("Default cube not found in the database, setting to null.");
+        console.warn('Default cube not found in the database, setting to null.');
         setSelectedCube(null);
       }
     } else {
-      console.warn("No default cube ID set in settings, setting selected cube to null.");
+      console.warn('No default cube ID set in settings, setting selected cube to null.');
       setSelectedCube(null);
     }
     return cubes;
   }, [getAllCubes, settings.preferences.defaultCube, setCubes, getCubeById, setSelectedCube, setNewScramble]);
 
   useEffect(() => {
-    initData()
-  }, [initData]);
+    initData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
