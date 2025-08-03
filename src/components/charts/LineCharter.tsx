@@ -106,7 +106,8 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
       const structuredData: any[] = [];
       const solveMap = new Map<number, Solve>();
 
-      dataSet.forEach((i: Solve, index: number) => {
+      const reversedDataSet = [...dataSet].reverse();
+      reversedDataSet.forEach((i: Solve, index: number) => {
         const timeIndex = index + 1;
         structuredData.push({
           time: timeIndex,
