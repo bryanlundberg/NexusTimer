@@ -137,7 +137,7 @@ const importCsTimerData = (fileContent: string) => {
     if (session.length === 0) return;
 
     const newCube: Cube = {
-      id: `cs-${Math.min(...session.map((solve: any) => solve[3]))}`,
+      id: `cs-${Math.min(...session.map((solve: any) => solve[3] * 1000))}`,
       name: 'CSTimer Session ' + (index + 1),
       category: '3x3', // Not specified in CSTimer backup - Require manual fix by user later...
       solves: {
@@ -150,9 +150,9 @@ const importCsTimerData = (fileContent: string) => {
 
     session.forEach((solve: any) => {
       const newSolve: Solve = {
-        id: `${newCube.id}-${solve[3]}`,
-        startTime: solve[3] - solve[0][1],
-        endTime: solve[3],
+        id: `${newCube.id}-${solve[3] * 1000}`,
+        startTime: solve[3] * 1000 - solve[0][1],
+        endTime: solve[3] * 1000,
         scramble: solve[1],
         bookmark: false,
         time: solve[0][1] + (solve[0][0] === 2000 ? 2000 : 0),
