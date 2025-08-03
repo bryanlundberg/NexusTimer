@@ -43,19 +43,39 @@ For those new to speedcubing, it's a challenge where cubers aim to solve the Rub
   <img src="./.github/images/v3/Screenshot_8.png" width="24%" />
 </div>
 
-## Includes
+## Key Features
 
-### Metrics by cube
+### Metrics by Cube
 
-We have included what I called the **"Category Aggregation Principle."** allowing analyze statistics not just for individual categories but also for each individual cube within the same category without affect or modify overall calculations.
+The "Category Aggregation Principle" allows you to analyze statistics not just for individual categories but also for each individual cube within the same category without affecting overall calculations.
 
-### No more DNF
+### Comprehensive Solve Tracking
 
-Who likes? We won't cover calculations using DNF, instead delete the solve or add you a +2 penalty.
+Track all your solves with detailed statistics, including DNF (Did Not Finish) tracking, penalties, and personal bests.
+
+### Advanced Statistics
+
+Analyze your performance with detailed statistics including averages (ao5, ao12, etc.), best times, and trends over time.
+
+### Multiple Timer Modes
+
+Choose between normal timer mode and Stackmat timer mode to match your preferred solving setup.
+
+### Scramble Visualization
+
+View scramble images to help you understand the scramble before solving, with options to zoom in for better visibility.
+
+### Cross and X-Cross Solutions
+
+Get hints for cross and x-cross solutions to help improve your solving techniques (for 3x3 cubes).
+
+### Customizable Interface
+
+Personalize your experience with features like scramble images, session statistics, quick action buttons, and more.
 
 ### Portability
 
-We can detect, convert, and transfer all your previous data from timers such as csTimer, Twisty Timer, and CubeDesk!
+Import and export your data from other popular timers such as csTimer, Twisty Timer, and CubeDesk!
 
 ## Languages available
 
