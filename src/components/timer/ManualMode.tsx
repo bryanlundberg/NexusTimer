@@ -110,6 +110,11 @@ export default function ManualMode() {
             {t("preview")}: {formatTime(convertToMs(value))}{" "}
           </div>
         ) : null}
+        {lastSolve && (
+          <div className="mt-2 text-center font-mono text-muted-foreground">
+            Last one: {formatTime(lastSolve.time)}
+          </div>
+        )}
       </form>
       {lastSolve && settings.features.quickActionButtons ? (
         <MenuSolveOptions
