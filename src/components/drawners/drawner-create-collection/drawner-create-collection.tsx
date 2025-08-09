@@ -22,9 +22,9 @@ import { toast } from 'sonner';
 
 export default function DrawerCreateCollection({
   closeDrawer,
-}: {
+}: Readonly<{
   closeDrawer: () => void;
-}) {
+}>) {
   const { saveCube, getAllCubes } = useNXData();
   const t = useTranslations('Index');
   const cubes = useTimerStore((state) => state.cubes);
@@ -48,10 +48,7 @@ export default function DrawerCreateCollection({
         return;
       }
 
-      if (
-        cubes &&
-        cubes.some((cube) => cube.name === form.name.trim())
-      ) {
+      if (cubes?.some((cube) => cube.name === form.name.trim())) {
         setError('name', {
           type: 'manual',
           message: t('Cubes-modal.name-repeated'),
@@ -77,7 +74,7 @@ export default function DrawerCreateCollection({
       category: '2x2',
       name: '',
     });
-  }, [reset]);
+  }, [reset, closeDrawer]);
 
   return (
     <DrawerContent
