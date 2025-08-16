@@ -14,6 +14,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@firebase/firestore": "^4.9.0",
     "@headlessui/react": "^1.7.19",
     "@heroicons/react": "^2.2.0",
     "@mierak/react-virtualized-grid": "0.0.5-ALPHA",
@@ -54,6 +55,7 @@
     "eslint-config-next": "^14.2.24",
     "fast-sort": "^3.4.1",
     "filter-data": "^0.6.1",
+    "firebase": "^12.1.0",
     "framer-motion": "^12.12.2",
     "lightweight-charts": "^5.0.7",
     "lodash": "^4.17.21",
