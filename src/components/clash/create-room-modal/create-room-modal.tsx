@@ -10,15 +10,14 @@ import { FirestoreCollections } from '@/constants/FirestoreCollections';
 import { RoomStatus } from '@/enums/RoomStatus';
 import moment from 'moment';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
 export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
   const { addDocument, updateDocument } = useFirestoreCache();
   const { data: session } = useSession();
   const router = useRouter();
-  const { roomId } = useParams()
-  const { handleSubmit, control, formState: { isSubmitting }, reset, register } = useForm({
+  const { handleSubmit, control, formState: { isSubmitting }, register } = useForm({
     defaultValues: {
       name: '',
       event: '3x3',
@@ -51,7 +50,7 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
         }
       }
 
-      await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${roomId}`, newData)
+      await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, newData)
     })()
 
     router.push(`/clash/${room.id}`);
