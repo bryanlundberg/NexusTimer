@@ -7,8 +7,9 @@ import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import moment from 'moment';
+import { useCountdown } from '@/hooks/useCountdown';
 import { RoomStatus } from '@/enums/RoomStatus';
 import { useSession } from 'next-auth/react';
 import { useClashManager } from '@/store/ClashManager';
@@ -19,7 +20,6 @@ export default function AwaitingMatch() {
   const { roomId } = useParams()
   const { updateDocument } = useFirestoreCache();
   const { data: session } = useSession();
-  const [remainingMs, setRemainingMs] = useState<number | undefined>(undefined);
   const room = useClashManager((state => state.room));
 
   const prepEndTime = useMemo(() => {
@@ -27,24 +27,7 @@ export default function AwaitingMatch() {
     return room.preparationFinalizationTime;
   }, [room]);
 
-  useEffect(() => {
-    if (!prepEndTime) {
-      setRemainingMs(undefined);
-      return;
-    }
-    const update = () => {
-      const now = Date.now();
-      const ms = Math.max(0, prepEndTime - now);
-      setRemainingMs(ms);
-    };
-    update();
-    const id = setInterval(update, 1000);
-    return () => clearInterval(id);
-  }, [prepEndTime]);
-
-  const shouldShowStartButton = useMemo(() => {
-    return true
-  }, []);
+  const { mmss, remainingMs } = useCountdown(prepEndTime);
 
   const handleLeaveClash = async () => {
     const newData = {
@@ -60,19 +43,25 @@ export default function AwaitingMatch() {
     toast.success('Clash link copied to clipboard!')
   }
 
-  const handleStartClash = async () => {
-    await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${roomId}`, {
-      status: RoomStatus.IN_PROGRESS,
-      roundsFinalizationTimes: Array.from({ length: room?.totalRounds || 0 }, (_, i) => moment().add(i * (room?.maxRoundTime || 30), 'seconds').valueOf()),
-      matchFinalizationTime: moment().add(room?.totalRounds || 0, 'minutes').valueOf(),
-    })
-    toast.success('Clash started! Good luck!')
-  }
-
   const users = useMemo(() => {
-    if (!room || !room?.presence || !Object.keys(room?.presence).length) return [];
+    if (!room?.presence || !Object.keys(room?.presence).length) return [];
     return Object.values(room?.presence).filter(Boolean).map(user => user as any);
   }, [room]);
+
+  const shouldShowStartButton = useMemo(() => {
+    return (session?.user?.id === room?.owner) && users.length >= 2
+  }, [session?.user?.id, room?.owner, users.length]);
+
+  const handleStartMatch = async () => {
+    await updateDocument(
+      `${FirestoreCollections.CLASH_ROOMS}/${roomId}`,
+      {
+        status: RoomStatus.IN_PROGRESS,
+        roundsFinalizationTimes: Array.from({ length: room?.totalRounds || 0 }, (_, i) => moment().add(i * (room?.maxRoundTime || 30), 'seconds').valueOf()),
+        matchFinalizationTime: moment().add(room?.totalRounds || 0, 'minutes').valueOf(),
+      }
+    )
+  }
 
   return (
     <div className={'grid grid-cols-1'}>
@@ -86,11 +75,13 @@ export default function AwaitingMatch() {
           <div>At least 2 players are required to start a clash.</div>
         </div>
       </div>
-      <Button onClick={handleLeaveClash} variant={'secondary'} className={'w-fit mx-auto mt-4'}>Leave clash</Button>
-      {shouldShowStartButton && <Button onClick={handleStartClash}>Start now!</Button>}
+      <div className={"flex gap-3 mt-4 justify-center items-center"}>
+        <Button onClick={handleLeaveClash} variant={'secondary'} className={'w-fit'}>Leave clash</Button>
+        {shouldShowStartButton && <Button onClick={handleStartMatch}>Start now!</Button>}
+      </div>
 
       <div className={'flex flex-col justify-center items-center mt-5 text-lg font-semibold text-muted-foreground grow'}>
-        <h3>Clash starts in {remainingMs !== undefined ? moment.utc(remainingMs).format('mm:ss') : '--:--'}</h3>
+        <h3>Clash starts in {remainingMs !== undefined ? mmss : '--:--'}</h3>
         <div className={'grid grid-cols-4 gap-3 mt-5'}>
           {Array.from({ length: 8 }).map((_, index) => {
             const user = users[index];
