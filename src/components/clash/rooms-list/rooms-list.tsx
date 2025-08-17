@@ -62,7 +62,7 @@ export default function RoomsList({ rooms }: RoomsListProps) {
 
             <div className="flex items-center gap-2 justify-end w-full">
               <div className="flex items-center flex-wrap gap-2 text-xs text-muted-foreground justify-end">
-                <span className="inline-flex items-center gap-1"><Users className="size-4"/> {Object.keys(room?.presence).length || 0}</span>
+                <span className="inline-flex items-center gap-1"><Users className="size-4"/> {Object.keys(room?.presence || {})?.length || 0}</span>
                 <span className="inline-flex items-center gap-1"><ShieldCheck className="size-4"/> {room.event}</span>
                 <span className="inline-flex items-center gap-1"><TimerReset className="size-4"/> Rounds Time: {moment.utc(Number(room.maxRoundTime) * 1000).format('mm:ss')}</span>
                 <span className="inline-flex items-center gap-1">
