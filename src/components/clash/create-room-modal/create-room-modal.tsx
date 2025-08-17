@@ -6,18 +6,24 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Controller, useForm } from 'react-hook-form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from '@/components/ui/select'
-import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
 import { RoomStatus } from '@/enums/RoomStatus';
+import moment from 'moment';
+import { useFirestoreCache } from '@/hooks/useFirebaseCache';
+import { useParams, useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
-export function CreateRoomModalContent({ mode, onClose }: { mode: RoomType; onClose: () => void }) {
-  const { addDocument } = useFirestoreCache();
+export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
+  const { addDocument, updateDocument } = useFirestoreCache();
+  const { data: session } = useSession();
+  const router = useRouter();
+  const { roomId } = useParams()
   const { handleSubmit, control, formState: { isSubmitting }, reset, register } = useForm({
     defaultValues: {
       name: '',
       event: '3x3',
       password: '',
-      maxPreparationTime: '30',
+      maxRoundTime: '30',
       totalRounds: '5',
       type: mode,
       status: RoomStatus.IDLE
@@ -25,9 +31,30 @@ export function CreateRoomModalContent({ mode, onClose }: { mode: RoomType; onCl
   })
 
   const submitForm = async (data: any) => {
-    await addDocument(FirestoreCollections.CLASH_ROOMS, { ...data, createdAt: Date.now() });
-    reset();
-    onClose();
+    const now = Date.now();
+    const room = await addDocument(FirestoreCollections.CLASH_ROOMS, {
+      ...data,
+      preparationFinalizationTime: moment(now).add(2, 'minutes').valueOf(),
+      matchFinalizationTime: moment(now).add(parseInt(data.totalRounds, 10) * parseInt(data.maxRoundTime, 10) + 2, 'minutes').valueOf(),
+      createdAt: Date.now(),
+      owner: session?.user?.id || '',
+    });
+
+    await (async () => {
+      const newData = {
+        [`presence.${session?.user.id}`]: {
+          joinedAt: Date.now(),
+          name: session?.user.name || 'Unknown',
+          image: session?.user.image || null,
+          id: session?.user.id,
+          role: 'player',
+        }
+      }
+
+      await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${roomId}`, newData)
+    })()
+
+    router.push(`/clash/${room.id}`);
   }
 
   return (
@@ -45,7 +72,7 @@ export function CreateRoomModalContent({ mode, onClose }: { mode: RoomType; onCl
         </DialogDescription>
       </DialogHeader>
 
-      <div className="space-y-4 overflow-auto max-h-[60vh]">
+      <div className="space-y-2">
         <div className="grid gap-2">
           <Label htmlFor="room-name" className="text-sm font-medium">Room name</Label>
           <Input
@@ -119,36 +146,44 @@ export function CreateRoomModalContent({ mode, onClose }: { mode: RoomType; onCl
           </div>
         )}
 
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="grid gap-2">
-            <Label htmlFor="insp" className="text-sm font-medium">
-              Time limit for scrambling + inspection (per solve)
-            </Label>
-            <Controller
-              name={'maxPreparationTime'}
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <Select value={value} onValueChange={onChange}>
-                  <SelectTrigger className={'w-full'}>
-                    <SelectValue/>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="10">10</SelectItem>
-                    <SelectItem value="20">20</SelectItem>
-                    <SelectItem value="30">30</SelectItem>
-                    <SelectItem value="40">40</SelectItem>
-                    <SelectItem value="50">50</SelectItem>
-                    <SelectItem value="60">60</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
-            />
-          </div>
+        <div className="grid gap-2">
+          <Label htmlFor="insp" className="text-sm font-medium">
+            Maximum round time
+          </Label>
+          <Controller
+            name={'maxRoundTime'}
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Select value={value} onValueChange={onChange}>
+                <SelectTrigger className={'w-full'}>
+                  <SelectValue/>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="10">10 sec</SelectItem>
+                  <SelectItem value="20">20 sec</SelectItem>
+                  <SelectItem value="30">30 sec</SelectItem>
+                  <SelectItem value="40">40 sec</SelectItem>
+                  <SelectItem value="50">50 sec</SelectItem>
+                  <SelectItem value="60">60 sec</SelectItem>
+                  <SelectItem value="70">1:10 min</SelectItem>
+                  <SelectItem value="80">1:20 min</SelectItem>
+                  <SelectItem value="90">1:30 min</SelectItem>
+                  <SelectItem value="100">1:40 min</SelectItem>
+                  <SelectItem value="110">1:50 min</SelectItem>
+                  <SelectItem value="120">2:00 min</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          />
+
+          <p className="text-xs text-muted-foreground">
+            Time limit for scrambling + inspection + solving (per solve)
+          </p>
         </div>
       </div>
 
       <DialogFooter className="mt-2">
-        <Button onClick={handleSubmit(submitForm)} disabled={isSubmitting}>Listo (solo UI)</Button>
+        <Button onClick={handleSubmit(submitForm)} disabled={isSubmitting}>Continue</Button>
       </DialogFooter>
     </DialogContent>
   );
