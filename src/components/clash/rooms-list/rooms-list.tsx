@@ -4,12 +4,43 @@ import { Button } from '@/components/ui/button';
 import RoomStatus from '@/components/clash/room-status/room-status';
 import { Room } from '@/interfaces/Room';
 import { RoomType } from '@/enums/RoomType';
+import { RoomStatus as RoomStatusEnum } from '@/enums/RoomStatus';
+import { FirestoreCollections } from '@/constants/FirestoreCollections';
+import { useSession } from 'next-auth/react';
+import { useFirestoreCache } from '@/hooks/useFirebaseCache';
+import { useRouter } from 'next/navigation';
+import moment from 'moment';
 
 interface RoomsListProps {
   rooms: Room[]
 }
 
 export default function RoomsList({ rooms }: RoomsListProps) {
+  const { data: session } = useSession()
+  const { updateDocument } = useFirestoreCache()
+  const router = useRouter();
+  const handleJoinRoom = async (room: Room) => {
+    const userRegistered = Object.keys(room?.presence || {}).some(key => key === session?.user?.id);
+    if (room && room.status === RoomStatusEnum.IDLE && session?.user?.id) {
+      if (!userRegistered) {
+        const newData = {
+          [`presence.${session.user.id}`]: {
+            joinedAt: Date.now(),
+            name: session.user.name || 'Unknown',
+            image: session.user.image || null,
+            id: session.user.id,
+            role: 'player',
+          }
+        }
+
+        console.log('Joining room', room.id, newData)
+        await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, newData)
+      }
+
+      router.push(`/clash/${room.id}`);
+    }
+  }
+
   return (
     <>
       {rooms?.map((room) => (
@@ -18,11 +49,11 @@ export default function RoomsList({ rooms }: RoomsListProps) {
             <div className="flex flex-wrap items-center gap-2 min-w-0">
               {room.type === RoomType.PRIVATE ? (
                 <span className="inline-flex items-center gap-1 rounded-sm bg-muted px-2 py-1 text-xs shrink-0">
-                    <Lock className="size-3"/> Privada
+                    <Lock className="size-3"/> Private
                   </span>
               ) : (
                 <span className="inline-flex items-center gap-1 rounded-sm bg-muted px-2 py-1 text-xs shrink-0">
-                    <Globe2 className="size-3"/> Pública
+                    <Globe2 className="size-3"/> Public
                   </span>
               )}
               <span className="font-semibold whitespace-nowrap">{room.name}</span>
@@ -31,20 +62,16 @@ export default function RoomsList({ rooms }: RoomsListProps) {
 
             <div className="flex items-center gap-2 justify-end w-full">
               <div className="flex items-center flex-wrap gap-2 text-xs text-muted-foreground justify-end">
-                <span className="inline-flex items-center gap-1"><Users className="size-4"/> {room.participants}</span>
+                <span className="inline-flex items-center gap-1"><Users className="size-4"/> {Object.keys(room?.presence).length || 0}</span>
                 <span className="inline-flex items-center gap-1"><ShieldCheck className="size-4"/> {room.event}</span>
-                <span className="inline-flex items-center gap-1"><TimerReset className="size-4"/> Máx: {room.maxPreparationTime}</span>
+                <span className="inline-flex items-center gap-1"><TimerReset className="size-4"/> Rounds Time: {moment.utc(Number(room.maxRoundTime) * 1000).format('mm:ss')}</span>
                 <span className="inline-flex items-center gap-1">
                     Ronda 2/5
                   </span>
               </div>
-              {room.status === 'in-progress' ? (
-                <Button size="sm" className="gap-2" aria-label="Continuar sala">
-                  <Play className="size-4"/> Continuar
-                </Button>
-              ) : (
-                <Button size="sm" variant="secondary" className="gap-2" aria-label="Acceder a sala">
-                  <Play className="size-4"/> Acceder
+              {room.status === RoomStatusEnum.IDLE && (
+                <Button onClick={() => handleJoinRoom(room)} size="sm" className="inline-flex items-center gap-1">
+                  <Play className="size-4"/> Join
                 </Button>
               )}
             </div>
