@@ -41,7 +41,7 @@ export default function Page() {
                       <Globe2 className="size-4"/> Create Public
                     </Button>
                   </DialogTrigger>
-                  <CreateRoomModalContent mode={RoomType.PUBLIC} onClose={() => setCreateMode(null)}/>
+                  <CreateRoomModalContent mode={RoomType.PUBLIC}/>
                 </Dialog>
 
                 <Dialog
@@ -53,7 +53,7 @@ export default function Page() {
                       <Lock className="size-4"/> Create Private
                     </Button>
                   </DialogTrigger>
-                  <CreateRoomModalContent mode={RoomType.PRIVATE} onClose={() => setCreateMode(null)}/>
+                  <CreateRoomModalContent mode={RoomType.PRIVATE}/>
                 </Dialog>
               </div>
             </div>
