@@ -2,7 +2,7 @@
 import { ArrowLeft, MessageSquare, RotateCcw, Shuffle, Users } from 'lucide-react'
 import RealtimePill from '@/components/clash/real-time/realtime-pill'
 import { useClashWindows } from '@/store/clash-windows'
-import PlayerMiniCard from '../player-mini-card/player-mini-card'
+import { useRouter } from 'next/navigation';
 
 export default function Sidebar() {
   const chat = useClashWindows((s) => s.chat)
@@ -10,15 +10,13 @@ export default function Sidebar() {
   const lobbyOpen = useClashWindows((s) => s.lobby.isOpen)
   const toggle = useClashWindows((s) => s.toggle)
   const resetAll = useClashWindows((s) => s.resetAll)
-
+  const router = useRouter();
   const itemBase =
     'flex flex-col items-center justify-center cursor-pointer hover:bg-sidebar-primary/20 select-none'
 
   return (
     <aside className="flex flex-col bg-sidebar-primary/20 text-sidebar-foreground w-24 md:max-w-36 shrink-0">
-      <PlayerMiniCard/>
-
-      <div className={`${itemBase} p-2 md:p-4 text-[10px] md:text-xs gap-1`}>
+      <div onClick={() => router.push('/clash')} className={`${itemBase} p-2 md:p-4 text-[10px] md:text-xs gap-1`}>
         <ArrowLeft className="w-4 h-4 md:w-5 md:h-5"/>
         EXIT
       </div>
