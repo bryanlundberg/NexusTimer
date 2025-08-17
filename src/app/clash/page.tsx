@@ -5,26 +5,19 @@ import { Button } from '@/components/ui/button';
 import Navigation from '@/components/navigation/navigation';
 import { Dialog, DialogTrigger, } from '@/components/ui/dialog';
 import { Globe2, Lock } from 'lucide-react';
-import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import FadeIn from '@/components/fade-in/fade-in';
 import ButtonNavbar from '@/components/navigation/buttons/button-navbar';
 import RealtimePill from '@/components/clash/real-time/realtime-pill';
 import { CreateRoomModalContent } from '@/components/clash/create-room-modal/create-room-modal';
 import RoomsList from '@/components/clash/rooms-list/rooms-list';
 import { RoomType } from '@/enums/RoomType';
+import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
-import { Room } from '@/interfaces/Room';
 
 export default function Page() {
   const [createMode, setCreateMode] = useState<RoomType | null>(null);
   const { useCollection } = useFirestoreCache();
-  const { data: rooms } = useCollection<Room>({
-    path: FirestoreCollections.CLASH_ROOMS,
-    orderBy: [['createdAt', 'desc']],
-    limit: 10,
-  });
-
-  console.log(rooms);
+  const { data: rooms, loading } = useCollection(FirestoreCollections.CLASH_ROOMS);
 
   return (
     <>
@@ -67,7 +60,7 @@ export default function Page() {
           </Navigation>
 
           <div className="flex flex-col gap-3">
-            <RoomsList rooms={rooms!}/>
+            <RoomsList rooms={rooms}/>
           </div>
         </div>
       </FadeIn>
