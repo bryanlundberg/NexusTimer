@@ -1,12 +1,12 @@
 'use client';
 import FadeIn from '@/components/fade-in/fade-in';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Lock } from 'lucide-react';
 import { useState } from 'react';
 import { Room } from '@/interfaces/Room';
 import { useClashAuth } from '@/store/ClashAuth';
+import { InputOTP, InputOTPGroup, InputOTPSlot, } from '@/components/ui/input-otp'
 
 interface RoomAuthGateProps {
   roomId: string;
@@ -47,12 +47,13 @@ export default function RoomAuthGate({ roomId, room, onCancel }: RoomAuthGatePro
           </CardHeader>
           <CardContent>
             <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-              <Input
-                type="password"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <InputOTP maxLength={room.password?.length || 0} onChange={setPassword} value={password}>
+                <InputOTPGroup>
+                  {(room.password || '').split('').map((_, index) => (
+                    <InputOTPSlot key={index} index={index}/>
+                  ))}
+                </InputOTPGroup>
+              </InputOTP>
               {error && (
                 <div className="text-sm text-destructive">{error}</div>
               )}
