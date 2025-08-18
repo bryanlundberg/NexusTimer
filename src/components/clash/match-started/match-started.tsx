@@ -25,14 +25,20 @@ export default function MatchStarted() {
     return Object.values(room?.presence || {}).map((user) => user);
   }, [room?.presence]);
 
+  const selectedCube = useMemo(() => {
+    const byName = cubeCollection.find((c) => c.name === room?.event);
+    const defaultThree = cubeCollection.find((c) => c.name === '3x3') || cubeCollection[0];
+    return byName || defaultThree;
+  }, [room?.event]);
+
   return (
     <div className={'flex w-full min-h-dvh max-h-dvh overflow-hidden'}>
       <Sidebar/>
 
       <div className={'w-full flex flex-col'}>
         <div className={'p-1 flex flex-wrap items-center gap-2 text-xs px-4 pt-2 text-muted-foreground'}>
-          <Image src={cubeCollection[0].src} alt={'Clash Icon'} width={20} height={20}/>
-          <span>3x3</span>
+          <Image src={selectedCube?.src} alt={'Clash Icon'} width={20} height={20}/>
+          <span>{selectedCube?.name ?? room?.event ?? '3x3'}</span>
           <span>| Clash Started |</span>
           <span className={'flex items-center gap-1'}> <Hourglass size={14} fill={'#fff'}/> {mmss}</span>
         </div>
