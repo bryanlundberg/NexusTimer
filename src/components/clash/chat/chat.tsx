@@ -67,7 +67,6 @@ export default function Chat() {
         {displayMessages.map((m, i) => {
           const currentUserId = (m as any)?.createdBy?.id;
           const prevUserId = i > 0 ? (displayMessages[i - 1] as any)?.createdBy?.id : undefined;
-          const nextUserId = i < displayMessages.length - 1 ? (displayMessages[i + 1] as any)?.createdBy?.id : undefined;
           const startsNewGroup = currentUserId !== prevUserId;
           const continuesGroup = !startsNewGroup;
           const isMine = currentUserId === myUserId;
