@@ -1,6 +1,6 @@
 'use client'
 import PlayerMiniCard from '@/components/clash/player-mini-card/player-mini-card';
-import type { PlayerStatus } from '@/store/clash-players';
+import { PlayerStatus } from '@/enums/PlayerStatus';
 
 export interface LobbyPlayer {
   id: string;
