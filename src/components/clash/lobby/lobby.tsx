@@ -1,31 +1,24 @@
 'use client'
 import PlayerMiniCard from '@/components/clash/player-mini-card/player-mini-card';
-import { PlayerStatus } from '@/enums/PlayerStatus';
-
-export interface LobbyPlayer {
-  id: string;
-  name: string;
-  avatarUrl: string;
-  status?: PlayerStatus;
-}
+import { PlayerPresence } from '@/interfaces/PlayerPresence';
 
 interface LobbyProps {
-  players: LobbyPlayer[];
+  players: PlayerPresence[];
 }
 
 export default function Lobby({ players }: LobbyProps) {
   if (!players || players.length === 0) {
     return (
       <div className={'flex items-center justify-center w-full h-full text-sm text-muted-foreground'}>
-        No hay jugadores en el lobby todavía.
+        No players to show
       </div>
     )
   }
 
   return (
     <div className={'flex flex-wrap gap-2'}>
-      {players.map((p) => (
-        <PlayerMiniCard key={p.id} name={p.name} avatarUrl={p.avatarUrl} status={p.status}/>
+      {players.map((player) => (
+        <PlayerMiniCard key={player.id} name={player.name} avatarUrl={player.image} status={player.status}/>
       ))}
     </div>
   )
