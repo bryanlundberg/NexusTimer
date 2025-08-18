@@ -60,6 +60,7 @@ export default function MatchStarted() {
         {chat.isOpen && (
           <Rnd
             className={'z-0 rounded-md bg-card border border-border'}
+            dragHandleClassName={'chat-drag-handle'}
             default={{
               x: chat.x,
               y: chat.y,
