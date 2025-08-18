@@ -17,7 +17,7 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
   const { addDocument, updateDocument } = useFirestoreCache();
   const { data: session } = useSession();
   const router = useRouter();
-  const { handleSubmit, control, formState: { isSubmitting }, register } = useForm({
+  const { handleSubmit, control, formState: { isSubmitting, errors }, register } = useForm({
     defaultValues: {
       name: '',
       event: '3x3',
@@ -139,10 +139,26 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
           <div className="grid gap-2">
             <Label htmlFor="room-pass" className="text-sm font-medium">Contraseña</Label>
             <Input
-              {...register('password')}
+              id="room-pass"
+              autoComplete="off"
+              {...register('password', {
+                validate: (value) => {
+                  if (mode === RoomType.PRIVATE) {
+                    if (!value || value.trim().length === 0) return 'Password is required';
+                    const len = value.trim().length;
+                    if (len < 4) return 'Minimum password length is 4 characters';
+                    if (len > 10) return 'Maximum password length is 10 characters';
+                  }
+                  return true;
+                },
+              })}
               type="password"
               placeholder="••••••"
+              aria-invalid={errors?.password ? 'true' : 'false'}
             />
+            {errors?.password && (
+              <p className="text-xs text-red-500">{String(errors.password.message)}</p>
+            )}
           </div>
         )}
 
