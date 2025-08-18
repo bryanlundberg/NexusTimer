@@ -1,5 +1,5 @@
 import { db } from '@/firebase';
-import { addDoc, collection, CollectionReference, doc, DocumentReference, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, CollectionReference, doc, DocumentReference, query as buildQuery, orderBy as orderByClause, limit as limitClause, updateDoc } from 'firebase/firestore';
 import { useCollection as useCollectionX, useDocument as useDocumentX } from 'react-firebase-hooks/firestore';
 
 export type UseDocResult<T> = {
@@ -16,6 +16,11 @@ export type UseColResult<T> = {
   ref: CollectionReference;
 };
 
+export type UseCollectionOptions = {
+  orderBy?: { field: string; direction?: 'asc' | 'desc' }[];
+  limit?: number;
+};
+
 export function useFirestoreCache() {
   function useDocument<T = any>(path: string): UseDocResult<T> {
     const ref = doc(db, path);
@@ -28,12 +33,25 @@ export function useFirestoreCache() {
     return { data: documentData, loading, error: error as Error | undefined, ref };
   }
 
-  function useCollection<T = any>(path: string): UseColResult<T> {
+  function useCollection<T = any>(path: string, options?: UseCollectionOptions): UseColResult<T> {
     const ref = collection(db, path);
-    const [querySnapshot, loading, error] = useCollectionX<T>(ref as any);
+
+    const clauses: any[] = [];
+    if (options?.orderBy) {
+      for (const ob of options.orderBy) {
+        clauses.push(orderByClause(ob.field as any, ob.direction || 'asc'));
+      }
+    }
+    if (typeof options?.limit === 'number') {
+      clauses.push(limitClause(options.limit));
+    }
+
+    const q = clauses.length > 0 ? buildQuery(ref, ...clauses) : ref;
+
+    const [querySnapshot, loading, error] = useCollectionX<T>(q as any);
 
     const data = querySnapshot
-      ? querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as T[]
+      ? (querySnapshot.docs.map(d => ({ id: d.id, ...d.data() })) as T[])
       : [];
 
     return { data, loading, error: error as Error | undefined, ref };
