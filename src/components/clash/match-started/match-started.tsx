@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Hourglass } from 'lucide-react';
 import { cubeCollection } from '@/lib/const/cubeCollection';
 import Image from 'next/image';
@@ -9,21 +9,9 @@ import ScrambleDisplayDraggable from '@/components/clash/scramble-display-dragga
 import { useClashWindows } from '@/store/clash-windows';
 import Sidebar from '@/components/clash/sidebar/sidebar';
 import Lobby from '@/components/clash/lobby/lobby';
-import { PlayerStatus } from '@/enums/PlayerStatus';
 import Chat from '@/components/clash/chat/chat';
 import { useClashManager } from '@/store/ClashManager';
 import { useCountdown } from '@/hooks/useCountdown';
-
-const mockedPlayers = [
-  { id: '1', name: 'Rednaxela', avatarUrl: 'https://github.com/shadcn.png', status: PlayerStatus.PREPARING as const },
-  { id: '2', name: 'CubeLord', avatarUrl: 'https://i.pravatar.cc/100?img=5', status: PlayerStatus.PREPARING as const },
-  { id: '3', name: 'Speedy', avatarUrl: 'https://i.pravatar.cc/100?img=8', status: PlayerStatus.FINISHED as const },
-  { id: '4', name: 'Twister', avatarUrl: 'https://i.pravatar.cc/100?img=15', status: PlayerStatus.SOLVING as const },
-  { id: '5', name: 'LayerByLayer', avatarUrl: 'https://i.pravatar.cc/100?img=20', status: PlayerStatus.SOLVING as const },
-  { id: '6', name: 'CornerFirst', avatarUrl: 'https://i.pravatar.cc/100?img=25', status: PlayerStatus.FINISHED as const },
-  { id: '7', name: 'PLLMaster', avatarUrl: 'https://i.pravatar.cc/100?img=30', status: PlayerStatus.FINISHED as const },
-  { id: '8', name: 'F2LPro', avatarUrl: 'https://i.pravatar.cc/100?img=35', status: PlayerStatus.PREPARING as const },
-];
 
 export default function MatchStarted() {
   const chat = useClashWindows((s) => s.chat);
@@ -32,6 +20,10 @@ export default function MatchStarted() {
   const setSize = useClashWindows((s) => s.setSize);
   const room = useClashManager(state => state.room);
   const { mmss } = useCountdown(room?.matchFinalizationTime);
+
+  const players = useMemo(() => {
+    return Object.values(room?.presence || {}).map((user) => user);
+  }, [room?.presence]);
 
   return (
     <div className={'flex w-full min-h-dvh max-h-dvh overflow-hidden'}>
@@ -103,7 +95,7 @@ export default function MatchStarted() {
             }}
           >
             <div className={'p-2 overflow-auto h-full'}>
-              <Lobby players={mockedPlayers}/>
+              <Lobby players={players}/>
             </div>
           </Rnd>
         )}
