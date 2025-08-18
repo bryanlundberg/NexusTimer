@@ -40,7 +40,7 @@ export default function RoomAuthGate({ roomId, room, onCancel }: RoomAuthGatePro
     >
       <div className="absolute inset-0 z-0 backdrop-blur-sm pointer-events-none"></div>
       <div className="max-w-md w-full mx-auto mt-10 px-4">
-        <Card className={'absolute w-fit h-fit my-auto inset-0 mx-auto z-10 bg-background/60'}>
+        <Card className={'absolute w-fit h-fit my-auto inset-0 mx-auto z-10 bg-background'}>
           <CardHeader>
             <CardTitle className="flex items-center gap-2"><Lock className="size-4"/> Private Room</CardTitle>
             <CardDescription>This room is private. Enter the password to continue.</CardDescription>
