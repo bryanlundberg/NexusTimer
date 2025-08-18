@@ -36,6 +36,7 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
       preparationFinalizationTime: moment(now).add(2, 'minutes').valueOf(),
       matchFinalizationTime: moment(now).add(parseInt(data.totalRounds, 10) * parseInt(data.maxRoundTime, 10) + 2, 'minutes').valueOf(),
       createdAt: Date.now(),
+      createdBy: session?.user?.id || '',
       owner: session?.user?.id || '',
     });
 
