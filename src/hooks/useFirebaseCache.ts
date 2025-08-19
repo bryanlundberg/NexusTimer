@@ -1,5 +1,5 @@
 import { db } from '@/firebase';
-import { addDoc, collection, CollectionReference, doc, DocumentReference, query as buildQuery, orderBy as orderByClause, limit as limitClause, updateDoc, where as whereClause, WhereFilterOp } from 'firebase/firestore';
+import { addDoc, collection, CollectionReference, doc, DocumentReference, query as buildQuery, orderBy as orderByClause, limit as limitClause, updateDoc, where as whereClause, WhereFilterOp, runTransaction as firestoreRunTransaction, Transaction } from 'firebase/firestore';
 import { useCollection as useCollectionX, useDocument as useDocumentX } from 'react-firebase-hooks/firestore';
 
 export type UseDocResult<T> = {
@@ -75,5 +75,9 @@ export function useFirestoreCache() {
     await updateDoc(doc(db, docPath), data);
   }
 
-  return { useDocument, useCollection, addDocument, updateDocument } as const;
+  async function runTransaction<T>(updateFunction: (txn: Transaction) => Promise<T> | T): Promise<T> {
+    return await firestoreRunTransaction(db, async (txn) => updateFunction(txn));
+  }
+
+  return { useDocument, useCollection, addDocument, updateDocument, runTransaction } as const;
 }
