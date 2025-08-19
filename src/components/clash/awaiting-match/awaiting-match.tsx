@@ -49,8 +49,8 @@ export default function AwaitingMatch() {
   }, [room]);
 
   const shouldShowStartButton = useMemo(() => {
-    return (session?.user?.id === room?.owner) && users.length >= 2
-  }, [session?.user?.id, room?.owner, users.length]);
+    return (session?.user?.id === room?.authority?.leaderId) && users.length >= 2
+  }, [session?.user?.id, room?.authority.leaderId, users.length]);
 
   const handleStartMatch = async () => {
     await updateDocument(
