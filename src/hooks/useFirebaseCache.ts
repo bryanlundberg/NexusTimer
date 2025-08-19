@@ -1,5 +1,5 @@
 import { db } from '@/firebase';
-import { addDoc, collection, CollectionReference, doc, DocumentReference, query as buildQuery, orderBy as orderByClause, limit as limitClause, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, CollectionReference, doc, DocumentReference, query as buildQuery, orderBy as orderByClause, limit as limitClause, updateDoc, where as whereClause, WhereFilterOp } from 'firebase/firestore';
 import { useCollection as useCollectionX, useDocument as useDocumentX } from 'react-firebase-hooks/firestore';
 
 export type UseDocResult<T> = {
@@ -17,7 +17,8 @@ export type UseColResult<T> = {
 };
 
 export type UseCollectionOptions = {
-  orderBy?: { field: string; direction?: 'asc' | 'desc' }[];
+  where?: { field: string; operator: WhereFilterOp | string; value: any }[];
+  orderBy?: { field: string; direction?: 'asc' | 'desc' | string }[];
   limit?: number;
 };
 
@@ -37,11 +38,19 @@ export function useFirestoreCache() {
     const ref = collection(db, path);
 
     const clauses: any[] = [];
-    if (options?.orderBy) {
-      for (const ob of options.orderBy) {
-        clauses.push(orderByClause(ob.field as any, ob.direction || 'asc'));
+
+    if (options?.where) {
+      for (const w of options.where) {
+        clauses.push(whereClause(w.field as any, w.operator as any, w.value));
       }
     }
+
+    if (options?.orderBy) {
+      for (const ob of options.orderBy) {
+        clauses.push(orderByClause(ob.field as any, (ob.direction || 'asc') as any));
+      }
+    }
+
     if (typeof options?.limit === 'number') {
       clauses.push(limitClause(options.limit));
     }
