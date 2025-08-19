@@ -6,6 +6,7 @@ export interface PlayerPresence {
   joinedAt?: number;
   name?: string;
   image?: string;
-  role?: 'owner' | 'admin' | 'player';
+  role?: 'admin' | 'player';
   id: string;
+  lastSeen?: number;
 }
