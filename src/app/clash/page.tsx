@@ -28,7 +28,7 @@ export default function Page() {
     limit: 50,
   }), [now]);
 
-  const { data: rooms, error } = useCollection(
+  const { data: rooms } = useCollection(
     FirestoreCollections.CLASH_ROOMS,
     queryOptions
   );
