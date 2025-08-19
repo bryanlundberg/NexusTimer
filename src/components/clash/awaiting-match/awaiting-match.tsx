@@ -100,7 +100,15 @@ export default function AwaitingMatch() {
         <Card className="max-w-[500px] w-full mx-auto mt-5 mb-10">
           <CardHeader>
             <CardTitle className={'flex gap-2'}><Share2Icon size={16}/> Share this Clash</CardTitle>
-            <CardDescription>Clash of Cubing - 3x3</CardDescription>
+            <CardDescription>
+              {room ? (
+                <>
+                  {room.name || 'Untitled'} · {(room.event || '').toUpperCase()} · {room.totalRounds} rounds · {room.maxRoundTime}s/round · {users.length} player{users.length === 1 ? '' : 's'} · {room.type}
+                </>
+              ) : (
+                'Clash details not available'
+              )}
+            </CardDescription>
           </CardHeader>
           <CardContent className="flex items-center gap-2">
             <Input
