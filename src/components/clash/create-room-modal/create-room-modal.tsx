@@ -37,7 +37,12 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
       matchFinalizationTime: moment(now).add(parseInt(data.totalRounds, 10) * parseInt(data.maxRoundTime, 10) + 2, 'minutes').valueOf(),
       createdAt: Date.now(),
       createdBy: session?.user?.id || '',
-      owner: session?.user?.id || '',
+
+      authority: {
+        leaderId: session?.user?.id || '',
+        leaseExpireAt: moment(now).add(25, 'seconds').valueOf(),
+        term: 1
+      }
     });
 
     await (async () => {
