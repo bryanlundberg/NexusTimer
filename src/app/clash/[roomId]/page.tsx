@@ -37,7 +37,6 @@ export default function Page() {
   const isPrivate = room?.type === RoomType.PRIVATE;
   const authorized = !isPrivate || (room?.password && authPassword === room.password);
 
-
   useEffect(() => {
     if (!loadingRoom && !loadedRoom) {
       router.push('/clash');
