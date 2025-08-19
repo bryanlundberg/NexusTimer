@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Navigation from '@/components/navigation/navigation';
 import { Dialog, DialogTrigger, } from '@/components/ui/dialog';
@@ -13,11 +13,25 @@ import RoomsList from '@/components/clash/rooms-list/rooms-list';
 import { RoomType } from '@/enums/RoomType';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
+import { RoomStatus } from '@/enums/RoomStatus';
 
 export default function Page() {
   const [createMode, setCreateMode] = useState<RoomType | null>(null);
   const { useCollection } = useFirestoreCache();
-  const { data: rooms, loading } = useCollection(FirestoreCollections.CLASH_ROOMS);
+  const now = useMemo(() => Date.now(), []);
+  const queryOptions = useMemo(() => ({
+    where: [
+      { field: 'status', operator: '==', value: RoomStatus.IDLE },
+      { field: 'preparationFinalizationTime', operator: '>', value: now },
+    ],
+    orderBy: [{ field: 'createdAt', direction: 'desc' }],
+    limit: 50,
+  }), [now]);
+
+  const { data: rooms, error } = useCollection(
+    FirestoreCollections.CLASH_ROOMS,
+    queryOptions
+  );
 
   return (
     <>
