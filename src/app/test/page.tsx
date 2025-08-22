@@ -26,13 +26,7 @@ export default function Page() {
   useEffect(() => {
     if (!session?.user?.id) return;
 
-    const peer = new Peer(Math.random().toString(36).substring(2, 10), {
-      config: {
-        iceServers: [
-          { urls: 'stun:stun.l.google.com:19302' },
-        ],
-      },
-    });
+    const peer = new Peer(session.user.id);
 
     peerRef.current = peer;
 
@@ -53,6 +47,13 @@ export default function Page() {
 
     function registerConnection(conn: DataConnection) {
       const pid = conn.peer;
+
+      if (pid === myPeerIdRef.current) {
+        appendLog(`Ignoring self-connection from ${pid}`);
+        conn.close();
+        return;
+      }
+
       const existing = connectionsRef.current.get(pid);
       if (existing && existing.open) {
         appendLog(`Duplicate with ${pid}, closing the new one`);
