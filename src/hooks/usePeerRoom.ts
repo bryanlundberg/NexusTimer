@@ -1,13 +1,8 @@
 import { useSession } from 'next-auth/react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Peer, { DataConnection } from 'peerjs';
 import { useClashManager } from '@/store/ClashManager';
-
-interface LogEntry {
-  timestamp: number;
-  type: 'system' | 'chatMessage' | 'roundMessage';
-  content: any;
-}
+import { Entry } from '@/interfaces/Entry';
 
 export default function usePeerRoom() {
   const { data: session } = useSession();
@@ -16,12 +11,18 @@ export default function usePeerRoom() {
   const connectionsRef = useRef<Map<string, DataConnection>>(new Map());
   const addLog = useClashManager(state => state.addLog);
 
-  const peerIdInputRef = useRef<HTMLInputElement | null>(null);
-
   useEffect(() => {
     const handler = () => {
-      connectionsRef.current.forEach(c => { try { c.close(); } catch {} });
-      try { peerRef.current?.destroy(); } catch {}
+      connectionsRef.current.forEach(c => {
+        try {
+          c.close();
+        } catch {
+        }
+      });
+      try {
+        peerRef.current?.destroy();
+      } catch {
+      }
     };
     window.addEventListener('beforeunload', handler);
     return () => window.removeEventListener('beforeunload', handler);
@@ -31,7 +32,6 @@ export default function usePeerRoom() {
     if (!session?.user?.id) return;
 
     const peer = new Peer(session.user.id);
-
     peerRef.current = peer;
 
     const onOpen = (id: string) => {
@@ -39,7 +39,7 @@ export default function usePeerRoom() {
       addLog({
         timestamp: Date.now(),
         type: 'system',
-        content: `Peer initialized with ID: ${id}`,
+        content: { message: `Peer initialized with ID: ${id}` },
       });
     };
 
@@ -47,7 +47,7 @@ export default function usePeerRoom() {
       addLog({
         timestamp: Date.now(),
         type: 'system',
-        content: `Incoming connection from ${conn.peer}`,
+        content: { message: `Incoming connection from ${conn.peer}` },
       })
       registerConnection(conn);
     };
@@ -57,12 +57,12 @@ export default function usePeerRoom() {
     peer.on('error', (e) => addLog({
       timestamp: Date.now(),
       type: 'system',
-      content: `Peer error: ${String(e)}`,
+      content: { message: `Peer error: ${String(e)}` },
     }));
     peer.on('close', () => addLog({
       timestamp: Date.now(),
       type: 'system',
-      content: 'Peer connection closed',
+      content: { message: 'Peer connection closed', }
     }));
 
     function registerConnection(conn: DataConnection) {
@@ -72,7 +72,7 @@ export default function usePeerRoom() {
         addLog({
           timestamp: Date.now(),
           type: 'system',
-          content: `Refusing connection to self (${pid})`,
+          content: { message: `Ignoring connection from self (${pid})` },
         })
         conn.close();
         return;
@@ -93,11 +93,7 @@ export default function usePeerRoom() {
       });
 
       conn.on('data', (data) => {
-        addLog({
-          timestamp: Date.now(),
-          type: 'chatMessage',
-          content: { from: pid, data },
-        });
+        addLog(data as Entry);
         // Optional: broadcast(data, pid); // simple flooding
       });
 
@@ -105,7 +101,7 @@ export default function usePeerRoom() {
         addLog({
           timestamp: Date.now(),
           type: 'system',
-          content: `Connection closed with ${pid}`,
+          content: { message: `Connection closed with ${pid}` },
         })
         connectionsRef.current.delete(pid);
       });
@@ -114,7 +110,7 @@ export default function usePeerRoom() {
         addLog({
           timestamp: Date.now(),
           type: 'system',
-          content: `Connection error with ${pid}: ${String(err)}`,
+          content: { message: `Connection error with ${pid}: ${String(err)}` },
         })
       });
     }
@@ -128,7 +124,12 @@ export default function usePeerRoom() {
       } finally {
         peerRef.current = null;
         myPeerIdRef.current = null;
-        connectionsRef.current.forEach(c => { try { c.close(); } catch {} });
+        connectionsRef.current.forEach(c => {
+          try {
+            c.close();
+          } catch {
+          }
+        });
         connectionsRef.current.clear();
       }
     };
@@ -146,48 +147,38 @@ export default function usePeerRoom() {
       addLog({
         timestamp: Date.now(),
         type: 'system',
-        content: `Connection opened with ${targetId}`,
+        content: { message: `Connected to ${targetId}` },
       })
       conn.send({ type: 'hello', from: myPeerIdRef.current });
     });
-    conn.on('data', (data) => addLog({
-      timestamp: Date.now(),
-      type: 'chatMessage',
-      content: { from: targetId, data },
-    }));
+    conn.on('data', (data) => addLog(data as Entry));
     conn.on('close', () => {
       addLog({
         timestamp: Date.now(),
         type: 'system',
-        content: `Connection closed with ${targetId}`,
+        content: { message: `Connection closed with ${targetId}` },
       })
       connectionsRef.current.delete(targetId);
     });
     conn.on('error', (err) => addLog({
       timestamp: Date.now(),
       type: 'system',
-      content: `Connection error with ${targetId}: ${String(err)}`,
+      content: { message: `Connection error with ${targetId}: ${String(err)}` },
     }));
 
     connectionsRef.current.set(targetId, conn);
   }
 
   function broadcast(message: any, exceptPeerId?: string) {
-    const payload = {
-      event: 'message',
-      data: message,
-      userId: session?.user?.id || '',
-      ts: Date.now(),
-    };
     let count = 0;
     connectionsRef.current.forEach((conn, pid) => {
       if (exceptPeerId && pid === exceptPeerId) return;
       if (conn.open) {
-        conn.send(payload);
+        conn.send(message);
         count++;
       }
     });
-    console.log(`Broadcasted message to ${count} peers`, payload);
+    console.log(`Broadcasted message to ${count} peers`, message);
   }
 
   function listConnectedPeers(): string[] {
@@ -199,7 +190,6 @@ export default function usePeerRoom() {
     broadcast,
     connections: connectionsRef.current,
     peerId: myPeerIdRef.current,
-    peerIdInputRef,
     listConnectedPeers,
     peerRef: peerRef.current,
   }
