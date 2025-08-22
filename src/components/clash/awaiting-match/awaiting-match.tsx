@@ -75,7 +75,7 @@ export default function AwaitingMatch() {
           <div>At least 2 players are required to start a clash.</div>
         </div>
       </div>
-      <div className={"flex gap-3 mt-4 justify-center items-center"}>
+      <div className={'flex gap-3 mt-4 justify-center items-center'}>
         <Button onClick={handleLeaveClash} variant={'secondary'} className={'w-fit'}>Leave clash</Button>
         {shouldShowStartButton && <Button onClick={handleStartMatch}>Start now!</Button>}
       </div>
@@ -103,7 +103,8 @@ export default function AwaitingMatch() {
             <CardDescription>
               {room ? (
                 <>
-                  {room.name || 'Untitled'} · {(room.event || '').toUpperCase()} · {room.totalRounds} rounds · {room.maxRoundTime}s/round · {users.length} player{users.length === 1 ? '' : 's'} · {room.type}
+                  {room.name || 'Untitled'} · {(room.event || '').toUpperCase()} · {room.totalRounds} rounds
+                  · {room.maxRoundTime}s/round · {users.length} player{users.length === 1 ? '' : 's'} · {room.type}
                 </>
               ) : (
                 'Clash details not available'
