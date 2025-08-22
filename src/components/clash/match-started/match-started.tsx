@@ -12,14 +12,39 @@ import Lobby from '@/components/clash/lobby/lobby';
 import Chat from '@/components/clash/chat/chat';
 import { useClashManager } from '@/store/ClashManager';
 import { useCountdown } from '@/hooks/useCountdown';
+import useTimer from '@/hooks/useTimer';
+import { useTimerStore } from '@/store/timerStore';
+import { Cube } from '@/interfaces/Cube';
+import formatTime from '@/lib/formatTime';
 
-export default function MatchStarted() {
+export default function MatchStarted({ broadcast }) {
   const chat = useClashWindows((s) => s.chat);
   const lobby = useClashWindows((s) => s.lobby);
   const setPosition = useClashWindows((s) => s.setPosition);
   const setSize = useClashWindows((s) => s.setSize);
   const room = useClashManager(state => state.room);
   const { mmss } = useCountdown(room?.matchFinalizationTime);
+
+  const isSolving = useTimerStore((s) => s.isSolving);
+  const setTimerStatus = useTimerStore((s) => s.setTimerStatus);
+  const setIsSolving = useTimerStore((s) => s.setIsSolving);
+  const setSolvingTime = useTimerStore((s) => s.setSolvingTime);
+  const timerMode = useTimerStore((s) => s.timerMode);
+
+  const solvingTime = useTimerStore((s) => s.solvingTime);
+
+  useTimer({
+    isSolving,
+    setTimerStatus,
+    selectedCube: {} as Cube,
+    inspectionRequired: false,
+    setIsSolving,
+    setSolvingTime,
+    timerMode,
+    settings: { timer: { startCue: false, holdToStart: false } },
+    onFinishSolve: () => {
+    }
+  });
 
   const players = useMemo(() => {
     return Object.values(room?.presence || {}).map((user) => user);
@@ -45,10 +70,13 @@ export default function MatchStarted() {
 
         <div className={'flex flex-col justify-start items-center h-full'}>
           <div className={'scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance'}>Round 3/5</div>
-          <div className={'px-4 text-center md:text-2xl 2xl:text-3xl'}>D2 F&#39; L U R2 F U F&#39; U B2 L2 U L2 U F2 U&#39; R2 D2 F2
+          <div className={'px-4 text-center md:text-2xl 2xl:text-3xl'}>D2 F&#39; L U R2 F U F&#39; U B2 L2 U L2 U F2
+            U&#39; R2 D2 F2
             D L
           </div>
-          <div className={'text-4xl md:text-5xl lg:text-6xl xl:text-9xl grow flex items-center-safe justify-center w-full'}>9.91</div>
+          <div className={'text-4xl md:text-5xl lg:text-6xl xl:text-9xl grow flex items-center-safe justify-center w-full'}>
+            {formatTime(solvingTime)}
+          </div>
           <div className={'pb-3 flex gap-2'}>
             <Button variant={'destructive'}>DNF</Button>
             <Button variant={'outline'}>+2</Button>
@@ -76,7 +104,7 @@ export default function MatchStarted() {
               setPosition('chat', position.x, position.y);
             }}
           >
-            <Chat/>
+            <Chat broadcast={broadcast}/>
           </Rnd>
         )}
 
