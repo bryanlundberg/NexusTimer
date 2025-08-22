@@ -15,44 +15,43 @@ import _ from 'lodash';
 import RoomAuthGate from '@/components/clash/room-auth/room-auth-gate';
 import { useClashAuth } from '@/store/ClashAuth';
 import { useSession } from 'next-auth/react';
+import usePeerRoom from '@/hooks/usePeerRoom';
 
 export default function Page() {
   const { roomId } = useParams()
-  const { useDocument, useCollection } = useFirestoreCache();
+  const { connectToPeer, broadcast, listConnectedPeers, peerRef } = usePeerRoom();
+  const { useDocument } = useFirestoreCache();
   const router = useRouter();
   const { data: session } = useSession();
-  const { data: loadedRoom, loading: loadingRoom } = useDocument(`${FirestoreCollections.CLASH_ROOMS}/${roomId}`)
-  const {
-    data: loadedMessages,
-    loading: loadingMessages
-  } = useCollection(`${FirestoreCollections.CLASH_ROOMS}/${roomId}/messages`, {
-    orderBy: [{ field: 'createdAt', direction: 'desc' }],
-    limit: 10
-  });
+  const { data: roomData, loading: loadingRoom } = useDocument<Room>(`${FirestoreCollections.CLASH_ROOMS}/${roomId}`);
   const setRoom = useClashManager((state => state.setRoom));
-  const setMessages = useClashManager((state => state.setMessages));
-  const messages = useClashManager((state => state.messages));
   const room = useClashManager((state => state.room));
   const authPassword = useClashAuth((s) => s.authorizedByRoom[(roomId as string)]);
   const isPrivate = room?.type === RoomType.PRIVATE;
   const authorized = !isPrivate || (room?.password && authPassword === room.password);
+  const logs = useClashManager((state) => state.logs);
 
   useEffect(() => {
-    if (!loadingRoom && !loadedRoom) {
+    if (!roomData && !loadingRoom) {
       router.push('/clash');
     }
-  }, [loadingRoom, loadedRoom, router]);
+  }, [roomData, loadingRoom, router]);
 
   useEffect(() => {
-    if (loadingRoom || !loadedRoom || _.isEqual(room, loadedRoom)) return;
-    setRoom(loadedRoom as Room);
-  }, [loadingRoom, loadedRoom, setRoom, room]);
+    if (!roomData || loadingRoom || _.isEqual(room, roomData)) return;
+    setRoom(roomData);
+  }, [roomData, loadingRoom, setRoom, room]);
 
   useEffect(() => {
-    if (loadingMessages || !loadedMessages || _.isEqual(messages, loadedMessages)) return;
-    setMessages(loadedMessages);
-  }, [loadedMessages, loadingMessages, messages, setMessages]);
+    if (!peerRef?.open || !room?.presence) return;
+    Object.keys(room.presence || {}).forEach((pid) => {
+      connectToPeer(pid);
+    });
+  }, [room?.presence, peerRef?.open]);
 
+  useEffect(() => {
+    console.log('tick logs update');
+  }, [logs]);
 
   if (loadingRoom) {
     return null;
@@ -60,14 +59,15 @@ export default function Page() {
 
   if (room && isPrivate && !authorized && room.createdBy !== session?.user?.id) {
     return (
-      <RoomAuthGate roomId={roomId as string} room={room} onCancel={() => router.push('/clash')} />
+      <RoomAuthGate roomId={roomId as string} room={room} onCancel={() => router.push('/clash')}/>
     );
   }
 
   return (
     <FadeIn className="flex flex-col grow overflow-auto">
+      <button onClick={() => console.log(listConnectedPeers())}>Conections</button>
       {room?.status === RoomStatus.IDLE && (<AwaitingMatch/>)}
-      {room?.status === RoomStatus.IN_PROGRESS && (<MatchStarted/>)}
+      {room?.status === RoomStatus.IN_PROGRESS && (<MatchStarted broadcast={broadcast}/>)}
       {room?.status === RoomStatus.FINISHED && (<MatchFinished/>)}
     </FadeIn>
   );
