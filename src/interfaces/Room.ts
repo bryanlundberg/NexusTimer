@@ -17,7 +17,6 @@ export interface Room {
   createdBy: string;
   authority: {
     leaderId: string | null
-    leaseExpireAt: number
     term: number
   }
 
