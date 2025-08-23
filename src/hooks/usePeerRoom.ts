@@ -88,7 +88,17 @@ export default function usePeerRoom() {
       connectionsRef.current.set(pid, conn);
 
       conn.on('open', () => {
-        conn.send({ type: 'hello', from: myPeerIdRef.current });
+        addLog({
+          timestamp: Date.now(),
+          type: EntryEnum.CHAT_MESSAGE,
+          content: {
+            message: `Connection established with ${pid}`,
+            senderName: 'System',
+            senderId: 'system',
+            senderImage: '',
+            role: PlayerRole.SYSTEM,
+          } satisfies ChatMessageContent,
+        });
       });
 
       conn.on('data', (data) => {
@@ -159,8 +169,14 @@ export default function usePeerRoom() {
     conn.on('open', () => {
       addLog({
         timestamp: Date.now(),
-        type: EntryEnum.SYSTEM,
-        content: { message: `Connected to ${targetId}` },
+        type: EntryEnum.CHAT_MESSAGE,
+        content: {
+          message: `Connection established with ${targetId}`,
+          senderName: 'System',
+          senderId: 'system',
+          senderImage: '',
+          role: PlayerRole.SYSTEM,
+        } satisfies ChatMessageContent,
       })
       conn.send({ type: 'hello', from: myPeerIdRef.current });
       // Emit JOIN event so the leader can add us to presence
