@@ -3,6 +3,10 @@ import { useEffect, useRef } from 'react';
 import Peer, { DataConnection } from 'peerjs';
 import { useClashManager } from '@/store/ClashManager';
 import { Entry } from '@/interfaces/Entry';
+import { EntryEnum } from '@/enums/Entry';
+import { ChatMessageContent } from '@/interfaces/ChatMessageContent';
+import { PlayerRole } from '@/enums/PlayerRole';
+import { DisconnectMessageContent } from '@/interfaces/DisconnectMessageContent';
 
 export default function usePeerRoom() {
   const { data: session } = useSession();
@@ -38,7 +42,7 @@ export default function usePeerRoom() {
       myPeerIdRef.current = id;
       addLog({
         timestamp: Date.now(),
-        type: 'system',
+        type: EntryEnum.SYSTEM,
         content: { message: `Peer initialized with ID: ${id}` },
       });
     };
@@ -46,7 +50,7 @@ export default function usePeerRoom() {
     const onConnection = (conn: DataConnection) => {
       addLog({
         timestamp: Date.now(),
-        type: 'system',
+        type: EntryEnum.SYSTEM,
         content: { message: `Incoming connection from ${conn.peer}` },
       })
       registerConnection(conn);
@@ -56,12 +60,12 @@ export default function usePeerRoom() {
     peer.on('connection', onConnection);
     peer.on('error', (e) => addLog({
       timestamp: Date.now(),
-      type: 'system',
+      type: EntryEnum.SYSTEM,
       content: { message: `Peer error: ${String(e)}` },
     }));
     peer.on('close', () => addLog({
       timestamp: Date.now(),
-      type: 'system',
+      type: EntryEnum.SYSTEM,
       content: { message: 'Peer connection closed', }
     }));
 
@@ -69,11 +73,7 @@ export default function usePeerRoom() {
       const pid = conn.peer;
 
       if (pid === myPeerIdRef.current) {
-        addLog({
-          timestamp: Date.now(),
-          type: 'system',
-          content: { message: `Ignoring connection from self (${pid})` },
-        })
+        console.log('Ignoring connection to self');
         conn.close();
         return;
       }
@@ -88,7 +88,6 @@ export default function usePeerRoom() {
       connectionsRef.current.set(pid, conn);
 
       conn.on('open', () => {
-        console.log('Connection opened with', pid);
         conn.send({ type: 'hello', from: myPeerIdRef.current });
       });
 
@@ -100,16 +99,30 @@ export default function usePeerRoom() {
       conn.on('close', () => {
         addLog({
           timestamp: Date.now(),
-          type: 'system',
-          content: { message: `Connection closed with ${pid}` },
+          type: EntryEnum.CHAT_MESSAGE,
+          content: {
+            message: `Connection closed with ${pid}`,
+            senderName: 'System',
+            senderId: 'system',
+            senderImage: '',
+            role: PlayerRole.SYSTEM,
+          } satisfies ChatMessageContent,
         })
+
+        addLog({
+          timestamp: Date.now(),
+          type: EntryEnum.DISCONNECT,
+          content: { peerId: pid } satisfies DisconnectMessageContent,
+        })
+
         connectionsRef.current.delete(pid);
       });
 
       conn.on('error', (err) => {
+        console.log(`Connection error with ${pid}:`, err);
         addLog({
           timestamp: Date.now(),
-          type: 'system',
+          type: EntryEnum.SYSTEM,
           content: { message: `Connection error with ${pid}: ${String(err)}` },
         })
       });
@@ -146,7 +159,7 @@ export default function usePeerRoom() {
     conn.on('open', () => {
       addLog({
         timestamp: Date.now(),
-        type: 'system',
+        type: EntryEnum.SYSTEM,
         content: { message: `Connected to ${targetId}` },
       })
       conn.send({ type: 'hello', from: myPeerIdRef.current });
@@ -155,14 +168,26 @@ export default function usePeerRoom() {
     conn.on('close', () => {
       addLog({
         timestamp: Date.now(),
-        type: 'system',
-        content: { message: `Connection closed with ${targetId}` },
+        type: EntryEnum.CHAT_MESSAGE,
+        content: {
+          message: `Connection closed with ${targetId}`,
+          senderName: 'System',
+          senderId: 'system',
+          senderImage: '',
+          role: PlayerRole.SYSTEM,
+        } satisfies ChatMessageContent,
+      })
+
+      addLog({
+        timestamp: Date.now(),
+        type: EntryEnum.DISCONNECT,
+        content: { peerId: targetId } satisfies DisconnectMessageContent,
       })
       connectionsRef.current.delete(targetId);
     });
     conn.on('error', (err) => addLog({
       timestamp: Date.now(),
-      type: 'system',
+      type: EntryEnum.SYSTEM,
       content: { message: `Connection error with ${targetId}: ${String(err)}` },
     }));
 
