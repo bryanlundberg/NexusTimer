@@ -3,4 +3,5 @@ export enum EntryEnum {
   CHAT_MESSAGE = 'chatMessage',
   ROUND_MESSAGE = 'roundMessage',
   DISCONNECT = 'disconnect',
+  JOIN = 'join',
 }
