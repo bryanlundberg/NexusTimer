@@ -48,6 +48,29 @@ export default function Page() {
     }
   }, [roomData, loadingRoom, setRoom]);
 
+  // Re-elect a leader when leaderId is missing
+  useEffect(() => {
+    if (!room || !session?.user?.id) return;
+    const currentLeader = room.authority?.leaderId;
+    if (currentLeader) return;
+
+    const presence = room.presence || {};
+    const presenceIds = Object.keys(presence);
+
+    // Prefer current user if present or if presence is empty; otherwise choose deterministically
+    let candidateId = session.user.id as string;
+    if (presenceIds.length > 0 && !presenceIds.includes(candidateId)) {
+      candidateId = presenceIds.sort()[0];
+    }
+
+    // Only the candidate performs the update to avoid races
+    if (candidateId !== session.user.id) return;
+
+    updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, {
+      'authority.leaderId': candidateId,
+    });
+  }, [room?.authority?.leaderId, room?.presence, room?.id, session?.user?.id]);
+
   // Ensure we first connect to the leader; leader will add us to presence upon JOIN
   useEffect(() => {
     if (!peerRef?.open || !room?.authority?.leaderId || !session?.user?.id) return;
@@ -60,7 +83,6 @@ export default function Page() {
   // Auto-add leader to presence when leader enters the room and is not already present
   useEffect(() => {
     if (!room || !session?.user?.id) return;
-    if (room.status !== RoomStatus.IDLE) return;
     const leaderId = room.authority?.leaderId;
     if (!leaderId) return;
     if (leaderId !== session.user.id) return;
@@ -78,7 +100,6 @@ export default function Page() {
         image: session.user.image || null,
         role: PlayerRole.PLAYER,
         status: PlayerStatus.PREPARING,
-        solves: [],
       }
     });
   }, [room, session?.user?.id]);
@@ -86,7 +107,6 @@ export default function Page() {
   // Leader-only presence reconciliation using active connections
   useEffect(() => {
     if (!room || !session?.user?.id) return;
-    if (room.status !== RoomStatus.IDLE) return;
     const leaderId = room.authority?.leaderId;
     if (!leaderId || leaderId !== session.user.id) return;
 
@@ -121,7 +141,6 @@ export default function Page() {
       <button onClick={() => console.log(listConnectedPeers())}>Conections</button>
       {room?.status === RoomStatus.IDLE && (<AwaitingMatch/>)}
       {room?.status === RoomStatus.IN_PROGRESS && (<MatchStarted broadcast={broadcast}/>)}
-      {room?.status === RoomStatus.FINALIZED && (<MatchFinished/>)}
     </FadeIn>
   );
 }
