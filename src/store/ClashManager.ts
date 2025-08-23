@@ -13,6 +13,8 @@ interface ClashManager {
 
   setRoom: (room: Room) => void;
   setMessages: (messages: ChatMessageContent[]) => void;
+
+  reset: () => void;
 }
 
 export const useClashManager = create<ClashManager>((set) => ({
@@ -26,5 +28,7 @@ export const useClashManager = create<ClashManager>((set) => ({
   setRoom: (room: Room) => {
     set({ room });
   },
-  setMessages: (messages: ChatMessageContent[]) => set({ messages: messages })
+  setMessages: (messages: ChatMessageContent[]) => set({ messages: messages }),
+
+  reset: () => set({ room: null, messages: [], logs: [] })
 }));
