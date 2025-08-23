@@ -31,7 +31,7 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
 
   const submitForm = async (data: any) => {
     const now = Date.now();
-    const room = await addDocument(FirestoreCollections.CLASH_ROOMS, {
+    const roomDefaults = await addDocument(FirestoreCollections.CLASH_ROOMS, {
       ...data,
       preparationFinalizationTime: moment(now).add(2, 'minutes').valueOf(),
       matchFinalizationTime: moment(now).add(parseInt(data.totalRounds, 10) * parseInt(data.maxRoundTime, 10) + 2, 'minutes').valueOf(),
@@ -40,26 +40,12 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
 
       authority: {
         leaderId: session?.user?.id || '',
-        leaseExpireAt: moment(now).add(25, 'seconds').valueOf(),
         term: 1
       }
     });
 
-    await (async () => {
-      const newData = {
-        [`presence.${session?.user.id}`]: {
-          joinedAt: Date.now(),
-          name: session?.user.name || 'Unknown',
-          image: session?.user.image || null,
-          id: session?.user.id,
-          role: 'player',
-        }
-      }
-
-      await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, newData)
-    })()
-
-    router.push(`/clash/${room.id}`);
+    await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${roomDefaults.id}`, roomDefaults)
+    router.push(`/clash/${roomDefaults.id}`);
   }
 
   return (
