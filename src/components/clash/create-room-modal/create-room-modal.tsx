@@ -142,7 +142,7 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
 
         {mode === RoomType.PRIVATE && (
           <div className="grid gap-2">
-            <Label htmlFor="room-pass" className="text-sm font-medium">Contraseña</Label>
+            <Label htmlFor="room-pass" className="text-sm font-medium">Password</Label>
             <Input
               id="room-pass"
               autoComplete="off"
