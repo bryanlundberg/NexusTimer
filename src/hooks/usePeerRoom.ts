@@ -163,6 +163,20 @@ export default function usePeerRoom() {
         content: { message: `Connected to ${targetId}` },
       })
       conn.send({ type: 'hello', from: myPeerIdRef.current });
+      // Emit JOIN event so the leader can add us to presence
+      if (session?.user?.id) {
+        const joinEntry: Entry = {
+          timestamp: Date.now(),
+          type: EntryEnum.JOIN,
+          content: {
+            peerId: session.user.id,
+            userId: session.user.id,
+            name: session.user.name || undefined,
+            image: session.user.image || undefined,
+          },
+        };
+        conn.send(joinEntry);
+      }
     });
     conn.on('data', (data) => addLog(data as Entry));
     conn.on('close', () => {
