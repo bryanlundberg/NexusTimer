@@ -118,7 +118,6 @@ export default function ChartResults() {
   const enriched = playersMock.map((p) => ({ p, stats: computeStats(p) }))
   enriched.sort((a, b) => a.stats.rankingAverage - b.stats.rankingAverage)
 
-  const showAo12Column = ROOM_SOLVES === 12
 
   return (
     <div className="w-full h-full overflow-auto">
@@ -127,34 +126,22 @@ export default function ChartResults() {
           <TableHeader>
             <TableRow>
               <TableHead className="w-12">#</TableHead>
-              <TableHead>Player</TableHead>
+              <TableHead>Cuber (name)</TableHead>
               <TableHead>
                 <Tooltip>
-                  <TooltipTrigger className="text-left">Best</TooltipTrigger>
-                  <TooltipContent>Fastest single solve</TooltipContent>
+                  <TooltipTrigger className="text-left">Single</TooltipTrigger>
+                  <TooltipContent>Best single solve</TooltipContent>
                 </Tooltip>
               </TableHead>
               <TableHead>
                 <Tooltip>
-                  <TooltipTrigger className="text-left">Worst</TooltipTrigger>
-                  <TooltipContent>Slowest single solve</TooltipContent>
+                  <TooltipTrigger className="text-left">Average</TooltipTrigger>
+                  <TooltipContent>Ao12 if 12 solves, otherwise best rolling Ao5</TooltipContent>
                 </Tooltip>
               </TableHead>
-              <TableHead>
-                <Tooltip>
-                  <TooltipTrigger className="text-left">Ao5 (best)</TooltipTrigger>
-                  <TooltipContent>Best rolling average of 5 (drop fastest and slowest)</TooltipContent>
-                </Tooltip>
-              </TableHead>
-              {showAo12Column && (
-                <TableHead>
-                  <Tooltip>
-                    <TooltipTrigger className="text-left">Ao12</TooltipTrigger>
-                    <TooltipContent>Average of 12 (drop fastest and slowest)</TooltipContent>
-                  </Tooltip>
-                </TableHead>
-              )}
-              <TableHead>Solves</TableHead>
+              {Array.from({ length: ROOM_SOLVES }, (_, i) => (
+                <TableHead key={`h-${i + 1}`} className="w-12 text-center">{i + 1}</TableHead>
+              ))}
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -177,12 +164,12 @@ export default function ChartResults() {
                   </div>
                 </TableCell>
                 <TableCell>{formatTime(stats.best)}</TableCell>
-                <TableCell>{formatTime(stats.worst)}</TableCell>
-                <TableCell className="font-semibold">{formatTime(stats.bestAo5)}</TableCell>
-                {showAo12Column && (
-                  <TableCell>{formatTime(stats.avg12)}</TableCell>
-                )}
-                <TableCell className="text-muted-foreground">{p.solves.length}</TableCell>
+                <TableCell className="font-semibold">{formatTime(stats.avg12 ?? stats.bestAo5)}</TableCell>
+                {Array.from({ length: ROOM_SOLVES }, (_, i) => (
+                  <TableCell key={`s-${p.id}-${i}`} className="text-center">
+                    {formatTime(p.solves[i])}
+                  </TableCell>
+                ))}
               </TableRow>
             ))}
           </TableBody>
