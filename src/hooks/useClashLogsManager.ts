@@ -8,6 +8,7 @@ import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
 import { RoomStatus } from '@/enums/RoomStatus';
 import { deleteField } from '@firebase/firestore';
+import { PlayerStatus } from '@/enums/PlayerStatus';
 
 export const useClashLogsManager = () => {
   const { data: session } = useSession()
@@ -56,9 +57,45 @@ export const useClashLogsManager = () => {
     }
   }
 
+  const handleJoinEvent = async () => {
+    if (!logs.length) return;
+    const lastLog = logs[logs.length - 1];
+    if (lastLog.type !== EntryEnum.JOIN) return;
+
+    // Only leader processes JOIN
+    if (session?.user?.id !== room?.authority.leaderId) return;
+    if (!room?.id) return;
+    if (room.status !== RoomStatus.IDLE) return;
+
+    const content: any = lastLog.content as any;
+    const joinUserId = content.userId || content.peerId;
+    if (!joinUserId) return;
+
+    const alreadyPresent = !!room.presence?.[joinUserId];
+    if (alreadyPresent) return;
+
+    const now = Date.now();
+    await updateDocument(
+      `${FirestoreCollections.CLASH_ROOMS}/${room.id}`,
+      {
+        [`presence.${joinUserId}`]: {
+          id: joinUserId,
+          joinedAt: now,
+          lastSeen: now,
+          name: content.name || 'Unknown',
+          image: content.image || null,
+          role: PlayerRole.PLAYER,
+          status: PlayerStatus.PREPARING,
+          solves: [],
+        }
+      }
+    );
+  }
+
   useEffect(() => {
     (async () => {
-      await handleDisconnectUserPeerEvent()
+      await handleDisconnectUserPeerEvent();
+      await handleJoinEvent();
     })()
   }, [logs]);
 }
