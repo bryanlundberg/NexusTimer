@@ -13,7 +13,6 @@ import { useCountdown } from '@/hooks/useCountdown';
 import { RoomStatus } from '@/enums/RoomStatus';
 import { useSession } from 'next-auth/react';
 import { useClashManager } from '@/store/ClashManager';
-import { deleteField } from '@firebase/firestore';
 
 export default function AwaitingMatch() {
   const router = useRouter();
@@ -21,6 +20,7 @@ export default function AwaitingMatch() {
   const { updateDocument } = useFirestoreCache();
   const { data: session } = useSession();
   const room = useClashManager((state => state.room));
+  const reset = useClashManager((state => state.reset));
 
   const prepEndTime = useMemo(() => {
     if (!room) return undefined;
@@ -30,12 +30,15 @@ export default function AwaitingMatch() {
   const { mmss, remainingMs } = useCountdown(prepEndTime);
 
   const handleLeaveClash = async () => {
-    const newData = {
-      [`presence.${session?.user?.id}`]: deleteField(),
+    if (room?.authority.leaderId === session?.user?.id && room?.status === RoomStatus.IDLE && Object.keys(room?.presence || {}).length === 1) {
+      const newData = {
+        status: RoomStatus.FINALIZED,
+      }
+      await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${roomId}`, newData)
     }
 
-    await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${roomId}`, newData)
     router.push('/clash');
+    reset();
   }
 
   const handleCopyLink = async () => {
