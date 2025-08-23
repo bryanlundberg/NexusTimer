@@ -6,7 +6,6 @@ import { PlayerRole } from '@/enums/PlayerRole';
 import _ from 'lodash';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
-import { RoomStatus } from '@/enums/RoomStatus';
 import { deleteField } from '@firebase/firestore';
 import { PlayerStatus } from '@/enums/PlayerStatus';
 
@@ -47,12 +46,10 @@ export const useClashLogsManager = () => {
       }
 
       if (room?.authority.leaderId !== lastLog.content.peerId && session?.user?.id === room?.authority.leaderId) {
-        if (room?.status === RoomStatus.IDLE) {
-          await updateDocument(
-            `${FirestoreCollections.CLASH_ROOMS}/${room?.id}`,
-            { [`presence.${lastLog.content.peerId}`]: deleteField() }
-          )
-        }
+        await updateDocument(
+          `${FirestoreCollections.CLASH_ROOMS}/${room?.id}`,
+          { [`presence.${lastLog.content.peerId}`]: deleteField() }
+        )
       }
     }
   }
@@ -65,7 +62,6 @@ export const useClashLogsManager = () => {
     // Only leader processes JOIN
     if (session?.user?.id !== room?.authority.leaderId) return;
     if (!room?.id) return;
-    if (room.status !== RoomStatus.IDLE) return;
 
     const content: any = lastLog.content as any;
     const joinUserId = content.userId || content.peerId;
@@ -81,12 +77,10 @@ export const useClashLogsManager = () => {
         [`presence.${joinUserId}`]: {
           id: joinUserId,
           joinedAt: now,
-          lastSeen: now,
           name: content.name || 'Unknown',
           image: content.image || null,
           role: PlayerRole.PLAYER,
           status: PlayerStatus.PREPARING,
-          solves: [],
         }
       }
     );
