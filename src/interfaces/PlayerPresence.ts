@@ -1,4 +1,5 @@
 import { PlayerStatus } from '@/enums/PlayerStatus';
+import { PlayerRole } from '@/enums/PlayerRole';
 
 export interface PlayerPresence {
   solves: number[];
@@ -6,7 +7,7 @@ export interface PlayerPresence {
   joinedAt?: number;
   name?: string;
   image?: string;
-  role?: 'admin' | 'player';
+  role?: PlayerRole;
   id: string;
   lastSeen?: number;
 }
