@@ -11,6 +11,7 @@ import moment from 'moment';
 import { EntryEnum } from '@/enums/Entry';
 import { ChatMessageContent } from '@/interfaces/ChatMessageContent';
 import { Entry } from '@/interfaces/Entry';
+import { PlayerRole } from '@/enums/PlayerRole';
 
 export default function Chat({ broadcast }) {
   const logs = useClashManager(state => state.logs);
@@ -39,7 +40,8 @@ export default function Chat({ broadcast }) {
           senderId: (session?.user as any)?.id || 'unknown',
           senderImage: (session?.user as any)?.image || undefined,
           senderName: session?.user?.name || 'Unknown User',
-          message: content
+          message: content,
+          role: PlayerRole.PLAYER
         } satisfies ChatMessageContent,
       };
 
