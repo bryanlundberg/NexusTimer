@@ -19,6 +19,7 @@ import { useSession } from 'next-auth/react';
 import usePeerRoom from '@/hooks/usePeerRoom';
 import { useClashLogsManager } from '@/hooks/useClashLogsManager';
 import _ from 'lodash';
+import { deleteField } from '@firebase/firestore';
 
 export default function Page() {
   const { roomId } = useParams()
@@ -81,6 +82,29 @@ export default function Page() {
       }
     });
   }, [room, session?.user?.id]);
+
+  // Leader-only presence reconciliation using active connections
+  useEffect(() => {
+    if (!room || !session?.user?.id) return;
+    if (room.status !== RoomStatus.IDLE) return;
+    const leaderId = room.authority?.leaderId;
+    if (!leaderId || leaderId !== session.user.id) return;
+
+    let timer: any = null;
+    const tick = () => {
+      const presence = room.presence || {};
+      const active = new Set<string>([session.user!.id, ...listConnectedPeers()]);
+      const toRemove: string[] = Object.keys(presence).filter(uid => !active.has(uid));
+      if (toRemove.length === 0) return;
+
+      const updates: Record<string, any> = {};
+      toRemove.forEach(uid => { updates[`presence.${uid}`] = deleteField(); });
+      updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, updates);
+    };
+
+    timer = setInterval(tick, 2000);
+    return () => { if (timer) clearInterval(timer); };
+  }, [room, session?.user?.id, listConnectedPeers]);
 
   if (loadingRoom) {
     return null;
