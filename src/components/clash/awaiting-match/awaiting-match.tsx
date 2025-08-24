@@ -3,8 +3,7 @@ import { LoaderCircle, Share2Icon } from 'lucide-react';
 import PlayerMiniCard from '../player-mini-card/player-mini-card';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from '@/components/ui/card'
 import { Input } from '@/components/ui/input';
-import { useParams, useRouter } from 'next/navigation';
-import { toast } from 'sonner';
+import { useParams } from 'next/navigation';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { useEffect, useMemo } from 'react';
@@ -13,14 +12,14 @@ import { useCountdown } from '@/hooks/useCountdown';
 import { RoomStatus } from '@/enums/RoomStatus';
 import { useSession } from 'next-auth/react';
 import { useClashManager } from '@/store/ClashManager';
+import { useRoomUtils } from '@/hooks/useRoomUtils';
 
 export default function AwaitingMatch() {
-  const router = useRouter();
   const { roomId } = useParams()
   const { updateDocument } = useFirestoreCache();
   const { data: session } = useSession();
   const room = useClashManager((state => state.room));
-  const reset = useClashManager((state => state.reset));
+  const { buildInitialRounds, handleCopyRoomLink, handleLeaveClash } = useRoomUtils()
 
   const prepEndTime = useMemo(() => {
     if (!room) return undefined;
@@ -28,23 +27,6 @@ export default function AwaitingMatch() {
   }, [room]);
 
   const { mmss, remainingMs } = useCountdown(prepEndTime);
-
-  const handleLeaveClash = async () => {
-    if (room?.authority.leaderId === session?.user?.id && room?.status === RoomStatus.IDLE && Object.keys(room?.presence || {}).length === 1) {
-      const newData = {
-        status: RoomStatus.FINALIZED,
-      }
-      await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${roomId}`, newData)
-    }
-
-    router.push('/clash');
-    reset();
-  }
-
-  const handleCopyLink = async () => {
-    await navigator.clipboard.writeText(window.location.href)
-    toast.success('Clash link copied to clipboard!')
-  }
 
   const users = useMemo(() => {
     if (!room?.presence || !Object.keys(room?.presence).length) return [];
@@ -62,23 +44,33 @@ export default function AwaitingMatch() {
     const isLeader = session?.user?.id === room?.authority?.leaderId;
     const enoughPlayers = users.length >= 2;
     if (!isLeader || !enoughPlayers) return;
-
+    const {
+      rounds,
+      times
+    } = buildInitialRounds(room?.totalRounds || 0, Number(room?.maxRoundTime) || 30, room.event, room);
     updateDocument(
       `${FirestoreCollections.CLASH_ROOMS}/${roomId}`,
       {
         status: RoomStatus.IN_PROGRESS,
-        roundsFinalizationTimes: Array.from({ length: room?.totalRounds || 0 }, (_, i) => moment().add(i * (room?.maxRoundTime || 30), 'seconds').valueOf()),
+        rounds: rounds as any,
+        roundsFinalizationTimes: times,
         matchFinalizationTime: moment().add(room?.totalRounds || 0, 'minutes').valueOf(),
       }
     )
   }, [remainingMs, room?.status, room?.authority?.leaderId, room?.totalRounds, room?.maxRoundTime, session?.user?.id, users.length, roomId]);
 
   const handleStartMatch = async () => {
-    await updateDocument(
+    if (!room) return;
+    const {
+      rounds,
+      times
+    } = buildInitialRounds(room?.totalRounds || 0, Number(room?.maxRoundTime) || 30, room.event, room);
+    updateDocument(
       `${FirestoreCollections.CLASH_ROOMS}/${roomId}`,
       {
         status: RoomStatus.IN_PROGRESS,
-        roundsFinalizationTimes: Array.from({ length: room?.totalRounds || 0 }, (_, i) => moment().add(i * (room?.maxRoundTime || 30), 'seconds').valueOf()),
+        rounds: rounds as any,
+        roundsFinalizationTimes: times,
         matchFinalizationTime: moment().add(room?.totalRounds || 0, 'minutes').valueOf(),
       }
     )
@@ -97,7 +89,8 @@ export default function AwaitingMatch() {
         </div>
       </div>
       <div className={'flex gap-3 mt-4 justify-center items-center'}>
-        <Button onClick={handleLeaveClash} variant={'secondary'} className={'w-fit'}>Leave clash</Button>
+        <Button onClick={() => handleLeaveClash(room!, session!)} variant={'secondary'} className={'w-fit'}>Leave
+          clash</Button>
         {shouldShowStartButton && <Button onClick={handleStartMatch}>Start now!</Button>}
       </div>
 
@@ -138,7 +131,7 @@ export default function AwaitingMatch() {
               readOnly
               className="cursor-pointer"
             />
-            <Button onClick={handleCopyLink} variant="outline" className="shrink-0">Copy</Button>
+            <Button onClick={handleCopyRoomLink} variant="outline" className="shrink-0">Copy</Button>
           </CardContent>
         </Card>
       </div>
