@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import Navigation from '@/components/navigation/navigation';
 import { Dialog, DialogTrigger, } from '@/components/ui/dialog';
@@ -14,11 +14,13 @@ import { RoomType } from '@/enums/RoomType';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
 import { RoomStatus } from '@/enums/RoomStatus';
+import { useClashManager } from '@/store/ClashManager';
 
 export default function Page() {
   const [createMode, setCreateMode] = useState<RoomType | null>(null);
   const { useCollection } = useFirestoreCache();
   const now = useMemo(() => Date.now(), []);
+  const reset = useClashManager(s => s.reset);
   const queryOptions = useMemo(() => ({
     where: [
       { field: 'status', operator: '==', value: RoomStatus.IDLE },
@@ -32,6 +34,10 @@ export default function Page() {
     FirestoreCollections.CLASH_ROOMS,
     queryOptions
   );
+
+  useEffect(() => {
+    reset();
+  }, [reset]);
 
   return (
     <>
