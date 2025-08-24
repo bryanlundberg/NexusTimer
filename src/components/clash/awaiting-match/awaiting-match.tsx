@@ -4,10 +4,7 @@ import PlayerMiniCard from '../player-mini-card/player-mini-card';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, } from '@/components/ui/card'
 import { Input } from '@/components/ui/input';
 import { useParams } from 'next/navigation';
-import { FirestoreCollections } from '@/constants/FirestoreCollections';
-import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { useEffect, useMemo } from 'react';
-import moment from 'moment';
 import { useCountdown } from '@/hooks/useCountdown';
 import { RoomStatus } from '@/enums/RoomStatus';
 import { useSession } from 'next-auth/react';
@@ -16,10 +13,9 @@ import { useRoomUtils } from '@/hooks/useRoomUtils';
 
 export default function AwaitingMatch() {
   const { roomId } = useParams()
-  const { updateDocument } = useFirestoreCache();
   const { data: session } = useSession();
   const room = useClashManager((state => state.room));
-  const { buildInitialRounds, handleCopyRoomLink, handleLeaveClash } = useRoomUtils()
+  const { handleCopyRoomLink, handleLeaveClash, startMatchNow } = useRoomUtils()
 
   const prepEndTime = useMemo(() => {
     if (!room) return undefined;
@@ -44,36 +40,12 @@ export default function AwaitingMatch() {
     const isLeader = session?.user?.id === room?.authority?.leaderId;
     const enoughPlayers = users.length >= 2;
     if (!isLeader || !enoughPlayers) return;
-    const {
-      rounds,
-      times
-    } = buildInitialRounds(room?.totalRounds || 0, Number(room?.maxRoundTime) || 30, room.event, room);
-    updateDocument(
-      `${FirestoreCollections.CLASH_ROOMS}/${roomId}`,
-      {
-        status: RoomStatus.IN_PROGRESS,
-        rounds: rounds as any,
-        roundsFinalizationTimes: times,
-        matchFinalizationTime: moment().add(room?.totalRounds || 0, 'minutes').valueOf(),
-      }
-    )
-  }, [remainingMs, room?.status, room?.authority?.leaderId, room?.totalRounds, room?.maxRoundTime, session?.user?.id, users.length, roomId]);
+    startMatchNow(String(roomId), room)
+  }, [remainingMs, room?.status, room?.authority?.leaderId, room?.totalRounds, room?.maxRoundTime, session?.user?.id, users.length, roomId, startMatchNow]);
 
   const handleStartMatch = async () => {
     if (!room) return;
-    const {
-      rounds,
-      times
-    } = buildInitialRounds(room?.totalRounds || 0, Number(room?.maxRoundTime) || 30, room.event, room);
-    updateDocument(
-      `${FirestoreCollections.CLASH_ROOMS}/${roomId}`,
-      {
-        status: RoomStatus.IN_PROGRESS,
-        rounds: rounds as any,
-        roundsFinalizationTimes: times,
-        matchFinalizationTime: moment().add(room?.totalRounds || 0, 'minutes').valueOf(),
-      }
-    )
+    await startMatchNow(String(roomId), room)
   }
 
   return (
