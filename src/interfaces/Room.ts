@@ -8,6 +8,12 @@ export type Penalty = null | '+2' | 'DNF';
 export type RoundStatus = 'open' | 'closing' | 'closed';
 
 export interface RoundEntry {
+  // Identity snapshot at the time of the round/solve
+  userId: string;
+  name?: string;
+  image?: string;
+
+  // Solve data
   rawMs?: number;
   finalMs?: number;
   penalty: Penalty;
