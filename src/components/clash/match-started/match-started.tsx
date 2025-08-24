@@ -31,7 +31,7 @@ export default function MatchStarted({ broadcast }) {
     const idx = Math.max(0, (room?.rounds || []).findIndex((r) => r?.status === 'open'));
     return room?.rounds?.[idx]?.plannedEndTime;
   }, [room?.rounds]);
-  const { mmss } = useCountdown(roundEndTime);
+  const { mmss, isFinished } = useCountdown(roundEndTime);
   const { data: session } = useSession();
   const { updateDocument } = useFirestoreCache();
   const { applySolve, cloneRoom } = useRoomUtils();
@@ -74,7 +74,7 @@ export default function MatchStarted({ broadcast }) {
 
   const roundStatus = room?.rounds?.[currentRoundIndex]?.status;
   const hasSubmittedCurrentRound = Boolean(myEntry?.participated);
-  const canSolve = roundStatus === 'open' && !hasSubmittedCurrentRound && !localSubmitted;
+  const canSolve = roundStatus === 'open' && !hasSubmittedCurrentRound && !localSubmitted && !isFinished;
 
   // If Firestore says we submitted, ensure local lock is set
   useEffect(() => {
@@ -86,12 +86,19 @@ export default function MatchStarted({ broadcast }) {
     setLocalSubmitted(false);
   }, [currentRoundIndex]);
 
-  // Guard: prevent starting a new solve after submission, and stop if not allowed
+  // Guard: prevent starting a new solve after submission or when time is up, and stop if not allowed
   useEffect(() => {
     if (!canSolve && isSolving) {
       setIsSolving(false);
     }
   }, [canSolve, isSolving, setIsSolving]);
+
+  // Hard cutoff: when countdown finishes, stop the local timer immediately
+  useEffect(() => {
+    if (isFinished && isSolving) {
+      setIsSolving(false);
+    }
+  }, [isFinished, isSolving, setIsSolving]);
 
   const guardedSetIsSolving = useCallback((v: boolean) => {
     if (v && !canSolve) return; // ignore attempts to start when not allowed
