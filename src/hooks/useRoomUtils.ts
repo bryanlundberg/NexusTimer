@@ -48,9 +48,10 @@ export const useRoomUtils = () => {
   }
 
   const handleLeaveClash = async (room: Room, session: Session) => {
+    // If the leader is the only person in an IDLE room, mark it as CANCELLED before leaving
     if (room?.authority.leaderId === session?.user?.id && room?.status === RoomStatus.IDLE && Object.keys(room?.presence || {}).length === 1) {
       const newData = {
-        status: RoomStatus.FINALIZED,
+        status: RoomStatus.CANCELLED,
       }
       await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, newData)
     }
