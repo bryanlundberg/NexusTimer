@@ -24,7 +24,7 @@ export const useRoomUtils = () => {
     const presentEntries: Record<string, any> = {};
     Object.values(room?.presence || {}).forEach((p: any) => {
       if (!p?.id) return;
-      presentEntries[p.id] = { participated: false, dns: false, penalty: null };
+      presentEntries[p.id] = { userId: p.id, name: p.name, image: p.image, participated: false, dns: false, penalty: null };
     });
 
     const rounds = Array.from({ length: totalRounds || 0 }, (_, i) => {
@@ -70,7 +70,14 @@ export const useRoomUtils = () => {
     const entries: Record<string, RoundEntry> = {}
     Object.values(presence || {}).forEach((p) => {
       if (!p?.id) return
-      entries[p.id] = { participated: false, dns: false, penalty: null }
+      entries[p.id] = {
+        userId: p.id,
+        name: p.name,
+        image: p.image,
+        participated: false,
+        dns: false,
+        penalty: null,
+      }
     })
     return entries
   }
@@ -78,12 +85,14 @@ export const useRoomUtils = () => {
   function applySolve(round: RoundRecord, userId: string, rawMs: number, penalty: Penalty = null): RoundRecord {
     if (round.status !== 'open') return round
     const finalMs = calculateFinalMs(rawMs, penalty)
+    const prev = round.entries[userId]
     return {
       ...round,
       entries: {
         ...round.entries,
         [userId]: {
-          ...(round.entries[userId] || { participated: false, dns: false, penalty: null }),
+          ...(prev || { userId, participated: false, dns: false, penalty: null }),
+          userId: prev?.userId || userId,
           rawMs,
           finalMs,
           penalty,
@@ -97,7 +106,7 @@ export const useRoomUtils = () => {
     }
   }
 
-  function markDnsForAbsents(round: RoundRecord, presentUserIdsAtClose: string[]): RoundRecord {
+  function markDnsForAbsents(round: RoundRecord, presentUserIdsAtClose: string[], presence: Room['presence']): RoundRecord {
     const updatedEntries: Record<string, RoundEntry> = { ...round.entries }
 
     // All known participants at the time of closing
@@ -107,19 +116,27 @@ export const useRoomUtils = () => {
     knownUserIds.forEach((uid) => {
       const entry = updatedEntries[uid]
       if (!entry || !entry.participated) {
-        updatedEntries[uid] = { participated: false, dns: true, penalty: null }
+        const p = presence?.[uid]
+        updatedEntries[uid] = {
+          userId: uid,
+          name: p?.name,
+          image: p?.image,
+          participated: false,
+          dns: true,
+          penalty: null,
+        }
       }
     })
 
     return { ...round, entries: updatedEntries }
   }
 
-  function closeRound(room: Room, roundIndex: number, presentUserIdsAtClose: string[]): Room {
+  function closeRound(room: Room, roundIndex: number, presentUserIdsAtClose: string[], presence: Room['presence']): Room {
     if (!room.rounds || !room.rounds[roundIndex]) return room
     const r = room.rounds[roundIndex]
     if (r.status === 'closed') return room
 
-    let updated = markDnsForAbsents(r, presentUserIdsAtClose)
+    let updated = markDnsForAbsents(r, presentUserIdsAtClose, presence)
     updated = {
       ...updated,
       status: 'closed',
