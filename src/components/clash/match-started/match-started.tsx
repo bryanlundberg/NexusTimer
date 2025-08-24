@@ -20,8 +20,13 @@ import { useSession } from 'next-auth/react';
 import { useRoomUtils } from '@/hooks/useRoomUtils';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
+import { Entry } from '@/interfaces/Entry';
 
-export default function MatchStarted({ broadcast }) {
+interface MatchStartedProps {
+  broadcast: (message: Entry) => void;
+}
+
+export default function MatchStarted({ broadcast }: MatchStartedProps) {
   const chat = useClashWindows((s) => s.chat);
   const lobby = useClashWindows((s) => s.lobby);
   const setPosition = useClashWindows((s) => s.setPosition);
