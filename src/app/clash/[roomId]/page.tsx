@@ -49,14 +49,13 @@ export default function Page() {
   } = useRoomUtils();
 
   useEffect(() => {
-    if (!roomData && !loadingRoom) {
-      router.push('/clash');
-    }
+    if (roomData) return;
+    if (loadingRoom) return;
+    router.push('/clash');
   }, [roomData, loadingRoom, router]);
 
   useEffect(() => {
     if (roomData?.id && !loadingRoom && !_.isEqual(room, roomData)) {
-      console.log(roomData)
       setRoom(roomData);
     }
   }, [roomData, loadingRoom, setRoom]);
@@ -199,18 +198,24 @@ export default function Page() {
     });
   }, [room, session?.user?.id, roundTimeFinished]);
 
-  // Redirect to results page when match is finalized
+  // Redirect to results page when match is finalized; redirect to lobby if cancelled
   useEffect(() => {
     if (!room?.id) return;
-    if (room.status !== RoomStatus.FINALIZED) return;
-    router.push(`/clash/${room.id}/results`);
+    if (room.status === RoomStatus.FINALIZED) {
+      router.push(`/clash/${room.id}/results`);
+      return;
+    }
+    if (room.status === RoomStatus.CANCELLED) {
+      router.push('/clash');
+      return;
+    }
   }, [room?.status, room?.id, router]);
 
   if (loadingRoom) {
     return null;
   }
 
-  if (room && isPrivate && !authorized && room.createdBy !== session?.user?.id) {
+  if (room && isPrivate && !authorized && session?.user?.id && room.createdBy !== session.user.id) {
     return (
       <RoomAuthGate roomId={roomId as string} room={room} onCancel={() => router.push('/clash')}/>
     );
