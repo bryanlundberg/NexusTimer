@@ -11,7 +11,6 @@ import { PlayerStatus } from '@/enums/PlayerStatus';
 import { RoomType } from '@/enums/RoomType';
 import AwaitingMatch from '@/components/clash/awaiting-match/awaiting-match';
 import MatchStarted from '@/components/clash/match-started/match-started';
-import MatchFinished from '@/components/clash/match-finished/match-finished';
 import { useClashManager } from '@/store/ClashManager';
 import RoomAuthGate from '@/components/clash/room-auth/room-auth-gate';
 import { useClashAuth } from '@/store/ClashAuth';
@@ -20,6 +19,7 @@ import usePeerRoom from '@/hooks/usePeerRoom';
 import { useClashLogsManager } from '@/hooks/useClashLogsManager';
 import _ from 'lodash';
 import { deleteField } from '@firebase/firestore';
+import { useRoomUtils } from '@/hooks/useRoomUtils';
 
 export default function Page() {
   const { roomId } = useParams()
@@ -34,6 +34,12 @@ export default function Page() {
   const isPrivate = room?.type === RoomType.PRIVATE;
   const authorized = !isPrivate || (room?.password && authPassword === room.password);
   useClashLogsManager();
+  const {
+    allParticipantsSubmitted,
+    closeRound,
+    openNextRound,
+    cloneRoom,
+  } = useRoomUtils();
 
   useEffect(() => {
     if (!roomData && !loadingRoom) {
@@ -118,13 +124,80 @@ export default function Page() {
       if (toRemove.length === 0) return;
 
       const updates: Record<string, any> = {};
-      toRemove.forEach(uid => { updates[`presence.${uid}`] = deleteField(); });
+      toRemove.forEach(uid => {
+        updates[`presence.${uid}`] = deleteField();
+      });
       updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, updates);
     };
 
     timer = setInterval(tick, 2000);
-    return () => { if (timer) clearInterval(timer); };
+    return () => {
+      if (timer) clearInterval(timer);
+    };
   }, [room, session?.user?.id, listConnectedPeers]);
+
+  // Leader-only round controller: close/open rounds and finalize match
+  useEffect(() => {
+    if (!room || !session?.user?.id) return;
+    const leaderId = room.authority?.leaderId;
+    if (!leaderId || leaderId !== session.user.id) return;
+    if (room.status !== RoomStatus.IN_PROGRESS) return;
+
+    const openIndex = (room.rounds || []).findIndex(r => r?.status === 'open');
+    if (openIndex === -1) return;
+
+    const presentUserIds = Object.keys(room.presence || {});
+    const finalization = room.rounds?.[openIndex]?.plannedEndTime;
+    const now = Date.now();
+
+    let shouldClose = false;
+    let closedBecauseAllFinishedEarly = false;
+    try {
+      if (finalization && now >= finalization) {
+        shouldClose = true;
+      } else if (room.rounds && room.rounds[openIndex]) {
+        const everyoneDone = allParticipantsSubmitted(room.rounds[openIndex] as any, presentUserIds);
+        if (everyoneDone) {
+          shouldClose = true;
+          closedBecauseAllFinishedEarly = finalization ? now < finalization : true;
+        }
+      }
+    } catch (e) {
+      shouldClose = false;
+    }
+
+    if (!shouldClose) return;
+
+    if (closedBecauseAllFinishedEarly) {
+      console.log(`[Clash] All present players finished round ${openIndex + 1} before the time limit. Advancing early.`);
+    }
+
+    let newRoom = cloneRoom(room);
+    newRoom = closeRound(newRoom, openIndex, presentUserIds);
+
+    const isLast = openIndex >= (room.totalRounds - 1);
+    if (isLast) {
+      updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, {
+        rounds: newRoom.rounds,
+        status: RoomStatus.FINALIZED,
+      });
+      return;
+    }
+
+    const nextIndex = openIndex + 1;
+    newRoom = openNextRound(newRoom, nextIndex, room.presence);
+
+    updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, {
+      rounds: newRoom.rounds,
+    });
+  }, [room, session?.user?.id]);
+
+  // Redirect to results page when match is finalized
+  useEffect(() => {
+    if (!room?.id) return;
+    if (room.status !== RoomStatus.FINALIZED) return;
+    router.push(`/clash/${room.id}/results`);
+  }, [room?.status, room?.id, router]);
 
   if (loadingRoom) {
     return null;
@@ -138,7 +211,6 @@ export default function Page() {
 
   return (
     <FadeIn className="flex flex-col grow overflow-auto">
-      <button onClick={() => console.log(listConnectedPeers())}>Conections</button>
       {room?.status === RoomStatus.IDLE && (<AwaitingMatch/>)}
       {room?.status === RoomStatus.IN_PROGRESS && (<MatchStarted broadcast={broadcast}/>)}
     </FadeIn>
