@@ -8,6 +8,7 @@ import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
 import { deleteField } from '@firebase/firestore';
 import { PlayerStatus } from '@/enums/PlayerStatus';
+import { DisconnectMessageContent } from '@/interfaces/DisconnectMessageContent';
 
 export const useClashLogsManager = () => {
   const { data: session } = useSession()
@@ -18,10 +19,11 @@ export const useClashLogsManager = () => {
   const handleDisconnectUserPeerEvent = async () => {
     if (logs.length && logs[logs.length - 1].type === EntryEnum.DISCONNECT) {
       const lastLog = logs[logs.length - 1];
+      const content = lastLog.content as DisconnectMessageContent;
 
-      if (room?.authority.leaderId === lastLog.content.peerId) {
+      if (room?.authority.leaderId === content.peerId) {
         const presentPlayers = Object.values(room?.presence || {})
-          .filter(player => player.role === PlayerRole.PLAYER && player.id !== lastLog.content.peerId);
+          .filter(player => player.role === PlayerRole.PLAYER && player.id !== content.peerId);
         const newLeaderId = _.orderBy(presentPlayers, ['joinedAt'], ['asc'])[0]?.id || null;
 
         if (newLeaderId && newLeaderId === session?.user?.id) {
@@ -30,7 +32,7 @@ export const useClashLogsManager = () => {
             {
               'authority.leaderId': newLeaderId,
               'authority.term': (room?.authority.term || 0) + 1,
-              [`presence.${lastLog.content.peerId}`]: deleteField(),
+              [`presence.${content.peerId}`]: deleteField(),
             }
           );
         } else if (!newLeaderId && session?.user?.id === room?.createdBy) {
@@ -39,16 +41,16 @@ export const useClashLogsManager = () => {
             {
               'authority.leaderId': null,
               'authority.term': (room?.authority.term || 0) + 1,
-              [`presence.${lastLog.content.peerId}`]: deleteField(),
+              [`presence.${content.peerId}`]: deleteField(),
             }
           );
         }
       }
 
-      if (room?.authority.leaderId !== lastLog.content.peerId && session?.user?.id === room?.authority.leaderId) {
+      if (room?.authority.leaderId !== content.peerId && session?.user?.id === room?.authority.leaderId) {
         await updateDocument(
           `${FirestoreCollections.CLASH_ROOMS}/${room?.id}`,
-          { [`presence.${lastLog.content.peerId}`]: deleteField() }
+          { [`presence.${content.peerId}`]: deleteField() }
         )
       }
     }
