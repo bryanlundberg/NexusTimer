@@ -7,7 +7,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import moment from 'moment';
 import { useCountdown } from '@/hooks/useCountdown';
 import { RoomStatus } from '@/enums/RoomStatus';
@@ -54,6 +54,24 @@ export default function AwaitingMatch() {
   const shouldShowStartButton = useMemo(() => {
     return (session?.user?.id === room?.authority?.leaderId) && users.length >= 2
   }, [session?.user?.id, room?.authority.leaderId, users.length]);
+
+  // Auto-start match when countdown reaches 0 (leader-only, requires at least 2 players)
+  useEffect(() => {
+    if (!room || room.status !== RoomStatus.IDLE) return;
+    if (remainingMs === undefined || remainingMs > 0) return;
+    const isLeader = session?.user?.id === room?.authority?.leaderId;
+    const enoughPlayers = users.length >= 2;
+    if (!isLeader || !enoughPlayers) return;
+
+    updateDocument(
+      `${FirestoreCollections.CLASH_ROOMS}/${roomId}`,
+      {
+        status: RoomStatus.IN_PROGRESS,
+        roundsFinalizationTimes: Array.from({ length: room?.totalRounds || 0 }, (_, i) => moment().add(i * (room?.maxRoundTime || 30), 'seconds').valueOf()),
+        matchFinalizationTime: moment().add(room?.totalRounds || 0, 'minutes').valueOf(),
+      }
+    )
+  }, [remainingMs, room?.status, room?.authority?.leaderId, room?.totalRounds, room?.maxRoundTime, session?.user?.id, users.length, roomId]);
 
   const handleStartMatch = async () => {
     await updateDocument(
