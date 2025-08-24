@@ -14,6 +14,16 @@ export default function RoomStatus({ status }: { status: RoomStatusEnum }) {
            <Clock className="size-3"/> Awaiting Players
         </span>
       )}
+      {status === RoomStatusEnum.FINALIZED && (
+        <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-500/20 dark:text-blue-200 px-2 py-1 whitespace-nowrap text-[10px]">
+           <Clock className="size-3"/> Finished
+        </span>
+      )}
+      {status === RoomStatusEnum.CANCELLED && (
+        <span className="inline-flex items-center gap-1 rounded-full bg-rose-100 text-rose-800 dark:bg-rose-500/20 dark:text-rose-200 px-2 py-1 whitespace-nowrap text-[10px]">
+           <Clock className="size-3"/> Cancelled
+        </span>
+      )}
     </>
   )
 }
