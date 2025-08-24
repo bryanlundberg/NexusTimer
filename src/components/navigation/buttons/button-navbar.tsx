@@ -31,7 +31,7 @@ import {
   TokensIcon
 } from '@radix-ui/react-icons';
 
-import { ArrowRightLeftIcon } from "lucide-react";
+import { ApertureIcon, ArrowRightLeftIcon } from 'lucide-react';
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -100,6 +100,11 @@ export default function ButtonNavbar() {
         icon: <CubeIcon/>,
         name: t("CubesPage.title"),
         url: "/cubes"
+      },
+      {
+        icon: <ApertureIcon/>,
+        name: "Clash",
+        url: "/clash"
       },
       {
         icon: <ArrowRightLeftIcon/>,
