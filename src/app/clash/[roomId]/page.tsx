@@ -3,7 +3,7 @@ import FadeIn from '@/components/fade-in/fade-in';
 import { useParams, useRouter } from 'next/navigation';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Room } from '@/interfaces/Room';
 import { RoomStatus } from '@/enums/RoomStatus';
 import { PlayerRole } from '@/enums/PlayerRole';
@@ -18,6 +18,7 @@ import { useSession } from 'next-auth/react';
 import usePeerRoom from '@/hooks/usePeerRoom';
 import { useClashLogsManager } from '@/hooks/useClashLogsManager';
 import _ from 'lodash';
+import { useCountdown } from '@/hooks/useCountdown';
 import { deleteField } from '@firebase/firestore';
 import { useRoomUtils } from '@/hooks/useRoomUtils';
 
@@ -30,6 +31,12 @@ export default function Page() {
   const { data: roomData, loading: loadingRoom } = useDocument<Room>(`${FirestoreCollections.CLASH_ROOMS}/${roomId}`);
   const setRoom = useClashManager((state => state.setRoom));
   const room = useClashManager((state => state.room));
+  // Countdown for open round end time to trigger leader actions exactly at cutoff
+  const roundEndTime = useMemo(() => {
+    const idx = Math.max(0, (room?.rounds || []).findIndex((r) => r?.status === 'open'));
+    return room?.rounds?.[idx]?.plannedEndTime;
+  }, [room?.rounds]);
+  const { isFinished: roundTimeFinished } = useCountdown(roundEndTime);
   const authPassword = useClashAuth((s) => s.authorizedByRoom[(roomId as string)]);
   const isPrivate = room?.type === RoomType.PRIVATE;
   const authorized = !isPrivate || (room?.password && authPassword === room.password);
@@ -173,7 +180,7 @@ export default function Page() {
     }
 
     let newRoom = cloneRoom(room);
-    newRoom = closeRound(newRoom, openIndex, presentUserIds);
+    newRoom = closeRound(newRoom, openIndex, presentUserIds, room.presence);
 
     const isLast = openIndex >= (room.totalRounds - 1);
     if (isLast) {
@@ -190,7 +197,7 @@ export default function Page() {
     updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, {
       rounds: newRoom.rounds,
     });
-  }, [room, session?.user?.id]);
+  }, [room, session?.user?.id, roundTimeFinished]);
 
   // Redirect to results page when match is finalized
   useEffect(() => {
