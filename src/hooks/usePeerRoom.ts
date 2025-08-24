@@ -224,7 +224,7 @@ export default function usePeerRoom() {
     connectionsRef.current.set(targetId, conn);
   }
 
-  function broadcast(message: any, exceptPeerId?: string) {
+  function broadcast(message: Entry, exceptPeerId?: string) {
     let count = 0;
     connectionsRef.current.forEach((conn, pid) => {
       if (exceptPeerId && pid === exceptPeerId) return;
