@@ -13,7 +13,11 @@ import { ChatMessageContent } from '@/interfaces/ChatMessageContent';
 import { Entry } from '@/interfaces/Entry';
 import { PlayerRole } from '@/enums/PlayerRole';
 
-export default function Chat({ broadcast }) {
+interface ChatProps {
+  broadcast: (message: Entry) => void;
+}
+
+export default function Chat({ broadcast }: ChatProps) {
   const logs = useClashManager(state => state.logs);
   const addLog = useClashManager(state => state.addLog);
 
