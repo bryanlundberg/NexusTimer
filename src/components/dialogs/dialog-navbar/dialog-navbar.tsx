@@ -38,7 +38,7 @@ export default function DialogNavbar() {
     },
     {
       path: "/clash",
-      name: "Clash",
+      name: "Clash Mode",
     },
   ];
   return (
