@@ -231,6 +231,10 @@ export const useRoomUtils = () => {
     await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${roomId}` as string, update);
   }
 
+  const cancelRoomNow = async (roomId: string | number) => {
+    await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${roomId}` as string, { status: RoomStatus.CANCELLED });
+  }
+
   return {
     buildInitialRounds,
     handleCopyRoomLink,
@@ -245,6 +249,7 @@ export const useRoomUtils = () => {
     allParticipantsSubmitted,
     cloneRoom,
     buildStartMatchUpdate,
-    startMatchNow
+    startMatchNow,
+    cancelRoomNow,
   };
 }
