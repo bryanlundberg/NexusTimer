@@ -4,6 +4,7 @@ import { Hourglass } from 'lucide-react';
 import { cubeCollection } from '@/lib/const/cubeCollection';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Rnd } from 'react-rnd';
 import ScrambleDisplayDraggable from '@/components/clash/scramble-display-draggable/scramble-display-draggable';
 import { useClashWindows } from '@/store/clash-windows';
@@ -52,6 +53,10 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
   const [pendingPenalty, setPendingPenalty] = useState<null | '+2' | 'DNF'>(null);
   // Local lock to absolutely prevent re-starts until next round
   const [localSubmitted, setLocalSubmitted] = useState<boolean>(false);
+
+  // Modal control for post-solve penalty selection
+  const [penaltyModalOpen, setPenaltyModalOpen] = useState<boolean>(false);
+  const [finishedTimeMs, setFinishedTimeMs] = useState<number | undefined>(undefined);
 
   const submitSolve = useCallback(async (rawMs: number, penalty: null | '+2' | 'DNF') => {
     if (!room || !session?.user?.id) return;
@@ -106,9 +111,9 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
   }, [isFinished, isSolving, setIsSolving]);
 
   const guardedSetIsSolving = useCallback((v: boolean) => {
-    if (v && !canSolve) return; // ignore attempts to start when not allowed
+    if (v && (!canSolve || penaltyModalOpen)) return; // ignore attempts to start when not allowed or when confirming result
     setIsSolving(v);
-  }, [canSolve, setIsSolving]);
+  }, [canSolve, penaltyModalOpen, setIsSolving]);
 
   useTimer({
     isSolving,
@@ -121,9 +126,9 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
     settings: { timer: { startCue: false, holdToStart: false } },
     onFinishSolve: () => {
       if (solvingTime !== undefined) {
-        void submitSolve(solvingTime, pendingPenalty);
-        setPendingPenalty(null);
-        setLocalSubmitted(true);
+        // Open modal to select penalty before submitting
+        setFinishedTimeMs(solvingTime);
+        setPenaltyModalOpen(true);
       }
     }
   });
@@ -167,14 +172,9 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
             {formatTime(solvingTime)}
           </div>
           <div className={'pb-3 flex flex-col items-center gap-2'}>
-            {hasSubmittedCurrentRound && (
-              <div className={'text-sm text-muted-foreground'}>Waiting for the next round to start…</div>
+            {(hasSubmittedCurrentRound || localSubmitted) && (
+              <div className={'text-sm text-muted-foreground'}>esperando a lo demás ....</div>
             )}
-            <div className={'flex gap-2'}>
-              <Button variant={'destructive'} onClick={() => setPendingPenalty('DNF')} disabled={hasSubmittedCurrentRound}>DNF</Button>
-              <Button variant={'outline'} onClick={() => setPendingPenalty('+2')} disabled={hasSubmittedCurrentRound}>+2</Button>
-              <Button onClick={() => setPendingPenalty(null)} disabled={hasSubmittedCurrentRound}>Clear Penalty</Button>
-            </div>
           </div>
         </div>
 
@@ -230,6 +230,48 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
         )}
 
         <ScrambleDisplayDraggable/>
+
+        <Dialog open={penaltyModalOpen}>
+          <DialogContent showCloseButton={false} onInteractOutside={(e) => e.preventDefault()}>
+            <DialogHeader>
+              <DialogTitle>Resultado de tu solve</DialogTitle>
+              <DialogDescription>
+                Tiempo final: {finishedTimeMs !== undefined ? formatTime(finishedTimeMs) : '---'}
+              </DialogDescription>
+            </DialogHeader>
+            <div className={'flex flex-col gap-2'}>
+              <div className={'text-sm text-muted-foreground'}>Selecciona un penalty y envia el tiempo:</div>
+              <div className={'flex flex-col sm:flex-row gap-2'}>
+                <Button variant={'destructive'} onClick={async () => {
+                  if (finishedTimeMs === undefined) return;
+                  await submitSolve(finishedTimeMs, 'DNF');
+                  setLocalSubmitted(true);
+                  setPendingPenalty(null);
+                  setPenaltyModalOpen(false);
+                }}>Enviar como DNF</Button>
+                <Button variant={'outline'} onClick={async () => {
+                  if (finishedTimeMs === undefined) return;
+                  await submitSolve(finishedTimeMs, '+2');
+                  setLocalSubmitted(true);
+                  setPendingPenalty(null);
+                  setPenaltyModalOpen(false);
+                }}>Enviar con +2</Button>
+                <Button onClick={async () => {
+                  if (finishedTimeMs === undefined) return;
+                  await submitSolve(finishedTimeMs, null);
+                  setLocalSubmitted(true);
+                  setPendingPenalty(null);
+                  setPenaltyModalOpen(false);
+                }}>Enviar sin penalización</Button>
+              </div>
+            </div>
+            <DialogFooter>
+              <div className={'text-xs text-muted-foreground'}>
+                Una vez enviado, espera a los demás jugadores…
+              </div>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   )
