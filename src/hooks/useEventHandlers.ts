@@ -53,12 +53,26 @@ export default function useEventHandlers({
       handleReleaseWithReleasedState();
     };
 
+    const isTypingTarget = (): boolean => {
+      const ae = document.activeElement as HTMLElement | null;
+      if (!ae) return false;
+      const tag = ae.tagName?.toLowerCase();
+      if (tag === "input" || tag === "textarea" || ae.isContentEditable) return true;
+      // Also consider elements with role="textbox"
+      const role = ae.getAttribute?.("role");
+      if (role === "textbox") return true;
+      return false;
+    };
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.code === "Escape") {
         resetTimer();
         return;
       }
       if (event.code !== "Space") {
+        return;
+      }
+      if (isTypingTarget()) {
         return;
       }
       handleHoldWithReleasedState();
@@ -70,6 +84,9 @@ export default function useEventHandlers({
         return;
       }
       if (event.code !== "Space") {
+        return;
+      }
+      if (isTypingTarget()) {
         return;
       }
       handleReleaseWithReleasedState();
