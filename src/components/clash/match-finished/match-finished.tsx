@@ -1,9 +1,9 @@
-"use client";
+'use client';
 import ChartResults from '@/components/clash/chart-results/chart-results';
 import { Button } from '@/components/ui/button';
-import { useRoomUtils } from '@/hooks/useRoomUtils';
-import { useSession } from 'next-auth/react';
-import { useClashManager } from '@/store/ClashManager';
+import { useFirestoreCache } from '@/hooks/useFirebaseCache';
+import { useParams, useRouter } from 'next/navigation';
+import { FirestoreCollections } from '@/constants/FirestoreCollections';
 
 // IDEAS, INCLUDE PERCENTAGE CLEAN SOLVES - 0 100%
 // ADD EACH INDIVIDUAL SOLVE
@@ -11,17 +11,22 @@ import { useClashManager } from '@/store/ClashManager';
 // HIGHTLIGHT CURRENT USER IN TABLE
 
 export default function MatchFinished() {
-  const { handleLeaveClash } = useRoomUtils();
-  const { data: session } = useSession();
-  const room = useClashManager((state) => state.room);
+  const { roomId } = useParams();
+  const { useDocumentOnce } = useFirestoreCache();
+  const { data: room } = useDocumentOnce(`${FirestoreCollections.CLASH_ROOMS}/${roomId}`);
+  const router = useRouter();
 
   return (
     <div className={'max-w-7xl mx-auto mt-5'}>
       <h1 className={'text-3xl font-bold mb-4 text-center'}>RESULTS</h1>
-      <ChartResults/>
+      <ChartResults room={room}/>
 
-      <div className={"flex justify-center mt-6"}>
-        <Button onClick={() => handleLeaveClash(room!, session!)}>Back to lobby</Button>
+      <div className={'flex justify-center mt-6'}>
+        <Button
+          onClick={() => {
+            router.push('/clash');
+          }}
+        >Back to lobby</Button>
       </div>
     </div>
   )
