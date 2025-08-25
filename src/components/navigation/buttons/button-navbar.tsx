@@ -103,7 +103,7 @@ export default function ButtonNavbar() {
       },
       {
         icon: <ApertureIcon/>,
-        name: "Clash",
+        name: "Clash Mode",
         url: "/clash"
       },
       {
