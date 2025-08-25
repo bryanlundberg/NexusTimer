@@ -17,29 +17,32 @@ export const useRoomUtils = () => {
   const reset = useClashManager((state => state.reset));
 
   const buildInitialRounds = (totalRounds: number, maxRoundTime: number, event: Categories, room: Room) => {
+    // Create only the first round now; subsequent rounds will be created progressively by the leader
     const now = moment();
-    // Each round should end after its own duration; first round ends at now + maxRoundTime
-    const times = Array.from({ length: totalRounds || 0 }, (_, i) => now.clone().add((i + 1) * (maxRoundTime || 30), 'seconds').valueOf());
 
     const presentEntries: Record<string, any> = {};
     Object.values(room?.presence || {}).forEach((p: any) => {
       if (!p?.id) return;
-      presentEntries[p.id] = { userId: p.id, name: p.name, image: p.image, participated: false, dns: false, penalty: null };
-    });
-
-    const rounds = Array.from({ length: totalRounds || 0 }, (_, i) => {
-      const r: any = {
-        index: i,
-        status: i === 0 ? 'open' : 'closed',
-        plannedEndTime: times[i],
-        entries: i === 0 ? presentEntries : {},
-        scramble: genScramble(room?.event || '3x3')
+      presentEntries[p.id] = {
+        userId: p.id,
+        name: p?.name || 'Unknown',
+        image: p?.image || null,
+        participated: false,
+        dns: false,
+        penalty: null,
       };
-      if (i === 0) r.startedAt = now.valueOf();
-      return r;
     });
 
-    return { rounds };
+    const firstRound: any = {
+      index: 0,
+      status: 'open',
+      startedAt: now.valueOf(),
+      plannedEndTime: now.clone().add((maxRoundTime || 30), 'seconds').valueOf(),
+      entries: presentEntries,
+      scramble: genScramble(room?.event || '3x3'),
+    };
+
+    return { rounds: [firstRound] };
   }
 
   const handleCopyRoomLink = async () => {
@@ -62,7 +65,7 @@ export const useRoomUtils = () => {
 
   function calculateFinalMs(rawMs?: number, penalty: Penalty = null): number | undefined {
     if (rawMs === undefined) return undefined
-    if (penalty === 'DNF') return Number.POSITIVE_INFINITY
+    if (penalty === 'DNF') return undefined
     if (penalty === '+2') return rawMs + 2000
     return rawMs
   }
@@ -73,8 +76,8 @@ export const useRoomUtils = () => {
       if (!p?.id) return
       entries[p.id] = {
         userId: p.id,
-        name: p.name,
-        image: p.image,
+        name: p?.name || 'Unknown',
+        image: p?.image || '',
         participated: false,
         dns: false,
         penalty: null,
@@ -85,24 +88,30 @@ export const useRoomUtils = () => {
 
   function applySolve(round: RoundRecord, userId: string, rawMs: number, penalty: Penalty = null): RoundRecord {
     if (round.status !== 'open') return round
-    const finalMs = calculateFinalMs(rawMs, penalty)
+    const computedFinalMs = calculateFinalMs(rawMs, penalty)
     const prev = round.entries[userId]
+
+    // Build entry without undefined fields (Firestore does not allow undefined)
+    const nextEntry: any = {
+      ...(prev || { userId, participated: false, dns: false, penalty: null }),
+      userId: prev?.userId || userId,
+      rawMs,
+      penalty,
+      participated: true,
+      dns: false,
+      submittedAt: Date.now(),
+      submittedBy: userId,
+      source: 'auto',
+    }
+    if (computedFinalMs !== undefined) {
+      nextEntry.finalMs = computedFinalMs
+    }
+
     return {
       ...round,
       entries: {
         ...round.entries,
-        [userId]: {
-          ...(prev || { userId, participated: false, dns: false, penalty: null }),
-          userId: prev?.userId || userId,
-          rawMs,
-          finalMs,
-          penalty,
-          participated: true,
-          dns: false,
-          submittedAt: Date.now(),
-          submittedBy: userId,
-          source: 'auto',
-        },
+        [userId]: nextEntry,
       },
     }
   }
@@ -120,8 +129,8 @@ export const useRoomUtils = () => {
         const p = presence?.[uid]
         updatedEntries[uid] = {
           userId: uid,
-          name: p?.name,
-          image: p?.image,
+          name: p?.name || 'Unknown',
+          image: p?.image || '',
           participated: false,
           dns: true,
           penalty: null,
