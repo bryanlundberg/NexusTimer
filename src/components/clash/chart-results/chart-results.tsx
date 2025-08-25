@@ -85,9 +85,7 @@ function msToSeconds(ms?: number): number | undefined {
   return ms / 1000
 }
 
-export default function ChartResults() {
-  const room = useClashManager((s) => s.room) as Room | null
-
+export default function ChartResults({ room }: { room: Room }) {
   const totalRounds = room?.totalRounds || 0
   const rounds = room?.rounds || []
   const presence = room?.presence || {}
