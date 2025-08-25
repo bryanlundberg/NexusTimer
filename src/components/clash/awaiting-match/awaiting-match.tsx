@@ -15,7 +15,7 @@ export default function AwaitingMatch() {
   const { roomId } = useParams()
   const { data: session } = useSession();
   const room = useClashManager((state => state.room));
-  const { handleCopyRoomLink, handleLeaveClash, startMatchNow } = useRoomUtils()
+  const { handleCopyRoomLink, handleLeaveClash, startMatchNow, cancelRoomNow } = useRoomUtils()
 
   const prepEndTime = useMemo(() => {
     if (!room) return undefined;
@@ -33,15 +33,25 @@ export default function AwaitingMatch() {
     return (session?.user?.id === room?.authority?.leaderId) && users.length >= 2
   }, [session?.user?.id, room?.authority.leaderId, users.length]);
 
-  // Auto-start match when countdown reaches 0 (leader-only, requires at least 2 players)
+  // Auto-start match when countdown reaches 0 if the room has at least 2 members
   useEffect(() => {
     if (!room || room.status !== RoomStatus.IDLE) return;
     if (remainingMs === undefined || remainingMs > 0) return;
-    const isLeader = session?.user?.id === room?.authority?.leaderId;
-    const enoughPlayers = users.length >= 2;
-    if (!isLeader || !enoughPlayers) return;
+    const enoughPlayers = users.length >= 2; // at least 2 members
+    if (!enoughPlayers) return;
     startMatchNow(String(roomId), room)
-  }, [remainingMs, room?.status, room?.authority?.leaderId, room?.totalRounds, room?.maxRoundTime, session?.user?.id, users.length, roomId, startMatchNow]);
+  }, [remainingMs, room?.status, room?.totalRounds, room?.maxRoundTime, users.length, roomId, startMatchNow]);
+
+  // Auto-cancel when countdown reaches 0 and there are fewer than 2 members (leader triggers)
+  useEffect(() => {
+    if (!room || room.status !== RoomStatus.IDLE) return;
+    if (remainingMs === undefined || remainingMs > 0) return;
+    const notEnoughPlayers = users.length < 2; // strictly less than 2
+    if (!notEnoughPlayers) return;
+    const isLeader = session?.user?.id === room?.authority?.leaderId;
+    if (!isLeader) return;
+    cancelRoomNow(String(roomId));
+  }, [remainingMs, room?.status, users.length, session?.user?.id, room?.authority?.leaderId, roomId, cancelRoomNow]);
 
   const handleStartMatch = async () => {
     if (!room) return;
