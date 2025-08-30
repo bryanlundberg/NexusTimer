@@ -21,7 +21,7 @@ export default function Sidebar() {
     'flex flex-col items-center justify-center cursor-pointer hover:bg-sidebar-primary/20 select-none'
 
   return (
-    <aside className="flex flex-col bg-sidebar-primary/20 text-sidebar-foreground w-24 md:max-w-36 shrink-0">
+    <aside className="flex flex-col bg-sidebar text-sidebar-foreground w-24 md:max-w-36 shrink-0">
 
       <NavButton
         onClick={() => handleLeaveClash(room!, session!)}
