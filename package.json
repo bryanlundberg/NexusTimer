@@ -62,7 +62,7 @@
     "moment": "^2.30.1",
     "mongoose": "^8.10.1",
     "motion": "^12.23.9",
-    "next": "^15.4.4",
+    "next": "^15.4.7",
     "next-auth": "5.0.0-beta.29",
     "next-intl": "^4.3.4",
     "next-themes": "^0.3.0",
