@@ -52,6 +52,13 @@ export default function Page() {
   const desyncHandledRef = useRef(false);
 
   useEffect(() => {
+    if (!session?.user) {
+      alertDialog({ hideCancel: true, title: "Login Required", subtitle: "You must be logged in to join a Clash room." });
+      router.push('/clash?reason=loginRequired');
+    }
+  }, [session, router]);
+
+  useEffect(() => {
     if (roomData) return;
     if (loadingRoom) return;
     router.push('/clash');
