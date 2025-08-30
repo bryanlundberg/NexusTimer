@@ -10,7 +10,7 @@ import { Room } from '@/interfaces/Room'
 
 // Utilities
 function formatSeconds(sec?: number): string {
-  if (sec === undefined || Number.isNaN(sec)) return '—'
+  if (sec === undefined || Number.isNaN(sec)) return 'DNF'
   if (!Number.isFinite(sec)) return 'DNF'
   const negative = sec < 0
   const s = Math.abs(sec)
