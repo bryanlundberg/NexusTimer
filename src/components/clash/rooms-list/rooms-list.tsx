@@ -82,7 +82,7 @@ export default function RoomsList({ rooms }: RoomsListProps) {
                 <span className="inline-flex items-center gap-1"><ShieldCheck className="size-4"/> {room.event}</span>
                 <span className="inline-flex items-center gap-1"><TimerReset className="size-4"/> Rounds Time: {moment.utc(Number(room.maxRoundTime) * 1000).format('mm:ss')}</span>
                 <span className="inline-flex items-center gap-1">
-                    Ronda 2/5
+                    Rounds {room.totalRounds}
                   </span>
               </div>
               {room.status === RoomStatusEnum.IDLE && (
