@@ -106,16 +106,26 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
   // Hard cutoff: when countdown finishes, stop the local timer immediately
   useEffect(() => {
     if (isFinished && isSolving) {
-      setIsSolving(false);
+      stopTimer()
     }
   }, [isFinished, isSolving, setIsSolving]);
+
+  // When the round changes, fully reset local UI/timer and close any pending modal to avoid being locked
+  useEffect(() => {
+    setPenaltyModalOpen(false);
+    setFinishedTimeMs(undefined);
+    setPendingPenalty(null);
+    setIsSolving(false);
+    setSolvingTime(0);
+    resetAll();
+  }, [currentRoundIndex]);
 
   const guardedSetIsSolving = useCallback((v: boolean) => {
     if (v && (!canSolve || penaltyModalOpen)) return; // ignore attempts to start when not allowed or when confirming result
     setIsSolving(v);
   }, [canSolve, penaltyModalOpen, setIsSolving]);
 
-  useTimer({
+  const { stopTimer, resetAll } = useTimer({
     isSolving,
     setTimerStatus,
     selectedCube: canSolve ? ({} as Cube) : null,
