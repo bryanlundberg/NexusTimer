@@ -128,7 +128,7 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
   const { stopTimer, resetAll } = useTimer({
     isSolving,
     setTimerStatus,
-    selectedCube: canSolve ? ({} as Cube) : null,
+    selectedCube: canSolve && !penaltyModalOpen ? ({} as Cube) : null,
     inspectionRequired: false,
     setIsSolving: guardedSetIsSolving,
     setSolvingTime,
@@ -242,7 +242,7 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
         <ScrambleDisplayDraggable/>
 
         <Dialog open={penaltyModalOpen}>
-          <DialogContent showCloseButton={false} onInteractOutside={(e) => e.preventDefault()}>
+          <DialogContent showCloseButton={false} onInteractOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
             <DialogHeader>
               <DialogTitle>Submit</DialogTitle>
               <DialogDescription>
