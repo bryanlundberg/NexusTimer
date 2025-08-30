@@ -33,7 +33,6 @@ export default function RoomsList({ rooms }: RoomsListProps) {
           }
         }
 
-        console.log('Joining room', room.id, newData)
         await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, newData)
       }
 
