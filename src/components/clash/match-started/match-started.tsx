@@ -183,7 +183,7 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
           </div>
           <div className={'pb-3 flex flex-col items-center gap-2'}>
             {(hasSubmittedCurrentRound || localSubmitted) && (
-              <div className={'text-sm text-muted-foreground'}>esperando a lo demás ....</div>
+              <div className={'text-sm text-muted-foreground'}>waiting for others ....</div>
             )}
           </div>
         </div>
@@ -244,40 +244,39 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
         <Dialog open={penaltyModalOpen}>
           <DialogContent showCloseButton={false} onInteractOutside={(e) => e.preventDefault()}>
             <DialogHeader>
-              <DialogTitle>Resultado de tu solve</DialogTitle>
+              <DialogTitle>Submit</DialogTitle>
               <DialogDescription>
-                Tiempo final: {finishedTimeMs !== undefined ? formatTime(finishedTimeMs) : '---'}
+                Final time: {finishedTimeMs !== undefined ? formatTime(finishedTimeMs) : '---'}
               </DialogDescription>
             </DialogHeader>
             <div className={'flex flex-col gap-2'}>
-              <div className={'text-sm text-muted-foreground'}>Selecciona un penalty y envia el tiempo:</div>
               <div className={'flex flex-col sm:flex-row gap-2'}>
-                <Button variant={'destructive'} onClick={async () => {
+                <Button variant={'destructive'} className={"grow"} onClick={async () => {
                   if (finishedTimeMs === undefined) return;
                   await submitSolve(finishedTimeMs, 'DNF');
                   setLocalSubmitted(true);
                   setPendingPenalty(null);
                   setPenaltyModalOpen(false);
-                }}>Enviar como DNF</Button>
-                <Button variant={'outline'} onClick={async () => {
+                }}>DNF</Button>
+                <Button variant={'outline'} className={"grow"} onClick={async () => {
                   if (finishedTimeMs === undefined) return;
                   await submitSolve(finishedTimeMs, '+2');
                   setLocalSubmitted(true);
                   setPendingPenalty(null);
                   setPenaltyModalOpen(false);
-                }}>Enviar con +2</Button>
-                <Button onClick={async () => {
+                }}>+2</Button>
+                <Button className={"grow"} onClick={async () => {
                   if (finishedTimeMs === undefined) return;
                   await submitSolve(finishedTimeMs, null);
                   setLocalSubmitted(true);
                   setPendingPenalty(null);
                   setPenaltyModalOpen(false);
-                }}>Enviar sin penalización</Button>
+                }}>Ok</Button>
               </div>
             </div>
             <DialogFooter>
               <div className={'text-xs text-muted-foreground'}>
-                Una vez enviado, espera a los demás jugadores…
+                Once submitted, your result cannot be changed.
               </div>
             </DialogFooter>
           </DialogContent>
