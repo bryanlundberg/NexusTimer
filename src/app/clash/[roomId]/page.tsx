@@ -3,7 +3,7 @@ import FadeIn from '@/components/fade-in/fade-in';
 import { useParams, useRouter } from 'next/navigation';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { Room } from '@/interfaces/Room';
 import { RoomStatus } from '@/enums/RoomStatus';
 import { PlayerRole } from '@/enums/PlayerRole';
@@ -21,6 +21,7 @@ import _ from 'lodash';
 import { useCountdown } from '@/hooks/useCountdown';
 import { deleteField } from '@firebase/firestore';
 import { useRoomUtils } from '@/hooks/useRoomUtils';
+import useAlert from '@/hooks/useAlert';
 
 export default function Page() {
   const { roomId } = useParams()
@@ -47,6 +48,8 @@ export default function Page() {
     openNextRound,
     cloneRoom,
   } = useRoomUtils();
+  const alertDialog = useAlert();
+  const desyncHandledRef = useRef(false);
 
   useEffect(() => {
     if (roomData) return;
@@ -149,10 +152,26 @@ export default function Page() {
     if (!leaderId || leaderId !== session.user.id) return;
     if (room.status !== RoomStatus.IN_PROGRESS) return;
 
-    const openIndex = (room.rounds || []).findIndex(r => r?.status === 'open');
+    const presentUserIds = Object.keys(room.presence || {});
+
+    // Safety: ensure there is at most one 'open' round at any time
+    const openIndices = (room.rounds || []).map((r, i) => (r?.status === 'open' ? i : -1)).filter((i) => i >= 0);
+    if (openIndices.length > 1) {
+      const keepIndex = Math.min(...openIndices);
+      let fixedRoom = cloneRoom(room);
+      for (const idx of openIndices) {
+        if (idx === keepIndex) continue;
+        fixedRoom = closeRound(fixedRoom, idx, presentUserIds, room.presence);
+      }
+      updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, {
+        rounds: fixedRoom.rounds,
+      });
+      return;
+    }
+
+    const openIndex = openIndices[0] ?? -1;
     if (openIndex === -1) return;
 
-    const presentUserIds = Object.keys(room.presence || {});
     const finalization = room.rounds?.[openIndex]?.plannedEndTime;
     const now = Date.now();
 
@@ -197,6 +216,39 @@ export default function Page() {
       rounds: newRoom.rounds,
     });
   }, [room, session?.user?.id, roundTimeFinished]);
+
+  // Periodic presence revalidation: if current user is not in presence, show alert and redirect out
+  useEffect(() => {
+    if (!room?.id || !session?.user?.id || !room?.authority?.leaderId) return;
+    if (room.status === RoomStatus.FINALIZED || room.status === RoomStatus.CANCELLED) return;
+
+    const checkPresenceAndHandle = async () => {
+      if (desyncHandledRef.current) return;
+      const presence = room?.presence || {};
+      const userId = session.user!.id as string;
+      const isPresent = Object.prototype.hasOwnProperty.call(presence, userId);
+      const hasOthers = Object.keys(presence).some(uid => uid !== userId);
+
+      if (!isPresent && !hasOthers) return;
+
+      if (!isPresent) {
+        desyncHandledRef.current = true;
+        try {
+          await alertDialog({
+            hideCancel: true,
+            title: 'Desynchronized',
+            subtitle: 'You were desynchronized from the room. Please join again.',
+            confirmText: 'OK',
+          });
+        } finally {
+          router.push('/clash');
+        }
+      }
+    };
+
+    const interval = setInterval(checkPresenceAndHandle, 5000);
+    return () => clearInterval(interval);
+  }, [room?.presence, room?.id, room?.authority?.leaderId, session?.user?.id, alertDialog, router]);
 
   // Redirect to results page when match is finalized; redirect to lobby if cancelled
   useEffect(() => {
