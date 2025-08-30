@@ -15,8 +15,10 @@ import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
 import { RoomStatus } from '@/enums/RoomStatus';
 import { useClashManager } from '@/store/ClashManager';
+import useAlert from '@/hooks/useAlert';
 
 export default function Page() {
+  const alertDialog = useAlert();
   const [createMode, setCreateMode] = useState<RoomType | null>(null);
   const { useCollection } = useFirestoreCache();
   const now = useMemo(() => Date.now(), []);
@@ -38,6 +40,14 @@ export default function Page() {
   useEffect(() => {
     reset();
   }, [reset]);
+
+  useEffect(() => {
+    alertDialog({
+      hideCancel: true,
+      title: 'Notice',
+      subtitle: 'Clash feature is in beta. Please report any issues you encounter.'
+    })
+  }, []);
 
   return (
     <>
