@@ -157,17 +157,16 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
   const scramble = room?.rounds?.[currentRoundIndex]?.scramble as string | undefined;
 
   return (
-    <div className={'flex w-full min-h-dvh max-h-dvh overflow-hidden'}>
+    <div className={'flex w-full min-h-dvh max-h-dvh overflow-hidden bg-sidebar'}>
       <Sidebar/>
 
-      <div className={'w-full flex flex-col'}>
+      <div className={'w-full flex flex-col bg-background m-2 rounded-md'}>
         <div className={'p-1 flex flex-wrap items-center gap-2 text-xs px-4 pt-2 text-muted-foreground'}>
           <Image src={selectedCube?.src} alt={'Clash Icon'} width={20} height={20}/>
           <span>{selectedCube?.name ?? room?.event ?? '3x3'}</span>
-          <span>| Clash Started |</span>
           <span className={'flex items-center gap-1'}>
             <Hourglass size={14} fill={'#fff'}/>
-            <span>Ronda termina en {mmss}</span>
+            <span>Time left {mmss}</span>
           </span>
         </div>
 
