@@ -41,14 +41,6 @@ export default function Page() {
     reset();
   }, [reset]);
 
-  useEffect(() => {
-    alertDialog({
-      hideCancel: true,
-      title: 'Notice',
-      subtitle: 'Clash feature is in beta. Please report any issues you encounter.'
-    })
-  }, []);
-
   return (
     <>
       <FadeIn className="flex flex-col grow overflow-auto">
