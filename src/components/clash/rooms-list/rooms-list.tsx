@@ -1,15 +1,15 @@
 import { Card } from '@/components/ui/card';
-import { Globe2, Lock, Play, ShieldCheck, TimerReset, Users, Sparkles } from 'lucide-react';
+import { Globe2, Lock, Play, ShieldCheck, Sparkles, TimerReset, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import RoomStatus from '@/components/clash/room-status/room-status';
 import { Room } from '@/interfaces/Room';
 import { RoomType } from '@/enums/RoomType';
 import { RoomStatus as RoomStatusEnum } from '@/enums/RoomStatus';
-import { FirestoreCollections } from '@/constants/FirestoreCollections';
 import { useSession } from 'next-auth/react';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { useRouter } from 'next/navigation';
 import moment from 'moment';
+import useAlert from '@/hooks/useAlert';
 
 interface RoomsListProps {
   rooms: Room[]
@@ -19,23 +19,19 @@ export default function RoomsList({ rooms }: RoomsListProps) {
   const { data: session } = useSession()
   const { updateDocument } = useFirestoreCache()
   const router = useRouter();
+  const alert = useAlert();
+
   const handleJoinRoom = async (room: Room) => {
-    const userRegistered = Object.keys(room?.presence || {}).some(key => key === session?.user?.id);
-    if (room && room.status === RoomStatusEnum.IDLE && session?.user?.id) {
-      if (!userRegistered) {
-        const newData = {
-          [`presence.${session.user.id}`]: {
-            joinedAt: Date.now(),
-            name: session.user.name || 'Unknown',
-            image: session.user.image || null,
-            id: session.user.id,
-            role: 'player',
-          }
-        }
 
-        await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, newData)
-      }
+    if (!session?.user?.id) {
+      return await alert({
+        title: 'You must be logged in to join a room',
+        subtitle: 'Please log in and try again.',
+        hideCancel: true
+      });
+    }
 
+    if (room && room.status === RoomStatusEnum.IDLE) {
       router.push(`/clash/${room.id}`);
     }
   }
@@ -43,10 +39,10 @@ export default function RoomsList({ rooms }: RoomsListProps) {
   if (Array.isArray(rooms) && rooms.length === 0) {
     return (
       <Card className="relative overflow-hidden border-dashed bg-background">
-        <div className="pointer-events-none absolute -inset-1 opacity-50 bg-gradient-to-br from-primary/5 via-transparent to-primary/10" />
+        <div className="pointer-events-none absolute -inset-1 opacity-50 bg-gradient-to-br from-primary/5 via-transparent to-primary/10"/>
         <div className="relative py-12 px-6 flex flex-col items-center justify-center text-center gap-3">
           <div className="rounded-full bg-primary/10 text-primary p-3">
-            <Sparkles className="size-8" />
+            <Sparkles className="size-8"/>
           </div>
           <h3 className="text-lg font-semibold">No rooms available</h3>
           <p className="text-sm text-muted-foreground max-w-md">
@@ -80,7 +76,7 @@ export default function RoomsList({ rooms }: RoomsListProps) {
               <div className="flex items-center flex-wrap gap-2 text-xs text-muted-foreground justify-end">
                 <span className="inline-flex items-center gap-1"><Users className="size-4"/> {Object.keys(room?.presence || {})?.length || 0}</span>
                 <span className="inline-flex items-center gap-1"><ShieldCheck className="size-4"/> {room.event}</span>
-                <span className="inline-flex items-center gap-1"><TimerReset className="size-4"/> Rounds Time: {moment.utc(Number(room.maxRoundTime) * 1000).format('mm:ss')}</span>
+                <span className="inline-flex items-center gap-1"><TimerReset className="size-4"/> Rounds Limit: {moment.utc(Number(room.maxRoundTime) * 1000).format('mm:ss')}</span>
                 <span className="inline-flex items-center gap-1">
                     Rounds {room.totalRounds}
                   </span>
