@@ -1,60 +1,18 @@
 'use client'
-
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { CardContent } from '@/components/ui/card'
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow, } from '@/components/ui/table'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import * as React from 'react'
-import { useClashManager } from '@/store/ClashManager'
-import { Room } from '@/interfaces/Room'
-
-// Utilities
-function formatSeconds(sec?: number): string {
-  if (sec === undefined || Number.isNaN(sec)) return 'DNF'
-  if (!Number.isFinite(sec)) return 'DNF'
-  const negative = sec < 0
-  const s = Math.abs(sec)
-  const minutes = Math.floor(s / 60)
-  const seconds = s % 60
-  const secondsStr = seconds < 10 && minutes > 0 ? `0${seconds.toFixed(2)}` : seconds.toFixed(2)
-  const out = minutes > 0 ? `${minutes}:${secondsStr}` : seconds.toFixed(2)
-  return `${negative ? '-' : ''}${out}s`
-}
-
-function averageExcludingExtremes(values: number[]): number | undefined {
-  const arr = values.filter((v) => Number.isFinite(v))
-  if (arr.length < 3) return undefined
-  const sorted = [...arr].sort((a, b) => a - b)
-  const trimmed = sorted.slice(1, sorted.length - 1)
-  const sum = trimmed.reduce((acc, v) => acc + v, 0)
-  return sum / trimmed.length
-}
-
-function bestRollingAo5(solves: number[]): number | undefined {
-  const arr = solves.filter((v) => Number.isFinite(v))
-  if (arr.length < 5) return undefined
-  let best: number | undefined = undefined
-  for (let i = 0; i <= solves.length - 5; i++) {
-    const window = solves.slice(i, i + 5).filter((v) => Number.isFinite(v))
-    if (window.length < 5) continue
-    const avg = averageExcludingExtremes(window as number[])
-    if (avg === undefined) continue
-    if (best === undefined || avg < best) best = avg
-  }
-  return best
-}
-
-function ao12(solves: number[]): number | undefined {
-  const arr = solves.filter((v) => Number.isFinite(v))
-  if (arr.length !== 12) return undefined
-  return averageExcludingExtremes(arr)
-}
+import formatTime from '@/lib/formatTime'
+import { Room, Penalty } from '@/interfaces/Room'
 
 type PlayerRow = {
   id: string
   name: string
   avatarUrl?: string
-  solvesSeconds: (number | undefined)[] // seconds per round (DNF = Infinity, missing = undefined)
+  solvesMs: (number | undefined)[]
+  penalties: (Penalty | undefined)[]
 }
 
 function initials(name: string) {
@@ -66,23 +24,30 @@ function initials(name: string) {
     .join('')
 }
 
-function computeStatsSeconds(solvesSeconds: (number | undefined)[]) {
-  const finite = solvesSeconds.filter((v): v is number => v !== undefined && Number.isFinite(v))
-  const best = finite.length ? Math.min(...finite) : undefined
-  const worst = finite.length ? Math.max(...finite) : undefined
-  const bestAo5 = bestRollingAo5(solvesSeconds as number[])
-  const avg12 = solvesSeconds.length === 12 ? ao12(solvesSeconds as number[]) : undefined
+function computeStatsClassicMs(solvesMs: (number | undefined)[], penalties: (Penalty | undefined)[]) {
+  const finishedTimes = solvesMs
+    .map((ms, i) => (penalties[i] === 'DNF' ? undefined : ms))
+    .filter((v): v is number => v !== undefined)
+  const best = finishedTimes.length ? Math.min(...finishedTimes) : undefined
 
-  // Ranking key: by best available average of 5 first; if not available, by ao12; else Infinity (bottom)
-  const rankingAverage = (bestAo5 ?? avg12 ?? Number.POSITIVE_INFINITY)
+  let sum = 0
+  let count = 0
+  for (let i = 0; i < solvesMs.length; i++) {
+    const hasDnf = penalties[i] === 'DNF'
+    const ms = solvesMs[i]
+    if (hasDnf) {
+      count += 1
+    } else if (ms !== undefined) {
+      sum += ms
+      count += 1
+    }
+  }
+  const averageClassic = count > 0 ? sum / count : undefined
 
-  return { best, worst, bestAo5, avg12, rankingAverage }
-}
+  const rankingAverage = averageClassic ?? Number.POSITIVE_INFINITY
+  const rankingBest = best ?? Number.POSITIVE_INFINITY
 
-function msToSeconds(ms?: number): number | undefined {
-  if (ms === undefined) return undefined
-  if (!Number.isFinite(ms)) return Number.POSITIVE_INFINITY
-  return ms / 1000
+  return { best, averageClassic, rankingAverage, rankingBest }
 }
 
 export default function ChartResults({ room }: { room: Room }) {
@@ -90,7 +55,6 @@ export default function ChartResults({ room }: { room: Room }) {
   const rounds = room?.rounds || []
   const presence = room?.presence || {}
 
-  // Build participant ids from union of all round entries (immutable evidence), not from presence
   const playerIds = React.useMemo(() => {
     const ids = new Set<string>()
     for (const r of rounds) {
@@ -102,7 +66,6 @@ export default function ChartResults({ room }: { room: Room }) {
 
   const rows: PlayerRow[] = React.useMemo(() => {
     return playerIds.map((uid) => {
-      // Find the first entry carrying identity metadata; fallback to presence
       let entryWithId:
         | { name?: string; image?: string }
         | undefined
@@ -116,23 +79,35 @@ export default function ChartResults({ room }: { room: Room }) {
       const name = (entryWithId?.name || presence[uid]?.name || 'Unknown') as string
       const avatarUrl = (entryWithId?.image || presence[uid]?.image || undefined) as string | undefined
 
-      const solvesSeconds: (number | undefined)[] = Array.from({ length: totalRounds }, (_, i) => {
+      const solvesMs: (number | undefined)[] = Array.from({ length: totalRounds }, (_, i) => {
         const r = rounds?.[i]
         const e = r?.entries?.[uid] as any
-        // If DNS, mark as Infinity (DNF); if participated and finalMs exists, convert to seconds; else undefined
+
         if (!e) return undefined
-        if (e.dns) return Number.POSITIVE_INFINITY
+        if (e?.dns) return undefined
+        if (e.penalty === 'DNF') return undefined
         if (e.finalMs === undefined) return undefined
-        return msToSeconds(e.finalMs)
+        const plusTwo = e.penalty === '+2' ? 2000 : 0
+        return e.finalMs + plusTwo
       })
-      return { id: uid, name, avatarUrl, solvesSeconds }
+      const penalties: (Penalty | undefined)[] = Array.from({ length: totalRounds }, (_, i) => {
+        const r = rounds?.[i]
+        const e = r?.entries?.[uid] as any
+        if (!e) return undefined
+        return e.penalty as Penalty | undefined
+      })
+      return { id: uid, name, avatarUrl, solvesMs, penalties }
     })
   }, [playerIds, presence, rounds, totalRounds])
 
-  // Compute derived and sort by best average
+  // Compute derived and sort by classic average
   const enriched = React.useMemo(() => {
-    const data = rows.map((r) => ({ row: r, stats: computeStatsSeconds(r.solvesSeconds) }))
-    data.sort((a, b) => a.stats.rankingAverage - b.stats.rankingAverage)
+    const data = rows.map((r) => ({ row: r, stats: computeStatsClassicMs(r.solvesMs, r.penalties) }))
+    data.sort((a, b) => {
+      const avgDiff = a.stats.rankingAverage - b.stats.rankingAverage
+      if (avgDiff !== 0) return avgDiff
+      return a.stats.rankingBest - b.stats.rankingBest
+    })
     return data
   }, [rows])
 
@@ -157,7 +132,7 @@ export default function ChartResults({ room }: { room: Room }) {
               <TableHead>
                 <Tooltip>
                   <TooltipTrigger className="text-left">Average</TooltipTrigger>
-                  <TooltipContent>{totalRounds === 12 ? 'Ao12' : 'Best rolling Ao5 (if available)'}</TooltipContent>
+                  <TooltipContent>Classic average (DNF counts in divisor as 0)</TooltipContent>
                 </Tooltip>
               </TableHead>
               {Array.from({ length: totalRounds }, (_, i) => (
@@ -180,15 +155,16 @@ export default function ChartResults({ room }: { room: Room }) {
                     </Avatar>
                     <div className="flex flex-col leading-tight">
                       <span className="font-medium">{row.name}</span>
-                      <span className="text-muted-foreground text-xs">{row.solvesSeconds.filter((v) => v !== undefined).length}/{totalRounds} solves</span>
+                      <span className="text-muted-foreground text-xs">{row.solvesMs.filter((v, i) => v !== undefined || row.penalties[i] === 'DNF').length}/{totalRounds} solves</span>
                     </div>
                   </div>
                 </TableCell>
-                <TableCell>{formatSeconds(stats.best)}</TableCell>
-                <TableCell className="font-semibold">{formatSeconds((totalRounds === 12 ? stats.avg12 : stats.bestAo5))}</TableCell>
+                <TableCell>({stats.best !== undefined ? formatTime(stats.best) : '--'})</TableCell>
+                <TableCell className="font-semibold">{stats.averageClassic !== undefined ? formatTime(stats.averageClassic) : '--'}</TableCell>
                 {Array.from({ length: totalRounds }, (_, i) => (
                   <TableCell key={`s-${row.id}-${i}`} className="text-center">
-                    {formatSeconds(row.solvesSeconds[i])}
+                    {row.penalties[i] === 'DNF' ? 'DNF' : (row.solvesMs[i] !== undefined ? formatTime(row.solvesMs[i] as number) : '')}
+                    {row.penalties[i] === '+2' ? ' +2' : ''}
                   </TableCell>
                 ))}
               </TableRow>
