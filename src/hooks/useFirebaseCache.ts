@@ -1,7 +1,7 @@
 import { db } from '@/firebase';
 import { addDoc, collection, CollectionReference, doc, DocumentReference, getDoc, query as buildQuery, orderBy as orderByClause, limit as limitClause, updateDoc, where as whereClause, WhereFilterOp, runTransaction as firestoreRunTransaction, Transaction } from 'firebase/firestore';
 import { useCollection as useCollectionX, useDocument as useDocumentX } from 'react-firebase-hooks/firestore';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export type UseDocResult<T> = {
   data: T | undefined;
@@ -25,7 +25,7 @@ export type UseCollectionOptions = {
 
 export function useFirestoreCache() {
   function useDocument<T = any>(path: string): UseDocResult<T> {
-    const ref = doc(db, path);
+    const ref = useMemo(() => doc(db, path), [path]);
     const [querySnapshot, loading, error] = useDocumentX<T>(ref as any);
 
     useEffect(() => {
@@ -42,7 +42,7 @@ export function useFirestoreCache() {
   }
 
   function useDocumentOnce<T = any>(path: string): UseDocResult<T> {
-    const ref = doc(db, path);
+    const ref = useMemo(() => doc(db, path), [path]);
     const [state, setState] = useState<UseDocResult<T>>({
       data: undefined,
       loading: true,
@@ -67,7 +67,7 @@ export function useFirestoreCache() {
       return () => {
         canceled = true;
       };
-    }, [path]);
+    }, [ref, path]);
 
     useEffect(() => {
       if (state.error) {
@@ -79,27 +79,25 @@ export function useFirestoreCache() {
   }
 
   function useCollection<T = any>(path: string, options?: UseCollectionOptions): UseColResult<T> {
-    const ref = collection(db, path);
+    const ref = useMemo(() => collection(db, path), [path]);
 
-    const clauses: any[] = [];
-
-    if (options?.where) {
-      for (const w of options.where) {
-        clauses.push(whereClause(w.field as any, w.operator as any, w.value));
+    const q = useMemo(() => {
+      const clauses: any[] = [];
+      if (options?.where) {
+        for (const w of options.where) {
+          clauses.push(whereClause(w.field as any, w.operator as any, w.value));
+        }
       }
-    }
-
-    if (options?.orderBy) {
-      for (const ob of options.orderBy) {
-        clauses.push(orderByClause(ob.field as any, (ob.direction || 'asc') as any));
+      if (options?.orderBy) {
+        for (const ob of options.orderBy) {
+          clauses.push(orderByClause(ob.field as any, (ob.direction || 'asc') as any));
+        }
       }
-    }
-
-    if (typeof options?.limit === 'number') {
-      clauses.push(limitClause(options.limit));
-    }
-
-    const q = clauses.length > 0 ? buildQuery(ref, ...clauses) : ref;
+      if (typeof options?.limit === 'number') {
+        clauses.push(limitClause(options.limit));
+      }
+      return clauses.length > 0 ? buildQuery(ref, ...clauses) : ref;
+    }, [ref, options]);
 
     const [querySnapshot, loading, error] = useCollectionX<T>(q as any);
 
@@ -107,7 +105,7 @@ export function useFirestoreCache() {
       if (error) {
         console.error('[useFirestoreCache.useCollection] Error while subscribing to collection', { path, options, error });
       }
-    }, [error, path, JSON.stringify(options)]);
+    }, [error, options, path]);
 
     const data = querySnapshot
       ? (querySnapshot.docs.map(d => ({ id: d.id, ...d.data() })) as T[])
