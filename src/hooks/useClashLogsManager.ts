@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { useClashManager } from '@/store/ClashManager';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { EntryEnum } from '@/enums/Entry';
 import { PlayerRole } from '@/enums/PlayerRole';
 import _ from 'lodash';
@@ -16,7 +16,7 @@ export const useClashLogsManager = () => {
   const room = useClashManager((state) => state.room);
   const { updateDocument } = useFirestoreCache()
 
-  const handleDisconnectUserPeerEvent = async () => {
+  const handleDisconnectUserPeerEvent = useCallback(async () => {
     if (logs.length && logs[logs.length - 1].type === EntryEnum.DISCONNECT) {
       const lastLog = logs[logs.length - 1];
       const content = lastLog.content as DisconnectMessageContent;
@@ -54,9 +54,9 @@ export const useClashLogsManager = () => {
         )
       }
     }
-  }
+  }, [logs, room, session, updateDocument]);
 
-  const handleJoinEvent = async () => {
+  const handleJoinEvent = useCallback(async () => {
     if (!logs.length) return;
     const lastLog = logs[logs.length - 1];
     if (lastLog.type !== EntryEnum.JOIN) return;
@@ -86,12 +86,12 @@ export const useClashLogsManager = () => {
         }
       }
     );
-  }
+  }, [logs, room, session, updateDocument]);
 
   useEffect(() => {
     (async () => {
       await handleDisconnectUserPeerEvent();
       await handleJoinEvent();
     })()
-  }, [logs]);
+  }, [handleDisconnectUserPeerEvent, handleJoinEvent, logs]);
 }
