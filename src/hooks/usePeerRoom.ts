@@ -156,7 +156,7 @@ export default function usePeerRoom() {
         connectionsRef.current.clear();
       }
     };
-  }, [session]);
+  }, [addLog, session]);
 
   function connectToPeer(targetId: string) {
     const peer = peerRef.current;
