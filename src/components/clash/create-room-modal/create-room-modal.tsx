@@ -93,8 +93,6 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
                     <SelectItem value="6x6">6x6</SelectItem>
                     <SelectItem value="7x7">7x7</SelectItem>
                     <SelectItem value="3x3 OH">3x3 OH</SelectItem>
-                    <SelectItem value="3x3 BLD">3x3 BLD</SelectItem>
-                    <SelectItem value="3x3 FMC">3x3 FMC</SelectItem>
                     <SelectItem value="Clock">Clock</SelectItem>
                     <SelectItem value="Megaminx">Megaminx</SelectItem>
                     <SelectItem value="Pyraminx">Pyraminx</SelectItem>
@@ -117,8 +115,8 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
                     <SelectValue/>
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="5">5</SelectItem>
-                    <SelectItem value="12">12</SelectItem>
+                    <SelectItem value="5">Normal (5)</SelectItem>
+                    <SelectItem value="12">Extended (12)</SelectItem>
                   </SelectContent>
                 </Select>
               )}
