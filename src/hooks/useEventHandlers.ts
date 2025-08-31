@@ -60,8 +60,7 @@ export default function useEventHandlers({
       if (tag === "input" || tag === "textarea" || ae.isContentEditable) return true;
       // Also consider elements with role="textbox"
       const role = ae.getAttribute?.("role");
-      if (role === "textbox") return true;
-      return false;
+      return role === "textbox";
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
