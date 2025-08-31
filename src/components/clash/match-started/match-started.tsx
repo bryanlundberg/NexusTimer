@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Hourglass } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { cubeCollection } from '@/lib/const/cubeCollection';
@@ -30,6 +30,7 @@ import { useRoomUtils } from '@/hooks/useRoomUtils';
 import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
 import { Entry } from '@/interfaces/Entry';
+import { useAudioTrigger } from '@/hooks/useAudioTrigger';
 
 interface MatchStartedProps {
   broadcast: (message: Entry) => void;
@@ -172,6 +173,41 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
 
   const totalRounds = room?.totalRounds || (room?.rounds?.length || 0);
   const scramble = room?.rounds?.[currentRoundIndex]?.scramble as string | undefined;
+
+  // Play sound when a new round starts (when the open round index changes)
+  const prevOpenRoundIndexRef = useRef<number | null>(null);
+  const didInitRef = useRef<boolean>(false);
+  const [roundStartTrigger, setRoundStartTrigger] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Determine if there is an open round and if its index changed
+    const openIdx = currentRoundIndex;
+    const status = room?.rounds?.[openIdx]?.status;
+
+    if (status === 'open') {
+      if (!didInitRef.current) {
+        // On first mount with an already open round, initialize without playing sound
+        prevOpenRoundIndexRef.current = openIdx;
+        didInitRef.current = true;
+        return;
+      }
+      if (prevOpenRoundIndexRef.current === null || prevOpenRoundIndexRef.current !== openIdx) {
+        // Trigger sound once on new open round detection
+        setRoundStartTrigger(true);
+      }
+      prevOpenRoundIndexRef.current = openIdx;
+    }
+  }, [currentRoundIndex, room?.rounds]);
+
+  // Reset trigger back to false so hook can detect the next rising edge
+  useEffect(() => {
+    if (roundStartTrigger) {
+      const t = setTimeout(() => setRoundStartTrigger(false), 0);
+      return () => clearTimeout(t);
+    }
+  }, [roundStartTrigger]);
+
+  useAudioTrigger({ audioSrc: '/sounds/new-round.mp3', trigger: roundStartTrigger, autoplay: true });
 
   return (
     <div className={'flex w-full min-h-dvh max-h-dvh overflow-hidden bg-sidebar'}>
