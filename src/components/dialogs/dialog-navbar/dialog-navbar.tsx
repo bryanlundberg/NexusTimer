@@ -36,6 +36,10 @@ export default function DialogNavbar() {
       path: "/cubes",
       name: t("CubesPage.title"),
     },
+    {
+      path: "/clash",
+      name: "Clash Mode",
+    },
   ];
   return (
     <>

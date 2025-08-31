@@ -124,6 +124,7 @@ export default function useTimer({
 
   return {
     inspectionTime,
-    resetAll
+    resetAll,
+    stopTimer
   };
 }

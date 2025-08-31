@@ -48,7 +48,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
     settings.sounds.newPersonalBest;
 
   useAudioTrigger({
-    audioSrc: "./sounds/new-record.mp3",
+    audioSrc: "./sounds/new-notification.mp3",
     trigger: isBestTime,
   });
 
