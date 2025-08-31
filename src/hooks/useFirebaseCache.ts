@@ -28,6 +28,12 @@ export function useFirestoreCache() {
     const ref = doc(db, path);
     const [querySnapshot, loading, error] = useDocumentX<T>(ref as any);
 
+    useEffect(() => {
+      if (error) {
+        console.error('[useFirestoreCache.useDocument] Error while subscribing to document', { path, error });
+      }
+    }, [error, path]);
+
     const documentData = querySnapshot
       ? { id: ref.id, ...(querySnapshot?.data() as T) }
       : undefined;
@@ -55,12 +61,19 @@ export function useFirestoreCache() {
         })
         .catch((err: any) => {
           if (canceled) return;
+          console.error('[useFirestoreCache.useDocumentOnce] Error while fetching document once', { path, error: err });
           setState({ data: undefined, loading: false, error: err as Error, ref });
         });
       return () => {
         canceled = true;
       };
     }, [path]);
+
+    useEffect(() => {
+      if (state.error) {
+        console.error('[useFirestoreCache.useDocumentOnce] State error', { path, error: state.error });
+      }
+    }, [state.error, path]);
 
     return state;
   }
@@ -89,6 +102,12 @@ export function useFirestoreCache() {
     const q = clauses.length > 0 ? buildQuery(ref, ...clauses) : ref;
 
     const [querySnapshot, loading, error] = useCollectionX<T>(q as any);
+
+    useEffect(() => {
+      if (error) {
+        console.error('[useFirestoreCache.useCollection] Error while subscribing to collection', { path, options, error });
+      }
+    }, [error, path, JSON.stringify(options)]);
 
     const data = querySnapshot
       ? (querySnapshot.docs.map(d => ({ id: d.id, ...d.data() })) as T[])
