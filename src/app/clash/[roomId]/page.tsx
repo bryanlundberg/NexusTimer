@@ -100,7 +100,7 @@ export default function Page() {
     if (leaderId && leaderId !== session.user.id) {
       connectToPeer(leaderId);
     }
-  }, [peerRef?.open, room?.authority?.leaderId, session?.user?.id]);
+  }, [connectToPeer, peerRef?.open, room?.authority.leaderId, session?.user.id]);
 
   // Auto-add leader to presence when leader enters the room and is not already present
   useEffect(() => {
@@ -150,7 +150,7 @@ export default function Page() {
     return () => {
       if (timer) clearInterval(timer);
     };
-  }, [room, session?.user?.id, listConnectedPeers]);
+  }, [room, session?.user.id, listConnectedPeers, session?.user, updateDocument]);
 
   // Leader-only round controller: close/open rounds and finalize match
   useEffect(() => {
@@ -255,9 +255,9 @@ export default function Page() {
 
     const interval = setInterval(checkPresenceAndHandle, 5000);
     return () => clearInterval(interval);
-  }, [room?.presence, room?.id, room?.authority?.leaderId, session?.user?.id, alertDialog, router]);
+  }, [room?.presence, room?.id, room?.authority?.leaderId, session?.user?.id, alertDialog, router, room?.status, session?.user]);
 
-  // Redirect to results page when match is finalized; redirect to lobby if cancelled
+  // Redirect to results page when match is finalized; redirect to lobby if canceled
   useEffect(() => {
     if (!room?.id) return;
     if (room.status === RoomStatus.FINALIZED) {
