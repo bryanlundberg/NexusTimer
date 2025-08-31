@@ -7,6 +7,7 @@ import * as React from 'react'
 import { useSession } from 'next-auth/react'
 import formatTime from '@/lib/formatTime'
 import { Room, Penalty } from '@/interfaces/Room'
+import { useMemo } from 'react';
 
 type PlayerRow = {
   id: string
@@ -51,13 +52,13 @@ function computeStatsClassicMs(solvesMs: (number | undefined)[], penalties: (Pen
   return { best, averageClassic, rankingAverage, rankingBest }
 }
 
-export default function ChartResults({ room }: { room: Room }) {
+export default function ChartResults({ room }: { room?: Room }) {
   const { data: session } = useSession()
   const myUserId = session?.user?.id
 
   const totalRounds = room?.totalRounds || 0
-  const rounds = room?.rounds || []
-  const presence = room?.presence || {}
+  const rounds = useMemo(() => room?.rounds || [], [room?.rounds])
+  const presence = useMemo(() => room?.presence || {}, [room?.presence])
 
   const playerIds = React.useMemo(() => {
     const ids = new Set<string>()
