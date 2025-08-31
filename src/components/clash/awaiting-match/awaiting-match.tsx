@@ -40,7 +40,7 @@ export default function AwaitingMatch() {
     const enoughPlayers = users.length >= 2; // at least 2 members
     if (!enoughPlayers) return;
     startMatchNow(String(roomId), room)
-  }, [remainingMs, room?.status, room?.totalRounds, room?.maxRoundTime, users.length, roomId, startMatchNow]);
+  }, [remainingMs, room?.status, room?.totalRounds, room?.maxRoundTime, users.length, roomId, startMatchNow, room]);
 
   // Auto-cancel when countdown reaches 0 and there are fewer than 2 members (leader triggers)
   useEffect(() => {
@@ -51,7 +51,7 @@ export default function AwaitingMatch() {
     const isLeader = session?.user?.id === room?.authority?.leaderId;
     if (!isLeader) return;
     cancelRoomNow(String(roomId));
-  }, [remainingMs, room?.status, users.length, session?.user?.id, room?.authority?.leaderId, roomId, cancelRoomNow]);
+  }, [remainingMs, room?.status, users.length, session?.user?.id, room?.authority?.leaderId, roomId, cancelRoomNow, room]);
 
   const handleStartMatch = async () => {
     if (!room) return;
