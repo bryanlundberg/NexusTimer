@@ -18,7 +18,6 @@ export interface RoundEntry {
   finalMs?: number;
   penalty: Penalty;
   participated: boolean;
-  dns: boolean;
   submittedAt?: number;
   submittedBy?: string;
   source?: 'auto' | 'manual';
