@@ -56,7 +56,7 @@ export default function Page() {
       alertDialog({ hideCancel: true, title: "Login Required", subtitle: "You must be logged in to join a Clash room." });
       router.push('/clash?reason=loginRequired');
     }
-  }, [session, router]);
+  }, [session, router, alertDialog]);
 
   useEffect(() => {
     if (roomData) return;
@@ -68,7 +68,7 @@ export default function Page() {
     if (roomData?.id && !loadingRoom && !_.isEqual(room, roomData)) {
       setRoom(roomData);
     }
-  }, [roomData, loadingRoom, setRoom]);
+  }, [roomData, loadingRoom, setRoom, room]);
 
   // Re-elect a leader when leaderId is missing
   useEffect(() => {
@@ -91,7 +91,7 @@ export default function Page() {
     updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, {
       'authority.leaderId': candidateId,
     });
-  }, [room?.authority?.leaderId, room?.presence, room?.id, session?.user?.id]);
+  }, [room?.authority?.leaderId, room?.presence, room?.id, session?.user.id, room, updateDocument]);
 
   // Ensure we first connect to the leader; leader will add us to presence upon JOIN
   useEffect(() => {
@@ -124,7 +124,7 @@ export default function Page() {
         status: PlayerStatus.PREPARING,
       }
     });
-  }, [room, session?.user?.id]);
+  }, [room, session?.user.id, session?.user.image, session?.user.name, updateDocument]);
 
   // Leader-only presence reconciliation using active connections
   useEffect(() => {
@@ -222,7 +222,7 @@ export default function Page() {
     updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${room.id}`, {
       rounds: newRoom.rounds,
     });
-  }, [room, session?.user?.id, roundTimeFinished]);
+  }, [room, session?.user.id, roundTimeFinished, cloneRoom, closeRound, openNextRound, updateDocument, allParticipantsSubmitted]);
 
   // Periodic presence revalidation: if current user is not in presence, show alert and redirect out
   useEffect(() => {
