@@ -5,11 +5,6 @@ import { useFirestoreCache } from '@/hooks/useFirebaseCache';
 import { useParams, useRouter } from 'next/navigation';
 import { FirestoreCollections } from '@/constants/FirestoreCollections';
 
-// IDEAS, INCLUDE PERCENTAGE CLEAN SOLVES - 0 100%
-// ADD EACH INDIVIDUAL SOLVE
-// RANKS ADD SOME COLOR
-// HIGHTLIGHT CURRENT USER IN TABLE
-
 export default function MatchFinished() {
   const { roomId } = useParams();
   const { useDocumentOnce } = useFirestoreCache();
