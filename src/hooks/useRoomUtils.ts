@@ -28,7 +28,6 @@ export const useRoomUtils = () => {
         name: p?.name || 'Unknown',
         image: p?.image || null,
         participated: false,
-        dns: false,
         penalty: null,
       };
     });
@@ -79,7 +78,6 @@ export const useRoomUtils = () => {
         name: p?.name || 'Unknown',
         image: p?.image || '',
         participated: false,
-        dns: false,
         penalty: null,
       }
     })
@@ -93,12 +91,11 @@ export const useRoomUtils = () => {
 
     // Build entry without undefined fields (Firestore does not allow undefined)
     const nextEntry: any = {
-      ...(prev || { userId, participated: false, dns: false, penalty: null }),
+      ...(prev || { userId, participated: false, penalty: null }),
       userId: prev?.userId || userId,
       rawMs,
       penalty,
       participated: true,
-      dns: false,
       submittedAt: Date.now(),
       submittedBy: userId,
       source: 'auto',
@@ -132,8 +129,7 @@ export const useRoomUtils = () => {
           name: p?.name || 'Unknown',
           image: p?.image || '',
           participated: false,
-          dns: true,
-          penalty: null,
+          penalty: 'DNF',
         }
       }
     })
