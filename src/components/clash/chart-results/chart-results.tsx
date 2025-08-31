@@ -1,9 +1,10 @@
 'use client'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { CardContent } from '@/components/ui/card'
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow, } from '@/components/ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from '@/components/ui/table'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import * as React from 'react'
+import { useSession } from 'next-auth/react'
 import formatTime from '@/lib/formatTime'
 import { Room, Penalty } from '@/interfaces/Room'
 
@@ -51,6 +52,9 @@ function computeStatsClassicMs(solvesMs: (number | undefined)[], penalties: (Pen
 }
 
 export default function ChartResults({ room }: { room: Room }) {
+  const { data: session } = useSession()
+  const myUserId = session?.user?.id
+
   const totalRounds = room?.totalRounds || 0
   const rounds = room?.rounds || []
   const presence = room?.presence || {}
@@ -142,13 +146,13 @@ export default function ChartResults({ room }: { room: Room }) {
           </TableHeader>
           <TableBody>
             {enriched.map(({ row, stats }, idx) => (
-              <TableRow key={row.id} data-rank={idx + 1}>
+              <TableRow key={row.id} data-rank={idx + 1} data-user={row.id === myUserId ? 'me' : undefined} className={row.id === myUserId ? 'bg-primary/10' : undefined}>
                 <TableCell className="font-medium">{idx + 1}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-3">
                     <Avatar>
                       {row.avatarUrl ? (
-                        <AvatarImage src={row.avatarUrl} alt={row.name}/>
+                        <AvatarImage src={row.avatarUrl} alt={row.name} className={"object-cover"}/>
                       ) : (
                         <AvatarFallback>{initials(row.name)}</AvatarFallback>
                       )}
@@ -159,7 +163,7 @@ export default function ChartResults({ room }: { room: Room }) {
                     </div>
                   </div>
                 </TableCell>
-                <TableCell>({stats.best !== undefined ? formatTime(stats.best) : '--'})</TableCell>
+                <TableCell>{stats.best !== undefined ? formatTime(stats.best) : '--'}</TableCell>
                 <TableCell className="font-semibold">{stats.averageClassic !== undefined ? formatTime(stats.averageClassic) : '--'}</TableCell>
                 {Array.from({ length: totalRounds }, (_, i) => (
                   <TableCell key={`s-${row.id}-${i}`} className="text-center">
@@ -170,7 +174,6 @@ export default function ChartResults({ room }: { room: Room }) {
               </TableRow>
             ))}
           </TableBody>
-          <TableCaption>Winner is determined by the best average.</TableCaption>
         </Table>
       </CardContent>
     </div>
