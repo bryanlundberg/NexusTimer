@@ -176,29 +176,6 @@ export const useRoomUtils = () => {
     return { ...room, rounds }
   }
 
-  function computeNewLeader(
-    presence: Room['presence'],
-    currentLeaderId: string | null,
-    leavingUserId: string,
-    createdBy: string | undefined | null,
-  ): { leaderId: string | null; termIncrement: 1 | 0 } {
-    if (currentLeaderId !== leavingUserId) {
-      // leader not leaving; no change
-      return { leaderId: currentLeaderId, termIncrement: 0 }
-    }
-
-    // Pick earliest joined remaining player
-    const candidates = Object.values(presence || {})
-      .filter((p) => p.id !== leavingUserId)
-      .sort((a, b) => (a.joinedAt || 0) - (b.joinedAt || 0))
-
-    const newLeader = candidates[0]?.id || null
-    if (newLeader) return { leaderId: newLeader, termIncrement: 1 }
-
-    // No players left; keep null leader (creator may reclaim later)
-    return { leaderId: null, termIncrement: 1 }
-  }
-
   function allParticipantsSubmitted(round: RoundRecord, presentUserIds: string[]): boolean {
     // If no one is present, the round is NOT considered complete
     if (!presentUserIds || presentUserIds.length === 0) return false
@@ -239,13 +216,9 @@ export const useRoomUtils = () => {
     buildInitialRounds,
     handleCopyRoomLink,
     handleLeaveClash,
-    calculateFinalMs,
-    initializeRoundEntriesFromPresence,
     applySolve,
-    markDnsForAbsents,
     closeRound,
     openNextRound,
-    computeNewLeader,
     allParticipantsSubmitted,
     cloneRoom,
     buildStartMatchUpdate,
