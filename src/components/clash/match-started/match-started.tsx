@@ -1,10 +1,18 @@
 'use client'
-import React, { useMemo, useState, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Hourglass } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { cubeCollection } from '@/lib/const/cubeCollection';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle
+} from '@/components/ui/dialog';
 import { Rnd } from 'react-rnd';
 import ScrambleDisplayDraggable from '@/components/clash/scramble-display-draggable/scramble-display-draggable';
 import { useClashWindows } from '@/store/clash-windows';
@@ -57,6 +65,8 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
   // Modal control for post-solve penalty selection
   const [penaltyModalOpen, setPenaltyModalOpen] = useState<boolean>(false);
   const [finishedTimeMs, setFinishedTimeMs] = useState<number | undefined>(undefined);
+  // Ensure round-end cleanup runs once per round
+  const [didRoundCleanup, setDidRoundCleanup] = useState<boolean>(false);
 
   const submitSolve = useCallback(async (rawMs: number, penalty: null | '+2' | 'DNF') => {
     if (!room || !session?.user?.id) return;
@@ -82,6 +92,11 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
     return round?.entries?.[uid];
   }, [room?.rounds, currentRoundIndex, session?.user?.id]);
 
+  // Show local pending penalty until Firestore confirms
+  const displayPenalty: null | '+2' | 'DNF' = useMemo(() => {
+    return (myEntry?.penalty ?? pendingPenalty) || null;
+  }, [myEntry?.penalty, pendingPenalty]);
+
   const roundStatus = room?.rounds?.[currentRoundIndex]?.status;
   const hasSubmittedCurrentRound = Boolean(myEntry?.participated);
   const canSolve = roundStatus === 'open' && !hasSubmittedCurrentRound && !localSubmitted && !isFinished;
@@ -94,30 +109,6 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
   // When the open round changes, reset local lock
   useEffect(() => {
     setLocalSubmitted(false);
-  }, [currentRoundIndex]);
-
-  // Guard: prevent starting a new solve after submission or when time is up, and stop if not allowed
-  useEffect(() => {
-    if (!canSolve && isSolving) {
-      setIsSolving(false);
-    }
-  }, [canSolve, isSolving, setIsSolving]);
-
-  // Hard cutoff: when countdown finishes, stop the local timer immediately
-  useEffect(() => {
-    if (isFinished && isSolving) {
-      stopTimer()
-    }
-  }, [isFinished, isSolving, setIsSolving]);
-
-  // When the round changes, fully reset local UI/timer and close any pending modal to avoid being locked
-  useEffect(() => {
-    setPenaltyModalOpen(false);
-    setFinishedTimeMs(undefined);
-    setPendingPenalty(null);
-    setIsSolving(false);
-    setSolvingTime(0);
-    resetAll();
   }, [currentRoundIndex]);
 
   const guardedSetIsSolving = useCallback((v: boolean) => {
@@ -142,6 +133,32 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
       }
     }
   });
+
+  // Hard cutoff: when countdown finishes, stop the local timer immediately
+  useEffect(() => {
+    if (isFinished && isSolving) {
+      stopTimer()
+    }
+  }, [isFinished, isSolving, setIsSolving, stopTimer]);
+
+  // Full cleanup when the round ends to avoid leftover state and races
+  useEffect(() => {
+    if (!isFinished) {
+      if (didRoundCleanup) setDidRoundCleanup(false);
+      return;
+    }
+    if (didRoundCleanup) return;
+    try {
+      stopTimer();
+    } finally {
+      resetAll();
+      setPenaltyModalOpen(false);
+      setPendingPenalty(null);
+      setFinishedTimeMs(undefined);
+      setLocalSubmitted(false);
+      setDidRoundCleanup(true);
+    }
+  }, [isFinished, didRoundCleanup, stopTimer, resetAll]);
 
   const players = useMemo(() => {
     return Object.values(room?.presence || {}).map((user) => user);
@@ -178,7 +195,17 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
             {scramble || '...'}
           </div>
           <div className={'text-4xl md:text-5xl lg:text-6xl xl:text-9xl grow flex items-center-safe justify-center w-full'}>
-            {formatTime(solvingTime)}
+            <div className={'flex items-center gap-3'}>
+              {formatTime(solvingTime)}
+              {(hasSubmittedCurrentRound || localSubmitted) && displayPenalty && (
+                <Badge
+                  variant={displayPenalty === 'DNF' ? 'destructive' : 'outline'}
+                  className={'text-base md:text-lg leading-none'}
+                >
+                  {displayPenalty}
+                </Badge>
+              )}
+            </div>
           </div>
           <div className={'pb-3 flex flex-col items-center gap-2'}>
             {(hasSubmittedCurrentRound || localSubmitted) && (
@@ -241,7 +268,11 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
         <ScrambleDisplayDraggable/>
 
         <Dialog open={penaltyModalOpen}>
-          <DialogContent showCloseButton={false} onInteractOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
+          <DialogContent
+            showCloseButton={false}
+            onInteractOutside={(e) => e.preventDefault()}
+            onEscapeKeyDown={(e) => e.preventDefault()}
+          >
             <DialogHeader>
               <DialogTitle>Submit</DialogTitle>
               <DialogDescription>
@@ -250,27 +281,33 @@ export default function MatchStarted({ broadcast }: MatchStartedProps) {
             </DialogHeader>
             <div className={'flex flex-col gap-2'}>
               <div className={'flex flex-col sm:flex-row gap-2'}>
-                <Button variant={'destructive'} className={"grow"} onClick={async () => {
+                <Button
+                  variant={'destructive'} className={'grow'} onClick={async () => {
                   if (finishedTimeMs === undefined) return;
+                  setPendingPenalty('DNF');
                   await submitSolve(finishedTimeMs, 'DNF');
                   setLocalSubmitted(true);
-                  setPendingPenalty(null);
                   setPenaltyModalOpen(false);
-                }}>DNF</Button>
-                <Button variant={'outline'} className={"grow"} onClick={async () => {
+                }}
+                >DNF</Button>
+                <Button
+                  variant={'outline'} className={'grow'} onClick={async () => {
                   if (finishedTimeMs === undefined) return;
+                  setPendingPenalty('+2');
                   await submitSolve(finishedTimeMs, '+2');
                   setLocalSubmitted(true);
-                  setPendingPenalty(null);
                   setPenaltyModalOpen(false);
-                }}>+2</Button>
-                <Button className={"grow"} onClick={async () => {
+                }}
+                >+2</Button>
+                <Button
+                  className={'grow'} onClick={async () => {
                   if (finishedTimeMs === undefined) return;
                   await submitSolve(finishedTimeMs, null);
                   setLocalSubmitted(true);
                   setPendingPenalty(null);
                   setPenaltyModalOpen(false);
-                }}>Ok</Button>
+                }}
+                >Ok</Button>
               </div>
             </div>
             <DialogFooter>
