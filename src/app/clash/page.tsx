@@ -83,7 +83,7 @@ export default function Page() {
 
           <Alert variant="default" className={"mb-2"}>
             <AlertCircleIcon/>
-            <AlertTitle>Important: Clash Cubing Mode is in Beta</AlertTitle>
+            <AlertTitle>Important: Clash Mode is in Beta</AlertTitle>
 
             <AlertDescription>
               <p>If you encounter any bugs, please help us improve by reporting them. <Link className={"text-primary hover:underline"} href={"https://github.com/bryanlundberg/NexusTimer/issues"} target={"_blank"}>Here</Link> </p>
