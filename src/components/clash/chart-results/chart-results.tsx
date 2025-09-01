@@ -127,7 +127,7 @@ export default function ChartResults({ room }: { room?: Room }) {
           <TableHeader>
             <TableRow>
               <TableHead className="w-12">#</TableHead>
-              <TableHead>Cuber (name)</TableHead>
+              <TableHead>Cuber</TableHead>
               <TableHead>
                 <Tooltip>
                   <TooltipTrigger className="text-left">Single</TooltipTrigger>
