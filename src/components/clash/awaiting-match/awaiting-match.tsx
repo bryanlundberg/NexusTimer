@@ -62,7 +62,7 @@ export default function AwaitingMatch() {
     <div className={'grid grid-cols-1'}>
       <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-center mt-2 [text-shadow:0_0_7px_rgba(255,255,255,0.8)] pt-2">Clash
         Of
-        Cubing</h1>
+        Cubers</h1>
       <div className="text-muted-foreground text-sm flex items-center justify-center gap-2 mt-2">
         <LoaderCircle size={16} className={'animate-spin'}/>
         <div>
