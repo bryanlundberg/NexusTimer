@@ -17,6 +17,7 @@ import {
 } from '@/components/ui/sidebar'
 import { DiscordLogoIcon } from '@radix-ui/react-icons'
 import { useSession } from 'next-auth/react';
+import ButtonGoogle from '@/components/buttons/button-google/button-google';
 
 const data = {
   navMain: [
@@ -104,7 +105,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary as any} className="mt-auto"/>
       </SidebarContent>
 
-      {session?.user && (
+      {session?.user ? (
         <SidebarFooter>
           <NavUser user={{
             name: session.user.name || 'User',
@@ -112,6 +113,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             avatar: session.user.image || '',
           }}/>
         </SidebarFooter>
+      ): (
+        <ButtonGoogle/>
       )}
     </Sidebar>
   )
