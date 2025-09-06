@@ -17,6 +17,8 @@ import { TimeZones } from '@/enums/Timezones';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { TablePagination } from '@/components/people/table-pagination';
 import { UserCard } from '@/components/people/user-card';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function Page() {
   const router = useRouter();
@@ -51,11 +53,12 @@ export default function Page() {
   };
 
   return (
-    <FadeIn className="flex flex-col grow overflow-auto">
-      <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
+    <ScrollArea className={'max-h-dvh overflow-auto'}>
+    <FadeIn>
+      <div className="px-2 pt-2 flex flex-col w-full">
         <Navigation showMenu={false}>
           <div className={'flex flex-col sm:flex-row items-center justify-between gap-2'}>
-            <ButtonNavbar/>
+            <SidebarTrigger/>
             <div className={'flex sm:flex-row items-center gap-3 w-full justify-end'}>
               <div className={'flex flex-col sm:flex-row items-center gap-2 grow justify-end'}>
                 <Input
@@ -123,6 +126,7 @@ export default function Page() {
         )}
       </div>
     </FadeIn>
+    </ScrollArea>
   );
 }
 
