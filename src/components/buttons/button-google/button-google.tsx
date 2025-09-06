@@ -14,7 +14,7 @@ export default function ButtonGoogle() {
           <Button
             className="flex gap-2 items-center w-full"
             onClick={() =>
-              signIn("google", { redirectTo: "/settings/account" })
+              signIn("google", { redirectTo: "/app" })
             }
           >
             <Image
