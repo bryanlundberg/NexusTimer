@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { GithubIcon, LandPlot, LayoutPanelLeft, LifeBuoy, UsersRound, } from 'lucide-react'
+import { GithubIcon, LandPlot, LayoutPanelLeft, LifeBuoy, Settings, UsersRound, } from 'lucide-react'
 
 import { NavMain } from '@/components/nav-main'
 import { NavSecondary } from '@/components/nav-secondary'
@@ -19,6 +19,7 @@ import { DiscordLogoIcon } from '@radix-ui/react-icons'
 import { useSession } from 'next-auth/react';
 import ButtonGoogle from '@/components/buttons/button-google/button-google';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const data = {
   navMain: [
@@ -47,10 +48,6 @@ const data = {
         {
           title: 'Transfer',
           url: '/transfer-solves',
-        },
-        {
-          title: 'Settings',
-          url: '/options',
         }
       ],
     },
@@ -63,7 +60,40 @@ const data = {
       title: 'Multiplayer',
       url: '/clash',
       icon: LandPlot,
+      items: [
+        {
+          title: 'Clash Mode',
+          url: '/clash',
+        }
+      ]
     },
+    {
+      title: 'Settings',
+      url: '/options',
+      icon: Settings,
+      items: [
+        {
+          title: 'Language',
+          url: '/options#region'
+        },
+        {
+          title: 'Features',
+          url: '/options#timer'
+        },
+        {
+          title: 'Sounds',
+          url: '/options#sounds'
+        },
+        {
+          title: 'Alerts',
+          url: '/options#notifications'
+        },
+        {
+          title: 'Appearance',
+          url: '/options#appareance'
+        }
+      ]
+    }
   ],
   navSecondary: [
     {
@@ -92,15 +122,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <div className={"pointer-none select-none"}>
+              <Link href={'/app'}>
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Image src={"/logo.png"} alt={"logo"} width={32} height={32} className={`p-1.5 invert`}/>
+                  <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert`}/>
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Nexus Timer</span>
                   <span className="truncate text-xs">Welcome! </span>
                 </div>
-              </div>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -112,13 +142,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
       {session?.user ? (
         <SidebarFooter>
-          <NavUser user={{
-            name: session.user.name || 'User',
-            email: session.user.email || '',
-            avatar: session.user.image || '',
-          }}/>
+          <NavUser
+            user={{
+              name: session.user.name || 'User',
+              email: session.user.email || '',
+              avatar: session.user.image || '',
+            }}
+          />
         </SidebarFooter>
-      ): (
+      ) : (
         <ButtonGoogle/>
       )}
     </Sidebar>
