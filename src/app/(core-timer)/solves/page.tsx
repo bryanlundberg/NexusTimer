@@ -12,10 +12,11 @@ import { useTranslations } from "next-intl";
 import Navigation from "@/components/navigation/navigation";
 import ButtonMoveSolves from "@/components/navigation/buttons/button-move-solves";
 import { useQueryState } from "nuqs";
-import { DisplaySolvesTabs } from "@/enums/DisplaySolvesTabs";
 import { STATES } from "@/constants/states";
 import { useDebouncedCallback } from "use-debounce";
 import FadeIn from "@/components/fade-in/fade-in";
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs';
 
 export default function Page() {
   const isDialogSolveOpen = useDialogSolve((state) => state.isDialogSolveOpen);
@@ -29,43 +30,43 @@ export default function Page() {
   const handleSearch = useDebouncedCallback((value) => setQuery(value), 1000);
 
   return (
-    <FadeIn className="flex flex-col grow overflow-auto">
-      {/* container */}
-      <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
-        {/* header */}
-        <Navigation showMainCubeSelector showButtonDisplayType>
-          <div className="flex gap-2">
-            <ButtonMoveSolves />
-            <Input
-              placeholder={t("SolvesPage.filter-by-time")}
-              onChange={(e) => handleSearch(e.target.value)}
-              className="bg-background"
-            />
-            <DropdownFilterSolves />
-          </div>
-        </Navigation>
+    <ScrollArea className={"max-h-dvh overflow-auto"}>
+      <FadeIn>
+        <div className="px-2 pt-2 flex flex-col w-full">
+          <Navigation showMainCubeSelector showButtonDisplayType>
+            <div className="flex gap-2">
+              <ButtonMoveSolves />
+              <Input
+                placeholder={t("SolvesPage.filter-by-time")}
+                onChange={(e) => handleSearch(e.target.value)}
+                className="bg-background"
+              />
+              <DropdownFilterSolves />
+            </div>
+          </Navigation>
 
-        <SolvesArea
-          displaySolves={
-            tabMode === DisplaySolvesTabs.SESSION
-              ? selectedCube?.solves.session
-              : selectedCube?.solves.all
-          }
-        />
-
-        <Dialog
-          open={isOpenMoveSolvesDialog}
-          onOpenChange={() => handleChangeIsOpenMoveSolvesDialog()}
-        >
-          <DialogMoveHistorial
-            handleClose={() => handleChangeIsOpenMoveSolvesDialog()}
+          <SolvesArea
+            displaySolves={
+              tabMode === DisplaySolvesTabs.SESSION
+                ? selectedCube?.solves.session
+                : selectedCube?.solves.all
+            }
           />
-        </Dialog>
 
-        <Dialog open={isDialogSolveOpen} onOpenChange={handleCloseDialogSolve}>
-          <SheetSolveDetails />
-        </Dialog>
-      </div>
-    </FadeIn>
+          <Dialog
+            open={isOpenMoveSolvesDialog}
+            onOpenChange={() => handleChangeIsOpenMoveSolvesDialog()}
+          >
+            <DialogMoveHistorial
+              handleClose={() => handleChangeIsOpenMoveSolvesDialog()}
+            />
+          </Dialog>
+
+          <Dialog open={isDialogSolveOpen} onOpenChange={handleCloseDialogSolve}>
+            <SheetSolveDetails />
+          </Dialog>
+        </div>
+      </FadeIn>
+    </ScrollArea>
   );
 }
