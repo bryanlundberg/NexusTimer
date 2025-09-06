@@ -22,7 +22,7 @@ export default function CategoryStatistics() {
   return (
     <>
       <div className="flex flex-col gap-3 grow">
-        <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-background/90 backdrop-blur-lg">
+        <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-card backdrop-blur-lg">
           {selectedCube && (selectedCube.solves.session.length || selectedCube.solves.all.length || cubes?.some((cube) => cube.category === selectedCube.category && cube.solves.all.length)) ? (
             <>
               <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3 w-full">
@@ -41,7 +41,7 @@ export default function CategoryStatistics() {
           ): <EmptyStatistics />}
         </div>
 
-        <Table className="rounded-md overflow-hidden bg-background/90 backdrop-blur-lg">
+        <Table className="rounded-md backdrop-blur-lg mb-5">
           <TableHeader>
             <TableRow>
               <TableHead></TableHead>
