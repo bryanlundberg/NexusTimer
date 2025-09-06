@@ -18,6 +18,7 @@ import { useClashManager } from '@/store/ClashManager';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import Link from 'next/link';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
 export default function Page() {
   const [createMode, setCreateMode] = useState<RoomType | null>(null);
@@ -44,64 +45,68 @@ export default function Page() {
 
   return (
     <>
-      <ScrollArea className={"max-h-dvh overflow-auto"}>
-      <FadeIn>
-        <div className="px-2 pt-2 flex flex-col w-full min-h-full">
-          <Navigation showMenu={false}>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <div className={'flex justify-between'}>
-                <ButtonNavbar/>
-                <div className={'flex items-center justify-end text-xs text-muted-foreground'}>
-                  <RealtimePill/>
+      <ScrollArea className={'max-h-dvh overflow-auto'}>
+        <FadeIn>
+          <div className="px-2 pt-2 flex flex-col w-full min-h-full">
+            <Navigation showMenu={false}>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <div className={'flex justify-between items-center'}>
+                  <SidebarTrigger/>
+                  <div className={'flex items-center justify-end text-xs text-muted-foreground'}>
+                    <RealtimePill/>
+                  </div>
+                </div>
+                <div className={'flex justify-end grow items-center gap-2'}>
+                  <Dialog
+                    open={createMode === RoomType.PUBLIC}
+                    onOpenChange={(open) => setCreateMode(open ? RoomType.PUBLIC : null)}
+                  >
+                    <DialogTrigger asChild>
+                      <Button onClick={() => setCreateMode(RoomType.PUBLIC)} className="gap-2">
+                        <Globe2 className="size-4"/> Create Public
+                      </Button>
+                    </DialogTrigger>
+                    <CreateRoomModalContent mode={RoomType.PUBLIC}/>
+                  </Dialog>
+
+                  <Dialog
+                    open={createMode === RoomType.PRIVATE}
+                    onOpenChange={(open) => setCreateMode(open ? RoomType.PRIVATE : null)}
+                  >
+                    <DialogTrigger asChild>
+                      <Button variant="outline" onClick={() => setCreateMode(RoomType.PRIVATE)} className="gap-2">
+                        <Lock className="size-4"/> Create Private
+                      </Button>
+                    </DialogTrigger>
+                    <CreateRoomModalContent mode={RoomType.PRIVATE}/>
+                  </Dialog>
                 </div>
               </div>
-              <div className={'flex justify-end grow items-center gap-2'}>
-                <Dialog
-                  open={createMode === RoomType.PUBLIC}
-                  onOpenChange={(open) => setCreateMode(open ? RoomType.PUBLIC : null)}
-                >
-                  <DialogTrigger asChild>
-                    <Button onClick={() => setCreateMode(RoomType.PUBLIC)} className="gap-2">
-                      <Globe2 className="size-4"/> Create Public
-                    </Button>
-                  </DialogTrigger>
-                  <CreateRoomModalContent mode={RoomType.PUBLIC}/>
-                </Dialog>
+            </Navigation>
 
-                <Dialog
-                  open={createMode === RoomType.PRIVATE}
-                  onOpenChange={(open) => setCreateMode(open ? RoomType.PRIVATE : null)}
-                >
-                  <DialogTrigger asChild>
-                    <Button variant="outline" onClick={() => setCreateMode(RoomType.PRIVATE)} className="gap-2">
-                      <Lock className="size-4"/> Create Private
-                    </Button>
-                  </DialogTrigger>
-                  <CreateRoomModalContent mode={RoomType.PRIVATE}/>
-                </Dialog>
-              </div>
+            <Alert variant="default" className={'mb-2'}>
+              <AlertCircleIcon/>
+              <AlertTitle>Important: Clash Mode is in Beta</AlertTitle>
+
+              <AlertDescription>
+                <p>If you encounter any bugs, please help us improve by reporting them. <Link
+                  className={'text-primary hover:underline'}
+                  href={'https://github.com/bryanlundberg/NexusTimer/issues'}
+                  target={'_blank'}
+                >Here</Link></p>
+                <ul className="list-inside list-disc text-sm">
+                  <li>Refrain from using multiple windows simultaneously.</li>
+                  <li>Ensure a stable internet connection to avoid disruptions.</li>
+                  <li>Do not use VPNs, proxies, or network-filtering tools that might interfere with connectivity.</li>
+                </ul>
+              </AlertDescription>
+            </Alert>
+
+            <div className="flex flex-col gap-3">
+              <RoomsList rooms={rooms}/>
             </div>
-          </Navigation>
-
-          <Alert variant="default" className={"mb-2"}>
-            <AlertCircleIcon/>
-            <AlertTitle>Important: Clash Mode is in Beta</AlertTitle>
-
-            <AlertDescription>
-              <p>If you encounter any bugs, please help us improve by reporting them. <Link className={"text-primary hover:underline"} href={"https://github.com/bryanlundberg/NexusTimer/issues"} target={"_blank"}>Here</Link> </p>
-              <ul className="list-inside list-disc text-sm">
-                <li>Refrain from using multiple windows simultaneously.</li>
-                <li>Ensure a stable internet connection to avoid disruptions.</li>
-                <li>Do not use VPNs, proxies, or network-filtering tools that might interfere with connectivity.</li>
-              </ul>
-            </AlertDescription>
-          </Alert>
-
-          <div className="flex flex-col gap-3">
-            <RoomsList rooms={rooms}/>
           </div>
-        </div>
-      </FadeIn>
+        </FadeIn>
       </ScrollArea>
     </>
   );
