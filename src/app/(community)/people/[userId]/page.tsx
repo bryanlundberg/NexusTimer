@@ -19,6 +19,16 @@ import { useSettingsModalStore } from '@/store/SettingsModalStore';
 import useWebsiteColors from '@/hooks/useWebsiteColors';
 import PeopleBreadcrumb from '@/components/people/people-breadcrumb';
 import PeopleSkeleton from '@/components/people/people-skeleton';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import { Separator } from '@/components/ui/separator';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList, BreadcrumbPage,
+  BreadcrumbSeparator
+} from '@/components/ui/breadcrumb';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function Page() {
   const params = useParams<{ userId: string; }>()
@@ -57,40 +67,63 @@ export default function Page() {
   }
 
   return (
-    <FadeIn className="flex flex-col grow overflow-auto">
-      <div className="max-w-7xl mx-auto p-4 flex flex-col w-full min-h-full">
-        <PeopleBreadcrumb userName={user?.name}/>
-        <div className="flex flex-col md:flex-row p-5 relative">
-          <UserInfo user={user}/>
-          <div className="flex flex-col ml-4 grow">
-            <Tabs defaultValue={tab} className="w-full">
-              <TabsList>
-                <TabsTrigger
-                  onClick={() => handleChangeTab(PeopleTabs.OVERVIEW)}
-                  value={PeopleTabs.OVERVIEW}
-                >Overview</TabsTrigger>
-                <TabsTrigger
-                  onClick={() => handleChangeTab(PeopleTabs.CUBES)}
-                  value={PeopleTabs.CUBES}
-                >Cubes</TabsTrigger>
-                <TabsTrigger
-                  onClick={() => handleChangeTab(PeopleTabs.LAST_ACTIVITY)}
-                  value={PeopleTabs.LAST_ACTIVITY}
-                >Last activity</TabsTrigger>
-              </TabsList>
-              <TabsContent value={PeopleTabs.OVERVIEW}>
-                <OverviewTabContent cubes={backup}/>
-              </TabsContent>
-              <TabsContent value={PeopleTabs.CUBES}>
-                <CubesTabContent cubes={backup}/>
-              </TabsContent>
-              <TabsContent value={PeopleTabs.LAST_ACTIVITY}>
-                <LastActivityTabContent cubes={backup}/>
-              </TabsContent>
-            </Tabs>
+    <ScrollArea className={'max-h-dvh overflow-auto'}>
+      <FadeIn>
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+          <div className="flex items-center gap-2 px-4">
+            <SidebarTrigger className="-ml-1" />
+            <Separator
+              orientation="vertical"
+              className="mr-2 data-[orientation=vertical]:h-4"
+            />
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem className="hidden md:block">
+                  <BreadcrumbLink href="/people" >
+                    People
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>{user.name}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+          </div>
+        </header>
+        <div className="flex flex-col w-full">
+          <div className="flex flex-col md:flex-row p-5 relative">
+            <UserInfo user={user}/>
+            <div className="flex flex-col ml-4 grow">
+              <Tabs defaultValue={tab} className="w-full">
+                <TabsList>
+                  <TabsTrigger
+                    onClick={() => handleChangeTab(PeopleTabs.OVERVIEW)}
+                    value={PeopleTabs.OVERVIEW}
+                  >Overview</TabsTrigger>
+                  <TabsTrigger
+                    onClick={() => handleChangeTab(PeopleTabs.CUBES)}
+                    value={PeopleTabs.CUBES}
+                  >Cubes</TabsTrigger>
+                  <TabsTrigger
+                    onClick={() => handleChangeTab(PeopleTabs.LAST_ACTIVITY)}
+                    value={PeopleTabs.LAST_ACTIVITY}
+                  >Last activity</TabsTrigger>
+                </TabsList>
+                <TabsContent value={PeopleTabs.OVERVIEW}>
+                  <OverviewTabContent cubes={backup}/>
+                </TabsContent>
+                <TabsContent value={PeopleTabs.CUBES}>
+                  <CubesTabContent cubes={backup}/>
+                </TabsContent>
+                <TabsContent value={PeopleTabs.LAST_ACTIVITY}>
+                  <LastActivityTabContent cubes={backup}/>
+                </TabsContent>
+              </Tabs>
+            </div>
           </div>
         </div>
-      </div>
-    </FadeIn>
+      </FadeIn>
+    </ScrollArea>
   )
 }
