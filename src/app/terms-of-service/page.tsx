@@ -2,7 +2,7 @@ import { H2, Li, Para } from "@/components/helpers/helpers";
 
 export default function Page() {
   return (
-    <>
+    <div className={"max-w-lg mx-auto py-10"}>
       <h1 className="text-3xl font-black mb-4">Terms of Service</h1>
       <Para>
         This Terms of Service is entered into between you and NexusTimer, its
@@ -536,6 +536,6 @@ export default function Page() {
         You may contact NexusTimer regarding this Terms of Service by emailing
         contact.nexustimer@gmail.com
       </Para>
-    </>
+    </div>
   );
 }
