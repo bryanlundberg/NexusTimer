@@ -2,7 +2,7 @@ import { H2, Li, Para } from "@/components/helpers/helpers";
 
 export default function Page() {
   return (
-    <>
+    <div className={"max-w-lg mx-auto py-10"}>
       <h1 className="text-3xl font-black mb-4">Privacy Policy</h1>
       <Para>
         NexusTimer provides this Privacy Policy to explain how it collects,
@@ -131,6 +131,6 @@ export default function Page() {
         measure how users utilize our services so that we may improve them, and
         to measure the effectiveness of our advertising campaigns.
       </Li>
-    </>
+    </div>
   );
 }
