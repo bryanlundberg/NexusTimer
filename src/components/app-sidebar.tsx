@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { BookOpen, Bot, Command, GithubIcon, LandPlot, LayoutPanelLeft, LifeBuoy, UsersRound, } from 'lucide-react'
+import { GithubIcon, LandPlot, LayoutPanelLeft, LifeBuoy, UsersRound, } from 'lucide-react'
 
 import { NavMain } from '@/components/nav-main'
 import { NavSecondary } from '@/components/nav-secondary'
@@ -18,6 +18,7 @@ import {
 import { DiscordLogoIcon } from '@radix-ui/react-icons'
 import { useSession } from 'next-auth/react';
 import ButtonGoogle from '@/components/buttons/button-google/button-google';
+import Image from 'next/image';
 
 const data = {
   navMain: [
@@ -93,7 +94,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton size="lg" asChild>
               <div className={"pointer-none select-none"}>
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Command className="size-4"/>
+                  <Image src={"/logo.png"} alt={"logo"} width={32} height={32} className={`p-1.5 invert`}/>
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Nexus Timer</span>
