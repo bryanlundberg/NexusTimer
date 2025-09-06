@@ -17,6 +17,7 @@ import { RoomStatus } from '@/enums/RoomStatus';
 import { useClashManager } from '@/store/ClashManager';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import Link from 'next/link';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function Page() {
   const [createMode, setCreateMode] = useState<RoomType | null>(null);
@@ -43,8 +44,9 @@ export default function Page() {
 
   return (
     <>
-      <FadeIn className="flex flex-col grow overflow-auto">
-        <div className="max-w-7xl mx-auto px-2 pt-2 flex flex-col w-full min-h-full">
+      <ScrollArea className={"max-h-dvh overflow-auto"}>
+      <FadeIn>
+        <div className="px-2 pt-2 flex flex-col w-full min-h-full">
           <Navigation showMenu={false}>
             <div className="flex flex-col sm:flex-row gap-2">
               <div className={'flex justify-between'}>
@@ -100,6 +102,7 @@ export default function Page() {
           </div>
         </div>
       </FadeIn>
+      </ScrollArea>
     </>
   );
 }
