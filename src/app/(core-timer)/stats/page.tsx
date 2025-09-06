@@ -9,7 +9,6 @@ export default function Page() {
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <FadeIn>
         <div className="px-2 pt-2 flex flex-col w-full min-h-full">
-          {/* header */}
           <Navigation showMainCubeSelector/>
           <CategoryStatistics/>
         </div>
