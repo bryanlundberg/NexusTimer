@@ -81,7 +81,7 @@ export default function Page() {
 
   return (
     <>
-      <AccountHeader back="/" label={t('SettingsPage.account')}/>
+      <AccountHeader back="/app" label={t('SettingsPage.account')}/>
       <div className="flex flex-col gap-3 justify-center items-center">
         <Avatar className="size-20 relative group/item">
           <AvatarImage className={"object-cover"} src={session.user?.image as string}/>
