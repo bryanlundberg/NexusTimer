@@ -16,13 +16,9 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
 import { DiscordLogoIcon } from '@radix-ui/react-icons'
+import { useSession } from 'next-auth/react';
 
 const data = {
-  user: {
-    name: 'shadcn',
-    email: 'm@example.com',
-    avatar: '/avatars/shadcn.jpg',
-  },
   navMain: [
     {
       title: 'Application',
@@ -48,7 +44,7 @@ const data = {
         },
         {
           title: 'Settings',
-          url: '/settings',
+          url: '/options',
         }
       ],
     },
@@ -83,13 +79,14 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: session } = useSession()
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <div className={"pointer-none select-none"}>
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                   <Command className="size-4"/>
                 </div>
@@ -97,7 +94,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <span className="truncate font-semibold">Nexus Timer</span>
                   <span className="truncate text-xs">Welcome! </span>
                 </div>
-              </a>
+              </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -106,9 +103,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain}/>
         <NavSecondary items={data.navSecondary as any} className="mt-auto"/>
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user}/>
-      </SidebarFooter>
+
+      {session?.user && (
+        <SidebarFooter>
+          <NavUser user={{
+            name: session.user.name || 'User',
+            email: session.user.email || '',
+            avatar: session.user.image || '',
+          }}/>
+        </SidebarFooter>
+      )}
     </Sidebar>
   )
 }
