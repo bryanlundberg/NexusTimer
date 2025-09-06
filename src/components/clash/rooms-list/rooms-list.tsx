@@ -33,7 +33,7 @@ export default function RoomsList({ rooms }: RoomsListProps) {
   if (Array.isArray(rooms) && rooms.length === 0) {
     return (
       <Card className="relative overflow-hidden border-dashed">
-        <div className="pointer-events-none absolute -inset-1 opacity-50 bg-gradient-to-br from-primary/5 via-transparent to-primary/10"/>
+        <div className="pointer-events-none absolute -inset-1"/>
         <div className="relative py-12 px-6 flex flex-col items-center justify-center text-center gap-3">
           <div className="rounded-full bg-primary/10 text-primary p-3">
             <Sparkles className="size-8"/>
