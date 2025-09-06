@@ -44,6 +44,10 @@ const data = {
           url: '/cubes',
         },
         {
+          title: 'Transfer',
+          url: '/transfer-solves',
+        },
+        {
           title: 'Settings',
           url: '/options',
         }
