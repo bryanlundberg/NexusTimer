@@ -84,12 +84,12 @@ export default function Page() {
 
   return (
     <>
-      <AccountHeader back="/" label={t('SettingsPage.save-data-title')}/>
+      <AccountHeader back="/app" label={t('SettingsPage.save-data-title')}/>
       <Card className="p-3 bg-secondary/10">
         <p>{t('SettingsPage.save-data-description')}</p>
         <p className="text-yellow-600">{t('SettingsPage.save-data-warning')}</p>
         <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
-          <Link href={'/settings/account'} className="grow">
+          <Link href={'/account'} className="grow">
             <Button variant={'secondary'} className="w-full">
               {t('Inputs.back')}
             </Button>
