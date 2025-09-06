@@ -29,6 +29,7 @@ import { Button } from "@/components/ui/button";
 import { defaultSettings } from "@/lib/const/defaultSettings";
 import useWebsiteColors from '@/hooks/useWebsiteColors';
 import { toast } from "sonner";
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function Page() {
   const { settings, setSettings } = useSettingsModalStore();
@@ -60,10 +61,10 @@ export default function Page() {
   }, [formWatch, getValues, isDirty, setSettings, reset]);
 
   return (
-    <>
-      <div className="overflow-y-auto">
+    <ScrollArea className={'max-h-dvh overflow-auto'}>
+      <div className="mt-5">
         <div className="max-w-md mx-auto bg-background/90 backdrop-blur-lg">
-          <AccountHeader back="/" label={t("SettingsPage.options")}/>
+          <AccountHeader back="/app" label={t("SettingsPage.options")}/>
 
           <MenuSelectLanguage/>
 
@@ -256,6 +257,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-    </>
+    </ScrollArea>
   );
 }
