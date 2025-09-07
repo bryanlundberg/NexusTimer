@@ -4,6 +4,7 @@ import Dither from '@/components/ui/shadcn-io/dither';
 import { signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { StarIcon } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Page() {
   return (
@@ -100,11 +101,28 @@ export default function Page() {
               <div className="md:pl-6">
                 <div className="relative rounded-xl border border-white/15 bg-black/30 p-4 shadow-xl">
                   {/* Placeholder dashboard/phone card (solid, no gradient) */}
-                  <div className="aspect-[16/10] w-full rounded-lg border border-white/10 bg-neutral-900/60"/>
-                  <div className="mt-3 grid grid-cols-3 gap-2">
-                    <div className="h-16 rounded-md border border-white/10 bg-neutral-900/60"/>
-                    <div className="h-16 rounded-md border border-white/10 bg-neutral-900/60"/>
-                    <div className="h-16 rounded-md border border-white/10 bg-neutral-900/60"/>
+                  <div className="aspect-[16/10] w-full rounded-lg border border-white/10 bg-neutral-900/60">
+                    <Image width={600} height={600} src="/ui/1.png" alt="preview" className="w-full h-full object-cover rounded-lg"/>
+                  </div>
+                  <div className="mt-3 grid grid-cols-2 gap-2">
+                    <div className="h-26 rounded-md border border-white/10 bg-neutral-900/60">
+                      <Image
+                        width={500}
+                        height={500}
+                        src="/ui/2.png"
+                        alt="image 2"
+                        className="w-full h-full object-cover rounded-md"
+                      />
+                    </div>
+                    <div className="h-26 rounded-md border border-white/10 bg-neutral-900/60">
+                      <Image
+                        width={500}
+                        height={500}
+                        src="/ui/4.png"
+                        alt="image 4"
+                        className="w-full h-full object-cover rounded-md"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
