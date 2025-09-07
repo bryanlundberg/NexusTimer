@@ -37,7 +37,7 @@ export default function Page() {
               <Link href="/#features" className="hover:text-white transition-colors">Features</Link>
               <Link href="/#how" className="hover:text-white transition-colors">How it works?</Link>
               <a
-                href="https://github.com/"
+                href="https://github.com/bryanlundberg/NexusTimer"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-white transition-colors"
