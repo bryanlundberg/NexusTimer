@@ -11,7 +11,7 @@ export default function Layout({
   return (
     <>
       <AppSidebar/>
-      <SidebarInset className={"overflow-hidden"} style={{ height: "calc(100dvh - 1rem)" }}>
+      <SidebarInset className={"overflow-hidden relative"} style={{ height: "calc(100dvh - 1rem)" }}>
         <Providers>
           {children}
         </Providers>
