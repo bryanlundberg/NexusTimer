@@ -105,7 +105,7 @@ export default function Page() {
                     <Image width={600} height={600} src="/ui/1.png" alt="preview" className="w-full h-full object-cover rounded-lg"/>
                   </div>
                   <div className="mt-3 grid grid-cols-2 gap-2">
-                    <div className="h-26 rounded-md border border-white/10 bg-neutral-900/60">
+                    <div className="h-32 rounded-md border border-white/10 bg-neutral-900/60">
                       <Image
                         width={500}
                         height={500}
@@ -114,12 +114,12 @@ export default function Page() {
                         className="w-full h-full object-cover rounded-md"
                       />
                     </div>
-                    <div className="h-26 rounded-md border border-white/10 bg-neutral-900/60">
+                    <div className="h-32 rounded-md border border-white/10 bg-neutral-900/60">
                       <Image
                         width={500}
                         height={500}
-                        src="/ui/4.png"
-                        alt="image 4"
+                        src="/ui/3.png"
+                        alt="image 3"
                         className="w-full h-full object-cover rounded-md"
                       />
                     </div>
