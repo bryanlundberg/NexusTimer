@@ -91,9 +91,27 @@ export default function Page() {
                 </div>
                 <div className="mt-6 flex items-center gap-4 text-xs text-white/60">
                   <div className="flex -space-x-1.5">
-                    <span className="inline-block h-6 w-6 rounded-full bg-white/20 border border-white/20"/>
-                    <span className="inline-block h-6 w-6 rounded-full bg-white/20 border border-white/20"/>
-                    <span className="inline-block h-6 w-6 rounded-full bg-white/20 border border-white/20"/>
+                    <Image
+                      className="inline-block h-6 w-6 rounded-full border border-white/20"
+                      src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png"
+                      alt="avatar 1"
+                      width={24}
+                      height={24}
+                    />
+                    <Image
+                      className="inline-block h-6 w-6 rounded-full border border-white/20"
+                      src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_2.png"
+                      alt="avatar 2"
+                      width={24}
+                      height={24}
+                    />
+                    <Image
+                      className="inline-block h-6 w-6 rounded-full border border-white/20"
+                      src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_7.png"
+                      alt="avatar 3"
+                      width={24}
+                      height={24}
+                    />
                   </div>
                   <span>+2k users trust NexusTimer</span>
                 </div>
