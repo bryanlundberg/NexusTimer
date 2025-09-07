@@ -1,12 +1,12 @@
 'use client'
 import { ArrowLeft, MessageSquare, RotateCcw, Shuffle, Users } from 'lucide-react'
-import RealtimePill from '@/components/clash/real-time/realtime-pill'
 import { useClashWindows } from '@/store/clash-windows'
 import { useRoomUtils } from '@/hooks/useRoomUtils';
 import { useSession } from 'next-auth/react';
 import { useClashManager } from '@/store/ClashManager';
 import React from 'react';
 import { cn } from '@/lib/utils';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
 export default function Sidebar() {
   const { data: session } = useSession();
@@ -21,11 +21,12 @@ export default function Sidebar() {
     'flex flex-col items-center justify-center cursor-pointer hover:bg-sidebar-primary/20 select-none'
 
   return (
-    <aside className="flex flex-col bg-sidebar text-sidebar-foreground w-24 md:max-w-36 shrink-0">
+    <aside className="flex flex-col bg-sidebar text-sidebar-foreground w-20 md:max-w-20 shrink-0">
+      <SidebarTrigger className={"p-2 md:p-4 mx-auto my-5"}/>
 
       <NavButton
         onClick={() => handleLeaveClash(room!, session!)}
-        className={`${itemBase} p-2 md:p-4 text-[10px] md:text-xs gap-1`}
+        className={`${itemBase} p-2 md:p-4 md:text-xs gap-1`}
       >
         <ArrowLeft className="w-4 h-4 md:w-5 md:h-5"/>
         EXIT
@@ -63,10 +64,6 @@ export default function Sidebar() {
         <RotateCcw className="w-4 h-4 md:w-5 md:h-5"/>
         RESET UI
       </NavButton>
-
-      <div className="mx-auto mt-auto mb-3">
-        <RealtimePill/>
-      </div>
     </aside>
   )
 }
