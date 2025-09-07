@@ -20,6 +20,7 @@ import { useSession } from 'next-auth/react';
 import ButtonGoogle from '@/components/buttons/button-google/button-google';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Card, CardDescription, CardFooter as UICardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 
 const data = {
   navMain: [
@@ -97,11 +98,6 @@ const data = {
   ],
   navSecondary: [
     {
-      title: 'Support',
-      url: 'https://github.com/bryanlundberg/NexusTimer/issues',
-      icon: LifeBuoy,
-    },
-    {
       title: 'GitHub',
       url: 'https://github.com/bryanlundberg/NexusTimer',
       icon: GithubIcon,
@@ -151,7 +147,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           />
         </SidebarFooter>
       ) : (
-        <ButtonGoogle/>
+        <SidebarFooter>
+          <Card className="py-4 bg-primary/50 text-primary-foreground">
+            <CardHeader className="pb-0">
+              <CardTitle className="text-base">Access</CardTitle>
+              <CardDescription className={"text-xs"}>Keep sync your data across devices and access more features.</CardDescription>
+            </CardHeader>
+            <UICardFooter>
+              <div className="w-full">
+                <ButtonGoogle/>
+              </div>
+            </UICardFooter>
+          </Card>
+        </SidebarFooter>
       )}
     </Sidebar>
   )
