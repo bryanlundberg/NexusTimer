@@ -257,57 +257,76 @@ export default function CubesCards({
           </CardContent>
 
           <CardFooter className="pt-2">
-            <div className="flex w-full items-end justify-end gap-2 text-sm">
+            <div className="flex w-full items-center justify-between gap-2 text-sm">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant={"default"}
+                      size={"sm"}
+                      onClick={() => handleRedirectToTimer(cube.id)}
+                    >
+                      <PlayIcon className="mr-1 h-4 w-4"/>
+                      Utilize
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Utilize `{cube.name}`</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
 
-              <Dialog open={type === "edit" && isOpen} onOpenChange={closeDialog}>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant={"ghost"}
-                        size={"sm"}
-                        onClick={() => {
-                          openDialogType({
-                            type: "edit",
-                            cube: cube
-                          });
-                        }}
-                      >
-                        <GearIcon className="mr-1 h-4 w-4"/>
-                        {t("CubesPage.edit")}
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{t("CubesPage.edit")} `{cube.name}`</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </Dialog>
+              <div className="flex items-center gap-2">
+                <Dialog open={type === "edit" && isOpen} onOpenChange={closeDialog}>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          variant={"ghost"}
+                          size={"sm"}
+                          onClick={() => {
+                            openDialogType({
+                              type: "edit",
+                              cube: cube
+                            });
+                          }}
+                        >
+                          <GearIcon className="mr-1 h-4 w-4"/>
+                          {t("CubesPage.edit")}
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{t("CubesPage.edit")} `{cube.name}`</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </Dialog>
 
-              <Dialog open={type === "delete" && isOpen} onOpenChange={closeDialog}>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button
-                        variant={"ghost"}
-                        size={"sm"}
-                        onClick={() => {
-                          openDialogType({
-                            type: "delete",
-                            cube: cube
-                          });
-                        }}
-                      >
-                        <TrashIcon className="mr-1 h-4 w-4"/>
-                        {t("CubesPage.delete")}
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{t("CubesPage.delete")} `{cube.name}`</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </Dialog>
+                <Dialog open={type === "delete" && isOpen} onOpenChange={closeDialog}>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Button
+                          variant={"ghost"}
+                          size={"sm"}
+                          onClick={() => {
+                            openDialogType({
+                              type: "delete",
+                              cube: cube
+                            });
+                          }}
+                        >
+                          <TrashIcon className="mr-1 h-4 w-4"/>
+                          {t("CubesPage.delete")}
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{t("CubesPage.delete")} `{cube.name}`</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                </Dialog>
+              </div>
             </div>
           </CardFooter>
         </Card>
