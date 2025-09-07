@@ -15,9 +15,6 @@ import LastActivityTabContent from '@/components/people/last-activity-tab-conten
 import CubesTabContent from '@/components/people/cubes-tab-content';
 import OverviewTabContent from '@/components/people/overview-tab-content';
 import UserInfo from '@/components/people/user-info';
-import { useSettingsModalStore } from '@/store/SettingsModalStore';
-import useWebsiteColors from '@/hooks/useWebsiteColors';
-import PeopleBreadcrumb from '@/components/people/people-breadcrumb';
 import PeopleSkeleton from '@/components/people/people-skeleton';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { Separator } from '@/components/ui/separator';
@@ -38,8 +35,6 @@ export default function Page() {
   const [tab, setTab] = useQueryState(STATES.PEOPLE_PAGE.TAB_MODE.KEY, { defaultValue: STATES.PEOPLE_PAGE.TAB_MODE.DEFAULT_VALUE });
   const [backup, setBackup] = React.useState<Cube[]>([]);
   const handleChangeTab = (value: PeopleTabs) => setTab(value);
-  const settings = useSettingsModalStore(store => store.settings);
-  const { applyColorTheme } = useWebsiteColors();
 
   useEffect(() => {
     const parseBackup = () => {
@@ -55,10 +50,6 @@ export default function Page() {
     }
     parseBackup();
   }, [backupString]);
-
-  useEffect(() => {
-    applyColorTheme(settings.preferences.colorTheme);
-  }, [applyColorTheme, settings.preferences.colorTheme]);
 
   if (isLoadingUser || isLoadingBackup) {
     return (
