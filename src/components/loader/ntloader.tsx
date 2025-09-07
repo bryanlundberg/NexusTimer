@@ -77,7 +77,7 @@ export default function Ntloader({ onLoadingComplete }: NaroBaseLoaderProps) {
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center"
+      className="absolute inset-0 z-50 flex flex-col items-center justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
