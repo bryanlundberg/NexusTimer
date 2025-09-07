@@ -1,6 +1,6 @@
 import { Toaster } from '@/components/ui/sonner';
 import './globals.css';
-import { saira } from '@/fonts/fonts';
+import { jakarta } from '@/fonts/fonts';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages, getTranslations } from 'next-intl/server';
 import { SessionProvider } from 'next-auth/react';
@@ -91,7 +91,7 @@ export default async function RootLayout({
         url={url}
       />
     </head>
-    <body className={saira.className}>
+    <body className={jakarta.className}>
     <NuqsAdapter>
       <SessionProvider session={session}>
         <NextIntlClientProvider messages={messages}>
