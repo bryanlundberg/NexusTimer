@@ -147,6 +147,24 @@ export default function Page() {
             </div>
           </section>
 
+          {/* Integrations & Compatibility */}
+          <section id="integrations" className="relative">
+            <div className="mx-auto max-w-7xl px-6 py-6 md:py-10">
+              <div className="rounded-xl border border-white/15 bg-black/30 p-5 md:p-6">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <h3 className="text-lg md:text-xl font-semibold">Works with your favorite cubes</h3>
+                  <div className="flex flex-wrap items-center gap-2">
+                    {['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng'].map((item) => (
+                      <span key={item} className="inline-flex items-center rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-white/80">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Features */}
           <section id="features" className="relative">
             <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
@@ -303,9 +321,9 @@ export default function Page() {
 
           {/* How it works */}
           <section id="how" className="relative">
-            <div className="mx-auto max-w-7xl px-6 pb-14 md:pb-20">
-              <div className="rounded-xl border border-white/15 bg-black/30 p-6">
-                <div className="grid md:grid-cols-3 gap-6">
+            <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+              <div className="rounded-xl border border-white/15 bg-black/30 p-8 md:p-10">
+                <div className="grid md:grid-cols-3 gap-8 md:gap-10">
                   <StepItem
                     number={1}
                     title="Enter NexusTimer App"
@@ -321,6 +339,102 @@ export default function Page() {
                     title="Start Timing"
                     desc="Use the timer to start solving and tracking your times."
                   />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Testimonials */}
+          <section id="testimonials" className="relative">
+            <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+              <div className="mb-6 flex items-center justify-between">
+                <h2 className="text-xl md:text-2xl font-semibold">What users say</h2>
+                <div className="hidden md:flex items-center gap-1 text-amber-300/90">
+                  {[...Array(5)].map((_, i) => (
+                    <StarIcon key={i} className="h-4 w-4 fill-amber-300/80 text-amber-300/90" />
+                  ))}
+                </div>
+              </div>
+              <div className="grid md:grid-cols-3 gap-5">
+                <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
+                  <div className="flex items-center gap-2 text-amber-300/90">
+                    {[...Array(5)].map((_, i) => (
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
+                    ))}
+                  </div>
+                  <p className="mt-3 text-sm text-white/80">
+                    “Switched from other timers and never looked back. The Clash Mode is a game-changer for our club.”
+                  </p>
+                  <div className="mt-4 flex items-center gap-2 text-xs text-white/60">
+                    <Image className="h-6 w-6 rounded-full border border-white/20" src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_9.png" alt="user a" width={24} height={24} />
+                    <span>@cubeOrigin</span>
+                  </div>
+                </div>
+                <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
+                  <div className="flex items-center gap-2 text-amber-300/90">
+                    {[...Array(5)].map((_, i) => (
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
+                    ))}
+                  </div>
+                  <p className="mt-3 text-sm text-white/80">
+                    “Love the clean UI and that it’s free. Cloud backup keeps my times safe across devices.”
+                  </p>
+                  <div className="mt-4 flex items-center gap-2 text-xs text-white/60">
+                    <Image className="h-6 w-6 rounded-full border border-white/20" src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_5.png" alt="user b" width={24} height={24} />
+                    <span>@layersLast</span>
+                  </div>
+                </div>
+                <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
+                  <div className="flex items-center gap-2 text-amber-300/90">
+                    {[...Array(5)].map((_, i) => (
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
+                    ))}
+                  </div>
+                  <p className="mt-3 text-sm text-white/80">
+                    “Import and export just works. Stats per cube helped me target my weak spots.”
+                  </p>
+                  <div className="mt-4 flex items-center gap-2 text-xs text-white/60">
+                    <Image className="h-6 w-6 rounded-full border border-white/20" src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_4.png" alt="user c" width={24} height={24} />
+                    <span>@OH_enthusiast</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+          {/* FAQ */}
+          <section id="faq" className="relative">
+            <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+              <h3 className="text-xl md:text-2xl font-semibold">Frequently asked questions</h3>
+              <div className="mt-6 grid md:grid-cols-2 gap-5">
+                <div className="rounded-xl border border-white/15 bg-black/30 p-5">
+                  <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
+                    Is NexusTimer really free?
+                    <span className="ml-4 text-white/50">▾</span>
+                  </div>
+                  <p className="mt-2 text-sm text-white/70">Yes. NexusTimer is free and we plan to keep it that way. You can optionally contribute on GitHub to help development.</p>
+                </div>
+                <div className="rounded-xl border border-white/15 bg-black/30 p-5">
+                  <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
+                    Can I import from other timers?
+                    <span className="ml-4 text-white/50">▾</span>
+                  </div>
+                  <p className="mt-2 text-sm text-white/70">Absolutely. We support import/export with popular timers like csTimer, Twisty Timer, and more.</p>
+                </div>
+                <div className="rounded-xl border border-white/15 bg-black/30 p-5">
+                  <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
+                    Does it work across devices?
+                    <span className="ml-4 text-white/50">▾</span>
+                  </div>
+                  <p className="mt-2 text-sm text-white/70">Yes. Your data syncs via the cloud so you can access it on multiple devices.</p>
+                </div>
+                <div className="rounded-xl border border-white/15 bg-black/30 p-5">
+                  <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
+                    How do Clash rooms work?
+                    <span className="ml-4 text-white/50">▾</span>
+                  </div>
+                  <p className="mt-2 text-sm text-white/70">Create a room, invite friends, and synchronize rounds in real time. Great for club meetups or online sessions.</p>
                 </div>
               </div>
             </div>
@@ -395,11 +509,11 @@ function FeatureCard({ title, desc, icon }: { title: string; desc: string; icon:
 
 function StepItem({ number, title, desc }: { number: number; title: string; desc: string }) {
   return (
-    <div className="flex items-start gap-3">
-      <div className="h-7 w-7 shrink-0 rounded-md border border-white/15 bg-white/5 flex items-center justify-center text-xs font-semibold text-white/80">{number}</div>
+    <div className="flex items-start gap-4">
+      <div className="h-9 w-9 shrink-0 rounded-md border border-white/15 bg-white/5 flex items-center justify-center text-sm font-semibold text-white/80">{number}</div>
       <div>
-        <div className="text-sm font-semibold">{title}</div>
-        <div className="text-xs text-white/70">{desc}</div>
+        <div className="text-base md:text-lg font-semibold">{title}</div>
+        <div className="text-sm text-white/70">{desc}</div>
       </div>
     </div>
   );
