@@ -1,10 +1,11 @@
-"use client";
+'use client';
 import Link from 'next/link';
 import Dither from '@/components/ui/shadcn-io/dither';
 import { signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { StarIcon } from 'lucide-react';
 import Image from 'next/image';
+import { ImageZoom } from '@/components/ui/shadcn-io/image-zoom';
 
 export default function Page() {
   return (
@@ -50,7 +51,7 @@ export default function Page() {
               >Enter</Link>
               <Button
                 onClick={() =>
-                  signIn("google", { redirectTo: "/app" })
+                  signIn('google', { redirectTo: '/app' })
                 }
                 className="inline-flex items-center rounded-md border border-fuchsia-400/30 bg-fuchsia-400/10 px-3.5 py-2 text-sm font-semibold text-white hover:bg-fuchsia-400/20 transition-colors"
               >Sign Up</Button>
@@ -119,28 +120,41 @@ export default function Page() {
               <div className="md:pl-6">
                 <div className="relative rounded-xl border border-white/15 bg-black/30 p-4 shadow-xl">
                   {/* Placeholder dashboard/phone card (solid, no gradient) */}
-                  <div className="aspect-[16/10] w-full rounded-lg border border-white/10 bg-neutral-900/60">
-                    <Image width={600} height={600} src="/ui/1.png" alt="preview" className="w-full h-full object-cover rounded-lg"/>
-                  </div>
+                  <ImageZoom>
+                    <div className="aspect-[16/10] w-full rounded-lg border border-white/10 bg-neutral-900/60">
+                      <Image
+                        width={600}
+                        height={600}
+                        src="/ui/1.png"
+                        alt="preview"
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+
+                    </div>
+                  </ImageZoom>
                   <div className="mt-3 grid grid-cols-2 gap-2">
-                    <div className="h-32 rounded-md border border-white/10 bg-neutral-900/60">
-                      <Image
-                        width={500}
-                        height={500}
-                        src="/ui/2.png"
-                        alt="image 2"
-                        className="w-full h-full object-cover rounded-md"
-                      />
-                    </div>
-                    <div className="h-32 rounded-md border border-white/10 bg-neutral-900/60">
-                      <Image
-                        width={500}
-                        height={500}
-                        src="/ui/3.png"
-                        alt="image 3"
-                        className="w-full h-full object-cover rounded-md"
-                      />
-                    </div>
+                    <ImageZoom>
+                      <div className="h-32 rounded-md border border-white/10 bg-neutral-900/60">
+                        <Image
+                          width={500}
+                          height={500}
+                          src="/ui/2.png"
+                          alt="image 2"
+                          className="w-full h-full object-cover rounded-md"
+                        />
+                      </div>
+                    </ImageZoom>
+                    <ImageZoom>
+                      <div className="h-32 rounded-md border border-white/10 bg-neutral-900/60">
+                        <Image
+                          width={500}
+                          height={500}
+                          src="/ui/3.png"
+                          alt="image 3"
+                          className="w-full h-full object-cover rounded-md"
+                        />
+                      </div>
+                    </ImageZoom>
                   </div>
                 </div>
               </div>
@@ -155,7 +169,10 @@ export default function Page() {
                   <h3 className="text-lg md:text-xl font-semibold">Works with your favorite cubes</h3>
                   <div className="flex flex-wrap items-center gap-2">
                     {['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng'].map((item) => (
-                      <span key={item} className="inline-flex items-center rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-white/80">
+                      <span
+                        key={item}
+                        className="inline-flex items-center rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-white/80"
+                      >
                         {item}
                       </span>
                     ))}
@@ -351,7 +368,7 @@ export default function Page() {
                 <h2 className="text-xl md:text-2xl font-semibold">What users say</h2>
                 <div className="hidden md:flex items-center gap-1 text-amber-300/90">
                   {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} className="h-4 w-4 fill-amber-300/80 text-amber-300/90" />
+                    <StarIcon key={i} className="h-4 w-4 fill-amber-300/80 text-amber-300/90"/>
                   ))}
                 </div>
               </div>
@@ -359,42 +376,60 @@ export default function Page() {
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2 text-amber-300/90">
                     {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70"/>
                     ))}
                   </div>
                   <p className="mt-3 text-sm text-white/80">
                     “Switched from other timers and never looked back. The Clash Mode is a game-changer for our club.”
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-xs text-white/60">
-                    <Image className="h-6 w-6 rounded-full border border-white/20" src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_9.png" alt="user a" width={24} height={24} />
+                    <Image
+                      className="h-6 w-6 rounded-full border border-white/20"
+                      src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_9.png"
+                      alt="user a"
+                      width={24}
+                      height={24}
+                    />
                     <span>@cubeOrigin</span>
                   </div>
                 </div>
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2 text-amber-300/90">
                     {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70"/>
                     ))}
                   </div>
                   <p className="mt-3 text-sm text-white/80">
                     “Love the clean UI and that it’s free. Cloud backup keeps my times safe across devices.”
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-xs text-white/60">
-                    <Image className="h-6 w-6 rounded-full border border-white/20" src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_5.png" alt="user b" width={24} height={24} />
+                    <Image
+                      className="h-6 w-6 rounded-full border border-white/20"
+                      src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_5.png"
+                      alt="user b"
+                      width={24}
+                      height={24}
+                    />
                     <span>@layersLast</span>
                   </div>
                 </div>
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2 text-amber-300/90">
                     {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70"/>
                     ))}
                   </div>
                   <p className="mt-3 text-sm text-white/80">
                     “Import and export just works. Stats per cube helped me target my weak spots.”
                   </p>
                   <div className="mt-4 flex items-center gap-2 text-xs text-white/60">
-                    <Image className="h-6 w-6 rounded-full border border-white/20" src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_4.png" alt="user c" width={24} height={24} />
+                    <Image
+                      className="h-6 w-6 rounded-full border border-white/20"
+                      src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_4.png"
+                      alt="user c"
+                      width={24}
+                      height={24}
+                    />
                     <span>@OH_enthusiast</span>
                   </div>
                 </div>
@@ -413,28 +448,32 @@ export default function Page() {
                     Is NexusTimer really free?
                     <span className="ml-4 text-white/50">▾</span>
                   </div>
-                  <p className="mt-2 text-sm text-white/70">Yes. NexusTimer is free and we plan to keep it that way. You can optionally contribute on GitHub to help development.</p>
+                  <p className="mt-2 text-sm text-white/70">Yes. NexusTimer is free and we plan to keep it that way. You
+                    can optionally contribute on GitHub to help development.</p>
                 </div>
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5">
                   <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
                     Can I import from other timers?
                     <span className="ml-4 text-white/50">▾</span>
                   </div>
-                  <p className="mt-2 text-sm text-white/70">Absolutely. We support import/export with popular timers like csTimer, Twisty Timer, and more.</p>
+                  <p className="mt-2 text-sm text-white/70">Absolutely. We support import/export with popular timers
+                    like csTimer, Twisty Timer, and more.</p>
                 </div>
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5">
                   <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
                     Does it work across devices?
                     <span className="ml-4 text-white/50">▾</span>
                   </div>
-                  <p className="mt-2 text-sm text-white/70">Yes. Your data syncs via the cloud so you can access it on multiple devices.</p>
+                  <p className="mt-2 text-sm text-white/70">Yes. Your data syncs via the cloud so you can access it on
+                    multiple devices.</p>
                 </div>
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5">
                   <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
                     How do Clash rooms work?
                     <span className="ml-4 text-white/50">▾</span>
                   </div>
-                  <p className="mt-2 text-sm text-white/70">Create a room, invite friends, and synchronize rounds in real time. Great for club meetups or online sessions.</p>
+                  <p className="mt-2 text-sm text-white/70">Create a room, invite friends, and synchronize rounds in
+                    real time. Great for club meetups or online sessions.</p>
                 </div>
               </div>
             </div>
@@ -487,7 +526,11 @@ export default function Page() {
             <div className="flex items-center gap-4">
               <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
               <Link href="/terms-of-service" className="hover:text-white transition-colors">ToS</Link>
-              <Link href="/https://discord.gg/grenDQFw" target={"_blank"} className="hover:text-white transition-colors">Discord</Link>
+              <Link
+                href="/https://discord.gg/grenDQFw"
+                target={'_blank'}
+                className="hover:text-white transition-colors"
+              >Discord</Link>
               <a href="mailto:contact.nexustimer@gmail.com" className="hover:text-white transition-colors">Contact</a>
             </div>
           </div>
