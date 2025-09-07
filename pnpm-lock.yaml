@@ -92,9 +92,6 @@ importers:
       '@types/react-dom':
         specifier: 18.2.7
         version: 18.2.7
-      bxd:
-        specifier: ^1.0.0
-        version: 1.0.0
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -140,6 +137,9 @@ importers:
       framer-motion:
         specifier: ^12.12.2
         version: 12.23.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      idb:
+        specifier: ^8.0.3
+        version: 8.0.3
       input-otp:
         specifier: ^1.4.2
         version: 1.4.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2603,9 +2603,6 @@ packages:
   buffer@5.7.1:
     resolution: {integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==}
 
-  bxd@1.0.0:
-    resolution: {integrity: sha512-MB+hAk4B1LuvsYq74iJc+7uXccJcwl2n5oqOi/IpQ8yF3pR9XYbzWSQ37/6pVf1U/5jentNTZMWAl9a2qIa0MQ==}
-
   call-bind-apply-helpers@1.0.2:
     resolution: {integrity: sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==}
     engines: {node: '>= 0.4'}
@@ -3479,6 +3476,9 @@ packages:
 
   idb@7.1.1:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
+
+  idb@8.0.3:
+    resolution: {integrity: sha512-LtwtVyVYO5BqRvcsKuB2iUMnHwPVByPCXFXOpuU96IZPPoPN6xjOGxZQ74pgSVVLQWtUOYgyeL4GE98BY5D3wg==}
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
@@ -7906,8 +7906,6 @@ snapshots:
       base64-js: 1.5.1
       ieee754: 1.2.1
 
-  bxd@1.0.0: {}
-
   call-bind-apply-helpers@1.0.2:
     dependencies:
       es-errors: 1.3.0
@@ -8944,6 +8942,8 @@ snapshots:
       safer-buffer: 2.1.2
 
   idb@7.1.1: {}
+
+  idb@8.0.3: {}
 
   ieee754@1.2.1: {}
 
