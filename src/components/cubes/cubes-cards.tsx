@@ -13,6 +13,8 @@ import { Badge } from "../ui/badge";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { toast } from "sonner";
+import { IconButton } from '@/components/ui/shadcn-io/icon-button';
+import { Heart, Star } from 'lucide-react';
 
 interface CubesCardsProps {
   handleRedirectToTimer: (cubeId: string) => void;
@@ -190,7 +192,6 @@ export default function CubesCards({
       const isFavorite = !cube.favorite;
       toast(isFavorite ? t("CubesPage.marked-as-favorite") : t("CubesPage.removed-from-favorites"), {
         description: cube.name,
-        icon: isFavorite ? "❤️" : "🤍",
       });
     }
   };
@@ -207,18 +208,13 @@ export default function CubesCards({
               >
                 {cube.name}
               </CardTitle>
-              <Button
-                variant={"ghost"}
+              <IconButton
+                icon={Star}
+                active={cube.favorite}
+                color={[251, 191, 36]} // amber-400
                 onClick={() => handleFavoriteClickWithToast(cube.id)}
-                size={"icon"}
-                className="h-8 w-8"
-              >
-                {cube.favorite ? (
-                  <HeartFilledIcon className="text-rose-700"/>
-                ) : (
-                  <HeartIcon/>
-                )}
-              </Button>
+                size="sm"
+              />
             </div>
             <CardDescription className="flex items-center gap-2">
               <Badge variant="outline">{cube.category}</Badge>
