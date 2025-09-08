@@ -151,7 +151,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <Card className="py-4 bg-primary/50 text-primary-foreground">
             <CardHeader className="pb-0">
               <CardTitle className="text-base">Access</CardTitle>
-              <CardDescription className={"text-xs"}>Keep sync your data across devices and access more features.</CardDescription>
+              <CardDescription className={"text-xs text-primary-foreground"}>Keep sync your data across devices and access more features.</CardDescription>
             </CardHeader>
             <UICardFooter>
               <div className="w-full">
