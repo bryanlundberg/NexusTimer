@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { StarIcon } from 'lucide-react';
 import Image from 'next/image';
 import { ImageZoom } from '@/components/ui/shadcn-io/image-zoom';
+import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effect';
 
 export default function Page() {
   return (
@@ -69,13 +70,10 @@ export default function Page() {
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"/>
                   NexusTimer is free and always will be!
                 </div>
-                <h1 className="mt-5 text-4xl md:text-5xl font-semibold leading-tight tracking-tight">
-                  Stay organized, and elevate your training experience.
-                </h1>
-                <p className="mt-4 text-base md:text-lg text-white/70 max-w-prose">
-                  NexusTimer is your timing hub, simple, powerful, and designed for
-                  SpeedCubers by SpeedCubers.
-                </p>
+
+                <TextGenerateEffect words={"Stay organized, and elevate your training experience."} className={"mt-5 text-4xl md:text-5xl font-bold leading-tight tracking-tight"}/>
+
+                <TextGenerateEffect className={"mt-4 text-base md:text-lg text-white/70 max-w-prose"} words={"NexusTimer is your timing hub, simple, powerful, and designed for SpeedCubers by SpeedCubers."} />
                 <div className="mt-7 flex flex-wrap items-center gap-3">
                   <Link
                     href="/app"
@@ -339,6 +337,7 @@ export default function Page() {
           {/* How it works */}
           <section id="how" className="relative">
             <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+              <h3 className="text-xl md:text-2xl font-semibold mb-5">How to start?</h3>
               <div className="rounded-xl border border-white/15 bg-black/30 p-8 md:p-10">
                 <div className="grid md:grid-cols-3 gap-8 md:gap-10">
                   <StepItem
@@ -457,7 +456,7 @@ export default function Page() {
                     <span className="ml-4 text-white/50">▾</span>
                   </div>
                   <p className="mt-2 text-sm text-white/70">Absolutely. We support import/export with popular timers
-                    like csTimer, Twisty Timer, and more.</p>
+                    like csTimer, Twisty Timer, CubeDesk and more.</p>
                 </div>
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5">
                   <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
@@ -465,7 +464,7 @@ export default function Page() {
                     <span className="ml-4 text-white/50">▾</span>
                   </div>
                   <p className="mt-2 text-sm text-white/70">Yes. Your data syncs via the cloud so you can access it on
-                    multiple devices.</p>
+                    multiple devices. But you must first upload it to the server before switch to other device!</p>
                 </div>
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5">
                   <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
@@ -473,7 +472,7 @@ export default function Page() {
                     <span className="ml-4 text-white/50">▾</span>
                   </div>
                   <p className="mt-2 text-sm text-white/70">Create a room, invite friends, and synchronize rounds in
-                    real time. Great for club meetups or online sessions.</p>
+                    real time. Great for meetups or online sessions.</p>
                 </div>
               </div>
             </div>
