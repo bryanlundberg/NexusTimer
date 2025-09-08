@@ -65,14 +65,6 @@ export default function Timer({ children }: { children?: ReactNode }) {
           hideWhileSolving={settings.features.hideWhileSolving}
         />
       )}
-      <Confetti
-        active={
-          timerStatistics.global.best === lastSolve?.time &&
-          !isSolving &&
-          settings.alerts.bestTime
-        }
-        config={confettiConfig}
-      />
       {lastSolve &&
         settings.features.quickActionButtons &&
         timerStatus === TimerStatus.IDLE && (
