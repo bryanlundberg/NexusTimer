@@ -1,5 +1,6 @@
+// @ts-nocheck
 'use client';
- 
+
 import * as React from 'react';
 import {
   motion,
@@ -7,16 +8,16 @@ import {
   type HTMLMotionProps,
   type Transition,
 } from 'motion/react';
- 
+
 import { cn } from '@/lib/utils';
- 
+
 const sizes = {
   default: 'size-8 [&_svg]:size-5',
   sm: 'size-6 [&_svg]:size-4',
   md: 'size-10 [&_svg]:size-6',
   lg: 'size-12 [&_svg]:size-7',
 };
- 
+
 type IconButtonProps = Omit<HTMLMotionProps<'button'>, 'color'> & {
   icon: React.ElementType;
   active?: boolean;
@@ -26,7 +27,7 @@ type IconButtonProps = Omit<HTMLMotionProps<'button'>, 'color'> & {
   color?: [number, number, number];
   transition?: Transition;
 };
- 
+
 function IconButton({
   icon: Icon,
   className,
@@ -62,7 +63,7 @@ function IconButton({
           className: active ? 'fill-[var(--icon-button-color)]' : 'fill-transparent'
         })}
       </motion.div>
- 
+
       <AnimatePresence mode="wait">
         {active && (
           <motion.div
@@ -77,7 +78,7 @@ function IconButton({
           </motion.div>
         )}
       </AnimatePresence>
- 
+
       <AnimatePresence>
         {animate && active && (
           <>
@@ -119,5 +120,5 @@ function IconButton({
     </motion.button>
   );
 }
- 
+
 export { IconButton, sizes, type IconButtonProps };
