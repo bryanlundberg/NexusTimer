@@ -10,12 +10,10 @@ import { useTranslations } from 'next-intl';
 import uploadFile from '@/utils/uploadFile';
 import { toast } from 'sonner';
 import loader from '@/utils/loader';
-import useAuth from '@/hooks/useAuth';
 
 export default function Page() {
   const { data: session, update } = useSession();
   const t = useTranslations('Index');
-  const { handleResetDeviceData } = useAuth();
 
   const handleUpdateAvatar = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -78,22 +76,17 @@ export default function Page() {
           </Button>
         </Link>
 
-        <Link href={'./account/save'} className="w-full">
+        <Link href={'/account/save'} className="w-full">
           <Button className="w-full" variant={'secondary'}>
             Save
           </Button>
         </Link>
 
-        <Link href={'./account/load'} className="w-full">
+        <Link href={'/account/load'} className="w-full">
           <Button className="w-full" variant={'secondary'}>
             Load
           </Button>
         </Link>
-
-
-        <Button className="w-full" variant={'destructive'} onClick={handleResetDeviceData}>
-          {t('SettingsPage.unlink-account')}
-        </Button>
 
         <AccountLastBackup session={session}/>
       </div>
