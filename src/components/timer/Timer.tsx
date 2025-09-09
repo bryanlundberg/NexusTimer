@@ -72,6 +72,9 @@ export default function Timer({ children }: { children?: ReactNode }) {
             solve={lastSolve}
             onDeleteSolve={() => setLastSolve(null)}
             caseOfUse="last-solve"
+            hideCopyButton
+            hideMoveToHistory
+            hideTransferCollection
           />
         )}
       {children}
