@@ -21,6 +21,7 @@ import ButtonGoogle from '@/components/buttons/button-google/button-google';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardDescription, CardFooter as UICardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { usePathname } from 'next/navigation'
 
 const data = {
   navMain: [
@@ -112,12 +113,14 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession()
+  const pathname = usePathname() ?? ''
+  const isHomeActive = pathname === '/app' || pathname.startsWith('/app/')
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
+            <SidebarMenuButton size="lg" asChild isActive={isHomeActive}>
               <Link href={'/app'}>
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                   <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert`}/>
