@@ -162,15 +162,15 @@ export default function Page() {
 
           {/* Integrations & Compatibility */}
           <section id="integrations" className="relative">
-            <div className="mx-auto max-w-7xl px-6 py-6 md:py-10">
+            <div className="mx-auto w-fit px-6 py-6 md:py-10">
               <div className="rounded-xl border border-white/15 bg-black/30 p-5 md:p-6">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div className="flex flex-col md:items-center md:justify-between gap-4">
                   <h3 className="text-lg md:text-xl font-semibold">Works with your favorite brands</h3>
                   <div className="flex flex-wrap items-center gap-2">
-                    {['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng'].map((item) => (
+                    {['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng', 'And More..'].map((item) => (
                       <span
                         key={item}
-                        className="inline-flex items-center rounded-md border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-white/80"
+                        className="inline-flex items-center rounded-md border border-purple-300 bg-purple-500/50 px-2.5 py-1 text-xs text-white/80"
                       >
                         {item}
                       </span>
@@ -184,6 +184,7 @@ export default function Page() {
           {/* Features */}
           <section id="features" className="relative">
             <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+              <h2 className="text-xl md:text-2xl font-semibold mb-6">What NexusTimer can do for you</h2>
               <div className="grid md:grid-cols-3 gap-5">
                 <FeatureCard
                   title="Customizable Timer"

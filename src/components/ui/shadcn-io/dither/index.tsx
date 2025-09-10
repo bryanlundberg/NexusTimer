@@ -271,6 +271,23 @@ function DitheredWaves({
     );
   };
 
+  // Also listen at the window level so z-index overlays don't block the effect
+  useEffect(() => {
+    if (!enableMouseInteraction) return;
+    const onPointerMove = (e: PointerEvent) => {
+      const rect = gl.domElement.getBoundingClientRect();
+      const dpr = gl.getPixelRatio();
+      mouseRef.current.set(
+        (e.clientX - rect.left) * dpr,
+        (e.clientY - rect.top) * dpr
+      );
+    };
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
+    return () => {
+      window.removeEventListener('pointermove', onPointerMove);
+    };
+  }, [enableMouseInteraction, gl]);
+
   return (
     <>
       <mesh ref={mesh} scale={[viewport.width, viewport.height, 1]}>
