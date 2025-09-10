@@ -72,29 +72,7 @@ const data = {
     {
       title: 'Settings',
       url: '/options',
-      icon: Settings,
-      items: [
-        {
-          title: 'Language',
-          url: '/options#region'
-        },
-        {
-          title: 'Features',
-          url: '/options#timer'
-        },
-        {
-          title: 'Sounds',
-          url: '/options#sounds'
-        },
-        {
-          title: 'Alerts',
-          url: '/options#notifications'
-        },
-        {
-          title: 'Appearance',
-          url: '/options#appareance'
-        }
-      ]
+      icon: Settings
     }
   ],
   navSecondary: [
