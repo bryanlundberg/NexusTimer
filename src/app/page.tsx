@@ -3,13 +3,17 @@ import Link from 'next/link';
 import Dither from '@/components/ui/shadcn-io/dither';
 import { signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
-import { StarIcon } from 'lucide-react';
+import { ArrowUpDown, BarChart3, StarIcon, Timer, Users } from 'lucide-react';
 import Image from 'next/image';
 import { ImageZoom } from '@/components/ui/shadcn-io/image-zoom';
 import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effect';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 export default function Page() {
+  const [activeSlide, setActiveSlide] = useState(0);
+  const featureImages = ['/landing/1.png', '/landing/2.png', '/landing/3.png', '/landing/4.png'];
   return (
     <div className="relative w-dvw h-dvh bg-black overflow-hidden">
       {/* Animated background */}
@@ -26,7 +30,7 @@ export default function Page() {
       />
 
       {/* Content overlay */}
-      <ScrollArea className="relative z-10 flex flex-col h-full text-white overflow-y-auto">
+      <ScrollArea className="relative z-10 flex flex-col h-full text-white overflow-y-auto snap-y snap-mandatory">
         {/* Header / Nav */}
         <header className="w-full">
           <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
@@ -72,9 +76,15 @@ export default function Page() {
                   NexusTimer is free and always will be!
                 </div>
 
-                <TextGenerateEffect words={"Stay organized, and elevate your training experience."} className={"mt-5 text-4xl md:text-5xl font-bold leading-tight tracking-tight"}/>
+                <TextGenerateEffect
+                  words={'Stay organized, and elevate your training experience.'}
+                  className={'mt-5 text-4xl md:text-5xl font-bold leading-tight tracking-tight'}
+                />
 
-                <TextGenerateEffect className={"mt-4 text-base md:text-lg text-white/70 max-w-prose"} words={"NexusTimer is your timing hub, simple, powerful, and designed for SpeedCubers by SpeedCubers."} />
+                <TextGenerateEffect
+                  className={'mt-4 text-base md:text-lg text-white/70 max-w-prose'}
+                  words={'NexusTimer is your timing hub, simple, powerful, and designed for SpeedCubers by SpeedCubers.'}
+                />
                 <div className="mt-7 flex flex-wrap items-center gap-3">
                   <Link
                     href="/app"
@@ -184,154 +194,117 @@ export default function Page() {
           {/* Features */}
           <section id="features" className="relative">
             <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-              <h2 className="text-xl md:text-2xl font-semibold mb-6">What NexusTimer can do for you</h2>
-              <div className="grid md:grid-cols-3 gap-5">
-                <FeatureCard
-                  title="Customizable Timer"
-                  desc="Touch to start, manual input times, space bar, connect QiYi Timer, custom inspection, custom colors and more."
-                  icon={
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeOpacity="0.9" strokeWidth="1.5"/>
-                      <path
-                        d="M12 7v5l3 2"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  }
-                />
-                <FeatureCard
-                  title="Clash Mode"
-                  desc="Share rooms, synchronize rounds, and coordinate matchs in real time."
-                  icon={
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M20 20a8 8 0 1 0-16 0"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  }
-                />
-                <FeatureCard
-                  title="Stats & Analysis"
-                  desc="View stats based on your cube, without altering session averages."
-                  icon={
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M8 12h8"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M6 8h12"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M10 16h4"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  }
-                />
+              <h2 className="text-center text-2xl md:text-3xl font-semibold mb-8">
+                What <span className="text-purple-400">NexusTimer</span> can do for you
+              </h2>
 
-                <FeatureCard
-                  title="Import & Export"
-                  desc="Import from and export to popular timers as: CS Timer, Twisty Timer, CubeTimer, and more."
-                  icon={
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M4 7h16M4 12h16M4 17h16"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
+              <div className="p-4 md:p-6 py-10 md:py-12">
+                {/* Two-column layout where the entire section scrolls (not only the text column) */}
+                <div className="grid md:grid-cols-2 gap-6 items-stretch">
+                  {/* Static image/placeholder area (remains perfectly still) */}
+                  <div className="relative">
+                    <div className="sticky top-20 h-[540px] md:h-[600px] rounded-xl w-full border border-white/10 bg-neutral-900/60">
+                      <Image
+                        src={featureImages[activeSlide]}
+                        alt={'feature preview'}
+                        width={700}
+                        height={700}
+                        className="w-full h-full object-cover  p-4 grayscale-10 rounded-3xl"
                       />
-                    </svg>
-                  }
-                />
+                    </div>
+                  </div>
 
-                <FeatureCard
-                  title="Cloud Backup"
-                  desc="Securely save and sync your data across devices with ease."
-                  icon={
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M20 17.5a4.5 4.5 0 0 0-1.07-8.84 6 6 0 0 0-11.86.5A4.5 4.5 0 0 0 4 17.5H20Z"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M12 14v5"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M10 17h4"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  }
-                />
+                  {/* Vertical scroll-snap carousel for text only */}
+                  <div className="relative">
+                    {/* Slide 1 */}
+                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center rounded-lg border border-white/10 bg-black/50 p-5">
+                      <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ amount: 0.6 }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                        onViewportEnter={() => setActiveSlide(0)}
+                        className="max-w-prose text-center md:text-left"
+                      >
+                        <div className="mb-3 flex items-center justify-center md:justify-start">
+                          <Timer className="h-6 w-6 text-fuchsia-300/90"/>
+                        </div>
+                        <h3 className="text-lg md:text-xl font-semibold text-white">A timer that adapts to you</h3>
+                        <p className="mt-2 text-sm md:text-base text-white/70">
+                          It’s more than counting seconds:
+                          with <span className="text-purple-400 font-medium">NexusTimer</span> you decide how to start,
+                          inspect, and view your times. Touch to start, spacebar, custom inspection, colors—you’re in
+                          control.
+                        </p>
+                      </motion.div>
+                    </div>
 
+                    {/* Slide 2 */}
+                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center rounded-lg border border-white/10 bg-black/50 p-5">
+                      <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ amount: 0.6 }}
+                        transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
+                        onViewportEnter={() => setActiveSlide(1)}
+                        className="max-w-prose text-center md:text-left"
+                      >
+                        <div className="mb-3 flex items-center justify-center md:justify-start">
+                          <Users className="h-6 w-6 text-fuchsia-300/90"/>
+                        </div>
+                        <h3 className="text-lg md:text-xl font-semibold text-white">Clash Mode for team practice</h3>
+                        <p className="mt-2 text-sm md:text-base text-white/70">
+                          Create rooms, sync rounds, and coordinate matches in real time. Perfect for clubs and friends
+                          who want to compete, stay motivated, and improve together.
+                        </p>
+                      </motion.div>
+                    </div>
 
-                <FeatureCard
-                  title="Multi-device"
-                  desc="Access your account and data from any device, anywhere."
-                  icon={
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <rect
-                        x="3"
-                        y="4"
-                        width="18"
-                        height="14"
-                        rx="2"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                      />
-                      <path
-                        d="M7 20h10"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M12 18v2"
-                        stroke="currentColor"
-                        strokeOpacity="0.9"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  }
-                />
+                    {/* Slide 3 */}
+                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center rounded-lg border border-white/10 bg-black/50 p-5">
+                      <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ amount: 0.6 }}
+                        transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
+                        onViewportEnter={() => setActiveSlide(2)}
+                        className="max-w-prose text-center md:text-left"
+                      >
+                        <div className="mb-3 flex items-center justify-center md:justify-start">
+                          <BarChart3 className="h-6 w-6 text-fuchsia-300/90"/>
+                        </div>
+                        <h3 className="text-lg md:text-xl font-semibold text-white">Stats that drive your progress</h3>
+                        <p className="mt-2 text-sm md:text-base text-white/70">
+                          Analyze results per cube and spot opportunities without altering your session averages. Turn
+                          your data into decisions that lower your times.
+                        </p>
+                      </motion.div>
+                    </div>
+
+                    {/* Slide 4 */}
+                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center rounded-lg border border-white/10 bg-black/50 p-5">
+                      <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ amount: 0.6 }}
+                        transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
+                        onViewportEnter={() => setActiveSlide(3)}
+                        className="max-w-prose text-center md:text-left"
+                      >
+                        <div className="mb-3 flex items-center justify-center md:justify-start">
+                          <ArrowUpDown className="h-6 w-6 text-fuchsia-300/90"/>
+                        </div>
+                        <h3 className="text-lg md:text-xl font-semibold text-white">Import and export without
+                          friction</h3>
+                        <p className="mt-2 text-sm md:text-base text-white/70">
+                          Bring your times from csTimer, Twisty Timer, CubeTimer, and more. Your history is yours—take
+                          it wherever you go.
+                        </p>
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+                <p className="mt-3 text-center text-xs text-white/50">Scroll up or down to explore</p>
               </div>
             </div>
           </section>
@@ -449,8 +422,7 @@ export default function Page() {
                     Is NexusTimer really free?
                     <span className="ml-4 text-white/50">▾</span>
                   </div>
-                  <p className="mt-2 text-sm text-white/70">Yes. NexusTimer is free and we plan to keep it that way. You
-                    can optionally contribute on GitHub to help development.</p>
+                  <p className="mt-2 text-sm text-white/70">Yes. NexusTimer is free and we plan to keep it that way.</p>
                 </div>
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5">
                   <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
@@ -458,23 +430,66 @@ export default function Page() {
                     <span className="ml-4 text-white/50">▾</span>
                   </div>
                   <p className="mt-2 text-sm text-white/70">Absolutely. We support import/export with popular timers
-                    like csTimer, Twisty Timer, CubeDesk and more.</p>
+                    like csTimer, Twisty Timer, CubeDesk.</p>
                 </div>
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5">
                   <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
                     Does it work across devices?
                     <span className="ml-4 text-white/50">▾</span>
                   </div>
-                  <p className="mt-2 text-sm text-white/70">Yes. Your data syncs via the cloud so you can access it on
-                    multiple devices. But you must first upload it to the server before switch to other device!</p>
+                  <p className="mt-2 text-sm text-white/70">Yes, NexusTimer supports mobile and desktop. Sync your data
+                    via the cloud for access on any device.</p>
                 </div>
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5">
                   <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
                     How do Clash rooms work?
                     <span className="ml-4 text-white/50">▾</span>
                   </div>
-                  <p className="mt-2 text-sm text-white/70">Create a room, invite friends, and synchronize rounds in
+                  <p className="mt-2 text-sm text-white/70">Create a room, then invite your friends, and synchronize
+                    rounds in
                     real time. Great for meetups or online sessions.</p>
+                </div>
+
+                <div className="rounded-xl border border-white/15 bg-black/30 p-5">
+                  <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
+
+                    Why do I need create cube collections?
+                    <span className="ml-4 text-white/50">▾</span>
+                  </div>
+                  <p className="mt-2 text-sm text-white/70">
+                    We have a unique stats system that tracks performance per cube. This helps you identify strengths
+                    and weaknesses with each cube. Without session averages being affected.
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-white/15 bg-black/30 p-5">
+                  <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
+                    How NexusTimer maintains?
+                    <span className="ml-4 text-white/50">▾</span>
+                  </div>
+                  <p className="mt-2 text-sm text-white/70">
+                    Currently, NexusTimer runs with all the costs. We are exploring sustainable
+                    funding options to ensure its longevity.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Sponsors */}
+          <section id="sponsors" className="relative">
+            <div className="mx-auto max-w-7xl px-6 py-10 md:py-14">
+              <div className="rounded-xl border border-white/15 bg-black/20 p-6 md:p-8">
+                <div className="flex flex-col gap-6">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-xl md:text-2xl font-semibold">Sponsors</h3>
+                  </div>
+
+                  <div className={"text-sm"}>Interested in becoming a sponsor and showcasing your logo here?
+                    <a href="mailto:contact.nexustimer@gmail.com" className="text-purple-400 hover:underline ml-1">Contact us</a>.
+                  </div>
+                  <div className="flex flex-wrap items-center gap-6 md:gap-8 opacity-90">
+                  </div>
                 </div>
               </div>
             </div>
@@ -483,11 +498,12 @@ export default function Page() {
           {/* CTA */}
           <section className="relative">
             <div className="mx-auto max-w-7xl px-6 pb-16">
-              <div className="rounded-xl border border-white/15 bg-white/5 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="rounded-xl border border-white/15 bg-purple-700/50 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
-                  <h3 className="text-xl md:text-2xl font-semibold">Support NexusTimer</h3>
+                  <h3 className="text-xl md:text-2xl font-semibold">Discover</h3>
                   {/*<p className="text-white/70 text-sm mt-1">Contribute or sponsor open-source. It powers your world..</p>*/}
-                  <p className="text-white/70 text-sm mt-1">Contribute open-source. It powers your world..</p>
+                  <p className="text-white/70 text-sm mt-1">Less routine, more cubing joy.
+                    All refined cubing tools – right in your device, for free.</p>
                 </div>
                 <div className="flex items-center gap-3">
                   {/*<a*/}
@@ -498,14 +514,12 @@ export default function Page() {
                   {/*>*/}
                   {/*  Sponsor Us*/}
                   {/*</a>*/}
-                  <a
-                    href="https://github.com/bryanlundberg/NexusTimer"
-                    target="_blank"
-                    rel="noreferrer"
+                  <Link
+                    href="/app"
                     className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors"
                   >
-                    Contribute
-                  </a>
+                    Go the App
+                  </Link>
                   {/*<a*/}
                   {/*  href="https://github.com/bryanlundberg/NexusTimer"*/}
                   {/*  target="_blank"*/}
