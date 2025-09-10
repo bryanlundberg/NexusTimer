@@ -7,6 +7,7 @@ import { StarIcon } from 'lucide-react';
 import Image from 'next/image';
 import { ImageZoom } from '@/components/ui/shadcn-io/image-zoom';
 import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effect';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function Page() {
   return (
@@ -25,7 +26,7 @@ export default function Page() {
       />
 
       {/* Content overlay */}
-      <div className="relative z-10 flex flex-col h-full text-white">
+      <ScrollArea className="relative z-10 flex flex-col h-full text-white overflow-y-auto">
         {/* Header / Nav */}
         <header className="w-full">
           <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
@@ -61,7 +62,7 @@ export default function Page() {
         </header>
 
         {/* Main */}
-        <main className="flex-1 overflow-auto">
+        <main className="flex-1">
           {/* Hero */}
           <section className="relative">
             <div className="mx-auto max-w-7xl px-6 pt-10 pb-16 md:pt-16 md:pb-24 grid md:grid-cols-2 gap-10 items-center">
@@ -164,7 +165,7 @@ export default function Page() {
             <div className="mx-auto max-w-7xl px-6 py-6 md:py-10">
               <div className="rounded-xl border border-white/15 bg-black/30 p-5 md:p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <h3 className="text-lg md:text-xl font-semibold">Works with your favorite cubes</h3>
+                  <h3 className="text-lg md:text-xl font-semibold">Works with your favorite brands</h3>
                   <div className="flex flex-wrap items-center gap-2">
                     {['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng'].map((item) => (
                       <span
@@ -534,7 +535,7 @@ export default function Page() {
             </div>
           </div>
         </footer>
-      </div>
+      </ScrollArea>
     </div>
   );
 }
