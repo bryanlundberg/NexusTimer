@@ -147,7 +147,9 @@
       "sign-in-google": "Zaloguj się za pomocą Google",
       "no-results": "Nie znaleziono żadnych wyników",
       "search": "Szukaj...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Wyjdź z pełnym ekranem",
+      "fullscreen": "Pełny ekran"
     },
     "Settings-menu": {
       "locale": "Lokalizacja",
@@ -270,6 +272,18 @@
       "title": "Rozwiązanie transferu",
       "transfer": "Przenosić",
       "transferring": "Przenoszenie ..."
+    },
+    "NavMain": {
+      "application": "Aplikacja",
+      "timer": "Stoper",
+      "solves": "Czasy",
+      "statistics": "Statystyki",
+      "cubes": "Kostki",
+      "transfer": "Transfer",
+      "community": "Społeczność",
+      "multiplayer": "Wieloosobowy",
+      "clash-mode": "Tryb Clash",
+      "settings": "Ustawienia"
     }
   },
   "Metadata": {

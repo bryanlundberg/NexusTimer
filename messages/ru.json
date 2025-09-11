@@ -147,7 +147,9 @@
       "sign-in-google": "Войти через Google",
       "no-results": "Результаты не найдены",
       "search": "Поиск...",
-      "menu": "Меню"
+      "menu": "Меню",
+      "exit-fullscreen": "Выход полноэкранного экрана",
+      "fullscreen": "Полноэкранный"
     },
     "Settings-menu": {
       "locale": "Локаль",
@@ -270,6 +272,18 @@
       "title": "Передача решает",
       "transfer": "Передача",
       "transferring": "Передача ..."
+    },
+    "NavMain": {
+      "application": "Приложение",
+      "timer": "Таймер",
+      "solves": "Времена",
+      "statistics": "Статистика",
+      "cubes": "Кубики",
+      "transfer": "Передача",
+      "community": "Сообщество",
+      "multiplayer": "Мультиплеер",
+      "clash-mode": "Режим Clash",
+      "settings": "Настройки"
     }
   },
   "Metadata": {

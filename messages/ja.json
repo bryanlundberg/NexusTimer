@@ -147,7 +147,9 @@
       "sign-in-google": "Googleでサインイン",
       "no-results": "結果が見つかりませんでした",
       "search": "検索...",
-      "menu": "メニュー"
+      "menu": "メニュー",
+      "exit-fullscreen": "フルスクリーンを終了します",
+      "fullscreen": "全画面表示"
     },
     "Settings-menu": {
       "locale": "ロケール",
@@ -270,6 +272,18 @@
       "title": "転送は解決します",
       "transfer": "移行",
       "transferring": "転送..."
+    },
+    "NavMain": {
+      "application": "アプリ",
+      "timer": "タイマー",
+      "solves": "タイム",
+      "statistics": "統計",
+      "cubes": "キューブ",
+      "transfer": "転送",
+      "community": "コミュニティ",
+      "multiplayer": "マルチプレイヤー",
+      "clash-mode": "Clash モード",
+      "settings": "設定"
     }
   },
   "Metadata": {

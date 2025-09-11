@@ -147,7 +147,9 @@
       "sign-in-google": "গুগল দিয়ে সাইন ইন করুন",
       "no-results": "কোন ফলাফল পাওয়া যায়নি",
       "search": "অনুসন্ধান করুন...",
-      "menu": "মেনু"
+      "menu": "মেনু",
+      "exit-fullscreen": "প্রস্থান ফুলস্ক্রিন",
+      "fullscreen": "ফুলস্ক্রিন"
     },
     "Settings-menu": {
       "locale": "অঞ্চল",
@@ -270,6 +272,18 @@
       "title": "স্থানান্তর সমাধান",
       "transfer": "স্থানান্তর",
       "transferring": "স্থানান্তর ..."
+    },
+    "NavMain": {
+      "application": "অ্যাপ্লিকেশন",
+      "timer": "টাইমার",
+      "solves": "টাইমস",
+      "statistics": "পরিসংখ্যান",
+      "cubes": "কিউবস",
+      "transfer": "ট্রান্সফার",
+      "community": "কমিউনিটি",
+      "multiplayer": "মাল্টিপ্লেয়ার",
+      "clash-mode": "Clash মোড",
+      "settings": "সেটিংস"
     }
   },
   "Metadata": {

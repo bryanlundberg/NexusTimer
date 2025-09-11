@@ -147,7 +147,9 @@
       "sign-in-google": "Jelentkezzen be a Google-lal",
       "no-results": "Nincs találat",
       "search": "Keresés...",
-      "menu": "Menü"
+      "menu": "Menü",
+      "exit-fullscreen": "Kilép a teljes képernyőn",
+      "fullscreen": "Teljes képernyő"
     },
     "Settings-menu": {
       "locale": "Terület",
@@ -270,6 +272,18 @@
       "title": "Az átviteli megoldás",
       "transfer": "Átruházás",
       "transferring": "Átadó..."
+    },
+    "NavMain": {
+      "application": "Alkalmazás",
+      "timer": "Időmérő",
+      "solves": "Idők",
+      "statistics": "Statisztikák",
+      "cubes": "Kockák",
+      "transfer": "Átvitel",
+      "community": "Közösség",
+      "multiplayer": "Többjátékos",
+      "clash-mode": "Clash mód",
+      "settings": "Beállítások"
     }
   },
   "Metadata": {

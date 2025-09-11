@@ -147,7 +147,9 @@
       "sign-in-google": "Connectez-vous avec Google",
       "no-results": "Aucun résultat trouvé",
       "search": "Recherche...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Sortir en plein écran",
+      "fullscreen": "Plein écran"
     },
     "Settings-menu": {
       "locale": "Région",
@@ -270,6 +272,18 @@
       "title": "Solves de transfert",
       "transfer": "Transfert",
       "transferring": "Transfert ..."
+    },
+    "NavMain": {
+      "application": "Application",
+      "timer": "Chronomètre",
+      "solves": "Temps",
+      "statistics": "Statistiques",
+      "cubes": "Cubes",
+      "transfer": "Transfert",
+      "community": "Communauté",
+      "multiplayer": "Multijoueur",
+      "clash-mode": "Mode Clash",
+      "settings": "Paramètres"
     }
   },
   "Metadata": {

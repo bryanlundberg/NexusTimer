@@ -26,7 +26,7 @@
       "language-description": "Change the language used throughout the application"
     },
     "HomePage": {
-      "title": "Play",
+      "title": "Timer",
       "hint": "Hint",
       "optimal-yellow-layer": "Optimal Yellow Layer",
       "solving": "Solving...",
@@ -47,12 +47,12 @@
       "new-scramble": "New scramble",
       "edit-scramble": "Edit scramble",
       "hints": "Hints",
-      "start-stackmat": "Start your stackmat to begging the clock"
+      "start-stackmat": "Start your Stackmat to start the timer"
     },
     "SolvesPage": {
       "title": "Solves",
       "session": "Session",
-      "historial": "Historial",
+      "historial": "History",
       "filter-by-time": "Filter by time",
       "show": "Show",
       "tooltips": {
@@ -160,7 +160,7 @@
     },
     "Errors": {
       "not-match": "The name does not match.",
-      "repeated-name": "That name collection already exist.",
+      "repeated-name": "That collection name already exists.",
       "empty-input": "Please enter a value"
     },
     "Inputs": {
@@ -231,7 +231,7 @@
       "auto-select": "Auto-select at startup",
       "import-from-file": "Import from file",
       "export-to-file": "Export to file",
-      "legend": "NexusTimer is an unopinionated, minimalist and open source web tool for SpeedCubing.",
+      "legend": "NexusTimer is a minimalist, open-source web timer built for speedcubing.",
       "suggest": "Suggest a change",
       "report-bug": "Report a bug",
       "dark": "Dark",
@@ -252,7 +252,7 @@
     "SettingsPage": {
       "title": "Settings",
       "not-authenticated": "Authenticate to grant access",
-      "fetching-last-backup": "Fetching information from server wait a moment...",
+      "fetching-last-backup": "Fetching information from the server, please wait...",
       "unlink-account": "Unlink account",
       "unlink-account-para1": "Are you sure you want to unlink from the account",
       "unlink-account-para2": "Unlinking will delete all data from this device.",

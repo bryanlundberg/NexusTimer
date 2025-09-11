@@ -147,7 +147,9 @@
       "sign-in-google": "Log in met Google",
       "no-results": "Geen resultaten gevonden",
       "search": "Zoekopdracht...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Verlaat het volledige scherm",
+      "fullscreen": "Op volledig scherm"
     },
     "Settings-menu": {
       "locale": "Locatie",
@@ -270,6 +272,18 @@
       "title": "Overdracht lost op",
       "transfer": "Overdracht",
       "transferring": "Overbrengen ..."
+    },
+    "NavMain": {
+      "application": "Applicatie",
+      "timer": "Timer",
+      "solves": "Tijden",
+      "statistics": "Statistieken",
+      "cubes": "Kubussen",
+      "transfer": "Overzetten",
+      "community": "Community",
+      "multiplayer": "Multiplayer",
+      "clash-mode": "Clash-modus",
+      "settings": "Instellingen"
     }
   },
   "Metadata": {

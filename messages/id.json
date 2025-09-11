@@ -147,7 +147,9 @@
       "sign-in-google": "Masuk dengan Google",
       "no-results": "Tidak ada hasil yang ditemukan",
       "search": "Mencari...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Keluar dari layar penuh",
+      "fullscreen": "Layar penuh"
     },
     "Settings-menu": {
       "locale": "Lokal",
@@ -270,6 +272,18 @@
       "title": "Pemecahan transfer",
       "transfer": "Transfer",
       "transferring": "Mentransfer ..."
+    },
+    "NavMain": {
+      "application": "Aplikasi",
+      "timer": "Timer",
+      "solves": "Waktu",
+      "statistics": "Statistik",
+      "cubes": "Kubus",
+      "transfer": "Transfer",
+      "community": "Komunitas",
+      "multiplayer": "Multipemain",
+      "clash-mode": "Mode Clash",
+      "settings": "Pengaturan"
     }
   },
   "Metadata": {

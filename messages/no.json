@@ -147,7 +147,9 @@
       "sign-in-google": "Logg på med Google",
       "no-results": "Ingen resultater funnet",
       "search": "Søk...",
-      "menu": "Meny"
+      "menu": "Meny",
+      "exit-fullscreen": "Avslutt fullskjerm",
+      "fullscreen": "Fullskjerm"
     },
     "Settings-menu": {
       "locale": "Lokalitet",
@@ -270,6 +272,18 @@
       "title": "Overføring løser",
       "transfer": "Overføre",
       "transferring": "Overføring ..."
+    },
+    "NavMain": {
+      "application": "Applikasjon",
+      "timer": "Timer",
+      "solves": "Tider",
+      "statistics": "Statistikk",
+      "cubes": "Kuber",
+      "transfer": "Overføring",
+      "community": "Fellesskap",
+      "multiplayer": "Flerspiller",
+      "clash-mode": "Clash-modus",
+      "settings": "Innstillinger"
     }
   },
   "Metadata": {

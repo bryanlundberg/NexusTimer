@@ -147,7 +147,9 @@
       "sign-in-google": "使用 Google 登录",
       "no-results": "没有找到结果",
       "search": "搜索...",
-      "menu": "菜单"
+      "menu": "菜单",
+      "exit-fullscreen": "出口全屏",
+      "fullscreen": "全屏"
     },
     "Settings-menu": {
       "locale": "区域",
@@ -270,6 +272,18 @@
       "title": "传输解决方案",
       "transfer": "转移",
       "transferring": "转移..."
+    },
+    "NavMain": {
+      "application": "应用",
+      "timer": "计时器",
+      "solves": "成绩",
+      "statistics": "统计",
+      "cubes": "魔方",
+      "transfer": "转移",
+      "community": "社区",
+      "multiplayer": "多人",
+      "clash-mode": "Clash 模式",
+      "settings": "设置"
     }
   },
   "Metadata": {

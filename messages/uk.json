@@ -147,7 +147,9 @@
       "sign-in-google": "Увійдіть за допомогою Google",
       "no-results": "Результатів не знайдено",
       "search": "пошук...",
-      "menu": "Меню"
+      "menu": "Меню",
+      "exit-fullscreen": "Вийти на повне екран",
+      "fullscreen": "Повноцінний"
     },
     "Settings-menu": {
       "locale": "Регіон",
@@ -270,6 +272,18 @@
       "title": "Передача вирішує",
       "transfer": "Перенесення",
       "transferring": "Передача ..."
+    },
+    "NavMain": {
+      "application": "Додаток",
+      "timer": "Таймер",
+      "solves": "Часи",
+      "statistics": "Статистика",
+      "cubes": "Кубики",
+      "transfer": "Передача",
+      "community": "Спільнота",
+      "multiplayer": "Багатокористувацький",
+      "clash-mode": "Режим Clash",
+      "settings": "Налаштування"
     }
   },
   "Metadata": {

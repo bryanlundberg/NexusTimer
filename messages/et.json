@@ -147,7 +147,9 @@
       "sign-in-google": "Logige sisse Google'iga",
       "no-results": "Tulemusi ei leitud",
       "search": "Otsi...",
-      "menu": "Menüü"
+      "menu": "Menüü",
+      "exit-fullscreen": "Väljuge täisekraaniga",
+      "fullscreen": "Täisekraaniga"
     },
     "Settings-menu": {
       "locale": "Piirkond",
@@ -270,6 +272,18 @@
       "title": "Ülekandelahendus",
       "transfer": "Ülekandmine",
       "transferring": "Üleminek ..."
+    },
+    "NavMain": {
+      "application": "Rakendus",
+      "timer": "Taimer",
+      "solves": "Ajad",
+      "statistics": "Statistika",
+      "cubes": "Kuubikud",
+      "transfer": "Ülekanne",
+      "community": "Kogukond",
+      "multiplayer": "Mitmikmäng",
+      "clash-mode": "Clash režiim",
+      "settings": "Sätted"
     }
   },
   "Metadata": {

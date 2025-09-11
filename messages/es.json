@@ -17,22 +17,22 @@
       "best": "Mejor",
       "counter": "Contador",
       "enter-custom-scramble": "Introduce una mezcla personalizada",
-      "title": "Jugar",
-      "edit-scramble": "Editar codificación",
+      "title": "Cronómetro",
+      "edit-scramble": "Editar scramble",
       "hints": "Consejos",
       "mode": "Modo",
-      "new-scramble": "Nueva lucha",
-      "start-stackmat": "Comience su Stackmat para mendigar el reloj"
+      "new-scramble": "Nuevo scramble",
+      "start-stackmat": "Inicia tu Stackmat para comenzar el cronómetro"
     },
     "SolvesPage": {
-      "title": "Soluciones",
+      "title": "Tiempos",
       "session": "Sesión",
       "all": "Todos",
       "ascending": "Ascendente",
       "date": "Fecha",
       "descending": "Descendente",
       "time": "Tiempo",
-      "share": "Compartir...",
+      "share": "Compartir",
       "last": "Último",
       "alert": {
         "empty-cubes": "No se seleccionó ningún cubo. \nPor favor elige uno.",
@@ -55,9 +55,9 @@
         "move-to-history-para": "Podrás acceder a ellos tocando el interruptor del historial."
       },
       "empty-solves": "¡Nada aquí todavía!",
-      "empty-solves-description": "Toque el interruptor en la parte superior de la pantalla para ver su historial.",
+      "empty-solves-description": "Toca el interruptor en la parte superior de la pantalla para ver tu historial.",
       "filter-by-time": "Filtrar por tiempo",
-      "historial": "histórico",
+      "historial": "Historial",
       "order": "Orden",
       "share-clipboard": {
         "average": "Promedio",
@@ -74,7 +74,7 @@
       "tooltips": {
         "move-to-history": "Mover soluciones al historial"
       },
-      "show": "Espectáculo"
+      "show": "Mostrar"
     },
     "StatsPage": {
       "title": "Estadísticas",
@@ -86,11 +86,11 @@
       "success-rate": "Tasa de Éxito",
       "counter": "Contador",
       "category-tab": "Categoría",
-      "cube-all-tooltip": "Combina todas las resoluciones históricas y de sesión solo para el cubo seleccionado.",
-      "cube-session-tooltip": "Cuenta solo la sesión resuelve solo para el cubo seleccionado.",
+      "cube-all-tooltip": "Combina todos los tiempos (historial y sesión) solo para el cubo seleccionado.",
+      "cube-session-tooltip": "Cuenta solo los tiempos de la sesión para el cubo seleccionado.",
       "cube-tab": "Cubo",
-      "global-tooltip": "Combina todas las resoluciones históricas y de sesión para cada cubo en la misma categoría.",
-      "sessions-tooltip": "Contiene solo la sesión de la sesión para cada cubo en la misma categoría.",
+      "global-tooltip": "Combina todos los tiempos (historial y sesión) de cada cubo dentro de la misma categoría.",
+      "sessions-tooltip": "Cuenta solo los tiempos de la sesión para cada cubo en la misma categoría.",
       "empty-statistics": "No hay estadísticas disponibles",
       "empty-statistics-description": "Parece que tu bóveda de soluciones está actualmente vacía."
     },
@@ -99,7 +99,7 @@
       "no-cubes-for-display": "No hay cubos para mostrar.",
       "favorite": "Favorito",
       "category": "Categoría",
-      "solves": "Soluciones",
+      "solves": "Tiempos",
       "created-at": "Creado En",
       "status": "Estado",
       "using": "Usando",
@@ -108,11 +108,11 @@
       "new-collection": "Nueva colección",
       "delete": "Borrar",
       "edit": "Editar",
-      "chart-solves-label": "Resolución",
+      "chart-solves-label": "Tiempos",
       "created": "Creado",
-      "no-cubes-description": "Comience a agregar colecciones de cubos a su bóveda para verlas aquí.",
-      "no-solve-data": "No hay datos de resolución disponibles",
-      "solves-label": "Resolución",
+      "no-cubes-description": "Empieza a agregar colecciones de cubos a tu bóveda para verlas aquí.",
+      "no-solve-data": "No hay datos de tiempos disponibles",
+      "solves-label": "Tiempos",
       "total": "total",
       "marked-as-favorite": "Marcado como favorito",
       "removed-from-favorites": "Eliminado de los favoritos"
@@ -147,7 +147,9 @@
       "sign-in-google": "Iniciar sesión con Google",
       "no-results": "No se encontraron resultados",
       "search": "Buscar...",
-      "menu": "Menú"
+      "menu": "Menú",
+      "exit-fullscreen": "Salir de pantalla completa",
+      "fullscreen": "Pantalla completa"
     },
     "Settings-menu": {
       "locale": "Región",
@@ -158,11 +160,11 @@
       "hold-to-start": "Mantener para iniciar",
       "manual-mode": "Modo manual",
       "features": "Características",
-      "scramble-image": "Imagen de mezcla",
+      "scramble-image": "Imagen del scramble",
       "session-stats": "Estadísticas de sesión",
       "quick-action-buttons": "Botones de acción rápida",
       "hide-while-solving": "Ocultar tiempo mientras se resuelve",
-      "scramble-background": "Mostrar fondo de mezcla",
+      "scramble-background": "Mostrar el scramble como fondo",
       "alerts": "Alertas",
       "best-time": "Mejor tiempo",
       "best-average": "Mejor promedio",
@@ -182,9 +184,9 @@
       "auto-select": "Selección automática al inicio",
       "preferences": "Preferencias",
       "dark": "Oscuro",
-      "light": "Luz",
+      "light": "Claro",
       "system": "Sistema",
-      "close": "incógnita",
+      "close": "Cerrar",
       "decimal-places": "Lugares decimales",
       "fullscreen": "Pantalla completa",
       "hold-to-start-time": "Mantenga a la hora de inicio",
@@ -270,6 +272,18 @@
       "title": "Transferir resueltos",
       "transfer": "Transferir",
       "transferring": "Transferir ..."
+    },
+    "NavMain": {
+      "application": "Aplicación",
+      "timer": "Cronómetro",
+      "solves": "Tiempos",
+      "statistics": "Estadísticas",
+      "cubes": "Cubos",
+      "transfer": "Transferir",
+      "community": "Comunidad",
+      "multiplayer": "Multijugador",
+      "clash-mode": "Modo Clash",
+      "settings": "Ajustes"
     }
   },
   "Metadata": {

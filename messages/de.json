@@ -147,7 +147,9 @@
       "sign-in-google": "Melden Sie sich mit Google an",
       "no-results": "Keine Ergebnisse gefunden",
       "search": "Suchen...",
-      "menu": "Speisekarte"
+      "menu": "Speisekarte",
+      "exit-fullscreen": "Vollbild beenden",
+      "fullscreen": "Vollbild"
     },
     "Settings-menu": {
       "locale": "Region",
@@ -270,6 +272,18 @@
       "title": "Übertragung löst",
       "transfer": "Überweisen",
       "transferring": "Transfer ..."
+    },
+    "NavMain": {
+      "application": "Anwendung",
+      "timer": "Timer",
+      "solves": "Zeiten",
+      "statistics": "Statistiken",
+      "cubes": "Würfel",
+      "transfer": "Übertragen",
+      "community": "Community",
+      "multiplayer": "Mehrspieler",
+      "clash-mode": "Clash-Modus",
+      "settings": "Einstellungen"
     }
   },
   "Metadata": {

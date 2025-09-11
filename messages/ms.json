@@ -147,7 +147,9 @@
       "sign-in-google": "Log Masuk dengan Google",
       "no-results": "Tiada hasil ditemui",
       "search": "Cari...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Keluar dari skrin penuh",
+      "fullscreen": "Skrin penuh"
     },
     "Settings-menu": {
       "locale": "Lokaliti",
@@ -270,6 +272,18 @@
       "title": "Pemindahan solves",
       "transfer": "Pemindahan",
       "transferring": "Memindahkan ..."
+    },
+    "NavMain": {
+      "application": "Aplikasi",
+      "timer": "Pemasa",
+      "solves": "Masa",
+      "statistics": "Statistik",
+      "cubes": "Kiub",
+      "transfer": "Pemindahan",
+      "community": "Komuniti",
+      "multiplayer": "Berbilang pemain",
+      "clash-mode": "Mod Clash",
+      "settings": "Tetapan"
     }
   },
   "Metadata": {

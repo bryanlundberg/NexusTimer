@@ -147,7 +147,9 @@
       "sign-in-google": "Přihlaste se pomocí Google",
       "no-results": "Nebyly nalezeny žádné výsledky",
       "search": "Vyhledávání...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Ukončete na plný obrazovku",
+      "fullscreen": "Celá obrazovka"
     },
     "Settings-menu": {
       "locale": "Oblast",
@@ -270,6 +272,18 @@
       "title": "Přenos řeší",
       "transfer": "Převod",
       "transferring": "Převod ..."
+    },
+    "NavMain": {
+      "application": "Aplikace",
+      "timer": "Časovač",
+      "solves": "Časy",
+      "statistics": "Statistiky",
+      "cubes": "Kostky",
+      "transfer": "Přenos",
+      "community": "Komunita",
+      "multiplayer": "Multiplayer",
+      "clash-mode": "Režim Clash",
+      "settings": "Nastavení"
     }
   },
   "Metadata": {

@@ -147,7 +147,9 @@
       "sign-in-google": "Google से साइन इन करें",
       "no-results": "कोई परिणाम नहीं मिला",
       "search": "खोज...",
-      "menu": "मेनू"
+      "menu": "मेनू",
+      "exit-fullscreen": "फुलस्क्रीन से बाहर निकलें",
+      "fullscreen": "पूर्ण स्क्रीन"
     },
     "Settings-menu": {
       "locale": "क्षेत्र",
@@ -270,6 +272,18 @@
       "title": "अंतरण समाधान",
       "transfer": "स्थानांतरण",
       "transferring": "स्थानांतरण ..."
+    },
+    "NavMain": {
+      "application": "एप्लिकेशन",
+      "timer": "टाइमर",
+      "solves": "टाइम्स",
+      "statistics": "आंकड़े",
+      "cubes": "क्यूब्स",
+      "transfer": "ट्रांसफ़र",
+      "community": "समुदाय",
+      "multiplayer": "मल्टीप्लेयर",
+      "clash-mode": "Clash मोड",
+      "settings": "सेटिंग्स"
     }
   },
   "Metadata": {

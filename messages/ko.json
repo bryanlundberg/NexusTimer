@@ -147,7 +147,9 @@
       "sign-in-google": "Google로 로그인",
       "no-results": "검색결과가 없습니다",
       "search": "찾다...",
-      "menu": "메뉴"
+      "menu": "메뉴",
+      "exit-fullscreen": "전체 화면 종료",
+      "fullscreen": "전체 화면"
     },
     "Settings-menu": {
       "locale": "로케일",
@@ -270,6 +272,18 @@
       "title": "전송 해결",
       "transfer": "옮기다",
       "transferring": "전송 ..."
+    },
+    "NavMain": {
+      "application": "애플리케이션",
+      "timer": "타이머",
+      "solves": "타임",
+      "statistics": "통계",
+      "cubes": "큐브",
+      "transfer": "전송",
+      "community": "커뮤니티",
+      "multiplayer": "멀티플레이어",
+      "clash-mode": "Clash 모드",
+      "settings": "설정"
     }
   },
   "Metadata": {

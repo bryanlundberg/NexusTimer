@@ -147,7 +147,9 @@
       "sign-in-google": "Kirjaudu sisään Googlella",
       "no-results": "Tuloksia ei löytynyt",
       "search": "Haku...",
-      "menu": "Valikko"
+      "menu": "Valikko",
+      "exit-fullscreen": "Poistua koko näytöstä",
+      "fullscreen": "Koko näytön"
     },
     "Settings-menu": {
       "locale": "Paikka",
@@ -270,6 +272,18 @@
       "title": "Siirtoratkaisut",
       "transfer": "Siirtää",
       "transferring": "Siirtyminen ..."
+    },
+    "NavMain": {
+      "application": "Sovellus",
+      "timer": "Ajastin",
+      "solves": "Ajat",
+      "statistics": "Tilastot",
+      "cubes": "Kuutiot",
+      "transfer": "Siirto",
+      "community": "Yhteisö",
+      "multiplayer": "Moninpeli",
+      "clash-mode": "Clash-tila",
+      "settings": "Asetukset"
     }
   },
   "Metadata": {

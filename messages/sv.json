@@ -147,7 +147,9 @@
       "sign-in-google": "Logga in med Google",
       "no-results": "Inga resultat hittades",
       "search": "Söka...",
-      "menu": "Meny"
+      "menu": "Meny",
+      "exit-fullscreen": "Avfart",
+      "fullscreen": "Fullskärm"
     },
     "Settings-menu": {
       "locale": "Region",
@@ -270,6 +272,18 @@
       "title": "Överföringslösningar",
       "transfer": "Överföra",
       "transferring": "Överföring ..."
+    },
+    "NavMain": {
+      "application": "Applikation",
+      "timer": "Timer",
+      "solves": "Tider",
+      "statistics": "Statistik",
+      "cubes": "Kubor",
+      "transfer": "Överföring",
+      "community": "Gemenskap",
+      "multiplayer": "Flerspelare",
+      "clash-mode": "Clash-läge",
+      "settings": "Inställningar"
     }
   },
   "Metadata": {

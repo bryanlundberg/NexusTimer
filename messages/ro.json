@@ -147,7 +147,9 @@
       "sign-in-google": "Conectați-vă cu Google",
       "no-results": "Nu s-au găsit rezultate",
       "search": "Căutare...",
-      "menu": "Meniu"
+      "menu": "Meniu",
+      "exit-fullscreen": "Ieșiți pe ecran complet",
+      "fullscreen": "Ecran complet"
     },
     "Settings-menu": {
       "locale": "Localizare",
@@ -270,6 +272,18 @@
       "title": "Rezolvări de transfer",
       "transfer": "Transfer",
       "transferring": "Transferul ..."
+    },
+    "NavMain": {
+      "application": "Aplicație",
+      "timer": "Cronometru",
+      "solves": "Timpuri",
+      "statistics": "Statistici",
+      "cubes": "Cuburi",
+      "transfer": "Transfer",
+      "community": "Comunitate",
+      "multiplayer": "Multiplayer",
+      "clash-mode": "Modul Clash",
+      "settings": "Setări"
     }
   },
   "Metadata": {
