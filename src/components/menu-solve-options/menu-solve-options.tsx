@@ -59,6 +59,7 @@ export default function MenuSolveOptions({
   };
 
   const localHandleBookmarkSolve = () => {
+    console.log(solve)
     if (solve) handleBookmarkSolve(solve, caseOfUse);
   };
 
@@ -153,7 +154,7 @@ export default function MenuSolveOptions({
                   icon={Bookmark}
                   active={lastSolve?.bookmark}
                   aria-label="Bookmark"
-                  onClick={localHandleBookmarkSolve}
+                  onPointerDown={localHandleBookmarkSolve}
                   color={[251, 191, 36]}
                 />
               ) : (
@@ -162,7 +163,7 @@ export default function MenuSolveOptions({
                   icon={Bookmark}
                   active={dialog.solve?.bookmark}
                   aria-label="Bookmark"
-                  onClick={localHandleBookmarkSolve}
+                  onPointerDown={localHandleBookmarkSolve}
                   color={[251, 191, 36]}
                 />
               )}
