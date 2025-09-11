@@ -19,6 +19,7 @@ import { sort } from 'fast-sort';
 import { useTranslations } from 'next-intl';
 import { useNXData } from '@/hooks/useNXData';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
 export default function TransferSolvesPage() {
   const { saveBatchCubes } = useNXData();
@@ -101,7 +102,7 @@ export default function TransferSolvesPage() {
         <div className="px-2 pt-2 flex flex-col w-full min-h-full">
           <Navigation showMenu={false}>
             <div className={'flex gap-2 items-center'}>
-              <ButtonNavbar/>
+              <SidebarTrigger/>
               <div className={'flex flex-col gap-1 grow md:flex-row'}>
                 <Select
                   value={sourceCollection} onValueChange={(value) => {
