@@ -26,6 +26,7 @@ import {
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import Link from 'next/link';
 
 export default function Page() {
   const params = useParams<{ userId: string; }>()
@@ -69,12 +70,12 @@ export default function Page() {
             />
             <Breadcrumb>
               <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="/people" >
-                    People
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link href={"/people"}>People</Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbSeparator/>
                 <BreadcrumbItem>
                   <BreadcrumbPage>{user.name}</BreadcrumbPage>
                 </BreadcrumbItem>
