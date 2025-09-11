@@ -1,7 +1,8 @@
 'use client'
 
 import * as React from 'react'
-import { GithubIcon, LandPlot, LayoutPanelLeft, LifeBuoy, Settings, UsersRound, } from 'lucide-react'
+import { useMemo } from 'react'
+import { GithubIcon, LandPlot, LayoutPanelLeft, Maximize2, Minimize2, Settings, UsersRound } from 'lucide-react'
 
 import { NavMain } from '@/components/nav-main'
 import { NavSecondary } from '@/components/nav-secondary'
@@ -22,77 +23,104 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardDescription, CardFooter as UICardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { usePathname } from 'next/navigation'
-
-const data = {
-  navMain: [
-    {
-      title: 'Application',
-      url: '/app',
-      icon: LayoutPanelLeft,
-      isActive: true,
-      items: [
-        {
-          title: 'Timer',
-          url: '/app',
-        },
-        {
-          title: 'Solves',
-          url: '/solves',
-        },
-        {
-          title: 'Statistics',
-          url: '/stats',
-        },
-        {
-          title: 'Cubes',
-          url: '/cubes',
-        },
-        {
-          title: 'Transfer',
-          url: '/transfer-solves',
-        }
-      ],
-    },
-    {
-      title: 'Community',
-      url: '/people',
-      icon: UsersRound,
-    },
-    {
-      title: 'Multiplayer',
-      url: '/clash',
-      icon: LandPlot,
-      items: [
-        {
-          title: 'Clash Mode',
-          url: '/clash',
-        }
-      ]
-    },
-    {
-      title: 'Settings',
-      url: '/options',
-      icon: Settings
-    }
-  ],
-  navSecondary: [
-    {
-      title: 'GitHub',
-      url: 'https://github.com/bryanlundberg/NexusTimer',
-      icon: GithubIcon,
-    },
-    {
-      title: 'Discord',
-      url: 'https://discord.gg/grenDQFw',
-      icon: DiscordLogoIcon,
-    }
-  ]
-}
+import { Button } from '@/components/ui/button'
+import { useTranslations } from 'next-intl';
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession()
   const pathname = usePathname() ?? ''
   const isHomeActive = pathname === '/app' || pathname.startsWith('/app/')
+
+  const t = useTranslations('Index');
+
+  const [isFullscreen, setIsFullscreen] = React.useState(false)
+  React.useEffect(() => {
+    if (typeof document === 'undefined') return
+    const handleChange = () => setIsFullscreen(Boolean(document.fullscreenElement))
+    handleChange()
+    document.addEventListener('fullscreenchange', handleChange)
+    return () => document.removeEventListener('fullscreenchange', handleChange)
+  }, [])
+
+  const toggleFullscreen = async () => {
+    try {
+      if (typeof document === 'undefined') return
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen()
+      } else {
+        await document.exitFullscreen()
+      }
+    } catch (e) {
+      console.error('Fullscreen toggle failed:', e)
+    }
+  }
+
+  const data = useMemo(() => ({
+    navMain: [
+      {
+        title: t('NavMain.application'),
+        url: '/app',
+        icon: LayoutPanelLeft,
+        isActive: true,
+        items: [
+          {
+            title: t('NavMain.timer'),
+            url: '/app',
+          },
+          {
+            title: t('NavMain.solves'),
+            url: '/solves',
+          },
+          {
+            title: t('NavMain.statistics'),
+            url: '/stats',
+          },
+          {
+            title: t('NavMain.cubes'),
+            url: '/cubes',
+          },
+          {
+            title: t('NavMain.transfer'),
+            url: '/transfer-solves',
+          }
+        ],
+      },
+      {
+        title: t('NavMain.community'),
+        url: '/people',
+        icon: UsersRound,
+      },
+      {
+        title: t('NavMain.multiplayer'),
+        url: '/clash',
+        icon: LandPlot,
+        items: [
+          {
+            title: t('NavMain.clash-mode'),
+            url: '/clash',
+          }
+        ]
+      },
+      {
+        title: t('NavMain.settings'),
+        url: '/options',
+        icon: Settings,
+      }
+    ],
+    navSecondary: [
+      {
+        title: 'GitHub',
+        url: 'https://github.com/bryanlundberg/NexusTimer',
+        icon: GithubIcon,
+      },
+      {
+        title: 'Discord',
+        url: 'https://discord.gg/grenDQFw',
+        icon: DiscordLogoIcon,
+      }
+    ]
+  }), [t]);
+
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -115,6 +143,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain}/>
         <NavSecondary items={data.navSecondary as any} className="mt-auto"/>
+        <Button
+          variant="ghost"
+          className="w-full justify-start"
+          onClick={toggleFullscreen}
+          title={isFullscreen ? 'Salir de pantalla completa' : 'Ir a pantalla completa'}
+        >
+          {isFullscreen ? <Minimize2 className="mr-2 h-4 w-4"/> : <Maximize2 className="mr-2 h-4 w-4"/>}
+          <span>{isFullscreen ? t('Inputs.exit-fullscreen') : t('Inputs.fullscreen')}</span>
+        </Button>
       </SidebarContent>
 
       {session?.user ? (
@@ -132,7 +169,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <Card className="py-4 bg-primary/50 text-primary-foreground">
             <CardHeader className="pb-0">
               <CardTitle className="text-base">Access</CardTitle>
-              <CardDescription className={"text-xs text-primary-foreground"}>Keep sync your data across devices and access more features.</CardDescription>
+              <CardDescription className={'text-xs text-primary-foreground'}>Keep sync your data across devices and
+                access more features.</CardDescription>
             </CardHeader>
             <UICardFooter>
               <div className="w-full">
