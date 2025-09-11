@@ -177,7 +177,21 @@
       "back": "Back",
       "no-results": "No results found",
       "search": "Search...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "fullscreen": "Fullscreen",
+      "exit-fullscreen": "Exit Fullscreen"
+    },
+    "NavMain": {
+      "application": "Application",
+      "timer": "Timer",
+      "solves": "Solves",
+      "statistics": "Statistics",
+      "cubes": "Cubes",
+      "transfer": "Transfer",
+      "community": "Community",
+      "multiplayer": "Multiplayer",
+      "clash-mode": "Clash Mode",
+      "settings": "Settings"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",
