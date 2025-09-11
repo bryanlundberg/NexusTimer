@@ -201,7 +201,6 @@ export default function Page() {
               <div className="p-4 md:p-6 py-10 md:py-12">
                 {/* Two-column layout where the entire section scrolls (not only the text column) */}
                 <div className="grid md:grid-cols-2 gap-6 items-stretch">
-                  {/* Static image/placeholder area (remains perfectly still) */}
                   <div className="relative">
                     <div className="sticky top-20 h-[540px] md:h-[600px] rounded-xl w-full border border-white/10 bg-neutral-900/60">
                       <Image
@@ -215,14 +214,14 @@ export default function Page() {
                   </div>
 
                   {/* Vertical scroll-snap carousel for text only */}
-                  <div className="relative">
+                  <div className="relative rounded-lg border border-white/10 bg-black/50">
                     {/* Slide 1 */}
-                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center rounded-lg border border-white/10 bg-black/50 p-5">
+                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center p-5">
                       <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ amount: 0.6 }}
-                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                        transition={{ duration: 1, ease: 'easeOut' }}
                         onViewportEnter={() => setActiveSlide(0)}
                         className="max-w-prose text-center md:text-left"
                       >
@@ -240,12 +239,12 @@ export default function Page() {
                     </div>
 
                     {/* Slide 2 */}
-                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center rounded-lg border border-white/10 bg-black/50 p-5">
+                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center p-5">
                       <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ amount: 0.6 }}
-                        transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
+                        transition={{ duration: 1, ease: 'easeOut', delay: 0.05 }}
                         onViewportEnter={() => setActiveSlide(1)}
                         className="max-w-prose text-center md:text-left"
                       >
@@ -261,12 +260,12 @@ export default function Page() {
                     </div>
 
                     {/* Slide 3 */}
-                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center rounded-lg border border-white/10 bg-black/50 p-5">
+                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center p-5">
                       <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ amount: 0.6 }}
-                        transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
+                        transition={{ duration: 1, ease: 'easeOut', delay: 0.05 }}
                         onViewportEnter={() => setActiveSlide(2)}
                         className="max-w-prose text-center md:text-left"
                       >
@@ -282,12 +281,12 @@ export default function Page() {
                     </div>
 
                     {/* Slide 4 */}
-                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center rounded-lg border border-white/10 bg-black/50 p-5">
+                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center p-5">
                       <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ amount: 0.6 }}
-                        transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
+                        transition={{ duration: 1, ease: 'easeOut', delay: 0.05 }}
                         onViewportEnter={() => setActiveSlide(3)}
                         className="max-w-prose text-center md:text-left"
                       >
@@ -482,7 +481,7 @@ export default function Page() {
               <div className="rounded-xl border border-white/15 bg-black/20 p-6 md:p-8">
                 <div className="flex flex-col gap-6">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-xl md:text-2xl font-semibold">Sponsors</h3>
+                    <h3 className="text-xl md:text-2xl font-semibold">OSS Sponsors</h3>
                   </div>
 
                   <div className={"text-sm"}>Interested in becoming a sponsor and showcasing your logo here?
