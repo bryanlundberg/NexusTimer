@@ -1,7 +1,6 @@
 'use client';
 import FadeIn from '@/components/fade-in/fade-in';
 import Navigation from '@/components/navigation/navigation';
-import ButtonNavbar from '@/components/navigation/buttons/button-navbar';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { ArrowRightIcon } from 'lucide-react';
