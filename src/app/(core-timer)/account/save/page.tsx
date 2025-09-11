@@ -8,9 +8,6 @@ import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { useNXData } from '@/hooks/useNXData';
-import { importNexusTimerData } from '@/lib/importDataFromFile';
-import _ from 'lodash';
-import { useTimerStore } from '@/store/timerStore';
 
 export default function Page() {
   const { getAllCubes } = useNXData();
@@ -18,46 +15,11 @@ export default function Page() {
   const t = useTranslations('Index');
   const router = useRouter();
   if (!session) redirect('/settings');
-  const { saveBatchCubes } = useNXData();
-  const setCubes = useTimerStore((state) => state.setCubes);
 
   const handleBackup = async () => {
     let cubes = await getAllCubes();
 
-    try {
-       importNexusTimerData(JSON.stringify(cubes));
-    } catch (error) {
-      // This workaround is needed because some users have already created backups with these incorrectly stored times, (startTime = null);
-      cubes = _.map(cubes, (cube) => {
-        return {
-          ...cube,
-          solves: {
-            ...cube.solves,
-            session: cube.solves.session.map((solve) => {
-              return {
-                ...solve,
-                startTime: solve.startTime !== null && solve.startTime !== undefined
-                  ? solve.startTime
-                  : solve.endTime - (solve.time + (solve.plus2 ? 2000 : 0)),
-              }
-            }),
-            all: cube.solves.all.map((solve) => {
-              return {
-                ...solve,
-                startTime: solve.startTime !== null && solve.startTime !== undefined
-                  ? solve.startTime
-                  : solve.endTime - (solve.time + (solve.plus2 ? 2000 : 0)),
-              }
-            })
-          }
-        };
-      })
-
-      await saveBatchCubes(cubes)
-      setCubes(cubes);
-    }
-
-    if (!cubes || !session || !session.user || typeof session.user.email !== 'string') {
+    if (!cubes || !session || !session.user || !session.user.id) {
       return toast.error('Failed to retrieve cubes or session data.');
     }
 
@@ -74,7 +36,7 @@ export default function Page() {
         return toast.error('Failed to save backup.');
       }
 
-      router.push('/');
+      router.push('/app');
       toast.success('Backup saved successfully!');
     } catch (error) {
       console.error('Error saving backup:', error);
