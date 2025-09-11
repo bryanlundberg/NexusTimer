@@ -57,7 +57,7 @@ export default function Page() {
     <FadeIn>
       <div className="px-2 pt-2 flex flex-col w-full">
         <Navigation showMenu={false}>
-          <div className={'flex flex-col sm:flex-row items-center justify-between gap-2'}>
+          <div className={'flex items-center justify-between gap-2'}>
             <SidebarTrigger/>
             <div className={'flex sm:flex-row items-center gap-3 w-full justify-end'}>
               <div className={'flex flex-col sm:flex-row items-center gap-2 grow justify-end'}>
@@ -86,7 +86,7 @@ export default function Page() {
           </div>
         </Navigation>
 
-        <div className={'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-2 overflow-auto pb-10'}>
+        <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 p-2 overflow-auto pb-10'}>
           {isLoading && Array(10).fill(0).map((_, index) => (
             <Card key={index} className="overflow-hidden min-h-96">
               <CardHeader className="pb-2 flex flex-col items-center">
