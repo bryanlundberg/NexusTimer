@@ -17,7 +17,7 @@ export default function CubesTabContent({ cubes }: CubesTabContentProps) {
   }
 
   return (
-    <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'}>
+    <div className={'grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4'}>
       {cubes?.length ? cubes.map((cube) => (
         <Card key={cube.id} className={'flex flex-1 h-auto gap-2 flex-row items-center px-3'}>
           <Image
