@@ -41,7 +41,7 @@ export default function Page() {
       await clearCubes();
       await saveBatchCubes(newCubes);
       setCubes(newCubes);
-      router.push("/");
+      router.push("/app");
       toast.success("Backup loaded successfully!");
     } catch (error) {
       console.error('Error loading backup:', error);
