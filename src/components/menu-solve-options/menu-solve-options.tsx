@@ -4,7 +4,7 @@ import { Solve } from '@/interfaces/Solve';
 import { useDialogSolve } from '@/store/DialogSolve';
 import { useTimerStore } from '@/store/timerStore';
 import { useSolveActions } from '@/hooks/useSolveActions';
-import { CopyIcon, Cross1Icon, CubeIcon } from '@radix-ui/react-icons';
+import { CopyIcon, CubeIcon } from '@radix-ui/react-icons';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { ArrowRightLeftIcon, Bookmark, Trash } from 'lucide-react';
@@ -12,6 +12,8 @@ import { useQueryState } from 'nuqs';
 import { STATES } from '@/constants/states';
 import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs';
 import { IconButton } from '@/components/ui/shadcn-io/icon-button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { MoreHorizontal } from 'lucide-react';
 
 export default function MenuSolveOptions({
   solve,
@@ -150,7 +152,6 @@ export default function MenuSolveOptions({
             <TooltipTrigger asChild>
               {caseOfUse === 'last-solve' ? (
                 <IconButton
-                  animate={false}
                   icon={Bookmark}
                   active={lastSolve?.bookmark}
                   aria-label="Bookmark"
@@ -159,7 +160,6 @@ export default function MenuSolveOptions({
                 />
               ) : (
                 <IconButton
-                  animate={false}
                   icon={Bookmark}
                   active={dialog.solve?.bookmark}
                   aria-label="Bookmark"
@@ -172,41 +172,31 @@ export default function MenuSolveOptions({
               <p>{t('tooltips.bookmark')}</p>
             </TooltipContent>
           </Tooltip>
-          {!hideCopyButton && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant={'ghost'} onPointerDown={localHandleClipboardSolve}>
-                  <CopyIcon/>
+          {(!hideCopyButton || !hideMoveToHistory || (tabMode === DisplaySolvesTabs.SESSION && !hideTransferCollection)) && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant={'ghost'} aria-label="More actions">
+                  <MoreHorizontal />
                 </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{t('tooltips.copy')}</p>
-              </TooltipContent>
-            </Tooltip>
-          )}
-          {!hideMoveToHistory && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant={'ghost'} onPointerDown={localHandleMoveToHistory}>
-                  <CubeIcon/>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Move to History</p>
-              </TooltipContent>
-            </Tooltip>
-          )}
-          {tabMode === DisplaySolvesTabs.SESSION && !hideTransferCollection && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button variant={'ghost'} onPointerDown={handleMoveCollection}>
-                  <ArrowRightLeftIcon size={12}/>
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Transfer Collection</p>
-              </TooltipContent>
-            </Tooltip>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {!hideCopyButton && (
+                  <DropdownMenuItem onSelect={(e) => { e.preventDefault(); localHandleClipboardSolve(); }}>
+                    <CopyIcon className="mr-2" /> {t('tooltips.copy')}
+                  </DropdownMenuItem>
+                )}
+                {!hideMoveToHistory && (
+                  <DropdownMenuItem onSelect={(e) => { e.preventDefault(); localHandleMoveToHistory(); }}>
+                    <CubeIcon className="mr-2" /> Move to History
+                  </DropdownMenuItem>
+                )}
+                {tabMode === DisplaySolvesTabs.SESSION && !hideTransferCollection && (
+                  <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleMoveCollection(); }}>
+                    <ArrowRightLeftIcon size={12} className="mr-2" /> Transfer Collection
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
           )}
         </TooltipProvider>
       </div>
