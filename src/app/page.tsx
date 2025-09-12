@@ -5,7 +5,6 @@ import { signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { ArrowUpDown, BarChart3, StarIcon, Timer, Users } from 'lucide-react';
 import Image from 'next/image';
-import { ImageZoom } from '@/components/ui/shadcn-io/image-zoom';
 import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effect';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { motion } from 'framer-motion';
@@ -69,103 +68,61 @@ export default function Page() {
         <main className="flex-1">
           {/* Hero */}
           <section className="relative">
-            <div className="mx-auto max-w-7xl px-6 pt-10 pb-16 md:pt-16 md:pb-24 grid md:grid-cols-2 gap-10 items-center">
-              <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-white/70">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"/>
-                  NexusTimer is free and always will be!
-                </div>
-
-                <TextGenerateEffect
-                  words={'Stay organized, and elevate your training experience.'}
-                  className={'mt-5 text-4xl md:text-5xl font-bold leading-tight tracking-tight'}
-                />
-
-                <TextGenerateEffect
-                  className={'mt-4 text-base md:text-lg text-white/70 max-w-prose'}
-                  words={'NexusTimer is your timing hub, simple, powerful, and designed for SpeedCubers by SpeedCubers.'}
-                />
-                <div className="mt-7 flex flex-wrap items-center gap-3">
-                  <Link
-                    href="/app"
-                    className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors"
-                  >
-                    Start now
-                  </Link>
-                  <Link
-                    href="/app"
-                    className="inline-flex items-center justify-center rounded-md border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white hover:bg-white/10 transition-colors"
-                  >
-                    Demo
-                  </Link>
-                </div>
-                <div className="mt-6 flex items-center gap-4 text-xs text-white/60">
-                  <div className="flex -space-x-1.5">
-                    <Image
-                      className="inline-block h-6 w-6 rounded-full border border-white/20"
-                      src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png"
-                      alt="avatar 1"
-                      width={24}
-                      height={24}
-                    />
-                    <Image
-                      className="inline-block h-6 w-6 rounded-full border border-white/20"
-                      src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_2.png"
-                      alt="avatar 2"
-                      width={24}
-                      height={24}
-                    />
-                    <Image
-                      className="inline-block h-6 w-6 rounded-full border border-white/20"
-                      src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_7.png"
-                      alt="avatar 3"
-                      width={24}
-                      height={24}
-                    />
-                  </div>
-                  <span>+2k users trust NexusTimer</span>
-                </div>
+            <div className="mx-auto max-w-4xl px-6 pt-12 pb-20 md:pt-20 md:pb-28 text-center">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-white/70 mx-auto">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"/>
+                NexusTimer is free and always will be!
               </div>
-              <div className="md:pl-6">
-                <div className="relative rounded-xl border border-white/15 bg-black/30 p-4 shadow-xl">
-                  {/* Placeholder dashboard/phone card (solid, no gradient) */}
-                  <ImageZoom>
-                    <div className="aspect-[16/10] w-full rounded-lg border border-white/10 bg-neutral-900/60">
-                      <Image
-                        width={600}
-                        height={600}
-                        src="/ui/1.png"
-                        alt="preview"
-                        className="w-full h-full object-cover rounded-lg"
-                      />
 
-                    </div>
-                  </ImageZoom>
-                  <div className="mt-3 grid grid-cols-2 gap-2">
-                    <ImageZoom>
-                      <div className="h-32 rounded-md border border-white/10 bg-neutral-900/60">
-                        <Image
-                          width={500}
-                          height={500}
-                          src="/ui/2.png"
-                          alt="image 2"
-                          className="w-full h-full object-cover rounded-md"
-                        />
-                      </div>
-                    </ImageZoom>
-                    <ImageZoom>
-                      <div className="h-32 rounded-md border border-white/10 bg-neutral-900/60">
-                        <Image
-                          width={500}
-                          height={500}
-                          src="/ui/3.png"
-                          alt="image 3"
-                          className="w-full h-full object-cover rounded-md"
-                        />
-                      </div>
-                    </ImageZoom>
-                  </div>
+              <TextGenerateEffect
+                words={'Stay organized, and elevate your training experience.'}
+                className={'mt-6 text-4xl md:text-6xl font-bold leading-tight tracking-tight'}
+              />
+
+              <TextGenerateEffect
+                className={'mt-4 text-base md:text-xl text-white/70 max-w-2xl mx-auto'}
+                words={'NexusTimer is your timing hub — simple, powerful, and designed for SpeedCubers by SpeedCubers.'}
+              />
+
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <Link
+                  href="/app"
+                  className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors"
+                >
+                  Start now
+                </Link>
+                <Link
+                  href="/app"
+                  className="inline-flex items-center justify-center rounded-md border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white hover:bg-white/10 transition-colors"
+                >
+                  Demo
+                </Link>
+              </div>
+              <div className="mx-auto w-fit mt-6 flex items-center gap-4 text-xs text-white/60">
+                <div className="flex -space-x-1.5">
+                  <Image
+                    className="inline-block h-6 w-6 rounded-full border border-white/20"
+                    src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png"
+                    alt="avatar 1"
+                    width={24}
+                    height={24}
+                  />
+                  <Image
+                    className="inline-block h-6 w-6 rounded-full border border-white/20"
+                    src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_2.png"
+                    alt="avatar 2"
+                    width={24}
+                    height={24}
+                  />
+                  <Image
+                    className="inline-block h-6 w-6 rounded-full border border-white/20"
+                    src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_7.png"
+                    alt="avatar 3"
+                    width={24}
+                    height={24}
+                  />
                 </div>
+                <span>Join a growing community of cubers</span>
               </div>
             </div>
           </section>
