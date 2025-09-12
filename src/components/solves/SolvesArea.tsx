@@ -6,7 +6,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Card } from '../ui/card';
 import { useDialogSolve } from '@/store/DialogSolve';
 import { sort } from 'fast-sort';
-import { filterData, SearchType } from 'filter-data';
 import useRemoveGridHeight from '@/hooks/useRemoveGridHeight';
 import { BookmarkFilledIcon, ChatBubbleIcon, } from '@radix-ui/react-icons';
 import EmptySolves from './EmptySolves';
@@ -15,6 +14,7 @@ import { STATES } from '@/constants/states';
 import { Order } from '@/enums/Order';
 import { Sort } from '@/enums/Sort';
 import { DateTime } from 'luxon';
+import { useMemo } from 'react';
 
 interface SolvesArea {
   displaySolves: Solve[] | undefined;
@@ -30,31 +30,41 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
   const [sortType,] = useQueryState(STATES.SOLVES_PAGE.SORT.KEY, { defaultValue: STATES.SOLVES_PAGE.SORT.DEFAULT_VALUE });
   useRemoveGridHeight();
 
+  const normalizedQuery = (query || '').trim();
+
+  const filteredSolves = useMemo(() => {
+    if (!displaySolves) return [];
+    if (!normalizedQuery) return displaySolves;
+
+    return displaySolves.filter((u) =>
+      formatTime(u.time).startsWith(normalizedQuery)
+    );
+  }, [displaySolves, normalizedQuery]);
+
+  const sortedSolves = useMemo(() => {
+    const base = filteredSolves;
+
+    if (sortType === Sort.DATE) {
+      return orderType === Order.ASC
+        ? sort(base).asc((u) => u.endTime)
+        : sort(base).desc((u) => u.endTime);
+    }
+
+    if (sortType === Sort.TIME) {
+      return orderType === Order.ASC
+        ? sort(base).asc((u) => u.time)
+        : sort(base).desc((u) => u.time);
+    }
+
+    return base;
+  }, [filteredSolves, sortType, orderType]);
+
   if (!selectedCube) return <EmptySolves
     title={t('SolvesPage.alert.select-cube')}
     description={t('SolvesPage.alert.empty-cubes')}
   />;
+
   if (!displaySolves || displaySolves.length === 0) return <EmptySolves/>;
-
-  const filterSolves = filterData(displaySolves, [
-    {
-      key: 'time',
-      value: query,
-      type: SearchType.LTE
-    }
-  ]);
-
-  let sortedSolves: Solve[] = [];
-
-  if (sortType === Sort.DATE) {
-    if (orderType === Order.ASC) sortedSolves = sort(filterSolves).asc((u) => u.endTime);
-    if (orderType === Order.DESC) sortedSolves = sort(filterSolves).desc((u) => u.endTime);
-  }
-
-  if (sortType === Sort.TIME) {
-    if (orderType === Order.ASC) sortedSolves = sort(filterSolves).asc((u) => u.time);
-    if (orderType === Order.DESC) sortedSolves = sort(filterSolves).desc((u) => u.time);
-  }
 
   return (
     <VirtualizedGrid
