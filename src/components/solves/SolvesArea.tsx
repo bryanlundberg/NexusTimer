@@ -83,10 +83,10 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
                   .{formatTime(sortedSolves[index].time).split('.')[1]}
                 </span>
             {sortedSolves[index].plus2 ? (
-              <span className="ms-2 text-xs font-black text-red-600">+2</span>
+              <span className="ms-2 text-lg font-black text-red-600">+2</span>
             ) : null}
             {sortedSolves[index].dnf ? (
-              <span className="ms-1 text-xs font-black text-red-600">DNF</span>
+              <span className="ms-1 text-md font-black text-red-600">DNF</span>
             ) : null}
           </div>
 
@@ -105,8 +105,8 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
           </div>
 
           {sortedSolves[index].bookmark && (
-            <div className="absolute right-2 top-2 text-yellow-500">
-              <BookmarkFilledIcon/>
+            <div className="absolute left-2 top-2 text-yellow-500">
+              <BookmarkFilledIcon className={"size-5"}/>
             </div>
           )}
         </Card>
