@@ -57,7 +57,6 @@
     "eslint": "8.49.0",
     "eslint-config-next": "^14.2.24",
     "fast-sort": "^3.4.1",
-    "filter-data": "^0.6.1",
     "firebase": "^12.1.0",
     "framer-motion": "^12.12.2",
     "idb": "^8.0.3",
