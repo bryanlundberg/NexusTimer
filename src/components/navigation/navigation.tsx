@@ -30,7 +30,7 @@ export default function Navigation({
   return (
     <>
       <motion.div
-        className="w-full border mx-auto flex flex-col rounded-lg bg-card backdrop-blur-lg p-2 gap-2 mb-2 sticky top-1 left-0 z-50"
+        className="w-full border mx-auto flex flex-col rounded-lg bg-card backdrop-blur-lg p-2 gap-2 mb-2"
         initial={{ opacity: 0.5 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
