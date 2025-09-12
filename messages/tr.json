@@ -285,6 +285,11 @@
       "clash-mode": "Clash Modu",
       "settings": "Ayarlar"
     }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
+    }
   },
   "Metadata": {
     "title": "Nexus Zamanlayıcı - Profesyonel Rubik Küp Zamanlayıcı",

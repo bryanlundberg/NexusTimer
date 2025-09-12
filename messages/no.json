@@ -285,6 +285,11 @@
       "clash-mode": "Clash-modus",
       "settings": "Innstillinger"
     }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
+    }
   },
   "Metadata": {
     "title": "Nexus Timer - Profesjonell Rubiks Kubus Timer",

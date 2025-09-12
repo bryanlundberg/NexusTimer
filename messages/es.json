@@ -284,6 +284,10 @@
       "multiplayer": "Multijugador",
       "clash-mode": "Modo Clash",
       "settings": "Ajustes"
+    },
+    "AccessCard": {
+      "title": "Acceso",
+      "description": "Mantén tus datos sincronizados entre dispositivos y accede a más funciones."
     }
   },
   "Metadata": {

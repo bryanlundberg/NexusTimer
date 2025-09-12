@@ -285,6 +285,11 @@
       "clash-mode": "Clash মোড",
       "settings": "সেটিংস"
     }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
+    }
   },
   "Metadata": {
     "title": "Nexus Timer - পেশাদার রুবিকের কিউব টাইমার",

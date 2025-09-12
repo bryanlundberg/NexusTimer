@@ -285,6 +285,11 @@
       "clash-mode": "Chế độ Clash",
       "settings": "Cài đặt"
     }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
+    }
   },
   "Metadata": {
     "title": "Nexus Timer - Bộ hẹn giờ Rubik chuyên nghiệp",

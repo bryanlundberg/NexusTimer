@@ -285,6 +285,11 @@
       "clash-mode": "Clash 모드",
       "settings": "설정"
     }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
+    }
   },
   "Metadata": {
     "title": "Nexus Timer - 프로페셔널 루빅 큐브 타이머",

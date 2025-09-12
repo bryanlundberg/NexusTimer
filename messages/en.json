@@ -284,6 +284,10 @@
       "no-solves": "No solves available",
       "empty-vault": "Your solve vault is currently empty.",
       "cubes-unavailable": "Cubes data is not available"
+    },
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {

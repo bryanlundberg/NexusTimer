@@ -285,6 +285,11 @@
       "clash-mode": "Clash मोड",
       "settings": "सेटिंग्स"
     }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
+    }
   },
   "Metadata": {
     "title": "Nexus टाइमर - Rubik's Cube के लिए पेशेवर चार्जवाला टाइमर",
