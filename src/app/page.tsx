@@ -13,7 +13,7 @@ import { useState } from 'react';
 
 export default function Page() {
   const [activeSlide, setActiveSlide] = useState(0);
-  const featureImages = ['/landing/1.png', '/landing/2.png', '/landing/3.png', '/landing/4.png'];
+  const featureImages = ['/landing/1.png', '/landing/1.png', '/landing/1.png', '/landing/1.png'];
   return (
     <div className="relative w-dvw h-dvh bg-black overflow-hidden">
       {/* Animated background */}
@@ -216,7 +216,7 @@ export default function Page() {
                   {/* Vertical scroll-snap carousel for text only */}
                   <div className="relative rounded-lg border border-white/10 bg-black/50">
                     {/* Slide 1 */}
-                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center p-5">
+                    <div className="snap-center snap-always flex flex-col items-center justify-center p-5">
                       <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -239,7 +239,7 @@ export default function Page() {
                     </div>
 
                     {/* Slide 2 */}
-                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center p-5">
+                    <div className="snap-center snap-always flex flex-col items-center justify-center p-5">
                       <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -251,7 +251,7 @@ export default function Page() {
                         <div className="mb-3 flex items-center justify-center md:justify-start">
                           <Users className="h-6 w-6 text-fuchsia-300/90"/>
                         </div>
-                        <h3 className="text-lg md:text-xl font-semibold text-white">Clash Mode for team practice</h3>
+                        <h3 className="text-lg md:text-xl font-semibold text-white">Online practice</h3>
                         <p className="mt-2 text-sm md:text-base text-white/70">
                           Create rooms, sync rounds, and coordinate matches in real time. Perfect for clubs and friends
                           who want to compete, stay motivated, and improve together.
@@ -260,7 +260,7 @@ export default function Page() {
                     </div>
 
                     {/* Slide 3 */}
-                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center p-5">
+                    <div className="snap-center snap-always flex flex-col items-center justify-center p-5">
                       <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -272,16 +272,15 @@ export default function Page() {
                         <div className="mb-3 flex items-center justify-center md:justify-start">
                           <BarChart3 className="h-6 w-6 text-fuchsia-300/90"/>
                         </div>
-                        <h3 className="text-lg md:text-xl font-semibold text-white">Stats that drive your progress</h3>
+                        <h3 className="text-lg md:text-xl font-semibold text-white">Unique stats system</h3>
                         <p className="mt-2 text-sm md:text-base text-white/70">
-                          Analyze results per cube and spot opportunities without altering your session averages. Turn
-                          your data into decisions that lower your times.
+                          Analyze results per cube and spot opportunities without altering your session averages.
                         </p>
                       </motion.div>
                     </div>
 
                     {/* Slide 4 */}
-                    <div className="snap-center snap-always h-[540px] md:h-[600px] flex flex-col items-center justify-center p-5">
+                    <div className="snap-center snap-always flex flex-col items-center justify-center p-5">
                       <motion.div
                         initial={{ opacity: 0, y: 16 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -293,11 +292,10 @@ export default function Page() {
                         <div className="mb-3 flex items-center justify-center md:justify-start">
                           <ArrowUpDown className="h-6 w-6 text-fuchsia-300/90"/>
                         </div>
-                        <h3 className="text-lg md:text-xl font-semibold text-white">Import and export without
-                          friction</h3>
+                        <h3 className="text-lg md:text-xl font-semibold text-white">Connect with other cubers</h3>
                         <p className="mt-2 text-sm md:text-base text-white/70">
-                          Bring your times from csTimer, Twisty Timer, CubeTimer, and more. Your history is yours—take
-                          it wherever you go.
+                          Explore the vibrant worldwide community of cubers. Share your times, and
+                          individual performance metrics.
                         </p>
                       </motion.div>
                     </div>
@@ -484,8 +482,9 @@ export default function Page() {
                     <h3 className="text-xl md:text-2xl font-semibold">OSS Sponsors</h3>
                   </div>
 
-                  <div className={"text-sm"}>Interested in becoming a sponsor and showcasing your logo here?
-                    <a href="mailto:contact.nexustimer@gmail.com" className="text-purple-400 hover:underline ml-1">Contact us</a>.
+                  <div className={'text-sm'}>Interested in becoming a sponsor and showcasing your logo here?
+                    <a href="mailto:contact.nexustimer@gmail.com" className="text-purple-400 hover:underline ml-1">Contact
+                      us</a>.
                   </div>
                   <div className="flex flex-wrap items-center gap-6 md:gap-8 opacity-90">
                   </div>
