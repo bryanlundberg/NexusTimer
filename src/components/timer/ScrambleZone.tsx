@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import DrawerHintPanel from "../drawners/drawer-hint-panel";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import DialogEnterNewScramble from "../dialogs/dialog-enter-new-scramble/dialog-enter-new-scramble";
+import { Lightbulb } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 import { Layer } from "@/enums/Layer";
 import { motion } from "framer-motion";
@@ -77,7 +78,7 @@ export function ScrambleZone() {
                             ).then((res: CrossSolutions) => setHints(res));
                           }}
                         >
-                          <Component1Icon/>
+                          <Lightbulb />
                         </Button>
                       </DrawerTrigger>
                     </TooltipTrigger>
