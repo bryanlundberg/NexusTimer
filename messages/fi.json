@@ -312,6 +312,7 @@
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - Ammattimainen Rubikin Kuution Ajastin"
+    "title": "Nexus Timer - Ammattimainen Rubikin Kuution Ajastin",
+    "description": "Nexus Timer on ammattimainen alusta Rubikin kuution harjoitteluun ja analysointiin."
   }
 }

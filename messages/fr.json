@@ -312,6 +312,7 @@
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - Chronomètre professionnel pour le Rubik's Cube"
+    "title": "Nexus Timer - Chronomètre professionnel pour le Rubik's Cube",
+    "description": "Nexus Timer est une plateforme professionnelle pour s'entraîner et analyser votre parcours avec le Rubik's Cube."
   }
 }
