@@ -1,12 +1,13 @@
-"use client";
-import MainCubeSelector from "@/components/MainCubeSelector";
-import ButtonDisplayType from "./buttons/button-display-type";
-import ButtonCreateCollection from "./buttons/button-create-collection";
-import ButtonNextScramble from "./buttons/button-next-scramble";
-import ButtonNavbar from "./buttons/button-navbar";
-import ButtonSelectMode from "./buttons/button-select-mode";
-import { ReactNode } from "react";
-import { motion } from "framer-motion";
+'use client';
+import MainCubeSelector from '@/components/MainCubeSelector';
+import ButtonDisplayType from './buttons/button-display-type';
+import ButtonCreateCollection from './buttons/button-create-collection';
+import ButtonNextScramble from './buttons/button-next-scramble';
+import ButtonSelectMode from './buttons/button-select-mode';
+import { ReactNode } from 'react';
+import { motion } from 'framer-motion';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import { Button } from '@/components/ui/button';
 
 export default function Navigation({
   children,
@@ -29,14 +30,18 @@ export default function Navigation({
   return (
     <>
       <motion.div
-        className="w-full max-w-7xl border mx-auto flex flex-col rounded-lg bg-background/50 backdrop-blur-lg p-2 gap-2 mb-2 sticky top-1 left-0 z-50"
+        className="w-full border mx-auto flex flex-col rounded-lg bg-card backdrop-blur-lg p-2 gap-2 mb-2"
         initial={{ opacity: 0.5 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
+        transition={{ duration: 0.2, ease: 'easeOut' }}
       >
         {(showMenu || showMainCubeSelector || showButtonNextScramble || showButtonDisplayType || showButtonCreateCollection || showButtonSelectMode) && (
           <div className="flex justify-center items-center gap-2">
-            {showMenu && <ButtonNavbar/>}
+            {showMenu && (
+              <Button size={"icon"} variant={"ghost"} asChild>
+                <SidebarTrigger className="-ml-1"/>
+              </Button>
+            )}
             {showMainCubeSelector && <MainCubeSelector/>}
             {showButtonNextScramble && <ButtonNextScramble/>}
             {showButtonDisplayType && <ButtonDisplayType/>}

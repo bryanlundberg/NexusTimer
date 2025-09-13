@@ -7,7 +7,7 @@
       "tap-to-start": "Клацніть, щоб розпочати",
       "space-to-start": "Натисніть SPACE, щоб розпочати",
       "preview": "Попередній перегляд",
-      "empty-scramble": "Виберіть куб для завантаження перемішування.",
+      "empty-scramble": "Виберіть куб, щоб завантажити скрамбл.",
       "congratulations": "Вітаємо!",
       "new_best_average": "Новий найкращий середній!",
       "new_worst_time": "Ой, ви отримали свій найгірший час!",
@@ -16,13 +16,13 @@
       "average": "Середнє",
       "best": "Краще",
       "counter": "Лічильник",
-      "enter-custom-scramble": "Введіть власне перемішування",
-      "title": "грати",
-      "edit-scramble": "Редагувати сутичку",
+      "enter-custom-scramble": "Введіть власний скрамбл",
+      "title": "Таймер",
+      "edit-scramble": "Редагувати скрамбл",
       "hints": "Підказки",
       "mode": "Режим",
-      "new-scramble": "Нова сутичка",
-      "start-stackmat": "Почніть стакмат, щоб просити годинник"
+      "new-scramble": "Новий скрамбл",
+      "start-stackmat": "Запустіть Stackmat, щоб запустити таймер"
     },
     "SolvesPage": {
       "title": "Розв'язки",
@@ -115,7 +115,9 @@
       "solves-label": "Вирішувати",
       "total": "загальний",
       "marked-as-favorite": "Позначений як улюблений",
-      "removed-from-favorites": "Видалено з фаворитів"
+      "removed-from-favorites": "Видалено з фаворитів",
+      "utilize": "Використати",
+      "utilize-cube": "Використати `{name}`"
     },
     "Cubes-modal": {
       "category": "Категорія",
@@ -147,7 +149,9 @@
       "sign-in-google": "Увійдіть за допомогою Google",
       "no-results": "Результатів не знайдено",
       "search": "пошук...",
-      "menu": "Меню"
+      "menu": "Меню",
+      "exit-fullscreen": "Вийти на повне екран",
+      "fullscreen": "Повноцінний"
     },
     "Settings-menu": {
       "locale": "Регіон",
@@ -270,6 +274,23 @@
       "title": "Передача вирішує",
       "transfer": "Перенесення",
       "transferring": "Передача ..."
+    },
+    "NavMain": {
+      "application": "Додаток",
+      "timer": "Таймер",
+      "solves": "Часи",
+      "statistics": "Статистика",
+      "cubes": "Кубики",
+      "transfer": "Передача",
+      "community": "Спільнота",
+      "multiplayer": "Багатокористувацький",
+      "clash-mode": "Режим Clash",
+      "settings": "Налаштування"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {

@@ -17,12 +17,12 @@
       "best": "Tốt nhất",
       "counter": "Bộ đếm",
       "enter-custom-scramble": "Nhập scramble tùy chỉnh",
-      "title": "Chơi",
-      "edit-scramble": "Chỉnh sửa tranh giành",
-      "hints": "gợi ý",
-      "mode": "Cách thức",
-      "new-scramble": "Cuộc tranh giành mới",
-      "start-stackmat": "Bắt đầu Stackmat của bạn để cầu xin đồng hồ"
+      "title": "Bộ đếm thời gian",
+      "edit-scramble": "Chỉnh sửa scramble",
+      "hints": "Gợi ý",
+      "mode": "Chế độ",
+      "new-scramble": "Scramble mới",
+      "start-stackmat": "Khởi động Stackmat để bắt đầu bộ đếm thời gian"
     },
     "SolvesPage": {
       "title": "Giải quyết",
@@ -147,7 +147,9 @@
       "sign-in-google": "Đăng nhập bằng Google",
       "no-results": "Không tìm thấy kết quả nào",
       "search": "Tìm kiếm...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Thoát toàn màn hình",
+      "fullscreen": "Toàn màn hình"
     },
     "Settings-menu": {
       "locale": "Vùng",
@@ -270,6 +272,23 @@
       "title": "Chuyển giải quyết",
       "transfer": "Chuyển khoản",
       "transferring": "Chuyển giao ..."
+    },
+    "NavMain": {
+      "application": "Ứng dụng",
+      "timer": "Đồng hồ bấm giờ",
+      "solves": "Thời gian",
+      "statistics": "Thống kê",
+      "cubes": "Khối",
+      "transfer": "Chuyển",
+      "community": "Cộng đồng",
+      "multiplayer": "Nhiều người chơi",
+      "clash-mode": "Chế độ Clash",
+      "settings": "Cài đặt"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {

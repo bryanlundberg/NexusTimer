@@ -15,7 +15,7 @@ const storage: PersistStorage<Pick<BackgroundImageState, "backgroundImage">> = {
   getItem: async (name) => {
     if (!database.ready) await database.open();
     const images = await Images.get(name);
-    if (!images.background) return null;
+    if (!images || !images.background) return null;
     return {
       state: {
         backgroundImage: images.background,
@@ -25,7 +25,7 @@ const storage: PersistStorage<Pick<BackgroundImageState, "backgroundImage">> = {
   setItem: async (name, value) => {
     const background = value.state.backgroundImage;
     if (!background) return await Images.clear();
-    await Images.add({
+    await Images.put({
       name,
       background,
     });

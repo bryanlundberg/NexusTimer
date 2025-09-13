@@ -24,17 +24,40 @@ export default function ScrambleImagePanel() {
         >
           <div
             className={"w-fit mx-auto"}
-            onPointerDown={(e) => {
+            onPointerDownCapture={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               setZoomInScramble(true);
             }}
-            onClick={(e) => {
+            onPointerUpCapture={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onClickCapture={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onTouchStartCapture={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               setZoomInScramble(true);
             }}
-            onTouchStart={(e) => {
+            onTouchEndCapture={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onMouseDownCapture={(e) => {
+              e.preventDefault();
               e.stopPropagation();
               setZoomInScramble(true);
+            }}
+            onMouseUpCapture={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onContextMenu={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
             }}
           >
             <ScrambleDisplay

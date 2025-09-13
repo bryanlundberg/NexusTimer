@@ -16,13 +16,13 @@
       "average": "গড়",
       "best": "সেরা",
       "counter": "কাউন্টার",
-      "enter-custom-scramble": "একটি কাস্টম স্ক্র্যাম্বল প্রবেশ করুন",
-      "title": "খেলা",
+      "enter-custom-scramble": "একটি কাস্টম স্ক্র্যাম্বল লিখুন",
+      "title": "টাইমার",
       "edit-scramble": "স্ক্র্যাম্বল সম্পাদনা করুন",
       "hints": "ইঙ্গিত",
       "mode": "মোড",
-      "new-scramble": "নতুন হাতাহাতি",
-      "start-stackmat": "ঘড়িটি ভিক্ষা করতে আপনার স্ট্যাকমেট শুরু করুন"
+      "new-scramble": "নতুন স্ক্র্যাম্বল",
+      "start-stackmat": "টাইমার শুরু করতে আপনার Stackmat চালু করুন"
     },
     "SolvesPage": {
       "title": "সমাধান",
@@ -115,7 +115,9 @@
       "solves-label": "সমাধান করে",
       "total": "মোট",
       "marked-as-favorite": "প্রিয় হিসাবে চিহ্নিত",
-      "removed-from-favorites": "প্রিয় থেকে সরানো"
+      "removed-from-favorites": "পছন্দসমূহ থেকে সরানো হয়েছে",
+      "utilize": "ব্যবহার করুন",
+      "utilize-cube": "`{name}` ব্যবহার করুন"
     },
     "Cubes-modal": {
       "category": "শ্রেণী",
@@ -147,7 +149,9 @@
       "sign-in-google": "গুগল দিয়ে সাইন ইন করুন",
       "no-results": "কোন ফলাফল পাওয়া যায়নি",
       "search": "অনুসন্ধান করুন...",
-      "menu": "মেনু"
+      "menu": "মেনু",
+      "exit-fullscreen": "প্রস্থান ফুলস্ক্রিন",
+      "fullscreen": "ফুলস্ক্রিন"
     },
     "Settings-menu": {
       "locale": "অঞ্চল",
@@ -270,6 +274,23 @@
       "title": "স্থানান্তর সমাধান",
       "transfer": "স্থানান্তর",
       "transferring": "স্থানান্তর ..."
+    },
+    "NavMain": {
+      "application": "অ্যাপ্লিকেশন",
+      "timer": "টাইমার",
+      "solves": "টাইমস",
+      "statistics": "পরিসংখ্যান",
+      "cubes": "কিউবস",
+      "transfer": "ট্রান্সফার",
+      "community": "কমিউনিটি",
+      "multiplayer": "মাল্টিপ্লেয়ার",
+      "clash-mode": "Clash মোড",
+      "settings": "সেটিংস"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {
@@ -293,6 +314,7 @@
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - পেশাদার রুবিকের কিউব টাইমার"
+    "title": "Nexus Timer - পেশাদার রুবিকের কিউব টাইমার",
+    "description": "Nexus Timer হল একটি পেশাদার প্ল্যাটফর্ম আপনার রুবিকের কিউব যাত্রা প্রশিক্ষণ এবং বিশ্লেষণ করার জন্য।"
   }
 }

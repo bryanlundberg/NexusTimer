@@ -7,7 +7,7 @@
       "tap-to-start": "Нажмите, чтобы начать",
       "space-to-start": "Нажмите Пробел, чтобы начать",
       "preview": "Предпросмотр",
-      "empty-scramble": "Выберите куб, чтобы загрузить перетасовку.",
+      "empty-scramble": "Выберите куб, чтобы загрузить скрамбл.",
       "congratulations": "Поздравляем!",
       "new_best_average": "Новый лучший средний результат!",
       "new_worst_time": "Упс, у вас худшее время!",
@@ -16,13 +16,13 @@
       "average": "Средний",
       "best": "Лучший",
       "counter": "Счетчик",
-      "enter-custom-scramble": "Введите свою перетасовку",
-      "title": "Играть",
-      "edit-scramble": "Редактировать скрембл",
+      "enter-custom-scramble": "Введите свой скрамбл",
+      "title": "Таймер",
+      "edit-scramble": "Редактировать скрамбл",
       "hints": "Подсказки",
       "mode": "Режим",
-      "new-scramble": "Новая схватка",
-      "start-stackmat": "Начните свой стекмат, чтобы попросить часы"
+      "new-scramble": "Новый скрамбл",
+      "start-stackmat": "Запустите Stackmat, чтобы запустить таймер"
     },
     "SolvesPage": {
       "title": "Решения",
@@ -115,7 +115,9 @@
       "solves-label": "Решает",
       "total": "общий",
       "marked-as-favorite": "Отмечен как любимый",
-      "removed-from-favorites": "Удалено из фаворитов"
+      "removed-from-favorites": "Удалено из фаворитов",
+      "utilize": "Использовать",
+      "utilize-cube": "Использовать `{name}`"
     },
     "Cubes-modal": {
       "category": "Категория",
@@ -147,7 +149,9 @@
       "sign-in-google": "Войти через Google",
       "no-results": "Результаты не найдены",
       "search": "Поиск...",
-      "menu": "Меню"
+      "menu": "Меню",
+      "exit-fullscreen": "Выход полноэкранного экрана",
+      "fullscreen": "Полноэкранный"
     },
     "Settings-menu": {
       "locale": "Локаль",
@@ -270,6 +274,23 @@
       "title": "Передача решает",
       "transfer": "Передача",
       "transferring": "Передача ..."
+    },
+    "NavMain": {
+      "application": "Приложение",
+      "timer": "Таймер",
+      "solves": "Времена",
+      "statistics": "Статистика",
+      "cubes": "Кубики",
+      "transfer": "Передача",
+      "community": "Сообщество",
+      "multiplayer": "Мультиплеер",
+      "clash-mode": "Режим Clash",
+      "settings": "Настройки"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {
@@ -293,6 +314,7 @@
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - Профессиональный таймер кубика Рубика"
+    "title": "Nexus Timer - Профессиональный таймер кубика Рубика",
+    "description": "Nexus Timer - профессиональная платформа для тренировок и анализа вашего пути с кубиком Рубика."
   }
 }

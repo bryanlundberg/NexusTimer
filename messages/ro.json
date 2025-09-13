@@ -7,7 +7,7 @@
       "tap-to-start": "Atingeți pentru a începe",
       "space-to-start": "Apăsați SPAȚIU pentru a începe",
       "preview": "Previzualizare",
-      "empty-scramble": "Alegeți un cub pentru a încărca o amestecare.",
+      "empty-scramble": "Alegeți un cub pentru a încărca un scramble.",
       "congratulations": "Felicitări!",
       "new_best_average": "Noua medie cea mai bună!",
       "new_worst_time": "Ups, ai obținut cel mai rău timp!",
@@ -16,13 +16,13 @@
       "average": "Medie",
       "best": "Cel mai bun",
       "counter": "Contor",
-      "enter-custom-scramble": "Introduceți o amestecare personalizată",
-      "title": "Juca",
+      "enter-custom-scramble": "Introduceți un scramble personalizat",
+      "title": "Cronometru",
       "edit-scramble": "Editează scramble",
       "hints": "Sugestii",
       "mode": "Modul",
-      "new-scramble": "Noua luptă",
-      "start-stackmat": "Începeți Stackmat -ul pentru a implora ceasul"
+      "new-scramble": "Scramble nou",
+      "start-stackmat": "Porniți Stackmat pentru a porni cronometrul"
     },
     "SolvesPage": {
       "title": "Soluții",
@@ -147,7 +147,9 @@
       "sign-in-google": "Conectați-vă cu Google",
       "no-results": "Nu s-au găsit rezultate",
       "search": "Căutare...",
-      "menu": "Meniu"
+      "menu": "Meniu",
+      "exit-fullscreen": "Ieșiți pe ecran complet",
+      "fullscreen": "Ecran complet"
     },
     "Settings-menu": {
       "locale": "Localizare",
@@ -270,6 +272,23 @@
       "title": "Rezolvări de transfer",
       "transfer": "Transfer",
       "transferring": "Transferul ..."
+    },
+    "NavMain": {
+      "application": "Aplicație",
+      "timer": "Cronometru",
+      "solves": "Timpuri",
+      "statistics": "Statistici",
+      "cubes": "Cuburi",
+      "transfer": "Transfer",
+      "community": "Comunitate",
+      "multiplayer": "Multiplayer",
+      "clash-mode": "Modul Clash",
+      "settings": "Setări"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {

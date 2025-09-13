@@ -7,7 +7,7 @@
       "tap-to-start": "Başlamak için dokunun",
       "space-to-start": "Başlamak için BOŞLUK tuşuna basın",
       "preview": "Önizleme",
-      "empty-scramble": "Karıştırma yüklemek için bir küp seçin.",
+      "empty-scramble": "Bir scramble yüklemek için bir küp seçin.",
       "congratulations": "Tebrikler!",
       "new_best_average": "Yeni en iyi ortalama!",
       "new_worst_time": "Oops, en kötü zamanını aldın!",
@@ -16,13 +16,13 @@
       "average": "Ortalama",
       "best": "En İyi",
       "counter": "Sayaç",
-      "enter-custom-scramble": "Özel karıştırma girin",
-      "title": "Oynamak",
-      "edit-scramble": "Karıştırmayı düzenle",
+      "enter-custom-scramble": "Özel scramble girin",
+      "title": "Kronometre",
+      "edit-scramble": "Scramble'ı düzenle",
       "hints": "İpuçları",
       "mode": "Mod",
-      "new-scramble": "Yeni mücadele",
-      "start-stackmat": "Saati dilenmek için yığın arkadaşınızı başlatın"
+      "new-scramble": "Yeni scramble",
+      "start-stackmat": "Zamanlayıcıyı başlatmak için Stackmat'ınızı başlatın"
     },
     "SolvesPage": {
       "title": "Çözümler",
@@ -115,7 +115,9 @@
       "solves-label": "Çözer",
       "total": "toplam",
       "marked-as-favorite": "Favori olarak işaretlenmiş",
-      "removed-from-favorites": "Favorilerden kaldırıldı"
+      "removed-from-favorites": "Favorilerden kaldırıldı",
+      "utilize": "Kullan",
+      "utilize-cube": "`{name}` kullan"
     },
     "Cubes-modal": {
       "category": "Kategori",
@@ -147,7 +149,9 @@
       "sign-in-google": "Google ile Oturum Açın",
       "no-results": "Sonuç bulunamadı",
       "search": "Aramak...",
-      "menu": "Menü"
+      "menu": "Menü",
+      "exit-fullscreen": "Tam Ekran Çıkın",
+      "fullscreen": "Tam ekran"
     },
     "Settings-menu": {
       "locale": "Bölge",
@@ -270,6 +274,23 @@
       "title": "Transfer Çözüyor",
       "transfer": "Transfer etmek",
       "transferring": "Transfer ..."
+    },
+    "NavMain": {
+      "application": "Uygulama",
+      "timer": "Kronometre",
+      "solves": "Süreler",
+      "statistics": "İstatistikler",
+      "cubes": "Küpler",
+      "transfer": "Transfer",
+      "community": "Topluluk",
+      "multiplayer": "Çok oyunculu",
+      "clash-mode": "Clash Modu",
+      "settings": "Ayarlar"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {

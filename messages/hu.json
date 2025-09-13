@@ -17,12 +17,12 @@
       "best": "Legjobb",
       "counter": "Számláló",
       "enter-custom-scramble": "Adjon meg egyéni scramble-t",
-      "title": "Játék",
-      "edit-scramble": "A kód szerkesztése",
+      "title": "Időmérő",
+      "edit-scramble": "Scramble szerkesztése",
       "hints": "Tippek",
       "mode": "Mód",
-      "new-scramble": "Új tülekedés",
-      "start-stackmat": "Indítsa el a StackMat -ot az órának könyörgésére"
+      "new-scramble": "Új scramble",
+      "start-stackmat": "Indítsa el a Stackmatot az időmérő indításához"
     },
     "SolvesPage": {
       "title": "Megoldások",
@@ -115,7 +115,9 @@
       "solves-label": "Megoldás",
       "total": "teljes",
       "marked-as-favorite": "Kedvencnek jelölve",
-      "removed-from-favorites": "Eltávolítva a kedvencektől"
+      "removed-from-favorites": "Eltávolítva a kedvencektől",
+      "utilize": "Használd",
+      "utilize-cube": "Használd `{name}`"
     },
     "Cubes-modal": {
       "category": "Kategória",
@@ -147,7 +149,9 @@
       "sign-in-google": "Jelentkezzen be a Google-lal",
       "no-results": "Nincs találat",
       "search": "Keresés...",
-      "menu": "Menü"
+      "menu": "Menü",
+      "exit-fullscreen": "Kilép a teljes képernyőn",
+      "fullscreen": "Teljes képernyő"
     },
     "Settings-menu": {
       "locale": "Terület",
@@ -270,6 +274,23 @@
       "title": "Az átviteli megoldás",
       "transfer": "Átruházás",
       "transferring": "Átadó..."
+    },
+    "NavMain": {
+      "application": "Alkalmazás",
+      "timer": "Időmérő",
+      "solves": "Idők",
+      "statistics": "Statisztikák",
+      "cubes": "Kockák",
+      "transfer": "Átvitel",
+      "community": "Közösség",
+      "multiplayer": "Többjátékos",
+      "clash-mode": "Clash mód",
+      "settings": "Beállítások"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {

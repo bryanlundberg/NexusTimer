@@ -8,6 +8,9 @@ const nextConfig = {
     remotePatterns: [
       {
         hostname: "res.cloudinary.com"
+      },
+      {
+        hostname: "cdn.jsdelivr.net"
       }
     ]
   }

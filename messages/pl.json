@@ -7,7 +7,7 @@
       "tap-to-start": "Kliknij, aby rozpocząć",
       "space-to-start": "Naciśnij SPACJĘ, aby rozpocząć",
       "preview": "Podgląd",
-      "empty-scramble": "Wybierz kostkę, aby załadować mieszankę.",
+      "empty-scramble": "Wybierz kostkę, aby załadować scramble.",
       "congratulations": "Gratulacje!",
       "new_best_average": "Nowy najlepszy średni czas!",
       "new_worst_time": "Ups, uzyskałeś swój najgorszy czas!",
@@ -16,13 +16,13 @@
       "average": "Średni",
       "best": "Najlepszy",
       "counter": "Licznik",
-      "enter-custom-scramble": "Wprowadź niestandardową mieszankę",
-      "title": "Grać",
-      "edit-scramble": "Edytuj wyścig",
+      "enter-custom-scramble": "Wprowadź niestandardowy scramble",
+      "title": "Stoper",
+      "edit-scramble": "Edytuj scramble",
       "hints": "Poradnik",
       "mode": "Tryb",
-      "new-scramble": "Nowe starcie",
-      "start-stackmat": "Rozpocznij swój StackMat, aby błagał zegar"
+      "new-scramble": "Nowy scramble",
+      "start-stackmat": "Uruchom swój Stackmat, aby rozpocząć stoper"
     },
     "SolvesPage": {
       "title": "Rozwiązania",
@@ -115,7 +115,9 @@
       "solves-label": "Rozwiązuje",
       "total": "całkowity",
       "marked-as-favorite": "Oznaczony jako ulubiony",
-      "removed-from-favorites": "Usunięte z ulubionych"
+      "removed-from-favorites": "Usunięte z ulubionych",
+      "utilize": "Użyj",
+      "utilize-cube": "Użyj `{name}`"
     },
     "Cubes-modal": {
       "category": "Kategoria",
@@ -147,7 +149,9 @@
       "sign-in-google": "Zaloguj się za pomocą Google",
       "no-results": "Nie znaleziono żadnych wyników",
       "search": "Szukaj...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Wyjdź z pełnym ekranem",
+      "fullscreen": "Pełny ekran"
     },
     "Settings-menu": {
       "locale": "Lokalizacja",
@@ -270,6 +274,23 @@
       "title": "Rozwiązanie transferu",
       "transfer": "Przenosić",
       "transferring": "Przenoszenie ..."
+    },
+    "NavMain": {
+      "application": "Aplikacja",
+      "timer": "Stoper",
+      "solves": "Czasy",
+      "statistics": "Statystyki",
+      "cubes": "Kostki",
+      "transfer": "Transfer",
+      "community": "Społeczność",
+      "multiplayer": "Wieloosobowy",
+      "clash-mode": "Tryb Clash",
+      "settings": "Ustawienia"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {

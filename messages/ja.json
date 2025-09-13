@@ -17,12 +17,12 @@
       "best": "最高",
       "counter": "カウンター",
       "enter-custom-scramble": "カスタムスクランブルを入力",
-      "title": "遊ぶ",
+      "title": "タイマー",
       "edit-scramble": "スクランブル編集",
       "hints": "ヒント",
       "mode": "モード",
-      "new-scramble": "新たなスクランブル",
-      "start-stackmat": "Stackmatを開始して、時計を頼みます"
+      "new-scramble": "新しいスクランブル",
+      "start-stackmat": "Stackmatを起動してタイマーを開始してください"
     },
     "SolvesPage": {
       "title": "解答",
@@ -115,7 +115,9 @@
       "solves-label": "解決します",
       "total": "合計",
       "marked-as-favorite": "お気に入りとしてマークされています",
-      "removed-from-favorites": "お気に入りから削除されました"
+      "removed-from-favorites": "お気に入りから削除されました",
+      "utilize": "利用",
+      "utilize-cube": "`{name}` を利用"
     },
     "Cubes-modal": {
       "category": "カテゴリ",
@@ -147,7 +149,9 @@
       "sign-in-google": "Googleでサインイン",
       "no-results": "結果が見つかりませんでした",
       "search": "検索...",
-      "menu": "メニュー"
+      "menu": "メニュー",
+      "exit-fullscreen": "フルスクリーンを終了します",
+      "fullscreen": "全画面表示"
     },
     "Settings-menu": {
       "locale": "ロケール",
@@ -270,6 +274,23 @@
       "title": "転送は解決します",
       "transfer": "移行",
       "transferring": "転送..."
+    },
+    "NavMain": {
+      "application": "アプリ",
+      "timer": "タイマー",
+      "solves": "タイム",
+      "statistics": "統計",
+      "cubes": "キューブ",
+      "transfer": "転送",
+      "community": "コミュニティ",
+      "multiplayer": "マルチプレイヤー",
+      "clash-mode": "Clash モード",
+      "settings": "設定"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {
@@ -293,6 +314,7 @@
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - ルービックキューブ専用プロタイマー"
+    "title": "Nexus Timer - ルービックキューブ専用プロタイマー",
+    "description": "Nexus Timerは、ルービックキューブとの旅をトレーニングし、分析するためのプロフェッショナルなプラットフォームです。"
   }
 }

@@ -7,7 +7,7 @@
       "tap-to-start": "点击开始",
       "space-to-start": "按空格键开始",
       "preview": "预览",
-      "empty-scramble": "选择一个魔方加载乱序。",
+      "empty-scramble": "选择一个魔方以加载 scramble。",
       "congratulations": "恭喜！",
       "new_best_average": "新的最佳平均！",
       "new_worst_time": "哎呀，你得到了最差的时间！",
@@ -16,13 +16,13 @@
       "average": "平均",
       "best": "最佳",
       "counter": "计数器",
-      "enter-custom-scramble": "输入自定义乱序",
-      "title": "玩",
-      "edit-scramble": "编辑打乱",
+      "enter-custom-scramble": "输入自定义 scramble",
+      "title": "计时器",
+      "edit-scramble": "编辑 scramble",
       "hints": "提示",
       "mode": "模式",
-      "new-scramble": "新的争夺",
-      "start-stackmat": "启动您的stackmat乞讨时钟"
+      "new-scramble": "新的 scramble",
+      "start-stackmat": "启动您的 Stackmat 以开始计时器"
     },
     "SolvesPage": {
       "title": "解决方案",
@@ -115,7 +115,9 @@
       "solves-label": "解决",
       "total": "全部的",
       "marked-as-favorite": "被标记为最爱",
-      "removed-from-favorites": "从收藏夹中删除"
+      "removed-from-favorites": "从收藏夹中删除",
+      "utilize": "使用",
+      "utilize-cube": "使用 `{name}`"
     },
     "Cubes-modal": {
       "category": "类别",
@@ -147,7 +149,9 @@
       "sign-in-google": "使用 Google 登录",
       "no-results": "没有找到结果",
       "search": "搜索...",
-      "menu": "菜单"
+      "menu": "菜单",
+      "exit-fullscreen": "出口全屏",
+      "fullscreen": "全屏"
     },
     "Settings-menu": {
       "locale": "区域",
@@ -270,6 +274,23 @@
       "title": "传输解决方案",
       "transfer": "转移",
       "transferring": "转移..."
+    },
+    "NavMain": {
+      "application": "应用",
+      "timer": "计时器",
+      "solves": "成绩",
+      "statistics": "统计",
+      "cubes": "魔方",
+      "transfer": "转移",
+      "community": "社区",
+      "multiplayer": "多人",
+      "clash-mode": "Clash 模式",
+      "settings": "设置"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {
@@ -293,6 +314,7 @@
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - 专业魔方计时器"
+    "title": "Nexus Timer - 专业魔方计时器",
+    "description": "Nexus Timer是一个专业的平台, 用于训练和分析您与魔方的旅程。"
   }
 }

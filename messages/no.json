@@ -5,9 +5,9 @@
       "optimal-yellow-layer": "Optimal Gul Lag",
       "solving": "Løser...",
       "tap-to-start": "Trykk for å starte",
-      "space-to-start": "Trykk SPESIELL for å starte",
+      "space-to-start": "Trykk MELLOMROM for å starte",
       "preview": "Forhåndsvisning",
-      "empty-scramble": "Velg en kube for å laste inn en miks.",
+      "empty-scramble": "Velg en kube for å laste inn en scramble.",
       "congratulations": "Gratulerer!",
       "new_best_average": "Ny beste gjennomsnitt!",
       "new_worst_time": "Oops, du fikk din verste tid!",
@@ -16,13 +16,13 @@
       "average": "Gjennomsnitt",
       "best": "Beste",
       "counter": "Tellende",
-      "enter-custom-scramble": "Skriv inn en tilpasset miks",
-      "title": "Spille",
+      "enter-custom-scramble": "Skriv inn en tilpasset scramble",
+      "title": "Timer",
       "edit-scramble": "Rediger scramble",
       "hints": "Hint",
       "mode": "Modus",
       "new-scramble": "Ny scramble",
-      "start-stackmat": "Start StackMat for å tigge klokken"
+      "start-stackmat": "Start Stackmat for å starte timeren"
     },
     "SolvesPage": {
       "title": "Løsninger",
@@ -115,7 +115,9 @@
       "solves-label": "Løser",
       "total": "total",
       "marked-as-favorite": "Merket som favoritt",
-      "removed-from-favorites": "Fjernet fra favoritter"
+      "removed-from-favorites": "Fjernet fra favoritter",
+      "utilize": "Bruk",
+      "utilize-cube": "Bruk `{name}`"
     },
     "Cubes-modal": {
       "category": "Kategori",
@@ -147,7 +149,9 @@
       "sign-in-google": "Logg på med Google",
       "no-results": "Ingen resultater funnet",
       "search": "Søk...",
-      "menu": "Meny"
+      "menu": "Meny",
+      "exit-fullscreen": "Avslutt fullskjerm",
+      "fullscreen": "Fullskjerm"
     },
     "Settings-menu": {
       "locale": "Lokalitet",
@@ -270,6 +274,23 @@
       "title": "Overføring løser",
       "transfer": "Overføre",
       "transferring": "Overføring ..."
+    },
+    "NavMain": {
+      "application": "Applikasjon",
+      "timer": "Timer",
+      "solves": "Tider",
+      "statistics": "Statistikk",
+      "cubes": "Kuber",
+      "transfer": "Overføring",
+      "community": "Fellesskap",
+      "multiplayer": "Flerspiller",
+      "clash-mode": "Clash-modus",
+      "settings": "Innstillinger"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {

@@ -17,12 +17,12 @@
       "best": "Nejlepší",
       "counter": "Počítadlo",
       "enter-custom-scramble": "Zadejte vlastní scramble",
-      "title": "Hrát",
+      "title": "Časovač",
       "edit-scramble": "Upravit scramble",
       "hints": "Rady",
       "mode": "Režim",
-      "new-scramble": "Nový tahák",
-      "start-stackmat": "Začněte stackmat pro žebrání hodin"
+      "new-scramble": "Nový scramble",
+      "start-stackmat": "Spusťte Stackmat pro spuštění časovače"
     },
     "SolvesPage": {
       "title": "Řešení",
@@ -115,7 +115,9 @@
       "solves-label": "Řeší",
       "total": "celkový",
       "marked-as-favorite": "Označeno jako oblíbené",
-      "removed-from-favorites": "Odstraněno z oblíbených"
+      "removed-from-favorites": "Odstraněno z oblíbených",
+      "utilize": "Použít",
+      "utilize-cube": "Použít `{name}`"
     },
     "Cubes-modal": {
       "category": "Kategorie",
@@ -147,7 +149,9 @@
       "sign-in-google": "Přihlaste se pomocí Google",
       "no-results": "Nebyly nalezeny žádné výsledky",
       "search": "Vyhledávání...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Ukončete na plný obrazovku",
+      "fullscreen": "Celá obrazovka"
     },
     "Settings-menu": {
       "locale": "Oblast",
@@ -270,6 +274,23 @@
       "title": "Přenos řeší",
       "transfer": "Převod",
       "transferring": "Převod ..."
+    },
+    "NavMain": {
+      "application": "Aplikace",
+      "timer": "Časovač",
+      "solves": "Časy",
+      "statistics": "Statistiky",
+      "cubes": "Kostky",
+      "transfer": "Přenos",
+      "community": "Komunita",
+      "multiplayer": "Multiplayer",
+      "clash-mode": "Režim Clash",
+      "settings": "Nastavení"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {
@@ -293,6 +314,7 @@
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - Profesionální Časovač na Rubikovu Kostku"
+    "title": "Nexus Timer - Profesionální Časovač na Rubikovu Kostku",
+    "description": "Nexus Timer je profesionální platforma pro trénink a analýzu vaší cesty s Rubikovou kostkou."
   }
 }

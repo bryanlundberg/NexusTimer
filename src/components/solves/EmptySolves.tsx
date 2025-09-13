@@ -11,6 +11,7 @@ export default function EmptySolves({ title, description }: { title?: string, de
         width={200}
         height={200}
         className="object-scale-down mb-10 size-40"
+        priority={true}
       />
       <h2 className="text-2xl font-bold mb-4 text-center text-balance">
         {title ? title : t("empty-solves")}

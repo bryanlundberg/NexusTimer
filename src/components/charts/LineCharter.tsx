@@ -32,7 +32,7 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
   useEffect(() => {
     const backgroundColor = convert(getComputedStyle(
       document.documentElement
-    ).getPropertyValue("--background"), "rgb");
+    ).getPropertyValue("--card"), "rgb");
     const gridColor = "rgba(78,78,78,0.22)";
     const primaryColor = convert(getComputedStyle(
       document.documentElement

@@ -7,7 +7,7 @@
       "tap-to-start": "Tryck för att börja",
       "space-to-start": "Tryck mellanslag för att börja",
       "preview": "Förhandsvisning",
-      "empty-scramble": "Välj en kub för att ladda ett blandning.",
+      "empty-scramble": "Välj en kub för att ladda en scramble.",
       "congratulations": "Grattis!",
       "new_best_average": "Nytt bästa medel!",
       "new_worst_time": "Oj, du fick din sämsta tid!",
@@ -16,13 +16,13 @@
       "average": "Genomsnitt",
       "best": "Bäst",
       "counter": "Räknare",
-      "enter-custom-scramble": "Ange en egen blandning",
-      "title": "Spela",
+      "enter-custom-scramble": "Ange en egen scramble",
+      "title": "Timer",
       "edit-scramble": "Redigera scramble",
       "hints": "Tips",
       "mode": "Läge",
       "new-scramble": "Ny scramble",
-      "start-stackmat": "Börja din stackmat för att tigga klockan"
+      "start-stackmat": "Starta din Stackmat för att starta timern"
     },
     "SolvesPage": {
       "title": "Lösningar",
@@ -115,7 +115,9 @@
       "solves-label": "Löser",
       "total": "total",
       "marked-as-favorite": "Markerad som favorit",
-      "removed-from-favorites": "Bort från favoriter"
+      "removed-from-favorites": "Bort från favoriter",
+      "utilize": "Använd",
+      "utilize-cube": "Använd `{name}`"
     },
     "Cubes-modal": {
       "category": "Kategori",
@@ -147,7 +149,9 @@
       "sign-in-google": "Logga in med Google",
       "no-results": "Inga resultat hittades",
       "search": "Söka...",
-      "menu": "Meny"
+      "menu": "Meny",
+      "exit-fullscreen": "Avfart",
+      "fullscreen": "Fullskärm"
     },
     "Settings-menu": {
       "locale": "Region",
@@ -270,6 +274,23 @@
       "title": "Överföringslösningar",
       "transfer": "Överföra",
       "transferring": "Överföring ..."
+    },
+    "NavMain": {
+      "application": "Applikation",
+      "timer": "Timer",
+      "solves": "Tider",
+      "statistics": "Statistik",
+      "cubes": "Kubor",
+      "transfer": "Överföring",
+      "community": "Gemenskap",
+      "multiplayer": "Flerspelare",
+      "clash-mode": "Clash-läge",
+      "settings": "Inställningar"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {

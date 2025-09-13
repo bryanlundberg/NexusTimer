@@ -18,8 +18,9 @@ export default function ButtonMoveSolves() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
+              size={"icon"}
               variant={"ghost"}
-              className="py-0 px-3"
+              className={"size-7 m-auto"}
               onClick={() => handleChangeIsOpenMoveSolvesDialog()}
             >
               <EnterIcon />

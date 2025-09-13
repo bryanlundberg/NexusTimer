@@ -7,7 +7,7 @@
       "tap-to-start": "Klepnutím začnite",
       "space-to-start": "Stlačte medzerník pre začiatok",
       "preview": "Náhľad",
-      "empty-scramble": "Vyberte kocku pre načítanie zamiešania.",
+      "empty-scramble": "Vyberte kocku, aby sa načítal scramble.",
       "congratulations": "Gratulujeme!",
       "new_best_average": "Nový najlepší priemer!",
       "new_worst_time": "Ups, dostali ste najhorší čas!",
@@ -16,13 +16,13 @@
       "average": "Priemer",
       "best": "Najlepší",
       "counter": "Počítadlo",
-      "enter-custom-scramble": "Zadajte vlastné zamiešanie",
-      "title": "Hrať",
-      "edit-scramble": "Upraviť kódovanie",
+      "enter-custom-scramble": "Zadajte vlastný scramble",
+      "title": "Časovač",
+      "edit-scramble": "Upraviť scramble",
       "hints": "Tipy",
       "mode": "Režim",
-      "new-scramble": "Nový ťahák",
-      "start-stackmat": "Začnite svoj balík, aby ste prosili hodiny"
+      "new-scramble": "Nový scramble",
+      "start-stackmat": "Spustite svoj Stackmat na spustenie časovača"
     },
     "SolvesPage": {
       "title": "Riešenia",
@@ -147,7 +147,9 @@
       "sign-in-google": "Prihláste sa cez Google",
       "no-results": "Nenašli sa žiadne výsledky",
       "search": "Hľadať...",
-      "menu": "Ponuka"
+      "menu": "Ponuka",
+      "exit-fullscreen": "Výstup na celú obrazovku",
+      "fullscreen": "Celá obrazovka"
     },
     "Settings-menu": {
       "locale": "Lokalita",
@@ -270,6 +272,23 @@
       "title": "Riešenie prenosu",
       "transfer": "Prenos",
       "transferring": "Prevod ..."
+    },
+    "NavMain": {
+      "application": "Aplikácia",
+      "timer": "Časovač",
+      "solves": "Časy",
+      "statistics": "Štatistiky",
+      "cubes": "Kocky",
+      "transfer": "Prenos",
+      "community": "Komunita",
+      "multiplayer": "Multiplayer",
+      "clash-mode": "Režim Clash",
+      "settings": "Nastavenia"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {

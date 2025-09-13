@@ -26,7 +26,7 @@
       "language-description": "Change the language used throughout the application"
     },
     "HomePage": {
-      "title": "Play",
+      "title": "Timer",
       "hint": "Hint",
       "optimal-yellow-layer": "Optimal Yellow Layer",
       "solving": "Solving...",
@@ -47,12 +47,12 @@
       "new-scramble": "New scramble",
       "edit-scramble": "Edit scramble",
       "hints": "Hints",
-      "start-stackmat": "Start your stackmat to begging the clock"
+      "start-stackmat": "Start your Stackmat to start the timer"
     },
     "SolvesPage": {
       "title": "Solves",
       "session": "Session",
-      "historial": "Historial",
+      "historial": "History",
       "filter-by-time": "Filter by time",
       "show": "Show",
       "tooltips": {
@@ -140,7 +140,9 @@
       "marked-as-favorite": "Marked as favorite",
       "removed-from-favorites": "Removed from favorites",
       "no-solve-data": "No solve data available",
-      "chart-solves-label": "Solves"
+      "chart-solves-label": "Solves",
+      "utilize": "Utilize",
+      "utilize-cube": "Utilize `{name}`"
     },
     "Cubes-modal": {
       "delete-collection": "Delete collection",
@@ -160,7 +162,7 @@
     },
     "Errors": {
       "not-match": "The name does not match.",
-      "repeated-name": "That name collection already exist.",
+      "repeated-name": "That collection name already exists.",
       "empty-input": "Please enter a value"
     },
     "Inputs": {
@@ -177,7 +179,21 @@
       "back": "Back",
       "no-results": "No results found",
       "search": "Search...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "fullscreen": "Fullscreen",
+      "exit-fullscreen": "Exit Fullscreen"
+    },
+    "NavMain": {
+      "application": "Application",
+      "timer": "Timer",
+      "solves": "Solves",
+      "statistics": "Statistics",
+      "cubes": "Cubes",
+      "transfer": "Transfer",
+      "community": "Community",
+      "multiplayer": "Multiplayer",
+      "clash-mode": "Clash Mode",
+      "settings": "Settings"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",
@@ -217,7 +233,7 @@
       "auto-select": "Auto-select at startup",
       "import-from-file": "Import from file",
       "export-to-file": "Export to file",
-      "legend": "NexusTimer is an unopinionated, minimalist and open source web tool for SpeedCubing.",
+      "legend": "NexusTimer is a minimalist, open-source web timer built for speedcubing.",
       "suggest": "Suggest a change",
       "report-bug": "Report a bug",
       "dark": "Dark",
@@ -238,7 +254,7 @@
     "SettingsPage": {
       "title": "Settings",
       "not-authenticated": "Authenticate to grant access",
-      "fetching-last-backup": "Fetching information from server wait a moment...",
+      "fetching-last-backup": "Fetching information from the server, please wait...",
       "unlink-account": "Unlink account",
       "unlink-account-para1": "Are you sure you want to unlink from the account",
       "unlink-account-para2": "Unlinking will delete all data from this device.",
@@ -270,6 +286,10 @@
       "no-solves": "No solves available",
       "empty-vault": "Your solve vault is currently empty.",
       "cubes-unavailable": "Cubes data is not available"
+    },
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {
@@ -293,6 +313,7 @@
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - Professional Rubik's Cube Timer"
+    "title": "Nexus Timer - Professional Rubik's Cube Timer",
+    "description": "Nexus Timer is a professional platform for training and analyzing your journey with the Rubik's Cube."
   }
 }

@@ -25,7 +25,7 @@
       "start-stackmat": "Démarrez votre Stackmat pour mendier l'horloge"
     },
     "SolvesPage": {
-      "title": "Résolutions",
+      "title": "Temps",
       "session": "Session",
       "all": "Tout",
       "ascending": "Ascendant",
@@ -38,20 +38,20 @@
         "select-cube": "Commencez à sélectionner un cube!"
       },
       "dialogs": {
-        "move-to-history": "Déplacer les résolutions vers l'historique ?",
+        "move-to-history": "Déplacer les temps vers l'historique ?",
         "move-to-history-para": "Vous pourrez y accéder en appuyant sur le bouton Historique."
       },
       "empty-solves": "Rien ici pour l'instant !",
       "empty-solves-description": "Appuyez sur le commutateur en haut de l'écran pour voir votre historique.",
-      "filter-by-time": "Filtrer par heure",
+      "filter-by-time": "Filtrer par temps",
       "historial": "Historique",
       "last": "Dernier",
-      "order": "Commande",
+      "order": "Ordre",
       "share": "Partager",
       "share-clipboard": {
         "average": "Moyenne",
         "header": "Généré par NexusTimer",
-        "list-of-times": "Liste des heures"
+        "list-of-times": "Liste des temps"
       },
       "sort": "Trier",
       "toast": {
@@ -61,18 +61,18 @@
         "warning-select-cube": "Veuillez sélectionner un cube avant."
       },
       "tooltips": {
-        "move-to-history": "Déplacer les résolutions vers l'historique"
+        "move-to-history": "Déplacer les temps vers l'historique"
       },
-      "show": "Montrer",
+      "show": "Afficher",
       "dropdown": {
-        "add-bookmark": "Ajouter des signets",
+        "add-bookmark": "Ajouter un signet",
         "add-penalty": "Ajouter une pénalité",
         "copy-to-clipboard": "Copier dans le presse-papiers",
-        "delete-solve": "Supprimer la résolution",
-        "move-to-history": "Passer à l'histoire",
-        "remove-bookmark": "Supprimer les signets",
-        "remove-penalty": "Enlever la pénalité",
-        "transfer-collection": "Collection de transfert",
+        "delete-solve": "Supprimer le temps",
+        "move-to-history": "Déplacer vers l'historique",
+        "remove-bookmark": "Supprimer le signet",
+        "remove-penalty": "Supprimer la pénalité",
+        "transfer-collection": "Transférer la collection",
         "view-details": "Afficher les détails"
       }
     },
@@ -86,21 +86,21 @@
       "success-rate": "Taux de réussite",
       "counter": "Compteur",
       "category-tab": "Catégorie",
-      "cube-all-tooltip": "Combine toutes les résolus historiques et session pour le cube sélectionné.",
-      "cube-session-tooltip": "Count Seule la session résout uniquement pour le cube sélectionné.",
+      "cube-all-tooltip": "Combine tous les temps (historique et session) uniquement pour le cube sélectionné.",
+      "cube-session-tooltip": "Compte uniquement les temps de session pour le cube sélectionné.",
       "cube-tab": "Cube",
       "empty-statistics": "Aucune statistique disponible",
-      "empty-statistics-description": "Il semble que votre coffre-fort soit actuellement vide.",
-      "global-tooltip": "Combine toutes les résolus historiques et session pour chaque cube dans la même catégorie.",
-      "sessions-tooltip": "Le compte uniquement la session résout pour chaque cube de la même catégorie."
+      "empty-statistics-description": "Il semble que votre registre de temps soit actuellement vide.",
+      "global-tooltip": "Combine tous les temps (historique et session) de chaque cube dans la même catégorie.",
+      "sessions-tooltip": "Compte uniquement les temps de session pour chaque cube dans la même catégorie."
     },
     "CubesPage": {
       "title": "Cubes",
       "no-cubes-for-display": "Aucun cube à afficher.",
       "favorite": "Favori",
       "category": "Catégorie",
-      "solves": "Résolutions",
-      "created-at": "Créé à",
+      "solves": "Temps",
+      "created-at": "Créé le",
       "status": "Statut",
       "using": "En cours d'utilisation",
       "idle": "Inactif",
@@ -108,14 +108,16 @@
       "new-collection": "Nouvelle collection",
       "delete": "Supprimer",
       "edit": "Modifier",
-      "chart-solves-label": "Solution",
+      "chart-solves-label": "Temps",
       "created": "Créé",
       "no-cubes-description": "Commencez à ajouter des collections de cubes à votre coffre-fort pour les voir ici.",
-      "no-solve-data": "Pas de données de résolution disponibles",
-      "solves-label": "Solution",
+      "no-solve-data": "Aucune donnée de temps disponible",
+      "solves-label": "Temps",
       "total": "total",
-      "marked-as-favorite": "Marqué comme préféré",
-      "removed-from-favorites": "Retiré des favoris"
+      "marked-as-favorite": "Marqué comme favori",
+      "removed-from-favorites": "Retiré des favoris",
+      "utilize": "Utiliser",
+      "utilize-cube": "Utiliser `{name}`"
     },
     "Cubes-modal": {
       "category": "Catégorie",
@@ -147,7 +149,9 @@
       "sign-in-google": "Connectez-vous avec Google",
       "no-results": "Aucun résultat trouvé",
       "search": "Recherche...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Sortir en plein écran",
+      "fullscreen": "Plein écran"
     },
     "Settings-menu": {
       "locale": "Région",
@@ -270,6 +274,23 @@
       "title": "Solves de transfert",
       "transfer": "Transfert",
       "transferring": "Transfert ..."
+    },
+    "NavMain": {
+      "application": "Application",
+      "timer": "Chronomètre",
+      "solves": "Temps",
+      "statistics": "Statistiques",
+      "cubes": "Cubes",
+      "transfer": "Transfert",
+      "community": "Communauté",
+      "multiplayer": "Multijoueur",
+      "clash-mode": "Mode Clash",
+      "settings": "Paramètres"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {
@@ -293,6 +314,7 @@
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - Chronomètre professionnel pour le Rubik's Cube"
+    "title": "Nexus Timer - Chronomètre professionnel pour le Rubik's Cube",
+    "description": "Nexus Timer est une plateforme professionnelle pour s'entraîner et analyser votre parcours avec le Rubik's Cube."
   }
 }

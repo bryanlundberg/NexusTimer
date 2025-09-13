@@ -25,28 +25,28 @@
       "start-stackmat": "Starten Sie Ihren Stackmat, um die Uhr zu bitten"
     },
     "SolvesPage": {
-      "title": "Lösungen",
+      "title": "Zeiten",
       "session": "Sitzung",
       "all": "Alle",
       "alert": {
-        "empty-cubes": "Kein Würfel ausgewählt. \nBitte wählen Sie eines aus.",
-        "title": "Aufmerksamkeit!",
+        "empty-cubes": "Kein Würfel ausgewählt. \nBitte wählen Sie einen aus.",
+        "title": "Achtung!",
         "select-cube": "Wählen Sie einen Würfel aus!"
       },
       "ascending": "Aufsteigend",
       "date": "Datum",
       "descending": "Absteigend",
       "dialogs": {
-        "move-to-history": "Verschieben löst sich in den Verlauf auf?",
-        "move-to-history-para": "Sie können darauf zugreifen, indem Sie auf den Verlaufsschalter tippen."
+        "move-to-history": "Zeiten in den Verlauf verschieben?",
+        "move-to-history-para": "Sie können darauf zugreifen, indem Sie den Verlaufs-Schalter aktivieren."
       },
       "empty-solves": "Hier ist noch nichts!",
       "empty-solves-description": "Tippen Sie auf den Schalter oben auf dem Bildschirm, um Ihren Verlauf anzuzeigen.",
       "filter-by-time": "Nach Zeit filtern",
-      "historial": "Historisch",
+      "historial": "Verlauf",
       "last": "Zuletzt",
-      "order": "Befehl",
-      "share": "Aktie",
+      "order": "Reihenfolge",
+      "share": "Teilen",
       "share-clipboard": {
         "average": "Durchschnitt",
         "header": "Erstellt von NexusTimer",
@@ -61,18 +61,18 @@
         "warning-select-cube": "Bitte wählen Sie vorher einen Würfel aus."
       },
       "tooltips": {
-        "move-to-history": "Verschieben löst den Verlauf"
+        "move-to-history": "Zeiten in den Verlauf verschieben"
       },
-      "show": "Zeigen",
+      "show": "Anzeigen",
       "dropdown": {
         "add-bookmark": "Lesezeichen hinzufügen",
         "add-penalty": "Strafe hinzufügen",
-        "copy-to-clipboard": "Kopieren Sie in die Zwischenablage",
-        "delete-solve": "Löschen löschen",
-        "move-to-history": "In die Geschichte wechseln",
+        "copy-to-clipboard": "In die Zwischenablage kopieren",
+        "delete-solve": "Zeit löschen",
+        "move-to-history": "In den Verlauf verschieben",
         "remove-bookmark": "Lesezeichen entfernen",
         "remove-penalty": "Strafe entfernen",
-        "transfer-collection": "Übertragungssammlung",
+        "transfer-collection": "Sammlung übertragen",
         "view-details": "Details anzeigen"
       }
     },
@@ -86,36 +86,38 @@
       "success-rate": "Erfolgsrate",
       "counter": "Zähler",
       "category-tab": "Kategorie",
-      "cube-all-tooltip": "Kombiniert alle historischen und Sitzungen nur für den ausgewählten Würfel.",
-      "cube-session-tooltip": "Zählt nur Sitzungen nur für den ausgewählten Würfel.",
+      "cube-all-tooltip": "Kombiniert alle Zeiten (Historie und Sitzung) nur für den ausgewählten Würfel.",
+      "cube-session-tooltip": "Zählt nur Sitzungszeiten für den ausgewählten Würfel.",
       "cube-tab": "Würfel",
       "empty-statistics": "Keine Statistiken verfügbar",
-      "empty-statistics-description": "Es sieht so aus, als ob Ihr Lösungs -Tresor derzeit leer ist.",
-      "global-tooltip": "Kombiniert alle historischen und Sitzungen für jeden Würfel in derselben Kategorie.",
-      "sessions-tooltip": "Zählt nur Sitzungen für jeden Würfel in derselben Kategorie."
+      "empty-statistics-description": "Es sieht so aus, als ob Ihr Zeitarchiv derzeit leer ist.",
+      "global-tooltip": "Kombiniert alle Zeiten (Historie und Sitzung) für jeden Würfel in derselben Kategorie.",
+      "sessions-tooltip": "Zählt nur Sitzungszeiten für jeden Würfel in derselben Kategorie."
     },
     "CubesPage": {
       "title": "Würfel",
       "no-cubes-for-display": "Keine Würfel zur Anzeige.",
       "favorite": "Favorit",
       "category": "Kategorie",
-      "solves": "Lösungen",
+      "solves": "Zeiten",
       "created-at": "Erstellt am",
       "status": "Status",
-      "using": "Verwendet",
+      "using": "In Benutzung",
       "idle": "Leerlauf",
       "name": "Name",
       "new-collection": "Neue Kollektion",
       "delete": "Löschen",
       "edit": "Bearbeiten",
-      "chart-solves-label": "Löst",
+      "chart-solves-label": "Zeiten",
       "created": "Erstellt",
-      "no-cubes-description": "Fügen Sie Ihrem Tresor Cube -Sammlungen hinzu, um sie hier zu sehen.",
-      "no-solve-data": "Keine verfügbaren Daten verfügbar",
-      "solves-label": "Löst",
+      "no-cubes-description": "Fügen Sie Ihrem Tresor Cube-Sammlungen hinzu, um sie hier zu sehen.",
+      "no-solve-data": "Keine Zeitdaten verfügbar",
+      "solves-label": "Zeiten",
       "total": "gesamt",
       "marked-as-favorite": "Markiert als Favorit",
-      "removed-from-favorites": "Aus Favoriten entfernt"
+      "removed-from-favorites": "Aus Favoriten entfernt",
+      "utilize": "Verwenden",
+      "utilize-cube": "`{name}` verwenden"
     },
     "Cubes-modal": {
       "category": "Kategorie",
@@ -147,7 +149,9 @@
       "sign-in-google": "Melden Sie sich mit Google an",
       "no-results": "Keine Ergebnisse gefunden",
       "search": "Suchen...",
-      "menu": "Speisekarte"
+      "menu": "Speisekarte",
+      "exit-fullscreen": "Vollbild beenden",
+      "fullscreen": "Vollbild"
     },
     "Settings-menu": {
       "locale": "Region",
@@ -270,6 +274,23 @@
       "title": "Übertragung löst",
       "transfer": "Überweisen",
       "transferring": "Transfer ..."
+    },
+    "NavMain": {
+      "application": "Anwendung",
+      "timer": "Timer",
+      "solves": "Zeiten",
+      "statistics": "Statistiken",
+      "cubes": "Würfel",
+      "transfer": "Übertragen",
+      "community": "Community",
+      "multiplayer": "Mehrspieler",
+      "clash-mode": "Clash-Modus",
+      "settings": "Einstellungen"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {
@@ -293,6 +314,7 @@
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - Professioneller Rubik's Cube Timer"
+    "title": "Nexus Timer - Professioneller Rubik's Cube Timer",
+    "description": "Nexus Timer ist eine professionelle Plattform für das Training und die Analyse Ihrer Reise mit dem Rubik's Cube."
   }
 }

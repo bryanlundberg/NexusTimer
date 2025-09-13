@@ -31,7 +31,7 @@ export function useCubes() {
 
     setSelectedCube({ ...clickedCube });
     setNewScramble(clickedCube);
-    router.push("/");
+    router.push("/app");
   };
 
   return {

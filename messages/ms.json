@@ -7,7 +7,7 @@
       "tap-to-start": "Ketuk untuk mula",
       "space-to-start": "Tekan SPASI untuk mula",
       "preview": "Pratonton",
-      "empty-scramble": "Pilih kubus untuk muatkan acak.",
+      "empty-scramble": "Pilih kubus untuk memuatkan scramble.",
       "congratulations": "Tahniah!",
       "new_best_average": "Purata baru terbaik!",
       "new_worst_time": "Oops, anda mendapat masa terburuk anda!",
@@ -16,13 +16,13 @@
       "average": "Purata",
       "best": "Terbaik",
       "counter": "Pengira",
-      "enter-custom-scramble": "Masukkan acak khusus",
-      "title": "Main",
-      "edit-scramble": "Edit perebutan",
+      "enter-custom-scramble": "Masukkan scramble khusus",
+      "title": "Pemasa",
+      "edit-scramble": "Edit scramble",
       "hints": "Petunjuk",
       "mode": "Mod",
-      "new-scramble": "Perebutan baru",
-      "start-stackmat": "Mulakan stackmat anda untuk memohon jam"
+      "new-scramble": "Scramble baharu",
+      "start-stackmat": "Mulakan Stackmat anda untuk memulakan pemasa"
     },
     "SolvesPage": {
       "title": "Penyelesaian",
@@ -147,7 +147,9 @@
       "sign-in-google": "Log Masuk dengan Google",
       "no-results": "Tiada hasil ditemui",
       "search": "Cari...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Keluar dari skrin penuh",
+      "fullscreen": "Skrin penuh"
     },
     "Settings-menu": {
       "locale": "Lokaliti",
@@ -270,6 +272,23 @@
       "title": "Pemindahan solves",
       "transfer": "Pemindahan",
       "transferring": "Memindahkan ..."
+    },
+    "NavMain": {
+      "application": "Aplikasi",
+      "timer": "Pemasa",
+      "solves": "Masa",
+      "statistics": "Statistik",
+      "cubes": "Kiub",
+      "transfer": "Pemindahan",
+      "community": "Komuniti",
+      "multiplayer": "Berbilang pemain",
+      "clash-mode": "Mod Clash",
+      "settings": "Tetapan"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {

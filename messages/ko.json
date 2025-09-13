@@ -16,13 +16,13 @@
       "average": "평균",
       "best": "최고",
       "counter": "카운터",
-      "enter-custom-scramble": "사용자 정의 스크램블 입력",
-      "title": "놀다",
+      "enter-custom-scramble": "사용자 지정 스크램블 입력",
+      "title": "타이머",
       "edit-scramble": "스크램블 수정",
       "hints": "힌트",
-      "mode": "방법",
-      "new-scramble": "새로운 스크램블",
-      "start-stackmat": "시계를 구걸하도록 stackmat를 시작하십시오"
+      "mode": "모드",
+      "new-scramble": "새 스크램블",
+      "start-stackmat": "타이머를 시작하려면 Stackmat을 시작하세요"
     },
     "SolvesPage": {
       "title": "해결",
@@ -115,7 +115,9 @@
       "solves-label": "해결합니다",
       "total": "총",
       "marked-as-favorite": "좋아하는 것으로 표시됩니다",
-      "removed-from-favorites": "즐겨 찾기에서 제거되었습니다"
+      "removed-from-favorites": "즐겨 찾기에서 제거되었습니다",
+      "utilize": "사용",
+      "utilize-cube": "`{name}` 사용"
     },
     "Cubes-modal": {
       "category": "범주",
@@ -147,7 +149,9 @@
       "sign-in-google": "Google로 로그인",
       "no-results": "검색결과가 없습니다",
       "search": "찾다...",
-      "menu": "메뉴"
+      "menu": "메뉴",
+      "exit-fullscreen": "전체 화면 종료",
+      "fullscreen": "전체 화면"
     },
     "Settings-menu": {
       "locale": "로케일",
@@ -270,6 +274,23 @@
       "title": "전송 해결",
       "transfer": "옮기다",
       "transferring": "전송 ..."
+    },
+    "NavMain": {
+      "application": "애플리케이션",
+      "timer": "타이머",
+      "solves": "타임",
+      "statistics": "통계",
+      "cubes": "큐브",
+      "transfer": "전송",
+      "community": "커뮤니티",
+      "multiplayer": "멀티플레이어",
+      "clash-mode": "Clash 모드",
+      "settings": "설정"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {
@@ -293,6 +314,7 @@
     }
   },
   "OpenGraphImage": {
-    "title": "Nexus Timer - 프로페셔널 루빅 큐브 타이머"
+    "title": "Nexus Timer - 프로페셔널 루빅 큐브 타이머",
+    "description": "Nexus Timer는 루빅 큐브와의 여정을 훈련하고 분석하는 전문 플랫폼입니다."
   }
 }

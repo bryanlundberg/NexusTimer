@@ -2,26 +2,38 @@
 
 import { LoaderProvider } from '@/components/loader/loader-context';
 import LoaderOverlay from '@/components/loader/loader-overlay';
-import dynamic from 'next/dynamic';
-import AlertProvider from '@/components/alert/AlertProvider';
-
-const PreloadSettings = dynamic(() => import('@/components/PreloadSettings'), { ssr: false });
+import PreloadSettings from '@/components/PreloadSettings';
+import { useEffect } from 'react';
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
+import useWebsiteColors from '@/hooks/useWebsiteColors';
 
 export default function Providers({
+  loaderProvider = true,
   children,
 }: {
   children: React.ReactNode;
+  loaderProvider?: boolean;
 }) {
+
+  const settings = useSettingsModalStore(store => store.settings);
+  const { applyColorTheme } = useWebsiteColors();
+
+  useEffect(() => {
+    applyColorTheme(settings.preferences.colorTheme);
+  }, [applyColorTheme, settings.preferences.colorTheme]);
+
   return (
     <>
       <PreloadSettings>
-        <LoaderProvider>
-          <AlertProvider>
+        {loaderProvider ? (
+          <LoaderProvider>
             {children}
-          </AlertProvider>
-        </LoaderProvider>
+          </LoaderProvider>
+        ) : (
+          <>{children}</>
+        )}
       </PreloadSettings>
-      <LoaderOverlay />
+      <LoaderOverlay/>
     </>
   );
 }

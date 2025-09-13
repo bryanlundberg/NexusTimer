@@ -17,12 +17,12 @@
       "best": "Terbaik",
       "counter": "Penghitung",
       "enter-custom-scramble": "Masukkan scramble kustom",
-      "title": "Bermain",
-      "edit-scramble": "Sunting perebutan",
+      "title": "Timer",
+      "edit-scramble": "Sunting scramble",
       "hints": "Petunjuk",
       "mode": "Mode",
-      "new-scramble": "Perebutan baru",
-      "start-stackmat": "Mulailah Stackmat Anda untuk memohon jam"
+      "new-scramble": "Scramble baru",
+      "start-stackmat": "Mulai Stackmat Anda untuk memulai timer"
     },
     "SolvesPage": {
       "title": "Penyelesaian",
@@ -147,7 +147,9 @@
       "sign-in-google": "Masuk dengan Google",
       "no-results": "Tidak ada hasil yang ditemukan",
       "search": "Mencari...",
-      "menu": "Menu"
+      "menu": "Menu",
+      "exit-fullscreen": "Keluar dari layar penuh",
+      "fullscreen": "Layar penuh"
     },
     "Settings-menu": {
       "locale": "Lokal",
@@ -270,6 +272,23 @@
       "title": "Pemecahan transfer",
       "transfer": "Transfer",
       "transferring": "Mentransfer ..."
+    },
+    "NavMain": {
+      "application": "Aplikasi",
+      "timer": "Timer",
+      "solves": "Waktu",
+      "statistics": "Statistik",
+      "cubes": "Kubus",
+      "transfer": "Transfer",
+      "community": "Komunitas",
+      "multiplayer": "Multipemain",
+      "clash-mode": "Mode Clash",
+      "settings": "Pengaturan"
+    }
+    ,
+    "AccessCard": {
+      "title": "Access",
+      "description": "Keep your data in sync across devices and access more features."
     }
   },
   "Metadata": {
