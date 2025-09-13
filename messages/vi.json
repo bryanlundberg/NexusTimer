@@ -17,12 +17,12 @@
       "best": "Tốt nhất",
       "counter": "Bộ đếm",
       "enter-custom-scramble": "Nhập scramble tùy chỉnh",
-      "title": "Chơi",
-      "edit-scramble": "Chỉnh sửa tranh giành",
-      "hints": "gợi ý",
-      "mode": "Cách thức",
-      "new-scramble": "Cuộc tranh giành mới",
-      "start-stackmat": "Bắt đầu Stackmat của bạn để cầu xin đồng hồ"
+      "title": "Bộ đếm thời gian",
+      "edit-scramble": "Chỉnh sửa scramble",
+      "hints": "Gợi ý",
+      "mode": "Chế độ",
+      "new-scramble": "Scramble mới",
+      "start-stackmat": "Khởi động Stackmat để bắt đầu bộ đếm thời gian"
     },
     "SolvesPage": {
       "title": "Giải quyết",

@@ -7,7 +7,7 @@
       "tap-to-start": "点击开始",
       "space-to-start": "按空格键开始",
       "preview": "预览",
-      "empty-scramble": "选择一个魔方加载乱序。",
+      "empty-scramble": "选择一个魔方以加载 scramble。",
       "congratulations": "恭喜！",
       "new_best_average": "新的最佳平均！",
       "new_worst_time": "哎呀，你得到了最差的时间！",
@@ -16,13 +16,13 @@
       "average": "平均",
       "best": "最佳",
       "counter": "计数器",
-      "enter-custom-scramble": "输入自定义乱序",
-      "title": "玩",
-      "edit-scramble": "编辑打乱",
+      "enter-custom-scramble": "输入自定义 scramble",
+      "title": "计时器",
+      "edit-scramble": "编辑 scramble",
       "hints": "提示",
       "mode": "模式",
-      "new-scramble": "新的争夺",
-      "start-stackmat": "启动您的stackmat乞讨时钟"
+      "new-scramble": "新的 scramble",
+      "start-stackmat": "启动您的 Stackmat 以开始计时器"
     },
     "SolvesPage": {
       "title": "解决方案",

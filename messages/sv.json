@@ -7,7 +7,7 @@
       "tap-to-start": "Tryck för att börja",
       "space-to-start": "Tryck mellanslag för att börja",
       "preview": "Förhandsvisning",
-      "empty-scramble": "Välj en kub för att ladda ett blandning.",
+      "empty-scramble": "Välj en kub för att ladda en scramble.",
       "congratulations": "Grattis!",
       "new_best_average": "Nytt bästa medel!",
       "new_worst_time": "Oj, du fick din sämsta tid!",
@@ -16,13 +16,13 @@
       "average": "Genomsnitt",
       "best": "Bäst",
       "counter": "Räknare",
-      "enter-custom-scramble": "Ange en egen blandning",
-      "title": "Spela",
+      "enter-custom-scramble": "Ange en egen scramble",
+      "title": "Timer",
       "edit-scramble": "Redigera scramble",
       "hints": "Tips",
       "mode": "Läge",
       "new-scramble": "Ny scramble",
-      "start-stackmat": "Börja din stackmat för att tigga klockan"
+      "start-stackmat": "Starta din Stackmat för att starta timern"
     },
     "SolvesPage": {
       "title": "Lösningar",

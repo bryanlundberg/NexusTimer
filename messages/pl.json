@@ -7,7 +7,7 @@
       "tap-to-start": "Kliknij, aby rozpocząć",
       "space-to-start": "Naciśnij SPACJĘ, aby rozpocząć",
       "preview": "Podgląd",
-      "empty-scramble": "Wybierz kostkę, aby załadować mieszankę.",
+      "empty-scramble": "Wybierz kostkę, aby załadować scramble.",
       "congratulations": "Gratulacje!",
       "new_best_average": "Nowy najlepszy średni czas!",
       "new_worst_time": "Ups, uzyskałeś swój najgorszy czas!",
@@ -16,13 +16,13 @@
       "average": "Średni",
       "best": "Najlepszy",
       "counter": "Licznik",
-      "enter-custom-scramble": "Wprowadź niestandardową mieszankę",
-      "title": "Grać",
-      "edit-scramble": "Edytuj wyścig",
+      "enter-custom-scramble": "Wprowadź niestandardowy scramble",
+      "title": "Stoper",
+      "edit-scramble": "Edytuj scramble",
       "hints": "Poradnik",
       "mode": "Tryb",
-      "new-scramble": "Nowe starcie",
-      "start-stackmat": "Rozpocznij swój StackMat, aby błagał zegar"
+      "new-scramble": "Nowy scramble",
+      "start-stackmat": "Uruchom swój Stackmat, aby rozpocząć stoper"
     },
     "SolvesPage": {
       "title": "Rozwiązania",

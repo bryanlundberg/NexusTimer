@@ -7,7 +7,7 @@
       "tap-to-start": "Atingeți pentru a începe",
       "space-to-start": "Apăsați SPAȚIU pentru a începe",
       "preview": "Previzualizare",
-      "empty-scramble": "Alegeți un cub pentru a încărca o amestecare.",
+      "empty-scramble": "Alegeți un cub pentru a încărca un scramble.",
       "congratulations": "Felicitări!",
       "new_best_average": "Noua medie cea mai bună!",
       "new_worst_time": "Ups, ai obținut cel mai rău timp!",
@@ -16,13 +16,13 @@
       "average": "Medie",
       "best": "Cel mai bun",
       "counter": "Contor",
-      "enter-custom-scramble": "Introduceți o amestecare personalizată",
-      "title": "Juca",
+      "enter-custom-scramble": "Introduceți un scramble personalizat",
+      "title": "Cronometru",
       "edit-scramble": "Editează scramble",
       "hints": "Sugestii",
       "mode": "Modul",
-      "new-scramble": "Noua luptă",
-      "start-stackmat": "Începeți Stackmat -ul pentru a implora ceasul"
+      "new-scramble": "Scramble nou",
+      "start-stackmat": "Porniți Stackmat pentru a porni cronometrul"
     },
     "SolvesPage": {
       "title": "Soluții",

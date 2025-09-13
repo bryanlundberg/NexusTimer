@@ -17,12 +17,12 @@
       "best": "最高",
       "counter": "カウンター",
       "enter-custom-scramble": "カスタムスクランブルを入力",
-      "title": "遊ぶ",
+      "title": "タイマー",
       "edit-scramble": "スクランブル編集",
       "hints": "ヒント",
       "mode": "モード",
-      "new-scramble": "新たなスクランブル",
-      "start-stackmat": "Stackmatを開始して、時計を頼みます"
+      "new-scramble": "新しいスクランブル",
+      "start-stackmat": "Stackmatを起動してタイマーを開始してください"
     },
     "SolvesPage": {
       "title": "解答",

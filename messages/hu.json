@@ -17,12 +17,12 @@
       "best": "Legjobb",
       "counter": "Számláló",
       "enter-custom-scramble": "Adjon meg egyéni scramble-t",
-      "title": "Játék",
-      "edit-scramble": "A kód szerkesztése",
+      "title": "Időmérő",
+      "edit-scramble": "Scramble szerkesztése",
       "hints": "Tippek",
       "mode": "Mód",
-      "new-scramble": "Új tülekedés",
-      "start-stackmat": "Indítsa el a StackMat -ot az órának könyörgésére"
+      "new-scramble": "Új scramble",
+      "start-stackmat": "Indítsa el a Stackmatot az időmérő indításához"
     },
     "SolvesPage": {
       "title": "Megoldások",

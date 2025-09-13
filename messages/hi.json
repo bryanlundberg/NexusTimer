@@ -7,7 +7,7 @@
       "tap-to-start": "शुरू करने के लिए टैप करें",
       "space-to-start": "शुरू करने के लिए SPACE दबाएं",
       "preview": "पूर्वावलोकन",
-      "empty-scramble": "एक क्यूब चुनें ताकि एक तालिका लोड किया जा सके।",
+      "empty-scramble": "एक क्यूब चुनें ताकि एक scramble लोड किया जा सके।",
       "congratulations": "बधाई हो!",
       "new_best_average": "नया सर्वोत्तम औसत!",
       "new_worst_time": "उफ़, आपने अपना सबसे बुरा समय प्राप्त किया!",
@@ -16,13 +16,13 @@
       "average": "औसत",
       "best": "सर्वोत्तम",
       "counter": "काउंटर",
-      "enter-custom-scramble": "कस्टम तालिका दर्ज करें",
-      "title": "खेल",
-      "edit-scramble": "हाथापाई संपादित करें",
+      "enter-custom-scramble": "कस्टम scramble दर्ज करें",
+      "title": "टाइमर",
+      "edit-scramble": "scramble संपादित करें",
       "hints": "संकेत",
-      "mode": "तरीका",
-      "new-scramble": "नई हाथापाई",
-      "start-stackmat": "घड़ी की भीख माँगने के लिए अपना स्टैकमेट शुरू करें"
+      "mode": "मोड",
+      "new-scramble": "नया scramble",
+      "start-stackmat": "टाइमर शुरू करने के लिए अपना Stackmat शुरू करें"
     },
     "SolvesPage": {
       "title": "समाधान",

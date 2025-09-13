@@ -7,7 +7,7 @@
       "tap-to-start": "Napauta aloittaaksesi",
       "space-to-start": "Paina VÄLILYÖNTIÄ aloittaaksesi",
       "preview": "Esikatselu",
-      "empty-scramble": "Valitse kuutio ladataksesi sekoituksen.",
+      "empty-scramble": "Valitse kuutio ladataksesi scramblen.",
       "congratulations": "Onnittelut!",
       "new_best_average": "Uusi paras keskiarvo!",
       "new_worst_time": "Voi ei, sait huonoimman aikasi!",
@@ -16,13 +16,13 @@
       "average": "Keskiarvo",
       "best": "Paras",
       "counter": "Laskuri",
-      "enter-custom-scramble": "Syötä mukautettu sekoitus",
-      "title": "Pelata",
-      "edit-scramble": "Muokkaa sekoitusta",
+      "enter-custom-scramble": "Kirjoita mukautettu scramble",
+      "title": "Ajastin",
+      "edit-scramble": "Muokkaa scramblea",
       "hints": "Vihjeitä",
-      "mode": "tila",
-      "new-scramble": "Uusi sekoitus",
-      "start-stackmat": "Käynnistä StackMat kerjäämään kelloa"
+      "mode": "Tila",
+      "new-scramble": "Uusi scramble",
+      "start-stackmat": "Käynnistä Stackmat käynnistääksesi ajastimen"
     },
     "SolvesPage": {
       "title": "Ratkaisut",

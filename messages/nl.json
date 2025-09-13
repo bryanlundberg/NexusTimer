@@ -25,7 +25,7 @@
       "start-stackmat": "Start je Stackmat om de klok te bedelen"
     },
     "SolvesPage": {
-      "title": "Oplossingen",
+      "title": "Tijden",
       "session": "Sessie",
       "all": "Alle",
       "time": "Tijd",
@@ -34,26 +34,26 @@
       "ascending": "Oplopend",
       "alert": {
         "empty-cubes": "Geen kubus geselecteerd. \nKies er alstublieft één.",
-        "title": "Aandacht!",
+        "title": "Let op!",
         "select-cube": "Begin met het selecteren van een kubus!"
       },
       "dialogs": {
-        "move-to-history": "Verplaats oplossingen naar de geschiedenis?",
-        "move-to-history-para": "Je kunt ze openen door op de geschiedenisschakelaar te tikken."
+        "move-to-history": "Tijden naar de geschiedenis verplaatsen?",
+        "move-to-history-para": "Je kunt ze openen door de geschiedenisschakelaar te activeren."
       },
       "empty-solves": "Hier nog niets!",
       "empty-solves-description": "Tik op de schakelaar bovenaan het scherm om je geschiedenis te bekijken.",
       "filter-by-time": "Filter op tijd",
-      "historial": "Historisch",
+      "historial": "Geschiedenis",
       "last": "Laatst",
       "order": "Volgorde",
-      "share": "Deel",
+      "share": "Delen",
       "share-clipboard": {
         "average": "Gemiddeld",
         "header": "Gegenereerd door NexusTimer",
         "list-of-times": "Lijst met tijden"
       },
-      "sort": "Soort",
+      "sort": "Sorteren",
       "toast": {
         "success-copy": "Gekopieerd",
         "success-copy-description": "Is naar uw klembord gekopieerd.",
@@ -61,19 +61,19 @@
         "warning-select-cube": "Selecteer eerst een kubus."
       },
       "tooltips": {
-        "move-to-history": "Verplaats oplossingen voor de geschiedenis"
+        "move-to-history": "Tijden naar de geschiedenis verplaatsen"
       },
-      "show": "Show",
+      "show": "Weergeven",
       "dropdown": {
-        "add-bookmark": "Voeg een bladwijzer toe",
-        "add-penalty": "Voeg straf toe",
-        "copy-to-clipboard": "Kopieer naar klembord",
-        "delete-solve": "Verwijderen oplossen",
-        "move-to-history": "Ga naar de geschiedenis",
-        "remove-bookmark": "Verwijder een bladwijzer",
-        "remove-penalty": "Verwijder de straf",
-        "transfer-collection": "Overdrachtscollectie",
-        "view-details": "Bekijk details"
+        "add-bookmark": "Bladwijzer toevoegen",
+        "add-penalty": "Straf toevoegen",
+        "copy-to-clipboard": "Kopiëren naar klembord",
+        "delete-solve": "Tijd verwijderen",
+        "move-to-history": "Naar geschiedenis verplaatsen",
+        "remove-bookmark": "Bladwijzer verwijderen",
+        "remove-penalty": "Straf verwijderen",
+        "transfer-collection": "Collectie overzetten",
+        "view-details": "Details bekijken"
       }
     },
     "StatsPage": {
@@ -82,39 +82,39 @@
       "sessions": "Sessies",
       "best-time": "Beste Tijd",
       "average": "Gemiddelde",
-      "time-spent": "Tijd besteed",
+      "time-spent": "Bestede Tijd",
       "success-rate": "Succespercentage",
       "counter": "Teller",
       "category-tab": "Categorie",
-      "cube-all-tooltip": "Combineert alle historische en sessie lost alleen op voor de geselecteerde kubus.",
-      "cube-session-tooltip": "Tellingen alleen sessie lost alleen op voor de geselecteerde kubus.",
+      "cube-all-tooltip": "Combineert alle tijden (historie en sessie) alleen voor de geselecteerde kubus.",
+      "cube-session-tooltip": "Telt alleen sessietijden voor de geselecteerde kubus.",
       "cube-tab": "Kubus",
       "empty-statistics": "Geen statistieken beschikbaar",
-      "empty-statistics-description": "Het lijkt erop dat je oplosbare kluis momenteel leeg is.",
-      "global-tooltip": "Combineert alle historische en sessie lost op voor elke kubus in dezelfde categorie.",
-      "sessions-tooltip": "Tellingen alleen sessie lost op voor elke kubus in dezelfde categorie."
+      "empty-statistics-description": "Het lijkt erop dat je tijdarchief momenteel leeg is.",
+      "global-tooltip": "Combineert alle tijden (historie en sessie) voor elke kubus in dezelfde categorie.",
+      "sessions-tooltip": "Telt alleen sessietijden voor elke kubus in dezelfde categorie."
     },
     "CubesPage": {
       "title": "Kubussen",
       "no-cubes-for-display": "Geen kubussen om weer te geven.",
       "favorite": "Favoriet",
       "category": "Categorie",
-      "solves": "Oplossingen",
-      "created-at": "Gemaakt Op",
+      "solves": "Tijden",
+      "created-at": "Gemaakt op",
       "status": "Status",
-      "using": "Gebruikend",
+      "using": "In gebruik",
       "idle": "Inactief",
       "name": "Naam",
       "new-collection": "Nieuwe collectie",
       "delete": "Verwijderen",
-      "edit": "Bewerking",
-      "chart-solves-label": "Lost op",
-      "created": "Gecreëerd",
-      "no-cubes-description": "Begin met het toevoegen van kubuscollecties aan uw kluis om ze hier te zien.",
-      "no-solve-data": "Geen beschikbare gegevens opgelost",
-      "solves-label": "Lost op",
+      "edit": "Bewerken",
+      "chart-solves-label": "Tijden",
+      "created": "Gemaakt",
+      "no-cubes-description": "Begin met het toevoegen van kubuscollecties aan je kluis om ze hier te zien.",
+      "no-solve-data": "Geen tijdgegevens beschikbaar",
+      "solves-label": "Tijden",
       "total": "totaal",
-      "marked-as-favorite": "Gemiddeld als favoriet",
+      "marked-as-favorite": "Als favoriet gemarkeerd",
       "removed-from-favorites": "Verwijderd uit favorieten",
       "utilize": "Gebruiken",
       "utilize-cube": "`{name}` gebruiken"

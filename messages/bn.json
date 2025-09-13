@@ -16,13 +16,13 @@
       "average": "গড়",
       "best": "সেরা",
       "counter": "কাউন্টার",
-      "enter-custom-scramble": "একটি কাস্টম স্ক্র্যাম্বল প্রবেশ করুন",
-      "title": "খেলা",
+      "enter-custom-scramble": "একটি কাস্টম স্ক্র্যাম্বল লিখুন",
+      "title": "টাইমার",
       "edit-scramble": "স্ক্র্যাম্বল সম্পাদনা করুন",
       "hints": "ইঙ্গিত",
       "mode": "মোড",
-      "new-scramble": "নতুন হাতাহাতি",
-      "start-stackmat": "ঘড়িটি ভিক্ষা করতে আপনার স্ট্যাকমেট শুরু করুন"
+      "new-scramble": "নতুন স্ক্র্যাম্বল",
+      "start-stackmat": "টাইমার শুরু করতে আপনার Stackmat চালু করুন"
     },
     "SolvesPage": {
       "title": "সমাধান",

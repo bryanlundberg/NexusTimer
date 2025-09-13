@@ -7,7 +7,7 @@
       "tap-to-start": "Клацніть, щоб розпочати",
       "space-to-start": "Натисніть SPACE, щоб розпочати",
       "preview": "Попередній перегляд",
-      "empty-scramble": "Виберіть куб для завантаження перемішування.",
+      "empty-scramble": "Виберіть куб, щоб завантажити скрамбл.",
       "congratulations": "Вітаємо!",
       "new_best_average": "Новий найкращий середній!",
       "new_worst_time": "Ой, ви отримали свій найгірший час!",
@@ -16,13 +16,13 @@
       "average": "Середнє",
       "best": "Краще",
       "counter": "Лічильник",
-      "enter-custom-scramble": "Введіть власне перемішування",
-      "title": "грати",
-      "edit-scramble": "Редагувати сутичку",
+      "enter-custom-scramble": "Введіть власний скрамбл",
+      "title": "Таймер",
+      "edit-scramble": "Редагувати скрамбл",
       "hints": "Підказки",
       "mode": "Режим",
-      "new-scramble": "Нова сутичка",
-      "start-stackmat": "Почніть стакмат, щоб просити годинник"
+      "new-scramble": "Новий скрамбл",
+      "start-stackmat": "Запустіть Stackmat, щоб запустити таймер"
     },
     "SolvesPage": {
       "title": "Розв'язки",

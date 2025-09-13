@@ -25,9 +25,9 @@
       "start-stackmat": "Inizia lo stackmat per chiedere l'orologio"
     },
     "SolvesPage": {
-      "title": "Risoluzioni",
+      "title": "Tempi",
       "session": "Sessione",
-      "all": "Tutto",
+      "all": "Tutti",
       "time": "Tempo",
       "descending": "Discendente",
       "date": "Data",
@@ -35,25 +35,25 @@
       "alert": {
         "empty-cubes": "Nessun cubo selezionato. \nPer favore scegline uno.",
         "title": "Attenzione!",
-        "select-cube": "Inizia a selezionare un cubo!"
+        "select-cube": "Inizia selezionando un cubo!"
       },
       "dialogs": {
-        "move-to-history": "Spostare le soluzioni nella storia?",
-        "move-to-history-para": "Potrai accedervi toccando l'interruttore della cronologia."
+        "move-to-history": "Spostare i tempi nella cronologia?",
+        "move-to-history-para": "Potrai accedervi attivando l'interruttore della cronologia."
       },
       "empty-solves": "Niente qui ancora!",
       "empty-solves-description": "Tocca l'interruttore nella parte superiore dello schermo per visualizzare la cronologia.",
-      "filter-by-time": "Filtra per ora",
-      "historial": "Storico",
-      "last": "Scorso",
+      "filter-by-time": "Filtra per tempo",
+      "historial": "Cronologia",
+      "last": "Ultimo",
       "order": "Ordine",
-      "share": "Condividere",
+      "share": "Condividi",
       "share-clipboard": {
         "average": "Media",
         "header": "Generato da NexusTimer",
-        "list-of-times": "Elenco degli orari"
+        "list-of-times": "Elenco dei tempi"
       },
-      "sort": "Ordinare",
+      "sort": "Ordina",
       "toast": {
         "success-copy": "Copiato con successo",
         "success-copy-description": "È stato copiato negli appunti.",
@@ -61,18 +61,18 @@
         "warning-select-cube": "Seleziona prima un cubo."
       },
       "tooltips": {
-        "move-to-history": "Lo spostamento risolve la storia"
+        "move-to-history": "Spostare i tempi nella cronologia"
       },
-      "show": "Spettacolo",
+      "show": "Mostra",
       "dropdown": {
         "add-bookmark": "Aggiungi segnalibro",
         "add-penalty": "Aggiungi penalità",
         "copy-to-clipboard": "Copia negli appunti",
-        "delete-solve": "Elimina risolvere",
-        "move-to-history": "Passa alla storia",
-        "remove-bookmark": "Rimuovere il segnalibro",
-        "remove-penalty": "Rimuovere la penalità",
-        "transfer-collection": "Raccolta di trasferimento",
+        "delete-solve": "Elimina tempo",
+        "move-to-history": "Sposta nella cronologia",
+        "remove-bookmark": "Rimuovi segnalibro",
+        "remove-penalty": "Rimuovi penalità",
+        "transfer-collection": "Trasferisci raccolta",
         "view-details": "Visualizza i dettagli"
       }
     },
@@ -86,38 +86,38 @@
       "success-rate": "Tasso di Successo",
       "counter": "Contatore",
       "category-tab": "Categoria",
-      "cube-all-tooltip": "Combina tutte le risoluzione storica e di sessione solo per il cubo selezionato.",
-      "cube-session-tooltip": "Conta solo la sessione risolve solo per il cubo selezionato.",
+      "cube-all-tooltip": "Combina tutti i tempi (storico e sessione) solo per il cubo selezionato.",
+      "cube-session-tooltip": "Conta solo i tempi della sessione per il cubo selezionato.",
       "cube-tab": "Cubo",
       "empty-statistics": "Nessuna statistica disponibile",
-      "empty-statistics-description": "Sembra che il tuo Vault Solve sia attualmente vuoto.",
-      "global-tooltip": "Combina tutti i risoluzioni storiche e di sessione per ogni cubo nella stessa categoria.",
-      "sessions-tooltip": "Conta solo la sessione risolve per ogni cubo nella stessa categoria."
+      "empty-statistics-description": "Sembra che il tuo registro dei tempi sia attualmente vuoto.",
+      "global-tooltip": "Combina tutti i tempi (storico e sessione) di ogni cubo nella stessa categoria.",
+      "sessions-tooltip": "Conta solo i tempi della sessione per ogni cubo nella stessa categoria."
     },
     "CubesPage": {
       "title": "Cubi",
       "no-cubes-for-display": "Nessun cubo da visualizzare.",
       "favorite": "Preferito",
       "category": "Categoria",
-      "solves": "Risoluzioni",
+      "solves": "Tempi",
       "created-at": "Creato il",
       "status": "Stato",
-      "using": "Utilizzando",
+      "using": "In uso",
       "idle": "Inattivo",
       "name": "Nome",
       "new-collection": "Nuova collezione",
-      "delete": "Eliminare",
-      "edit": "Modificare",
-      "chart-solves-label": "Risolve",
+      "delete": "Elimina",
+      "edit": "Modifica",
+      "chart-solves-label": "Tempi",
       "created": "Creato",
-      "no-cubes-description": "Inizia ad aggiungere raccolte di cube al tuo Vault per vederle qui.",
-      "no-solve-data": "Nessuna risoluzione dei dati disponibili",
-      "solves-label": "Risolve",
+      "no-cubes-description": "Inizia ad aggiungere raccolte di cubi al tuo vault per vederle qui.",
+      "no-solve-data": "Nessun dato sui tempi disponibile",
+      "solves-label": "Tempi",
       "total": "totale",
-      "marked-as-favorite": "Contrassegnato come favorito",
+      "marked-as-favorite": "Contrassegnato come preferito",
       "removed-from-favorites": "Rimosso dai preferiti",
-      "utilize": "Utilizza",
-      "utilize-cube": "Utilizza `{name}`"
+      "utilize": "Usa",
+      "utilize-cube": "Usa `{name}`"
     },
     "Cubes-modal": {
       "category": "Categoria",

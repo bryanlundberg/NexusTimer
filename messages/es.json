@@ -48,10 +48,10 @@
         "add-penalty": "Añadir Penalización",
         "copy-to-clipboard": "Copiar al Portapapeles",
         "move-to-history": "Mover al Historial",
-        "delete-solve": "Eliminar Solución"
+        "delete-solve": "Eliminar tiempo"
       },
       "dialogs": {
-        "move-to-history": "¿Mover las soluciones al historial?",
+        "move-to-history": "¿Mover los tiempos al historial?",
         "move-to-history-para": "Podrás acceder a ellos tocando el interruptor del historial."
       },
       "empty-solves": "¡Nada aquí todavía!",
@@ -72,7 +72,7 @@
         "warning-select-cube": "Por favor seleccione un cubo antes."
       },
       "tooltips": {
-        "move-to-history": "Mover soluciones al historial"
+        "move-to-history": "Mover tiempos al historial"
       },
       "show": "Mostrar"
     },
@@ -82,7 +82,7 @@
       "sessions": "Sesiones",
       "best-time": "Mejor Tiempo",
       "average": "Promedio",
-      "time-spent": "Tiempo Gastado",
+      "time-spent": "Tiempo invertido",
       "success-rate": "Tasa de Éxito",
       "counter": "Contador",
       "category-tab": "Categoría",
@@ -92,7 +92,7 @@
       "global-tooltip": "Combina todos los tiempos (historial y sesión) de cada cubo dentro de la misma categoría.",
       "sessions-tooltip": "Cuenta solo los tiempos de la sesión para cada cubo en la misma categoría.",
       "empty-statistics": "No hay estadísticas disponibles",
-      "empty-statistics-description": "Parece que tu bóveda de soluciones está actualmente vacía."
+      "empty-statistics-description": "Parece que tu registro de tiempos está actualmente vacío."
     },
     "CubesPage": {
       "title": "Cubos",
@@ -100,9 +100,9 @@
       "favorite": "Favorito",
       "category": "Categoría",
       "solves": "Tiempos",
-      "created-at": "Creado En",
+      "created-at": "Creado el",
       "status": "Estado",
-      "using": "Usando",
+      "using": "En uso",
       "idle": "Inactivo",
       "name": "Nombre",
       "new-collection": "Nueva colección",
@@ -116,8 +116,8 @@
       "total": "total",
       "marked-as-favorite": "Marcado como favorito",
       "removed-from-favorites": "Eliminado de los favoritos",
-      "utilize": "Utilizar",
-      "utilize-cube": "Utilizar `{name}`"
+      "utilize": "Usar",
+      "utilize-cube": "Usar `{name}`"
     },
     "Cubes-modal": {
       "category": "Categoría",

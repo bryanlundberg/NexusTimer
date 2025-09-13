@@ -17,12 +17,12 @@
       "best": "Terbaik",
       "counter": "Penghitung",
       "enter-custom-scramble": "Masukkan scramble kustom",
-      "title": "Bermain",
-      "edit-scramble": "Sunting perebutan",
+      "title": "Timer",
+      "edit-scramble": "Sunting scramble",
       "hints": "Petunjuk",
       "mode": "Mode",
-      "new-scramble": "Perebutan baru",
-      "start-stackmat": "Mulailah Stackmat Anda untuk memohon jam"
+      "new-scramble": "Scramble baru",
+      "start-stackmat": "Mulai Stackmat Anda untuk memulai timer"
     },
     "SolvesPage": {
       "title": "Penyelesaian",

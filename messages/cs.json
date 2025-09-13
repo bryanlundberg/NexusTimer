@@ -17,12 +17,12 @@
       "best": "Nejlepší",
       "counter": "Počítadlo",
       "enter-custom-scramble": "Zadejte vlastní scramble",
-      "title": "Hrát",
+      "title": "Časovač",
       "edit-scramble": "Upravit scramble",
       "hints": "Rady",
       "mode": "Režim",
-      "new-scramble": "Nový tahák",
-      "start-stackmat": "Začněte stackmat pro žebrání hodin"
+      "new-scramble": "Nový scramble",
+      "start-stackmat": "Spusťte Stackmat pro spuštění časovače"
     },
     "SolvesPage": {
       "title": "Řešení",
