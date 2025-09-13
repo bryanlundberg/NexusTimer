@@ -73,30 +73,17 @@ export default function Stackmat() {
           comment: "",
         };
 
-        const cube = cubes?.find((u) => u.id === selectedCube.id);
-
-        if (cube) {
-          await saveCube({
-            ...cube,
-            solves: {
-              ...cube.solves,
-              session: [...cube.solves.session, newSolve],
-            },
-          });
+        const updatedCube = {
+          ...selectedCube,
+          solves: {
+            ...selectedCube.solves,
+            session: [newSolve, ...selectedCube.solves.session],
+          },
         }
 
-        const updatedCubes = await getAllCubes();
-        if (updatedCubes) {
-          setCubes([...updatedCubes]);
-        }
-
-        const updatedCube = await getCubeById(selectedCube.id);
-        if (updatedCube) {
-          setSelectedCube({ ...updatedCube });
-        }
-
+        saveCube(updatedCube);
+        setSelectedCube(updatedCube);
         setLastSolve({ ...newSolve });
-
         setNewScramble(selectedCube);
       };
 
