@@ -2,7 +2,17 @@
 
 import * as React from 'react'
 import { useMemo } from 'react'
-import { GithubIcon, LandPlot, LayoutPanelLeft, Maximize2, Minimize2, Settings, UsersRound } from 'lucide-react'
+import {
+  BoxesIcon,
+  ChartColumnIcon,
+  GithubIcon,
+  HistoryIcon,
+  LandPlot,
+  Maximize2,
+  Minimize2, ReplaceIcon,
+  Settings, TimerIcon,
+  UsersRound
+} from 'lucide-react'
 
 import { NavMain } from '@/components/nav-main'
 import { NavSecondary } from '@/components/nav-secondary'
@@ -58,32 +68,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const data = useMemo(() => ({
     navMain: [
       {
-        title: t('NavMain.application'),
+        title: t('NavMain.timer'),
         url: '/app',
-        icon: LayoutPanelLeft,
-        isActive: true,
-        items: [
-          {
-            title: t('NavMain.timer'),
-            url: '/app',
-          },
-          {
-            title: t('NavMain.solves'),
-            url: '/solves',
-          },
-          {
-            title: t('NavMain.statistics'),
-            url: '/stats',
-          },
-          {
-            title: t('NavMain.cubes'),
-            url: '/cubes',
-          },
-          {
-            title: t('NavMain.transfer'),
-            url: '/transfer-solves',
-          }
-        ],
+        icon: TimerIcon,
+      },
+      {
+        title: t('NavMain.solves'),
+        url: '/solves',
+        icon: HistoryIcon,
+      },
+      {
+        title: t('NavMain.statistics'),
+        url: '/stats',
+        icon: ChartColumnIcon,
+      },
+      {
+        title: t('NavMain.cubes'),
+        url: '/cubes',
+        icon: BoxesIcon,
+      },
+      {
+        title: t('NavMain.transfer'),
+        url: '/transfer-solves',
+        icon: ReplaceIcon,
       },
       {
         title: t('NavMain.community'),
