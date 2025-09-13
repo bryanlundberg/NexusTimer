@@ -7,12 +7,8 @@ import { ArrowUpDown, BarChart3, StarIcon, Timer, Users } from 'lucide-react';
 import Image from 'next/image';
 import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effect';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { motion } from 'framer-motion';
-import { useState } from 'react';
 
 export default function Page() {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const featureImages = ['/landing/1.png', '/landing/1.png', '/landing/1.png', '/landing/1.png'];
   return (
     <div className="relative w-dvw h-dvh bg-black overflow-hidden">
       {/* Animated background */}
@@ -156,109 +152,71 @@ export default function Page() {
               </h2>
 
               <div className="p-4 md:p-6 py-10 md:py-12">
-                {/* Two-column layout where the entire section scrolls (not only the text column) */}
-                <div className="grid md:grid-cols-2 gap-6 items-stretch">
-                  <div className="relative">
-                    <div className="sticky top-20 h-[540px] md:h-[600px] rounded-xl w-full border border-white/10 bg-neutral-900/60">
-                      <Image
-                        src={featureImages[activeSlide]}
-                        alt={'feature preview'}
-                        width={700}
-                        height={700}
-                        className="w-full h-full object-cover  p-4 grayscale-10 rounded-3xl"
-                      />
-                    </div>
+                {/* Left image column + 2x2 cards on the right (non-sticky) */}
+                <div className="grid md:grid-cols-3 gap-6 items-stretch">
+                  {/* Left image column */}
+                  <div className="relative rounded-lg border border-white/10 bg-black/50 overflow-hidden">
+                    <Image
+                      src="/landing/1.png"
+                      alt="NexusTimer preview"
+                      width={800}
+                      height={1000}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
-                  {/* Vertical scroll-snap carousel for text only */}
-                  <div className="relative rounded-lg border border-white/10 bg-black/50">
-                    {/* Slide 1 */}
-                    <div className="snap-center snap-always flex flex-col items-center justify-center p-5">
-                      <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ amount: 0.6 }}
-                        transition={{ duration: 1, ease: 'easeOut' }}
-                        onViewportEnter={() => setActiveSlide(0)}
-                        className="max-w-prose text-center md:text-left"
-                      >
-                        <div className="mb-3 flex items-center justify-center md:justify-start">
-                          <Timer className="h-6 w-6 text-fuchsia-300/90"/>
-                        </div>
-                        <h3 className="text-lg md:text-xl font-semibold text-white">A timer that adapts to you</h3>
-                        <p className="mt-2 text-sm md:text-base text-white/70">
-                          It’s more than counting seconds:
-                          with <span className="text-purple-400 font-medium">NexusTimer</span> you decide how to start,
-                          inspect, and view your times. Touch to start, spacebar, custom inspection, colors—you’re in
-                          control.
-                        </p>
-                      </motion.div>
+                  {/* Right 2x2 cards */}
+                  <div className="md:col-span-2 grid sm:grid-cols-2 gap-6">
+                    {/* Feature 1 */}
+                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
+                      <div className="mb-3 flex items-center">
+                        <Timer className="h-6 w-6 text-fuchsia-300/90"/>
+                      </div>
+                      <h3 className="text-lg md:text-xl font-semibold text-white">A timer that adapts to you</h3>
+                      <p className="mt-2 text-sm md:text-base text-white/70">
+                        It’s more than counting seconds:
+                        with <span className="text-purple-400 font-medium">NexusTimer</span> you decide how to start,
+                        inspect, and view your times. Touch to start, spacebar, custom inspection, colors—you’re in
+                        control.
+                      </p>
                     </div>
 
-                    {/* Slide 2 */}
-                    <div className="snap-center snap-always flex flex-col items-center justify-center p-5">
-                      <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ amount: 0.6 }}
-                        transition={{ duration: 1, ease: 'easeOut', delay: 0.05 }}
-                        onViewportEnter={() => setActiveSlide(1)}
-                        className="max-w-prose text-center md:text-left"
-                      >
-                        <div className="mb-3 flex items-center justify-center md:justify-start">
-                          <Users className="h-6 w-6 text-fuchsia-300/90"/>
-                        </div>
-                        <h3 className="text-lg md:text-xl font-semibold text-white">Online practice</h3>
-                        <p className="mt-2 text-sm md:text-base text-white/70">
-                          Create rooms, sync rounds, and coordinate matches in real time. Perfect for clubs and friends
-                          who want to compete, stay motivated, and improve together.
-                        </p>
-                      </motion.div>
+                    {/* Feature 2 */}
+                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
+                      <div className="mb-3 flex items-center">
+                        <Users className="h-6 w-6 text-fuchsia-300/90"/>
+                      </div>
+                      <h3 className="text-lg md:text-xl font-semibold text-white">Online practice</h3>
+                      <p className="mt-2 text-sm md:text-base text-white/70">
+                        Create rooms, sync rounds, and coordinate matches in real time. Perfect for clubs and friends
+                        who want to compete, stay motivated, and improve together.
+                      </p>
                     </div>
 
-                    {/* Slide 3 */}
-                    <div className="snap-center snap-always flex flex-col items-center justify-center p-5">
-                      <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ amount: 0.6 }}
-                        transition={{ duration: 1, ease: 'easeOut', delay: 0.05 }}
-                        onViewportEnter={() => setActiveSlide(2)}
-                        className="max-w-prose text-center md:text-left"
-                      >
-                        <div className="mb-3 flex items-center justify-center md:justify-start">
-                          <BarChart3 className="h-6 w-6 text-fuchsia-300/90"/>
-                        </div>
-                        <h3 className="text-lg md:text-xl font-semibold text-white">Unique stats system</h3>
-                        <p className="mt-2 text-sm md:text-base text-white/70">
-                          Analyze results per cube and spot opportunities without altering your session averages.
-                        </p>
-                      </motion.div>
+                    {/* Feature 3 */}
+                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
+                      <div className="mb-3 flex items-center">
+                        <BarChart3 className="h-6 w-6 text-fuchsia-300/90"/>
+                      </div>
+                      <h3 className="text-lg md:text-xl font-semibold text-white">Unique stats system</h3>
+                      <p className="mt-2 text-sm md:text-base text-white/70">
+                        Analyze results per cube and spot opportunities without altering your session averages.
+                      </p>
                     </div>
 
-                    {/* Slide 4 */}
-                    <div className="snap-center snap-always flex flex-col items-center justify-center p-5">
-                      <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ amount: 0.6 }}
-                        transition={{ duration: 1, ease: 'easeOut', delay: 0.05 }}
-                        onViewportEnter={() => setActiveSlide(3)}
-                        className="max-w-prose text-center md:text-left"
-                      >
-                        <div className="mb-3 flex items-center justify-center md:justify-start">
-                          <ArrowUpDown className="h-6 w-6 text-fuchsia-300/90"/>
-                        </div>
-                        <h3 className="text-lg md:text-xl font-semibold text-white">Connect with other cubers</h3>
-                        <p className="mt-2 text-sm md:text-base text-white/70">
-                          Explore the vibrant worldwide community of cubers. Share your times, and
-                          individual performance metrics.
-                        </p>
-                      </motion.div>
+                    {/* Feature 4 */}
+                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
+                      <div className="mb-3 flex items-center">
+                        <ArrowUpDown className="h-6 w-6 text-fuchsia-300/90"/>
+                      </div>
+                      <h3 className="text-lg md:text-xl font-semibold text-white">Connect with other cubers</h3>
+                      <p className="mt-2 text-sm md:text-base text-white/70">
+                        Explore the vibrant worldwide community of cubers. Share your times, and
+                        individual performance metrics.
+                      </p>
                     </div>
                   </div>
                 </div>
-                <p className="mt-3 text-center text-xs text-white/50">Scroll up or down to explore</p>
               </div>
             </div>
           </section>
