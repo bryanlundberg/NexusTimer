@@ -7,7 +7,6 @@ import genScramble from '@/lib/timer/genScramble';
 import { create } from 'zustand';
 import { TimerMode } from '@/enums/TimerMode';
 import { TimerStatus } from '@/enums/TimerStatus';
-import _ from 'lodash';
 
 type TimerStore = {
   cubes: Cube[] | null;
@@ -64,7 +63,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
     set({ scramble: scramble });
   },
   setCubes: (cubesDB: Cube[]) => {
-    set({ cubes: _.cloneDeep(cubesDB) });
+    set({ cubes: cubesDB });
   },
   setSelectedCube: (cube: Cube | null) => {
     set(() => {
