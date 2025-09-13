@@ -8,9 +8,8 @@ import { useNXData } from '@/hooks/useNXData';
 type CaseOfUse = "last-solve" | "modal-solve" | "solves-area";
 
 export const useSolveActions = () => {
-  const { getAllCubes, getCubeById, updateSolve } = useNXData();
+  const { getCubeById, updateSolve } = useNXData();
   const selectedCube = useTimerStore(store => store.selectedCube);
-  const setCubes = useTimerStore(store => store.setCubes);
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const lastSolve = useTimerStore(store => store.lastSolve);
   const setLastSolve = useTimerStore(store => store.setLastSolve);
@@ -59,9 +58,6 @@ export const useSolveActions = () => {
         dialog.handleSetSolveInDialog({ solve: null });
       }
 
-      const lastCubes = await getAllCubes();
-      setCubes([...lastCubes]);
-
       const lastCube = await getCubeById(selectedCube.id);
       if (lastCube) {
         setSelectedCube({ ...lastCube });
@@ -89,9 +85,6 @@ export const useSolveActions = () => {
         selectedCube: selectedCube,
         type: "+2"
       });
-
-      const lastCubes = await getAllCubes();
-      setCubes([...lastCubes]);
 
       const lastCube = await getCubeById(selectedCube.id);
       if (lastCube) {
@@ -131,9 +124,6 @@ export const useSolveActions = () => {
         type: "DNF"
       });
 
-      const lastCubes = await getAllCubes();
-      setCubes([...lastCubes]);
-
       const lastCube = await getCubeById(selectedCube.id);
       if (lastCube) {
         setSelectedCube({ ...lastCube });
@@ -171,9 +161,6 @@ export const useSolveActions = () => {
         selectedCube: selectedCube,
         type: "BOOKMARK"
       });
-
-      const lastCubes = await getAllCubes();
-      setCubes([...lastCubes]);
 
       const lastCube = await getCubeById(selectedCube.id);
       if (lastCube) {
@@ -239,9 +226,6 @@ export const useSolveActions = () => {
         }
         dialog.handleSetSolveInDialog({ solve: null });
       }
-
-      const lastCubes = await getAllCubes();
-      setCubes([...lastCubes]);
 
       const lastCube = await getCubeById(selectedCube.id);
       if (lastCube) {
