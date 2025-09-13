@@ -389,29 +389,29 @@ export default function Page() {
           </section>
 
           {/* Sponsors */}
-          <section id="sponsors" className="relative">
-            <div className="mx-auto max-w-7xl px-6 py-10 md:py-14">
-              <div className="rounded-xl border border-white/15 bg-black/20 p-6 md:p-8">
-                <div className="flex flex-col gap-6">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl md:text-2xl font-semibold">OSS Sponsors</h3>
-                  </div>
+          {/*<section id="sponsors" className="relative">*/}
+          {/*  <div className="mx-auto max-w-7xl px-6 py-10 md:py-14">*/}
+          {/*    <div className="rounded-xl border border-white/15 bg-black/20 p-6 md:p-8">*/}
+          {/*      <div className="flex flex-col gap-6">*/}
+          {/*        <div className="flex items-center justify-between">*/}
+          {/*          <h3 className="text-xl md:text-2xl font-semibold">OSS Sponsors</h3>*/}
+          {/*        </div>*/}
 
-                  <div className={'text-sm'}>Interested in becoming a sponsor and showcasing your logo here?
-                    <a href="mailto:contact.nexustimer@gmail.com" className="text-purple-400 hover:underline ml-1">Contact
-                      us</a>.
-                  </div>
-                  <div className="flex flex-wrap items-center gap-6 md:gap-8 opacity-90">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+          {/*        <div className={'text-sm'}>Interested in becoming a sponsor and showcasing your logo here?*/}
+          {/*          <a href="mailto:contact.nexustimer@gmail.com" className="text-purple-400 hover:underline ml-1">Contact*/}
+          {/*            us</a>.*/}
+          {/*        </div>*/}
+          {/*        <div className="flex flex-wrap items-center gap-6 md:gap-8 opacity-90">*/}
+          {/*        </div>*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+          {/*</section>*/}
 
           {/* CTA */}
           <section className="relative">
             <div className="mx-auto max-w-7xl px-6 pb-16">
-              <div className="rounded-xl border border-white/15 bg-purple-700/50 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="rounded-xl border border-white/15 bg-black/20 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
                   <h3 className="text-xl md:text-2xl font-semibold">Discover</h3>
                   {/*<p className="text-white/70 text-sm mt-1">Contribute or sponsor open-source. It powers your world..</p>*/}
