@@ -115,7 +115,9 @@
       "solves-label": "Ratkaista",
       "total": "kokonais-",
       "marked-as-favorite": "Merkitty suosikki",
-      "removed-from-favorites": "Poistettu suosikkeista"
+      "removed-from-favorites": "Poistettu suosikkeista",
+      "utilize": "Käytä",
+      "utilize-cube": "Käytä `{name}`"
     },
     "Cubes-modal": {
       "category": "Luokka",

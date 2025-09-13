@@ -115,7 +115,9 @@
       "solves-label": "Lahendama",
       "total": "kogusumma",
       "marked-as-favorite": "Tähistatud lemmikna",
-      "removed-from-favorites": "Eemaldatud lemmikutest"
+      "removed-from-favorites": "Eemaldatud lemmikutest",
+      "utilize": "Kasuta",
+      "utilize-cube": "Kasuta `{name}`"
     },
     "Cubes-modal": {
       "category": "Kategooria",

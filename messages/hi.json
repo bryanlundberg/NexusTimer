@@ -115,7 +115,9 @@
       "solves-label": "हल करती है",
       "total": "कुल",
       "marked-as-favorite": "पसंदीदा के रूप में चिह्नित",
-      "removed-from-favorites": "पसंदीदा से हटा दिया गया"
+      "removed-from-favorites": "पसंदीदा से हटाया गया",
+      "utilize": "उपयोग करें",
+      "utilize-cube": "`{name}` का उपयोग करें"
     },
     "Cubes-modal": {
       "category": "वर्ग",

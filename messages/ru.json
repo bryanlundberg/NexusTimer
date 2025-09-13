@@ -115,7 +115,9 @@
       "solves-label": "Решает",
       "total": "общий",
       "marked-as-favorite": "Отмечен как любимый",
-      "removed-from-favorites": "Удалено из фаворитов"
+      "removed-from-favorites": "Удалено из фаворитов",
+      "utilize": "Использовать",
+      "utilize-cube": "Использовать `{name}`"
     },
     "Cubes-modal": {
       "category": "Категория",

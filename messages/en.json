@@ -140,7 +140,9 @@
       "marked-as-favorite": "Marked as favorite",
       "removed-from-favorites": "Removed from favorites",
       "no-solve-data": "No solve data available",
-      "chart-solves-label": "Solves"
+      "chart-solves-label": "Solves",
+      "utilize": "Utilize",
+      "utilize-cube": "Utilize `{name}`"
     },
     "Cubes-modal": {
       "delete-collection": "Delete collection",

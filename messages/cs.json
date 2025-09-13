@@ -115,7 +115,9 @@
       "solves-label": "Řeší",
       "total": "celkový",
       "marked-as-favorite": "Označeno jako oblíbené",
-      "removed-from-favorites": "Odstraněno z oblíbených"
+      "removed-from-favorites": "Odstraněno z oblíbených",
+      "utilize": "Použít",
+      "utilize-cube": "Použít `{name}`"
     },
     "Cubes-modal": {
       "category": "Kategorie",

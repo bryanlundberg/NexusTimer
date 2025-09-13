@@ -115,7 +115,9 @@
       "solves-label": "Löser",
       "total": "total",
       "marked-as-favorite": "Markerad som favorit",
-      "removed-from-favorites": "Bort från favoriter"
+      "removed-from-favorites": "Bort från favoriter",
+      "utilize": "Använd",
+      "utilize-cube": "Använd `{name}`"
     },
     "Cubes-modal": {
       "category": "Kategori",

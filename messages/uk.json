@@ -115,7 +115,9 @@
       "solves-label": "Вирішувати",
       "total": "загальний",
       "marked-as-favorite": "Позначений як улюблений",
-      "removed-from-favorites": "Видалено з фаворитів"
+      "removed-from-favorites": "Видалено з фаворитів",
+      "utilize": "Використати",
+      "utilize-cube": "Використати `{name}`"
     },
     "Cubes-modal": {
       "category": "Категорія",

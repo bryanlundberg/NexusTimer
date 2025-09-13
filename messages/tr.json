@@ -115,7 +115,9 @@
       "solves-label": "Çözer",
       "total": "toplam",
       "marked-as-favorite": "Favori olarak işaretlenmiş",
-      "removed-from-favorites": "Favorilerden kaldırıldı"
+      "removed-from-favorites": "Favorilerden kaldırıldı",
+      "utilize": "Kullan",
+      "utilize-cube": "`{name}` kullan"
     },
     "Cubes-modal": {
       "category": "Kategori",

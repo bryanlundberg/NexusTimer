@@ -115,7 +115,9 @@
       "solves-label": "Lost op",
       "total": "totaal",
       "marked-as-favorite": "Gemiddeld als favoriet",
-      "removed-from-favorites": "Verwijderd uit favorieten"
+      "removed-from-favorites": "Verwijderd uit favorieten",
+      "utilize": "Gebruiken",
+      "utilize-cube": "`{name}` gebruiken"
     },
     "Cubes-modal": {
       "category": "Categorie",

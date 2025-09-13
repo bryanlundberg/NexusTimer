@@ -115,7 +115,9 @@
       "solves-label": "Tiempos",
       "total": "total",
       "marked-as-favorite": "Marcado como favorito",
-      "removed-from-favorites": "Eliminado de los favoritos"
+      "removed-from-favorites": "Eliminado de los favoritos",
+      "utilize": "Utilizar",
+      "utilize-cube": "Utilizar `{name}`"
     },
     "Cubes-modal": {
       "category": "Categoría",

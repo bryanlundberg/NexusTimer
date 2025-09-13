@@ -115,7 +115,9 @@
       "solves-label": "解決します",
       "total": "合計",
       "marked-as-favorite": "お気に入りとしてマークされています",
-      "removed-from-favorites": "お気に入りから削除されました"
+      "removed-from-favorites": "お気に入りから削除されました",
+      "utilize": "利用",
+      "utilize-cube": "`{name}` を利用"
     },
     "Cubes-modal": {
       "category": "カテゴリ",

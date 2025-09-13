@@ -263,11 +263,11 @@ export default function CubesCards({
                       onClick={() => handleRedirectToTimer(cube.id)}
                     >
                       <PlayIcon className="mr-1 h-4 w-4"/>
-                      Utilize
+                      {t("CubesPage.utilize")}
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Utilize `{cube.name}`</p>
+                    <p>{t("CubesPage.utilize-cube", { name: cube.name })}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>

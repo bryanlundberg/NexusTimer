@@ -115,7 +115,9 @@
       "solves-label": "Löst",
       "total": "gesamt",
       "marked-as-favorite": "Markiert als Favorit",
-      "removed-from-favorites": "Aus Favoriten entfernt"
+      "removed-from-favorites": "Aus Favoriten entfernt",
+      "utilize": "Verwenden",
+      "utilize-cube": "`{name}` verwenden"
     },
     "Cubes-modal": {
       "category": "Kategorie",

@@ -115,7 +115,9 @@
       "solves-label": "해결합니다",
       "total": "총",
       "marked-as-favorite": "좋아하는 것으로 표시됩니다",
-      "removed-from-favorites": "즐겨 찾기에서 제거되었습니다"
+      "removed-from-favorites": "즐겨 찾기에서 제거되었습니다",
+      "utilize": "사용",
+      "utilize-cube": "`{name}` 사용"
     },
     "Cubes-modal": {
       "category": "범주",

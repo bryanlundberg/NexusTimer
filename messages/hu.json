@@ -115,7 +115,9 @@
       "solves-label": "Megoldás",
       "total": "teljes",
       "marked-as-favorite": "Kedvencnek jelölve",
-      "removed-from-favorites": "Eltávolítva a kedvencektől"
+      "removed-from-favorites": "Eltávolítva a kedvencektől",
+      "utilize": "Használd",
+      "utilize-cube": "Használd `{name}`"
     },
     "Cubes-modal": {
       "category": "Kategória",

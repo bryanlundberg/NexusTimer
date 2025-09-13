@@ -115,7 +115,9 @@
       "solves-label": "Løser",
       "total": "total",
       "marked-as-favorite": "Merket som favoritt",
-      "removed-from-favorites": "Fjernet fra favoritter"
+      "removed-from-favorites": "Fjernet fra favoritter",
+      "utilize": "Bruk",
+      "utilize-cube": "Bruk `{name}`"
     },
     "Cubes-modal": {
       "category": "Kategori",

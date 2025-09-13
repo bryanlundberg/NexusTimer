@@ -115,7 +115,9 @@
       "solves-label": "解决",
       "total": "全部的",
       "marked-as-favorite": "被标记为最爱",
-      "removed-from-favorites": "从收藏夹中删除"
+      "removed-from-favorites": "从收藏夹中删除",
+      "utilize": "使用",
+      "utilize-cube": "使用 `{name}`"
     },
     "Cubes-modal": {
       "category": "类别",

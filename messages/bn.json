@@ -115,7 +115,9 @@
       "solves-label": "সমাধান করে",
       "total": "মোট",
       "marked-as-favorite": "প্রিয় হিসাবে চিহ্নিত",
-      "removed-from-favorites": "প্রিয় থেকে সরানো"
+      "removed-from-favorites": "পছন্দসমূহ থেকে সরানো হয়েছে",
+      "utilize": "ব্যবহার করুন",
+      "utilize-cube": "`{name}` ব্যবহার করুন"
     },
     "Cubes-modal": {
       "category": "শ্রেণী",
