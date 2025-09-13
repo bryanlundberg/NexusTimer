@@ -1,3 +1,4 @@
+'use client';
 import LineCharter from '../charts/LineCharter';
 import formatTime from '@/lib/formatTime';
 import useMetricsSwitch from '@/hooks/useMetricsSwitch';
@@ -11,17 +12,26 @@ import { useQueryState } from 'nuqs';
 import { STATES } from '@/constants/states';
 import { StatisticsTabs } from '@/enums/StatisticsTabs';
 import EmptyStatistics from '@/components/stats/EmptyStatistics';
+import { LoaderCircle } from 'lucide-react';
 
 export default function CategoryStatistics() {
   const t = useTranslations('Index');
-  const { stats } = useMetricsSwitch();
+  const { stats, isLoading } = useMetricsSwitch();
   const selectedCube = useTimerStore((state) => state.selectedCube);
   const [tabStats, setTabStats] = useQueryState(STATES.STATISTICS_PAGE.TAB_MODE.KEY, { defaultValue: STATES.STATISTICS_PAGE.TAB_MODE.DEFAULT_VALUE });
   const cubes = useTimerStore((state) => state.cubes);
 
   return (
     <>
-      <div className="flex flex-col gap-3 grow">
+      <div className="flex flex-col gap-3 grow relative">
+        {isLoading && (
+          <div
+            className="absolute top-0 left-0 w-full h-full bg-background/70 z-99 flex flex-col justify-center items-center transition-opacity duration-300"
+          >
+            <LoaderCircle className={"animate-spin"}/>
+            Calculating...
+          </div>
+        )}
         <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-card backdrop-blur-lg">
           {selectedCube && (selectedCube.solves.session.length || selectedCube.solves.all.length || cubes?.some((cube) => cube.category === selectedCube.category && cube.solves.all.length)) ? (
             <>

@@ -12,15 +12,13 @@ import { Input } from "../ui/input";
 import { useNXData } from '@/hooks/useNXData';
 
 export default function ManualMode() {
-  const { getAllCubes, getCubeById, saveCube } = useNXData();
+  const { saveCube } = useNXData();
   const [value, setValue] = useState<string>("");
   const selectedCube = useTimerStore(store => store.selectedCube);
   const scramble = useTimerStore(store => store.scramble);
   const lastSolve = useTimerStore(store => store.lastSolve);
-  const cubes = useTimerStore(store => store.cubes);
   const setNewScramble = useTimerStore(store => store.setNewScramble);
   const setLastSolve = useTimerStore(store => store.setLastSolve);
-  const setCubes = useTimerStore(store => store.setCubes);
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
 
   const settings = useSettingsModalStore(store => store.settings);
@@ -59,30 +57,17 @@ export default function ManualMode() {
             comment: "",
           };
 
-          const cube = cubes?.find((u) => u.id === selectedCube.id);
-
-          if (cube) {
-            await saveCube({
-              ...cube,
-              solves: {
-                ...cube.solves,
-                session: [...cube.solves.session, newSolve],
-              },
-            });
+          const updatedCube = {
+            ...selectedCube,
+            solves: {
+              ...selectedCube.solves,
+              session: [newSolve, ...selectedCube.solves.session],
+            },
           }
 
-          const updatedCubes = await getAllCubes();
-          if (updatedCubes) {
-            setCubes([...updatedCubes]);
-          }
-
-          const updatedCube = await getCubeById(selectedCube.id);
-          if (updatedCube) {
-            setSelectedCube({ ...updatedCube });
-          }
-
+          saveCube(updatedCube);
+          setSelectedCube(updatedCube);
           setLastSolve({ ...newSolve });
-
           setNewScramble(selectedCube);
           setValue("");
         }}

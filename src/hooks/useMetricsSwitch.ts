@@ -1,23 +1,17 @@
-import calcAoStatistics from "@/lib/calcAoStatistics";
-import calcAverageStatistics from "@/lib/calcAverageStatistics";
-import calcBestTime from "@/lib/calcBestTime";
-import calcDeviation from "@/lib/calcDeviation";
-import calcSuccessRate from "@/lib/calcSuccessRate";
-import calcTimeSpentStatistics from "@/lib/calcTimeSpentStatistics";
-import calcTotalSolvesStatistics from "@/lib/calcTotalSolvesStatistics";
 import {
-  defaultChartValuesA,
-  defaultChartValuesS,
-  defaultChartValuesN,
   defaultChartAoValues,
-} from "@/lib/const/defaultChartValues";
-import getSolvesMetrics from "@/lib/getSolvesMetrics";
-import { useTimerStore } from "@/store/timerStore";
-import { useEffect, useState } from "react";
+  defaultChartValuesA,
+  defaultChartValuesN,
+  defaultChartValuesS,
+} from '@/lib/const/defaultChartValues';
+import { useTimerStore } from '@/store/timerStore';
+import { useEffect, useState } from 'react';
 
 export default function useMetricsSwitch() {
   const selectedCube = useTimerStore(store => store.selectedCube);
   const cubes = useTimerStore(store => store.cubes);
+  const [isLoading, setIsLoading] = useState(true);
+  const [worker, setWorker] = useState<Worker | null>(null);
   const [stats, setStats] = useState({
     average: defaultChartValuesN,
     timeSpent: defaultChartValuesS,
@@ -30,63 +24,54 @@ export default function useMetricsSwitch() {
   });
 
   useEffect(() => {
-    if (selectedCube) {
-      const calculatedAverage = calcAverageStatistics({
-        cubesDB: cubes,
-        category: selectedCube.category,
-        cubeName: selectedCube.name,
-      });
-      const calculatedTimeSpent = calcTimeSpentStatistics({
-        cubesDB: cubes,
-        category: selectedCube.category,
-        cubeName: selectedCube.name,
-      });
-      const calculatedCounter = calcTotalSolvesStatistics({
-        cubesDB: cubes,
-        category: selectedCube.category,
-        cubeName: selectedCube.name,
-      });
-      const calculatedStats = calcAoStatistics({
-        cubesDB: cubes,
-        category: selectedCube.category,
-        cubeName: selectedCube.name,
-      });
-      const calculatedDeviation = calcDeviation({
-        cubesDB: cubes,
-        category: selectedCube.category,
-        cubeName: selectedCube.name,
-      });
-      const calculatedSuccessRate = calcSuccessRate({
-        cubesDB: cubes,
-        category: selectedCube.category,
-        cubeName: selectedCube.name,
-      });
-      const calculatedBest = calcBestTime({
-        cubesDB: cubes,
-        category: selectedCube.category,
-        cubeName: selectedCube.name,
-      });
-      const calculatedData = getSolvesMetrics({
-        cubesDB: cubes,
-        category: selectedCube.category,
-        cubeName: selectedCube.name,
-      });
+    if (typeof window === 'undefined') return;
 
-      setStats((prev) => ({
-        ...prev,
-        average: calculatedAverage,
-        timeSpent: calculatedTimeSpent,
-        counter: calculatedCounter,
-        stats: calculatedStats,
-        deviation: calculatedDeviation,
-        successRate: calculatedSuccessRate,
-        best: calculatedBest,
-        data: calculatedData,
-      }));
+    const w = new Worker(
+      new URL('../worker/deep-statistics.worker.ts', import.meta.url),
+      { type: 'module' }
+    );
+
+    setWorker(w);
+
+    w.onmessage = (e: MessageEvent) => {
+      setStats(e.data.result);
+      setIsLoading(false);
+    };
+
+    w.onerror = (err) => {
+      console.error('Worker error:', err);
+    };
+
+    w.postMessage({
+      command: 'start',
+      data: {
+        cubes: cubes || [],
+        selectedCube: selectedCube || null
+      }
+    })
+
+    return () => {
+      w.terminate();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!worker) return;
+    if (!cubes || !selectedCube) {
+      setIsLoading(false);
+      return;
     }
-  }, [cubes, selectedCube]);
+    setIsLoading(true);
+    worker.postMessage({
+      command: 'start', data: {
+        cubes: cubes || [],
+        selectedCube: selectedCube || null
+      }
+    });
+  }, [cubes, selectedCube, worker]);
 
   return {
     stats,
+    isLoading
   };
 }
