@@ -6,6 +6,7 @@ import PreloadSettings from '@/components/PreloadSettings';
 import { useEffect } from 'react';
 import { useSettingsModalStore } from '@/store/SettingsModalStore';
 import useWebsiteColors from '@/hooks/useWebsiteColors';
+import HeavyWebWorkers from '@/components/HeavyWebWorkers';
 
 export default function Providers({
   loaderProvider = true,
@@ -25,13 +26,15 @@ export default function Providers({
   return (
     <>
       <PreloadSettings>
-        {loaderProvider ? (
-          <LoaderProvider>
-            {children}
-          </LoaderProvider>
-        ) : (
-          <>{children}</>
-        )}
+        <HeavyWebWorkers>
+          {loaderProvider ? (
+            <LoaderProvider>
+              {children}
+            </LoaderProvider>
+          ) : (
+            <>{children}</>
+          )}
+        </HeavyWebWorkers>
       </PreloadSettings>
       <LoaderOverlay/>
     </>
