@@ -66,7 +66,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
     set({ cubes: cubesDB });
   },
   setSelectedCube: (cube: Cube | null) => {
-    set(() => {
+    set((state) => {
       if (!cube || typeof cube !== 'object') {
         return {
           event: null,
@@ -80,6 +80,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
       return {
         event: selectedEvent?.event,
         selectedCube: cube,
+        cubes: state.cubes?.map((item) => item.id === cube.id ? cube : item),
       };
     });
   },
