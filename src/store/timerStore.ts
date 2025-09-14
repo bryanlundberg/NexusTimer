@@ -116,7 +116,6 @@ export const useTimerStore = create<TimerStore>((set) => ({
     timerStatus: TimerStatus.IDLE,
     zoomInScramble: false,
     hint: null,
-    timerMode: TimerMode.NORMAL,
     isOpenDrawerNewCollection: false,
   })
 }));
