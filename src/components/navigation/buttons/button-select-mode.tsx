@@ -37,7 +37,7 @@ export default function ButtonSelectMode() {
             <DropdownMenuRadioItem value={TimerMode.STACKMAT}>
               Stackmat
             </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value={TimerMode.VIRTUAL} disabled>
+            <DropdownMenuRadioItem value={TimerMode.VIRTUAL}>
               Virtual
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem value={TimerMode.SMART_CUBE} disabled>
