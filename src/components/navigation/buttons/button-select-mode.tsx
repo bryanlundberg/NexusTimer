@@ -44,6 +44,7 @@ export default function ButtonSelectMode() {
             onValueChange={(e: any) => setTimerMode(e)}
           >
             <DropdownMenuRadioItem value={TimerMode.NORMAL}>Normal</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value={TimerMode.MANUAL}>Manual</DropdownMenuRadioItem>
             <DropdownMenuRadioItem value={TimerMode.STACKMAT}>
               Stackmat
             </DropdownMenuRadioItem>
