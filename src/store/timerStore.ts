@@ -20,7 +20,7 @@ type TimerStore = {
   zoomInScramble: boolean;
   hint: CrossSolutions | null;
   timerStatistics: DisplayTimerStatistics;
-  timerMode: TimerMode.NORMAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE;
+  timerMode: TimerMode.NORMAL | TimerMode.MANUAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE;
   isOpenDrawerNewCollection: boolean;
   setNewScramble: (cube: Cube | null) => void;
   setCubes: (cubesDB: Cube[]) => void;
@@ -33,7 +33,7 @@ type TimerStore = {
   setHints: (solutions: CrossSolutions) => void;
   setCustomScramble: (scramble: string) => void;
   setTimerStatistics: (stats: DisplayTimerStatistics) => void;
-  setTimerMode: (mode: TimerMode.NORMAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE) => void;
+  setTimerMode: (mode: TimerMode.NORMAL | TimerMode.MANUAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE) => void;
   setIsOpenDrawerNewCollection: (status: boolean) => void;
   reset: () => void;
 };
@@ -105,7 +105,7 @@ export const useTimerStore = create<TimerStore>((set) => ({
   setTimerStatistics: (stats) => {
     set({ timerStatistics: stats });
   },
-  setTimerMode: (mode: TimerMode.NORMAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE) => {
+  setTimerMode: (mode: TimerMode.NORMAL | TimerMode.MANUAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE) => {
     set({ timerMode: mode });
   },
   setIsOpenDrawerNewCollection: (status: boolean) => {
