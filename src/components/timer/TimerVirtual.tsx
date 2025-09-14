@@ -7,6 +7,8 @@ import formatTime from '@/lib/formatTime';
 import { Solve } from '@/interfaces/Solve';
 import genId from '@/lib/genId';
 import { useNXData } from '@/hooks/useNXData';
+import MenuSolveOptions from '@/components/menu-solve-options/menu-solve-options';
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
 
 export default function TimerVirtual() {
   const containerRef = React.useRef<HTMLDivElement | null>(null);
@@ -28,6 +30,8 @@ export default function TimerVirtual() {
   const { saveCube } = useNXData();
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const setLastSolve = useTimerStore(store => store.setLastSolve);
+  const lastSolve = useTimerStore(store => store.lastSolve);
+  const settings = useSettingsModalStore(state => state.settings)
 
   const saveSolvePlaceholder = (_payload: {
     timeMs: number;
@@ -161,6 +165,26 @@ export default function TimerVirtual() {
     }
   }, [engine, player, scramble]);
 
+  const recreateTwistyPlayer = React.useCallback(() => {
+    if (!containerRef.current) return;
+    try {
+      if (player) {
+        player.remove();
+      }
+    } catch {
+    }
+    const newPlayer = new TwistyPlayer({
+      puzzle: '3x3x3',
+      controlPanel: 'none',
+      tempoScale: 3,
+      background: 'none',
+    });
+    newPlayer.style.width = '320px';
+    newPlayer.style.height = '320px';
+    containerRef.current.appendChild(newPlayer);
+    setPlayer(newPlayer);
+  }, [player]);
+
   // Stop the timer when the cube is solved
   React.useEffect(() => {
     if (isSolved) {
@@ -198,10 +222,15 @@ export default function TimerVirtual() {
           if (selectedCube) {
             setNewScramble(selectedCube);
           }
+          try {
+            recreateTwistyPlayer();
+          } catch (e) {
+            console.warn('recreateTwistyPlayer error (ignored):', e);
+          }
         }, 2000);
       }
     }
-  }, [isSolved, isRunning, stopTimer, solvingTime, scramble, moves, selectedCube, setNewScramble]);
+  }, [isSolved, isRunning, stopTimer, solvingTime, scramble, moves, selectedCube, setNewScramble, recreateTwistyPlayer]);
 
   React.useEffect(() => {
     if (!player || !engine) return;
@@ -398,6 +427,18 @@ export default function TimerVirtual() {
     <div className={'grow flex justify-center items-center flex-col gap-4'}>
       <div ref={containerRef}/>
       <div className={'text-3xl'}>{formatTime(solvingTime || 0)}</div>
+      {lastSolve &&
+        settings.features.quickActionButtons &&
+        !isRunning && (
+          <MenuSolveOptions
+            solve={lastSolve}
+            onDeleteSolve={() => setLastSolve(null)}
+            caseOfUse="last-solve"
+            hideCopyButton
+            hideMoveToHistory
+            hideTransferCollection
+          />
+        )}
     </div>
   );
 }
