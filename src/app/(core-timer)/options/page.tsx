@@ -112,12 +112,6 @@ export default function Page() {
               description={t("Settings-descriptions.hold-to-start-time")}
             />
 
-            <MenuOption
-              name={("timer.manualMode")}
-              label={t("Settings-menu.manual-mode")}
-              control={control}
-              description={t("Settings-descriptions.manual-mode")}
-            />
 
             <MenuInputOption
               name={"timer.decimals"}
