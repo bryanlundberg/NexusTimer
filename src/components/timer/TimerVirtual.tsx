@@ -179,11 +179,18 @@ export default function TimerVirtual() {
       tempoScale: 3,
       background: 'none',
     });
+    // Apply current scramble to the new player if available
+    if (scramble) {
+      try {
+        newPlayer.experimentalSetupAlg = scramble;
+      } catch {
+      }
+    }
     newPlayer.style.width = '320px';
     newPlayer.style.height = '320px';
     containerRef.current.appendChild(newPlayer);
     setPlayer(newPlayer);
-  }, [player]);
+  }, [player, scramble]);
 
   // Stop the timer when the cube is solved
   React.useEffect(() => {
@@ -243,8 +250,15 @@ export default function TimerVirtual() {
       if (e.key === 'Escape') {
         stopTimer();
         resetTimer();
+        // Generate a brand-new scramble on cancel
+        if (selectedCube) {
+          try {
+            setNewScramble(selectedCube);
+          } catch {
+          }
+        }
+        // Reset engine state (will be overwritten by new scramble effect)
         if (scramble) {
-          player.experimentalSetupAlg = scramble;
           engine.reset();
           engine.applyMoves(scramble);
         } else {
@@ -252,6 +266,11 @@ export default function TimerVirtual() {
         }
         setIsSolved(false);
         setMoves([]);
+        // Recreate TwistyPlayer to ensure a full visual reset
+        try {
+          recreateTwistyPlayer();
+        } catch {
+        }
         return;
       }
 
@@ -421,7 +440,7 @@ export default function TimerVirtual() {
     return () => {
       window.removeEventListener('keydown', onKeyDown);
     };
-  }, [engine, player, scramble, isRunning, isSolved, startTimer, resetTimer, stopTimer]);
+  }, [engine, player, scramble, isRunning, isSolved, startTimer, resetTimer, stopTimer, recreateTwistyPlayer, selectedCube, setNewScramble]);
 
   return (
     <div className={'grow flex justify-center items-center flex-col gap-4'}>
