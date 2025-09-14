@@ -4,7 +4,6 @@ interface Timer {
   inspection: boolean;
   startCue: boolean;
   holdToStart: boolean;
-  manualMode: boolean;
   inspectionTime: number;
   holdToStartTime: number;
   decimals: number;
