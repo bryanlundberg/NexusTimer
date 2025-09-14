@@ -7,7 +7,6 @@ export const defaultSettings: Settings = {
     startCue: false,
     holdToStart: false,
     holdToStartTime: 300,
-    manualMode: false,
     decimals: 2,
   },
   features: {
