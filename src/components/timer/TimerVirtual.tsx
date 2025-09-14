@@ -4,12 +4,9 @@ import { TwistyPlayer } from 'cubing/twisty';
 import { useTimerStore } from '@/store/timerStore';
 import { CubeEngine } from 'cube-state-engine';
 import formatTime from '@/lib/formatTime';
-
-// Placeholder function where you can later add your save logic.
-// It is intentionally left blank as requested.
-export function saveSolvePlaceholder(_payload: { timeMs: number; scramble: string | null; moves: string[] }) {
-  // TODO: Implement save logic here (e.g., persist solve to DB/local storage)
-}
+import { Solve } from '@/interfaces/Solve';
+import genId from '@/lib/genId';
+import { useNXData } from '@/hooks/useNXData';
 
 export default function TimerVirtual() {
   const containerRef = React.useRef<HTMLDivElement | null>(null);
@@ -23,13 +20,64 @@ export default function TimerVirtual() {
   const [solvingTime, setSolvingTime] = React.useState<number | null>(null);
   const processedSolveRef = React.useRef(false);
 
-  // Timer state
-  const [isRunning, setIsRunning] = React.useState(false);
+  // Lock window after a solve to avoid key handling and cascaded saves
+  const postSolveLockRef = React.useRef<number>(0);
+  const postSolveTimeoutRef = React.useRef<number | null>(null);
+  const isRunning = useTimerStore(store => store.isSolving);
+  const setIsRunning = useTimerStore(store => store.setIsSolving);
+  const { saveCube } = useNXData();
+  const setSelectedCube = useTimerStore(store => store.setSelectedCube);
+  const setLastSolve = useTimerStore(store => store.setLastSolve);
+
+  const saveSolvePlaceholder = (_payload: {
+    timeMs: number;
+    scramble: string | null;
+    moves: string[];
+    dnf: boolean
+  }) => {
+    if (!selectedCube || !scramble) return;
+
+    const now = Date.now();
+    const newSolve: Solve = {
+      id: genId(),
+      startTime: now - _payload.timeMs,
+      endTime: Date.now(),
+      scramble: scramble,
+      bookmark: false,
+      time: _payload.timeMs,
+      dnf: _payload.dnf,
+      plus2: false,
+      rating: Math.floor(Math.random() * 20) + scramble.length,
+      cubeId: selectedCube.id,
+      comment: '',
+    };
+
+    const updatedCube = {
+      ...selectedCube,
+      solves: {
+        ...selectedCube.solves,
+        session: [newSolve, ...selectedCube.solves.session],
+      },
+    }
+
+    saveCube(updatedCube);
+    setSelectedCube(updatedCube);
+    setLastSolve({ ...newSolve });
+    // Do not request a new scramble here; it will be triggered after a 2s pause post-solve
+  }
+
   const startTimeRef = React.useRef<number | null>(null);
   const intervalRef = React.useRef<number | null>(null);
 
   const startTimer = React.useCallback(() => {
     if (isRunning) return;
+    // Clear any post-solve lock or pending timeout when starting a new attempt
+    postSolveLockRef.current = 0;
+    if (postSolveTimeoutRef.current != null) {
+      window.clearTimeout(postSolveTimeoutRef.current);
+      postSolveTimeoutRef.current = null;
+    }
+    processedSolveRef.current = false;
     setIsRunning(true);
     startTimeRef.current = Date.now();
     setSolvingTime(0);
@@ -86,6 +134,10 @@ export default function TimerVirtual() {
           window.clearInterval(intervalRef.current);
           intervalRef.current = null;
         }
+        if (postSolveTimeoutRef.current != null) {
+          window.clearTimeout(postSolveTimeoutRef.current);
+          postSolveTimeoutRef.current = null;
+        }
         player.remove();
       } catch {
       }
@@ -100,44 +152,63 @@ export default function TimerVirtual() {
       engine.applyMoves(scramble);
       setIsSolved(false);
       setMoves([]);
-      processedSolveRef.current = false;
-      resetTimer();
+      if (intervalRef.current != null) {
+        window.clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      setIsRunning(false);
+      startTimeRef.current = null;
     }
-  }, [engine, player, scramble, resetTimer]);
+  }, [engine, player, scramble]);
 
   // Stop the timer when the cube is solved
   React.useEffect(() => {
     if (isSolved) {
-      // Ensure timer is stopped first.
+      // Immediately stop the timer
       if (isRunning) {
         stopTimer();
       }
-      // Avoid processing the same solve multiple times
+      // Guard against duplicate processing
       if (!processedSolveRef.current) {
         processedSolveRef.current = true;
-        // Compute final time robustly in case state didn't update yet
-        const finalTime = startTimeRef.current != null && isRunning
-          ? Date.now() - startTimeRef.current
+        // Lock keyboard input for 2 seconds to avoid cascaded moves/saves
+        const now = Date.now();
+        postSolveLockRef.current = now + 2000;
+        // Compute final time robustly
+        const finalTime = startTimeRef.current != null
+          ? (now - startTimeRef.current)
           : (solvingTime ?? 0);
         try {
           saveSolvePlaceholder({
             timeMs: finalTime,
             scramble: scramble ?? null,
             moves: moves ?? [],
+            dnf: false,
           });
         } catch (e) {
           console.warn('saveSolvePlaceholder error (ignored):', e);
         }
-        // Generate a new scramble and trigger reset via effect
-        setNewScramble(selectedCube ?? null);
+        // After 2 seconds, generate next scramble and clear lock
+        if (postSolveTimeoutRef.current != null) {
+          window.clearTimeout(postSolveTimeoutRef.current);
+        }
+        postSolveTimeoutRef.current = window.setTimeout(() => {
+          postSolveTimeoutRef.current = null;
+          postSolveLockRef.current = 0;
+          if (selectedCube) {
+            setNewScramble(selectedCube);
+          }
+        }, 2000);
       }
     }
-  }, [isSolved, isRunning, stopTimer, solvingTime, scramble, moves, setNewScramble, selectedCube]);
+  }, [isSolved, isRunning, stopTimer, solvingTime, scramble, moves, selectedCube, setNewScramble]);
 
   React.useEffect(() => {
     if (!player || !engine) return;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (!player || !engine) return;
+      if (!player || !engine || engine.isSolved()) return;
+      // Ignore all input during post-solve lock period
+      if (Date.now() < postSolveLockRef.current) return;
 
       // ESC cancels and resets
       if (e.key === 'Escape') {
@@ -323,12 +394,10 @@ export default function TimerVirtual() {
     };
   }, [engine, player, scramble, isRunning, isSolved, startTimer, resetTimer, stopTimer]);
 
-  console.log(moves)
-
   return (
     <div className={'grow flex justify-center items-center flex-col gap-4'}>
       <div ref={containerRef}/>
-      <div className={"text-3xl"}>{formatTime(solvingTime || 0)}</div>
+      <div className={'text-3xl'}>{formatTime(solvingTime || 0)}</div>
     </div>
   );
 }
