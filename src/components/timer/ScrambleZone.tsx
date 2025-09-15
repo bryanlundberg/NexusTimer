@@ -2,22 +2,26 @@ import genSolution from "@/lib/timer/genSolution";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { useTimerStore } from "@/store/timerStore";
 import { useTranslations } from "next-intl";
-import { Component1Icon, Pencil2Icon } from "@radix-ui/react-icons";
+import { Pencil2Icon } from "@radix-ui/react-icons";
 import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import { Button } from "../ui/button";
 import DrawerHintPanel from "../drawners/drawer-hint-panel";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import DialogEnterNewScramble from "../dialogs/dialog-enter-new-scramble/dialog-enter-new-scramble";
-import { Lightbulb } from "lucide-react"
+import { Lightbulb, Keyboard } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 import { Layer } from "@/enums/Layer";
 import { motion } from "framer-motion";
+import { TimerMode } from "@/enums/TimerMode";
+import { DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import Image from 'next/image';
 
 export function ScrambleZone() {
   const selectedCube = useTimerStore(store => store.selectedCube);
   const scramble = useTimerStore(store => store.scramble);
   const setHints = useTimerStore(store => store.setHints);
   const isSolving = useTimerStore(store => store.isSolving);
+  const timerMode = useTimerStore(store => store.timerMode);
   const settings = useSettingsModalStore(store => store.settings);
   const t = useTranslations("Index");
   return (
@@ -90,6 +94,30 @@ export function ScrambleZone() {
                   </Tooltip>
                 </Drawer>
               )}
+            {(timerMode === TimerMode.VIRTUAL) && !isSolving && selectedCube && (
+              <Tooltip>
+                <Dialog>
+                  <TooltipTrigger asChild>
+                    <DialogTrigger asChild>
+                      <Button variant={"ghost"} size={"icon"}>
+                        <Keyboard/>
+                      </Button>
+                    </DialogTrigger>
+                  </TooltipTrigger>
+                  <DialogContent className="sm:max-w-xl">
+                    <DialogHeader>
+                      <DialogTitle>Keyboard controls</DialogTitle>
+                    </DialogHeader>
+                    <div className="w-full flex items-center justify-center p-2">
+                      <Image src={"/utils/keyboard.png"} alt={"keyboard controls"} width={600} height={400} className="w-full h-auto"/>
+                    </div>
+                  </DialogContent>
+                  <TooltipContent>
+                    <p>Keyboard</p>
+                  </TooltipContent>
+                </Dialog>
+              </Tooltip>
+            )}
           </TooltipProvider>
         </div>
       </motion.div>
