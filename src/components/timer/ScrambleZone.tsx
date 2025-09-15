@@ -109,7 +109,7 @@ export function ScrambleZone() {
                       <DialogTitle>Keyboard controls</DialogTitle>
                     </DialogHeader>
                     <div className="w-full flex items-center justify-center p-2">
-                      <Image src={"/utils/keyboard.png"} alt={"keyboard controls"} width={600} height={400} className="w-full h-auto"/>
+                      <Image src={"/utils/keyboard.jpg"} alt={"keyboard controls"} width={600} height={400} className="w-full h-auto"/>
                     </div>
                   </DialogContent>
                   <TooltipContent>
