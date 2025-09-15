@@ -306,9 +306,33 @@ export default function TimerVirtual() {
         didMove = true;
       }
 
+      if (e.key.toLowerCase() === ',') {
+        player.experimentalAddMove('Uw');
+        engine.rotateUw(true);
+        didMove = true;
+      }
+
+      if (e.key.toLowerCase() === '.') {
+        player.experimentalAddMove('M\'');
+        engine.rotateM(false);
+        didMove = true;
+      }
+
+      if (e.key.toLowerCase() === '-'  || e.key.toLowerCase() === '/') {
+        player.experimentalAddMove('Dw\'');
+        engine.rotateDw(false);
+        didMove = true;
+      }
+
       if (e.key.toLowerCase() === 'u') {
         player.experimentalAddMove('Rw');
         engine.rotateRw(true);
+        didMove = true;
+      }
+
+      if (e.key.toLowerCase() === '5' || e.key.toLowerCase() === '6') {
+        player.experimentalAddMove('M');
+        engine.rotateM(true);
         didMove = true;
       }
 
@@ -364,6 +388,12 @@ export default function TimerVirtual() {
       if (e.key.toLowerCase() === 't') {
         player.experimentalAddMove('x');
         engine.rotateX(true);
+        didMove = true;
+      }
+
+      if (e.key.toLowerCase() === 'ñ' || e.key.toLowerCase() === ';') {
+        player.experimentalAddMove('y');
+        engine.rotateY(true);
         didMove = true;
       }
 
