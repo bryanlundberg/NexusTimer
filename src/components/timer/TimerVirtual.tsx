@@ -275,6 +275,7 @@ export default function TimerVirtual() {
       }
 
       let didMove = false;
+      let isRotationMove = false;
 
       if (e.key.toLowerCase() === 'h') {
         player.experimentalAddMove('F');
@@ -304,6 +305,7 @@ export default function TimerVirtual() {
         player.experimentalAddMove('x');
         engine.rotateX(true);
         didMove = true;
+        isRotationMove = true;
       }
 
       if (e.key.toLowerCase() === ',') {
@@ -350,11 +352,13 @@ export default function TimerVirtual() {
         player.experimentalAddMove('z');
         engine.rotateZ(true);
         didMove = true;
+        isRotationMove = true;
       }
       if (e.key.toLowerCase() === 'n') {
         player.experimentalAddMove('x\'');
         engine.rotateX(false);
         didMove = true;
+        isRotationMove = true;
       }
       if (e.key.toLowerCase() === 'm') {
         player.experimentalAddMove('Rw\'');
@@ -366,6 +370,7 @@ export default function TimerVirtual() {
         player.experimentalAddMove('z\'');
         engine.rotateZ(false);
         didMove = true;
+        isRotationMove = true;
       }
 
       if (e.key.toLowerCase() === 'w') {
@@ -389,18 +394,21 @@ export default function TimerVirtual() {
         player.experimentalAddMove('x');
         engine.rotateX(true);
         didMove = true;
+        isRotationMove = true;
       }
 
       if (e.key.toLowerCase() === 'ñ' || e.key.toLowerCase() === ';') {
         player.experimentalAddMove('y');
         engine.rotateY(true);
         didMove = true;
+        isRotationMove = true;
       }
 
       if (e.key.toLowerCase() === 'a') {
         player.experimentalAddMove('y\'');
         engine.rotateY(false);
         didMove = true;
+        isRotationMove = true;
       }
 
       if (e.key.toLowerCase() === 's') {
@@ -454,9 +462,10 @@ export default function TimerVirtual() {
         player.experimentalAddMove('x\'');
         engine.rotateX(false);
         didMove = true;
+        isRotationMove = true;
       }
 
-      if (didMove && !isRunning && !isSolved) {
+      if (didMove && !isRotationMove && !isRunning && !isSolved) {
         startTimer();
       }
 
