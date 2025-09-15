@@ -31,7 +31,7 @@ export default function useEventHandlers({
   }, [handleRelease]);
 
   useEffect(() => {
-    if (timerMode === TimerMode.STACKMAT) return;
+    if (timerMode === TimerMode.STACKMAT || timerMode === TimerMode.MANUAL) return;
 
     const handleTouchStart = (event: TouchEvent): void => {
       event.preventDefault();

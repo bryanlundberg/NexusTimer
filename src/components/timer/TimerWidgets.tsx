@@ -1,11 +1,12 @@
-import StatisticsPanel from "./StatisticsPanel";
-import OverviewPanel from "./OverviewPanel";
-import ScramblePanel from "./ScrambleImagePanel";
-import { useTimerStore } from "@/store/timerStore";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import { useTranslations } from "next-intl";
-import { TimerStatus } from "@/enums/TimerStatus";
-import { useMemo } from "react";
+import StatisticsPanel from './StatisticsPanel';
+import OverviewPanel from './OverviewPanel';
+import ScramblePanel from './ScrambleImagePanel';
+import { useTimerStore } from '@/store/timerStore';
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
+import { useTranslations } from 'next-intl';
+import { TimerStatus } from '@/enums/TimerStatus';
+import { useMemo } from 'react';
+import { TimerMode } from '@/enums/TimerMode';
 
 export default function TimerWidgets() {
   const isSolving = useTimerStore(store => store.isSolving);
@@ -14,7 +15,7 @@ export default function TimerWidgets() {
   const lastSolve = useTimerStore(store => store.lastSolve);
   const settings = useSettingsModalStore(store => store.settings);
   const t = useTranslations("Index.HomePage");
-
+  const timerMode = useTimerStore(store => store.timerMode);
   const bestAverageAlert = useMemo(() => {
     const { ao5, ao12, ao50, ao100 } = timerStatistics.global;
     const { ao5: sessionAo5, ao12: sessionAo12, ao50: sessionAo50, ao100: sessionAo100 } = timerStatistics.session;
@@ -62,7 +63,7 @@ export default function TimerWidgets() {
           className="items-center justify-between w-full text-xs md:text-sm flex"
         >
           {settings.features.sessionStats && !isSolving && <OverviewPanel/>}
-          {settings.features.scrambleImage && !isSolving && (<ScramblePanel />)}
+          {settings.features.scrambleImage && !isSolving && timerMode !== TimerMode.VIRTUAL && (<ScramblePanel />)}
           {settings.features.sessionStats && !isSolving && <StatisticsPanel />}
         </div>
       </div>
