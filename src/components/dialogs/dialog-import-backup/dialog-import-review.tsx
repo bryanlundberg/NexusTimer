@@ -83,7 +83,7 @@ export default function DialogImportReview({
   };
 
   return (
-    <Dialog open={open}>
+    <Dialog open={open} onOpenChange={onCancel}>
       <DialogContent className="sm:max-w-[800px]">
         <DialogHeader>
           <DialogTitle>Review Imported Data</DialogTitle>
