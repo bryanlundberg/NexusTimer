@@ -26,30 +26,53 @@ function initials(name: string) {
     .join('')
 }
 
-function computeStatsClassicMs(solvesMs: (number | undefined)[], penalties: (Penalty | undefined)[]) {
-  const finishedTimes = solvesMs
-    .map((ms, i) => (penalties[i] === 'DNF' ? undefined : ms))
-    .filter((v): v is number => v !== undefined)
-  const best = finishedTimes.length ? Math.min(...finishedTimes) : undefined
-
-  let sum = 0
-  let count = 0
+function computeWcaAo5Ms(solvesMs: (number | undefined)[], penalties: (Penalty | undefined)[]) {
+  // Determine best single from all valid solves
+  const validSingles: number[] = []
   for (let i = 0; i < solvesMs.length; i++) {
-    const hasDnf = penalties[i] === 'DNF'
+    if (penalties[i] === 'DNF') continue
     const ms = solvesMs[i]
-    if (hasDnf) {
-      count += 1
-    } else if (ms !== undefined) {
-      sum += ms
-      count += 1
+    if (ms !== undefined) validSingles.push(ms)
+  }
+  const best = validSingles.length ? Math.min(...validSingles) : undefined
+
+  // Build list of attempts (by index) that have a result (time or DNF)
+  const attempts: { ms: number | undefined; isDNF: boolean }[] = []
+  for (let i = 0; i < solvesMs.length; i++) {
+    const isDNF = penalties[i] === 'DNF'
+    const hasTime = solvesMs[i] !== undefined
+    if (isDNF || hasTime) {
+      attempts.push({ ms: solvesMs[i], isDNF })
     }
   }
-  const averageClassic = count > 0 ? sum / count : undefined
 
-  const rankingAverage = averageClassic ?? Number.POSITIVE_INFINITY
-  const rankingBest = best ?? Number.POSITIVE_INFINITY
+  // Take last 5 attempts
+  const last5 = attempts.slice(-5)
+  if (last5.length < 5) {
+    return { best, ao5Ms: undefined as number | undefined | null, rankingAverage: Number.POSITIVE_INFINITY, rankingBest: best ?? Number.POSITIVE_INFINITY }
+  }
 
-  return { best, averageClassic, rankingAverage, rankingBest }
+  const dnfCount = last5.filter(a => a.isDNF).length
+  if (dnfCount >= 2) {
+    // Ao5 is DNF
+    return { best, ao5Ms: null, rankingAverage: Number.POSITIVE_INFINITY, rankingBest: best ?? Number.POSITIVE_INFINITY }
+  }
+
+  // Map DNFs to +Infinity for sorting (worst), keep numbers for times
+  const values = last5.map(a => (a.isDNF ? Number.POSITIVE_INFINITY : (a.ms as number)))
+  // Sort ascending
+  values.sort((a, b) => a - b)
+  // Drop best (index 0) and worst (last)
+  const middle = values.slice(1, values.length - 1)
+
+  // If any middle is Infinity, remaining DNF stayed -> Ao5 is DNF
+  if (middle.some(v => !Number.isFinite(v))) {
+    return { best, ao5Ms: null, rankingAverage: Number.POSITIVE_INFINITY, rankingBest: best ?? Number.POSITIVE_INFINITY }
+  }
+
+  const sum = middle.reduce((acc, v) => acc + v, 0)
+  const ao5Ms = sum / middle.length
+  return { best, ao5Ms, rankingAverage: ao5Ms, rankingBest: best ?? Number.POSITIVE_INFINITY }
 }
 
 export default function ChartResults({ room }: { room?: Room }) {
@@ -92,8 +115,7 @@ export default function ChartResults({ room }: { room?: Room }) {
         if (e?.dns) return undefined
         if (e.penalty === 'DNF') return undefined
         if (e.finalMs === undefined) return undefined
-        const plusTwo = e.penalty === '+2' ? 2000 : 0
-        return e.finalMs + plusTwo
+        return e.finalMs
       })
       const penalties: (Penalty | undefined)[] = Array.from({ length: totalRounds }, (_, i) => {
         const r = rounds?.[i]
@@ -105,9 +127,9 @@ export default function ChartResults({ room }: { room?: Room }) {
     })
   }, [playerIds, presence, rounds, totalRounds])
 
-  // Compute derived and sort by classic average
+  // Compute derived and sort by WCA Ao5
   const enriched = React.useMemo(() => {
-    const data = rows.map((r) => ({ row: r, stats: computeStatsClassicMs(r.solvesMs, r.penalties) }))
+    const data = rows.map((r) => ({ row: r, stats: computeWcaAo5Ms(r.solvesMs, r.penalties) }))
     data.sort((a, b) => {
       const avgDiff = a.stats.rankingAverage - b.stats.rankingAverage
       if (avgDiff !== 0) return avgDiff
@@ -136,8 +158,8 @@ export default function ChartResults({ room }: { room?: Room }) {
               </TableHead>
               <TableHead>
                 <Tooltip>
-                  <TooltipTrigger className="text-left">Average</TooltipTrigger>
-                  <TooltipContent>Classic average (DNF counts in divisor as 0)</TooltipContent>
+                  <TooltipTrigger className="text-left">Average (Ao5)</TooltipTrigger>
+                  <TooltipContent>WCA Ao5: drop best and worst of the last 5 attempts; 2+ DNFs = DNF</TooltipContent>
                 </Tooltip>
               </TableHead>
               {Array.from({ length: totalRounds }, (_, i) => (
@@ -165,7 +187,7 @@ export default function ChartResults({ room }: { room?: Room }) {
                   </div>
                 </TableCell>
                 <TableCell>{stats.best !== undefined ? formatTime(stats.best) : '--'}</TableCell>
-                <TableCell className="font-semibold">{stats.averageClassic !== undefined ? formatTime(stats.averageClassic) : '--'}</TableCell>
+                <TableCell className="font-semibold">{stats.ao5Ms === null ? 'DNF' : (stats.ao5Ms !== undefined ? formatTime(stats.ao5Ms as number) : '--')}</TableCell>
                 {Array.from({ length: totalRounds }, (_, i) => (
                   <TableCell key={`s-${row.id}-${i}`} className="text-center">
                     {row.penalties[i] === 'DNF' ? 'DNF' : (row.solvesMs[i] !== undefined ? formatTime(row.solvesMs[i] as number) : '')}
