@@ -100,8 +100,8 @@ export default function DialogImportBackup() {
         </div>
         <DialogFooter>
           <ul className="flex items-center justify-center flex-auto gap-2">
-            <div className="rounded-2xl bg-primary size-[64px] flex items-center justify-center">
-              <Image src={"/logo.png"} alt={"logo"} width={48} height={48} draggable={false} className={"p-3 w-full h-full"} />
+            <div className="rounded-2xl size-[64px] flex items-center justify-center bg-sidebar-primary">
+              <Image src={"/logo.png"} alt={"logo"} width={48} height={48} draggable={false} className={"p-3 w-full h-full invert"} />
             </div>
             <Image
               src={'/timer-logos/cstimer.jpg'}
