@@ -49,9 +49,9 @@ export default function DialogFirstRunNoCubes() {
       ) : (
         <DialogContent className="sm:max-w-[640px] max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>Bienvenido a NexusTimer</DialogTitle>
+            <DialogTitle>Welcome to NexusTimer</DialogTitle>
             <DialogDescription>
-              Aún no tienes colecciones creadas. Puedes crear tu primera colección o importar un respaldo para comenzar.
+              You do not have any collections yet. You can create your first collection or import a backup to get started.
             </DialogDescription>
           </DialogHeader>
 
