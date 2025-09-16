@@ -6,7 +6,7 @@ export default function EmptySolves({ title, description }: { title?: string, de
   return (
     <div className="w-full flex flex-col items-center justify-center text-center text-sm sm:text-md font-mono py-20 max-w-96 mx-auto">
       <Image
-        src={"/utils/undraw_space-exploration_dhu1.svg"}
+        src={"/utils/empty-solves.svg"}
         alt="empty"
         width={200}
         height={200}
