@@ -9,6 +9,7 @@ import { useEffect, useMemo } from 'react';
 import { useTimerStore } from '@/store/timerStore';
 import { useTranslations } from 'next-intl';
 import { FireworksBackground } from '@/components/ui/shadcn-io/fireworks-background';
+import DialogFirstRunNoCubes from '@/components/dialogs/dialog-first-run-no-cubes/dialog-first-run-no-cubes';
 
 export default function Home() {
   const resetTimerStore = useTimerStore((state) => state.reset);
@@ -47,6 +48,7 @@ export default function Home() {
           </div>
         )}
       </FadeIn>
+      <DialogFirstRunNoCubes />
     </>
   );
 }
