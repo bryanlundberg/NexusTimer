@@ -176,6 +176,22 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType; }) {
                   <SelectItem value="100">1:40 min</SelectItem>
                   <SelectItem value="110">1:50 min</SelectItem>
                   <SelectItem value="120">2:00 min</SelectItem>
+                  <SelectItem value="150">2:30 min</SelectItem>
+                  <SelectItem value="180">3:00 min</SelectItem>
+                  <SelectItem value="210">3:30 min</SelectItem>
+                  <SelectItem value="240">4:00 min</SelectItem>
+                  <SelectItem value="270">4:30 min</SelectItem>
+                  <SelectItem value="300">5:00 min</SelectItem>
+                  <SelectItem value="330">5:30 min</SelectItem>
+                  <SelectItem value="360">6:00 min</SelectItem>
+                  <SelectItem value="390">6:30 min</SelectItem>
+                  <SelectItem value="420">7:00 min</SelectItem>
+                  <SelectItem value="450">7:30 min</SelectItem>
+                  <SelectItem value="480">8:00 min</SelectItem>
+                  <SelectItem value="510">8:30 min</SelectItem>
+                  <SelectItem value="540">9:00 min</SelectItem>
+                  <SelectItem value="570">9:30 min</SelectItem>
+                  <SelectItem value="600">10:00 min</SelectItem>
                 </SelectContent>
               </Select>
             )}
