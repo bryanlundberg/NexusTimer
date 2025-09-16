@@ -5,35 +5,32 @@ import { useTimerStore } from '@/store/timerStore';
 import importDataFromFile from '@/lib/importDataFromFile';
 import Loading from '../../Loading';
 import { useRouter } from 'next/navigation';
-import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, } from '@/components/ui/dialog';
+import { DialogContent, DialogFooter, DialogHeader, DialogTitle, } from '@/components/ui/dialog';
 import { toast } from 'sonner';
 import { useNXData } from '@/hooks/useNXData';
+import DialogImportReview from './dialog-import-review';
+import { Cube } from '@/interfaces/Cube';
+import { Dropzone, DropzoneContent, DropzoneEmptyState } from '@/components/ui/shadcn-io/dropzone';
 
 export default function DialogImportBackup() {
   const { getAllCubes, clearCubes, saveBatchCubes } = useNXData();
   const t = useTranslations('Index.backup-modal');
   const [isImporting, setIsImporting] = useState(false);
-  const dataInputRef = useRef<HTMLInputElement>(null);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [importCubes, setImportCubes] = useState<Cube[] | null>(null);
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube);
   const setCubes = useTimerStore((state) => state.setCubes);
   const router = useRouter();
 
-  const handleImportBackup = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
+  const handleImportBackup = async (file: File[]) => {
+    if (file && file.length > 0) {
       try {
         setIsImporting(true);
-        const response = await importDataFromFile(e);
+        const response = await importDataFromFile(file[0]);
         if (response && !response?.length) return toast.error('No valid data found in the backup file.');
         if (response) {
-          await clearCubes();
-          await saveBatchCubes(response);
-          toast.success('Backup imported successfully!');
-
-          const cubesDB = await getAllCubes();
-          setCubes(cubesDB);
-          router.push('/cubes');
-          setSelectedCube(null);
-          alert('Backup imported successfully! Organize your cubes categories before!');
+          setImportCubes(response);
+          setReviewOpen(true);
         }
       } catch (error) {
         toast.error('Backup import failed. Please try again.');
@@ -45,77 +42,105 @@ export default function DialogImportBackup() {
     }
   }
 
+  const handleCancelReview = () => {
+    setReviewOpen(false);
+    setImportCubes(null);
+  }
+
+  const handleConfirmReview = async (editedCubes: Cube[]) => {
+    try {
+      setIsImporting(true);
+      await clearCubes();
+      await saveBatchCubes(editedCubes);
+      toast.success('Backup imported successfully!');
+
+      const cubesDB = await getAllCubes();
+      setCubes(cubesDB);
+      router.push('/cubes');
+      setSelectedCube(null);
+      toast.success('Import completed!');
+    } catch (error) {
+      toast.error('Backup import failed. Please try again.');
+      console.error(error);
+    } finally {
+      setIsImporting(false);
+      setReviewOpen(false);
+      setImportCubes(null);
+    }
+  }
+
   return (
-    <DialogContent className="sm:max-w-[425px]">
-      <DialogHeader>
+    <>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <div className="flex flex-auto items-center justify-center">
+            <DialogTitle>{t('title')}</DialogTitle>
+          </div>
+        </DialogHeader>
+        {!isImporting ? (
+          <Dropzone
+            onDrop={handleImportBackup}
+            onError={console.error}
+            accept={{ 'application/txt' : ['.txt'] }}
+          >
+            <DropzoneEmptyState />
+            <DropzoneContent />
+          </Dropzone>
+        ) : (
+          <div className="text-center mx-auto flex-col items-center gap-2">
+            <div className="flex justify-center mt-3">
+              <Loading/>
+            </div>
+            <div className="mx-auto mt-2">{t('loading-part-1')}</div>
+            <div className="font-bold">{t('loading-part-2')}</div>
+          </div>
+        )}
         <div className="flex flex-auto items-center justify-center">
-          <DialogTitle>{t('title')}</DialogTitle>
+          <div className="font-medium mt-3">{t('welcome')}</div>
         </div>
-        <DialogDescription>{t('description')}</DialogDescription>
-      </DialogHeader>
-      {!isImporting ? (
-        <div className="relative border-1 border-dashed border-primary w-full h-20 text-md flex justify-center items-center hover:bg-primary/80 transition duration-200 text-bg-foreground cursor-pointer hover:border-none">
-          <input
-            type="file"
-            accept=".txt"
-            ref={dataInputRef}
-            onChange={handleImportBackup}
-            className="absolute z-50 w-full h-full opacity-0 hover:cursor-pointer"
-          />
-          <div className="absolute z-40 text-center text-xs">
-            {t('drag-drop')}
-          </div>
-        </div>
-      ) : (
-        <div className="text-center mx-auto flex-col items-center gap-2">
-          <div className="flex justify-center mt-3">
-            <Loading/>
-          </div>
-          <div className="mx-auto mt-2">{t('loading-part-1')}</div>
-          <div className="font-bold">{t('loading-part-2')}</div>
-        </div>
+        <DialogFooter>
+          <ul className="flex items-center justify-center flex-auto gap-2">
+            <div className="rounded-2xl size-[64px] flex items-center justify-center bg-sidebar-primary">
+              <Image src={"/logo.png"} alt={"logo"} width={48} height={48} draggable={false} className={"p-3 w-full h-full invert"} />
+            </div>
+            <Image
+              src={'/timer-logos/cstimer.jpg'}
+              alt="cstimer logo"
+              width={64}
+              height={64}
+              className="rounded-2xl"
+              draggable={false}
+            />
+
+            <Image
+              src={'/timer-logos/twistytimer.jpg'}
+              alt="twistytimer logo"
+              width={64}
+              height={64}
+              className="rounded-2xl"
+              draggable={false}
+            />
+
+            <Image
+              src={'/timer-logos/cubedesk.jpg'}
+              alt="cubedesk logo"
+              width={64}
+              height={64}
+              className="rounded-2xl"
+              draggable={false}
+            />
+          </ul>
+        </DialogFooter>
+      </DialogContent>
+
+      {importCubes && (
+        <DialogImportReview
+          open={reviewOpen}
+          cubes={importCubes}
+          onCancel={handleCancelReview}
+          onConfirm={handleConfirmReview}
+        />
       )}
-      <div className="flex flex-auto items-center justify-center">
-        <div className="font-medium mt-3">{t('welcome')}</div>
-      </div>
-      <DialogFooter>
-        <ul className="flex items-center justify-center flex-auto gap-2 ">
-          <Image
-            src={'/timer-logos/nexustimer.jpg'}
-            alt="nexustimer logo"
-            width={64}
-            height={64}
-            className="rounded-2xl"
-            draggable={false}
-          />
-          <Image
-            src={'/timer-logos/cstimer.jpg'}
-            alt="cstimer logo"
-            width={64}
-            height={64}
-            className="rounded-2xl"
-            draggable={false}
-          />
-
-          <Image
-            src={'/timer-logos/twistytimer.jpg'}
-            alt="twistytimer logo"
-            width={64}
-            height={64}
-            className="rounded-2xl"
-            draggable={false}
-          />
-
-          <Image
-            src={'/timer-logos/cubedesk.jpg'}
-            alt="cubedesk logo"
-            width={64}
-            height={64}
-            className="rounded-2xl"
-            draggable={false}
-          />
-        </ul>
-      </DialogFooter>
-    </DialogContent>
+    </>
   );
 }

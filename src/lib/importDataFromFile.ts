@@ -83,12 +83,11 @@ const cubeDeskSchema = z.object({
 });
 
 export default async function importDataFromFile(
-  event: ChangeEvent<HTMLInputElement>
+  file: File
 ): Promise<Cube[] | false> {
   try {
-    const selectedFile = event.target.files?.[0];
-    if (!selectedFile) return false;
-    const fileContent = await selectedFile.text();
+    if (!file) return false;
+    const fileContent = await file.text();
 
     let cubes;
 
