@@ -6,11 +6,19 @@ import { useTimerStore } from "@/store/timerStore";
 import React from "react";
 import { motion } from "framer-motion";
 
-interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {
+  onCreate?: () => void;
+  hideTitle?: boolean;
+  hideDescription?: boolean;
+}
 
-export default function EmptyCubes({ ...rest }: EmptyCubesProps) {
+export default function EmptyCubes({ onCreate, hideDescription = false, hideTitle = false, ...rest }: EmptyCubesProps) {
   const t = useTranslations("Index.CubesPage");
   const setIsOpenDrawerNewCollection = useTimerStore((state) => state.setIsOpenDrawerNewCollection);
+  const handleClick = () => {
+    if (onCreate) return onCreate();
+    setIsOpenDrawerNewCollection(true);
+  }
   return (
     <>
       <div
@@ -49,7 +57,7 @@ export default function EmptyCubes({ ...rest }: EmptyCubesProps) {
               }}
             >
               <Image
-                src={"/utils/undraw_to-the-moon_w1wa.svg"}
+                src={"/utils/empty-cubes.svg"}
                 alt={"no-cubes-for-display"}
                 width={200}
                 height={200}
@@ -59,15 +67,19 @@ export default function EmptyCubes({ ...rest }: EmptyCubesProps) {
             </motion.div>
           </div>
 
-          <h2 className="text-3xl text-center text-balance font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-            {t("no-cubes-for-display")}
-          </h2>
+          {!hideTitle && (
+            <h2 className="text-3xl text-center text-balance font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
+              {t("no-cubes-for-display")}
+            </h2>
+          )}
 
-          <p className="text-muted-foreground text-center text-balance text-lg">
-            {t("no-cubes-description")}
-          </p>
+          {!hideDescription && (
+            <p className="text-muted-foreground text-center text-balance text-lg">
+              {t("no-cubes-description")}
+            </p>
+          )}
 
-          <Button className="mt-4 group" size="lg" onClick={() => setIsOpenDrawerNewCollection(true)}>
+          <Button className="mt-4 group" size="lg" onClick={handleClick}>
             <PlusIcon className="mr-2 h-4 w-4 transition-transform group-hover:scale-125" />
             {t("new-collection")}
           </Button>
