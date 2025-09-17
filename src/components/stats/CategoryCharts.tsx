@@ -13,6 +13,7 @@ import {
   ChartTooltipContent,
 } from '@/components/ui/chart';
 import { Bar, BarChart, CartesianGrid, Cell, LabelList, Pie, PieChart, XAxis, YAxis, } from 'recharts';
+import { ChartBarDecreasingIcon, ChartPieIcon } from 'lucide-react';
 
 // Simple color palette (no gradients)
 const COLORS = [
@@ -99,6 +100,10 @@ export default function CategoryCharts() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {/* Pie: Time by Cube */}
       <div className="p-3 border rounded-md bg-card/50">
+        <div className="flex items-center gap-2 mb-2 text-sm">
+          <ChartPieIcon className={"size-4 text-muted-foreground"}/>
+          <span className="font-medium">Time by Cube</span>
+        </div>
         {pieData.length === 0 ? (
           <EmptyState />
         ) : (
@@ -150,7 +155,11 @@ export default function CategoryCharts() {
       </div>
 
       {/* Horizontal Bars: Solves by Cube */}
-      <div className="p-3 border rounded-md bg-card/50">
+      <div className="p-3 border rounded-md bg-card/50 min-h-[384px]">
+        <div className="flex items-center gap-2 mb-2 text-sm">
+          <ChartBarDecreasingIcon className={"size-4 text-muted-foreground"}/>
+          <span className="font-medium">Solves by Cube</span>
+        </div>
         {barData.length === 0 ? (
           <EmptyState />
         ) : (
