@@ -196,12 +196,6 @@ export default function CategoryCharts() {
           </ChartContainer>
         )}
       </div>
-
-      {!hasAny && (
-        <div className="md:col-span-2">
-          <EmptyState />
-        </div>
-      )}
     </div>
   );
 }
