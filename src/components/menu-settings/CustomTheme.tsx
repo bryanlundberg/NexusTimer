@@ -15,19 +15,8 @@ export default function CustomTheme() {
 
     if (!newBackgroundImage) return;
 
-    const allowedImageTypes = ["image/jpeg", "image/png", "image/gif"];
-    const maxSizeInBytes = 4 * 1024 * 1024; // 4MB
-
-    if (!allowedImageTypes.includes(newBackgroundImage.type)) {
+    if (!newBackgroundImage.type.startsWith("image/")) {
       alert(`${t("Settings-menu.allowed-file-types")}`);
-      if (dataInputRef.current) {
-        dataInputRef.current.value = "";
-      }
-      return;
-    }
-
-    if (newBackgroundImage.size > maxSizeInBytes) {
-      alert(`${t("Settings-menu.max-file-size")} 4 Mb`);
       if (dataInputRef.current) {
         dataInputRef.current.value = "";
       }
