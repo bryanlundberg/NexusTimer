@@ -36,7 +36,7 @@ export default function BarCharter({ data, title, className, maxBars = 8 }: BarC
         <div className="text-sm font-medium mb-2 opacity-80">{title}</div>
       )}
       {sorted.length === 0 ? (
-        <div className="h-[240px] w-full flex items-center justify-center text-sm opacity-70 bg-muted/30 rounded">Sin datos suficientes</div>
+        <div className="h-[240px] w-full flex items-center justify-center text-sm opacity-70 bg-muted/30 rounded">No data</div>
       ) : (
         <div className="w-full space-y-2">
           {sorted.map((d, idx) => {
