@@ -1,5 +1,6 @@
 'use client';
 import LineCharter from '../charts/LineCharter';
+import CategoryCharts from './CategoryCharts';
 import formatTime from '@/lib/formatTime';
 import useMetricsSwitch from '@/hooks/useMetricsSwitch';
 import { useTranslations } from 'next-intl';
@@ -46,8 +47,8 @@ export default function CategoryStatistics() {
           successRate={successRateStr}
         />
 
-        <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-card backdrop-blur-lg">
-          {selectedCube && (selectedCube.solves.session.length || selectedCube.solves.all.length || cubes?.some((cube) => cube.category === selectedCube.category && cube.solves.all.length)) ? (
+        <div className="flex flex-col w-full p-3 border rounded-md bg-card backdrop-blur-lg min-h-[300px]">
+          {selectedCube ? (
             <>
               <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3 w-full">
                 <TabsList className="w-full justify-between">
@@ -59,6 +60,7 @@ export default function CategoryStatistics() {
                 </TabsList>
                 <TabsContent value={StatisticsTabs.CATEGORY}>
                   <LineCharter dataSet={stats.data.global}/>
+                  <CategoryCharts />
                 </TabsContent>
                 <TabsContent value={StatisticsTabs.CUBE}>
                   <LineCharter dataSet={stats.data.cubeAll}/>
