@@ -3,6 +3,7 @@ import { Order } from "@/enums/Order";
 import { Sort } from "@/enums/Sort";
 import { StatisticsTabs } from "@/enums/StatisticsTabs";
 import { PeopleTabs } from '@/enums/PeopleTabs';
+import { DateRange } from '@/enums/DateRange';
 
 export const STATES = {
   SOLVES_PAGE: {
@@ -27,7 +28,11 @@ export const STATES = {
     TAB_MODE: {
       KEY: "tab-stats",
       DEFAULT_VALUE: StatisticsTabs.CATEGORY,
-    }
+    },
+    DATE_RANGE: {
+      KEY: "date-range",
+      DEFAULT_VALUE: DateRange.ALL_TIME,
+    },
   },
   TRANSFER_SOLVES_PAGE: {
     SOURCE_COLLECTION: {
