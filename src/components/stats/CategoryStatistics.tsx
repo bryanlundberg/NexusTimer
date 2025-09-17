@@ -1,5 +1,6 @@
 'use client';
 import LineCharter from '../charts/LineCharter';
+import CategoryCharts from './CategoryCharts';
 import formatTime from '@/lib/formatTime';
 import useMetricsSwitch from '@/hooks/useMetricsSwitch';
 import { useTranslations } from 'next-intl';
@@ -13,6 +14,7 @@ import { STATES } from '@/constants/states';
 import { StatisticsTabs } from '@/enums/StatisticsTabs';
 import EmptyStatistics from '@/components/stats/EmptyStatistics';
 import { LoaderCircle } from 'lucide-react';
+import StatsSummaryCards from '@/components/stats/StatsSummaryCards';
 
 export default function CategoryStatistics() {
   const t = useTranslations('Index');
@@ -20,6 +22,11 @@ export default function CategoryStatistics() {
   const selectedCube = useTimerStore((state) => state.selectedCube);
   const [tabStats, setTabStats] = useQueryState(STATES.STATISTICS_PAGE.TAB_MODE.KEY, { defaultValue: STATES.STATISTICS_PAGE.TAB_MODE.DEFAULT_VALUE });
   const cubes = useTimerStore((state) => state.cubes);
+
+  const bestStr = stats.best.global > 0 ? formatTime(stats.best.global) : '--';
+  const overallAvgStr = stats.average.global === 0 ? '--' : formatTime(stats.average.global);
+  const ao5CurrentStr = stats.stats.session.ao5 === 0 ? '--' : formatTime(stats.stats.session.ao5);
+  const successRateStr = stats.successRate.global === '' ? '--' : stats.successRate.global + '%';
 
   return (
     <>
@@ -32,8 +39,16 @@ export default function CategoryStatistics() {
             Calculating...
           </div>
         )}
-        <div className="flex flex-col w-full p-3 border rounded-md min-h-96 bg-card backdrop-blur-lg">
-          {selectedCube && (selectedCube.solves.session.length || selectedCube.solves.all.length || cubes?.some((cube) => cube.category === selectedCube.category && cube.solves.all.length)) ? (
+
+        <StatsSummaryCards
+          best={bestStr}
+          overallAverage={overallAvgStr}
+          ao5Current={ao5CurrentStr}
+          successRate={successRateStr}
+        />
+
+        <div className="flex flex-col w-full p-3 border rounded-md bg-card backdrop-blur-lg min-h-[300px]">
+          {selectedCube ? (
             <>
               <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3 w-full">
                 <TabsList className="w-full justify-between">
@@ -45,6 +60,7 @@ export default function CategoryStatistics() {
                 </TabsList>
                 <TabsContent value={StatisticsTabs.CATEGORY}>
                   <LineCharter dataSet={stats.data.global}/>
+                  <CategoryCharts />
                 </TabsContent>
                 <TabsContent value={StatisticsTabs.CUBE}>
                   <LineCharter dataSet={stats.data.cubeAll}/>

@@ -1,7 +1,7 @@
 "use client";
 import { Solve } from "@/interfaces/Solve";
 import formatTime from "@/lib/formatTime";
-import { ChartOptions, createChart, createTextWatermark, CreatePriceLineOptions, DeepPartial, HistogramSeries } from 'lightweight-charts';
+import { ChartOptions, createChart, createTextWatermark, CreatePriceLineOptions, DeepPartial, LineSeries } from 'lightweight-charts';
 import { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import moment from "moment/min/moment-with-locales";
@@ -128,10 +128,10 @@ export default function LineCharter({ dataSet }: { dataSet: Solve[] }) {
         }],
       });
 
-      const lineSeries = chart.addSeries(HistogramSeries,{
+      const lineSeries = chart.addSeries(LineSeries,{
         lastValueVisible: false,
         priceLineVisible: false,
-        // lineWidth: 1,
+        lineWidth: 1.5 as any,
         color: primaryColor,
       });
 
