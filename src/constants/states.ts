@@ -31,7 +31,7 @@ export const STATES = {
     },
     DATE_RANGE: {
       KEY: "date-range",
-      DEFAULT_VALUE: DateRange.ALL_TIME,
+      DEFAULT_VALUE: DateRange.THIS_YEAR,
     },
   },
   TRANSFER_SOLVES_PAGE: {
