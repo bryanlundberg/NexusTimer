@@ -3,6 +3,8 @@
     "HomePage": {
       "hint": "Consejo",
       "optimal-yellow-layer": "Capa Amarilla Óptima",
+      "white-on-top-green-forward": "Blanco arriba - Verde al frente",
+      "hints-yellow-layer": "Consejos: Capa amarilla",
       "solving": "Resolviendo...",
       "tap-to-start": "Toca para comenzar",
       "space-to-start": "Presiona ESPACIO para comenzar",

@@ -29,6 +29,8 @@
       "title": "Timer",
       "hint": "Hint",
       "optimal-yellow-layer": "Optimal Yellow Layer",
+      "white-on-top-green-forward": "White on top - Green facing forward",
+      "hints-yellow-layer": "Hints: Yellow layer",
       "solving": "Solving...",
       "tap-to-start": "Tap to start",
       "space-to-start": "Press SPACE to start",
