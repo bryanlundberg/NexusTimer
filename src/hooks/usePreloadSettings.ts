@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
-import { useTimerStore } from "@/store/timerStore";
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
+import { useTimerStore } from '@/store/timerStore';
 import { useNXData } from '@/hooks/useNXData';
 import { useSession } from 'next-auth/react';
 
@@ -10,7 +10,7 @@ export function usePreloadSettings() {
   const setNewScramble = useTimerStore(store => store.setNewScramble);
   const settings = useSettingsModalStore(store => store.settings);
   const [isMounted, setIsMounted] = useState(false);
-  const { getAllCubes, getCubeById} = useNXData();
+  const { getAllCubes, getCubeById } = useNXData();
   const { data: session } = useSession()
 
   const initData = useCallback(async () => {
@@ -39,23 +39,19 @@ export function usePreloadSettings() {
   }, []);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (session?.user?.id) {
-        fetch(`/api/v1/users/${session.user.id}`, {
-          method: 'PATCH',
-          body: JSON.stringify({
-            lastSeenAt: Date.now()
-          }),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }).catch(error => {
-          console.error('Failed to update last seen at:', error);
-        });
-      }
-    }, 30000);
-
-    return () => clearInterval(intervalId);
+    if (session?.user?.id) {
+      fetch(`/api/v1/users/${session.user.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          lastSeenAt: Date.now()
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).catch(error => {
+        console.error('Failed to update last seen at:', error);
+      });
+    }
   }, [session]);
 
   useEffect(() => {
