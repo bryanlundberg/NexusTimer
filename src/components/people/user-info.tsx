@@ -12,9 +12,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { useUser } from '@/hooks/api/useUser';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { cn } from '@/lib/utils';
-import moment from 'moment';
 
 export default function UserInfo({ user }: { user: UserDocument }) {
   const { data: session } = useSession();
@@ -154,25 +151,6 @@ export default function UserInfo({ user }: { user: UserDocument }) {
               <AvatarImage className={'object-cover'} src={user.image} alt={user.name}/>
               <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
             </Avatar>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <div
-                  className={cn(
-                    'size-4 rounded-full absolute bottom-5 right-5',
-                    isCurrentUser || (user?.lastSeenAt && moment().diff(moment(user?.lastSeenAt), 'seconds') <= 60 && moment().diff(moment(user?.lastSeenAt), 'seconds') >= 0)
-                      ? 'bg-green-400'
-                      : 'bg-gray-400'
-                  )}
-                ></div>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>
-                  {isCurrentUser || (user?.lastSeenAt && moment().diff(moment(user?.lastSeenAt), 'seconds') <= 60 && moment().diff(moment(user?.lastSeenAt), 'seconds') >= 0)
-                    ? 'Online now'
-                    : 'Offline'}
-                </p>
-              </TooltipContent>
-            </Tooltip>
           </div>
           <h2 className="scroll-m-20 text-center text-xl font-extrabold tracking-tight text-balance flex items-center justify-center gap-2">
             {user.name} {user?.pronoun && (
