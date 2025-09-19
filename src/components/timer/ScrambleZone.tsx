@@ -24,6 +24,7 @@ import Image from 'next/image';
 import { useWindowSize } from 'react-use-size';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { SCRAMBLE_HEIGHT } from '@/constants/scramble-height';
+import { cn } from '@/lib/utils';
 
 export function ScrambleZone() {
   const selectedCube = useTimerStore(store => store.selectedCube);
@@ -54,13 +55,13 @@ export function ScrambleZone() {
             <>
               {selectedCube ? (
                 <Dialog>
-                  <DialogTrigger>[ Show scramble ]</DialogTrigger>
-                  <DialogContent>
+                  <DialogTrigger className={cn("text-lg")}>[ Show scramble.. ]</DialogTrigger>
+                  <DialogContent className="sm:max-w-xl">
                     <DialogHeader>
                       <VisuallyHidden>
                         <DialogTitle>[ Show scramble ]</DialogTitle>
                       </VisuallyHidden>
-                      <DialogDescription className={'text-lg text-card-foreground'}>
+                      <DialogDescription className={'text-xl text-card-foreground'}>
                         {scramble}
                       </DialogDescription>
                     </DialogHeader>
