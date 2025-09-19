@@ -27,7 +27,7 @@ export default function HeaderTimer() {
       {isPersonalBest && (
         <div
           id="touch"
-          className={cn('text-center text-xs mt-10', timerStatus !== TimerStatus.IDLE ? 'opacity-0' : 'opacity-100', height <= SCRAMBLE_HEIGHT && 'mt-0')}
+          className={cn('text-center text-xs mt-10', timerStatus !== TimerStatus.IDLE ? 'opacity-0' : 'opacity-100', height <= SCRAMBLE_HEIGHT && 'mt-5')}
         >
           <p>{t('congratulations')}</p>
           <p>{t('personal_best')}</p>
