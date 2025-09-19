@@ -8,41 +8,41 @@ import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { useNXData } from '@/hooks/useNXData';
+import { useUploadThing } from '@/utils/uploadthing-helpers';
 
 export default function Page() {
   const { getAllCubes } = useNXData();
   const { data: session } = useSession();
   const t = useTranslations('Index');
   const router = useRouter();
-  if (!session) redirect('/settings');
+
+  const { startUpload } = useUploadThing('backupUploader', {
+    onClientUploadComplete: () => {
+      router.push('/account');
+      toast.success('Backup saved successfully!');
+    },
+    onUploadError: (e) => {
+      console.error(e);
+      toast.error('Error occurred while uploading');
+    },
+  });
+
+  if (!session) redirect('/app');
 
   const handleBackup = async () => {
-    let cubes = await getAllCubes();
+    const cubes = await getAllCubes();
 
     if (!cubes || !session || !session.user || !session.user.id) {
       return toast.error('Failed to retrieve cubes or session data.');
     }
 
-    try {
-      const response = await fetch('/api/v1/backups', {
-        method: 'POST',
-        body: JSON.stringify({
-          _id: session.user.id,
-          data: JSON.stringify(cubes),
-        }),
-      });
+    const text = JSON.stringify(cubes);
+    const blob = new Blob([text], { type: 'text/plain' });
+    const filename = `${session.user.id}.txt`;
+    const file = new File([blob], filename, { type: 'text/plain' });
 
-      if (!response.ok) {
-        return toast.error('Failed to save backup.');
-      }
-
-      router.push('/app');
-      toast.success('Backup saved successfully!');
-    } catch (error) {
-      console.error('Error saving backup:', error);
-      toast.error('Failed to save backup.');
-    }
-  }
+    await startUpload([file]);
+  };
 
   return (
     <>
