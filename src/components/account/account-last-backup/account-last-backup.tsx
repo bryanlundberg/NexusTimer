@@ -1,23 +1,25 @@
-"use client";
-import { Session } from "next-auth";
-import { useTranslations } from "next-intl";
+'use client';
+import { Session } from 'next-auth';
+import { useTranslations } from 'next-intl';
 import moment from 'moment';
-import { useBackup } from "@/hooks/api/useBackup";
+import { useUser } from '@/hooks/api/useUser';
 
 export default function AccountLastBackup({ session }: { session: Session }) {
   const t = useTranslations('Index');
-  const { backup, isLoading } = useBackup(session.user.id);
+  const { data: user, isLoading } = useUser(session.user.id);
 
   return (
     <>
       <div>
-        {!isLoading
-          ? t('SettingsPage.last-backup') +
-          ' ' +
-          (backup && backup !== 'No backup found'
-            ? moment(backup.createdAt).format('DD/MMMM/YYYY HH:mm:ss')
-            : backup)
-          : t('SettingsPage.fetching-last-backup')}
+        {!isLoading ? (
+          user?.backup?.updatedAt ? (
+            `${t('SettingsPage.last-backup')} ${moment(user.backup.updatedAt).format('DD/MMMM/YYYY HH:mm:ss')}`
+          ) : (
+            t('SettingsPage.fetching-last-backup')
+          )
+        ) : (
+          t('SettingsPage.fetching-last-backup')
+        )}
       </div>
     </>
   );
