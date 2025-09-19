@@ -2,6 +2,9 @@ import { ScrambleDisplay } from "../scramble-display";
 import { useTimerStore } from "@/store/timerStore";
 import { useSettingsModalStore } from "@/store/SettingsModalStore";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from '@/lib/utils';
+import { useWindowSize } from 'react-use-size';
+import { SCRAMBLE_HEIGHT } from '@/constants/scramble-height';
 
 export default function ScrambleImagePanel() {
   const settings = useSettingsModalStore(store => store.settings);
@@ -10,7 +13,7 @@ export default function ScrambleImagePanel() {
   const setZoomInScramble = useTimerStore(store => store.setZoomInScramble);
   const zoomInScramble = useTimerStore(store => store.zoomInScramble);
   const isSolving = useTimerStore(store => store.isSolving);
-
+  const { height } = useWindowSize();
   return (
     <AnimatePresence>
       {(!zoomInScramble || !isSolving) && (
@@ -20,7 +23,6 @@ export default function ScrambleImagePanel() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0.8, y: 100 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="w-full h-full"
         >
           <div
             className={"w-fit mx-auto"}
@@ -61,7 +63,7 @@ export default function ScrambleImagePanel() {
             }}
           >
             <ScrambleDisplay
-              className="min-w-32 mx-auto cursor-pointer w-fit h-20 md:h-24"
+              className={cn("w-20 h-20 md:w-32 mx-auto cursor-pointer", height <= SCRAMBLE_HEIGHT && "h-18 max-w-20")}
               show={settings.features.scrambleImage}
               scramble={scramble}
               event={selectedCube?.category || "3x3"}
