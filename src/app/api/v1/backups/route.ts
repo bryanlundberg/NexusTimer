@@ -20,40 +20,34 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 
-    const backup = await Backup.findOneAndUpdate(
-      {
-        user: _id,
-      },
-      {
-        user: _id,
-        data: data,
-      },
-      {
-        upsert: true,
-        new: true,
-      }
-    );
+    const encoder = new TextEncoder();
+    const dataBuffer = encoder.encode(data);
+    const CHUNK_SIZE = 8 * 1024 * 1024;
+    const chunks: Buffer[] = [];
 
-    return NextResponse.json(backup);
+    for (let i = 0; i < dataBuffer.length; i += CHUNK_SIZE) {
+      chunks.push(Buffer.from(dataBuffer.slice(i, i + CHUNK_SIZE)));
+    }
+
+    await Backup.deleteMany({ user: _id });
+
+    await Promise.all(chunks.map(async (chunk, index) => {
+      return await Backup.create({
+        user: _id,
+        data: chunk,
+        index: index,
+      })
+    }));
+
+    return NextResponse.json({
+      user: _id,
+      data
+    });
+
   } catch (error) {
     console.error('Error creating backup:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
-export async function GET(request: NextRequest) {
-  await connectDB();
-  const searchParams = request.nextUrl.searchParams;
-  const page = Math.max(0, Number(searchParams.get('page')) || 0);
-  const PER_PAGE = 50
-
-  const backups = await Backup.find().limit(PER_PAGE).skip(page * PER_PAGE).sort({ createdAt: -1 })
-  const docsCount = await Backup.find().countDocuments()
-
-  return NextResponse.json({
-    events: backups,
-    page: page,
-    pages: Math.max(0, (docsCount / PER_PAGE) -1),
-  });
-}
 
