@@ -122,6 +122,26 @@ If you want to **contribute code**:
 4. Run the development server with `pnpm run dev`.
 5. Before submitting a pull request, ensure that your code compile by running `pnpm run build`.
 
+### Environment and .env variables (for contributors)
+
+| Variable                          | Description                | When do I need it?                                                                                            |
+|-----------------------------------|----------------------------|---------------------------------------------------------------------------------------------------------------|
+| MONGODB_URI                       | MongoDB connection string  | Save and load backups, register users, all community section                                                  |
+| NEXT_PUBLIC_API_KEY               | Firebase public API key    | Clash Mode                                                                                                    |
+| NEXT_PUBLIC_AUTH_DOMAIN           | Firebase auth domain       | Clash Mode                                                                                                    |
+| NEXT_PUBLIC_PROJECT_ID            | Firebase project ID        | Clash Mode                                                                                                    |
+| NEXT_PUBLIC_STORAGE_BUCKET        | Firebase storage bucket    | Clash Mode                                                                                                    |
+| NEXT_PUBLIC_MESSAGING_SENDER_ID   | Firebase sender ID         | Clash Mode                                                                                                    |
+| NEXT_PUBLIC_APP_ID                | Firebase app ID            | Clash Mode                                                                                                    |
+| NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME | Cloudinary cloud name      | Change user profile picture                                                                                   |
+| NEXT_PUBLIC_CLOUDINARY_API_KEY    | Cloudinary public API key  | Change user profile picture                                                                                   |
+| CLOUDINARY_API_SECRET             | Cloudinary API secret      | Change user profile picture                                                                                   |
+| GOOGLE_CLIENT_ID                  | Google OAuth client ID     | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
+| GOOGLE_CLIENT_SECRET              | Google OAuth client secret | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
+| RESEND_API_KEY                    | Resend API key (emails)    | Test welcome email sending                                                                                    |
+
+GOOGLE CALLBACK/AUTH IS: http://localhost:3000/api/auth/callback/google
+
 ## Acknowledgments
 
 I sincerely thank all contributors and tools that have made NexusTimer possible. 👌
