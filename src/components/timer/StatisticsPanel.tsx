@@ -49,7 +49,7 @@ export default function StatisticsPanel() {
   return (
     <>
       <motion.div
-        className="flex flex-col justify-center w-full h-full gap-1"
+        className="flex flex-col justify-center h-full gap-1"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
