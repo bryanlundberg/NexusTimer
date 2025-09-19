@@ -1,9 +1,4 @@
-import { Schema, models, model, Document } from "mongoose";
-
-export interface Backups extends Document {
-  user: string;
-  data: string;
-}
+import { Schema, models, model } from "mongoose";
 
 const BackupSchema = new Schema(
   {
@@ -16,6 +11,10 @@ const BackupSchema = new Schema(
       type: String,
       required: [true, "Parse and include the backup into a string"],
     },
+    index: {
+      type: Number,
+      required: [true, "Please provide the chunk index"],
+    }
   },
   { timestamps: true }
 );
