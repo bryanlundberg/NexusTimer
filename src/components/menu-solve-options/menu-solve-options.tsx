@@ -7,13 +7,17 @@ import { useSolveActions } from '@/hooks/useSolveActions';
 import { CopyIcon, CubeIcon } from '@radix-ui/react-icons';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { ArrowRightLeftIcon, Bookmark, Trash } from 'lucide-react';
+import { ArrowRightLeftIcon, Bookmark, MoreHorizontal, Trash } from 'lucide-react';
 import { useQueryState } from 'nuqs';
 import { STATES } from '@/constants/states';
 import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs';
 import { IconButton } from '@/components/ui/shadcn-io/icon-button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoreHorizontal } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 
 export default function MenuSolveOptions({
   solve,
@@ -61,7 +65,6 @@ export default function MenuSolveOptions({
   };
 
   const localHandleBookmarkSolve = () => {
-    console.log(solve)
     if (solve) handleBookmarkSolve(solve, caseOfUse);
   };
 
@@ -86,7 +89,7 @@ export default function MenuSolveOptions({
     <>
       {/* options */}
       <div
-        className="flex flex-wrap items-center justify-center py-5 gap-2"
+        className="flex flex-wrap items-center justify-center gap-2"
         id="quick-action-buttons"
       >
         <TooltipProvider delayDuration={100}>
@@ -176,23 +179,38 @@ export default function MenuSolveOptions({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant={'ghost'} aria-label="More actions">
-                  <MoreHorizontal />
+                  <MoreHorizontal/>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 {!hideCopyButton && (
-                  <DropdownMenuItem onSelect={(e) => { e.preventDefault(); localHandleClipboardSolve(); }}>
-                    <CopyIcon className="mr-2" /> {t('tooltips.copy')}
+                  <DropdownMenuItem
+                    onSelect={(e) => {
+                      e.preventDefault();
+                      localHandleClipboardSolve();
+                    }}
+                  >
+                    <CopyIcon className="mr-2"/> {t('tooltips.copy')}
                   </DropdownMenuItem>
                 )}
                 {!hideMoveToHistory && (
-                  <DropdownMenuItem onSelect={(e) => { e.preventDefault(); localHandleMoveToHistory(); }}>
-                    <CubeIcon className="mr-2" /> Move to History
+                  <DropdownMenuItem
+                    onSelect={(e) => {
+                      e.preventDefault();
+                      localHandleMoveToHistory();
+                    }}
+                  >
+                    <CubeIcon className="mr-2"/> Move to History
                   </DropdownMenuItem>
                 )}
                 {tabMode === DisplaySolvesTabs.SESSION && !hideTransferCollection && (
-                  <DropdownMenuItem onSelect={(e) => { e.preventDefault(); handleMoveCollection(); }}>
-                    <ArrowRightLeftIcon size={12} className="mr-2" /> Transfer Collection
+                  <DropdownMenuItem
+                    onSelect={(e) => {
+                      e.preventDefault();
+                      handleMoveCollection();
+                    }}
+                  >
+                    <ArrowRightLeftIcon size={12} className="mr-2"/> Transfer Collection
                   </DropdownMenuItem>
                 )}
               </DropdownMenuContent>

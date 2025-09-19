@@ -1,37 +1,37 @@
-import formatTime from "@/lib/formatTime";
-import { useTimerStore } from "@/store/timerStore";
-import { useTranslations } from "next-intl";
-import { useMemo } from "react";
-import { motion } from "framer-motion";
+import formatTime from '@/lib/formatTime';
+import { useTimerStore } from '@/store/timerStore';
+import { useTranslations } from 'next-intl';
+import { useMemo } from 'react';
+import { motion } from 'framer-motion';
 
 export default function OverviewPanel() {
   const timerStatistics = useTimerStore(store => store.timerStatistics);
-  const t = useTranslations("Index");
+  const t = useTranslations('Index');
 
   const stats = useMemo(() => {
     return [
       {
-        label: t("HomePage.deviation"),
+        label: t('HomePage.deviation'),
         value: formatTime(timerStatistics.session.deviation),
-        testId: "timer-session-deviation",
+        testId: 'timer-session-deviation',
       },
       {
-        label: t("HomePage.average"),
+        label: t('HomePage.average'),
         value: formatTime(timerStatistics.session.mean),
-        testId: "timer-session-mean",
+        testId: 'timer-session-mean',
       },
       {
-        label: t("HomePage.best"),
+        label: t('HomePage.best'),
         value: formatTime(timerStatistics.session.best),
-        testId: "timer-session-best",
+        testId: 'timer-session-best',
       },
       {
-        label: t("HomePage.counter"),
+        label: t('HomePage.counter'),
         value: timerStatistics.session.count.toString(),
-        testId: "timer-session-count",
+        testId: 'timer-session-count',
       },
     ]
-  },[timerStatistics.session, t]);
+  }, [timerStatistics.session, t]);
 
   const containerVariants = {
     hidden: {},
@@ -49,7 +49,7 @@ export default function OverviewPanel() {
 
   return (
     <motion.div
-      className="flex flex-col justify-center w-full h-full gap-1"
+      className="flex flex-col justify-center h-full gap-1"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -61,7 +61,7 @@ export default function OverviewPanel() {
           variants={itemVariants}
         >
           {label}
-          {": "}
+          {': '}
           <span data-testid={testId}>{value}</span>
         </motion.div>
       ))}

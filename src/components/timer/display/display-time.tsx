@@ -1,14 +1,16 @@
-import { Solve } from "@/interfaces/Solve";
-import formatTime from "@/lib/formatTime";
-import { useTimerStore } from "@/store/timerStore";
-import { useTranslations } from "next-intl";
-import { TimerMode } from "@/enums/TimerMode";
-import { TimerStatus } from "@/enums/TimerStatus";
-import React from "react";
-import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
-import { useSettingsModalStore } from "@/store/SettingsModalStore";
+import { Solve } from '@/interfaces/Solve';
+import formatTime from '@/lib/formatTime';
+import { useTimerStore } from '@/store/timerStore';
+import { useTranslations } from 'next-intl';
+import { TimerMode } from '@/enums/TimerMode';
+import { TimerStatus } from '@/enums/TimerStatus';
+import React from 'react';
+import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
+import { useWindowSize } from 'react-use-size';
+import { cn } from '@/lib/utils';
 
-interface DisplayTimeProps extends Omit<HTMLMotionProps<"div">, "ref"> {
+interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   className?: string;
   isSolving: boolean;
   lastSolve: Solve | null;
@@ -20,11 +22,11 @@ interface DisplayTimeProps extends Omit<HTMLMotionProps<"div">, "ref"> {
 }
 
 const timerStatusClasses = {
-  IDLE: "light:text-neutral-900 dark:text-white",
-  HOLDING: "light:text-pink-600 dark:text-pink-600",
-  SOLVING: "light:text-neutral-700 dark:text-slate-200",
-  READY: "text-emerald-400",
-  INSPECTING: "text-orange-500",
+  IDLE: 'light:text-neutral-900 dark:text-white',
+  HOLDING: 'light:text-pink-600 dark:text-pink-600',
+  SOLVING: 'light:text-neutral-700 dark:text-slate-200',
+  READY: 'text-emerald-400',
+  INSPECTING: 'text-orange-500',
 };
 
 export default function DisplayTime({
@@ -38,9 +40,11 @@ export default function DisplayTime({
   hideWhileSolving,
   ...rest
 }: DisplayTimeProps) {
-  const t = useTranslations("Index.HomePage");
+  const t = useTranslations('Index.HomePage');
   const timerMode = useTimerStore(store => store.timerMode);
   const settings = useSettingsModalStore(store => store.settings);
+  const { height } = useWindowSize();
+
   return (
     <>
       <motion.div
@@ -50,7 +54,7 @@ export default function DisplayTime({
           opacity: 1,
           scale: timerStatus === TimerStatus.READY ? 1.05 : 1,
           transition: {
-            type: "spring",
+            type: 'spring',
             stiffness: 300,
             damping: 20
           }
@@ -67,7 +71,7 @@ export default function DisplayTime({
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              {t("solving")}
+              {t('solving')}
             </motion.span>
           ) : (
             <motion.div
@@ -82,7 +86,7 @@ export default function DisplayTime({
                 className="flex items-end justify-center"
                 animate={{
                   scale: timerStatus === TimerStatus.HOLDING ? 0.95 : 1,
-                  transition: { type: "spring", stiffness: 500, damping: 30 }
+                  transition: { type: 'spring', stiffness: 500, damping: 30 }
                 }}
               >
                 {(settings.timer.inspection && (timerStatus === TimerStatus.INSPECTING || timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY)) ? (
@@ -91,7 +95,7 @@ export default function DisplayTime({
                       className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
                       initial={{ scale: 1.2 }}
                       animate={{ scale: 1 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
                     >
                       {Math.trunc(inspectionTime)}
                     </motion.div>
@@ -99,20 +103,20 @@ export default function DisplayTime({
                 ) : (
                   <>
                     <motion.div
-                      className="text-8xl md:text-9xl"
+                      className={cn('text-8xl md:text-9xl', height < 700 ? 'text-6xl md:text-7xl' : '', 'font-light')}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2 }}
                     >
-                      {formatTime(solvingTime).split(".")[0]}
+                      {formatTime(solvingTime).split('.')[0]}
                     </motion.div>
                     <motion.div
-                      className="text-7xl md:text-8xl"
+                      className={cn('text-7xl md:text-8xl', height < 700 ? 'text-5xl md:text-6xl' : '', 'font-light')}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3, delay: 0.1 }}
                     >
-                      .{formatTime(solvingTime, settings.timer.decimals).split(".")[1]}
+                      .{formatTime(solvingTime, settings.timer.decimals).split('.')[1]}
                     </motion.div>
                     {lastSolve?.plus2 && !isSolving && (
                       <motion.span
@@ -127,23 +131,23 @@ export default function DisplayTime({
                   </>
                 )}
               </motion.div>
-                {!lastSolve && timerStatus === TimerStatus.IDLE ? (
-                  <motion.div
-                    className="text-xs text-center"
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: [0.5, 1, 0.5], y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                  >
-                    {timerMode === TimerMode.NORMAL
-                      ? device === "Desktop"
-                        ? `${t("space-to-start")}`
-                        : `${t("tap-to-start")}`
-                      : null}
+              {!lastSolve && timerStatus === TimerStatus.IDLE ? (
+                <motion.div
+                  className="text-xs text-center"
+                  initial={{ opacity: 0, y: 5 }}
+                  animate={{ opacity: [0.5, 1, 0.5], y: 0 }}
+                  exit={{ opacity: 0, y: -5 }}
+                >
+                  {timerMode === TimerMode.NORMAL
+                    ? device === 'Desktop'
+                      ? `${t('space-to-start')}`
+                      : `${t('tap-to-start')}`
+                    : null}
 
-                    {timerMode === TimerMode.STACKMAT &&
-                      t("start-stackmat")}
-                  </motion.div>
-                ): null}
+                  {timerMode === TimerMode.STACKMAT &&
+                    t('start-stackmat')}
+                </motion.div>
+              ) : null}
             </motion.div>
           )}
         </AnimatePresence>
