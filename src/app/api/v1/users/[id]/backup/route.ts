@@ -7,8 +7,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
   const userId = (await params).id;
 
   await connectDB();
-  const backups = await Backup.find({ user: userId});
-
+  const backups = await Backup.find({ user: userId });
 
   if (!backups.length) {
     return NextResponse.json({ error: 'Backup not found' }, { status: 404 });
