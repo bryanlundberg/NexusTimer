@@ -15,7 +15,7 @@ export default function AccountLastBackup({ session }: { session: Session }) {
           user?.backup?.updatedAt ? (
             `${t('SettingsPage.last-backup')} ${moment(user.backup.updatedAt).format('DD/MMMM/YYYY HH:mm:ss')}`
           ) : (
-            t('SettingsPage.fetching-last-backup')
+            'There is no backup yet'
           )
         ) : (
           t('SettingsPage.fetching-last-backup')
