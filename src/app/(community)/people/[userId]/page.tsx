@@ -32,25 +32,9 @@ export default function Page() {
   const params = useParams<{ userId: string; }>()
   const userId = params.userId;
   const { data: user, isLoading: isLoadingUser } = useUser(userId);
-  const { backup: backupString, isLoading: isLoadingBackup } = useBackup(userId);
+  const { backup, isLoading: isLoadingBackup } = useBackup(user?.backup?.url);
   const [tab, setTab] = useQueryState(STATES.PEOPLE_PAGE.TAB_MODE.KEY, { defaultValue: STATES.PEOPLE_PAGE.TAB_MODE.DEFAULT_VALUE });
-  const [backup, setBackup] = React.useState<Cube[]>([]);
   const handleChangeTab = (value: PeopleTabs) => setTab(value);
-
-  useEffect(() => {
-    const parseBackup = () => {
-      if (backupString?.data) {
-        try {
-          const parsedBackup = importNexusTimerData(backupString?.data);
-          setBackup(parsedBackup);
-        } catch (error) {
-          console.error('Error parsing backup string:', error);
-          setBackup([]);
-        }
-      }
-    }
-    parseBackup();
-  }, [backupString]);
 
   if (isLoadingUser || isLoadingBackup) {
     return (
@@ -103,13 +87,13 @@ export default function Page() {
                   >Last activity</TabsTrigger>
                 </TabsList>
                 <TabsContent value={PeopleTabs.OVERVIEW}>
-                  <OverviewTabContent cubes={backup}/>
+                  <OverviewTabContent cubes={backup || []}/>
                 </TabsContent>
                 <TabsContent value={PeopleTabs.CUBES}>
-                  <CubesTabContent cubes={backup}/>
+                  <CubesTabContent cubes={backup || []}/>
                 </TabsContent>
                 <TabsContent value={PeopleTabs.LAST_ACTIVITY}>
-                  <LastActivityTabContent cubes={backup}/>
+                  <LastActivityTabContent cubes={backup || []}/>
                 </TabsContent>
               </Tabs>
             </div>
