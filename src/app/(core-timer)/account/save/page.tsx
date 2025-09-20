@@ -9,6 +9,7 @@ import { redirect, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { useNXData } from '@/hooks/useNXData';
 import { useUploadThing } from '@/utils/uploadthing-helpers';
+import { compressSync, strToU8 } from 'fflate';
 
 export default function Page() {
   const { getAllCubes } = useNXData();
@@ -37,9 +38,10 @@ export default function Page() {
     }
 
     const text = JSON.stringify(cubes);
-    const blob = new Blob([text], { type: 'text/plain' });
-    const filename = `${session.user.id}.txt`;
-    const file = new File([blob], filename, { type: 'text/plain' });
+
+    const compressed = compressSync(strToU8(text));
+    const blob = new Blob([compressed], { type: "application/octet-stream" });
+    const file = new File([blob], `${session.user.id}.txt`, { type: "application/octet-stream" });
 
     await startUpload([file]);
   };
