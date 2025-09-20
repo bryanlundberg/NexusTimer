@@ -1,10 +1,13 @@
-import Image from "next/image";
-import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
-import { PlusIcon } from "@radix-ui/react-icons";
-import { useTimerStore } from "@/store/timerStore";
-import React from "react";
-import { motion } from "framer-motion";
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
+import { FileTextIcon, PlusIcon } from '@radix-ui/react-icons';
+import { useTimerStore } from '@/store/timerStore';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { DatabaseBackupIcon } from 'lucide-react';
 
 interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {
   onCreate?: () => void;
@@ -13,12 +16,15 @@ interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export default function EmptyCubes({ onCreate, hideDescription = false, hideTitle = false, ...rest }: EmptyCubesProps) {
-  const t = useTranslations("Index.CubesPage");
+  const { data: session } = useSession();
+  const router = useRouter();
+  const t = useTranslations('Index.CubesPage');
   const setIsOpenDrawerNewCollection = useTimerStore((state) => state.setIsOpenDrawerNewCollection);
-  const handleClick = () => {
+  const handleClickOnCreate = () => {
     if (onCreate) return onCreate();
     setIsOpenDrawerNewCollection(true);
   }
+
   return (
     <>
       <div
@@ -34,7 +40,7 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: 'easeInOut'
               }}
             ></motion.div>
             <motion.div
@@ -43,7 +49,7 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: 'easeInOut',
                 delay: 0.3
               }}
             ></motion.div>
@@ -53,12 +59,12 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
               transition={{
                 duration: 6,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: 'easeInOut'
               }}
             >
               <Image
-                src={"/utils/empty-cubes.svg"}
-                alt={"no-cubes-for-display"}
+                src={'/utils/empty-cubes.svg'}
+                alt={'no-cubes-for-display'}
                 width={200}
                 height={200}
                 draggable={false}
@@ -69,20 +75,28 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
 
           {!hideTitle && (
             <h2 className="text-3xl text-center text-balance font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-              {t("no-cubes-for-display")}
+              {t('no-cubes-for-display')}
             </h2>
           )}
 
           {!hideDescription && (
             <p className="text-muted-foreground text-center text-balance text-lg">
-              {t("no-cubes-description")}
+              {t('no-cubes-description')}
             </p>
           )}
 
-          <Button className="mt-4 group" size="lg" onClick={handleClick}>
-            <PlusIcon className="mr-2 h-4 w-4 transition-transform group-hover:scale-125" />
-            {t("new-collection")}
-          </Button>
+          <div className={'flex flex-col gap-3'}>
+            <Button className={'w-full'} size="lg" onClick={handleClickOnCreate}>
+              <PlusIcon className="mr-2 h-4 w-4 transition-transform group-hover:scale-125"/>
+              {t('new-collection')}
+            </Button>
+            {session?.user && (
+              <Button variant={'secondary'} onClick={() => router.push('/account')}><DatabaseBackupIcon/> Restore
+                Account Data</Button>
+            )}
+            <Button variant={'ghost'} onClick={() => router.push('/options#app-data')}><FileTextIcon/> Import from Other
+              Timers</Button>
+          </div>
         </div>
       </div>
     </>
