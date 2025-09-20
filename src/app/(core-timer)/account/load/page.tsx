@@ -11,6 +11,8 @@ import { importNexusTimerData } from '@/lib/importDataFromFile';
 import { useSyncBackup } from '@/hooks/useSyncBackup';
 import { useNXData } from '@/hooks/useNXData';
 import { toast } from 'sonner';
+import { useUser } from '@/hooks/api/useUser';
+import { decompressSync, strFromU8 } from 'fflate';
 
 export default function Page() {
   const { clearCubes, getAllCubes, saveBatchCubes } = useNXData();
@@ -19,22 +21,24 @@ export default function Page() {
   const router = useRouter();
   const setCubes = useTimerStore((state) => state.setCubes);
   const { syncBackup } = useSyncBackup();
+  const { data: user } = useUser(session?.user?.id!);
 
   const handleDownloadData = async () => {
     if (!session || !session.user || !session.user.email) return;
 
     try {
-      const response = await fetch(`/api/v1/users/${session.user.id}/backup`);
-
-      if (!response.ok) {
-        console.error('Failed to fetch backup');
+      if (!user?.backup?.url) {
+        toast.error("No backup found for this user.");
         return;
       }
 
-      const backup = await response.json();
-      if (!backup) return;
+      const doc = await fetch(`${user.backup.url}`);
+      const compressed = new Uint8Array(await doc.arrayBuffer());
 
-      const backupData = importNexusTimerData(backup.data);
+      const decompressed = decompressSync(compressed);
+      const data = strFromU8(decompressed);
+
+      const backupData = importNexusTimerData(data);
       const existingCubes = await getAllCubes();
 
       const newCubes = await syncBackup(backupData, existingCubes);
