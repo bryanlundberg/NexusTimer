@@ -1,12 +1,40 @@
-import useSWR from 'swr';
-import { fetcher } from '@/utils/fetcher';
+import { useEffect, useState } from 'react';
+import { Cube } from '@/interfaces/Cube';
+import { decompressSync, strFromU8 } from 'fflate';
 
-export const useBackup = (userId: string) => {
-  const { data, error, isLoading } = useSWR(`/api/v1/users/${userId}/backup`, fetcher)
+export const useBackup = (url: string) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [backup, setBackup] = useState<Cube[] | null>(null);
+
+  useEffect(() => {
+    if (!url) {
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchBackup = async () => {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Network response was not ok');
+
+        const compressed = new Uint8Array(await response.arrayBuffer());
+        const decompressed = decompressSync(compressed);
+        const data = strFromU8(decompressed);
+
+        setBackup(JSON.parse(data) as Cube[]);
+      } catch (error) {
+        console.error('Error fetching backup:', error);
+        setBackup(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchBackup();
+  }, [url]);
 
   return {
-    backup: data,
+    backup,
     isLoading,
-    isError: error
   }
 }

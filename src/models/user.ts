@@ -16,6 +16,7 @@ export interface UserDocument {
   timezone?: string;
   goal?: string;
   lastSeenAt?: number;
+  backupUrl?: string;
   createdAt: Date;
   updatedAt: Date;
   __v: number;
@@ -49,6 +50,12 @@ const UserSchema = new Schema(
     },
     lastSeenAt: {
       type: Number,
+    },
+    backup: {
+      type: {
+        url: { type: String },
+        updatedAt: { type: Number },
+      },
     },
   },
   { timestamps: true }
