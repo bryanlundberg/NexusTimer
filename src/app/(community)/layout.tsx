@@ -5,6 +5,7 @@ import { AppSidebar } from '@/components/app-sidebar';
 import { SidebarInset } from '@/components/ui/sidebar';
 import FloatButton from '@/components/people/FloatButton';
 import { useCompareUsersStore } from '@/store/CompareUsers';
+import CompareUsersModal from '@/components/people/compare-users-modal';
 
 export default function Layout({
   children,
@@ -12,6 +13,7 @@ export default function Layout({
   children: React.ReactNode;
 }) {
   const users = useCompareUsersStore(state => state.users);
+  const isOpenOverlay = useCompareUsersStore(state => state.isOpenOverlay);
   return (
     <>
       <AppSidebar/>
@@ -19,6 +21,7 @@ export default function Layout({
         <Providers loaderProvider={false}>
           {children}
           {users.length > 0 && <FloatButton/>}
+          {isOpenOverlay && <CompareUsersModal/>}
         </Providers>
       </SidebarInset>
     </>
