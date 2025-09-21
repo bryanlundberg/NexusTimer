@@ -23,23 +23,23 @@ export const RECORDS = {
     best: 5660,
     average: 7720,
   },
-  'clock': {
+  'Clock': {
     best: 1640,
     average: 2260,
   },
-  'pyram': {
+  'Pyraminx': {
     best: 730,
     average: 1150,
   },
-  'skewb': {
+  'Skewb': {
     best: 750,
     average: 1370,
   },
-  'sq1': {
+  'SQ1': {
     best: 3410,
     average: 4630,
   },
-  'megaminx': {
+  'Megaminx': {
     best: 22050,
     average: 25360,
   },
