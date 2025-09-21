@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { XIcon } from 'lucide-react';
 import { useCompareUsersStore } from '@/store/CompareUsers';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { Categories } from '@/interfaces/Categories';
 import { Cube } from '@/interfaces/Cube';
@@ -85,7 +86,7 @@ export default function CompareUsersModal() {
 
       <div id={'table'} className={'relative overflow-x-auto'}>
 
-        <TableRow title={''} className={'sticky top-0 right-0 bg-background z-50 border-b border-b-white/10'}>
+        <TableRow title={''} className={'sticky top-0 right-0 bg-background z-50 border-b border-b-white/10 w-full'}>
           {users.map((user) => {
             return (
               <div key={user._id} className={'w-52 py-3 z-50'}>
@@ -103,9 +104,10 @@ export default function CompareUsersModal() {
 
         <TableRow title={'Time Zone'}>
           {users.map((user) => {
+            const value = user.timezone || '—'
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0'}>
-                {user.timezone || '—'}
+              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
+                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto'}>{value}</Badge>
               </div>
             )
           })}
@@ -113,9 +115,10 @@ export default function CompareUsersModal() {
 
         <TableRow title={'First solve'}>
           {users.map((user) => {
+            const value = formatDistance(new Date(user.createdAt), new Date(), { addSuffix: true })
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0'}>
-                {formatDistance(new Date(user.createdAt), new Date(), { addSuffix: true })}
+              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
+                <Badge variant={'outline'} className={'mx-auto'}>{value}</Badge>
               </div>
             )
           })}
@@ -127,9 +130,10 @@ export default function CompareUsersModal() {
             const allCubes = Object.values(cubesDB).flat() as Cube[];
             const totalSolves = allCubes.reduce((sum, cube) => sum + (cube?.solves?.all?.length || 0) + (cube?.solves?.session?.length || 0), 0);
             const hasValue = totalSolves && !isNaN(totalSolves) && totalSolves !== 0;
+            const value = hasValue ? totalSolves.toLocaleString() : '—'
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0'}>
-                {hasValue ? totalSolves.toLocaleString() : '—'}
+              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
+                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto'}>{value}</Badge>
               </div>
             )
           })}
@@ -140,9 +144,10 @@ export default function CompareUsersModal() {
             const cubesDB = userCubes[user._id] || {};
             const totalCubes = (Object.values(cubesDB).flat() as Cube[]).length;
             const hasValue = totalCubes && !isNaN(totalCubes) && totalCubes !== 0;
+            const value = hasValue ? totalCubes.toLocaleString() : '—'
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0'}>
-                {hasValue ? totalCubes.toLocaleString() : '—'}
+              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
+                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto'}>{value}</Badge>
               </div>
             )
           })}
@@ -160,10 +165,12 @@ export default function CompareUsersModal() {
   )
 }
 
-const TableRow = ({ title, children, className }: { title: string, children: React.ReactNode, className?: string }) => {
+const TableRow = ({ title, children, className }: { title?: string, children: React.ReactNode, className?: string }) => {
   return (
-    <div className={cn('flex gap-3 w-max', className)}>
-      <div className={'w-40 pl-4 text-sm sticky left-0 z-20 bg-background'}>{title}</div>
+    <div className={cn('flex gap-3 w-max items-center', className)}>
+      <div className={'w-40 pl-4 text-sm sticky left-0 z-20 bg-background'}>
+        {title && <Badge variant={'outline'} className={'rounded-md'}>{title}</Badge>}
+      </div>
       {children}
     </div>
   )
@@ -191,14 +198,26 @@ type CompareUser = {
 };
 
 const CategoryBlock = ({ category, users }: { category: Categories, users: CompareUser[] }) => {
+  // compute bests: for single/average min is best; for count max is best
+  const singles = users.map(u => u[category]?.single).filter(v => typeof v === 'number' && !isNaN(v) && v > 0) as number[];
+  const avgs = users.map(u => u[category]?.average).filter(v => typeof v === 'number' && !isNaN(v) && v > 0) as number[];
+  const counts = users.map(u => u[category]?.count).filter(v => typeof v === 'number' && !isNaN(v) && v > 0) as number[];
+  const bestSingle = singles.length ? Math.min(...singles) : undefined;
+  const bestAverage = avgs.length ? Math.min(...avgs) : undefined;
+  const bestCount = counts.length ? Math.max(...counts) : undefined;
+
   return (
     <>
       <TableRow className={'mt-5'} title={`${category} Single`}>
         {users.map((user) => {
           const val = user[category]?.single;
+          const hasValue = typeof val === 'number' && !isNaN(val) && val > 0;
+          const isBest = hasValue && bestSingle !== undefined && val === bestSingle;
           return (
-            <div key={user._id} className={'w-52 text-center shrink-0'}>
-              {val ? formatTime(val) : '—'}
+            <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
+              <Badge variant={isBest ? 'default' : hasValue ? 'outline' : 'outline'} className={'mx-auto'}>
+                {isBest && '🏆'} {hasValue ? formatTime(val) : '—'}
+              </Badge>
             </div>
           )
         })}
@@ -207,9 +226,13 @@ const CategoryBlock = ({ category, users }: { category: Categories, users: Compa
       <TableRow title={`${category} Average`}>
         {users.map((user) => {
             const val = user[category]?.average;
+            const hasValue = typeof val === 'number' && !isNaN(val) && val > 0;
+            const isBest = hasValue && bestAverage !== undefined && val === bestAverage;
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0'}>
-                {val ? formatTime(val) : '—'}
+              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
+                <Badge variant={isBest ? 'default' : hasValue ? 'outline' : 'outline'} className={'mx-auto'}>
+                  {isBest && '🏆'} {hasValue ? formatTime(val) : '—'}
+                </Badge>
               </div>
             )
           }
@@ -220,9 +243,12 @@ const CategoryBlock = ({ category, users }: { category: Categories, users: Compa
         {users.map((user) => {
           const val = user[category]?.count;
           const hasValue = val !== undefined && val !== null && !isNaN(val) && val !== 0;
+          const isBest = hasValue && bestCount !== undefined && val === bestCount;
           return (
-            <div key={user._id} className={'w-52 text-center shrink-0'}>
-              {hasValue ? val.toLocaleString() : '—'}
+            <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
+              <Badge variant={isBest ? 'default' : hasValue ? 'outline' : 'outline'} className={'mx-auto'}>
+                {isBest && '🏆'} {hasValue ? val.toLocaleString() : '—'}
+              </Badge>
             </div>
           )
         })}
