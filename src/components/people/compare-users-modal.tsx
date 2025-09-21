@@ -14,6 +14,8 @@ import calcTotalSolvesStatistics from '@/lib/calcTotalSolvesStatistics';
 import _ from 'lodash';
 import formatTime from '@/lib/formatTime';
 import { formatDistance } from 'date-fns';
+import calcAoStatistics from '@/lib/calcAoStatistics';
+import calculateBestAo from '@/lib/calculateBestAo';
 
 export default function CompareUsersModal() {
   const closeOverlay = useCompareUsersStore(state => state.closeOverlay);
@@ -62,7 +64,10 @@ export default function CompareUsersModal() {
         const cubeName = '';
 
         const single = calcBestTime({ cubesDB: cubeData, category, cubeName }).global;
-        const average = calcAverageStatistics({ cubesDB: cubeData, category, cubeName }).global;
+        const average = calculateBestAo(
+          _.flatMap(cubeData, (cube: Cube) => [...(cube.solves.all || []), ...(cube.solves.session || [])]),
+          5
+        );
         const count = calcTotalSolvesStatistics({ cubesDB: cubeData, category, cubeName }).global;
 
         (byCategory as any)[category] = { single, average, count };
