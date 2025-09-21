@@ -32,7 +32,7 @@ export default function FloatButton() {
           </div>
         </motion.div>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent aria-describedby={undefined}>
         <DialogHeader>
           <DialogTitle>Comparative</DialogTitle>
         </DialogHeader>
