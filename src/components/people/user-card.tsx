@@ -1,14 +1,20 @@
 import { UserDocument } from '@/models/user';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Calendar, ExternalLink } from 'lucide-react';
+import { Calendar, ExternalLink, GitCompareIcon } from 'lucide-react';
 import moment from 'moment/moment';
 import { Button } from '@/components/ui/button';
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
+import { useCompareUsersStore } from '@/store/CompareUsers';
 
 export const UserCard = ({ user }: { user: UserDocument }) => {
   const router = useRouter();
+  const addUser = useCompareUsersStore(state => state.addUser);
+  const removeUser = useCompareUsersStore(state => state.removeUser);
+  const users = useCompareUsersStore(state => state.users);
+  const isAdded = users.find(u => u._id === user._id);
+
   return (
     <Card
       className="transition-all duration-200 animate-fadeIn h-auto"
@@ -25,14 +31,21 @@ export const UserCard = ({ user }: { user: UserDocument }) => {
           <Calendar className="size-3.5"/>
           <span>Joined {moment(user.createdAt).format('MMM Do YYYY')}</span>
         </div>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="gap-1 text-xs"
-          onClick={() => router.push(`/people/${user._id}`)}
-        >
-          View Profile <ExternalLink className="size-3.5"/>
-        </Button>
+        <div className="flex items-center gap-2 mt-4">
+          <Button
+            onClick={() => isAdded ? removeUser(user._id) : addUser(user)}
+            variant={isAdded ? "secondary": "ghost"}
+            size="sm"
+            className="gap-1 text-xs"
+          ><GitCompareIcon/> Compare</Button>
+          <Button
+            size="sm"
+            className="gap-1 text-xs"
+            onClick={() => router.push(`/people/${user._id}`)}
+          >
+            View Profile <ExternalLink className="size-3.5"/>
+          </Button>
+        </div>
       </CardContent>
     </Card>
   )
