@@ -69,13 +69,6 @@ export default function CompareUsersModal() {
     });
   }, [users, userCubes]);
 
-  const usersStatsWithNames = useMemo(() => {
-    return usersStats.map(us => {
-      const u = users.find(x => x._id === us._id);
-      return { name: u?.name, ...us } as any;
-    });
-  }, [usersStats, users]);
-
   return (
     <div className={'bg-background w-full h-full flex flex-col fixed top-0 left-0 z-50 overflow-y-auto'}>
       <header className={'flex items-center justify-between p-4'}>
@@ -160,13 +153,6 @@ export default function CompareUsersModal() {
         {CATEGORIES.map((category) => (
           <div key={category}>
             <CategoryBlock category={category} users={usersStats} />
-            <TableRow title={''}>
-              {users.map((user) => (
-                <div key={user._id} className={'w-52 text-center shrink-0'}>
-                  <div className="h-px bg-white/10 w-full my-1"/>
-                </div>
-              ))}
-            </TableRow>
           </div>
         ))}
       </div>
@@ -207,7 +193,7 @@ type CompareUser = {
 const CategoryBlock = ({ category, users }: { category: Categories, users: CompareUser[] }) => {
   return (
     <>
-      <TableRow title={`${category} Single`}>
+      <TableRow className={"mt-5"} title={`${category} Single`}>
         {users.map((user) => {
           const val = user[category]?.single;
           return (
