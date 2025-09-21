@@ -91,7 +91,7 @@ export default function CompareUsersModal() {
 
       <div id={'table'} className={'relative overflow-x-auto'}>
 
-        <TableRow title={''} className={'sticky top-0 right-0 bg-background z-50 border-b border-b-white/10 w-full'}>
+        <TableRow title={''} className={'sticky top-0 bg-background z-50 border-b border-b-white/10'}>
           {users.map((user) => {
             return (
               <div key={user._id} className={'w-52 py-3 z-50'}>
@@ -173,7 +173,7 @@ export default function CompareUsersModal() {
 const TableRow = ({ title, children, className }: { title?: string, children: React.ReactNode, className?: string }) => {
   return (
     <div className={cn('flex gap-3 w-max items-center', className)}>
-      <div className={'w-40 pl-4 text-sm sticky left-0 z-20 bg-background'}>
+      <div className={'w-40 py-3 text-sm sticky left-0 z-40 bg-background px-4 flex justify-end'}>
         {title && <Badge variant={'outline'} className={'rounded-md'}>{title}</Badge>}
       </div>
       {children}
