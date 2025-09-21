@@ -12,6 +12,7 @@ import calcAverageStatistics from '@/lib/calcAverageStatistics';
 import calcTotalSolvesStatistics from '@/lib/calcTotalSolvesStatistics';
 import _ from 'lodash';
 import formatTime from '@/lib/formatTime';
+import { formatDistance } from 'date-fns';
 
 export default function CompareUsersModal() {
   const closeOverlay = useCompareUsersStore(state => state.closeOverlay);
@@ -73,10 +74,10 @@ export default function CompareUsersModal() {
     <div className={'bg-background w-full h-full flex flex-col fixed top-0 left-0 z-50 overflow-y-auto'}>
       <header className={'flex items-center justify-between p-4'}>
         <div className="flex items-center gap-3">
-          <div className="h-8 w-8 rounded-md bg-white/10 border border-white/15 flex items-center justify-center">
-            <Image src={'/logo.png'} alt={'logo'} width={20} height={20} className={'invert-100'}/>
+          <div className="h-8 w-8 rounded-md bg-primary border border-primary/15 flex items-center justify-center">
+            <Image src={'/logo.png'} alt={'logo'} width={20} height={20} className={'invert'}/>
           </div>
-          <span className="text-sm font-semibold tracking-wide text-white/90 hidden sm:block">NexusTimer</span>
+          <span className="text-sm font-semibold tracking-wide text-background-foreground/90 hidden sm:block">NexusTimer</span>
         </div>
         <h2 className="scroll-m-20 border-b pb-2 text-xl font-semibold tracking-tight first:mt-0 text-background-foreground">Comparative</h2>
         <XIcon onClick={closeOverlay}/>
@@ -114,7 +115,7 @@ export default function CompareUsersModal() {
           {users.map((user) => {
             return (
               <div key={user._id} className={'w-52 text-center shrink-0'}>
-                {new Date(user.createdAt).toLocaleDateString()}
+                {formatDistance(new Date(user.createdAt), new Date(), { addSuffix: true })}
               </div>
             )
           })}
@@ -147,21 +148,13 @@ export default function CompareUsersModal() {
           })}
         </TableRow>
 
-        <TableRow title={''}>
-          {users.map((user) => {
-            return (
-              <div key={user._id} className={'w-52 text-center shrink-0'}>
-                <div className="h-px bg-primary w-full my-2"/>
-              </div>
-            )
-          })}
-        </TableRow>
-
         {CATEGORIES.map((category) => (
           <div key={category}>
             <CategoryBlock category={category} users={usersStats}/>
           </div>
         ))}
+
+        <div className={"py-3"}></div>
       </div>
     </div>
   )
