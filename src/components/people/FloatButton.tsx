@@ -11,17 +11,20 @@ import { formatDistance } from 'date-fns';
 
 export default function FloatButton() {
   const users = useCompareUsersStore(state => state.users);
-  const setCompareOpen = useCompareUsersStore(state => state.setIsOpen);
-  const isOpen = useCompareUsersStore(state => state.isOpen);
+  const closeModal = useCompareUsersStore(state => state.closeModal);
+  const isOpenModal = useCompareUsersStore(state => state.isOpenModal);
   const removeUser = useCompareUsersStore(state => state.removeUser);
+  const openOverlay = useCompareUsersStore(state => state.openOverlay);
+  const setIsOpenModal = useCompareUsersStore(state => state.setIsOpenModal);
+
   return (
-    <Dialog open={isOpen} onOpenChange={setCompareOpen}>
+    <Dialog open={isOpenModal} onOpenChange={setIsOpenModal}>
       <DialogTrigger asChild>
         <motion.div
           className={'size-16 bg-primary bottom-5 right-5 rounded-full text-primary-foreground border cursor-pointer fixed'}
           whileHover={{ scale: 1.1 }}
           transition={{ duration: 0.3 }}
-          onClick={() => setCompareOpen(true)}
+          onClick={() => setIsOpenModal}
         >
           <div className={'relative flex items-center justify-center w-full h-full'}>
             <GitCompareIcon className={'size-8'} strokeWidth={1.5}/>
@@ -66,8 +69,8 @@ export default function FloatButton() {
         </Table>
 
         <div className="grid grid-cols-2 gap-2 mt-4">
-          <Button className={'w-full'} variant="secondary" onClick={() => setCompareOpen(false)}>Close</Button>
-          <Button className={'w-full'}>Compare</Button>
+          <Button className={'w-full'} variant="secondary" onClick={closeModal}>Close</Button>
+          <Button className={'w-full'} onClick={openOverlay}>Compare</Button>
         </div>
       </DialogContent>
     </Dialog>
