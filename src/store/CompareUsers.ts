@@ -2,8 +2,14 @@ import { create } from 'zustand';
 import { UserDocument } from '@/models/user';
 
 type CompareUsersProps = {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  isOpenModal: boolean;
+  openModal: () => void;
+  closeModal: () => void;
+  setIsOpenModal: (isOpen: boolean) => void;
+
+  isOpenOverlay: boolean;
+  openOverlay: () => void;
+  closeOverlay: () => void;
 
   users: UserDocument[];
   addUser: (user: UserDocument) => void;
@@ -11,8 +17,15 @@ type CompareUsersProps = {
 };
 
 export const useCompareUsersStore = create<CompareUsersProps>((set) => ({
-  isOpen: false,
-  setIsOpen: (isOpen: boolean) => set({ isOpen }),
+  isOpenModal: false,
+  openModal: () => set({ isOpenModal: true }),
+  closeModal: () => set({ isOpenModal: false }),
+  setIsOpenModal: (isOpen: boolean) => set({ isOpenModal: isOpen }),
+
+  isOpenOverlay: false,
+  openOverlay: () => set({ isOpenOverlay: true, isOpenModal: false }),
+  closeOverlay: () => set({ isOpenOverlay: false, isOpenModal: false }),
+
   users: [],
   addUser: (user: UserDocument) => set((state) => {
     const exists = state.users.find(u => u._id === user._id);
