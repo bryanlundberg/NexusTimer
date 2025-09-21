@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { XIcon } from 'lucide-react';
 import { useCompareUsersStore } from '@/store/CompareUsers';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import RecordsRadar from '@/components/charts/RecordsRadar';
 import { cn } from '@/lib/utils';
 import { Categories } from '@/interfaces/Categories';
 import { Cube } from '@/interfaces/Cube';
@@ -70,6 +69,13 @@ export default function CompareUsersModal() {
     });
   }, [users, userCubes]);
 
+  const usersStatsWithNames = useMemo(() => {
+    return usersStats.map(us => {
+      const u = users.find(x => x._id === us._id);
+      return { name: u?.name, ...us } as any;
+    });
+  }, [usersStats, users]);
+
   return (
     <div className={'bg-background w-full h-full flex flex-col fixed top-0 left-0 z-50 overflow-y-auto'}>
       <header className={'flex items-center justify-between p-4'}>
@@ -83,12 +89,12 @@ export default function CompareUsersModal() {
         <XIcon onClick={closeOverlay}/>
       </header>
 
-      <div id={'table'}>
+      <div id={'table'} className={'relative overflow-x-auto'}>
 
-        <TableRow title={''} className={'sticky top-0 right-0 bg-background z-10 border-b border-b-white/10'}>
+        <TableRow title={''} className={'sticky top-0 right-0 bg-background z-50 border-b border-b-white/10'}>
           {users.map((user) => {
             return (
-              <div key={user._id} className={'w-52 py-3'}>
+              <div key={user._id} className={'w-52 py-3 z-50'}>
                 <div className={'flex flex-col items-center gap-2'}>
                   <Avatar className={'size-24'}>
                     <AvatarImage className={'object-cover'} src={user.image}/>
@@ -104,7 +110,7 @@ export default function CompareUsersModal() {
         <TableRow title={'Time Zone'}>
           {users.map((user) => {
             return (
-              <div key={user._id} className={'w-52 text-center'}>
+              <div key={user._id} className={'w-52 text-center shrink-0'}>
                 Mexico City
               </div>
             )
@@ -114,7 +120,7 @@ export default function CompareUsersModal() {
         <TableRow title={'First solve'}>
           {users.map((user) => {
             return (
-              <div key={user._id} className={'w-52 text-center'}>
+              <div key={user._id} className={'w-52 text-center shrink-0'}>
                 {new Date(user.createdAt).toLocaleDateString()}
               </div>
             )
@@ -124,7 +130,7 @@ export default function CompareUsersModal() {
         <TableRow title={'Total solves'}>
           {users.map((user) => {
             return (
-              <div key={user._id} className={'w-52 text-center'}>
+              <div key={user._id} className={'w-52 text-center shrink-0'}>
                 12,687
               </div>
             )
@@ -134,7 +140,7 @@ export default function CompareUsersModal() {
         <TableRow title={'Total Cubes'}>
           {users.map((user) => {
             return (
-              <div key={user._id} className={'w-52 text-center'}>
+              <div key={user._id} className={'w-52 text-center shrink-0'}>
                 196
               </div>
             )
@@ -144,7 +150,7 @@ export default function CompareUsersModal() {
         <TableRow title={''}>
           {users.map((user) => {
             return (
-              <div key={user._id} className={'w-52 text-center'}>
+              <div key={user._id} className={'w-52 text-center shrink-0'}>
                 <div className="h-px bg-primary w-full my-2"/>
               </div>
             )
@@ -156,17 +162,13 @@ export default function CompareUsersModal() {
             <CategoryBlock category={category} users={usersStats} />
             <TableRow title={''}>
               {users.map((user) => (
-                <div key={user._id} className={'w-52 text-center'}>
+                <div key={user._id} className={'w-52 text-center shrink-0'}>
                   <div className="h-px bg-white/10 w-full my-1"/>
                 </div>
               ))}
             </TableRow>
           </div>
         ))}
-
-        <div className="mt-6">
-          <RecordsRadar users={users}/>
-        </div>
       </div>
     </div>
   )
@@ -174,8 +176,8 @@ export default function CompareUsersModal() {
 
 const TableRow = ({ title, children, className }: { title: string, children: React.ReactNode, className?: string }) => {
   return (
-    <div className={cn('flex gap-3', className)}>
-      <div className={'w-40 pl-4 opacity-80 text-sm'}>{title}</div>
+    <div className={cn('flex gap-3 w-max', className)}>
+      <div className={'w-40 pl-4 text-sm sticky left-0 z-20 bg-background'}>{title}</div>
       {children}
     </div>
   )
@@ -209,7 +211,7 @@ const CategoryBlock = ({ category, users }: { category: Categories, users: Compa
         {users.map((user) => {
           const val = user[category]?.single;
           return (
-            <div key={user._id} className={'w-52 text-center'}>
+            <div key={user._id} className={'w-52 text-center shrink-0'}>
               {val ? formatTime(val) : '—'}
             </div>
           )
@@ -220,19 +222,20 @@ const CategoryBlock = ({ category, users }: { category: Categories, users: Compa
         {users.map((user) => {
           const val = user[category]?.average;
           return (
-            <div key={user._id} className={'w-52 text-center'}>
+            <div key={user._id} className={'w-52 text-center shrink-0'}>
               {val ? formatTime(val) : '—'}
             </div>
-          )
-        })}
+          )}
+        )}
       </TableRow>
 
       <TableRow title={`${category} Count`}>
         {users.map((user) => {
           const val = user[category]?.count;
+          const hasValue = val !== undefined && val !== null && !isNaN(val) && val !== 0;
           return (
-            <div key={user._id} className={'w-52 text-center'}>
-              {val ? formatTime(val) : '—'}
+            <div key={user._id} className={'w-52 text-center shrink-0'}>
+              {hasValue ? val.toLocaleString() : '—'}
             </div>
           )
         })}
