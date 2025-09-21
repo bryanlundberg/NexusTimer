@@ -93,7 +93,7 @@ export default function CompareUsersModal() {
                     <AvatarImage className={'object-cover'} src={user.image}/>
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
-                  <span className={"font-semibold"}>{user.name}</span>
+                  <span className={'font-semibold'}>{user.name}</span>
                 </div>
               </div>
             )
@@ -104,7 +104,7 @@ export default function CompareUsersModal() {
           {users.map((user) => {
             return (
               <div key={user._id} className={'w-52 text-center shrink-0'}>
-                Mexico City
+                {user.timezone || '—'}
               </div>
             )
           })}
@@ -122,9 +122,13 @@ export default function CompareUsersModal() {
 
         <TableRow title={'Total solves'}>
           {users.map((user) => {
+            const cubesDB = userCubes[user._id] || {};
+            const allCubes = Object.values(cubesDB).flat() as Cube[];
+            const totalSolves = allCubes.reduce((sum, cube) => sum + (cube?.solves?.all?.length || 0) + (cube?.solves?.session?.length || 0), 0);
+            const hasValue = totalSolves && !isNaN(totalSolves) && totalSolves !== 0;
             return (
               <div key={user._id} className={'w-52 text-center shrink-0'}>
-                12,687
+                {hasValue ? totalSolves.toLocaleString() : '—'}
               </div>
             )
           })}
@@ -132,9 +136,12 @@ export default function CompareUsersModal() {
 
         <TableRow title={'Total Cubes'}>
           {users.map((user) => {
+            const cubesDB = userCubes[user._id] || {};
+            const totalCubes = (Object.values(cubesDB).flat() as Cube[]).length;
+            const hasValue = totalCubes && !isNaN(totalCubes) && totalCubes !== 0;
             return (
               <div key={user._id} className={'w-52 text-center shrink-0'}>
-                196
+                {hasValue ? totalCubes.toLocaleString() : '—'}
               </div>
             )
           })}
@@ -152,7 +159,7 @@ export default function CompareUsersModal() {
 
         {CATEGORIES.map((category) => (
           <div key={category}>
-            <CategoryBlock category={category} users={usersStats} />
+            <CategoryBlock category={category} users={usersStats}/>
           </div>
         ))}
       </div>
@@ -193,7 +200,7 @@ type CompareUser = {
 const CategoryBlock = ({ category, users }: { category: Categories, users: CompareUser[] }) => {
   return (
     <>
-      <TableRow className={"mt-5"} title={`${category} Single`}>
+      <TableRow className={'mt-5'} title={`${category} Single`}>
         {users.map((user) => {
           const val = user[category]?.single;
           return (
@@ -206,12 +213,13 @@ const CategoryBlock = ({ category, users }: { category: Categories, users: Compa
 
       <TableRow title={`${category} Average`}>
         {users.map((user) => {
-          const val = user[category]?.average;
-          return (
-            <div key={user._id} className={'w-52 text-center shrink-0'}>
-              {val ? formatTime(val) : '—'}
-            </div>
-          )}
+            const val = user[category]?.average;
+            return (
+              <div key={user._id} className={'w-52 text-center shrink-0'}>
+                {val ? formatTime(val) : '—'}
+              </div>
+            )
+          }
         )}
       </TableRow>
 
