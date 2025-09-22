@@ -16,7 +16,10 @@ export interface UserDocument {
   timezone?: string;
   goal?: string;
   lastSeenAt?: number;
-  backupUrl?: string;
+  backup?: {
+    url: string;
+    updatedAt: number;
+  };
   createdAt: Date;
   updatedAt: Date;
   __v: number;
