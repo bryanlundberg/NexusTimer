@@ -173,10 +173,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarFooter>
       ) : (
         <SidebarFooter>
-          <Card className="py-4 bg-primary/60 text-primary-foreground">
+          <Card className="py-4 bg-background text-background-foreground">
             <CardHeader className="pb-0">
               <CardTitle className="text-base">{t('AccessCard.title')}</CardTitle>
-              <CardDescription className={'text-xs text-primary-foreground'}>{t('AccessCard.description')}</CardDescription>
+              <CardDescription className={'text-xs text-background-foreground'}>{t('AccessCard.description')}</CardDescription>
             </CardHeader>
             <UICardFooter>
               <div className="w-full">
