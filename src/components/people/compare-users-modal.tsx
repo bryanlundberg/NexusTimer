@@ -113,7 +113,6 @@ export default function CompareUsersModal() {
   )
 }
 
-
 const CATEGORIES: Categories[] = [
   '2x2',
   '3x3',
