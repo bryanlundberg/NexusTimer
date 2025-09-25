@@ -13,13 +13,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   const pages = [
-    { path: "", priority: 1.0 },
-    { path: "/settings/account", priority: 0.8 },
+    { path: "/", priority: 1.0 },
+    { path: "/app", priority: 0.9 },
+    { path: "/people", priority: 0.9 },
+    { path: "/clash", priority: 0.8 },
     { path: "/solves", priority: 0.8 },
     { path: "/stats", priority: 0.8 },
     { path: "/cubes", priority: 0.8 },
-    { path: "/settings/options", priority: 0.7 },
-    { path: "/transfer-solves", priority: 0.6 },
+    { path: "/transfer-solves", priority: 0.8 },
+    { path: "/options", priority: 0.7 },
+    { path: "/privacy-policy", priority: 0.6 },
+    { path: "/terms-of-service", priority: 0.6 },
   ];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];
