@@ -305,7 +305,7 @@ export const OLL_ALGS: AlgorithmCollection[] = [
     name: "A1 - 29",
     alg: [
       "y (R U R' U') (R U' R') (F' U' F) (R U R')",
-      "M U (R U R' U')(R' F R F') M'"
+      "M U (R U R' U') (R' F R F') M'"
     ],
     group: "Awkward Shapes",
     prob: 54
