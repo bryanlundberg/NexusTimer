@@ -9,7 +9,7 @@ export default function Page() {
       title={'PBL - Algorithms'}
       description={'PBL (Permute Both Layers) -  These algorithms are used to permute both the top and bottom layers of a 2x2 cube simultaneously, allowing for efficient solving of the puzzle.'}
       virtualization={{
-        experimentalStickering: 'auto',
+        experimentalStickering: 'full',
         puzzle: '2x2x2',
         visualization: '3D',
         experimentalDragInput: 'none'
