@@ -36,6 +36,7 @@ import { Card, CardDescription, CardFooter as UICardFooter, CardHeader, CardTitl
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl';
+import { ALGORITHM_SETS } from '@/constants/algorithms-sets';
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession()
@@ -114,18 +115,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         url: '/algorithms',
         icon: Brain,
         items: [
-          {
-            title: 'OLL',
-            url: '/algorithms/oll',
-          },
-          {
-            title: 'PLL',
-            url: '/algorithms/pll',
-          },
-          {
-            title: 'COLL',
-            url: '/algorithms/coll',
-          }
+          ...ALGORITHM_SETS.map((set) => (
+            {
+              title: set.title.toUpperCase(),
+              url: `/algorithms/${set.title.toLowerCase()}`,
+            }
+          ))
         ]
       },
       {
