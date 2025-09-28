@@ -9,6 +9,7 @@ import { VLS_ALGS } from '@/algs/vls';
 import { CLS_ALGS } from '@/algs/cls';
 import { WV_ALGS } from '@/algs/vw';
 import { PARITY_444_ALGS } from '@/algs/parity-444';
+import { PARITY_555_ALGS } from '@/algs/parity-555';
 
 export const ALGORITHM_SETS = [
   {
@@ -98,6 +99,15 @@ export const ALGORITHM_SETS = [
     description: '4x4 Parity Algorithms',
     cube: '4x4',
     total: PARITY_444_ALGS.length,
+    Icon: Grid2x2Plus,
+    difficulty: 1,
+  },
+  {
+    slug: '/algorithms/parity-5x5',
+    title: 'Parity-5x5',
+    description: '5x5 Parity Algorithms',
+    cube: '5x5',
+    total: PARITY_555_ALGS.length,
     Icon: Grid2x2Plus,
     difficulty: 1,
   }
