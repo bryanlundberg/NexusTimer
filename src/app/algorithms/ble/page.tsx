@@ -12,6 +12,7 @@ export default function Page() {
         experimentalStickering: 'OLL',
       } as unknown as TwistyPlayer}
       fileCollectionName={'ble.ts'}
+      puzzle={'3x3x3'}
     />
   );
 }
