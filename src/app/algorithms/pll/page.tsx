@@ -6,7 +6,8 @@ export default function Page() {
   return (
     <AlgorithmsPage
       algorithms={PLL_ALGS}
-      title={'PLL - Permutation of the Last Layer'}
+      title={'PLL - Algorithms'}
+      description={'The PLL (Permutation of Last Layer) algorithms for solving the Rubik\'s cube with the CFOP method. These algorithms are used for the final step of the CFOP method, to permute the edges and corners of the last layer, once all pieces are oriented.'}
       virtualization={{
         experimentalStickering: 'PLL',
       } as unknown as TwistyPlayer}
