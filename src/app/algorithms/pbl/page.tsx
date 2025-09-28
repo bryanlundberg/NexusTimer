@@ -14,6 +14,7 @@ export default function Page() {
         visualization: '3D',
         experimentalDragInput: 'none'
       } as unknown as TwistyPlayer}
+      fileCollectionName={'pbl.ts'}
     />
   )
 }
