@@ -36,6 +36,7 @@ export default function BreadcrumbNav({ hideCollectionsSegment = false }: { hide
                     <SelectValue/>
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value="ocll">OCLL</SelectItem>
                     <SelectItem value="oll">OLL</SelectItem>
                     <SelectItem value="pll">PLL</SelectItem>
                     <SelectItem value="coll">COLL</SelectItem>
