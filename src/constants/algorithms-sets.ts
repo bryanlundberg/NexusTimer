@@ -1,6 +1,15 @@
-import { Grid3x3, Layers } from 'lucide-react';
+import { Grid2x2Icon, Grid3x3, Layers } from 'lucide-react';
 
 export const ALGORITHM_SETS = [
+  {
+    slug: '/algorithms/ocll',
+    title: 'OCLL',
+    description: 'Orient Corners of the Last Layer',
+    cube: '2x2',
+    total: 7,
+    Icon: Grid2x2Icon,
+    difficulty: 1,
+  },
   {
     slug: '/algorithms/oll',
     title: 'OLL',
