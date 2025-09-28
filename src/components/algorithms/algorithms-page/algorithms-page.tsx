@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useMemo, useState } from 'react';
 import _ from 'lodash';
@@ -13,10 +13,11 @@ import { TwistyPlayer } from 'cubing/twisty';
 interface AlgorithmsPageProps {
   algorithms: AlgorithmCollection[],
   title: string
+  description?: string
   virtualization?: TwistyPlayer
 }
 
-export const AlgorithmsPage = ({ algorithms, title, virtualization }: AlgorithmsPageProps) => {
+export const AlgorithmsPage = ({ algorithms, title, virtualization, description }: AlgorithmsPageProps) => {
   const groups = useMemo(() => _.groupBy(algorithms, 'group'), [algorithms]);
   const [activeGroups, setActiveGroups] = useState<string[]>([]);
 
@@ -35,7 +36,7 @@ export const AlgorithmsPage = ({ algorithms, title, virtualization }: Algorithms
   return (
     <ScrollArea className="max-h-dvh overflow-auto p-4">
       <BreadcrumbNav/>
-      <Information title={title}/>
+      <Information title={title} description={description}/>
 
       {Object.keys(groups).map((group) => (
         <Badge
@@ -47,7 +48,7 @@ export const AlgorithmsPage = ({ algorithms, title, virtualization }: Algorithms
 
       <div className={'mt-5'}>
         <div className="grid md:grid-cols-2 gap-3">
-          <div className={'columns-1 gap-3 sm:col-span-2 sm:columns-2'}>
+          <div className={'columns-1 gap-3 sm:col-span-2 sm:columns-2 xl:col-span-3 xl:columns-3 mb-3'}>
             {displayedAlgs.map((item) => (
               <AlgorithmCard
                 algorithm={item}
