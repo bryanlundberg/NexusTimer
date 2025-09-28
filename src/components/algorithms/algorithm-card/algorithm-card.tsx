@@ -4,19 +4,24 @@ import { Label } from '@/components/ui/label';
 import * as React from 'react';
 import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection';
 import { cn } from '@/lib/utils';
-import { TwistyPlayer } from 'cubing/twisty';
+import { PuzzleID, TwistyPlayer } from 'cubing/twisty';
 import _ from 'lodash';
+import { Button } from '@/components/ui/button';
+import { EyeIcon } from 'lucide-react';
+import { useAlgorithmTrainer } from '@/store/AlgorithmTrainer';
 
 interface AlgorithmCardProps extends React.HTMLAttributes<HTMLDivElement> {
   onAlgorithmClick?: () => void
   algorithm: AlgorithmCollection
   virtualization?: TwistyPlayer
+  puzzle: PuzzleID
 }
 
 export default function AlgorithmCard({
   algorithm,
   onAlgorithmClick,
   virtualization,
+  puzzle,
   ...rest
 }: AlgorithmCardProps) {
 
@@ -28,6 +33,18 @@ export default function AlgorithmCard({
     experimentalStickering: 'OLL',
     experimentalSetupAnchor: 'end',
   }, virtualization)
+
+  const setAlgorithm = useAlgorithmTrainer(state => state.setAlgorithm);
+  const setIsOpen = useAlgorithmTrainer(state => state.setIsOpen);
+
+  const handleOpenAlgorithmPreview = (alg: string) => {
+    setAlgorithm({
+      name: `${algorithm.group}-${algorithm.name}`,
+      cube: puzzle,
+      alg,
+    })
+    setIsOpen(true);
+  }
 
   return (
     <Card className={cn('p-3 mb-3 h-auto bg-card/50 break-inside-avoid-column', rest.className)} {...rest}>
@@ -42,11 +59,11 @@ export default function AlgorithmCard({
           {algorithm.alg.map((alg, index) => (
             <Card
               className={'p-3 flex items-center justify-center flex-row bg-background'} onClick={onAlgorithmClick}
-              key={`OLL-${algorithm.group}-${algorithm.name}-alg-${index}`}
+              key={`${algorithm.group}-${algorithm.name}-alg-${index}`}
             >
               <div className={'grow space-y-2'}>
                 <Label className={'ml-2'}>Alternative #{index + 1}:</Label>
-                <span className={'text-lg lg:text-xl xl:text-2xl'}>{alg}</span>
+                <span className={'text-lg lg:text-xl xl:text-2xl flex justify-between'}>{alg}<Button className={"ms-3"} variant={"secondary"} onClick={() => handleOpenAlgorithmPreview(alg)} size={"icon"}><EyeIcon/></Button> </span>
               </div>
             </Card>
           ))}
