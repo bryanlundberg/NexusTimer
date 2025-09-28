@@ -1,14 +1,19 @@
 import { ALGORITHMS_GITHUB_URL } from '@/constants/algorithms-github-url';
+import { SquarePen } from 'lucide-react';
+import Link from 'next/link';
 
-export default function Suggestions() {
+export default function Suggestions({
+  message = '',
+  link = ALGORITHMS_GITHUB_URL,
+}) {
   return (
-    <p className="leading-7 [&:not(:first-child)]:mt-6 py-10">
-      If you find any errors or want to extend with more algorithms, please submit it on our GitHub: <a
-      href={ALGORITHMS_GITHUB_URL}
-      className="text-blue-500 hover:underline"
+    <Link
+      href={link}
       target="_blank"
       rel="noopener noreferrer"
-    >Here</a>.
-    </p>
+      className="leading-7 [&:not(:first-child)]:mt-6 py-10 text-primary hover:underline pb-5 flex items-center justify-center gap-2 text-sm w-fit"
+    >
+      <SquarePen size={16}/>{message}
+    </Link>
   )
 }
