@@ -1,4 +1,4 @@
-import { Grid2x2Icon, Grid3x3, Layers } from 'lucide-react';
+import { Grid2x2Icon, Grid3x3 } from 'lucide-react';
 
 export const ALGORITHM_SETS = [
   {
@@ -25,7 +25,7 @@ export const ALGORITHM_SETS = [
     description: 'Orientation of the Last Layer',
     cube: '3x3',
     total: 57,
-    Icon: Layers,
+    Icon: Grid3x3,
     difficulty: 1,
   },
   {
@@ -43,6 +43,15 @@ export const ALGORITHM_SETS = [
     description: 'Corners of the Last Layer',
     cube: '3x3',
     total: 9,
+    Icon: Grid3x3,
+    difficulty: 2,
+  },
+  {
+    slug: '/algorithms/ble',
+    title: 'BLE',
+    description: "Brooks' Last Edge",
+    cube: '3x3',
+    total: 11,
     Icon: Grid3x3,
     difficulty: 2,
   }
