@@ -30,7 +30,7 @@ export default function AlgorithmCard({
   }, virtualization)
 
   return (
-    <Card className={cn('p-3 mb-3 h-auto bg-background break-inside-avoid-column', rest.className)} {...rest}>
+    <Card className={cn('p-3 mb-3 h-auto bg-card/50 break-inside-avoid-column', rest.className)} {...rest}>
       <h1>{`OLL-${algorithm.group}-${algorithm.name}`}</h1>
       <div className={'flex flex-col md:flex-row items-start gap-3'}>
         <AlgorithmRender
@@ -41,7 +41,7 @@ export default function AlgorithmCard({
         <div className={'flex flex-col gap-2 justify-between text-sm grow w-full'}>
           {algorithm.alg.map((alg, index) => (
             <Card
-              className={'p-3 flex items-center justify-center flex-row bg-card/50'} onClick={onAlgorithmClick}
+              className={'p-3 flex items-center justify-center flex-row bg-background'} onClick={onAlgorithmClick}
               key={`OLL-${algorithm.group}-${algorithm.name}-alg-${index}`}
             >
               <div className={'grow space-y-2'}>
