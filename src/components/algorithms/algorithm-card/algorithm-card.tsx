@@ -41,12 +41,12 @@ export default function AlgorithmCard({
         <div className={'flex flex-col gap-2 justify-between text-sm grow w-full'}>
           {algorithm.alg.map((alg, index) => (
             <Card
-              className={'p-3 flex items-center justify-center flex-row'} onClick={onAlgorithmClick}
+              className={'p-3 flex items-center justify-center flex-row bg-card/50'} onClick={onAlgorithmClick}
               key={`OLL-${algorithm.group}-${algorithm.name}-alg-${index}`}
             >
               <div className={'grow space-y-2'}>
                 <Label className={'ml-2'}>Alternative #{index + 1}:</Label>
-                <span className={'text-lg'}>{alg}</span>
+                <span className={'text-lg lg:text-xl xl:text-2xl'}>{alg}</span>
               </div>
             </Card>
           ))}
