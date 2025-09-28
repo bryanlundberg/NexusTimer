@@ -12,6 +12,7 @@ export default function Page() {
       virtualization={{
         experimentalStickering: 'OLL',
       } as unknown as TwistyPlayer}
+      fileCollectionName={'oll.ts'}
     />
   );
 }
