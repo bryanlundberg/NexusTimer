@@ -12,6 +12,7 @@ export default function Page() {
         experimentalStickering: 'PLL',
       } as unknown as TwistyPlayer}
       fileCollectionName={'coll.ts'}
+      puzzle={'3x3x3'}
     />
   )
 }
