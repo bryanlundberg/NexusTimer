@@ -12,6 +12,7 @@ export default function Page() {
         experimentalStickering: 'OLL',
         puzzle: '2x2x2',
       } as unknown as TwistyPlayer}
+      fileCollectionName={'ocll.ts'}
     />
   )
 }
