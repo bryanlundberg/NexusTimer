@@ -1,5 +1,6 @@
 import { locales } from "@/i18n/locales";
 import { MetadataRoute } from "next";
+import { ALGORITHM_SETS } from '@/constants/algorithms-sets';
 
 const host = "https://nexustimer.com";
 
@@ -24,6 +25,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/options", priority: 0.7 },
     { path: "/privacy-policy", priority: 0.6 },
     { path: "/terms-of-service", priority: 0.6 },
+    ...ALGORITHM_SETS.map((set) => (
+      {
+        priority: 0.8,
+        path: `/algorithms/${set.title.toLowerCase()}`,
+      }
+    ))
   ];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];
