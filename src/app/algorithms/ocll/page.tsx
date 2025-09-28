@@ -13,6 +13,7 @@ export default function Page() {
         puzzle: '2x2x2',
       } as unknown as TwistyPlayer}
       fileCollectionName={'ocll.ts'}
+      puzzle={'2x2x2'}
     />
   )
 }
