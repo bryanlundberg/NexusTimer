@@ -8,9 +8,10 @@ import { Badge } from '@/components/ui/badge';
 import AlgorithmCard from '@/components/algorithms/algorithm-card/algorithm-card';
 import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { TwistyPlayer } from 'cubing/twisty';
+import { PuzzleID, TwistyPlayer } from 'cubing/twisty';
 import Suggestions from '@/components/algorithms/suggestions/suggestions';
 import { ALGORITHMS_GITHUB_URL } from '@/constants/algorithms-github-url';
+import AlgorithmModal from '@/components/algorithms/algorithm-modal/algorithm-modal';
 
 interface AlgorithmsPageProps {
   algorithms: AlgorithmCollection[],
@@ -18,9 +19,10 @@ interface AlgorithmsPageProps {
   description?: string
   virtualization?: TwistyPlayer
   fileCollectionName?: string
+  puzzle: PuzzleID
 }
 
-export const AlgorithmsPage = ({ algorithms, title, virtualization, description, fileCollectionName }: AlgorithmsPageProps) => {
+export const AlgorithmsPage = ({ algorithms, title, virtualization, description, fileCollectionName, puzzle }: AlgorithmsPageProps) => {
   const groups = useMemo(() => _.groupBy(algorithms, 'group'), [algorithms]);
   const [activeGroups, setActiveGroups] = useState<string[]>([]);
 
@@ -58,11 +60,14 @@ export const AlgorithmsPage = ({ algorithms, title, virtualization, description,
                 onAlgorithmClick={() => console.log('click')}
                 key={`${item.group}-${item.name}`}
                 virtualization={virtualization}
+                puzzle={puzzle}
               />
             ))}
           </div>
         </div>
       </div>
+
+      <AlgorithmModal/>
 
       {fileCollectionName && <Suggestions link={ALGORITHMS_GITHUB_URL + `/${fileCollectionName.toLowerCase()}`} message={'Edit this algorithms on Github'}/>}
     </ScrollArea>
