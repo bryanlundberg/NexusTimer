@@ -1,4 +1,12 @@
 import { Grid2x2Icon, Grid3x3 } from 'lucide-react';
+import { PBL_ALGS } from '@/algs/pbl';
+import { OCLL_ALGS } from '@/algs/ocll';
+import { OLL_ALGS } from '@/algs/oll';
+import { PLL_ALGS } from '@/algs/pll';
+import { COLL_ALGS } from '@/algs/coll';
+import { BLE_ALGS } from '@/algs/ble';
+import { VLS_ALGS } from '@/algs/vls';
+import { CLS_ALGS } from '@/algs/cls';
 
 export const ALGORITHM_SETS = [
   {
@@ -6,7 +14,7 @@ export const ALGORITHM_SETS = [
     title: 'PBL',
     description: 'Permute Both Layers',
     cube: '2x2',
-    total: 8,
+    total: PBL_ALGS.length,
     Icon: Grid2x2Icon,
     difficulty: 1,
   },
@@ -15,7 +23,7 @@ export const ALGORITHM_SETS = [
     title: 'OCLL',
     description: 'Orient Corners of the Last Layer',
     cube: '2x2',
-    total: 7,
+    total: OCLL_ALGS.length,
     Icon: Grid2x2Icon,
     difficulty: 1,
   },
@@ -24,7 +32,7 @@ export const ALGORITHM_SETS = [
     title: 'OLL',
     description: 'Orientation of the Last Layer',
     cube: '3x3',
-    total: 57,
+    total: OLL_ALGS.length,
     Icon: Grid3x3,
     difficulty: 1,
   },
@@ -33,7 +41,7 @@ export const ALGORITHM_SETS = [
     title: 'PLL',
     description: 'Permutation of the Last Layer',
     cube: '3x3',
-    total: 21,
+    total: PLL_ALGS.length,
     Icon: Grid3x3,
     difficulty: 1,
   },
@@ -42,7 +50,7 @@ export const ALGORITHM_SETS = [
     title: 'COLL',
     description: 'Corners of the Last Layer',
     cube: '3x3',
-    total: 9,
+    total: COLL_ALGS.length,
     Icon: Grid3x3,
     difficulty: 2,
   },
@@ -51,7 +59,7 @@ export const ALGORITHM_SETS = [
     title: 'BLE',
     description: "Brooks' Last Edge",
     cube: '3x3',
-    total: 11,
+    total: BLE_ALGS.length,
     Icon: Grid3x3,
     difficulty: 2,
   },
@@ -60,7 +68,16 @@ export const ALGORITHM_SETS = [
     title: 'VLS',
     description: 'Valk Last Slot',
     cube: '3x3',
-    total: 22,
+    total: VLS_ALGS.length,
+    Icon: Grid3x3,
+    difficulty: 2,
+  },
+  {
+    slug: '/algorithms/cls',
+    title: 'CLS',
+    description: 'Corners and Last Slot',
+    cube: '3x3',
+    total: CLS_ALGS.length,
     Icon: Grid3x3,
     difficulty: 2,
   }
