@@ -21,7 +21,7 @@ export default function Page() {
         <MoreCategories/>
       </div>
 
-      <Suggestions/>
+      <Suggestions message={'If you find any errors or want to extend with more algorithms, please submit it on our GitHub.'}/>
     </ScrollArea>
   )
 }
