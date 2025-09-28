@@ -26,13 +26,13 @@ export default function AlgorithmsCollection({ set }: { set: ALGORITHM_SET }) {
         </CardHeader>
         <div className={'flex flex-col gap-2'}>
           <div className={'flex flex-row justify-between items-center font-semibold text-xs px-6 '}>
-            <div>Difficulty</div>
+            <div>Skill</div>
             <div className={'flex flex-row items-center gap-1'}>
               {difficulty === 1
-                ? 'Easy'
+                ? 'Casual Enthusiast'
                 : difficulty === 2
-                  ? 'Medium'
-                  : 'Hard'
+                  ? 'Dedicated Learner'
+                  : 'Algorithm Master'
               }</div>
           </div>
           <CardContent className="flex flex-row gap-3">
