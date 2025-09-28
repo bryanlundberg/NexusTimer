@@ -2,6 +2,15 @@ import { Grid2x2Icon, Grid3x3, Layers } from 'lucide-react';
 
 export const ALGORITHM_SETS = [
   {
+    slug: '/algorithms/pbl',
+    title: 'PBL',
+    description: 'Permute Both Layers',
+    cube: '2x2',
+    total: 8,
+    Icon: Grid2x2Icon,
+    difficulty: 1,
+  },
+  {
     slug: '/algorithms/ocll',
     title: 'OCLL',
     description: 'Orient Corners of the Last Layer',
