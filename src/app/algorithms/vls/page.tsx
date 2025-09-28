@@ -12,7 +12,8 @@ export default function Page() {
       virtualization={{
         experimentalStickering: 'OLL',
         visualization: '3D',
-        experimentalDragInput: 'none'
+        experimentalDragInput: 'none',
+        hintFacelets: 'none'
       } as unknown as TwistyPlayer}
       fileCollectionName={'vls.ts'}
     />
