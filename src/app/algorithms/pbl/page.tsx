@@ -15,6 +15,7 @@ export default function Page() {
         experimentalDragInput: 'none'
       } as unknown as TwistyPlayer}
       fileCollectionName={'pbl.ts'}
+      puzzle={'2x2x2'}
     />
   )
 }
