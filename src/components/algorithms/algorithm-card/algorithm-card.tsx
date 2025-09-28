@@ -48,7 +48,7 @@ export default function AlgorithmCard({
 
   return (
     <Card className={cn('p-3 mb-3 h-auto bg-card/50 break-inside-avoid-column', rest.className)} {...rest}>
-      <h1>{`${algorithm.group}-${algorithm.name}`}</h1>
+      <h1>{`${algorithm.name}`}</h1>
       <div className={'flex flex-col md:flex-row items-start gap-3'}>
         <AlgorithmRender
           config={defaults}
