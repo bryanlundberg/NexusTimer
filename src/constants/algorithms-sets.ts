@@ -1,4 +1,4 @@
-import { Grid2x2Icon, Grid3x3 } from 'lucide-react';
+import { Grid2x2Icon, Grid2x2Plus, Grid3x3 } from 'lucide-react';
 import { PBL_ALGS } from '@/algs/pbl';
 import { OCLL_ALGS } from '@/algs/ocll';
 import { OLL_ALGS } from '@/algs/oll';
@@ -8,6 +8,7 @@ import { BLE_ALGS } from '@/algs/ble';
 import { VLS_ALGS } from '@/algs/vls';
 import { CLS_ALGS } from '@/algs/cls';
 import { WV_ALGS } from '@/algs/vw';
+import { PARITY_444_ALGS } from '@/algs/parity-444';
 
 export const ALGORITHM_SETS = [
   {
@@ -90,6 +91,15 @@ export const ALGORITHM_SETS = [
     total: WV_ALGS.length,
     Icon: Grid3x3,
     difficulty: 2,
+  },
+  {
+    slug: '/algorithms/parity-4x4',
+    title: 'Parity-4x4',
+    description: '4x4 Parity Algorithms',
+    cube: '4x4',
+    total: PARITY_444_ALGS.length,
+    Icon: Grid2x2Plus,
+    difficulty: 1,
   }
 ] as const;
 
