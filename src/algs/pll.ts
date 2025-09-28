@@ -103,9 +103,9 @@ export const PLL_ALGS: AlgorithmCollection[] = [
   {
     name: "Ra",
     alg: [
-      "(R U' R' U') (R U R D) (R' U' R D') (R' U2 R') [U']",
-      "y' (L U2 L' U2) L F' (L' U' L U) L F L2' [U]",
-      "(R U R' F') (R U2' R' U2') (R' F R U) (R U2' R') [U']"
+      "(R U' R' U') (R U R D) (R' U' R D') (R' U2 R') U'",
+      "y' (L U2 L' U2) L F' (L' U' L U) L F L2' U",
+      "(R U R' F') (R U2' R' U2') (R' F R U) (R U2' R') U'"
     ],
     group: "Swap One Set of Adjacent Corners",
     prob: 18
@@ -113,8 +113,8 @@ export const PLL_ALGS: AlgorithmCollection[] = [
   {
     name: "Rb",
     alg: [
-      "(R' U2 R U2') R' F (R U R' U') R' F' R2 [U']",
-      "(R' U2 R' D') (R U' R' D) (R U R U') (R' U' R) [U']"
+      "(R' U2 R U2') R' F (R U R' U') R' F' R2 U'",
+      "(R' U2 R' D') (R U' R' D) (R U R U') (R' U' R) U'"
     ],
     group: "Swap One Set of Adjacent Corners",
     prob: 18
@@ -122,8 +122,8 @@ export const PLL_ALGS: AlgorithmCollection[] = [
   {
     name: "Ja",
     alg: [
-      "(R' U L' U2) (R U' R' U2 R) L [U']",
-      "y' (L' U' L F) (L' U' L U) L F' L2' U L [U]"
+      "(R' U L' U2) (R U' R' U2 R) L U'",
+      "y' (L' U' L F) (L' U' L U) L F' L2' U L U"
     ],
     group: "Swap One Set of Adjacent Corners",
     prob: 18
@@ -131,7 +131,7 @@ export const PLL_ALGS: AlgorithmCollection[] = [
   {
     name: "Jb",
     alg: [
-      "(R U R' F') (R U R' U') R' F R2 U' R' [U']"
+      "(R U R' F') (R U R' U') R' F R2 U' R' U'"
     ],
     group: "Swap One Set of Adjacent Corners",
     prob: 18
@@ -173,7 +173,7 @@ export const PLL_ALGS: AlgorithmCollection[] = [
     name: "Na",
     alg: [
       "(RUR'U)(RUR'F')(RUR'U')(R'FR2U') R' U2 (RU'R')",
-      "z (U R' D) (R2 U' R D') (U R' D) (R2 U' R D') [R'] z'"
+      "z (U R' D) (R2 U' R D') (U R' D) (R2 U' R D') R' z'"
     ],
     group: "Swap One Set of Diagonal Corners",
     prob: 72
@@ -182,7 +182,7 @@ export const PLL_ALGS: AlgorithmCollection[] = [
     name: "Nb",
     alg: [
       "(R' U R U') (R' F' U' F) (R U R' F) R' F' (R U' R)",
-      "(R' U L' U2 R U' L) (R' U L' U2 R U' L) [U]"
+      "(R' U L' U2 R U' L) (R' U L' U2 R U' L) U"
     ],
     group: "Swap One Set of Diagonal Corners",
     prob: 72
