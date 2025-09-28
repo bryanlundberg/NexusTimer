@@ -11,6 +11,7 @@ export default function Page() {
       virtualization={{
         experimentalStickering: 'PLL',
       } as unknown as TwistyPlayer}
+      fileCollectionName={'pll.ts'}
     />
   )
 }
