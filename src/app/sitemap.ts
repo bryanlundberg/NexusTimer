@@ -25,9 +25,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/options", priority: 0.7 },
     { path: "/privacy-policy", priority: 0.6 },
     { path: "/terms-of-service", priority: 0.6 },
+    { path: "/algorithms", priority: 0.9 },
     ...ALGORITHM_SETS.map((set) => (
       {
-        priority: 0.8,
+        priority: 0.9,
         path: `/algorithms/${set.title.toLowerCase()}`,
       }
     ))
