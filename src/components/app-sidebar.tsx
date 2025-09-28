@@ -4,6 +4,7 @@ import * as React from 'react'
 import { useMemo } from 'react'
 import {
   BoxesIcon,
+  Brain,
   ChartColumnIcon,
   GithubIcon,
   HistoryIcon,
@@ -105,6 +106,25 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           {
             title: t('NavMain.clash-mode'),
             url: '/clash',
+          }
+        ]
+      },
+      {
+        title: 'Algorithms',
+        url: '/algorithms',
+        icon: Brain,
+        items: [
+          {
+            title: 'OLL',
+            url: '/algorithms/oll',
+          },
+          {
+            title: 'PLL',
+            url: '/algorithms/pll',
+          },
+          {
+            title: 'COLL',
+            url: '/algorithms/coll',
           }
         ]
       },
