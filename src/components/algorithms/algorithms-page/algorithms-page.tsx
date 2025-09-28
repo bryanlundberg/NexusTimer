@@ -53,7 +53,7 @@ export const AlgorithmsPage = ({ algorithms, title, virtualization, description,
 
       <div className={'mt-5'}>
         <div className="grid md:grid-cols-2 gap-3">
-          <div className={'columns-1 gap-3 sm:col-span-2 sm:columns-2 xl:col-span-3 xl:columns-3 mb-3'}>
+          <div className={'columns-1 gap-3 sm:col-span-2 sm:columns-2 mb-3'}>
             {displayedAlgs.map((item) => (
               <AlgorithmCard
                 algorithm={item}
