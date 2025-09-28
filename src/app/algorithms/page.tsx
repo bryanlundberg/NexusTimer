@@ -13,7 +13,7 @@ export default function Page() {
       <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">
         Master Your Cubing Journey with Algorithm Training
       </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-10 px-2">
         {ALGORITHM_SETS.map((set) => (
           <AlgorithmsCollection key={set.slug} set={set}/>
         ))}
