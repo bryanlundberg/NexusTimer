@@ -9,15 +9,18 @@ import AlgorithmCard from '@/components/algorithms/algorithm-card/algorithm-card
 import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { TwistyPlayer } from 'cubing/twisty';
+import Suggestions from '@/components/algorithms/suggestions/suggestions';
+import { ALGORITHMS_GITHUB_URL } from '@/constants/algorithms-github-url';
 
 interface AlgorithmsPageProps {
   algorithms: AlgorithmCollection[],
   title: string
   description?: string
   virtualization?: TwistyPlayer
+  fileCollectionName?: string
 }
 
-export const AlgorithmsPage = ({ algorithms, title, virtualization, description }: AlgorithmsPageProps) => {
+export const AlgorithmsPage = ({ algorithms, title, virtualization, description, fileCollectionName }: AlgorithmsPageProps) => {
   const groups = useMemo(() => _.groupBy(algorithms, 'group'), [algorithms]);
   const [activeGroups, setActiveGroups] = useState<string[]>([]);
 
@@ -60,6 +63,8 @@ export const AlgorithmsPage = ({ algorithms, title, virtualization, description 
           </div>
         </div>
       </div>
+
+      {fileCollectionName && <Suggestions link={ALGORITHMS_GITHUB_URL + `/${fileCollectionName.toLowerCase()}`} message={'Edit this algorithms on Github'}/>}
     </ScrollArea>
   );
 }
