@@ -21,7 +21,7 @@ export default function AlgorithmsCollection({ set }: { set: ALGORITHM_SET }) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="secondary">{cube}</Badge>
+            <Badge>{cube}</Badge>
           </div>
         </CardHeader>
         <div className={'flex flex-col gap-2'}>
