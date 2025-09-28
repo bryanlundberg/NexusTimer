@@ -6,6 +6,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/co
 import Link from 'next/link';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { usePathname, useRouter } from 'next/navigation';
+import { ALGORITHM_SETS } from '@/constants/algorithms-sets';
 
 export default function BreadcrumbNav({ hideCollectionsSegment = false }: { hideCollectionsSegment?: boolean }) {
   const router = useRouter();
@@ -36,10 +37,9 @@ export default function BreadcrumbNav({ hideCollectionsSegment = false }: { hide
                     <SelectValue/>
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="ocll">OCLL</SelectItem>
-                    <SelectItem value="oll">OLL</SelectItem>
-                    <SelectItem value="pll">PLL</SelectItem>
-                    <SelectItem value="coll">COLL</SelectItem>
+                    {ALGORITHM_SETS.map(({ title }) => (
+                      <SelectItem key={title} value={title.toLowerCase()}>{title}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </BreadcrumbItem>
