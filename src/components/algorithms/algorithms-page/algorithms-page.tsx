@@ -56,7 +56,7 @@ export const AlgorithmsPage = ({ algorithms, title, virtualization, description,
               <AlgorithmCard
                 algorithm={item}
                 onAlgorithmClick={() => console.log('click')}
-                key={`OLL-${item.group}-${item.name}`}
+                key={`${item.group}-${item.name}`}
                 virtualization={virtualization}
               />
             ))}
