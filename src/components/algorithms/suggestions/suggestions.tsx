@@ -11,7 +11,7 @@ export default function Suggestions({
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="leading-7 [&:not(:first-child)]:mt-6 py-10 text-primary hover:underline pb-5 flex items-center justify-center gap-2 text-sm w-fit"
+      className="leading-7 [&:not(:first-child)]:mt-6 py-10 text-background-foreground hover:underline pb-5 flex items-center justify-center gap-2 text-sm w-fit"
     >
       <SquarePen size={16}/>{message}
     </Link>
