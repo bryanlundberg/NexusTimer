@@ -147,7 +147,7 @@ export const PLL_ALGS: AlgorithmCollection[] = [
   {
     name: "F",
     alg: [
-      "(R' U' F')(R U R' U')(R' F R2 U')(R' U' R U)(R' U R)",
+      "(R' U' F') (R U R' U') (R' F R2 U') (R' U' R U) (R' U R)",
       "y (R' U2 R' U') y (R' F' R2 U') (R' U R' F) R U' F"
     ],
     group: "Swap One Set of Adjacent Corners",
@@ -172,7 +172,7 @@ export const PLL_ALGS: AlgorithmCollection[] = [
   {
     name: "Na",
     alg: [
-      "(RUR'U)(RUR'F')(RUR'U')(R'FR2U') R' U2 (RU'R')",
+      "(R U R' U) (R U R' F') (R U R' U') (R'F R2 U') R' U2 (R U' R')",
       "z (U R' D) (R2 U' R D') (U R' D) (R2 U' R D') R' z'"
     ],
     group: "Swap One Set of Diagonal Corners",
