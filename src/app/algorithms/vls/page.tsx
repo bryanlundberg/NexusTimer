@@ -1,6 +1,5 @@
 import { AlgorithmsPage } from '@/components/algorithms/algorithms-page/algorithms-page';
 import { TwistyPlayer } from 'cubing/twisty';
-import { BLE_ALGS } from '@/algs/ble';
 import { VLS_ALGS } from '@/algs/vls';
 
 export default function Page() {
@@ -16,6 +15,7 @@ export default function Page() {
         hintFacelets: 'none'
       } as unknown as TwistyPlayer}
       fileCollectionName={'vls.ts'}
+      puzzle={'3x3x3'}
     />
   );
 }
