@@ -7,6 +7,7 @@ import { COLL_ALGS } from '@/algs/coll';
 import { BLE_ALGS } from '@/algs/ble';
 import { VLS_ALGS } from '@/algs/vls';
 import { CLS_ALGS } from '@/algs/cls';
+import { WV_ALGS } from '@/algs/vw';
 
 export const ALGORITHM_SETS = [
   {
@@ -78,6 +79,15 @@ export const ALGORITHM_SETS = [
     description: 'Corners and Last Slot',
     cube: '3x3',
     total: CLS_ALGS.length,
+    Icon: Grid3x3,
+    difficulty: 2,
+  },
+  {
+    slug: '/algorithms/wv',
+    title: 'WV',
+    description: 'Winter Variation',
+    cube: '3x3',
+    total: WV_ALGS.length,
     Icon: Grid3x3,
     difficulty: 2,
   }
