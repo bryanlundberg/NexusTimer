@@ -33,7 +33,7 @@ export default function BreadcrumbNav({ hideCollectionsSegment = false }: { hide
               <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4"/>
               <BreadcrumbItem>
                 <Select onValueChange={(e) => handleNavigate(e)} defaultValue={segment}>
-                  <SelectTrigger className="w-[100px]">
+                  <SelectTrigger className="w-[150px]">
                     <SelectValue/>
                   </SelectTrigger>
                   <SelectContent>
