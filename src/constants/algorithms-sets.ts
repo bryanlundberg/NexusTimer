@@ -54,6 +54,15 @@ export const ALGORITHM_SETS = [
     total: 11,
     Icon: Grid3x3,
     difficulty: 2,
+  },
+  {
+    slug: '/algorithms/vls',
+    title: 'VLS',
+    description: 'Valk Last Slot',
+    cube: '3x3',
+    total: 22,
+    Icon: Grid3x3,
+    difficulty: 2,
   }
 ] as const;
 
