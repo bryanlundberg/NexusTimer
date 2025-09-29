@@ -10,6 +10,7 @@ import { CLS_ALGS } from '@/algs/cls';
 import { WV_ALGS } from '@/algs/vw';
 import { PARITY_444_ALGS } from '@/algs/parity-444';
 import { PARITY_555_ALGS } from '@/algs/parity-555';
+import { CLL_ALGS } from '@/algs/cll';
 
 export const ALGORITHM_SETS = [
   {
@@ -29,6 +30,15 @@ export const ALGORITHM_SETS = [
     total: OCLL_ALGS.length,
     Icon: Grid2x2Icon,
     difficulty: 1,
+  },
+  {
+    slug: '/algorithms/cll',
+    title: 'CLL',
+    description: 'Corners of the Last Layer',
+    cube: '2x2',
+    total: CLL_ALGS.length,
+    Icon: Grid2x2Icon,
+    difficulty: 2,
   },
   {
     slug: '/algorithms/oll',
