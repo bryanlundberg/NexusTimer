@@ -11,6 +11,8 @@ import { WV_ALGS } from '@/algs/vw';
 import { PARITY_444_ALGS } from '@/algs/parity-444';
 import { PARITY_555_ALGS } from '@/algs/parity-555';
 import { CLL_ALGS } from '@/algs/cll';
+import { EG_1_ALGS } from '@/algs/eg-1';
+import { EG_2_ALGS } from '@/algs/eg-2';
 
 export const ALGORITHM_SETS = [
   {
@@ -37,6 +39,24 @@ export const ALGORITHM_SETS = [
     description: 'Corners of the Last Layer',
     cube: '2x2',
     total: CLL_ALGS.length,
+    Icon: Grid2x2Icon,
+    difficulty: 2,
+  },
+  {
+    slug: '/algorithms/eg-1',
+    title: 'EG-1',
+    description: 'EG-1 Algorithms',
+    cube: '2x2',
+    total: EG_1_ALGS.length,
+    Icon: Grid2x2Icon,
+    difficulty: 2,
+  },
+  {
+    slug: '/algorithms/eg-2',
+    title: 'EG-2',
+    description: 'EG-2 Algorithms',
+    cube: '2x2',
+    total: EG_2_ALGS.length,
     Icon: Grid2x2Icon,
     difficulty: 2,
   },
@@ -70,7 +90,7 @@ export const ALGORITHM_SETS = [
   {
     slug: '/algorithms/ble',
     title: 'BLE',
-    description: "Brooks' Last Edge",
+    description: 'Brooks\' Last Edge',
     cube: '3x3',
     total: BLE_ALGS.length,
     Icon: Grid3x3,
