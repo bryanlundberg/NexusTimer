@@ -13,6 +13,7 @@ import { PARITY_555_ALGS } from '@/algs/parity-555';
 import { CLL_ALGS } from '@/algs/cll';
 import { EG_1_ALGS } from '@/algs/eg-1';
 import { EG_2_ALGS } from '@/algs/eg-2';
+import { L4E_ALGS } from '@/algs/l4e';
 
 export const ALGORITHM_SETS = [
   {
@@ -140,6 +141,15 @@ export const ALGORITHM_SETS = [
     total: PARITY_555_ALGS.length,
     Icon: Grid2x2Plus,
     difficulty: 1,
+  },
+  {
+    slug: '/algorithms/l4e',
+    title: 'L4E',
+    description: 'Last 4 slots (Pyraminx)',
+    cube: 'pyraminx',
+    total: L4E_ALGS.length,
+    Icon: Grid2x2Plus,
+    difficulty: 2,
   }
 ] as const;
 
