@@ -14,6 +14,7 @@ import { CLL_ALGS } from '@/algs/cll';
 import { EG_1_ALGS } from '@/algs/eg-1';
 import { EG_2_ALGS } from '@/algs/eg-2';
 import { L4E_ALGS } from '@/algs/l4e';
+import { ZBLL_AS_ALGS } from '@/algs/zbll-as';
 
 export const ALGORITHM_SETS = [
   {
@@ -123,6 +124,15 @@ export const ALGORITHM_SETS = [
     total: WV_ALGS.length,
     Icon: Grid3x3,
     difficulty: 2,
+  },
+  {
+    slug: '/algorithms/zbll-as',
+    title: 'ZBLL-AS',
+    description: 'ZBLL Antisune',
+    cube: '3x3',
+    total: ZBLL_AS_ALGS.length,
+    Icon: Grid3x3,
+    difficulty: 3,
   },
   {
     slug: '/algorithms/parity-4x4',
