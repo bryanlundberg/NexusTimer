@@ -25,11 +25,13 @@ export default function AlgorithmCard({
   ...rest
 }: AlgorithmCardProps) {
 
+  const algs = algorithm?.algs || algorithm?.alg || [];
+
   const defaults = _.merge({
     visualization: 'experimental-2D-LL',
     background: 'none',
     controlPanel: 'none',
-    alg: algorithm.alg[0],
+    alg: algs[0],
     experimentalStickering: 'OLL',
     experimentalSetupAnchor: 'end',
   }, virtualization)
@@ -56,7 +58,7 @@ export default function AlgorithmCard({
           height={120}
         />
         <div className={'flex flex-col gap-2 justify-between text-sm grow w-full'}>
-          {algorithm.alg.map((alg, index) => (
+          {algs.map((alg, index) => (
             <Card
               className={'p-3 flex items-center justify-center flex-row bg-background'} onClick={onAlgorithmClick}
               key={`${algorithm.group}-${algorithm.name}-alg-${index}`}
