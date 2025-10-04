@@ -25,7 +25,7 @@ export default function Page() {
               {sets.map((set) => (
                 <AlgorithmsCollection key={set.slug} set={set}/>
               ))}
-              {(cube === 'pyraminx') && <MoreCategories />}
+              {/*<MoreCategories />*/}
             </div>
           </section>
         ))
