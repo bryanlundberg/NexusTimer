@@ -10,7 +10,7 @@ export default function Page() {
       description={'WV (Winter Variation) algorithms are used to orient the corners of your last layer whilst you insert your final F2L pair, in the case where the pair is connected and where all of the last layer edges are already oriented.'}
       virtualization={{
         experimentalStickering: 'full',
-        visualization: '3D',
+        visualization: 'experimental-2D-LL',
         experimentalDragInput: 'none',
       } as unknown as TwistyPlayer}
       fileCollectionName={'wv.ts'}
