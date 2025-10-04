@@ -1,202 +1,428 @@
 import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection';
 
 export const L4E_ALGS: AlgorithmCollection[] = [
-  // Last Layer
   {
-    name: "Sune",
-    alg: ["L' U' L U' L' U' L", "R U R' U R U R'", "L U L' U L U L'", "R' U R U R' U R", "L' U L U L' U L"],
-    group: "Last Layer"
+    name: 'Sune',
+    group: 'Last Layer',
+    setup: "L' U' L U' L' U' L",
+    algs: [
+      "R U R' U R U R'",
+      "L U L' U L U L'",
+      "R' U R U R' U R",
+      "L' U L U L' U L"
+    ]
   },
   {
-    name: "AntiSune",
-    alg: ["R U R' U R U R'", "R U' R' U' R U' R'", "L' U' L U' L' U' L", "R' U' R U' R' U' R", "L U' L' U' L U' L'"],
-    group: "Last Layer"
+    name: 'AntiSune',
+    group: 'Last Layer',
+    setup: "R U R' U R U R'",
+    algs: [
+      "R U' R' U' R U' R'",
+      "L' U' L U' L' U' L",
+      "R' U' R U' R' U' R",
+      "L U' L' U' L U' L'"
+    ]
   },
   {
-    name: "Lefty Bars",
-    alg: ["R' L' U' L U R", "R' U' L' U L R", "U L R U R' U' L'"],
-    group: "Last Layer"
+    name: 'Lefty Bars',
+    group: 'Last Layer',
+    setup: "R' L' U' L U R",
+    algs: [ "R' U' L' U L R", "U L R U R' U' L'" ]
   },
   {
-    name: "Righty Bars",
-    alg: ["L R U R' U' L'", "L U R U' R' L'", "U' R' L' U' L U R"],
-    group: "Last Layer"
-  },
-
-  // L3E
-  {
-    name: "Sledge",
-    alg: ["L R' L' R"],
-    group: "L3E"
+    name: 'Righty Bars',
+    group: 'Last Layer',
+    setup: "L R U R' U' L'",
+    algs: [ "L U R U' R' L'", "U' R' L' U' L U R" ]
   },
   {
-    name: "Hedge",
-    alg: ["R' L R L'"],
-    group: "L3E"
+    name: 'Sledge',
+    group: 'L3E',
+    setup: "L R' L' R",
+    algs: [
+      "R' L R L'",
+      "L U' R' L R L2'",
+      "U' L R U' R' U L'",
+      "U R' U L' U' L R",
+      "U R2' L R L' U' R"
+    ]
   },
   {
-    name: "Clockwise",
-    alg: ["L' U L U R U R'"],
-    group: "L3E"
+    name: 'Hedge',
+    group: 'L3E',
+    setup: "R' L R L'",
+    algs: [
+      "L R' L' R",
+      "U' L U' R U R' L'",
+      "U' L2 R' L' R U L'",
+      "R' U L R' L' R2",
+      "U R' L' U L U' R"
+    ]
   },
   {
-    name: "Counterclockwise",
-    alg: ["R U' R' U' L' U' L"],
-    group: "L3E"
+    name: 'Clockwise',
+    group: 'L3E',
+    setup: "L' U L U R U R'",
+    algs: [
+      "L R' L' R2 U' R'",
+      "R U' R' U' L' U' L",
+      "U' R U' R' L R' L' R",
+      "U L' U' L2 R' L' R",
+      "U' L2 R' L' R L'",
+      "L U' R U' R' U' L'",
+      "U R' L R' L' R2",
+      "R' U' L' U' L U' R"
+    ]
   },
   {
-    name: "Righty",
-    alg: ["U' R U R'"],
-    group: "L3E"
+    name: 'Counterclockwise',
+    group: 'L3E',
+    setup: "R U' R' U' L' U' L",
+    algs: [
+      "R' L R L2' U L",
+      "U L' U L R' L R L'",
+      "U' R U R' L R' L' R",
+      "U R' L R L' R U R'",
+      "U' L R' L R L2'",
+      "L U R U R' U L'",
+      "U R2' L R L' R",
+      "R' U L' U L U R",
+      "R' U L' U L U R"
+    ]
   },
   {
-    name: "Lefty",
-    alg: ["U L' U' L"],
-    group: "L3E"
+    name: 'Righty',
+    group: 'L3E',
+    setup: "U' R U R'",
+    algs: [ "R U' R'", "L U' L'" ]
   },
   {
-    name: "Sexy",
-    alg: ["R U' R' U"],
-    group: "L3E"
+    name: 'Lefty',
+    group: 'L3E',
+    setup: "U L' U' L",
+    algs: [ "L' U L", "R' U R" ]
   },
   {
-    name: "Left Sexy",
-    alg: ["L' U L U'"],
-    group: "L3E"
-  },
-
-  // Flipped Edges
-  {
-    name: "2 Flip",
-    alg: ["U' R' U L' U L U' R"],
-    group: "Flipped Edges"
+    name: 'Sexy',
+    group: 'L3E',
+    setup: "R U' R' U",
+    algs: [ "U' R U R'", "U' L U L'" ]
   },
   {
-    name: "DR Flip",
-    alg: ["U' R U R' U L' U' L"],
-    group: "Flipped Edges"
+    name: 'Left Sexy',
+    group: 'L3E',
+    setup: "L' U L U'",
+    algs: [ "U L' U' L", "U R' U' R" ]
   },
   {
-    name: "DL Flip",
-    alg: ["U L' U' L U' R U R'"],
-    group: "Flipped Edges"
+    name: '2 Flip',
+    group: 'Flipped Edges',
+    setup: "U' R' U L' U L U' R",
+    algs: [
+      "L R' L' R U' R U R'",
+      "R' L R L' U L' U' L",
+      "R' U L' U' L U' R",
+      "L U' R U R' U L'"
+    ]
   },
   {
-    name: "DB Flip",
-    alg: ["U L' U L U' R U' R'"],
-    group: "Flipped Edges"
+    name: 'DR Flip',
+    group: 'Flipped Edges',
+    setup: "U' R U R' U L' U' L",
+    algs: [
+      "L R' L' R L' U L",
+      "L' U L U' R U' R'",
+      "R U R' L R' L' R",
+      "L U' L R' L' R L'",
+      "L2 R' L' R2 U' R' U' L'",
+      "R' U' L' U' L2 R' L' R2"
+    ]
   },
   {
-    name: "4 Flip",
-    alg: ["L' U' L R U R' L' U' L R U R'"],
-    group: "Flipped Edges"
-  },
-
-  // Polish Flip
-  {
-    name: "Right Polish Flip",
-    alg: ["U L' U L R U R'"],
-    group: "Polish Flip"
-  },
-  {
-    name: "Left Polish Flip",
-    alg: ["U' R U' R' L' U' L"],
-    group: "Polish Flip"
+    name: 'DL Flip',
+    group: 'Flipped Edges',
+    setup: "U L' U' L U' R U R'",
+    algs: [
+      "R' L R L' R U' R'",
+      "R U' R' U L' U L",
+      "L' U' L R' L R L'",
+      "L U R U R2' L R L2'",
+      "R' U R' L R L' R",
+      "R2' L R L2' U L U R"
+    ]
   },
   {
-    name: "SUS",
-    alg: ["U' L R' L' R U L R' L' R"],
-    group: "Polish Flip"
+    name: 'DB Flip',
+    group: 'Flipped Edges',
+    setup: "U L' U L U' R U' R'",
+    algs: [
+      "R U R' U L' U' L",
+      "L' U' L U' R U R'",
+      "L R' L R L' U L'",
+      "R' L R' L' R U' R"
+    ]
   },
   {
-    name: "Anti SUS",
-    alg: ["U R' L R L' U' R' L R L'"],
-    group: "Polish Flip"
-  },
-
-  // Separated Bar
-  {
-    name: "Good Niky",
-    alg: ["L' U' L R U R'"],
-    group: "Separated Bar"
-  },
-  {
-    name: "Good Sochi",
-    alg: ["R U R' L' U' L"],
-    group: "Separated Bar"
+    name: '4 Flip',
+    group: 'Flipped Edges',
+    setup: "L' U' L R U R' L' U' L R U R'",
+    algs: [
+      "R U' R' L' U L R U' R' L' U L",
+      "L' U L R U' R' L' U L R U' R'",
+      "L R U' R' L' U L R U' R' L'",
+      "R' L' U L R U' R' L' U L R"
+    ]
   },
   {
-    name: "Super Sledge",
-    alg: ["U' L R' L' R2 U R'"],
-    group: "Separated Bar"
+    name: 'Right Polish Flip',
+    group: 'Polish Flip',
+    setup: "U L' U L R U R'",
+    algs: [
+      "R U' R' L' U' L",
+      "U L' U' L U R U' R'",
+      "U R U' R' U' L R' L' R",
+      "U' L R' L' R U' L' U' L",
+      "U' L R U' R' L' U' L U L'",
+      "R' L' U L R U' R' U R"
+    ]
   },
   {
-    name: "Super Hedge",
-    alg: ["R' U' L' U L2 R L'"],
-    group: "Separated Bar"
+    name: 'Left Polish Flip',
+    group: 'Polish Flip',
+    setup: "U' R U' R' L' U' L",
+    algs: [
+      "L' U L R U R'",
+      "U' R U R' U' L' U L",
+      "U' L' U L U R' L R L'",
+      "U R' L R L' U R U R'",
+      "L R U' R' L' U L U' L'",
+      "U R' L' U L R U R' U' R"
+    ]
   },
   {
-    name: "Bad Niky",
-    alg: ["U' L' U' L U R U R'"],
-    group: "Separated Bar"
+    name: 'SUS',
+    group: 'Polish Flip',
+    setup: "U' L R' L' R U L R' L' R",
+    algs: [
+      "R' L R L' U' R' L R L'",
+      "R U' R2' L R L2' U' L",
+      "L' U' L R U' R2' L R L'",
+      "L R U' R2' L R L2'",
+      "R2' L R L2' U' L R"
+    ]
   },
   {
-    name: "Bad Sochi",
-    alg: ["U R U R' U' L' U' L"],
-    group: "Separated Bar"
-  },
-
-  // Connected Bar
-  {
-    name: "Right Spam",
-    alg: ["R U R' L' U' L R U R' U'"],
-    group: "Connected Bar"
-  },
-  {
-    name: "Left Spam",
-    alg: ["L' U' L R U R' L' U' L U"],
-    group: "Connected Bar"
+    name: 'Anti SUS',
+    group: 'Polish Flip',
+    setup: "U R' L R L' U' R' L R L'",
+    algs: [
+      "L R' L' R U L R' L' R",
+      "L' U L2 R' L' R2 U R'",
+      "R U R' L' U L2 R' L' R",
+      "L2 R' L' R2 U R' L'",
+      "R' L' U L2 R' L' R2"
+    ]
   },
   {
-    name: "Bad Sledge",
-    alg: ["U R U R' U R' L R L'"],
-    group: "Connected Bar"
+    name: 'Good Niky',
+    group: 'Separated Bar',
+    setup: "L' U' L R U R'",
+    algs: [
+      "R U' R' L' U L",
+      "U R U R' L' U' L",
+      "L' B' U B L",
+      "R B U B' R'",
+      "L R U R' L'",
+      "R' L' U L R"
+    ]
   },
   {
-    name: "Bad Hedge",
-    alg: ["U' L' U L R U R' L' U L U"],
-    group: "Connected Bar"
-  },
-
-  // No Bar
-  {
-    name: "Bad Sexy",
-    alg: ["R U R' U L' U L"],
-    group: "No Bar"
-  },
-  {
-    name: "Bad Ugly",
-    alg: ["L' U' L U' R U' R'"],
-    group: "No Bar"
+    name: 'Good Sochi',
+    group: 'Separated Bar',
+    setup: "R U R' L' U' L",
+    algs: [
+      "L' U L R U' R'",
+      "U' L' U' L R U R'",
+      "L' B' U' B L",
+      "R B U' B' R'",
+      "L R U' R' L'",
+      "R' L' U' L R"
+    ]
   },
   {
-    name: "Bad Righty",
-    alg: ["U R U' R' U L' U' L"],
-    group: "No Bar"
+    name: 'Super Sledge',
+    group: 'Separated Bar',
+    setup: "U' L R' L' R2 U R'",
+    algs: [
+      "R U' R2' L R L'",
+      "U' L R' L' R2 U R'",
+      "R' L R2 U R' U' L'",
+      "L U R U' R2' L' R",
+      "L U R' L R L2'",
+      "U L2 R' L' R U' L'",
+      "R' L' U L2 R' L' R U' R"
+    ]
   },
   {
-    name: "Bad Lefty",
-    alg: ["U' L' U L U' R U R'"],
-    group: "No Bar"
+    name: 'Super Hedge',
+    group: 'Separated Bar',
+    setup: "R' U' L' U L2 R L'",
+    algs: [
+      "L' U L2' R' L' R",
+      "U R' L R L2' U' L",
+      "R' U' L' U L2 R L'",
+      "L R' L2' U' L U R",
+      "L R U R2' L R L' U L'",
+      "R' U' L R' L' R2"
+    ]
   },
   {
-    name: "Double Sexy",
-    alg: ["U' R U' R' U R U R'"],
-    group: "No Bar"
+    name: 'Bad Niky',
+    group: 'Separated Bar',
+    setup: "U' L' U' L U R U R'",
+    algs: [
+      "R U' R' U' L' U L",
+      "U R U R' U' L' U' L",
+      "U L U R U' R' U' L'",
+      "R' U' L' U' L U R"
+    ]
   },
   {
-    name: "Double Ugly",
-    alg: ["U L' U L U' L' U' L"],
-    group: "No Bar"
+    name: 'Bad Sochi',
+    group: 'Separated Bar',
+    setup: "U R U R' U' L' U' L",
+    algs: [
+      "L' U L U R U' R'",
+      "U' L' U' L U R U R'",
+      "L U R U R' U' L'",
+      "U' R' U' L' U L U R"
+    ]
+  },
+  {
+    name: 'Right Spam',
+    group: 'Connected Bar',
+    setup: "R U R' L' U' L R U R' U'",
+    algs: [
+      "R U R' U R' L R L'",
+      "U R U' R' L' U L R U' R'",
+      "U' L' U' L2 R' L' R2 U R'",
+      "U' L R' L' R2 U R' L' U' L",
+      "L U R U' R' U L'",
+      "U L U' R U' R' L'",
+      "R' L' U L2 R' L' R U R"
+    ]
+  },
+  {
+    name: 'Left Spam',
+    group: 'Connected Bar',
+    setup: "L' U' L R U R' L' U' L U",
+    algs: [
+      "L' U' L U' L R' L' R",
+      "U' L' U L R U' R' L' U L",
+      "U R U R2' L R L2' U' L",
+      "U R' L R L2' U' L R U R'",
+      "L R U' R2' L R L' U' L'",
+      "R' U' L' U L U' R",
+      "U' R' U L' U L R",
+      "U' R' U' L R L' U' L' U L"
+    ]
+  },
+  {
+    name: 'Bad Sledge',
+    group: 'Connected Bar',
+    setup: "U R U R' U R' L R L'",
+    algs: [
+      "L R' L' R U' R U' R'",
+      "U R U R' L' U' L R U R'",
+      "R U' R2' L R L2' U L",
+      "U' L R' L' R2 U R' U' L' U L",
+      "L R U R' U L'",
+      "U' L U' R U R' U' L'",
+      "R' U' R' L R L2' U' L R",
+      "U' R2' L R L2' U' L U' R"
+    ]
+  },
+  {
+    name: 'Bad Hedge',
+    group: 'Connected Bar',
+    setup: "U' L' U L R U R' L' U L U",
+    algs: [
+      "R' L R L' U L' U L",
+      "U' L' U' L R U' R' L' U' L",
+      "L' U L2 R' L' R2 U' R'",
+      "U R' L R L2' U' L U R U' R'",
+      "L U L R' L' R2 U R' L'",
+      "U L2 R' L' R2 U R' U L'",
+      "R' L' U' L U' R",
+      "U R' U L' U' L U R"
+    ]
+  },
+  {
+    name: 'Bad Sexy',
+    group: 'No Bar',
+    setup: "R U R' U L' U L",
+    algs: [
+      "L' U' L U' R U' R'",
+      "U L2 R' L' R2 U' R' L'",
+      "R' L' U' L2 R' L' R2"
+    ]
+  },
+  {
+    name: 'Bad Ugly',
+    group: 'No Bar',
+    setup: "L' U' L U' R U' R'",
+    algs: [ "R U R' U L' U L", "L R U R2' L R L2'", "U' R2' L R L2' U L R" ]
+  },
+  {
+    name: 'Bad Righty',
+    group: 'No Bar',
+    setup: "U R U' R' U L' U' L",
+    algs: [
+      "L' U L U' R U R'",
+      "R' L R L' U R' L R L'",
+      "L U' L R' L' R U' L'",
+      "U L U' L' U L R U' R' L'",
+      "R' U' L R' L' R U' R"
+    ]
+  },
+  {
+    name: 'Bad Lefty',
+    group: 'No Bar',
+    setup: "U' L' U L U' R U R'",
+    algs: [
+      "R U' R' U L' U' L",
+      "L R' L' R U' L R' L' R",
+      "L U R' L R L' U L'",
+      "R' U R' L R L' U R",
+      "U' R' U R U' R' L' U L R"
+    ]
+  },
+  {
+    name: 'Double Sexy',
+    group: 'No Bar',
+    setup: "U' R U' R' U R U R'",
+    algs: [
+      "R U' R' U' R U R'",
+      "L' U' L U R' L R L'",
+      "U' R U' R' U R U R'",
+      "U R U R' U' R U' R'",
+      "L U' L' U' L U L'",
+      "U L U L' U' L U' L'",
+      "U' L U' L' U L U L'"
+    ]
+  },
+  {
+    name: 'Double Ugly',
+    group: 'No Bar',
+    setup: "U L' U L U' L' U' L",
+    algs: [
+      "L' U L U L' U' L",
+      "R U R' U' L R' L' R",
+      "U L' U L U' L' U' L",
+      "U' L' U' L U L' U L",
+      "R' U R U R' U' R",
+      "U R' U R U' R' U' R",
+      "U' R' U' R U R' U R"
+    ]
   }
-];
+]
