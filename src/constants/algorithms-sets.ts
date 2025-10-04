@@ -15,6 +15,12 @@ import { EG_1_ALGS } from '@/algs/eg-1';
 import { EG_2_ALGS } from '@/algs/eg-2';
 import { L4E_ALGS } from '@/algs/l4e';
 import { ZBLL_AS_ALGS } from '@/algs/zbll-as';
+import { ZBLL_S_ALGS } from '@/algs/zbll-s';
+import { ZBLL_H_ALGS } from '@/algs/zbll-h';
+import { ZBLL_L_ALGS } from '@/algs/zbll-l';
+import { ZBLL_PI_ALGS } from '@/algs/zbll-pi';
+import { ZBLL_U_ALGS } from '@/algs/zbll-u';
+import { ZBLL_T_ALGS } from '@/algs/zbll-t';
 
 export const ALGORITHM_SETS = [
   {
@@ -126,11 +132,65 @@ export const ALGORITHM_SETS = [
     difficulty: 2,
   },
   {
+    slug: '/algorithms/zbll-s',
+    title: 'ZBLL-S',
+    description: 'ZBLL Sune',
+    cube: '3x3',
+    total: ZBLL_S_ALGS.length,
+    Icon: Grid3x3,
+    difficulty: 3,
+  },
+  {
     slug: '/algorithms/zbll-as',
     title: 'ZBLL-AS',
     description: 'ZBLL Antisune',
     cube: '3x3',
     total: ZBLL_AS_ALGS.length,
+    Icon: Grid3x3,
+    difficulty: 3,
+  },
+  {
+    slug: '/algorithms/zbll-u',
+    title: 'ZBLL-U',
+    description: 'ZBLL U',
+    cube: '3x3',
+    total: ZBLL_U_ALGS.length,
+    Icon: Grid3x3,
+    difficulty: 3,
+  },
+  {
+    slug: '/algorithms/zbll-t',
+    title: 'ZBLL-T',
+    description: 'ZBLL T',
+    cube: '3x3',
+    total: ZBLL_T_ALGS.length,
+    Icon: Grid3x3,
+    difficulty: 3,
+  },
+  {
+    slug: '/algorithms/zbll-pi',
+    title: 'ZBLL-PI',
+    description: 'ZBLL PI',
+    cube: '3x3',
+    total: ZBLL_PI_ALGS.length,
+    Icon: Grid3x3,
+    difficulty: 3,
+  },
+  {
+    slug: '/algorithms/zbll-l',
+    title: 'ZBLL-L',
+    description: 'ZBLL L',
+    cube: '3x3',
+    total: ZBLL_L_ALGS.length,
+    Icon: Grid3x3,
+    difficulty: 3,
+  },
+  {
+    slug: '/algorithms/zbll-h',
+    title: 'ZBLL-H',
+    description: 'ZBLL H',
+    cube: '3x3',
+    total: ZBLL_H_ALGS.length,
     Icon: Grid3x3,
     difficulty: 3,
   },
