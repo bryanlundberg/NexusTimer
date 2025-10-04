@@ -1,4 +1,4 @@
-import { Grid2x2Icon, Grid2x2Plus, Grid3x3 } from 'lucide-react';
+import { Grid2x2Icon, Grid2x2Plus, Grid3x3, TriangleIcon } from 'lucide-react';
 import { PBL_ALGS } from '@/algs/pbl';
 import { OCLL_ALGS } from '@/algs/ocll';
 import { OLL_ALGS } from '@/algs/oll';
@@ -218,7 +218,7 @@ export const ALGORITHM_SETS = [
     description: 'Last 4 slots (Pyraminx)',
     cube: 'pyraminx',
     total: L4E_ALGS.length,
-    Icon: Grid2x2Plus,
+    Icon: TriangleIcon,
     difficulty: 2,
   }
 ] as const;
