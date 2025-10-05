@@ -14,17 +14,25 @@ import { Tooltip, TooltipContent, TooltipTrigger, } from '@/components/ui/toolti
 import { GlobeAmericasIcon } from '@heroicons/react/24/outline';
 import { Badge } from '@/components/ui/badge';
 import * as React from 'react';
+import { LeaderboardSolveModal } from '@/components/modals/leaderboard-solve-modal';
+import { useLeaderboardSolveModal } from '@/store/LeaderboardSolveModal';
+import calcTurnsPerSecond from '@/lib/calcTurnsPerSecond';
+import { Spinner } from '@/components/ui/spinner';
 
 export default function Page() {
-  const { data: solves } = useLeaderboards()
+  const { data: solves, isLoading } = useLeaderboards()
   const router = useRouter()
+  const openModal = useLeaderboardSolveModal(state => state.openModal);
+
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <FadeIn className={'p-4 md:p-8 space-y-8'}>
         <div className="flex flex-col w-full">
-          <h1 className="text-2xl font-bold mb-4">Leaderboards</h1>
-          <p>The leaderboards section below displays a comprehensive list of top performers and their records. Here, you
-            can view detailed information about participants.</p>
+          <h1 className="text-3xl font-extrabold mb-6 text-center text-primary">Leaderboard Rankings</h1>
+          <p className="text-lg text-muted-foreground text-center mb-4 max-w-xl mx-auto">
+            Explore the top 100 performers and their solves across various categories. Discover detailed insights about
+            each participant and their achievements.
+          </p>
         </div>
 
         <div className={'flex flex-row gap-3'}>
@@ -39,90 +47,83 @@ export default function Page() {
               </SelectContent>
             </Select>
           </div>
-
-          <div className={'flex flex-col gap-3'}>
-            <Label>Period</Label>
-            <Select defaultValue="all-times">
-              <SelectTrigger>
-                <SelectValue/>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all-times">All times</SelectItem>
-                <SelectItem value="year">This year</SelectItem>
-                <SelectItem value="month">This month</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
         </div>
 
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-10">#</TableHead>
-              <TableHead className="w-full md:w-auto">User</TableHead>
-              <TableHead className="hidden sm:table-cell">Category</TableHead>
-              <TableHead className="hidden md:table-cell">Scramble</TableHead>
-              <TableHead>Time</TableHead>
-              <TableHead className="hidden sm:table-cell">Image</TableHead>
-              <TableHead className="hidden sm:table-cell">Date</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {(solves && solves.length > 0 ? solves : []).map((solve: any, index: number) => {
-              return (
-                <TableRow key={solve._id}>
-                  <TableCell className="font-medium">{index + 1}</TableCell>
-                  <TableCell className="font-medium overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
+        {isLoading ? (
+          <div className={'flex flex-row gap-3 justify-center items-center'}><Spinner/> Thinking...</div>
+        ) : (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-10">#</TableHead>
+                <TableHead className="w-full md:w-auto">User</TableHead>
+                <TableHead className="hidden sm:table-cell">Category</TableHead>
+                <TableHead className="hidden md:table-cell">Scramble</TableHead>
+                <TableHead>Time</TableHead>
+                <TableHead className="hidden sm:table-cell">Image</TableHead>
+                <TableHead className="hidden sm:table-cell">Date</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {(solves && solves.length > 0 ? solves : []).map((solve: any, index: number) => {
+                return (
+                  <TableRow key={solve._id} onClick={() => openModal(solve)}>
+                    <TableCell className="font-medium">{index + 1}</TableCell>
+                    <TableCell className="font-medium overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
 
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <div
-                          className={'flex flex-row items-center justify-center gap-2 hover:underline'}
-                          onClick={() => router.push(`/people/${solve.user._id}`)}
-                        >
-                          <Avatar>
-                            <AvatarImage className={'object-cover'} src={solve.user.image}/>
-                            <AvatarFallback>{solve.user.name.slice(0, 2)}</AvatarFallback>
-                          </Avatar>
-                          {solve.user.name}
-                        </div>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <h2 className="scroll-m-20 text-center text-xl font-extrabold tracking-tight text-balance flex items-center justify-center gap-2">
-                          {solve.user.name} {solve.user?.pronoun && (
-                          <div className="flex items-center gap-1 text-sm text-muted-foreground font-normal">
-                            <span>{solve.user?.pronoun}</span>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <div
+                            className={'flex flex-row items-center justify-center gap-2 hover:underline'}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              router.push(`/people/${solve.user._id}`);
+                            }}
+                          >
+                            <Avatar>
+                              <AvatarImage className={'object-cover'} src={solve.user.image}/>
+                              <AvatarFallback>{solve.user.name.slice(0, 2)}</AvatarFallback>
+                            </Avatar>
+                            {solve.user.name}
                           </div>
-                        )}
-                        </h2>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <h2 className="scroll-m-20 text-center text-xl font-extrabold tracking-tight text-balance flex items-center justify-center gap-2">
+                            {solve.user.name} {solve.user?.pronoun && (
+                            <div className="flex items-center gap-1 text-sm text-muted-foreground font-normal">
+                              <span>{solve.user?.pronoun}</span>
+                            </div>
+                          )}
+                          </h2>
 
-                        {solve.user?.timezone &&
-                          <div className={'flex items-center gap-1'}>
-                            <GlobeAmericasIcon className={'size-5'}/>
-                            {solve.user?.timezone}
-                            <span className={'opacity-50'}>({new Intl.DateTimeFormat('en-US', {
-                              timeZone: solve.user.timezone,
-                              timeStyle: 'short'
-                            }).format(new Date())})</span>
-                          </div>}
-                        {solve.user?.goal && <Badge>{solve.user?.goal}</Badge>}
-                      </TooltipContent>
-                    </Tooltip>
+                          {solve.user?.timezone &&
+                            <div className={'flex items-center gap-1'}>
+                              <GlobeAmericasIcon className={'size-5'}/>
+                              {solve.user?.timezone}
+                              <span className={'opacity-50'}>({new Intl.DateTimeFormat('en-US', {
+                                timeZone: solve.user.timezone,
+                                timeStyle: 'short'
+                              }).format(new Date())})</span>
+                            </div>}
+                          {solve.user?.goal && <Badge>{solve.user?.goal}</Badge>}
+                        </TooltipContent>
+                      </Tooltip>
 
-                  </TableCell>
-                  <TableCell className="font-medium hidden sm:table-cell">{solve.puzzle}</TableCell>
-                  <TableCell className="font-medium hidden md:table-cell overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">{solve.solution ? `${(solve.solution.split(' ').length / (solve.time / 1000)).toFixed(2)} tps` : 'N/A'}</TableCell>
-                  <TableCell>{formatTime(solve.time)}</TableCell>
-                  <TableCell className="hidden sm:table-cell text-right">
-                    <ScrambleDisplay className={'size-20'} show scramble={solve.scramble} event={solve.puzzle}/>
-                  </TableCell>
-                  <TableCell className="font-medium hidden sm:table-cell">{format(new Date(solve.createdAt), 'd MMM yyyy')}</TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-
+                    </TableCell>
+                    <TableCell className="font-medium hidden sm:table-cell">{solve.puzzle}</TableCell>
+                    <TableCell className="font-medium hidden md:table-cell overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">{solve.solution ? `${calcTurnsPerSecond(solve.solution, solve.time)} tps` : 'N/A'}</TableCell>
+                    <TableCell>{formatTime(solve.time)}</TableCell>
+                    <TableCell className="hidden sm:table-cell text-right">
+                      <ScrambleDisplay className={'size-20'} show scramble={solve.scramble} event={solve.puzzle}/>
+                    </TableCell>
+                    <TableCell className="font-medium hidden sm:table-cell">{format(new Date(solve.createdAt), 'd MMM yyyy')}</TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        )}
+        <LeaderboardSolveModal/>
       </FadeIn>
     </ScrollArea>
   );
