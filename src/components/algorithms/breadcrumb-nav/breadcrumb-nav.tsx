@@ -37,8 +37,8 @@ export default function BreadcrumbNav({ hideCollectionsSegment = false }: { hide
                     <SelectValue/>
                   </SelectTrigger>
                   <SelectContent>
-                    {ALGORITHM_SETS.map(({ title }) => (
-                      <SelectItem key={title} value={title.toLowerCase()}>{title}</SelectItem>
+                    {ALGORITHM_SETS.map(({ slug, title }) => (
+                      <SelectItem key={slug} value={slug.toLowerCase()}>{title}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
