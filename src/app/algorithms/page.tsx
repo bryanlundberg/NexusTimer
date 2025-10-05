@@ -1,4 +1,3 @@
-import MoreCategories from '@/components/algorithms/more-categories/more-categories';
 import { ALGORITHM_SETS } from '@/constants/algorithms-sets';
 import AlgorithmsCollection from '@/components/algorithms/algorithms-collection/algorithms-collection';
 import BreadcrumbNav from '@/components/algorithms/breadcrumb-nav/breadcrumb-nav';
@@ -7,7 +6,7 @@ import Suggestions from '@/components/algorithms/suggestions/suggestions';
 import _ from 'lodash';
 
 export default function Page() {
-  const groupedSets = _.groupBy(ALGORITHM_SETS, 'cube');
+  const groupedSets = _.groupBy(ALGORITHM_SETS, 'puzzle');
 
   return (
     <ScrollArea className="p-4 max-h-dvh overflow-auto">
@@ -25,7 +24,6 @@ export default function Page() {
               {sets.map((set) => (
                 <AlgorithmsCollection key={set.slug} set={set}/>
               ))}
-              {/*<MoreCategories />*/}
             </div>
           </section>
         ))
