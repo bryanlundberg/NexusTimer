@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...ALGORITHM_SETS.map((set) => (
       {
         priority: 0.9,
-        path: `/algorithms/${set.title.toLowerCase()}`,
+        path: `/algorithms/${set.slug.toLowerCase()}`,
       }
     ))
   ];
