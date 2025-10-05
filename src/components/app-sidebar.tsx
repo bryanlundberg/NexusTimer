@@ -128,7 +128,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           ...ALGORITHM_SETS.map((set) => (
             {
               title: set.title.toUpperCase(),
-              url: `/algorithms/${set.title.toLowerCase()}`,
+              url: `/algorithms/${set.slug.toLowerCase()}`,
             }
           ))
         ]
