@@ -25,7 +25,7 @@ export default function NotFound() {
             dimension.
           </p>
           <Link href="/app">
-            <Button className="cursor-pointer">
+            <Button>
               <ArrowLeftIcon className="w-5 h-5" /> Back to Home
             </Button>
           </Link>
