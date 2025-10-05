@@ -6,9 +6,9 @@ import { ALGORITHM_SET } from '@/constants/algorithms-sets';
 import { Progress } from '@/components/ui/progress'
 
 export default function AlgorithmsCollection({ set }: { set: ALGORITHM_SET }) {
-  const { slug, title, description, cube, Icon, difficulty } = set;
+  const { slug, title, subtitle, puzzle, Icon, difficulty } = set;
   return (
-    <Link href={slug} className="focus:outline-none focus:ring-2 focus:ring-primary rounded-md">
+    <Link href={`/algorithms/${slug}`} className="focus:outline-none focus:ring-2 focus:ring-primary rounded-md">
       <Card className="h-full transition-all hover:bg-muted/50 hover:shadow-sm">
         <CardHeader className="flex flex-row items-start justify-between space-y-0">
           <div className="flex items-center gap-3">
@@ -17,11 +17,11 @@ export default function AlgorithmsCollection({ set }: { set: ALGORITHM_SET }) {
             </div>
             <div>
               <CardTitle className="text-base">{title}</CardTitle>
-              <CardDescription>{description}</CardDescription>
+              <CardDescription>{subtitle}</CardDescription>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Badge>{cube}</Badge>
+            <Badge>{puzzle}</Badge>
           </div>
         </CardHeader>
         <div className={'flex flex-col gap-2'}>
