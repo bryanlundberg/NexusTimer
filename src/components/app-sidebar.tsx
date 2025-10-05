@@ -98,6 +98,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         title: t('NavMain.community'),
         url: '/people',
         icon: UsersRound,
+        items: [
+          {
+            title: 'People',
+            url: '/people',
+          },
+          {
+            title: 'Leaderboards',
+            url: '/leaderboards',
+          }
+        ]
       },
       {
         title: t('NavMain.multiplayer'),
