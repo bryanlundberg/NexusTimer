@@ -6,6 +6,7 @@ import AlgorithmRender from '@/components/twisty/AlgorithmRender';
 import * as React from 'react';
 import { TwistyPlayer } from 'cubing/twisty';
 import formatTime from '@/lib/formatTime';
+import calcTurnsPerSecond from '@/lib/calcTurnsPerSecond';
 
 export function LeaderboardSolveModal() {
   const isOpen = useLeaderboardSolveModal(state => state.isOpen);
@@ -32,7 +33,7 @@ export function LeaderboardSolveModal() {
 
         <div className='flex flex-col gap-2 items-center'>
           <div className='text-lg font-bold'>
-            Time: {formatTime(solve.time)}
+            Time: {formatTime(solve.time)} {solve.solution ? '('+calcTurnsPerSecond(solve.solution, solve.time) + 'tps)' : ''}
           </div>
           <div className='text-sm text-muted-foreground'>
             <p><strong>Scramble:</strong> {solve.scramble}</p>
