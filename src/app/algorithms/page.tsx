@@ -4,6 +4,12 @@ import BreadcrumbNav from '@/components/algorithms/breadcrumb-nav/breadcrumb-nav
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Suggestions from '@/components/algorithms/suggestions/suggestions';
 import _ from 'lodash';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Algorithms',
+  description: 'Explore a wide range of algorithm sets for various puzzles, complete with interactive 3D visualizations to enhance your learning experience.'
+}
 
 export default function Page() {
   const groupedSets = _.groupBy(ALGORITHM_SETS, 'puzzle');
