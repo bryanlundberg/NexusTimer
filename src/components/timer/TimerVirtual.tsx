@@ -9,6 +9,8 @@ import genId from '@/lib/genId';
 import { useNXData } from '@/hooks/useNXData';
 import MenuSolveOptions from '@/components/menu-solve-options/menu-solve-options';
 import { useSettingsModalStore } from '@/store/SettingsModalStore';
+import { sendSolveToServer } from '@/actions/actions';
+import { useSession } from 'next-auth/react';
 
 export default function TimerVirtual() {
   const containerRef = React.useRef<HTMLDivElement | null>(null);
@@ -21,6 +23,7 @@ export default function TimerVirtual() {
   const [isSolved, setIsSolved] = React.useState(false);
   const [solvingTime, setSolvingTime] = React.useState<number | null>(null);
   const processedSolveRef = React.useRef(false);
+  const { data: session } = useSession()
 
   // Lock window after a solve to avoid key handling and cascaded saves
   const postSolveLockRef = React.useRef<number>(0);
@@ -55,6 +58,10 @@ export default function TimerVirtual() {
       cubeId: selectedCube.id,
       comment: '',
     };
+
+    sendSolveToServer({ solve: newSolve, userId: session?.user?.id ?? undefined, solution: engine?.getMoves(true) }).catch((e) => {
+      console.warn('sendSolveToServer error (ignored):', e);
+    });
 
     const updatedCube = {
       ...selectedCube,

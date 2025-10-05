@@ -1,126 +1,44 @@
 "use server";
 
-import Email from "@/components/email/email";
 import connectDB from "@/db/mongodb";
-import Backup from "@/models/backup";
-import User, { Users } from "@/models/user";
-import { Resend } from "resend";
+import type { Solve as ISolve } from '@/interfaces/Solve';
+import Solve from '@/models/solve';
 
-const resend = new Resend(
-  process.env.RESEND_API_KEY || "development-placeholder-no-email-sent"
-); // Optional: Allows other developers to work without configuring the email API. Simply its not going to connect to the API. Helps to avoid a pop-up error on screen.
-
-export async function createOrUpdateUser({
-  email,
-  name,
-  image,
-}: Pick<Users, "email" | "name" | "image">) {
+export async function sendSolveToServer({ solve, solution, userId }: { solve: Partial<ISolve>, userId?: string, solution?: string | never[] }): Promise<boolean> {
   try {
     await connectDB();
 
-    const user = await User.findOne({ email });
+    if (!userId) return true;
 
-    if (!user) {
-      await User.create({ email, name, image });
-      const { data, error } = await resend.emails.send({
-        from: "NexusTimer <onboarding@nexustimer.com>",
-        to: [email],
-        subject: "Welcome to NexusTimer – Let's Get Cubing!",
-        react: Email({ name }) as React.ReactElement,
-      });
+    await Solve.create({
+      user: userId,
+      time: solve.time,
+      scramble: solve.scramble,
+      solution: solution ? cleanRotations(solution.toString()) : null,
+      puzzle: '3x3x3'
+    })
+
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+function cleanRotations(alg: string): string {
+  const moves = alg.trim().split(/\s+/);
+  const rotations = new Set(['x', "x'", 'y', "y'", 'z', "z'"]);
+  const result = [];
+
+  let seenNormalMove = false;
+
+  for (const move of moves) {
+    if (rotations.has(move)) {
+      if (seenNormalMove) result.push(move);
+    } else {
+      result.push(move);
+      seenNormalMove = true;
     }
-
-    return true;
-  } catch (error) {
-    return false;
   }
-}
 
-export async function createOrUpdateBackup({
-  email,
-  data,
-}: {
-  email: string;
-  data: string;
-}) {
-  try {
-    await connectDB();
-    const user = await User.findOne({ email: email });
-    if (!user) throw new Error("User not found");
-    const backup = await Backup.findOneAndUpdate(
-      {
-        user: user._id,
-      },
-      {
-        data: data,
-      },
-      {
-        upsert: true,
-        new: true,
-      }
-    );
-
-    if (!backup) throw new Error("Backup not created");
-    return true;
-  } catch (error: any) {
-    console.log(error);
-    return false;
-  }
-}
-
-export async function getLastBackupDate({ email }: { email: string }) {
-  try {
-    await connectDB();
-    const user = await User.findOne({ email: email });
-    if (!user) throw new Error("User not found");
-
-    const backup = await Backup.findOne({
-      user: user._id,
-    });
-
-    return backup ? backup.updatedAt.toString() : false;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
-}
-
-export async function getLastBackup({ email }: { email: string }) {
-  try {
-    await connectDB();
-    const user = await User.findOne({ email: email });
-    if (!user) throw new Error("User not found");
-
-    const backup = await Backup.findOne({
-      user: user._id,
-    })
-      .select("data")
-      .lean();
-
-    return backup ? JSON.stringify(backup) : false;
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
-}
-
-export async function updateUser({ email, name, image }: { email: string; name: string; image: string }) {
-  try {
-    await connectDB();
-    const user = await User.findOne({ email: email });
-    if (!user) throw new Error("User not found");
-
-    const newUser = await User.findOneAndUpdate({
-      email: email,
-    }, {
-      name: name,
-      image: image,
-    }, {
-      new: true,
-    })
-
-    return newUser ? JSON.stringify(newUser) : false;
-  } catch (e) {
-    console.error("Error updating user:", e);
-  }
+  return result.join(' ');
 }
