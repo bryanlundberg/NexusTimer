@@ -75,7 +75,9 @@ export default function ManualMode() {
         <Input
           autoComplete="off"
           name="time"
-          type="text"
+          type="number"
+          inputMode="numeric"
+          pattern="[0-9]*"
           placeholder="..."
           value={value}
           className={`w-full max-w-[500px] h-20 text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium text-center border rounded-md outline-hidden appearance-none cursor-pointer focus:cursor-text py-14`}
