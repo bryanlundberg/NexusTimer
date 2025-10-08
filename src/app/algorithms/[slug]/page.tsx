@@ -14,6 +14,13 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
     return {
       title: collection.title + ' - Algorithms',
       description: collection.description,
+      openGraph: {
+        title: collection.title + ' - Algorithms',
+        description: collection.description,
+        siteName: 'Nexus Timer',
+        locale: 'en_US',
+        type: 'website',
+      },
     }
   }
 
