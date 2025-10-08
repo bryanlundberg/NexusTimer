@@ -37,6 +37,7 @@ import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl';
 import { ALGORITHM_SETS } from '@/constants/algorithms-sets';
+import { RotatingText } from './ui/shadcn-io/rotating-text'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession()
@@ -165,7 +166,25 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Nexus Timer</span>
-                  <span className="truncate text-xs">Welcome! </span>
+                  <RotatingText
+                    text={[
+                      "Ready to solve?",
+                      "Break your record",
+                      "Speedcubing time",
+                      "Let's cube!",
+                      "Push your limits",
+                      "Break your own time",
+                      "Cube like a pro",
+                      "One more solve",
+                      "Go for the PB",
+                      "Keep cubing!",
+                      "Master the cube",
+                      "Every second counts"
+                    ]}
+                    duration={10000}
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
+                    className={"text-xs text-muted-foreground p-0"}
+                  />
                 </div>
               </Link>
             </SidebarMenuButton>
