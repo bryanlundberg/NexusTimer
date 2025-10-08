@@ -21,12 +21,10 @@ export default function CategoryStatistics() {
   const { stats, isLoading } = useMetricsSwitch();
   const selectedCube = useTimerStore((state) => state.selectedCube);
   const [tabStats, setTabStats] = useQueryState(STATES.STATISTICS_PAGE.TAB_MODE.KEY, { defaultValue: STATES.STATISTICS_PAGE.TAB_MODE.DEFAULT_VALUE });
-  const cubes = useTimerStore((state) => state.cubes);
-
-  const bestStr = stats.best.global > 0 ? formatTime(stats.best.global) : '--';
-  const overallAvgStr = stats.average.global === 0 ? '--' : formatTime(stats.average.global);
-  const ao5CurrentStr = stats.stats.session.ao5 === 0 ? '--' : formatTime(stats.stats.session.ao5);
-  const successRateStr = stats.successRate.global === '' ? '--' : stats.successRate.global + '%';
+  const bestStr = stats.best.cubeAll > 0 ? formatTime(stats.best.cubeAll) : '--';
+  const overallAvgStr = stats.average.cubeAll === 0 ? '--' : formatTime(stats.average.cubeAll);
+  const ao5CurrentStr = stats.stats.cubeSession.ao5 === 0 ? '--' : formatTime(stats.stats.cubeSession.ao5);
+  const successRateStr = stats.successRate.cubeAll === '' ? '--' : stats.successRate.cubeAll + '%';
 
   return (
     <>
