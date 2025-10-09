@@ -7,6 +7,7 @@ const connectDB = async () => {
 
   try {
     await mongoose.connect(process.env.MONGODB_URI as string);
+    await import("../models");
     return true;
   } catch (error) {
     console.log(error);
