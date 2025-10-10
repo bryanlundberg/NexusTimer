@@ -32,7 +32,7 @@ export default function TimerVirtual() {
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const setLastSolve = useTimerStore(store => store.setLastSolve);
 
-  const saveSolvePlaceholder = (_payload: {
+  const saveSolvePlaceholder = React.useCallback((_payload: {
     timeMs: number;
     scramble: string | null;
     moves: string[];
@@ -71,7 +71,7 @@ export default function TimerVirtual() {
     setSelectedCube(updatedCube);
     setLastSolve({ ...newSolve });
     // Do not request a new scramble here; it will be triggered after a 2s pause post-solve
-  }
+  }, [selectedCube, scramble, session?.user?.id, engine, saveCube, setSelectedCube, setLastSolve]);
 
   const startTimeRef = React.useRef<number | null>(null);
   const performanceStartRef = React.useRef<number | null>(null);
@@ -96,7 +96,7 @@ export default function TimerVirtual() {
         setSolvingTime(performance.now() - performanceStartRef.current);
       }
     }, 10);
-  }, [isRunning]);
+  }, [isRunning, setIsRunning]);
 
   const stopTimer = React.useCallback(() => {
     if (intervalRef.current != null) {
@@ -108,7 +108,7 @@ export default function TimerVirtual() {
       setSolvingTime(performance.now() - performanceStartRef.current);
     }
     performanceStartRef.current = null;
-  }, []);
+  }, [setIsRunning]);
 
   const resetTimer = React.useCallback(() => {
     if (intervalRef.current != null) {
@@ -119,7 +119,7 @@ export default function TimerVirtual() {
     startTimeRef.current = null;
     performanceStartRef.current = null;
     setSolvingTime(0);
-  }, []);
+  }, [setIsRunning]);
 
   React.useEffect(() => {
     if (!containerRef.current) return;
@@ -170,7 +170,7 @@ export default function TimerVirtual() {
       setIsRunning(false);
       startTimeRef.current = null;
     }
-  }, [engine, player, scramble]);
+  }, [engine, player, scramble, setIsRunning]);
 
   const recreateTwistyPlayer = React.useCallback(() => {
     if (!containerRef.current) return;
@@ -244,7 +244,7 @@ export default function TimerVirtual() {
         }, 2000);
       }
     }
-  }, [isSolved, isRunning, stopTimer, solvingTime, scramble, moves, selectedCube, setNewScramble, recreateTwistyPlayer]);
+  }, [isSolved, isRunning, stopTimer, solvingTime, scramble, moves, selectedCube, setNewScramble, recreateTwistyPlayer, saveSolvePlaceholder]);
 
   React.useEffect(() => {
     if (!player || !engine) return;
