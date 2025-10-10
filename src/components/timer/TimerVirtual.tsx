@@ -7,8 +7,6 @@ import formatTime from '@/lib/formatTime';
 import { Solve } from '@/interfaces/Solve';
 import genId from '@/lib/genId';
 import { useNXData } from '@/hooks/useNXData';
-import MenuSolveOptions from '@/components/menu-solve-options/menu-solve-options';
-import { useSettingsModalStore } from '@/store/SettingsModalStore';
 import { sendSolveToServer } from '@/actions/actions';
 import { useSession } from 'next-auth/react';
 
@@ -33,8 +31,6 @@ export default function TimerVirtual() {
   const { saveCube } = useNXData();
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const setLastSolve = useTimerStore(store => store.setLastSolve);
-  const lastSolve = useTimerStore(store => store.lastSolve);
-  const settings = useSettingsModalStore(state => state.settings)
 
   const saveSolvePlaceholder = (_payload: {
     timeMs: number;
@@ -78,6 +74,7 @@ export default function TimerVirtual() {
   }
 
   const startTimeRef = React.useRef<number | null>(null);
+  const performanceStartRef = React.useRef<number | null>(null);
   const intervalRef = React.useRef<number | null>(null);
 
   const startTimer = React.useCallback(() => {
@@ -90,11 +87,13 @@ export default function TimerVirtual() {
     }
     processedSolveRef.current = false;
     setIsRunning(true);
+    // Store both real timestamp and performance timestamp
     startTimeRef.current = Date.now();
+    performanceStartRef.current = performance.now();
     setSolvingTime(0);
     intervalRef.current = window.setInterval(() => {
-      if (startTimeRef.current != null) {
-        setSolvingTime(Date.now() - startTimeRef.current);
+      if (performanceStartRef.current != null) {
+        setSolvingTime(performance.now() - performanceStartRef.current);
       }
     }, 10);
   }, [isRunning]);
@@ -105,10 +104,10 @@ export default function TimerVirtual() {
       intervalRef.current = null;
     }
     setIsRunning(false);
-    if (startTimeRef.current != null) {
-      setSolvingTime(Date.now() - startTimeRef.current);
+    if (performanceStartRef.current != null) {
+      setSolvingTime(performance.now() - performanceStartRef.current);
     }
-    startTimeRef.current = null;
+    performanceStartRef.current = null;
   }, []);
 
   const resetTimer = React.useCallback(() => {
@@ -118,6 +117,7 @@ export default function TimerVirtual() {
     }
     setIsRunning(false);
     startTimeRef.current = null;
+    performanceStartRef.current = null;
     setSolvingTime(0);
   }, []);
 
@@ -212,9 +212,9 @@ export default function TimerVirtual() {
         // Lock keyboard input for 2 seconds to avoid cascaded moves/saves
         const now = Date.now();
         postSolveLockRef.current = now + 2000;
-        // Compute final time robustly
-        const finalTime = startTimeRef.current != null
-          ? (now - startTimeRef.current)
+        // Compute final time robustly using performance.now() for precision
+        const finalTime = performanceStartRef.current != null
+          ? (performance.now() - performanceStartRef.current)
           : (solvingTime ?? 0);
         try {
           saveSolvePlaceholder({
@@ -492,18 +492,6 @@ export default function TimerVirtual() {
     <div className={'grow flex justify-center items-center flex-col gap-4'}>
       <div ref={containerRef}/>
       <div className={'text-3xl'}>{formatTime(solvingTime || 0)}</div>
-      {lastSolve &&
-        settings.features.quickActionButtons &&
-        !isRunning && (
-          <MenuSolveOptions
-            solve={lastSolve}
-            onDeleteSolve={() => setLastSolve(null)}
-            caseOfUse="last-solve"
-            hideCopyButton
-            hideMoveToHistory
-            hideTransferCollection
-          />
-        )}
     </div>
   );
 }
