@@ -99,7 +99,7 @@ export default function Page() {
                   <li>Ensure a stable internet connection to avoid disruptions.</li>
                   <li>Do not use VPNs, proxies, or network-filtering tools that might interfere with connectivity.</li>
                 </ul>
-                New Label for mobile limitation
+                {/* New Label for mobile limitation */}
                 <p className="text-red-600 font-semibold mt-2">
                   ⚠️ Not Supported on Mobile
                 </p>
