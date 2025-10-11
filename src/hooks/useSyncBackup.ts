@@ -5,37 +5,34 @@ import { toast } from 'sonner';
 import { compressSync, decompressSync, strFromU8, strToU8 } from 'fflate';
 import { useNXData } from '@/hooks/useNXData';
 import { useSession } from 'next-auth/react';
-import { redirect, useRouter } from 'next/navigation';
 import { useTimerStore } from '@/store/timerStore';
-import { useUser } from '@/hooks/api/useUser';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { useUploadThing } from '@/utils/uploadthing-helpers';
 import { BackupLoadMode } from '@/enums/BackupLoadMode';
 import { useSettingsModalStore } from '@/store/SettingsModalStore';
+import { UserDocument } from '@/models/user';
 
 export const useSyncBackup = () => {
   const { clearCubes, getAllCubes, saveBatchCubes } = useNXData();
   const { data: session } = useSession();
-  const router = useRouter();
   const setCubes = useTimerStore((state) => state.setCubes);
-  const { data: user } = useUser(session?.user?.id!);
   const [isUploading, setIsUploading] = useState(false);
   const updateSetting = useSettingsModalStore(state => state.updateSetting)
 
   const { startUpload } = useUploadThing('backupUploader', {
     onClientUploadComplete: () => {
       setIsUploading(false);
-      router.push('/account');
-      toast.success('Backup saved successfully!');
+      toast.dismiss('upload-backup');
     },
     onUploadError: (e) => {
       console.error(e);
       setIsUploading(false);
       toast.error('Error occurred while uploading');
     },
+    onUploadBegin: () => {
+      toast.loading('Saving new backup...', { id: 'upload-backup' });
+    }
   });
-
-  if (!session) redirect('/app');
 
   const handleUploadBackup = async () => {
     if (isUploading) return;
@@ -63,7 +60,7 @@ export const useSyncBackup = () => {
     }
   };
 
-  const mergeAndUniqData = useCallback(async (backupData: Cube[], localCubesData: Cube[]) => {
+  const mergeAndUniqData = async (backupData: Cube[], localCubesData: Cube[]) => {
     let newCubes = _.cloneDeep(localCubesData) as Cube[];
 
     for (let i = 0; i < backupData.length; i++) {
@@ -81,11 +78,15 @@ export const useSyncBackup = () => {
     }
 
     return formatCubesDatesAndOrder(newCubes);
-  }, []);
+  };
 
-  const handleDownloadData = useCallback(async ({ mode }: {
-    mode?: BackupLoadMode
-  } = { mode: BackupLoadMode.MERGE }) => {
+  const handleDownloadData = async ({ mode, user }: {
+    mode?: BackupLoadMode,
+    user?: UserDocument
+  } = {
+    mode: BackupLoadMode.MERGE,
+    user: undefined
+  }) => {
     if (!session || !session.user || !session.user.email) return;
 
     try {
@@ -119,16 +120,10 @@ export const useSyncBackup = () => {
       await clearCubes();
       await saveBatchCubes(newCubes);
       setCubes(newCubes);
-      router.push('/app');
-      toast.success(mode === BackupLoadMode.REPLACE
-        ? 'Backup replaced successfully!'
-        : 'Backup merged successfully!'
-      );
-
     } catch (error) {
       console.error('Error loading backup:', error);
     }
-  }, [session, user, getAllCubes, mergeAndUniqData, updateSetting, clearCubes, saveBatchCubes, setCubes, router]);
+  };
 
   return {
     mergeAndUniqData,
