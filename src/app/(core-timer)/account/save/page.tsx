@@ -6,10 +6,21 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
 import { useSyncBackup } from '@/hooks/useSyncBackup';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 export default function Page() {
   const t = useTranslations('Index');
-  const { handleUploadBackup, isUploading } = useSyncBackup();
+  const { handleUploadBackup, isUploading, uploadCompleted } = useSyncBackup();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (uploadCompleted) {
+      router.push('/account');
+      toast.success('Data uploaded successfully');
+    }
+  }, [router, uploadCompleted]);
 
   return (
     <>
