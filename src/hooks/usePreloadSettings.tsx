@@ -1,0 +1,114 @@
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
+import { useTimerStore } from '@/store/timerStore';
+import { useNXData } from '@/hooks/useNXData';
+import { useSession } from 'next-auth/react';
+import { toast } from 'sonner';
+import { useSyncBackup } from '@/hooks/useSyncBackup';
+import { Button } from '@/components/ui/button';
+import { BackupLoadMode } from '@/enums/BackupLoadMode';
+import { Card } from '@/components/ui/card';
+import { useUser } from '@/hooks/api/useUser';
+import { useSyncStore } from '@/store/SyncStore';
+
+export function usePreloadSettings() {
+  const setCubes = useTimerStore(store => store.setCubes);
+  const setSelectedCube = useTimerStore(store => store.setSelectedCube);
+  const setNewScramble = useTimerStore(store => store.setNewScramble);
+  const settings = useSettingsModalStore(store => store.settings);
+  const [isMounted, setIsMounted] = useState(false);
+  const { getAllCubes, getCubeById } = useNXData();
+  const { data: session } = useSession()
+  const { handleDownloadData, handleUploadBackup } = useSyncBackup()
+  const firstLoaded = useSyncStore(store => store.firstLoaded);
+  const setFirstLoaded = useSyncStore(store => store.setFirstLoaded);
+  const { data: user } = useUser(session?.user?.id!);
+  const SYNC_TOAST_ID = useMemo(() => 'sync-toast-id', []);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const cubes = await getAllCubes();
+      const defaultCubeId = settings.preferences.defaultCube;
+      setCubes(cubes);
+
+      if (defaultCubeId) {
+        const defaultCube = await getCubeById(defaultCubeId);
+        if (defaultCube) {
+          setSelectedCube(defaultCube);
+          setNewScramble(defaultCube);
+        } else {
+          setSelectedCube(null);
+        }
+      } else {
+        setSelectedCube(null);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  useEffect(() => {
+    if (!session?.user?.id) return;
+
+    const updateLastSeen = async () => {
+      try {
+        await fetch(`/api/v1/users/${session.user.id}`, {
+          method: 'PATCH',
+          body: JSON.stringify({ lastSeenAt: Date.now() }),
+          headers: { 'Content-Type': 'application/json' },
+        });
+      } catch (error) {
+        console.error('Failed to update last seen at:', error);
+      }
+    };
+
+    updateLastSeen();
+  }, [session?.user?.id]);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const handleSync = useCallback(async (mode: BackupLoadMode) => {
+    toast.dismiss(SYNC_TOAST_ID);
+    try {
+      await handleDownloadData({ mode, user });
+      await handleUploadBackup();
+    } catch (error) {
+      console.error('Sync error:', error);
+    }
+  }, [handleDownloadData, handleUploadBackup, user, SYNC_TOAST_ID]);
+
+  useEffect(() => {
+    if (!session?.user?.id) return;
+    if (!settings.sync.autoLoadEnabled) return;
+    if (firstLoaded) return;
+    if (!user) return;
+
+    setFirstLoaded(true);
+
+    toast.custom(() => (
+      <>
+        <Card className="flex flex-col gap-2 p-4" aria-busy={false}>
+          <div className="flex flex-col gap-3">
+            <div className="font-medium">Hey there! Time to Sync!</div>
+            <p className="text-sm text-muted-foreground">How would you like to integrate your saved data into this
+              device?</p>
+          </div>
+          <div className={'flex flex-col md:flex-row gap-2'}>
+            <Button
+              size={'sm'}
+              variant="secondary"
+              onClick={() => handleSync(BackupLoadMode.REPLACE)}
+            >Replace local data
+            </Button>
+            <Button size={'sm'} onClick={() => handleSync(BackupLoadMode.MERGE)}>Merge with local data</Button>
+          </div>
+        </Card>
+      </>
+    ), { duration: Infinity, id: SYNC_TOAST_ID })
+
+  }, [firstLoaded, handleSync, session?.user?.id, settings.sync.autoLoadEnabled, user, SYNC_TOAST_ID, setFirstLoaded]);
+
+  return { isMounted };
+}
