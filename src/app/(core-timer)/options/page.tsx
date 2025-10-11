@@ -10,11 +10,11 @@ import {
   BoxModelIcon,
   ComponentBooleanIcon,
   FileTextIcon,
-  LapTimerIcon,
+  LapTimerIcon, Link2Icon,
   MagicWandIcon,
   SpeakerLoudIcon,
   UpdateIcon,
-} from "@radix-ui/react-icons";
+} from '@radix-ui/react-icons';
 import MenuSelectLanguage from "@/components/menu-settings/MenuSelectLanguage";
 import CustomTheme from "@/components/menu-settings/CustomTheme";
 import MenuSelectDefaultStartCube from "@/components/menu-settings/MenuSelectDefaultStartCube";
@@ -225,6 +225,32 @@ export default function Page() {
             title={t("Settings-menu.preferences")}
           >
             <MenuSelectDefaultStartCube/>
+          </MenuSection>
+
+          <Separator className="my-5"/>
+
+          <MenuSection icon={<Link2Icon/>} title={"Cloud Sync"} id="cloud-sync">
+            <MenuOption
+              label={"Enable Automatic Save Cloud"}
+              name={"sync.autoSaveEnabled"}
+              control={control}
+              description={"Automatically save your data to the cloud"}
+            />
+
+            <MenuOption
+              label={"Enable Automatic Load Cloud"}
+              name={"sync.autoLoadEnabled"}
+              control={control}
+              description={"Automatically load your data from the cloud when you open the app"}
+            />
+
+            <MenuInputOption
+              name={"sync.backupInterval"}
+              label={"Backup Interval"}
+              control={control}
+              inputProps={{ min: 25, max: 100, step: 5 }}
+              description={"Number of solves between each automatic cloud backup"}
+            />
           </MenuSection>
 
           <Separator className="my-5"/>
