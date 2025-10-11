@@ -52,7 +52,7 @@ export default function Page() {
         {isLoading ? (
           <div className={'flex flex-row gap-3 justify-center items-center'}><Spinner/> Thinking...</div>
         ) : (
-          <Table>
+          <Table containerClassName={"overflow-hidden"}>
             <TableHeader>
               <TableRow>
                 <TableHead className="w-10">#</TableHead>

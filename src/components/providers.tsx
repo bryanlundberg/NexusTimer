@@ -1,6 +1,5 @@
 'use client';
 
-import { LoaderProvider } from '@/components/loader/loader-context';
 import LoaderOverlay from '@/components/loader/loader-overlay';
 import PreloadSettings from '@/components/PreloadSettings';
 import { useEffect } from 'react';
@@ -27,13 +26,7 @@ export default function Providers({
     <>
       <PreloadSettings>
         <HeavyWebWorkers>
-          {loaderProvider ? (
-            <LoaderProvider>
-              {children}
-            </LoaderProvider>
-          ) : (
-            <>{children}</>
-          )}
+          {children}
         </HeavyWebWorkers>
       </PreloadSettings>
       <LoaderOverlay/>
