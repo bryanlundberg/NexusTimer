@@ -10,9 +10,11 @@ import { BackupLoadMode } from '@/enums/BackupLoadMode';
 import { Card } from '@/components/ui/card';
 import { useUser } from '@/hooks/api/useUser';
 import { useSyncStore } from '@/store/SyncStore';
+import moment from 'moment';
 
 export function usePreloadSettings() {
   const setCubes = useTimerStore(store => store.setCubes);
+  const cubes = useTimerStore(store => store.cubes);
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const setNewScramble = useTimerStore(store => store.setNewScramble);
   const settings = useSettingsModalStore(store => store.settings);
@@ -84,6 +86,12 @@ export function usePreloadSettings() {
     if (!settings.sync.autoLoadEnabled) return;
     if (firstLoaded) return;
     if (!user) return;
+    if (!cubes?.length || (!cubes.some(cube => cube.solves.all.length > 0) && !cubes.some(cube => cube.solves.session.length > 0))) return;
+
+    if (!moment(settings.sync.lastSync).isBefore(moment().subtract(2, 'minutes'))) {
+      setFirstLoaded(true);
+      return;
+    }
 
     setFirstLoaded(true);
 
@@ -108,7 +116,7 @@ export function usePreloadSettings() {
       </>
     ), { duration: Infinity, id: SYNC_TOAST_ID })
 
-  }, [firstLoaded, handleSync, session?.user?.id, settings.sync.autoLoadEnabled, user, SYNC_TOAST_ID, setFirstLoaded]);
+  }, [firstLoaded, handleSync, session?.user?.id, settings.sync.autoLoadEnabled, user, SYNC_TOAST_ID, setFirstLoaded, cubes, settings.sync.lastSync]);
 
   return { isMounted };
 }
