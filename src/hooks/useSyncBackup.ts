@@ -17,12 +17,14 @@ export const useSyncBackup = () => {
   const { data: session } = useSession();
   const setCubes = useTimerStore((state) => state.setCubes);
   const [isUploading, setIsUploading] = useState(false);
-  const updateSetting = useSettingsModalStore(state => state.updateSetting)
+  const updateSetting = useSettingsModalStore(state => state.updateSetting);
+  const [uploadCompleted, setUploadCompleted] = useState(false);
 
   const { startUpload } = useUploadThing('backupUploader', {
     onClientUploadComplete: () => {
       setIsUploading(false);
       toast.dismiss('upload-backup');
+      setUploadCompleted(true);
     },
     onUploadError: (e) => {
       console.error(e);
@@ -92,7 +94,7 @@ export const useSyncBackup = () => {
     try {
       if (!user?.backup?.url) {
         toast.error('No backup found for this user.');
-        return;
+        return false;
       }
 
       const doc = await fetch(`${user.backup.url}`);
@@ -130,5 +132,6 @@ export const useSyncBackup = () => {
     handleDownloadData,
     handleUploadBackup,
     isUploading,
+    uploadCompleted
   }
 }
