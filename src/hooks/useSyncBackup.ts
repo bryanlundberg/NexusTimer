@@ -8,9 +8,10 @@ import { useSession } from 'next-auth/react';
 import { redirect, useRouter } from 'next/navigation';
 import { useTimerStore } from '@/store/timerStore';
 import { useUser } from '@/hooks/api/useUser';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useUploadThing } from '@/utils/uploadthing-helpers';
 import { BackupLoadMode } from '@/enums/BackupLoadMode';
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
 
 export const useSyncBackup = () => {
   const { clearCubes, getAllCubes, saveBatchCubes } = useNXData();
@@ -19,6 +20,7 @@ export const useSyncBackup = () => {
   const setCubes = useTimerStore((state) => state.setCubes);
   const { data: user } = useUser(session?.user?.id!);
   const [isUploading, setIsUploading] = useState(false);
+  const updateSetting = useSettingsModalStore(state => state.updateSetting)
 
   const { startUpload } = useUploadThing('backupUploader', {
     onClientUploadComplete: () => {
@@ -61,7 +63,7 @@ export const useSyncBackup = () => {
     }
   };
 
-  const mergeAndUniqData = async (backupData: Cube[], localCubesData: Cube[]) => {
+  const mergeAndUniqData = useCallback(async (backupData: Cube[], localCubesData: Cube[]) => {
     let newCubes = _.cloneDeep(localCubesData) as Cube[];
 
     for (let i = 0; i < backupData.length; i++) {
@@ -79,9 +81,11 @@ export const useSyncBackup = () => {
     }
 
     return formatCubesDatesAndOrder(newCubes);
-  }
+  }, []);
 
-  const handleDownloadData = async ({ mode }: { mode?: BackupLoadMode } = { mode: BackupLoadMode.MERGE }) => {
+  const handleDownloadData = useCallback(async ({ mode }: {
+    mode?: BackupLoadMode
+  } = { mode: BackupLoadMode.MERGE }) => {
     if (!session || !session.user || !session.user.email) return;
 
     try {
@@ -109,6 +113,9 @@ export const useSyncBackup = () => {
         newCubes = await mergeAndUniqData(backupData, existingCubes);
       }
 
+      updateSetting('sync.lastSync', Date.now());
+      updateSetting('sync.totalSolves', 0);
+
       await clearCubes();
       await saveBatchCubes(newCubes);
       setCubes(newCubes);
@@ -121,7 +128,7 @@ export const useSyncBackup = () => {
     } catch (error) {
       console.error('Error loading backup:', error);
     }
-  };
+  }, [session, user, getAllCubes, mergeAndUniqData, updateSetting, clearCubes, saveBatchCubes, setCubes, router]);
 
   return {
     mergeAndUniqData,
