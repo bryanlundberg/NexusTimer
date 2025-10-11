@@ -98,6 +98,7 @@ export default function Page() {
                   <li>Refrain from using multiple windows simultaneously.</li>
                   <li>Ensure a stable internet connection to avoid disruptions.</li>
                   <li>Do not use VPNs, proxies, or network-filtering tools that might interfere with connectivity.</li>
+                  <li>This feature is not supported on mobile devices.</li>
                 </ul>
               </AlertDescription>
             </Alert>
