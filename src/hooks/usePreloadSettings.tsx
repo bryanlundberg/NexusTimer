@@ -103,20 +103,21 @@ export function usePreloadSettings() {
 
     toast.custom(() => (
       <>
-        <Card className="flex flex-col gap-2 p-4" aria-busy={false}>
+        <Card className="flex flex-col gap-2 p-4">
           <div className="flex flex-col gap-3">
             <div className="font-medium">Hey there! Time to Sync!</div>
-            <p className="text-sm text-muted-foreground">How would you like to integrate your saved data into this
-              device?</p>
+            <p className="text-sm text-muted-foreground">Merge your local data with cloud backup to sync your device and
+              create an updated backup?</p>
           </div>
-          <div className={'flex flex-col md:flex-row gap-2'}>
+          <div className={'grid grid-cols-2 gap-2 mt-2 w-full'}>
             <Button
               size={'sm'}
               variant="secondary"
+              className={'w-full'}
               onClick={() => toast.dismiss(SYNC_TOAST_ID)}
             >Cancel
             </Button>
-            <Button size={'sm'} onClick={() => handleSync(BackupLoadMode.MERGE)}>Merge with local data</Button>
+            <Button className={'w-full'} size={'sm'} onClick={() => handleSync(BackupLoadMode.MERGE)}>Merge</Button>
           </div>
         </Card>
       </>
