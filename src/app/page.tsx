@@ -456,7 +456,7 @@ export default function Page() {
               <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
               <Link href="/terms-of-service" className="hover:text-white transition-colors">ToS</Link>
               <Link
-                href="/https://discord.gg/grenDQFw"
+                href="/https://discord.gg/eCgTKcavec"
                 target={'_blank'}
                 className="hover:text-white transition-colors"
               >Discord</Link>

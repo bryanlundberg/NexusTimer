@@ -149,7 +149,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       },
       {
         title: 'Discord',
-        url: 'https://discord.gg/grenDQFw',
+        url: 'https://discord.gg/eCgTKcavec',
         icon: DiscordLogoIcon,
       }
     ]

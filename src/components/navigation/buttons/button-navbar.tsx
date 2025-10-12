@@ -213,7 +213,7 @@ export default function ButtonNavbar() {
           <CommandGroup heading={"Socials"}>
             <CommandItem>
               <Link
-                href="https://discord.gg/cUECp4fr"
+                href="https://discord.gg/eCgTKcavec"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={"flex items-center gap-2 w-full"}>
