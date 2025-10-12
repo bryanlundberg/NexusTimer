@@ -32,7 +32,7 @@ export const useSyncBackup = () => {
       toast.error('Error occurred while uploading');
     },
     onUploadBegin: () => {
-            toast.loading('Saving new backup, please do not close this page...', { id: 'upload-backup' });
+      toast.loading('Saving new backup, please do not close this page...', { id: 'upload-backup' });
     }
   });
 
