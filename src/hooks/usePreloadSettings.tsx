@@ -11,6 +11,7 @@ import { Card } from '@/components/ui/card';
 import { useUser } from '@/hooks/api/useUser';
 import { useSyncStore } from '@/store/SyncStore';
 import moment from 'moment';
+import { useIsOnline } from 'react-use-is-online';
 
 export function usePreloadSettings() {
   const setCubes = useTimerStore(store => store.setCubes);
@@ -26,6 +27,7 @@ export function usePreloadSettings() {
   const setFirstLoaded = useSyncStore(store => store.setFirstLoaded);
   const { data: user } = useUser(session?.user?.id!);
   const SYNC_TOAST_ID = useMemo(() => 'sync-toast-id', []);
+  const { isOffline } = useIsOnline();
 
   useEffect(() => {
     const loadData = async () => {
@@ -82,7 +84,12 @@ export function usePreloadSettings() {
   }, [handleDownloadData, handleUploadBackup, user, SYNC_TOAST_ID]);
 
   useEffect(() => {
+
+    if (isOffline) return;
+
     const solvesIntervalReached = Number(settings.sync.backupInterval) <= Number(settings.sync.totalSolves);
+
+    console.log(+settings.sync.backupInterval, +settings.sync.totalSolves);
 
     const shouldShowToast = (!firstLoaded && settings?.sync?.autoLoadEnabled && user && cubes?.length && (cubes.some(cube => cube.solves.all.length > 0) || cubes.some(cube => cube.solves.session.length > 0))) || solvesIntervalReached;
 
@@ -127,7 +134,8 @@ export function usePreloadSettings() {
     cubes,
     settings.sync.lastSync,
     settings.sync.backupInterval,
-    settings.sync.totalSolves
+    settings.sync.totalSolves,
+    isOffline
   ]);
 
   return { isMounted };
