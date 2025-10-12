@@ -87,8 +87,8 @@ export function usePreloadSettings() {
 
     if (isOffline) return;
 
-    const hasReachedBackupInterval = Number(settings.sync.backupInterval) <= Number(settings.sync.totalSolves);
-    const isAutoSaveEnabled = settings.sync.autoSaveEnabled;
+    const hasReachedBackupInterval = Number(settings?.sync?.backupInterval) <= Number(settings?.sync?.totalSolves);
+    const isAutoSaveEnabled = settings?.sync?.autoSaveEnabled;
     const solvesIntervalReached = hasReachedBackupInterval && isAutoSaveEnabled;
     const shouldShowToast = (!firstLoaded && settings?.sync?.autoLoadEnabled && user && cubes?.length && (cubes.some(cube => cube.solves.all.length > 0) || cubes.some(cube => cube.solves.session.length > 0))) || solvesIntervalReached;
 
