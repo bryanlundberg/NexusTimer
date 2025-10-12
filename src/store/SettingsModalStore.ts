@@ -65,6 +65,7 @@ export const useSettingsModalStore = create<SettingsStoreProps>()(
     }),
     {
       name: 'settings-modal-store',
+      version: 2,
     }
   )
 );
