@@ -92,6 +92,7 @@
     "react-resizable-panels": "^2.1.7",
     "react-rnd": "^10.5.2",
     "react-use-audio-player": "^4.0.2",
+    "react-use-is-online": "^1.2.2",
     "react-use-size": "^5.0.1",
     "recharts": "2.15.4",
     "resend": "^4.1.2",
