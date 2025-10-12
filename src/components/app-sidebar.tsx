@@ -38,6 +38,7 @@ import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl';
 import { ALGORITHM_SETS } from '@/constants/algorithms-sets';
 import { RotatingText } from './ui/shadcn-io/rotating-text'
+import { GitHubStarsButton } from './ui/shadcn-io/github-stars-button'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession()
@@ -194,6 +195,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <NavMain items={data.navMain}/>
         <NavSecondary items={data.navSecondary as any} className="mt-auto"/>
+        <div className="my-2 px-4">
+          <GitHubStarsButton
+            username="bryanlundberg"
+            repo="nexustimer"
+            formatted={true}
+          />
+        </div>
         <Button
           variant="ghost"
           className="w-full justify-start"
