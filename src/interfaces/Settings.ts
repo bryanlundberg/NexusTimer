@@ -32,10 +32,19 @@ interface Sounds {
   newPersonalBest: boolean;
 }
 
+export interface Sync {
+  autoSaveEnabled: boolean;
+  autoLoadEnabled: boolean;
+  backupInterval: number;
+  lastSync: number;
+  totalSolves: number;
+}
+
 export interface Settings {
   timer: Timer;
   features: Features;
   alerts: Alerts;
   preferences: Preferences;
   sounds: Sounds;
+  sync: Sync;
 }

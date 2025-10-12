@@ -28,4 +28,11 @@ export const defaultSettings: Settings = {
   sounds: {
     newPersonalBest: true,
   },
+  sync: {
+    autoSaveEnabled: true,
+    autoLoadEnabled: true,
+    backupInterval: 25,
+    lastSync: Date.now(),
+    totalSolves: 0,
+  }
 };

@@ -21,9 +21,9 @@ export default function MenuInputOption({ label, control, name, inputProps, desc
               onChange={(e) => {
                 const newValue = e.target.value.replace(/[^0-9]/g, "");
                 if (inputProps?.max !== undefined && Number(newValue) > Number(inputProps.max)) {
-                  onChange(inputProps.max.toString());
+                  onChange(+inputProps.max);
                 } else {
-                  onChange(newValue);
+                  onChange(+newValue);
                 }
               }}
               className="px-2 py-1 w-22 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-md border border-input dark:bg-input/30"

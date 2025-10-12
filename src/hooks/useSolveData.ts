@@ -2,6 +2,7 @@ import { useTimerStore } from "@/store/timerStore";
 import { Solve } from "@/interfaces/Solve";
 import genId from "@/lib/genId";
 import { useNXData } from '@/hooks/useNXData';
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
 
 export default function useSolveData() {
   const { saveCube } = useNXData();
@@ -11,6 +12,8 @@ export default function useSolveData() {
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const setLastSolve = useTimerStore(store => store.setLastSolve);
   const setNewScramble = useTimerStore(store => store.setNewScramble);
+  const updateSetting = useSettingsModalStore(state => state.updateSetting)
+  const solvesSinceLastSync = useSettingsModalStore(state => state.settings.sync.totalSolves)
 
   const saveSolveMainTimer = async () => {
     if (selectedCube && scramble) {
@@ -40,6 +43,7 @@ export default function useSolveData() {
 
       saveCube(updatedCube);
       setSelectedCube(updatedCube);
+      updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
     }
 
     setNewScramble(selectedCube);
