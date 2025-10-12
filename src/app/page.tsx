@@ -64,7 +64,7 @@ export default function Page() {
         <main className="flex-1">
           {/* Hero */}
           <section className="relative">
-            <div className="mx-auto max-w-4xl px-6 pt-12 pb-20 md:pt-20 md:pb-28 text-center">
+            <div className="mx-auto max-w-4xl px-6 pt-12 pb-20 md:pt-20 md:pb-28 text-center relative">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-white/70 mx-auto">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"/>
                 NexusTimer is free and always will be!
@@ -83,8 +83,9 @@ export default function Page() {
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <Link
                   href="/app"
-                  className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors"
+                  className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors pl-2"
                 >
+                  <Image src={'/landing/cube.gif'} alt={''} width={32} height={32}/>
                   Start now
                 </Link>
                 <Link
@@ -464,16 +465,6 @@ export default function Page() {
           </div>
         </footer>
       </ScrollArea>
-    </div>
-  );
-}
-
-function FeatureCard({ title, desc, icon }: { title: string; desc: string; icon: React.ReactNode }) {
-  return (
-    <div className="group rounded-xl border border-white/15 bg-black/30 p-5 hover:border-white/25 transition-colors shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
-      <div className="text-fuchsia-300/90">{icon}</div>
-      <h3 className="mt-3 text-base font-semibold text-white">{title}</h3>
-      <p className="mt-1 text-sm text-white/70">{desc}</p>
     </div>
   );
 }
