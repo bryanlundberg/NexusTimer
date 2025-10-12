@@ -88,7 +88,7 @@ export function usePreloadSettings() {
 
     if (!shouldShowToast) return;
 
-    if (!moment(settings.sync.lastSync).isBefore(moment().subtract(10, 'seconds'))) {
+    if (!moment(settings.sync.lastSync).isBefore(moment().subtract(5, 'minutes'))) {
       setFirstLoaded(true);
       return;
     }
