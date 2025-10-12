@@ -469,16 +469,6 @@ export default function Page() {
   );
 }
 
-function FeatureCard({ title, desc, icon }: { title: string; desc: string; icon: React.ReactNode }) {
-  return (
-    <div className="group rounded-xl border border-white/15 bg-black/30 p-5 hover:border-white/25 transition-colors shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
-      <div className="text-fuchsia-300/90">{icon}</div>
-      <h3 className="mt-3 text-base font-semibold text-white">{title}</h3>
-      <p className="mt-1 text-sm text-white/70">{desc}</p>
-    </div>
-  );
-}
-
 function StepItem({ number, title, desc }: { number: number; title: string; desc: string }) {
   return (
     <div className="flex items-start gap-4">
