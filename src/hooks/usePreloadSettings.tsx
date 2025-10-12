@@ -114,8 +114,8 @@ export function usePreloadSettings() {
             <Button
               size={'sm'}
               variant="secondary"
-              onClick={() => handleSync(BackupLoadMode.REPLACE)}
-            >Replace local data
+              onClick={() => toast.dismiss(SYNC_TOAST_ID)}
+            >Cancel
             </Button>
             <Button size={'sm'} onClick={() => handleSync(BackupLoadMode.MERGE)}>Merge with local data</Button>
           </div>
