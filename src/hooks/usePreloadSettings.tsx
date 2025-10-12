@@ -135,7 +135,8 @@ export function usePreloadSettings() {
     settings.sync.lastSync,
     settings.sync.backupInterval,
     settings.sync.totalSolves,
-    isOffline
+    isOffline,
+    settings.sync.autoSaveEnabled
   ]);
 
   return { isMounted };
