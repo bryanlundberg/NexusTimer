@@ -94,7 +94,7 @@ export function usePreloadSettings() {
 
     if (!shouldShowToast) return;
 
-    if (!moment(settings?.sync?.lastSync).isBefore(moment().subtract(5, 'minutes'))) {
+    if (!moment(settings?.sync?.lastSync || 0).isBefore(moment().subtract(5, 'minutes'))) {
       setFirstLoaded(true);
       return;
     }
@@ -132,11 +132,11 @@ export function usePreloadSettings() {
     SYNC_TOAST_ID,
     setFirstLoaded,
     cubes,
-    settings.sync.lastSync,
-    settings.sync.backupInterval,
-    settings.sync.totalSolves,
+    settings?.sync?.lastSync,
+    settings?.sync?.backupInterval,
+    settings?.sync?.totalSolves,
     isOffline,
-    settings.sync.autoSaveEnabled
+    settings?.sync?.autoSaveEnabled
   ]);
 
   return { isMounted };
