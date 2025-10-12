@@ -82,13 +82,13 @@ export function usePreloadSettings() {
   }, [handleDownloadData, handleUploadBackup, user, SYNC_TOAST_ID]);
 
   useEffect(() => {
-    if (!session?.user?.id) return;
-    if (!settings.sync.autoLoadEnabled) return;
-    if (firstLoaded) return;
-    if (!user) return;
-    if (!cubes?.length || (!cubes.some(cube => cube.solves.all.length > 0) && !cubes.some(cube => cube.solves.session.length > 0))) return;
+    const solvesIntervalReached = Number(settings.sync.backupInterval) <= Number(settings.sync.totalSolves);
 
-    if (!moment(settings.sync.lastSync).isBefore(moment().subtract(2, 'minutes'))) {
+    const shouldShowToast = (!firstLoaded && settings?.sync?.autoLoadEnabled && user && cubes?.length && (cubes.some(cube => cube.solves.all.length > 0) || cubes.some(cube => cube.solves.session.length > 0))) || solvesIntervalReached;
+
+    if (!shouldShowToast) return;
+
+    if (!moment(settings.sync.lastSync).isBefore(moment().subtract(10, 'seconds'))) {
       setFirstLoaded(true);
       return;
     }
@@ -116,7 +116,19 @@ export function usePreloadSettings() {
       </>
     ), { duration: Infinity, id: SYNC_TOAST_ID })
 
-  }, [firstLoaded, handleSync, session?.user?.id, settings.sync.autoLoadEnabled, user, SYNC_TOAST_ID, setFirstLoaded, cubes, settings.sync.lastSync]);
+  }, [
+    firstLoaded,
+    handleSync,
+    session?.user?.id,
+    settings.sync?.autoLoadEnabled,
+    user,
+    SYNC_TOAST_ID,
+    setFirstLoaded,
+    cubes,
+    settings.sync.lastSync,
+    settings.sync.backupInterval,
+    settings.sync.totalSolves
+  ]);
 
   return { isMounted };
 }
