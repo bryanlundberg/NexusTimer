@@ -16,6 +16,7 @@ import { STATES } from '@/constants/states';
 import { useDebouncedCallback } from 'use-debounce';
 import FadeIn from '@/components/fade-in/fade-in';
 import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs';
+import { useMemo } from 'react';
 
 export default function Page() {
   const isDialogSolveOpen = useDialogSolve((state) => state.isDialogSolveOpen);
@@ -27,6 +28,14 @@ export default function Page() {
   const [tabMode,] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, { defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE });
   const [, setQuery] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE });
   const handleSearch = useDebouncedCallback((value) => setQuery(value), 1000);
+
+  const displaySolves = useMemo(() => {
+    if (!selectedCube) return [];
+    const solves = tabMode === DisplaySolvesTabs.SESSION
+      ? selectedCube.solves.session
+      : selectedCube.solves.all;
+    return solves.filter(solve => !solve.isDeleted);
+  }, [selectedCube, tabMode]);
 
   return (
     <div className={'h-dvh flex flex-col'}>
@@ -49,11 +58,7 @@ export default function Page() {
       <div className="flex-1 min-h-0">
         <div className="px-2">
           <SolvesArea
-            displaySolves={
-              tabMode === DisplaySolvesTabs.SESSION
-                ? selectedCube?.solves.session
-                : selectedCube?.solves.all
-            }
+            displaySolves={displaySolves}
           />
 
           <Dialog
