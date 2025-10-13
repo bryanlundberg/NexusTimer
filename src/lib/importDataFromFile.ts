@@ -1,5 +1,4 @@
 import { Cube } from '@/interfaces/Cube';
-import { ChangeEvent } from 'react';
 import { Solve } from '@/interfaces/Solve';
 import { parse } from 'papaparse';
 import { z } from 'zod/v4';
@@ -23,7 +22,9 @@ const nxTimerSchema = z.array(
           plus2: z.boolean(),
           rating: z.number(),
           cubeId: z.string(),
-          comment: z.string().optional()
+          comment: z.string().optional(),
+          updatedAt: z.number().optional(),
+          isDeleted: z.boolean().optional()
         })
       ),
       all: z.array(
@@ -38,12 +39,16 @@ const nxTimerSchema = z.array(
           plus2: z.boolean(),
           rating: z.number(),
           cubeId: z.string(),
-          comment: z.string().optional()
+          comment: z.string().optional(),
+          updatedAt: z.number().optional(),
+          isDeleted: z.boolean().optional()
         })
       )
     }),
     createdAt: z.number(),
-    favorite: z.boolean()
+    favorite: z.boolean(),
+    isDeleted: z.boolean().optional(),
+    updatedAt: z.number().optional()
   })
 );
 
@@ -308,4 +313,26 @@ export function uniqueData(cubes: Cube[]) {
       all: _.uniqBy(cube.solves.all, 'id'),
     },
   }));
+}
+
+export function normalizeOldData(cubes: Cube[]): Cube[] {
+  return cubes.map((cube) => {
+    return {
+      ...cube,
+      isDeleted: cube.isDeleted ?? false,
+      updatedAt: cube.updatedAt ?? Date.now(),
+      solves: {
+        session: cube.solves.session.map((solve: Solve) => ({
+          ...solve,
+          isDeleted: solve.isDeleted ?? false,
+          updatedAt: solve.updatedAt ?? solve.startTime
+        })),
+        all: cube.solves.all.map((solve: Solve) => ({
+          ...solve,
+          isDeleted: solve.isDeleted ?? false,
+          updatedAt: solve.updatedAt ?? solve.startTime
+        }))
+      }
+    };
+  });
 }
