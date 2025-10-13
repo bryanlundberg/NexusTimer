@@ -10,4 +10,6 @@ export interface Solve {
   dnf: boolean;
   plus2: boolean;
   comment?: string;
+  isDeleted?: boolean;
+  updatedAt?: number;
 }
