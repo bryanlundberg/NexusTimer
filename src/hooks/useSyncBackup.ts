@@ -1,6 +1,6 @@
-import _, { uniqBy } from 'lodash';
+import _ from 'lodash';
 import { Cube } from '@/interfaces/Cube';
-import { formatCubesDatesAndOrder, importNexusTimerData } from '@/lib/importDataFromFile';
+import { formatCubesDatesAndOrder, importNexusTimerData, normalizeOldData } from '@/lib/importDataFromFile';
 import { toast } from 'sonner';
 import { compressSync, decompressSync, strFromU8, strToU8 } from 'fflate';
 import { useNXData } from '@/hooks/useNXData';
@@ -13,7 +13,7 @@ import { useSettingsModalStore } from '@/store/SettingsModalStore';
 import { UserDocument } from '@/models/user';
 
 export const useSyncBackup = () => {
-  const { clearCubes, getAllCubes, saveBatchCubes } = useNXData();
+  const { clearCubes, getAllCubes, saveBatchCubes, getAllDatabase } = useNXData();
   const { data: session } = useSession();
   const setCubes = useTimerStore((state) => state.setCubes);
   const [isUploading, setIsUploading] = useState(false);
@@ -70,10 +70,51 @@ export const useSyncBackup = () => {
       const existingCube = newCubes.find(cube => cube.id === backupCube.id);
 
       if (existingCube) {
-        newCubes[newCubes.indexOf(existingCube)].solves = {
-          session: uniqBy([...existingCube.solves.session, ...backupCube.solves.session], 'id'),
-          all: uniqBy([...existingCube.solves.all, ...backupCube.solves.all], 'id'),
+        const backupUpdatedAt = backupCube.updatedAt || backupCube.createdAt || 0;
+        const existingUpdatedAt = existingCube.updatedAt || existingCube.createdAt || 0;
+
+        if (backupUpdatedAt > existingUpdatedAt) {
+          existingCube.name = backupCube.name;
+          existingCube.category = backupCube.category;
+          existingCube.favorite = backupCube.favorite;
+          existingCube.updatedAt = backupCube.updatedAt;
+          existingCube.isDeleted = backupCube.isDeleted;
         }
+
+        const mergedSession = [...existingCube.solves.session, ...backupCube.solves.session];
+        const sessionMap = new Map();
+
+        mergedSession.forEach(solve => {
+          const existing = sessionMap.get(solve.id);
+          if (!existing) {
+            sessionMap.set(solve.id, solve);
+          } else {
+            const existingTime = existing.updatedAt || existing.endTime || 0;
+            const newTime = solve.updatedAt || solve.endTime || 0;
+            if (newTime > existingTime) {
+              sessionMap.set(solve.id, solve);
+            }
+          }
+        });
+
+        const mergedAll = [...existingCube.solves.all, ...backupCube.solves.all];
+        const allMap = new Map();
+
+        mergedAll.forEach(solve => {
+          const existing = allMap.get(solve.id);
+          if (!existing) {
+            allMap.set(solve.id, solve);
+          } else {
+            const existingTime = existing.updatedAt || existing.endTime || 0;
+            const newTime = solve.updatedAt || solve.endTime || 0;
+            if (newTime > existingTime) {
+              allMap.set(solve.id, solve);
+            }
+          }
+        });
+
+        existingCube.solves.session = Array.from(sessionMap.values());
+        existingCube.solves.all = Array.from(allMap.values());
       } else {
         newCubes.push(backupCube);
       }
@@ -103,10 +144,12 @@ export const useSyncBackup = () => {
       const decompressed = decompressSync(compressed);
       const data = strFromU8(decompressed);
 
-      const backupData = importNexusTimerData(data);
-      const existingCubes = await getAllCubes();
+      let backupData = importNexusTimerData(data);
+      const existingCubes = await getAllDatabase();
 
       let newCubes: Cube[] = [];
+
+      backupData = normalizeOldData(backupData);
 
       if (mode === BackupLoadMode.REPLACE) {
         newCubes = formatCubesDatesAndOrder(backupData);
@@ -121,7 +164,8 @@ export const useSyncBackup = () => {
 
       await clearCubes();
       await saveBatchCubes(newCubes);
-      setCubes(newCubes);
+      const newCubesDB = await getAllCubes()
+      setCubes(newCubesDB);
     } catch (error) {
       console.error('Error loading backup:', error);
     }
