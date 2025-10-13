@@ -32,6 +32,8 @@ export default function useSolveData() {
         rating: Math.floor(Math.random() * 20) + scramble.length,
         cubeId: selectedCube.id,
         comment: "",
+        isDeleted: false,
+        updatedAt: Date.now(),
       };
 
       setLastSolve({ ...lastSolve });
@@ -73,6 +75,8 @@ export default function useSolveData() {
       rating: Math.floor(Math.random() * 20) + scramble.length,
       cubeId: selectedCube.id,
       comment: "",
+      updatedAt: now,
+      isDeleted: false,
     };
 
     const updatedCube = {
@@ -88,6 +92,7 @@ export default function useSolveData() {
     setLastSolve({ ...newSolve });
     setNewScramble(selectedCube);
     setValue("");
+    updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
   }
 
   return {
