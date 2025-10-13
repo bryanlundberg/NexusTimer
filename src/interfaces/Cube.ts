@@ -8,4 +8,6 @@ export interface Cube {
   solves: Solves;
   createdAt: number;
   favorite: boolean;
+  updatedAt?: number;
+  isDeleted?: boolean;
 }
