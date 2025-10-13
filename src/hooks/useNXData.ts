@@ -8,7 +8,16 @@ import { database } from '@/db/indexdb';
 
 export const useNXData = () => {
   const getCubeById = async (id: string): Promise<Cube | null> => {
-    return await Cubes.get(id) as Cube | null;
+    if (!database.ready) await database.open();
+    const cube = await Cubes.get(id) as Cube | null;
+    if (cube?.isDeleted) return null;
+
+    if (!cube) return null;
+
+    cube.solves.session.filter((solve) => !solve?.isDeleted)
+    cube.solves.all.filter((solve) => !solve?.isDeleted)
+
+    return cube;
   }
 
   const getAllCubes = async (): Promise<Cube[]> => {
@@ -125,8 +134,7 @@ export const useNXData = () => {
           } else if (type === 'BOOKMARK') {
             solveToUpdate.bookmark = !solveToUpdate.bookmark;
           } else if (type === 'DELETE') {
-            deletedSolve = { ...solveToUpdate };
-            solveArray.splice(solveIndex, 1);
+            solveToUpdate.isDeleted = true;
           } else if (type === 'UNDO' && deletedSolve) {
             if (!solveArray.some(s => s.id === deletedSolve?.id)) {
               solveArray.push({ ...deletedSolve, isDeleted: false });
