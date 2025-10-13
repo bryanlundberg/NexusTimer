@@ -8,6 +8,7 @@ import { Packet } from "stackmat";
 import { toast } from "sonner";
 import { TimerStatus } from "@/enums/TimerStatus";
 import { useNXData } from '@/hooks/useNXData';
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
 
 // more information: https://www.npmjs.com/package/stackmat
 declare global {
@@ -29,7 +30,8 @@ export default function Stackmat() {
   const timerStatus = useTimerStore((state) => state.timerStatus);
   const setTimerStatus = useTimerStore((state) => state.setTimerStatus);
   const scramble = useTimerStore((state) => state.scramble);
-
+  const updateSetting = useSettingsModalStore(state => state.updateSetting);
+  const solvesSinceLastSync = useSettingsModalStore(state => state.settings.sync.totalSolves);
   const [stackmat, setStackmat] = useState<any>(null);
   const solvingIdRef = useRef<any>(null);
 
@@ -71,6 +73,8 @@ export default function Stackmat() {
           rating: Math.floor(Math.random() * 20) + scramble.length,
           cubeId: selectedCube.id,
           comment: "",
+          updatedAt: Date.now(),
+          isDeleted: false,
         };
 
         const updatedCube = {
@@ -85,6 +89,7 @@ export default function Stackmat() {
         setSelectedCube(updatedCube);
         setLastSolve({ ...newSolve });
         setNewScramble(selectedCube);
+        updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
       };
 
       const onConnected = (packet: Packet) => {
@@ -129,7 +134,7 @@ export default function Stackmat() {
         stackmat.off("stopped", onReset);
       };
     }
-  }, [stackmat, setIsSolving, setSolvingTime, setTimerStatus, selectedCube, scramble, cubes, setCubes, setSelectedCube, setLastSolve, setNewScramble, timerStatus, getAllCubes, getCubeById, saveCube]);
+  }, [stackmat, setIsSolving, setSolvingTime, setTimerStatus, selectedCube, scramble, cubes, setCubes, setSelectedCube, setLastSolve, setNewScramble, timerStatus, getAllCubes, getCubeById, saveCube, updateSetting, solvesSinceLastSync]);
 
   useEffect(() => {
     if (stackmat) {
