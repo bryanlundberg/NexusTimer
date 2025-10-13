@@ -9,6 +9,7 @@ import genId from '@/lib/genId';
 import { useNXData } from '@/hooks/useNXData';
 import { sendSolveToServer } from '@/actions/actions';
 import { useSession } from 'next-auth/react';
+import { useSettingsModalStore } from '@/store/SettingsModalStore';
 
 export default function TimerVirtual() {
   const containerRef = React.useRef<HTMLDivElement | null>(null);
@@ -22,6 +23,8 @@ export default function TimerVirtual() {
   const [solvingTime, setSolvingTime] = React.useState<number | null>(null);
   const processedSolveRef = React.useRef(false);
   const { data: session } = useSession()
+  const updateSetting = useSettingsModalStore(state => state.updateSetting);
+  const solvesSinceLastSync = useSettingsModalStore(state => state.settings.sync.totalSolves);
 
   // Lock window after a solve to avoid key handling and cascaded saves
   const postSolveLockRef = React.useRef<number>(0);
@@ -53,6 +56,8 @@ export default function TimerVirtual() {
       rating: Math.floor(Math.random() * 20) + scramble.length,
       cubeId: selectedCube.id,
       comment: '',
+      isDeleted: false,
+      updatedAt: now,
     };
 
     sendSolveToServer({ solve: newSolve, userId: session?.user?.id ?? undefined, solution: engine?.getMoves(true) }).catch((e) => {
@@ -70,8 +75,9 @@ export default function TimerVirtual() {
     saveCube(updatedCube);
     setSelectedCube(updatedCube);
     setLastSolve({ ...newSolve });
+    updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
     // Do not request a new scramble here; it will be triggered after a 2s pause post-solve
-  }, [selectedCube, scramble, session?.user?.id, engine, saveCube, setSelectedCube, setLastSolve]);
+  }, [selectedCube, scramble, session?.user?.id, engine, saveCube, setSelectedCube, setLastSolve, updateSetting, solvesSinceLastSync]);
 
   const startTimeRef = React.useRef<number | null>(null);
   const performanceStartRef = React.useRef<number | null>(null);
