@@ -20,6 +20,11 @@ export const useNXData = () => {
     return cube;
   }
 
+  const getAllDatabase = async (): Promise<Cube[]> => {
+    if (!database.ready) await database.open();
+    return await Cubes.find().get() as Cube[];
+  }
+
   const getAllCubes = async (): Promise<Cube[]> => {
     if (!database.ready) await database.open();
     const allCubes = await Cubes.find().get() as Cube[];
@@ -192,6 +197,7 @@ export const useNXData = () => {
     deleteCubeById,
     clearCubes,
     updateSolve,
-    finishSession
+    finishSession,
+    getAllDatabase,
   }
 }
