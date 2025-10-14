@@ -19,9 +19,10 @@ import { useTranslations } from 'next-intl';
 import { useNXData } from '@/hooks/useNXData';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { SidebarTrigger } from '@/components/ui/sidebar';
+import { Solve } from '@/interfaces/Solve';
 
 export default function TransferSolvesPage() {
-  const { saveBatchCubes } = useNXData();
+  const { saveBatchCubes, getAllCubes } = useNXData();
   const t = useTranslations('Index.TransferSolvesPage');
   const cubes = useTimerStore((state) => state.cubes);
   const setCubes = useTimerStore((state) => state.setCubes);
@@ -32,7 +33,8 @@ export default function TransferSolvesPage() {
   useRemoveGridHeight(sourceCollection);
 
   const displaySolves = useMemo(() => {
-    return sort(cubes?.find(cube => cube.id === sourceCollection)?.solves.session || []).desc((solve) => solve.endTime);
+    const session = cubes?.find((cube) => cube.id === sourceCollection)?.solves.session || [];
+    return sort(session.filter((solve) => !solve?.isDeleted)).desc((solve) => solve.endTime);
   }, [sourceCollection, cubes]);
 
   const handleToggleAll = (type: 'select' | 'deselect') => {
@@ -52,26 +54,46 @@ export default function TransferSolvesPage() {
       const destinationCube = cubes.find(cube => cube.id === destinationCollection);
 
       if (sourceCube && destinationCube) {
-        const remainingSolves = sourceCube.solves.session.filter(solve => !selectedSolves.includes(solve.id));
-        destinationCube.solves.session.push(...sourceCube.solves.session.filter(solve => selectedSolves.includes(solve.id)));
+        const now = Date.now();
+
+        const updatedSourceSession = sourceCube.solves.session.map((solve) =>
+          selectedSolves.includes(solve.id)
+            ? { ...solve, isDeleted: true, updatedAt: now }
+            : solve
+        );
+        const updatedSourceAll = sourceCube.solves.all.map((solve) =>
+          selectedSolves.includes(solve.id)
+            ? { ...solve, isDeleted: true, updatedAt: now }
+            : solve
+        );
+
+        const solvesToTransfer = sourceCube.solves.session
+          .filter((solve) => selectedSolves.includes(solve.id))
+          .map((solve) => ({ ...solve, cubeId: destinationCube.id, isDeleted: false, updatedAt: now }));
+
+        const mergedDestinationSession = (() => {
+          const map = new Map<string, Solve>();
+          for (const s of destinationCube.solves.session) map.set(s.id, s);
+          for (const s of solvesToTransfer) map.set(s.id, s);
+          return Array.from(map.values());
+        })();
 
         const updatedSourceCube = {
           ...sourceCube,
-          solves: { ...sourceCube.solves, session: remainingSolves }
+          updatedAt: now,
+          solves: { ...sourceCube.solves, session: updatedSourceSession, all: updatedSourceAll }
         };
 
         const updatedDestinationCube = {
           ...destinationCube,
-          solves: { ...destinationCube.solves, session: destinationCube.solves.session }
+          updatedAt: now,
+          solves: { ...destinationCube.solves, session: mergedDestinationSession }
         };
 
-        setCubes(cubes.map(cube =>
-          cube.id === sourceCollection ? updatedSourceCube :
-            cube.id === destinationCollection ? updatedDestinationCube :
-              cube
-        ));
-
         await saveBatchCubes([updatedSourceCube, updatedDestinationCube]);
+        const updatedCubes = await getAllCubes()
+
+        setCubes(updatedCubes);
 
         toast.success('Transfer successful');
         setSelectedSolves([]);
