@@ -105,8 +105,8 @@ export const useSyncBackup = () => {
           if (!existing) {
             allMap.set(solve.id, solve);
           } else {
-            const existingTime = existing.updatedAt || existing.endTime || 0;
-            const newTime = solve.updatedAt || solve.endTime || 0;
+            const existingTime = existing.updatedAt || existing.startTime || 0;
+            const newTime = solve.updatedAt || solve.startTime || 0;
             if (newTime > existingTime) {
               allMap.set(solve.id, solve);
             }
