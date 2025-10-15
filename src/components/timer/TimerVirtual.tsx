@@ -25,6 +25,8 @@ export default function TimerVirtual() {
   const { data: session } = useSession()
   const updateSetting = useSettingsModalStore(state => state.updateSetting);
   const solvesSinceLastSync = useSettingsModalStore(state => state.settings.sync.totalSolves);
+  const cubeSize = selectedCube?.category === '2x2' ? 2 : 3;
+  const is3x3 = cubeSize === 3;
 
   // Lock window after a solve to avoid key handling and cascaded saves
   const postSolveLockRef = React.useRef<number>(0);
@@ -35,7 +37,7 @@ export default function TimerVirtual() {
   const setSelectedCube = useTimerStore(store => store.setSelectedCube);
   const setLastSolve = useTimerStore(store => store.setLastSolve);
 
-  const saveSolvePlaceholder = React.useCallback((_payload: {
+  const saveSolvePlaceholder = (_payload: {
     timeMs: number;
     scramble: string | null;
     moves: string[];
@@ -60,7 +62,13 @@ export default function TimerVirtual() {
       updatedAt: now,
     };
 
-    sendSolveToServer({ solve: newSolve, userId: session?.user?.id ?? undefined, solution: engine?.getMoves(true) }).catch((e) => {
+    sendSolveToServer({
+      solve: newSolve,
+      userId: session?.user?.id ?? undefined,
+      solution: engine?.getMoves(true),
+      puzzle: selectedCube.category === '2x2' ? '2x2x2' : '3x3x3',
+      smart: false
+    }).catch((e) => {
       console.warn('sendSolveToServer error (ignored):', e);
     });
 
@@ -77,13 +85,13 @@ export default function TimerVirtual() {
     setLastSolve({ ...newSolve });
     updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
     // Do not request a new scramble here; it will be triggered after a 2s pause post-solve
-  }, [selectedCube, scramble, session?.user?.id, engine, saveCube, setSelectedCube, setLastSolve, updateSetting, solvesSinceLastSync]);
+  };
 
   const startTimeRef = React.useRef<number | null>(null);
   const performanceStartRef = React.useRef<number | null>(null);
   const intervalRef = React.useRef<number | null>(null);
 
-  const startTimer = React.useCallback(() => {
+  const startTimer = () => {
     if (isRunning) return;
     // Clear any post-solve lock or pending timeout when starting a new attempt
     postSolveLockRef.current = 0;
@@ -102,9 +110,9 @@ export default function TimerVirtual() {
         setSolvingTime(performance.now() - performanceStartRef.current);
       }
     }, 10);
-  }, [isRunning, setIsRunning]);
+  };
 
-  const stopTimer = React.useCallback(() => {
+  const stopTimer = () => {
     if (intervalRef.current != null) {
       window.clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -114,9 +122,9 @@ export default function TimerVirtual() {
       setSolvingTime(performance.now() - performanceStartRef.current);
     }
     performanceStartRef.current = null;
-  }, [setIsRunning]);
+  };
 
-  const resetTimer = React.useCallback(() => {
+  const resetTimer = () => {
     if (intervalRef.current != null) {
       window.clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -125,25 +133,44 @@ export default function TimerVirtual() {
     startTimeRef.current = null;
     performanceStartRef.current = null;
     setSolvingTime(0);
-  }, [setIsRunning]);
+  };
 
   React.useEffect(() => {
     if (!containerRef.current) return;
-    const engine = new CubeEngine();
-    const player = new TwistyPlayer({
-      puzzle: '3x3x3',
+
+    // Clean up any existing player before creating a new one
+    try {
+      if (player) {
+        player.remove();
+      }
+    } catch {
+    }
+
+    const newEngine = new CubeEngine('', { size: cubeSize });
+    const newPlayer = new TwistyPlayer({
+      puzzle: cubeSize === 2 ? '2x2x2' : '3x3x3',
       controlPanel: 'none',
       tempoScale: 3,
       background: 'none',
     });
 
-    setPlayer(player);
-    setEngine(engine);
+    setPlayer(newPlayer);
+    setEngine(newEngine);
 
-    player.style.width = '320px';
-    player.style.height = '320px';
+    newPlayer.style.width = '320px';
+    newPlayer.style.height = '320px';
 
-    containerRef.current.appendChild(player);
+    containerRef.current.appendChild(newPlayer);
+
+    // Apply current scramble if present
+    if (scramble) {
+      try {
+        newPlayer.experimentalSetupAlg = scramble;
+        newEngine.reset();
+        newEngine.applyMoves(scramble);
+      } catch {
+      }
+    }
 
     return () => {
       try {
@@ -155,11 +182,11 @@ export default function TimerVirtual() {
           window.clearTimeout(postSolveTimeoutRef.current);
           postSolveTimeoutRef.current = null;
         }
-        player.remove();
+        if (newPlayer) newPlayer.remove();
       } catch {
       }
     };
-  }, []);
+  }, [cubeSize]);
 
   React.useEffect(() => {
     if (!player || !engine) return;
@@ -178,7 +205,7 @@ export default function TimerVirtual() {
     }
   }, [engine, player, scramble, setIsRunning]);
 
-  const recreateTwistyPlayer = React.useCallback(() => {
+  const recreateTwistyPlayer = () => {
     if (!containerRef.current) return;
     try {
       if (player) {
@@ -187,7 +214,7 @@ export default function TimerVirtual() {
     } catch {
     }
     const newPlayer = new TwistyPlayer({
-      puzzle: '3x3x3',
+      puzzle: cubeSize === 2 ? '2x2x2' : '3x3x3',
       controlPanel: 'none',
       tempoScale: 3,
       background: 'none',
@@ -203,7 +230,7 @@ export default function TimerVirtual() {
     newPlayer.style.height = '320px';
     containerRef.current.appendChild(newPlayer);
     setPlayer(newPlayer);
-  }, [player, scramble]);
+  };
 
   // Stop the timer when the cube is solved
   React.useEffect(() => {
@@ -321,31 +348,31 @@ export default function TimerVirtual() {
         isRotationMove = true;
       }
 
-      if (e.key.toLowerCase() === ',') {
+      if (is3x3 && e.key.toLowerCase() === ',') {
         player.experimentalAddMove('Uw');
         engine.rotateUw(true);
         didMove = true;
       }
 
-      if (e.key.toLowerCase() === '.') {
+      if (is3x3 && e.key.toLowerCase() === '.') {
         player.experimentalAddMove('M\'');
         engine.rotateM(false);
         didMove = true;
       }
 
-      if (e.key.toLowerCase() === '-'  || e.key.toLowerCase() === '/') {
+      if (is3x3 && (e.key.toLowerCase() === '-' || e.key.toLowerCase() === '/')) {
         player.experimentalAddMove('Dw\'');
         engine.rotateDw(false);
         didMove = true;
       }
 
-      if (e.key.toLowerCase() === 'u') {
+      if (is3x3 && e.key.toLowerCase() === 'u') {
         player.experimentalAddMove('Rw');
         engine.rotateRw(true);
         didMove = true;
       }
 
-      if (e.key.toLowerCase() === '5' || e.key.toLowerCase() === '6') {
+      if (is3x3 && (e.key.toLowerCase() === '5' || e.key.toLowerCase() === '6')) {
         player.experimentalAddMove('M');
         engine.rotateM(true);
         didMove = true;
@@ -373,7 +400,7 @@ export default function TimerVirtual() {
         didMove = true;
         isRotationMove = true;
       }
-      if (e.key.toLowerCase() === 'm') {
+      if (is3x3 && e.key.toLowerCase() === 'm') {
         player.experimentalAddMove('Rw\'');
         engine.rotateRw(false);
         didMove = true;
@@ -447,25 +474,25 @@ export default function TimerVirtual() {
         didMove = true;
       }
 
-      if (e.key.toLowerCase() === 'z') {
+      if (is3x3 && e.key.toLowerCase() === 'z') {
         player.experimentalAddMove('Dw');
         engine.rotateDw(true);
         didMove = true;
       }
 
-      if (e.key.toLowerCase() === 'x') {
+      if (is3x3 && e.key.toLowerCase() === 'x') {
         player.experimentalAddMove('M\'');
         engine.rotateM(false);
         didMove = true;
       }
 
-      if (e.key.toLowerCase() === 'c') {
+      if (is3x3 && e.key.toLowerCase() === 'c') {
         player.experimentalAddMove('Uw\'');
         engine.rotateUw(false);
         didMove = true;
       }
 
-      if (e.key.toLowerCase() === 'v') {
+      if (is3x3 && e.key.toLowerCase() === 'v') {
         player.experimentalAddMove('Lw');
         engine.rotateLw(true);
         didMove = true;

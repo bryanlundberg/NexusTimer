@@ -25,7 +25,7 @@ export function MainTimer() {
         </Timer>
       )}
 
-      {timerMode === TimerMode.VIRTUAL && event === '333' && (
+      {timerMode === TimerMode.VIRTUAL && (event === '333' || event === '222') && (
         <TimerVirtual/>
       )}
     </>

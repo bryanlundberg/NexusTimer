@@ -4,7 +4,15 @@ import connectDB from "@/db/mongodb";
 import type { Solve as ISolve } from '@/interfaces/Solve';
 import Solve from '@/models/solve';
 
-export async function sendSolveToServer({ solve, solution, userId }: { solve: Partial<ISolve>, userId?: string, solution?: string | never[] }): Promise<boolean> {
+interface SendSolveToServerParams {
+  solve: Partial<ISolve>;
+  userId?: string;
+  solution?: string | never[];
+  puzzle?: string;
+  smart?: boolean;
+}
+
+export async function sendSolveToServer({ solve, solution, userId, puzzle, smart = false }: SendSolveToServerParams): Promise<boolean> {
   try {
     await connectDB();
 
@@ -15,7 +23,8 @@ export async function sendSolveToServer({ solve, solution, userId }: { solve: Pa
       time: solve.time,
       scramble: solve.scramble,
       solution: solution ? cleanRotations(solution.toString()) : null,
-      puzzle: '3x3x3'
+      puzzle: puzzle,
+      smart
     })
 
     return true;

@@ -20,7 +20,8 @@ import calcTurnsPerSecond from '@/lib/calcTurnsPerSecond';
 import { Spinner } from '@/components/ui/spinner';
 
 export default function Page() {
-  const { data: solves, isLoading } = useLeaderboards()
+  const [puzzle, setPuzzle] = React.useState<string>('3x3x3');
+  const { data: solves, isLoading } = useLeaderboards(puzzle)
   const router = useRouter()
   const openModal = useLeaderboardSolveModal(state => state.openModal);
 
@@ -38,12 +39,13 @@ export default function Page() {
         <div className={'flex flex-row gap-3'}>
           <div className={'flex flex-col gap-3'}>
             <Label>Type</Label>
-            <Select defaultValue="3x3-keyboard">
+            <Select value={puzzle} onValueChange={setPuzzle}>
               <SelectTrigger>
                 <SelectValue/>
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="3x3-keyboard">Virtual 3x3</SelectItem>
+                <SelectItem value="3x3x3">Virtual 3x3</SelectItem>
+                <SelectItem value="2x2x2">Virtual 2x2</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -114,7 +116,7 @@ export default function Page() {
                     <TableCell className="font-medium hidden md:table-cell overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">{solve.solution ? `${calcTurnsPerSecond(solve.solution, solve.time)} tps` : 'N/A'}</TableCell>
                     <TableCell>{formatTime(solve.time)}</TableCell>
                     <TableCell className="hidden sm:table-cell text-right">
-                      <ScrambleDisplay className={'size-20'} show scramble={solve.scramble} event={solve.puzzle}/>
+                      <ScrambleDisplay className={'size-20'} show scramble={solve.scramble} event={solve.puzzle} puzzle={solve.puzzle}/>
                     </TableCell>
                     <TableCell className="font-medium hidden sm:table-cell">{format(new Date(solve.createdAt), 'd MMM yyyy')}</TableCell>
                   </TableRow>

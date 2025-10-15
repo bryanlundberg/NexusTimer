@@ -21,9 +21,12 @@ const SolveSchema = new Schema(
     },
     puzzle: {
       type: String,
-      enum: ['3x3x3'],
-      default: '3x3x3',
+      enum: ['3x3x3', '2x2x2'],
       required: [true, 'Please provide a cube type'],
+    },
+    smart: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }

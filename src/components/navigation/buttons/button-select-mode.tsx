@@ -23,7 +23,7 @@ export default function ButtonSelectMode() {
 
   useEffect(() => {
     if (!selectedCube) return;
-    if (selectedCube.category !== '3x3' && timerMode === TimerMode.VIRTUAL) {
+    if ((selectedCube.category !== '3x3' && selectedCube.category !== '2x2') && timerMode === TimerMode.VIRTUAL) {
       setTimerMode(TimerMode.NORMAL)
     }
   }, [selectedCube, setTimerMode, timerMode])
@@ -48,7 +48,7 @@ export default function ButtonSelectMode() {
             <DropdownMenuRadioItem value={TimerMode.STACKMAT}>
               Stackmat
             </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value={TimerMode.VIRTUAL} disabled={selectedCube?.category !== '3x3'}>
+            <DropdownMenuRadioItem value={TimerMode.VIRTUAL} disabled={(selectedCube?.category !== '3x3' && selectedCube?.category !== '2x2')}>
               Virtual
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem value={TimerMode.SMART_CUBE} disabled>
