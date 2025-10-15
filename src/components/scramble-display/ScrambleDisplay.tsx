@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { TwistyPlayer } from "cubing/twisty";
+import { PuzzleID, TwistyPlayer } from 'cubing/twisty';
 import getDisplayId from "@/lib/getDisplayId";
 import { Categories } from "@/interfaces/Categories";
 
@@ -9,6 +9,7 @@ interface ScrambleDisplay extends React.HTMLAttributes<HTMLDivElement> {
   scramble: string | null;
   event: Categories;
   visualization?: "2D" | "3D";
+  puzzle?: PuzzleID;
 }
 
 export default function ScrambleDisplay({
@@ -17,6 +18,7 @@ export default function ScrambleDisplay({
   event,
   className,
   visualization = "2D",
+  puzzle,
   ...rest
 }: ScrambleDisplay) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -32,7 +34,7 @@ export default function ScrambleDisplay({
     const displayId = getDisplayId(event);
 
     const player = new TwistyPlayer({
-      puzzle: displayId || "3x3x3",
+      puzzle: puzzle ?? (displayId || "3x3x3"),
       alg: scramble ? scramble : "",
       hintFacelets: "none",
       background: "none",
