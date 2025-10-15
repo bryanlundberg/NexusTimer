@@ -18,8 +18,8 @@ export default function EmptyTabContent() {
           opacity: 0.1
         }}
       ></Image>
-      <div className="relative scroll-m-20 text-xl tracking-tight max-w-40 mx-auto text-center">
-        No content available for this tab.
+      <div className="relative scroll-m-20 text-xl tracking-tight max-w-prose md:max-w-xl mx-auto text-center px-4">
+        This account has no backup data to display.
       </div>
     </div>
   );
