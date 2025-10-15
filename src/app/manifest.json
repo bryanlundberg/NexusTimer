@@ -21,8 +21,8 @@
   "lang": "en-EN",
   "name": "Nexus Timer",
   "short_name": "Nexus Timer",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/app",
+  "scope": "/app",
   "description": "Nexus Timer is a professional platform for training and analyzing your journey with the Rubik's Cube. Installing it you will get access to a wide range of features, including a timer, statistics, and more offline.",
   "id": "/",
   "screenshots": [
