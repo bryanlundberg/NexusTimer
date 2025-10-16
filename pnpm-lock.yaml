@@ -345,6 +345,9 @@ importers:
       jest-environment-jsdom:
         specifier: ^29.7.0
         version: 29.7.0
+      prettier:
+        specifier: 3.6.2
+        version: 3.6.2
 
 packages:
 
