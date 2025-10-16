@@ -1,22 +1,20 @@
 {
-  "singleQuote": true,
-  "trailingComma": "es5",
-  "arrowParens": "always",
+  "$schema": "https://json.schemastore.org/prettierrc",
+  "printWidth": 120,
   "tabWidth": 2,
   "useTabs": false,
-  "printWidth": 100,
+  "semi": false,
+  "singleQuote": true,
+  "quoteProps": "as-needed",
+  "trailingComma": "es5",
   "bracketSpacing": true,
-  "jsxSingleQuote": false,
-  "jsxBracketSameLine": false,
-  "semi": true,
-  "importOrder": [
-    "^react$",
-    "^next",
-    "<THIRD_PARTY_MODULES>",
-    "^@/components/(.*)$",
-    "^@/utils/(.*)$",
-    "^[./]"
-  ],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "bracketSameLine": false,
+  "arrowParens": "always",
+  "htmlWhitespaceSensitivity": "css",
+  "vueIndentScriptAndStyle": false,
+  "endOfLine": "lf",
+  "embeddedLanguageFormatting": "auto",
+  "singleAttributePerLine": false,
+  "objectWrap": "preserve",
+  "experimentalOperatorPosition": "end"
 }
