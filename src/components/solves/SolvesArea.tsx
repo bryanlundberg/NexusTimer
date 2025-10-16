@@ -72,7 +72,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
       rowHeight={160}
       cellWidth={220}
       gridGap={8}
-      className="h-full pb-5"
+      className="h-full pb-56"
     >
       {(index) => (
         <Card
@@ -116,7 +116,7 @@ export function SolvesArea({ displaySolves }: SolvesArea) {
 
           {sortedSolves[index].bookmark && (
             <div className="absolute left-2 top-2 text-yellow-500">
-              <BookmarkFilledIcon className={"size-5"}/>
+              <BookmarkFilledIcon className={'size-5'}/>
             </div>
           )}
         </Card>
