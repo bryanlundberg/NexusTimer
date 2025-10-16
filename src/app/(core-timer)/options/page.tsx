@@ -1,10 +1,10 @@
-'use client';
-import { useSettingsModalStore } from '@/store/SettingsModalStore';
-import ThemeSelect from '@/components/menu-settings/ThemeSelect';
-import { MenuSection } from '@/components/menu-settings/MenuSection';
-import { MenuOption } from '@/components/menu-settings/MenuOption';
-import { DataImportExport } from '@/components/menu-settings/DataImportExport';
-import { useTranslations } from 'next-intl';
+'use client'
+import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import ThemeSelect from '@/components/menu-settings/ThemeSelect'
+import { MenuSection } from '@/components/menu-settings/MenuSection'
+import { MenuOption } from '@/components/menu-settings/MenuOption'
+import { DataImportExport } from '@/components/menu-settings/DataImportExport'
+import { useTranslations } from 'next-intl'
 import {
   BellIcon,
   BoxModelIcon,
@@ -15,67 +15,47 @@ import {
   MagicWandIcon,
   SpeakerLoudIcon,
   UpdateIcon,
-} from '@radix-ui/react-icons';
-import MenuSelectLanguage from '@/components/menu-settings/MenuSelectLanguage';
-import CustomTheme from '@/components/menu-settings/CustomTheme';
-import MenuSelectDefaultStartCube from '@/components/menu-settings/MenuSelectDefaultStartCube';
-import AccountHeader from '@/components/account/account-header/account-header';
-import { Separator } from '@/components/ui/separator';
-import MenuSelectColor from '@/components/menu-settings/MenuSelectColor';
-import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
-import MenuInputOption from '@/components/menu-settings/MenuInputOption';
-import _ from 'lodash';
-import { Button } from '@/components/ui/button';
-import { defaultSettings } from '@/lib/const/defaultSettings';
-import useWebsiteColors from '@/hooks/useWebsiteColors';
-import { toast } from 'sonner';
-import { ScrollArea } from '@/components/ui/scroll-area';
+} from '@radix-ui/react-icons'
+import MenuSelectLanguage from '@/components/menu-settings/MenuSelectLanguage'
+import CustomTheme from '@/components/menu-settings/CustomTheme'
+import MenuSelectDefaultStartCube from '@/components/menu-settings/MenuSelectDefaultStartCube'
+import AccountHeader from '@/components/account/account-header/account-header'
+import { Separator } from '@/components/ui/separator'
+import MenuSelectColor from '@/components/menu-settings/MenuSelectColor'
+import { useForm } from 'react-hook-form'
+import { useEffect } from 'react'
+import MenuInputOption from '@/components/menu-settings/MenuInputOption'
+import _ from 'lodash'
+import { Button } from '@/components/ui/button'
+import { defaultSettings } from '@/lib/const/defaultSettings'
+import useWebsiteColors from '@/hooks/useWebsiteColors'
+import { toast } from 'sonner'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 export default function Page() {
-  const { settings, setSettings } = useSettingsModalStore();
-  const t = useTranslations('Index');
-  const { watch, control, getValues, formState: { isDirty }, reset } = useForm({ defaultValues: settings });
-  const formWatch = watch();
-  const { applyColorTheme } = useWebsiteColors();
+  const { settings, setSettings } = useSettingsModalStore()
+  const t = useTranslations('Index')
+  const { control, reset } = useForm({ defaultValues: settings })
+  const { applyColorTheme } = useWebsiteColors()
 
   const handleResetSettings = () => {
-    setSettings(defaultSettings);
-    applyColorTheme(defaultSettings.preferences.colorTheme);
-    reset(defaultSettings);
-    toast.success('Settings have been reset to default');
-  };
-
-  useEffect(() => {
-    const debounceSave = _.debounce(() => {
-      if (isDirty) {
-        setSettings(getValues());
-        reset(getValues());
-      }
-    }, 400);
-
-    debounceSave();
-
-    return () => {
-      debounceSave.cancel();
-    };
-  }, [formWatch, getValues, isDirty, setSettings, reset]);
+    setSettings(defaultSettings)
+    applyColorTheme(defaultSettings.preferences.colorTheme)
+    reset(defaultSettings)
+    toast.success('Settings have been reset to default')
+  }
 
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <div className="mt-5">
         <div className="max-w-md mx-auto bg-background/90 backdrop-blur-lg">
-          <AccountHeader back="/app" label={t('SettingsPage.options')}/>
+          <AccountHeader back="/app" label={t('SettingsPage.options')} />
 
-          <MenuSelectLanguage/>
+          <MenuSelectLanguage />
 
-          <Separator className="my-5"/>
+          <Separator className="my-5" />
 
-          <MenuSection
-            id="timer"
-            icon={<LapTimerIcon/>}
-            title={t('Settings-menu.timer')}
-          >
+          <MenuSection id="timer" icon={<LapTimerIcon />} title={t('Settings-menu.timer')}>
             <MenuOption
               label={t('Settings-menu.inspection')}
               name={'timer.inspection'}
@@ -99,7 +79,7 @@ export default function Page() {
             />
 
             <MenuOption
-              name={('timer.holdToStart')}
+              name={'timer.holdToStart'}
               label={t('Settings-menu.hold-to-start')}
               control={control}
               description={t('Settings-descriptions.hold-to-start')}
@@ -113,7 +93,6 @@ export default function Page() {
               description={t('Settings-descriptions.hold-to-start-time')}
             />
 
-
             <MenuInputOption
               name={'timer.decimals'}
               label={t('Settings-menu.decimal-places')}
@@ -121,63 +100,54 @@ export default function Page() {
               inputProps={{ max: 4, min: 1, step: 1 }}
               description={t('Settings-descriptions.decimal-places')}
             />
-
           </MenuSection>
 
-          <Separator className="my-5"/>
+          <Separator className="my-5" />
 
-          <MenuSection
-            id="features"
-            icon={<MagicWandIcon/>}
-            title={t('Settings-menu.features')}
-          >
+          <MenuSection id="features" icon={<MagicWandIcon />} title={t('Settings-menu.features')}>
             <MenuOption
-              name={('features.scrambleImage')}
+              name={'features.scrambleImage'}
               label={t('Settings-menu.scramble-image')}
               control={control}
               description={t('Settings-descriptions.scramble-image')}
             />
             <MenuOption
-              name={('features.sessionStats')}
+              name={'features.sessionStats'}
               label={t('Settings-menu.session-stats')}
               control={control}
               description={t('Settings-descriptions.session-stats')}
             />
             <MenuOption
-              name={('features.quickActionButtons')}
+              name={'features.quickActionButtons'}
               label={t('Settings-menu.quick-action-buttons')}
               control={control}
               description={t('Settings-descriptions.quick-action-buttons')}
             />
             <MenuOption
-              name={('features.hideWhileSolving')}
+              name={'features.hideWhileSolving'}
               label={t('Settings-menu.hide-while-solving')}
               control={control}
               description={t('Settings-descriptions.hide-while-solving')}
             />
             <MenuOption
-              name={('features.scrambleBackground')}
+              name={'features.scrambleBackground'}
               label={t('Settings-menu.scramble-background')}
               control={control}
               description={t('Settings-descriptions.scramble-background')}
             />
           </MenuSection>
 
-          <Separator className="my-5"/>
+          <Separator className="my-5" />
 
-          <MenuSection
-            id="alerts"
-            icon={<BellIcon/>}
-            title={t('Settings-menu.alerts')}
-          >
+          <MenuSection id="alerts" icon={<BellIcon />} title={t('Settings-menu.alerts')}>
             <MenuOption
-              name={('alerts.bestTime')}
+              name={'alerts.bestTime'}
               label={t('Settings-menu.best-time')}
               control={control}
               description={t('Settings-descriptions.best-time-alert')}
             />
             <MenuOption
-              name={('alerts.bestAverage')}
+              name={'alerts.bestAverage'}
               label={t('Settings-menu.best-average')}
               control={control}
               description={t('Settings-descriptions.best-average-alert')}
@@ -191,13 +161,9 @@ export default function Page() {
             />
           </MenuSection>
 
-          <Separator className="my-5"/>
+          <Separator className="my-5" />
 
-          <MenuSection
-            id="sounds"
-            icon={<SpeakerLoudIcon/>}
-            title={t('Settings-menu.sounds')}
-          >
+          <MenuSection id="sounds" icon={<SpeakerLoudIcon />} title={t('Settings-menu.sounds')}>
             <MenuOption
               name={'sounds.newPersonalBest'}
               label={t('Settings-menu.newPersonalBest')}
@@ -206,31 +172,23 @@ export default function Page() {
             />
           </MenuSection>
 
-          <Separator className="my-5"/>
+          <Separator className="my-5" />
 
-          <MenuSection
-            id="background"
-            icon={<ComponentBooleanIcon/>}
-            title={t('Settings-menu.theme')}
-          >
-            <ThemeSelect/>
-            <CustomTheme/>
-            <MenuSelectColor/>
+          <MenuSection id="background" icon={<ComponentBooleanIcon />} title={t('Settings-menu.theme')}>
+            <ThemeSelect />
+            <CustomTheme />
+            <MenuSelectColor />
           </MenuSection>
 
-          <Separator className="my-5"/>
+          <Separator className="my-5" />
 
-          <MenuSection
-            id="preferences"
-            icon={<BoxModelIcon/>}
-            title={t('Settings-menu.preferences')}
-          >
-            <MenuSelectDefaultStartCube/>
+          <MenuSection id="preferences" icon={<BoxModelIcon />} title={t('Settings-menu.preferences')}>
+            <MenuSelectDefaultStartCube />
           </MenuSection>
 
-          <Separator className="my-5"/>
+          <Separator className="my-5" />
 
-          <MenuSection icon={<Link2Icon/>} title={'Cloud Sync'} id="cloud-sync">
+          <MenuSection icon={<Link2Icon />} title={'Cloud Sync'} id="cloud-sync">
             <MenuOption
               label={'Enable Automatic Save Cloud'}
               name={'sync.autoSaveEnabled'}
@@ -254,30 +212,22 @@ export default function Page() {
             />
           </MenuSection>
 
-          <Separator className="my-5"/>
+          <Separator className="my-5" />
 
-          <MenuSection
-            id="app-data"
-            icon={<FileTextIcon/>}
-            title={t('Settings-menu.data')}
-          >
-            <DataImportExport/>
+          <MenuSection id="app-data" icon={<FileTextIcon />} title={t('Settings-menu.data')}>
+            <DataImportExport />
           </MenuSection>
 
-          <Separator className="my-5"/>
+          <Separator className="my-5" />
 
           <div className="flex justify-center mb-10">
-            <Button
-              variant="destructive"
-              onClick={handleResetSettings}
-              className="flex items-center gap-2"
-            >
-              <UpdateIcon className="size-4"/>
+            <Button variant="destructive" onClick={handleResetSettings} className="flex items-center gap-2">
+              <UpdateIcon className="size-4" />
               {'Reset settings'}
             </Button>
           </div>
         </div>
       </div>
     </ScrollArea>
-  );
+  )
 }
