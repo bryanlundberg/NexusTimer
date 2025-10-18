@@ -16,10 +16,8 @@ import { useSession } from 'next-auth/react'
 export default function Page() {
   const { roomId } = useParams()
   const { data: session } = useSession()
-  const { useRoom, joinRoom, useRoomScramble, useRoomPresence, leaveRoom } = useFreeMode()
-  const room = useRoom(roomId?.toString() || '')
-  const scramble = useRoomScramble(roomId?.toString() || '')
-  const onlineUsers = useRoomPresence(roomId?.toString() || '')
+  const { joinRoom, leaveRoom, useUsersPresence } = useFreeMode()
+  const onlineUsers = useUsersPresence(roomId?.toString() || '')
 
   useEffect(() => {
     if (!roomId || !session?.user?.id) return
