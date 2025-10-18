@@ -15,6 +15,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@firebase/database": "^1.1.0",
     "@firebase/firestore": "^4.9.0",
     "@headlessui/react": "^1.7.19",
     "@heroicons/react": "^2.2.0",
