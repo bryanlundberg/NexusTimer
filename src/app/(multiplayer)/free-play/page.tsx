@@ -1,6 +1,4 @@
 'use client'
-import { useSession } from 'next-auth/react'
-import { usePresence } from '@/hooks/usePresence'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
@@ -13,8 +11,6 @@ import CreateRoomModal from '@/components/free-play/create-room-modal/create-roo
 import useFreeMode from '@/hooks/useFreeMode'
 
 export default function FreePlayPage() {
-  const { data: session } = useSession()
-  usePresence(session?.user?.id)
   const { useRooms } = useFreeMode()
   const rooms = useRooms()
 
