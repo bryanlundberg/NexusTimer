@@ -33,7 +33,6 @@ export default function TimerTab() {
     onFinishSolve: () =>
       addUserSolve(roomId?.toString() || '', session?.user?.id || '', {
         time: solvingTime,
-        date: Date.now(),
         dnf: false,
         plus2: false
       }),
