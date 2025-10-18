@@ -36,20 +36,6 @@ export default function useFreeMode() {
     return rooms
   }
 
-  const useRoom = (roomId: string) => {
-    const [room, setRoom] = useState(null)
-
-    useEffect(() => {
-      const roomRef = ref(rtdb, `rooms/${roomId}`)
-      onValue(roomRef, (snapshot) => {
-        const data = snapshot.val()
-        setRoom(data)
-      })
-    }, [roomId])
-
-    return room
-  }
-
   const joinRoom = async (roomId: string, userId: string) => {
     const userRef = ref(rtdb, `rooms/${roomId}/presence/${userId}`)
     await onDisconnect(userRef).remove()
@@ -156,15 +142,47 @@ export default function useFreeMode() {
   }
 
   const updateRoomRoundLimit = async (roomId: string, roundDurationMs: number) => {
-    const timeLimitRef = ref(rtdb, `rooms/${roomId}/maxRoundTime`)
+    const timeLimitRef = ref(rtdb, `rooms/${roomId}/currentRoundTimeLimit`)
 
     const currentRoundTimeLimit = Date.now() + roundDurationMs
     await set(timeLimitRef, currentRoundTimeLimit)
   }
 
+  const updateRoomScramble = async (roomId: string, scramble: string) => {
+    const scrambleRef = ref(rtdb, `rooms/${roomId}/scramble`)
+    await set(scrambleRef, scramble)
+  }
+
+  const useRoomEvent = (roomId: string) => {
+    const [event, setEvent] = useState<string>('3x3')
+
+    useEffect(() => {
+      const eventRef = ref(rtdb, `rooms/${roomId}/event`)
+      onValue(eventRef, (snapshot) => {
+        const data = snapshot.val()
+        setEvent(data || '3x3')
+      })
+    }, [roomId])
+
+    return event
+  }
+
+  const useMaxRoundTime = (roomId: string) => {
+    const [maxRoundTime, setMaxRoundTime] = useState<number | null>(null)
+
+    useEffect(() => {
+      const maxRoundTimeRef = ref(rtdb, `rooms/${roomId}/maxRoundTime`)
+      onValue(maxRoundTimeRef, (snapshot) => {
+        const data = snapshot.val()
+        setMaxRoundTime(data)
+      })
+    }, [roomId])
+
+    return maxRoundTime
+  }
+
   return {
     useRooms,
-    useRoom,
     joinRoom,
     useRoomScramble,
     addUserSolve,
@@ -175,6 +193,9 @@ export default function useFreeMode() {
     updateRoomAuthority,
     useRoomSolves,
     useRoomRoundLimit,
-    updateRoomRoundLimit
+    updateRoomRoundLimit,
+    updateRoomScramble,
+    useRoomEvent,
+    useMaxRoundTime
   }
 }
