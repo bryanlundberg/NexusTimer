@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button'
 import { ref, serverTimestamp, set } from '@firebase/database'
 import { rtdb } from '@/firebase'
+import genScramble from '@/lib/timer/genScramble'
 
 export default function CreateRoomModal() {
   const { data: session } = useSession()
@@ -17,7 +18,7 @@ export default function CreateRoomModal() {
   const {
     handleSubmit,
     control,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
     register
   } = useForm({
     defaultValues: {
@@ -36,13 +37,12 @@ export default function CreateRoomModal() {
       createdAt: serverTimestamp(),
       maxRoundTime: parseInt(data.maxRoundTime, 10),
       createdBy: session?.user?.id || '',
-      authority: {
-        leaderId: session?.user?.id || '',
-        term: 1
-      }
+      authority: session?.user?.id || '',
+      scramble: genScramble(data.event),
+      currentRoundTimeLimit: Number(data.maxRoundTime) * 1000 + Date.now()
     })
 
-    // router.push(`/clash/${roomId}`)
+    router.push(`/free-play/${roomId}`)
   }
 
   return (
