@@ -108,6 +108,60 @@ export default function useFreeMode() {
     })
   }
 
+  const useRoomAuthority = (roomId: string) => {
+    const [authorityId, setAuthorityId] = useState<string | null>(null)
+
+    useEffect(() => {
+      const authorityRef = ref(rtdb, `rooms/${roomId}/authority`)
+      onValue(authorityRef, (snapshot) => {
+        const data = snapshot.val()
+        setAuthorityId(data)
+      })
+    }, [roomId])
+
+    return authorityId
+  }
+
+  const updateRoomAuthority = async (roomId: string, userId: string) => {
+    const authorityRef = ref(rtdb, `rooms/${roomId}/authority`)
+    await set(authorityRef, userId)
+  }
+
+  const useRoomSolves = (roomId: string) => {
+    const [solves, setSolves] = useState<{ [userId: string]: { [solveId: string]: UserSolves } }>({})
+
+    useEffect(() => {
+      const solvesRef = ref(rtdb, `rooms/${roomId}/solves`)
+      onValue(solvesRef, (snapshot) => {
+        const data = snapshot.val()
+        setSolves(data || {})
+      })
+    }, [roomId])
+
+    return solves
+  }
+
+  const useRoomRoundLimit = (roomId: string) => {
+    const [timeLimit, setTimeLimit] = useState<number | null>(null)
+
+    useEffect(() => {
+      const timeLimitRef = ref(rtdb, `rooms/${roomId}/currentRoundTimeLimit`)
+      onValue(timeLimitRef, (snapshot) => {
+        const data = snapshot.val()
+        setTimeLimit(data)
+      })
+    }, [roomId])
+
+    return timeLimit
+  }
+
+  const updateRoomRoundLimit = async (roomId: string, roundDurationMs: number) => {
+    const timeLimitRef = ref(rtdb, `rooms/${roomId}/maxRoundTime`)
+
+    const currentRoundTimeLimit = Date.now() + roundDurationMs
+    await set(timeLimitRef, currentRoundTimeLimit)
+  }
+
   return {
     useRooms,
     useRoom,
@@ -116,6 +170,11 @@ export default function useFreeMode() {
     addUserSolve,
     useUsersPresence,
     updateUserPresenceStatus,
-    leaveRoom
+    leaveRoom,
+    useRoomAuthority,
+    updateRoomAuthority,
+    useRoomSolves,
+    useRoomRoundLimit,
+    updateRoomRoundLimit
   }
 }
