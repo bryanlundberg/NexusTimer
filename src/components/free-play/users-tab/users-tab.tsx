@@ -9,7 +9,7 @@ export default function UsersTab() {
   return (
     <div className={'flex flex-wrap gap-2'}>
       {cubersOnline?.map((player) => (
-        <PlayerMiniCard key={player.id} name={player.name} avatarUrl={player.image} />
+        <PlayerMiniCard key={player.id} name={player.name} avatarUrl={player.image || ''} />
       ))}
     </div>
   )
