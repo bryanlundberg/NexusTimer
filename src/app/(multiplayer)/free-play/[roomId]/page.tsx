@@ -10,13 +10,28 @@ import * as React from 'react'
 import TimerTab from '@/components/free-play/timer-tab/timer-tab'
 import UsersTab from '@/components/free-play/users-tab/users-tab'
 import ResultsTab from '@/components/free-play/results-tab/results-tab'
+import { useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 
 export default function Page() {
   const { roomId } = useParams()
-  const { useRoom } = useFreeMode()
+  const { data: session } = useSession()
+  const { useRoom, joinRoom, useRoomScramble, useRoomPresence, leaveRoom } = useFreeMode()
   const room = useRoom(roomId?.toString() || '')
+  const scramble = useRoomScramble(roomId?.toString() || '')
+  const onlineUsers = useRoomPresence(roomId?.toString() || '')
 
-  console.log(roomId)
+  useEffect(() => {
+    if (!roomId || !session?.user?.id) return
+    joinRoom(roomId.toString(), session.user.id)
+
+    return () => {
+      if (roomId && session?.user?.id) {
+        leaveRoom(roomId.toString(), session.user.id)
+      }
+    }
+  }, [roomId, session?.user?.id])
+
   return (
     <div className="pt-4 px-4 md:pb-4 h-full flex flex-col">
       <div className={'flex justify-between items-start h-fit'}>
@@ -36,7 +51,10 @@ export default function Page() {
           </Breadcrumb>
         </div>
 
-        <div>online: 2</div>
+        <div className="flex items-center gap-1">
+          <span className="text-sm text-muted-foreground">Online:</span>
+          <span className="font-medium">{onlineUsers ? Object.keys(onlineUsers).length : 0}</span>
+        </div>
       </div>
 
       <div>
