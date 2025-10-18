@@ -7,23 +7,37 @@ import { Separator } from '@/components/ui/separator'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
 import Link from 'next/link'
 import * as React from 'react'
+import { useEffect, useRef } from 'react'
 import TimerTab from '@/components/free-play/timer-tab/timer-tab'
 import UsersTab from '@/components/free-play/users-tab/users-tab'
 import ResultsTab from '@/components/free-play/results-tab/results-tab'
-import { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/store/timerStore'
 import { useCountdown } from '@/hooks/useCountdown'
+import genScramble from '@/lib/timer/genScramble'
+import { Categories } from '@/interfaces/Categories'
 
 export default function Page() {
   const { roomId } = useParams()
   const { data: session } = useSession()
-  const { joinRoom, leaveRoom, useUsersPresence, useRoomRoundLimit } = useFreeMode()
+  const {
+    joinRoom,
+    leaveRoom,
+    useUsersPresence,
+    useRoomRoundLimit,
+    useRoomAuthority,
+    useRoomEvent,
+    updateRoomRoundLimit,
+    updateRoomScramble
+  } = useFreeMode()
   const onlineUsers = useUsersPresence(roomId?.toString() || '')
   const reset = useTimerStore((state) => state.reset)
   const setSolvingTime = useTimerStore((state) => state.setSolvingTime)
   const roundLimit = useRoomRoundLimit(roomId?.toString() || '')
-  const { mmss } = useCountdown(roundLimit || 0)
+  const { mmss, isFinished } = useCountdown(roundLimit || 0)
+  const roomAuthority = useRoomAuthority(roomId?.toString() || '')
+  const event = useRoomEvent(roomId?.toString() || '')
+  const maxRoundTime = useFreeMode().useMaxRoundTime(roomId?.toString() || '')
 
   useEffect(() => {
     if (!roomId || !session?.user?.id) return
@@ -37,6 +51,24 @@ export default function Page() {
       }
     }
   }, [roomId, session?.user?.id])
+
+  const handledRoundRef = useRef<number | null>(null)
+  useEffect(() => {
+    if (!roomId || !session?.user?.id) return
+    if (!isFinished) return
+    if (!roomAuthority) return
+    if (session.user.id !== roomAuthority) return
+    if (!event) return
+    if (!maxRoundTime) return
+
+    if (handledRoundRef.current === (roundLimit ?? null)) return
+    handledRoundRef.current = roundLimit ?? null
+
+    const durationMs = maxRoundTime * 1000
+    const newScramble = genScramble(event as Categories)
+    updateRoomScramble(roomId.toString(), newScramble)
+    updateRoomRoundLimit(roomId.toString(), durationMs)
+  }, [isFinished, roomAuthority, session?.user?.id, roomId])
 
   return (
     <div className="pt-4 px-4 md:pb-4 h-full flex flex-col">
