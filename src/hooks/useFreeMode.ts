@@ -2,6 +2,22 @@ import { useEffect, useState } from 'react'
 import { onDisconnect, onValue, ref, serverTimestamp, set, update } from '@firebase/database'
 import { rtdb } from '@/firebase'
 import { useSession } from 'next-auth/react'
+import { TimerStatus } from '@/enums/TimerStatus'
+
+interface UserPresence {
+  id: string
+  name: string
+  image: string | null
+  joinedAt: number
+  status?: TimerStatus
+}
+
+interface UserSolves {
+  time: number
+  plus2: boolean
+  dnf: boolean
+  createdAt: number
+}
 
 export default function useFreeMode() {
   const { data: session } = useSession()
@@ -66,11 +82,13 @@ export default function useFreeMode() {
 
   const addUserSolve = async (roomId: string, userId: string, solveData: any) => {
     const solveRef = ref(rtdb, `rooms/${roomId}/solves/${userId}`)
-    await update(solveRef, { [Date.now()]: solveData })
+    const now = serverTimestamp()
+    const newSolveData = { ...solveData, createdAt: now }
+    await update(solveRef, { [Date.now()]: newSolveData })
   }
 
   const useUsersPresence = (roomId: string) => {
-    const [users, setUsers] = useState([])
+    const [users, setUsers] = useState<UserPresence[]>([])
 
     useEffect(() => {
       const presenceRef = ref(rtdb, `rooms/${roomId}/presence`)
@@ -90,20 +108,6 @@ export default function useFreeMode() {
     })
   }
 
-  const useRoomPresence = (roomId: string) => {
-    const [presence, setPresence] = useState(null)
-
-    useEffect(() => {
-      const presenceRef = ref(rtdb, `rooms/${roomId}/presence`)
-      onValue(presenceRef, (snapshot) => {
-        const data = snapshot.val()
-        setPresence(data)
-      })
-    }, [roomId])
-
-    return presence
-  }
-
   return {
     useRooms,
     useRoom,
@@ -112,7 +116,6 @@ export default function useFreeMode() {
     addUserSolve,
     useUsersPresence,
     updateUserPresenceStatus,
-    useRoomPresence,
     leaveRoom
   }
 }
