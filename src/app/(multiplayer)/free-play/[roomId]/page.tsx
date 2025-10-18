@@ -12,12 +12,18 @@ import UsersTab from '@/components/free-play/users-tab/users-tab'
 import ResultsTab from '@/components/free-play/results-tab/results-tab'
 import { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
+import { useTimerStore } from '@/store/timerStore'
+import { useCountdown } from '@/hooks/useCountdown'
 
 export default function Page() {
   const { roomId } = useParams()
   const { data: session } = useSession()
-  const { joinRoom, leaveRoom, useUsersPresence } = useFreeMode()
+  const { joinRoom, leaveRoom, useUsersPresence, useRoomRoundLimit } = useFreeMode()
   const onlineUsers = useUsersPresence(roomId?.toString() || '')
+  const reset = useTimerStore((state) => state.reset)
+  const setSolvingTime = useTimerStore((state) => state.setSolvingTime)
+  const roundLimit = useRoomRoundLimit(roomId?.toString() || '')
+  const { mmss } = useCountdown(roundLimit || 0)
 
   useEffect(() => {
     if (!roomId || !session?.user?.id) return
@@ -26,6 +32,8 @@ export default function Page() {
     return () => {
       if (roomId && session?.user?.id) {
         leaveRoom(roomId.toString(), session.user.id)
+        setSolvingTime(0)
+        reset()
       }
     }
   }, [roomId, session?.user?.id])
@@ -56,7 +64,7 @@ export default function Page() {
       </div>
 
       <div>
-        <div className={'text-center text-xs mb-4'}>Next round starts in: 13:00</div>
+        <div className={'text-center text-xs mb-4'}>Next round starts in: {mmss}</div>
       </div>
       <Tabs defaultValue="timer" className="bg-muted rounded-lg flex-1 px-2 pt-2 pb-2">
         <TabsContents className="rounded-sm bg-background h-full">
