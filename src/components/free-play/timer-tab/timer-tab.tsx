@@ -161,10 +161,17 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
   useEffect(() => {
     if (!session?.user?.id) return
     if (!roomId) return
+
+    let currentStatus = timerStatus
+
+    if (disableTimer && !isSolving) {
+      currentStatus = TimerStatus.WAITING_NEXT_ROUND
+    }
+
     updateUserPresenceStatus(roomId.toString(), session.user.id, {
-      status: isSolving ? TimerStatus.SOLVING : TimerStatus.IDLE
+      status: currentStatus
     })
-  }, [isSolving, session?.user?.id, roomId])
+  }, [timerStatus, disableTimer, isSolving, session?.user?.id, roomId])
 
   return (
     <div className={'flex flex-col justify-center w-full items-center h-full p-4'} id={'touch'}>
