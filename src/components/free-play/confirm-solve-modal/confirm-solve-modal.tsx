@@ -1,7 +1,13 @@
 import { Button } from '@/components/ui/button'
 import { useTimerStore } from '@/store/timerStore'
 import formatTime from '@/lib/formatTime'
-import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog'
+import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogHeader,
+  AlertDialogTitle
+} from '@/components/ui/alert-dialog'
 
 interface ConfirmSolveModalProps {
   isOpen: boolean
@@ -26,6 +32,7 @@ export default function ConfirmSolveModal({ isOpen, onClose, onChoose }: Confirm
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Confirm Solve Time ({formatTime(solvingTime)})</AlertDialogTitle>
+          <AlertDialogDescription></AlertDialogDescription>
           <div className="text-sm text-muted-foreground mb-4">How would you like to register this solve?</div>
           <div className={'grid grid-cols-3 gap-2'}>
             <Button
