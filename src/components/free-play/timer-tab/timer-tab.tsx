@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import useTimer from '@/hooks/useTimer'
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
@@ -10,12 +10,12 @@ import useFreeMode from '@/hooks/useFreeMode'
 import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
 import { TimerStatus } from '@/enums/TimerStatus'
+import ConfirmSolveModal from '@/components/free-play/confirm-solve-modal/confirm-solve-modal'
 
 export default function TimerTab() {
   const { roomId } = useParams()
   const { updateUserPresenceStatus, addUserSolve, useRoomScramble } = useFreeMode()
   const scramble = useRoomScramble(roomId?.toString() || '')
-
   const { data: session } = useSession()
   const settings = useSettingsModalStore((store) => store.settings)
   const isSolving = useTimerStore((store) => store.isSolving)
@@ -26,16 +26,32 @@ export default function TimerTab() {
   const setIsSolving = useTimerStore((store) => store.setIsSolving)
   const setSolvingTime = useTimerStore((store) => store.setSolvingTime)
   const timerMode = useTimerStore((store) => store.timerMode)
+  const [modalOpen, setModalOpen] = useState(false)
 
   const { device } = useDeviceMatch()
 
+  const handleSubmitTime = async (dnf: boolean, plus2: boolean) => {
+    setModalOpen(false)
+    if (!session?.user?.id) return
+    if (!roomId) return
+    if (!solvingTime) return
+
+    await addUserSolve(roomId?.toString() || '', session?.user?.id || '', {
+      time: solvingTime,
+      dnf,
+      plus2
+    })
+  }
+
   const { inspectionTime } = useTimer({
-    onFinishSolve: () =>
-      addUserSolve(roomId?.toString() || '', session?.user?.id || '', {
+    onFinishSolve: async () => {
+      setModalOpen(true)
+      await addUserSolve(roomId?.toString() || '', session?.user?.id || '', {
         time: solvingTime,
         dnf: false,
         plus2: false
-      }),
+      })
+    },
     isSolving,
     setTimerStatus,
     selectedCube: {} as Cube,
@@ -70,6 +86,12 @@ export default function TimerTab() {
           className={'text-center'}
         />
       </div>
+
+      <ConfirmSolveModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        onChoose={({ dnf, plus2 }) => handleSubmitTime(dnf, plus2)}
+      />
     </div>
   )
 }
