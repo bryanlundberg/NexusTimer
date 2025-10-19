@@ -29,8 +29,7 @@ export default function Page() {
     useRoomAuthority,
     useRoomEvent,
     updateRoomRoundLimit,
-    updateRoomScramble,
-    useDisconnectHandler
+    updateRoomScramble
   } = useFreeMode()
   const onlineUsers = useUsersPresence(roomId?.toString() || '')
   const reset = useTimerStore((state) => state.reset)
@@ -40,8 +39,6 @@ export default function Page() {
   const roomAuthority = useRoomAuthority(roomId?.toString() || '')
   const event = useRoomEvent(roomId?.toString() || '')
   const maxRoundTime = useFreeMode().useMaxRoundTime(roomId?.toString() || '')
-
-  useDisconnectHandler(roomId?.toString() || '')
 
   useEffect(() => {
     if (!roomId || !session?.user?.id) return
@@ -107,7 +104,7 @@ export default function Page() {
 
       <div className="flex grow bg-card rounded-md border border-muted h-full overflow-hidden min-h-0">
         <div className="w-full overflow-y-auto min-h-0">
-          {currentTab === 'timer' && <TimerTab />}
+          {currentTab === 'timer' && <TimerTab maxRoundTime={maxRoundTime} event={event} onlineUsers={onlineUsers} />}
           {currentTab === 'results' && <ResultsTab />}
           {currentTab === 'people' && <UsersTab />}
         </div>
