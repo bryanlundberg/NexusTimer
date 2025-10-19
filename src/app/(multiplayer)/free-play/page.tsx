@@ -12,11 +12,16 @@ import useFreeMode from '@/hooks/useFreeMode'
 import formatTime from '@/lib/formatTime'
 import { Users, Clock, Box } from 'lucide-react'
 import { format } from 'date-fns'
+import { useMemo } from 'react'
 
 export default function FreePlayPage() {
   const { useRooms } = useFreeMode()
   const rooms = useRooms()
 
+  const displayRooms = useMemo(
+    () => (rooms ? rooms.filter((room: any) => room?.presence && Object.keys(room.presence).length > 0) : []),
+    [rooms]
+  )
   return (
     <div className="p-4">
       <div className="flex items-center gap-2 mb-6">
@@ -50,8 +55,8 @@ export default function FreePlayPage() {
       </div>
 
       <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6'}>
-        {rooms.length > 0 &&
-          rooms.map((room: any) => (
+        {displayRooms.length > 0 &&
+          displayRooms.map((room: any) => (
             <Link key={room.roomId} href={`/free-play/${room.roomId}`} className="no-underline">
               <Card className="hover:shadow-lg transition-shadow duration-300 hover:border-primary cursor-pointer h-full">
                 <CardHeader className="pb-3">
