@@ -10,10 +10,11 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import CreateRoomModal from '@/components/free-play/create-room-modal/create-room-modal'
 import useFreeMode from '@/hooks/useFreeMode'
 import formatTime from '@/lib/formatTime'
-import { Users, Clock, Box, Gamepad2 } from 'lucide-react'
+import { Users, Clock, Box } from 'lucide-react'
 import { format } from 'date-fns'
 import { useMemo, useState } from 'react'
 import { CubeIcon } from '@radix-ui/react-icons'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 export default function FreePlayPage() {
   const { useRooms } = useFreeMode()
@@ -25,7 +26,7 @@ export default function FreePlayPage() {
     [rooms]
   )
   return (
-    <div className="p-4 overflow-auto h-dvh">
+    <ScrollArea className="p-4 overflow-auto h-dvh">
       <div className="flex items-center gap-2 mb-6">
         <SidebarTrigger className="-ml-1" />
         <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
@@ -109,6 +110,6 @@ export default function FreePlayPage() {
           </p>
         </Card>
       )}
-    </div>
+    </ScrollArea>
   )
 }
