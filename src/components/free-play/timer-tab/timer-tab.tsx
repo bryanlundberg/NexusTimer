@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect, useMemo, useState, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import useTimer from '@/hooks/useTimer'
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
@@ -12,10 +12,25 @@ import { useParams } from 'next/navigation'
 import { TimerStatus } from '@/enums/TimerStatus'
 import ConfirmSolveModal from '@/components/free-play/confirm-solve-modal/confirm-solve-modal'
 import { useAudioTrigger } from '@/hooks/useAudioTrigger'
+import genScramble from '@/lib/timer/genScramble'
+import { Categories } from '@/interfaces/Categories'
 
-export default function TimerTab() {
+interface TimerTabProps {
+  maxRoundTime: number | null
+  event: string
+  onlineUsers: any[]
+}
+
+export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabProps) {
   const { roomId } = useParams()
-  const { updateUserPresenceStatus, addUserSolve, useRoomScramble, useRoomSolves } = useFreeMode()
+  const {
+    updateUserPresenceStatus,
+    addUserSolve,
+    useRoomScramble,
+    useRoomSolves,
+    updateRoomScramble,
+    updateRoomRoundLimit
+  } = useFreeMode()
   const scramble = useRoomScramble(roomId?.toString() || '')
   const { data: session } = useSession()
   const settings = useSettingsModalStore((store) => store.settings)
@@ -69,6 +84,48 @@ export default function TimerTab() {
     })
   }
 
+  /* Handle automatic scramble and round time update when all users have solved the current scramble */
+  useEffect(() => {
+    if (!session?.user?.id || !roomId || !event || !maxRoundTime) return
+    if (!scramble) return
+
+    const onlineUserIds = Array.isArray(onlineUsers)
+      ? onlineUsers.map((user) => user.id)
+      : Object.values(onlineUsers || {}).map((user: any) => user.id)
+
+    if (onlineUserIds.length === 0) return
+
+    const usersThatSolved = onlineUserIds.filter((userId) => {
+      const userSolves = solves[userId]
+      if (!userSolves) return false
+
+      return Object.values(userSolves).some((solve: any) => solve.scramble === scramble)
+    })
+
+    if (usersThatSolved.length === onlineUserIds.length && onlineUserIds.length > 0) {
+      const currentUserSolved = usersThatSolved.includes(session.user.id)
+      const isLastToSolve = currentUserSolved && hasSolvedCurrentScramble
+
+      if (isLastToSolve) {
+        const durationMs = maxRoundTime * 1000
+        const newScramble = genScramble(event as Categories)
+        updateRoomScramble(roomId.toString(), newScramble)
+        updateRoomRoundLimit(roomId.toString(), durationMs)
+      }
+    }
+  }, [
+    solves,
+    scramble,
+    onlineUsers,
+    session?.user?.id,
+    roomId,
+    event,
+    maxRoundTime,
+    hasSolvedCurrentScramble,
+    updateRoomScramble,
+    updateRoomRoundLimit
+  ])
+
   const { inspectionTime, resetAll } = useTimer({
     onFinishSolve: async () => setModalOpen(true),
     isSolving,
@@ -81,6 +138,7 @@ export default function TimerTab() {
     settings: { timer: { startCue: false, holdToStart: false, inspectionTime: 15000 } }
   })
 
+  /* Play sound on new scramble */
   useEffect(() => {
     if (previousScrambleRef.current && previousScrambleRef.current !== scramble) {
       setShouldPlaySound(true)
@@ -90,6 +148,7 @@ export default function TimerTab() {
     previousScrambleRef.current = scramble
   }, [scramble])
 
+  /* Reset timer on new scramble */
   useEffect(() => {
     setHasSolvedCurrentScramble(false)
     setModalOpen(false)
@@ -98,6 +157,7 @@ export default function TimerTab() {
     resetAll()
   }, [scramble, reset, setSolvingTime, resetAll])
 
+  /* Update user presence status */
   useEffect(() => {
     if (!session?.user?.id) return
     if (!roomId) return
