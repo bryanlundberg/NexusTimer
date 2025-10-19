@@ -134,7 +134,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className={'grid grid-cols-3 gap-2 mt-3 mb-2'}>
+      <div className={'grid grid-cols-3 gap-2 mt-3 mb-4 md:mb-2'}>
         <Button variant={currentTab === 'timer' ? 'default' : 'secondary'} onClick={() => setCurrentTab('timer')}>
           <Clock /> Timer
         </Button>
