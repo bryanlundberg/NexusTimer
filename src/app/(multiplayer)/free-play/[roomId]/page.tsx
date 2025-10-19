@@ -100,7 +100,7 @@ export default function Page() {
       </div>
       <Tabs defaultValue="timer" className="bg-muted rounded-lg flex-1 px-2 pt-2 pb-2">
         <TabsContents className="rounded-sm bg-background h-full">
-          <TabsContent value="timer" className="space-y-6 p-6">
+          <TabsContent value="timer" className="space-y-6 p-6 h-full" id="touch">
             <TimerTab />
           </TabsContent>
           <TabsContent value="results" className="space-y-6 p-6">
