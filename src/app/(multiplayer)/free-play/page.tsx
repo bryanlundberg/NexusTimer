@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import CreateRoomModal from '@/components/free-play/create-room-modal/create-room-modal'
+import RoomCard from '@/components/free-play/room-card/room-card'
 import useFreeMode from '@/hooks/useFreeMode'
 import formatTime from '@/lib/formatTime'
 import { Users, Clock, Box } from 'lucide-react'
@@ -60,36 +61,7 @@ export default function FreePlayPage() {
       {displayRooms.length > 0 ? (
         <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6'}>
           {displayRooms.map((room: any) => (
-            <Link key={room.roomId} href={`/free-play/${room.roomId}`} className="no-underline">
-              <Card className="hover:shadow-lg transition-shadow duration-300 hover:border-primary cursor-pointer h-full">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-xl font-bold truncate">{room.name}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <div className="flex items-center gap-2 text-sm">
-                    <Users className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Users online:</span>
-                    <span className="font-semibold">{room?.presence ? Object.keys(room.presence).length : 0}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-sm">
-                    <Box className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Event:</span>
-                    <span className="font-semibold">{room.event}</span>
-                  </div>
-
-                  <div className="flex items-center gap-2 text-sm">
-                    <Clock className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-muted-foreground">Max Time per Round:</span>
-                    <span className="font-semibold">{formatTime(room.maxRoundTime * 1000)}</span>
-                  </div>
-
-                  <div className="pt-2 border-t">
-                    <span className="text-xs text-muted-foreground">{format(new Date(room.createdAt), 'PPpp')}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
+            <RoomCard key={room.roomId} room={room} />
           ))}
         </div>
       ) : (
