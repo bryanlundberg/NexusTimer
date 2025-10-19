@@ -89,24 +89,22 @@ export default function TimerTab() {
   }, [isSolving, session?.user?.id, roomId])
 
   return (
-    <div className={'flex flex-col items-center justify-center h-max-content max-h-full flex-1'}>
+    <div className={'flex flex-col justify-center w-full items-center h-full'}>
       <div className={'text-center text-2xl mb-20'}>{scramble}</div>
 
-      <div className={'grow my-auto'}>
-        <DisplayTime
-          isSolving={isSolving}
-          timerStatus={timerStatus}
-          lastSolve={lastSolve}
-          solvingTime={solvingTime}
-          device={device}
-          inspectionTime={inspectionTime}
-          hideWhileSolving={settings.features.hideWhileSolving}
-          className={'text-center'}
-        />
-      </div>
+      <DisplayTime
+        isSolving={isSolving}
+        timerStatus={timerStatus}
+        lastSolve={lastSolve}
+        solvingTime={solvingTime}
+        device={device}
+        inspectionTime={inspectionTime}
+        hideWhileSolving={settings.features.hideWhileSolving}
+        className={'text-center'}
+      />
 
       {disableTimer && (
-        <div className="text-red-500 text-center mt-4">
+        <div className="text-red-500 text-center mt-4 w-3/4">
           You have already submitted a solve for this scramble. Wait for the next one!
         </div>
       )}
