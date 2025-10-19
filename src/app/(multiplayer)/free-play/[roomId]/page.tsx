@@ -16,7 +16,7 @@ import { useCountdown } from '@/hooks/useCountdown'
 import genScramble from '@/lib/timer/genScramble'
 import { Categories } from '@/interfaces/Categories'
 import { Button } from '@/components/ui/button'
-import { ChartBarIcon, Clock, UsersIcon } from 'lucide-react'
+import { ChartBarIcon, CheckIcon, Clock, EyeIcon, UsersIcon } from 'lucide-react'
 import { AvatarGroup, AvatarGroupTooltip } from '@/components/ui/shadcn-io/avatar-group'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { TimerStatus } from '@/enums/TimerStatus'
@@ -129,8 +129,38 @@ export default function Page() {
                       />
                     </div>
                   )}
+                  {user.status === TimerStatus.INSPECTING && (
+                    <div
+                      className={
+                        'absolute inset-0 w-full h-full bg-black/50 rounded-full flex items-center justify-center'
+                      }
+                    >
+                      <span className={'text-xs font-bold text-white'}>
+                        <EyeIcon />
+                      </span>
+                    </div>
+                  )}
+                  {user.status === TimerStatus.WAITING_NEXT_ROUND && (
+                    <div
+                      className={
+                        'absolute inset-0 w-full h-full bg-green-100/40 rounded-full flex items-center justify-center'
+                      }
+                    >
+                      <span className={'text-xs font-bold text-green-900'}>
+                        <CheckIcon />
+                      </span>
+                    </div>
+                  )}
                   <AvatarGroupTooltip>
                     <p>{user.name}</p>
+                    <p className={'text-xs text-muted-foreground'}>
+                      {user.status === TimerStatus.SOLVING && 'Solving...'}
+                      {user.status === TimerStatus.INSPECTING && 'Inspecting'}
+                      {user.status === TimerStatus.WAITING_NEXT_ROUND && 'Done'}
+                      {user.status === TimerStatus.IDLE && 'Idle'}
+                      {user.status === TimerStatus.READY && 'Ready'}
+                      {user.status === TimerStatus.HOLDING && 'Holding'}
+                    </p>
                   </AvatarGroupTooltip>
                 </Avatar>
               ))}
