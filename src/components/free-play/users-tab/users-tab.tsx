@@ -8,9 +8,15 @@ export default function UsersTab() {
   const cubersOnline = useUsersPresence(roomId?.toString() || '')
   return (
     <div className={'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'}>
-      {cubersOnline?.map((player) => (
-        <PlayerMiniCard key={player.id} name={player.name} avatarUrl={player.image || ''} status={player.status} />
-      ))}
+      {cubersOnline?.length &&
+        cubersOnline?.map((player) => (
+          <PlayerMiniCard
+            key={Math.random()}
+            name={player.name}
+            avatarUrl={player.image || ''}
+            status={player.status}
+          />
+        ))}
     </div>
   )
 }
