@@ -17,6 +17,7 @@ interface UserSolves {
   plus2: boolean
   dnf: boolean
   createdAt: number
+  scramble: string
 }
 
 export default function useFreeMode() {
