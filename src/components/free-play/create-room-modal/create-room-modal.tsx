@@ -39,7 +39,9 @@ export default function CreateRoomModal() {
       createdBy: session?.user?.id || '',
       authority: session?.user?.id || '',
       scramble: genScramble(data.event),
-      currentRoundTimeLimit: Number(data.maxRoundTime) * 1000 + Date.now()
+      currentRoundTimeLimit: Number(data.maxRoundTime) * 1000 + Date.now(),
+      name: data.name,
+      event: data.event
     })
 
     router.push(`/free-play/${roomId}`)
