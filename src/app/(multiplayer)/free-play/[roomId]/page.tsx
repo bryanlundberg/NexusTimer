@@ -17,6 +17,10 @@ import genScramble from '@/lib/timer/genScramble'
 import { Categories } from '@/interfaces/Categories'
 import { Button } from '@/components/ui/button'
 import { ChartBarIcon, Clock, UsersIcon } from 'lucide-react'
+import { AvatarGroup, AvatarGroupTooltip } from '@/components/ui/shadcn-io/avatar-group'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { TimerStatus } from '@/enums/TimerStatus'
+import Image from 'next/image'
 
 export default function Page() {
   const { roomId } = useParams()
@@ -86,15 +90,35 @@ export default function Page() {
                   <Link href={'/free-play'}>Free Play</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
-              <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
-              <BreadcrumbItem>{roomId}</BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
 
-        <div className="flex items-center gap-1">
-          <span className="text-sm text-muted-foreground">Online:</span>
-          <span className="font-medium">{onlineUsers ? Object.keys(onlineUsers).length : 0}</span>
+        <div className="bg-gradient-to-r from-primary via-card to-primary p-0.5 rounded-full">
+          <div className="bg-gradient-to-r from-background via-muted to-card p-1.5 rounded-full">
+            <AvatarGroup variant="css">
+              {onlineUsers.map((user, index) => (
+                <Avatar key={index} className={'relative'}>
+                  <AvatarImage className={'object-cover'} src={user.image || ''} />
+                  <AvatarFallback>{user.name}</AvatarFallback>
+                  {user.status === TimerStatus.SOLVING && (
+                    <div className={'absolute inset-0 w-full h-full'}>
+                      <Image
+                        src="/animated/source.gif"
+                        alt="Solving"
+                        width={64}
+                        height={64}
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                    </div>
+                  )}
+                  <AvatarGroupTooltip>
+                    <p>{user.name}</p>
+                  </AvatarGroupTooltip>
+                </Avatar>
+              ))}
+            </AvatarGroup>
+          </div>
         </div>
       </div>
 
