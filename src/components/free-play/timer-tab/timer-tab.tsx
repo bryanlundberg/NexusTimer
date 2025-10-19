@@ -131,7 +131,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     isSolving,
     setTimerStatus,
     selectedCube: disableTimer ? null : ({} as Cube),
-    inspectionRequired: false,
+    inspectionRequired: true,
     setIsSolving,
     setSolvingTime,
     timerMode,
@@ -179,6 +179,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
         inspectionTime={inspectionTime}
         hideWhileSolving={settings.features.hideWhileSolving}
         className={'text-center'}
+        inspectionRequired={true}
       />
 
       {disableTimer && (
