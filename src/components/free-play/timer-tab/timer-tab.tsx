@@ -55,7 +55,8 @@ export default function TimerTab() {
     await addUserSolve(roomId?.toString() || '', session?.user?.id || '', {
       time: solvingTime,
       dnf,
-      plus2
+      plus2,
+      scramble
     })
   }
 
