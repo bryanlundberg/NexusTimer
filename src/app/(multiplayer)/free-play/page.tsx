@@ -10,20 +10,22 @@ import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import CreateRoomModal from '@/components/free-play/create-room-modal/create-room-modal'
 import useFreeMode from '@/hooks/useFreeMode'
 import formatTime from '@/lib/formatTime'
-import { Users, Clock, Box } from 'lucide-react'
+import { Users, Clock, Box, Gamepad2 } from 'lucide-react'
 import { format } from 'date-fns'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
+import { CubeIcon } from '@radix-ui/react-icons'
 
 export default function FreePlayPage() {
   const { useRooms } = useFreeMode()
   const rooms = useRooms()
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   const displayRooms = useMemo(
     () => (rooms ? rooms.filter((room: any) => room?.presence && Object.keys(room.presence).length > 0) : []),
     [rooms]
   )
   return (
-    <div className="p-4">
+    <div className="p-4 overflow-auto h-dvh">
       <div className="flex items-center gap-2 mb-6">
         <SidebarTrigger className="-ml-1" />
         <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
@@ -46,7 +48,7 @@ export default function FreePlayPage() {
           the pressure of rankings or records.
         </p>
 
-        <Dialog>
+        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button className={'mx-auto'}>New Room</Button>
           </DialogTrigger>
@@ -54,9 +56,9 @@ export default function FreePlayPage() {
         </Dialog>
       </div>
 
-      <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6'}>
-        {displayRooms.length > 0 &&
-          displayRooms.map((room: any) => (
+      {displayRooms.length > 0 ? (
+        <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6'}>
+          {displayRooms.map((room: any) => (
             <Link key={room.roomId} href={`/free-play/${room.roomId}`} className="no-underline">
               <Card className="hover:shadow-lg transition-shadow duration-300 hover:border-primary cursor-pointer h-full">
                 <CardHeader className="pb-3">
@@ -88,7 +90,25 @@ export default function FreePlayPage() {
               </Card>
             </Link>
           ))}
-      </div>
+        </div>
+      ) : (
+        <Card className="flex flex-col items-center justify-center mt-16 mb-8 w-fit mx-auto p-6 bg-secondary/20 border-2 border-dashed border-secondary">
+          <div className="relative mb-6">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-32 h-32 bg-primary/20 rounded-full blur-2xl"></div>
+            </div>
+            <div className="relative bg-primary/1 text-primary-foreground p-8 rounded-full">
+              <CubeIcon className="h-16 w-16 text-primary" strokeWidth={1.5} />
+            </div>
+          </div>
+
+          <h2 className="text-2xl font-bold text-center mb-2">No Active Rooms Yet</h2>
+          <p className="text-muted-foreground text-center max-w-md mb-6">
+            Be the first to start a cubing session! Create a room and invite others to join you for some casual
+            practice.
+          </p>
+        </Card>
+      )}
     </div>
   )
 }
