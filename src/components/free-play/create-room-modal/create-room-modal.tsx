@@ -1,75 +1,59 @@
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { Controller, useForm } from 'react-hook-form'
+import { RoomStatus } from '@/enums/RoomStatus'
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { Globe2, Lock } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { RoomType } from '@/enums/RoomType'
+import { Globe2 } from 'lucide-react'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
-import { Controller, useForm } from 'react-hook-form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { FirestoreCollections } from '@/constants/FirestoreCollections'
-import { RoomStatus } from '@/enums/RoomStatus'
-import moment from 'moment'
-import { useFirestoreCache } from '@/hooks/useFirebaseCache'
-import { useRouter } from 'next/navigation'
-import { useSession } from 'next-auth/react'
+import { Button } from '@/components/ui/button'
+import { ref, serverTimestamp, set } from '@firebase/database'
+import { rtdb } from '@/firebase'
+import genScramble from '@/lib/timer/genScramble'
 
-export function CreateRoomModalContent({ mode }: { mode: RoomType }) {
-  const { addDocument, updateDocument } = useFirestoreCache()
+export default function CreateRoomModal() {
   const { data: session } = useSession()
   const router = useRouter()
   const {
     handleSubmit,
     control,
-    formState: { isSubmitting, errors },
+    formState: { isSubmitting },
     register
   } = useForm({
     defaultValues: {
       name: '',
       event: '3x3',
-      password: '',
-      maxRoundTime: '30',
-      totalRounds: '5',
-      type: mode,
+      maxRoundTime: '60',
       status: RoomStatus.IDLE
     }
   })
 
   const submitForm = async (data: any) => {
-    const now = Date.now()
-    const roomDefaults = await addDocument(FirestoreCollections.CLASH_ROOMS, {
-      ...data,
+    const roomId = Math.floor(Math.random() * 1000000).toString()
+    await set(ref(rtdb, 'rooms/' + roomId), {
+      roomId,
+      status: RoomStatus.IN_PROGRESS,
+      createdAt: serverTimestamp(),
       maxRoundTime: parseInt(data.maxRoundTime, 10),
-      totalRounds: parseInt(data.totalRounds, 10),
-      preparationFinalizationTime: moment(now).add(2, 'minutes').valueOf(),
-      matchFinalizationTime: moment(now)
-        .add(parseInt(data.totalRounds, 10) * parseInt(data.maxRoundTime, 10) + 2, 'minutes')
-        .valueOf(),
-      createdAt: Date.now(),
       createdBy: session?.user?.id || '',
-
-      authority: {
-        leaderId: session?.user?.id || '',
-        term: 1
-      }
+      authority: session?.user?.id || '',
+      scramble: genScramble(data.event),
+      currentRoundTimeLimit: Number(data.maxRoundTime) * 1000 + Date.now(),
+      name: data.name,
+      event: data.event
     })
 
-    await updateDocument(`${FirestoreCollections.CLASH_ROOMS}/${roomDefaults.id}`, roomDefaults)
-    router.push(`/clash/${roomDefaults.id}`)
+    router.push(`/free-play/${roomId}`)
   }
 
   return (
     <DialogContent className="sm:max-w-xl">
       <DialogHeader>
         <DialogTitle>
-          {mode === RoomType.PUBLIC ? (
-            <span className="inline-flex items-center gap-2">
-              <Globe2 className="size-4" /> New public room
-            </span>
-          ) : (
-            <span className="inline-flex items-center gap-2">
-              <Lock className="size-4" /> New private room
-            </span>
-          )}
+          <span className="inline-flex items-center gap-2">
+            <Globe2 className="size-4" /> New public room
+          </span>
         </DialogTitle>
         <DialogDescription>
           Create a new room for your Clash event. Set the rules, requirements, and more.
@@ -120,55 +104,7 @@ export function CreateRoomModalContent({ mode }: { mode: RoomType }) {
               )}
             />
           </div>
-
-          <div>
-            <Label htmlFor="rounds" className="text-sm font-medium">
-              Rounds
-            </Label>
-            <Controller
-              name={'totalRounds'}
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <Select value={value} onValueChange={onChange}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="5">Normal (5)</SelectItem>
-                    <SelectItem value="12">Extended (12)</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
-            />
-          </div>
         </div>
-
-        {mode === RoomType.PRIVATE && (
-          <div className="grid gap-2">
-            <Label htmlFor="room-pass" className="text-sm font-medium">
-              Password
-            </Label>
-            <Input
-              id="room-pass"
-              autoComplete="off"
-              {...register('password', {
-                validate: (value) => {
-                  if (mode === RoomType.PRIVATE) {
-                    if (!value || value.trim().length === 0) return 'Password is required'
-                    const len = value.trim().length
-                    if (len < 4) return 'Minimum password length is 4 characters'
-                    if (len > 10) return 'Maximum password length is 10 characters'
-                  }
-                  return true
-                }
-              })}
-              type="password"
-              placeholder="••••••"
-              aria-invalid={errors?.password ? 'true' : 'false'}
-            />
-            {errors?.password && <p className="text-xs text-red-500">{String(errors.password.message)}</p>}
-          </div>
-        )}
 
         <div className="grid gap-2">
           <Label htmlFor="insp" className="text-sm font-medium">

@@ -1,24 +1,25 @@
-import { Solve } from '@/interfaces/Solve';
-import formatTime from '@/lib/formatTime';
-import { useTimerStore } from '@/store/timerStore';
-import { useTranslations } from 'next-intl';
-import { TimerMode } from '@/enums/TimerMode';
-import { TimerStatus } from '@/enums/TimerStatus';
-import React from 'react';
-import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
-import { useSettingsModalStore } from '@/store/SettingsModalStore';
-import { useWindowSize } from 'react-use-size';
-import { cn } from '@/lib/utils';
+import { Solve } from '@/interfaces/Solve'
+import formatTime from '@/lib/formatTime'
+import { useTimerStore } from '@/store/timerStore'
+import { useTranslations } from 'next-intl'
+import { TimerMode } from '@/enums/TimerMode'
+import { TimerStatus } from '@/enums/TimerStatus'
+import React from 'react'
+import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion'
+import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useWindowSize } from 'react-use-size'
+import { cn } from '@/lib/utils'
 
 interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
-  className?: string;
-  isSolving: boolean;
-  lastSolve: Solve | null;
-  timerStatus: TimerStatus;
-  solvingTime: number;
-  device: any;
-  inspectionTime: number;
-  hideWhileSolving: boolean;
+  className?: string
+  isSolving: boolean
+  lastSolve: Solve | null
+  timerStatus: TimerStatus
+  solvingTime: number
+  device: any
+  inspectionTime: number
+  inspectionRequired: boolean
+  hideWhileSolving: boolean
 }
 
 const timerStatusClasses = {
@@ -26,8 +27,8 @@ const timerStatusClasses = {
   HOLDING: 'light:text-pink-600 dark:text-pink-600',
   SOLVING: 'light:text-neutral-700 dark:text-slate-200',
   READY: 'text-emerald-400',
-  INSPECTING: 'text-orange-500',
-};
+  INSPECTING: 'text-orange-500'
+}
 
 export default function DisplayTime({
   className,
@@ -37,13 +38,14 @@ export default function DisplayTime({
   solvingTime,
   device,
   inspectionTime,
+  inspectionRequired,
   hideWhileSolving,
   ...rest
 }: DisplayTimeProps) {
-  const t = useTranslations('Index.HomePage');
-  const timerMode = useTimerStore(store => store.timerMode);
-  const settings = useSettingsModalStore(store => store.settings);
-  const { height } = useWindowSize();
+  const t = useTranslations('Index.HomePage')
+  const timerMode = useTimerStore((store) => store.timerMode)
+  const settings = useSettingsModalStore((store) => store.settings)
+  const { height } = useWindowSize()
 
   return (
     <>
@@ -89,7 +91,10 @@ export default function DisplayTime({
                   transition: { type: 'spring', stiffness: 500, damping: 30 }
                 }}
               >
-                {(settings.timer.inspection && (timerStatus === TimerStatus.INSPECTING || timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY)) ? (
+                {inspectionRequired &&
+                (timerStatus === TimerStatus.INSPECTING ||
+                  timerStatus === TimerStatus.HOLDING ||
+                  timerStatus === TimerStatus.READY) ? (
                   <>
                     <motion.div
                       className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
@@ -144,8 +149,7 @@ export default function DisplayTime({
                       : `${t('tap-to-start')}`
                     : null}
 
-                  {timerMode === TimerMode.STACKMAT &&
-                    t('start-stackmat')}
+                  {timerMode === TimerMode.STACKMAT && t('start-stackmat')}
                 </motion.div>
               ) : null}
             </motion.div>
@@ -153,5 +157,5 @@ export default function DisplayTime({
         </AnimatePresence>
       </motion.div>
     </>
-  );
+  )
 }
