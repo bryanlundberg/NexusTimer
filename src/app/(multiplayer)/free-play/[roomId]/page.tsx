@@ -28,7 +28,8 @@ export default function Page() {
     useRoomAuthority,
     useRoomEvent,
     updateRoomRoundLimit,
-    updateRoomScramble
+    updateRoomScramble,
+    useDisconnectHandler
   } = useFreeMode()
   const onlineUsers = useUsersPresence(roomId?.toString() || '')
   const reset = useTimerStore((state) => state.reset)
@@ -38,6 +39,8 @@ export default function Page() {
   const roomAuthority = useRoomAuthority(roomId?.toString() || '')
   const event = useRoomEvent(roomId?.toString() || '')
   const maxRoundTime = useFreeMode().useMaxRoundTime(roomId?.toString() || '')
+
+  useDisconnectHandler(roomId?.toString() || '')
 
   useEffect(() => {
     if (!roomId || !session?.user?.id) return
