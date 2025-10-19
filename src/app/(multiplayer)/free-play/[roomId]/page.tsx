@@ -1,5 +1,5 @@
 'use client'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import useFreeMode from '@/hooks/useFreeMode'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
@@ -21,10 +21,13 @@ import { AvatarGroup, AvatarGroupTooltip } from '@/components/ui/shadcn-io/avata
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { TimerStatus } from '@/enums/TimerStatus'
 import Image from 'next/image'
+import useAlert from '@/hooks/useAlert'
 
 export default function Page() {
   const { roomId } = useParams()
   const { data: session } = useSession()
+  const router = useRouter()
+  const alert = useAlert()
   const {
     joinRoom,
     leaveRoom,
@@ -43,6 +46,20 @@ export default function Page() {
   const roomAuthority = useRoomAuthority(roomId?.toString() || '')
   const event = useRoomEvent(roomId?.toString() || '')
   const maxRoundTime = useFreeMode().useMaxRoundTime(roomId?.toString() || '')
+
+  useEffect(() => {
+    if (session === undefined) return
+    if (!session) {
+      alert({
+        title: 'Account Required',
+        subtitle: 'You need to be signed in to access online games.',
+        confirmText: 'OK',
+        hideCancel: true
+      }).then(() => {
+        router.push('/free-play')
+      })
+    }
+  }, [session])
 
   useEffect(() => {
     if (!roomId || !session?.user?.id) return
