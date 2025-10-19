@@ -41,9 +41,9 @@ export default function FreePlayPage() {
       <div className={'flex flex-col items-center justify-center gap-2'}>
         <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight">Free Play</h1>
 
-        <p className="text-center text-muted-foreground mt-2 w-8/12">
-          Join or create a room to practice with others in real-time. Perfect for casual cubing sessions! Solves are not
-          stored and there are no rankings - just fun.
+        <p className="text-center text-muted-foreground mt-2 max-w-2xl mx-auto">
+          Join real-time cubing sessions with other enthusiasts. A casual space where you can practice freely without
+          the pressure of rankings or records.
         </p>
 
         <Dialog>
