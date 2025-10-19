@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import useTimer from '@/hooks/useTimer'
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
@@ -14,7 +14,7 @@ import ConfirmSolveModal from '@/components/free-play/confirm-solve-modal/confir
 
 export default function TimerTab() {
   const { roomId } = useParams()
-  const { updateUserPresenceStatus, addUserSolve, useRoomScramble } = useFreeMode()
+  const { updateUserPresenceStatus, addUserSolve, useRoomScramble, useRoomSolves } = useFreeMode()
   const scramble = useRoomScramble(roomId?.toString() || '')
   const { data: session } = useSession()
   const settings = useSettingsModalStore((store) => store.settings)
@@ -26,12 +26,28 @@ export default function TimerTab() {
   const setIsSolving = useTimerStore((store) => store.setIsSolving)
   const setSolvingTime = useTimerStore((store) => store.setSolvingTime)
   const timerMode = useTimerStore((store) => store.timerMode)
+  const reset = useTimerStore((store) => store.reset)
+  const solves = useRoomSolves(roomId?.toString() || '')
+
+  const currentUserSolves = session?.user?.id
+    ? solves[session.user.id]
+      ? Object.values(solves[session.user.id]).sort((a, b) => a.createdAt - b.createdAt)
+      : []
+    : []
+
   const [modalOpen, setModalOpen] = useState(false)
+  const [hasSolvedCurrentScramble, setHasSolvedCurrentScramble] = useState(false)
+
+  const disableTimer = useMemo(() => {
+    const alreadySolved = currentUserSolves.some((solve) => solve.scramble === scramble)
+    return alreadySolved || hasSolvedCurrentScramble
+  }, [currentUserSolves, scramble, hasSolvedCurrentScramble])
 
   const { device } = useDeviceMatch()
 
   const handleSubmitTime = async (dnf: boolean, plus2: boolean) => {
     setModalOpen(false)
+    setHasSolvedCurrentScramble(true)
     if (!session?.user?.id) return
     if (!roomId) return
     if (!solvingTime) return
@@ -43,24 +59,25 @@ export default function TimerTab() {
     })
   }
 
-  const { inspectionTime } = useTimer({
-    onFinishSolve: async () => {
-      setModalOpen(true)
-      await addUserSolve(roomId?.toString() || '', session?.user?.id || '', {
-        time: solvingTime,
-        dnf: false,
-        plus2: false
-      })
-    },
+  const { inspectionTime, resetAll } = useTimer({
+    onFinishSolve: async () => setModalOpen(true),
     isSolving,
     setTimerStatus,
-    selectedCube: {} as Cube,
+    selectedCube: disableTimer ? null : ({} as Cube),
     inspectionRequired: false,
     setIsSolving,
     setSolvingTime,
     timerMode,
     settings: { timer: { startCue: false, holdToStart: false, inspectionTime: 15000 } }
   })
+
+  useEffect(() => {
+    setHasSolvedCurrentScramble(false)
+    setModalOpen(false)
+    setSolvingTime(0)
+    reset()
+    resetAll()
+  }, [scramble, reset, setSolvingTime, resetAll])
 
   useEffect(() => {
     if (!session?.user?.id) return
@@ -87,9 +104,15 @@ export default function TimerTab() {
         />
       </div>
 
+      {disableTimer && (
+        <div className="text-red-500 text-center mt-4">
+          You have already submitted a solve for this scramble. Wait for the next one!
+        </div>
+      )}
+
       <ConfirmSolveModal
         isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
+        onClose={setModalOpen}
         onChoose={({ dnf, plus2 }) => handleSubmitTime(dnf, plus2)}
       />
     </div>
