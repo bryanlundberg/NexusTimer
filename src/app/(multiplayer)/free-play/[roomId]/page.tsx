@@ -17,7 +17,6 @@ import genScramble from '@/lib/timer/genScramble'
 import { Categories } from '@/interfaces/Categories'
 import { Button } from '@/components/ui/button'
 import { ChartBarIcon, Clock, UsersIcon } from 'lucide-react'
-import { ScrollArea } from '@/components/ui/scroll-area'
 
 export default function Page() {
   const { roomId } = useParams()
@@ -107,11 +106,11 @@ export default function Page() {
       </div>
 
       <div className="flex grow bg-card rounded-md border border-muted h-full overflow-hidden min-h-0">
-        <ScrollArea className="w-full overflow-y-auto min-h-0">
+        <div className="w-full overflow-y-auto min-h-0">
           {currentTab === 'timer' && <TimerTab />}
           {currentTab === 'results' && <ResultsTab />}
           {currentTab === 'people' && <UsersTab />}
-        </ScrollArea>
+        </div>
       </div>
 
       <div className={'grid grid-cols-3 gap-2 mt-3 mb-2'}>
