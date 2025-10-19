@@ -57,7 +57,7 @@ export default function ResultsTab() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 p-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <StatCard label="Latest" value={getLast()} />
         <StatCard label="Best" value={getBest()} />
