@@ -15,6 +15,7 @@ export default function UsersTab() {
             name={player.name}
             avatarUrl={player.image || ''}
             status={player.status}
+            id={player.id}
           />
         ))}
     </div>
