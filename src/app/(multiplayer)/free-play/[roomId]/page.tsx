@@ -1,7 +1,6 @@
 'use client'
 import { useParams } from 'next/navigation'
 import useFreeMode from '@/hooks/useFreeMode'
-import { Tabs, TabsContent, TabsContents, TabsList, TabsTrigger } from '@/components/ui/shadcn-io/tabs'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
@@ -16,6 +15,9 @@ import { useTimerStore } from '@/store/timerStore'
 import { useCountdown } from '@/hooks/useCountdown'
 import genScramble from '@/lib/timer/genScramble'
 import { Categories } from '@/interfaces/Categories'
+import { Button } from '@/components/ui/button'
+import { ChartBarIcon, Clock, UsersIcon } from 'lucide-react'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 export default function Page() {
   const { roomId } = useParams()
@@ -73,8 +75,10 @@ export default function Page() {
     updateRoomRoundLimit(roomId.toString(), durationMs)
   }, [isFinished, roomAuthority, session?.user?.id, roomId])
 
+  const [currentTab, setCurrentTab] = React.useState<string>('timer')
+
   return (
-    <div className="pt-4 px-4 md:pb-4 h-full flex flex-col">
+    <div className="pt-4 px-4 md:pb-4 flex flex-col overflow-hidden h-dvh">
       <div className={'flex justify-between items-start h-fit'}>
         <div className="flex items-center gap-2 mb-6">
           <SidebarTrigger className="-ml-1" />
@@ -101,24 +105,26 @@ export default function Page() {
       <div>
         <div className={'text-center text-xs mb-4'}>Next round starts in: {mmss}</div>
       </div>
-      <Tabs defaultValue="timer" className="bg-muted rounded-lg flex-1 px-2 pt-2 pb-2">
-        <TabsContents className="rounded-sm bg-background h-full">
-          <TabsContent value="timer" className="space-y-6 p-6 h-full" id="touch">
-            <TimerTab />
-          </TabsContent>
-          <TabsContent value="results" className="space-y-6 p-6">
-            <ResultsTab />
-          </TabsContent>
-          <TabsContent value="people" className="space-y-6 p-6">
-            <UsersTab />
-          </TabsContent>
-        </TabsContents>
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="timer">Timer</TabsTrigger>
-          <TabsTrigger value="results">Results</TabsTrigger>
-          <TabsTrigger value={'people'}>People</TabsTrigger>
-        </TabsList>
-      </Tabs>
+
+      <div className="flex grow bg-card rounded-md border border-muted h-full overflow-hidden min-h-0">
+        <ScrollArea className="w-full overflow-y-auto min-h-0">
+          {currentTab === 'timer' && <TimerTab />}
+          {currentTab === 'results' && <ResultsTab />}
+          {currentTab === 'people' && <UsersTab />}
+        </ScrollArea>
+      </div>
+
+      <div className={'grid grid-cols-3 gap-2 mt-3 mb-2'}>
+        <Button variant={currentTab === 'timer' ? 'default' : 'secondary'} onClick={() => setCurrentTab('timer')}>
+          <Clock /> Timer
+        </Button>
+        <Button variant={currentTab === 'results' ? 'default' : 'secondary'} onClick={() => setCurrentTab('results')}>
+          <ChartBarIcon /> Results
+        </Button>
+        <Button variant={currentTab === 'people' ? 'default' : 'secondary'} onClick={() => setCurrentTab('people')}>
+          <UsersIcon /> People
+        </Button>
+      </div>
     </div>
   )
 }
