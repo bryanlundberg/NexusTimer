@@ -1,16 +1,19 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { PlayerStatus } from '@/enums/PlayerStatus'
 import Image from 'next/image'
-import { CircleCheckIcon } from 'lucide-react'
+import { CircleCheckIcon, ExternalLink } from 'lucide-react'
 import { TimerStatus } from '@/enums/TimerStatus'
+import { Button } from '@/components/ui/button'
+import * as React from 'react'
+import Link from 'next/link'
 
 export interface PlayerMiniCardProps {
   name?: string
   avatarUrl?: string
   status?: TimerStatus
+  id: string
 }
 
-export default function PlayerMiniCard({ name, avatarUrl, status }: PlayerMiniCardProps) {
+export default function PlayerMiniCard({ name, avatarUrl, status, id }: PlayerMiniCardProps) {
   return (
     <div className={'flex flex-col items-center justify-center bg-card rounded-lg p-4 size-full'}>
       <div className={'relative'}>
@@ -42,7 +45,12 @@ export default function PlayerMiniCard({ name, avatarUrl, status }: PlayerMiniCa
           </>
         )}
       </div>
-      <p className={'text-center text-sm mt-1'}>{name} fdsa dfsadf </p>
+      <p className={'text-center text-sm mt-1'}>{name}</p>
+      <Link href={`/people/${id}`}>
+        <Button size={'sm'} className={'mt-2 text-xs'}>
+          View Profile <ExternalLink className="size-3.5" />
+        </Button>
+      </Link>
     </div>
   )
 }
