@@ -139,7 +139,7 @@ export default function Page() {
           <Clock /> Timer
         </Button>
         <Button variant={currentTab === 'results' ? 'default' : 'secondary'} onClick={() => setCurrentTab('results')}>
-          <ChartBarIcon /> Results
+          <ChartBarIcon className={'rotate-270'} /> Results
         </Button>
         <Button variant={currentTab === 'people' ? 'default' : 'secondary'} onClick={() => setCurrentTab('people')}>
           <UsersIcon /> People
