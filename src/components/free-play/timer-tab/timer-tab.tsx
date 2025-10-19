@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, useRef } from 'react'
 import useTimer from '@/hooks/useTimer'
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
@@ -11,6 +11,7 @@ import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
 import { TimerStatus } from '@/enums/TimerStatus'
 import ConfirmSolveModal from '@/components/free-play/confirm-solve-modal/confirm-solve-modal'
+import { useAudioTrigger } from '@/hooks/useAudioTrigger'
 
 export default function TimerTab() {
   const { roomId } = useParams()
@@ -37,6 +38,14 @@ export default function TimerTab() {
 
   const [modalOpen, setModalOpen] = useState(false)
   const [hasSolvedCurrentScramble, setHasSolvedCurrentScramble] = useState(false)
+  const [shouldPlaySound, setShouldPlaySound] = useState(false)
+  const previousScrambleRef = useRef<string>('')
+
+  useAudioTrigger({
+    audioSrc: '/sounds/new-round.mp3',
+    trigger: shouldPlaySound,
+    autoplay: true
+  })
 
   const disableTimer = useMemo(() => {
     const alreadySolved = currentUserSolves.some((solve) => solve.scramble === scramble)
@@ -71,6 +80,15 @@ export default function TimerTab() {
     timerMode,
     settings: { timer: { startCue: false, holdToStart: false, inspectionTime: 15000 } }
   })
+
+  useEffect(() => {
+    if (previousScrambleRef.current && previousScrambleRef.current !== scramble) {
+      setShouldPlaySound(true)
+      const timeout = setTimeout(() => setShouldPlaySound(false), 100)
+      return () => clearTimeout(timeout)
+    }
+    previousScrambleRef.current = scramble
+  }, [scramble])
 
   useEffect(() => {
     setHasSolvedCurrentScramble(false)
