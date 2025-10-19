@@ -40,7 +40,7 @@ export default function RoomCard({ room }: RoomCardProps) {
                     <TooltipTrigger asChild>
                       <div>
                         <Avatar className="h-6 w-6 border border-border">
-                          <AvatarImage src={user?.image} alt={user?.name || 'User'} />
+                          <AvatarImage className={'object-cover'} src={user?.image} alt={user?.name || 'User'} />
                           <AvatarFallback className="text-xs">
                             {user?.name?.charAt(0)?.toUpperCase() || '?'}
                           </AvatarFallback>
