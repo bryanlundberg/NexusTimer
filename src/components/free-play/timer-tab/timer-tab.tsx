@@ -167,8 +167,8 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
   }, [isSolving, session?.user?.id, roomId])
 
   return (
-    <div className={'flex flex-col justify-center w-full items-center h-full p-4'}>
-      <div className={'text-center text-2xl mb-20'}>{scramble}</div>
+    <div className={'flex flex-col justify-center w-full items-center h-full p-4'} id={'touch'}>
+      {!isSolving && !disableTimer && <div className={'text-center text-2xl mb-20'}>{scramble}</div>}
 
       <DisplayTime
         isSolving={isSolving}
