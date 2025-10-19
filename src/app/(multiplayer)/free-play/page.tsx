@@ -5,10 +5,13 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/co
 import Link from 'next/link'
 import * as React from 'react'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import CreateRoomModal from '@/components/free-play/create-room-modal/create-room-modal'
 import useFreeMode from '@/hooks/useFreeMode'
+import formatTime from '@/lib/formatTime'
+import { Users, Clock, Box } from 'lucide-react'
+import { format } from 'date-fns'
 
 export default function FreePlayPage() {
   const { useRooms } = useFreeMode()
@@ -30,26 +33,56 @@ export default function FreePlayPage() {
         </Breadcrumb>
       </div>
 
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button>New Room</Button>
-        </DialogTrigger>
-        <CreateRoomModal />
-      </Dialog>
+      <div className={'flex flex-col items-center justify-center gap-2'}>
+        <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight">Free Play</h1>
 
-      {rooms.length > 0 &&
-        rooms.map((room: any) => (
-          <Link key={room.roomId} href={`/free-play/${room.roomId}`} className="no-underline">
-            <Card key={room.roomId} className="p-4 mt-4">
-              <div className="flex justify-between items-center">
-                <div>
-                  <h3 className="text-lg font-medium">Room ID: {room.roomId}</h3>
-                  <p>Status: {room.status}</p>
-                </div>
-              </div>
-            </Card>
-          </Link>
-        ))}
+        <p className="text-center text-muted-foreground mt-2">
+          Join or create a room to practice with others in real-time. Perfect for casual cubing sessions!
+        </p>
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className={'mx-auto'}>New Room</Button>
+          </DialogTrigger>
+          <CreateRoomModal />
+        </Dialog>
+      </div>
+
+      <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6'}>
+        {rooms.length > 0 &&
+          rooms.map((room: any) => (
+            <Link key={room.roomId} href={`/free-play/${room.roomId}`} className="no-underline">
+              <Card className="hover:shadow-lg transition-shadow duration-300 hover:border-primary cursor-pointer h-full">
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-xl font-bold truncate">{room.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Users className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-muted-foreground">Users online:</span>
+                    <span className="font-semibold">{room?.presence ? Object.keys(room.presence).length : 0}</span>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-sm">
+                    <Box className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-muted-foreground">Event:</span>
+                    <span className="font-semibold">{room.event}</span>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-sm">
+                    <Clock className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-muted-foreground">Max Time per Round:</span>
+                    <span className="font-semibold">{formatTime(room.maxRoundTime * 1000)}</span>
+                  </div>
+
+                  <div className="pt-2 border-t">
+                    <span className="text-xs text-muted-foreground">{format(new Date(room.createdAt), 'PPpp')}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+      </div>
     </div>
   )
 }
