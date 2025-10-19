@@ -27,7 +27,8 @@ const timerStatusClasses = {
   HOLDING: 'light:text-pink-600 dark:text-pink-600',
   SOLVING: 'light:text-neutral-700 dark:text-slate-200',
   READY: 'text-emerald-400',
-  INSPECTING: 'text-orange-500'
+  INSPECTING: 'text-orange-500',
+  WAITING_NEXT_ROUND: 'inherit'
 }
 
 export default function DisplayTime({
