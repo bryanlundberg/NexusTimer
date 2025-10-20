@@ -88,6 +88,7 @@ export function usePreloadSettings() {
 
   useEffect(() => {
     if (isOffline) return
+    if (!session?.user?.id) return
 
     const hasReachedBackupInterval = Number(settings.sync.backupInterval) <= Number(settings.sync.totalSolves)
     const isAutoSaveEnabled = settings.sync.autoSaveEnabled
