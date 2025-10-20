@@ -6,7 +6,9 @@ const withNextIntl = createNextIntlPlugin();
 const withSerwist = withSerwistInit({
   swSrc: "src/app/sw.ts",
   swDest: "public/sw.js",
-  disable: process.env.NODE_ENV !== "production"
+  disable: process.env.NODE_ENV !== "production",
+  reloadOnOnline: true,
+  register: true
 });
 
 /** @type {import('next').NextConfig} */
