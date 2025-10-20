@@ -1,23 +1,24 @@
-import { Toaster } from '@/components/ui/sonner';
-import './globals.css';
-import { jakarta } from '@/fonts/fonts';
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages, getTranslations } from 'next-intl/server';
-import { SessionProvider } from 'next-auth/react';
-import { auth } from '@/auth';
-import { NuqsAdapter } from 'nuqs/adapters/next/app';
-import { locales } from '@/i18n/locales';
-import JsonLd from './jsonld';
-import { ThemeProvider } from '@/components/theme-provider';
-import { SidebarProvider } from '@/components/ui/sidebar';
-import AlertProvider from '@/components/alert/AlertProvider';
+import { Toaster } from '@/components/ui/sonner'
+import './globals.css'
+import { jakarta } from '@/fonts/fonts'
+import { NextIntlClientProvider } from 'next-intl'
+import { getLocale, getMessages, getTranslations } from 'next-intl/server'
+import { SessionProvider } from 'next-auth/react'
+import { auth } from '@/auth'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
+import { locales } from '@/i18n/locales'
+import JsonLd from './jsonld'
+import { ThemeProvider } from '@/components/theme-provider'
+import { SidebarProvider } from '@/components/ui/sidebar'
+import AlertProvider from '@/components/alert/AlertProvider'
+import { Viewport } from 'next'
 
 export async function generateMetadata() {
-  const locale = await getLocale();
-  const t = await getTranslations({ locale, namespace: 'Metadata' });
-  const ogTitle = t('title');
-  const ogDescription = t('description');
-  const url = `https://nexustimer.com`;
+  const locale = await getLocale()
+  const t = await getTranslations({ locale, namespace: 'Metadata' })
+  const ogTitle = t('title')
+  const ogDescription = t('description')
+  const url = `https://nexustimer.com`
 
   return {
     title: t('title'),
@@ -36,14 +37,12 @@ export async function generateMetadata() {
       t('keywords.key11'),
       t('keywords.key12'),
       t('keywords.key13'),
-      t('keywords.key14'),
+      t('keywords.key14')
     ],
     metadataBase: new URL('https://nexustimer.com'),
     alternates: {
       canonical: `/`,
-      languages: Object.fromEntries(
-        locales.map((l) => [l, `/`])
-      ),
+      languages: Object.fromEntries(locales.map((l) => [l, `/`]))
     },
     openGraph: {
       title: ogTitle,
@@ -51,7 +50,21 @@ export async function generateMetadata() {
       url: url,
       siteName: 'Nexus Timer',
       locale: locale,
-      type: 'website',
+      type: 'website'
+    },
+    twitter: {
+      card: 'summary',
+      title: ogTitle,
+      description: ogDescription
+    },
+    formatDetection: {
+      telephone: false
+    },
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: 'default',
+      title: t('title'),
+      startupImage: ['/logo.png']
     },
     robots: {
       index: true,
@@ -61,57 +74,45 @@ export async function generateMetadata() {
         follow: true,
         'max-image-preview': 'large',
         'max-video-preview': -1,
-        'max-snippet': -1,
-      },
-    },
-  };
+        'max-snippet': -1
+      }
+    }
+  }
 }
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const locale = await getLocale();
-  const messages = await getMessages();
-  const session = await auth();
+export const viewport: Viewport = {
+  themeColor: '#FFFFFF'
+}
 
-  const t = await getTranslations({ locale, namespace: 'Metadata' });
-  const title = t('title');
-  const description = t('description');
-  const url = `https://nexustimer.com`;
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale()
+  const messages = await getMessages()
+  const session = await auth()
+
+  const t = await getTranslations({ locale, namespace: 'Metadata' })
+  const title = t('title')
+  const description = t('description')
+  const url = `https://nexustimer.com`
 
   return (
     <html lang={locale} suppressHydrationWarning>
-    <head>
-      <JsonLd
-        locale={locale}
-        title={title}
-        description={description}
-        url={url}
-      />
-    </head>
-    <body className={jakarta.className}>
-    <NuqsAdapter>
-      <SessionProvider session={session}>
-        <NextIntlClientProvider messages={messages}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme={'light'}
-            enableSystem
-            disableTransitionOnChange
-          >
-            <SidebarProvider>
-              <AlertProvider>
-                {children}
-              </AlertProvider>
-            </SidebarProvider>
-          </ThemeProvider>
-        </NextIntlClientProvider>
-        <Toaster/>
-      </SessionProvider>
-    </NuqsAdapter>
-    </body>
+      <head>
+        <JsonLd locale={locale} title={title} description={description} url={url} />
+      </head>
+      <body className={jakarta.className}>
+        <NuqsAdapter>
+          <SessionProvider session={session}>
+            <NextIntlClientProvider messages={messages}>
+              <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem disableTransitionOnChange>
+                <SidebarProvider>
+                  <AlertProvider>{children}</AlertProvider>
+                </SidebarProvider>
+              </ThemeProvider>
+            </NextIntlClientProvider>
+            <Toaster />
+          </SessionProvider>
+        </NuqsAdapter>
+      </body>
     </html>
-  );
+  )
 }
