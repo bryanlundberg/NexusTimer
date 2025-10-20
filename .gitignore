@@ -39,3 +39,7 @@ next-env.d.ts
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Serwist
+public/sw*
+public/swe-worker*
