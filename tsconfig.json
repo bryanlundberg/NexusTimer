@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext", "WebWorker"],
+    "types": ["@serwist/next/typings"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -32,5 +33,5 @@
     "src/models/backup.ts",
     "src/components/stackmat.tsx"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "public/sw.js"]
 }
