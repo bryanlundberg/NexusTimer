@@ -1,27 +1,29 @@
 // <reference lib="webworker" />
-import calcStatistics from '@/lib/calcStatistics';
-import { Cube } from '@/interfaces/Cube';
+import calcStatistics from '@/lib/calcStatistics'
+import { Cube } from '@/interfaces/Cube'
 
 type InMsg = {
-  command: 'start'; data: {
-    cubes: Cube[],
+  command: 'start'
+  data: {
+    cubes: Cube[]
     selectedCube: Cube
   }
-};
+}
 
 self.onmessage = (event: MessageEvent<InMsg>) => {
-  const { command, data } = event.data;
+  const { command, data } = event.data
   if (command === 'start') {
-
     const { global, session, cubeSession } = calcStatistics({
       cubesDB: data.cubes,
-      selectedCube: data.selectedCube,
-    });
+      selectedCube: data.selectedCube
+    })
 
-    (self as DedicatedWorkerGlobalScope).postMessage({
+    ;(self as unknown as DedicatedWorkerGlobalScope).postMessage({
       result: {
-        global, session, cubeSession
+        global,
+        session,
+        cubeSession
       }
-    });
+    })
   }
-};
+}
