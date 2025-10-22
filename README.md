@@ -139,6 +139,8 @@ If you want to **contribute code**:
 | GOOGLE_CLIENT_ID                  | Google OAuth client ID     | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
 | GOOGLE_CLIENT_SECRET              | Google OAuth client secret | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
 | RESEND_API_KEY                    | Resend API key (emails)    | Test welcome email sending                                                                                    |
+| UPSTASH_REDIS_REST_URL            | Upstash Redis REST URL     | API rate limiting (create free database at [console.upstash.com](https://console.upstash.com))                |
+| UPSTASH_REDIS_REST_TOKEN          | Upstash Redis REST Token   | API rate limiting (create free database at [console.upstash.com](https://console.upstash.com))                |
 
 GOOGLE CALLBACK/AUTH IS: http://localhost:3000/api/auth/callback/google
 
