@@ -16,5 +16,5 @@ export async function middleware(req: Request) {
 }
 
 export const config = {
-  matcher: ['/api/:path*'] // Apply middleware only to API routes
+  matcher: ['/api/:path*']
 }
