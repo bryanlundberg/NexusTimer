@@ -2,13 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import connectDB from '@/db/mongodb'
 import User from '@/models/user'
 import { auth } from '@/auth'
-import { applyRateLimit, readLimiter, writeLimiter } from '@/lib/rate-limiter'
 
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  // Apply rate limiting
-  const rateLimitResponse = await applyRateLimit(request, writeLimiter)
-  if (rateLimitResponse) return rateLimitResponse
-
   try {
     const userId = (await params).id
 
@@ -36,10 +31,6 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
 }
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  // Apply rate limiting
-  const rateLimitResponse = await applyRateLimit(request, readLimiter)
-  if (rateLimitResponse) return rateLimitResponse
-
   try {
     const userId = (await params).id
 

@@ -3,13 +3,8 @@ import connectDB from '@/db/mongodb'
 import User from '@/models/user'
 import Backup from '@/models/backup'
 import { auth } from '@/auth'
-import { applyRateLimit, writeLimiter } from '@/lib/rate-limiter'
 
 export async function POST(request: NextRequest) {
-  // Apply rate limiting
-  const rateLimitResponse = await applyRateLimit(request, writeLimiter)
-  if (rateLimitResponse) return rateLimitResponse
-
   try {
     const { _id, data } = await request.json()
     if (!_id || !data) return NextResponse.json({ error: 'Incorrect params' }, { status: 400 })

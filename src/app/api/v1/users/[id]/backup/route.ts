@@ -2,13 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import Backup from '@/models/backup'
 import connectDB from '@/db/mongodb'
 import _ from 'lodash'
-import { applyRateLimit, readLimiter } from '@/lib/rate-limiter'
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-  // Apply rate limiting
-  const rateLimitResponse = await applyRateLimit(request, readLimiter)
-  if (rateLimitResponse) return rateLimitResponse
-
   const userId = (await params).id
 
   await connectDB()

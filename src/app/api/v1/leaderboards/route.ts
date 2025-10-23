@@ -1,13 +1,8 @@
 import connectDB from '@/db/mongodb'
 import Solve from '@/models/solve'
 import { NextResponse } from 'next/server'
-import { applyRateLimit, readLimiter } from '@/lib/rate-limiter'
 
 export async function GET(request: Request) {
-  // Apply rate limiting
-  const rateLimitResponse = await applyRateLimit(request, readLimiter)
-  if (rateLimitResponse) return rateLimitResponse
-
   await connectDB()
 
   const { searchParams } = new URL(request.url)

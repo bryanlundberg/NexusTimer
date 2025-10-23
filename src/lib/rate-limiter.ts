@@ -8,43 +8,12 @@ const redis = new Redis({
   token: process.env.UPSTASH_REDIS_REST_TOKEN || ''
 })
 
-// Create different rate limiters for different use cases
+// General rate limiter: 150 requests per minute
 export const generalLimiter = new Ratelimit({
   redis,
-  limiter: Ratelimit.slidingWindow(
-    parseInt(process.env.RATE_LIMIT_POINTS || '10'), // 10 requests
-    `${parseInt(process.env.RATE_LIMIT_DURATION || '60')} s` // Per 60 seconds
-  ),
+  limiter: Ratelimit.slidingWindow(150, '60 s'),
   analytics: true,
   prefix: '@upstash/ratelimit'
-})
-
-export const authLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(5, '60 s'), // 5 requests per minute
-  analytics: true,
-  prefix: '@upstash/ratelimit:auth'
-})
-
-export const uploadLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(3, '60 s'), // 3 requests per minute
-  analytics: true,
-  prefix: '@upstash/ratelimit:upload'
-})
-
-export const readLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(30, '60 s'), // 30 requests per minute
-  analytics: true,
-  prefix: '@upstash/ratelimit:read'
-})
-
-export const writeLimiter = new Ratelimit({
-  redis,
-  limiter: Ratelimit.slidingWindow(10, '60 s'), // 10 requests per minute
-  analytics: true,
-  prefix: '@upstash/ratelimit:write'
 })
 
 /**

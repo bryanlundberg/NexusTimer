@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
 import { v2 as cloudinary } from 'cloudinary'
-import { applyRateLimit, uploadLimiter } from '@/lib/rate-limiter'
 
 cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || '',
@@ -10,10 +9,6 @@ cloudinary.config({
 })
 
 export const POST = async (request: Request) => {
-  // Apply rate limiting
-  const rateLimitResponse = await applyRateLimit(request, uploadLimiter)
-  if (rateLimitResponse) return rateLimitResponse
-
   const formData = await request.formData()
   const file = formData.get('file') as File
   const path = formData.get('path') as string

@@ -3,15 +3,10 @@ import connectDB from '@/db/mongodb'
 import User from '@/models/user'
 import { Resend } from 'resend'
 import Email from '@/components/email/email'
-import { applyRateLimit, readLimiter, writeLimiter } from '@/lib/rate-limiter'
 
 const resend = new Resend(process.env.RESEND_API_KEY || 'development-placeholder-no-email-sent')
 
 export async function GET(request: NextRequest) {
-  // Apply rate limiting
-  const rateLimitResponse = await applyRateLimit(request, readLimiter)
-  if (rateLimitResponse) return rateLimitResponse
-
   try {
     await connectDB()
     const searchParams = request.nextUrl.searchParams
@@ -51,10 +46,6 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  // Apply rate limiting
-  const rateLimitResponse = await applyRateLimit(request, writeLimiter)
-  if (rateLimitResponse) return rateLimitResponse
-
   try {
     const { email, name, image } = await request.json()
 
