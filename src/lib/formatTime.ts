@@ -13,18 +13,25 @@ export default function formatTime(timeInMs: number, decimals: number = 2): stri
    * @returns {string} The padded number as a string.
    */
   function padTo2Digits(num: number): string {
-    return num.toString().padStart(2, "0");
+    return num.toString().padStart(2, '0')
   }
 
-  const milliseconds = timeInMs % 1000;
-  const seconds = Math.floor((timeInMs / 1000) % 60);
-  const minutes = Math.floor((timeInMs / (60 * 1000)) % 60);
+  const milliseconds = timeInMs % 1000
+  const seconds = Math.floor((timeInMs / 1000) % 60)
+  const minutes = Math.floor((timeInMs / (60 * 1000)) % 60)
 
-  let millisecondsFormatted = "";
+  let millisecondsFormatted = ''
   if (decimals > 0) {
-    millisecondsFormatted = (milliseconds / 1000).toFixed(decimals).substring(2);
+    const msStr = Math.floor(milliseconds).toString().padStart(3, '0')
+    if (decimals <= 3) {
+      millisecondsFormatted = msStr.substring(0, decimals)
+    } else {
+      millisecondsFormatted = msStr + '0'.repeat(decimals - 3)
+    }
   }
 
-  return (minutes > 0 ? minutes + ":" + padTo2Digits(seconds) : seconds) +
-    (millisecondsFormatted ? "." + millisecondsFormatted : "");
+  return (
+    (minutes > 0 ? minutes + ':' + padTo2Digits(seconds) : seconds) +
+    (millisecondsFormatted ? '.' + millisecondsFormatted : '')
+  )
 }
