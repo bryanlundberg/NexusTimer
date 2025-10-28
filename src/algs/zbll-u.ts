@@ -1,749 +1,783 @@
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection';
+import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 
 export const ZBLL_U_ALGS: AlgorithmCollection[] = [
   {
-    name: 'ZBLL AS 1',
-    group: 'AS1',
-    setup: "R U2' R' U2' B' U R U R' U' B R U' R' y",
+    name: 'ZBLL U 1',
+    group: 'U1',
+    setup: "L' U R U' L U R2' U2' R U R' U R",
     algs: [
-      "y' R2 D R' U2 R D' R' U' R' U R U' R' U R U2 R'",
-      "y' R U R' U R' D R2 U' R' U R2 D' R' U2 R'",
-      "y' R U R' U' L' U2 R U' R' U2 L U' R U2 R'",
-      "y R U R2 F' U' F U R F R' F' R2 U2 R'"
+      "R U' R' U' R U2 R' U' R' D' R U2 R' D R",
+      "R' U' R U' R' U2 R2 U' L' U R' U' L",
+      "y F R' F' U' F R S U R2 U' R' f'",
+      "R' U' R U' R' U2 R2 U' r' F R' F' r"
     ]
   },
   {
-    name: 'ZBLL AS 2',
-    group: 'AS1',
-    setup: "R' U' F2' U' R2' U R2' U F2' R2' U2' R'",
+    name: 'ZBLL U 2',
+    group: 'U1',
+    setup: "R U R' U R U2' R D R' U2' R D' R' U2' R' y",
     algs: [
-      "y2 R' U2 F' R U R' U' R' F R2 U R' U R",
-      "R U2 R2 F2 U' R2 U' R2 U F2 U R",
-      "y2 R' U2 R U R' U' R U R' U' R' D' R U2 R' D R2",
-      "R U2 R2 F2 D' F2 U' F2 D F2 U R"
+      "y' R U2 R D R' U2 R D' R' U2 R' U' R U' R'",
+      "z U R' D' R U' R' D U' R' U R' U' R2 U z'",
+      "y2 R U' L' U R' U' L R' U' R U' R' U2 R",
+      "y2 S R U' R' U' F' U2 F U R U' R' S'"
     ]
   },
   {
-    name: 'ZBLL AS 3',
-    group: 'AS1',
-    setup: "R' U2' R U' L U' R2' U L' U' R2' U' R' U R",
+    name: 'ZBLL U 3',
+    group: 'U1',
+    setup: "R U2' R D r' U2' r D' R2' y2'",
     algs: [
-      "y2 R' U R U R' U R U2 R' U' R2 D R' U2 R D' R'",
-      "D R2 U' R U' R2 U R' U R2 D' R U2 R'",
-      "R' U' R U' R D' R U2 R' D R U2 R U2 R",
-      "R U R' U' R' F R U2 F' U' F U' R U R' U' F'"
+      "y2 R2 D r' U2 r D' R' U2 R'",
+      "R' U r' F R F' r U2 R' U R",
+      "R' U2 R U R2 F' R U R U' R' F R",
+      "L2 D l' U2 l D' L' U2 L'"
     ]
   },
   {
-    name: 'ZBLL AS 4',
-    group: 'AS1',
-    setup: "F' U2' F' R2' u' L F2' L' u R2' F2'",
+    name: 'ZBLL U 4',
+    group: 'U1',
+    setup: "R U2' R' U' R2' D R' U' R D' R2' y'",
     algs: [
-      "y' R' D' R U2 R' D R2 U' R' U2 R U R' U R U R'",
-      "y2 R' U2 R' U2 F' R U R U' R' F R' U2 R U2 R",
-      "y2 r U' r' U2 R' F R U2 F2 U' R U' R' F'",
-      "y' R U2 R U2 R' U' R' U R F' R U2 R' U2 R' F"
+      "y R U R2 D' R U R' D R2 U2 R'",
+      "y R U R' U R U' R' U' R' F R U R U' R' F'",
+      "y R2 D R' U R D' R2 U R U2 R'",
+      "U R U R2 D' R U R' D R2 U2 R'"
     ]
   },
   {
-    name: 'ZBLL AS 5',
-    group: 'AS1',
-    setup: "F R' U2' R F' R' F U2' F' R y2'",
+    name: 'ZBLL U 5',
+    group: 'U1',
+    setup: "R U2' R' U2' R U R2' D' R U2' R' D R2' U2' R' y",
     algs: [
-      "y2 R' F U2 F' R F R' U2 R F'",
-      "y2 R' F U2 R' D' R U2 R' D R F' R",
-      "y2 x R' U B2 U' R U R' B2 R U' x'",
-      "y' R U R2 D R2 D' R2 U' R2 D R2 D' R"
+      "y' R U2 R2 D' R U2 R' D R2 U' R' U2 R U2 R'",
+      "r U R' U R' D' R U R' D R U r' F R F'",
+      "y2 S R2 S' D R' U2 R D' R U2 R2 U2 R",
+      "y2 x' R U L' U2 R D' R' U R D R2 U L U' x"
     ]
   },
   {
-    name: 'ZBLL AS 6',
-    group: 'AS1',
-    setup: "z' D U R2' U' L' U R2' z R2' U L' U' R",
+    name: 'ZBLL U 6',
+    group: 'U1',
+    setup: "R U2' R D R' U2' R D' R2' y2'",
     algs: [
-      "y2 R' F U' F' U' R F U' R' U' R F'",
-      "y2 R U R' U R' U' R U' R D R' U R D' U' R2 U2 R",
-      "y2 R' F U' F' U' R F U' R' U' R F' U",
-      "L' R' D2 R U R' D2 R2 U' L U R'"
+      "y2 R2 D R' U2 R D' R' U2 R'",
+      "L2 D L' U2 L D' L' U2 L'",
+      "U2 R2 D R' U2 R D' R' U2 R' U2",
+      "x' R U' R' D R U2 R' D' R U' R' x"
     ]
   },
   {
-    name: 'ZBLL AS 7',
-    group: 'AS1',
-    setup: "F R2' F' U2' R' U2' R2' U2' R U2' R F R F' R y'",
+    name: 'ZBLL U 7',
+    group: 'U1',
+    setup: "D R' U' R U2' R' U' R D' U' R U2' R' U R U R' y",
     algs: [
-      "y2 R2 D r' U2 r R' U' R D' R' U R' U' R U' R'",
-      "R B' r2 R2 U2 r' U' r U2 R' r2 B R2",
-      "y R' U' R U' R' U R' D' R U' R' r U2 r' D R2",
-      "y R' F R' F' R' U2 R' U2 R2 U2 R U2 F R2 F'"
+      "y2 R' D' r U2 r' D R U2 R U' R' U' R U' R'",
+      "R U R' U' R U R2 D' R U R' D R2 U R' U' R U' R'",
+      "R U R' F' U' F2 D R' U R' U' R D' F'",
+      "y' R U' R' U' R U2 R' U D R' U R U2 R' U R D'"
     ]
   },
   {
-    name: 'ZBLL AS 8',
-    group: 'AS1',
-    setup: "L' U' L U' R U2' L' U' R' U2' L U' R U' R' y'",
+    name: 'ZBLL U 8',
+    group: 'U1',
+    setup: "F R U R' U' R' F' U' R U R U' R' U' R' U R",
     algs: [
-      "y' R U2 R' U' R2 D R' U2 R D' R' U' R' U R U R'",
-      "y2 R' U' R U' R U R' U' R' U2 F R U R U' R' F'",
-      "y' R2 U R2 U R U2 R' U2 R' U' D R' U R D'",
-      "y' R2 F' R2 U R2 D' F' U' D F' U F2 R2"
+      "R' U' R U R U R' U' R' U F R U R U' R' F'",
+      "U R' F' R U2 R' F R2 D2 r' U r D2 R'",
+      "y2 R' U R D' R U R' D R2 U' R U R U2 R",
+      "y R' F' R U2 R' F R2 u2 R' F R u2 R'"
     ]
   },
   {
-    name: 'ZBLL AS 9',
-    group: 'AS1',
-    setup: "L' U2' R L U' L' U2' R' U2' L U2' R U' R' y'",
+    name: 'ZBLL U 9',
+    group: 'U1',
+    setup: "R' U' R U R' U R U' L U' R' U L' U R y'",
     algs: [
-      "y2 R' U' R U' R D R' U' R D' R' U R' U2 R",
-      "y2 R' U' R U' R' U R' D' R U' R' D R U2 R",
-      "y R U R D' R' U2 R D R' D' R' U2 R U' D R'",
-      "y R U R' U2 L' U2 R U2 L U L' R' U2 L"
+      "y' R U R' U R U' R' U F' R U2 R' U2 R' F R",
+      "y2 R2 F2 R2 U R U2 R' U' R U R F2 R' U2 R'",
+      "R D' R' U R2 D' r' D2 r' U' r2 D' R2",
+      "y R U R2 D' R U' M' U2 r' D R2 U2 R'"
     ]
   },
   {
-    name: 'ZBLL AS 10',
-    group: 'AS1',
-    setup: "L U2' R' U L' U' L R U R' U L' U' R y'",
+    name: 'ZBLL U 10',
+    group: 'U1',
+    setup: "R' U R' D' R U R' U2' R U R' D U R U' R y'",
     algs: [
-      "y R U2 R D R' U' R D' R' U R' U' R U' R'",
-      "y R U2 R' U R' D' R U' R' D R U' R U' R'",
-      "y R' U L U' R U' R' L' U L U' R U2 L'",
-      "y R U2 R D R' U' R D' R' U R' U' R U' R' U2"
+      "y' R2 D' R U' R' D R2 U R' U R U2 R' U R U2 R' U' R",
+      "y R2 U F' R2 U' R2 U' R2 U2 R2 U' F U' R2",
+      "y R' U R' U' D' R U' R' U2 R U' R' D R U' R",
+      "y2 R U2 R' U R U R2 D' r U2 r' D R2 U' R'"
     ]
   },
   {
-    name: 'ZBLL AS 11',
-    group: 'AS1',
-    setup: "R U R' U R U' R D R' U' R D' R2' y2'",
+    name: 'ZBLL U 11',
+    group: 'U1',
+    setup: "L U2' L' U R' U2' L U2' R U L' U R' U R y",
     algs: [
-      "y2 R2 D R' U R D' R' U R' U' R U' R'",
-      "y2 L' U R U' L2 U2 R' U R U2 L' R'",
-      "U R U R' U' D R' U' R U R2 U' R U R2 D'",
-      "y2 R' F' r U R U' r' F r' F' r U' r' F2 r"
+      "y R U R' U R U' R' U R U' R' U' L' U R U' R' L",
+      "y R U R' U R U' R' U R U2 R' r U R' U' r' F R F'",
+      "y R U R' U R U' R' U R U' R' U' r' F R F' M'",
+      "y R' F R F' U R' D' r U' r' D U' F' U F R"
     ]
   },
   {
-    name: 'ZBLL AS 12',
-    group: 'AS1',
-    setup: "R2' D' R U' R' D R U' R U R' U R y'",
+    name: 'ZBLL U 12',
+    group: 'U1',
+    setup: "R U' R2' D' R U' R' D R U2' R U' R' U' R U R' y",
     algs: [
-      "y R' U' R U' R' U R' D' R U R' D R2",
-      "y' r U2 R' U' R U' r' F R' F' R U R U' R'",
-      "y' R U' L' U R' U' L R' U2 R U R' U R"
+      "y' R U' R' U R U R' U2 R' D' R U R' D R2 U R'",
+      "R' U2 R U F' R' D U' R U R' D' U R F",
+      "R F2 U' R2 U' R U2 R' U' R U' R U F2 R'",
+      "y2 F U R F R' F R D R' D' F2 U' R' F'"
     ]
   },
   {
-    name: 'ZBLL AS 13',
-    group: 'AS2',
-    setup: "R' D' R U R' D R2' U R' U2' R U R'",
+    name: 'ZBLL U 13',
+    group: 'U2',
+    setup: "R' U2' R' D' r U2' r' D R2'",
     algs: [
-      "R U' R' U2 R U' R2 D' R U' R' D R",
-      "y' L U' R' U L' U R2 U R2 U R2 U2 R'",
-      "y R' U' R U2 R D R' U R D' R2 U2 R",
-      "y R' U' R U' R2 D' R U R' D R U R"
+      "R2 D' r U2 r' D R U2 R",
+      "y F U R U' R2 F' R2 U' R' F' U' F R U R'",
+      "R2 D' L F2 L' D R U2 R",
+      "R U R' U2 F U' F' U' R U' R' F U' F'"
     ]
   },
   {
-    name: 'ZBLL AS 14',
-    group: 'AS2',
-    setup: "R U R2' F' R U R U' R' F U R U2' R' y'",
+    name: 'ZBLL U 14',
+    group: 'U2',
+    setup: "R' U2' R U R2' D' R U R' D R2' y'",
     algs: [
-      "y R U2 R' U' F' R U R' U' R' F R2 U' R'",
-      "S U2 R U2 R' U2 R' F R f'",
-      "y2 R U2 R' U2 R U' R' L U' R U R' L'",
-      "y2 R U' R U F' U2 R' U2 R F U' R2"
+      "y R2 D' R U' R' D R2 U' R' U2 R",
+      "R' U R U2 R D r' U2 r D' R'",
+      "y R' U' R2 D R' U' R D' R2 U2 R",
+      "R2 F' R U R' U' R' F R2 U' R' U2 R U2 R"
     ]
   },
   {
-    name: 'ZBLL AS 15',
-    group: 'AS2',
-    setup: "x M U R' U' L U2' R U2' R' y2'",
+    name: 'ZBLL U 15',
+    group: 'U2',
+    setup: "R D R' U2' R D' R' U' R' U2' R U' R' U' R y2'",
     algs: [
-      "y' F U2 F' U' R' F U' F' U R",
-      "y2 R U2 R' U2 L' U R U' R' L",
-      "y2 R U2 R' U2 r' F R F' r R'",
-      "y2 R U2 R' U2 L' U R U' M' x'"
+      "y2 R' U R U R' U2 R U R D R' U2 R D' R'",
+      "L U L' U L U2 L2 U R U' L U R'",
+      "y2 R U R' U R U2 R2 U L U' R U L'",
+      "y2 R' F R U R' F' M U' F2 U F r"
     ]
   },
   {
-    name: 'ZBLL AS 16',
-    group: 'AS2',
-    setup: "L' R' U2' R U R' U2' L U R U R' U R",
+    name: 'ZBLL U 16',
+    group: 'U2',
+    setup: "R' U' R U' R' U2' R' D' R U2' R' D R U2' R y",
     algs: [
-      "y' R' U2 R' D' R U R' D R2 U' R' U2 R",
-      "R' U' R U' R' U' L' U2 R U' R' U2 R L"
+      "y' R' U2 R' D' R U2 R' D R U2 R U R' U R",
+      "R U' R' U' R U R' U R U R2 F' R U R U' R' F",
+      "y2 L' U R U' L U R' L U L' U L U2 L'",
+      "R' U L U' R U L' R U R' U R U2 R'"
     ]
   },
   {
-    name: 'ZBLL AS 17',
-    group: 'AS2',
-    setup: "R' U' F U' R2' U R2' U F' R U' R U' R' y'",
-    algs: [
-      "y R U R' U R' F U' R2 U' R2 U F' U R",
-      "y R U R' U2 R' D' R U' R' D U' R2 U' R2 U2 R",
-      "y R U R' U' R U' R' F' R U R' U R U' R' U' R' F R",
-      "F R U R' F R' F' U2 R2 U R2 U R F'"
-    ]
+    name: 'ZBLL U 17',
+    group: 'U2',
+    setup: "R' U2' R' D' R U2' R' D R2'",
+    algs: ["R2 D' R U2 R' D R U2 R", "y' F x R2 D2 R U R' D2 R U' R x' F'", "y2 L2 D' L U2 L' D L U2 L"]
   },
   {
-    name: 'ZBLL AS 18',
-    group: 'AS2',
-    setup: "L U' R' U L' U2' R U L U' R' U L' R",
+    name: 'ZBLL U 18',
+    group: 'U2',
+    setup: "R' U2' R U2' R' U' R2' D R' U2' R D' R2' U2' R y",
     algs: [
-      "y R2 D R' U R D' R2 U' r' F R F' M'",
-      "y R2 D R' U R D' R2 U' L' U R U' R' L",
-      "y2 R L' U' L U R' U' L' U2 R U' L U R'",
-      "y2 F2 D F' U F D' F2 R' F U' F' U R"
+      "y' R' U2 R2 D R' U2 R D' R2 U R U2 R' U2 R",
+      "R' F' r U2 R' D R U' R' D' R2 U' r' F",
+      "S R2 S' D' R U2 R' D R' U2 R2 U2 R'",
+      "y F U R U2 R' U R U2 R2 F R F' R U' R' F'"
     ]
   },
   {
-    name: 'ZBLL AS 19',
-    group: 'AS2',
-    setup: "L U L' U L U2' R U2' R' U' R U2' L' U R'",
+    name: 'ZBLL U 19',
+    group: 'U2',
+    setup: "D' R U R' U2' R U R' D U R' U2' R U' R' U' R y",
     algs: [
-      "y2 S R U R' U' R' F R S' R U R' U' F'",
-      "y2 S R U R' U' R' F R f' F R U R' U' F'",
-      "F R' F' U2 R U F' R' U R U F R U' R'",
-      "R U' L U2 R' U R U2 R' U2 L' U' L U' L'"
+      "y' R' U R U R' U2 R y U2 R U' R' U2 R U' R'",
+      "R D r' U2 r D' R' U2 R' U R U R' U R",
+      "y' R' U R U R' U2 R U' D' R U' R' U2 R U' R' D",
+      "R2 F2 r U' R U R' U M F R' F R2"
     ]
   },
   {
-    name: 'ZBLL AS 20',
-    group: 'AS2',
-    setup: "R2' D' r U2' r' D R2' U R' U R y2'",
+    name: 'ZBLL U 20',
+    group: 'U2',
+    setup: "R U2' R U R U' R2' D R' U R D' R U R'",
     algs: [
-      "y2 R' U' R U' R2 D' r U2 r' D R2",
-      "R D' R U' R D R' U R2 D' R U2 D R' U2 R"
+      "y2 F R U R' U' R2 D R' U' R D' R2 U' R U R' F'",
+      "y R B R' U2 R B' R2 D2 r U' r' D2 R",
+      "y2 F R U R2 D' R U' R' D R2 U' R' U' R U R' F'",
+      "R U' R2 U' R2 F' R U R' U' R' F U2 R'"
     ]
-  },
-  {
-    name: 'ZBLL AS 21',
-    group: 'AS2',
-    setup: "R2' D' R U2' R' D R2' U R' U R y2'",
-    algs: [ "y2 R' U' R U' R2 D' R U2 R' D R2" ]
   },
   {
-    name: 'ZBLL AS 22',
-    group: 'AS2',
-    setup: "R U R2' F' r U R U' r' F U R U2' R' y'",
+    name: 'ZBLL U 21',
+    group: 'U2',
+    setup: "R2' U R U R2' U2' R2' D R' U R D' R U R'",
     algs: [
-      "y2 R U2 R' U' R U R' U2 R' F R U R U' R' F'",
-      "y R U2 R' U' F' r U R' U' r' F R2 U' R'",
-      "y L U L' U L U2 L2 R U R' U' L U2 R U2 R'"
+      "R2 D' R U2 R' U' D R' U' R2 U R U R2",
+      "y' R2 D R' U R D' R2 U' R U' R' U2 R U' R' U2 R U R'",
+      "R' U2 F U F' R F U2 R' U' R U F'",
+      "R' U2 R U' R' U' R2 D r' U2 r D' R2 U R"
     ]
   },
   {
-    name: 'ZBLL AS 23',
-    group: 'AS2',
-    setup: "R' F' R U R' U' R' F R U' R U R' U' R U R' U R y'",
+    name: 'ZBLL U 22',
+    group: 'U2',
+    setup: "L U L' U' L U' L' U R' U L U' R U' L' y",
     algs: [
-      "R' U2 R' D' R U2 R' D R U' R U' R' U2 R",
-      "y R' U' R U' R' U R U' R' U R' F' R U R U' R' F R",
-      "y R' U' R U' R' U y' R' U2 R U' R' U' R B",
-      "F R U R2 U' R U' R U R2 U R2 U' R' U F'"
+      "y' R2 F' R U2 R U2 R' F U' R U R' U' R",
+      "y R U L' U R' U' L U' R U R' U R U' R'",
+      "R2 D' R U2 R' D R U' R' U' R' U' R' U R U R2",
+      "r' B r U' r2 U R B2 R U R2 U r2"
     ]
   },
   {
-    name: 'ZBLL AS 24',
-    group: 'AS2',
-    setup: "R2' F R U R U' R' F' R U' R' U R",
+    name: 'ZBLL U 23',
+    group: 'U2',
+    setup: "R' U R2' D R' U R D' R' U2' R' U R U R' U' R y",
     algs: [
-      "R' U' R U R' F R U R' U' R' F' R2",
-      "y L U2 L' U2 R' U L2 U' R U L' U' L'",
-      "y R U2 R' U2 R' F R2 U' R' U' R U R' F'"
+      "y' R' U R U' R' U' R U2 R D R' U' R D' R2 U' R",
+      "y R' U' R U' R' U R F U' R' U' R U F' R' U2 R",
+      "R D R' U2 R D' R' U R' U R U' R' U' R U R' U' R",
+      "y2 f U2 r F' R U R' U' R' F M U2 f'"
     ]
   },
   {
-    name: 'ZBLL AS 25',
-    group: 'AS3',
-    setup: "R2' D R' U2' R D' R' U' R' U R U2' R' y",
-    algs: [ "y' R U2 R' U' R U R D R' U2 R D' R2" ]
+    name: 'ZBLL U 24',
+    group: 'U2',
+    setup: "R U' R2' F2' R U2' R U2' R' F2' U2' R U' R' y",
+    algs: [
+      "F U R U' R D R' U' R D' R2 U R U R' F'",
+      "y R2 U' R2 U' R U2 D' R U' R' U' D R U R2",
+      "y' R U R' U2 F2 R U2 R' U2 R' F2 R2 U R'",
+      "y R' U' R U' R' U R U' R' U R U L U' R' U R L'"
+    ]
   },
   {
-    name: 'ZBLL AS 26',
-    group: 'AS3',
-    setup: "R' U2' F' R U R' U' R' F R U2' R y2'",
+    name: 'ZBLL U 25',
+    group: 'U3',
+    setup: "R' F R' F' R U R U' R' F R U' R' U R U R' F' R",
     algs: [
-      "y2 R' U2 R' F' R U R U' R' F U2 R",
-      "U2 R' U2 R' F' R U R U' R' F U2 R U2"
+      "R' F R U' R' U' R U R' F' R U R' U' R' F R F' R",
+      "R U' R2 U' R2 U R2 D' R2 U R2 U' R2 D R'",
+      "R U' R2 U' R2 U R' F' R U R2 U' R' F R2",
+      "R U' R' U F' r U' r' F2 R' F R F'"
     ]
   },
   {
-    name: 'ZBLL AS 27',
-    group: 'AS3',
-    setup: "R' U2' R U R' U' R' D' R U2' R' D R2'",
+    name: 'ZBLL U 26',
+    group: 'U3',
+    setup: "R U2' R D r' U2' r D' R2' U R' U2' R U R' U R y2'",
     algs: [
-      "R2 D' R U2 R' D R U R U' R' U2 R",
-      "R' F' R U R' U' R' F R2 U' R' U R U' R' U2 R",
-      "y2 L' U' L U F R U2 R' U' x U2 L U r'"
+      "r2 F2 r U2 r U' L' U R' U R U' L",
+      "y2 R' U' R U' R' U2 R U' R2 D r' U2 r D' R' U2 R'",
+      "R2 D' R U2 R' D R U2 R' F R U R U' R' F' R U2 R' U2 R",
+      "R' L' U2 L U2 R U' L' U R' U R U' L"
     ]
   },
   {
-    name: 'ZBLL AS 28',
-    group: 'AS3',
-    setup: "R2' D R2' U2' R U R' U R2' D' R' U2' R' y'",
+    name: 'ZBLL U 27',
+    group: 'U3',
+    setup: "F2' R' F' R U R U' R' F R U' R' U R U R' F2' y",
     algs: [
-      "y2 F U R U' R' U R U' R2 F' R U2 R U2 R'",
-      "y2 R U2 R2 D' R U' R' D R2 U R' U' R U' R'",
-      "y R U2 R D R2 U' R U' R' U2 R2 D' R2",
-      "y' L U2 F L' U' L U L F' L' U2 L'"
+      "y' F2 R U' R' U' R U R' F' R U R' U' R' F R F2",
+      "y R U R' U R U2 R2 F' R U R' U' R' F R2 U' R' U2 R",
+      "y2 R' U R U' x' U L' U L U2 R U' R' U x",
+      "y' F2 R U r U2 R2 F R F' R U2 r' R' F2"
     ]
   },
   {
-    name: 'ZBLL AS 29',
-    group: 'AS3',
-    setup: "R' U2' R2' U R D' R U R' D R2' U' R U' R' y2'",
+    name: 'ZBLL U 28',
+    group: 'U3',
+    setup: "x' R2' U2' R' U2' l' U R U' L U' L' U R' y'",
     algs: [
-      "y F U R U' R' U R U' R' U R2 D R' U' R D' R2 F'",
-      "y' R' U2 R U R2 D' R U' R' D R2 U R' U' R U R' U R",
-      "y2 R U R' U R2 D' R U' R' D R' U' R2 U2 R",
-      "R U' R' F D U R U' R' U R U' R' D' R' F' R"
+      "R2 B2 R' B2 R' U R U' L U' L' U R'",
+      "Lw2 F2 Lw' U2 Lw' U R U' L U' L' U R'",
+      "R U R' U R U2 R' U R2 D' r U2 r' D R U2 R",
+      "R2 D' R U2 R' D R U2 R2 U R' F' R U R' U' R' F R2 U' R'"
     ]
   },
   {
-    name: 'ZBLL AS 30',
-    group: 'AS3',
-    setup: "L U' R' U L' U' R",
+    name: 'ZBLL U 29',
+    group: 'U3',
+    setup: "R' U' R F R2' D' R U R' D R2' U' F' y",
     algs: [
-      "y2 L' U R U' L U R'",
-      "y2 r' F R F' r U R'",
-      "R' U L U' R U L'",
-      "z D' R U R' D R U' z'"
+      "y' F U R2 D' R U' R' D R2 F' R' U R",
+      "y' R U R' B' R2 D R' U' R D' R2 U B",
+      "R U R D R' U' R D' R2 U' R2 D' R U' R' D R U R",
+      "R U R' U R U2 R' U2 R' U' R2 D R' U' R D' R2 U2 R"
     ]
   },
   {
-    name: 'ZBLL AS 31',
-    group: 'AS3',
-    setup: "L' U' L U' L' U' R U' L U' R' U' R U' R' y2'",
+    name: 'ZBLL U 30',
+    group: 'U3',
+    setup: "F U R2' D' R U' R' D R2' F' R' U R y",
     algs: [
-      "y2 R' U R U R' U' R' D' R U R' D R U R U' R' U2 R",
-      "y' L' U R' U' R L U2 R' U' R2 U2 R' U' R U' R'",
-      "y R U2 R' U' R U R D R' U R D' R' U' R' U R U R'",
-      "y2 R U R' U R U L' U R' U L U L' U L"
+      "y' R' U' R F R2 D' R U R' D R2 U' F'",
+      "y' B' U' R2 D R' U R D' R2 B R U' R'",
+      "y l' U' L U l F' L' F R U R' U' R' F R U R U' R' F'",
+      "y' R' U' R F R' U R U' R' F' r U R U' r'"
     ]
   },
   {
-    name: 'ZBLL AS 32',
-    group: 'AS3',
-    setup: "R' U2' R' D' R U' R' D R U R U' R' U R U R' U R",
+    name: 'ZBLL U 31',
+    group: 'U3',
+    setup: "R' U2' R U R' U2' R U R2' F' R U R U' R' F R U' R' U' R y'",
     algs: [
-      "y R U R2 F' R U R U R' U' R U' R' F R U' R'",
-      "y2 D R' U' R D' R U' R' U R2 U R' U' R2",
-      "y R2 U' R' U R2 U R' U' R D' R U' R' D",
-      "R' U' R U' R' U' R U R' U' R' D' R U R' D R U2 R"
+      "y R' U R U R' F' R U R' U' R' F R2 U' R' U2 R U' R' U2 R",
+      "F U R U' R' S U f' R' f R U' R' f' R",
+      "R' U2 F' R U R' U' R' F R2 F U' R' U' R U F'",
+      "r2 U' r U r2 F2 R U R' F2 r F' U r2"
     ]
   },
   {
-    name: 'ZBLL AS 33',
-    group: 'AS3',
-    setup: "R2' U R U R' U' R' U' R' L' U R' U' L y2'",
+    name: 'ZBLL U 32',
+    group: 'U3',
+    setup: "R' U' R U' R2' U2' R U R2' F' R U R U' R' F R2' y",
     algs: [
-      "y' R U2 R' U' R U R D r' U2 r D' R2",
-      "y2 R' U2 R' D' R U R' D R U' R U R' U' R U R' U R",
-      "y2 L' U R U' L R U R U R U' R' U' R2"
+      "y' R2 F' R U R' U' R' F R2 U' R' U2 R2 U R' U R",
+      "R U' R' U R U' L U L' U x' U2 R U2 R2 x",
+      "R2 D' R U2 R' D R U2 R2 U R' U' R' F R2 U' R' U' R U R' F'",
+      "f R' F2 R S' R' U' F U r U2 R U' r'"
     ]
   },
   {
-    name: 'ZBLL AS 34',
-    group: 'AS3',
-    setup: "R2' F2' R2' U R U' R F2' R' U2' R' U R U2' R' y'",
+    name: 'ZBLL U 33',
+    group: 'U3',
+    setup: "R2' D' R U2' R' D R U2' R U R' U2' R U R' U R y'",
     algs: [
-      "y' R U R U' R2 D U2 R' U' R U D' R",
-      "y R U2 R' U' R U2 R F2 R' U R' U' R2 F2 R2",
-      "S U' R U R U' R2 U R F R' f'"
+      "y F U R U2 R' U R U R2 F' r U R U' r'",
+      "y R' U' R U' R' U2 R U' R' U2 R' D' R U2 R' D R2",
+      "y' R' U2 R2 L U2 L' U' L U2 R2 U L' R",
+      "y' R' U2 R' U' F' U F R2 U' R' F R' F' R2"
     ]
   },
   {
-    name: 'ZBLL AS 35',
-    group: 'AS3',
-    setup: "L' U' L' U L2' D' U2' L U L' D U' L' y",
+    name: 'ZBLL U 34',
+    group: 'U3',
+    setup: "R2' D R' U2' R D' R' U2' R' U' R U2' R' U' R U' R' y'",
     algs: [
-      "y R D' U R U' R' U2 D R2 U' R U R",
-      "y' L U D' L U' L' U2 D L2 U' L U L",
-      "y' F' U' f R U R2 U' R U R U' S'"
+      "y' R U2 R' U2 R' F R U R U2 R' U' R U2 R' U' F'",
+      "y R U R' U R U2 R' U R U2 R D R' U2 R D' R2",
+      "y2 F R2 U R' D R2 D' R U' R2 F' R U' R'",
+      "y R2 D' R U' R' D R2 U R' F R U R' U' R' F' R2"
     ]
   },
   {
-    name: 'ZBLL AS 36',
-    group: 'AS3',
-    setup: "F2' R U' R' U' R U2' R2' U' R F2' R' U R y2'",
+    name: 'ZBLL U 35',
+    group: 'U3',
+    setup: "F U R U2' R' U R U R2' F' r U R U' r' y",
     algs: [
-      "y2 F R U' R' U R U R2 F' R U R U R' U' R U' R'",
-      "R2 D' r U2 r' D R U R U' R' U2 R",
-      "y2 R' U' R F2 R' U R2 U2 R' U R U R' F2"
+      "y' r U R' U' r' F R2 U' R' U' R U2 R' U' F'",
+      "L U L' F U' R U2 L U2 L' U2 R' U F'",
+      "y' R2 F R F' R U R2 F' U' F U R U2 R",
+      "y' R2 D' R U2 R' D R U2 R U R' U2 R U R' U R"
     ]
   },
   {
-    name: 'ZBLL AS 37',
-    group: 'AS4',
-    setup: "R U R' U R U L U2' R' U R U2' R' L'",
+    name: 'ZBLL U 36',
+    group: 'U3',
+    setup: "R U R' U R U2' R' U R U2' R D R' U2' R D' R2' y",
     algs: [
-      "R U R' F' R U R' U' R' F R2 U R' U' R U' R'",
-      "y' R U2 R' U' R2 D R' U R D' R' U2 R'",
-      "L R U2 R' U' R U2 L' U' R' U' R U' R'"
+      "R2 F R U R U' R' F' R U' R2 D' R U R' D R2",
+      "y F U R U2 R' U R U2 R' U' R' F' R U2 R U2 R'",
+      "y' R2 D R' U2 R D' R' U2 R' U' R U2 R' U' R U' R'",
+      "U' S' U F R' F' R2 U' R' U2 R B U2 B' R' S"
     ]
   },
   {
-    name: 'ZBLL AS 38',
-    group: 'AS4',
-    setup: "R U R' U' R U R2' D' R U2' R' D R2' U2' R' y",
+    name: 'ZBLL U 37',
+    group: 'U4',
+    setup: "R U R' L' U2' R U' R' U2' L U R U' R' y2'",
     algs: [
-      "y L' R' U R U' L R' U' R U2 R' U2 R",
-      "y2 f' L F L' U2 L' U2 L U2 S",
-      "y2 R2 U' R U' R2 D' R U R' D R U R U' R",
-      "y' R U2 R2 D' R U2 R' D R2 U' R' U R U' R'"
+      "y2 R U R' U R U R' U2 R U' R2 D' R U' R' D R",
+      "y2 R U R' U' L' U2 R U R' U2 L R U' R'",
+      "L U L' F' U L U L' U' F U' L U' L'",
+      "y2 F U R U' R' S' R U' R' S U R U2 R' U' F'"
     ]
   },
   {
-    name: 'ZBLL AS 39',
-    group: 'AS4',
-    setup: "R' U2' R U2' L U' R' U M x",
+    name: 'ZBLL U 38',
+    group: 'U4',
+    setup: "R' U2' R' D' R U2' R' D R' U R' U R U2' R' y",
     algs: [
-      "y2 L' R U' L U R' U2 L' U2 L",
-      "x' M' U' R U L' U2 R' U2 R",
-      "y' F U R' U' R F' U' R' U2 R",
-      "y2 x M U' L U R' U2 L' U2 L"
+      "R U R' U R U' R' U2 R' D' R U2 R' D R2 U' R'",
+      "y' R U2 R' U' R U' R D' R U2 R' D R U2 R",
+      "y f R' f' R' f' R U R' S U' R' F R2",
+      "R2 B2 R' U2 R' U' R2 B2 R2 U' R B2 R'"
     ]
   },
   {
-    name: 'ZBLL AS 40',
-    group: 'AS4',
-    setup: "R' U R U2' R' U R2' D R' U R D' R' y",
+    name: 'ZBLL U 39',
+    group: 'U4',
+    setup: "R' U' R U' F U' R' U R U F' R' U R",
     algs: [
-      "y R U R D R' U R D' R2 U' R U' R'",
-      "R' U' F' R U R' U' R' F R2 U' R' U R",
-      "y R U2 R2 D' R U R' D R U2 R U' R'",
-      "y' R U' R' U2 L' U R U' L2 U' R' U L'"
+      "R' U' R U2 R' F' R U R' U' R' F R2 U2 R' U R",
+      "R' U' R F U' R' U' R U F' U R' U R",
+      "R' U' R U' R' U' R U2 R' U R2 D R' U R D' R'",
+      "R' U' R U L U2 R' U' L' U' L R U2 L'"
     ]
   },
   {
-    name: 'ZBLL AS 41',
-    group: 'AS4',
-    setup: "R' U2' R' D R' U R D' R U R U' R U' R' y'",
+    name: 'ZBLL U 40',
+    group: 'U4',
+    setup: "R U2' R D R' U2' R D' R U' R U' R' U2' R y",
     algs: [
-      "y R U R' U2 R U R' U' F' R U2 R' U' R U' R' F",
-      "y2 R2 D R' U2 R D' R U' R2 U' R' U R' U R",
-      "y' L' U R U' L U' R D R' U2 R D' R2",
-      "y R U R' U R' U' R' D R' U' R D' R U2 R"
+      "y R2 D' R U2 R' D R U2 R U R' U' R U' R' U2 R",
+      "y' R' U2 R U R' U R' D R' U2 R D' R' U2 R'",
+      "y2 R' U' R U' R' U R U2 R D R' U2 R D' R2 U R",
+      "y2 R U R' U' R' U' F U R2 U' R2 F' R U R U' R'"
     ]
   },
   {
-    name: 'ZBLL AS 42',
-    group: 'AS4',
-    setup: "R L' U R' U' L U R U2' L' U R' U' L y'",
+    name: 'ZBLL U 41',
+    group: 'U4',
+    setup: "x' R U2' R D2' R' U2' R D2' R2' x",
     algs: [
-      "R2 D' R U' R' D F R U R U' R' F' R",
-      "F U R' U' R F' R2 D' R U R' D R2",
-      "y L' U R U' L U2 R' U' L' U R U' L R'",
-      "R U2 R' U' R U' R D r' U2 r D' R' U2 R'"
+      "x' R2 D2 R' U2 R D2 R' U2 R' x",
+      "y2 R U' D' R' D' R U2 R' D R U' D R'",
+      "y2 x L2 D2 L' U2 L D2 L' U2 L'",
+      "y' F U2 R' D' R U2 R' D R F'"
     ]
   },
   {
-    name: 'ZBLL AS 43',
-    group: 'AS4',
-    setup: "R U R' U R2' D r' U2' r D' R2' y2'",
-    algs: [ "y2 R2 D r' U2 r D' R2 U' R U' R'" ]
+    name: 'ZBLL U 42',
+    group: 'U4',
+    setup: "x R' U2' R' D2' R U2' R' D2' R2' x' y2'",
+    algs: [
+      "y2 x R2 D2 R U2 R' D2 R U2 R x'",
+      "y2 R' F2 R U2 R U2 R' F2 R U2 R'",
+      "R' U D R D R' U2 R D' R' U D' R",
+      "U R U R2 U' R' F R U R2 U' R' F'"
+    ]
   },
   {
-    name: 'ZBLL AS 44',
-    group: 'AS4',
-    setup: "L' U R' U2' L U' L' U2' L U2' R U R' U R",
+    name: 'ZBLL U 43',
+    group: 'U4',
+    setup: "F R U R' U' R U' R' U' R U R' F'",
     algs: [
-      "R U R' U' R' U2 R U R' U R2 U r' F R' F' r",
-      "y R U R' U R U' R2 F R F' r U' r' U r U r'",
-      "R D' R U' R' D U' R' U R U R2 U' R' U R",
-      "R' U' R U' R' U2 L' U2 L U L' U2 R U' L"
+      "F R U' R' U R U R' U R U' R' F'",
+      "R U R' U' R' F2 R2 U' R' U' R U R' F2",
+      "R' U' R f R' U R U' R U R' U' f'",
+      "y2 R U R' U' R' F R F' R' U' F' U F R"
     ]
   },
   {
-    name: 'ZBLL AS 45',
-    group: 'AS4',
-    setup: "R U R' U' L U' R U L' U' R' U' R U2' R'",
+    name: 'ZBLL U 44',
+    group: 'U4',
+    setup: "F' U' F U R' F R2' U R' U' R' F' R2' U R' y2'",
     algs: [
-      "R U2 R' U' R U' R D R' U2 R D' R' U2 R'",
-      "R U2 R' U R U L U' R' U L' U R U' R'"
+      "y2 R U' R2 F R U R U' R2 F' R U' F' U F",
+      "y F' R U R' U' R' F R2 U R' U2 R U R' U2 R U' R'",
+      "y R U2 F R U R U' R U R2 U' F' U2 R'",
+      "y' R U' R' U R' D' R U' R' D F R f' R U R' S"
     ]
   },
   {
-    name: 'ZBLL AS 46',
-    group: 'AS4',
-    setup: "R' U2' L U' R2' U L' R' U2' R U R' U' R' U R y",
+    name: 'ZBLL U 45',
+    group: 'U4',
+    setup: "R' U R2' D R' U R D' R' U R' U' R U' R' U' R y",
     algs: [
-      "y' R' U' R U' R' F' R U R' U' R' F R U R U' R' U2 R",
-      "R U2 R' U' R' D' R U' R' D R2 U' R' U R U' R'",
-      "y' R' U' R U' R U R D R' U' R D' R U2 R",
-      "y' R' U' R U R U' R' U2 R L U' R2 U L' U2 R"
+      "R U R' U R' D' R U2 R' D R2 U' R' U2 R U2 R'",
+      "y' R' U2 R U R' U R' D r' U2 r D' R' U2 R'",
+      "y' R' U R U R' U R U' R D R' U' R D' R2 U' R",
+      "y R' U' R U' R' U2 R F l' U' L U R U' r'"
     ]
   },
   {
-    name: 'ZBLL AS 47',
-    group: 'AS4',
-    setup: "R U R' U R2' D R' U2' R D' R2' y2'",
-    algs: [ "y2 R2 D R' U2 R D' R2 U' R U' R'" ]
+    name: 'ZBLL U 46',
+    group: 'U4',
+    setup: "R U' R2' D' R U' R' D R U' R U R' U R U R' y",
+    algs: [
+      "y' R U' R' U' R U' R' U R' D' R U R' D R2 U R'",
+      "y F' r U R' U' r' F R2 U R' U R U2 R'",
+      "y R U R' U R U2 R' U' R2 D' R U' R' D R U R",
+      "y' R U2 R' U' R U' R D' r U2 r' D R U2 R"
+    ]
   },
   {
-    name: 'ZBLL AS 48',
-    group: 'AS4',
-    setup: "F R' U' R2' U' R2' U2' R2' U' R' F' y'",
+    name: 'ZBLL U 47',
+    group: 'U4',
+    setup: "R' U' R' D' R U R' D R U' R U' R' U2' R",
     algs: [
-      "R U' R' U2 R U' R' U R' D' R U2 R' D R",
-      "R U R' F' R U2 R' U2 R' F R2 U' R'",
-      "y F R U R2 U2 R2 U R2 U R F'"
+      "R' U2 R U R' U R' D' R U' R' D R U R",
+      "R' U2 R U R D R' U' R D' R' U R' U R",
+      "R' U2 R U R' U R U' F' r U R' U' r' F R",
+      "y2 R U2 r' F R' F' r U2 r' F R F' M'"
     ]
   },
   {
-    name: 'ZBLL AS 49',
-    group: 'AS5',
-    setup: "R U R' U L' U R U' L U2' R'",
+    name: 'ZBLL U 48',
+    group: 'U4',
+    setup: "R F R' U R U2' R' U R U F' R'",
     algs: [
-      "y R U' R' F' R U R' U' R' F R2 U' R' U2 R U' R'",
-      "R U2 L' U R' U' L U' R U' R'",
-      "R U' R' U2 R U' R' U2 R' D' R U R' D R"
+      "y2 R U2 R' U' R U' R D R' U R D' R' U' R'",
+      "R F U' R' U' R U2 R' U' R F' R'",
+      "L U2 L' U' L U' L' R U R' U' R' F R U R U' R' F'",
+      "y2 R U2 R' U' R U' R' U' F R' F' r U R U' r'"
     ]
   },
   {
-    name: 'ZBLL AS 50',
-    group: 'AS5',
-    setup: "F U' R' U R U F' R U R2' U R2' U2' R' y",
+    name: 'ZBLL U 49',
+    group: 'U5',
+    setup: "R2' D R' U' R D' R' U' R' U R U R'",
     algs: [
-      "y' R U2 R2 U' R2 U' R' F U' R' U' R U F'",
-      "y' R U2 R2 U' R2 F' R U R' U' R' F U' R'",
-      "y' R U2 R2 U' R2 U' R' U2 R' F' R U R' U' R' F R2",
-      "y' R U2 R' D R' U' R D' R2 U R' U' R' U' R'"
+      "R U' R' U' R U R D R' U R D' R2",
+      "y F' U L U' L' U' F L U2 L'",
+      "R U' R' U' R U2 R2 D' R U R' D R",
+      "R' D R2 U' R' U' R U2 R2 D' R"
     ]
   },
   {
-    name: 'ZBLL AS 51',
-    group: 'AS5',
-    setup: "F R U' R2' U2' R U R' U R2' U R' F' y2'",
+    name: 'ZBLL U 50',
+    group: 'U5',
+    setup: "R' U' F' U F R U F U R U' R' U R U' R' F' y",
     algs: [
-      "R U R' F' R U2 R' U' R U' R' F R U' R'",
-      "y2 R' F R F' U2 R U' R' U' F R' F' R",
-      "y2 F R U' R2 U' R U' R' U2 R2 U R' F'"
+      "y' F R U R' U' R U R' U' F' U' R' F' U' F U R",
+      "y' R U2 R2 D' R U' R' D R U' R' F R U R U' R' F'",
+      "y S' R' U R S R' U2 R' F R F' U R",
+      "y2 M U' M' F U R U' R' F' M U M'"
     ]
   },
   {
-    name: 'ZBLL AS 52',
-    group: 'AS5',
-    setup: "R' U2' L U' R U L' U R' U R y2'",
+    name: 'ZBLL U 51',
+    group: 'U5',
+    setup: "L' R U R' U R U R' U2' L R U' R'",
     algs: [
-      "y2 R' U' R U' L U' R' U L' U2 R",
-      "L' U' L U' R U' L' U R' U2 L",
-      "y' R D R' U R D' R' U2 R' U' R U2 R' U' R",
-      "y2 R' F R f' U2 R U' R' U' f R' F' R"
+      "R U R' L' U2 R U' R' U' R U' R' L",
+      "R U R' U L' U R U' R' L U' R U' R'",
+      "S' R' U' R S R' U F' U' F U R",
+      "R U R' U R' F R F' U' S' R U' R' S"
     ]
   },
   {
-    name: 'ZBLL AS 53',
-    group: 'AS5',
-    setup: "R' U2' L R2' U2' R' U' R U2' L' U R2' U R y2'",
+    name: 'ZBLL U 52',
+    group: 'U5',
+    setup: "F U' R' U R U F' R' U2' R",
     algs: [
-      "y2 F R' F' R U R U' R2 F R U R' U' F' U R",
-      "y' L' U R U' L U L' U R' U' L U R U' R'",
-      "y' r R D R' U R U' D' L' U R' U' x'",
-      "R' U2 R' D' R U R' D F R U R U' R' F' R"
+      "R2 D' R U R' D R U R U' R' U' R",
+      "R' U2 R F U' R' U' R U F'",
+      "R' U2 R U2 R' F' R U R' U' R' F R2",
+      "R D' R2 U2 R U' R' U' R2 D R' U"
     ]
   },
   {
-    name: 'ZBLL AS 54',
-    group: 'AS5',
-    setup: "L' U2' L U R U2' L' U' L U' R' U R U2' R'",
+    name: 'ZBLL U 53',
+    group: 'U5',
+    setup: "F U R U2' R' U R U R' U R U2' R' U R U R' F'",
     algs: [
-      "y2 F R2 U R2 U R2 U2 R' U2 R' U' R U' R' F'",
-      "F' U2 R' D R U' R' D' R f R' F R f'",
-      "R U2 R' U' F2 R U2 R' U2 R' F2 R2 U' R'",
-      "R U2 R' U' R U L' U L U2 R' U' L' U2 L"
+      "F U R U2 R' U R U R' U R U2 R' U R U R' F'",
+      "F R U' R' U' R U2 R' U' R U' R' U' R U2 R' U' F'",
+      "y2 f U2 R2 U2 R2 U' S R2 S' U' R2 f'",
+      "y2 F U2 R2 U2 R2 U' S R2 S' U' R2 F'"
     ]
   },
   {
-    name: 'ZBLL AS 55',
-    group: 'AS5',
-    setup: "R' U2' R U R' U' R L U' R' U L' U2' R y'",
+    name: 'ZBLL U 54',
+    group: 'U5',
+    setup: "F U R U' R' F' R U R' U' M' U R U' r' y",
     algs: [
-      "y' F U' R' U R U F' R' U R U' R' U2 R",
-      "y R' U2 L U' R U L' R' U R U' R' U2 R",
-      "y' R U R' U R U' R' U r' F R F' r U2 R'"
+      "y' r U R' U' M U R U' R' F R U R' U' F'",
+      "R' F' M U' M' F M U r",
+      "R' F' U' F U F R S R' F' R S'",
+      "S' R U R' S R U' R2 F' U' F U R"
     ]
   },
   {
-    name: 'ZBLL AS 56',
-    group: 'AS5',
-    setup: "R U2' L' U R' U' L R U' R' U R U2' R' y",
+    name: 'ZBLL U 55',
+    group: 'U5',
+    setup: "M' U' R U R' U M F R' F' R2' U2' R' y",
     algs: [
-      "y' F R U' R' U R U2 R' U' F' R U R' U' R' F R F'",
-      "y' R U2 R' U' R U R' r' F R F' r U2 R'",
-      "y' R U2 R' U' R U R' L' U R U' L U2 R'",
-      "y R' F' U' F U R F R U R' U' R U R' U' F'"
+      "y' r U2 R2 F R F' U2 r' R U R U' R'",
+      "y R U R' U' M' U R2 B' R' B U' r'",
+      "y' R U2 R2 F R F' M' U' R U' R' U M",
+      "y' F R U R' U' f' R U R' S R U' R'"
     ]
   },
   {
-    name: 'ZBLL AS 57',
-    group: 'AS5',
-    setup: "L' U2' R L U2' L' U2' R' U2' L U' R U' R' y'",
+    name: 'ZBLL U 56',
+    group: 'U5',
+    setup: "L' U' L U' L' R U' R' U2' L R U' R' y'",
     algs: [
-      "y' R2 U R2 F' R U R' U R U2 R' F R2 U' R2",
-      "y R U R' U L' U2 R U2 L U2 L' R' U2 L",
-      "y' R U2 R' F' R U R' U F U F' U R' F R2 U' R'",
-      "R U' R D R2 U2 R U R' U R2 D' R' U R'"
+      "y' R' U2 R F U' R' U R U R' U R U' F'",
+      "y R' D R2 U' R' U R U2 R' U' R U R2 D' R",
+      "y R' U' R U' R' L U' R U R' L' U2 R",
+      "y' R' U' F R' F' R2 S' R' U R S"
     ]
   },
   {
-    name: 'ZBLL AS 58',
-    group: 'AS5',
-    setup: "F U R' F R F' R U' R' U R U' R' F' y",
+    name: 'ZBLL U 57',
+    group: 'U5',
+    setup: "F' U L U' L' U' F L U2' L'",
     algs: [
-      "y' F R U R' U' R U R' F R' F' R U' F'",
-      "y L' U2 R U' R' U2 L R U R' U' R U R' U' R U' R'"
+      "y' R' D' R U' R' D R2 U2 R' U R U R'",
+      "y2 R2 D R' U' R D' R' U' R' U R U R'",
+      "y2 R' D R2 U2 R' U R U R2 D' R",
+      "L U2 L' F' U L U L' U' F"
     ]
   },
   {
-    name: 'ZBLL AS 59',
-    group: 'AS5',
-    setup: "R2' U2' R U' R' U R' U L' U R' U' L U' R' y2'",
+    name: 'ZBLL U 58',
+    group: 'U5',
+    setup: "R B' R2' F R2' B R2' F' R F U R U' R' F' y'",
     algs: [
-      "y2 R' U F' R U R' U' R' F R U2 R U2 R' U' R",
-      "y' R2 U' R2 B R' U2 R U R' U R B' R2 U R2",
-      "y2 R' U R' D' R2 U R' U R U2 R2 D R U' R",
-      "y2 R U L' U R U' L U' R U' R U R' U2 R2"
+      "M' U R' U' F' U F R2 U R' U R U2 r'",
+      "F U R U2 R2 U2 R U R' U R U2 R U R' F'",
+      "M U' M' F R U R' U' F' M U M'",
+      "y F' U' L' U L F2 U R U' R' U R U' R' F'"
     ]
   },
   {
-    name: 'ZBLL AS 60',
-    group: 'AS5',
-    setup: "L U' R U' R2' U L' U' R U2' L U R U2' R' L' y'",
+    name: 'ZBLL U 59',
+    group: 'U5',
+    setup: "R' U2' R U L U2' R' U' R U2' L'",
     algs: [
-      "y' R U' R2 D' U' R U' R' U2 D R2 U R'",
-      "y R' U R2 U2 D R' U' R D' U' R2 U' R",
-      "y L R U2 R' U' L' U2 R' U L U' R2 U R' U L'"
+      "y2 R' U R U R' U' R' D' R U' R' D R2",
+      "y' F U' R' U R U F' R' U2 R",
+      "y2 R' U R U R' U2 R2 D R' U' R D' R'",
+      "L' U L U L' U2 L2 D L' U' L D' L'"
     ]
   },
   {
-    name: 'ZBLL AS 61',
-    group: 'AS6',
-    setup: "R2' U' R2' U' R U R2' U' R2' U R' U R2' y",
+    name: 'ZBLL U 60',
+    group: 'U5',
+    setup: "R U R' U L' U R U' R' L U' R U' R' y2'",
     algs: [
-      "y R2 U R2 U R' U2 R' U R U R' U' R2",
-      "R' U' R U' R' U R U' R U R2 U R U' R U' R'",
-      "y' F R U R' U F' U' F U' R U R' U' F'",
-      "R' U' R U' R2 U' R' U' R' U R U R U' R"
+      "y2 R' U' F' U F U' R S' R' U R S",
+      "y2 L' R U R' U R U R' U2 R L U' R'",
+      "y2 R' U' R U' F U' R' U R U R' U R U' F'",
+      "L' U' L R U2 L' U L U L' U L R'"
     ]
   },
   {
-    name: 'ZBLL AS 62',
-    group: 'AS6',
-    setup: "R' U2' R U R U R U R' U' R U R U' R U' R' y2'",
+    name: 'ZBLL U 61',
+    group: 'U6',
+    setup: "R U R' U R U2' R' U' R U2' R' U' R U' R' y2'",
     algs: [
-      "y R' U' R U R U2 R' U' R U' R' U R' U R",
-      "y R2 U R2 U R U2 R' U R U R U' R2",
-      "y R U2 R' U' R U' R' U' R U' R U R U R U' R' U' R2",
-      "y2 S' l' U' L U' L' U2 l U2 S"
+      "y' R' U' R U R' U R U2 R' U R U2 R' U' R",
+      "y2 R U R' U R U2 R' U R U2 R' U' R U' R'",
+      "L U L' U L U2 L' U L U2 L' U' L U' L'",
+      "U2 R U R' U R U2 R' U R U2 R' U' R U' R'"
     ]
   },
   {
-    name: 'ZBLL AS 63',
-    group: 'AS6',
-    setup: "R2' U' R' U' R U R U R U R U R' U R",
+    name: 'ZBLL U 62',
+    group: 'U6',
+    setup: "R U' R' U2' R U R' U2' R U R' U R U' R' y",
     algs: [
-      "y2 R U R' U R' U' R U' R' U2 R U R U' R'",
-      "R' U' R U' R' U' R' U' R' U' R' U R U R2",
-      "y R2 U' R U R U R' U2 R U R2 U R2",
-      "y' R2 F2 R' U2 R' U' R U' R F2 R2"
+      "y' R U R' U' R U' R' U2 R U' R' U2 R U R'",
+      "R' U' R U' R' U2 R U' R' U2 R U R' U R",
+      "y2 L' U' L U' L' U2 L U' L' U2 L U L' U L",
+      "y L U L' U' L U' L' U2 L U' L' U2 L U L'"
     ]
+  },
+  {
+    name: 'ZBLL U 63',
+    group: 'U6',
+    setup: "R U2' R' U' R U' R' U R U R' U R U2' R' y'",
+    algs: ["y R U2 R' U' R U' R' U' R U R' U R U2 R'"]
   },
   {
-    name: 'ZBLL AS 64',
-    group: 'AS6',
-    setup: "R' U' R U' R U R' U' R U R2' U R2' U' R' U R U' R' y'",
+    name: 'ZBLL U 64',
+    group: 'U6',
+    setup: "R U R' U R U' R' U R' U' R2' U' R2' U2' R y'",
     algs: [
-      "y' R' U' R U' R U R2 U R U' R U R' U' R U' R'",
-      "y R U R' U' R U R2 U' R2 U' R' U R U' R' U R' U R",
-      "y R U2 R' U' R U' R2 U R' U' R3 U' R' U R U R2",
-      "y R2 U' R' U R U R' U2 R' U R2 U R2"
+      "y R' U2 R2 U R2 U R U' R U R' U' R U' R'",
+      "y' r' F2 r2 U' r' F r' F U' F U r",
+      "U R' U2 R2 U R2 U R U' R U R' U' R U' R'",
+      "y2 R' U' R U R U' R' U' R U' R' U R' U R2 U R'"
     ]
   },
   {
-    name: 'ZBLL AS 65',
-    group: 'AS6',
-    setup: "R' U2' R2' U2' R2' U' R2' U' R2' U R",
+    name: 'ZBLL U 65',
+    group: 'U6',
+    setup: "R' U2' R U R' U R U' R' U' R U' R' U2' R y'",
     algs: [
-      "R' U' R2 U R2 U R2 U2 R2 U2 R",
-      "y R U2 R' U' R U' R' U R U' R U R U R U' R' U' R2",
-      "y2 R U R2 U' R' U' R U R' U' R2 U2 R",
-      "y' R' U2 R U2 R U2 R' U' R U' R2 U2 R"
+      "y R' U2 R U R' U R U R' U' R U' R' U2 R",
+      "y' L' U2 L U L' U L U' R' U' R U' R' U2 R",
+      "y' L' U2 L U L' U L U L' U' L U' L' U2 L"
     ]
   },
   {
-    name: 'ZBLL AS 66',
-    group: 'AS6',
-    setup: "R U R' U R U2' R' y'",
+    name: 'ZBLL U 66',
+    group: 'U6',
+    setup: "R' U' R U' R' U R U' R U R2' U R2' U2' R' y'",
     algs: [
-      "y R U2 R' U' R U' R'",
-      "y' L U2 L' U' L U' L'",
-      "y' M' U2 R U2 M R' U' R U' R' U2"
+      "y R U2 R2 U' R2 U' R' U R' U' R U R' U R",
+      "U' L U2 L2 U' L2 U' L' U L' U' L U L' U L",
+      "y R U2 R2 F R F' R U' B U' B' R'",
+      "y R' U R U' R' U R U' R' U R' U' R2 U' R2 U2 R2"
     ]
   },
   {
-    name: 'ZBLL AS 67',
-    group: 'AS6',
-    setup: "R U R2' U' R2' U' R2' U2' R2' U2' R'",
+    name: 'ZBLL U 67',
+    group: 'U6',
+    setup: "R U R2' U' R2' U' R2' U2' R U' R U' R' y2'",
     algs: [
-      "R U2 R2 U2 R2 U R2 U R2 U' R'",
-      "R U2 R2 U' R U' R' U2 R U2 R U2 R'",
-      "R' U' R U' R' U2 R U' R U' R U R U R U' R' U' R2",
-      "y R U2 R2 U' R' U R U' R' U' R2 U R"
+      "y2 R U R' U R' U2 R2 U R2 U R2 U' R'",
+      "y2 R U R' U R' U' R U' R' U2 R U2 R U2 R'",
+      "y2 R U R' U R' U' R U R U2 R' U2 R' U2 R",
+      "y2 R U R' U' L' U' L U' R U2 R' L' U2 L"
     ]
   },
   {
-    name: 'ZBLL AS 68',
-    group: 'AS6',
-    setup: "R' U2' R U R' U R",
+    name: 'ZBLL U 68',
+    group: 'U6',
+    setup: "R' U' R2' U R2' U R2' U2' R' U R' U R",
     algs: [
-      "R' U' R U' R' U2 R",
-      "y2 r' F' r U' r' F2 r",
-      "y R U' R' U' R U R' U R U' R' U R U2 R' U2 R U' R'",
-      "y2 L' U' L U' L' U2 L"
+      "R' U' R U' R U2 R2 U' R2 U' R2 U R",
+      "R' U' R U' R U R' U' R' U2 R U2 R U2 R'",
+      "R' U' R U' R U R' U R U2 R' U2 R' U2 R",
+      "R' U' R U' R U R2 U' R2 U R2 U R2 U' R'"
     ]
   },
   {
-    name: 'ZBLL AS 69',
-    group: 'AS6',
-    setup: "R' U' R U R U R' U' R' U R U R U' R' y'",
+    name: 'ZBLL U 69',
+    group: 'U6',
+    setup: "R U2' R' U' R U' R2' U2' R U R' U R",
     algs: [
-      "y R U R' U' R' U' R U R U' R' U' R' U R",
-      "y R U2 R2 U' R' U' R' U R U R2 U' R'"
+      "R' U' R U' R' U2 R2 U R' U R U2 R'",
+      "y2 L' U' L U' L' U2 L U2 R U R' U R U2 R'",
+      "y2 L' U' L U' L' U2 L2 U L' U L U2 L'"
     ]
   },
   {
-    name: 'ZBLL AS 70',
-    group: 'AS6',
-    setup: "R2' U' R' U' R2' U R U R2' U R' U R",
+    name: 'ZBLL U 70',
+    group: 'U6',
+    setup: "R' U2' R U R' U R2' U2' R' U' R U' R' y2'",
     algs: [
-      "y R' U' R U R U2 R' U' R' U R U' R U' R'",
-      "R' U' R U' R U R' U' R' U2 R U R U' R'",
-      "y R2 U R U R2 U' R' U' R2 U' R U' R'",
-      "R' U' R U' R2 U' R' U' R2 U R U R2"
+      "y2 R U R' U R U2 R2 U' R U' R' U2 R",
+      "L U L' U L U2 L2 U' L U' L' U2 L",
+      "R U R' U' R U' R' U2 R U' R' U2 R U' R' U' R U' R'"
     ]
   },
   {
-    name: 'ZBLL AS 71',
-    group: 'AS6',
-    setup: "R' U2' R2' U R2' U R U' R U' R' y2'",
+    name: 'ZBLL U 71',
+    group: 'U6',
+    setup: "R2' U R2' U R U' R' U R2' U2' R' U R' U R U' R'",
     algs: [
-      "y2 R U R' U R' U' R2 U' R2 U2 R",
-      "y R U2 R2 U' R2 U' R' U R' U R",
-      "y2 r U R' U R' U' R2 U' r' R' U2 R",
-      "y' R U' R' U' R U' R' U R U' R' U R U R' U' R U2 R'"
+      "R U R' U' R U' R U2 R2 U' R U R' U' R2 U' R2",
+      "x' R2 D2 R' U' R D2 R2 D R U R' D' x",
+      "y2 R' U2 R U R' U R U2 R U2 R2 U' R2 U' R2 U2 R",
+      "y2 R' U' R U R U' R' U' R' U R U' R U' R' U2 R U R'"
     ]
   },
   {
-    name: 'ZBLL AS 72',
-    group: 'AS6',
-    setup: "R2' U R' U R U2' R U2' R U R' U R2' U R' y'",
+    name: 'ZBLL U 72',
+    group: 'U6',
+    setup: "R' U' R U' R' U2' R U2' R U R' U R U2' R' y'",
     algs: [
-      "y' R2 D' R U2 R' D R U R' F R U R U' R' F' R",
-      "R' F2 R D R' D' F2 U' R2 U R' U' R2",
-      "R2 U' S R2 S' R2 U R U' R U' R' U2 R",
-      "y R U' R U R' U R U2 R' U' R' U' R U' R' U R U' R'"
+      "y R U2 R' U' R U' R' L' U2 L U L' U L",
+      "y R U2 R' U' R U' R' U2 R' U2 R U R' U R",
+      "y R' F' R U R' U' R' F D' R U R' D R2",
+      "F R' F' r U R U' R' U R U' r' F R' F' R"
     ]
   }
 ]
