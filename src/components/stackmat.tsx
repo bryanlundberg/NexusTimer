@@ -1,66 +1,84 @@
-"use client";
-import { Solve } from "@/interfaces/Solve";
-import genId from "@/lib/genId";
-import { useTimerStore } from "@/store/timerStore";
-import Script from "next/script";
-import { useEffect, useRef, useState } from "react";
-import { Packet } from "stackmat";
-import { toast } from "sonner";
-import { TimerStatus } from "@/enums/TimerStatus";
-import { useNXData } from '@/hooks/useNXData';
-import { useSettingsModalStore } from '@/store/SettingsModalStore';
+'use client'
+import { Solve } from '@/interfaces/Solve'
+import genId from '@/lib/genId'
+import { useTimerStore } from '@/store/timerStore'
+import { useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
+import { TimerStatus } from '@/enums/TimerStatus'
+import { useNXData } from '@/hooks/useNXData'
+import { useSettingsModalStore } from '@/store/SettingsModalStore'
 
-// more information: https://www.npmjs.com/package/stackmat
-declare global {
-  interface Window {
-    Stackmat?: any;
-  }
-}
+// Minimal Packet shape used in this component to avoid static type import
+// which can cause build resolution errors with Turbopack.
+type PacketLike = { timeInMilliseconds: number }
 
 export default function Stackmat() {
-  const { getAllCubes, getCubeById, saveCube } = useNXData();
-  const selectedCube = useTimerStore((state) => state.selectedCube);
-  const setSelectedCube = useTimerStore((state) => state.setSelectedCube);
-  const cubes = useTimerStore((state) => state.cubes);
-  const setCubes = useTimerStore((state) => state.setCubes);
-  const setNewScramble = useTimerStore((state) => state.setNewScramble);
-  const setLastSolve = useTimerStore((state) => state.setLastSolve);
-  const setSolvingTime = useTimerStore((state) => state.setSolvingTime);
-  const setIsSolving = useTimerStore((state) => state.setIsSolving);
-  const timerStatus = useTimerStore((state) => state.timerStatus);
-  const setTimerStatus = useTimerStore((state) => state.setTimerStatus);
-  const scramble = useTimerStore((state) => state.scramble);
-  const updateSetting = useSettingsModalStore(state => state.updateSetting);
-  const solvesSinceLastSync = useSettingsModalStore(state => state.settings.sync.totalSolves);
-  const [stackmat, setStackmat] = useState<any>(null);
-  const solvingIdRef = useRef<any>(null);
+  const { getAllCubes, getCubeById, saveCube } = useNXData()
+  const selectedCube = useTimerStore((state) => state.selectedCube)
+  const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
+  const cubes = useTimerStore((state) => state.cubes)
+  const setCubes = useTimerStore((state) => state.setCubes)
+  const setNewScramble = useTimerStore((state) => state.setNewScramble)
+  const setLastSolve = useTimerStore((state) => state.setLastSolve)
+  const setSolvingTime = useTimerStore((state) => state.setSolvingTime)
+  const setIsSolving = useTimerStore((state) => state.setIsSolving)
+  const timerStatus = useTimerStore((state) => state.timerStatus)
+  const setTimerStatus = useTimerStore((state) => state.setTimerStatus)
+  const scramble = useTimerStore((state) => state.scramble)
+  const updateSetting = useSettingsModalStore((state) => state.updateSetting)
+  const solvesSinceLastSync = useSettingsModalStore((state) => state.settings.sync.totalSolves)
+  const [stackmat, setStackmat] = useState<any>(null)
+  const solvingIdRef = useRef<any>(null)
+
+  useEffect(() => {
+    let controller: any
+    let cancelled = false
+    ;(async () => {
+      try {
+        const mod: any = await import('stackmat')
+        if (cancelled) return
+        const StackmatController = mod?.Stackmat ?? mod?.default ?? mod
+        controller = new StackmatController()
+        setStackmat(controller)
+      } catch (err) {
+        console.error('Failed to load stackmat module:', err)
+        toast('No se pudo cargar el controlador Stackmat en este navegador.')
+      }
+    })()
+    return () => {
+      cancelled = true
+      try {
+        controller?.stop?.()
+      } catch {}
+    }
+  }, [])
 
   useEffect(() => {
     if (stackmat) {
-      let startTime: any = null;
-      const onStarted = (packet: Packet) => {
+      let startTime: any = null
+      const onStarted = (packet: PacketLike) => {
         if (!selectedCube || !scramble) {
-          return;
+          return
         }
 
-        setIsSolving(true);
-        setTimerStatus(TimerStatus.SOLVING);
-        startTime = Date.now();
+        setIsSolving(true)
+        setTimerStatus(TimerStatus.SOLVING)
+        startTime = Date.now()
 
         if (!solvingIdRef.current) {
           solvingIdRef.current = setInterval(() => {
-            setSolvingTime(Date.now() - startTime);
-          }, 100);
+            setSolvingTime(Date.now() - startTime)
+          }, 100)
         }
-      };
-      const onReset = async (packet: Packet) => {
-        if (!solvingIdRef.current || !selectedCube || !scramble) return;
-        clearInterval(solvingIdRef.current);
-        solvingIdRef.current = null;
+      }
+      const onReset = async (packet: PacketLike) => {
+        if (!solvingIdRef.current || !selectedCube || !scramble) return
+        clearInterval(solvingIdRef.current)
+        solvingIdRef.current = null
 
-        setSolvingTime(packet.timeInMilliseconds);
-        setIsSolving(false);
-        setTimerStatus(TimerStatus.IDLE);
+        setSolvingTime(packet.timeInMilliseconds)
+        setIsSolving(false)
+        setTimerStatus(TimerStatus.IDLE)
         const newSolve: Solve = {
           id: genId(),
           startTime: Date.now() - packet.timeInMilliseconds,
@@ -72,46 +90,37 @@ export default function Stackmat() {
           plus2: false,
           rating: Math.floor(Math.random() * 20) + scramble.length,
           cubeId: selectedCube.id,
-          comment: "",
+          comment: '',
           updatedAt: Date.now(),
-          isDeleted: false,
-        };
+          isDeleted: false
+        }
 
         const updatedCube = {
           ...selectedCube,
           solves: {
             ...selectedCube.solves,
-            session: [newSolve, ...selectedCube.solves.session],
-          },
+            session: [newSolve, ...selectedCube.solves.session]
+          }
         }
 
-        saveCube(updatedCube);
-        setSelectedCube(updatedCube);
-        setLastSolve({ ...newSolve });
-        setNewScramble(selectedCube);
+        saveCube(updatedCube)
+        setSelectedCube(updatedCube)
+        setLastSolve({ ...newSolve })
+        setNewScramble(selectedCube)
         updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
-      };
+      }
 
-      const onConnected = (packet: Packet) => {
-        toast("Device connected");
-      };
-      const onDisconnected = (packet: Packet) => {
-        toast("Device disconnected");
-      };
+      const onConnected = (_packet: PacketLike) => {
+        toast('Device connected')
+      }
+      const onDisconnected = (_packet: PacketLike) => {
+        toast('Device disconnected')
+      }
 
-      /*
-        TESTED SECTION
-        ----------------
-        The following events have been thoroughly tested using the QIYI Timer V2.
-        They ensure controlled behavior for handling timer events:
-
-        - Issue reported: Some users are unable to stop the timer.
-      */
-
-      stackmat.on("started", onStarted);
-      stackmat.on("reset", onReset);
-      stackmat.on("timerConnected", onConnected);
-      stackmat.on("timerDisconnected", onDisconnected);
+      stackmat.on('started', onStarted)
+      stackmat.on('reset', onReset)
+      stackmat.on('timerConnected', onConnected)
+      stackmat.on('timerDisconnected', onDisconnected)
 
       /*
         EXPERIMENTAL SECTION
@@ -124,35 +133,41 @@ export default function Stackmat() {
         - "stopped": This event is expected to trigger when the timer stops.
       */
 
-      stackmat.on("stopped", onReset);
+      stackmat.on('stopped', onReset)
 
       return () => {
-        stackmat.off("started", onStarted);
-        stackmat.off("reset", onReset);
-        stackmat.off("timerConnected", onConnected);
-        stackmat.off("timerDisconnected", onDisconnected);
-        stackmat.off("stopped", onReset);
-      };
+        stackmat.off('started', onStarted)
+        stackmat.off('reset', onReset)
+        stackmat.off('timerConnected', onConnected)
+        stackmat.off('timerDisconnected', onDisconnected)
+        stackmat.off('stopped', onReset)
+      }
     }
-  }, [stackmat, setIsSolving, setSolvingTime, setTimerStatus, selectedCube, scramble, cubes, setCubes, setSelectedCube, setLastSolve, setNewScramble, timerStatus, getAllCubes, getCubeById, saveCube, updateSetting, solvesSinceLastSync]);
+  }, [
+    stackmat,
+    setIsSolving,
+    setSolvingTime,
+    setTimerStatus,
+    selectedCube,
+    scramble,
+    cubes,
+    setCubes,
+    setSelectedCube,
+    setLastSolve,
+    setNewScramble,
+    timerStatus,
+    getAllCubes,
+    getCubeById,
+    saveCube,
+    updateSetting,
+    solvesSinceLastSync
+  ])
 
   useEffect(() => {
     if (stackmat) {
-      stackmat.start();
+      stackmat.start()
     }
-  }, [stackmat]);
+  }, [stackmat])
 
-  return (
-    <>
-      <Script
-        src="https://unpkg.com/stackmat"
-        type="text/javascript"
-        onReady={() => {
-          if (window.Stackmat) {
-            setStackmat(new window.Stackmat());
-          }
-        }}
-      />
-    </>
-  );
+  return null
 }
