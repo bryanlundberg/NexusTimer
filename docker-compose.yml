@@ -1,0 +1,18 @@
+services:
+  web:
+    build: .
+    image: nexustimer:latest
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
