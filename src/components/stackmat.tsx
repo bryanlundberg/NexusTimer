@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 import { TimerStatus } from '@/enums/TimerStatus'
 import { useNXData } from '@/hooks/useNXData'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
-import { Packet, Stackmat as StackmatController } from 'stackmat'
+import { Packet, Stackmat as StackmatController } from 'stackmat-v2'
 
 export default function Stackmat() {
   const { saveCube } = useNXData()
