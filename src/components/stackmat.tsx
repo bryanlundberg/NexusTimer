@@ -52,7 +52,7 @@ export default function Stackmat() {
         if (!solvingIdRef.current) {
           solvingIdRef.current = setInterval(() => {
             setSolvingTime(Date.now() - startTime)
-          }, 100)
+          }, 7)
         }
       }
       const onReset = async (packet: Packet) => {
