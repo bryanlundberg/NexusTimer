@@ -275,9 +275,9 @@ importers:
       sonner:
         specifier: ^1.7.4
         version: 1.7.4(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
-      stackmat:
-        specifier: ^1.1.1
-        version: 1.1.1
+      stackmat-v2:
+        specifier: ^1.1.2
+        version: 1.1.2
       swr:
         specifier: ^2.3.4
         version: 2.3.4(react@19.2.0)
@@ -5486,8 +5486,8 @@ packages:
     resolution: {integrity: sha512-XlkWvfIm6RmsWtNJx+uqtKLS8eqFbxUg0ZzLXqY0caEy9l7hruX8IpiDnjsLavoBgqCCR71TqWO8MaXYheJ3RQ==}
     engines: {node: '>=10'}
 
-  stackmat@1.1.1:
-    resolution: {integrity: sha512-rTJJ6m/DuxYp8k44MRzQA2Dc/Xz8Oe+PkOuSjak92fEz8zTZZeLQzJRS9OS1aBXYz+k1oIGSO0WODcFAnGnQxg==}
+  stackmat-v2@1.1.2:
+    resolution: {integrity: sha512-rtPU1wx6DJ8TeQw4iCrXpgqWd6Jdzw6xE70BENnp9w/2qERypxFGWcSE6ZS/6Z+BZ4J/m6XSB7tisiM92lEY0A==}
 
   stop-iteration-iterator@1.1.0:
     resolution: {integrity: sha512-eLoXW/DHyl62zxY4SCaIgnRhuMr6ri4juEYARS8E6sCEqzKpOiE521Ucofdx+KnDZl5xmvGYaaKCk5FEOxJCoQ==}
@@ -11753,7 +11753,7 @@ snapshots:
     dependencies:
       escape-string-regexp: 2.0.0
 
-  stackmat@1.1.1: {}
+  stackmat-v2@1.1.2: {}
 
   stop-iteration-iterator@1.1.0:
     dependencies:
