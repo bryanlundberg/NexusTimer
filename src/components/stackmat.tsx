@@ -7,10 +7,7 @@ import { toast } from 'sonner'
 import { TimerStatus } from '@/enums/TimerStatus'
 import { useNXData } from '@/hooks/useNXData'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
-
-// Minimal Packet shape used in this component to avoid static type import
-// which can cause build resolution errors with Turbopack.
-type PacketLike = { timeInMilliseconds: number }
+import { Packet, Stackmat as StackmatController } from 'stackmat'
 
 export default function Stackmat() {
   const { getAllCubes, getCubeById, saveCube } = useNXData()
@@ -31,22 +28,10 @@ export default function Stackmat() {
   const solvingIdRef = useRef<any>(null)
 
   useEffect(() => {
-    let controller: any
-    let cancelled = false
-    ;(async () => {
-      try {
-        const mod: any = await import('stackmat')
-        if (cancelled) return
-        const StackmatController = mod?.Stackmat ?? mod?.default ?? mod
-        controller = new StackmatController()
-        setStackmat(controller)
-      } catch (err) {
-        console.error('Failed to load stackmat module:', err)
-        toast('No se pudo cargar el controlador Stackmat en este navegador.')
-      }
-    })()
+    const controller = new StackmatController()
+    setStackmat(controller)
+
     return () => {
-      cancelled = true
       try {
         controller?.stop?.()
       } catch {}
@@ -56,7 +41,7 @@ export default function Stackmat() {
   useEffect(() => {
     if (stackmat) {
       let startTime: any = null
-      const onStarted = (packet: PacketLike) => {
+      const onStarted = (packet: Packet) => {
         if (!selectedCube || !scramble) {
           return
         }
@@ -71,7 +56,7 @@ export default function Stackmat() {
           }, 100)
         }
       }
-      const onReset = async (packet: PacketLike) => {
+      const onReset = async (packet: Packet) => {
         if (!solvingIdRef.current || !selectedCube || !scramble) return
         clearInterval(solvingIdRef.current)
         solvingIdRef.current = null
@@ -110,10 +95,10 @@ export default function Stackmat() {
         updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
       }
 
-      const onConnected = (_packet: PacketLike) => {
+      const onConnected = (_packet: Packet) => {
         toast('Device connected')
       }
-      const onDisconnected = (_packet: PacketLike) => {
+      const onDisconnected = (_packet: Packet) => {
         toast('Device disconnected')
       }
 
@@ -121,18 +106,6 @@ export default function Stackmat() {
       stackmat.on('reset', onReset)
       stackmat.on('timerConnected', onConnected)
       stackmat.on('timerDisconnected', onDisconnected)
-
-      /*
-        EXPERIMENTAL SECTION
-        ---------------------
-        The following event is experimental and has not been tested.
-        It was implemented based on the standard controller library's documentation
-        to handle potential edge cases where events might be missing for certain users.
-
-        Event:
-        - "stopped": This event is expected to trigger when the timer stops.
-      */
-
       stackmat.on('stopped', onReset)
 
       return () => {
