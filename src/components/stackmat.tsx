@@ -10,11 +10,10 @@ import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { Packet, Stackmat as StackmatController } from 'stackmat'
 
 export default function Stackmat() {
-  const { getAllCubes, getCubeById, saveCube } = useNXData()
+  const { saveCube } = useNXData()
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   const cubes = useTimerStore((state) => state.cubes)
-  const setCubes = useTimerStore((state) => state.setCubes)
   const setNewScramble = useTimerStore((state) => state.setNewScramble)
   const setLastSolve = useTimerStore((state) => state.setLastSolve)
   const setSolvingTime = useTimerStore((state) => state.setSolvingTime)
@@ -116,25 +115,7 @@ export default function Stackmat() {
         stackmat.off('stopped', onReset)
       }
     }
-  }, [
-    stackmat,
-    setIsSolving,
-    setSolvingTime,
-    setTimerStatus,
-    selectedCube,
-    scramble,
-    cubes,
-    setCubes,
-    setSelectedCube,
-    setLastSolve,
-    setNewScramble,
-    timerStatus,
-    getAllCubes,
-    getCubeById,
-    saveCube,
-    updateSetting,
-    solvesSinceLastSync
-  ])
+  }, [stackmat, selectedCube, scramble, cubes, timerStatus, solvesSinceLastSync])
 
   useEffect(() => {
     if (stackmat) {
