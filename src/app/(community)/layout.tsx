@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <AppSidebar />
       <SidebarInset className={'overflow-hidden'} style={{ height: 'calc(100dvh - 1rem)' }}>
-        <Providers loaderProvider={false}>
+        <Providers>
           {children}
           {users.length > 0 && <FloatButton />}
           {isOpenOverlay && <CompareUsersModal />}
