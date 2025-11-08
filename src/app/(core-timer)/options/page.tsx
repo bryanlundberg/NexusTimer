@@ -14,7 +14,7 @@ import {
   Link2Icon,
   MagicWandIcon,
   SpeakerLoudIcon,
-  UpdateIcon,
+  UpdateIcon
 } from '@radix-ui/react-icons'
 import MenuSelectLanguage from '@/components/menu-settings/MenuSelectLanguage'
 import CustomTheme from '@/components/menu-settings/CustomTheme'
@@ -23,9 +23,7 @@ import AccountHeader from '@/components/account/account-header/account-header'
 import { Separator } from '@/components/ui/separator'
 import MenuSelectColor from '@/components/menu-settings/MenuSelectColor'
 import { useForm } from 'react-hook-form'
-import { useEffect } from 'react'
 import MenuInputOption from '@/components/menu-settings/MenuInputOption'
-import _ from 'lodash'
 import { Button } from '@/components/ui/button'
 import { defaultSettings } from '@/lib/const/defaultSettings'
 import useWebsiteColors from '@/hooks/useWebsiteColors'
