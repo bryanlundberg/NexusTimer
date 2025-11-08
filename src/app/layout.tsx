@@ -12,6 +12,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { SidebarProvider } from '@/components/ui/sidebar'
 import AlertProvider from '@/components/alert/AlertProvider'
 import { Viewport } from 'next'
+import { Overlay } from '@/shared/ui/overlay/overlay'
 
 export async function generateMetadata() {
   const locale = await getLocale()
@@ -105,7 +106,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <NextIntlClientProvider messages={messages}>
               <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem disableTransitionOnChange>
                 <SidebarProvider>
-                  <AlertProvider>{children}</AlertProvider>
+                  <AlertProvider>
+                    {children}
+                    <Overlay />
+                  </AlertProvider>
                 </SidebarProvider>
               </ThemeProvider>
             </NextIntlClientProvider>
