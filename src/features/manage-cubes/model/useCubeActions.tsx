@@ -7,6 +7,7 @@ import { editCubeCollection } from '@/features/manage-cubes/api/editCubeCollecti
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { useTimerStore } from '@/store/timerStore'
 import { toast } from 'sonner'
+import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
 
 export const useCubeActions = (cube?: Cube) => {
   const router = useRouter()
@@ -33,6 +34,14 @@ export const useCubeActions = (cube?: Cube) => {
     })
   }
 
+  const handleCreate = () => {
+    open({
+      id: 'create-cube',
+      component: <CreateCollectionForm />,
+      metadata: cube
+    })
+  }
+
   const handleFavorite = async () => {
     await editCubeCollection({ favorite: !cube?.favorite, id: cube!.id })
     const cubes = await cubesDB.getAll()
@@ -44,6 +53,7 @@ export const useCubeActions = (cube?: Cube) => {
     handleRedirect,
     handleEdit,
     handleDelete,
-    handleFavorite
+    handleFavorite,
+    handleCreate
   }
 }
