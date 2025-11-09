@@ -1,11 +1,11 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow, } from '@/components/ui/table'
-import { Cube } from '@/interfaces/Cube';
-import { useMemo, useState } from 'react';
-import _ from 'lodash';
-import formatTime from '@/lib/formatTime';
-import { ScrambleDisplay } from '@/components/scramble-display';
-import { Card } from '@/components/ui/card';
-import EmptyTabContent from '@/components/people/empty-tab-content';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Cube } from '@/interfaces/Cube'
+import { useMemo, useState } from 'react'
+import _ from 'lodash'
+import formatTime from '@/shared/lib/formatTime'
+import { ScrambleDisplay } from '@/components/scramble-display'
+import { Card } from '@/components/ui/card'
+import EmptyTabContent from '@/components/people/empty-tab-content'
 import {
   Pagination,
   PaginationContent,
@@ -13,43 +13,49 @@ import {
   PaginationItem,
   PaginationLink,
   PaginationNext,
-  PaginationPrevious,
+  PaginationPrevious
 } from '@/components/ui/pagination'
 
 interface LastActivityTabContentProps {
-  cubes: Cube[];
+  cubes: Cube[]
 }
 
 export default function LastActivityTabContent({ cubes }: LastActivityTabContentProps) {
-  const ITEMS_PER_PAGE = 10;
+  const ITEMS_PER_PAGE = 10
   const [page, setPage] = useState(1)
   const solves = useMemo(() => {
     return _.orderBy(
-      [...cubes.flatMap(cube => cube.solves.session.map(solve => ({
-        ...solve,
-        category: cube.category,
-        cubeName: cube.name
-      }))),
-        ...cubes.flatMap(cube => cube.solves.all.map(solve => ({
-          ...solve,
-          category: cube.category,
-          cubeName: cube.name
-        })))],
+      [
+        ...cubes.flatMap((cube) =>
+          cube.solves.session.map((solve) => ({
+            ...solve,
+            category: cube.category,
+            cubeName: cube.name
+          }))
+        ),
+        ...cubes.flatMap((cube) =>
+          cube.solves.all.map((solve) => ({
+            ...solve,
+            category: cube.category,
+            cubeName: cube.name
+          }))
+        )
+      ],
       'endTime',
       'asc'
-    );
-  }, [cubes]);
+    )
+  }, [cubes])
 
-  const solvesLength = useMemo(() => solves.length, [solves]);
-  const totalPages = useMemo(() => Math.ceil(solvesLength / ITEMS_PER_PAGE), [solvesLength]);
-  const handlePaginationChange = (newPage: number) => setPage(newPage);
+  const solvesLength = useMemo(() => solves.length, [solves])
+  const totalPages = useMemo(() => Math.ceil(solvesLength / ITEMS_PER_PAGE), [solvesLength])
+  const handlePaginationChange = (newPage: number) => setPage(newPage)
   const currentPageItems = useMemo(() => {
-    const startIndex = (page - 1) * ITEMS_PER_PAGE;
-    return solves.slice(startIndex, startIndex + ITEMS_PER_PAGE);
-  }, [solves, page]);
+    const startIndex = (page - 1) * ITEMS_PER_PAGE
+    return solves.slice(startIndex, startIndex + ITEMS_PER_PAGE)
+  }, [solves, page])
 
   if (_.isEmpty(solves)) {
-    return <EmptyTabContent/>;
+    return <EmptyTabContent />
   }
 
   return (
@@ -68,19 +74,23 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
           </TableHeader>
           <TableBody>
             {currentPageItems.map((solve, index) => {
-              const globalIndex = (page - 1) * ITEMS_PER_PAGE + index;
+              const globalIndex = (page - 1) * ITEMS_PER_PAGE + index
               return (
                 <TableRow key={solve.id}>
                   <TableCell className="font-medium">{solvesLength - globalIndex}</TableCell>
-                  <TableCell className="font-medium overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">{solve.cubeName}</TableCell>
+                  <TableCell className="font-medium overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
+                    {solve.cubeName}
+                  </TableCell>
                   <TableCell className="font-medium hidden sm:table-cell">{solve.category}</TableCell>
-                  <TableCell className="font-medium hidden md:table-cell overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">{solve.scramble}</TableCell>
+                  <TableCell className="font-medium hidden md:table-cell overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
+                    {solve.scramble}
+                  </TableCell>
                   <TableCell>{formatTime(solve.time)}</TableCell>
                   <TableCell className="hidden sm:table-cell text-right">
-                    <ScrambleDisplay className={'size-20'} show scramble={solve.scramble} event={solve.category}/>
+                    <ScrambleDisplay className={'size-20'} show scramble={solve.scramble} event={solve.category} />
                   </TableCell>
                 </TableRow>
-              );
+              )
             })}
           </TableBody>
         </Table>
@@ -91,8 +101,8 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
               <PaginationPrevious
                 href={'#'}
                 onClick={(e) => {
-                  e.preventDefault();
-                  if (page > 1) handlePaginationChange(page - 1);
+                  e.preventDefault()
+                  if (page > 1) handlePaginationChange(page - 1)
                 }}
               />
             </PaginationItem>
@@ -103,8 +113,8 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
                 <PaginationLink
                   href="#"
                   onClick={(e) => {
-                    e.preventDefault();
-                    handlePaginationChange(1);
+                    e.preventDefault()
+                    handlePaginationChange(1)
                   }}
                 >
                   1
@@ -115,7 +125,7 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
             {/* Ellipsis if needed */}
             {page > 3 && (
               <PaginationItem>
-                <PaginationEllipsis/>
+                <PaginationEllipsis />
               </PaginationItem>
             )}
 
@@ -125,8 +135,8 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
                 <PaginationLink
                   href="#"
                   onClick={(e) => {
-                    e.preventDefault();
-                    handlePaginationChange(page - 1);
+                    e.preventDefault()
+                    handlePaginationChange(page - 1)
                   }}
                 >
                   {page - 1}
@@ -136,11 +146,7 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
 
             {/* Current page */}
             <PaginationItem>
-              <PaginationLink
-                href="#"
-                isActive={true}
-                onClick={(e) => e.preventDefault()}
-              >
+              <PaginationLink href="#" isActive={true} onClick={(e) => e.preventDefault()}>
                 {page}
               </PaginationLink>
             </PaginationItem>
@@ -151,8 +157,8 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
                 <PaginationLink
                   href="#"
                   onClick={(e) => {
-                    e.preventDefault();
-                    handlePaginationChange(page + 1);
+                    e.preventDefault()
+                    handlePaginationChange(page + 1)
                   }}
                 >
                   {page + 1}
@@ -163,7 +169,7 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
             {/* Ellipsis if needed */}
             {page < totalPages - 2 && (
               <PaginationItem>
-                <PaginationEllipsis/>
+                <PaginationEllipsis />
               </PaginationItem>
             )}
 
@@ -173,8 +179,8 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
                 <PaginationLink
                   href="#"
                   onClick={(e) => {
-                    e.preventDefault();
-                    handlePaginationChange(totalPages);
+                    e.preventDefault()
+                    handlePaginationChange(totalPages)
                   }}
                 >
                   {totalPages}
@@ -186,8 +192,8 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
               <PaginationNext
                 href="#"
                 onClick={(e) => {
-                  e.preventDefault();
-                  if (page < totalPages) handlePaginationChange(page + 1);
+                  e.preventDefault()
+                  if (page < totalPages) handlePaginationChange(page + 1)
                 }}
               />
             </PaginationItem>
@@ -195,5 +201,5 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
         </Pagination>
       </div>
     </Card>
-  );
+  )
 }
