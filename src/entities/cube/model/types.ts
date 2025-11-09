@@ -20,8 +20,11 @@ export type CreateCubeDTO = {
 
 export type UpdateCubeDTO = {
   id: string
-  name: string
-  category: CubeCategory
+  name?: string
+  category?: CubeCategory
+  isDeleted?: boolean
+  favorite?: boolean
+  solves?: Solves
 }
 
 export type DeleteCubeDTO = {
