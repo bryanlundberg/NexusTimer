@@ -43,7 +43,6 @@ export default function DeleteCollectionForm() {
 
   const handleDeleteCube = async (form: DeleteCollectionFormData) => {
     if (!activeOverlay?.metadata?.id) return
-
     try {
       if (form.confirmationName.trim() !== activeOverlay?.metadata?.name) {
         setError('confirmationName', {
