@@ -1,6 +1,6 @@
 'use client'
 
-import formatTime from '@/lib/formatTime'
+import formatTime from '@/shared/lib/formatTime'
 import { useParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import useFreeMode from '@/hooks/useFreeMode'
