@@ -6,41 +6,48 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { cubeCollection } from '@/lib/const/cubeCollection'
-import { useDialogCubesOptions } from '@/store/DialogCubesOptions'
 import { useTimerStore } from '@/store/timerStore'
 import { useTranslations } from 'next-intl'
-import { useEffect } from 'react'
-import { useNXData } from '@/hooks/useNXData'
-import { useForm, Controller } from 'react-hook-form'
-import { Categories } from '@/interfaces/Categories'
+import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { UpdateCollectionFormData, updateCollectionSchema } from '@/features/manage-cubes/model/schemas'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { cubesDB } from '@/entities/cube/api/indexdb'
+import { editCubeCollection } from '@/features/manage-cubes/api/editCubeCollection'
 
 export default function EditCollectionForm() {
-  const { getAllCubes, saveCube } = useNXData()
   const t = useTranslations('Index')
-  const cube = useDialogCubesOptions((state) => state.cube)
-  const closeDialog = useDialogCubesOptions((state) => state.closeDialog)
-  const cubes = useTimerStore((state) => state.cubes)
   const setCubes = useTimerStore((state) => state.setCubes)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
+
+  const overlayStore = useOverlayStore((state) => ({
+    close: state.close,
+    activeOverlay: state.activeOverlay
+  }))
+
+  const metadata = overlayStore.activeOverlay?.metadata
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
     setError,
     control
   } = useForm({
+    resolver: zodResolver(updateCollectionSchema),
     defaultValues: {
-      name: cube?.name || '',
-      category: cube?.category || '2x2'
+      name: metadata?.name || '',
+      category: metadata?.category || '2x2'
     }
   })
 
-  const handleSubmitEditCubeCollection = async (form: { name: string; category: string }) => {
+  const handleSubmitEditCubeCollection = async (form: UpdateCollectionFormData) => {
     try {
-      if (cube?.name !== form.name && cubes?.some((e) => e.name === form.name)) {
+      const cubes = await cubesDB.getAll()
+
+      if (metadata?.name !== form.name && cubes?.some((e) => e.name === form.name)) {
         setError('name', {
           type: 'manual',
           message: t('Cubes-modal.name-repeated')
@@ -48,38 +55,27 @@ export default function EditCollectionForm() {
         return
       }
 
-      await saveCube({
-        ...cube,
-        name: form.name.trim(),
-        category: form.category as Categories
+      await editCubeCollection({
+        id: metadata!.id,
+        name: form.name,
+        category: form.category
       })
 
-      const cubesDB = await getAllCubes()
-      setCubes(cubesDB)
+      const updatedCubes = await cubesDB.getAll()
 
-      if (cube?.id === selectedCube?.id) {
+      setCubes(updatedCubes)
+
+      if (metadata?.id === selectedCube?.id) {
         setSelectedCube(null)
       }
 
-      closeDialog()
+      overlayStore.close()
       toast.success('Cube edited successfully')
     } catch (err) {
       console.log(err)
       toast.error('Failed to edit cube')
     }
   }
-
-  useEffect(() => {
-    if (!cube?.id) {
-      closeDialog()
-      return
-    }
-
-    reset({
-      name: cube.name,
-      category: cube.category || '2x2'
-    })
-  }, [closeDialog, cube, reset])
 
   return (
     <>
@@ -93,24 +89,11 @@ export default function EditCollectionForm() {
         </Alert>
 
         <Label>{t('Cubes-modal.name')}</Label>
-        <Input
-          {...register('name', {
-            required: 'Required field',
-            minLength: {
-              value: 2,
-              message: 'Min length is 2 characters'
-            },
-            maxLength: {
-              value: 50,
-              message: 'Max length is 50 characters'
-            }
-          })}
-          data-testid="drawer-edit-input-name"
-        />
+        <Input {...register('name')} data-testid="drawer-edit-input-name" />
 
         {errors?.name && (
           <p className="text-destructive text-sm" data-testid="drawer-edit-collection-error-message">
-            {errors.name.message}
+            {errors.name.message?.toString()}
           </p>
         )}
 
