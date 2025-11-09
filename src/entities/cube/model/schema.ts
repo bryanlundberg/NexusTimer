@@ -3,9 +3,7 @@ import { CUBE_CATEGORIES } from '@/shared/config/cube-categories'
 
 export const createCubeFormSchema = z.object({
   name: z.string().min(1, 'Required collection name').max(50, 'Maximum length is 50 characters'),
-  category: z.enum(CUBE_CATEGORIES, {
-    errorMap: () => ({ message: 'Invalid category' })
-  })
+  category: z.enum(CUBE_CATEGORIES)
 })
 
 export const editCubeFormSchema = createCubeFormSchema.extend({
