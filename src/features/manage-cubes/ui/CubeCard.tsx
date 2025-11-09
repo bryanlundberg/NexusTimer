@@ -17,7 +17,7 @@ interface CubeCardProps {
 export function CubeCard({ cube }: CubeCardProps) {
   const t = useTranslations('Index')
   const locale = useLocale()
-  const { handleEdit, handleDelete, handleRedirect } = useCubeActions(cube)
+  const { handleEdit, handleDelete, handleRedirect, handleFavorite } = useCubeActions(cube)
 
   return (
     <Card key={cube.id} className="overflow-hidden gap-1">
@@ -30,7 +30,7 @@ export function CubeCard({ cube }: CubeCardProps) {
             icon={Star}
             active={cube.favorite}
             color={[251, 191, 36]} // amber-400
-            onClick={handleRedirect}
+            onClick={handleFavorite}
             size="sm"
           />
         </div>
