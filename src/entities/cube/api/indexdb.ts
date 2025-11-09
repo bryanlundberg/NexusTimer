@@ -6,6 +6,11 @@ const Cubes = database.create(STORE_NAME)
 
 export const cubesDB = {
   async getAll(): Promise<Cube[]> {
+    const all = await Cubes.find().get()
+    return all.filter((cube) => !cube.isDeleted)
+  },
+
+  async getAllDatabase(): Promise<Cube[]> {
     return await Cubes.find().get()
   },
 
