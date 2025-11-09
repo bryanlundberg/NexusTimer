@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label'
 import { useLeaderboards } from '@/hooks/api/useLeaderboards'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import formatTime from '@/lib/formatTime'
+import formatTime from '@/shared/lib/formatTime'
 import { ScrambleDisplay } from '@/components/scramble-display'
 import { format } from 'date-fns'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
