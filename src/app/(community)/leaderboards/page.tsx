@@ -1,6 +1,6 @@
 'use client'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import FadeIn from '@/components/fade-in/fade-in'
+import FadeIn from '@/shared/ui/fade-in/fade-in'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
 import { useLeaderboards } from '@/hooks/api/useLeaderboards'

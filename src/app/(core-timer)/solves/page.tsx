@@ -14,7 +14,7 @@ import ButtonMoveSolves from '@/components/navigation/buttons/button-move-solves
 import { useQueryState } from 'nuqs'
 import { STATES } from '@/constants/states'
 import { useDebouncedCallback } from 'use-debounce'
-import FadeIn from '@/components/fade-in/fade-in'
+import FadeIn from '@/shared/ui/fade-in/fade-in'
 import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs'
 import { useMemo } from 'react'
 

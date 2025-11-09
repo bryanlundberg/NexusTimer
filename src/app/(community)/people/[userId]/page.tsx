@@ -1,6 +1,6 @@
 'use client'
 import { useParams } from 'next/navigation'
-import FadeIn from '@/components/fade-in/fade-in'
+import FadeIn from '@/shared/ui/fade-in/fade-in'
 import { useUser } from '@/hooks/api/useUser'
 import * as React from 'react'
 import { useMemo } from 'react'

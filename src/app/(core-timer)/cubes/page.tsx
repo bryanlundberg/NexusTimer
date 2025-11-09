@@ -1,7 +1,7 @@
 'use client'
 import Navigation from '@/components/navigation/navigation'
 import EmptyCubes from '@/components/cubes/EmptyCubes'
-import FadeIn from '@/components/fade-in/fade-in'
+import FadeIn from '@/shared/ui/fade-in/fade-in'
 import { useTimerStore } from '@/store/timerStore'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import CubesList from '@/features/manage-cubes/ui/CubesList'
