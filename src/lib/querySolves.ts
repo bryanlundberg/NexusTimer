@@ -1,8 +1,8 @@
-import { Solve } from "@/interfaces/Solve";
-import formatTime from "./formatTime";
-import { sort } from "fast-sort";
-import { Cube } from "@/interfaces/Cube";
-import { SolveTab } from "@/enums/SolveTab";
+import { Solve } from '@/interfaces/Solve'
+import formatTime from '../shared/lib/formatTime'
+import { sort } from 'fast-sort'
+import { Cube } from '@/interfaces/Cube'
+import { SolveTab } from '@/enums/SolveTab'
 
 /**
  * Searches for solves in a specific cube based on the provided query and tab.
@@ -17,34 +17,30 @@ export default function querySolves({
   query,
   selectedCube,
   currentTab,
-  sortByTime = false,
+  sortByTime = false
 }: {
-  query: string;
-  selectedCube: Cube | null;
-  currentTab: SolveTab;
-  sortByTime?: boolean;
+  query: string
+  selectedCube: Cube | null
+  currentTab: SolveTab
+  sortByTime?: boolean
 }): Solve[] | null {
-  if (!selectedCube) return null;
+  if (!selectedCube) return null
 
-  let solves = null;
+  let solves = null
 
   if (currentTab === SolveTab.SESSION) {
-    solves = selectedCube.solves.session.filter((u) =>
-      formatTime(u.time).includes(query)
-    );
+    solves = selectedCube.solves.session.filter((u) => formatTime(u.time).includes(query))
   } else if (currentTab === SolveTab.ALL) {
-    solves = selectedCube.solves.all.filter((u) =>
-      formatTime(u.time).includes(query)
-    );
+    solves = selectedCube.solves.all.filter((u) => formatTime(u.time).includes(query))
   }
 
-  if (!solves) return null;
+  if (!solves) return null
 
   if (sortByTime) {
-    solves = sort(solves).asc((u) => u.time);
+    solves = sort(solves).asc((u) => u.time)
   } else {
-    solves = sort(solves).desc((u) => u.endTime);
+    solves = sort(solves).desc((u) => u.endTime)
   }
 
-  return solves;
+  return solves
 }
