@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { useTimerStore } from '@/store/timerStore'
-import formatTime from '@/lib/formatTime'
+import formatTime from '@/shared/lib/formatTime'
 import {
   AlertDialog,
   AlertDialogContent,
