@@ -16,82 +16,70 @@ import { useTimerStore } from '@/store/timerStore'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useEffect } from 'react'
-import { useNXData } from '@/hooks/useNXData'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { CreateCubeFormData, createCubeFormSchema } from '@/entities/cube/model/schema'
+import { CUBE_CATEGORIES } from '@/shared/config/cube-categories'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { cubesDB } from '@/entities/cube/api/indexdb'
+import { DialogContent, DialogHeader } from '@/components/ui/dialog'
+import { createCubeCollection } from '@/features/manage-cubes/api/createCubeCollection'
 
-export default function DrawerCreateCollection({
-  closeDrawer
-}: Readonly<{
-  closeDrawer: () => void
-}>) {
-  const { saveCube, getAllCubes } = useNXData()
+export default function CreateCollectionForm() {
   const t = useTranslations('Index')
-  const cubes = useTimerStore((state) => state.cubes)
   const setCubes = useTimerStore((state) => state.setCubes)
+  const overlayStore = useOverlayStore((state) => ({
+    close: state.close,
+    activeOverlay: state.activeOverlay
+  }))
+
   const {
     handleSubmit,
-    reset,
     setError,
     formState: { errors },
     register,
     watch,
     setValue
   } = useForm({
+    resolver: zodResolver(createCubeFormSchema),
     defaultValues: {
-      category: '2x2',
+      category: CUBE_CATEGORIES[0],
       name: ''
     }
   })
 
   const formWatch = watch()
 
-  const handleSubmitNewCollection = async (form: { category: string; name: string }) => {
+  const handleSubmitNewCollection = async (form: CreateCubeFormData) => {
     try {
-      if (form.name.trim() === '') {
-        setError('category', {
-          type: 'manual',
-          message: t('Cubes-modal.name-required')
-        })
-        return
-      }
-
+      const cubes = await cubesDB.getAll()
       if (cubes?.some((cube) => cube.name === form.name.trim())) {
         setError('name', {
           type: 'manual',
-          message: t('Cubes-modal.name-repeated')
+          message: 'Cube collection name already exists.'
         })
         return
       }
 
-      await saveCube({
-        name: form.name,
-        category: form.category as Categories
-      })
-      const cubesDB = await getAllCubes()
-      setCubes(cubesDB)
-      closeDrawer()
+      await createCubeCollection(form)
+      const newCubes = await cubesDB.getAll()
+      setCubes(newCubes)
+      overlayStore.close()
       toast.success('Cube collection created successfully')
     } catch (err) {
       console.log(err)
     }
   }
 
-  useEffect(() => {
-    reset({
-      category: '2x2',
-      name: ''
-    })
-  }, [reset, closeDrawer])
-
   return (
-    <DrawerContent className="max-w-[800px] mx-auto" data-testid="drawer-create-collection">
+    <DialogContent className="max-w-[800px] mx-auto" data-testid="drawer-create-collection">
       <ScrollArea className={'overflow-auto'}>
-        <DrawerHeader>
+        <DialogHeader>
           <DrawerTitle>{t('Cubes-modal.new-collection')}</DrawerTitle>
           <DrawerDescription>{t('Cubes-modal.new-collection-description')}</DrawerDescription>
-        </DrawerHeader>
+        </DialogHeader>
 
         <div className="p-3 space-y-2">
           <Label htmlFor="name">{t('Cubes-modal.name')}</Label>
@@ -147,6 +135,6 @@ export default function DrawerCreateCollection({
           </DrawerClose>
         </DrawerFooter>
       </ScrollArea>
-    </DrawerContent>
+    </DialogContent>
   )
 }
