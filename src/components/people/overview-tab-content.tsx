@@ -1,26 +1,28 @@
-import SolveCard from '@/components/people/solve-card';
-import { Cube } from '@/interfaces/Cube';
-import { useMemo } from 'react';
-import _ from 'lodash';
-import moment from 'moment';
-import formatTime from '@/lib/formatTime';
-import { Categories } from '@/interfaces/Categories';
-import EmptyTabContent from '@/components/people/empty-tab-content';
+import SolveCard from '@/components/people/solve-card'
+import { Cube } from '@/interfaces/Cube'
+import { useMemo } from 'react'
+import _ from 'lodash'
+import moment from 'moment'
+import formatTime from '@/shared/lib/formatTime'
+import { Categories } from '@/interfaces/Categories'
+import EmptyTabContent from '@/components/people/empty-tab-content'
 
 export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
   const solvesByCategory = useMemo(() => {
     return _.mapValues(
       _.groupBy(
-        [...cubes.flatMap(cube => cube.solves.session.map(solve => ({ ...solve, category: cube.category }))),
-          ...cubes.flatMap(cube => cube.solves.all.map(solve => ({ ...solve, category: cube.category })))],
+        [
+          ...cubes.flatMap((cube) => cube.solves.session.map((solve) => ({ ...solve, category: cube.category }))),
+          ...cubes.flatMap((cube) => cube.solves.all.map((solve) => ({ ...solve, category: cube.category })))
+        ],
         'category'
       ),
-      solves => _.orderBy(solves, ['time'], ['asc'])
-    );
-  }, [cubes]);
+      (solves) => _.orderBy(solves, ['time'], ['asc'])
+    )
+  }, [cubes])
 
   if (_.isEmpty(solvesByCategory)) {
-    return <EmptyTabContent/>
+    return <EmptyTabContent />
   }
 
   return (
