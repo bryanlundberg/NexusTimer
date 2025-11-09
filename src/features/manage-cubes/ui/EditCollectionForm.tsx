@@ -50,7 +50,7 @@ export default function EditCollectionForm() {
       if (metadata?.name !== form.name && cubes?.some((e) => e.name === form.name)) {
         setError('name', {
           type: 'manual',
-          message: t('Cubes-modal.name-repeated')
+          message: 'Cube collection name already exists.'
         })
         return
       }
