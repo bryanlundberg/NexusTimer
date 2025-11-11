@@ -4,9 +4,9 @@ import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { useTranslations } from 'next-intl'
-import MenuSolveOptions from '../menu-solve-options/menu-solve-options'
 import { Input } from '../ui/input'
 import useSolveData from '@/hooks/useSolveData'
+import QuickActions from '@/features/manage-solves/ui/QuickActions'
 
 export default function ManualMode() {
   const { saveSolveManualMode, value, setValue } = useSolveData()
@@ -53,7 +53,7 @@ export default function ManualMode() {
         )}
       </form>
       {lastSolve && settings.features.quickActionButtons ? (
-        <MenuSolveOptions solve={lastSolve} onDeleteSolve={() => setLastSolve(null)} caseOfUse="last-solve" />
+        <QuickActions solve={lastSolve} onDeleteSolve={() => setLastSolve(null)} caseOfUse="last-solve" />
       ) : null}
     </>
   )
