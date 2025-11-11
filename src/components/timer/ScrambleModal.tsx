@@ -1,15 +1,15 @@
-import { ScrambleDisplay } from "../scramble-display";
-import { useTimerStore } from "@/store/timerStore";
+import { useTimerStore } from '@/store/timerStore'
+import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 
 export default function ScrambleModal() {
-  const zoomInScramble = useTimerStore(store => store.zoomInScramble);
-  const setZoomInScramble = useTimerStore(store => store.setZoomInScramble);
-  const scramble = useTimerStore(store => store.scramble);
-  const selectedCube = useTimerStore(store => store.selectedCube);
+  const zoomInScramble = useTimerStore((store) => store.zoomInScramble)
+  const setZoomInScramble = useTimerStore((store) => store.setZoomInScramble)
+  const scramble = useTimerStore((store) => store.scramble)
+  const selectedCube = useTimerStore((store) => store.selectedCube)
 
-  if (!zoomInScramble) return null;
+  if (!zoomInScramble) return null
 
-  const handleClose = () => setZoomInScramble(false);
+  const handleClose = () => setZoomInScramble(false)
 
   return (
     <div
@@ -19,9 +19,9 @@ export default function ScrambleModal() {
       <ScrambleDisplay
         className="w-full h-120 mx-auto"
         show
-        event={selectedCube?.category || "3x3"}
+        event={selectedCube?.category || '3x3'}
         scramble={scramble}
       />
     </div>
-  );
+  )
 }
