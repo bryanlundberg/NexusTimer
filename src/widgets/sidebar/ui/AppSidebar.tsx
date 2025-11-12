@@ -17,9 +17,6 @@ import {
   UsersRound
 } from 'lucide-react'
 
-import { NavMain } from '@/components/nav-main'
-import { NavSecondary } from '@/components/nav-secondary'
-import { NavUser } from '@/components/nav-user'
 import {
   Sidebar,
   SidebarContent,
@@ -38,9 +35,12 @@ import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl'
 import { ALGORITHM_SETS } from '@/constants/algorithms-sets'
-import { RotatingText } from './ui/shadcn-io/rotating-text'
-import { GitHubStarsButton } from './ui/shadcn-io/github-stars-button'
 import GoogleButton from '@/features/authentication/ui/GoogleButton'
+import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
+import { GitHubStarsButton } from '@/components/ui/shadcn-io/github-stars-button'
+import { NavUser } from '@/widgets/sidebar/ui/nav-user'
+import { NavMain } from '@/widgets/sidebar/ui/nav-main'
+import { NavSecondary } from '@/widgets/sidebar/ui/nav-secondary'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession()
