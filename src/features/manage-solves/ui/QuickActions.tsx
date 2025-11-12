@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { Solve } from '@/interfaces/Solve'
 import { CopyIcon, CubeIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
 import { ArrowRightLeftIcon, Bookmark, MoreHorizontal, Trash } from 'lucide-react'
@@ -11,6 +10,7 @@ import { IconButton } from '@/components/ui/shadcn-io/icon-button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import useQuickActions from '@/features/manage-solves/model/useQuickActions'
 import { SolveTab } from '@/enums/SolveTab'
+import { Solve } from '@/entities/solve/model/types'
 
 interface QuickActionsProps {
   solve: Solve | null
