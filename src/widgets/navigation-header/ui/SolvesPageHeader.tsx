@@ -1,8 +1,8 @@
 import Navigation from '@/components/navigation/navigation'
 import ButtonMoveSolves from '@/components/navigation/buttons/button-move-solves'
 import { Input } from '@/components/ui/input'
-import DropdownFilterSolves from '@/components/dropdowns/dropdown-filter-options/dropdown-filter-options'
 import { useTranslations } from 'next-intl'
+import DateRangeFilter from '@/features/deep-statistics/ui/DateRangeFilter'
 
 interface SolvesPageHeaderProps {
   handleSearch: (query: string) => void
@@ -21,7 +21,7 @@ export default function SolvesPageHeader({ handleSearch }: SolvesPageHeaderProps
             onChange={(e) => handleSearch(e.target.value)}
             className="bg-background"
           />
-          <DropdownFilterSolves />
+          <DateRangeFilter />
         </div>
       </Navigation>
     </div>
