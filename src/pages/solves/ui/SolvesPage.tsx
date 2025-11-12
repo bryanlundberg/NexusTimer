@@ -1,3 +1,4 @@
+'use client'
 import { useTimerStore } from '@/store/timerStore'
 import { useQueryState } from 'nuqs'
 import { STATES } from '@/constants/states'
