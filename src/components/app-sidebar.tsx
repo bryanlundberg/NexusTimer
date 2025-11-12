@@ -31,7 +31,6 @@ import {
 } from '@/components/ui/sidebar'
 import { DiscordLogoIcon } from '@radix-ui/react-icons'
 import { useSession } from 'next-auth/react'
-import ButtonGoogle from '@/components/buttons/button-google/button-google'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Card, CardDescription, CardFooter as UICardFooter, CardHeader, CardTitle } from '@/components/ui/card'
@@ -41,6 +40,7 @@ import { useTranslations } from 'next-intl'
 import { ALGORITHM_SETS } from '@/constants/algorithms-sets'
 import { RotatingText } from './ui/shadcn-io/rotating-text'
 import { GitHubStarsButton } from './ui/shadcn-io/github-stars-button'
+import GoogleButton from '@/features/authentication/ui/GoogleButton'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession()
@@ -233,7 +233,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </CardHeader>
             <UICardFooter>
               <div className="w-full">
-                <ButtonGoogle />
+                <GoogleButton />
               </div>
             </UICardFooter>
           </Card>
