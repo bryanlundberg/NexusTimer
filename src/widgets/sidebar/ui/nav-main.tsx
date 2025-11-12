@@ -1,12 +1,8 @@
-"use client"
+'use client'
 
-import { type LucideIcon } from "lucide-react"
+import { type LucideIcon } from 'lucide-react'
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -16,15 +12,15 @@ import {
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
-  SidebarMenuSubItem,
-} from "@/components/ui/sidebar"
-import { ChevronRightIcon } from "@radix-ui/react-icons"
-import Link from 'next/link';
+  SidebarMenuSubItem
+} from '@/components/ui/sidebar'
+import { ChevronRightIcon } from '@radix-ui/react-icons'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 export function NavMain({
-  items,
+  items
 }: {
   items: {
     title: string
