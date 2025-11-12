@@ -1,4 +1,4 @@
-import { SolveTab } from '@/features/manage-solves/model/enums'
+import { SolveTab } from '@/shared/types/enums'
 
 export type DeleteSolveDTO = {
   cubeId: string
