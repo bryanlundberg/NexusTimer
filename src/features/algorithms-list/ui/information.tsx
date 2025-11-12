@@ -1,9 +1,9 @@
-import * as React from "react";
+import * as React from 'react'
 
 interface InformationProps extends React.HTMLAttributes<HTMLDivElement> {
-  className?: string;
-  title: string;
-  description?: string;
+  className?: string
+  title: string
+  description?: string
 }
 
 export default function Information({ title, description }: InformationProps) {
