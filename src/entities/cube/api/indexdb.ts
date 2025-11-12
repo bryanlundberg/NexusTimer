@@ -26,7 +26,7 @@ export const cubesDB = {
     return cube
   },
 
-  async add(cube: Cube) {
+  async add(cube: Cube): Promise<Cube> {
     return await Cubes.add(cube)
   },
 
