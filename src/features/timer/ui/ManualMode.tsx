@@ -4,9 +4,9 @@ import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { useTranslations } from 'next-intl'
-import { Input } from '../ui/input'
 import useSolveData from '@/hooks/useSolveData'
 import QuickActions from '@/features/manage-solves/ui/QuickActions'
+import { Input } from '@/components/ui/input'
 
 export default function ManualMode() {
   const { saveSolveManualMode, value, setValue } = useSolveData()
