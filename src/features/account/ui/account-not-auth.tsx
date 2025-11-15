@@ -1,8 +1,8 @@
 'use client'
 
-import AccountHeader from '../account-header/account-header'
 import { useTranslations } from 'next-intl'
 import GoogleButton from '@/features/authentication/ui/GoogleButton'
+import AccountHeader from '@/features/account/ui/account-header'
 
 export default function AccountNotAuth() {
   const t = useTranslations('Index')
