@@ -6,7 +6,6 @@ import { Label } from '@/components/ui/label'
 import { useLeaderboards } from '@/hooks/api/useLeaderboards'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import formatTime from '@/shared/lib/formatTime'
-import { ScrambleDisplay } from '@/components/scramble-display'
 import { format } from 'date-fns'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useRouter } from 'next/navigation'
@@ -19,6 +18,7 @@ import { useLeaderboardSolveModal } from '@/store/LeaderboardSolveModal'
 import calcTurnsPerSecond from '@/lib/calcTurnsPerSecond'
 import { Spinner } from '@/components/ui/spinner'
 import BreadcrumbLeaderboard from '@/components/leaderboards/breadcrumb/breadcrumb-leaderboard'
+import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 
 export default function Page() {
   const [puzzle, setPuzzle] = React.useState<string>('3x3x3')

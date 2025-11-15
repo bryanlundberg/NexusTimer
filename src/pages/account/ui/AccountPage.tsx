@@ -1,3 +1,4 @@
+'use client'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'

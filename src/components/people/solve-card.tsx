@@ -1,30 +1,24 @@
-import { ScrambleDisplay } from '@/components/scramble-display';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import * as React from 'react';
-import { AlarmClock, CalendarDaysIcon, CombineIcon, Trophy } from 'lucide-react';
-import { Categories } from '@/interfaces/Categories';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import * as React from 'react'
+import { AlarmClock, CalendarDaysIcon, CombineIcon, Trophy } from 'lucide-react'
+import { Categories } from '@/interfaces/Categories'
+import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 
 interface SolveCardProps {
-  scramble: string;
-  event: Categories;
-  time: string;
-  date: string;
+  scramble: string
+  event: Categories
+  time: string
+  date: string
 }
 
 export default function SolveCard({ scramble, event, time, date }: SolveCardProps) {
-  const [mainTime, decimals] = time.split('.');
+  const [mainTime, decimals] = time.split('.')
 
   return (
     <Card className="overflow-hidden transition-all hover:shadow-md">
       <div className="flex flex-row h-full">
         <div className="flex items-center justify-center bg-muted/60 ms-4 px-4">
-          <ScrambleDisplay
-            show
-            scramble={scramble}
-            event={event}
-            className="size-28"
-            visualization="2D"
-          />
+          <ScrambleDisplay show scramble={scramble} event={event} className="size-28" visualization="2D" />
         </div>
 
         <div className="flex flex-col flex-1">
@@ -53,14 +47,12 @@ export default function SolveCard({ scramble, event, time, date }: SolveCardProp
 
               <div className="flex gap-2">
                 <CombineIcon className="size-4 text-muted-foreground mt-0.5 flex-shrink-0" />
-                <p className="text-sm text-muted-foreground break-all">
-                  {scramble}
-                </p>
+                <p className="text-sm text-muted-foreground break-all">{scramble}</p>
               </div>
             </div>
           </CardContent>
         </div>
       </div>
     </Card>
-  );
+  )
 }

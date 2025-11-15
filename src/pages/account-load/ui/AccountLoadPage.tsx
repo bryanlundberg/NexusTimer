@@ -1,3 +1,4 @@
+'use client'
 import { useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
 import { useUser } from '@/hooks/api/useUser'

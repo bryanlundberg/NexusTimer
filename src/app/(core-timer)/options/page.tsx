@@ -19,7 +19,6 @@ import {
 import MenuSelectLanguage from '@/components/menu-settings/MenuSelectLanguage'
 import CustomTheme from '@/components/menu-settings/CustomTheme'
 import MenuSelectDefaultStartCube from '@/components/menu-settings/MenuSelectDefaultStartCube'
-import AccountHeader from '@/components/account/account-header/account-header'
 import { Separator } from '@/components/ui/separator'
 import MenuSelectColor from '@/components/menu-settings/MenuSelectColor'
 import { useForm } from 'react-hook-form'
@@ -29,6 +28,7 @@ import { defaultSettings } from '@/lib/const/defaultSettings'
 import useWebsiteColors from '@/hooks/useWebsiteColors'
 import { toast } from 'sonner'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import AccountHeader from '@/features/account/ui/account-header'
 
 export default function Page() {
   const { settings, setSettings } = useSettingsModalStore()
