@@ -1,0 +1,45 @@
+import { useQueryState } from 'nuqs'
+import { STATES } from '@/constants/states'
+import useRemoveGridHeight from '@/hooks/useRemoveGridHeight'
+import { useMemo } from 'react'
+import formatTime from '@/shared/lib/formatTime'
+import { Sort } from '@/enums/Sort'
+import { Order } from '@/enums/Order'
+import { sort } from 'fast-sort'
+import { Solve } from '@/entities/solve/model/types'
+
+export default function useSolvesGrid(solves: Array<Solve>) {
+  const [query] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE })
+  const [sortType] = useQueryState(STATES.SOLVES_PAGE.SORT.KEY, { defaultValue: STATES.SOLVES_PAGE.SORT.DEFAULT_VALUE })
+  const [orderType] = useQueryState(STATES.SOLVES_PAGE.ORDER.KEY, {
+    defaultValue: STATES.SOLVES_PAGE.ORDER.DEFAULT_VALUE
+  })
+  useRemoveGridHeight()
+
+  const normalizedQuery = (query || '').trim()
+
+  const filteredByQuery = useMemo(() => {
+    if (!solves) return []
+    if (!normalizedQuery) return solves
+
+    return solves.filter((u) => formatTime(u.time).startsWith(normalizedQuery))
+  }, [solves, normalizedQuery])
+
+  const orderedSolves = useMemo(() => {
+    const base = filteredByQuery
+
+    if (sortType === Sort.DATE) {
+      return orderType === Order.ASC ? sort(base).asc((u) => u.endTime) : sort(base).desc((u) => u.endTime)
+    }
+
+    if (sortType === Sort.TIME) {
+      return orderType === Order.ASC ? sort(base).asc((u) => u.time) : sort(base).desc((u) => u.time)
+    }
+
+    return base
+  }, [filteredByQuery, sortType, orderType])
+
+  return {
+    orderedSolves
+  }
+}

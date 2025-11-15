@@ -1,8 +1,8 @@
 import Providers from '@/components/providers'
 import React from 'react'
-import { AppSidebar } from '@/components/app-sidebar'
 import { SidebarInset } from '@/components/ui/sidebar'
 import { Metadata } from 'next'
+import { AppSidebar } from '@/widgets/sidebar/ui/AppSidebar'
 
 export const metadata: Metadata = {
   title: 'Multiplayer Cubing - Nexus Timer',

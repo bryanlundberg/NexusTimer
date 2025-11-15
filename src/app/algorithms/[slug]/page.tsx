@@ -1,7 +1,4 @@
-import { TwistyPlayer } from 'cubing/twisty';
-import { notFound } from 'next/navigation';
-import { AlgorithmsPage } from '@/components/algorithms/algorithms-page/algorithms-page';
-import { ALGORITHM_SETS } from '@/constants/algorithms-sets';
+import { ALGORITHM_SETS } from '@/constants/algorithms-sets'
 import type { Metadata, ResolvingMetadata } from 'next'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -19,39 +16,22 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
         description: collection.description,
         siteName: 'Nexus Timer',
         locale: 'en_US',
-        type: 'website',
-      },
+        type: 'website'
+      }
     }
   }
 
   return {
     title: 'Algorithms',
-    description: 'Explore a wide range of algorithm sets for various puzzles, complete with interactive 3D visualizations to enhance your learning experience.',
+    description:
+      'Explore a wide range of algorithm sets for various puzzles, complete with interactive 3D visualizations to enhance your learning experience.'
   }
 }
 
 export async function generateStaticParams() {
   return ALGORITHM_SETS.map((set) => {
-    return { slug: set.slug };
-  });
+    return { slug: set.slug }
+  })
 }
 
-export default async function Page({ params }: Props) {
-  const { slug } = await params
-  const collection = ALGORITHM_SETS.find((set: { slug: string; }) => set.slug === slug);
-
-  if (!collection) {
-    notFound();
-  }
-
-  return (
-    <AlgorithmsPage
-      algorithms={collection.algorithms}
-      title={`${collection.title} - Algorithms`}
-      description={collection.description}
-      virtualization={collection.virtualization as unknown as TwistyPlayer}
-      fileCollectionName={collection.file}
-      puzzle={collection.puzzle}
-    />
-  )
-}
+export { default } from '@/pages/algorithms-method/ui/AlgorithmsMethodPage'

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Box, Clock, Timer, Users } from 'lucide-react'
 import { format } from 'date-fns'
-import formatTime from '@/lib/formatTime'
+import formatTime from '@/shared/lib/formatTime'
 import Link from 'next/link'
 import { useCountdown } from '@/hooks/useCountdown'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'

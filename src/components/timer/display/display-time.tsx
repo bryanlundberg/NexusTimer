@@ -1,5 +1,5 @@
 import { Solve } from '@/interfaces/Solve'
-import formatTime from '@/lib/formatTime'
+import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/store/timerStore'
 import { useTranslations } from 'next-intl'
 import { TimerMode } from '@/enums/TimerMode'

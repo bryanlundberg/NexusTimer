@@ -19,6 +19,7 @@
     "@firebase/firestore": "^4.9.0",
     "@headlessui/react": "^1.7.19",
     "@heroicons/react": "^2.2.0",
+    "@hookform/resolvers": "^5.2.2",
     "@mierak/react-virtualized-grid": "0.0.5-ALPHA",
     "@radix-ui/react-alert-dialog": "^1.1.6",
     "@radix-ui/react-avatar": "^1.1.3",
