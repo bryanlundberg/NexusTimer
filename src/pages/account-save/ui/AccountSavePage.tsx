@@ -1,5 +1,4 @@
 import { useTranslations } from 'next-intl'
-import { useSyncBackup } from '@/hooks/useSyncBackup'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { toast } from 'sonner'
@@ -8,6 +7,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
 import AccountHeader from '@/features/account/ui/account-header'
+import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 
 export default function AccountSavePage() {
   const t = useTranslations('Index')

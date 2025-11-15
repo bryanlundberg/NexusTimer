@@ -4,7 +4,6 @@ import { useTimerStore } from '@/store/timerStore'
 import { useNXData } from '@/hooks/useNXData'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
-import { useSyncBackup } from '@/hooks/useSyncBackup'
 import { Button } from '@/components/ui/button'
 import { BackupLoadMode } from '@/enums/BackupLoadMode'
 import { Card } from '@/components/ui/card'
@@ -12,6 +11,7 @@ import { useUser } from '@/hooks/api/useUser'
 import { useSyncStore } from '@/store/SyncStore'
 import moment from 'moment'
 import { useIsOnline } from 'react-use-is-online'
+import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 
 export function usePreloadSettings() {
   const setCubes = useTimerStore((store) => store.setCubes)
