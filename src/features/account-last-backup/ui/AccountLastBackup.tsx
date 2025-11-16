@@ -2,7 +2,7 @@
 import { Session } from 'next-auth'
 import { useTranslations } from 'next-intl'
 import moment from 'moment'
-import { useUser } from '@/hooks/api/useUser'
+import { useUser } from '@/entities/user/model/useUser'
 
 export default function AccountLastBackup({ session }: { session: Session }) {
   const t = useTranslations('Index')

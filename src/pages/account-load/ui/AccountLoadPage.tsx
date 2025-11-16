@@ -1,7 +1,6 @@
 'use client'
 import { useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
-import { useUser } from '@/hooks/api/useUser'
 import { useRouter } from 'next/navigation'
 import { BackupLoadMode } from '@/enums/BackupLoadMode'
 import { toast } from 'sonner'
@@ -10,6 +9,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import AccountHeader from '@/features/account/ui/account-header'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
+import { useUser } from '@/entities/user/model/useUser'
 
 export default function AccountLoadPage() {
   const t = useTranslations('Index')

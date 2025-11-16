@@ -16,7 +16,7 @@ export default function PeopleSkeleton() {
             <Skeleton className="w-3/4 h-6  rounded mb-2"></Skeleton>
             <Skeleton className="w-1/2 h-6  rounded"></Skeleton>
           </div>
-          <div className="flex flex-col ml-4 grow">
+          <div className="flex flex-col grow">
             <Skeleton className="w-full max-w-60 h-8 rounded mb-4"></Skeleton>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
               <Skeleton className="h-64"></Skeleton>

@@ -1,5 +1,5 @@
-import { fetcher } from '@/utils/fetcher';
-import useSWR from 'swr';
+import { fetcher } from '@/utils/fetcher'
+import useSWR from 'swr'
 
 export const useUser = (userId: string) => {
   const { data, error, isLoading, mutate } = useSWR(`/api/v1/users/${userId}`, fetcher)

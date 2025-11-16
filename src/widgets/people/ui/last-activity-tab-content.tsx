@@ -4,7 +4,6 @@ import { useMemo, useState } from 'react'
 import _ from 'lodash'
 import formatTime from '@/shared/lib/formatTime'
 import { Card } from '@/components/ui/card'
-import EmptyTabContent from '@/components/people/empty-tab-content'
 import {
   Pagination,
   PaginationContent,
@@ -15,6 +14,7 @@ import {
   PaginationPrevious
 } from '@/components/ui/pagination'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
+import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 
 interface LastActivityTabContentProps {
   cubes: Cube[]

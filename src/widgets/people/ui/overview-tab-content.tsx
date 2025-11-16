@@ -5,7 +5,7 @@ import _ from 'lodash'
 import moment from 'moment'
 import formatTime from '@/shared/lib/formatTime'
 import { Categories } from '@/interfaces/Categories'
-import EmptyTabContent from '@/components/people/empty-tab-content'
+import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 
 export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
   const solvesByCategory = useMemo(() => {
