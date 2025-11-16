@@ -1,8 +1,8 @@
 import { DialogContent, DialogTitle } from '@/components/ui/dialog'
-import AlgorithmRender from '@/components/twisty/AlgorithmRender'
 import * as React from 'react'
 import { TwistyPlayer } from 'cubing/twisty'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 
 export default function AlgorithmModal() {
   const { activeOverlay } = useOverlayStore()

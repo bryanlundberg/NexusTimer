@@ -1,12 +1,12 @@
 'use client'
 
 import { DialogContent, DialogTitle } from '@/components/ui/dialog'
-import AlgorithmRender from '@/components/twisty/AlgorithmRender'
 import * as React from 'react'
 import { TwistyPlayer } from 'cubing/twisty'
 import formatTime from '@/shared/lib/formatTime'
 import calcTurnsPerSecond from '@/lib/calcTurnsPerSecond'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 
 export function ReplaySolveDetails() {
   const {
