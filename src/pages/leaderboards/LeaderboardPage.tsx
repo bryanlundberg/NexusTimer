@@ -5,9 +5,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label'
 import { useLeaderboards } from '@/hooks/api/useLeaderboards'
 import { Spinner } from '@/components/ui/spinner'
-import BreadcrumbLeaderboard from '@/components/leaderboards/breadcrumb/breadcrumb-leaderboard'
 import LeaderboardTable from '@/features/leaderboards-table/ui/LeaderboardTable'
 import { useState } from 'react'
+import LeaderboardBreadcrumb from '@/widgets/leaderboard-breadcrumb/ui/LeaderboardBreadcrumb'
 
 export default function LeaderboardPage() {
   const [puzzle, setPuzzle] = useState<string>('3x3x3')
@@ -16,7 +16,7 @@ export default function LeaderboardPage() {
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <FadeIn className={'p-4 md:p-8 space-y-8'}>
-        <BreadcrumbLeaderboard />
+        <LeaderboardBreadcrumb />
 
         <div className="flex flex-col w-full">
           <h1 className="text-3xl font-extrabold mb-6 text-center text-primary">Leaderboard Rankings</h1>

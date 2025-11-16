@@ -6,7 +6,7 @@ import { TimerStatus } from '@/enums/TimerStatus'
 import { useWindowSize } from 'react-use-size'
 import { cn } from '@/lib/utils'
 import { SCRAMBLE_HEIGHT } from '@/constants/scramble-height'
-import Navigation from '@/components/navigation/navigation'
+import Navigation from '@/features/navigation/ui/navigation'
 
 export default function HeaderTimer() {
   const isSolving = useTimerStore((store) => store.isSolving)

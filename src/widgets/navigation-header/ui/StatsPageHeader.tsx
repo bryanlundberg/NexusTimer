@@ -1,7 +1,7 @@
-import Navigation from '@/components/navigation/navigation'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import MainCubeSelector from '@/components/MainCubeSelector'
 import DateRangeSelect from '@/features/date-range-select/ui/DateRangeSelect'
+import Navigation from '@/features/navigation/ui/navigation'
 
 export default function StatsPageHeader() {
   return (

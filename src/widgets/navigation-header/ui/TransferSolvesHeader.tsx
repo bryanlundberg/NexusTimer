@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import Navigation from '@/components/navigation/navigation'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 import { ArrowRightIcon } from 'lucide-react'
@@ -8,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import { Cube } from '@/entities/cube/model/types'
 import { useQueryState } from 'nuqs'
 import { STATES } from '@/constants/states'
+import Navigation from '@/features/navigation/ui/navigation'
 
 interface TransferSolvesHeaderProps {
   cubes: Cube[]

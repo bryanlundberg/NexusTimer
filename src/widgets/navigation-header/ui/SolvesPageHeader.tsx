@@ -1,8 +1,8 @@
-import Navigation from '@/components/navigation/navigation'
-import ButtonMoveSolves from '@/components/navigation/buttons/button-move-solves'
 import { Input } from '@/components/ui/input'
 import { useTranslations } from 'next-intl'
 import DateRangeFilter from '@/features/deep-statistics/ui/DateRangeFilter'
+import Navigation from '@/features/navigation/ui/navigation'
+import ButtonMoveSolves from '@/features/navigation/ui/button-move-solves'
 
 interface SolvesPageHeaderProps {
   handleSearch: (query: string) => void

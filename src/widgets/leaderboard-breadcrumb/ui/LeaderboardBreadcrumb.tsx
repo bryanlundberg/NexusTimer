@@ -4,7 +4,7 @@ import { Separator } from '@/components/ui/separator'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
 import Link from 'next/link'
 
-export default function BreadcrumbLeaderboard() {
+export default function LeaderboardBreadcrumb() {
   return (
     <div className="flex items-center gap-2 mb-6">
       <SidebarTrigger className="-ml-1" />
