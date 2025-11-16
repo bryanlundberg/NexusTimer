@@ -2,7 +2,6 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import * as React from 'react'
 import { useMemo, useState } from 'react'
-import { useUsers } from '@/hooks/api/useUsers'
 import { TimeZones } from '@/enums/Timezones'
 import FadeIn from '@/shared/ui/fade-in/fade-in'
 import Navigation from '@/components/navigation/navigation'
@@ -17,6 +16,7 @@ import { UserDocument } from '@/models/user'
 import { UserCard } from '@/components/people/user-card'
 import { TablePagination } from '@/components/people/table-pagination'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { useUsers } from '@/entities/user/model/useUsers'
 
 export default function PeoplePage() {
   const router = useRouter()
