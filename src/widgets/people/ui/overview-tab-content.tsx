@@ -1,4 +1,3 @@
-import SolveCard from '@/components/people/solve-card'
 import { Cube } from '@/interfaces/Cube'
 import { useMemo } from 'react'
 import _ from 'lodash'
@@ -6,6 +5,7 @@ import moment from 'moment'
 import formatTime from '@/shared/lib/formatTime'
 import { Categories } from '@/interfaces/Categories'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
+import SolveCard from '@/widgets/people/ui/solve-card'
 
 export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
   const solvesByCategory = useMemo(() => {

@@ -13,10 +13,10 @@ import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { UserDocument } from '@/models/user'
-import { UserCard } from '@/components/people/user-card'
-import { TablePagination } from '@/components/people/table-pagination'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useUsers } from '@/entities/user/model/useUsers'
+import { TablePagination } from '@/widgets/people/ui/table-pagination'
+import UserCard from '@/widgets/people/ui/user-card'
 
 export default function PeoplePage() {
   const router = useRouter()
