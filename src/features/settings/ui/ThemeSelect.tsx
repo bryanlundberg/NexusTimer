@@ -1,46 +1,49 @@
-import { Themes } from '@/interfaces/types/Themes';
-import { useBackgroundImageStore } from '@/store/BackgroundThemeStore';
-import { useTheme } from 'next-themes';
-import { useTranslations } from 'next-intl';
-import { useCallback, useEffect, useState } from 'react';
-import { ThemeToggleButton, useThemeTransition } from '@/components/ui/shadcn-io/theme-toggle-button';
+import { Themes } from '@/interfaces/types/Themes'
+import { useBackgroundImageStore } from '@/store/BackgroundThemeStore'
+import { useTheme } from 'next-themes'
+import { useTranslations } from 'next-intl'
+import { useCallback, useEffect, useState } from 'react'
+import { ThemeToggleButton, useThemeTransition } from '@/components/ui/shadcn-io/theme-toggle-button'
 
 interface Variation {
-  bg: string;
-  text: string;
-  name: string;
-  key: Themes;
+  bg: string
+  text: string
+  name: string
+  key: Themes
 }
 
 export default function ThemeSelect() {
-  const { backgroundImage, deleteBackgroundImage } = useBackgroundImageStore();
+  const { backgroundImage, deleteBackgroundImage } = useBackgroundImageStore()
   const { startTransition } = useThemeTransition()
-  const { setTheme, resolvedTheme } = useTheme();
-  const t = useTranslations('Index.Settings-menu');
+  const { setTheme, resolvedTheme } = useTheme()
+  const t = useTranslations('Index.Settings-menu')
   const variation: Variation[] = [
     {
       bg: 'bg-neutral-100',
       text: 'text-white',
       name: t('light'),
-      key: 'light',
+      key: 'light'
     },
     {
       bg: 'bg-zinc-950',
       text: 'text-white',
       name: t('dark'),
-      key: 'dark',
-    },
-  ];
+      key: 'dark'
+    }
+  ]
 
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  const handleSetTheme = useCallback((mode: Themes) => {
-    if (!mode || mode === resolvedTheme) return
-    startTransition(() => setTheme(mode))
-  }, [resolvedTheme, setTheme, startTransition])
+  const handleSetTheme = useCallback(
+    (mode: Themes) => {
+      if (!mode || mode === resolvedTheme) return
+      startTransition(() => setTheme(mode))
+    },
+    [resolvedTheme, setTheme, startTransition]
+  )
 
   if (!mounted) {
     return null
@@ -49,15 +52,10 @@ export default function ThemeSelect() {
   return (
     <div className="flex mx-3 gap-3">
       {variation.map((item) => (
-        <div
-          key={item.key}
-          className="flex flex-col items-center justify-center"
-        >
+        <div key={item.key} className="flex flex-col items-center justify-center">
           <div
             className={`relative cursor-pointer size-20 rounded-full ${item.bg} ${
-              item.key === resolvedTheme
-                ? 'ring-3 ring-primary/50'
-                : 'border border-neutral-400'
+              item.key === resolvedTheme ? 'ring-3 ring-primary/50' : 'border border-neutral-400'
             }`}
           >
             <ThemeToggleButton
@@ -78,7 +76,7 @@ export default function ThemeSelect() {
             backgroundImage: `url(${backgroundImage})`,
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
+            backgroundSize: 'cover'
           }}
         >
           <div
@@ -90,5 +88,5 @@ export default function ThemeSelect() {
         </div>
       )}
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-import { Switch } from '../ui/switch'
 import { Controller } from 'react-hook-form'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { Switch } from '@/components/ui/switch'
 
 interface MenuOption {
   label: string

@@ -7,7 +7,7 @@ export default function MenuInputOption({
   control,
   name,
   inputProps,
-  description,
+  description
 }: {
   label: string
   control: any
