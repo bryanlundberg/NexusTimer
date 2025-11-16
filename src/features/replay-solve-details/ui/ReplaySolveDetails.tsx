@@ -1,7 +1,6 @@
 'use client'
 
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
-import { useLeaderboardSolveModal } from '@/store/LeaderboardSolveModal'
+import { DialogContent, DialogTitle } from '@/components/ui/dialog'
 import AlgorithmRender from '@/components/twisty/AlgorithmRender'
 import * as React from 'react'
 import { TwistyPlayer } from 'cubing/twisty'
