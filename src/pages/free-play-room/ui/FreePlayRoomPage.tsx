@@ -24,7 +24,7 @@ import useAlert from '@/shared/model/useAlert'
 import { useCountdown } from '@/shared/model/useCountdown'
 
 export default function FreePlayRoomPage() {
-  const { roomId } = useParams()
+  const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }
   const { data: session } = useSession()
   const router = useRouter()
   const alert = useAlert()

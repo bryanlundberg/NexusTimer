@@ -3,7 +3,6 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import useTimer from '@/hooks/useTimer'
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
-import useDeviceMatch from '@/hooks/useDeviceMatch'
 import { Cube } from '@/interfaces/Cube'
 import useFreeMode from '@/hooks/useFreeMode'
 import { useSession } from 'next-auth/react'
@@ -14,6 +13,7 @@ import { Categories } from '@/interfaces/Categories'
 import DisplayTime from '@/features/timer/ui/display-time'
 import ConfirmSolveModal from '@/features/free-play-room/ui/confirm-solve-modal'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
+import useDeviceMatch from '@/shared/model/useDeviceMatch'
 
 interface TimerTabProps {
   maxRoundTime: number | null
@@ -22,7 +22,7 @@ interface TimerTabProps {
 }
 
 export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabProps) {
-  const { roomId } = useParams()
+  const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }
   const {
     updateUserPresenceStatus,
     addUserSolve,
