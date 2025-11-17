@@ -21,9 +21,9 @@ import Navigation from '@/features/navigation/ui/navigation'
 export default function PeoplePage() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const search = searchParams.get('search')
-  const region = searchParams.get('region')
-  const page = searchParams.get('page')
+  const search = searchParams!.get('search')
+  const region = searchParams!.get('region')
+  const page = searchParams!.get('page')
   const [searchTerm, setSearchTerm] = useState(search)
   const [selectedRegion, setSelectedRegion] = useState(region || 'all')
 
