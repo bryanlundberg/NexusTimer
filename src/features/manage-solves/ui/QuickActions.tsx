@@ -17,13 +17,15 @@ interface QuickActionsProps {
   hideCopyButton?: boolean
   hideMoveToHistory?: boolean
   hideTransferCollection?: boolean
+  onDeleteSolve?: () => void
 }
 
 export default function QuickActions({
   solve,
   hideCopyButton = false,
   hideMoveToHistory = false,
-  hideTransferCollection = false
+  hideTransferCollection = false,
+  onDeleteSolve = () => {}
 }: QuickActionsProps) {
   const t = useTranslations('Index')
   const [tabMode] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, {
@@ -47,9 +49,10 @@ export default function QuickActions({
             <TooltipTrigger asChild>
               <Button
                 variant={'ghost'}
-                onPointerDown={() =>
+                onPointerDown={() => {
                   handleDeleteSolve(tabMode === DisplaySolvesTabs.SESSION ? SolveTab.SESSION : SolveTab.ALL)
-                }
+                  onDeleteSolve()
+                }}
               >
                 <Trash />
               </Button>
