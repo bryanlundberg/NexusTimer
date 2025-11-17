@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { TimerStatus } from '@/enums/TimerStatus'
+import { TimerStatus } from '@/features/timer/model/TimerStatus'
 
 interface UseInspectionProps {
   setTimerStatus: (status: TimerStatus) => void

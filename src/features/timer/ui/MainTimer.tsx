@@ -1,9 +1,9 @@
 import { useTimerStore } from '@/store/timerStore'
-import { TimerMode } from '@/enums/TimerMode'
 import Timer from '@/features/timer/ui/Timer'
 import ManualMode from '@/features/timer/ui/ManualMode'
 import Stackmat from '@/features/timer/ui/stackmat'
 import TimerVirtual from '@/features/timer/ui/TimerVirtual'
+import { TimerMode } from '@/features/timer/model/enums'
 
 export function MainTimer() {
   const timerMode = useTimerStore((store) => store.timerMode)

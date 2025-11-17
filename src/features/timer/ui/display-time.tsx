@@ -2,13 +2,12 @@ import { Solve } from '@/interfaces/Solve'
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/store/timerStore'
 import { useTranslations } from 'next-intl'
-import { TimerMode } from '@/enums/TimerMode'
-import { TimerStatus } from '@/enums/TimerStatus'
 import React from 'react'
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { useWindowSize } from 'react-use-size'
 import { cn } from '@/lib/utils'
+import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 
 interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   className?: string

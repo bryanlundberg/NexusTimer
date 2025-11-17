@@ -1,5 +1,5 @@
 import { useRef, useEffect, useCallback } from 'react'
-import { TimerMode } from '@/enums/TimerMode'
+import { TimerMode } from '@/features/timer/model/enums'
 
 type HandleHoldFunction = (isReleased: boolean) => void
 type HandleReleaseFunction = () => void

@@ -1,3 +1,4 @@
+import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { Cube } from '@/interfaces/Cube'
 import { Solve } from '@/interfaces/Solve'
 import { Event } from '@/interfaces/cubeCollection'
@@ -5,8 +6,6 @@ import { cubeCollection } from '@/lib/const/cubeCollection'
 import { defaultTimerStatistics } from '@/lib/const/defaultTimerStatistics'
 import genScramble from '@/lib/timer/genScramble'
 import { create } from 'zustand'
-import { TimerMode } from '@/enums/TimerMode'
-import { TimerStatus } from '@/enums/TimerStatus'
 
 type TimerStore = {
   cubes: Cube[] | null

@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react'
-import { TimerStatus } from '@/enums/TimerStatus'
+import { TimerStatus } from '@/features/timer/model/TimerStatus'
 import useTimerControls from './useTimerControls'
 import useInspection from './useInspection'
 import useHoldToStart from './useHoldToStart'

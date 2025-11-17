@@ -12,8 +12,8 @@ import {
 import { useTimerStore } from '@/store/timerStore'
 import { MixIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
-import { TimerMode } from '@/enums/TimerMode'
 import { useEffect } from 'react'
+import { TimerMode } from '@/features/timer/model/enums'
 
 export default function ButtonSelectMode() {
   const timerMode = useTimerStore((state) => state.timerMode)

@@ -4,12 +4,11 @@ import ScramblePanel from './ScrambleImagePanel'
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { useTranslations } from 'next-intl'
-import { TimerStatus } from '@/enums/TimerStatus'
 import { useMemo } from 'react'
-import { TimerMode } from '@/enums/TimerMode'
 import { useWindowSize } from 'react-use-size'
 import { cn } from '@/lib/utils'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
+import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 
 export default function TimerWidgets() {
   const isSolving = useTimerStore((store) => store.isSolving)

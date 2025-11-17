@@ -14,7 +14,6 @@ import {
 } from '@/components/ui/dialog'
 import { Keyboard, Lightbulb } from 'lucide-react'
 import { motion } from 'framer-motion'
-import { TimerMode } from '@/enums/TimerMode'
 import Image from 'next/image'
 import { useWindowSize } from 'react-use-size'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
@@ -25,6 +24,7 @@ import DialogEnterNewScramble from '@/components/dialogs/dialog-enter-new-scramb
 import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 import { Layers } from '@/shared/types/enums'
+import { TimerMode } from '@/features/timer/model/enums'
 
 export function ScrambleZone() {
   const selectedCube = useTimerStore((store) => store.selectedCube)

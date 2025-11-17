@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import { TimerStatus } from '@/enums/TimerStatus'
+import { TimerStatus } from '@/features/timer/model/TimerStatus'
 import { useTimerStore } from '@/store/timerStore'
 
 interface UseTimerControlsProps {
