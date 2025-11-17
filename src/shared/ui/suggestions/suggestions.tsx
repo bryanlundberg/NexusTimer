@@ -1,6 +1,6 @@
-import { ALGORITHMS_GITHUB_URL } from '@/constants/algorithms-github-url'
 import { SquarePen } from 'lucide-react'
 import Link from 'next/link'
+import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
 
 export default function Suggestions({ message = '', link = ALGORITHMS_GITHUB_URL }) {
   return (
