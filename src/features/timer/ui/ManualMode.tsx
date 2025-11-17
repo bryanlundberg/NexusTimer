@@ -53,7 +53,7 @@ export default function ManualMode() {
         )}
       </form>
       {lastSolve && settings.features.quickActionButtons ? (
-        <QuickActions solve={lastSolve} onDeleteSolve={() => setLastSolve(null)} caseOfUse="last-solve" />
+        <QuickActions solve={lastSolve} onDeleteSolve={() => setLastSolve(null)} />
       ) : null}
     </>
   )
