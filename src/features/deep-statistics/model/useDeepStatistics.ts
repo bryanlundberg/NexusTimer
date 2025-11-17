@@ -8,10 +8,10 @@ import { useTimerStore } from '@/store/timerStore'
 import { useEffect, useMemo, useState } from 'react'
 import moment from 'moment'
 import { useQueryState } from 'nuqs'
-import { DateRange } from '@/enums/DateRange'
 import type { Cube } from '@/interfaces/Cube'
 import type { Solve } from '@/interfaces/Solve'
 import { STATES } from '@/shared/const/states'
+import { DateRange } from '@/shared/types/enums'
 
 export default function useDeepStatistics() {
   const selectedCube = useTimerStore((store) => store.selectedCube)

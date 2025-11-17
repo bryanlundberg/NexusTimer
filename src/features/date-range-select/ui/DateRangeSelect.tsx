@@ -1,8 +1,8 @@
 'use client'
 
-import { DateRange } from '@/enums/DateRange'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import useDateRangeSelect from '@/features/date-range-select/model/useDateRangeSelect'
+import { DateRange } from '@/shared/types/enums'
 
 export default function DateRangeSelect() {
   const { dateRange, setDateRange, DATE_RANGE_LABELS } = useDateRangeSelect()

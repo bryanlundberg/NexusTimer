@@ -5,13 +5,13 @@ import { useNXData } from '@/hooks/useNXData'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
-import { BackupLoadMode } from '@/enums/BackupLoadMode'
 import { Card } from '@/components/ui/card'
 import { useSyncStore } from '@/store/SyncStore'
 import moment from 'moment'
 import { useIsOnline } from 'react-use-is-online'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import { useUser } from '@/entities/user/model/useUser'
+import { BackupLoadMode } from '@/entities/backup/model/enums'
 
 export function usePreloadSettings() {
   const setCubes = useTimerStore((store) => store.setCubes)

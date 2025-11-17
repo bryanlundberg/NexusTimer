@@ -1,9 +1,8 @@
 import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs'
-import { Order } from '@/enums/Order'
 import { Sort } from '@/enums/Sort'
 import { StatisticsTabs } from '@/enums/StatisticsTabs'
 import { PeopleTabs } from '@/enums/PeopleTabs'
-import { DateRange } from '@/enums/DateRange'
+import { DateRange, Order } from '@/shared/types/enums'
 
 export const STATES = {
   SOLVES_PAGE: {

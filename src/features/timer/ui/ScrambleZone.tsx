@@ -23,7 +23,7 @@ import { cn } from '@/lib/utils'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
 import DialogEnterNewScramble from '@/components/dialogs/dialog-enter-new-scramble/dialog-enter-new-scramble'
-import DrawerHintPanel from '@/components/drawners/drawer-hint-panel'
+import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 
 export function ScrambleZone() {

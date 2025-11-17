@@ -1,6 +1,6 @@
 import { useQueryState } from 'nuqs'
-import { DateRange } from '@/enums/DateRange'
 import { STATES } from '@/shared/const/states'
+import { DateRange } from '@/shared/types/enums'
 
 export default function useDateRangeSelect() {
   const [dateRange, setDateRange] = useQueryState(STATES.STATISTICS_PAGE.DATE_RANGE.KEY, {

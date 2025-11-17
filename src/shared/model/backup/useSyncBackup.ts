@@ -7,10 +7,10 @@ import { useNXData } from '@/hooks/useNXData'
 import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/store/timerStore'
 import { useState } from 'react'
-import { BackupLoadMode } from '@/enums/BackupLoadMode'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { UserDocument } from '@/models/user'
 import { useUploadThing } from '@/shared/lib/uploadthing-helpers'
+import { BackupLoadMode } from '@/entities/backup/model/enums'
 
 export const useSyncBackup = () => {
   const { clearCubes, getAllCubes, saveBatchCubes, getAllDatabase } = useNXData()
