@@ -1,22 +1,28 @@
-"use server";
+'use server'
 
-import connectDB from "@/db/mongodb";
-import type { Solve as ISolve } from '@/interfaces/Solve';
-import Solve from '@/models/solve';
+import connectDB from '@/shared/config/mongodb/mongodb'
+import type { Solve as ISolve } from '@/interfaces/Solve'
+import Solve from '@/models/solve'
 
 interface SendSolveToServerParams {
-  solve: Partial<ISolve>;
-  userId?: string;
-  solution?: string | never[];
-  puzzle?: string;
-  smart?: boolean;
+  solve: Partial<ISolve>
+  userId?: string
+  solution?: string | never[]
+  puzzle?: string
+  smart?: boolean
 }
 
-export async function sendSolveToServer({ solve, solution, userId, puzzle, smart = false }: SendSolveToServerParams): Promise<boolean> {
+export async function sendSolveToServer({
+  solve,
+  solution,
+  userId,
+  puzzle,
+  smart = false
+}: SendSolveToServerParams): Promise<boolean> {
   try {
-    await connectDB();
+    await connectDB()
 
-    if (!userId) return true;
+    if (!userId) return true
 
     await Solve.create({
       user: userId,
@@ -27,27 +33,27 @@ export async function sendSolveToServer({ solve, solution, userId, puzzle, smart
       smart
     })
 
-    return true;
+    return true
   } catch (error) {
-    return false;
+    return false
   }
 }
 
 function cleanRotations(alg: string): string {
-  const moves = alg.trim().split(/\s+/);
-  const rotations = new Set(['x', "x'", 'y', "y'", 'z', "z'"]);
-  const result = [];
+  const moves = alg.trim().split(/\s+/)
+  const rotations = new Set(['x', "x'", 'y', "y'", 'z', "z'"])
+  const result = []
 
-  let seenNormalMove = false;
+  let seenNormalMove = false
 
   for (const move of moves) {
     if (rotations.has(move)) {
-      if (seenNormalMove) result.push(move);
+      if (seenNormalMove) result.push(move)
     } else {
-      result.push(move);
-      seenNormalMove = true;
+      result.push(move)
+      seenNormalMove = true
     }
   }
 
-  return result.join(' ');
+  return result.join(' ')
 }

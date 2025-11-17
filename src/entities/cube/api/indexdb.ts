@@ -1,4 +1,4 @@
-import { database } from '@/db/indexdb'
+import { database } from '@/shared/config/indexdb/indexdb'
 import { Solve } from '@/entities/solve/model/types'
 import { Cube } from '@/entities/cube/model/types'
 

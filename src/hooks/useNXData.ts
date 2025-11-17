@@ -4,7 +4,7 @@ import { Categories } from '@/interfaces/Categories'
 import { Solve } from '@/interfaces/Solve'
 import _ from 'lodash'
 import Cubes from '@/models/indexdb/Cubes'
-import { database } from '@/db/indexdb'
+import { database } from '@/shared/config/indexdb/indexdb'
 
 export const useNXData = () => {
   const getCubeById = async (id: string): Promise<Cube | null> => {
