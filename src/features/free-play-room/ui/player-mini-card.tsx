@@ -1,10 +1,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
 import { CircleCheckIcon, ExternalLink } from 'lucide-react'
-import { TimerStatus } from '@/features/timer/model/TimerStatus'
 import { Button } from '@/components/ui/button'
 import * as React from 'react'
 import Link from 'next/link'
+import { TimerStatus } from '@/features/timer/model/enums'
 
 export interface PlayerMiniCardProps {
   name?: string

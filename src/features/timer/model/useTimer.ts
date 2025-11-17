@@ -1,10 +1,10 @@
 import { useCallback, useRef } from 'react'
-import { TimerStatus } from '@/features/timer/model/TimerStatus'
 import useTimerControls from './useTimerControls'
 import useInspection from './useInspection'
 import useHoldToStart from './useHoldToStart'
 import useEventHandlers from './useEventHandlers'
 import { Cube } from '@/interfaces/Cube'
+import { TimerStatus } from '@/features/timer/model/enums'
 
 interface UseTimerProps {
   isSolving: boolean

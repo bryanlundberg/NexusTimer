@@ -15,13 +15,13 @@ import { Button } from '@/components/ui/button'
 import { ChartBarIcon, CheckIcon, Clock, EyeIcon, UsersIcon } from 'lucide-react'
 import { AvatarGroup, AvatarGroupTooltip } from '@/components/ui/shadcn-io/avatar-group'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { TimerStatus } from '@/features/timer/model/TimerStatus'
 import Image from 'next/image'
 import TimerTab from '@/features/free-play-room/ui/timer-tab'
 import ResultsTab from '@/features/free-play-room/ui/results-tab'
 import UsersTab from '@/features/free-play-room/ui/users-tab'
 import useAlert from '@/shared/model/useAlert'
 import { useCountdown } from '@/shared/model/useCountdown'
+import { TimerStatus } from '@/features/timer/model/enums'
 
 export default function FreePlayRoomPage() {
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }

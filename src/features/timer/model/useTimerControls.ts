@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
-import { TimerStatus } from '@/features/timer/model/TimerStatus'
 import { useTimerStore } from '@/store/timerStore'
+import { TimerStatus } from '@/features/timer/model/enums'
 
 interface UseTimerControlsProps {
   setSolvingTime: (time: number) => void

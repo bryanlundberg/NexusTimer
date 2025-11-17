@@ -4,10 +4,10 @@ import genId from '@/lib/genId'
 import { useTimerStore } from '@/store/timerStore'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
-import { TimerStatus } from '@/features/timer/model/TimerStatus'
 import { useNXData } from '@/hooks/useNXData'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { Packet, Stackmat as StackmatController } from 'stackmat-v2'
+import { TimerStatus } from '@/features/timer/model/enums'
 
 export default function Stackmat() {
   const { saveCube } = useNXData()

@@ -2,11 +2,11 @@ import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { useTimerStore } from '@/store/timerStore'
 import { ScrambleZone } from './ScrambleZone'
 import { useTranslations } from 'next-intl'
-import { TimerStatus } from '@/features/timer/model/TimerStatus'
 import { useWindowSize } from 'react-use-size'
 import { cn } from '@/lib/utils'
 import Navigation from '@/features/navigation/ui/navigation'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
+import { TimerStatus } from '@/features/timer/model/enums'
 
 export default function HeaderTimer() {
   const isSolving = useTimerStore((store) => store.isSolving)

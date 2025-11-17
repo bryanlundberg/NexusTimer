@@ -7,13 +7,13 @@ import { Cube } from '@/interfaces/Cube'
 import useFreeMode from '@/hooks/useFreeMode'
 import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
-import { TimerStatus } from '@/features/timer/model/TimerStatus'
 import genScramble from '@/lib/timer/genScramble'
 import { Categories } from '@/interfaces/Categories'
 import DisplayTime from '@/features/timer/ui/display-time'
 import ConfirmSolveModal from '@/features/free-play-room/ui/confirm-solve-modal'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
 import useDeviceMatch from '@/shared/model/useDeviceMatch'
+import { TimerStatus } from '@/features/timer/model/enums'
 
 interface TimerTabProps {
   maxRoundTime: number | null

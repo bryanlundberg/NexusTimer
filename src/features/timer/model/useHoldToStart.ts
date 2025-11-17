@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
-import { TimerStatus } from '@/features/timer/model/TimerStatus'
 import { Settings } from '@/interfaces/Settings'
+import { TimerStatus } from '@/features/timer/model/enums'
 
 interface UseHoldToStartProps {
   setTimerStatus: (status: TimerStatus) => void

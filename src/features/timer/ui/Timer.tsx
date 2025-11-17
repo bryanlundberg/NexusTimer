@@ -2,13 +2,13 @@ import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import useTimer from '@/features/timer/model/useTimer'
 import { ReactNode } from 'react'
-import { TimerStatus } from '@/features/timer/model/TimerStatus'
 import useSolveData from '@/hooks/useSolveData'
 import QuickActions from '@/features/manage-solves/ui/QuickActions'
 import DisplayContainer from '@/features/timer/ui/display-container'
 import DisplayTime from '@/features/timer/ui/display-time'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
 import useDeviceMatch from '@/shared/model/useDeviceMatch'
+import { TimerStatus } from '@/features/timer/model/enums'
 
 export default function Timer({ children }: { children?: ReactNode }) {
   const settings = useSettingsModalStore((store) => store.settings)
