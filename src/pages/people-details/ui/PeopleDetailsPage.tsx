@@ -10,8 +10,7 @@ import { UserHeader } from '@/widgets/people/ui/UserHeader'
 import { PeopleTabs } from '@/widgets/people/ui/PeopleTabs'
 
 export default function PeopleDetailsPage() {
-  const params = useParams<{ userId: string }>()
-  const userId = params.userId
+  const { userId } = useParams<{ userId: string }>() ?? { userId: '' }
 
   const { data: user, isLoading: isLoadingUser } = useUser(userId)
   const { backup, isLoading: isLoadingBackup } = useBackup(user?.backup?.url)
