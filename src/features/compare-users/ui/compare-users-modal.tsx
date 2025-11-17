@@ -7,10 +7,10 @@ import { Categories } from '@/interfaces/Categories'
 import { Cube } from '@/interfaces/Cube'
 import { formatDistance } from 'date-fns'
 import { useUserBackups } from '@/hooks/useUserBackups'
-import { useCompareUsersStats } from '@/hooks/useCompareUsersStats'
-import { CompareUser } from '@/types/compare'
 import CompareTableRow from '@/features/compare-users/ui/CompareTableRow'
 import CompareCategoryBlock from '@/features/compare-users/ui/CompareCategoryBlock'
+import { useCompareUsersStats } from '@/features/compare-users/model/useCompareUsersStats'
+import { CompareUser } from '@/features/compare-users/model/compare'
 
 export default function CompareUsersModal() {
   const closeOverlay = useCompareUsersStore((state) => state.closeOverlay)
