@@ -65,7 +65,6 @@ export default function Timer({ children }: { children?: ReactNode }) {
         <QuickActions
           solve={lastSolve}
           onDeleteSolve={() => setLastSolve(null)}
-          caseOfUse="last-solve"
           hideCopyButton
           hideMoveToHistory
           hideTransferCollection
