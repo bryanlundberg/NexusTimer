@@ -7,10 +7,10 @@ import { useNXData } from '@/hooks/useNXData'
 import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/store/timerStore'
 import { useState } from 'react'
-import { useUploadThing } from '@/utils/uploadthing-helpers'
 import { BackupLoadMode } from '@/enums/BackupLoadMode'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { UserDocument } from '@/models/user'
+import { useUploadThing } from '@/shared/lib/uploadthing-helpers'
 
 export const useSyncBackup = () => {
   const { clearCubes, getAllCubes, saveBatchCubes, getAllDatabase } = useNXData()

@@ -1,5 +1,5 @@
-import { fetcher } from '@/utils/fetcher'
 import useSWR from 'swr'
+import { fetcher } from '@/shared/lib/fetcher'
 
 export interface UsersParams {
   name?: string
