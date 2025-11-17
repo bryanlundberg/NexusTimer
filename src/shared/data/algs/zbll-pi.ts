@@ -1,17 +1,17 @@
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection';
+import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 
 export const ZBLL_PI_ALGS: AlgorithmCollection[] = [
-    {
-      name: 'ZBLL Pi 1',
-      group: 'Pi 1',
-      setup: "L R' U' R U' R' U R U2' L' U R' U2' R",
-      algs: [
-        "y' R U R' U R U2 R2 F' r U R U' r' F",
-        "y' R U R' U R U2 R2 U' R' F R U R U' R' F' R",
-        "R' U2 R U' L U2 R' U' R U R' U R L'",
-        "y F U R U2 R' U R U R' F' R U R' U R U2 R'"
-      ]
-    },
+  {
+    name: 'ZBLL Pi 1',
+    group: 'Pi 1',
+    setup: "L R' U' R U' R' U R U2' L' U R' U2' R",
+    algs: [
+      "y' R U R' U R U2 R2 F' r U R U' r' F",
+      "y' R U R' U R U2 R2 U' R' F R U R U' R' F' R",
+      "R' U2 R U' L U2 R' U' R U R' U R L'",
+      "y F U R U2 R' U R U R' F' R U R' U R U2 R'"
+    ]
+  },
   {
     name: 'ZBLL Pi 2',
     group: 'Pi 1',
@@ -439,10 +439,7 @@ export const ZBLL_PI_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL Pi 41',
     group: 'Pi 4',
     setup: "F U R U' R' U R U' R2' F' R U R U' R'",
-    algs: [
-      "R U R' U' R' F R2 U R' U' R U R' U' F'",
-      "R U R' U' l' U R2 x' U R' U' R U R' U' F'"
-    ]
+    algs: ["R U R' U' R' F R2 U R' U' R U R' U' F'", "R U R' U' l' U R2 x' U R' U' R U R' U' F'"]
   },
   {
     name: 'ZBLL Pi 42',
@@ -657,7 +654,7 @@ export const ZBLL_PI_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL Pi 61',
     group: 'Pi 6',
     setup: "R' U2' R2' U R2' U R2' U2' R'",
-    algs: [ "R U2 R2 U' R2 U' R2 U2 R" ]
+    algs: ["R U2 R2 U' R2 U' R2 U2 R"]
   },
   {
     name: 'ZBLL Pi 62',
@@ -729,7 +726,7 @@ export const ZBLL_PI_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL Pi 68',
     group: 'Pi 6',
     setup: "R U2' R2' U' R2' U' R2' U2' R",
-    algs: [ "R' U2 R2 U R2 U R2 U2 R'", "y2 L' U2 L2 U L2 U L2 U2 L'" ]
+    algs: ["R' U2 R2 U R2 U R2 U2 R'", "y2 L' U2 L2 U L2 U L2 U2 L'"]
   },
   {
     name: 'ZBLL Pi 69',

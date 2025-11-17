@@ -1,16 +1,11 @@
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection';
+import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 
 export const COLL_ALGS: AlgorithmCollection[] = [
   {
     name: 'AS 1',
     group: 'Anti Sune',
     setup: "R' U2' R U R' U R",
-    algs: [
-      "y R U2 R' U' R U' R'",
-      "R' U' R U' R' U2 R",
-      "y2 L' U' L U' L' U2 L",
-      "y' L U2 L' U' L U' L'"
-    ]
+    algs: ["y R U2 R' U' R U' R'", "R' U' R U' R' U2 R", "y2 L' U' L U' L' U2 L", "y' L U2 L' U' L U' L'"]
   },
   {
     name: 'AS 2',
@@ -49,12 +44,7 @@ export const COLL_ALGS: AlgorithmCollection[] = [
     name: 'AS 5',
     group: 'Anti Sune',
     setup: "L U' R' U L' U' R",
-    algs: [
-      "y2 r' F R F' r U R'",
-      "R' U L U' R U L'",
-      "y2 L' U R U' L U R'",
-      "U2 R' F R F' r U R' U' M"
-    ]
+    algs: ["y2 r' F R F' r U R'", "R' U L U' R U L'", "y2 L' U R U' L U R'", "U2 R' F R F' r U R' U' M"]
   },
   {
     name: 'AS 6',
@@ -71,12 +61,7 @@ export const COLL_ALGS: AlgorithmCollection[] = [
     name: 'S 1',
     group: 'Sune',
     setup: "R U2' R' U' R U' R'",
-    algs: [
-      "R U R' U R U2 R'",
-      "y' R' U2 R U R' U R",
-      "y L' U2 L U L' U L",
-      "y2 L U L' U L U2 L'"
-    ]
+    algs: ["R U R' U R U2 R'", "y' R' U2 R U R' U R", "y L' U2 L U L' U L", "y2 L U L' U L U2 L'"]
   },
   {
     name: 'S 2',
@@ -115,12 +100,7 @@ export const COLL_ALGS: AlgorithmCollection[] = [
     name: 'S 5',
     group: 'Sune',
     setup: "L' U R U' L U R'",
-    algs: [
-      "R U' L' U R' U' L",
-      "R U' r' F R' F' r",
-      "r U' r' F R' F' r U M",
-      "y2 L U' R' U L' U' R"
-    ]
+    algs: ["R U' L' U R' U' L", "R U' r' F R' F' r", "r U' r' F R' F' r U M", "y2 L U' R' U L' U' R"]
   },
   {
     name: 'S 6',
@@ -181,12 +161,7 @@ export const COLL_ALGS: AlgorithmCollection[] = [
     name: 'L 5',
     group: 'L',
     setup: "R' F' r U R U' r' F y2'",
-    algs: [
-      "y2 F' r U R' U' r' F R",
-      "y x R' U R D' R' U' R D x'",
-      "y' R2 D' R U' R' D R U R",
-      "r U R U' r' F R' F'"
-    ]
+    algs: ["y2 F' r U R' U' r' F R", "y x R' U R D' R' U' R D x'", "y' R2 D' R U' R' D R U R", "r U R U' r' F R' F'"]
   },
   {
     name: 'L 6',
@@ -291,12 +266,7 @@ export const COLL_ALGS: AlgorithmCollection[] = [
     name: 'T 3',
     group: 'T',
     setup: "F' r U R' U' L' U l y'",
-    algs: [
-      "y R' F' r U R U' r' F",
-      "y l' U' L U R U' r' F",
-      "y2 R' U' R' D' R U R' D R2",
-      "y l' U' L U l F' L' F"
-    ]
+    algs: ["y R' F' r U R U' r' F", "y l' U' L U R U' r' F", "y2 R' U' R' D' R U R' D R2", "y l' U' L U l F' L' F"]
   },
   {
     name: 'T 4',

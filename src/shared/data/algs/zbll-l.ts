@@ -1,4 +1,4 @@
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection';
+import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 
 export const ZBLL_L_ALGS: AlgorithmCollection[] = [
   {
@@ -60,7 +60,7 @@ export const ZBLL_L_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL L 6',
     group: 'L1',
     setup: "R2' D' R U2' R' D R U2' R",
-    algs: [ "R' U2 R' D' R U2 R' D R2", "y2 z U' R2 U' L' U R2 U' L U2" ]
+    algs: ["R' U2 R' D' R U2 R' D R2", "y2 z U' R2 U' L' U R2 U' L U2"]
   },
   {
     name: 'ZBLL L 7',
@@ -220,11 +220,7 @@ export const ZBLL_L_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL L 21',
     group: 'L2',
     setup: "R U' R' U' R U R D R' U2' R D' R' U' R' y'",
-    algs: [
-      "y R U R D R' U2 R D' R' U' R' U R U R'",
-      "y S U2 R' U2 R U2 F R f'",
-      "y' U M' U2 y R' U2 R U2 F l U' z'"
-    ]
+    algs: ["y R U R D R' U2 R D' R' U' R' U R U R'", "y S U2 R' U2 R U2 F R f'", "y' U M' U2 y R' U2 R U2 F l U' z'"]
   },
   {
     name: 'ZBLL L 22',
@@ -307,12 +303,7 @@ export const ZBLL_L_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL L 29',
     group: 'L3',
     setup: "R' F' r U R U' r' F y2'",
-    algs: [
-      "y2 F' r U R' U' r' F R",
-      "y' R2 D' R U' R' D R U R",
-      "x' U' R U L' U' R' U r",
-      "r U R U' L' U R' U' x'"
-    ]
+    algs: ["y2 F' r U R' U' r' F R", "y' R2 D' R U' R' D R U R", "x' U' R U L' U' R' U r", "r U R U' L' U R' U' x'"]
   },
   {
     name: 'ZBLL L 30',
@@ -437,11 +428,7 @@ export const ZBLL_L_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL L 41',
     group: 'L4',
     setup: "R2' D R' U2' R D' R' U2' R' y'",
-    algs: [
-      "y R U2 R D R' U2 R D' R2",
-      "y' L U2 L D L' U2 L D' L2",
-      "F' r U' L D2 L' U L D2 r2 D"
-    ]
+    algs: ["y R U2 R D R' U2 R D' R2", "y' L U2 L D L' U2 L D' L2", "F' r U' L D2 L' U L D2 r2 D"]
   },
   {
     name: 'ZBLL L 42',
@@ -667,16 +654,13 @@ export const ZBLL_L_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL L 62',
     group: 'L6',
     setup: "R' U' R U' R' U2' R U' R U R' U R U2' R' y'",
-    algs: [
-      "y R U2 R' U' R U' R' U R' U2 R U R' U R",
-      "y R U2 R' U' R U' R' y R' U2 R U R' U R"
-    ]
+    algs: ["y R U2 R' U' R U' R' U R' U2 R U R' U R", "y R U2 R' U' R U' R' y R' U2 R U R' U R"]
   },
   {
     name: 'ZBLL L 63',
     group: 'L6',
     setup: "R' U2' R U R' U R U' R U2' R' U' R U' R' y'",
-    algs: [ "y R U R' U R U2 R' U R' U' R U' R' U2 R" ]
+    algs: ["y R U R' U R U2 R' U R' U' R U' R' U2 R"]
   },
   {
     name: 'ZBLL L 64',
@@ -692,10 +676,7 @@ export const ZBLL_L_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL L 65',
     group: 'L6',
     setup: "R U R' U R U2' R' U R' U' R U' R' U2' R",
-    algs: [
-      "R' U2 R U R' U R U' R U2 R' U' R U' R'",
-      "y2 L' U2 L U L' U L U' L U2 L' U' L U' L'"
-    ]
+    algs: ["R' U2 R U R' U R U' R U2 R' U' R U' R'", "y2 L' U2 L U L' U L U' L U2 L' U' L U' L'"]
   },
   {
     name: 'ZBLL L 66',
@@ -712,10 +693,7 @@ export const ZBLL_L_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL L 67',
     group: 'L6',
     setup: "R U2' R' U' R U' R' U R' U2' R U R' U R",
-    algs: [
-      "R' U' R U' R' U2 R U' R U R' U R U2 R'",
-      "y2 L' U' L U' L' U2 L U R U R' U R U2 R'"
-    ]
+    algs: ["R' U' R U' R' U2 R U' R U R' U R U2 R'", "y2 L' U' L U' L' U2 L U R U R' U R U2 R'"]
   },
   {
     name: 'ZBLL L 68',

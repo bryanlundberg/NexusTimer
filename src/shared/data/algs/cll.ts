@@ -1,16 +1,11 @@
-import { AlgorithmCollection } from "@/interfaces/AlgorithmCollection";
+import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 
 export const CLL_ALGS: AlgorithmCollection[] = [
   {
     name: 'CLL AS 1',
     group: 'AS',
     setup: '',
-    algs: [
-      "y R U2 R' U' R U' R'",
-      "y2 L' U' L U' L' U2 L",
-      "R' U' R U' R' U2 R",
-      "U2 L' U' L U' L' U2 L"
-    ]
+    algs: ["y R U2 R' U' R U' R'", "y2 L' U' L U' L' U2 L", "R' U' R U' R' U2 R", "U2 L' U' L U' L' U2 L"]
   },
   {
     name: 'CLL AS 2',
@@ -27,23 +22,13 @@ export const CLL_ALGS: AlgorithmCollection[] = [
     name: 'CLL AS 3',
     group: 'AS',
     setup: '',
-    algs: [
-      "y2 F' L F L' U2 L' U2 L",
-      "R' U L U' R U L'",
-      "y2 F' R U R' U2 R' F2 R",
-      "y R' F R F' R U2 R' U' R' F R F'"
-    ]
+    algs: ["y2 F' L F L' U2 L' U2 L", "R' U L U' R U L'", "y2 F' R U R' U2 R' F2 R", "y R' F R F' R U2 R' U' R' F R F'"]
   },
   {
     name: 'CLL AS 4',
     group: 'AS',
     setup: '',
-    algs: [
-      "y2 R' F R F' R U R'",
-      "U2 L' U R U' L U R'",
-      "y2 L' U L F' R U R'",
-      "x' R' F R U' R U R'"
-    ]
+    algs: ["y2 R' F R F' R U R'", "U2 L' U R U' L U R'", "y2 L' U L F' R U R'", "x' R' F R U' R U R'"]
   },
   {
     name: 'CLL AS 5',
@@ -104,12 +89,7 @@ export const CLL_ALGS: AlgorithmCollection[] = [
     name: 'CLL H 4',
     group: 'H',
     setup: '',
-    algs: [
-      "y R2 U2 R' U2 R2",
-      'y R2 U2 R U2 R2',
-      "R U R' U R U' R' U R U2 R'",
-      "y' R U2 R' U' R U R' U' R U' R'"
-    ]
+    algs: ["y R2 U2 R' U2 R2", 'y R2 U2 R U2 R2', "R U R' U R U' R' U R U2 R'", "y' R U2 R' U' R U R' U' R U' R'"]
   },
   {
     name: 'CLL L 1',
@@ -159,23 +139,13 @@ export const CLL_ALGS: AlgorithmCollection[] = [
     name: 'CLL L 5',
     group: 'L',
     setup: '',
-    algs: [
-      "y F R' F' R U R U' R'",
-      "y F R' F' U' R' U R",
-      "y F' U R U' R' F2 R U' R'",
-      "y' R' F' L' F R F' L F"
-    ]
+    algs: ["y F R' F' R U R U' R'", "y F R' F' U' R' U R", "y F' U R U' R' F2 R U' R'", "y' R' F' L' F R F' L F"]
   },
   {
     name: 'CLL L 6',
     group: 'L',
     setup: '',
-    algs: [
-      "y2 F' R U R' U' R' F R",
-      "y F R U' R' U' R U R' F'",
-      "R U R U' R' F R' F'",
-      "y R' F R U F U' F'"
-    ]
+    algs: ["y2 F' R U R' U' R' F R", "y F R U' R' U' R U R' F'", "R U R U' R' F R' F'", "y R' F R U F U' F'"]
   },
   {
     name: 'CLL Pi 1',
@@ -236,23 +206,13 @@ export const CLL_ALGS: AlgorithmCollection[] = [
     name: 'CLL Pi 6',
     group: 'Pi',
     setup: '',
-    algs: [
-      "R U' R2 U R2 U R2 U' R",
-      "F R U R' U' R U R' U' F'",
-      "R' U R2 U' R2 U' R2 U R'",
-      "R U2 R2 U' R2 U' R2 U2 R"
-    ]
+    algs: ["R U' R2 U R2 U R2 U' R", "F R U R' U' R U R' U' F'", "R' U R2 U' R2 U' R2 U R'", "R U2 R2 U' R2 U' R2 U2 R"]
   },
   {
     name: 'CLL Sune 1',
     group: 'Sune',
     setup: '',
-    algs: [
-      "L' U2 L U2 L F' L' F",
-      "y2 R' U2 R U2 R B' R' B",
-      "R' F2 R U2 R U' R' F",
-      "R' F2 R U2 L F' L' F"
-    ]
+    algs: ["L' U2 L U2 L F' L' F", "y2 R' U2 R U2 R B' R' B", "R' F2 R U2 R U' R' F", "R' F2 R U2 L F' L' F"]
   },
   {
     name: 'CLL Sune 2',
@@ -269,12 +229,7 @@ export const CLL_ALGS: AlgorithmCollection[] = [
     name: 'CLL Sune 3',
     group: 'Sune',
     setup: '',
-    algs: [
-      "R U' R' F R' F' R",
-      "R U' R' F L' U' L",
-      "L F' L' F L' U' L",
-      "R U' L' U R' U' L"
-    ]
+    algs: ["R U' R' F R' F' R", "R U' R' F L' U' L", "L F' L' F L' U' L", "R U' L' U R' U' L"]
   },
   {
     name: 'CLL Sune 4',
@@ -302,34 +257,19 @@ export const CLL_ALGS: AlgorithmCollection[] = [
     name: 'CLL Sune 6',
     group: 'Sune',
     setup: '',
-    algs: [
-      "R U R' U R U2 R'",
-      "R U R2 U' R2 U R",
-      "y' R' U2 R U R' U R",
-      "y L' U2 L U L' U L"
-    ]
+    algs: ["R U R' U R U2 R'", "R U R2 U' R2 U R", "y' R' U2 R U R' U R", "y L' U2 L U L' U L"]
   },
   {
     name: 'CLL T 1',
     group: 'T',
     setup: '',
-    algs: [
-      "y' R U R' U' R' F R F'",
-      "y2 R' U' R U F R F'",
-      "U' x L U R' U' L' U R U' x'",
-      "y R B R' U' R' U R F' z"
-    ]
+    algs: ["y' R U R' U' R' F R F'", "y2 R' U' R U F R F'", "U' x L U R' U' L' U R U' x'", "y R B R' U' R' U R F' z"]
   },
   {
     name: 'CLL T 2',
     group: 'T',
     setup: '',
-    algs: [
-      "y L' U' L U L F' L' F",
-      "y R' F' R U R U' R' F",
-      "R U R' U' y L' U' L",
-      "y' F R U' R' U R U R' F'"
-    ]
+    algs: ["y L' U' L U L F' L' F", "y R' F' R U R U' R' F", "R U R' U' y L' U' L", "y' F R U' R' U R U R' F'"]
   },
   {
     name: 'CLL T 3',
@@ -379,12 +319,7 @@ export const CLL_ALGS: AlgorithmCollection[] = [
     name: 'CLL U 1',
     group: 'U',
     setup: '',
-    algs: [
-      "y' F R U R' U' F'",
-      "y F U R U' R' F'",
-      "R' F' U' F U R",
-      "y' R' U' F R' F' R U R"
-    ]
+    algs: ["y' F R U R' U' F'", "y F U R U' R' F'", "R' F' U' F U R", "y' R' U' F R' F' R U R"]
   },
   {
     name: 'CLL U 2',

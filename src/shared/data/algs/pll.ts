@@ -1,4 +1,4 @@
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection';
+import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 
 export const PLL_ALGS: AlgorithmCollection[] = [
   {
@@ -93,12 +93,7 @@ export const PLL_ALGS: AlgorithmCollection[] = [
     name: 'H',
     group: 'EPLL',
     setup: "M2' U' M2' U2' M2' U' M2'",
-    algs: [
-      "M2 U' M2 U2 M2 U' M2",
-      'M2 U M2 U2 M2 U M2',
-      "R2 S2 R2 U' R2 S2 R2",
-      'M2 U2 M2 U M2 U2 M2'
-    ]
+    algs: ["M2 U' M2 U2 M2 U' M2", 'M2 U M2 U2 M2 U M2', "R2 S2 R2 U' R2 S2 R2", 'M2 U2 M2 U M2 U2 M2']
   },
   {
     name: 'Ja',

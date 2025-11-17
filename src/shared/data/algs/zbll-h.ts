@@ -1,4 +1,4 @@
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection';
+import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 
 export const ZBLL_H_ALGS: AlgorithmCollection[] = [
   {
@@ -82,10 +82,7 @@ export const ZBLL_H_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL H 8',
     group: 'H1',
     setup: "F U R U' R' U R U2' R' U' R U R' F' y2'",
-    algs: [
-      "y2 F R U' R' U R U2 R' U' R U R' U' F'",
-      "y2 f R U R' U' f' R U R' U' R' F R F'"
-    ]
+    algs: ["y2 F R U' R' U R U2 R' U' R U R' U' F'", "y2 f R U R' U' f' R U R' U' R' F R F'"]
   },
   {
     name: 'ZBLL H 9',
@@ -355,28 +352,25 @@ export const ZBLL_H_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL H 33',
     group: 'H4',
     setup: "R U2' R' U' R U R' U' R U' R'",
-    algs: [ "R U R' U R U' R' U R U2 R'" ]
+    algs: ["R U R' U R U' R' U R U2 R'"]
   },
   {
     name: 'ZBLL H 34',
     group: 'H4',
     setup: "R' U2' R U R' U' R U R' U R",
-    algs: [
-      "R' U' R U' R' U R U' R' U2 R",
-      "y2 L' U' L U' L' U L U' L' U2 L"
-    ]
+    algs: ["R' U' R U' R' U R U' R' U2 R", "y2 L' U' L U' L' U L U' L' U2 L"]
   },
   {
     name: 'ZBLL H 35',
     group: 'H4',
     setup: "R' U' R U' R' U R U' R' U2' R y",
-    algs: [ "y' R' U2 R U R' U' R U R' U R", "y L' U2 L U L' U' L U L' U L" ]
+    algs: ["y' R' U2 R U R' U' R U R' U R", "y L' U2 L U L' U' L U L' U L"]
   },
   {
     name: 'ZBLL H 36',
     group: 'H4',
     setup: "R U R' U R U' R' U R U2' R' y",
-    algs: [ "y' R U2 R' U' R U R' U' R U' R'" ]
+    algs: ["y' R U2 R' U' R U R' U' R U' R'"]
   },
   {
     name: 'ZBLL H 37',

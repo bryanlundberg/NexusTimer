@@ -1,4 +1,4 @@
-import {AlgorithmCollection} from "@/interfaces/AlgorithmCollection";
+import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 
 export const OLL_ALGS: AlgorithmCollection[] = [
   {
@@ -49,45 +49,25 @@ export const OLL_ALGS: AlgorithmCollection[] = [
     name: 'OLL 5',
     group: 'Square Shapes',
     setup: "r' U' R U' R' U2' r",
-    algs: [
-      "r' U2 R U R' U r",
-      "y2 l' U2 L U L' U l",
-      "y2 R' F2 r U r' F R",
-      "y2 R' F2 L F L' F R"
-    ]
+    algs: ["r' U2 R U R' U r", "y2 l' U2 L U L' U l", "y2 R' F2 r U r' F R", "y2 R' F2 L F L' F R"]
   },
   {
     name: 'OLL 6',
     group: 'Square Shapes',
     setup: "r U R' U R U2' r'",
-    algs: [
-      "r U2 R' U' R U' r'",
-      "F U' R2 D R' U' R D' R2 U F'",
-      "y2 l U2 L' U' L U' l'",
-      "y' x' D R2 U' R' U R' D' x"
-    ]
+    algs: ["r U2 R' U' R U' r'", "F U' R2 D R' U' R D' R2 U F'", "y2 l U2 L' U' L U' l'", "y' x' D R2 U' R' U R' D' x"]
   },
   {
     name: 'OLL 7',
     group: 'Lightning Shapes',
     setup: "r U2' R' U' R U' r'",
-    algs: [
-      "r U R' U R U2 r'",
-      "L' U2 L U2 L F' L' F",
-      "y2 l U L' U L U2 l'",
-      "r U r' U R U' R' r U' r'"
-    ]
+    algs: ["r U R' U R U2 r'", "L' U2 L U2 L F' L' F", "y2 l U L' U L U2 l'", "r U r' U R U' R' r U' r'"]
   },
   {
     name: 'OLL 8',
     group: 'Lightning Shapes',
     setup: "r' U2' R U R' U r y2'",
-    algs: [
-      "y2 r' U' R U' R' U2 r",
-      "l' U' L U' L' U2 l",
-      "R U2 R' U2 R' F R F'",
-      "R' F' r U' r' F2 R"
-    ]
+    algs: ["y2 r' U' R U' R' U2 r", "l' U' L U' L' U2 l", "R U2 R' U2 R' F R F'", "R' F' r U' r' F2 R"]
   },
   {
     name: 'OLL 9',
@@ -258,56 +238,31 @@ export const OLL_ALGS: AlgorithmCollection[] = [
     name: 'OLL 24',
     group: 'OCLL',
     setup: "F R' F' r U R U' r'",
-    algs: [
-      "r U R' U' r' F R F'",
-      "y' x' R U R' D R U' R' D' x",
-      "y R U R D R' U' R D' R2",
-      "L F R' F' L' F R F'"
-    ]
+    algs: ["r U R' U' r' F R F'", "y' x' R U R' D R U' R' D' x", "y R U R D R' U' R D' R2", "L F R' F' L' F R F'"]
   },
   {
     name: 'OLL 25',
     group: 'OCLL',
     setup: "R' F' r U R U' r' F y'",
-    algs: [
-      "R U2 R D R' U2 R D' R2",
-      "y F' r U R' U' r' F R",
-      "F R' F' r U R U' r'",
-      "x R' U R D' R' U' R D x'"
-    ]
+    algs: ["R U2 R D R' U2 R D' R2", "y F' r U R' U' r' F R", "F R' F' r U R U' r'", "x R' U R D' R' U' R D x'"]
   },
   {
     name: 'OLL 26',
     group: 'OCLL',
     setup: "R U R' U R U2' R' y'",
-    algs: [
-      "y R U2 R' U' R U' R'",
-      "R' U' R U' R' U2 R",
-      "y2 L' U' L U' L' U2 L",
-      "y2 L' U R U' L U R'"
-    ]
+    algs: ["y R U2 R' U' R U' R'", "R' U' R U' R' U2 R", "y2 L' U' L U' L' U2 L", "y2 L' U R U' L U R'"]
   },
   {
     name: 'OLL 27',
     group: 'OCLL',
     setup: "R U2' R' U' R U' R'",
-    algs: [
-      "R U R' U R U2 R'",
-      "y' R' U2 R U R' U R",
-      "y L' U2 L U L' U L",
-      "y2 L U L' U L U2 L'"
-    ]
+    algs: ["R U R' U R U2 R'", "y' R' U2 R U R' U R", "y L' U2 L U L' U L", "y2 L U L' U L U2 L'"]
   },
   {
     name: 'OLL 28',
     group: 'All Corners Oriented',
     setup: "R U R' U' M' U R U' r'",
-    algs: [
-      "r U R' U' M U R U' R'",
-      "R' F R S R' F' R S'",
-      "r U R' U' r' R U R U' R'",
-      "y2 M' U M U2 M' U M"
-    ]
+    algs: ["r U R' U' M U R U' R'", "R' F R S R' F' R S'", "r U R' U' r' R U R U' R'", "y2 M' U M U2 M' U M"]
   },
   {
     name: 'OLL 29',
@@ -357,12 +312,7 @@ export const OLL_ALGS: AlgorithmCollection[] = [
     name: 'OLL 33',
     group: 'T Shapes',
     setup: "F R' F' R U R U' R'",
-    algs: [
-      "R U R' U' R' F R F'",
-      "y2 L' U' L U L F' L' F",
-      "y2 r' F' r U r U' r' F",
-      "R U R' F' U' F R U' R'"
-    ]
+    algs: ["R U R' U' R' F R F'", "y2 L' U' L U L F' L' F", "y2 r' F' r U r U' r' F", "R U R' F' U' F R U' R'"]
   },
   {
     name: 'OLL 34',
@@ -401,12 +351,7 @@ export const OLL_ALGS: AlgorithmCollection[] = [
     name: 'OLL 37',
     group: 'Fish Shapes',
     setup: "F R U' R' U R U R' F'",
-    algs: [
-      "F R' F' R U R U' R'",
-      "F R U' R' U' R U R' F'",
-      "y F' r U r' U' r' F r",
-      "y2 r2 D' r U' r' D r U r"
-    ]
+    algs: ["F R' F' R U R U' R'", "F R U' R' U' R U R' F'", "y F' r U r' U' r' F r", "y2 r2 D' r U' r' D r U r"]
   },
   {
     name: 'OLL 38',
@@ -467,34 +412,19 @@ export const OLL_ALGS: AlgorithmCollection[] = [
     name: 'OLL 43',
     group: 'P Shapes',
     setup: "f' U' L' U L f",
-    algs: [
-      "y R' U' F' U F R",
-      "y2 F' U' L' U L F",
-      "f' L' U' L U f",
-      "B' U' R' U R B"
-    ]
+    algs: ["y R' U' F' U F R", "y2 F' U' L' U L F", "f' L' U' L U f", "B' U' R' U R B"]
   },
   {
     name: 'OLL 44',
     group: 'P Shapes',
     setup: "f U R U' R' f'",
-    algs: [
-      "f R U R' U' f'",
-      "y2 F U R U' R' F'",
-      "y R U B U' B' R'",
-      "y' L U F U' F' L'"
-    ]
+    algs: ["f R U R' U' f'", "y2 F U R U' R' F'", "y R U B U' B' R'", "y' L U F U' F' L'"]
   },
   {
     name: 'OLL 45',
     group: 'T Shapes',
     setup: "F U R U' R' F'",
-    algs: [
-      "F R U R' U' F'",
-      "y R' F' U' F U R",
-      "y2 f U R U' R' f'",
-      "y2 F' L' U' L U F"
-    ]
+    algs: ["F R U R' U' F'", "y R' F' U' F U R", "y2 f U R U' R' f'", "y2 F' L' U' L U F"]
   },
   {
     name: 'OLL 46',
@@ -621,11 +551,6 @@ export const OLL_ALGS: AlgorithmCollection[] = [
     name: 'OLL 57',
     group: 'All Corners Oriented',
     setup: "r U R' U' M U R U' R'",
-    algs: [
-      "R U R' U' M' U R U' r'",
-      "y R U' R' S' R U R' S",
-      "y R U R' S' R U' R' S",
-      "R U R' U' R' r U R U' r'"
-    ]
+    algs: ["R U R' U' M' U R U' r'", "y R U' R' S' R U R' S", "y R U R' S' R U' R' S", "R U R' U' R' r U R U' r'"]
   }
 ]

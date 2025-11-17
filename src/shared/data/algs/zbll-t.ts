@@ -1,4 +1,4 @@
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection';
+import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 
 export const ZBLL_T_ALGS: AlgorithmCollection[] = [
   {
@@ -60,12 +60,7 @@ export const ZBLL_T_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL T 6',
     group: 'T1',
     setup: "F' r U R' U' L' U l y'",
-    algs: [
-      "y2 R' U' R' D' R U R' D R2",
-      "y' F R F' r U R' U' r'",
-      "y R' F' r U R U' r' F",
-      "y l' U' L U R U' r' F"
-    ]
+    algs: ["y2 R' U' R' D' R U R' D R2", "y' F R F' r U R' U' r'", "y R' F' r U R U' r' F", "y l' U' L U R U' r' F"]
   },
   {
     name: 'ZBLL T 7',
@@ -181,12 +176,7 @@ export const ZBLL_T_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL T 17',
     group: 'T2',
     setup: "F R' F' r U R U' r' y",
-    algs: [
-      "y' r U R' U' r' F R F'",
-      "R U R D R' U' R D' R2",
-      "R' F' R U R' U' R' F R U R",
-      "x R' U' R D' R' U R D x'"
-    ]
+    algs: ["y' r U R' U' r' F R F'", "R U R D R' U' R D' R2", "R' F' R U R' U' R' F R U R", "x R' U' R D' R' U R D x'"]
   },
   {
     name: 'ZBLL T 18',
@@ -697,10 +687,7 @@ export const ZBLL_T_ALGS: AlgorithmCollection[] = [
     name: 'ZBLL T 64',
     group: 'T6',
     setup: "R U2' R' U' R U' R' U' R U R' U R U2' R'",
-    algs: [
-      "R U2 R' U' R U' R' U R U R' U R U2 R'",
-      "y2 L U2 L' U' L U' L' U L U L' U L U2 L'"
-    ]
+    algs: ["R U2 R' U' R U' R' U R U R' U R U2 R'", "y2 L U2 L' U' L U' L' U L U L' U L U2 L'"]
   },
   {
     name: 'ZBLL T 65',
@@ -789,4 +776,3 @@ export const ZBLL_T_ALGS: AlgorithmCollection[] = [
     ]
   }
 ]
-

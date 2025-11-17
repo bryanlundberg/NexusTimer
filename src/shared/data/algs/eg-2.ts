@@ -1,4 +1,4 @@
-import { AlgorithmCollection } from "@/interfaces/AlgorithmCollection";
+import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 
 export const EG_2_ALGS: AlgorithmCollection[] = [
   {
@@ -49,11 +49,7 @@ export const EG_2_ALGS: AlgorithmCollection[] = [
     name: 'EG2 AS 5',
     group: 'AS',
     setup: '',
-    algs: [
-      "y2 F R F' U R2 F' R U' R",
-      "R' U' R U' R' U' R' F2 R F' R",
-      "y2 R U2 R' U2 R' F R F R2 F2"
-    ]
+    algs: ["y2 F R F' U R2 F' R U' R", "R' U' R U' R' U' R' F2 R F' R", "y2 R U2 R' U2 R' F R F R2 F2"]
   },
   {
     name: 'EG2 AS 6',
@@ -81,12 +77,7 @@ export const EG_2_ALGS: AlgorithmCollection[] = [
     name: 'EG2 H 2',
     group: 'H',
     setup: '',
-    algs: [
-      "y R2 B2 U2 R' U2 R2",
-      'y R2 U2 R U2 B2 R2',
-      'y R2 U2 R U2 F2 R2',
-      "U R2 U2 R' U2 F2 R2"
-    ]
+    algs: ["y R2 B2 U2 R' U2 R2", 'y R2 U2 R U2 B2 R2', 'y R2 U2 R U2 F2 R2', "U R2 U2 R' U2 F2 R2"]
   },
   {
     name: 'EG2 H 3',
@@ -157,17 +148,13 @@ export const EG_2_ALGS: AlgorithmCollection[] = [
     name: 'EG2 L 5',
     group: 'L',
     setup: '',
-    algs: [ "y F R' F' R U R U' R B2 R2" ]
+    algs: ["y F R' F' R U R U' R B2 R2"]
   },
   {
     name: 'EG2 L 6',
     group: 'L',
     setup: '',
-    algs: [
-      "y2 F' R U R' U' R' F R' F2 R2",
-      "R U R U' R' F R' F R2 B2",
-      "y F R U' R' U' R U R' F R2 B2"
-    ]
+    algs: ["y2 F' R U R' U' R' F R' F2 R2", "R U R U' R' F R' F R2 B2", "y F R U' R' U' R U R' F R2 B2"]
   },
   {
     name: 'EG2 Pi 1',
@@ -250,24 +237,19 @@ export const EG_2_ALGS: AlgorithmCollection[] = [
     name: 'EG2 S 2',
     group: 'S',
     setup: '',
-    algs: [
-      "R U R' U R U2 R B2 R2",
-      "y' R2 F2 R U2 R U R' U R",
-      "R2 B2 R' U R' U R U2 R'",
-      "y' R' U2 R U R' U R' F2 R2"
-    ]
+    algs: ["R U R' U R U2 R B2 R2", "y' R2 F2 R U2 R U R' U R", "R2 B2 R' U R' U R U2 R'", "y' R' U2 R U R' U R' F2 R2"]
   },
   {
     name: 'EG2 S 3',
     group: 'S',
     setup: '',
-    algs: [ "R U' R' F R' F' R' F2 R2", "R U' R' F2 R2 F' L' U' L" ]
+    algs: ["R U' R' F R' F' R' F2 R2", "R U' R' F2 R2 F' L' U' L"]
   },
   {
     name: 'EG2 S 4',
     group: 'S',
     setup: '',
-    algs: [ "F R' F' R U2 R U2 R B2 R2", "y F R2 F' R2 F' R U' R" ]
+    algs: ["F R' F' R U2 R U2 R B2 R2", "y F R2 F' R2 F' R U' R"]
   },
   {
     name: 'EG2 S 5',
@@ -339,22 +321,13 @@ export const EG_2_ALGS: AlgorithmCollection[] = [
     name: 'EG2 T 5',
     group: 'T',
     setup: '',
-    algs: [
-      "y' R' U2 R U' R' F R' F R F' R",
-      "R' U R U2 R2 F R F' R' F2 R2",
-      "y R' F2 R U' R' U R' F R U' R"
-    ]
+    algs: ["y' R' U2 R U' R' F R' F R F' R", "R' U R U2 R2 F R F' R' F2 R2", "y R' F2 R U' R' U R' F R U' R"]
   },
   {
     name: 'EG2 T 6',
     group: 'T',
     setup: '',
-    algs: [
-      "y R' U2 R' F2 R F2 R",
-      "U R' U2 R' F2 R F2 R U",
-      "y z' U' R2 U' R2 U R2 U R2 z",
-      "U R' U' F R U2 R' U' F R"
-    ]
+    algs: ["y R' U2 R' F2 R F2 R", "U R' U2 R' F2 R F2 R U", "y z' U' R2 U' R2 U R2 U R2 z", "U R' U' F R U2 R' U' F R"]
   },
   {
     name: 'EG2 U 1',
@@ -371,12 +344,7 @@ export const EG_2_ALGS: AlgorithmCollection[] = [
     name: 'EG2 U 2',
     group: 'U',
     setup: '',
-    algs: [
-      "y' F R U R' U' F R2 B2",
-      "U' F R U R' U' F R2 B2 U'",
-      "y F U R U' R' F R2 F2",
-      "y' F R U R' U' F R2 F2"
-    ]
+    algs: ["y' F R U R' U' F R2 B2", "U' F R U R' U' F R2 B2 U'", "y F U R U' R' F R2 F2", "y' F R U R' U' F R2 F2"]
   },
   {
     name: 'EG2 U 3',
