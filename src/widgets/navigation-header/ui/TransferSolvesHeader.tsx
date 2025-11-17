@@ -6,8 +6,8 @@ import { SidebarTrigger } from '@/components/ui/sidebar'
 import { useTranslations } from 'next-intl'
 import { Cube } from '@/entities/cube/model/types'
 import { useQueryState } from 'nuqs'
-import { STATES } from '@/constants/states'
 import Navigation from '@/features/navigation/ui/navigation'
+import { STATES } from '@/shared/const/states'
 
 interface TransferSolvesHeaderProps {
   cubes: Cube[]

@@ -9,7 +9,7 @@ import { useMemo } from 'react'
 import { TimerMode } from '@/enums/TimerMode'
 import { useWindowSize } from 'react-use-size'
 import { cn } from '@/lib/utils'
-import { SCRAMBLE_HEIGHT } from '@/constants/scramble-height'
+import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 
 export default function TimerWidgets() {
   const isSolving = useTimerStore((store) => store.isSolving)

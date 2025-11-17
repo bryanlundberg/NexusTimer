@@ -3,9 +3,9 @@ import { Box, Clock, Timer, Users } from 'lucide-react'
 import { format } from 'date-fns'
 import formatTime from '@/shared/lib/formatTime'
 import Link from 'next/link'
-import { useCountdown } from '@/hooks/useCountdown'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { useCountdown } from '@/shared/model/useCountdown'
 
 interface RoomCardProps {
   room: {

@@ -4,8 +4,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/store/timerStore'
 import { useQueryState } from 'nuqs'
-import { STATES } from '@/constants/states'
 import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs'
+import { STATES } from '@/shared/const/states'
 
 export default function ButtonDisplayType() {
   const selectedCube = useTimerStore((state) => state.selectedCube)

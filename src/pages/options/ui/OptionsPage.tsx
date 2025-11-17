@@ -16,7 +16,6 @@ import { Separator } from '@/components/ui/separator'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { defaultSettings } from '@/lib/const/defaultSettings'
-import useWebsiteColors from '@/hooks/useWebsiteColors'
 import { toast } from 'sonner'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import AccountHeader from '@/features/account/ui/account-header'
@@ -29,6 +28,7 @@ import CustomTheme from '@/features/settings/ui/CustomTheme'
 import MenuSelectColor from '@/features/settings/ui/MenuSelectColor'
 import MenuSelectDefaultStartCube from '@/features/settings/ui/MenuSelectDefaultStartCube'
 import { DataImportExport } from '@/features/settings/ui/DataImportExport'
+import useWebsiteColors from '@/shared/model/useWebsiteColors'
 
 export default function OptionsPage() {
   const { settings, setSettings } = useSettingsModalStore()

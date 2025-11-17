@@ -1,12 +1,12 @@
 import { useQueryState } from 'nuqs'
-import { STATES } from '@/constants/states'
-import useRemoveGridHeight from '@/hooks/useRemoveGridHeight'
 import { useMemo } from 'react'
 import formatTime from '@/shared/lib/formatTime'
 import { Sort } from '@/enums/Sort'
 import { Order } from '@/enums/Order'
 import { sort } from 'fast-sort'
 import { Solve } from '@/entities/solve/model/types'
+import { STATES } from '@/shared/const/states'
+import useRemoveGridHeight from '@/shared/model/useRemoveGridHeight'
 
 export default function useSolvesGrid(solves: Array<Solve>) {
   const [query] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE })

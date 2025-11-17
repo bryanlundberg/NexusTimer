@@ -9,7 +9,6 @@ import * as React from 'react'
 import { useEffect, useRef } from 'react'
 import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/store/timerStore'
-import { useCountdown } from '@/hooks/useCountdown'
 import genScramble from '@/lib/timer/genScramble'
 import { Categories } from '@/interfaces/Categories'
 import { Button } from '@/components/ui/button'
@@ -18,10 +17,11 @@ import { AvatarGroup, AvatarGroupTooltip } from '@/components/ui/shadcn-io/avata
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { TimerStatus } from '@/enums/TimerStatus'
 import Image from 'next/image'
-import useAlert from '@/hooks/useAlert'
 import TimerTab from '@/features/free-play-room/ui/timer-tab'
 import ResultsTab from '@/features/free-play-room/ui/results-tab'
 import UsersTab from '@/features/free-play-room/ui/users-tab'
+import useAlert from '@/shared/model/useAlert'
+import { useCountdown } from '@/shared/model/useCountdown'
 
 export default function FreePlayRoomPage() {
   const { roomId } = useParams()

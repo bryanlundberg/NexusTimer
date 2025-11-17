@@ -2,13 +2,13 @@ import { useNXData } from '@/hooks/useNXData'
 import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/store/timerStore'
 import { useQueryState } from 'nuqs'
-import { STATES } from '@/constants/states'
 import { useMemo, useState } from 'react'
-import useRemoveGridHeight from '@/hooks/useRemoveGridHeight'
 import { sort } from 'fast-sort'
 import { Solve } from '@/interfaces/Solve'
 import { toast } from 'sonner'
 import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
+import { STATES } from '@/shared/const/states'
+import useRemoveGridHeight from '@/shared/model/useRemoveGridHeight'
 
 export default function useTransferSolves() {
   const { saveBatchCubes, getAllCubes } = useNXData()

@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-type Device = "Mobile" | "Desktop";
+type Device = 'Mobile' | 'Desktop'
 
 export default function useDeviceMatch() {
-  const [device, setDevice] = useState<Device>("Desktop");
+  const [device, setDevice] = useState<Device>('Desktop')
 
   useEffect(() => {
     if (
@@ -15,13 +15,13 @@ export default function useDeviceMatch() {
       navigator.userAgent.match(/BlackBerry/i) ||
       navigator.userAgent.match(/Windows Phone/i)
     ) {
-      setDevice("Mobile");
+      setDevice('Mobile')
     } else {
-      setDevice("Desktop");
+      setDevice('Desktop')
     }
-  }, []);
+  }, [])
 
   return {
-    device,
-  };
+    device
+  }
 }

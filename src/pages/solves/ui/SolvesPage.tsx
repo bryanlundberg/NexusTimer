@@ -1,12 +1,12 @@
 'use client'
 import { useTimerStore } from '@/store/timerStore'
 import { useQueryState } from 'nuqs'
-import { STATES } from '@/constants/states'
 import { useDebouncedCallback } from 'use-debounce'
 import { useMemo } from 'react'
 import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs'
 import SolvesPageHeader from '@/widgets/navigation-header/ui/SolvesPageHeader'
 import SolvesGrid from '@/features/solves-grid/ui/SolvesGrid'
+import { STATES } from '@/shared/const/states'
 
 export default function SolvesPage() {
   const selectedCube = useTimerStore((state) => state.selectedCube)

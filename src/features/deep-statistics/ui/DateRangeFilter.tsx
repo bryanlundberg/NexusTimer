@@ -18,8 +18,8 @@ import { DateTime } from 'luxon'
 import { useLocale, useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { useQueryState } from 'nuqs'
-import { STATES } from '@/constants/states'
 import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs'
+import { STATES } from '@/shared/const/states'
 
 export default function DateRangeFilter() {
   const t = useTranslations('Index')

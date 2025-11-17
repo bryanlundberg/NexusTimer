@@ -37,9 +37,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
-import { useFullScreen } from '@/hooks/useFullScreen'
-import useWebsiteColors from '@/hooks/useWebsiteColors'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import useWebsiteColors from '@/shared/model/useWebsiteColors'
+import { useFullScreen } from '@/shared/model/useFullScreen'
 
 interface ListItem {
   icon: React.ReactNode

@@ -6,9 +6,9 @@ import StatisticsEmpty from '@/features/deep-statistics/ui/StatisticsEmpty'
 import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/store/timerStore'
 import { useQueryState } from 'nuqs'
-import { STATES } from '@/constants/states'
 import { DeepStatistics } from '@/shared/types/statistics'
 import StatisticsViewContainer from '@/widgets/statistics-view/ui/StatisticsViewContainer'
+import { STATES } from '@/shared/const/states'
 
 interface StatisticsViewSwitcherProps {
   statistics: DeepStatistics

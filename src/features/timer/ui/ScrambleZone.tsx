@@ -19,12 +19,12 @@ import { TimerMode } from '@/enums/TimerMode'
 import Image from 'next/image'
 import { useWindowSize } from 'react-use-size'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-import { SCRAMBLE_HEIGHT } from '@/constants/scramble-height'
 import { cn } from '@/lib/utils'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
 import DialogEnterNewScramble from '@/components/dialogs/dialog-enter-new-scramble/dialog-enter-new-scramble'
 import DrawerHintPanel from '@/components/drawners/drawer-hint-panel'
+import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 
 export function ScrambleZone() {
   const selectedCube = useTimerStore((store) => store.selectedCube)

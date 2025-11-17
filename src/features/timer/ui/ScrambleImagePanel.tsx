@@ -3,8 +3,8 @@ import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useWindowSize } from 'react-use-size'
-import { SCRAMBLE_HEIGHT } from '@/constants/scramble-height'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
+import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 
 export default function ScrambleImagePanel() {
   const settings = useSettingsModalStore((store) => store.settings)

@@ -1,6 +1,6 @@
 import { Colors } from '@/interfaces/types/colors'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
-import useWebsiteColors from '@/hooks/useWebsiteColors'
+import useWebsiteColors from '@/shared/model/useWebsiteColors'
 
 export default function MenuSelectColor() {
   const settings = useSettingsModalStore((state) => state.settings)

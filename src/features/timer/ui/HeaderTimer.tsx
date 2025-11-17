@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl'
 import { TimerStatus } from '@/enums/TimerStatus'
 import { useWindowSize } from 'react-use-size'
 import { cn } from '@/lib/utils'
-import { SCRAMBLE_HEIGHT } from '@/constants/scramble-height'
 import Navigation from '@/features/navigation/ui/navigation'
+import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 
 export default function HeaderTimer() {
   const isSolving = useTimerStore((store) => store.isSolving)
