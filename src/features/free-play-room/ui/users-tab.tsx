@@ -1,6 +1,6 @@
-import PlayerMiniCard from '@/components/clash/player-mini-card/player-mini-card'
 import useFreeMode from '@/hooks/useFreeMode'
 import { useParams } from 'next/navigation'
+import PlayerMiniCard from '@/features/free-play-room/ui/player-mini-card'
 
 export default function UsersTab() {
   const { roomId } = useParams()

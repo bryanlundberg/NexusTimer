@@ -9,11 +9,11 @@ import useFreeMode from '@/hooks/useFreeMode'
 import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
 import { TimerStatus } from '@/enums/TimerStatus'
-import ConfirmSolveModal from '@/components/free-play/confirm-solve-modal/confirm-solve-modal'
 import { useAudioTrigger } from '@/hooks/useAudioTrigger'
 import genScramble from '@/lib/timer/genScramble'
 import { Categories } from '@/interfaces/Categories'
 import DisplayTime from '@/features/timer/ui/display-time'
+import ConfirmSolveModal from '@/features/free-play-room/ui/confirm-solve-modal'
 
 interface TimerTabProps {
   maxRoundTime: number | null
