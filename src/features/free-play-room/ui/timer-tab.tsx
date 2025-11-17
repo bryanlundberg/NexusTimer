@@ -4,7 +4,6 @@ import useTimer from '@/hooks/useTimer'
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import useDeviceMatch from '@/hooks/useDeviceMatch'
-import DisplayTime from '@/components/timer/display/display-time'
 import { Cube } from '@/interfaces/Cube'
 import useFreeMode from '@/hooks/useFreeMode'
 import { useSession } from 'next-auth/react'
@@ -14,6 +13,7 @@ import ConfirmSolveModal from '@/components/free-play/confirm-solve-modal/confir
 import { useAudioTrigger } from '@/hooks/useAudioTrigger'
 import genScramble from '@/lib/timer/genScramble'
 import { Categories } from '@/interfaces/Categories'
+import DisplayTime from '@/features/timer/ui/display-time'
 
 interface TimerTabProps {
   maxRoundTime: number | null

@@ -3,11 +3,11 @@ import { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Button } from '@/components/ui/button'
-import MainCubeSelector from '@/components/MainCubeSelector'
 import ButtonNextScramble from '@/features/navigation/ui/button-next-scramble'
 import ButtonDisplayType from '@/features/navigation/ui/button-display-type'
 import ButtonCreateCollection from '@/features/navigation/ui/button-create-collection'
 import ButtonSelectMode from '@/features/navigation/ui/button-select-mode'
+import MainCubeSelector from '@/features/select-cube/ui/MainCubeSelector'
 
 export default function Navigation({
   children,

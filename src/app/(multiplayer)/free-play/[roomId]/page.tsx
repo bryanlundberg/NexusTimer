@@ -7,9 +7,6 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/co
 import Link from 'next/link'
 import * as React from 'react'
 import { useEffect, useRef } from 'react'
-import TimerTab from '@/components/free-play/timer-tab/timer-tab'
-import UsersTab from '@/components/free-play/users-tab/users-tab'
-import ResultsTab from '@/components/free-play/results-tab/results-tab'
 import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/store/timerStore'
 import { useCountdown } from '@/hooks/useCountdown'
@@ -22,6 +19,9 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { TimerStatus } from '@/enums/TimerStatus'
 import Image from 'next/image'
 import useAlert from '@/hooks/useAlert'
+import TimerTab from '@/features/free-play-room/ui/timer-tab'
+import ResultsTab from '@/features/free-play-room/ui/results-tab'
+import UsersTab from '@/features/free-play-room/ui/users-tab'
 
 export default function Page() {
   const { roomId } = useParams()
