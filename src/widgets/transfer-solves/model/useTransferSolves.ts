@@ -8,7 +8,7 @@ import { Solve } from '@/interfaces/Solve'
 import { toast } from 'sonner'
 import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
 import { STATES } from '@/shared/const/states'
-import useRemoveGridHeight from '@/shared/model/useRemoveGridHeight'
+import useRemoveGridHeight from '@/shared/model/solves-grid/useRemoveGridHeight'
 
 export default function useTransferSolves() {
   const { saveBatchCubes, getAllCubes } = useNXData()

@@ -6,7 +6,7 @@ import { Order } from '@/enums/Order'
 import { sort } from 'fast-sort'
 import { Solve } from '@/entities/solve/model/types'
 import { STATES } from '@/shared/const/states'
-import useRemoveGridHeight from '@/shared/model/useRemoveGridHeight'
+import useRemoveGridHeight from '@/shared/model/solves-grid/useRemoveGridHeight'
 
 export default function useSolvesGrid(solves: Array<Solve>) {
   const [query] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE })
