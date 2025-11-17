@@ -1,4 +1,4 @@
-import { StatisticsTabs } from '@/enums/StatisticsTabs'
+import { StatisticsTabs } from '@/widgets/statistics-view/model/enums'
 import { DateRange, Order, SolveTab, Sort } from '@/shared/types/enums'
 import { PeopleTabs } from '@/widgets/people/model/types'
 

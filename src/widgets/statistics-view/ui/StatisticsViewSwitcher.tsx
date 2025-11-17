@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { StatisticsTabs } from '@/enums/StatisticsTabs'
+import { StatisticsTabs } from '@/widgets/statistics-view/model/enums'
 import LineGraphStatistics from '@/features/line-chart-statistics/ui/LineGraphStatistics'
 import CategoriesGraphs from '@/widgets/categories-graphs/ui/CategoriesGraphs'
 import StatisticsEmpty from '@/features/deep-statistics/ui/StatisticsEmpty'
