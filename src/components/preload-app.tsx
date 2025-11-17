@@ -1,15 +1,11 @@
-'use client';
-import { usePreloadSettings } from '@/hooks/usePreloadSettings';
-import { useBackgroundImageStore } from '@/store/BackgroundThemeStore';
-import { ReactNode } from 'react';
+'use client'
+import { usePreloadSettings } from '@/hooks/usePreloadSettings'
+import { useBackgroundImageStore } from '@/store/BackgroundThemeStore'
+import { ReactNode } from 'react'
 
-export default function PreloadSettings({
-  children
-}: {
-  children: ReactNode;
-}) {
-  const backgroundImage = useBackgroundImageStore(state => state.backgroundImage);
-  const { isMounted } = usePreloadSettings();
+export default function PreloadApp({ children }: { children: ReactNode }) {
+  const backgroundImage = useBackgroundImageStore((state) => state.backgroundImage)
+  const { isMounted } = usePreloadSettings()
 
   return (
     <>
@@ -28,5 +24,5 @@ export default function PreloadSettings({
         </div>
       ) : null}
     </>
-  );
+  )
 }

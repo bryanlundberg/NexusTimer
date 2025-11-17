@@ -1,10 +1,10 @@
 'use client'
 
-import PreloadSettings from '@/components/PreloadSettings'
+import PreloadApp from '@/components/preload-app'
 import { useEffect } from 'react'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import useWebsiteColors from '@/hooks/useWebsiteColors'
-import HeavyWebWorkers from '@/components/HeavyWebWorkers'
+import StatisticsProvider from '@/components/statistics-provider'
 
 export default function Providers({ children }: { children: React.ReactNode; loaderProvider?: boolean }) {
   const settings = useSettingsModalStore((store) => store.settings)
@@ -16,9 +16,9 @@ export default function Providers({ children }: { children: React.ReactNode; loa
 
   return (
     <>
-      <PreloadSettings>
-        <HeavyWebWorkers>{children}</HeavyWebWorkers>
-      </PreloadSettings>
+      <PreloadApp>
+        <StatisticsProvider>{children}</StatisticsProvider>
+      </PreloadApp>
     </>
   )
 }
