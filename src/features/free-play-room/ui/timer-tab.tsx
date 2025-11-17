@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import useTimer from '@/hooks/useTimer'
+import useTimer from '@/features/timer/model/useTimer'
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { Cube } from '@/interfaces/Cube'

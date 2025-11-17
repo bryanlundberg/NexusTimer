@@ -1,6 +1,6 @@
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
-import useTimer from '@/hooks/useTimer'
+import useTimer from '@/features/timer/model/useTimer'
 import { ReactNode } from 'react'
 import { TimerStatus } from '@/enums/TimerStatus'
 import useSolveData from '@/hooks/useSolveData'
