@@ -7,35 +7,35 @@
  */
 export default async function uploadFile(file: File, path: string, filename?: string) {
   if (!file) {
-    throw new Error('No file provided');
+    throw new Error('No file provided')
   }
 
   if (!path) {
-    throw new Error('No path provided');
+    throw new Error('No path provided')
   }
 
   try {
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('path', path);
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('path', path)
 
     if (filename) {
-      formData.append('filename', filename);
+      formData.append('filename', filename)
     }
 
     const response = await fetch('/api/v1/upload-image', {
       method: 'POST',
-      body: formData,
-    });
+      body: formData
+    })
 
-    const data = await response.json();
+    const data = await response.json()
 
     if (!response.ok) {
-      throw new Error(data.error || 'Failed to upload image');
+      throw new Error(data.error || 'Failed to upload image')
     }
 
-    return data;
+    return data
   } catch (err) {
-    throw err;
+    throw err
   }
 }
