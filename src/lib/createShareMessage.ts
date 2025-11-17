@@ -4,10 +4,10 @@ import getWorstTime from './getWorstTime'
 import getBestTime from './getBestTime'
 import getDeviation from './getDeviation'
 import formatTime from '../shared/lib/formatTime'
-import { SolveTab } from '@/enums/SolveTab'
+import { SolveTab } from '@/shared/types/enums'
 
 interface createShareMessage {
-  type: 'All' | '3' | '5' | '12' | '50' | '100'
+  type: 'all' | '3' | '5' | '12' | '50' | '100'
   solves: Solve[] | null
   translations: {
     statsTitle: string

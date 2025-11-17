@@ -4,8 +4,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/store/timerStore'
 import { useQueryState } from 'nuqs'
-import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs'
 import { STATES } from '@/shared/const/states'
+import { SolveTab } from '@/shared/types/enums'
 
 export default function ButtonDisplayType() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
@@ -22,9 +22,9 @@ export default function ButtonDisplayType() {
             {/* This <div> explained: https://github.com/shadcn-ui/ui/issues/1988#issuecomment-1980597269 */}
             <div>
               <Toggle
-                defaultPressed={tabMode === DisplaySolvesTabs.ALL}
+                defaultPressed={tabMode === SolveTab.ALL}
                 disabled={selectedCube === null}
-                onPressedChange={(e) => setTabMode(e ? DisplaySolvesTabs.ALL : DisplaySolvesTabs.SESSION)}
+                onPressedChange={(e) => setTabMode(e ? SolveTab.ALL : SolveTab.SESSION)}
               >
                 <DashboardIcon />
               </Toggle>
@@ -33,7 +33,7 @@ export default function ButtonDisplayType() {
           <TooltipContent>
             <p>
               {t('SolvesPage.show')}:{' '}
-              {tabMode === DisplaySolvesTabs.SESSION ? t('SolvesPage.historial') : t('SolvesPage.session')}
+              {tabMode === SolveTab.SESSION ? t('SolvesPage.historial') : t('SolvesPage.session')}
             </p>
           </TooltipContent>
         </Tooltip>

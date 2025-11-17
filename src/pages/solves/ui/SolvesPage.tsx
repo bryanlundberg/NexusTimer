@@ -3,10 +3,10 @@ import { useTimerStore } from '@/store/timerStore'
 import { useQueryState } from 'nuqs'
 import { useDebouncedCallback } from 'use-debounce'
 import { useMemo } from 'react'
-import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs'
 import SolvesPageHeader from '@/widgets/navigation-header/ui/SolvesPageHeader'
 import SolvesGrid from '@/features/solves-grid/ui/SolvesGrid'
 import { STATES } from '@/shared/const/states'
+import { SolveTab } from '@/shared/types/enums'
 
 export default function SolvesPage() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
@@ -21,7 +21,7 @@ export default function SolvesPage() {
 
   const displaySolves = useMemo(() => {
     if (!selectedCube) return []
-    return tabMode === DisplaySolvesTabs.SESSION ? selectedCube.solves.session : selectedCube.solves.all
+    return tabMode === SolveTab.SESSION ? selectedCube.solves.session : selectedCube.solves.all
   }, [selectedCube, tabMode])
 
   return (

@@ -18,8 +18,8 @@ import { DateTime } from 'luxon'
 import { useLocale, useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { useQueryState } from 'nuqs'
-import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs'
 import { STATES } from '@/shared/const/states'
+import { SolveTab } from '@/shared/types/enums'
 
 export default function DateRangeFilter() {
   const t = useTranslations('Index')
@@ -36,9 +36,9 @@ export default function DateRangeFilter() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const locale = useLocale()
   const date = DateTime.now().setLocale(locale).toLocaleString()
-  const handleShare = (type: 'All' | '3' | '5' | '12' | '50' | '100') => {
+  const handleShare = (type: 'all' | '3' | '5' | '12' | '50' | '100') => {
     if (selectedCube) {
-      const tempSolves = tabMode === DisplaySolvesTabs.ALL ? selectedCube.solves.all : selectedCube.solves.session
+      const tempSolves = tabMode === SolveTab.ALL ? selectedCube.solves.all : selectedCube.solves.session
 
       const message = createShareMessage({
         type,
@@ -122,7 +122,7 @@ export default function DateRangeFilter() {
               <DropdownMenuSubContent>
                 <DropdownMenuItem onClick={() => handleShare('5')}>{t('SolvesPage.last')} Ao5</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => handleShare('12')}>{t('SolvesPage.last')} Ao12</DropdownMenuItem>
-                <DropdownMenuItem onClick={() => handleShare('All')}>{t('SolvesPage.all')}</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleShare('all')}>{t('SolvesPage.all')}</DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>

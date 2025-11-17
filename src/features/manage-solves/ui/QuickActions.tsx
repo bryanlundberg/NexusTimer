@@ -4,13 +4,12 @@ import { CopyIcon, CubeIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
 import { ArrowRightLeftIcon, Bookmark, MoreHorizontal, Trash } from 'lucide-react'
 import { useQueryState } from 'nuqs'
-import { DisplaySolvesTabs } from '@/enums/DisplaySolvesTabs'
 import { IconButton } from '@/components/ui/shadcn-io/icon-button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import useQuickActions from '@/features/manage-solves/model/useQuickActions'
-import { SolveTab } from '@/enums/SolveTab'
 import { Solve } from '@/entities/solve/model/types'
 import { STATES } from '@/shared/const/states'
+import { SolveTab } from '@/shared/types/enums'
 
 interface QuickActionsProps {
   solve: Solve | null
@@ -50,7 +49,7 @@ export default function QuickActions({
               <Button
                 variant={'ghost'}
                 onPointerDown={() => {
-                  handleDeleteSolve(tabMode === DisplaySolvesTabs.SESSION ? SolveTab.SESSION : SolveTab.ALL)
+                  handleDeleteSolve(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)
                   onDeleteSolve()
                 }}
               >
@@ -66,9 +65,7 @@ export default function QuickActions({
               <Button
                 variant={'ghost'}
                 className={`font-light text-md ${solve?.plus2 ? 'text-red-600 font-bold hover:text-red-600' : ''}`}
-                onPointerDown={() =>
-                  handleTogglePlus2(tabMode === DisplaySolvesTabs.SESSION ? SolveTab.SESSION : SolveTab.ALL)
-                }
+                onPointerDown={() => handleTogglePlus2(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
               >
                 +2
               </Button>
@@ -82,9 +79,7 @@ export default function QuickActions({
               <Button
                 variant={'ghost'}
                 className={`font-light text-md ${solve?.dnf ? 'text-red-600 font-bold hover:text-red-600' : ''}`}
-                onPointerDown={() =>
-                  handleToggleDNF(tabMode === DisplaySolvesTabs.SESSION ? SolveTab.SESSION : SolveTab.ALL)
-                }
+                onPointerDown={() => handleToggleDNF(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
               >
                 DNF
               </Button>
@@ -100,7 +95,7 @@ export default function QuickActions({
                 active={solve?.bookmark}
                 aria-label="Bookmark"
                 onPointerDown={() =>
-                  handleToggleBookmark(tabMode === DisplaySolvesTabs.SESSION ? SolveTab.SESSION : SolveTab.ALL)
+                  handleToggleBookmark(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)
                 }
                 color={[251, 191, 36]}
               />
@@ -109,9 +104,7 @@ export default function QuickActions({
               <p>{t('tooltips.bookmark')}</p>
             </TooltipContent>
           </Tooltip>
-          {(!hideCopyButton ||
-            !hideMoveToHistory ||
-            (tabMode === DisplaySolvesTabs.SESSION && !hideTransferCollection)) && (
+          {(!hideCopyButton || !hideMoveToHistory || (tabMode === SolveTab.SESSION && !hideTransferCollection)) && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant={'ghost'} aria-label="More actions">
@@ -139,7 +132,7 @@ export default function QuickActions({
                     <CubeIcon className="mr-2" /> Move to History
                   </DropdownMenuItem>
                 )}
-                {tabMode === DisplaySolvesTabs.SESSION && !hideTransferCollection && (
+                {tabMode === SolveTab.SESSION && !hideTransferCollection && (
                   <DropdownMenuItem
                     onSelect={(e) => {
                       e.preventDefault()

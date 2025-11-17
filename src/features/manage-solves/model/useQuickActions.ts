@@ -1,5 +1,4 @@
 import { Solve } from '@/entities/solve/model/types'
-import { SolveTab } from '@/enums/SolveTab'
 import formatTime from '@/shared/lib/formatTime'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
@@ -10,6 +9,7 @@ import { togglePlus2 } from '@/features/manage-solves/api/togglePlus2'
 import { toggleBookmark } from '@/features/manage-solves/api/toggleBookmark'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { SolveTab } from '@/shared/types/enums'
 
 export default function useQuickActions(solve: Solve) {
   const router = useRouter()
