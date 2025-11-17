@@ -6,7 +6,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/co
 import Link from 'next/link'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { usePathname, useRouter } from 'next/navigation'
-import { ALGORITHM_SETS } from '@/constants/algorithms-sets'
+import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 
 export default function AlgorithmsBreadcrumb({ hideCollectionsSegment = false }: { hideCollectionsSegment?: boolean }) {
   const router = useRouter()

@@ -1,14 +1,14 @@
 'use client'
 
-import { ALGORITHM_SETS } from '@/constants/algorithms-sets'
 import { notFound, useParams } from 'next/navigation'
 import { TwistyPlayer } from 'cubing/twisty'
 import { AlgorithmsList } from '@/features/algorithms-list/ui/AlgorithmsList'
 import AlgorithmsBreadcrumb from '@/widgets/algorithms-breadcrumb/ui/AlgorithmsBreadcrumb'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
-import { ALGORITHMS_GITHUB_URL } from '@/constants/algorithms-github-url'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Information from '@/features/algorithms-list/ui/information'
+import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
+import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 
 export default function AlgorithmsMethodPage() {
   const params = useParams()

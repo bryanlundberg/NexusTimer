@@ -1,9 +1,9 @@
 import _ from 'lodash'
-import { ALGORITHM_SETS } from '@/constants/algorithms-sets'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import AlgorithmsBreadcrumb from '@/widgets/algorithms-breadcrumb/ui/AlgorithmsBreadcrumb'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
 import AlgorithmMethod from '@/features/algorithm-method/ui/AlgorithmMethod'
+import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 
 export default function AlgorithmsMethodsPage() {
   const groupedSets = _.groupBy(ALGORITHM_SETS, 'puzzle')

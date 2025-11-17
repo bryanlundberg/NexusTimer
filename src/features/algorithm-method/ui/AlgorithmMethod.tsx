@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import * as React from 'react'
-import { ALGORITHM_SET } from '@/constants/algorithms-sets'
 import { Progress } from '@/components/ui/progress'
+import { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 
 export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
   const { slug, title, subtitle, puzzle, Icon, difficulty } = set

@@ -1,6 +1,6 @@
 import { locales } from '@/i18n/locales'
 import { MetadataRoute } from 'next'
-import { ALGORITHM_SETS } from '@/constants/algorithms-sets'
+import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 
 const host = 'https://nexustimer.com'
 

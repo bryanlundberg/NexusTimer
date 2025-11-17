@@ -1,5 +1,5 @@
-import { ALGORITHM_SETS } from '@/constants/algorithms-sets'
 import type { Metadata, ResolvingMetadata } from 'next'
+import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 
 type Props = { params: Promise<{ slug: string }> }
 

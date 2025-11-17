@@ -1,48 +1,48 @@
 export const RECORDS = {
   '3x3': {
     best: 3050,
-    average: 3900,
+    average: 3900
   },
   '4x4': {
     best: 15710,
-    average: 19170,
+    average: 19170
   },
   '5x5': {
     best: 30450,
-    average: 34310,
+    average: 34310
   },
   '6x6': {
     best: 57690,
-    average: 65660,
+    average: 65660
   },
   '7x7': {
     best: 94150,
-    average: 99680,
+    average: 99680
   },
   '3x3 OH': {
     best: 5660,
-    average: 7720,
+    average: 7720
   },
-  'Clock': {
+  Clock: {
     best: 1640,
-    average: 2260,
+    average: 2260
   },
-  'Pyraminx': {
+  Pyraminx: {
     best: 730,
-    average: 1150,
+    average: 1150
   },
-  'Skewb': {
+  Skewb: {
     best: 750,
-    average: 1370,
+    average: 1370
   },
-  'SQ1': {
+  SQ1: {
     best: 3410,
-    average: 4630,
+    average: 4630
   },
-  'Megaminx': {
+  Megaminx: {
     best: 22050,
-    average: 25360,
-  },
+    average: 25360
+  }
 }
 
-export default RECORDS;
+export default RECORDS
