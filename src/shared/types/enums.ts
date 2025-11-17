@@ -18,3 +18,12 @@ export enum Order {
   ASC = 'asc',
   DESC = 'desc'
 }
+
+export enum Layers {
+  YELLOW = 'yellow',
+  WHITE = 'white',
+  GREEN = 'green',
+  BLUE = 'blue',
+  RED = 'red',
+  ORANGE = 'orange'
+}

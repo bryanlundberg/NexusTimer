@@ -13,7 +13,6 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import { Keyboard, Lightbulb } from 'lucide-react'
-import { Layer } from '@/enums/Layer'
 import { motion } from 'framer-motion'
 import { TimerMode } from '@/enums/TimerMode'
 import Image from 'next/image'
@@ -25,6 +24,7 @@ import { Button } from '@/components/ui/button'
 import DialogEnterNewScramble from '@/components/dialogs/dialog-enter-new-scramble/dialog-enter-new-scramble'
 import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
+import { Layers } from '@/shared/types/enums'
 
 export function ScrambleZone() {
   const selectedCube = useTimerStore((store) => store.selectedCube)
@@ -103,7 +103,7 @@ export function ScrambleZone() {
                         size={'icon'}
                         onClick={() => {
                           if (!selectedCube) return
-                          genSolution(selectedCube.category, scramble, Layer.YELLOW).then((res: CrossSolutions) =>
+                          genSolution(selectedCube.category, scramble, Layers.YELLOW).then((res: CrossSolutions) =>
                             setHints(res)
                           )
                         }}
