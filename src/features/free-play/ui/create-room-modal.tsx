@@ -1,7 +1,6 @@
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Controller, useForm } from 'react-hook-form'
-import { RoomStatus } from '@/enums/RoomStatus'
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Globe2 } from 'lucide-react'
 import { Label } from '@/components/ui/label'
@@ -11,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { ref, serverTimestamp, set } from '@firebase/database'
 import { rtdb } from '@/shared/config/firebase'
 import genScramble from '@/lib/timer/genScramble'
+import { RoomStatus } from '@/entities/free-play-mode/model/enums'
 
 export default function CreateRoomModal() {
   const { data: session } = useSession()
