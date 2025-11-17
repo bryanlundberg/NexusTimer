@@ -1,6 +1,5 @@
-import { Sort } from '@/enums/Sort'
 import { StatisticsTabs } from '@/enums/StatisticsTabs'
-import { DateRange, Order, SolveTab } from '@/shared/types/enums'
+import { DateRange, Order, SolveTab, Sort } from '@/shared/types/enums'
 import { PeopleTabs } from '@/widgets/people/model/types'
 
 export const STATES = {

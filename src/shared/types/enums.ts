@@ -19,6 +19,11 @@ export enum Order {
   DESC = 'desc'
 }
 
+export enum Sort {
+  TIME = 'time',
+  DATE = 'date'
+}
+
 export enum Layers {
   YELLOW = 'yellow',
   WHITE = 'white',
