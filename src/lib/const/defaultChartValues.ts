@@ -1,7 +1,6 @@
-import { ChartData } from '@/interfaces/ChartData'
 import { StatisticValue, AoStatistics } from '@/shared/types/statistics'
+import { CubeSolves } from '@/features/deep-statistics/model/types'
 
-// Valores por defecto tipados con los nuevos generics StatisticValue<T>
 export const defaultChartValuesN: StatisticValue<number> = {
   global: 0,
   session: 0,
@@ -16,7 +15,7 @@ export const defaultChartValuesS: StatisticValue<string> = {
   cubeAll: ''
 }
 
-export const defaultChartValuesA: ChartData = {
+export const defaultChartValuesA: CubeSolves = {
   global: [],
   session: [],
   cubeSession: [],

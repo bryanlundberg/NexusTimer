@@ -2,6 +2,7 @@ import getSolvesMetrics from './getSolvesMetrics'
 import calculateBestAo from './calculateBestAo'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/config/cube-categories'
+import { AoStatistics } from '@/shared/types/statistics'
 
 /**
  * Calculates various average of X (AoX) statistics for a specific cube and category.
