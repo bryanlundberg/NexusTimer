@@ -9,9 +9,9 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 
 export function ReplaySolveDetails() {
-  const {
-    activeOverlay: { metadata }
-  } = useOverlayStore()
+  const { activeOverlay } = useOverlayStore()
+  const { metadata } = activeOverlay || {}
+  if (!metadata) return null
 
   return (
     <DialogContent className={'flex flex-col justify-center items-center gap-4'}>
