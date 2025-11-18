@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { CUBE_CATEGORIES } from '@/shared/config/cube-categories'
+import { userSchema } from '@/entities/user/model/types'
 
 export type Solves = {
   session: Array<Solve>
@@ -24,7 +25,7 @@ export type Solve = {
 
 const SolveServerSchema = z.object({
   _id: z.string(),
-  userId: z.any(),
+  user: userSchema,
   time: z.number(),
   scramble: z.string(),
   solution: z.string().optional(),

@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react'
 import useFreeMode from '@/hooks/useFreeMode'
 
 export default function ResultsTab() {
-  const { roomId } = useParams()
+  const { roomId } = useParams<{ roomId: string }>() ?? { roomId: '' }
   const { data: session } = useSession()
   const { useUsersPresence, useRoomSolves } = useFreeMode()
   const onlineUsers = useUsersPresence(roomId?.toString() || '')

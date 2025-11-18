@@ -3,7 +3,7 @@ import { useParams } from 'next/navigation'
 import PlayerMiniCard from '@/features/free-play-room/ui/player-mini-card'
 
 export default function UsersTab() {
-  const { roomId } = useParams()
+  const { roomId } = useParams<{ roomId: string }>() ?? { roomId: '' }
   const { useUsersPresence } = useFreeMode()
   const cubersOnline = useUsersPresence(roomId?.toString() || '')
   return (

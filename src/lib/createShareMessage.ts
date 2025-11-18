@@ -1,10 +1,10 @@
-import { Solve } from '@/interfaces/Solve'
 import getMean from './getMean'
 import getWorstTime from './getWorstTime'
 import getBestTime from './getBestTime'
 import getDeviation from './getDeviation'
 import formatTime from '../shared/lib/formatTime'
 import { SolveTab } from '@/shared/types/enums'
+import { Solve } from '@/entities/solve/model/types'
 
 interface createShareMessage {
   type: 'all' | '3' | '5' | '12' | '50' | '100'

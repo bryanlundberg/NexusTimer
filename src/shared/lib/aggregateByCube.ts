@@ -1,6 +1,6 @@
-import type { Cube } from '@/interfaces/Cube'
-import type { Solve } from '@/interfaces/Solve'
 import { CubeCategory } from '@/shared/config/cube-categories'
+import { Cube } from '@/entities/cube/model/types'
+import { Solve } from '@/entities/solve/model/types'
 
 export function aggregateByCube(cubes: Cube[], category: CubeCategory) {
   const filtered = category ? cubes.filter((c) => c.category === category) : cubes

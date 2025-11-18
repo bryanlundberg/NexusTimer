@@ -1,7 +1,7 @@
 'use server'
 
 import connectDB from '@/shared/config/mongodb/mongodb'
-import type { Solve as ISolve } from '@/interfaces/Solve'
+import type { Solve as ISolve } from '@/entities/solve/model/types'
 import Solve from '@/models/solve'
 
 interface SendSolveToServerParams {

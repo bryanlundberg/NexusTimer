@@ -1,7 +1,7 @@
-import loader from '@/utils/loader'
-import uploadFile from '@/utils/uploadFile'
 import { toast } from 'sonner'
 import { useSession } from 'next-auth/react'
+import loader from '@/shared/lib/loader'
+import uploadFile from '@/shared/lib/uploadFile'
 
 export function useUpdateUserAvatar() {
   const { data: session, update } = useSession()

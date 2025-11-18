@@ -1,5 +1,4 @@
 'use client'
-import { Solve } from '@/interfaces/Solve'
 import genId from '@/lib/genId'
 import { useTimerStore } from '@/store/timerStore'
 import { useEffect, useRef, useState } from 'react'
@@ -8,6 +7,7 @@ import { useNXData } from '@/hooks/useNXData'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { Packet, Stackmat as StackmatController } from 'stackmat-v2'
 import { TimerStatus } from '@/features/timer/model/enums'
+import { Solve } from '@/entities/solve/model/types'
 
 export default function Stackmat() {
   const { saveCube } = useNXData()

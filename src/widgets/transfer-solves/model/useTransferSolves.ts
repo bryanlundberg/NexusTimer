@@ -4,11 +4,11 @@ import { useTimerStore } from '@/store/timerStore'
 import { useQueryState } from 'nuqs'
 import { useMemo, useState } from 'react'
 import { sort } from 'fast-sort'
-import { Solve } from '@/interfaces/Solve'
 import { toast } from 'sonner'
 import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
 import { STATES } from '@/shared/const/states'
 import useRemoveGridHeight from '@/shared/model/solves-grid/useRemoveGridHeight'
+import { Solve } from '@/entities/solve/model/types'
 
 export default function useTransferSolves() {
   const { saveBatchCubes, getAllCubes } = useNXData()

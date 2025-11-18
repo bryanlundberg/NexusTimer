@@ -74,13 +74,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
       </TableCell>
       <TableCell>{formatTime(solve.time)}</TableCell>
       <TableCell className="hidden sm:table-cell text-right">
-        <ScrambleDisplay
-          className={'size-20'}
-          show
-          scramble={solve.scramble}
-          event={solve.puzzle}
-          puzzle={solve.puzzle}
-        />
+        <ScrambleDisplay className={'size-20'} show scramble={solve.scramble} event={solve.puzzle} />
       </TableCell>
       <TableCell className="font-medium hidden sm:table-cell">
         {format(new Date(solve.createdAt), 'd MMM yyyy')}

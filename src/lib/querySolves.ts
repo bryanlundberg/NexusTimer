@@ -1,8 +1,8 @@
-import { Solve } from '@/interfaces/Solve'
 import formatTime from '../shared/lib/formatTime'
 import { sort } from 'fast-sort'
-import { Cube } from '@/interfaces/Cube'
 import { SolveTab } from '@/shared/types/enums'
+import { Cube } from '@/entities/cube/model/types'
+import { Solve } from '@/entities/solve/model/types'
 
 /**
  * Searches for solves in a specific cube based on the provided query and tab.

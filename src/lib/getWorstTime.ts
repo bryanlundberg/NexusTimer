@@ -1,8 +1,8 @@
-import { Solve } from "@/interfaces/Solve";
+import { Solve } from '@/entities/solve/model/types'
 
 export default function getWorstTime(solves: Solve[]) {
-  if (solves.length === 0) return 0;
+  if (solves.length === 0) return 0
 
-  const sortSolves = [...solves].sort((a: any, b: any) => b.time - a.time);
-  return sortSolves[0].time;
+  const sortSolves = [...solves].sort((a: any, b: any) => b.time - a.time)
+  return sortSolves[0].time
 }

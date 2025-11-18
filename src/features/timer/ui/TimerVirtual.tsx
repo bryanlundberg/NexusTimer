@@ -4,12 +4,12 @@ import { TwistyPlayer } from 'cubing/twisty'
 import { useTimerStore } from '@/store/timerStore'
 import { CubeEngine } from 'cube-state-engine'
 import formatTime from '@/shared/lib/formatTime'
-import { Solve } from '@/interfaces/Solve'
 import genId from '@/lib/genId'
 import { useNXData } from '@/hooks/useNXData'
 import { sendSolveToServer } from '@/shared/lib/actions'
 import { useSession } from 'next-auth/react'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { Solve } from '@/entities/solve/model/types'
 
 export default function TimerVirtual() {
   const containerRef = React.useRef<HTMLDivElement | null>(null)

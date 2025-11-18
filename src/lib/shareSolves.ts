@@ -1,6 +1,6 @@
-import { Solve } from '@/interfaces/Solve'
 import formatTime from '../shared/lib/formatTime'
 import calculateCurrentAo from './calculateCurrentAo'
+import { Solve } from '@/entities/solve/model/types'
 
 export function shareSolves({ solves }: { solves: Solve[] }) {
   // retrieving last n solves

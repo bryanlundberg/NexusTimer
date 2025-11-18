@@ -1,6 +1,6 @@
-import { Solve } from '@/interfaces/Solve'
 import { Checkbox } from '@/components/ui/checkbox'
 import useLineGraphStatistics from '@/features/line-chart-statistics/model/useLineGraphStatistics'
+import { Solve } from '@/entities/solve/model/types'
 
 export default function LineGraphStatistics({ solves }: { solves: Solve[] }) {
   const {

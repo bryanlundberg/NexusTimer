@@ -1,5 +1,5 @@
-import { sort } from "fast-sort";
-import { Solve } from "@/interfaces/Solve";
+import { sort } from 'fast-sort'
+import { Solve } from '@/entities/solve/model/types'
 
 /**
  * Gets the best time from an array of solves.
@@ -10,18 +10,16 @@ import { Solve } from "@/interfaces/Solve";
  */
 export default function getBestTime({ solves }: { solves: Solve[] }): number {
   // Return 0 if the array is empty
-  if (solves.length === 0) return 0;
+  if (solves.length === 0) return 0
 
   // Ensure each solve object has a 'time' property of type number
-  if (solves.some((solve) => typeof solve.time !== "number")) {
-    throw new Error(
-      "Invalid solve data. Each solve object must have a 'time' property of type number."
-    );
+  if (solves.some((solve) => typeof solve.time !== 'number')) {
+    throw new Error("Invalid solve data. Each solve object must have a 'time' property of type number.")
   }
 
   // Sort solves in ascending order based on the 'time' property
-  const sortedSolves = sort(solves).asc((solve) => solve.time);
+  const sortedSolves = sort(solves).asc((solve) => solve.time)
 
   // Return the best time (first element after sorting)
-  return sortedSolves[0].time;
+  return sortedSolves[0].time
 }

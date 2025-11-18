@@ -1,22 +1,22 @@
-import { useTimerStore } from "@/store/timerStore";
-import { Solve } from "@/interfaces/Solve";
-import genId from "@/lib/genId";
-import { useNXData } from '@/hooks/useNXData';
-import { useSettingsModalStore } from '@/store/SettingsModalStore';
-import convertToMs from '@/lib/convertToMs';
-import { useState } from 'react';
+import { useTimerStore } from '@/store/timerStore'
+import genId from '@/lib/genId'
+import { useNXData } from '@/hooks/useNXData'
+import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import convertToMs from '@/lib/convertToMs'
+import { useState } from 'react'
+import { Solve } from '@/entities/solve/model/types'
 
 export default function useSolveData() {
-  const { saveCube } = useNXData();
-  const solvingTime = useTimerStore(store => store.solvingTime);
-  const selectedCube = useTimerStore(store => store.selectedCube);
-  const scramble = useTimerStore(store => store.scramble);
-  const setSelectedCube = useTimerStore(store => store.setSelectedCube);
-  const setLastSolve = useTimerStore(store => store.setLastSolve);
-  const setNewScramble = useTimerStore(store => store.setNewScramble);
-  const updateSetting = useSettingsModalStore(state => state.updateSetting)
-  const solvesSinceLastSync = useSettingsModalStore(state => state.settings.sync.totalSolves)
-  const [value, setValue] = useState<string>("");
+  const { saveCube } = useNXData()
+  const solvingTime = useTimerStore((store) => store.solvingTime)
+  const selectedCube = useTimerStore((store) => store.selectedCube)
+  const scramble = useTimerStore((store) => store.scramble)
+  const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
+  const setLastSolve = useTimerStore((store) => store.setLastSolve)
+  const setNewScramble = useTimerStore((store) => store.setNewScramble)
+  const updateSetting = useSettingsModalStore((state) => state.updateSetting)
+  const solvesSinceLastSync = useSettingsModalStore((state) => state.settings.sync.totalSolves)
+  const [value, setValue] = useState<string>('')
 
   const saveSolveMainTimer = async () => {
     if (selectedCube && scramble) {
@@ -31,37 +31,37 @@ export default function useSolveData() {
         plus2: false,
         rating: Math.floor(Math.random() * 20) + scramble.length,
         cubeId: selectedCube.id,
-        comment: "",
+        comment: '',
         isDeleted: false,
-        updatedAt: Date.now(),
-      };
+        updatedAt: Date.now()
+      }
 
-      setLastSolve({ ...lastSolve });
+      setLastSolve({ ...lastSolve })
 
       const updatedCube = {
         ...selectedCube,
         solves: {
           ...selectedCube.solves,
-          session: [lastSolve, ...selectedCube.solves.session],
-        },
+          session: [lastSolve, ...selectedCube.solves.session]
+        }
       }
 
-      saveCube(updatedCube);
-      setSelectedCube(updatedCube);
+      saveCube(updatedCube)
+      setSelectedCube(updatedCube)
       updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
     }
 
-    setNewScramble(selectedCube);
-  };
+    setNewScramble(selectedCube)
+  }
 
   const saveSolveManualMode = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!selectedCube) return;
-    if (!scramble) return;
-    if (parseInt(value) === 0 || value === "") return;
+    event.preventDefault()
+    if (!selectedCube) return
+    if (!scramble) return
+    if (parseInt(value) === 0 || value === '') return
 
-    const msTime = convertToMs(value);
-    const now = Date.now();
+    const msTime = convertToMs(value)
+    const now = Date.now()
 
     const newSolve: Solve = {
       id: genId(),
@@ -74,24 +74,24 @@ export default function useSolveData() {
       plus2: false,
       rating: Math.floor(Math.random() * 20) + scramble.length,
       cubeId: selectedCube.id,
-      comment: "",
+      comment: '',
       updatedAt: now,
-      isDeleted: false,
-    };
+      isDeleted: false
+    }
 
     const updatedCube = {
       ...selectedCube,
       solves: {
         ...selectedCube.solves,
-        session: [newSolve, ...selectedCube.solves.session],
-      },
+        session: [newSolve, ...selectedCube.solves.session]
+      }
     }
 
-    saveCube(updatedCube);
-    setSelectedCube(updatedCube);
-    setLastSolve({ ...newSolve });
-    setNewScramble(selectedCube);
-    setValue("");
+    saveCube(updatedCube)
+    setSelectedCube(updatedCube)
+    setLastSolve({ ...newSolve })
+    setNewScramble(selectedCube)
+    setValue('')
     updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
   }
 
@@ -100,5 +100,5 @@ export default function useSolveData() {
     value,
     setValue,
     saveSolveManualMode
-  };
+  }
 }
