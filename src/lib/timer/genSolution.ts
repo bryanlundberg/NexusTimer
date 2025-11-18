@@ -5,7 +5,7 @@ import { CubeCategory } from '@/shared/config/cube-categories'
 /**
  * Generates cross solutions based on the provided event, scramble, and layer.
  *
- * @param {Categories} event - The event category.
+ * @param {CubeCategory} event - The event category.
  * @param {string | null} scramble - The scramble string or null if not provided.
  * @param {Layers} layer - The layer color (e.g., "yellow").
  * @returns {Promise<CrossSolutions>} - Promise resolving to an object containing different cross solutions.

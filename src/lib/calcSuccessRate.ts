@@ -2,15 +2,8 @@ import getSolvesMetrics from './getSolvesMetrics'
 import calcPenaltyRate from './calcPenaltyRate'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/config/cube-categories'
+import { StatisticValue } from '@/shared/types/statistics'
 
-/**
- * Calculates the success rate (percentage of solves with a "+2" penalty) for different solve sets
- * (global, session, cubeSession, cubeAll) of a specific cube.
- * @param cubesDB
- * @param category
- * @param cubeName
- * @returns {StatisticS} The success rate for global, session, cubeSession, and cubeAll.
- */
 export default function calcSuccessRate({
   cubesDB,
   category,
@@ -19,8 +12,7 @@ export default function calcSuccessRate({
   cubesDB: Cube[] | null
   category: CubeCategory
   cubeName: string
-}): StatisticS {
-  // Get solve metrics for global, session, cubeSession, and cubeAll
+}): StatisticValue<string> {
   const { global, session, cubeAll, cubeSession } = getSolvesMetrics({
     cubesDB,
     category,
@@ -32,7 +24,6 @@ export default function calcSuccessRate({
   const cubeAllRate = calcPenaltyRate(cubeAll)
   const cubeSessionRate = calcPenaltyRate(cubeSession)
 
-  // Calculate the success rate (percentage) for each solve set
   return {
     global: calculatePercentage(globalRate, global.length),
     session: calculatePercentage(sessionRate, session.length),
