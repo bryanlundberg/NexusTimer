@@ -1,7 +1,7 @@
-import { Categories } from "@/interfaces/Categories";
-import getSolvesMetrics from "./getSolvesMetrics";
-import { Cube } from "@/interfaces/Cube";
-import calcPenaltyRate from "./calcPenaltyRate";
+import getSolvesMetrics from './getSolvesMetrics'
+import calcPenaltyRate from './calcPenaltyRate'
+import { Cube } from '@/entities/cube/model/types'
+import { CubeCategory } from '@/shared/config/cube-categories'
 
 /**
  * Calculates the success rate (percentage of solves with a "+2" penalty) for different solve sets
@@ -14,31 +14,31 @@ import calcPenaltyRate from "./calcPenaltyRate";
 export default function calcSuccessRate({
   cubesDB,
   category,
-  cubeName,
+  cubeName
 }: {
-  cubesDB: Cube[] | null;
-  category: Categories;
-  cubeName: string;
+  cubesDB: Cube[] | null
+  category: CubeCategory
+  cubeName: string
 }): StatisticS {
   // Get solve metrics for global, session, cubeSession, and cubeAll
   const { global, session, cubeAll, cubeSession } = getSolvesMetrics({
     cubesDB,
     category,
-    cubeName,
-  });
+    cubeName
+  })
 
-  const globalRate = calcPenaltyRate(global);
-  const sessionRate = calcPenaltyRate(session);
-  const cubeAllRate = calcPenaltyRate(cubeAll);
-  const cubeSessionRate = calcPenaltyRate(cubeSession);
+  const globalRate = calcPenaltyRate(global)
+  const sessionRate = calcPenaltyRate(session)
+  const cubeAllRate = calcPenaltyRate(cubeAll)
+  const cubeSessionRate = calcPenaltyRate(cubeSession)
 
   // Calculate the success rate (percentage) for each solve set
   return {
     global: calculatePercentage(globalRate, global.length),
     session: calculatePercentage(sessionRate, session.length),
     cubeAll: calculatePercentage(cubeAllRate, cubeAll.length),
-    cubeSession: calculatePercentage(cubeSessionRate, cubeSession.length),
-  };
+    cubeSession: calculatePercentage(cubeSessionRate, cubeSession.length)
+  }
 }
 
 /**
@@ -50,5 +50,5 @@ export default function calcSuccessRate({
  */
 
 function calculatePercentage(rate: number, length: number): string {
-  return length === 0 ? "100" : (100 - (rate * 100) / length).toFixed(2);
+  return length === 0 ? '100' : (100 - (rate * 100) / length).toFixed(2)
 }

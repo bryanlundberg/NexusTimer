@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
 import getDisplayId from '@/lib/getDisplayId'
-import { Categories } from '@/interfaces/Categories'
+import { CubeCategory } from '@/shared/config/cube-categories'
 
 interface ScrambleDisplay extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
   show: boolean
   scramble: string | null
-  event: Categories
+  event: CubeCategory
   visualization?: '2D' | '3D'
   puzzle?: PuzzleID
 }

@@ -1,11 +1,11 @@
-import { Cube } from '@/interfaces/Cube'
 import { useMemo } from 'react'
 import _ from 'lodash'
 import moment from 'moment'
 import formatTime from '@/shared/lib/formatTime'
-import { Categories } from '@/interfaces/Categories'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import SolveCard from '@/widgets/people/ui/solve-card'
+import { Cube } from '@/entities/cube/model/types'
+import { CubeCategory } from '@/shared/config/cube-categories'
 
 export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
   const solvesByCategory = useMemo(() => {
@@ -31,7 +31,7 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
         <SolveCard
           key={solves[0].id}
           scramble={solves[0].scramble}
-          event={category as Categories}
+          event={category as CubeCategory}
           time={formatTime(solves[0].time)}
           date={moment(solves[0].endTime).format('DD-MM-YYYY')}
         />

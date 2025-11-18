@@ -1,21 +1,12 @@
 import { Button } from '@/components/ui/button'
-import {
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle
-} from '@/components/ui/drawer'
+import { DrawerClose, DrawerDescription, DrawerFooter, DrawerTitle } from '@/components/ui/drawer'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Categories } from '@/interfaces/Categories'
 import { cubeCollection } from '@/lib/const/cubeCollection'
 import { cn } from '@/lib/utils'
 import { useTimerStore } from '@/store/timerStore'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { ScrollArea } from '@/components/ui/scroll-area'

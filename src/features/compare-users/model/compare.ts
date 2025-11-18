@@ -1,7 +1,7 @@
-import { Categories } from '@/interfaces/Categories'
+import { CubeCategory } from '@/shared/config/cube-categories'
 
 export type CompareUser = {
-  [key in Categories]: { single: number; average: number; count: number }
+  [key in CubeCategory]: { single: number; average: number; count: number }
 } & {
   _id: string
 }

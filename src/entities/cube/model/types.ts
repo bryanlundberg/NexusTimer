@@ -1,11 +1,10 @@
 import { CubeCategory } from '@/shared/config/cube-categories'
-import { Categories } from '@/interfaces/Categories'
-import { Solves } from '@/interfaces/Solves'
+import { Solves } from '@/entities/solve/model/types'
 
 export type Cube = {
   id: string
   name: string
-  category: Categories
+  category: CubeCategory
   solves: Solves
   createdAt: number
   favorite: boolean

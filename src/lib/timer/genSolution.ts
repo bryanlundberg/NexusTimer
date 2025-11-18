@@ -1,6 +1,6 @@
-import { Categories } from '@/interfaces/Categories'
 import cubeSolver from 'cube-solver'
 import { Layers } from '@/shared/types/enums'
+import { CubeCategory } from '@/shared/config/cube-categories'
 
 /**
  * Generates cross solutions based on the provided event, scramble, and layer.
@@ -12,7 +12,7 @@ import { Layers } from '@/shared/types/enums'
  */
 
 export default function genSolution(
-  event: Categories,
+  event: CubeCategory,
   scramble: string | null,
   layer: Layers
 ): Promise<CrossSolutions> {

@@ -10,7 +10,6 @@ import { useEffect, useRef } from 'react'
 import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/store/timerStore'
 import genScramble from '@/lib/timer/genScramble'
-import { Categories } from '@/interfaces/Categories'
 import { Button } from '@/components/ui/button'
 import { ChartBarIcon, CheckIcon, Clock, EyeIcon, UsersIcon } from 'lucide-react'
 import { AvatarGroup, AvatarGroupTooltip } from '@/components/ui/shadcn-io/avatar-group'
@@ -22,6 +21,7 @@ import UsersTab from '@/features/free-play-room/ui/users-tab'
 import useAlert from '@/shared/model/useAlert'
 import { useCountdown } from '@/shared/model/useCountdown'
 import { TimerStatus } from '@/features/timer/model/enums'
+import { CubeCategory } from '@/shared/config/cube-categories'
 
 export default function FreePlayRoomPage() {
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }
@@ -87,7 +87,7 @@ export default function FreePlayRoomPage() {
     handledRoundRef.current = roundLimit ?? null
 
     const durationMs = maxRoundTime * 1000
-    const newScramble = genScramble(event as Categories)
+    const newScramble = genScramble(event as CubeCategory)
     updateRoomScramble(roomId.toString(), newScramble)
     updateRoomRoundLimit(roomId.toString(), durationMs)
   }, [isFinished, roomAuthority, session?.user?.id, roomId])

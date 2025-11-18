@@ -2,10 +2,10 @@ import React from 'react'
 import { Badge } from '@/components/ui/badge'
 import formatTime from '@/shared/lib/formatTime'
 import CompareTableRow from './CompareTableRow'
-import { Categories } from '@/interfaces/Categories'
-import { CompareUser } from '@/types/compare'
+import { CompareUser } from '@/features/compare-users/model/compare'
+import { CubeCategory } from '@/shared/config/cube-categories'
 
-export default function CompareCategoryBlock({ category, users }: { category: Categories; users: CompareUser[] }) {
+export default function CompareCategoryBlock({ category, users }: { category: CubeCategory; users: CompareUser[] }) {
   const singles = users
     .map((u) => u[category]?.single)
     .filter((v) => typeof v === 'number' && !isNaN(v) && v > 0) as number[]

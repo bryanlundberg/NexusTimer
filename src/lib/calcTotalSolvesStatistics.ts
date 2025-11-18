@@ -1,6 +1,6 @@
-import { Categories } from "@/interfaces/Categories";
-import getSolvesMetrics from "./getSolvesMetrics";
-import { Cube } from "@/interfaces/Cube";
+import getSolvesMetrics from './getSolvesMetrics'
+import { Cube } from '@/entities/cube/model/types'
+import { CubeCategory } from '@/shared/config/cube-categories'
 
 /**
  * Calculates the total number of solves for different solve sets (global, session, cubeSession, cubeAll) of a specific cube.
@@ -11,24 +11,24 @@ import { Cube } from "@/interfaces/Cube";
 export default function calcTotalSolvesStatistics({
   cubesDB,
   category,
-  cubeName,
+  cubeName
 }: {
-  cubesDB: Cube[] | null;
-  category: Categories;
-  cubeName: string;
+  cubesDB: Cube[] | null
+  category: CubeCategory
+  cubeName: string
 }): StatisticN {
   // Get solve metrics for global, session, cubeSession, and cubeAll
   const { global, session, cubeAll, cubeSession } = getSolvesMetrics({
     cubesDB,
     category,
-    cubeName,
-  });
+    cubeName
+  })
 
   // Calculate the total number of solves for each solve set
   return {
     global: global.length,
     session: session.length,
     cubeAll: cubeAll.length,
-    cubeSession: cubeSession.length,
-  };
+    cubeSession: cubeSession.length
+  }
 }
