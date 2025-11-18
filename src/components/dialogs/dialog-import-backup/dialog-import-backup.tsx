@@ -8,9 +8,9 @@ import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/compon
 import { toast } from 'sonner'
 import { useNXData } from '@/hooks/useNXData'
 import DialogImportReview from './dialog-import-review'
-import { Cube } from '@/interfaces/Cube'
 import { Dropzone, DropzoneContent, DropzoneEmptyState } from '@/components/ui/shadcn-io/dropzone'
 import { Spinner } from '@/components/ui/spinner'
+import { Cube } from '@/entities/cube/model/types'
 
 export default function DialogImportBackup() {
   const { getAllCubes, clearCubes, saveBatchCubes } = useNXData()

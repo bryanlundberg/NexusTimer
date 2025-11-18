@@ -3,14 +3,14 @@ import { XIcon } from 'lucide-react'
 import { useCompareUsersStore } from '@/store/CompareUsers'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
-import { Categories } from '@/interfaces/Categories'
-import { Cube } from '@/interfaces/Cube'
 import { formatDistance } from 'date-fns'
 import { useUserBackups } from '@/hooks/useUserBackups'
 import CompareTableRow from '@/features/compare-users/ui/CompareTableRow'
 import CompareCategoryBlock from '@/features/compare-users/ui/CompareCategoryBlock'
 import { useCompareUsersStats } from '@/features/compare-users/model/useCompareUsersStats'
 import { CompareUser } from '@/features/compare-users/model/compare'
+import { Cube } from '@/entities/cube/model/types'
+import { CUBE_CATEGORIES } from '@/shared/config/cube-categories'
 
 export default function CompareUsersModal() {
   const closeOverlay = useCompareUsersStore((state) => state.closeOverlay)
@@ -115,7 +115,7 @@ export default function CompareUsersModal() {
           })}
         </CompareTableRow>
 
-        {CATEGORIES.map((category) => (
+        {CUBE_CATEGORIES.map((category) => (
           <div key={category}>
             <CompareCategoryBlock category={category} users={usersStats} />
           </div>
@@ -126,18 +126,3 @@ export default function CompareUsersModal() {
     </div>
   )
 }
-
-const CATEGORIES: Categories[] = [
-  '2x2',
-  '3x3',
-  '3x3 OH',
-  '4x4',
-  '5x5',
-  '6x6',
-  '7x7',
-  'SQ1',
-  'Skewb',
-  'Pyraminx',
-  'Megaminx',
-  'Clock'
-]

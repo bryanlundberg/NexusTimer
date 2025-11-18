@@ -3,17 +3,17 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import useTimer from '@/features/timer/model/useTimer'
 import { useTimerStore } from '@/store/timerStore'
 import { useSettingsModalStore } from '@/store/SettingsModalStore'
-import { Cube } from '@/interfaces/Cube'
 import useFreeMode from '@/hooks/useFreeMode'
 import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
 import genScramble from '@/lib/timer/genScramble'
-import { Categories } from '@/interfaces/Categories'
 import DisplayTime from '@/features/timer/ui/display-time'
 import ConfirmSolveModal from '@/features/free-play-room/ui/confirm-solve-modal'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
 import useDeviceMatch from '@/shared/model/useDeviceMatch'
 import { TimerStatus } from '@/features/timer/model/enums'
+import { CubeCategory } from '@/shared/config/cube-categories'
+import { Cube } from '@/entities/cube/model/types'
 
 interface TimerTabProps {
   maxRoundTime: number | null
@@ -108,7 +108,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
 
       if (isLastToSolve) {
         const durationMs = maxRoundTime * 1000
-        const newScramble = genScramble(event as Categories)
+        const newScramble = genScramble(event as CubeCategory)
         updateRoomScramble(roomId.toString(), newScramble)
         updateRoomRoundLimit(roomId.toString(), durationMs)
       }

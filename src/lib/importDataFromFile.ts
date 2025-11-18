@@ -1,8 +1,8 @@
-import { Cube } from '@/interfaces/Cube';
-import { Solve } from '@/interfaces/Solve';
-import { parse } from 'papaparse';
-import { z } from 'zod/v4';
-import _ from 'lodash';
+import { parse } from 'papaparse'
+import { z } from 'zod/v4'
+import _ from 'lodash'
+import { Cube } from '@/entities/cube/model/types'
+import { Solve } from '@/entities/solve/model/types'
 
 const nxTimerSchema = z.array(
   z.object({
@@ -50,12 +50,12 @@ const nxTimerSchema = z.array(
     isDeleted: z.boolean().optional(),
     updatedAt: z.number().optional()
   })
-);
+)
 
 const csTimerSchema = z.object({
   properties: z.looseObject({
     sessionN: z.number()
-  }),
+  })
 })
 
 const cubeDeskSchema = z.object({
@@ -85,107 +85,107 @@ const cubeDeskSchema = z.object({
       smart_put_down_time: z.number().optional()
     })
   )
-});
+})
 
-export default async function importDataFromFile(
-  file: File
-): Promise<Cube[] | false> {
+export default async function importDataFromFile(file: File): Promise<Cube[] | false> {
   try {
-    if (!file) return false;
-    const fileContent = await file.text();
+    if (!file) return false
+    const fileContent = await file.text()
 
-    let cubes;
+    let cubes
 
     try {
-      cubes = importNexusTimerData(fileContent);
+      cubes = importNexusTimerData(fileContent)
     } catch {
       try {
-        cubes = importCsTimerData(fileContent);
+        cubes = importCsTimerData(fileContent)
       } catch {
         try {
-          cubes = importCubeDeskData(fileContent);
+          cubes = importCubeDeskData(fileContent)
         } catch {
-          cubes = importTwistyTimerData(fileContent);
+          cubes = importTwistyTimerData(fileContent)
         }
       }
     }
 
-    cubes = uniqueData(cubes);
+    cubes = uniqueData(cubes)
     return cubes
   } catch (error) {
-    console.error('Error reading file:', error);
-    return false;
+    console.error('Error reading file:', error)
+    return false
   }
 }
 
 export const importNexusTimerData = (fileContent: string) => {
-  const parsedData = JSON.parse(fileContent);
-  const result = nxTimerSchema.safeParse(parsedData);
+  const parsedData = JSON.parse(fileContent)
+  const result = nxTimerSchema.safeParse(parsedData)
   if (!result.success) {
-    throw new Error(`Invalid Nexus Timer data: ${result.error.message}`);
+    throw new Error(`Invalid Nexus Timer data: ${result.error.message}`)
   }
 
-  return parsedData as Cube[];
+  return parsedData as Cube[]
 }
 
 const importCsTimerData = (fileContent: string) => {
-  const parsedData = JSON.parse(fileContent);
-  const result = csTimerSchema.safeParse(parsedData);
+  const parsedData = JSON.parse(fileContent)
+  const result = csTimerSchema.safeParse(parsedData)
   if (!result.success) {
-    throw new Error(`Invalid csTimer data: ${result.error.message}`);
+    throw new Error(`Invalid csTimer data: ${result.error.message}`)
   }
 
   const resultData = Object.values(parsedData).slice(0, -1) // Exclude the last property which is "properties"
 
-  let newCubeList = resultData.map((session: any, index) => {
-    if (session.length === 0) return;
+  let newCubeList = resultData
+    .map((session: any, index) => {
+      if (session.length === 0) return
 
-    const newCube: Cube = {
-      id: `cs-${Math.min(...session.map((solve: any) => solve[3] * 1000))}`,
-      name: 'CSTimer Session ' + (index + 1),
-      category: '3x3', // Not specified in CSTimer backup - Require manual fix by user later...
-      solves: {
-        session: [],
-        all: [],
-      },
-      createdAt: Date.now(),
-      favorite: false,
-    };
+      const newCube: Cube = {
+        id: `cs-${Math.min(...session.map((solve: any) => solve[3] * 1000))}`,
+        name: 'CSTimer Session ' + (index + 1),
+        category: '3x3', // Not specified in CSTimer backup - Require manual fix by user later...
+        solves: {
+          session: [],
+          all: []
+        },
+        createdAt: Date.now(),
+        favorite: false
+      }
 
-    session.forEach((solve: any) => {
-      const newSolve: Solve = {
-        id: `${newCube.id}-${solve[3] * 1000}`,
-        startTime: solve[3] * 1000 - solve[0][1],
-        endTime: solve[3] * 1000,
-        scramble: solve[1],
-        bookmark: false,
-        time: solve[0][1] + (solve[0][0] === 2000 ? 2000 : 0),
-        dnf: solve[0][0] === -1,
-        plus2: solve[0][0] === 2000,
-        rating: Math.floor(Math.random() * 20) + solve[1].length,
-        cubeId: newCube.id,
-        comment: '',
-      };
-      newCube.solves.session.push(newSolve);
-    });
+      session.forEach((solve: any) => {
+        const newSolve: Solve = {
+          id: `${newCube.id}-${solve[3] * 1000}`,
+          startTime: solve[3] * 1000 - solve[0][1],
+          endTime: solve[3] * 1000,
+          scramble: solve[1],
+          bookmark: false,
+          time: solve[0][1] + (solve[0][0] === 2000 ? 2000 : 0),
+          dnf: solve[0][0] === -1,
+          plus2: solve[0][0] === 2000,
+          rating: Math.floor(Math.random() * 20) + solve[1].length,
+          cubeId: newCube.id,
+          comment: ''
+        }
+        newCube.solves.session.push(newSolve)
+      })
 
-    return newCube;
-  }).filter((cube) => cube !== undefined) as Cube[];
+      return newCube
+    })
+    .filter((cube) => cube !== undefined) as Cube[]
 
-  newCubeList = formatCubesDatesAndOrder(newCubeList);
-  newCubeList = parseNXTimerSchema(newCubeList);
+  newCubeList = formatCubesDatesAndOrder(newCubeList)
+  newCubeList = parseNXTimerSchema(newCubeList)
 
-  return newCubeList as Cube[];
+  return newCubeList as Cube[]
 }
 
 function importCubeDeskData(fileContent: string) {
-  const parsedData = JSON.parse(fileContent);
-  const result = cubeDeskSchema.safeParse(parsedData);
+  const parsedData = JSON.parse(fileContent)
+  const result = cubeDeskSchema.safeParse(parsedData)
   if (!result.success) {
-    throw new Error(`Invalid CubeDesk data: ${result.error.message}`);
+    throw new Error(`Invalid CubeDesk data: ${result.error.message}`)
   }
 
-  let newCubeList: Cube[] = [];
+  let newCubeList: Cube[] = []
 
   result.data.sessions.forEach((session) => {
     const newCube: Cube = {
@@ -194,11 +194,11 @@ function importCubeDeskData(fileContent: string) {
       category: '3x3', // Category not specified in Cubedesk backup -> Manual fix later by user...
       solves: {
         session: [],
-        all: [],
+        all: []
       },
       createdAt: Date.parse(session.created_at),
-      favorite: false,
-    };
+      favorite: false
+    }
 
     result.data.solves.forEach((solve) => {
       if (solve.session_id === session.id) {
@@ -213,24 +213,24 @@ function importCubeDeskData(fileContent: string) {
           plus2: solve.plus_two,
           rating: Math.floor(Math.random() * 20) + solve.scramble.length,
           cubeId: session.id,
-          comment: '',
-        };
-        newCube.solves.session.push(newSolve);
+          comment: ''
+        }
+        newCube.solves.session.push(newSolve)
       }
-    });
-    newCubeList.push(newCube);
-  });
+    })
+    newCubeList.push(newCube)
+  })
 
-  newCubeList = formatCubesDatesAndOrder(newCubeList);
-  newCubeList = parseNXTimerSchema(newCubeList);
+  newCubeList = formatCubesDatesAndOrder(newCubeList)
+  newCubeList = parseNXTimerSchema(newCubeList)
 
-  return newCubeList;
+  return newCubeList
 }
 
 function importTwistyTimerData(fileContent: string) {
-  const parsedData = parse(fileContent, { dynamicTyping: true }).data.slice(1);
+  const parsedData = parse(fileContent, { dynamicTyping: true }).data.slice(1)
 
-  let newCubeList: Cube[] = [];
+  let newCubeList: Cube[] = []
 
   // Twisty Timer backup: Row structure
   // Puzzle: 222, Category: Normal, Time: 0, Date: 1657657016937, Scramble: R2 F2, Penalty: 0, Comment:
@@ -241,11 +241,11 @@ function importTwistyTimerData(fileContent: string) {
   // [2] - DNF
 
   parsedData.forEach((row: any) => {
-    const [puzzle, category, time, date, scramble, penalty, comment] = row;
+    const [puzzle, category, time, date, scramble, penalty, comment] = row
 
-    if (time === 0 || puzzle == null || category == null || date == null || scramble == null || penalty == null) return;
+    if (time === 0 || puzzle == null || category == null || date == null || scramble == null || penalty == null) return
 
-    let cube = newCubeList.find((c) => c.name === `${puzzle}-${category}`);
+    let cube = newCubeList.find((c) => c.name === `${puzzle}-${category}`)
 
     if (!cube) {
       cube = {
@@ -254,9 +254,9 @@ function importTwistyTimerData(fileContent: string) {
         category: '3x3',
         solves: { session: [], all: [] },
         createdAt: Number(date),
-        favorite: false,
-      };
-      newCubeList.push(cube);
+        favorite: false
+      }
+      newCubeList.push(cube)
     }
 
     const newSolve: Solve = {
@@ -270,39 +270,39 @@ function importTwistyTimerData(fileContent: string) {
       plus2: penalty === 1,
       rating: scramble ? Math.floor(Math.random() * 20) + scramble.toString().length : 10,
       cubeId: cube.id,
-      comment: comment ? comment.toString() : '',
-    };
-    cube.solves.session.push(newSolve);
-  });
+      comment: comment ? comment.toString() : ''
+    }
+    cube.solves.session.push(newSolve)
+  })
 
-  newCubeList = formatCubesDatesAndOrder(newCubeList);
-  newCubeList = parseNXTimerSchema(newCubeList);
+  newCubeList = formatCubesDatesAndOrder(newCubeList)
+  newCubeList = parseNXTimerSchema(newCubeList)
 
-  return newCubeList;
+  return newCubeList
 }
 
 export function formatCubesDatesAndOrder(cubes: Cube[]): Cube[] {
   return cubes.map((cube) => {
-    const sortedSessionSolves = cube.solves.session.sort((a, b) => a.startTime - b.startTime);
-    const sortedAllSolves = cube.solves.all.sort((a, b) => a.startTime - b.startTime);
+    const sortedSessionSolves = cube.solves.session.sort((a, b) => a.startTime - b.startTime)
+    const sortedAllSolves = cube.solves.all.sort((a, b) => a.startTime - b.startTime)
 
     return {
       ...cube,
       createdAt: sortedSessionSolves.length > 0 ? sortedSessionSolves[0].startTime : cube.createdAt,
       solves: {
         session: sortedSessionSolves,
-        all: sortedAllSolves,
-      },
-    };
-  });
+        all: sortedAllSolves
+      }
+    }
+  })
 }
 
 export function parseNXTimerSchema(cubes: Cube[]): Cube[] {
-  const result = nxTimerSchema.safeParse(cubes);
+  const result = nxTimerSchema.safeParse(cubes)
   if (!result.success) {
-    throw new Error(`Invalid Nexus Timer data: ${result.error.message}`);
+    throw new Error(`Invalid Nexus Timer data: ${result.error.message}`)
   }
-  return result.data as Cube[];
+  return result.data as Cube[]
 }
 
 export function uniqueData(cubes: Cube[]) {
@@ -310,9 +310,9 @@ export function uniqueData(cubes: Cube[]) {
     ...cube,
     solves: {
       session: _.uniqBy(cube.solves.session, 'id'),
-      all: _.uniqBy(cube.solves.all, 'id'),
-    },
-  }));
+      all: _.uniqBy(cube.solves.all, 'id')
+    }
+  }))
 }
 
 export function normalizeOldData(cubes: Cube[]): Cube[] {
@@ -333,6 +333,6 @@ export function normalizeOldData(cubes: Cube[]): Cube[] {
           updatedAt: solve.updatedAt ?? solve.startTime
         }))
       }
-    };
-  });
+    }
+  })
 }

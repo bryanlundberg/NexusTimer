@@ -1,5 +1,4 @@
-import { Cube } from '@/interfaces/Cube'
-import { UpdateCubeDTO } from '@/entities/cube/model/types'
+import { Cube, UpdateCubeDTO } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export async function editCubeCollection(dto: UpdateCubeDTO): Promise<Cube> {

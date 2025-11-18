@@ -1,11 +1,11 @@
 import { useMemo } from 'react'
 import _ from 'lodash'
-import { Categories } from '@/interfaces/Categories'
-import { Cube } from '@/interfaces/Cube'
 import calcBestTime from '@/lib/calcBestTime'
 import calcTotalSolvesStatistics from '@/lib/calcTotalSolvesStatistics'
 import calculateBestAo from '@/lib/calculateBestAo'
 import { CompareUser } from '@/features/compare-users/model/compare'
+import { Cube } from '@/entities/cube/model/types'
+import { CUBE_CATEGORIES } from '@/shared/config/cube-categories'
 
 interface User {
   _id: string
@@ -16,7 +16,7 @@ export function useCompareUsersStats(users: User[], userCubes: Record<string, an
     return users.map((user) => {
       const cubesDB = userCubes[user._id] || {}
       const byCategory = Object.create(null) as CompareUser
-      ;(CATEGORIES as Categories[]).forEach((category) => {
+      CUBE_CATEGORIES.forEach((category) => {
         const cubeData = cubesDB[category] ?? []
         const cubeName = ''
 
@@ -33,18 +33,3 @@ export function useCompareUsersStats(users: User[], userCubes: Record<string, an
     })
   }, [users, userCubes])
 }
-
-const CATEGORIES: Categories[] = [
-  '2x2',
-  '3x3',
-  '3x3 OH',
-  '4x4',
-  '5x5',
-  '6x6',
-  '7x7',
-  'SQ1',
-  'Skewb',
-  'Pyraminx',
-  'Megaminx',
-  'Clock'
-]

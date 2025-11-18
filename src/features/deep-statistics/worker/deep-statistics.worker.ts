@@ -1,5 +1,4 @@
 // <reference lib="webworker" />
-import { Cube } from '@/interfaces/Cube'
 import calcAverageStatistics from '@/lib/calcAverageStatistics'
 import calcTimeSpentStatistics from '@/lib/calcTimeSpentStatistics'
 import calcTotalSolvesStatistics from '@/lib/calcTotalSolvesStatistics'
@@ -8,6 +7,7 @@ import calcDeviation from '@/lib/calcDeviation'
 import calcSuccessRate from '@/lib/calcSuccessRate'
 import calcBestTime from '@/lib/calcBestTime'
 import getSolvesMetrics from '@/lib/getSolvesMetrics'
+import { Cube } from '@/entities/cube/model/types'
 
 type InMsg = {
   command: 'start'

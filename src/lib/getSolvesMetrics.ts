@@ -1,7 +1,7 @@
-import { Categories } from '@/interfaces/Categories'
 import { CubeSolves } from '@/interfaces/CubeSolves'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
+import { CubeCategory } from '@/shared/config/cube-categories'
 
 /**
  * Retrieves solves metrics for a specific category and cube name.
@@ -16,7 +16,7 @@ export default function getSolvesMetrics({
   cubeName
 }: {
   cubesDB: Cube[] | null
-  category: Categories
+  category: CubeCategory
   cubeName: string
 }): CubeSolves {
   if (!cubesDB) return { global: [], session: [], cubeAll: [], cubeSession: [] }

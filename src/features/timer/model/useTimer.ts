@@ -3,8 +3,8 @@ import useTimerControls from './useTimerControls'
 import useInspection from './useInspection'
 import useHoldToStart from './useHoldToStart'
 import useEventHandlers from './useEventHandlers'
-import { Cube } from '@/interfaces/Cube'
 import { TimerStatus } from '@/features/timer/model/enums'
+import { Cube } from '@/entities/cube/model/types'
 
 interface UseTimerProps {
   isSolving: boolean

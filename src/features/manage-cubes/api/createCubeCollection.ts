@@ -1,5 +1,4 @@
-import { Cube } from '@/interfaces/Cube'
-import { CreateCubeDTO } from '@/entities/cube/model/types'
+import { CreateCubeDTO, Cube } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import genId from '@/lib/genId'
 

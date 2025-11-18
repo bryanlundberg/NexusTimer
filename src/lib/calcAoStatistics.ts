@@ -1,7 +1,7 @@
-import { Categories } from "@/interfaces/Categories";
-import getSolvesMetrics from "./getSolvesMetrics";
-import calculateBestAo from "./calculateBestAo";
-import { Cube } from "@/interfaces/Cube";
+import getSolvesMetrics from './getSolvesMetrics'
+import calculateBestAo from './calculateBestAo'
+import { Cube } from '@/entities/cube/model/types'
+import { CubeCategory } from '@/shared/config/cube-categories'
 
 /**
  * Calculates various average of X (AoX) statistics for a specific cube and category.
@@ -14,18 +14,18 @@ import { Cube } from "@/interfaces/Cube";
 export default function calcAoStatistics({
   cubesDB,
   category,
-  cubeName,
+  cubeName
 }: {
-  cubesDB: Cube[] | null;
-  category: Categories;
-  cubeName: string;
+  cubesDB: Cube[] | null
+  category: CubeCategory
+  cubeName: string
 }): AoStatistics {
   // Get solve metrics for global, session, cubeAll, and cubeSession
   const { global, session, cubeAll, cubeSession } = getSolvesMetrics({
     cubesDB,
     category,
-    cubeName,
-  });
+    cubeName
+  })
 
   // Calculate AoX statistics for global, session, cubeAll, and cubeSession
   return {
@@ -35,7 +35,7 @@ export default function calcAoStatistics({
       ao12: calculateBestAo(global, 12),
       ao50: calculateBestAo(global, 50),
       ao100: calculateBestAo(global, 100),
-      ao1000: calculateBestAo(global, 1000),
+      ao1000: calculateBestAo(global, 1000)
     },
     session: {
       ao3: calculateBestAo(session, 3),
@@ -43,7 +43,7 @@ export default function calcAoStatistics({
       ao12: calculateBestAo(session, 12),
       ao50: calculateBestAo(session, 50),
       ao100: calculateBestAo(session, 100),
-      ao1000: calculateBestAo(session, 1000),
+      ao1000: calculateBestAo(session, 1000)
     },
     cubeAll: {
       ao3: calculateBestAo(cubeAll, 3),
@@ -51,7 +51,7 @@ export default function calcAoStatistics({
       ao12: calculateBestAo(cubeAll, 12),
       ao50: calculateBestAo(cubeAll, 50),
       ao100: calculateBestAo(cubeAll, 100),
-      ao1000: calculateBestAo(cubeAll, 1000),
+      ao1000: calculateBestAo(cubeAll, 1000)
     },
     cubeSession: {
       ao3: calculateBestAo(cubeSession, 3),
@@ -59,7 +59,7 @@ export default function calcAoStatistics({
       ao12: calculateBestAo(cubeSession, 12),
       ao50: calculateBestAo(cubeSession, 50),
       ao100: calculateBestAo(cubeSession, 100),
-      ao1000: calculateBestAo(cubeSession, 1000),
-    },
-  };
+      ao1000: calculateBestAo(cubeSession, 1000)
+    }
+  }
 }

@@ -1,10 +1,10 @@
-import { Cube } from '@/interfaces/Cube'
 import genId from '@/lib/genId'
-import { Categories } from '@/interfaces/Categories'
-import { Solve } from '@/interfaces/Solve'
 import _ from 'lodash'
 import Cubes from '@/models/indexdb/Cubes'
 import { database } from '@/shared/config/indexdb/indexdb'
+import { Cube } from '@/entities/cube/model/types'
+import { CubeCategory } from '@/shared/config/cube-categories'
+import { Solve } from '@/entities/solve/model/types'
 
 export const useNXData = () => {
   const getCubeById = async (id: string): Promise<Cube | null> => {
@@ -45,7 +45,7 @@ export const useNXData = () => {
   }: {
     id?: string
     name: string
-    category: Categories
+    category: CubeCategory
     solves?: {
       all: Solve[]
       session: Solve[]

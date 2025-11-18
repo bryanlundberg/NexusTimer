@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import { Cube } from '@/interfaces/Cube'
 import { formatCubesDatesAndOrder, importNexusTimerData, normalizeOldData } from '@/lib/importDataFromFile'
 import { toast } from 'sonner'
 import { compressSync, decompressSync, strFromU8, strToU8 } from 'fflate'
@@ -11,6 +10,7 @@ import { useSettingsModalStore } from '@/store/SettingsModalStore'
 import { UserDocument } from '@/models/user'
 import { useUploadThing } from '@/shared/lib/uploadthing-helpers'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
+import { Cube } from '@/entities/cube/model/types'
 
 export const useSyncBackup = () => {
   const { clearCubes, getAllCubes, saveBatchCubes, getAllDatabase } = useNXData()

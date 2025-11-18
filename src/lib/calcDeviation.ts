@@ -1,7 +1,7 @@
-import { Categories } from "@/interfaces/Categories";
-import getSolvesMetrics from "./getSolvesMetrics";
-import getDeviation from "./getDeviation";
-import { Cube } from "@/interfaces/Cube";
+import getSolvesMetrics from './getSolvesMetrics'
+import getDeviation from './getDeviation'
+import { Cube } from '@/entities/cube/model/types'
+import { CubeCategory } from '@/shared/config/cube-categories'
 
 /**
  * Calculates the standard deviation of solve times for different solve sets (global, session, cubeSession, cubeAll) of a specific cube.
@@ -14,24 +14,24 @@ import { Cube } from "@/interfaces/Cube";
 export default function calcDeviation({
   cubesDB,
   category,
-  cubeName,
+  cubeName
 }: {
-  cubesDB: Cube[] | null;
-  category: Categories;
-  cubeName: string;
+  cubesDB: Cube[] | null
+  category: CubeCategory
+  cubeName: string
 }): StatisticN {
   // Get solve metrics for global, session, cubeSession, and cubeAll
   const { global, session, cubeAll, cubeSession } = getSolvesMetrics({
     cubesDB,
     category,
-    cubeName,
-  });
+    cubeName
+  })
 
   // Calculate standard deviation for each solve set
   return {
     global: getDeviation(global),
     session: getDeviation(session),
     cubeAll: getDeviation(cubeAll),
-    cubeSession: getDeviation(cubeSession),
-  };
+    cubeSession: getDeviation(cubeSession)
+  }
 }

@@ -13,8 +13,8 @@ import { useTimerStore } from '@/store/timerStore'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { PlusIcon } from '@radix-ui/react-icons'
-import { Cube } from '@/interfaces/Cube'
 import { Button } from '@/components/ui/button'
+import { Cube } from '@/entities/cube/model/types'
 
 export default function MainCubeSelector() {
   const t = useTranslations('Index')

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Cube } from '@/interfaces/Cube'
 import { decompressSync, strFromU8 } from 'fflate'
+import { Cube } from '@/entities/cube/model/types'
 
 export const useBackup = (url: string) => {
   const [isLoading, setIsLoading] = useState(true)
