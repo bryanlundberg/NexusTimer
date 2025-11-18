@@ -1,8 +1,8 @@
-import { Solve } from "./Solve";
+import { Solve } from '@/entities/solve/model/types'
 
 export interface CubeSolves {
-  global: Solve[];
-  session: Solve[];
-  cubeSession: Solve[];
-  cubeAll: Solve[];
+  global: Solve[]
+  session: Solve[]
+  cubeSession: Solve[]
+  cubeAll: Solve[]
 }
