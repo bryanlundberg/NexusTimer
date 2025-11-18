@@ -3,9 +3,9 @@
 import { useMemo, useState } from 'react'
 import _ from 'lodash'
 import { Badge } from '@/components/ui/badge'
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
 import AlgorithmCard from '@/features/algorithms-list/ui/algorithm-card'
+import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
 interface AlgorithmsPageProps {
   algorithms: AlgorithmCollection[]

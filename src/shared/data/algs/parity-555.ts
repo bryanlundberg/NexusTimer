@@ -1,4 +1,4 @@
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
+import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
 export const PARITY_555_ALGS: AlgorithmCollection[] = [
   {

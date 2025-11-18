@@ -1,4 +1,4 @@
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
+import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
 export const VLS_ALGS: AlgorithmCollection[] = [
   // UF Edge Misoriented

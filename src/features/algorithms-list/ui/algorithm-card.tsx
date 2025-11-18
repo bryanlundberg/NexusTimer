@@ -1,7 +1,6 @@
 import { Card } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import * as React from 'react'
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
 import { cn } from '@/lib/utils'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
 import _ from 'lodash'
@@ -10,6 +9,7 @@ import { EyeIcon } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import AlgorithmModal from '@/features/algorithms-list/ui/algorithm-modal'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
 interface AlgorithmCardProps extends React.HTMLAttributes<HTMLDivElement> {
   onAlgorithmClick?: () => void

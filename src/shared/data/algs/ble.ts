@@ -1,4 +1,4 @@
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
+import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
 export const BLE_ALGS: AlgorithmCollection[] = [
   // H Cases + Corners Oriented Case

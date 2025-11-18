@@ -1,4 +1,4 @@
-import { AlgorithmCollection } from '@/interfaces/AlgorithmCollection'
+import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
 export const ZBLL_S_ALGS: AlgorithmCollection[] = [
   {
