@@ -1,6 +1,6 @@
 // <reference lib="webworker" />
 import calcStatistics from '@/lib/calcStatistics'
-import { Cube } from '@/interfaces/Cube'
+import { Cube } from '@/entities/cube/model/types'
 
 type InMsg = {
   command: 'start'

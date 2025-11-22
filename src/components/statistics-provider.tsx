@@ -10,7 +10,7 @@ export default function StatisticsProvider({ children }: { children?: React.Reac
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    const w = new Worker(new URL('../worker/timer-stats.worker.ts', import.meta.url), { type: 'module' })
+    const w = new Worker(new URL('../shared/worker/timer-stats.worker.ts', import.meta.url), { type: 'module' })
 
     setWorker(w)
 
