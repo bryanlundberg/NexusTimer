@@ -20,12 +20,13 @@ import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { cn } from '@/shared/lib/utils'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
-import DialogEnterNewScramble from '@/components/dialogs/dialog-enter-new-scramble/dialog-enter-new-scramble'
+import EnterCustomScramble from '@/features/enter-custom-scramble/ui/enter-custom-scramble'
 import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 import { Layers } from '@/shared/types/enums'
 import { TimerMode } from '@/features/timer/model/enums'
 import { CrossSolution } from '@/shared/types/types'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 
 export function ScrambleZone() {
   const selectedCube = useTimerStore((store) => store.selectedCube)
@@ -36,6 +37,16 @@ export function ScrambleZone() {
   const settings = useSettingsStore((store) => store.settings)
   const t = useTranslations('Index')
   const { height } = useWindowSize()
+
+  const overlayStore = useOverlayStore()
+
+  const handleOpenCustomScramble = () => {
+    overlayStore.open({
+      id: 'enter-custom-scramble',
+      component: <EnterCustomScramble />,
+      metadata: {}
+    })
+  }
 
   return (
     <>
@@ -77,20 +88,14 @@ export function ScrambleZone() {
           <TooltipProvider delayDuration={250}>
             {!isSolving && selectedCube && (
               <Tooltip>
-                <Dialog>
-                  <TooltipTrigger asChild>
-                    <DialogTrigger asChild>
-                      <Button variant={'ghost'} size={'icon'}>
-                        <Pencil2Icon />
-                      </Button>
-                    </DialogTrigger>
-                  </TooltipTrigger>
-
-                  <DialogEnterNewScramble />
-                  <TooltipContent>
-                    <p>{t('HomePage.edit-scramble')}</p>
-                  </TooltipContent>
-                </Dialog>
+                <TooltipTrigger asChild>
+                  <Button variant={'ghost'} size={'icon'} onClick={handleOpenCustomScramble}>
+                    <Pencil2Icon />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{t('HomePage.edit-scramble')}</p>
+                </TooltipContent>
               </Tooltip>
             )}
 

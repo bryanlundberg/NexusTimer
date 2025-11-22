@@ -12,7 +12,7 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 
-export default function DialogEnterNewScramble() {
+export default function EnterCustomScramble() {
   const t = useTranslations('Index')
   const setCustomScramble = useTimerStore((state) => state.setCustomScramble)
   const inputRef = useRef<HTMLInputElement>(null)
