@@ -1,4 +1,4 @@
-import useFreeMode from '@/hooks/useFreeMode'
+import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { useParams } from 'next/navigation'
 import PlayerMiniCard from '@/features/free-play-room/ui/player-mini-card'
 

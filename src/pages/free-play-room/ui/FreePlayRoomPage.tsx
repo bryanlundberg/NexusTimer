@@ -1,6 +1,6 @@
 'use client'
 import { useParams, useRouter } from 'next/navigation'
-import useFreeMode from '@/hooks/useFreeMode'
+import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'

@@ -3,7 +3,7 @@
 import formatTime from '@/shared/lib/formatTime'
 import { useParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import useFreeMode from '@/hooks/useFreeMode'
+import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 
 export default function ResultsTab() {
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: '' }
