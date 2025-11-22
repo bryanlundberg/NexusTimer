@@ -1,4 +1,4 @@
-import { Themes } from '@/interfaces/types/Themes'
+import { Themes } from '@/shared/types/Themes'
 import { useBackgroundImageStore } from '@/shared/model/settings/useBackgroundImageStore'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
