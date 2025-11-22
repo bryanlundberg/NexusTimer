@@ -1,5 +1,5 @@
 'use client'
-import genId from '@/lib/genId'
+import genId from '@/shared/lib/genId'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'

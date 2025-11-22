@@ -11,7 +11,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { createShareMessage } from '@/lib/createShareMessage'
+import { createShareMessage } from '@/features/deep-statistics/lib/createShareMessage'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { DotsVerticalIcon, DragHandleHorizontalIcon, DragHandleVerticalIcon, Share1Icon } from '@radix-ui/react-icons'
 import { DateTime } from 'luxon'

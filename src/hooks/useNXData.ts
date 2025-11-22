@@ -1,4 +1,4 @@
-import genId from '@/lib/genId'
+import genId from '@/shared/lib/genId'
 import _ from 'lodash'
 import CubesIndexdb from '@/entities/cube/lib/cubes-indexdb'
 import { database } from '@/shared/config/indexdb/indexdb'

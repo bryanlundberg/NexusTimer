@@ -1,6 +1,6 @@
 import { CreateCubeDTO, Cube } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
-import genId from '@/lib/genId'
+import genId from '@/shared/lib/genId'
 
 export async function createCubeCollection(dto: CreateCubeDTO): Promise<Cube> {
   const cubes = await cubesDB.getAll()

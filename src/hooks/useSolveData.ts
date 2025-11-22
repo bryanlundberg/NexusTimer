@@ -1,8 +1,8 @@
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import genId from '@/lib/genId'
+import genId from '@/shared/lib/genId'
 import { useNXData } from '@/hooks/useNXData'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import convertToMs from '@/lib/convertToMs'
+import convertToMs from '@/shared/lib/convertToMs'
 import { useState } from 'react'
 import { Solve } from '@/entities/solve/model/types'
 

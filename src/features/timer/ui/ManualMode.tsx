@@ -1,5 +1,5 @@
 'use client'
-import convertToMs from '@/lib/convertToMs'
+import convertToMs from '@/shared/lib/convertToMs'
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'

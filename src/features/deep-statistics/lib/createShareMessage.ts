@@ -1,8 +1,8 @@
-import getMean from '../shared/lib/statistics/getMean'
-import getWorstTime from '../shared/lib/statistics/getWorstTime'
-import getBestTime from '../shared/lib/statistics/getBestTime'
-import getDeviation from '../shared/lib/statistics/getDeviation'
-import formatTime from '../shared/lib/formatTime'
+import getMean from '../../../shared/lib/statistics/getMean'
+import getWorstTime from '../../../shared/lib/statistics/getWorstTime'
+import getBestTime from '../../../shared/lib/statistics/getBestTime'
+import getDeviation from '../../../shared/lib/statistics/getDeviation'
+import formatTime from '../../../shared/lib/formatTime'
 import { SolveTab } from '@/shared/types/enums'
 import { Solve } from '@/entities/solve/model/types'
 

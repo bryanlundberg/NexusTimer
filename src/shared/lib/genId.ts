@@ -1,10 +1,10 @@
-import { v4 as uuidv4 } from "uuid";
-declare module "uuid";
+import { v4 as uuidv4 } from 'uuid'
+declare module 'uuid'
 
 /**
  * Generates a new UUID (Universally Unique Identifier).
  * @returns {string} The generated UUID.
  */
 export default function genId(): string {
-  return uuidv4();
+  return uuidv4()
 }

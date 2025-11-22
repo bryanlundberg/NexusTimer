@@ -1,4 +1,4 @@
-import exportDataToFile from '@/lib/exportDataToFile'
+import exportDataToFile from '@/features/settings/lib/exportDataToFile'
 import { useTranslations } from 'next-intl'
 import { DownloadIcon, UploadIcon } from '@radix-ui/react-icons'
 import { Dialog, DialogTrigger } from '@/components/ui/dialog'
