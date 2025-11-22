@@ -11,8 +11,8 @@ import {
   LineSeries
 } from 'lightweight-charts'
 import formatTime from '@/shared/lib/formatTime'
-import getBestTime from '@/lib/getBestTime'
-import getWorstTime from '@/lib/getWorstTime'
+import getBestTime from '@/shared/lib/statistics/getBestTime'
+import getWorstTime from '@/shared/lib/statistics/getWorstTime'
 import { Solve } from '@/entities/solve/model/types'
 import { TimeObject } from '@/features/line-chart-statistics/model/types'
 import moment from 'moment'

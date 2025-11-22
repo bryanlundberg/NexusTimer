@@ -1,12 +1,12 @@
 // <reference lib="webworker" />
-import calcAverageStatistics from '@/lib/calcAverageStatistics'
-import calcTimeSpentStatistics from '@/lib/calcTimeSpentStatistics'
-import calcTotalSolvesStatistics from '@/lib/calcTotalSolvesStatistics'
-import calcAoStatistics from '@/lib/calcAoStatistics'
-import calcDeviation from '@/lib/calcDeviation'
-import calcSuccessRate from '@/lib/calcSuccessRate'
-import calcBestTime from '@/lib/calcBestTime'
-import getSolvesMetrics from '@/lib/getSolvesMetrics'
+import calcAverageStatistics from '@/shared/lib/statistics/calcAverageStatistics'
+import calcTimeSpentStatistics from '@/shared/lib/statistics/calcTimeSpentStatistics'
+import calcTotalSolvesStatistics from '@/shared/lib/statistics/calcTotalSolvesStatistics'
+import calcAoStatistics from '@/shared/lib/statistics/calcAoStatistics'
+import calcDeviation from '@/shared/lib/statistics/calcDeviation'
+import calcSuccessRate from '@/shared/lib/statistics/calcSuccessRate'
+import calcBestTime from '@/shared/lib/statistics/calcBestTime'
+import getSolvesMetrics from '@/shared/lib/statistics/getSolvesMetrics'
 import { Cube } from '@/entities/cube/model/types'
 
 type InMsg = {

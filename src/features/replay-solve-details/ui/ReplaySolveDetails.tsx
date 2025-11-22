@@ -4,7 +4,7 @@ import { DialogContent, DialogTitle } from '@/components/ui/dialog'
 import * as React from 'react'
 import { TwistyPlayer } from 'cubing/twisty'
 import formatTime from '@/shared/lib/formatTime'
-import calcTurnsPerSecond from '@/lib/calcTurnsPerSecond'
+import calcTurnsPerSecond from '@/shared/lib/statistics/calcTurnsPerSecond'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 

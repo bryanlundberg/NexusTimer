@@ -1,4 +1,4 @@
-import calcPenaltyRate from '@/lib/calcPenaltyRate'
+import calcPenaltyRate from '@/shared/lib/statistics/calcPenaltyRate'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
 

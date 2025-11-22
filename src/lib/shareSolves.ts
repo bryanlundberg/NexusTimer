@@ -1,5 +1,5 @@
 import formatTime from '../shared/lib/formatTime'
-import calculateCurrentAo from './calculateCurrentAo'
+import calculateCurrentAo from '../shared/lib/statistics/calculateCurrentAo'
 import { Solve } from '@/entities/solve/model/types'
 
 export function shareSolves({ solves }: { solves: Solve[] }) {
