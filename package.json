@@ -43,7 +43,6 @@
     "@react-email/components": "^0.0.27",
     "@react-three/fiber": "^9.3.0",
     "@react-three/postprocessing": "^3.0.4",
-    "@serwist/next": "^9.2.1",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "20.6.0",
     "@types/papaparse": "^5.3.15",
@@ -123,7 +122,6 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.50.1",
-    "@serwist/build": "^9.2.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
