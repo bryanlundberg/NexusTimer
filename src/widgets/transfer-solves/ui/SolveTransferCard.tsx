@@ -1,6 +1,5 @@
 import { Card } from '@/components/ui/card'
 import formatTime from '@/shared/lib/formatTime'
-import formatDate from '@/lib/formatDate'
 import { Solve } from '@/entities/solve/model/types'
 
 interface SolveTransferCardProps {
@@ -19,7 +18,7 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
         <span className="text-md">{formatTime(solve.time).split('.')[0]}</span>
         <span className="text-sm">.{formatTime(solve.time).split('.')[1]}</span>
       </div>
-      <div className="absolute z-20 text-xs top-1 left-1">{formatDate(solve.endTime).slice(0, 5)}</div>
+      <div className="absolute z-20 text-xs top-1 left-1">{solve.endTime}</div>
     </Card>
   )
 }
