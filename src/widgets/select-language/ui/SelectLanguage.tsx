@@ -1,5 +1,5 @@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { languages } from '@/lib/const/languages'
+import { languages } from '@/shared/const/languages'
 import { syncTranslations } from '@/shared/lib/language'
 import { useLocale } from 'next-intl'
 
