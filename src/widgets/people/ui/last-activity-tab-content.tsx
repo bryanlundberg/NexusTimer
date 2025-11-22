@@ -1,5 +1,4 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Cube } from '@/interfaces/Cube'
 import { useMemo, useState } from 'react'
 import _ from 'lodash'
 import formatTime from '@/shared/lib/formatTime'
@@ -15,6 +14,7 @@ import {
 } from '@/components/ui/pagination'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
+import { Cube } from '@/entities/cube/model/types'
 
 interface LastActivityTabContentProps {
   cubes: Cube[]

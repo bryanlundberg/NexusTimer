@@ -2,6 +2,7 @@ import getSolvesMetrics from './getSolvesMetrics'
 import prettyMilliseconds from 'pretty-ms'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/config/cube-categories'
+import { StatisticValue } from '@/shared/types/statistics'
 
 /**
  * Calculates the total time spent for different solve sets (global, session, cubeSession, cubeAll) of a specific cube.
@@ -18,7 +19,7 @@ export default function calcTimeSpentStatistics({
   cubesDB: Cube[] | null
   category: CubeCategory
   cubeName: string
-}): StatisticS {
+}): StatisticValue<string> {
   // Get solve metrics for global, session, cubeSession, and cubeAll
   const solveMetrics = getSolvesMetrics({ cubesDB, category, cubeName })
 
