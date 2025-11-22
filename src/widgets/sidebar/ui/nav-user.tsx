@@ -15,7 +15,7 @@ import {
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar'
 import { CaretSortIcon } from '@radix-ui/react-icons'
 import { useRouter } from 'next/navigation'
-import useAuth from '@/hooks/useAuth'
+import useLogout from '@/features/logout/model/useLogout'
 
 export function NavUser({
   user
@@ -28,7 +28,7 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar()
   const router = useRouter()
-  const { handleResetDeviceData } = useAuth()
+  const { handleResetDeviceData } = useLogout()
 
   return (
     <SidebarMenu>

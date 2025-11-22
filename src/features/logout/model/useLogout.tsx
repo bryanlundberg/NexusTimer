@@ -4,7 +4,7 @@ import { useNXData } from '@/hooks/useNXData'
 import { useTranslations } from 'next-intl'
 import useAlert from '@/shared/model/useAlert'
 
-export default function useAuth() {
+export default function useLogout() {
   const t = useTranslations('Index')
   const { clearCubes } = useNXData()
   const { data: session } = useSession()
