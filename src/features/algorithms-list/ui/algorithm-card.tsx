@@ -1,7 +1,7 @@
 import { Card } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import * as React from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
 import _ from 'lodash'
 import { Button } from '@/components/ui/button'

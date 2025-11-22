@@ -6,7 +6,7 @@ import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { useWindowSize } from 'react-use-size'
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 

@@ -1,32 +1,27 @@
 // @ts-nocheck
-'use client';
+'use client'
 
-import * as React from 'react';
-import {
-  motion,
-  AnimatePresence,
-  type HTMLMotionProps,
-  type Transition,
-} from 'motion/react';
+import * as React from 'react'
+import { motion, AnimatePresence, type HTMLMotionProps, type Transition } from 'motion/react'
 
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/lib/utils'
 
 const sizes = {
   default: 'size-8 [&_svg]:size-5',
   sm: 'size-6 [&_svg]:size-4',
   md: 'size-10 [&_svg]:size-6',
-  lg: 'size-12 [&_svg]:size-7',
-};
+  lg: 'size-12 [&_svg]:size-7'
+}
 
 type IconButtonProps = Omit<HTMLMotionProps<'button'>, 'color'> & {
-  icon: React.ElementType;
-  active?: boolean;
-  className?: string;
-  animate?: boolean;
-  size?: keyof typeof sizes;
-  color?: [number, number, number];
-  transition?: Transition;
-};
+  icon: React.ElementType
+  active?: boolean
+  className?: string
+  animate?: boolean
+  size?: keyof typeof sizes
+  color?: [number, number, number]
+  transition?: Transition
+}
 
 function IconButton({
   icon: Icon,
@@ -44,13 +39,13 @@ function IconButton({
       className={cn(
         `group/icon-button cursor-pointer relative inline-flex size-10 shrink-0 rounded-full hover:bg-[var(--icon-button-color)]/10 active:bg-[var(--icon-button-color)]/20 text-[var(--icon-button-color)]`,
         sizes[size],
-        className,
+        className
       )}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       style={
         {
-          '--icon-button-color': `rgb(${color[0]}, ${color[1]}, ${color[2]})`,
+          '--icon-button-color': `rgb(${color[0]}, ${color[1]}, ${color[2]})`
         } as React.CSSProperties
       }
       {...props}
@@ -85,7 +80,7 @@ function IconButton({
             <motion.div
               className="absolute inset-0 z-10 rounded-full "
               style={{
-                background: `radial-gradient(circle, rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.4) 0%, rgba(${color[0]}, ${color[1]}, ${color[2]}, 0) 70%)`,
+                background: `radial-gradient(circle, rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.4) 0%, rgba(${color[0]}, ${color[1]}, ${color[2]}, 0) 70%)`
               }}
               initial={{ scale: 1.2, opacity: 0 }}
               animate={{ scale: [1.2, 1.8, 1.2], opacity: [0, 0.3, 0] }}
@@ -94,7 +89,7 @@ function IconButton({
             <motion.div
               className="absolute inset-0 z-10 rounded-full"
               style={{
-                boxShadow: `0 0 10px 2px rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`,
+                boxShadow: `0 0 10px 2px rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.6)`
               }}
               initial={{ scale: 1, opacity: 0 }}
               animate={{ scale: [1, 1.5], opacity: [0.8, 0] }}
@@ -109,7 +104,7 @@ function IconButton({
                   x: `calc(50% + ${Math.cos((i * Math.PI) / 3) * 30}px)`,
                   y: `calc(50% + ${Math.sin((i * Math.PI) / 3) * 30}px)`,
                   scale: [0, 1, 0],
-                  opacity: [0, 1, 0],
+                  opacity: [0, 1, 0]
                 }}
                 transition={{ duration: 0.8, delay: i * 0.05, ease: 'easeOut' }}
               />
@@ -118,7 +113,7 @@ function IconButton({
         )}
       </AnimatePresence>
     </motion.button>
-  );
+  )
 }
 
-export { IconButton, sizes, type IconButtonProps };
+export { IconButton, sizes, type IconButtonProps }

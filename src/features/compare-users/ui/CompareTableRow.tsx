@@ -1,6 +1,6 @@
 import React from 'react'
 import { Badge } from '@/components/ui/badge'
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 
 export default function CompareTableRow({
   title,

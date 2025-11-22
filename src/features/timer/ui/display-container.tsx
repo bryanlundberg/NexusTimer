@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 import { ReactNode } from 'react'
 
 interface DisplayContainerProps extends React.HTMLAttributes<HTMLDivElement> {

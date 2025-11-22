@@ -1,35 +1,32 @@
 // @ts-nocheck
-'use client';
+'use client'
 
-import { cn } from '@/lib/utils';
-import * as React from 'react';
+import { cn } from '@/shared/lib/utils'
+import * as React from 'react'
 
+const rand = (min: number, max: number): number => Math.random() * (max - min) + min
 
-const rand = (min: number, max: number): number =>
-  Math.random() * (max - min) + min;
+const randInt = (min: number, max: number): number => Math.floor(Math.random() * (max - min) + min)
 
-const randInt = (min: number, max: number): number =>
-  Math.floor(Math.random() * (max - min) + min);
-
-const randColor = (): string => `hsl(${randInt(0, 360)}, 100%, 50%)`;
+const randColor = (): string => `hsl(${randInt(0, 360)}, 100%, 50%)`
 
 type ParticleType = {
-  x: number;
-  y: number;
-  color: string;
-  speed: number;
-  direction: number;
-  vx: number;
-  vy: number;
-  gravity: number;
-  friction: number;
-  alpha: number;
-  decay: number;
-  size: number;
-  update: () => void;
-  draw: (ctx: CanvasRenderingContext2D) => void;
-  isAlive: () => boolean;
-};
+  x: number
+  y: number
+  color: string
+  speed: number
+  direction: number
+  vx: number
+  vy: number
+  gravity: number
+  friction: number
+  alpha: number
+  decay: number
+  size: number
+  update: () => void
+  draw: (ctx: CanvasRenderingContext2D) => void
+  isAlive: () => boolean
+}
 
 function createParticle(
   x: number,
@@ -39,12 +36,12 @@ function createParticle(
   direction: number,
   gravity: number,
   friction: number,
-  size: number,
+  size: number
 ): ParticleType {
-  const vx = Math.cos(direction) * speed;
-  const vy = Math.sin(direction) * speed;
-  const alpha = 1;
-  const decay = rand(0.005, 0.02);
+  const vx = Math.cos(direction) * speed
+  const vy = Math.sin(direction) * speed
+  const alpha = 1
+  const decay = rand(0.005, 0.02)
 
   return {
     x,
@@ -60,45 +57,45 @@ function createParticle(
     decay,
     size,
     update() {
-      this.vx *= this.friction;
-      this.vy *= this.friction;
-      this.vy += this.gravity;
-      this.x += this.vx;
-      this.y += this.vy;
-      this.alpha -= this.decay;
+      this.vx *= this.friction
+      this.vy *= this.friction
+      this.vy += this.gravity
+      this.x += this.vx
+      this.y += this.vy
+      this.alpha -= this.decay
     },
     draw(ctx: CanvasRenderingContext2D) {
-      ctx.save();
-      ctx.globalAlpha = this.alpha;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
-      ctx.fill();
-      ctx.restore();
+      ctx.save()
+      ctx.globalAlpha = this.alpha
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+      ctx.fillStyle = this.color
+      ctx.fill()
+      ctx.restore()
     },
     isAlive() {
-      return this.alpha > 0;
-    },
-  };
+      return this.alpha > 0
+    }
+  }
 }
 
 type FireworkType = {
-  x: number;
-  y: number;
-  targetY: number;
-  color: string;
-  speed: number;
-  size: number;
-  angle: number;
-  vx: number;
-  vy: number;
-  trail: { x: number; y: number }[];
-  trailLength: number;
-  exploded: boolean;
-  update: () => boolean;
-  explode: () => void;
-  draw: (ctx: CanvasRenderingContext2D) => void;
-};
+  x: number
+  y: number
+  targetY: number
+  color: string
+  speed: number
+  size: number
+  angle: number
+  vx: number
+  vy: number
+  trail: { x: number; y: number }[]
+  trailLength: number
+  exploded: boolean
+  update: () => boolean
+  explode: () => void
+  draw: (ctx: CanvasRenderingContext2D) => void
+}
 
 function createFirework(
   x: number,
@@ -109,13 +106,13 @@ function createFirework(
   size: number,
   particleSpeed: { min: number; max: number } | number,
   particleSize: { min: number; max: number } | number,
-  onExplode: (particles: ParticleType[]) => void,
+  onExplode: (particles: ParticleType[]) => void
 ): FireworkType {
-  const angle = -Math.PI / 2 + rand(-0.3, 0.3);
-  const vx = Math.cos(angle) * speed;
-  const vy = Math.sin(angle) * speed;
-  const trail: { x: number; y: number }[] = [];
-  const trailLength = randInt(10, 25);
+  const angle = -Math.PI / 2 + rand(-0.3, 0.3)
+  const vx = Math.cos(angle) * speed
+  const vy = Math.sin(angle) * speed
+  const trail: { x: number; y: number }[] = []
+  const trailLength = randInt(10, 25)
 
   return {
     x,
@@ -131,85 +128,76 @@ function createFirework(
     trailLength,
     exploded: false,
     update() {
-      this.trail.push({ x: this.x, y: this.y });
+      this.trail.push({ x: this.x, y: this.y })
       if (this.trail.length > this.trailLength) {
-        this.trail.shift();
+        this.trail.shift()
       }
-      this.x += this.vx;
-      this.y += this.vy;
-      this.vy += 0.02;
+      this.x += this.vx
+      this.y += this.vy
+      this.vy += 0.02
       if (this.vy >= 0 || this.y <= this.targetY) {
-        this.explode();
-        return false;
+        this.explode()
+        return false
       }
-      return true;
+      return true
     },
     explode() {
-      const numParticles = randInt(50, 150);
-      const particles: ParticleType[] = [];
+      const numParticles = randInt(50, 150)
+      const particles: ParticleType[] = []
       for (let i = 0; i < numParticles; i++) {
-        const particleAngle = rand(0, Math.PI * 2);
-        const localParticleSpeed = getValueByRange(particleSpeed);
-        const localParticleSize = getValueByRange(particleSize);
+        const particleAngle = rand(0, Math.PI * 2)
+        const localParticleSpeed = getValueByRange(particleSpeed)
+        const localParticleSize = getValueByRange(particleSize)
         particles.push(
-          createParticle(
-            this.x,
-            this.y,
-            this.color,
-            localParticleSpeed,
-            particleAngle,
-            0.05,
-            0.98,
-            localParticleSize,
-          ),
-        );
+          createParticle(this.x, this.y, this.color, localParticleSpeed, particleAngle, 0.05, 0.98, localParticleSize)
+        )
       }
-      onExplode(particles);
+      onExplode(particles)
     },
     draw(ctx: CanvasRenderingContext2D) {
-      ctx.save();
-      ctx.beginPath();
+      ctx.save()
+      ctx.beginPath()
       if (this.trail.length > 1) {
-        ctx.moveTo(this.trail[0]?.x ?? this.x, this.trail[0]?.y ?? this.y);
+        ctx.moveTo(this.trail[0]?.x ?? this.x, this.trail[0]?.y ?? this.y)
         for (const point of this.trail) {
-          ctx.lineTo(point.x, point.y);
+          ctx.lineTo(point.x, point.y)
         }
       } else {
-        ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x, this.y);
+        ctx.moveTo(this.x, this.y)
+        ctx.lineTo(this.x, this.y)
       }
-      ctx.strokeStyle = this.color;
-      ctx.lineWidth = this.size;
-      ctx.lineCap = 'round';
-      ctx.stroke();
-      ctx.restore();
-    },
-  };
+      ctx.strokeStyle = this.color
+      ctx.lineWidth = this.size
+      ctx.lineCap = 'round'
+      ctx.stroke()
+      ctx.restore()
+    }
+  }
 }
 
 function getValueByRange(range: { min: number; max: number } | number): number {
   if (typeof range === 'number') {
-    return range;
+    return range
   }
-  return rand(range.min, range.max);
+  return rand(range.min, range.max)
 }
 
 function getColor(color: string | string[] | undefined): string {
   if (Array.isArray(color)) {
-    return color[randInt(0, color.length)] ?? randColor();
+    return color[randInt(0, color.length)] ?? randColor()
   }
-  return color ?? randColor();
+  return color ?? randColor()
 }
 
 type FireworksBackgroundProps = Omit<React.ComponentProps<'div'>, 'color'> & {
-  canvasProps?: React.ComponentProps<'canvas'>;
-  population?: number;
-  color?: string | string[];
-  fireworkSpeed?: { min: number; max: number } | number;
-  fireworkSize?: { min: number; max: number } | number;
-  particleSpeed?: { min: number; max: number } | number;
-  particleSize?: { min: number; max: number } | number;
-};
+  canvasProps?: React.ComponentProps<'canvas'>
+  population?: number
+  color?: string | string[]
+  fireworkSpeed?: { min: number; max: number } | number
+  fireworkSize?: { min: number; max: number } | number
+  particleSpeed?: { min: number; max: number } | number
+  particleSize?: { min: number; max: number } | number
+}
 
 function FireworksBackground({
   ref,
@@ -223,130 +211,103 @@ function FireworksBackground({
   particleSize = { min: 1, max: 5 },
   ...props
 }: FireworksBackgroundProps) {
-  const canvasRef = React.useRef<HTMLCanvasElement>(null);
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement);
+  const canvasRef = React.useRef<HTMLCanvasElement>(null)
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement)
 
   React.useEffect(() => {
-    const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const canvas = canvasRef.current
+    const container = containerRef.current
+    if (!canvas || !container) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
 
-    let maxX = window.innerWidth;
-    let ratio = container.offsetHeight / container.offsetWidth;
-    let maxY = maxX * ratio;
-    canvas.width = maxX;
-    canvas.height = maxY;
+    let maxX = window.innerWidth
+    let ratio = container.offsetHeight / container.offsetWidth
+    let maxY = maxX * ratio
+    canvas.width = maxX
+    canvas.height = maxY
 
     const setCanvasSize = () => {
-      maxX = window.innerWidth;
-      ratio = container.offsetHeight / container.offsetWidth;
-      maxY = maxX * ratio;
-      canvas.width = maxX;
-      canvas.height = maxY;
-    };
-    window.addEventListener('resize', setCanvasSize);
+      maxX = window.innerWidth
+      ratio = container.offsetHeight / container.offsetWidth
+      maxY = maxX * ratio
+      canvas.width = maxX
+      canvas.height = maxY
+    }
+    window.addEventListener('resize', setCanvasSize)
 
-    const explosions: ParticleType[] = [];
-    const fireworks: FireworkType[] = [];
+    const explosions: ParticleType[] = []
+    const fireworks: FireworkType[] = []
 
     const handleExplosion = (particles: ParticleType[]) => {
-      explosions.push(...particles);
-    };
+      explosions.push(...particles)
+    }
 
     const launchFirework = () => {
-      const x = rand(maxX * 0.1, maxX * 0.9);
-      const y = maxY;
-      const targetY = rand(maxY * 0.1, maxY * 0.4);
-      const fireworkColor = getColor(color);
-      const speed = getValueByRange(fireworkSpeed);
-      const size = getValueByRange(fireworkSize);
+      const x = rand(maxX * 0.1, maxX * 0.9)
+      const y = maxY
+      const targetY = rand(maxY * 0.1, maxY * 0.4)
+      const fireworkColor = getColor(color)
+      const speed = getValueByRange(fireworkSpeed)
+      const size = getValueByRange(fireworkSize)
       fireworks.push(
-        createFirework(
-          x,
-          y,
-          targetY,
-          fireworkColor,
-          speed,
-          size,
-          particleSpeed,
-          particleSize,
-          handleExplosion,
-        ),
-      );
-      const timeout = rand(300, 800) / population;
-      setTimeout(launchFirework, timeout);
-    };
+        createFirework(x, y, targetY, fireworkColor, speed, size, particleSpeed, particleSize, handleExplosion)
+      )
+      const timeout = rand(300, 800) / population
+      setTimeout(launchFirework, timeout)
+    }
 
-    launchFirework();
+    launchFirework()
 
-    let animationFrameId: number;
+    let animationFrameId: number
     const animate = () => {
-      ctx.clearRect(0, 0, maxX, maxY);
+      ctx.clearRect(0, 0, maxX, maxY)
 
       for (let i = fireworks.length - 1; i >= 0; i--) {
-        const firework = fireworks[i];
+        const firework = fireworks[i]
         if (!firework?.update()) {
-          fireworks.splice(i, 1);
+          fireworks.splice(i, 1)
         } else {
-          firework.draw(ctx);
+          firework.draw(ctx)
         }
       }
 
       for (let i = explosions.length - 1; i >= 0; i--) {
-        const particle = explosions[i];
-        particle?.update();
+        const particle = explosions[i]
+        particle?.update()
         if (particle?.isAlive()) {
-          particle.draw(ctx);
+          particle.draw(ctx)
         } else {
-          explosions.splice(i, 1);
+          explosions.splice(i, 1)
         }
       }
 
-      animationFrameId = requestAnimationFrame(animate);
-    };
+      animationFrameId = requestAnimationFrame(animate)
+    }
 
-    animate();
+    animate()
 
     const handleClick = (event: MouseEvent) => {
-      const x = event.clientX;
-      const y = maxY;
-      const targetY = event.clientY;
-      const fireworkColor = getColor(color);
-      const speed = getValueByRange(fireworkSpeed);
-      const size = getValueByRange(fireworkSize);
+      const x = event.clientX
+      const y = maxY
+      const targetY = event.clientY
+      const fireworkColor = getColor(color)
+      const speed = getValueByRange(fireworkSpeed)
+      const size = getValueByRange(fireworkSize)
       fireworks.push(
-        createFirework(
-          x,
-          y,
-          targetY,
-          fireworkColor,
-          speed,
-          size,
-          particleSpeed,
-          particleSize,
-          handleExplosion,
-        ),
-      );
-    };
+        createFirework(x, y, targetY, fireworkColor, speed, size, particleSpeed, particleSize, handleExplosion)
+      )
+    }
 
-    container.addEventListener('click', handleClick);
+    container.addEventListener('click', handleClick)
 
     return () => {
-      window.removeEventListener('resize', setCanvasSize);
-      container.removeEventListener('click', handleClick);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, [
-    population,
-    color,
-    fireworkSpeed,
-    fireworkSize,
-    particleSpeed,
-    particleSize,
-  ]);
+      window.removeEventListener('resize', setCanvasSize)
+      container.removeEventListener('click', handleClick)
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [population, color, fireworkSpeed, fireworkSize, particleSpeed, particleSize])
 
   return (
     <div
@@ -355,13 +316,9 @@ function FireworksBackground({
       className={cn('relative size-full overflow-hidden', className)}
       {...props}
     >
-      <canvas
-        {...canvasProps}
-        ref={canvasRef}
-        className={cn('absolute inset-0 size-full', canvasProps?.className)}
-      />
+      <canvas {...canvasProps} ref={canvasRef} className={cn('absolute inset-0 size-full', canvasProps?.className)} />
     </div>
-  );
+  )
 }
 
-export { FireworksBackground, type FireworksBackgroundProps };
+export { FireworksBackground, type FireworksBackgroundProps }

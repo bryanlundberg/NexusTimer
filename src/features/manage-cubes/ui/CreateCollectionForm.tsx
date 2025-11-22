@@ -3,7 +3,7 @@ import { DrawerClose, DrawerDescription, DrawerFooter, DrawerTitle } from '@/com
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { cubeCollection } from '@/shared/const/cube-collection'
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'

@@ -5,7 +5,7 @@ import React from 'react'
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useWindowSize } from 'react-use-size'
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { Solve } from '@/entities/solve/model/types'
 
