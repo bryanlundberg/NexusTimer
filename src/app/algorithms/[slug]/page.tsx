@@ -1,6 +1,6 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
-import { notFound, useParams } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { TwistyPlayer } from 'cubing/twisty'
 import { AlgorithmsList } from '@/features/algorithms-list/ui/AlgorithmsList'
 import AlgorithmsBreadcrumb from '@/widgets/algorithms-breadcrumb/ui/AlgorithmsBreadcrumb'
@@ -11,7 +11,7 @@ import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
 
 type Props = { params: Promise<{ slug: string }> }
 
-export async function generateMetadata({ params }: Props, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = (await params).slug
 
   const collection = ALGORITHM_SETS.find((set) => set.slug === slug)
