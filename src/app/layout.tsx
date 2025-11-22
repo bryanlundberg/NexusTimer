@@ -10,7 +10,7 @@ import { locales } from '@/shared/config/i18n/locales'
 import JsonLd from './jsonld'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SidebarProvider } from '@/components/ui/sidebar'
-import AlertProvider from '@/components/alert/AlertProvider'
+import AlertsProvider from '@/components/alerts-provider'
 import { Viewport } from 'next'
 import { Overlay } from '@/shared/ui/overlay/overlay'
 
@@ -106,10 +106,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <NextIntlClientProvider messages={messages}>
               <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem disableTransitionOnChange>
                 <SidebarProvider>
-                  <AlertProvider>
+                  <AlertsProvider>
                     {children}
                     <Overlay />
-                  </AlertProvider>
+                  </AlertsProvider>
                 </SidebarProvider>
               </ThemeProvider>
             </NextIntlClientProvider>
