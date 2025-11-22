@@ -1,5 +1,13 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
+import { notFound, useParams } from 'next/navigation'
+import { TwistyPlayer } from 'cubing/twisty'
+import { AlgorithmsList } from '@/features/algorithms-list/ui/AlgorithmsList'
+import AlgorithmsBreadcrumb from '@/widgets/algorithms-breadcrumb/ui/AlgorithmsBreadcrumb'
+import Suggestions from '@/shared/ui/suggestions/suggestions'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import Information from '@/features/algorithms-list/ui/information'
+import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -34,4 +42,30 @@ export async function generateStaticParams() {
   })
 }
 
-export { default } from '@/pages/algorithms-method/ui/AlgorithmsMethodPage'
+export default async function AlgorithmsMethodPage({ params }: Props) {
+  const { slug } = await params
+  const collection = ALGORITHM_SETS.find((set: { slug: string }) => set.slug === slug)
+
+  if (!collection) {
+    notFound()
+  }
+
+  return (
+    <ScrollArea className="max-h-dvh overflow-auto p-4">
+      <AlgorithmsBreadcrumb />
+      <Information title={`${collection.title} - Algorithms`} description={collection.description} />
+      <AlgorithmsList
+        algorithms={collection.algorithms}
+        virtualization={collection.virtualization as unknown as TwistyPlayer}
+        puzzle={collection.puzzle}
+      />
+
+      {collection.file && (
+        <Suggestions
+          link={ALGORITHMS_GITHUB_URL + `/${collection.file.toLowerCase()}`}
+          message={'Edit this algorithms on Github'}
+        />
+      )}
+    </ScrollArea>
+  )
+}
