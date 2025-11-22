@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
-import getDisplayId from '@/lib/getDisplayId'
 import { CubeCategory } from '@/shared/config/cube-categories'
+import { cubeCollection } from '@/shared/const/cube-collection'
 
 interface ScrambleDisplay extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
@@ -30,8 +30,8 @@ export default function ScrambleDisplay({
     if (existingPlayer) {
       existingPlayer.remove()
     }
-
-    const displayId = getDisplayId(event)
+    const id = cubeCollection.find((u) => u.name === event)
+    const displayId = id?.displayId ?? '3x3x3'
 
     const player = new TwistyPlayer({
       puzzle: puzzle ?? (displayId || '3x3x3'),
