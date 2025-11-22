@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { TwistyPlayer } from 'cubing/twisty'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { CubeEngine } from 'cube-state-engine'
 import formatTime from '@/shared/lib/formatTime'
 import genId from '@/lib/genId'

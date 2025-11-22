@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 
 export default function StatisticsProvider({ children }: { children?: React.ReactNode }) {
   const [worker, setWorker] = useState<Worker | null>(null)

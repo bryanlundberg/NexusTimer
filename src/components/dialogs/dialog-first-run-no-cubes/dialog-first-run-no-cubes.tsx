@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { Dialog } from '@/components/ui/dialog'
 import { DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'
 import DialogImportBackup from '@/components/dialogs/dialog-import-backup/dialog-import-backup'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useRouter } from 'next/navigation'
 import EmptyCubes from '@/features/manage-cubes/ui/EmptyCubes'
 

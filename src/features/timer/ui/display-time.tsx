@@ -1,5 +1,5 @@
 import formatTime from '@/shared/lib/formatTime'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import React from 'react'
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion'

@@ -1,6 +1,6 @@
 'use client'
 import genId from '@/lib/genId'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { useNXData } from '@/hooks/useNXData'

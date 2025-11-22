@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { createShareMessage } from '@/lib/createShareMessage'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { DotsVerticalIcon, DragHandleHorizontalIcon, DragHandleVerticalIcon, Share1Icon } from '@radix-ui/react-icons'
 import { DateTime } from 'luxon'
 import { useLocale, useTranslations } from 'next-intl'

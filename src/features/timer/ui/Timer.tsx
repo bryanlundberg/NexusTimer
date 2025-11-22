@@ -1,4 +1,4 @@
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import useTimer from '@/features/timer/model/useTimer'
 import { ReactNode } from 'react'

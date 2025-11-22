@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { UpdateIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
 

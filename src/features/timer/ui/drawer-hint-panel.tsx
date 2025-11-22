@@ -1,5 +1,5 @@
 import genId from '@/lib/genId'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { Cross1Icon } from '@radix-ui/react-icons'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'

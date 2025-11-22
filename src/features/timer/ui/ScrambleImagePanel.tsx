@@ -1,4 +1,4 @@
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'

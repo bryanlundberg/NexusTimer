@@ -4,7 +4,7 @@ import LineGraphStatistics from '@/features/line-chart-statistics/ui/LineGraphSt
 import CategoriesGraphs from '@/widgets/categories-graphs/ui/CategoriesGraphs'
 import StatisticsEmpty from '@/features/deep-statistics/ui/StatisticsEmpty'
 import { useTranslations } from 'next-intl'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useQueryState } from 'nuqs'
 import { DeepStatistics } from '@/shared/types/statistics'
 import StatisticsViewContainer from '@/widgets/statistics-view/ui/StatisticsViewContainer'

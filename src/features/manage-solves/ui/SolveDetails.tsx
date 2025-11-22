@@ -1,5 +1,5 @@
 import formatTime from '@/shared/lib/formatTime'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { CalendarIcon, ClockIcon } from '@radix-ui/react-icons'
 import { DateTime } from 'luxon'
 import { useLocale } from 'next-intl'

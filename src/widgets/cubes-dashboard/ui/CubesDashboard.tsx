@@ -1,5 +1,5 @@
 import CubesList from '@/features/manage-cubes/ui/CubesList'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import EmptyCubes from '@/features/manage-cubes/ui/EmptyCubes'
 
 export default function CubesDashboard() {

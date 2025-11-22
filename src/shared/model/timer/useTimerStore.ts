@@ -8,7 +8,7 @@ import { DisplayTimerStatistics } from '@/features/deep-statistics/model/types'
 import { Solve } from '@/entities/solve/model/types'
 import { Cube } from '@/entities/cube/model/types'
 
-type TimerStore = {
+type UseTimerStore = {
   cubes: Cube[] | null
   selectedCube: Cube | null
   scramble: string | null
@@ -40,7 +40,7 @@ type TimerStore = {
   reset: () => void
 }
 
-export const useTimerStore = create<TimerStore>((set) => ({
+export const useTimerStore = create<UseTimerStore>((set) => ({
   selectedCube: null,
   scramble: null,
   cubes: null,

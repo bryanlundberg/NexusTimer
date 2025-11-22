@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import importDataFromFile from '@/lib/importDataFromFile'
 import { useRouter } from 'next/navigation'
 import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'

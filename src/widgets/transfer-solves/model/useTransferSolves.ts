@@ -1,6 +1,6 @@
 import { useNXData } from '@/hooks/useNXData'
 import { useTranslations } from 'next-intl'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useQueryState } from 'nuqs'
 import { useMemo, useState } from 'react'
 import { sort } from 'fast-sort'

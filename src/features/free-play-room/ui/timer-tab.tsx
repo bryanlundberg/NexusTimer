@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import useTimer from '@/features/timer/model/useTimer'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import useFreeMode from '@/hooks/useFreeMode'
 import { useSession } from 'next-auth/react'

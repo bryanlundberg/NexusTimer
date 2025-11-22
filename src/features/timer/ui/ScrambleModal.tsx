@@ -1,4 +1,4 @@
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 
 export default function ScrambleModal() {

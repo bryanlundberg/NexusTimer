@@ -1,5 +1,5 @@
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { ScrambleZone } from './ScrambleZone'
 import { useTranslations } from 'next-intl'
 import { useWindowSize } from 'react-use-size'

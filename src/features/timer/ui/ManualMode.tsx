@@ -1,7 +1,7 @@
 'use client'
 import convertToMs from '@/lib/convertToMs'
 import formatTime from '@/shared/lib/formatTime'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
 import useSolveData from '@/hooks/useSolveData'

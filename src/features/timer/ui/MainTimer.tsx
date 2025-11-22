@@ -1,4 +1,4 @@
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import Timer from '@/features/timer/ui/Timer'
 import ManualMode from '@/features/timer/ui/ManualMode'
 import Stackmat from '@/features/timer/ui/stackmat'

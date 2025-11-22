@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { MixIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'

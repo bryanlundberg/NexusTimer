@@ -1,4 +1,4 @@
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import genId from '@/lib/genId'
 import { useNXData } from '@/hooks/useNXData'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'

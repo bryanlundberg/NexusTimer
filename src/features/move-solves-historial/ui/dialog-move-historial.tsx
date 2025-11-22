@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { useNXData } from '@/hooks/useNXData'

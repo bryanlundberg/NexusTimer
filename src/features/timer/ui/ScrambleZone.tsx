@@ -1,6 +1,6 @@
 import genSolution from '@/lib/timer/genSolution'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { Pencil2Icon } from '@radix-ui/react-icons'
 import { Drawer, DrawerTrigger } from '@/components/ui/drawer'

@@ -1,6 +1,6 @@
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import formatTime from '@/shared/lib/formatTime'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { motion } from 'framer-motion'
 
 export default function StatisticsPanel() {

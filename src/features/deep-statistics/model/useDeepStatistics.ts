@@ -4,7 +4,7 @@ import {
   defaultChartValuesN,
   defaultChartValuesS
 } from '@/lib/const/defaultChartValues'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useEffect, useMemo, useState } from 'react'
 import moment from 'moment'
 import { useQueryState } from 'nuqs'

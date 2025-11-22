@@ -5,7 +5,7 @@ import DeleteCollectionForm from '@/features/manage-cubes/ui/DeleteCollectionFor
 import EditCollectionForm from '@/features/manage-cubes/ui/EditCollectionForm'
 import { editCubeCollection } from '@/features/manage-cubes/api/editCubeCollection'
 import { cubesDB } from '@/entities/cube/api/indexdb'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { toast } from 'sonner'
 import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
 

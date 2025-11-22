@@ -1,5 +1,5 @@
 'use client'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { useEffect, useMemo } from 'react'
 import FadeIn from '@/shared/ui/fade-in/fade-in'

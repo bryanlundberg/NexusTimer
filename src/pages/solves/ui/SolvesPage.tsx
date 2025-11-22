@@ -1,5 +1,5 @@
 'use client'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useQueryState } from 'nuqs'
 import { useDebouncedCallback } from 'use-debounce'
 import { useMemo } from 'react'

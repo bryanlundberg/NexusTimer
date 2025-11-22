@@ -1,4 +1,4 @@
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useEffect } from 'react'
 import { useQueryState } from 'nuqs'
 import { STATES } from '@/shared/const/states'

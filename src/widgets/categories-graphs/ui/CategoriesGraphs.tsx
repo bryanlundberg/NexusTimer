@@ -1,4 +1,4 @@
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import PieGraphCategory from '@/features/pie-chart-categories/ui/PieGraphCategory'
 import BarsGraphCategories from '@/features/bars-chart-categories/ui/BarsChartCategories'
 

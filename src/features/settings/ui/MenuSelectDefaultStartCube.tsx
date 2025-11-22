@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 export default function MenuSelectDefaultStartCube() {

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { useTimerStore } from '@/store/timerStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useNXData } from '@/hooks/useNXData'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
