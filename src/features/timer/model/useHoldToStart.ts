@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import { Settings } from '@/interfaces/Settings'
+import { Settings } from '@/shared/types/Settings'
 import { TimerStatus } from '@/features/timer/model/enums'
 
 interface UseHoldToStartProps {

@@ -1,4 +1,4 @@
-import { Settings } from "@/interfaces/Settings";
+import { Settings } from '@/shared/types/Settings'
 
 export const defaultSettings: Settings = {
   timer: {
@@ -7,7 +7,7 @@ export const defaultSettings: Settings = {
     startCue: false,
     holdToStart: false,
     holdToStartTime: 300,
-    decimals: 2,
+    decimals: 2
   },
   features: {
     scrambleImage: true,
@@ -22,17 +22,17 @@ export const defaultSettings: Settings = {
     worstTime: false
   },
   preferences: {
-    defaultCube: "",
-    colorTheme: "neutral"
+    defaultCube: '',
+    colorTheme: 'neutral'
   },
   sounds: {
-    newPersonalBest: true,
+    newPersonalBest: true
   },
   sync: {
     autoSaveEnabled: true,
     autoLoadEnabled: true,
     backupInterval: 25,
     lastSync: Date.now(),
-    totalSolves: 0,
+    totalSolves: 0
   }
-};
+}

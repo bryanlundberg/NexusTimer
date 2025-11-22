@@ -1,5 +1,5 @@
 'use client'
-import { Settings } from '@/interfaces/Settings'
+import { Settings } from '@/shared/types/Settings'
 import { defaultSettings } from '@/lib/const/defaultSettings'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
