@@ -1,10 +1,10 @@
-import useSWR from 'swr';
-import { fetcher } from '@/utils/fetcher';
+import useSWR from 'swr'
+import { fetcher } from '@/shared/lib/fetcher'
 
 export const useLeaderboards = (puzzle?: string) => {
-  const url = puzzle ? `/api/v1/leaderboards?puzzle=${encodeURIComponent(puzzle)}` : '/api/v1/leaderboards';
+  const url = puzzle ? `/api/v1/leaderboards?puzzle=${encodeURIComponent(puzzle)}` : '/api/v1/leaderboards'
 
-  const { data, error, isLoading, mutate } = useSWR(url, fetcher);
+  const { data, error, isLoading, mutate } = useSWR(url, fetcher)
 
   return {
     data,

@@ -1,30 +1,30 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
-import { useTimerStore } from '@/store/timerStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useNXData } from '@/hooks/useNXData'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
-import { useSyncBackup } from '@/hooks/useSyncBackup'
 import { Button } from '@/components/ui/button'
-import { BackupLoadMode } from '@/enums/BackupLoadMode'
 import { Card } from '@/components/ui/card'
-import { useUser } from '@/hooks/api/useUser'
-import { useSyncStore } from '@/store/SyncStore'
+import { useInitialSyncBackup } from '@/shared/model/backup/useInitialSyncBackup'
 import moment from 'moment'
 import { useIsOnline } from 'react-use-is-online'
+import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
+import { useUser } from '@/entities/user/model/useUser'
+import { BackupLoadMode } from '@/entities/backup/model/enums'
 
 export function usePreloadSettings() {
   const setCubes = useTimerStore((store) => store.setCubes)
   const cubes = useTimerStore((store) => store.cubes)
   const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
   const setNewScramble = useTimerStore((store) => store.setNewScramble)
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const [isMounted, setIsMounted] = useState(false)
   const { getAllCubes, getCubeById } = useNXData()
   const { data: session } = useSession()
   const { handleDownloadData, handleUploadBackup } = useSyncBackup()
-  const firstLoaded = useSyncStore((store) => store.firstLoaded)
-  const setFirstLoaded = useSyncStore((store) => store.setFirstLoaded)
+  const firstLoaded = useInitialSyncBackup((store) => store.firstLoaded)
+  const setFirstLoaded = useInitialSyncBackup((store) => store.setFirstLoaded)
   const { data: user } = useUser(session?.user?.id!)
   const SYNC_TOAST_ID = useMemo(() => 'sync-toast-id', [])
   const { isOffline } = useIsOnline()

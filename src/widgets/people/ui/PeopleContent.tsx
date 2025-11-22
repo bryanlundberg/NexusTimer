@@ -1,0 +1,32 @@
+import { TabsContent } from '@/components/ui/tabs'
+import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
+import { usePeopleTab } from '@/features/people-tab/model/usePeopleTab'
+import OverviewTabContent from '@/widgets/people/ui/overview-tab-content'
+import CubesTabContent from '@/widgets/people/ui/cubes-tab-content'
+import LastActivityTabContent from '@/widgets/people/ui/last-activity-tab-content'
+
+interface Props {
+  cubes: any[]
+}
+
+export function PeopleContent({ cubes }: Props) {
+  const { value } = usePeopleTab()
+
+  return (
+    <div className="flex flex-col w-full">
+      <div className="flex flex-col md:flex-row p-5 relative">
+        <div className="flex flex-col grow">
+          <TabsContent value={PTabs.OVERVIEW} hidden={value !== PTabs.OVERVIEW}>
+            <OverviewTabContent cubes={cubes} />
+          </TabsContent>
+          <TabsContent value={PTabs.CUBES} hidden={value !== PTabs.CUBES}>
+            <CubesTabContent cubes={cubes} />
+          </TabsContent>
+          <TabsContent value={PTabs.LAST_ACTIVITY} hidden={value !== PTabs.LAST_ACTIVITY}>
+            <LastActivityTabContent cubes={cubes} />
+          </TabsContent>
+        </div>
+      </div>
+    </div>
+  )
+}

@@ -1,11 +1,11 @@
 'use client'
 import Providers from '@/components/providers'
 import React from 'react'
-import { AppSidebar } from '@/components/app-sidebar'
 import { SidebarInset } from '@/components/ui/sidebar'
-import FloatButton from '@/components/people/FloatButton'
-import { useCompareUsersStore } from '@/store/CompareUsers'
-import CompareUsersModal from '@/components/people/compare-users-modal'
+import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
+import { AppSidebar } from '@/widgets/sidebar/ui/AppSidebar'
+import FloatButton from '@/features/compare-users/ui/FloatButton'
+import CompareUsersModal from '@/features/compare-users/ui/compare-users-modal'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const users = useCompareUsersStore((state) => state.users)

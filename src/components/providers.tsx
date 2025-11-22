@@ -1,13 +1,13 @@
 'use client'
 
-import PreloadSettings from '@/components/PreloadSettings'
+import PreloadApp from '@/components/preload-app'
 import { useEffect } from 'react'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
-import useWebsiteColors from '@/hooks/useWebsiteColors'
-import HeavyWebWorkers from '@/components/HeavyWebWorkers'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import StatisticsProvider from '@/components/statistics-provider'
+import useWebsiteColors from '@/shared/model/useWebsiteColors'
 
 export default function Providers({ children }: { children: React.ReactNode; loaderProvider?: boolean }) {
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const { applyColorTheme } = useWebsiteColors()
 
   useEffect(() => {
@@ -16,9 +16,9 @@ export default function Providers({ children }: { children: React.ReactNode; loa
 
   return (
     <>
-      <PreloadSettings>
-        <HeavyWebWorkers>{children}</HeavyWebWorkers>
-      </PreloadSettings>
+      <PreloadApp>
+        <StatisticsProvider>{children}</StatisticsProvider>
+      </PreloadApp>
     </>
   )
 }

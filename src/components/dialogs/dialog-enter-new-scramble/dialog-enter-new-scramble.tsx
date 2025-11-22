@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 import {
   DialogClose,
   DialogContent,
@@ -6,32 +6,30 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { useTimerStore } from "@/store/timerStore";
-import { useTranslations } from "next-intl";
-import { useRef } from "react";
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useTranslations } from 'next-intl'
+import { useRef } from 'react'
 
 export default function DialogEnterNewScramble() {
-  const t = useTranslations("Index");
-  const setCustomScramble = useTimerStore((state => state.setCustomScramble));
-  const inputRef = useRef<HTMLInputElement>(null);
+  const t = useTranslations('Index')
+  const setCustomScramble = useTimerStore((state) => state.setCustomScramble)
+  const inputRef = useRef<HTMLInputElement>(null)
   return (
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>{t("HomePage.enter-custom-scramble")}</DialogTitle>
-        <DialogDescription>
-          This action will replace the current scramble
-        </DialogDescription>
-        <Input ref={inputRef}/>
+        <DialogTitle>{t('HomePage.enter-custom-scramble')}</DialogTitle>
+        <DialogDescription>This action will replace the current scramble</DialogDescription>
+        <Input ref={inputRef} />
       </DialogHeader>
       <DialogFooter>
         <DialogClose asChild>
           <Button onClick={() => inputRef.current && setCustomScramble(inputRef.current.value.trim())}>
-            {t("Inputs.continue")}
+            {t('Inputs.continue')}
           </Button>
         </DialogClose>
       </DialogFooter>
     </DialogContent>
-  );
+  )
 }

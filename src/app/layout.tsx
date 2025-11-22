@@ -1,6 +1,6 @@
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
-import { jakarta } from '@/fonts/fonts'
+import { jakarta } from '@/shared/config/fonts'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages, getTranslations } from 'next-intl/server'
 import { SessionProvider } from 'next-auth/react'
@@ -12,6 +12,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { SidebarProvider } from '@/components/ui/sidebar'
 import AlertProvider from '@/components/alert/AlertProvider'
 import { Viewport } from 'next'
+import { Overlay } from '@/shared/ui/overlay/overlay'
 
 export async function generateMetadata() {
   const locale = await getLocale()
@@ -105,7 +106,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <NextIntlClientProvider messages={messages}>
               <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem disableTransitionOnChange>
                 <SidebarProvider>
-                  <AlertProvider>{children}</AlertProvider>
+                  <AlertProvider>
+                    {children}
+                    <Overlay />
+                  </AlertProvider>
                 </SidebarProvider>
               </ThemeProvider>
             </NextIntlClientProvider>
