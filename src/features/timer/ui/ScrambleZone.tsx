@@ -1,4 +1,4 @@
-import genSolution from '@/lib/timer/genSolution'
+import genSolution from '@/shared/lib/timer/genSolution'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'

@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button'
 import { ref, serverTimestamp, set } from '@firebase/database'
 import { rtdb } from '@/shared/config/firebase'
-import genScramble from '@/lib/timer/genScramble'
+import genScramble from '@/shared/lib/timer/genScramble'
 import { RoomStatus } from '@/entities/free-play-mode/model/enums'
 
 export default function CreateRoomModal() {
