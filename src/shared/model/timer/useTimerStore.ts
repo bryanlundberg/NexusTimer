@@ -18,7 +18,7 @@ type UseTimerStore = {
   isSolving: boolean
   timerStatus: TimerStatus
   zoomInScramble: boolean
-  hint: CrossSolutions | null
+  hint: CrossSolution | null
   timerStatistics: DisplayTimerStatistics
   timerMode: TimerMode.NORMAL | TimerMode.MANUAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE
   isOpenDrawerNewCollection: boolean
@@ -30,7 +30,7 @@ type UseTimerStore = {
   setIsSolving: (isSolving: boolean) => void
   setTimerStatus: (timerStatus: TimerStatus) => void
   setZoomInScramble: (status: boolean) => void
-  setHints: (solutions: CrossSolutions) => void
+  setHints: (solutions: CrossSolution) => void
   setCustomScramble: (scramble: string) => void
   setTimerStatistics: (stats: DisplayTimerStatistics) => void
   setTimerMode: (
@@ -108,7 +108,7 @@ export const useTimerStore = create<UseTimerStore>((set) => ({
   setZoomInScramble: (status: boolean) => {
     set({ zoomInScramble: status })
   },
-  setHints: (solutions: CrossSolutions) => {
+  setHints: (solutions: CrossSolution) => {
     set({ hint: solutions })
   },
   setTimerStatistics: (stats) => {

@@ -103,7 +103,7 @@ export function ScrambleZone() {
                         size={'icon'}
                         onClick={() => {
                           if (!selectedCube) return
-                          genSolution(selectedCube.category, scramble, Layers.YELLOW).then((res: CrossSolutions) =>
+                          genSolution(selectedCube.category, scramble, Layers.YELLOW).then((res: CrossSolution) =>
                             setHints(res)
                           )
                         }}

@@ -8,16 +8,16 @@ import { CubeCategory } from '@/shared/config/cube-categories'
  * @param {CubeCategory} event - The event category.
  * @param {string | null} scramble - The scramble string or null if not provided.
  * @param {Layers} layer - The layer color (e.g., "yellow").
- * @returns {Promise<CrossSolutions>} - Promise resolving to an object containing different cross solutions.
+ * @returns {Promise<Types>} - Promise resolving to an object containing different cross solutions.
  */
 
 export default function genSolution(
   event: CubeCategory,
   scramble: string | null,
   layer: Layers
-): Promise<CrossSolutions> {
+): Promise<CrossSolution> {
   return new Promise((resolve) => {
-    const solution: CrossSolutions = {
+    const solution: CrossSolution = {
       cross: [],
       xcross: [],
       fb: [],
