@@ -1,5 +1,5 @@
 import { Scrambow } from 'scrambow'
-import { cubeCollection } from '../const/cubeCollection'
+import { cubeCollection } from '../../shared/const/cube-collection'
 import { CubeCategory } from '@/shared/config/cube-categories'
 import { CubeCollection } from '@/shared/types/types'
 

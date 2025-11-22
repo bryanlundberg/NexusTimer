@@ -1,5 +1,5 @@
 import { PuzzleID } from 'cubing/twisty'
-import { cubeCollection } from './const/cubeCollection'
+import { cubeCollection } from '../shared/const/cube-collection'
 import { CubeCategory } from '@/shared/config/cube-categories'
 
 /**

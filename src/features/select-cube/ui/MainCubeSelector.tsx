@@ -8,7 +8,7 @@ import {
   SelectValue
 } from '@/components/ui/select'
 import Link from 'next/link'
-import { cubeCollection } from '@/lib/const/cubeCollection'
+import { cubeCollection } from '@/shared/const/cube-collection'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'

@@ -1,11 +1,11 @@
 import { Card } from '@/components/ui/card'
 import Image from 'next/image'
-import { cubeCollection } from '@/lib/const/cubeCollection'
+import { cubeCollection } from '@/shared/const/cube-collection'
 import * as React from 'react'
-import { Cube } from '@/interfaces/Cube'
 import moment from 'moment'
 import _ from 'lodash'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
+import { Cube } from '@/entities/cube/model/types'
 
 interface CubesTabContentProps {
   cubes: Cube[]
