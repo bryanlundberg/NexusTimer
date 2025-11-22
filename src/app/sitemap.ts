@@ -1,4 +1,4 @@
-import { locales } from '@/i18n/locales'
+import { locales } from '@/shared/config/i18n/locales'
 import { MetadataRoute } from 'next'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 

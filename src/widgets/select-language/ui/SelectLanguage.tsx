@@ -14,6 +14,7 @@ export default function SelectLanguage() {
         {languages.map((item) => {
           return (
             <SelectItem value={item.code} key={item.code}>
+              {item.flag}
               {item.name}
             </SelectItem>
           )

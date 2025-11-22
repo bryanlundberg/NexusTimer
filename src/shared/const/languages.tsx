@@ -27,7 +27,7 @@ import {
   SK,
   EE
 } from 'country-flag-icons/react/3x2'
-import { locales } from '@/i18n/locales'
+import { locales } from '@/shared/config/i18n/locales'
 
 interface LanguageProp {
   code: (typeof locales)[number]
