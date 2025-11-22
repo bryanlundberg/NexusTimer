@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { useSyncStore } from '@/store/SyncStore'
+import { useInitialSyncBackup } from '@/shared/model/backup/useInitialSyncBackup'
 import moment from 'moment'
 import { useIsOnline } from 'react-use-is-online'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
@@ -23,8 +23,8 @@ export function usePreloadSettings() {
   const { getAllCubes, getCubeById } = useNXData()
   const { data: session } = useSession()
   const { handleDownloadData, handleUploadBackup } = useSyncBackup()
-  const firstLoaded = useSyncStore((store) => store.firstLoaded)
-  const setFirstLoaded = useSyncStore((store) => store.setFirstLoaded)
+  const firstLoaded = useInitialSyncBackup((store) => store.firstLoaded)
+  const setFirstLoaded = useInitialSyncBackup((store) => store.setFirstLoaded)
   const { data: user } = useUser(session?.user?.id!)
   const SYNC_TOAST_ID = useMemo(() => 'sync-toast-id', [])
   const { isOffline } = useIsOnline()
