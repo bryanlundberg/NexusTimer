@@ -7,9 +7,9 @@ import { StatisticValue } from '@/shared/types/statistics'
 /**
  * Calculates the total time spent for different solve sets (global, session, cubeSession, cubeAll) of a specific cube.
  * @param cubesDB
- * @param {Categories} category - The category of the cube solves.
+ * @param {category} category - The category of the cube solves.
  * @param {string} cubeName - The name of the cube.
- * @returns {StatisticS} The total time spent for global, session, cubeSession, and cubeAll.
+ * @returns {StatisticValue} The total time spent for global, session, cubeSession, and cubeAll.
  */
 export default function calcTimeSpentStatistics({
   cubesDB,
