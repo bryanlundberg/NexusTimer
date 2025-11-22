@@ -1,5 +1,5 @@
 import { ChangeEvent, useRef } from 'react'
-import { useBackgroundImageStore } from '@/store/BackgroundThemeStore'
+import { useBackgroundImageStore } from '@/shared/model/settings/useBackgroundImageStore'
 import { useTranslations } from 'next-intl'
 import { ImageIcon } from '@radix-ui/react-icons'
 import { Button } from '@/components/ui/button'

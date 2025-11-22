@@ -1,6 +1,6 @@
 'use client'
 import { usePreloadSettings } from '@/hooks/usePreloadSettings'
-import { useBackgroundImageStore } from '@/store/BackgroundThemeStore'
+import { useBackgroundImageStore } from '@/shared/model/settings/useBackgroundImageStore'
 import { ReactNode } from 'react'
 
 export default function PreloadApp({ children }: { children: ReactNode }) {

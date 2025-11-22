@@ -1,5 +1,5 @@
 import { Themes } from '@/interfaces/types/Themes'
-import { useBackgroundImageStore } from '@/store/BackgroundThemeStore'
+import { useBackgroundImageStore } from '@/shared/model/settings/useBackgroundImageStore'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import { useCallback, useEffect, useState } from 'react'
