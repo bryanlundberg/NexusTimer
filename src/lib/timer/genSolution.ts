@@ -1,6 +1,7 @@
 import cubeSolver from 'cube-solver'
 import { Layers } from '@/shared/types/enums'
 import { CubeCategory } from '@/shared/config/cube-categories'
+import { CrossSolution } from '@/shared/types/types'
 
 /**
  * Generates cross solutions based on the provided event, scramble, and layer.

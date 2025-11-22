@@ -1,4 +1,3 @@
-import { CubeCollection } from '@/interfaces/cubeCollection'
 import cube222 from '../../../public/categories/cube222.svg'
 import cube333 from '../../../public/categories/cube333.svg'
 import cube333oh from '../../../public/categories/cube333oh.svg'
@@ -11,6 +10,8 @@ import cubeskewb from '../../../public/categories/skewb.svg'
 import cubepyramix from '../../../public/categories/pyramix.svg'
 import cubemegaminx from '../../../public/categories/minx.svg'
 import cubeclock from '../../../public/categories/clock.svg'
+import { CubeCollection } from '@/shared/types/types'
+
 export const cubeCollection: CubeCollection[] = [
   {
     event: '222',

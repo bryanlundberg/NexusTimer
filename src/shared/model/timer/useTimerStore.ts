@@ -1,5 +1,4 @@
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
-import { Event } from '@/interfaces/cubeCollection'
 import { cubeCollection } from '@/lib/const/cubeCollection'
 import { defaultTimerStatistics } from '@/lib/const/defaultTimerStatistics'
 import genScramble from '@/lib/timer/genScramble'
@@ -7,6 +6,8 @@ import { create } from 'zustand'
 import { DisplayTimerStatistics } from '@/features/deep-statistics/model/types'
 import { Solve } from '@/entities/solve/model/types'
 import { Cube } from '@/entities/cube/model/types'
+import { CrossSolution } from '@/shared/types/types'
+import { Event } from '@/shared/types/types'
 
 type UseTimerStore = {
   cubes: Cube[] | null

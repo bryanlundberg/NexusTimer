@@ -1,12 +1,12 @@
 import { Scrambow } from 'scrambow'
 import { cubeCollection } from '../const/cubeCollection'
-import { CubeCollection } from '@/interfaces/cubeCollection'
 import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCollection } from '@/shared/types/types'
 
 /**
  * Generates a scramble for the given cube category using Scrambow.
  *
- * @param {Categories} category - The cube category for which to generate a scramble.
+ * @param {CubeCategory} category - The cube category for which to generate a scramble.
  * @throws {Error} Throws an error if the scrambler is not available for the specified category.
  * @returns {string} The generated scramble string.
  */

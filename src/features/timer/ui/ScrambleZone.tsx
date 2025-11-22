@@ -25,6 +25,7 @@ import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 import { Layers } from '@/shared/types/enums'
 import { TimerMode } from '@/features/timer/model/enums'
+import { CrossSolution } from '@/shared/types/types'
 
 export function ScrambleZone() {
   const selectedCube = useTimerStore((store) => store.selectedCube)
