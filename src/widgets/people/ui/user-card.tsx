@@ -6,7 +6,7 @@ import moment from 'moment/moment'
 import { Button } from '@/components/ui/button'
 import * as React from 'react'
 import { useRouter } from 'next/navigation'
-import { useCompareUsersStore } from '@/store/CompareUsers'
+import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 
 export default function UserCard({ user }: { user: UserDocument }) {
   const router = useRouter()

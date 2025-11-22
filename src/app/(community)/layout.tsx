@@ -2,7 +2,7 @@
 import Providers from '@/components/providers'
 import React from 'react'
 import { SidebarInset } from '@/components/ui/sidebar'
-import { useCompareUsersStore } from '@/store/CompareUsers'
+import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { AppSidebar } from '@/widgets/sidebar/ui/AppSidebar'
 import FloatButton from '@/features/compare-users/ui/FloatButton'
 import CompareUsersModal from '@/features/compare-users/ui/compare-users-modal'

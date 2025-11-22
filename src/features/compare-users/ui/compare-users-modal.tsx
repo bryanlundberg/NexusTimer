@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { XIcon } from 'lucide-react'
-import { useCompareUsersStore } from '@/store/CompareUsers'
+import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { formatDistance } from 'date-fns'

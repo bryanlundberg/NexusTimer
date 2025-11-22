@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { GitCompareIcon } from 'lucide-react'
-import { useCompareUsersStore } from '@/store/CompareUsers'
+import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { TrashIcon } from '@radix-ui/react-icons'
