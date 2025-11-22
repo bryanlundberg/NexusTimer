@@ -1,4 +1,4 @@
-import { Colors } from '@/interfaces/types/colors'
+import { Colors } from '@/shared/types/colors'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import useWebsiteColors from '@/shared/model/useWebsiteColors'
 

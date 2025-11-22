@@ -1,4 +1,4 @@
-import { Colors } from '@/interfaces/types/colors'
+import { Colors } from '@/shared/types/colors'
 import { useTheme } from 'next-themes'
 import { useCallback, useEffect } from 'react'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'

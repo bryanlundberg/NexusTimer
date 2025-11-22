@@ -1,4 +1,4 @@
-import { Colors } from '@/interfaces/types/colors'
+import { Colors } from '@/shared/types/colors'
 
 type Timer = {
   inspection: boolean
