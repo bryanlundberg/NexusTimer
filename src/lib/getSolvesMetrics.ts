@@ -1,7 +1,7 @@
-import { CubeSolves } from '@/interfaces/CubeSolves'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
 import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeSolves } from '@/features/deep-statistics/model/types'
 
 /**
  * Retrieves solves metrics for a specific category and cube name.
