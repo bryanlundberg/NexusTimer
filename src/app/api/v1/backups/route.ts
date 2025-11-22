@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import connectDB from '@/shared/config/mongodb/mongodb'
-import User from '@/models/user'
-import Backup from '@/models/backup'
+import User from '@/entities/user/model/user'
+import Backup from '@/entities/backup/model/backup'
 import { auth } from '@/auth'
 
 export async function POST(request: NextRequest) {

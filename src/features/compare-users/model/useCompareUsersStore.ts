@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { UserDocument } from '@/models/user'
+import { UserDocument } from '@/entities/user/model/user'
 
 type CompareUsersProps = {
   isOpenModal: boolean

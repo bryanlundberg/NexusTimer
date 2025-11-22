@@ -1,4 +1,7 @@
 import mongoose from 'mongoose'
+import '../../../entities/user/model/user'
+import '../../../entities/solve/model/solve'
+import '../../../entities/backup/model/backup'
 
 const connectDB = async () => {
   if (mongoose.connections[0].readyState) {
@@ -7,7 +10,6 @@ const connectDB = async () => {
 
   try {
     await mongoose.connect(process.env.MONGODB_URI as string)
-    await import('../../../models')
     return true
   } catch (error) {
     console.log(error)

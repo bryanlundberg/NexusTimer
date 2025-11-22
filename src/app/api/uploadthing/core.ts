@@ -2,7 +2,7 @@ import { createUploadthing, type FileRouter } from 'uploadthing/next'
 import { UploadThingError } from 'uploadthing/server'
 import { auth } from '@/auth'
 import connectDB from '@/shared/config/mongodb/mongodb'
-import User from '@/models/user'
+import User from '@/entities/user/model/user'
 
 const f = createUploadthing()
 

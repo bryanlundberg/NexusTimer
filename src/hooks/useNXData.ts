@@ -1,6 +1,6 @@
 import genId from '@/lib/genId'
 import _ from 'lodash'
-import Cubes from '@/models/indexdb/Cubes'
+import CubesIndexdb from '@/entities/cube/lib/cubes-indexdb'
 import { database } from '@/shared/config/indexdb/indexdb'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/config/cube-categories'
@@ -9,7 +9,7 @@ import { Solve } from '@/entities/solve/model/types'
 export const useNXData = () => {
   const getCubeById = async (id: string): Promise<Cube | null> => {
     if (!database.ready) await database.open()
-    const cube = (await Cubes.get(id)) as Cube | null
+    const cube = (await CubesIndexdb.get(id)) as Cube | null
     if (cube?.isDeleted) return null
 
     if (!cube) return null
@@ -22,12 +22,12 @@ export const useNXData = () => {
 
   const getAllDatabase = async (): Promise<Cube[]> => {
     if (!database.ready) await database.open()
-    return (await Cubes.find().get()) as Cube[]
+    return (await CubesIndexdb.find().get()) as Cube[]
   }
 
   const getAllCubes = async (): Promise<Cube[]> => {
     if (!database.ready) await database.open()
-    const allCubes = (await Cubes.find().get()) as Cube[]
+    const allCubes = (await CubesIndexdb.find().get()) as Cube[]
     return allCubes.filter((cube) => !cube.isDeleted)
   }
 
@@ -66,12 +66,12 @@ export const useNXData = () => {
     }
 
     if (!database.ready) await database.open()
-    return await Cubes.put(newCube)
+    return await CubesIndexdb.put(newCube)
   }
 
   const saveBatchCubes = async (cubesBatch: Cube[]) => {
     for (const cube of cubesBatch) {
-      await Cubes.put(cube)
+      await CubesIndexdb.put(cube)
     }
   }
 
@@ -94,11 +94,11 @@ export const useNXData = () => {
       solve.updatedAt = Date.now()
     })
 
-    await Cubes.put(cubeToDelete)
+    await CubesIndexdb.put(cubeToDelete)
   }
 
   const clearCubes = async (): Promise<void> => {
-    return await Cubes.clear()
+    return await CubesIndexdb.clear()
   }
 
   const updateSolve = async ({

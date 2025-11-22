@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import connectDB from '@/shared/config/mongodb/mongodb'
-import User from '@/models/user'
+import User from '@/entities/user/model/user'
 import { Resend } from 'resend'
 import RegisterEmail from '@/features/emails/ui/RegisterEmail'
 

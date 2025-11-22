@@ -1,5 +1,5 @@
 import connectDB from '@/shared/config/mongodb/mongodb'
-import Solve from '@/models/solve'
+import Solve from '@/entities/solve/model/solve'
 import { NextResponse } from 'next/server'
 
 export async function GET(request: Request) {

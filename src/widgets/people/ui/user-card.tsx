@@ -1,4 +1,4 @@
-import { UserDocument } from '@/models/user'
+import { UserDocument } from '@/entities/user/model/user'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Calendar, ExternalLink, GitCompareIcon } from 'lucide-react'

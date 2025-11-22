@@ -39,7 +39,7 @@
     ".next/types/**/*.ts",
     "src/components/timer/TimerWidgets.tsx",
     "jest.config.js",
-    "src/models/backup.ts",
+    "src/entities/backup/model/backup.ts",
     "src/components/stackmat.tsx",
     ".next/dev/types/**/*.ts"
   ],

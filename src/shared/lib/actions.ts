@@ -2,7 +2,7 @@
 
 import connectDB from '@/shared/config/mongodb/mongodb'
 import type { Solve as ISolve } from '@/entities/solve/model/types'
-import Solve from '@/models/solve'
+import Solve from '@/entities/solve/model/solve'
 
 interface SendSolveToServerParams {
   solve: Partial<ISolve>

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Backup from '@/models/backup'
+import Backup from '@/entities/backup/model/backup'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import _ from 'lodash'
 
