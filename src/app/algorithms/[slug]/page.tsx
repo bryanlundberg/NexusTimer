@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { notFound } from 'next/navigation'
 import { TwistyPlayer } from 'cubing/twisty'
