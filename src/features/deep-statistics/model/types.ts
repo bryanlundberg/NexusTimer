@@ -1,13 +1,13 @@
 import { Solve } from '@/entities/solve/model/types'
 
-export interface CubeSolves {
+export type CubeSolves = {
   global: Solve[]
   session: Solve[]
   cubeSession: Solve[]
   cubeAll: Solve[]
 }
 
-interface CubeStatistics {
+export type CubeStatistics = {
   count: number
   best: number
   ao3: number
@@ -20,7 +20,7 @@ interface CubeStatistics {
   worst: number
 }
 
-export interface DisplayTimerStatistics {
+export type DisplayTimerStatistics = {
   global: CubeStatistics
   session: CubeStatistics
   cubeSession: CubeStatistics

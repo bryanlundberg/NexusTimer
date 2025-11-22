@@ -1,5 +1,5 @@
 // <reference lib="webworker" />
-import calcStatistics from '@/lib/calcStatistics'
+import calcStatistics from '@/features/deep-statistics/lib/calcStatistics'
 import { Cube } from '@/entities/cube/model/types'
 
 type InMsg = {

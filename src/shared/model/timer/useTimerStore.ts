@@ -1,6 +1,6 @@
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { cubeCollection } from '@/shared/const/cube-collection'
-import { defaultTimerStatistics } from '@/lib/const/defaultTimerStatistics'
+import { defaultTimerStatistics } from '@/shared/model/timer/defaultTimerStatistics'
 import genScramble from '@/lib/timer/genScramble'
 import { create } from 'zustand'
 import { DisplayTimerStatistics } from '@/features/deep-statistics/model/types'

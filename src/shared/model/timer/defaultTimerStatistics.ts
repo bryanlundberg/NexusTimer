@@ -1,4 +1,4 @@
-export const defaultTimerStatistics: CubeStatistics = {
+export const defaultTimerStatistics = {
   best: 0,
   count: 0,
   ao3: 0,
@@ -8,5 +8,5 @@ export const defaultTimerStatistics: CubeStatistics = {
   ao100: 0,
   deviation: 0,
   mean: 0,
-  worst: 0,
-};
+  worst: 0
+}

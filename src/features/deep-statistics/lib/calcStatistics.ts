@@ -1,12 +1,13 @@
 import { sort } from 'fast-sort'
-import calculateBestAo from './calculateBestAo'
-import calculateCurrentAo from './calculateCurrentAo'
-import getDeviation from './getDeviation'
-import getMean from './getMean'
-import getSolvesMetrics from './getSolvesMetrics'
-import { defaultTimerStatistics } from './const/defaultTimerStatistics'
+import calculateBestAo from '../../../lib/calculateBestAo'
+import calculateCurrentAo from '../../../lib/calculateCurrentAo'
+import getDeviation from '../../../lib/getDeviation'
+import getMean from '../../../lib/getMean'
+import getSolvesMetrics from '../../../lib/getSolvesMetrics'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
+import { defaultTimerStatistics } from '@/shared/model/timer/defaultTimerStatistics'
+import { CubeStatistics, DisplayTimerStatistics } from '@/features/deep-statistics/model/types'
 
 /**
  * Calculates various statistics for a cube solving session, including
