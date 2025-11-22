@@ -4,8 +4,9 @@ const withNextIntl = createNextIntlPlugin('./src/shared/config/i18n/request.ts')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactCompiler: true,
   experimental: {
-    reactCompiler: true
+    turbopackFileSystemCacheForDev: true
   },
   images: {
     remotePatterns: [
