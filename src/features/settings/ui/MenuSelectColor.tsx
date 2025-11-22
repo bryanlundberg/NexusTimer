@@ -1,10 +1,10 @@
 import { Colors } from '@/interfaces/types/colors'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import useWebsiteColors from '@/shared/model/useWebsiteColors'
 
 export default function MenuSelectColor() {
-  const settings = useSettingsModalStore((state) => state.settings)
-  const updateSetting = useSettingsModalStore((state) => state.updateSetting)
+  const settings = useSettingsStore((state) => state.settings)
+  const updateSetting = useSettingsStore((state) => state.updateSetting)
   const { applyColorTheme } = useWebsiteColors()
 
   const handleChooseColor = (newColor: Colors) => {

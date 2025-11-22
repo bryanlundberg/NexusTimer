@@ -1,5 +1,5 @@
 'use client'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
 import {
   BellIcon,
@@ -31,7 +31,7 @@ import { DataImportExport } from '@/features/settings/ui/DataImportExport'
 import useWebsiteColors from '@/shared/model/useWebsiteColors'
 
 export default function OptionsPage() {
-  const { settings, setSettings } = useSettingsModalStore()
+  const { settings, setSettings } = useSettingsStore()
   const t = useTranslations('Index')
   const { control, reset } = useForm({ defaultValues: settings })
   const { applyColorTheme } = useWebsiteColors()

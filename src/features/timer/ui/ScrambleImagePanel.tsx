@@ -1,5 +1,5 @@
 import { useTimerStore } from '@/store/timerStore'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useWindowSize } from 'react-use-size'
@@ -7,7 +7,7 @@ import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 
 export default function ScrambleImagePanel() {
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const scramble = useTimerStore((store) => store.scramble)
   const selectedCube = useTimerStore((store) => store.selectedCube)
   const setZoomInScramble = useTimerStore((store) => store.setZoomInScramble)

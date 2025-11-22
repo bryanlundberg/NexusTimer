@@ -1,5 +1,5 @@
 import genSolution from '@/lib/timer/genSolution'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/store/timerStore'
 import { useTranslations } from 'next-intl'
 import { Pencil2Icon } from '@radix-ui/react-icons'
@@ -32,7 +32,7 @@ export function ScrambleZone() {
   const setHints = useTimerStore((store) => store.setHints)
   const isSolving = useTimerStore((store) => store.isSolving)
   const timerMode = useTimerStore((store) => store.timerMode)
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const t = useTranslations('Index')
   const { height } = useWindowSize()
 

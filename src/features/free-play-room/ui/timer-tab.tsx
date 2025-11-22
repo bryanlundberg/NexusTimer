@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import useTimer from '@/features/timer/model/useTimer'
 import { useTimerStore } from '@/store/timerStore'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import useFreeMode from '@/hooks/useFreeMode'
 import { useSession } from 'next-auth/react'
 import { useParams } from 'next/navigation'
@@ -33,7 +33,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
   } = useFreeMode()
   const scramble = useRoomScramble(roomId?.toString() || '')
   const { data: session } = useSession()
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const isSolving = useTimerStore((store) => store.isSolving)
   const lastSolve = useTimerStore((store) => store.lastSolve)
   const timerStatus = useTimerStore((store) => store.timerStatus)

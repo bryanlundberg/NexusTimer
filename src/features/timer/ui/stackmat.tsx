@@ -4,7 +4,7 @@ import { useTimerStore } from '@/store/timerStore'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 import { useNXData } from '@/hooks/useNXData'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { Packet, Stackmat as StackmatController } from 'stackmat-v2'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { Solve } from '@/entities/solve/model/types'
@@ -21,8 +21,8 @@ export default function Stackmat() {
   const timerStatus = useTimerStore((state) => state.timerStatus)
   const setTimerStatus = useTimerStore((state) => state.setTimerStatus)
   const scramble = useTimerStore((state) => state.scramble)
-  const updateSetting = useSettingsModalStore((state) => state.updateSetting)
-  const solvesSinceLastSync = useSettingsModalStore((state) => state.settings.sync.totalSolves)
+  const updateSetting = useSettingsStore((state) => state.updateSetting)
+  const solvesSinceLastSync = useSettingsStore((state) => state.settings.sync.totalSolves)
   const [stackmat, setStackmat] = useState<any>(null)
   const solvingIdRef = useRef<any>(null)
 

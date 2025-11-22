@@ -1,10 +1,10 @@
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/store/timerStore'
 import { motion } from 'framer-motion'
 
 export default function StatisticsPanel() {
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const timerStatistics = useTimerStore((store) => store.timerStatistics)
   const bgRecord = 'bg-yellow-500'
 

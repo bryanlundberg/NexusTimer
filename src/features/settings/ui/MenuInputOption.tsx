@@ -1,6 +1,6 @@
 import { Controller } from 'react-hook-form'
 import React from 'react'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 
 export default function MenuInputOption({
   label,
@@ -15,7 +15,7 @@ export default function MenuInputOption({
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   description?: string
 }) {
-  const updateSetting = useSettingsModalStore((state) => state.updateSetting)
+  const updateSetting = useSettingsStore((state) => state.updateSetting)
 
   return (
     <div className="ps-3 pe-3 mb-3">

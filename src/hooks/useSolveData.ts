@@ -1,7 +1,7 @@
 import { useTimerStore } from '@/store/timerStore'
 import genId from '@/lib/genId'
 import { useNXData } from '@/hooks/useNXData'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import convertToMs from '@/lib/convertToMs'
 import { useState } from 'react'
 import { Solve } from '@/entities/solve/model/types'
@@ -14,8 +14,8 @@ export default function useSolveData() {
   const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
   const setLastSolve = useTimerStore((store) => store.setLastSolve)
   const setNewScramble = useTimerStore((store) => store.setNewScramble)
-  const updateSetting = useSettingsModalStore((state) => state.updateSetting)
-  const solvesSinceLastSync = useSettingsModalStore((state) => state.settings.sync.totalSolves)
+  const updateSetting = useSettingsStore((state) => state.updateSetting)
+  const solvesSinceLastSync = useSettingsStore((state) => state.settings.sync.totalSolves)
   const [value, setValue] = useState<string>('')
 
   const saveSolveMainTimer = async () => {

@@ -8,7 +8,7 @@ import genId from '@/lib/genId'
 import { useNXData } from '@/hooks/useNXData'
 import { sendSolveToServer } from '@/shared/lib/actions'
 import { useSession } from 'next-auth/react'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { Solve } from '@/entities/solve/model/types'
 
 export default function TimerVirtual() {
@@ -23,8 +23,8 @@ export default function TimerVirtual() {
   const [solvingTime, setSolvingTime] = React.useState<number | null>(null)
   const processedSolveRef = React.useRef(false)
   const { data: session } = useSession()
-  const updateSetting = useSettingsModalStore((state) => state.updateSetting)
-  const solvesSinceLastSync = useSettingsModalStore((state) => state.settings.sync.totalSolves)
+  const updateSetting = useSettingsStore((state) => state.updateSetting)
+  const solvesSinceLastSync = useSettingsStore((state) => state.settings.sync.totalSolves)
   const cubeSize = selectedCube?.category === '2x2' ? 2 : 3
   const is3x3 = cubeSize === 3
 

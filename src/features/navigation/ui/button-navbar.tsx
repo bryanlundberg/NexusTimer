@@ -37,7 +37,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import useWebsiteColors from '@/shared/model/useWebsiteColors'
 import { useFullScreen } from '@/shared/model/useFullScreen'
 
@@ -58,7 +58,7 @@ export default function ButtonNavbar() {
   const { setTheme } = useTheme()
   const { toggleFullScreen } = useFullScreen()
   const { applyColorTheme } = useWebsiteColors()
-  const settings = useSettingsModalStore((state) => state.settings)
+  const settings = useSettingsStore((state) => state.settings)
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {

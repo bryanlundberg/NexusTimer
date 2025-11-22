@@ -3,7 +3,7 @@ import { useTimerStore } from '@/store/timerStore'
 import { useTranslations } from 'next-intl'
 import React from 'react'
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useWindowSize } from 'react-use-size'
 import { cn } from '@/lib/utils'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
@@ -44,7 +44,7 @@ export default function DisplayTime({
 }: DisplayTimeProps) {
   const t = useTranslations('Index.HomePage')
   const timerMode = useTimerStore((store) => store.timerMode)
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const { height } = useWindowSize()
 
   return (

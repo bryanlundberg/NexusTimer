@@ -1,13 +1,13 @@
 import { useTranslations } from 'next-intl'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/store/timerStore'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 export default function MenuSelectDefaultStartCube() {
-  const { settings } = useSettingsModalStore()
+  const { settings } = useSettingsStore()
   const t = useTranslations('Index')
   const cubes = useTimerStore((state) => state.cubes)
-  const updateSetting = useSettingsModalStore((state) => state.updateSetting)
+  const updateSetting = useSettingsStore((state) => state.updateSetting)
 
   const handleCubeSelect = (cubeId: string) => {
     const defaultCubeKey = 'preferences.defaultCube'

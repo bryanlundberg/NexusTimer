@@ -2,7 +2,7 @@
 import convertToMs from '@/lib/convertToMs'
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/store/timerStore'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
 import useSolveData from '@/hooks/useSolveData'
 import QuickActions from '@/features/manage-solves/ui/QuickActions'
@@ -13,7 +13,7 @@ export default function ManualMode() {
   const selectedCube = useTimerStore((store) => store.selectedCube)
   const lastSolve = useTimerStore((store) => store.lastSolve)
   const setLastSolve = useTimerStore((store) => store.setLastSolve)
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const t = useTranslations('Index.HomePage')
 
   const isValidInput = (input: string) => {

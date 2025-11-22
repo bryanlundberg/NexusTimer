@@ -1,4 +1,4 @@
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/store/timerStore'
 import { ScrambleZone } from './ScrambleZone'
 import { useTranslations } from 'next-intl'
@@ -13,7 +13,7 @@ export default function HeaderTimer() {
   const timerStatus = useTimerStore((store) => store.timerStatus)
   const lastSolve = useTimerStore((store) => store.lastSolve)
   const timerStatistics = useTimerStore((store) => store.timerStatistics)
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const t = useTranslations('Index.HomePage')
   const { height } = useWindowSize()
 

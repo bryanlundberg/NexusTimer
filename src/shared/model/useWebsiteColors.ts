@@ -1,11 +1,11 @@
 import { Colors } from '@/interfaces/types/colors'
 import { useTheme } from 'next-themes'
 import { useCallback, useEffect } from 'react'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 
 export default function useWebsiteColors() {
   const { resolvedTheme } = useTheme()
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
 
   const generateDarkTheme = (lightTheme: Record<string, any>) => {
     const primaryColor = lightTheme.primary

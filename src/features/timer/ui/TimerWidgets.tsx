@@ -2,7 +2,7 @@ import StatisticsPanel from './StatisticsPanel'
 import OverviewPanel from './OverviewPanel'
 import ScramblePanel from './ScrambleImagePanel'
 import { useTimerStore } from '@/store/timerStore'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { useWindowSize } from 'react-use-size'
@@ -15,7 +15,7 @@ export default function TimerWidgets() {
   const timerStatus = useTimerStore((store) => store.timerStatus)
   const timerStatistics = useTimerStore((store) => store.timerStatistics)
   const lastSolve = useTimerStore((store) => store.lastSolve)
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const t = useTranslations('Index.HomePage')
   const timerMode = useTimerStore((store) => store.timerMode)
   const { height } = useWindowSize()

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/store/timerStore'
 import { useNXData } from '@/hooks/useNXData'
 import { useSession } from 'next-auth/react'
@@ -18,7 +18,7 @@ export function usePreloadSettings() {
   const cubes = useTimerStore((store) => store.cubes)
   const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
   const setNewScramble = useTimerStore((store) => store.setNewScramble)
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const [isMounted, setIsMounted] = useState(false)
   const { getAllCubes, getCubeById } = useNXData()
   const { data: session } = useSession()

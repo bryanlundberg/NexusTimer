@@ -6,7 +6,7 @@ import { useNXData } from '@/hooks/useNXData'
 import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/store/timerStore'
 import { useState } from 'react'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { UserDocument } from '@/models/user'
 import { useUploadThing } from '@/shared/lib/uploadthing-helpers'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
@@ -17,7 +17,7 @@ export const useSyncBackup = () => {
   const { data: session } = useSession()
   const setCubes = useTimerStore((state) => state.setCubes)
   const [isUploading, setIsUploading] = useState(false)
-  const updateSetting = useSettingsModalStore((state) => state.updateSetting)
+  const updateSetting = useSettingsStore((state) => state.updateSetting)
   const [uploadCompleted, setUploadCompleted] = useState(false)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)

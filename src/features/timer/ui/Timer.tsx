@@ -1,5 +1,5 @@
 import { useTimerStore } from '@/store/timerStore'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import useTimer from '@/features/timer/model/useTimer'
 import { ReactNode } from 'react'
 import useSolveData from '@/hooks/useSolveData'
@@ -11,7 +11,7 @@ import useDeviceMatch from '@/shared/model/useDeviceMatch'
 import { TimerStatus } from '@/features/timer/model/enums'
 
 export default function Timer({ children }: { children?: ReactNode }) {
-  const settings = useSettingsModalStore((store) => store.settings)
+  const settings = useSettingsStore((store) => store.settings)
   const selectedCube = useTimerStore((store) => store.selectedCube)
   const isSolving = useTimerStore((store) => store.isSolving)
   const lastSolve = useTimerStore((store) => store.lastSolve)

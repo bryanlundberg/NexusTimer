@@ -1,5 +1,5 @@
 import { Controller } from 'react-hook-form'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { Switch } from '@/components/ui/switch'
 
 interface MenuOption {
@@ -10,7 +10,7 @@ interface MenuOption {
 }
 
 export function MenuOption({ label, control, name, description }: MenuOption) {
-  const updateSetting = useSettingsModalStore((state) => state.updateSetting)
+  const updateSetting = useSettingsStore((state) => state.updateSetting)
 
   return (
     <div className="ps-3 pe-3 mb-3">
