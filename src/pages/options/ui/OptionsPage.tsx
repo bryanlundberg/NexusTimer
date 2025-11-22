@@ -15,7 +15,7 @@ import {
 import { Separator } from '@/components/ui/separator'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
-import { defaultSettings } from '@/lib/const/defaultSettings'
+import { defaultSettings } from '@/shared/model/settings/defaultSettings'
 import { toast } from 'sonner'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import AccountHeader from '@/features/account/ui/account-header'

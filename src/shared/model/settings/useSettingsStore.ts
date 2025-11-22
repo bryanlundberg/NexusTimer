@@ -1,6 +1,6 @@
 'use client'
 import { Settings } from '@/shared/types/Settings'
-import { defaultSettings } from '@/lib/const/defaultSettings'
+import { defaultSettings } from '@/shared/model/settings/defaultSettings'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 

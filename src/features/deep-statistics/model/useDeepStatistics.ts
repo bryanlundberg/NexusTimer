@@ -3,7 +3,7 @@ import {
   defaultChartValuesA,
   defaultChartValuesN,
   defaultChartValuesS
-} from '@/lib/const/defaultChartValues'
+} from '@/features/deep-statistics/model/defaultChartValues'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useEffect, useMemo, useState } from 'react'
 import moment from 'moment'
