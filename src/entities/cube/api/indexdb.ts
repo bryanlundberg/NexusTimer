@@ -32,5 +32,34 @@ export const cubesDB = {
 
   async update(cube: Cube) {
     return await Cubes.put(cube)
+  },
+
+  async saveBatch(cubesBatch: Cube[]) {
+    for (const cube of cubesBatch) {
+      await Cubes.put(cube)
+    }
+  },
+
+  async clear(): Promise<void> {
+    return await Cubes.clear()
+  },
+
+  async endSessionForCube(cube: Cube): Promise<void> {
+    const dbCube = await this.getById(cube.id)
+    if (!dbCube) return
+
+    const allCubes = await this.getAll()
+    const sameCategoryCubes = allCubes.filter((c) => c.category === cube.category)
+
+    for (const sameCategoryCube of sameCategoryCubes) {
+      sameCategoryCube.solves.all.push(
+        ...sameCategoryCube.solves.session.map((solve) => {
+          return { ...solve, updatedAt: Date.now(), isDeleted: !!solve.isDeleted }
+        })
+      )
+
+      sameCategoryCube.solves.session = []
+      await this.update(sameCategoryCube)
+    }
   }
 }
