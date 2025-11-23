@@ -4,7 +4,7 @@ import { useCompareUsersStore } from '@/features/compare-users/model/useCompareU
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { formatDistance } from 'date-fns'
-import { useUserBackups } from '@/hooks/useUserBackups'
+import { useUserBackups } from '@/features/compare-users/model/useUserBackups'
 import CompareTableRow from '@/features/compare-users/ui/CompareTableRow'
 import CompareCategoryBlock from '@/features/compare-users/ui/CompareCategoryBlock'
 import { useCompareUsersStats } from '@/features/compare-users/model/useCompareUsersStats'
