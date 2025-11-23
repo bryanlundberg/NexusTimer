@@ -1,5 +1,9 @@
 import _ from 'lodash'
-import { formatCubesDatesAndOrder, importNexusTimerData, normalizeOldData } from '@/lib/importDataFromFile'
+import {
+  formatCubesDatesAndOrder,
+  importNexusTimerData,
+  normalizeOldData
+} from '@/features/manage-backup/lib/importDataFromFile'
 import { toast } from 'sonner'
 import { compressSync, decompressSync, strFromU8, strToU8 } from 'fflate'
 import { useNXData } from '@/hooks/useNXData'
