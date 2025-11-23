@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { useNXData } from '@/hooks/useNXData'
 import { useSession } from 'next-auth/react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -12,6 +11,7 @@ import { useIsOnline } from 'react-use-is-online'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import { useUser } from '@/entities/user/model/useUser'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
+import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export function useAppInit() {
   const setCubes = useTimerStore((store) => store.setCubes)
@@ -20,7 +20,6 @@ export function useAppInit() {
   const setNewScramble = useTimerStore((store) => store.setNewScramble)
   const settings = useSettingsStore((store) => store.settings)
   const [isMounted, setIsMounted] = useState(false)
-  const { getAllCubes, getCubeById } = useNXData()
   const { data: session } = useSession()
   const { handleDownloadData, handleUploadBackup } = useSyncBackup()
   const firstLoaded = useInitialSyncBackup((store) => store.firstLoaded)
@@ -31,12 +30,12 @@ export function useAppInit() {
 
   useEffect(() => {
     const loadData = async () => {
-      const cubes = await getAllCubes()
+      const cubes = await cubesDB.getAll()
       const defaultCubeId = settings.preferences.defaultCube
       setCubes(cubes)
 
       if (defaultCubeId) {
-        const defaultCube = await getCubeById(defaultCubeId)
+        const defaultCube = await cubesDB.getById(defaultCubeId)
         if (defaultCube) {
           setSelectedCube(defaultCube)
           setNewScramble(defaultCube)
