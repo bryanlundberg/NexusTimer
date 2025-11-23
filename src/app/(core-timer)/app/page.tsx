@@ -10,6 +10,7 @@ import HeaderTimer from '@/features/timer/ui/HeaderTimer'
 import { MainTimer } from '@/features/timer/ui/MainTimer'
 import TimerWidgets from '@/features/timer/ui/TimerWidgets'
 import ScrambleModal from '@/features/timer/ui/ScrambleModal'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 
 export default function TimerPage() {
   const resetTimerStore = useTimerStore((state) => state.reset)
@@ -17,6 +18,8 @@ export default function TimerPage() {
   const timerStatistics = useTimerStore((store) => store.timerStatistics)
   const lastSolve = useTimerStore((store) => store.lastSolve)
   const isSolving = useTimerStore((store) => store.isSolving)
+  const cubes = useTimerStore((store) => store.cubes)
+  const open = useOverlayStore((store) => store.open)
 
   const isRecord = useMemo(() => {
     return timerStatistics.global.best === lastSolve?.time && !isSolving
@@ -25,6 +28,16 @@ export default function TimerPage() {
   useEffect(() => {
     resetTimerStore()
   }, [resetTimerStore])
+
+  useEffect(() => {
+    if (!Array.isArray(cubes) || cubes.length === 0) {
+      return open({
+        id: 'no-cubes',
+        component: <DialogFirstRunNoCubes />,
+        metadata: {}
+      })
+    }
+  }, [])
 
   return (
     <>
@@ -39,7 +52,6 @@ export default function TimerPage() {
 
         {isRecord && <BackgroundAnimate />}
       </FadeIn>
-      <DialogFirstRunNoCubes />
     </>
   )
 }
