@@ -1,5 +1,6 @@
 import NextAuth, { type DefaultSession } from 'next-auth'
 import Google from 'next-auth/providers/google'
+import Discord from 'next-auth/providers/discord'
 
 declare module 'next-auth' {
   /**
@@ -13,7 +14,7 @@ declare module 'next-auth' {
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  providers: [Google],
+  providers: [Google, Discord],
   callbacks: {
     jwt: async ({ token, user, trigger, session }) => {
       if (trigger === 'update' && session && session?.user?.image) {
@@ -35,7 +36,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       return session
     },
-    async signIn({ user }) {
+    async signIn({ user, account }) {
       try {
         const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
         const response = await fetch(`${baseUrl}/api/v1/users`, {
@@ -43,7 +44,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           body: JSON.stringify({
             email: user.email as string,
             image: user.image as string,
-            name: user.name as string
+            name: user.name as string,
+            provider: account?.provider,
+            providerId: account?.providerAccountId
           })
         })
 

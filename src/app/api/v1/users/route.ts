@@ -47,17 +47,33 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, name, image } = await request.json()
+    const { email, name, image, provider, providerId } = await request.json()
 
     if (!email || !name || !image) {
       return NextResponse.json({ error: 'Incomplete fields' }, { status: 400 })
     }
 
     await connectDB()
-    let user = await User.findOne({ email })
+
+    let user = await User.findOne({
+      providers: {
+        $elemMatch: { provider, providerId }
+      }
+    })
+
+    if (user) return user
+
+    user = await User.findOneAndUpdate(
+      { email },
+      { $addToSet: { providers: { provider, providerId } } },
+      {
+        upsert: false,
+        new: true
+      }
+    )
 
     if (!user) {
-      user = await User.create({ email, name, image })
+      user = await User.create({ email, name, image, providers: [{ provider, providerId }] })
       await resend.emails.send({
         from: 'NexusTimer <onboarding@nexustimer.com>',
         to: [email],

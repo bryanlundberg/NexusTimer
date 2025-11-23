@@ -14,6 +14,10 @@ export interface UserDocument {
     url: string
     updatedAt: number
   }
+  providers: Array<{
+    provider: string
+    providerId: string
+  }>
   createdAt: Date
   updatedAt: Date
   __v: number
@@ -53,9 +57,19 @@ const UserSchema = new Schema(
         url: { type: String },
         updatedAt: { type: Number }
       }
-    }
+    },
+    providers: [
+      {
+        provider: { type: String },
+        providerId: { type: String },
+        _id: false
+      }
+    ]
   },
   { timestamps: true }
 )
+
+UserSchema.index({ email: 1 }, { unique: true })
+UserSchema.index({ 'providers.provider': 1, 'providers.providerId': 1 }, { unique: true })
 
 export default models.User || model('User', UserSchema)
