@@ -1,13 +1,12 @@
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import genId from '@/shared/lib/genId'
-import { useNXData } from '@/hooks/useNXData'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import convertToMs from '@/shared/lib/convertToMs'
 import { useState } from 'react'
 import { Solve } from '@/entities/solve/model/types'
+import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export default function useSolveData() {
-  const { saveCube } = useNXData()
   const solvingTime = useTimerStore((store) => store.solvingTime)
   const selectedCube = useTimerStore((store) => store.selectedCube)
   const scramble = useTimerStore((store) => store.scramble)
@@ -46,7 +45,7 @@ export default function useSolveData() {
         }
       }
 
-      saveCube(updatedCube)
+      await cubesDB.update(updatedCube)
       setSelectedCube(updatedCube)
       updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
     }
@@ -87,7 +86,7 @@ export default function useSolveData() {
       }
     }
 
-    saveCube(updatedCube)
+    await cubesDB.update(updatedCube)
     setSelectedCube(updatedCube)
     setLastSolve({ ...newSolve })
     setNewScramble(selectedCube)
