@@ -7,20 +7,21 @@ import { useRouter } from 'next/navigation'
 import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import { useNXData } from '@/hooks/useNXData'
-import DialogImportReview from './dialog-import-review'
+import ImportReview from './ImportReview'
 import { Dropzone, DropzoneContent, DropzoneEmptyState } from '@/components/ui/shadcn-io/dropzone'
 import { Spinner } from '@/components/ui/spinner'
 import { Cube } from '@/entities/cube/model/types'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 
-export default function DialogImportBackup() {
+export default function ImportBackup() {
   const { getAllCubes, clearCubes, saveBatchCubes } = useNXData()
   const t = useTranslations('Index.backup-modal')
   const [isImporting, setIsImporting] = useState(false)
-  const [reviewOpen, setReviewOpen] = useState(false)
-  const [importCubes, setImportCubes] = useState<Cube[] | null>(null)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   const setCubes = useTimerStore((state) => state.setCubes)
   const router = useRouter()
+  const open = useOverlayStore((state) => state.open)
+  const close = useOverlayStore((state) => state.close)
 
   const handleImportBackup = async (file: File[]) => {
     if (file && file.length > 0) {
@@ -29,8 +30,10 @@ export default function DialogImportBackup() {
         const response = await importDataFromFile(file[0])
         if (response && !response?.length) return toast.error('No valid data found in the backup file.')
         if (response) {
-          setImportCubes(response)
-          setReviewOpen(true)
+          open({
+            id: 'import-review',
+            component: <ImportReview cubes={response} onCancel={close} onConfirm={handleConfirmReview} />
+          })
         }
       } catch (error) {
         toast.error('Backup import failed. Please try again.')
@@ -40,11 +43,6 @@ export default function DialogImportBackup() {
         setIsImporting(false)
       }
     }
-  }
-
-  const handleCancelReview = () => {
-    setReviewOpen(false)
-    setImportCubes(null)
   }
 
   const handleConfirmReview = async (editedCubes: Cube[]) => {
@@ -64,8 +62,7 @@ export default function DialogImportBackup() {
       console.error(error)
     } finally {
       setIsImporting(false)
-      setReviewOpen(false)
-      setImportCubes(null)
+      close()
     }
   }
 
@@ -135,15 +132,6 @@ export default function DialogImportBackup() {
           </ul>
         </DialogFooter>
       </DialogContent>
-
-      {importCubes && (
-        <DialogImportReview
-          open={reviewOpen}
-          cubes={importCubes}
-          onCancel={handleCancelReview}
-          onConfirm={handleConfirmReview}
-        />
-      )}
     </>
   )
 }
