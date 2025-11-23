@@ -1,19 +1,18 @@
 import exportDataToFile from '@/features/settings/lib/exportDataToFile'
 import { useTranslations } from 'next-intl'
 import { DownloadIcon, UploadIcon } from '@radix-ui/react-icons'
-import { useNXData } from '@/hooks/useNXData'
 import { Button } from '@/components/ui/button'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import ImportBackup from '@/features/manage-backup/ui/ImportBackup'
+import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export function DataImportExport() {
   const t = useTranslations('Index')
-  const { getAllCubes } = useNXData()
   const open = useOverlayStore((state) => state.open)
 
   const handleExport = async () => {
     try {
-      const cubes = await getAllCubes()
+      const cubes = await cubesDB.getAll()
       await exportDataToFile(cubes)
     } catch (error) {
       console.error('Error exporting data:', error)
