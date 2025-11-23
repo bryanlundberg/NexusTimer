@@ -5,11 +5,11 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { CubeEngine } from 'cube-state-engine'
 import formatTime from '@/shared/lib/formatTime'
 import genId from '@/shared/lib/genId'
-import { useNXData } from '@/hooks/useNXData'
 import { sendSolveToServer } from '@/shared/lib/actions'
 import { useSession } from 'next-auth/react'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { Solve } from '@/entities/solve/model/types'
+import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export default function TimerVirtual() {
   const containerRef = React.useRef<HTMLDivElement | null>(null)
@@ -33,11 +33,10 @@ export default function TimerVirtual() {
   const postSolveTimeoutRef = React.useRef<number | null>(null)
   const isRunning = useTimerStore((store) => store.isSolving)
   const setIsRunning = useTimerStore((store) => store.setIsSolving)
-  const { saveCube } = useNXData()
   const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
   const setLastSolve = useTimerStore((store) => store.setLastSolve)
 
-  const saveSolvePlaceholder = (_payload: {
+  const saveSolvePlaceholder = async (_payload: {
     timeMs: number
     scramble: string | null
     moves: string[]
@@ -80,7 +79,7 @@ export default function TimerVirtual() {
       }
     }
 
-    saveCube(updatedCube)
+    await cubesDB.update(updatedCube)
     setSelectedCube(updatedCube)
     setLastSolve({ ...newSolve })
     updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
