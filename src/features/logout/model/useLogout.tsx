@@ -1,12 +1,11 @@
 import { signOut, useSession } from 'next-auth/react'
 import { toast } from 'sonner'
-import { useNXData } from '@/hooks/useNXData'
 import { useTranslations } from 'next-intl'
 import useAlert from '@/shared/model/useAlert'
+import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export default function useLogout() {
   const t = useTranslations('Index')
-  const { clearCubes } = useNXData()
   const { data: session } = useSession()
   const alert = useAlert()
 
@@ -26,7 +25,7 @@ export default function useLogout() {
 
       if (!confirm) return
 
-      await clearCubes()
+      await cubesDB.clear()
       await signOut({ redirectTo: '/' })
     } catch (error) {
       console.error('Error resetting device data:', error)
