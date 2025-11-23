@@ -4,7 +4,7 @@ import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
-import useSolveData from '@/hooks/useSolveData'
+import useSolveData from '@/features/timer/model/useSolveData'
 import QuickActions from '@/features/manage-solves/ui/QuickActions'
 import { Input } from '@/components/ui/input'
 
