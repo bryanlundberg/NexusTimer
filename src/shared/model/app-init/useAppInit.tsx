@@ -13,7 +13,7 @@ import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import { useUser } from '@/entities/user/model/useUser'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
 
-export function usePreloadSettings() {
+export function useAppInit() {
   const setCubes = useTimerStore((store) => store.setCubes)
   const cubes = useTimerStore((store) => store.cubes)
   const setSelectedCube = useTimerStore((store) => store.setSelectedCube)

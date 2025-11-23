@@ -1,11 +1,11 @@
 'use client'
-import { usePreloadSettings } from '@/hooks/usePreloadSettings'
+import { useAppInit } from '@/shared/model/app-init/useAppInit'
 import { useBackgroundImageStore } from '@/shared/model/settings/useBackgroundImageStore'
 import { ReactNode } from 'react'
 
 export default function PreloadApp({ children }: { children: ReactNode }) {
   const backgroundImage = useBackgroundImageStore((state) => state.backgroundImage)
-  const { isMounted } = usePreloadSettings()
+  const { isMounted } = useAppInit()
 
   return (
     <>
