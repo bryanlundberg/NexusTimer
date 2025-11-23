@@ -3,14 +3,13 @@ import genId from '@/shared/lib/genId'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
-import { useNXData } from '@/hooks/useNXData'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { Packet, Stackmat as StackmatController } from 'stackmat-v2'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { Solve } from '@/entities/solve/model/types'
+import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export default function Stackmat() {
-  const { saveCube } = useNXData()
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   const cubes = useTimerStore((state) => state.cubes)
@@ -87,7 +86,7 @@ export default function Stackmat() {
           }
         }
 
-        saveCube(updatedCube)
+        await cubesDB.update(updatedCube)
         setSelectedCube(updatedCube)
         setLastSolve({ ...newSolve })
         setNewScramble(selectedCube)
