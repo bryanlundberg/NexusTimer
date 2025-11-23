@@ -3,12 +3,11 @@ import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTit
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
-import { useNXData } from '@/hooks/useNXData'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export default function DialogMoveHistorial() {
   const overlayStore = useOverlayStore()
-  const { getAllCubes, getCubeById, finishSession } = useNXData()
   const t = useTranslations('Index')
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const setCubes = useTimerStore((state) => state.setCubes)
@@ -16,10 +15,10 @@ export default function DialogMoveHistorial() {
 
   const handleMoveSessionToHistorial = async () => {
     if (selectedCube) {
-      await finishSession(selectedCube)
-      const cubesDB = await getAllCubes()
-      setCubes(cubesDB)
-      const currentCube = await getCubeById(selectedCube.id)
+      await cubesDB.endSessionForCube(selectedCube)
+      const cubes = await cubesDB.getAll()
+      setCubes(cubes)
+      const currentCube = await cubesDB.getById(selectedCube.id)
       setSelectedCube(currentCube)
       return
     }
