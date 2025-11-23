@@ -6,7 +6,6 @@ import {
 } from '@/features/manage-backup/lib/importDataFromFile'
 import { toast } from 'sonner'
 import { compressSync, decompressSync, strFromU8, strToU8 } from 'fflate'
-import { useNXData } from '@/hooks/useNXData'
 import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useState } from 'react'
@@ -15,9 +14,9 @@ import { UserDocument } from '@/entities/user/model/user'
 import { useUploadThing } from '@/shared/lib/uploadthing-helpers'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
 import { Cube } from '@/entities/cube/model/types'
+import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export const useSyncBackup = () => {
-  const { clearCubes, getAllCubes, saveBatchCubes, getAllDatabase } = useNXData()
   const { data: session } = useSession()
   const setCubes = useTimerStore((state) => state.setCubes)
   const [isUploading, setIsUploading] = useState(false)
@@ -46,7 +45,7 @@ export const useSyncBackup = () => {
     if (isUploading) return
     setIsUploading(true)
 
-    const cubes = await getAllCubes()
+    const cubes = await cubesDB.getAll()
 
     if (!cubes || !session || !session.user || !session.user.id) {
       setIsUploading(false)
@@ -156,7 +155,7 @@ export const useSyncBackup = () => {
       const data = strFromU8(decompressed)
 
       let backupData = importNexusTimerData(data)
-      const existingCubes = await getAllDatabase()
+      const existingCubes = await cubesDB.getAllDatabase()
 
       let newCubes: Cube[] = []
 
@@ -173,9 +172,9 @@ export const useSyncBackup = () => {
       updateSetting('sync.lastSync', Date.now())
       updateSetting('sync.totalSolves', 0)
 
-      await clearCubes()
-      await saveBatchCubes(newCubes)
-      const newCubesDB = await getAllCubes()
+      await cubesDB.clear()
+      await cubesDB.saveBatch(newCubes)
+      const newCubesDB = await cubesDB.getAll()
       setCubes(newCubesDB)
 
       if (selectedCube) {
