@@ -22,7 +22,6 @@ type UseTimerStore = {
   hint: CrossSolution | null
   timerStatistics: DisplayTimerStatistics
   timerMode: TimerMode.NORMAL | TimerMode.MANUAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE
-  isOpenDrawerNewCollection: boolean
   setNewScramble: (cube: Cube | null) => void
   setCubes: (cubesDB: Cube[]) => void
   setSelectedCube: (cube: Cube | null) => void
@@ -37,7 +36,6 @@ type UseTimerStore = {
   setTimerMode: (
     mode: TimerMode.NORMAL | TimerMode.MANUAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE
   ) => void
-  setIsOpenDrawerNewCollection: (status: boolean) => void
   reset: () => void
 }
 
@@ -58,7 +56,6 @@ export const useTimerStore = create<UseTimerStore>((set) => ({
     cubeSession: defaultTimerStatistics
   },
   timerMode: TimerMode.NORMAL,
-  isOpenDrawerNewCollection: false,
   setNewScramble: (cube: Cube | null) => {
     set({ scramble: cube ? genScramble(cube.category) : null })
   },
@@ -120,15 +117,11 @@ export const useTimerStore = create<UseTimerStore>((set) => ({
   ) => {
     set({ timerMode: mode })
   },
-  setIsOpenDrawerNewCollection: (status: boolean) => {
-    set({ isOpenDrawerNewCollection: status })
-  },
   reset: () =>
     set({
       isSolving: false,
       timerStatus: TimerStatus.IDLE,
       zoomInScramble: false,
-      hint: null,
-      isOpenDrawerNewCollection: false
+      hint: null
     })
 }))
