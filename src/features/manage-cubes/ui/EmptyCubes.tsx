@@ -7,6 +7,8 @@ import React from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
 
 interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {
   onCreate?: () => void
@@ -18,10 +20,25 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
   const { data: session } = useSession()
   const router = useRouter()
   const t = useTranslations('Index.CubesPage')
+  const open = useOverlayStore((state) => state.open)
+  const close = useOverlayStore((state) => state.close)
 
   const handleClickOnCreate = () => {
     if (onCreate) return onCreate()
-    router.push('/cubes/new')
+    open({
+      id: 'create-cube',
+      component: <CreateCollectionForm />
+    })
+  }
+
+  const handleClickOnImportOtherTimers = () => {
+    router.push('/options#app-data')
+    close()
+  }
+
+  const handleClickOnRestoreAccountData = () => {
+    router.push('/account')
+    close()
   }
 
   return (
@@ -88,11 +105,11 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
               {t('new-collection')}
             </Button>
             {session?.user && (
-              <Button variant={'secondary'} onClick={() => router.push('/account')}>
+              <Button variant={'secondary'} onClick={handleClickOnRestoreAccountData}>
                 <DatabaseBackupIcon /> Restore Account Data
               </Button>
             )}
-            <Button variant={'ghost'} onClick={() => router.push('/options#app-data')}>
+            <Button variant={'ghost'} onClick={handleClickOnImportOtherTimers}>
               <FileTextIcon /> Import from Other Timers
             </Button>
           </div>
