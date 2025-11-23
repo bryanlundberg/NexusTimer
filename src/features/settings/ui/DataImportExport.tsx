@@ -1,14 +1,15 @@
 import exportDataToFile from '@/features/settings/lib/exportDataToFile'
 import { useTranslations } from 'next-intl'
 import { DownloadIcon, UploadIcon } from '@radix-ui/react-icons'
-import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import { useNXData } from '@/hooks/useNXData'
 import { Button } from '@/components/ui/button'
-import DialogImportBackup from '@/components/dialogs/dialog-import-backup/dialog-import-backup'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import ImportBackup from '@/features/manage-backup/ui/ImportBackup'
 
 export function DataImportExport() {
   const t = useTranslations('Index')
   const { getAllCubes } = useNXData()
+  const open = useOverlayStore((state) => state.open)
 
   const handleExport = async () => {
     try {
@@ -18,17 +19,20 @@ export function DataImportExport() {
       console.error('Error exporting data:', error)
     }
   }
+
+  const handleOpenImport = () => {
+    open({
+      id: 'import-backup',
+      component: <ImportBackup />
+    })
+  }
+
   return (
     <div className="ps-3 pe-3 mb-3">
       <div className="flex flex-wrap gap-2 mb-1">
-        <Dialog>
-          <DialogTrigger asChild className="flex items-center gap-1">
-            <Button variant={'outline'}>
-              <DownloadIcon /> {t('Settings-menu.import-from-file')}
-            </Button>
-          </DialogTrigger>
-          <DialogImportBackup />
-        </Dialog>
+        <Button variant={'outline'} onClick={handleOpenImport}>
+          <DownloadIcon /> {t('Settings-menu.import-from-file')}
+        </Button>
 
         <Button variant={'outline'} className="flex items-center gap-1" onClick={handleExport}>
           <UploadIcon />
