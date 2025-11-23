@@ -7,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import Link from 'next/link'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
@@ -15,6 +14,7 @@ import Image from 'next/image'
 import { PlusIcon } from '@radix-ui/react-icons'
 import { Button } from '@/components/ui/button'
 import { Cube } from '@/entities/cube/model/types'
+import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 
 export default function MainCubeSelector() {
   const t = useTranslations('Index')
@@ -23,7 +23,8 @@ export default function MainCubeSelector() {
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   const setNewScramble = useTimerStore((state) => state.setNewScramble)
   const setLastSolve = useTimerStore((state) => state.setLastSolve)
-  const setIsOpenDrawerNewCollection = useTimerStore((state) => state.setIsOpenDrawerNewCollection)
+  const { handleCreate } = useCubeActions(undefined)
+
   const handleChangeValue = (e: any) => {
     const choseCube = cubes?.find((cube) => cube.id === e)
     if (!choseCube) return
@@ -31,6 +32,7 @@ export default function MainCubeSelector() {
     setNewScramble(choseCube)
     setLastSolve(null)
   }
+
   return (
     <>
       <Select defaultValue={selectedCube?.id} value={selectedCube?.id} onValueChange={handleChangeValue}>
@@ -63,14 +65,12 @@ export default function MainCubeSelector() {
                 .map((cube) => {
                   return <SelectCubeItemWidthImage cube={cube} key={cube.id} />
                 })}
-            <Link href={'/cubes'} onClick={() => setIsOpenDrawerNewCollection(true)}>
-              <Button variant={'outline'} className="w-full">
-                <div className="flex items-center justify-center gap-1">
-                  <PlusIcon />
-                  {t('CubesPage.new-collection')}
-                </div>
-              </Button>
-            </Link>
+            <Button variant={'outline'} className="w-full" onClick={handleCreate}>
+              <div className="flex items-center justify-center gap-1">
+                <PlusIcon />
+                {t('CubesPage.new-collection')}
+              </div>
+            </Button>
           </SelectGroup>
         </SelectContent>
       </Select>
