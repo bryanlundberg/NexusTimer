@@ -1,4 +1,3 @@
-import { useNXData } from '@/hooks/useNXData'
 import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useQueryState } from 'nuqs'
@@ -9,9 +8,9 @@ import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTrans
 import { STATES } from '@/shared/const/states'
 import useRemoveGridHeight from '@/shared/model/solves-grid/useRemoveGridHeight'
 import { Solve } from '@/entities/solve/model/types'
+import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export default function useTransferSolves() {
-  const { saveBatchCubes, getAllCubes } = useNXData()
   const t = useTranslations('Index.TransferSolvesPage')
   const cubes = useTimerStore((state) => state.cubes)
   const setCubes = useTimerStore((state) => state.setCubes)
@@ -89,8 +88,9 @@ export default function useTransferSolves() {
           solves: { ...destinationCube.solves, session: mergedDestinationSession }
         }
 
-        await saveBatchCubes([updatedSourceCube, updatedDestinationCube])
-        const updatedCubes = await getAllCubes()
+        await cubesDB.update(updatedSourceCube)
+        await cubesDB.update(updatedDestinationCube)
+        const updatedCubes = await cubesDB.getAll()
 
         setCubes(updatedCubes)
 
