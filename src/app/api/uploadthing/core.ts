@@ -1,6 +1,6 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next'
 import { UploadThingError } from 'uploadthing/server'
-import { auth } from '@/auth'
+import { auth } from '@/shared/config/auth/auth'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 
