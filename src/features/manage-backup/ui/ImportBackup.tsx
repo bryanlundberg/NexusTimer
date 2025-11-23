@@ -6,15 +6,14 @@ import importDataFromFile from '@/features/manage-backup/lib/importDataFromFile'
 import { useRouter } from 'next/navigation'
 import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { toast } from 'sonner'
-import { useNXData } from '@/hooks/useNXData'
 import ImportReview from './ImportReview'
 import { Dropzone, DropzoneContent, DropzoneEmptyState } from '@/components/ui/shadcn-io/dropzone'
 import { Spinner } from '@/components/ui/spinner'
 import { Cube } from '@/entities/cube/model/types'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export default function ImportBackup() {
-  const { getAllCubes, clearCubes, saveBatchCubes } = useNXData()
   const t = useTranslations('Index.backup-modal')
   const [isImporting, setIsImporting] = useState(false)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
@@ -48,12 +47,12 @@ export default function ImportBackup() {
   const handleConfirmReview = async (editedCubes: Cube[]) => {
     try {
       setIsImporting(true)
-      await clearCubes()
-      await saveBatchCubes(editedCubes)
+      await cubesDB.clear()
+      await cubesDB.saveBatch(editedCubes)
       toast.success('Backup imported successfully!')
 
-      const cubesDB = await getAllCubes()
-      setCubes(cubesDB)
+      const cubes = await cubesDB.getAll()
+      setCubes(cubes)
       router.push('/cubes')
       setSelectedCube(null)
       toast.success('Import completed!')
