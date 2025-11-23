@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { CUBE_CATEGORIES } from '@/shared/config/cube-categories'
+import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 import { userSchema } from '@/entities/user/model/types'
 
 export type Solves = {

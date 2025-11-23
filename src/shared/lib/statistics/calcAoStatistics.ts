@@ -1,7 +1,7 @@
 import getSolvesMetrics from './getSolvesMetrics'
 import calculateBestAo from './calculateBestAo'
 import { Cube } from '@/entities/cube/model/types'
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 import { AoStatistics } from '@/shared/types/statistics'
 
 export default function calcAoStatistics({

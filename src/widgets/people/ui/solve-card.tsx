@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import * as React from 'react'
 import { AlarmClock, CalendarDaysIcon, CombineIcon, Trophy } from 'lucide-react'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 
 interface SolveCardProps {
   scramble: string

@@ -1,7 +1,7 @@
 import getSolvesMetrics from './getSolvesMetrics'
 import { sort } from 'fast-sort'
 import { Cube } from '@/entities/cube/model/types'
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 import { StatisticValue } from '@/shared/types/statistics'
 
 export default function calcBestTime({

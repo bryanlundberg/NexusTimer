@@ -5,7 +5,7 @@ import formatTime from '@/shared/lib/formatTime'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import SolveCard from '@/widgets/people/ui/solve-card'
 import { Cube } from '@/entities/cube/model/types'
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 
 export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
   const solvesByCategory = useMemo(() => {

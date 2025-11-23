@@ -1,6 +1,6 @@
 import cubeSolver from 'cube-solver'
 import { Layers } from '@/shared/types/enums'
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 import { CrossSolution } from '@/shared/types/types'
 
 /**

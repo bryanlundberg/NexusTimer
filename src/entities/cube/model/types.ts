@@ -1,4 +1,4 @@
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 import { Solves } from '@/entities/solve/model/types'
 
 export type Cube = {

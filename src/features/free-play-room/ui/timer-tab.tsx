@@ -12,7 +12,7 @@ import ConfirmSolveModal from '@/features/free-play-room/ui/confirm-solve-modal'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
 import useDeviceMatch from '@/shared/model/useDeviceMatch'
 import { TimerStatus } from '@/features/timer/model/enums'
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 import { Cube } from '@/entities/cube/model/types'
 
 interface TimerTabProps {

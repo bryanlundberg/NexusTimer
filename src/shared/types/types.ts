@@ -1,4 +1,4 @@
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 import { PuzzleID } from 'cubing/twisty'
 
 export type CrossSolution = {

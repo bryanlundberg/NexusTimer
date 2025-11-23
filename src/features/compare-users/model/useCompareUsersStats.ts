@@ -5,7 +5,7 @@ import calcTotalSolvesStatistics from '@/shared/lib/statistics/calcTotalSolvesSt
 import calculateBestAo from '@/shared/lib/statistics/calculateBestAo'
 import { CompareUser } from '@/features/compare-users/model/compare'
 import { Cube } from '@/entities/cube/model/types'
-import { CUBE_CATEGORIES } from '@/shared/config/cube-categories'
+import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 
 interface User {
   _id: string

@@ -11,7 +11,7 @@ import { Cell, Pie, PieChart } from 'recharts'
 import formatTime from '@/shared/lib/formatTime'
 import React, { useMemo } from 'react'
 import { Cube } from '@/entities/cube/model/types'
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 import { aggregateByCube } from '@/shared/lib/aggregateByCube'
 import { COLORS } from '@/shared/const/graph-colors'
 

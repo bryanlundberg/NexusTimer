@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { CUBE_CATEGORIES } from '@/shared/config/cube-categories'
+import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 
 export const deleteCollectionSchema = z.object({
   confirmationName: z

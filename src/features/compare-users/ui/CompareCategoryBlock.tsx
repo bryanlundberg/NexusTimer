@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge'
 import formatTime from '@/shared/lib/formatTime'
 import CompareTableRow from './CompareTableRow'
 import { CompareUser } from '@/features/compare-users/model/compare'
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 
 export default function CompareCategoryBlock({ category, users }: { category: CubeCategory; users: CompareUser[] }) {
   const singles = users

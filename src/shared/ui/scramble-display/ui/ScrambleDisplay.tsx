@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 import { cubeCollection } from '@/shared/const/cube-collection'
 
 interface ScrambleDisplay extends React.HTMLAttributes<HTMLDivElement> {

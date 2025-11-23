@@ -21,7 +21,7 @@ import UsersTab from '@/features/free-play-room/ui/users-tab'
 import useAlert from '@/shared/model/useAlert'
 import { useCountdown } from '@/shared/model/useCountdown'
 import { TimerStatus } from '@/features/timer/model/enums'
-import { CubeCategory } from '@/shared/config/cube-categories'
+import { CubeCategory } from '@/shared/const/cube-categories'
 
 export default function FreePlayRoomPage() {
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }

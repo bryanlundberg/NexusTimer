@@ -10,7 +10,7 @@ import CompareCategoryBlock from '@/features/compare-users/ui/CompareCategoryBlo
 import { useCompareUsersStats } from '@/features/compare-users/model/useCompareUsersStats'
 import { CompareUser } from '@/features/compare-users/model/compare'
 import { Cube } from '@/entities/cube/model/types'
-import { CUBE_CATEGORIES } from '@/shared/config/cube-categories'
+import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 
 export default function CompareUsersModal() {
   const closeOverlay = useCompareUsersStore((state) => state.closeOverlay)
