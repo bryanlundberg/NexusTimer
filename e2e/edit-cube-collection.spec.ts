@@ -1,20 +1,37 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test'
 
-test("Should edit the cube collection name", async ({ page }) => {
-  await page.goto("http://localhost:3000/cubes");
-  await expect(page.getByTestId("empty-cubes-container")).toBeVisible();
-  await expect(page.getByTestId("create-collection-button")).toBeVisible();
-  await page.getByTestId("create-collection-button").click();
-  await expect(page.getByTestId("drawer-input-name")).toBeVisible();
-  await page.getByTestId("drawer-input-name").click();
-  await page.getByTestId("drawer-input-name").fill("test-changing-name");
-  await page.getByTestId("checkbox-category-3x3").click();
-  await page.getByTestId("drawer-accept-button").click();
-  await expect(page.getByTestId("cube-name-test-changing-name")).toBeVisible();
-  await page.getByTestId("cube-options-edit").click();
-  await expect(page.getByTestId("drawer-edit-input-name")).toBeVisible();
-  await page.getByTestId("drawer-edit-input-name").click();
-  await page.getByTestId("drawer-edit-input-name").fill("my-amazing-cube");
-  await page.getByTestId("drawer-edit-accept-button").click();
-  await expect(page.getByTestId("cube-name-my-amazing-cube")).toBeVisible();
-});
+test('Should edit a cube name and category validating every change', async ({ page }) => {
+  await page.goto('http://localhost:3000/cubes')
+  await expect(page.getByRole('heading', { name: 'No cubes for display.' })).toBeVisible()
+  await page.getByTestId('create-collection-button').click()
+  await page.getByTestId('drawer-input-name').click()
+  await page.getByTestId('drawer-input-name').press('CapsLock')
+  await page.getByTestId('drawer-input-name').fill('T')
+  await page.getByTestId('drawer-input-name').press('CapsLock')
+  await page.getByTestId('drawer-input-name').fill('Test')
+  await page.getByTestId('checkbox-category-3x3').click()
+  await page.getByTestId('drawer-accept-button').click()
+  await expect(
+    page
+      .locator('div')
+      .filter({ hasText: /^Test$/ })
+      .first()
+  ).toBeVisible()
+  await page.getByRole('button', { name: 'Edit' }).click()
+  await expect(page.getByText('Modifying the collection')).toBeVisible()
+  await page.getByTestId('drawer-edit-input-name').click()
+  await page.getByTestId('drawer-edit-input-name').fill('Test2')
+  await page.getByTestId('drawer-edit-accept-button').click()
+  await expect(
+    page
+      .locator('div')
+      .filter({ hasText: /^Test2$/ })
+      .first()
+  ).toBeVisible()
+  await page.getByRole('button', { name: 'Edit' }).click()
+  await page.getByTestId('drawer-edit-select-category').click()
+  await page.getByRole('option', { name: 'Pyraminx' }).click()
+  await page.getByTestId('drawer-edit-accept-button').click()
+  await page.waitForTimeout(500)
+  await expect(page.getByText('Pyraminx')).toBeVisible()
+})
