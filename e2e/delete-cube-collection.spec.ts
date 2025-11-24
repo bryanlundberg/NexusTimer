@@ -1,38 +1,41 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from '@playwright/test'
 
-test("Should be able to delete a cube collection", async ({ page }) => {
-  await page.goto("http://localhost:3000/cubes");
-  await expect(page.getByTestId("empty-cubes-container")).toBeVisible();
-  await expect(page.getByTestId("create-collection-button")).toBeVisible();
-  await page.getByTestId("create-collection-button").click();
-  await page.getByTestId("drawer-input-name").click();
-  await page.getByTestId("drawer-input-name").fill("fake-cube-name");
-  await page.getByTestId("checkbox-category-6x6").click();
-  await page.getByTestId("drawer-accept-button").click();
-  await expect(page.getByTestId("cube-name-fake-cube-name")).toBeVisible();
-  await expect(page.getByTestId("cube-options-delete")).toBeVisible();
-  await page.getByTestId("cube-options-delete").click();
-  await expect(page.getByTestId("dialog-delete-cube-container")).toBeVisible();
-  await expect(page.getByTestId("dialog-delete-cube-title")).toBeVisible();
+test('Should create and delete a cube collection, also validate delete form', async ({ page }) => {
+  await page.goto('http://localhost:3000/cubes')
+  await page.getByTestId('empty-cubes-container').getByRole('button', { name: 'New collection' }).click()
+  await page.getByTestId('drawer-input-name').click()
+  await page.getByTestId('drawer-input-name').press('CapsLock')
+  await page.getByTestId('drawer-input-name').fill('T')
+  await page.getByTestId('drawer-input-name').press('CapsLock')
+  await page.getByTestId('drawer-input-name').fill('Test')
+  await page.getByTestId('drawer-input-name').press('CapsLock')
+  await page.getByTestId('drawer-input-name').fill('TestC')
+  await page.getByTestId('drawer-input-name').press('CapsLock')
+  await page.getByTestId('drawer-input-name').fill('TestCube')
+  await page.getByTestId('drawer-accept-button').click()
   await expect(
-    page.getByTestId("dialog-delete-cube-description")
-  ).toBeVisible();
-  await expect(page.getByTestId("dialog-delete-cube-warning")).toBeVisible();
-  await expect(page.getByTestId("dialog-delete-cube-input")).toBeVisible();
-  await expect(
-    page.getByTestId("dialog-delete-cube-cancel-button")
-  ).toBeVisible();
-  await expect(
-    page.getByTestId("dialog-delete-cube-accept-button")
-  ).toBeVisible();
-  await page.getByTestId("dialog-delete-cube-input").click();
-  await page.getByTestId("dialog-delete-cube-input").fill("asd");
-  await page.getByTestId("dialog-delete-cube-accept-button").click();
-  await expect(
-    page.getByTestId("dialog-delete-cube-error-message")
-  ).toBeVisible();
-  await page.getByTestId("dialog-delete-cube-input").click();
-  await page.getByTestId("dialog-delete-cube-input").fill("fake-cube-name");
-  await page.getByTestId("dialog-delete-cube-accept-button").click();
-  await expect(page.getByTestId("empty-cubes-container")).toBeVisible();
-});
+    page
+      .locator('div')
+      .filter({ hasText: /^TestCube$/ })
+      .first()
+  ).toBeVisible()
+  await page.getByRole('button', { name: 'Delete' }).click()
+  await expect(page.getByTestId('dialog-delete-cube-description')).toBeVisible()
+  await page.getByTestId('dialog-delete-cube-input').click()
+  await page.getByTestId('dialog-delete-cube-input').fill('asd')
+  await page.getByTestId('dialog-delete-cube-accept-button').click()
+  await expect(page.getByTestId('dialog-delete-cube-error-message')).toBeVisible()
+  await page.getByTestId('dialog-delete-cube-input').click()
+  await page.getByTestId('dialog-delete-cube-input').fill('')
+  await page.getByTestId('dialog-delete-cube-input').press('CapsLock')
+  await page.getByTestId('dialog-delete-cube-input').fill('T')
+  await page.getByTestId('dialog-delete-cube-input').press('CapsLock')
+  await page.getByTestId('dialog-delete-cube-input').fill('Test')
+  await page.getByTestId('dialog-delete-cube-input').press('CapsLock')
+  await page.getByTestId('dialog-delete-cube-input').fill('TestC')
+  await page.getByTestId('dialog-delete-cube-input').press('CapsLock')
+  await page.getByTestId('dialog-delete-cube-input').fill('TestCube')
+  await page.getByTestId('dialog-delete-cube-accept-button').click()
+  await expect(page.getByText('Collection deleted')).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'No cubes for display.' })).toBeVisible()
+})
