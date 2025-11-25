@@ -87,7 +87,14 @@ function SelectCubeItemWidthImage({ cube }: { cube: Cube }) {
             const foundCube = cubeCollection.find((i) => i.name === cube.category)
             if (foundCube) {
               return (
-                <Image src={foundCube.src} alt={foundCube.name} width={24} height={24} className="object-scale-down" />
+                <Image
+                  unoptimized
+                  src={foundCube.src}
+                  alt={foundCube.name}
+                  width={24}
+                  height={24}
+                  className="object-scale-down"
+                />
               )
             }
             return null
