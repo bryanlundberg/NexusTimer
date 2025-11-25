@@ -22,6 +22,7 @@ export default function CubesTabContent({ cubes }: CubesTabContentProps) {
         cubes.map((cube) => (
           <Card key={cube.id} className={'flex flex-1 h-auto gap-2 flex-row items-center px-3'}>
             <Image
+              unoptimized
               src={cubeCollection.find((item) => item.name === cube.category)?.src || ''}
               alt={cube.name}
               className={'size-14 object-scale-down rounded p-1'}
