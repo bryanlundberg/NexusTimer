@@ -92,13 +92,17 @@ export default function CreateCollectionForm() {
             {cubeCollection.map((e) => {
               return (
                 <Image
+                  priority
+                  unoptimized
                   data-testid={'checkbox-category-' + e.name}
                   key={e.name}
                   src={e.src}
                   alt={e.event || ''}
+                  width={80}
+                  height={80}
                   className={cn(
-                    'w-full max-w-fit max-h-14 md:max-h-20 object-scale-down rounded hover:scale-105 transition duration-200',
-                    `${formWatch.category === e.name ? 'rounded scale-105 outline-primary outline-4' : ''}`
+                    'w-full h-full md:max-h-20 rounded hover:scale-105 transition duration-200',
+                    `${formWatch.category === e.name && 'rounded scale-105 outline-primary outline-4'}`
                   )}
                   draggable={false}
                   onClick={() => {
