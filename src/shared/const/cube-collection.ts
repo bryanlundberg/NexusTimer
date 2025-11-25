@@ -1,15 +1,3 @@
-import cube222 from '../../../public/categories/cube222.svg'
-import cube333 from '../../../public/categories/cube333.svg'
-import cube333oh from '../../../public/categories/cube333oh.svg'
-import cube444 from '../../../public/categories/cube444.svg'
-import cube555 from '../../../public/categories/cube555.svg'
-import cube666 from '../../../public/categories/cube666.svg'
-import cube777 from '../../../public/categories/cube777.svg'
-import cubesq1 from '../../../public/categories/cubesq1.svg'
-import cubeskewb from '../../../public/categories/skewb.svg'
-import cubepyramix from '../../../public/categories/pyramix.svg'
-import cubemegaminx from '../../../public/categories/minx.svg'
-import cubeclock from '../../../public/categories/clock.svg'
 import { CubeCollection } from '@/shared/types/types'
 
 export const cubeCollection: CubeCollection[] = [
@@ -17,7 +5,7 @@ export const cubeCollection: CubeCollection[] = [
     event: '222',
     id: 1,
     name: '2x2',
-    src: cube222,
+    src: '/categories/cube222.svg',
     displayId: '2x2x2',
     twistyId: '222'
   },
@@ -25,7 +13,7 @@ export const cubeCollection: CubeCollection[] = [
     event: '333',
     id: 2,
     name: '3x3',
-    src: cube333,
+    src: '/categories/cube333.svg',
     displayId: '3x3x3',
     twistyId: '333'
   },
@@ -33,7 +21,7 @@ export const cubeCollection: CubeCollection[] = [
     event: '333',
     id: 3,
     name: '3x3 OH',
-    src: cube333oh,
+    src: '/categories/cube333oh.svg',
     displayId: '3x3x3',
     twistyId: '333'
   },
@@ -41,7 +29,7 @@ export const cubeCollection: CubeCollection[] = [
     event: '444',
     id: 4,
     name: '4x4',
-    src: cube444,
+    src: '/categories/cube444.svg',
     displayId: '4x4x4',
     twistyId: '444'
   },
@@ -49,7 +37,7 @@ export const cubeCollection: CubeCollection[] = [
     event: '555',
     id: 5,
     name: '5x5',
-    src: cube555,
+    src: '/categories/cube555.svg',
     displayId: '5x5x5',
     twistyId: '555'
   },
@@ -57,7 +45,7 @@ export const cubeCollection: CubeCollection[] = [
     event: '666',
     id: 6,
     name: '6x6',
-    src: cube666,
+    src: '/categories/cube666.svg',
     displayId: '6x6x6',
     twistyId: '666'
   },
@@ -65,7 +53,7 @@ export const cubeCollection: CubeCollection[] = [
     event: '777',
     id: 7,
     name: '7x7',
-    src: cube777,
+    src: '/categories/cube777.svg',
     displayId: '7x7x7',
     twistyId: '777'
   },
@@ -73,7 +61,7 @@ export const cubeCollection: CubeCollection[] = [
     event: 'sq1',
     id: 8,
     name: 'SQ1',
-    src: cubesq1,
+    src: '/categories/cubesq1.svg',
     displayId: 'square1',
     twistyId: 'sq1'
   },
@@ -81,7 +69,7 @@ export const cubeCollection: CubeCollection[] = [
     event: 'skewb',
     id: 9,
     name: 'Skewb',
-    src: cubeskewb,
+    src: '/categories/skewb.svg',
     displayId: 'skewb',
     twistyId: 'skewb'
   },
@@ -89,7 +77,7 @@ export const cubeCollection: CubeCollection[] = [
     event: 'pyram',
     id: 10,
     name: 'Pyraminx',
-    src: cubepyramix,
+    src: '/categories/pyramix.svg',
     displayId: 'pyraminx',
     twistyId: 'pyra'
   },
@@ -97,7 +85,7 @@ export const cubeCollection: CubeCollection[] = [
     event: 'minx',
     id: 11,
     name: 'Megaminx',
-    src: cubemegaminx,
+    src: '/categories/minx.svg',
     displayId: 'megaminx',
     twistyId: 'mega'
   },
@@ -105,7 +93,7 @@ export const cubeCollection: CubeCollection[] = [
     event: 'clock',
     id: 12,
     name: 'Clock',
-    src: cubeclock,
+    src: '/categories/clock.svg',
     displayId: 'clock',
     twistyId: 'clock'
   }
