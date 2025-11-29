@@ -22,6 +22,7 @@ export default function ButtonDisplayType() {
             {/* This <div> explained: https://github.com/shadcn-ui/ui/issues/1988#issuecomment-1980597269 */}
             <div>
               <Toggle
+                data-testid="button-display-type"
                 defaultPressed={tabMode === SolveTab.ALL}
                 disabled={selectedCube === null}
                 onPressedChange={(e) => setTabMode(e ? SolveTab.ALL : SolveTab.SESSION)}
