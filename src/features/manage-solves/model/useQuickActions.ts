@@ -60,6 +60,7 @@ export default function useQuickActions(solve: Solve) {
   const handleTransferCollection = () => {
     if (!selectedCube) return
     router.push(`/transfer-solves?source-collection=${selectedCube.id}`) // TODO: change source-collection to constant
+    close()
   }
 
   const handleMoveToHistorial = async () => {
