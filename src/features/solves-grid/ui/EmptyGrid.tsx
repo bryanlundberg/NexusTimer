@@ -4,7 +4,10 @@ import Image from 'next/image'
 export default function EmptyGrid({ title, description }: { title?: string; description?: string }) {
   const t = useTranslations('Index.SolvesPage')
   return (
-    <div className="w-full flex flex-col items-center justify-center text-center text-sm sm:text-md font-mono py-20 max-w-96 mx-auto">
+    <div
+      className="w-full flex flex-col items-center justify-center text-center text-sm sm:text-md font-mono py-20 max-w-96 mx-auto"
+      data-testid="empty-solves-grid"
+    >
       <Image
         src={'/utils/empty-solves.svg'}
         alt="empty"
