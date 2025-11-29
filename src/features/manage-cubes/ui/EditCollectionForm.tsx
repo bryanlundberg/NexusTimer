@@ -47,7 +47,7 @@ export default function EditCollectionForm() {
     try {
       const cubes = await cubesDB.getAll()
 
-      if (metadata?.name !== form.name && cubes?.some((e) => e.name === form.name)) {
+      if (metadata?.name !== form.name && cubes?.some((e) => e.name.toLowerCase() === form.name.trim().toLowerCase())) {
         setError('name', {
           type: 'manual',
           message: 'Cube collection name already exists.'
