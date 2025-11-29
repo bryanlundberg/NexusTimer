@@ -1,6 +1,7 @@
 import { expect } from '@playwright/test'
 import { test } from './fixtures/create-cube-fixture'
 import { getIndexedDBData } from './utils/indexdb-helpers'
+import { solveOnTimer } from './utils/solve-on-timer'
 
 test('Should do a solve with the timer', async ({ cubeCreated }) => {
   await cubeCreated.waitForTimeout(250)
@@ -8,12 +9,7 @@ test('Should do a solve with the timer', async ({ cubeCreated }) => {
   await cubeCreated.waitForTimeout(250)
   await cubeCreated.getByRole('main').locator('div').filter({ hasText: /^0$/ }).click()
 
-  await cubeCreated.keyboard.down('Space')
-  await cubeCreated.waitForTimeout(1000)
-  await cubeCreated.keyboard.up('Space')
-
-  await cubeCreated.waitForTimeout(1000)
-  await cubeCreated.keyboard.press('Space')
+  await solveOnTimer(cubeCreated, 0, 0)
 
   await expect(cubeCreated.getByText('Congratulations!')).toBeVisible()
 
