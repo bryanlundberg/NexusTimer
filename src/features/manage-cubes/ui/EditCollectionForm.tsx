@@ -109,7 +109,11 @@ export default function EditCollectionForm() {
               </SelectTrigger>
               <SelectContent>
                 {cubeCollection.map((cube) => (
-                  <SelectItem key={cube.id} value={cube.name}>
+                  <SelectItem
+                    key={cube.id}
+                    value={cube.name}
+                    data-testid={`drawer-edit-select-category-item-${cube.name}`}
+                  >
                     {cube.name}
                   </SelectItem>
                 ))}
