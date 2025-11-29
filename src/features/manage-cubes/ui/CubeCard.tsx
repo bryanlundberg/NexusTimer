@@ -88,7 +88,7 @@ export function CubeCard({ cube }: CubeCardProps) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant={'ghost'} size={'sm'} onClick={handleEdit}>
+                  <Button variant={'ghost'} size={'sm'} onClick={handleEdit} data-testid="edit-cube-button">
                     <GearIcon className="mr-1 h-4 w-4" />
                     {t('CubesPage.edit')}
                   </Button>
@@ -104,7 +104,7 @@ export function CubeCard({ cube }: CubeCardProps) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant={'ghost'} size={'sm'} onClick={handleDelete}>
+                  <Button variant={'ghost'} size={'sm'} onClick={handleDelete} data-testid="delete-cube-button">
                     <TrashIcon className="mr-1 h-4 w-4" />
                     {t('CubesPage.delete')}
                   </Button>
