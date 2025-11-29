@@ -28,8 +28,16 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
       <div className="flex items-end gap-1">
         <span className="text-2xl font-semibold">{formatTime(orderedSolves[index].time).split('.')[0]}</span>
         <span className="text-base opacity-80">.{formatTime(orderedSolves[index].time).split('.')[1]}</span>
-        {orderedSolves[index].plus2 ? <span className="ms-2 text-lg font-black text-red-600">+2</span> : null}
-        {orderedSolves[index].dnf ? <span className="ms-1 text-md font-black text-red-600">DNF</span> : null}
+        {orderedSolves[index].plus2 ? (
+          <span className="ms-2 text-lg font-black text-red-600" data-testid={`plus-two-icon-${index}`}>
+            +2
+          </span>
+        ) : null}
+        {orderedSolves[index].dnf ? (
+          <span className="ms-1 text-md font-black text-red-600" data-testid={`dnf-icon-${index}`}>
+            DNF
+          </span>
+        ) : null}
       </div>
 
       <div className="mt-2 text-xs opacity-80">
@@ -40,14 +48,14 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
 
       <div className="absolute left-2 bottom-2 flex items-center gap-2 text-xs">
         {orderedSolves[index].comment && (
-          <span className="flex items-center gap-1 opacity-80">
+          <span className="flex items-center gap-1 opacity-80" data-testid={`comment-icon-${index}`}>
             <ChatBubbleIcon />
           </span>
         )}
       </div>
 
       {orderedSolves[index].bookmark && (
-        <div className="absolute left-2 top-2 text-yellow-500">
+        <div className="absolute left-2 top-2 text-yellow-500" data-testid={`bookmark-icon-${index}`}>
           <BookmarkFilledIcon className={'size-5'} />
         </div>
       )}
