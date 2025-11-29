@@ -1,10 +1,11 @@
 import { Page } from '@playwright/test'
+import { Cube } from '@/entities/cube/model/types'
 
 export async function getIndexedDBData(
   page: Page,
   dbName: string = 'IDBWrapper-nx-data',
   storeName: string = 'nx-data'
-): Promise<any[]> {
+): Promise<Cube[]> {
   return await page.evaluate(
     async ({ dbName, storeName }) => {
       return new Promise((resolve, reject) => {
