@@ -17,6 +17,7 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
   const { handleOpenSolveDetails } = useSolveGridItem(solve)
   return (
     <Card
+      data-testid={`solve-grid-item-${index}`}
       onClick={handleOpenSolveDetails}
       className={
         'relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 rounded-md cursor-pointer p-3 hover:opacity-80'
