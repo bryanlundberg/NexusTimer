@@ -52,81 +52,57 @@ test.describe('Manage cube collections on the Cubes page', () => {
 
   test('Should edit a cube collection', async ({ page }) => {
     await createCube(page, 'TestCube', 'Clock')
-    await expect(
-      page
-        .locator('div')
-        .filter({ hasText: /^TestCube$/ })
-        .first()
-    ).toBeVisible()
+    await expect(page.getByText('TestCube')).toBeVisible()
+    await page.getByTestId('edit-cube-button').click()
+
+    await expect(page.getByTestId('drawer-edit-collection-container')).toBeVisible()
+
+    await page.getByTestId('drawer-edit-input-name').click()
+
+    await page.getByTestId('drawer-edit-input-name').fill('')
+    await page.getByTestId('drawer-edit-accept-button').click()
+    await expect(page.getByTestId('drawer-edit-collection-error-message')).toBeVisible()
+
+    await page.getByTestId('drawer-edit-input-name').fill('TestCube2')
+    await page.getByTestId('drawer-edit-select-category').click()
+    await page.getByTestId('drawer-edit-select-category-item-Pyraminx').click()
+    await page.getByTestId('drawer-edit-accept-button').click()
+
+    await expect(page.getByTestId('drawer-edit-collection-container')).toBeHidden()
 
     const data = await getIndexedDBData(page)
 
     expect(data.length).toBe(1)
-    expect(data[0].name).toBe('TestCube')
-    expect(data[0].category).toBe('Clock')
-
-    await page.getByRole('button', { name: 'Edit' }).click()
-    await expect(page.getByText('Modifying the collection')).toBeVisible()
-    await page.getByTestId('drawer-edit-input-name').click()
-    await page.getByTestId('drawer-edit-input-name').fill('Test2')
-    await page.getByTestId('drawer-edit-accept-button').click()
-    await expect(
-      page
-        .locator('div')
-        .filter({ hasText: /^Test2$/ })
-        .first()
-    ).toBeVisible()
-
-    const dataAfterEdit1 = await getIndexedDBData(page)
-    expect(dataAfterEdit1.length).toBe(1)
-    expect(dataAfterEdit1[0].name).toBe('Test2')
-    expect(dataAfterEdit1[0].category).toBe('Clock')
-
-    await page.getByRole('button', { name: 'Edit' }).click()
-    await page.getByTestId('drawer-edit-select-category').click()
-    await page.getByRole('option', { name: 'Pyraminx' }).click()
-    await page.getByTestId('drawer-edit-accept-button').click()
-    await page.waitForTimeout(500)
-    await expect(page.getByText('Pyraminx')).toBeVisible()
-
-    const dataAfterEdit2 = await getIndexedDBData(page)
-    expect(dataAfterEdit2.length).toBe(1)
-    expect(dataAfterEdit2[0].name).toBe('Test2')
-    expect(dataAfterEdit2[0].category).toBe('Pyraminx')
+    expect(data[0].name).toBe('TestCube2')
+    expect(data[0].category).toBe('Pyraminx')
   })
 
   test('Should delete a cube collection', async ({ page }) => {
     await createCube(page, 'TestCube', 'Clock')
-    await expect(
-      page
-        .locator('div')
-        .filter({ hasText: /^TestCube$/ })
-        .first()
-    ).toBeVisible()
-    await page.getByRole('button', { name: 'Delete' }).click()
-    await expect(page.getByTestId('dialog-delete-cube-description')).toBeVisible()
+    await expect(page.getByText('TestCube')).toBeVisible()
+    await page.getByTestId('delete-cube-button').click()
+    await expect(page.getByTestId('dialog-delete-cube-container')).toBeVisible()
+    await page.getByTestId('dialog-delete-cube-input').click()
+    await page.getByTestId('dialog-delete-cube-accept-button').click()
+    await expect(page.getByTestId('dialog-delete-cube-error-message')).toBeVisible()
+    await expect(page.getByTestId('dialog-delete-cube-container')).toBeVisible()
+
     await page.getByTestId('dialog-delete-cube-input').click()
     await page.getByTestId('dialog-delete-cube-input').fill('asd')
     await page.getByTestId('dialog-delete-cube-accept-button').click()
     await expect(page.getByTestId('dialog-delete-cube-error-message')).toBeVisible()
+    await expect(page.getByTestId('dialog-delete-cube-container')).toBeVisible()
+
     await page.getByTestId('dialog-delete-cube-input').click()
-    await page.getByTestId('dialog-delete-cube-input').fill('')
-    await page.getByTestId('dialog-delete-cube-input').press('CapsLock')
-    await page.getByTestId('dialog-delete-cube-input').fill('T')
-    await page.getByTestId('dialog-delete-cube-input').press('CapsLock')
-    await page.getByTestId('dialog-delete-cube-input').fill('Test')
-    await page.getByTestId('dialog-delete-cube-input').press('CapsLock')
-    await page.getByTestId('dialog-delete-cube-input').fill('TestC')
-    await page.getByTestId('dialog-delete-cube-input').press('CapsLock')
     await page.getByTestId('dialog-delete-cube-input').fill('TestCube')
     await page.getByTestId('dialog-delete-cube-accept-button').click()
-    await expect(page.getByText('Collection deleted')).toBeVisible()
-    await expect(page.getByRole('heading', { name: 'No cubes for display.' })).toBeVisible()
+    await expect(page.getByTestId('dialog-delete-cube-container')).toBeHidden()
+
+    await expect(page.getByTestId('empty-cubes-container')).toBeVisible()
 
     const data = await getIndexedDBData(page)
 
     expect(data.length).toBe(1)
-    expect(data[0].name).toBe('TestCube')
     expect(data[0].isDeleted).toBeTruthy()
   })
 })
