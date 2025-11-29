@@ -55,8 +55,8 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
       </div>
 
       {orderedSolves[index].bookmark && (
-        <div className="absolute left-2 top-2 text-yellow-500" data-testid={`bookmark-icon-${index}`}>
-          <BookmarkFilledIcon className={'size-5'} />
+        <div className="absolute left-2 top-2 text-yellow-500">
+          <BookmarkFilledIcon className={'size-5'} data-testid={`bookmark-icon-${index}`} />
         </div>
       )}
     </Card>
