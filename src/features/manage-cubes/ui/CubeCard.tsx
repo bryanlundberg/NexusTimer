@@ -23,7 +23,11 @@ export function CubeCard({ cube }: CubeCardProps) {
     <Card key={cube.id} className="overflow-hidden gap-1">
       <CardHeader className="pb-2">
         <div className="flex justify-between items-start">
-          <CardTitle className="text-lg cursor-pointer hover:text-primary truncate" onClick={handleRedirect}>
+          <CardTitle
+            className="text-lg cursor-pointer hover:text-primary truncate"
+            onClick={handleRedirect}
+            data-testid={`cube-name-${cube.name}`}
+          >
             {cube.name}
           </CardTitle>
           <IconButton
@@ -73,7 +77,12 @@ export function CubeCard({ cube }: CubeCardProps) {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant={'default'} size={'sm'} onClick={handleRedirect}>
+                <Button
+                  variant={'default'}
+                  size={'sm'}
+                  onClick={handleRedirect}
+                  data-testid={`utilize-cube-button-${cube.name}`}
+                >
                   <PlayIcon className="mr-1 h-4 w-4" />
                   {t('CubesPage.utilize')}
                 </Button>
