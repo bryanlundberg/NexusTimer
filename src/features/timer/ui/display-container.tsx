@@ -9,7 +9,12 @@ interface DisplayContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 export default function DisplayContainer({ className, children, ...rest }: DisplayContainerProps) {
   return (
     <>
-      <div id="touch" className={cn('flex flex-col items-center justify-center grow', className)} {...rest}>
+      <div
+        id="touch"
+        className={cn('flex flex-col items-center justify-center grow', className)}
+        {...rest}
+        data-testid="timer-touch-area"
+      >
         {children}
       </div>
     </>
