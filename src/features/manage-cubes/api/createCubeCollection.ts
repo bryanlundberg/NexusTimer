@@ -4,7 +4,7 @@ import genId from '@/shared/lib/genId'
 
 export async function createCubeCollection(dto: CreateCubeDTO): Promise<Cube> {
   const cubes = await cubesDB.getAll()
-  const repeatedName = cubes.find((cube) => cube.name === dto.name)
+  const repeatedName = cubes.find((cube) => cube.name.toLowerCase() === dto.name.toLowerCase())
 
   if (repeatedName) throw new Error('Cube name already exists')
 
