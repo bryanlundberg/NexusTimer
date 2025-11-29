@@ -105,4 +105,24 @@ test.describe('Manage cube collections on the Cubes page', () => {
     expect(data.length).toBe(1)
     expect(data[0].isDeleted).toBeTruthy()
   })
+
+  test('Should not allow creating duplicate cube collection names', async ({ page }) => {
+    await createCube(page, 'TestCube', '3x3')
+
+    await page.getByTestId('create-collection-button').click()
+    await expect(page.getByTestId('drawer-create-collection')).toBeVisible()
+    await page.getByTestId('drawer-input-name').click()
+    await page.getByTestId('drawer-input-name').fill('testcube')
+    await page.getByTestId('drawer-accept-button').click()
+    await expect(page.getByTestId('drawer-create-collection-error-message')).toBeVisible()
+
+    await page.getByTestId('drawer-input-name').click()
+    await page.getByTestId('drawer-input-name').fill('testCube')
+    await page.getByTestId('drawer-accept-button').click()
+    await expect(page.getByTestId('drawer-create-collection-error-message')).toBeVisible()
+
+    const data = await getIndexedDBData(page)
+
+    expect(data.length).toBe(1)
+  })
 })
