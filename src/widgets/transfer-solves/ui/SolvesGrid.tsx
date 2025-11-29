@@ -21,15 +21,16 @@ export default function SolvesGrid({ selectedSolves, displaySolves, handleToggle
   return (
     <>
       <div className={'flex justify-between items-center mt-2 mb-4'}>
-        <div>{t('solves-selected', { count: selectedSolves.length })}</div>
+        <div data-testid="solves-selected-counter">{t('solves-selected', { count: selectedSolves.length })}</div>
         <div className={'flex gap-2'}>
           <Button
+            data-testid="select-all-button"
             variant={selectedSolves.length === displaySolves.length ? 'default' : 'outline'}
             onClick={() => handleToggleAll('select')}
           >
             {t('select-all')}
           </Button>
-          <Button variant={'outline'} onClick={() => handleToggleAll('deselect')}>
+          <Button variant={'outline'} onClick={() => handleToggleAll('deselect')} data-testid="deselect-all-button">
             {t('deselect-all')}
           </Button>
         </div>
