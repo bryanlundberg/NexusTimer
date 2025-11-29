@@ -46,7 +46,7 @@ export default function CreateCollectionForm() {
   const handleSubmitNewCollection = async (form: CreateCubeFormData) => {
     try {
       const cubes = await cubesDB.getAll()
-      if (cubes?.some((cube) => cube.name === form.name.trim())) {
+      if (cubes?.some((cube) => cube.name.toLowerCase() === form.name.trim().toLowerCase())) {
         setError('name', {
           type: 'manual',
           message: 'Cube collection name already exists.'
@@ -84,7 +84,11 @@ export default function CreateCollectionForm() {
             })}
           />
 
-          {errors?.name && <p className="text-destructive mt-1 text-xs">{errors.name.message}</p>}
+          {errors?.name && (
+            <p className="text-destructive mt-1 text-xs" data-testid="drawer-create-collection-error-message">
+              {errors.name.message}
+            </p>
+          )}
 
           <div className="mt-3"></div>
           <Label>{t('Cubes-modal.category')}</Label>
