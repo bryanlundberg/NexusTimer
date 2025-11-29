@@ -17,7 +17,7 @@ export default function SolveDetails() {
   const { activeOverlay } = overlayStore
 
   return (
-    <DialogContent showCloseButton={false}>
+    <DialogContent showCloseButton={false} data-testid="solve-details-dialog-content">
       <DialogHeader>
         <DialogTitle className={'text-sm flex justify-between'}>
           <div className="flex gap-1 items-center">
