@@ -43,12 +43,12 @@ export default function TransferSolvesHeader({
               setDestinationCollection('')
             }}
           >
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full" data-testid="source-collection-trigger">
               <SelectValue placeholder={t('collection-origin')} />
             </SelectTrigger>
             <SelectContent>
               {cubes?.map((cube) => (
-                <SelectItem key={cube.id} value={cube.id}>
+                <SelectItem key={cube.id} value={cube.id} data-testid={`source-collection-${cube.id}`}>
                   {cube.name} ({cube.category})
                 </SelectItem>
               ))}
@@ -58,14 +58,14 @@ export default function TransferSolvesHeader({
             <ArrowRightIcon className={'size-4 rotate-90 md:rotate-0'} />
           </div>
           <Select value={destinationCollection} onValueChange={setDestinationCollection}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-full" data-testid="destination-collection-trigger">
               <SelectValue placeholder={t('collection-destination')} />
             </SelectTrigger>
             <SelectContent>
               {cubes
                 ?.filter((cube) => cube.id !== sourceCollection)
                 .map((cube) => (
-                  <SelectItem key={cube.id} value={cube.id}>
+                  <SelectItem key={cube.id} value={cube.id} data-testid={`destination-collection-${cube.id}`}>
                     {cube.name} ({cube.category})
                   </SelectItem>
                 ))}
@@ -74,6 +74,7 @@ export default function TransferSolvesHeader({
         </div>
 
         <Button
+          data-testid="transfer-solves-button"
           onClick={handleTransfer}
           disabled={
             !sourceCollection ||
