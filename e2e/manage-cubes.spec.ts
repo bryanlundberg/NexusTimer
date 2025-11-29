@@ -144,4 +144,27 @@ test.describe('Manage cube collections on the Cubes page', () => {
     expect(data.length).toBe(2)
     expect(data.find((cube) => cube.name === 'CubeTest2')).toBeDefined()
   })
+
+  test('Should toggle favorite a cube collection', async ({ page }) => {
+    await createCube(page, 'TestCube', '3x3')
+
+    const newData1 = await getIndexedDBData(page)
+
+    expect(newData1.length).toBe(1)
+    expect(newData1[0].favorite).toBeFalsy()
+
+    await page.getByTestId('favorite-cube-button-TestCube').click()
+
+    const newData2 = await getIndexedDBData(page)
+
+    expect(newData2.length).toBe(1)
+    expect(newData2[0].favorite).toBeTruthy()
+
+    await page.getByTestId('favorite-cube-button-TestCube').click()
+
+    const newData3 = await getIndexedDBData(page)
+
+    expect(newData3.length).toBe(1)
+    expect(newData3[0].favorite).toBeFalsy()
+  })
 })

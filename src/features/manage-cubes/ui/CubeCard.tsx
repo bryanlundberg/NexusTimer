@@ -31,6 +31,7 @@ export function CubeCard({ cube }: CubeCardProps) {
             {cube.name}
           </CardTitle>
           <IconButton
+            data-testid={`favorite-cube-button-${cube.name}`}
             icon={Star}
             active={cube.favorite}
             color={[251, 191, 36]} // amber-400
