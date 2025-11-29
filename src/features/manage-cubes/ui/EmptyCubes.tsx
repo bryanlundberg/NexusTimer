@@ -100,16 +100,29 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
           )}
 
           <div className={'flex flex-col gap-3'}>
-            <Button className={'w-full'} size="lg" onClick={handleClickOnCreate}>
+            <Button
+              className={'w-full'}
+              size="lg"
+              onClick={handleClickOnCreate}
+              data-testid="empty-cubes-create-button"
+            >
               <PlusIcon className="mr-2 h-4 w-4 transition-transform group-hover:scale-125" />
               {t('new-collection')}
             </Button>
             {session?.user && (
-              <Button variant={'secondary'} onClick={handleClickOnRestoreAccountData}>
+              <Button
+                variant={'secondary'}
+                onClick={handleClickOnRestoreAccountData}
+                data-testid="empty-cubes-restore-account-button"
+              >
                 <DatabaseBackupIcon /> Restore Account Data
               </Button>
             )}
-            <Button variant={'ghost'} onClick={handleClickOnImportOtherTimers}>
+            <Button
+              variant={'ghost'}
+              onClick={handleClickOnImportOtherTimers}
+              data-testid="empty-cubes-import-other-timers-button"
+            >
               <FileTextIcon /> Import from Other Timers
             </Button>
           </div>
