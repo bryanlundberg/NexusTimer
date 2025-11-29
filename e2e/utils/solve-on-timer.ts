@@ -2,13 +2,14 @@ import { expect, Page } from '@playwright/test'
 import { getIndexedDBData } from './indexdb-helpers'
 
 export async function solveOnTimer(page: Page, cubeIndex: number, solveIndex: number) {
+  await expect(page.getByTestId('scramble-text-zone')).toBeVisible()
   await page.keyboard.down('Space')
-  await page.waitForTimeout(1500)
+  await expect(page.getByTestId('scramble-text-zone')).toBeHidden()
   await page.keyboard.up('Space')
 
-  await page.waitForTimeout(1500)
-  await page.keyboard.press('Space')
   await page.waitForTimeout(1000)
+  await page.keyboard.press('Space')
+  await expect(page.getByTestId('scramble-text-zone')).toBeVisible()
 
   const cubes = await getIndexedDBData(page)
 
