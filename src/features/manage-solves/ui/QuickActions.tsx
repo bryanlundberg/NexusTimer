@@ -47,6 +47,7 @@ export default function QuickActions({
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
+                data-testid="delete-solve-button"
                 variant={'ghost'}
                 onPointerDown={() => {
                   handleDeleteSolve(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)
@@ -63,6 +64,7 @@ export default function QuickActions({
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
+                data-testid="plus-two-button"
                 variant={'ghost'}
                 className={`font-light text-md ${solve?.plus2 ? 'text-red-600 font-bold hover:text-red-600' : ''}`}
                 onPointerDown={() => handleTogglePlus2(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
@@ -77,6 +79,7 @@ export default function QuickActions({
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
+                data-testid="dnf-button"
                 variant={'ghost'}
                 className={`font-light text-md ${solve?.dnf ? 'text-red-600 font-bold hover:text-red-600' : ''}`}
                 onPointerDown={() => handleToggleDNF(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
@@ -91,6 +94,7 @@ export default function QuickActions({
           <Tooltip>
             <TooltipTrigger asChild>
               <IconButton
+                data-testid="bookmark-button"
                 icon={Bookmark}
                 active={solve?.bookmark}
                 aria-label="Bookmark"
@@ -107,13 +111,14 @@ export default function QuickActions({
           {(!hideCopyButton || !hideMoveToHistory || (tabMode === SolveTab.SESSION && !hideTransferCollection)) && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant={'ghost'} aria-label="More actions">
+                <Button variant={'ghost'} aria-label="More actions" data-testid="more-actions-button">
                   <MoreHorizontal />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 {!hideCopyButton && (
                   <DropdownMenuItem
+                    data-testid="copy-solve-button"
                     onSelect={(e) => {
                       e.preventDefault()
                       handleClipboard()
@@ -124,6 +129,7 @@ export default function QuickActions({
                 )}
                 {!hideMoveToHistory && (
                   <DropdownMenuItem
+                    data-testid="move-to-history-button"
                     onSelect={(e) => {
                       e.preventDefault()
                       handleMoveToHistorial()
@@ -134,6 +140,7 @@ export default function QuickActions({
                 )}
                 {tabMode === SolveTab.SESSION && !hideTransferCollection && (
                   <DropdownMenuItem
+                    data-testid="transfer-collection-button"
                     onSelect={(e) => {
                       e.preventDefault()
                       handleTransferCollection()
