@@ -4,8 +4,8 @@ import { CubeCategory } from '@/shared/const/cube-categories'
 
 export async function createCube(page: Page, name: string = 'TestCube', category: CubeCategory = 'Clock') {
   await page.goto('/cubes')
-  await expect(page.getByTestId('empty-cubes-container')).toBeVisible()
-  await page.getByTestId('empty-cubes-create-button').click()
+  await page.getByTestId('create-collection-button').click()
+
   await expect(page.getByTestId('drawer-create-collection')).toBeVisible()
   await page.getByTestId('drawer-input-name').click()
   await page.getByTestId('drawer-input-name').fill(name)
@@ -18,13 +18,16 @@ export async function createCube(page: Page, name: string = 'TestCube', category
 
   const data = await getIndexedDBData(page)
 
-  expect(data.length).toBe(1)
-  expect(data[0].name).toBe(name)
-  expect(data[0].category).toBe(category)
-  expect(data[0].solves.session.length).toBe(0)
-  expect(data[0].solves.all.length).toBe(0)
-  expect(data[0].isDeleted).toBeFalsy()
-  expect(data[0].createdAt).toBeDefined()
-  expect(data[0].updatedAt).toBeDefined()
-  expect(data[0].id).toBeDefined()
+  const newCube = data.find((cube) => cube.name === name && cube.category === category && !cube.isDeleted)
+
+  expect(newCube).toBeDefined()
+  expect(newCube?.createdAt).toBeDefined()
+  expect(newCube?.updatedAt).toBeDefined()
+  expect(newCube?.id).toBeDefined()
+  expect(newCube?.solves).toBeDefined()
+  expect(newCube?.solves.all.length).toBe(0)
+  expect(newCube?.solves.session.length).toBe(0)
+  expect(newCube?.isDeleted).toBeFalsy()
+  expect(newCube?.name).toBe(name)
+  expect(newCube?.category).toBe(category)
 }
