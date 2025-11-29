@@ -4,8 +4,8 @@ import { CubeCategory } from '@/shared/const/cube-categories'
 
 export async function createCube(page: Page, name: string = 'TestCube', category: CubeCategory = 'Clock') {
   await page.goto('/cubes')
-  await expect(page.getByRole('heading', { name: 'No cubes for display.' })).toBeVisible()
-  await page.getByTestId('empty-cubes-container').getByRole('button', { name: 'New collection' }).click()
+  await expect(page.getByTestId('empty-cubes-container')).toBeVisible()
+  await page.getByTestId('empty-cubes-create-button').click()
   await expect(page.getByTestId('drawer-create-collection')).toBeVisible()
   await page.getByTestId('drawer-input-name').click()
   await page.getByTestId('drawer-input-name').fill(name)
