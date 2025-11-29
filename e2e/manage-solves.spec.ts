@@ -64,7 +64,7 @@ test.describe('Manage solves for a cube collection on the Solves page', () => {
     await expect(page.getByTestId('dnf-button')).toBeVisible()
     await page.getByTestId('dnf-button').click()
 
-    await page.keyboard.press('Escape')
+    await page.locator('body').press('Escape')
     await expect(page.getByTestId('solve-details-dialog-content')).toBeHidden()
 
     await expect(page.getByTestId('dnf-icon-0')).toBeVisible()
