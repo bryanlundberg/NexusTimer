@@ -34,6 +34,7 @@ export default function TimerWidgets() {
       return (
         <div className="flex justify-end absolute -top-8 right-0" id="touch">
           <div
+            data-testid="best-average-alert"
             className={cn(
               'p-1 text-xs sm:text-sm border rounded-md bg-background w-fit ms-auto',
               height <= SCRAMBLE_HEIGHT && 'text-[10px]'
@@ -56,6 +57,7 @@ export default function TimerWidgets() {
     ) {
       return (
         <div
+          data-testid="worst-time-alert"
           className={cn(
             'p-1 text-xs sm:text-sm border rounded-md bg-background w-fit ms-auto',
             height <= SCRAMBLE_HEIGHT && 'text-[10px]'
@@ -81,6 +83,7 @@ export default function TimerWidgets() {
         {!isSolving && bestAverageAlert}
         {!isSolving && worstTimeAlert}
         <div
+          data-testid="timer-widgets-container"
           className={cn(
             'items-center justify-between w-full flex text-xs sm:text-md',
             height <= SCRAMBLE_HEIGHT && 'text-xs'
