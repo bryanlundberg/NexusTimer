@@ -6,9 +6,8 @@ import { createCube } from './utils/create-cube'
 test.describe('Manage solves for a cube collection on the Solves page', () => {
   test.beforeEach(async ({ page }) => {
     await createCube(page, 'TestCube', '3x3')
-    await expect(page.getByRole('button', { name: 'Utilize' })).toBeVisible()
-    await page.getByRole('button', { name: 'Utilize' }).click()
-    await expect(page.locator('#touch').first()).toBeVisible()
+    await page.getByTestId('utilize-cube-button-TestCube').click()
+    await expect(page.getByTestId('timer-touch-area')).toBeVisible()
 
     await solveOnTimer(page, 0, 0)
     await solveOnTimer(page, 0, 1)
@@ -65,7 +64,7 @@ test.describe('Manage solves for a cube collection on the Solves page', () => {
     await expect(page.getByTestId('dnf-button')).toBeVisible()
     await page.getByTestId('dnf-button').click()
 
-    await page.mouse.click(10, 10)
+    await page.keyboard.press('Escape')
     await expect(page.getByTestId('solve-details-dialog-content')).toBeHidden()
 
     await expect(page.getByTestId('dnf-icon-0')).toBeVisible()
