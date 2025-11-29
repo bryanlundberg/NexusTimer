@@ -1,19 +1,18 @@
-import { expect } from '@playwright/test'
-import { test } from './fixtures/create-cube-fixture'
+import { expect, test } from '@playwright/test'
 import { getIndexedDBData } from './utils/indexdb-helpers'
 import { solveOnTimer } from './utils/solve-on-timer'
+import { createCube } from './utils/create-cube'
 
-test('Should do a solve with the timer', async ({ cubeCreated }) => {
-  await cubeCreated.waitForTimeout(250)
-  await cubeCreated.getByRole('button', { name: 'Utilize' }).click()
-  await cubeCreated.waitForTimeout(250)
-  await cubeCreated.getByRole('main').locator('div').filter({ hasText: /^0$/ }).click()
+test('Should perform a solve using the timer', async ({ page }) => {
+  await createCube(page)
+  await page.getByRole('button', { name: 'Utilize' }).click()
+  await expect(page.getByText('Press SPACE to start')).toBeVisible()
 
-  await solveOnTimer(cubeCreated, 0, 0)
+  await solveOnTimer(page, 0, 0)
 
-  await expect(cubeCreated.getByText('Congratulations!')).toBeVisible()
+  await expect(page.getByTestId('timer-widgets-container')).toBeVisible()
 
-  const data = await getIndexedDBData(cubeCreated)
+  const data = await getIndexedDBData(page)
 
   expect(data[0].solves.session.length).toBe(1)
   expect(data[0].solves.all.length).toBe(0)
