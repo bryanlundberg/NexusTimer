@@ -13,7 +13,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "prepare": "husky",
-    "codegen": "playwright codegen"
+    "codegen": "playwright codegen",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@firebase/database": "^1.1.0",
