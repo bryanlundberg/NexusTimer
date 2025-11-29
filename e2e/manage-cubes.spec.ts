@@ -53,7 +53,7 @@ test.describe('Manage cube collections on the Cubes page', () => {
   test('Should edit a cube collection', async ({ page }) => {
     await createCube(page, 'TestCube', 'Clock')
     await expect(page.getByText('TestCube')).toBeVisible()
-    await page.getByTestId('edit-cube-button').click()
+    await page.getByTestId('edit-cube-button-TestCube').click()
 
     await expect(page.getByTestId('drawer-edit-collection-container')).toBeVisible()
 
@@ -80,7 +80,7 @@ test.describe('Manage cube collections on the Cubes page', () => {
   test('Should delete a cube collection', async ({ page }) => {
     await createCube(page, 'TestCube', 'Clock')
     await expect(page.getByText('TestCube')).toBeVisible()
-    await page.getByTestId('delete-cube-button').click()
+    await page.getByTestId('delete-cube-button-TestCube').click()
     await expect(page.getByTestId('dialog-delete-cube-container')).toBeVisible()
     await page.getByTestId('dialog-delete-cube-input').click()
     await page.getByTestId('dialog-delete-cube-accept-button').click()
@@ -124,5 +124,24 @@ test.describe('Manage cube collections on the Cubes page', () => {
     const data = await getIndexedDBData(page)
 
     expect(data.length).toBe(1)
+  })
+
+  test('Should not allow editing cube collection to duplicate names', async ({ page }) => {
+    await createCube(page, 'CubeTest1', '3x3')
+    await createCube(page, 'CubeTest2', '4x4')
+
+    await expect(page.getByTestId('cube-name-CubeTest2')).toBeVisible()
+    await expect(page.getByTestId('cube-name-CubeTest1')).toBeVisible()
+    await page.getByTestId('edit-cube-button-CubeTest2').click()
+    await expect(page.getByTestId('drawer-edit-collection-container')).toBeVisible()
+    await page.getByTestId('drawer-edit-input-name').click()
+    await page.getByTestId('drawer-edit-input-name').fill('cubetest1')
+    await page.getByTestId('drawer-edit-accept-button').click()
+    await expect(page.getByTestId('drawer-edit-collection-error-message')).toBeVisible()
+
+    const data = await getIndexedDBData(page)
+
+    expect(data.length).toBe(2)
+    expect(data.find((cube) => cube.name === 'CubeTest2')).toBeDefined()
   })
 })
