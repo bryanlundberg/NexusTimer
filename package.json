@@ -12,7 +12,8 @@
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepare": "husky"
+    "prepare": "husky",
+    "codegen": "playwright codegen"
   },
   "dependencies": {
     "@firebase/database": "^1.1.0",
