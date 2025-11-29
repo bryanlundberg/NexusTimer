@@ -170,9 +170,7 @@ test.describe('Manage solves for a cube collection on the Solves page', () => {
     await context.grantPermissions(['clipboard-read', 'clipboard-write'])
 
     const clipboardText = await page.evaluate(() => navigator.clipboard.readText())
-    const copiedSolve = clipboardText
-
-    expect(copiedSolve).toBeDefined()
+    expect(clipboardText).toBeDefined()
   })
 })
 
