@@ -11,6 +11,8 @@ interface SolveTransferCardProps {
 export default function SolveTransferCard({ solve, isSelected, onToggle }: SolveTransferCardProps) {
   return (
     <Card
+      id={solve.id}
+      data-testid={`solve-card-${solve.id}`}
       onClick={onToggle}
       className={`relative grow flex items-center justify-center w-auto font-medium text-center transition duration-200 rounded-md cursor-pointer h-full bg-secondary text-secondary-foreground hover:opacity-70 ${isSelected ? 'ring-3 ring-primary' : ''}`}
     >
