@@ -26,3 +26,9 @@ export type ToggleBookmarkSolveDTO = {
   bookmark: boolean
   solveTab: SolveTab
 }
+
+export type MoveSolveSessionDTO = {
+  cubeId: string
+  solveId: string
+  fromTab: SolveTab
+}
