@@ -172,7 +172,88 @@ test.describe('Manage solves for a cube collection on the Solves page', () => {
     const clipboardText = await page.evaluate(() => navigator.clipboard.readText())
     expect(clipboardText).toBeDefined()
   })
-})
 
-// await page.getByTestId('button-display-type').click();
-// await expect(page.getByTestId('empty-solves-grid')).toBeVisible();
+  test('Should move to history one solve and show correct status/icons', async ({ page }) => {
+    const initialCubes = await getIndexedDBData(page)
+    expect(initialCubes[0].solves.session.length).toBe(2)
+    expect(initialCubes[0].solves.all.length).toBe(0)
+
+    // Move first solve to history
+    await expect(page.getByTestId('solve-grid-item-0')).toBeVisible()
+    await expect(page.getByTestId('solve-grid-item-1')).toBeVisible()
+
+    // Switch to 'All' solves tab to verify empty UI
+    await page.getByTestId('button-display-type').click()
+    await expect(page.getByTestId('empty-solves-grid')).toBeVisible()
+    await page.getByTestId('button-display-type').click()
+
+    // Switch back to 'Session' solves tab
+    await page.getByTestId('solve-grid-item-0').click()
+    await expect(page.getByTestId('solve-details-dialog-content')).toBeVisible()
+    await page.getByTestId('more-actions-button').click()
+    await page.getByTestId('move-to-history-button').click()
+    await expect(page.getByTestId('solve-details-dialog-content')).toBeHidden()
+
+    await expect(page.getByTestId('solve-grid-item-0')).toBeVisible()
+    await expect(page.getByTestId('solve-grid-item-1')).toBeHidden()
+
+    // Verify states are updated and reflected in the UI (All tab)
+    await page.getByTestId('button-display-type').click()
+    await expect(page.getByTestId('solve-grid-item-0')).toBeVisible()
+
+    // Verify IndexedDB data
+    const afterCubes = await getIndexedDBData(page)
+    expect(afterCubes[0].solves.session.length).toBe(2)
+    expect(afterCubes[0].solves.all.length).toBe(1)
+
+    const deletedSolve = afterCubes[0].solves.session.find((solve) => solve.isDeleted)
+
+    expect(deletedSolve).toBeDefined()
+    expect(deletedSolve?.isDeleted).toBeTruthy()
+
+    const movedSolve = afterCubes[0].solves.all.find((solve) => deletedSolve!.id === solve.id)
+
+    expect(movedSolve).toBeDefined()
+    expect(movedSolve?.isDeleted).toBeFalsy()
+
+    // Move the same solve back to session (all tab)
+    await page.getByTestId('solve-grid-item-0').click()
+    await expect(page.getByTestId('solve-details-dialog-content')).toBeVisible()
+    await page.getByTestId('more-actions-button').click()
+    await page.getByTestId('move-to-history-button').click()
+    await expect(page.getByTestId('solve-details-dialog-content')).toBeHidden()
+
+    await expect(page.getByTestId('solve-grid-item-0')).toBeHidden()
+    await expect(page.getByTestId('solve-grid-item-1')).toBeHidden()
+
+    // Verify state is updated in UI (session tab)
+    await page.getByTestId('button-display-type').click()
+    await expect(page.getByTestId('solve-grid-item-0')).toBeVisible()
+    await expect(page.getByTestId('solve-grid-item-1')).toBeVisible()
+
+    // Verify IndexedDB data
+    const newAfterCubes = await getIndexedDBData(page)
+
+    expect(newAfterCubes[0].solves.session.length).toBe(2)
+    expect(newAfterCubes[0].solves.all.length).toBe(1)
+
+    const restoredSolve = newAfterCubes[0].solves.session.find((solve) => solve.id === deletedSolve!.id)
+
+    expect(restoredSolve).toBeDefined()
+    expect(restoredSolve?.isDeleted).toBeFalsy()
+
+    expect(newAfterCubes[0].solves.all.find((solve) => solve.id === movedSolve!.id)).toBeDefined()
+    expect(newAfterCubes[0].solves.all.find((solve) => solve.id === movedSolve!.id)?.isDeleted).toBeTruthy()
+
+    // Verify timestamp updates
+    expect(restoredSolve?.updatedAt).toBeGreaterThan(deletedSolve!.updatedAt || 0)
+
+    const solveInAll = newAfterCubes[0].solves.all.find((solve) => solve.id === movedSolve!.id)
+    const solveInSession = newAfterCubes[0].solves.session.find((solve) => solve.id === movedSolve!.id)
+
+    expect(solveInSession?.updatedAt).toBeGreaterThan(
+      newAfterCubes[0].solves.all.find((solve) => solve.id === restoredSolve!.id)?.updatedAt || 0
+    )
+    expect(solveInAll?.updatedAt).toBeLessThan(solveInSession!.updatedAt || 0)
+  })
+})
