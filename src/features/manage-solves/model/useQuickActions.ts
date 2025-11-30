@@ -21,6 +21,8 @@ export default function useQuickActions(solve: Solve) {
   const setCubes = useTimerStore((store) => store.setCubes)
   const cubes = useTimerStore((store) => store.cubes)
   const { open, close, activeOverlay } = useOverlayStore()
+  const setLastSolve = useTimerStore((store) => store.setLastSolve)
+  const lastSolve = useTimerStore((store) => store.lastSolve)
   const [tabMode] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, {
     defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE
   })
@@ -99,11 +101,15 @@ export default function useQuickActions(solve: Solve) {
       return
     }
 
-    open({
-      id: activeOverlay?.id || '',
-      metadata: updatedSolve,
-      component: activeOverlay?.component || null
-    })
+    setLastSolve(lastSolve?.id === updatedSolve.id ? updatedSolve : null)
+
+    if (activeOverlay) {
+      open({
+        id: activeOverlay?.id || '',
+        metadata: updatedSolve,
+        component: activeOverlay?.component || null
+      })
+    }
   }
 
   return {
