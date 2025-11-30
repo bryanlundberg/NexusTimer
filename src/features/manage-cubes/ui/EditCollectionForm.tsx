@@ -15,6 +15,7 @@ import { UpdateCollectionFormData, updateCollectionSchema } from '@/features/man
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { editCubeCollection } from '@/features/manage-cubes/api/editCubeCollection'
+import { useEffect } from 'react'
 
 export default function EditCollectionForm() {
   const t = useTranslations('Index')
@@ -34,7 +35,8 @@ export default function EditCollectionForm() {
     handleSubmit,
     formState: { errors },
     setError,
-    control
+    control,
+    reset
   } = useForm({
     resolver: zodResolver(updateCollectionSchema),
     defaultValues: {
@@ -76,6 +78,10 @@ export default function EditCollectionForm() {
       toast.error('Failed to edit cube')
     }
   }
+
+  useEffect(() => {
+    overlayStore.activeOverlay ? reset() : null
+  }, [overlayStore.activeOverlay])
 
   return (
     <>

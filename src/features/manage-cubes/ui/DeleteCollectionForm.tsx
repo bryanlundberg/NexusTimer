@@ -20,6 +20,7 @@ import { DeleteCollectionFormData, deleteCollectionSchema } from '@/features/man
 import { deleteCubeCollection } from '@/features/manage-cubes/api/deleteCubeCollection'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
+import { useEffect } from 'react'
 
 export default function DeleteCollectionForm() {
   const t = useTranslations('Index')
@@ -33,7 +34,8 @@ export default function DeleteCollectionForm() {
     handleSubmit,
     register,
     formState: { errors },
-    setError
+    setError,
+    reset
   } = useForm({
     resolver: zodResolver(deleteCollectionSchema),
     defaultValues: {
@@ -62,6 +64,10 @@ export default function DeleteCollectionForm() {
       toast.error('Failed to delete collection')
     }
   }
+
+  useEffect(() => {
+    activeOverlay ? reset() : null
+  }, [activeOverlay])
 
   return (
     <>

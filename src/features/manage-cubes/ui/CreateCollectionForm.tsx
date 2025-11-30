@@ -17,6 +17,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { DialogContent, DialogHeader } from '@/components/ui/dialog'
 import { createCubeCollection } from '@/features/manage-cubes/api/createCubeCollection'
+import { useEffect } from 'react'
 
 export default function CreateCollectionForm() {
   const t = useTranslations('Index')
@@ -32,7 +33,8 @@ export default function CreateCollectionForm() {
     formState: { errors },
     register,
     watch,
-    setValue
+    setValue,
+    reset
   } = useForm({
     resolver: zodResolver(createCubeFormSchema),
     defaultValues: {
@@ -63,6 +65,10 @@ export default function CreateCollectionForm() {
       console.log(err)
     }
   }
+
+  useEffect(() => {
+    overlayStore.activeOverlay ? reset() : null
+  }, [overlayStore.activeOverlay])
 
   return (
     <DialogContent className="max-w-[800px] mx-auto" data-testid="drawer-create-collection">
