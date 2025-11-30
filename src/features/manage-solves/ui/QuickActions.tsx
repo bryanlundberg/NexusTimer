@@ -41,119 +41,119 @@ export default function QuickActions({
   } = useQuickActions(solve!)
 
   return (
-    <>
-      <div className="flex flex-wrap items-center justify-center gap-2" id="quick-action-buttons">
-        <TooltipProvider delayDuration={100}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                data-testid="delete-solve-button"
-                variant={'ghost'}
-                onPointerDown={() => {
-                  handleDeleteSolve(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)
-                  onDeleteSolve()
-                }}
-              >
-                <Trash />
+    <div
+      className="flex flex-wrap items-center justify-center gap-2"
+      id="quick-action-buttons"
+      data-testid="quick-action-buttons"
+    >
+      <TooltipProvider delayDuration={100}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              data-testid="delete-solve-button"
+              variant={'ghost'}
+              onPointerDown={() => {
+                handleDeleteSolve(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)
+                onDeleteSolve()
+              }}
+            >
+              <Trash />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{t('tooltips.delete')}</p>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              data-testid="plus-two-button"
+              variant={'ghost'}
+              className={`font-light text-md ${solve?.plus2 ? 'text-red-600 font-bold hover:text-red-600' : ''}`}
+              onPointerDown={() => handleTogglePlus2(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
+            >
+              +2
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{t('tooltips.plus-two')}</p>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              data-testid="dnf-button"
+              variant={'ghost'}
+              className={`font-light text-md ${solve?.dnf ? 'text-red-600 font-bold hover:text-red-600' : ''}`}
+              onPointerDown={() => handleToggleDNF(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
+            >
+              DNF
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Did Not Finish</p>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <IconButton
+              data-testid="bookmark-button"
+              icon={Bookmark}
+              active={solve?.bookmark}
+              aria-label="Bookmark"
+              onPointerDown={() => handleToggleBookmark(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
+              color={[251, 191, 36]}
+            />
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{t('tooltips.bookmark')}</p>
+          </TooltipContent>
+        </Tooltip>
+        {(!hideCopyButton || !hideMoveToHistory || (tabMode === SolveTab.SESSION && !hideTransferCollection)) && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant={'ghost'} aria-label="More actions" data-testid="more-actions-button">
+                <MoreHorizontal />
               </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{t('tooltips.delete')}</p>
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                data-testid="plus-two-button"
-                variant={'ghost'}
-                className={`font-light text-md ${solve?.plus2 ? 'text-red-600 font-bold hover:text-red-600' : ''}`}
-                onPointerDown={() => handleTogglePlus2(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
-              >
-                +2
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{t('tooltips.plus-two')}</p>
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                data-testid="dnf-button"
-                variant={'ghost'}
-                className={`font-light text-md ${solve?.dnf ? 'text-red-600 font-bold hover:text-red-600' : ''}`}
-                onPointerDown={() => handleToggleDNF(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
-              >
-                DNF
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Did Not Finish</p>
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <IconButton
-                data-testid="bookmark-button"
-                icon={Bookmark}
-                active={solve?.bookmark}
-                aria-label="Bookmark"
-                onPointerDown={() =>
-                  handleToggleBookmark(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)
-                }
-                color={[251, 191, 36]}
-              />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{t('tooltips.bookmark')}</p>
-            </TooltipContent>
-          </Tooltip>
-          {(!hideCopyButton || !hideMoveToHistory || (tabMode === SolveTab.SESSION && !hideTransferCollection)) && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant={'ghost'} aria-label="More actions" data-testid="more-actions-button">
-                  <MoreHorizontal />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {!hideCopyButton && (
-                  <DropdownMenuItem
-                    data-testid="copy-solve-button"
-                    onSelect={(e) => {
-                      e.preventDefault()
-                      handleClipboard()
-                    }}
-                  >
-                    <CopyIcon className="mr-2" /> {t('tooltips.copy')}
-                  </DropdownMenuItem>
-                )}
-                {!hideMoveToHistory && (
-                  <DropdownMenuItem
-                    data-testid="move-to-history-button"
-                    onSelect={(e) => {
-                      e.preventDefault()
-                      handleMoveToHistorial()
-                    }}
-                  >
-                    <CubeIcon className="mr-2" /> Move to History
-                  </DropdownMenuItem>
-                )}
-                {tabMode === SolveTab.SESSION && !hideTransferCollection && (
-                  <DropdownMenuItem
-                    data-testid="transfer-collection-button"
-                    onSelect={(e) => {
-                      e.preventDefault()
-                      handleTransferCollection()
-                    }}
-                  >
-                    <ArrowRightLeftIcon size={12} className="mr-2" /> Transfer Collection
-                  </DropdownMenuItem>
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
-        </TooltipProvider>
-      </div>
-    </>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {!hideCopyButton && (
+                <DropdownMenuItem
+                  data-testid="copy-solve-button"
+                  onSelect={(e) => {
+                    e.preventDefault()
+                    handleClipboard()
+                  }}
+                >
+                  <CopyIcon className="mr-2" /> {t('tooltips.copy')}
+                </DropdownMenuItem>
+              )}
+              {!hideMoveToHistory && (
+                <DropdownMenuItem
+                  data-testid="move-to-history-button"
+                  onSelect={(e) => {
+                    e.preventDefault()
+                    handleMoveToHistorial()
+                  }}
+                >
+                  <CubeIcon className="mr-2" /> Move to History
+                </DropdownMenuItem>
+              )}
+              {tabMode === SolveTab.SESSION && !hideTransferCollection && (
+                <DropdownMenuItem
+                  data-testid="transfer-collection-button"
+                  onSelect={(e) => {
+                    e.preventDefault()
+                    handleTransferCollection()
+                  }}
+                >
+                  <ArrowRightLeftIcon size={12} className="mr-2" /> Transfer Collection
+                </DropdownMenuItem>
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
+      </TooltipProvider>
+    </div>
   )
 }
