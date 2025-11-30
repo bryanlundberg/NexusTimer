@@ -10,6 +10,9 @@ import { toggleBookmark } from '@/features/manage-solves/api/toggleBookmark'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { SolveTab } from '@/shared/types/enums'
+import moveSolveSession from '@/features/manage-solves/api/moveSolveSession'
+import { useQueryState } from 'nuqs'
+import { STATES } from '@/shared/const/states'
 
 export default function useQuickActions(solve: Solve) {
   const router = useRouter()
@@ -18,6 +21,9 @@ export default function useQuickActions(solve: Solve) {
   const setCubes = useTimerStore((store) => store.setCubes)
   const cubes = useTimerStore((store) => store.cubes)
   const { open, close, activeOverlay } = useOverlayStore()
+  const [tabMode] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, {
+    defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE
+  })
 
   const handleToggleBookmark = async (solveTab: SolveTab) => {
     if (!selectedCube) return
@@ -65,7 +71,18 @@ export default function useQuickActions(solve: Solve) {
 
   const handleMoveToHistorial = async () => {
     const { cubeId, id: solveId } = solve
-    // TODO: implement move to history
+    if (tabMode !== SolveTab.SESSION && tabMode !== SolveTab.ALL) return
+
+    await moveSolveSession({ cubeId, solveId, fromTab: tabMode })
+
+    const selectedCubeUpdated = await cubesDB.getById(cubeId)
+    if (!selectedCubeUpdated) return
+
+    setSelectedCube(selectedCubeUpdated)
+    setCubes(cubes ? cubes.map((cube) => (cube.id === selectedCubeUpdated.id ? selectedCubeUpdated : cube)) : [])
+
+    toast.success(`Solve ${formatTime(solve.time)} moved`, { duration: 1500 })
+    close()
   }
 
   const syncUI = async (solveTab: SolveTab) => {
