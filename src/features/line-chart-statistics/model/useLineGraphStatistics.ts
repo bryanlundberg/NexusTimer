@@ -1,4 +1,5 @@
 import { useLocale, useTranslations } from 'next-intl'
+import React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { useTheme } from 'next-themes'
 import { convert } from 'colorizr'
@@ -16,6 +17,9 @@ import getWorstTime from '@/shared/lib/statistics/getWorstTime'
 import { Solve } from '@/entities/solve/model/types'
 import { TimeObject } from '@/features/line-chart-statistics/model/types'
 import moment from 'moment'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import SolveDetails from '@/features/manage-solves/ui/SolveDetails'
 
 export default function useLineGraphStatistics(dataSet: Solve[]) {
   const t = useTranslations('Index.StatsPage')
@@ -27,6 +31,8 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
   const [showWorstTime, setShowWorstTime] = useState(true)
   const [showAverageTime, setShowAverageTime] = useState(true)
   const [showStandardDeviation, setShowStandardDeviation] = useState(true)
+  const cubes = useTimerStore((s) => s.cubes)
+  const overlay = useOverlayStore()
 
   useEffect(() => {
     const backgroundColor = convert(getComputedStyle(document.documentElement).getPropertyValue('--card'), 'rgb')
@@ -100,6 +106,10 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       const chart = createChart(container, chartOptions)
       const structuredData: any[] = []
       const solveMap = new Map<number, Solve>()
+      const cubeNameById = new Map<string, string>()
+      if (cubes) {
+        for (const c of cubes) cubeNameById.set(c.id, c.name)
+      }
 
       const reversedDataSet = [...dataSet].reverse()
       reversedDataSet.forEach((i: Solve, index: number) => {
@@ -239,7 +249,10 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
 
         moment.locale(locale)
 
+        const cubeName = cubeNameById.get(solve.cubeId) || 'Unknown'
+
         let tooltipContent = `
+          <div class="mt-1 text-xs">${cubeName}</div>
           <div class="font-bold text-base">${formatTime(solve.time)}</div>
           <div class="text-xs opacity-80">Solve #${param.time}</div>
           <div class="mt-1 text-xs">${moment(solve.endTime).format('LL')}</div>
@@ -271,6 +284,17 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
 
         tooltip.style.left = `${left}px`
         tooltip.style.top = `${top}px`
+      })
+
+      chart.subscribeClick((param) => {
+        if (!param.time) return
+        const solve = solveMap.get(param.time as number)
+        if (!solve) return
+        overlay.open({
+          id: 'solve-details',
+          metadata: { ...solve },
+          component: React.createElement(SolveDetails)
+        })
       })
 
       // Make chart responsive with screen resize
