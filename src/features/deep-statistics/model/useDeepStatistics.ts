@@ -56,8 +56,9 @@ export default function useDeepStatistics() {
 
   const filterSolves = (solves: Solve[]): Solve[] => {
     if (!solves) return []
-    if (!startTimestamp || startTimestamp <= 0) return solves
-    return solves.filter((s) => {
+    const nonDeleted = solves.filter((s) => !s.isDeleted)
+    if (!startTimestamp || startTimestamp <= 0) return nonDeleted
+    return nonDeleted.filter((s) => {
       const ts = s.endTime ?? s.startTime
       return ts >= startTimestamp
     })
