@@ -2,26 +2,25 @@ import {
   defaultChartAoValues,
   defaultChartValuesA,
   defaultChartValuesN,
-  defaultChartValuesS,
-} from '@/lib/const/defaultChartValues';
-import { useTimerStore } from '@/store/timerStore';
-import { useEffect, useMemo, useState } from 'react';
-import moment from 'moment';
-import { useQueryState } from 'nuqs';
-import { STATES } from '@/constants/states';
-import { DateRange } from '@/enums/DateRange';
-import type { Cube } from '@/interfaces/Cube';
-import type { Solve } from '@/interfaces/Solve';
+  defaultChartValuesS
+} from '@/lib/const/defaultChartValues'
+import { useTimerStore } from '@/store/timerStore'
+import { useEffect, useMemo, useState } from 'react'
+import moment from 'moment'
+import { useQueryState } from 'nuqs'
+import { STATES } from '@/constants/states'
+import { DateRange } from '@/enums/DateRange'
+import type { Cube } from '@/interfaces/Cube'
+import type { Solve } from '@/interfaces/Solve'
 
 export default function useMetricsSwitch() {
-  const selectedCube = useTimerStore(store => store.selectedCube);
-  const cubes = useTimerStore(store => store.cubes);
-  const [dateRange] = useQueryState(
-    STATES.STATISTICS_PAGE.DATE_RANGE.KEY,
-    { defaultValue: STATES.STATISTICS_PAGE.DATE_RANGE.DEFAULT_VALUE as DateRange }
-  );
-  const [isLoading, setIsLoading] = useState(true);
-  const [worker, setWorker] = useState<Worker | null>(null);
+  const selectedCube = useTimerStore((store) => store.selectedCube)
+  const cubes = useTimerStore((store) => store.cubes)
+  const [dateRange] = useQueryState(STATES.STATISTICS_PAGE.DATE_RANGE.KEY, {
+    defaultValue: STATES.STATISTICS_PAGE.DATE_RANGE.DEFAULT_VALUE as DateRange
+  })
+  const [isLoading, setIsLoading] = useState(true)
+  const [worker, setWorker] = useState<Worker | null>(null)
   const [stats, setStats] = useState({
     average: defaultChartValuesN,
     timeSpent: defaultChartValuesS,
@@ -30,111 +29,110 @@ export default function useMetricsSwitch() {
     deviation: defaultChartValuesN,
     successRate: defaultChartValuesS,
     best: defaultChartValuesN,
-    data: defaultChartValuesA,
-  });
+    data: defaultChartValuesA
+  })
 
   const startTimestamp = useMemo(() => {
     switch (dateRange as DateRange) {
       case DateRange.TODAY:
-        return moment().startOf('day').valueOf();
+        return moment().startOf('day').valueOf()
       case DateRange.THIS_WEEK:
-        return moment().startOf('week').valueOf();
+        return moment().startOf('week').valueOf()
       case DateRange.LAST_WEEK:
-        return moment().subtract(7, 'days').startOf('day').valueOf();
+        return moment().subtract(7, 'days').startOf('day').valueOf()
       case DateRange.THIS_MONTH:
-        return moment().startOf('month').valueOf();
+        return moment().startOf('month').valueOf()
       case DateRange.LAST_MONTH:
-        return moment().subtract(30, 'days').startOf('day').valueOf();
+        return moment().subtract(30, 'days').startOf('day').valueOf()
       case DateRange.THIS_YEAR:
-        return moment().startOf('year').valueOf();
+        return moment().startOf('year').valueOf()
       case DateRange.LAST_YEAR:
-        return moment().subtract(365, 'days').startOf('day').valueOf();
+        return moment().subtract(365, 'days').startOf('day').valueOf()
       case DateRange.ALL_TIME:
       default:
-        return 0; // no filter
+        return 0 // no filter
     }
-  }, [dateRange]);
+  }, [dateRange])
 
   const filterSolves = (solves: Solve[]): Solve[] => {
-    if (!solves) return [];
-    if (!startTimestamp || startTimestamp <= 0) return solves;
-    return solves.filter((s) => {
-      const ts = s.endTime ?? s.startTime;
-      return ts >= startTimestamp;
-    });
-  };
+    if (!solves) return []
+    const nonDeleted = solves.filter((s) => !s.isDeleted)
+    if (!startTimestamp || startTimestamp <= 0) return nonDeleted
+    return nonDeleted.filter((s) => {
+      const ts = s.endTime ?? s.startTime
+      return ts >= startTimestamp
+    })
+  }
 
   const filteredCubes: Cube[] | null = useMemo(() => {
-    if (!cubes) return null;
+    if (!cubes) return null
     return cubes.map((c) => ({
       ...c,
       solves: {
         session: filterSolves(c.solves?.session || []),
-        all: filterSolves(c.solves?.all || []),
-      },
-    }));
-  }, [cubes, startTimestamp]);
+        all: filterSolves(c.solves?.all || [])
+      }
+    }))
+  }, [cubes, startTimestamp])
 
   const filteredSelectedCube: Cube | null = useMemo(() => {
-    if (!selectedCube) return null;
+    if (!selectedCube) return null
     return {
       ...selectedCube,
       solves: {
         session: filterSolves(selectedCube.solves?.session || []),
-        all: filterSolves(selectedCube.solves?.all || []),
-      },
-    } as Cube;
-  }, [selectedCube, startTimestamp]);
+        all: filterSolves(selectedCube.solves?.all || [])
+      }
+    } as Cube
+  }, [selectedCube, startTimestamp])
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') return
 
-    const w = new Worker(
-      new URL('../worker/deep-statistics.worker.ts', import.meta.url),
-      { type: 'module' }
-    );
+    const w = new Worker(new URL('../worker/deep-statistics.worker.ts', import.meta.url), { type: 'module' })
 
-    setWorker(w);
+    setWorker(w)
 
     w.onmessage = (e: MessageEvent) => {
-      setStats(e.data.result);
-      setIsLoading(false);
-    };
+      setStats(e.data.result)
+      setIsLoading(false)
+    }
 
     w.onerror = (err) => {
-      console.error('Worker error:', err);
-    };
+      console.error('Worker error:', err)
+    }
 
     w.postMessage({
       command: 'start',
       data: {
         cubes: filteredCubes || [],
-        selectedCube: filteredSelectedCube || null,
-      },
-    });
+        selectedCube: filteredSelectedCube || null
+      }
+    })
 
     return () => {
-      w.terminate();
-    };
-  }, []);
+      w.terminate()
+    }
+  }, [])
 
   useEffect(() => {
-    if (!worker) return;
+    if (!worker) return
     if (!filteredCubes || !filteredSelectedCube) {
-      setIsLoading(false);
-      return;
+      setIsLoading(false)
+      return
     }
-    setIsLoading(true);
+    setIsLoading(true)
     worker.postMessage({
-      command: 'start', data: {
+      command: 'start',
+      data: {
         cubes: filteredCubes || [],
         selectedCube: filteredSelectedCube || null
       }
-    });
-  }, [filteredCubes, filteredSelectedCube, worker]);
+    })
+  }, [filteredCubes, filteredSelectedCube, worker])
 
   return {
     stats,
     isLoading
-  };
+  }
 }
