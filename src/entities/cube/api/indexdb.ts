@@ -7,8 +7,18 @@ const Cubes = database.create(STORE_NAME)
 
 export const cubesDB = {
   async getAll(): Promise<Cube[]> {
-    const all = await Cubes.find().get()
-    return all.filter((cube) => !cube.isDeleted)
+    const all = (await Cubes.find().get()) as Cube[]
+
+    return all.filter((cube) => {
+      if (cube.isDeleted) return false
+
+      if (cube.solves) {
+        cube.solves.session = cube.solves.session.filter((solve) => !solve?.isDeleted)
+        cube.solves.all = cube.solves.all.filter((solve) => !solve?.isDeleted)
+      }
+
+      return true
+    })
   },
 
   async getAllDatabase(): Promise<Cube[]> {
