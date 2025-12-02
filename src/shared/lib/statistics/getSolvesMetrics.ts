@@ -22,6 +22,7 @@ export default function getSolvesMetrics({
   if (!cubesDB) return { global: [], session: [], cubeAll: [], cubeSession: [] }
 
   const sortByEndTimeDesc = (a: Solve, b: Solve) => b.endTime - a.endTime
+  const notDeleted = (s: Solve) => !s.isDeleted
 
   // Initialize an object to store solves metrics
   const result: CubeSolves = {
@@ -36,8 +37,9 @@ export default function getSolvesMetrics({
 
   // Iterate through cubes in the specified category
   for (const cube of filteredCubes) {
-    result.global.push(...cube.solves.all, ...cube.solves.session)
-    result.session.push(...cube.solves.session)
+    // Exclude deleted solves from all aggregations
+    result.global.push(...cube.solves.all.filter(notDeleted), ...cube.solves.session.filter(notDeleted))
+    result.session.push(...cube.solves.session.filter(notDeleted))
   }
 
   // Find the target cube by its name
@@ -45,8 +47,9 @@ export default function getSolvesMetrics({
 
   // If the target cube is found, update metrics for 'cubeAll' and 'cubeSession'
   if (targetCube) {
-    result.cubeAll.push(...targetCube.solves.all, ...targetCube.solves.session)
-    result.cubeSession.push(...targetCube.solves.session)
+    // Exclude deleted solves for the specific cube too
+    result.cubeAll.push(...targetCube.solves.all.filter(notDeleted), ...targetCube.solves.session.filter(notDeleted))
+    result.cubeSession.push(...targetCube.solves.session.filter(notDeleted))
   }
 
   // Sort solves in descending order based on endTime for each category

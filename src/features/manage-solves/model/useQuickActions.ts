@@ -81,7 +81,10 @@ export default function useQuickActions(solve: Solve) {
     if (!selectedCubeUpdated) return
 
     setSelectedCube(selectedCubeUpdated)
-    setCubes(cubes ? cubes.map((cube) => (cube.id === selectedCubeUpdated.id ? selectedCubeUpdated : cube)) : [])
+    // Avoid overwriting cubes with an empty array when cubes is not yet loaded
+    if (cubes) {
+      setCubes(cubes.map((cube) => (cube.id === selectedCubeUpdated.id ? selectedCubeUpdated : cube)))
+    }
 
     toast.success(`Solve ${formatTime(solve.time)} moved`, { duration: 1500 })
     close()
@@ -90,7 +93,10 @@ export default function useQuickActions(solve: Solve) {
   const syncUI = async (solveTab: SolveTab) => {
     const updatedCube = await cubesDB.getById(selectedCube?.id || '')
     setSelectedCube(updatedCube || null)
-    setCubes(cubes ? cubes.map((cube) => (cube.id === updatedCube?.id ? updatedCube : cube)) : [])
+    // Avoid clearing cubes when it's not loaded yet
+    if (cubes && updatedCube) {
+      setCubes(cubes.map((cube) => (cube.id === updatedCube.id ? updatedCube : cube)))
+    }
 
     const list =
       solveTab.toLowerCase() === SolveTab.SESSION.toLowerCase() ? updatedCube?.solves.session : updatedCube?.solves.all
