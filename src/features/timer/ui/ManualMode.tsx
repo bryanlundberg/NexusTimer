@@ -33,6 +33,7 @@ export default function ManualMode() {
     <>
       <form className="flex flex-col items-center grow justify-center" onSubmit={saveSolveManualMode}>
         <Input
+          data-testid="manual-time-input"
           autoComplete="off"
           name="time"
           type="number"
@@ -45,7 +46,7 @@ export default function ManualMode() {
         />
         {value !== '' ? (
           <div className="mt-1 text-center font-mono">
-            {t('preview')}: {formatTime(convertToMs(value))}{' '}
+            {t('preview')}: <span data-testId={'preview-time'}>{formatTime(convertToMs(value))} </span>
           </div>
         ) : null}
         {lastSolve && (
