@@ -32,7 +32,7 @@ export default function ButtonSelectMode() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="py-0 px-3" disabled={!selectedCube}>
+          <Button data-testid={'button-select-mode'} variant="ghost" className="py-0 px-3" disabled={!selectedCube}>
             <MixIcon />
           </Button>
         </DropdownMenuTrigger>
@@ -40,16 +40,23 @@ export default function ButtonSelectMode() {
           <DropdownMenuLabel>{t('HomePage.mode')}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuRadioGroup value={timerMode} onValueChange={(e: any) => setTimerMode(e)}>
-            <DropdownMenuRadioItem value={TimerMode.NORMAL}>Normal</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value={TimerMode.MANUAL}>Manual</DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value={TimerMode.STACKMAT}>Stackmat</DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value={TimerMode.NORMAL} data-testId={'mode-normal'}>
+              Normal
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value={TimerMode.MANUAL} data-testId={'mode-manual'}>
+              Manual
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value={TimerMode.STACKMAT} data-testId={'mode-stackmat'}>
+              Stackmat
+            </DropdownMenuRadioItem>
             <DropdownMenuRadioItem
+              data-testId={'mode-virtual'}
               value={TimerMode.VIRTUAL}
               disabled={selectedCube?.category !== '3x3' && selectedCube?.category !== '2x2'}
             >
               Virtual
             </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value={TimerMode.SMART_CUBE} disabled>
+            <DropdownMenuRadioItem data-testId={'mode-smart'} value={TimerMode.SMART_CUBE} disabled>
               Smart cube
             </DropdownMenuRadioItem>
           </DropdownMenuRadioGroup>
