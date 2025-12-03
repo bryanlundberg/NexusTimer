@@ -46,9 +46,9 @@ export default function TransferSolvesHeader({
             <SelectTrigger className="w-full" data-testid="source-collection-trigger">
               <SelectValue placeholder={t('collection-origin')} />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent data-testid="source-collection-content">
               {cubes?.map((cube) => (
-                <SelectItem key={cube.id} value={cube.id} data-testid={`source-collection-${cube.id}`}>
+                <SelectItem key={cube.id} value={cube.id} data-testid={`source-collection-${cube.name}`}>
                   {cube.name} ({cube.category})
                 </SelectItem>
               ))}
@@ -61,11 +61,11 @@ export default function TransferSolvesHeader({
             <SelectTrigger className="w-full" data-testid="destination-collection-trigger">
               <SelectValue placeholder={t('collection-destination')} />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent data-testid="destination-collection-content">
               {cubes
                 ?.filter((cube) => cube.id !== sourceCollection)
                 .map((cube) => (
-                  <SelectItem key={cube.id} value={cube.id} data-testid={`destination-collection-${cube.id}`}>
+                  <SelectItem key={cube.id} value={cube.id} data-testid={`destination-collection-${cube.name}`}>
                     {cube.name} ({cube.category})
                   </SelectItem>
                 ))}
