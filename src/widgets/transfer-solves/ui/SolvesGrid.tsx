@@ -2,9 +2,9 @@ import { Button } from '@/components/ui/button'
 import { VirtualizedGrid } from '@mierak/react-virtualized-grid'
 import { useTranslations } from 'next-intl'
 import { Solve } from '@/entities/solve/model/types'
-import EmptySolves from '@/widgets/transfer-solves/ui/EmptySolves'
 import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
 import SolveTransferCard from '@/widgets/transfer-solves/ui/SolveTransferCard'
+import EmptyGrid from '@/features/solves-grid/ui/EmptyGrid'
 
 interface SolvesGridProps {
   selectedSolves: string[]
@@ -16,7 +16,7 @@ export default function SolvesGrid({ selectedSolves, displaySolves, handleToggle
   const t = useTranslations('Index.TransferSolvesPage')
   const toggleSolveSelection = useTransferSolvesStore((s) => s.toggleSolveSelection)
 
-  if (displaySolves.length === 0) return <EmptySolves />
+  if (displaySolves.length === 0) return <EmptyGrid title={t('no-solves')} description={t('empty-vault')} />
 
   return (
     <>
