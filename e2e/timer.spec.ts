@@ -99,3 +99,46 @@ test.describe('Timer Functionality', () => {
     expect(finalCubes[0].solves.session[0].time).toBe(initialCubes[0].solves.session[0].time + 2000)
   })
 })
+
+test.describe('Timer Manual mode Functionality', () => {
+  test.beforeEach(async ({ page }) => {
+    await createCube(page, 'ManualCube', '3x3')
+    await expect(page.getByTestId('main-cube-selector')).toContainText('Select')
+    await page.getByTestId('utilize-cube-button-ManualCube').click()
+    await expect(page.getByTestId('main-cube-selector')).toContainText('ManualCube')
+    await page.getByTestId('button-select-mode').click()
+    await page.getByTestId('mode-manual').click()
+    await expect(page.getByTestId('manual-time-input')).toBeVisible()
+  })
+
+  test('Should perform a manual solve using the timer', async ({ page }) => {
+    await page.getByTestId('manual-time-input').click()
+
+    await page.getByTestId('manual-time-input').fill('1000')
+    await page.getByTestId('manual-time-input').press('Enter')
+
+    const data = await getIndexedDBData(page)
+    expect(data[0].solves.session.length).toBe(1)
+    expect(data[0].solves.session[0].time).toBe(10000)
+    expect(data[0].solves.all.length).toBe(0)
+  })
+
+  test('should show preview time when typing in manual mode', async ({ page }) => {
+    await page.getByTestId('manual-time-input').click()
+
+    await page.getByTestId('manual-time-input').fill('1000')
+    await expect(page.getByTestId('preview-time')).toHaveText('10.00')
+
+    await page.getByTestId('manual-time-input').fill('')
+    await expect(page.getByTestId('preview-time')).not.toBeVisible()
+
+    await page.getByTestId('manual-time-input').fill('500')
+    await expect(page.getByTestId('preview-time')).toHaveText('5.00')
+
+    await page.getByTestId('manual-time-input').fill('196')
+    await expect(page.getByTestId('preview-time')).toHaveText('1.96')
+
+    await page.getByTestId('manual-time-input').fill('6856')
+    await expect(page.getByTestId('preview-time')).toHaveText('1:08.56')
+  })
+})
