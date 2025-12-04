@@ -1,7 +1,7 @@
 import { expect, Page } from '@playwright/test'
 import { getIndexedDBData } from './indexdb-helpers'
 
-export async function solveOnTimer(page: Page, cubeIndex: number, solveIndex: number) {
+export async function solveOnTimer(page: Page, cubeName: string, solveIndex: number) {
   // Ensure timer is idle and scramble is visible before starting
   await expect(page.getByTestId('scramble-text-zone')).toBeVisible({ timeout: 10000 })
 
@@ -21,19 +21,19 @@ export async function solveOnTimer(page: Page, cubeIndex: number, solveIndex: nu
   await expect(async () => {
     const cubes = await getIndexedDBData(page)
 
-    const target = cubes?.[cubeIndex]?.solves?.session?.[solveIndex]
-
+    const target =
+      cubes.find((cube) => cube.name.toLowerCase() === cubeName.toLowerCase())?.solves.session[solveIndex] || null
     expect(target).toBeDefined()
-    expect(target.time).toBeGreaterThan(0)
-    expect(target.scramble).toBeDefined()
-    expect(target.id).toBeDefined()
-    expect(target.cubeId).toBeDefined()
-    expect(target.startTime).toBeDefined()
-    expect(target.endTime).toBeDefined()
-    expect(target.updatedAt).toBeDefined()
-    expect(target.isDeleted).toBe(false)
-    expect(target.dnf).toBe(false)
-    expect(target.plus2).toBe(false)
-    expect(target.rating).toBeGreaterThan(0)
+    expect(target?.time).toBeGreaterThan(0)
+    expect(target?.scramble).toBeDefined()
+    expect(target?.id).toBeDefined()
+    expect(target?.cubeId).toBeDefined()
+    expect(target?.startTime).toBeDefined()
+    expect(target?.endTime).toBeDefined()
+    expect(target?.updatedAt).toBeDefined()
+    expect(target?.isDeleted).toBe(false)
+    expect(target?.dnf).toBe(false)
+    expect(target?.plus2).toBe(false)
+    expect(target?.rating).toBeGreaterThan(0)
   }).toPass()
 }
