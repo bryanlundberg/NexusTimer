@@ -11,8 +11,8 @@ test.describe('Manage Transfers Page', () => {
 
     await page.getByTestId('utilize-cube-button-AnotherCube1').click()
 
-    await solveOnTimer(page, 0, 0)
-    await solveOnTimer(page, 0, 1)
+    await solveOnTimer(page, 'AnotherCube1', 0)
+    await solveOnTimer(page, 'AnotherCube1', 1)
 
     await expect(page.getByTestId('timer-session-count')).toBeVisible()
     await page.getByRole('link', { name: 'Transfer' }).click()
