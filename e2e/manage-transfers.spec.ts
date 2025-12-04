@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 import { createCube } from './utils/create-cube'
 import { solveOnTimer } from './utils/solve-on-timer'
+import { getIndexedDBData } from './utils/indexdb-helpers'
 
 test.describe('Manage Transfers Page', () => {
   test.beforeEach(async ({ page }) => {
@@ -73,7 +74,57 @@ test.describe('Manage Transfers Page', () => {
     await expect(page.getByTestId('destination-collection-AnotherCube3')).toBeVisible()
   })
 
-  test('should transfer solves from source cube to target cube', async ({ page }) => {})
+  test('should transfer solves from source cube to target cube', async ({ page }) => {
+    await page.getByTestId('source-collection-trigger').click()
+    await page.getByTestId('source-collection-AnotherCube1').click()
+
+    await page.getByTestId('destination-collection-trigger').click()
+    await page.getByTestId('destination-collection-AnotherCube2').click()
+
+    const firstSolve = page.locator('[data-testid^="solve-card-"]').first()
+    await firstSolve.click()
+
+    await page.getByTestId('transfer-solves-button').click()
+
+    await expect(async () => {
+      const elements = page.locator('[data-testid^="solve-card-"]')
+      await expect(elements).toHaveCount(1)
+    }).toPass()
+
+    const data = await getIndexedDBData(page)
+    const sourceCube = data.find((cube) => cube.name === 'AnotherCube1')
+    const targetCube = data.find((cube) => cube.name === 'AnotherCube2')
+
+    expect(sourceCube?.solves.session.length).toBe(2)
+    expect(targetCube?.solves.session.length).toBe(1)
+
+    const sourceSolve = sourceCube?.solves.session[0]
+    const transferredSolve = targetCube?.solves.session[0]
+    expect(transferredSolve).toMatchObject({
+      id: sourceSolve?.id,
+      time: sourceSolve?.time,
+      scramble: sourceSolve?.scramble,
+      dnf: sourceSolve?.dnf,
+      plus2: sourceSolve?.plus2,
+      rating: sourceSolve?.rating,
+      startTime: sourceSolve?.startTime,
+      endTime: sourceSolve?.endTime,
+      isDeleted: false,
+      cubeId: targetCube?.id,
+      bookmark: sourceSolve?.bookmark
+    })
+
+    expect(transferredSolve?.updatedAt).toBeDefined()
+    expect(transferredSolve?.updatedAt).toBeGreaterThan(sourceSolve?.updatedAt || 0)
+
+    await page.getByRole('link', { name: 'Solves' }).click()
+    await expect(page.getByTestId('main-cube-selector')).toContainText('AnotherCube1')
+    await page.locator('html').click()
+    await expect(page.getByTestId('solve-grid-item-0')).toBeVisible()
+    await expect(page.getByTestId('solve-grid-item-1')).toBeHidden()
+  })
+
+  test('should only display as transferable the solves that are "session"', async ({ page }) => {})
 
   test('should not transfer solves when none are selected', async ({ page }) => {})
 
