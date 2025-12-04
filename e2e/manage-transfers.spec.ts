@@ -57,7 +57,21 @@ test.describe('Manage Transfers Page', () => {
 
   test('should list the correct list of target cubes for transfer related to the same category of first cube', async ({
     page
-  }) => {})
+  }) => {
+    await page.getByTestId('source-collection-trigger').click()
+    await expect(page.getByTestId('source-collection-AnotherCube2')).toBeVisible()
+    await expect(page.getByTestId('source-collection-AnotherCube1')).toBeVisible()
+    await expect(page.getByTestId('source-collection-AnotherCube3')).toBeVisible()
+    await page.getByTestId('source-collection-AnotherCube1').click()
+
+    await expect(page.getByTestId('source-collection-AnotherCube2')).toBeHidden()
+    await expect(page.getByTestId('source-collection-AnotherCube1')).toBeHidden()
+    await expect(page.getByTestId('source-collection-AnotherCube3')).toBeHidden()
+
+    await page.getByTestId('destination-collection-trigger').click()
+    await expect(page.getByTestId('destination-collection-AnotherCube2')).toBeVisible()
+    await expect(page.getByTestId('destination-collection-AnotherCube3')).toBeVisible()
+  })
 
   test('should transfer solves from source cube to target cube', async ({ page }) => {})
 
