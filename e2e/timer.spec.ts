@@ -15,7 +15,7 @@ test.describe('Timer Functionality', () => {
   })
 
   test('Should perform a solve using the timer', async ({ page }) => {
-    await solveOnTimer(page, 0, 0)
+    await solveOnTimer(page, 'TestCube', 0)
     await expect(page.getByTestId('timer-widgets-container')).toBeVisible()
     const data = await getIndexedDBData(page)
     expect(data[0].solves.session.length).toBe(1)
@@ -23,7 +23,7 @@ test.describe('Timer Functionality', () => {
   })
 
   test('should add a plus two penalty to the solve (quick-actions-menu)', async ({ page }) => {
-    await solveOnTimer(page, 0, 0)
+    await solveOnTimer(page, 'TestCube', 0)
     await expect(page.getByTestId('quick-action-buttons')).toBeVisible()
     const initialCubes = await getIndexedDBData(page)
     const time = initialCubes[0].solves.session[0].time
@@ -37,7 +37,7 @@ test.describe('Timer Functionality', () => {
   })
 
   test('should mark the solve as DNF (quick-actions-menu)', async ({ page }) => {
-    await solveOnTimer(page, 0, 0)
+    await solveOnTimer(page, 'TestCube', 0)
     await expect(page.getByTestId('quick-action-buttons')).toBeVisible()
     const initialCubes = await getIndexedDBData(page)
     const time = initialCubes[0].solves.session[0].time
@@ -51,7 +51,7 @@ test.describe('Timer Functionality', () => {
   })
 
   test('should delete the solve (quick-actions-menu)', async ({ page }) => {
-    await solveOnTimer(page, 0, 0)
+    await solveOnTimer(page, 'TestCube', 0)
     await expect(page.getByTestId('quick-action-buttons')).toBeVisible()
     const initialCubes = await getIndexedDBData(page)
     expect(initialCubes[0].solves.session[0].isDeleted).toBeFalsy()
@@ -61,7 +61,7 @@ test.describe('Timer Functionality', () => {
   })
 
   test('should bookmark the solve (quick-actions-menu)', async ({ page }) => {
-    await solveOnTimer(page, 0, 0)
+    await solveOnTimer(page, 'TestCube', 0)
     await expect(page.getByTestId('quick-action-buttons')).toBeVisible()
     const initialCubes = await getIndexedDBData(page)
     expect(initialCubes[0].solves.session[0].bookmark).toBeFalsy()
@@ -71,7 +71,7 @@ test.describe('Timer Functionality', () => {
   })
 
   test('should toggle DNF and +2 correctly (quick-actions-menu)', async ({ page }) => {
-    await solveOnTimer(page, 0, 0)
+    await solveOnTimer(page, 'TestCube', 0)
     await expect(page.getByTestId('quick-action-buttons')).toBeVisible()
     const initialCubes = await getIndexedDBData(page)
     expect(initialCubes[0].solves.session[0].dnf).toBeFalsy()
