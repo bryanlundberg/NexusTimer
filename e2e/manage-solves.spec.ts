@@ -9,8 +9,8 @@ test.describe('Manage solves for a cube collection on the Solves page', () => {
     await page.getByTestId('utilize-cube-button-TestCube').click()
     await expect(page.getByTestId('timer-touch-area')).toBeVisible()
 
-    await solveOnTimer(page, 0, 0)
-    await solveOnTimer(page, 0, 1)
+    await solveOnTimer(page, 'TestCube', 0)
+    await solveOnTimer(page, 'TestCube', 1)
 
     await expect(page.getByTestId('timer-session-count')).toBeVisible()
     await page.getByRole('link', { name: 'Solves' }).click()
