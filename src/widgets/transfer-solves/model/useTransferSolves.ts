@@ -25,6 +25,7 @@ export default function useTransferSolves() {
   const setSelectedSolves = useTransferSolvesStore((s) => s.setSelectedSolves)
   const clearSelectedSolves = useTransferSolvesStore((s) => s.clearSelectedSolves)
   const [isTransferring, setIsTransferring] = useState<boolean>(false)
+  const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   useRemoveGridHeight(sourceCollection)
 
   const displaySolves = useMemo(() => {
@@ -65,9 +66,11 @@ export default function useTransferSolves() {
           selectedSolves.includes(solve.id) ? { ...solve, isDeleted: true, updatedAt: now } : solve
         )
 
+        const mostRecentDate = Date.now() + 1
+
         const solvesToTransfer = sourceCube.solves.session
           .filter((solve) => selectedSolves.includes(solve.id))
-          .map((solve) => ({ ...solve, cubeId: destinationCube.id, isDeleted: false, updatedAt: now }))
+          .map((solve) => ({ ...solve, cubeId: destinationCube.id, isDeleted: false, updatedAt: mostRecentDate }))
 
         const mergedDestinationSession = (() => {
           const map = new Map<string, Solve>()
@@ -93,6 +96,7 @@ export default function useTransferSolves() {
         const updatedCubes = await cubesDB.getAll()
 
         setCubes(updatedCubes)
+        setSelectedCube(updatedCubes.find((cube) => cube.id === sourceCollection) || null)
 
         toast.success('Transfer successful')
         clearSelectedSolves()
