@@ -15,6 +15,7 @@ import { PlusIcon } from '@radix-ui/react-icons'
 import { Button } from '@/components/ui/button'
 import { Cube } from '@/entities/cube/model/types'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
+import { useState } from 'react'
 
 export default function MainCubeSelector() {
   const t = useTranslations('Index')
@@ -24,6 +25,7 @@ export default function MainCubeSelector() {
   const setNewScramble = useTimerStore((state) => state.setNewScramble)
   const setLastSolve = useTimerStore((state) => state.setLastSolve)
   const { handleCreate } = useCubeActions(undefined)
+  const [open, setOpen] = useState(false)
 
   const handleChangeValue = (e: any) => {
     const choseCube = cubes?.find((cube) => cube.id === e)
@@ -35,7 +37,13 @@ export default function MainCubeSelector() {
 
   return (
     <>
-      <Select defaultValue={selectedCube?.id} value={selectedCube?.id} onValueChange={handleChangeValue}>
+      <Select
+        defaultValue={selectedCube?.id}
+        value={selectedCube?.id}
+        onValueChange={handleChangeValue}
+        open={open}
+        onOpenChange={setOpen}
+      >
         <SelectTrigger className="w-full" data-testid="main-cube-selector">
           <SelectValue placeholder={t('Inputs.select')} />
         </SelectTrigger>
@@ -65,7 +73,14 @@ export default function MainCubeSelector() {
                 .map((cube) => {
                   return <SelectCubeItemWidthImage cube={cube} key={cube.id} />
                 })}
-            <Button variant={'outline'} className="w-full" onClick={handleCreate}>
+            <Button
+              variant={'outline'}
+              className="w-full"
+              onClick={() => {
+                setOpen(false)
+                handleCreate()
+              }}
+            >
               <div className="flex items-center justify-center gap-1">
                 <PlusIcon />
                 {t('CubesPage.new-collection')}
