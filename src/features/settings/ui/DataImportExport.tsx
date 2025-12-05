@@ -12,7 +12,7 @@ export function DataImportExport() {
 
   const handleExport = async () => {
     try {
-      const cubes = await cubesDB.getAll()
+      const cubes = await cubesDB.getAllDatabase()
       await exportDataToFile(cubes)
     } catch (error) {
       console.error('Error exporting data:', error)
@@ -29,11 +29,21 @@ export function DataImportExport() {
   return (
     <div className="ps-3 pe-3 mb-3">
       <div className="flex flex-wrap gap-2 mb-1">
-        <Button variant={'outline'} onClick={handleOpenImport}>
+        <Button
+          variant={'outline'}
+          onClick={handleOpenImport}
+          data-testid="open-import-backup-button"
+          className="flex items-center gap-1"
+        >
           <DownloadIcon /> {t('Settings-menu.import-from-file')}
         </Button>
 
-        <Button variant={'outline'} className="flex items-center gap-1" onClick={handleExport}>
+        <Button
+          variant={'outline'}
+          className="flex items-center gap-1"
+          onClick={handleExport}
+          data-testid="export-data-to-file-button"
+        >
           <UploadIcon />
           {t('Settings-menu.export-to-file')}
         </Button>
