@@ -53,7 +53,7 @@ export default function QuickActions({
               data-testid="delete-solve-button"
               variant={'ghost'}
               onPointerDown={() => {
-                handleDeleteSolve(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)
+                handleDeleteSolve()
                 onDeleteSolve()
               }}
             >
@@ -70,7 +70,7 @@ export default function QuickActions({
               data-testid="plus-two-button"
               variant={'ghost'}
               className={`font-light text-md ${solve?.plus2 ? 'text-red-600 font-bold hover:text-red-600' : ''}`}
-              onPointerDown={() => handleTogglePlus2(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
+              onPointerDown={handleTogglePlus2}
             >
               +2
             </Button>
@@ -85,7 +85,7 @@ export default function QuickActions({
               data-testid="dnf-button"
               variant={'ghost'}
               className={`font-light text-md ${solve?.dnf ? 'text-red-600 font-bold hover:text-red-600' : ''}`}
-              onPointerDown={() => handleToggleDNF(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
+              onPointerDown={handleToggleDNF}
             >
               DNF
             </Button>
@@ -101,7 +101,7 @@ export default function QuickActions({
               icon={Bookmark}
               active={solve?.bookmark}
               aria-label="Bookmark"
-              onPointerDown={() => handleToggleBookmark(tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL)}
+              onPointerDown={handleToggleBookmark}
               color={[251, 191, 36]}
             />
           </TooltipTrigger>
