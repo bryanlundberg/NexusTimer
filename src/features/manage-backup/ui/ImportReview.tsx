@@ -1,6 +1,4 @@
-'use client'
-
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
@@ -18,6 +16,17 @@ export type ImportReviewValues = {
   }>
 }
 
+const normalizeName = (s: string) => (s || '').trim().toLowerCase()
+const getDuplicateIndices = (names: string[]) => {
+  const counts = new Map<string, number>()
+  names.forEach((n) => counts.set(n, (counts.get(n) || 0) + 1))
+  const dups = new Set<number>()
+  names.forEach((n, i) => {
+    if (n && (counts.get(n) || 0) > 1) dups.add(i)
+  })
+  return dups
+}
+
 export default function ImportReview({
   cubes,
   onCancel,
@@ -31,8 +40,14 @@ export default function ImportReview({
     () => ({ cubes: cubes.map((c) => ({ cubeId: c.id, name: c.name, category: c.category })) }),
     [cubes]
   )
-
-  const { control, handleSubmit } = useForm<ImportReviewValues>({ defaultValues })
+  const {
+    control,
+    handleSubmit,
+    setError,
+    clearErrors,
+    watch,
+    formState: { errors }
+  } = useForm<ImportReviewValues>({ defaultValues })
   const { fields, remove } = useFieldArray({ control, name: 'cubes' })
 
   const totalSolvesById = useMemo(() => {
@@ -45,7 +60,15 @@ export default function ImportReview({
   }, [cubes])
 
   const onSubmit = (values: ImportReviewValues) => {
-    // Map back edited fields to original cubes and filter removed ones
+    const normalized = values.cubes.map((c) => normalizeName(c.name))
+    const duplicates = getDuplicateIndices(normalized)
+    if (duplicates.size > 0) {
+      values.cubes.forEach((_, i) => {
+        if (duplicates.has(i)) setError(`cubes.${i}.name`, { type: 'validate', message: 'Repeated collection name' })
+      })
+      return
+    }
+
     const idsToKeep = new Set(values.cubes.map((c) => c.cubeId))
     const edited = cubes
       .filter((c) => idsToKeep.has(c.id))
@@ -55,6 +78,21 @@ export default function ImportReview({
       })
     onConfirm(edited)
   }
+
+  const watchedCubes = watch('cubes')
+  useEffect(() => {
+    if (!watchedCubes) return
+    const normalized = watchedCubes.map((c) => normalizeName(c.name))
+    const duplicates = getDuplicateIndices(normalized)
+
+    normalized.forEach((_, i) => {
+      if (duplicates.has(i)) {
+        setError(`cubes.${i}.name`, { type: 'validate', message: 'Nombre repetido' })
+      } else {
+        clearErrors(`cubes.${i}.name`)
+      }
+    })
+  }, [watchedCubes, setError, clearErrors])
 
   return (
     <DialogContent className="sm:max-w-[800px]">
@@ -90,7 +128,16 @@ export default function ImportReview({
                     <Controller
                       control={control}
                       name={`cubes.${index}.name`}
-                      render={({ field }) => <Input {...field} placeholder="Name" className={'w-full'} />}
+                      render={({ field }) => (
+                        <div>
+                          <Input {...field} placeholder="Name" className={'w-full'} />
+                          {errors?.cubes?.[index]?.name && (
+                            <p className="text-xs text-destructive mt-1">
+                              {errors.cubes[index]?.name?.message as string}
+                            </p>
+                          )}
+                        </div>
+                      )}
                     />
                   </td>
                   <td className="p-2">
