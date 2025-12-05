@@ -37,7 +37,7 @@ export default function TimerPage() {
         metadata: {}
       })
     }
-  }, [])
+  }, [cubes, open])
 
   return (
     <>
