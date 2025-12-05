@@ -219,7 +219,12 @@ export default function OptionsPage() {
           <Separator className="my-5" />
 
           <div className="flex justify-center mb-10">
-            <Button variant="destructive" onClick={handleResetSettings} className="flex items-center gap-2">
+            <Button
+              variant="destructive"
+              onClick={handleResetSettings}
+              className="flex items-center gap-2"
+              data-testid="reset-settings-button"
+            >
               <UpdateIcon className="size-4" />
               {'Reset settings'}
             </Button>
