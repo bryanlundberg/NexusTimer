@@ -124,9 +124,53 @@ test.describe('Manage Transfers Page', () => {
     await expect(page.getByTestId('solve-grid-item-1')).toBeHidden()
   })
 
-  test('should only display as transferable the solves that are "session"', async ({ page }) => {})
+  test('should only display as transferable the solves that are "session"', async ({ page }) => {
+    await page.getByRole('link', { name: 'Solves' }).click()
 
-  test('should not transfer solves when none are selected', async ({ page }) => {})
+    await expect(page.getByTestId('solve-grid-item-0')).toBeVisible()
+    await expect(page.getByTestId('solve-grid-item-1')).toBeVisible()
 
-  test('should not list deleted solves as available for transfer', async ({ page }) => {})
+    await page.getByTestId('solve-grid-item-0').click()
+    await page.getByTestId('more-actions-button').click()
+    await page.getByTestId('move-to-history-button').click()
+    await expect(page.getByTestId('solve-grid-item-0')).toBeVisible()
+    await expect(page.getByTestId('solve-grid-item-1')).toBeHidden()
+
+    await page.getByRole('link', { name: 'Transfer' }).click()
+    await page.getByTestId('source-collection-trigger').click()
+    await page.getByTestId('source-collection-AnotherCube1').click()
+
+    const elements = page.locator('[data-testid^="solve-card-"]')
+    await expect(elements).toHaveCount(1)
+  })
+
+  test('should not transfer solves when none are selected', async ({ page }) => {
+    await page.getByTestId('source-collection-trigger').click()
+    await page.getByTestId('source-collection-AnotherCube1').click()
+
+    await page.getByTestId('destination-collection-trigger').click()
+    await page.getByTestId('destination-collection-AnotherCube2').click()
+
+    await expect(page.getByTestId('transfer-solves-button')).toBeDisabled()
+  })
+
+  test('should not list deleted solves as available for transfer', async ({ page }) => {
+    await page.getByRole('link', { name: 'Solves' }).click()
+
+    await expect(page.getByTestId('solve-grid-item-0')).toBeVisible()
+    await expect(page.getByTestId('solve-grid-item-1')).toBeVisible()
+
+    await page.getByTestId('solve-grid-item-0').click()
+    await page.getByTestId('delete-solve-button').click()
+
+    await expect(page.getByTestId('solve-grid-item-0')).toBeVisible()
+    await expect(page.getByTestId('solve-grid-item-1')).toBeHidden()
+
+    await page.getByRole('link', { name: 'Transfer' }).click()
+    await page.getByTestId('source-collection-trigger').click()
+    await page.getByTestId('source-collection-AnotherCube1').click()
+
+    const elements = page.locator('[data-testid^="solve-card-"]')
+    await expect(elements).toHaveCount(1)
+  })
 })
