@@ -49,13 +49,13 @@ export default function ImportBackup() {
       setIsImporting(true)
       await cubesDB.clear()
       await cubesDB.saveBatch(editedCubes)
-      toast.success('Backup imported successfully!')
 
       const cubes = await cubesDB.getAll()
       setCubes(cubes)
       router.push('/cubes')
       setSelectedCube(null)
-      toast.success('Import completed!')
+
+      toast.success('Backup imported successfully!')
     } catch (error) {
       toast.error('Backup import failed. Please try again.')
       console.error(error)
