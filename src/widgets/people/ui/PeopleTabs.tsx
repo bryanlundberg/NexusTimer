@@ -17,17 +17,11 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
       <div className="flex flex-col md:flex-row p-5 relative">
         <UserInfo user={user} />
         <div className="flex flex-col grow">
-          <Tabs defaultValue={value} className="w-full">
+          <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full">
             <TabsList>
-              <TabsTrigger onClick={() => set(PTabs.OVERVIEW)} value={PTabs.OVERVIEW}>
-                Overview
-              </TabsTrigger>
-              <TabsTrigger onClick={() => set(PTabs.CUBES)} value={PTabs.CUBES}>
-                Cubes
-              </TabsTrigger>
-              <TabsTrigger onClick={() => set(PTabs.LAST_ACTIVITY)} value={PTabs.LAST_ACTIVITY}>
-                Last activity
-              </TabsTrigger>
+              <TabsTrigger value={PTabs.OVERVIEW}>Overview</TabsTrigger>
+              <TabsTrigger value={PTabs.CUBES}>Cubes</TabsTrigger>
+              <TabsTrigger value={PTabs.LAST_ACTIVITY}>Last activity</TabsTrigger>
             </TabsList>
             <PeopleContent cubes={cubes} />
           </Tabs>
