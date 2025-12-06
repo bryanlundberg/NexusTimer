@@ -20,6 +20,7 @@ export function useAppInit() {
   const setNewScramble = useTimerStore((store) => store.setNewScramble)
   const settings = useSettingsStore((store) => store.settings)
   const [isMounted, setIsMounted] = useState(false)
+  const [isAppReady, setIsAppReady] = useState(false)
   const { data: session } = useSession()
   const { handleDownloadData, handleUploadBackup } = useSyncBackup()
   const firstLoaded = useInitialSyncBackup((store) => store.firstLoaded)
@@ -46,6 +47,8 @@ export function useAppInit() {
       } else {
         setSelectedCube(null)
       }
+
+      setIsAppReady(true)
     }
 
     loadData()
@@ -159,5 +162,5 @@ export function useAppInit() {
     settings?.sync.autoSaveEnabled
   ])
 
-  return { isMounted }
+  return { isMounted, isAppReady }
 }
