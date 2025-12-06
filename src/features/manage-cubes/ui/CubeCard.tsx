@@ -9,6 +9,8 @@ import { Button } from '@/components/ui/button'
 import { Cube } from '@/entities/cube/model/types'
 import { useLocale, useTranslations } from 'next-intl'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
+import { cubeCollection } from '@/shared/const/cube-collection'
+import Image from 'next/image'
 
 interface CubeCardProps {
   cube: Cube
@@ -18,9 +20,9 @@ export function CubeCard({ cube }: CubeCardProps) {
   const t = useTranslations('Index')
   const locale = useLocale()
   const { handleEdit, handleDelete, handleRedirect, handleFavorite } = useCubeActions(cube)
-
+  const src = cubeCollection.find((c) => c.name === cube.category)?.src
   return (
-    <Card key={cube.id} className="overflow-hidden gap-1">
+    <Card key={cube.id} className="relative overflow-hidden gap-1">
       <CardHeader className="pb-2">
         <div className="flex justify-between items-start">
           <CardTitle
@@ -139,6 +141,9 @@ export function CubeCard({ cube }: CubeCardProps) {
           </div>
         </div>
       </CardFooter>
+      <div className="pointer-events-none select-none absolute bottom-5 right-10 text-foreground/10 rotate-25 opacity-5">
+        <Image src={src} alt={`${cube.category} icon`} width={200} height={200} unoptimized />
+      </div>
     </Card>
   )
 }
