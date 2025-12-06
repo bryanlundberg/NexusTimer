@@ -104,7 +104,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <NuqsAdapter>
           <SessionProvider session={session}>
             <NextIntlClientProvider messages={messages}>
-              <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem disableTransitionOnChange>
+              <ThemeProvider attribute="class" defaultTheme={'system'} enableSystem disableTransitionOnChange>
                 <SidebarProvider>
                   <AlertsProvider>
                     {children}
