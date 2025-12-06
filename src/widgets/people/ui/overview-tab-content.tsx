@@ -28,16 +28,18 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
 
   return (
     <div className={'grid grid-cols-1 xl:grid-cols-2 gap-4'}>
-      {Object.entries(solvesByCategory).map(([category, solves]) => (
-        <SolveCard
-          key={solves[0].id}
-          event={category as CubeCategory}
-          time={formatTime(solves[0].time)}
-          date={moment(solves[0].endTime).format('DD-MM-YYYY')}
-          bgImage={cubeCollection.find((c) => c.name === category)?.src || undefined}
-          solves={solves}
-        />
-      ))}
+      {Object.entries(solvesByCategory)
+        .sort()
+        .map(([category, solves]) => (
+          <SolveCard
+            key={solves[0].id}
+            event={category as CubeCategory}
+            time={formatTime(solves[0].time)}
+            date={moment(solves[0].endTime).format('DD-MM-YYYY')}
+            bgImage={cubeCollection.find((c) => c.name === category)?.src || undefined}
+            solves={solves}
+          />
+        ))}
     </div>
   )
 }
