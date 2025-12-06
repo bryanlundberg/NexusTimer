@@ -72,18 +72,14 @@ export const useSyncBackup = () => {
 
     for (let i = 0; i < backupData.length; i++) {
       const backupCube = backupData[i]
-      const existingCube = newCubes.find((cube) => cube.id === backupCube.id)
+      let existingCube = newCubes.find((cube) => cube.id === backupCube.id)
 
       if (existingCube) {
         const backupUpdatedAt = backupCube.updatedAt || backupCube.createdAt || 0
         const existingUpdatedAt = existingCube.updatedAt || existingCube.createdAt || 0
 
         if (backupUpdatedAt > existingUpdatedAt) {
-          existingCube.name = backupCube.name
-          existingCube.category = backupCube.category
-          existingCube.favorite = backupCube.favorite
-          existingCube.updatedAt = backupCube.updatedAt
-          existingCube.isDeleted = backupCube.isDeleted
+          Object.assign(existingCube, backupCube)
         }
 
         const mergedSession = [...existingCube.solves.session, ...backupCube.solves.session]
