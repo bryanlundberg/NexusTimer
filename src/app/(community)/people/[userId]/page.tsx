@@ -15,9 +15,7 @@ export default function PeopleDetailsPage() {
   const { data: user, isLoading: isLoadingUser } = useUser(userId)
   const { backup, isLoading: isLoadingBackup } = useBackup(user?.backup?.url)
 
-  if (isLoadingUser || isLoadingBackup) {
-    return <PeopleSkeleton />
-  }
+  if (isLoadingUser || isLoadingBackup) return <PeopleSkeleton />
 
   const cubes = filterCubes(backup)
 
