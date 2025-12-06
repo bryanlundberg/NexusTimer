@@ -32,7 +32,6 @@ test.describe('should manage import/exports correctly', () => {
     const download = await downloadPromise
 
     const path = await download.path()
-    console.log(path)
     if (!path) throw new Error('No download path or stream available')
     const content = await fs.promises.readFile(path, 'utf-8')
 
@@ -46,6 +45,4 @@ test.describe('should manage import/exports correctly', () => {
     const deletedSolve = data[0].solves.session.findIndex((solve) => solve.isDeleted)
     expect(deletedSolve).not.toBe(-1)
   })
-
-  test('should load backup and merge with existing data', async ({ page, context }) => {})
 })
