@@ -8,7 +8,7 @@ import useGraphCategories from '@/features/bars-chart-categories/model/useGraphC
 export default function BarsGraphCategories({ cubes, category }: BarsGraphCategoryProps) {
   const { data } = useGraphCategories({ cubes, category })
   return (
-    <div className="p-3 border rounded-md bg-card/50 min-h-[384px]">
+    <div className="p-3 border rounded-md bg-background min-h-[384px]">
       <div className="flex items-center gap-2 mb-2 text-sm">
         <ChartBarDecreasingIcon className={'size-4 text-muted-foreground'} />
         <span className="font-medium">Solves by Cube</span>

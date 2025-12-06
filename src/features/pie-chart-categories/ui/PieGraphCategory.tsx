@@ -38,7 +38,7 @@ export default function PieGraphCategory({ cubes, category }: PieGraphCategoryPr
   }, [data])
 
   return (
-    <div className="p-3 border rounded-md bg-card/50">
+    <div className="p-3 border rounded-md bg-background">
       <div className="flex items-center gap-2 mb-2 text-sm">
         <ChartPieIcon className={'size-4 text-muted-foreground'} />
         <span className="font-medium">Time by Cube</span>
