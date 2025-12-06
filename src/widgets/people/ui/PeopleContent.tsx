@@ -16,13 +16,13 @@ export function PeopleContent({ cubes }: Props) {
     <div className="flex flex-col w-full">
       <div className="flex flex-col md:flex-row p-5 relative">
         <div className="flex flex-col grow">
-          <TabsContent value={PTabs.OVERVIEW} hidden={value !== PTabs.OVERVIEW}>
+          <TabsContent value={PTabs.OVERVIEW}>
             <OverviewTabContent cubes={cubes} />
           </TabsContent>
-          <TabsContent value={PTabs.CUBES} hidden={value !== PTabs.CUBES}>
+          <TabsContent value={PTabs.CUBES}>
             <CubesTabContent cubes={cubes} />
           </TabsContent>
-          <TabsContent value={PTabs.LAST_ACTIVITY} hidden={value !== PTabs.LAST_ACTIVITY}>
+          <TabsContent value={PTabs.LAST_ACTIVITY}>
             <LastActivityTabContent cubes={cubes} />
           </TabsContent>
         </div>
