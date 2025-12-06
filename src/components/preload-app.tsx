@@ -5,11 +5,11 @@ import { ReactNode } from 'react'
 
 export default function PreloadApp({ children }: { children: ReactNode }) {
   const backgroundImage = useBackgroundImageStore((state) => state.backgroundImage)
-  const { isMounted } = useAppInit()
+  const { isMounted, isAppReady } = useAppInit()
 
   return (
     <>
-      {isMounted ? (
+      {isMounted && isAppReady ? (
         <div
           className="flex flex-col justify-between gap-2 select-none bg-background grow"
           style={{
