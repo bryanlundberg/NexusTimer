@@ -73,37 +73,35 @@ export default function CreateRoomModal() {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
-          <div>
-            <Label htmlFor="room-event" className="text-sm font-medium">
-              Event
-            </Label>
-            <Controller
-              name={'event'}
-              control={control}
-              render={({ field: { onChange, value } }) => (
-                <Select value={value} onValueChange={onChange}>
-                  <SelectTrigger className="w-full">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="2x2">2x2</SelectItem>
-                    <SelectItem value="3x3">3x3</SelectItem>
-                    <SelectItem value="4x4">4x4</SelectItem>
-                    <SelectItem value="5x5">5x5</SelectItem>
-                    <SelectItem value="6x6">6x6</SelectItem>
-                    <SelectItem value="7x7">7x7</SelectItem>
-                    <SelectItem value="3x3 OH">3x3 OH</SelectItem>
-                    <SelectItem value="Clock">Clock</SelectItem>
-                    <SelectItem value="Megaminx">Megaminx</SelectItem>
-                    <SelectItem value="Pyraminx">Pyraminx</SelectItem>
-                    <SelectItem value="Skewb">Skewb</SelectItem>
-                    <SelectItem value="square1">Square-1</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
-            />
-          </div>
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="room-event" className="text-sm font-medium">
+            Event
+          </Label>
+          <Controller
+            name={'event'}
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Select value={value} onValueChange={onChange}>
+                <SelectTrigger className="w-full">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="2x2">2x2</SelectItem>
+                  <SelectItem value="3x3">3x3</SelectItem>
+                  <SelectItem value="4x4">4x4</SelectItem>
+                  <SelectItem value="5x5">5x5</SelectItem>
+                  <SelectItem value="6x6">6x6</SelectItem>
+                  <SelectItem value="7x7">7x7</SelectItem>
+                  <SelectItem value="3x3 OH">3x3 OH</SelectItem>
+                  <SelectItem value="Clock">Clock</SelectItem>
+                  <SelectItem value="Megaminx">Megaminx</SelectItem>
+                  <SelectItem value="Pyraminx">Pyraminx</SelectItem>
+                  <SelectItem value="Skewb">Skewb</SelectItem>
+                  <SelectItem value="square1">Square-1</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          />
         </div>
 
         <div className="grid gap-2">
@@ -119,12 +117,7 @@ export default function CreateRoomModal() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="10">10 sec</SelectItem>
-                  <SelectItem value="20">20 sec</SelectItem>
-                  <SelectItem value="30">30 sec</SelectItem>
-                  <SelectItem value="40">40 sec</SelectItem>
-                  <SelectItem value="50">50 sec</SelectItem>
-                  <SelectItem value="60">60 sec</SelectItem>
+                  <SelectItem value="60">1:00 min</SelectItem>
                   <SelectItem value="70">1:10 min</SelectItem>
                   <SelectItem value="80">1:20 min</SelectItem>
                   <SelectItem value="90">1:30 min</SelectItem>
