@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import * as React from 'react'
-import { AlarmClock, Boxes, CalendarDaysIcon } from 'lucide-react'
+import { Boxes, CalendarDaysIcon, CircleSlash2, Clock12, RotateCcw, Timer } from 'lucide-react'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import Image from 'next/image'
 import { Solve } from '@/entities/solve/model/types'
@@ -27,7 +27,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
     defer(() => {
       try {
         const ao5Ms = calculateBestAo(solves || [], 5)
-        const safeAo5 = !isFinite(ao5Ms) || ao5Ms <= 0 ? 0 : Math.round(ao5Ms)
+        const safeAo5 = !isFinite(ao5Ms) || ao5Ms <= 0 ? 0 : ao5Ms
         setAo5Str(safeAo5 === 0 ? '--' : formatTime(safeAo5))
 
         const spent = (solves || []).reduce((acc, s) => acc + (s.time || 0), 0)
@@ -61,7 +61,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
               <div className="flex gap-2 bg-background p-4 rounded-xl flex-col">
                 <h2 className={'font-semibold tracking-tight'}>Single</h2>
                 <div className="flex flex-row items-end justify-end gap-2">
-                  <AlarmClock className="size-4 mb-1" />
+                  <Clock12 className="size-5 mb-1" />
                   <div className="flex flex-row">
                     <span className="text-xl font-bold tracking-tighter">{mainTime}</span>
                     <span className="text-lg font-medium text-muted-foreground">.{decimals}</span>
@@ -72,7 +72,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
               <div className="flex gap-2 mb-1 bg-background p-4 rounded-xl flex-col">
                 <h2 className={'font-semibold tracking-tight'}>Ao5 (Best)</h2>
                 <div className="flex flex-row items-end justify-end gap-2">
-                  <AlarmClock className="size-5 mb-1" />
+                  <CircleSlash2 className="size-5 mb-1" />
                   <div className="flex items-baseline">
                     {ao5Str === '--' ? (
                       <span className="text-2xl font-semibold text-muted-foreground">--</span>
@@ -89,7 +89,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
               <div className="flex gap-2 mb-1 bg-background p-4 rounded-xl flex-col">
                 <h2 className={'font-semibold tracking-tight'}>Time Spent</h2>
                 <div className="flex flex-row items-end justify-end gap-2">
-                  <AlarmClock className="size-5 mb-1" />
+                  <Timer className="size-5 mb-1" />
                   <div className="flex items-baseline">
                     <span className="text-xl font-bold tracking-tighter">{spentStr.split('.')[0]}</span>
                     <span className="text-lg font-medium text-muted-foreground">.{spentStr.split('.')[1]}</span>
@@ -100,7 +100,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
               <div className="flex gap-2 mb-1 bg-background p-4 rounded-xl flex-col">
                 <h2 className={'font-semibold tracking-tight'}>Solves</h2>
                 <div className="flex flex-row items-end justify-end gap-2">
-                  <AlarmClock className="size-5 mb-1" />
+                  <RotateCcw className="size-5 mb-1" />
                   <div className="flex items-baseline">
                     <span className="text-xl font-bold tracking-tighter">{solvesCount}</span>
                   </div>
