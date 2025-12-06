@@ -3,9 +3,10 @@ import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import OverviewTabContent from '@/widgets/people/ui/overview-tab-content'
 import CubesTabContent from '@/widgets/people/ui/cubes-tab-content'
 import LastActivityTabContent from '@/widgets/people/ui/last-activity-tab-content'
+import { Cube } from '@/entities/cube/model/types'
 
 interface Props {
-  cubes: any[]
+  cubes: Array<Cube>
 }
 
 export function PeopleContent({ cubes }: Props) {
