@@ -27,6 +27,7 @@ export function useAppInit() {
   const { data: user } = useUser(session?.user?.id!)
   const SYNC_TOAST_ID = useMemo(() => 'sync-toast-id', [])
   const { isOffline } = useIsOnline()
+  const updateSetting = useSettingsStore((state) => state.updateSetting)
 
   useEffect(() => {
     const loadData = async () => {
@@ -126,6 +127,8 @@ export function useAppInit() {
                 className={'w-full'}
                 onClick={() => {
                   setFirstLoaded(true)
+                  updateSetting('sync.lastSync', Date.now())
+                  updateSetting('sync.totalSolves', 0)
                   toast.dismiss(SYNC_TOAST_ID)
                 }}
               >
