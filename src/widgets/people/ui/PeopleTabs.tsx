@@ -3,10 +3,12 @@ import { usePeopleTab } from '@/features/people-tab/model/usePeopleTab'
 import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
 import UserInfo from '@/entities/user/ui/user-info'
+import { UserDocument } from '@/entities/user/model/user'
+import { Cube } from '@/entities/cube/model/types'
 
 interface PeopleTabsProps {
-  user: any
-  cubes: any[]
+  user: UserDocument
+  cubes: Array<Cube>
 }
 
 export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
