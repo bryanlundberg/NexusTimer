@@ -6,6 +6,7 @@ import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import SolveCard from '@/widgets/people/ui/solve-card'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
+import { cubeCollection } from '@/shared/const/cube-collection'
 
 export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
   const solvesByCategory = useMemo(() => {
@@ -30,10 +31,11 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
       {Object.entries(solvesByCategory).map(([category, solves]) => (
         <SolveCard
           key={solves[0].id}
-          scramble={solves[0].scramble}
           event={category as CubeCategory}
           time={formatTime(solves[0].time)}
           date={moment(solves[0].endTime).format('DD-MM-YYYY')}
+          bgImage={cubeCollection.find((c) => c.name === category)?.src || undefined}
+          solves={solves}
         />
       ))}
     </div>
