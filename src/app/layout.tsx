@@ -1,17 +1,19 @@
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
-import { jakarta } from '@/fonts/fonts'
+import { jakarta } from '@/shared/config/fonts'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages, getTranslations } from 'next-intl/server'
 import { SessionProvider } from 'next-auth/react'
-import { auth } from '@/auth'
+import { auth } from '@/shared/config/auth/auth'
 import { NuqsAdapter } from 'nuqs/adapters/next/app'
-import { locales } from '@/i18n/locales'
+import { locales } from '@/shared/config/i18n/locales'
 import JsonLd from './jsonld'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SidebarProvider } from '@/components/ui/sidebar'
-import AlertProvider from '@/components/alert/AlertProvider'
+import AlertsProvider from '@/components/alerts-provider'
 import { Viewport } from 'next'
+import { Overlay } from '@/shared/ui/overlay/overlay'
+import PreloadAppProvider from '@/components/preload-app-provider';
 
 export async function generateMetadata() {
   const locale = await getLocale()
@@ -103,9 +105,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <NuqsAdapter>
           <SessionProvider session={session}>
             <NextIntlClientProvider messages={messages}>
-              <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem disableTransitionOnChange>
+              <ThemeProvider attribute="class" defaultTheme={'system'} enableSystem disableTransitionOnChange>
                 <SidebarProvider>
-                  <AlertProvider>{children}</AlertProvider>
+                  <AlertsProvider>
+                    <PreloadAppProvider>
+                      {children}
+                    </PreloadAppProvider>
+                    <Overlay />
+                  </AlertsProvider>
                 </SidebarProvider>
               </ThemeProvider>
             </NextIntlClientProvider>

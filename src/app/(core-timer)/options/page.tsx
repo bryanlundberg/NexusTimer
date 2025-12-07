@@ -1,9 +1,5 @@
 'use client'
-import { useSettingsModalStore } from '@/store/SettingsModalStore'
-import ThemeSelect from '@/components/menu-settings/ThemeSelect'
-import { MenuSection } from '@/components/menu-settings/MenuSection'
-import { MenuOption } from '@/components/menu-settings/MenuOption'
-import { DataImportExport } from '@/components/menu-settings/DataImportExport'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
 import {
   BellIcon,
@@ -16,22 +12,26 @@ import {
   SpeakerLoudIcon,
   UpdateIcon
 } from '@radix-ui/react-icons'
-import MenuSelectLanguage from '@/components/menu-settings/MenuSelectLanguage'
-import CustomTheme from '@/components/menu-settings/CustomTheme'
-import MenuSelectDefaultStartCube from '@/components/menu-settings/MenuSelectDefaultStartCube'
-import AccountHeader from '@/components/account/account-header/account-header'
 import { Separator } from '@/components/ui/separator'
-import MenuSelectColor from '@/components/menu-settings/MenuSelectColor'
 import { useForm } from 'react-hook-form'
-import MenuInputOption from '@/components/menu-settings/MenuInputOption'
 import { Button } from '@/components/ui/button'
-import { defaultSettings } from '@/lib/const/defaultSettings'
-import useWebsiteColors from '@/hooks/useWebsiteColors'
+import { defaultSettings } from '@/shared/model/settings/defaultSettings'
 import { toast } from 'sonner'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import AccountHeader from '@/features/account/ui/account-header'
+import MenuSelectLanguage from '@/features/settings/ui/MenuSelectLanguage'
+import { MenuSection } from '@/features/settings/ui/MenuSection'
+import MenuInputOption from '@/features/settings/ui/MenuInputOption'
+import { MenuOption } from '@/features/settings/ui/MenuOption'
+import ThemeSelect from '@/features/settings/ui/ThemeSelect'
+import CustomTheme from '@/features/settings/ui/CustomTheme'
+import MenuSelectColor from '@/features/settings/ui/MenuSelectColor'
+import MenuSelectDefaultStartCube from '@/features/settings/ui/MenuSelectDefaultStartCube'
+import { DataImportExport } from '@/features/settings/ui/DataImportExport'
+import useWebsiteColors from '@/shared/model/useWebsiteColors'
 
-export default function Page() {
-  const { settings, setSettings } = useSettingsModalStore()
+export default function OptionsPage() {
+  const { settings, setSettings } = useSettingsStore()
   const t = useTranslations('Index')
   const { control, reset } = useForm({ defaultValues: settings })
   const { applyColorTheme } = useWebsiteColors()
@@ -219,7 +219,12 @@ export default function Page() {
           <Separator className="my-5" />
 
           <div className="flex justify-center mb-10">
-            <Button variant="destructive" onClick={handleResetSettings} className="flex items-center gap-2">
+            <Button
+              variant="destructive"
+              onClick={handleResetSettings}
+              className="flex items-center gap-2"
+              data-testid="reset-settings-button"
+            >
               <UpdateIcon className="size-4" />
               {'Reset settings'}
             </Button>

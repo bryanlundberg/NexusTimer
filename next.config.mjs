@@ -1,20 +1,12 @@
 import createNextIntlPlugin from "next-intl/plugin";
-import withSerwistInit from "@serwist/next";
 
-const withNextIntl = createNextIntlPlugin();
-
-const withSerwist = withSerwistInit({
-  swSrc: "src/app/sw.ts",
-  swDest: "public/sw.js",
-  disable: process.env.NODE_ENV !== "production",
-  reloadOnOnline: true,
-  register: true
-});
+const withNextIntl = createNextIntlPlugin('./src/shared/config/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactCompiler: true,
   experimental: {
-    reactCompiler: true
+    turbopackFileSystemCacheForDev: true
   },
   images: {
     remotePatterns: [
@@ -28,4 +20,4 @@ const nextConfig = {
   }
 };
 
-export default withSerwist(withNextIntl(nextConfig));
+export default withNextIntl(nextConfig);

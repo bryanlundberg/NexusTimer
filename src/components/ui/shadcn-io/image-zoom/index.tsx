@@ -1,23 +1,16 @@
-'use client';
+'use client'
 
-import Zoom, {
-  type ControlledProps,
-  type UncontrolledProps,
-} from 'react-medium-image-zoom';
-import { cn } from '@/lib/utils';
+import Zoom, { type ControlledProps, type UncontrolledProps } from 'react-medium-image-zoom'
+import { cn } from '@/shared/lib/utils'
 
 export type ImageZoomProps = UncontrolledProps & {
-  isZoomed?: ControlledProps['isZoomed'];
-  onZoomChange?: ControlledProps['onZoomChange'];
-  className?: string;
-  backdropClassName?: string;
-};
+  isZoomed?: ControlledProps['isZoomed']
+  onZoomChange?: ControlledProps['onZoomChange']
+  className?: string
+  backdropClassName?: string
+}
 
-export const ImageZoom = ({
-  className,
-  backdropClassName,
-  ...props
-}: ImageZoomProps) => (
+export const ImageZoom = ({ className, backdropClassName, ...props }: ImageZoomProps) => (
   <div
     className={cn(
       'relative',
@@ -49,4 +42,4 @@ export const ImageZoom = ({
       {...props}
     />
   </div>
-);
+)

@@ -4,7 +4,7 @@ import * as React from 'react'
 import { motion, type Transition } from 'motion/react'
 import { Children, type ReactNode } from 'react'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/shared/lib/utils'
 import { TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 

@@ -1,30 +1,30 @@
-'use client';
-import AccountHeader from '@/components/account/account-header/account-header';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { useTranslations } from 'next-intl';
-import Link from 'next/link';
-import { Loader2 } from 'lucide-react';
-import { useSyncBackup } from '@/hooks/useSyncBackup';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { toast } from 'sonner';
+'use client'
+import { useTranslations } from 'next-intl'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import { toast } from 'sonner'
+import { Card } from '@/components/ui/card'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Loader2 } from 'lucide-react'
+import AccountHeader from '@/features/account/ui/account-header'
+import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 
-export default function Page() {
-  const t = useTranslations('Index');
-  const { handleUploadBackup, isUploading, uploadCompleted } = useSyncBackup();
-  const router = useRouter();
+export default function AccountSavePage() {
+  const t = useTranslations('Index')
+  const { handleUploadBackup, isUploading, uploadCompleted } = useSyncBackup()
+  const router = useRouter()
 
   useEffect(() => {
     if (uploadCompleted) {
-      router.push('/account');
-      toast.success('Data uploaded successfully');
+      router.push('/account')
+      toast.success('Data uploaded successfully')
     }
-  }, [router, uploadCompleted]);
+  }, [router, uploadCompleted])
 
   return (
     <>
-      <AccountHeader back="/app" label={t('SettingsPage.save-data-title')}/>
+      <AccountHeader back="/app" label={t('SettingsPage.save-data-title')} />
       <Card className="p-3 bg-secondary/10" aria-busy={isUploading}>
         <p>{t('SettingsPage.save-data-description')}</p>
         <p className="text-yellow-600">{t('SettingsPage.save-data-warning')}</p>
@@ -34,7 +34,7 @@ export default function Page() {
             className="grow"
             onClick={(e) => {
               if (isUploading) {
-                e.preventDefault();
+                e.preventDefault()
               }
             }}
             aria-disabled={isUploading}
@@ -43,14 +43,10 @@ export default function Page() {
               {t('Inputs.back')}
             </Button>
           </Link>
-          <Button
-            className="grow"
-            onClick={handleUploadBackup}
-            disabled={isUploading}
-          >
+          <Button className="grow" onClick={handleUploadBackup} disabled={isUploading}>
             {isUploading ? (
               <span className="inline-flex items-center gap-2">
-                <Loader2 className="h-4 w-4 animate-spin"/>
+                <Loader2 className="h-4 w-4 animate-spin" />
                 <span>{t('Inputs.continue')}</span>
               </span>
             ) : (
@@ -60,5 +56,5 @@ export default function Page() {
         </div>
       </Card>
     </>
-  );
+  )
 }

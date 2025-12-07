@@ -1,55 +1,54 @@
-'use client';
+'use client'
+import { useRouter, useSearchParams } from 'next/navigation'
+import * as React from 'react'
+import { useMemo, useState } from 'react'
+import FadeIn from '@/shared/ui/fade-in/fade-in'
+import { SidebarTrigger } from '@/components/ui/sidebar'
+import { Input } from '@/components/ui/input'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Button } from '@/components/ui/button'
+import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
+import { UserDocument } from '@/entities/user/model/user'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { useUsers } from '@/entities/user/model/useUsers'
+import { TablePagination } from '@/widgets/people/ui/table-pagination'
+import UserCard from '@/widgets/people/ui/user-card'
+import Navigation from '@/features/navigation/ui/navigation'
+import { TimeZones } from '@/shared/types/enums'
 
-import * as React from 'react';
-import { useMemo, useState } from 'react';
-import Navigation from '@/components/navigation/navigation';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
-import { useUsers } from '@/hooks/api/useUsers';
-import FadeIn from '@/components/fade-in/fade-in';
-import { UserDocument } from '@/models/user';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { TimeZones } from '@/enums/Timezones';
-import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
-import { TablePagination } from '@/components/people/table-pagination';
-import { UserCard } from '@/components/people/user-card';
-import { SidebarTrigger } from '@/components/ui/sidebar';
-import { ScrollArea } from '@/components/ui/scroll-area';
-
-export default function Page() {
-  const router = useRouter();
+export default function PeoplePage() {
+  const router = useRouter()
   const searchParams = useSearchParams()
-  const search = searchParams.get('search')
-  const region = searchParams.get('region')
-  const page = searchParams.get('page')
+  const search = searchParams!.get('search')
+  const region = searchParams!.get('region')
+  const page = searchParams!.get('page')
   const [searchTerm, setSearchTerm] = useState(search)
-  const [selectedRegion, setSelectedRegion] = useState(region || 'all');
+  const [selectedRegion, setSelectedRegion] = useState(region || 'all')
 
   const { data, isLoading } = useUsers({
     name: search || undefined,
     region: region || undefined,
     page: Number(page) || 0
-  });
+  })
 
-  const regionOptions = useMemo(() => Object.values(TimeZones), []);
+  const regionOptions = useMemo(() => Object.values(TimeZones), [])
 
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const newSearchParams = new URLSearchParams();
+    e.preventDefault()
+    const newSearchParams = new URLSearchParams()
     if (searchTerm) {
-      newSearchParams.set('search', searchTerm);
+      newSearchParams.set('search', searchTerm)
     }
     if (selectedRegion && selectedRegion !== 'all') {
-      newSearchParams.set('region', selectedRegion);
+      newSearchParams.set('region', selectedRegion)
     } else {
-      newSearchParams.delete('region');
+      newSearchParams.delete('region')
     }
-    newSearchParams.set('page', '0');
-    router.push(`/people?${newSearchParams.toString()}`);
-  };
+    newSearchParams.set('page', '0')
+    router.push(`/people?${newSearchParams.toString()}`)
+  }
 
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
@@ -57,7 +56,7 @@ export default function Page() {
         <div className="px-2 pt-2 flex flex-col w-full">
           <Navigation showMenu={false}>
             <div className={'flex items-center justify-between gap-2'}>
-              <SidebarTrigger/>
+              <SidebarTrigger />
               <div className={'flex sm:flex-row items-center gap-3 w-full justify-end'}>
                 <div className={'flex flex-col sm:flex-row items-center gap-2 grow justify-end'}>
                   <Input
@@ -68,7 +67,7 @@ export default function Page() {
                   />
                   <Select value={selectedRegion} onValueChange={setSelectedRegion}>
                     <SelectTrigger className="w-full sm:w-48">
-                      <SelectValue placeholder="Region"/>
+                      <SelectValue placeholder="Region" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all">All</SelectItem>
@@ -80,28 +79,37 @@ export default function Page() {
                     </SelectContent>
                   </Select>
                 </div>
-                <Button size={'icon'} onClick={handleSearch}><MagnifyingGlassIcon/></Button>
+                <Button size={'icon'} onClick={handleSearch}>
+                  <MagnifyingGlassIcon />
+                </Button>
               </div>
             </div>
           </Navigation>
 
-          <div className={'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 p-2 overflow-auto pb-10'}>
-            {isLoading && Array(10).fill(0).map((_, index) => (
-              <Card key={index} className="overflow-hidden min-h-96">
-                <CardHeader className="pb-2 flex flex-col items-center">
-                  <Skeleton className="size-24 rounded-full mb-2"/>
-                  <Skeleton className="h-6 w-32 mb-1"/>
-                  <Skeleton className="h-4 w-40"/>
-                </CardHeader>
-                <CardContent className="pb-2 pt-0 flex flex-col items-center">
-                  <Skeleton className="h-4 w-36 mb-2"/>
-                  <Skeleton className="h-5 w-16"/>
-                </CardContent>
-                <CardFooter className="pt-2 flex justify-center">
-                  <Skeleton className="h-8 w-24"/>
-                </CardFooter>
-              </Card>
-            ))}
+          <div
+            className={
+              'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 p-2 overflow-auto pb-10'
+            }
+          >
+            {isLoading &&
+              Array(10)
+                .fill(0)
+                .map((_, index) => (
+                  <Card key={index} className="overflow-hidden min-h-96">
+                    <CardHeader className="pb-2 flex flex-col items-center">
+                      <Skeleton className="size-24 rounded-full mb-2" />
+                      <Skeleton className="h-6 w-32 mb-1" />
+                      <Skeleton className="h-4 w-40" />
+                    </CardHeader>
+                    <CardContent className="pb-2 pt-0 flex flex-col items-center">
+                      <Skeleton className="h-4 w-36 mb-2" />
+                      <Skeleton className="h-5 w-16" />
+                    </CardContent>
+                    <CardFooter className="pt-2 flex justify-center">
+                      <Skeleton className="h-8 w-24" />
+                    </CardFooter>
+                  </Card>
+                ))}
 
             {!isLoading && (!data?.events || data.events.length === 0) && (
               <div className="col-span-full text-center py-8">
@@ -109,8 +117,10 @@ export default function Page() {
               </div>
             )}
 
-            {!isLoading && data?.events && data.events.length > 0 && data.events.map((user: UserDocument) =>
-              <UserCard key={user._id} user={user}/>)}
+            {!isLoading &&
+              data?.events &&
+              data.events.length > 0 &&
+              data.events.map((user: UserDocument) => <UserCard key={user._id} user={user} />)}
           </div>
 
           <div className={'opacity-70 text-xs ps-4 pt-2'}>Results: {data?.docs || 0}</div>
@@ -126,7 +136,5 @@ export default function Page() {
         </div>
       </FadeIn>
     </ScrollArea>
-  );
+  )
 }
-
-

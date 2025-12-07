@@ -1,0 +1,29 @@
+import { Input } from '@/components/ui/input'
+import { useTranslations } from 'next-intl'
+import DateRangeFilter from '@/features/deep-statistics/ui/DateRangeFilter'
+import Navigation from '@/features/navigation/ui/navigation'
+import ButtonMoveSolves from '@/features/navigation/ui/button-move-solves'
+
+interface SolvesPageHeaderProps {
+  handleSearch: (query: string) => void
+}
+
+export default function SolvesPageHeader({ handleSearch }: SolvesPageHeaderProps) {
+  const t = useTranslations('Index')
+
+  return (
+    <div className="px-2 pt-2 flex flex-col w-full">
+      <Navigation showMainCubeSelector showButtonDisplayType>
+        <div className="flex gap-2">
+          <ButtonMoveSolves />
+          <Input
+            placeholder={t('SolvesPage.filter-by-time')}
+            onChange={(e) => handleSearch(e.target.value)}
+            className="bg-background"
+          />
+          <DateRangeFilter />
+        </div>
+      </Navigation>
+    </div>
+  )
+}

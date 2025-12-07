@@ -1,30 +1,30 @@
 'use client'
 import { useParams, useRouter } from 'next/navigation'
-import useFreeMode from '@/hooks/useFreeMode'
+import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
 import Link from 'next/link'
 import * as React from 'react'
 import { useEffect, useRef } from 'react'
-import TimerTab from '@/components/free-play/timer-tab/timer-tab'
-import UsersTab from '@/components/free-play/users-tab/users-tab'
-import ResultsTab from '@/components/free-play/results-tab/results-tab'
 import { useSession } from 'next-auth/react'
-import { useTimerStore } from '@/store/timerStore'
-import { useCountdown } from '@/hooks/useCountdown'
-import genScramble from '@/lib/timer/genScramble'
-import { Categories } from '@/interfaces/Categories'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import genScramble from '@/shared/lib/timer/genScramble'
 import { Button } from '@/components/ui/button'
 import { ChartBarIcon, CheckIcon, Clock, EyeIcon, UsersIcon } from 'lucide-react'
 import { AvatarGroup, AvatarGroupTooltip } from '@/components/ui/shadcn-io/avatar-group'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { TimerStatus } from '@/enums/TimerStatus'
 import Image from 'next/image'
-import useAlert from '@/hooks/useAlert'
+import TimerTab from '@/features/free-play-room/ui/timer-tab'
+import ResultsTab from '@/features/free-play-room/ui/results-tab'
+import UsersTab from '@/features/free-play-room/ui/users-tab'
+import useAlert from '@/shared/model/useAlert'
+import { useCountdown } from '@/shared/model/useCountdown'
+import { TimerStatus } from '@/features/timer/model/enums'
+import { CubeCategory } from '@/shared/const/cube-categories'
 
-export default function Page() {
-  const { roomId } = useParams()
+export default function FreePlayRoomPage() {
+  const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }
   const { data: session } = useSession()
   const router = useRouter()
   const alert = useAlert()
@@ -87,7 +87,7 @@ export default function Page() {
     handledRoundRef.current = roundLimit ?? null
 
     const durationMs = maxRoundTime * 1000
-    const newScramble = genScramble(event as Categories)
+    const newScramble = genScramble(event as CubeCategory)
     updateRoomScramble(roomId.toString(), newScramble)
     updateRoomRoundLimit(roomId.toString(), durationMs)
   }, [isFinished, roomAuthority, session?.user?.id, roomId])

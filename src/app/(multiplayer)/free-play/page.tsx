@@ -1,21 +1,15 @@
 'use client'
-import { SidebarTrigger } from '@/components/ui/sidebar'
-import { Separator } from '@/components/ui/separator'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
-import Link from 'next/link'
 import * as React from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { Dialog, DialogTrigger } from '@/components/ui/dialog'
-import CreateRoomModal from '@/components/free-play/create-room-modal/create-room-modal'
-import RoomCard from '@/components/free-play/room-card/room-card'
-import useFreeMode from '@/hooks/useFreeMode'
-import formatTime from '@/lib/formatTime'
-import { Users, Clock, Box } from 'lucide-react'
-import { format } from 'date-fns'
 import { useMemo, useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
+import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { CubeIcon } from '@radix-ui/react-icons'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import FreePlayHeader from '@/widgets/navigation-header/ui/FreePlayHeader'
+import CreateRoomModal from '@/features/free-play/ui/create-room-modal'
+import RoomCard from '@/features/free-play/ui/room-card'
 
 export default function FreePlayPage() {
   const { useRooms } = useFreeMode()
@@ -26,21 +20,10 @@ export default function FreePlayPage() {
     () => (rooms ? rooms.filter((room: any) => room?.presence && Object.keys(room.presence).length > 0) : []),
     [rooms]
   )
+
   return (
     <ScrollArea className="p-4 overflow-auto h-dvh">
-      <div className="flex items-center gap-2 mb-6">
-        <SidebarTrigger className="-ml-1" />
-        <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href={'/free-play'}>Free Play</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
+      <FreePlayHeader />
 
       <div className={'flex flex-col items-center justify-center gap-2'}>
         <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight">Free Play</h1>
