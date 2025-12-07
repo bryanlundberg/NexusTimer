@@ -40,23 +40,23 @@ export default function ButtonSelectMode() {
           <DropdownMenuLabel>{t('HomePage.mode')}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuRadioGroup value={timerMode} onValueChange={(e: any) => setTimerMode(e)}>
-            <DropdownMenuRadioItem value={TimerMode.NORMAL} data-testId={'mode-normal'}>
+            <DropdownMenuRadioItem value={TimerMode.NORMAL} data-testid={'mode-normal'}>
               Normal
             </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value={TimerMode.MANUAL} data-testId={'mode-manual'}>
+            <DropdownMenuRadioItem value={TimerMode.MANUAL} data-testid={'mode-manual'}>
               Manual
             </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value={TimerMode.STACKMAT} data-testId={'mode-stackmat'}>
+            <DropdownMenuRadioItem value={TimerMode.STACKMAT} data-testid={'mode-stackmat'}>
               Stackmat
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem
-              data-testId={'mode-virtual'}
+              data-testid={'mode-virtual'}
               value={TimerMode.VIRTUAL}
               disabled={selectedCube?.category !== '3x3' && selectedCube?.category !== '2x2'}
             >
               Virtual
             </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem data-testId={'mode-smart'} value={TimerMode.SMART_CUBE} disabled>
+            <DropdownMenuRadioItem data-testid={'mode-smart'} value={TimerMode.SMART_CUBE} disabled>
               Smart cube
             </DropdownMenuRadioItem>
           </DropdownMenuRadioGroup>
