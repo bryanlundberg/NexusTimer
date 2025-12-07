@@ -46,7 +46,7 @@ export default function ManualMode() {
         />
         {value !== '' ? (
           <div className="mt-1 text-center font-mono">
-            {t('preview')}: <span data-testId={'preview-time'}>{formatTime(convertToMs(value))} </span>
+            {t('preview')}: <span data-testid={'preview-time'}>{formatTime(convertToMs(value))} </span>
           </div>
         ) : null}
         {lastSolve && (
