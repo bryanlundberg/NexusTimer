@@ -11,6 +11,8 @@ import { useLocale, useTranslations } from 'next-intl'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import Image from 'next/image'
+import { useTheme } from 'next-themes';
+import { cn } from '@/shared/lib/utils';
 
 interface CubeCardProps {
   cube: Cube
@@ -19,6 +21,7 @@ interface CubeCardProps {
 export function CubeCard({ cube }: CubeCardProps) {
   const t = useTranslations('Index')
   const locale = useLocale()
+  const { resolvedTheme } = useTheme()
   const { handleEdit, handleDelete, handleRedirect, handleFavorite } = useCubeActions(cube)
   const src = cubeCollection.find((c) => c.name === cube.category)?.src
   return (
@@ -141,7 +144,7 @@ export function CubeCard({ cube }: CubeCardProps) {
           </div>
         </div>
       </CardFooter>
-      <div className="pointer-events-none select-none absolute bottom-5 right-10 text-foreground/10 rotate-25 opacity-5">
+      <div className={cn("pointer-events-none select-none absolute bottom-5 right-10 text-foreground/10 rotate-25", resolvedTheme === 'dark' ? 'opacity-5' : 'opacity-15')}>
         <Image src={src} alt={`${cube.category} icon`} width={200} height={200} unoptimized />
       </div>
     </Card>
