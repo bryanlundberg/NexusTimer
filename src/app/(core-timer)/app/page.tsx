@@ -27,7 +27,7 @@ export default function TimerPage() {
 
   useEffect(() => {
     resetTimerStore()
-  }, [resetTimerStore])
+  }, [])
 
   useEffect(() => {
     if (!Array.isArray(cubes) || cubes.length === 0) {
