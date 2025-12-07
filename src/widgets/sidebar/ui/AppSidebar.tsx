@@ -41,6 +41,7 @@ import { NavUser } from '@/widgets/sidebar/ui/nav-user'
 import { NavMain } from '@/widgets/sidebar/ui/nav-main'
 import { NavSecondary } from '@/widgets/sidebar/ui/nav-secondary'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
+import DiscordButton from '@/features/authentication/ui/DiscordButton';
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession()
@@ -233,6 +234,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </CardHeader>
             <UICardFooter>
               <div className="w-full">
+                <DiscordButton/>
                 <GoogleButton />
               </div>
             </UICardFooter>
