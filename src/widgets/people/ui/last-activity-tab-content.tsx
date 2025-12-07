@@ -41,8 +41,8 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
           }))
         )
       ],
-      'endTime',
-      'asc'
+      'startTime',
+      'desc'
     )
   }, [cubes])
 
@@ -85,7 +85,10 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
                   <TableCell className="font-medium hidden md:table-cell overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
                     {solve.scramble}
                   </TableCell>
-                  <TableCell>{formatTime(solve.time)}</TableCell>
+                  <TableCell>{formatTime(solve.time)}
+                    {solve.dnf && <span className="ml-1 text-red-500 font-bold">DNF</span>}
+                    {solve.plus2 && <span className="ml-1 text-yellow-500 font-bold">+2</span>}
+                  </TableCell>
                   <TableCell className="hidden sm:table-cell text-right">
                     <ScrambleDisplay className={'size-20'} show scramble={solve.scramble} event={solve.category} />
                   </TableCell>
