@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    if (user) return user
+    if (user) return NextResponse.json(user)
 
     user = await User.findOneAndUpdate(
       { email },
