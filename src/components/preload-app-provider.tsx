@@ -5,7 +5,7 @@ import useWebsiteColors from '@/shared/model/useWebsiteColors';
 import { useEffect } from 'react';
 
 export default function PreloadAppProvider({ children }: { children: React.ReactNode }) {
-  const { isMounted, isAppReady } = useAppInit()
+  const { isAppReady } = useAppInit()
   const settings = useSettingsStore((store) => store.settings)
   const { applyColorTheme } = useWebsiteColors()
 
@@ -15,7 +15,7 @@ export default function PreloadAppProvider({ children }: { children: React.React
 
   return (
     <>
-      {isMounted && isAppReady ? (children) : null}
+      {isAppReady ? (children) : null}
     </>
   )
 }

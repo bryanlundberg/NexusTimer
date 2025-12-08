@@ -9,7 +9,6 @@ export function useAppInit() {
   const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
   const setNewScramble = useTimerStore((store) => store.setNewScramble)
   const settings = useSettingsStore((store) => store.settings)
-  const [isMounted, setIsMounted] = useState(false)
   const [isAppReady, setIsAppReady] = useState(false)
   const { data: session } = useSession()
 
@@ -55,10 +54,5 @@ export function useAppInit() {
     updateLastSeen()
   }, [session?.user?.id])
 
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-
-  return { isMounted, isAppReady }
+  return { isAppReady }
 }
