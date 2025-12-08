@@ -3,6 +3,7 @@ import { Settings } from '@/shared/types/Settings'
 import { defaultSettings } from '@/shared/model/settings/defaultSettings'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { cloneDeep } from 'es-toolkit';
 
 // Type for nested paths in Settings object
 type NestedPaths<T> = T extends object
@@ -29,9 +30,9 @@ interface SettingsStoreProps {
 export const useSettingsStore = create<SettingsStoreProps>()(
   persist(
     (set, get) => ({
-      settings: defaultSettings,
+      settings: cloneDeep(defaultSettings),
       setSettings: (settings: Settings) => {
-        set(() => ({ settings }))
+        set(() => ({ settings: cloneDeep(settings) }))
       },
       updateSetting: <P extends NestedPaths<Settings>>(path: P, value: NestedValues<Settings, P>) => {
         const settings = { ...get().settings }
