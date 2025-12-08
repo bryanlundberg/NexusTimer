@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useState } from 'react'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
 import {
@@ -42,11 +43,17 @@ export default function OptionsPage() {
   const setCubes = useTimerStore(state => state.setCubes);
   const setSelectedCube = useTimerStore(state => state.setSelectedCube);
   const alert = useAlert();
+  const [formKey, setFormKey] = useState(0)
+
+  useEffect(() => {
+    reset(settings)
+  }, [settings, reset])
 
   const handleResetSettings = () => {
+    reset(defaultSettings)
     setSettings(defaultSettings)
     applyColorTheme(defaultSettings.preferences.colorTheme)
-    reset(defaultSettings)
+    setFormKey((k) => k + 1)
     toast.success('Settings have been reset to default')
   }
 
@@ -68,7 +75,7 @@ export default function OptionsPage() {
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <div className="mt-5">
-        <div className="max-w-md mx-auto bg-background/90 backdrop-blur-lg">
+        <div key={formKey} className="max-w-md mx-auto bg-background/90 backdrop-blur-lg">
           <AccountHeader back="/app" label={t('SettingsPage.options')}/>
 
           <MenuSelectLanguage/>
