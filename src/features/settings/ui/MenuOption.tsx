@@ -20,7 +20,7 @@ export function MenuOption({ label, control, name, description }: MenuOption) {
           control={control}
           render={({ field: { onChange, value } }) => (
             <Switch
-              checked={value}
+              checked={Boolean(value)}
               onCheckedChange={(checked) => {
                 onChange(checked)
                 updateSetting(name as any, checked)
