@@ -29,12 +29,19 @@ import MenuSelectColor from '@/features/settings/ui/MenuSelectColor'
 import MenuSelectDefaultStartCube from '@/features/settings/ui/MenuSelectDefaultStartCube'
 import { DataImportExport } from '@/features/settings/ui/DataImportExport'
 import useWebsiteColors from '@/shared/model/useWebsiteColors'
+import { Trash } from 'lucide-react';
+import { useTimerStore } from '@/shared/model/timer/useTimerStore';
+import useAlert from '@/shared/model/useAlert';
+import { cubesDB } from '@/entities/cube/api/indexdb';
 
 export default function OptionsPage() {
   const { settings, setSettings } = useSettingsStore()
   const t = useTranslations('Index')
   const { control, reset } = useForm({ defaultValues: settings })
   const { applyColorTheme } = useWebsiteColors()
+  const setCubes = useTimerStore(state => state.setCubes);
+  const setSelectedCube = useTimerStore(state => state.setSelectedCube);
+  const alert = useAlert();
 
   const handleResetSettings = () => {
     setSettings(defaultSettings)
@@ -43,17 +50,32 @@ export default function OptionsPage() {
     toast.success('Settings have been reset to default')
   }
 
+  const handleDeleteAppData = async () => {
+    const confirmed = await alert({
+      title: 'Delete all app data?',
+      subtitle: 'This action will permanently delete all your cubes and solves data and cannot be undone. Are you sure you want to proceed?',
+      confirmText: 'Delete',
+      cancelText: 'Cancel'
+    })
+    if (!confirmed) return;
+
+    await cubesDB.clear()
+    setCubes([]);
+    setSelectedCube(null);
+    toast.success('All app data has been deleted');
+  }
+
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <div className="mt-5">
         <div className="max-w-md mx-auto bg-background/90 backdrop-blur-lg">
-          <AccountHeader back="/app" label={t('SettingsPage.options')} />
+          <AccountHeader back="/app" label={t('SettingsPage.options')}/>
 
-          <MenuSelectLanguage />
+          <MenuSelectLanguage/>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
-          <MenuSection id="timer" icon={<LapTimerIcon />} title={t('Settings-menu.timer')}>
+          <MenuSection id="timer" icon={<LapTimerIcon/>} title={t('Settings-menu.timer')}>
             <MenuOption
               label={t('Settings-menu.inspection')}
               name={'timer.inspection'}
@@ -100,9 +122,9 @@ export default function OptionsPage() {
             />
           </MenuSection>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
-          <MenuSection id="features" icon={<MagicWandIcon />} title={t('Settings-menu.features')}>
+          <MenuSection id="features" icon={<MagicWandIcon/>} title={t('Settings-menu.features')}>
             <MenuOption
               name={'features.scrambleImage'}
               label={t('Settings-menu.scramble-image')}
@@ -135,9 +157,9 @@ export default function OptionsPage() {
             />
           </MenuSection>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
-          <MenuSection id="alerts" icon={<BellIcon />} title={t('Settings-menu.alerts')}>
+          <MenuSection id="alerts" icon={<BellIcon/>} title={t('Settings-menu.alerts')}>
             <MenuOption
               name={'alerts.bestTime'}
               label={t('Settings-menu.best-time')}
@@ -159,9 +181,9 @@ export default function OptionsPage() {
             />
           </MenuSection>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
-          <MenuSection id="sounds" icon={<SpeakerLoudIcon />} title={t('Settings-menu.sounds')}>
+          <MenuSection id="sounds" icon={<SpeakerLoudIcon/>} title={t('Settings-menu.sounds')}>
             <MenuOption
               name={'sounds.newPersonalBest'}
               label={t('Settings-menu.newPersonalBest')}
@@ -170,23 +192,23 @@ export default function OptionsPage() {
             />
           </MenuSection>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
-          <MenuSection id="background" icon={<ComponentBooleanIcon />} title={t('Settings-menu.theme')}>
-            <ThemeSelect />
-            <CustomTheme />
-            <MenuSelectColor />
+          <MenuSection id="background" icon={<ComponentBooleanIcon/>} title={t('Settings-menu.theme')}>
+            <ThemeSelect/>
+            <CustomTheme/>
+            <MenuSelectColor/>
           </MenuSection>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
-          <MenuSection id="preferences" icon={<BoxModelIcon />} title={t('Settings-menu.preferences')}>
-            <MenuSelectDefaultStartCube />
+          <MenuSection id="preferences" icon={<BoxModelIcon/>} title={t('Settings-menu.preferences')}>
+            <MenuSelectDefaultStartCube/>
           </MenuSection>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
-          <MenuSection icon={<Link2Icon />} title={'Cloud Sync'} id="cloud-sync">
+          <MenuSection icon={<Link2Icon/>} title={'Cloud Sync'} id="cloud-sync">
             <MenuOption
               label={'Enable Automatic Save Cloud'}
               name={'sync.autoSaveEnabled'}
@@ -210,24 +232,35 @@ export default function OptionsPage() {
             />
           </MenuSection>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
-          <MenuSection id="app-data" icon={<FileTextIcon />} title={t('Settings-menu.data')}>
-            <DataImportExport />
+          <MenuSection id="app-data" icon={<FileTextIcon/>} title={t('Settings-menu.data')}>
+            <DataImportExport/>
           </MenuSection>
 
-          <Separator className="my-5" />
+          <Separator className="my-5"/>
 
-          <div className="flex justify-center mb-10">
-            <Button
-              variant="destructive"
-              onClick={handleResetSettings}
-              className="flex items-center gap-2"
-              data-testid="reset-settings-button"
-            >
-              <UpdateIcon className="size-4" />
-              {'Reset settings'}
-            </Button>
+          <div className={'ps-3 pe-3 mb-3'}>
+            <div className="flex gap-2 mb-10">
+              <Button
+                variant="destructive"
+                onClick={handleResetSettings}
+                className="flex items-center gap-2"
+                data-testid="reset-settings-button"
+              >
+                <UpdateIcon className="size-4"/>
+                {'Reset settings'}
+              </Button>
+
+              <Button
+                variant={'destructive'}
+                onClick={handleDeleteAppData}
+                className="flex items-center gap-2" data-testid="delete-app-data-button"
+              >
+                <Trash className="size-4"/>
+                Delete App data
+              </Button>
+            </div>
           </div>
         </div>
       </div>
