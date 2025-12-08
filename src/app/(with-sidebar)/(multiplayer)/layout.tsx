@@ -28,12 +28,5 @@ export const metadata: Metadata = {
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <AppSidebar/>
-      <SidebarInset className={'overflow-hidden'} style={{ height: 'calc(100dvh - 1rem)' }}>
-        <StatisticsProvider>{children}</StatisticsProvider>
-      </SidebarInset>
-    </>
-  )
+  return children;
 }
