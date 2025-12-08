@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import ImportBackup from '@/features/manage-backup/ui/ImportBackup'
 import { cubesDB } from '@/entities/cube/api/indexdb'
+import { Merge } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 export function DataImportExport() {
   const t = useTranslations('Index')
@@ -47,6 +49,24 @@ export function DataImportExport() {
           <UploadIcon />
           {t('Settings-menu.export-to-file')}
         </Button>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant={'outline'}
+              className={"flex items-center gap-1"}
+              onClick={handleExport}
+              data-testid="export-data-to-file-button"
+            >
+              <Merge />
+              Normalize Database
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent className={"max-w-xs"}>
+            Updates database structures to maintain data integrity. Run periodically to keep your
+            database optimized, especially after app updates.
+          </TooltipContent>
+        </Tooltip>
       </div>
       <div className="text-xs text-muted-foreground">{t('Settings-descriptions.data-import-export')}</div>
     </div>
