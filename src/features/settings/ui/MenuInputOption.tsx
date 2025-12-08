@@ -26,7 +26,7 @@ export default function MenuInputOption({
           render={({ field: { onChange, value } }) => (
             <input
               type="number"
-              value={value}
+              value={typeof value === 'number' && !Number.isNaN(value) ? value : 0}
               onChange={(e) => {
                 const newValue = e.target.value.replace(/[^0-9]/g, '')
                 let finalValue: number
