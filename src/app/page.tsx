@@ -143,7 +143,7 @@ export default function Page() {
                       (item) => (
                         <span
                           key={item}
-                          className="inline-flex items-center rounded-md border border-purple-300 bg-purple-500/50 px-2.5 py-1 text-xs text-white/80"
+                          className="inline-flex items-center rounded-md border border-fuchsia-300 bg-fuchsia-500/50 px-2.5 py-1 text-xs text-white/80"
                         >
                           {item}
                         </span>
@@ -159,20 +159,20 @@ export default function Page() {
           <section id="features" className="relative">
             <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
               <h2 className="text-center text-2xl md:text-3xl font-semibold mb-8">
-                What <span className="text-purple-400">NexusTimer</span> can do for you
+                What <span className="text-fuchsia-400">NexusTimer</span> can do for you
               </h2>
 
               <div className="p-4 md:p-6 py-10 md:py-12">
                 {/* Left image column + 2x2 cards on the right (non-sticky) */}
                 <div className="grid md:grid-cols-3 gap-6 items-stretch">
                   {/* Left image column */}
-                  <div className="relative rounded-lg border border-white/10 bg-black/50 overflow-hidden">
+                  <div className="relative">
                     <Image
-                      src="/landing/1.png"
+                      src="/landing/2.png"
                       alt="NexusTimer preview"
                       width={800}
                       height={1000}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover border-6 border-fuchsia-500 overflow-hidden rounded-lg -rotate-2"
                     />
                   </div>
 
@@ -186,7 +186,7 @@ export default function Page() {
                       <h3 className="text-lg md:text-xl font-semibold text-white">A timer that adapts to you</h3>
                       <p className="mt-2 text-sm md:text-base text-white/70">
                         It’s more than counting seconds: with{' '}
-                        <span className="text-purple-400 font-medium">NexusTimer</span> you decide how to start,
+                        <span className="text-fuchsia-400 font-medium">NexusTimer</span> you decide how to start,
                         inspect, and view your times. Touch to start, spacebar, custom inspection, colors—you’re in
                         control.
                       </p>
@@ -255,11 +255,6 @@ export default function Page() {
             <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
               <div className="mb-6 flex items-center justify-between">
                 <h2 className="text-xl md:text-2xl font-semibold">What users say</h2>
-                <div className="hidden md:flex items-center gap-1 text-amber-300/90">
-                  {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} className="h-4 w-4 fill-amber-300/80 text-amber-300/90" />
-                  ))}
-                </div>
               </div>
               <div className="grid md:grid-cols-3 gap-5">
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
