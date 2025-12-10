@@ -172,7 +172,7 @@ export default function Page() {
                       alt="NexusTimer preview"
                       width={800}
                       height={1000}
-                      className="w-full h-full object-cover border-6 border-fuchsia-500 overflow-hidden rounded-lg -rotate-2"
+                      className="w-full h-full object-cover border-6 border-fuchsia-500 overflow-hidden rounded-lg -rotate-1"
                     />
                   </div>
 
@@ -410,7 +410,7 @@ export default function Page() {
           {/* CTA */}
           <section className="relative">
             <div className="mx-auto max-w-7xl px-6 pb-16">
-              <div className="rounded-xl border border-white/15 bg-black/20 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="rounded-xl border border-white/15 bg-fuchsia-600/30 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
                   <h3 className="text-xl md:text-2xl font-semibold">Discover</h3>
                   {/*<p className="text-white/70 text-sm mt-1">Contribute or sponsor open-source. It powers your world..</p>*/}
