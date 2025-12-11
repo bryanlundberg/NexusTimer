@@ -3,7 +3,18 @@ import Link from 'next/link'
 import Dither from '@/components/ui/shadcn-io/dither'
 import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
-import { ArrowUpDown, BarChart3, StarIcon, Timer, Users } from 'lucide-react'
+import {
+  AudioWaveform,
+  BarChart3,
+  Check,
+  DatabaseZap,
+  Globe,
+  StarIcon,
+  Timer,
+  TriangleAlert,
+  Users,
+  XIcon
+} from 'lucide-react'
 import Image from 'next/image'
 import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effect'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -13,11 +24,11 @@ export default function Page() {
     <div className="relative w-dvw h-dvh bg-black overflow-hidden">
       {/* Animated background */}
       <Dither
-        waveSpeed={0.06}
-        waveFrequency={2.2}
-        waveAmplitude={0.35}
-        waveColor={[0.72, 0.35, 0.95]}
-        colorNum={6}
+        waveSpeed={0.05}
+        waveFrequency={5}
+        waveAmplitude={0.5}
+        waveColor={[0.2, 0.111, 0.3]}
+        colorNum={4}
         pixelSize={3}
         enableMouseInteraction={true}
         mouseRadius={1.2}
@@ -31,7 +42,7 @@ export default function Page() {
           <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="h-8 w-8 rounded-md bg-white/10 border border-white/15 flex items-center justify-center">
-                <div className="h-3 w-3 bg-fuchsia-400 rounded-sm" />
+                <div className="h-3 w-3 bg-fuchsia-400 rounded-sm"/>
               </div>
               <span className="text-sm font-semibold tracking-wide text-white/90">NexusTimer</span>
             </div>
@@ -74,18 +85,13 @@ export default function Page() {
           <section className="relative">
             <div className="mx-auto max-w-4xl px-6 pt-12 pb-20 md:pt-20 md:pb-28 text-center relative">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-white/70 mx-auto">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                NexusTimer is free and always will be!
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"/>
+                Nexus Timer is free and always will be!
               </div>
 
               <TextGenerateEffect
                 words={'Stay organized, and elevate your training experience.'}
-                className={'mt-6 text-4xl md:text-6xl font-bold leading-tight tracking-tight'}
-              />
-
-              <TextGenerateEffect
-                className={'mt-4 text-base md:text-xl text-white/70 max-w-2xl mx-auto'}
-                words={'NexusTimer is your timing hub — simple, powerful, and designed for SpeedCubers by SpeedCubers.'}
+                className={'mt-6 text-4xl md:text-6xl font-extrabold tracking-tight leading-tight'}
               />
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -93,7 +99,7 @@ export default function Page() {
                   href="/app"
                   className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors pl-2"
                 >
-                  <Image src={'/landing/cube.gif'} alt={''} width={32} height={32} unoptimized />
+                  <Image src={'/landing/cube.gif'} alt={''} width={32} height={32} unoptimized/>
                   Start now
                 </Link>
                 <Link
@@ -159,7 +165,7 @@ export default function Page() {
           <section id="features" className="relative">
             <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
               <h2 className="text-center text-2xl md:text-3xl font-semibold mb-8">
-                What <span className="text-fuchsia-400">NexusTimer</span> can do for you
+                What <span className="text-fuchsia-400">Nexus Timer</span> can do for you
               </h2>
 
               <div className="p-4 md:p-6 py-10 md:py-12">
@@ -172,7 +178,7 @@ export default function Page() {
                       alt="NexusTimer preview"
                       width={800}
                       height={1000}
-                      className="w-full h-full object-cover border-6 border-fuchsia-500 overflow-hidden rounded-lg -rotate-1"
+                      className="w-full h-full max-h-[400px] md:max-h-max object-cover border-6 border-fuchsia-500 overflow-hidden rounded-lg -rotate-1"
                     />
                   </div>
 
@@ -181,33 +187,31 @@ export default function Page() {
                     {/* Feature 1 */}
                     <div className="rounded-lg border border-white/10 bg-black/50 p-5">
                       <div className="mb-3 flex items-center">
-                        <Timer className="h-6 w-6 text-fuchsia-300/90" />
+                        <Timer className="h-6 w-6 text-fuchsia-300/90"/>
                       </div>
                       <h3 className="text-lg md:text-xl font-semibold text-white">A timer that adapts to you</h3>
                       <p className="mt-2 text-sm md:text-base text-white/70">
-                        It’s more than counting seconds: with{' '}
-                        <span className="text-fuchsia-400 font-medium">NexusTimer</span> you decide how to start,
-                        inspect, and view your times. Touch to start, spacebar, custom inspection, colors—you’re in
-                        control.
+                        Customize your timing experience with adjustable settings, themes, and layouts to suit your
+                        preferences.
                       </p>
                     </div>
 
                     {/* Feature 2 */}
                     <div className="rounded-lg border border-white/10 bg-black/50 p-5">
                       <div className="mb-3 flex items-center">
-                        <Users className="h-6 w-6 text-fuchsia-300/90" />
+                        <Users className="h-6 w-6 text-fuchsia-300/90"/>
                       </div>
-                      <h3 className="text-lg md:text-xl font-semibold text-white">Online practice</h3>
+                      <h3 className="text-lg md:text-xl font-semibold text-white">Online Mode</h3>
                       <p className="mt-2 text-sm md:text-base text-white/70">
-                        Create rooms, sync rounds, and coordinate matches in real time. Perfect for clubs and friends
-                        who want to compete, stay motivated, and improve together.
+                        Create rooms, and coordinate matches in real time. Perfect for cubing meetups or online
+                        sessions.
                       </p>
                     </div>
 
                     {/* Feature 3 */}
                     <div className="rounded-lg border border-white/10 bg-black/50 p-5">
                       <div className="mb-3 flex items-center">
-                        <BarChart3 className="h-6 w-6 text-fuchsia-300/90" />
+                        <BarChart3 className="h-6 w-6 text-fuchsia-300/90"/>
                       </div>
                       <h3 className="text-lg md:text-xl font-semibold text-white">Unique stats system</h3>
                       <p className="mt-2 text-sm md:text-base text-white/70">
@@ -218,12 +222,35 @@ export default function Page() {
                     {/* Feature 4 */}
                     <div className="rounded-lg border border-white/10 bg-black/50 p-5">
                       <div className="mb-3 flex items-center">
-                        <ArrowUpDown className="h-6 w-6 text-fuchsia-300/90" />
+                        <Globe className="h-6 w-6 text-fuchsia-300/90"/>
                       </div>
                       <h3 className="text-lg md:text-xl font-semibold text-white">Connect with other cubers</h3>
                       <p className="mt-2 text-sm md:text-base text-white/70">
                         Explore the vibrant worldwide community of cubers. Share your times, and individual performance
                         metrics.
+                      </p>
+                    </div>
+
+                    {/* Feature 5 */}
+                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
+                      <div className="mb-3 flex items-center">
+                        <AudioWaveform className="h-6 w-6 text-fuchsia-300/90"/>
+                      </div>
+                      <h3 className="text-lg md:text-xl font-semibold text-white">Learn Algorithms</h3>
+                      <p className="mt-2 text-sm md:text-base text-white/70">
+                        Access a built-in algorithm trainer to help you memorize and practice new algorithms
+                        effectively.
+                      </p>
+                    </div>
+
+                    {/* Feature 6 */}
+                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
+                      <div className="mb-3 flex items-center">
+                        <DatabaseZap className="h-6 w-6 text-fuchsia-300/90"/>
+                      </div>
+                      <h3 className="text-lg md:text-xl font-semibold text-white">Cross Platform Sync</h3>
+                      <p className="mt-2 text-sm md:text-base text-white/70">
+                        Access your data from any device. NexusTimer syncs your times via the cloud.
                       </p>
                     </div>
                   </div>
@@ -235,11 +262,11 @@ export default function Page() {
           {/* How it works */}
           <section id="how" className="relative">
             <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-              <h3 className="text-xl md:text-2xl font-semibold mb-5">How to start?</h3>
+              <TypographyH1>How to start?</TypographyH1>
               <div className="rounded-xl border border-white/15 bg-black/30 p-8 md:p-10">
                 <div className="grid md:grid-cols-3 gap-8 md:gap-10">
-                  <StepItem number={1} title="Enter NexusTimer App" desc="Create a free account and join." />
-                  <StepItem number={2} title="Add Your Cubes" desc="Access your cubes section and add your cubes." />
+                  <StepItem number={1} title="Enter NexusTimer App" desc="Create a free account and join."/>
+                  <StepItem number={2} title="Add Your Cubes" desc="Access your cubes section and add your cubes."/>
                   <StepItem
                     number={3}
                     title="Start Timing"
@@ -250,17 +277,19 @@ export default function Page() {
             </div>
           </section>
 
+          <FeatureTable/>
+
           {/* Testimonials */}
           <section id="testimonials" className="relative">
             <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
               <div className="mb-6 flex items-center justify-between">
-                <h2 className="text-xl md:text-2xl font-semibold">What users say</h2>
+                <TypographyH1>What users say</TypographyH1>
               </div>
               <div className="grid md:grid-cols-3 gap-5">
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2 text-amber-300/90">
                     {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70"/>
                     ))}
                   </div>
                   <p className="mt-3 text-sm text-white/80">
@@ -280,7 +309,7 @@ export default function Page() {
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2 text-amber-300/90">
                     {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70"/>
                     ))}
                   </div>
                   <p className="mt-3 text-sm text-white/80">
@@ -300,7 +329,7 @@ export default function Page() {
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2 text-amber-300/90">
                     {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70"/>
                     ))}
                   </div>
                   <p className="mt-3 text-sm text-white/80">
@@ -324,7 +353,7 @@ export default function Page() {
           {/* FAQ */}
           <section id="faq" className="relative">
             <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-              <h3 className="text-xl md:text-2xl font-semibold">Frequently asked questions</h3>
+              <TypographyH1>Frequently asked questions</TypographyH1>
               <div className="mt-6 grid md:grid-cols-2 gap-5">
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5">
                   <div className="list-none text-sm font-semibold text-white/90 flex items-center justify-between">
@@ -410,7 +439,7 @@ export default function Page() {
           {/* CTA */}
           <section className="relative">
             <div className="mx-auto max-w-7xl px-6 pb-16">
-              <div className="rounded-xl border border-white/15 bg-fuchsia-600/30 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="rounded-xl border border-white/15 bg-fuchsia-600/20 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
                   <h3 className="text-xl md:text-2xl font-semibold">Discover</h3>
                   {/*<p className="text-white/70 text-sm mt-1">Contribute or sponsor open-source. It powers your world..</p>*/}
@@ -489,3 +518,66 @@ function StepItem({ number, title, desc }: { number: number; title: string; desc
     </div>
   )
 }
+
+function FeatureTable() {
+  return (
+    <section id="features-comparison" className="relative">
+      <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+        <TypographyH1>What's different about NXTimer?</TypographyH1>
+        <h2 className="text-center text-sm md:text-base text-white/70 mb-8">
+          NXTimer offers unique features that set it apart from other popular timers.
+        </h2>
+
+        <table className="w-full table-auto border-collapse border-white/15 bg-black/30 max-w-4xl mx-auto">
+          <thead>
+          <tr className={'text-center'}>
+            <th className="border-b border-white/10 pb-3 text-left  text-sm text-white/90 align-bottom">Feature</th>
+            <th className="border-b border-white/10 pb-3 text-sm text-white/90 flex flex-col items-center gap-2">
+              <Image src={'/logo.png'} alt={''} width={64} height={64} className={'invert size-8'} unoptimized/>
+              NexusTimer
+            </th>
+            <th className="border-b border-white/10 pb-3  text-sm text-white/90 align-bottom">csTimer</th>
+            <th className="border-b border-white/10 pb-3  text-sm text-white/90 align-bottom">Cube Desk</th>
+            <th className="border-b border-white/10 pb-3 text-sm text-white/90 align-bottom">Twisty Timer</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td className="py-4 text-sm text-white/80">Cloud Sync Across Devices</td>
+            <td><RatedIcon type="check"/></td>
+            <td><RatedIcon type="cross"/></td>
+            <td><RatedIcon type="cross"/></td>
+            <td><RatedIcon type="partial"/></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  )
+}
+
+function RatedIcon({ type }: { type: 'check' | 'cross' | 'partial' }) {
+  const backgroundClass = type === 'partial' ? 'bg-yellow-400/10' : type === 'check' ? 'bg-green-400/10' : 'bg-red-400/10'
+
+  return (
+    <div className={`size-12 rounded-full flex items-center justify-center mx-auto ${backgroundClass}`}>
+      {type === 'check' && (
+        <Check className={'text-green-400 size-6'}/>)}
+      {type === 'cross' && (
+        <XIcon className={'text-red-400 size-6'}/>)}
+      {type === 'partial' && (
+        <TriangleAlert className={'size-6 text-yellow-400'}/>)}
+    </div>
+  )
+}
+
+function TypographyH1({ children }: { children: React.ReactNode }) {
+  return (
+    <h1
+      className="scroll-m-20 text-3xl mb-5 font-extrabold tracking-tight lg:text-4xl text-[#fbcfe8] [text-shadow:0_3px_0_#9d174d] mx-auto text-center"
+    >
+      {children}
+    </h1>
+  )
+}
+
