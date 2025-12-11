@@ -18,6 +18,7 @@ import {
 import Image from 'next/image'
 import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effect'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import { cn } from '@/shared/lib/utils';
 
 export default function Page() {
   return (
@@ -439,7 +440,7 @@ export default function Page() {
           {/* CTA */}
           <section className="relative">
             <div className="mx-auto max-w-7xl px-6 pb-16">
-              <div className="rounded-xl border border-white/15 bg-fuchsia-600/20 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="rounded-xl border border-white/15 bg-fuchsia-600/20 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
                 <div>
                   <h3 className="text-xl md:text-2xl font-semibold">Discover</h3>
                   {/*<p className="text-white/70 text-sm mt-1">Contribute or sponsor open-source. It powers your world..</p>*/}
@@ -471,8 +472,12 @@ export default function Page() {
                   {/*  Contribute*/}
                   {/*</a>*/}
                 </div>
+                <div className={cn("pointer-events-none select-none absolute top-0 left-0 text-foreground/10", 'opacity-15')}>
+                  <Image src={"/bg.png"} alt={`3x3 cube image`} width={200} height={200} unoptimized className={"w-full object-cover"} />
+                </div>
               </div>
             </div>
+
           </section>
         </main>
 
@@ -520,6 +525,156 @@ function StepItem({ number, title, desc }: { number: number; title: string; desc
 }
 
 function FeatureTable() {
+
+  const TABLES_DATA = [
+    {
+      title: 'Builtin Core Features',
+      description: 'Essential timer capabilities',
+      features: [
+        {
+          name: 'Random State Scrambles',
+          description: 'Instead random moves, get scrambles that put your cube in a random state.',
+          nxTimer: 'check',
+          csTimer: 'check',
+          cubeDesk: 'check',
+          twistyTimer: 'check'
+        },
+        {
+          name: 'Cross-platform support',
+          description: 'Access application on multiple devices and operating systems.',
+          nxTimer: 'check',
+          csTimer: 'check',
+          cubeDesk: 'check',
+          twistyTimer: 'cross'
+        },
+        {
+          name: 'Import other timers',
+          description: 'Easily import and export your data from/to other popular timers.',
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'partial',
+          twistyTimer: 'cross'
+        },
+        {
+          name: 'Offline Mode',
+          description: 'Use the timer without an internet connection.',
+          nxTimer: 'partial',
+          csTimer: 'check',
+          cubeDesk: 'cross',
+          twistyTimer: 'check'
+        },
+        {
+          name: 'Statistics per cube',
+          description: 'Analyze your performance for each individual cube.',
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'cross',
+          twistyTimer: 'cross'
+        },
+        {
+          name: 'Cloud Sync',
+          description: 'Sync your data across multiple devices via the cloud.',
+          nxTimer: 'check',
+          csTimer: 'partial',
+          cubeDesk: 'check',
+          twistyTimer: 'cross'
+        },
+        {
+          name: 'Online Mode',
+          description: 'Create rooms and coordinate matches in real time with other users.',
+          nxTimer: 'check',
+          csTimer: 'partial',
+          cubeDesk: 'partial',
+          twistyTimer: 'cross'
+        },
+      ]
+    },
+    {
+      title: 'Statistics & Analysis',
+      description: 'In-depth performance insights',
+      features: [
+        {
+          name: 'Global Statistics',
+          description: 'Overall stats including averages, best/worst times, and more.',
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'check',
+          twistyTimer: 'check'
+        },
+        {
+          name: 'Session Statistics',
+          description: 'Detailed session stats including averages, best/worst times, and more.',
+          nxTimer: 'check',
+          csTimer: 'check',
+          cubeDesk: 'check',
+          twistyTimer: 'check'
+        },
+        {
+          name: 'Cube-specific Stats',
+          description: 'Detailed statistics for each individual cube. Including averages, best/worst times, and more.',
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'cross',
+          twistyTimer: 'cross'
+        },
+        {
+          name: 'Performance Graphs',
+          description: 'Visualize your solving times and trends over time.',
+          nxTimer: 'check',
+          csTimer: 'check',
+          cubeDesk: 'partial',
+          twistyTimer: 'partial'
+        },
+      ]
+    },
+    {
+      title: 'Social & Community',
+      description: 'User engagement and social features',
+      features: [
+        {
+          name: 'Profile System',
+          description: 'Create and customize your user profile.',
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'check',
+          twistyTimer: 'cross'
+        },
+        {
+          name: 'Compare Profiles',
+          description: 'View and compare profiles of other users.',
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'cross',
+          twistyTimer: 'cross'
+        },
+        {
+          name: 'Display Personal Bests',
+          description: 'Showcase your best times on your profile including averages.',
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'partial',
+          twistyTimer: 'cross'
+        },
+        {
+          name: 'Display Cubes Owned',
+          description: 'Show the cubes you own on your profile.',
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'cross',
+          twistyTimer: 'cross'
+        },
+        {
+          name: 'Display Trajectory Progress',
+          description: 'Show your full solves history and progress over time.',
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'cross',
+          twistyTimer: 'cross'
+        }
+      ]
+    }
+  ];
+
   return (
     <section id="features-comparison" className="relative">
       <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
@@ -528,29 +683,45 @@ function FeatureTable() {
           NXTimer offers unique features that set it apart from other popular timers.
         </h2>
 
-        <table className="w-full table-auto border-collapse border-white/15 bg-black/30 max-w-4xl mx-auto">
-          <thead>
-          <tr className={'text-center'}>
-            <th className="border-b border-white/10 pb-3 text-left  text-sm text-white/90 align-bottom">Feature</th>
-            <th className="border-b border-white/10 pb-3 text-sm text-white/90 flex flex-col items-center gap-2">
-              <Image src={'/logo.png'} alt={''} width={64} height={64} className={'invert size-8'} unoptimized/>
-              NexusTimer
-            </th>
-            <th className="border-b border-white/10 pb-3  text-sm text-white/90 align-bottom">csTimer</th>
-            <th className="border-b border-white/10 pb-3  text-sm text-white/90 align-bottom">Cube Desk</th>
-            <th className="border-b border-white/10 pb-3 text-sm text-white/90 align-bottom">Twisty Timer</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td className="py-4 text-sm text-white/80">Cloud Sync Across Devices</td>
-            <td><RatedIcon type="check"/></td>
-            <td><RatedIcon type="cross"/></td>
-            <td><RatedIcon type="cross"/></td>
-            <td><RatedIcon type="partial"/></td>
-          </tr>
-          </tbody>
-        </table>
+        {TABLES_DATA.map((table, index) => (
+          <table key={index} className="w-full table-auto border-collapse bg-black/50 max-w-4xl mx-auto">
+            <thead className={'bg-[#fbcfe8]/10 text-sm'}>
+            <tr className={'text-center'}>
+              <th className="py-3 text-left text-white/90 align-bottom ps-3 w-full">
+                <div className="flex flex-col">
+                  <p>{table.title}</p>
+                  <p className={'text-xs font-normal text-neutral-300'}>{table.description}</p>
+                </div>
+              </th>
+              <th className=" py-3 text-white/90 flex flex-col items-center gap-2 px-3">
+                <Image src={'/logo.png'} alt={''} width={64} height={64} className={'invert size-6'} unoptimized/>
+                NXTimer
+              </th>
+              <th className="py-3 text-white/90 align-bottom px-3">csTimer</th>
+              <th className="py-3 text-white/90 align-bottom text-nowrap px-3 hidden md:table-cell">Cube Desk</th>
+              <th className="py-3 text-white/90 align-bottom text-nowrap px-3 hidden md:table-cell">Twisty Timer</th>
+            </tr>
+            </thead>
+            <tbody>
+            {table.features.map((feature, fIndex) => (
+              <tr key={fIndex}>
+                <td className="py-6 text-sm text-white/80 ps-3">
+                  <div className="font-semibold">{feature.name}</div>
+                  <div className="text-xs text-white/60">{feature.description}</div>
+                </td>
+                <td>{feature.nxTimer === 'check' ? <RatedIcon type="check"/> : feature.nxTimer === 'cross' ?
+                  <RatedIcon type="cross"/> : <RatedIcon type="partial"/>}</td>
+                <td>{feature.csTimer === 'check' ? <RatedIcon type="check"/> : feature.csTimer === 'cross' ?
+                  <RatedIcon type="cross"/> : <RatedIcon type="partial"/>}</td>
+                <td className={"hidden md:table-cell"}>{feature.cubeDesk === 'check' ? <RatedIcon type="check"/> : feature.cubeDesk === 'cross' ?
+                  <RatedIcon type="cross"/> : <RatedIcon type="partial"/>}</td>
+                <td className={"hidden md:table-cell"}>{feature.twistyTimer === 'check' ? <RatedIcon type="check"/> : feature.twistyTimer === 'cross' ?
+                  <RatedIcon type="cross"/> : <RatedIcon type="partial"/>}</td>
+              </tr>
+            ))}
+            </tbody>
+          </table>
+        ))}
       </div>
     </section>
   )
@@ -560,7 +731,7 @@ function RatedIcon({ type }: { type: 'check' | 'cross' | 'partial' }) {
   const backgroundClass = type === 'partial' ? 'bg-yellow-400/10' : type === 'check' ? 'bg-green-400/10' : 'bg-red-400/10'
 
   return (
-    <div className={`size-12 rounded-full flex items-center justify-center mx-auto ${backgroundClass}`}>
+    <div className={`size-10 rounded-full flex items-center justify-center mx-auto ${backgroundClass}`}>
       {type === 'check' && (
         <Check className={'text-green-400 size-6'}/>)}
       {type === 'cross' && (
