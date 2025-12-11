@@ -91,7 +91,7 @@ export default function Page() {
               </div>
 
               <TextGenerateEffect
-                words={'Stay organized, and elevate your training experience.'}
+                words={'Track, improve, and compete in your cubing journey.'}
                 className={'mt-6 text-4xl md:text-6xl font-extrabold tracking-tight leading-tight'}
               />
 
