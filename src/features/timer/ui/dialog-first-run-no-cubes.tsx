@@ -18,7 +18,7 @@ export default function DialogFirstRunNoCubes() {
   }
 
   return (
-    <DialogContent className="sm:max-w-[640px] max-h-[90vh] overflow-y-auto">
+    <DialogContent className="max-w-[450px] max-h-[90vh] overflow-y-auto">
       <DialogHeader>
         <DialogTitle>Welcome to NexusTimer</DialogTitle>
         <DialogDescription>
@@ -29,7 +29,6 @@ export default function DialogFirstRunNoCubes() {
       <EmptyCubes
         hideDescription
         hideTitle
-        className="min-h-[320px] border rounded-lg"
         onCreate={handleCreateCollection}
       />
     </DialogContent>
