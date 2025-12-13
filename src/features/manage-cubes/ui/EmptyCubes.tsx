@@ -52,48 +52,24 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
           <div className="relative w-64 h-64 mb-4">
             <motion.div
               className="absolute inset-0 bg-primary/10 rounded-full"
-              animate={{ opacity: [0.5, 0.8, 0.5] }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
             ></motion.div>
             <motion.div
               className="absolute inset-4 bg-primary/20 rounded-full"
-              animate={{ opacity: [0.5, 0.8, 0.5] }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: 0.3
-              }}
             ></motion.div>
             <motion.div
               className="absolute inset-0"
-              animate={{ y: [0, -10, 0] }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
             >
               <Image
-                src={'/utils/empty-cubes.svg'}
+                src={'/utils/iron-cube.png'}
                 alt={'no-cubes-for-display'}
                 width={200}
                 height={200}
                 draggable={false}
                 className="object-contain w-full h-full"
+                unoptimized
               />
             </motion.div>
           </div>
-
-          {!hideTitle && (
-            <h2 className="text-3xl text-center text-balance font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/70">
-              {t('no-cubes-for-display')}
-            </h2>
-          )}
 
           {!hideDescription && (
             <p className="text-muted-foreground text-center text-balance text-lg">{t('no-cubes-description')}</p>
