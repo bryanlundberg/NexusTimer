@@ -4,5 +4,5 @@ import EmptyCubes from '@/features/manage-cubes/ui/EmptyCubes'
 
 export default function CubesDashboard() {
   const cubes = useTimerStore((store) => store.cubes)
-  return cubes?.length ? <CubesList cubes={cubes} /> : <EmptyCubes />
+  return cubes?.length ? <CubesList cubes={cubes} /> : <EmptyCubes className={"mx-auto w-fit"}/>
 }
