@@ -1,21 +1,37 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useUpdateUserAvatar } from '../model/useUpdateUserAvatar'
 import { useSession } from 'next-auth/react'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { useRef } from 'react'
 
 export function AvatarUploader() {
   const { data: session } = useSession()
   const { updateAvatar } = useUpdateUserAvatar()
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
+
+  const handleClick = () => fileInputRef.current?.click()
 
   return (
-    <Avatar className="size-20 relative group/item">
-      <AvatarImage className="object-cover" src={session?.user?.image as string} />
-      <AvatarFallback>{session?.user?.name?.slice(0, 2).toUpperCase()}</AvatarFallback>
-      <input
-        type="file"
-        accept="image/*"
-        className="absolute z-10 inset-0 w-full h-full bg-neutral-900 hidden group-hover/item:flex justify-center items-center cursor-pointer hover:opacity-50 text-xs"
-        onChange={(e) => updateAvatar(e.target.files?.[0])}
-      />
-    </Avatar>
+    <div className="flex items-center gap-3">
+      <Avatar className="size-32 group/item">
+        <AvatarImage className="object-cover size-32" src={session?.user?.image as string}/>
+        <AvatarFallback>{session?.user?.name?.slice(0, 2).toUpperCase()}</AvatarFallback>
+      </Avatar>
+
+      <div className={'flex flex-col gap-1 text-sm text-muted-foreground'}>
+        <Input
+          ref={fileInputRef}
+          className="hidden"
+          type="file"
+          accept="image/*"
+          onChange={(e) => updateAvatar(e.target.files?.[0])}
+        />
+        <Button type="button" variant="secondary" onClick={handleClick} className={'w-fit'}>
+          Change picture
+        </Button>
+        JPG, GIF or PNG. Max size of 800K
+      </div>
+    </div>
   )
 }
