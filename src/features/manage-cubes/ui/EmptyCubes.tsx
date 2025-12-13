@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { FileTextIcon, PlusIcon } from '@radix-ui/react-icons'
@@ -9,14 +8,16 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
+import { cn } from '@/shared/lib/utils';
 
 interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {
   onCreate?: () => void
   hideTitle?: boolean
   hideDescription?: boolean
+  className?: string
 }
 
-export default function EmptyCubes({ onCreate, hideDescription = false, hideTitle = false, ...rest }: EmptyCubesProps) {
+export default function EmptyCubes({ onCreate, hideDescription = false, hideTitle = false, className, ...rest }: EmptyCubesProps) {
   const { data: session } = useSession()
   const router = useRouter()
   const t = useTranslations('Index.CubesPage')
@@ -27,7 +28,7 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
     if (onCreate) return onCreate()
     open({
       id: 'create-cube',
-      component: <CreateCollectionForm />
+      component: <CreateCollectionForm/>
     })
   }
 
@@ -41,24 +42,42 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
     close()
   }
 
+  const CardActionButton = ({ onClick, icon, title, description, variant, 'data-testid': dataTestId }: {
+    onClick: () => void
+    icon: React.ReactNode
+    title: string
+    description: string
+    variant: 'ghost' | 'default' | 'outline' | 'secondary' | 'link' | 'destructive'
+    'data-testid'?: string
+  }) => (
+    <Button
+      className="w-full justify-start h-auto py-5"
+      variant={variant}
+      onClick={onClick}
+      data-testid={dataTestId}
+    >
+      <div className="flex items-start gap-4 text-left w-full">
+        <div className="shrink-0">{icon}</div>
+        <div className="flex flex-col flex-1 min-w-0">
+          <span className="font-medium leading-none mb-1 break-words whitespace-normal">{title}</span>
+          <span className="text-sm text-muted-foreground leading-snug break-words whitespace-normal">{description}</span>
+        </div>
+      </div>
+    </Button>
+  )
+
   return (
     <>
       <div
         {...rest}
         data-testid="empty-cubes-container"
-        className="flex flex-col items-center justify-center h-full overflow-auto rounded-lg grow min-h-[400px] mx-auto w-full"
+        className={cn("flex flex-col items-center justify-center h-full grow mx-auto w-full", className)}
       >
-        <div className="flex flex-col items-center justify-center gap-4 p-6 max-w-md mx-auto">
-          <div className="relative w-64 h-64 mb-4">
-            <motion.div
-              className="absolute inset-0 bg-primary/10 rounded-full"
-            ></motion.div>
-            <motion.div
-              className="absolute inset-4 bg-primary/20 rounded-full"
-            ></motion.div>
-            <motion.div
-              className="absolute inset-0"
-            >
+        <div className="flex flex-col items-center justify-center gap-3 w-full">
+          <div className="relative mb-4">
+            <div className="absolute inset-0 bg-primary/10 rounded-full"></div>
+            <div className="absolute inset-4 bg-primary/20 rounded-full"></div>
+            <div className="absolute inset-0">
               <Image
                 src={'/utils/iron-cube.png'}
                 alt={'no-cubes-for-display'}
@@ -68,39 +87,38 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
                 className="object-contain w-full h-full"
                 unoptimized
               />
-            </motion.div>
+            </div>
           </div>
 
-          {!hideDescription && (
-            <p className="text-muted-foreground text-center text-balance text-lg">{t('no-cubes-description')}</p>
-          )}
-
-          <div className={'flex flex-col gap-3'}>
-            <Button
-              className={'w-full'}
-              size="lg"
+          <div className={'flex flex-col gap-3 w-full'}>
+            <CardActionButton
+              icon={<PlusIcon/>}
+              variant={'ghost'}
               onClick={handleClickOnCreate}
               data-testid="empty-cubes-create-button"
-            >
-              <PlusIcon className="mr-2 h-4 w-4 transition-transform group-hover:scale-125" />
-              {t('new-collection')}
-            </Button>
+              title={t('new-collection')}
+              description={
+                'Create a new collection to organize your cubes.'
+              }
+            />
             {session?.user && (
-              <Button
-                variant={'secondary'}
+              <CardActionButton
+                icon={<DatabaseBackupIcon/>}
+                variant={'ghost'}
                 onClick={handleClickOnRestoreAccountData}
                 data-testid="empty-cubes-restore-account-button"
-              >
-                <DatabaseBackupIcon /> Restore Account Data
-              </Button>
+                title={'Restore Account Data'}
+                description={'Restore your data from your account backups.'}
+              />
             )}
-            <Button
+            <CardActionButton
+              icon={<FileTextIcon/>}
               variant={'ghost'}
               onClick={handleClickOnImportOtherTimers}
               data-testid="empty-cubes-import-other-timers-button"
-            >
-              <FileTextIcon /> Import from Other Timers
-            </Button>
+              title={'Import from Other Timers'}
+              description={'Import data from other timer apps.'}
+            />
           </div>
         </div>
       </div>
