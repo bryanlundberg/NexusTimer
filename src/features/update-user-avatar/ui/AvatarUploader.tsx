@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useRef } from 'react'
+import { Image } from 'lucide-react'
 
 export function AvatarUploader() {
   const { data: session } = useSession()
@@ -28,7 +29,7 @@ export function AvatarUploader() {
           onChange={(e) => updateAvatar(e.target.files?.[0])}
         />
         <Button type="button" variant="secondary" onClick={handleClick} className={'w-fit'}>
-          Change picture
+          <Image /> Change picture
         </Button>
         JPG, GIF or PNG. Max size of 800K
       </div>
