@@ -133,8 +133,8 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument,
       </div>
 
       <div className="flex gap-2 mt-4 w-full">
-        <Button className="flex-1" disabled={isSubmitting} onClick={handleSubmit(handleSaveChanges)}>
-          Save
+        <Button className="flex-1" variant={"secondary"} disabled={isSubmitting} onClick={handleSubmit(handleSaveChanges)}>
+          Update Info
         </Button>
       </div>
     </>
