@@ -17,7 +17,7 @@ export default function AccountPage() {
   return (
     <>
       <AccountHeader back="/app" label={t('SettingsPage.account')} />
-      <div className="flex flex-col gap-3 justify-center items-center">
+      <div className="flex flex-col gap-3 justify-center">
         <AvatarUploader />
         <div className="font-mono">{session.user?.email}</div>
         <Link href={`/people/${session.user?.id}`} className="w-full">
