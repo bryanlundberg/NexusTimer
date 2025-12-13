@@ -11,11 +11,11 @@ import JsonLd from './jsonld'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SidebarProvider } from '@/components/ui/sidebar'
 import AlertsProvider from '@/components/alerts-provider'
-import { Viewport } from 'next'
+import { Metadata, Viewport } from 'next'
 import { Overlay } from '@/shared/ui/overlay/overlay'
 import PreloadAppProvider from '@/components/preload-app-provider';
 
-export async function generateMetadata() {
+export async function generateMetadata() : Promise<Metadata> {
   const locale = await getLocale()
   const t = await getTranslations({ locale, namespace: 'Metadata' })
   const ogTitle = t('title')
