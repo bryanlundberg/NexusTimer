@@ -5,22 +5,21 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import AccountLastBackup from '@/features/account-last-backup/ui/AccountLastBackup'
 import AccountHeader from '@/features/account/ui/account-header'
-import AccountNotAuth from '@/features/account/ui/account-not-auth'
 import { AvatarUploader } from '@/features/update-user-avatar/ui/AvatarUploader'
+import AccountInfoForm from '@/features/account-form/ui/AccountInfoForm';
+import { useUser } from '@/entities/user/model/useUser';
 
 export default function AccountPage() {
   const { data: session } = useSession()
   const t = useTranslations('Index')
-
-  if (!session) return <AccountNotAuth />
+  const { data: user, mutate, isLoading: userLoading } = useUser(session!.user?.id || '')
 
   return (
-    <>
+    <div className="flex flex-col gap-6 pb-10">
       <AccountHeader back="/app" label={t('SettingsPage.account')} />
       <div className="flex flex-col gap-3 justify-center">
         <AvatarUploader />
-        <div className="font-mono">{session.user?.email}</div>
-        <Link href={`/people/${session.user?.id}`} className="w-full">
+        <Link href={`/people/${session!.user?.id}`} className="w-full">
           <Button className="w-full">Open Profile</Button>
         </Link>
         <Link href={'/account/save'} className="w-full">
@@ -33,8 +32,9 @@ export default function AccountPage() {
             Load
           </Button>
         </Link>
-        <AccountLastBackup session={session} />
+        <AccountLastBackup session={session!} />
+        {!userLoading && <AccountInfoForm user={user} mutate={mutate} />}
       </div>
-    </>
+    </div>
   )
 }
