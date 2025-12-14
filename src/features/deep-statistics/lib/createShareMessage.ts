@@ -59,7 +59,7 @@ export function createShareMessage({
       const formattedTime = `${highlight ? '(' : ''}${formatTime(
         solve.time
       )}${solve.plus2 ? '+' : ''}${highlight ? ')' : ''}`
-      return `${index + 1}. ${formattedTime} ${solve.scramble}`
+      return `${index + 1}. ${solve?.dnf ? 'DNF' : formattedTime} ${solve.scramble}`
     })
     .join('\n')
 
