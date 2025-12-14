@@ -7,7 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: 'NXTimer',
     description: 'An end to end highly customizable speedcubing application.',
     start_url: '/app',
-    display: 'standalone',
+    scope: '/',
+    display: 'fullscreen',
     background_color: '#ffffff',
     theme_color: '#000000',
     icons: [
@@ -33,7 +34,12 @@ export default function manifest(): MetadataRoute.Manifest {
         label: 'Timer Interface'
       }
     ],
-    categories: ['utilities', 'productivity', 'games'],
+    categories: [
+      "entertainment",
+      "games",
+      "productivity",
+      "utilities"
+    ],
     orientation: 'portrait',
     launch_handler: {
       client_mode: 'focus-existing'
