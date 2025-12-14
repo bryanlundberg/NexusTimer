@@ -558,7 +558,7 @@ function FeatureTable() {
         {
           name: 'Offline Mode',
           description: 'Use the timer without an internet connection.',
-          nxTimer: 'partial',
+          nxTimer: 'check',
           csTimer: 'check',
           cubeDesk: 'cross',
           twistyTimer: 'check'
