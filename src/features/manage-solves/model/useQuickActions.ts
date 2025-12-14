@@ -67,7 +67,7 @@ export default function useQuickActions(solve: Solve) {
 
   const handleClipboard = (customMessage?: { title?: string; description?: string }) => {
     if ('clipboard' in navigator && solve) {
-      const textNormal = `${formatTime(solve.time)}${solve.plus2 && '+'}  ${solve.scramble}`
+      const textNormal = `${formatTime(solve.time)}${solve.plus2 ? '+' : ''}  ${solve.scramble}`
       const textDNF = `DNF (${formatTime(solve.time)})  ${solve.scramble}`
 
       if (solve.dnf) navigator.clipboard.writeText(textDNF)
