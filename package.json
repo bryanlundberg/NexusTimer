@@ -6,8 +6,8 @@
   "author": "Bryan Lundberg",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --turbo",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
