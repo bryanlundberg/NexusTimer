@@ -1,5 +1,5 @@
 'use client'
-import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import {
   DialogClose,
@@ -21,6 +21,8 @@ import { deleteCubeCollection } from '@/features/manage-cubes/api/deleteCubeColl
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { useEffect } from 'react'
+import RatedIcon from '@/shared/ui/rate-icon/RateIcon'
+import { AlertCircleIcon } from 'lucide-react'
 
 export default function DeleteCollectionForm() {
   const t = useTranslations('Index')
@@ -73,15 +75,25 @@ export default function DeleteCollectionForm() {
     <>
       <DialogContent className="sm:max-w-[425px]" data-testid="dialog-delete-cube-container">
         <DialogHeader>
-          <DialogTitle data-testid="dialog-delete-cube-title">{t('Cubes-modal.delete-collection')}</DialogTitle>
+          <DialogTitle data-testid="dialog-delete-cube-title" className={'flex gap-2 align-center'}>
+            <div>
+              <RatedIcon type={'cross'} />
+            </div>
+            <div className={'w-full my-auto'}>{t('Cubes-modal.delete-collection')}</div>
+          </DialogTitle>
           <DialogDescription data-testid="dialog-delete-cube-description">
             {t('Cubes-modal.delete-collection-description')}
           </DialogDescription>
         </DialogHeader>
 
-        <Alert className="bg-red-200/20 text-red-500" data-testid="dialog-delete-cube-warning">
-          <AlertDescription className="font-semibold">
-            <span className="font-black">{t('Cubes-modal.warning-alert')}</span> {t('Cubes-modal.warning-msg')}
+        <Alert variant="destructive" data-testid="dialog-delete-cube-warning">
+          <AlertCircleIcon />
+          <AlertTitle>This will permanently delete the collection.</AlertTitle>
+          <AlertDescription>
+            <ul className="list-inside list-disc text-sm">
+              <li>{activeOverlay?.metadata?.solves.session.length} session solves</li>
+              <li>{activeOverlay?.metadata?.solves.all.length} history solves</li>
+            </ul>
           </AlertDescription>
         </Alert>
 
