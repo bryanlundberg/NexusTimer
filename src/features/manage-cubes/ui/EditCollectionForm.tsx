@@ -16,6 +16,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { editCubeCollection } from '@/features/manage-cubes/api/editCubeCollection'
 import { useEffect } from 'react'
+import RatedIcon from '@/shared/ui/rate-icon/RateIcon'
 
 export default function EditCollectionForm() {
   const t = useTranslations('Index')
@@ -87,11 +88,16 @@ export default function EditCollectionForm() {
     <>
       <DialogContent className="sm:max-w-[425px]" data-testid="drawer-edit-collection-container">
         <DialogHeader>
-          <DialogTitle>{t('Cubes-modal.edit-collection')}</DialogTitle>
+          <DialogTitle data-testid="dialog-edit-title-modal" className={'flex gap-2 align-center'}>
+            <div>
+              <RatedIcon type={'partial'} />
+            </div>
+            <div className={'w-full my-auto'}>{t('Cubes-modal.edit-collection')}</div>
+          </DialogTitle>
         </DialogHeader>
 
-        <Alert className="bg-yellow-200/20 text-amber-700">
-          <AlertDescription className="font-semibold">{t('Cubes-modal.danger-msg')}</AlertDescription>
+        <Alert className="bg-black">
+          <AlertDescription className="text-yellow-300">{t('Cubes-modal.danger-msg')}</AlertDescription>
         </Alert>
 
         <Label>{t('Cubes-modal.name')}</Label>
