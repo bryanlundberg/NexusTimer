@@ -18,7 +18,7 @@ import {
 import Image from 'next/image'
 import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effect'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils'
 
 export default function Page() {
   return (
@@ -43,7 +43,7 @@ export default function Page() {
           <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="h-8 w-8 rounded-md bg-white/10 border border-white/15 flex items-center justify-center">
-                <div className="h-3 w-3 bg-fuchsia-400 rounded-sm"/>
+                <div className="h-3 w-3 bg-fuchsia-400 rounded-sm" />
               </div>
               <span className="text-sm font-semibold tracking-wide text-white/90">NexusTimer</span>
             </div>
@@ -86,7 +86,7 @@ export default function Page() {
           <section className="relative">
             <div className="mx-auto max-w-4xl px-6 pt-12 pb-20 md:pt-20 md:pb-28 text-center relative">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-white/70 mx-auto">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"/>
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 Nexus Timer is free and always will be!
               </div>
 
@@ -100,7 +100,7 @@ export default function Page() {
                   href="/app"
                   className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors pl-2"
                 >
-                  <Image src={'/landing/cube.gif'} alt={''} width={32} height={32} unoptimized/>
+                  <Image src={'/landing/cube.gif'} alt={''} width={32} height={32} unoptimized />
                   Start now
                 </Link>
                 <Link
@@ -188,7 +188,7 @@ export default function Page() {
                     {/* Feature 1 */}
                     <div className="rounded-lg border border-white/10 bg-black/50 p-5">
                       <div className="mb-3 flex items-center">
-                        <Timer className="h-6 w-6 text-fuchsia-300/90"/>
+                        <Timer className="h-6 w-6 text-fuchsia-300/90" />
                       </div>
                       <h3 className="text-lg md:text-xl font-semibold text-white">A timer that adapts to you</h3>
                       <p className="mt-2 text-sm md:text-base text-white/70">
@@ -200,7 +200,7 @@ export default function Page() {
                     {/* Feature 2 */}
                     <div className="rounded-lg border border-white/10 bg-black/50 p-5">
                       <div className="mb-3 flex items-center">
-                        <Users className="h-6 w-6 text-fuchsia-300/90"/>
+                        <Users className="h-6 w-6 text-fuchsia-300/90" />
                       </div>
                       <h3 className="text-lg md:text-xl font-semibold text-white">Online Mode</h3>
                       <p className="mt-2 text-sm md:text-base text-white/70">
@@ -212,7 +212,7 @@ export default function Page() {
                     {/* Feature 3 */}
                     <div className="rounded-lg border border-white/10 bg-black/50 p-5">
                       <div className="mb-3 flex items-center">
-                        <BarChart3 className="h-6 w-6 text-fuchsia-300/90"/>
+                        <BarChart3 className="h-6 w-6 text-fuchsia-300/90" />
                       </div>
                       <h3 className="text-lg md:text-xl font-semibold text-white">Unique stats system</h3>
                       <p className="mt-2 text-sm md:text-base text-white/70">
@@ -223,7 +223,7 @@ export default function Page() {
                     {/* Feature 4 */}
                     <div className="rounded-lg border border-white/10 bg-black/50 p-5">
                       <div className="mb-3 flex items-center">
-                        <Globe className="h-6 w-6 text-fuchsia-300/90"/>
+                        <Globe className="h-6 w-6 text-fuchsia-300/90" />
                       </div>
                       <h3 className="text-lg md:text-xl font-semibold text-white">Connect with other cubers</h3>
                       <p className="mt-2 text-sm md:text-base text-white/70">
@@ -235,7 +235,7 @@ export default function Page() {
                     {/* Feature 5 */}
                     <div className="rounded-lg border border-white/10 bg-black/50 p-5">
                       <div className="mb-3 flex items-center">
-                        <AudioWaveform className="h-6 w-6 text-fuchsia-300/90"/>
+                        <AudioWaveform className="h-6 w-6 text-fuchsia-300/90" />
                       </div>
                       <h3 className="text-lg md:text-xl font-semibold text-white">Learn Algorithms</h3>
                       <p className="mt-2 text-sm md:text-base text-white/70">
@@ -247,7 +247,7 @@ export default function Page() {
                     {/* Feature 6 */}
                     <div className="rounded-lg border border-white/10 bg-black/50 p-5">
                       <div className="mb-3 flex items-center">
-                        <DatabaseZap className="h-6 w-6 text-fuchsia-300/90"/>
+                        <DatabaseZap className="h-6 w-6 text-fuchsia-300/90" />
                       </div>
                       <h3 className="text-lg md:text-xl font-semibold text-white">Cross Platform Sync</h3>
                       <p className="mt-2 text-sm md:text-base text-white/70">
@@ -266,8 +266,8 @@ export default function Page() {
               <TypographyH1>How to start?</TypographyH1>
               <div className="rounded-xl border border-white/15 bg-black/30 p-8 md:p-10">
                 <div className="grid md:grid-cols-3 gap-8 md:gap-10">
-                  <StepItem number={1} title="Enter NexusTimer App" desc="Create a free account and join."/>
-                  <StepItem number={2} title="Add Your Cubes" desc="Access your cubes section and add your cubes."/>
+                  <StepItem number={1} title="Enter NexusTimer App" desc="Create a free account and join." />
+                  <StepItem number={2} title="Add Your Cubes" desc="Access your cubes section and add your cubes." />
                   <StepItem
                     number={3}
                     title="Start Timing"
@@ -278,7 +278,7 @@ export default function Page() {
             </div>
           </section>
 
-          <FeatureTable/>
+          <FeatureTable />
 
           {/* Testimonials */}
           <section id="testimonials" className="relative">
@@ -290,7 +290,7 @@ export default function Page() {
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2 text-amber-300/90">
                     {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70"/>
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
                     ))}
                   </div>
                   <p className="mt-3 text-sm text-white/80">
@@ -310,7 +310,7 @@ export default function Page() {
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2 text-amber-300/90">
                     {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70"/>
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
                     ))}
                   </div>
                   <p className="mt-3 text-sm text-white/80">
@@ -330,7 +330,7 @@ export default function Page() {
                 <div className="rounded-xl border border-white/15 bg-black/30 p-5 shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
                   <div className="flex items-center gap-2 text-amber-300/90">
                     {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70"/>
+                      <StarIcon key={i} className="h-4 w-4 fill-amber-300/70" />
                     ))}
                   </div>
                   <p className="mt-3 text-sm text-white/80">
@@ -472,12 +472,23 @@ export default function Page() {
                   {/*  Contribute*/}
                   {/*</a>*/}
                 </div>
-                <div className={cn("pointer-events-none select-none absolute top-0 left-0 text-foreground/10", 'opacity-15')}>
-                  <Image src={"/bg.png"} alt={`3x3 cube image`} width={200} height={200} unoptimized className={"w-full object-cover"} />
+                <div
+                  className={cn(
+                    'pointer-events-none select-none absolute top-0 left-0 text-foreground/10',
+                    'opacity-15'
+                  )}
+                >
+                  <Image
+                    src={'/bg.png'}
+                    alt={`3x3 cube image`}
+                    width={200}
+                    height={200}
+                    unoptimized
+                    className={'w-full object-cover'}
+                  />
                 </div>
               </div>
             </div>
-
           </section>
         </main>
 
@@ -525,15 +536,14 @@ function StepItem({ number, title, desc }: { number: number; title: string; desc
 }
 
 function FeatureTable() {
-
   const TABLES_DATA = [
     {
-      title: 'Builtin Core Features',
+      title: 'Built-in Core Features',
       description: 'Essential timer capabilities',
       features: [
         {
           name: 'Random State Scrambles',
-          description: 'Instead random moves, get scrambles that put your cube in a random state.',
+          description: 'Instead of random moves, get scrambles that put your cube in a random state.',
           nxTimer: 'check',
           csTimer: 'check',
           cubeDesk: 'check',
@@ -541,7 +551,7 @@ function FeatureTable() {
         },
         {
           name: 'Cross-platform support',
-          description: 'Access application on multiple devices and operating systems.',
+          description: 'Access the application on multiple devices and operating systems.',
           nxTimer: 'check',
           csTimer: 'check',
           cubeDesk: 'check',
@@ -549,7 +559,7 @@ function FeatureTable() {
         },
         {
           name: 'Import other timers',
-          description: 'Easily import and export your data from/to other popular timers.',
+          description: 'Easily import and export your data to and from other popular timers.',
           nxTimer: 'check',
           csTimer: 'cross',
           cubeDesk: 'partial',
@@ -586,7 +596,7 @@ function FeatureTable() {
           csTimer: 'partial',
           cubeDesk: 'partial',
           twistyTimer: 'cross'
-        },
+        }
       ]
     },
     {
@@ -611,7 +621,7 @@ function FeatureTable() {
         },
         {
           name: 'Cube-specific Stats',
-          description: 'Detailed statistics for each individual cube. Including averages, best/worst times, and more.',
+          description: 'Detailed statistics for each individual cube, including averages, best/worst times, and more.',
           nxTimer: 'check',
           csTimer: 'cross',
           cubeDesk: 'cross',
@@ -624,7 +634,7 @@ function FeatureTable() {
           csTimer: 'check',
           cubeDesk: 'partial',
           twistyTimer: 'partial'
-        },
+        }
       ]
     },
     {
@@ -665,7 +675,7 @@ function FeatureTable() {
         },
         {
           name: 'Display Trajectory Progress',
-          description: 'Show your full solves history and progress over time.',
+          description: 'Show your full solve history and progress over time.',
           nxTimer: 'check',
           csTimer: 'cross',
           cubeDesk: 'cross',
@@ -673,7 +683,7 @@ function FeatureTable() {
         }
       ]
     }
-  ];
+  ]
 
   return (
     <section id="features-comparison" className="relative">
@@ -686,39 +696,67 @@ function FeatureTable() {
         {TABLES_DATA.map((table, index) => (
           <table key={index} className="w-full table-auto border-collapse bg-black/50 max-w-4xl mx-auto">
             <thead className={'bg-[#fbcfe8]/10 text-sm'}>
-            <tr className={'text-center'}>
-              <th className="py-3 text-left text-white/90 align-bottom ps-3 w-full">
-                <div className="flex flex-col">
-                  <p>{table.title}</p>
-                  <p className={'text-xs font-normal text-neutral-300'}>{table.description}</p>
-                </div>
-              </th>
-              <th className=" py-3 text-white/90 flex flex-col items-center gap-2 px-3">
-                <Image src={'/logo.png'} alt={''} width={64} height={64} className={'invert size-6'} unoptimized/>
-                NXTimer
-              </th>
-              <th className="py-3 text-white/90 align-bottom px-3">csTimer</th>
-              <th className="py-3 text-white/90 align-bottom text-nowrap px-3 hidden md:table-cell">Cube Desk</th>
-              <th className="py-3 text-white/90 align-bottom text-nowrap px-3 hidden md:table-cell">Twisty Timer</th>
-            </tr>
+              <tr className={'text-center'}>
+                <th className="py-3 text-left text-white/90 align-bottom ps-3 w-full">
+                  <div className="flex flex-col">
+                    <p>{table.title}</p>
+                    <p className={'text-xs font-normal text-neutral-300'}>{table.description}</p>
+                  </div>
+                </th>
+                <th className=" py-3 text-white/90 flex flex-col items-center gap-2 px-3">
+                  <Image src={'/logo.png'} alt={''} width={64} height={64} className={'invert size-6'} unoptimized />
+                  NXTimer
+                </th>
+                <th className="py-3 text-white/90 align-bottom px-3">csTimer</th>
+                <th className="py-3 text-white/90 align-bottom text-nowrap px-3 hidden md:table-cell">Cube Desk</th>
+                <th className="py-3 text-white/90 align-bottom text-nowrap px-3 hidden md:table-cell">Twisty Timer</th>
+              </tr>
             </thead>
             <tbody>
-            {table.features.map((feature, fIndex) => (
-              <tr key={fIndex}>
-                <td className="py-6 text-sm text-white/80 ps-3">
-                  <div className="font-semibold">{feature.name}</div>
-                  <div className="text-xs text-white/60">{feature.description}</div>
-                </td>
-                <td>{feature.nxTimer === 'check' ? <RatedIcon type="check"/> : feature.nxTimer === 'cross' ?
-                  <RatedIcon type="cross"/> : <RatedIcon type="partial"/>}</td>
-                <td>{feature.csTimer === 'check' ? <RatedIcon type="check"/> : feature.csTimer === 'cross' ?
-                  <RatedIcon type="cross"/> : <RatedIcon type="partial"/>}</td>
-                <td className={"hidden md:table-cell"}>{feature.cubeDesk === 'check' ? <RatedIcon type="check"/> : feature.cubeDesk === 'cross' ?
-                  <RatedIcon type="cross"/> : <RatedIcon type="partial"/>}</td>
-                <td className={"hidden md:table-cell"}>{feature.twistyTimer === 'check' ? <RatedIcon type="check"/> : feature.twistyTimer === 'cross' ?
-                  <RatedIcon type="cross"/> : <RatedIcon type="partial"/>}</td>
-              </tr>
-            ))}
+              {table.features.map((feature, fIndex) => (
+                <tr key={fIndex}>
+                  <td className="py-6 text-sm text-white/80 ps-3">
+                    <div className="font-semibold">{feature.name}</div>
+                    <div className="text-xs text-white/60">{feature.description}</div>
+                  </td>
+                  <td>
+                    {feature.nxTimer === 'check' ? (
+                      <RatedIcon type="check" />
+                    ) : feature.nxTimer === 'cross' ? (
+                      <RatedIcon type="cross" />
+                    ) : (
+                      <RatedIcon type="partial" />
+                    )}
+                  </td>
+                  <td>
+                    {feature.csTimer === 'check' ? (
+                      <RatedIcon type="check" />
+                    ) : feature.csTimer === 'cross' ? (
+                      <RatedIcon type="cross" />
+                    ) : (
+                      <RatedIcon type="partial" />
+                    )}
+                  </td>
+                  <td className={'hidden md:table-cell'}>
+                    {feature.cubeDesk === 'check' ? (
+                      <RatedIcon type="check" />
+                    ) : feature.cubeDesk === 'cross' ? (
+                      <RatedIcon type="cross" />
+                    ) : (
+                      <RatedIcon type="partial" />
+                    )}
+                  </td>
+                  <td className={'hidden md:table-cell'}>
+                    {feature.twistyTimer === 'check' ? (
+                      <RatedIcon type="check" />
+                    ) : feature.twistyTimer === 'cross' ? (
+                      <RatedIcon type="cross" />
+                    ) : (
+                      <RatedIcon type="partial" />
+                    )}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         ))}
@@ -728,27 +766,22 @@ function FeatureTable() {
 }
 
 function RatedIcon({ type }: { type: 'check' | 'cross' | 'partial' }) {
-  const backgroundClass = type === 'partial' ? 'bg-yellow-400/10' : type === 'check' ? 'bg-green-400/10' : 'bg-red-400/10'
+  const backgroundClass =
+    type === 'partial' ? 'bg-yellow-400/10' : type === 'check' ? 'bg-green-400/10' : 'bg-red-400/10'
 
   return (
     <div className={`size-10 rounded-full flex items-center justify-center mx-auto ${backgroundClass}`}>
-      {type === 'check' && (
-        <Check className={'text-green-400 size-6'}/>)}
-      {type === 'cross' && (
-        <XIcon className={'text-red-400 size-6'}/>)}
-      {type === 'partial' && (
-        <TriangleAlert className={'size-6 text-yellow-400'}/>)}
+      {type === 'check' && <Check className={'text-green-400 size-6'} />}
+      {type === 'cross' && <XIcon className={'text-red-400 size-6'} />}
+      {type === 'partial' && <TriangleAlert className={'size-6 text-yellow-400'} />}
     </div>
   )
 }
 
 function TypographyH1({ children }: { children: React.ReactNode }) {
   return (
-    <h1
-      className="scroll-m-20 text-3xl mb-5 font-extrabold tracking-tight lg:text-4xl text-[#fbcfe8] [text-shadow:0_3px_0_#9d174d] mx-auto text-center"
-    >
+    <h1 className="scroll-m-20 text-3xl mb-5 font-extrabold tracking-tight lg:text-4xl text-[#fbcfe8] [text-shadow:0_3px_0_#9d174d] mx-auto text-center">
       {children}
     </h1>
   )
 }
-
