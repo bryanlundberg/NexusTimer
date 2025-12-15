@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     id: 'nexus-timer-app',
     name: 'Nexus Timer',
     short_name: 'NXTimer',
-    description: 'An end to end highly customizable speedcubing application.',
+    description: 'An end-to-end, highly customizable speedcubing application.',
     start_url: '/app',
     scope: '/',
     display: 'fullscreen',
@@ -15,7 +15,7 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         src: '/icon512_rounded.png',
         sizes: '512x512',
-        type: 'image/png',
+        type: 'image/png'
       }
     ],
     screenshots: [
@@ -34,12 +34,7 @@ export default function manifest(): MetadataRoute.Manifest {
         label: 'Timer Interface'
       }
     ],
-    categories: [
-      "entertainment",
-      "games",
-      "productivity",
-      "utilities"
-    ],
+    categories: ['entertainment', 'games', 'productivity', 'utilities'],
     orientation: 'portrait',
     launch_handler: {
       client_mode: 'focus-existing'
