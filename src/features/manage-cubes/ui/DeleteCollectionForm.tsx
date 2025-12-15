@@ -86,7 +86,7 @@ export default function DeleteCollectionForm() {
           </DialogDescription>
         </DialogHeader>
 
-        <Alert variant="destructive" data-testid="dialog-delete-cube-warning">
+        <Alert variant="destructive" className={'bg-black'} data-testid="dialog-delete-cube-warning">
           <AlertCircleIcon />
           <AlertTitle>This will permanently delete the collection.</AlertTitle>
           <AlertDescription>
