@@ -13,6 +13,7 @@ export const locales = [
   'it',
   'ja',
   'ko',
+  'mr',
   'ms',
   'nl',
   'no',
@@ -25,7 +26,10 @@ export const locales = [
   'tr',
   'uk',
   'vi',
-  'zh'
+  'zh',
+  'ar',
+  'tl',
+  'da'
 ]
 
 export const defaultLocale = 'en'

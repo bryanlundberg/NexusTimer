@@ -25,7 +25,10 @@ import {
   ID,
   BD,
   SK,
-  EE
+  EE,
+  PH,
+  DK,
+  SA
 } from 'country-flag-icons/react/3x2'
 import { locales } from '@/shared/config/i18n/locales'
 
@@ -62,5 +65,9 @@ export const languages: LanguageProp[] = [
   { code: 'id', name: 'Bahasa Indonesia', flag: <ID className="w-4 h-4" /> },
   { code: 'bn', name: 'বাংলা', flag: <BD className="w-4 h-4" /> },
   { code: 'sk', name: 'Slovenčina', flag: <SK className="w-4 h-4" /> },
-  { code: 'et', name: 'Eesti', flag: <EE className="w-4 h-4" /> }
+  { code: 'et', name: 'Eesti', flag: <EE className="w-4 h-4" /> },
+  { code: 'mr', name: 'मराठी', flag: <IN className="w-4 h-4" /> },
+  { code: 'tl', name: 'Filipino', flag: <PH className="w-4 h-4" /> },
+  { code: 'da', name: 'Dansk', flag: <DK className="w-4 h-4" /> },
+  { code: 'ar', name: 'العربية', flag: <SA className="w-4 h-4" /> }
 ]
