@@ -2,7 +2,6 @@
 import { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { SidebarTrigger } from '@/components/ui/sidebar'
-import { Button } from '@/components/ui/button'
 import ButtonNextScramble from '@/features/navigation/ui/button-next-scramble'
 import ButtonDisplayType from '@/features/navigation/ui/button-display-type'
 import ButtonCreateCollection from '@/features/navigation/ui/button-create-collection'
@@ -41,11 +40,7 @@ export default function Navigation({
           showButtonCreateCollection ||
           showButtonSelectMode) && (
           <div className="flex justify-center items-center gap-2">
-            {showMenu && (
-              <Button size={'icon'} variant={'ghost'}>
-                <SidebarTrigger />
-              </Button>
-            )}
+            {showMenu && <SidebarTrigger />}
             {showMainCubeSelector && <MainCubeSelector />}
             {showButtonNextScramble && <ButtonNextScramble />}
             {showButtonDisplayType && <ButtonDisplayType />}
