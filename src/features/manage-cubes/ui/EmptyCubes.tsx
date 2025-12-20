@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
-import { cn } from '@/shared/lib/utils';
+import { cn } from '@/shared/lib/utils'
 
 interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {
   onCreate?: () => void
@@ -17,7 +17,13 @@ interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 
-export default function EmptyCubes({ onCreate, hideDescription = false, hideTitle = false, className, ...rest }: EmptyCubesProps) {
+export default function EmptyCubes({
+  onCreate,
+  hideDescription = false,
+  hideTitle = false,
+  className,
+  ...rest
+}: EmptyCubesProps) {
   const { data: session } = useSession()
   const router = useRouter()
   const t = useTranslations('Index.CubesPage')
@@ -28,7 +34,7 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
     if (onCreate) return onCreate()
     open({
       id: 'create-cube',
-      component: <CreateCollectionForm/>
+      component: <CreateCollectionForm />
     })
   }
 
@@ -42,25 +48,29 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
     close()
   }
 
-  const CardActionButton = ({ onClick, icon, title, description, variant, 'data-testid': dataTestId }: {
+  const CardActionButton = ({
+    onClick,
+    icon,
+    title,
+    description,
+    variant,
+    'data-testid': dataTestId
+  }: {
     onClick: () => void
     icon: React.ReactNode
     title: string
     description: string
-    variant: 'ghost' | 'default' | 'outline' | 'secondary' | 'link' | 'destructive'
+    variant: any
     'data-testid'?: string
   }) => (
-    <Button
-      className="w-full justify-start h-auto py-5"
-      variant={variant}
-      onClick={onClick}
-      data-testid={dataTestId}
-    >
+    <Button className="w-full justify-start h-auto py-5" variant={variant} onClick={onClick} data-testid={dataTestId}>
       <div className="flex items-start gap-4 text-left w-full">
         <div className="shrink-0">{icon}</div>
         <div className="flex flex-col flex-1 min-w-0">
           <span className="font-medium leading-none mb-1 break-words whitespace-normal">{title}</span>
-          <span className="text-sm text-muted-foreground leading-snug break-words whitespace-normal">{description}</span>
+          <span className="text-sm text-muted-foreground leading-snug break-words whitespace-normal">
+            {description}
+          </span>
         </div>
       </div>
     </Button>
@@ -71,7 +81,7 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
       <div
         {...rest}
         data-testid="empty-cubes-container"
-        className={cn("flex flex-col items-center justify-center h-full grow mx-auto w-full", className)}
+        className={cn('flex flex-col items-center justify-center h-full grow mx-auto w-full', className)}
       >
         <div className="flex flex-col items-center justify-center gap-3 w-full">
           <div className="relative mb-4">
@@ -92,18 +102,16 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
 
           <div className={'flex flex-col gap-3 w-full'}>
             <CardActionButton
-              icon={<PlusIcon/>}
+              icon={<PlusIcon />}
               variant={'ghost'}
               onClick={handleClickOnCreate}
               data-testid="empty-cubes-create-button"
               title={t('new-collection')}
-              description={
-                'Create a new collection to organize your cubes.'
-              }
+              description={'Create a new collection to organize your cubes.'}
             />
             {session?.user && (
               <CardActionButton
-                icon={<DatabaseBackupIcon/>}
+                icon={<DatabaseBackupIcon />}
                 variant={'ghost'}
                 onClick={handleClickOnRestoreAccountData}
                 data-testid="empty-cubes-restore-account-button"
@@ -112,7 +120,7 @@ export default function EmptyCubes({ onCreate, hideDescription = false, hideTitl
               />
             )}
             <CardActionButton
-              icon={<FileTextIcon/>}
+              icon={<FileTextIcon />}
               variant={'ghost'}
               onClick={handleClickOnImportOtherTimers}
               data-testid="empty-cubes-import-other-timers-button"
