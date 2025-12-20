@@ -42,8 +42,8 @@ export default function Navigation({
           showButtonSelectMode) && (
           <div className="flex justify-center items-center gap-2">
             {showMenu && (
-              <Button size={'icon'} variant={'ghost'} asChild>
-                <SidebarTrigger className="-ml-1" />
+              <Button size={'icon'} variant={'ghost'}>
+                <SidebarTrigger />
               </Button>
             )}
             {showMainCubeSelector && <MainCubeSelector />}
