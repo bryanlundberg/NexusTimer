@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl'
 import { DateTime } from 'luxon'
 import { BookmarkFilledIcon, ChatBubbleIcon } from '@radix-ui/react-icons'
 import useSolveGridItem from '@/features/solves-grid/model/useSolveGridItem'
+import { Button } from '@/components/ui/button'
 
 interface SolveGridItemProps {
   index: number
@@ -16,11 +17,12 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
   const locale = useLocale()
   const { handleOpenSolveDetails } = useSolveGridItem(solve)
   return (
-    <Card
+    <Button
+      variant={'outline'}
       data-testid={`solve-grid-item-${index}`}
       onClick={handleOpenSolveDetails}
       className={
-        'relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 rounded-md cursor-pointer p-3 hover:opacity-80'
+        'relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 rounded-md cursor-pointer p-3'
       }
     >
       <div className="absolute top-2 right-2 text-[10px] opacity-60">#{index + 1}</div>
@@ -59,6 +61,6 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
           <BookmarkFilledIcon className={'size-5'} data-testid={`bookmark-icon-${index}`} />
         </div>
       )}
-    </Card>
+    </Button>
   )
 }
