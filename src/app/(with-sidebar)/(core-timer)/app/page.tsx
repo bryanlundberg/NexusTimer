@@ -1,16 +1,16 @@
 'use client'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useRef } from 'react'
 import FadeIn from '@/shared/ui/fade-in/fade-in'
 import TimerContainer from '@/features/timer/ui/TimerContainer'
-import BackgroundAnimate from '@/shared/ui/background-animate/BackgroundAnimate'
 import DialogFirstRunNoCubes from '@/features/timer/ui/dialog-first-run-no-cubes'
 import HeaderTimer from '@/features/timer/ui/HeaderTimer'
 import { MainTimer } from '@/features/timer/ui/MainTimer'
 import TimerWidgets from '@/features/timer/ui/TimerWidgets'
 import ScrambleModal from '@/features/timer/ui/ScrambleModal'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { fireConfetti } from '@/shared/lib/fireConfetti'
 
 export default function TimerPage() {
   const resetTimerStore = useTimerStore((state) => state.reset)
@@ -20,10 +20,7 @@ export default function TimerPage() {
   const isSolving = useTimerStore((store) => store.isSolving)
   const cubes = useTimerStore((store) => store.cubes)
   const open = useOverlayStore((store) => store.open)
-
-  const isRecord = useMemo(() => {
-    return timerStatistics.global.best === lastSolve?.time && !isSolving
-  }, [isSolving, lastSolve, timerStatistics.global.best])
+  const lastRecordRef = useRef<number | null | undefined>(null)
 
   useEffect(() => {
     resetTimerStore()
@@ -39,6 +36,15 @@ export default function TimerPage() {
     }
   }, [cubes, open])
 
+  useEffect(() => {
+    const isRecord = timerStatistics.global.best === lastSolve?.time && !isSolving
+    if (!isRecord) return
+    if (lastRecordRef.current === lastSolve?.time) return
+
+    lastRecordRef.current = lastSolve?.time
+    fireConfetti()
+  }, [lastSolve?.time, timerStatistics.global.best, isSolving])
+
   return (
     <>
       <FadeIn className={'flex flex-col grow relative'}>
@@ -49,8 +55,6 @@ export default function TimerPage() {
           <TimerWidgets />
         </TimerContainer>
         <ScrambleModal />
-
-        {isRecord && <BackgroundAnimate />}
       </FadeIn>
     </>
   )
