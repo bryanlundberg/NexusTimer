@@ -37,10 +37,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return session
     },
     async signIn({ user, account }) {
+      const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
+
       try {
-        const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
         const response = await fetch(`${baseUrl}/api/v1/users`, {
           method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             email: user.email as string,
             image: user.image as string,
@@ -56,14 +58,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           user.email = userData.email
           user.image = userData.image
           user.name = userData.name
-          return true
         }
-
-        return false
       } catch (error) {
         console.error('Error creating/updating user:', error)
-        return false
       }
+      return true
     }
   }
 })
