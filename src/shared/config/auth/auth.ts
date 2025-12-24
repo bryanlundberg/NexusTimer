@@ -16,24 +16,18 @@ declare module 'next-auth' {
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [Google, Discord],
   callbacks: {
-    jwt: async ({ token, user, trigger, session }) => {
-      if (trigger === 'update' && session && session?.user?.image) {
-        token.picture = session.user.image
+    jwt: async ({ token, user, trigger, session, account }) => {
+      if (trigger === 'update') {
+        if (session?.user?.image) token.picture = session.user.image
+        if (session?.user?.name) token.name = session.user.name
       }
 
-      if (trigger === 'update' && session && session?.user?.name) {
-        token.name = session.user.name
-      }
+      if (user) token.id = user.id
 
-      if (user) {
-        token.id = user.id
-      }
       return token
     },
     session: async ({ session, token }) => {
-      if (token?.id) {
-        session.user.id = token.id as string
-      }
+      if (token?.id) session.user.id = token.id as string
       return session
     },
     async signIn({ user, account }) {
@@ -52,17 +46,28 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           })
         })
 
-        if (response.ok) {
-          const userData = await response.json()
-          user.id = userData._id
-          user.email = userData.email
-          user.image = userData.image
-          user.name = userData.name
+        if (!response.ok) {
+          console.error(response.status)
+          return false
         }
+
+        const userData = await response.json()
+
+        if (!userData._id) {
+          console.error('User ID not found in response')
+          return false
+        }
+
+        user.id = userData._id
+        user.email = userData.email
+        user.image = userData.image
+        user.name = userData.name
+
+        return true
       } catch (error) {
         console.error('Error creating/updating user:', error)
+        return false
       }
-      return true
     }
   }
 })
