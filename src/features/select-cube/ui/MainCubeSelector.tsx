@@ -1,123 +1,41 @@
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select'
-import { cubeCollection } from '@/shared/const/cube-collection'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { useTranslations } from 'next-intl'
-import Image from 'next/image'
-import { PlusIcon } from '@radix-ui/react-icons'
 import { Button } from '@/components/ui/button'
-import { Cube } from '@/entities/cube/model/types'
-import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
-import { useState } from 'react'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import SelectCollection from '@/features/select-collection/ui/SelectCollection'
+import { useEffect } from 'react'
 
 export default function MainCubeSelector() {
-  const t = useTranslations('Index')
-  const cubes = useTimerStore((state) => state.cubes)
   const selectedCube = useTimerStore((state) => state.selectedCube)
-  const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
-  const setNewScramble = useTimerStore((state) => state.setNewScramble)
-  const setLastSolve = useTimerStore((state) => state.setLastSolve)
-  const { handleCreate } = useCubeActions(undefined)
-  const [open, setOpen] = useState(false)
+  const open = useOverlayStore((state) => state.open)
 
-  const handleChangeValue = (e: any) => {
-    const choseCube = cubes?.find((cube) => cube.id === e)
-    if (!choseCube) return
-    setSelectedCube(choseCube)
-    setNewScramble(choseCube)
-    setLastSolve(null)
+  const handleOpenSelector = () => {
+    open({
+      component: <SelectCollection />,
+      id: 'Select Collection',
+      metadata: {}
+    })
   }
 
-  return (
-    <>
-      <Select
-        defaultValue={selectedCube?.id}
-        value={selectedCube?.id}
-        onValueChange={handleChangeValue}
-        open={open}
-        onOpenChange={setOpen}
-      >
-        <SelectTrigger className="w-full" data-testid="main-cube-selector">
-          <SelectValue placeholder={t('Inputs.select')} />
-        </SelectTrigger>
-        <SelectContent>
-          {cubes && cubes.length > 0 && cubes.some((c: Cube) => c.favorite) && (
-            <>
-              <SelectGroup>
-                <SelectLabel>{t('Inputs.favorites')}</SelectLabel>
-                {cubes
-                  .filter((cube: Cube) => cube.favorite)
-                  .sort((a: Cube, b: Cube) => a.category.localeCompare(b.category))
-                  .map((cube) => {
-                    return <SelectCubeItemWidthImage cube={cube} key={cube.id} />
-                  })}
-              </SelectGroup>
-            </>
-          )}
-          <SelectGroup>
-            <SelectLabel>
-              {t('Inputs.collections')} {cubes && cubes.length <= 0 && '(' + t('Inputs.empty') + ')'}
-            </SelectLabel>
-            {cubes &&
-              cubes.length > 0 &&
-              cubes
-                .filter((cube: Cube) => !cube.favorite)
-                .sort((a: Cube, b: Cube) => a.category.localeCompare(b.category))
-                .map((cube) => {
-                  return <SelectCubeItemWidthImage cube={cube} key={cube.id} />
-                })}
-            <Button
-              variant={'outline'}
-              className="w-full"
-              onClick={() => {
-                setOpen(false)
-                handleCreate()
-              }}
-            >
-              <div className="flex items-center justify-center gap-1">
-                <PlusIcon />
-                {t('CubesPage.new-collection')}
-              </div>
-            </Button>
-          </SelectGroup>
-        </SelectContent>
-      </Select>
-    </>
-  )
-}
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === 'j' && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        handleOpenSelector()
+      }
+    }
 
-function SelectCubeItemWidthImage({ cube }: { cube: Cube }) {
-  return (
-    <>
-      <SelectItem key={cube.id} value={cube.id}>
-        <div className="flex flex-row items-center justify-between gap-2">
-          {(() => {
-            const foundCube = cubeCollection.find((i) => i.name === cube.category)
-            if (foundCube) {
-              return (
-                <Image
-                  unoptimized
-                  src={foundCube.src}
-                  alt={foundCube.name}
-                  width={24}
-                  height={24}
-                  className="object-scale-down"
-                />
-              )
-            }
-            return null
-          })()}
+    document.addEventListener('keydown', down)
+    return () => document.removeEventListener('keydown', down)
+  }, [])
 
-          <p className="">{cube.name}</p>
-        </div>
-      </SelectItem>
-    </>
+  return (
+    <div className="flex-1 min-w-0">
+      <Button variant={'outline'} className={'w-full justify-between overflow-hidden'} onClick={handleOpenSelector}>
+        <span className={'truncate mr-2'}>{selectedCube ? selectedCube.name : 'Select Cube'}</span>
+        <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 select-none shrink-0">
+          <span className="text-xs">⌘</span>J
+        </kbd>
+      </Button>
+    </div>
   )
 }
