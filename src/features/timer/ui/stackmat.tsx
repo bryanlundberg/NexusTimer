@@ -8,6 +8,7 @@ import { Packet, Stackmat as StackmatController } from 'stackmat-v2'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { Solve } from '@/entities/solve/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
+import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 
 export default function Stackmat() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
@@ -24,6 +25,9 @@ export default function Stackmat() {
   const solvesSinceLastSync = useSettingsStore((state) => state.settings.sync.totalSolves)
   const [stackmat, setStackmat] = useState<any>(null)
   const solvingIdRef = useRef<any>(null)
+
+  const isSolving = useTimerStore((state) => state.isSolving)
+  useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
 
   useEffect(() => {
     const controller = new StackmatController()
