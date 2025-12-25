@@ -22,6 +22,7 @@ import useAlert from '@/shared/model/useAlert'
 import { useCountdown } from '@/shared/model/useCountdown'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { CubeCategory } from '@/shared/const/cube-categories'
+import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 
 export default function FreePlayRoomPage() {
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }
@@ -41,7 +42,11 @@ export default function FreePlayRoomPage() {
   const onlineUsers = useUsersPresence(roomId?.toString() || '')
   const reset = useTimerStore((state) => state.reset)
   const setSolvingTime = useTimerStore((state) => state.setSolvingTime)
+  const isSolving = useTimerStore((state) => state.isSolving)
+  const timerStatus = useTimerStore((state) => state.timerStatus)
   const roundLimit = useRoomRoundLimit(roomId?.toString() || '')
+
+  useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
   const { mmss, isFinished } = useCountdown(roundLimit || 0)
   const roomAuthority = useRoomAuthority(roomId?.toString() || '')
   const event = useRoomEvent(roomId?.toString() || '')

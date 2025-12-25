@@ -9,6 +9,7 @@ import DisplayTime from '@/features/timer/ui/display-time'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
 import useDeviceMatch from '@/shared/model/useDeviceMatch'
 import { TimerStatus } from '@/features/timer/model/enums'
+import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 
 export default function Timer({ children }: { children?: ReactNode }) {
   const settings = useSettingsStore((store) => store.settings)
@@ -23,6 +24,8 @@ export default function Timer({ children }: { children?: ReactNode }) {
   const setIsSolving = useTimerStore((store) => store.setIsSolving)
   const setSolvingTime = useTimerStore((store) => store.setSolvingTime)
   const timerMode = useTimerStore((store) => store.timerMode)
+
+  useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
 
   const { saveSolveMainTimer } = useSolveData()
 
