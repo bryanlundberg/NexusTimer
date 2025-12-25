@@ -62,6 +62,7 @@ export default function DisplayTime({
           }
         }}
         {...rest}
+        id={'touch'}
       >
         <AnimatePresence mode="wait">
           {hideWhileSolving && isSolving ? (
@@ -72,6 +73,7 @@ export default function DisplayTime({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
+              id={'touch'}
             >
               {t('solving')}
             </motion.span>
@@ -83,6 +85,7 @@ export default function DisplayTime({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
+              id={'touch'}
             >
               <motion.div
                 className="flex items-end justify-center"
@@ -90,6 +93,7 @@ export default function DisplayTime({
                   scale: timerStatus === TimerStatus.HOLDING ? 0.95 : 1,
                   transition: { type: 'spring', stiffness: 500, damping: 30 }
                 }}
+                id={'touch'}
               >
                 {inspectionRequired &&
                 (timerStatus === TimerStatus.INSPECTING ||
@@ -101,6 +105,7 @@ export default function DisplayTime({
                       initial={{ scale: 1.2 }}
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', stiffness: 300 }}
+                      id={'touch'}
                     >
                       {Math.trunc(inspectionTime)}
                     </motion.div>
@@ -112,6 +117,7 @@ export default function DisplayTime({
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2 }}
+                      id={'touch'}
                     >
                       {formatTime(solvingTime).split('.')[0]}
                     </motion.div>
@@ -120,6 +126,7 @@ export default function DisplayTime({
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3, delay: 0.1 }}
+                      id={'touch'}
                     >
                       .{formatTime(solvingTime, settings.timer.decimals).split('.')[1]}
                     </motion.div>
@@ -129,6 +136,7 @@ export default function DisplayTime({
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: 0.2 }}
+                        id={'touch'}
                       >
                         +2
                       </motion.span>
@@ -142,6 +150,7 @@ export default function DisplayTime({
                   initial={{ opacity: 0, y: 5 }}
                   animate={{ opacity: [0.5, 1, 0.5], y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
+                  id={'touch'}
                 >
                   {timerMode === TimerMode.NORMAL
                     ? device === 'Desktop'
