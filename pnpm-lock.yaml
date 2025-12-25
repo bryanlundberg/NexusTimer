@@ -257,6 +257,9 @@ importers:
       react-rnd:
         specifier: ^10.5.2
         version: 10.5.2(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      react-screen-wake-lock:
+        specifier: ^3.1.1
+        version: 3.1.1(react@19.2.1)
       react-use-audio-player:
         specifier: ^4.0.2
         version: 4.0.2(react@19.2.1)
@@ -5241,6 +5244,12 @@ packages:
     peerDependencies:
       react: '>=16.3.0'
       react-dom: '>=16.3.0'
+
+  react-screen-wake-lock@3.1.1:
+    resolution: {integrity: sha512-aZqFSh1uHhdeeNHknvCuw9pZO9hP1Ul7Z1Cc26WJaOH52ZbnLSPS01GEeHarARSmOIdLwJoSMRyfSAW0a946bA==}
+    engines: {node: '>=v14.21.3'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react-smooth@4.0.4:
     resolution: {integrity: sha512-gnGKTpYwqL0Iii09gHobNolvX4Kiq4PKx6eWBCYYix+8cdw+cGo3do906l1NBPKkSWx1DghC1dlWG9L2uGd61Q==}
@@ -11581,6 +11590,10 @@ snapshots:
       react-dom: 19.2.1(react@19.2.1)
       react-draggable: 4.4.6(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       tslib: 2.6.2
+
+  react-screen-wake-lock@3.1.1(react@19.2.1):
+    dependencies:
+      react: 19.2.1
 
   react-smooth@4.0.4(react-dom@19.2.1(react@19.2.1))(react@19.2.1):
     dependencies:
