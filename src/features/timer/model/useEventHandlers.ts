@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { TimerMode } from '@/features/timer/model/enums'
 
 type HandleHoldFunction = (isReleased: boolean) => void
@@ -38,7 +38,8 @@ export default function useEventHandlers({
   }, [resetTimer])
 
   useEffect(() => {
-    if (timerMode === TimerMode.STACKMAT || timerMode === TimerMode.MANUAL) return
+    if (timerMode === TimerMode.STACKMAT || timerMode === TimerMode.MANUAL || timerMode === TimerMode.NEXUS_CONNECT)
+      return
 
     const handleTouchStart = (event: TouchEvent): void => {
       event.preventDefault()
