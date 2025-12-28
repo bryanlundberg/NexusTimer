@@ -21,7 +21,7 @@ type UseTimerStore = {
   zoomInScramble: boolean
   hint: CrossSolution | null
   timerStatistics: DisplayTimerStatistics
-  timerMode: TimerMode.NORMAL | TimerMode.MANUAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE
+  timerMode: TimerMode
   setNewScramble: (cube: Cube | null) => void
   setCubes: (cubesDB: Cube[]) => void
   setSelectedCube: (cube: Cube | null) => void
@@ -33,9 +33,7 @@ type UseTimerStore = {
   setHints: (solutions: CrossSolution) => void
   setCustomScramble: (scramble: string) => void
   setTimerStatistics: (stats: DisplayTimerStatistics) => void
-  setTimerMode: (
-    mode: TimerMode.NORMAL | TimerMode.MANUAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE
-  ) => void
+  setTimerMode: (mode: TimerMode) => void
   reset: () => void
 }
 
@@ -112,9 +110,7 @@ export const useTimerStore = create<UseTimerStore>((set) => ({
   setTimerStatistics: (stats) => {
     set({ timerStatistics: stats })
   },
-  setTimerMode: (
-    mode: TimerMode.NORMAL | TimerMode.MANUAL | TimerMode.STACKMAT | TimerMode.VIRTUAL | TimerMode.SMART_CUBE
-  ) => {
+  setTimerMode: (mode: TimerMode) => {
     set({ timerMode: mode })
   },
   reset: () =>
