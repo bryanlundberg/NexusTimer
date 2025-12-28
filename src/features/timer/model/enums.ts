@@ -3,7 +3,8 @@ export enum TimerMode {
   MANUAL = 'manual',
   STACKMAT = 'stackmat',
   VIRTUAL = 'virtual',
-  SMART_CUBE = 'smart-cube'
+  SMART_CUBE = 'smart-cube',
+  NEXUS_CONNECT = 'nexus-connect'
 }
 
 export enum TimerStatus {
