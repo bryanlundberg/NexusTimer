@@ -4,6 +4,7 @@ import ManualMode from '@/features/timer/ui/ManualMode'
 import Stackmat from '@/features/timer/ui/stackmat'
 import TimerVirtual from '@/features/timer/ui/TimerVirtual'
 import { TimerMode } from '@/features/timer/model/enums'
+import NXConnect from '@/features/nexus-connect/ui/NXConnect'
 
 export function MainTimer() {
   const timerMode = useTimerStore((store) => store.timerMode)
@@ -18,6 +19,12 @@ export function MainTimer() {
       {timerMode === TimerMode.STACKMAT && (
         <Timer>
           <Stackmat />
+        </Timer>
+      )}
+
+      {timerMode === TimerMode.NEXUS_CONNECT && (
+        <Timer>
+          <NXConnect />
         </Timer>
       )}
 
