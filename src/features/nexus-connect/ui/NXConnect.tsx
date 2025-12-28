@@ -141,7 +141,14 @@ export default function NXConnect() {
     const browser = parser.getBrowser()
 
     const connectionRef = ref(rtdb, 'connect-sessions/' + nexusConnectId)
-    onDisconnect(child(connectionRef, 'primary')).set(null)
+
+    const disconnectRef = onDisconnect(connectionRef)
+    disconnectRef.update({
+      primary: null,
+      isSolving: false,
+      updatedAt: Date.now()
+    })
+
     ;(async () => {
       await update(connectionRef, {
         primary: {
