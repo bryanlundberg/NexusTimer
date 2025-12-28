@@ -14,12 +14,19 @@ import { MixIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { TimerMode } from '@/features/timer/model/enums'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import ConnectQR from '@/features/nexus-connect/ui/ConnectQR'
+import { useNexusConnectStore } from '@/features/nexus-connect/model/useNexusConnectStore'
+import genId from '@/shared/lib/genId'
 
 export default function ButtonSelectMode() {
   const timerMode = useTimerStore((state) => state.timerMode)
   const setTimerMode = useTimerStore((state) => state.setTimerMode)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const t = useTranslations('Index')
+  const open = useOverlayStore((state) => state.open)
+  const connectId = useNexusConnectStore((state) => state.nexusConnectId)
+  const setConnectId = useNexusConnectStore((state) => state.setNexusConnectId)
 
   useEffect(() => {
     if (!selectedCube) return
@@ -27,6 +34,17 @@ export default function ButtonSelectMode() {
       setTimerMode(TimerMode.NORMAL)
     }
   }, [selectedCube, setTimerMode, timerMode])
+
+  const handleNexusConnectClick = async () => {
+    const id = connectId || genId()
+    if (!connectId) setConnectId(id)
+
+    open({
+      id: 'nexus-connect-info',
+      component: <ConnectQR />,
+      metadata: {}
+    })
+  }
 
   return (
     <>
@@ -58,6 +76,13 @@ export default function ButtonSelectMode() {
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem data-testid={'mode-smart'} value={TimerMode.SMART_CUBE} disabled>
               Smart cube
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem
+              data-testid={'mode-nexus-connect'}
+              value={TimerMode.NEXUS_CONNECT}
+              onClick={handleNexusConnectClick}
+            >
+              Nexus Connect
             </DropdownMenuRadioItem>
           </DropdownMenuRadioGroup>
         </DropdownMenuContent>
