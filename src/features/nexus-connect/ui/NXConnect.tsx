@@ -28,6 +28,7 @@ export default function NXConnect() {
   const [connectSessionData, setConnectSessionData] = useState<any>(null)
   const startSolveTime = useRef<number | null>(null)
   const solveTimeId = useRef<any>(null)
+  const serverOffset = useRef(0)
 
   const stopLocalTimer = () => {
     if (solveTimeId.current) {
@@ -39,16 +40,15 @@ export default function NXConnect() {
 
   const startLocalTimer = (startAt: number) => {
     stopLocalTimer()
-    const offset = Date.now() - performance.now()
-    startSolveTime.current = startAt - offset
+    startSolveTime.current = startAt
 
     const updateTimer = () => {
       if (startSolveTime.current === null) return
 
-      const now = performance.now()
+      const now = Date.now() + serverOffset.current
       const difference = now - startSolveTime.current
-      setSolvingTime(difference)
 
+      setSolvingTime(difference)
       solveTimeId.current = requestAnimationFrame(updateTimer)
     }
 
@@ -56,6 +56,13 @@ export default function NXConnect() {
   }
 
   useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
+
+  useEffect(() => {
+    const offsetRef = ref(rtdb, '.info/serverTimeOffset')
+    onValue(offsetRef, (snap) => {
+      serverOffset.current = snap.val() || 0
+    })
+  }, [])
 
   useEffect(() => {
     if (!nexusConnectId) return
@@ -80,7 +87,7 @@ export default function NXConnect() {
     if (sessionIsSolving && !isSolving) {
       setIsSolving(true)
       setTimerStatus(TimerStatus.SOLVING)
-      startLocalTimer(startAt || Date.now())
+      startLocalTimer(startAt)
     }
 
     if (!sessionIsSolving && isSolving) {
@@ -135,7 +142,6 @@ export default function NXConnect() {
 
     const connectionRef = ref(rtdb, 'connect-sessions/' + nexusConnectId)
     onDisconnect(child(connectionRef, 'primary')).set(null)
-
     ;(async () => {
       await update(connectionRef, {
         primary: {
