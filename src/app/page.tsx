@@ -9,13 +9,14 @@ import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effe
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { cn } from '@/shared/lib/utils'
 import RatedIcon from '@/shared/ui/rate-icon/RateIcon'
+import { Separator } from '@/components/ui/separator'
 
 export default function Page() {
   return (
     <div className="relative w-dvw h-dvh bg-black overflow-hidden">
       {/* Animated background */}
       <Dither
-        waveSpeed={0.05}
+        waveSpeed={0.02}
         waveFrequency={5}
         waveAmplitude={0.5}
         waveColor={[0.2, 0.111, 0.3]}
@@ -81,9 +82,25 @@ export default function Page() {
               </div>
 
               <TextGenerateEffect
-                words={'Track, improve, and compete in your cubing journey.'}
+                words={'Your timer shows times.'}
                 className={'mt-6 text-4xl md:text-6xl font-extrabold tracking-tight leading-tight'}
+                duration={0}
               />
+
+              <TextGenerateEffect
+                words={'Nexus shows how you’re really improving.'}
+                className={'text-4xl md:text-6xl font-extrabold tracking-tight leading-tight'}
+                staggerDelay={0.2}
+              />
+
+              <Separator className="my-6 md:my-8 border-white/10" />
+
+              <p className="mt-4 text-sm md:text-base text-white/80 max-w-2xl mx-auto">
+                <span className="bg-black">
+                  After just a short session, NexusTimer builds your cubing performance profile — automatically, per
+                  cube, per category.
+                </span>
+              </p>
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <Link
@@ -91,13 +108,13 @@ export default function Page() {
                   className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors pl-2"
                 >
                   <Image src={'/landing/cube.gif'} alt={''} width={32} height={32} unoptimized />
-                  Start now
+                  Discover your performance
                 </Link>
                 <Link
                   href="/app"
-                  className="inline-flex items-center justify-center rounded-md border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white hover:bg-white/10 transition-colors"
+                  className="inline-flex items-center justify-center rounded-md border border-white/15 bg-white/20 px-4 py-2.5 text-sm text-white hover:bg-white/10 transition-colors"
                 >
-                  Demo
+                  Import your solves from any timer
                 </Link>
               </div>
               <div className="mx-auto w-fit mt-6 flex items-center gap-4 text-xs text-white/60">
@@ -253,16 +270,17 @@ export default function Page() {
           {/* How it works */}
           <section id="how" className="relative">
             <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-              <TypographyH1>How to start?</TypographyH1>
-              <div className="rounded-xl border border-white/15 bg-black/30 p-8 md:p-10">
-                <div className="grid md:grid-cols-3 gap-8 md:gap-10">
-                  <StepItem number={1} title="Enter NexusTimer App" desc="Create a free account and join." />
-                  <StepItem number={2} title="Add Your Cubes" desc="Access your cubes section and add your cubes." />
+              <TypographyH1>How it works?</TypographyH1>
+              <div className="rounded-xl border border-white/15 bg-black/30 p-5">
+                <div className="grid md:grid-cols-4 gap-8 md:gap-10">
+                  <StepItem number={1} title="Start or import" desc={'Use Nexus or import solves from any timer.'} />
                   <StepItem
-                    number={3}
-                    title="Start Timing"
-                    desc="Use the timer to start solving and tracking your times."
+                    number={2}
+                    title="Train as usual"
+                    desc="Just solve. Everything is categorized automatically."
                   />
+                  <StepItem number={3} title="Analyze" desc="See performance trends after a short session." />
+                  <StepItem number={4} title="Improve" desc="Compare profiles and track long-term progress." />
                 </div>
               </div>
             </div>
@@ -678,7 +696,7 @@ function FeatureTable() {
   return (
     <section id="features-comparison" className="relative">
       <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-        <TypographyH1>What's different about NXTimer?</TypographyH1>
+        <TypographyH1>For cubers who want more than a timer?</TypographyH1>
         <h2 className="text-center text-sm md:text-base text-white/70 mb-8">
           NXTimer offers unique features that set it apart from other popular timers.
         </h2>
