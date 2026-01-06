@@ -5,18 +5,21 @@ import { Button } from '@/components/ui/button'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import ImportBackup from '@/features/manage-backup/ui/ImportBackup'
 import { cubesDB } from '@/entities/cube/api/indexdb'
-import { Merge } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { toast } from 'sonner';
-import { useTimerStore } from '@/shared/model/timer/useTimerStore';
+import { Merge } from 'lucide-react'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { toast } from 'sonner'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useQueryState } from 'nuqs'
+import { useEffect } from 'react'
 
 export function DataImportExport() {
   const t = useTranslations('Index')
   const open = useOverlayStore((state) => state.open)
-  const setCubes  = useTimerStore(state => state.setCubes)
-  const setSelectedCube = useTimerStore(state => state.setSelectedCube)
-  const resetTimer = useTimerStore(state => state.reset)
-  const setLastSolve = useTimerStore(state => state.setLastSolve)
+  const setCubes = useTimerStore((state) => state.setCubes)
+  const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
+  const resetTimer = useTimerStore((state) => state.reset)
+  const setLastSolve = useTimerStore((state) => state.setLastSolve)
+  const [redirect, setRedirect] = useQueryState('redirect', { defaultValue: '' })
 
   const handleExport = async () => {
     try {
@@ -34,26 +37,33 @@ export function DataImportExport() {
     })
   }
 
+  useEffect(() => {
+    if (redirect === 'import') {
+      handleOpenImport()
+      setRedirect('')
+    }
+  }, [redirect, setRedirect])
+
   const handleNormalizeDatabase = async () => {
     try {
       const db = await cubesDB.getAllDatabase()
-      const normalizedDB = db.map(cube => {
+      const normalizedDB = db.map((cube) => {
         return {
           ...cube,
           solves: {
             ...cube.solves,
-            session: (cube.solves.session || []).map(solve => ({
+            session: (cube.solves.session || []).map((solve) => ({
               ...solve,
               cubeId: cube.id,
               isDeleted: solve.isDeleted || false,
               updatedAt: solve.updatedAt || Date.now()
             })),
-            all: (cube.solves.all || []).map(solve => ({
+            all: (cube.solves.all || []).map((solve) => ({
               ...solve,
               cubeId: cube.id,
               isDeleted: solve.isDeleted || false,
               updatedAt: solve.updatedAt || Date.now()
-            })),
+            }))
           },
           updatedAt: Date.now(),
           isDeleted: cube.isDeleted || false
@@ -62,8 +72,8 @@ export function DataImportExport() {
 
       for (const cube of normalizedDB) {
         const allSolvesFromBoth = [
-          ...cube.solves.all.map(s => ({ ...s, source: 'all' as const })),
-          ...cube.solves.session.map(s => ({ ...s, source: 'session' as const }))
+          ...cube.solves.all.map((s) => ({ ...s, source: 'all' as const })),
+          ...cube.solves.session.map((s) => ({ ...s, source: 'session' as const }))
         ]
 
         const solvesMap = new Map<string, any>()
@@ -74,18 +84,20 @@ export function DataImportExport() {
             solvesMap.set(solve.id, solve)
           } else if (existing.updatedAt < solve.updatedAt) {
             solvesMap.set(solve.id, solve)
-          } else if (existing.updatedAt === solve.updatedAt && existing.source === 'all' && solve.source === 'session') {
+          } else if (
+            existing.updatedAt === solve.updatedAt &&
+            existing.source === 'all' &&
+            solve.source === 'session'
+          ) {
             solvesMap.set(solve.id, solve)
           }
         }
 
         const uniqueSolves = Array.from(solvesMap.values())
-        cube.solves.all = uniqueSolves
-          .filter(solve => solve.source === 'all')
-          .map(({ source, ...solve }) => solve)
+        cube.solves.all = uniqueSolves.filter((solve) => solve.source === 'all').map(({ source, ...solve }) => solve)
 
         cube.solves.session = uniqueSolves
-          .filter(solve => solve.source === 'session')
+          .filter((solve) => solve.source === 'session')
           .map(({ source, ...solve }) => solve)
       }
 
@@ -93,7 +105,6 @@ export function DataImportExport() {
       for (const cube of normalizedDB) {
         await cubesDB.update(cube)
       }
-
 
       const refreshedCubes = await cubesDB.getAll()
       setCubes(refreshedCubes)
@@ -133,7 +144,7 @@ export function DataImportExport() {
           <TooltipTrigger asChild>
             <Button
               variant={'outline'}
-              className={"flex items-center gap-1"}
+              className={'flex items-center gap-1'}
               onClick={handleNormalizeDatabase}
               data-testid="export-data-to-file-button"
             >
@@ -141,9 +152,9 @@ export function DataImportExport() {
               Normalize Database
             </Button>
           </TooltipTrigger>
-          <TooltipContent className={"max-w-xs"}>
-            Updates database structures to maintain data integrity. Run periodically to keep your
-            database optimized, especially after app updates.
+          <TooltipContent className={'max-w-xs'}>
+            Updates database structures to maintain data integrity. Run periodically to keep your database optimized,
+            especially after app updates.
           </TooltipContent>
         </Tooltip>
       </div>
