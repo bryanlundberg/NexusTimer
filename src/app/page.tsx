@@ -111,7 +111,7 @@ export default function Page() {
                   Discover your performance
                 </Link>
                 <Link
-                  href="/app"
+                  href="/options?redirect=import"
                   className="inline-flex items-center justify-center rounded-md border border-white/15 bg-white/20 px-4 py-2.5 text-sm text-white hover:bg-white/10 transition-colors"
                 >
                   Import your solves from any timer
