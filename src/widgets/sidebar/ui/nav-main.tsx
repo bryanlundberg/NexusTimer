@@ -60,8 +60,10 @@ export function NavMain({
         {items.map((item) => {
           const subActive = item.items?.some((s) => isPathActive(s.url)) ?? false
           const itemActive = isPathActive(item.url) || subActive
+          const isOpen = item.isActive || itemActive
+
           return (
-            <Collapsible key={item.title} asChild defaultOpen={itemActive}>
+            <Collapsible key={item.title} asChild defaultOpen={isOpen}>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip={item.title} isActive={itemActive}>
                   <Link href={item.url}>

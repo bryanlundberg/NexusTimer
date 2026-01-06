@@ -41,7 +41,7 @@ import { NavUser } from '@/widgets/sidebar/ui/nav-user'
 import { NavMain } from '@/widgets/sidebar/ui/nav-main'
 import { NavSecondary } from '@/widgets/sidebar/ui/nav-secondary'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
-import DiscordButton from '@/features/authentication/ui/DiscordButton';
+import DiscordButton from '@/features/authentication/ui/DiscordButton'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { data: session } = useSession()
@@ -104,6 +104,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           title: t('NavMain.community'),
           url: '/people',
           icon: UsersRound,
+          isActive: true,
           items: [
             {
               title: 'People',
@@ -119,6 +120,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           title: t('NavMain.multiplayer'),
           url: '/free-play',
           icon: LandPlot,
+          isActive: true,
           items: [
             {
               title: 'Free Play',
@@ -234,7 +236,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </CardHeader>
             <UICardFooter>
               <div className="w-full">
-                <DiscordButton/>
+                <DiscordButton />
                 <GoogleButton />
               </div>
             </UICardFooter>
