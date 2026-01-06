@@ -73,7 +73,6 @@ export default function Page() {
 
         {/* Main */}
         <main className="flex-1">
-          {/* Hero */}
           <section className="relative">
             <div className="mx-auto max-w-4xl px-6 pt-12 pb-20 md:pt-20 md:pb-28 text-center relative">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-white/70 mx-auto">
@@ -142,6 +141,44 @@ export default function Page() {
                   />
                 </div>
                 <span>Join a growing community of cubers</span>
+              </div>
+            </div>
+          </section>
+
+          {/* Activation Moment / Wow Section */}
+          <section className="relative py-12 md:py-24 overflow-hidden">
+            <div className="mx-auto max-w-7xl px-6">
+              <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
+                  Everything you need to <span className="text-fuchsia-400">level up</span>
+                </h2>
+                <p className="text-white/60 text-lg max-w-2xl mx-auto">
+                  From deep analytics to real-time competition. Discover the features that make NexusTimer the ultimate
+                  choice for serious cubers.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <ActivationMomentCard
+                  title="Split by Cube"
+                  description="Analyze your performance for each individual cube."
+                  imageSrc="/landing/Screenshot_40.png"
+                />
+                <ActivationMomentCard
+                  title="Cool Stats"
+                  description="Understand every solve with detailed performance metrics."
+                  imageSrc="/landing/Screenshot_41.png"
+                />
+                <ActivationMomentCard
+                  title="Online modes"
+                  description="Compete in real-time with cubers around the world."
+                  imageSrc="/landing/Screenshot_38.png"
+                />
+                <ActivationMomentCard
+                  title="Personal Profile"
+                  description="Track your progress and showcase your times."
+                  imageSrc="/landing/Screenshot_43.png"
+                />
               </div>
             </div>
           </section>
@@ -538,6 +575,43 @@ function StepItem({ number, title, desc }: { number: number; title: string; desc
       <div>
         <div className="text-base md:text-lg font-semibold">{title}</div>
         <div className="text-sm text-white/70">{desc}</div>
+      </div>
+    </div>
+  )
+}
+
+function ActivationMomentCard({
+  title,
+  description,
+  imageSrc,
+  className
+}: {
+  title: string
+  description: string
+  imageSrc: string
+  className?: string
+}) {
+  return (
+    <div
+      className={cn(
+        'group relative aspect-[16/10] md:aspect-video overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition-all hover:border-fuchsia-500/50',
+        className
+      )}
+    >
+      <Image
+        src={imageSrc}
+        alt={title}
+        width={800}
+        height={800}
+        className="object-cover object-top w-full h-full transition-transform duration-500 group-hover:scale-110"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-6">
+        <h3 className="font-bold text-xl text-white transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
+          {title}
+        </h3>
+        <p className="text-sm text-white/80 mt-2 transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0 delay-75">
+          {description}
+        </p>
       </div>
     </div>
   )
