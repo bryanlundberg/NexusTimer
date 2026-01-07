@@ -292,6 +292,42 @@
     "AccessCard": {
       "title": "Access",
       "description": "Keep your data in sync across devices and access more features."
+    },
+    "AlgorithmsPage": {
+      "title": "Algorithms",
+      "header": "Master Your Cubing Journey with Algorithm Training",
+      "description": "Explore a wide range of algorithm sets for various puzzles, complete with interactive 3D visualizations to enhance your learning experience.",
+      "suggestions": "If you find any errors or want to extend with more algorithms, please submit it on our GitHub.",
+      "edit-github": "Edit this algorithms on Github",
+      "skill": "Skill",
+      "casual-enthusiast": "Casual Enthusiast",
+      "dedicated-learner": "Dedicated Learner",
+      "algorithm-master": "Algorithm Master",
+      "descriptions": {
+        "pbl": "These algorithms are used to permute both the top and bottom layers of a 2x2 cube simultaneously, allowing for efficient solving of the puzzle.",
+        "ocll": "COLL (Orient Corners of the Last Layer) - This step focuses on orienting all the corners of the last layer to prepare for the final steps of solving the puzzle.",
+        "cll": "CLL is a subset of OLL for 2x2x2 cubes that solves the last layer in one algorithm after orienting the first layer.",
+        "eg-1": "EG-1 is a set of algorithms used to solve the last layer of a 2x2 cube after the first layer is completed, specifically when there is an adjacent swap on the bottom layer.",
+        "eg-2": "EG-2 is a set of algorithms used to solve the last layer of a 2x2 cube after the first layer is completed, specifically when there is a diagonal swap on the bottom layer.",
+        "oll": "The OLL (Orientation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used to orient all of the pieces on the last layer, once the F2L is complete.",
+        "pll": "The PLL (Permutation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used for the final step of the CFOP method, to permute the edges and corners of the last layer, once all pieces are oriented.",
+        "coll": "COLL (Corners and Orientation of Last Layer) algorithms are used to orient and permute the corners of your last layer at the same time, presuming that all of your last layer edges are already oriented.",
+        "ble": "Brooks' Last Edge (BLE) is a method used to solve the last edge of the Rubik's Cube efficiently, often as part of advanced solving techniques.",
+        "vls": "VLS (Valk Last Slot) algorithms solve the final F2L slot and OLL at the same time, in the cases where you have a connected F2L pair. This selection of algorithms serves as an introduction to the full VLS algorithm set, and aims to highlight the most useful cases to know.",
+        "cls": "CLS (Corner Last Slot) algorithms solve the last F2L corner and orient your last layer at the same time. They are used when the edge of your final F2L pair is already solved, and the last layer edges are oriented. This selection of algorithms serves as an introduction to the full CLS algorithm set, and aims to highlight the most useful cases to know.",
+        "wv": "WV (Winter Variation) algorithms are used to orient the corners of your last layer whilst you insert your final F2L pair, in the case where the pair is connected and where all of the last layer edges are already oriented.",
+        "zbll-s": "ZBLL Sune (ZBLL-S) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a sune configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-as": "ZBLL Antisune (ZBLL-AS) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in an antisune configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-u": "ZBLL U (ZBLL-U) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a U configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-t": "ZBLL T (ZBLL-T) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a T configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-pi": "ZBLL PI (ZBLL-PI) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a PI configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-l": "ZBLL L (ZBLL-L) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in an L configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-h": "ZBLL H (ZBLL-H) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in an H configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "parity-4x4": "These algorithms address the unique parity errors that can occur when solving a 4x4 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 4x4 to a 3x3 state.",
+        "parity-5x5": "These algorithms address the unique parity errors that can occur when solving a 5x5 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 5x5 to a 3x3 state.",
+        "l4e": "Last 4 slots (Pyraminx) - These algorithms are used to solve the last four edge pieces of a Pyraminx puzzle. The goal is to position and orient these pieces correctly to complete the puzzle."
+      },
+      "alternative": "Alternative"
     }
   },
   "Metadata": {
