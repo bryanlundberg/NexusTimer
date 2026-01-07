@@ -1,5 +1,11 @@
 {
   "Index": {
+    "leaderboard-solve-details": {
+      "user-solution": "Solución del usuario",
+      "time": "Tiempo",
+      "scramble": "Mezcla",
+      "solution": "Solución"
+    },
     "HomePage": {
       "hint": "Consejo",
       "optimal-yellow-layer": "Capa Amarilla Óptima",
@@ -108,6 +114,11 @@
       "idle": "Inactivo",
       "name": "Nombre",
       "new-collection": "Nueva colección",
+      "new-collection-description": "Crea una nueva colección para organizar tus cubos.",
+      "restore-account-data": "Restaurar datos de la cuenta",
+      "restore-account-data-description": "Restaura tus datos desde los respaldos de tu cuenta.",
+      "import-from-other-timers": "Importar de otros cronómetros",
+      "import-from-other-timers-description": "Importa datos de otras aplicaciones de cronómetro.",
       "delete": "Borrar",
       "edit": "Editar",
       "chart-solves-label": "Tiempos",
@@ -131,7 +142,6 @@
       "input-collection-name": "Introduzca el nombre de la colección",
       "name": "Nombre",
       "new-collection": "Nueva colección",
-      "new-collection-description": "Las colecciones de cubos le permiten realizar un seguimiento del historial de cada cubo sin afectar las estadísticas generales de la categoría.",
       "select-an-option": "Seleccione una opción",
       "to-continue": "para continuar:",
       "warning-alert": "Advertencia:",

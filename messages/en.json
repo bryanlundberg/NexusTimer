@@ -25,6 +25,12 @@
       "auto-select-description": "Automatically select a cube at application start",
       "language-description": "Change the language used throughout the application"
     },
+    "leaderboard-solve-details": {
+      "user-solution": "User solution",
+      "time": "Time",
+      "scramble": "Scramble",
+      "solution": "Solution"
+    },
     "HomePage": {
       "title": "Timer",
       "hint": "Hint",
@@ -133,6 +139,11 @@
       "using": "Using",
       "idle": "Idle",
       "new-collection": "New collection",
+      "new-collection-description": "Create a new collection to organize your cubes.",
+      "restore-account-data": "Restore Account Data",
+      "restore-account-data-description": "Restore your data from your account backups.",
+      "import-from-other-timers": "Import from Other Timers",
+      "import-from-other-timers-description": "Import data from other timer apps.",
       "name": "Name",
       "edit": "Edit",
       "delete": "Delete",
@@ -159,7 +170,6 @@
       "category": "Category",
       "select-an-option": "Select an option",
       "new-collection": "New collection",
-      "new-collection-description": "Cube collections allow you to keep track of each cube's history without affecting overall category stats.",
       "current-selection": "Current selection:"
     },
     "Errors": {
