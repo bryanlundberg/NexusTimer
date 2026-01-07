@@ -6,12 +6,14 @@ import { Cube } from '@/entities/cube/model/types'
 import { Label, Pie, PieChart } from 'recharts'
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
 import { Separator } from '@/components/ui/separator'
+import { useTranslations } from 'next-intl'
 
 interface PeopleCubeCardProps {
   cube: Cube
 }
 
 export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
+  const t = useTranslations('Index.CubesPage')
   const session = cube.solves.session || []
   const counts = session.reduce(
     (acc, s) => ({
@@ -63,7 +65,9 @@ export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
         />
         <div className={'flex flex-col space-y-1'}>
           <div className={'text-lg font-semibold'}>{cube.name}</div>
-          <div className={'text-xs text-muted-foreground'}>Created: {moment(cube.createdAt).format('DD/MM/YYYY')}</div>
+          <div className={'text-xs text-muted-foreground'}>
+            {t('created')}: {moment(cube.createdAt).format('DD/MM/YYYY')}
+          </div>
           <div className={'text-xs text-muted-foreground flex items-center gap-2'}>
             <div className="flex items-center gap-1 text-green-400">{successCount}</div>
             <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
