@@ -4,8 +4,10 @@ import formatTime from '@/shared/lib/formatTime'
 import { useParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import useFreeMode from '@/features/free-play-room/model/useFreeMode'
+import { useTranslations } from 'next-intl'
 
 export default function ResultsTab() {
+  const t = useTranslations('Multiplayer.results-tab')
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: '' }
   const { data: session } = useSession()
   const { useUsersPresence, useRoomSolves } = useFreeMode()
@@ -18,7 +20,7 @@ export default function ResultsTab() {
       userId,
       solves: Object.values(userSolves).sort((a, b) => a.createdAt - b.createdAt),
       userImage: onlineUsers.find((u) => u.id === userId)?.image || null,
-      userName: onlineUsers.find((u) => u.id === userId)?.name || 'Anonymous'
+      userName: onlineUsers.find((u) => u.id === userId)?.name || t('anonymous')
     }))
 
   const currentUserSolves = session?.user?.id
@@ -59,10 +61,10 @@ export default function ResultsTab() {
   return (
     <div className="flex flex-col gap-6 p-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <StatCard label="Latest" value={getLast()} />
-        <StatCard label="Best" value={getBest()} />
-        <StatCard label="Worst" value={getWorst()} />
-        <StatCard label="Average" value={getAverage()} />
+        <StatCard label={t('latest')} value={getLast()} />
+        <StatCard label={t('best')} value={getBest()} />
+        <StatCard label={t('worst')} value={getWorst()} />
+        <StatCard label={t('average')} value={getAverage()} />
       </div>
 
       <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -70,11 +72,11 @@ export default function ResultsTab() {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
         </span>
-        Updating live
+        {t('updating-live')}
       </div>
 
       <div className="rounded-lg border">
-        <div className="px-4 py-2 border-b text-sm font-medium text-muted-foreground">Cubers</div>
+        <div className="px-4 py-2 border-b text-sm font-medium text-muted-foreground">{t('cubers')}</div>
         <ul className="divide-y">
           {solvesFromOnlineUsers.map((p) => {
             const pTimes = p.solves
@@ -90,7 +92,7 @@ export default function ResultsTab() {
                   <div className="truncate">
                     <div className="font-medium truncate">{p.userName}</div>
                     <div className="text-xs text-muted-foreground truncate">
-                      Best {pBest} | Average: {pAvg}
+                      {t('best')} {pBest} | {t('average')}: {pAvg}
                     </div>
                   </div>
                 </div>
