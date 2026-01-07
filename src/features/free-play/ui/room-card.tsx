@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { useCountdown } from '@/shared/model/useCountdown'
+import { useTranslations } from 'next-intl'
 
 interface RoomCardProps {
   room: {
@@ -20,6 +21,7 @@ interface RoomCardProps {
 }
 
 export default function RoomCard({ room }: RoomCardProps) {
+  const t = useTranslations('Multiplayer.room-card')
   const { mmss, isFinished } = useCountdown(room.currentRoundTimeLimit)
   const usersPresence = room?.presence ? Object.values(room.presence) : []
 
@@ -32,7 +34,7 @@ export default function RoomCard({ room }: RoomCardProps) {
         <CardContent className="space-y-3">
           <div className="flex items-center gap-2 text-sm">
             <Users className="h-4 w-4 text-muted-foreground" />
-            <span className="text-muted-foreground text-nowrap">Users online:</span>
+            <span className="text-muted-foreground text-nowrap">{t('users-online')}</span>
             <div className="flex items-center gap-1 flex-wrap">
               {usersPresence.length > 0 ? (
                 usersPresence.map((user: any, index: number) => (
@@ -48,7 +50,7 @@ export default function RoomCard({ room }: RoomCardProps) {
                       </div>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>{user?.name || 'Anonymous'}</p>
+                      <p>{user?.name || t('anonymous')}</p>
                     </TooltipContent>
                   </Tooltip>
                 ))
@@ -60,20 +62,20 @@ export default function RoomCard({ room }: RoomCardProps) {
 
           <div className="flex items-center gap-2 text-sm">
             <Box className="h-4 w-4 text-muted-foreground" />
-            <span className="text-muted-foreground">Event:</span>
+            <span className="text-muted-foreground">{t('event')}</span>
             <span className="font-semibold">{room.event}</span>
           </div>
 
           <div className="flex items-center gap-2 text-sm">
             <Clock className="h-4 w-4 text-muted-foreground" />
-            <span className="text-muted-foreground">Max Time per Round:</span>
+            <span className="text-muted-foreground">{t('max-time-per-round')}</span>
             <span className="font-semibold">{formatTime(room.maxRoundTime * 1000)}</span>
           </div>
 
           {room.currentRoundTimeLimit && !isFinished && (
             <div className="flex items-center gap-2 text-sm">
               <Timer className="h-4 w-4 text-muted-foreground" />
-              <span className="text-muted-foreground">Next round starts in:</span>
+              <span className="text-muted-foreground">{t('next-round-starts-in')}</span>
               <span className="font-semibold font-mono">{mmss}</span>
             </div>
           )}
