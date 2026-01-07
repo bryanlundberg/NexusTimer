@@ -285,7 +285,10 @@
       "cubes": "Cubos",
       "transfer": "Transferir",
       "community": "Comunidad",
+      "people": "Personas",
+      "leaderboards": "Clasificaciones",
       "multiplayer": "Multijugador",
+      "free-play": "Juego Libre",
       "clash-mode": "Modo Clash",
       "settings": "Ajustes"
     },
@@ -353,5 +356,61 @@
   "OpenGraphImage": {
     "title": "Nexus Timer - Cronómetro Profesional para Cubo de Rubik",
     "description": "Nexus Timer es una plataforma profesional para entrenar y analizar tu progreso con el Cubo de Rubik."
+  },
+  "Multiplayer": {
+    "title": "Juego Libre",
+    "description": "Únete a sesiones de cubing en tiempo real con otros entusiastas. Un espacio casual donde puedes practicar libremente sin la presión de rankings o récords.",
+    "new-room": "Nueva Sala",
+    "no-active-rooms": "No hay salas activas todavía",
+    "no-active-rooms-description": "¡Sé el primero en comenzar una sesión de cubing! Crea una sala e invita a otros a unirse para una práctica casual.",
+    "account-required": "Cuenta Requerida",
+    "account-required-description": "Necesitas haber iniciado sesión para acceder a juegos en línea.",
+    "next-round-starts-in": "La siguiente ronda comienza en:",
+    "timer": "Cronómetro",
+    "results": "Resultados",
+    "people": "Personas",
+    "create-room": {
+      "title": "Nueva sala pública",
+      "description": "Crea una nueva sala para tu evento de Clash. Configura las reglas, requisitos y más.",
+      "room-name": "Nombre de la sala",
+      "room-name-placeholder": "ej. Noche de cubing",
+      "room-name-required": "El nombre de la sala es obligatorio",
+      "event": "Evento",
+      "max-round-time": "Tiempo máximo de ronda",
+      "max-round-time-description": "Límite de tiempo para mezcla + inspección + resolución (por resolución)",
+      "continue": "Continuar"
+    },
+    "status": {
+      "solving": "Resolviendo...",
+      "inspecting": "Inspeccionando",
+      "done": "Listo",
+      "idle": "Inactivo",
+      "ready": "Listo",
+      "holding": "Manteniendo"
+    },
+    "already-submitted": "Ya has enviado una resolución para esta mezcla. ¡Espera a la siguiente!",
+    "confirm-solve": {
+      "title": "Confirmar tiempo de resolución ({time})",
+      "description": "¿Cómo te gustaría registrar esta resolución?",
+      "dnf": "DNF",
+      "plus2": "+2",
+      "ok": "OK"
+    },
+    "results-tab": {
+      "latest": "Último",
+      "best": "Mejor",
+      "worst": "Peor",
+      "average": "Promedio",
+      "updating-live": "Actualizando en vivo",
+      "cubers": "Cuberos"
+    },
+    "view-profile": "Ver perfil",
+    "anonymous": "Anónimo",
+    "room-card": {
+      "users-online": "Usuarios en línea:",
+      "event": "Evento:",
+      "max-time-per-round": "Tiempo máx. por ronda:",
+      "next-round-starts-in": "Siguiente ronda en:"
+    }
   }
 }
