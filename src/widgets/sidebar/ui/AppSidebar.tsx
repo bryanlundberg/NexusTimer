@@ -107,11 +107,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           isActive: true,
           items: [
             {
-              title: 'People',
+              title: t('NavMain.people'),
               url: '/people'
             },
             {
-              title: 'Leaderboards',
+              title: t('NavMain.leaderboards'),
               url: '/leaderboards'
             }
           ]
@@ -123,13 +123,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           isActive: true,
           items: [
             {
-              title: 'Free Play',
+              title: t('NavMain.free-play'),
               url: '/free-play'
             }
           ]
         },
         {
-          title: 'Algorithms',
+          title: t('AlgorithmsPage.title'),
           url: '/algorithms',
           icon: Brain,
           items: [
