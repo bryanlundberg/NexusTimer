@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import formatTime from '@/shared/lib/formatTime'
+import { useTranslations } from 'next-intl'
 import {
   AlertDialog,
   AlertDialogContent,
@@ -16,6 +17,7 @@ interface ConfirmSolveModalProps {
 }
 
 export default function ConfirmSolveModal({ isOpen, onClose, onChoose }: ConfirmSolveModalProps) {
+  const t = useTranslations('Multiplayer.confirm-solve')
   const solvingTime = useTimerStore((store) => store.solvingTime)
   const handleClose = (options: { plus2: boolean; dnf: boolean }) => {
     onClose(false)
@@ -31,22 +33,22 @@ export default function ConfirmSolveModal({ isOpen, onClose, onChoose }: Confirm
     >
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Confirm Solve Time ({formatTime(solvingTime)})</AlertDialogTitle>
+          <AlertDialogTitle>{t('title', { time: formatTime(solvingTime) })}</AlertDialogTitle>
           <AlertDialogDescription></AlertDialogDescription>
-          <div className="text-sm text-muted-foreground mb-4">How would you like to register this solve?</div>
+          <div className="text-sm text-muted-foreground mb-4">{t('description')}</div>
           <div className={'grid grid-cols-3 gap-2'}>
             <Button
               className={'w-full'}
               variant={'destructive'}
               onClick={() => handleClose({ plus2: false, dnf: true })}
             >
-              DNF
+              {t('dnf')}
             </Button>
             <Button className={'w-full'} variant={'secondary'} onClick={() => handleClose({ plus2: true, dnf: false })}>
-              +2
+              {t('plus2')}
             </Button>
             <Button className={'w-full'} variant={'default'} onClick={() => handleClose({ plus2: false, dnf: false })}>
-              OK
+              {t('ok')}
             </Button>
           </div>
         </AlertDialogHeader>
