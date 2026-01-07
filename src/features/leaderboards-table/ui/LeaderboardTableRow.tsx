@@ -10,6 +10,7 @@ import calcTurnsPerSecond from '@/shared/lib/statistics/calcTurnsPerSecond'
 import { format } from 'date-fns'
 import useLeaderboardRow from '@/features/leaderboards-table/model/useLeaderboardRow'
 import { SolveServer } from '@/entities/solve/model/types'
+import { useLocale, useTranslations } from 'next-intl'
 
 interface LeaderboardTableRowProps {
   solve: SolveServer
@@ -17,7 +18,9 @@ interface LeaderboardTableRowProps {
 }
 
 export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRowProps) {
+  const t = useTranslations('Index.LeaderboardsPage.table')
   const router = useRouter()
+  const locale = useLocale()
   const { openModal } = useLeaderboardRow(solve)
 
   return (
@@ -56,7 +59,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
                 {solve.user?.timezone}
                 <span className={'opacity-50'}>
                   (
-                  {new Intl.DateTimeFormat('en-US', {
+                  {new Intl.DateTimeFormat(locale, {
                     timeZone: solve.user.timezone,
                     timeStyle: 'short'
                   }).format(new Date())}
@@ -70,7 +73,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
       </TableCell>
       <TableCell className="font-medium hidden sm:table-cell">{solve.puzzle}</TableCell>
       <TableCell className="font-medium hidden md:table-cell overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
-        {solve.solution ? `${calcTurnsPerSecond(solve.solution, solve.time)} tps` : 'N/A'}
+        {solve.solution ? `${calcTurnsPerSecond(solve.solution, solve.time)} ${t('tps')}` : t('not-available')}
       </TableCell>
       <TableCell>{formatTime(solve.time)}</TableCell>
       <TableCell className="hidden sm:table-cell text-right">
