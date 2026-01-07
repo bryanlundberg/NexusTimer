@@ -7,8 +7,10 @@ import { Button } from '@/components/ui/button'
 import * as React from 'react'
 import { useRouter } from 'next/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
+import { useTranslations } from 'next-intl'
 
 export default function UserCard({ user }: { user: UserDocument }) {
+  const t = useTranslations('Index.PeoplePage.user-card')
   const router = useRouter()
   const addUser = useCompareUsersStore((state) => state.addUser)
   const removeUser = useCompareUsersStore((state) => state.removeUser)
@@ -27,7 +29,7 @@ export default function UserCard({ user }: { user: UserDocument }) {
       <CardContent className="pb-2 pt-0 flex flex-col items-center">
         <div className="flex items-center gap-1 text-muted-foreground text-sm mb-2">
           <Calendar className="size-3.5" />
-          <span>Joined {moment(user.createdAt).format('MMM Do YYYY')}</span>
+          <span>{t('joined', { date: moment(user.createdAt).format('MMM Do YYYY') })}</span>
         </div>
         <div className="flex items-center gap-2 mt-4">
           <Button
@@ -36,10 +38,10 @@ export default function UserCard({ user }: { user: UserDocument }) {
             size="sm"
             className="gap-1 text-xs"
           >
-            <GitCompareIcon /> Compare
+            <GitCompareIcon /> {t('compare')}
           </Button>
           <Button size="sm" className="gap-1 text-xs" onClick={() => router.push(`/people/${user._id}`)}>
-            View Profile <ExternalLink className="size-3.5" />
+            {t('view-profile')} <ExternalLink className="size-3.5" />
           </Button>
         </div>
       </CardContent>
