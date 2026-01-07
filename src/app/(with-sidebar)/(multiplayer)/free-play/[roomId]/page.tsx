@@ -23,8 +23,10 @@ import { useCountdown } from '@/shared/model/useCountdown'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
+import { useTranslations } from 'next-intl'
 
 export default function FreePlayRoomPage() {
+  const t = useTranslations('Multiplayer')
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }
   const { data: session } = useSession()
   const router = useRouter()
@@ -56,8 +58,8 @@ export default function FreePlayRoomPage() {
     if (session === undefined) return
     if (!session) {
       alert({
-        title: 'Account Required',
-        subtitle: 'You need to be signed in to access online games.',
+        title: t('account-required'),
+        subtitle: t('account-required-description'),
         confirmText: 'OK',
         hideCancel: true
       }).then(() => {
@@ -109,7 +111,7 @@ export default function FreePlayRoomPage() {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href={'/free-play'}>Free Play</Link>
+                  <Link href={'/free-play'}>{t('title')}</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </BreadcrumbList>
@@ -159,12 +161,12 @@ export default function FreePlayRoomPage() {
                   <AvatarGroupTooltip>
                     <p>{user.name}</p>
                     <p className={'text-xs text-muted-foreground'}>
-                      {user.status === TimerStatus.SOLVING && 'Solving...'}
-                      {user.status === TimerStatus.INSPECTING && 'Inspecting'}
-                      {user.status === TimerStatus.WAITING_NEXT_ROUND && 'Done'}
-                      {user.status === TimerStatus.IDLE && 'Idle'}
-                      {user.status === TimerStatus.READY && 'Ready'}
-                      {user.status === TimerStatus.HOLDING && 'Holding'}
+                      {user.status === TimerStatus.SOLVING && t('status.solving')}
+                      {user.status === TimerStatus.INSPECTING && t('status.inspecting')}
+                      {user.status === TimerStatus.WAITING_NEXT_ROUND && t('status.done')}
+                      {user.status === TimerStatus.IDLE && t('status.idle')}
+                      {user.status === TimerStatus.READY && t('status.ready')}
+                      {user.status === TimerStatus.HOLDING && t('status.holding')}
                     </p>
                   </AvatarGroupTooltip>
                 </Avatar>
@@ -175,7 +177,9 @@ export default function FreePlayRoomPage() {
       </div>
 
       <div>
-        <div className={'text-center text-xs mb-4'}>Next round starts in: {mmss}</div>
+        <div className={'text-center text-xs mb-4'}>
+          {t('next-round-starts-in')} {mmss}
+        </div>
       </div>
 
       <div className="flex grow bg-card rounded-md border border-muted h-full overflow-hidden min-h-0">
@@ -188,13 +192,13 @@ export default function FreePlayRoomPage() {
 
       <div className={'grid grid-cols-3 gap-2 mt-3 mb-4 md:mb-2'}>
         <Button variant={currentTab === 'timer' ? 'default' : 'secondary'} onClick={() => setCurrentTab('timer')}>
-          <Clock /> Timer
+          <Clock /> {t('timer')}
         </Button>
         <Button variant={currentTab === 'results' ? 'default' : 'secondary'} onClick={() => setCurrentTab('results')}>
-          <ChartBarIcon className={'rotate-270'} /> Results
+          <ChartBarIcon className={'rotate-270'} /> {t('results')}
         </Button>
         <Button variant={currentTab === 'people' ? 'default' : 'secondary'} onClick={() => setCurrentTab('people')}>
-          <UsersIcon /> People
+          <UsersIcon /> {t('people')}
         </Button>
       </div>
     </div>
