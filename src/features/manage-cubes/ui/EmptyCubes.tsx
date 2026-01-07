@@ -90,7 +90,7 @@ export default function EmptyCubes({
             <div className="absolute inset-0">
               <Image
                 src={'/utils/iron-cube.png'}
-                alt={'no-cubes-for-display'}
+                alt={t('no-cubes-for-display')}
                 width={200}
                 height={200}
                 draggable={false}
@@ -107,7 +107,7 @@ export default function EmptyCubes({
               onClick={handleClickOnCreate}
               data-testid="empty-cubes-create-button"
               title={t('new-collection')}
-              description={'Create a new collection to organize your cubes.'}
+              description={t('new-collection-description')}
             />
             {session?.user && (
               <CardActionButton
@@ -115,8 +115,8 @@ export default function EmptyCubes({
                 variant={'ghost'}
                 onClick={handleClickOnRestoreAccountData}
                 data-testid="empty-cubes-restore-account-button"
-                title={'Restore Account Data'}
-                description={'Restore your data from your account backups.'}
+                title={t('restore-account-data')}
+                description={t('restore-account-data-description')}
               />
             )}
             <CardActionButton
@@ -124,8 +124,8 @@ export default function EmptyCubes({
               variant={'ghost'}
               onClick={handleClickOnImportOtherTimers}
               data-testid="empty-cubes-import-other-timers-button"
-              title={'Import from Other Timers'}
-              description={'Import data from other timer apps.'}
+              title={t('import-from-other-timers')}
+              description={t('import-from-other-timers-description')}
             />
           </div>
         </div>
