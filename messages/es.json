@@ -155,6 +155,63 @@
       "exit-fullscreen": "Salir de pantalla completa",
       "fullscreen": "Pantalla completa"
     },
+    "PeoplePage": {
+      "title": "Personas",
+      "search-placeholder": "Buscar por nombre",
+      "region-placeholder": "Región",
+      "region-all": "Todas",
+      "no-users-found": "No se encontraron usuarios que coincidan con tus criterios",
+      "results": "Resultados",
+      "user-card": {
+        "joined": "Se unió el {date}",
+        "compare": "Comparar",
+        "view-profile": "Ver Perfil"
+      },
+      "tabs": {
+        "overview": "Resumen",
+        "cubes": "Cubos",
+        "last-activity": "Actividad reciente"
+      },
+      "no-backup-data": "Esta cuenta no tiene datos de respaldo para mostrar.",
+      "solve-card": {
+        "single": "Single",
+        "ao5": "Ao5 (Mejor)",
+        "time-spent": "Tiempo invertido",
+        "solves": "Soluciones"
+      }
+    },
+    "LeaderboardsPage": {
+      "title": "Clasificaciones",
+      "description": "Explora los 100 mejores y sus resoluciones en varias categorías. Descubre información detallada sobre cada participante y sus logros.",
+      "type": "Tipo",
+      "thinking": "Pensando...",
+      "table": {
+        "user": "Usuario",
+        "category": "Categoría",
+        "scramble": "Mezcla",
+        "time": "Tiempo",
+        "image": "Imagen",
+        "date": "Fecha",
+        "cube-used": "Cubo usado",
+        "tps": "tps",
+        "not-available": "N/D"
+      },
+      "comparative": {
+        "title": "Comparativa",
+        "timezone": "Zona Horaria",
+        "first-solve": "Primera resolución",
+        "total-solves": "Total de soluciones",
+        "total-cubes": "Total de cubos",
+        "single": "Single",
+        "average": "Promedio",
+        "count": "Conteo",
+        "name": "Nombre",
+        "last-backup": "¿Último respaldo?",
+        "never": "Nunca",
+        "close": "Cerrar",
+        "compare": "Comparar"
+      }
+    },
     "Settings-menu": {
       "locale": "Región",
       "language": "Idioma",
