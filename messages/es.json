@@ -292,6 +292,42 @@
     "AccessCard": {
       "title": "Acceso",
       "description": "Mantén tus datos sincronizados entre dispositivos y accede a más funciones."
+    },
+    "AlgorithmsPage": {
+      "title": "Algoritmos",
+      "header": "Domina tu camino en el cubo con el entrenamiento de algoritmos",
+      "description": "Explore una amplia gama de conjuntos de algoritmos para varios acertijos, completos con visualizaciones 3D interactivas para mejorar su experiencia de aprendizaje.",
+      "suggestions": "Si encuentra algún error o desea ampliar con más algoritmos, envíelo a nuestro GitHub.",
+      "edit-github": "Editar estos algoritmos en Github",
+      "skill": "Nivel",
+      "casual-enthusiast": "Entusiasta Casual",
+      "dedicated-learner": "Estudiante Dedicado",
+      "algorithm-master": "Maestro de Algoritmos",
+      "descriptions": {
+        "pbl": "Estos algoritmos se utilizan para permutar simultáneamente las capas superior e inferior de un cubo 2x2, lo que permite una resolución eficiente del rompecabezas.",
+        "ocll": "COLL (Orientación de las esquinas de la última capa): este paso se centra en orientar todas las esquinas de la última capa para prepararse para los pasos finales de la resolución del rompecabezas.",
+        "cll": "CLL es un subconjunto de OLL para cubos de 2x2x2 que resuelve la última capa en un algoritmo después de orientar la primera capa.",
+        "eg-1": "EG-1 es un conjunto de algoritmos utilizados para resolver la última capa de un cubo de 2x2 después de completar la primera capa, específicamente cuando hay un intercambio adyacente en la capa inferior.",
+        "eg-2": "EG-2 es un conjunto de algoritmos utilizados para resolver la última capa de un cubo de 2x2 después de completar la primera capa, específicamente cuando hay un intercambio diagonal en la capa inferior.",
+        "oll": "Los algoritmos OLL (Orientación de la última capa) para resolver el cubo de Rubik con el método CFOP. Estos algoritmos se utilizan para orientar todas las piezas de la última capa, una vez que se completa el F2L.",
+        "pll": "Los algoritmos PLL (Permutación de la última capa) para resolver el cubo de Rubik con el método CFOP. Estos algoritmos se utilizan para el paso final del método CFOP, para permutar las aristas y esquinas de la última capa, una vez que todas las piezas están orientadas.",
+        "coll": "Los algoritmos COLL (Orientación y permutación de las esquinas de la última capa) se utilizan para orientar y permutar las esquinas de la última capa al mismo tiempo, suponiendo que todas las aristas de la última capa ya estén orientadas.",
+        "ble": "Brooks' Last Edge (BLE) es un método utilizado para resolver la última arista del Cubo de Rubik de manera eficiente, a menudo como parte de técnicas de resolución avanzadas.",
+        "vls": "Los algoritmos VLS (Valk Last Slot) resuelven el último par del F2L y el OLL al mismo tiempo, en los casos en los que tienes un par de F2L conectado. Esta selección de algoritmos sirve como introducción al conjunto completo de algoritmos VLS y tiene como objetivo resaltar los casos más útiles de conocer.",
+        "cls": "Los algoritmos CLS (Corner Last Slot) resuelven la última esquina del F2L y orientan la última capa al mismo tiempo. Se utilizan cuando la arista del último par de F2L ya está resuelta y las aristas de la última capa están orientadas. Esta selección de algoritmos sirve como introducción al conjunto completo de algoritmos CLS y tiene como objetivo resaltar los casos más útiles de conocer.",
+        "wv": "Los algoritmos WV (Winter Variation) se utilizan para orientar las esquinas de la última capa mientras insertas el último par de F2L, en el caso de que el par esté conectado y donde todas las aristas de la última capa ya estén orientadas.",
+        "zbll-s": "ZBLL Sune (ZBLL-S) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'sune', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-as": "ZBLL Antisune (ZBLL-AS) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'antisune', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-u": "ZBLL U (ZBLL-U) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'U', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-t": "ZBLL T (ZBLL-T) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'T', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-pi": "ZBLL PI (ZBLL-PI) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'PI', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-l": "ZBLL L (ZBLL-L) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'L', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-h": "ZBLL H (ZBLL-H) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'H', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "parity-4x4": "Estos algoritmos abordan los errores de paridad únicos que pueden ocurrir al resolver un cubo de Rubik de 4x4, que no ocurren en un cubo de 3x3 estándar. Son esenciales para completar la resolución después de reducir el 4x4 a un estado de 3x3.",
+        "parity-5x5": "Estos algoritmos abordan los errores de paridad únicos que pueden ocurrir al resolver un cubo de Rubik de 5x5, que no ocurren en un cubo de 3x3 estándar. Son esenciales para completar la resolución después de reducir el 5x5 a un estado de 3x3.",
+        "l4e": "Últimas 4 ranuras (Pyraminx): estos algoritmos se utilizan para resolver las últimas cuatro piezas de arista de un rompecabezas Pyraminx. El objetivo es posicionar y orientar estas piezas correctamente para completar el rompecabezas."
+      },
+      "alternative": "Alternativa"
     }
   },
   "Metadata": {
