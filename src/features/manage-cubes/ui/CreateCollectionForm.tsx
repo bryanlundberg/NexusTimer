@@ -18,6 +18,7 @@ import { cubesDB } from '@/entities/cube/api/indexdb'
 import { DialogContent, DialogHeader } from '@/components/ui/dialog'
 import { createCubeCollection } from '@/features/manage-cubes/api/createCubeCollection'
 import { useEffect } from 'react'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 export default function CreateCollectionForm() {
   const t = useTranslations('Index')
@@ -75,7 +76,7 @@ export default function CreateCollectionForm() {
       <ScrollArea className={'overflow-auto'}>
         <DialogHeader>
           <DrawerTitle>{t('Cubes-modal.new-collection')}</DrawerTitle>
-          <DrawerDescription>{t('Cubes-modal.new-collection-description')}</DrawerDescription>
+          <DrawerDescription>{t('CubesPage.new-collection-description')}</DrawerDescription>
         </DialogHeader>
 
         <div className="p-3 space-y-2">
