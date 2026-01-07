@@ -193,7 +193,10 @@
       "cubes": "Cubes",
       "transfer": "Transfer",
       "community": "Community",
+      "people": "People",
+      "leaderboards": "Leaderboards",
       "multiplayer": "Multiplayer",
+      "free-play": "Free Play",
       "clash-mode": "Clash Mode",
       "settings": "Settings"
     },
@@ -353,5 +356,61 @@
   "OpenGraphImage": {
     "title": "Nexus Timer - Professional Rubik's Cube Timer",
     "description": "Nexus Timer is a professional platform for training and analyzing your journey with the Rubik's Cube."
+  },
+  "Multiplayer": {
+    "title": "Free Play",
+    "description": "Join real-time cubing sessions with other enthusiasts. A casual space where you can practice freely without the pressure of rankings or records.",
+    "new-room": "New Room",
+    "no-active-rooms": "No Active Rooms Yet",
+    "no-active-rooms-description": "Be the first to start a cubing session! Create a room and invite others to join you for some casual practice.",
+    "account-required": "Account Required",
+    "account-required-description": "You need to be signed in to access online games.",
+    "next-round-starts-in": "Next round starts in:",
+    "timer": "Timer",
+    "results": "Results",
+    "people": "People",
+    "create-room": {
+      "title": "New public room",
+      "description": "Create a new room for your Clash event. Set the rules, requirements, and more.",
+      "room-name": "Room name",
+      "room-name-placeholder": "e.g. Night of cubing",
+      "room-name-required": "Room name is required",
+      "event": "Event",
+      "max-round-time": "Maximum round time",
+      "max-round-time-description": "Time limit for scrambling + inspection + solving (per solve)",
+      "continue": "Continue"
+    },
+    "status": {
+      "solving": "Solving...",
+      "inspecting": "Inspecting",
+      "done": "Done",
+      "idle": "Idle",
+      "ready": "Ready",
+      "holding": "Holding"
+    },
+    "already-submitted": "You have already submitted a solve for this scramble. Wait for the next one!",
+    "confirm-solve": {
+      "title": "Confirm Solve Time ({time})",
+      "description": "How would you like to register this solve?",
+      "dnf": "DNF",
+      "plus2": "+2",
+      "ok": "OK"
+    },
+    "results-tab": {
+      "latest": "Latest",
+      "best": "Best",
+      "worst": "Worst",
+      "average": "Average",
+      "updating-live": "Updating live",
+      "cubers": "Cubers"
+    },
+    "view-profile": "View Profile",
+    "anonymous": "Anonymous",
+    "room-card": {
+      "users-online": "Users online:",
+      "event": "Event:",
+      "max-time-per-round": "Max Time per Round:",
+      "next-round-starts-in": "Next round starts in:"
+    }
   }
 }
