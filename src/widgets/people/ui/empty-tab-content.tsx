@@ -1,6 +1,8 @@
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 export default function EmptyTabContent() {
+  const t = useTranslations('Index.PeoplePage')
   return (
     <div className="relative flex flex-col items-center justify-center h-96 bg-sidebar rounded-lg shadow-md overflow-hidden">
       <Image
@@ -17,7 +19,7 @@ export default function EmptyTabContent() {
         }}
       ></Image>
       <div className="relative scroll-m-20 text-xl tracking-tight max-w-prose md:max-w-xl mx-auto text-center px-4">
-        This account has no backup data to display.
+        {t('no-backup-data')}
       </div>
     </div>
   )
