@@ -31,8 +31,6 @@ export const ALGORITHM_SETS = [
     algorithms: PBL_ALGS,
     Icon: Grid2x2Icon,
     difficulty: 1,
-    description:
-      'These algorithms are used to permute both the top and bottom layers of a 2x2 cube simultaneously, allowing for efficient solving of the puzzle.',
     virtualization: {
       experimentalStickering: 'full',
       puzzle: '2x2x2',
@@ -52,8 +50,6 @@ export const ALGORITHM_SETS = [
       experimentalStickering: 'OLL',
       puzzle: '2x2x2'
     },
-    description:
-      'COLL (Orient Corners of the Last Layer) - This step focuses on orienting all the corners of the last layer to prepare for the final steps of solving the puzzle.',
     file: 'ocll.ts',
     puzzle: '2x2x2'
   },
@@ -69,8 +65,6 @@ export const ALGORITHM_SETS = [
       experimentalStickering: 'full',
       puzzle: '2x2x2'
     },
-    description:
-      'CLL is a subset of OLL for 2x2x2 cubes that solves the last layer in one algorithm after orienting the first layer.',
     file: 'cll.ts'
   },
   {
@@ -86,8 +80,6 @@ export const ALGORITHM_SETS = [
       puzzle: '2x2x2',
       visualization: '3D'
     },
-    description:
-      'EG-1 is a set of algorithms used to solve the last layer of a 2x2 cube after the first layer is completed, specifically when there is an adjacent swap on the bottom layer.',
     file: 'eg-1.ts'
   },
   {
@@ -103,8 +95,6 @@ export const ALGORITHM_SETS = [
       puzzle: '2x2x2',
       visualization: '3D'
     },
-    description:
-      'EG-2 is a set of algorithms used to solve the last layer of a 2x2 cube after the first layer is completed, specifically when there is a diagonal swap on the bottom layer.',
     file: 'eg-2.ts'
   },
   {
@@ -118,8 +108,6 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'OLL'
     },
-    description:
-      "The OLL (Orientation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used to orient all of the pieces on the last layer, once the F2L is complete.",
     file: 'oll.ts'
   },
   {
@@ -133,8 +121,6 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'PLL'
     },
-    description:
-      "The PLL (Permutation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used for the final step of the CFOP method, to permute the edges and corners of the last layer, once all pieces are oriented.",
     file: 'pll.ts'
   },
   {
@@ -148,8 +134,6 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'PLL'
     },
-    description:
-      'COLL (Corners and Orientation of Last Layer) algorithms are used to orient and permute the corners of your last layer at the same time, presuming that all of your last layer edges are already oriented.',
     file: 'coll.ts'
   },
   {
@@ -160,8 +144,6 @@ export const ALGORITHM_SETS = [
     algorithms: BLE_ALGS,
     Icon: Grid3x3,
     difficulty: 2,
-    description:
-      "Brooks' Last Edge (BLE) is a method used to solve the last edge of the Rubik's Cube efficiently, often as part of advanced solving techniques.",
     file: 'ble.ts',
     virtualization: {
       experimentalStickering: 'OLL'
@@ -181,8 +163,6 @@ export const ALGORITHM_SETS = [
       experimentalDragInput: 'none',
       hintFacelets: 'none'
     },
-    description:
-      'VLS (Valk Last Slot) algorithms solve the final F2L slot and OLL at the same time, in the cases where you have a connected F2L pair. This selection of algorithms serves as an introduction to the full VLS algorithm set, and aims to highlight the most useful cases to know.',
     file: 'vls.ts'
   },
   {
@@ -199,8 +179,6 @@ export const ALGORITHM_SETS = [
       experimentalDragInput: 'none',
       hintFacelets: 'none'
     },
-    description:
-      'CLS (Corner Last Slot) algorithms solve the last F2L corner and orient your last layer at the same time. They are used when the edge of your final F2L pair is already solved, and the last layer edges are oriented. This selection of algorithms serves as an introduction to the full CLS algorithm set, and aims to highlight the most useful cases to know.',
     file: 'cls.ts'
   },
   {
@@ -216,8 +194,6 @@ export const ALGORITHM_SETS = [
       visualization: 'experimental-2D-LL',
       experimentalDragInput: 'none'
     },
-    description:
-      'WV (Winter Variation) algorithms are used to orient the corners of your last layer whilst you insert your final F2L pair, in the case where the pair is connected and where all of the last layer edges are already oriented.',
     file: 'wv.ts'
   },
   {
@@ -231,8 +207,6 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'PLL'
     },
-    description:
-      "ZBLL Sune (ZBLL-S) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a sune configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
     file: 'zbll-s.ts'
   },
   {
@@ -246,8 +220,6 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'PLL'
     },
-    description:
-      "ZBLL Antisune (ZBLL-AS) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in an antisune configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
     file: 'zbll-as.ts'
   },
   {
@@ -261,8 +233,6 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'PLL'
     },
-    description:
-      "ZBLL U (ZBLL-U) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a U configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
     file: 'zbll-u.ts'
   },
   {
@@ -276,8 +246,6 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'PLL'
     },
-    description:
-      "ZBLL T (ZBLL-T) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a T configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
     file: 'zbll-t.ts'
   },
   {
@@ -291,8 +259,6 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'PLL'
     },
-    description:
-      "ZBLL PI (ZBLL-PI) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a PI configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
     file: 'zbll-pi.ts'
   },
   {
@@ -306,8 +272,6 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'PLL'
     },
-    description:
-      "ZBLL L (ZBLL-L) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in an L configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
     file: 'zbll-l.ts'
   },
   {
@@ -321,8 +285,6 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'PLL'
     },
-    description:
-      "ZBLL H (ZBLL-H) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in an H configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
     file: 'zbll-h.ts'
   },
   {
@@ -339,8 +301,6 @@ export const ALGORITHM_SETS = [
       visualization: '3D',
       experimentalDragInput: 'none'
     },
-    description:
-      "These algorithms address the unique parity errors that can occur when solving a 4x4 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 4x4 to a 3x3 state.",
     file: 'parity-4x4.ts'
   },
   {
@@ -357,8 +317,6 @@ export const ALGORITHM_SETS = [
       visualization: '3D',
       experimentalDragInput: 'none'
     },
-    description:
-      "These algorithms address the unique parity errors that can occur when solving a 5x5 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 5x5 to a 3x3 state.",
     file: 'parity-5x5.ts'
   },
   {
@@ -376,8 +334,6 @@ export const ALGORITHM_SETS = [
       experimentalDragInput: 'none',
       cameraLongitude: 45
     },
-    description:
-      'Last 4 slots (Pyraminx) - These algorithms are used to solve the last four edge pieces of a Pyraminx puzzle. The goal is to position and orient these pieces correctly to complete the puzzle.',
     file: 'l4e.ts'
   }
 ] as const
