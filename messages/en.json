@@ -185,6 +185,63 @@
       "fullscreen": "Fullscreen",
       "exit-fullscreen": "Exit Fullscreen"
     },
+    "PeoplePage": {
+      "title": "People",
+      "search-placeholder": "Search by name",
+      "region-placeholder": "Region",
+      "region-all": "All",
+      "no-users-found": "No users found matching your criteria",
+      "results": "Results",
+      "user-card": {
+        "joined": "Joined {date}",
+        "compare": "Compare",
+        "view-profile": "View Profile"
+      },
+      "tabs": {
+        "overview": "Overview",
+        "cubes": "Cubes",
+        "last-activity": "Last activity"
+      },
+      "no-backup-data": "This account has no backup data to display.",
+      "solve-card": {
+        "single": "Single",
+        "ao5": "Ao5 (Best)",
+        "time-spent": "Time Spent",
+        "solves": "Solves"
+      }
+    },
+    "LeaderboardsPage": {
+      "title": "Leaderboard Rankings",
+      "description": "Explore the top 100 performers and their solves across various categories. Discover detailed insights about each participant and their achievements.",
+      "type": "Type",
+      "thinking": "Thinking...",
+      "table": {
+        "user": "User",
+        "category": "Category",
+        "scramble": "Scramble",
+        "time": "Time",
+        "image": "Image",
+        "date": "Date",
+        "cube-used": "Cube used",
+        "tps": "tps",
+        "not-available": "N/A"
+      },
+      "comparative": {
+        "title": "Comparative",
+        "timezone": "Time Zone",
+        "first-solve": "First solve",
+        "total-solves": "Total solves",
+        "total-cubes": "Total Cubes",
+        "single": "Single",
+        "average": "Average",
+        "count": "Count",
+        "name": "Name",
+        "last-backup": "Last Backup?",
+        "never": "Never",
+        "close": "Close",
+        "compare": "Compare"
+      }
+    },
     "NavMain": {
       "application": "Application",
       "timer": "Timer",
