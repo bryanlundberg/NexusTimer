@@ -297,7 +297,14 @@
       "plus-two": "+2 Penalty",
       "delete": "Delete",
       "bookmark": "Bookmark",
-      "copy": "Copy"
+      "copy": "Copy",
+      "dnf": "Did Not Finish",
+      "more-actions": "More actions"
+    },
+    "solve-details": {
+      "unknown-category": "Unknown",
+      "move-to-history": "Move to History",
+      "transfer-collection": "Transfer Collection"
     },
     "Settings-menu": {
       "locale": "Region",

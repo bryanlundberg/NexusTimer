@@ -305,7 +305,14 @@
       "bookmark": "Marcador",
       "copy": "Copiar",
       "delete": "Borrar",
-      "plus-two": "2 Penalización"
+      "plus-two": "2 Penalización",
+      "dnf": "No terminó (DNF)",
+      "more-actions": "Más acciones"
+    },
+    "solve-details": {
+      "unknown-category": "Desconocido",
+      "move-to-history": "Mover al Historial",
+      "transfer-collection": "Transferir Colección"
     },
     "SettingsPage": {
       "account": "Cuenta",
