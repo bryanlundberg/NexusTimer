@@ -49,12 +49,12 @@ export default function SelectCollection() {
         <DialogDescription></DialogDescription>
       </VisuallyHidden>
 
-      <CommandInput placeholder="Quick search..." />
+      <CommandInput placeholder={t('Inputs.search')} />
       <CommandList>
         <CommandEmpty>
-          <p>No results found.</p>
+          <p>{t('Inputs.no-results')}</p>
           <Button onClick={handleCreate} variant={'secondary'} size={'sm'} className={'mt-5'}>
-            Create Collection
+            {t('CubesPage.new-collection')}
           </Button>
         </CommandEmpty>
 
