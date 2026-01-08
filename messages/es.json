@@ -187,6 +187,10 @@
       "exit-fullscreen": "Salir de pantalla completa",
       "fullscreen": "Pantalla completa"
     },
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Siguiente"
+    },
     "PeoplePage": {
       "title": "Personas",
       "search-placeholder": "Buscar por nombre",
@@ -204,6 +208,7 @@
         "cubes": "Cubos",
         "last-activity": "Actividad reciente"
       },
+      "edit-profile": "Editar perfil",
       "no-backup-data": "Esta cuenta no tiene datos de respaldo para mostrar.",
       "solve-card": {
         "single": "Single",

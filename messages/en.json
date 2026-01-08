@@ -229,6 +229,10 @@
       "fullscreen": "Fullscreen",
       "exit-fullscreen": "Exit Fullscreen"
     },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
     "PeoplePage": {
       "title": "People",
       "search-placeholder": "Search by name",
@@ -246,6 +250,7 @@
         "cubes": "Cubes",
         "last-activity": "Last activity"
       },
+      "edit-profile": "Edit profile",
       "no-backup-data": "This account has no backup data to display.",
       "solve-card": {
         "single": "Single",
