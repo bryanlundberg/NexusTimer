@@ -152,6 +152,7 @@
       "warning-msg": "Esta acción no es reversible."
     },
     "Inputs": {
+      "delete": "Eliminar",
       "select": "Seleccionar",
       "favorites": "Favoritos",
       "create": "Crear",
@@ -316,7 +317,20 @@
       "privacy-policy": "política de privacidad",
       "unlink-account": "Desvincular cuenta",
       "unlink-account-para1": "¿Estás seguro de que quieres desvincularte de la cuenta?",
-      "unlink-account-para2": "Al desvincularse se eliminarán todos los datos de este dispositivo."
+      "unlink-account-para2": "Al desvincularse se eliminarán todos los datos de este dispositivo.",
+      "reset-settings": "Restablecer ajustes",
+      "delete-app-data": "Eliminar datos de la App",
+      "reset-settings-success": "Los ajustes se han restablecido por defecto",
+      "delete-app-data-title": "¿Eliminar todos los datos de la aplicación?",
+      "delete-app-data-subtitle": "Esta acción eliminará permanentemente todos tus cubos y tiempos y no se puede deshacer. ¿Estás seguro de que quieres continuar?",
+      "delete-app-data-success": "Todos los datos de la aplicación han sido eliminados",
+      "cloud-sync": "Sincronización en la nube",
+      "enable-auto-save": "Habilitar guardado automático en la nube",
+      "auto-save-description": "Guarda automáticamente tus datos en la nube",
+      "enable-auto-load": "Habilitar carga automática de la nube",
+      "auto-load-description": "Carga automáticamente tus datos desde la nube al abrir la aplicación",
+      "backup-interval": "Intervalo de respaldo",
+      "backup-interval-description": "Número de resoluciones entre cada respaldo automático en la nube"
     },
     "others": {
       "suggestions": "Sugerencias"

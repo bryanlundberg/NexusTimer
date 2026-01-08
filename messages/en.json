@@ -194,6 +194,7 @@
       "permanent-delete-warning": "This will permanently delete the collection."
     },
     "Inputs": {
+      "delete": "Delete",
       "continue": "Continue",
       "select": "Select",
       "favorites": "Favorites",
@@ -358,7 +359,20 @@
       "save-data-warning": "This will overwrite previously saved data.",
       "load-data-title": "Load data",
       "load-data-description": "Do you want to download your account data from the cloud?",
-      "load-data-warning": "This will merge current data with saved data."
+      "load-data-warning": "This will merge current data with saved data.",
+      "reset-settings": "Reset settings",
+      "delete-app-data": "Delete App data",
+      "reset-settings-success": "Settings have been reset to default",
+      "delete-app-data-title": "Delete all app data?",
+      "delete-app-data-subtitle": "This action will permanently delete all your cubes and solves data and cannot be undone. Are you sure you want to proceed?",
+      "delete-app-data-success": "All app data has been deleted",
+      "cloud-sync": "Cloud Sync",
+      "enable-auto-save": "Enable Automatic Save Cloud",
+      "auto-save-description": "Automatically save your data to the cloud",
+      "enable-auto-load": "Enable Automatic Load Cloud",
+      "auto-load-description": "Automatically load your data from the cloud when you open the app",
+      "backup-interval": "Backup Interval",
+      "backup-interval-description": "Number of solves between each automatic cloud backup"
     },
     "TransferSolvesPage": {
       "title": "Transfer Solves",
