@@ -383,6 +383,12 @@
       "tos": "Terms of Service",
       "source": "Source",
       "last-backup": "Last backup:",
+      "up-to-date": "Up to date",
+      "no-backup": "No backup",
+      "loading": "Loading...",
+      "no-backup-yet": "There is no backup yet",
+      "tip": "Tip:",
+      "backup-tip": "Keep your data safe by backing up regularly.",
       "save-data-title": "Save data",
       "save-data-description": "Do you want save your account data on the cloud?",
       "save-data-warning": "This will overwrite previously saved data.",
@@ -423,6 +429,29 @@
       "no-solves": "No solves available",
       "empty-vault": "Your solve vault is currently empty.",
       "cubes-unavailable": "Cubes data is not available"
+    },
+    "AccountPage": {
+      "go-to-profile": "Go to Profile",
+      "name": "Name",
+      "name-required": "Name is required",
+      "name-min-length": "Name must be at least 5 characters long",
+      "timezone": "Timezone",
+      "select-timezone": "Select timezone",
+      "pronoun": "Pronoun",
+      "select-pronoun": "Select pronoun",
+      "goal": "Goal",
+      "bio": "Bio",
+      "bio-placeholder": "Tell us about yourself",
+      "update-info": "Update Info",
+      "update-failed": "Failed to update user",
+      "update-success": "User updated successfully",
+      "change-picture": "Change picture",
+      "avatar-requirements": "JPG, GIF or PNG. Max size of 800K",
+      "pronouns": {
+        "he": "He",
+        "she": "She",
+        "other": "Other"
+      }
     },
     "AccessCard": {
       "title": "Access",

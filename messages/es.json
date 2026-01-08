@@ -327,6 +327,12 @@
       "fetching-last-backup": "Obteniendo información del servidor espera un momento...",
       "help": "Ayuda",
       "last-backup": "Última copia de seguridad:",
+      "up-to-date": "Al día",
+      "no-backup": "Sin copia de seguridad",
+      "loading": "Cargando...",
+      "no-backup-yet": "Aún no hay copias de seguridad",
+      "tip": "Consejo:",
+      "backup-tip": "Mantén tus datos seguros haciendo copias de seguridad regularmente.",
       "load-data-description": "¿Quieres descargar los datos de tu cuenta desde la nube?",
       "load-data-title": "Cargar datos",
       "load-data-warning": "Esto fusionará los datos actuales con los datos guardados.",
@@ -401,6 +407,29 @@
       "title": "Transferir resueltos",
       "transfer": "Transferir",
       "transferring": "Transferir ..."
+    },
+    "AccountPage": {
+      "go-to-profile": "Ir al perfil",
+      "name": "Nombre",
+      "name-required": "El nombre es obligatorio",
+      "name-min-length": "El nombre debe tener al menos 5 caracteres",
+      "timezone": "Zona horaria",
+      "select-timezone": "Seleccionar zona horaria",
+      "pronoun": "Pronombre",
+      "select-pronoun": "Seleccionar pronombre",
+      "goal": "Objetivo",
+      "bio": "Biografía",
+      "bio-placeholder": "Cuéntanos sobre ti",
+      "update-info": "Actualizar información",
+      "update-failed": "Error al actualizar el usuario",
+      "update-success": "Usuario actualizado con éxito",
+      "change-picture": "Cambiar foto",
+      "avatar-requirements": "JPG, GIF o PNG. Tamaño máx. de 800K",
+      "pronouns": {
+        "he": "Él",
+        "she": "Ella",
+        "other": "Otro"
+      }
     },
     "NavMain": {
       "application": "Aplicación",
