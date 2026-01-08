@@ -2,7 +2,7 @@ import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { CalendarIcon, ClockIcon } from '@radix-ui/react-icons'
 import { DateTime } from 'luxon'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Badge } from '@/components/ui/badge'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
@@ -11,6 +11,7 @@ import { Solve } from '@/entities/solve/model/types'
 import QuickActions from '@/features/manage-solves/ui/QuickActions'
 
 export default function SolveDetails() {
+  const t = useTranslations('Index')
   const overlayStore = useOverlayStore()
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const locale = useLocale()
@@ -22,7 +23,7 @@ export default function SolveDetails() {
         <DialogTitle className={'text-sm flex justify-between'}>
           <div className="flex gap-1 items-center">
             <span className={'text-2xl'}>{formatTime(activeOverlay?.metadata?.time || 0)}</span>
-            <Badge className={'text-xs h-fit'}>{selectedCube?.category || 'Unknown'}</Badge>
+            <Badge className={'text-xs h-fit'}>{selectedCube?.category || t('solve-details.unknown-category')}</Badge>
           </div>
           <div className={'flex flex-col items-end text-xs font-normal'}>
             <p className="flex items-center justify-center gap-1">
