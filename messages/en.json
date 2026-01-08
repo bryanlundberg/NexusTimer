@@ -381,7 +381,13 @@
       "enable-auto-load": "Enable Automatic Load Cloud",
       "auto-load-description": "Automatically load your data from the cloud when you open the app",
       "backup-interval": "Backup Interval",
-      "backup-interval-description": "Number of solves between each automatic cloud backup"
+      "backup-interval-description": "Number of solves between each automatic cloud backup",
+      "sync-toast": {
+        "title": "Hey there! Time to Sync!",
+        "description": "Merge your local data with cloud backup to sync your device and create an updated backup?",
+        "cancel": "Cancel",
+        "merge": "Merge"
+      }
     },
     "TransferSolvesPage": {
       "title": "Transfer Solves",

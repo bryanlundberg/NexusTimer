@@ -339,7 +339,13 @@
       "enable-auto-load": "Habilitar carga automática de la nube",
       "auto-load-description": "Carga automáticamente tus datos desde la nube al abrir la aplicación",
       "backup-interval": "Intervalo de respaldo",
-      "backup-interval-description": "Número de resoluciones entre cada respaldo automático en la nube"
+      "backup-interval-description": "Número de resoluciones entre cada respaldo automático en la nube",
+      "sync-toast": {
+        "title": "¡Hola! ¡Es hora de sincronizar!",
+        "description": "¿Fusionar tus datos locales con el respaldo en la nube para sincronizar tu dispositivo y crear un respaldo actualizado?",
+        "cancel": "Cancelar",
+        "merge": "Fusionar"
+      }
     },
     "others": {
       "suggestions": "Sugerencias"
