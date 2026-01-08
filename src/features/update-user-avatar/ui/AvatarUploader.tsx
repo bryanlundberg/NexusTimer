@@ -5,18 +5,20 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useRef } from 'react'
 import { Image } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 export function AvatarUploader() {
   const { data: session } = useSession()
   const { updateAvatar } = useUpdateUserAvatar()
   const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const t = useTranslations('Index.AccountPage')
 
   const handleClick = () => fileInputRef.current?.click()
 
   return (
     <div className="flex items-center gap-3">
       <Avatar className="size-32 group/item">
-        <AvatarImage className="object-cover size-32" src={session?.user?.image as string}/>
+        <AvatarImage className="object-cover size-32" src={session?.user?.image as string} />
         <AvatarFallback>{session?.user?.name?.slice(0, 2).toUpperCase()}</AvatarFallback>
       </Avatar>
 
@@ -29,9 +31,9 @@ export function AvatarUploader() {
           onChange={(e) => updateAvatar(e.target.files?.[0])}
         />
         <Button type="button" variant="secondary" onClick={handleClick} className={'w-fit'}>
-          <Image /> Change picture
+          <Image /> {t('change-picture')}
         </Button>
-        JPG, GIF or PNG. Max size of 800K
+        {t('avatar-requirements')}
       </div>
     </div>
   )
