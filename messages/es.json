@@ -6,6 +6,10 @@
       "scramble": "Mezcla",
       "solution": "Solución"
     },
+    "DialogFirstRunNoCubes": {
+      "title": "Bienvenido a NexusTimer",
+      "description": "Aún no tienes ninguna colección. Puedes crear tu primera colección o importar un respaldo para comenzar."
+    },
     "HomePage": {
       "hint": "Consejo",
       "optimal-yellow-layer": "Capa Amarilla Óptima",
@@ -275,7 +279,17 @@
     "Errors": {
       "empty-input": "Por favor introduce un valor",
       "not-match": "El nombre no coincide.",
-      "repeated-name": "Esa colección de nombres ya existe."
+      "repeated-name": "Esa colección de nombres ya existe.",
+      "required-collection-name": "El nombre de la colección es obligatorio",
+      "max-length-50": "La longitud máxima es de 50 caracteres",
+      "collection-created": "Colección de cubos creada exitosamente",
+      "collection-edited": "Colección de cubos editada exitosamente",
+      "collection-edit-failed": "Error al editar la colección de cubos",
+      "favorite-updated": "Estado de favorito actualizado",
+      "required-field": "Campo requerido",
+      "collection-deleted": "Colección eliminada exitosamente",
+      "collection-delete-failed": "Error al eliminar la colección",
+      "permanent-delete-warning": "Esto eliminará permanentemente la colección."
     },
     "tooltips": {
       "bookmark": "Marcador",
