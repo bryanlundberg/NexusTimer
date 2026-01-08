@@ -4,8 +4,10 @@ import formatTime from '@/shared/lib/formatTime'
 import CompareTableRow from './CompareTableRow'
 import { CompareUser } from '@/features/compare-users/model/compare'
 import { CubeCategory } from '@/shared/const/cube-categories'
+import { useTranslations } from 'next-intl'
 
 export default function CompareCategoryBlock({ category, users }: { category: CubeCategory; users: CompareUser[] }) {
+  const t = useTranslations('Index.LeaderboardsPage.comparative')
   const singles = users
     .map((u) => u[category]?.single)
     .filter((v) => typeof v === 'number' && !isNaN(v) && v > 0) as number[]
@@ -21,7 +23,7 @@ export default function CompareCategoryBlock({ category, users }: { category: Cu
 
   return (
     <>
-      <CompareTableRow className={'mt-5'} title={`${category} Single`}>
+      <CompareTableRow className={'mt-5'} title={`${category} ${t('single')}`}>
         {users.map((user) => {
           const val = user[category]?.single
           const hasValue = typeof val === 'number' && !isNaN(val) && val > 0
@@ -36,7 +38,7 @@ export default function CompareCategoryBlock({ category, users }: { category: Cu
         })}
       </CompareTableRow>
 
-      <CompareTableRow title={`${category} Average`}>
+      <CompareTableRow title={`${category} ${t('average')}`}>
         {users.map((user) => {
           const val = user[category]?.average
           const hasValue = typeof val === 'number' && !isNaN(val) && val > 0
@@ -51,7 +53,7 @@ export default function CompareCategoryBlock({ category, users }: { category: Cu
         })}
       </CompareTableRow>
 
-      <CompareTableRow title={`${category} Count`}>
+      <CompareTableRow title={`${category} ${t('count')}`}>
         {users.map((user) => {
           const val = user[category]?.count
           const hasValue = val !== undefined && val !== null && !isNaN(val as number) && (val as number) !== 0

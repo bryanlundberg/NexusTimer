@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { useInitialSyncBackup } from '@/shared/model/backup/useInitialSyncBackup'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
@@ -7,6 +7,7 @@ import { useUser } from '@/entities/user/model/useUser'
 import { useIsOnline } from 'react-use-is-online'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useTranslations } from 'next-intl'
 import moment from 'moment'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -14,6 +15,7 @@ import { Card } from '@/components/ui/card'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
 
 export default function SyncBackupProvider({ children }: { children: React.ReactNode }) {
+  const t = useTranslations('Index.SettingsPage.sync-toast')
   const { handleDownloadData, handleUploadBackup } = useSyncBackup()
   const firstLoaded = useInitialSyncBackup((store) => store.firstLoaded)
   const setFirstLoaded = useInitialSyncBackup((store) => store.setFirstLoaded)
@@ -67,10 +69,8 @@ export default function SyncBackupProvider({ children }: { children: React.React
         <>
           <Card className="flex flex-col gap-2 p-4">
             <div className="flex flex-col gap-3">
-              <div className="font-medium">Hey there! Time to Sync!</div>
-              <p className="text-sm text-muted-foreground">
-                Merge your local data with cloud backup to sync your device and create an updated backup?
-              </p>
+              <div className="font-medium">{t('title')}</div>
+              <p className="text-sm text-muted-foreground">{t('description')}</p>
             </div>
             <div className={'grid grid-cols-2 gap-2 mt-2 w-full'}>
               <Button
@@ -84,10 +84,10 @@ export default function SyncBackupProvider({ children }: { children: React.React
                   toast.dismiss(SYNC_TOAST_ID)
                 }}
               >
-                Cancel
+                {t('cancel')}
               </Button>
               <Button className={'w-full'} size={'sm'} onClick={() => handleSync(BackupLoadMode.MERGE)}>
-                Merge
+                {t('merge')}
               </Button>
             </div>
           </Card>
@@ -108,7 +108,8 @@ export default function SyncBackupProvider({ children }: { children: React.React
     settings?.sync.backupInterval,
     settings?.sync.totalSolves,
     isOffline,
-    settings?.sync.autoSaveEnabled
+    settings?.sync.autoSaveEnabled,
+    t
   ])
 
   return <>{children}</>

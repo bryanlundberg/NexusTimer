@@ -17,8 +17,10 @@ import { TablePagination } from '@/widgets/people/ui/table-pagination'
 import UserCard from '@/widgets/people/ui/user-card'
 import Navigation from '@/features/navigation/ui/navigation'
 import { TimeZones } from '@/shared/types/enums'
+import { useTranslations } from 'next-intl'
 
 export default function PeoplePage() {
+  const t = useTranslations('Index.PeoplePage')
   const router = useRouter()
   const searchParams = useSearchParams()
   const search = searchParams!.get('search')
@@ -60,17 +62,17 @@ export default function PeoplePage() {
               <div className={'flex sm:flex-row items-center gap-3 w-full justify-end'}>
                 <div className={'flex flex-col sm:flex-row items-center gap-2 grow justify-end'}>
                   <Input
-                    placeholder={'Search by name'}
+                    placeholder={t('search-placeholder')}
                     value={searchTerm || ''}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full md:max-w-sm"
                   />
                   <Select value={selectedRegion} onValueChange={setSelectedRegion}>
                     <SelectTrigger className="w-full sm:w-48">
-                      <SelectValue placeholder="Region" />
+                      <SelectValue placeholder={t('region-placeholder')} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="all">All</SelectItem>
+                      <SelectItem value="all">{t('region-all')}</SelectItem>
                       {regionOptions.sort().map((region) => (
                         <SelectItem key={region} value={region}>
                           {region}
@@ -113,7 +115,7 @@ export default function PeoplePage() {
 
             {!isLoading && (!data?.events || data.events.length === 0) && (
               <div className="col-span-full text-center py-8">
-                <p className="text-muted-foreground">No users found matching your criteria</p>
+                <p className="text-muted-foreground">{t('no-users-found')}</p>
               </div>
             )}
 
@@ -123,7 +125,9 @@ export default function PeoplePage() {
               data.events.map((user: UserDocument) => <UserCard key={user._id} user={user} />)}
           </div>
 
-          <div className={'opacity-70 text-xs ps-4 pt-2'}>Results: {data?.docs || 0}</div>
+          <div className={'opacity-70 text-xs ps-4 pt-2'}>
+            {t('results')}: {data?.docs || 0}
+          </div>
 
           {!isLoading && (
             <TablePagination

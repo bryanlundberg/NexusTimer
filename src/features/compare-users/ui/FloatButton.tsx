@@ -8,8 +8,10 @@ import { TrashIcon } from '@radix-ui/react-icons'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { formatDistance } from 'date-fns'
+import { useTranslations } from 'next-intl'
 
 export default function FloatButton() {
+  const t = useTranslations('Index.LeaderboardsPage.comparative')
   const users = useCompareUsersStore((state) => state.users)
   const closeModal = useCompareUsersStore((state) => state.closeModal)
   const isOpenModal = useCompareUsersStore((state) => state.isOpenModal)
@@ -42,7 +44,7 @@ export default function FloatButton() {
       </DialogTrigger>
       <DialogContent aria-describedby={undefined}>
         <DialogHeader>
-          <DialogTitle>Comparative</DialogTitle>
+          <DialogTitle>{t('title')}</DialogTitle>
         </DialogHeader>
 
         <Table>
@@ -50,8 +52,8 @@ export default function FloatButton() {
             <TableRow>
               <TableHead className="w-[50px]"></TableHead>
               <TableHead className="w-[100px]"></TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Last Backup?</TableHead>
+              <TableHead>{t('name')}</TableHead>
+              <TableHead>{t('last-backup')}</TableHead>
               <TableHead></TableHead>
             </TableRow>
           </TableHeader>
@@ -66,14 +68,14 @@ export default function FloatButton() {
                 <TableCell>
                   <Avatar>
                     <AvatarImage className={'object-cover'} src={user.image} />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
                   </Avatar>
                 </TableCell>
                 <TableCell>{user.name}</TableCell>
                 <TableCell>
                   {user?.backup?.updatedAt
                     ? formatDistance(new Date(user?.backup?.updatedAt), new Date(), { addSuffix: true })
-                    : 'Never'}
+                    : t('never')}
                 </TableCell>
               </TableRow>
             ))}
@@ -82,10 +84,10 @@ export default function FloatButton() {
 
         <div className="grid grid-cols-2 gap-2 mt-4">
           <Button className={'w-full'} variant="secondary" onClick={closeModal}>
-            Close
+            {t('close')}
           </Button>
           <Button className={'w-full'} onClick={openOverlay}>
-            Compare
+            {t('compare')}
           </Button>
         </div>
       </DialogContent>

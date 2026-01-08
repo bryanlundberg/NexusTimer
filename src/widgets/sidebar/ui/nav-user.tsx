@@ -16,6 +16,7 @@ import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/c
 import { CaretSortIcon } from '@radix-ui/react-icons'
 import { useRouter } from 'next/navigation'
 import useLogout from '@/features/logout/model/useLogout'
+import { useTranslations } from 'next-intl'
 
 export function NavUser({
   user
@@ -29,6 +30,7 @@ export function NavUser({
   const { isMobile } = useSidebar()
   const router = useRouter()
   const { handleResetDeviceData } = useLogout()
+  const t = useTranslations('Index')
 
   return (
     <SidebarMenu>
@@ -72,21 +74,21 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={() => router.push('/account')}>
                 <BadgeCheck />
-                Account
+                {t('NavMain.account')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => router.push('/account/save')}>
                 <HardDriveUpload />
-                Save Data
+                {t('NavMain.save-data')}
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => router.push('/account/load')}>
                 <HardDriveDownload />
-                Download Data
+                {t('NavMain.download-data')}
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleResetDeviceData}>
               <LogOut />
-              Log out
+              {t('NavMain.log-out')}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

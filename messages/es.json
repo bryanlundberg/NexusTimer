@@ -1,5 +1,15 @@
 {
   "Index": {
+    "leaderboard-solve-details": {
+      "user-solution": "Solución del usuario",
+      "time": "Tiempo",
+      "scramble": "Mezcla",
+      "solution": "Solución"
+    },
+    "DialogFirstRunNoCubes": {
+      "title": "Bienvenido a NexusTimer",
+      "description": "Aún no tienes ninguna colección. Puedes crear tu primera colección o importar un respaldo para comenzar."
+    },
     "HomePage": {
       "hint": "Consejo",
       "optimal-yellow-layer": "Capa Amarilla Óptima",
@@ -18,11 +28,20 @@
       "average": "Promedio",
       "best": "Mejor",
       "counter": "Contador",
+      "select-cube": "Seleccionar Cubo",
       "enter-custom-scramble": "Introduce una mezcla personalizada",
       "title": "Cronómetro",
       "edit-scramble": "Editar scramble",
       "hints": "Consejos",
       "mode": "Modo",
+      "modes": {
+        "normal": "Normal",
+        "manual": "Manual",
+        "stackmat": "Stackmat",
+        "virtual": "Virtual",
+        "smart": "Smart cube",
+        "nexus-connect": "Nexus Connect"
+      },
       "new-scramble": "Nuevo scramble",
       "start-stackmat": "Inicia tu Stackmat para comenzar el cronómetro"
     },
@@ -83,14 +102,22 @@
       "global": "Global",
       "sessions": "Sesiones",
       "best-time": "Mejor Tiempo",
+      "worst-time": "Peor Tiempo",
       "average": "Promedio",
+      "overall-average": "Promedio General",
+      "ao5-current": "Ao5 (Actual)",
       "time-spent": "Tiempo invertido",
       "success-rate": "Tasa de Éxito",
+      "standard-deviation": "Desviación Estándar",
       "counter": "Contador",
       "category-tab": "Categoría",
       "cube-all-tooltip": "Combina todos los tiempos (historial y sesión) solo para el cubo seleccionado.",
       "cube-session-tooltip": "Cuenta solo los tiempos de la sesión para el cubo seleccionado.",
       "cube-tab": "Cubo",
+      "cube-all": "Cubo (Todo)",
+      "cube-session": "Cubo (Sesión)",
+      "time-by-cube": "Distribución de Tiempos",
+      "solves-by-cube": "Distribución de Resoluciones",
       "global-tooltip": "Combina todos los tiempos (historial y sesión) de cada cubo dentro de la misma categoría.",
       "sessions-tooltip": "Cuenta solo los tiempos de la sesión para cada cubo en la misma categoría.",
       "empty-statistics": "No hay estadísticas disponibles",
@@ -108,6 +135,11 @@
       "idle": "Inactivo",
       "name": "Nombre",
       "new-collection": "Nueva colección",
+      "new-collection-description": "Crea una nueva colección para organizar tus cubos.",
+      "restore-account-data": "Restaurar datos de la cuenta",
+      "restore-account-data-description": "Restaura tus datos desde los respaldos de tu cuenta.",
+      "import-from-other-timers": "Importar de otros cronómetros",
+      "import-from-other-timers-description": "Importa datos de otras aplicaciones de cronómetro.",
       "delete": "Borrar",
       "edit": "Editar",
       "chart-solves-label": "Tiempos",
@@ -131,13 +163,13 @@
       "input-collection-name": "Introduzca el nombre de la colección",
       "name": "Nombre",
       "new-collection": "Nueva colección",
-      "new-collection-description": "Las colecciones de cubos le permiten realizar un seguimiento del historial de cada cubo sin afectar las estadísticas generales de la categoría.",
       "select-an-option": "Seleccione una opción",
       "to-continue": "para continuar:",
       "warning-alert": "Advertencia:",
       "warning-msg": "Esta acción no es reversible."
     },
     "Inputs": {
+      "delete": "Eliminar",
       "select": "Seleccionar",
       "favorites": "Favoritos",
       "create": "Crear",
@@ -154,6 +186,68 @@
       "menu": "Menú",
       "exit-fullscreen": "Salir de pantalla completa",
       "fullscreen": "Pantalla completa"
+    },
+    "pagination": {
+      "previous": "Anterior",
+      "next": "Siguiente"
+    },
+    "PeoplePage": {
+      "title": "Personas",
+      "search-placeholder": "Buscar por nombre",
+      "region-placeholder": "Región",
+      "region-all": "Todas",
+      "no-users-found": "No se encontraron usuarios que coincidan con tus criterios",
+      "results": "Resultados",
+      "user-card": {
+        "joined": "Se unió el {date}",
+        "compare": "Comparar",
+        "view-profile": "Ver Perfil"
+      },
+      "tabs": {
+        "overview": "Resumen",
+        "cubes": "Cubos",
+        "last-activity": "Actividad reciente"
+      },
+      "edit-profile": "Editar perfil",
+      "no-backup-data": "Esta cuenta no tiene datos de respaldo para mostrar.",
+      "solve-card": {
+        "single": "Single",
+        "ao5": "Ao5 (Mejor)",
+        "time-spent": "Tiempo invertido",
+        "solves": "Soluciones"
+      }
+    },
+    "LeaderboardsPage": {
+      "title": "Clasificaciones",
+      "description": "Explora los 100 mejores y sus resoluciones en varias categorías. Descubre información detallada sobre cada participante y sus logros.",
+      "type": "Tipo",
+      "thinking": "Pensando...",
+      "table": {
+        "user": "Usuario",
+        "category": "Categoría",
+        "scramble": "Mezcla",
+        "time": "Tiempo",
+        "image": "Imagen",
+        "date": "Fecha",
+        "cube-used": "Cubo usado",
+        "tps": "tps",
+        "not-available": "N/D"
+      },
+      "comparative": {
+        "title": "Comparativa",
+        "timezone": "Zona Horaria",
+        "first-solve": "Primera resolución",
+        "total-solves": "Total de soluciones",
+        "total-cubes": "Total de cubos",
+        "single": "Single",
+        "average": "Promedio",
+        "count": "Conteo",
+        "name": "Nombre",
+        "last-backup": "¿Último respaldo?",
+        "never": "Nunca",
+        "close": "Cerrar",
+        "compare": "Comparar"
+      }
     },
     "Settings-menu": {
       "locale": "Región",
@@ -208,19 +302,42 @@
     "Errors": {
       "empty-input": "Por favor introduce un valor",
       "not-match": "El nombre no coincide.",
-      "repeated-name": "Esa colección de nombres ya existe."
+      "repeated-name": "Esa colección de nombres ya existe.",
+      "required-collection-name": "El nombre de la colección es obligatorio",
+      "max-length-50": "La longitud máxima es de 50 caracteres",
+      "collection-created": "Colección de cubos creada exitosamente",
+      "collection-edited": "Colección de cubos editada exitosamente",
+      "collection-edit-failed": "Error al editar la colección de cubos",
+      "favorite-updated": "Estado de favorito actualizado",
+      "required-field": "Campo requerido",
+      "collection-deleted": "Colección eliminada exitosamente",
+      "collection-delete-failed": "Error al eliminar la colección",
+      "permanent-delete-warning": "Esto eliminará permanentemente la colección."
     },
     "tooltips": {
       "bookmark": "Marcador",
       "copy": "Copiar",
       "delete": "Borrar",
-      "plus-two": "2 Penalización"
+      "plus-two": "2 Penalización",
+      "dnf": "No terminó (DNF)",
+      "more-actions": "Más acciones"
+    },
+    "solve-details": {
+      "unknown-category": "Desconocido",
+      "move-to-history": "Mover al Historial",
+      "transfer-collection": "Transferir Colección"
     },
     "SettingsPage": {
       "account": "Cuenta",
       "fetching-last-backup": "Obteniendo información del servidor espera un momento...",
       "help": "Ayuda",
       "last-backup": "Última copia de seguridad:",
+      "up-to-date": "Al día",
+      "no-backup": "Sin copia de seguridad",
+      "loading": "Cargando...",
+      "no-backup-yet": "Aún no hay copias de seguridad",
+      "tip": "Consejo:",
+      "backup-tip": "Mantén tus datos seguros haciendo copias de seguridad regularmente.",
       "load-data-description": "¿Quieres descargar los datos de tu cuenta desde la nube?",
       "load-data-title": "Cargar datos",
       "load-data-warning": "Esto fusionará los datos actuales con los datos guardados.",
@@ -235,7 +352,26 @@
       "privacy-policy": "política de privacidad",
       "unlink-account": "Desvincular cuenta",
       "unlink-account-para1": "¿Estás seguro de que quieres desvincularte de la cuenta?",
-      "unlink-account-para2": "Al desvincularse se eliminarán todos los datos de este dispositivo."
+      "unlink-account-para2": "Al desvincularse se eliminarán todos los datos de este dispositivo.",
+      "reset-settings": "Restablecer ajustes",
+      "delete-app-data": "Eliminar datos de la App",
+      "reset-settings-success": "Los ajustes se han restablecido por defecto",
+      "delete-app-data-title": "¿Eliminar todos los datos de la aplicación?",
+      "delete-app-data-subtitle": "Esta acción eliminará permanentemente todos tus cubos y tiempos y no se puede deshacer. ¿Estás seguro de que quieres continuar?",
+      "delete-app-data-success": "Todos los datos de la aplicación han sido eliminados",
+      "cloud-sync": "Sincronización en la nube",
+      "enable-auto-save": "Habilitar guardado automático en la nube",
+      "auto-save-description": "Guarda automáticamente tus datos en la nube",
+      "enable-auto-load": "Habilitar carga automática de la nube",
+      "auto-load-description": "Carga automáticamente tus datos desde la nube al abrir la aplicación",
+      "backup-interval": "Intervalo de respaldo",
+      "backup-interval-description": "Número de resoluciones entre cada respaldo automático en la nube",
+      "sync-toast": {
+        "title": "¡Hola! ¡Es hora de sincronizar!",
+        "description": "¿Fusionar tus datos locales con el respaldo en la nube para sincronizar tu dispositivo y crear un respaldo actualizado?",
+        "cancel": "Cancelar",
+        "merge": "Fusionar"
+      }
     },
     "others": {
       "suggestions": "Sugerencias"
@@ -277,21 +413,88 @@
       "transfer": "Transferir",
       "transferring": "Transferir ..."
     },
+    "AccountPage": {
+      "go-to-profile": "Ir al perfil",
+      "name": "Nombre",
+      "name-required": "El nombre es obligatorio",
+      "name-min-length": "El nombre debe tener al menos 5 caracteres",
+      "timezone": "Zona horaria",
+      "select-timezone": "Seleccionar zona horaria",
+      "pronoun": "Pronombre",
+      "select-pronoun": "Seleccionar pronombre",
+      "goal": "Objetivo",
+      "bio": "Biografía",
+      "bio-placeholder": "Cuéntanos sobre ti",
+      "update-info": "Actualizar información",
+      "update-failed": "Error al actualizar el usuario",
+      "update-success": "Usuario actualizado con éxito",
+      "change-picture": "Cambiar foto",
+      "avatar-requirements": "JPG, GIF o PNG. Tamaño máx. de 800K",
+      "pronouns": {
+        "he": "Él",
+        "she": "Ella",
+        "other": "Otro"
+      }
+    },
     "NavMain": {
       "application": "Aplicación",
+      "platform": "Plataforma",
       "timer": "Cronómetro",
       "solves": "Tiempos",
       "statistics": "Estadísticas",
       "cubes": "Cubos",
       "transfer": "Transferir",
       "community": "Comunidad",
+      "people": "Personas",
+      "leaderboards": "Clasificaciones",
       "multiplayer": "Multijugador",
+      "free-play": "Juego Libre",
       "clash-mode": "Modo Clash",
-      "settings": "Ajustes"
+      "settings": "Ajustes",
+      "account": "Cuenta",
+      "save-data": "Guardar datos",
+      "download-data": "Descargar datos",
+      "log-out": "Cerrar sesión"
     },
     "AccessCard": {
       "title": "Acceso",
       "description": "Mantén tus datos sincronizados entre dispositivos y accede a más funciones."
+    },
+    "AlgorithmsPage": {
+      "title": "Algoritmos",
+      "header": "Domina tu camino en el cubo con el entrenamiento de algoritmos",
+      "description": "Explore una amplia gama de conjuntos de algoritmos para varios acertijos, completos con visualizaciones 3D interactivas para mejorar su experiencia de aprendizaje.",
+      "suggestions": "Si encuentra algún error o desea ampliar con más algoritmos, envíelo a nuestro GitHub.",
+      "edit-github": "Editar estos algoritmos en Github",
+      "skill": "Nivel",
+      "casual-enthusiast": "Entusiasta Casual",
+      "dedicated-learner": "Estudiante Dedicado",
+      "algorithm-master": "Maestro de Algoritmos",
+      "descriptions": {
+        "pbl": "Estos algoritmos se utilizan para permutar simultáneamente las capas superior e inferior de un cubo 2x2, lo que permite una resolución eficiente del rompecabezas.",
+        "ocll": "COLL (Orientación de las esquinas de la última capa): este paso se centra en orientar todas las esquinas de la última capa para prepararse para los pasos finales de la resolución del rompecabezas.",
+        "cll": "CLL es un subconjunto de OLL para cubos de 2x2x2 que resuelve la última capa en un algoritmo después de orientar la primera capa.",
+        "eg-1": "EG-1 es un conjunto de algoritmos utilizados para resolver la última capa de un cubo de 2x2 después de completar la primera capa, específicamente cuando hay un intercambio adyacente en la capa inferior.",
+        "eg-2": "EG-2 es un conjunto de algoritmos utilizados para resolver la última capa de un cubo de 2x2 después de completar la primera capa, específicamente cuando hay un intercambio diagonal en la capa inferior.",
+        "oll": "Los algoritmos OLL (Orientación de la última capa) para resolver el cubo de Rubik con el método CFOP. Estos algoritmos se utilizan para orientar todas las piezas de la última capa, una vez que se completa el F2L.",
+        "pll": "Los algoritmos PLL (Permutación de la última capa) para resolver el cubo de Rubik con el método CFOP. Estos algoritmos se utilizan para el paso final del método CFOP, para permutar las aristas y esquinas de la última capa, una vez que todas las piezas están orientadas.",
+        "coll": "Los algoritmos COLL (Orientación y permutación de las esquinas de la última capa) se utilizan para orientar y permutar las esquinas de la última capa al mismo tiempo, suponiendo que todas las aristas de la última capa ya estén orientadas.",
+        "ble": "Brooks' Last Edge (BLE) es un método utilizado para resolver la última arista del Cubo de Rubik de manera eficiente, a menudo como parte de técnicas de resolución avanzadas.",
+        "vls": "Los algoritmos VLS (Valk Last Slot) resuelven el último par del F2L y el OLL al mismo tiempo, en los casos en los que tienes un par de F2L conectado. Esta selección de algoritmos sirve como introducción al conjunto completo de algoritmos VLS y tiene como objetivo resaltar los casos más útiles de conocer.",
+        "cls": "Los algoritmos CLS (Corner Last Slot) resuelven la última esquina del F2L y orientan la última capa al mismo tiempo. Se utilizan cuando la arista del último par de F2L ya está resuelta y las aristas de la última capa están orientadas. Esta selección de algoritmos sirve como introducción al conjunto completo de algoritmos CLS y tiene como objetivo resaltar los casos más útiles de conocer.",
+        "wv": "Los algoritmos WV (Winter Variation) se utilizan para orientar las esquinas de la última capa mientras insertas el último par de F2L, en el caso de que el par esté conectado y donde todas las aristas de la última capa ya estén orientadas.",
+        "zbll-s": "ZBLL Sune (ZBLL-S) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'sune', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-as": "ZBLL Antisune (ZBLL-AS) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'antisune', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-u": "ZBLL U (ZBLL-U) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'U', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-t": "ZBLL T (ZBLL-T) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'T', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-pi": "ZBLL PI (ZBLL-PI) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'PI', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-l": "ZBLL L (ZBLL-L) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'L', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "zbll-h": "ZBLL H (ZBLL-H) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'H', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
+        "parity-4x4": "Estos algoritmos abordan los errores de paridad únicos que pueden ocurrir al resolver un cubo de Rubik de 4x4, que no ocurren en un cubo de 3x3 estándar. Son esenciales para completar la resolución después de reducir el 4x4 a un estado de 3x3.",
+        "parity-5x5": "Estos algoritmos abordan los errores de paridad únicos que pueden ocurrir al resolver un cubo de Rubik de 5x5, que no ocurren en un cubo de 3x3 estándar. Son esenciales para completar la resolución después de reducir el 5x5 a un estado de 3x3.",
+        "l4e": "Últimas 4 ranuras (Pyraminx): estos algoritmos se utilizan para resolver las últimas cuatro piezas de arista de un rompecabezas Pyraminx. El objetivo es posicionar y orientar estas piezas correctamente para completar el rompecabezas."
+      },
+      "alternative": "Alternativa"
     }
   },
   "Metadata": {
@@ -317,5 +520,61 @@
   "OpenGraphImage": {
     "title": "Nexus Timer - Cronómetro Profesional para Cubo de Rubik",
     "description": "Nexus Timer es una plataforma profesional para entrenar y analizar tu progreso con el Cubo de Rubik."
+  },
+  "Multiplayer": {
+    "title": "Juego Libre",
+    "description": "Únete a sesiones de cubing en tiempo real con otros entusiastas. Un espacio casual donde puedes practicar libremente sin la presión de rankings o récords.",
+    "new-room": "Nueva Sala",
+    "no-active-rooms": "No hay salas activas todavía",
+    "no-active-rooms-description": "¡Sé el primero en comenzar una sesión de cubing! Crea una sala e invita a otros a unirse para una práctica casual.",
+    "account-required": "Cuenta Requerida",
+    "account-required-description": "Necesitas haber iniciado sesión para acceder a juegos en línea.",
+    "next-round-starts-in": "La siguiente ronda comienza en:",
+    "timer": "Cronómetro",
+    "results": "Resultados",
+    "people": "Personas",
+    "create-room": {
+      "title": "Nueva sala pública",
+      "description": "Crea una nueva sala para tu evento de Clash. Configura las reglas, requisitos y más.",
+      "room-name": "Nombre de la sala",
+      "room-name-placeholder": "ej. Noche de cubing",
+      "room-name-required": "El nombre de la sala es obligatorio",
+      "event": "Evento",
+      "max-round-time": "Tiempo máximo de ronda",
+      "max-round-time-description": "Límite de tiempo para mezcla + inspección + resolución (por resolución)",
+      "continue": "Continuar"
+    },
+    "status": {
+      "solving": "Resolviendo...",
+      "inspecting": "Inspeccionando",
+      "done": "Listo",
+      "idle": "Inactivo",
+      "ready": "Listo",
+      "holding": "Manteniendo"
+    },
+    "already-submitted": "Ya has enviado una resolución para esta mezcla. ¡Espera a la siguiente!",
+    "confirm-solve": {
+      "title": "Confirmar tiempo de resolución ({time})",
+      "description": "¿Cómo te gustaría registrar esta resolución?",
+      "dnf": "DNF",
+      "plus2": "+2",
+      "ok": "OK"
+    },
+    "results-tab": {
+      "latest": "Último",
+      "best": "Mejor",
+      "worst": "Peor",
+      "average": "Promedio",
+      "updating-live": "Actualizando en vivo",
+      "cubers": "Cuberos"
+    },
+    "view-profile": "Ver perfil",
+    "anonymous": "Anónimo",
+    "room-card": {
+      "users-online": "Usuarios en línea:",
+      "event": "Evento:",
+      "max-time-per-round": "Tiempo máx. por ronda:",
+      "next-round-starts-in": "Siguiente ronda en:"
+    }
   }
 }

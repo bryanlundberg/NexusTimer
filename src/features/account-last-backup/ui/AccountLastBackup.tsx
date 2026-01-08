@@ -3,7 +3,7 @@ import { Session } from 'next-auth'
 import { useTranslations } from 'next-intl'
 import moment from 'moment'
 import { useUser } from '@/entities/user/model/useUser'
-import { FilePlus } from 'lucide-react';
+import { FilePlus } from 'lucide-react'
 
 export default function AccountLastBackup({ session }: { session: Session }) {
   const t = useTranslations('Index')
@@ -15,7 +15,7 @@ export default function AccountLastBackup({ session }: { session: Session }) {
         <div className="flex items-start gap-3">
           {/* Icon */}
           <div className="mt-0.5 shrink-0 rounded-lg bg-gradient-to-br from-sky-500/15 to-blue-500/15 p-2 ring-1 ring-inset ring-sky-500/25 dark:from-sky-400/10 dark:to-blue-400/10 dark:ring-sky-400/25">
-           <FilePlus className={"text-green-400"} />
+            <FilePlus className={'text-green-400'} />
           </div>
 
           <div className="flex-1">
@@ -25,17 +25,17 @@ export default function AccountLastBackup({ session }: { session: Session }) {
                 user?.backup?.updatedAt ? (
                   <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-medium text-emerald-800 dark:bg-emerald-400/15 dark:text-emerald-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                    Up to date
+                    {t('SettingsPage.up-to-date')}
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-800 dark:bg-amber-400/15 dark:text-amber-300">
                     <span className="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
-                    No backup
+                    {t('SettingsPage.no-backup')}
                   </span>
                 )
               ) : (
                 <span className="inline-flex items-center gap-1 rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-700 dark:bg-zinc-700/40 dark:text-zinc-300">
-                  Loading…
+                  {t('SettingsPage.loading')}
                 </span>
               )}
             </div>
@@ -44,13 +44,12 @@ export default function AccountLastBackup({ session }: { session: Session }) {
               {!isLoading
                 ? user?.backup?.updatedAt
                   ? `${moment(user.backup.updatedAt).fromNow()}`
-                  : 'There is no backup yet'
+                  : t('SettingsPage.no-backup-yet')
                 : t('SettingsPage.fetching-last-backup')}
             </p>
 
             <div className="mt-3 flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
-              <span className="select-none">Tip:</span>
-              <span>Keep your data safe by backing up regularly.</span>
+              <span>{t('SettingsPage.backup-tip')}</span>
             </div>
           </div>
         </div>

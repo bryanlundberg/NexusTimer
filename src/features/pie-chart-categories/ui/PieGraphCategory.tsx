@@ -14,6 +14,7 @@ import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { aggregateByCube } from '@/shared/lib/aggregateByCube'
 import { COLORS } from '@/shared/const/graph-colors'
+import { useTranslations } from 'next-intl'
 
 interface PieGraphCategoryProps {
   cubes: Array<Cube>
@@ -21,6 +22,7 @@ interface PieGraphCategoryProps {
 }
 
 export default function PieGraphCategory({ cubes, category }: PieGraphCategoryProps) {
+  const t = useTranslations('Index')
   const data = useMemo(() => {
     if (!category) return [] as ReturnType<typeof aggregateByCube>
     const safeCubes = cubes ?? []
@@ -41,7 +43,7 @@ export default function PieGraphCategory({ cubes, category }: PieGraphCategoryPr
     <div className="p-3 border rounded-md bg-background">
       <div className="flex items-center gap-2 mb-2 text-sm">
         <ChartPieIcon className={'size-4 text-muted-foreground'} />
-        <span className="font-medium">Time by Cube</span>
+        <span className="font-medium">{t('StatsPage.time-by-cube')}</span>
       </div>
       {pieData.length === 0 ? (
         <EmptyGraph />
@@ -80,7 +82,7 @@ export default function PieGraphCategory({ cubes, category }: PieGraphCategoryPr
                     if (typeof value === 'number') {
                       return (
                         <>
-                          <span className="text-gray-400">Time</span>
+                          <span className="text-gray-400">{t('SolvesPage.time')}</span>
                           <span className="ml-auto font-mono">{formatTime(value)}</span>
                         </>
                       )

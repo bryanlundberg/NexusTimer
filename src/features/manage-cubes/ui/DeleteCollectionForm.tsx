@@ -51,7 +51,7 @@ export default function DeleteCollectionForm() {
       if (form.confirmationName.trim() !== activeOverlay?.metadata?.name) {
         setError('confirmationName', {
           type: 'manual',
-          message: 'Collection name does not match.'
+          message: t('Errors.not-match')
         })
         return
       }
@@ -60,10 +60,10 @@ export default function DeleteCollectionForm() {
       const cubes = await cubesDB.getAll()
       setCubes(cubes)
       close()
-      toast.success('Collection deleted successfully')
+      toast.success(t('Errors.collection-deleted'))
     } catch (err) {
       console.log(err)
-      toast.error('Failed to delete collection')
+      toast.error(t('Errors.collection-delete-failed'))
     }
   }
 
@@ -88,11 +88,15 @@ export default function DeleteCollectionForm() {
 
         <Alert variant="destructive" className={'bg-black'} data-testid="dialog-delete-cube-warning">
           <AlertCircleIcon />
-          <AlertTitle>This will permanently delete the collection.</AlertTitle>
+          <AlertTitle>{t('Errors.permanent-delete-warning')}</AlertTitle>
           <AlertDescription>
             <ul className="list-inside list-disc text-sm">
-              <li>{activeOverlay?.metadata?.solves.session.length} session solves</li>
-              <li>{activeOverlay?.metadata?.solves.all.length} history solves</li>
+              <li>
+                {activeOverlay?.metadata?.solves.session.length} {t('CubesPage.session-solves')}
+              </li>
+              <li>
+                {activeOverlay?.metadata?.solves.all.length} {t('CubesPage.historical-solves')}
+              </li>
             </ul>
           </AlertDescription>
         </Alert>
@@ -102,13 +106,7 @@ export default function DeleteCollectionForm() {
           <span className="text-secondary-foreground">{activeOverlay?.metadata?.name}</span>{' '}
           <span>{t('Cubes-modal.to-continue')}</span>
         </Label>
-        <Input
-          {...register('confirmationName', {
-            required: true,
-            validate: (value) => value.trim() !== ''
-          })}
-          data-testid="dialog-delete-cube-input"
-        />
+        <Input {...register('confirmationName')} data-testid="dialog-delete-cube-input" />
 
         {errors && errors.confirmationName && (
           <p className="text-destructive text-sm" data-testid="dialog-delete-cube-error-message">

@@ -51,7 +51,7 @@ export default function CreateCollectionForm() {
       if (cubes?.some((cube) => cube.name.toLowerCase() === form.name.trim().toLowerCase())) {
         setError('name', {
           type: 'manual',
-          message: 'Cube collection name already exists.'
+          message: t('Errors.repeated-name')
         })
         return
       }
@@ -60,7 +60,7 @@ export default function CreateCollectionForm() {
       const newCubes = await cubesDB.getAll()
       setCubes(newCubes)
       overlayStore.close()
-      toast.success('Cube collection created successfully')
+      toast.success(t('Errors.collection-created'))
     } catch (err) {
       console.log(err)
     }
@@ -75,7 +75,7 @@ export default function CreateCollectionForm() {
       <ScrollArea className={'overflow-auto'}>
         <DialogHeader>
           <DrawerTitle>{t('Cubes-modal.new-collection')}</DrawerTitle>
-          <DrawerDescription>{t('Cubes-modal.new-collection-description')}</DrawerDescription>
+          <DrawerDescription>{t('CubesPage.new-collection-description')}</DrawerDescription>
         </DialogHeader>
 
         <div className="p-3 space-y-2">
@@ -85,9 +85,7 @@ export default function CreateCollectionForm() {
             data-testid="drawer-input-name"
             id="name"
             placeholder="E.g: X Man Tornado V3 M"
-            {...register('name', {
-              required: 'A name is required'
-            })}
+            {...register('name')}
           />
 
           {errors?.name && (

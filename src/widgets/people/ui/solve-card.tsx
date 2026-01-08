@@ -7,8 +7,9 @@ import { Solve } from '@/entities/solve/model/types'
 import calculateBestAo from '@/shared/lib/statistics/calculateBestAo'
 import formatTime from '@/shared/lib/formatTime'
 import { defer } from 'es-toolkit/compat'
-import { useTheme } from 'next-themes';
-import { cn } from '@/shared/lib/utils';
+import { useTheme } from 'next-themes'
+import { cn } from '@/shared/lib/utils'
+import { useTranslations } from 'next-intl'
 
 interface SolveCardProps {
   event: CubeCategory
@@ -19,6 +20,7 @@ interface SolveCardProps {
 }
 
 export default function SolveCard({ event, time, date, bgImage, solves }: SolveCardProps) {
+  const t = useTranslations('Index.PeoplePage.solve-card')
   const [mainTime, decimals] = time.split('.')
   const [ao5Str, setAo5Str] = React.useState<string>('--')
   const [spentStr, setSpentStr] = React.useState<string>('00:00.00')
@@ -61,7 +63,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
           <CardContent className="pb-4 pt-0 @container">
             <div className="grid @grid-cols-1 @sm:grid-cols-2 @lg:grid-cols-4 gap-3">
               <div className="flex gap-2 flex-col">
-                <h2 className={'font-semibold tracking-tight'}>Single</h2>
+                <h2 className={'font-semibold tracking-tight'}>{t('single')}</h2>
                 <div className="flex flex-row items-end justify-end gap-2 bg-neutral-100 dark:bg-background p-2 rounded-lg">
                   <Clock12 className="size-5 mb-1" />
                   <div className="flex flex-row">
@@ -72,7 +74,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
               </div>
 
               <div className="flex gap-2 flex-col">
-                <h2 className={'font-semibold tracking-tight'}>Ao5 (Best)</h2>
+                <h2 className={'font-semibold tracking-tight'}>{t('ao5')}</h2>
                 <div className="flex flex-row items-end justify-end gap-2 bg-neutral-100 dark:bg-background p-2 rounded-lg">
                   <CircleSlash2 className="size-5 mb-1" />
                   <div className="flex items-baseline">
@@ -89,7 +91,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
               </div>
 
               <div className="flex gap-2 flex-col">
-                <h2 className={'font-semibold tracking-tight'}>Time Spent</h2>
+                <h2 className={'font-semibold tracking-tight'}>{t('time-spent')}</h2>
                 <div className="flex flex-row items-end justify-end gap-2 bg-neutral-100 dark:bg-background p-2 rounded-lg">
                   <Timer className="size-5 mb-1" />
                   <div className="flex items-baseline">
@@ -100,7 +102,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
               </div>
 
               <div className="flex gap-2 flex-col">
-                <h2 className={'font-semibold tracking-tight'}>Solves</h2>
+                <h2 className={'font-semibold tracking-tight'}>{t('solves')}</h2>
                 <div className="flex flex-row items-end justify-end gap-2 bg-neutral-100 dark:bg-background p-2 rounded-lg">
                   <RotateCcw className="size-5 mb-1" />
                   <div className="flex items-baseline">
@@ -112,7 +114,12 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
           </CardContent>
         </div>
       </div>
-      <div className={cn("pointer-events-none select-none absolute bottom-5 right-10 text-foreground/10 rotate-25", resolvedTheme === 'dark' ? 'opacity-5' : 'opacity-15')}>
+      <div
+        className={cn(
+          'pointer-events-none select-none absolute bottom-5 right-10 text-foreground/10 rotate-25',
+          resolvedTheme === 'dark' ? 'opacity-5' : 'opacity-15'
+        )}
+      >
         <Image src={bgImage} alt={`icon`} width={200} height={200} unoptimized />
       </div>
     </Card>

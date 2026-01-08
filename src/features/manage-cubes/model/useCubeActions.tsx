@@ -8,8 +8,10 @@ import { cubesDB } from '@/entities/cube/api/indexdb'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { toast } from 'sonner'
 import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
+import { useTranslations } from 'next-intl'
 
 export const useCubeActions = (cube?: Cube) => {
+  const t = useTranslations('Index')
   const router = useRouter()
   const { open } = useOverlayStore()
   const setCubes = useTimerStore((state) => state.setCubes)
@@ -50,7 +52,7 @@ export const useCubeActions = (cube?: Cube) => {
     await editCubeCollection({ favorite: !cube?.favorite, id: cube!.id })
     const cubes = await cubesDB.getAll()
     setCubes(cubes)
-    toast.success('Cube favorite status updated', { duration: 1000 })
+    toast.success(t('Errors.favorite-updated'), { duration: 1000 })
   }
 
   return {

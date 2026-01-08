@@ -5,6 +5,7 @@ import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
 import UserInfo from '@/entities/user/ui/user-info'
 import { UserDocument } from '@/entities/user/model/user'
 import { Cube } from '@/entities/cube/model/types'
+import { useTranslations } from 'next-intl'
 
 interface PeopleTabsProps {
   user: UserDocument
@@ -12,6 +13,7 @@ interface PeopleTabsProps {
 }
 
 export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
+  const t = useTranslations('Index.PeoplePage.tabs')
   const { value, set } = usePeopleTab()
 
   return (
@@ -21,9 +23,9 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
         <div className="flex flex-col grow">
           <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full">
             <TabsList>
-              <TabsTrigger value={PTabs.OVERVIEW}>Overview</TabsTrigger>
-              <TabsTrigger value={PTabs.CUBES}>Cubes</TabsTrigger>
-              <TabsTrigger value={PTabs.LAST_ACTIVITY}>Last activity</TabsTrigger>
+              <TabsTrigger value={PTabs.OVERVIEW}>{t('overview')}</TabsTrigger>
+              <TabsTrigger value={PTabs.CUBES}>{t('cubes')}</TabsTrigger>
+              <TabsTrigger value={PTabs.LAST_ACTIVITY}>{t('last-activity')}</TabsTrigger>
             </TabsList>
             <PeopleContent cubes={cubes} />
           </Tabs>

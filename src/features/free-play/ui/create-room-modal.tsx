@@ -11,8 +11,10 @@ import { ref, serverTimestamp, set } from '@firebase/database'
 import { rtdb } from '@/shared/config/firebase'
 import genScramble from '@/shared/lib/timer/genScramble'
 import { RoomStatus } from '@/entities/free-play-mode/model/enums'
+import { useTranslations } from 'next-intl'
 
 export default function CreateRoomModal() {
+  const t = useTranslations('Multiplayer.create-room')
   const { data: session } = useSession()
   const router = useRouter()
   const {
@@ -52,30 +54,28 @@ export default function CreateRoomModal() {
       <DialogHeader>
         <DialogTitle>
           <span className="inline-flex items-center gap-2">
-            <Globe2 className="size-4" /> New public room
+            <Globe2 className="size-4" /> {t('title')}
           </span>
         </DialogTitle>
-        <DialogDescription>
-          Create a new room for your Clash event. Set the rules, requirements, and more.
-        </DialogDescription>
+        <DialogDescription>{t('description')}</DialogDescription>
       </DialogHeader>
 
       <div className="space-y-2">
         <div className="grid gap-2">
           <Label htmlFor="room-name" className="text-sm font-medium">
-            Room name
+            {t('room-name')}
           </Label>
           <Input
             autoComplete={'off'}
-            {...register('name', { required: 'Room name is required' })}
+            {...register('name', { required: t('room-name-required') })}
             id="room-name"
-            placeholder="e.g. Night of cubing"
+            placeholder={t('room-name-placeholder')}
           />
         </div>
 
         <div className="flex flex-col gap-2">
           <Label htmlFor="room-event" className="text-sm font-medium">
-            Event
+            {t('event')}
           </Label>
           <Controller
             name={'event'}
@@ -106,7 +106,7 @@ export default function CreateRoomModal() {
 
         <div className="grid gap-2">
           <Label htmlFor="insp" className="text-sm font-medium">
-            Maximum round time
+            {t('max-round-time')}
           </Label>
           <Controller
             name={'maxRoundTime'}
@@ -145,13 +145,13 @@ export default function CreateRoomModal() {
             )}
           />
 
-          <p className="text-xs text-muted-foreground">Time limit for scrambling + inspection + solving (per solve)</p>
+          <p className="text-xs text-muted-foreground">{t('max-round-time-description')}</p>
         </div>
       </div>
 
       <DialogFooter className="mt-2">
         <Button onClick={handleSubmit(submitForm)} disabled={isSubmitting}>
-          Continue
+          {t('continue')}
         </Button>
       </DialogFooter>
     </DialogContent>

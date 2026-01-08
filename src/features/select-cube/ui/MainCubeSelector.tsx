@@ -5,10 +5,12 @@ import SelectCollection from '@/features/select-collection/ui/SelectCollection'
 import { useEffect } from 'react'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
 
 export default function MainCubeSelector() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const open = useOverlayStore((state) => state.open)
+  const t = useTranslations('Index')
 
   const selectedCubeData = cubeCollection.find((cube) => cube.name === selectedCube?.category)
 
@@ -45,7 +47,7 @@ export default function MainCubeSelector() {
               className="invert dark:invert-0"
             />
           )}
-          <span className={'truncate mr-2'}>{selectedCube ? selectedCube.name : 'Select Cube'}</span>
+          <span className={'truncate mr-2'}>{selectedCube ? selectedCube.name : t('HomePage.select-cube')}</span>
         </div>
         <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 select-none shrink-0">
           <span className="text-xs">⌘</span>J

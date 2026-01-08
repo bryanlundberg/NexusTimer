@@ -7,15 +7,17 @@ import formatTime from '@/shared/lib/formatTime'
 import calcTurnsPerSecond from '@/shared/lib/statistics/calcTurnsPerSecond'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import { useTranslations } from 'next-intl'
 
 export function ReplaySolveDetails() {
+  const t = useTranslations('Index.leaderboard-solve-details')
   const { activeOverlay } = useOverlayStore()
   const { metadata } = activeOverlay || {}
   if (!metadata) return null
 
   return (
     <DialogContent className={'flex flex-col justify-center items-center gap-4'}>
-      <DialogTitle>User solution</DialogTitle>
+      <DialogTitle>{t('user-solution')}</DialogTitle>
       <AlgorithmRender
         config={
           {
@@ -33,16 +35,16 @@ export function ReplaySolveDetails() {
 
       <div className="flex flex-col gap-2 items-center">
         <div className="text-lg font-bold">
-          Time: {formatTime(metadata.time)}{' '}
+          {t('time')}: {formatTime(metadata.time)}{' '}
           {metadata.solution ? '(' + calcTurnsPerSecond(metadata.solution, metadata.time) + 'tps)' : ''}
         </div>
         <div className="text-sm text-muted-foreground">
           <p>
-            <strong>Scramble:</strong> {metadata.scramble}
+            <strong>{t('scramble')}:</strong> {metadata.scramble}
           </p>
           {metadata.solution && (
             <p>
-              <strong>Solution:</strong> {metadata.solution}
+              <strong>{t('solution')}:</strong> {metadata.solution}
             </p>
           )}
         </div>

@@ -3,8 +3,10 @@ import { Separator } from '@/components/ui/separator'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
 import Link from 'next/link'
 import * as React from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function FreePlayHeader() {
+  const t = useTranslations('Multiplayer')
   return (
     <div className="flex items-center gap-2 mb-6">
       <SidebarTrigger className="-ml-1" />
@@ -13,7 +15,7 @@ export default function FreePlayHeader() {
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href={'/free-play'}>Free Play</Link>
+              <Link href={'/free-play'}>{t('title')}</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbList>

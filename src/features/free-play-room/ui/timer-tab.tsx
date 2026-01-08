@@ -14,6 +14,7 @@ import useDeviceMatch from '@/shared/model/useDeviceMatch'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { Cube } from '@/entities/cube/model/types'
+import { useTranslations } from 'next-intl'
 
 interface TimerTabProps {
   maxRoundTime: number | null
@@ -22,6 +23,7 @@ interface TimerTabProps {
 }
 
 export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabProps) {
+  const t = useTranslations('Multiplayer')
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }
   const {
     updateUserPresenceStatus,
@@ -189,11 +191,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
         inspectionRequired={true}
       />
 
-      {disableTimer && (
-        <div className="text-red-500 text-center mt-4 w-3/4">
-          You have already submitted a solve for this scramble. Wait for the next one!
-        </div>
-      )}
+      {disableTimer && <div className="text-red-500 text-center mt-4 w-3/4">{t('already-submitted')}</div>}
 
       <ConfirmSolveModal
         isOpen={modalOpen}

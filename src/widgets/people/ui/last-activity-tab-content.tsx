@@ -15,12 +15,14 @@ import {
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import { Cube } from '@/entities/cube/model/types'
+import { useTranslations } from 'next-intl'
 
 interface LastActivityTabContentProps {
   cubes: Cube[]
 }
 
 export default function LastActivityTabContent({ cubes }: LastActivityTabContentProps) {
+  const t = useTranslations('Index.LeaderboardsPage.table')
   const ITEMS_PER_PAGE = 10
   const [page, setPage] = useState(1)
   const solves = useMemo(() => {
@@ -65,11 +67,11 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
           <TableHeader>
             <TableRow>
               <TableHead className="w-10">#</TableHead>
-              <TableHead className="w-full md:w-auto">Cube used</TableHead>
-              <TableHead className="hidden sm:table-cell">Category</TableHead>
-              <TableHead className="hidden md:table-cell">Scramble</TableHead>
-              <TableHead>Time</TableHead>
-              <TableHead className="hidden sm:table-cell">Image</TableHead>
+              <TableHead className="w-full md:w-auto">{t('cube-used')}</TableHead>
+              <TableHead className="hidden sm:table-cell">{t('category')}</TableHead>
+              <TableHead className="hidden md:table-cell">{t('scramble')}</TableHead>
+              <TableHead>{t('time')}</TableHead>
+              <TableHead className="hidden sm:table-cell">{t('image')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -85,7 +87,8 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
                   <TableCell className="font-medium hidden md:table-cell overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
                     {solve.scramble}
                   </TableCell>
-                  <TableCell>{formatTime(solve.time)}
+                  <TableCell>
+                    {formatTime(solve.time)}
                     {solve.dnf && <span className="ml-1 text-red-500 font-bold">DNF</span>}
                     {solve.plus2 && <span className="ml-1 text-yellow-500 font-bold">+2</span>}
                   </TableCell>

@@ -25,6 +25,16 @@
       "auto-select-description": "Automatically select a cube at application start",
       "language-description": "Change the language used throughout the application"
     },
+    "leaderboard-solve-details": {
+      "user-solution": "User solution",
+      "time": "Time",
+      "scramble": "Scramble",
+      "solution": "Solution"
+    },
+    "DialogFirstRunNoCubes": {
+      "title": "Welcome to NexusTimer",
+      "description": "You do not have any collections yet. You can create your first collection or import a backup to get started."
+    },
     "HomePage": {
       "title": "Timer",
       "hint": "Hint",
@@ -44,8 +54,17 @@
       "average": "Average",
       "best": "Best",
       "counter": "Counter",
+      "select-cube": "Select Cube",
       "enter-custom-scramble": "Enter a custom scramble",
       "mode": "Mode",
+      "modes": {
+        "normal": "Normal",
+        "manual": "Manual",
+        "stackmat": "Stackmat",
+        "virtual": "Virtual",
+        "smart": "Smart cube",
+        "nexus-connect": "Nexus Connect"
+      },
       "new-scramble": "New scramble",
       "edit-scramble": "Edit scramble",
       "hints": "Hints",
@@ -108,12 +127,20 @@
       "global": "Global",
       "sessions": "Sessions",
       "best-time": "Best Time",
+      "worst-time": "Worst Time",
       "average": "Average",
+      "overall-average": "Overall Average",
+      "ao5-current": "Ao5 (Current)",
       "time-spent": "Time Spent",
       "success-rate": "Success Rate",
+      "standard-deviation": "Standard Deviation",
       "counter": "Counter",
       "category-tab": "Category",
       "cube-tab": "Cube",
+      "cube-all": "Cube (All)",
+      "cube-session": "Cube (Session)",
+      "time-by-cube": "Time Distribution",
+      "solves-by-cube": "Solves Distribution",
       "global-tooltip": "Combines all historical and session solves for every cube in the same category.",
       "sessions-tooltip": "Counts only session solves for every cube in the same category.",
       "cube-all-tooltip": "Combines all historical and session solves for only the selected cube.",
@@ -133,6 +160,11 @@
       "using": "Using",
       "idle": "Idle",
       "new-collection": "New collection",
+      "new-collection-description": "Create a new collection to organize your cubes.",
+      "restore-account-data": "Restore Account Data",
+      "restore-account-data-description": "Restore your data from your account backups.",
+      "import-from-other-timers": "Import from Other Timers",
+      "import-from-other-timers-description": "Import data from other timer apps.",
       "name": "Name",
       "edit": "Edit",
       "delete": "Delete",
@@ -144,7 +176,9 @@
       "no-solve-data": "No solve data available",
       "chart-solves-label": "Solves",
       "utilize": "Utilize",
-      "utilize-cube": "Utilize `{name}`"
+      "utilize-cube": "Utilize `{name}`",
+      "session-solves": "Session solves",
+      "historical-solves": "Historical solves"
     },
     "Cubes-modal": {
       "delete-collection": "Delete collection",
@@ -159,15 +193,25 @@
       "category": "Category",
       "select-an-option": "Select an option",
       "new-collection": "New collection",
-      "new-collection-description": "Cube collections allow you to keep track of each cube's history without affecting overall category stats.",
       "current-selection": "Current selection:"
     },
     "Errors": {
       "not-match": "The name does not match.",
       "repeated-name": "That collection name already exists.",
-      "empty-input": "Please enter a value"
+      "empty-input": "Please enter a value",
+      "required-collection-name": "Required collection name",
+      "max-length-50": "Maximum length is 50 characters",
+      "collection-created": "Cube collection created successfully",
+      "collection-edited": "Cube collection edited successfully",
+      "collection-edit-failed": "Failed to edit cube collection",
+      "favorite-updated": "Cube favorite status updated",
+      "required-field": "Required field",
+      "collection-deleted": "Collection deleted successfully",
+      "collection-delete-failed": "Failed to delete collection",
+      "permanent-delete-warning": "This will permanently delete the collection."
     },
     "Inputs": {
+      "delete": "Delete",
       "continue": "Continue",
       "select": "Select",
       "favorites": "Favorites",
@@ -185,23 +229,100 @@
       "fullscreen": "Fullscreen",
       "exit-fullscreen": "Exit Fullscreen"
     },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    },
+    "PeoplePage": {
+      "title": "People",
+      "search-placeholder": "Search by name",
+      "region-placeholder": "Region",
+      "region-all": "All",
+      "no-users-found": "No users found matching your criteria",
+      "results": "Results",
+      "user-card": {
+        "joined": "Joined {date}",
+        "compare": "Compare",
+        "view-profile": "View Profile"
+      },
+      "tabs": {
+        "overview": "Overview",
+        "cubes": "Cubes",
+        "last-activity": "Last activity"
+      },
+      "edit-profile": "Edit profile",
+      "no-backup-data": "This account has no backup data to display.",
+      "solve-card": {
+        "single": "Single",
+        "ao5": "Ao5 (Best)",
+        "time-spent": "Time Spent",
+        "solves": "Solves"
+      }
+    },
+    "LeaderboardsPage": {
+      "title": "Leaderboard Rankings",
+      "description": "Explore the top 100 performers and their solves across various categories. Discover detailed insights about each participant and their achievements.",
+      "type": "Type",
+      "thinking": "Thinking...",
+      "table": {
+        "user": "User",
+        "category": "Category",
+        "scramble": "Scramble",
+        "time": "Time",
+        "image": "Image",
+        "date": "Date",
+        "cube-used": "Cube used",
+        "tps": "tps",
+        "not-available": "N/A"
+      },
+      "comparative": {
+        "title": "Comparative",
+        "timezone": "Time Zone",
+        "first-solve": "First solve",
+        "total-solves": "Total solves",
+        "total-cubes": "Total Cubes",
+        "single": "Single",
+        "average": "Average",
+        "count": "Count",
+        "name": "Name",
+        "last-backup": "Last Backup?",
+        "never": "Never",
+        "close": "Close",
+        "compare": "Compare"
+      }
+    },
     "NavMain": {
       "application": "Application",
+      "platform": "Platform",
       "timer": "Timer",
       "solves": "Solves",
       "statistics": "Statistics",
       "cubes": "Cubes",
       "transfer": "Transfer",
       "community": "Community",
+      "people": "People",
+      "leaderboards": "Leaderboards",
       "multiplayer": "Multiplayer",
+      "free-play": "Free Play",
       "clash-mode": "Clash Mode",
-      "settings": "Settings"
+      "settings": "Settings",
+      "account": "Account",
+      "save-data": "Save data",
+      "download-data": "Download data",
+      "log-out": "Log out"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",
       "delete": "Delete",
       "bookmark": "Bookmark",
-      "copy": "Copy"
+      "copy": "Copy",
+      "dnf": "Did Not Finish",
+      "more-actions": "More actions"
+    },
+    "solve-details": {
+      "unknown-category": "Unknown",
+      "move-to-history": "Move to History",
+      "transfer-collection": "Transfer Collection"
     },
     "Settings-menu": {
       "locale": "Region",
@@ -267,12 +388,37 @@
       "tos": "Terms of Service",
       "source": "Source",
       "last-backup": "Last backup:",
+      "up-to-date": "Up to date",
+      "no-backup": "No backup",
+      "loading": "Loading...",
+      "no-backup-yet": "There is no backup yet",
+      "tip": "Tip:",
+      "backup-tip": "Keep your data safe by backing up regularly.",
       "save-data-title": "Save data",
       "save-data-description": "Do you want save your account data on the cloud?",
       "save-data-warning": "This will overwrite previously saved data.",
       "load-data-title": "Load data",
       "load-data-description": "Do you want to download your account data from the cloud?",
-      "load-data-warning": "This will merge current data with saved data."
+      "load-data-warning": "This will merge current data with saved data.",
+      "reset-settings": "Reset settings",
+      "delete-app-data": "Delete App data",
+      "reset-settings-success": "Settings have been reset to default",
+      "delete-app-data-title": "Delete all app data?",
+      "delete-app-data-subtitle": "This action will permanently delete all your cubes and solves data and cannot be undone. Are you sure you want to proceed?",
+      "delete-app-data-success": "All app data has been deleted",
+      "cloud-sync": "Cloud Sync",
+      "enable-auto-save": "Enable Automatic Save Cloud",
+      "auto-save-description": "Automatically save your data to the cloud",
+      "enable-auto-load": "Enable Automatic Load Cloud",
+      "auto-load-description": "Automatically load your data from the cloud when you open the app",
+      "backup-interval": "Backup Interval",
+      "backup-interval-description": "Number of solves between each automatic cloud backup",
+      "sync-toast": {
+        "title": "Hey there! Time to Sync!",
+        "description": "Merge your local data with cloud backup to sync your device and create an updated backup?",
+        "cancel": "Cancel",
+        "merge": "Merge"
+      }
     },
     "TransferSolvesPage": {
       "title": "Transfer Solves",
@@ -289,9 +435,68 @@
       "empty-vault": "Your solve vault is currently empty.",
       "cubes-unavailable": "Cubes data is not available"
     },
+    "AccountPage": {
+      "go-to-profile": "Go to Profile",
+      "name": "Name",
+      "name-required": "Name is required",
+      "name-min-length": "Name must be at least 5 characters long",
+      "timezone": "Timezone",
+      "select-timezone": "Select timezone",
+      "pronoun": "Pronoun",
+      "select-pronoun": "Select pronoun",
+      "goal": "Goal",
+      "bio": "Bio",
+      "bio-placeholder": "Tell us about yourself",
+      "update-info": "Update Info",
+      "update-failed": "Failed to update user",
+      "update-success": "User updated successfully",
+      "change-picture": "Change picture",
+      "avatar-requirements": "JPG, GIF or PNG. Max size of 800K",
+      "pronouns": {
+        "he": "He",
+        "she": "She",
+        "other": "Other"
+      }
+    },
     "AccessCard": {
       "title": "Access",
       "description": "Keep your data in sync across devices and access more features."
+    },
+    "AlgorithmsPage": {
+      "title": "Algorithms",
+      "header": "Master Your Cubing Journey with Algorithm Training",
+      "description": "Explore a wide range of algorithm sets for various puzzles, complete with interactive 3D visualizations to enhance your learning experience.",
+      "suggestions": "If you find any errors or want to extend with more algorithms, please submit it on our GitHub.",
+      "edit-github": "Edit this algorithms on Github",
+      "skill": "Skill",
+      "casual-enthusiast": "Casual Enthusiast",
+      "dedicated-learner": "Dedicated Learner",
+      "algorithm-master": "Algorithm Master",
+      "descriptions": {
+        "pbl": "These algorithms are used to permute both the top and bottom layers of a 2x2 cube simultaneously, allowing for efficient solving of the puzzle.",
+        "ocll": "COLL (Orient Corners of the Last Layer) - This step focuses on orienting all the corners of the last layer to prepare for the final steps of solving the puzzle.",
+        "cll": "CLL is a subset of OLL for 2x2x2 cubes that solves the last layer in one algorithm after orienting the first layer.",
+        "eg-1": "EG-1 is a set of algorithms used to solve the last layer of a 2x2 cube after the first layer is completed, specifically when there is an adjacent swap on the bottom layer.",
+        "eg-2": "EG-2 is a set of algorithms used to solve the last layer of a 2x2 cube after the first layer is completed, specifically when there is a diagonal swap on the bottom layer.",
+        "oll": "The OLL (Orientation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used to orient all of the pieces on the last layer, once the F2L is complete.",
+        "pll": "The PLL (Permutation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used for the final step of the CFOP method, to permute the edges and corners of the last layer, once all pieces are oriented.",
+        "coll": "COLL (Corners and Orientation of Last Layer) algorithms are used to orient and permute the corners of your last layer at the same time, presuming that all of your last layer edges are already oriented.",
+        "ble": "Brooks' Last Edge (BLE) is a method used to solve the last edge of the Rubik's Cube efficiently, often as part of advanced solving techniques.",
+        "vls": "VLS (Valk Last Slot) algorithms solve the final F2L slot and OLL at the same time, in the cases where you have a connected F2L pair. This selection of algorithms serves as an introduction to the full VLS algorithm set, and aims to highlight the most useful cases to know.",
+        "cls": "CLS (Corner Last Slot) algorithms solve the last F2L corner and orient your last layer at the same time. They are used when the edge of your final F2L pair is already solved, and the last layer edges are oriented. This selection of algorithms serves as an introduction to the full CLS algorithm set, and aims to highlight the most useful cases to know.",
+        "wv": "WV (Winter Variation) algorithms are used to orient the corners of your last layer whilst you insert your final F2L pair, in the case where the pair is connected and where all of the last layer edges are already oriented.",
+        "zbll-s": "ZBLL Sune (ZBLL-S) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a sune configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-as": "ZBLL Antisune (ZBLL-AS) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in an antisune configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-u": "ZBLL U (ZBLL-U) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a U configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-t": "ZBLL T (ZBLL-T) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a T configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-pi": "ZBLL PI (ZBLL-PI) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in a PI configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-l": "ZBLL L (ZBLL-L) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in an L configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "zbll-h": "ZBLL H (ZBLL-H) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in an H configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
+        "parity-4x4": "These algorithms address the unique parity errors that can occur when solving a 4x4 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 4x4 to a 3x3 state.",
+        "parity-5x5": "These algorithms address the unique parity errors that can occur when solving a 5x5 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 5x5 to a 3x3 state.",
+        "l4e": "Last 4 slots (Pyraminx) - These algorithms are used to solve the last four edge pieces of a Pyraminx puzzle. The goal is to position and orient these pieces correctly to complete the puzzle."
+      },
+      "alternative": "Alternative"
     }
   },
   "Metadata": {
@@ -317,5 +522,61 @@
   "OpenGraphImage": {
     "title": "Nexus Timer - Professional Rubik's Cube Timer",
     "description": "Nexus Timer is a professional platform for training and analyzing your journey with the Rubik's Cube."
+  },
+  "Multiplayer": {
+    "title": "Free Play",
+    "description": "Join real-time cubing sessions with other enthusiasts. A casual space where you can practice freely without the pressure of rankings or records.",
+    "new-room": "New Room",
+    "no-active-rooms": "No Active Rooms Yet",
+    "no-active-rooms-description": "Be the first to start a cubing session! Create a room and invite others to join you for some casual practice.",
+    "account-required": "Account Required",
+    "account-required-description": "You need to be signed in to access online games.",
+    "next-round-starts-in": "Next round starts in:",
+    "timer": "Timer",
+    "results": "Results",
+    "people": "People",
+    "create-room": {
+      "title": "New public room",
+      "description": "Create a new room for your Clash event. Set the rules, requirements, and more.",
+      "room-name": "Room name",
+      "room-name-placeholder": "e.g. Night of cubing",
+      "room-name-required": "Room name is required",
+      "event": "Event",
+      "max-round-time": "Maximum round time",
+      "max-round-time-description": "Time limit for scrambling + inspection + solving (per solve)",
+      "continue": "Continue"
+    },
+    "status": {
+      "solving": "Solving...",
+      "inspecting": "Inspecting",
+      "done": "Done",
+      "idle": "Idle",
+      "ready": "Ready",
+      "holding": "Holding"
+    },
+    "already-submitted": "You have already submitted a solve for this scramble. Wait for the next one!",
+    "confirm-solve": {
+      "title": "Confirm Solve Time ({time})",
+      "description": "How would you like to register this solve?",
+      "dnf": "DNF",
+      "plus2": "+2",
+      "ok": "OK"
+    },
+    "results-tab": {
+      "latest": "Latest",
+      "best": "Best",
+      "worst": "Worst",
+      "average": "Average",
+      "updating-live": "Updating live",
+      "cubers": "Cubers"
+    },
+    "view-profile": "View Profile",
+    "anonymous": "Anonymous",
+    "room-card": {
+      "users-online": "Users online:",
+      "event": "Event:",
+      "max-time-per-round": "Max Time per Round:",
+      "next-round-starts-in": "Next round starts in:"
+    }
   }
 }

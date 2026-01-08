@@ -7,8 +7,10 @@ import Link from 'next/link'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { usePathname, useRouter } from 'next/navigation'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
+import { useTranslations } from 'next-intl'
 
 export default function AlgorithmsBreadcrumb({ hideCollectionsSegment = false }: { hideCollectionsSegment?: boolean }) {
+  const t = useTranslations('Index.AlgorithmsPage')
   const router = useRouter()
   const pathname = usePathname()
   const segment = pathname!.split('/')[2]
@@ -25,7 +27,7 @@ export default function AlgorithmsBreadcrumb({ hideCollectionsSegment = false }:
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href={'/algorithms'}>Algorithms</Link>
+              <Link href={'/algorithms'}>{t('title')}</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
           {!hideCollectionsSegment && (

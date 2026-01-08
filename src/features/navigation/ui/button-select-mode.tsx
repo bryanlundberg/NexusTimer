@@ -59,30 +59,30 @@ export default function ButtonSelectMode() {
           <DropdownMenuSeparator />
           <DropdownMenuRadioGroup value={timerMode} onValueChange={(e: any) => setTimerMode(e)}>
             <DropdownMenuRadioItem value={TimerMode.NORMAL} data-testid={'mode-normal'}>
-              Normal
+              {t('HomePage.modes.normal')}
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem value={TimerMode.MANUAL} data-testid={'mode-manual'}>
-              Manual
+              {t('HomePage.modes.manual')}
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem value={TimerMode.STACKMAT} data-testid={'mode-stackmat'}>
-              Stackmat
+              {t('HomePage.modes.stackmat')}
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem
               data-testid={'mode-virtual'}
               value={TimerMode.VIRTUAL}
               disabled={selectedCube?.category !== '3x3' && selectedCube?.category !== '2x2'}
             >
-              Virtual
+              {t('HomePage.modes.virtual')}
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem data-testid={'mode-smart'} value={TimerMode.SMART_CUBE} disabled>
-              Smart cube
+              {t('HomePage.modes.smart')}
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem
               data-testid={'mode-nexus-connect'}
               value={TimerMode.NEXUS_CONNECT}
               onClick={handleNexusConnectClick}
             >
-              Nexus Connect
+              {t('HomePage.modes.nexus-connect')}
             </DropdownMenuRadioItem>
           </DropdownMenuRadioGroup>
         </DropdownMenuContent>

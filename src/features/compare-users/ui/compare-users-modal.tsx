@@ -11,8 +11,12 @@ import { useCompareUsersStats } from '@/features/compare-users/model/useCompareU
 import { CompareUser } from '@/features/compare-users/model/compare'
 import { Cube } from '@/entities/cube/model/types'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
+import { useLocale, useTranslations } from 'next-intl'
+import { es } from 'date-fns/locale'
 
 export default function CompareUsersModal() {
+  const t = useTranslations('Index.LeaderboardsPage.comparative')
+  const locale = useLocale()
   const closeOverlay = useCompareUsersStore((state) => state.closeOverlay)
   const users = useCompareUsersStore((state) => state.users)
   const userCubes = useUserBackups(users)
@@ -31,7 +35,7 @@ export default function CompareUsersModal() {
           </span>
         </div>
         <h2 className="scroll-m-20 border-b pb-2 text-xl font-semibold tracking-tight first:mt-0 text-background-foreground">
-          Comparative
+          {t('title')}
         </h2>
         <XIcon onClick={closeOverlay} />
       </header>
@@ -44,7 +48,7 @@ export default function CompareUsersModal() {
                 <div className={'flex flex-col items-center gap-2'}>
                   <Avatar className={'size-24'}>
                     <AvatarImage className={'object-cover'} src={user.image} />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
                   </Avatar>
                   <span className={'font-semibold'}>{user.name}</span>
                 </div>
@@ -53,7 +57,7 @@ export default function CompareUsersModal() {
           })}
         </CompareTableRow>
 
-        <CompareTableRow title={'Time Zone'}>
+        <CompareTableRow title={t('timezone')}>
           {users.map((user) => {
             const value = user.timezone || '—'
             return (
@@ -66,9 +70,12 @@ export default function CompareUsersModal() {
           })}
         </CompareTableRow>
 
-        <CompareTableRow title={'First solve'}>
+        <CompareTableRow title={t('first-solve')}>
           {users.map((user) => {
-            const value = formatDistance(new Date(user.createdAt), new Date(), { addSuffix: true })
+            const value = formatDistance(new Date(user.createdAt), new Date(), {
+              addSuffix: true,
+              locale: locale === 'es' ? es : undefined
+            })
             return (
               <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
                 <Badge variant={'outline'} className={'mx-auto'}>
@@ -79,7 +86,7 @@ export default function CompareUsersModal() {
           })}
         </CompareTableRow>
 
-        <CompareTableRow title={'Total solves'}>
+        <CompareTableRow title={t('total-solves')}>
           {users.map((user) => {
             const cubesDB = userCubes[user._id] || {}
             const allCubes = Object.values(cubesDB).flat() as Cube[]
@@ -99,7 +106,7 @@ export default function CompareUsersModal() {
           })}
         </CompareTableRow>
 
-        <CompareTableRow title={'Total Cubes'}>
+        <CompareTableRow title={t('total-cubes')}>
           {users.map((user) => {
             const cubesDB = userCubes[user._id] || {}
             const totalCubes = (Object.values(cubesDB).flat() as Cube[]).length

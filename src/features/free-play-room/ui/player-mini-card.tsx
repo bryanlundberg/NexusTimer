@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import * as React from 'react'
 import Link from 'next/link'
 import { TimerStatus } from '@/features/timer/model/enums'
+import { useTranslations } from 'next-intl'
 
 export interface PlayerMiniCardProps {
   name?: string
@@ -14,6 +15,7 @@ export interface PlayerMiniCardProps {
 }
 
 export default function PlayerMiniCard({ name, avatarUrl, status, id }: PlayerMiniCardProps) {
+  const t = useTranslations('Multiplayer')
   return (
     <div className={'flex flex-col items-center justify-center bg-card rounded-lg p-4 size-full'}>
       <div className={'relative'}>
@@ -48,7 +50,7 @@ export default function PlayerMiniCard({ name, avatarUrl, status, id }: PlayerMi
       <p className={'text-center text-sm mt-1'}>{name}</p>
       <Link href={`/people/${id}`}>
         <Button size={'sm'} className={'mt-2 text-xs'}>
-          View Profile <ExternalLink className="size-3.5" />
+          {t('view-profile')} <ExternalLink className="size-3.5" />
         </Button>
       </Link>
     </div>

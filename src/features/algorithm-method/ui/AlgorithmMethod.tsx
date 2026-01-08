@@ -4,8 +4,10 @@ import { Badge } from '@/components/ui/badge'
 import * as React from 'react'
 import { Progress } from '@/components/ui/progress'
 import { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
+import { useTranslations } from 'next-intl'
 
 export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
+  const t = useTranslations('Index.AlgorithmsPage')
   const { slug, title, subtitle, puzzle, Icon, difficulty } = set
   return (
     <Link href={`/algorithms/${slug}`} className="focus:outline-none focus:ring-2 focus:ring-primary rounded-md">
@@ -26,9 +28,13 @@ export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
         </CardHeader>
         <div className={'flex flex-col gap-2'}>
           <div className={'flex flex-row justify-between items-center font-semibold text-xs px-6 '}>
-            <div>Skill</div>
+            <div>{t('skill')}</div>
             <div className={'flex flex-row items-center gap-1'}>
-              {difficulty === 1 ? 'Casual Enthusiast' : difficulty === 2 ? 'Dedicated Learner' : 'Algorithm Master'}
+              {difficulty === 1
+                ? t('casual-enthusiast')
+                : difficulty === 2
+                  ? t('dedicated-learner')
+                  : t('algorithm-master')}
             </div>
           </div>
           <CardContent className="flex flex-row gap-3">

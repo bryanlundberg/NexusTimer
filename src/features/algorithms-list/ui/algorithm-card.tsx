@@ -10,6 +10,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import AlgorithmModal from '@/features/algorithms-list/ui/algorithm-modal'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
+import { useTranslations } from 'next-intl'
 
 interface AlgorithmCardProps extends React.HTMLAttributes<HTMLDivElement> {
   onAlgorithmClick?: () => void
@@ -25,6 +26,7 @@ export default function AlgorithmCard({
   puzzle,
   ...rest
 }: AlgorithmCardProps) {
+  const t = useTranslations('Index.AlgorithmsPage')
   const { open } = useOverlayStore()
   const algs = algorithm?.algs || algorithm?.alg || []
 
@@ -65,7 +67,9 @@ export default function AlgorithmCard({
               key={`${algorithm.group}-${algorithm.name}-alg-${index}`}
             >
               <div className={'grow space-y-2'}>
-                <Label className={'ml-2'}>Alternative #{index + 1}:</Label>
+                <Label className={'ml-2'}>
+                  {t('alternative')} #{index + 1}:
+                </Label>
                 <span className={'text-lg lg:text-xl xl:text-2xl flex justify-between'}>
                   {alg}
                   <Button

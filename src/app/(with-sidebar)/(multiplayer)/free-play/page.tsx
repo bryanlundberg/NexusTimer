@@ -10,8 +10,10 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import FreePlayHeader from '@/widgets/navigation-header/ui/FreePlayHeader'
 import CreateRoomModal from '@/features/free-play/ui/create-room-modal'
 import RoomCard from '@/features/free-play/ui/room-card'
+import { useTranslations } from 'next-intl'
 
 export default function FreePlayPage() {
+  const t = useTranslations('Multiplayer')
   const { useRooms } = useFreeMode()
   const rooms = useRooms()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -26,16 +28,13 @@ export default function FreePlayPage() {
       <FreePlayHeader />
 
       <div className={'flex flex-col items-center justify-center gap-2'}>
-        <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight">Free Play</h1>
+        <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight">{t('title')}</h1>
 
-        <p className="text-center text-muted-foreground mt-2 max-w-2xl mx-auto">
-          Join real-time cubing sessions with other enthusiasts. A casual space where you can practice freely without
-          the pressure of rankings or records.
-        </p>
+        <p className="text-center text-muted-foreground mt-2 max-w-2xl mx-auto">{t('description')}</p>
 
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
-            <Button className={'mx-auto'}>New Room</Button>
+            <Button className={'mx-auto'}>{t('new-room')}</Button>
           </DialogTrigger>
           <CreateRoomModal />
         </Dialog>
@@ -58,11 +57,8 @@ export default function FreePlayPage() {
             </div>
           </div>
 
-          <h2 className="text-2xl font-bold text-center mb-2">No Active Rooms Yet</h2>
-          <p className="text-muted-foreground text-center max-w-md mb-6">
-            Be the first to start a cubing session! Create a room and invite others to join you for some casual
-            practice.
-          </p>
+          <h2 className="text-2xl font-bold text-center mb-2">{t('no-active-rooms')}</h2>
+          <p className="text-muted-foreground text-center max-w-md mb-6">{t('no-active-rooms-description')}</p>
         </Card>
       )}
     </ScrollArea>

@@ -18,6 +18,7 @@ import { ChevronRightIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 export function NavMain({
   items
@@ -35,6 +36,7 @@ export function NavMain({
 }) {
   const pathname = usePathname() ?? ''
   const [hash, setHash] = useState<string>('')
+  const t = useTranslations('Index')
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const updateHash = () => setHash(window.location.hash || '')
@@ -55,7 +57,7 @@ export function NavMain({
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>{t('NavMain.platform')}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
           const subActive = item.items?.some((s) => isPathActive(s.url)) ?? false

@@ -91,7 +91,7 @@ export default function QuickActions({
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Did Not Finish</p>
+            <p>{t('tooltips.dnf')}</p>
           </TooltipContent>
         </Tooltip>
         <Tooltip>
@@ -100,7 +100,7 @@ export default function QuickActions({
               data-testid="bookmark-button"
               icon={Bookmark}
               active={solve?.bookmark}
-              aria-label="Bookmark"
+              aria-label={t('tooltips.bookmark')}
               onPointerDown={handleToggleBookmark}
               color={[251, 191, 36]}
             />
@@ -112,7 +112,7 @@ export default function QuickActions({
         {(!hideCopyButton || !hideMoveToHistory || (tabMode === SolveTab.SESSION && !hideTransferCollection)) && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant={'ghost'} aria-label="More actions" data-testid="more-actions-button">
+              <Button variant={'ghost'} aria-label={t('tooltips.more-actions')} data-testid="more-actions-button">
                 <MoreHorizontal />
               </Button>
             </DropdownMenuTrigger>
@@ -136,7 +136,7 @@ export default function QuickActions({
                     handleMoveToHistorial()
                   }}
                 >
-                  <CubeIcon className="mr-2" /> Move to History
+                  <CubeIcon className="mr-2" /> {t('solve-details.move-to-history')}
                 </DropdownMenuItem>
               )}
               {tabMode === SolveTab.SESSION && !hideTransferCollection && (
@@ -147,7 +147,7 @@ export default function QuickActions({
                     handleTransferCollection()
                   }}
                 >
-                  <ArrowRightLeftIcon size={12} className="mr-2" /> Transfer Collection
+                  <ArrowRightLeftIcon size={12} className="mr-2" /> {t('solve-details.transfer-collection')}
                 </DropdownMenuItem>
               )}
             </DropdownMenuContent>
