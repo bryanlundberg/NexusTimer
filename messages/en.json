@@ -31,6 +31,10 @@
       "scramble": "Scramble",
       "solution": "Solution"
     },
+    "DialogFirstRunNoCubes": {
+      "title": "Welcome to NexusTimer",
+      "description": "You do not have any collections yet. You can create your first collection or import a backup to get started."
+    },
     "HomePage": {
       "title": "Timer",
       "hint": "Hint",
@@ -155,7 +159,9 @@
       "no-solve-data": "No solve data available",
       "chart-solves-label": "Solves",
       "utilize": "Utilize",
-      "utilize-cube": "Utilize `{name}`"
+      "utilize-cube": "Utilize `{name}`",
+      "session-solves": "Session solves",
+      "historical-solves": "Historical solves"
     },
     "Cubes-modal": {
       "delete-collection": "Delete collection",
@@ -175,7 +181,17 @@
     "Errors": {
       "not-match": "The name does not match.",
       "repeated-name": "That collection name already exists.",
-      "empty-input": "Please enter a value"
+      "empty-input": "Please enter a value",
+      "required-collection-name": "Required collection name",
+      "max-length-50": "Maximum length is 50 characters",
+      "collection-created": "Cube collection created successfully",
+      "collection-edited": "Cube collection edited successfully",
+      "collection-edit-failed": "Failed to edit cube collection",
+      "favorite-updated": "Cube favorite status updated",
+      "required-field": "Required field",
+      "collection-deleted": "Collection deleted successfully",
+      "collection-delete-failed": "Failed to delete collection",
+      "permanent-delete-warning": "This will permanently delete the collection."
     },
     "Inputs": {
       "continue": "Continue",
