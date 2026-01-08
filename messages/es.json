@@ -404,6 +404,7 @@
     },
     "NavMain": {
       "application": "Aplicación",
+      "platform": "Plataforma",
       "timer": "Cronómetro",
       "solves": "Tiempos",
       "statistics": "Estadísticas",
@@ -415,7 +416,11 @@
       "multiplayer": "Multijugador",
       "free-play": "Juego Libre",
       "clash-mode": "Modo Clash",
-      "settings": "Ajustes"
+      "settings": "Ajustes",
+      "account": "Cuenta",
+      "save-data": "Guardar datos",
+      "download-data": "Descargar datos",
+      "log-out": "Cerrar sesión"
     },
     "AccessCard": {
       "title": "Acceso",

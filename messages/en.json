@@ -288,6 +288,7 @@
     },
     "NavMain": {
       "application": "Application",
+      "platform": "Platform",
       "timer": "Timer",
       "solves": "Solves",
       "statistics": "Statistics",
@@ -299,7 +300,11 @@
       "multiplayer": "Multiplayer",
       "free-play": "Free Play",
       "clash-mode": "Clash Mode",
-      "settings": "Settings"
+      "settings": "Settings",
+      "account": "Account",
+      "save-data": "Save data",
+      "download-data": "Download data",
+      "log-out": "Log out"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",
