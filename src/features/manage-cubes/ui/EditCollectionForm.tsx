@@ -53,7 +53,7 @@ export default function EditCollectionForm() {
       if (metadata?.name !== form.name && cubes?.some((e) => e.name.toLowerCase() === form.name.trim().toLowerCase())) {
         setError('name', {
           type: 'manual',
-          message: 'Cube collection name already exists.'
+          message: t('Errors.repeated-name')
         })
         return
       }
@@ -73,10 +73,10 @@ export default function EditCollectionForm() {
       }
 
       overlayStore.close()
-      toast.success('Cube edited successfully')
+      toast.success(t('Errors.collection-edited'))
     } catch (err) {
       console.log(err)
-      toast.error('Failed to edit cube')
+      toast.error(t('Errors.collection-edit-failed'))
     }
   }
 
@@ -113,7 +113,7 @@ export default function EditCollectionForm() {
         <Controller
           name="category"
           control={control}
-          rules={{ required: 'Required field' }}
+          rules={{ required: t('Errors.required-field') }}
           render={({ field }) => (
             <Select value={field.value} onValueChange={field.onChange}>
               <SelectTrigger className={'w-full'} data-testid="drawer-edit-select-category">
