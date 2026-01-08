@@ -52,7 +52,7 @@ export default function StatisticsChart({ statistics }: StatisticsChartProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div className={'inline-flex items-center gap-2'}>
-                    C {t('SolvesPage.all')}
+                    {t('StatsPage.cube-all')}
                     <InformationCircleIcon className={'size-5'} />
                   </div>
                 </TooltipTrigger>
@@ -67,7 +67,7 @@ export default function StatisticsChart({ statistics }: StatisticsChartProps) {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div className={'inline-flex items-center gap-2'}>
-                    C {t('SolvesPage.session')}
+                    {t('StatsPage.cube-session')}
                     <InformationCircleIcon className={'size-5'} />
                   </div>
                 </TooltipTrigger>
