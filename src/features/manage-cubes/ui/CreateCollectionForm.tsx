@@ -18,7 +18,6 @@ import { cubesDB } from '@/entities/cube/api/indexdb'
 import { DialogContent, DialogHeader } from '@/components/ui/dialog'
 import { createCubeCollection } from '@/features/manage-cubes/api/createCubeCollection'
 import { useEffect } from 'react'
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 export default function CreateCollectionForm() {
   const t = useTranslations('Index')
@@ -52,7 +51,7 @@ export default function CreateCollectionForm() {
       if (cubes?.some((cube) => cube.name.toLowerCase() === form.name.trim().toLowerCase())) {
         setError('name', {
           type: 'manual',
-          message: 'Cube collection name already exists.'
+          message: t('Errors.repeated-name')
         })
         return
       }
@@ -61,7 +60,7 @@ export default function CreateCollectionForm() {
       const newCubes = await cubesDB.getAll()
       setCubes(newCubes)
       overlayStore.close()
-      toast.success('Cube collection created successfully')
+      toast.success(t('Errors.collection-created'))
     } catch (err) {
       console.log(err)
     }
@@ -86,9 +85,7 @@ export default function CreateCollectionForm() {
             data-testid="drawer-input-name"
             id="name"
             placeholder="E.g: X Man Tornado V3 M"
-            {...register('name', {
-              required: 'A name is required'
-            })}
+            {...register('name')}
           />
 
           {errors?.name && (
