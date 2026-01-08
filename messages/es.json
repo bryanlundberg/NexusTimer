@@ -28,11 +28,20 @@
       "average": "Promedio",
       "best": "Mejor",
       "counter": "Contador",
+      "select-cube": "Seleccionar Cubo",
       "enter-custom-scramble": "Introduce una mezcla personalizada",
       "title": "Cronómetro",
       "edit-scramble": "Editar scramble",
       "hints": "Consejos",
       "mode": "Modo",
+      "modes": {
+        "normal": "Normal",
+        "manual": "Manual",
+        "stackmat": "Stackmat",
+        "virtual": "Virtual",
+        "smart": "Smart cube",
+        "nexus-connect": "Nexus Connect"
+      },
       "new-scramble": "Nuevo scramble",
       "start-stackmat": "Inicia tu Stackmat para comenzar el cronómetro"
     },

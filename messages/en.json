@@ -54,8 +54,17 @@
       "average": "Average",
       "best": "Best",
       "counter": "Counter",
+      "select-cube": "Select Cube",
       "enter-custom-scramble": "Enter a custom scramble",
       "mode": "Mode",
+      "modes": {
+        "normal": "Normal",
+        "manual": "Manual",
+        "stackmat": "Stackmat",
+        "virtual": "Virtual",
+        "smart": "Smart cube",
+        "nexus-connect": "Nexus Connect"
+      },
       "new-scramble": "New scramble",
       "edit-scramble": "Edit scramble",
       "hints": "Hints",
