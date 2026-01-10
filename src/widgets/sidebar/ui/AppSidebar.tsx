@@ -175,18 +175,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <span className="truncate font-semibold">Nexus Timer</span>
                   <RotatingText
                     text={[
-                      'Ready to solve?',
-                      'Break your record',
-                      'Speedcubing time',
-                      "Let's cube!",
-                      'Push your limits',
-                      'Break your own time',
-                      'Cube like a pro',
-                      'One more solve',
-                      'Go for the PB',
-                      'Keep cubing!',
-                      'Master the cube',
-                      'Every second counts'
+                      t('sidebar-rotating-text.text1'),
+                      t('sidebar-rotating-text.text2'),
+                      t('sidebar-rotating-text.text3'),
+                      t('sidebar-rotating-text.text4'),
+                      t('sidebar-rotating-text.text5'),
+                      t('sidebar-rotating-text.text6'),
+                      t('sidebar-rotating-text.text7'),
+                      t('sidebar-rotating-text.text8'),
+                      t('sidebar-rotating-text.text9'),
+                      t('sidebar-rotating-text.text10'),
+                      t('sidebar-rotating-text.text11'),
+                      t('sidebar-rotating-text.text12')
                     ]}
                     duration={10000}
                     transition={{ duration: 0.2, ease: 'easeInOut' }}

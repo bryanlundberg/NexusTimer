@@ -1,5 +1,19 @@
 {
   "Index": {
+    "sidebar-rotating-text": {
+      "text1": "Ready to solve?",
+      "text2": "Break your record",
+      "text3": "Speedcubing time",
+      "text4": "Let's cube!",
+      "text5": "Push your limits",
+      "text6": "Break your own time",
+      "text7": "Cube like a pro",
+      "text8": "One more solve",
+      "text9": "Go for the PB",
+      "text10": "Keep cubing!",
+      "text11": "Master the cube",
+      "text12": "Every second counts"
+    },
     "others": {
       "suggestions": "Suggestions"
     },

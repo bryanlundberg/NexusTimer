@@ -1,5 +1,19 @@
 {
   "Index": {
+    "sidebar-rotating-text": {
+      "text1": "¿Listo para resolver?",
+      "text2": "Rompe tu récord",
+      "text3": "Hora de speedcubing",
+      "text4": "¡Vamos a cubear!",
+      "text5": "Empuja tus límites",
+      "text6": "Rompe tu propio tiempo",
+      "text7": "Cúbea como un pro",
+      "text8": "Una resolución más",
+      "text9": "Ve por el PB",
+      "text10": "¡Sigue cubeando!",
+      "text11": "Domina el cubo",
+      "text12": "Cada segundo cuenta"
+    },
     "leaderboard-solve-details": {
       "user-solution": "Solución del usuario",
       "time": "Tiempo",
