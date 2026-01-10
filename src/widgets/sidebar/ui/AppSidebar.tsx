@@ -186,7 +186,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       t('sidebar-rotating-text.text9'),
                       t('sidebar-rotating-text.text10'),
                       t('sidebar-rotating-text.text11'),
-                      t('sidebar-rotating-text.text12')
+                      t('sidebar-rotating-text.text12'),
+                      t('sidebar-rotating-text.text13'),
+                      t('sidebar-rotating-text.text14'),
+                      t('sidebar-rotating-text.text15'),
+                      t('sidebar-rotating-text.text16'),
+                      t('sidebar-rotating-text.text17'),
+                      t('sidebar-rotating-text.text18'),
+                      t('sidebar-rotating-text.text19'),
+                      t('sidebar-rotating-text.text20')
                     ]}
                     duration={10000}
                     transition={{ duration: 0.2, ease: 'easeInOut' }}
