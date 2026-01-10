@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import * as React from 'react'
 import { useRouter } from 'next/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 export default function UserCard({ user }: { user: UserDocument }) {
   const t = useTranslations('Index.PeoplePage.user-card')
@@ -16,7 +16,7 @@ export default function UserCard({ user }: { user: UserDocument }) {
   const removeUser = useCompareUsersStore((state) => state.removeUser)
   const users = useCompareUsersStore((state) => state.users)
   const isAdded = users.find((u) => u._id === user._id)
-
+  const locale = useLocale()
   return (
     <Card className="transition-all duration-200 animate-fadeIn h-auto">
       <CardHeader className="pb-2 flex flex-col items-center">
@@ -29,7 +29,11 @@ export default function UserCard({ user }: { user: UserDocument }) {
       <CardContent className="pb-2 pt-0 flex flex-col items-center">
         <div className="flex items-center gap-1 text-muted-foreground text-sm mb-2">
           <Calendar className="size-3.5" />
-          <span>{t('joined', { date: moment(user.createdAt).format('MMM Do YYYY') })}</span>
+          <span>
+            {t('joined', {
+              date: new Intl.DateTimeFormat(locale, { dateStyle: 'medium' }).format(new Date(user.createdAt))
+            })}
+          </span>
         </div>
         <div className="flex items-center gap-2 mt-4">
           <Button
