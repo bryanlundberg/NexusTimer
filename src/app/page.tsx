@@ -3,13 +3,27 @@ import Link from 'next/link'
 import Dither from '@/components/ui/shadcn-io/dither'
 import { signIn } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
-import { AudioWaveform, BarChart3, DatabaseZap, Globe, StarIcon, Timer, Users } from 'lucide-react'
+import {
+  AudioWaveform,
+  BarChart3,
+  DatabaseZap,
+  Globe,
+  StarIcon,
+  Timer,
+  Users,
+  ArrowRight,
+  TrendingUp,
+  Zap,
+  Shield,
+  Rocket
+} from 'lucide-react'
 import Image from 'next/image'
 import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effect'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { cn } from '@/shared/lib/utils'
 import RatedIcon from '@/shared/ui/rate-icon/RateIcon'
 import { Separator } from '@/components/ui/separator'
+import { motion } from 'framer-motion'
 
 export default function Page() {
   return (
@@ -30,61 +44,87 @@ export default function Page() {
       {/* Content overlay */}
       <ScrollArea className="relative z-10 flex flex-col h-full text-white overflow-y-auto snap-y snap-mandatory">
         {/* Header / Nav */}
-        <header className="w-full">
+        <motion.header
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="w-full sticky top-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/5"
+        >
           <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-md bg-white/10 border border-white/15 flex items-center justify-center">
-                <div className="h-3 w-3 bg-fuchsia-400 rounded-sm" />
+            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3 cursor-pointer">
+              <div className="h-8 w-8 rounded-md bg-gradient-to-br from-fuchsia-400/20 to-purple-500/20 border border-fuchsia-400/30 flex items-center justify-center shadow-lg shadow-fuchsia-500/20">
+                <div className="h-3 w-3 bg-fuchsia-400 rounded-sm animate-pulse" />
               </div>
-              <span className="text-sm font-semibold tracking-wide text-white/90">NexusTimer</span>
-            </div>
-            <nav className="hidden md:flex items-center gap-7 text-sm text-white/70">
-              <Link href="/#features" className="hover:text-white transition-colors">
+              <span className="text-sm font-semibold tracking-wide text-white/90 bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
+                NexusTimer
+              </span>
+            </motion.div>
+            <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
+              <Link href="/#features" className="hover:text-white transition-colors relative group">
                 Features
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-fuchsia-400 group-hover:w-full transition-all duration-300" />
               </Link>
-              <Link href="/#how" className="hover:text-white transition-colors">
-                How it works?
+              <Link href="/#how" className="hover:text-white transition-colors relative group">
+                How it works
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-fuchsia-400 group-hover:w-full transition-all duration-300" />
+              </Link>
+              <Link href="/#testimonials" className="hover:text-white transition-colors relative group">
+                Testimonials
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-fuchsia-400 group-hover:w-full transition-all duration-300" />
+              </Link>
+              <Link href="/#faq" className="hover:text-white transition-colors relative group">
+                FAQ
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-fuchsia-400 group-hover:w-full transition-all duration-300" />
               </Link>
               <a
                 href="https://github.com/bryanlundberg/NexusTimer"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-white transition-colors"
+                className="hover:text-white transition-colors relative group"
               >
                 GitHub
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-fuchsia-400 group-hover:w-full transition-all duration-300" />
               </a>
             </nav>
             <div className="flex items-center gap-3">
               <Link
                 href="/app"
-                className="inline-flex items-center rounded-md border border-white/15 bg-white/5 px-3 py-2 text-sm font-medium text-white hover:bg-white/10 transition-colors"
+                className="inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10 transition-all hover:scale-105"
               >
-                Enter
+                <Timer className="h-4 w-4" />
+                Start Timing
               </Link>
-              <Button
-                onClick={() => signIn('google', { redirectTo: '/app' })}
-                className="inline-flex items-center rounded-md border border-fuchsia-400/30 bg-fuchsia-400/10 px-3.5 py-2 text-sm font-semibold text-white hover:bg-fuchsia-400/20 transition-colors"
-              >
-                Sign Up
-              </Button>
             </div>
           </div>
-        </header>
+        </motion.header>
 
         {/* Main */}
         <main className="flex-1">
           <section className="relative">
             <div className="mx-auto max-w-4xl px-6 pt-12 pb-20 md:pt-20 md:pb-28 text-center relative">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-xs text-white/70 mx-auto">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1.5 text-xs text-emerald-300 mx-auto backdrop-blur-sm shadow-lg shadow-emerald-500/20"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 Nexus Timer is free and always will be!
-              </div>
+              </motion.div>
 
-              <TextGenerateEffect
-                words={'Your timer shows times.'}
-                className={'mt-6 text-4xl md:text-6xl font-extrabold tracking-tight leading-tight'}
-                duration={0}
-              />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                <TextGenerateEffect
+                  words={'Your timer shows times.'}
+                  className={
+                    'mt-8 text-4xl md:text-6xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent'
+                  }
+                  duration={0}
+                />
+              </motion.div>
 
               <TextGenerateEffect
                 words={'Nexus shows how you’re really improving.'}
@@ -92,218 +132,272 @@ export default function Page() {
                 staggerDelay={0.2}
               />
 
-              <Separator className="my-6 md:my-8 border-white/10" />
+              <motion.div
+                initial={{ opacity: 0, scaleX: 0 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <Separator className="my-8 md:my-10 border-white/10" />
+              </motion.div>
 
-              <p className="mt-4 text-sm md:text-base text-white/80 max-w-2xl mx-auto">
-                <span className="bg-black">
-                  After just a short session, NexusTimer builds your cubing performance profile — automatically, per
-                  cube, per category.
-                </span>
-              </p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="mt-4 text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed"
+              >
+                After just a short session, NexusTimer builds your cubing performance profile — automatically, per cube,
+                per category.
+              </motion.p>
 
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="mt-10 flex flex-wrap items-center justify-center gap-4"
+              >
                 <Link
                   href="/app"
-                  className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors pl-2"
+                  className="group inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-white to-white/95 text-black font-semibold px-6 py-3 text-sm hover:from-white/95 hover:to-white/90 transition-all hover:scale-105 shadow-xl shadow-white/20"
                 >
                   <Image
                     src={'/landing/cube.gif'}
                     alt={"Animated Rubik's cube icon"}
-                    width={32}
-                    height={32}
+                    width={28}
+                    height={28}
                     unoptimized
+                    className="transition-transform group-hover:rotate-12"
                   />
                   Discover your performance
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/options?redirect=import"
-                  className="inline-flex items-center justify-center rounded-md border border-white/15 bg-white/20 px-4 py-2.5 text-sm text-white hover:bg-white/10 transition-colors"
+                  className="inline-flex items-center justify-center rounded-lg border-2 border-white/20 bg-white/10 backdrop-blur-sm px-6 py-3 text-sm text-white hover:bg-white/20 hover:border-white/30 transition-all hover:scale-105"
                 >
                   Import your solves from any timer
                 </Link>
-              </div>
-              <div className="mx-auto w-fit mt-6 flex items-center gap-4 text-xs text-white/60">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="mx-auto w-fit mt-8 flex items-center gap-4 text-xs text-white/60"
+              >
                 <div className="flex -space-x-1.5">
-                  <Image
-                    className="inline-block h-6 w-6 rounded-full border border-white/20"
-                    src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png"
-                    alt="Community member avatar"
-                    width={24}
-                    height={24}
-                  />
-                  <Image
-                    className="inline-block h-6 w-6 rounded-full border border-white/20"
-                    src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_2.png"
-                    alt="Community member avatar"
-                    width={24}
-                    height={24}
-                  />
-                  <Image
-                    className="inline-block h-6 w-6 rounded-full border border-white/20"
-                    src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_7.png"
-                    alt="Community member avatar"
-                    width={24}
-                    height={24}
-                  />
+                  {[1, 2, 7].map((num, idx) => (
+                    <motion.div
+                      key={num}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 1 + idx * 0.1 }}
+                    >
+                      <Image
+                        className="inline-block h-7 w-7 rounded-full border-2 border-white/30 shadow-lg"
+                        src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${num}.png`}
+                        alt="Community member avatar"
+                        width={28}
+                        height={28}
+                      />
+                    </motion.div>
+                  ))}
                 </div>
-                <span>Join a growing community of cubers</span>
-              </div>
+                <span className="text-white/70">Join a growing community of cubers</span>
+              </motion.div>
             </div>
           </section>
 
           {/* Activation Moment / Wow Section */}
           <section className="relative py-12 md:py-24 overflow-hidden">
             <div className="mx-auto max-w-7xl px-6">
-              <div className="text-center mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-center mb-16"
+              >
                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4">
-                  Everything you need to <span className="text-fuchsia-400">level up</span>
+                  Everything you need to{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-pink-400">
+                    level up
+                  </span>
                 </h2>
-                <p className="text-white/60 text-lg max-w-2xl mx-auto">
+                <p className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed">
                   From deep analytics to real-time competition. Discover the features that make NexusTimer the ultimate
                   choice for serious cubers.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <ActivationMomentCard
-                  title="Split by Cube"
-                  description="Analyze your performance for each individual cube."
-                  imageSrc="/landing/Screenshot_40.png"
-                />
-                <ActivationMomentCard
-                  title="Cool Stats"
-                  description="Understand every solve with detailed performance metrics."
-                  imageSrc="/landing/Screenshot_41.png"
-                />
-                <ActivationMomentCard
-                  title="Online modes"
-                  description="Compete in real-time with cubers around the world."
-                  imageSrc="/landing/Screenshot_38.png"
-                />
-                <ActivationMomentCard
-                  title="Personal Profile"
-                  description="Track your progress and showcase your times."
-                  imageSrc="/landing/Screenshot_43.png"
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                {[
+                  {
+                    title: 'Split by Cube',
+                    description: 'Analyze your performance for each individual cube.',
+                    imageSrc: '/landing/Screenshot_40.png'
+                  },
+                  {
+                    title: 'Cool Stats',
+                    description: 'Understand every solve with detailed performance metrics.',
+                    imageSrc: '/landing/Screenshot_41.png'
+                  },
+                  {
+                    title: 'Online modes',
+                    description: 'Compete in real-time with cubers around the world.',
+                    imageSrc: '/landing/Screenshot_38.png'
+                  },
+                  {
+                    title: 'Personal Profile',
+                    description: 'Track your progress and showcase your times.',
+                    imageSrc: '/landing/Screenshot_43.png'
+                  }
+                ].map((card, index) => (
+                  <motion.div
+                    key={card.title}
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <ActivationMomentCard title={card.title} description={card.description} imageSrc={card.imageSrc} />
+                  </motion.div>
+                ))}
               </div>
             </div>
           </section>
 
           {/* Integrations & Compatibility */}
           <section id="integrations" className="relative">
-            <div className="mx-auto w-fit px-6 py-6 md:py-10">
-              <div className="rounded-xl border border-white/15 bg-black/30 p-5 md:p-6">
-                <div className="flex flex-col md:items-center md:justify-between gap-4">
-                  <h3 className="text-lg md:text-xl font-semibold">Works with your favorite brands</h3>
-                  <div className="flex flex-wrap items-center gap-2">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mx-auto w-fit px-6 py-6 md:py-10"
+            >
+              <div className="rounded-xl border border-white/15 bg-gradient-to-br from-black/40 to-black/60 backdrop-blur-sm p-6 md:p-8 shadow-xl">
+                <div className="flex flex-col md:items-center md:justify-between gap-6">
+                  <h3 className="text-lg md:text-xl font-semibold text-center">Works with your favorite brands</h3>
+                  <div className="flex flex-wrap items-center justify-center gap-2">
                     {['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng', 'And More..'].map(
-                      (item) => (
-                        <span
+                      (item, index) => (
+                        <motion.span
                           key={item}
-                          className="inline-flex items-center rounded-md border border-fuchsia-300 bg-fuchsia-500/50 px-2.5 py-1 text-xs text-white/80"
+                          initial={{ opacity: 0, scale: 0 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.3, delay: index * 0.05 }}
+                          whileHover={{ scale: 1.1 }}
+                          className="inline-flex items-center rounded-lg border border-fuchsia-300/50 bg-gradient-to-r from-fuchsia-500/40 to-purple-500/40 px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur-sm shadow-lg shadow-fuchsia-500/20"
                         >
                           {item}
-                        </span>
+                        </motion.span>
                       )
                     )}
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </section>
 
           {/* Features */}
           <section id="features" className="relative">
             <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-              <h2 className="text-center text-2xl md:text-3xl font-semibold mb-8">
-                What <span className="text-fuchsia-400">Nexus Timer</span> can do for you
-              </h2>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-center text-2xl md:text-3xl font-semibold mb-12"
+              >
+                What{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-pink-400">
+                  Nexus Timer
+                </span>{' '}
+                can do for you
+              </motion.h2>
 
               <div className="p-4 md:p-6 py-10 md:py-12">
                 {/* Left image column + 2x2 cards on the right (non-sticky) */}
                 <div className="grid md:grid-cols-3 gap-6 items-stretch">
                   {/* Left image column */}
-                  <div className="relative">
-                    <Image
-                      src="/landing/2.png"
-                      alt="NexusTimer application interface showing timer and statistics dashboard"
-                      width={800}
-                      height={1000}
-                      className="w-full h-full max-h-[400px] md:max-h-max object-cover border-6 border-fuchsia-500 overflow-hidden rounded-lg -rotate-1"
-                    />
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="relative"
+                  >
+                    <div className="relative group">
+                      <div className="absolute -inset-1 bg-gradient-to-r from-fuchsia-500 to-purple-500 rounded-lg blur opacity-30 group-hover:opacity-50 transition duration-300" />
+                      <Image
+                        src="/landing/2.png"
+                        alt="NexusTimer application interface showing timer and statistics dashboard"
+                        width={800}
+                        height={1000}
+                        className="relative w-full h-full max-h-[400px] md:max-h-max object-cover border-2 border-fuchsia-500/50 overflow-hidden rounded-lg -rotate-1 group-hover:rotate-0 transition-transform duration-300 shadow-2xl"
+                      />
+                    </div>
+                  </motion.div>
 
                   {/* Right 2x2 cards */}
                   <div className="md:col-span-2 grid sm:grid-cols-2 gap-6">
-                    {/* Feature 1 */}
-                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
-                      <div className="mb-3 flex items-center">
-                        <Timer className="h-6 w-6 text-fuchsia-300/90" />
-                      </div>
-                      <h3 className="text-lg md:text-xl font-semibold text-white">A timer that adapts to you</h3>
-                      <p className="mt-2 text-sm md:text-base text-white/70">
-                        Customize your timing experience with adjustable settings, themes, and layouts to suit your
-                        preferences.
-                      </p>
-                    </div>
-
-                    {/* Feature 2 */}
-                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
-                      <div className="mb-3 flex items-center">
-                        <Users className="h-6 w-6 text-fuchsia-300/90" />
-                      </div>
-                      <h3 className="text-lg md:text-xl font-semibold text-white">Online Mode</h3>
-                      <p className="mt-2 text-sm md:text-base text-white/70">
-                        Create rooms, and coordinate matches in real time. Perfect for cubing meetups or online
-                        sessions.
-                      </p>
-                    </div>
-
-                    {/* Feature 3 */}
-                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
-                      <div className="mb-3 flex items-center">
-                        <BarChart3 className="h-6 w-6 text-fuchsia-300/90" />
-                      </div>
-                      <h3 className="text-lg md:text-xl font-semibold text-white">Unique stats system</h3>
-                      <p className="mt-2 text-sm md:text-base text-white/70">
-                        Analyze results per cube and spot opportunities without altering your session averages.
-                      </p>
-                    </div>
-
-                    {/* Feature 4 */}
-                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
-                      <div className="mb-3 flex items-center">
-                        <Globe className="h-6 w-6 text-fuchsia-300/90" />
-                      </div>
-                      <h3 className="text-lg md:text-xl font-semibold text-white">Connect with other cubers</h3>
-                      <p className="mt-2 text-sm md:text-base text-white/70">
-                        Explore the vibrant worldwide community of cubers. Share your times, and individual performance
-                        metrics.
-                      </p>
-                    </div>
-
-                    {/* Feature 5 */}
-                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
-                      <div className="mb-3 flex items-center">
-                        <AudioWaveform className="h-6 w-6 text-fuchsia-300/90" />
-                      </div>
-                      <h3 className="text-lg md:text-xl font-semibold text-white">Learn Algorithms</h3>
-                      <p className="mt-2 text-sm md:text-base text-white/70">
-                        Access a built-in algorithm trainer to help you memorize and practice new algorithms
-                        effectively.
-                      </p>
-                    </div>
-
-                    {/* Feature 6 */}
-                    <div className="rounded-lg border border-white/10 bg-black/50 p-5">
-                      <div className="mb-3 flex items-center">
-                        <DatabaseZap className="h-6 w-6 text-fuchsia-300/90" />
-                      </div>
-                      <h3 className="text-lg md:text-xl font-semibold text-white">Cross Platform Sync</h3>
-                      <p className="mt-2 text-sm md:text-base text-white/70">
-                        Access your data from any device. NexusTimer syncs your times via the cloud.
-                      </p>
-                    </div>
+                    {[
+                      {
+                        icon: Timer,
+                        title: 'A timer that adapts to you',
+                        description:
+                          'Customize your timing experience with adjustable settings, themes, and layouts to suit your preferences.'
+                      },
+                      {
+                        icon: Users,
+                        title: 'Online Mode',
+                        description:
+                          'Create rooms, and coordinate matches in real time. Perfect for cubing meetups or online sessions.'
+                      },
+                      {
+                        icon: BarChart3,
+                        title: 'Unique stats system',
+                        description:
+                          'Analyze results per cube and spot opportunities without altering your session averages.'
+                      },
+                      {
+                        icon: Globe,
+                        title: 'Connect with other cubers',
+                        description:
+                          'Explore the vibrant worldwide community of cubers. Share your times, and individual performance metrics.'
+                      },
+                      {
+                        icon: AudioWaveform,
+                        title: 'Learn Algorithms',
+                        description:
+                          'Access a built-in algorithm trainer to help you memorize and practice new algorithms effectively.'
+                      },
+                      {
+                        icon: DatabaseZap,
+                        title: 'Cross Platform Sync',
+                        description: 'Access your data from any device. NexusTimer syncs your times via the cloud.'
+                      }
+                    ].map((feature, index) => (
+                      <motion.div
+                        key={feature.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className="group rounded-lg border border-white/10 bg-black/40 backdrop-blur-sm p-6 hover:border-white/20 hover:bg-black/50 transition-all duration-300"
+                      >
+                        <div className="mb-4 flex items-center">
+                          <div className="p-2 rounded-lg bg-fuchsia-500/10 border border-fuchsia-500/20 group-hover:bg-fuchsia-500/20 transition-colors">
+                            <feature.icon className="h-5 w-5 text-fuchsia-300 group-hover:text-fuchsia-400 transition-colors" />
+                          </div>
+                        </div>
+                        <h3 className="text-lg md:text-xl font-semibold text-white mb-3 group-hover:text-fuchsia-300 transition-colors">
+                          {feature.title}
+                        </h3>
+                        <p className="text-sm md:text-base text-white/60 leading-relaxed">{feature.description}</p>
+                      </motion.div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -330,6 +424,71 @@ export default function Page() {
           </section>
 
           <FeatureTable />
+
+          {/* Official Events Focus */}
+          <section id="official-events" className="relative">
+            <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-center mb-12"
+              >
+                <TypographyH1>Built for official events</TypographyH1>
+                <p className="text-white/60 text-lg max-w-2xl mx-auto mt-4">
+                  Focused on WCA official categories. Train for competitions with the same events you'll compete in.
+                </p>
+              </motion.div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  {
+                    title: 'Speedcubers',
+                    description:
+                      'Train for 3x3, 2x2, 4x4, 5x5 and all official speed events. Track your progress with competition-ready statistics.',
+                    highlight: 'WCA Speed Events'
+                  },
+                  {
+                    title: 'One-Handed Specialists',
+                    description:
+                      'Master OH with dedicated tracking. Analyze your one-handed solves separately from your regular times.',
+                    highlight: '3x3 OH Focus'
+                  },
+                  {
+                    title: 'Big Cube Enthusiasts',
+                    description:
+                      'Track performance across 4x4, 5x5, 6x6, and 7x7. Compare your times and identify improvement areas.',
+                    highlight: '4x4 - 7x7'
+                  },
+                  {
+                    title: 'Non-NxN Solvers',
+                    description:
+                      'Practice Pyraminx, Skewb, Square-1, Megaminx, and Clock. All official WCA events supported.',
+                    highlight: 'Pyraminx, Skewb, SQ1...'
+                  }
+                ].map((profile, index) => (
+                  <motion.div
+                    key={profile.title}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="rounded-xl border border-white/10 bg-gradient-to-br from-black/40 to-black/20 p-6 hover:border-fuchsia-400/30 hover:from-black/50 hover:to-black/30 transition-all duration-300 relative overflow-hidden"
+                  >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-fuchsia-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                    <div className="relative z-10">
+                      <div className="inline-block px-3 py-1 rounded-full bg-fuchsia-500/20 border border-fuchsia-500/30 text-xs font-medium text-fuchsia-300 mb-4">
+                        {profile.highlight}
+                      </div>
+                      <h3 className="text-xl font-bold text-white mb-3">{profile.title}</h3>
+                      <p className="text-sm text-white/60 leading-relaxed">{profile.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
 
           {/* Testimonials */}
           <section id="testimonials" className="relative">
@@ -490,56 +649,44 @@ export default function Page() {
 
           {/* CTA */}
           <section className="relative">
-            <div className="mx-auto max-w-7xl px-6 pb-16">
-              <div className="rounded-xl border border-white/15 bg-fuchsia-600/20 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
-                <div>
-                  <h3 className="text-xl md:text-2xl font-semibold">Discover</h3>
-                  {/*<p className="text-white/70 text-sm mt-1">Contribute or sponsor open-source. It powers your world..</p>*/}
-                  <p className="text-white/70 text-sm mt-1">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mx-auto max-w-7xl px-6 pb-16"
+            >
+              <div className="rounded-xl border border-fuchsia-400/30 bg-gradient-to-br from-fuchsia-600/20 to-purple-600/20 backdrop-blur-sm p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden shadow-2xl shadow-fuchsia-500/20">
+                <div className="relative z-10">
+                  <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                    Discover
+                  </h3>
+                  <p className="text-white/80 text-base mt-2 leading-relaxed">
                     Less routine, more cubing joy. All refined cubing tools – right in your device, for free.
                   </p>
                 </div>
-                <div className="flex items-center gap-3">
-                  {/*<a*/}
-                  {/*  href="https://github.com/sponsors"*/}
-                  {/*  target="_blank"*/}
-                  {/*  rel="noreferrer"*/}
-                  {/*  className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors"*/}
-                  {/*>*/}
-                  {/*  Sponsor Us*/}
-                  {/*</a>*/}
+                <div className="flex items-center gap-3 relative z-10">
                   <Link
                     href="/app"
-                    className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors"
+                    className="group inline-flex items-center justify-center gap-2 rounded-lg bg-white text-black font-semibold px-6 py-3 text-sm hover:bg-white/90 transition-all hover:scale-105 shadow-xl"
                   >
-                    Go the App
+                    Go to the App
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
-                  {/*<a*/}
-                  {/*  href="https://github.com/bryanlundberg/NexusTimer"*/}
-                  {/*  target="_blank"*/}
-                  {/*  rel="noreferrer"*/}
-                  {/*  className="inline-flex items-center justify-center rounded-md border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white hover:bg-white/10 transition-colors"*/}
-                  {/*>*/}
-                  {/*  Contribute*/}
-                  {/*</a>*/}
                 </div>
-                <div
-                  className={cn(
-                    'pointer-events-none select-none absolute top-0 left-0 text-foreground/10',
-                    'opacity-15'
-                  )}
-                >
+                <div className="absolute inset-0 opacity-10 pointer-events-none">
                   <Image
                     src={'/bg.png'}
                     alt={"Rubik's cube background pattern"}
-                    width={200}
-                    height={200}
+                    width={400}
+                    height={400}
                     unoptimized
-                    className={'w-full object-cover'}
+                    className={'w-full h-full object-cover'}
                   />
                 </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-fuchsia-500/0 via-purple-500/0 to-pink-500/0 group-hover:from-fuchsia-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10 transition-all duration-500" />
               </div>
-            </div>
+            </motion.div>
           </section>
         </main>
 
@@ -600,7 +747,7 @@ function ActivationMomentCard({
   return (
     <div
       className={cn(
-        'group relative aspect-[16/10] md:aspect-video overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition-all hover:border-fuchsia-500/50',
+        'group relative aspect-[16/10] md:aspect-video overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition-all hover:border-fuchsia-500/30 hover:shadow-xl hover:shadow-fuchsia-500/10',
         className
       )}
     >
@@ -609,13 +756,13 @@ function ActivationMomentCard({
         alt={`${title} - ${description}`}
         width={800}
         height={800}
-        className="object-cover object-top w-full h-full transition-transform duration-500 group-hover:scale-110"
+        className="object-cover object-top w-full h-full transition-transform duration-500 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-6">
-        <h3 className="font-bold text-xl text-white transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 z-10">
+        <h3 className="font-bold text-xl text-white mb-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
           {title}
         </h3>
-        <p className="text-sm text-white/80 mt-2 transform translate-y-4 transition-transform duration-300 group-hover:translate-y-0 delay-75">
+        <p className="text-sm text-white/90 leading-relaxed transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 delay-75">
           {description}
         </p>
       </div>
