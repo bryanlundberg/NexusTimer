@@ -36,11 +36,17 @@ export default function Page() {
           className="w-full sticky top-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/5"
         >
           <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center gap-3 cursor-pointer">
-              <div className="h-8 w-8 rounded-md bg-gradient-to-br from-fuchsia-400/20 to-purple-500/20 border border-fuchsia-400/30 flex items-center justify-center shadow-lg shadow-fuchsia-500/20">
-                <div className="h-3 w-3 bg-fuchsia-400 rounded-sm animate-pulse" />
+            <motion.div whileHover={{ scale: 1.01 }} className="flex items-center gap-3 cursor-pointer">
+              <div className="h-8 w-8 rounded-md bg-fuchsia-600 flex items-center justify-center shadow-lg shadow-fuchsia-500/20">
+                <Image
+                  className={'invert-100 p-0.5'}
+                  src={'/logo.png'}
+                  alt={'NexusTimer Logo'}
+                  width={24}
+                  height={24}
+                />
               </div>
-              <span className="text-sm font-semibold tracking-wide text-white/90 bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
+              <span className="text-sm font-semibold tracking-wide text-white/90 bg-gradient-to-r from-white to-white/70 bg-clip-text">
                 NexusTimer
               </span>
             </motion.div>
