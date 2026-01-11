@@ -13,9 +13,9 @@ import { SidebarProvider } from '@/components/ui/sidebar'
 import AlertsProvider from '@/components/alerts-provider'
 import { Metadata, Viewport } from 'next'
 import { Overlay } from '@/shared/ui/overlay/overlay'
-import PreloadAppProvider from '@/components/preload-app-provider';
+import PreloadAppProvider from '@/components/preload-app-provider'
 
-export async function generateMetadata() : Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
   const t = await getTranslations({ locale, namespace: 'Metadata' })
   const ogTitle = t('title')
@@ -52,12 +52,21 @@ export async function generateMetadata() : Promise<Metadata> {
       url: url,
       siteName: 'Nexus Timer',
       locale: locale,
-      type: 'website'
+      type: 'website',
+      images: [
+        {
+          url: '/opengraph-image.png',
+          width: 1200,
+          height: 630,
+          alt: ogTitle
+        }
+      ]
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title: ogTitle,
-      description: ogDescription
+      description: ogDescription,
+      images: ['/opengraph-image.png']
     },
     formatDetection: {
       telephone: false
@@ -108,9 +117,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <ThemeProvider attribute="class" defaultTheme={'system'} enableSystem disableTransitionOnChange>
                 <SidebarProvider>
                   <AlertsProvider>
-                    <PreloadAppProvider>
-                      {children}
-                    </PreloadAppProvider>
+                    <PreloadAppProvider>{children}</PreloadAppProvider>
                     <Overlay />
                   </AlertsProvider>
                 </SidebarProvider>

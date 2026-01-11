@@ -19,15 +19,39 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const collection = ALGORITHM_SETS.find((set) => set.slug === slug)
   if (collection) {
+    const title = collection.title + ' - ' + t('title')
+    const description = t(`descriptions.${collection.slug}`)
     return {
-      title: collection.title + ' - ' + t('title'),
-      description: t(`descriptions.${collection.slug}`),
+      title,
+      description,
+      keywords: [
+        collection.title,
+        "rubik's cube algorithms",
+        'speedcubing algorithms',
+        'cube algorithms',
+        'nexus timer',
+        'algorithm trainer'
+      ],
       openGraph: {
-        title: collection.title + ' - ' + t('title'),
-        description: t(`descriptions.${collection.slug}`),
+        title,
+        description,
         siteName: 'Nexus Timer',
         locale: locale,
-        type: 'website'
+        type: 'website',
+        images: [
+          {
+            url: '/algorithms/opengraph-image.png',
+            width: 1200,
+            height: 630,
+            alt: title
+          }
+        ]
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+        images: ['/algorithms/opengraph-image.png']
       }
     }
   }

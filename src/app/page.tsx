@@ -106,7 +106,13 @@ export default function Page() {
                   href="/app"
                   className="inline-flex items-center justify-center rounded-md bg-white text-black font-semibold px-4 py-2.5 text-sm hover:bg-white/90 transition-colors pl-2"
                 >
-                  <Image src={'/landing/cube.gif'} alt={''} width={32} height={32} unoptimized />
+                  <Image
+                    src={'/landing/cube.gif'}
+                    alt={"Animated Rubik's cube icon"}
+                    width={32}
+                    height={32}
+                    unoptimized
+                  />
                   Discover your performance
                 </Link>
                 <Link
@@ -121,21 +127,21 @@ export default function Page() {
                   <Image
                     className="inline-block h-6 w-6 rounded-full border border-white/20"
                     src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_1.png"
-                    alt="avatar 1"
+                    alt="Community member avatar"
                     width={24}
                     height={24}
                   />
                   <Image
                     className="inline-block h-6 w-6 rounded-full border border-white/20"
                     src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_2.png"
-                    alt="avatar 2"
+                    alt="Community member avatar"
                     width={24}
                     height={24}
                   />
                   <Image
                     className="inline-block h-6 w-6 rounded-full border border-white/20"
                     src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_7.png"
-                    alt="avatar 3"
+                    alt="Community member avatar"
                     width={24}
                     height={24}
                   />
@@ -220,7 +226,7 @@ export default function Page() {
                   <div className="relative">
                     <Image
                       src="/landing/2.png"
-                      alt="NexusTimer preview"
+                      alt="NexusTimer application interface showing timer and statistics dashboard"
                       width={800}
                       height={1000}
                       className="w-full h-full max-h-[400px] md:max-h-max object-cover border-6 border-fuchsia-500 overflow-hidden rounded-lg -rotate-1"
@@ -345,7 +351,7 @@ export default function Page() {
                     <Image
                       className="h-6 w-6 rounded-full border border-white/20"
                       src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_9.png"
-                      alt="user a"
+                      alt="User testimonial avatar"
                       width={24}
                       height={24}
                     />
@@ -365,7 +371,7 @@ export default function Page() {
                     <Image
                       className="h-6 w-6 rounded-full border border-white/20"
                       src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_5.png"
-                      alt="user b"
+                      alt="User testimonial avatar"
                       width={24}
                       height={24}
                     />
@@ -385,7 +391,7 @@ export default function Page() {
                     <Image
                       className="h-6 w-6 rounded-full border border-white/20"
                       src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_4.png"
-                      alt="user c"
+                      alt="User testimonial avatar"
                       width={24}
                       height={24}
                     />
@@ -525,7 +531,7 @@ export default function Page() {
                 >
                   <Image
                     src={'/bg.png'}
-                    alt={`3x3 cube image`}
+                    alt={"Rubik's cube background pattern"}
                     width={200}
                     height={200}
                     unoptimized
@@ -600,7 +606,7 @@ function ActivationMomentCard({
     >
       <Image
         src={imageSrc}
-        alt={title}
+        alt={`${title} - ${description}`}
         width={800}
         height={800}
         className="object-cover object-top w-full h-full transition-transform duration-500 group-hover:scale-110"
@@ -786,7 +792,14 @@ function FeatureTable() {
                   </div>
                 </th>
                 <th className=" py-3 text-white/90 flex flex-col items-center gap-2 px-3">
-                  <Image src={'/logo.png'} alt={''} width={64} height={64} className={'invert size-6'} unoptimized />
+                  <Image
+                    src={'/logo.png'}
+                    alt={'Nexus Timer logo'}
+                    width={64}
+                    height={64}
+                    className={'invert size-6'}
+                    unoptimized
+                  />
                   NXTimer
                 </th>
                 <th className="py-3 text-white/90 align-bottom px-3">csTimer</th>
