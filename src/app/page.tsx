@@ -103,19 +103,13 @@ export default function Page() {
                 Nexus Timer is free and always will be!
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                <TextGenerateEffect
-                  words={'Your timer shows times.'}
-                  className={
-                    'mt-8 text-4xl md:text-6xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text text-transparent'
-                  }
-                  duration={0}
-                />
-              </motion.div>
+              <TextGenerateEffect
+                words={'Your timer shows times.'}
+                className={
+                  'mt-8 text-4xl md:text-6xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-white via-white/90 to-white/70 bg-clip-text'
+                }
+                duration={0}
+              />
 
               <TextGenerateEffect
                 words={'Nexus shows how you’re really improving.'}
