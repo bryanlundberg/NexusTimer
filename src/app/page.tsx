@@ -1,22 +1,7 @@
 'use client'
 import Link from 'next/link'
 import Dither from '@/components/ui/shadcn-io/dither'
-import { signIn } from 'next-auth/react'
-import { Button } from '@/components/ui/button'
-import {
-  AudioWaveform,
-  BarChart3,
-  DatabaseZap,
-  Globe,
-  StarIcon,
-  Timer,
-  Users,
-  ArrowRight,
-  TrendingUp,
-  Zap,
-  Shield,
-  Rocket
-} from 'lucide-react'
+import { ArrowRight, AudioWaveform, BarChart3, DatabaseZap, Globe, StarIcon, Timer, Users } from 'lucide-react'
 import Image from 'next/image'
 import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effect'
 import { ScrollArea } from '@/components/ui/scroll-area'
