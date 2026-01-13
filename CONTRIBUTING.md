@@ -8,37 +8,44 @@ Before you begin contributing, please read and adhere to our [Code of Conduct](h
 
 ## Getting Started
 
-To contribute to the NexusTimer project, follow these steps:
+- If you want:
+    - to **report a bug** or **suggest a change**, please open an issue.
+    - to **develop new functions** or **fix a bug**, please request it in the issues section.
+    - to **translate the app** into your language, please open an issue.
 
-1. **Fork the repository:**
+If you want to **contribute code**:
 
-   Click the "Fork" button on the top right of this repository to create your own copy.
+1. Fork the repository.
+2. Rename the `.env.local.example` file to `.env.local` (secrets are optional in case you won't code on UI sections that don't need them, most part of the working areas are not related to them).
+3. Install the dependencies with `pnpm install`.
+4. Run the development server with `pnpm run dev`.
+5. Before submitting a pull request, ensure that your code compiles by running `pnpm run build`.
 
-2. **Clone your fork:**
+### Environment and .env variables (for contributors)
 
-   Use `git clone` to clone your forked repository to your local machine:
+Not all project features require environment variables to function. You can run the app without configuring these variables, but features that depend on them will be disabled.
 
-   ```bash
-   git clone https://github.com/your-username/NexusTimer.git
-   ```
+| Variable                          | Description                | When do I need it?                                                                                            |
+|-----------------------------------|----------------------------|---------------------------------------------------------------------------------------------------------------|
+| MONGODB_URI                       | MongoDB connection string  | Save and load backups, register users, all community section                                                  |
+| NEXT_PUBLIC_API_KEY               | Firebase public API key    | Free Mode (Realtime multiplayer)                                                                              |
+| NEXT_PUBLIC_AUTH_DOMAIN           | Firebase auth domain       | Free Mode (Realtime multiplayer)                                                                              |
+| NEXT_PUBLIC_PROJECT_ID            | Firebase project ID        | Free Mode (Realtime multiplayer)                                                                              |
+| NEXT_PUBLIC_STORAGE_BUCKET        | Firebase storage bucket    | Free Mode (Realtime multiplayer)                                                                              |
+| NEXT_PUBLIC_MESSAGING_SENDER_ID   | Firebase sender ID         | Free Mode (Realtime multiplayer)                                                                              |
+| NEXT_PUBLIC_APP_ID                | Firebase app ID            | Free Mode (Realtime multiplayer)                                                                              |
+| NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME | Cloudinary cloud name      | Change user profile picture                                                                                   |
+| NEXT_PUBLIC_CLOUDINARY_API_KEY    | Cloudinary public API key  | Change user profile picture                                                                                   |
+| CLOUDINARY_API_SECRET             | Cloudinary API secret      | Change user profile picture                                                                                   |
+| GOOGLE_CLIENT_ID                  | Google OAuth client ID     | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
+| GOOGLE_CLIENT_SECRET              | Google OAuth client secret | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
+| RESEND_API_KEY                    | Resend API key (emails)    | Test welcome email sending                                                                                    |
+| NEXT_PUBLIC_DISCORD_CLIENT_ID     | Discord OAuth client ID    | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
+| AUTH_DISCORD_ID                   | Discord OAuth client secret | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
+| AUTH_DISCORD_SECRET               | Discord OAuth client secret | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
 
-3. **Create a new branch:**
-   Create a new branch for your contribution. Name it appropriately to describe the work you're doing:
-
-   `git checkout -b feature/new-feature`
-
-4. Make changes and commit: Make your changes, write code, fix bugs, or add new features. Commit your changes with clear and descriptive commit messages:
-
-   `git commit -m 'Add new feature'`
-
-5. **Push changes:**
-
-   Push your changes to your fork on GitHub:
-
-   `git push origin feature/new-feature`
-
-6. **Create a pull request:**
-   Visit the original NexusTimer repository on GitHub and click the "New Pull Request" button. Provide a detailed description of your changes in the pull request, and our team will review your contribution.
+GOOGLE CALLBACK/AUTH IS: http://localhost:3000/api/auth/callback/google
+DISCORD CALLBACK/AUTH IS: http://localhost:3000/api/auth/callback/discord
 
 ## Contribution Guidelines
 
@@ -48,67 +55,6 @@ To contribute to the NexusTimer project, follow these steps:
 - Be open to feedback and engage in discussions to improve your contribution.
 - Respect the project maintainers and other contributors.
 
-
-### Clean code features
-
-Please consider contributing to one of the following clean code features by checking the box:
-
-- [ ] **Feature: Refactor Component Structure**
-
-  - **Description:** Review and refactor the component structure to follow a consistent pattern, such as container/presentation or atomic design. Consistent component structures improve code organization and maintainability.
-
-- [ ] **Feature: Implement Design Patterns**
-
-  - **Description:** Identify areas where design patterns (e.g., Singleton, Observer, Factory) can be applied to improve code structure and reusability. Design patterns help solve common design problems efficiently.
-
-- [ ] **Feature: Code Cleanup**
-
-  - **Description:** Conduct a thorough code cleanup to remove unused code, optimize imports, and ensure code consistency. A clean codebase is easier to read and maintain.
-
-- [ ] **Feature: Performance Optimization**
-
-  - **Description:** Profile and optimize performance bottlenecks in the code, such as database queries or rendering. Performance improvements lead to faster response times and a better user experience.
-
-- [ ] **Feature: Documentation and Comments**
-
-  - **Description:** Add missing documentation and comments to clarify code intent and usage. Well-documented code is more accessible to developers and helps with onboarding.
-
-- [ ] **Feature: Testing Infrastructure**
-
-  - **Description:** Enhance the testing infrastructure to include unit tests, integration tests, and end-to-end tests for critical parts of the application. Comprehensive testing ensures code reliability.
-
-- [ ] **Feature: Dependency Management**
-
-  - **Description:** Review and update dependencies to ensure they are up to date and compatible with each other. Keeping dependencies current reduces security risks and improves stability.
-
-- [ ] **Feature: Code Review Guidelines**
-
-  - **Description:** Establish and document code review guidelines to ensure that code quality and architectural patterns are consistently maintained. Code reviews become more effective and structured.
-
-- [ ] **Feature: Automated Code Quality Checks**
-
-  - **Description:** Implement automated code quality checks using tools like ESLint, Prettier, and linters. Automated checks enforce coding standards and catch issues early in the development process.
-
-- [ ] **Feature: Codebase Modularization**
-
-  - **Description:** Break down the codebase into modular components or microservices, promoting separation of concerns and scalability.
-
-- [ ] **Feature: Codebase Analysis Tools**
-
-  - **Description:** Integrate code analysis tools to detect code smells, complexity issues, and security vulnerabilities. These tools help identify areas for improvement.
-
-- [ ] **Feature: Performance Monitoring**
-
-  - **Description:** Implement performance monitoring tools to track application performance in real-time and identify areas for optimization.
-
-- [ ] **Feature: Scalability Planning**
-
-  - **Description:** Develop a plan for application scalability, considering factors like load balancing, caching, and database scaling. Scalability ensures the application can handle growth.
-
-
-
-Feel free to choose a feature that interests you, and don't hesitate to ask questions or seek clarification in the issue discussions. Thank you for considering contributing to our project!
-
 ## Thank You!
 
-Thank you for considering contributing to NexusTimer. Your contributions help make the project better for everyone. We appreciate your dedication and look forward to collaborating with you!
+Your contributions help make the project better for everyone. We appreciate your dedication and look forward to collaborating with you!
