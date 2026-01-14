@@ -6,7 +6,6 @@ import { sort } from 'fast-sort'
 import { toast } from 'sonner'
 import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
 import { STATES } from '@/shared/const/states'
-import useRemoveGridHeight from '@/shared/model/solves-grid/useRemoveGridHeight'
 import { Solve } from '@/entities/solve/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 
@@ -26,7 +25,6 @@ export default function useTransferSolves() {
   const clearSelectedSolves = useTransferSolvesStore((s) => s.clearSelectedSolves)
   const [isTransferring, setIsTransferring] = useState<boolean>(false)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
-  useRemoveGridHeight(sourceCollection)
 
   const displaySolves = useMemo(() => {
     const session = cubes?.find((cube) => cube.id === sourceCollection)?.solves.session || []
@@ -120,6 +118,7 @@ export default function useTransferSolves() {
     isTransferring,
     displaySolves,
     handleToggleAll,
-    handleTransfer
+    handleTransfer,
+    t
   }
 }
