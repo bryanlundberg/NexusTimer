@@ -1,4 +1,3 @@
-import { Card } from '@/components/ui/card'
 import { Solve } from '@/entities/solve/model/types'
 import formatTime from '@/shared/lib/formatTime'
 import { useLocale } from 'next-intl'
