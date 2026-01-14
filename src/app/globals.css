@@ -125,36 +125,4 @@
     height: 100%;
     overflow: hidden;
   }
-
-  /* overwrite virtualization component (Solves-Area) */
-
-  @media (min-width: 768px) {
-    .container {
-      max-width: 100%;
-    }
-  }
-
-  @media (min-width: 640px) {
-    .container {
-      max-width: 100%;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .container {
-      max-width: 100%;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    .container {
-      max-width: 100%;
-    }
-  }
-
-  @media (min-width: 1536px) {
-    .container {
-      max-width: 100%;
-    }
-  }
 }
