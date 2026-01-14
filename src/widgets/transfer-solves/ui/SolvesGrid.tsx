@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl'
 import { Solve } from '@/entities/solve/model/types'
 import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
@@ -6,14 +5,14 @@ import SolveTransferCard from '@/widgets/transfer-solves/ui/SolveTransferCard'
 import EmptyGrid from '@/features/solves-grid/ui/EmptyGrid'
 import VirtualizedGrid from '@/shared/ui/VirtualizedGrid'
 import { useCallback } from 'react'
+import { cn } from '@/shared/lib/utils'
 
 interface SolvesGridProps {
   selectedSolves: string[]
   displaySolves: Solve[]
-  handleToggleAll: (type: 'select' | 'deselect') => void
 }
 
-export default function SolvesGrid({ selectedSolves, displaySolves, handleToggleAll }: SolvesGridProps) {
+export default function SolvesGrid({ selectedSolves, displaySolves }: SolvesGridProps) {
   const t = useTranslations('Index.TransferSolvesPage')
   const toggleSolveSelection = useTransferSolvesStore((s) => s.toggleSolveSelection)
 
@@ -34,31 +33,17 @@ export default function SolvesGrid({ selectedSolves, displaySolves, handleToggle
 
   return (
     <>
-      <div className={'flex justify-between items-center mt-2 mb-4'}>
-        <div data-testid="solves-selected-counter">{t('solves-selected', { count: selectedSolves.length })}</div>
-        <div className={'flex gap-2'}>
-          <Button
-            data-testid="select-all-button"
-            variant={selectedSolves.length === displaySolves.length ? 'default' : 'outline'}
-            onClick={() => handleToggleAll('select')}
-          >
-            {t('select-all')}
-          </Button>
-          <Button variant={'outline'} onClick={() => handleToggleAll('deselect')} data-testid="deselect-all-button">
-            {t('deselect-all')}
-          </Button>
-        </div>
+      <div className="flex-1 min-h-0">
+        <VirtualizedGrid
+          items={displaySolves}
+          cellWidth={220}
+          cellHeight={160}
+          gridGap={10}
+          className={cn('px-2 pt-2 pb-3')}
+          renderItem={renderItem}
+          getItemKey={getItemKey}
+        />
       </div>
-
-      <VirtualizedGrid
-        items={displaySolves}
-        cellWidth={220}
-        cellHeight={160}
-        gridGap={10}
-        className="pb-4 ps-1 pe-1 pt-1 container"
-        renderItem={renderItem}
-        getItemKey={getItemKey}
-      />
     </>
   )
 }
