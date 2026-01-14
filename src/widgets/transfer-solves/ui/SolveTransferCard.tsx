@@ -1,4 +1,3 @@
-import { Card } from '@/components/ui/card'
 import formatTime from '@/shared/lib/formatTime'
 import { Solve } from '@/entities/solve/model/types'
 import { format } from 'date-fns'
@@ -17,7 +16,7 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
       id={solve.id}
       data-testid={`solve-card-${solve.id}`}
       onClick={onToggle}
-      className={`relative grow flex items-center justify-center w-auto font-medium text-center transition duration-200 rounded-md cursor-pointer h-full bg-secondary text-secondary-foreground ${isSelected ? 'ring-3 ring-primary' : ''}`}
+      className={`relative grow flex items-center justify-center font-medium text-center transition duration-200 rounded-md cursor-pointer w-full h-full bg-secondary text-secondary-foreground ${isSelected ? 'ring-3 ring-primary' : ''}`}
     >
       <div className="tracking-wider pt-2">
         <span className="text-md">{formatTime(solve.time).split('.')[0]}</span>

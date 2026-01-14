@@ -4,7 +4,6 @@ import formatTime from '@/shared/lib/formatTime'
 import { sort } from 'fast-sort'
 import { Solve } from '@/entities/solve/model/types'
 import { STATES } from '@/shared/const/states'
-import useRemoveGridHeight from '@/shared/model/solves-grid/useRemoveGridHeight'
 import { Order, Sort } from '@/shared/types/enums'
 
 export default function useSolvesGrid(solves: Array<Solve>) {
@@ -13,7 +12,6 @@ export default function useSolvesGrid(solves: Array<Solve>) {
   const [orderType] = useQueryState(STATES.SOLVES_PAGE.ORDER.KEY, {
     defaultValue: STATES.SOLVES_PAGE.ORDER.DEFAULT_VALUE
   })
-  useRemoveGridHeight()
 
   const normalizedQuery = (query || '').trim()
 

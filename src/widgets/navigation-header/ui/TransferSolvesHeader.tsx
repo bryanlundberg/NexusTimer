@@ -8,6 +8,7 @@ import { Cube } from '@/entities/cube/model/types'
 import { useQueryState } from 'nuqs'
 import Navigation from '@/features/navigation/ui/navigation'
 import { STATES } from '@/shared/const/states'
+import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
 
 interface TransferSolvesHeaderProps {
   cubes: Cube[]
@@ -22,6 +23,7 @@ export default function TransferSolvesHeader({
   isTransferring,
   selectedSolves
 }: TransferSolvesHeaderProps) {
+  const clearSelectedSolves = useTransferSolvesStore((s) => s.clearSelectedSolves)
   const t = useTranslations('Index.TransferSolvesPage')
   const [sourceCollection, setSourceCollection] = useQueryState(STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.KEY, {
     defaultValue: STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.DEFAULT_VALUE
@@ -32,61 +34,64 @@ export default function TransferSolvesHeader({
   )
 
   return (
-    <Navigation showMenu={false}>
-      <div className={'flex gap-2 items-center'}>
-        <SidebarTrigger />
-        <div className={'flex flex-col gap-1 grow md:flex-row'}>
-          <Select
-            value={sourceCollection}
-            onValueChange={(value) => {
-              setSourceCollection(value)
-              setDestinationCollection('')
-            }}
-          >
-            <SelectTrigger className="w-full" data-testid="source-collection-trigger">
-              <SelectValue placeholder={t('collection-origin')} />
-            </SelectTrigger>
-            <SelectContent data-testid="source-collection-content">
-              {cubes?.map((cube) => (
-                <SelectItem key={cube.id} value={cube.id} data-testid={`source-collection-${cube.name}`}>
-                  {cube.name} ({cube.category})
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <div className={'flex items-center justify-center'}>
-            <ArrowRightIcon className={'size-4 rotate-90 md:rotate-0'} />
-          </div>
-          <Select value={destinationCollection} onValueChange={setDestinationCollection}>
-            <SelectTrigger className="w-full" data-testid="destination-collection-trigger">
-              <SelectValue placeholder={t('collection-destination')} />
-            </SelectTrigger>
-            <SelectContent data-testid="destination-collection-content">
-              {cubes
-                ?.filter((cube) => cube.id !== sourceCollection)
-                .map((cube) => (
-                  <SelectItem key={cube.id} value={cube.id} data-testid={`destination-collection-${cube.name}`}>
+    <div className={'mx-2 mt-2'}>
+      <Navigation showMenu={false}>
+        <div className={'flex gap-2 items-center'}>
+          <SidebarTrigger />
+          <div className={'flex flex-col gap-1 grow md:flex-row'}>
+            <Select
+              value={sourceCollection}
+              onValueChange={(value) => {
+                setSourceCollection(value)
+                setDestinationCollection('')
+                clearSelectedSolves()
+              }}
+            >
+              <SelectTrigger className="w-full" data-testid="source-collection-trigger">
+                <SelectValue placeholder={t('collection-origin')} />
+              </SelectTrigger>
+              <SelectContent data-testid="source-collection-content">
+                {cubes?.map((cube) => (
+                  <SelectItem key={cube.id} value={cube.id} data-testid={`source-collection-${cube.name}`}>
                     {cube.name} ({cube.category})
                   </SelectItem>
                 ))}
-            </SelectContent>
-          </Select>
-        </div>
+              </SelectContent>
+            </Select>
+            <div className={'flex items-center justify-center'}>
+              <ArrowRightIcon className={'size-4 rotate-90 md:rotate-0'} />
+            </div>
+            <Select value={destinationCollection} onValueChange={setDestinationCollection}>
+              <SelectTrigger className="w-full" data-testid="destination-collection-trigger">
+                <SelectValue placeholder={t('collection-destination')} />
+              </SelectTrigger>
+              <SelectContent data-testid="destination-collection-content">
+                {cubes
+                  ?.filter((cube) => cube.id !== sourceCollection)
+                  .map((cube) => (
+                    <SelectItem key={cube.id} value={cube.id} data-testid={`destination-collection-${cube.name}`}>
+                      {cube.name} ({cube.category})
+                    </SelectItem>
+                  ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-        <Button
-          data-testid="transfer-solves-button"
-          onClick={handleTransfer}
-          disabled={
-            !sourceCollection ||
-            !destinationCollection ||
-            sourceCollection === destinationCollection ||
-            isTransferring ||
-            selectedSolves === 0
-          }
-        >
-          {isTransferring ? t('transferring') : t('transfer')}
-        </Button>
-      </div>
-    </Navigation>
+          <Button
+            data-testid="transfer-solves-button"
+            onClick={handleTransfer}
+            disabled={
+              !sourceCollection ||
+              !destinationCollection ||
+              sourceCollection === destinationCollection ||
+              isTransferring ||
+              selectedSolves === 0
+            }
+          >
+            {isTransferring ? t('transferring') : t('transfer')}
+          </Button>
+        </div>
+      </Navigation>
+    </div>
   )
 }
