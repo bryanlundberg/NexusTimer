@@ -8,6 +8,7 @@ import { Cube } from '@/entities/cube/model/types'
 import { useQueryState } from 'nuqs'
 import Navigation from '@/features/navigation/ui/navigation'
 import { STATES } from '@/shared/const/states'
+import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
 
 interface TransferSolvesHeaderProps {
   cubes: Cube[]
@@ -22,6 +23,7 @@ export default function TransferSolvesHeader({
   isTransferring,
   selectedSolves
 }: TransferSolvesHeaderProps) {
+  const clearSelectedSolves = useTransferSolvesStore((s) => s.clearSelectedSolves)
   const t = useTranslations('Index.TransferSolvesPage')
   const [sourceCollection, setSourceCollection] = useQueryState(STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.KEY, {
     defaultValue: STATES.TRANSFER_SOLVES_PAGE.SOURCE_COLLECTION.DEFAULT_VALUE
@@ -41,6 +43,7 @@ export default function TransferSolvesHeader({
             onValueChange={(value) => {
               setSourceCollection(value)
               setDestinationCollection('')
+              clearSelectedSolves()
             }}
           >
             <SelectTrigger className="w-full" data-testid="source-collection-trigger">
