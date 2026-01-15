@@ -25,8 +25,8 @@ export default function SolvesGrid({ solves }: SolvesGridProps) {
     <div className="flex-1 min-h-0">
       <VirtualizedGrid
         items={orderedSolves}
-        cellWidth={220}
-        cellHeight={160}
+        cellWidth={160}
+        cellHeight={120}
         gridGap={8}
         className="px-2 pb-4"
         renderItem={renderItem}
