@@ -75,7 +75,7 @@
     "idb": "^8.0.3",
     "input-otp": "^1.4.2",
     "lightweight-charts": "^5.0.7",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "lucide-react": "^0.439.0",
     "luxon": "^3.5.0",
     "moment": "^2.30.1",
