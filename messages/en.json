@@ -602,6 +602,12 @@
     },
     "invite-link-copied": "Invite link copied",
     "share-room-text": "Join my cubing room on Nexus Timer!",
-    "invite": "Invite"
+    "invite": "Invite",
+    "OpenGraph": {
+      "invited-to-room": "You are invited to a room",
+      "join-now": "Join now!",
+      "room": "Room {roomId}",
+      "description": "Join my room on Nexus Timer to compete live! Room ID: {roomId}"
+    }
   }
 }

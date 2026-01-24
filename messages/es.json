@@ -600,6 +600,12 @@
     },
     "invite-link-copied": "Enlace de invitación copiado",
     "share-room-text": "¡Únete a mi sala de cubing en Nexus Timer!",
-    "invite": "Invitar"
+    "invite": "Invitar",
+    "OpenGraph": {
+      "invited-to-room": "Estás invitado a una sala",
+      "join-now": "¡Únete ahora!",
+      "room": "Sala {roomId}",
+      "description": "¡Únete a mi sala en Nexus Timer para competir en vivo! ID de sala: {roomId}"
+    }
   }
 }
