@@ -56,8 +56,6 @@ export default function FreePlayRoomPage() {
   const event = useRoomEvent(roomId?.toString() || '')
   const maxRoundTime = useFreeMode().useMaxRoundTime(roomId?.toString() || '')
 
-  console.log(roomId)
-
   useEffect(() => {
     if (session === undefined) return
     if (!session) {
