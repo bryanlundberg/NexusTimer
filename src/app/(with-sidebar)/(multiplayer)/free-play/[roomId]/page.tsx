@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import genScramble from '@/shared/lib/timer/genScramble'
 import { Button } from '@/components/ui/button'
-import { ChartBarIcon, CheckIcon, Clock, EyeIcon, UsersIcon } from 'lucide-react'
+import { ChartBarIcon, CheckIcon, Clock, EyeIcon, Plus, UsersIcon } from 'lucide-react'
 import { AvatarGroup, AvatarGroupTooltip } from '@/components/ui/shadcn-io/avatar-group'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
@@ -24,6 +24,8 @@ import { TimerStatus } from '@/features/timer/model/enums'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 
 export default function FreePlayRoomPage() {
   const t = useTranslations('Multiplayer')
@@ -101,6 +103,29 @@ export default function FreePlayRoomPage() {
 
   const [currentTab, setCurrentTab] = React.useState<string>('timer')
 
+  const handleInvite = async () => {
+    const shareData = {
+      title: 'Nexus Timer',
+      text: t('share-room-text'),
+      url: window.location.href
+    }
+
+    if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+      try {
+        await navigator.share(shareData)
+      } catch (err) {
+        if ((err as Error).name !== 'AbortError') {
+          console.error('Error sharing:', err)
+        }
+      }
+    } else {
+      const url = window.location.href
+      navigator.clipboard.writeText(url).then(() => {
+        toast.success(t('invite-link-copied'))
+      })
+    }
+  }
+
   return (
     <div className="pt-4 px-4 md:pb-4 flex flex-col overflow-hidden h-dvh">
       <div className={'flex justify-between items-start h-fit'}>
@@ -119,7 +144,7 @@ export default function FreePlayRoomPage() {
         </div>
 
         <div className="bg-gradient-to-r from-primary via-card to-primary p-0.5 rounded-full">
-          <div className="bg-gradient-to-r from-background via-muted to-card p-1.5 rounded-full">
+          <div className="bg-gradient-to-r from-background via-muted to-card p-1.5 rounded-full flex items-center gap-2">
             <AvatarGroup variant="css">
               {onlineUsers.map((user, index) => (
                 <Avatar key={index} className={'relative'}>
@@ -160,7 +185,7 @@ export default function FreePlayRoomPage() {
                   )}
                   <AvatarGroupTooltip>
                     <p>{user.name}</p>
-                    <p className={'text-xs text-muted-foreground'}>
+                    <p className={'text-xs text-primary-foreground'}>
                       {user.status === TimerStatus.SOLVING && t('status.solving')}
                       {user.status === TimerStatus.INSPECTING && t('status.inspecting')}
                       {user.status === TimerStatus.WAITING_NEXT_ROUND && t('status.done')}
@@ -172,6 +197,16 @@ export default function FreePlayRoomPage() {
                 </Avatar>
               ))}
             </AvatarGroup>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button size="icon" variant="ghost" className="rounded-full size-8 shrink-0" onClick={handleInvite}>
+                  <Plus className="size-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side="top" sideOffset={8}>
+                {t('invite')}
+              </TooltipContent>
+            </Tooltip>
           </div>
         </div>
       </div>
