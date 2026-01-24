@@ -676,26 +676,112 @@ export default function Page() {
         </main>
 
         {/* Footer */}
-        <footer className="w-full border-t border-white/10">
-          <div className="mx-auto max-w-7xl px-6 py-6 text-xs text-white/60 flex flex-col md:flex-row items-center justify-between gap-3">
-            <span>© {new Date().getFullYear()} NexusTimer.</span>
-            <div className="flex items-center gap-4">
-              <Link href="/privacy-policy" className="hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="/terms-of-service" className="hover:text-white transition-colors">
-                ToS
-              </Link>
-              <Link
-                href="/https://discord.gg/eCgTKcavec"
-                target={'_blank'}
-                className="hover:text-white transition-colors"
-              >
-                Discord
-              </Link>
-              <a href="mailto:contact.nexustimer@gmail.com" className="hover:text-white transition-colors">
-                Contact
-              </a>
+        <footer className="w-full border-t border-white/10 bg-black/20 backdrop-blur-md">
+          <div className="mx-auto max-w-7xl px-6 py-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+              {/* Brand Column */}
+              <div className="col-span-1 md:col-span-1">
+                <div className="flex items-center gap-3 mb-6">
+                  <Image src={'/logo.png'} alt={'NexusTimer Logo'} width={32} height={32} className="invert" />
+                  <span className="text-xl font-bold bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
+                    NexusTimer
+                  </span>
+                </div>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  The ultimate performance profile for cubers. Track, analyze, and improve your solves with advanced
+                  statistics.
+                </p>
+
+                <Image
+                  src={'/utils/android-apk.webp'}
+                  alt={'Download Nexus Connect App'}
+                  width={200}
+                  height={60}
+                  className="mt-6 -ms-4"
+                  unoptimized
+                />
+              </div>
+
+              {/* Product Column */}
+              <div>
+                <h4 className="text-sm font-semibold text-white mb-6 uppercase tracking-wider">Product</h4>
+                <ul className="space-y-4">
+                  <li>
+                    <Link href="/app" className="text-sm text-white/60 hover:text-white transition-colors">
+                      Timer App
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/stats" className="text-sm text-white/60 hover:text-white transition-colors">
+                      Statistics
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/free-play" className="text-sm text-white/60 hover:text-white transition-colors">
+                      Multiplayer
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Company Column */}
+              <div>
+                <h4 className="text-sm font-semibold text-white mb-6 uppercase tracking-wider">Company</h4>
+                <ul className="space-y-4">
+                  <li>
+                    <a
+                      href="mailto:contact.nexustimer@gmail.com"
+                      className="text-sm text-white/60 hover:text-white transition-colors"
+                    >
+                      Contact Us
+                    </a>
+                  </li>
+                  <li>
+                    <Link href="/privacy-policy" className="text-sm text-white/60 hover:text-white transition-colors">
+                      Privacy Policy
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/terms-of-service" className="text-sm text-white/60 hover:text-white transition-colors">
+                      Terms of Service
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Community Column - Replacing Socials with useful links */}
+              <div>
+                <h4 className="text-sm font-semibold text-white mb-6 uppercase tracking-wider">Community</h4>
+                <ul className="space-y-4">
+                  <li>
+                    <Link
+                      href="https://discord.gg/eCgTKcavec"
+                      target={'_blank'}
+                      className="text-sm text-white/60 hover:text-white transition-colors"
+                    >
+                      Discord Server
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://github.com/NexusTimer"
+                      target={'_blank'}
+                      className="text-sm text-white/60 hover:text-white transition-colors"
+                    >
+                      GitHub
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+              <span className="text-xs text-white/40 italic">
+                NexusTimer is an independent project for the cubing community.
+              </span>
+              <span className="text-xs text-white/40">
+                © {new Date().getFullYear()} NexusTimer. All rights reserved.
+              </span>
             </div>
           </div>
         </footer>
