@@ -599,6 +599,9 @@
       "event": "Event:",
       "max-time-per-round": "Max Time per Round:",
       "next-round-starts-in": "Next round starts in:"
-    }
+    },
+    "invite-link-copied": "Invite link copied",
+    "share-room-text": "Join my cubing room on Nexus Timer!",
+    "invite": "Invite"
   }
 }
