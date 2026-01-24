@@ -11,18 +11,21 @@ import { TimeZone } from '@/features/time-zone/ui/TimeZone'
 import { UserDocument } from '@/entities/user/model/user'
 import { KeyedMutator } from 'swr'
 import { useTranslations } from 'next-intl'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { AccountInfoForm as IAccountInfoForm, accountInfoSchema } from '@/features/account-form/model/types'
 
 export default function AccountInfoForm({ user, mutate }: { user?: UserDocument; mutate: KeyedMutator<any> }) {
   const { data: session } = useSession()
   const t = useTranslations('Index.AccountPage')
 
-  const timezones = useMemo(() => (Intl as any).supportedValuesOf('timeZone'), [])
+  const timezones = useMemo(() => Intl.supportedValuesOf('timeZone'), [])
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     control
   } = useForm({
+    resolver: zodResolver(accountInfoSchema),
     defaultValues: {
       name: user?.name || '',
       timezone: user?.timezone || '',
@@ -32,7 +35,7 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
     }
   })
 
-  const handleSaveChanges = async (form: any) => {
+  const handleSaveChanges = async (form: IAccountInfoForm) => {
     const updatedForm = {
       ...form,
       timezone: form.timezone || undefined,
