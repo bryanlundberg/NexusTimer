@@ -3,7 +3,6 @@ import { getTranslations } from 'next-intl/server'
 
 type Props = {
   params: Promise<{ roomId: string }>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
