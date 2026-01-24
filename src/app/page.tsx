@@ -678,16 +678,16 @@ export default function Page() {
         {/* Footer */}
         <footer className="w-full border-t border-white/10 bg-black/20 backdrop-blur-md">
           <div className="mx-auto max-w-7xl px-6 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
               {/* Brand Column */}
-              <div className="col-span-1 md:col-span-1">
+              <div className="col-span-1">
                 <div className="flex items-center gap-3 mb-6">
                   <Image src={'/logo.png'} alt={'NexusTimer Logo'} width={32} height={32} className="invert" />
                   <span className="text-xl font-bold bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
                     NexusTimer
                   </span>
                 </div>
-                <p className="text-sm text-white/60 leading-relaxed">
+                <p className="text-sm text-white/60 leading-relaxed max-w-md">
                   The ultimate performance profile for cubers. Track, analyze, and improve your solves with advanced
                   statistics.
                 </p>
@@ -702,76 +702,107 @@ export default function Page() {
                 />
               </div>
 
-              {/* Product Column */}
-              <div>
-                <h4 className="text-sm font-semibold text-white mb-6 uppercase tracking-wider">Product</h4>
-                <ul className="space-y-4">
-                  <li>
-                    <Link href="/app" className="text-sm text-white/60 hover:text-white transition-colors">
-                      Timer App
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/stats" className="text-sm text-white/60 hover:text-white transition-colors">
-                      Statistics
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/free-play" className="text-sm text-white/60 hover:text-white transition-colors">
-                      Multiplayer
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+              {/* Lists Column (50% on desktop) */}
+              <div className="grid-cols-3 gap-8 hidden md:grid">
+                {/* Product Column */}
+                <div>
+                  <h4 className="text-sm font-semibold text-white mb-6 uppercase tracking-wider">Product</h4>
+                  <ul className="space-y-3">
+                    <li>
+                      <Link href="/app" className="text-sm text-white/60 hover:text-white transition-all duration-300">
+                        Timer App
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/stats"
+                        className="text-sm text-white/60 hover:text-white transition-all duration-300"
+                      >
+                        Statistics
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/free-play"
+                        className="text-sm text-white/60 hover:text-white transition-all duration-300"
+                      >
+                        Multiplayer
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/algorithms"
+                        className="text-sm text-white/60 hover:text-white transition-all duration-300"
+                      >
+                        Algorithms
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/leaderboards"
+                        className="text-sm text-white/60 hover:text-white transition-all duration-300"
+                      >
+                        Leaderboards
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
 
-              {/* Company Column */}
-              <div>
-                <h4 className="text-sm font-semibold text-white mb-6 uppercase tracking-wider">Company</h4>
-                <ul className="space-y-4">
-                  <li>
-                    <a
-                      href="mailto:contact.nexustimer@gmail.com"
-                      className="text-sm text-white/60 hover:text-white transition-colors"
-                    >
-                      Contact Us
-                    </a>
-                  </li>
-                  <li>
-                    <Link href="/privacy-policy" className="text-sm text-white/60 hover:text-white transition-colors">
-                      Privacy Policy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/terms-of-service" className="text-sm text-white/60 hover:text-white transition-colors">
-                      Terms of Service
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+                {/* Company Column */}
+                <div>
+                  <h4 className="text-sm font-semibold text-white mb-6 uppercase tracking-wider">Company</h4>
+                  <ul className="space-y-3">
+                    <li>
+                      <a
+                        href="mailto:contact.nexustimer@gmail.com"
+                        className="text-sm text-white/60 hover:text-white transition-all duration-300"
+                      >
+                        Contact Us
+                      </a>
+                    </li>
+                    <li>
+                      <Link
+                        href="/privacy-policy"
+                        className="text-sm text-white/60 hover:text-white transition-all duration-300"
+                      >
+                        Privacy Policy
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/terms-of-service"
+                        className="text-sm text-white/60 hover:text-white transition-all duration-300"
+                      >
+                        Terms of Service
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
 
-              {/* Community Column - Replacing Socials with useful links */}
-              <div>
-                <h4 className="text-sm font-semibold text-white mb-6 uppercase tracking-wider">Community</h4>
-                <ul className="space-y-4">
-                  <li>
-                    <Link
-                      href="https://discord.gg/eCgTKcavec"
-                      target={'_blank'}
-                      className="text-sm text-white/60 hover:text-white transition-colors"
-                    >
-                      Discord Server
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="https://github.com/NexusTimer"
-                      target={'_blank'}
-                      className="text-sm text-white/60 hover:text-white transition-colors"
-                    >
-                      GitHub
-                    </Link>
-                  </li>
-                </ul>
+                {/* Community Column */}
+                <div>
+                  <h4 className="text-sm font-semibold text-white mb-6 uppercase tracking-wider">Community</h4>
+                  <ul className="space-y-3">
+                    <li>
+                      <Link
+                        href="https://discord.gg/eCgTKcavec"
+                        target={'_blank'}
+                        className="text-sm text-white/60 hover:text-white transition-all duration-300"
+                      >
+                        Discord Server
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="https://github.com/NexusTimer"
+                        target={'_blank'}
+                        className="text-sm text-white/60 hover:text-white transition-all duration-300"
+                      >
+                        GitHub
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
 
