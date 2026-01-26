@@ -2,17 +2,19 @@ import { useEffect, useState } from 'react'
 import { decompressSync, strFromU8 } from 'fflate'
 import { Cube } from '@/entities/cube/model/types'
 
-export const useBackup = (url: string) => {
-  const [isLoading, setIsLoading] = useState(true)
+export const useBackup = (url: string | undefined) => {
+  const [isLoading, setIsLoading] = useState(false)
   const [backup, setBackup] = useState<Cube[] | null>(null)
 
   useEffect(() => {
+    setBackup(null)
     if (!url) {
       setIsLoading(false)
       return
     }
 
     const fetchBackup = async () => {
+      setIsLoading(true)
       try {
         const response = await fetch(url)
         if (!response.ok) throw new Error('Network response was not ok')
