@@ -15,16 +15,20 @@ export default function PeopleDetailsPage() {
   const { data: user, isLoading: isLoadingUser } = useUser(userId)
   const { backup, isLoading: isLoadingBackup } = useBackup(user?.backup?.url)
 
-  if (isLoadingUser || isLoadingBackup) return <PeopleSkeleton />
+  const isActuallyLoadingBackup = !!user?.backup?.url && isLoadingBackup
 
   const cubes = filterCubes(backup)
 
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
-      <FadeIn>
-        <UserHeader user={user} />
-        <PeopleTabs user={user} cubes={cubes} />
-      </FadeIn>
+      {isLoadingUser || isActuallyLoadingBackup ? (
+        <PeopleSkeleton />
+      ) : (
+        <FadeIn>
+          <UserHeader user={user} />
+          <PeopleTabs user={user} cubes={cubes} />
+        </FadeIn>
+      )}
     </ScrollArea>
   )
 }
