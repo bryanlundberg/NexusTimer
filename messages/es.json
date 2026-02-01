@@ -290,6 +290,9 @@
       "best-average": "Mejor promedio",
       "worst-time": "Peor tiempo",
       "sounds": "Sonidos",
+      "voice-gender": "Género de voz",
+      "male": "Hombre",
+      "female": "Mujer",
       "newPersonalBest": "Nuevo récord personal",
       "theme": "Tema",
       "custom-background-image": "Imagen de fondo personalizada",
@@ -418,6 +421,7 @@
       "scramble-image": "Mostrar una representación visual de la lucha",
       "session-stats": "Mostrar estadísticas para la sesión de resolución actual",
       "start-cue": "Muestre una señal visual cuando el temporizador esté listo para comenzar",
+      "voice-gender-description": "Elegir entre voz masculina o femenina para las alertas de inspección",
       "worst-time-alert": "Muestre una alerta cuando obtenga su peor momento en una sesión"
     },
     "TransferSolvesPage": {
