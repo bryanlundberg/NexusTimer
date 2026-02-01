@@ -28,7 +28,7 @@ export default function SolvesGrid({ solves }: SolvesGridProps) {
         cellWidth={160}
         cellHeight={120}
         gridGap={8}
-        className="px-2 pb-4"
+        className="px-2 pb-4 pt-1"
         renderItem={renderItem}
         getItemKey={getItemKey}
       />
