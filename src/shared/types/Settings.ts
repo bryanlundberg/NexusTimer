@@ -30,6 +30,7 @@ type Preferences = {
 
 type Sounds = {
   newPersonalBest: boolean
+  voiceGender: 'male' | 'female'
 }
 
 type Sync = {
