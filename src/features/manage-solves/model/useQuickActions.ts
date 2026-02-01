@@ -35,7 +35,15 @@ export default function useQuickActions(solve: Solve) {
     const { cubeId, id: solveId } = solve
     const tab = await inferSolveTab()
     if (!tab) return
-    await toggleBookmark({ cubeId, solveId, bookmark: !solve.bookmark, solveTab: tab })
+
+    const newBookmarkStatus = !solve.bookmark
+    await toggleBookmark({ cubeId, solveId, bookmark: newBookmarkStatus, solveTab: tab })
+
+    if (newBookmarkStatus) {
+      const audio = new Audio('/sounds/favorite.mp3')
+      audio.play()
+    }
+
     syncUI()
   }
 
