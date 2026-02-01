@@ -3,7 +3,6 @@ import { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import ButtonNextScramble from '@/features/navigation/ui/button-next-scramble'
-import ButtonDisplayType from '@/features/navigation/ui/button-display-type'
 import ButtonCreateCollection from '@/features/navigation/ui/button-create-collection'
 import ButtonSelectMode from '@/features/navigation/ui/button-select-mode'
 import MainCubeSelector from '@/features/select-cube/ui/MainCubeSelector'
@@ -13,7 +12,6 @@ export default function Navigation({
   showMenu = true,
   showMainCubeSelector = false,
   showButtonNextScramble = false,
-  showButtonDisplayType = false,
   showButtonCreateCollection = false,
   showButtonSelectMode = false
 }: {
@@ -21,7 +19,6 @@ export default function Navigation({
   showMenu?: boolean
   showMainCubeSelector?: boolean
   showButtonNextScramble?: boolean
-  showButtonDisplayType?: boolean
   showButtonCreateCollection?: boolean
   showButtonSelectMode?: boolean
 }) {
@@ -36,14 +33,12 @@ export default function Navigation({
         {(showMenu ||
           showMainCubeSelector ||
           showButtonNextScramble ||
-          showButtonDisplayType ||
           showButtonCreateCollection ||
           showButtonSelectMode) && (
           <div className="flex justify-center items-center gap-2">
             {showMenu && <SidebarTrigger />}
             {showMainCubeSelector && <MainCubeSelector />}
             {showButtonNextScramble && <ButtonNextScramble />}
-            {showButtonDisplayType && <ButtonDisplayType />}
             {showButtonCreateCollection && <ButtonCreateCollection />}
             {showButtonSelectMode && <ButtonSelectMode />}
           </div>
