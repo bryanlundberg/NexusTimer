@@ -49,7 +49,7 @@
       "language-description": "Change the language used throughout the application"
     },
     "leaderboard-solve-details": {
-      "user-solution": "User solution",
+      "user-solution": "Reconstruction",
       "time": "Time",
       "scramble": "Scramble",
       "solution": "Solution"
@@ -62,7 +62,7 @@
       "title": "Timer",
       "hint": "Hint",
       "optimal-yellow-layer": "Optimal Yellow Layer",
-      "white-on-top-green-forward": "White on top - Green facing forward",
+      "white-on-top-green-forward": "White on top, Green forward",
       "hints-yellow-layer": "Hints: Yellow layer",
       "solving": "Solving...",
       "tap-to-start": "Tap to start",
@@ -72,26 +72,26 @@
       "congratulations": "Congratulations!",
       "new_best_average": "New best average!",
       "new_worst_time": "Oops, you got your worst time!",
-      "personal_best": "You have beaten your previous personal best.",
+      "personal_best": "You've beaten your personal best (PB)!",
       "deviation": "Deviation",
       "average": "Average",
       "best": "Best",
       "counter": "Counter",
       "select-cube": "Select Cube",
-      "enter-custom-scramble": "Enter a custom scramble",
+      "enter-custom-scramble": "Enter custom scramble",
       "mode": "Mode",
       "modes": {
         "normal": "Normal",
         "manual": "Manual",
         "stackmat": "Stackmat",
         "virtual": "Virtual",
-        "smart": "Smart cube",
+        "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "New scramble",
       "edit-scramble": "Edit scramble",
       "hints": "Hints",
-      "start-stackmat": "Start your Stackmat to start the timer"
+      "start-stackmat": "Start your Stackmat to begin"
     },
     "SolvesPage": {
       "title": "Solves",
@@ -104,18 +104,18 @@
       },
       "dialogs": {
         "move-to-history": "Move solves to history?",
-        "move-to-history-para": "You will be able to access them by tapping the history switch."
+        "move-to-history-para": "You will be able to access them by toggling the history switch."
       },
       "toast": {
-        "unable-action": "Unable action",
-        "warning-select-cube": "Please select a cube before.",
+        "unable-action": "Action unavailable",
+        "warning-select-cube": "Please select a cube first.",
         "success-copy": "Copied successfully",
-        "success-copy-description": "Has been copied to your clipboard."
+        "success-copy-description": "Copied to clipboard."
       },
       "alert": {
         "title": "Attention!",
         "empty-cubes": "No cube selected. Please choose one.",
-        "select-cube": "Start selecting a cube!"
+        "select-cube": "Start by selecting a cube!"
       },
       "dropdown": {
         "view-details": "View Details",
@@ -129,7 +129,7 @@
         "delete-solve": "Delete Solve"
       },
       "empty-solves": "Nothing here yet!",
-      "empty-solves-description": "Tap the switch at the top of the screen to see your history.",
+      "empty-solves-description": "Toggle the switch at the top to see your history.",
       "sort": "Sort",
       "time": "Time",
       "date": "Date",
@@ -339,7 +339,7 @@
       "delete": "Delete",
       "bookmark": "Bookmark",
       "copy": "Copy",
-      "dnf": "Did Not Finish",
+      "dnf": "DNF",
       "more-actions": "More actions"
     },
     "solve-details": {
@@ -458,7 +458,7 @@
       "success-transfer": "Successfully transferred {count} solves from {source} to {destination}",
       "failed-transfer": "Failed to transfer solves. Please try again.",
       "no-solves": "No solves available",
-      "empty-vault": "Your solve vault is currently empty.",
+      "empty-vault": "Your history is currently empty.",
       "cubes-unavailable": "Cubes data is not available"
     },
     "AccountPage": {
@@ -549,69 +549,69 @@
     "title": "Nexus Timer - Professional Rubik's Cube Timer",
     "description": "Nexus Timer is a professional platform for training and analyzing your journey with the Rubik's Cube."
   },
-  "Multiplayer": {
-    "title": "Free Play",
-    "description": "Join real-time cubing sessions with other enthusiasts. A casual space where you can practice freely without the pressure of rankings or records.",
-    "new-room": "New Room",
-    "no-active-rooms": "No Active Rooms Yet",
-    "no-active-rooms-description": "Be the first to start a cubing session! Create a room and invite others to join you for some casual practice.",
-    "account-required": "Account Required",
-    "account-required-description": "You need to be signed in to access online games.",
-    "next-round-starts-in": "Next round starts in:",
-    "timer": "Timer",
-    "results": "Results",
-    "people": "People",
-    "create-room": {
-      "title": "New public room",
-      "description": "Create a new room for your Clash event. Set the rules, requirements, and more.",
-      "room-name": "Room name",
-      "room-name-placeholder": "e.g. Night of cubing",
-      "room-name-required": "Room name is required",
-      "event": "Event",
-      "max-round-time": "Maximum round time",
-      "max-round-time-description": "Time limit for scrambling + inspection + solving (per solve)",
-      "continue": "Continue"
-    },
-    "status": {
-      "solving": "Solving...",
-      "inspecting": "Inspecting",
-      "done": "Done",
-      "idle": "Idle",
-      "ready": "Ready",
-      "holding": "Holding"
-    },
-    "already-submitted": "You have already submitted a solve for this scramble. Wait for the next one!",
-    "confirm-solve": {
-      "title": "Confirm Solve Time ({time})",
-      "description": "How would you like to register this solve?",
-      "dnf": "DNF",
-      "plus2": "+2",
-      "ok": "OK"
-    },
-    "results-tab": {
-      "latest": "Latest",
-      "best": "Best",
-      "worst": "Worst",
-      "average": "Average",
-      "updating-live": "Updating live",
-      "cubers": "Cubers"
-    },
-    "view-profile": "View Profile",
-    "anonymous": "Anonymous",
-    "room-card": {
-      "users-online": "Users online:",
-      "event": "Event:",
-      "max-time-per-round": "Max Time per Round:",
-      "next-round-starts-in": "Next round starts in:"
-    },
-    "invite-link-copied": "Invite link copied",
-    "share-room-text": "Join my cubing room on Nexus Timer!",
-    "invite": "Invite",
-    "OpenGraph": {
-      "invited-to-room": "You are invited to a room",
-      "join-now": "Join now!",
-      "room": "Room {roomId}",
-      "description": "Join my room on Nexus Timer to compete live! Room ID: {roomId}"
+    "Multiplayer": {
+      "title": "Free Play",
+      "description": "Join real-time cubing sessions. A casual space to practice freely without the pressure of rankings.",
+      "new-room": "New Room",
+      "no-active-rooms": "No active rooms yet",
+      "no-active-rooms-description": "Be the first to start a session! Create a room and invite others for some casual practice.",
+      "account-required": "Account Required",
+      "account-required-description": "You need to be signed in to access online games.",
+      "next-round-starts-in": "Next round starts in:",
+      "timer": "Timer",
+      "results": "Results",
+      "people": "People",
+      "create-room": {
+        "title": "New public room",
+        "description": "Create a new room for your Clash event. Set the rules, requirements, and more.",
+        "room-name": "Room name",
+        "room-name-placeholder": "e.g. Night of cubing",
+        "room-name-required": "Room name is required",
+        "event": "Event",
+        "max-round-time": "Maximum round time",
+        "max-round-time-description": "Time limit for scramble + inspection + solving",
+        "continue": "Continue"
+      },
+      "status": {
+        "solving": "Solving...",
+        "inspecting": "Inspecting",
+        "done": "Done",
+        "idle": "Idle",
+        "ready": "Ready",
+        "holding": "Holding"
+      },
+      "already-submitted": "You have already submitted a solve for this scramble. Wait for the next one!",
+      "confirm-solve": {
+        "title": "Confirm Solve Time ({time})",
+        "description": "How would you like to register this solve?",
+        "dnf": "DNF",
+        "plus2": "+2",
+        "ok": "OK"
+      },
+      "results-tab": {
+        "latest": "Latest",
+        "best": "Best",
+        "worst": "Worst",
+        "average": "Average",
+        "updating-live": "Updating live",
+        "cubers": "Cubers"
+      },
+      "view-profile": "View Profile",
+      "anonymous": "Anonymous",
+      "room-card": {
+        "users-online": "Users online:",
+        "event": "Event:",
+        "max-time-per-round": "Max Time per Round:",
+        "next-round-starts-in": "Next round starts in:"
+      },
+      "invite-link-copied": "Invite link copied",
+      "share-room-text": "Join my cubing room on NexusTimer!",
+      "invite": "Invite",
+      "OpenGraph": {
+        "invited-to-room": "You're invited to a room",
+        "join-now": "Join now!",
+        "room": "Room {roomId}",
+        "description": "Join my room on NexusTimer to compete live! ID: {roomId}"
+      }
     }
-  }
 }
