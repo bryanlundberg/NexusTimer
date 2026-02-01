@@ -93,7 +93,7 @@ export default function SyncBackupProvider({ children }: { children: React.React
           </Card>
         </>
       ),
-      { duration: Infinity, id: SYNC_TOAST_ID }
+      { duration: 8000, id: SYNC_TOAST_ID }
     )
   }, [
     firstLoaded,
