@@ -46,7 +46,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
   const isBestTime = timerStatistics.global.best === lastSolve?.time && !isSolving && settings.sounds.newPersonalBest
 
   useAudioTrigger({
-    audioSrc: './sounds/new-notification.mp3',
+    audioSrc: './sounds/new-record.mp3',
     trigger: isBestTime
   })
 
