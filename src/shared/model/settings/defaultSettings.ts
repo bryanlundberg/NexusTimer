@@ -26,7 +26,8 @@ export const defaultSettings: Settings = {
     colorTheme: 'violet'
   },
   sounds: {
-    newPersonalBest: true
+    newPersonalBest: true,
+    voiceGender: 'male'
   },
   sync: {
     autoSaveEnabled: true,
