@@ -62,6 +62,9 @@ export default function useQuickActions(solve: Solve) {
     await deleteSolve({ cubeId, solveId, solveTab: tab })
     syncUI()
 
+    const audio = new Audio('/sounds/trash-effect.mp3')
+    audio.play()
+
     toast.success(`Solve ${formatTime(solve.time)} deleted`, { duration: 1500 })
   }
 
