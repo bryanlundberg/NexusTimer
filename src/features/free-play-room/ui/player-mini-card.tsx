@@ -16,6 +16,11 @@ export interface PlayerMiniCardProps {
 
 export default function PlayerMiniCard({ name, avatarUrl, status, id }: PlayerMiniCardProps) {
   const t = useTranslations('Multiplayer')
+
+  if (!name || !id || !avatarUrl) {
+    return null
+  }
+
   return (
     <div className={'flex flex-col items-center justify-center bg-card rounded-lg p-4 size-full'}>
       <div className={'relative'}>
