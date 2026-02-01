@@ -18,6 +18,8 @@ export default function useInspection({ setTimerStatus, setSolvingTime, settings
     setTimerStatus(TimerStatus.INSPECTING)
     let reproduced8 = false
     let reproduced12 = false
+    const suffix = settings.sounds?.voiceGender === 'female' ? '_w.mp3' : '_m.mp3'
+
     inspectionId.current = setInterval(() => {
       if (startInspectionTime.current) {
         const now = Date.now()
@@ -29,13 +31,13 @@ export default function useInspection({ setTimerStatus, setSolvingTime, settings
 
         if (timeElapsed >= 8 && !reproduced8) {
           reproduced8 = true
-          const audio8 = new Audio('/sounds/en/8.wav')
+          const audio8 = new Audio(`/sounds/en/8${suffix}`)
           audio8.play()
         }
 
         if (timeElapsed >= 12 && !reproduced12) {
           reproduced12 = true
-          const audio12 = new Audio('/sounds/en/12.wav')
+          const audio12 = new Audio(`/sounds/en/12${suffix}`)
           audio12.play()
         }
 
@@ -44,7 +46,7 @@ export default function useInspection({ setTimerStatus, setSolvingTime, settings
           setTimerStatus(TimerStatus.IDLE)
           setSolvingTime(0)
           removeInspection()
-          const audio = new Audio('/sounds/en/reset.wav')
+          const audio = new Audio(`/sounds/en/reset${suffix}`)
           audio.play()
         }
       }
