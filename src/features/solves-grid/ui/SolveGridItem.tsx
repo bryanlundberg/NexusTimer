@@ -21,7 +21,7 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
       data-testid={`solve-grid-item-${index}`}
       onClick={handleOpenSolveDetails}
       className={
-        'relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 rounded-md cursor-pointer p-3'
+        'relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 rounded-md cursor-pointer p-3 hover:ring-2 hover:ring-primary'
       }
     >
       <div className="absolute top-2 right-2 text-[10px] opacity-60">#{index + 1}</div>
