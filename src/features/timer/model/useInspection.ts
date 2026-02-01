@@ -25,18 +25,18 @@ export default function useInspection({ setTimerStatus, setSolvingTime, settings
 
         const timeRemaining = difference / 1000
 
-        if (settings.timer.startCue) {
-          if (timeRemaining <= 8 && !reproduced8) {
-            reproduced8 = true
-            const audio8 = new Audio('/sounds/en/8.wav')
-            audio8.play()
-          }
+        const timeElapsed = (now - startInspectionTime.current) / 1000
 
-          if (timeRemaining <= 12 && !reproduced12) {
-            reproduced12 = true
-            const audio12 = new Audio('/sounds/en/12.wav')
-            audio12.play()
-          }
+        if (timeElapsed >= 8 && !reproduced8) {
+          reproduced8 = true
+          const audio8 = new Audio('/sounds/en/8.wav')
+          audio8.play()
+        }
+
+        if (timeElapsed >= 12 && !reproduced12) {
+          reproduced12 = true
+          const audio12 = new Audio('/sounds/en/12.wav')
+          audio12.play()
         }
 
         setInspectionTime(timeRemaining)
