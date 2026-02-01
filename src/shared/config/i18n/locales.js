@@ -1,35 +1,3 @@
-export const locales = [
-  'en',
-  'de',
-  'bn',
-  'cs',
-  'es',
-  'et',
-  'fi',
-  'fr',
-  'hi',
-  'hu',
-  'id',
-  'it',
-  'ja',
-  'ko',
-  'mr',
-  'ms',
-  'nl',
-  'no',
-  'pl',
-  'pt',
-  'ro',
-  'ru',
-  'sk',
-  'sv',
-  'tr',
-  'uk',
-  'vi',
-  'zh',
-  'ar',
-  'tl',
-  'da'
-]
+export const locales = ['en', 'de', 'es', 'fr', 'hi', 'ja', 'ko', 'pt', 'ru', 'zh']
 
 export const defaultLocale = 'en'
