@@ -4,9 +4,12 @@ import { ScrambleZone } from './ScrambleZone'
 import { useTranslations } from 'next-intl'
 import { useWindowSize } from 'react-use-size'
 import { cn } from '@/shared/lib/utils'
-import Navigation from '@/features/navigation/ui/navigation'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 import { TimerStatus } from '@/features/timer/model/enums'
+import MainCubeSelector from '@/features/select-cube/ui/MainCubeSelector'
+import * as React from 'react'
+import ButtonNextScramble from '@/features/navigation/ui/button-next-scramble'
+import ButtonSelectMode from '@/features/navigation/ui/button-select-mode'
 
 export default function HeaderTimer() {
   const isSolving = useTimerStore((store) => store.isSolving)
@@ -23,7 +26,12 @@ export default function HeaderTimer() {
     lastSolve != null && !lastSolve.dnf && lastSolve.time <= timerStatistics.global.best && settings.alerts.bestTime
   return (
     <>
-      <Navigation showButtonNextScramble showButtonSelectMode showMainCubeSelector />
+      <div className={'flex justify-center items-center gap-2 mb-2'}>
+        <MainCubeSelector />
+        <ButtonNextScramble />
+        <ButtonSelectMode />
+      </div>
+
       <ScrambleZone />
       {isPersonalBest && (
         <div
