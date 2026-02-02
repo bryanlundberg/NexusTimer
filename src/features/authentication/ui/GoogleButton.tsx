@@ -11,9 +11,13 @@ export default function GoogleButton() {
     <>
       {!session && (
         <>
-          <Button variant={"ghost"} className="flex gap-2 items-center w-full" onClick={() => signIn('google', { redirectTo: '/app' })}>
+          <Button
+            variant={'ghost'}
+            className="flex gap-2 items-center w-full"
+            onClick={() => signIn('google', { redirectTo: '/app' })}
+          >
             <Image src={'/timer-logos/google.svg'} alt="google logo" width={20} height={20} />
-            <p className={'overflow-hidden text-ellipsis'}>{t('Inputs.sign-in-google')}</p>
+            <p className={'overflow-hidden text-ellipsis'}>Google</p>
           </Button>
         </>
       )}
