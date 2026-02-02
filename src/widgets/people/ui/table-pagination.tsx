@@ -8,19 +8,14 @@ import {
 } from '@/components/ui/pagination'
 import { useRouter } from 'next/navigation'
 import * as React from 'react'
+import { useQueryState } from 'nuqs'
 
-export const TablePagination = ({
-  page = 0,
-  pages,
-  searchTerm = '',
-  selectedRegion
-}: {
-  page: number
-  pages: number
-  searchTerm?: string | null | undefined
-  selectedRegion?: string
-}) => {
+export const TablePagination = ({ pages }: { pages: number }) => {
   const router = useRouter()
+  const [searchTerm] = useQueryState('search')
+  const [selectedRegion] = useQueryState('region')
+  const [page] = useQueryState('page', { defaultValue: '0' })
+
   const handlePageChange = (newPage: number) => {
     const newSearchParams = new URLSearchParams()
     if (searchTerm) {
@@ -39,7 +34,7 @@ export const TablePagination = ({
     <Pagination className={'pb-2'}>
       <PaginationContent>
         <PaginationItem>
-          {page > 0 && (
+          {+page > 0 && (
             <PaginationPrevious
               href={'#'}
               onClick={(e) => {
@@ -54,7 +49,7 @@ export const TablePagination = ({
             {Number(page)}
           </PaginationLink>
         </PaginationItem>
-        {pages > 0 && page < pages && (
+        {pages > 0 && +page < pages && (
           <PaginationItem>
             <PaginationNext
               href="#"
