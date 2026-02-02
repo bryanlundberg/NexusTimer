@@ -14,14 +14,14 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem
 } from '@/components/ui/sidebar'
-import { ChevronRightIcon } from '@radix-ui/react-icons'
+import { PlusIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import { useTranslations } from 'next-intl'
 
 export function NavMain({
-  items
+  items,
+  label
 }: {
   items: {
     title: string
@@ -33,10 +33,11 @@ export function NavMain({
       url: string
     }[]
   }[]
+  label?: string
 }) {
   const pathname = usePathname() ?? ''
   const [hash, setHash] = useState<string>('')
-  const t = useTranslations('Index')
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const updateHash = () => setHash(window.location.hash || '')
@@ -57,12 +58,12 @@ export function NavMain({
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>{t('NavMain.platform')}</SidebarGroupLabel>
+      {label && <SidebarGroupLabel>{label}</SidebarGroupLabel>}
       <SidebarMenu>
         {items.map((item) => {
           const subActive = item.items?.some((s) => isPathActive(s.url)) ?? false
           const itemActive = isPathActive(item.url) || subActive
-          const isOpen = item.isActive || itemActive
+          const isOpen = item.isActive
 
           return (
             <Collapsible key={item.title} asChild defaultOpen={isOpen}>
@@ -77,7 +78,7 @@ export function NavMain({
                   <>
                     <CollapsibleTrigger asChild>
                       <SidebarMenuAction className="data-[state=open]:rotate-90">
-                        <ChevronRightIcon />
+                        <PlusIcon />
                         <span className="sr-only">Toggle</span>
                       </SidebarMenuAction>
                     </CollapsibleTrigger>
