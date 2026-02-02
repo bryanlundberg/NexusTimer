@@ -3,12 +3,12 @@ import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { notFound } from 'next/navigation'
 import { TwistyPlayer } from 'cubing/twisty'
 import { AlgorithmsList } from '@/features/algorithms-list/ui/AlgorithmsList'
-import AlgorithmsBreadcrumb from '@/widgets/algorithms-breadcrumb/ui/AlgorithmsBreadcrumb'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Information from '@/features/algorithms-list/ui/information'
 import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
 import { getLocale, getTranslations } from 'next-intl/server'
+import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -80,18 +80,26 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
   }
 
   return (
-    <ScrollArea className="max-h-dvh overflow-auto p-4">
-      <AlgorithmsBreadcrumb />
-      <Information title={`${collection.title} - ${t('title')}`} description={t(`descriptions.${collection.slug}`)} />
-      <AlgorithmsList
-        algorithms={collection.algorithms}
-        virtualization={collection.virtualization as unknown as TwistyPlayer}
-        puzzle={collection.puzzle}
+    <ScrollArea className="max-h-dvh overflow-auto">
+      <CoreHeader
+        breadcrumbPath={'/algorithms'}
+        breadcrumb={t('title')}
+        secondaryBreadcrumbPath={`/algorithms/${slug}`}
+        secondaryBreadcrumb={slug.toUpperCase()}
       />
 
-      {collection.file && (
-        <Suggestions link={ALGORITHMS_GITHUB_URL + `/${collection.file.toLowerCase()}`} message={t('edit-github')} />
-      )}
+      <div className={'p-2'}>
+        <Information title={`${collection.title} - ${t('title')}`} description={t(`descriptions.${collection.slug}`)} />
+        <AlgorithmsList
+          algorithms={collection.algorithms}
+          virtualization={collection.virtualization as unknown as TwistyPlayer}
+          puzzle={collection.puzzle}
+        />
+
+        {collection.file && (
+          <Suggestions link={ALGORITHMS_GITHUB_URL + `/${collection.file.toLowerCase()}`} message={t('edit-github')} />
+        )}
+      </div>
     </ScrollArea>
   )
 }

@@ -24,8 +24,8 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
   const { openModal } = useLeaderboardRow(solve)
 
   return (
-    <TableRow key={solve._id} onClick={openModal}>
-      <TableCell className="font-medium">{index + 1}</TableCell>
+    <TableRow key={solve._id} onClick={openModal} className={'hover:cursor-pointer'}>
+      <TableCell className="font-medium text-center">{index + 1}</TableCell>
       <TableCell className="font-medium overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
         <Tooltip>
           <TooltipTrigger asChild>

@@ -8,9 +8,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
-      <div className="max-w-lg mx-auto bg-background/90 backdrop-blur-lg pt-2">
-        <div className="p-2">{children}</div>
-      </div>
+      <div className="mx-auto bg-background/90 backdrop-blur-lg pb-5">{children}</div>
     </ScrollArea>
   )
 }

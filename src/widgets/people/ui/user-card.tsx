@@ -2,7 +2,6 @@ import { UserDocument } from '@/entities/user/model/user'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Calendar, ExternalLink, GitCompareIcon } from 'lucide-react'
-import moment from 'moment/moment'
 import { Button } from '@/components/ui/button'
 import * as React from 'react'
 import { useRouter } from 'next/navigation'
@@ -18,7 +17,7 @@ export default function UserCard({ user }: { user: UserDocument }) {
   const isAdded = users.find((u) => u._id === user._id)
   const locale = useLocale()
   return (
-    <Card className="transition-all duration-200 animate-fadeIn h-auto">
+    <Card className="transition-all duration-200 animate-fadeIn h-auto bg-card/20">
       <CardHeader className="pb-2 flex flex-col items-center">
         <Avatar className="size-24 mb-2 ring-2 ring-primary/30">
           <AvatarImage className={'object-cover'} src={user.image} alt={user.name} />

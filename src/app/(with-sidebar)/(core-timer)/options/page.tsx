@@ -19,7 +19,6 @@ import { Button } from '@/components/ui/button'
 import { defaultSettings } from '@/shared/model/settings/defaultSettings'
 import { toast } from 'sonner'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import AccountHeader from '@/features/account/ui/account-header'
 import MenuSelectLanguage from '@/features/settings/ui/MenuSelectLanguage'
 import { MenuSection } from '@/features/settings/ui/MenuSection'
 import MenuInputOption from '@/features/settings/ui/MenuInputOption'
@@ -35,6 +34,7 @@ import { Trash } from 'lucide-react'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import useAlert from '@/shared/model/useAlert'
 import { cubesDB } from '@/entities/cube/api/indexdb'
+import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 
 export default function OptionsPage() {
   const { settings, setSettings } = useSettingsStore()
@@ -75,10 +75,9 @@ export default function OptionsPage() {
 
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
+      <CoreHeader breadcrumbPath={'/options'} breadcrumb={t('SettingsPage.options')} />
       <div className="mt-5">
         <div key={formKey} className="max-w-md mx-auto bg-background/90 backdrop-blur-lg">
-          <AccountHeader back="/app" label={t('SettingsPage.options')} />
-
           <MenuSelectLanguage />
 
           <Separator className="my-5" />

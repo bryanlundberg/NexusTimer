@@ -35,7 +35,7 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
   const overlay = useOverlayStore()
 
   useEffect(() => {
-    const backgroundColor = convert(getComputedStyle(document.documentElement).getPropertyValue('--card'), 'rgb')
+    const backgroundColor = convert(getComputedStyle(document.documentElement).getPropertyValue('--background'), 'rgb')
     const gridColor = 'rgba(78,78,78,0.22)'
     const primaryColor = convert(getComputedStyle(document.documentElement).getPropertyValue('--primary'), 'rgb')
 

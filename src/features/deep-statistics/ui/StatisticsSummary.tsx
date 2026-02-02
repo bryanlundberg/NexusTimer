@@ -36,7 +36,7 @@ export default function StatisticsSummary({ statistics }: StatsSummaryProps) {
 
 function StatItem({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <Card className="flex flex-row items-center gap-3 p-3 border rounded-md bg-card backdrop-blur-lg">
+    <Card className="flex flex-row items-center gap-3 p-3 border rounded-md bg-background backdrop-blur-lg">
       <div className="inline-flex items-center justify-center rounded-md bg-primary/10 text-primary p-2">{icon}</div>
       <div className="flex flex-col">
         <span className="text-xs text-muted-foreground">{label}</span>

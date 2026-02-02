@@ -7,8 +7,11 @@ import SolvesPageHeader from '@/widgets/navigation-header/ui/SolvesPageHeader'
 import SolvesGrid from '@/features/solves-grid/ui/SolvesGrid'
 import { STATES } from '@/shared/const/states'
 import { SolveTab } from '@/shared/types/enums'
+import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { useTranslations } from 'next-intl'
 
 export default function SolvesPage() {
+  const t = useTranslations('Index')
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const [tabMode] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, {
     defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE
@@ -26,6 +29,7 @@ export default function SolvesPage() {
 
   return (
     <div className={'h-dvh flex flex-col'}>
+      <CoreHeader breadcrumbPath={'/solves'} breadcrumb={t('SolvesPage.title')} />
       <SolvesPageHeader handleSearch={handleSearch} />
       <SolvesGrid solves={displaySolves} />
     </div>

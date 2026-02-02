@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl'
 
 export default function ResultsTab() {
   const t = useTranslations('Multiplayer.results-tab')
+  const tMultiplayer = useTranslations('Multiplayer')
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: '' }
   const { data: session } = useSession()
   const { useUsersPresence, useRoomSolves } = useFreeMode()
@@ -20,7 +21,7 @@ export default function ResultsTab() {
       userId,
       solves: Object.values(userSolves).sort((a, b) => a.createdAt - b.createdAt),
       userImage: onlineUsers.find((u) => u.id === userId)?.image || null,
-      userName: onlineUsers.find((u) => u.id === userId)?.name || t('anonymous')
+      userName: onlineUsers.find((u) => u.id === userId)?.name || tMultiplayer('anonymous')
     }))
 
   const currentUserSolves = session?.user?.id

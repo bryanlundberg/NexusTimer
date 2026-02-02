@@ -11,7 +11,7 @@ export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
   const { slug, title, subtitle, puzzle, Icon, difficulty } = set
   return (
     <Link href={`/algorithms/${slug}`} className="focus:outline-none focus:ring-2 focus:ring-primary rounded-md">
-      <Card className="h-full transition-all hover:bg-muted/50 hover:shadow-sm">
+      <Card className="h-full transition-all hover:bg-muted/50 hover:shadow-sm bg-card/50">
         <CardHeader className="flex flex-row items-start justify-between space-y-0">
           <div className="flex items-center gap-3">
             <div className="p-2 rounded-md bg-primary/10 text-primary">
