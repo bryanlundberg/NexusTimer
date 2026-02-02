@@ -6,29 +6,11 @@ import {
   PaginationNext,
   PaginationPrevious
 } from '@/components/ui/pagination'
-import { useRouter } from 'next/navigation'
 import * as React from 'react'
 import { useQueryState } from 'nuqs'
 
-export const TablePagination = ({ pages }: { pages: number }) => {
-  const router = useRouter()
-  const [searchTerm] = useQueryState('search')
-  const [selectedRegion] = useQueryState('region')
-  const [page] = useQueryState('page', { defaultValue: '0' })
-
-  const handlePageChange = (newPage: number) => {
-    const newSearchParams = new URLSearchParams()
-    if (searchTerm) {
-      newSearchParams.set('search', searchTerm)
-    }
-    if (selectedRegion && selectedRegion !== 'all') {
-      newSearchParams.set('region', selectedRegion)
-    } else {
-      newSearchParams.delete('region')
-    }
-    newSearchParams.set('page', newPage.toString())
-    router.push(`/people?${newSearchParams.toString()}`)
-  }
+export const TablePagination = ({ totalPages }: { totalPages: number }) => {
+  const [page, setPage] = useQueryState('page', { defaultValue: '0' })
 
   return (
     <Pagination className={'pb-2'}>
@@ -37,9 +19,9 @@ export const TablePagination = ({ pages }: { pages: number }) => {
           {+page > 0 && (
             <PaginationPrevious
               href={'#'}
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.preventDefault()
-                handlePageChange(Number(page) - 1)
+                await setPage((Number(page) - 1).toString())
               }}
             />
           )}
@@ -49,13 +31,13 @@ export const TablePagination = ({ pages }: { pages: number }) => {
             {Number(page)}
           </PaginationLink>
         </PaginationItem>
-        {pages > 0 && +page < pages && (
+        {totalPages > 0 && +page < totalPages && (
           <PaginationItem>
             <PaginationNext
               href="#"
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.preventDefault()
-                handlePageChange(Number(page) + 1)
+                await setPage((Number(page) + 1).toString())
               }}
             />
           </PaginationItem>
