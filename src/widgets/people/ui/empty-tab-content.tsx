@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl'
 export default function EmptyTabContent() {
   const t = useTranslations('Index.PeoplePage')
   return (
-    <div className="relative flex flex-col items-center justify-center h-96 bg-sidebar rounded-lg shadow-md overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center h-96 bg-card/50 rounded-lg shadow-md overflow-hidden">
       <Image
         src="/bg.png"
         alt="Background Image"
