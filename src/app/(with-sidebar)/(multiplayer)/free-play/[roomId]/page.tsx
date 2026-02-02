@@ -127,7 +127,7 @@ export default function FreePlayRoomPage() {
   }
 
   return (
-    <div className="pt-4 px-4 md:pb-4 flex flex-col overflow-hidden h-dvh">
+    <div className="pt-4 px-4 pb-1 flex flex-col overflow-hidden h-dvh">
       <div className={'flex justify-between items-start h-fit'}>
         <div className="flex items-center gap-2 mb-6">
           <SidebarTrigger className="-ml-1" />
