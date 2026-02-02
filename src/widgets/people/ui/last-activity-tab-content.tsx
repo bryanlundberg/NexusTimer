@@ -1,8 +1,5 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { useMemo, useState } from 'react'
 import _ from 'lodash'
-import formatTime from '@/shared/lib/formatTime'
-import { Card } from '@/components/ui/card'
 import {
   Pagination,
   PaginationContent,
@@ -12,18 +9,16 @@ import {
   PaginationNext,
   PaginationPrevious
 } from '@/components/ui/pagination'
-import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import { Cube } from '@/entities/cube/model/types'
-import { useTranslations } from 'next-intl'
+import { LastActivitySolveCard } from '@/widgets/people/ui/last-activity-solve-card'
 
 interface LastActivityTabContentProps {
   cubes: Cube[]
 }
 
 export default function LastActivityTabContent({ cubes }: LastActivityTabContentProps) {
-  const t = useTranslations('Index.LeaderboardsPage.table')
-  const ITEMS_PER_PAGE = 10
+  const ITEMS_PER_PAGE = 12
   const [page, setPage] = useState(1)
   const solves = useMemo(() => {
     return _.orderBy(
@@ -61,151 +56,118 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
   }
 
   return (
-    <Card className="backdrop-blur-lg h-auto py-0">
-      <div className="w-full [&>div]:!overflow-x-visible">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-10">#</TableHead>
-              <TableHead className="w-full md:w-auto">{t('cube-used')}</TableHead>
-              <TableHead className="hidden sm:table-cell">{t('category')}</TableHead>
-              <TableHead className="hidden md:table-cell">{t('scramble')}</TableHead>
-              <TableHead>{t('time')}</TableHead>
-              <TableHead className="hidden sm:table-cell">{t('image')}</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {currentPageItems.map((solve, index) => {
-              const globalIndex = (page - 1) * ITEMS_PER_PAGE + index
-              return (
-                <TableRow key={solve.id}>
-                  <TableCell className="font-medium">{solvesLength - globalIndex}</TableCell>
-                  <TableCell className="font-medium overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
-                    {solve.cubeName}
-                  </TableCell>
-                  <TableCell className="font-medium hidden sm:table-cell">{solve.category}</TableCell>
-                  <TableCell className="font-medium hidden md:table-cell overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
-                    {solve.scramble}
-                  </TableCell>
-                  <TableCell>
-                    {formatTime(solve.time)}
-                    {solve.dnf && <span className="ml-1 text-red-500 font-bold">DNF</span>}
-                    {solve.plus2 && <span className="ml-1 text-yellow-500 font-bold">+2</span>}
-                  </TableCell>
-                  <TableCell className="hidden sm:table-cell text-right">
-                    <ScrambleDisplay className={'size-20'} show scramble={solve.scramble} event={solve.category} />
-                  </TableCell>
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 @xl:grid-cols-2 @4xl:grid-cols-3 gap-4">
+        {currentPageItems.map((solve, index) => {
+          const globalIndex = (page - 1) * ITEMS_PER_PAGE + index
+          return <LastActivitySolveCard key={solve.id} solve={solve as any} index={solvesLength - globalIndex} />
+        })}
+      </div>
 
-        <Pagination>
-          <PaginationContent>
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              href={'#'}
+              onClick={(e) => {
+                e.preventDefault()
+                if (page > 1) handlePaginationChange(page - 1)
+              }}
+            />
+          </PaginationItem>
+
+          {/* First page */}
+          {page > 2 && (
             <PaginationItem>
-              <PaginationPrevious
-                href={'#'}
-                onClick={(e) => {
-                  e.preventDefault()
-                  if (page > 1) handlePaginationChange(page - 1)
-                }}
-              />
-            </PaginationItem>
-
-            {/* First page */}
-            {page > 2 && (
-              <PaginationItem>
-                <PaginationLink
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handlePaginationChange(1)
-                  }}
-                >
-                  1
-                </PaginationLink>
-              </PaginationItem>
-            )}
-
-            {/* Ellipsis if needed */}
-            {page > 3 && (
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-            )}
-
-            {/* Previous page if not on first page */}
-            {page > 1 && (
-              <PaginationItem>
-                <PaginationLink
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handlePaginationChange(page - 1)
-                  }}
-                >
-                  {page - 1}
-                </PaginationLink>
-              </PaginationItem>
-            )}
-
-            {/* Current page */}
-            <PaginationItem>
-              <PaginationLink href="#" isActive={true} onClick={(e) => e.preventDefault()}>
-                {page}
-              </PaginationLink>
-            </PaginationItem>
-
-            {/* Next page if not on last page */}
-            {page < totalPages && (
-              <PaginationItem>
-                <PaginationLink
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handlePaginationChange(page + 1)
-                  }}
-                >
-                  {page + 1}
-                </PaginationLink>
-              </PaginationItem>
-            )}
-
-            {/* Ellipsis if needed */}
-            {page < totalPages - 2 && (
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-            )}
-
-            {/* Last page if not near it */}
-            {page < totalPages - 1 && totalPages > 1 && (
-              <PaginationItem>
-                <PaginationLink
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handlePaginationChange(totalPages)
-                  }}
-                >
-                  {totalPages}
-                </PaginationLink>
-              </PaginationItem>
-            )}
-
-            <PaginationItem>
-              <PaginationNext
+              <PaginationLink
                 href="#"
                 onClick={(e) => {
                   e.preventDefault()
-                  if (page < totalPages) handlePaginationChange(page + 1)
+                  handlePaginationChange(1)
                 }}
-              />
+              >
+                1
+              </PaginationLink>
             </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      </div>
-    </Card>
+          )}
+
+          {/* Ellipsis if needed */}
+          {page > 3 && (
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+          )}
+
+          {/* Previous page if not on first page */}
+          {page > 1 && (
+            <PaginationItem>
+              <PaginationLink
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault()
+                  handlePaginationChange(page - 1)
+                }}
+              >
+                {page - 1}
+              </PaginationLink>
+            </PaginationItem>
+          )}
+
+          {/* Current page */}
+          <PaginationItem>
+            <PaginationLink href="#" isActive={true} onClick={(e) => e.preventDefault()}>
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+
+          {/* Next page if not on last page */}
+          {page < totalPages && (
+            <PaginationItem>
+              <PaginationLink
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault()
+                  handlePaginationChange(page + 1)
+                }}
+              >
+                {page + 1}
+              </PaginationLink>
+            </PaginationItem>
+          )}
+
+          {/* Ellipsis if needed */}
+          {page < totalPages - 2 && (
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+          )}
+
+          {/* Last page if not near it */}
+          {page < totalPages - 1 && totalPages > 1 && (
+            <PaginationItem>
+              <PaginationLink
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault()
+                  handlePaginationChange(totalPages)
+                }}
+              >
+                {totalPages}
+              </PaginationLink>
+            </PaginationItem>
+          )}
+
+          <PaginationItem>
+            <PaginationNext
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                if (page < totalPages) handlePaginationChange(page + 1)
+              }}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </div>
   )
 }
