@@ -29,15 +29,19 @@ export default function CoreHeader({
   const { data: session } = useSession()
 
   return (
-    <div className="w-full border-b p-2 flex justify-between items-center mb-2 backdrop-blur-lg">
-      <div className="flex items-center gap-2 w-fit">
-        <SidebarTrigger className="-ml-1" />
-        <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
+    <div className="w-full border-b p-3 flex justify-between items-center mb-6 bg-background/60 backdrop-blur-md sticky top-0 z-50">
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1 bg-muted/40 p-1 rounded-md">
+          <SidebarTrigger className="h-8 w-8" />
+        </div>
+        <Separator orientation="vertical" className="h-6" />
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link href={breadcrumbPath}>{breadcrumb}</Link>
+                <Link href={breadcrumbPath} className="font-medium hover:text-primary transition-colors">
+                  {breadcrumb}
+                </Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             {secondaryBreadcrumb && secondaryBreadcrumbPath && (
@@ -45,7 +49,9 @@ export default function CoreHeader({
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
                   <BreadcrumbLink asChild>
-                    <Link href={secondaryBreadcrumbPath}>{secondaryBreadcrumb}</Link>
+                    <Link href={secondaryBreadcrumbPath} className="font-medium hover:text-primary transition-colors">
+                      {secondaryBreadcrumb}
+                    </Link>
                   </BreadcrumbLink>
                 </BreadcrumbItem>
               </>
@@ -54,13 +60,22 @@ export default function CoreHeader({
         </Breadcrumb>
       </div>
 
-      <NavUser
-        user={{
-          name: session?.user?.name || 'Guest',
-          email: session?.user?.email || ',',
-          avatar: session?.user?.image || ''
-        }}
-      />
+      <div className="flex items-center gap-4">
+        <div className="hidden md:flex items-center bg-muted/30 border px-3 py-1 rounded-full gap-2 text-xs text-muted-foreground">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          </span>
+          Server: Online
+        </div>
+        <NavUser
+          user={{
+            name: session?.user?.name || 'Guest',
+            email: session?.user?.email || '',
+            avatar: session?.user?.image || ''
+          }}
+        />
+      </div>
     </div>
   )
 }
