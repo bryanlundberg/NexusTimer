@@ -1,3 +1,4 @@
+'use client'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
 import {
@@ -29,7 +30,7 @@ export default function CoreHeader({
   const { data: session } = useSession()
 
   return (
-    <div className="w-full border-b p-3 flex justify-between items-center mb-6 bg-background/60 backdrop-blur-md sticky top-0 z-50">
+    <div className="w-full border-b p-3 flex justify-between items-center mb-2 bg-background/60 backdrop-blur-md sticky top-0 z-50">
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-1 bg-muted/40 p-1 rounded-md">
           <SidebarTrigger className="h-8 w-8" />
