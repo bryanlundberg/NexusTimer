@@ -13,7 +13,7 @@ export default function StatisticsChart({ statistics }: StatisticsChartProps) {
   const t = useTranslations('Index')
 
   return (
-    <Table className="rounded-md backdrop-blur-lg mb-5">
+    <Table className="rounded-md backdrop-blur-lg mb-2">
       <TableHeader>
         <TableRow>
           <TableHead></TableHead>
