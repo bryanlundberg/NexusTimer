@@ -1,7 +1,6 @@
 'use client'
 import _ from 'lodash'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import AlgorithmsBreadcrumb from '@/widgets/algorithms-breadcrumb/ui/AlgorithmsBreadcrumb'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
 import AlgorithmMethod from '@/features/algorithm-method/ui/AlgorithmMethod'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'

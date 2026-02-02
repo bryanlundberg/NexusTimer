@@ -2,10 +2,8 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import { signIn, useSession } from 'next-auth/react'
-import { useTranslations } from 'next-intl'
 
 export default function GoogleButton() {
-  const t = useTranslations('Index')
   const { data: session } = useSession()
   return (
     <>
