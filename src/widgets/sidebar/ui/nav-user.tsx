@@ -1,6 +1,6 @@
 'use client'
 
-import { BadgeCheck, HardDriveDownload, HardDriveUpload, LogOut } from 'lucide-react'
+import { BadgeCheck, HardDriveDownload, HardDriveUpload, LogOut, RssIcon } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -57,6 +57,12 @@ export function NavUser({
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
+          <DropdownMenuItem onClick={() => router.push('/account')}>
+            <RssIcon />
+            Public Profile
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+
           <DropdownMenuItem onClick={() => router.push('/account')}>
             <BadgeCheck />
             {t('NavMain.account')}
