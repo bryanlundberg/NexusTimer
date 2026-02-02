@@ -1,13 +1,6 @@
 'use client'
-import { useRouter, useSearchParams } from 'next/navigation'
 import * as React from 'react'
-import { useMemo, useState } from 'react'
 import FadeIn from '@/shared/ui/fade-in/fade-in'
-import { SidebarTrigger } from '@/components/ui/sidebar'
-import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Button } from '@/components/ui/button'
-import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { UserDocument } from '@/entities/user/model/user'
@@ -15,19 +8,16 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { useUsers } from '@/entities/user/model/useUsers'
 import { TablePagination } from '@/widgets/people/ui/table-pagination'
 import UserCard from '@/widgets/people/ui/user-card'
-import Navigation from '@/features/navigation/ui/navigation'
-import { TimeZones } from '@/shared/types/enums'
 import { useTranslations } from 'next-intl'
+import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import PeoplePageHeader from '@/widgets/navigation-header/ui/PeoplePageHeader'
+import { useQueryState } from 'nuqs'
 
 export default function PeoplePage() {
   const t = useTranslations('Index.PeoplePage')
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const search = searchParams!.get('search')
-  const region = searchParams!.get('region')
-  const page = searchParams!.get('page')
-  const [searchTerm, setSearchTerm] = useState(search)
-  const [selectedRegion, setSelectedRegion] = useState(region || 'all')
+  const [search] = useQueryState('search')
+  const [region] = useQueryState('region')
+  const [page] = useQueryState('page')
 
   const { data, isLoading } = useUsers({
     name: search || undefined,
@@ -35,62 +25,16 @@ export default function PeoplePage() {
     page: Number(page) || 0
   })
 
-  const regionOptions = useMemo(() => Object.values(TimeZones), [])
-
-  const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    const newSearchParams = new URLSearchParams()
-    if (searchTerm) {
-      newSearchParams.set('search', searchTerm)
-    }
-    if (selectedRegion && selectedRegion !== 'all') {
-      newSearchParams.set('region', selectedRegion)
-    } else {
-      newSearchParams.delete('region')
-    }
-    newSearchParams.set('page', '0')
-    router.push(`/people?${newSearchParams.toString()}`)
-  }
-
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <FadeIn>
-        <div className="px-2 pt-2 flex flex-col w-full">
-          <Navigation showMenu={false}>
-            <div className={'flex items-center justify-between gap-2'}>
-              <SidebarTrigger />
-              <div className={'flex sm:flex-row items-center gap-3 w-full justify-end'}>
-                <div className={'flex flex-col sm:flex-row items-center gap-2 grow justify-end'}>
-                  <Input
-                    placeholder={t('search-placeholder')}
-                    value={searchTerm || ''}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full md:max-w-sm"
-                  />
-                  <Select value={selectedRegion} onValueChange={setSelectedRegion}>
-                    <SelectTrigger className="w-full sm:w-48">
-                      <SelectValue placeholder={t('region-placeholder')} />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">{t('region-all')}</SelectItem>
-                      {regionOptions.sort().map((region) => (
-                        <SelectItem key={region} value={region}>
-                          {region}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <Button size={'icon'} onClick={handleSearch}>
-                  <MagnifyingGlassIcon />
-                </Button>
-              </div>
-            </div>
-          </Navigation>
+        <CoreHeader breadcrumbPath={'/people'} breadcrumb={t('title')} />
+        <div className="px-2 flex flex-col w-full">
+          <PeoplePageHeader />
 
           <div
             className={
-              'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 p-2 overflow-auto pb-10'
+              'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 overflow-auto'
             }
           >
             {isLoading &&
@@ -129,14 +73,7 @@ export default function PeoplePage() {
             {t('results')}: {data?.docs || 0}
           </div>
 
-          {!isLoading && (
-            <TablePagination
-              page={data.page}
-              pages={data?.pages}
-              selectedRegion={selectedRegion}
-              searchTerm={searchTerm}
-            />
-          )}
+          {!isLoading && <TablePagination pages={data?.pages} />}
         </div>
       </FadeIn>
     </ScrollArea>
