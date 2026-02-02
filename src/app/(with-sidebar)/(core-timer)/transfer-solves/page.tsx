@@ -4,6 +4,7 @@ import TransferSolvesHeader from '@/widgets/navigation-header/ui/TransferSolvesH
 import SolvesGrid from '@/widgets/transfer-solves/ui/SolvesGrid'
 import useTransferSolves from '@/widgets/transfer-solves/model/useTransferSolves'
 import { Button } from '@/components/ui/button'
+import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 
 export default function TransferSolvesPage() {
   const {
@@ -34,6 +35,8 @@ export default function TransferSolvesPage() {
 
   return (
     <div className={'h-dvh flex flex-col relative'}>
+      <CoreHeader breadcrumbPath={'/transfer-solves'} breadcrumb={t('title')} />
+
       <TransferSolvesHeader
         cubes={cubes || []}
         isTransferring={isTransferring}
@@ -44,7 +47,7 @@ export default function TransferSolvesPage() {
 
       {selectedSolves.length > 0 && (
         <div className={'w-full bg-primary text-primary-foreground px-2 pb-2'}>
-          <div className={'flex justify-between items-center mt-2 mb-4'}>
+          <div className={'flex justify-between items-center mt-2'}>
             <div data-testid="solves-selected-counter">{t('solves-selected', { count: selectedSolves.length })}</div>
             <div className={'flex gap-2'}>
               <Button
