@@ -82,6 +82,7 @@ export default function CoreHeader({
         {session?.user ? (
           <NavUser
             user={{
+              id: session.user.id as string,
               name: session?.user?.name || 'Guest',
               email: session?.user?.email || '',
               avatar: session?.user?.image || ''

@@ -20,6 +20,7 @@ export function NavUser({
   user
 }: {
   user: {
+    id: string
     name: string
     email: string
     avatar: string
@@ -57,7 +58,7 @@ export function NavUser({
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem onClick={() => router.push('/account')}>
+          <DropdownMenuItem onClick={() => router.push('/people/' + user.id)}>
             <RssIcon />
             Public Profile
           </DropdownMenuItem>
