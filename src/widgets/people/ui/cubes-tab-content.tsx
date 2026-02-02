@@ -18,7 +18,7 @@ export default function CubesTabContent({ cubes }: CubesTabContentProps) {
   const sortedCubes = _.orderBy(cubes, (cube) => cube.solves.session.length + cube.solves.all.length, 'desc')
 
   return (
-    <div className={'grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4'}>
+    <div className={'grid grid-cols-1 @xl:grid-cols-2 @4xl:grid-cols-3 gap-4'}>
       {sortedCubes?.length ? (
         sortedCubes.map((cube) => {
           return <PeopleCubeCard key={cube.id} cube={cube} />
