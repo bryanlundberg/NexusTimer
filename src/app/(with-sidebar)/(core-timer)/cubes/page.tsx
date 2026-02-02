@@ -8,7 +8,7 @@ import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { useTranslations } from 'next-intl'
 
 export default function CubesPage() {
-  const t = useTranslations('CubesPage')
+  const t = useTranslations('Index.CubesPage')
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <FadeIn>
