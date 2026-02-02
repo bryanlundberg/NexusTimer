@@ -12,6 +12,16 @@ import Link from 'next/link'
 import { NavUser } from '@/widgets/sidebar/ui/nav-user'
 import * as React from 'react'
 import { useSession } from 'next-auth/react'
+import { Button } from '@/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
+import DiscordButton from '@/features/authentication/ui/DiscordButton'
+import GoogleButton from '@/features/authentication/ui/GoogleButton'
+import { LogInIcon } from 'lucide-react'
 
 interface CoreHeaderProps {
   breadcrumbPath: string
@@ -69,13 +79,30 @@ export default function CoreHeader({
           </span>
           Server: Online
         </div>
-        <NavUser
-          user={{
-            name: session?.user?.name || 'Guest',
-            email: session?.user?.email || '',
-            avatar: session?.user?.image || ''
-          }}
-        />
+        {session?.user ? (
+          <NavUser
+            user={{
+              name: session?.user?.name || 'Guest',
+              email: session?.user?.email || '',
+              avatar: session?.user?.image || ''
+            }}
+          />
+        ) : (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button>
+                <LogInIcon />
+                Sign In
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuGroup>
+                <DiscordButton />
+                <GoogleButton />
+              </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
       </div>
     </div>
   )
