@@ -8,7 +8,7 @@ export default function ButtonCreateCollection() {
   const { handleCreate } = useCubeActions(undefined)
 
   return (
-    <Button className="p-2" data-testid="create-collection-button" onClick={handleCreate}>
+    <Button variant={'secondary'} className="p-2" data-testid="create-collection-button" onClick={handleCreate}>
       <PlusIcon className="size-4" strokeWidth={5} />{' '}
       <span className="hidden sm:inline">{t('CubesPage.new-collection')}</span>
     </Button>
