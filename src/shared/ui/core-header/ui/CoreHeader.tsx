@@ -1,6 +1,12 @@
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator
+} from '@/components/ui/breadcrumb'
 import Link from 'next/link'
 import { NavUser } from '@/widgets/sidebar/ui/nav-user'
 import * as React from 'react'
@@ -9,9 +15,17 @@ import { useSession } from 'next-auth/react'
 interface CoreHeaderProps {
   breadcrumbPath: string
   breadcrumb: string
+
+  secondaryBreadcrumbPath?: string
+  secondaryBreadcrumb?: string
 }
 
-export default function CoreHeader({ breadcrumb, breadcrumbPath }: CoreHeaderProps) {
+export default function CoreHeader({
+  breadcrumb,
+  breadcrumbPath,
+  secondaryBreadcrumbPath,
+  secondaryBreadcrumb
+}: CoreHeaderProps) {
   const { data: session } = useSession()
 
   return (
@@ -26,6 +40,16 @@ export default function CoreHeader({ breadcrumb, breadcrumbPath }: CoreHeaderPro
                 <Link href={breadcrumbPath}>{breadcrumb}</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
+            {secondaryBreadcrumb && secondaryBreadcrumbPath && (
+              <>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link href={secondaryBreadcrumbPath}>{secondaryBreadcrumb}</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+              </>
+            )}
           </BreadcrumbList>
         </Breadcrumb>
       </div>
