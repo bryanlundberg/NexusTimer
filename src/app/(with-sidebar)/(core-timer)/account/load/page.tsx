@@ -3,13 +3,12 @@ import { useTranslations } from 'next-intl'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { Card } from '@/components/ui/card'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import AccountHeader from '@/features/account/ui/account-header'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import { useUser } from '@/entities/user/model/useUser'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
+import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 
 export default function AccountLoadPage() {
   const t = useTranslations('Index')
@@ -27,9 +26,14 @@ export default function AccountLoadPage() {
 
   return (
     <>
-      <AccountHeader back="/app" label={t('SettingsPage.load-data-title')} />
+      <CoreHeader
+        breadcrumbPath={'/account'}
+        breadcrumb={t('SettingsPage.account')}
+        secondaryBreadcrumb={t('SettingsPage.load-data-title')}
+        secondaryBreadcrumbPath={'/account/load'}
+      />
 
-      <Card className="p-3 bg-secondary/10">
+      <div className="p-3 max-w-2xl mx-auto mt-5">
         <p>{t('SettingsPage.load-data-description')}</p>
         <p className="text-yellow-600">{t('SettingsPage.load-data-warning')}</p>
 
@@ -44,7 +48,7 @@ export default function AccountLoadPage() {
             {t('Inputs.continue')}
           </Button>
         </div>
-      </Card>
+      </div>
     </>
   )
 }
