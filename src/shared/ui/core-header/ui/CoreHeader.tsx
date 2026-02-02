@@ -89,7 +89,7 @@ export default function CoreHeader({
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button>
+              <Button size={'sm'}>
                 <LogInIcon />
                 Sign In
               </Button>
