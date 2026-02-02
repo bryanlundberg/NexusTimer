@@ -44,7 +44,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
   }, [solves])
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-800 border border-neutral-200/50 dark:border-neutral-700/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30">
+    <div className="group relative overflow-hidden rounded-2xl bg-card/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30">
       {/* Animated gradient border effect */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -120,10 +120,14 @@ function StatCard({ icon: Icon, label, value, isCount }: StatCardProps) {
   const [main, decimal] = value.includes('.') ? value.split('.') : [value, null]
 
   return (
-    <div className="group/stat relative overflow-hidden rounded-xl bg-neutral-100/50 dark:bg-neutral-800/50 p-3 transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:cursor-default hover:shadow-md">
+    <div className="group/stat relative overflow-hidden rounded-xl p-3 transition-all duration-300 bg-neutral-50 dark:bg-card/60 hover:cursor-default hover:shadow-md">
       <div className="relative z-10">
         <div className="flex items-center gap-1.5 mb-1">
-          <div className={cn('size-5 rounded-md bg-gradient-to-br flex items-center justify-center shrink-0 bg-black')}>
+          <div
+            className={cn(
+              'size-5 rounded-md bg-gradient-to-br flex items-center justify-center shrink-0 bg-neutral-400 dark:bg-neutral-800'
+            )}
+          >
             <Icon className="size-3 text-white" />
           </div>
         </div>
