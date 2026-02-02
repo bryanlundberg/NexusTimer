@@ -89,10 +89,7 @@ export default function CoreHeader({
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button size={'sm'}>
-                <LogInIcon />
-                Sign In
-              </Button>
+              <Button className={'px-2 py-0.5 text-xs h-6 rounded-sm'}>Sign In</Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuGroup>
