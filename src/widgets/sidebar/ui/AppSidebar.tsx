@@ -9,10 +9,9 @@ import {
   GithubIcon,
   HistoryIcon,
   LandPlot,
-  Maximize2,
-  Minimize2,
   ReplaceIcon,
   Settings,
+  TableProperties,
   TimerIcon,
   UsersRound
 } from 'lucide-react'
@@ -20,57 +19,23 @@ import {
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem
+  SidebarMenuItem,
+  useSidebar
 } from '@/components/ui/sidebar'
 import { DiscordLogoIcon } from '@radix-ui/react-icons'
-import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Card, CardDescription, CardFooter as UICardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { usePathname } from 'next/navigation'
-import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl'
-import GoogleButton from '@/features/authentication/ui/GoogleButton'
 import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
-import { GitHubStarsButton } from '@/components/ui/shadcn-io/github-stars-button'
-import { NavUser } from '@/widgets/sidebar/ui/nav-user'
 import { NavMain } from '@/widgets/sidebar/ui/nav-main'
 import { NavSecondary } from '@/widgets/sidebar/ui/nav-secondary'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
-import DiscordButton from '@/features/authentication/ui/DiscordButton'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { data: session } = useSession()
-  const pathname = usePathname() ?? ''
-  const isHomeActive = pathname === '/app' || pathname.startsWith('/app/')
-
+  const { open, openMobile } = useSidebar()
   const t = useTranslations('Index')
-
-  const [isFullscreen, setIsFullscreen] = React.useState(false)
-  React.useEffect(() => {
-    if (typeof document === 'undefined') return
-    const handleChange = () => setIsFullscreen(Boolean(document.fullscreenElement))
-    handleChange()
-    document.addEventListener('fullscreenchange', handleChange)
-    return () => document.removeEventListener('fullscreenchange', handleChange)
-  }, [])
-
-  const toggleFullscreen = async () => {
-    try {
-      if (typeof document === 'undefined') return
-      if (!document.fullscreenElement) {
-        await document.documentElement.requestFullscreen()
-      } else {
-        await document.exitFullscreen()
-      }
-    } catch (e) {
-      console.error('Fullscreen toggle failed:', e)
-    }
-  }
 
   const data = useMemo(
     () => ({
@@ -101,32 +66,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           icon: ReplaceIcon
         },
         {
-          title: t('NavMain.community'),
+          title: t('NavMain.people'),
           url: '/people',
-          icon: UsersRound,
-          isActive: true,
-          items: [
-            {
-              title: t('NavMain.people'),
-              url: '/people'
-            },
-            {
-              title: t('NavMain.leaderboards'),
-              url: '/leaderboards'
-            }
-          ]
+          icon: UsersRound
         },
         {
-          title: t('NavMain.multiplayer'),
+          title: t('NavMain.leaderboards'),
+          url: '/leaderboards',
+          icon: TableProperties
+        },
+        {
+          title: t('NavMain.free-play'),
           url: '/free-play',
-          icon: LandPlot,
-          isActive: true,
-          items: [
-            {
-              title: t('NavMain.free-play'),
-              url: '/free-play'
-            }
-          ]
+          icon: LandPlot
         },
         {
           title: t('AlgorithmsPage.title'),
@@ -162,15 +114,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   )
 
   return (
-    <Sidebar variant="inset" {...props}>
+    <Sidebar collapsible={'icon'} {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild isActive={isHomeActive}>
-              <Link href={'/app'}>
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert`} />
-                </div>
+            <Link href={'/app'} className={`flex items-center gap-2`}>
+              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert size-8`} />
+              </div>
+              {open || openMobile ? (
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">Nexus Timer</span>
                   <RotatingText
@@ -201,56 +153,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     className={'text-xs text-muted-foreground p-0'}
                   />
                 </div>
-              </Link>
-            </SidebarMenuButton>
+              ) : null}
+            </Link>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={data.navMain.slice(0, 5)} label={t('NavMain.platform')} />
+        <NavMain items={data.navMain.slice(5, 8)} label={t('NavMain.community')} />
+        <NavMain items={data.navMain.slice(8)} />
         <NavSecondary items={data.navSecondary as any} className="mt-auto" />
-        <div className="my-2 px-4">
-          <GitHubStarsButton username="bryanlundberg" repo="nexustimer" formatted={true} />
-        </div>
-        <Button
-          variant="ghost"
-          className="w-full justify-start"
-          onClick={toggleFullscreen}
-          title={isFullscreen ? 'Salir de pantalla completa' : 'Ir a pantalla completa'}
-        >
-          {isFullscreen ? <Minimize2 className="mr-2 h-4 w-4" /> : <Maximize2 className="mr-2 h-4 w-4" />}
-          <span>{isFullscreen ? t('Inputs.exit-fullscreen') : t('Inputs.fullscreen')}</span>
-        </Button>
       </SidebarContent>
-
-      {session?.user ? (
-        <SidebarFooter>
-          <NavUser
-            user={{
-              name: session.user.name || 'User',
-              email: session.user.email || '',
-              avatar: session.user.image || ''
-            }}
-          />
-        </SidebarFooter>
-      ) : (
-        <SidebarFooter>
-          <Card className="py-4 bg-background text-background-foreground">
-            <CardHeader className="pb-0">
-              <CardTitle className="text-base">{t('AccessCard.title')}</CardTitle>
-              <CardDescription className={'text-xs text-background-foreground'}>
-                {t('AccessCard.description')}
-              </CardDescription>
-            </CardHeader>
-            <UICardFooter>
-              <div className="w-full">
-                <DiscordButton />
-                <GoogleButton />
-              </div>
-            </UICardFooter>
-          </Card>
-        </SidebarFooter>
-      )}
     </Sidebar>
   )
 }
