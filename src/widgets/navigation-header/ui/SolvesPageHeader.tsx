@@ -1,12 +1,13 @@
 import { Input } from '@/components/ui/input'
 import { useTranslations } from 'next-intl'
 import DateRangeFilter from '@/features/deep-statistics/ui/DateRangeFilter'
-import Navigation from '@/features/navigation/ui/navigation'
 import ButtonMoveSolves from '@/features/navigation/ui/button-move-solves'
 import SolvesTabSwitcher from '@/features/navigation/ui/SolvesTabSwitcher'
 import { useQueryState } from 'nuqs'
 import { STATES } from '@/shared/const/states'
 import { SolveTab } from '@/shared/types/enums'
+import MainCubeSelector from '@/features/select-cube/ui/MainCubeSelector'
+import * as React from 'react'
 
 interface SolvesPageHeaderProps {
   handleSearch: (query: string) => void
@@ -19,8 +20,9 @@ export default function SolvesPageHeader({ handleSearch }: SolvesPageHeaderProps
   })
 
   return (
-    <div className="px-2 pt-2 flex flex-col w-full">
-      <Navigation showMainCubeSelector>
+    <div className="px-2 flex flex-col w-full gap-2">
+      <MainCubeSelector />
+      <div className={'flex justify-center items-center gap-2 mb-2'}>
         <div className="flex flex-col sm:flex-row gap-2 w-full">
           <div className="flex gap-2 items-center flex-1">
             <SolvesTabSwitcher />
@@ -35,7 +37,7 @@ export default function SolvesPageHeader({ handleSearch }: SolvesPageHeaderProps
             <DateRangeFilter />
           </div>
         </div>
-      </Navigation>
+      </div>
     </div>
   )
 }
