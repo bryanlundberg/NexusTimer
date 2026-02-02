@@ -6,14 +6,15 @@ import Suggestions from '@/shared/ui/suggestions/suggestions'
 import AlgorithmMethod from '@/features/algorithm-method/ui/AlgorithmMethod'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { useTranslations } from 'next-intl'
+import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 
 export default function AlgorithmsMethodsPage() {
   const t = useTranslations('Index.AlgorithmsPage')
   const groupedSets = _.groupBy(ALGORITHM_SETS, 'puzzle')
 
   return (
-    <ScrollArea className="p-4 max-h-dvh overflow-auto">
-      <AlgorithmsBreadcrumb hideCollectionsSegment />
+    <ScrollArea className="max-h-dvh overflow-auto">
+      <CoreHeader breadcrumbPath={'/algorithms'} breadcrumb={t('title')} />
 
       <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance">{t('header')}</h1>
 
@@ -21,7 +22,7 @@ export default function AlgorithmsMethodsPage() {
         Object.entries(groupedSets).map(([cube, sets]) => (
           <section key={cube} className="py-8">
             <h2 className="px-2 mb-4 text-xl font-bold tracking-tight">{cube}</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 px-2">
               {sets.map((set) => (
                 <AlgorithmMethod key={set.slug} set={set} />
               ))}
