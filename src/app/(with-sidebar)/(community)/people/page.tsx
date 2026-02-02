@@ -16,7 +16,7 @@ import { useQueryState } from 'nuqs'
 export default function PeoplePage() {
   const t = useTranslations('Index.PeoplePage')
   const [search] = useQueryState('search')
-  const [region] = useQueryState('region')
+  const [region] = useQueryState('region', { defaultValue: 'all' })
   const [page] = useQueryState('page')
 
   const { data, isLoading } = useUsers({
@@ -73,7 +73,7 @@ export default function PeoplePage() {
             {t('results')}: {data?.docs || 0}
           </div>
 
-          {!isLoading && <TablePagination pages={data?.pages} />}
+          {!isLoading && <TablePagination totalPages={data?.pages} />}
         </div>
       </FadeIn>
     </ScrollArea>
