@@ -1,6 +1,6 @@
 ## Overview
 
-<img src="./.github/images/branding.png" width="100%" />
+<img src="./.github/images/branding_v2.webp" width="100%" />
 
 **NexusTimer** is an app designed for tracking your training sessions on the Rubik's Cube. While originally inspired
 by [Twisty Timer](https://github.com/aricneto/TwistyTimer), we have since evolved into our own unique desktop
