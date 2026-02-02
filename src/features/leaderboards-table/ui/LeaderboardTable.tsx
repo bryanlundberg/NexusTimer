@@ -13,8 +13,8 @@ export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
     <Table containerClassName={'overflow-hidden'}>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-10">#</TableHead>
-          <TableHead className="w-full md:w-auto">{t('user')}</TableHead>
+          <TableHead className="w-20 text-center">#</TableHead>
+          <TableHead className="w-full md:w-auto text-center">{t('user')}</TableHead>
           <TableHead className="hidden sm:table-cell">{t('category')}</TableHead>
           <TableHead className="hidden md:table-cell">{t('scramble')}</TableHead>
           <TableHead>{t('time')}</TableHead>
