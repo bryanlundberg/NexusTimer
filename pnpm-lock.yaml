@@ -115,7 +115,7 @@ importers:
         version: 0.180.0
       '@uploadthing/react':
         specifier: ^7.3.3
-        version: 7.3.3(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)(uploadthing@7.7.4(express@5.2.1)(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(tailwindcss@4.1.11))
+        version: 7.3.3(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)(uploadthing@7.7.4(express@5.2.1)(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(tailwindcss@4.1.18))
       babel-plugin-react-compiler:
         specifier: ^1.0.0
         version: 1.0.0
@@ -300,11 +300,11 @@ importers:
         specifier: ^2.6.0
         version: 2.6.0
       tailwindcss:
-        specifier: ^4.1.10
-        version: 4.1.11
+        specifier: ^4.1.18
+        version: 4.1.18
       tailwindcss-animate:
         specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@4.1.11)
+        version: 1.0.7(tailwindcss@4.1.18)
       three:
         specifier: ^0.180.0
         version: 0.180.0
@@ -322,7 +322,7 @@ importers:
         version: 2.0.7
       uploadthing:
         specifier: ^7.7.4
-        version: 7.7.4(express@5.2.1)(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(tailwindcss@4.1.11)
+        version: 7.7.4(express@5.2.1)(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(tailwindcss@4.1.18)
       use-debounce:
         specifier: ^10.0.4
         version: 10.0.5(react@19.2.1)
@@ -5959,6 +5959,9 @@ packages:
   tailwindcss@4.1.11:
     resolution: {integrity: sha512-2E9TBm6MDD/xKYe+dvJZAmg3yxIEDNRc0jwlNyDg/4Fil2QcSLjFKGVff0lAf1jjeaArlG/M75Ey/EYr/OJtBA==}
 
+  tailwindcss@4.1.18:
+    resolution: {integrity: sha512-4+Z+0yiYyEtUVCScyfHCxOYP06L5Ne+JiHhY2IjR2KWMIWhJOYZKLSGZaP5HkZ8+bY0cxfzwDE5uOmzFXyIwxw==}
+
   tapable@2.2.2:
     resolution: {integrity: sha512-Re10+NauLTMCudc7T5WLFLAwDhQ0JWdrMK+9B2M8zR5hRExKmsRDCBA7/aV/pNJFltmBFO5BAMlQFi/vq3nKOg==}
     engines: {node: '>=6'}
@@ -8850,12 +8853,12 @@ snapshots:
 
   '@uploadthing/mime-types@0.3.6': {}
 
-  '@uploadthing/react@7.3.3(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)(uploadthing@7.7.4(express@5.2.1)(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(tailwindcss@4.1.11))':
+  '@uploadthing/react@7.3.3(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react@19.2.1)(uploadthing@7.7.4(express@5.2.1)(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(tailwindcss@4.1.18))':
     dependencies:
       '@uploadthing/shared': 7.1.10
       file-selector: 0.6.0
       react: 19.2.1
-      uploadthing: 7.7.4(express@5.2.1)(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(tailwindcss@4.1.11)
+      uploadthing: 7.7.4(express@5.2.1)(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(tailwindcss@4.1.18)
     optionalDependencies:
       next: 16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
 
@@ -12661,11 +12664,13 @@ snapshots:
 
   tailwind-merge@2.6.0: {}
 
-  tailwindcss-animate@1.0.7(tailwindcss@4.1.11):
+  tailwindcss-animate@1.0.7(tailwindcss@4.1.18):
     dependencies:
-      tailwindcss: 4.1.11
+      tailwindcss: 4.1.18
 
   tailwindcss@4.1.11: {}
+
+  tailwindcss@4.1.18: {}
 
   tapable@2.2.2: {}
 
@@ -12891,7 +12896,7 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  uploadthing@7.7.4(express@5.2.1)(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(tailwindcss@4.1.11):
+  uploadthing@7.7.4(express@5.2.1)(next@16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(tailwindcss@4.1.18):
     dependencies:
       '@effect/platform': 0.90.3(effect@3.17.7)
       '@standard-schema/spec': 1.0.0-beta.4
@@ -12901,7 +12906,7 @@ snapshots:
     optionalDependencies:
       express: 5.2.1
       next: 16.1.5(@babel/core@7.28.0)(@playwright/test@1.54.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
-      tailwindcss: 4.1.11
+      tailwindcss: 4.1.18
 
   uri-js@4.4.1:
     dependencies:

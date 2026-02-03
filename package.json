@@ -114,7 +114,7 @@
     "stackmat-v2": "^1.1.2",
     "swr": "^2.3.4",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss": "^4.1.10",
+    "tailwindcss": "^4.1.18",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.180.0",
     "ts-deepmerge": "^7.0.2",
