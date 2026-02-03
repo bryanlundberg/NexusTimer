@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
       User.find(query)
         .limit(PER_PAGE)
         .skip(page * PER_PAGE)
-        .sort({ createdAt: -1 }),
+        .sort({ 'backup.updatedAt': -1, createdAt: -1 }),
       User.find(query).countDocuments()
     ])
 
