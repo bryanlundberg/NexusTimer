@@ -15,7 +15,7 @@ export default function UserInfo({ user }: { user: UserDocument }) {
   const t = useTranslations('Index.PeoplePage')
 
   return (
-    <div className="flex flex-col gap-2 p-4 md:sticky md:top-4 h-fit w-full max-w-xs">
+    <div className="flex flex-col gap-2 p-4 md:sticky md:top-16 h-fit w-full max-w-xs">
       <div className="relative">
         <Avatar className="size-60 mb-2 shadow-lg mx-auto">
           <AvatarImage className={'object-cover'} src={user.image} alt={user.name} />
