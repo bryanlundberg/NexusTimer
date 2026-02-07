@@ -25,7 +25,7 @@ export default function AccountLoadPage() {
     setIsLoading(true)
     try {
       await handleDownloadData({ user, mode: BackupLoadMode.MERGE })
-      router.push('/account')
+      router.push('/app')
       toast.success('Data loaded successfully')
     } catch (error) {
       setIsLoading(false)
