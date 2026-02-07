@@ -11,10 +11,14 @@ import DisplayTime from '@/features/timer/ui/display-time'
 import ConfirmSolveModal from '@/features/free-play-room/ui/confirm-solve-modal'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
 import useDeviceMatch from '@/shared/model/useDeviceMatch'
-import { TimerStatus } from '@/features/timer/model/enums'
+import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { Cube } from '@/entities/cube/model/types'
 import { useTranslations } from 'next-intl'
+import ManualModeForm from '@/features/timer/ui/ManualModeForm'
+import { Keyboard } from 'lucide-react'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Button } from '@/components/ui/button'
 
 interface TimerTabProps {
   maxRoundTime: number | null
@@ -35,23 +39,21 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
   } = useFreeMode()
   const scramble = useRoomScramble(roomId?.toString() || '')
   const { data: session } = useSession()
-  const settings = useSettingsStore((store) => store.settings)
-  const isSolving = useTimerStore((store) => store.isSolving)
-  const lastSolve = useTimerStore((store) => store.lastSolve)
-  const timerStatus = useTimerStore((store) => store.timerStatus)
-  const solvingTime = useTimerStore((store) => store.solvingTime)
-  const setTimerStatus = useTimerStore((store) => store.setTimerStatus)
-  const setIsSolving = useTimerStore((store) => store.setIsSolving)
-  const setSolvingTime = useTimerStore((store) => store.setSolvingTime)
-  const timerMode = useTimerStore((store) => store.timerMode)
-  const reset = useTimerStore((store) => store.reset)
-  const solves = useRoomSolves(roomId?.toString() || '')
 
-  const currentUserSolves = session?.user?.id
-    ? solves[session.user.id]
-      ? Object.values(solves[session.user.id]).sort((a, b) => a.createdAt - b.createdAt)
-      : []
-    : []
+  const { settings } = useSettingsStore()
+  const {
+    isSolving,
+    lastSolve,
+    timerStatus,
+    solvingTime,
+    timerMode,
+    setTimerStatus,
+    setIsSolving,
+    setSolvingTime,
+    setTimerMode,
+    reset
+  } = useTimerStore()
+  const solves = useRoomSolves(roomId?.toString() || '')
 
   const [modalOpen, setModalOpen] = useState(false)
   const [hasSolvedCurrentScramble, setHasSolvedCurrentScramble] = useState(false)
@@ -65,9 +67,11 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
   })
 
   const disableTimer = useMemo(() => {
-    const alreadySolved = currentUserSolves.some((solve) => solve.scramble === scramble)
+    if (!session?.user?.id || !solves[session.user.id]) return hasSolvedCurrentScramble
+    const currentUserSolves = Object.values(solves[session.user.id])
+    const alreadySolved = currentUserSolves.some((solve: any) => solve.scramble === scramble)
     return alreadySolved || hasSolvedCurrentScramble
-  }, [currentUserSolves, scramble, hasSolvedCurrentScramble])
+  }, [solves, session?.user?.id, scramble, hasSolvedCurrentScramble])
 
   const { device } = useDeviceMatch()
 
@@ -88,8 +92,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
 
   /* Handle automatic scramble and round time update when all users have solved the current scramble */
   useEffect(() => {
-    if (!session?.user?.id || !roomId || !event || !maxRoundTime) return
-    if (!scramble) return
+    if (!session?.user?.id || !roomId || !event || !maxRoundTime || !scramble) return
 
     const onlineUserIds = Array.isArray(onlineUsers)
       ? onlineUsers.map((user) => user.id)
@@ -99,21 +102,18 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
 
     const usersThatSolved = onlineUserIds.filter((userId) => {
       const userSolves = solves[userId]
-      if (!userSolves) return false
-
-      return Object.values(userSolves).some((solve: any) => solve.scramble === scramble)
+      return userSolves && Object.values(userSolves).some((solve: any) => solve.scramble === scramble)
     })
 
-    if (usersThatSolved.length === onlineUserIds.length && onlineUserIds.length > 0) {
-      const currentUserSolved = usersThatSolved.includes(session.user.id)
-      const isLastToSolve = currentUserSolved && hasSolvedCurrentScramble
-
-      if (isLastToSolve) {
-        const durationMs = maxRoundTime * 1000
-        const newScramble = genScramble(event as CubeCategory)
-        updateRoomScramble(roomId.toString(), newScramble)
-        updateRoomRoundLimit(roomId.toString(), durationMs)
-      }
+    if (
+      usersThatSolved.length === onlineUserIds.length &&
+      usersThatSolved.includes(session.user.id) &&
+      hasSolvedCurrentScramble
+    ) {
+      const durationMs = maxRoundTime * 1000
+      const newScramble = genScramble(event as CubeCategory)
+      updateRoomScramble(roomId.toString(), newScramble)
+      updateRoomRoundLimit(roomId.toString(), durationMs)
     }
   }, [
     solves,
@@ -132,7 +132,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     onFinishSolve: async () => setModalOpen(true),
     isSolving,
     setTimerStatus,
-    selectedCube: disableTimer ? null : ({} as Cube),
+    selectedCube: disableTimer || modalOpen ? null : ({} as Cube),
     inspectionRequired: true,
     setIsSolving,
     setSolvingTime,
@@ -175,21 +175,47 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     })
   }, [timerStatus, disableTimer, isSolving, session?.user?.id, roomId])
 
+  const handleManualSubmit = (msTime: number) => {
+    setSolvingTime(msTime)
+    setModalOpen(true)
+  }
+
   return (
-    <div className={'flex flex-col justify-center w-full items-center h-full p-4'} id={'touch'}>
+    <div className={'flex flex-col justify-center w-full items-center h-full p-4 relative'} id={'touch'}>
+      <div className="absolute top-4 right-4">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant={timerMode === TimerMode.MANUAL ? 'default' : 'outline'}
+              size="icon"
+              onClick={() => setTimerMode(timerMode === TimerMode.MANUAL ? TimerMode.NORMAL : TimerMode.MANUAL)}
+            >
+              <Keyboard className="size-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent side="left">
+            <p>{timerMode === TimerMode.MANUAL ? 'Modo Normal' : 'Modo Manual'}</p>
+          </TooltipContent>
+        </Tooltip>
+      </div>
+
       {!isSolving && !disableTimer && <div className={'text-center text-2xl mb-20'}>{scramble}</div>}
 
-      <DisplayTime
-        isSolving={isSolving}
-        timerStatus={timerStatus}
-        lastSolve={lastSolve}
-        solvingTime={solvingTime}
-        device={device}
-        inspectionTime={inspectionTime}
-        hideWhileSolving={settings.features.hideWhileSolving}
-        className={'text-center'}
-        inspectionRequired={true}
-      />
+      {timerMode === TimerMode.MANUAL && !disableTimer ? (
+        <ManualModeForm onSubmit={handleManualSubmit} />
+      ) : (
+        <DisplayTime
+          isSolving={isSolving}
+          timerStatus={timerStatus}
+          lastSolve={lastSolve}
+          solvingTime={solvingTime}
+          device={device}
+          inspectionTime={inspectionTime}
+          hideWhileSolving={settings.features.hideWhileSolving}
+          className={'text-center'}
+          inspectionRequired={true}
+        />
+      )}
 
       {disableTimer && <div className="text-red-500 text-center mt-4 w-3/4">{t('already-submitted')}</div>}
 
