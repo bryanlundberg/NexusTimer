@@ -37,7 +37,7 @@ export default function ResultsTab() {
     if (!currentUserSolves.length) return '-'
     const last = currentUserSolves[currentUserSolves.length - 1]
     const t = toEffectiveTime(last)
-    return t === null ? 'DNF' : formatTime(t)
+    return t === null ? 'DNF' : `${formatTime(t)}${last.plus2 ? '+' : ''}`
   }
 
   const getBest = () => {
@@ -102,7 +102,9 @@ export default function ResultsTab() {
                     {p.solves.slice(-5).map((solve, index) => {
                       return (
                         <div key={index} className={solve.dnf ? 'text-red-500' : ''}>
-                          {solve.dnf ? 'DNF' : formatTime(solve.time + (solve.plus2 ? 2000 : 0))}
+                          {solve.dnf
+                            ? 'DNF'
+                            : `${formatTime(solve.time + (solve.plus2 ? 2000 : 0))}${solve.plus2 ? '+' : ''}`}
                         </div>
                       )
                     })}
