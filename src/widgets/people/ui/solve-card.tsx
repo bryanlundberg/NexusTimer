@@ -44,7 +44,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
   }, [solves])
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-card/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30">
+    <div className="group relative overflow-hidden rounded-2xl bg-card/50 transition-all duration-500 hover:shadow-2xl hover:border-primary/30">
       {/* Animated gradient border effect */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -88,18 +88,6 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
           <StatCard icon={Timer} label={t('time-spent')} value={spentStr} />
           <StatCard icon={RotateCcw} label={t('solves')} value={solvesCount.toString()} isCount />
         </div>
-      </div>
-
-      {/* Background image */}
-      <div className="pointer-events-none select-none absolute -bottom-8 -right-8 opacity-[0.04] dark:opacity-[0.03] rotate-12 group-hover:rotate-6 group-hover:scale-110 transition-all duration-700">
-        <Image
-          src={bgImage}
-          alt="icon"
-          width={180}
-          height={180}
-          className={resolvedTheme === 'light' ? 'invert-100' : ''}
-          unoptimized
-        />
       </div>
 
       {/* Decorative elements */}
