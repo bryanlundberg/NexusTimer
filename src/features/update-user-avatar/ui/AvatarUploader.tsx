@@ -16,13 +16,15 @@ export function AvatarUploader() {
   const handleClick = () => fileInputRef.current?.click()
 
   return (
-    <div className="flex items-center gap-3">
-      <Avatar className="size-32 group/item">
+    <div className="flex flex-col items-center gap-4">
+      <Avatar className="size-32 group/item ring-2 ring-primary/10 ring-offset-2 ring-offset-background">
         <AvatarImage className="object-cover size-32" src={session?.user?.image as string} />
-        <AvatarFallback>{session?.user?.name?.slice(0, 2).toUpperCase()}</AvatarFallback>
+        <AvatarFallback className="text-2xl font-bold bg-primary/5">
+          {session?.user?.name?.slice(0, 2).toUpperCase()}
+        </AvatarFallback>
       </Avatar>
 
-      <div className={'flex flex-col gap-1 text-sm text-muted-foreground'}>
+      <div className={'flex flex-col items-center gap-2 text-xs text-muted-foreground'}>
         <Input
           ref={fileInputRef}
           className="hidden"
@@ -30,10 +32,10 @@ export function AvatarUploader() {
           accept="image/*"
           onChange={(e) => updateAvatar(e.target.files?.[0])}
         />
-        <Button type="button" variant="secondary" onClick={handleClick} className={'w-fit'}>
-          <Image /> {t('change-picture')}
+        <Button type="button" variant="secondary" size="sm" onClick={handleClick} className={'w-fit gap-2'}>
+          <Image className="size-3.5" /> {t('change-picture')}
         </Button>
-        {t('avatar-requirements')}
+        <p className="text-center">{t('avatar-requirements')}</p>
       </div>
     </div>
   )
