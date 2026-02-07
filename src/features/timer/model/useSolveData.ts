@@ -1,7 +1,6 @@
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import genId from '@/shared/lib/genId'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import convertToMs from '@/shared/lib/convertToMs'
 import { useState } from 'react'
 import { Solve } from '@/entities/solve/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'

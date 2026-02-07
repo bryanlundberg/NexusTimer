@@ -1,7 +1,6 @@
 'use client'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { useTranslations } from 'next-intl'
 import useSolveData from '@/features/timer/model/useSolveData'
 import QuickActions from '@/features/manage-solves/ui/QuickActions'
 import formatTime from '@/shared/lib/formatTime'
@@ -13,7 +12,6 @@ export default function ManualMode() {
   const lastSolve = useTimerStore((store) => store.lastSolve)
   const setLastSolve = useTimerStore((store) => store.setLastSolve)
   const settings = useSettingsStore((store) => store.settings)
-  const t = useTranslations('Index.HomePage')
 
   if (!selectedCube) return null
 
