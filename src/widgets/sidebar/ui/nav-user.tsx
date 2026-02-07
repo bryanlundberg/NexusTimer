@@ -8,7 +8,6 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
@@ -44,7 +43,7 @@ export function NavUser({
         align="end"
         sideOffset={4}
       >
-        <DropdownMenuLabel className="p-0 font-normal">
+        <DropdownMenuItem className="p-0 font-normal" onClick={() => router.push('/account')}>
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <Avatar className="h-8 w-8 rounded-lg">
               <AvatarImage className={'object-cover'} src={user.avatar} alt={user.name} />
@@ -55,7 +54,7 @@ export function NavUser({
               <span className="truncate text-xs">{user.email}</span>
             </div>
           </div>
-        </DropdownMenuLabel>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={() => router.push('/people/' + user.id)}>
