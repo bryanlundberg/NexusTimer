@@ -4,7 +4,9 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import Link from 'next/link'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { Loader2 } from 'lucide-react'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import { useUser } from '@/entities/user/model/useUser'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
@@ -15,13 +17,19 @@ export default function AccountLoadPage() {
   const { handleDownloadData } = useSyncBackup()
   const { data: session } = useSession()
   const { data: user } = useUser(session?.user?.id!)
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
   const handleDownloadDataWrapper = async () => {
-    if (!user) return
-    await handleDownloadData({ user, mode: BackupLoadMode.MERGE })
-    router.push('/account')
-    toast.success('Data loaded successfully')
+    if (!user || isLoading) return
+    setIsLoading(true)
+    try {
+      await handleDownloadData({ user, mode: BackupLoadMode.MERGE })
+      router.push('/account')
+      toast.success('Data loaded successfully')
+    } catch (error) {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -44,8 +52,15 @@ export default function AccountLoadPage() {
             </Button>
           </Link>
 
-          <Button className="flex-1" onClick={handleDownloadDataWrapper} disabled={!user}>
-            {t('Inputs.continue')}
+          <Button className="flex-1" onClick={handleDownloadDataWrapper} disabled={!user || isLoading}>
+            {isLoading ? (
+              <span className="inline-flex items-center gap-2">
+                <Loader2 className="h-4 w-4 animate-spin" />
+                <span>{t('Inputs.continue')}</span>
+              </span>
+            ) : (
+              t('Inputs.continue')
+            )}
           </Button>
         </div>
       </div>
