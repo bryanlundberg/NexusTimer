@@ -44,7 +44,7 @@ export default function EmptyCubes({
   }
 
   const handleClickOnRestoreAccountData = () => {
-    router.push('/account')
+    router.push('/account/load')
     close()
   }
 
