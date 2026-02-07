@@ -1,7 +1,6 @@
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import genId from '@/shared/lib/genId'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import convertToMs from '@/shared/lib/convertToMs'
 import { useState } from 'react'
 import { Solve } from '@/entities/solve/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
@@ -53,13 +52,11 @@ export default function useSolveData() {
     setNewScramble(selectedCube)
   }
 
-  const saveSolveManualMode = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const saveSolveManualMode = async (msTime: number) => {
     if (!selectedCube) return
     if (!scramble) return
-    if (parseInt(value) === 0 || value === '') return
+    if (msTime === 0) return
 
-    const msTime = convertToMs(value)
     const now = Date.now()
 
     const newSolve: Solve = {
