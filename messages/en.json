@@ -462,6 +462,10 @@
       "cubes-unavailable": "Cubes data is not available"
     },
     "AccountPage": {
+      "profile": "Profile",
+      "personal-info": "Personal Info",
+      "personal-info-description": "Update your public information and how other users see you.",
+      "backup-status": "Backup Status",
       "go-to-profile": "Go to Profile",
       "name": "Name",
       "name-required": "Name is required",

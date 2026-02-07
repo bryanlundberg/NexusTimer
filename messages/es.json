@@ -440,6 +440,10 @@
       "transferring": "Transfiriendo..."
     },
     "AccountPage": {
+      "profile": "Perfil",
+      "personal-info": "Información Personal",
+      "personal-info-description": "Actualiza tu información pública y cómo te ven otros usuarios.",
+      "backup-status": "Estado de la copia de seguridad",
       "go-to-profile": "Ir al perfil",
       "name": "Nombre",
       "name-required": "El nombre es obligatorio",
