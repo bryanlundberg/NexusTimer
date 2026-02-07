@@ -67,9 +67,11 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
   const nameErrorMessage = errors.name?.message as React.ReactNode | undefined
 
   return (
-    <>
-      <div className="w-full mt-2">
-        <label className="text-sm text-muted-foreground">{t('name')}</label>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-2">
+        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          {t('name')}
+        </label>
         <Input
           {...register('name', {
             required: t('name-required'),
@@ -79,11 +81,13 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
             }
           })}
         />
-        {nameErrorMessage && <p className="text-red-500 text-sm mt-1">{nameErrorMessage}</p>}
+        {nameErrorMessage && <p className="text-destructive text-sm font-medium">{nameErrorMessage}</p>}
       </div>
 
-      <div className="w-full mt-2">
-        <label className="text-sm text-muted-foreground">{t('timezone')}</label>
+      <div className="space-y-2">
+        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          {t('timezone')}
+        </label>
         <Controller
           control={control}
           render={({ field }) => (
@@ -105,8 +109,10 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
         {user?.timezone && <TimeZone timeZone={user.timezone} />}
       </div>
 
-      <div className="w-full mt-2">
-        <label className="text-sm text-muted-foreground">{t('pronoun')}</label>
+      <div className="space-y-2">
+        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          {t('pronoun')}
+        </label>
         <Controller
           control={control}
           render={({ field }) => (
@@ -125,26 +131,29 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
         />
       </div>
 
-      <div className="w-full mt-2">
-        <label className="text-sm text-muted-foreground">{t('goal')}</label>
+      <div className="space-y-2">
+        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          {t('goal')}
+        </label>
         <Input {...register('goal')} />
       </div>
 
-      <div className="w-full mt-2">
-        <label className="text-sm text-muted-foreground">{t('bio')}</label>
-        <Textarea placeholder={t('bio-placeholder')} {...register('bio')} className="w-full" rows={3} />
+      <div className="md:col-span-2 space-y-2">
+        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+          {t('bio')}
+        </label>
+        <Textarea placeholder={t('bio-placeholder')} {...register('bio')} className="w-full resize-none" rows={4} />
       </div>
 
-      <div className="flex gap-2 mt-4 w-full">
+      <div className="md:col-span-2 flex justify-end pt-4">
         <Button
-          className="flex-1"
-          variant={'secondary'}
+          className="w-full md:w-auto min-w-[200px]"
           disabled={isSubmitting}
           onClick={handleSubmit(handleSaveChanges)}
         >
           {t('update-info')}
         </Button>
       </div>
-    </>
+    </div>
   )
 }
