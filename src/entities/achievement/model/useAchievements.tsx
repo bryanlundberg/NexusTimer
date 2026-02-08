@@ -8,7 +8,7 @@ export default function useAchievements() {
     {
       id: 'public-sponsor',
       title: 'Project Patron',
-      description: 'A sponsor helping keep the engine running.',
+      description: 'Sponsored the project to help keep the engine running.',
       icon: 'icons8-favorite-50.png',
       color: 'rgba(255,105,180,0.8)',
       condition: (data) => false
@@ -16,7 +16,7 @@ export default function useAchievements() {
     {
       id: 'first-year',
       title: 'Beta Tester',
-      description: 'Became a user during the first year after launch.',
+      description: 'Joined during the first year after launch.',
       icon: 'icons8-metal-music-50.png',
       color: 'rgba(0,191,255,0.8)',
       condition: (data) => {
@@ -28,7 +28,7 @@ export default function useAchievements() {
     {
       id: 'speed-demon',
       title: 'Speed Demon',
-      description: 'Fast as lightning! You registered your first sub-10 solve.',
+      description: 'Registered a sub-10 second solve.',
       icon: 'icons8-lightning-48.png',
       condition: (data) => {
         return data.cubes.some(
@@ -42,7 +42,7 @@ export default function useAchievements() {
     {
       id: 'over-9999-3x3',
       title: "It's over 9000!",
-      description: 'You have completed over 9,999 solves on 3x3 cubes.',
+      description: 'Completed over 9,999 solves on 3x3 cubes.',
       icon: 'icons8-mana-50.png',
       condition: (data) => {
         const threeByThreeCubes = data.cubes.filter((cube) => cube.category === '3x3')
@@ -60,7 +60,7 @@ export default function useAchievements() {
     {
       id: 'career-100k',
       title: 'Cube Legend',
-      description: 'A journey of a thousand miles begins with a single solve... you already have 100,000.',
+      description: 'Reached 100,000 career solves.',
       icon: 'icons8-trophy-50.png',
       condition: (data) => {
         const totalSolves = data.cubes.reduce((sum, cube) => {
@@ -74,7 +74,7 @@ export default function useAchievements() {
     {
       id: 'collector',
       title: 'Puzzle Collector',
-      description: 'Own at least 25 cubes.',
+      description: 'Own at least 25 different cubes.',
       icon: 'icons8-money-box-50.png',
       condition: (data) => {
         return data.cubes.length >= 25
@@ -83,7 +83,7 @@ export default function useAchievements() {
     {
       id: 'eventglot',
       title: 'Eventglot',
-      description: 'You own and have solved all available categories.',
+      description: 'Solved at least one cube in every available category.',
       icon: 'icons8-diversity-50.png',
       condition: (data) => {
         const categories = new Set(data.cubes.map((cube) => cube.category))
@@ -103,14 +103,14 @@ export default function useAchievements() {
     {
       id: 'bug-hunter',
       title: 'Bug Hunter',
-      description: 'You found a glitch in the Matrix.',
+      description: 'Found and reported a glitch in the Matrix.',
       icon: 'icons8-bug-50.png',
       condition: (data) => false
     },
     {
       id: 'marathonist',
       title: 'Marathonist',
-      description: 'Performed more than 500 solves in a single day.',
+      description: 'Completed more than 500 solves in a single day.',
       icon: 'icons8-finish-flag-50.png',
       condition: (data) => {
         const solvesByDate: { [date: string]: number } = {}
@@ -136,7 +136,7 @@ export default function useAchievements() {
     {
       id: 'consistency-is-key',
       title: 'Consistency is Key',
-      description: 'You have maintained a solve streak for 365 consecutive days.',
+      description: 'Maintained a solve streak for 365 consecutive days.',
       icon: 'icons8-workflow-50.png',
       condition: (data) => {
         const solveDates = new Set<string>()
@@ -178,7 +178,7 @@ export default function useAchievements() {
     {
       id: 'zen-master',
       title: 'Zen Master',
-      description: 'You performed 1,000 solves without a single penalty (+2/DNF).',
+      description: 'Performed 1,000 consecutive solves without any penalties (+2/DNF).',
       icon: 'icons8-wizard-50.png',
       condition: (data) => {
         let consecutiveCleanSolves = 0
