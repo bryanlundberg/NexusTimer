@@ -13,7 +13,7 @@ export default function Badges({ cubes, user }: BadgesProps) {
   const { ACHIEVEMENTS_CONFIG } = useAchievements()
 
   return (
-    <div className="space-y-4 mt-4">
+    <div className="space-y-4 my-4">
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
           Achievements
