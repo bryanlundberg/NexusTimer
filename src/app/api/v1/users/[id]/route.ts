@@ -45,7 +45,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
 
-    const { email, createdAt, updatedAt, __v, ...rest } = user.toObject()
+    const { email, __v, ...rest } = user.toObject()
 
     return NextResponse.json(rest)
   } catch (error) {
