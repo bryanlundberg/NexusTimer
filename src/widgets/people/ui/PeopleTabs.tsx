@@ -18,7 +18,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
 
   return (
     <div className="flex flex-col w-full">
-      <div className="flex flex-col md:flex-row p-5 relative">
+      <div className="flex flex-col md:flex-row px-2 relative">
         <UserInfo user={user} />
         <div className="flex flex-col grow">
           <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full">

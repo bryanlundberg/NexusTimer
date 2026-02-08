@@ -7,15 +7,19 @@ import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { Separator } from '@/components/ui/separator'
+import { useBackup } from '@/entities/backup/model/useBackup'
+import Badges from './badges'
 
 export default function UserInfo({ user }: { user: UserDocument }) {
   const { data: session } = useSession()
   const isCurrentUser = session?.user?.id === user._id
   const router = useRouter()
   const t = useTranslations('Index.PeoplePage')
+  const { backup } = useBackup(user?.backup?.url)
 
   return (
-    <div className="flex flex-col gap-2 p-4 md:sticky md:top-16 h-fit w-full max-w-xs">
+    <div className="flex flex-col gap-2 p-2 md:sticky md:top-16 h-fit w-full md:max-w-xs">
       <div className="relative">
         <Avatar className="size-60 mb-2 shadow-lg mx-auto">
           <AvatarImage className={'object-cover'} src={user.image} alt={user.name} />
@@ -58,6 +62,10 @@ export default function UserInfo({ user }: { user: UserDocument }) {
           {t('edit-profile')}
         </Button>
       )}
+
+      <Separator className={'mt-2'} />
+
+      <Badges user={user} cubes={backup?.length ? backup : []} />
     </div>
   )
 }
