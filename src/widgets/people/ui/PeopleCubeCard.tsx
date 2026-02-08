@@ -41,7 +41,7 @@ export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
     <Card
       key={cube.id}
       className={
-        'group relative overflow-hidden flex flex-col p-5 transition-all duration-300 hover:shadow-lg border-muted/40 bg-card/50 backdrop-blur-sm'
+        'group relative overflow-hidden flex flex-col p-5 transition-all duration-300 border bg-card/50 backdrop-blur-sm'
       }
     >
       {/* Background Accent */}
@@ -77,7 +77,7 @@ export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
         </Badge>
       </div>
 
-      <div className={'grid grid-cols-2 gap-4 mb-4'}>
+      <div className={'grid grid-cols-2 gap-4'}>
         <div className={'flex flex-col p-3 rounded-lg bg-muted/30 border border-muted/20'}>
           <div className="flex items-center gap-1.5 text-muted-foreground mb-1">
             <Trophy className="size-3.5 text-yellow-500" />

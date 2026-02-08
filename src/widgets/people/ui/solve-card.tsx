@@ -8,7 +8,6 @@ import formatTime from '@/shared/lib/formatTime'
 import { defer } from 'es-toolkit/compat'
 import { cn } from '@/shared/lib/utils'
 import { useTranslations } from 'next-intl'
-import { useTheme } from 'next-themes'
 
 interface SolveCardProps {
   event: CubeCategory
@@ -24,7 +23,6 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
   const [ao5Str, setAo5Str] = React.useState<string>('--')
   const [spentStr, setSpentStr] = React.useState<string>('00:00.00')
   const [solvesCount, setSolvesCount] = React.useState<number>(0)
-  const { resolvedTheme } = useTheme()
 
   React.useEffect(() => {
     setSolvesCount(solves?.length || 0)
@@ -44,7 +42,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
   }, [solves])
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl bg-card/50 transition-all duration-500 hover:shadow-2xl hover:border-primary/30">
+    <div className="group relative overflow-hidden rounded-2xl border bg-card/50 transition-all duration-500">
       {/* Animated gradient border effect */}
       <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -108,7 +106,7 @@ function StatCard({ icon: Icon, label, value, isCount }: StatCardProps) {
   const [main, decimal] = value.includes('.') ? value.split('.') : [value, null]
 
   return (
-    <div className="group/stat relative overflow-hidden rounded-xl p-3 transition-all duration-300 bg-neutral-50 dark:bg-card/60 hover:cursor-default hover:shadow-md">
+    <div className="group/stat relative overflow-hidden rounded-xl p-3 transition-all duration-300 bg-neutral-50 dark:bg-card/60 hover:cursor-default">
       <div className="relative z-10">
         <div className="flex items-center gap-1.5 mb-1">
           <div

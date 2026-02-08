@@ -27,7 +27,7 @@ export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardPro
   const cubeInfo = cubeCollection.find((item) => item.name === solve.category)
 
   return (
-    <Card className="group relative overflow-hidden flex flex-col p-4 transition-all duration-300 hover:shadow-lg border-muted/40 bg-card/50 backdrop-blur-sm">
+    <Card className="group relative overflow-hidden flex flex-col p-4 transition-all duration-300 border bg-card/50 backdrop-blur-sm">
       {/* Background Accent */}
       <div className="absolute top-0 right-0 w-24 h-24 -mr-12 -mt-12 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors" />
 
