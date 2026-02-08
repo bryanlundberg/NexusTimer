@@ -15,11 +15,11 @@ export function AchievementItem({ achievement }: AchievementItemProps) {
         <TooltipTrigger asChild>
           <div
             className={cn(
-              'aspect-square size-12 rounded-full flex items-center justify-center relative group transition-all duration-300 border-neutral-200 dark:border-neutral-700',
+              'aspect-square size-12 rounded-full flex items-center justify-center relative group transition-all duration-300 border-2',
               !achievement.color &&
-                'bg-gradient-to-tr from-neutral-700 to-neutral-600 dark:from-neutral-700 dark:to-neutral-600'
+                'bg-gradient-to-tr from-neutral-700 to-neutral-600 dark:from-neutral-700 dark:to-neutral-600 border-neutral-50 dark:border-neutral-500'
             )}
-            style={achievement.color ? { backgroundColor: achievement.color } : {}}
+            style={achievement.color ? { backgroundColor: achievement.color, borderColor: achievement.color } : {}}
           >
             <Image
               src={`/achievements/${achievement.icon}`}
