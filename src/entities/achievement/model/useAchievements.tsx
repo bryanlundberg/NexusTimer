@@ -178,7 +178,7 @@ export default function useAchievements() {
     {
       id: 'zen-master',
       title: 'Zen Master',
-      description: 'You performed 100 solves without a single penalty (+2/DNF).',
+      description: 'You performed 1,000 solves without a single penalty (+2/DNF).',
       icon: 'icons8-wizard-50.png',
       condition: (data) => {
         let consecutiveCleanSolves = 0
@@ -187,7 +187,7 @@ export default function useAchievements() {
           for (const solve of [...cube.solves.all, ...cube.solves.session]) {
             if (!solve.isDeleted && !solve.dnf && !solve.plus2) {
               consecutiveCleanSolves++
-              if (consecutiveCleanSolves >= 100) {
+              if (consecutiveCleanSolves >= 1000) {
                 return true
               }
             } else {
