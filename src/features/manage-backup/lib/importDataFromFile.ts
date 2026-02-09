@@ -306,13 +306,102 @@ export function parseNXTimerSchema(cubes: Cube[]): Cube[] {
 }
 
 export function uniqueData(cubes: Cube[]) {
-  return _.uniqBy(cubes, 'id').map((cube) => ({
+  return _.uniqBy(cubes, 'id').map((cube) => ensureConsistency(cube))
+}
+
+export function mergeSolves(solves: Solve[]): Solve[] {
+  const map = new Map<string, Solve>()
+  solves.forEach((solve) => {
+    const existing = map.get(solve.id)
+    if (!existing) {
+      map.set(solve.id, { ...solve })
+      return
+    }
+
+    const existingWeight = existing.updatedAt ?? existing.endTime ?? 0
+    const currentWeight = solve.updatedAt ?? solve.endTime ?? 0
+
+    if (currentWeight > existingWeight) {
+      map.set(solve.id, { ...solve })
+    }
+  })
+  return Array.from(map.values())
+}
+
+export function ensureConsistency(cube: Cube): Cube {
+  // Merge duplicates in each collection using updatedAt priority
+  const mergedSession = mergeSolves(cube.solves.session)
+  const mergedAll = mergeSolves(cube.solves.all)
+
+  const sessionMap = new Map<string, Solve>()
+  mergedSession.forEach((s) => sessionMap.set(s.id, { ...s }))
+
+  const allMap = new Map<string, Solve>()
+  mergedAll.forEach((s) => allMap.set(s.id, { ...s }))
+
+  const allIds = new Set([...Array.from(sessionMap.keys()), ...Array.from(allMap.keys())])
+
+  const finalSession: Solve[] = []
+  const finalAll: Solve[] = []
+
+  allIds.forEach((id) => {
+    const sessionSolve = sessionMap.get(id)
+    const allSolve = allMap.get(id)
+
+    // Determine which version is most recent based on updatedAt
+    let mostRecent: Solve
+    if (sessionSolve && allSolve) {
+      const sessionWeight = sessionSolve.updatedAt ?? sessionSolve.endTime ?? 0
+      const allWeight = allSolve.updatedAt ?? allSolve.endTime ?? 0
+      mostRecent = sessionWeight >= allWeight ? { ...sessionSolve } : { ...allSolve }
+    } else {
+      mostRecent = sessionSolve ? { ...sessionSolve } : { ...allSolve! }
+    }
+
+    const existsInSession = sessionMap.has(id)
+    const existsInAll = allMap.has(id)
+
+    if (existsInSession && existsInAll) {
+      // Solve exists in both collections
+      // Use the most recent version's isDeleted state to determine placement
+      if (mostRecent.isDeleted) {
+        // Both should be marked as deleted
+        finalSession.push({ ...mostRecent, isDeleted: true })
+        finalAll.push({ ...mostRecent, isDeleted: true })
+      } else {
+        // The active one goes where it should be based on the most recent state
+        // If mostRecent came from session -> active in session, deleted in all
+        // If mostRecent came from all -> active in all, deleted in session
+        const sessionWeight = sessionSolve!.updatedAt ?? sessionSolve!.endTime ?? 0
+        const allWeight = allSolve!.updatedAt ?? allSolve!.endTime ?? 0
+
+        if (sessionWeight >= allWeight) {
+          // Session is more recent - keep active in session
+          finalSession.push({ ...mostRecent, isDeleted: false })
+          finalAll.push({ ...mostRecent, isDeleted: true })
+        } else {
+          // All is more recent - keep active in all
+          finalSession.push({ ...mostRecent, isDeleted: true })
+          finalAll.push({ ...mostRecent, isDeleted: false })
+        }
+      }
+    } else if (existsInSession) {
+      // Only exists in session - add to both (mirror)
+      finalSession.push({ ...mostRecent })
+      finalAll.push({ ...mostRecent })
+    } else {
+      // Only exists in all - keep only in all
+      finalAll.push({ ...mostRecent })
+    }
+  })
+
+  return {
     ...cube,
     solves: {
-      session: _.uniqBy(cube.solves.session, 'id'),
-      all: _.uniqBy(cube.solves.all, 'id')
+      session: finalSession.sort((a, b) => a.startTime - b.startTime),
+      all: finalAll.sort((a, b) => a.startTime - b.startTime)
     }
-  }))
+  }
 }
 
 export function normalizeOldData(cubes: Cube[]): Cube[] {
