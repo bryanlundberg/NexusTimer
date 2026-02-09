@@ -306,13 +306,88 @@ export function parseNXTimerSchema(cubes: Cube[]): Cube[] {
 }
 
 export function uniqueData(cubes: Cube[]) {
-  return _.uniqBy(cubes, 'id').map((cube) => ({
+  return _.uniqBy(cubes, 'id').map((cube) => ensureConsistency(cube))
+}
+
+export function mergeSolves(solves: Solve[]) {
+  const map = new Map<string, Solve>()
+  solves.forEach((solve) => {
+    const existing = map.get(solve.id)
+    if (!existing) {
+      map.set(solve.id, solve)
+      return
+    }
+
+    const existingWeight = existing.updatedAt || existing.endTime || 0
+    const currentWeight = solve.updatedAt || solve.endTime || 0
+
+    if (currentWeight > existingWeight) {
+      map.set(solve.id, solve)
+    }
+  })
+  return Array.from(map.values())
+}
+
+export function ensureConsistency(cube: Cube): Cube {
+  const mergedSession = mergeSolves(cube.solves.session)
+  const mergedAll = mergeSolves(cube.solves.all)
+
+  const allSolvesMap = new Map<string, Solve>()
+
+  mergedAll.forEach((solve) => {
+    const existing = allSolvesMap.get(solve.id)
+    if (!existing) {
+      allSolvesMap.set(solve.id, { ...solve })
+      return
+    }
+
+    const existingWeight = existing.updatedAt || existing.endTime || 0
+    const currentWeight = solve.updatedAt || solve.endTime || 0
+
+    if (currentWeight > existingWeight) {
+      allSolvesMap.set(solve.id, { ...solve })
+    }
+  })
+
+  const sessionSolvesMap = new Map<string, Solve>()
+  mergedSession.forEach((solve) => {
+    const historySolve = allSolvesMap.get(solve.id)
+    const currentSolve = { ...solve }
+
+    if (historySolve) {
+      const historyWeight = historySolve.updatedAt || historySolve.endTime || 0
+      const sessionWeight = currentSolve.updatedAt || currentSolve.endTime || 0
+
+      if (sessionWeight > historyWeight) {
+        allSolvesMap.set(currentSolve.id, { ...currentSolve })
+      } else {
+        currentSolve.isDeleted = true
+      }
+    } else {
+      allSolvesMap.set(currentSolve.id, { ...currentSolve })
+    }
+    sessionSolvesMap.set(currentSolve.id, currentSolve)
+  })
+
+  const syncList = (list: Solve[], sourceMap: Map<string, Solve>) =>
+    list.map((s) => {
+      const unified = allSolvesMap.get(s.id)
+      const inSource = sourceMap.get(s.id)
+
+      if (inSource && inSource.isDeleted) {
+        return { ...unified, isDeleted: true } as Solve
+      }
+
+      return unified ? { ...unified } : s
+    })
+
+  return {
     ...cube,
     solves: {
-      session: _.uniqBy(cube.solves.session, 'id'),
-      all: _.uniqBy(cube.solves.all, 'id')
+      session: syncList(mergedSession, sessionSolvesMap),
+      all: Array.from(allSolvesMap.values())
     }
-  }))
+  }
 }
 
 export function normalizeOldData(cubes: Cube[]): Cube[] {

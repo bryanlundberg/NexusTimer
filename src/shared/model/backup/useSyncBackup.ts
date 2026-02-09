@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import {
+  ensureConsistency,
   formatCubesDatesAndOrder,
   importNexusTimerData,
   normalizeOldData
@@ -45,7 +46,7 @@ export const useSyncBackup = () => {
     if (isUploading) return
     setIsUploading(true)
 
-    const cubes = await cubesDB.getAll()
+    const cubes = await cubesDB.getAllDatabase()
 
     if (!cubes || !session || !session.user || !session.user.id) {
       setIsUploading(false)
@@ -72,52 +73,24 @@ export const useSyncBackup = () => {
 
     for (let i = 0; i < backupData.length; i++) {
       const backupCube = backupData[i]
-      let existingCube = newCubes.find((cube) => cube.id === backupCube.id)
+      let existingCubeIndex = newCubes.findIndex((cube) => cube.id === backupCube.id)
 
-      if (existingCube) {
+      if (existingCubeIndex !== -1) {
+        const existingCube = newCubes[existingCubeIndex]
         const backupUpdatedAt = backupCube.updatedAt || backupCube.createdAt || 0
         const existingUpdatedAt = existingCube.updatedAt || existingCube.createdAt || 0
 
         if (backupUpdatedAt > existingUpdatedAt) {
-          Object.assign(existingCube, backupCube)
+          const { solves: backupSolves, ...restBackup } = backupCube
+          Object.assign(existingCube, restBackup)
         }
 
-        const mergedSession = [...existingCube.solves.session, ...backupCube.solves.session]
-        const sessionMap = new Map()
+        existingCube.solves.session = [...existingCube.solves.session, ...backupCube.solves.session]
+        existingCube.solves.all = [...existingCube.solves.all, ...backupCube.solves.all]
 
-        mergedSession.forEach((solve) => {
-          const existing = sessionMap.get(solve.id)
-          if (!existing) {
-            sessionMap.set(solve.id, solve)
-          } else {
-            const existingTime = existing.updatedAt || existing.endTime || 0
-            const newTime = solve.updatedAt || solve.endTime || 0
-            if (newTime > existingTime) {
-              sessionMap.set(solve.id, solve)
-            }
-          }
-        })
-
-        const mergedAll = [...existingCube.solves.all, ...backupCube.solves.all]
-        const allMap = new Map()
-
-        mergedAll.forEach((solve) => {
-          const existing = allMap.get(solve.id)
-          if (!existing) {
-            allMap.set(solve.id, solve)
-          } else {
-            const existingTime = existing.updatedAt || existing.startTime || 0
-            const newTime = solve.updatedAt || solve.startTime || 0
-            if (newTime > existingTime) {
-              allMap.set(solve.id, solve)
-            }
-          }
-        })
-
-        existingCube.solves.session = Array.from(sessionMap.values())
-        existingCube.solves.all = Array.from(allMap.values())
+        newCubes[existingCubeIndex] = ensureConsistency(existingCube)
       } else {
-        newCubes.push(backupCube)
+        newCubes.push(ensureConsistency(backupCube))
       }
     }
 
@@ -158,7 +131,7 @@ export const useSyncBackup = () => {
       backupData = normalizeOldData(backupData)
 
       if (mode === BackupLoadMode.REPLACE) {
-        newCubes = formatCubesDatesAndOrder(backupData)
+        newCubes = formatCubesDatesAndOrder(backupData).map((cube) => ensureConsistency(cube))
       }
 
       if (mode === BackupLoadMode.MERGE) {
