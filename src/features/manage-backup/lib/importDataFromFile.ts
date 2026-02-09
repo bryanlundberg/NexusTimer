@@ -309,83 +309,97 @@ export function uniqueData(cubes: Cube[]) {
   return _.uniqBy(cubes, 'id').map((cube) => ensureConsistency(cube))
 }
 
-export function mergeSolves(solves: Solve[]) {
+export function mergeSolves(solves: Solve[]): Solve[] {
   const map = new Map<string, Solve>()
   solves.forEach((solve) => {
     const existing = map.get(solve.id)
     if (!existing) {
-      map.set(solve.id, solve)
+      map.set(solve.id, { ...solve })
       return
     }
 
-    const existingWeight = existing.updatedAt || existing.endTime || 0
-    const currentWeight = solve.updatedAt || solve.endTime || 0
+    const existingWeight = existing.updatedAt ?? existing.endTime ?? 0
+    const currentWeight = solve.updatedAt ?? solve.endTime ?? 0
 
     if (currentWeight > existingWeight) {
-      map.set(solve.id, solve)
+      map.set(solve.id, { ...solve })
     }
   })
   return Array.from(map.values())
 }
 
 export function ensureConsistency(cube: Cube): Cube {
+  // Merge duplicates in each collection using updatedAt priority
   const mergedSession = mergeSolves(cube.solves.session)
   const mergedAll = mergeSolves(cube.solves.all)
 
-  const allSolvesMap = new Map<string, Solve>()
+  const sessionMap = new Map<string, Solve>()
+  mergedSession.forEach((s) => sessionMap.set(s.id, { ...s }))
 
-  mergedAll.forEach((solve) => {
-    const existing = allSolvesMap.get(solve.id)
-    if (!existing) {
-      allSolvesMap.set(solve.id, { ...solve })
-      return
-    }
+  const allMap = new Map<string, Solve>()
+  mergedAll.forEach((s) => allMap.set(s.id, { ...s }))
 
-    const existingWeight = existing.updatedAt || existing.endTime || 0
-    const currentWeight = solve.updatedAt || solve.endTime || 0
+  const allIds = new Set([...Array.from(sessionMap.keys()), ...Array.from(allMap.keys())])
 
-    if (currentWeight > existingWeight) {
-      allSolvesMap.set(solve.id, { ...solve })
-    }
-  })
+  const finalSession: Solve[] = []
+  const finalAll: Solve[] = []
 
-  const sessionSolvesMap = new Map<string, Solve>()
-  mergedSession.forEach((solve) => {
-    const historySolve = allSolvesMap.get(solve.id)
-    const currentSolve = { ...solve }
+  allIds.forEach((id) => {
+    const sessionSolve = sessionMap.get(id)
+    const allSolve = allMap.get(id)
 
-    if (historySolve) {
-      const historyWeight = historySolve.updatedAt || historySolve.endTime || 0
-      const sessionWeight = currentSolve.updatedAt || currentSolve.endTime || 0
-
-      if (sessionWeight > historyWeight) {
-        allSolvesMap.set(currentSolve.id, { ...currentSolve })
-      } else {
-        currentSolve.isDeleted = true
-      }
+    // Determine which version is most recent based on updatedAt
+    let mostRecent: Solve
+    if (sessionSolve && allSolve) {
+      const sessionWeight = sessionSolve.updatedAt ?? sessionSolve.endTime ?? 0
+      const allWeight = allSolve.updatedAt ?? allSolve.endTime ?? 0
+      mostRecent = sessionWeight >= allWeight ? { ...sessionSolve } : { ...allSolve }
     } else {
-      allSolvesMap.set(currentSolve.id, { ...currentSolve })
+      mostRecent = sessionSolve ? { ...sessionSolve } : { ...allSolve! }
     }
-    sessionSolvesMap.set(currentSolve.id, currentSolve)
-  })
 
-  const syncList = (list: Solve[], sourceMap: Map<string, Solve>) =>
-    list.map((s) => {
-      const unified = allSolvesMap.get(s.id)
-      const inSource = sourceMap.get(s.id)
+    const existsInSession = sessionMap.has(id)
+    const existsInAll = allMap.has(id)
 
-      if (inSource && inSource.isDeleted) {
-        return { ...unified, isDeleted: true } as Solve
+    if (existsInSession && existsInAll) {
+      // Solve exists in both collections
+      // Use the most recent version's isDeleted state to determine placement
+      if (mostRecent.isDeleted) {
+        // Both should be marked as deleted
+        finalSession.push({ ...mostRecent, isDeleted: true })
+        finalAll.push({ ...mostRecent, isDeleted: true })
+      } else {
+        // The active one goes where it should be based on the most recent state
+        // If mostRecent came from session -> active in session, deleted in all
+        // If mostRecent came from all -> active in all, deleted in session
+        const sessionWeight = sessionSolve!.updatedAt ?? sessionSolve!.endTime ?? 0
+        const allWeight = allSolve!.updatedAt ?? allSolve!.endTime ?? 0
+
+        if (sessionWeight >= allWeight) {
+          // Session is more recent - keep active in session
+          finalSession.push({ ...mostRecent, isDeleted: false })
+          finalAll.push({ ...mostRecent, isDeleted: true })
+        } else {
+          // All is more recent - keep active in all
+          finalSession.push({ ...mostRecent, isDeleted: true })
+          finalAll.push({ ...mostRecent, isDeleted: false })
+        }
       }
-
-      return unified ? { ...unified } : s
-    })
+    } else if (existsInSession) {
+      // Only exists in session - add to both (mirror)
+      finalSession.push({ ...mostRecent })
+      finalAll.push({ ...mostRecent })
+    } else {
+      // Only exists in all - keep only in all
+      finalAll.push({ ...mostRecent })
+    }
+  })
 
   return {
     ...cube,
     solves: {
-      session: syncList(mergedSession, sessionSolvesMap),
-      all: Array.from(allSolvesMap.values())
+      session: finalSession.sort((a, b) => a.startTime - b.startTime),
+      all: finalAll.sort((a, b) => a.startTime - b.startTime)
     }
   }
 }

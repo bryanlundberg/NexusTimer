@@ -69,19 +69,20 @@ export const useSyncBackup = () => {
   }
 
   const mergeAndUniqData = async (backupData: Cube[], localCubesData: Cube[]) => {
-    let newCubes = _.cloneDeep(localCubesData) as Cube[]
+    const normalizedLocal = normalizeOldData(_.cloneDeep(localCubesData))
+    let newCubes = normalizedLocal as Cube[]
 
     for (let i = 0; i < backupData.length; i++) {
       const backupCube = backupData[i]
-      let existingCubeIndex = newCubes.findIndex((cube) => cube.id === backupCube.id)
+      const existingCubeIndex = newCubes.findIndex((cube) => cube.id === backupCube.id)
 
       if (existingCubeIndex !== -1) {
         const existingCube = newCubes[existingCubeIndex]
-        const backupUpdatedAt = backupCube.updatedAt || backupCube.createdAt || 0
-        const existingUpdatedAt = existingCube.updatedAt || existingCube.createdAt || 0
+        const backupUpdatedAt = backupCube.updatedAt ?? backupCube.createdAt ?? 0
+        const existingUpdatedAt = existingCube.updatedAt ?? existingCube.createdAt ?? 0
 
         if (backupUpdatedAt > existingUpdatedAt) {
-          const { solves: backupSolves, ...restBackup } = backupCube
+          const { solves: _backupSolves, ...restBackup } = backupCube
           Object.assign(existingCube, restBackup)
         }
 
