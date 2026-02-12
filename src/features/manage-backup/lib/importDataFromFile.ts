@@ -1,5 +1,5 @@
 import { parse } from 'papaparse'
-import { z } from 'zod/v4'
+import { z } from 'zod'
 import _ from 'lodash'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
@@ -53,9 +53,11 @@ const nxTimerSchema = z.array(
 )
 
 const csTimerSchema = z.object({
-  properties: z.looseObject({
-    sessionN: z.number()
-  })
+  properties: z
+    .object({
+      sessionN: z.number()
+    })
+    .passthrough()
 })
 
 const cubeDeskSchema = z.object({
