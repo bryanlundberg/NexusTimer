@@ -2,7 +2,10 @@ import { useTranslations } from 'next-intl'
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import importDataFromFile from '@/features/manage-backup/lib/importDataFromFile'
+import importDataFromFile, {
+  normalizeOldData,
+  preventDuplicateDeleteStatus
+} from '@/features/manage-backup/lib/importDataFromFile'
 import { useRouter } from 'next/navigation'
 import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { toast } from 'sonner'
@@ -48,7 +51,7 @@ export default function ImportBackup() {
     try {
       setIsImporting(true)
       await cubesDB.clear()
-      await cubesDB.saveBatch(editedCubes)
+      await cubesDB.saveBatch(preventDuplicateDeleteStatus(normalizeOldData(editedCubes)))
 
       const cubes = await cubesDB.getAll()
       setCubes(cubes)
