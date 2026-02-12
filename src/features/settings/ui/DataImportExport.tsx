@@ -11,6 +11,7 @@ import { toast } from 'sonner'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useQueryState } from 'nuqs'
 import { useEffect } from 'react'
+import { normalizeOldData, preventDuplicateDeleteStatus } from '@/features/manage-backup/lib/importDataFromFile'
 
 export function DataImportExport() {
   const t = useTranslations('Index')
@@ -47,59 +48,8 @@ export function DataImportExport() {
   const handleNormalizeDatabase = async () => {
     try {
       const db = await cubesDB.getAllDatabase()
-      const normalizedDB = db.map((cube) => {
-        return {
-          ...cube,
-          solves: {
-            ...cube.solves,
-            session: (cube.solves.session || []).map((solve) => ({
-              ...solve,
-              cubeId: cube.id,
-              isDeleted: solve.isDeleted || false,
-              updatedAt: solve.updatedAt || Date.now()
-            })),
-            all: (cube.solves.all || []).map((solve) => ({
-              ...solve,
-              cubeId: cube.id,
-              isDeleted: solve.isDeleted || false,
-              updatedAt: solve.updatedAt || Date.now()
-            }))
-          },
-          updatedAt: Date.now(),
-          isDeleted: cube.isDeleted || false
-        }
-      })
 
-      for (const cube of normalizedDB) {
-        const allSolvesFromBoth = [
-          ...cube.solves.all.map((s) => ({ ...s, source: 'all' as const })),
-          ...cube.solves.session.map((s) => ({ ...s, source: 'session' as const }))
-        ]
-
-        const solvesMap = new Map<string, any>()
-        for (const solve of allSolvesFromBoth) {
-          const existing = solvesMap.get(solve.id)
-
-          if (!existing) {
-            solvesMap.set(solve.id, solve)
-          } else if (existing.updatedAt < solve.updatedAt) {
-            solvesMap.set(solve.id, solve)
-          } else if (
-            existing.updatedAt === solve.updatedAt &&
-            existing.source === 'all' &&
-            solve.source === 'session'
-          ) {
-            solvesMap.set(solve.id, solve)
-          }
-        }
-
-        const uniqueSolves = Array.from(solvesMap.values())
-        cube.solves.all = uniqueSolves.filter((solve) => solve.source === 'all').map(({ source, ...solve }) => solve)
-
-        cube.solves.session = uniqueSolves
-          .filter((solve) => solve.source === 'session')
-          .map(({ source, ...solve }) => solve)
-      }
+      const normalizedDB = preventDuplicateDeleteStatus(normalizeOldData(db))
 
       await cubesDB.clear()
       for (const cube of normalizedDB) {
