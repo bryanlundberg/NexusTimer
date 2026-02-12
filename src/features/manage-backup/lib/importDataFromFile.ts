@@ -166,7 +166,7 @@ const importCsTimerData = (fileContent: string) => {
           cubeId: newCube.id,
           comment: ''
         }
-        newCube.solves.session.push(newSolve)
+        newCube.solves.all.push(newSolve)
       })
 
       return newCube
@@ -216,7 +216,7 @@ function importCubeDeskData(fileContent: string) {
           cubeId: session.id,
           comment: ''
         }
-        newCube.solves.session.push(newSolve)
+        newCube.solves.all.push(newSolve)
       }
     })
     newCubeList.push(newCube)
@@ -273,7 +273,7 @@ function importTwistyTimerData(fileContent: string) {
       cubeId: cube.id,
       comment: comment ? comment.toString() : ''
     }
-    cube.solves.session.push(newSolve)
+    cube.solves.all.push(newSolve)
   })
 
   newCubeList = formatCubesDatesAndOrder(newCubeList)
@@ -341,37 +341,34 @@ export const preventDuplicateDeleteStatus = (cubes: Cube[]): Cube[] => {
       const sessionSolve = sessionById[id]
       const allSolve = allById[id]
 
-      const session = sessionSolve ?? { ...allSolve }
-      const all = allSolve ?? { ...sessionSolve }
+      if (sessionSolve && !sessionSolve.isDeleted && allSolve && !allSolve.isDeleted) {
+        const sessionUpdated = sessionSolve.updatedAt ?? 0
+        const allUpdated = allSolve.updatedAt ?? 0
 
-      const sessionUpdated = session.updatedAt ?? 0
-      const allUpdated = all.updatedAt ?? 0
-
-      if (!session.isDeleted && !all.isDeleted) {
-        if (sessionUpdated >= allUpdated) {
-          newSessionSolves.push({ ...session, isDeleted: false })
-          newAllSolves.push({ ...all, isDeleted: true })
-        } else {
-          newSessionSolves.push({ ...session, isDeleted: true })
-          newAllSolves.push({ ...all, isDeleted: false })
+        if (sessionUpdated > allUpdated) {
+          newSessionSolves.push({ ...sessionSolve, isDeleted: false })
+          newAllSolves.push({ ...sessionSolve, isDeleted: true })
+        } else if (allUpdated > sessionUpdated) {
+          newSessionSolves.push({ ...allSolve, isDeleted: true })
+          newAllSolves.push({ ...allSolve, isDeleted: false })
+        } else if (sessionUpdated === allUpdated) {
+          newSessionSolves.push({ ...sessionSolve, isDeleted: false })
+          newAllSolves.push({ ...allSolve, isDeleted: true })
         }
         return
       }
 
-      if (!session.isDeleted) {
-        newSessionSolves.push({ ...session, isDeleted: false })
-        newAllSolves.push({ ...all, isDeleted: true })
+      if (sessionSolve) {
+        newSessionSolves.push(sessionSolve)
+        newAllSolves.push({ ...sessionSolve, isDeleted: true })
         return
       }
 
-      if (!all.isDeleted) {
-        newSessionSolves.push({ ...session, isDeleted: true })
-        newAllSolves.push({ ...all, isDeleted: false })
+      if (allSolve) {
+        newAllSolves.push(allSolve)
+        newSessionSolves.push({ ...allSolve, isDeleted: true })
         return
       }
-
-      newSessionSolves.push({ ...session, isDeleted: true })
-      newAllSolves.push({ ...all, isDeleted: true })
     })
 
     return {
