@@ -1,9 +1,8 @@
-import _ from 'lodash'
 import {
-  ensureConsistency,
   formatCubesDatesAndOrder,
   importNexusTimerData,
-  normalizeOldData
+  normalizeOldData,
+  preventDuplicateDeleteStatus
 } from '@/features/manage-backup/lib/importDataFromFile'
 import { toast } from 'sonner'
 import { compressSync, decompressSync, strFromU8, strToU8 } from 'fflate'
@@ -16,6 +15,7 @@ import { useUploadThing } from '@/shared/lib/uploadthing-helpers'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
 import { Cube } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
+import { Solve } from '@/entities/solve/model/types'
 
 export const useSyncBackup = () => {
   const { data: session } = useSession()
@@ -68,34 +68,32 @@ export const useSyncBackup = () => {
     }
   }
 
-  const mergeAndUniqData = async (backupData: Cube[], localCubesData: Cube[]) => {
-    const normalizedLocal = normalizeOldData(_.cloneDeep(localCubesData))
-    let newCubes = normalizedLocal as Cube[]
+  const mergeAndUniqData = async (backupData: Cube[], localCubesData: Cube[]): Promise<Cube[]> => {
+    const cubeMap = new Map<string, Cube>()
 
-    for (let i = 0; i < backupData.length; i++) {
-      const backupCube = backupData[i]
-      const existingCubeIndex = newCubes.findIndex((cube) => cube.id === backupCube.id)
+    for (const cube of [...backupData, ...localCubesData]) {
+      const existing = cubeMap.get(cube.id)
 
-      if (existingCubeIndex !== -1) {
-        const existingCube = newCubes[existingCubeIndex]
-        const backupUpdatedAt = backupCube.updatedAt ?? backupCube.createdAt ?? 0
-        const existingUpdatedAt = existingCube.updatedAt ?? existingCube.createdAt ?? 0
-
-        if (backupUpdatedAt > existingUpdatedAt) {
-          const { solves: _backupSolves, ...restBackup } = backupCube
-          Object.assign(existingCube, restBackup)
-        }
-
-        existingCube.solves.session = [...existingCube.solves.session, ...backupCube.solves.session]
-        existingCube.solves.all = [...existingCube.solves.all, ...backupCube.solves.all]
-
-        newCubes[existingCubeIndex] = ensureConsistency(existingCube)
-      } else {
-        newCubes.push(ensureConsistency(backupCube))
+      if (!existing) {
+        cubeMap.set(cube.id, cube)
+        continue
       }
+
+      const baseCube = (cube.updatedAt ?? 0) > (existing.updatedAt ?? 0) ? cube : existing
+
+      const otherCube = baseCube === cube ? existing : cube
+
+      cubeMap.set(cube.id, {
+        ...baseCube,
+        solves: {
+          session: [...baseCube.solves.session, ...otherCube.solves.session],
+          all: [...baseCube.solves.all, ...otherCube.solves.all]
+        }
+      })
     }
 
-    return formatCubesDatesAndOrder(newCubes)
+    const mergedCubes = Array.from(cubeMap.values())
+    return formatCubesDatesAndOrder(preventDuplicateDeleteStatus(normalizeOldData(mergedCubes)))
   }
 
   const handleDownloadData = async (
@@ -129,10 +127,8 @@ export const useSyncBackup = () => {
 
       let newCubes: Cube[] = []
 
-      backupData = normalizeOldData(backupData)
-
       if (mode === BackupLoadMode.REPLACE) {
-        newCubes = formatCubesDatesAndOrder(backupData).map((cube) => ensureConsistency(cube))
+        newCubes = formatCubesDatesAndOrder(preventDuplicateDeleteStatus(normalizeOldData(backupData)))
       }
 
       if (mode === BackupLoadMode.MERGE) {
@@ -161,7 +157,6 @@ export const useSyncBackup = () => {
   }
 
   return {
-    mergeAndUniqData,
     handleDownloadData,
     handleUploadBackup,
     isUploading,
