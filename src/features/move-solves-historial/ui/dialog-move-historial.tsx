@@ -20,6 +20,7 @@ export default function DialogMoveHistorial() {
       setCubes(cubes)
       const currentCube = await cubesDB.getById(selectedCube.id)
       setSelectedCube(currentCube)
+      overlayStore.close()
       return
     }
 
