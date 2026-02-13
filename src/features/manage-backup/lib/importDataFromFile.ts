@@ -329,45 +329,46 @@ export function normalizeOldData(cubes: Cube[]): Cube[] {
 
 export const preventDuplicateDeleteStatus = (cubes: Cube[]): Cube[] => {
   return cubes.map((cube) => {
-    const sessionById = _.keyBy(cube.solves.session, 'id')
-    const allById = _.keyBy(cube.solves.all, 'id')
+    const solveMap = new Map<string, Solve & { _wasInSession?: boolean }>()
 
-    const allIds = _.uniq([...Object.keys(sessionById), ...Object.keys(allById)])
+    const processSolve = (solve: Solve, fromSession: boolean) => {
+      const existing = solveMap.get(solve.id)
+      if (!existing || (solve.updatedAt ?? 0) > (existing.updatedAt ?? 0)) {
+        solveMap.set(solve.id, { ...solve, _wasInSession: fromSession })
+      }
+    }
+
+    cube.solves.session.forEach((s) => processSolve(s, true))
+    cube.solves.all.forEach((s) => processSolve(s, false))
 
     const newSessionSolves: Solve[] = []
     const newAllSolves: Solve[] = []
 
-    allIds.forEach((id) => {
-      const sessionSolve = sessionById[id]
-      const allSolve = allById[id]
+    solveMap.forEach((solveWithMeta) => {
+      const { _wasInSession, ...solve } = solveWithMeta
 
-      if (sessionSolve && !sessionSolve.isDeleted && allSolve && !allSolve.isDeleted) {
-        const sessionUpdated = sessionSolve.updatedAt ?? 0
-        const allUpdated = allSolve.updatedAt ?? 0
-
-        if (sessionUpdated > allUpdated) {
-          newSessionSolves.push({ ...sessionSolve, isDeleted: false })
-          newAllSolves.push({ ...sessionSolve, isDeleted: true })
-        } else if (allUpdated > sessionUpdated) {
-          newSessionSolves.push({ ...allSolve, isDeleted: true })
-          newAllSolves.push({ ...allSolve, isDeleted: false })
-        } else if (sessionUpdated === allUpdated) {
-          newSessionSolves.push({ ...sessionSolve, isDeleted: false })
-          newAllSolves.push({ ...allSolve, isDeleted: true })
+      if (_wasInSession) {
+        if (!solve.isDeleted) {
+          newSessionSolves.push(solve)
+          newAllSolves.push({ ...solve, isDeleted: true })
         }
-        return
+
+        if (solve.isDeleted) {
+          newSessionSolves.push({ ...solve, isDeleted: true })
+          newAllSolves.push(solve)
+        }
       }
 
-      if (sessionSolve) {
-        newSessionSolves.push(sessionSolve)
-        newAllSolves.push({ ...sessionSolve, isDeleted: true })
-        return
-      }
+      if (!_wasInSession) {
+        if (!solve.isDeleted) {
+          newAllSolves.push(solve)
+          newSessionSolves.push({ ...solve, isDeleted: true })
+        }
 
-      if (allSolve) {
-        newAllSolves.push(allSolve)
-        newSessionSolves.push({ ...allSolve, isDeleted: true })
-        return
+        if (solve.isDeleted) {
+          newAllSolves.push(solve)
+          newSessionSolves.push({ ...solve, isDeleted: true })
+        }
       }
     })
 
