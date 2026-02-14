@@ -14,6 +14,7 @@ import {
 import formatTime from '@/shared/lib/formatTime'
 import getBestTime from '@/shared/lib/statistics/getBestTime'
 import getWorstTime from '@/shared/lib/statistics/getWorstTime'
+import calculateCurrentAo from '@/shared/lib/statistics/calculateCurrentAo'
 import { Solve } from '@/entities/solve/model/types'
 import { TimeObject } from '@/features/line-chart-statistics/model/types'
 import moment from 'moment'
@@ -30,6 +31,8 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
   const [showBestTime, setShowBestTime] = useState(true)
   const [showWorstTime, setShowWorstTime] = useState(true)
   const [showAverageTime, setShowAverageTime] = useState(true)
+  const [showAo5, setShowAo5] = useState(true)
+  const [showAo12, setShowAo12] = useState(true)
   const [showStandardDeviation, setShowStandardDeviation] = useState(true)
   const cubes = useTimerStore((s) => s.cubes)
   const overlay = useOverlayStore()
@@ -224,6 +227,49 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       }
 
       lineSeries.setData(structuredData)
+
+      if (showAo5) {
+        const ao5Data = reversedDataSet
+          .map((_, index) => {
+            const window = reversedDataSet.slice(0, index + 1).reverse()
+            const ao5Value = calculateCurrentAo(window, 5)
+            return {
+              time: (index + 1) as any,
+              value: ao5Value > 0 ? ao5Value : undefined
+            }
+          })
+          .filter((item) => item.value !== undefined)
+
+        const ao5Series = chart.addSeries(LineSeries, {
+          lastValueVisible: false,
+          priceLineVisible: false,
+          lineWidth: 1,
+          color: '#3B82F6' // Blue
+        })
+        ao5Series.setData(ao5Data as any[])
+      }
+
+      if (showAo12) {
+        const ao12Data = reversedDataSet
+          .map((_, index) => {
+            const window = reversedDataSet.slice(0, index + 1).reverse()
+            const ao12Value = calculateCurrentAo(window, 12)
+            return {
+              time: (index + 1) as any,
+              value: ao12Value > 0 ? ao12Value : undefined
+            }
+          })
+          .filter((item) => item.value !== undefined)
+
+        const ao12Series = chart.addSeries(LineSeries, {
+          lastValueVisible: false,
+          priceLineVisible: false,
+          lineWidth: 1,
+          color: '#10B981' // Emerald/Greenish
+        })
+        ao12Series.setData(ao12Data as any[])
+      }
+
       chart.autoSizeActive()
       chart.timeScale().fitContent()
 
@@ -257,6 +303,22 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
           <div class="text-xs opacity-80">Solve #${param.time}</div>
           <div class="mt-1 text-xs">${moment(solve.endTime).format('LL')}</div>
         `
+
+        if (showAo5) {
+          const window = reversedDataSet.slice(0, param.time as number).reverse()
+          const ao5Value = calculateCurrentAo(window, 5)
+          if (ao5Value > 0) {
+            tooltipContent += `<div class="mt-1 text-xs text-blue-400">Ao5: ${formatTime(ao5Value)}</div>`
+          }
+        }
+
+        if (showAo12) {
+          const window = reversedDataSet.slice(0, param.time as number).reverse()
+          const ao12Value = calculateCurrentAo(window, 12)
+          if (ao12Value > 0) {
+            tooltipContent += `<div class="mt-1 text-xs text-emerald-400">Ao12: ${formatTime(ao12Value)}</div>`
+          }
+        }
 
         if (solve.dnf) {
           tooltipContent += `<div class="mt-1 text-xs text-red-500">DNF</div>`
@@ -306,7 +368,18 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         chart.applyOptions({ height: newRect.height, width: newRect.width })
       }).observe(container)
     }
-  }, [dataSet, locale, t, showBestTime, showWorstTime, showAverageTime, showStandardDeviation, resolvedTheme])
+  }, [
+    dataSet,
+    locale,
+    t,
+    showBestTime,
+    showWorstTime,
+    showAverageTime,
+    showStandardDeviation,
+    showAo5,
+    showAo12,
+    resolvedTheme
+  ])
 
   return {
     chartContainerRef,
@@ -317,6 +390,10 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     setShowWorstTime,
     showAverageTime,
     setShowAverageTime,
+    showAo5,
+    setShowAo5,
+    showAo12,
+    setShowAo12,
     showStandardDeviation,
     setShowStandardDeviation
   }
