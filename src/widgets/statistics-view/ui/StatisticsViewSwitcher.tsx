@@ -41,7 +41,7 @@ export default function StatisticsViewSwitcher({ statistics }: StatisticsViewSwi
         </TabsList>
         <TabsContent value={StatisticsTabs.CATEGORY}>
           <LineGraphStatistics solves={statistics.data.global} />
-          <CategoriesGraphs />
+          {/*<CategoriesGraphs />*/}
         </TabsContent>
         <TabsContent value={StatisticsTabs.CUBE}>
           <LineGraphStatistics solves={statistics.data.cubeAll} />
