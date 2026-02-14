@@ -152,9 +152,9 @@ const importCsTimerData = (fileContent: string) => {
         favorite: false
       }
 
-      session.forEach((solve: any) => {
+      session.forEach((solve: any, solveIndex: number) => {
         const newSolve: Solve = {
-          id: `${newCube.id}-${solve[3] * 1000}`,
+          id: `${newCube.id}-${solve[3] * 1000}-${solveIndex}`,
           startTime: solve[3] * 1000 - solve[0][1],
           endTime: solve[3] * 1000,
           scramble: solve[1],
