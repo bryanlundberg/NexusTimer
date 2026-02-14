@@ -27,18 +27,15 @@ export default function SyncBackupProvider({ children }: { children: React.React
   const cubes = useTimerStore((store) => store.cubes)
   const updateSetting = useSettingsStore((store) => store.updateSetting)
 
-  const handleSync = useCallback(
-    async (mode: BackupLoadMode) => {
-      toast.dismiss(SYNC_TOAST_ID)
-      try {
-        await handleDownloadData({ mode, user })
-        await handleUploadBackup()
-      } catch (error) {
-        console.error('Sync error:', error)
-      }
-    },
-    [handleDownloadData, handleUploadBackup, user, SYNC_TOAST_ID]
-  )
+  const handleSync = useCallback(async () => {
+    toast.dismiss(SYNC_TOAST_ID)
+    try {
+      await handleDownloadData({ user })
+      await handleUploadBackup()
+    } catch (error) {
+      console.error('Sync error:', error)
+    }
+  }, [handleDownloadData, handleUploadBackup, user, SYNC_TOAST_ID])
 
   useEffect(() => {
     if (isOffline) return
@@ -86,7 +83,7 @@ export default function SyncBackupProvider({ children }: { children: React.React
               >
                 {t('cancel')}
               </Button>
-              <Button className={'w-full'} size={'sm'} onClick={() => handleSync(BackupLoadMode.MERGE)}>
+              <Button className={'w-full'} size={'sm'} onClick={() => handleSync()}>
                 {t('merge')}
               </Button>
             </div>
