@@ -79,12 +79,36 @@ export const useSyncBackup = () => {
         continue
       }
 
-      const baseCube = (cube.updatedAt ?? 0) > (existing.updatedAt ?? 0) ? cube : existing
+      let baseCube: Cube
+      let otherCube: Cube
 
-      const otherCube = baseCube === cube ? existing : cube
+      const cubeUpdatedAt = cube.updatedAt ?? 0
+      const existingUpdatedAt = existing.updatedAt ?? 0
+
+      if (cubeUpdatedAt > existingUpdatedAt) {
+        baseCube = cube
+        otherCube = existing
+      } else if (cubeUpdatedAt < existingUpdatedAt) {
+        baseCube = existing
+        otherCube = cube
+      } else {
+        if (existing.isDeleted && !cube.isDeleted) {
+          baseCube = cube
+          otherCube = existing
+        } else if (!existing.isDeleted && cube.isDeleted) {
+          baseCube = existing
+          otherCube = cube
+        } else {
+          baseCube = cube
+          otherCube = existing
+        }
+      }
+
+      const finalIsDeleted = baseCube.isDeleted
 
       cubeMap.set(cube.id, {
         ...baseCube,
+        isDeleted: finalIsDeleted,
         solves: {
           session: [...baseCube.solves.session, ...otherCube.solves.session],
           all: [...baseCube.solves.all, ...otherCube.solves.all]
@@ -93,12 +117,11 @@ export const useSyncBackup = () => {
     }
 
     const mergedCubes = Array.from(cubeMap.values())
-    return formatCubesDatesAndOrder(preventDuplicateDeleteStatus(normalizeOldData(mergedCubes)))
+    return formatCubesDatesAndOrder(preventDuplicateDeleteStatus(mergedCubes))
   }
 
   const handleDownloadData = async (
     {
-      mode,
       user
     }: {
       mode?: BackupLoadMode
@@ -122,18 +145,10 @@ export const useSyncBackup = () => {
       const decompressed = decompressSync(compressed)
       const data = strFromU8(decompressed)
 
-      let backupData = importNexusTimerData(data)
+      const backupData = importNexusTimerData(data)
       const existingCubes = await cubesDB.getAllDatabase()
 
-      let newCubes: Cube[] = []
-
-      if (mode === BackupLoadMode.REPLACE) {
-        newCubes = formatCubesDatesAndOrder(preventDuplicateDeleteStatus(normalizeOldData(backupData)))
-      }
-
-      if (mode === BackupLoadMode.MERGE) {
-        newCubes = await mergeAndUniqData(backupData, existingCubes)
-      }
+      const newCubes: Cube[] = await mergeAndUniqData(normalizeOldData(backupData), normalizeOldData(existingCubes))
 
       updateSetting('sync.lastSync', Date.now())
       updateSetting('sync.totalSolves', 0)
