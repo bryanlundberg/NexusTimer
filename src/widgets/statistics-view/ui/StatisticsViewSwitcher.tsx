@@ -1,7 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { StatisticsTabs } from '@/widgets/statistics-view/model/enums'
 import LineGraphStatistics from '@/features/line-chart-statistics/ui/LineGraphStatistics'
-import CategoriesGraphs from '@/widgets/categories-graphs/ui/CategoriesGraphs'
 import StatisticsEmpty from '@/features/deep-statistics/ui/StatisticsEmpty'
 import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
