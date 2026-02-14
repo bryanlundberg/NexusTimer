@@ -16,10 +16,9 @@ interface PeopleCubeCardProps {
 
 export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
   const t = useTranslations('Index.CubesPage')
-  const session = cube.solves.session || []
-  const allSolves = [...(cube.solves.all || []), ...session].filter((s) => !s.isDeleted)
+  const allSolves = [...(cube.solves.all || []), ...(cube.solves.session || [])].filter((s) => !s.isDeleted)
 
-  const counts = session.reduce(
+  const counts = allSolves.reduce(
     (acc, s) => ({
       successCount: acc.successCount + (!s.dnf && !s.plus2 && !s.isDeleted ? 1 : 0),
       plus2Count: acc.plus2Count + (!s.dnf && s.plus2 && !s.isDeleted ? 1 : 0),
@@ -89,7 +88,7 @@ export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
         <div className={'flex flex-col p-3 rounded-lg bg-muted/30 border border-muted/20'}>
           <div className="flex items-center gap-1.5 text-muted-foreground mb-1">
             <History className="size-3.5 text-blue-500" />
-            <span className="text-[11px] font-semibold uppercase tracking-tight">Session Solves</span>
+            <span className="text-[11px] font-semibold uppercase tracking-tight">Solves</span>
           </div>
           <div className="text-xl font-bold font-mono text-foreground">{totalSession}</div>
         </div>
