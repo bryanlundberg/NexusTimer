@@ -12,6 +12,10 @@ export default function LineGraphStatistics({ solves }: { solves: Solve[] }) {
     showBestTime,
     setShowBestTime,
     setShowWorstTime,
+    showAo5,
+    setShowAo5,
+    showAo12,
+    setShowAo12,
     showStandardDeviation,
     setShowStandardDeviation,
     tooltipRef,
@@ -52,6 +56,26 @@ export default function LineGraphStatistics({ solves }: { solves: Solve[] }) {
             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             {t('StatsPage.average')}
+          </label>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Checkbox id="ao5" checked={showAo5} onCheckedChange={(e: boolean) => setShowAo5(e)} />
+          <label
+            htmlFor="ao5"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Ao5
+          </label>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Checkbox id="ao12" checked={showAo12} onCheckedChange={(e: boolean) => setShowAo12(e)} />
+          <label
+            htmlFor="ao12"
+            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            Ao12
           </label>
         </div>
 
