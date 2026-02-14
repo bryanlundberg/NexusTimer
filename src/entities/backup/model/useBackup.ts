@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { decompressSync, strFromU8 } from 'fflate'
 import { Cube } from '@/entities/cube/model/types'
+import { normalizeOldData, preventDuplicateDeleteStatus } from '@/features/manage-backup/lib/importDataFromFile'
 
 export const useBackup = (url: string | undefined) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -23,7 +24,7 @@ export const useBackup = (url: string | undefined) => {
         const decompressed = decompressSync(compressed)
         const data = strFromU8(decompressed)
 
-        setBackup(JSON.parse(data) as Cube[])
+        setBackup(preventDuplicateDeleteStatus(normalizeOldData(JSON.parse(data))))
       } catch (error) {
         console.error('Error fetching backup:', error)
         setBackup(null)
