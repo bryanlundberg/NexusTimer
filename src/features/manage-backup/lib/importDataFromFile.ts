@@ -335,6 +335,10 @@ export const preventDuplicateDeleteStatus = (cubes: Cube[]): Cube[] => {
       const existing = solveMap.get(solve.id)
       if (!existing || (solve.updatedAt ?? 0) > (existing.updatedAt ?? 0)) {
         solveMap.set(solve.id, { ...solve, _wasInSession: fromSession })
+      } else if (existing && (solve.updatedAt ?? 0) === (existing.updatedAt ?? 0)) {
+        if (fromSession && !existing._wasInSession) {
+          solveMap.set(solve.id, { ...solve, _wasInSession: fromSession })
+        }
       }
     }
 
@@ -348,27 +352,9 @@ export const preventDuplicateDeleteStatus = (cubes: Cube[]): Cube[] => {
       const { _wasInSession, ...solve } = solveWithMeta
 
       if (_wasInSession) {
-        if (!solve.isDeleted) {
-          newSessionSolves.push(solve)
-          newAllSolves.push({ ...solve, isDeleted: true })
-        }
-
-        if (solve.isDeleted) {
-          newSessionSolves.push({ ...solve, isDeleted: true })
-          newAllSolves.push(solve)
-        }
-      }
-
-      if (!_wasInSession) {
-        if (!solve.isDeleted) {
-          newAllSolves.push(solve)
-          newSessionSolves.push({ ...solve, isDeleted: true })
-        }
-
-        if (solve.isDeleted) {
-          newAllSolves.push(solve)
-          newSessionSolves.push({ ...solve, isDeleted: true })
-        }
+        newSessionSolves.push(solve)
+      } else {
+        newAllSolves.push(solve)
       }
     })
 
