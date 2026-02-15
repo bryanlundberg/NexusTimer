@@ -1,7 +1,7 @@
 'use client'
 import * as React from 'react'
 import FadeIn from '@/shared/ui/fade-in/fade-in'
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { UserDocument } from '@/entities/user/model/user'
 import { ScrollArea } from '@/components/ui/scroll-area'

@@ -1,12 +1,12 @@
 import { UserDocument } from '@/entities/user/model/user'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Calendar, ExternalLink, GitCompareIcon } from 'lucide-react'
+import { ExternalLink, GitCompareIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import * as React from 'react'
 import { useRouter } from 'next/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 
 export default function UserCard({ user }: { user: UserDocument }) {
   const t = useTranslations('Index.PeoplePage.user-card')
@@ -15,39 +15,43 @@ export default function UserCard({ user }: { user: UserDocument }) {
   const removeUser = useCompareUsersStore((state) => state.removeUser)
   const users = useCompareUsersStore((state) => state.users)
   const isAdded = users.find((u) => u._id === user._id)
-  const locale = useLocale()
+
   return (
-    <Card className="transition-all duration-200 animate-fadeIn h-auto bg-card/20">
-      <CardHeader className="pb-2 flex flex-col items-center">
-        <Avatar className="size-24 mb-2 ring-2 ring-primary/30">
+    <Card className="group transition-all duration-300 animate-fadeIn h-full bg-card/20 hover:bg-card/40 border-muted/50 hover:border-primary/30 backdrop-blur-md flex flex-col @xs/people:flex-row items-center p-4 gap-4">
+      <div className="shrink-0">
+        <Avatar className="size-20 ring-4 ring-background shadow-xl group-hover:ring-primary/20 transition-all duration-300">
           <AvatarImage className={'object-cover'} src={user.image} alt={user.name} />
-          <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
+          <AvatarFallback className="bg-primary/10 text-primary font-bold text-xl">
+            {user.name.substring(0, 2).toUpperCase()}
+          </AvatarFallback>
         </Avatar>
-        <h2 className="text-xl font-semibold text-center">{user.name}</h2>
-      </CardHeader>
-      <CardContent className="pb-2 pt-0 flex flex-col items-center">
-        <div className="flex items-center gap-1 text-muted-foreground text-sm mb-2">
-          <Calendar className="size-3.5" />
-          <span>
-            {t('joined', {
-              date: new Intl.DateTimeFormat(locale, { dateStyle: 'medium' }).format(new Date(user.createdAt))
-            })}
-          </span>
-        </div>
-        <div className="flex items-center gap-2 mt-4">
+      </div>
+
+      <div className="flex flex-col items-center @xs/people:items-start flex-1 min-w-0 h-full">
+        <h2 className="text-xl font-bold text-center @xs/people:text-left line-clamp-1 transition-colors w-full">
+          {user.name}
+        </h2>
+
+        <div className="flex items-center gap-2 mt-auto w-full">
           <Button
             onClick={() => (isAdded ? removeUser(user._id) : addUser(user))}
-            variant={isAdded ? 'secondary' : 'ghost'}
+            variant={isAdded ? 'secondary' : 'outline'}
             size="sm"
-            className="gap-1 text-xs"
+            className="flex-1 gap-2 text-xs font-semibold h-9"
           >
-            <GitCompareIcon /> {t('compare')}
+            <GitCompareIcon className="size-4" />
+            {t('compare')}
           </Button>
-          <Button size="sm" className="gap-1 text-xs" onClick={() => router.push(`/people/${user._id}`)}>
-            {t('view-profile')} <ExternalLink className="size-3.5" />
+          <Button
+            size="sm"
+            className="flex-1 gap-2 text-xs font-semibold h-9 shadow-lg shadow-primary/10"
+            onClick={() => router.push(`/people/${user._id}`)}
+          >
+            {t('view-profile')}
+            <ExternalLink className="size-4" />
           </Button>
         </div>
-      </CardContent>
+      </div>
     </Card>
   )
 }
