@@ -3,206 +3,139 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { InformationCircleIcon } from '@heroicons/react/24/outline'
 import { useTranslations } from 'next-intl'
 import formatTime from '@/shared/lib/formatTime'
-import { DeepStatistics } from '@/shared/types/statistics'
+import { DeepStatistics, StatisticScope } from '@/shared/types/statistics'
+import { Loader2 } from 'lucide-react'
+import React from 'react'
 
 interface StatisticsChartProps {
   statistics: DeepStatistics
+  loadingProps: Record<string, boolean>
 }
 
-export default function StatisticsChart({ statistics }: StatisticsChartProps) {
+export default function StatisticsChart({ statistics, loadingProps }: StatisticsChartProps) {
   const t = useTranslations('Index')
+
+  const columns = [
+    { key: 'global', label: t('StatsPage.global'), tooltip: t('StatsPage.global-tooltip') },
+    { key: 'sessions', label: t('StatsPage.sessions'), tooltip: t('StatsPage.sessions-tooltip') },
+    { key: 'cube-all', label: t('StatsPage.cube-all'), tooltip: t('StatsPage.cube-all-tooltip') },
+    { key: 'cube-session', label: t('StatsPage.cube-session'), tooltip: t('StatsPage.cube-session-tooltip') }
+  ] as const
+
+  const rowGroups = [
+    {
+      label: t('HomePage.deviation'),
+      loadingKey: 'deviation',
+      getValue: (scope: StatisticScope) =>
+        statistics.deviation[scope] === 0 ? '--' : formatTime(statistics.deviation[scope])
+    },
+    {
+      label: 'Ao5',
+      loadingKey: 'stats',
+      getValue: (scope: StatisticScope) =>
+        statistics.stats[scope].ao5 === 0 ? '--' : formatTime(statistics.stats[scope].ao5)
+    },
+    {
+      label: 'Ao12',
+      loadingKey: 'stats',
+      getValue: (scope: StatisticScope) =>
+        statistics.stats[scope].ao12 === 0 ? '--' : formatTime(statistics.stats[scope].ao12)
+    },
+    {
+      label: 'Ao50',
+      loadingKey: 'stats',
+      getValue: (scope: StatisticScope) =>
+        statistics.stats[scope].ao50 === 0 ? '--' : formatTime(statistics.stats[scope].ao50)
+    },
+    {
+      label: 'Ao100',
+      loadingKey: 'stats',
+      getValue: (scope: StatisticScope) =>
+        statistics.stats[scope].ao100 === 0 ? '--' : formatTime(statistics.stats[scope].ao100)
+    },
+    {
+      label: 'Ao1000',
+      loadingKey: 'stats',
+      getValue: (scope: StatisticScope) =>
+        statistics.stats[scope].ao1000 === 0 ? '--' : formatTime(statistics.stats[scope].ao1000)
+    },
+    {
+      label: t('StatsPage.best-time'),
+      loadingKey: 'best',
+      getValue: (scope: StatisticScope) => (statistics.best[scope] > 0 ? formatTime(statistics.best[scope]) : '--')
+    },
+    {
+      label: t('StatsPage.average'),
+      loadingKey: 'average',
+      getValue: (scope: StatisticScope) =>
+        statistics.average[scope] === 0 ? '--' : formatTime(statistics.average[scope])
+    },
+    {
+      label: t('StatsPage.time-spent'),
+      loadingKey: 'timeSpent',
+      getValue: (scope: StatisticScope) => statistics.timeSpent[scope]
+    },
+    {
+      label: t('StatsPage.success-rate'),
+      loadingKey: 'successRate',
+      getValue: (scope: StatisticScope) =>
+        statistics.successRate[scope] === '' ? '--' : statistics.successRate[scope] + '%'
+    },
+    {
+      label: t('StatsPage.counter'),
+      loadingKey: 'counter',
+      getValue: (scope: StatisticScope) => (statistics.counter[scope] === 0 ? '--' : statistics.counter[scope])
+    }
+  ]
+
+  const scopes: StatisticScope[] = ['global', 'session', 'cubeAll', 'cubeSession']
+
+  const renderCell = (isLoading: boolean, value: string | number) => {
+    if (isLoading) {
+      return (
+        <TableCell>
+          <Loader2 className="size-4 animate-spin text-muted-foreground/50" />
+        </TableCell>
+      )
+    }
+    return <TableCell>{value}</TableCell>
+  }
 
   return (
     <Table className="rounded-md backdrop-blur-lg mb-2">
       <TableHeader>
         <TableRow>
           <TableHead></TableHead>
-          <TableHead>
-            <TooltipProvider delayDuration={200}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className={'inline-flex items-center gap-2'}>
-                    {t('StatsPage.global')}
-                    <InformationCircleIcon className={'size-5'} />
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent side={'bottom'} className={'max-w-xs'}>
-                  <p>{t('StatsPage.global-tooltip')}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </TableHead>
-          <TableHead>
-            <TooltipProvider delayDuration={200}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className={'inline-flex items-center gap-2'}>
-                    {t('StatsPage.sessions')}
-                    <InformationCircleIcon className={'size-5'} />
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent side={'bottom'} className={'max-w-xs'}>
-                  <p>{t('StatsPage.sessions-tooltip')}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </TableHead>
-          <TableHead>
-            <TooltipProvider delayDuration={200}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className={'inline-flex items-center gap-2'}>
-                    {t('StatsPage.cube-all')}
-                    <InformationCircleIcon className={'size-5'} />
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent side={'bottom'} className={'max-w-xs'}>
-                  <p>{t('StatsPage.cube-all-tooltip')}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </TableHead>
-          <TableHead>
-            <TooltipProvider delayDuration={200}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div className={'inline-flex items-center gap-2'}>
-                    {t('StatsPage.cube-session')}
-                    <InformationCircleIcon className={'size-5'} />
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent side={'bottom'} className={'max-w-xs'}>
-                  <p>{t('StatsPage.cube-session-tooltip')}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </TableHead>
+          {columns.map((column) => (
+            <TableHead key={column.key}>
+              <TooltipProvider delayDuration={200}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div className={'inline-flex items-center gap-2'}>
+                      {column.label}
+                      <InformationCircleIcon className={'size-5'} />
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent side={'bottom'} className={'max-w-xs'}>
+                    <p>{column.tooltip}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </TableHead>
+          ))}
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell>{t('HomePage.deviation')}</TableCell>
-          <TableCell>{statistics.deviation.global === 0 ? '--' : formatTime(statistics.deviation.global)}</TableCell>
-          <TableCell>{statistics.deviation.session === 0 ? '--' : formatTime(statistics.deviation.session)}</TableCell>
-          <TableCell>{statistics.deviation.cubeAll === 0 ? '--' : formatTime(statistics.deviation.cubeAll)}</TableCell>
-          <TableCell>
-            {statistics.deviation.cubeSession === 0 ? '--' : formatTime(statistics.deviation.cubeSession)}
-          </TableCell>
-        </TableRow>
-
-        <TableRow>
-          <TableCell>Ao5</TableCell>
-          <TableCell>{statistics.stats.global.ao5 === 0 ? '--' : formatTime(statistics.stats.global.ao5)}</TableCell>
-          <TableCell>{statistics.stats.session.ao5 === 0 ? '--' : formatTime(statistics.stats.session.ao5)}</TableCell>
-          <TableCell>{statistics.stats.cubeAll.ao5 === 0 ? '--' : formatTime(statistics.stats.cubeAll.ao5)}</TableCell>
-          <TableCell>
-            {statistics.stats.cubeSession.ao5 === 0 ? '--' : formatTime(statistics.stats.cubeSession.ao5)}
-          </TableCell>
-        </TableRow>
-
-        <TableRow>
-          <TableCell>Ao12</TableCell>
-          <TableCell>{statistics.stats.global.ao12 === 0 ? '--' : formatTime(statistics.stats.global.ao12)}</TableCell>
-          <TableCell>
-            {statistics.stats.session.ao12 === 0 ? '--' : formatTime(statistics.stats.session.ao12)}
-          </TableCell>
-          <TableCell>
-            {statistics.stats.cubeAll.ao12 === 0 ? '--' : formatTime(statistics.stats.cubeAll.ao12)}
-          </TableCell>
-          <TableCell>
-            {statistics.stats.cubeSession.ao12 === 0 ? '--' : formatTime(statistics.stats.cubeSession.ao12)}
-          </TableCell>
-        </TableRow>
-
-        <TableRow>
-          <TableCell>Ao50</TableCell>
-          <TableCell>{statistics.stats.global.ao50 === 0 ? '--' : formatTime(statistics.stats.global.ao50)}</TableCell>
-          <TableCell>
-            {statistics.stats.session.ao50 === 0 ? '--' : formatTime(statistics.stats.session.ao50)}
-          </TableCell>
-          <TableCell>
-            {statistics.stats.cubeAll.ao50 === 0 ? '--' : formatTime(statistics.stats.cubeAll.ao50)}
-          </TableCell>
-          <TableCell>
-            {statistics.stats.cubeSession.ao50 === 0 ? '--' : formatTime(statistics.stats.cubeSession.ao50)}
-          </TableCell>
-        </TableRow>
-
-        <TableRow>
-          <TableCell>Ao100</TableCell>
-          <TableCell>
-            {statistics.stats.global.ao100 === 0 ? '--' : formatTime(statistics.stats.global.ao100)}
-          </TableCell>
-          <TableCell>
-            {statistics.stats.session.ao100 === 0 ? '--' : formatTime(statistics.stats.session.ao100)}
-          </TableCell>
-          <TableCell>
-            {statistics.stats.cubeAll.ao100 === 0 ? '--' : formatTime(statistics.stats.cubeAll.ao100)}
-          </TableCell>
-          <TableCell>
-            {statistics.stats.cubeSession.ao100 === 0 ? '--' : formatTime(statistics.stats.cubeSession.ao100)}
-          </TableCell>
-        </TableRow>
-
-        <TableRow>
-          <TableCell>Ao1000</TableCell>
-          <TableCell>
-            {statistics.stats.global.ao1000 === 0 ? '--' : formatTime(statistics.stats.global.ao1000)}
-          </TableCell>
-          <TableCell>
-            {statistics.stats.session.ao1000 === 0 ? '--' : formatTime(statistics.stats.session.ao1000)}
-          </TableCell>
-          <TableCell>
-            {statistics.stats.cubeAll.ao1000 === 0 ? '--' : formatTime(statistics.stats.cubeAll.ao1000)}
-          </TableCell>
-          <TableCell>
-            {statistics.stats.cubeSession.ao1000 === 0 ? '--' : formatTime(statistics.stats.cubeSession.ao1000)}
-          </TableCell>
-        </TableRow>
-
-        <TableRow>
-          <TableCell>{t('StatsPage.best-time')}</TableCell>
-          <TableCell>{statistics.best.global > 0 ? formatTime(statistics.best.global) : '--'}</TableCell>
-          <TableCell>{statistics.best.session > 0 ? formatTime(statistics.best.session) : '--'}</TableCell>
-          <TableCell>{statistics.best.cubeAll > 0 ? formatTime(statistics.best.cubeAll) : '--'}</TableCell>
-          <TableCell>{statistics.best.cubeSession > 0 ? formatTime(statistics.best.cubeSession) : '--'}</TableCell>
-        </TableRow>
-
-        <TableRow>
-          <TableCell>{t('StatsPage.average')}</TableCell>
-          <TableCell>{statistics.average.global === 0 ? '--' : formatTime(statistics.average.global)}</TableCell>
-          <TableCell>{statistics.average.session === 0 ? '--' : formatTime(statistics.average.session)}</TableCell>
-          <TableCell>{statistics.average.cubeAll === 0 ? '--' : formatTime(statistics.average.cubeAll)}</TableCell>
-          <TableCell>
-            {statistics.average.cubeSession === 0 ? '--' : formatTime(statistics.average.cubeSession)}
-          </TableCell>
-        </TableRow>
-
-        <TableRow>
-          <TableCell>{t('StatsPage.time-spent')}</TableCell>
-          <TableCell>{statistics.timeSpent.global}</TableCell>
-          <TableCell>{statistics.timeSpent.session}</TableCell>
-          <TableCell>{statistics.timeSpent.cubeAll}</TableCell>
-          <TableCell>{statistics.timeSpent.cubeSession}</TableCell>
-        </TableRow>
-
-        <TableRow>
-          <TableCell>{t('StatsPage.success-rate')}</TableCell>
-          <TableCell>{statistics.successRate.global === '' ? '--' : statistics.successRate.global + '%'}</TableCell>
-          <TableCell>{statistics.successRate.session === '' ? '--' : statistics.successRate.session + '%'}</TableCell>
-          <TableCell>{statistics.successRate.cubeAll === '' ? '--' : statistics.successRate.cubeAll + '%'}</TableCell>
-          <TableCell>
-            {statistics.successRate.cubeSession === '' ? '--' : statistics.successRate.cubeSession + '%'}
-          </TableCell>
-        </TableRow>
-
-        <TableRow>
-          <TableCell>{t('StatsPage.counter')}</TableCell>
-          <TableCell>{statistics.counter.global === 0 ? '--' : statistics.counter.global}</TableCell>
-          <TableCell>{statistics.counter.session === 0 ? '--' : statistics.counter.session}</TableCell>
-          <TableCell>{statistics.counter.cubeAll === 0 ? '--' : statistics.counter.cubeAll}</TableCell>
-          <TableCell>{statistics.counter.cubeSession === 0 ? '--' : statistics.counter.cubeSession}</TableCell>
-        </TableRow>
+        {rowGroups.map((row) => (
+          <TableRow key={row.label}>
+            <TableCell>{row.label}</TableCell>
+            {scopes.map((scope) => (
+              <React.Fragment key={scope}>
+                {renderCell(loadingProps[row.loadingKey], row.getValue(scope))}
+              </React.Fragment>
+            ))}
+          </TableRow>
+        ))}
       </TableBody>
     </Table>
   )

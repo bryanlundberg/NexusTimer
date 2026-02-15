@@ -19,7 +19,16 @@ export default function useDeepStatistics() {
   const [dateRange] = useQueryState(STATES.STATISTICS_PAGE.DATE_RANGE.KEY, {
     defaultValue: STATES.STATISTICS_PAGE.DATE_RANGE.DEFAULT_VALUE as DateRange
   })
-  const [isLoading, setIsLoading] = useState(true)
+  const [loadingProps, setLoadingProps] = useState<Record<string, boolean>>({
+    average: true,
+    timeSpent: true,
+    counter: true,
+    stats: true,
+    deviation: true,
+    successRate: true,
+    best: true,
+    data: true
+  })
   const [worker, setWorker] = useState<Worker | null>(null)
   const [stats, setStats] = useState({
     average: defaultChartValuesN,
@@ -31,6 +40,29 @@ export default function useDeepStatistics() {
     best: defaultChartValuesN,
     data: defaultChartValuesA
   })
+
+  const resetStats = () => {
+    setStats({
+      average: defaultChartValuesN,
+      timeSpent: defaultChartValuesS,
+      counter: defaultChartValuesN,
+      stats: defaultChartAoValues,
+      deviation: defaultChartValuesN,
+      successRate: defaultChartValuesS,
+      best: defaultChartValuesN,
+      data: defaultChartValuesA
+    })
+    setLoadingProps({
+      average: true,
+      timeSpent: true,
+      counter: true,
+      stats: true,
+      deviation: true,
+      successRate: true,
+      best: true,
+      data: true
+    })
+  }
 
   const startTimestamp = useMemo(() => {
     switch (dateRange as DateRange) {
@@ -94,8 +126,28 @@ export default function useDeepStatistics() {
     setWorker(w)
 
     w.onmessage = (e: MessageEvent) => {
-      setStats(e.data.result)
-      setIsLoading(false)
+      if (e.data.partial) {
+        setStats((prev) => ({
+          ...prev,
+          [e.data.key]: e.data.value
+        }))
+        setLoadingProps((prev) => ({
+          ...prev,
+          [e.data.key]: false
+        }))
+      }
+      if (e.data.done) {
+        setLoadingProps({
+          average: false,
+          timeSpent: false,
+          counter: false,
+          stats: false,
+          deviation: false,
+          successRate: false,
+          best: false,
+          data: false
+        })
+      }
     }
 
     w.onerror = (err) => {
@@ -118,10 +170,9 @@ export default function useDeepStatistics() {
   useEffect(() => {
     if (!worker) return
     if (!filteredCubes || !filteredSelectedCube) {
-      setIsLoading(false)
       return
     }
-    setIsLoading(true)
+    resetStats()
     worker.postMessage({
       command: 'start',
       data: {
@@ -133,6 +184,6 @@ export default function useDeepStatistics() {
 
   return {
     stats,
-    isLoading
+    loadingProps
   }
 }

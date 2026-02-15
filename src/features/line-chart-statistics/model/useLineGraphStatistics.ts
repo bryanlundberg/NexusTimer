@@ -6,17 +6,18 @@ import { convert } from 'colorizr'
 import {
   ChartOptions,
   createChart,
+  createSeriesMarkers,
   CreatePriceLineOptions,
   createTextWatermark,
   DeepPartial,
   LineSeries
 } from 'lightweight-charts'
 import formatTime from '@/shared/lib/formatTime'
-import getBestTime from '@/shared/lib/statistics/getBestTime'
 import getWorstTime from '@/shared/lib/statistics/getWorstTime'
 import calculateCurrentAo from '@/shared/lib/statistics/calculateCurrentAo'
+import getMean from '@/shared/lib/statistics/getMean'
+import getDeviation from '@/shared/lib/statistics/getDeviation'
 import { Solve } from '@/entities/solve/model/types'
-import { TimeObject } from '@/features/line-chart-statistics/model/types'
 import moment from 'moment'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
@@ -30,12 +31,82 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
   const { resolvedTheme } = useTheme()
   const [showBestTime, setShowBestTime] = useState(true)
   const [showWorstTime, setShowWorstTime] = useState(true)
-  const [showAverageTime, setShowAverageTime] = useState(true)
   const [showAo5, setShowAo5] = useState(true)
   const [showAo12, setShowAo12] = useState(true)
   const [showStandardDeviation, setShowStandardDeviation] = useState(true)
   const cubes = useTimerStore((s) => s.cubes)
   const overlay = useOverlayStore()
+
+  const {
+    structuredData,
+    solveMap,
+    pbAtStepMap,
+    ao5Map,
+    ao12Map,
+    meanTime,
+    stdDev,
+    worstTime,
+    ao5Data,
+    ao12Data,
+    cubeNameById
+  } = React.useMemo(() => {
+    const reversedDataSet = [...dataSet].reverse()
+    const structuredData: any[] = []
+    const solveMap = new Map<number, Solve>()
+    const pbAtStepMap = new Map<number, number>()
+    const ao5Map = new Map<number, number>()
+    const ao12Map = new Map<number, number>()
+    const cubeNameById = new Map<string, string>()
+
+    if (cubes) {
+      for (const c of cubes) cubeNameById.set(c.id, c.name)
+    }
+
+    let runningBest = Infinity
+    reversedDataSet.forEach((i: Solve, index: number) => {
+      const timeIndex = index + 1
+      structuredData.push({
+        time: timeIndex,
+        value: i.time
+      })
+      solveMap.set(timeIndex, i)
+
+      if (i.time <= runningBest) {
+        runningBest = i.time
+      }
+      pbAtStepMap.set(timeIndex, runningBest)
+
+      // Precalculate Ao5 and Ao12
+      const window = reversedDataSet.slice(0, index + 1).reverse()
+      const ao5Value = calculateCurrentAo(window, 5)
+      if (ao5Value > 0) ao5Map.set(timeIndex, ao5Value)
+
+      const ao12Value = calculateCurrentAo(window, 12)
+      if (ao12Value > 0) ao12Map.set(timeIndex, ao12Value)
+    })
+
+    const mean = getMean(dataSet)
+    const validSolves = dataSet.filter((s) => !s.dnf)
+    const sd = getDeviation(validSolves)
+    const worst = getWorstTime(dataSet)
+
+    const ao5Data = Array.from(ao5Map.entries()).map(([time, value]) => ({ time, value }))
+    const ao12Data = Array.from(ao12Map.entries()).map(([time, value]) => ({ time, value }))
+
+    return {
+      structuredData,
+      solveMap,
+      pbAtStepMap,
+      ao5Map,
+      ao12Map,
+      meanTime: mean,
+      stdDev: sd,
+      worstTime: worst,
+      ao5Data,
+      ao12Data,
+      cubeNameById
+    }
+  }, [dataSet, cubes])
 
   useEffect(() => {
     const backgroundColor = convert(getComputedStyle(document.documentElement).getPropertyValue('--background'), 'rgb')
@@ -107,22 +178,6 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     if (container && tooltip) {
       container.innerHTML = ''
       const chart = createChart(container, chartOptions)
-      const structuredData: any[] = []
-      const solveMap = new Map<number, Solve>()
-      const cubeNameById = new Map<string, string>()
-      if (cubes) {
-        for (const c of cubes) cubeNameById.set(c.id, c.name)
-      }
-
-      const reversedDataSet = [...dataSet].reverse()
-      reversedDataSet.forEach((i: Solve, index: number) => {
-        const timeIndex = index + 1
-        structuredData.push({
-          time: timeIndex,
-          value: i.time
-        })
-        solveMap.set(timeIndex, i)
-      })
 
       const firstPane = chart.panes()[0]
 
@@ -142,42 +197,72 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         lastValueVisible: false,
         priceLineVisible: false,
         lineWidth: 1.5 as any,
-        color: primaryColor
+        color: primaryColor,
+        priceScaleId: 'right'
       })
 
-      // Utility functions for statistics
-      const getMeanTime = (data: TimeObject[]): number => {
-        return data.length
-          ? data.reduce((total: number, timeObject: TimeObject) => total + timeObject.value, 0) / data.length
-          : 0
-      }
-
-      const getStandardDeviation = (data: TimeObject[]): number => {
-        if (data.length <= 1) return 0
-
-        const mean = getMeanTime(data)
-        const squaredDifferences = data.map((item) => Math.pow(item.value - mean, 2))
-
-        const variance = squaredDifferences.reduce((sum, squaredDiff) => sum + squaredDiff, 0) / data.length
-
-        return Math.sqrt(variance)
-      }
+      lineSeries.setData(structuredData)
 
       if (showBestTime) {
-        const bestTimeLine: CreatePriceLineOptions = {
-          price: getBestTime({ solves: dataSet }),
-          color: '#059669', // Green
-          lineWidth: 1,
-          lineStyle: 0, // Solid
-          axisLabelVisible: true,
-          title: `${t('best-time')}`
+        const pbData: any[] = []
+        const pbMarkers: any[] = []
+        let currentBest = Infinity
+
+        structuredData.forEach((item) => {
+          if (item.value <= currentBest) {
+            // It's a PB (or tie)
+            currentBest = item.value
+            pbData.push({
+              time: item.time,
+              value: item.value
+            })
+            // Add marker for the PB solve
+            pbMarkers.push({
+              time: item.time,
+              position: 'inBar' as any,
+              color: '#FBBF24',
+              shape: 'circle' as any,
+              size: 1
+            })
+          } else if (pbData.length > 0) {
+            // Not a PB, but we want the line to continue horizontally
+            pbData.push({
+              time: item.time,
+              value: currentBest
+            })
+          }
+        })
+
+        if (pbData.length > 0) {
+          const pbSeries = chart.addSeries(LineSeries, {
+            lastValueVisible: false,
+            priceLineVisible: false,
+            lineWidth: 2,
+            color: '#FBBF24', // Yellow
+            lineStyle: 2, // Dashed
+            priceScaleId: 'right'
+          })
+
+          pbSeries.setData(pbData)
+          createSeriesMarkers(pbSeries, pbMarkers)
+
+          // Add a fixed price line for the current PB (the last value in pbData is the overall best)
+          const overallBest = pbData[pbData.length - 1].value
+          const pbPriceLine: CreatePriceLineOptions = {
+            price: overallBest,
+            color: '#FBBF24', // Yellow
+            lineWidth: 1,
+            lineStyle: 2, // Dashed
+            axisLabelVisible: true,
+            title: 'PB'
+          }
+          lineSeries.createPriceLine(pbPriceLine)
         }
-        lineSeries.createPriceLine(bestTimeLine)
       }
 
       if (showWorstTime) {
         const worstTimeLine: CreatePriceLineOptions = {
-          price: getWorstTime(dataSet),
+          price: worstTime,
           color: '#DC2626', // Red
           lineWidth: 1,
           lineStyle: 0, // Solid
@@ -187,22 +272,7 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         lineSeries.createPriceLine(worstTimeLine)
       }
 
-      if (showAverageTime) {
-        const meanTimeLine: CreatePriceLineOptions = {
-          price: getMeanTime(structuredData),
-          color: '#FBBF24', // Yellow
-          lineWidth: 2,
-          lineStyle: 2, // Dashed
-          axisLabelVisible: true,
-          title: `${t('average')}`
-        }
-        lineSeries.createPriceLine(meanTimeLine)
-      }
-
       if (showStandardDeviation) {
-        const stdDev = getStandardDeviation(structuredData)
-        const meanTime = getMeanTime(structuredData)
-
         // Upper bound (mean + stdDev)
         const upperBoundLine: CreatePriceLineOptions = {
           price: meanTime + stdDev,
@@ -226,48 +296,24 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         lineSeries.createPriceLine(lowerBoundLine)
       }
 
-      lineSeries.setData(structuredData)
-
       if (showAo5) {
-        const ao5Data = reversedDataSet
-          .map((_, index) => {
-            const window = reversedDataSet.slice(0, index + 1).reverse()
-            const ao5Value = calculateCurrentAo(window, 5)
-            return {
-              time: (index + 1) as any,
-              value: ao5Value > 0 ? ao5Value : undefined
-            }
-          })
-          .filter((item) => item.value !== undefined)
-
         const ao5Series = chart.addSeries(LineSeries, {
           lastValueVisible: false,
           priceLineVisible: false,
           lineWidth: 1,
           color: '#3B82F6' // Blue
         })
-        ao5Series.setData(ao5Data as any[])
+        ao5Series.setData(ao5Data as any)
       }
 
       if (showAo12) {
-        const ao12Data = reversedDataSet
-          .map((_, index) => {
-            const window = reversedDataSet.slice(0, index + 1).reverse()
-            const ao12Value = calculateCurrentAo(window, 12)
-            return {
-              time: (index + 1) as any,
-              value: ao12Value > 0 ? ao12Value : undefined
-            }
-          })
-          .filter((item) => item.value !== undefined)
-
         const ao12Series = chart.addSeries(LineSeries, {
           lastValueVisible: false,
           priceLineVisible: false,
           lineWidth: 1,
           color: '#10B981' // Emerald/Greenish
         })
-        ao12Series.setData(ao12Data as any[])
+        ao12Series.setData(ao12Data as any)
       }
 
       chart.autoSizeActive()
@@ -297,25 +343,25 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
 
         const cubeName = cubeNameById.get(solve.cubeId) || 'Unknown'
 
+        const currentPb = pbAtStepMap.get(param.time as number)
         let tooltipContent = `
           <div class="mt-1 text-xs">${cubeName}</div>
           <div class="font-bold text-base">${formatTime(solve.time)}</div>
           <div class="text-xs opacity-80">Solve #${param.time}</div>
           <div class="mt-1 text-xs">${moment(solve.endTime).format('LL')}</div>
+          ${currentPb !== undefined ? `<div class="mt-1 text-xs text-yellow-500">PB: ${formatTime(currentPb)}</div>` : ''}
         `
 
         if (showAo5) {
-          const window = reversedDataSet.slice(0, param.time as number).reverse()
-          const ao5Value = calculateCurrentAo(window, 5)
-          if (ao5Value > 0) {
+          const ao5Value = ao5Map.get(param.time as number)
+          if (ao5Value && ao5Value > 0) {
             tooltipContent += `<div class="mt-1 text-xs text-blue-400">Ao5: ${formatTime(ao5Value)}</div>`
           }
         }
 
         if (showAo12) {
-          const window = reversedDataSet.slice(0, param.time as number).reverse()
-          const ao12Value = calculateCurrentAo(window, 12)
-          if (ao12Value > 0) {
+          const ao12Value = ao12Map.get(param.time as number)
+          if (ao12Value && ao12Value > 0) {
             tooltipContent += `<div class="mt-1 text-xs text-emerald-400">Ao12: ${formatTime(ao12Value)}</div>`
           }
         }
@@ -360,13 +406,19 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       })
 
       // Make chart responsive with screen resize
-      new ResizeObserver((entries) => {
+      const resizeObserver = new ResizeObserver((entries) => {
         if (entries.length === 0 || entries[0].target !== container) {
           return
         }
         const newRect = entries[0].contentRect
         chart.applyOptions({ height: newRect.height, width: newRect.width })
-      }).observe(container)
+      })
+      resizeObserver.observe(container)
+
+      return () => {
+        resizeObserver.disconnect()
+        chart.remove()
+      }
     }
   }, [
     dataSet,
@@ -374,11 +426,21 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     t,
     showBestTime,
     showWorstTime,
-    showAverageTime,
     showStandardDeviation,
     showAo5,
     showAo12,
-    resolvedTheme
+    resolvedTheme,
+    structuredData,
+    solveMap,
+    pbAtStepMap,
+    ao5Map,
+    ao12Map,
+    meanTime,
+    stdDev,
+    worstTime,
+    ao5Data,
+    ao12Data,
+    cubeNameById
   ])
 
   return {
@@ -388,8 +450,6 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     setShowBestTime,
     showWorstTime,
     setShowWorstTime,
-    showAverageTime,
-    setShowAverageTime,
     showAo5,
     setShowAo5,
     showAo12,
