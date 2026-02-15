@@ -4,7 +4,7 @@ import { cubeCollection } from '@/shared/const/cube-collection'
 import moment from 'moment'
 import { Cube } from '@/entities/cube/model/types'
 import { Separator } from '@/components/ui/separator'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import formatTime from '@/shared/lib/formatTime'
 import { Badge } from '@/components/ui/badge'
 import { Trophy, History, CheckCircle2, AlertCircle, XCircle } from 'lucide-react'
@@ -15,6 +15,7 @@ interface PeopleCubeCardProps {
 }
 
 export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
+  const locale = useLocale()
   const t = useTranslations('Index.CubesPage')
   const allSolves = [...(cube.solves.all || []), ...(cube.solves.session || [])].filter((s) => !s.isDeleted)
 
@@ -67,7 +68,7 @@ export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
           <div className={'flex flex-col'}>
             <div className={'text-lg font-bold tracking-tight'}>{cube.name}</div>
             <div className={'text-[10px] uppercase tracking-wider text-muted-foreground font-medium'}>
-              {t('created')}: {moment(cube.createdAt).format('DD MMM YYYY')}
+              {t('created')}: {moment(cube.createdAt).locale(locale).format('LL')}
             </div>
           </div>
         </div>

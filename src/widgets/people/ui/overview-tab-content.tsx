@@ -7,8 +7,10 @@ import SolveCard from '@/widgets/people/ui/solve-card'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { cubeCollection } from '@/shared/const/cube-collection'
+import { useLocale } from 'next-intl'
 
 export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
+  const locale = useLocale()
   const solvesByCategory = useMemo(() => {
     return _.mapValues(
       _.groupBy(
@@ -35,7 +37,7 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
             key={solves[0].id}
             event={category as CubeCategory}
             time={formatTime(solves[0].time)}
-            date={moment(solves[0].endTime).format('DD-MM-YYYY')}
+            date={moment(solves[0].endTime).locale(locale).format('LL')}
             bgImage={cubeCollection.find((c) => c.name === category)?.src || undefined}
             solves={solves}
           />

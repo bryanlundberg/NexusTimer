@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { CalendarDaysIcon, Hash, Timer } from 'lucide-react'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import { CubeCategory } from '@/shared/const/cube-categories'
+import { useLocale } from 'next-intl'
 
 interface LastActivitySolveCardProps {
   solve: {
@@ -25,7 +26,7 @@ interface LastActivitySolveCardProps {
 
 export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardProps) {
   const cubeInfo = cubeCollection.find((item) => item.name === solve.category)
-
+  const locale = useLocale()
   return (
     <Card className="group relative overflow-hidden flex flex-col p-4 transition-all duration-300 border bg-card/50 backdrop-blur-sm">
       {/* Background Accent */}
@@ -49,7 +50,7 @@ export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardPro
             <div className="text-sm font-bold tracking-tight line-clamp-1">{solve.cubeName}</div>
             <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
               <CalendarDaysIcon className="size-2.5" />
-              {moment(solve.startTime).format('DD MMM YYYY, HH:mm')}
+              {moment(solve.startTime).locale(locale).format('LLL')}
             </div>
           </div>
         </div>
