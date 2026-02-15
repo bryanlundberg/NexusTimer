@@ -1,10 +1,8 @@
-import FadeIn from '@/shared/ui/fade-in/fade-in'
 import { Skeleton } from '@/components/ui/skeleton'
 
 export default function PeopleSkeleton() {
   return (
     <div className="flex flex-col grow">
-      {/* Header Skeleton (Imitando CoreHeader) */}
       <div className="w-full border-b p-2 flex justify-between items-center mb-2 bg-background/60 backdrop-blur-md sticky top-0 z-50">
         <div className="flex items-center gap-4">
           <Skeleton className="h-8 w-8 rounded-md" /> {/* SidebarTrigger */}
