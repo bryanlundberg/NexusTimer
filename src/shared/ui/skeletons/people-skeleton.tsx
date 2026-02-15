@@ -52,32 +52,32 @@ export default function PeopleSkeleton() {
           </div>
 
           {/* PeopleContent Skeleton */}
-          <div className="flex flex-col grow">
+          <div className="flex flex-col grow @container/tab">
             <div className="flex items-center gap-2 mb-4 h-10 border-b">
               <Skeleton className="w-20 h-8" />
               <Skeleton className="w-20 h-8" />
               <Skeleton className="w-24 h-8" />
             </div>
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 mt-2">
+            <div className="grid grid-cols-1 @2xl/tab:grid-cols-2 @5xl/tab:grid-cols-3 gap-4 mt-2">
               {Array.from({ length: 4 }).map((_, i) => (
-                <div key={i} className="rounded-2xl border bg-card/50 p-5 h-[180px] flex flex-col justify-between">
+                <div key={i} className="rounded-2xl border bg-card/50 p-5 h-[190px] flex flex-col justify-between">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3">
                       <Skeleton className="size-12 rounded-xl" />
                       <div className="space-y-2">
-                        <Skeleton className="h-5 w-20" />
-                        <Skeleton className="h-3 w-24" />
+                        <Skeleton className="h-5 w-24" />
+                        <Skeleton className="h-3 w-32" />
                       </div>
                     </div>
                     <div className="space-y-1 text-right">
-                      <Skeleton className="h-3 w-10 ml-auto" />
-                      <Skeleton className="h-8 w-16 ml-auto" />
+                      <Skeleton className="h-3 w-12 ml-auto" />
+                      <Skeleton className="h-8 w-20 ml-auto" />
                     </div>
                   </div>
                   <div className="grid grid-cols-3 gap-3 mt-4">
-                    <Skeleton className="h-16 rounded-xl" />
-                    <Skeleton className="h-16 rounded-xl" />
-                    <Skeleton className="h-16 rounded-xl" />
+                    <Skeleton className="h-[72px] rounded-xl" />
+                    <Skeleton className="h-[72px] rounded-xl" />
+                    <Skeleton className="h-[72px] rounded-xl" />
                   </div>
                 </div>
               ))}
