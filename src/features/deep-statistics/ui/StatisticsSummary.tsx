@@ -1,15 +1,16 @@
 import React from 'react'
 import { Card } from '@/components/ui/card'
-import { GaugeIcon, PercentIcon, TimerIcon, TrophyIcon } from 'lucide-react'
+import { GaugeIcon, Loader2, PercentIcon, TimerIcon, TrophyIcon } from 'lucide-react'
 import formatTime from '@/shared/lib/formatTime'
 import { DeepStatistics } from '@/shared/types/statistics'
 import { useTranslations } from 'next-intl'
 
 interface StatsSummaryProps {
   statistics: DeepStatistics
+  loadingProps: Record<string, boolean>
 }
 
-export default function StatisticsSummary({ statistics }: StatsSummaryProps) {
+export default function StatisticsSummary({ statistics, loadingProps }: StatsSummaryProps) {
   const t = useTranslations('Index')
   const bestStr = statistics.best.cubeAll > 0 ? formatTime(statistics.best.cubeAll) : '--'
   const overallAvgStr = statistics.average.cubeAll === 0 ? '--' : formatTime(statistics.average.cubeAll)
@@ -18,29 +19,55 @@ export default function StatisticsSummary({ statistics }: StatsSummaryProps) {
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-      <StatItem icon={<TrophyIcon className={'size-5'} />} label={t('StatsPage.best-time')} value={bestStr} />
+      <StatItem
+        icon={<TrophyIcon className={'size-5'} />}
+        label={t('StatsPage.best-time')}
+        value={bestStr}
+        isLoading={loadingProps.best}
+      />
       <StatItem
         icon={<GaugeIcon className={'size-5'} />}
         label={t('StatsPage.overall-average')}
         value={overallAvgStr}
+        isLoading={loadingProps.average}
       />
-      <StatItem icon={<TimerIcon className={'size-5'} />} label={t('StatsPage.ao5-current')} value={ao5CurrentStr} />
+      <StatItem
+        icon={<TimerIcon className={'size-5'} />}
+        label={t('StatsPage.ao5-current')}
+        value={ao5CurrentStr}
+        isLoading={loadingProps.stats}
+      />
       <StatItem
         icon={<PercentIcon className={'size-5'} />}
         label={t('StatsPage.success-rate')}
         value={successRateStr}
+        isLoading={loadingProps.successRate}
       />
     </div>
   )
 }
 
-function StatItem({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function StatItem({
+  icon,
+  label,
+  value,
+  isLoading
+}: {
+  icon: React.ReactNode
+  label: string
+  value: string
+  isLoading?: boolean
+}) {
   return (
     <Card className="flex flex-row items-center gap-3 p-3 border rounded-md bg-background backdrop-blur-lg">
       <div className="inline-flex items-center justify-center rounded-md bg-primary/10 text-primary p-2">{icon}</div>
       <div className="flex flex-col">
         <span className="text-xs text-muted-foreground">{label}</span>
-        <span className="text-lg font-bold leading-none">{value}</span>
+        {isLoading ? (
+          <Loader2 className="size-4 animate-spin text-muted-foreground mt-1" />
+        ) : (
+          <span className="text-lg font-bold leading-none">{value}</span>
+        )}
       </div>
     </Card>
   )
