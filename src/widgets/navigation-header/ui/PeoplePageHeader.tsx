@@ -35,32 +35,34 @@ export default function PeoplePageHeader() {
   }
 
   return (
-    <div className="flex justify-between items-center gap-2 w-full mb-2">
-      <div className={'flex items-center justify-between gap-2 ms-auto w-full'}>
-        <div className={'flex sm:flex-row items-center gap-3 w-full justify-end'}>
-          <div className={'flex flex-col sm:flex-row items-center gap-2 grow justify-end'}>
-            <Input
-              placeholder={t('search-placeholder')}
-              value={searchTerm || ''}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full"
-            />
-            <Select value={selectedRegion} onValueChange={setSelectedRegion}>
-              <SelectTrigger className="w-full sm:w-48">
-                <SelectValue placeholder={t('region-placeholder')} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{t('region-all')}</SelectItem>
-                {regionOptions.sort().map((region) => (
-                  <SelectItem key={region} value={region}>
-                    {region}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <Button size={'icon'} onClick={handleSearch}>
-            <MagnifyingGlassIcon />
+    <div className="flex flex-col @sm/people:flex-row justify-between items-center gap-4 w-full bg-card/10 p-3 rounded-xl border border-muted/20 backdrop-blur-sm">
+      <div className="flex flex-col @sm/people:flex-row items-center gap-3 w-full">
+        <div className="relative w-full @sm/people:max-w-md group">
+          <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+          <Input
+            placeholder={t('search-placeholder')}
+            value={searchTerm || ''}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full pl-9 bg-background/50"
+            onKeyDown={(e) => e.key === 'Enter' && handleSearch(e as any)}
+          />
+        </div>
+        <div className="flex items-center gap-2 w-full @sm/people:w-auto">
+          <Select value={selectedRegion} onValueChange={setSelectedRegion}>
+            <SelectTrigger className="w-full @sm/people:w-48 bg-background/50">
+              <SelectValue placeholder={t('region-placeholder')} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">{t('region-all')}</SelectItem>
+              {regionOptions.sort().map((region) => (
+                <SelectItem key={region} value={region}>
+                  {region}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Button onClick={handleSearch} className="shadow-lg shadow-primary/10">
+            Search
           </Button>
         </div>
       </div>
