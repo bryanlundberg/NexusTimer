@@ -6,6 +6,7 @@ import { convert } from 'colorizr'
 import {
   ChartOptions,
   createChart,
+  createSeriesMarkers,
   CreatePriceLineOptions,
   createTextWatermark,
   DeepPartial,
@@ -109,12 +110,14 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       const chart = createChart(container, chartOptions)
       const structuredData: any[] = []
       const solveMap = new Map<number, Solve>()
+      const pbAtStepMap = new Map<number, number>()
       const cubeNameById = new Map<string, string>()
       if (cubes) {
         for (const c of cubes) cubeNameById.set(c.id, c.name)
       }
 
       const reversedDataSet = [...dataSet].reverse()
+      let runningBest = Infinity
       reversedDataSet.forEach((i: Solve, index: number) => {
         const timeIndex = index + 1
         structuredData.push({
@@ -122,6 +125,11 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
           value: i.time
         })
         solveMap.set(timeIndex, i)
+
+        if (i.time <= runningBest) {
+          runningBest = i.time
+        }
+        pbAtStepMap.set(timeIndex, runningBest)
       })
 
       const firstPane = chart.panes()[0]
@@ -142,7 +150,8 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         lastValueVisible: false,
         priceLineVisible: false,
         lineWidth: 1.5 as any,
-        color: primaryColor
+        color: primaryColor,
+        priceScaleId: 'right'
       })
 
       // Utility functions for statistics
@@ -164,15 +173,48 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       }
 
       if (showBestTime) {
-        const bestTimeLine: CreatePriceLineOptions = {
-          price: getBestTime({ solves: dataSet }),
-          color: '#059669', // Green
-          lineWidth: 1,
-          lineStyle: 0, // Solid
-          axisLabelVisible: true,
-          title: `${t('best-time')}`
+        const pbData: any[] = []
+        const pbMarkers: any[] = []
+        let currentBest = Infinity
+
+        structuredData.forEach((item, index) => {
+          if (item.value <= currentBest) {
+            // It's a PB (or tie)
+            currentBest = item.value
+            pbData.push({
+              time: item.time,
+              value: item.value
+            })
+            // Add marker for the PB solve
+            pbMarkers.push({
+              time: item.time,
+              position: 'inBar' as any,
+              color: '#FBBF24',
+              shape: 'circle' as any,
+              size: 1
+            })
+          } else if (pbData.length > 0) {
+            // Not a PB, but we want the line to continue horizontally
+            pbData.push({
+              time: item.time,
+              value: currentBest
+            })
+          }
+        })
+
+        if (pbData.length > 0) {
+          const pbSeries = chart.addSeries(LineSeries, {
+            lastValueVisible: false,
+            priceLineVisible: false,
+            lineWidth: 2,
+            color: '#FBBF24', // Yellow
+            lineStyle: 2, // Dashed
+            priceScaleId: 'right'
+          })
+
+          pbSeries.setData(pbData)
+          createSeriesMarkers(pbSeries, pbMarkers)
         }
-        lineSeries.createPriceLine(bestTimeLine)
       }
 
       if (showWorstTime) {
@@ -297,11 +339,13 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
 
         const cubeName = cubeNameById.get(solve.cubeId) || 'Unknown'
 
+        const currentPb = pbAtStepMap.get(param.time as number)
         let tooltipContent = `
           <div class="mt-1 text-xs">${cubeName}</div>
           <div class="font-bold text-base">${formatTime(solve.time)}</div>
           <div class="text-xs opacity-80">Solve #${param.time}</div>
           <div class="mt-1 text-xs">${moment(solve.endTime).format('LL')}</div>
+          ${currentPb !== undefined ? `<div class="mt-1 text-xs text-yellow-500">PB: ${formatTime(currentPb)}</div>` : ''}
         `
 
         if (showAo5) {
