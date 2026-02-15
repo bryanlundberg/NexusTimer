@@ -8,12 +8,14 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { useRouter } from 'next/navigation'
 import useLogout from '@/features/logout/model/useLogout'
 import { useTranslations } from 'next-intl'
+import { GearIcon } from '@radix-ui/react-icons'
 
 export function NavUser({
   user
@@ -61,12 +63,18 @@ export function NavUser({
             <RssIcon />
             Public Profile
           </DropdownMenuItem>
-          <DropdownMenuSeparator />
 
           <DropdownMenuItem onClick={() => router.push('/account')}>
             <BadgeCheck />
             {t('NavMain.account')}
           </DropdownMenuItem>
+
+          <DropdownMenuItem onClick={() => router.push('/people/' + user.id)}>
+            <GearIcon />
+            Settings
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+
           <DropdownMenuItem onClick={() => router.push('/account/save')}>
             <HardDriveUpload />
             {t('NavMain.save-data')}
