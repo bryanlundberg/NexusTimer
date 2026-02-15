@@ -13,7 +13,7 @@ export function PeopleContent({ cubes }: Props) {
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col md:flex-row relative mt-2">
-        <div className="flex flex-col grow @container">
+        <div className="flex flex-col grow @container/tab">
           <TabsContent value={PTabs.OVERVIEW}>
             <OverviewTabContent cubes={cubes} />
           </TabsContent>
