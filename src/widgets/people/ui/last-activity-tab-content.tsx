@@ -57,7 +57,7 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
 
   return (
     <div className="space-y-6">
-      <div className={'grid grid-cols-1 @2xl:grid-cols-2 @5xl:grid-cols-3 gap-4'}>
+      <div className={'grid grid-cols-1 @2xl/tab:grid-cols-2 @5xl/tab:grid-cols-3 gap-4'}>
         {currentPageItems.map((solve, index) => {
           const globalIndex = (page - 1) * ITEMS_PER_PAGE + index
           return <LastActivitySolveCard key={solve.id} solve={solve as any} index={solvesLength - globalIndex} />
