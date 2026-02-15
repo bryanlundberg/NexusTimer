@@ -29,31 +29,32 @@ export default function PeoplePage() {
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <FadeIn>
         <CoreHeader breadcrumbPath={'/people'} breadcrumb={t('title')} />
-        <div className="px-2 flex flex-col w-full">
+        <div className="px-2 pb-8 flex flex-col w-full @container/people">
           <PeoplePageHeader />
 
           <div
-            className={
-              'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 overflow-auto'
-            }
+            className={'grid grid-cols-1 @xl/people:grid-cols-2 @5xl/people:grid-cols-3 @7xl/people:grid-cols-4 gap-3'}
           >
             {isLoading &&
               Array(10)
                 .fill(0)
                 .map((_, index) => (
-                  <Card key={index} className="overflow-hidden min-h-96">
-                    <CardHeader className="pb-2 flex flex-col items-center">
-                      <Skeleton className="size-24 rounded-full mb-2" />
-                      <Skeleton className="h-6 w-32 mb-1" />
-                      <Skeleton className="h-4 w-40" />
-                    </CardHeader>
-                    <CardContent className="pb-2 pt-0 flex flex-col items-center">
-                      <Skeleton className="h-4 w-36 mb-2" />
-                      <Skeleton className="h-5 w-16" />
-                    </CardContent>
-                    <CardFooter className="pt-2 flex justify-center">
-                      <Skeleton className="h-8 w-24" />
-                    </CardFooter>
+                  <Card
+                    key={index}
+                    className="h-full bg-card/20 backdrop-blur-md flex flex-col @xs/people:flex-row items-center p-4 gap-4"
+                  >
+                    <div className="shrink-0">
+                      <Skeleton className="size-20 rounded-full" />
+                    </div>
+
+                    <div className="flex flex-col items-center @xs/people:items-start flex-1 min-w-0 h-full">
+                      <Skeleton className="h-7 w-3/4 mb-4 @xs/people:mb-auto" />
+
+                      <div className="flex items-center gap-2 mt-auto w-full">
+                        <Skeleton className="h-9 flex-1" />
+                        <Skeleton className="h-9 flex-1" />
+                      </div>
+                    </div>
                   </Card>
                 ))}
 
@@ -69,11 +70,15 @@ export default function PeoplePage() {
               data.events.map((user: UserDocument) => <UserCard key={user._id} user={user} />)}
           </div>
 
-          <div className={'opacity-70 text-xs ps-4 pt-2'}>
-            {t('results')}: {data?.docs || 0}
+          <div className={'opacity-70 text-[10px] font-medium uppercase tracking-wider ps-4 pt-4 mb-2'}>
+            {t('results')}: <span className="text-primary font-bold">{data?.docs || 0}</span>
           </div>
 
-          {!isLoading && <TablePagination totalPages={data?.pages} />}
+          {!isLoading && data?.pages !== undefined && data.pages > 0 && (
+            <div className="mt-4">
+              <TablePagination totalPages={data.pages} />
+            </div>
+          )}
         </div>
       </FadeIn>
     </ScrollArea>
