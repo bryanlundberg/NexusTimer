@@ -31,7 +31,6 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
   const { resolvedTheme } = useTheme()
   const [showBestTime, setShowBestTime] = useState(true)
   const [showWorstTime, setShowWorstTime] = useState(true)
-  const [showAverageTime, setShowAverageTime] = useState(true)
   const [showAo5, setShowAo5] = useState(true)
   const [showAo12, setShowAo12] = useState(true)
   const [showStandardDeviation, setShowStandardDeviation] = useState(true)
@@ -246,6 +245,18 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
 
           pbSeries.setData(pbData)
           createSeriesMarkers(pbSeries, pbMarkers)
+
+          // Add a fixed price line for the current PB (the last value in pbData is the overall best)
+          const overallBest = pbData[pbData.length - 1].value
+          const pbPriceLine: CreatePriceLineOptions = {
+            price: overallBest,
+            color: '#FBBF24', // Yellow
+            lineWidth: 1,
+            lineStyle: 2, // Dashed
+            axisLabelVisible: true,
+            title: 'PB'
+          }
+          lineSeries.createPriceLine(pbPriceLine)
         }
       }
 
@@ -259,18 +270,6 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
           title: 'Worst'
         }
         lineSeries.createPriceLine(worstTimeLine)
-      }
-
-      if (showAverageTime) {
-        const meanTimeLine: CreatePriceLineOptions = {
-          price: meanTime,
-          color: '#FBBF24', // Yellow
-          lineWidth: 2,
-          lineStyle: 2, // Dashed
-          axisLabelVisible: true,
-          title: `${t('average')}`
-        }
-        lineSeries.createPriceLine(meanTimeLine)
       }
 
       if (showStandardDeviation) {
@@ -427,7 +426,6 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     t,
     showBestTime,
     showWorstTime,
-    showAverageTime,
     showStandardDeviation,
     showAo5,
     showAo12,
@@ -452,8 +450,6 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     setShowBestTime,
     showWorstTime,
     setShowWorstTime,
-    showAverageTime,
-    setShowAverageTime,
     showAo5,
     setShowAo5,
     showAo12,
