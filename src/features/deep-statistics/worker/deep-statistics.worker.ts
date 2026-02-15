@@ -21,58 +21,87 @@ self.onmessage = (event: MessageEvent<InMsg>) => {
   const { command, data } = event.data
   if (command === 'start') {
     if (data.selectedCube) {
-      const calculatedAverage = calcAverageStatistics({
-        cubesDB: data.cubes,
-        category: data.selectedCube.category,
-        cubeName: data.selectedCube.name
-      })
-      const calculatedTimeSpent = calcTimeSpentStatistics({
-        cubesDB: data.cubes,
-        category: data.selectedCube.category,
-        cubeName: data.selectedCube.name
-      })
-      const calculatedCounter = calcTotalSolvesStatistics({
-        cubesDB: data.cubes,
-        category: data.selectedCube.category,
-        cubeName: data.selectedCube.name
-      })
-      const calculatedStats = calcAoStatistics({
-        cubesDB: data.cubes,
-        category: data.selectedCube.category,
-        cubeName: data.selectedCube.name
-      })
-      const calculatedDeviation = calcDeviation({
-        cubesDB: data.cubes,
-        category: data.selectedCube.category,
-        cubeName: data.selectedCube.name
-      })
-      const calculatedSuccessRate = calcSuccessRate({
-        cubesDB: data.cubes,
-        category: data.selectedCube.category,
-        cubeName: data.selectedCube.name
-      })
-      const calculatedBest = calcBestTime({
-        cubesDB: data.cubes,
-        category: data.selectedCube.category,
-        cubeName: data.selectedCube.name
-      })
-      const calculatedData = getSolvesMetrics({
-        cubesDB: data.cubes,
-        category: data.selectedCube.category,
-        cubeName: data.selectedCube.name
-      })
+      const sendPartial = (key: string, value: any) => {
+        ;(self as unknown as DedicatedWorkerGlobalScope).postMessage({
+          partial: true,
+          key,
+          value
+        })
+      }
 
+      sendPartial(
+        'average',
+        calcAverageStatistics({
+          cubesDB: data.cubes,
+          category: data.selectedCube.category,
+          cubeName: data.selectedCube.name
+        })
+      )
+
+      sendPartial(
+        'timeSpent',
+        calcTimeSpentStatistics({
+          cubesDB: data.cubes,
+          category: data.selectedCube.category,
+          cubeName: data.selectedCube.name
+        })
+      )
+
+      sendPartial(
+        'counter',
+        calcTotalSolvesStatistics({
+          cubesDB: data.cubes,
+          category: data.selectedCube.category,
+          cubeName: data.selectedCube.name
+        })
+      )
+
+      sendPartial(
+        'stats',
+        calcAoStatistics({
+          cubesDB: data.cubes,
+          category: data.selectedCube.category,
+          cubeName: data.selectedCube.name
+        })
+      )
+
+      sendPartial(
+        'deviation',
+        calcDeviation({
+          cubesDB: data.cubes,
+          category: data.selectedCube.category,
+          cubeName: data.selectedCube.name
+        })
+      )
+
+      sendPartial(
+        'successRate',
+        calcSuccessRate({
+          cubesDB: data.cubes,
+          category: data.selectedCube.category,
+          cubeName: data.selectedCube.name
+        })
+      )
+
+      sendPartial(
+        'best',
+        calcBestTime({
+          cubesDB: data.cubes,
+          category: data.selectedCube.category,
+          cubeName: data.selectedCube.name
+        })
+      )
+
+      sendPartial(
+        'data',
+        getSolvesMetrics({
+          cubesDB: data.cubes,
+          category: data.selectedCube.category,
+          cubeName: data.selectedCube.name
+        })
+      )
       ;(self as unknown as DedicatedWorkerGlobalScope).postMessage({
-        result: {
-          average: calculatedAverage,
-          timeSpent: calculatedTimeSpent,
-          counter: calculatedCounter,
-          stats: calculatedStats,
-          deviation: calculatedDeviation,
-          successRate: calculatedSuccessRate,
-          best: calculatedBest,
-          data: calculatedData
-        }
+        done: true
       })
     }
   }
