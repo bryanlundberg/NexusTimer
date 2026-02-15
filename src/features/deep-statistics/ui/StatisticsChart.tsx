@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import formatTime from '@/shared/lib/formatTime'
 import { DeepStatistics, StatisticScope } from '@/shared/types/statistics'
 import { Loader2 } from 'lucide-react'
+import React from 'react'
 
 interface StatisticsChartProps {
   statistics: DeepStatistics
@@ -128,7 +129,11 @@ export default function StatisticsChart({ statistics, loadingProps }: Statistics
         {rowGroups.map((row) => (
           <TableRow key={row.label}>
             <TableCell>{row.label}</TableCell>
-            {scopes.map((scope) => renderCell(loadingProps[row.loadingKey], row.getValue(scope)))}
+            {scopes.map((scope) => (
+              <React.Fragment key={scope}>
+                {renderCell(loadingProps[row.loadingKey], row.getValue(scope))}
+              </React.Fragment>
+            ))}
           </TableRow>
         ))}
       </TableBody>
