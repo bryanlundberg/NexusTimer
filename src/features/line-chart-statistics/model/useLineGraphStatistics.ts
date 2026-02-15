@@ -13,7 +13,6 @@ import {
   LineSeries
 } from 'lightweight-charts'
 import formatTime from '@/shared/lib/formatTime'
-import getBestTime from '@/shared/lib/statistics/getBestTime'
 import getWorstTime from '@/shared/lib/statistics/getWorstTime'
 import calculateCurrentAo from '@/shared/lib/statistics/calculateCurrentAo'
 import { Solve } from '@/entities/solve/model/types'
@@ -177,7 +176,7 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         const pbMarkers: any[] = []
         let currentBest = Infinity
 
-        structuredData.forEach((item, index) => {
+        structuredData.forEach((item) => {
           if (item.value <= currentBest) {
             // It's a PB (or tie)
             currentBest = item.value
