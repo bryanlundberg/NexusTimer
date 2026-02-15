@@ -86,7 +86,7 @@ export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardPro
         <div className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest mb-1 opacity-70">
           Scramble
         </div>
-        <div className="text-[11px] font-medium font-mono leading-relaxed break-all line-clamp-2 bg-muted/30 p-2 rounded border border-muted/10 group-hover:bg-muted/50 transition-colors">
+        <div className="text-[11px] font-medium font-mono leading-relaxed break-all bg-muted/30 p-2 rounded border border-muted/10 group-hover:bg-muted/50 transition-colors">
           {solve.scramble}
         </div>
       </div>
