@@ -15,6 +15,7 @@ import { useRouter } from 'next/navigation'
 import useLogout from '@/features/logout/model/useLogout'
 import { useTranslations } from 'next-intl'
 import { GearIcon } from '@radix-ui/react-icons'
+import { Button } from '@/components/ui/button'
 
 export function NavUser({
   user
@@ -33,10 +34,12 @@ export function NavUser({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className="h-6 w-6 rounded-lg">
-          <AvatarImage className={'object-cover'} src={user.avatar} alt={user.name} />
-          <AvatarFallback className="rounded-lg">CN</AvatarFallback>
-        </Avatar>
+        <Button variant={'ghost'} size={'icon'} className={'rounded-full'}>
+          <Avatar className="size-7 rounded-lg">
+            <AvatarImage className={'object-cover'} src={user.avatar} alt={user.name} />
+            <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+          </Avatar>
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
         className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
