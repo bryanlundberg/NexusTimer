@@ -1,7 +1,8 @@
 import formatTime from '@/shared/lib/formatTime'
 import { Solve } from '@/entities/solve/model/types'
-import { format } from 'date-fns'
 import { Button } from '@/components/ui/button'
+import { useLocale } from 'next-intl'
+import moment from 'moment'
 
 interface SolveTransferCardProps {
   solve: Solve
@@ -10,6 +11,7 @@ interface SolveTransferCardProps {
 }
 
 export default function SolveTransferCard({ solve, isSelected, onToggle }: SolveTransferCardProps) {
+  const locale = useLocale()
   return (
     <Button
       variant={'outline'}
@@ -23,7 +25,7 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
         <span className="text-sm">.{formatTime(solve.time).split('.')[1]}</span>
       </div>
       <div className="absolute z-20 text-xs top-1 left-1">
-        {format(new Date(solve.startTime), 'dd/MM/yyyy')}
+        {moment(solve.startTime).locale(locale).format('L')}
         {solve.dnf && <span className="text-red-500 font-bold ml-1">DNF</span>}
         {solve.plus2 && <span className="text-yellow-500 font-bold ml-1">+2</span>}
       </div>
