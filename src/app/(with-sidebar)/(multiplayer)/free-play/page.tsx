@@ -49,8 +49,10 @@ export default function FreePlayPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-3">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-semibold tracking-tight">Available Rooms</h2>
-              <div className="text-sm text-muted-foreground">{displayRooms.length} rooms active now</div>
+              <h2 className="text-2xl font-semibold tracking-tight">{t('available-rooms')}</h2>
+              <div className="text-sm text-muted-foreground">
+                {t('active-rooms-count', { count: displayRooms.length })}
+              </div>
             </div>
 
             {displayRooms.length > 0 ? (
@@ -78,20 +80,20 @@ export default function FreePlayPage() {
               <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-primary/5 rounded-full" />
               <h3 className="font-bold mb-4 flex items-center gap-2">
                 <span className="w-2 h-2 bg-primary rounded-full" />
-                How to Play?
+                {t('how-to-play.title')}
               </h3>
               <ul className="space-y-4 text-sm relative z-10">
                 <li className="flex gap-3">
                   <span className="font-mono text-primary font-bold">01.</span>
-                  <span>Create or join a room.</span>
+                  <span>{t('how-to-play.step1')}</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="font-mono text-primary font-bold">02.</span>
-                  <span>Prepare your cube and wait the round to start.</span>
+                  <span>{t('how-to-play.step2')}</span>
                 </li>
                 <li className="flex gap-3">
                   <span className="font-mono text-primary font-bold">03.</span>
-                  <span>Solve the cube as fast as possible.</span>
+                  <span>{t('how-to-play.step3')}</span>
                 </li>
               </ul>
             </Card>
