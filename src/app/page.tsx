@@ -4,17 +4,15 @@ import Dither from '@/components/ui/shadcn-io/dither'
 import { ArrowRight, AudioWaveform, BarChart3, DatabaseZap, Globe, StarIcon, Timer, Users } from 'lucide-react'
 import Image from 'next/image'
 import { TextGenerateEffect } from '@/components/ui/shadcn-io/text-generate-effect'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import { cn } from '@/shared/lib/utils'
 import RatedIcon from '@/shared/ui/rate-icon/RateIcon'
 import { Separator } from '@/components/ui/separator'
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
-import { useState, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 export default function Page() {
   const [hidden, setHidden] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
-  const scrollRef = useRef<HTMLDivElement>(null)
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const currentScrollY = e.currentTarget.scrollTop
