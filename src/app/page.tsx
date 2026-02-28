@@ -8,9 +8,24 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { cn } from '@/shared/lib/utils'
 import RatedIcon from '@/shared/ui/rate-icon/RateIcon'
 import { Separator } from '@/components/ui/separator'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
+import { useState, useRef } from 'react'
 
 export default function Page() {
+  const [hidden, setHidden] = useState(false)
+  const [lastScrollY, setLastScrollY] = useState(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const currentScrollY = e.currentTarget.scrollTop
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      setHidden(true)
+    } else {
+      setHidden(false)
+    }
+    setLastScrollY(currentScrollY)
+  }
+
   return (
     <div className="relative w-dvw h-dvh bg-black overflow-hidden">
       {/* Animated background */}
@@ -27,12 +42,15 @@ export default function Page() {
       />
 
       {/* Content overlay */}
-      <ScrollArea className="relative z-10 flex flex-col h-full text-white overflow-y-auto snap-y snap-mandatory">
+      <div
+        onScroll={handleScroll}
+        className="relative z-10 flex flex-col h-full text-white overflow-y-auto snap-y snap-mandatory"
+      >
         {/* Header / Nav */}
         <motion.header
           initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          animate={{ y: hidden ? -100 : 0, opacity: hidden ? 0 : 1 }}
+          transition={{ duration: 0.3 }}
           className="w-full sticky top-0 z-50 backdrop-blur-md bg-black/30 border-b border-white/5"
         >
           <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
@@ -51,20 +69,16 @@ export default function Page() {
               </span>
             </motion.div>
             <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
-              <Link href="/#features" className="hover:text-white transition-colors relative group">
-                Features
+              <Link href="/people" className="hover:text-white transition-colors relative group">
+                People
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-fuchsia-400 group-hover:w-full transition-all duration-300" />
               </Link>
-              <Link href="/#how" className="hover:text-white transition-colors relative group">
-                How it works
+              <Link href="/algorithms" className="hover:text-white transition-colors relative group">
+                Algorithms
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-fuchsia-400 group-hover:w-full transition-all duration-300" />
               </Link>
-              <Link href="/#testimonials" className="hover:text-white transition-colors relative group">
-                Testimonials
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-fuchsia-400 group-hover:w-full transition-all duration-300" />
-              </Link>
-              <Link href="/#faq" className="hover:text-white transition-colors relative group">
-                FAQ
+              <Link href="/leaderboards" className="hover:text-white transition-colors relative group">
+                Leaderboards
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-fuchsia-400 group-hover:w-full transition-all duration-300" />
               </Link>
               <a
@@ -816,7 +830,7 @@ export default function Page() {
             </div>
           </div>
         </footer>
-      </ScrollArea>
+      </div>
     </div>
   )
 }
