@@ -1,5 +1,6 @@
-import React from 'react'
+import { Trophy } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import { cn } from '@/shared/lib/utils'
 import formatTime from '@/shared/lib/formatTime'
 import CompareTableRow from './CompareTableRow'
 import { CompareUser } from '@/features/compare-users/model/compare'
@@ -23,15 +24,22 @@ export default function CompareCategoryBlock({ category, users }: { category: Cu
 
   return (
     <>
-      <CompareTableRow className={'mt-5'} title={`${category} ${t('single')}`}>
+      <CompareTableRow className={'mt-8 border-t pt-4'} title={`${category} ${t('single')}`}>
         {users.map((user) => {
           const val = user[category]?.single
           const hasValue = typeof val === 'number' && !isNaN(val) && val > 0
           const isBest = hasValue && bestSingle !== undefined && val === bestSingle
           return (
-            <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
-              <Badge variant={isBest ? 'default' : hasValue ? 'outline' : 'outline'} className={'mx-auto'}>
-                {isBest && '🏆'} {hasValue ? formatTime(val) : '—'}
+            <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-4 flex justify-center'}>
+              <Badge
+                variant={isBest ? 'default' : hasValue ? 'secondary' : 'outline'}
+                className={cn(
+                  'mx-auto h-9 px-4 text-sm font-medium transition-all duration-300',
+                  isBest && 'ring-2 ring-primary ring-offset-2 scale-110 shadow-lg'
+                )}
+              >
+                {isBest && <Trophy className="w-3.5 h-3.5 mr-1.5 fill-current animate-pulse" />}
+                {hasValue ? formatTime(val) : '—'}
               </Badge>
             </div>
           )
@@ -44,9 +52,16 @@ export default function CompareCategoryBlock({ category, users }: { category: Cu
           const hasValue = typeof val === 'number' && !isNaN(val) && val > 0
           const isBest = hasValue && bestAverage !== undefined && val === bestAverage
           return (
-            <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
-              <Badge variant={isBest ? 'default' : hasValue ? 'outline' : 'outline'} className={'mx-auto'}>
-                {isBest && '🏆'} {hasValue ? formatTime(val) : '—'}
+            <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-4 flex justify-center'}>
+              <Badge
+                variant={isBest ? 'default' : hasValue ? 'secondary' : 'outline'}
+                className={cn(
+                  'mx-auto h-9 px-4 text-sm font-medium transition-all duration-300',
+                  isBest && 'ring-2 ring-primary ring-offset-2 scale-110 shadow-lg'
+                )}
+              >
+                {isBest && <Trophy className="w-3.5 h-3.5 mr-1.5 fill-current animate-pulse" />}
+                {hasValue ? formatTime(val) : '—'}
               </Badge>
             </div>
           )
@@ -59,9 +74,16 @@ export default function CompareCategoryBlock({ category, users }: { category: Cu
           const hasValue = val !== undefined && val !== null && !isNaN(val as number) && (val as number) !== 0
           const isBest = hasValue && bestCount !== undefined && val === bestCount
           return (
-            <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
-              <Badge variant={isBest ? 'default' : hasValue ? 'outline' : 'outline'} className={'mx-auto'}>
-                {isBest && '🏆'} {hasValue ? (val as number).toLocaleString() : '—'}
+            <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-4 flex justify-center'}>
+              <Badge
+                variant={isBest ? 'default' : hasValue ? 'secondary' : 'outline'}
+                className={cn(
+                  'mx-auto h-9 px-4 text-sm font-medium transition-all duration-300',
+                  isBest && 'ring-2 ring-primary ring-offset-2 scale-110 shadow-lg'
+                )}
+              >
+                {isBest && <Trophy className="w-3.5 h-3.5 mr-1.5 fill-current animate-pulse" />}
+                {hasValue ? (val as number).toLocaleString() : '—'}
               </Badge>
             </div>
           )
