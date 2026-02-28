@@ -12,7 +12,7 @@ import { CompareUser } from '@/features/compare-users/model/compare'
 import { Cube } from '@/entities/cube/model/types'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 import { useLocale, useTranslations } from 'next-intl'
-import { es } from 'date-fns/locale'
+import moment from 'moment'
 
 export default function CompareUsersModal() {
   const t = useTranslations('Index.LeaderboardsPage.comparative')
@@ -24,33 +24,47 @@ export default function CompareUsersModal() {
   const usersStats: CompareUser[] = useCompareUsersStats(users, userCubes)
 
   return (
-    <div className={'bg-background w-full h-full flex flex-col fixed top-0 left-0 z-50 overflow-y-auto'}>
-      <header className={'flex items-center justify-between p-4'}>
+    <div
+      className={
+        'bg-background w-full h-full flex flex-col fixed top-0 left-0 z-50 overflow-y-auto selection:bg-primary/30'
+      }
+    >
+      <header
+        className={'flex items-center justify-between p-4 border-b bg-muted/20 sticky top-0 z-50 backdrop-blur-md'}
+      >
         <div className="flex items-center gap-3">
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+          <div className="flex aspect-square size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
             <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert size-8`} />
           </div>
-          <span className="text-sm font-semibold tracking-wide text-background-foreground/90 hidden sm:block">
-            NexusTimer
-          </span>
+          <span className="text-sm font-bold tracking-tight text-foreground hidden sm:block">NexusTimer</span>
         </div>
-        <h2 className="scroll-m-20 border-b pb-2 text-xl font-semibold tracking-tight first:mt-0 text-background-foreground">
-          {t('title')}
-        </h2>
-        <XIcon onClick={closeOverlay} />
+        <h2 className="text-lg font-bold tracking-tight text-foreground">{t('title')}</h2>
+        <button onClick={closeOverlay} className="p-2 hover:bg-muted rounded-full transition-colors group">
+          <XIcon className="w-5 h-5 text-muted-foreground group-hover:text-foreground" />
+        </button>
       </header>
 
-      <div id={'table'} className={'relative overflow-x-auto'}>
-        <CompareTableRow title={''} className={'sticky top-0 bg-background z-50 border-b border-b-white/10'}>
+      <div id={'table'} className={'relative overflow-x-auto pb-10'}>
+        <CompareTableRow title={''} isHeader className={'z-[60]'}>
           {users.map((user) => {
             return (
-              <div key={user._id} className={'w-52 py-3 z-50'}>
-                <div className={'flex flex-col items-center gap-2'}>
-                  <Avatar className={'size-24'}>
-                    <AvatarImage className={'object-cover'} src={user.image} />
-                    <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
-                  </Avatar>
-                  <span className={'font-semibold'}>{user.name}</span>
+              <div key={user._id} className={'w-52 py-6 z-50'}>
+                <div className={'flex flex-col items-center gap-4 group'}>
+                  <div className="relative">
+                    <Avatar
+                      className={
+                        'size-24 ring-4 ring-muted group-hover:ring-primary/50 transition-all duration-300 shadow-xl'
+                      }
+                    >
+                      <AvatarImage className={'object-cover'} src={user.image} />
+                      <AvatarFallback className="text-xl font-bold bg-muted-foreground/10">
+                        {user.name.substring(0, 2).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
+                  <span className={'font-bold text-base tracking-tight group-hover:text-primary transition-colors'}>
+                    {user.name}
+                  </span>
                 </div>
               </div>
             )
@@ -61,8 +75,8 @@ export default function CompareUsersModal() {
           {users.map((user) => {
             const value = user.timezone || '—'
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
-                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto'}>
+              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-3'}>
+                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto px-3 font-medium'}>
                   {value}
                 </Badge>
               </div>
@@ -72,13 +86,10 @@ export default function CompareUsersModal() {
 
         <CompareTableRow title={t('first-solve')}>
           {users.map((user) => {
-            const value = formatDistance(new Date(user.createdAt), new Date(), {
-              addSuffix: true,
-              locale: locale === 'es' ? es : undefined
-            })
+            const value = moment(user.createdAt).isValid() ? moment(user.createdAt).locale(locale).fromNow() : '—'
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
-                <Badge variant={'outline'} className={'mx-auto'}>
+              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-3'}>
+                <Badge variant={'outline'} className={'mx-auto px-3 font-medium bg-muted/30'}>
                   {value}
                 </Badge>
               </div>
@@ -97,8 +108,8 @@ export default function CompareUsersModal() {
             const hasValue = totalSolves && !isNaN(totalSolves) && totalSolves !== 0
             const value = hasValue ? totalSolves.toLocaleString() : '—'
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
-                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto'}>
+              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-3'}>
+                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto px-3 font-medium'}>
                   {value}
                 </Badge>
               </div>
@@ -113,8 +124,8 @@ export default function CompareUsersModal() {
             const hasValue = totalCubes && !isNaN(totalCubes) && totalCubes !== 0
             const value = hasValue ? totalCubes.toLocaleString() : '—'
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-2'}>
-                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto'}>
+              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-3'}>
+                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto px-3 font-medium'}>
                   {value}
                 </Badge>
               </div>
