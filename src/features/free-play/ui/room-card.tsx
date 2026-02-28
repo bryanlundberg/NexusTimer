@@ -1,12 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Box, Clock, Timer, Users } from 'lucide-react'
-import { format } from 'date-fns'
 import formatTime from '@/shared/lib/formatTime'
 import Link from 'next/link'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { useCountdown } from '@/shared/model/useCountdown'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import moment from 'moment'
 
 interface RoomCardProps {
   room: {
@@ -25,7 +25,7 @@ export default function RoomCard({ room }: RoomCardProps) {
   const tMultiplayer = useTranslations('Multiplayer')
   const { mmss, isFinished } = useCountdown(room.currentRoundTimeLimit)
   const usersPresence = room?.presence ? Object.values(room.presence) : []
-
+  const locale = useLocale()
   return (
     <Link href={`/free-play/${room.roomId}`} className="no-underline group">
       <Card className="overflow-hidden transition-all duration-300 border-muted/60 group-hover:border-primary/50 group-hover:shadow-md h-full flex flex-col">
@@ -107,7 +107,7 @@ export default function RoomCard({ room }: RoomCardProps) {
 
           <div className="flex items-center justify-between pt-1">
             <span className="text-[10px] text-muted-foreground italic">
-              {t('created-at')} {format(new Date(room.createdAt), 'p')}
+              {t('created-at')} {moment(room.createdAt).locale(locale).fromNow()}
             </span>
             <div className="text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xs font-bold flex items-center gap-1">
               {t('join')} <span className="text-lg">→</span>
