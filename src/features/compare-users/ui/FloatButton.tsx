@@ -23,6 +23,7 @@ export default function FloatButton() {
     <Dialog open={isOpenModal} onOpenChange={setIsOpenModal}>
       <DialogTrigger asChild>
         <motion.div
+          id="compare-float-button"
           className={
             'size-16 bg-primary bottom-5 right-5 rounded-full text-primary-foreground border cursor-pointer fixed'
           }
