@@ -13,10 +13,13 @@ import { NavUser } from '@/widgets/sidebar/ui/nav-user'
 import * as React from 'react'
 import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
+import { useTranslations } from 'next-intl'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import DiscordButton from '@/features/authentication/ui/DiscordButton'
@@ -38,6 +41,8 @@ export default function CoreHeader({
   secondaryBreadcrumb
 }: CoreHeaderProps) {
   const { data: session } = useSession()
+  const tAuth = useTranslations('Index.Auth')
+  const tHeader = useTranslations('Index.CoreHeader')
 
   return (
     <div className="w-full border-b p-2 flex justify-between items-center mb-2 bg-background/60 backdrop-blur-md sticky top-0 z-50">
@@ -75,7 +80,7 @@ export default function CoreHeader({
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
           </span>
-          Server: Online
+          {tHeader('server-online')}
         </div>
         {session?.user ? (
           <NavUser
@@ -89,10 +94,23 @@ export default function CoreHeader({
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className={'px-2 py-0.5 text-xs h-6 rounded-sm'}>Sign In</Button>
+              <Button
+                variant="outline"
+                className="flex items-center gap-2 px-4 py-2 h-9 rounded-md font-medium transition-all hover:bg-accent"
+              >
+                <LogInIcon className="h-4 w-4" />
+                {tAuth('sign-in')}
+              </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuGroup>
+            <DropdownMenuContent align="end" className="w-64 p-4">
+              <div className="flex flex-col gap-2 mb-4">
+                <DropdownMenuLabel className="p-0 font-bold text-lg leading-none">
+                  {tAuth('nexus-community')}
+                </DropdownMenuLabel>
+                <p className="text-sm text-muted-foreground leading-snug">{tAuth('login-description')}</p>
+              </div>
+              <DropdownMenuSeparator className="mb-4" />
+              <DropdownMenuGroup className="flex flex-col gap-2">
                 <DiscordButton />
                 <GoogleButton />
               </DropdownMenuGroup>
