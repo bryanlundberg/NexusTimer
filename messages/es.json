@@ -28,6 +28,16 @@
       "scramble": "Scramble",
       "solution": "Solución"
     },
+    "Auth": {
+      "sign-in": "Iniciar sesión",
+      "nexus-community": "Comunidad Nexus",
+      "login-description": "Inicia sesión para acceder a más funciones.",
+      "continue-google": "Continuar con Google",
+      "continue-discord": "Continuar con Discord"
+    },
+    "CoreHeader": {
+      "server-online": "Servidor: Online"
+    },
     "DialogFirstRunNoCubes": {
       "title": "Bienvenido a NexusTimer",
       "description": "Aún no tienes ninguna colección. Puedes crear tu primera colección o importar un respaldo para comenzar."
@@ -482,6 +492,7 @@
       "clash-mode": "Modo Clash",
       "settings": "Ajustes",
       "account": "Cuenta",
+      "public-profile": "Perfil Público",
       "save-data": "Guardar datos",
       "download-data": "Descargar datos",
       "log-out": "Cerrar sesión"

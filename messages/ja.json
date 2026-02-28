@@ -54,6 +54,16 @@
       "scramble": "スクランブル",
       "solution": "ソルーション"
     },
+    "Auth": {
+      "sign-in": "サインイン",
+      "nexus-community": "Nexus コミュニティ",
+      "login-description": "サインインして、より多くの機能にアクセスしましょう。",
+      "continue-google": "Google で続行",
+      "continue-discord": "Discord で続行"
+    },
+    "CoreHeader": {
+      "server-online": "サーバー: オンライン"
+    },
     "DialogFirstRunNoCubes": {
       "title": "NexusTimerへようこそ",
       "description": "コレクションがまだありません。最初のコレクションを作成するか、バックアップをインポートして始めましょう。"
@@ -330,6 +340,7 @@
       "clash-mode": "クラッシュモード",
       "settings": "設定",
       "account": "アカウント",
+      "public-profile": "公開プロフィール",
       "save-data": "データを保存",
       "download-data": "データをダウンロード",
       "log-out": "ログアウト"

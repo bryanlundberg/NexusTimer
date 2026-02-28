@@ -54,6 +54,16 @@
       "scramble": "Скрамбл",
       "solution": "Решение"
     },
+    "Auth": {
+      "sign-in": "Войти",
+      "nexus-community": "Сообщество Nexus",
+      "login-description": "Войдите, чтобы получить доступ к дополнительным функциям.",
+      "continue-google": "Продолжить через Google",
+      "continue-discord": "Продолжить через Discord"
+    },
+    "CoreHeader": {
+      "server-online": "Сервер: Онлайн"
+    },
     "DialogFirstRunNoCubes": {
       "title": "Добро пожаловать в NexusTimer",
       "description": "У вас пока нет коллекций. Создайте свою первую коллекцию или импортируйте бэкап, чтобы начать."
@@ -330,6 +340,7 @@
       "clash-mode": "Режим Clash",
       "settings": "Настройки",
       "account": "Аккаунт",
+      "public-profile": "Публичный профиль",
       "save-data": "Сохранить данные",
       "download-data": "Загрузить данные",
       "log-out": "Выйти"

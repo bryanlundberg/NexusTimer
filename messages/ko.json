@@ -54,6 +54,16 @@
       "scramble": "스크램블",
       "solution": "솔루션"
     },
+    "Auth": {
+      "sign-in": "로그인",
+      "nexus-community": "Nexus 커뮤니티",
+      "login-description": "로그인하여 더 많은 기능을 사용해 보세요.",
+      "continue-google": "Google 계정으로 계속하기",
+      "continue-discord": "Discord 계정으로 계속하기"
+    },
+    "CoreHeader": {
+      "server-online": "서버: 온라인"
+    },
     "DialogFirstRunNoCubes": {
       "title": "NexusTimer에 오신 것을 환영합니다",
       "description": "아직 컬렉션이 없습니다. 첫 번째 컬렉션을 만들거나 백업을 가져와서 시작하세요."
@@ -330,6 +340,7 @@
       "clash-mode": "Clash 모드",
       "settings": "설정",
       "account": "계정",
+      "public-profile": "공개 프로필",
       "save-data": "데이터 저장",
       "download-data": "데이터 다운로드",
       "log-out": "로그아웃"

@@ -54,6 +54,16 @@
       "scramble": "打乱公式",
       "solution": "还原方案"
     },
+    "Auth": {
+      "sign-in": "登录",
+      "nexus-community": "Nexus 社区",
+      "login-description": "登录以访问更多功能。",
+      "continue-google": "使用 Google 继续",
+      "continue-discord": "使用 Discord 继续"
+    },
+    "CoreHeader": {
+      "server-online": "服务器：在线"
+    },
     "DialogFirstRunNoCubes": {
       "title": "欢迎使用 NexusTimer",
       "description": "你还没有任何收藏。你可以创建第一个收藏或导入备份来开始使用。"
@@ -330,6 +340,7 @@
       "clash-mode": "Clash 模式",
       "settings": "设置",
       "account": "账户",
+      "public-profile": "公开资料",
       "save-data": "保存数据",
       "download-data": "下载数据",
       "log-out": "退出登录"

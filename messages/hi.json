@@ -54,6 +54,16 @@
       "scramble": "स्क्रैम्बल",
       "solution": "समाधान"
     },
+    "Auth": {
+      "sign-in": "साइन इन करें",
+      "nexus-community": "नेक्सस समुदाय",
+      "login-description": "अधिक सुविधाओं तक पहुँचने के लिए लॉग इन करें।",
+      "continue-google": "गूगल के साथ जारी रखें",
+      "continue-discord": "डिस्कॉर्ड के साथ जारी रखें"
+    },
+    "CoreHeader": {
+      "server-online": "सर्वर: ऑनलाइन"
+    },
     "DialogFirstRunNoCubes": {
       "title": "NexusTimer में आपका स्वागत है",
       "description": "आपके पास अभी तक कोई संग्रह नहीं है। आप शुरू करने के लिए अपना पहला संग्रह बना सकते हैं या बैकअप आयात कर सकते हैं।"
@@ -330,6 +340,7 @@
       "clash-mode": "Clash मोड",
       "settings": "सेटिंग्स",
       "account": "खाता",
+      "public-profile": "सार्वजनिक प्रोफ़ाइल",
       "save-data": "डेटा सहेजें",
       "download-data": "डेटा डाउनलोड करें",
       "log-out": "लॉग आउट"

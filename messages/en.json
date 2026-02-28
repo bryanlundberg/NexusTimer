@@ -54,6 +54,16 @@
       "scramble": "Scramble",
       "solution": "Solution"
     },
+    "Auth": {
+      "sign-in": "Sign In",
+      "nexus-community": "Nexus Community",
+      "login-description": "Log in to access more features.",
+      "continue-google": "Continue with Google",
+      "continue-discord": "Continue with Discord"
+    },
+    "CoreHeader": {
+      "server-online": "Server: Online"
+    },
     "DialogFirstRunNoCubes": {
       "title": "Welcome to NexusTimer",
       "description": "You do not have any collections yet. You can create your first collection or import a backup to get started."
@@ -330,6 +340,7 @@
       "clash-mode": "Clash Mode",
       "settings": "Settings",
       "account": "Account",
+      "public-profile": "Public Profile",
       "save-data": "Save data",
       "download-data": "Download data",
       "log-out": "Log out"
