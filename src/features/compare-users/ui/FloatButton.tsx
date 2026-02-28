@@ -7,8 +7,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { TrashIcon } from '@radix-ui/react-icons'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { formatDistance } from 'date-fns'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import moment from 'moment'
 
 export default function FloatButton() {
   const t = useTranslations('Index.LeaderboardsPage.comparative')
@@ -18,6 +18,7 @@ export default function FloatButton() {
   const removeUser = useCompareUsersStore((state) => state.removeUser)
   const openOverlay = useCompareUsersStore((state) => state.openOverlay)
   const setIsOpenModal = useCompareUsersStore((state) => state.setIsOpenModal)
+  const locale = useLocale()
 
   return (
     <Dialog open={isOpenModal} onOpenChange={setIsOpenModal}>
@@ -74,9 +75,7 @@ export default function FloatButton() {
                 </TableCell>
                 <TableCell>{user.name}</TableCell>
                 <TableCell>
-                  {user?.backup?.updatedAt
-                    ? formatDistance(new Date(user?.backup?.updatedAt), new Date(), { addSuffix: true })
-                    : t('never')}
+                  {user?.backup?.updatedAt ? moment(user.backup.updatedAt).locale(locale).fromNow() : t('never')}
                 </TableCell>
               </TableRow>
             ))}
