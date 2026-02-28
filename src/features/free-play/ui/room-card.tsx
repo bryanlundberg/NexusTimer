@@ -86,14 +86,18 @@ export default function RoomCard({ room }: RoomCardProps) {
 
           <div className="grid grid-cols-2 gap-4 py-2 border-y border-muted/40">
             <div className="space-y-1">
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Event</span>
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                {t('event')}
+              </span>
               <div className="flex items-center gap-1.5">
                 <Box className="h-3.5 w-3.5 text-muted-foreground/70" />
                 <span className="text-sm font-medium">{room.event}</span>
               </div>
             </div>
             <div className="space-y-1">
-              <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">Max Time</span>
+              <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                {t('max-time-per-round')}
+              </span>
               <div className="flex items-center gap-1.5">
                 <Clock className="h-3.5 w-3.5 text-muted-foreground/70" />
                 <span className="text-sm font-medium">{formatTime(room.maxRoundTime * 1000)}</span>
@@ -103,10 +107,10 @@ export default function RoomCard({ room }: RoomCardProps) {
 
           <div className="flex items-center justify-between pt-1">
             <span className="text-[10px] text-muted-foreground italic">
-              Created at {format(new Date(room.createdAt), 'p')}
+              {t('created-at')} {format(new Date(room.createdAt), 'p')}
             </span>
             <div className="text-primary opacity-0 group-hover:opacity-100 transition-opacity text-xs font-bold flex items-center gap-1">
-              Join <span className="text-lg">→</span>
+              {t('join')} <span className="text-lg">→</span>
             </div>
           </div>
         </CardContent>
