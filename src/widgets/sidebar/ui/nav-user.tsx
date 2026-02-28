@@ -60,7 +60,7 @@ export function NavUser({
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={() => router.push('/people/' + user.id)}>
             <RssIcon />
-            Public Profile
+            {t('NavMain.public-profile')}
           </DropdownMenuItem>
 
           <DropdownMenuItem onClick={() => router.push('/account')}>
@@ -70,7 +70,7 @@ export function NavUser({
 
           <DropdownMenuItem onClick={() => router.push('/people/' + user.id)}>
             <GearIcon />
-            Settings
+            {t('NavMain.settings')}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
 
