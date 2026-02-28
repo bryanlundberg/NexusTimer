@@ -563,6 +563,14 @@
       "timer": "Cronómetro",
       "results": "Resultados",
       "people": "Personas",
+      "available-rooms": "Salas disponibles",
+      "active-rooms-count": "{count, plural, =0 {Sin salas activas ahora} =1 {1 sala activa ahora} other {# salas activas ahora}}",
+      "how-to-play": {
+        "title": "¿Cómo jugar?",
+        "step1": "Crea o únete a una sala.",
+        "step2": "Prepara tu cubo y espera a que comience la ronda.",
+        "step3": "Resuelve el cubo lo más rápido posible."
+      },
       "create-room": {
         "title": "Nueva sala pública",
         "description": "Crea una nueva sala para tu evento de Clash. Configura las reglas, requisitos y más.",
@@ -572,7 +580,8 @@
         "event": "Evento",
         "max-round-time": "Tiempo máximo de ronda",
         "max-round-time-description": "Límite de tiempo para scramble + inspección + resolución",
-        "continue": "Continuar"
+        "continue": "Continuar",
+        "creating": "Creando..."
       },
       "status": {
         "solving": "Resolviendo...",
@@ -604,7 +613,9 @@
         "users-online": "Usuarios en línea:",
         "event": "Evento:",
         "max-time-per-round": "Tiempo máx. por ronda:",
-        "next-round-starts-in": "Siguiente ronda en:"
+        "next-round-starts-in": "Siguiente ronda en:",
+        "created-at": "Creado a las",
+        "join": "Unirse"
       },
       "invite-link-copied": "Enlace de invitación copiado",
       "share-room-text": "¡Únete a mi sala en NexusTimer!",

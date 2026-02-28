@@ -547,71 +547,82 @@
     "OpenGraphImage": {
       "title": "Nexus Timer - 전문 루빅스 큐브 타이머",
       "description": "Nexus Timer는 루빅스 큐브 훈련과 분석을 위한 전문적인 플랫폼입니다."
+    }
+  },
+  "Multiplayer": {
+    "title": "자유 연습",
+    "description": "실시간으로 다른 큐버들과 함께 솔빙하세요. 순위 경쟁 없이 자유롭게 연습하는 공간입니다.",
+    "new-room": "새 방 만들기",
+    "no-active-rooms": "현재 활성화된 방이 없습니다",
+    "no-active-rooms-description": "첫 번째 방을 만들어 보세요! 방을 만들고 친구들을 초대하세요.",
+    "account-required": "계정 필요",
+    "account-required-description": "온라인 게임을 이용하려면 로그인이 필요합니다.",
+    "next-round-starts-in": "다음 라운드 시작까지:",
+    "timer": "타이머",
+    "results": "결과",
+    "people": "큐버들",
+    "available-rooms": "참가 가능한 방",
+    "active-rooms-count": "{count, plural, =0 {현재 활성화된 방이 없습니다} =1 {현재 1개의 방이 활성화됨} other {현재 #개의 방이 활성화됨}}",
+    "how-to-play": {
+      "title": "게임 방법",
+      "step1": "방을 만들거나 이미 생성된 방에 입장합니다.",
+      "step2": "큐브를 준비하고 라운드가 시작될 때까지 기다립니다.",
+      "step3": "최대한 빨리 큐브를 맞춥니다."
     },
-    "Multiplayer": {
-      "title": "자유 연습",
-      "description": "실시간으로 다른 큐버들과 함께 솔빙하세요. 순위 경쟁 없이 자유롭게 연습하는 공간입니다.",
-      "new-room": "새 방 만들기",
-      "no-active-rooms": "현재 활성화된 방이 없습니다",
-      "no-active-rooms-description": "첫 번째 방을 만들어 보세요! 방을 만들고 친구들을 초대하세요.",
-      "account-required": "계정 필요",
-      "account-required-description": "온라인 게임을 이용하려면 로그인이 필요합니다.",
-      "next-round-starts-in": "다음 라운드 시작까지:",
-      "timer": "타이머",
-      "results": "결과",
-      "people": "큐버들",
-      "create-room": {
-        "title": "새 공개 방 만들기",
-        "description": "Clash 이벤트를 위한 방을 만듭니다. 규칙과 요구 사항을 설정하세요.",
-        "room-name": "방 이름",
-        "room-name-placeholder": "예: 밤샘 큐빙",
-        "room-name-required": "방 이름은 필수입니다",
-        "event": "종목",
-        "max-round-time": "라운드 최대 시간",
-        "max-round-time-description": "스크램블 + 미리보기 + 솔빙 합산 제한 시간",
-        "continue": "계속하기"
-      },
-      "status": {
-        "solving": "솔빙 중...",
-        "inspecting": "미리보기 중",
-        "done": "완료",
-        "idle": "대기",
-        "ready": "준비됨",
-        "holding": "누르고 있음"
-      },
-      "already-submitted": "이미 이 스크램블에 대한 기록을 제출했습니다. 다음을 기다려 주세요!",
-      "confirm-solve": {
-        "title": "기록 확인 ({time})",
-        "description": "이 기록을 어떻게 등록할까요?",
-        "dnf": "DNF",
-        "plus2": "+2",
-        "ok": "확인"
-      },
-      "results-tab": {
-        "latest": "최근",
-        "best": "최고",
-        "worst": "최악",
-        "average": "평균",
-        "updating-live": "실시간 업데이트 중",
-        "cubers": "큐버들"
-      },
-      "view-profile": "프로필 보기",
-      "anonymous": "익명",
-      "room-card": {
-        "users-online": "접속자:",
-        "event": "종목:",
-        "max-time-per-round": "최대 시간:",
-        "next-round-starts-in": "다음 라운드:"
-      },
-      "invite-link-copied": "초대 링크가 복사되었습니다",
-      "share-room-text": "NexusTimer 방으로 오세요!",
-      "invite": "초대하기",
-      "OpenGraph": {
-        "invited-to-room": "방에 초대되었습니다",
-        "join-now": "지금 참여하기!",
-        "room": "{roomId}번 방",
-        "description": "NexusTimer 실시간 대결에 참여하세요! ID: {roomId}"
-      }
+    "create-room": {
+      "title": "새 공개 방 만들기",
+      "description": "Clash 이벤트를 위한 방을 만듭니다. 규칙과 요구 사항 등을 설정하세요.",
+      "room-name": "방 이름",
+      "room-name-placeholder": "예: 밤샘 큐빙",
+      "room-name-required": "방 이름은 필수입니다",
+      "event": "종목",
+      "max-round-time": "라운드 최대 시간",
+      "max-round-time-description": "스크램블 + 미리보기 + 솔빙 합산 제한 시간",
+      "continue": "계속하기",
+      "creating": "생성 중..."
+    },
+    "status": {
+      "solving": "솔빙 중...",
+      "inspecting": "미리보기 중",
+      "done": "완료",
+      "idle": "대기",
+      "ready": "준비됨",
+      "holding": "누르고 있음"
+    },
+    "already-submitted": "이미 이 스크램블에 대한 기록을 제출했습니다. 다음을 기다려 주세요!",
+    "confirm-solve": {
+      "title": "기록 확인 ({time})",
+      "description": "이 기록을 어떻게 등록할까요?",
+      "dnf": "DNF",
+      "plus2": "+2",
+      "ok": "확인"
+    },
+    "results-tab": {
+      "latest": "최근",
+      "best": "최고",
+      "worst": "최악",
+      "average": "평균",
+      "updating-live": "실시간 업데이트 중",
+      "cubers": "큐버들"
+    },
+    "view-profile": "프로필 보기",
+    "anonymous": "익명",
+    "room-card": {
+      "users-online": "접속자:",
+      "event": "종목:",
+      "max-time-per-round": "최대 시간:",
+      "next-round-starts-in": "다음 라운드:",
+      "created-at": "생성 시각",
+      "join": "입장"
+    },
+    "invite-link-copied": "초대 링크가 복사되었습니다",
+    "share-room-text": "NexusTimer 방으로 오세요!",
+    "invite": "초대하기",
+    "OpenGraph": {
+      "invited-to-room": "방에 초대되었습니다",
+      "join-now": "지금 참여하기!",
+      "room": "{roomId}번 방",
+      "description": "NexusTimer 실시간 대결에 참여하세요! ID: {roomId}"
     }
   }
 }

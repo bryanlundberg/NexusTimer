@@ -547,71 +547,82 @@
     "OpenGraphImage": {
       "title": "Nexus Timer - ルービックキューブ専用プロタイマー",
       "description": "Nexus Timerは、ルービックキューブの練習と分析のためのプロフェッショナルなプラットフォームです。"
+    }
+  },
+  "Multiplayer": {
+    "title": "フリープレイ",
+    "description": "リアルタイムで他のキューバーとソルブしましょう。ランキングを気にせず自由に練習できる場所です。",
+    "new-room": "新しい部屋を作る",
+    "no-active-rooms": "アクティブな部屋がありません",
+    "no-active-rooms-description": "最初の部屋を作って、みんな को आमंत्रित करें！",
+    "account-required": "アカウントが必要",
+    "account-required-description": "オンライン対戦にはログインが必要です。",
+    "next-round-starts-in": "次のラウンドまで：",
+    "timer": "タイマー",
+    "results": "結果",
+    "people": "キューバー",
+    "available-rooms": "参加可能な部屋",
+    "active-rooms-count": "{count, plural, =0 {現在アクティブな部屋はありません} =1 {現在 1 つの部屋が稼働中} other {現在 # つの部屋が稼働中}}",
+    "how-to-play": {
+      "title": "遊び方は？",
+      "step1": "部屋を作成するか、既存の部屋に参加します。",
+      "step2": "キューブを準備して、ラウンドの開始を待ちます。",
+      "step3": "できるだけ速くキューブを揃えましょう。"
     },
-    "Multiplayer": {
-      "title": "フリープレイ",
-      "description": "リアルタイムで他のキューバーとソルブしましょう。ランキングを気にせず自由に練習できる場所です。",
-      "new-room": "新しい部屋を作る",
-      "no-active-rooms": "アクティブな部屋がありません",
-      "no-active-rooms-description": "最初の部屋を作って、みんなを招待しましょう！",
-      "account-required": "アカウントが必要",
-      "account-required-description": "オンライン対戦にはログインが必要です。",
-      "next-round-starts-in": "次のラウンドまで：",
-      "timer": "タイマー",
-      "results": "結果",
-      "people": "キューバー",
-      "create-room": {
-        "title": "公開ルームを作成",
-        "description": "対戦イベント用の部屋を作成します。ルールなどを設定してください。",
-        "room-name": "部屋の名前",
-        "room-name-placeholder": "例：夜のキューブ練習",
-        "room-name-required": "部屋の名前は必須です",
-        "event": "種目",
-        "max-round-time": "ラウンド最大時間",
-        "max-round-time-description": "スクランブル＋インスペクション＋ソルブの制限時間",
-        "continue": "作成する"
-      },
-      "status": {
-        "solving": "ソルブ中...",
-        "inspecting": "インスペクション中",
-        "done": "終了",
-        "idle": "待機中",
-        "ready": "準備完了",
-        "holding": "長押し中"
-      },
-      "already-submitted": "このスクランブルの記録は送信済みです。次のラウンドを待ってください！",
-      "confirm-solve": {
-        "title": "タイムの確認 ({time})",
-        "description": "この記録をどう登録しますか？",
-        "dnf": "DNF",
-        "plus2": "+2",
-        "ok": "OK"
-      },
-      "results-tab": {
-        "latest": "最近",
-        "best": "ベスト",
-        "worst": "ワースト",
-        "average": "平均",
-        "updating-live": "リアルタイム更新中",
-        "cubers": "キューバー"
-      },
-      "view-profile": "プロフィールを見る",
-      "anonymous": "匿名",
-      "room-card": {
-        "users-online": "オンライン人数：",
-        "event": "種目：",
-        "max-time-per-round": "最大時間：",
-        "next-round-starts-in": "次ラウンド："
-      },
-      "invite-link-copied": "招待リンクをコピーしました",
-      "share-room-text": "NexusTimerの部屋に来てください！",
-      "invite": "招待",
-      "OpenGraph": {
-        "invited-to-room": "部屋に招待されました",
-        "join-now": "今すぐ参加！",
-        "room": "ルーム {roomId}",
-        "description": "NexusTimerでリアルタイムに対戦しましょう！ ID: {roomId}"
-      }
+    "create-room": {
+      "title": "公開ルームを作成",
+      "description": "対戦イベント用の部屋を新規作成します。ルールや参加条件を設定してください。",
+      "room-name": "部屋の名前",
+      "room-name-placeholder": "例：夜のキューブ練習",
+      "room-name-required": "部屋の名前は必須です",
+      "event": "種目",
+      "max-round-time": "ラウンド最大時間",
+      "max-round-time-description": "スクランブル＋インスペクション＋ソルブの制限時間",
+      "continue": "作成する",
+      "creating": "作成中..."
+    },
+    "status": {
+      "solving": "ソルブ中...",
+      "inspecting": "インスペクション中",
+      "done": "終了",
+      "idle": "待機中",
+      "ready": "準備完了",
+      "holding": "長押し中"
+    },
+    "already-submitted": "このスクランブルの記録は送信済みです。次のラウンドを待ってください！",
+    "confirm-solve": {
+      "title": "タイムの確認 ({time})",
+      "description": "この記録をどう登録しますか？",
+      "dnf": "DNF",
+      "plus2": "+2",
+      "ok": "OK"
+    },
+    "results-tab": {
+      "latest": "最近",
+      "best": "ベスト",
+      "worst": "ワースト",
+      "average": "平均",
+      "updating-live": "リアルタイム更新中",
+      "cubers": "キューバー"
+    },
+    "view-profile": "プロフィールを見る",
+    "anonymous": "匿名",
+    "room-card": {
+      "users-online": "オンライン人数：",
+      "event": "種目：",
+      "max-time-per-round": "最大時間：",
+      "next-round-starts-in": "次ラウンド：",
+      "created-at": "作成時刻",
+      "join": "参加"
+    },
+    "invite-link-copied": "招待リンクをコピーしました",
+    "share-room-text": "NexusTimerの部屋に来てください！",
+    "invite": "招待",
+    "OpenGraph": {
+      "invited-to-room": "部屋に招待されました",
+      "join-now": "今すぐ参加！",
+      "room": "ルーム {roomId}",
+      "description": "NexusTimerでリアルタイムに対戦しましょう！ ID: {roomId}"
     }
   }
 }

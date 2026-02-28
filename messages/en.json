@@ -565,6 +565,14 @@
       "timer": "Timer",
       "results": "Results",
       "people": "People",
+      "available-rooms": "Available Rooms",
+      "active-rooms-count": "{count, plural, =0 {No rooms active now} =1 {1 room active now} other {# rooms active now}}",
+      "how-to-play": {
+        "title": "How to Play?",
+        "step1": "Create or join a room.",
+        "step2": "Prepare your cube and wait the round to start.",
+        "step3": "Solve the cube as fast as possible."
+      },
       "create-room": {
         "title": "New public room",
         "description": "Create a new room for your Clash event. Set the rules, requirements, and more.",
@@ -574,7 +582,8 @@
         "event": "Event",
         "max-round-time": "Maximum round time",
         "max-round-time-description": "Time limit for scramble + inspection + solving",
-        "continue": "Continue"
+        "continue": "Continue",
+        "creating": "Creating..."
       },
       "status": {
         "solving": "Solving...",
@@ -606,7 +615,9 @@
         "users-online": "Users online:",
         "event": "Event:",
         "max-time-per-round": "Max Time per Round:",
-        "next-round-starts-in": "Next round starts in:"
+        "next-round-starts-in": "Next round starts in:",
+        "created-at": "Created at",
+        "join": "Join"
       },
       "invite-link-copied": "Invite link copied",
       "share-room-text": "Join my cubing room on NexusTimer!",

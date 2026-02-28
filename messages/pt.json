@@ -547,71 +547,82 @@
     "OpenGraphImage": {
       "title": "Nexus Timer - Cronômetro Profissional para Cubo de Rubik",
       "description": "Nexus Timer é uma plataforma profissional para treinar e analisar sua jornada com o Cubo de Rubik."
+    }
+  },
+  "Multiplayer": {
+    "title": "Jogo Livre",
+    "description": "Junte-se a sessões de cubing em tempo real. Um espaço casual para praticar livremente.",
+    "new-room": "Nova Sala",
+    "no-active-rooms": "Sem salas ativas",
+    "no-active-rooms-description": "Seja o primeiro a criar uma sessão!",
+    "account-required": "Conta Necessária",
+    "account-required-description": "Você precisa estar logado para acessar jogos online.",
+    "next-round-starts-in": "Próxima rodada em:",
+    "timer": "Cronômetro",
+    "results": "Resultados",
+    "people": "Pessoas",
+    "available-rooms": "Salas Disponíveis",
+    "active-rooms-count": "{count, plural, =0 {Nenhuma sala ativa no momento} =1 {1 sala ativa agora} other {# salas ativas agora}}",
+    "how-to-play": {
+      "title": "Como jogar?",
+      "step1": "Crie ou entre em uma sala.",
+      "step2": "Prepare o seu cubo e aguarde a rodada começar.",
+      "step3": "Resolva o cubo o mais rápido possível."
     },
-    "Multiplayer": {
-      "title": "Jogo Livre",
-      "description": "Junte-se a sessões de cubing em tempo real. Um espaço casual para praticar livremente.",
-      "new-room": "Nova Sala",
-      "no-active-rooms": "Sem salas ativas",
-      "no-active-rooms-description": "Seja o primeiro a criar uma sessão!",
-      "account-required": "Conta Necessária",
-      "account-required-description": "Você precisa estar logado para acessar jogos online.",
+    "create-room": {
+      "title": "Nova sala pública",
+      "description": "Crie uma nova sala para o seu evento Clash. Defina as regras, requisitos e muito mais.",
+      "room-name": "Nome da sala",
+      "room-name-placeholder": "ex: Noite de cubing",
+      "room-name-required": "O nome da sala é obrigatório",
+      "event": "Evento",
+      "max-round-time": "Tempo máximo de rodada",
+      "max-round-time-description": "Limite de tempo para embaralhamento + inspeção + resolução",
+      "continue": "Continuar",
+      "creating": "Criando..."
+    },
+    "status": {
+      "solving": "Resolvendo...",
+      "inspecting": "Inspecionando",
+      "done": "Concluído",
+      "idle": "Inativo",
+      "ready": "Pronto",
+      "holding": "Segurando"
+    },
+    "already-submitted": "Você já enviou um tempo para este embaralhamento.",
+    "confirm-solve": {
+      "title": "Confirmar Tempo ({time})",
+      "description": "Como você deseja registrar este tempo?",
+      "dnf": "DNF",
+      "plus2": "+2",
+      "ok": "OK"
+    },
+    "results-tab": {
+      "latest": "Último",
+      "best": "Melhor",
+      "worst": "Pior",
+      "average": "Média",
+      "updating-live": "Atualizando ao vivo",
+      "cubers": "Cubistas"
+    },
+    "view-profile": "Ver perfil",
+    "anonymous": "Anônimo",
+    "room-card": {
+      "users-online": "Usuários online:",
+      "event": "Evento:",
+      "max-time-per-round": "Tempo máx:",
       "next-round-starts-in": "Próxima rodada em:",
-      "timer": "Cronômetro",
-      "results": "Resultados",
-      "people": "Pessoas",
-      "create-room": {
-        "title": "Nova sala pública",
-        "description": "Crie uma sala para o seu evento Clash.",
-        "room-name": "Nome da sala",
-        "room-name-placeholder": "ex: Noite de cubing",
-        "room-name-required": "O nome da sala é obrigatório",
-        "event": "Evento",
-        "max-round-time": "Tempo máx por rodada",
-        "max-round-time-description": "Limite para embaralhamento + inspeção + resolução",
-        "continue": "Continuar"
-      },
-      "status": {
-        "solving": "Resolvendo...",
-        "inspecting": "Inspecionando",
-        "done": "Concluído",
-        "idle": "Inativo",
-        "ready": "Pronto",
-        "holding": "Segurando"
-      },
-      "already-submitted": "Você já enviou um tempo para este embaralhamento.",
-      "confirm-solve": {
-        "title": "Confirmar Tempo ({time})",
-        "description": "Como você deseja registrar este tempo?",
-        "dnf": "DNF",
-        "plus2": "+2",
-        "ok": "OK"
-      },
-      "results-tab": {
-        "latest": "Último",
-        "best": "Melhor",
-        "worst": "Pior",
-        "average": "Média",
-        "updating-live": "Atualizando ao vivo",
-        "cubers": "Cubistas"
-      },
-      "view-profile": "Ver perfil",
-      "anonymous": "Anônimo",
-      "room-card": {
-        "users-online": "Usuários online:",
-        "event": "Evento:",
-        "max-time-per-round": "Tempo máx:",
-        "next-round-starts-in": "Próxima rodada em:"
-      },
-      "invite-link-copied": "Link de convite copiado",
-      "share-room-text": "Junte-se à minha sala no NexusTimer!",
-      "invite": "Convidar",
-      "OpenGraph": {
-        "invited-to-room": "Você foi convidado para uma sala",
-        "join-now": "Entrar agora!",
-        "room": "Sala {roomId}",
-        "description": "Junte-se à minha sala no NexusTimer para competir ao vivo! ID: {roomId}"
-      }
+      "created-at": "Criado às",
+      "join": "Entrar"
+    },
+    "invite-link-copied": "Link de convite copiado",
+    "share-room-text": "Junte-se à minha sala no NexusTimer!",
+    "invite": "Convidar",
+    "OpenGraph": {
+      "invited-to-room": "Você foi convidado para uma sala",
+      "join-now": "Entrar agora!",
+      "room": "Sala {roomId}",
+      "description": "Junte-se à minha sala no NexusTimer para competir ao vivo! ID: {roomId}"
     }
   }
 }

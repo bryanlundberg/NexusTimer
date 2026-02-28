@@ -547,71 +547,82 @@
     "OpenGraphImage": {
       "title": "Nexus Timer - 专业魔方计时器",
       "description": "Nexus Timer 是一个专业的平台，用于训练和分析你的魔方竞速之旅。"
+    }
+  },
+  "Multiplayer": {
+    "title": "自由练习",
+    "description": "加入实时魔方竞技。一个可以自由练习而没有排名压力的休闲空间。",
+    "new-room": "新房间",
+    "no-active-rooms": "目前还没有活跃的房间",
+    "no-active-rooms-description": "成为第一个开启会话的人！创建一个房间并邀请他人加入。",
+    "account-required": "需要账户",
+    "account-required-description": "你需要登录才能访问在线游戏。",
+    "next-round-starts-in": "下一轮开始倒计时：",
+    "timer": "计时器",
+    "results": "结果",
+    "people": "魔友",
+    "available-rooms": "可用房间",
+    "active-rooms-count": "{count, plural, =0 {目前没有活跃房间} =1 {目前有 1 个活跃房间} other {目前有 # 个活跃房间}}",
+    "how-to-play": {
+      "title": "如何开始？",
+      "step1": "创建或加入一个房间。",
+      "step2": "准备好魔方并等待该轮开始。",
+      "step3": "以尽可能快的速度还原魔方。"
     },
-    "Multiplayer": {
-      "title": "自由练习",
-      "description": "加入实时魔方竞技。一个可以自由练习而没有排名压力的休闲空间。",
-      "new-room": "新房间",
-      "no-active-rooms": "目前还没有活跃的房间",
-      "no-active-rooms-description": "成为第一个开启会话的人！创建一个房间并邀请他人加入。",
-      "account-required": "需要账户",
-      "account-required-description": "你需要登录才能访问在线游戏。",
-      "next-round-starts-in": "下一轮开始倒计时：",
-      "timer": "计时器",
-      "results": "结果",
-      "people": "魔友",
-      "create-room": {
-        "title": "新建公共房间",
-        "description": "为你的 Clash 活动创建一个新房间。设置规则、要求等。",
-        "room-name": "房间名称",
-        "room-name-placeholder": "例如：魔友之夜",
-        "room-name-required": "房间名称为必填项",
-        "event": "项目",
-        "max-round-time": "最大单轮时间",
-        "max-round-time-description": "打乱 + 观察 + 还原的时间限制",
-        "continue": "继续"
-      },
-      "status": {
-        "solving": "还原中...",
-        "inspecting": "观察中",
-        "done": "完成",
-        "idle": "空闲",
-        "ready": "准备就绪",
-        "holding": "按住中"
-      },
-      "already-submitted": "你已经提交了本次打乱的成绩。请等待下一轮！",
-      "confirm-solve": {
-        "title": "确认成绩 ({time})",
-        "description": "你想如何记录这次还原？",
-        "dnf": "DNF",
-        "plus2": "+2",
-        "ok": "确定"
-      },
-      "results-tab": {
-        "latest": "最近",
-        "best": "最佳",
-        "worst": "最差",
-        "average": "平均",
-        "updating-live": "实时更新中",
-        "cubers": "魔友"
-      },
-      "view-profile": "查看资料",
-      "anonymous": "匿名",
-      "room-card": {
-        "users-online": "在线人数：",
-        "event": "项目：",
-        "max-time-per-round": "每轮最大时间：",
-        "next-round-starts-in": "下一轮开始："
-      },
-      "invite-link-copied": "邀请链接已复制",
-      "share-room-text": "快来加入我在 NexusTimer 的房间吧！",
-      "invite": "邀请",
-      "OpenGraph": {
-        "invited-to-room": "有人邀请你加入房间",
-        "join-now": "立即加入！",
-        "room": "房间 {roomId}",
-        "description": "加入我在 NexusTimer 的房间一起实时竞技！ID: {roomId}"
-      }
+    "create-room": {
+      "title": "新建公共房间",
+      "description": "为你的 Clash 活动创建一个新房间。设置规则、要求等。",
+      "room-name": "房间名称",
+      "room-name-placeholder": "例如：魔友之夜",
+      "room-name-required": "房间名称为必填项",
+      "event": "项目",
+      "max-round-time": "最大单轮时间",
+      "max-round-time-description": "打乱 + 观察 + 还原的时间限制",
+      "continue": "继续",
+      "creating": "创建中..."
+    },
+    "status": {
+      "solving": "还原中...",
+      "inspecting": "观察中",
+      "done": "完成",
+      "idle": "空闲",
+      "ready": "准备就绪",
+      "holding": "按住中"
+    },
+    "already-submitted": "你已经提交了本次打乱的成绩。请等待下一轮！",
+    "confirm-solve": {
+      "title": "确认成绩 ({time})",
+      "description": "你想如何记录这次还原？",
+      "dnf": "DNF",
+      "plus2": "+2",
+      "ok": "确定"
+    },
+    "results-tab": {
+      "latest": "最近",
+      "best": "最佳",
+      "worst": "最差",
+      "average": "平均",
+      "updating-live": "实时更新中",
+      "cubers": "魔友"
+    },
+    "view-profile": "查看资料",
+    "anonymous": "匿名",
+    "room-card": {
+      "users-online": "在线人数：",
+      "event": "项目：",
+      "max-time-per-round": "每轮最大时间：",
+      "next-round-starts-in": "下一轮开始：",
+      "created-at": "创建于",
+      "join": "加入"
+    },
+    "invite-link-copied": "邀请链接已复制",
+    "share-room-text": "快来加入我在 NexusTimer 的房间吧！",
+    "invite": "邀请",
+    "OpenGraph": {
+      "invited-to-room": "有人邀请你加入房间",
+      "join-now": "立即加入！",
+      "room": "房间 {roomId}",
+      "description": "加入我在 NexusTimer 的房间一起实时竞技！ID: {roomId}"
     }
   }
 }

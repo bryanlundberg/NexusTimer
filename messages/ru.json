@@ -547,71 +547,82 @@
     "OpenGraphImage": {
       "title": "Nexus Timer — Профессиональный таймер для кубика Рубика",
       "description": "Nexus Timer — профессиональная платформа для тренировок и анализа вашего прогресса."
+    }
+  },
+  "Multiplayer": {
+    "title": "Свободная игра",
+    "description": "Кубите в реальном времени с другими. Место для тренировок без давления рейтингов.",
+    "new-room": "Новая комната",
+    "no-active-rooms": "Активных комнат нет",
+    "no-active-rooms-description": "Создайте комнату первым!",
+    "account-required": "Нужен аккаунт",
+    "account-required-description": "Войдите, чтобы играть онлайн.",
+    "next-round-starts-in": "Следующий раунд через:",
+    "timer": "Таймер",
+    "results": "Результаты",
+    "people": "Люди",
+    "available-rooms": "Доступные комнаты",
+    "active-rooms-count": "{count, plural, =0 {Сейчас нет активных комнат} =1 {1 активная комната} =2 {# активные комнаты} =3 {# активные комнаты} =4 {# активные комнаты} other {# активных комнат}}",
+    "how-to-play": {
+      "title": "Как играть?",
+      "step1": "Создайте комнату или присоединитесь к ней.",
+      "step2": "Подготовьте кубик и дождитесь начала раунда.",
+      "step3": "Соберите кубик как можно быстрее."
     },
-    "Multiplayer": {
-      "title": "Свободная игра",
-      "description": "Кубите в реальном времени с другими. Место для тренировок без давления рейтингов.",
-      "new-room": "Новая комната",
-      "no-active-rooms": "Активных комнат нет",
-      "no-active-rooms-description": "Создайте комнату первым!",
-      "account-required": "Нужен аккаунт",
-      "account-required-description": "Войдите, чтобы играть онлайн.",
-      "next-round-starts-in": "Следующий раунд через:",
-      "timer": "Таймер",
-      "results": "Результаты",
-      "people": "Люди",
-      "create-room": {
-        "title": "Новая публичная комната",
-        "description": "Создайте комнату для Clash-ивента. Настройте правила и вперед.",
-        "room-name": "Название",
-        "room-name-placeholder": "напр. Вечер кубинга",
-        "room-name-required": "Название обязательно",
-        "event": "Дисциплина",
-        "max-round-time": "Лимит времени",
-        "max-round-time-description": "Скрамбл + осмотр + сборка",
-        "continue": "Продолжить"
-      },
-      "status": {
-        "solving": "Собирает...",
-        "inspecting": "Осмотр",
-        "done": "Готово",
-        "idle": "Ожидание",
-        "ready": "Готов",
-        "holding": "Держит"
-      },
-      "already-submitted": "Вы уже отправили результат. Ждите следующего скрамбла!",
-      "confirm-solve": {
-        "title": "Подтвердите время ({time})",
-        "description": "Как записать эту сборку?",
-        "dnf": "DNF",
-        "plus2": "+2",
-        "ok": "ОК"
-      },
-      "results-tab": {
-        "latest": "Последние",
-        "best": "Лучшие",
-        "worst": "Худшие",
-        "average": "Среднее",
-        "updating-live": "Обновление в реальном времени",
-        "cubers": "Куберы"
-      },
-      "view-profile": "Профиль",
-      "anonymous": "Аноним",
-      "room-card": {
-        "users-online": "В сети:",
-        "event": "Дисциплина:",
-        "max-time-per-round": "Макс. время:",
-        "next-round-starts-in": "Старт через:"
-      },
-      "invite-link-copied": "Ссылка скопирована",
-      "share-room-text": "Заходи в мою комнату на NexusTimer!",
-      "invite": "Пригласить",
-      "OpenGraph": {
-        "invited-to-room": "Вас пригласили в комнату",
-        "join-now": "Зайти сейчас!",
-        "room": "Комната {roomId}",
-        "description": "Заходи в мою комнату на NexusTimer для живой конкуренции! ID: {roomId}"
-      }
+    "create-room": {
+      "title": "Новая публичная комната",
+      "description": "Создайте новую комнату для вашего Clash-ивента. Настройте правила, требования и многое другое.",
+      "room-name": "Название",
+      "room-name-placeholder": "напр. Вечер кубинга",
+      "room-name-required": "Название обязательно",
+      "event": "Дисциплина",
+      "max-round-time": "Лимит времени",
+      "max-round-time-description": "Лимит времени на скрамбл + осмотр + сборку",
+      "continue": "Продолжить",
+      "creating": "Создание..."
+    },
+    "status": {
+      "solving": "Собирает...",
+      "inspecting": "Осмотр",
+      "done": "Готово",
+      "idle": "Ожидание",
+      "ready": "Готов",
+      "holding": "Держит"
+    },
+    "already-submitted": "Вы уже отправили результат. Ждите следующего скрамбла!",
+    "confirm-solve": {
+      "title": "Подтвердите время ({time})",
+      "description": "Как записать эту сборку?",
+      "dnf": "DNF",
+      "plus2": "+2",
+      "ok": "ОК"
+    },
+    "results-tab": {
+      "latest": "Последние",
+      "best": "Лучшие",
+      "worst": "Худшие",
+      "average": "Среднее",
+      "updating-live": "Обновление в реальном времени",
+      "cubers": "Куберы"
+    },
+    "view-profile": "Профиль",
+    "anonymous": "Аноним",
+    "room-card": {
+      "users-online": "В сети:",
+      "event": "Дисциплина:",
+      "max-time-per-round": "Макс. время:",
+      "next-round-starts-in": "Старт через :",
+      "created-at": "Создано в",
+      "join": "Войти"
+    },
+    "invite-link-copied": "Ссылка скопирована",
+    "share-room-text": "Заходи в мою комнату на NexusTimer!",
+    "invite": "Пригласить",
+    "OpenGraph": {
+      "invited-to-room": "Вас пригласили в комнату",
+      "join-now": "Зайти сейчас!",
+      "room": "Комната {roomId}",
+      "description": "Заходи в мою комнату на NexusTimer для живой конкуренции! ID: {roomId}"
     }
   }
 }
