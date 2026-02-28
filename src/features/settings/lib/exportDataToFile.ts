@@ -1,7 +1,7 @@
-import { formatISO9075 } from 'date-fns'
 import { Cube } from '@/entities/cube/model/types'
+import moment from 'moment'
 
-const OUTPUT_FILE_NAME = `Backup-NT-${formatISO9075(new Date(Date.now()))}.txt`
+const OUTPUT_FILE_NAME = `Backup-NT-${moment().format('YYYY-MM-DD HH:mm:ss')}.txt`
 
 /**
  * Exports the cube data to a JSON file and initiates a download.
