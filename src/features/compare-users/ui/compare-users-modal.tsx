@@ -27,8 +27,8 @@ export default function CompareUsersModal() {
     <div className={'bg-background w-full h-full flex flex-col fixed top-0 left-0 z-50 overflow-y-auto'}>
       <header className={'flex items-center justify-between p-4'}>
         <div className="flex items-center gap-3">
-          <div className="h-8 w-8 rounded-md bg-primary border border-primary/15 flex items-center justify-center">
-            <Image src={'/logo.png'} alt={'logo'} width={20} height={20} className={'invert'} />
+          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+            <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert size-8`} />
           </div>
           <span className="text-sm font-semibold tracking-wide text-background-foreground/90 hidden sm:block">
             NexusTimer
