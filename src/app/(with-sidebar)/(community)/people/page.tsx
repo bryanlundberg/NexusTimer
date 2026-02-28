@@ -33,7 +33,9 @@ export default function PeoplePage() {
           <PeoplePageHeader />
 
           <div
-            className={'grid grid-cols-1 @xl/people:grid-cols-2 @5xl/people:grid-cols-3 @7xl/people:grid-cols-4 gap-3'}
+            className={
+              'grid grid-cols-1 @xl/people:grid-cols-2 @5xl/people:grid-cols-3 @7xl/people:grid-cols-3 @9xl/people:grid-cols-4 gap-3'
+            }
           >
             {isLoading &&
               Array(10)
