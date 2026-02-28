@@ -1,12 +1,14 @@
 import { UserDocument } from '@/entities/user/model/user'
 import { Card } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { ExternalLink, GitCompareIcon } from 'lucide-react'
+import { CheckCircle2, ExternalLink, GitCompareIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import * as React from 'react'
+import { useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { useTranslations } from 'next-intl'
+import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
 
 export default function UserCard({ user }: { user: UserDocument }) {
   const t = useTranslations('Index.PeoplePage.user-card')
@@ -16,9 +18,27 @@ export default function UserCard({ user }: { user: UserDocument }) {
   const users = useCompareUsersStore((state) => state.users)
   const isAdded = users.find((u) => u._id === user._id)
 
+  const [isFlying, setIsFlying] = useState(false)
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 })
+  const avatarRef = useRef<HTMLDivElement>(null)
+
+  const handleCompareClick = () => {
+    if (!isAdded) {
+      if (avatarRef.current) {
+        const rect = avatarRef.current.getBoundingClientRect()
+        setStartPos({ x: rect.left, y: rect.top })
+        setIsFlying(true)
+      }
+      addUser(user)
+    } else {
+      removeUser(user._id)
+    }
+  }
+
   return (
     <Card className="group transition-all duration-300 animate-fadeIn h-full bg-card/20 hover:bg-card/40 border-muted/50 hover:border-primary/30 backdrop-blur-md flex flex-col @xs/people:flex-row items-center p-4 gap-4">
-      <div className="shrink-0">
+      {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
+      <div className="shrink-0" ref={avatarRef}>
         <Avatar className="size-20 ring-4 ring-background shadow-xl group-hover:ring-primary/20 transition-all duration-300">
           <AvatarImage className={'object-cover'} src={user.image} alt={user.name} />
           <AvatarFallback className="bg-primary/10 text-primary font-bold text-xl">
@@ -34,12 +54,16 @@ export default function UserCard({ user }: { user: UserDocument }) {
 
         <div className="flex items-center gap-2 mt-auto w-full">
           <Button
-            onClick={() => (isAdded ? removeUser(user._id) : addUser(user))}
+            onClick={handleCompareClick}
             variant={isAdded ? 'secondary' : 'outline'}
             size="sm"
-            className="flex-1 gap-2 text-xs font-semibold h-9"
+            className="flex-1 gap-2 text-xs font-semibold h-9 relative overflow-hidden group/btn"
           >
-            <GitCompareIcon className="size-4" />
+            {isAdded ? (
+              <CheckCircle2 className="size-4 text-primary animate-in zoom-in duration-300" />
+            ) : (
+              <GitCompareIcon className="size-4" />
+            )}
             {t('compare')}
           </Button>
           <Button
