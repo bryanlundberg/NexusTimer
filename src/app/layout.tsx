@@ -1,6 +1,6 @@
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
-import { jakarta } from '@/shared/config/fonts'
+import { inter } from '@/shared/config/fonts'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages, getTranslations } from 'next-intl/server'
 import { SessionProvider } from 'next-auth/react'
@@ -118,7 +118,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <JsonLd locale={locale} title={title} description={description} url={url} />
       </head>
-      <body className={jakarta.className}>
+      <body className={inter.className}>
         <NuqsAdapter>
           <SessionProvider session={session}>
             <NextIntlClientProvider messages={messages}>
