@@ -150,7 +150,7 @@ export default function CreateRoomModal() {
             onClick={handleSubmit(submitForm)}
             disabled={isSubmitting}
           >
-            {isSubmitting ? 'Creando...' : t('continue')}
+            {isSubmitting ? t('creating') : t('continue')}
           </Button>
         </DialogFooter>
       </div>
