@@ -50,7 +50,7 @@ by [Feliks Zemdegs](https://www.worldcubeassociation.org/persons/2009ZEMD01) ðŸ˜
 
 ## ðŸ§Š Virtual Cube Preview
 
-NexusTimer features a real-time 3D visualization of scramble sequences using a virtual cube. This allows you to see the state of the cube after applying the scramble moves. Also, there is a leaderboard community.
+NexusTimer features a real-time 3D visualization of scramble sequences using a virtual cube. Also, there is a leaderboard community for sharing your best times and comparing them with other cubers around the world.
 
 <div align="center">
   <a href="https://youtu.be/3eY8-qQgJAo?si=-SJ8W7tFdI8ulrWH">
