@@ -257,7 +257,7 @@
       "table": {
         "user": "Usuario",
         "category": "Categoría",
-        "scramble": "Mezcla",
+        "scramble": "Scramble",
         "time": "Tiempo",
         "image": "Imagen",
         "date": "Fecha",
@@ -377,7 +377,7 @@
       "load-data-title": "Cargar datos",
       "load-data-warning": "Esto fusionará los datos actuales con los datos guardados.",
       "save-data-description": "¿Quieres guardar los datos de tu cuenta en la nube?",
-      "save-data-title": "guardar datos",
+      "save-data-title": "Guardar datos",
       "save-data-warning": "Esto sobrescribirá los datos guardados previamente.",
       "source": "Fuente",
       "title": "Ajustes",
@@ -533,7 +533,7 @@
         "zbll-h": "ZBLL H (ZBLL-H) es un subconjunto del método ZBLL para resolver la última capa de un Cubo de Rubik. Se centra en casos donde las esquinas están en una configuración 'H', permitiendo algoritmos eficientes para resolver toda la última capa en una sola secuencia de movimientos.",
         "parity-4x4": "Estos algoritmos abordan los errores de paridad únicos que pueden ocurrir al resolver un cubo de Rubik de 4x4, que no ocurren en un cubo de 3x3 estándar. Son esenciales para completar la resolución después de reducir el 4x4 a un estado de 3x3.",
         "parity-5x5": "Estos algoritmos abordan los errores de paridad únicos que pueden ocurrir al resolver un cubo de Rubik de 5x5, que no ocurren en un cubo de 3x3 estándar. Son esenciales para completar la resolución después de reducir el 5x5 a un estado de 3x3.",
-        "l4e": "Últimas 4 ranuras (Pyraminx): estos algoritmos se utilizan para resolver las últimas cuatro piezas de arista de un rompecabezas Pyraminx. El objetivo es posicionar y orientar estas piezas correctamente para completar el rompecabezas."
+        "l4e": "Últimas 4 aristas (Pyraminx): estos algoritmos se utilizan para resolver las últimas cuatro piezas de arista de un rompecabezas Pyraminx. El objetivo es posicionar y orientar estas piezas correctamente para completar el rompecabezas."
       },
       "alternative": "Alternativa"
     }
@@ -597,7 +597,7 @@
       "status": {
         "solving": "Resolviendo...",
         "inspecting": "Inspeccionando",
-        "done": "Listo",
+        "done": "Terminado",
         "idle": "Inactivo",
         "ready": "Listo",
         "holding": "Manteniendo"

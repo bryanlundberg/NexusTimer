@@ -267,7 +267,7 @@
       "next": "Suivant"
     },
     "PeoplePage": {
-      "title": "Gens",
+      "title": "Personnes",
       "search-placeholder": "Rechercher par nom",
       "region-placeholder": "Région",
       "region-all": "Toutes",
@@ -333,7 +333,7 @@
       "cubes": "Cubes",
       "transfer": "Transférer",
       "community": "Communauté",
-      "people": "Gens",
+      "people": "Personnes",
       "leaderboards": "Classements",
       "multiplayer": "Multijoueur",
       "free-play": "Jeu Libre",
