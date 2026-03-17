@@ -4,16 +4,18 @@ import { useSession } from 'next-auth/react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useRef } from 'react'
-import { Image } from 'lucide-react'
+import { Image, Loader2 } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 export function AvatarUploader() {
   const { data: session } = useSession()
-  const { updateAvatar } = useUpdateUserAvatar()
+  const { updateAvatar, isUploading } = useUpdateUserAvatar()
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const t = useTranslations('Index.AccountPage')
 
-  const handleClick = () => fileInputRef.current?.click()
+  const handleClick = () => {
+    if (!isUploading) fileInputRef.current?.click()
+  }
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -30,10 +32,23 @@ export function AvatarUploader() {
           className="hidden"
           type="file"
           accept="image/*"
+          disabled={isUploading}
           onChange={(e) => updateAvatar(e.target.files?.[0])}
         />
-        <Button type="button" variant="secondary" size="sm" onClick={handleClick} className={'w-fit gap-2'}>
-          <Image className="size-3.5" /> {t('change-picture')}
+        <Button
+          type="button"
+          variant="secondary"
+          size="sm"
+          onClick={handleClick}
+          disabled={isUploading}
+          className={'w-fit gap-2'}
+        >
+          {isUploading ? (
+            <Loader2 className="size-3.5 animate-spin" />
+          ) : (
+            <Image className="size-3.5" />
+          )}
+          {t('change-picture')}
         </Button>
         <p className="text-center">{t('avatar-requirements')}</p>
       </div>
