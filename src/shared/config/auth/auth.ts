@@ -1,6 +1,8 @@
 import NextAuth, { type DefaultSession } from 'next-auth'
 import Google from 'next-auth/providers/google'
 import Discord from 'next-auth/providers/discord'
+import connectDB from '@/shared/config/mongodb/mongodb'
+import User from '@/entities/user/model/user'
 
 declare module 'next-auth' {
   /**
@@ -16,56 +18,66 @@ declare module 'next-auth' {
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [Google, Discord],
   callbacks: {
-    jwt: async ({ token, user, trigger, session, account }) => {
+    jwt: async ({ token, user, trigger, session }) => {
       if (trigger === 'update') {
         if (session?.user?.image) token.picture = session.user.image
         if (session?.user?.name) token.name = session.user.name
       }
 
-      if (user) token.id = user.id
+      if (user) {
+        token.id = user.id
+        token.picture = user.image
+        token.name = user.name
+      }
 
       return token
     },
     session: async ({ session, token }) => {
       if (token?.id) session.user.id = token.id as string
+      if (token?.picture) session.user.image = token.picture as string
+      if (token?.name) session.user.name = token.name as string
       return session
     },
     async signIn({ user, account }) {
-      const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
-
       try {
-        const response = await fetch(`${baseUrl}/api/v1/users`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: user.email as string,
-            image: user.image as string,
-            name: user.name as string,
-            provider: account?.provider,
-            providerId: account?.providerAccountId
-          })
+        await connectDB()
+
+        let dbUser = await User.findOne({
+          providers: {
+            $elemMatch: { provider: account?.provider, providerId: account?.providerAccountId }
+          }
         })
 
-        if (!response.ok) {
-          console.error(response.status)
-          return false
+        if (dbUser) {
+          user.id = dbUser._id.toString()
+          user.name = dbUser.name
+          user.image = dbUser.image
+          user.email = dbUser.email
+          return true
         }
 
-        const userData = await response.json()
+        dbUser = await User.findOneAndUpdate(
+          { email: user.email },
+          { $addToSet: { providers: { provider: account?.provider, providerId: account?.providerAccountId } } },
+          { upsert: false, new: true }
+        )
 
-        if (!userData._id) {
-          console.error('User ID not found in response')
-          return false
+        if (!dbUser) {
+          dbUser = await User.create({
+            email: user.email,
+            name: user.name,
+            image: user.image,
+            providers: [{ provider: account?.provider, providerId: account?.providerAccountId }]
+          })
         }
 
-        user.id = userData._id
-        user.email = userData.email
-        user.image = userData.image
-        user.name = userData.name
-
+        user.id = dbUser._id.toString()
+        user.name = dbUser.name
+        user.image = dbUser.image
+        user.email = dbUser.email
         return true
       } catch (error) {
-        console.error('Error creating/updating user:', error)
+        console.error('Error in signIn:', error)
         return false
       }
     }
