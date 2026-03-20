@@ -70,7 +70,7 @@ const UserSchema = new Schema(
 )
 
 UserSchema.index({ email: 1 }, { unique: true })
-UserSchema.index({ 'providers.provider': 1, 'providers.providerId': 1 }, { unique: true })
+UserSchema.index({ 'providers.provider': 1, 'providers.providerId': 1 }, { unique: true, sparse: true })
 UserSchema.index({ 'backup.updatedAt': -1, createdAt: -1 })
 UserSchema.index({ name: 1 })
 UserSchema.index({ timezone: 1 })
