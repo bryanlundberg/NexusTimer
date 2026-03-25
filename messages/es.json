@@ -36,7 +36,23 @@
       "continue-discord": "Continuar con Discord"
     },
     "CoreHeader": {
-      "server-online": "Servidor: Online"
+      "server-online": "Servidor: Online",
+      "give-feedback": "Dar Feedback"
+    },
+    "Feedback": {
+      "title": "Dar Feedback",
+      "description": "Como es tu experiencia con NexusTimer?",
+      "rating-1": "Terrible",
+      "rating-2": "Malo",
+      "rating-3": "Regular",
+      "rating-4": "Bueno",
+      "rating-5": "Increible",
+      "placeholder": "Cuentanos mas sobre tu experiencia... (opcional)",
+      "cancel": "Cancelar",
+      "submit": "Enviar",
+      "sending": "Enviando...",
+      "thanks": "Gracias por tu feedback!",
+      "close": "Cerrar"
     },
     "DialogFirstRunNoCubes": {
       "title": "Bienvenido a NexusTimer",

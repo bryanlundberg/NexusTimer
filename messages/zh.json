@@ -62,7 +62,23 @@
       "continue-discord": "使用 Discord 继续"
     },
     "CoreHeader": {
-      "server-online": "服务器：在线"
+      "server-online": "服务器：在线",
+      "give-feedback": "提供反馈"
+    },
+    "Feedback": {
+      "title": "提供反馈",
+      "description": "您使用 NexusTimer 的体验如何？",
+      "rating-1": "很差",
+      "rating-2": "不好",
+      "rating-3": "一般",
+      "rating-4": "很好",
+      "rating-5": "太棒了",
+      "placeholder": "告诉我们更多关于您的体验...（可选）",
+      "cancel": "取消",
+      "submit": "提交",
+      "sending": "发送中...",
+      "thanks": "感谢您的反馈！",
+      "close": "关闭"
     },
     "DialogFirstRunNoCubes": {
       "title": "欢迎使用 NexusTimer",

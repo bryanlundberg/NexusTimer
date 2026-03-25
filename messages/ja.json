@@ -62,7 +62,23 @@
       "continue-discord": "Discord で続行"
     },
     "CoreHeader": {
-      "server-online": "サーバー: オンライン"
+      "server-online": "サーバー: オンライン",
+      "give-feedback": "フィードバック"
+    },
+    "Feedback": {
+      "title": "フィードバック",
+      "description": "NexusTimerの使い心地はいかがですか？",
+      "rating-1": "最悪",
+      "rating-2": "悪い",
+      "rating-3": "普通",
+      "rating-4": "良い",
+      "rating-5": "最高",
+      "placeholder": "体験について詳しく教えてください...（任意）",
+      "cancel": "キャンセル",
+      "submit": "送信",
+      "sending": "送信中...",
+      "thanks": "フィードバックありがとうございます！",
+      "close": "閉じる"
     },
     "DialogFirstRunNoCubes": {
       "title": "NexusTimerへようこそ",

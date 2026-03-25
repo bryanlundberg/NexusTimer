@@ -62,7 +62,23 @@
       "continue-discord": "Продолжить через Discord"
     },
     "CoreHeader": {
-      "server-online": "Сервер: Онлайн"
+      "server-online": "Сервер: Онлайн",
+      "give-feedback": "Оставить отзыв"
+    },
+    "Feedback": {
+      "title": "Оставить отзыв",
+      "description": "Как вам работа с NexusTimer?",
+      "rating-1": "Ужасно",
+      "rating-2": "Плохо",
+      "rating-3": "Нормально",
+      "rating-4": "Хорошо",
+      "rating-5": "Потрясающе",
+      "placeholder": "Расскажите подробнее о вашем опыте... (необязательно)",
+      "cancel": "Отмена",
+      "submit": "Отправить",
+      "sending": "Отправка...",
+      "thanks": "Спасибо за ваш отзыв!",
+      "close": "Закрыть"
     },
     "DialogFirstRunNoCubes": {
       "title": "Добро пожаловать в NexusTimer",

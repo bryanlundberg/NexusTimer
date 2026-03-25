@@ -62,7 +62,23 @@
       "continue-discord": "Discord 계정으로 계속하기"
     },
     "CoreHeader": {
-      "server-online": "서버: 온라인"
+      "server-online": "서버: 온라인",
+      "give-feedback": "피드백 보내기"
+    },
+    "Feedback": {
+      "title": "피드백 보내기",
+      "description": "NexusTimer 사용 경험은 어떠신가요?",
+      "rating-1": "최악",
+      "rating-2": "나쁨",
+      "rating-3": "보통",
+      "rating-4": "좋음",
+      "rating-5": "최고",
+      "placeholder": "경험에 대해 더 알려주세요... (선택사항)",
+      "cancel": "취소",
+      "submit": "제출",
+      "sending": "전송 중...",
+      "thanks": "피드백 감사합니다!",
+      "close": "닫기"
     },
     "DialogFirstRunNoCubes": {
       "title": "NexusTimer에 오신 것을 환영합니다",
