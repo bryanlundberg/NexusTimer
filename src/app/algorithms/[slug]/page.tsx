@@ -88,8 +88,12 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
         secondaryBreadcrumb={slug.toUpperCase()}
       />
 
-      <div className={'p-2'}>
-        <Information title={`${collection.title} - ${t('title')}`} description={t(`descriptions.${collection.slug}`)} />
+      <div className="px-4 pb-8">
+        <Information
+          title={`${collection.title} - ${t('title')}`}
+          description={t(`descriptions.${collection.slug}`)}
+          algorithmCount={collection.algorithms.length}
+        />
         <AlgorithmsList
           algorithms={collection.algorithms}
           virtualization={collection.virtualization as unknown as TwistyPlayer}
