@@ -13,7 +13,7 @@ export default function CubesPage() {
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <FadeIn>
         <CoreHeader breadcrumbPath={'/cubes'} breadcrumb={t('title')} />
-        <div className="px-4 pb-8 flex flex-col w-full min-h-full">
+        <div className="px-4 pb-8 flex flex-col w-full min-h-full p-2">
           <CubesPageHeader />
           <CubesDashboard />
         </div>

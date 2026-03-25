@@ -14,7 +14,7 @@ export default function StatsPage() {
     <div className="max-h-dvh overflow-auto">
       <FadeIn>
         <CoreHeader breadcrumbPath={'/stats'} breadcrumb={t('title')} />
-        <div className="px-3 md:px-4 pb-6 flex flex-col w-full min-h-full">
+        <div className="px-3 pt-1 pb-6 flex flex-col w-full min-h-full">
           <StatsPageHeader />
           <div className="grid grid-cols-1 gap-4 grow">
             <StatisticsViewSwitcher statistics={stats} loadingProps={loadingProps} />

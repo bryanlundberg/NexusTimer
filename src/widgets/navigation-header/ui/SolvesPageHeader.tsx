@@ -20,7 +20,7 @@ export default function SolvesPageHeader({ handleSearch }: SolvesPageHeaderProps
   })
 
   return (
-    <div className="px-2 flex flex-col w-full gap-2">
+    <div className="flex flex-col w-full gap-2 pt-1 px-3">
       <MainCubeSelector />
       <div className={'flex justify-center items-center gap-2 mb-2'}>
         <div className="flex flex-col sm:flex-row gap-2 w-full">
