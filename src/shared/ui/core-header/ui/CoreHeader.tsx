@@ -18,13 +18,14 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
+  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import DiscordButton from '@/features/authentication/ui/DiscordButton'
 import GoogleButton from '@/features/authentication/ui/GoogleButton'
-import { LogInIcon } from 'lucide-react'
+import { Ellipsis, LogInIcon, SmilePlus } from 'lucide-react'
 
 interface CoreHeaderProps {
   breadcrumbPath: string
@@ -83,14 +84,33 @@ export default function CoreHeader({
           {tHeader('server-online')}
         </div>
         {session?.user ? (
-          <NavUser
-            user={{
-              id: session.user.id as string,
-              name: session?.user?.name || 'Guest',
-              email: session?.user?.email || '',
-              avatar: session?.user?.image || ''
-            }}
-          />
+          <div className={'flex items-center gap-2'}>
+            <NavUser
+              user={{
+                id: session.user.id as string,
+                name: session?.user?.name || 'Guest',
+                email: session?.user?.email || '',
+                avatar: session?.user?.image || ''
+              }}
+            />
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="h-8 px-3 rounded-md">
+                  <Ellipsis />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuGroup>
+                  <DropdownMenuItem asChild>
+                    <Button variant={'ghost'} className={'w-full flex justify-between'}>
+                      Give Feedback <SmilePlus />
+                    </Button>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         ) : (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
