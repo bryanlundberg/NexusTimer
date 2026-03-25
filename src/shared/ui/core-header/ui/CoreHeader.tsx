@@ -26,6 +26,8 @@ import {
 import DiscordButton from '@/features/authentication/ui/DiscordButton'
 import GoogleButton from '@/features/authentication/ui/GoogleButton'
 import { Ellipsis, LogInIcon, SmilePlus } from 'lucide-react'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import FeedbackModal from '@/features/feedback/ui/FeedbackModal'
 
 interface CoreHeaderProps {
   breadcrumbPath: string
@@ -42,8 +44,16 @@ export default function CoreHeader({
   secondaryBreadcrumb
 }: CoreHeaderProps) {
   const { data: session } = useSession()
+  const { open } = useOverlayStore()
   const tAuth = useTranslations('Index.Auth')
   const tHeader = useTranslations('Index.CoreHeader')
+
+  const handleOpenFeedback = () => {
+    open({
+      id: 'feedback',
+      component: <FeedbackModal />
+    })
+  }
 
   return (
     <div className="w-full border-b p-2 flex justify-between items-center mb-2 bg-background/60 backdrop-blur-md sticky top-0 z-50">
@@ -103,7 +113,7 @@ export default function CoreHeader({
               <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuGroup>
                   <DropdownMenuItem asChild>
-                    <Button variant={'ghost'} className={'w-full flex justify-between'}>
+                    <Button variant={'ghost'} className={'w-full flex justify-between'} onClick={handleOpenFeedback}>
                       Give Feedback <SmilePlus />
                     </Button>
                   </DropdownMenuItem>
