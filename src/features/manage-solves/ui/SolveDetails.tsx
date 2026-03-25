@@ -17,39 +17,63 @@ export default function SolveDetails() {
   const locale = useLocale()
   const { activeOverlay } = overlayStore
 
+  const solve = activeOverlay?.metadata as Solve | undefined
+  const formattedDate = DateTime.fromMillis(solve?.endTime || 0)
+    .setLocale(locale)
+    .toFormat('DDDD')
+  const formattedTime = DateTime.fromMillis(solve?.endTime || 0)
+    .setLocale(locale)
+    .toFormat('HH:mm:ss')
+
   return (
-    <DialogContent showCloseButton={false} data-testid="solve-details-dialog-content">
-      <DialogHeader>
-        <DialogTitle className={'text-sm flex justify-between'}>
-          <div className="flex gap-1 items-center">
-            <span className={'text-2xl'}>{formatTime(activeOverlay?.metadata?.time || 0)}</span>
-            <Badge className={'text-xs h-fit'}>{selectedCube?.category || t('solve-details.unknown-category')}</Badge>
+    <DialogContent
+      showCloseButton={true}
+      className="gap-0 p-0 overflow-hidden max-h-[90dvh] flex flex-col"
+      data-testid="solve-details-dialog-content"
+    >
+      <div className="overflow-y-auto flex-1">
+        {/* Header */}
+        <DialogHeader className="px-4 pt-4 pb-3 sm:px-5 sm:pt-5 items-center text-center">
+          <div className="flex items-baseline justify-center gap-2">
+            <DialogTitle className="text-2xl sm:text-3xl font-mono font-bold tracking-tight tabular-nums">
+              {formatTime(solve?.time || 0)}
+            </DialogTitle>
+            <Badge variant="secondary" className="text-[10px]">
+              {selectedCube?.category || t('solve-details.unknown-category')}
+            </Badge>
           </div>
-          <div className={'flex flex-col items-end text-xs font-normal'}>
-            <p className="flex items-center justify-center gap-1">
-              <CalendarIcon />
-              {DateTime.fromMillis(activeOverlay?.metadata?.endTime || 0)
-                .setLocale(locale)
-                .toFormat('DDDD')}
-            </p>
-            <p className="flex items-center justify-center gap-1">
-              <ClockIcon />
-              {DateTime.fromMillis(activeOverlay?.metadata?.endTime || 0)
-                .setLocale(locale)
-                .toFormat('HH:mm:ss')}
-            </p>
+          <div className="flex items-center justify-center gap-2 text-[11px] text-muted-foreground mt-1">
+            <span className="flex items-center gap-1">
+              <CalendarIcon className="size-3" />
+              {formattedDate}
+            </span>
+            <span className="text-border">·</span>
+            <span className="flex items-center gap-1">
+              <ClockIcon className="size-3" />
+              {formattedTime}
+            </span>
           </div>
-        </DialogTitle>
-        <DialogDescription className="text-md text-start">{activeOverlay?.metadata?.scramble}</DialogDescription>
-        <ScrambleDisplay
-          show={true}
-          scramble={activeOverlay?.metadata?.scramble || ''}
-          event={selectedCube?.category || '3x3'}
-          className="h-20 md:h-24 lg:h-28 xl:h-32 2xl:h-36"
-          visualization="2D"
-        />
-        {activeOverlay?.metadata && <QuickActions solve={activeOverlay?.metadata as Solve} />}
-      </DialogHeader>
+        </DialogHeader>
+
+        {/* Scramble */}
+        <div className="px-4 pb-3 sm:px-5">
+          <DialogDescription className="text-xs text-muted-foreground mb-2 font-mono leading-relaxed select-all break-words text-center">
+            {solve?.scramble}
+          </DialogDescription>
+          <div className="rounded-md bg-muted/40 p-1.5">
+            <ScrambleDisplay
+              show={true}
+              scramble={solve?.scramble || ''}
+              event={selectedCube?.category || '3x3'}
+              className="h-16 sm:h-20 md:h-24"
+              visualization="2D"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Actions - compact bottom bar */}
+      <div className="px-4 py-2.5 border-t shrink-0 sm:px-5">{solve && <QuickActions solve={solve} />}</div>
     </DialogContent>
   )
 }
