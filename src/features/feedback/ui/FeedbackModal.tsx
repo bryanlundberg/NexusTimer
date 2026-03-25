@@ -2,22 +2,24 @@
 
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 
 const RATING_EMOJIS = [
-  { value: 1, emoji: '😞', label: 'Terrible' },
-  { value: 2, emoji: '😕', label: 'Bad' },
-  { value: 3, emoji: '😐', label: 'Okay' },
-  { value: 4, emoji: '😊', label: 'Good' },
-  { value: 5, emoji: '🤩', label: 'Amazing' }
-]
+  { value: 1, emoji: '😞', labelKey: 'rating-1' },
+  { value: 2, emoji: '😕', labelKey: 'rating-2' },
+  { value: 3, emoji: '😐', labelKey: 'rating-3' },
+  { value: 4, emoji: '😊', labelKey: 'rating-4' },
+  { value: 5, emoji: '🤩', labelKey: 'rating-5' }
+] as const
 
 export default function FeedbackModal() {
   const { data: session } = useSession()
   const { close } = useOverlayStore()
+  const t = useTranslations('Index.Feedback')
   const [rating, setRating] = useState<number | null>(null)
   const [comment, setComment] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -49,9 +51,9 @@ export default function FeedbackModal() {
       <DialogContent className="sm:max-w-md">
         <div className="flex flex-col items-center gap-4 py-8">
           <span className="text-5xl">🎉</span>
-          <DialogTitle>Thanks for your feedback!</DialogTitle>
+          <DialogTitle>{t('thanks')}</DialogTitle>
           <Button onClick={close} variant="outline">
-            Close
+            {t('close')}
           </Button>
         </div>
       </DialogContent>
@@ -61,12 +63,12 @@ export default function FeedbackModal() {
   return (
     <DialogContent className="sm:max-w-md">
       <DialogHeader>
-        <DialogTitle>Give Feedback</DialogTitle>
-        <DialogDescription>How is your experience with NexusTimer?</DialogDescription>
+        <DialogTitle>{t('title')}</DialogTitle>
+        <DialogDescription>{t('description')}</DialogDescription>
       </DialogHeader>
 
       <div className="flex justify-center gap-2 py-4">
-        {RATING_EMOJIS.map(({ value, emoji, label }) => (
+        {RATING_EMOJIS.map(({ value, emoji, labelKey }) => (
           <button
             key={value}
             type="button"
@@ -76,13 +78,13 @@ export default function FeedbackModal() {
             }`}
           >
             <span className="text-3xl">{emoji}</span>
-            <span className="text-xs text-muted-foreground">{label}</span>
+            <span className="text-xs text-muted-foreground">{t(labelKey)}</span>
           </button>
         ))}
       </div>
 
       <Textarea
-        placeholder="Tell us more about your experience... (optional)"
+        placeholder={t('placeholder')}
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         rows={4}
@@ -91,10 +93,10 @@ export default function FeedbackModal() {
 
       <DialogFooter className="gap-2">
         <Button variant="outline" onClick={close}>
-          Cancel
+          {t('cancel')}
         </Button>
         <Button onClick={handleSubmit} disabled={!rating || isSubmitting}>
-          {isSubmitting ? 'Sending...' : 'Submit'}
+          {isSubmitting ? t('sending') : t('submit')}
         </Button>
       </DialogFooter>
     </DialogContent>
