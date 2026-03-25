@@ -11,14 +11,16 @@ export default function StatsPage() {
   const { stats, loadingProps } = useDeepStatistics()
   const t = useTranslations('Index.StatsPage')
   return (
-    <div className={'max-h-dvh overflow-auto'}>
+    <div className="max-h-dvh overflow-auto">
       <FadeIn>
         <CoreHeader breadcrumbPath={'/stats'} breadcrumb={t('title')} />
-        <div className="px-2 flex flex-col w-full min-h-full">
+        <div className="px-3 md:px-4 pb-6 flex flex-col w-full min-h-full">
           <StatsPageHeader />
-          <div className="flex flex-col gap-2 grow relative">
+          <div className="grid grid-cols-1 gap-4 grow">
             <StatisticsViewSwitcher statistics={stats} loadingProps={loadingProps} />
-            <StatisticsChart statistics={stats} loadingProps={loadingProps} />
+            <div className="w-full">
+              <StatisticsChart statistics={stats} loadingProps={loadingProps} />
+            </div>
           </div>
         </div>
       </FadeIn>
