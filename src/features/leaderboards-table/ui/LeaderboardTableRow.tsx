@@ -23,6 +23,8 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
   const locale = useLocale()
   const { openModal } = useLeaderboardRow(solve)
 
+  if (!solve?.user) return null
+
   return (
     <TableRow key={solve._id} onClick={openModal} className={'hover:cursor-pointer'}>
       <TableCell className="font-medium text-center">{index + 1}</TableCell>
