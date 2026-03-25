@@ -1,8 +1,8 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { IconButton } from '@/components/ui/shadcn-io/icon-button'
-import { Star } from 'lucide-react'
+import { Star, Clock, Hash } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { GearIcon, PlayIcon, StopIcon, TrashIcon } from '@radix-ui/react-icons'
+import { GearIcon, PlayIcon, TrashIcon } from '@radix-ui/react-icons'
 import { DateTime } from 'luxon'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
@@ -24,61 +24,82 @@ export function CubeCard({ cube }: CubeCardProps) {
   const { resolvedTheme } = useTheme()
   const { handleEdit, handleDelete, handleRedirect, handleFavorite } = useCubeActions(cube)
   const src = cubeCollection.find((c) => c.name === cube.category)?.src
+
+  const uniqueSolves = (() => {
+    const uniqueIds = new Set<string>()
+    cube.solves.all.forEach((solve) => uniqueIds.add(solve.id))
+    cube.solves.session.forEach((solve) => uniqueIds.add(solve.id))
+    return uniqueIds.size
+  })()
+
+  const isActive = cube.solves.session.length > 0
+
   return (
-    <Card key={cube.id} className="relative overflow-hidden gap-1 bg-card/50">
-      <CardHeader className="pb-2">
+    <Card
+      key={cube.id}
+      className={cn(
+        'relative overflow-hidden gap-2 bg-card/50 transition-colors duration-200 hover:bg-card/80 hover:border-primary/20',
+        isActive && 'border-primary/15'
+      )}
+    >
+      <CardHeader className="pb-0">
         <div className="flex justify-between items-start">
-          <CardTitle
-            className="text-lg cursor-pointer hover:text-primary truncate"
-            onClick={handleRedirect}
-            data-testid={`cube-name-${cube.name}`}
-          >
-            {cube.name}
-          </CardTitle>
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <CardTitle
+              className="text-base font-semibold cursor-pointer hover:text-primary truncate transition-colors"
+              onClick={handleRedirect}
+              data-testid={`cube-name-${cube.name}`}
+            >
+              {cube.name}
+            </CardTitle>
+            {isActive && (
+              <span className="relative flex h-2 w-2 shrink-0">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              </span>
+            )}
+          </div>
           <IconButton
             data-testid={`favorite-cube-button-${cube.name}`}
             icon={Star}
             active={cube.favorite}
-            color={[251, 191, 36]} // amber-400
+            color={[251, 191, 36]}
             onClick={handleFavorite}
             size="sm"
           />
         </div>
-        <CardDescription className="flex items-center gap-2">
-          <Badge variant="outline">{cube.category}</Badge>
-          {cube.solves.session.length > 0 ? (
-            <div className="flex items-center gap-1 text-xs">
+        <div className="flex items-center gap-2 mt-1">
+          <Badge variant="outline" className="text-xs">
+            {cube.category}
+          </Badge>
+          {isActive ? (
+            <Badge variant="secondary" className="text-xs gap-1">
               <PlayIcon className="h-3 w-3" />
               {t('CubesPage.using')}
-            </div>
+            </Badge>
           ) : (
-            <div className="flex items-center gap-1 text-xs">
-              <StopIcon className="h-3 w-3" />
-              {t('CubesPage.idle')}
-            </div>
+            <span className="text-xs text-muted-foreground">{t('CubesPage.idle')}</span>
           )}
-        </CardDescription>
+        </div>
       </CardHeader>
 
-      <CardContent className="pb-2">
-        <div className="text-sm mb-1">
-          <span className="text-muted-foreground">{t('CubesPage.created')}: </span>
-          {DateTime.fromMillis(cube.createdAt).setLocale(locale).toLocaleString()}
-        </div>
-        <div className="text-sm mb-3">
-          <span className="text-muted-foreground">{t('CubesPage.solves-label')}: </span>
-          {cube.solves.session.length}/{cube.solves.all.length} (
-          {(() => {
-            const uniqueSolveIds = new Set<string>()
-            cube.solves.all.forEach((solve) => uniqueSolveIds.add(solve.id))
-            cube.solves.session.forEach((solve) => uniqueSolveIds.add(solve.id))
-            return uniqueSolveIds.size
-          })()}{' '}
-          {t('CubesPage.total')})
+      <CardContent className="pb-0">
+        <div className="flex items-center gap-4 text-sm text-muted-foreground">
+          <div className="flex items-center gap-1.5">
+            <Clock className="h-3.5 w-3.5" />
+            <span>{DateTime.fromMillis(cube.createdAt).setLocale(locale).toLocaleString()}</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <Hash className="h-3.5 w-3.5" />
+            <span>
+              {cube.solves.session.length}/{cube.solves.all.length}
+              <span className="text-muted-foreground/70"> ({uniqueSolves})</span>
+            </span>
+          </div>
         </div>
       </CardContent>
 
-      <CardFooter className="pt-2">
+      <CardFooter className="pt-1">
         <div className="flex w-full items-center justify-between gap-2 text-sm">
           <TooltipProvider>
             <Tooltip>
@@ -99,23 +120,23 @@ export function CubeCard({ cube }: CubeCardProps) {
             </Tooltip>
           </TooltipProvider>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
                     variant={'ghost'}
-                    size={'sm'}
+                    size={'icon'}
+                    className="h-8 w-8"
                     onClick={handleEdit}
                     data-testid={`edit-cube-button-${cube.name}`}
                   >
-                    <GearIcon className="mr-1 h-4 w-4" />
-                    {t('CubesPage.edit')}
+                    <GearIcon className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>
-                    {t('CubesPage.edit')} `{cube.name}`
+                    {t('CubesPage.edit')} {cube.name}
                   </p>
                 </TooltipContent>
               </Tooltip>
@@ -126,17 +147,17 @@ export function CubeCard({ cube }: CubeCardProps) {
                 <TooltipTrigger asChild>
                   <Button
                     variant={'ghost'}
-                    size={'sm'}
+                    size={'icon'}
+                    className="h-8 w-8 text-muted-foreground hover:text-destructive"
                     onClick={handleDelete}
                     data-testid={`delete-cube-button-${cube.name}`}
                   >
-                    <TrashIcon className="mr-1 h-4 w-4" />
-                    {t('CubesPage.delete')}
+                    <TrashIcon className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
                   <p>
-                    {t('CubesPage.delete')} `{cube.name}`
+                    {t('CubesPage.delete')} {cube.name}
                   </p>
                 </TooltipContent>
               </Tooltip>
@@ -144,13 +165,14 @@ export function CubeCard({ cube }: CubeCardProps) {
           </div>
         </div>
       </CardFooter>
+
       <div
         className={cn(
-          'pointer-events-none select-none absolute bottom-5 right-10 text-foreground/10 rotate-25',
-          resolvedTheme === 'dark' ? 'opacity-5' : 'opacity-15'
+          'pointer-events-none select-none absolute -bottom-2 -right-2 text-foreground/10 rotate-12',
+          resolvedTheme === 'dark' ? 'opacity-5' : 'opacity-10'
         )}
       >
-        <Image src={src} alt={`${cube.category} icon`} width={200} height={200} unoptimized />
+        <Image src={src} alt={`${cube.category} icon`} width={140} height={140} unoptimized />
       </div>
     </Card>
   )
