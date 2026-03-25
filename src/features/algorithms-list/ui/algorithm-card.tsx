@@ -1,16 +1,17 @@
 import { Card } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
+import { Badge } from '@/components/ui/badge'
 import * as React from 'react'
 import { cn } from '@/shared/lib/utils'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
 import _ from 'lodash'
 import { Button } from '@/components/ui/button'
-import { EyeIcon } from 'lucide-react'
+import { EyeIcon, CopyIcon, CheckIcon } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import AlgorithmModal from '@/features/algorithms-list/ui/algorithm-modal'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 
 interface AlgorithmCardProps extends React.HTMLAttributes<HTMLDivElement> {
   onAlgorithmClick?: () => void
@@ -29,6 +30,7 @@ export default function AlgorithmCard({
   const t = useTranslations('Index.AlgorithmsPage')
   const { open } = useOverlayStore()
   const algs = algorithm?.algs || algorithm?.alg || []
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   const defaults = _.merge(
     {
@@ -54,35 +56,83 @@ export default function AlgorithmCard({
     })
   }
 
+  const handleCopy = async (alg: string, index: number) => {
+    await navigator.clipboard.writeText(alg)
+    setCopiedIndex(index)
+    setTimeout(() => setCopiedIndex(null), 1500)
+  }
+
   return (
-    <Card className={cn('p-3 mb-3 h-auto bg-card/50 break-inside-avoid-column', rest.className)} {...rest}>
-      <h1>{`${algorithm.name}`}</h1>
-      <div className={'flex flex-col md:flex-row items-start gap-3'}>
-        <AlgorithmRender config={defaults} width={120} height={120} />
-        <div className={'flex flex-col gap-2 justify-between text-sm grow w-full'}>
+    <Card
+      className={cn(
+        'p-4 mb-4 h-auto bg-card/50 break-inside-avoid-column hover:shadow-sm transition-shadow',
+        rest.className
+      )}
+      {...rest}
+    >
+      {/* Card header */}
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
+          <h3 className="font-semibold text-sm">{algorithm.name}</h3>
+          <Badge variant="outline" className="text-[10px] font-normal">
+            {algorithm.group}
+          </Badge>
+        </div>
+        <span className="text-[11px] text-muted-foreground">
+          {algs.length} {algs.length === 1 ? 'alg' : 'algs'}
+        </span>
+      </div>
+
+      {/* Cube visualization + algorithms */}
+      <div className="flex flex-col sm:flex-row items-start gap-4">
+        <div className="shrink-0 rounded-lg bg-muted/50 p-2 flex items-center justify-center">
+          <AlgorithmRender config={defaults} width={100} height={100} />
+        </div>
+
+        <div className="flex flex-col gap-2 w-full min-w-0">
           {algs.map((alg, index) => (
-            <Card
-              className={'p-3 flex items-center justify-center flex-row bg-background'}
+            <div
+              className="group/alg rounded-lg border bg-background/80 p-2.5 transition-colors hover:bg-muted/30"
               onClick={onAlgorithmClick}
               key={`${algorithm.group}-${algorithm.name}-alg-${index}`}
             >
-              <div className={'grow space-y-2'}>
-                <Label className={'ml-2'}>
-                  {t('alternative')} #{index + 1}:
-                </Label>
-                <span className={'text-lg lg:text-xl xl:text-2xl flex justify-between'}>
-                  {alg}
-                  <Button
-                    className={'ms-3'}
-                    variant={'secondary'}
-                    onClick={() => handleOpenAlgorithmPreview(alg)}
-                    size={'icon'}
-                  >
-                    <EyeIcon />
-                  </Button>{' '}
+              <div className="flex items-center gap-1 mb-1">
+                <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
+                  {t('alternative')} #{index + 1}
                 </span>
               </div>
-            </Card>
+              <div className="flex items-center justify-between gap-2">
+                <code className="text-sm font-mono leading-relaxed break-all">{alg}</code>
+                <div className="flex items-center gap-1 shrink-0">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7 opacity-0 group-hover/alg:opacity-100 transition-opacity"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleCopy(alg, index)
+                    }}
+                  >
+                    {copiedIndex === index ? (
+                      <CheckIcon className="h-3.5 w-3.5 text-emerald-500" />
+                    ) : (
+                      <CopyIcon className="h-3.5 w-3.5" />
+                    )}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleOpenAlgorithmPreview(alg)
+                    }}
+                  >
+                    <EyeIcon className="h-3.5 w-3.5" />
+                  </Button>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
