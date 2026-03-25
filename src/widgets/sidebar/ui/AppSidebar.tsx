@@ -32,6 +32,8 @@ import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
 import { NavMain } from '@/widgets/sidebar/ui/nav-main'
 import { NavSecondary } from '@/widgets/sidebar/ui/nav-secondary'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
+import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { open, openMobile } = useSidebar()
@@ -115,6 +117,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar collapsible={'icon'} {...props}>
+      <SidebarBgEffect />
       <SidebarHeader className={'mt-2'}>
         <SidebarMenu>
           <SidebarMenuItem>
