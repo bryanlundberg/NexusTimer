@@ -6,6 +6,7 @@ import formatTime from '@/shared/lib/formatTime'
 import { DeepStatistics, StatisticScope } from '@/shared/types/statistics'
 import { Loader2 } from 'lucide-react'
 import React from 'react'
+import { motion } from 'framer-motion'
 
 interface StatisticsChartProps {
   statistics: DeepStatistics
@@ -62,6 +63,7 @@ export default function StatisticsChart({ statistics, loadingProps }: Statistics
     {
       label: t('StatsPage.best-time'),
       loadingKey: 'best',
+      highlight: true,
       getValue: (scope: StatisticScope) => (statistics.best[scope] > 0 ? formatTime(statistics.best[scope]) : '--')
     },
     {
@@ -90,53 +92,69 @@ export default function StatisticsChart({ statistics, loadingProps }: Statistics
 
   const scopes: StatisticScope[] = ['global', 'session', 'cubeAll', 'cubeSession']
 
-  const renderCell = (isLoading: boolean, value: string | number) => {
+  const renderCell = (isLoading: boolean, value: string | number, highlight?: boolean) => {
     if (isLoading) {
       return (
-        <TableCell>
-          <Loader2 className="size-4 animate-spin text-muted-foreground/50" />
+        <TableCell className="text-center">
+          <Loader2 className="size-4 animate-spin text-muted-foreground/50 mx-auto" />
         </TableCell>
       )
     }
-    return <TableCell>{value}</TableCell>
+    return (
+      <TableCell
+        className={`text-center tabular-nums ${highlight && value !== '--' ? 'text-primary font-semibold' : ''}`}
+      >
+        {value}
+      </TableCell>
+    )
   }
 
   return (
-    <Table className="rounded-md backdrop-blur-lg mb-2">
-      <TableHeader>
-        <TableRow>
-          <TableHead></TableHead>
-          {columns.map((column) => (
-            <TableHead key={column.key}>
-              <TooltipProvider delayDuration={200}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <div className={'inline-flex items-center gap-2'}>
-                      {column.label}
-                      <InformationCircleIcon className={'size-5'} />
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent side={'bottom'} className={'max-w-xs'}>
-                    <p>{column.tooltip}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </TableHead>
-          ))}
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {rowGroups.map((row) => (
-          <TableRow key={row.label}>
-            <TableCell>{row.label}</TableCell>
-            {scopes.map((scope) => (
-              <React.Fragment key={scope}>
-                {renderCell(loadingProps[row.loadingKey], row.getValue(scope))}
-              </React.Fragment>
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.35, duration: 0.4 }}
+      className="border border-border/50 rounded-2xl bg-background/80 backdrop-blur-xl overflow-hidden shadow-sm mb-2"
+    >
+      <Table>
+        <TableHeader>
+          <TableRow className="border-b border-border/50 bg-muted/30">
+            <TableHead className="font-semibold text-xs uppercase tracking-wider text-muted-foreground w-[120px]"></TableHead>
+            {columns.map((column) => (
+              <TableHead key={column.key} className="text-center">
+                <TooltipProvider delayDuration={200}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-muted-foreground">
+                        {column.label}
+                        <InformationCircleIcon className="size-3.5 opacity-50" />
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" className="max-w-xs">
+                      <p>{column.tooltip}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </TableHead>
             ))}
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {rowGroups.map((row, index) => (
+            <TableRow
+              key={row.label}
+              className={`border-b border-border/30 transition-colors hover:bg-muted/20 ${index % 2 === 0 ? 'bg-muted/5' : ''}`}
+            >
+              <TableCell className="font-medium text-sm">{row.label}</TableCell>
+              {scopes.map((scope) => (
+                <React.Fragment key={scope}>
+                  {renderCell(loadingProps[row.loadingKey], row.getValue(scope), 'highlight' in row && !!row.highlight)}
+                </React.Fragment>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </motion.div>
   )
 }
