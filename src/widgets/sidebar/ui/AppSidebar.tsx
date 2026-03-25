@@ -33,10 +33,9 @@ import { NavMain } from '@/widgets/sidebar/ui/nav-main'
 import { NavSecondary } from '@/widgets/sidebar/ui/nav-secondary'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
-import { motion, AnimatePresence } from 'framer-motion'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { open, openMobile } = useSidebar()
+  const { open, openMobile, setOpenMobile, isMobile } = useSidebar()
   const t = useTranslations('Index')
 
   const data = useMemo(
@@ -121,7 +120,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader className={'mt-2'}>
         <SidebarMenu>
           <SidebarMenuItem>
-            <Link href={'/app'} className={`flex items-center gap-2`}>
+            <Link href={'/app'} className={`flex items-center gap-2`} onClick={() => isMobile && setOpenMobile(false)}>
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                 <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert size-8`} />
               </div>
