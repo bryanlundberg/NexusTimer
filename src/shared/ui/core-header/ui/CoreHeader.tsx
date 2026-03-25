@@ -114,7 +114,7 @@ export default function CoreHeader({
                 <DropdownMenuGroup>
                   <DropdownMenuItem asChild>
                     <Button variant={'ghost'} className={'w-full flex justify-between'} onClick={handleOpenFeedback}>
-                      Give Feedback <SmilePlus />
+                      {tHeader('give-feedback')} <SmilePlus />
                     </Button>
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
