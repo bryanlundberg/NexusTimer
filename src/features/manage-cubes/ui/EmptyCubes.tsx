@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
 import { cn } from '@/shared/lib/utils'
+import { motion } from 'motion/react'
 
 interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {
   onCreate?: () => void
@@ -54,7 +55,8 @@ export default function EmptyCubes({
     title,
     description,
     variant,
-    'data-testid': dataTestId
+    'data-testid': dataTestId,
+    index = 0
   }: {
     onClick: () => void
     icon: React.ReactNode
@@ -62,18 +64,30 @@ export default function EmptyCubes({
     description: string
     variant: any
     'data-testid'?: string
+    index?: number
   }) => (
-    <Button className="w-full justify-start h-auto py-5" variant={variant} onClick={onClick} data-testid={dataTestId}>
-      <div className="flex items-start gap-4 text-left w-full">
-        <div className="shrink-0">{icon}</div>
-        <div className="flex flex-col flex-1 min-w-0">
-          <span className="font-medium leading-none mb-1 break-words whitespace-normal">{title}</span>
-          <span className="text-sm text-muted-foreground leading-snug break-words whitespace-normal">
-            {description}
-          </span>
+    <motion.div
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.2 + index * 0.08, ease: 'easeOut' }}
+    >
+      <Button
+        className="w-full justify-start h-auto py-5 transition-colors"
+        variant={variant}
+        onClick={onClick}
+        data-testid={dataTestId}
+      >
+        <div className="flex items-start gap-4 text-left w-full">
+          <div className="shrink-0">{icon}</div>
+          <div className="flex flex-col flex-1 min-w-0">
+            <span className="font-medium leading-none mb-1 break-words whitespace-normal">{title}</span>
+            <span className="text-sm text-muted-foreground leading-snug break-words whitespace-normal">
+              {description}
+            </span>
+          </div>
         </div>
-      </div>
-    </Button>
+      </Button>
+    </motion.div>
   )
 
   return (
@@ -84,7 +98,12 @@ export default function EmptyCubes({
         className={cn('flex flex-col items-center justify-center h-full grow mx-auto w-full', className)}
       >
         <div className="flex flex-col items-center justify-center gap-3 w-full">
-          <div className="relative mb-4">
+          <motion.div
+            className="relative mb-4"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+          >
             <div className="absolute inset-0 bg-primary/10 rounded-full"></div>
             <div className="absolute inset-4 bg-primary/20 rounded-full"></div>
             <div className="absolute inset-0">
@@ -98,7 +117,7 @@ export default function EmptyCubes({
                 unoptimized
               />
             </div>
-          </div>
+          </motion.div>
 
           <div className={'flex flex-col gap-3 w-full'}>
             <CardActionButton
@@ -108,6 +127,7 @@ export default function EmptyCubes({
               data-testid="empty-cubes-create-button"
               title={t('new-collection')}
               description={t('new-collection-description')}
+              index={0}
             />
             {session?.user && (
               <CardActionButton
@@ -117,6 +137,7 @@ export default function EmptyCubes({
                 data-testid="empty-cubes-restore-account-button"
                 title={t('restore-account-data')}
                 description={t('restore-account-data-description')}
+                index={1}
               />
             )}
             <CardActionButton
@@ -126,6 +147,7 @@ export default function EmptyCubes({
               data-testid="empty-cubes-import-other-timers-button"
               title={t('import-from-other-timers')}
               description={t('import-from-other-timers-description')}
+              index={session?.user ? 2 : 1}
             />
           </div>
         </div>
