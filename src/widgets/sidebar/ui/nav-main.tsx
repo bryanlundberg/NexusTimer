@@ -12,7 +12,8 @@ import {
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
-  SidebarMenuSubItem
+  SidebarMenuSubItem,
+  useSidebar
 } from '@/components/ui/sidebar'
 import { PlusIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
@@ -37,6 +38,11 @@ export function NavMain({
 }) {
   const pathname = usePathname() ?? ''
   const [hash, setHash] = useState<string>('')
+  const { setOpenMobile, isMobile } = useSidebar()
+
+  const handleNavClick = () => {
+    if (isMobile) setOpenMobile(false)
+  }
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -69,7 +75,7 @@ export function NavMain({
             <Collapsible key={item.title} asChild defaultOpen={isOpen}>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip={item.title} isActive={itemActive}>
-                  <Link href={item.url}>
+                  <Link href={item.url} onClick={handleNavClick}>
                     <item.icon />
                     <span>{item.title}</span>
                   </Link>
@@ -89,7 +95,7 @@ export function NavMain({
                           return (
                             <SidebarMenuSubItem key={subItem.title}>
                               <SidebarMenuSubButton asChild isActive={subIsActive}>
-                                <Link href={subItem.url}>
+                                <Link href={subItem.url} onClick={handleNavClick}>
                                   <span>{subItem.title}</span>
                                 </Link>
                               </SidebarMenuSubButton>
