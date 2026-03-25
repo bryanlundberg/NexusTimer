@@ -16,12 +16,12 @@ export default function LineGraphStatistics({ solves }: { solves: Solve[] }) {
 
   return (
     <div className="relative w-full">
-      <div className="mb-4 flex flex-wrap gap-4">
+      <div className="mb-3 flex flex-wrap gap-4">
         <div className="flex items-center space-x-2">
           <Checkbox id="worst-time" checked={showWorstTime} onCheckedChange={(e: boolean) => setShowWorstTime(e)} />
           <label
             htmlFor="worst-time"
-            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            className="text-xs font-medium leading-none text-muted-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             {t('StatsPage.worst-time')}
           </label>
@@ -35,18 +35,18 @@ export default function LineGraphStatistics({ solves }: { solves: Solve[] }) {
           />
           <label
             htmlFor="standard-deviation"
-            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            className="text-xs font-medium leading-none text-muted-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           >
             {t('StatsPage.standard-deviation')}
           </label>
         </div>
       </div>
 
-      <div className="h-96">
-        <div ref={chartContainerRef} className="w-full h-full"></div>
+      <div className="h-80 md:h-96">
+        <div ref={chartContainerRef} className="w-full h-full rounded-lg overflow-hidden"></div>
         <div
           ref={tooltipRef}
-          className="absolute hidden p-2 text-sm bg-black bg-opacity-80 rounded shadow-lg z-10 text-white"
+          className="absolute hidden p-3 text-sm bg-popover/95 backdrop-blur-md border border-border/50 rounded-xl shadow-xl z-10 text-popover-foreground"
           style={{ pointerEvents: 'none' }}
         ></div>
       </div>
