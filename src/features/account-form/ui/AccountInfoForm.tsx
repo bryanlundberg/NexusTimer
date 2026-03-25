@@ -13,6 +13,7 @@ import { KeyedMutator } from 'swr'
 import { useTranslations } from 'next-intl'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AccountInfoForm as IAccountInfoForm, accountInfoSchema } from '@/features/account-form/model/types'
+import { Loader2, Save } from 'lucide-react'
 
 export default function AccountInfoForm({ user, mutate }: { user?: UserDocument; mutate: KeyedMutator<any> }) {
   const { data: session } = useSession()
@@ -22,7 +23,7 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isDirty },
     control
   } = useForm({
     resolver: zodResolver(accountInfoSchema),
@@ -67,93 +68,91 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
   const nameErrorMessage = errors.name?.message as React.ReactNode | undefined
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <form onSubmit={handleSubmit(handleSaveChanges)} className="space-y-6">
+      {/* Identity fields */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
+        <div className="space-y-2">
+          <label className="text-sm font-medium">{t('name')}</label>
+          <Input
+            {...register('name', {
+              required: t('name-required'),
+              minLength: {
+                value: 5,
+                message: t('name-min-length')
+              }
+            })}
+            className="h-10"
+          />
+          {nameErrorMessage && <p className="text-destructive text-xs font-medium">{nameErrorMessage}</p>}
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium">{t('pronoun')}</label>
+          <Controller
+            control={control}
+            render={({ field }) => (
+              <Select value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger className="w-full h-10">
+                  <SelectValue placeholder={t('select-pronoun')} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value={'He'}>{t('pronouns.he')}</SelectItem>
+                  <SelectItem value={'She'}>{t('pronouns.she')}</SelectItem>
+                  <SelectItem value={'Other'}>{t('pronouns.other')}</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+            name={'pronoun'}
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium">{t('timezone')}</label>
+          <Controller
+            control={control}
+            render={({ field }) => (
+              <Select value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger className="w-full h-10">
+                  <SelectValue placeholder={t('select-timezone')} />
+                </SelectTrigger>
+                <SelectContent>
+                  {timezones.map((tz: string) => (
+                    <SelectItem key={tz} value={tz}>
+                      {tz}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+            name={'timezone'}
+          />
+          {user?.timezone && <TimeZone timeZone={user.timezone} />}
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium">{t('goal')}</label>
+          <Input {...register('goal')} className="h-10" />
+        </div>
+      </div>
+
+      {/* Bio */}
       <div className="space-y-2">
-        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          {t('name')}
-        </label>
-        <Input
-          {...register('name', {
-            required: t('name-required'),
-            minLength: {
-              value: 5,
-              message: t('name-min-length')
-            }
-          })}
+        <label className="text-sm font-medium">{t('bio')}</label>
+        <Textarea
+          placeholder={t('bio-placeholder')}
+          {...register('bio')}
+          className="w-full resize-none min-h-[100px]"
+          rows={4}
         />
-        {nameErrorMessage && <p className="text-destructive text-sm font-medium">{nameErrorMessage}</p>}
       </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          {t('timezone')}
-        </label>
-        <Controller
-          control={control}
-          render={({ field }) => (
-            <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder={t('select-timezone')} />
-              </SelectTrigger>
-              <SelectContent>
-                {timezones.map((tz: string) => (
-                  <SelectItem key={tz} value={tz}>
-                    {tz}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          )}
-          name={'timezone'}
-        />
-        {user?.timezone && <TimeZone timeZone={user.timezone} />}
-      </div>
-
-      <div className="space-y-2">
-        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          {t('pronoun')}
-        </label>
-        <Controller
-          control={control}
-          render={({ field }) => (
-            <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder={t('select-pronoun')} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value={'He'}>{t('pronouns.he')}</SelectItem>
-                <SelectItem value={'She'}>{t('pronouns.she')}</SelectItem>
-                <SelectItem value={'Other'}>{t('pronouns.other')}</SelectItem>
-              </SelectContent>
-            </Select>
-          )}
-          name={'pronoun'}
-        />
-      </div>
-
-      <div className="space-y-2">
-        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          {t('goal')}
-        </label>
-        <Input {...register('goal')} />
-      </div>
-
-      <div className="md:col-span-2 space-y-2">
-        <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          {t('bio')}
-        </label>
-        <Textarea placeholder={t('bio-placeholder')} {...register('bio')} className="w-full resize-none" rows={4} />
-      </div>
-
-      <div className="md:col-span-2 flex justify-end pt-4">
-        <Button
-          className="w-full md:w-auto min-w-[200px]"
-          disabled={isSubmitting}
-          onClick={handleSubmit(handleSaveChanges)}
-        >
+      {/* Submit */}
+      <div className="flex justify-end pt-2">
+        <Button type="submit" disabled={isSubmitting || !isDirty} className="gap-2 min-w-[160px]">
+          {isSubmitting ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
           {t('update-info')}
         </Button>
       </div>
-    </div>
+    </form>
   )
 }
