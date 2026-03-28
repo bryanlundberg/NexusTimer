@@ -1,13 +1,13 @@
 import * as React from 'react'
-import { CalendarDaysIcon, CircleSlash2, RotateCcw, Timer } from 'lucide-react'
+import { CircleSlash2, RotateCcw, Timer } from 'lucide-react'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import Image from 'next/image'
 import { Solve } from '@/entities/solve/model/types'
 import calculateBestAo from '@/shared/lib/statistics/calculateBestAo'
 import formatTime from '@/shared/lib/formatTime'
 import { defer } from 'es-toolkit/compat'
-import { cn } from '@/shared/lib/utils'
 import { useTranslations } from 'next-intl'
+import { motion } from 'framer-motion'
 
 interface SolveCardProps {
   event: CubeCategory
@@ -42,96 +42,79 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
   }, [solves])
 
   return (
-    <div className="group relative overflow-hidden rounded-2xl border bg-card/50 transition-all duration-500">
-      {/* Animated gradient border effect */}
-      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    <motion.div
+      className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card transition-colors duration-300 hover:border-border"
+      whileHover={{ y: -3 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+    >
+      {/* Left accent bar */}
+      <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary/70 rounded-l-2xl" />
 
-      {/* Glow effect */}
-      <div className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
-
-      {/* Content container */}
-      <div className="relative z-10 p-5">
-        {/* Header */}
-        <div className="flex items-start justify-between mb-6">
-          <div className="flex items-center gap-3">
-            <div className="relative size-12 rounded-xl bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center shadow-sm border border-neutral-200/50 dark:border-neutral-700/50">
-              <Image src={bgImage} alt={event} width={32} height={32} className="object-contain" unoptimized />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold">{event}</h3>
-              <div className="flex items-center gap-1.5 text-xs text-muted-foreground mt-0.5">
-                <CalendarDaysIcon className="size-3" />
-                <span>{date}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Best time highlight */}
-          <div className="text-right">
-            <div className="text-[10px] uppercase tracking-widest text-muted-foreground font-medium mb-1">
-              {t('single')}
-            </div>
-            <div className="flex items-baseline justify-end">
-              <span className="text-3xl font-black tracking-tighter bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
-                {mainTime}
-              </span>
-              <span className="text-xl font-bold text-muted-foreground/60">.{decimals}</span>
-            </div>
+      <div className="pl-5 pr-5 pt-5 pb-4">
+        {/* Category row */}
+        <div className="flex items-center gap-2.5 mb-5">
+          <motion.div
+            className="relative size-10 rounded-lg bg-muted/60 flex items-center justify-center"
+            whileHover={{ rotate: 12 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+          >
+            <Image src={bgImage} alt={event} width={26} height={26} className="object-contain" unoptimized />
+          </motion.div>
+          <div className="flex-1 min-w-0">
+            <h3 className="text-sm font-bold tracking-tight truncate">{event}</h3>
+            <span className="text-[10px] text-muted-foreground">{date}</span>
           </div>
         </div>
 
-        {/* Stats grid */}
-        <div className="grid grid-cols-3 gap-3">
-          <StatCard icon={CircleSlash2} label={t('ao5')} value={ao5Str} />
-          <StatCard icon={Timer} label={t('time-spent')} value={spentStr} />
-          <StatCard icon={RotateCcw} label={t('solves')} value={solvesCount.toString()} isCount />
+        {/* Hero time */}
+        <div className="mb-5">
+          <div className="text-[10px] uppercase tracking-widest text-muted-foreground font-medium mb-1">
+            {t('single')}
+          </div>
+          <div className="flex items-baseline">
+            <span className="text-4xl font-black tracking-tighter tabular-nums">{mainTime}</span>
+            <span className="text-lg font-bold text-muted-foreground/50 tabular-nums">.{decimals}</span>
+          </div>
+        </div>
+
+        {/* Stats row — minimal dividers */}
+        <div className="flex items-center gap-0 border-t border-border/40 pt-3">
+          <StatItem icon={CircleSlash2} label={t('ao5')} value={ao5Str} />
+          <div className="w-px h-8 bg-border/40 mx-1" />
+          <StatItem icon={Timer} label={t('time-spent')} value={spentStr} />
+          <div className="w-px h-8 bg-border/40 mx-1" />
+          <StatItem icon={RotateCcw} label={t('solves')} value={solvesCount.toString()} isCount />
         </div>
       </div>
-
-      {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full" />
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-primary/5 to-transparent rounded-tr-full" />
-    </div>
+    </motion.div>
   )
 }
 
-interface StatCardProps {
+interface StatItemProps {
   icon: any
   label: string
   value: string
   isCount?: boolean
 }
 
-function StatCard({ icon: Icon, label, value, isCount }: StatCardProps) {
+function StatItem({ icon: Icon, label, value, isCount }: StatItemProps) {
   const [main, decimal] = value.includes('.') ? value.split('.') : [value, null]
 
   return (
-    <div className="group/stat relative overflow-hidden rounded-xl p-3 transition-all duration-300 bg-neutral-50 dark:bg-card/60 hover:cursor-default">
-      <div className="relative z-10">
-        <div className="flex items-center gap-1.5 mb-1">
-          <div
-            className={cn(
-              'size-5 rounded-md bg-gradient-to-br flex items-center justify-center shrink-0 bg-neutral-400 dark:bg-neutral-800'
-            )}
-          >
-            <Icon className="size-3 text-white" />
-          </div>
-        </div>
-
-        <span className="text-[9px] uppercase tracking-wider text-muted-foreground font-semibold block mb-1">
-          {label}
-        </span>
-
-        <div className="flex items-baseline">
-          {value === '--' ? (
-            <span className="text-base font-bold text-muted-foreground">--</span>
-          ) : (
-            <>
-              <span className="text-base font-bold tracking-tight">{main}</span>
-              {decimal && !isCount && <span className="text-xs font-medium text-muted-foreground">.{decimal}</span>}
-            </>
-          )}
-        </div>
+    <div className="flex-1 text-center px-1">
+      <div className="flex items-center justify-center gap-1 mb-0.5">
+        <Icon className="size-3 text-muted-foreground/60" />
+        <span className="text-[9px] uppercase tracking-wider text-muted-foreground font-semibold">{label}</span>
+      </div>
+      <div className="flex items-baseline justify-center">
+        {value === '--' ? (
+          <span className="text-sm font-bold text-muted-foreground">--</span>
+        ) : (
+          <>
+            <span className="text-sm font-bold tabular-nums">{main}</span>
+            {decimal && !isCount && <span className="text-xs text-muted-foreground">.{decimal}</span>}
+          </>
+        )}
       </div>
     </div>
   )
