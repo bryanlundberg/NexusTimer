@@ -1,14 +1,13 @@
-import { Card } from '@/components/ui/card'
 import Image from 'next/image'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import moment from 'moment'
 import { Cube } from '@/entities/cube/model/types'
-import { Separator } from '@/components/ui/separator'
 import { useLocale, useTranslations } from 'next-intl'
 import formatTime from '@/shared/lib/formatTime'
 import { Badge } from '@/components/ui/badge'
-import { Trophy, History, CheckCircle2, AlertCircle, XCircle } from 'lucide-react'
+import { Trophy } from 'lucide-react'
 import _ from 'lodash'
+import { motion } from 'framer-motion'
 
 interface PeopleCubeCardProps {
   cube: Cube
@@ -36,105 +35,87 @@ export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
   const pbTime = pb ? pb.time + (pb.plus2 ? 2000 : 0) : null
 
   const successRate = totalSession > 0 ? (successCount / totalSession) * 100 : 0
+  const rateColor = successRate >= 80 ? 'text-green-500' : successRate >= 50 ? 'text-yellow-500' : 'text-red-500'
+  const rateBg = successRate >= 80 ? 'bg-green-500' : successRate >= 50 ? 'bg-yellow-500' : 'bg-red-500'
 
   return (
-    <Card
+    <motion.div
       key={cube.id}
-      className={
-        'group relative overflow-hidden flex flex-col p-5 transition-all duration-300 border bg-card/50 backdrop-blur-sm'
-      }
+      className="group relative overflow-hidden flex flex-col rounded-2xl border border-border/60 bg-card transition-colors duration-300 hover:border-border"
+      whileHover={{ y: -3 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
     >
-      {/* Background Accent */}
-      <div
-        className={
-          'absolute top-0 right-0 w-32 h-32 -mr-16 -mt-16 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors'
-        }
-      />
-
-      <div className={'flex items-start justify-between mb-4'}>
-        <div className={'flex items-center gap-4'}>
-          <div className="relative">
-            <div className="absolute inset-0 bg-primary/10 rounded-xl blur-sm group-hover:blur-md transition-all" />
-            <Image
-              unoptimized
-              src={cubeCollection.find((item) => item.name === cube.category)?.src || ''}
-              alt={cube.name}
-              className={'relative object-scale-down rounded-xl p-2 bg-background border border-muted/50'}
-              draggable={false}
-              width={56}
-              height={56}
-            />
+      {/* Top section — cube hero */}
+      <div className="flex items-center gap-4 p-5 pb-4">
+        <motion.div
+          className="shrink-0"
+          whileHover={{ rotate: -8, scale: 1.05 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+        >
+          <Image
+            unoptimized
+            src={cubeCollection.find((item) => item.name === cube.category)?.src || ''}
+            alt={cube.name}
+            className="object-scale-down rounded-xl p-2 bg-muted/40 border border-border/40"
+            draggable={false}
+            width={52}
+            height={52}
+          />
+        </motion.div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 mb-0.5">
+            <h3 className="text-base font-bold tracking-tight truncate">{cube.name}</h3>
+            <Badge variant="outline" className="font-mono text-[10px] px-1.5 py-0 h-4 shrink-0">
+              {cube.category}
+            </Badge>
           </div>
-          <div className={'flex flex-col'}>
-            <div className={'text-lg font-bold tracking-tight'}>{cube.name}</div>
-            <div className={'text-[10px] uppercase tracking-wider text-muted-foreground font-medium'}>
-              {t('created')}: {moment(cube.createdAt).locale(locale).format('LL')}
-            </div>
-          </div>
-        </div>
-        <Badge variant="secondary" className="font-mono text-xs">
-          {cube.category}
-        </Badge>
-      </div>
-
-      <div className={'grid grid-cols-2 gap-4'}>
-        <div className={'flex flex-col p-3 rounded-lg bg-muted/30 border border-muted/20'}>
-          <div className="flex items-center gap-1.5 text-muted-foreground mb-1">
-            <Trophy className="size-3.5 text-yellow-500" />
-            <span className="text-[11px] font-semibold uppercase tracking-tight">Best Solve</span>
-          </div>
-          <div className="text-xl font-bold font-mono text-foreground">{pbTime ? formatTime(pbTime) : '--:--'}</div>
-        </div>
-
-        <div className={'flex flex-col p-3 rounded-lg bg-muted/30 border border-muted/20'}>
-          <div className="flex items-center gap-1.5 text-muted-foreground mb-1">
-            <History className="size-3.5 text-blue-500" />
-            <span className="text-[11px] font-semibold uppercase tracking-tight">Solves</span>
-          </div>
-          <div className="text-xl font-bold font-mono text-foreground">{totalSession}</div>
-        </div>
-      </div>
-
-      <Separator className="mb-4 opacity-50" />
-
-      <div className={'flex items-center justify-between'}>
-        <div className={'flex items-center gap-3'}>
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-1 text-green-500 font-bold text-sm">
-              <CheckCircle2 className="size-3" />
-              {successCount}
-            </div>
-            <span className="text-[9px] text-muted-foreground uppercase font-bold">OK</span>
-          </div>
-          <Separator orientation="vertical" className="h-6" />
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-1 text-yellow-500 font-bold text-sm">
-              <AlertCircle className="size-3" />
-              {plus2Count}
-            </div>
-            <span className="text-[9px] text-muted-foreground uppercase font-bold">+2</span>
-          </div>
-          <Separator orientation="vertical" className="h-6" />
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-1 text-red-500 font-bold text-sm">
-              <XCircle className="size-3" />
-              {dnfCount}
-            </div>
-            <span className="text-[9px] text-muted-foreground uppercase font-bold">DNF</span>
-          </div>
-        </div>
-
-        <div className="flex flex-col items-end">
-          <div className="text-[10px] text-muted-foreground uppercase font-bold mb-0.5">Success Rate</div>
-          <div className="flex items-center gap-2">
-            <div className="w-16 h-1.5 bg-muted rounded-full overflow-hidden">
-              <div className="h-full bg-green-500 transition-all duration-500" style={{ width: `${successRate}%` }} />
-            </div>
-            <span className="text-xs font-bold font-mono">{successRate.toFixed(0)}%</span>
+          <div className="text-[10px] text-muted-foreground">
+            {t('created')}: {moment(cube.createdAt).locale(locale).format('LL')}
           </div>
         </div>
       </div>
-    </Card>
+
+      {/* PB + Solves row */}
+      <div className="flex items-stretch mx-5 mb-4 rounded-lg border border-border/40 overflow-hidden">
+        <div className="flex-1 p-3 flex flex-col">
+          <div className="flex items-center gap-1.5 mb-1">
+            <Trophy className="size-3 text-yellow-500" />
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Best</span>
+          </div>
+          <div className="text-lg font-black font-mono tabular-nums">{pbTime ? formatTime(pbTime) : '--:--'}</div>
+        </div>
+        <div className="w-px bg-border/40" />
+        <div className="flex-1 p-3 flex flex-col">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">Solves</span>
+          <div className="text-lg font-black tabular-nums">{totalSession}</div>
+        </div>
+      </div>
+
+      {/* Bottom — status breakdown */}
+      <div className="px-5 pb-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            <span className="size-2 rounded-full bg-green-500" />
+            <span className="text-xs font-bold tabular-nums">{successCount}</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="size-2 rounded-full bg-yellow-500" />
+            <span className="text-xs font-bold tabular-nums">{plus2Count}</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="size-2 rounded-full bg-red-500" />
+            <span className="text-xs font-bold tabular-nums">{dnfCount}</span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <div className="w-12 h-1 bg-muted rounded-full overflow-hidden">
+            <div className={`h-full ${rateBg} transition-all duration-500`} style={{ width: `${successRate}%` }} />
+          </div>
+          <span className={`text-xs font-black tabular-nums ${rateColor}`}>{successRate.toFixed(0)}%</span>
+        </div>
+      </div>
+    </motion.div>
   )
 }
 
