@@ -8,6 +8,7 @@ import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import { useLocale } from 'next-intl'
+import { motion } from 'framer-motion'
 
 export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
   const locale = useLocale()
@@ -29,19 +30,35 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
   }
 
   return (
-    <div className={'grid grid-cols-1 @2xl/tab:grid-cols-2 @5xl/tab:grid-cols-3 gap-4'}>
+    <motion.div
+      className="grid grid-cols-1 @2xl/tab:grid-cols-2 @5xl/tab:grid-cols-3 gap-4"
+      initial="hidden"
+      animate="show"
+      variants={{
+        hidden: {},
+        show: { transition: { staggerChildren: 0.06 } }
+      }}
+    >
       {Object.entries(solvesByCategory)
         .sort()
         .map(([category, solves]) => (
-          <SolveCard
+          <motion.div
             key={solves[0].id}
-            event={category as CubeCategory}
-            time={formatTime(solves[0].time)}
-            date={moment(solves[0].endTime).locale(locale).format('LL')}
-            bgImage={cubeCollection.find((c) => c.name === category)?.src || undefined}
-            solves={solves}
-          />
+            variants={{
+              hidden: { opacity: 0 },
+              show: { opacity: 1 }
+            }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+          >
+            <SolveCard
+              event={category as CubeCategory}
+              time={formatTime(solves[0].time)}
+              date={moment(solves[0].endTime).locale(locale).format('LL')}
+              bgImage={cubeCollection.find((c) => c.name === category)?.src || undefined}
+              solves={solves}
+            />
+          </motion.div>
         ))}
-    </div>
+    </motion.div>
   )
 }
