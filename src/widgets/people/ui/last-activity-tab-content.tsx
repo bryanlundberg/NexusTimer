@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { motion } from 'framer-motion'
 import _ from 'lodash'
 import {
   Pagination,
@@ -57,12 +58,32 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
 
   return (
     <div className="space-y-6">
-      <div className={'grid grid-cols-1 @2xl/tab:grid-cols-2 @5xl/tab:grid-cols-3 gap-4'}>
+      <motion.div
+        key={page}
+        className="grid grid-cols-1 @2xl/tab:grid-cols-2 @5xl/tab:grid-cols-3 gap-4"
+        initial="hidden"
+        animate="show"
+        variants={{
+          hidden: {},
+          show: { transition: { staggerChildren: 0.04 } }
+        }}
+      >
         {currentPageItems.map((solve, index) => {
           const globalIndex = (page - 1) * ITEMS_PER_PAGE + index
-          return <LastActivitySolveCard key={solve.id} solve={solve as any} index={solvesLength - globalIndex} />
+          return (
+            <motion.div
+              key={solve.id}
+              variants={{
+                hidden: { opacity: 0 },
+                show: { opacity: 1 }
+              }}
+              transition={{ duration: 0.25, ease: 'easeOut' }}
+            >
+              <LastActivitySolveCard solve={solve as any} index={solvesLength - globalIndex} />
+            </motion.div>
+          )
         })}
-      </div>
+      </motion.div>
 
       <Pagination>
         <PaginationContent>
