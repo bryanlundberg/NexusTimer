@@ -77,7 +77,7 @@ export default function OptionsPage() {
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <CoreHeader breadcrumbPath={'/options'} breadcrumb={t('SettingsPage.options')} />
       <div className="mt-5">
-        <div key={formKey} className="max-w-md mx-auto bg-background/90 backdrop-blur-lg">
+        <div key={formKey} className="w-full max-w-md mx-auto px-2 sm:px-0 bg-background/90 backdrop-blur-lg">
           <MenuSelectLanguage />
 
           <Separator className="my-5" />
@@ -249,7 +249,7 @@ export default function OptionsPage() {
           <Separator className="my-5" />
 
           <div className={'ps-3 pe-3 mb-3'}>
-            <div className="flex gap-2 mb-10">
+            <div className="flex flex-col sm:flex-row gap-2 mb-10">
               <Button
                 variant="destructive"
                 onClick={handleResetSettings}
