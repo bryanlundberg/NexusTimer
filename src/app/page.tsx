@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Dither from '@/components/ui/shadcn-io/dither'
 import {
   ArrowRight,
   AudioWaveform,
@@ -144,12 +143,23 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 // ─── Horizontal Scroll Section ───
 function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     container: scrollContainer,
     offset: ['start start', 'end end']
   })
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-60%'])
+  const xMobile = useTransform(scrollYProgress, [0, 1], ['0%', '-72%'])
+  const xDesktop = useTransform(scrollYProgress, [0, 1], ['0%', '-55%'])
+  const x = isMobile ? xMobile : xDesktop
 
   const cards = [
     {
@@ -396,6 +406,33 @@ function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HT
   )
 }
 
+// ─── Scroll-Linked Section Reveal ───
+function ScrollRevealSection({
+  children,
+  scrollContainer,
+  className
+}: {
+  children: React.ReactNode
+  scrollContainer: React.RefObject<HTMLDivElement | null>
+  className?: string
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    container: scrollContainer,
+    offset: ['start end', 'end start']
+  })
+
+  const y = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [80, 0, 0, -40])
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.8, 1], [0, 1, 1, 0])
+
+  return (
+    <motion.div ref={ref} style={{ y, opacity }} className={className}>
+      {children}
+    </motion.div>
+  )
+}
+
 // ===== MAIN PAGE =====
 export default function Page() {
   const [hidden, setHidden] = useState(false)
@@ -406,6 +443,34 @@ export default function Page() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.04], [1, 0])
   const heroScale = useTransform(scrollYProgress, [0, 0.04], [1, 0.92])
   const heroBlur = useTransform(scrollYProgress, [0, 0.04], [0, 10])
+
+  // Scroll-linked gradient orbs — positions shift and colors change organically
+  const orb1X = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [-200, 100, 400, 150, -100])
+  const orb1Y = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [-50, 200, 100, 350, 50])
+  const orb1Scale = useTransform(scrollYProgress, [0, 0.3, 0.6, 1], [1, 1.5, 0.8, 1.3])
+
+  const orb2X = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [600, 350, 100, 500, 300])
+  const orb2Y = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [100, -50, 250, 100, 400])
+  const orb2Scale = useTransform(scrollYProgress, [0, 0.4, 0.7, 1], [1, 1.3, 1.6, 0.9])
+
+  const orb3X = useTransform(scrollYProgress, [0, 0.3, 0.6, 1], [200, 500, -50, 350])
+  const orb3Y = useTransform(scrollYProgress, [0, 0.3, 0.6, 1], [400, 200, 350, 100])
+
+  const orb4X = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [-100, 300, 600, 100])
+  const orb4Y = useTransform(scrollYProgress, [0, 0.35, 0.65, 1], [200, 400, 150, 300])
+  const orb4Scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.4, 1])
+
+  const orb5X = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [400, 50, 300, 500])
+  const orb5Y = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [300, 100, 450, 200])
+
+  // Color transitions via scroll-driven hue
+  const orbHue1 = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [300, 200, 40, 300])
+  const orbHue2 = useTransform(scrollYProgress, [0, 0.33, 0.66, 1], [270, 180, 280, 160])
+  const orbBg1 = useTransform(orbHue1, (h) => `hsla(${h}, 70%, 80%, 0.2)`)
+  const orbBg2 = useTransform(orbHue2, (h) => `hsla(${h}, 60%, 75%, 0.15)`)
+  const orbBg3 = useTransform(orbHue1, (h) => `hsla(${h + 60}, 50%, 80%, 0.12)`)
+  const orbBg4 = useTransform(orbHue2, (h) => `hsla(${h + 90}, 65%, 78%, 0.18)`)
+  const orbBg5 = useTransform(orbHue1, (h) => `hsla(${h - 40}, 55%, 82%, 0.1)`)
 
   const handleScroll = useCallback(
     (e: React.UIEvent<HTMLDivElement>) => {
@@ -422,11 +487,28 @@ export default function Page() {
 
   return (
     <div className="relative w-dvw h-dvh bg-gray-50 overflow-hidden">
-      {/* Ambient gradient orbs */}
+      {/* Scroll-linked gradient orbs with dynamic colors */}
       <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-fuchsia-300/20 rounded-full blur-[160px] animate-pulse" />
-        <div className="absolute bottom-1/3 -right-32 w-[500px] h-[500px] bg-purple-300/15 rounded-full blur-[160px] animate-pulse [animation-delay:2s]" />
-        <div className="absolute top-2/3 left-1/3 w-[300px] h-[300px] bg-cyan-300/10 rounded-full blur-[120px] animate-pulse [animation-delay:4s]" />
+        <motion.div
+          style={{ x: orb1X, y: orb1Y, scale: orb1Scale, backgroundColor: orbBg1 }}
+          className="absolute w-[500px] h-[500px] rounded-full blur-[160px]"
+        />
+        <motion.div
+          style={{ x: orb2X, y: orb2Y, scale: orb2Scale, backgroundColor: orbBg2 }}
+          className="absolute w-[500px] h-[500px] rounded-full blur-[160px]"
+        />
+        <motion.div
+          style={{ x: orb3X, y: orb3Y, backgroundColor: orbBg3 }}
+          className="absolute w-[350px] h-[350px] rounded-full blur-[140px]"
+        />
+        <motion.div
+          style={{ x: orb4X, y: orb4Y, scale: orb4Scale, backgroundColor: orbBg4 }}
+          className="absolute w-[400px] h-[400px] rounded-full blur-[150px]"
+        />
+        <motion.div
+          style={{ x: orb5X, y: orb5Y, backgroundColor: orbBg5 }}
+          className="absolute w-[300px] h-[300px] rounded-full blur-[120px]"
+        />
       </div>
 
       {/* Content */}
@@ -691,232 +773,239 @@ export default function Page() {
           <StickyFeatureReveal scrollContainer={containerRef} />
 
           {/* ────── FEATURES GRID ────── */}
-          <section className="relative py-24 md:py-32">
-            <div className="mx-auto max-w-6xl px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="text-center mb-16"
-              >
-                <p className="text-xs uppercase tracking-[0.3em] text-fuchsia-500 mb-4">Capabilities</p>
-                <h2 className="text-3xl md:text-5xl font-bold mb-5">
-                  What{' '}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-purple-500">
-                    NexusTimer
-                  </span>{' '}
-                  can do
-                </h2>
-                <p className="text-gray-500 text-base max-w-lg mx-auto">
-                  Every feature designed with one goal — help you get faster.
-                </p>
-              </motion.div>
+          <ScrollRevealSection scrollContainer={containerRef}>
+            <section className="relative py-24 md:py-32">
+              <div className="mx-auto max-w-6xl px-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="text-center mb-16"
+                >
+                  <p className="text-xs uppercase tracking-[0.3em] text-fuchsia-500 mb-4">Capabilities</p>
+                  <h2 className="text-3xl md:text-5xl font-bold mb-5">
+                    What{' '}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-purple-500">
+                      NexusTimer
+                    </span>{' '}
+                    can do
+                  </h2>
+                  <p className="text-gray-500 text-base max-w-lg mx-auto">
+                    Every feature designed with one goal — help you get faster.
+                  </p>
+                </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[
-                  {
-                    icon: Timer,
-                    title: 'A timer that adapts to you',
-                    description:
-                      'Customize your timing experience with adjustable settings, themes, and layouts to suit your preferences.'
-                  },
-                  {
-                    icon: BarChart3,
-                    title: 'Unique stats system',
-                    description:
-                      'Analyze results per cube and spot opportunities without altering your session averages.'
-                  },
-                  {
-                    icon: Users,
-                    title: 'Online Mode',
-                    description:
-                      'Create rooms, coordinate matches in real time. Perfect for meetups or online sessions.'
-                  },
-                  {
-                    icon: Globe,
-                    title: 'Connect with cubers',
-                    description: 'Explore the worldwide community. Share your times and individual performance metrics.'
-                  },
-                  {
-                    icon: AudioWaveform,
-                    title: 'Learn Algorithms',
-                    description: 'Built-in algorithm trainer to memorize and practice new algorithms effectively.'
-                  },
-                  {
-                    icon: DatabaseZap,
-                    title: 'Cross Platform Sync',
-                    description: 'Access your data from any device. NexusTimer syncs your times via the cloud.'
-                  }
-                ].map((feature, index) => (
-                  <motion.div
-                    key={feature.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.07 }}
-                    className="group relative rounded-2xl border border-gray-200 bg-white p-6 hover:bg-gray-50 hover:border-fuchsia-300 transition-all duration-500 shadow-sm"
-                  >
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-fuchsia-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="relative z-10">
-                      <div className="p-2.5 rounded-xl bg-gray-100 border border-gray-200 w-fit mb-5 group-hover:bg-fuchsia-50 group-hover:border-fuchsia-200 transition-colors duration-300">
-                        <feature.icon className="h-5 w-5 text-gray-400 group-hover:text-fuchsia-500 transition-colors duration-300" />
-                      </div>
-                      <h3 className="text-base font-semibold text-gray-900 mb-2 group-hover:text-fuchsia-700 transition-colors duration-300">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm text-gray-500 leading-relaxed">{feature.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* ────── HOW IT WORKS ────── */}
-          <section className="relative py-20 md:py-28">
-            <div className="mx-auto max-w-5xl px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="text-center mb-20"
-              >
-                <p className="text-xs uppercase tracking-[0.3em] text-fuchsia-500 mb-4">Getting Started</p>
-                <SectionHeading>How it works</SectionHeading>
-              </motion.div>
-
-              <div className="relative">
-                {/* Connecting line */}
-                <div className="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-fuchsia-300 to-transparent" />
-
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {[
                     {
-                      number: 1,
-                      title: 'Start or import',
-                      desc: 'Use Nexus or import solves from any timer.',
-                      icon: Zap
+                      icon: Timer,
+                      title: 'A timer that adapts to you',
+                      description:
+                        'Customize your timing experience with adjustable settings, themes, and layouts to suit your preferences.'
                     },
                     {
-                      number: 2,
-                      title: 'Train as usual',
-                      desc: 'Just solve. Everything is categorized automatically.',
-                      icon: Timer
+                      icon: BarChart3,
+                      title: 'Unique stats system',
+                      description:
+                        'Analyze results per cube and spot opportunities without altering your session averages.'
                     },
                     {
-                      number: 3,
-                      title: 'Analyze',
-                      desc: 'See performance trends after a short session.',
-                      icon: BarChart3
+                      icon: Users,
+                      title: 'Online Mode',
+                      description:
+                        'Create rooms, coordinate matches in real time. Perfect for meetups or online sessions.'
                     },
                     {
-                      number: 4,
-                      title: 'Improve',
-                      desc: 'Compare profiles and track long-term progress.',
-                      icon: ArrowRight
+                      icon: Globe,
+                      title: 'Connect with cubers',
+                      description:
+                        'Explore the worldwide community. Share your times and individual performance metrics.'
+                    },
+                    {
+                      icon: AudioWaveform,
+                      title: 'Learn Algorithms',
+                      description: 'Built-in algorithm trainer to memorize and practice new algorithms effectively.'
+                    },
+                    {
+                      icon: DatabaseZap,
+                      title: 'Cross Platform Sync',
+                      description: 'Access your data from any device. NexusTimer syncs your times via the cloud.'
                     }
-                  ].map((step, i) => (
+                  ].map((feature, index) => (
                     <motion.div
-                      key={step.number}
-                      initial={{ opacity: 0, y: 40 }}
+                      key={feature.title}
+                      initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: i * 0.15 }}
-                      className="relative flex flex-col items-center text-center group"
+                      transition={{ duration: 0.5, delay: index * 0.07 }}
+                      className="group relative rounded-2xl border border-gray-200 bg-white p-6 hover:bg-gray-50 hover:border-fuchsia-300 transition-all duration-500 shadow-sm"
                     >
-                      <div className="relative z-10 h-20 w-20 rounded-2xl border border-fuchsia-200 bg-white backdrop-blur-sm flex items-center justify-center mb-6 shadow-lg shadow-fuchsia-100 group-hover:border-fuchsia-400 group-hover:shadow-fuchsia-200 transition-all duration-500">
-                        <step.icon className="h-7 w-7 text-fuchsia-500" />
+                      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-fuchsia-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="relative z-10">
+                        <div className="p-2.5 rounded-xl bg-gray-100 border border-gray-200 w-fit mb-5 group-hover:bg-fuchsia-50 group-hover:border-fuchsia-200 transition-colors duration-300">
+                          <feature.icon className="h-5 w-5 text-gray-400 group-hover:text-fuchsia-500 transition-colors duration-300" />
+                        </div>
+                        <h3 className="text-base font-semibold text-gray-900 mb-2 group-hover:text-fuchsia-700 transition-colors duration-300">
+                          {feature.title}
+                        </h3>
+                        <p className="text-sm text-gray-500 leading-relaxed">{feature.description}</p>
                       </div>
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-fuchsia-400 mb-2">
-                        Step {step.number}
-                      </span>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
-                      <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
                     </motion.div>
                   ))}
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </ScrollRevealSection>
 
-          {/* ────── DESKTOP / MOBILE PREVIEW ────── */}
-          <section className="relative py-20 md:py-32 overflow-hidden">
-            <div className="mx-auto max-w-7xl px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="text-center mb-16"
-              >
-                <p className="text-xs uppercase tracking-[0.3em] text-fuchsia-500 mb-4">Cross Platform</p>
-                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-5">
-                  Beautiful on{' '}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-purple-500">
-                    every device
-                  </span>
-                </h2>
-                <p className="text-gray-500 text-base max-w-xl mx-auto">
-                  Desktop, tablet, or phone — NexusTimer adapts seamlessly to your screen.
-                </p>
-              </motion.div>
-
-              <div className="relative flex items-center justify-center">
-                {/* Desktop mockup */}
+          {/* ────── HOW IT WORKS ────── */}
+          <ScrollRevealSection scrollContainer={containerRef}>
+            <section className="relative py-20 md:py-28">
+              <div className="mx-auto max-w-5xl px-6">
                 <motion.div
-                  initial={{ opacity: 0, y: 60 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-full max-w-4xl"
+                  transition={{ duration: 0.5 }}
+                  className="text-center mb-20"
                 >
-                  <div className="relative rounded-xl overflow-hidden border border-gray-200 shadow-2xl shadow-gray-200/50">
-                    <div className="bg-gray-100 backdrop-blur-sm h-8 flex items-center px-4 gap-2 border-b border-gray-200">
-                      <div className="flex gap-1.5">
-                        <div className="w-2.5 h-2.5 rounded-full bg-red-300" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-300" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-green-300" />
-                      </div>
-                      <div className="mx-auto rounded-md bg-white px-16 py-0.5 text-[10px] text-gray-400">
-                        nexustimer.pro
-                      </div>
-                    </div>
-                    <Image
-                      src="/app-desktop-view.png"
-                      alt="NexusTimer desktop view"
-                      width={1200}
-                      height={750}
-                      className="w-full"
-                    />
-                  </div>
+                  <p className="text-xs uppercase tracking-[0.3em] text-fuchsia-500 mb-4">Getting Started</p>
+                  <SectionHeading>How it works</SectionHeading>
+                </motion.div>
 
-                  {/* Mobile overlay */}
+                <div className="relative">
+                  {/* Connecting line */}
+                  <div className="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-fuchsia-300 to-transparent" />
+
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6">
+                    {[
+                      {
+                        number: 1,
+                        title: 'Start or import',
+                        desc: 'Use Nexus or import solves from any timer.',
+                        icon: Zap
+                      },
+                      {
+                        number: 2,
+                        title: 'Train as usual',
+                        desc: 'Just solve. Everything is categorized automatically.',
+                        icon: Timer
+                      },
+                      {
+                        number: 3,
+                        title: 'Analyze',
+                        desc: 'See performance trends after a short session.',
+                        icon: BarChart3
+                      },
+                      {
+                        number: 4,
+                        title: 'Improve',
+                        desc: 'Compare profiles and track long-term progress.',
+                        icon: ArrowRight
+                      }
+                    ].map((step, i) => (
+                      <motion.div
+                        key={step.number}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: i * 0.15 }}
+                        className="relative flex flex-col items-center text-center group"
+                      >
+                        <div className="relative z-10 h-20 w-20 rounded-2xl border border-fuchsia-200 bg-white backdrop-blur-sm flex items-center justify-center mb-6 shadow-lg shadow-fuchsia-100 group-hover:border-fuchsia-400 group-hover:shadow-fuchsia-200 transition-all duration-500">
+                          <step.icon className="h-7 w-7 text-fuchsia-500" />
+                        </div>
+                        <span className="text-[10px] uppercase tracking-[0.2em] text-fuchsia-400 mb-2">
+                          Step {step.number}
+                        </span>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
+                        <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          </ScrollRevealSection>
+
+          {/* ────── DESKTOP / MOBILE PREVIEW ────── */}
+          <ScrollRevealSection scrollContainer={containerRef}>
+            <section className="relative py-20 md:py-32 overflow-hidden">
+              <div className="mx-auto max-w-7xl px-6">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7 }}
+                  className="text-center mb-16"
+                >
+                  <p className="text-xs uppercase tracking-[0.3em] text-fuchsia-500 mb-4">Cross Platform</p>
+                  <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-5">
+                    Beautiful on{' '}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-purple-500">
+                      every device
+                    </span>
+                  </h2>
+                  <p className="text-gray-500 text-base max-w-xl mx-auto">
+                    Desktop, tablet, or phone — NexusTimer adapts seamlessly to your screen.
+                  </p>
+                </motion.div>
+
+                <div className="relative flex items-center justify-center">
+                  {/* Desktop mockup */}
                   <motion.div
-                    initial={{ opacity: 0, x: 40, y: 20 }}
-                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    initial={{ opacity: 0, y: 60 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute -right-4 md:right-8 -bottom-8 md:-bottom-12 w-32 md:w-48"
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="relative w-full max-w-4xl"
                   >
-                    <div className="rounded-2xl overflow-hidden border-2 border-gray-200 shadow-2xl shadow-gray-300/50 bg-white">
+                    <div className="relative rounded-xl overflow-hidden border border-gray-200 shadow-2xl shadow-gray-200/50">
+                      <div className="bg-gray-100 backdrop-blur-sm h-8 flex items-center px-4 gap-2 border-b border-gray-200">
+                        <div className="flex gap-1.5">
+                          <div className="w-2.5 h-2.5 rounded-full bg-red-300" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-yellow-300" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-green-300" />
+                        </div>
+                        <div className="mx-auto rounded-md bg-white px-16 py-0.5 text-[10px] text-gray-400">
+                          nexustimer.pro
+                        </div>
+                      </div>
                       <Image
-                        src="/app-mobile-view.png"
-                        alt="NexusTimer mobile view"
-                        width={300}
-                        height={600}
+                        src="/app-desktop-view.png"
+                        alt="NexusTimer desktop view"
+                        width={1200}
+                        height={750}
                         className="w-full"
                       />
                     </div>
-                  </motion.div>
-                </motion.div>
 
-                {/* Glow */}
-                <div className="absolute -inset-20 bg-gradient-to-r from-fuchsia-500/5 via-purple-500/5 to-pink-500/5 rounded-full blur-3xl -z-10" />
+                    {/* Mobile overlay */}
+                    <motion.div
+                      initial={{ opacity: 0, x: 40, y: 20 }}
+                      whileInView={{ opacity: 1, x: 0, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      className="absolute -right-4 md:right-8 -bottom-8 md:-bottom-12 w-32 md:w-48"
+                    >
+                      <div className="rounded-2xl overflow-hidden border-2 border-gray-200 shadow-2xl shadow-gray-300/50 bg-white">
+                        <Image
+                          src="/app-mobile-view.png"
+                          alt="NexusTimer mobile view"
+                          width={300}
+                          height={600}
+                          className="w-full"
+                        />
+                      </div>
+                    </motion.div>
+                  </motion.div>
+
+                  {/* Glow */}
+                  <div className="absolute -inset-20 bg-gradient-to-r from-fuchsia-500/5 via-purple-500/5 to-pink-500/5 rounded-full blur-3xl -z-10" />
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </ScrollRevealSection>
 
           {/* ────── FEATURE COMPARISON TABLE ────── */}
           <FeatureTable />
@@ -1109,82 +1198,84 @@ export default function Page() {
           </section>
 
           {/* ────── FINAL CTA ────── */}
-          <section className="relative py-20 md:py-32">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="mx-auto max-w-4xl px-6"
-            >
-              <div className="relative rounded-[2rem] border border-fuchsia-200 overflow-hidden">
-                <div className="absolute -inset-px rounded-[2rem] bg-gradient-to-r from-fuchsia-100 via-purple-100 to-pink-100 blur-sm" />
+          <ScrollRevealSection scrollContainer={containerRef}>
+            <section className="relative py-20 md:py-32">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="mx-auto max-w-4xl px-6"
+              >
+                <div className="relative rounded-[2rem] border border-fuchsia-200 overflow-hidden">
+                  <div className="absolute -inset-px rounded-[2rem] bg-gradient-to-r from-fuchsia-100 via-purple-100 to-pink-100 blur-sm" />
 
-                <div className="relative bg-white backdrop-blur-xl rounded-[2rem] p-12 md:p-20 text-center">
-                  <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                    <Image
-                      src="/bg.png"
-                      alt=""
-                      width={400}
-                      height={400}
-                      unoptimized
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="relative z-10">
-                    <motion.div
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: 0.2 }}
-                      className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-fuchsia-100 to-purple-100 border border-fuchsia-200 mb-8"
-                    >
-                      <Image src="/landing/cube.gif" alt="" width={40} height={40} unoptimized />
-                    </motion.div>
-                    <motion.h3
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.3 }}
-                      className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-5"
-                    >
-                      Ready to level up?
-                    </motion.h3>
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.4 }}
-                      className="text-gray-500 text-base md:text-lg mb-10 max-w-md mx-auto"
-                    >
-                      Less routine, more cubing joy. All refined cubing tools — right in your device, for free.
-                    </motion.p>
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.5 }}
-                      className="flex flex-wrap items-center justify-center gap-4"
-                    >
-                      <Link
-                        href="/app"
-                        className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white font-semibold px-8 py-4 text-sm hover:shadow-[0_0_60px_rgba(217,70,239,0.3)] transition-all duration-500 hover:scale-105"
+                  <div className="relative bg-white backdrop-blur-xl rounded-[2rem] p-12 md:p-20 text-center">
+                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+                      <Image
+                        src="/bg.png"
+                        alt=""
+                        width={400}
+                        height={400}
+                        unoptimized
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="relative z-10">
+                      <motion.div
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        whileInView={{ scale: 1, opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-fuchsia-100 to-purple-100 border border-fuchsia-200 mb-8"
                       >
-                        Go to the App
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </Link>
-                      <Link
-                        href="/options?redirect=import"
-                        className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white backdrop-blur-sm px-7 py-4 text-sm text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-300"
+                        <Image src="/landing/cube.gif" alt="" width={40} height={40} unoptimized />
+                      </motion.div>
+                      <motion.h3
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-5"
                       >
-                        Import your solves
-                      </Link>
-                    </motion.div>
+                        Ready to level up?
+                      </motion.h3>
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                        className="text-gray-500 text-base md:text-lg mb-10 max-w-md mx-auto"
+                      >
+                        Less routine, more cubing joy. All refined cubing tools — right in your device, for free.
+                      </motion.p>
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        className="flex flex-wrap items-center justify-center gap-4"
+                      >
+                        <Link
+                          href="/app"
+                          className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-fuchsia-500 to-purple-600 text-white font-semibold px-8 py-4 text-sm hover:shadow-[0_0_60px_rgba(217,70,239,0.3)] transition-all duration-500 hover:scale-105"
+                        >
+                          Go to the App
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Link>
+                        <Link
+                          href="/options?redirect=import"
+                          className="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white backdrop-blur-sm px-7 py-4 text-sm text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-300"
+                        >
+                          Import your solves
+                        </Link>
+                      </motion.div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          </section>
+              </motion.div>
+            </section>
+          </ScrollRevealSection>
         </main>
 
         {/* ═══ FOOTER ═══ */}
