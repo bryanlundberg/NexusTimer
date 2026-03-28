@@ -6,6 +6,7 @@ import { useQueryState } from 'nuqs'
 import { STATES } from '@/shared/const/states'
 import { SolveTab } from '@/shared/types/enums'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { HistoryIcon, ShellIcon } from 'lucide-react'
 
 export default function SolvesTabSwitcher() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
@@ -18,9 +19,11 @@ export default function SolvesTabSwitcher() {
     <Tabs value={tabMode} onValueChange={(value) => setTabMode(value as SolveTab)} className="w-full sm:w-auto">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value={SolveTab.SESSION} disabled={selectedCube === null}>
+          <ShellIcon />
           {t('SolvesPage.session')}
         </TabsTrigger>
         <TabsTrigger value={SolveTab.ALL} disabled={selectedCube === null}>
+          <HistoryIcon />
           {t('SolvesPage.historial')}
         </TabsTrigger>
       </TabsList>
