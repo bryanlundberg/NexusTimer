@@ -38,7 +38,7 @@ export default function MenuInputOption({
                 onChange(finalValue)
                 updateSetting(name as any, finalValue)
               }}
-              className="px-2 py-1 w-22 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-md border border-input dark:bg-input/30"
+              className="px-2 py-1 w-20 sm:w-22 shrink-0 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-md border border-input dark:bg-input/30"
               min={0}
               {...inputProps}
             />
