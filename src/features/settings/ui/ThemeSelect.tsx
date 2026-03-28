@@ -8,31 +8,31 @@ import { ThemeToggleButton, useThemeTransition } from '@/components/ui/shadcn-io
 function ThemePreviewLight({ selected }: { selected: boolean }) {
   return (
     <div
-      className={`relative w-36 h-24 rounded-xl overflow-hidden cursor-pointer transition-all duration-200 ${
+      className={`relative w-28 h-20 sm:w-36 sm:h-24 rounded-xl overflow-hidden cursor-pointer transition-all duration-200 ${
         selected ? 'ring-3 ring-primary/60 scale-[1.02]' : 'border border-neutral-300 hover:border-neutral-400'
       }`}
     >
       <div className="h-full w-full bg-neutral-50 flex">
         {/* Sidebar */}
-        <div className="w-8 h-full bg-neutral-200 flex flex-col items-center gap-1.5 pt-2">
-          <div className="w-4 h-4 rounded-md bg-neutral-300" />
-          <div className="w-4 h-1 rounded-full bg-neutral-300" />
-          <div className="w-4 h-1 rounded-full bg-neutral-300" />
-          <div className="w-4 h-1 rounded-full bg-neutral-300" />
+        <div className="w-6 sm:w-8 h-full bg-neutral-200 flex flex-col items-center gap-1 sm:gap-1.5 pt-2">
+          <div className="w-3 sm:w-4 h-3 sm:h-4 rounded-md bg-neutral-300" />
+          <div className="w-3 sm:w-4 h-1 rounded-full bg-neutral-300" />
+          <div className="w-3 sm:w-4 h-1 rounded-full bg-neutral-300" />
+          <div className="w-3 sm:w-4 h-1 rounded-full bg-neutral-300" />
         </div>
         {/* Content */}
-        <div className="flex-1 p-2 flex flex-col gap-1.5">
+        <div className="flex-1 p-1.5 sm:p-2 flex flex-col gap-1 sm:gap-1.5">
           {/* Header bar */}
           <div className="flex items-center gap-1">
-            <div className="w-10 h-1.5 rounded-full bg-neutral-300" />
-            <div className="ml-auto w-3 h-3 rounded-full bg-neutral-200" />
+            <div className="w-8 sm:w-10 h-1.5 rounded-full bg-neutral-300" />
+            <div className="ml-auto w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-neutral-200" />
           </div>
           {/* Main content blocks */}
           <div className="flex gap-1 flex-1">
             <div className="flex-1 rounded-md bg-neutral-200" />
             <div className="flex-1 rounded-md bg-neutral-200" />
           </div>
-          <div className="h-3 rounded-md bg-neutral-100" />
+          <div className="h-2.5 sm:h-3 rounded-md bg-neutral-100" />
         </div>
       </div>
     </div>
@@ -42,31 +42,31 @@ function ThemePreviewLight({ selected }: { selected: boolean }) {
 function ThemePreviewDark({ selected }: { selected: boolean }) {
   return (
     <div
-      className={`relative w-36 h-24 rounded-xl overflow-hidden cursor-pointer transition-all duration-200 ${
+      className={`relative w-28 h-20 sm:w-36 sm:h-24 rounded-xl overflow-hidden cursor-pointer transition-all duration-200 ${
         selected ? 'ring-3 ring-primary/60 scale-[1.02]' : 'border border-neutral-700 hover:border-neutral-600'
       }`}
     >
       <div className="h-full w-full bg-zinc-950 flex">
         {/* Sidebar */}
-        <div className="w-8 h-full bg-zinc-900 flex flex-col items-center gap-1.5 pt-2">
-          <div className="w-4 h-4 rounded-md bg-zinc-800" />
-          <div className="w-4 h-1 rounded-full bg-zinc-800" />
-          <div className="w-4 h-1 rounded-full bg-zinc-800" />
-          <div className="w-4 h-1 rounded-full bg-zinc-800" />
+        <div className="w-6 sm:w-8 h-full bg-zinc-900 flex flex-col items-center gap-1 sm:gap-1.5 pt-2">
+          <div className="w-3 sm:w-4 h-3 sm:h-4 rounded-md bg-zinc-800" />
+          <div className="w-3 sm:w-4 h-1 rounded-full bg-zinc-800" />
+          <div className="w-3 sm:w-4 h-1 rounded-full bg-zinc-800" />
+          <div className="w-3 sm:w-4 h-1 rounded-full bg-zinc-800" />
         </div>
         {/* Content */}
-        <div className="flex-1 p-2 flex flex-col gap-1.5">
+        <div className="flex-1 p-1.5 sm:p-2 flex flex-col gap-1 sm:gap-1.5">
           {/* Header bar */}
           <div className="flex items-center gap-1">
-            <div className="w-10 h-1.5 rounded-full bg-zinc-800" />
-            <div className="ml-auto w-3 h-3 rounded-full bg-zinc-900" />
+            <div className="w-8 sm:w-10 h-1.5 rounded-full bg-zinc-800" />
+            <div className="ml-auto w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full bg-zinc-900" />
           </div>
           {/* Main content blocks */}
           <div className="flex gap-1 flex-1">
             <div className="flex-1 rounded-md bg-zinc-900" />
             <div className="flex-1 rounded-md bg-zinc-900" />
           </div>
-          <div className="h-3 rounded-md bg-zinc-900/50" />
+          <div className="h-2.5 sm:h-3 rounded-md bg-zinc-900/50" />
         </div>
       </div>
     </div>
@@ -97,7 +97,7 @@ export default function ThemeSelect() {
   }
 
   return (
-    <div className="flex mx-3 gap-3">
+    <div className="flex mx-3 gap-3 flex-wrap">
       <div className="flex flex-col items-center">
         <div className="relative">
           <ThemePreviewLight selected={resolvedTheme === 'light'} />
@@ -129,7 +129,7 @@ export default function ThemeSelect() {
       {backgroundImage && (
         <div className="flex flex-col items-center">
           <div
-            className="relative w-36 h-24 rounded-xl overflow-hidden cursor-pointer border border-neutral-400"
+            className="relative w-28 h-20 sm:w-36 sm:h-24 rounded-xl overflow-hidden cursor-pointer border border-neutral-400"
             style={{
               backgroundImage: `url(${backgroundImage})`,
               backgroundPosition: 'center',
