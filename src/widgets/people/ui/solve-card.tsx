@@ -19,7 +19,7 @@ interface SolveCardProps {
 
 export default function SolveCard({ event, time, date, bgImage, solves }: SolveCardProps) {
   const t = useTranslations('Index.PeoplePage.solve-card')
-  const [mainTime, decimals] = time.split('.')
+
   const [ao5Str, setAo5Str] = React.useState<string>('--')
   const [spentStr, setSpentStr] = React.useState<string>('00:00.00')
   const [solvesCount, setSolvesCount] = React.useState<number>(0)
@@ -66,23 +66,11 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
           </div>
         </div>
 
-        {/* Hero time */}
-        <div className="mb-5">
-          <div className="text-[10px] uppercase tracking-widest text-muted-foreground font-medium mb-1">
-            {t('single')}
-          </div>
-          <div className="flex items-baseline">
-            <span className="text-4xl font-black tracking-tighter tabular-nums">{mainTime}</span>
-            <span className="text-lg font-bold text-muted-foreground/50 tabular-nums">.{decimals}</span>
-          </div>
-        </div>
-
-        {/* Stats row — minimal dividers */}
-        <div className="flex items-center gap-0 border-t border-border/40 pt-3">
+        {/* Stats grid — 2x2 */}
+        <div className="grid grid-cols-2 gap-3">
+          <StatItem label={t('single')} value={time} hero />
           <StatItem icon={CircleSlash2} label={t('ao5')} value={ao5Str} />
-          <div className="w-px h-8 bg-border/40 mx-1" />
           <StatItem icon={Timer} label={t('time-spent')} value={spentStr} />
-          <div className="w-px h-8 bg-border/40 mx-1" />
           <StatItem icon={RotateCcw} label={t('solves')} value={solvesCount.toString()} isCount />
         </div>
       </div>
@@ -91,28 +79,33 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
 }
 
 interface StatItemProps {
-  icon: any
+  icon?: any
   label: string
   value: string
   isCount?: boolean
+  hero?: boolean
 }
 
-function StatItem({ icon: Icon, label, value, isCount }: StatItemProps) {
+function StatItem({ icon: Icon, label, value, isCount, hero }: StatItemProps) {
   const [main, decimal] = value.includes('.') ? value.split('.') : [value, null]
 
   return (
-    <div className="flex-1 text-center px-1">
-      <div className="flex items-center justify-center gap-1 mb-0.5">
-        <Icon className="size-3 text-muted-foreground/60" />
-        <span className="text-[9px] uppercase tracking-wider text-muted-foreground font-semibold">{label}</span>
+    <div className={hero ? 'flex flex-col' : 'flex flex-col'}>
+      <div className="flex items-center gap-1 mb-1">
+        {Icon && <Icon className="size-3 text-muted-foreground/60" />}
+        <span className="text-[9px] uppercase tracking-widest text-muted-foreground font-medium">{label}</span>
       </div>
-      <div className="flex items-baseline justify-center">
+      <div className="flex items-baseline">
         {value === '--' ? (
-          <span className="text-sm font-bold text-muted-foreground">--</span>
+          <span className={`${hero ? 'text-2xl' : 'text-base'} font-bold text-muted-foreground`}>--</span>
         ) : (
           <>
-            <span className="text-sm font-bold tabular-nums">{main}</span>
-            {decimal && !isCount && <span className="text-xs text-muted-foreground">.{decimal}</span>}
+            <span className={`${hero ? 'text-2xl font-black' : 'text-base font-bold'} tracking-tight tabular-nums`}>
+              {main}
+            </span>
+            {decimal && !isCount && (
+              <span className={`${hero ? 'text-sm' : 'text-xs'} text-muted-foreground`}>.{decimal}</span>
+            )}
           </>
         )}
       </div>
