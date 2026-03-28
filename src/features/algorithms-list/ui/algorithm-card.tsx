@@ -107,14 +107,14 @@ export default function AlgorithmCard({
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-7 w-7 opacity-0 group-hover/alg:opacity-100 transition-opacity"
+                    className="h-7 w-7 opacity-0 group-hover/alg:opacity-100 transition-all [&>svg]:transition-transform [&>svg]:duration-200 [&:active>svg]:scale-125"
                     onClick={(e) => {
                       e.stopPropagation()
                       handleCopy(alg, index)
                     }}
                   >
                     {copiedIndex === index ? (
-                      <CheckIcon className="h-3.5 w-3.5 text-emerald-500" />
+                      <CheckIcon className="h-3.5 w-3.5 animate-[scaleIn_0.2s_ease-out]" />
                     ) : (
                       <CopyIcon className="h-3.5 w-3.5" />
                     )}
@@ -122,7 +122,7 @@ export default function AlgorithmCard({
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-7 w-7"
+                    className="h-7 w-7 [&>svg]:transition-transform [&>svg]:duration-200 [&:hover>svg]:scale-105"
                     onClick={(e) => {
                       e.stopPropagation()
                       handleOpenAlgorithmPreview(alg)
