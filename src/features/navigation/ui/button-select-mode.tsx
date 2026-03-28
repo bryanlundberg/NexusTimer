@@ -50,7 +50,12 @@ export default function ButtonSelectMode() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button data-testid={'button-select-mode'} variant="ghost" className="py-0 px-3" disabled={!selectedCube}>
+          <Button
+            data-testid={'button-select-mode'}
+            variant="ghost"
+            className="py-0 px-3 [&>svg]:transition-transform [&>svg]:duration-300 [&:hover>svg]:rotate-180"
+            disabled={!selectedCube}
+          >
             <MixIcon />
           </Button>
         </DropdownMenuTrigger>
