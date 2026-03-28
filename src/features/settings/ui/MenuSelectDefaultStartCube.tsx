@@ -25,7 +25,7 @@ export default function MenuSelectDefaultStartCube() {
       <div className="flex justify-between items-center mb-1">
         <div className="grow">{t('Settings-menu.auto-select')}</div>
         <Select defaultValue={defaultCube || 'none'} value={defaultCube || 'none'} onValueChange={handleCubeSelect}>
-          <SelectTrigger className="w-[180px] bg-background">
+          <SelectTrigger className="w-[140px] sm:w-[180px] shrink-0 bg-background">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
