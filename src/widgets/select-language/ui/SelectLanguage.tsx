@@ -7,7 +7,7 @@ export default function SelectLanguage() {
   const locale = useLocale()
   return (
     <Select defaultValue={locale} onValueChange={syncTranslations}>
-      <SelectTrigger className="w-[180px] bg-background">
+      <SelectTrigger className="w-[140px] sm:w-[180px] shrink-0 bg-background">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
