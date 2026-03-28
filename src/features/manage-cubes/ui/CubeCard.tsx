@@ -127,7 +127,7 @@ export function CubeCard({ cube }: CubeCardProps) {
                   <Button
                     variant={'ghost'}
                     size={'icon'}
-                    className="h-8 w-8"
+                    className="h-8 w-8 [&>svg]:transition-transform [&>svg]:duration-300 [&:hover>svg]:rotate-90"
                     onClick={handleEdit}
                     data-testid={`edit-cube-button-${cube.name}`}
                   >
@@ -148,7 +148,7 @@ export function CubeCard({ cube }: CubeCardProps) {
                   <Button
                     variant={'ghost'}
                     size={'icon'}
-                    className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                    className="h-8 w-8 text-muted-foreground hover:text-destructive [&>svg]:transition-transform [&>svg]:duration-200 [&:hover>svg]:scale-110 [&:active>svg]:scale-90"
                     onClick={handleDelete}
                     data-testid={`delete-cube-button-${cube.name}`}
                   >
