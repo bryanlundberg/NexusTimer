@@ -183,6 +183,8 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
     }
   ]
 
+  if (isMobile) return null
+
   return (
     <section ref={containerRef} className="relative h-[300vh]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
@@ -887,18 +889,18 @@ export default function Page() {
                     className="relative w-full max-w-4xl"
                   >
                     <div className="relative rounded-xl overflow-hidden border border-gray-200 shadow-2xl shadow-gray-200/50">
-                      <div className="bg-gray-50 h-8 flex items-center px-4 gap-2 border-b border-gray-100">
+                      <div className="bg-neutral-800 h-8 flex items-center px-4 gap-2">
                         <div className="flex gap-1.5">
-                          <div className="w-2.5 h-2.5 rounded-full bg-gray-200" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-gray-200" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-gray-200" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-red-200" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-yellow-200" />
+                          <div className="w-2.5 h-2.5 rounded-full bg-green-200" />
                         </div>
-                        <div className="mx-auto rounded-md bg-white px-16 py-0.5 text-[10px] text-gray-400 border border-gray-100">
-                          nexustimer.pro
+                        <div className="mx-auto rounded-md bg-neutral-100 px-16 py-0.5 text-[10px] text-gray-400">
+                          nexustimer.com
                         </div>
                       </div>
                       <Image
-                        src="/app-desktop-view.png"
+                        src="/landing/desk2.jpg"
                         alt="NexusTimer desktop view"
                         width={1200}
                         height={750}
@@ -913,9 +915,9 @@ export default function Page() {
                       transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                       className="absolute -right-4 md:right-8 -bottom-8 md:-bottom-12 w-32 md:w-48"
                     >
-                      <div className="rounded-2xl overflow-hidden border-2 border-gray-200 shadow-2xl shadow-gray-300/50 bg-white">
+                      <div className="bg-transparent">
                         <Image
-                          src="/app-mobile-view.png"
+                          src="/landing/iphone13.png"
                           alt="NexusTimer mobile view"
                           width={300}
                           height={600}
