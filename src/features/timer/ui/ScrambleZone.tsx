@@ -89,7 +89,12 @@ export function ScrambleZone() {
             {!isSolving && selectedCube && (
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button variant={'ghost'} size={'icon'} onClick={handleOpenCustomScramble}>
+                  <Button
+                    variant={'ghost'}
+                    size={'icon'}
+                    className="[&>svg]:transition-transform [&>svg]:duration-200 [&:hover>svg]:-rotate-12 [&:active>svg]:scale-90"
+                    onClick={handleOpenCustomScramble}
+                  >
                     <Pencil2Icon />
                   </Button>
                 </TooltipTrigger>
@@ -107,6 +112,7 @@ export function ScrambleZone() {
                       <Button
                         variant={'ghost'}
                         size={'icon'}
+                        className="[&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-yellow-400 [&:hover>svg]:drop-shadow-[0_0_6px_rgba(250,204,21,0.4)]"
                         onClick={() => {
                           if (!selectedCube) return
                           genSolution(selectedCube.category, scramble, Layers.YELLOW).then((res: CrossSolution) =>
