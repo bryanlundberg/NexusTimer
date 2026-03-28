@@ -18,7 +18,7 @@ export default function MenuSelectVoiceGender() {
       <div className="flex justify-between items-center mb-1">
         <div className="grow">{t('Settings-menu.voice-gender')}</div>
         <Select defaultValue={voiceGender} value={voiceGender} onValueChange={handleGenderSelect}>
-          <SelectTrigger className="w-[180px] bg-background">
+          <SelectTrigger className="w-[140px] sm:w-[180px] shrink-0 bg-background">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
