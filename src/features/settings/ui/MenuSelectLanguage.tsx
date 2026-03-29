@@ -7,16 +7,18 @@ export default function MenuSelectLanguage() {
   const t = useTranslations('Index')
 
   return (
-    <>
-      <MenuSection id="region" icon={<GlobeIcon />} title={t('Settings-menu.locale')}>
-        <div className="mx-3 mb-3">
-          <div className="flex items-center justify-between mb-1">
-            <div className="grow">{t('Settings-menu.language')}</div>
-            <SelectLanguage />
+    <MenuSection id="region" icon={<GlobeIcon />} title={t('Settings-menu.locale')}>
+      <div className="px-3 py-2 transition-colors hover:bg-muted/30">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-col gap-0.5 min-w-0">
+            <span className="text-sm font-medium leading-tight">{t('Settings-menu.language')}</span>
+            <span className="text-xs text-muted-foreground leading-snug">
+              {t('Settings-descriptions.language-description')}
+            </span>
           </div>
-          <div className="text-xs text-muted-foreground">{t('Settings-descriptions.language-description')}</div>
+          <SelectLanguage />
         </div>
-      </MenuSection>
-    </>
+      </div>
+    </MenuSection>
   )
 }
