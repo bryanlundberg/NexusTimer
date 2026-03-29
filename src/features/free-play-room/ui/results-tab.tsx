@@ -5,6 +5,8 @@ import { useParams } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { useTranslations } from 'next-intl'
+import { motion } from 'motion/react'
+import { Trophy, TrendingDown, TrendingUp, Timer } from 'lucide-react'
 
 export default function ResultsTab() {
   const t = useTranslations('Multiplayer.results-tab')
@@ -36,95 +38,151 @@ export default function ResultsTab() {
   const getLast = () => {
     if (!currentUserSolves.length) return '-'
     const last = currentUserSolves[currentUserSolves.length - 1]
-    const t = toEffectiveTime(last)
-    return t === null ? 'DNF' : `${formatTime(t)}${last.plus2 ? '+' : ''}`
+    const time = toEffectiveTime(last)
+    return time === null ? 'DNF' : `${formatTime(time)}${last.plus2 ? '+' : ''}`
   }
 
   const getBest = () => {
-    const times = currentUserSolves.map(toEffectiveTime).filter((t): t is number => t !== null)
+    const times = currentUserSolves.map(toEffectiveTime).filter((time): time is number => time !== null)
     if (!times.length) return '-'
     return formatTime(Math.min(...times))
   }
 
   const getWorst = () => {
-    const times = currentUserSolves.map(toEffectiveTime).filter((t): t is number => t !== null)
+    const times = currentUserSolves.map(toEffectiveTime).filter((time): time is number => time !== null)
     if (!times.length) return '-'
     return formatTime(Math.max(...times))
   }
 
   const getAverage = () => {
-    const times = currentUserSolves.map(toEffectiveTime).filter((t): t is number => t !== null)
+    const times = currentUserSolves.map(toEffectiveTime).filter((time): time is number => time !== null)
     if (!times.length) return '-'
     const avg = Math.round(times.reduce((a, b) => a + b, 0) / times.length)
     return formatTime(avg)
   }
 
+  const stats = [
+    { label: t('latest'), value: getLast(), icon: Timer },
+    { label: t('best'), value: getBest(), icon: Trophy },
+    { label: t('worst'), value: getWorst(), icon: TrendingDown },
+    { label: t('average'), value: getAverage(), icon: TrendingUp }
+  ]
+
   return (
-    <div className="flex flex-col gap-6 p-4">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <StatCard label={t('latest')} value={getLast()} />
-        <StatCard label={t('best')} value={getBest()} />
-        <StatCard label={t('worst')} value={getWorst()} />
-        <StatCard label={t('average')} value={getAverage()} />
+    <div className="flex flex-col gap-5 p-4 md:p-6">
+      {/* Stats grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+        {stats.map((stat, i) => {
+          const Icon = stat.icon
+          return (
+            <motion.div
+              key={stat.label}
+              className="rounded-xl border border-border bg-muted/30 p-3.5 md:p-4"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: i * 0.06 }}
+            >
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <Icon className="size-3.5 text-muted-foreground" />
+                <span className="text-xs text-muted-foreground">{stat.label}</span>
+              </div>
+              <div className="text-xl md:text-2xl font-semibold font-mono">{stat.value}</div>
+            </motion.div>
+          )
+        })}
       </div>
 
-      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+      {/* Live indicator */}
+      <motion.div
+        className="flex items-center gap-2 text-xs text-muted-foreground"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
         </span>
         {t('updating-live')}
-      </div>
+      </motion.div>
 
-      <div className="rounded-lg border">
-        <div className="px-4 py-2 border-b text-sm font-medium text-muted-foreground">{t('cubers')}</div>
-        <ul className="divide-y">
-          {solvesFromOnlineUsers.map((p) => {
+      {/* Leaderboard */}
+      <div className="rounded-xl border border-border overflow-hidden">
+        <div className="px-4 py-2.5 border-b border-border text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          {t('cubers')}
+        </div>
+        <ul className="divide-y divide-border">
+          {solvesFromOnlineUsers.map((p, i) => {
             const pTimes = p.solves
               .map((s) => (s.dnf ? null : s.time + (s.plus2 ? 2000 : 0)))
-              .filter((t): t is number => t !== null)
+              .filter((time): time is number => time !== null)
             const pBest = pTimes.length ? formatTime(Math.min(...pTimes)) : '-'
             const pAvg = pTimes.length ? formatTime(Math.round(pTimes.reduce((a, b) => a + b, 0) / pTimes.length)) : '-'
 
             return (
-              <li key={p.userId} className="px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-3 min-w-0 mr-auto">
-                  <img src={p.userImage || undefined} alt={p.userName} className="h-8 w-8 rounded-full object-cover" />
-                  <div className="truncate">
-                    <div className="font-medium truncate">{p.userName}</div>
-                    <div className="text-xs text-muted-foreground truncate">
-                      {t('best')} {pBest} | {t('average')}: {pAvg}
+              <motion.li
+                key={p.userId}
+                className="px-4 py-3"
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.25, delay: 0.05 * i }}
+              >
+                {/* Mobile: stacked layout */}
+                <div className="flex flex-col gap-2 md:hidden">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={p.userImage || undefined}
+                      alt={p.userName}
+                      className="h-8 w-8 rounded-full object-cover shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <div className="font-medium text-sm truncate">{p.userName}</div>
+                      <div className="text-[11px] text-muted-foreground">
+                        {t('best')} {pBest} · {t('average')} {pAvg}
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="text-sm text-right min-w-0 ml-auto">
-                  <div className="font-medium grid grid-cols-5 gap-5">
-                    {p.solves.slice(-5).map((solve, index) => {
-                      return (
-                        <div key={index} className={solve.dnf ? 'text-red-500' : ''}>
-                          {solve.dnf
-                            ? 'DNF'
-                            : `${formatTime(solve.time + (solve.plus2 ? 2000 : 0))}${solve.plus2 ? '+' : ''}`}
-                        </div>
-                      )
-                    })}
+                  <div className="flex gap-2 pl-11 text-xs font-mono">
+                    {p.solves.slice(-5).map((solve, index) => (
+                      <span key={index} className={solve.dnf ? 'text-destructive' : 'text-muted-foreground'}>
+                        {solve.dnf
+                          ? 'DNF'
+                          : `${formatTime(solve.time + (solve.plus2 ? 2000 : 0))}${solve.plus2 ? '+' : ''}`}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              </li>
+
+                {/* Desktop: row layout */}
+                <div className="hidden md:flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <img
+                      src={p.userImage || undefined}
+                      alt={p.userName}
+                      className="h-8 w-8 rounded-full object-cover shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <div className="font-medium text-sm truncate">{p.userName}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {t('best')} {pBest} · {t('average')} {pAvg}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex gap-4 text-sm font-mono shrink-0">
+                    {p.solves.slice(-5).map((solve, index) => (
+                      <span key={index} className={solve.dnf ? 'text-destructive' : ''}>
+                        {solve.dnf
+                          ? 'DNF'
+                          : `${formatTime(solve.time + (solve.plus2 ? 2000 : 0))}${solve.plus2 ? '+' : ''}`}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.li>
             )
           })}
         </ul>
       </div>
-    </div>
-  )
-}
-
-function StatCard({ label, value, sub }: { label: string; value: string; sub?: string }) {
-  return (
-    <div className="rounded-lg border p-4">
-      <div className="text-xs text-muted-foreground">{label}</div>
-      <div className="text-2xl font-semibold">{value}</div>
-      {sub ? <div className="text-xs text-muted-foreground mt-1">{sub}</div> : null}
     </div>
   )
 }
