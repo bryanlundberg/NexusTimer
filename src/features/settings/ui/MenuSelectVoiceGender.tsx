@@ -14,9 +14,14 @@ export default function MenuSelectVoiceGender() {
   const voiceGender = settings.sounds.voiceGender
 
   return (
-    <div className="mx-3 mb-3 mt-3">
-      <div className="flex justify-between items-center mb-1">
-        <div className="grow">{t('Settings-menu.voice-gender')}</div>
+    <div className="px-3 py-2 transition-colors hover:bg-muted/30">
+      <div className="flex justify-between items-center gap-3">
+        <div className="flex flex-col gap-0.5 min-w-0">
+          <span className="text-sm font-medium leading-tight">{t('Settings-menu.voice-gender')}</span>
+          <span className="text-xs text-muted-foreground leading-snug">
+            {t('Settings-descriptions.voice-gender-description')}
+          </span>
+        </div>
         <Select defaultValue={voiceGender} value={voiceGender} onValueChange={handleGenderSelect}>
           <SelectTrigger className="w-[140px] sm:w-[180px] shrink-0 bg-background">
             <SelectValue />
@@ -27,7 +32,6 @@ export default function MenuSelectVoiceGender() {
           </SelectContent>
         </Select>
       </div>
-      <div className="text-xs text-muted-foreground">{t('Settings-descriptions.voice-gender-description')}</div>
     </div>
   )
 }
