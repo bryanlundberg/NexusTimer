@@ -13,9 +13,12 @@ export function MenuOption({ label, control, name, description }: MenuOption) {
   const updateSetting = useSettingsStore((state) => state.updateSetting)
 
   return (
-    <div className="ps-3 pe-3 mb-3">
-      <div className="flex items-center justify-between mb-1">
-        <div className="grow">{label}</div>
+    <div className="px-3 py-2 transition-colors hover:bg-muted/30">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-col gap-0.5 min-w-0">
+          <span className="text-sm font-medium leading-tight">{label}</span>
+          {description && <span className="text-xs text-muted-foreground leading-snug">{description}</span>}
+        </div>
         <Controller
           control={control}
           render={({ field: { onChange, value } }) => (
@@ -30,7 +33,6 @@ export function MenuOption({ label, control, name, description }: MenuOption) {
           name={name}
         />
       </div>
-      {description && <div className="text-xs text-muted-foreground">{description}</div>}
     </div>
   )
 }
