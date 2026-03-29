@@ -50,21 +50,16 @@ export default function CreateRoomModal() {
   }
 
   return (
-    <DialogContent className="sm:max-w-xl p-0 overflow-hidden border-none shadow-2xl">
-      <div className="h-2 w-full bg-gradient-to-r from-primary/50 via-primary to-primary/50" />
-      <div className="p-6">
-        <DialogHeader className="mb-6">
-          <DialogTitle className="text-2xl font-bold tracking-tight">
-            <span className="inline-flex items-center gap-2">
-              <div className="p-2 bg-primary/10 rounded-lg">
-                <Globe2 className="size-5 text-primary" />
-              </div>
-              {t('title')}
-            </span>
-          </DialogTitle>
-          <DialogDescription className="text-base">{t('description')}</DialogDescription>
-        </DialogHeader>
+    <DialogContent className="sm:max-w-xl">
+      <DialogHeader>
+        <DialogTitle className="text-lg font-semibold tracking-tight flex items-center gap-2">
+          <Globe2 className="size-4 text-muted-foreground" />
+          {t('title')}
+        </DialogTitle>
+        <DialogDescription>{t('description')}</DialogDescription>
+      </DialogHeader>
 
+      <div>
         <div className="space-y-6">
           <div className="grid gap-2">
             <Label htmlFor="room-name" className="text-sm font-bold uppercase tracking-wider text-muted-foreground/80">
@@ -143,13 +138,8 @@ export default function CreateRoomModal() {
           </p>
         </div>
 
-        <DialogFooter className="mt-8">
-          <Button
-            size="lg"
-            className="w-full md:w-auto font-bold px-8 rounded-full"
-            onClick={handleSubmit(submitForm)}
-            disabled={isSubmitting}
-          >
+        <DialogFooter className="mt-6">
+          <Button className="w-full md:w-auto" onClick={handleSubmit(submitForm)} disabled={isSubmitting}>
             {isSubmitting ? t('creating') : t('continue')}
           </Button>
         </DialogFooter>
