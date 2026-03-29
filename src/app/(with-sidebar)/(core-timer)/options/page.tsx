@@ -76,201 +76,170 @@ export default function OptionsPage() {
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <CoreHeader breadcrumbPath={'/options'} breadcrumb={t('SettingsPage.options')} />
-      <div className="mt-5">
-        <div key={formKey} className="w-full max-w-md mx-auto px-2 sm:px-0 bg-background/90 backdrop-blur-lg">
-          <MenuSelectLanguage />
-
-          <Separator className="my-5" />
-
-          <MenuSection id="timer" icon={<LapTimerIcon />} title={t('Settings-menu.timer')}>
-            <MenuOption
-              label={t('Settings-menu.inspection')}
-              name={'timer.inspection'}
-              control={control}
-              description={t('Settings-descriptions.inspection')}
-            />
-
-            <MenuInputOption
-              name={'timer.inspectionTime'}
-              label={t('Settings-menu.inspection-time')}
-              control={control}
-              inputProps={{ min: 5000, max: 60000, step: 1000 }}
-              description={t('Settings-descriptions.inspection-time')}
-            />
-
-            <MenuOption
-              name={'timer.startCue'}
-              label={t('Settings-menu.start-cue')}
-              control={control}
-              description={t('Settings-descriptions.start-cue')}
-            />
-
-            <MenuOption
-              name={'timer.holdToStart'}
-              label={t('Settings-menu.hold-to-start')}
-              control={control}
-              description={t('Settings-descriptions.hold-to-start')}
-            />
-
-            <MenuInputOption
-              name={'timer.holdToStartTime'}
-              label={t('Settings-menu.hold-to-start-time')}
-              control={control}
-              inputProps={{ min: 300, max: 1000, step: 100 }}
-              description={t('Settings-descriptions.hold-to-start-time')}
-            />
-
-            <MenuInputOption
-              name={'timer.decimals'}
-              label={t('Settings-menu.decimal-places')}
-              control={control}
-              inputProps={{ max: 4, min: 1, step: 1 }}
-              description={t('Settings-descriptions.decimal-places')}
-            />
-          </MenuSection>
-
-          <Separator className="my-5" />
-
-          <MenuSection id="features" icon={<MagicWandIcon />} title={t('Settings-menu.features')}>
-            <MenuOption
-              name={'features.scrambleImage'}
-              label={t('Settings-menu.scramble-image')}
-              control={control}
-              description={t('Settings-descriptions.scramble-image')}
-            />
-            <MenuOption
-              name={'features.sessionStats'}
-              label={t('Settings-menu.session-stats')}
-              control={control}
-              description={t('Settings-descriptions.session-stats')}
-            />
-            <MenuOption
-              name={'features.quickActionButtons'}
-              label={t('Settings-menu.quick-action-buttons')}
-              control={control}
-              description={t('Settings-descriptions.quick-action-buttons')}
-            />
-            <MenuOption
-              name={'features.hideWhileSolving'}
-              label={t('Settings-menu.hide-while-solving')}
-              control={control}
-              description={t('Settings-descriptions.hide-while-solving')}
-            />
-            <MenuOption
-              name={'features.scrambleBackground'}
-              label={t('Settings-menu.scramble-background')}
-              control={control}
-              description={t('Settings-descriptions.scramble-background')}
-            />
-          </MenuSection>
-
-          <Separator className="my-5" />
-
-          <MenuSection id="alerts" icon={<BellIcon />} title={t('Settings-menu.alerts')}>
-            <MenuOption
-              name={'alerts.bestTime'}
-              label={t('Settings-menu.best-time')}
-              control={control}
-              description={t('Settings-descriptions.best-time-alert')}
-            />
-            <MenuOption
-              name={'alerts.bestAverage'}
-              label={t('Settings-menu.best-average')}
-              control={control}
-              description={t('Settings-descriptions.best-average-alert')}
-            />
-
-            <MenuOption
-              name={'alerts.worstTime'}
-              label={t('Settings-menu.worst-time')}
-              control={control}
-              description={t('Settings-descriptions.worst-time-alert')}
-            />
-          </MenuSection>
-
-          <Separator className="my-5" />
-
-          <MenuSection id="sounds" icon={<SpeakerLoudIcon />} title={t('Settings-menu.sounds')}>
-            <MenuOption
-              name={'sounds.newPersonalBest'}
-              label={t('Settings-menu.newPersonalBest')}
-              control={control}
-              description={t('Settings-descriptions.new-personal-best-sound')}
-            />
-            <MenuSelectVoiceGender />
-          </MenuSection>
-
-          <Separator className="my-5" />
-
-          <MenuSection id="background" icon={<ComponentBooleanIcon />} title={t('Settings-menu.theme')}>
-            <ThemeSelect />
-            <CustomTheme />
-            <MenuSelectColor />
-          </MenuSection>
-
-          <Separator className="my-5" />
-
-          <MenuSection id="preferences" icon={<BoxModelIcon />} title={t('Settings-menu.preferences')}>
-            <MenuSelectDefaultStartCube />
-          </MenuSection>
-
-          <Separator className="my-5" />
-
-          <MenuSection icon={<Link2Icon />} title={t('SettingsPage.cloud-sync')} id="cloud-sync">
-            <MenuOption
-              label={t('SettingsPage.enable-auto-save')}
-              name={'sync.autoSaveEnabled'}
-              control={control}
-              description={t('SettingsPage.auto-save-description')}
-            />
-
-            <MenuOption
-              label={t('SettingsPage.enable-auto-load')}
-              name={'sync.autoLoadEnabled'}
-              control={control}
-              description={t('SettingsPage.auto-load-description')}
-            />
-
-            <MenuInputOption
-              name={'sync.backupInterval'}
-              label={t('SettingsPage.backup-interval')}
-              control={control}
-              inputProps={{ min: defaultSettings.sync.backupInterval, max: 100, step: 5 }}
-              description={t('SettingsPage.backup-interval-description')}
-            />
-          </MenuSection>
-
-          <Separator className="my-5" />
-
-          <MenuSection id="app-data" icon={<FileTextIcon />} title={t('Settings-menu.data')}>
-            <DataImportExport />
-          </MenuSection>
-
-          <Separator className="my-5" />
-
-          <div className={'ps-3 pe-3 mb-3'}>
-            <div className="flex flex-col sm:flex-row gap-2 mb-10">
-              <Button
-                variant="destructive"
-                onClick={handleResetSettings}
-                className="flex items-center gap-2"
-                data-testid="reset-settings-button"
-              >
-                <UpdateIcon className="size-4" />
-                {t('SettingsPage.reset-settings')}
-              </Button>
-
-              <Button
-                variant={'destructive'}
-                onClick={handleDeleteAppData}
-                className="flex items-center gap-2"
-                data-testid="delete-app-data-button"
-              >
-                <Trash className="size-4" />
-                {t('SettingsPage.delete-app-data')}
-              </Button>
-            </div>
-          </div>
+      <div key={formKey} className="w-full max-w-lg mx-auto px-3 sm:px-4 py-4">
+        <MenuSelectLanguage />
+        <Separator className="my-4 opacity-50" />
+        <MenuSection id="timer" icon={<LapTimerIcon />} title={t('Settings-menu.timer')}>
+          <MenuOption
+            label={t('Settings-menu.inspection')}
+            name={'timer.inspection'}
+            control={control}
+            description={t('Settings-descriptions.inspection')}
+          />
+          <MenuInputOption
+            name={'timer.inspectionTime'}
+            label={t('Settings-menu.inspection-time')}
+            control={control}
+            inputProps={{ min: 5000, max: 60000, step: 1000 }}
+            description={t('Settings-descriptions.inspection-time')}
+          />
+          <MenuOption
+            name={'timer.startCue'}
+            label={t('Settings-menu.start-cue')}
+            control={control}
+            description={t('Settings-descriptions.start-cue')}
+          />
+          <MenuOption
+            name={'timer.holdToStart'}
+            label={t('Settings-menu.hold-to-start')}
+            control={control}
+            description={t('Settings-descriptions.hold-to-start')}
+          />
+          <MenuInputOption
+            name={'timer.holdToStartTime'}
+            label={t('Settings-menu.hold-to-start-time')}
+            control={control}
+            inputProps={{ min: 300, max: 1000, step: 100 }}
+            description={t('Settings-descriptions.hold-to-start-time')}
+          />
+          <MenuInputOption
+            name={'timer.decimals'}
+            label={t('Settings-menu.decimal-places')}
+            control={control}
+            inputProps={{ max: 4, min: 1, step: 1 }}
+            description={t('Settings-descriptions.decimal-places')}
+          />
+        </MenuSection>
+        <Separator className="my-4 opacity-50" />
+        <MenuSection id="features" icon={<MagicWandIcon />} title={t('Settings-menu.features')}>
+          <MenuOption
+            name={'features.scrambleImage'}
+            label={t('Settings-menu.scramble-image')}
+            control={control}
+            description={t('Settings-descriptions.scramble-image')}
+          />
+          <MenuOption
+            name={'features.sessionStats'}
+            label={t('Settings-menu.session-stats')}
+            control={control}
+            description={t('Settings-descriptions.session-stats')}
+          />
+          <MenuOption
+            name={'features.quickActionButtons'}
+            label={t('Settings-menu.quick-action-buttons')}
+            control={control}
+            description={t('Settings-descriptions.quick-action-buttons')}
+          />
+          <MenuOption
+            name={'features.hideWhileSolving'}
+            label={t('Settings-menu.hide-while-solving')}
+            control={control}
+            description={t('Settings-descriptions.hide-while-solving')}
+          />
+          <MenuOption
+            name={'features.scrambleBackground'}
+            label={t('Settings-menu.scramble-background')}
+            control={control}
+            description={t('Settings-descriptions.scramble-background')}
+          />
+        </MenuSection>
+        <Separator className="my-4 opacity-50" />
+        <MenuSection id="alerts" icon={<BellIcon />} title={t('Settings-menu.alerts')}>
+          <MenuOption
+            name={'alerts.bestTime'}
+            label={t('Settings-menu.best-time')}
+            control={control}
+            description={t('Settings-descriptions.best-time-alert')}
+          />
+          <MenuOption
+            name={'alerts.bestAverage'}
+            label={t('Settings-menu.best-average')}
+            control={control}
+            description={t('Settings-descriptions.best-average-alert')}
+          />
+          <MenuOption
+            name={'alerts.worstTime'}
+            label={t('Settings-menu.worst-time')}
+            control={control}
+            description={t('Settings-descriptions.worst-time-alert')}
+          />
+        </MenuSection>
+        <Separator className="my-4 opacity-50" />
+        <MenuSection id="sounds" icon={<SpeakerLoudIcon />} title={t('Settings-menu.sounds')}>
+          <MenuOption
+            name={'sounds.newPersonalBest'}
+            label={t('Settings-menu.newPersonalBest')}
+            control={control}
+            description={t('Settings-descriptions.new-personal-best-sound')}
+          />
+          <MenuSelectVoiceGender />
+        </MenuSection>
+        <Separator className="my-4 opacity-50" />
+        <MenuSection id="background" icon={<ComponentBooleanIcon />} title={t('Settings-menu.theme')}>
+          <ThemeSelect />
+          <CustomTheme />
+          <MenuSelectColor />
+        </MenuSection>
+        <Separator className="my-4 opacity-50" />
+        <MenuSection id="preferences" icon={<BoxModelIcon />} title={t('Settings-menu.preferences')}>
+          <MenuSelectDefaultStartCube />
+        </MenuSection>
+        <Separator className="my-4 opacity-50" />
+        <MenuSection icon={<Link2Icon />} title={t('SettingsPage.cloud-sync')} id="cloud-sync">
+          <MenuOption
+            label={t('SettingsPage.enable-auto-save')}
+            name={'sync.autoSaveEnabled'}
+            control={control}
+            description={t('SettingsPage.auto-save-description')}
+          />
+          <MenuOption
+            label={t('SettingsPage.enable-auto-load')}
+            name={'sync.autoLoadEnabled'}
+            control={control}
+            description={t('SettingsPage.auto-load-description')}
+          />
+          <MenuInputOption
+            name={'sync.backupInterval'}
+            label={t('SettingsPage.backup-interval')}
+            control={control}
+            inputProps={{ min: defaultSettings.sync.backupInterval, max: 100, step: 5 }}
+            description={t('SettingsPage.backup-interval-description')}
+          />
+        </MenuSection>
+        <Separator className="my-4 opacity-50" />
+        <MenuSection id="app-data" icon={<FileTextIcon />} title={t('Settings-menu.data')}>
+          <DataImportExport />
+        </MenuSection>
+        <Separator className="my-4 opacity-50" />
+        <div className="flex flex-col sm:flex-row gap-2 pt-2 pb-10">
+          <Button
+            variant="destructive"
+            onClick={handleResetSettings}
+            className="flex items-center gap-2"
+            data-testid="reset-settings-button"
+          >
+            <UpdateIcon className="size-4" />
+            {t('SettingsPage.reset-settings')}
+          </Button>
+          <Button
+            variant={'destructive'}
+            onClick={handleDeleteAppData}
+            className="flex items-center gap-2"
+            data-testid="delete-app-data-button"
+          >
+            <Trash className="size-4" />
+            {t('SettingsPage.delete-app-data')}
+          </Button>
         </div>
       </div>
     </ScrollArea>
