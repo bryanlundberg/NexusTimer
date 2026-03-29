@@ -19,7 +19,7 @@ export default function AlgorithmsMethodsPage() {
     <ScrollArea className="max-h-dvh overflow-auto">
       <CoreHeader breadcrumbPath={'/algorithms'} breadcrumb={t('title')} />
 
-      <div className="px-4 pb-8">
+      <div className="p-4 md:p-8 lg:p-12">
         {/* Hero section */}
         <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/10 p-8 mb-8">
           <div className="relative z-10">
