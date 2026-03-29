@@ -41,21 +41,19 @@ export default function CustomTheme() {
   }
 
   return (
-    <>
-      <div className="ps-3 pe-3 mb-3">
-        <input type="file" accept="image/*" ref={dataInputRef} className="hidden" onChange={handleImageChange} />
-        <Button
-          variant={'outline'}
-          className="mt-3 flex items-center gap-1"
-          onClick={() => dataInputRef.current && dataInputRef.current.click()}
-        >
-          <ImageIcon className="w-4 h-4" />
-          {t('Settings-menu.custom-background-image')}
-        </Button>
-        <div className="text-xs text-muted-foreground mt-1">
-          {t('Settings-descriptions.custom-background-description')}
-        </div>
+    <div className="px-3 py-2">
+      <input type="file" accept="image/*" ref={dataInputRef} className="hidden" onChange={handleImageChange} />
+      <Button
+        variant={'outline'}
+        className="flex items-center gap-1.5 text-sm"
+        onClick={() => dataInputRef.current && dataInputRef.current.click()}
+      >
+        <ImageIcon className="w-4 h-4" />
+        {t('Settings-menu.custom-background-image')}
+      </Button>
+      <div className="text-xs text-muted-foreground mt-1.5">
+        {t('Settings-descriptions.custom-background-description')}
       </div>
-    </>
+    </div>
   )
 }
