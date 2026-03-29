@@ -18,9 +18,12 @@ export default function MenuInputOption({
   const updateSetting = useSettingsStore((state) => state.updateSetting)
 
   return (
-    <div className="ps-3 pe-3 mb-3">
-      <div className="flex items-center justify-between mb-1">
-        <div className="grow">{label}</div>
+    <div className="px-3 py-2 transition-colors hover:bg-muted/30">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex flex-col gap-0.5 min-w-0">
+          <span className="text-sm font-medium leading-tight">{label}</span>
+          {description && <span className="text-xs text-muted-foreground leading-snug">{description}</span>}
+        </div>
         <Controller
           control={control}
           render={({ field: { onChange, value } }) => (
@@ -38,7 +41,7 @@ export default function MenuInputOption({
                 onChange(finalValue)
                 updateSetting(name as any, finalValue)
               }}
-              className="px-2 py-1 w-20 sm:w-22 shrink-0 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-md border border-input dark:bg-input/30"
+              className="px-2 py-1 w-20 sm:w-22 shrink-0 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded-md border border-input dark:bg-input/30 text-sm"
               min={0}
               {...inputProps}
             />
@@ -46,7 +49,6 @@ export default function MenuInputOption({
           name={name}
         />
       </div>
-      {description && <div className="text-xs text-muted-foreground">{description}</div>}
     </div>
   )
 }
