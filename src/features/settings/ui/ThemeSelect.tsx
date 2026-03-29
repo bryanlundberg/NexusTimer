@@ -97,7 +97,7 @@ export default function ThemeSelect() {
   }
 
   return (
-    <div className="flex mx-3 gap-3 flex-wrap">
+    <div className="flex px-3 py-2 gap-3 flex-wrap">
       <div className="flex flex-col items-center">
         <div className="relative">
           <ThemePreviewLight selected={resolvedTheme === 'light'} />
