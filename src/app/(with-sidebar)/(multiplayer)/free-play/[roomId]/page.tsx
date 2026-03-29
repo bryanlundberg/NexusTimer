@@ -26,6 +26,15 @@ import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { AnimatePresence, motion } from 'motion/react'
+
+const tabs = [
+  { key: 'timer', icon: Clock },
+  { key: 'results', icon: ChartBarIcon },
+  { key: 'people', icon: UsersIcon }
+] as const
+
+type TabKey = (typeof tabs)[number]['key']
 
 export default function FreePlayRoomPage() {
   const t = useTranslations('Multiplayer')
@@ -101,7 +110,7 @@ export default function FreePlayRoomPage() {
     updateRoomRoundLimit(roomId.toString(), durationMs)
   }, [isFinished, roomAuthority, session?.user?.id, roomId])
 
-  const [currentTab, setCurrentTab] = React.useState<string>('timer')
+  const [currentTab, setCurrentTab] = React.useState<TabKey>('timer')
 
   const handleInvite = async () => {
     const shareData = {
@@ -127,9 +136,10 @@ export default function FreePlayRoomPage() {
   }
 
   return (
-    <div className="pt-4 px-4 pb-1 flex flex-col overflow-hidden h-dvh">
-      <div className={'flex justify-between items-start h-fit'}>
-        <div className="flex items-center gap-2 mb-6">
+    <div className="flex flex-col overflow-hidden h-dvh">
+      {/* Header */}
+      <div className="flex justify-between items-center px-4 pt-4 pb-2">
+        <div className="flex items-center gap-2">
           <SidebarTrigger className="-ml-1" />
           <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
           <Breadcrumb>
@@ -143,98 +153,121 @@ export default function FreePlayRoomPage() {
           </Breadcrumb>
         </div>
 
-        <div className="bg-gradient-to-r from-primary via-card to-primary p-0.5 rounded-full">
-          <div className="bg-gradient-to-r from-background via-muted to-card p-1.5 rounded-full flex items-center gap-2">
-            <AvatarGroup variant="css">
-              {onlineUsers.map((user, index) => (
-                <Avatar key={index} className={'relative'}>
-                  <AvatarImage className={'object-cover'} src={user.image || ''} />
-                  <AvatarFallback>{user.name}</AvatarFallback>
-                  {user.status === TimerStatus.SOLVING && (
-                    <div className={'absolute inset-0 w-full h-full'}>
-                      <Image
-                        src="/animated/source.gif"
-                        alt="Solving"
-                        width={64}
-                        height={64}
-                        className="w-full h-full object-cover rounded-lg"
-                      />
-                    </div>
-                  )}
-                  {user.status === TimerStatus.INSPECTING && (
-                    <div
-                      className={
-                        'absolute inset-0 w-full h-full bg-black/50 rounded-full flex items-center justify-center'
-                      }
-                    >
-                      <span className={'text-xs font-bold text-white'}>
-                        <EyeIcon />
-                      </span>
-                    </div>
-                  )}
-                  {user.status === TimerStatus.WAITING_NEXT_ROUND && (
-                    <div
-                      className={
-                        'absolute inset-0 w-full h-full bg-green-100/40 rounded-full flex items-center justify-center'
-                      }
-                    >
-                      <span className={'text-xs font-bold text-green-900'}>
-                        <CheckIcon />
-                      </span>
-                    </div>
-                  )}
-                  <AvatarGroupTooltip>
-                    <p>{user.name}</p>
-                    <p className={'text-xs text-primary-foreground'}>
-                      {user.status === TimerStatus.SOLVING && t('status.solving')}
-                      {user.status === TimerStatus.INSPECTING && t('status.inspecting')}
-                      {user.status === TimerStatus.WAITING_NEXT_ROUND && t('status.done')}
-                      {user.status === TimerStatus.IDLE && t('status.idle')}
-                      {user.status === TimerStatus.READY && t('status.ready')}
-                      {user.status === TimerStatus.HOLDING && t('status.holding')}
-                    </p>
-                  </AvatarGroupTooltip>
-                </Avatar>
-              ))}
-            </AvatarGroup>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button size="icon" variant="ghost" className="rounded-full size-8 shrink-0" onClick={handleInvite}>
-                  <Plus className="size-4" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="top" sideOffset={8}>
-                {t('invite')}
-              </TooltipContent>
-            </Tooltip>
-          </div>
+        {/* Users pill */}
+        <div className="flex items-center gap-1 rounded-full border border-border bg-muted/50 p-1.5">
+          <AvatarGroup variant="css">
+            {onlineUsers.map((user, index) => (
+              <Avatar key={index} className="relative size-7">
+                <AvatarImage className="object-cover" src={user.image || ''} />
+                <AvatarFallback className="text-[10px]">{user.name?.[0]}</AvatarFallback>
+                {user.status === TimerStatus.SOLVING && (
+                  <div className="absolute inset-0 w-full h-full">
+                    <Image
+                      src="/animated/source.gif"
+                      alt="Solving"
+                      width={28}
+                      height={28}
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  </div>
+                )}
+                {user.status === TimerStatus.INSPECTING && (
+                  <div className="absolute inset-0 w-full h-full bg-black/50 rounded-full flex items-center justify-center">
+                    <EyeIcon className="size-3 text-white" />
+                  </div>
+                )}
+                {user.status === TimerStatus.WAITING_NEXT_ROUND && (
+                  <div className="absolute inset-0 w-full h-full bg-emerald-500/20 rounded-full flex items-center justify-center">
+                    <CheckIcon className="size-3 text-emerald-600" />
+                  </div>
+                )}
+                <AvatarGroupTooltip>
+                  <p>{user.name}</p>
+                  <p className="text-xs text-primary-foreground">
+                    {user.status === TimerStatus.SOLVING && t('status.solving')}
+                    {user.status === TimerStatus.INSPECTING && t('status.inspecting')}
+                    {user.status === TimerStatus.WAITING_NEXT_ROUND && t('status.done')}
+                    {user.status === TimerStatus.IDLE && t('status.idle')}
+                    {user.status === TimerStatus.READY && t('status.ready')}
+                    {user.status === TimerStatus.HOLDING && t('status.holding')}
+                  </p>
+                </AvatarGroupTooltip>
+              </Avatar>
+            ))}
+          </AvatarGroup>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button size="icon" variant="ghost" className="rounded-full size-7 shrink-0" onClick={handleInvite}>
+                <Plus className="size-3.5" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="bottom" sideOffset={8}>
+              {t('invite')}
+            </TooltipContent>
+          </Tooltip>
         </div>
       </div>
 
-      <div>
-        <div className={'text-center text-xs mb-4'}>
-          {t('next-round-starts-in')} {mmss}
+      {/* Countdown */}
+      <motion.div
+        className="text-center text-xs text-muted-foreground pb-2"
+        key={mmss}
+        initial={{ opacity: 0.5, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.2 }}
+      >
+        {t('next-round-starts-in')} <span className="font-mono font-medium text-foreground">{mmss}</span>
+      </motion.div>
+
+      {/* Tab content */}
+      <div className="flex-1 min-h-0 overflow-hidden mx-2 md:mx-4">
+        <div className="h-full rounded-xl border border-border bg-card overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentTab}
+              className="h-full overflow-y-auto"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+            >
+              {currentTab === 'timer' && (
+                <TimerTab maxRoundTime={maxRoundTime} event={event} onlineUsers={onlineUsers} />
+              )}
+              {currentTab === 'results' && <ResultsTab />}
+              {currentTab === 'people' && <UsersTab />}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
-      <div className="flex grow bg-card rounded-md border border-muted h-full overflow-hidden min-h-0">
-        <div className="w-full overflow-y-auto min-h-0">
-          {currentTab === 'timer' && <TimerTab maxRoundTime={maxRoundTime} event={event} onlineUsers={onlineUsers} />}
-          {currentTab === 'results' && <ResultsTab />}
-          {currentTab === 'people' && <UsersTab />}
+      {/* Tab bar — mobile: full-width pill bar, desktop: compact centered */}
+      <div className="px-3 pt-3 pb-4 md:pb-3">
+        <div className="relative flex items-center bg-muted/60 rounded-xl p-1 md:max-w-xs md:mx-auto">
+          {tabs.map((tab) => {
+            const isActive = currentTab === tab.key
+            const Icon = tab.icon
+            return (
+              <button
+                key={tab.key}
+                onClick={() => setCurrentTab(tab.key)}
+                className="relative flex-1 flex items-center justify-center gap-1.5 py-2.5 md:py-2 text-sm font-medium z-10 transition-colors cursor-pointer"
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="active-tab"
+                    className="absolute inset-0 bg-background rounded-lg shadow-sm"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <Icon className={`size-4 ${isActive ? 'text-foreground' : 'text-muted-foreground'}`} />
+                  <span className={isActive ? 'text-foreground' : 'text-muted-foreground'}>{t(tab.key)}</span>
+                </span>
+              </button>
+            )
+          })}
         </div>
-      </div>
-
-      <div className={'grid grid-cols-3 gap-2 mt-3 mb-4 md:mb-2'}>
-        <Button variant={currentTab === 'timer' ? 'default' : 'secondary'} onClick={() => setCurrentTab('timer')}>
-          <Clock /> {t('timer')}
-        </Button>
-        <Button variant={currentTab === 'results' ? 'default' : 'secondary'} onClick={() => setCurrentTab('results')}>
-          <ChartBarIcon className={'rotate-270'} /> {t('results')}
-        </Button>
-        <Button variant={currentTab === 'people' ? 'default' : 'secondary'} onClick={() => setCurrentTab('people')}>
-          <UsersIcon /> {t('people')}
-        </Button>
       </div>
     </div>
   )
