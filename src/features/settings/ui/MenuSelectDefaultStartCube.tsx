@@ -21,9 +21,14 @@ export default function MenuSelectDefaultStartCube() {
   const defaultCube = settings.preferences.defaultCube
 
   return (
-    <div className="mx-3 mb-3">
-      <div className="flex justify-between items-center mb-1">
-        <div className="grow">{t('Settings-menu.auto-select')}</div>
+    <div className="px-3 py-2 transition-colors hover:bg-muted/30">
+      <div className="flex justify-between items-center gap-3">
+        <div className="flex flex-col gap-0.5 min-w-0">
+          <span className="text-sm font-medium leading-tight">{t('Settings-menu.auto-select')}</span>
+          <span className="text-xs text-muted-foreground leading-snug">
+            {t('Settings-descriptions.auto-select-description')}
+          </span>
+        </div>
         <Select defaultValue={defaultCube || 'none'} value={defaultCube || 'none'} onValueChange={handleCubeSelect}>
           <SelectTrigger className="w-[140px] sm:w-[180px] shrink-0 bg-background">
             <SelectValue />
@@ -40,7 +45,6 @@ export default function MenuSelectDefaultStartCube() {
           </SelectContent>
         </Select>
       </div>
-      <div className="text-xs text-muted-foreground">{t('Settings-descriptions.auto-select-description')}</div>
     </div>
   )
 }
