@@ -69,7 +69,9 @@ export default function PlayerMiniCard({ name, avatarUrl, status, id }: PlayerMi
       {/* Name */}
       <div className="text-center min-w-0 w-full">
         <p className="text-sm font-medium truncate">{name}</p>
-        {statusInfo && <p className={`text-[11px] mt-0.5 ${statusInfo.className}`}>{t(statusInfo.label)}</p>}
+        <p className={`text-[11px] mt-0.5 h-4 ${statusInfo ? statusInfo.className : 'text-transparent'}`}>
+          {statusInfo ? t(statusInfo.label) : '\u00A0'}
+        </p>
       </div>
 
       {/* Profile link */}
