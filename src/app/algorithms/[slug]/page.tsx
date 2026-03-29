@@ -88,7 +88,7 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
         secondaryBreadcrumb={slug.toUpperCase()}
       />
 
-      <div className="px-4 pb-8">
+      <div className="p-4 md:p-8 lg:p-12">
         <Information
           title={`${collection.title} - ${t('title')}`}
           description={t(`descriptions.${collection.slug}`)}
