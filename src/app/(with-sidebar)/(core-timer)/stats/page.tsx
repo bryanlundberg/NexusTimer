@@ -1,11 +1,13 @@
 'use client'
+import dynamic from 'next/dynamic'
 import FadeIn from '@/shared/ui/fade-in/fade-in'
 import StatsPageHeader from '@/widgets/navigation-header/ui/StatsPageHeader'
-import StatisticsViewSwitcher from '@/widgets/statistics-view/ui/StatisticsViewSwitcher'
-import StatisticsChart from '@/features/deep-statistics/ui/StatisticsChart'
 import useDeepStatistics from '@/features/deep-statistics/model/useDeepStatistics'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { useTranslations } from 'next-intl'
+
+const StatisticsViewSwitcher = dynamic(() => import('@/widgets/statistics-view/ui/StatisticsViewSwitcher'))
+const StatisticsChart = dynamic(() => import('@/features/deep-statistics/ui/StatisticsChart'))
 
 export default function StatsPage() {
   const { stats, loadingProps } = useDeepStatistics()
