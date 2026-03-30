@@ -1,10 +1,12 @@
+import dynamic from 'next/dynamic'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import Timer from '@/features/timer/ui/Timer'
 import ManualMode from '@/features/timer/ui/ManualMode'
-import Stackmat from '@/features/timer/ui/stackmat'
-import TimerVirtual from '@/features/timer/ui/TimerVirtual'
 import { TimerMode } from '@/features/timer/model/enums'
-import NXConnect from '@/features/nexus-connect/ui/NXConnect'
+
+const Stackmat = dynamic(() => import('@/features/timer/ui/stackmat'), { ssr: false })
+const TimerVirtual = dynamic(() => import('@/features/timer/ui/TimerVirtual'), { ssr: false })
+const NXConnect = dynamic(() => import('@/features/nexus-connect/ui/NXConnect'), { ssr: false })
 
 export function MainTimer() {
   const timerMode = useTimerStore((store) => store.timerMode)
