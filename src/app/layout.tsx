@@ -14,7 +14,6 @@ import AlertsProvider from '@/components/alerts-provider'
 import { Metadata, Viewport } from 'next'
 import { Overlay } from '@/shared/ui/overlay/overlay'
 import PreloadAppProvider from '@/components/preload-app-provider'
-import Script from 'next/script'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
@@ -108,14 +107,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <Script type="text/javascript" strategy="afterInteractive" id="clarity-script">
-        {`(function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vkbfakv3we");`}
-      </Script>
       <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://firebaseio.com" />
+        <link rel="dns-prefetch" href="https://firebaseio.com" />
         <JsonLd locale={locale} title={title} description={description} url={url} />
       </head>
       <body className={inter.className}>
