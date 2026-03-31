@@ -26,16 +26,16 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     screenshots: [
       {
-        src: '/app-mobile-view.png',
+        src: '/app-mobile-view.webp',
         sizes: '595x1173',
-        type: 'image/png',
+        type: 'image/webp',
         form_factor: 'narrow',
         label: 'Mobile timer interface'
       },
       {
-        src: '/app-desktop-view.png',
+        src: '/app-desktop-view.webp',
         sizes: '2052x1179',
-        type: 'image/png',
+        type: 'image/webp',
         form_factor: 'wide',
         label: 'Timer Interface'
       }
