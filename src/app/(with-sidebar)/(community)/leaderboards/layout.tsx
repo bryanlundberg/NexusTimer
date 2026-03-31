@@ -1,4 +1,13 @@
 import React from 'react'
+import type { Metadata } from 'next'
+import { locales } from '@/shared/config/i18n/locales'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/leaderboards',
+    languages: Object.fromEntries(locales.map((l) => [l, '/leaderboards']))
+  }
+}
 
 const leaderboardsSchema = {
   '@context': 'https://schema.org',

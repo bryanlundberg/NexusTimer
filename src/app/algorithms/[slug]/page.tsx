@@ -9,6 +9,7 @@ import Information from '@/features/algorithms-list/ui/information'
 import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
 import { getLocale, getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { locales } from '@/shared/config/i18n/locales'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -32,6 +33,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'nexus timer',
         'algorithm trainer'
       ],
+      alternates: {
+        canonical: `/algorithms/${slug}`,
+        languages: Object.fromEntries(locales.map((l) => [l, `/algorithms/${slug}`]))
+      },
       openGraph: {
         title,
         description,
