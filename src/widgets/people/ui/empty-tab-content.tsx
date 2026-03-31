@@ -6,7 +6,7 @@ export default function EmptyTabContent() {
   return (
     <div className="relative flex flex-col items-center justify-center h-96 bg-card/50 rounded-lg shadow-md overflow-hidden">
       <Image
-        src="/bg.png"
+        src="/bg.webp"
         alt="Background Image"
         className="absolute inset-0 object-cover w-full h-full"
         width={1920}
