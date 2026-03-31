@@ -1,13 +1,13 @@
-import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { ArrowLeftIcon } from '@radix-ui/react-icons'
+import Link from 'next/link'
+import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 export default function NotFound() {
   return (
     <div className="min-h-dvh max-h-dvh flex overflow-auto relative grow">
       <Image
-        src="/bg.png"
+        src="/bg.webp"
         alt=""
         priority
         className="blur-sm object-cover absolute inset-0 w-full h-full"
@@ -17,15 +17,12 @@ export default function NotFound() {
 
       <div className="flex flex-1 items-center justify-center p-8 relative z-10">
         <div className="bg-gradient-to-br from-gray-50 to-gray-200 p-8 flex flex-col gap-6 rounded-2xl shadow-xl max-w-lg">
-          <h1 className="text-4xl font-extrabold text-gray-800">
-            Lost in the void?
-          </h1>
+          <h1 className="text-4xl font-extrabold text-gray-800">Lost in the void?</h1>
           <p className="text-lg text-gray-600 leading-relaxed">
-            The page you&apos;re looking for seems to have slipped into another
-            dimension.
+            The page you&apos;re looking for seems to have slipped into another dimension.
           </p>
           <Link href="/app">
-            <Button variant={"secondary"}>
+            <Button variant={'secondary'}>
               <ArrowLeftIcon className="w-5 h-5" /> Back to Home
             </Button>
           </Link>
@@ -40,7 +37,7 @@ export default function NotFound() {
           height={600}
           priority
           style={{
-            animation: "floatAnim 6s ease-in-out infinite",
+            animation: 'floatAnim 6s ease-in-out infinite'
           }}
           className="rounded-full shadow-xl"
         />
@@ -53,5 +50,5 @@ export default function NotFound() {
         }
       `}</style>
     </div>
-  );
+  )
 }

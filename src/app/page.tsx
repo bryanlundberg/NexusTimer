@@ -999,7 +999,7 @@ export default function Page() {
                   <div className="relative bg-white rounded-[2rem] p-12 md:p-20 text-center">
                     <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                       <Image
-                        src="/bg.png"
+                        src="/bg.webp"
                         alt=""
                         width={400}
                         height={400}
