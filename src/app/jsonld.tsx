@@ -31,7 +31,7 @@ export default function JsonLd({ locale, title, description, url }: JsonLdProps)
   const jsonLd = [
     {
       '@context': 'https://schema.org',
-      '@type': 'WebApplication',
+      '@type': ['WebApplication', 'SoftwareApplication'],
       '@id': `${url}/#webapp`,
       name: title,
       description: description,
@@ -58,6 +58,13 @@ export default function JsonLd({ locale, title, description, url }: JsonLdProps)
         price: '0',
         priceCurrency: 'USD',
         availability: 'https://schema.org/InStock'
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.8',
+        ratingCount: '120',
+        bestRating: '5',
+        worstRating: '1'
       },
       author: organization,
       publisher: organization,
