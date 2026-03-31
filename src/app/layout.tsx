@@ -14,6 +14,8 @@ import AlertsProvider from '@/components/alerts-provider'
 import { Metadata, Viewport } from 'next'
 import { Overlay } from '@/shared/ui/overlay/overlay'
 import PreloadAppProvider from '@/components/preload-app-provider'
+import Script from 'next/script'
+import CookieConsentBanner from '@/components/cookie-consent-banner'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
@@ -113,7 +115,29 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="preconnect" href="https://firebaseio.com" />
         <link rel="dns-prefetch" href="https://firebaseio.com" />
         <JsonLd locale={locale} title={title} description={description} url={url} />
+        {/* Consent Mode v2: defaults BEFORE GA loads — required for GDPR compliance */}
+        <Script id="google-consent-default" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              analytics_storage: 'denied',
+              functionality_storage: 'granted',
+              security_storage: 'granted',
+              wait_for_update: 500
+            });
+          `}
+        </Script>
       </head>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-441RYCJK0K" strategy="afterInteractive" />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-441RYCJK0K');
+        `}
+      </Script>
       <body className={inter.className}>
         <NuqsAdapter>
           <SessionProvider session={session}>
@@ -123,6 +147,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                   <AlertsProvider>
                     <PreloadAppProvider>{children}</PreloadAppProvider>
                     <Overlay />
+                    <CookieConsentBanner />
                   </AlertsProvider>
                 </SidebarProvider>
               </ThemeProvider>
