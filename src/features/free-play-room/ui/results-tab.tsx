@@ -8,65 +8,99 @@ import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 import { Trophy, TrendingDown, TrendingUp, Timer } from 'lucide-react'
 
+const ROUNDS_TO_SHOW = 5
+
 export default function ResultsTab() {
   const t = useTranslations('Multiplayer.results-tab')
   const tMultiplayer = useTranslations('Multiplayer')
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: '' }
   const { data: session } = useSession()
-  const { useUsersPresence, useRoomSolves } = useFreeMode()
+  const { useUsersPresence, useRoomSolves, useRoomCurrentRound } = useFreeMode()
   const onlineUsers = useUsersPresence(roomId?.toString() || '')
   const solves = useRoomSolves(roomId?.toString() || '')
+  const currentRound = useRoomCurrentRound(roomId?.toString() || '')
 
-  const solvesFromOnlineUsers = Object.entries(solves)
-    .filter(([userId]) => onlineUsers.some((u) => u.id === userId))
-    .map(([userId, userSolves]) => ({
-      userId,
-      solves: Object.values(userSolves).sort((a, b) => a.createdAt - b.createdAt),
-      userImage: onlineUsers.find((u) => u.id === userId)?.image || null,
-      userName: onlineUsers.find((u) => u.id === userId)?.name || tMultiplayer('anonymous')
-    }))
+  // Compute the highest round index seen across all solves (for rooms created before round tracking)
+  const maxRoundInSolves = Object.values(solves).reduce((max, userSolves) => {
+    return Object.values(userSolves).reduce((m, s: any) => Math.max(m, s.roundIndex ?? 1), max)
+  }, 1)
+  const totalRounds = Math.max(currentRound, maxRoundInSolves)
 
-  const currentUserSolves = session?.user?.id
-    ? solves[session.user.id]
-      ? Object.values(solves[session.user.id]).sort((a, b) => a.createdAt - b.createdAt)
-      : []
-    : []
+  // Rounds to display: last ROUNDS_TO_SHOW
+  const startRound = Math.max(1, totalRounds - ROUNDS_TO_SHOW + 1)
+  const visibleRounds = Array.from({ length: totalRounds - startRound + 1 }, (_, i) => startRound + i)
+
+  // Build per-user data with solve indexed by roundIndex
+  const usersData = Object.entries(solves).map(([userId, userSolves]) => {
+    const allSolves = Object.values(userSolves) as any[]
+
+    // Build a map roundIndex → solve
+    const solveByRound: Record<number, (typeof allSolves)[0] | null> = {}
+    allSolves.forEach((s) => {
+      solveByRound[s.roundIndex] = s
+    })
+
+    const onlineUser = onlineUsers.find((u) => u.id === userId)
+    const solveWithName = allSolves.find((s) => s.userName)
+    const userName = onlineUser?.name ?? solveWithName?.userName ?? tMultiplayer('anonymous')
+    const userImage = onlineUser?.image ?? solveWithName?.userImage ?? null
+
+    const participatedSolves = allSolves.filter((s) => !s.dnf)
+    const times = participatedSolves.map((s) => s.time + (s.plus2 ? 2000 : 0))
+    const best = times.length ? Math.min(...times) : null
+    const avg = times.length ? Math.round(times.reduce((a, b) => a + b, 0) / times.length) : null
+
+    return { userId, userName, userImage, solveByRound, best, avg }
+  })
+
+  // Current user stats
+  const currentUserData = usersData.find((u) => u.userId === session?.user?.id)
+  const currentUserSolvesRaw =
+    session?.user?.id && solves[session.user.id] ? (Object.values(solves[session.user.id]) as any[]) : []
 
   const toEffectiveTime = (s: { time: number; plus2: boolean; dnf: boolean }) =>
     s.dnf ? null : s.time + (s.plus2 ? 2000 : 0)
 
   const getLast = () => {
-    if (!currentUserSolves.length) return '-'
-    const last = currentUserSolves[currentUserSolves.length - 1]
+    if (!currentUserSolvesRaw.length) return '-'
+    const sorted = [...currentUserSolvesRaw].sort((a, b) => a.createdAt - b.createdAt)
+    const last = sorted[sorted.length - 1]
     const time = toEffectiveTime(last)
     return time === null ? 'DNF' : `${formatTime(time)}${last.plus2 ? '+' : ''}`
   }
 
-  const getBest = () => {
-    const times = currentUserSolves.map(toEffectiveTime).filter((time): time is number => time !== null)
-    if (!times.length) return '-'
-    return formatTime(Math.min(...times))
-  }
-
-  const getWorst = () => {
-    const times = currentUserSolves.map(toEffectiveTime).filter((time): time is number => time !== null)
-    if (!times.length) return '-'
-    return formatTime(Math.max(...times))
-  }
-
-  const getAverage = () => {
-    const times = currentUserSolves.map(toEffectiveTime).filter((time): time is number => time !== null)
-    if (!times.length) return '-'
-    const avg = Math.round(times.reduce((a, b) => a + b, 0) / times.length)
-    return formatTime(avg)
-  }
-
   const stats = [
-    { label: t('latest'), value: getLast(), icon: Timer },
-    { label: t('best'), value: getBest(), icon: Trophy },
-    { label: t('worst'), value: getWorst(), icon: TrendingDown },
-    { label: t('average'), value: getAverage(), icon: TrendingUp }
+    {
+      label: t('latest'),
+      value: getLast(),
+      icon: Timer
+    },
+    {
+      label: t('best'),
+      value: currentUserData?.best != null ? formatTime(currentUserData.best) : '-',
+      icon: Trophy
+    },
+    {
+      label: t('worst'),
+      value: (() => {
+        const times = currentUserSolvesRaw.map(toEffectiveTime).filter((v): v is number => v !== null)
+        return times.length ? formatTime(Math.max(...times)) : '-'
+      })(),
+      icon: TrendingDown
+    },
+    {
+      label: t('average'),
+      value: currentUserData?.avg != null ? formatTime(currentUserData.avg) : '-',
+      icon: TrendingUp
+    }
   ]
+
+  const formatSolve = (s: any): { text: string; missed: boolean; dnf: boolean } => {
+    if (!s) return { text: '-', missed: true, dnf: false }
+    if (s.dnf) return { text: 'DNF', missed: false, dnf: true }
+    const time = formatTime(s.time + (s.plus2 ? 2000 : 0))
+    return { text: s.plus2 ? `${time}+` : time, missed: false, dnf: false }
+  }
 
   return (
     <div className="flex flex-col gap-5 p-4 md:p-6">
@@ -108,17 +142,20 @@ export default function ResultsTab() {
 
       {/* Leaderboard */}
       <div className="rounded-xl border border-border overflow-hidden">
-        <div className="px-4 py-2.5 border-b border-border text-xs font-medium text-muted-foreground uppercase tracking-wide">
-          {t('cubers')}
+        {/* Header row with round labels */}
+        <div className="px-4 py-2.5 border-b border-border flex items-center justify-between gap-4">
+          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{t('cubers')}</span>
+          <div className="flex gap-4 shrink-0">
+            {visibleRounds.map((r) => (
+              <span key={r} className="text-xs font-medium text-muted-foreground w-14 text-right">
+                R{r}
+              </span>
+            ))}
+          </div>
         </div>
-        <ul className="divide-y divide-border">
-          {solvesFromOnlineUsers.map((p, i) => {
-            const pTimes = p.solves
-              .map((s) => (s.dnf ? null : s.time + (s.plus2 ? 2000 : 0)))
-              .filter((time): time is number => time !== null)
-            const pBest = pTimes.length ? formatTime(Math.min(...pTimes)) : '-'
-            const pAvg = pTimes.length ? formatTime(Math.round(pTimes.reduce((a, b) => a + b, 0) / pTimes.length)) : '-'
 
+        <ul className="divide-y divide-border">
+          {usersData.map((p, i) => {
             return (
               <motion.li
                 key={p.userId}
@@ -127,34 +164,7 @@ export default function ResultsTab() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.25, delay: 0.05 * i }}
               >
-                {/* Mobile: stacked layout */}
-                <div className="flex flex-col gap-2 md:hidden">
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={p.userImage || undefined}
-                      alt={p.userName}
-                      className="h-8 w-8 rounded-full object-cover shrink-0"
-                    />
-                    <div className="min-w-0">
-                      <div className="font-medium text-sm truncate">{p.userName}</div>
-                      <div className="text-[11px] text-muted-foreground">
-                        {t('best')} {pBest} · {t('average')} {pAvg}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-2 pl-11 text-xs font-mono">
-                    {p.solves.slice(-5).map((solve, index) => (
-                      <span key={index} className={solve.dnf ? 'text-destructive' : 'text-muted-foreground'}>
-                        {solve.dnf
-                          ? 'DNF'
-                          : `${formatTime(solve.time + (solve.plus2 ? 2000 : 0))}${solve.plus2 ? '+' : ''}`}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Desktop: row layout */}
-                <div className="hidden md:flex items-center justify-between gap-4">
+                <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3 min-w-0">
                     <img
                       src={p.userImage || undefined}
@@ -164,18 +174,23 @@ export default function ResultsTab() {
                     <div className="min-w-0">
                       <div className="font-medium text-sm truncate">{p.userName}</div>
                       <div className="text-xs text-muted-foreground">
-                        {t('best')} {pBest} · {t('average')} {pAvg}
+                        {t('best')} {p.best != null ? formatTime(p.best) : '-'} · {t('average')}{' '}
+                        {p.avg != null ? formatTime(p.avg) : '-'}
                       </div>
                     </div>
                   </div>
                   <div className="flex gap-4 text-sm font-mono shrink-0">
-                    {p.solves.slice(-5).map((solve, index) => (
-                      <span key={index} className={solve.dnf ? 'text-destructive' : ''}>
-                        {solve.dnf
-                          ? 'DNF'
-                          : `${formatTime(solve.time + (solve.plus2 ? 2000 : 0))}${solve.plus2 ? '+' : ''}`}
-                      </span>
-                    ))}
+                    {visibleRounds.map((r) => {
+                      const { text, missed, dnf } = formatSolve(p.solveByRound[r])
+                      return (
+                        <span
+                          key={r}
+                          className={`w-14 text-right ${missed ? 'text-muted-foreground/40' : dnf ? 'text-destructive' : ''}`}
+                        >
+                          {text}
+                        </span>
+                      )
+                    })}
                   </div>
                 </div>
               </motion.li>
