@@ -42,6 +42,7 @@ export default function CreateRoomModal() {
       authority: session?.user?.id || '',
       scramble: genScramble(data.event),
       currentRoundTimeLimit: Number(data.maxRoundTime) * 1000 + Date.now(),
+      currentRound: 1,
       name: data.name,
       event: data.event
     })
