@@ -43,7 +43,7 @@ export default function useFreeMode() {
   const joinRoom = async (roomId: string, userId: string) => {
     const userRef = ref(rtdb, `rooms/${roomId}/presence/${userId}`)
     await onDisconnect(userRef).remove()
-    await set(userRef, {
+    await update(userRef, {
       joinedAt: serverTimestamp(),
       name: session?.user?.name || 'Anonymous',
       id: userId,
