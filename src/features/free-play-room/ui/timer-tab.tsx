@@ -190,7 +190,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
   return (
     <div className="flex h-full" id="touch">
       {/* Timer area */}
-      <div className="relative flex-1 flex flex-col justify-center items-center p-4 md:p-8">
+      <div className="relative flex-1 flex flex-col justify-center items-center p-4 md:p-8 bg-background/50">
         {/* Mode toggle — top right of timer area */}
         <motion.div
           className="absolute top-3 right-3 md:top-4 md:right-4"
@@ -283,7 +283,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
       </div>
 
       {/* Players column — hidden on mobile */}
-      <div className="hidden sm:block w-52 shrink-0 border-l border-border overflow-y-auto p-3">
+      <div className="hidden sm:block w-52 shrink-0 border-l border-border overflow-y-auto p-3 bg-sidebar">
         <LivePlayersPanel
           onlineUsers={onlineUsers}
           solves={solves}
