@@ -17,7 +17,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
 import TimerTab from '@/features/free-play-room/ui/timer-tab'
 import ResultsTab from '@/features/free-play-room/ui/results-tab'
-import UsersTab from '@/features/free-play-room/ui/users-tab'
 import useAlert from '@/shared/model/useAlert'
 import { useCountdown } from '@/shared/model/useCountdown'
 import { TimerStatus } from '@/features/timer/model/enums'
@@ -30,8 +29,7 @@ import { AnimatePresence, motion } from 'motion/react'
 
 const tabs = [
   { key: 'timer', icon: Clock },
-  { key: 'results', icon: ChartBarIcon },
-  { key: 'people', icon: UsersIcon }
+  { key: 'results', icon: ChartBarIcon }
 ] as const
 
 type TabKey = (typeof tabs)[number]['key']
@@ -239,7 +237,6 @@ export default function FreePlayRoomPage() {
                 <TimerTab maxRoundTime={maxRoundTime} event={event} onlineUsers={onlineUsers} />
               )}
               {currentTab === 'results' && <ResultsTab />}
-              {currentTab === 'people' && <UsersTab />}
             </motion.div>
           </AnimatePresence>
         </div>
