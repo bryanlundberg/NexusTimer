@@ -36,9 +36,12 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     useRoomScramble,
     useRoomSolves,
     updateRoomScramble,
-    updateRoomRoundLimit
+    updateRoomRoundLimit,
+    useRoomCurrentRound,
+    incrementRoomRound
   } = useFreeMode()
   const scramble = useRoomScramble(roomId?.toString() || '')
+  const currentRound = useRoomCurrentRound(roomId?.toString() || '')
   const { data: session } = useSession()
 
   const { settings } = useSettingsStore()
@@ -67,12 +70,14 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     autoplay: true
   })
 
+  const alreadySolvedInFirebase = useMemo(() => {
+    if (!session?.user?.id || !solves[session.user.id]) return false
+    return Object.values(solves[session.user.id]).some((solve: any) => solve.roundIndex === currentRound)
+  }, [solves, session?.user?.id, currentRound])
+
   const disableTimer = useMemo(() => {
-    if (!session?.user?.id || !solves[session.user.id]) return hasSolvedCurrentScramble
-    const currentUserSolves = Object.values(solves[session.user.id])
-    const alreadySolved = currentUserSolves.some((solve: any) => solve.scramble === scramble)
-    return alreadySolved || hasSolvedCurrentScramble
-  }, [solves, session?.user?.id, scramble, hasSolvedCurrentScramble])
+    return alreadySolvedInFirebase || hasSolvedCurrentScramble
+  }, [alreadySolvedInFirebase, hasSolvedCurrentScramble])
 
   const { device } = useDeviceMatch()
 
@@ -87,7 +92,8 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
       time: solvingTime,
       dnf,
       plus2,
-      scramble
+      scramble,
+      roundIndex: currentRound
     })
   }
 
@@ -102,18 +108,19 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
 
     const usersThatSolved = onlineUserIds.filter((userId) => {
       const userSolves = solves[userId]
-      return userSolves && Object.values(userSolves).some((solve: any) => solve.scramble === scramble)
+      return userSolves && Object.values(userSolves).some((solve: any) => solve.roundIndex === currentRound)
     })
 
     if (
       usersThatSolved.length === onlineUserIds.length &&
       usersThatSolved.includes(session.user.id) &&
-      hasSolvedCurrentScramble
+      alreadySolvedInFirebase
     ) {
       const durationMs = maxRoundTime * 1000
       const newScramble = genScramble(event as CubeCategory)
       updateRoomScramble(roomId.toString(), newScramble)
       updateRoomRoundLimit(roomId.toString(), durationMs)
+      incrementRoomRound(roomId.toString(), currentRound + 1)
     }
   }, [
     solves,
@@ -123,9 +130,11 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     roomId,
     event,
     maxRoundTime,
-    hasSolvedCurrentScramble,
+    currentRound,
+    alreadySolvedInFirebase,
     updateRoomScramble,
-    updateRoomRoundLimit
+    updateRoomRoundLimit,
+    incrementRoomRound
   ])
 
   const { inspectionTime, resetAll } = useTimer({
