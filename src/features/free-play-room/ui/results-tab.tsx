@@ -14,7 +14,6 @@ export default function ResultsTab() {
   const t = useTranslations('Multiplayer.results-tab')
   const tMultiplayer = useTranslations('Multiplayer')
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: '' }
-  const { data: session } = useSession()
   const { useUsersPresence, useRoomSolves, useRoomCurrentRound } = useFreeMode()
   const onlineUsers = useUsersPresence(roomId?.toString() || '')
   const solves = useRoomSolves(roomId?.toString() || '')
@@ -45,55 +44,23 @@ export default function ResultsTab() {
     const userName = onlineUser?.name ?? solveWithName?.userName ?? tMultiplayer('anonymous')
     const userImage = onlineUser?.image ?? solveWithName?.userImage ?? null
 
-    const participatedSolves = allSolves.filter((s) => !s.dnf)
-    const times = participatedSolves.map((s) => s.time + (s.plus2 ? 2000 : 0))
-    const best = times.length ? Math.min(...times) : null
-    const avg = times.length ? Math.round(times.reduce((a, b) => a + b, 0) / times.length) : null
+    const validSolves = allSolves.filter((s) => !s.dnf)
+    const allTimes = validSolves.map((s) => s.time + (s.plus2 ? 2000 : 0))
+    const best = allTimes.length ? Math.min(...allTimes) : null
+
+    // Average of last 5 rounds (relative to totalRounds), missed/DNF rounds count toward denominator
+    const lastFiveCount = Math.min(5, totalRounds)
+    const lastFiveRounds = Array.from({ length: lastFiveCount }, (_, i) => totalRounds - lastFiveCount + 1 + i)
+    const lastFiveTimes = lastFiveRounds.map((r) => {
+      const s = solveByRound[r]
+      if (!s || s.dnf) return null
+      return s.time + (s.plus2 ? 2000 : 0)
+    })
+    const validLastFive = lastFiveTimes.filter((t): t is number => t !== null)
+    const avg = validLastFive.length > 0 ? Math.round(validLastFive.reduce((a, b) => a + b, 0) / lastFiveCount) : null
 
     return { userId, userName, userImage, solveByRound, best, avg }
   })
-
-  // Current user stats
-  const currentUserData = usersData.find((u) => u.userId === session?.user?.id)
-  const currentUserSolvesRaw =
-    session?.user?.id && solves[session.user.id] ? (Object.values(solves[session.user.id]) as any[]) : []
-
-  const toEffectiveTime = (s: { time: number; plus2: boolean; dnf: boolean }) =>
-    s.dnf ? null : s.time + (s.plus2 ? 2000 : 0)
-
-  const getLast = () => {
-    if (!currentUserSolvesRaw.length) return '-'
-    const sorted = [...currentUserSolvesRaw].sort((a, b) => a.createdAt - b.createdAt)
-    const last = sorted[sorted.length - 1]
-    const time = toEffectiveTime(last)
-    return time === null ? 'DNF' : `${formatTime(time)}${last.plus2 ? '+' : ''}`
-  }
-
-  const stats = [
-    {
-      label: t('latest'),
-      value: getLast(),
-      icon: Timer
-    },
-    {
-      label: t('best'),
-      value: currentUserData?.best != null ? formatTime(currentUserData.best) : '-',
-      icon: Trophy
-    },
-    {
-      label: t('worst'),
-      value: (() => {
-        const times = currentUserSolvesRaw.map(toEffectiveTime).filter((v): v is number => v !== null)
-        return times.length ? formatTime(Math.max(...times)) : '-'
-      })(),
-      icon: TrendingDown
-    },
-    {
-      label: t('average'),
-      value: currentUserData?.avg != null ? formatTime(currentUserData.avg) : '-',
-      icon: TrendingUp
-    }
-  ]
 
   const formatSolve = (s: any): { text: string; missed: boolean; dnf: boolean } => {
     if (!s) return { text: '-', missed: true, dnf: false }
@@ -104,28 +71,6 @@ export default function ResultsTab() {
 
   return (
     <div className="flex flex-col gap-5 p-4 md:p-6">
-      {/* Stats grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
-        {stats.map((stat, i) => {
-          const Icon = stat.icon
-          return (
-            <motion.div
-              key={stat.label}
-              className="rounded-xl border border-border bg-muted/30 p-3.5 md:p-4"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: i * 0.06 }}
-            >
-              <div className="flex items-center gap-1.5 mb-1.5">
-                <Icon className="size-3.5 text-muted-foreground" />
-                <span className="text-xs text-muted-foreground">{stat.label}</span>
-              </div>
-              <div className="text-xl md:text-2xl font-semibold font-mono">{stat.value}</div>
-            </motion.div>
-          )
-        })}
-      </div>
-
       {/* Live indicator */}
       <motion.div
         className="flex items-center gap-2 text-xs text-muted-foreground"
