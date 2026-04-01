@@ -16,7 +16,7 @@ import { AccountInfoForm as IAccountInfoForm, accountInfoSchema } from '@/featur
 import { Loader2, Save } from 'lucide-react'
 
 export default function AccountInfoForm({ user, mutate }: { user?: UserDocument; mutate: KeyedMutator<any> }) {
-  const { data: session } = useSession()
+  const { data: session, update } = useSession()
   const t = useTranslations('Index.AccountPage')
 
   const timezones = useMemo(() => Intl.supportedValuesOf('timeZone'), [])
@@ -57,6 +57,7 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
       }
 
       await mutate()
+      await update({ user: { name: form.name } })
       toast.success(t('update-success'))
     } catch (error) {
       console.error('Error updating user:', error)
