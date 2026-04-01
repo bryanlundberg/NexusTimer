@@ -50,7 +50,9 @@ export default function FreePlayRoomPage() {
     useRoomAuthority,
     useRoomEvent,
     updateRoomRoundLimit,
-    updateRoomScramble
+    updateRoomScramble,
+    useRoomCurrentRound,
+    incrementRoomRound
   } = useFreeMode()
   const onlineUsers = useUsersPresence(roomId?.toString() || '')
   const reset = useTimerStore((state) => state.reset)
@@ -58,6 +60,7 @@ export default function FreePlayRoomPage() {
   const isSolving = useTimerStore((state) => state.isSolving)
   const timerStatus = useTimerStore((state) => state.timerStatus)
   const roundLimit = useRoomRoundLimit(roomId?.toString() || '')
+  const currentRound = useRoomCurrentRound(roomId?.toString() || '')
 
   useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
   const { mmss, isFinished } = useCountdown(roundLimit || 0)
@@ -108,7 +111,8 @@ export default function FreePlayRoomPage() {
     const newScramble = genScramble(event as CubeCategory)
     updateRoomScramble(roomId.toString(), newScramble)
     updateRoomRoundLimit(roomId.toString(), durationMs)
-  }, [isFinished, roomAuthority, session?.user?.id, roomId])
+    incrementRoomRound(roomId.toString(), currentRound + 1)
+  }, [isFinished, roomAuthority, session?.user?.id, roomId, currentRound])
 
   const [currentTab, setCurrentTab] = React.useState<TabKey>('timer')
 
