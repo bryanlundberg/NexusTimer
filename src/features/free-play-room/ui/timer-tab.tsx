@@ -16,6 +16,7 @@ import { CubeCategory } from '@/shared/const/cube-categories'
 import { Cube } from '@/entities/cube/model/types'
 import { useTranslations } from 'next-intl'
 import ManualModeForm from '@/features/timer/ui/ManualModeForm'
+import LivePlayersPanel from '@/features/free-play-room/ui/live-players-panel'
 import { Keyboard } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
@@ -187,96 +188,109 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
   }
 
   return (
-    <div className="relative flex flex-col justify-center items-center h-full p-4 md:p-8" id="touch">
-      {/* Mode toggle — top right */}
-      <motion.div
-        className="absolute top-3 right-3 md:top-4 md:right-4"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.15, type: 'spring', stiffness: 300, damping: 25 }}
-      >
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant={timerMode === TimerMode.MANUAL ? 'default' : 'outline'}
-              size="icon"
-              className="size-9 rounded-lg"
-              onClick={() => setTimerMode(timerMode === TimerMode.MANUAL ? TimerMode.NORMAL : TimerMode.MANUAL)}
+    <div className="flex h-full" id="touch">
+      {/* Timer area */}
+      <div className="relative flex-1 flex flex-col justify-center items-center p-4 md:p-8">
+        {/* Mode toggle — top right of timer area */}
+        <motion.div
+          className="absolute top-3 right-3 md:top-4 md:right-4"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.15, type: 'spring', stiffness: 300, damping: 25 }}
+        >
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant={timerMode === TimerMode.MANUAL ? 'default' : 'outline'}
+                size="icon"
+                className="size-9 rounded-lg"
+                onClick={() => setTimerMode(timerMode === TimerMode.MANUAL ? TimerMode.NORMAL : TimerMode.MANUAL)}
+              >
+                <Keyboard className="size-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="left">
+              <p>{timerMode === TimerMode.MANUAL ? 'Modo Normal' : 'Modo Manual'}</p>
+            </TooltipContent>
+          </Tooltip>
+        </motion.div>
+
+        {/* Scramble */}
+        <AnimatePresence mode="wait">
+          {!isSolving && !disableTimer && scramble && (
+            <motion.div
+              key={scramble}
+              className="text-center text-base md:text-xl font-mono leading-relaxed text-muted-foreground px-4 mb-12 md:mb-16 max-w-2xl"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.25 }}
             >
-              <Keyboard className="size-4" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent side="left">
-            <p>{timerMode === TimerMode.MANUAL ? 'Modo Normal' : 'Modo Manual'}</p>
-          </TooltipContent>
-        </Tooltip>
-      </motion.div>
+              {scramble}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* Scramble */}
-      <AnimatePresence mode="wait">
-        {!isSolving && !disableTimer && scramble && (
-          <motion.div
-            key={scramble}
-            className="text-center text-base md:text-xl font-mono leading-relaxed text-muted-foreground px-4 mb-12 md:mb-16 max-w-2xl"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.25 }}
-          >
-            {scramble}
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* Timer / Manual input */}
+        <AnimatePresence mode="wait">
+          {timerMode === TimerMode.MANUAL && !disableTimer ? (
+            <motion.div
+              key="manual"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ManualModeForm onSubmit={handleManualSubmit} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="display"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <DisplayTime
+                isSolving={isSolving}
+                timerStatus={timerStatus}
+                lastSolve={lastSolve}
+                solvingTime={solvingTime}
+                device={device}
+                inspectionTime={inspectionTime}
+                hideWhileSolving={settings.features.hideWhileSolving}
+                className="text-center"
+                inspectionRequired={true}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* Timer / Manual input */}
-      <AnimatePresence mode="wait">
-        {timerMode === TimerMode.MANUAL && !disableTimer ? (
-          <motion.div
-            key="manual"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-          >
-            <ManualModeForm onSubmit={handleManualSubmit} />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="display"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <DisplayTime
-              isSolving={isSolving}
-              timerStatus={timerStatus}
-              lastSolve={lastSolve}
-              solvingTime={solvingTime}
-              device={device}
-              inspectionTime={inspectionTime}
-              hideWhileSolving={settings.features.hideWhileSolving}
-              className="text-center"
-              inspectionRequired={true}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* Already submitted message */}
+        <AnimatePresence>
+          {disableTimer && (
+            <motion.div
+              className="mt-6 px-4 py-2.5 rounded-lg bg-muted text-muted-foreground text-sm text-center max-w-xs"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.25 }}
+            >
+              {t('already-submitted')}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
-      {/* Already submitted message */}
-      <AnimatePresence>
-        {disableTimer && (
-          <motion.div
-            className="mt-6 px-4 py-2.5 rounded-lg bg-muted text-muted-foreground text-sm text-center max-w-xs"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.25 }}
-          >
-            {t('already-submitted')}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Players column — hidden on mobile */}
+      <div className="hidden sm:block w-52 shrink-0 border-l border-border overflow-y-auto p-3">
+        <LivePlayersPanel
+          onlineUsers={onlineUsers}
+          solves={solves}
+          currentRound={currentRound}
+          sessionUserId={session?.user?.id}
+        />
+      </div>
 
       <ConfirmSolveModal
         isOpen={modalOpen}
