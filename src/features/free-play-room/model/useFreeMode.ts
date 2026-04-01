@@ -12,12 +12,15 @@ interface UserPresence {
   status?: TimerStatus
 }
 
-interface UserSolves {
+export interface UserSolves {
   time: number
   plus2: boolean
   dnf: boolean
   createdAt: number
   scramble: string
+  roundIndex: number
+  userName?: string
+  userImage?: string | null
 }
 
 export default function useFreeMode() {
@@ -70,7 +73,12 @@ export default function useFreeMode() {
   const addUserSolve = async (roomId: string, userId: string, solveData: any) => {
     const solveRef = ref(rtdb, `rooms/${roomId}/solves/${userId}`)
     const now = serverTimestamp()
-    const newSolveData = { ...solveData, createdAt: now }
+    const newSolveData = {
+      ...solveData,
+      createdAt: now,
+      userName: session?.user?.name || 'Anonymous',
+      userImage: session?.user?.image || null
+    }
     await update(solveRef, { [Date.now()]: newSolveData })
   }
 
@@ -182,6 +190,25 @@ export default function useFreeMode() {
     return maxRoundTime
   }
 
+  const useRoomCurrentRound = (roomId: string) => {
+    const [currentRound, setCurrentRound] = useState<number>(1)
+
+    useEffect(() => {
+      const roundRef = ref(rtdb, `rooms/${roomId}/currentRound`)
+      onValue(roundRef, (snapshot) => {
+        const data = snapshot.val()
+        setCurrentRound(data ?? 1)
+      })
+    }, [roomId])
+
+    return currentRound
+  }
+
+  const incrementRoomRound = async (roomId: string, nextRound: number) => {
+    const roundRef = ref(rtdb, `rooms/${roomId}/currentRound`)
+    await set(roundRef, nextRound)
+  }
+
   return {
     useRooms,
     joinRoom,
@@ -197,6 +224,8 @@ export default function useFreeMode() {
     updateRoomRoundLimit,
     updateRoomScramble,
     useRoomEvent,
-    useMaxRoundTime
+    useMaxRoundTime,
+    useRoomCurrentRound,
+    incrementRoomRound
   }
 }
