@@ -9,6 +9,7 @@ import {
   GithubIcon,
   HistoryIcon,
   LandPlot,
+  MonitorDown,
   ReplaceIcon,
   Settings,
   TableProperties,
@@ -19,12 +20,16 @@ import {
 import {
   Sidebar,
   SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
   SidebarHeader,
   SidebarMenu,
+  SidebarMenuButton,
   SidebarMenuItem,
   useSidebar
 } from '@/components/ui/sidebar'
 import { DiscordLogoIcon } from '@radix-ui/react-icons'
+import { usePwaInstall } from '@/shared/model/usePwaInstall'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
@@ -37,6 +42,7 @@ import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { open, openMobile, setOpenMobile, isMobile } = useSidebar()
   const t = useTranslations('Index')
+  const { isInstallable, install } = usePwaInstall()
 
   const data = useMemo(
     () => ({
@@ -164,7 +170,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain.slice(0, 5)} label={t('NavMain.platform')} />
         <NavMain items={data.navMain.slice(5, 8)} label={t('NavMain.community')} />
         <NavMain items={data.navMain.slice(8)} />
-        <NavSecondary items={data.navSecondary as any} className="mt-auto" />
+        {isInstallable && (
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton size="sm" onClick={install} className="relative transition-colors">
+                    <MonitorDown className="text-primary" />
+                    <span>{t('NavMain.install-app')}</span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
+        <NavSecondary items={data.navSecondary as any} className={'mt-auto'} />
       </SidebarContent>
     </Sidebar>
   )
