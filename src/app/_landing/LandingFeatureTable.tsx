@@ -1,165 +1,167 @@
 import Image from 'next/image'
 import RatedIcon from '@/shared/ui/rate-icon/RateIcon'
+import { getLocale, getTranslations } from 'next-intl/server'
 
-const TABLES_DATA = [
-  {
-    title: 'Built-in Core Features',
-    description: 'Essential timer capabilities',
-    features: [
-      {
-        name: 'Random State Scrambles',
-        description: 'Instead of random moves, get scrambles that put your cube in a random state.',
-        nxTimer: 'check',
-        csTimer: 'check',
-        cubeDesk: 'check',
-        twistyTimer: 'check'
-      },
-      {
-        name: 'Cross-platform support',
-        description: 'Access the application on multiple devices and operating systems.',
-        nxTimer: 'check',
-        csTimer: 'check',
-        cubeDesk: 'check',
-        twistyTimer: 'cross'
-      },
-      {
-        name: 'Import other timers',
-        description: 'Easily import and export your data to and from other popular timers.',
-        nxTimer: 'check',
-        csTimer: 'cross',
-        cubeDesk: 'partial',
-        twistyTimer: 'cross'
-      },
-      {
-        name: 'Offline Mode',
-        description: 'Use the timer without an internet connection.',
-        nxTimer: 'check',
-        csTimer: 'check',
-        cubeDesk: 'cross',
-        twistyTimer: 'check'
-      },
-      {
-        name: 'Statistics per cube',
-        description: 'Analyze your performance for each individual cube.',
-        nxTimer: 'check',
-        csTimer: 'cross',
-        cubeDesk: 'cross',
-        twistyTimer: 'cross'
-      },
-      {
-        name: 'Cloud Sync',
-        description: 'Sync your data across multiple devices via the cloud.',
-        nxTimer: 'check',
-        csTimer: 'partial',
-        cubeDesk: 'check',
-        twistyTimer: 'cross'
-      },
-      {
-        name: 'Online Mode',
-        description: 'Create rooms and coordinate matches in real time with other users.',
-        nxTimer: 'check',
-        csTimer: 'partial',
-        cubeDesk: 'partial',
-        twistyTimer: 'cross'
-      }
-    ]
-  },
-  {
-    title: 'Statistics & Analysis',
-    description: 'In-depth performance insights',
-    features: [
-      {
-        name: 'Global Statistics',
-        description: 'Overall stats including averages, best/worst times, and more.',
-        nxTimer: 'check',
-        csTimer: 'cross',
-        cubeDesk: 'check',
-        twistyTimer: 'check'
-      },
-      {
-        name: 'Session Statistics',
-        description: 'Detailed session stats including averages, best/worst times, and more.',
-        nxTimer: 'check',
-        csTimer: 'check',
-        cubeDesk: 'check',
-        twistyTimer: 'check'
-      },
-      {
-        name: 'Cube-specific Stats',
-        description: 'Detailed statistics for each individual cube.',
-        nxTimer: 'check',
-        csTimer: 'cross',
-        cubeDesk: 'cross',
-        twistyTimer: 'cross'
-      },
-      {
-        name: 'Performance Graphs',
-        description: 'Visualize your solving times and trends over time.',
-        nxTimer: 'check',
-        csTimer: 'check',
-        cubeDesk: 'partial',
-        twistyTimer: 'partial'
-      }
-    ]
-  },
-  {
-    title: 'Social & Community',
-    description: 'User engagement and social features',
-    features: [
-      {
-        name: 'Profile System',
-        description: 'Create and customize your user profile.',
-        nxTimer: 'check',
-        csTimer: 'cross',
-        cubeDesk: 'check',
-        twistyTimer: 'cross'
-      },
-      {
-        name: 'Compare Profiles',
-        description: 'View and compare profiles of other users.',
-        nxTimer: 'check',
-        csTimer: 'cross',
-        cubeDesk: 'cross',
-        twistyTimer: 'cross'
-      },
-      {
-        name: 'Display Personal Bests',
-        description: 'Showcase your best times on your profile including averages.',
-        nxTimer: 'check',
-        csTimer: 'cross',
-        cubeDesk: 'partial',
-        twistyTimer: 'cross'
-      },
-      {
-        name: 'Display Cubes Owned',
-        description: 'Show the cubes you own on your profile.',
-        nxTimer: 'check',
-        csTimer: 'cross',
-        cubeDesk: 'cross',
-        twistyTimer: 'cross'
-      },
-      {
-        name: 'Display Trajectory Progress',
-        description: 'Show your full solve history and progress over time.',
-        nxTimer: 'check',
-        csTimer: 'cross',
-        cubeDesk: 'cross',
-        twistyTimer: 'cross'
-      }
-    ]
-  }
-]
+export default async function LandingFeatureTable() {
+  const locale = await getLocale()
+  const t = await getTranslations({ locale, namespace: 'LandingPage.comparison' })
 
-export default function LandingFeatureTable() {
+  const TABLES_DATA = [
+    {
+      title: t('core-title'),
+      description: t('core-desc'),
+      features: [
+        {
+          name: t('random-scrambles-name'),
+          description: t('random-scrambles-desc'),
+          nxTimer: 'check',
+          csTimer: 'check',
+          cubeDesk: 'check',
+          twistyTimer: 'check'
+        },
+        {
+          name: t('cross-platform-name'),
+          description: t('cross-platform-desc'),
+          nxTimer: 'check',
+          csTimer: 'check',
+          cubeDesk: 'check',
+          twistyTimer: 'cross'
+        },
+        {
+          name: t('import-timers-name'),
+          description: t('import-timers-desc'),
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'partial',
+          twistyTimer: 'cross'
+        },
+        {
+          name: t('offline-name'),
+          description: t('offline-desc'),
+          nxTimer: 'check',
+          csTimer: 'check',
+          cubeDesk: 'cross',
+          twistyTimer: 'check'
+        },
+        {
+          name: t('stats-per-cube-name'),
+          description: t('stats-per-cube-desc'),
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'cross',
+          twistyTimer: 'cross'
+        },
+        {
+          name: t('cloud-sync-name'),
+          description: t('cloud-sync-desc'),
+          nxTimer: 'check',
+          csTimer: 'partial',
+          cubeDesk: 'check',
+          twistyTimer: 'cross'
+        },
+        {
+          name: t('online-mode-name'),
+          description: t('online-mode-desc'),
+          nxTimer: 'check',
+          csTimer: 'partial',
+          cubeDesk: 'partial',
+          twistyTimer: 'cross'
+        }
+      ]
+    },
+    {
+      title: t('stats-title'),
+      description: t('stats-section-desc'),
+      features: [
+        {
+          name: t('global-stats-name'),
+          description: t('global-stats-desc'),
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'check',
+          twistyTimer: 'check'
+        },
+        {
+          name: t('session-stats-name'),
+          description: t('session-stats-desc'),
+          nxTimer: 'check',
+          csTimer: 'check',
+          cubeDesk: 'check',
+          twistyTimer: 'check'
+        },
+        {
+          name: t('cube-stats-name'),
+          description: t('cube-stats-desc'),
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'cross',
+          twistyTimer: 'cross'
+        },
+        {
+          name: t('performance-graphs-name'),
+          description: t('performance-graphs-desc'),
+          nxTimer: 'check',
+          csTimer: 'check',
+          cubeDesk: 'partial',
+          twistyTimer: 'partial'
+        }
+      ]
+    },
+    {
+      title: t('social-title'),
+      description: t('social-desc'),
+      features: [
+        {
+          name: t('profile-system-name'),
+          description: t('profile-system-desc'),
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'check',
+          twistyTimer: 'cross'
+        },
+        {
+          name: t('compare-profiles-name'),
+          description: t('compare-profiles-desc'),
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'cross',
+          twistyTimer: 'cross'
+        },
+        {
+          name: t('personal-bests-name'),
+          description: t('personal-bests-desc'),
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'partial',
+          twistyTimer: 'cross'
+        },
+        {
+          name: t('cubes-owned-name'),
+          description: t('cubes-owned-desc'),
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'cross',
+          twistyTimer: 'cross'
+        },
+        {
+          name: t('trajectory-name'),
+          description: t('trajectory-desc'),
+          nxTimer: 'check',
+          csTimer: 'cross',
+          cubeDesk: 'cross',
+          twistyTimer: 'cross'
+        }
+      ]
+    }
+  ]
+
   return (
     <section className="relative py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center mb-12">
-          <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">Comparison</p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">More than just a timer</h2>
-          <p className="text-sm md:text-base text-gray-500 mt-5">
-            See how NexusTimer compares to other popular cubing timers.
-          </p>
+          <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">{t('label')}</p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">{t('title')}</h2>
+          <p className="text-sm md:text-base text-gray-500 mt-5">{t('subtitle')}</p>
         </div>
 
         <div>

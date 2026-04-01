@@ -19,6 +19,7 @@ import { cn } from '@/shared/lib/utils'
 import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
 import { motion, useScroll, useTransform, useInView, useMotionValueEvent, AnimatePresence } from 'motion/react'
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { useTranslations } from 'next-intl'
 
 // ─── Animated counter hook ───
 function useCounter(target: number, duration: number = 2000) {
@@ -47,6 +48,7 @@ function useCounter(target: number, duration: number = 2000) {
 
 // ─── Solve timer simulation ───
 function SolveTimerAnimation() {
+  const t = useTranslations('LandingPage')
   const [time, setTime] = useState(0)
   const [phase, setPhase] = useState<'idle' | 'inspecting' | 'solving' | 'done'>('idle')
 
@@ -101,7 +103,13 @@ function SolveTimerAnimation() {
         className="text-xs uppercase tracking-[0.3em] text-gray-400 text-center mt-3"
         animate={{ opacity: phase === 'inspecting' ? 1 : 0.4 }}
       >
-        {phase === 'inspecting' ? 'Inspection' : phase === 'solving' ? 'Solving...' : phase === 'done' ? 'Solved!' : ''}
+        {phase === 'inspecting'
+          ? t('timer.inspection')
+          : phase === 'solving'
+            ? t('timer.solving')
+            : phase === 'done'
+              ? t('timer.solved')
+              : ''}
       </motion.div>
     </div>
   )
@@ -140,6 +148,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 // ─── Horizontal Scroll Section ───
 function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
+  const t = useTranslations('LandingPage')
   const containerRef = useRef<HTMLDivElement>(null)
   const [isMobile, setIsMobile] = useState(false)
 
@@ -161,23 +170,23 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
 
   const cards = [
     {
-      title: 'Stats per Cube',
-      description: 'Isolated performance profiles for each puzzle. No mixed averages, no noise.',
+      title: t('showcase.stats-per-cube-title'),
+      description: t('showcase.stats-per-cube-desc'),
       imageSrc: '/landing/Screenshot_40.png'
     },
     {
-      title: 'Deep Analytics',
-      description: 'Trend lines, session comparisons, and metrics that reveal where your time hides.',
+      title: t('showcase.deep-analytics-title'),
+      description: t('showcase.deep-analytics-desc'),
       imageSrc: '/landing/Screenshot_41.png'
     },
     {
-      title: 'Real-time Battles',
-      description: 'Create rooms and race head-to-head. Synced scrambles, live results.',
+      title: t('showcase.real-time-battles-title'),
+      description: t('showcase.real-time-battles-desc'),
       imageSrc: '/landing/Screenshot_38.png'
     },
     {
-      title: 'Public Profiles',
-      description: 'Your collection, personal bests, and full trajectory — visible to the community.',
+      title: t('showcase.public-profiles-title'),
+      description: t('showcase.public-profiles-desc'),
       imageSrc: '/landing/Screenshot_43.png'
     }
   ]
@@ -194,7 +203,7 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
             viewport={{ once: true }}
             className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4"
           >
-            Inside the app
+            {t('showcase.label')}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -203,7 +212,7 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900"
           >
-            See it in action
+            {t('showcase.title')}
           </motion.h2>
         </div>
 
@@ -241,6 +250,7 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
 
 // ─── Parallax Stats Band ───
 function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
+  const t = useTranslations('LandingPage')
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -267,10 +277,10 @@ function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HT
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {[
-            { value: 17, suffix: '+', label: 'WCA Events' },
-            { value: 10, suffix: '', label: 'Languages' },
-            { value: 100, suffix: '%', label: 'Free forever' },
-            { value: 5, suffix: '★', label: 'Open source' }
+            { value: 17, suffix: '+', label: t('stats.wca-events') },
+            { value: 10, suffix: '', label: t('stats.languages') },
+            { value: 100, suffix: '%', label: t('stats.free') },
+            { value: 5, suffix: '★', label: t('stats.open-source') }
           ].map((stat, i) => (
             <StatItem key={stat.label} value={stat.value} suffix={stat.suffix} label={stat.label} delay={i * 0.1} />
           ))}
@@ -282,24 +292,25 @@ function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HT
 
 // ─── Sticky Testimonials (scroll 1x1) ───
 function StickyTestimonials({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
+  const t = useTranslations('LandingPage')
   const testimonials = [
     {
-      text: 'Switched from other timers and never looked back. The Clash Mode is a game-changer for our club.',
-      user: '@cubeOrigin',
+      text: t('testimonials.t0-text'),
+      user: t('testimonials.t0-user'),
       avatar: 9,
-      role: 'Club organizer'
+      role: t('testimonials.t0-role')
     },
     {
-      text: "Love the clean UI and that it's free. Cloud backup keeps my times safe across devices.",
-      user: '@layersLast',
+      text: t('testimonials.t1-text'),
+      user: t('testimonials.t1-user'),
       avatar: 5,
-      role: 'Speedcuber'
+      role: t('testimonials.t1-role')
     },
     {
-      text: 'Import and export just works. Stats per cube helped me target my weak spots.',
-      user: '@OH_enthusiast',
+      text: t('testimonials.t2-text'),
+      user: t('testimonials.t2-user'),
       avatar: 4,
-      role: 'One-handed specialist'
+      role: t('testimonials.t2-role')
     }
   ]
 
@@ -321,7 +332,9 @@ function StickyTestimonials({ scrollContainer }: { scrollContainer: React.RefObj
     <section ref={containerRef} style={{ height: `${testimonials.length * 100}vh` }} className="relative">
       <div className="sticky top-0 h-screen flex items-center">
         <div className="mx-auto max-w-3xl w-full px-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-10 text-center">What cubers say</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-10 text-center">
+            {t('testimonials.label')}
+          </p>
 
           <div className="relative min-h-[280px]">
             {testimonials.map((t, index) => (
@@ -425,6 +438,7 @@ function StatItem({ value, suffix, label, delay }: { value: number; suffix: stri
 
 // ===== LANDING SHELL =====
 export default function LandingShell({ featureTable, footer }: { featureTable: ReactNode; footer: ReactNode }) {
+  const t = useTranslations('LandingPage')
   const [hidden, setHidden] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -499,9 +513,9 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
             </motion.div>
             <nav className="hidden md:flex items-center gap-8 text-sm text-gray-500">
               {[
-                { href: '/people', label: 'People' },
-                { href: '/algorithms', label: 'Algorithms' },
-                { href: '/leaderboards', label: 'Leaderboards' }
+                { href: '/people', label: t('header.people') },
+                { href: '/algorithms', label: t('header.algorithms') },
+                { href: '/leaderboards', label: t('header.leaderboards') }
               ].map((link) => (
                 <Link
                   key={link.href}
@@ -518,7 +532,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                 rel="noreferrer"
                 className="hover:text-gray-900 transition-colors duration-300 relative group"
               >
-                GitHub
+                {t('header.github')}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-gray-900 group-hover:w-full transition-all duration-300" />
               </a>
             </nav>
@@ -527,7 +541,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                 href="/app"
                 className="group inline-flex items-center gap-2 rounded-full bg-gray-900 text-white px-5 py-2 text-sm font-medium hover:bg-gray-800 transition-all duration-300"
               >
-                <span className="hidden sm:inline">Start Timing</span>
+                <span className="hidden sm:inline">{t('header.start-timing')}</span>
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>
@@ -554,7 +568,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                 className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-xs text-gray-600 backdrop-blur-sm mb-10"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Free and open source — forever
+                {t('hero.badge')}
               </motion.div>
 
               {/* Timer */}
@@ -575,9 +589,9 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                 className="mb-4"
               >
                 <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900">
-                  The timer that shows how you&apos;re{' '}
+                  {t('hero.title-before')}{' '}
                   <span className="underline decoration-gray-300 underline-offset-4 decoration-2">
-                    really improving
+                    {t('hero.title-highlight')}
                   </span>
                 </h1>
               </motion.div>
@@ -588,7 +602,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                 transition={{ duration: 0.6, delay: 0.65 }}
                 className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed mb-4"
               >
-                Performance profiles per cube. Deep analytics. Real-time competition.
+                {t('hero.subtitle')}
               </motion.p>
 
               {/* Rotating categories */}
@@ -598,17 +612,17 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                 transition={{ duration: 0.6, delay: 0.8 }}
                 className="flex items-center justify-center gap-2 text-sm text-gray-400 mb-10"
               >
-                <span>Built for</span>
+                <span>{t('hero.built-for')}</span>
                 <RotatingText
                   text={[
-                    '3x3 Speedsolving',
-                    'One-Handed',
-                    'Megaminx',
-                    'Pyraminx',
-                    'Big Cubes',
-                    'Square-1',
-                    'Skewb',
-                    'Clock'
+                    t('hero.rotating.0'),
+                    t('hero.rotating.1'),
+                    t('hero.rotating.2'),
+                    t('hero.rotating.3'),
+                    t('hero.rotating.4'),
+                    t('hero.rotating.5'),
+                    t('hero.rotating.6'),
+                    t('hero.rotating.7')
                   ]}
                   duration={2000}
                   className="text-gray-900 font-semibold"
@@ -634,14 +648,14 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                     unoptimized
                     className="transition-transform group-hover:rotate-12"
                   />
-                  Discover your performance
+                  {t('hero.cta-primary')}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link
                   href="/options?redirect=import"
                   className="inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-7 py-4 text-sm text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all duration-300"
                 >
-                  Import your solves
+                  {t('hero.cta-secondary')}
                 </Link>
               </motion.div>
 
@@ -670,7 +684,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                     </motion.div>
                   ))}
                 </div>
-                <span>Join a growing community of cubers</span>
+                <span>{t('hero.social-proof')}</span>
               </motion.div>
             </div>
 
@@ -686,7 +700,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                 className="flex flex-col items-center gap-2 text-gray-300"
               >
-                <span className="text-[10px] uppercase tracking-[0.25em]">Scroll</span>
+                <span className="text-[10px] uppercase tracking-[0.25em]">{t('hero.scroll')}</span>
                 <ChevronDown className="h-4 w-4" />
               </motion.div>
             </motion.div>
@@ -707,7 +721,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
               transition={{ duration: 0.8 }}
             >
               <p className="text-center text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-8">
-                Works with your favorite brands
+                {t('brands.label')}
               </p>
               <div className="relative">
                 <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
@@ -744,9 +758,9 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                   transition={{ duration: 0.6 }}
                   className="text-center mb-16"
                 >
-                  <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">Capabilities</p>
+                  <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">{t('capabilities.label')}</p>
                   <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">
-                    Built to make you faster
+                    {t('capabilities.title')}
                   </h2>
                 </motion.div>
 
@@ -754,37 +768,33 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                   {[
                     {
                       icon: Timer,
-                      title: 'Customizable timer',
-                      description:
-                        'Stackmat-style controls, adjustable inspection, keyboard or touch — adapts to your flow.'
+                      title: t('capabilities.timer-title'),
+                      description: t('capabilities.timer-desc')
                     },
                     {
                       icon: BarChart3,
-                      title: 'Per-cube analytics',
-                      description:
-                        'Each puzzle gets its own stats profile. Session averages stay clean, insights stay sharp.'
+                      title: t('capabilities.analytics-title'),
+                      description: t('capabilities.analytics-desc')
                     },
                     {
                       icon: Users,
-                      title: 'Multiplayer rooms',
-                      description:
-                        'Synced scrambles, live leaderboards. Great for club nights or remote practice sessions.'
+                      title: t('capabilities.multiplayer-title'),
+                      description: t('capabilities.multiplayer-desc')
                     },
                     {
                       icon: Globe,
-                      title: 'Community profiles',
-                      description:
-                        'Public pages with your collection, PBs, and solve trajectory. Connect with cubers worldwide.'
+                      title: t('capabilities.profiles-title'),
+                      description: t('capabilities.profiles-desc')
                     },
                     {
                       icon: AudioWaveform,
-                      title: 'Algorithm trainer',
-                      description: 'Drill OLL, PLL, and more with built-in recognition and spaced repetition.'
+                      title: t('capabilities.algorithms-title'),
+                      description: t('capabilities.algorithms-desc')
                     },
                     {
                       icon: DatabaseZap,
-                      title: 'Cloud sync + offline',
-                      description: 'Works without internet. Sign in to sync across devices — your data is always yours.'
+                      title: t('capabilities.cloud-title'),
+                      description: t('capabilities.cloud-desc')
                     }
                   ].map((feature, index) => (
                     <motion.div
@@ -820,9 +830,9 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                   transition={{ duration: 0.5 }}
                   className="text-center mb-20"
                 >
-                  <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">Getting started</p>
+                  <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">{t('how-it-works.label')}</p>
                   <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">
-                    Four steps, zero setup
+                    {t('how-it-works.title')}
                   </h2>
                 </motion.div>
 
@@ -833,26 +843,26 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                     {[
                       {
                         number: 1,
-                        title: 'Start or import',
-                        desc: 'Use Nexus fresh or bring your solves from csTimer, Twisty Timer, or CubeDesk.',
+                        title: t('how-it-works.step1-title'),
+                        desc: t('how-it-works.step1-desc'),
                         icon: Zap
                       },
                       {
                         number: 2,
-                        title: 'Solve as usual',
-                        desc: 'Every solve is categorized by cube automatically. No manual sessions.',
+                        title: t('how-it-works.step2-title'),
+                        desc: t('how-it-works.step2-desc'),
                         icon: Timer
                       },
                       {
                         number: 3,
-                        title: 'Read the data',
-                        desc: 'Trend lines, averages, and weak-spot analysis appear after a few solves.',
+                        title: t('how-it-works.step3-title'),
+                        desc: t('how-it-works.step3-desc'),
                         icon: BarChart3
                       },
                       {
                         number: 4,
-                        title: 'Track progress',
-                        desc: 'Compare weeks, months, or your entire trajectory over time.',
+                        title: t('how-it-works.step4-title'),
+                        desc: t('how-it-works.step4-desc'),
                         icon: ArrowRight
                       }
                     ].map((step, i) => (
@@ -868,7 +878,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                           <step.icon className="h-7 w-7 text-gray-900" />
                         </div>
                         <span className="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">
-                          Step {step.number}
+                          {t('how-it-works.step')} {step.number}
                         </span>
                         <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
                         <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
@@ -891,13 +901,11 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                   transition={{ duration: 0.7 }}
                   className="text-center mb-16"
                 >
-                  <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">Cross platform</p>
+                  <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">{t('cross-platform.label')}</p>
                   <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-5">
-                    Beautiful on every screen
+                    {t('cross-platform.title')}
                   </h2>
-                  <p className="text-gray-500 text-base max-w-xl mx-auto">
-                    PWA that installs on any device. Same experience on desktop, tablet, and phone.
-                  </p>
+                  <p className="text-gray-500 text-base max-w-xl mx-auto">{t('cross-platform.subtitle')}</p>
                 </motion.div>
 
                 <div className="relative flex items-center justify-center">
@@ -967,8 +975,8 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                 transition={{ duration: 0.5 }}
                 className="text-center mb-14"
               >
-                <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">FAQ</p>
-                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">Common questions</h2>
+                <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">{t('faq.label')}</p>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">{t('faq.title')}</h2>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -977,30 +985,12 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="flex flex-col gap-3"
               >
-                <FAQItem
-                  question="Is NexusTimer really free?"
-                  answer="Yes. NexusTimer is free and we plan to keep it that way."
-                />
-                <FAQItem
-                  question="Can I import from other timers?"
-                  answer="Absolutely. We support import/export with popular timers like csTimer, Twisty Timer, CubeDesk."
-                />
-                <FAQItem
-                  question="Does it work across devices?"
-                  answer="Yes, NexusTimer supports mobile and desktop. Sync your data via the cloud for access on any device."
-                />
-                <FAQItem
-                  question="How do Clash rooms work?"
-                  answer="Create a room, invite your friends, and synchronize rounds in real time. Great for meetups or online sessions."
-                />
-                <FAQItem
-                  question="Why do I need to create cube collections?"
-                  answer="We have a unique stats system that tracks performance per cube. This helps you identify strengths and weaknesses with each cube, without session averages being affected."
-                />
-                <FAQItem
-                  question="How does NexusTimer sustain itself?"
-                  answer="Currently, NexusTimer runs with all the costs covered. We are exploring sustainable funding options to ensure its longevity."
-                />
+                <FAQItem question={t('faq.q0')} answer={t('faq.a0')} />
+                <FAQItem question={t('faq.q1')} answer={t('faq.a1')} />
+                <FAQItem question={t('faq.q2')} answer={t('faq.a2')} />
+                <FAQItem question={t('faq.q3')} answer={t('faq.a3')} />
+                <FAQItem question={t('faq.q4')} answer={t('faq.a4')} />
+                <FAQItem question={t('faq.q5')} answer={t('faq.a5')} />
               </motion.div>
             </div>
           </section>
@@ -1044,7 +1034,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                         transition={{ duration: 0.5, delay: 0.3 }}
                         className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-5"
                       >
-                        Ready to start?
+                        {t('cta.title')}
                       </motion.h3>
                       <motion.p
                         initial={{ opacity: 0 }}
@@ -1053,7 +1043,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                         transition={{ duration: 0.5, delay: 0.4 }}
                         className="text-gray-500 text-base md:text-lg mb-10 max-w-md mx-auto"
                       >
-                        All the tools you need to track, analyze, and improve — right in your browser, for free.
+                        {t('cta.subtitle')}
                       </motion.p>
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
@@ -1066,14 +1056,14 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                           href="/app"
                           className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gray-900 text-white font-semibold px-8 py-4 text-sm hover:bg-gray-800 transition-all duration-300 hover:scale-105"
                         >
-                          Go to the App
+                          {t('cta.primary')}
                           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </Link>
                         <Link
                           href="/options?redirect=import"
                           className="inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-7 py-4 text-sm text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all duration-300"
                         >
-                          Import your solves
+                          {t('cta.secondary')}
                         </Link>
                       </motion.div>
                     </div>
