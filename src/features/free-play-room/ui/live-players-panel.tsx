@@ -1,8 +1,8 @@
 'use client'
 
 import formatTime from '@/shared/lib/formatTime'
-import { TimerStatus } from '@/features/timer/model/enums'
 import { motion } from 'motion/react'
+import { Trophy } from 'lucide-react'
 
 interface LivePlayersPanelProps {
   onlineUsers: any[]
@@ -11,10 +11,40 @@ interface LivePlayersPanelProps {
   sessionUserId?: string
 }
 
-function PlayerCard({ user, solve, isSelf, index }: { user: any; solve: any; isSelf: boolean; index: number }) {
+function computeWins(solves: Record<string, Record<string, any>>, totalRounds: number): Record<string, number> {
+  const wins: Record<string, number> = {}
+  for (let r = 0; r < totalRounds; r++) {
+    let bestTime = Infinity
+    let winnerId: string | null = null
+    for (const [userId, userSolves] of Object.entries(solves)) {
+      const solve = (Object.values(userSolves) as any[]).find((s) => s.roundIndex === r)
+      if (!solve || solve.dnf) continue
+      const ms = solve.time + (solve.plus2 ? 2000 : 0)
+      if (ms < bestTime) {
+        bestTime = ms
+        winnerId = userId
+      }
+    }
+    if (winnerId) wins[winnerId] = (wins[winnerId] ?? 0) + 1
+  }
+  return wins
+}
+
+function PlayerCard({
+  user,
+  solve,
+  wins,
+  isSelf,
+  index
+}: {
+  user: any
+  solve: any
+  wins: number
+  isSelf: boolean
+  index: number
+}) {
   let timeText: string
   let colorClass: string
-  let isSolving = false
 
   if (solve) {
     if (solve.dnf) {
@@ -25,10 +55,6 @@ function PlayerCard({ user, solve, isSelf, index }: { user: any; solve: any; isS
       timeText = formatTime(ms) + (solve.plus2 ? '+' : '')
       colorClass = 'text-emerald-500'
     }
-  } else if (user.status === TimerStatus.SOLVING || user.status === TimerStatus.INSPECTING) {
-    timeText = '...'
-    colorClass = 'text-amber-400'
-    isSolving = true
   } else {
     timeText = '-'
     colorClass = 'text-muted-foreground/50'
@@ -43,7 +69,7 @@ function PlayerCard({ user, solve, isSelf, index }: { user: any; solve: any; isS
         isSelf ? 'border-primary/30 bg-primary/5' : 'border-border'
       }`}
     >
-      <div className="relative shrink-0">
+      <div className="shrink-0">
         {user.image ? (
           <img src={user.image} alt={user.name} className="h-7 w-7 rounded-full object-cover" />
         ) : (
@@ -51,15 +77,17 @@ function PlayerCard({ user, solve, isSelf, index }: { user: any; solve: any; isS
             {(user.name ?? '?')[0].toUpperCase()}
           </div>
         )}
-        {isSolving && (
-          <span className="absolute -top-0.5 -right-0.5 flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400" />
-          </span>
-        )}
       </div>
       <div className="min-w-0 flex flex-col flex-1">
-        <span className="text-xs font-medium truncate leading-tight">{user.name ?? '?'}</span>
+        <div className="flex items-center gap-1">
+          <span className="text-xs font-medium truncate leading-tight">{user.name ?? '?'}</span>
+          {wins > 0 && (
+            <span className="flex items-center gap-0.5 text-amber-400 shrink-0">
+              <Trophy className="size-2.5" />
+              <span className="text-[10px] font-bold leading-none">{wins}</span>
+            </span>
+          )}
+        </div>
         <span className={`text-xs font-mono font-semibold leading-tight ${colorClass}`}>{timeText}</span>
       </div>
     </motion.div>
@@ -69,12 +97,27 @@ function PlayerCard({ user, solve, isSelf, index }: { user: any; solve: any; isS
 export default function LivePlayersPanel({ onlineUsers, solves, currentRound, sessionUserId }: LivePlayersPanelProps) {
   if (!onlineUsers.length) return null
 
+  const previousRound = currentRound - 1
+  const wins = computeWins(solves, currentRound)
+
   return (
     <div className="flex flex-col gap-2">
       {onlineUsers.map((user, i) => {
         const userSolves = solves[user.id] ?? {}
-        const roundSolve = (Object.values(userSolves) as any[]).find((s) => s.roundIndex === currentRound) ?? null
-        return <PlayerCard key={user.id} user={user} solve={roundSolve} isSelf={user.id === sessionUserId} index={i} />
+        const prevSolve =
+          previousRound >= 0
+            ? ((Object.values(userSolves) as any[]).find((s) => s.roundIndex === previousRound) ?? null)
+            : null
+        return (
+          <PlayerCard
+            key={user.id}
+            user={user}
+            solve={prevSolve}
+            wins={wins[user.id] ?? 0}
+            isSelf={user.id === sessionUserId}
+            index={i}
+          />
+        )
       })}
     </div>
   )
