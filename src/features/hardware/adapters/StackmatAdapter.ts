@@ -57,8 +57,9 @@ export class StackmatAdapter implements HardwareAdapter<StackmatConnectOptions> 
     this.module.setCallBack((raw) => this.stateCallback(StackmatAdapter.mapState(raw)))
 
     // cstimer uses 'm' for MoYu timer mode, any other string for standard stackmat
+    // force=true allows init even if AudioContext starts suspended (common when called from useEffect)
     const timerType = options.moyuMode ? 'm' : 's'
-    await this.module.init(timerType, options.deviceId)
+    await this.module.init(timerType, options.deviceId, true)
   }
 
   disconnect(): void {

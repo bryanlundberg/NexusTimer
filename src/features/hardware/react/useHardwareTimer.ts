@@ -56,6 +56,7 @@ export function useHardwareTimer<TOptions>({
     if (autoConnect) connect()
     return () => {
       if (connectedRef.current) adapter?.disconnect()
+      connectedRef.current = false
     }
   }, [])
 
