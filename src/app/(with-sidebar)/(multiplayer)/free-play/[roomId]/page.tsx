@@ -25,7 +25,7 @@ import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { AnimatePresence, motion } from 'motion/react'
+import { motion } from 'motion/react'
 
 const tabs = [
   { key: 'timer', icon: Clock },
@@ -224,21 +224,12 @@ export default function FreePlayRoomPage() {
       {/* Tab content */}
       <div className="flex-1 min-h-0 overflow-hidden mx-2 md:mx-4">
         <div className="h-full rounded-xl border border-border bg-card overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentTab}
-              className="h-full overflow-y-auto"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-            >
-              {currentTab === 'timer' && (
-                <TimerTab maxRoundTime={maxRoundTime} event={event} onlineUsers={onlineUsers} />
-              )}
-              {currentTab === 'results' && <ResultsTab />}
-            </motion.div>
-          </AnimatePresence>
+          <div className={`h-full overflow-y-auto ${currentTab !== 'timer' ? 'hidden' : ''}`}>
+            <TimerTab maxRoundTime={maxRoundTime} event={event} onlineUsers={onlineUsers} />
+          </div>
+          <div className={`h-full overflow-y-auto ${currentTab !== 'results' ? 'hidden' : ''}`}>
+            <ResultsTab />
+          </div>
         </div>
       </div>
 

@@ -17,10 +17,27 @@ import { Cube } from '@/entities/cube/model/types'
 import { useTranslations } from 'next-intl'
 import ManualModeForm from '@/features/timer/ui/ManualModeForm'
 import LivePlayersPanel from '@/features/free-play-room/ui/live-players-panel'
-import { Keyboard } from 'lucide-react'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
 import { AnimatePresence, motion } from 'motion/react'
+import FreePlayStackmatListener from '@/features/free-play-room/ui/free-play-stackmat-listener'
+import { MixIcon } from '@radix-ui/react-icons'
+import { Eye, EyeOff } from 'lucide-react'
+
+const FREE_PLAY_MODES = [
+  { value: TimerMode.NORMAL, label: 'Normal' },
+  { value: TimerMode.MANUAL, label: 'Manual' },
+  { value: TimerMode.STACKMAT, label: 'Stackmat' }
+]
 
 interface TimerTabProps {
   maxRoundTime: number | null
@@ -30,6 +47,7 @@ interface TimerTabProps {
 
 export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabProps) {
   const t = useTranslations('Multiplayer')
+  const tIndex = useTranslations('Index')
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }
   const {
     updateUserPresenceStatus,
@@ -63,6 +81,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
   const [modalOpen, setModalOpen] = useState(false)
   const [hasSolvedCurrentScramble, setHasSolvedCurrentScramble] = useState(false)
   const [shouldPlaySound, setShouldPlaySound] = useState(false)
+  const [inspectionEnabled, setInspectionEnabled] = useState(false)
   const previousScrambleRef = useRef<string>('')
 
   useAudioTrigger({
@@ -143,7 +162,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     isSolving,
     setTimerStatus,
     selectedCube: disableTimer || modalOpen ? null : ({} as Cube),
-    inspectionRequired: true,
+    inspectionRequired: inspectionEnabled,
     setIsSolving,
     setSolvingTime,
     timerMode,
@@ -191,9 +210,9 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     <div className="flex h-full" id="touch">
       {/* Timer area */}
       <div className="relative flex-1 flex flex-col justify-center items-center p-4 md:p-8 bg-background/50">
-        {/* Mode toggle — top right of timer area */}
+        {/* Inspection toggle — top left of timer area */}
         <motion.div
-          className="absolute top-3 right-3 md:top-4 md:right-4"
+          className="absolute top-3 left-3 md:top-4 md:left-4"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.15, type: 'spring', stiffness: 300, damping: 25 }}
@@ -201,18 +220,51 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
-                variant={timerMode === TimerMode.MANUAL ? 'default' : 'outline'}
+                variant={inspectionEnabled ? 'default' : 'ghost'}
                 size="icon"
                 className="size-9 rounded-lg"
-                onClick={() => setTimerMode(timerMode === TimerMode.MANUAL ? TimerMode.NORMAL : TimerMode.MANUAL)}
+                onClick={() => setInspectionEnabled((prev) => !prev)}
               >
-                <Keyboard className="size-4" />
+                {inspectionEnabled ? <Eye className="size-4" /> : <EyeOff className="size-4" />}
               </Button>
             </TooltipTrigger>
-            <TooltipContent side="left">
-              <p>{timerMode === TimerMode.MANUAL ? 'Modo Normal' : 'Modo Manual'}</p>
-            </TooltipContent>
+            <TooltipContent side="right">{inspectionEnabled ? t('inspection-on') : t('inspection-off')}</TooltipContent>
           </Tooltip>
+        </motion.div>
+
+        {/* Mode toggle — top right of timer area */}
+        <motion.div
+          className="absolute top-3 right-3 md:top-4 md:right-4"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.15, type: 'spring', stiffness: 300, damping: 25 }}
+        >
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                data-testid={'button-select-mode'}
+                variant="ghost"
+                className="py-0 px-3 [&>svg]:transition-transform [&>svg]:duration-300 [&:hover>svg]:rotate-180"
+              >
+                <MixIcon />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-fit">
+              <DropdownMenuLabel>{tIndex('HomePage.mode')}</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuRadioGroup value={timerMode} onValueChange={(e: any) => setTimerMode(e)}>
+                <DropdownMenuRadioItem value={TimerMode.NORMAL} data-testid={'mode-normal'}>
+                  {tIndex('HomePage.modes.normal')}
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value={TimerMode.MANUAL} data-testid={'mode-manual'}>
+                  {tIndex('HomePage.modes.manual')}
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value={TimerMode.STACKMAT} data-testid={'mode-stackmat'}>
+                  {tIndex('HomePage.modes.stackmat')}
+                </DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </motion.div>
 
         {/* Scramble */}
@@ -260,11 +312,15 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
                 inspectionTime={inspectionTime}
                 hideWhileSolving={settings.features.hideWhileSolving}
                 className="text-center"
-                inspectionRequired={true}
+                inspectionRequired={inspectionEnabled}
               />
             </motion.div>
           )}
         </AnimatePresence>
+
+        {timerMode === TimerMode.STACKMAT && (
+          <FreePlayStackmatListener onFinish={handleManualSubmit} disabled={disableTimer} />
+        )}
 
         {/* Already submitted message */}
         <AnimatePresence>

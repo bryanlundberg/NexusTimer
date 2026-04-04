@@ -618,6 +618,9 @@
       "holding": "長押し中"
     },
     "already-submitted": "このスクランブルの記録は送信済みです。次のラウンドを待ってください！",
+    "inspection-on": "インスペクション有効",
+    "inspection-off": "インスペクション無効",
+    "previous-round": "前のラウンド",
     "confirm-solve": {
       "title": "タイムの確認 ({time})",
       "description": "この記録をどう登録しますか？",

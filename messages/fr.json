@@ -618,6 +618,9 @@
       "holding": "Maintien"
     },
     "already-submitted": "Vous avez déjà envoyé un temps pour ce mélange.",
+    "inspection-on": "Inspection activée",
+    "inspection-off": "Inspection désactivée",
+    "previous-round": "Tour précédent",
     "confirm-solve": {
       "title": "Confirmer le temps ({time})",
       "description": "Comment voulez-vous enregistrer ce temps ?",
