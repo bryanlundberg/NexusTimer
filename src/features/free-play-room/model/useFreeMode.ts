@@ -220,6 +220,21 @@ export default function useFreeMode() {
     return { createdBy, loaded }
   }
 
+  const useRoomExists = (roomId: string) => {
+    const [exists, setExists] = useState<boolean | null>(null)
+    const [loaded, setLoaded] = useState(false)
+
+    useEffect(() => {
+      const createdByRef = ref(rtdb, `rooms/${roomId}/createdBy`)
+      onValue(createdByRef, (snapshot) => {
+        setExists(snapshot.val() !== null)
+        setLoaded(true)
+      })
+    }, [roomId])
+
+    return { exists, loaded }
+  }
+
   const useRoomCurrentRound = (roomId: string) => {
     const [currentRound, setCurrentRound] = useState<number>(1)
 
@@ -258,6 +273,7 @@ export default function useFreeMode() {
     useRoomCurrentRound,
     incrementRoomRound,
     useRoomIsPrivate,
-    useRoomCreatedBy
+    useRoomCreatedBy,
+    useRoomExists
   }
 }

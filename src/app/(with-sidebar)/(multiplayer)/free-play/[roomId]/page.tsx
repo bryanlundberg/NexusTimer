@@ -53,7 +53,8 @@ export default function FreePlayRoomPage() {
     useRoomCurrentRound,
     incrementRoomRound,
     useRoomIsPrivate,
-    useRoomCreatedBy
+    useRoomCreatedBy,
+    useRoomExists
   } = useFreeMode()
   const onlineUsers = useUsersPresence(roomId?.toString() || '')
   const reset = useTimerStore((state) => state.reset)
@@ -71,6 +72,7 @@ export default function FreePlayRoomPage() {
 
   const { isPrivate, loaded: privateLoaded } = useRoomIsPrivate(roomId?.toString() || '')
   const { createdBy, loaded: createdByLoaded } = useRoomCreatedBy(roomId?.toString() || '')
+  const { exists: roomExists, loaded: roomExistsLoaded } = useRoomExists(roomId?.toString() || '')
 
   // 'checking' while we verify the cookie server-side, 'authorized' or 'gate'
   const [authState, setAuthState] = useState<'checking' | 'authorized' | 'gate'>('checking')
@@ -111,6 +113,14 @@ export default function FreePlayRoomPage() {
       })
     }
   }, [session])
+
+  useEffect(() => {
+    if (!roomExistsLoaded) return
+    if (roomExists === false) {
+      toast.error(t('room-not-found'))
+      router.push('/free-play')
+    }
+  }, [roomExistsLoaded, roomExists])
 
   useEffect(() => {
     if (!roomId || !session?.user?.id) return
@@ -196,7 +206,7 @@ export default function FreePlayRoomPage() {
   }
 
   // Loading — hide everything until meta is loaded and auth is checked
-  if (!metaLoaded || authState === 'checking') {
+  if (!metaLoaded || !roomExistsLoaded || authState === 'checking') {
     return null
   }
 
