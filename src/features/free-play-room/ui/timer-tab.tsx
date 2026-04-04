@@ -17,11 +17,19 @@ import { Cube } from '@/entities/cube/model/types'
 import { useTranslations } from 'next-intl'
 import ManualModeForm from '@/features/timer/ui/ManualModeForm'
 import LivePlayersPanel from '@/features/free-play-room/ui/live-players-panel'
-import { Check, Timer } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
 import { AnimatePresence, motion } from 'motion/react'
 import FreePlayStackmatListener from '@/features/free-play-room/ui/free-play-stackmat-listener'
+import { MixIcon } from '@radix-ui/react-icons'
 
 const FREE_PLAY_MODES = [
   { value: TimerMode.NORMAL, label: 'Normal' },
@@ -37,6 +45,7 @@ interface TimerTabProps {
 
 export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabProps) {
   const t = useTranslations('Multiplayer')
+  const tIndex = useTranslations('Index')
   const { roomId } = useParams<{ roomId: string }>() ?? { roomId: null }
   const {
     updateUserPresenceStatus,
@@ -207,17 +216,28 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
         >
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon" className="size-9 rounded-lg">
-                <Timer className="size-4" />
+              <Button
+                data-testid={'button-select-mode'}
+                variant="ghost"
+                className="py-0 px-3 [&>svg]:transition-transform [&>svg]:duration-300 [&:hover>svg]:rotate-180"
+              >
+                <MixIcon />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {FREE_PLAY_MODES.map(({ value, label }) => (
-                <DropdownMenuItem key={value} onClick={() => setTimerMode(value)} className="gap-2">
-                  {timerMode === value ? <Check className="size-4" /> : <span className="size-4 inline-block" />}
-                  {label}
-                </DropdownMenuItem>
-              ))}
+            <DropdownMenuContent className="w-fit">
+              <DropdownMenuLabel>{tIndex('HomePage.mode')}</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuRadioGroup value={timerMode} onValueChange={(e: any) => setTimerMode(e)}>
+                <DropdownMenuRadioItem value={TimerMode.NORMAL} data-testid={'mode-normal'}>
+                  {tIndex('HomePage.modes.normal')}
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value={TimerMode.MANUAL} data-testid={'mode-manual'}>
+                  {tIndex('HomePage.modes.manual')}
+                </DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value={TimerMode.STACKMAT} data-testid={'mode-stackmat'}>
+                  {tIndex('HomePage.modes.stackmat')}
+                </DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
             </DropdownMenuContent>
           </DropdownMenu>
         </motion.div>
