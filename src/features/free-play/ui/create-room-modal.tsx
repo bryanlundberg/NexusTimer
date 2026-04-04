@@ -21,11 +21,14 @@ function generateRoomCode() {
   return Array.from({ length: 6 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join('')
 }
 
-async function sha256(text: string): Promise<string> {
-  const buffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text.toUpperCase()))
-  return Array.from(new Uint8Array(buffer))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('')
+async function hashRoomCode(text: string): Promise<string> {
+  const res = await fetch('/api/v1/rooms/hash-password', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password: text })
+  })
+  const { hash } = await res.json()
+  return hash
 }
 
 export default function CreateRoomModal() {
@@ -78,7 +81,7 @@ export default function CreateRoomModal() {
       currentRound: 1,
       name: data.name,
       event: data.event,
-      ...(isPrivate && { passwordHash: await sha256(roomCode) })
+      ...(isPrivate && { passwordHash: await hashRoomCode(roomCode) })
     })
 
     router.push(`/free-play/${roomId}`)
