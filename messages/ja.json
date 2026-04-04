@@ -599,6 +599,7 @@
     },
     "create-room": {
       "title": "公開ルームを作成",
+      "title-private": "プライベートルームを作成",
       "description": "対戦イベント用の部屋を新規作成します。ルールや参加条件を設定してください。",
       "room-name": "部屋の名前",
       "room-name-placeholder": "例：夜のキューブ練習",
@@ -606,8 +607,21 @@
       "event": "種目",
       "max-round-time": "ラウンド最大時間",
       "max-round-time-description": "スクランブル＋インスペクション＋ソルブの制限時間",
+      "private": "プライベートルーム",
+      "private-description": "コードを持つ人のみが参加できます",
+      "room-code": "ルームコード",
+      "room-code-hint": "このコードを友達と共有して参加してもらいましょう",
       "continue": "作成する",
       "creating": "作成中..."
+    },
+    "join-private-room": {
+      "title": "プライベートルーム",
+      "description": "このルームに参加するには6文字のコードを入力してください。",
+      "placeholder": "例：A3BX2Z",
+      "wrong-code": "コードが間違っています。もう一度お試しください。",
+      "cancel": "キャンセル",
+      "join": "参加",
+      "joining": "参加中..."
     },
     "status": {
       "solving": "ソルブ中...",

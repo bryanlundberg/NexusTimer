@@ -190,6 +190,36 @@ export default function useFreeMode() {
     return maxRoundTime
   }
 
+  const useRoomIsPrivate = (roomId: string) => {
+    const [isPrivate, setIsPrivate] = useState<boolean | null>(null)
+    const [loaded, setLoaded] = useState(false)
+
+    useEffect(() => {
+      const hashRef = ref(rtdb, `rooms/${roomId}/passwordHash`)
+      onValue(hashRef, (snapshot) => {
+        setIsPrivate(snapshot.val() !== null)
+        setLoaded(true)
+      })
+    }, [roomId])
+
+    return { isPrivate, loaded }
+  }
+
+  const useRoomCreatedBy = (roomId: string) => {
+    const [createdBy, setCreatedBy] = useState<string | null>(null)
+    const [loaded, setLoaded] = useState(false)
+
+    useEffect(() => {
+      const createdByRef = ref(rtdb, `rooms/${roomId}/createdBy`)
+      onValue(createdByRef, (snapshot) => {
+        setCreatedBy(snapshot.val())
+        setLoaded(true)
+      })
+    }, [roomId])
+
+    return { createdBy, loaded }
+  }
+
   const useRoomCurrentRound = (roomId: string) => {
     const [currentRound, setCurrentRound] = useState<number>(1)
 
@@ -226,6 +256,8 @@ export default function useFreeMode() {
     useRoomEvent,
     useMaxRoundTime,
     useRoomCurrentRound,
-    incrementRoomRound
+    incrementRoomRound,
+    useRoomIsPrivate,
+    useRoomCreatedBy
   }
 }

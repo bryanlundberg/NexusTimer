@@ -599,6 +599,7 @@
     },
     "create-room": {
       "title": "Neuer öffentlicher Raum",
+      "title-private": "Neuer privater Raum",
       "description": "Erstelle einen neuen Raum für dein Clash-Event. Lege Regeln, Anforderungen und mehr fest.",
       "room-name": "Raumname",
       "room-name-placeholder": "z.B. Cubing-Nacht",
@@ -606,8 +607,21 @@
       "event": "Event",
       "max-round-time": "Maximale Rundenzeit",
       "max-round-time-description": "Zeitlimit für Scramble + Inspektion + Lösung",
+      "private": "Privater Raum",
+      "private-description": "Nur Personen mit dem Code können beitreten",
+      "room-code": "Raumcode",
+      "room-code-hint": "Teile diesen Code mit deinen Freunden, damit sie beitreten können",
       "continue": "Weiter",
       "creating": "Wird erstellt..."
+    },
+    "join-private-room": {
+      "title": "Privater Raum",
+      "description": "Gib den 6-stelligen Code ein, um diesem Raum beizutreten.",
+      "placeholder": "z.B. A3BX2Z",
+      "wrong-code": "Falscher Code. Bitte versuche es erneut.",
+      "cancel": "Abbrechen",
+      "join": "Beitreten",
+      "joining": "Beitrete..."
     },
     "status": {
       "solving": "Lösen...",

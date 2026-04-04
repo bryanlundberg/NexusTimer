@@ -601,6 +601,7 @@
       },
       "create-room": {
         "title": "Nueva sala pública",
+        "title-private": "Nueva sala privada",
         "description": "Crea una nueva sala para tu evento de Clash. Configura las reglas, requisitos y más.",
         "room-name": "Nombre de la sala",
         "room-name-placeholder": "ej. Noche de cubing",
@@ -608,8 +609,21 @@
         "event": "Evento",
         "max-round-time": "Tiempo máximo de ronda",
         "max-round-time-description": "Límite de tiempo para scramble + inspección + resolución",
+        "private": "Sala privada",
+        "private-description": "Solo las personas con el código pueden unirse",
+        "room-code": "Código de sala",
+        "room-code-hint": "Comparte este código con tus amigos para que puedan unirse",
         "continue": "Continuar",
         "creating": "Creando..."
+      },
+      "join-private-room": {
+        "title": "Sala privada",
+        "description": "Ingresa el código de 6 caracteres para unirte a esta sala.",
+        "placeholder": "ej. A3BX2Z",
+        "wrong-code": "Código incorrecto. Por favor, inténtalo de nuevo.",
+        "cancel": "Cancelar",
+        "join": "Unirse",
+        "joining": "Uniéndose..."
       },
       "status": {
         "solving": "Resolviendo...",

@@ -12,7 +12,8 @@ const roomSchema = z.object({
   scramble: z.string(),
   currentRoundTimeLimit: z.number(),
   name: z.string(),
-  event: z.enum(CUBE_CATEGORIES)
+  event: z.enum(CUBE_CATEGORIES),
+  passwordHash: z.string().optional()
 })
 
 export type Room = z.infer<typeof roomSchema>

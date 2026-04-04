@@ -599,6 +599,7 @@
     },
     "create-room": {
       "title": "新建公共房间",
+      "title-private": "新建私人房间",
       "description": "为你的 Clash 活动创建一个新房间。设置规则、要求等。",
       "room-name": "房间名称",
       "room-name-placeholder": "例如：魔友之夜",
@@ -606,8 +607,21 @@
       "event": "项目",
       "max-round-time": "最大单轮时间",
       "max-round-time-description": "打乱 + 观察 + 还原的时间限制",
+      "private": "私人房间",
+      "private-description": "只有拥有代码的人才能加入",
+      "room-code": "房间代码",
+      "room-code-hint": "将此代码分享给朋友，让他们可以加入",
       "continue": "继续",
       "creating": "创建中..."
+    },
+    "join-private-room": {
+      "title": "私人房间",
+      "description": "输入6位代码以加入此房间。",
+      "placeholder": "例：A3BX2Z",
+      "wrong-code": "代码不正确，请重试。",
+      "cancel": "取消",
+      "join": "加入",
+      "joining": "加入中..."
     },
     "status": {
       "solving": "还原中...",
