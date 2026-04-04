@@ -622,6 +622,7 @@
       "already-submitted": "Ya has enviado una resolución para este scramble. ¡Espera al siguiente!",
       "inspection-on": "Inspección activada",
       "inspection-off": "Inspección desactivada",
+      "previous-round": "Ronda anterior",
       "confirm-solve": {
         "title": "Confirmar tiempo ({time})",
         "description": "¿Cómo quieres registrar este tiempo?",

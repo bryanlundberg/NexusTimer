@@ -620,6 +620,7 @@
     "already-submitted": "你已经提交了本次打乱的成绩。请等待下一轮！",
     "inspection-on": "检查已启用",
     "inspection-off": "检查已禁用",
+    "previous-round": "上一轮",
     "confirm-solve": {
       "title": "确认成绩 ({time})",
       "description": "你想如何记录这次还原？",

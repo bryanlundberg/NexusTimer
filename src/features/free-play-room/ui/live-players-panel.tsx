@@ -2,7 +2,8 @@
 
 import formatTime from '@/shared/lib/formatTime'
 import { motion } from 'motion/react'
-import { Trophy } from 'lucide-react'
+import { History, Trophy } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 interface LivePlayersPanelProps {
   onlineUsers: any[]
@@ -95,6 +96,8 @@ function PlayerCard({
 }
 
 export default function LivePlayersPanel({ onlineUsers, solves, currentRound, sessionUserId }: LivePlayersPanelProps) {
+  const t = useTranslations('Multiplayer')
+
   if (!onlineUsers.length) return null
 
   const previousRound = currentRound - 1
@@ -102,6 +105,10 @@ export default function LivePlayersPanel({ onlineUsers, solves, currentRound, se
 
   return (
     <div className="flex flex-col gap-2">
+      <div className="flex items-center gap-1.5 px-1 pb-1 border-b border-border">
+        <History className="size-3 text-muted-foreground" />
+        <span className="text-[11px] text-muted-foreground">{t('previous-round')}</span>
+      </div>
       {onlineUsers.map((user, i) => {
         const userSolves = solves[user.id] ?? {}
         const prevSolve =

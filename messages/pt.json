@@ -620,6 +620,7 @@
     "already-submitted": "Você já enviou um tempo para este embaralhamento.",
     "inspection-on": "Inspeção ativada",
     "inspection-off": "Inspeção desativada",
+    "previous-round": "Rodada anterior",
     "confirm-solve": {
       "title": "Confirmar Tempo ({time})",
       "description": "Como você deseja registrar este tempo?",
