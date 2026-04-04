@@ -660,6 +660,7 @@
       "created-at": "생성 시각",
       "join": "입장"
     },
+    "room-not-found": "방을 찾을 수 없습니다",
     "invite-link-copied": "초대 링크가 복사되었습니다",
     "share-room-text": "NexusTimer 방으로 오세요!",
     "invite": "초대하기",

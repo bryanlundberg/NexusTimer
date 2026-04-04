@@ -664,6 +664,7 @@
         "created-at": "Created at",
         "join": "Join"
       },
+      "room-not-found": "Room not found",
       "invite-link-copied": "Invite link copied",
       "share-room-text": "Join my cubing room on NexusTimer!",
       "invite": "Invite",

@@ -660,6 +660,7 @@
       "created-at": "作成時刻",
       "join": "参加"
     },
+    "room-not-found": "部屋が見つかりません",
     "invite-link-copied": "招待リンクをコピーしました",
     "share-room-text": "NexusTimerの部屋に来てください！",
     "invite": "招待",

@@ -660,6 +660,7 @@
       "created-at": "创建于",
       "join": "加入"
     },
+    "room-not-found": "找不到房间",
     "invite-link-copied": "邀请链接已复制",
     "share-room-text": "快来加入我在 NexusTimer 的房间吧！",
     "invite": "邀请",
