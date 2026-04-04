@@ -18,7 +18,10 @@ import { useState } from 'react'
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
 
 function generateRoomCode() {
-  return Array.from({ length: 6 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join('')
+  const length = 6
+  const randomBytes = new Uint8Array(length)
+  crypto.getRandomValues(randomBytes)
+  return Array.from(randomBytes, (byte) => CODE_CHARS[byte % CODE_CHARS.length]).join('')
 }
 
 async function hashRoomCode(text: string): Promise<string> {
