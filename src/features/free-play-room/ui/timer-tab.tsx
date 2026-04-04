@@ -17,10 +17,17 @@ import { Cube } from '@/entities/cube/model/types'
 import { useTranslations } from 'next-intl'
 import ManualModeForm from '@/features/timer/ui/ManualModeForm'
 import LivePlayersPanel from '@/features/free-play-room/ui/live-players-panel'
-import { Keyboard } from 'lucide-react'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Check, Timer } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { AnimatePresence, motion } from 'motion/react'
+import FreePlayStackmatListener from '@/features/free-play-room/ui/free-play-stackmat-listener'
+
+const FREE_PLAY_MODES = [
+  { value: TimerMode.NORMAL, label: 'Normal' },
+  { value: TimerMode.MANUAL, label: 'Manual' },
+  { value: TimerMode.STACKMAT, label: 'Stackmat' }
+]
 
 interface TimerTabProps {
   maxRoundTime: number | null
@@ -198,21 +205,21 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.15, type: 'spring', stiffness: 300, damping: 25 }}
         >
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant={timerMode === TimerMode.MANUAL ? 'default' : 'outline'}
-                size="icon"
-                className="size-9 rounded-lg"
-                onClick={() => setTimerMode(timerMode === TimerMode.MANUAL ? TimerMode.NORMAL : TimerMode.MANUAL)}
-              >
-                <Keyboard className="size-4" />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="icon" className="size-9 rounded-lg">
+                <Timer className="size-4" />
               </Button>
-            </TooltipTrigger>
-            <TooltipContent side="left">
-              <p>{timerMode === TimerMode.MANUAL ? 'Modo Normal' : 'Modo Manual'}</p>
-            </TooltipContent>
-          </Tooltip>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {FREE_PLAY_MODES.map(({ value, label }) => (
+                <DropdownMenuItem key={value} onClick={() => setTimerMode(value)} className="gap-2">
+                  {timerMode === value ? <Check className="size-4" /> : <span className="size-4 inline-block" />}
+                  {label}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </motion.div>
 
         {/* Scramble */}
@@ -265,6 +272,10 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
             </motion.div>
           )}
         </AnimatePresence>
+
+        {timerMode === TimerMode.STACKMAT && (
+          <FreePlayStackmatListener onFinish={handleManualSubmit} disabled={disableTimer} />
+        )}
 
         {/* Already submitted message */}
         <AnimatePresence>
