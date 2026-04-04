@@ -6,12 +6,13 @@ import { Separator } from '@/components/ui/separator'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList } from '@/components/ui/breadcrumb'
 import Link from 'next/link'
 import * as React from 'react'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState, KeyboardEvent } from 'react'
 import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import genScramble from '@/shared/lib/timer/genScramble'
 import { Button } from '@/components/ui/button'
-import { ChartBarIcon, CheckIcon, Clock, EyeIcon, Plus, UsersIcon } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { ChartBarIcon, CheckIcon, Clock, EyeIcon, Lock, Plus } from 'lucide-react'
 import { AvatarGroup, AvatarGroupTooltip } from '@/components/ui/shadcn-io/avatar-group'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Image from 'next/image'
@@ -50,7 +51,9 @@ export default function FreePlayRoomPage() {
     updateRoomRoundLimit,
     updateRoomScramble,
     useRoomCurrentRound,
-    incrementRoomRound
+    incrementRoomRound,
+    useRoomIsPrivate,
+    useRoomCreatedBy
   } = useFreeMode()
   const onlineUsers = useUsersPresence(roomId?.toString() || '')
   const reset = useTimerStore((state) => state.reset)
@@ -65,6 +68,35 @@ export default function FreePlayRoomPage() {
   const roomAuthority = useRoomAuthority(roomId?.toString() || '')
   const event = useRoomEvent(roomId?.toString() || '')
   const maxRoundTime = useFreeMode().useMaxRoundTime(roomId?.toString() || '')
+
+  const { isPrivate, loaded: privateLoaded } = useRoomIsPrivate(roomId?.toString() || '')
+  const { createdBy, loaded: createdByLoaded } = useRoomCreatedBy(roomId?.toString() || '')
+
+  // 'checking' while we verify the cookie server-side, 'authorized' or 'gate'
+  const [authState, setAuthState] = useState<'checking' | 'authorized' | 'gate'>('checking')
+  const [passwordInput, setPasswordInput] = useState('')
+  const [passwordError, setPasswordError] = useState(false)
+  const [passwordSubmitting, setPasswordSubmitting] = useState(false)
+
+  const isCreator = session?.user?.id !== undefined && session.user.id === createdBy
+  const metaLoaded = privateLoaded && createdByLoaded
+
+  const checkAuth = useCallback(async () => {
+    if (!roomId) return
+    if (!isPrivate || isCreator) {
+      setAuthState('authorized')
+      return
+    }
+    const res = await fetch(`/api/v1/rooms/check-auth?roomId=${roomId}`)
+    const data = await res.json()
+    setAuthState(data.authorized ? 'authorized' : 'gate')
+  }, [roomId, isPrivate, isCreator])
+
+  // Run auth check once room metadata is loaded
+  useEffect(() => {
+    if (!metaLoaded) return
+    checkAuth()
+  }, [metaLoaded, checkAuth])
 
   useEffect(() => {
     if (session === undefined) return
@@ -82,6 +114,8 @@ export default function FreePlayRoomPage() {
 
   useEffect(() => {
     if (!roomId || !session?.user?.id) return
+    if (authState !== 'authorized') return
+
     joinRoom(roomId.toString(), session.user.id)
 
     return () => {
@@ -91,7 +125,7 @@ export default function FreePlayRoomPage() {
         reset()
       }
     }
-  }, [roomId, session?.user?.id])
+  }, [roomId, session?.user?.id, authState])
 
   const handledRoundRef = useRef<number | null>(null)
   useEffect(() => {
@@ -130,11 +164,92 @@ export default function FreePlayRoomPage() {
         }
       }
     } else {
-      const url = window.location.href
-      navigator.clipboard.writeText(url).then(() => {
+      navigator.clipboard.writeText(window.location.href).then(() => {
         toast.success(t('invite-link-copied'))
       })
     }
+  }
+
+  const handlePasswordSubmit = async () => {
+    if (passwordInput.length !== 6 || passwordSubmitting) return
+    setPasswordSubmitting(true)
+
+    const res = await fetch('/api/v1/rooms/verify-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ roomId, password: passwordInput })
+    })
+    const data = await res.json()
+
+    if (data.success) {
+      setPasswordError(false)
+      setAuthState('authorized')
+    } else {
+      setPasswordError(true)
+      setPasswordInput('')
+    }
+    setPasswordSubmitting(false)
+  }
+
+  const handlePasswordKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') handlePasswordSubmit()
+  }
+
+  // Loading — hide everything until meta is loaded and auth is checked
+  if (!metaLoaded || authState === 'checking') {
+    return null
+  }
+
+  // Password gate
+  if (authState === 'gate') {
+    return (
+      <div className="flex flex-col items-center justify-center h-dvh gap-6 px-4">
+        <div className="flex flex-col items-center gap-2 text-center">
+          <div className="size-12 rounded-full bg-muted flex items-center justify-center mb-2">
+            <Lock className="size-5 text-muted-foreground" />
+          </div>
+          <h2 className="text-lg font-semibold">{t('join-private-room.title')}</h2>
+          <p className="text-sm text-muted-foreground max-w-xs">{t('join-private-room.description')}</p>
+        </div>
+
+        <div className="w-full max-w-xs space-y-3">
+          <Input
+            autoFocus
+            value={passwordInput}
+            onChange={(e) =>
+              setPasswordInput(
+                e.target.value
+                  .toUpperCase()
+                  .replace(/[^A-Z0-9]/g, '')
+                  .slice(0, 6)
+              )
+            }
+            onKeyDown={handlePasswordKeyDown}
+            placeholder={t('join-private-room.placeholder')}
+            className={`h-12 font-mono text-lg text-center tracking-[0.3em] uppercase ${passwordError ? 'border-destructive focus-visible:ring-destructive/30' : ''}`}
+            maxLength={6}
+          />
+          {passwordError && <p className="text-xs text-destructive text-center">{t('join-private-room.wrong-code')}</p>}
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              className="flex-1"
+              onClick={() => router.push('/free-play')}
+              disabled={passwordSubmitting}
+            >
+              {t('join-private-room.cancel')}
+            </Button>
+            <Button
+              className="flex-1"
+              onClick={handlePasswordSubmit}
+              disabled={passwordInput.length !== 6 || passwordSubmitting}
+            >
+              {passwordSubmitting ? t('join-private-room.joining') : t('join-private-room.join')}
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -233,7 +348,7 @@ export default function FreePlayRoomPage() {
         </div>
       </div>
 
-      {/* Tab bar — mobile: full-width pill bar, desktop: compact centered */}
+      {/* Tab bar */}
       <div className="px-3 pt-3 pb-4 md:pb-3">
         <div className="relative flex items-center bg-muted/60 rounded-xl p-1 md:max-w-xs md:mx-auto">
           {tabs.map((tab) => {
