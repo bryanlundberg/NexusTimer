@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
-
-function sha256(text: string): string {
-  return crypto.createHash('sha256').update(text.toUpperCase()).digest('hex')
-}
+import bcrypt from 'bcryptjs'
 
 function signRoomId(roomId: string): string {
   return crypto
@@ -30,7 +27,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true })
     }
 
-    if (sha256(password) !== storedHash) {
+    if (!(await bcrypt.compare(password.toUpperCase(), storedHash))) {
       return NextResponse.json({ success: false }, { status: 401 })
     }
 
