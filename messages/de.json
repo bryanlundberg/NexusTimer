@@ -618,6 +618,8 @@
       "holding": "Halten"
     },
     "already-submitted": "Du hast für dieses Scramble bereits eine Zeit gesendet.",
+    "inspection-on": "Inspektion aktiviert",
+    "inspection-off": "Inspektion deaktiviert",
     "confirm-solve": {
       "title": "Zeit bestätigen ({time})",
       "description": "Wie soll diese Zeit gewertet werden?",

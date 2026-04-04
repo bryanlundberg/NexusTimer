@@ -618,6 +618,8 @@
       "holding": "누르고 있음"
     },
     "already-submitted": "이미 이 스크램블에 대한 기록을 제출했습니다. 다음을 기다려 주세요!",
+    "inspection-on": "인스펙션 활성화됨",
+    "inspection-off": "인스펙션 비활성화됨",
     "confirm-solve": {
       "title": "기록 확인 ({time})",
       "description": "이 기록을 어떻게 등록할까요?",

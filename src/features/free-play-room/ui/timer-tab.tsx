@@ -18,6 +18,7 @@ import { useTranslations } from 'next-intl'
 import ManualModeForm from '@/features/timer/ui/ManualModeForm'
 import LivePlayersPanel from '@/features/free-play-room/ui/live-players-panel'
 import { Button } from '@/components/ui/button'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,6 +31,7 @@ import {
 import { AnimatePresence, motion } from 'motion/react'
 import FreePlayStackmatListener from '@/features/free-play-room/ui/free-play-stackmat-listener'
 import { MixIcon } from '@radix-ui/react-icons'
+import { Eye, EyeOff } from 'lucide-react'
 
 const FREE_PLAY_MODES = [
   { value: TimerMode.NORMAL, label: 'Normal' },
@@ -79,6 +81,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
   const [modalOpen, setModalOpen] = useState(false)
   const [hasSolvedCurrentScramble, setHasSolvedCurrentScramble] = useState(false)
   const [shouldPlaySound, setShouldPlaySound] = useState(false)
+  const [inspectionEnabled, setInspectionEnabled] = useState(false)
   const previousScrambleRef = useRef<string>('')
 
   useAudioTrigger({
@@ -159,7 +162,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     isSolving,
     setTimerStatus,
     selectedCube: disableTimer || modalOpen ? null : ({} as Cube),
-    inspectionRequired: true,
+    inspectionRequired: inspectionEnabled,
     setIsSolving,
     setSolvingTime,
     timerMode,
@@ -207,6 +210,28 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     <div className="flex h-full" id="touch">
       {/* Timer area */}
       <div className="relative flex-1 flex flex-col justify-center items-center p-4 md:p-8 bg-background/50">
+        {/* Inspection toggle — top left of timer area */}
+        <motion.div
+          className="absolute top-3 left-3 md:top-4 md:left-4"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.15, type: 'spring', stiffness: 300, damping: 25 }}
+        >
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant={inspectionEnabled ? 'default' : 'ghost'}
+                size="icon"
+                className="size-9 rounded-lg"
+                onClick={() => setInspectionEnabled((prev) => !prev)}
+              >
+                {inspectionEnabled ? <Eye className="size-4" /> : <EyeOff className="size-4" />}
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent side="right">{inspectionEnabled ? t('inspection-on') : t('inspection-off')}</TooltipContent>
+          </Tooltip>
+        </motion.div>
+
         {/* Mode toggle — top right of timer area */}
         <motion.div
           className="absolute top-3 right-3 md:top-4 md:right-4"
@@ -287,7 +312,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
                 inspectionTime={inspectionTime}
                 hideWhileSolving={settings.features.hideWhileSolving}
                 className="text-center"
-                inspectionRequired={true}
+                inspectionRequired={inspectionEnabled}
               />
             </motion.div>
           )}
