@@ -603,6 +603,7 @@
       },
       "create-room": {
         "title": "New public room",
+        "title-private": "New private room",
         "description": "Create a new room for your Clash event. Set the rules, requirements, and more.",
         "room-name": "Room name",
         "room-name-placeholder": "e.g. Night of cubing",
@@ -610,8 +611,21 @@
         "event": "Event",
         "max-round-time": "Maximum round time",
         "max-round-time-description": "Time limit for scramble + inspection + solving",
+        "private": "Private room",
+        "private-description": "Only people with the code can join",
+        "room-code": "Room code",
+        "room-code-hint": "Share this code with your friends so they can join",
         "continue": "Continue",
         "creating": "Creating..."
+      },
+      "join-private-room": {
+        "title": "Private Room",
+        "description": "Enter the 6-character code to join this room.",
+        "placeholder": "e.g. A3BX2Z",
+        "wrong-code": "Incorrect code.",
+        "cancel": "Cancel",
+        "join": "Join",
+        "joining": "Joining..."
       },
       "status": {
         "solving": "Solving...",

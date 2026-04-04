@@ -599,6 +599,7 @@
     },
     "create-room": {
       "title": "새 공개 방 만들기",
+      "title-private": "새 비공개 방 만들기",
       "description": "Clash 이벤트를 위한 방을 만듭니다. 규칙과 요구 사항 등을 설정하세요.",
       "room-name": "방 이름",
       "room-name-placeholder": "예: 밤샘 큐빙",
@@ -606,8 +607,21 @@
       "event": "종목",
       "max-round-time": "라운드 최대 시간",
       "max-round-time-description": "스크램블 + 미리보기 + 솔빙 합산 제한 시간",
+      "private": "비공개 방",
+      "private-description": "코드를 가진 사람만 참여할 수 있습니다",
+      "room-code": "방 코드",
+      "room-code-hint": "이 코드를 친구들과 공유하여 참여할 수 있게 하세요",
       "continue": "계속하기",
       "creating": "생성 중..."
+    },
+    "join-private-room": {
+      "title": "비공개 방",
+      "description": "이 방에 참여하려면 6자리 코드를 입력하세요.",
+      "placeholder": "예: A3BX2Z",
+      "wrong-code": "잘못된 코드입니다. 다시 시도해 주세요.",
+      "cancel": "취소",
+      "join": "참여",
+      "joining": "참여 중..."
     },
     "status": {
       "solving": "솔빙 중...",
