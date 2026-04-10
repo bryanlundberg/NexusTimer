@@ -85,7 +85,7 @@
     "motion": "^12.23.9",
     "next": "16.1.7",
     "next-auth": "5.0.0-beta.30",
-    "next-intl": "^4.3.4",
+    "next-intl": "^4.9.1",
     "next-themes": "^0.3.0",
     "nuqs": "^2.4.3",
     "papaparse": "^5.5.2",
