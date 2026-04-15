@@ -2,6 +2,7 @@ import getMean from '../../../shared/lib/statistics/getMean'
 import getWorstTime from '../../../shared/lib/statistics/getWorstTime'
 import getBestTime from '../../../shared/lib/statistics/getBestTime'
 import getDeviation from '../../../shared/lib/statistics/getDeviation'
+import calculateCurrentAo from '../../../shared/lib/statistics/calculateCurrentAo'
 import formatTime from '../../../shared/lib/formatTime'
 import { SolveTab } from '@/shared/types/enums'
 import { Solve } from '@/entities/solve/model/types'
@@ -32,7 +33,7 @@ export function createShareMessage({
     dataSet.splice(solveCount)
   }
 
-  const average = getMean([...dataSet])
+  const mean = getMean([...dataSet])
   const worstTime = getWorstTime([...dataSet])
   const bestTime = getBestTime({ solves: [...dataSet] })
   const deviation = getDeviation([...dataSet])
@@ -41,7 +42,13 @@ export function createShareMessage({
   let content = `${statsTitle}: ${date}`
 
   // Summary
-  content += `\n${avg} ${dataSet.length}: ${formatTime(average)} (σ = ${formatTime(deviation)})`
+  if (type !== SolveTab.ALL) {
+    const aoValue = calculateCurrentAo([...dataSet], dataSet.length)
+    const aoLabel = aoValue === 0 ? 'DNF' : formatTime(aoValue)
+    content += `\nAo${dataSet.length}: ${aoLabel} | ${avg}: ${formatTime(mean)} (σ = ${formatTime(deviation)})`
+  } else {
+    content += `\n${avg} ${dataSet.length}: ${formatTime(mean)} (σ = ${formatTime(deviation)})`
+  }
 
   // Space row
   content += `\n\n`
