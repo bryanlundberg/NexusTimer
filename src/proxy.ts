@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { locales, defaultLocale } from '@/shared/config/i18n/locales'
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Cookie already set — locale preference is known, nothing to do
   if (request.cookies.has('NEXT_LOCALE')) return NextResponse.next()
 
