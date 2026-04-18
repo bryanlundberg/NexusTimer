@@ -1,14 +1,17 @@
 import { toast } from 'sonner'
 import { useSession } from 'next-auth/react'
+import { useState } from 'react'
 import loader from '@/shared/lib/loader'
 import uploadFile from '@/shared/lib/uploadFile'
 
 export function useUpdateUserAvatar() {
   const { data: session, update } = useSession()
+  const [isUploading, setIsUploading] = useState(false)
 
   const updateAvatar = async (file?: File) => {
     if (!file || !session?.user?.id) return
     try {
+      setIsUploading(true)
       loader.start()
       const urlImage = await uploadFile(file, `/avatars`, session.user.id)
       const res = await fetch(`/api/v1/users/${session.user.id}`, {
@@ -23,8 +26,9 @@ export function useUpdateUserAvatar() {
       toast.error('Error updating user image')
     } finally {
       loader.stop()
+      setIsUploading(false)
     }
   }
 
-  return { updateAvatar }
+  return { updateAvatar, isUploading }
 }
