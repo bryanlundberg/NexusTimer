@@ -644,7 +644,10 @@
         "description": "How would you like to register this solve?",
         "dnf": "DNF",
         "plus2": "+2",
-        "ok": "OK"
+        "ok": "OK",
+        "save-to-cube-label": "Also save to cube (optional)",
+        "save-to-cube-none": "Don't save",
+        "save-to-cube-empty": "No cubes available for this event"
       },
       "results-tab": {
         "latest": "Latest",
