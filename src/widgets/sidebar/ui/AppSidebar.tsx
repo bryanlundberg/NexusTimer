@@ -10,12 +10,14 @@ import {
   HistoryIcon,
   LandPlot,
   MonitorDown,
+  PlusIcon,
   ReplaceIcon,
   Settings,
   TableProperties,
   TimerIcon,
   UsersRound
 } from 'lucide-react'
+import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 
 import {
   Sidebar,
@@ -43,6 +45,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { open, openMobile, setOpenMobile, isMobile } = useSidebar()
   const t = useTranslations('Index')
   const { isInstallable, install } = usePwaInstall()
+  const { handleCreate } = useCubeActions()
 
   const data = useMemo(
     () => ({
@@ -65,7 +68,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           title: t('NavMain.cubes'),
           url: '/cubes',
-          icon: BoxesIcon
+          icon: BoxesIcon,
+          action: {
+            icon: PlusIcon,
+            label: t('CubesPage.new-collection'),
+            onClick: handleCreate
+          }
         },
         {
           title: t('NavMain.transfer'),
@@ -117,7 +125,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         }
       ]
     }),
-    [t]
+    [t, handleCreate]
   )
 
   return (

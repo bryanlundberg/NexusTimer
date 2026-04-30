@@ -29,6 +29,11 @@ export function NavMain({
     url: string
     icon: LucideIcon
     isActive?: boolean
+    action?: {
+      icon: LucideIcon
+      label: string
+      onClick: () => void
+    }
     items?: {
       title: string
       url: string
@@ -80,6 +85,19 @@ export function NavMain({
                     <span>{item.title}</span>
                   </Link>
                 </SidebarMenuButton>
+                {item.action && !item.items?.length ? (
+                  <SidebarMenuAction
+                    onClick={(e) => {
+                      e.preventDefault()
+                      e.stopPropagation()
+                      item.action!.onClick()
+                      if (isMobile) setOpenMobile(false)
+                    }}
+                  >
+                    <item.action.icon />
+                    <span className="sr-only">{item.action.label}</span>
+                  </SidebarMenuAction>
+                ) : null}
                 {item.items?.length ? (
                   <>
                     <CollapsibleTrigger asChild>
