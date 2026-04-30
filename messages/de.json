@@ -640,7 +640,10 @@
       "description": "Wie soll diese Zeit gewertet werden?",
       "dnf": "DNF",
       "plus2": "+2",
-      "ok": "OK"
+      "ok": "OK",
+      "save-to-cube-label": "Auch im Würfel speichern (optional)",
+      "save-to-cube-none": "Nicht speichern",
+      "save-to-cube-empty": "Keine Würfel für dieses Event verfügbar"
     },
     "results-tab": {
       "latest": "Letzte",

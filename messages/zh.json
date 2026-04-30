@@ -640,7 +640,10 @@
       "description": "你想如何记录这次还原？",
       "dnf": "DNF",
       "plus2": "+2",
-      "ok": "确定"
+      "ok": "确定",
+      "save-to-cube-label": "同时保存到魔方（可选）",
+      "save-to-cube-none": "不保存",
+      "save-to-cube-empty": "此项目没有可用的魔方"
     },
     "results-tab": {
       "latest": "最近",

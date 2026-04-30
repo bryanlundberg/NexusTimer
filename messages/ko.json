@@ -640,7 +640,10 @@
       "description": "이 기록을 어떻게 등록할까요?",
       "dnf": "DNF",
       "plus2": "+2",
-      "ok": "확인"
+      "ok": "확인",
+      "save-to-cube-label": "큐브에도 저장 (선택 사항)",
+      "save-to-cube-none": "저장하지 않음",
+      "save-to-cube-empty": "이 이벤트에 사용할 수 있는 큐브가 없습니다"
     },
     "results-tab": {
       "latest": "최근",

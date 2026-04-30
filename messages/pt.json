@@ -640,7 +640,10 @@
       "description": "Como você deseja registrar este tempo?",
       "dnf": "DNF",
       "plus2": "+2",
-      "ok": "OK"
+      "ok": "OK",
+      "save-to-cube-label": "Salvar também em um cubo (opcional)",
+      "save-to-cube-none": "Não salvar",
+      "save-to-cube-empty": "Nenhum cubo disponível para este evento"
     },
     "results-tab": {
       "latest": "Último",

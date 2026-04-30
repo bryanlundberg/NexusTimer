@@ -640,7 +640,10 @@
       "description": "この記録をどう登録しますか？",
       "dnf": "DNF",
       "plus2": "+2",
-      "ok": "OK"
+      "ok": "OK",
+      "save-to-cube-label": "キューブにも保存する（任意）",
+      "save-to-cube-none": "保存しない",
+      "save-to-cube-empty": "このイベントに利用できるキューブがありません"
     },
     "results-tab": {
       "latest": "最近",
