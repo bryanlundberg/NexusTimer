@@ -14,6 +14,9 @@ import useDeviceMatch from '@/shared/model/useDeviceMatch'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { Cube } from '@/entities/cube/model/types'
+import { cubesDB } from '@/entities/cube/api/indexdb'
+import genId from '@/shared/lib/genId'
+import { Solve } from '@/entities/solve/model/types'
 import { useTranslations } from 'next-intl'
 import ManualModeForm from '@/features/timer/ui/ManualModeForm'
 import LivePlayersPanel from '@/features/free-play-room/ui/live-players-panel'
@@ -74,7 +77,10 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     setIsSolving,
     setSolvingTime,
     setTimerMode,
-    reset
+    reset,
+    selectedCube,
+    setSelectedCube,
+    setCubes
   } = useTimerStore()
   const solves = useRoomSolves(roomId?.toString() || '')
 
@@ -101,7 +107,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
 
   const { device } = useDeviceMatch()
 
-  const handleSubmitTime = async (dnf: boolean, plus2: boolean) => {
+  const handleSubmitTime = async (dnf: boolean, plus2: boolean, cubeId: string | null) => {
     setModalOpen(false)
     setHasSolvedCurrentScramble(true)
     if (!session?.user?.id) return
@@ -115,6 +121,41 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
       scramble,
       roundIndex: currentRound
     })
+
+    if (cubeId) {
+      try {
+        const cube = await cubesDB.getById(cubeId)
+        const now = Date.now()
+        const newSolve: Solve = {
+          id: genId(),
+          startTime: now - solvingTime,
+          endTime: now,
+          scramble,
+          bookmark: false,
+          time: solvingTime,
+          dnf,
+          plus2,
+          rating: Math.floor(Math.random() * 20) + (scramble?.length || 0),
+          cubeId: cube.id,
+          comment: '',
+          isDeleted: false,
+          updatedAt: now
+        }
+        const updatedCube = {
+          ...cube,
+          solves: { ...cube.solves, session: [newSolve, ...cube.solves.session] }
+        }
+        await cubesDB.update(updatedCube)
+
+        if (selectedCube?.id === updatedCube.id) {
+          setSelectedCube(updatedCube)
+        }
+        const all = await cubesDB.getAll()
+        setCubes(all)
+      } catch (e) {
+        console.error('Failed to save free-play solve to cube', e)
+      }
+    }
   }
 
   useEffect(() => {
@@ -351,7 +392,8 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
       <ConfirmSolveModal
         isOpen={modalOpen}
         onClose={setModalOpen}
-        onChoose={({ dnf, plus2 }) => handleSubmitTime(dnf, plus2)}
+        category={event}
+        onChoose={({ dnf, plus2, cubeId }) => handleSubmitTime(dnf, plus2, cubeId)}
       />
     </div>
   )
