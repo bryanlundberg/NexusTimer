@@ -1,5 +1,4 @@
 import { ImageResponse } from 'next/og'
-import { getTranslations } from 'next-intl/server'
 
 export const runtime = 'edge'
 
@@ -13,7 +12,8 @@ export const contentType = 'image/png'
 
 export default async function Image({ params }: { params: { roomId: string } }) {
   const roomId = params.roomId
-  const t = await getTranslations('Multiplayer.OpenGraph')
+  const invitedText = "You're invited to a room"
+  const joinNowText = 'Join now!'
 
   return new ImageResponse(
     (
@@ -99,7 +99,7 @@ export default async function Image({ params }: { params: { roomId: string } }) 
               letterSpacing: '0.1em'
             }}
           >
-            {t('invited-to-room')}
+            {invitedText}
           </span>
 
           <div
@@ -131,7 +131,7 @@ export default async function Image({ params }: { params: { roomId: string } }) 
               fontWeight: '600'
             }}
           >
-            {t('join-now')}
+            {joinNowText}
           </div>
         </div>
 
