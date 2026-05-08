@@ -11,8 +11,19 @@ import { useTranslations } from 'next-intl'
 import moment from 'moment'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
+
+const CUBE_STICKERS = [
+  '#C41E3A',
+  '#003EA8',
+  '#FFD500',
+  '#FF5800',
+  '#009B48',
+  '#C41E3A',
+  '#FFD500',
+  '#FF5800',
+  '#003EA8'
+]
 
 export default function SyncBackupProvider({ children }: { children: React.ReactNode }) {
   const t = useTranslations('Index.SettingsPage.sync-toast')
@@ -63,17 +74,24 @@ export default function SyncBackupProvider({ children }: { children: React.React
 
     toast.custom(
       () => (
-        <>
-          <Card className="flex flex-col gap-2 p-4">
-            <div className="flex flex-col gap-3">
-              <div className="font-medium">{t('title')}</div>
-              <p className="text-sm text-muted-foreground">{t('description')}</p>
+        <div className="w-full rounded-xl bg-card border border-border shadow-lg overflow-hidden">
+          <div className="flex flex-col gap-3 p-4">
+            <div className="flex items-start gap-3">
+              <div className="grid grid-cols-3 gap-[3px] shrink-0 mt-0.5 p-1 rounded-md bg-muted">
+                {CUBE_STICKERS.map((color, i) => (
+                  <div key={i} className="w-2.5 h-2.5 rounded-[2px]" style={{ background: color }} />
+                ))}
+              </div>
+              <div className="flex flex-col gap-0.5 min-w-0">
+                <div className="text-sm font-bold tracking-tight leading-tight">{t('title')}</div>
+                <p className="text-xs text-muted-foreground leading-relaxed">{t('description')}</p>
+              </div>
             </div>
-            <div className={'grid grid-cols-2 gap-2 mt-2 w-full'}>
+            <div className="grid grid-cols-2 gap-2">
               <Button
-                size={'sm'}
-                variant="secondary"
-                className={'w-full'}
+                size="sm"
+                variant="outline"
+                className="w-full"
                 onClick={() => {
                   setFirstLoaded(true)
                   updateSetting('sync.lastSync', Date.now())
@@ -83,14 +101,14 @@ export default function SyncBackupProvider({ children }: { children: React.React
               >
                 {t('cancel')}
               </Button>
-              <Button className={'w-full'} size={'sm'} onClick={() => handleSync()}>
+              <Button className="w-full" size="sm" onClick={() => handleSync()}>
                 {t('merge')}
               </Button>
             </div>
-          </Card>
-        </>
+          </div>
+        </div>
       ),
-      { duration: 8000, id: SYNC_TOAST_ID }
+      { duration: 8000, id: SYNC_TOAST_ID, style: { width: '100%' } }
     )
   }, [
     firstLoaded,
