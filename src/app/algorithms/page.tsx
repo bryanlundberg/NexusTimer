@@ -21,7 +21,7 @@ export default function AlgorithmsMethodsPage() {
 
       <div className="p-4 md:p-8 lg:p-12">
         {/* Hero section */}
-        <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border border-primary/10 p-8 mb-8">
+        <div className="relative overflow-hidden rounded-xl bg-linear-to-br from-primary/10 via-primary/5 to-transparent border border-primary/10 p-8 mb-8">
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-3">
               <div className="p-2.5 rounded-lg bg-primary/15 text-primary">
@@ -63,7 +63,7 @@ export default function AlgorithmsMethodsPage() {
                   {sets.length} {sets.length === 1 ? 'set' : 'sets'}
                 </span>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
                 {sets.map((set) => (
                   <AlgorithmMethod key={set.slug} set={set} />
                 ))}
