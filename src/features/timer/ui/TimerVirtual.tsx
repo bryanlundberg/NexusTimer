@@ -512,7 +512,6 @@ export default function TimerVirtual() {
       }
 
       if (engine?.isSolved()) {
-        console.log('Solved!')
         setIsSolved(true)
       }
     }
