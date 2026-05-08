@@ -59,7 +59,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         dbUser = await User.findOneAndUpdate(
           { email: user.email },
           { $addToSet: { providers: { provider: account?.provider, providerId: account?.providerAccountId } } },
-          { upsert: false, new: true }
+          { upsert: false, returnDocument: 'after' }
         )
 
         if (!dbUser) {
