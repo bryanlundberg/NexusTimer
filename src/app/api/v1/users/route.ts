@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
       { $addToSet: { providers: { provider, providerId } } },
       {
         upsert: false,
-        new: true
+        returnDocument: 'after'
       }
     )
 
