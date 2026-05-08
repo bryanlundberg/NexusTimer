@@ -7,6 +7,10 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
   try {
     const userId = (await params).id
 
+    if (!userId) {
+      return NextResponse.json({ error: 'ID is required' }, { status: 404 })
+    }
+
     const session = await auth()
     if (!session || session.user.id !== userId) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -14,14 +18,10 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
 
     const body = await request.json()
 
-    if (!userId) {
-      return NextResponse.json({ error: 'ID is required' }, { status: 404 })
-    }
-
     await connectDB()
 
     const { email, createdAt, updatedAt, __v, ...rest } = body
-    const updatedUser = await User.findOneAndUpdate({ _id: userId }, { ...rest }, { new: true })
+    const updatedUser = await User.findOneAndUpdate({ _id: userId }, { ...rest }, { returnDocument: 'after' })
 
     return NextResponse.json(updatedUser)
   } catch (error) {
