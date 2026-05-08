@@ -1,16 +1,18 @@
+import { setServers } from 'node:dns'
+setServers(['8.8.8.8', '1.1.1.1'])
+
 import mongoose from 'mongoose'
-import dns from 'node:dns'
 import '../../../entities/user/model/user'
 import '../../../entities/solve/model/solve'
 import '../../../entities/backup/model/backup'
 
-// Node 22+ on Windows sometimes can't querySrv Atlas via system DNS (ECONNREFUSED).
-// Force public resolvers so the mongodb+srv lookup works regardless of OS config.
-dns.setServers(['1.1.1.1', '1.0.0.1'])
-
 const connectDB = async () => {
-  if (mongoose.connections[0].readyState) {
+  if (mongoose.connections[0].readyState === 1) {
     return true
+  }
+
+  if (mongoose.connections[0].readyState !== 0) {
+    await mongoose.disconnect()
   }
 
   try {
