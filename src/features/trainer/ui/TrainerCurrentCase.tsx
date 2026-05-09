@@ -2,6 +2,8 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { RotateCcw, Eye, Plus, X, Clock } from 'lucide-react'
+import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import { TwistyPlayer } from 'cubing/twisty'
 
 interface TrainerCurrentCaseProps {
   caseGroup: string
@@ -10,6 +12,7 @@ interface TrainerCurrentCaseProps {
   totalSolves: number
   setup: string
   currentTime: string
+  vizConfig?: Partial<TwistyPlayer>
   onSkip?: () => void
   onReveal?: () => void
   onPlusTwo?: () => void
@@ -23,6 +26,7 @@ export default function TrainerCurrentCase({
   totalSolves,
   setup,
   currentTime,
+  vizConfig,
   onSkip,
   onReveal,
   onPlusTwo,
@@ -65,7 +69,11 @@ export default function TrainerCurrentCase({
       {/* Visualization + actions */}
       <div className="flex flex-col sm:flex-row gap-4 items-stretch">
         <div className="shrink-0 rounded-lg bg-muted/50 border p-3 flex items-center justify-center">
-          <div className="size-32 rounded-md bg-yellow-200" />
+          {vizConfig ? (
+            <AlgorithmRender config={vizConfig} width={128} height={128} />
+          ) : (
+            <div className="size-32 rounded-md bg-muted" />
+          )}
         </div>
 
         <div className="flex flex-col gap-2 flex-1">
