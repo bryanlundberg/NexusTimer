@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import _ from 'lodash'
-import { Activity, BarChart3, AlertTriangle, Target, ListChecks } from 'lucide-react'
+import { Activity, BarChart3, Target, ListChecks } from 'lucide-react'
+import { Progress } from '@/components/ui/progress'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import TrainerSessionHeader from '@/features/trainer/ui/TrainerSessionHeader'
 import TrainerCurrentCase from '@/features/trainer/ui/TrainerCurrentCase'
@@ -93,7 +94,9 @@ export default function TrainerExperience() {
 
   const totalCases = sessionCases.length
   const totalSetCases = set.algorithms.length
-  const groupCount = useMemo(() => Object.keys(_.groupBy(set.algorithms, 'group')).length, [set])
+  // TODO: replace with real persistence once tracking is wired up
+  const learnedCount = 0
+  const learnedPct = totalSetCases > 0 ? Math.round((learnedCount / totalSetCases) * 100) : 0
 
   return (
     <div className="p-4 flex flex-col gap-4">
@@ -118,9 +121,9 @@ export default function TrainerExperience() {
         <div className="flex flex-col gap-4 flex-1 min-w-0">
           <TrainerSessionHeader
             targetTime={`<${target}s`}
-            progressValue={Math.round(((caseIndex + 1) / Math.max(totalCases, 1)) * 100)}
-            sessionCurrent={Math.min(caseIndex + 1, totalCases)}
-            sessionTotal={totalCases}
+            progressValue={learnedPct}
+            sessionCurrent={learnedCount}
+            sessionTotal={totalSetCases}
           />
 
           <TrainerCurrentCase
@@ -136,25 +139,27 @@ export default function TrainerExperience() {
         </div>
 
         <aside className="flex flex-col gap-3 w-full lg:w-80 shrink-0">
-          <TrainerStatsPanel title={'This case'} icon={<Activity />}>
-            <TrainerStatRow label={'Name'} value={currentCase?.name ?? '—'} />
-            <TrainerStatRow label={'Group'} value={currentCase?.group ?? '—'} />
-            <TrainerStatRow label={'Variants'} value={String(currentCase?.algs.length ?? 0)} />
+          <TrainerStatsPanel title={'Current case'} icon={<Activity />}>
+            <TrainerStatRow label={'Status'} value={'Learning'} />
             <TrainerStatRow label={'Best'} value={'—'} />
+            <TrainerStatRow label={'ao5'} value={'—'} />
+            <TrainerStatRow label={'ao12'} value={'—'} />
+            <TrainerStatRow label={'Total solves'} value={'0'} />
           </TrainerStatsPanel>
 
-          <TrainerStatsPanel title={'This session'} icon={<BarChart3 />}>
-            <TrainerStatRow label={'Target'} value={`<${target}s`} />
-            <TrainerStatRow label={'Cases done'} value={`${Math.min(caseIndex + 1, totalCases)} / ${totalCases}`} />
-            <TrainerStatRow label={'Method'} value={set.title} />
-            <TrainerStatRow label={'Puzzle'} value={set.puzzle} />
-          </TrainerStatsPanel>
-
-          <TrainerStatsPanel title={'Set overview'} icon={<AlertTriangle />}>
-            <TrainerStatRow label={'Subtitle'} value={set.subtitle} />
-            <TrainerStatRow label={'Difficulty'} value={String(set.difficulty)} />
-            <TrainerStatRow label={'Total algs'} value={String(totalSetCases)} />
-            <TrainerStatRow label={'Groups'} value={String(groupCount)} />
+          <TrainerStatsPanel title={`${set.title} progress`} icon={<BarChart3 />}>
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-muted-foreground">Algorithms learned</span>
+                <span className="font-mono tabular-nums">
+                  {learnedCount} / {totalSetCases}
+                </span>
+              </div>
+              <Progress value={learnedPct} />
+            </div>
+            <TrainerStatRow label={'Best single'} value={'—'} />
+            <TrainerStatRow label={'Best ao12'} value={'—'} />
+            <TrainerStatRow label={'Total solves'} value={'0'} />
           </TrainerStatsPanel>
         </aside>
       </div>
