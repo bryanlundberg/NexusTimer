@@ -29,7 +29,7 @@ export default function AlgorithmCard({
 }: AlgorithmCardProps) {
   const t = useTranslations('Index.AlgorithmsPage')
   const { open } = useOverlayStore()
-  const algs = algorithm?.algs || algorithm?.alg || []
+  const algs = algorithm.algs
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   const defaults = _.merge(
@@ -37,7 +37,7 @@ export default function AlgorithmCard({
       visualization: 'experimental-2D-LL',
       background: 'none',
       controlPanel: 'none',
-      alg: algs[0],
+      alg: algs[0]?.moves,
       experimentalStickering: 'OLL',
       experimentalSetupAnchor: 'end'
     },
@@ -94,15 +94,15 @@ export default function AlgorithmCard({
             <div
               className="group/alg rounded-lg border bg-background/80 p-2.5 transition-colors hover:bg-muted/30"
               onClick={onAlgorithmClick}
-              key={`${algorithm.group}-${algorithm.name}-alg-${index}`}
+              key={alg.id}
             >
               <div className="flex items-center gap-1 mb-1">
                 <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
-                  {t('alternative')} #{index + 1}
+                  {alg.label ?? `${t('alternative')} #${index + 1}`}
                 </span>
               </div>
               <div className="flex items-center justify-between gap-2">
-                <code className="text-sm font-mono leading-relaxed break-all">{alg}</code>
+                <code className="text-sm font-mono leading-relaxed break-all">{alg.moves}</code>
                 <div className="flex items-center gap-1 shrink-0">
                   <Button
                     variant="ghost"
@@ -110,7 +110,7 @@ export default function AlgorithmCard({
                     className="h-7 w-7 opacity-0 group-hover/alg:opacity-100 transition-all [&>svg]:transition-transform [&>svg]:duration-200 [&:active>svg]:scale-125"
                     onClick={(e) => {
                       e.stopPropagation()
-                      handleCopy(alg, index)
+                      handleCopy(alg.moves, index)
                     }}
                   >
                     {copiedIndex === index ? (
@@ -125,7 +125,7 @@ export default function AlgorithmCard({
                     className="h-7 w-7 [&>svg]:transition-transform [&>svg]:duration-200 [&:hover>svg]:scale-105"
                     onClick={(e) => {
                       e.stopPropagation()
-                      handleOpenAlgorithmPreview(alg)
+                      handleOpenAlgorithmPreview(alg.moves)
                     }}
                   >
                     <EyeIcon className="h-3.5 w-3.5" />
