@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import _ from 'lodash'
 import { Activity, BarChart3, Target, ListChecks } from 'lucide-react'
 import { Progress } from '@/components/ui/progress'
@@ -15,28 +15,32 @@ import TrainerPickCasesModal from '@/features/trainer/ui/TrainerPickCasesModal'
 import { Button } from '@/components/ui/button'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { TwistyPlayer } from 'cubing/twisty'
+import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
 
-const DEFAULT_SLUG = 'oll'
-const DEFAULT_TARGET_SECONDS = 2
+const formatMs = (ms: number) => (ms / 1000).toFixed(2)
 
 export default function TrainerExperience() {
-  const [slug, setSlug] = useState<string>(DEFAULT_SLUG)
-  const [caseIndex, setCaseIndex] = useState<number>(0)
-  const [target, setTarget] = useState<number>(DEFAULT_TARGET_SECONDS)
-  const [pickedIds, setPickedIds] = useState<Set<string>>(new Set())
+  const methodSlug = useTrainerStore((s) => s.methodSlug)
+  const pickedIds = useTrainerStore((s) => s.pickedIds)
+  const caseIndex = useTrainerStore((s) => s.caseIndex)
+  const targetSeconds = useTrainerStore((s) => s.targetSeconds)
+  const elapsedMs = useTrainerStore((s) => s.elapsedMs)
+  const caseStats = useTrainerStore((s) => s.caseStats)
+
+  const setMethod = useTrainerStore((s) => s.setMethod)
+  const setPickedIds = useTrainerStore((s) => s.setPickedIds)
+  const setTargetSeconds = useTrainerStore((s) => s.setTargetSeconds)
+  const nextCase = useTrainerStore((s) => s.nextCase)
+
   const { open } = useOverlayStore()
 
-  const set = useMemo(() => ALGORITHM_SETS.find((s) => s.slug === slug) ?? ALGORITHM_SETS[0], [slug])
-
-  useEffect(() => {
-    setPickedIds(new Set(set.algorithms.map((a) => a.id)))
-    setCaseIndex(0)
-  }, [set])
+  const set = useMemo(() => ALGORITHM_SETS.find((s) => s.slug === methodSlug) ?? ALGORITHM_SETS[0], [methodSlug])
 
   const sessionCases = useMemo(() => set.algorithms.filter((a) => pickedIds.has(a.id)), [set, pickedIds])
 
   const currentCase = sessionCases[caseIndex] ?? sessionCases[0]
   const currentAlg = currentCase?.algs[0]
+  const currentStats = currentCase ? caseStats[currentCase.id] : undefined
 
   const vizConfig = useMemo(
     () =>
@@ -58,19 +62,12 @@ export default function TrainerExperience() {
     [set, currentAlg]
   )
 
-  const handleSelectMethod = (next: string) => {
-    setSlug(next)
-  }
-
-  const handleSkip = () => {
-    if (!sessionCases.length) return
-    setCaseIndex((i) => (i + 1) % sessionCases.length)
-  }
+  const handleSkip = () => nextCase(sessionCases.length)
 
   const handleOpenEditTarget = () => {
     open({
       id: 'trainer-edit-target',
-      component: <TrainerEditTargetModal initial={target} onApply={setTarget} />
+      component: <TrainerEditTargetModal initial={targetSeconds} onApply={setTargetSeconds} />
     })
   }
 
@@ -83,10 +80,7 @@ export default function TrainerExperience() {
           initialSelected={pickedIds}
           vizConfig={set.virtualization as unknown as Partial<TwistyPlayer>}
           puzzle={set.puzzle}
-          onApply={(next) => {
-            setPickedIds(next)
-            setCaseIndex(0)
-          }}
+          onApply={setPickedIds}
         />
       )
     })
@@ -94,14 +88,30 @@ export default function TrainerExperience() {
 
   const totalCases = sessionCases.length
   const totalSetCases = set.algorithms.length
-  // TODO: replace with real persistence once tracking is wired up
-  const learnedCount = 0
+  const learnedCount = useMemo(
+    () => set.algorithms.reduce((acc, a) => acc + (caseStats[a.id]?.learned ? 1 : 0), 0),
+    [set, caseStats]
+  )
   const learnedPct = totalSetCases > 0 ? Math.round((learnedCount / totalSetCases) * 100) : 0
+
+  const methodTotals = useMemo(() => {
+    let totalSolves = 0
+    let bestSingle: number | null = null
+    for (const a of set.algorithms) {
+      const s = caseStats[a.id]
+      if (!s) continue
+      totalSolves += s.totalSolves
+      if (s.best !== null && (bestSingle === null || s.best < bestSingle)) {
+        bestSingle = s.best
+      }
+    }
+    return { totalSolves, bestSingle }
+  }, [set, caseStats])
 
   return (
     <div className="p-4 flex flex-col gap-4">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        <TrainerMethodSelect value={set.slug} onChange={handleSelectMethod} />
+        <TrainerMethodSelect value={set.slug} onChange={setMethod} />
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm" onClick={handleOpenEditTarget}>
             <Target className="h-3.5 w-3.5" />
@@ -120,7 +130,7 @@ export default function TrainerExperience() {
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-1 min-w-0">
           <TrainerSessionHeader
-            targetTime={`<${target}s`}
+            targetTime={`<${targetSeconds}s`}
             progressValue={learnedPct}
             sessionCurrent={learnedCount}
             sessionTotal={totalSetCases}
@@ -130,9 +140,9 @@ export default function TrainerExperience() {
             caseGroup={currentCase?.group ?? ''}
             caseName={currentCase?.name ?? ''}
             lastDrilled={'—'}
-            totalSolves={0}
+            totalSolves={currentStats?.totalSolves ?? 0}
             setup={currentCase?.setup ?? currentAlg?.moves ?? ''}
-            currentTime={'0.00'}
+            currentTime={formatMs(elapsedMs)}
             vizConfig={vizConfig}
             onSkip={handleSkip}
           />
@@ -140,11 +150,11 @@ export default function TrainerExperience() {
 
         <aside className="flex flex-col gap-3 w-full lg:w-80 shrink-0">
           <TrainerStatsPanel title={'Current case'} icon={<Activity />}>
-            <TrainerStatRow label={'Status'} value={'Learning'} />
-            <TrainerStatRow label={'Best'} value={'—'} />
-            <TrainerStatRow label={'ao5'} value={'—'} />
-            <TrainerStatRow label={'ao12'} value={'—'} />
-            <TrainerStatRow label={'Total solves'} value={'0'} />
+            <TrainerStatRow label={'Status'} value={currentStats?.learned ? 'Learned' : 'Learning'} />
+            <TrainerStatRow label={'Best'} value={currentStats?.best != null ? formatMs(currentStats.best) : '—'} />
+            <TrainerStatRow label={'ao5'} value={currentStats?.ao5 != null ? formatMs(currentStats.ao5) : '—'} />
+            <TrainerStatRow label={'ao12'} value={currentStats?.ao12 != null ? formatMs(currentStats.ao12) : '—'} />
+            <TrainerStatRow label={'Total solves'} value={String(currentStats?.totalSolves ?? 0)} />
           </TrainerStatsPanel>
 
           <TrainerStatsPanel title={`${set.title} progress`} icon={<BarChart3 />}>
@@ -157,9 +167,11 @@ export default function TrainerExperience() {
               </div>
               <Progress value={learnedPct} />
             </div>
-            <TrainerStatRow label={'Best single'} value={'—'} />
-            <TrainerStatRow label={'Best ao12'} value={'—'} />
-            <TrainerStatRow label={'Total solves'} value={'0'} />
+            <TrainerStatRow
+              label={'Best single'}
+              value={methodTotals.bestSingle != null ? formatMs(methodTotals.bestSingle) : '—'}
+            />
+            <TrainerStatRow label={'Total solves'} value={String(methodTotals.totalSolves)} />
           </TrainerStatsPanel>
         </aside>
       </div>
