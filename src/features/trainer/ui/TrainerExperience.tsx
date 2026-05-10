@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo } from 'react'
 import _ from 'lodash'
-import { Target, ListChecks, BarChart3, Sparkles } from 'lucide-react'
+import { Target, ListChecks, BarChart3, Sparkles, History } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
@@ -267,13 +267,15 @@ export default function TrainerExperience() {
 
   return (
     <div className="p-3 sm:p-4 flex flex-col gap-3">
-      {/* Top toolbar — single row, wraps on narrow screens */}
+      {/* Top toolbar — method+rotation always together; actions drop to their own row on mobile */}
       <div className="flex items-center gap-2 flex-wrap">
-        <div className="flex-1 min-w-45">
-          <TrainerMethodSelect value={set.slug} onChange={setMethod} />
+        <div className="flex items-center gap-2 flex-1 min-w-0 w-full md:w-auto">
+          <div className="flex-1 min-w-0">
+            <TrainerMethodSelect value={set.slug} onChange={setMethod} />
+          </div>
+          <TrainerRotationModeChips value={rotationMode} onChange={setRotationMode} />
         </div>
-        <TrainerRotationModeChips value={rotationMode} onChange={setRotationMode} />
-        <div className="flex items-center gap-1.5 ml-auto">
+        <div className="flex items-center gap-1.5 ml-auto w-full md:w-auto justify-end">
           <Button variant="outline" size="sm" className="h-8" onClick={handleOpenEditTarget}>
             <Target className="h-3.5 w-3.5" />
             <span className="font-mono tabular-nums">&lt;{targetSeconds}s</span>
@@ -303,8 +305,8 @@ export default function TrainerExperience() {
         </div>
       </div>
 
-      {/* Slim learned-progress strip — replaces the bulky session header */}
-      <div className="flex items-center gap-3">
+      {/* Slim learned-progress strip — hidden on lg+ where the side panel shows it */}
+      <div className="flex items-center gap-3 lg:hidden">
         <span className="text-[10px] uppercase tracking-wider text-muted-foreground shrink-0">Learned</span>
         <Progress value={learnedPct} className="h-1.5 flex-1" />
         <span className="text-[10px] font-mono tabular-nums text-muted-foreground shrink-0">
@@ -314,7 +316,7 @@ export default function TrainerExperience() {
 
       {/* Stage + side panel */}
       <div className="flex flex-col lg:flex-row gap-4">
-        <div className={cn('flex-1 min-w-0 flex flex-col gap-3 rounded-xl p-3 sm:p-4')}>
+        <div className={cn('flex-1 min-w-0 flex flex-col gap-3 rounded-xl py-3')}>
           <TrainerCurrentCase
             caseGroup={currentCase?.group ?? ''}
             caseName={currentCase?.name ?? ''}
@@ -332,14 +334,43 @@ export default function TrainerExperience() {
           />
 
           {isAuthed && currentCase && (
-            <div className="border-t pt-3">
-              <TrainerRecentSolves
-                solves={recentSolves}
-                isLoading={solvesLoading}
-                onChangePenalty={handlePenaltyChange}
-                onDelete={handleDeleteSolve}
-              />
-            </div>
+            <>
+              <div className="border-t pt-3 hidden sm:block">
+                <TrainerRecentSolves
+                  solves={recentSolves}
+                  isLoading={solvesLoading}
+                  onChangePenalty={handlePenaltyChange}
+                  onDelete={handleDeleteSolve}
+                />
+              </div>
+              <div className="border-t pt-3 sm:hidden">
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Button variant="outline" size="sm" className="w-full h-8 justify-between">
+                      <span className="flex items-center gap-1.5">
+                        <History className="h-3.5 w-3.5" />
+                        Recent solves
+                      </span>
+                      <span className="text-xs text-muted-foreground tabular-nums">{recentSolves.length}</span>
+                    </Button>
+                  </SheetTrigger>
+                  <SheetContent side="bottom" className="p-4 max-h-[80vh] overflow-y-auto">
+                    <SheetHeader className="px-0">
+                      <SheetTitle className="flex items-center gap-2">
+                        <History className="h-4 w-4 text-primary" />
+                        Recent solves
+                      </SheetTitle>
+                    </SheetHeader>
+                    <TrainerRecentSolves
+                      solves={recentSolves}
+                      isLoading={solvesLoading}
+                      onChangePenalty={handlePenaltyChange}
+                      onDelete={handleDeleteSolve}
+                    />
+                  </SheetContent>
+                </Sheet>
+              </div>
+            </>
           )}
         </div>
 
