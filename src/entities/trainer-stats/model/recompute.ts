@@ -1,0 +1,70 @@
+import { Types } from 'mongoose'
+import TrainerSolve from '@/entities/trainer-solve/model/trainer-solve'
+import TrainerStats from '@/entities/trainer-stats/model/trainer-stats'
+import type { TrainerCaseStatsDoc } from '@/entities/trainer-stats/model/types'
+
+const RECENT_TIMES_WINDOW = 12
+
+/**
+ * Recomputes case-level + method-level aggregates from the solves collection
+ * for a single (user, method, case). Used after destructive mutations
+ * (delete / penalty edit) where $inc/$min cannot be unwound atomically.
+ */
+export async function recomputeCaseAndMethod(userId: string, methodSlug: string, caseId: string) {
+  // 1. Pull solves for this case (small, scoped scan).
+  const solves = await TrainerSolve.find({ user: userId, methodSlug, caseId })
+    .sort({ createdAt: 1 })
+    .lean<Array<{ _id: unknown; timeMs: number; penalty: 'OK' | '+2' | 'DNF'; createdAt: Date }>>()
+
+  const counted = solves.filter((s) => s.penalty !== 'DNF')
+  const lastSolve = solves[solves.length - 1]
+
+  const caseStats: TrainerCaseStatsDoc = {
+    totalSolves: counted.length,
+    totalTimeMs: counted.reduce((acc, s) => acc + s.timeMs, 0),
+    bestSingleMs: counted.length ? Math.min(...counted.map((s) => s.timeMs)) : null,
+    lastSolveMs: lastSolve?.timeMs ?? null,
+    lastSolveAt: lastSolve?.createdAt.getTime() ?? null,
+    recentTimes: counted.slice(-RECENT_TIMES_WINDOW).map((s) => s.timeMs)
+  }
+
+  const casePath = `methods.${methodSlug}.cases.${caseId}`
+  const methodPath = `methods.${methodSlug}`
+
+  if (counted.length === 0 && solves.length === 0) {
+    // No solves remain at all — drop the case entry.
+    await TrainerStats.updateOne({ user: userId }, { $unset: { [casePath]: '' } })
+  } else {
+    await TrainerStats.updateOne({ user: userId }, { $set: { [casePath]: caseStats } }, { upsert: true })
+  }
+
+  // 2. Recompute method-level aggregates from the whole method's solves.
+  const [methodAgg] = await TrainerSolve.aggregate<{
+    _id: null
+    totalSolves: number
+    totalTimeMs: number
+    bestSingleMs: number | null
+  }>([
+    { $match: { user: new Types.ObjectId(userId), methodSlug, penalty: { $ne: 'DNF' } } },
+    {
+      $group: {
+        _id: null,
+        totalSolves: { $sum: 1 },
+        totalTimeMs: { $sum: '$timeMs' },
+        bestSingleMs: { $min: '$timeMs' }
+      }
+    }
+  ])
+
+  await TrainerStats.updateOne(
+    { user: userId },
+    {
+      $set: {
+        [`${methodPath}.totalSolves`]: methodAgg?.totalSolves ?? 0,
+        [`${methodPath}.totalTimeMs`]: methodAgg?.totalTimeMs ?? 0,
+        [`${methodPath}.bestSingleMs`]: methodAgg?.bestSingleMs ?? null
+      }
+    },
+    { upsert: true }
+  )
+}
