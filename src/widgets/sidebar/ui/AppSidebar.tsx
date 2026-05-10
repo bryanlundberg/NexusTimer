@@ -23,11 +23,9 @@ import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 import {
   Sidebar,
   SidebarContent,
-  SidebarGroup,
-  SidebarGroupContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   useSidebar
 } from '@/components/ui/sidebar'
@@ -38,7 +36,6 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
 import { NavMain } from '@/widgets/sidebar/ui/nav-main'
-import { NavSecondary } from '@/widgets/sidebar/ui/nav-secondary'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
 
@@ -123,18 +120,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           url: '/free-play',
           icon: LandPlot
         }
-      ],
-      navSecondary: [
-        {
-          title: 'GitHub',
-          url: 'https://github.com/bryanlundberg/NexusTimer',
-          icon: GithubIcon
-        },
-        {
-          title: 'Discord',
-          url: 'https://discord.gg/eCgTKcavec',
-          icon: DiscordLogoIcon
-        }
       ]
     }),
     [t, handleCreate]
@@ -191,22 +176,50 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.training} label={t('NavMain.training')} />
         <NavMain items={data.community} label={t('NavMain.community')} />
         <NavMain items={data.multiplayer} label={t('NavMain.multiplayer')} />
-        {isInstallable && (
-          <SidebarGroup>
-            <SidebarGroupContent>
-              <SidebarMenu>
-                <SidebarMenuItem>
-                  <SidebarMenuButton size="sm" onClick={install} className="relative transition-colors">
-                    <MonitorDown className="text-primary" />
-                    <span>{t('NavMain.install-app')}</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        )}
-        <NavSecondary items={data.navSecondary as any} className={'mt-auto'} />
       </SidebarContent>
+      <SidebarFooter className="group-data-[collapsible=icon]:hidden">
+        {isInstallable && (
+          <button
+            type="button"
+            onClick={install}
+            className="flex items-center gap-2 rounded-md border bg-background/60 px-3 py-2 text-xs font-medium hover:bg-accent transition-colors"
+          >
+            <MonitorDown className="size-4 text-primary" />
+            <span>{t('NavMain.install-app')}</span>
+          </button>
+        )}
+        <div className="rounded-lg border bg-linear-to-br from-sidebar-accent/40 via-sidebar-accent/10 to-transparent p-3 flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <div className="flex size-7 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground shrink-0">
+              <Image src="/logo.png" alt="" width={48} height={48} className="invert p-1 size-6" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs font-semibold leading-tight truncate">Nexus Timer</p>
+              <p className="text-[10px] text-muted-foreground leading-tight">Open source PWA</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-1.5">
+            <a
+              href="https://github.com/bryanlundberg/NexusTimer"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1.5 rounded-md border bg-background/50 py-1.5 text-[11px] font-medium hover:bg-accent transition-colors"
+            >
+              <GithubIcon className="size-3.5" />
+              GitHub
+            </a>
+            <a
+              href="https://discord.gg/eCgTKcavec"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1.5 rounded-md border bg-background/50 py-1.5 text-[11px] font-medium hover:bg-accent transition-colors"
+            >
+              <DiscordLogoIcon className="size-3.5" />
+              Discord
+            </a>
+          </div>
+        </div>
+      </SidebarFooter>
     </Sidebar>
   )
 }
