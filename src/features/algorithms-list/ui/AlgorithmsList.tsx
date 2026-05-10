@@ -70,16 +70,16 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
             <Filter className="h-3.5 w-3.5 text-muted-foreground" />
             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Filter by group</span>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 min-w-0">
             {groupKeys.map((group) => (
               <Badge
                 key={group}
                 variant={activeGroups.includes(group) ? 'default' : 'outline'}
                 onClick={() => handleChooseGroup(group)}
-                className="cursor-pointer transition-all hover:shadow-sm select-none"
+                className="cursor-pointer transition-all hover:shadow-sm select-none text-[10px] sm:text-xs px-2 py-0.5 whitespace-normal break-all max-w-full"
               >
-                {group}
-                <span className="ml-1.5 opacity-60">{groups[group].length}</span>
+                <span className="min-w-0 break-all">{group}</span>
+                <span className="ml-1 opacity-60 shrink-0">{groups[group].length}</span>
               </Badge>
             ))}
           </div>
@@ -101,8 +101,8 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
         </p>
       </div>
 
-      {/* Algorithm cards grid */}
-      <div className="columns-1 sm:columns-2 gap-4">
+      {/* Algorithm rows */}
+      <div className="rounded-lg border bg-card/30 divide-y overflow-hidden">
         {displayedAlgs.map((item) => (
           <AlgorithmCard
             algorithm={item}
