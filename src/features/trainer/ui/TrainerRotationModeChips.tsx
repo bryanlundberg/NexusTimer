@@ -17,7 +17,7 @@ const OPTIONS: Array<{ id: TrainerRotationMode; label: string; icon: React.Compo
 
 export default function TrainerRotationModeChips({ value, onChange }: TrainerRotationModeChipsProps) {
   return (
-    <div className="flex items-center gap-1.5 flex-wrap">
+    <div className="inline-flex items-center rounded-md border bg-background p-0.5">
       {OPTIONS.map(({ id, label, icon: Icon }) => {
         const active = id === value
         return (
@@ -26,15 +26,16 @@ export default function TrainerRotationModeChips({ value, onChange }: TrainerRot
             type="button"
             onClick={() => onChange(id)}
             className={cn(
-              'inline-flex items-center gap-1.5 rounded-full border px-3 h-8 text-xs transition-colors',
+              'inline-flex items-center gap-1 h-7 px-2.5 text-xs rounded-sm transition-colors cursor-pointer',
               active
-                ? 'bg-primary text-primary-foreground border-primary'
-                : 'bg-background text-muted-foreground hover:bg-accent hover:text-foreground'
+                ? 'bg-primary text-primary-foreground'
+                : 'text-muted-foreground hover:bg-accent hover:text-foreground'
             )}
             aria-pressed={active}
+            title={label}
           >
             <Icon className="h-3.5 w-3.5" />
-            {label}
+            <span className="hidden sm:inline">{label}</span>
           </button>
         )
       })}

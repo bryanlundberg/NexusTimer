@@ -1,21 +1,20 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import _ from 'lodash'
-import { Activity, BarChart3, Target, ListChecks } from 'lucide-react'
+import { Target, ListChecks, BarChart3, Sparkles } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
-import TrainerSessionHeader from '@/features/trainer/ui/TrainerSessionHeader'
 import TrainerCurrentCase from '@/features/trainer/ui/TrainerCurrentCase'
-import TrainerStatsPanel from '@/features/trainer/ui/TrainerStatsPanel'
-import TrainerStatRow from '@/features/trainer/ui/TrainerStatRow'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
 import TrainerEditTargetModal from '@/features/trainer/ui/TrainerEditTargetModal'
 import TrainerPickCasesModal from '@/features/trainer/ui/TrainerPickCasesModal'
 import TrainerRotationModeChips from '@/features/trainer/ui/TrainerRotationModeChips'
+import TrainerRecentSolves from '@/features/trainer/ui/TrainerRecentSolves'
 import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
 import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned'
-import { Button } from '@/components/ui/button'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { TwistyPlayer } from 'cubing/twisty'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
@@ -29,9 +28,8 @@ import { useTrainerStats } from '@/features/trainer/model/useTrainerStats'
 import { useTrainerSolves } from '@/features/trainer/model/useTrainerSolves'
 import { postTrainerSolve } from '@/features/trainer/model/postTrainerSolve'
 import { deleteTrainerSolve, patchTrainerSolve } from '@/features/trainer/model/mutateTrainerSolve'
-import TrainerRecentSolves from '@/features/trainer/ui/TrainerRecentSolves'
-import { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
+import { cn } from '@/shared/lib/utils'
 
 const formatMs = (ms: number) => (ms / 1000).toFixed(2)
 
@@ -65,9 +63,7 @@ export default function TrainerExperience() {
   const { open } = useOverlayStore()
 
   const set = useMemo(() => ALGORITHM_SETS.find((s) => s.slug === methodSlug) ?? ALGORITHM_SETS[0], [methodSlug])
-
   const sessionCases = useMemo(() => set.algorithms.filter((a) => pickedIds.has(a.id)), [set, pickedIds])
-
   const currentCase = sessionCases[caseIndex] ?? sessionCases[0]
   const currentAlg = currentCase?.algs[0]
   const currentStats = currentCase ? caseStats[currentCase.id] : undefined
@@ -105,8 +101,6 @@ export default function TrainerExperience() {
       ) as unknown as Partial<TwistyPlayer>,
     [set, currentAlg]
   )
-
-  const handleSkip = () => advanceCase(sessionCases.length)
 
   const trainerCubeStub = useMemo<Cube>(
     () => ({
@@ -153,6 +147,8 @@ export default function TrainerExperience() {
         })
     }
   })
+
+  const handleSkip = () => advanceCase(sessionCases.length)
 
   const handleToggleLearned = async () => {
     if (!currentCase || !isAuthed) return
@@ -244,90 +240,126 @@ export default function TrainerExperience() {
     return { totalSolves, bestSingle }
   }, [set, caseStats])
 
+  const methodPanel = (
+    <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between text-xs">
+          <span className="text-muted-foreground">Algorithms learned</span>
+          <span className="font-mono tabular-nums">
+            {learnedCount} / {totalSetCases}
+          </span>
+        </div>
+        <Progress value={learnedPct} />
+        <div className="text-right text-[10px] text-muted-foreground font-mono tabular-nums">{learnedPct}%</div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-2">
+        <MetricTile
+          label="Best single"
+          value={methodTotals.bestSingle != null ? formatMs(methodTotals.bestSingle) : '—'}
+        />
+        <MetricTile label="Total solves" value={String(methodTotals.totalSolves)} />
+        <MetricTile label="Picked" value={`${totalCases}/${totalSetCases}`} />
+        <MetricTile label="Target" value={`<${targetSeconds}s`} />
+      </div>
+    </div>
+  )
+
   return (
-    <div className="p-4 flex flex-col gap-4">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        <TrainerMethodSelect value={set.slug} onChange={setMethod} />
-        <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={handleOpenEditTarget}>
+    <div className="p-3 sm:p-4 flex flex-col gap-3">
+      {/* Top toolbar — single row, wraps on narrow screens */}
+      <div className="flex items-center gap-2 flex-wrap">
+        <div className="flex-1 min-w-45">
+          <TrainerMethodSelect value={set.slug} onChange={setMethod} />
+        </div>
+        <TrainerRotationModeChips value={rotationMode} onChange={setRotationMode} />
+        <div className="flex items-center gap-1.5 ml-auto">
+          <Button variant="outline" size="sm" className="h-8" onClick={handleOpenEditTarget}>
             <Target className="h-3.5 w-3.5" />
-            Edit target
+            <span className="font-mono tabular-nums">&lt;{targetSeconds}s</span>
           </Button>
-          <Button variant="outline" size="sm" onClick={handleOpenPickCases}>
+          <Button variant="outline" size="sm" className="h-8" onClick={handleOpenPickCases}>
             <ListChecks className="h-3.5 w-3.5" />
-            Pick cases
-            <span className="ml-1 text-muted-foreground">
+            <span className="tabular-nums">
               {totalCases}/{totalSetCases}
             </span>
           </Button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="outline" size="icon" className="h-8 w-8 lg:hidden" aria-label="Method stats">
+                <BarChart3 className="h-3.5 w-3.5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[88%] sm:max-w-sm p-4">
+              <SheetHeader className="px-0">
+                <SheetTitle className="flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  {set.title}
+                </SheetTitle>
+              </SheetHeader>
+              {methodPanel}
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-3 flex-wrap">
-        <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Rotation</span>
-        <TrainerRotationModeChips value={rotationMode} onChange={setRotationMode} />
+      {/* Slim learned-progress strip — replaces the bulky session header */}
+      <div className="flex items-center gap-3">
+        <span className="text-[10px] uppercase tracking-wider text-muted-foreground shrink-0">Learned</span>
+        <Progress value={learnedPct} className="h-1.5 flex-1" />
+        <span className="text-[10px] font-mono tabular-nums text-muted-foreground shrink-0">
+          {learnedCount}/{totalSetCases}
+        </span>
       </div>
 
+      {/* Stage + side panel */}
       <div className="flex flex-col lg:flex-row gap-4">
-        <div className="flex flex-col gap-4 flex-1 min-w-0">
-          <TrainerSessionHeader
-            targetTime={`<${targetSeconds}s`}
-            progressValue={learnedPct}
-            sessionCurrent={learnedCount}
-            sessionTotal={totalSetCases}
-          />
-
+        <div className={cn('flex-1 min-w-0 flex flex-col gap-3 rounded-xl p-3 sm:p-4')}>
           <TrainerCurrentCase
             caseGroup={currentCase?.group ?? ''}
             caseName={currentCase?.name ?? ''}
-            lastDrilled={'—'}
-            totalSolves={currentStats?.totalSolves ?? 0}
             setup={currentCase?.setup ?? currentAlg?.moves ?? ''}
             currentTime={displayedTime}
             timeColorClass={timeColorClass}
             vizConfig={vizConfig}
             isLearned={currentIsLearned}
+            best={currentStats?.best != null ? formatMs(currentStats.best) : undefined}
+            ao5={currentStats?.ao5 != null ? formatMs(currentStats.ao5) : undefined}
+            ao12={currentStats?.ao12 != null ? formatMs(currentStats.ao12) : undefined}
+            totalSolves={currentStats?.totalSolves ?? 0}
             onSkip={handleSkip}
             onToggleLearned={isAuthed ? handleToggleLearned : undefined}
           />
 
           {isAuthed && currentCase && (
-            <TrainerRecentSolves
-              solves={recentSolves}
-              isLoading={solvesLoading}
-              onChangePenalty={handlePenaltyChange}
-              onDelete={handleDeleteSolve}
-            />
+            <div className="border-t pt-3">
+              <TrainerRecentSolves
+                solves={recentSolves}
+                isLoading={solvesLoading}
+                onChangePenalty={handlePenaltyChange}
+                onDelete={handleDeleteSolve}
+              />
+            </div>
           )}
         </div>
 
-        <aside className="flex flex-col gap-3 w-full lg:w-80 shrink-0">
-          <TrainerStatsPanel title={'Current case'} icon={<Activity />}>
-            <TrainerStatRow label={'Status'} value={currentIsLearned ? 'Learned' : 'Learning'} />
-            <TrainerStatRow label={'Best'} value={currentStats?.best != null ? formatMs(currentStats.best) : '—'} />
-            <TrainerStatRow label={'ao5'} value={currentStats?.ao5 != null ? formatMs(currentStats.ao5) : '—'} />
-            <TrainerStatRow label={'ao12'} value={currentStats?.ao12 != null ? formatMs(currentStats.ao12) : '—'} />
-            <TrainerStatRow label={'Total solves'} value={String(currentStats?.totalSolves ?? 0)} />
-          </TrainerStatsPanel>
-
-          <TrainerStatsPanel title={`${set.title} progress`} icon={<BarChart3 />}>
-            <div className="flex flex-col gap-1.5">
-              <div className="flex items-center justify-between text-xs">
-                <span className="text-muted-foreground">Algorithms learned</span>
-                <span className="font-mono tabular-nums">
-                  {learnedCount} / {totalSetCases}
-                </span>
-              </div>
-              <Progress value={learnedPct} />
-            </div>
-            <TrainerStatRow
-              label={'Best single'}
-              value={methodTotals.bestSingle != null ? formatMs(methodTotals.bestSingle) : '—'}
-            />
-            <TrainerStatRow label={'Total solves'} value={String(methodTotals.totalSolves)} />
-          </TrainerStatsPanel>
+        <aside className="hidden lg:flex flex-col gap-3 w-72 shrink-0">
+          <div className="flex items-center gap-2">
+            <Sparkles className="h-3.5 w-3.5 text-primary" />
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{set.title}</h3>
+          </div>
+          {methodPanel}
         </aside>
       </div>
+    </div>
+  )
+}
+
+function MetricTile({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex flex-col gap-0.5 rounded-md border bg-background/60 px-2.5 py-1.5">
+      <span className="text-[9px] uppercase tracking-wider text-muted-foreground">{label}</span>
+      <span className="text-sm font-mono tabular-nums">{value}</span>
     </div>
   )
 }

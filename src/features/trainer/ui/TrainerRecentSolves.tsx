@@ -1,6 +1,5 @@
 'use client'
 
-import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -9,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { History, MoreHorizontal, Trash2, Plus, X, Check } from 'lucide-react'
+import { History, Trash2, Plus, X, Check } from 'lucide-react'
 import type { TrainerSolveListItem } from '@/features/trainer/model/useTrainerSolves'
 import type { TrainerPenalty } from '@/entities/trainer-solve/model/constants'
 import { cn } from '@/shared/lib/utils'
@@ -34,32 +33,30 @@ export default function TrainerRecentSolves({
   onDelete
 }: TrainerRecentSolvesProps) {
   return (
-    <Card className="p-4 gap-3 bg-card/50">
-      <div className="flex items-center gap-2">
-        <History className="h-3.5 w-3.5 text-primary" />
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Last 12 solves</h3>
-        <span className="text-xs text-muted-foreground ml-auto">{solves.length}</span>
+    <div className="flex flex-col gap-1.5">
+      <div className="flex items-center gap-1.5 text-muted-foreground">
+        <History className="h-3 w-3" />
+        <span className="text-[10px] font-semibold uppercase tracking-wider">Recent</span>
+        <span className="text-[10px] ml-auto">{solves.length}</span>
       </div>
 
       {solves.length === 0 ? (
-        <p className="text-xs text-muted-foreground py-2">{isLoading ? 'Loading…' : 'No solves yet for this case.'}</p>
+        <p className="text-xs text-muted-foreground py-1">{isLoading ? 'Loading…' : 'No solves yet for this case.'}</p>
       ) : (
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1">
           {solves.map((solve) => (
             <DropdownMenu key={solve._id}>
               <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
+                <button
+                  type="button"
                   className={cn(
-                    'h-8 px-2.5 font-mono tabular-nums text-xs gap-1',
+                    'h-7 px-2 rounded-md border bg-background hover:bg-accent transition-colors font-mono tabular-nums text-xs cursor-pointer',
                     solve.penalty === 'DNF' && 'text-muted-foreground line-through',
                     solve.penalty === '+2' && 'text-amber-600 dark:text-amber-400'
                   )}
                 >
                   {formatTime(solve.timeMs, solve.penalty)}
-                  <MoreHorizontal className="h-3 w-3 opacity-50" />
-                </Button>
+                </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-40">
                 <DropdownMenuItem onClick={() => onChangePenalty(solve._id, 'OK')} disabled={solve.penalty === 'OK'}>
@@ -84,6 +81,6 @@ export default function TrainerRecentSolves({
           ))}
         </div>
       )}
-    </Card>
+    </div>
   )
 }
