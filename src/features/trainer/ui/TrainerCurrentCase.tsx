@@ -65,16 +65,23 @@ export default function TrainerCurrentCase({
         </div>
       </div>
 
-      <div className="flex items-stretch gap-3 sm:gap-4">
-        <div className="shrink-0 rounded-md border bg-muted/40 p-2 flex items-center justify-center">
+      {setup && (
+        <div className="flex items-center gap-2 rounded-md border bg-background/60 px-2.5 py-1.5">
+          <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider shrink-0">Setup</span>
+          <code className="text-xs sm:text-sm font-mono break-all">{setup}</code>
+        </div>
+      )}
+
+      <div className="flex items-center gap-3 sm:gap-4">
+        <div className="shrink-0 rounded-md border bg-muted/40 p-1.5 sm:p-2 flex items-center justify-center">
           {vizConfig ? (
-            <AlgorithmRender config={vizConfig} width={104} height={104} />
+            <AlgorithmRender config={vizConfig} width={96} height={96} />
           ) : (
-            <div className="size-26 rounded-md bg-muted" />
+            <div className="size-24 rounded-md bg-muted" />
           )}
         </div>
 
-        <div className="flex flex-col flex-1 min-w-0 justify-between gap-2">
+        <div className="flex flex-1 min-w-0 items-center justify-center">
           <div
             className={cn(
               'font-mono font-bold tabular-nums leading-none transition-colors',
@@ -84,22 +91,15 @@ export default function TrainerCurrentCase({
           >
             {currentTime}
           </div>
-
-          <div className="grid grid-cols-4 gap-1 text-center">
-            <Stat label="Best" value={best ?? '—'} />
-            <Stat label="ao5" value={ao5 ?? '—'} />
-            <Stat label="ao12" value={ao12 ?? '—'} />
-            <Stat label="Solves" value={String(totalSolves ?? 0)} />
-          </div>
         </div>
       </div>
 
-      {setup && (
-        <div className="flex items-center gap-2 rounded-md border bg-background/60 px-2.5 py-1.5">
-          <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider shrink-0">Setup</span>
-          <code className="text-xs sm:text-sm font-mono break-all">{setup}</code>
-        </div>
-      )}
+      <div className="grid grid-cols-4 gap-1.5 text-center">
+        <Stat label="Best" value={best ?? '—'} />
+        <Stat label="ao5" value={ao5 ?? '—'} />
+        <Stat label="ao12" value={ao12 ?? '—'} />
+        <Stat label="Solves" value={String(totalSolves ?? 0)} />
+      </div>
     </div>
   )
 }
