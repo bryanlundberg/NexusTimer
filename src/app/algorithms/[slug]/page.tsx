@@ -178,6 +178,7 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
           algorithms={collection.algorithms}
           virtualization={collection.virtualization as unknown as TwistyPlayer}
           puzzle={collection.puzzle}
+          methodSlug={collection.slug}
         />
 
         {collection.file && (

@@ -5,7 +5,7 @@ import { cn } from '@/shared/lib/utils'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
 import _ from 'lodash'
 import { Button } from '@/components/ui/button'
-import { EyeIcon, CopyIcon, CheckIcon } from 'lucide-react'
+import { EyeIcon, CopyIcon, CheckIcon, Bookmark, BookmarkCheck } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import AlgorithmModal from '@/features/algorithms-list/ui/algorithm-modal'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
@@ -18,6 +18,8 @@ interface AlgorithmCardProps extends React.HTMLAttributes<HTMLDivElement> {
   algorithm: AlgorithmCollection
   virtualization?: TwistyPlayer
   puzzle: PuzzleID
+  isLearned?: boolean
+  onToggleLearned?: () => void
 }
 
 export default function AlgorithmCard({
@@ -25,6 +27,8 @@ export default function AlgorithmCard({
   onAlgorithmClick,
   virtualization,
   puzzle,
+  isLearned,
+  onToggleLearned,
   ...rest
 }: AlgorithmCardProps) {
   const t = useTranslations('Index.AlgorithmsPage')
@@ -71,16 +75,33 @@ export default function AlgorithmCard({
       {...rest}
     >
       {/* Card header */}
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <h3 className="font-semibold text-sm">{algorithm.name}</h3>
-          <Badge variant="outline" className="text-[10px] font-normal">
+      <div className="flex items-center justify-between mb-3 gap-2">
+        <div className="flex items-center gap-2 min-w-0">
+          <h3 className="font-semibold text-sm truncate">{algorithm.name}</h3>
+          <Badge variant="outline" className="text-[10px] font-normal shrink-0">
             {algorithm.group}
           </Badge>
         </div>
-        <span className="text-[11px] text-muted-foreground">
-          {algs.length} {algs.length === 1 ? 'alg' : 'algs'}
-        </span>
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="text-[11px] text-muted-foreground">
+            {algs.length} {algs.length === 1 ? 'alg' : 'algs'}
+          </span>
+          {onToggleLearned && (
+            <Button
+              variant={isLearned ? 'default' : 'outline'}
+              size="icon"
+              className="h-7 w-7"
+              onClick={(e) => {
+                e.stopPropagation()
+                onToggleLearned()
+              }}
+              aria-label={isLearned ? 'Marked as learned' : 'Mark as learned'}
+              title={isLearned ? 'Marked as learned' : 'Mark as learned'}
+            >
+              {isLearned ? <BookmarkCheck className="h-3.5 w-3.5" /> : <Bookmark className="h-3.5 w-3.5" />}
+            </Button>
+          )}
+        </div>
       </div>
 
       {/* Cube visualization + algorithms */}
