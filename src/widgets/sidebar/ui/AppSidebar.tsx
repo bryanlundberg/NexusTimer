@@ -186,7 +186,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="group-data-[collapsible=icon]:overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         <NavMain items={data.platform} label={t('NavMain.platform')} />
         <NavMain items={data.training} label={t('NavMain.training')} />
         <NavMain items={data.community} label={t('NavMain.community')} />
