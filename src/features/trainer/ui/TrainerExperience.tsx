@@ -12,10 +12,26 @@ import TrainerStatRow from '@/features/trainer/ui/TrainerStatRow'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
 import TrainerEditTargetModal from '@/features/trainer/ui/TrainerEditTargetModal'
 import TrainerPickCasesModal from '@/features/trainer/ui/TrainerPickCasesModal'
+import TrainerRotationModeChips from '@/features/trainer/ui/TrainerRotationModeChips'
+import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
+import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned'
 import { Button } from '@/components/ui/button'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { TwistyPlayer } from 'cubing/twisty'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
+import useTimer from '@/features/timer/model/useTimer'
+import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { Cube } from '@/entities/cube/model/types'
+import { Settings } from '@/shared/types/Settings'
+import { useTrainerStats } from '@/features/trainer/model/useTrainerStats'
+import { useTrainerSolves } from '@/features/trainer/model/useTrainerSolves'
+import { postTrainerSolve } from '@/features/trainer/model/postTrainerSolve'
+import { deleteTrainerSolve, patchTrainerSolve } from '@/features/trainer/model/mutateTrainerSolve'
+import TrainerRecentSolves from '@/features/trainer/ui/TrainerRecentSolves'
+import { useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 
 const formatMs = (ms: number) => (ms / 1000).toFixed(2)
 
@@ -24,13 +40,27 @@ export default function TrainerExperience() {
   const pickedIds = useTrainerStore((s) => s.pickedIds)
   const caseIndex = useTrainerStore((s) => s.caseIndex)
   const targetSeconds = useTrainerStore((s) => s.targetSeconds)
-  const elapsedMs = useTrainerStore((s) => s.elapsedMs)
   const caseStats = useTrainerStore((s) => s.caseStats)
+  const rotationMode = useTrainerStore((s) => s.rotationMode)
+
+  const timerStatus = useTimerStore((s) => s.timerStatus)
+  const solvingTime = useTimerStore((s) => s.solvingTime)
+  const isSolving = useTimerStore((s) => s.isSolving)
+  const setTimerStatus = useTimerStore((s) => s.setTimerStatus)
+  const setIsSolving = useTimerStore((s) => s.setIsSolving)
+  const setSolvingTime = useTimerStore((s) => s.setSolvingTime)
+  const settings = useSettingsStore((s) => s.settings)
 
   const setMethod = useTrainerStore((s) => s.setMethod)
   const setPickedIds = useTrainerStore((s) => s.setPickedIds)
   const setTargetSeconds = useTrainerStore((s) => s.setTargetSeconds)
-  const nextCase = useTrainerStore((s) => s.nextCase)
+  const setRotationMode = useTrainerStore((s) => s.setRotationMode)
+  const advanceCase = useTrainerStore((s) => s.advanceCase)
+  const recordSolve = useTrainerStore((s) => s.recordSolve)
+  const hydrateMethodStats = useTrainerStore((s) => s.hydrateMethodStats)
+
+  const { data: session } = useSession()
+  const isAuthed = !!session?.user?.id
 
   const { open } = useOverlayStore()
 
@@ -41,6 +71,20 @@ export default function TrainerExperience() {
   const currentCase = sessionCases[caseIndex] ?? sessionCases[0]
   const currentAlg = currentCase?.algs[0]
   const currentStats = currentCase ? caseStats[currentCase.id] : undefined
+
+  const { stats: serverStats, mutate: mutateStats } = useTrainerStats(methodSlug, isAuthed)
+  const { learnedIds, mutate: mutateLearned } = useTrainerLearned(methodSlug, isAuthed)
+  const learnedSet = useMemo(() => new Set(learnedIds), [learnedIds])
+  const {
+    solves: recentSolves,
+    isLoading: solvesLoading,
+    mutate: mutateSolves
+  } = useTrainerSolves(methodSlug, currentCase?.id, isAuthed)
+
+  useEffect(() => {
+    if (!isAuthed) return
+    hydrateMethodStats(methodSlug, serverStats)
+  }, [isAuthed, methodSlug, serverStats, hydrateMethodStats])
 
   const vizConfig = useMemo(
     () =>
@@ -62,7 +106,98 @@ export default function TrainerExperience() {
     [set, currentAlg]
   )
 
-  const handleSkip = () => nextCase(sessionCases.length)
+  const handleSkip = () => advanceCase(sessionCases.length)
+
+  const trainerCubeStub = useMemo<Cube>(
+    () => ({
+      id: 'trainer',
+      name: 'trainer',
+      category: '3x3',
+      solves: { session: [], all: [] },
+      createdAt: 0,
+      favorite: false
+    }),
+    []
+  )
+
+  const trainerSettings = useMemo<Settings>(
+    () => ({
+      ...settings,
+      timer: { ...settings.timer, inspection: false, holdToStart: false }
+    }),
+    [settings]
+  )
+
+  useTimer({
+    isSolving,
+    setTimerStatus,
+    selectedCube: trainerCubeStub,
+    inspectionRequired: false,
+    setIsSolving,
+    setSolvingTime,
+    timerMode: TimerMode.NORMAL,
+    settings: trainerSettings,
+    onFinishSolve: () => {
+      if (!currentCase) return
+      const ms = useTimerStore.getState().solvingTime
+      if (ms <= 0) return
+      const roundedMs = Math.round(ms)
+      recordSolve(currentCase.id, roundedMs)
+      const solvedCaseId = currentCase.id
+      advanceCase(sessionCases.length)
+      if (!isAuthed) return
+      postTrainerSolve({ methodSlug, caseId: solvedCaseId, timeMs: roundedMs, penalty: 'OK' })
+        .then(() => Promise.all([mutateStats(), mutateSolves()]))
+        .catch((err) => {
+          console.error('Failed to persist trainer solve:', err)
+        })
+    }
+  })
+
+  const handleToggleLearned = async () => {
+    if (!currentCase || !isAuthed) return
+    const wasLearned = learnedSet.has(currentCase.id)
+    const nextLearned = !wasLearned
+    const optimistic = new Set(learnedIds)
+    if (nextLearned) optimistic.add(currentCase.id)
+    else optimistic.delete(currentCase.id)
+    mutateLearned({ caseIds: Array.from(optimistic) }, { revalidate: false })
+    try {
+      await setTrainerLearned({ methodSlug, caseId: currentCase.id, learned: nextLearned })
+      await mutateLearned()
+    } catch (err) {
+      console.error('Failed to update learned:', err)
+      mutateLearned()
+    }
+  }
+
+  const handlePenaltyChange = async (id: string, penalty: 'OK' | '+2' | 'DNF') => {
+    try {
+      await patchTrainerSolve(id, penalty)
+      await Promise.all([mutateStats(), mutateSolves()])
+    } catch (err) {
+      console.error('Failed to update solve penalty:', err)
+    }
+  }
+
+  const handleDeleteSolve = async (id: string) => {
+    try {
+      await deleteTrainerSolve(id)
+      await Promise.all([mutateStats(), mutateSolves()])
+    } catch (err) {
+      console.error('Failed to delete solve:', err)
+    }
+  }
+
+  const timeColorClass =
+    timerStatus === TimerStatus.HOLDING
+      ? 'text-red-500'
+      : timerStatus === TimerStatus.READY
+        ? 'text-emerald-500'
+        : 'text-foreground'
+
+  const displayedTime =
+    timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY ? '0.00' : formatMs(solvingTime)
 
   const handleOpenEditTarget = () => {
     open({
@@ -89,10 +224,11 @@ export default function TrainerExperience() {
   const totalCases = sessionCases.length
   const totalSetCases = set.algorithms.length
   const learnedCount = useMemo(
-    () => set.algorithms.reduce((acc, a) => acc + (caseStats[a.id]?.learned ? 1 : 0), 0),
-    [set, caseStats]
+    () => set.algorithms.reduce((acc, a) => acc + (learnedSet.has(a.id) ? 1 : 0), 0),
+    [set, learnedSet]
   )
   const learnedPct = totalSetCases > 0 ? Math.round((learnedCount / totalSetCases) * 100) : 0
+  const currentIsLearned = !!currentCase && learnedSet.has(currentCase.id)
 
   const methodTotals = useMemo(() => {
     let totalSolves = 0
@@ -127,6 +263,11 @@ export default function TrainerExperience() {
         </div>
       </div>
 
+      <div className="flex items-center justify-between gap-3 flex-wrap">
+        <span className="text-xs text-muted-foreground font-medium uppercase tracking-wider">Rotation</span>
+        <TrainerRotationModeChips value={rotationMode} onChange={setRotationMode} />
+      </div>
+
       <div className="flex flex-col lg:flex-row gap-4">
         <div className="flex flex-col gap-4 flex-1 min-w-0">
           <TrainerSessionHeader
@@ -142,15 +283,27 @@ export default function TrainerExperience() {
             lastDrilled={'—'}
             totalSolves={currentStats?.totalSolves ?? 0}
             setup={currentCase?.setup ?? currentAlg?.moves ?? ''}
-            currentTime={formatMs(elapsedMs)}
+            currentTime={displayedTime}
+            timeColorClass={timeColorClass}
             vizConfig={vizConfig}
+            isLearned={currentIsLearned}
             onSkip={handleSkip}
+            onToggleLearned={isAuthed ? handleToggleLearned : undefined}
           />
+
+          {isAuthed && currentCase && (
+            <TrainerRecentSolves
+              solves={recentSolves}
+              isLoading={solvesLoading}
+              onChangePenalty={handlePenaltyChange}
+              onDelete={handleDeleteSolve}
+            />
+          )}
         </div>
 
         <aside className="flex flex-col gap-3 w-full lg:w-80 shrink-0">
           <TrainerStatsPanel title={'Current case'} icon={<Activity />}>
-            <TrainerStatRow label={'Status'} value={currentStats?.learned ? 'Learned' : 'Learning'} />
+            <TrainerStatRow label={'Status'} value={currentIsLearned ? 'Learned' : 'Learning'} />
             <TrainerStatRow label={'Best'} value={currentStats?.best != null ? formatMs(currentStats.best) : '—'} />
             <TrainerStatRow label={'ao5'} value={currentStats?.ao5 != null ? formatMs(currentStats.ao5) : '—'} />
             <TrainerStatRow label={'ao12'} value={currentStats?.ao12 != null ? formatMs(currentStats.ao12) : '—'} />
