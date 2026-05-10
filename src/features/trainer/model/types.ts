@@ -1,8 +1,4 @@
-export enum TrainerStatus {
-  IDLE = 'IDLE',
-  READY = 'READY',
-  SOLVING = 'SOLVING'
-}
+export type TrainerRotationMode = 'sequential' | 'shuffle' | 'random'
 
 export interface TrainerCaseStats {
   caseId: string
@@ -11,5 +7,5 @@ export interface TrainerCaseStats {
   last: number | null
   ao5: number | null
   ao12: number | null
-  learned: boolean
+  recentTimes: number[]
 }
