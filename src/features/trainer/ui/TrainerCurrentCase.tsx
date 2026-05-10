@@ -1,9 +1,10 @@
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { RotateCcw, Eye, Plus, X, Clock } from 'lucide-react'
+import { RotateCcw, Eye, Plus, X, Clock, BookmarkCheck, Bookmark } from 'lucide-react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { TwistyPlayer } from 'cubing/twisty'
+import { cn } from '@/shared/lib/utils'
 
 interface TrainerCurrentCaseProps {
   caseGroup: string
@@ -12,11 +13,14 @@ interface TrainerCurrentCaseProps {
   totalSolves: number
   setup: string
   currentTime: string
+  timeColorClass?: string
   vizConfig?: Partial<TwistyPlayer>
+  isLearned?: boolean
   onSkip?: () => void
   onReveal?: () => void
   onPlusTwo?: () => void
   onFail?: () => void
+  onToggleLearned?: () => void
 }
 
 export default function TrainerCurrentCase({
@@ -26,11 +30,14 @@ export default function TrainerCurrentCase({
   totalSolves,
   setup,
   currentTime,
+  timeColorClass,
   vizConfig,
+  isLearned,
   onSkip,
   onReveal,
   onPlusTwo,
-  onFail
+  onFail,
+  onToggleLearned
 }: TrainerCurrentCaseProps) {
   return (
     <Card className="w-full flex-1 p-4 gap-4 bg-card/50">
@@ -52,10 +59,21 @@ export default function TrainerCurrentCase({
           </div>
         </div>
 
-        <Button variant="outline" size="sm" onClick={onSkip} className="shrink-0">
-          <RotateCcw className="h-3.5 w-3.5" />
-          Skip
-        </Button>
+        <div className="flex items-center gap-2 shrink-0">
+          <Button
+            variant={isLearned ? 'default' : 'outline'}
+            size="sm"
+            onClick={onToggleLearned}
+            disabled={!onToggleLearned}
+          >
+            {isLearned ? <BookmarkCheck className="h-3.5 w-3.5" /> : <Bookmark className="h-3.5 w-3.5" />}
+            {isLearned ? 'Learned' : 'Mark learned'}
+          </Button>
+          <Button variant="outline" size="sm" onClick={onSkip}>
+            <RotateCcw className="h-3.5 w-3.5" />
+            Skip
+          </Button>
+        </div>
       </div>
 
       {/* Setup row */}
@@ -77,7 +95,12 @@ export default function TrainerCurrentCase({
         </div>
 
         <div className="flex flex-col gap-2 flex-1">
-          <div className="flex items-end justify-center sm:justify-start font-mono text-5xl font-bold tabular-nums py-2">
+          <div
+            className={cn(
+              'flex items-end justify-center sm:justify-start font-mono text-5xl font-bold tabular-nums py-2 transition-colors',
+              timeColorClass
+            )}
+          >
             {currentTime}
           </div>
 
