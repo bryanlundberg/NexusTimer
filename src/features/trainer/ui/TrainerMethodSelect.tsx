@@ -22,7 +22,7 @@ export default function TrainerMethodSelect({ value, onChange }: TrainerMethodSe
 
   return (
     <Select value={value} onValueChange={onChange}>
-      <SelectTrigger className="h-8 w-full sm:w-56 text-xs">
+      <SelectTrigger className="h-8 w-full sm:w-48 text-xs">
         <SelectValue placeholder="Choose a method" />
       </SelectTrigger>
       <SelectContent>
