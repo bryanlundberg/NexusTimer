@@ -6,6 +6,7 @@ import {
   BoxesIcon,
   Brain,
   ChartColumnIcon,
+  Dumbbell,
   GithubIcon,
   HistoryIcon,
   LandPlot,
@@ -49,7 +50,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   const data = useMemo(
     () => ({
-      navMain: [
+      platform: [
         {
           title: t('NavMain.timer'),
           url: '/app',
@@ -81,19 +82,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           icon: ReplaceIcon
         },
         {
-          title: t('NavMain.people'),
-          url: '/people',
-          icon: UsersRound
-        },
+          title: t('NavMain.settings'),
+          url: '/options',
+          icon: Settings
+        }
+      ],
+      training: [
         {
-          title: t('NavMain.leaderboards'),
-          url: '/leaderboards',
-          icon: TableProperties
-        },
-        {
-          title: t('NavMain.free-play'),
-          url: '/free-play',
-          icon: LandPlot
+          title: t('NavMain.trainer'),
+          url: '/algorithms/trainer',
+          icon: Dumbbell
         },
         {
           title: t('AlgorithmsPage.title'),
@@ -105,11 +103,25 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               url: `/algorithms/${set.slug.toLowerCase()}`
             }))
           ]
+        }
+      ],
+      community: [
+        {
+          title: t('NavMain.people'),
+          url: '/people',
+          icon: UsersRound
         },
         {
-          title: t('NavMain.settings'),
-          url: '/options',
-          icon: Settings
+          title: t('NavMain.leaderboards'),
+          url: '/leaderboards',
+          icon: TableProperties
+        }
+      ],
+      multiplayer: [
+        {
+          title: t('NavMain.free-play'),
+          url: '/free-play',
+          icon: LandPlot
         }
       ],
       navSecondary: [
@@ -175,9 +187,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain.slice(0, 5)} label={t('NavMain.platform')} />
-        <NavMain items={data.navMain.slice(5, 8)} label={t('NavMain.community')} />
-        <NavMain items={data.navMain.slice(8)} />
+        <NavMain items={data.platform} label={t('NavMain.platform')} />
+        <NavMain items={data.training} label={t('NavMain.training')} />
+        <NavMain items={data.community} label={t('NavMain.community')} />
+        <NavMain items={data.multiplayer} label={t('NavMain.multiplayer')} />
         {isInstallable && (
           <SidebarGroup>
             <SidebarGroupContent>
