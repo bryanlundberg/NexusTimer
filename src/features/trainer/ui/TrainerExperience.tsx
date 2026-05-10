@@ -262,6 +262,8 @@ export default function TrainerExperience() {
         <MetricTile label="Picked" value={`${totalCases}/${totalSetCases}`} />
         <MetricTile label="Target" value={`<${targetSeconds}s`} />
       </div>
+
+      <LastAttemptsSparkline solves={recentSolves} targetMs={targetSeconds * 1000} />
     </div>
   )
 
@@ -391,6 +393,56 @@ function MetricTile({ label, value }: { label: string; value: string }) {
     <div className="flex flex-col gap-0.5 rounded-md border bg-background/60 px-2.5 py-1.5">
       <span className="text-[9px] uppercase tracking-wider text-muted-foreground">{label}</span>
       <span className="text-sm font-mono tabular-nums">{value}</span>
+    </div>
+  )
+}
+
+function LastAttemptsSparkline({
+  solves,
+  targetMs
+}: {
+  solves: { _id: string; timeMs: number; penalty: 'OK' | '+2' | 'DNF' }[]
+  targetMs: number
+}) {
+  const ordered = [...solves].reverse()
+  const validTimes = ordered.filter((s) => s.penalty !== 'DNF').map((s) => s.timeMs + (s.penalty === '+2' ? 2000 : 0))
+  const max = validTimes.length > 0 ? Math.max(...validTimes) : 1
+  const min = validTimes.length > 0 ? Math.min(...validTimes) : 0
+  const range = Math.max(max - min, 1)
+
+  return (
+    <div className="flex flex-col gap-1.5">
+      <div className="flex items-center gap-1.5 text-muted-foreground">
+        <span className="text-[10px] font-semibold uppercase tracking-wider">Last attempts</span>
+        <span className="text-[10px] ml-auto">{ordered.length}</span>
+      </div>
+      <div className="flex items-end gap-0.75 h-12 rounded-md bg-background/60 px-2 py-1.5">
+        {ordered.length === 0 ? (
+          <span className="text-[10px] text-muted-foreground self-center mx-auto">No data yet</span>
+        ) : (
+          ordered.map((s) => {
+            if (s.penalty === 'DNF') {
+              return <div key={s._id} className="flex-1 min-w-0.75 h-full rounded-sm bg-red-500/40" />
+            }
+            const adjusted = s.timeMs + (s.penalty === '+2' ? 2000 : 0)
+            const ratio = (adjusted - min) / range
+            const heightPct = Math.max(12, Math.round(ratio * 90 + 10))
+            const colorClass =
+              adjusted <= targetMs
+                ? 'bg-emerald-500/70'
+                : adjusted <= targetMs * 1.25
+                  ? 'bg-amber-500/70'
+                  : 'bg-red-500/70'
+            return (
+              <div
+                key={s._id}
+                className={cn('flex-1 min-w-0.75 rounded-sm', colorClass)}
+                style={{ height: `${heightPct}%` }}
+              />
+            )
+          })
+        )}
+      </div>
     </div>
   )
 }
