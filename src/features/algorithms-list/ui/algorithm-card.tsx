@@ -1,54 +1,53 @@
-import { Card } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import * as React from 'react'
-import { cn } from '@/shared/lib/utils'
-import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
-import _ from 'lodash'
-import { Button } from '@/components/ui/button'
-import { EyeIcon, CopyIcon, CheckIcon, Bookmark, BookmarkCheck } from 'lucide-react'
-import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import AlgorithmModal from '@/features/algorithms-list/ui/algorithm-modal'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
-import { useTranslations } from 'next-intl'
 import { useState } from 'react'
+import _ from 'lodash'
+import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
+import { Bookmark, BookmarkCheck, ChevronDown, EyeIcon } from 'lucide-react'
 
-interface AlgorithmCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  onAlgorithmClick?: () => void
+import { Badge } from '@/components/ui/badge'
+import { cn } from '@/shared/lib/utils'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import AlgorithmModal from '@/features/algorithms-list/ui/algorithm-modal'
+import ActionButton from '@/features/algorithms-list/ui/action-button'
+import AlternativeRow from '@/features/algorithms-list/ui/alternative-row'
+import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
+
+interface AlgorithmCardProps {
   algorithm: AlgorithmCollection
   virtualization?: TwistyPlayer
   puzzle: PuzzleID
   isLearned?: boolean
   onToggleLearned?: () => void
+  className?: string
 }
 
 export default function AlgorithmCard({
   algorithm,
-  onAlgorithmClick,
   virtualization,
   puzzle,
   isLearned,
   onToggleLearned,
-  ...rest
+  className
 }: AlgorithmCardProps) {
-  const t = useTranslations('Index.AlgorithmsPage')
   const { open } = useOverlayStore()
-  const algs = algorithm.algs
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
+  const [expanded, setExpanded] = useState(false)
 
-  const defaults = _.merge(
+  const [primary, ...alternatives] = algorithm.algs
+  const canExpand = alternatives.length > 0
+
+  const vizConfig = _.merge(
     {
       visualization: 'experimental-2D-LL',
       background: 'none',
       controlPanel: 'none',
-      alg: algs[0]?.moves,
+      alg: primary?.moves,
       experimentalStickering: 'OLL',
       experimentalSetupAnchor: 'end'
     },
     virtualization
   )
 
-  const handleOpenAlgorithmPreview = (alg: string) => {
+  const openPreview = (alg: string) => {
     open({
       id: 'algorithm-preview',
       component: <AlgorithmModal />,
@@ -60,103 +59,69 @@ export default function AlgorithmCard({
     })
   }
 
-  const handleCopy = async (alg: string, index: number) => {
-    await navigator.clipboard.writeText(alg)
-    setCopiedIndex(index)
-    setTimeout(() => setCopiedIndex(null), 1500)
-  }
-
   return (
-    <Card
-      className={cn(
-        'p-4 mb-4 h-auto bg-card/50 break-inside-avoid-column hover:shadow-sm transition-shadow',
-        rest.className
-      )}
-      {...rest}
-    >
-      {/* Card header */}
-      <div className="flex items-center justify-between mb-3 gap-2">
-        <div className="flex items-center gap-2 min-w-0">
-          <h3 className="font-semibold text-sm truncate">{algorithm.name}</h3>
-          <Badge variant="outline" className="text-[10px] font-normal shrink-0">
-            {algorithm.group}
-          </Badge>
+    <div className={cn('transition-colors', isLearned && 'bg-primary/5', expanded && 'bg-muted/30', className)}>
+      <div
+        className={cn(
+          'flex items-start gap-2 px-2 py-2 transition-colors hover:bg-muted/40 sm:gap-3 sm:px-3 sm:py-2.5',
+          canExpand && 'cursor-pointer'
+        )}
+        onClick={() => canExpand && setExpanded((v) => !v)}
+        role={canExpand ? 'button' : undefined}
+        tabIndex={canExpand ? 0 : undefined}
+      >
+        <div
+          className={cn(
+            'flex size-11 shrink-0 items-center justify-center rounded-md bg-muted/40 sm:size-12',
+            isLearned && 'ring-1 ring-primary/40'
+          )}
+        >
+          <AlgorithmRender config={vizConfig} width={40} height={40} />
         </div>
-        <div className="flex items-center gap-2 shrink-0">
-          <span className="text-[11px] text-muted-foreground">
-            {algs.length} {algs.length === 1 ? 'alg' : 'algs'}
-          </span>
+
+        <div className="flex flex-1 min-w-0 flex-col gap-0.5">
+          <div className="flex min-w-0 items-center gap-2">
+            <h3 className="truncate text-sm font-medium">{algorithm.name}</h3>
+            <Badge variant="outline" className="shrink-0 text-[10px] font-normal">
+              {algorithm.group}
+            </Badge>
+            {canExpand && (
+              <span className="shrink-0 text-[10px] tabular-nums text-muted-foreground">+{alternatives.length}</span>
+            )}
+          </div>
+          <code className="block min-w-0 break-all font-mono text-xs leading-relaxed text-muted-foreground">
+            {primary?.moves ?? '—'}
+          </code>
+        </div>
+
+        <div className="flex shrink-0 items-center gap-0.5 self-center">
           {onToggleLearned && (
-            <Button
-              variant={isLearned ? 'default' : 'outline'}
-              size="icon"
-              className="h-7 w-7"
-              onClick={(e) => {
-                e.stopPropagation()
-                onToggleLearned()
-              }}
-              aria-label={isLearned ? 'Marked as learned' : 'Mark as learned'}
-              title={isLearned ? 'Marked as learned' : 'Mark as learned'}
-            >
-              {isLearned ? <BookmarkCheck className="h-3.5 w-3.5" /> : <Bookmark className="h-3.5 w-3.5" />}
-            </Button>
+            <ActionButton
+              icon={isLearned ? BookmarkCheck : Bookmark}
+              label={isLearned ? 'Marked as learned' : 'Mark as learned'}
+              active={isLearned}
+              onClick={onToggleLearned}
+            />
+          )}
+          <ActionButton icon={EyeIcon} label="Preview" onClick={() => primary && openPreview(primary.moves)} />
+          {canExpand && (
+            <ChevronDown
+              className={cn(
+                'ml-0.5 size-3.5 shrink-0 text-muted-foreground transition-transform',
+                expanded && 'rotate-180'
+              )}
+            />
           )}
         </div>
       </div>
 
-      {/* Cube visualization + algorithms */}
-      <div className="flex flex-col sm:flex-row items-start gap-4">
-        <div className="shrink-0 rounded-lg bg-muted/50 p-2 flex items-center justify-center">
-          <AlgorithmRender config={defaults} width={100} height={100} />
-        </div>
-
-        <div className="flex flex-col gap-2 w-full min-w-0">
-          {algs.map((alg, index) => (
-            <div
-              className="group/alg rounded-lg border bg-background/80 p-2.5 transition-colors hover:bg-muted/30"
-              onClick={onAlgorithmClick}
-              key={alg.id}
-            >
-              <div className="flex items-center gap-1 mb-1">
-                <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
-                  {alg.label ?? `${t('alternative')} #${index + 1}`}
-                </span>
-              </div>
-              <div className="flex items-center justify-between gap-2">
-                <code className="text-sm font-mono leading-relaxed break-all">{alg.moves}</code>
-                <div className="flex items-center gap-1 shrink-0">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-7 w-7 opacity-0 group-hover/alg:opacity-100 transition-all [&>svg]:transition-transform [&>svg]:duration-200 [&:active>svg]:scale-125"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      handleCopy(alg.moves, index)
-                    }}
-                  >
-                    {copiedIndex === index ? (
-                      <CheckIcon className="h-3.5 w-3.5 animate-[scaleIn_0.2s_ease-out]" />
-                    ) : (
-                      <CopyIcon className="h-3.5 w-3.5" />
-                    )}
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-7 w-7 [&>svg]:transition-transform [&>svg]:duration-200 [&:hover>svg]:scale-105"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      handleOpenAlgorithmPreview(alg.moves)
-                    }}
-                  >
-                    <EyeIcon className="h-3.5 w-3.5" />
-                  </Button>
-                </div>
-              </div>
-            </div>
+      {expanded && canExpand && (
+        <div className="space-y-1.5 px-2 pb-2.5 sm:px-3 sm:pl-17">
+          {alternatives.map((alt, i) => (
+            <AlternativeRow key={alt.id} alt={alt} index={i + 1} onPreview={() => openPreview(alt.moves)} />
           ))}
         </div>
-      </div>
-    </Card>
+      )}
+    </div>
   )
 }
