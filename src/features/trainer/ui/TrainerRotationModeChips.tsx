@@ -35,7 +35,7 @@ export default function TrainerRotationModeChips({ value, onChange }: TrainerRot
             title={label}
           >
             <Icon className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">{label}</span>
+            <span className="hidden lg:inline">{label}</span>
           </button>
         )
       })}
