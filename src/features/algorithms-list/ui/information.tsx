@@ -16,7 +16,7 @@ export default function Information({ title, description, algorithmCount }: Info
           {description && <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">{description}</p>}
         </div>
         {algorithmCount !== undefined && (
-          <div className="flex flex-col items-center rounded-lg bg-primary/10 px-4 py-2 shrink-0">
+          <div className="hidden sm:flex flex-col items-center rounded-lg bg-primary/10 px-4 py-2 shrink-0">
             <span className="text-xl font-bold text-primary">{algorithmCount}</span>
             <span className="text-[11px] text-muted-foreground font-medium">Algs</span>
           </div>
