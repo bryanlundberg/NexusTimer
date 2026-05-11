@@ -161,12 +161,10 @@ export default function TrainerExperience() {
     }
   }
 
-  const timeColorClass =
-    timerStatus === TimerStatus.HOLDING
-      ? 'text-red-500'
-      : timerStatus === TimerStatus.READY
-        ? 'text-emerald-500'
-        : 'text-foreground'
+  const timeColorClass = 'text-foreground'
+
+  const pageBgClass =
+    timerStatus === TimerStatus.HOLDING ? 'bg-red-500' : timerStatus === TimerStatus.READY ? 'bg-green-500/50' : ''
 
   const displayedTime =
     timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY ? '0.00' : formatMs(solvingTime)
@@ -244,33 +242,13 @@ export default function TrainerExperience() {
   )
 
   return (
-    <div className="p-3 sm:p-4 flex flex-col gap-3">
-      {/* Top toolbar — method+rotation always together; actions drop to their own row on mobile */}
+    <div className={cn('p-3 sm:p-4 flex flex-col gap-3 flex-1 transition-colors duration-150', pageBgClass)}>
+      {/* Top toolbar — method select + rotation chips */}
       <div className="flex items-center gap-2 flex-wrap">
-        <div className="flex items-center gap-2 flex-1 min-w-0 w-full md:w-auto">
-          <div className="flex-1 min-w-0">
-            <TrainerMethodSelect value={set.slug} onChange={setMethod} />
-          </div>
-          <TrainerRotationModeChips value={rotationMode} onChange={setRotationMode} />
+        <div className="flex-1 min-w-0 max-w-sm">
+          <TrainerMethodSelect value={set.slug} onChange={setMethod} />
         </div>
-        <div className="flex items-center gap-1.5 ml-auto w-full md:w-auto justify-end">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="h-8 w-8 lg:hidden" aria-label="Method stats">
-                <BarChart3 className="h-3.5 w-3.5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[88%] sm:max-w-sm p-4">
-              <SheetHeader className="px-0">
-                <SheetTitle className="flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-primary" />
-                  {set.title}
-                </SheetTitle>
-              </SheetHeader>
-              {methodPanel}
-            </SheetContent>
-          </Sheet>
-        </div>
+        <TrainerRotationModeChips value={rotationMode} onChange={setRotationMode} />
       </div>
 
       {/* Slim learned-progress strip — hidden on lg+ where the side panel shows it */}
@@ -283,8 +261,8 @@ export default function TrainerExperience() {
       </div>
 
       {/* Stage + side panel */}
-      <div className="flex flex-col lg:flex-row gap-4">
-        <div className={cn('flex-1 min-w-0 flex flex-col gap-3 rounded-xl py-3')}>
+      <div className="flex flex-col lg:flex-row gap-4 flex-1">
+        <div className={cn('flex-1 min-w-0 flex flex-col gap-3 rounded-xl py-1')}>
           <TrainerCurrentCase
             caseGroup={currentCase?.group ?? ''}
             caseName={currentCase?.name ?? ''}
@@ -306,6 +284,27 @@ export default function TrainerExperience() {
             totalCount={totalSetCases}
             onPickCases={handleOpenPickCases}
           />
+
+          {/* Stats sheet trigger — only on screens without the side panel */}
+          <div className="lg:hidden mt-auto pt-2">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" size="sm" className="w-full h-9">
+                  <BarChart3 className="h-3.5 w-3.5" />
+                  <span>Method stats</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="bottom" className="p-4 max-h-[80vh] overflow-y-auto">
+                <SheetHeader className="px-0">
+                  <SheetTitle className="flex items-center gap-2">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    {set.title}
+                  </SheetTitle>
+                </SheetHeader>
+                <div className="mt-2">{methodPanel}</div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
 
         <aside className="hidden lg:flex flex-col gap-3 w-72 shrink-0">

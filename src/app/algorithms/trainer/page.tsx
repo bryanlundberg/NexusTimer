@@ -4,7 +4,7 @@ import TrainerExperience from '@/features/trainer/ui/TrainerExperience'
 
 export default function TrainerPage() {
   return (
-    <ScrollArea className="max-h-dvh overflow-auto">
+    <div className="min-h-dvh flex flex-col">
       <CoreHeader
         breadcrumbPath={'/algorithms'}
         breadcrumb={'Algorithms'}
@@ -13,6 +13,6 @@ export default function TrainerPage() {
       />
 
       <TrainerExperience />
-    </ScrollArea>
+    </div>
   )
 }

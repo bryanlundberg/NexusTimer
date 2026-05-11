@@ -17,7 +17,7 @@ const OPTIONS: Array<{ id: TrainerRotationMode; label: string; icon: React.Compo
 
 export default function TrainerRotationModeChips({ value, onChange }: TrainerRotationModeChipsProps) {
   return (
-    <div className="inline-flex items-center rounded-md border bg-background p-0.5">
+    <div className="inline-flex items-center rounded-md border bg-background p-0.5 ms-auto">
       {OPTIONS.map(({ id, label, icon: Icon }) => {
         const active = id === value
         return (

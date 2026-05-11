@@ -51,44 +51,45 @@ export default function TrainerCurrentCase({
 }: TrainerCurrentCaseProps) {
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-2 min-w-0">
-          {caseGroup && (
-            <Badge variant="outline" className="text-[10px] font-normal shrink-0">
-              {caseGroup}
-            </Badge>
-          )}
-          <h2 className="text-base sm:text-lg font-bold tracking-tight truncate">{caseName || '—'}</h2>
-        </div>
-        <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
-          {onEditTarget && targetSeconds != null && (
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-8"
-              onClick={onEditTarget}
-              aria-label="Edit target time"
-              title="Edit target time"
-            >
-              <Target className="h-3.5 w-3.5" />
-              <span className="font-mono tabular-nums">&lt;{targetSeconds}s</span>
-            </Button>
-          )}
-          {onPickCases && pickedCount != null && totalCount != null && (
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-8"
-              onClick={onPickCases}
-              aria-label="Pick cases"
-              title="Pick cases"
-            >
-              <ListChecks className="h-3.5 w-3.5" />
-              <span className="tabular-nums">
-                {pickedCount}/{totalCount}
-              </span>
-            </Button>
-          )}
+      <div className="flex flex-wrap items-center gap-2 min-w-0">
+        {caseGroup && (
+          <Badge variant="outline" className="text-[10px] font-normal shrink-0">
+            {caseGroup}
+          </Badge>
+        )}
+        <h2 className="text-base sm:text-lg font-bold tracking-tight truncate">{caseName || '—'}</h2>
+      </div>
+
+      <div className="flex flex-wrap items-center gap-1.5">
+        {onEditTarget && targetSeconds != null && (
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8"
+            onClick={onEditTarget}
+            aria-label="Edit target time"
+            title="Edit target time"
+          >
+            <Target className="h-3.5 w-3.5" />
+            <span className="font-mono tabular-nums">&lt;{targetSeconds}s</span>
+          </Button>
+        )}
+        {onPickCases && pickedCount != null && totalCount != null && (
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8"
+            onClick={onPickCases}
+            aria-label="Pick cases"
+            title="Pick cases"
+          >
+            <ListChecks className="h-3.5 w-3.5" />
+            <span className="tabular-nums">
+              {pickedCount}/{totalCount}
+            </span>
+          </Button>
+        )}
+        <div className="ml-auto flex items-center gap-1.5">
           <Button
             variant={isLearned ? 'default' : 'outline'}
             size="icon"
@@ -123,12 +124,25 @@ export default function TrainerCurrentCase({
         </div>
       )}
 
-      <div className="flex items-center gap-3 sm:gap-4">
-        <div className="shrink-0 rounded-md border bg-muted/40 p-1.5 sm:p-2 flex items-center justify-center">
+      <div className="flex flex-row items-center gap-3 sm:gap-4">
+        <div
+          className="shrink-0 rounded-md border bg-muted/40 p-1 sm:p-2 flex items-center justify-center relative overflow-hidden"
+          style={{
+            backgroundImage:
+              'repeating-linear-gradient(45deg, color-mix(in oklab, currentColor 8%, transparent) 0 6px, transparent 6px 14px)'
+          }}
+        >
           {vizConfig ? (
-            <AlgorithmRender config={vizConfig} width={96} height={96} />
+            <>
+              <span className="sm:hidden">
+                <AlgorithmRender config={vizConfig} width={56} height={56} />
+              </span>
+              <span className="hidden sm:inline-flex">
+                <AlgorithmRender config={vizConfig} width={96} height={96} />
+              </span>
+            </>
           ) : (
-            <div className="size-24 rounded-md bg-muted" />
+            <div className="size-14 sm:size-24 rounded-md bg-muted" />
           )}
         </div>
 
@@ -136,7 +150,7 @@ export default function TrainerCurrentCase({
           <div
             className={cn(
               'font-mono font-bold tabular-nums leading-none transition-colors',
-              'text-5xl sm:text-6xl md:text-7xl',
+              'text-6xl sm:text-7xl md:text-8xl',
               timeColorClass
             )}
           >
@@ -145,7 +159,7 @@ export default function TrainerCurrentCase({
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-1.5 text-center">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-center">
         <Stat label="Best" value={best ?? '—'} />
         <Stat label="ao5" value={ao5 ?? '—'} />
         <Stat label="ao12" value={ao12 ?? '—'} />
