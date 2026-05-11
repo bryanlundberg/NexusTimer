@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { SkipForward, BookmarkCheck, Bookmark, History, Target, ListChecks } from 'lucide-react'
@@ -49,6 +50,7 @@ export default function TrainerCurrentCase({
   totalCount,
   onPickCases
 }: TrainerCurrentCaseProps) {
+  const t = useTranslations('Index.TrainerPage')
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-wrap items-center gap-2 min-w-0">
@@ -67,8 +69,8 @@ export default function TrainerCurrentCase({
             size="sm"
             className="h-8"
             onClick={onEditTarget}
-            aria-label="Edit target time"
-            title="Edit target time"
+            aria-label={t('actions.editTargetTime')}
+            title={t('actions.editTargetTime')}
           >
             <Target className="h-3.5 w-3.5" />
             <span className="font-mono tabular-nums">&lt;{targetSeconds}s</span>
@@ -80,8 +82,8 @@ export default function TrainerCurrentCase({
             size="sm"
             className="h-8"
             onClick={onPickCases}
-            aria-label="Pick cases"
-            title="Pick cases"
+            aria-label={t('actions.pickCases')}
+            title={t('actions.pickCases')}
           >
             <ListChecks className="h-3.5 w-3.5" />
             <span className="tabular-nums">
@@ -96,19 +98,26 @@ export default function TrainerCurrentCase({
             className="h-8 w-8"
             onClick={onToggleLearned}
             disabled={!onToggleLearned}
-            aria-label={isLearned ? 'Marked as learned' : 'Mark as learned'}
-            title={isLearned ? 'Marked as learned' : 'Mark as learned'}
+            aria-label={isLearned ? t('actions.markedAsLearned') : t('actions.markAsLearned')}
+            title={isLearned ? t('actions.markedAsLearned') : t('actions.markAsLearned')}
           >
             {isLearned ? <BookmarkCheck className="h-4 w-4" /> : <Bookmark className="h-4 w-4" />}
           </Button>
-          <Button variant="outline" size="icon" className="h-8 w-8" onClick={onSkip} aria-label="Skip" title="Skip">
+          <Button
+            variant="outline"
+            size="icon"
+            className="h-8 w-8"
+            onClick={onSkip}
+            aria-label={t('actions.skip')}
+            title={t('actions.skip')}
+          >
             <SkipForward className="h-4 w-4" />
           </Button>
           {historyHref && (
             <Link
               href={historyHref}
-              aria-label="History"
-              title="History"
+              aria-label={t('actions.history')}
+              title={t('actions.history')}
               className={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'h-8 w-8')}
             >
               <History className="h-4 w-4" />
@@ -119,7 +128,9 @@ export default function TrainerCurrentCase({
 
       {setup && (
         <div className="flex items-center gap-2 rounded-md border bg-background/60 px-2.5 py-1.5">
-          <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider shrink-0">Setup</span>
+          <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider shrink-0">
+            {t('setup')}
+          </span>
           <code className="text-xs sm:text-sm font-mono break-all">{setup}</code>
         </div>
       )}
@@ -160,10 +171,10 @@ export default function TrainerCurrentCase({
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-center">
-        <Stat label="Best" value={best ?? '—'} />
+        <Stat label={t('stats.best')} value={best ?? '—'} />
         <Stat label="ao5" value={ao5 ?? '—'} />
         <Stat label="ao12" value={ao12 ?? '—'} />
-        <Stat label="Solves" value={String(totalSolves ?? 0)} />
+        <Stat label={t('stats.solves')} value={String(totalSolves ?? 0)} />
       </div>
     </div>
   )
