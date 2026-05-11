@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react'
 import _ from 'lodash'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -73,6 +74,7 @@ export default function TrainerSolveHistoryTable({
   vizDefaults,
   emptyLabel
 }: TrainerSolveHistoryTableProps) {
+  const t = useTranslations('Index.TrainerHistoryPage.table')
   const vizConfigByCaseId = useMemo(() => {
     if (!showCase || !caseById || !puzzle) return new Map<string, Partial<TwistyPlayer>>()
     const map = new Map<string, Partial<TwistyPlayer>>()
@@ -99,7 +101,7 @@ export default function TrainerSolveHistoryTable({
     return (
       <div className="rounded-lg border bg-card/40 px-3 py-6">
         <p className="text-xs text-muted-foreground text-center">
-          {isLoading ? 'Loading…' : (emptyLabel ?? 'No solves yet.')}
+          {isLoading ? t('loading') : (emptyLabel ?? t('empty'))}
         </p>
       </div>
     )
@@ -115,9 +117,9 @@ export default function TrainerSolveHistoryTable({
           )}
         >
           {showCase && <span />}
-          <span>Time</span>
-          {showCase && <span>Case</span>}
-          <span className="text-right">Ago</span>
+          <span>{t('time')}</span>
+          {showCase && <span>{t('case')}</span>}
+          <span className="text-right">{t('ago')}</span>
           <span />
         </div>
 
@@ -157,7 +159,7 @@ export default function TrainerSolveHistoryTable({
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-6 w-6 shrink-0" aria-label="Solve actions">
+                    <Button variant="ghost" size="icon" className="h-6 w-6 shrink-0" aria-label={t('solveActions')}>
                       <MoreVertical className="h-3.5 w-3.5" />
                     </Button>
                   </DropdownMenuTrigger>
@@ -186,7 +188,7 @@ export default function TrainerSolveHistoryTable({
                     <DropdownMenuSeparator />
                     <DropdownMenuItem variant="destructive" onClick={() => onDelete(solve._id)}>
                       <Trash2 className="h-3.5 w-3.5" />
-                      Delete
+                      {t('delete')}
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
@@ -198,7 +200,7 @@ export default function TrainerSolveHistoryTable({
 
       {!reachedEnd && (
         <Button variant="outline" size="sm" className="w-full h-8" onClick={onLoadMore} disabled={isLoadingMore}>
-          {isLoadingMore ? 'Loading…' : 'Load more'}
+          {isLoadingMore ? t('loading') : t('loadMore')}
         </Button>
       )}
     </div>
