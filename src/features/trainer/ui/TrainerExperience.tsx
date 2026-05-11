@@ -258,7 +258,7 @@ export default function TrainerExperience() {
   )
 
   return (
-    <div className="px-2 flex flex-col gap-3 flex-1 relative">
+    <div id="touch" className="px-2 flex flex-col gap-3 flex-1 relative">
       <div className={cn('absolute inset-0 pointer-events-none transition-colors duration-150', stageOverlayClass)} />
       {/* Top toolbar — method select + rotation chips */}
       <div className="flex items-center gap-2 flex-wrap">
