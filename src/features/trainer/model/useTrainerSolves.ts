@@ -23,10 +23,12 @@ export const useTrainerSolves = (
   enabled = true,
   limit = 12
 ) => {
-  const url =
-    enabled && methodSlug && caseId
-      ? `/api/v1/trainer/solves?methodSlug=${encodeURIComponent(methodSlug)}&caseId=${encodeURIComponent(caseId)}&limit=${limit}`
-      : null
+  const params = new URLSearchParams()
+  if (methodSlug) params.set('methodSlug', methodSlug)
+  if (caseId) params.set('caseId', caseId)
+  params.set('limit', String(limit))
+
+  const url = enabled && methodSlug ? `/api/v1/trainer/solves?${params.toString()}` : null
 
   const { data, error, isLoading, mutate } = useSWR<ListResponse>(url, fetcher)
 
