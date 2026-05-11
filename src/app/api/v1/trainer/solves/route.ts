@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { Types } from 'mongoose'
 import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import { auth } from '@/shared/config/auth/auth'
@@ -11,7 +12,11 @@ const RECENT_TIMES_WINDOW = 12
 const listQuerySchema = z.object({
   methodSlug: z.string().min(1),
   caseId: z.string().min(1).optional(),
-  limit: z.coerce.number().int().min(1).max(100).default(12)
+  limit: z.coerce.number().int().min(1).max(100).default(12),
+  before: z
+    .string()
+    .refine((v) => Types.ObjectId.isValid(v), 'Invalid cursor')
+    .optional()
 })
 
 export async function GET(request: NextRequest) {
@@ -24,19 +29,21 @@ export async function GET(request: NextRequest) {
     const parsed = listQuerySchema.safeParse({
       methodSlug: request.nextUrl.searchParams.get('methodSlug'),
       caseId: request.nextUrl.searchParams.get('caseId') ?? undefined,
-      limit: request.nextUrl.searchParams.get('limit') ?? undefined
+      limit: request.nextUrl.searchParams.get('limit') ?? undefined,
+      before: request.nextUrl.searchParams.get('before') ?? undefined
     })
     if (!parsed.success) {
       return NextResponse.json({ error: 'Invalid query', issues: parsed.error.issues }, { status: 400 })
     }
-    const { methodSlug, caseId, limit } = parsed.data
+    const { methodSlug, caseId, limit, before } = parsed.data
 
     await connectDB()
 
     const filter: Record<string, unknown> = { user: session.user.id, methodSlug }
     if (caseId) filter.caseId = caseId
+    if (before) filter._id = { $lt: new Types.ObjectId(before) }
 
-    const solves = await TrainerSolve.find(filter).sort({ createdAt: -1 }).limit(limit).lean()
+    const solves = await TrainerSolve.find(filter).sort({ _id: -1 }).limit(limit).lean()
     return NextResponse.json({ solves })
   } catch (error) {
     console.error('Error listing trainer solves:', error)
