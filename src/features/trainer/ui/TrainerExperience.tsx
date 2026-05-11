@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo } from 'react'
 import _ from 'lodash'
-import { Target, ListChecks, BarChart3, Sparkles, History } from 'lucide-react'
+import { BarChart3, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
@@ -12,7 +12,6 @@ import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
 import TrainerEditTargetModal from '@/features/trainer/ui/TrainerEditTargetModal'
 import TrainerPickCasesModal from '@/features/trainer/ui/TrainerPickCasesModal'
 import TrainerRotationModeChips from '@/features/trainer/ui/TrainerRotationModeChips'
-import TrainerRecentSolves from '@/features/trainer/ui/TrainerRecentSolves'
 import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
 import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
@@ -27,7 +26,6 @@ import { Settings } from '@/shared/types/Settings'
 import { useTrainerStats } from '@/features/trainer/model/useTrainerStats'
 import { useTrainerSolves } from '@/features/trainer/model/useTrainerSolves'
 import { postTrainerSolve } from '@/features/trainer/model/postTrainerSolve'
-import { deleteTrainerSolve, patchTrainerSolve } from '@/features/trainer/model/mutateTrainerSolve'
 import { useSession } from 'next-auth/react'
 import { cn } from '@/shared/lib/utils'
 
@@ -71,11 +69,7 @@ export default function TrainerExperience() {
   const { stats: serverStats, mutate: mutateStats } = useTrainerStats(methodSlug, isAuthed)
   const { learnedIds, mutate: mutateLearned } = useTrainerLearned(methodSlug, isAuthed)
   const learnedSet = useMemo(() => new Set(learnedIds), [learnedIds])
-  const {
-    solves: recentSolves,
-    isLoading: solvesLoading,
-    mutate: mutateSolves
-  } = useTrainerSolves(methodSlug, currentCase?.id, isAuthed)
+  const { solves: recentSolves, mutate: mutateSolves } = useTrainerSolves(methodSlug, currentCase?.id, isAuthed)
 
   useEffect(() => {
     if (!isAuthed) return
@@ -164,24 +158,6 @@ export default function TrainerExperience() {
     } catch (err) {
       console.error('Failed to update learned:', err)
       mutateLearned()
-    }
-  }
-
-  const handlePenaltyChange = async (id: string, penalty: 'OK' | '+2' | 'DNF') => {
-    try {
-      await patchTrainerSolve(id, penalty)
-      await Promise.all([mutateStats(), mutateSolves()])
-    } catch (err) {
-      console.error('Failed to update solve penalty:', err)
-    }
-  }
-
-  const handleDeleteSolve = async (id: string) => {
-    try {
-      await deleteTrainerSolve(id)
-      await Promise.all([mutateStats(), mutateSolves()])
-    } catch (err) {
-      console.error('Failed to delete solve:', err)
     }
   }
 
@@ -278,16 +254,6 @@ export default function TrainerExperience() {
           <TrainerRotationModeChips value={rotationMode} onChange={setRotationMode} />
         </div>
         <div className="flex items-center gap-1.5 ml-auto w-full md:w-auto justify-end">
-          <Button variant="outline" size="sm" className="h-8" onClick={handleOpenEditTarget}>
-            <Target className="h-3.5 w-3.5" />
-            <span className="font-mono tabular-nums">&lt;{targetSeconds}s</span>
-          </Button>
-          <Button variant="outline" size="sm" className="h-8" onClick={handleOpenPickCases}>
-            <ListChecks className="h-3.5 w-3.5" />
-            <span className="tabular-nums">
-              {totalCases}/{totalSetCases}
-            </span>
-          </Button>
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" className="h-8 w-8 lg:hidden" aria-label="Method stats">
@@ -333,47 +299,13 @@ export default function TrainerExperience() {
             totalSolves={currentStats?.totalSolves ?? 0}
             onSkip={handleSkip}
             onToggleLearned={isAuthed ? handleToggleLearned : undefined}
+            historyHref={isAuthed && currentCase ? '/algorithms/trainer/history' : undefined}
+            targetSeconds={targetSeconds}
+            onEditTarget={handleOpenEditTarget}
+            pickedCount={totalCases}
+            totalCount={totalSetCases}
+            onPickCases={handleOpenPickCases}
           />
-
-          {isAuthed && currentCase && (
-            <>
-              <div className="border-t pt-3 hidden sm:block">
-                <TrainerRecentSolves
-                  solves={recentSolves}
-                  isLoading={solvesLoading}
-                  onChangePenalty={handlePenaltyChange}
-                  onDelete={handleDeleteSolve}
-                />
-              </div>
-              <div className="border-t pt-3 sm:hidden">
-                <Sheet>
-                  <SheetTrigger asChild>
-                    <Button variant="outline" size="sm" className="w-full h-8 justify-between">
-                      <span className="flex items-center gap-1.5">
-                        <History className="h-3.5 w-3.5" />
-                        Recent solves
-                      </span>
-                      <span className="text-xs text-muted-foreground tabular-nums">{recentSolves.length}</span>
-                    </Button>
-                  </SheetTrigger>
-                  <SheetContent side="bottom" className="p-4 max-h-[80vh] overflow-y-auto">
-                    <SheetHeader className="px-0">
-                      <SheetTitle className="flex items-center gap-2">
-                        <History className="h-4 w-4 text-primary" />
-                        Recent solves
-                      </SheetTitle>
-                    </SheetHeader>
-                    <TrainerRecentSolves
-                      solves={recentSolves}
-                      isLoading={solvesLoading}
-                      onChangePenalty={handlePenaltyChange}
-                      onDelete={handleDeleteSolve}
-                    />
-                  </SheetContent>
-                </Sheet>
-              </div>
-            </>
-          )}
         </div>
 
         <aside className="hidden lg:flex flex-col gap-3 w-72 shrink-0">
