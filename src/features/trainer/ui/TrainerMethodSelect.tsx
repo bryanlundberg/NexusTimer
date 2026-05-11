@@ -1,6 +1,7 @@
 'use client'
 
 import _ from 'lodash'
+import { useTranslations } from 'next-intl'
 import {
   Select,
   SelectContent,
@@ -18,12 +19,13 @@ interface TrainerMethodSelectProps {
 }
 
 export default function TrainerMethodSelect({ value, onChange }: TrainerMethodSelectProps) {
+  const t = useTranslations('Index.TrainerPage')
   const grouped = _.groupBy(ALGORITHM_SETS, 'puzzle')
 
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger className="h-8 w-full sm:w-48 text-xs">
-        <SelectValue placeholder="Choose a method" />
+        <SelectValue placeholder={t('chooseMethod')} />
       </SelectTrigger>
       <SelectContent>
         {Object.entries(grouped).map(([puzzle, sets]) => (
@@ -32,7 +34,9 @@ export default function TrainerMethodSelect({ value, onChange }: TrainerMethodSe
             {sets.map((set) => (
               <SelectItem key={set.slug} value={set.slug}>
                 <span className="font-medium">{set.title}</span>
-                <span className="text-muted-foreground text-xs ml-2">{set.algorithms.length} algs</span>
+                <span className="text-muted-foreground text-xs ml-2">
+                  {t('algsSuffix', { count: set.algorithms.length })}
+                </span>
               </SelectItem>
             ))}
           </SelectGroup>
