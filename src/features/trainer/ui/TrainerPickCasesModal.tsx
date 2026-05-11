@@ -2,6 +2,7 @@
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import _ from 'lodash'
+import { useTranslations } from 'next-intl'
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -91,6 +92,7 @@ export default function TrainerPickCasesModal({
   puzzle,
   onApply
 }: TrainerPickCasesModalProps) {
+  const t = useTranslations('Index.TrainerPage.pickCasesModal')
   const [selected, setSelected] = useState<Set<string>>(new Set(initialSelected))
   const { close } = useOverlayStore()
 
@@ -149,18 +151,16 @@ export default function TrainerPickCasesModal({
   return (
     <DialogContent className="sm:max-w-3xl gap-0 p-0 overflow-hidden flex flex-col" style={{ maxHeight: '85vh' }}>
       <DialogHeader className="p-6 pb-3 shrink-0">
-        <DialogTitle>Pick cases</DialogTitle>
-        <DialogDescription>
-          {selected.size} of {algorithms.length} cases selected
-        </DialogDescription>
+        <DialogTitle>{t('title')}</DialogTitle>
+        <DialogDescription>{t('description', { selected: selected.size, total: algorithms.length })}</DialogDescription>
       </DialogHeader>
 
       <div className="flex items-center gap-2 px-6 pb-3 shrink-0">
         <Button type="button" variant="outline" size="sm" onClick={selectAll}>
-          Select all
+          {t('selectAll')}
         </Button>
         <Button type="button" variant="outline" size="sm" onClick={selectNone}>
-          Clear
+          {t('clear')}
         </Button>
       </div>
 
@@ -210,10 +210,10 @@ export default function TrainerPickCasesModal({
 
       <DialogFooter className="p-6 pt-3 border-t shrink-0">
         <Button type="button" variant="outline" onClick={close}>
-          Cancel
+          {t('cancel')}
         </Button>
         <Button type="button" onClick={handleApply} disabled={selected.size === 0}>
-          Apply ({selected.size})
+          {t('applyWithCount', { count: selected.size })}
         </Button>
       </DialogFooter>
     </DialogContent>
