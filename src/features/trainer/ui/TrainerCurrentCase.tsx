@@ -1,6 +1,7 @@
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { SkipForward, BookmarkCheck, Bookmark } from 'lucide-react'
+import { SkipForward, BookmarkCheck, Bookmark, History, Target, ListChecks } from 'lucide-react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { TwistyPlayer } from 'cubing/twisty'
 import { cn } from '@/shared/lib/utils'
@@ -19,6 +20,12 @@ interface TrainerCurrentCaseProps {
   totalSolves?: number
   onSkip?: () => void
   onToggleLearned?: () => void
+  historyHref?: string
+  targetSeconds?: number
+  onEditTarget?: () => void
+  pickedCount?: number
+  totalCount?: number
+  onPickCases?: () => void
 }
 
 export default function TrainerCurrentCase({
@@ -34,7 +41,13 @@ export default function TrainerCurrentCase({
   ao12,
   totalSolves,
   onSkip,
-  onToggleLearned
+  onToggleLearned,
+  historyHref,
+  targetSeconds,
+  onEditTarget,
+  pickedCount,
+  totalCount,
+  onPickCases
 }: TrainerCurrentCaseProps) {
   return (
     <div className="flex flex-col gap-3">
@@ -47,7 +60,35 @@ export default function TrainerCurrentCase({
           )}
           <h2 className="text-base sm:text-lg font-bold tracking-tight truncate">{caseName || '—'}</h2>
         </div>
-        <div className="flex items-center gap-1.5 shrink-0">
+        <div className="flex items-center gap-1.5 shrink-0 flex-wrap justify-end">
+          {onEditTarget && targetSeconds != null && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-8"
+              onClick={onEditTarget}
+              aria-label="Edit target time"
+              title="Edit target time"
+            >
+              <Target className="h-3.5 w-3.5" />
+              <span className="font-mono tabular-nums">&lt;{targetSeconds}s</span>
+            </Button>
+          )}
+          {onPickCases && pickedCount != null && totalCount != null && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-8"
+              onClick={onPickCases}
+              aria-label="Pick cases"
+              title="Pick cases"
+            >
+              <ListChecks className="h-3.5 w-3.5" />
+              <span className="tabular-nums">
+                {pickedCount}/{totalCount}
+              </span>
+            </Button>
+          )}
           <Button
             variant={isLearned ? 'default' : 'outline'}
             size="icon"
@@ -62,6 +103,16 @@ export default function TrainerCurrentCase({
           <Button variant="outline" size="icon" className="h-8 w-8" onClick={onSkip} aria-label="Skip" title="Skip">
             <SkipForward className="h-4 w-4" />
           </Button>
+          {historyHref && (
+            <Link
+              href={historyHref}
+              aria-label="History"
+              title="History"
+              className={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'h-8 w-8')}
+            >
+              <History className="h-4 w-4" />
+            </Link>
+          )}
         </div>
       </div>
 
