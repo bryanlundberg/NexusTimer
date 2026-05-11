@@ -3,6 +3,7 @@
 import { useMemo } from 'react'
 import _ from 'lodash'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { Sparkles, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -19,6 +20,7 @@ import type { AlgorithmCollection } from '@/features/algorithms-list/model/types
 import { TwistyPlayer } from 'cubing/twisty'
 
 export default function TrainerHistoryView() {
+  const t = useTranslations('Index.TrainerHistoryPage')
   const methodSlug = useTrainerStore((s) => s.methodSlug)
   const pickedIds = useTrainerStore((s) => s.pickedIds)
   const caseIndex = useTrainerStore((s) => s.caseIndex)
@@ -76,7 +78,7 @@ export default function TrainerHistoryView() {
   }
 
   if (!isAuthed) {
-    return <div className="p-4 text-sm text-muted-foreground">Sign in to view your trainer history.</div>
+    return <div className="p-4 text-sm text-muted-foreground">{t('signInPrompt')}</div>
   }
 
   return (
@@ -85,7 +87,7 @@ export default function TrainerHistoryView() {
         <Link href="/algorithms/trainer">
           <Button variant="outline" size="sm" className="h-8">
             <ArrowLeft className="h-3.5 w-3.5" />
-            Back to practice
+            {t('backToPractice')}
           </Button>
         </Link>
         <Sparkles className="h-3.5 w-3.5 text-primary shrink-0 ml-1" />
@@ -97,8 +99,8 @@ export default function TrainerHistoryView() {
 
       <Tabs defaultValue="method" className="flex flex-col gap-3">
         <TabsList className="self-start">
-          <TabsTrigger value="method">Method</TabsTrigger>
-          <TabsTrigger value="case">Current case</TabsTrigger>
+          <TabsTrigger value="method">{t('tabs.method')}</TabsTrigger>
+          <TabsTrigger value="case">{t('tabs.currentCase')}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="method">
@@ -114,7 +116,7 @@ export default function TrainerHistoryView() {
             caseById={caseById}
             puzzle={set.puzzle}
             vizDefaults={set.virtualization as Record<string, unknown>}
-            emptyLabel="No solves yet for this method."
+            emptyLabel={t('emptyMethod')}
           />
         </TabsContent>
 
@@ -131,7 +133,7 @@ export default function TrainerHistoryView() {
                   </span>
                   <span className="text-sm font-semibold truncate">{currentCase.name}</span>
                   <span className="text-[11px] text-muted-foreground tabular-nums">
-                    {caseQuery.solves.length} {caseQuery.reachedEnd ? 'total' : 'loaded'}
+                    {caseQuery.solves.length} {caseQuery.reachedEnd ? t('total') : t('loaded')}
                   </span>
                 </div>
               </div>
@@ -144,11 +146,11 @@ export default function TrainerHistoryView() {
                 onLoadMore={caseQuery.loadMore}
                 onChangePenalty={handlePenaltyChange}
                 onDelete={handleDeleteSolve}
-                emptyLabel="No solves yet for this case."
+                emptyLabel={t('emptyCase')}
               />
             </>
           ) : (
-            <p className="text-xs text-muted-foreground py-1">No case selected.</p>
+            <p className="text-xs text-muted-foreground py-1">{t('noCaseSelected')}</p>
           )}
         </TabsContent>
       </Tabs>
