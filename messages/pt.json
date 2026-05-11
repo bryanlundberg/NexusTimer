@@ -575,6 +575,80 @@
     "OpenGraphImage": {
       "title": "Nexus Timer - Cronômetro Profissional para Cubo de Rubik",
       "description": "Nexus Timer é uma plataforma profissional para treinar e analisar sua jornada com o Cubo de Rubik."
+    },
+    "TrainerPage": {
+      "breadcrumb": "Treinador",
+      "chooseMethod": "Escolha um método",
+      "algsSuffix": "{count} algs",
+      "learned": "Aprendidos",
+      "methodStats": "Estatísticas do método",
+      "setup": "Setup",
+      "rotation": {
+        "shuffle": "Aleatório",
+        "random": "Random",
+        "sequential": "Sequencial"
+      },
+      "stats": {
+        "best": "Melhor",
+        "solves": "Solves",
+        "bestSingle": "Melhor single",
+        "totalSolves": "Total de solves",
+        "picked": "Selecionados",
+        "target": "Objetivo",
+        "algorithmsLearned": "Algoritmos aprendidos",
+        "lastAttempts": "Últimas tentativas",
+        "noDataYet": "Sem dados ainda"
+      },
+      "actions": {
+        "editTargetTime": "Editar tempo objetivo",
+        "pickCases": "Escolher casos",
+        "markedAsLearned": "Marcado como aprendido",
+        "markAsLearned": "Marcar como aprendido",
+        "skip": "Pular",
+        "history": "Histórico"
+      },
+      "editTargetModal": {
+        "title": "Editar tempo objetivo",
+        "description": "Um caso é considerado \"superado\" quando você termina abaixo do tempo selecionado.",
+        "under": "Abaixo",
+        "cancel": "Cancelar",
+        "apply": "Aplicar"
+      },
+      "pickCasesModal": {
+        "title": "Escolher casos",
+        "description": "{selected} de {total} casos selecionados",
+        "selectAll": "Selecionar todos",
+        "clear": "Limpar",
+        "cancel": "Cancelar",
+        "applyWithCount": "Aplicar ({count})"
+      },
+      "cta": {
+        "practiceNow": "Praticar agora"
+      }
+    },
+    "TrainerHistoryPage": {
+      "breadcrumb": "Histórico",
+      "signInPrompt": "Faça login para ver seu histórico do treinador.",
+      "backToPractice": "Voltar a praticar",
+      "tabs": {
+        "method": "Método",
+        "currentCase": "Caso atual"
+      },
+      "noCaseSelected": "Nenhum caso selecionado.",
+      "emptyCase": "Ainda não há solves para este caso.",
+      "emptyMethod": "Ainda não há solves para este método.",
+      "loaded": "carregados",
+      "total": "totais",
+      "table": {
+        "time": "Tempo",
+        "case": "Caso",
+        "ago": "Há",
+        "solveActions": "Ações do solve",
+        "delete": "Excluir",
+        "loading": "Carregando…",
+        "loadMore": "Carregar mais",
+        "empty": "Ainda não há solves."
+      }
     }
   },
   "Multiplayer": {

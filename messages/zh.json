@@ -575,6 +575,80 @@
     "OpenGraphImage": {
       "title": "Nexus Timer - 专业魔方计时器",
       "description": "Nexus Timer 是一个专业的平台，用于训练和分析你的魔方竞速之旅。"
+    },
+    "TrainerPage": {
+      "breadcrumb": "训练器",
+      "chooseMethod": "选择方法",
+      "algsSuffix": "{count} algs",
+      "learned": "已学会",
+      "methodStats": "方法统计",
+      "setup": "Setup",
+      "rotation": {
+        "shuffle": "随机洗牌",
+        "random": "随机",
+        "sequential": "顺序"
+      },
+      "stats": {
+        "best": "最佳",
+        "solves": "Solves",
+        "bestSingle": "最佳 single",
+        "totalSolves": "Solves 总数",
+        "picked": "已选",
+        "target": "目标",
+        "algorithmsLearned": "已学算法",
+        "lastAttempts": "最近尝试",
+        "noDataYet": "暂无数据"
+      },
+      "actions": {
+        "editTargetTime": "编辑目标时间",
+        "pickCases": "选择案例",
+        "markedAsLearned": "已标记为学会",
+        "markAsLearned": "标记为学会",
+        "skip": "跳过",
+        "history": "历史"
+      },
+      "editTargetModal": {
+        "title": "编辑目标时间",
+        "description": "当你在所选时间内完成时,该案例被视为\"通过\"。",
+        "under": "低于",
+        "cancel": "取消",
+        "apply": "应用"
+      },
+      "pickCasesModal": {
+        "title": "选择案例",
+        "description": "已选择 {selected} / {total} 个案例",
+        "selectAll": "全选",
+        "clear": "清空",
+        "cancel": "取消",
+        "applyWithCount": "应用 ({count})"
+      },
+      "cta": {
+        "practiceNow": "立即练习"
+      }
+    },
+    "TrainerHistoryPage": {
+      "breadcrumb": "历史",
+      "signInPrompt": "登录后查看你的训练器历史。",
+      "backToPractice": "返回练习",
+      "tabs": {
+        "method": "方法",
+        "currentCase": "当前案例"
+      },
+      "noCaseSelected": "未选择案例。",
+      "emptyCase": "此案例尚无 solve。",
+      "emptyMethod": "此方法尚无 solve。",
+      "loaded": "已加载",
+      "total": "总计",
+      "table": {
+        "time": "时间",
+        "case": "案例",
+        "ago": "之前",
+        "solveActions": "Solve 操作",
+        "delete": "删除",
+        "loading": "加载中…",
+        "loadMore": "加载更多",
+        "empty": "尚无 solve。"
+      }
     }
   },
   "Multiplayer": {

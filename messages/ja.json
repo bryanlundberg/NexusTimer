@@ -575,6 +575,80 @@
     "OpenGraphImage": {
       "title": "Nexus Timer - ルービックキューブ専用プロタイマー",
       "description": "Nexus Timerは、ルービックキューブの練習と分析のためのプロフェッショナルなプラットフォームです。"
+    },
+    "TrainerPage": {
+      "breadcrumb": "トレーナー",
+      "chooseMethod": "メソッドを選択",
+      "algsSuffix": "{count} algs",
+      "learned": "習得済み",
+      "methodStats": "メソッドの統計",
+      "setup": "Setup",
+      "rotation": {
+        "shuffle": "シャッフル",
+        "random": "ランダム",
+        "sequential": "順番"
+      },
+      "stats": {
+        "best": "ベスト",
+        "solves": "Solves",
+        "bestSingle": "ベスト single",
+        "totalSolves": "Solves 合計",
+        "picked": "選択数",
+        "target": "目標",
+        "algorithmsLearned": "習得した手順",
+        "lastAttempts": "直近の試行",
+        "noDataYet": "まだデータがありません"
+      },
+      "actions": {
+        "editTargetTime": "目標タイムを編集",
+        "pickCases": "ケースを選択",
+        "markedAsLearned": "習得済みとしてマーク",
+        "markAsLearned": "習得済みにする",
+        "skip": "スキップ",
+        "history": "履歴"
+      },
+      "editTargetModal": {
+        "title": "目標タイムを編集",
+        "description": "選択した時間より速く完了すると、そのケースは「クリア」とみなされます。",
+        "under": "以内",
+        "cancel": "キャンセル",
+        "apply": "適用"
+      },
+      "pickCasesModal": {
+        "title": "ケースを選択",
+        "description": "{total} ケース中 {selected} 件選択",
+        "selectAll": "すべて選択",
+        "clear": "クリア",
+        "cancel": "キャンセル",
+        "applyWithCount": "適用 ({count})"
+      },
+      "cta": {
+        "practiceNow": "今すぐ練習"
+      }
+    },
+    "TrainerHistoryPage": {
+      "breadcrumb": "履歴",
+      "signInPrompt": "トレーナー履歴を見るにはログインしてください。",
+      "backToPractice": "練習に戻る",
+      "tabs": {
+        "method": "メソッド",
+        "currentCase": "現在のケース"
+      },
+      "noCaseSelected": "ケースが選択されていません。",
+      "emptyCase": "このケースの solve はまだありません。",
+      "emptyMethod": "このメソッドの solve はまだありません。",
+      "loaded": "読み込み済み",
+      "total": "合計",
+      "table": {
+        "time": "タイム",
+        "case": "ケース",
+        "ago": "経過",
+        "solveActions": "Solve の操作",
+        "delete": "削除",
+        "loading": "読み込み中…",
+        "loadMore": "さらに読み込む",
+        "empty": "Solve はまだありません。"
+      }
     }
   },
   "Multiplayer": {

@@ -575,6 +575,80 @@
     "OpenGraphImage": {
       "title": "Nexus Timer - Chronomètre Professionnel pour Rubik's Cube",
       "description": "Nexus Timer est une plateforme professionnelle pour l'entraînement et l'analyse de votre progression au Rubik's Cube."
+    },
+    "TrainerPage": {
+      "breadcrumb": "Entraîneur",
+      "chooseMethod": "Choisissez une méthode",
+      "algsSuffix": "{count} algs",
+      "learned": "Appris",
+      "methodStats": "Statistiques de la méthode",
+      "setup": "Setup",
+      "rotation": {
+        "shuffle": "Mélange",
+        "random": "Aléatoire",
+        "sequential": "Séquentiel"
+      },
+      "stats": {
+        "best": "Meilleur",
+        "solves": "Solves",
+        "bestSingle": "Meilleur single",
+        "totalSolves": "Total de solves",
+        "picked": "Sélectionnés",
+        "target": "Objectif",
+        "algorithmsLearned": "Algorithmes appris",
+        "lastAttempts": "Dernières tentatives",
+        "noDataYet": "Aucune donnée pour l’instant"
+      },
+      "actions": {
+        "editTargetTime": "Modifier le temps cible",
+        "pickCases": "Choisir les cas",
+        "markedAsLearned": "Marqué comme appris",
+        "markAsLearned": "Marquer comme appris",
+        "skip": "Passer",
+        "history": "Historique"
+      },
+      "editTargetModal": {
+        "title": "Modifier le temps cible",
+        "description": "Un cas est considéré comme « réussi » lorsque vous terminez sous le temps sélectionné.",
+        "under": "Sous",
+        "cancel": "Annuler",
+        "apply": "Appliquer"
+      },
+      "pickCasesModal": {
+        "title": "Choisir les cas",
+        "description": "{selected} sur {total} cas sélectionnés",
+        "selectAll": "Tout sélectionner",
+        "clear": "Effacer",
+        "cancel": "Annuler",
+        "applyWithCount": "Appliquer ({count})"
+      },
+      "cta": {
+        "practiceNow": "Pratiquer maintenant"
+      }
+    },
+    "TrainerHistoryPage": {
+      "breadcrumb": "Historique",
+      "signInPrompt": "Connectez-vous pour voir votre historique d’entraînement.",
+      "backToPractice": "Retour à la pratique",
+      "tabs": {
+        "method": "Méthode",
+        "currentCase": "Cas actuel"
+      },
+      "noCaseSelected": "Aucun cas sélectionné.",
+      "emptyCase": "Pas encore de solves pour ce cas.",
+      "emptyMethod": "Pas encore de solves pour cette méthode.",
+      "loaded": "chargés",
+      "total": "au total",
+      "table": {
+        "time": "Temps",
+        "case": "Cas",
+        "ago": "Il y a",
+        "solveActions": "Actions du solve",
+        "delete": "Supprimer",
+        "loading": "Chargement…",
+        "loadMore": "Charger plus",
+        "empty": "Pas encore de solves."
+      }
     }
   },
   "Multiplayer": {

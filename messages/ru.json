@@ -575,6 +575,80 @@
     "OpenGraphImage": {
       "title": "Nexus Timer — Профессиональный таймер для кубика Рубика",
       "description": "Nexus Timer — профессиональная платформа для тренировок и анализа вашего прогресса."
+    },
+    "TrainerPage": {
+      "breadcrumb": "Тренажёр",
+      "chooseMethod": "Выберите метод",
+      "algsSuffix": "{count} algs",
+      "learned": "Изучено",
+      "methodStats": "Статистика метода",
+      "setup": "Setup",
+      "rotation": {
+        "shuffle": "Перемешать",
+        "random": "Случайно",
+        "sequential": "По порядку"
+      },
+      "stats": {
+        "best": "Лучший",
+        "solves": "Solves",
+        "bestSingle": "Лучший single",
+        "totalSolves": "Всего solves",
+        "picked": "Выбрано",
+        "target": "Цель",
+        "algorithmsLearned": "Изученные алгоритмы",
+        "lastAttempts": "Последние попытки",
+        "noDataYet": "Пока нет данных"
+      },
+      "actions": {
+        "editTargetTime": "Изменить целевое время",
+        "pickCases": "Выбрать случаи",
+        "markedAsLearned": "Отмечено как изучено",
+        "markAsLearned": "Отметить как изучено",
+        "skip": "Пропустить",
+        "history": "История"
+      },
+      "editTargetModal": {
+        "title": "Изменить целевое время",
+        "description": "Случай считается «пройденным», когда вы укладываетесь в выбранное время.",
+        "under": "До",
+        "cancel": "Отмена",
+        "apply": "Применить"
+      },
+      "pickCasesModal": {
+        "title": "Выбрать случаи",
+        "description": "Выбрано {selected} из {total} случаев",
+        "selectAll": "Выбрать все",
+        "clear": "Очистить",
+        "cancel": "Отмена",
+        "applyWithCount": "Применить ({count})"
+      },
+      "cta": {
+        "practiceNow": "Практиковать сейчас"
+      }
+    },
+    "TrainerHistoryPage": {
+      "breadcrumb": "История",
+      "signInPrompt": "Войдите, чтобы увидеть историю тренажёра.",
+      "backToPractice": "Вернуться к практике",
+      "tabs": {
+        "method": "Метод",
+        "currentCase": "Текущий случай"
+      },
+      "noCaseSelected": "Случай не выбран.",
+      "emptyCase": "Для этого случая ещё нет solves.",
+      "emptyMethod": "Для этого метода ещё нет solves.",
+      "loaded": "загружено",
+      "total": "всего",
+      "table": {
+        "time": "Время",
+        "case": "Случай",
+        "ago": "Назад",
+        "solveActions": "Действия с solve",
+        "delete": "Удалить",
+        "loading": "Загрузка…",
+        "loadMore": "Загрузить ещё",
+        "empty": "Пока нет solves."
+      }
     }
   },
   "Multiplayer": {

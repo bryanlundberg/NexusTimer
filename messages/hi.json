@@ -575,6 +575,80 @@
     "OpenGraphImage": {
       "title": "Nexus Timer - प्रोफेशनल रुबिक क्यूब टाइमर",
       "description": "Nexus Timer रुबिक क्यूब के साथ आपकी यात्रा को प्रशिक्षित करने और उसका विश्लेषण करने के लिए एक पेशेवर मंच है।"
+    },
+    "TrainerPage": {
+      "breadcrumb": "ट्रेनर",
+      "chooseMethod": "मेथड चुनें",
+      "algsSuffix": "{count} algs",
+      "learned": "सीखे गए",
+      "methodStats": "मेथड के आँकड़े",
+      "setup": "Setup",
+      "rotation": {
+        "shuffle": "शफल",
+        "random": "रैंडम",
+        "sequential": "क्रमिक"
+      },
+      "stats": {
+        "best": "सर्वश्रेष्ठ",
+        "solves": "Solves",
+        "bestSingle": "सर्वश्रेष्ठ single",
+        "totalSolves": "कुल solves",
+        "picked": "चुने गए",
+        "target": "लक्ष्य",
+        "algorithmsLearned": "सीखे गए एल्गोरिदम",
+        "lastAttempts": "पिछले प्रयास",
+        "noDataYet": "अभी कोई डेटा नहीं"
+      },
+      "actions": {
+        "editTargetTime": "लक्ष्य समय संपादित करें",
+        "pickCases": "केस चुनें",
+        "markedAsLearned": "सीखा हुआ चिह्नित",
+        "markAsLearned": "सीखा हुआ चिह्नित करें",
+        "skip": "छोड़ें",
+        "history": "इतिहास"
+      },
+      "editTargetModal": {
+        "title": "लक्ष्य समय संपादित करें",
+        "description": "जब आप चुने गए समय के नीचे पूरा करते हैं तो केस \"पास\" माना जाता है।",
+        "under": "नीचे",
+        "cancel": "रद्द करें",
+        "apply": "लागू करें"
+      },
+      "pickCasesModal": {
+        "title": "केस चुनें",
+        "description": "{total} में से {selected} केस चुने गए",
+        "selectAll": "सभी चुनें",
+        "clear": "साफ़ करें",
+        "cancel": "रद्द करें",
+        "applyWithCount": "लागू करें ({count})"
+      },
+      "cta": {
+        "practiceNow": "अभी अभ्यास करें"
+      }
+    },
+    "TrainerHistoryPage": {
+      "breadcrumb": "इतिहास",
+      "signInPrompt": "अपना ट्रेनर इतिहास देखने के लिए साइन इन करें।",
+      "backToPractice": "अभ्यास पर वापस जाएँ",
+      "tabs": {
+        "method": "मेथड",
+        "currentCase": "मौजूदा केस"
+      },
+      "noCaseSelected": "कोई केस चयनित नहीं।",
+      "emptyCase": "इस केस के लिए अभी कोई solve नहीं।",
+      "emptyMethod": "इस मेथड के लिए अभी कोई solve नहीं।",
+      "loaded": "लोड किए गए",
+      "total": "कुल",
+      "table": {
+        "time": "समय",
+        "case": "केस",
+        "ago": "पहले",
+        "solveActions": "Solve क्रियाएँ",
+        "delete": "हटाएँ",
+        "loading": "लोड हो रहा है…",
+        "loadMore": "और लोड करें",
+        "empty": "अभी कोई solve नहीं।"
+      }
     }
   },
   "Multiplayer": {

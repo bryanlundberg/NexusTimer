@@ -553,6 +553,80 @@
         "l4e": "Últimas 4 aristas (Pyraminx): estos algoritmos se utilizan para resolver las últimas cuatro piezas de arista de un rompecabezas Pyraminx. El objetivo es posicionar y orientar estas piezas correctamente para completar el rompecabezas."
       },
       "alternative": "Alternativa"
+    },
+    "TrainerPage": {
+      "breadcrumb": "Entrenador",
+      "chooseMethod": "Elige un método",
+      "algsSuffix": "{count} algs",
+      "learned": "Aprendidos",
+      "methodStats": "Estadísticas del método",
+      "setup": "Setup",
+      "rotation": {
+        "shuffle": "Aleatorio",
+        "random": "Random",
+        "sequential": "Secuencial"
+      },
+      "stats": {
+        "best": "Mejor",
+        "solves": "Solves",
+        "bestSingle": "Mejor single",
+        "totalSolves": "Total de solves",
+        "picked": "Seleccionados",
+        "target": "Objetivo",
+        "algorithmsLearned": "Algoritmos aprendidos",
+        "lastAttempts": "Últimos intentos",
+        "noDataYet": "Sin datos aún"
+      },
+      "actions": {
+        "editTargetTime": "Editar tiempo objetivo",
+        "pickCases": "Elegir casos",
+        "markedAsLearned": "Marcado como aprendido",
+        "markAsLearned": "Marcar como aprendido",
+        "skip": "Saltar",
+        "history": "Historial"
+      },
+      "editTargetModal": {
+        "title": "Editar tiempo objetivo",
+        "description": "Un caso se considera \"superado\" cuando terminas por debajo del tiempo seleccionado.",
+        "under": "Bajo",
+        "cancel": "Cancelar",
+        "apply": "Aplicar"
+      },
+      "pickCasesModal": {
+        "title": "Elegir casos",
+        "description": "{selected} de {total} casos seleccionados",
+        "selectAll": "Seleccionar todos",
+        "clear": "Limpiar",
+        "cancel": "Cancelar",
+        "applyWithCount": "Aplicar ({count})"
+      },
+      "cta": {
+        "practiceNow": "Practicar ahora"
+      }
+    },
+    "TrainerHistoryPage": {
+      "breadcrumb": "Historial",
+      "signInPrompt": "Inicia sesión para ver tu historial del entrenador.",
+      "backToPractice": "Volver a practicar",
+      "tabs": {
+        "method": "Método",
+        "currentCase": "Caso actual"
+      },
+      "noCaseSelected": "No hay caso seleccionado.",
+      "emptyCase": "Aún no hay solves para este caso.",
+      "emptyMethod": "Aún no hay solves para este método.",
+      "loaded": "cargados",
+      "total": "totales",
+      "table": {
+        "time": "Tiempo",
+        "case": "Caso",
+        "ago": "Hace",
+        "solveActions": "Acciones del solve",
+        "delete": "Eliminar",
+        "loading": "Cargando…",
+        "loadMore": "Cargar más",
+        "empty": "Aún no hay solves."
+      }
     }
   },
   "Metadata": {

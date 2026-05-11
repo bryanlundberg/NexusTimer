@@ -557,6 +557,80 @@
         "l4e": "Last 4 slots (Pyraminx) - These algorithms are used to solve the last four edge pieces of a Pyraminx puzzle. The goal is to position and orient these pieces correctly to complete the puzzle."
       },
       "alternative": "Alternative"
+    },
+    "TrainerPage": {
+      "breadcrumb": "Trainer",
+      "chooseMethod": "Choose a method",
+      "algsSuffix": "{count} algs",
+      "learned": "Learned",
+      "methodStats": "Method stats",
+      "setup": "Setup",
+      "rotation": {
+        "shuffle": "Shuffle",
+        "random": "Random",
+        "sequential": "Sequential"
+      },
+      "stats": {
+        "best": "Best",
+        "solves": "Solves",
+        "bestSingle": "Best single",
+        "totalSolves": "Total solves",
+        "picked": "Picked",
+        "target": "Target",
+        "algorithmsLearned": "Algorithms learned",
+        "lastAttempts": "Last attempts",
+        "noDataYet": "No data yet"
+      },
+      "actions": {
+        "editTargetTime": "Edit target time",
+        "pickCases": "Pick cases",
+        "markedAsLearned": "Marked as learned",
+        "markAsLearned": "Mark as learned",
+        "skip": "Skip",
+        "history": "History"
+      },
+      "editTargetModal": {
+        "title": "Edit target time",
+        "description": "A case is considered \"passed\" when you finish below the selected time.",
+        "under": "Under",
+        "cancel": "Cancel",
+        "apply": "Apply"
+      },
+      "pickCasesModal": {
+        "title": "Pick cases",
+        "description": "{selected} of {total} cases selected",
+        "selectAll": "Select all",
+        "clear": "Clear",
+        "cancel": "Cancel",
+        "applyWithCount": "Apply ({count})"
+      },
+      "cta": {
+        "practiceNow": "Practice now"
+      }
+    },
+    "TrainerHistoryPage": {
+      "breadcrumb": "History",
+      "signInPrompt": "Sign in to view your trainer history.",
+      "backToPractice": "Back to practice",
+      "tabs": {
+        "method": "Method",
+        "currentCase": "Current case"
+      },
+      "noCaseSelected": "No case selected.",
+      "emptyCase": "No solves yet for this case.",
+      "emptyMethod": "No solves yet for this method.",
+      "loaded": "loaded",
+      "total": "total",
+      "table": {
+        "time": "Time",
+        "case": "Case",
+        "ago": "Ago",
+        "solveActions": "Solve actions",
+        "delete": "Delete",
+        "loading": "Loading…",
+        "loadMore": "Load more",
+        "empty": "No solves yet."
+      }
     }
   },
   "Metadata": {

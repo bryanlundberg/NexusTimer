@@ -575,6 +575,80 @@
     "OpenGraphImage": {
       "title": "Nexus Timer - Professioneller Zauberwürfel Timer",
       "description": "Nexus Timer ist eine professionelle Plattform für das Training und die Analyse deines Fortschritts mit dem Zauberwürfel."
+    },
+    "TrainerPage": {
+      "breadcrumb": "Trainer",
+      "chooseMethod": "Methode wählen",
+      "algsSuffix": "{count} Algs",
+      "learned": "Gelernt",
+      "methodStats": "Methoden-Statistik",
+      "setup": "Setup",
+      "rotation": {
+        "shuffle": "Mischen",
+        "random": "Zufällig",
+        "sequential": "Sequenziell"
+      },
+      "stats": {
+        "best": "Beste",
+        "solves": "Solves",
+        "bestSingle": "Beste Single",
+        "totalSolves": "Solves gesamt",
+        "picked": "Ausgewählt",
+        "target": "Ziel",
+        "algorithmsLearned": "Gelernte Algorithmen",
+        "lastAttempts": "Letzte Versuche",
+        "noDataYet": "Noch keine Daten"
+      },
+      "actions": {
+        "editTargetTime": "Zielzeit bearbeiten",
+        "pickCases": "Fälle auswählen",
+        "markedAsLearned": "Als gelernt markiert",
+        "markAsLearned": "Als gelernt markieren",
+        "skip": "Überspringen",
+        "history": "Verlauf"
+      },
+      "editTargetModal": {
+        "title": "Zielzeit bearbeiten",
+        "description": "Ein Fall gilt als „bestanden“, wenn du unter der gewählten Zeit fertig wirst.",
+        "under": "Unter",
+        "cancel": "Abbrechen",
+        "apply": "Anwenden"
+      },
+      "pickCasesModal": {
+        "title": "Fälle auswählen",
+        "description": "{selected} von {total} Fällen ausgewählt",
+        "selectAll": "Alle auswählen",
+        "clear": "Leeren",
+        "cancel": "Abbrechen",
+        "applyWithCount": "Anwenden ({count})"
+      },
+      "cta": {
+        "practiceNow": "Jetzt üben"
+      }
+    },
+    "TrainerHistoryPage": {
+      "breadcrumb": "Verlauf",
+      "signInPrompt": "Melde dich an, um deinen Trainer-Verlauf zu sehen.",
+      "backToPractice": "Zurück zum Üben",
+      "tabs": {
+        "method": "Methode",
+        "currentCase": "Aktueller Fall"
+      },
+      "noCaseSelected": "Kein Fall ausgewählt.",
+      "emptyCase": "Noch keine Solves für diesen Fall.",
+      "emptyMethod": "Noch keine Solves für diese Methode.",
+      "loaded": "geladen",
+      "total": "insgesamt",
+      "table": {
+        "time": "Zeit",
+        "case": "Fall",
+        "ago": "Vor",
+        "solveActions": "Solve-Aktionen",
+        "delete": "Löschen",
+        "loading": "Lädt…",
+        "loadMore": "Mehr laden",
+        "empty": "Noch keine Solves."
+      }
     }
   },
   "Multiplayer": {
