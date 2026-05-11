@@ -1,5 +1,7 @@
 'use client'
 
+import type * as React from 'react'
+import { useTranslations } from 'next-intl'
 import { Shuffle, Dice5, ArrowRight } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import type { TrainerRotationMode } from '@/features/trainer/model/types'
@@ -9,17 +11,19 @@ interface TrainerRotationModeChipsProps {
   onChange: (mode: TrainerRotationMode) => void
 }
 
-const OPTIONS: Array<{ id: TrainerRotationMode; label: string; icon: React.ComponentType<{ className?: string }> }> = [
-  { id: 'shuffle', label: 'Shuffle', icon: Shuffle },
-  { id: 'random', label: 'Random', icon: Dice5 },
-  { id: 'sequential', label: 'Sequential', icon: ArrowRight }
+const OPTIONS: Array<{ id: TrainerRotationMode; icon: React.ComponentType<{ className?: string }> }> = [
+  { id: 'shuffle', icon: Shuffle },
+  { id: 'random', icon: Dice5 },
+  { id: 'sequential', icon: ArrowRight }
 ]
 
 export default function TrainerRotationModeChips({ value, onChange }: TrainerRotationModeChipsProps) {
+  const t = useTranslations('Index.TrainerPage.rotation')
   return (
     <div className="inline-flex items-center rounded-md border bg-background p-0.5 ms-auto">
-      {OPTIONS.map(({ id, label, icon: Icon }) => {
+      {OPTIONS.map(({ id, icon: Icon }) => {
         const active = id === value
+        const label = t(id)
         return (
           <button
             key={id}
