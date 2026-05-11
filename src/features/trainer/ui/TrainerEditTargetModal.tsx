@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
@@ -14,6 +15,7 @@ interface TrainerEditTargetModalProps {
 }
 
 export default function TrainerEditTargetModal({ initial, onApply }: TrainerEditTargetModalProps) {
+  const t = useTranslations('Index.TrainerPage.editTargetModal')
   const [value, setValue] = useState<number>(initial)
   const { close } = useOverlayStore()
 
@@ -25,8 +27,8 @@ export default function TrainerEditTargetModal({ initial, onApply }: TrainerEdit
   return (
     <DialogContent className="sm:max-w-md">
       <DialogHeader>
-        <DialogTitle>Edit target time</DialogTitle>
-        <DialogDescription>A case is considered "passed" when you finish below the selected time.</DialogDescription>
+        <DialogTitle>{t('title')}</DialogTitle>
+        <DialogDescription>{t('description')}</DialogDescription>
       </DialogHeader>
 
       <div className="grid grid-cols-5 gap-2">
@@ -42,7 +44,9 @@ export default function TrainerEditTargetModal({ initial, onApply }: TrainerEdit
                 active ? 'border-primary bg-primary/10 text-primary' : 'border-input hover:bg-muted/50'
               )}
             >
-              <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">Under</span>
+              <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
+                {t('under')}
+              </span>
               <span className="font-mono font-bold text-lg tabular-nums">&lt;{seconds}s</span>
             </button>
           )
@@ -51,10 +55,10 @@ export default function TrainerEditTargetModal({ initial, onApply }: TrainerEdit
 
       <DialogFooter>
         <Button type="button" variant="outline" onClick={close}>
-          Cancel
+          {t('cancel')}
         </Button>
         <Button type="button" onClick={handleApply}>
-          Apply
+          {t('apply')}
         </Button>
       </DialogFooter>
     </DialogContent>
