@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo } from 'react'
 import _ from 'lodash'
+import { useTranslations } from 'next-intl'
 import { BarChart3, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
@@ -32,6 +33,7 @@ import { cn } from '@/shared/lib/utils'
 const formatMs = (ms: number) => (ms / 1000).toFixed(2)
 
 export default function TrainerExperience() {
+  const t = useTranslations('Index.TrainerPage')
   const methodSlug = useTrainerStore((s) => s.methodSlug)
   const pickedIds = useTrainerStore((s) => s.pickedIds)
   const caseIndex = useTrainerStore((s) => s.caseIndex)
@@ -161,10 +163,19 @@ export default function TrainerExperience() {
     }
   }
 
-  const timeColorClass = 'text-foreground'
+  const timeColorClass =
+    timerStatus === TimerStatus.HOLDING
+      ? 'text-red-500'
+      : timerStatus === TimerStatus.READY
+        ? 'text-green-500'
+        : 'text-foreground'
 
-  const pageBgClass =
-    timerStatus === TimerStatus.HOLDING ? 'bg-red-500' : timerStatus === TimerStatus.READY ? 'bg-green-500/50' : ''
+  const stageOverlayClass =
+    timerStatus === TimerStatus.HOLDING
+      ? 'bg-red-500/10'
+      : timerStatus === TimerStatus.READY
+        ? 'bg-primary/10'
+        : 'bg-transparent'
 
   const displayedTime =
     timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY ? '0.00' : formatMs(solvingTime)
@@ -218,7 +229,7 @@ export default function TrainerExperience() {
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between text-xs">
-          <span className="text-muted-foreground">Algorithms learned</span>
+          <span className="text-muted-foreground">{t('stats.algorithmsLearned')}</span>
           <span className="font-mono tabular-nums">
             {learnedCount} / {totalSetCases}
           </span>
@@ -229,20 +240,26 @@ export default function TrainerExperience() {
 
       <div className="grid grid-cols-2 gap-2">
         <MetricTile
-          label="Best single"
+          label={t('stats.bestSingle')}
           value={methodTotals.bestSingle != null ? formatMs(methodTotals.bestSingle) : '—'}
         />
-        <MetricTile label="Total solves" value={String(methodTotals.totalSolves)} />
-        <MetricTile label="Picked" value={`${totalCases}/${totalSetCases}`} />
-        <MetricTile label="Target" value={`<${targetSeconds}s`} />
+        <MetricTile label={t('stats.totalSolves')} value={String(methodTotals.totalSolves)} />
+        <MetricTile label={t('stats.picked')} value={`${totalCases}/${totalSetCases}`} />
+        <MetricTile label={t('stats.target')} value={`<${targetSeconds}s`} />
       </div>
 
-      <LastAttemptsSparkline solves={recentSolves} targetMs={targetSeconds * 1000} />
+      <LastAttemptsSparkline
+        solves={recentSolves}
+        targetMs={targetSeconds * 1000}
+        title={t('stats.lastAttempts')}
+        emptyLabel={t('stats.noDataYet')}
+      />
     </div>
   )
 
   return (
-    <div className={cn('p-3 sm:p-4 flex flex-col gap-3 flex-1 transition-colors duration-150', pageBgClass)}>
+    <div className="px-2 flex flex-col gap-3 flex-1 relative">
+      <div className={cn('absolute inset-0 pointer-events-none transition-colors duration-150', stageOverlayClass)} />
       {/* Top toolbar — method select + rotation chips */}
       <div className="flex items-center gap-2 flex-wrap">
         <div className="flex-1 min-w-0 max-w-sm">
@@ -253,7 +270,7 @@ export default function TrainerExperience() {
 
       {/* Slim learned-progress strip — hidden on lg+ where the side panel shows it */}
       <div className="flex items-center gap-3 lg:hidden">
-        <span className="text-[10px] uppercase tracking-wider text-muted-foreground shrink-0">Learned</span>
+        <span className="text-[10px] uppercase tracking-wider text-muted-foreground shrink-0">{t('learned')}</span>
         <Progress value={learnedPct} className="h-1.5 flex-1" />
         <span className="text-[10px] font-mono tabular-nums text-muted-foreground shrink-0">
           {learnedCount}/{totalSetCases}
@@ -262,7 +279,7 @@ export default function TrainerExperience() {
 
       {/* Stage + side panel */}
       <div className="flex flex-col lg:flex-row gap-4 flex-1">
-        <div className={cn('flex-1 min-w-0 flex flex-col gap-3 rounded-xl py-1')}>
+        <div className="flex-1 min-w-0 h-fit flex flex-col gap-3 rounded-xl py-1 p-2">
           <TrainerCurrentCase
             caseGroup={currentCase?.group ?? ''}
             caseName={currentCase?.name ?? ''}
@@ -291,7 +308,7 @@ export default function TrainerExperience() {
               <SheetTrigger asChild>
                 <Button variant="outline" size="sm" className="w-full h-9">
                   <BarChart3 className="h-3.5 w-3.5" />
-                  <span>Method stats</span>
+                  <span>{t('methodStats')}</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="bottom" className="p-4 max-h-[80vh] overflow-y-auto">
@@ -330,10 +347,14 @@ function MetricTile({ label, value }: { label: string; value: string }) {
 
 function LastAttemptsSparkline({
   solves,
-  targetMs
+  targetMs,
+  title,
+  emptyLabel
 }: {
   solves: { _id: string; timeMs: number; penalty: 'OK' | '+2' | 'DNF' }[]
   targetMs: number
+  title: string
+  emptyLabel: string
 }) {
   const ordered = [...solves].reverse()
   const validTimes = ordered.filter((s) => s.penalty !== 'DNF').map((s) => s.timeMs + (s.penalty === '+2' ? 2000 : 0))
@@ -344,12 +365,12 @@ function LastAttemptsSparkline({
   return (
     <div className="flex flex-col gap-1.5">
       <div className="flex items-center gap-1.5 text-muted-foreground">
-        <span className="text-[10px] font-semibold uppercase tracking-wider">Last attempts</span>
+        <span className="text-[10px] font-semibold uppercase tracking-wider">{title}</span>
         <span className="text-[10px] ml-auto">{ordered.length}</span>
       </div>
       <div className="flex items-end gap-0.75 h-12 rounded-md bg-background/60 px-2 py-1.5">
         {ordered.length === 0 ? (
-          <span className="text-[10px] text-muted-foreground self-center mx-auto">No data yet</span>
+          <span className="text-[10px] text-muted-foreground self-center mx-auto">{emptyLabel}</span>
         ) : (
           ordered.map((s) => {
             if (s.penalty === 'DNF') {
