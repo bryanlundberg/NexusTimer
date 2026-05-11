@@ -1,15 +1,17 @@
+import { getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import TrainerExperience from '@/features/trainer/ui/TrainerExperience'
 
-export default function TrainerPage() {
+export default async function TrainerPage() {
+  const tAlgs = await getTranslations('Index.AlgorithmsPage')
+  const t = await getTranslations('Index.TrainerPage')
   return (
     <div className="min-h-dvh flex flex-col">
       <CoreHeader
         breadcrumbPath={'/algorithms'}
-        breadcrumb={'Algorithms'}
+        breadcrumb={tAlgs('title')}
         secondaryBreadcrumbPath={`#`}
-        secondaryBreadcrumb={'Trainer'}
+        secondaryBreadcrumb={t('breadcrumb')}
       />
 
       <TrainerExperience />
