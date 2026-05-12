@@ -46,6 +46,17 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
       className="group relative overflow-hidden flex flex-col rounded-2xl border border-border/60 bg-card transition-colors duration-300 hover:border-border"
       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
     >
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none text-foreground"
+        style={{
+          backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
+          backgroundSize: '16px 16px',
+          opacity: 0.05,
+          maskImage: 'linear-gradient(135deg, transparent 25%, black 90%)',
+          WebkitMaskImage: 'linear-gradient(135deg, transparent 25%, black 90%)'
+        }}
+      />
       <div className="p-5 pb-4">
         {/* Category row */}
         <div className="flex items-center gap-2.5 mb-5">

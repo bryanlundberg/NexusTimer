@@ -53,10 +53,19 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
 
   return (
     <div className="flex flex-col w-full">
-      <div className="flex flex-col md:flex-row px-2 relative">
+      <div className="flex flex-col md:flex-row px-2 gap-3 relative items-start">
         <UserInfo user={user} />
-        <div className="flex flex-col grow">
-          <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full">
+        <div className="flex flex-col grow rounded-2xl border border-border/40 bg-card/40 relative overflow-hidden">
+          <div
+            aria-hidden
+            className="absolute inset-0 pointer-events-none text-foreground"
+            style={{
+              backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
+              backgroundSize: '20px 20px',
+              opacity: 0.03
+            }}
+          />
+          <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full p-4">
             {/* Custom TabsList with sliding indicator */}
             <div
               ref={containerRef}
