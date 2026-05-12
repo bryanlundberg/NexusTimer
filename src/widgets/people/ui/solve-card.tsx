@@ -43,14 +43,10 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
 
   return (
     <motion.div
-      className="group relative overflow-hidden rounded-2xl border border-border/60 bg-card transition-colors duration-300 hover:border-border"
-      whileHover={{ y: -3 }}
+      className="group relative overflow-hidden flex flex-col rounded-2xl border border-border/60 bg-card transition-colors duration-300 hover:border-border"
       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
     >
-      {/* Left accent bar */}
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary/70 rounded-l-2xl" />
-
-      <div className="pl-5 pr-5 pt-5 pb-4">
+      <div className="p-5 pb-4">
         {/* Category row */}
         <div className="flex items-center gap-2.5 mb-5">
           <motion.div
