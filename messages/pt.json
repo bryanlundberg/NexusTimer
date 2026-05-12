@@ -590,9 +590,9 @@
       },
       "stats": {
         "best": "Melhor",
-        "solves": "Solves",
+        "solves": "Exec",
         "bestSingle": "Melhor single",
-        "totalSolves": "Total de solves",
+        "totalSolves": "Total exec",
         "picked": "Selecionados",
         "target": "Objetivo",
         "algorithmsLearned": "Algoritmos aprendidos",

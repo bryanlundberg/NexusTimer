@@ -590,9 +590,9 @@
       },
       "stats": {
         "best": "Лучший",
-        "solves": "Solves",
+        "solves": "Exec",
         "bestSingle": "Лучший single",
-        "totalSolves": "Всего solves",
+        "totalSolves": "Total exec",
         "picked": "Выбрано",
         "target": "Цель",
         "algorithmsLearned": "Изученные алгоритмы",

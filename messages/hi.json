@@ -590,9 +590,9 @@
       },
       "stats": {
         "best": "सर्वश्रेष्ठ",
-        "solves": "Solves",
+        "solves": "Exec",
         "bestSingle": "सर्वश्रेष्ठ single",
-        "totalSolves": "कुल solves",
+        "totalSolves": "Total exec",
         "picked": "चुने गए",
         "target": "लक्ष्य",
         "algorithmsLearned": "सीखे गए एल्गोरिदम",

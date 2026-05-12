@@ -590,9 +590,9 @@
       },
       "stats": {
         "best": "ベスト",
-        "solves": "Solves",
+        "solves": "Exec",
         "bestSingle": "ベスト single",
-        "totalSolves": "Solves 合計",
+        "totalSolves": "Total exec",
         "picked": "選択数",
         "target": "目標",
         "algorithmsLearned": "習得した手順",

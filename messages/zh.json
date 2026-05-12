@@ -590,9 +590,9 @@
       },
       "stats": {
         "best": "最佳",
-        "solves": "Solves",
+        "solves": "Exec",
         "bestSingle": "最佳 single",
-        "totalSolves": "Solves 总数",
+        "totalSolves": "Total exec",
         "picked": "已选",
         "target": "目标",
         "algorithmsLearned": "已学算法",

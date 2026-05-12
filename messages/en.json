@@ -572,9 +572,9 @@
       },
       "stats": {
         "best": "Best",
-        "solves": "Solves",
+        "solves": "Exec",
         "bestSingle": "Best single",
-        "totalSolves": "Total solves",
+        "totalSolves": "Total exec",
         "picked": "Picked",
         "target": "Target",
         "algorithmsLearned": "Algorithms learned",
@@ -617,8 +617,8 @@
         "currentCase": "Current case"
       },
       "noCaseSelected": "No case selected.",
-      "emptyCase": "No solves yet for this case.",
-      "emptyMethod": "No solves yet for this method.",
+      "emptyCase": "No executions yet for this case.",
+      "emptyMethod": "No executions yet for this method.",
       "loaded": "loaded",
       "total": "total",
       "table": {

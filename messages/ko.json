@@ -590,9 +590,9 @@
       },
       "stats": {
         "best": "최고",
-        "solves": "Solves",
+        "solves": "Exec",
         "bestSingle": "최고 single",
-        "totalSolves": "총 solves",
+        "totalSolves": "Total exec",
         "picked": "선택됨",
         "target": "목표",
         "algorithmsLearned": "학습한 알고리즘",
