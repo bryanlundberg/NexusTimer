@@ -11,6 +11,7 @@ export interface TrainerMethodStatsDoc {
   totalSolves: number
   totalTimeMs: number
   bestSingleMs: number | null
+  targetSeconds?: number
   cases: Record<string, TrainerCaseStatsDoc>
 }
 
