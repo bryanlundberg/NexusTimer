@@ -7,7 +7,6 @@ import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { useLocale } from 'next-intl'
 import { motion } from 'framer-motion'
-import { cn } from '@/shared/lib/utils'
 
 interface LastActivitySolveCardProps {
   solve: {
@@ -28,18 +27,12 @@ export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardPro
   const cubeInfo = cubeCollection.find((item) => item.name === solve.category)
   const locale = useLocale()
 
-  const statusColor = solve.dnf ? 'bg-red-500' : solve.plus2 ? 'bg-yellow-500' : 'bg-green-500'
-
   return (
     <motion.div
       className="group relative overflow-hidden flex flex-col rounded-2xl border border-border/60 bg-card transition-colors duration-300 hover:border-border"
-      whileHover={{ y: -3 }}
       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
     >
-      {/* Status accent bar */}
-      <div className={cn('absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl', statusColor)} />
-
-      <div className="pl-5 pr-4 pt-4 pb-3">
+      <div className="p-4 pb-3">
         {/* Header: cube + meta */}
         <div className="flex items-center gap-3 mb-3">
           <Image
