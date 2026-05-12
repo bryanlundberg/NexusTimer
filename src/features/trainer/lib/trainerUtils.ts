@@ -24,8 +24,13 @@ export const formatRelative = (iso: string): string => {
   return date.toLocaleDateString()
 }
 
-export const penaltyDotClass = (penalty: TrainerPenalty): string =>
-  penalty === 'DNF' ? 'bg-red-500/70' : penalty === '+2' ? 'bg-amber-500/70' : 'bg-emerald-500/70'
+export const penaltyDotClass = (penalty: TrainerPenalty, timeMs?: number, targetMs?: number): string => {
+  if (penalty === 'DNF') return 'bg-red-500/40'
+  if (timeMs != null && targetMs != null) {
+    return timeMs <= targetMs ? 'bg-emerald-500/70' : timeMs <= targetMs * 1.25 ? 'bg-amber-500/70' : 'bg-red-500/70'
+  }
+  return penalty === '+2' ? 'bg-amber-500/70' : 'bg-emerald-500/70'
+}
 
 export const wcaAverage = (times: number[], n: number): number | null => {
   if (times.length < n) return null

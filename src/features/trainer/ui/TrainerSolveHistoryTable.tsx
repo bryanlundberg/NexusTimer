@@ -31,6 +31,7 @@ interface TrainerSolveHistoryTableProps {
   puzzle?: string
   vizDefaults?: Record<string, unknown>
   emptyLabel?: string
+  targetMs?: number
 }
 
 const GRID_WITH_CASE = 'grid-cols-[28px_64px_1fr_56px_28px]'
@@ -48,7 +49,8 @@ export default function TrainerSolveHistoryTable({
   caseById,
   puzzle,
   vizDefaults,
-  emptyLabel
+  emptyLabel,
+  targetMs
 }: TrainerSolveHistoryTableProps) {
   const t = useTranslations('Index.TrainerHistoryPage.table')
   const vizConfigByCaseId = useMemo(() => {
@@ -105,7 +107,12 @@ export default function TrainerSolveHistoryTable({
                 )}
 
                 <span className="flex items-center gap-1.5 font-mono tabular-nums">
-                  <span className={cn('size-1.5 rounded-full shrink-0', penaltyDotClass(solve.penalty))} />
+                  <span
+                    className={cn(
+                      'size-1.5 rounded-full shrink-0',
+                      penaltyDotClass(solve.penalty, solve.timeMs, targetMs)
+                    )}
+                  />
                   <span
                     className={cn(
                       solve.penalty === 'DNF' && 'text-muted-foreground line-through',

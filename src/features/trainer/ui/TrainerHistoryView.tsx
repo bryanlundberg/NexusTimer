@@ -16,6 +16,7 @@ import { useTrainerSolvesPaginated } from '@/features/trainer/model/useTrainerSo
 import { useTrainerStats } from '@/features/trainer/model/useTrainerStats'
 import { deleteTrainerSolve, patchTrainerSolve } from '@/features/trainer/model/mutateTrainerSolve'
 import { buildVizConfig } from '@/features/trainer/lib/trainerUtils'
+import { TRAINER_DEFAULT_TARGET_SECONDS } from '@/features/trainer/lib/constants'
 import type { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
 export default function TrainerHistoryView() {
@@ -24,6 +25,7 @@ export default function TrainerHistoryView() {
   const { set, currentCase } = useTrainerSession()
   const methodSlug = set.slug
   const setMethod = useTrainerStore((s) => s.setMethod)
+  const targetSeconds = useTrainerStore((s) => s.targetByMethod[s.methodSlug] ?? TRAINER_DEFAULT_TARGET_SECONDS)
 
   const { data: session } = useSession()
   const isAuthed = !!session?.user?.id
@@ -100,6 +102,7 @@ export default function TrainerHistoryView() {
             puzzle={set.puzzle}
             vizDefaults={set.virtualization as Record<string, unknown>}
             emptyLabel={t('emptyMethod')}
+            targetMs={targetSeconds * 1000}
           />
         </TabsContent>
 
@@ -130,6 +133,7 @@ export default function TrainerHistoryView() {
                 onChangePenalty={handlePenaltyChange}
                 onDelete={handleDeleteSolve}
                 emptyLabel={t('emptyCase')}
+                targetMs={targetSeconds * 1000}
               />
             </>
           ) : (
