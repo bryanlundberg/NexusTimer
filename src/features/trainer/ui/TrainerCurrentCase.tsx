@@ -127,7 +127,7 @@ export default function TrainerCurrentCase({
       </div>
 
       {setup && (
-        <div className="flex items-center gap-2 rounded-md border bg-background/60 px-2.5 py-1.5">
+        <div className="flex items-center gap-2 rounded-md border bg-background/60 px-2.5 py-1.5 md:justify-end">
           <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider shrink-0">
             {t('setup')}
           </span>
