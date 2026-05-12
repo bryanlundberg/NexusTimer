@@ -254,7 +254,7 @@
       "tabs": {
         "overview": "Resumen",
         "cubes": "Cubos",
-        "last-activity": "Actividad reciente"
+        "timeline": "Timeline"
       },
       "edit-profile": "Editar perfil",
       "no-backup-data": "Esta cuenta no tiene datos de respaldo para mostrar.",

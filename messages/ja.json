@@ -297,7 +297,7 @@
       "tabs": {
         "overview": "概要",
         "cubes": "キューブ",
-        "last-activity": "最近の活動"
+        "timeline": "Timeline"
       },
       "edit-profile": "プロフィールを編集",
       "no-backup-data": "このアカウントには表示できるデータがありません。",

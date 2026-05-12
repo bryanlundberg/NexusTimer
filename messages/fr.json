@@ -297,7 +297,7 @@
       "tabs": {
         "overview": "Aperçu",
         "cubes": "Cubes",
-        "last-activity": "Activité récente"
+        "timeline": "Timeline"
       },
       "edit-profile": "Modifier le profil",
       "no-backup-data": "Ce compte n'a pas de données de sauvegarde à afficher.",
