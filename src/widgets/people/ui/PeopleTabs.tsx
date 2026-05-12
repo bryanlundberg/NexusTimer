@@ -99,10 +99,10 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
           <div
             ref={containerRef}
             role="tablist"
-            className="relative inline-flex h-9 w-fit items-center rounded-lg bg-muted p-0.75"
+            className="relative inline-flex h-9 w-fit items-center rounded-lg bg-muted/40 p-0.75"
           >
             <motion.div
-              className="absolute top-0.75 bottom-0.75 rounded-md bg-background shadow-sm dark:bg-input/30"
+              className="absolute top-0.75 bottom-0.75 rounded-md bg-background/60 shadow-sm dark:bg-input/20"
               animate={{ left: indicator.left, width: indicator.width }}
               transition={{ type: 'spring', stiffness: 400, damping: 30 }}
             />
