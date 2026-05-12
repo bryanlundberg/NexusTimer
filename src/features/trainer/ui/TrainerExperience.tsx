@@ -67,7 +67,7 @@ export default function TrainerExperience() {
   const { stats: serverStats, mutate: mutateStats } = useTrainerStats(methodSlug, isAuthed)
   const { learnedIds, mutate: mutateLearned } = useTrainerLearned(methodSlug, isAuthed)
   const learnedSet = useMemo(() => new Set(learnedIds), [learnedIds])
-  const { solves: recentSolves, mutate: mutateSolves } = useTrainerSolves(methodSlug, currentCase?.id, isAuthed)
+  const { solves: methodSolves, mutate: mutateSolves } = useTrainerSolves(methodSlug, undefined, isAuthed, 25)
 
   useEffect(() => {
     if (!isAuthed) return
@@ -236,7 +236,7 @@ export default function TrainerExperience() {
       </div>
 
       <LastAttemptsSparkline
-        solves={recentSolves}
+        solves={methodSolves}
         targetMs={targetSeconds * 1000}
         title={t('stats.lastAttempts')}
         emptyLabel={t('stats.noDataYet')}
