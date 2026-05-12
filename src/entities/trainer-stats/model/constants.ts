@@ -1,0 +1,1 @@
+export const TRAINER_RECENT_TIMES_WINDOW = 12
