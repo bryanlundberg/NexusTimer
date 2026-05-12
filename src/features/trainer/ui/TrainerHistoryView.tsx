@@ -90,9 +90,8 @@ export default function TrainerHistoryView() {
             {t('backToPractice')}
           </Button>
         </Link>
-        <Sparkles className="h-3.5 w-3.5 text-primary shrink-0 ml-1" />
         <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{set.title}</h3>
-        <div className="ml-auto min-w-0 max-w-[12rem]">
+        <div className="ml-auto min-w-0 max-w-48">
           <TrainerMethodSelect value={set.slug} onChange={setMethod} />
         </div>
       </div>
