@@ -31,7 +31,7 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
 
   return (
     <motion.div
-      className="grid grid-cols-1 @2xl/tab:grid-cols-2 @5xl/tab:grid-cols-3 gap-4"
+      className="grid grid-cols-1 @xl/tab:grid-cols-2 @3xl/tab:grid-cols-3 gap-4"
       initial="hidden"
       animate="show"
       variants={{
