@@ -23,7 +23,7 @@ interface PeopleTabsProps {
   cubes: Array<Cube>
 }
 
-const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.LAST_ACTIVITY] as const
+const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE] as const
 
 export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
   const t = useTranslations('Index.PeoplePage.tabs')
@@ -64,7 +64,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
   const labels: Record<PTabs, string> = {
     [PTabs.OVERVIEW]: t('overview'),
     [PTabs.CUBES]: t('cubes'),
-    [PTabs.LAST_ACTIVITY]: t('last-activity')
+    [PTabs.TIMELINE]: t('timeline')
   }
 
   const updateIndicator = useCallback(() => {
