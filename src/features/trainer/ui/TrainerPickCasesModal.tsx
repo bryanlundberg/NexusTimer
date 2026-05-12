@@ -9,9 +9,10 @@ import { Badge } from '@/components/ui/badge'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from 'cubing/twisty'
 import { cn } from '@/shared/lib/utils'
 import { Check } from 'lucide-react'
+import { buildVizConfig } from '@/features/trainer/lib/trainerUtils'
 
 interface TrainerPickCasesModalProps {
   algorithms: AlgorithmCollection[]
@@ -99,21 +100,9 @@ export default function TrainerPickCasesModal({
   const groups = useMemo(() => _.groupBy(algorithms, 'group'), [algorithms])
 
   const configById = useMemo(() => {
-    const base = _.merge(
-      {
-        visualization: 'experimental-2D-LL',
-        background: 'none',
-        controlPanel: 'none',
-        experimentalStickering: 'OLL',
-        experimentalSetupAnchor: 'end',
-        experimentalDragInput: 'none'
-      },
-      vizConfig,
-      { puzzle }
-    )
     const map = new Map<string, Partial<TwistyPlayer>>()
     for (const alg of algorithms) {
-      map.set(alg.id, { ...base, alg: alg.algs[0]?.moves ?? '' } as Partial<TwistyPlayer>)
+      map.set(alg.id, buildVizConfig(puzzle, alg.algs[0]?.moves ?? '', vizConfig as Record<string, unknown>))
     }
     return map
   }, [algorithms, vizConfig, puzzle])

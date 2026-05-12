@@ -2,13 +2,12 @@
 
 import useSWRInfinite from 'swr/infinite'
 import { fetcher } from '@/shared/lib/fetcher'
-import type { TrainerSolveListItem } from '@/features/trainer/model/useTrainerSolves'
+import type { TrainerSolveListItem } from '@/features/trainer/model/types'
+import { TRAINER_PAGE_SIZE } from '@/features/trainer/lib/constants'
 
 interface ListResponse {
   solves: TrainerSolveListItem[]
 }
-
-const PAGE_SIZE = 25
 
 export const useTrainerSolvesPaginated = (
   methodSlug: string | null | undefined,
@@ -17,12 +16,12 @@ export const useTrainerSolvesPaginated = (
 ) => {
   const getKey = (pageIndex: number, previousPageData: ListResponse | null) => {
     if (!enabled || !methodSlug) return null
-    if (previousPageData && previousPageData.solves.length < PAGE_SIZE) return null
+    if (previousPageData && previousPageData.solves.length < TRAINER_PAGE_SIZE) return null
 
     const params = new URLSearchParams()
     params.set('methodSlug', methodSlug)
     if (caseId) params.set('caseId', caseId)
-    params.set('limit', String(PAGE_SIZE))
+    params.set('limit', String(TRAINER_PAGE_SIZE))
 
     if (pageIndex > 0 && previousPageData) {
       const last = previousPageData.solves[previousPageData.solves.length - 1]
@@ -41,7 +40,7 @@ export const useTrainerSolvesPaginated = (
 
   const solves = data ? data.flatMap((p) => p.solves) : []
   const lastPage = data?.[data.length - 1]
-  const reachedEnd = !!lastPage && lastPage.solves.length < PAGE_SIZE
+  const reachedEnd = !!lastPage && lastPage.solves.length < TRAINER_PAGE_SIZE
   const isLoadingMore = isValidating && size > (data?.length ?? 0)
 
   return {

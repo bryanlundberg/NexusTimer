@@ -2,10 +2,13 @@ import { create } from 'zustand'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { TrainerCaseStats, TrainerRotationMode } from '@/features/trainer/model/types'
 import type { TrainerMethodStatsDoc } from '@/entities/trainer-stats/model/types'
-
-const DEFAULT_SLUG = 'oll'
-export const DEFAULT_TARGET_SECONDS = 2
-const DEFAULT_ROTATION_MODE: TrainerRotationMode = 'shuffle'
+import {
+  TRAINER_DEFAULT_SLUG,
+  TRAINER_DEFAULT_TARGET_SECONDS,
+  TRAINER_DEFAULT_ROTATION_MODE,
+  TRAINER_RECENT_WINDOW
+} from '@/features/trainer/lib/constants'
+import { wcaAverage, shuffledRange } from '@/features/trainer/lib/trainerUtils'
 
 const initialPickedIds = (slug: string): Set<string> => {
   const set = ALGORITHM_SETS.find((s) => s.slug === slug)
@@ -13,22 +16,16 @@ const initialPickedIds = (slug: string): Set<string> => {
 }
 
 interface TrainerState {
-  // Method / case selection
   methodSlug: string
   pickedIds: Set<string>
   caseIndex: number
 
-  // Rotation
   rotationMode: TrainerRotationMode
   shuffleQueue: number[]
 
-  // Target — per method slug
   targetByMethod: Record<string, number>
-
-  // Per-case stats (in-memory; persistence comes later)
   caseStats: Record<string, TrainerCaseStats>
 
-  // Selectors / setters
   setMethod: (slug: string) => void
   setPickedIds: (ids: Set<string>) => void
   setCaseIndex: (index: number) => void
@@ -39,43 +36,17 @@ interface TrainerState {
   setTargetSeconds: (seconds: number) => void
   getTargetSeconds: () => number
 
-  // Stats
   recordSolve: (caseId: string, timeMs: number) => void
   hydrateMethodStats: (methodSlug: string, methodStats: Partial<TrainerMethodStatsDoc> | null | undefined) => void
 
   reset: () => void
 }
 
-const RECENT_WINDOW = 12
-
-const wcaAverage = (times: number[], n: number): number | null => {
-  if (times.length < n) return null
-  const window = times.slice(-n)
-  const sorted = [...window].sort((a, b) => a - b)
-  const trimmed = sorted.slice(1, -1)
-  if (trimmed.length === 0) return null
-  const sum = trimmed.reduce((acc, v) => acc + v, 0)
-  return sum / trimmed.length
-}
-
-const shuffledRange = (total: number, exclude: number | null = null): number[] => {
-  const arr = Array.from({ length: total }, (_, i) => i)
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[arr[i], arr[j]] = [arr[j], arr[i]]
-  }
-  // Avoid starting on the case the user just solved.
-  if (exclude !== null && arr.length > 1 && arr[0] === exclude) {
-    ;[arr[0], arr[1]] = [arr[1], arr[0]]
-  }
-  return arr
-}
-
 export const useTrainerStore = create<TrainerState>((set, get) => ({
-  methodSlug: DEFAULT_SLUG,
-  pickedIds: initialPickedIds(DEFAULT_SLUG),
+  methodSlug: TRAINER_DEFAULT_SLUG,
+  pickedIds: initialPickedIds(TRAINER_DEFAULT_SLUG),
   caseIndex: 0,
-  rotationMode: DEFAULT_ROTATION_MODE,
+  rotationMode: TRAINER_DEFAULT_ROTATION_MODE,
   shuffleQueue: [],
   targetByMethod: {},
   caseStats: {},
@@ -122,7 +93,7 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
       return
     }
 
-    // shuffle: walk through a permutation, reshuffle when empty.
+    // shuffle: walk through a permutation, reshuffle when exhausted.
     let queue = shuffleQueue.filter((i) => i < totalSessionCases)
     if (queue.length === 0) {
       queue = shuffledRange(totalSessionCases, caseIndex)
@@ -145,7 +116,7 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
 
   getTargetSeconds: () => {
     const { methodSlug, targetByMethod } = get()
-    return targetByMethod[methodSlug] ?? DEFAULT_TARGET_SECONDS
+    return targetByMethod[methodSlug] ?? TRAINER_DEFAULT_TARGET_SECONDS
   },
 
   recordSolve: (caseId, timeMs) => {
@@ -153,7 +124,7 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
       const prev = state.caseStats[caseId]
       const totalSolves = (prev?.totalSolves ?? 0) + 1
       const best = prev?.best == null ? timeMs : Math.min(prev.best, timeMs)
-      const recentTimes = [...(prev?.recentTimes ?? []), timeMs].slice(-RECENT_WINDOW)
+      const recentTimes = [...(prev?.recentTimes ?? []), timeMs].slice(-TRAINER_RECENT_WINDOW)
       const next: TrainerCaseStats = {
         caseId,
         totalSolves,
@@ -200,10 +171,10 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
 
   reset: () => {
     set({
-      methodSlug: DEFAULT_SLUG,
-      pickedIds: initialPickedIds(DEFAULT_SLUG),
+      methodSlug: TRAINER_DEFAULT_SLUG,
+      pickedIds: initialPickedIds(TRAINER_DEFAULT_SLUG),
       caseIndex: 0,
-      rotationMode: DEFAULT_ROTATION_MODE,
+      rotationMode: TRAINER_DEFAULT_ROTATION_MODE,
       shuffleQueue: [],
       targetByMethod: {},
       caseStats: {}

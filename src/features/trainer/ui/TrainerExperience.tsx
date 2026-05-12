@@ -1,13 +1,11 @@
 'use client'
 
 import { useEffect, useMemo } from 'react'
-import _ from 'lodash'
 import { useTranslations } from 'next-intl'
 import { BarChart3, Sparkles } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import TrainerCurrentCase from '@/features/trainer/ui/TrainerCurrentCase'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
 import TrainerEditTargetModal from '@/features/trainer/ui/TrainerEditTargetModal'
@@ -18,6 +16,7 @@ import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { TwistyPlayer } from 'cubing/twisty'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
+import { useTrainerSession } from '@/features/trainer/model/useTrainerSession'
 import useTimer from '@/features/timer/model/useTimer'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
@@ -28,20 +27,27 @@ import { useTrainerStats } from '@/features/trainer/model/useTrainerStats'
 import { useTrainerSolves } from '@/features/trainer/model/useTrainerSolves'
 import { postTrainerSolve } from '@/features/trainer/model/postTrainerSolve'
 import { patchTrainerTarget } from '@/features/trainer/model/patchTrainerTarget'
-import { DEFAULT_TARGET_SECONDS } from '@/features/trainer/model/useTrainerStore'
+import { TRAINER_DEFAULT_TARGET_SECONDS } from '@/features/trainer/lib/constants'
+import { buildVizConfig, formatMs } from '@/features/trainer/lib/trainerUtils'
 import { useSession } from 'next-auth/react'
 import { cn } from '@/shared/lib/utils'
 
-const formatMs = (ms: number) => (ms / 1000).toFixed(2)
-
 export default function TrainerExperience() {
   const t = useTranslations('Index.TrainerPage')
-  const methodSlug = useTrainerStore((s) => s.methodSlug)
-  const pickedIds = useTrainerStore((s) => s.pickedIds)
-  const caseIndex = useTrainerStore((s) => s.caseIndex)
-  const targetSeconds = useTrainerStore((s) => s.targetByMethod[s.methodSlug] ?? DEFAULT_TARGET_SECONDS)
+
+  const { set, sessionCases, currentCase, currentAlg } = useTrainerSession()
+  const methodSlug = set.slug
+
+  const targetSeconds = useTrainerStore((s) => s.targetByMethod[s.methodSlug] ?? TRAINER_DEFAULT_TARGET_SECONDS)
   const caseStats = useTrainerStore((s) => s.caseStats)
   const rotationMode = useTrainerStore((s) => s.rotationMode)
+  const setMethod = useTrainerStore((s) => s.setMethod)
+  const setPickedIds = useTrainerStore((s) => s.setPickedIds)
+  const setTargetSeconds = useTrainerStore((s) => s.setTargetSeconds)
+  const setRotationMode = useTrainerStore((s) => s.setRotationMode)
+  const advanceCase = useTrainerStore((s) => s.advanceCase)
+  const recordSolve = useTrainerStore((s) => s.recordSolve)
+  const hydrateMethodStats = useTrainerStore((s) => s.hydrateMethodStats)
 
   const timerStatus = useTimerStore((s) => s.timerStatus)
   const solvingTime = useTimerStore((s) => s.solvingTime)
@@ -51,23 +57,11 @@ export default function TrainerExperience() {
   const setSolvingTime = useTimerStore((s) => s.setSolvingTime)
   const settings = useSettingsStore((s) => s.settings)
 
-  const setMethod = useTrainerStore((s) => s.setMethod)
-  const setPickedIds = useTrainerStore((s) => s.setPickedIds)
-  const setTargetSeconds = useTrainerStore((s) => s.setTargetSeconds)
-  const setRotationMode = useTrainerStore((s) => s.setRotationMode)
-  const advanceCase = useTrainerStore((s) => s.advanceCase)
-  const recordSolve = useTrainerStore((s) => s.recordSolve)
-  const hydrateMethodStats = useTrainerStore((s) => s.hydrateMethodStats)
-
   const { data: session } = useSession()
   const isAuthed = !!session?.user?.id
 
   const { open } = useOverlayStore()
 
-  const set = useMemo(() => ALGORITHM_SETS.find((s) => s.slug === methodSlug) ?? ALGORITHM_SETS[0], [methodSlug])
-  const sessionCases = useMemo(() => set.algorithms.filter((a) => pickedIds.has(a.id)), [set, pickedIds])
-  const currentCase = sessionCases[caseIndex] ?? sessionCases[0]
-  const currentAlg = currentCase?.algs[0]
   const currentStats = currentCase ? caseStats[currentCase.id] : undefined
 
   const { stats: serverStats, mutate: mutateStats } = useTrainerStats(methodSlug, isAuthed)
@@ -81,22 +75,7 @@ export default function TrainerExperience() {
   }, [isAuthed, methodSlug, serverStats, hydrateMethodStats])
 
   const vizConfig = useMemo(
-    () =>
-      _.merge(
-        {
-          visualization: 'experimental-2D-LL',
-          background: 'none',
-          controlPanel: 'none',
-          experimentalStickering: 'OLL',
-          experimentalSetupAnchor: 'end',
-          experimentalDragInput: 'none'
-        },
-        set.virtualization,
-        {
-          puzzle: set.puzzle,
-          alg: currentAlg?.moves ?? ''
-        }
-      ) as unknown as Partial<TwistyPlayer>,
+    () => buildVizConfig(set.puzzle, currentAlg?.moves ?? '', set.virtualization as Record<string, unknown>),
     [set, currentAlg]
   )
 
@@ -113,10 +92,7 @@ export default function TrainerExperience() {
   )
 
   const trainerSettings = useMemo<Settings>(
-    () => ({
-      ...settings,
-      timer: { ...settings.timer, inspection: false, holdToStart: false }
-    }),
+    () => ({ ...settings, timer: { ...settings.timer, inspection: false, holdToStart: false } }),
     [settings]
   )
 
@@ -165,23 +141,6 @@ export default function TrainerExperience() {
     }
   }
 
-  const timeColorClass =
-    timerStatus === TimerStatus.HOLDING
-      ? 'text-red-500'
-      : timerStatus === TimerStatus.READY
-        ? 'text-green-500'
-        : 'text-foreground'
-
-  const stageOverlayClass =
-    timerStatus === TimerStatus.HOLDING
-      ? 'bg-red-500/10'
-      : timerStatus === TimerStatus.READY
-        ? 'bg-primary/10'
-        : 'bg-transparent'
-
-  const displayedTime =
-    timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY ? '0.00' : formatMs(solvingTime)
-
   const handleApplyTarget = (seconds: number) => {
     setTargetSeconds(seconds)
     if (isAuthed) {
@@ -204,7 +163,7 @@ export default function TrainerExperience() {
       component: (
         <TrainerPickCasesModal
           algorithms={set.algorithms}
-          initialSelected={pickedIds}
+          initialSelected={new Set(sessionCases.map((c) => c.id))}
           vizConfig={set.virtualization as unknown as Partial<TwistyPlayer>}
           puzzle={set.puzzle}
           onApply={setPickedIds}
@@ -212,6 +171,23 @@ export default function TrainerExperience() {
       )
     })
   }
+
+  const timeColorClass =
+    timerStatus === TimerStatus.HOLDING
+      ? 'text-red-500'
+      : timerStatus === TimerStatus.READY
+        ? 'text-green-500'
+        : 'text-foreground'
+
+  const stageOverlayClass =
+    timerStatus === TimerStatus.HOLDING
+      ? 'bg-red-500/10'
+      : timerStatus === TimerStatus.READY
+        ? 'bg-primary/10'
+        : 'bg-transparent'
+
+  const displayedTime =
+    timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY ? '0.00' : formatMs(solvingTime)
 
   const totalCases = sessionCases.length
   const totalSetCases = set.algorithms.length
@@ -271,7 +247,6 @@ export default function TrainerExperience() {
   return (
     <div id="touch" className="px-2 flex flex-col gap-3 flex-1 relative">
       <div className={cn('absolute inset-0 pointer-events-none transition-colors duration-150', stageOverlayClass)} />
-      {/* Top toolbar — method select + rotation chips */}
       <div className="flex items-center gap-2 flex-wrap">
         <div className="flex-1 min-w-0 max-w-sm">
           <TrainerMethodSelect value={set.slug} onChange={setMethod} />
@@ -279,7 +254,6 @@ export default function TrainerExperience() {
         <TrainerRotationModeChips value={rotationMode} onChange={setRotationMode} />
       </div>
 
-      {/* Slim learned-progress strip — hidden on lg+ where the side panel shows it */}
       <div className="flex items-center gap-3 lg:hidden">
         <span className="text-[10px] uppercase tracking-wider text-muted-foreground shrink-0">{t('learned')}</span>
         <Progress value={learnedPct} className="h-1.5 flex-1" />
@@ -288,7 +262,6 @@ export default function TrainerExperience() {
         </span>
       </div>
 
-      {/* Stage + side panel */}
       <div className="flex flex-col lg:flex-row gap-4 flex-1">
         <div className="flex-1 min-w-0 h-fit flex flex-col gap-3 rounded-xl py-1 p-2">
           <TrainerCurrentCase
@@ -313,7 +286,6 @@ export default function TrainerExperience() {
             onPickCases={handleOpenPickCases}
           />
 
-          {/* Stats sheet trigger — only on screens without the side panel */}
           <div className="lg:hidden mt-auto pt-2">
             <Sheet>
               <SheetTrigger asChild>

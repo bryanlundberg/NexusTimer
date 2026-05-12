@@ -3,8 +3,9 @@ import connectDB from '@/shared/config/mongodb/mongodb'
 import { auth } from '@/shared/config/auth/auth'
 import TrainerStats from '@/entities/trainer-stats/model/trainer-stats'
 import type { TrainerMethodStatsDoc } from '@/entities/trainer-stats/model/types'
+import { TRAINER_TARGET_OPTIONS } from '@/features/trainer/lib/constants'
 
-const VALID_TARGET_SECONDS = new Set([1, 2, 3, 4, 5])
+const VALID_TARGET_SECONDS = new Set(TRAINER_TARGET_OPTIONS)
 
 export async function GET(request: NextRequest) {
   try {

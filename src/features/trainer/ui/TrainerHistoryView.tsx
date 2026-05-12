@@ -1,37 +1,32 @@
 'use client'
 
 import { useMemo } from 'react'
-import _ from 'lodash'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
-import { Sparkles, ArrowLeft } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
 import TrainerSolveHistoryTable from '@/features/trainer/ui/TrainerSolveHistoryTable'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
+import { useTrainerSession } from '@/features/trainer/model/useTrainerSession'
 import { useTrainerSolvesPaginated } from '@/features/trainer/model/useTrainerSolvesPaginated'
 import { useTrainerStats } from '@/features/trainer/model/useTrainerStats'
 import { deleteTrainerSolve, patchTrainerSolve } from '@/features/trainer/model/mutateTrainerSolve'
+import { buildVizConfig } from '@/features/trainer/lib/trainerUtils'
 import type { AlgorithmCollection } from '@/features/algorithms-list/model/types'
-import { TwistyPlayer } from 'cubing/twisty'
 
 export default function TrainerHistoryView() {
   const t = useTranslations('Index.TrainerHistoryPage')
-  const methodSlug = useTrainerStore((s) => s.methodSlug)
-  const pickedIds = useTrainerStore((s) => s.pickedIds)
-  const caseIndex = useTrainerStore((s) => s.caseIndex)
+
+  const { set, currentCase } = useTrainerSession()
+  const methodSlug = set.slug
   const setMethod = useTrainerStore((s) => s.setMethod)
 
   const { data: session } = useSession()
   const isAuthed = !!session?.user?.id
-
-  const set = useMemo(() => ALGORITHM_SETS.find((s) => s.slug === methodSlug) ?? ALGORITHM_SETS[0], [methodSlug])
-  const sessionCases = useMemo(() => set.algorithms.filter((a) => pickedIds.has(a.id)), [set, pickedIds])
-  const currentCase = sessionCases[caseIndex] ?? sessionCases[0]
 
   const caseById = useMemo(() => {
     const map = new Map<string, AlgorithmCollection>()
@@ -41,18 +36,7 @@ export default function TrainerHistoryView() {
 
   const currentVizConfig = useMemo(() => {
     if (!currentCase) return null
-    return _.merge(
-      {
-        visualization: 'experimental-2D-LL',
-        background: 'none',
-        controlPanel: 'none',
-        experimentalStickering: 'OLL',
-        experimentalSetupAnchor: 'end',
-        experimentalDragInput: 'none'
-      },
-      set.virtualization,
-      { puzzle: set.puzzle, alg: currentCase.algs?.[0]?.moves ?? '' }
-    ) as unknown as Partial<TwistyPlayer>
+    return buildVizConfig(set.puzzle, currentCase.algs?.[0]?.moves ?? '', set.virtualization as Record<string, unknown>)
   }, [currentCase, set])
 
   const { mutate: mutateStats } = useTrainerStats(methodSlug, isAuthed)

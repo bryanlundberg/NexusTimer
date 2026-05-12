@@ -2,8 +2,7 @@ import { Types } from 'mongoose'
 import TrainerSolve from '@/entities/trainer-solve/model/trainer-solve'
 import TrainerStats from '@/entities/trainer-stats/model/trainer-stats'
 import type { TrainerCaseStatsDoc } from '@/entities/trainer-stats/model/types'
-
-const RECENT_TIMES_WINDOW = 12
+import { TRAINER_RECENT_TIMES_WINDOW } from '@/entities/trainer-stats/model/constants'
 
 /**
  * Recomputes case-level + method-level aggregates from the solves collection
@@ -25,7 +24,7 @@ export async function recomputeCaseAndMethod(userId: string, methodSlug: string,
     bestSingleMs: counted.length ? Math.min(...counted.map((s) => s.timeMs)) : null,
     lastSolveMs: lastSolve?.timeMs ?? null,
     lastSolveAt: lastSolve?.createdAt.getTime() ?? null,
-    recentTimes: counted.slice(-RECENT_TIMES_WINDOW).map((s) => s.timeMs)
+    recentTimes: counted.slice(-TRAINER_RECENT_TIMES_WINDOW).map((s) => s.timeMs)
   }
 
   const casePath = `methods.${methodSlug}.cases.${caseId}`

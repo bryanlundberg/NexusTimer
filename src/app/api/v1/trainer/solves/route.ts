@@ -6,8 +6,7 @@ import { auth } from '@/shared/config/auth/auth'
 import TrainerSolve from '@/entities/trainer-solve/model/trainer-solve'
 import TrainerStats from '@/entities/trainer-stats/model/trainer-stats'
 import { trainerSolveInputSchema } from '@/entities/trainer-solve/model/schema'
-
-const RECENT_TIMES_WINDOW = 12
+import { TRAINER_RECENT_TIMES_WINDOW } from '@/entities/trainer-stats/model/constants'
 
 const listQuerySchema = z.object({
   methodSlug: z.string().min(1),
@@ -103,7 +102,7 @@ export async function POST(request: NextRequest) {
         [`${casePath}.bestSingleMs`]: effectiveTime
       }
       update.$push = {
-        [`${casePath}.recentTimes`]: { $each: [effectiveTime], $slice: -RECENT_TIMES_WINDOW }
+        [`${casePath}.recentTimes`]: { $each: [effectiveTime], $slice: -TRAINER_RECENT_TIMES_WINDOW }
       }
     }
 

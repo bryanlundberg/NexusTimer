@@ -2,16 +2,9 @@
 
 import useSWR from 'swr'
 import { fetcher } from '@/shared/lib/fetcher'
-import type { TrainerPenalty } from '@/entities/trainer-solve/model/constants'
+import type { TrainerSolveListItem } from '@/features/trainer/model/types'
 
-export interface TrainerSolveListItem {
-  _id: string
-  methodSlug: string
-  caseId: string
-  timeMs: number
-  penalty: TrainerPenalty
-  createdAt: string
-}
+export type { TrainerSolveListItem }
 
 interface ListResponse {
   solves: TrainerSolveListItem[]

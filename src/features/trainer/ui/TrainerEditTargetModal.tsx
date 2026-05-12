@@ -6,8 +6,7 @@ import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTit
 import { Button } from '@/components/ui/button'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { cn } from '@/shared/lib/utils'
-
-const TARGET_OPTIONS = [1, 2, 3, 4, 5] as const
+import { TRAINER_TARGET_OPTIONS } from '@/features/trainer/lib/constants'
 
 interface TrainerEditTargetModalProps {
   initial: number
@@ -32,7 +31,7 @@ export default function TrainerEditTargetModal({ initial, onApply }: TrainerEdit
       </DialogHeader>
 
       <div className="grid grid-cols-5 gap-2">
-        {TARGET_OPTIONS.map((seconds) => {
+        {TRAINER_TARGET_OPTIONS.map((seconds) => {
           const active = value === seconds
           return (
             <button

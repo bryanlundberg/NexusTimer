@@ -1,7 +1,6 @@
 'use client'
 
 import { useMemo } from 'react'
-import _ from 'lodash'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import {
@@ -13,11 +12,11 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Trash2, Plus, X, Check, MoreVertical } from 'lucide-react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import type { TrainerSolveListItem } from '@/features/trainer/model/useTrainerSolves'
+import type { TrainerSolveListItem } from '@/features/trainer/model/types'
 import type { TrainerPenalty } from '@/entities/trainer-solve/model/constants'
 import type { AlgorithmCollection } from '@/features/algorithms-list/model/types'
-import { TwistyPlayer } from 'cubing/twisty'
 import { cn } from '@/shared/lib/utils'
+import { buildVizConfig, formatTime, formatRelative, penaltyDotClass } from '@/features/trainer/lib/trainerUtils'
 
 interface TrainerSolveHistoryTableProps {
   solves: TrainerSolveListItem[]
@@ -33,29 +32,6 @@ interface TrainerSolveHistoryTableProps {
   vizDefaults?: Record<string, unknown>
   emptyLabel?: string
 }
-
-const formatTime = (ms: number, penalty: TrainerPenalty) => {
-  if (penalty === 'DNF') return 'DNF'
-  const base = (ms / 1000).toFixed(2)
-  return penalty === '+2' ? `${base}+` : base
-}
-
-const formatRelative = (iso: string) => {
-  const date = new Date(iso)
-  const diff = Date.now() - date.getTime()
-  const sec = Math.floor(diff / 1000)
-  if (sec < 60) return `${sec}s`
-  const min = Math.floor(sec / 60)
-  if (min < 60) return `${min}m`
-  const hr = Math.floor(min / 60)
-  if (hr < 24) return `${hr}h`
-  const days = Math.floor(hr / 24)
-  if (days < 7) return `${days}d`
-  return date.toLocaleDateString()
-}
-
-const penaltyDotClass = (penalty: TrainerPenalty) =>
-  penalty === 'DNF' ? 'bg-red-500/70' : penalty === '+2' ? 'bg-amber-500/70' : 'bg-emerald-500/70'
 
 const GRID_WITH_CASE = 'grid-cols-[28px_64px_1fr_56px_28px]'
 const GRID_NO_CASE = 'grid-cols-[1fr_56px_28px]'
@@ -76,23 +52,10 @@ export default function TrainerSolveHistoryTable({
 }: TrainerSolveHistoryTableProps) {
   const t = useTranslations('Index.TrainerHistoryPage.table')
   const vizConfigByCaseId = useMemo(() => {
-    if (!showCase || !caseById || !puzzle) return new Map<string, Partial<TwistyPlayer>>()
-    const map = new Map<string, Partial<TwistyPlayer>>()
+    if (!showCase || !caseById || !puzzle) return new Map()
+    const map = new Map()
     caseById.forEach((algCase, id) => {
-      const moves = algCase?.algs?.[0]?.moves ?? ''
-      const cfg = _.merge(
-        {
-          visualization: 'experimental-2D-LL',
-          background: 'none',
-          controlPanel: 'none',
-          experimentalStickering: 'OLL',
-          experimentalSetupAnchor: 'end',
-          experimentalDragInput: 'none'
-        },
-        vizDefaults ?? {},
-        { puzzle, alg: moves }
-      ) as unknown as Partial<TwistyPlayer>
-      map.set(id, cfg)
+      map.set(id, buildVizConfig(puzzle, algCase?.algs?.[0]?.moves ?? '', vizDefaults))
     })
     return map
   }, [showCase, caseById, puzzle, vizDefaults])
