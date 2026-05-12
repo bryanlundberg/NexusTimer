@@ -26,9 +26,9 @@ export default function CubesTabContent({ cubes }: CubesTabContentProps) {
   const sortedCubes = _.orderBy(cubes, (cube) => cube.solves.session.length + cube.solves.all.length, 'desc')
 
   return (
-    <div className="rounded-xl border border-border/60 overflow-hidden">
+    <div className="overflow-hidden">
       {/* Table header */}
-      <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60 bg-muted/30`}>
+      <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
         <span />
         {COL_LABELS.map((label) => (
           <span key={label} className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
