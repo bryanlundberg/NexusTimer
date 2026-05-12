@@ -54,6 +54,19 @@ export const shuffledRange = (total: number, exclude: number | null = null): num
   return arr
 }
 
+export const invertAlgorithm = (moves: string): string => {
+  const tokens = moves.replace(/[()]/g, '').trim().split(/\s+/).filter(Boolean)
+  return tokens
+    .reverse()
+    .map((token) => {
+      if (token.endsWith("2'")) return token.slice(0, -1)
+      if (token.endsWith('2')) return token
+      if (token.endsWith("'")) return token.slice(0, -1)
+      return token + "'"
+    })
+    .join(' ')
+}
+
 const VIZ_BASE = {
   visualization: 'experimental-2D-LL',
   background: 'none',
