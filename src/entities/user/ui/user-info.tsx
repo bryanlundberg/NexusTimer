@@ -19,9 +19,29 @@ export default function UserInfo({ user }: { user: UserDocument }) {
   const { backup } = useBackup(user?.backup?.url)
 
   return (
-    <div className="flex flex-col gap-2 p-2 md:sticky md:top-16 h-fit w-full md:max-w-xs">
-      <div className="relative">
-        <Avatar className="size-60 mb-2 shadow-lg mx-auto">
+    <div className="flex flex-col gap-3 p-4 md:sticky md:top-16 h-fit w-full md:max-w-xs rounded-2xl border border-border/40 bg-card/60 relative overflow-hidden">
+      {/* Dot texture */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none text-foreground"
+        style={{
+          backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+          opacity: 0.035
+        }}
+      />
+      {/* Top color wash */}
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 right-0 h-48 pointer-events-none bg-gradient-to-b from-primary/20 via-primary/5 to-transparent"
+      />
+      {/* Avatar with glow */}
+      <div className="relative pt-2">
+        <div
+          aria-hidden
+          className="absolute inset-x-12 top-6 bottom-2 rounded-full bg-primary/25 blur-3xl pointer-events-none"
+        />
+        <Avatar className="size-60 mb-2 shadow-xl mx-auto relative ring-2 ring-border/40">
           <AvatarImage className={'object-cover'} src={user.image} alt={user.name} />
           <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
         </Avatar>
