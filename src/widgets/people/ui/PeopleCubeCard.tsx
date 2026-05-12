@@ -42,7 +42,6 @@ export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
     <motion.div
       key={cube.id}
       className="group relative overflow-hidden flex flex-col rounded-2xl border border-border/60 bg-card transition-colors duration-300 hover:border-border"
-      whileHover={{ y: -3 }}
       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
     >
       {/* Top section — cube hero */}
