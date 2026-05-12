@@ -27,6 +27,8 @@ import { Settings } from '@/shared/types/Settings'
 import { useTrainerStats } from '@/features/trainer/model/useTrainerStats'
 import { useTrainerSolves } from '@/features/trainer/model/useTrainerSolves'
 import { postTrainerSolve } from '@/features/trainer/model/postTrainerSolve'
+import { patchTrainerTarget } from '@/features/trainer/model/patchTrainerTarget'
+import { DEFAULT_TARGET_SECONDS } from '@/features/trainer/model/useTrainerStore'
 import { useSession } from 'next-auth/react'
 import { cn } from '@/shared/lib/utils'
 
@@ -37,7 +39,7 @@ export default function TrainerExperience() {
   const methodSlug = useTrainerStore((s) => s.methodSlug)
   const pickedIds = useTrainerStore((s) => s.pickedIds)
   const caseIndex = useTrainerStore((s) => s.caseIndex)
-  const targetSeconds = useTrainerStore((s) => s.targetSeconds)
+  const targetSeconds = useTrainerStore((s) => s.targetByMethod[s.methodSlug] ?? DEFAULT_TARGET_SECONDS)
   const caseStats = useTrainerStore((s) => s.caseStats)
   const rotationMode = useTrainerStore((s) => s.rotationMode)
 
@@ -180,10 +182,19 @@ export default function TrainerExperience() {
   const displayedTime =
     timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY ? '0.00' : formatMs(solvingTime)
 
+  const handleApplyTarget = (seconds: number) => {
+    setTargetSeconds(seconds)
+    if (isAuthed) {
+      patchTrainerTarget(methodSlug, seconds).catch((err) => {
+        console.error('Failed to persist trainer target:', err)
+      })
+    }
+  }
+
   const handleOpenEditTarget = () => {
     open({
       id: 'trainer-edit-target',
-      component: <TrainerEditTargetModal initial={targetSeconds} onApply={setTargetSeconds} />
+      component: <TrainerEditTargetModal initial={targetSeconds} onApply={handleApplyTarget} />
     })
   }
 
