@@ -35,7 +35,7 @@ import { cn } from '@/shared/lib/utils'
 export default function TrainerExperience() {
   const t = useTranslations('Index.TrainerPage')
 
-  const { set, sessionCases, currentCase, currentAlg } = useTrainerSession()
+  const { set, sessionCases, currentCase, currentAlg, setup } = useTrainerSession()
   const methodSlug = set.slug
 
   const targetSeconds = useTrainerStore((s) => s.targetByMethod[s.methodSlug] ?? TRAINER_DEFAULT_TARGET_SECONDS)
@@ -268,7 +268,7 @@ export default function TrainerExperience() {
             <TrainerCurrentCase
               caseGroup={currentCase?.group ?? ''}
               caseName={currentCase?.name ?? ''}
-              setup={currentCase?.setup ?? currentAlg?.moves ?? ''}
+              setup={setup}
               currentTime={displayedTime}
               timeColorClass={timeColorClass}
               vizConfig={vizConfig}
