@@ -1,13 +1,22 @@
-import { Tabs, TabsContent } from '@/components/ui/tabs'
+'use client'
+
+import { Tabs } from '@/components/ui/tabs'
+import { Button } from '@/components/ui/button'
 import { usePeopleTab } from '@/features/people-tab/model/usePeopleTab'
 import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
-import UserInfo from '@/entities/user/ui/user-info'
+import { ProfileHeroBanner } from '@/widgets/people/ui/profile-hero-banner'
+import { ProfileStatsBar } from '@/widgets/people/ui/profile-stats-bar'
 import { UserDocument } from '@/entities/user/model/user'
 import { Cube } from '@/entities/cube/model/types'
 import { useTranslations } from 'next-intl'
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
+import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
+import { CheckCircle2, GitCompareIcon } from 'lucide-react'
 
 interface PeopleTabsProps {
   user: UserDocument
@@ -18,6 +27,35 @@ const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.LAST_ACTIVITY] as const
 
 export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
   const t = useTranslations('Index.PeoplePage.tabs')
+  const tProfile = useTranslations('Index.PeoplePage')
+  const tCard = useTranslations('Index.PeoplePage.user-card')
+
+  const { data: session } = useSession()
+  const isCurrentUser = session?.user?.id === user._id
+  const router = useRouter()
+
+  const addUser = useCompareUsersStore((state) => state.addUser)
+  const removeUser = useCompareUsersStore((state) => state.removeUser)
+  const users = useCompareUsersStore((state) => state.users)
+  const isAdded = !!users.find((u) => u._id === user._id)
+
+  const [isFlying, setIsFlying] = useState(false)
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 })
+  const compareRef = useRef<HTMLButtonElement>(null)
+
+  const handleCompareClick = () => {
+    if (!isAdded) {
+      if (compareRef.current) {
+        const rect = compareRef.current.getBoundingClientRect()
+        setStartPos({ x: rect.left, y: rect.top })
+        setIsFlying(true)
+      }
+      addUser(user)
+    } else {
+      removeUser(user._id)
+    }
+  }
+
   const { value, set } = usePeopleTab()
   const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map())
   const containerRef = useRef<HTMLDivElement>(null)
@@ -35,10 +73,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
     if (el && container) {
       const containerRect = container.getBoundingClientRect()
       const elRect = el.getBoundingClientRect()
-      setIndicator({
-        left: elRect.left - containerRect.left,
-        width: elRect.width
-      })
+      setIndicator({ left: elRect.left - containerRect.left, width: elRect.width })
     }
   }, [value])
 
@@ -53,50 +88,69 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
 
   return (
     <div className="flex flex-col w-full">
-      <div className="flex flex-col md:flex-row px-2 gap-3 relative items-start">
-        <UserInfo user={user} />
-        <div className="flex flex-col grow rounded-2xl border border-border/40 bg-card/40 relative overflow-hidden">
+      {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
+
+      <ProfileHeroBanner user={user} cubes={cubes} />
+      <ProfileStatsBar cubes={cubes} />
+
+      <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full">
+        {/* Tabs nav + actions row */}
+        <div className="flex items-center justify-between gap-4 px-4 md:px-6 py-3 border-b border-border/40">
           <div
-            aria-hidden
-            className="absolute inset-0 pointer-events-none text-foreground"
-            style={{
-              backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)',
-              backgroundSize: '20px 20px',
-              opacity: 0.03
-            }}
-          />
-          <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full p-4">
-            {/* Custom TabsList with sliding indicator */}
-            <div
-              ref={containerRef}
-              role="tablist"
-              className="relative inline-flex h-9 w-fit items-center rounded-lg bg-muted p-[3px]"
+            ref={containerRef}
+            role="tablist"
+            className="relative inline-flex h-9 w-fit items-center rounded-lg bg-muted p-0.75"
+          >
+            <motion.div
+              className="absolute top-0.75 bottom-0.75 rounded-md bg-background shadow-sm dark:bg-input/30"
+              animate={{ left: indicator.left, width: indicator.width }}
+              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+            />
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                ref={(el) => {
+                  if (el) tabRefs.current.set(tab, el)
+                }}
+                role="tab"
+                aria-selected={value === tab}
+                data-state={value === tab ? 'active' : 'inactive'}
+                onClick={() => set(tab)}
+                className="relative z-10 inline-flex h-[calc(100%-1px)] items-center justify-center rounded-md px-3 py-1 text-sm font-medium whitespace-nowrap transition-colors text-muted-foreground data-[state=active]:text-foreground"
+              >
+                {labels[tab]}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2">
+            {isCurrentUser && (
+              <Button variant="secondary" size="sm" onClick={() => router.push('/account')}>
+                {tProfile('edit-profile')}
+              </Button>
+            )}
+            <Button
+              ref={compareRef}
+              variant={isAdded ? 'secondary' : 'outline'}
+              size="sm"
+              className="gap-1.5"
+              onClick={handleCompareClick}
             >
-              <motion.div
-                className="absolute top-[3px] bottom-[3px] rounded-md bg-background shadow-sm dark:bg-input/30"
-                animate={{ left: indicator.left, width: indicator.width }}
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              />
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  ref={(el) => {
-                    if (el) tabRefs.current.set(tab, el)
-                  }}
-                  role="tab"
-                  aria-selected={value === tab}
-                  data-state={value === tab ? 'active' : 'inactive'}
-                  onClick={() => set(tab)}
-                  className="relative z-10 inline-flex h-[calc(100%-1px)] items-center justify-center rounded-md px-3 py-1 text-sm font-medium whitespace-nowrap transition-colors text-muted-foreground data-[state=active]:text-foreground"
-                >
-                  {labels[tab]}
-                </button>
-              ))}
-            </div>
-            <PeopleContent cubes={cubes} />
-          </Tabs>
+              {isAdded ? (
+                <CheckCircle2 className="size-4 text-primary animate-in zoom-in duration-300" />
+              ) : (
+                <GitCompareIcon className="size-4" />
+              )}
+              {tCard('compare')}
+            </Button>
+          </div>
         </div>
-      </div>
+
+        {/* Tab content */}
+        <div className="px-4 md:px-6 py-4">
+          <PeopleContent cubes={cubes} />
+        </div>
+      </Tabs>
     </div>
   )
 }
