@@ -4,7 +4,7 @@ import { TrainerCaseStats, TrainerRotationMode } from '@/features/trainer/model/
 import type { TrainerMethodStatsDoc } from '@/entities/trainer-stats/model/types'
 
 const DEFAULT_SLUG = 'oll'
-const DEFAULT_TARGET_SECONDS = 2
+export const DEFAULT_TARGET_SECONDS = 2
 const DEFAULT_ROTATION_MODE: TrainerRotationMode = 'shuffle'
 
 const initialPickedIds = (slug: string): Set<string> => {
@@ -22,8 +22,8 @@ interface TrainerState {
   rotationMode: TrainerRotationMode
   shuffleQueue: number[]
 
-  // Target
-  targetSeconds: number
+  // Target — per method slug
+  targetByMethod: Record<string, number>
 
   // Per-case stats (in-memory; persistence comes later)
   caseStats: Record<string, TrainerCaseStats>
@@ -37,6 +37,7 @@ interface TrainerState {
   prevCase: (totalSessionCases: number) => void
 
   setTargetSeconds: (seconds: number) => void
+  getTargetSeconds: () => number
 
   // Stats
   recordSolve: (caseId: string, timeMs: number) => void
@@ -76,7 +77,7 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
   caseIndex: 0,
   rotationMode: DEFAULT_ROTATION_MODE,
   shuffleQueue: [],
-  targetSeconds: DEFAULT_TARGET_SECONDS,
+  targetByMethod: {},
   caseStats: {},
 
   setMethod: (slug) => {
@@ -137,7 +138,15 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
     }))
   },
 
-  setTargetSeconds: (seconds) => set({ targetSeconds: seconds }),
+  setTargetSeconds: (seconds) => {
+    const { methodSlug } = get()
+    set((state) => ({ targetByMethod: { ...state.targetByMethod, [methodSlug]: seconds } }))
+  },
+
+  getTargetSeconds: () => {
+    const { methodSlug, targetByMethod } = get()
+    return targetByMethod[methodSlug] ?? DEFAULT_TARGET_SECONDS
+  },
 
   recordSolve: (caseId, timeMs) => {
     set((state) => {
@@ -181,7 +190,11 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
           recentTimes
         }
       }
-      return { caseStats: next }
+      const nextTargetByMethod = { ...state.targetByMethod }
+      if (methodStats?.targetSeconds != null) {
+        nextTargetByMethod[methodSlug] = methodStats.targetSeconds
+      }
+      return { caseStats: next, targetByMethod: nextTargetByMethod }
     })
   },
 
@@ -192,7 +205,7 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
       caseIndex: 0,
       rotationMode: DEFAULT_ROTATION_MODE,
       shuffleQueue: [],
-      targetSeconds: DEFAULT_TARGET_SECONDS,
+      targetByMethod: {},
       caseStats: {}
     })
   }
