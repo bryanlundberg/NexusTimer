@@ -59,7 +59,6 @@ export default function PeoplePage() {
                     </div>
                     <div className="flex items-center gap-2">
                       <Skeleton className="h-8 w-8 sm:w-24 rounded-md" />
-                      <Skeleton className="h-8 w-8 sm:w-24 rounded-md" />
                     </div>
                   </div>
                 ))}
