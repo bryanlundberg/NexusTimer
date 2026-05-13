@@ -65,71 +65,73 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
 
   return (
     <div className="space-y-4">
-      <div className="overflow-hidden">
-        {/* Header */}
-        <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">#</span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Category</span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Scramble</span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Time</span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Date</span>
+      <div className="overflow-x-auto">
+        <div className="min-w-[580px]">
+          {/* Header */}
+          <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">#</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Category</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Scramble</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Time</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Date</span>
+          </div>
+
+          {/* Rows */}
+          <motion.div
+            key={page}
+            initial="hidden"
+            animate="show"
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.03 } } }}
+          >
+            {currentItems.map((solve, i) => {
+              const globalIndex = solves.length - ((page - 1) * ITEMS_PER_PAGE + i)
+              const displayTime = solve.time + (solve.plus2 ? 2000 : 0)
+
+              return (
+                <motion.div
+                  key={solve.id}
+                  className={`grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150`}
+                  variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
+                >
+                  {/* # */}
+                  <span className="text-xs font-mono text-muted-foreground tabular-nums text-right select-none">
+                    {String(globalIndex).padStart(2, '0')}
+                  </span>
+
+                  {/* Category badge */}
+                  <div className="min-w-0 flex flex-col gap-0.5">
+                    <Badge variant="outline" className="font-mono text-[10px] px-1.5 py-0 h-4 w-fit shrink-0">
+                      {solve.category}
+                    </Badge>
+                  </div>
+
+                  {/* Scramble text only */}
+                  <span className="text-[10px] font-mono text-muted-foreground/70 break-all leading-relaxed">
+                    {solve.scramble}
+                  </span>
+
+                  {/* Time */}
+                  <div className="flex items-baseline gap-1">
+                    {solve.dnf ? (
+                      <span className="text-sm font-bold text-red-500">DNF</span>
+                    ) : (
+                      <>
+                        <TimeDisplay value={formatTime(displayTime)} />
+                        {solve.plus2 && <span className="text-[10px] font-bold text-yellow-500">+2</span>}
+                      </>
+                    )}
+                  </div>
+
+                  {/* Date */}
+                  <span className="text-xs text-muted-foreground tabular-nums">
+                    {moment(solve.startTime).locale(locale).format('ll · HH:mm')}
+                  </span>
+                </motion.div>
+              )
+            })}
+          </motion.div>
         </div>
-
-        {/* Rows */}
-        <motion.div
-          key={page}
-          initial="hidden"
-          animate="show"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.03 } } }}
-        >
-          {currentItems.map((solve, i) => {
-            const globalIndex = solves.length - ((page - 1) * ITEMS_PER_PAGE + i)
-            const displayTime = solve.time + (solve.plus2 ? 2000 : 0)
-
-            return (
-              <motion.div
-                key={solve.id}
-                className={`grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150`}
-                variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
-                transition={{ duration: 0.2, ease: 'easeOut' }}
-              >
-                {/* # */}
-                <span className="text-xs font-mono text-muted-foreground tabular-nums text-right select-none">
-                  {String(globalIndex).padStart(2, '0')}
-                </span>
-
-                {/* Category badge */}
-                <div className="min-w-0 flex flex-col gap-0.5">
-                  <Badge variant="outline" className="font-mono text-[10px] px-1.5 py-0 h-4 w-fit shrink-0">
-                    {solve.category}
-                  </Badge>
-                </div>
-
-                {/* Scramble text only */}
-                <span className="text-[10px] font-mono text-muted-foreground/70 break-all leading-relaxed">
-                  {solve.scramble}
-                </span>
-
-                {/* Time */}
-                <div className="flex items-baseline gap-1">
-                  {solve.dnf ? (
-                    <span className="text-sm font-bold text-red-500">DNF</span>
-                  ) : (
-                    <>
-                      <TimeDisplay value={formatTime(displayTime)} />
-                      {solve.plus2 && <span className="text-[10px] font-bold text-yellow-500">+2</span>}
-                    </>
-                  )}
-                </div>
-
-                {/* Date */}
-                <span className="text-xs text-muted-foreground tabular-nums">
-                  {moment(solve.startTime).locale(locale).format('ll · HH:mm')}
-                </span>
-              </motion.div>
-            )
-          })}
-        </motion.div>
       </div>
 
       {totalPages > 1 && (
