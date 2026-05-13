@@ -55,7 +55,7 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
   return (
     <div className="w-full px-4 md:px-6 py-6 flex flex-col sm:flex-row items-start justify-between gap-6 border-b border-border/40 bg-muted/20">
       {/* Left: avatar + user info */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 min-w-0">
         <div className="relative shrink-0">
           <Avatar className="size-16 sm:size-20 md:size-24 rounded-lg shadow-xl ring-2 ring-border/40">
             <AvatarImage className="object-cover" src={user.image} alt={user.name} />
@@ -82,7 +82,7 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
             {user.pronoun && <span className="text-base font-normal text-muted-foreground">{user.pronoun}</span>}
           </h1>
           <div className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
-            {user.bio && <span className="truncate max-w-xs">{user.bio}</span>}
+            {user.bio && <span className="wrap-break-word">{user.bio}</span>}
             {user.bio && <span className="opacity-50">·</span>}
             <span>Member since {memberSince}</span>
             {timezoneAbbr && (
@@ -120,9 +120,9 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
           </div>
           {cubeImage && (
             <img
-              src={cubeImage}
+              src={'/utils/cubex.webp'}
               alt="3x3 cube"
-              className="opacity-80 shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-[90px] md:h-[90px]"
+              className="opacity-80 shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-22.5 md:h-22.5"
             />
           )}
         </div>
