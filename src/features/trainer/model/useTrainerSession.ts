@@ -19,7 +19,7 @@ export const useTrainerSession = () => {
 
   const pickRef = useRef<AlgPick | null>(null)
   if (currentCase && pickRef.current?.caseId !== currentCase.id) {
-    const idx = Math.floor(Math.random() * currentCase.algs.length)
+    const idx = 0
     const alg = currentCase.algs[idx]
     pickRef.current = { caseId: currentCase.id, alg, setup: invertAlgorithm(alg.moves) }
   }
