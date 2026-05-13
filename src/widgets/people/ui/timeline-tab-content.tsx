@@ -15,7 +15,7 @@ import { Cube } from '@/entities/cube/model/types'
 import { Badge } from '@/components/ui/badge'
 import formatTime from '@/shared/lib/formatTime'
 import moment from 'moment'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { CubeCategory } from '@/shared/const/cube-categories'
 
 interface TimelineSolve {
@@ -38,6 +38,7 @@ const GRID = 'grid-cols-[2.5rem_8rem_minmax(0,1fr)_7rem_8rem]'
 
 export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
   const locale = useLocale()
+  const t = useTranslations('Index.PeoplePage.timeline-tab')
   const [page, setPage] = useState(1)
 
   const solves = useMemo<TimelineSolve[]>(() => {
@@ -70,10 +71,18 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
           {/* Header */}
           <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">#</span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Category</span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Scramble</span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Time</span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Date</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {t('col-category')}
+            </span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {t('col-scramble')}
+            </span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {t('col-time')}
+            </span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {t('col-date')}
+            </span>
           </div>
 
           {/* Rows */}

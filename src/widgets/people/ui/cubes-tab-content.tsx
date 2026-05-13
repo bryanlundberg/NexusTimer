@@ -12,12 +12,11 @@ interface CubesTabContentProps {
 
 const GRID = 'grid-cols-[3rem_minmax(10rem,1fr)_5.5rem_5.5rem_4rem_7rem_9rem]'
 
-const COL_LABELS = ['NAME', 'BEST', 'AO5', 'SOLVES', 'TIME', 'DISTRIBUTION']
-
 export { GRID }
 
 export default function CubesTabContent({ cubes }: CubesTabContentProps) {
   const t = useTranslations('Index.CubesPage')
+  const tPeople = useTranslations('Index.PeoplePage.cubes-tab')
 
   if (_.isEmpty(cubes)) {
     return <EmptyTabContent />
@@ -31,9 +30,9 @@ export default function CubesTabContent({ cubes }: CubesTabContentProps) {
         {/* Table header */}
         <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
           <span />
-          {COL_LABELS.map((label) => (
-            <span key={label} className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              {label}
+          {(['col-name', 'col-best', 'col-ao5', 'col-solves', 'col-time', 'col-distribution'] as const).map((key) => (
+            <span key={key} className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {tPeople(key)}
             </span>
           ))}
         </div>
