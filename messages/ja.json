@@ -306,6 +306,34 @@
         "ao5": "ベストAo5",
         "time-spent": "合計時間",
         "solves": "ソルブ数"
+      },
+      "stats": {
+        "total-solves": "総ソルブ数",
+        "avg-of-5": "5回平均",
+        "best-window": "ベスト区間",
+        "mean-session": "セッション平均",
+        "last-12-solves": "直近12ソルブ",
+        "time-on-timer": "タイマー累計時間",
+        "lifetime": "累計",
+        "consistency": "安定性",
+        "ok-total": "成功 / 合計",
+        "events": "種目",
+        "favorite": "得意種目",
+        "all-categories": "全カテゴリ"
+      },
+      "cubes-tab": {
+        "col-name": "名前",
+        "col-best": "ベスト",
+        "col-ao5": "Ao5",
+        "col-solves": "ソルブ数",
+        "col-time": "時間",
+        "col-distribution": "分布"
+      },
+      "timeline-tab": {
+        "col-category": "種目",
+        "col-scramble": "スクランブル",
+        "col-time": "タイム",
+        "col-date": "日付"
       }
     },
     "LeaderboardsPage": {

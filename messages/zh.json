@@ -306,6 +306,34 @@
         "ao5": "最佳 Ao5",
         "time-spent": "累计用时",
         "solves": "还原次数"
+      },
+      "stats": {
+        "total-solves": "总还原次数",
+        "avg-of-5": "5次均值",
+        "best-window": "最佳区间",
+        "mean-session": "本次平均",
+        "last-12-solves": "最近12次",
+        "time-on-timer": "计时器总用时",
+        "lifetime": "累计",
+        "consistency": "稳定性",
+        "ok-total": "成功 / 总计",
+        "events": "项目",
+        "favorite": "主项",
+        "all-categories": "全部项目"
+      },
+      "cubes-tab": {
+        "col-name": "名称",
+        "col-best": "最佳",
+        "col-ao5": "Ao5",
+        "col-solves": "次数",
+        "col-time": "用时",
+        "col-distribution": "分布"
+      },
+      "timeline-tab": {
+        "col-category": "项目",
+        "col-scramble": "打乱",
+        "col-time": "时间",
+        "col-date": "日期"
       }
     },
     "LeaderboardsPage": {

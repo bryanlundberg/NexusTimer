@@ -306,6 +306,34 @@
         "ao5": "Ao5 (Bester)",
         "time-spent": "Zeitaufwand",
         "solves": "Zeiten"
+      },
+      "stats": {
+        "total-solves": "Solves gesamt",
+        "avg-of-5": "Ø von 5",
+        "best-window": "bestes Fenster",
+        "mean-session": "Sessionsmittel",
+        "last-12-solves": "letzte 12 Solves",
+        "time-on-timer": "Zeit am Timer",
+        "lifetime": "gesamt",
+        "consistency": "Konsistenz",
+        "ok-total": "ok / gesamt",
+        "events": "Events",
+        "favorite": "Lieblingsevent",
+        "all-categories": "alle Kategorien"
+      },
+      "cubes-tab": {
+        "col-name": "Name",
+        "col-best": "Bester",
+        "col-ao5": "Ao5",
+        "col-solves": "Solves",
+        "col-time": "Zeit",
+        "col-distribution": "Verteilung"
+      },
+      "timeline-tab": {
+        "col-category": "Kategorie",
+        "col-scramble": "Scramble",
+        "col-time": "Zeit",
+        "col-date": "Datum"
       }
     },
     "LeaderboardsPage": {

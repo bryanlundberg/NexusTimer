@@ -263,6 +263,34 @@
         "ao5": "Ao5 (Mejor)",
         "time-spent": "Tiempo invertido",
         "solves": "Soluciones"
+      },
+      "stats": {
+        "total-solves": "Soluciones totales",
+        "avg-of-5": "Media de 5",
+        "best-window": "mejor ventana",
+        "mean-session": "Media de sesión",
+        "last-12-solves": "últimas 12 soluciones",
+        "time-on-timer": "Tiempo en cronómetro",
+        "lifetime": "acumulado",
+        "consistency": "Consistencia",
+        "ok-total": "ok / total",
+        "events": "Eventos",
+        "favorite": "Favorito",
+        "all-categories": "todas las categorías"
+      },
+      "cubes-tab": {
+        "col-name": "Nombre",
+        "col-best": "Mejor",
+        "col-ao5": "Ao5",
+        "col-solves": "Soluciones",
+        "col-time": "Tiempo",
+        "col-distribution": "Distribución"
+      },
+      "timeline-tab": {
+        "col-category": "Categoría",
+        "col-scramble": "Mezcla",
+        "col-time": "Tiempo",
+        "col-date": "Fecha"
       }
     },
     "LeaderboardsPage": {

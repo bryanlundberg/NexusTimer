@@ -320,6 +320,20 @@
         "events": "Events",
         "favorite": "Favorite",
         "all-categories": "all categories"
+      },
+      "cubes-tab": {
+        "col-name": "Name",
+        "col-best": "Best",
+        "col-ao5": "Ao5",
+        "col-solves": "Solves",
+        "col-time": "Time",
+        "col-distribution": "Distribution"
+      },
+      "timeline-tab": {
+        "col-category": "Category",
+        "col-scramble": "Scramble",
+        "col-time": "Time",
+        "col-date": "Date"
       }
     },
     "LeaderboardsPage": {

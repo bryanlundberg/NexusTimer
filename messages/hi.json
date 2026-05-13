@@ -306,6 +306,34 @@
         "ao5": "सर्वश्रेष्ठ Ao5",
         "time-spent": "बिताया गया समय",
         "solves": "समाधान"
+      },
+      "stats": {
+        "total-solves": "कुल सॉल्व",
+        "avg-of-5": "5 का औसत",
+        "best-window": "सर्वश्रेष्ठ विंडो",
+        "mean-session": "सत्र का माध्य",
+        "last-12-solves": "पिछले 12 सॉल्व",
+        "time-on-timer": "टाइमर पर समय",
+        "lifetime": "संचित",
+        "consistency": "निरंतरता",
+        "ok-total": "ठीक / कुल",
+        "events": "इवेंट",
+        "favorite": "पसंदीदा",
+        "all-categories": "सभी श्रेणियाँ"
+      },
+      "cubes-tab": {
+        "col-name": "नाम",
+        "col-best": "सर्वश्रेष्ठ",
+        "col-ao5": "Ao5",
+        "col-solves": "सॉल्व",
+        "col-time": "समय",
+        "col-distribution": "वितरण"
+      },
+      "timeline-tab": {
+        "col-category": "श्रेणी",
+        "col-scramble": "स्क्रैम्बल",
+        "col-time": "समय",
+        "col-date": "तारीख"
       }
     },
     "LeaderboardsPage": {

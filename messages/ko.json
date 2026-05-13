@@ -306,6 +306,34 @@
         "ao5": "최고 Ao5",
         "time-spent": "총 시간",
         "solves": "기록수"
+      },
+      "stats": {
+        "total-solves": "총 기록 수",
+        "avg-of-5": "5회 평균",
+        "best-window": "최고 구간",
+        "mean-session": "세션 평균",
+        "last-12-solves": "최근 12회",
+        "time-on-timer": "타이머 총 시간",
+        "lifetime": "누적",
+        "consistency": "일관성",
+        "ok-total": "성공 / 전체",
+        "events": "이벤트",
+        "favorite": "주종목",
+        "all-categories": "전체 카테고리"
+      },
+      "cubes-tab": {
+        "col-name": "이름",
+        "col-best": "베스트",
+        "col-ao5": "Ao5",
+        "col-solves": "기록수",
+        "col-time": "시간",
+        "col-distribution": "분포"
+      },
+      "timeline-tab": {
+        "col-category": "이벤트",
+        "col-scramble": "스크램블",
+        "col-time": "시간",
+        "col-date": "날짜"
       }
     },
     "LeaderboardsPage": {

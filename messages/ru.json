@@ -306,6 +306,34 @@
         "ao5": "Лучший Ao5",
         "time-spent": "Времени затрачено",
         "solves": "Сборок"
+      },
+      "stats": {
+        "total-solves": "Всего сборок",
+        "avg-of-5": "Среднее из 5",
+        "best-window": "лучшая серия",
+        "mean-session": "Среднее за сессию",
+        "last-12-solves": "последние 12 сборок",
+        "time-on-timer": "Время за таймером",
+        "lifetime": "за всё время",
+        "consistency": "Стабильность",
+        "ok-total": "ок / всего",
+        "events": "Дисциплины",
+        "favorite": "Любимая",
+        "all-categories": "все дисциплины"
+      },
+      "cubes-tab": {
+        "col-name": "Название",
+        "col-best": "Лучший",
+        "col-ao5": "Ao5",
+        "col-solves": "Сборок",
+        "col-time": "Время",
+        "col-distribution": "Распределение"
+      },
+      "timeline-tab": {
+        "col-category": "Дисциплина",
+        "col-scramble": "Скрамбл",
+        "col-time": "Время",
+        "col-date": "Дата"
       }
     },
     "LeaderboardsPage": {
