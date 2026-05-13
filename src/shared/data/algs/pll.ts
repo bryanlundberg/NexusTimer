@@ -13,7 +13,7 @@ export const PLL_ALGS: AlgorithmCollection[] = [
     setup: "x R2' D2' R U R' D2' R U' R x'",
     algs: [
       { moves: "x R' U R' D2 R U' R' D2 R2 x'", id: '3306666f-6bfb-4f17-9796-abcd5ab2e0e3' },
-      { moves: "y' x L2 D2 L' U' L D2 L' U L'", id: '93662d3c-4d3f-4a44-830c-53bd62565d3b' },
+      { moves: "y' L2 B2 L' F'  L B2 L' F L'", id: '93662d3c-4d3f-4a44-830c-53bd62565d3b' },
       { moves: "l' U R' D2 R U' R' D2 R2 x'", id: '0272bb90-45e4-4516-9623-b2e1f7a7b242' },
       { moves: "y x' R2 D2 R' U' R D2 R' U R' x", id: '57d27c18-cd91-4164-bc93-0a95f85ab045' }
     ]
