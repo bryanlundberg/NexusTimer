@@ -66,12 +66,6 @@ export function ProfileStatsBar({ cubes }: Props) {
 
   const totalTimeMs = useMemo(() => uniqueSolves.reduce((sum, s) => sum + s.time, 0), [uniqueSolves])
 
-  const consistency = useMemo(() => {
-    if (uniqueSolves.length === 0) return null
-    const ok = uniqueSolves.filter((s) => !s.dnf && !s.plus2).length
-    return Math.round((ok / uniqueSolves.length) * 100)
-  }, [uniqueSolves])
-
   const formatTotalTime = (ms: number) => {
     if (ms === 0) return '—'
     return prettyMilliseconds(ms, { colonNotation: true, secondsDecimalDigits: 0 })
@@ -82,12 +76,7 @@ export function ProfileStatsBar({ cubes }: Props) {
       <StatItem label={t('events')} value={eventsWithSolves > 0 ? String(eventsWithSolves) : '—'} />
       <StatItem label={t('favorite')} value={favoriteEvent} />
       <StatItem label={t('time-on-timer')} value={formatTotalTime(totalTimeMs)} sub={t('lifetime')} />
-      <StatItem
-        label={t('consistency')}
-        value={consistency !== null ? `${consistency}%` : '—'}
-        sub={t('all-categories')}
-        highlight={consistency !== null && consistency >= 80}
-      />
+      <StatItem label={t('total-solves')} value={uniqueSolves.length > 0 ? String(uniqueSolves.length) : '—'} />
     </div>
   )
 }
