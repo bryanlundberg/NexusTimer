@@ -95,7 +95,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full">
         {/* Tabs nav + actions row */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-4 md:px-6 py-3 border-b border-border/40">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-4 md:px-6 py-3 mt-3">
           <div
             ref={containerRef}
             role="tablist"
@@ -147,7 +147,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
         </div>
 
         {/* Tab content */}
-        <div className="px-4 md:px-6 py-4">
+        <div className="px-4 md:px-6 py-0">
           <PeopleContent cubes={cubes} />
         </div>
       </Tabs>
