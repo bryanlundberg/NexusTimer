@@ -1,7 +1,7 @@
 import { UserDocument } from '@/entities/user/model/user'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
-import { CheckCircle2, ExternalLink, GitCompareIcon } from 'lucide-react'
+import { CheckCircle2, GitCompareIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import * as React from 'react'
 import { useState, useRef } from 'react'
@@ -36,7 +36,10 @@ export default function UserCard({ user }: { user: UserDocument }) {
   }
 
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150">
+    <div
+      className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150 cursor-pointer"
+      onClick={() => router.push(`/people/${user._id}`)}
+    >
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
 
       {/* Avatar */}
@@ -52,10 +55,19 @@ export default function UserCard({ user }: { user: UserDocument }) {
       {/* Name + meta */}
       <div className="min-w-0 flex flex-col gap-0.5">
         <div className="flex items-center gap-2">
+          <Avatar className="sm:hidden size-8 rounded-lg shrink-0">
+            <AvatarImage className="object-cover" src={user.image} alt={user.name} />
+            <AvatarFallback className="rounded-lg text-xs font-bold">
+              {user.name.substring(0, 2).toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
           <span className="font-bold text-sm truncate">{user.name}</span>
           {user.pronoun && <span className="text-xs text-muted-foreground shrink-0">{user.pronoun}</span>}
           {user.goal && (
-            <Badge variant="destructive" className="text-[10px] font-bold uppercase px-1.5 py-0 h-4 shrink-0">
+            <Badge
+              variant="destructive"
+              className="hidden sm:inline-flex text-[10px] font-bold uppercase px-1.5 py-0 h-4 shrink-0"
+            >
               {user.goal}
             </Badge>
           )}
@@ -66,7 +78,10 @@ export default function UserCard({ user }: { user: UserDocument }) {
       {/* Actions */}
       <div className="flex items-center gap-2 shrink-0">
         <Button
-          onClick={handleCompareClick}
+          onClick={(e) => {
+            e.stopPropagation()
+            handleCompareClick()
+          }}
           variant={isAdded ? 'secondary' : 'outline'}
           size="sm"
           className="gap-1.5 text-xs h-8"
@@ -77,10 +92,6 @@ export default function UserCard({ user }: { user: UserDocument }) {
             <GitCompareIcon className="size-3.5" />
           )}
           <span className="hidden sm:inline">{t('compare')}</span>
-        </Button>
-        <Button size="sm" className="gap-1.5 text-xs h-8" onClick={() => router.push(`/people/${user._id}`)}>
-          <span className="hidden sm:inline">{t('view-profile')}</span>
-          <ExternalLink className="size-3.5" />
         </Button>
       </div>
     </div>
