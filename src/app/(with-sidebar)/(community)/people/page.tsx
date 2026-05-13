@@ -39,7 +39,7 @@ export default function PeoplePage() {
                 {t('title')}
               </span>
               <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground pr-1">
-                Actions
+                {t('col-actions')}
               </span>
             </div>
 

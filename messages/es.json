@@ -298,7 +298,13 @@
         "pb-label": "3x3 PB · {date}",
         "new-pb": "NUEVO PB",
         "pb-broken": "{days, plural, =0 {conseguido hoy} one {conseguido hace # día} other {conseguido hace # días}}"
-      }
+      },
+      "directory-label": "Personas · directorio",
+      "find-cubers": "Busca cuberos.",
+      "showing-members": "Mostrando <b>{showing}</b> de <b>{total}</b> miembros",
+      "search": "Buscar",
+      "compare-basket": "<b>{count}</b> en la comparación",
+      "col-actions": "Acciones"
     },
     "LeaderboardsPage": {
       "title": "Clasificaciones",

@@ -341,7 +341,13 @@
         "pb-label": "3x3 PB · {date}",
         "new-pb": "新 PB",
         "pb-broken": "{days, plural, =0 {今日创造} other {# 天前创造}}"
-      }
+      },
+      "directory-label": "玩家 · 目录",
+      "find-cubers": "浏览魔友。",
+      "showing-members": "显示 <b>{showing}</b> / <b>{total}</b> 位成员",
+      "search": "搜索",
+      "compare-basket": "<b>{count}</b> 个对比中",
+      "col-actions": "操作"
     },
     "LeaderboardsPage": {
       "title": "排行榜",

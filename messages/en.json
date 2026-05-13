@@ -341,7 +341,13 @@
         "pb-label": "3x3 PB · {date}",
         "new-pb": "NEW PB",
         "pb-broken": "{days, plural, =0 {broken today} one {broken # day ago} other {broken # days ago}}"
-      }
+      },
+      "directory-label": "People · directory",
+      "find-cubers": "Browse cubers.",
+      "showing-members": "Showing <b>{showing}</b> of <b>{total}</b> members",
+      "search": "Search",
+      "compare-basket": "<b>{count}</b> in compare basket",
+      "col-actions": "Actions"
     },
     "LeaderboardsPage": {
       "title": "Leaderboard Rankings",

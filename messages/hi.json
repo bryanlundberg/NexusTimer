@@ -341,7 +341,13 @@
         "pb-label": "3x3 PB · {date}",
         "new-pb": "नया PB",
         "pb-broken": "{days, plural, =0 {आज बनाया} one {# दिन पहले बनाया} other {# दिन पहले बनाया}}"
-      }
+      },
+      "directory-label": "लोग · निर्देशिका",
+      "find-cubers": "क्यूबर खोजें।",
+      "showing-members": "<b>{total}</b> में से <b>{showing}</b> सदस्य दिखाए जा रहे हैं",
+      "search": "खोजें",
+      "compare-basket": "<b>{count}</b> तुलना में",
+      "col-actions": "क्रियाएं"
     },
     "LeaderboardsPage": {
       "title": "लीडरबोर्ड रैंकिंग",

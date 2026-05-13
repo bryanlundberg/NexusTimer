@@ -341,7 +341,13 @@
         "pb-label": "3x3 PB · {date}",
         "new-pb": "NEUER PB",
         "pb-broken": "{days, plural, =0 {heute aufgestellt} one {vor # Tag aufgestellt} other {vor # Tagen aufgestellt}}"
-      }
+      },
+      "directory-label": "Personen · Verzeichnis",
+      "find-cubers": "Cuber finden.",
+      "showing-members": "<b>{showing}</b> von <b>{total}</b> Mitgliedern",
+      "search": "Suchen",
+      "compare-basket": "<b>{count}</b> im Vergleich",
+      "col-actions": "Aktionen"
     },
     "LeaderboardsPage": {
       "title": "Bestenlisten",

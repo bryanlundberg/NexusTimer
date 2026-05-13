@@ -341,7 +341,13 @@
         "pb-label": "3x3 PB · {date}",
         "new-pb": "НОВЫЙ PB",
         "pb-broken": "{days, plural, =0 {поставлен сегодня} one {поставлен # день назад} few {поставлен # дня назад} many {поставлен # дней назад} other {поставлен # дней назад}}"
-      }
+      },
+      "directory-label": "Пользователи · каталог",
+      "find-cubers": "Найти кубистов.",
+      "showing-members": "Показано <b>{showing}</b> из <b>{total}</b> участников",
+      "search": "Поиск",
+      "compare-basket": "<b>{count}</b> в сравнении",
+      "col-actions": "Действия"
     },
     "LeaderboardsPage": {
       "title": "Рейтинги",

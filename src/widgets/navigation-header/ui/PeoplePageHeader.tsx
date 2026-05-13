@@ -44,13 +44,16 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
       {/* Left: titles + count */}
       <div className="flex flex-col gap-1">
         <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-          People · directory
+          {t('directory-label')}
         </span>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-none">Find your cubers.</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-none">{t('find-cubers')}</h2>
         {total !== undefined && showing !== undefined && (
           <span className="text-xs text-muted-foreground mt-0.5">
-            Showing <span className="font-semibold text-foreground">{showing}</span> of{' '}
-            <span className="font-semibold text-foreground">{total}</span> members
+            {t.rich('showing-members', {
+              showing,
+              total,
+              b: (chunks) => <span className="font-semibold text-foreground">{chunks}</span>
+            })}
           </span>
         )}
       </div>
@@ -83,13 +86,16 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
               </SelectContent>
             </Select>
             <Button onClick={handleSearch} className="shrink-0" size="sm">
-              Search
+              {t('search')}
             </Button>
           </div>
         </div>
         {basketCount > 0 && (
           <span className="text-[11px] text-muted-foreground sm:text-right">
-            <span className="font-semibold text-primary">{basketCount}</span> in compare basket
+            {t.rich('compare-basket', {
+              count: basketCount,
+              b: (chunks) => <span className="font-semibold text-primary">{chunks}</span>
+            })}
           </span>
         )}
       </div>
