@@ -1,6 +1,6 @@
 import { UserDocument } from '@/entities/user/model/user'
-import { Card } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
 import { CheckCircle2, ExternalLink, GitCompareIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import * as React from 'react'
@@ -10,13 +10,13 @@ import { useCompareUsersStore } from '@/features/compare-users/model/useCompareU
 import { useTranslations } from 'next-intl'
 import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
 
-export default function UserCard({ user }: { user: UserDocument }) {
+export default function UserCard({ user, index }: { user: UserDocument; index: number }) {
   const t = useTranslations('Index.PeoplePage.user-card')
   const router = useRouter()
   const addUser = useCompareUsersStore((state) => state.addUser)
   const removeUser = useCompareUsersStore((state) => state.removeUser)
   const users = useCompareUsersStore((state) => state.users)
-  const isAdded = users.find((u) => u._id === user._id)
+  const isAdded = !!users.find((u) => u._id === user._id)
 
   const [isFlying, setIsFlying] = useState(false)
   const [startPos, setStartPos] = useState({ x: 0, y: 0 })
@@ -36,46 +36,58 @@ export default function UserCard({ user }: { user: UserDocument }) {
   }
 
   return (
-    <Card className="group transition-all duration-300 animate-fadeIn h-full bg-card/20 hover:bg-card/40 border-muted/50 hover:border-primary/30 backdrop-blur-md flex flex-col @xs/people:flex-row items-center p-4 gap-4">
+    <div className="grid grid-cols-[2.5rem_3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150">
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
-      <div className="shrink-0" ref={avatarRef}>
-        <Avatar className="size-20 ring-4 ring-background shadow-xl group-hover:ring-primary/20 transition-all duration-300">
-          <AvatarImage className={'object-cover'} src={user.image} alt={user.name} />
-          <AvatarFallback className="bg-primary/10 text-primary font-bold text-xl">
+
+      {/* # */}
+      <span className="text-xs font-mono text-muted-foreground tabular-nums text-right select-none">
+        {String(index + 1).padStart(2, '0')}
+      </span>
+
+      {/* Avatar */}
+      <div ref={avatarRef} className="shrink-0">
+        <Avatar className="size-9 rounded-lg">
+          <AvatarImage className="object-cover" src={user.image} alt={user.name} />
+          <AvatarFallback className="rounded-lg text-xs font-bold">
             {user.name.substring(0, 2).toUpperCase()}
           </AvatarFallback>
         </Avatar>
       </div>
 
-      <div className="flex flex-col items-center @xs/people:items-start flex-1 min-w-0 h-full">
-        <h2 className="text-xl font-bold text-center @xs/people:text-left line-clamp-1 transition-colors w-full">
-          {user.name}
-        </h2>
-
-        <div className="flex items-center gap-2 mt-auto w-full">
-          <Button
-            onClick={handleCompareClick}
-            variant={isAdded ? 'secondary' : 'outline'}
-            size="sm"
-            className="flex-1 gap-2 text-xs font-semibold h-9 relative overflow-hidden group/btn"
-          >
-            {isAdded ? (
-              <CheckCircle2 className="size-4 text-primary animate-in zoom-in duration-300" />
-            ) : (
-              <GitCompareIcon className="size-4" />
-            )}
-            {t('compare')}
-          </Button>
-          <Button
-            size="sm"
-            className="flex-1 gap-2 text-xs font-semibold h-9 shadow-lg shadow-primary/10"
-            onClick={() => router.push(`/people/${user._id}`)}
-          >
-            {t('view-profile')}
-            <ExternalLink className="size-4" />
-          </Button>
+      {/* Name + meta */}
+      <div className="min-w-0 flex flex-col gap-0.5">
+        <div className="flex items-center gap-2">
+          <span className="font-bold text-sm truncate">{user.name}</span>
+          {user.pronoun && <span className="text-xs text-muted-foreground shrink-0">{user.pronoun}</span>}
+          {user.goal && (
+            <Badge variant="destructive" className="text-[10px] font-bold uppercase px-1.5 py-0 h-4 shrink-0">
+              {user.goal}
+            </Badge>
+          )}
         </div>
+        {user.bio && <span className="text-[10px] text-muted-foreground truncate">{user.bio}</span>}
       </div>
-    </Card>
+
+      {/* Actions */}
+      <div className="flex items-center gap-2 shrink-0">
+        <Button
+          onClick={handleCompareClick}
+          variant={isAdded ? 'secondary' : 'outline'}
+          size="sm"
+          className="gap-1.5 text-xs h-8"
+        >
+          {isAdded ? (
+            <CheckCircle2 className="size-3.5 text-primary animate-in zoom-in duration-300" />
+          ) : (
+            <GitCompareIcon className="size-3.5" />
+          )}
+          <span className="hidden sm:inline">{t('compare')}</span>
+        </Button>
+        <Button size="sm" className="gap-1.5 text-xs h-8" onClick={() => router.push(`/people/${user._id}`)}>
+          <span className="hidden sm:inline">{t('view-profile')}</span>
+          <ExternalLink className="size-3.5" />
+        </Button>
+      </div>
+    </div>
   )
 }
