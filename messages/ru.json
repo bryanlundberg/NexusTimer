@@ -334,6 +334,13 @@
         "col-scramble": "Скрамбл",
         "col-time": "Время",
         "col-date": "Дата"
+      },
+      "hero": {
+        "cuber": "Cuber",
+        "member-since": "Участник с {date}",
+        "pb-label": "3x3 PB · {date}",
+        "new-pb": "НОВЫЙ PB",
+        "pb-broken": "{days, plural, =0 {поставлен сегодня} one {поставлен # день назад} few {поставлен # дня назад} many {поставлен # дней назад} other {поставлен # дней назад}}"
       }
     },
     "LeaderboardsPage": {

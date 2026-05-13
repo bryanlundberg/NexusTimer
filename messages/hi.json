@@ -334,6 +334,13 @@
         "col-scramble": "स्क्रैम्बल",
         "col-time": "समय",
         "col-date": "तारीख"
+      },
+      "hero": {
+        "cuber": "क्यूबर",
+        "member-since": "{date} से सदस्य",
+        "pb-label": "3x3 PB · {date}",
+        "new-pb": "नया PB",
+        "pb-broken": "{days, plural, =0 {आज बनाया} one {# दिन पहले बनाया} other {# दिन पहले बनाया}}"
       }
     },
     "LeaderboardsPage": {

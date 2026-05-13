@@ -334,6 +334,13 @@
         "col-scramble": "Embaralhamento",
         "col-time": "Tempo",
         "col-date": "Data"
+      },
+      "hero": {
+        "cuber": "Cuber",
+        "member-since": "Membro desde {date}",
+        "pb-label": "3x3 PB · {date}",
+        "new-pb": "NOVO PB",
+        "pb-broken": "{days, plural, =0 {quebrado hoje} one {quebrado há # dia} other {quebrado há # dias}}"
       }
     },
     "LeaderboardsPage": {

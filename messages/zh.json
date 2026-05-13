@@ -334,6 +334,13 @@
         "col-scramble": "打乱",
         "col-time": "时间",
         "col-date": "日期"
+      },
+      "hero": {
+        "cuber": "魔方玩家",
+        "member-since": "加入于 {date}",
+        "pb-label": "3x3 PB · {date}",
+        "new-pb": "新 PB",
+        "pb-broken": "{days, plural, =0 {今日创造} other {# 天前创造}}"
       }
     },
     "LeaderboardsPage": {

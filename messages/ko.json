@@ -334,6 +334,13 @@
         "col-scramble": "스크램블",
         "col-time": "시간",
         "col-date": "날짜"
+      },
+      "hero": {
+        "cuber": "큐버",
+        "member-since": "{date} 가입",
+        "pb-label": "3x3 PB · {date}",
+        "new-pb": "새 PB",
+        "pb-broken": "{days, plural, =0 {오늘 달성} other {# 일 전 달성}}"
       }
     },
     "LeaderboardsPage": {

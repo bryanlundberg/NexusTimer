@@ -8,7 +8,7 @@ import { useMemo } from 'react'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import formatTime from '@/shared/lib/formatTime'
 import { sort } from 'fast-sort'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import moment from 'moment'
 import useAchievements from '@/entities/achievement/model/useAchievements'
 import { ArrowUpIcon } from '@heroicons/react/24/solid'
@@ -20,6 +20,7 @@ interface Props {
 
 export function ProfileHeroBanner({ user, cubes }: Props) {
   const locale = useLocale()
+  const t = useTranslations('Index.PeoplePage.hero')
 
   const { ACHIEVEMENTS_CONFIG } = useAchievements()
   const level = useMemo(
@@ -70,7 +71,9 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
 
         <div className="flex flex-col gap-1.5 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">Cuber</span>
+            <span className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">
+              {t('cuber')}
+            </span>
             {user.goal && (
               <Badge variant="destructive" className="text-[10px] font-bold uppercase px-1.5 py-0 h-4">
                 {user.goal}
@@ -84,7 +87,7 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
           <div className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
             {user.bio && <span className="wrap-break-word">{user.bio}</span>}
             {user.bio && <span className="opacity-50">·</span>}
-            <span>Member since {memberSince}</span>
+            <span>{t('member-since', { date: memberSince })}</span>
             {timezoneAbbr && (
               <>
                 <span className="opacity-50">·</span>
@@ -100,7 +103,7 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
         <div className="hidden sm:flex items-center gap-4 md:gap-6 sm:ml-auto shrink-0">
           <div className="flex flex-col items-start sm:items-end gap-0.5">
             <p className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">
-              3x3 Personal Best · {moment(pb3x3.endTime).locale(locale).format('MMM D, YYYY')}
+              {t('pb-label', { date: moment(pb3x3.endTime).locale(locale).format('MMM D, YYYY') })}
             </p>
             <div className="flex items-baseline gap-1">
               <span className="text-4xl sm:text-5xl md:text-6xl font-black tabular-nums leading-none">
@@ -111,10 +114,8 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
             {pb3x3.isNew && (
               <div className="flex items-center gap-1 text-xs">
                 <ArrowUpIcon className="size-3 text-emerald-500" />
-                <span className="font-semibold text-emerald-500">NEW PB</span>
-                <span className="text-muted-foreground">
-                  broken {pb3x3.daysAgo === 0 ? 'today' : `${pb3x3.daysAgo} day${pb3x3.daysAgo !== 1 ? 's' : ''} ago`}
-                </span>
+                <span className="font-semibold text-emerald-500">{t('new-pb')}</span>
+                <span className="text-muted-foreground">{t('pb-broken', { days: pb3x3.daysAgo })}</span>
               </div>
             )}
           </div>

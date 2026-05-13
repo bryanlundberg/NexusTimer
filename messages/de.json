@@ -334,6 +334,13 @@
         "col-scramble": "Scramble",
         "col-time": "Zeit",
         "col-date": "Datum"
+      },
+      "hero": {
+        "cuber": "Cuber",
+        "member-since": "Mitglied seit {date}",
+        "pb-label": "3x3 PB · {date}",
+        "new-pb": "NEUER PB",
+        "pb-broken": "{days, plural, =0 {heute aufgestellt} one {vor # Tag aufgestellt} other {vor # Tagen aufgestellt}}"
       }
     },
     "LeaderboardsPage": {
