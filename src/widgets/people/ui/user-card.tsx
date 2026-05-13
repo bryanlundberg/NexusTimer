@@ -10,7 +10,7 @@ import { useCompareUsersStore } from '@/features/compare-users/model/useCompareU
 import { useTranslations } from 'next-intl'
 import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
 
-export default function UserCard({ user, index }: { user: UserDocument; index: number }) {
+export default function UserCard({ user }: { user: UserDocument }) {
   const t = useTranslations('Index.PeoplePage.user-card')
   const router = useRouter()
   const addUser = useCompareUsersStore((state) => state.addUser)
@@ -36,16 +36,11 @@ export default function UserCard({ user, index }: { user: UserDocument; index: n
   }
 
   return (
-    <div className="grid grid-cols-[2.5rem_3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150">
+    <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150">
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
 
-      {/* # */}
-      <span className="text-xs font-mono text-muted-foreground tabular-nums text-right select-none">
-        {String(index + 1).padStart(2, '0')}
-      </span>
-
       {/* Avatar */}
-      <div ref={avatarRef} className="shrink-0">
+      <div ref={avatarRef} className="hidden sm:block shrink-0">
         <Avatar className="size-9 rounded-lg">
           <AvatarImage className="object-cover" src={user.image} alt={user.name} />
           <AvatarFallback className="rounded-lg text-xs font-bold">
