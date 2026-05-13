@@ -131,7 +131,7 @@ export default function TrainerCurrentCase({
           <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider shrink-0">
             {t('setup')}
           </span>
-          <code className="text-xs sm:text-sm font-mono break-all">{setup}</code>
+          <code className="text-sm sm:text-lg font-mono break-all">{setup}</code>
         </div>
       )}
 

@@ -247,7 +247,7 @@ export default function TrainerExperience() {
   return (
     <div id="touch" className="flex flex-col flex-1 relative">
       <div className={cn('absolute inset-0 pointer-events-none transition-colors duration-150', stageOverlayClass)} />
-      <div className="flex flex-col gap-3 flex-1 w-full max-w-5xl mx-auto px-4 py-2">
+      <div className="flex flex-col gap-3 w-full max-w-5xl mx-auto px-4 py-6">
         <div className="flex items-center gap-2 flex-wrap">
           <div className="flex-1 min-w-0 max-w-sm">
             <TrainerMethodSelect value={set.slug} onChange={setMethod} />
