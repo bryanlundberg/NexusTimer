@@ -78,7 +78,7 @@ export function ProfileStatsBar({ cubes }: Props) {
   }
 
   return (
-    <div className="w-full border-b border-border/40 flex divide-x divide-border/40">
+    <div className="w-full border-b border-border/40 bg-muted/20 grid grid-cols-2 sm:flex sm:divide-x sm:divide-border/40 divide-y divide-border/40 sm:divide-y-0 [&>*:nth-child(odd)]:border-r [&>*:nth-child(odd)]:border-border/40 sm:[&>*:nth-child(odd)]:border-r-0">
       <StatItem label={t('events')} value={eventsWithSolves > 0 ? String(eventsWithSolves) : '—'} />
       <StatItem label={t('favorite')} value={favoriteEvent} />
       <StatItem label={t('time-on-timer')} value={formatTotalTime(totalTimeMs)} sub={t('lifetime')} />

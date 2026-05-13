@@ -53,11 +53,11 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
     : null
 
   return (
-    <div className="w-full px-4 md:px-6 py-5 flex flex-col md:flex-row items-start justify-between gap-6 border-b border-border/40">
+    <div className="w-full px-4 md:px-6 py-6 flex flex-col sm:flex-row items-start justify-between gap-6 border-b border-border/40 bg-muted/20">
       {/* Left: avatar + user info */}
       <div className="flex items-center gap-4">
         <div className="relative shrink-0">
-          <Avatar className="size-24 rounded-lg shadow-xl ring-2 ring-border/40">
+          <Avatar className="size-16 sm:size-20 md:size-24 rounded-lg shadow-xl ring-2 ring-border/40">
             <AvatarImage className="object-cover" src={user.image} alt={user.name} />
             <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
@@ -68,8 +68,8 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
           )}
         </div>
 
-        <div className="flex flex-col gap-1.5">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col gap-1.5 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
             <span className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">Cuber</span>
             {user.goal && (
               <Badge variant="destructive" className="text-[10px] font-bold uppercase px-1.5 py-0 h-4">
@@ -77,12 +77,12 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
               </Badge>
             )}
           </div>
-          <h1 className="text-3xl font-black tracking-tight leading-none flex items-baseline gap-2">
+          <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-none flex items-baseline gap-2 flex-wrap">
             {user.name}
             {user.pronoun && <span className="text-base font-normal text-muted-foreground">{user.pronoun}</span>}
           </h1>
           <div className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
-            {user.bio && <span>{user.bio}</span>}
+            {user.bio && <span className="truncate max-w-xs">{user.bio}</span>}
             {user.bio && <span className="opacity-50">·</span>}
             <span>Member since {memberSince}</span>
             {timezoneAbbr && (
@@ -95,16 +95,18 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
         </div>
       </div>
 
-      {/* Right: 3x3 PB + cube image */}
+      {/* Right: 3x3 PB + cube image — hidden on mobile */}
       {pb3x3 && (
-        <div className="flex items-center gap-4 md:gap-6 md:ml-auto">
-          <div className="flex flex-col items-end gap-0.5">
+        <div className="hidden sm:flex items-center gap-4 md:gap-6 sm:ml-auto shrink-0">
+          <div className="flex flex-col items-start sm:items-end gap-0.5">
             <p className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">
-              3x3 Personal Best · {moment(pb3x3.endTime).locale(locale).format('MMMM D')}
+              3x3 Personal Best · {moment(pb3x3.endTime).locale(locale).format('MMM D, YYYY')}
             </p>
             <div className="flex items-baseline gap-1">
-              <span className="text-6xl font-black tabular-nums leading-none">{formatTime(pb3x3.time)}</span>
-              <span className="text-3xl font-light text-muted-foreground leading-none">s</span>
+              <span className="text-4xl sm:text-5xl md:text-6xl font-black tabular-nums leading-none">
+                {formatTime(pb3x3.time)}
+              </span>
+              <span className="text-2xl sm:text-3xl font-light text-muted-foreground leading-none">s</span>
             </div>
             {pb3x3.isNew && (
               <div className="flex items-center gap-1 text-xs">
@@ -116,7 +118,13 @@ export function ProfileHeroBanner({ user, cubes }: Props) {
               </div>
             )}
           </div>
-          {cubeImage && <img src={cubeImage} alt="3x3 cube" width={90} height={90} className="opacity-90 shrink-0" />}
+          {cubeImage && (
+            <img
+              src={cubeImage}
+              alt="3x3 cube"
+              className="opacity-80 shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-[90px] md:h-[90px]"
+            />
+          )}
         </div>
       )}
     </div>
