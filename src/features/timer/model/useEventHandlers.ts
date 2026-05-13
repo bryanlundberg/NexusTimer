@@ -41,17 +41,22 @@ export default function useEventHandlers({
     if (timerMode === TimerMode.STACKMAT || timerMode === TimerMode.MANUAL || timerMode === TimerMode.NEXUS_CONNECT)
       return
 
+    const isExcludedTouchTarget = (target: EventTarget | null): boolean => {
+      const el = target as HTMLElement | null
+      if (!el) return false
+      const quickActionButtons = document.querySelector('#quick-action-buttons')
+      if (quickActionButtons?.contains(el)) return true
+      return !!el.closest('button, a, input, textarea, select, [role="button"]')
+    }
+
     const handleTouchStart = (event: TouchEvent): void => {
+      if (isExcludedTouchTarget(event.target)) return
       event.preventDefault()
-      const quickActionButtons = document.querySelector('#quick-action-buttons') as HTMLElement | null
-      if (quickActionButtons && quickActionButtons.contains(event.target as Node)) {
-        // nothing
-      } else {
-        handleHoldWithReleasedState()
-      }
+      handleHoldWithReleasedState()
     }
 
     const handleTouchEnd = (event: TouchEvent): void => {
+      if (isExcludedTouchTarget(event.target)) return
       event.preventDefault()
       handleReleaseWithReleasedState()
     }

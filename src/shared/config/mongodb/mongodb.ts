@@ -5,6 +5,8 @@ import mongoose from 'mongoose'
 import '../../../entities/user/model/user'
 import '../../../entities/solve/model/solve'
 import '../../../entities/backup/model/backup'
+import '../../../entities/trainer-solve/model/trainer-solve'
+import '../../../entities/trainer-stats/model/trainer-stats'
 
 const connectDB = async () => {
   if (mongoose.connections[0].readyState === 1) {

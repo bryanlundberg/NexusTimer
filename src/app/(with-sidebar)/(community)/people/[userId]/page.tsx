@@ -24,7 +24,7 @@ export default function PeopleDetailsPage() {
       {isLoadingUser || isActuallyLoadingBackup ? (
         <PeopleSkeleton />
       ) : (
-        <FadeIn>
+        <FadeIn className={'-mt-2'}>
           <UserHeader user={user} />
           <PeopleTabs user={user} cubes={cubes} />
         </FadeIn>

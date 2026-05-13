@@ -1,3 +1,4 @@
+import * as React from 'react'
 import Image from 'next/image'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import moment from 'moment'
@@ -5,15 +6,18 @@ import { Cube } from '@/entities/cube/model/types'
 import { useLocale, useTranslations } from 'next-intl'
 import formatTime from '@/shared/lib/formatTime'
 import { Badge } from '@/components/ui/badge'
-import { Trophy } from 'lucide-react'
 import _ from 'lodash'
 import { motion } from 'framer-motion'
+import calculateBestAo from '@/shared/lib/statistics/calculateBestAo'
+import { AreaChart, Area, ResponsiveContainer } from 'recharts'
+import { GRID } from '@/widgets/people/ui/cubes-tab-content'
 
 interface PeopleCubeCardProps {
   cube: Cube
+  index: number
 }
 
-export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
+export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
   const locale = useLocale()
   const t = useTranslations('Index.CubesPage')
   const allSolves = [...(cube.solves.all || []), ...(cube.solves.session || [])].filter((s) => !s.isDeleted)
@@ -28,94 +32,114 @@ export function PeopleCubeCard({ cube }: PeopleCubeCardProps) {
   )
 
   const { successCount, plus2Count, dnfCount } = counts
-  const totalSession = successCount + plus2Count + dnfCount
+  const totalSolves = successCount + plus2Count + dnfCount
 
   const validSolves = allSolves.filter((s) => !s.dnf)
   const pb = validSolves.length > 0 ? _.minBy(validSolves, (s) => s.time + (s.plus2 ? 2000 : 0)) : null
   const pbTime = pb ? pb.time + (pb.plus2 ? 2000 : 0) : null
 
-  const successRate = totalSession > 0 ? (successCount / totalSession) * 100 : 0
-  const rateColor = successRate >= 80 ? 'text-green-500' : successRate >= 50 ? 'text-yellow-500' : 'text-red-500'
-  const rateBg = successRate >= 80 ? 'bg-green-500' : successRate >= 50 ? 'bg-yellow-500' : 'bg-red-500'
+  const ao5Ms = calculateBestAo(allSolves, 5)
+  const ao5Str = !isFinite(ao5Ms) || ao5Ms <= 0 ? '--' : formatTime(ao5Ms)
+
+  const totalTime = allSolves.reduce((acc, s) => acc + (s.time || 0), 0)
+
+  const cubeImg = cubeCollection.find((item) => item.name === cube.category)?.src || ''
+
+  const chartData = React.useMemo(() => {
+    const valid = allSolves.filter((s) => !s.dnf && s.time > 0)
+    return valid.slice(-20).map((s) => ({ v: s.time + (s.plus2 ? 2000 : 0) }))
+  }, [allSolves])
 
   return (
     <motion.div
-      key={cube.id}
-      className="group relative overflow-hidden flex flex-col rounded-2xl border border-border/60 bg-card transition-colors duration-300 hover:border-border"
-      whileHover={{ y: -3 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+      className={`grid ${GRID} items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150`}
+      variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
+      transition={{ duration: 0.25, ease: 'easeOut' }}
     >
-      {/* Top section — cube hero */}
-      <div className="flex items-center gap-4 p-5 pb-4">
-        <motion.div
-          className="shrink-0"
-          whileHover={{ rotate: -8, scale: 1.05 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-        >
-          <Image
-            unoptimized
-            src={cubeCollection.find((item) => item.name === cube.category)?.src || ''}
-            alt={cube.name}
-            className="object-scale-down rounded-xl p-2 bg-muted/40 border border-border/40"
-            draggable={false}
-            width={52}
-            height={52}
-          />
-        </motion.div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-0.5">
-            <h3 className="text-base font-bold tracking-tight truncate">{cube.name}</h3>
-            <Badge variant="outline" className="font-mono text-[10px] px-1.5 py-0 h-4 shrink-0">
-              {cube.category}
-            </Badge>
-          </div>
-          <div className="text-[10px] text-muted-foreground">
-            {t('created')}: {moment(cube.createdAt).locale(locale).format('LL')}
-          </div>
+      {/* Cube image */}
+      <Image
+        unoptimized
+        src={cubeImg}
+        alt={cube.name}
+        className="object-scale-down rounded-lg bg-muted/40 border border-border/30 p-0.5"
+        draggable={false}
+        width={40}
+        height={40}
+      />
+
+      {/* Name + category badge + date */}
+      <div className="min-w-0">
+        <div className="flex items-center gap-2 mb-0.5">
+          <span className="font-bold text-sm truncate">{cube.name}</span>
+          <Badge variant="outline" className="font-mono text-[10px] px-1.5 py-0 h-4 shrink-0">
+            {cube.category}
+          </Badge>
         </div>
+        <span className="text-[10px] text-muted-foreground">
+          {t('created')}: {moment(cube.createdAt).locale(locale).format('LL')}
+        </span>
       </div>
 
-      {/* PB + Solves row */}
-      <div className="flex items-stretch mx-5 mb-4 rounded-lg border border-border/40 overflow-hidden">
-        <div className="flex-1 p-3 flex flex-col">
-          <div className="flex items-center gap-1.5 mb-1">
-            <Trophy className="size-3 text-yellow-500" />
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Best</span>
-          </div>
-          <div className="text-lg font-black font-mono tabular-nums">{pbTime ? formatTime(pbTime) : '--:--'}</div>
-        </div>
-        <div className="w-px bg-border/40" />
-        <div className="flex-1 p-3 flex flex-col">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground mb-1">Solves</span>
-          <div className="text-lg font-black tabular-nums">{totalSession}</div>
-        </div>
-      </div>
+      {/* Best */}
+      <StatCell value={pbTime ? formatTime(pbTime) : '--'} />
 
-      {/* Bottom — status breakdown */}
-      <div className="px-5 pb-4 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5">
-            <span className="size-2 rounded-full bg-green-500" />
-            <span className="text-xs font-bold tabular-nums">{successCount}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="size-2 rounded-full bg-yellow-500" />
-            <span className="text-xs font-bold tabular-nums">{plus2Count}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="size-2 rounded-full bg-red-500" />
-            <span className="text-xs font-bold tabular-nums">{dnfCount}</span>
-          </div>
-        </div>
+      {/* Ao5 */}
+      <StatCell value={ao5Str} />
 
+      {/* Solves */}
+      <span className="text-sm font-bold tabular-nums">{totalSolves}</span>
+
+      {/* Time on cube */}
+      <StatCell value={totalTime > 0 ? formatTime(totalTime) : '--'} />
+
+      {/* Distribution: sparkline + counters */}
+      <div className="flex flex-col gap-1 w-full">
+        <div className="h-8 w-full">
+          {chartData.length > 1 ? (
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={chartData} margin={{ top: 2, right: 0, left: 0, bottom: 2 }}>
+                <Area
+                  type="monotone"
+                  dataKey="v"
+                  stroke="var(--primary)"
+                  strokeWidth={1.5}
+                  fill="var(--primary)"
+                  fillOpacity={0.1}
+                  dot={false}
+                  isAnimationActive={false}
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          ) : (
+            <div className="flex items-center justify-center h-full text-muted-foreground text-xs">—</div>
+          )}
+        </div>
         <div className="flex items-center gap-2">
-          <div className="w-12 h-1 bg-muted rounded-full overflow-hidden">
-            <div className={`h-full ${rateBg} transition-all duration-500`} style={{ width: `${successRate}%` }} />
-          </div>
-          <span className={`text-xs font-black tabular-nums ${rateColor}`}>{successRate.toFixed(0)}%</span>
+          <span className="size-1.5 rounded-full bg-green-500 shrink-0" />
+          <span className="text-[10px] tabular-nums text-muted-foreground">{successCount}</span>
+          <span className="size-1.5 rounded-full bg-yellow-500 shrink-0" />
+          <span className="text-[10px] tabular-nums text-muted-foreground">{plus2Count}</span>
+          <span className="size-1.5 rounded-full bg-red-500 shrink-0" />
+          <span className="text-[10px] tabular-nums text-muted-foreground">{dnfCount}</span>
         </div>
       </div>
     </motion.div>
+  )
+}
+
+function StatCell({ value }: { value: string }) {
+  const [main, decimal] = value !== '--' && value.includes('.') ? value.split('.') : [value, null]
+  return (
+    <div className="flex items-baseline gap-0.5">
+      {value === '--' ? (
+        <span className="text-sm font-bold text-muted-foreground">--</span>
+      ) : (
+        <>
+          <span className="text-sm font-bold tabular-nums">{main}</span>
+          {decimal && <span className="text-xs text-muted-foreground tabular-nums">.{decimal}</span>}
+        </>
+      )}
+    </div>
   )
 }
 

@@ -6,6 +6,7 @@ import { AlgorithmsList } from '@/features/algorithms-list/ui/AlgorithmsList'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Information from '@/features/algorithms-list/ui/information'
+import TrainerCTA from '@/features/algorithms-list/ui/trainer-cta'
 import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
 import { getLocale, getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
@@ -168,16 +169,18 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
         secondaryBreadcrumb={slug.toUpperCase()}
       />
 
-      <div className="p-4 md:p-8 lg:p-12">
+      <div className="p-3 sm:p-4 md:p-8 lg:p-12 max-w-3xl mx-auto">
         <Information
           title={`${collection.title} - ${t('title')}`}
           description={t(`descriptions.${collection.slug}`)}
           algorithmCount={collection.algorithms.length}
+          actions={<TrainerCTA methodSlug={collection.slug} />}
         />
         <AlgorithmsList
           algorithms={collection.algorithms}
           virtualization={collection.virtualization as unknown as TwistyPlayer}
           puzzle={collection.puzzle}
+          methodSlug={collection.slug}
         />
 
         {collection.file && (

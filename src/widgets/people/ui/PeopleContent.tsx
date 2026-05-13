@@ -2,7 +2,7 @@ import { TabsContent } from '@/components/ui/tabs'
 import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import OverviewTabContent from '@/widgets/people/ui/overview-tab-content'
 import CubesTabContent from '@/widgets/people/ui/cubes-tab-content'
-import LastActivityTabContent from '@/widgets/people/ui/last-activity-tab-content'
+import TimelineTabContent from '@/widgets/people/ui/timeline-tab-content'
 import { Cube } from '@/entities/cube/model/types'
 
 interface Props {
@@ -20,8 +20,8 @@ export function PeopleContent({ cubes }: Props) {
           <TabsContent value={PTabs.CUBES}>
             <CubesTabContent cubes={cubes} />
           </TabsContent>
-          <TabsContent value={PTabs.LAST_ACTIVITY}>
-            <LastActivityTabContent cubes={cubes} />
+          <TabsContent value={PTabs.TIMELINE}>
+            <TimelineTabContent cubes={cubes} />
           </TabsContent>
         </div>
       </div>

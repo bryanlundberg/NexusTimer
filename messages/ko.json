@@ -297,7 +297,7 @@
       "tabs": {
         "overview": "개요",
         "cubes": "큐브",
-        "last-activity": "최근 활동"
+        "timeline": "Timeline"
       },
       "edit-profile": "프로필 수정",
       "no-backup-data": "표시할 백업 데이터가 없는 계정입니다.",
@@ -575,6 +575,80 @@
     "OpenGraphImage": {
       "title": "Nexus Timer - 전문 루빅스 큐브 타이머",
       "description": "Nexus Timer는 루빅스 큐브 훈련과 분석을 위한 전문적인 플랫폼입니다."
+    },
+    "TrainerPage": {
+      "breadcrumb": "트레이너",
+      "chooseMethod": "메서드 선택",
+      "algsSuffix": "{count} algs",
+      "learned": "학습 완료",
+      "methodStats": "메서드 통계",
+      "setup": "Setup",
+      "rotation": {
+        "shuffle": "셔플",
+        "random": "랜덤",
+        "sequential": "순차"
+      },
+      "stats": {
+        "best": "최고",
+        "solves": "Exec",
+        "bestSingle": "최고 single",
+        "totalSolves": "Total exec",
+        "picked": "선택됨",
+        "target": "목표",
+        "algorithmsLearned": "학습한 알고리즘",
+        "lastAttempts": "최근 시도",
+        "noDataYet": "아직 데이터 없음"
+      },
+      "actions": {
+        "editTargetTime": "목표 시간 편집",
+        "pickCases": "케이스 선택",
+        "markedAsLearned": "학습 완료로 표시됨",
+        "markAsLearned": "학습 완료로 표시",
+        "skip": "건너뛰기",
+        "history": "기록"
+      },
+      "editTargetModal": {
+        "title": "목표 시간 편집",
+        "description": "선택한 시간보다 빠르게 완료하면 해당 케이스가 \"통과\"로 간주됩니다.",
+        "under": "이내",
+        "cancel": "취소",
+        "apply": "적용"
+      },
+      "pickCasesModal": {
+        "title": "케이스 선택",
+        "description": "{total}개 중 {selected}개 케이스 선택됨",
+        "selectAll": "전체 선택",
+        "clear": "지우기",
+        "cancel": "취소",
+        "applyWithCount": "적용 ({count})"
+      },
+      "cta": {
+        "practiceNow": "지금 연습"
+      }
+    },
+    "TrainerHistoryPage": {
+      "breadcrumb": "기록",
+      "signInPrompt": "트레이너 기록을 보려면 로그인하세요.",
+      "backToPractice": "연습으로 돌아가기",
+      "tabs": {
+        "method": "메서드",
+        "currentCase": "현재 케이스"
+      },
+      "noCaseSelected": "선택된 케이스가 없습니다.",
+      "emptyCase": "이 케이스에 대한 solve가 아직 없습니다.",
+      "emptyMethod": "이 메서드에 대한 solve가 아직 없습니다.",
+      "loaded": "로드됨",
+      "total": "전체",
+      "table": {
+        "time": "시간",
+        "case": "케이스",
+        "ago": "이전",
+        "solveActions": "Solve 작업",
+        "delete": "삭제",
+        "loading": "로딩 중…",
+        "loadMore": "더 보기",
+        "empty": "Solve가 아직 없습니다."
+      }
     }
   },
   "Multiplayer": {

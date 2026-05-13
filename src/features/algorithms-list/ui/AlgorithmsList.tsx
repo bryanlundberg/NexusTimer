@@ -7,22 +7,48 @@ import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
 import AlgorithmCard from '@/features/algorithms-list/ui/algorithm-card'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 import { Filter } from 'lucide-react'
+import { useSession } from 'next-auth/react'
+import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
+import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned'
 
 interface AlgorithmsPageProps {
   algorithms: AlgorithmCollection[]
   virtualization?: TwistyPlayer
   puzzle: PuzzleID
+  methodSlug?: string
 }
 
-export const AlgorithmsList = ({ algorithms, virtualization, puzzle }: AlgorithmsPageProps) => {
+export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug }: AlgorithmsPageProps) => {
   const groups = useMemo(() => _.groupBy(algorithms, 'group'), [algorithms])
   const [activeGroups, setActiveGroups] = useState<string[]>([])
+
+  const { data: session } = useSession()
+  const isAuthed = !!session?.user?.id
+  const { learnedIds, mutate: mutateLearned } = useTrainerLearned(methodSlug, isAuthed)
+  const learnedSet = useMemo(() => new Set(learnedIds), [learnedIds])
 
   const handleChooseGroup = (group: string) => {
     if (activeGroups.includes(group)) {
       setActiveGroups([])
     } else {
       setActiveGroups([group])
+    }
+  }
+
+  const handleToggleLearned = async (caseId: string) => {
+    if (!methodSlug || !isAuthed) return
+    const wasLearned = learnedSet.has(caseId)
+    const nextLearned = !wasLearned
+    const optimistic = new Set(learnedIds)
+    if (nextLearned) optimistic.add(caseId)
+    else optimistic.delete(caseId)
+    mutateLearned({ caseIds: Array.from(optimistic) }, { revalidate: false })
+    try {
+      await setTrainerLearned({ methodSlug, caseId, learned: nextLearned })
+      await mutateLearned()
+    } catch (err) {
+      console.error('Failed to update learned:', err)
+      mutateLearned()
     }
   }
 
@@ -44,16 +70,16 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle }: Algorithm
             <Filter className="h-3.5 w-3.5 text-muted-foreground" />
             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Filter by group</span>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 min-w-0">
             {groupKeys.map((group) => (
               <Badge
                 key={group}
                 variant={activeGroups.includes(group) ? 'default' : 'outline'}
                 onClick={() => handleChooseGroup(group)}
-                className="cursor-pointer transition-all hover:shadow-sm select-none"
+                className="cursor-pointer transition-all hover:shadow-sm select-none text-[10px] sm:text-xs px-2 py-0.5 whitespace-normal break-all max-w-full"
               >
-                {group}
-                <span className="ml-1.5 opacity-60">{groups[group].length}</span>
+                <span className="min-w-0 break-all">{group}</span>
+                <span className="ml-1 opacity-60 shrink-0">{groups[group].length}</span>
               </Badge>
             ))}
           </div>
@@ -69,18 +95,22 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle }: Algorithm
               Clear filter
             </button>
           )}
+          {isAuthed && methodSlug && learnedIds.length > 0 && (
+            <span className="ml-2 text-muted-foreground">· {learnedIds.length} learned</span>
+          )}
         </p>
       </div>
 
-      {/* Algorithm cards grid */}
-      <div className="columns-1 sm:columns-2 gap-4">
+      {/* Algorithm rows */}
+      <div className="rounded-lg border bg-card/30 divide-y overflow-hidden">
         {displayedAlgs.map((item) => (
           <AlgorithmCard
             algorithm={item}
-            onAlgorithmClick={() => console.log('click')}
             key={`${item.group}-${item.name}`}
             virtualization={virtualization}
             puzzle={puzzle}
+            isLearned={learnedSet.has(item.id)}
+            onToggleLearned={isAuthed && methodSlug ? () => handleToggleLearned(item.id) : undefined}
           />
         ))}
       </div>
