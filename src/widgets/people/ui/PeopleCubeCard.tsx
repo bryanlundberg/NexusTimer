@@ -52,7 +52,7 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
 
   return (
     <motion.div
-      className={`grid ${GRID} items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 transition-colors duration-150`}
+      className={`grid ${GRID} items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150`}
       variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
       transition={{ duration: 0.25, ease: 'easeOut' }}
     >
