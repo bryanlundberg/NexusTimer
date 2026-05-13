@@ -6,7 +6,7 @@ import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
 import { invertAlgorithm } from '@/features/trainer/lib/trainerUtils'
 import type { Alg } from '@/features/algorithms-list/model/types'
 
-type AlgPick = { caseId: string; alg: Alg; setup: string }
+type AlgPick = { caseId: string; alg: Alg }
 
 export const useTrainerSession = () => {
   const methodSlug = useTrainerStore((s) => s.methodSlug)
@@ -19,13 +19,11 @@ export const useTrainerSession = () => {
 
   const pickRef = useRef<AlgPick | null>(null)
   if (currentCase && pickRef.current?.caseId !== currentCase.id) {
-    const idx = 0
-    const alg = currentCase.algs[idx]
-    pickRef.current = { caseId: currentCase.id, alg, setup: invertAlgorithm(alg.moves) }
+    pickRef.current = { caseId: currentCase.id, alg: currentCase.algs[0] }
   }
 
   const currentAlg = currentCase ? pickRef.current?.alg : undefined
-  const setup = currentCase ? (pickRef.current?.setup ?? '') : ''
+  const setup = currentCase ? (currentCase.setup ?? invertAlgorithm(currentCase.algs[0].moves)) : ''
 
   return { set, sessionCases, currentCase, currentAlg, setup }
 }
