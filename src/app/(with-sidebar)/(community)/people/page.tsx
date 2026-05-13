@@ -1,7 +1,6 @@
 'use client'
 import * as React from 'react'
 import FadeIn from '@/shared/ui/fade-in/fade-in'
-import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { UserDocument } from '@/entities/user/model/user'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -29,51 +28,54 @@ export default function PeoplePage() {
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <FadeIn>
         <CoreHeader breadcrumbPath={'/people'} breadcrumb={t('title')} />
-        <div className="px-2 pb-8 flex flex-col w-full @container/people">
-          <PeoplePageHeader />
+        <div className="px-2 pb-8 flex flex-col w-full">
+          <PeoplePageHeader total={data?.docs} showing={data?.events?.length} />
 
-          <div
-            className={
-              'grid grid-cols-1 @xl/people:grid-cols-2 @5xl/people:grid-cols-3 @7xl/people:grid-cols-3 @9xl/people:grid-cols-4 gap-3'
-            }
-          >
+          <div className="overflow-hidden">
+            {/* Table header */}
+            <div className="grid grid-cols-[2.5rem_3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-2 border-b border-border/60">
+              <span />
+              <span />
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                {t('title')}
+              </span>
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground pr-1">
+                Actions
+              </span>
+            </div>
+
+            {/* Skeleton rows */}
             {isLoading &&
               Array(10)
                 .fill(0)
-                .map((_, index) => (
-                  <Card
-                    key={index}
-                    className="h-full bg-card/20 backdrop-blur-md flex flex-col @xs/people:flex-row items-center p-4 gap-4"
+                .map((_, i) => (
+                  <div
+                    key={i}
+                    className="grid grid-cols-[2.5rem_3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0"
                   >
-                    <div className="shrink-0">
-                      <Skeleton className="size-20 rounded-full" />
+                    <Skeleton className="h-3 w-6 ml-auto" />
+                    <Skeleton className="size-9 rounded-lg" />
+                    <div className="flex flex-col gap-1.5 min-w-0">
+                      <Skeleton className="h-3.5 w-40" />
+                      <Skeleton className="h-2.5 w-24" />
                     </div>
-
-                    <div className="flex flex-col items-center @xs/people:items-start flex-1 min-w-0 h-full">
-                      <Skeleton className="h-7 w-3/4 mb-4 @xs/people:mb-auto" />
-
-                      <div className="flex items-center gap-2 mt-auto w-full">
-                        <Skeleton className="h-9 flex-1" />
-                        <Skeleton className="h-9 flex-1" />
-                      </div>
+                    <div className="flex items-center gap-2">
+                      <Skeleton className="h-8 w-8 sm:w-24 rounded-md" />
+                      <Skeleton className="h-8 w-8 sm:w-24 rounded-md" />
                     </div>
-                  </Card>
+                  </div>
                 ))}
 
+            {/* Empty state */}
             {!isLoading && (!data?.events || data.events.length === 0) && (
-              <div className="col-span-full text-center py-8">
-                <p className="text-muted-foreground">{t('no-users-found')}</p>
-              </div>
+              <div className="py-12 text-center text-sm text-muted-foreground">{t('no-users-found')}</div>
             )}
 
+            {/* Rows */}
             {!isLoading &&
               data?.events &&
               data.events.length > 0 &&
-              data.events.map((user: UserDocument) => <UserCard key={user._id} user={user} />)}
-          </div>
-
-          <div className={'opacity-70 text-[10px] font-medium uppercase tracking-wider ps-4 pt-4 mb-2'}>
-            {t('results')}: <span className="text-primary font-bold">{data?.docs || 0}</span>
+              data.events.map((user: UserDocument, i: number) => <UserCard key={user._id} user={user} index={i} />)}
           </div>
 
           {!isLoading && data?.pages !== undefined && data.pages > 0 && (
