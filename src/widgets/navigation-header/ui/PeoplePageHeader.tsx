@@ -40,7 +40,7 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
   }
 
   return (
-    <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-4">
+    <div className="flex flex-col justify-between gap-4 mb-4">
       {/* Left: titles + count */}
       <div className="flex flex-col gap-1">
         <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
@@ -82,7 +82,7 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
                 ))}
               </SelectContent>
             </Select>
-            <Button onClick={handleSearch} className="shrink-0">
+            <Button onClick={handleSearch} className="shrink-0" size="sm">
               Search
             </Button>
           </div>
