@@ -28,14 +28,13 @@ export default function PeoplePage() {
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <FadeIn>
         <CoreHeader breadcrumbPath={'/people'} breadcrumb={t('title')} />
-        <div className="px-2 pb-8 flex flex-col w-full">
+        <div className="px-2 pb-8 flex flex-col w-full max-w-2xl mx-auto mt-4">
           <PeoplePageHeader total={data?.docs} showing={data?.events?.length} />
 
           <div className="overflow-hidden">
             {/* Table header */}
-            <div className="grid grid-cols-[2.5rem_3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-2 border-b border-border/60">
-              <span />
-              <span />
+            <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-2 border-b border-border/60">
+              <span className="hidden sm:block" />
               <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                 {t('title')}
               </span>
@@ -51,10 +50,9 @@ export default function PeoplePage() {
                 .map((_, i) => (
                   <div
                     key={i}
-                    className="grid grid-cols-[2.5rem_3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0"
+                    className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0"
                   >
-                    <Skeleton className="h-3 w-6 ml-auto" />
-                    <Skeleton className="size-9 rounded-lg" />
+                    <Skeleton className="hidden sm:block size-9 rounded-lg" />
                     <div className="flex flex-col gap-1.5 min-w-0">
                       <Skeleton className="h-3.5 w-40" />
                       <Skeleton className="h-2.5 w-24" />
@@ -75,7 +73,7 @@ export default function PeoplePage() {
             {!isLoading &&
               data?.events &&
               data.events.length > 0 &&
-              data.events.map((user: UserDocument, i: number) => <UserCard key={user._id} user={user} index={i} />)}
+              data.events.map((user: UserDocument) => <UserCard key={user._id} user={user} />)}
           </div>
 
           {!isLoading && data?.pages !== undefined && data.pages > 0 && (
