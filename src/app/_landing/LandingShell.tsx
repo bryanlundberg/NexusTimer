@@ -170,6 +170,11 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
 
   const cards = [
     {
+      title: t('showcase.public-profiles-title'),
+      description: t('showcase.public-profiles-desc'),
+      imageSrc: '/landing/Screenshot_44.png'
+    },
+    {
       title: t('showcase.stats-per-cube-title'),
       description: t('showcase.stats-per-cube-desc'),
       imageSrc: '/landing/Screenshot_40.png'
@@ -180,14 +185,14 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
       imageSrc: '/landing/Screenshot_41.png'
     },
     {
+      title: 'Algorithm Trainer',
+      description: 'Measure execution time per algorithm.',
+      imageSrc: '/landing/Screenshot_14.png'
+    },
+    {
       title: t('showcase.real-time-battles-title'),
       description: t('showcase.real-time-battles-desc'),
       imageSrc: '/landing/Screenshot_38.png'
-    },
-    {
-      title: t('showcase.public-profiles-title'),
-      description: t('showcase.public-profiles-desc'),
-      imageSrc: '/landing/Screenshot_43.png'
     }
   ]
 
@@ -928,7 +933,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                         </div>
                       </div>
                       <Image
-                        src="/landing/desk2.jpg"
+                        src="/landing/desk2.png"
                         alt="NexusTimer desktop view"
                         width={1200}
                         height={750}

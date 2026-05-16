@@ -64,10 +64,10 @@ NexusTimer features a real-time 3D visualization of scramble sequences using a v
 ## 📸 Screenshots
 
 <div align="center">
-  <img src="./.github/images/v5/Screenshot_42.png" width="24%" />
-  <img src="./.github/images/v5/Screenshot_41.png" width="24%" />
-  <img src="./.github/images/v5/Screenshot_40.png" width="24%" />
-  <img src="./.github/images/v5/Screenshot_43.png" width="24%" />
+  <img src="./.github/images/v6/Screenshot_42.png" width="24%" />
+  <img src="./.github/images/v6/Screenshot_41.png" width="24%" />
+  <img src="./.github/images/v6/Screenshot_40.png" width="24%" />
+  <img src="./.github/images/v6/Screenshot_44.png" width="24%" />
 </div>
 
 ## 🌍 Languages Available
