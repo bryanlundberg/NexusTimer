@@ -60,17 +60,19 @@ export default function TimerWidgets() {
       </div>
     ) : null
 
+  const isHidden = isSolving || timerStatus !== TimerStatus.IDLE
+
   return (
     <>
       <div
         className={cn(
-          `flex flex-col gap-1 pb-1 relative`,
-          !(isSolving || timerStatus !== TimerStatus.IDLE) ? 'visible' : 'invisible'
+          'flex flex-col gap-1 pb-1 relative transition-opacity duration-150',
+          isHidden ? 'opacity-30 pointer-events-none' : 'opacity-100'
         )}
         id="touch"
       >
-        {!isSolving && bestAverageAlert}
-        {!isSolving && worstTimeAlert}
+        {bestAverageAlert}
+        {worstTimeAlert}
         <div
           data-testid="timer-widgets-container"
           className={cn(
@@ -78,9 +80,9 @@ export default function TimerWidgets() {
             height <= SCRAMBLE_HEIGHT && 'text-xs'
           )}
         >
-          {settings.features.sessionStats && !isSolving && <OverviewPanel />}
-          {settings.features.scrambleImage && !isSolving && timerMode !== TimerMode.VIRTUAL && <ScramblePanel />}
-          {settings.features.sessionStats && !isSolving && <StatisticsPanel />}
+          {settings.features.sessionStats && <OverviewPanel />}
+          {settings.features.scrambleImage && timerMode !== TimerMode.VIRTUAL && <ScramblePanel />}
+          {settings.features.sessionStats && <StatisticsPanel />}
         </div>
       </div>
     </>
