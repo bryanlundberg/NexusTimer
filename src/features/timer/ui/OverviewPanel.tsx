@@ -1,37 +1,34 @@
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
-import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 
 export default function OverviewPanel() {
   const timerStatistics = useTimerStore((store) => store.timerStatistics)
   const t = useTranslations('Index')
 
-  const stats = useMemo(() => {
-    return [
-      {
-        label: t('HomePage.deviation'),
-        value: timerStatistics.session.deviation === 0 ? '--' : formatTime(timerStatistics.session.deviation),
-        testId: 'timer-session-deviation'
-      },
-      {
-        label: t('HomePage.average'),
-        value: timerStatistics.session.mean === 0 ? '--' : formatTime(timerStatistics.session.mean),
-        testId: 'timer-session-mean'
-      },
-      {
-        label: t('HomePage.best'),
-        value: timerStatistics.session.best === 0 ? '--' : formatTime(timerStatistics.session.best),
-        testId: 'timer-session-best'
-      },
-      {
-        label: t('HomePage.counter'),
-        value: timerStatistics.session.count === 0 ? '--' : timerStatistics.session.count.toString(),
-        testId: 'timer-session-count'
-      }
-    ]
-  }, [timerStatistics.session, t])
+  const stats = [
+    {
+      label: t('HomePage.deviation'),
+      value: timerStatistics.session.deviation === 0 ? '--' : formatTime(timerStatistics.session.deviation),
+      testId: 'timer-session-deviation'
+    },
+    {
+      label: t('HomePage.average'),
+      value: timerStatistics.session.mean === 0 ? '--' : formatTime(timerStatistics.session.mean),
+      testId: 'timer-session-mean'
+    },
+    {
+      label: t('HomePage.best'),
+      value: timerStatistics.session.best === 0 ? '--' : formatTime(timerStatistics.session.best),
+      testId: 'timer-session-best'
+    },
+    {
+      label: t('HomePage.counter'),
+      value: timerStatistics.session.count === 0 ? '--' : timerStatistics.session.count.toString(),
+      testId: 'timer-session-count'
+    }
+  ]
 
   const containerVariants = {
     hidden: {},
