@@ -54,7 +54,7 @@ NexusTimer features a real-time 3D visualization of scramble sequences using a v
 
 <div align="center">
   <a href="https://youtu.be/3eY8-qQgJAo?si=-SJ8W7tFdI8ulrWH">
-    <img src="https://img.youtube.com/vi/3eY8-qQgJAo/0.jpg" alt="Max Park 3.13s World Record">
+    <img src="./.github/images/virtual-cube-preview.svg" alt="NexusTimer – Virtual Cube Preview" width="600">
   </a>
 </div>
 

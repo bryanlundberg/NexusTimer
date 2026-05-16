@@ -1,0 +1,79 @@
+<svg width="600" height="338" viewBox="0 0 600 338" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#1c2128"/>
+    </linearGradient>
+    <linearGradient id="playGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softblur">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+    <clipPath id="rounded">
+      <rect width="600" height="338" rx="12"/>
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#rounded)">
+    <!-- Base background -->
+    <rect width="600" height="338" fill="url(#bg)"/>
+
+    <!-- Ambient glows -->
+    <circle cx="120" cy="80" r="160" fill="#2d333b" opacity="0.5" filter="url(#softblur)"/>
+    <circle cx="480" cy="270" r="130" fill="#1f2937" opacity="0.4" filter="url(#softblur)"/>
+
+    <!-- Subtle grid -->
+    <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+      <line x1="0" y1="56" x2="600" y2="56"/>
+      <line x1="0" y1="112" x2="600" y2="112"/>
+      <line x1="0" y1="168" x2="600" y2="168"/>
+      <line x1="0" y1="224" x2="600" y2="224"/>
+      <line x1="0" y1="280" x2="600" y2="280"/>
+      <line x1="100" y1="0" x2="100" y2="338"/>
+      <line x1="200" y1="0" x2="200" y2="338"/>
+      <line x1="300" y1="0" x2="300" y2="338"/>
+      <line x1="400" y1="0" x2="400" y2="338"/>
+      <line x1="500" y1="0" x2="500" y2="338"/>
+    </g>
+
+    <!-- Play button glow -->
+    <circle cx="300" cy="155" r="52" fill="#ffffff" opacity="0.06" filter="url(#glow)"/>
+
+    <!-- Play button outer ring -->
+    <circle cx="300" cy="155" r="48" fill="url(#playGrad)" stroke="#ffffff" stroke-width="1.5" stroke-opacity="0.25"/>
+
+    <!-- Play triangle -->
+    <polygon points="291,137 330,155 291,173" fill="#ffffff" opacity="0.95"/>
+
+    <!-- Title -->
+    <text x="300" y="234" text-anchor="middle"
+      fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="15" font-weight="600" letter-spacing="0.3">
+      Virtual Cube Preview
+    </text>
+
+    <!-- Subtitle -->
+    <text x="300" y="258" text-anchor="middle"
+      fill="#8b949e" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="12" letter-spacing="0.2">
+      NexusTimer · Click to watch on YouTube
+    </text>
+
+    <!-- YouTube badge -->
+    <rect x="268" y="274" width="64" height="20" rx="4" fill="#ff0000" opacity="0.85"/>
+    <text x="300" y="288" text-anchor="middle"
+      fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+      font-size="10" font-weight="700" letter-spacing="0.5">
+      YOUTUBE
+    </text>
+  </g>
+
+  <!-- Border -->
+  <rect width="600" height="338" rx="12" fill="none" stroke="#30363d" stroke-width="1"/>
+</svg>
