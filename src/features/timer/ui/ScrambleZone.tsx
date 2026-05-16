@@ -40,7 +40,7 @@ export function ScrambleZone() {
 
   const overlayStore = useOverlayStore()
 
-  const isCompact = height <= SCRAMBLE_HEIGHT || (scramble.length > 80 && height <= 750)
+  const isCompact = height <= SCRAMBLE_HEIGHT || ((scramble?.length ?? 0) > 80 && height <= 750)
 
   const handleOpenCustomScramble = () => {
     overlayStore.open({
