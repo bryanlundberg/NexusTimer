@@ -88,7 +88,7 @@ export default function DisplayTime({
               id={'touch'}
             >
               <motion.div
-                className="flex items-end justify-center"
+                className="flex items-baseline justify-center"
                 animate={{
                   scale: timerStatus === TimerStatus.HOLDING ? 0.95 : 1,
                   transition: { type: 'spring', stiffness: 500, damping: 30 }
@@ -99,21 +99,25 @@ export default function DisplayTime({
                 (timerStatus === TimerStatus.INSPECTING ||
                   timerStatus === TimerStatus.HOLDING ||
                   timerStatus === TimerStatus.READY) ? (
-                  <>
-                    <motion.div
-                      className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
-                      initial={{ scale: 1.2 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: 'spring', stiffness: 300 }}
-                      id={'touch'}
-                    >
-                      {Math.trunc(inspectionTime)}
-                    </motion.div>
-                  </>
+                  <motion.div
+                    className={cn(
+                      'font-light',
+                      height < 700 ? 'text-8xl md:text-9xl' : 'text-9xl md:text-[11rem] lg:text-[16rem]'
+                    )}
+                    initial={{ scale: 1.2 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                    id={'touch'}
+                  >
+                    {Math.trunc(inspectionTime)}
+                  </motion.div>
                 ) : (
                   <>
                     <motion.div
-                      className={cn('text-8xl md:text-9xl', height < 700 ? 'text-6xl md:text-7xl' : '', 'font-light')}
+                      className={cn(
+                        'font-light',
+                        height < 700 ? 'text-8xl md:text-9xl' : 'text-9xl md:text-[11rem] lg:text-[16rem]'
+                      )}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.2 }}
@@ -122,7 +126,10 @@ export default function DisplayTime({
                       {formatTime(solvingTime).split('.')[0]}
                     </motion.div>
                     <motion.div
-                      className={cn('text-7xl md:text-8xl', height < 700 ? 'text-5xl md:text-6xl' : '', 'font-light')}
+                      className={cn(
+                        'font-light',
+                        height < 700 ? 'text-6xl md:text-7xl' : 'text-7xl md:text-8xl lg:text-[10rem]'
+                      )}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3, delay: 0.1 }}
@@ -132,7 +139,10 @@ export default function DisplayTime({
                     </motion.div>
                     {lastSolve?.plus2 && !isSolving && (
                       <motion.span
-                        className="text-destructive"
+                        className={cn(
+                          'text-destructive font-light',
+                          height < 700 ? 'text-4xl' : 'text-5xl lg:text-6xl'
+                        )}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: 0.2 }}
