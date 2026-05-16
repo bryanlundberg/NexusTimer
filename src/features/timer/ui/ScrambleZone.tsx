@@ -40,6 +40,8 @@ export function ScrambleZone() {
 
   const overlayStore = useOverlayStore()
 
+  const isCompact = height <= SCRAMBLE_HEIGHT || ((scramble?.length ?? 0) > 80 && height <= 750)
+
   const handleOpenCustomScramble = () => {
     overlayStore.open({
       id: 'enter-custom-scramble',
@@ -61,13 +63,15 @@ export function ScrambleZone() {
             settings.features.scrambleBackground ? 'bg-secondary' : ''
           }`}
         >
-          {height > SCRAMBLE_HEIGHT ? (
+          {!isCompact ? (
             <p data-testid="scramble-text-zone">{selectedCube ? scramble : t('HomePage.empty-scramble')}</p>
           ) : (
             <>
               {selectedCube ? (
                 <Dialog>
-                  <DialogTrigger className={cn('text-lg')}>[ Show scramble.. ]</DialogTrigger>
+                  <DialogTrigger className={cn('text-lg opacity-60 hover:opacity-100 transition-opacity')}>
+                    [ Show scramble ]
+                  </DialogTrigger>
                   <DialogContent className="sm:max-w-xl">
                     <DialogHeader>
                       <VisuallyHidden>

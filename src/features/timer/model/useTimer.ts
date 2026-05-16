@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react'
+import { useRef } from 'react'
 import useTimerControls from './useTimerControls'
 import useInspection from './useInspection'
 import useHoldToStart from './useHoldToStart'
@@ -48,54 +48,40 @@ export default function useTimer({
 
   const mustReleaseAfterInspection = useRef<boolean>(false)
 
-  const resetAll = useCallback(() => {
+  const resetAll = () => {
     if (inspectionId.current) removeInspection()
     resetTimer()
-  }, [inspectionId, removeInspection, resetTimer])
+  }
 
   // MAIN HOLD CONTROL
-  const handleHold = useCallback(
-    (isReleased: boolean) => {
-      if (!selectedCube) return
-      if (isSolving && isReleased) {
-        stopTimer()
-        setTimerStatus(TimerStatus.IDLE)
-        requestAnimationFrame(() => {
-          onFinishSolve()
-          resetTimer()
-        })
+  const handleHold = (isReleased: boolean) => {
+    if (!selectedCube) return
+    if (isSolving && isReleased) {
+      stopTimer()
+      setTimerStatus(TimerStatus.IDLE)
+      requestAnimationFrame(() => {
+        onFinishSolve()
+        resetTimer()
+      })
+    }
+    if (!isReleased && !inspectionId.current) return
+    if (!isSolving) {
+      if (!inspectionId.current && inspectionRequired) {
+        startInspection()
+        setTimerStatus(TimerStatus.INSPECTING)
+        mustReleaseAfterInspection.current = true
+        return
       }
-      if (!isReleased && !inspectionId.current) return
-      if (!isSolving) {
-        if (!inspectionId.current && inspectionRequired) {
-          startInspection()
-          setTimerStatus(TimerStatus.INSPECTING)
-          mustReleaseAfterInspection.current = true
-          return
-        }
-        // Block starting hold during inspection until the user releases after inspection has started
-        if (inspectionId.current && inspectionRequired && mustReleaseAfterInspection.current) {
-          return
-        }
-        startHold()
+      // Block starting hold during inspection until the user releases after inspection has started
+      if (inspectionId.current && inspectionRequired && mustReleaseAfterInspection.current) {
+        return
       }
-    },
-    [
-      isSolving,
-      onFinishSolve,
-      resetTimer,
-      selectedCube,
-      startHold,
-      stopTimer,
-      setTimerStatus,
-      inspectionId,
-      inspectionRequired,
-      startInspection
-    ]
-  )
+      startHold()
+    }
+  }
 
   // MAIN RELEASE CONTROL
-  const handleRelease = useCallback(() => {
+  const handleRelease = () => {
     // Ensure user must lift finger after starting inspection before allowing hold to start
     mustReleaseAfterInspection.current = false
     if (!selectedCube) return
@@ -123,18 +109,7 @@ export default function useTimer({
       startTimer()
       return
     }
-  }, [
-    holdTimeRequired,
-    holdingTime,
-    holdingTimeId,
-    inspectionId,
-    inspectionRequired,
-    removeHolding,
-    removeInspection,
-    selectedCube,
-    setTimerStatus,
-    startTimer
-  ])
+  }
 
   // Event handlers
   useEventHandlers({

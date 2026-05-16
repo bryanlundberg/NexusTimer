@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { TimerMode } from '@/features/timer/model/enums'
 
 type HandleHoldFunction = (isReleased: boolean) => void
@@ -22,20 +22,20 @@ export default function useEventHandlers({
 }: UseEventHandlersProps) {
   const releasedKey = useRef<boolean>(true)
 
-  const handleHoldWithReleasedState = useCallback(() => {
+  const handleHoldWithReleasedState = () => {
     handleHold(releasedKey.current)
     releasedKey.current = false
-  }, [handleHold])
+  }
 
-  const handleReleaseWithReleasedState = useCallback(() => {
+  const handleReleaseWithReleasedState = () => {
     releasedKey.current = true
     handleRelease()
-  }, [handleRelease])
+  }
 
-  const resetAndRelease = useCallback(() => {
+  const resetAndRelease = () => {
     releasedKey.current = true
     resetTimer()
-  }, [resetTimer])
+  }
 
   useEffect(() => {
     if (timerMode === TimerMode.STACKMAT || timerMode === TimerMode.MANUAL || timerMode === TimerMode.NEXUS_CONNECT)

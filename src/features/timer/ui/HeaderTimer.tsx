@@ -20,13 +20,18 @@ export default function HeaderTimer() {
   const t = useTranslations('Index.HomePage')
   const { height } = useWindowSize()
 
-  if (isSolving || timerStatus !== TimerStatus.IDLE) return null
-
+  const isHidden = isSolving || timerStatus !== TimerStatus.IDLE
   const isPersonalBest =
     lastSolve != null && !lastSolve.dnf && lastSolve.time <= timerStatistics.global.best && settings.alerts.bestTime
+
   return (
-    <>
-      <div className={'flex justify-center items-center gap-2 mb-2'}>
+    <div
+      className={cn(
+        'w-full flex flex-col items-center transition-opacity duration-150',
+        isHidden ? 'opacity-30 pointer-events-none' : 'opacity-100'
+      )}
+    >
+      <div className={'flex items-center gap-2 mb-2 w-full'}>
         <MainCubeSelector />
         <ButtonNextScramble />
         <ButtonSelectMode />
@@ -34,18 +39,11 @@ export default function HeaderTimer() {
 
       <ScrambleZone />
       {isPersonalBest && (
-        <div
-          id="touch"
-          className={cn(
-            'text-center text-xs mt-10',
-            timerStatus !== TimerStatus.IDLE ? 'opacity-0' : 'opacity-100',
-            height <= SCRAMBLE_HEIGHT && 'mt-5'
-          )}
-        >
+        <div id="touch" className={cn('text-center text-xs mt-10', height <= SCRAMBLE_HEIGHT && 'mt-5')}>
           <p>{t('congratulations')}</p>
           <p>{t('personal_best')}</p>
         </div>
       )}
-    </>
+    </div>
   )
 }

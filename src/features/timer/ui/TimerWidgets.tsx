@@ -4,7 +4,7 @@ import ScramblePanel from './ScrambleImagePanel'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
-import { useMemo } from 'react'
+
 import { useWindowSize } from 'react-use-size'
 import { cn } from '@/shared/lib/utils'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
@@ -20,68 +20,59 @@ export default function TimerWidgets() {
   const timerMode = useTimerStore((store) => store.timerMode)
   const { height } = useWindowSize()
 
-  const bestAverageAlert = useMemo(() => {
-    const { ao5, ao12, ao50, ao100 } = timerStatistics.global
-    const { ao5: sessionAo5, ao12: sessionAo12, ao50: sessionAo50, ao100: sessionAo100 } = timerStatistics.session
+  const { ao5, ao12, ao50, ao100 } = timerStatistics.global
+  const { ao5: sessionAo5, ao12: sessionAo12, ao50: sessionAo50, ao100: sessionAo100 } = timerStatistics.session
+  const newBestAverages = []
+  if (ao5 !== 0 && ao5 === sessionAo5) newBestAverages.push('Ao5')
+  if (ao12 !== 0 && ao12 === sessionAo12) newBestAverages.push('Ao12')
+  if (ao50 !== 0 && ao50 === sessionAo50) newBestAverages.push('Ao50')
+  if (ao100 !== 0 && ao100 === sessionAo100) newBestAverages.push('Ao100')
 
-    const newBestAverages = []
-    if (ao5 !== 0 && ao5 === sessionAo5) newBestAverages.push('Ao5')
-    if (ao12 !== 0 && ao12 === sessionAo12) newBestAverages.push('Ao12')
-    if (ao50 !== 0 && ao50 === sessionAo50) newBestAverages.push('Ao50')
-    if (ao100 !== 0 && ao100 === sessionAo100) newBestAverages.push('Ao100')
-
-    if (settings.alerts.bestAverage && newBestAverages.length > 0) {
-      return (
-        <div className="flex justify-end absolute -top-8 right-0" id="touch">
-          <div
-            data-testid="best-average-alert"
-            className={cn(
-              'p-1 text-xs sm:text-sm border rounded-md bg-background w-fit ms-auto',
-              height <= SCRAMBLE_HEIGHT && 'text-[10px]'
-            )}
-          >
-            {t('new_best_average')}: {newBestAverages.join(', ')}
-          </div>
-        </div>
-      )
-    }
-    return null
-  }, [timerStatistics, settings.alerts.bestAverage, t])
-
-  const worstTimeAlert = useMemo(() => {
-    if (
-      settings.alerts.worstTime &&
-      timerStatistics.global.count > 1 &&
-      lastSolve &&
-      lastSolve.time > timerStatistics.global.worst
-    ) {
-      return (
+  const bestAverageAlert =
+    settings.alerts.bestAverage && newBestAverages.length > 0 ? (
+      <div className="flex justify-end absolute -top-8 right-0" id="touch">
         <div
-          data-testid="worst-time-alert"
+          data-testid="best-average-alert"
           className={cn(
             'p-1 text-xs sm:text-sm border rounded-md bg-background w-fit ms-auto',
             height <= SCRAMBLE_HEIGHT && 'text-[10px]'
           )}
-          id="touch"
         >
-          {t('new_worst_time')}
+          {t('new_best_average')}: {newBestAverages.join(', ')}
         </div>
-      )
-    }
-    return null
-  }, [settings.alerts.worstTime, timerStatistics.global.count, lastSolve, timerStatistics.global.worst, t])
+      </div>
+    ) : null
+
+  const worstTimeAlert =
+    settings.alerts.worstTime &&
+    timerStatistics.global.count > 1 &&
+    lastSolve &&
+    lastSolve.time > timerStatistics.global.worst ? (
+      <div
+        data-testid="worst-time-alert"
+        className={cn(
+          'p-1 text-xs sm:text-sm border rounded-md bg-background w-fit ms-auto',
+          height <= SCRAMBLE_HEIGHT && 'text-[10px]'
+        )}
+        id="touch"
+      >
+        {t('new_worst_time')}
+      </div>
+    ) : null
+
+  const isHidden = isSolving || timerStatus !== TimerStatus.IDLE
 
   return (
     <>
       <div
         className={cn(
-          `flex flex-col gap-1 pb-1 relative`,
-          !(isSolving || timerStatus !== TimerStatus.IDLE) ? 'visible' : 'invisible'
+          'flex flex-col gap-1 pb-1 relative transition-opacity duration-150',
+          isHidden ? 'opacity-30 pointer-events-none' : 'opacity-100'
         )}
         id="touch"
       >
-        {!isSolving && bestAverageAlert}
-        {!isSolving && worstTimeAlert}
+        {bestAverageAlert}
+        {worstTimeAlert}
         <div
           data-testid="timer-widgets-container"
           className={cn(
@@ -89,9 +80,9 @@ export default function TimerWidgets() {
             height <= SCRAMBLE_HEIGHT && 'text-xs'
           )}
         >
-          {settings.features.sessionStats && !isSolving && <OverviewPanel />}
-          {settings.features.scrambleImage && !isSolving && timerMode !== TimerMode.VIRTUAL && <ScramblePanel />}
-          {settings.features.sessionStats && !isSolving && <StatisticsPanel />}
+          {settings.features.sessionStats && <OverviewPanel />}
+          {settings.features.scrambleImage && timerMode !== TimerMode.VIRTUAL && <ScramblePanel />}
+          {settings.features.sessionStats && <StatisticsPanel />}
         </div>
       </div>
     </>
