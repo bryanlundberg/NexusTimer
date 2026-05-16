@@ -12,22 +12,22 @@ export default function OverviewPanel() {
     return [
       {
         label: t('HomePage.deviation'),
-        value: formatTime(timerStatistics.session.deviation),
+        value: timerStatistics.session.deviation === 0 ? '--' : formatTime(timerStatistics.session.deviation),
         testId: 'timer-session-deviation'
       },
       {
         label: t('HomePage.average'),
-        value: formatTime(timerStatistics.session.mean),
+        value: timerStatistics.session.mean === 0 ? '--' : formatTime(timerStatistics.session.mean),
         testId: 'timer-session-mean'
       },
       {
         label: t('HomePage.best'),
-        value: formatTime(timerStatistics.session.best),
+        value: timerStatistics.session.best === 0 ? '--' : formatTime(timerStatistics.session.best),
         testId: 'timer-session-best'
       },
       {
         label: t('HomePage.counter'),
-        value: timerStatistics.session.count.toString(),
+        value: timerStatistics.session.count === 0 ? '--' : timerStatistics.session.count.toString(),
         testId: 'timer-session-count'
       }
     ]
@@ -49,16 +49,24 @@ export default function OverviewPanel() {
 
   return (
     <motion.div
-      className="flex flex-col justify-center h-full gap-1"
+      className="flex flex-col gap-1 md:grid md:grid-cols-2 md:gap-1.5"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       {stats.map(({ label, value, testId }) => (
-        <motion.div className="font-medium" key={testId} variants={itemVariants}>
-          {label}
-          {': '}
-          <span data-testid={testId}>{value}</span>
+        <motion.div
+          key={testId}
+          className="font-medium md:flex md:flex-col md:justify-center md:bg-card/40 md:rounded-md md:py-2 md:px-3"
+          variants={itemVariants}
+        >
+          <span className="md:text-[8px] md:uppercase md:opacity-70">
+            {label}
+            {': '}
+          </span>
+          <span className="md:text-lg md:font-semibold md:text-foreground md:leading-none" data-testid={testId}>
+            {value}
+          </span>
         </motion.div>
       ))}
     </motion.div>
