@@ -142,7 +142,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <NuqsAdapter>
           <SessionProvider session={session}>
             <NextIntlClientProvider messages={messages}>
-              <ThemeProvider attribute="class" defaultTheme={'system'} enableSystem disableTransitionOnChange>
+              <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem disableTransitionOnChange>
                 <SidebarProvider>
                   <AlertsProvider>
                     <PreloadAppProvider>{children}</PreloadAppProvider>
