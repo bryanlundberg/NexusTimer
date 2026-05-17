@@ -9,11 +9,13 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { toast } from 'sonner'
 import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
 import { useTranslations } from 'next-intl'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 
 export const useCubeActions = (cube?: Cube) => {
   const t = useTranslations('Index')
   const router = useRouter()
   const { open } = useOverlayStore()
+  const { settings } = useSettingsStore()
   const setCubes = useTimerStore((state) => state.setCubes)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   const setNewScramble = useTimerStore((state) => state.setNewScramble)
@@ -52,7 +54,7 @@ export const useCubeActions = (cube?: Cube) => {
     const isFavoriting = !cube?.favorite
     await editCubeCollection({ favorite: isFavoriting, id: cube!.id })
 
-    if (isFavoriting) {
+    if (isFavoriting && settings.sounds.favorite) {
       const audio = new Audio('/sounds/favorite.mp3')
       audio.play()
     }

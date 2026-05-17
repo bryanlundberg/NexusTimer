@@ -11,6 +11,7 @@ import { cubesDB } from '@/entities/cube/api/indexdb'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { SolveTab } from '@/shared/types/enums'
 import moveSolveSession from '@/features/manage-solves/api/moveSolveSession'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 
 export default function useQuickActions(solve: Solve) {
   const router = useRouter()
@@ -19,6 +20,7 @@ export default function useQuickActions(solve: Solve) {
   const setCubes = useTimerStore((store) => store.setCubes)
   const cubes = useTimerStore((store) => store.cubes)
   const { open, close, activeOverlay } = useOverlayStore()
+  const { settings } = useSettingsStore()
   const setLastSolve = useTimerStore((store) => store.setLastSolve)
   const lastSolve = useTimerStore((store) => store.lastSolve)
 
@@ -39,7 +41,7 @@ export default function useQuickActions(solve: Solve) {
     const newBookmarkStatus = !solve.bookmark
     await toggleBookmark({ cubeId, solveId, bookmark: newBookmarkStatus, solveTab: tab })
 
-    if (newBookmarkStatus) {
+    if (newBookmarkStatus && settings.sounds.favorite) {
       const audio = new Audio('/sounds/favorite.mp3')
       audio.play()
     }
@@ -70,8 +72,10 @@ export default function useQuickActions(solve: Solve) {
     await deleteSolve({ cubeId, solveId, solveTab: tab })
     syncUI()
 
-    const audio = new Audio('/sounds/trash-effect.mp3')
-    audio.play()
+    if (settings.sounds.trash) {
+      const audio = new Audio('/sounds/trash-effect.mp3')
+      audio.play()
+    }
 
     toast.success(`Solve ${formatTime(solve.time)} deleted`, { duration: 1500 })
   }
