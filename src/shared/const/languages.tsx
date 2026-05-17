@@ -1,4 +1,4 @@
-import { US, ES, FR, DE, JP, CN, RU, IN, PT, KR } from 'country-flag-icons/react/3x2'
+import { US, ES, FR, DE, JP, CN, RU, IN, PT, KR, UA } from 'country-flag-icons/react/3x2'
 import { locales } from '@/shared/config/i18n/locales'
 
 interface LanguageProp {
@@ -17,5 +17,6 @@ export const languages: LanguageProp[] = [
   { code: 'ru', name: 'Русский', flag: <RU className="w-4 h-4" /> },
   { code: 'hi', name: 'हिन्दी', flag: <IN className="w-4 h-4" /> },
   { code: 'pt', name: 'Português', flag: <PT className="w-4 h-4" /> },
-  { code: 'ko', name: '한국어', flag: <KR className="w-4 h-4" /> }
+  { code: 'ko', name: '한국어', flag: <KR className="w-4 h-4" /> },
+  { code: 'uk', name: 'Українська', flag: <UA className="w-4 h-4" /> }
 ]
