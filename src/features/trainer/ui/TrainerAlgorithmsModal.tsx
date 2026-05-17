@@ -5,14 +5,11 @@ import { DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import type { Alg } from '@/features/algorithms-list/model/types'
 
-interface TrainerAlgorithmsModalProps {
-  caseName: string
-  algs: Alg[]
-}
-
-export default function TrainerAlgorithmsModal({ caseName, algs }: TrainerAlgorithmsModalProps) {
+export default function TrainerAlgorithmsModal() {
   const t = useTranslations('Index.TrainerPage.algorithmsModal')
-  useOverlayStore()
+  const metadata = useOverlayStore((s) => s.activeOverlay?.metadata)
+  const caseName = metadata?.caseName as string | undefined
+  const algs = (metadata?.algs ?? []) as Alg[]
 
   return (
     <DialogContent className="sm:max-w-md">

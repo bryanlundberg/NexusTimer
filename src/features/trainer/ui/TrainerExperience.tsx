@@ -165,7 +165,8 @@ export default function TrainerExperience() {
     if (!currentCase) return
     open({
       id: 'trainer-algorithms',
-      component: <TrainerAlgorithmsModal caseName={currentCase.name} algs={currentCase.algs} />
+      metadata: { caseName: currentCase.name, algs: currentCase.algs },
+      component: <TrainerAlgorithmsModal />
     })
   }
 
