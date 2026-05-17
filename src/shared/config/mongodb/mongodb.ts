@@ -7,6 +7,7 @@ import '../../../entities/solve/model/solve'
 import '../../../entities/backup/model/backup'
 import '../../../entities/trainer-solve/model/trainer-solve'
 import '../../../entities/trainer-stats/model/trainer-stats'
+import '../../../entities/log/model/log'
 
 const connectDB = async () => {
   if (mongoose.connections[0].readyState === 1) {
