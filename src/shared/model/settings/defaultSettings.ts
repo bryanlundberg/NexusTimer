@@ -27,6 +27,10 @@ export const defaultSettings: Settings = {
   },
   sounds: {
     newPersonalBest: true,
+    inspection: true,
+    newRound: true,
+    favorite: true,
+    trash: true,
     voiceGender: 'male'
   },
   sync: {
