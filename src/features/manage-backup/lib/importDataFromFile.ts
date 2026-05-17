@@ -53,11 +53,7 @@ const nxTimerSchema = z.array(
 )
 
 const csTimerSchema = z.object({
-  properties: z
-    .object({
-      sessionN: z.number()
-    })
-    .passthrough()
+  properties: z.object({}).passthrough()
 })
 
 const cubeDeskSchema = z.object({
