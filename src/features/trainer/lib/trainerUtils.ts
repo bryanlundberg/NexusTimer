@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { Alg } from 'cubing/alg'
 import type { TwistyPlayer } from 'cubing/twisty'
 import type { TrainerPenalty } from '@/entities/trainer-solve/model/constants'
 
@@ -54,18 +55,8 @@ export const shuffledRange = (total: number, exclude: number | null = null): num
   return arr
 }
 
-export const invertAlgorithm = (moves: string): string => {
-  const tokens = moves.replace(/[()]/g, '').trim().split(/\s+/).filter(Boolean)
-  return tokens
-    .reverse()
-    .map((token) => {
-      if (token.endsWith("2'")) return token.slice(0, -1)
-      if (token.endsWith('2')) return token
-      if (token.endsWith("'")) return token.slice(0, -1)
-      return token + "'"
-    })
-    .join(' ')
-}
+export const invertAlgorithm = (moves: string): string =>
+  new Alg(moves.replace(/[()]/g, '').replace(/\s+/g, ' ').trim()).invert().toString()
 
 const VIZ_BASE = {
   visualization: 'experimental-2D-LL',
