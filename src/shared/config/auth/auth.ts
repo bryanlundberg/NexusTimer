@@ -3,6 +3,7 @@ import Google from 'next-auth/providers/google'
 import Discord from 'next-auth/providers/discord'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
+import Log, { LogType } from '@/entities/log/model/log'
 
 declare module 'next-auth' {
   /**
@@ -77,7 +78,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         user.email = dbUser.email
         return true
       } catch (error) {
-        console.error('Error in signIn:', error)
+        try {
+          await Log.create({
+            type: LogType.AuthError,
+            message: error instanceof Error ? error.message : String(error),
+            metadata: {
+              provider: account?.provider ?? 'unknown',
+              email: user?.email ?? null,
+              stack: error instanceof Error ? error.stack : undefined
+            }
+          })
+        } catch {
+          console.error('Failed to write log:', error)
+        }
         return false
       }
     }
