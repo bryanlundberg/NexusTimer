@@ -182,6 +182,30 @@ export default function OptionsPage() {
             control={control}
             description={t('Settings-descriptions.new-personal-best-sound')}
           />
+          <MenuOption
+            name={'sounds.inspection'}
+            label={t('Settings-menu.inspection-sound')}
+            control={control}
+            description={t('Settings-descriptions.inspection-sound')}
+          />
+          <MenuOption
+            name={'sounds.newRound'}
+            label={t('Settings-menu.new-round-sound')}
+            control={control}
+            description={t('Settings-descriptions.new-round-sound')}
+          />
+          <MenuOption
+            name={'sounds.favorite'}
+            label={t('Settings-menu.favorite-sound')}
+            control={control}
+            description={t('Settings-descriptions.favorite-sound')}
+          />
+          <MenuOption
+            name={'sounds.trash'}
+            label={t('Settings-menu.trash-sound')}
+            control={control}
+            description={t('Settings-descriptions.trash-sound')}
+          />
           <MenuSelectVoiceGender />
         </MenuSection>
         <Separator className="my-4 opacity-50" />
