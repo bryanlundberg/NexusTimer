@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { SkipForward, BookmarkCheck, Bookmark, History, Target, ListChecks } from 'lucide-react'
+import { SkipForward, BookmarkCheck, Bookmark, History, Target, ListChecks, Eye, EyeOff, BookOpen } from 'lucide-react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { TwistyPlayer } from 'cubing/twisty'
 import { cn } from '@/shared/lib/utils'
@@ -27,6 +27,9 @@ interface TrainerCurrentCaseProps {
   pickedCount?: number
   totalCount?: number
   onPickCases?: () => void
+  showSolveInfo?: boolean
+  onToggleSolveInfo?: () => void
+  onViewAlgorithms?: () => void
 }
 
 export default function TrainerCurrentCase({
@@ -48,7 +51,10 @@ export default function TrainerCurrentCase({
   onEditTarget,
   pickedCount,
   totalCount,
-  onPickCases
+  onPickCases,
+  showSolveInfo = true,
+  onToggleSolveInfo,
+  onViewAlgorithms
 }: TrainerCurrentCaseProps) {
   const t = useTranslations('Index.TrainerPage')
   return (
@@ -92,6 +98,30 @@ export default function TrainerCurrentCase({
           </Button>
         )}
         <div className="ml-auto flex items-center gap-1.5">
+          {onViewAlgorithms && (
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-8 w-8"
+              onClick={onViewAlgorithms}
+              aria-label={t('actions.viewAlgorithms')}
+              title={t('actions.viewAlgorithms')}
+            >
+              <BookOpen className="h-4 w-4" />
+            </Button>
+          )}
+          {onToggleSolveInfo && (
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-8 w-8"
+              onClick={onToggleSolveInfo}
+              aria-label={showSolveInfo ? t('actions.hideSolveInfo') : t('actions.showSolveInfo')}
+              title={showSolveInfo ? t('actions.hideSolveInfo') : t('actions.showSolveInfo')}
+            >
+              {showSolveInfo ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            </Button>
+          )}
           <Button
             variant={isLearned ? 'default' : 'outline'}
             size="icon"
@@ -136,26 +166,28 @@ export default function TrainerCurrentCase({
       )}
 
       <div className="flex flex-row items-center gap-3 sm:gap-4">
-        <div
-          className="shrink-0 rounded-md border bg-muted/40 p-1 sm:p-2 flex items-center justify-center relative overflow-hidden"
-          style={{
-            backgroundImage:
-              'repeating-linear-gradient(45deg, color-mix(in oklab, currentColor 8%, transparent) 0 6px, transparent 6px 14px)'
-          }}
-        >
-          {vizConfig ? (
-            <>
-              <span className="sm:hidden">
-                <AlgorithmRender config={vizConfig} width={56} height={56} />
-              </span>
-              <span className="hidden sm:inline-flex">
-                <AlgorithmRender config={vizConfig} width={96} height={96} />
-              </span>
-            </>
-          ) : (
-            <div className="size-14 sm:size-24 rounded-md bg-muted" />
-          )}
-        </div>
+        {showSolveInfo && (
+          <div
+            className="shrink-0 rounded-md border bg-muted/40 p-1 sm:p-2 flex items-center justify-center relative overflow-hidden"
+            style={{
+              backgroundImage:
+                'repeating-linear-gradient(45deg, color-mix(in oklab, currentColor 8%, transparent) 0 6px, transparent 6px 14px)'
+            }}
+          >
+            {vizConfig ? (
+              <>
+                <span className="sm:hidden">
+                  <AlgorithmRender config={vizConfig} width={56} height={56} />
+                </span>
+                <span className="hidden sm:inline-flex">
+                  <AlgorithmRender config={vizConfig} width={96} height={96} />
+                </span>
+              </>
+            ) : (
+              <div className="size-14 sm:size-24 rounded-md bg-muted" />
+            )}
+          </div>
+        )}
 
         <div className="flex flex-1 min-w-0 items-center justify-center">
           <div
