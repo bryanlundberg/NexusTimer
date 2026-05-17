@@ -31,14 +31,18 @@ export default function useInspection({ setTimerStatus, setSolvingTime, settings
 
         if (timeElapsed >= 8 && !reproduced8) {
           reproduced8 = true
-          const audio8 = new Audio(`/sounds/en/8${suffix}`)
-          audio8.play()
+          if (settings.sounds?.inspection) {
+            const audio8 = new Audio(`/sounds/en/8${suffix}`)
+            audio8.play()
+          }
         }
 
         if (timeElapsed >= 12 && !reproduced12) {
           reproduced12 = true
-          const audio12 = new Audio(`/sounds/en/12${suffix}`)
-          audio12.play()
+          if (settings.sounds?.inspection) {
+            const audio12 = new Audio(`/sounds/en/12${suffix}`)
+            audio12.play()
+          }
         }
 
         setInspectionTime(timeRemaining)
@@ -46,8 +50,10 @@ export default function useInspection({ setTimerStatus, setSolvingTime, settings
           setTimerStatus(TimerStatus.IDLE)
           setSolvingTime(0)
           removeInspection()
-          const audio = new Audio(`/sounds/en/reset${suffix}`)
-          audio.play()
+          if (settings.sounds?.inspection) {
+            const audio = new Audio(`/sounds/en/reset${suffix}`)
+            audio.play()
+          }
         }
       }
     }, 10)
