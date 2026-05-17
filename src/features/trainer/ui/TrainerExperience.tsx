@@ -10,8 +10,10 @@ import TrainerCurrentCase from '@/features/trainer/ui/TrainerCurrentCase'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
 import TrainerEditTargetModal from '@/features/trainer/ui/TrainerEditTargetModal'
 import TrainerPickCasesModal from '@/features/trainer/ui/TrainerPickCasesModal'
+import TrainerAlgorithmsModal from '@/features/trainer/ui/TrainerAlgorithmsModal'
 import TrainerRotationModeChips from '@/features/trainer/ui/TrainerRotationModeChips'
 import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
+import { useTrainerPrefsStore } from '@/features/trainer/model/useTrainerPrefsStore'
 import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { TwistyPlayer } from 'cubing/twisty'
@@ -61,6 +63,8 @@ export default function TrainerExperience() {
   const isAuthed = !!session?.user?.id
 
   const { open } = useOverlayStore()
+  const showSolveInfo = useTrainerPrefsStore((s) => s.showSolveInfo)
+  const toggleShowSolveInfo = useTrainerPrefsStore((s) => s.toggleShowSolveInfo)
 
   const currentStats = currentCase ? caseStats[currentCase.id] : undefined
 
@@ -154,6 +158,14 @@ export default function TrainerExperience() {
     open({
       id: 'trainer-edit-target',
       component: <TrainerEditTargetModal initial={targetSeconds} onApply={handleApplyTarget} />
+    })
+  }
+
+  const handleOpenAlgorithms = () => {
+    if (!currentCase) return
+    open({
+      id: 'trainer-algorithms',
+      component: <TrainerAlgorithmsModal caseName={currentCase.name} algs={currentCase.algs} />
     })
   }
 
@@ -285,6 +297,9 @@ export default function TrainerExperience() {
               pickedCount={totalCases}
               totalCount={totalSetCases}
               onPickCases={handleOpenPickCases}
+              showSolveInfo={showSolveInfo}
+              onToggleSolveInfo={toggleShowSolveInfo}
+              onViewAlgorithms={currentCase ? handleOpenAlgorithms : undefined}
             />
 
             <div className="lg:hidden mt-auto pt-2">
