@@ -628,7 +628,13 @@
         "markedAsLearned": "Marked as learned",
         "markAsLearned": "Mark as learned",
         "skip": "Skip",
-        "history": "History"
+        "history": "History",
+        "showSolveInfo": "Show solve info",
+        "hideSolveInfo": "Hide solve info",
+        "viewAlgorithms": "View algorithms"
+      },
+      "algorithmsModal": {
+        "title": "Algorithms"
       },
       "editTargetModal": {
         "title": "Edit target time",
