@@ -3,6 +3,7 @@ import Google from 'next-auth/providers/google'
 import Discord from 'next-auth/providers/discord'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
+import Log, { LogType } from '@/entities/log/model/log'
 
 declare module 'next-auth' {
   /**
@@ -63,10 +64,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         )
 
         if (!dbUser) {
+          const image =
+            user.image ??
+            `https://ui-avatars.com/api/?name=${(user.name ?? '').replace(/\s+/g, '+')}&background=random&size=128`
           dbUser = await User.create({
             email: user.email,
             name: user.name,
-            image: user.image,
+            image,
             providers: [{ provider: account?.provider, providerId: account?.providerAccountId }]
           })
         }
@@ -77,7 +81,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         user.email = dbUser.email
         return true
       } catch (error) {
-        console.error('Error in signIn:', error)
+        try {
+          await Log.create({
+            type: LogType.AuthError,
+            message: error instanceof Error ? error.message : String(error),
+            metadata: {
+              provider: account?.provider ?? 'unknown',
+              email: user?.email ?? null,
+              stack: error instanceof Error ? error.stack : undefined
+            }
+          })
+        } catch {
+          console.error('Failed to write log:', error)
+        }
         return false
       }
     }
