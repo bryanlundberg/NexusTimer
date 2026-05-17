@@ -86,7 +86,7 @@ export default function JsonLd({ locale, title, description, url }: JsonLdProps)
         'Offline-first with local storage',
         '3D interactive cube visualization',
         'Support for all WCA puzzle categories',
-        'Available in 10 languages'
+        'Available in 11 languages'
       ],
       potentialAction: {
         '@type': 'UseAction',
