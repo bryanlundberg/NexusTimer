@@ -64,10 +64,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         )
 
         if (!dbUser) {
+          const image =
+            user.image ??
+            `https://ui-avatars.com/api/?name=${(user.name ?? '').replace(/\s+/g, '+')}&background=random&size=128`
           dbUser = await User.create({
             email: user.email,
             name: user.name,
-            image: user.image,
+            image,
             providers: [{ provider: account?.provider, providerId: account?.providerAccountId }]
           })
         }
