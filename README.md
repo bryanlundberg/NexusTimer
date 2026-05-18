@@ -87,6 +87,16 @@ NexusTimer is available in several languages:
 
 ---
 
+## 🏗️ Architecture Overview
+
+A general overview of the infrastructure and main components behind NexusTimer.
+
+<div align="center">
+  <img src="./.github/images/nxtimer-infra.png" alt="NexusTimer Infrastructure Overview" width="100%" />
+</div>
+
+---
+
 ## 🤝 Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any
