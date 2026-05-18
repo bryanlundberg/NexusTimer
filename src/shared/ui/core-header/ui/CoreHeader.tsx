@@ -29,6 +29,7 @@ import { Ellipsis, LogInIcon, SmilePlus } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import FeedbackModal from '@/features/feedback/ui/FeedbackModal'
 import { usePathname } from 'next/navigation'
+import DevLogin from '@/features/authentication/ui/DevLogin'
 
 interface CoreHeaderProps {
   breadcrumbPath: string
@@ -141,6 +142,7 @@ export default function CoreHeader({
                 <DropdownMenuGroup className="flex flex-col gap-2">
                   <DiscordButton />
                   <GoogleButton />
+                  <DevLogin />
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>
