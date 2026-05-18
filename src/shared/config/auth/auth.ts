@@ -4,6 +4,7 @@ import Discord from 'next-auth/providers/discord'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 import Log, { LogType } from '@/entities/log/model/log'
+import { DevProviders } from '@/shared/config/auth/dev-provider'
 
 declare module 'next-auth' {
   /**
@@ -17,7 +18,7 @@ declare module 'next-auth' {
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  providers: [Google, Discord],
+  providers: [Google, Discord, ...DevProviders],
   callbacks: {
     jwt: async ({ token, user, trigger, session }) => {
       if (trigger === 'update') {
