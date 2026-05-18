@@ -1,0 +1,7 @@
+services:
+  mongo:
+    image: mongo:7
+    ports: ["27017:27017"]
+    volumes: ["nexus_mongo:/data/db"]
+volumes:
+  nexus_mongo:
