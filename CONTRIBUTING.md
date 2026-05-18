@@ -1,51 +1,39 @@
-# Contributing to NexusTimer
+## Local Development Setup
 
-Welcome to the NexusTimer project! We appreciate your interest in contributing to our open-source project. Your contributions help us improve and enhance the project for all users. Here are some guidelines to get you started:
+This guide gets you running NexusTimer locally. For most contributions (UI, statistics, translations, bug fixes) you don't need to configure any environment variables at all.
 
-## Code of Conduct
+### Requirements
 
-Before you begin contributing, please read and adhere to our [Code of Conduct](https://www.contributor-covenant.org/version/1/4/code-of-conduct/). We expect all contributors to follow these guidelines to ensure a welcoming and inclusive environment.
+- Node.js
+- pnpm
+- Docker
 
-## Getting Started
+### Quick start
 
-- If you want:
-    - to **report a bug** or **suggest a change**, please open an issue.
-    - to **develop new functions** or **fix a bug**, please request it in the issues section.
-    - to **translate the app** into your language, please open an issue.
+```
+git clone https://github.com/bryanlundberg/NexusTimer
+cd NexusTimer
 
-If you want to **contribute code**:
+cp .env.local.example .env.local
+docker compose -f docker-compose.dev.yml up -d
 
-1. Fork the repository.
-2. Rename the `.env.local.example` file to `.env.local` (secrets are optional in case you won't code on UI sections that don't need them, most part of the working areas are not related to them).
-3. Install the dependencies with `pnpm install`.
-4. Run the development server with `pnpm run dev`.
-5. Before submitting a pull request, ensure that your code compiles by running `pnpm run build`.
+pnpm install
+pnpm dev
+```
 
-### Environment and .env variables (for contributors)
+### What the Docker setup includes
 
-Not all project features require environment variables to function. You can run the app without configuring these variables, but features that depend on them will be disabled.
+A single local MongoDB instance. That's it.
 
-| Variable                          | Description                | When do I need it?                                                                                            |
-|-----------------------------------|----------------------------|---------------------------------------------------------------------------------------------------------------|
-| MONGODB_URI                       | MongoDB connection string  | Save and load backups, register users, all community section                                                  |
-| NEXT_PUBLIC_API_KEY               | Firebase public API key    | Free Mode (Realtime multiplayer)                                                                              |
-| NEXT_PUBLIC_AUTH_DOMAIN           | Firebase auth domain       | Free Mode (Realtime multiplayer)                                                                              |
-| NEXT_PUBLIC_PROJECT_ID            | Firebase project ID        | Free Mode (Realtime multiplayer)                                                                              |
-| NEXT_PUBLIC_STORAGE_BUCKET        | Firebase storage bucket    | Free Mode (Realtime multiplayer)                                                                              |
-| NEXT_PUBLIC_MESSAGING_SENDER_ID   | Firebase sender ID         | Free Mode (Realtime multiplayer)                                                                              |
-| NEXT_PUBLIC_APP_ID                | Firebase app ID            | Free Mode (Realtime multiplayer)                                                                              |
-| NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME | Cloudinary cloud name      | Change user profile picture                                                                                   |
-| NEXT_PUBLIC_CLOUDINARY_API_KEY    | Cloudinary public API key  | Change user profile picture                                                                                   |
-| CLOUDINARY_API_SECRET             | Cloudinary API secret      | Change user profile picture                                                                                   |
-| GOOGLE_CLIENT_ID                  | Google OAuth client ID     | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
-| GOOGLE_CLIENT_SECRET              | Google OAuth client secret | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
-| RESEND_API_KEY                    | Resend API key (emails)    | Test welcome email sending                                                                                    |
-| NEXT_PUBLIC_DISCORD_CLIENT_ID     | Discord OAuth client ID    | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
-| AUTH_DISCORD_ID                   | Discord OAuth client secret | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
-| AUTH_DISCORD_SECRET               | Discord OAuth client secret | Login/Register (normally other deeper functions require a signed-in user so you will have to add this anyway) |
+### Environment variables
 
-GOOGLE CALLBACK/AUTH IS: http://localhost:3000/api/auth/callback/google
-DISCORD CALLBACK/AUTH IS: http://localhost:3000/api/auth/callback/discord
+The only variable you need for standard development is the MongoDB connection, already set up to point at the Docker container. In your `.env.local`
+
+```
+MONGODB_URI=mongodb://localhost:27017/nxtimer-dev
+```
+
+Leave every other variable as-is unless your PR touches that specific feature, it's not required to configure everything.
 
 ## Contribution Guidelines
 
