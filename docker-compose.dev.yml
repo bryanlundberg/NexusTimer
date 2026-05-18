@@ -3,5 +3,16 @@ services:
     image: mongo:7
     ports: ["27017:27017"]
     volumes: ["nexus_mongo:/data/db"]
+
+  firebase:
+    image: andreysenov/firebase-tools
+    command: firebase emulators:start --project nxtimer-dev --only database
+    working_dir: /home/node
+    volumes:
+      - ./firebase.json:/home/node/firebase.json
+    ports:
+      - "4000:4000"
+      - "9000:9000"
+
 volumes:
   nexus_mongo:
