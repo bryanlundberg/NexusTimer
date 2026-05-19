@@ -9,6 +9,7 @@ export interface AuthSchemaMessages {
   nameTooLong: string
   codeLength: string
   codeNumeric: string
+  passwordsDontMatch: string
 }
 
 export function createSignInSchema(messages: AuthSchemaMessages) {
@@ -35,6 +36,26 @@ export function createVerifyCodeSchema(messages: AuthSchemaMessages) {
   })
 }
 
+export function createForgotPasswordSchema(messages: AuthSchemaMessages) {
+  return z.object({
+    email: z.string().email(messages.emailInvalid)
+  })
+}
+
+export function createResetPasswordSchema(messages: AuthSchemaMessages) {
+  return z
+    .object({
+      password: z.string().min(8, messages.passwordTooShort).max(72, messages.passwordTooLong),
+      confirmPassword: z.string()
+    })
+    .refine((values) => values.password === values.confirmPassword, {
+      message: messages.passwordsDontMatch,
+      path: ['confirmPassword']
+    })
+}
+
 export type SignInValues = z.infer<ReturnType<typeof createSignInSchema>>
 export type SignUpValues = z.infer<ReturnType<typeof createSignUpSchema>>
 export type VerifyCodeValues = z.infer<ReturnType<typeof createVerifyCodeSchema>>
+export type ForgotPasswordValues = z.infer<ReturnType<typeof createForgotPasswordSchema>>
+export type ResetPasswordValues = z.infer<ReturnType<typeof createResetPasswordSchema>>
