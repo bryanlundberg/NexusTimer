@@ -1,25 +1,23 @@
-import { signIn, useSession } from 'next-auth/react'
-import { Button } from '@/components/ui/button'
+'use client'
 import Image from 'next/image'
+import { signIn, useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 
 export default function DiscordButton() {
   const { data: session } = useSession()
   const t = useTranslations('Index.Auth')
+
+  if (session) return null
+
   return (
-    <>
-      {!session && (
-        <>
-          <Button
-            variant={'outline'}
-            className="flex gap-3 items-center w-full justify-start h-10 px-4 transition-all hover:bg-muted"
-            onClick={() => signIn('discord')}
-          >
-            <Image src={'/timer-logos/discord.png'} alt="discord logo" width={24} height={24} />
-            <span className={'font-medium'}>{t('continue-discord')}</span>
-          </Button>
-        </>
-      )}
-    </>
+    <button
+      type="button"
+      onClick={() => signIn('discord')}
+      aria-label={t('continue-discord')}
+      title={t('continue-discord')}
+      className="size-11 rounded-full border bg-background hover:bg-muted hover:scale-105 active:scale-95 transition flex items-center justify-center"
+    >
+      <Image src="/timer-logos/discord.png" alt="" width={22} height={22} />
+    </button>
   )
 }
