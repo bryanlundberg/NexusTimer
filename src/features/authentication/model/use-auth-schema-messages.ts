@@ -14,6 +14,7 @@ export function useAuthSchemaMessages(): AuthSchemaMessages {
     nameTooShort: t('name-too-short'),
     nameTooLong: t('name-too-long'),
     codeLength: t('code-length'),
-    codeNumeric: t('code-numeric')
+    codeNumeric: t('code-numeric'),
+    passwordsDontMatch: t('passwords-dont-match')
   }
 }
