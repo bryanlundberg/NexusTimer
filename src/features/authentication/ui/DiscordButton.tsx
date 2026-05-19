@@ -1,7 +1,9 @@
 'use client'
+
 import Image from 'next/image'
-import { signIn, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
+import OAuthIconButton from '@/features/authentication/ui/OAuthIconButton'
 
 export default function DiscordButton() {
   const { data: session } = useSession()
@@ -10,14 +12,8 @@ export default function DiscordButton() {
   if (session) return null
 
   return (
-    <button
-      type="button"
-      onClick={() => signIn('discord')}
-      aria-label={t('continue-discord')}
-      title={t('continue-discord')}
-      className="size-11 rounded-full border bg-background hover:bg-muted hover:scale-105 active:scale-95 transition flex items-center justify-center"
-    >
+    <OAuthIconButton provider="discord" label={t('continue-discord')}>
       <Image src="/timer-logos/discord.png" alt="" width={22} height={22} />
-    </button>
+    </OAuthIconButton>
   )
 }
