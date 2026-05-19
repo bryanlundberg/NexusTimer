@@ -1,19 +1,22 @@
 'use client'
 
+import { useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { signInSchema, type SignInValues } from '@/features/authentication/model/schemas'
-import { useCredentialsLogin } from '@/features/authentication/model/use-credentials-auth'
-import { useState } from 'react'
+import { createSignInSchema, type SignInValues } from '@/features/authentication/model/schemas'
+import { useAuthSchemaMessages } from '@/features/authentication/model/use-auth-schema-messages'
+import { useCredentialsLogin } from '@/features/authentication/model/hooks/use-credentials-login'
+import AuthField from '@/features/authentication/ui/AuthField'
 
 export default function SignInForm() {
   const router = useRouter()
   const t = useTranslations('Index.Auth')
+  const messages = useAuthSchemaMessages()
+  const schema = useMemo(() => createSignInSchema(messages), [messages])
+
   const { login, isLoading } = useCredentialsLogin()
   const [formError, setFormError] = useState('')
 
@@ -22,7 +25,7 @@ export default function SignInForm() {
     handleSubmit,
     formState: { errors }
   } = useForm<SignInValues>({
-    resolver: zodResolver(signInSchema),
+    resolver: zodResolver(schema),
     defaultValues: { email: '', password: '' }
   })
 
@@ -39,23 +42,24 @@ export default function SignInForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      <div className="flex flex-col gap-1.5">
-        <Label htmlFor="email">{t('email')}</Label>
-        <Input id="email" type="email" autoComplete="email" placeholder="you@example.com" {...register('email')} />
-        {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        <Label htmlFor="password">{t('password')}</Label>
-        <Input
-          id="password"
-          type="password"
-          autoComplete="current-password"
-          placeholder="••••••••"
-          {...register('password')}
-        />
-        {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
-      </div>
+      <AuthField
+        id="email"
+        label={t('email')}
+        type="email"
+        autoComplete="email"
+        placeholder="you@example.com"
+        error={errors.email?.message}
+        {...register('email')}
+      />
+      <AuthField
+        id="password"
+        label={t('password')}
+        type="password"
+        autoComplete="current-password"
+        placeholder="••••••••"
+        error={errors.password?.message}
+        {...register('password')}
+      />
 
       {formError && <p className="text-sm text-destructive">{formError}</p>}
 
