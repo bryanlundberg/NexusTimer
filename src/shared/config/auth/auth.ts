@@ -5,6 +5,7 @@ import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 import Log, { LogType } from '@/entities/log/model/log'
 import { DevProviders } from '@/shared/config/auth/dev-provider'
+import { CredentialsProvider } from '@/shared/config/auth/credentials-provider'
 
 declare module 'next-auth' {
   /**
@@ -18,7 +19,7 @@ declare module 'next-auth' {
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  providers: [Google, Discord, ...DevProviders],
+  providers: [Google, Discord, CredentialsProvider, ...DevProviders],
   callbacks: {
     jwt: async ({ token, user, trigger, session }) => {
       if (trigger === 'update') {
@@ -41,6 +42,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return session
     },
     async signIn({ user, account }) {
+      if (account?.provider === 'credentials') {
+        return true
+      }
+
       try {
         await connectDB()
 

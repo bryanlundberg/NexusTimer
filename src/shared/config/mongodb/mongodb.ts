@@ -8,6 +8,8 @@ import '../../../entities/backup/model/backup'
 import '../../../entities/trainer-solve/model/trainer-solve'
 import '../../../entities/trainer-stats/model/trainer-stats'
 import '../../../entities/log/model/log'
+import '../../../entities/user-credential/model/user-credential'
+import '../../../entities/pending-registration/model/pending-registration'
 
 const connectDB = async () => {
   if (mongoose.connections[0].readyState === 1) {
