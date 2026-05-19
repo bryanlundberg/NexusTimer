@@ -36,7 +36,7 @@ export default function SignInForm() {
       setFormError(result.message)
       return
     }
-    router.push('/')
+    router.push('/app')
     router.refresh()
   }
 
