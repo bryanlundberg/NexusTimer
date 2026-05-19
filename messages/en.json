@@ -94,7 +94,17 @@
       "join-footer": "Free forever · No ads · Open source",
       "invalid-code": "Invalid or expired code.",
       "no-code": "Didn't receive it?",
-      "resend-code": "Resend"
+      "resend-code": "Resend",
+      "validation": {
+        "email-invalid": "Invalid email address",
+        "password-required": "Password is required",
+        "password-too-short": "Password must be at least 8 characters",
+        "password-too-long": "Password must be 72 characters or less",
+        "name-too-short": "Name must be at least 2 characters",
+        "name-too-long": "Name must be 50 characters or less",
+        "code-length": "Code must be 6 digits",
+        "code-numeric": "Code must be numeric"
+      }
     },
     "CoreHeader": {
       "server-online": "Server: Online",
