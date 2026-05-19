@@ -1,26 +1,40 @@
 import { z } from 'zod'
 
-export const signInSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(1, 'Password is required')
-})
+export interface AuthSchemaMessages {
+  emailInvalid: string
+  passwordRequired: string
+  passwordTooShort: string
+  passwordTooLong: string
+  nameTooShort: string
+  nameTooLong: string
+  codeLength: string
+  codeNumeric: string
+}
 
-export const signUpSchema = z.object({
-  name: z.string().trim().min(2, 'Name must be at least 2 characters').max(50, 'Name must be 50 characters or less'),
-  email: z.string().email('Invalid email address'),
-  password: z
-    .string()
-    .min(8, 'Password must be at least 8 characters')
-    .max(72, 'Password must be 72 characters or less')
-})
+export function createSignInSchema(messages: AuthSchemaMessages) {
+  return z.object({
+    email: z.string().email(messages.emailInvalid),
+    password: z.string().min(1, messages.passwordRequired)
+  })
+}
 
-export const verifyCodeSchema = z.object({
-  code: z
-    .string()
-    .length(6, 'Code must be 6 digits')
-    .regex(/^\d{6}$/, 'Code must be numeric')
-})
+export function createSignUpSchema(messages: AuthSchemaMessages) {
+  return z.object({
+    name: z.string().trim().min(2, messages.nameTooShort).max(50, messages.nameTooLong),
+    email: z.string().email(messages.emailInvalid),
+    password: z.string().min(8, messages.passwordTooShort).max(72, messages.passwordTooLong)
+  })
+}
 
-export type SignInValues = z.infer<typeof signInSchema>
-export type SignUpValues = z.infer<typeof signUpSchema>
-export type VerifyCodeValues = z.infer<typeof verifyCodeSchema>
+export function createVerifyCodeSchema(messages: AuthSchemaMessages) {
+  return z.object({
+    code: z
+      .string()
+      .length(6, messages.codeLength)
+      .regex(/^\d{6}$/, messages.codeNumeric)
+  })
+}
+
+export type SignInValues = z.infer<ReturnType<typeof createSignInSchema>>
+export type SignUpValues = z.infer<ReturnType<typeof createSignUpSchema>>
+export type VerifyCodeValues = z.infer<ReturnType<typeof createVerifyCodeSchema>>
