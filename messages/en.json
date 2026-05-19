@@ -95,6 +95,20 @@
       "invalid-code": "Invalid or expired code.",
       "no-code": "Didn't receive it?",
       "resend-code": "Resend",
+      "forgot-password": "Forgot your password?",
+      "forgot-password-title": "Reset your password",
+      "forgot-password-subtitle": "Enter your email and we'll send you a reset link.",
+      "forgot-password-submit": "Send reset link",
+      "forgot-password-sent-title": "Check your inbox",
+      "forgot-password-sent-description": "If an account exists for {email}, we sent a link to reset your password.",
+      "reset-password-title": "Choose a new password",
+      "reset-password-subtitle": "Enter your new password twice to continue.",
+      "reset-password-for": "Resetting password for {email}",
+      "new-password": "New password",
+      "confirm-password": "Confirm password",
+      "reset-password-submit": "Reset password",
+      "invalid-token": "This reset link is invalid or has expired.",
+      "back-to-sign-in": "Back to sign in",
       "validation": {
         "email-invalid": "Invalid email address",
         "password-required": "Password is required",
@@ -103,7 +117,8 @@
         "name-too-short": "Name must be at least 2 characters",
         "name-too-long": "Name must be 50 characters or less",
         "code-length": "Code must be 6 digits",
-        "code-numeric": "Code must be numeric"
+        "code-numeric": "Code must be numeric",
+        "passwords-dont-match": "Passwords don't match"
       }
     },
     "CoreHeader": {
