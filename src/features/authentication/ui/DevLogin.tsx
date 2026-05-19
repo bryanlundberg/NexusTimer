@@ -1,19 +1,14 @@
 'use client'
-import { signIn } from 'next-auth/react'
+
 import { UserRound } from 'lucide-react'
+import OAuthIconButton from '@/features/authentication/ui/OAuthIconButton'
 
 export default function DevLogin() {
   if (process.env.NODE_ENV === 'production') return null
 
   return (
-    <button
-      type="button"
-      onClick={() => signIn('dev-login')}
-      aria-label="Continue as guest"
-      title="Continue as guest"
-      className="size-11 rounded-full border bg-background hover:bg-muted hover:scale-105 active:scale-95 transition flex items-center justify-center"
-    >
+    <OAuthIconButton provider="dev-login" label="Continue as guest">
       <UserRound className="size-5" />
-    </button>
+    </OAuthIconButton>
   )
 }
