@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -60,6 +61,13 @@ export default function SignInForm() {
         error={errors.password?.message}
         {...register('password')}
       />
+
+      <Link
+        href="/forgot-password"
+        className="self-end text-xs text-muted-foreground hover:text-foreground hover:underline"
+      >
+        {t('forgot-password')}
+      </Link>
 
       {formError && <p className="text-sm text-destructive">{formError}</p>}
 
