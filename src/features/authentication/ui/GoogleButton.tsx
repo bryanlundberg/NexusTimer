@@ -1,7 +1,9 @@
 'use client'
+
 import Image from 'next/image'
-import { signIn, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
+import OAuthIconButton from '@/features/authentication/ui/OAuthIconButton'
 
 export default function GoogleButton() {
   const { data: session } = useSession()
@@ -10,14 +12,8 @@ export default function GoogleButton() {
   if (session) return null
 
   return (
-    <button
-      type="button"
-      onClick={() => signIn('google')}
-      aria-label={t('continue-google')}
-      title={t('continue-google')}
-      className="size-11 rounded-full border bg-background hover:bg-muted hover:scale-105 active:scale-95 transition flex items-center justify-center"
-    >
+    <OAuthIconButton provider="google" label={t('continue-google')}>
       <Image src="/timer-logos/google.svg" alt="" width={20} height={20} />
-    </button>
+    </OAuthIconButton>
   )
 }
