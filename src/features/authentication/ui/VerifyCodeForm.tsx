@@ -48,7 +48,7 @@ export default function VerifyCodeForm({ email, password }: Props) {
       setValue('code', '')
       return
     }
-    router.push('/')
+    router.push('/app')
     router.refresh()
   }
 
