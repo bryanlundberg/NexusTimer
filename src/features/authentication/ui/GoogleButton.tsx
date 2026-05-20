@@ -9,7 +9,7 @@ export default function GoogleButton() {
   const { data: session } = useSession()
   const t = useTranslations('Index.Auth')
 
-  if (session) return null
+  if (session?.user?.id) return null
 
   return (
     <OAuthIconButton provider="google" label={t('continue-google')}>
