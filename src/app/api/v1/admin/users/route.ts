@@ -12,6 +12,8 @@ import UserCredential from '@/entities/user-credential/model/user-credential'
 import EmailVerification from '@/entities/email-verification/model/email-verification'
 import PendingRegistration from '@/entities/pending-registration/model/pending-registration'
 import PasswordResetToken from '@/entities/password-reset-token/model/password-reset-token'
+import Session from '@/entities/session/model/session'
+import { sessionCache } from '@/shared/lib/session-cache'
 
 type RelatedCollection = {
   key: string
@@ -29,7 +31,8 @@ const RELATED_COLLECTIONS: RelatedCollection[] = [
   { key: 'credentials', model: UserCredential, filter: ({ userId }) => ({ userId }) },
   { key: 'emailVerifications', model: EmailVerification, filter: ({ userId }) => ({ userId }) },
   { key: 'passwordResetTokens', model: PasswordResetToken, filter: ({ userId }) => ({ userId }) },
-  { key: 'pendingRegistrations', model: PendingRegistration, filter: ({ email }) => ({ email }) }
+  { key: 'pendingRegistrations', model: PendingRegistration, filter: ({ email }) => ({ email }) },
+  { key: 'sessions', model: Session, filter: ({ userId }) => ({ userId }) }
 ]
 
 function unauthorized(request: NextRequest) {
@@ -99,6 +102,9 @@ export async function DELETE(request: NextRequest) {
     if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 })
 
     if (user.backup?.url) await deleteUploadthingFile(user.backup.url)
+
+    const userSessions = await Session.find({ userId: user._id }, { sessionId: 1 }).lean<{ sessionId: string }[]>()
+    await Promise.all(userSessions.map((s) => sessionCache.invalidate(s.sessionId)))
 
     const ctx = { userId: user._id, email }
     const deleted = Object.fromEntries(
