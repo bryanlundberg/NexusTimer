@@ -9,6 +9,7 @@ import {
   FileTextIcon,
   LapTimerIcon,
   Link2Icon,
+  LockClosedIcon,
   MagicWandIcon,
   SpeakerLoudIcon,
   UpdateIcon
@@ -29,6 +30,7 @@ import MenuSelectColor from '@/features/settings/ui/MenuSelectColor'
 import MenuSelectVoiceGender from '@/features/settings/ui/MenuSelectVoiceGender'
 import MenuSelectDefaultStartCube from '@/features/settings/ui/MenuSelectDefaultStartCube'
 import { DataImportExport } from '@/features/settings/ui/DataImportExport'
+import MenuToggleAnalytics from '@/features/settings/ui/MenuToggleAnalytics'
 import useWebsiteColors from '@/shared/model/useWebsiteColors'
 import { Trash } from 'lucide-react'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
@@ -239,6 +241,10 @@ export default function OptionsPage() {
             inputProps={{ min: defaultSettings.sync.backupInterval, max: 100, step: 5 }}
             description={t('SettingsPage.backup-interval-description')}
           />
+        </MenuSection>
+        <Separator className="my-4 opacity-50" />
+        <MenuSection id="privacy" icon={<LockClosedIcon />} title={t('Settings-menu.privacy')}>
+          <MenuToggleAnalytics />
         </MenuSection>
         <Separator className="my-4 opacity-50" />
         <MenuSection id="app-data" icon={<FileTextIcon />} title={t('Settings-menu.data')}>
