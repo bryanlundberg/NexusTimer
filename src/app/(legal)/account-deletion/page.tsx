@@ -64,6 +64,10 @@ export default function AccountDeletionPage() {
       <H2>Important notes</H2>
 
       <ul className="list-disc pl-6">
+        <Li>
+          Requests are reviewed manually and may take up to 30 days to be processed. Once approved, all associated data
+          is permanently and immediately deleted from our servers.
+        </Li>
         <Li>Deletion is permanent and cannot be undone.</Li>
         <Li>If you sign in again with the same provider after deletion, a new empty account will be created.</Li>
         <Li>
