@@ -50,7 +50,8 @@
       "custom-background-description": "Upload a custom background image to personalize your timer (max 4MB)",
       "data-import-export": "Backup your data to a file or restore from a previous backup",
       "auto-select-description": "Automatically select a cube at application start",
-      "language-description": "Change the language used throughout the application"
+      "language-description": "Change the language used throughout the application",
+      "analytics": "Allow anonymous usage analytics to help improve NexusTimer"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstruction",
@@ -523,6 +524,8 @@
       "allowed-file-types": "Only image files (JPEG, PNG, GIF) are allowed.",
       "max-file-size": "Maximum file size allowed is",
       "data": "App Data",
+      "privacy": "Privacy",
+      "analytics": "Google Analytics",
       "preferences": "Preferences",
       "auto-select": "Auto-select at startup",
       "import-from-file": "Import from file",
