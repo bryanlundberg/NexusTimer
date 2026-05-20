@@ -1,11 +1,44 @@
 import NextAuth, { type DefaultSession } from 'next-auth'
 import Google from 'next-auth/providers/google'
 import Discord from 'next-auth/providers/discord'
+import { randomUUID, createHash } from 'crypto'
+import { headers } from 'next/headers'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
+import SessionModel from '@/entities/session/model/session'
 import Log, { LogType } from '@/entities/log/model/log'
 import { DevProviders } from '@/shared/config/auth/dev-provider'
 import { CredentialsProvider } from '@/shared/config/auth/credentials-provider'
+import { sessionCache } from '@/shared/lib/session-cache'
+
+const SESSION_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000
+
+async function readRequestMetadata() {
+  try {
+    const h = await headers()
+    const userAgent = h.get('user-agent') || undefined
+    const forwardedFor = h.get('x-forwarded-for') || h.get('x-real-ip')
+    const ip = forwardedFor?.split(',')[0]?.trim()
+    const ipHash = ip ? createHash('sha256').update(ip).digest('hex') : undefined
+    return { userAgent, ipHash }
+  } catch {
+    return { userAgent: undefined, ipHash: undefined }
+  }
+}
+
+async function isSessionValid(sessionId: string): Promise<boolean> {
+  const cached = await sessionCache.get(sessionId)
+  if (cached !== null) return cached
+
+  await connectDB()
+  const doc = await SessionModel.findOne({ sessionId }, { revokedAt: 1, expiresAt: 1 }).lean<{
+    revokedAt?: Date
+    expiresAt: Date
+  } | null>()
+  const valid = Boolean(doc && !doc.revokedAt && doc.expiresAt > new Date())
+  await sessionCache.set(sessionId, valid)
+  return valid
+}
 
 declare module 'next-auth' {
   /**
@@ -31,11 +64,34 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.id = user.id
         token.picture = user.image
         token.name = user.name
+
+        const sessionId = randomUUID()
+        const { userAgent, ipHash } = await readRequestMetadata()
+
+        try {
+          await connectDB()
+          await SessionModel.create({
+            userId: user.id,
+            sessionId,
+            userAgent,
+            ipHash,
+            expiresAt: new Date(Date.now() + SESSION_MAX_AGE_MS)
+          })
+          token.sid = sessionId
+          await sessionCache.set(sessionId, true)
+        } catch (error) {
+          console.error('Failed to create session record:', error)
+        }
       }
 
       return token
     },
     session: async ({ session, token }) => {
+      const sessionId = token?.sid as string | undefined
+      if (!sessionId || !(await isSessionValid(sessionId))) {
+        return { ...session, user: undefined as unknown as typeof session.user }
+      }
+
       if (token?.id) session.user.id = token.id as string
       if (token?.picture) session.user.image = token.picture as string
       if (token?.name) session.user.name = token.name as string
@@ -101,6 +157,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           console.error('Failed to write log:', error)
         }
         return false
+      }
+    }
+  },
+  events: {
+    signOut: async (message) => {
+      const sessionId = 'token' in message ? (message.token?.sid as string | undefined) : undefined
+      if (!sessionId) return
+      await sessionCache.invalidate(sessionId)
+      try {
+        await connectDB()
+        await SessionModel.updateOne({ sessionId }, { $set: { revokedAt: new Date() } })
+      } catch (error) {
+        console.error('Failed to revoke session record:', error)
       }
     }
   }
