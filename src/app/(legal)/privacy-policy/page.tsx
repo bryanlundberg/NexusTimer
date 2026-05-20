@@ -94,7 +94,12 @@ export default function PrivacyPolicyPage() {
         to request access, change, update or delete your personal information at any time via email:
         contact.nexustimer@gmail.com. You have the right to these options as well as the right to not be discriminated
         against for exercising these options. A small fee may be imposed for access and disclosure of your personal
-        information, where permitted under applicable law.
+        information, where permitted under applicable law. For step-by-step instructions on requesting the permanent
+        deletion of your account, see our{' '}
+        <a className="underline" href="/account-deletion">
+          Account Deletion
+        </a>{' '}
+        page.
       </Para>
 
       <H2>Security</H2>

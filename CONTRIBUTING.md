@@ -23,7 +23,7 @@ pnpm dev
 
 ### What the Docker setup includes
 
-A single local MongoDB instance, and Firebase Emulator. That's it.
+A single local MongoDB instance, Firebase Emulator and Redis Server. That's it.
 
 ### Environment variables
 

@@ -9,7 +9,7 @@ export default function DiscordButton() {
   const { data: session } = useSession()
   const t = useTranslations('Index.Auth')
 
-  if (session) return null
+  if (session?.user?.id) return null
 
   return (
     <OAuthIconButton provider="discord" label={t('continue-discord')}>

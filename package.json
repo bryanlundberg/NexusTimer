@@ -112,6 +112,7 @@
     "react-use-measure": "^2.1.7",
     "react-use-size": "^5.0.1",
     "recharts": "2.15.4",
+    "redis": "^5.12.1",
     "resend": "^4.1.2",
     "scrambow": "^1.8.1",
     "sharp": "0.32.6",
