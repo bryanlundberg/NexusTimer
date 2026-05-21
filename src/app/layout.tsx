@@ -73,11 +73,26 @@ export async function generateMetadata(): Promise<Metadata> {
     formatDetection: {
       telephone: false
     },
+    icons: {
+      icon: [
+        { url: '/favicon.ico' },
+        { url: '/android/res/mipmap-mdpi/ic_launcher.png', sizes: '48x48', type: 'image/png' },
+        { url: '/android/res/mipmap-xxxhdpi/ic_launcher.png', sizes: '192x192', type: 'image/png' },
+        { url: '/android/play_store_512.png', sizes: '512x512', type: 'image/png' }
+      ],
+      shortcut: ['/favicon.ico'],
+      apple: [
+        { url: '/ios/AppIcon@2x.png', sizes: '120x120', type: 'image/png' },
+        { url: '/ios/AppIcon@3x.png', sizes: '180x180', type: 'image/png' },
+        { url: '/ios/AppIcon@2x~ipad.png', sizes: '152x152', type: 'image/png' },
+        { url: '/ios/AppIcon-83.5@2x~ipad.png', sizes: '167x167', type: 'image/png' }
+      ]
+    },
     appleWebApp: {
       capable: true,
       statusBarStyle: 'default',
       title: t('title'),
-      startupImage: ['/logo.png']
+      startupImage: ['/ios/AppIcon~ios-marketing.png']
     },
     robots: {
       index: true,
@@ -94,7 +109,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#FFFFFF'
+  themeColor: '#000000'
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
