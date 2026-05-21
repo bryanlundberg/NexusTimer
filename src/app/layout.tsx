@@ -74,12 +74,7 @@ export async function generateMetadata(): Promise<Metadata> {
       telephone: false
     },
     icons: {
-      icon: [
-        { url: '/favicon.ico' },
-        { url: '/android/mipmap-mdpi/ic_launcher.webp', sizes: '48x48', type: 'image/webp' },
-        { url: '/android/mipmap-xxxhdpi/ic_launcher.webp', sizes: '192x192', type: 'image/webp' },
-        { url: '/android/ic_launcher-web.png', sizes: '512x512', type: 'image/png' }
-      ],
+      icon: [{ url: '/favicon.ico' }],
       shortcut: ['/favicon.ico'],
       apple: [
         { url: '/ios/AppIcon.appiconset/Icon-App-60x60@2x.png', sizes: '120x120', type: 'image/png' },
