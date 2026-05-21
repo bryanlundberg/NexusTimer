@@ -8,42 +8,49 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'An end-to-end, highly customizable speedcubing application.',
     start_url: '/app',
     scope: '/',
-    display: 'fullscreen',
+    display: 'standalone',
+    display_override: ['standalone', 'minimal-ui'],
     background_color: '#000000',
     theme_color: '#000000',
     icons: [
       {
-        src: '/android/res/mipmap-mdpi/ic_launcher.png',
+        src: '/android/mipmap-ldpi/ic_launcher.webp',
+        sizes: '36x36',
+        type: 'image/webp'
+      },
+      {
+        src: '/android/mipmap-mdpi/ic_launcher.webp',
         sizes: '48x48',
-        type: 'image/png'
+        type: 'image/webp'
       },
       {
-        src: '/android/res/mipmap-hdpi/ic_launcher.png',
+        src: '/android/mipmap-hdpi/ic_launcher.webp',
         sizes: '72x72',
-        type: 'image/png'
+        type: 'image/webp'
       },
       {
-        src: '/android/res/mipmap-xhdpi/ic_launcher.png',
+        src: '/android/mipmap-xhdpi/ic_launcher.webp',
         sizes: '96x96',
-        type: 'image/png'
+        type: 'image/webp'
       },
       {
-        src: '/android/res/mipmap-xxhdpi/ic_launcher.png',
+        src: '/android/mipmap-xxhdpi/ic_launcher.webp',
         sizes: '144x144',
-        type: 'image/png'
+        type: 'image/webp'
       },
       {
-        src: '/android/res/mipmap-xxxhdpi/ic_launcher.png',
+        src: '/android/mipmap-xxxhdpi/ic_launcher.webp',
         sizes: '192x192',
-        type: 'image/png'
+        type: 'image/webp'
       },
       {
-        src: '/android/play_store_512.png',
+        src: '/android/ic_launcher-web.png',
         sizes: '512x512',
-        type: 'image/png'
+        type: 'image/png',
+        purpose: 'any'
       },
       {
-        src: '/android/play_store_512.png',
+        src: '/android/playstore-icon.png',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'maskable'
