@@ -3,6 +3,6 @@
   "target": {
     "namespace": "android_app",
     "package_name": "com.nexustimer",
-    "sha256_cert_fingerprints": ["06:94:B0:35:0B:7C:62:75:8B:84:5D:AE:2B:8F:45:69:8C:CF:16:37:DB:C5:06:42:E6:7F:AC:07:80:D0:02:36"]
+    "sha256_cert_fingerprints": ["71:74:DF:63:46:6F:F1:60:A7:E6:8D:F7:38:B9:5D:DB:2A:62:89:4D:89:77:A7:B4:90:A5:1D:8C:79:8D:0B:AF"]
   }
 }]
