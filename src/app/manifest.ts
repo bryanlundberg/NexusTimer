@@ -9,16 +9,41 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: '/app',
     scope: '/',
     display: 'fullscreen',
-    background_color: '#ffffff',
+    background_color: '#000000',
     theme_color: '#000000',
     icons: [
       {
-        src: '/icon512_rounded.png',
+        src: '/android/res/mipmap-mdpi/ic_launcher.png',
+        sizes: '48x48',
+        type: 'image/png'
+      },
+      {
+        src: '/android/res/mipmap-hdpi/ic_launcher.png',
+        sizes: '72x72',
+        type: 'image/png'
+      },
+      {
+        src: '/android/res/mipmap-xhdpi/ic_launcher.png',
+        sizes: '96x96',
+        type: 'image/png'
+      },
+      {
+        src: '/android/res/mipmap-xxhdpi/ic_launcher.png',
+        sizes: '144x144',
+        type: 'image/png'
+      },
+      {
+        src: '/android/res/mipmap-xxxhdpi/ic_launcher.png',
+        sizes: '192x192',
+        type: 'image/png'
+      },
+      {
+        src: '/android/play_store_512.png',
         sizes: '512x512',
         type: 'image/png'
       },
       {
-        src: '/icon512_maskable.png',
+        src: '/android/play_store_512.png',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'maskable'
