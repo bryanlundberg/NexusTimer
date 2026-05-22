@@ -1,4 +1,5 @@
 'use client'
+import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { useIsOnline } from 'react-use-is-online'
 
@@ -10,8 +11,11 @@ import { useIsOnline } from 'react-use-is-online'
 export function OfflineIndicator() {
   const { isOnline } = useIsOnline()
   const t = useTranslations('Index')
+  const [mounted, setMounted] = useState(false)
 
-  if (isOnline) return null
+  useEffect(() => setMounted(true), [])
+
+  if (!mounted || isOnline) return null
 
   return (
     <div
