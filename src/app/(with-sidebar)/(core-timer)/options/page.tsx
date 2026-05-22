@@ -154,6 +154,12 @@ export default function OptionsPage() {
             control={control}
             description={t('Settings-descriptions.scramble-background')}
           />
+          <MenuOption
+            name={'features.haptics'}
+            label={t('Settings-menu.haptics')}
+            control={control}
+            description={t('Settings-descriptions.haptics')}
+          />
         </MenuSection>
         <Separator className="my-4 opacity-50" />
         <MenuSection id="alerts" icon={<BellIcon />} title={t('Settings-menu.alerts')}>
