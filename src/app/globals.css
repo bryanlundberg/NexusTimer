@@ -122,9 +122,25 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    /* Remove the grey/blue flash when tapping elements on mobile. */
+    -webkit-tap-highlight-color: transparent;
   }
+  html,
   body {
     @apply bg-background text-foreground;
+    /* Kill the rubber-band bounce and accidental pull-to-refresh that
+       reveal a page as "web". A stray gesture mid-solve is fatal. */
+    overscroll-behavior: none;
+  }
+  /* Interactive controls should feel like native buttons: no text selection
+     on long-press, and no 300ms tap delay. Inputs keep their default. */
+  button,
+  a,
+  [role='button'],
+  label {
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
   }
 }
 
