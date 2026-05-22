@@ -84,6 +84,7 @@ NexusTimer is available in several languages:
 - 🇵🇹 Portuguese
 - 🇷🇺 Russian
 - 🇨🇳 Chinese
+- 🇺🇦 Ukrainian
 
 ---
 
