@@ -126,30 +126,36 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link rel="preconnect" href="https://firebaseio.com" />
         <link rel="dns-prefetch" href="https://firebaseio.com" />
         <JsonLd locale={locale} title={title} description={description} url={url} />
-        {/* Consent Mode v2: defaults BEFORE GA loads — required for GDPR compliance */}
-        <Script id="google-consent-default" strategy="beforeInteractive">
+        {/* Consent Mode v2: defaults BEFORE GA loads — required for GDPR compliance.
+            Native inline script so it executes synchronously in <head> before GA;
+            next/script beforeInteractive would warn under React 19 and isn't meant
+            to be placed manually inside <head>. */}
+        <script
+          id="google-consent-default"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                analytics_storage: 'denied',
+                functionality_storage: 'granted',
+                security_storage: 'granted',
+                wait_for_update: 500
+              });
+            `
+          }}
+        />
+      </head>
+      <body className={inter.className}>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-441RYCJK0K" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
-            gtag('consent', 'default', {
-              analytics_storage: 'denied',
-              functionality_storage: 'granted',
-              security_storage: 'granted',
-              wait_for_update: 500
-            });
+            gtag('js', new Date());
+            gtag('config', 'G-441RYCJK0K');
           `}
         </Script>
-      </head>
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-441RYCJK0K" strategy="afterInteractive" />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-441RYCJK0K');
-        `}
-      </Script>
-      <body className={inter.className}>
         <NuqsAdapter>
           <SessionProvider session={session}>
             <NextIntlClientProvider messages={messages}>
