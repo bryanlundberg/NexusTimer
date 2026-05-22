@@ -14,7 +14,8 @@ export const defaultSettings: Settings = {
     sessionStats: true,
     quickActionButtons: true,
     hideWhileSolving: false,
-    scrambleBackground: false
+    scrambleBackground: false,
+    haptics: true
   },
   alerts: {
     bestTime: true,
