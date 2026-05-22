@@ -1,5 +1,8 @@
 {
   "Index": {
+    "Offline": {
+      "offline": "Sin conexión"
+    },
     "sidebar-rotating-text": {
       "text1": "¿Listo para resolver?",
       "text2": "Rompe tu récord",
@@ -352,6 +355,7 @@
       "quick-action-buttons": "Botones de acción rápida",
       "hide-while-solving": "Ocultar tiempo al resolver",
       "scramble-background": "Scramble de fondo",
+      "haptics": "Vibración háptica",
       "alerts": "Alertas",
       "best-time": "Mejor tiempo",
       "best-average": "Mejor promedio",
@@ -485,6 +489,7 @@
       "new-personal-best-sound": "Reproduce un sonido al lograr un nuevo récord personal (PB).",
       "quick-action-buttons": "Muestra botones para acciones rápidas como Borrar y DNF.",
       "scramble-background": "Muestra el scramble como elemento de fondo.",
+      "haptics": "Vibra cuando el cronómetro está listo para empezar (solo dispositivos compatibles).",
       "scramble-image": "Muestra una representación visual del scramble.",
       "session-stats": "Muestra estadísticas de la sesión actual.",
       "start-cue": "Muestra una señal visual cuando el cronómetro está listo.",
