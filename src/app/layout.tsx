@@ -16,6 +16,7 @@ import { Overlay } from '@/shared/ui/overlay/overlay'
 import PreloadAppProvider from '@/components/preload-app-provider'
 import Script from 'next/script'
 import CookieConsentBanner from '@/components/cookie-consent-banner'
+import { OfflineIndicator } from '@/shared/ui/offline-indicator/OfflineIndicator'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale()
@@ -155,6 +156,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem disableTransitionOnChange>
                 <SidebarProvider>
                   <AlertsProvider>
+                    <OfflineIndicator />
                     <PreloadAppProvider>{children}</PreloadAppProvider>
                     <Overlay />
                     <CookieConsentBanner />
