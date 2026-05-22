@@ -15,6 +15,7 @@ type Features = {
   quickActionButtons: boolean
   hideWhileSolving: boolean
   scrambleBackground: boolean
+  haptics: boolean
 }
 
 type Alerts = {
