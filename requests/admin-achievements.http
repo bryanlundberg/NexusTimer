@@ -1,0 +1,68 @@
+### Admin Achievements API
+@baseUrl = http://localhost:3000
+@adminToken = WRONG_VALUE
+@email = user@example.com
+@key = public-sponsor
+
+### -----------------------------------------------------------------------
+### Allowed keys for @key (granted achievements only):
+###   public-sponsor   → Project Patron
+###   contributor      → Contributor
+###   bug-hunter       → Bug Hunter
+### -----------------------------------------------------------------------
+
+
+### List achievements granted to a user
+GET {{baseUrl}}/api/v1/admin/achievements?email={{email}}
+x-admin-token: {{adminToken}}
+
+
+### Grant an achievement to a user
+POST {{baseUrl}}/api/v1/admin/achievements
+x-admin-token: {{adminToken}}
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "key": "{{key}}"
+}
+
+
+### Remove an achievement from a user
+DELETE {{baseUrl}}/api/v1/admin/achievements?email={{email}}&key={{key}}
+x-admin-token: {{adminToken}}
+
+
+### --- Quick presets -------------------------------------------------------
+
+### Grant: Project Patron
+POST {{baseUrl}}/api/v1/admin/achievements
+x-admin-token: {{adminToken}}
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "key": "public-sponsor"
+}
+
+
+### Grant: Contributor
+POST {{baseUrl}}/api/v1/admin/achievements
+x-admin-token: {{adminToken}}
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "key": "contributor"
+}
+
+
+### Grant: Bug Hunter
+POST {{baseUrl}}/api/v1/admin/achievements
+x-admin-token: {{adminToken}}
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "key": "bug-hunter"
+}
