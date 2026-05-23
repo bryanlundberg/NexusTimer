@@ -2,7 +2,18 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { SkipForward, BookmarkCheck, Bookmark, History, Target, ListChecks, Eye, EyeOff, BookOpen } from 'lucide-react'
+import {
+  SkipForward,
+  BookmarkCheck,
+  Bookmark,
+  History,
+  Target,
+  ListChecks,
+  Eye,
+  EyeOff,
+  BookOpen,
+  Undo2
+} from 'lucide-react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { TwistyPlayer } from 'cubing/twisty'
 import { cn } from '@/shared/lib/utils'
@@ -20,6 +31,8 @@ interface TrainerCurrentCaseProps {
   ao12?: string
   totalSolves?: number
   onSkip?: () => void
+  onUndoLast?: () => void
+  lastSolveTime?: string
   onToggleLearned?: () => void
   historyHref?: string
   targetSeconds?: number
@@ -45,6 +58,8 @@ export default function TrainerCurrentCase({
   ao12,
   totalSolves,
   onSkip,
+  onUndoLast,
+  lastSolveTime,
   onToggleLearned,
   historyHref,
   targetSeconds,
@@ -201,6 +216,26 @@ export default function TrainerCurrentCase({
           </div>
         </div>
       </div>
+
+      {onUndoLast && (
+        <div className="flex justify-center">
+          <Button
+            variant="destructive"
+            size="sm"
+            onClick={onUndoLast}
+            aria-label={t('actions.undoLast')}
+            className="h-9 gap-2"
+          >
+            <Undo2 className="h-4 w-4" />
+            <span>{t('actions.undoLast')}</span>
+            {lastSolveTime && (
+              <span className="font-mono tabular-nums opacity-90 border-l border-current/30 pl-2 ml-1">
+                {lastSolveTime}
+              </span>
+            )}
+          </Button>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-center">
         <Stat label={t('stats.best')} value={best ?? '—'} />
