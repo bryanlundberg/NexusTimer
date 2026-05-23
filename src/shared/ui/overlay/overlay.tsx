@@ -16,7 +16,10 @@ export const Overlay = () => {
   useEffect(() => {
     if (component) {
       setRenderedComponent(component)
+      return
     }
+    const timeout = setTimeout(() => setRenderedComponent(null), 250)
+    return () => clearTimeout(timeout)
   }, [component])
 
   return (
