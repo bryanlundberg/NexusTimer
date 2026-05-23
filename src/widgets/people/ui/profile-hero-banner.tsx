@@ -10,23 +10,17 @@ import formatTime from '@/shared/lib/formatTime'
 import { sort } from 'fast-sort'
 import { useLocale, useTranslations } from 'next-intl'
 import moment from 'moment'
-import useAchievements from '@/entities/achievement/model/useAchievements'
 import { ArrowUpIcon } from '@heroicons/react/24/solid'
 
 interface Props {
   user: UserDocument
   cubes: Cube[]
+  level: number
 }
 
-export function ProfileHeroBanner({ user, cubes }: Props) {
+export function ProfileHeroBanner({ user, cubes, level }: Props) {
   const locale = useLocale()
   const t = useTranslations('Index.PeoplePage.hero')
-
-  const { ACHIEVEMENTS_CONFIG } = useAchievements()
-  const level = useMemo(
-    () => ACHIEVEMENTS_CONFIG.filter((a) => a.condition({ cubes, user })).length,
-    [ACHIEVEMENTS_CONFIG, cubes, user]
-  )
 
   const pb3x3 = useMemo(() => {
     const solves = cubes
