@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
-import { Resend } from 'resend'
-import RegisterEmail from '@/features/emails/ui/RegisterEmail'
-
-const resend = new Resend(process.env.RESEND_API_KEY || 'development-placeholder-no-email-sent')
 
 export async function GET(request: NextRequest) {
   try {
@@ -74,12 +70,6 @@ export async function POST(request: NextRequest) {
 
     if (!user) {
       user = await User.create({ email, name, image, providers: [{ provider, providerId }] })
-      await resend.emails.send({
-        from: 'NexusTimer <onboarding@nexustimer.com>',
-        to: [email],
-        subject: "Welcome to NexusTimer – Let's Get Cubing!",
-        react: RegisterEmail({ name }) as React.ReactElement
-      })
     }
 
     return NextResponse.json(user)
