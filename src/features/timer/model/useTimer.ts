@@ -5,6 +5,7 @@ import useHoldToStart from './useHoldToStart'
 import useEventHandlers from './useEventHandlers'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { Cube } from '@/entities/cube/model/types'
+import { triggerHaptic } from '@/shared/model/useHaptics'
 
 interface UseTimerProps {
   isSolving: boolean
@@ -99,6 +100,7 @@ export default function useTimer({
       removeInspection()
       removeHolding()
       setTimerStatus(TimerStatus.READY)
+      triggerHaptic()
       startTimer()
       return
     }
@@ -106,6 +108,7 @@ export default function useTimer({
       removeInspection()
       removeHolding()
       setTimerStatus(TimerStatus.READY)
+      triggerHaptic()
       startTimer()
       return
     }
