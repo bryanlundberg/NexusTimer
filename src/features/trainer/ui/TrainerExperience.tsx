@@ -33,7 +33,6 @@ import { patchTrainerTarget } from '@/features/trainer/model/patchTrainerTarget'
 import { TRAINER_DEFAULT_TARGET_SECONDS } from '@/features/trainer/lib/constants'
 import { buildVizConfig, formatMs } from '@/features/trainer/lib/trainerUtils'
 import { useSession } from 'next-auth/react'
-import { useHapticFeedback } from '@/shared/model/useHapticFeedback'
 import { cn } from '@/shared/lib/utils'
 
 export default function TrainerExperience() {
@@ -133,8 +132,6 @@ export default function TrainerExperience() {
         })
     }
   })
-
-  useHapticFeedback(timerStatus, settings.features.haptics)
 
   const handleSkip = () => advanceCase(sessionCases.length)
 
