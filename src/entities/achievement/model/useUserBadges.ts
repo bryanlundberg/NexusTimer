@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Cube } from '@/entities/cube/model/types'
-import { UserDocument } from '@/entities/user/model/user'
+import { UserProfile } from '@/entities/user/model/user'
 import { Achievement } from './types'
 import { ACHIEVEMENTS_CONFIG, computeSolveStats } from './achievements'
 
@@ -22,7 +22,7 @@ export interface UserBadgesResult {
  * Call this **once per profile** (in `PeopleTabs`) and pass the result down
  * via props — otherwise each consumer re-runs the full O(N) sweep.
  */
-export default function useUserBadges({ user, cubes }: { user: UserDocument; cubes: Cube[] }): UserBadgesResult {
+export default function useUserBadges({ user, cubes }: { user: UserProfile; cubes: Cube[] }): UserBadgesResult {
   return useMemo(() => {
     const stats = computeSolveStats(cubes)
     const grantedKeys = new Set(user.grantedAchievements ?? [])
