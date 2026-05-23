@@ -3,13 +3,16 @@ import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import OverviewTabContent from '@/widgets/people/ui/overview-tab-content'
 import CubesTabContent from '@/widgets/people/ui/cubes-tab-content'
 import TimelineTabContent from '@/widgets/people/ui/timeline-tab-content'
+import AchievementsTabContent from '@/widgets/people/ui/achievements-tab-content'
 import { Cube } from '@/entities/cube/model/types'
+import { UserBadgesResult } from '@/entities/achievement/model/useUserBadges'
 
 interface Props {
   cubes: Array<Cube>
+  badges: UserBadgesResult
 }
 
-export function PeopleContent({ cubes }: Props) {
+export function PeopleContent({ cubes, badges }: Props) {
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col md:flex-row relative mt-2">
@@ -22,6 +25,9 @@ export function PeopleContent({ cubes }: Props) {
           </TabsContent>
           <TabsContent value={PTabs.TIMELINE}>
             <TimelineTabContent cubes={cubes} />
+          </TabsContent>
+          <TabsContent value={PTabs.ACHIEVEMENTS}>
+            <AchievementsTabContent badges={badges} />
           </TabsContent>
         </div>
       </div>
