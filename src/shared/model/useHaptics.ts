@@ -7,8 +7,8 @@ function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
-export function triggerHaptic() {
+export function triggerHaptic(duration?: number) {
   if (prefersReducedMotion()) return
   if (!useSettingsStore.getState().settings.features.haptics) return
-  vibrate()
+  vibrate(duration)
 }
