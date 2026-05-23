@@ -102,6 +102,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     title: 'Bug Hunter',
     description: 'Found and reported a glitch in the Matrix.',
     icon: 'icons8-bug-50.png',
+    color: 'rgba(239,68,68,0.8)',
     type: 'granted'
   },
   {
