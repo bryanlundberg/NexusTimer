@@ -43,7 +43,7 @@ The project follows **Feature-Sliced Design (FSD)** under `src/`:
 - **i18n**: next-intl with cookie-based locale selection. 11 locales in `messages/{locale}.json`. English is the default fallback; messages are deep-merged.
 - **UI**: Shadcn/ui (Radix-based) + Tailwind CSS v4. 3D rendering with Three.js/React Three Fiber. Charts with Recharts.
 - **PWA**: Serwist service worker (`src/app/sw.ts`)
-- **Multiplayer**: PeerJS for P2P connections, Firebase for room management
+- **Multiplayer**: Firebase Realtime Database
 
 ## Code Style
 

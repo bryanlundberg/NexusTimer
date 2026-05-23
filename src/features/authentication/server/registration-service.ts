@@ -6,6 +6,8 @@ import PendingRegistration from '@/entities/pending-registration/model/pending-r
 import { AuthError } from './auth-error'
 import { generateVerificationCode, getVerificationExpiry } from './verification-code'
 import { sendVerificationEmail } from './verification-email'
+import { sendWelcomeEmail } from './welcome-email'
+import Log, { LogType } from '@/entities/log/model/log'
 
 const PASSWORD_HASH_ROUNDS = 12
 
@@ -123,6 +125,22 @@ async function upsertUserWithCredentials({ email, name, passwordHash }: UpsertUs
     await User.deleteOne({ _id: newUser._id })
     throw err
   }
+
+  sendWelcomeEmail({ email, name }).catch(async (err) => {
+    try {
+      await Log.create({
+        type: LogType.ApiError,
+        message: err instanceof Error ? err.message : String(err),
+        metadata: {
+          source: 'welcome-email',
+          email,
+          stack: err instanceof Error ? err.stack : undefined
+        }
+      })
+    } catch (logErr) {
+      console.error('Failed to log welcome email error:', logErr)
+    }
+  })
 }
 
 function buildAvatarUrl(name: string): string {

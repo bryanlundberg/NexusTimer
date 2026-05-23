@@ -10,6 +10,7 @@ import Log, { LogType } from '@/entities/log/model/log'
 import { DevProviders } from '@/shared/config/auth/dev-provider'
 import { CredentialsProvider } from '@/shared/config/auth/credentials-provider'
 import { sessionCache } from '@/shared/lib/session-cache'
+import { sendWelcomeEmail } from '@/features/authentication/server/welcome-email'
 
 const SESSION_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000
 
@@ -135,6 +136,25 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             image,
             providers: [{ provider: account?.provider, providerId: account?.providerAccountId }]
           })
+          if (user.email && user.name) {
+            const recipientEmail = user.email
+            const recipientName = user.name
+            sendWelcomeEmail({ email: recipientEmail, name: recipientName }).catch(async (err) => {
+              try {
+                await Log.create({
+                  type: LogType.ApiError,
+                  message: err instanceof Error ? err.message : String(err),
+                  metadata: {
+                    source: 'welcome-email',
+                    email: recipientEmail,
+                    stack: err instanceof Error ? err.stack : undefined
+                  }
+                })
+              } catch (logErr) {
+                console.error('Failed to log welcome email error:', logErr)
+              }
+            })
+          }
         }
 
         user.id = dbUser._id.toString()
