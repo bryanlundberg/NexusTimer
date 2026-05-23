@@ -24,19 +24,13 @@ export function ProfileBadgesStrip({ badges }: Props) {
 
   return (
     <div className="w-full px-4 md:px-6 py-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3 border-b border-border/40">
-      <div className="flex items-center gap-2 shrink-0">
-        <span className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">{t('title')}</span>
-        <span className="text-xs text-muted-foreground tabular-nums">
-          {t('counter', { unlocked: unlocked.length, total })}
-        </span>
-        <button
-          type="button"
-          onClick={() => set(PeopleTabs.ACHIEVEMENTS)}
-          className="ml-auto text-xs font-medium text-primary hover:underline sm:hidden"
-        >
-          {t('view-all')}
-        </button>
-      </div>
+      <button
+        type="button"
+        onClick={() => set(PeopleTabs.ACHIEVEMENTS)}
+        className="ml-auto text-xs font-medium text-primary hover:underline sm:hidden"
+      >
+        {t('view-all')}
+      </button>
 
       <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-x-auto sm:overflow-hidden">
         {visible.map((badge) => (
