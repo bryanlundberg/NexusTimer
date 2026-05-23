@@ -8,7 +8,7 @@ import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
 import { ProfileHeroBanner } from '@/widgets/people/ui/profile-hero-banner'
 import { ProfileBadgesStrip } from '@/widgets/people/ui/profile-badges-strip'
 import { ProfileStatsBar } from '@/widgets/people/ui/profile-stats-bar'
-import { UserDocument } from '@/entities/user/model/user'
+import { UserProfile } from '@/entities/user/model/user'
 import { Cube } from '@/entities/cube/model/types'
 import useUserBadges from '@/entities/achievement/model/useUserBadges'
 import { useTranslations } from 'next-intl'
@@ -21,7 +21,7 @@ import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
 import { CheckCircle2, GitCompareIcon } from 'lucide-react'
 
 interface PeopleTabsProps {
-  user: UserDocument
+  user: UserProfile
   cubes: Array<Cube>
 }
 
