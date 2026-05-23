@@ -18,10 +18,18 @@ export interface UserDocument {
     provider: string
     providerId: string
   }>
-  grantedAchievements?: string[]
   createdAt: Date
   updatedAt: Date
   __v: number
+}
+
+/**
+ * Shape of the user as returned by `GET /api/v1/users/[id]`. Extends the
+ * persisted document with fields the endpoint joins on the fly — currently
+ * just the keys of manually-granted achievements.
+ */
+export interface UserProfile extends UserDocument {
+  grantedAchievements?: string[]
 }
 
 const UserSchema = new Schema(
