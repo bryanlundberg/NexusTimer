@@ -15,6 +15,14 @@ const initialPickedIds = (slug: string): Set<string> => {
   return new Set(set?.algorithms.map((a) => a.id) ?? [])
 }
 
+interface TrainerLastSolve {
+  caseId: string
+  timeMs: number
+  prevStats: TrainerCaseStats | null
+  prevCaseIndex: number
+  persistedId?: string
+}
+
 interface TrainerState {
   methodSlug: string
   pickedIds: Set<string>
@@ -25,6 +33,7 @@ interface TrainerState {
 
   targetByMethod: Record<string, number>
   caseStats: Record<string, TrainerCaseStats>
+  lastSolve: TrainerLastSolve | null
 
   setMethod: (slug: string) => void
   setPickedIds: (ids: Set<string>) => void
@@ -37,6 +46,8 @@ interface TrainerState {
   getTargetSeconds: () => number
 
   recordSolve: (caseId: string, timeMs: number) => void
+  attachLastSolveId: (persistedId: string) => void
+  undoLastSolve: () => TrainerLastSolve | null
   hydrateMethodStats: (methodSlug: string, methodStats: Partial<TrainerMethodStatsDoc> | null | undefined) => void
 
   reset: () => void
@@ -50,13 +61,15 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
   shuffleQueue: [],
   targetByMethod: {},
   caseStats: {},
+  lastSolve: null,
 
   setMethod: (slug) => {
     set({
       methodSlug: slug,
       pickedIds: initialPickedIds(slug),
       caseIndex: 0,
-      shuffleQueue: []
+      shuffleQueue: [],
+      lastSolve: null
     })
   },
 
@@ -64,13 +77,14 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
     set({
       pickedIds: new Set(ids),
       caseIndex: 0,
-      shuffleQueue: []
+      shuffleQueue: [],
+      lastSolve: null
     })
   },
 
   setCaseIndex: (index) => set({ caseIndex: Math.max(0, index) }),
 
-  setRotationMode: (mode) => set({ rotationMode: mode, shuffleQueue: [] }),
+  setRotationMode: (mode) => set({ rotationMode: mode, shuffleQueue: [], lastSolve: null }),
 
   advanceCase: (totalSessionCases) => {
     if (totalSessionCases <= 0) return
@@ -134,8 +148,42 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
         ao12: wcaAverage(recentTimes, 12),
         recentTimes
       }
-      return { caseStats: { ...state.caseStats, [caseId]: next } }
+      return {
+        caseStats: { ...state.caseStats, [caseId]: next },
+        lastSolve: {
+          caseId,
+          timeMs,
+          prevStats: prev ?? null,
+          prevCaseIndex: state.caseIndex
+        }
+      }
     })
+  },
+
+  attachLastSolveId: (persistedId) => {
+    set((state) => {
+      if (!state.lastSolve) return state
+      return { lastSolve: { ...state.lastSolve, persistedId } }
+    })
+  },
+
+  undoLastSolve: () => {
+    const { lastSolve } = get()
+    if (!lastSolve) return null
+    set((state) => {
+      const nextStats = { ...state.caseStats }
+      if (lastSolve.prevStats) {
+        nextStats[lastSolve.caseId] = lastSolve.prevStats
+      } else {
+        delete nextStats[lastSolve.caseId]
+      }
+      return {
+        caseStats: nextStats,
+        caseIndex: lastSolve.prevCaseIndex,
+        lastSolve: null
+      }
+    })
+    return lastSolve
   },
 
   hydrateMethodStats: (methodSlug, methodStats) => {
@@ -177,7 +225,8 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
       rotationMode: TRAINER_DEFAULT_ROTATION_MODE,
       shuffleQueue: [],
       targetByMethod: {},
-      caseStats: {}
+      caseStats: {},
+      lastSolve: null
     })
   }
 }))
