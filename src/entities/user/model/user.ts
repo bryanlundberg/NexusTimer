@@ -18,6 +18,7 @@ export interface UserDocument {
     provider: string
     providerId: string
   }>
+  grantedAchievements?: string[]
   createdAt: Date
   updatedAt: Date
   __v: number
