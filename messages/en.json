@@ -718,6 +718,7 @@
         "markedAsLearned": "Marked as learned",
         "markAsLearned": "Mark as learned",
         "skip": "Skip",
+        "undoLast": "Undo",
         "history": "History",
         "showSolveInfo": "Show solve info",
         "hideSolveInfo": "Hide solve info",
