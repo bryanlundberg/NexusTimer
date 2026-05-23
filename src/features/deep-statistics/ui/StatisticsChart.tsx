@@ -114,12 +114,12 @@ export default function StatisticsChart({ statistics, loadingProps }: Statistics
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.35, duration: 0.4 }}
-      className="border border-border/50 rounded-2xl bg-background/80 backdrop-blur-xl overflow-hidden shadow-sm mb-2"
+      className="border border-border/50 rounded-2xl bg-background/80 backdrop-blur-xl overflow-hidden mb-2"
     >
       <Table>
         <TableHeader>
           <TableRow className="border-b border-border/50 bg-muted/30">
-            <TableHead className="font-semibold text-xs uppercase tracking-wider text-muted-foreground w-[120px]"></TableHead>
+            <TableHead className="font-semibold text-xs uppercase tracking-wider text-muted-foreground w-30"></TableHead>
             {columns.map((column) => (
               <TableHead key={column.key} className="text-center">
                 <TooltipProvider delayDuration={200}>
