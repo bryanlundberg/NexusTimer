@@ -31,7 +31,6 @@
       "start-cue": "Показывать визуальный сигнал, когда таймер готов к запуску",
       "hold-to-start": "Требовать удержания пробела перед запуском таймера",
       "hold-to-start-time": "Установить время удержания пробела перед запуском (300-1000 мс)",
-      "manual-mode": "Включить ручной ввод времени вместо использования таймера",
       "decimal-places": "Установить количество десятичных знаков в результатах (1-4)",
       "scramble-image": "Показывать визуальное представление скрамбла",
       "session-stats": "Отображать статистику текущей сессии",
@@ -56,13 +55,10 @@
     },
     "Auth": {
       "sign-in": "Войти",
-      "nexus-community": "Сообщество Nexus",
-      "login-description": "Войдите, чтобы получить доступ к дополнительным функциям.",
       "continue-google": "Продолжить через Google",
       "continue-discord": "Продолжить через Discord"
     },
     "CoreHeader": {
-      "server-online": "Сервер: Онлайн",
       "give-feedback": "Оставить отзыв"
     },
     "Feedback": {
@@ -86,14 +82,9 @@
     },
     "HomePage": {
       "title": "Таймер",
-      "hint": "Подсказка",
-      "optimal-yellow-layer": "Оптимальный желтый слой",
-      "white-on-top-green-forward": "Белый сверху, зеленый спереди",
-      "hints-yellow-layer": "Подсказки: Желтый слой",
       "solving": "Сборка...",
       "tap-to-start": "Нажмите, чтобы начать",
       "space-to-start": "Нажмите ПРОБЕЛ, чтобы начать",
-      "preview": "Предпросмотр",
       "empty-scramble": "Выберите куб, чтобы загрузить скрамбл.",
       "congratulations": "Поздравляем!",
       "new_best_average": "Новый лучший средний результат!",
@@ -140,19 +131,11 @@
       },
       "alert": {
         "title": "Внимание!",
-        "empty-cubes": "Куб не выбран. Пожалуйста, выберите один.",
         "select-cube": "Начните с выбора куба!"
       },
       "dropdown": {
-        "view-details": "Детали",
         "transfer-collection": "Перенести в коллекцию",
-        "remove-bookmark": "Удалить закладку",
-        "add-bookmark": "Добавить закладку",
-        "remove-penalty": "Удалить штраф",
-        "add-penalty": "Добавить штраф",
-        "copy-to-clipboard": "Копировать",
-        "move-to-history": "В историю",
-        "delete-solve": "Удалить сборку"
+        "move-to-history": "В историю"
       },
       "empty-solves": "Здесь пока ничего нет!",
       "empty-solves-description": "Включите переключатель вверху, чтобы увидеть историю.",
@@ -178,8 +161,6 @@
       "best-time": "Лучшее время",
       "worst-time": "Худшее время",
       "average": "Среднее",
-      "overall-average": "Общее среднее",
-      "ao5-current": "Тек. Ao5",
       "time-spent": "Затрачено времени",
       "success-rate": "Процент успеха",
       "standard-deviation": "Станд. отклонение",
@@ -188,7 +169,6 @@
       "cube-tab": "Куб",
       "cube-all": "Куб (Все)",
       "cube-session": "Куб (Сессия)",
-      "time-by-cube": "Распределение времени",
       "solves-by-cube": "Распределение сборок",
       "global-tooltip": "Объединяет всю историю и сессии для каждого куба в этой категории.",
       "sessions-tooltip": "Учитывает только сборки из сессий для каждого куба в этой категории.",
@@ -200,11 +180,9 @@
     "CubesPage": {
       "title": "Кубы",
       "no-cubes-for-display": "Нет кубов для отображения.",
-      "no-cubes-description": "Добавьте коллекции кубов в хранилище, чтобы увидеть их здесь.",
       "favorite": "Избранное",
       "category": "Категория",
       "solves": "Сборки",
-      "created-at": "Создано",
       "status": "Статус",
       "using": "Используется",
       "idle": "Ожидание",
@@ -218,12 +196,7 @@
       "edit": "Изменить",
       "delete": "Удалить",
       "created": "Создано",
-      "solves-label": "Сборки",
       "total": "всего",
-      "marked-as-favorite": "Добавлено в избранное",
-      "removed-from-favorites": "Удалено из избранного",
-      "no-solve-data": "Нет данных о сборках",
-      "chart-solves-label": "Сборки",
       "utilize": "Использовать",
       "utilize-cube": "Использовать `{name}`",
       "session-solves": "Сборки сессии",
@@ -232,8 +205,6 @@
     "Cubes-modal": {
       "delete-collection": "Удалить коллекцию",
       "delete-collection-description": "Коллекция будет удалена вместе со всеми сборками, рекордами и настройками.",
-      "warning-alert": "Предупреждение:",
-      "warning-msg": "Это действие необратимо.",
       "input-collection-name": "Введите название коллекции",
       "to-continue": "чтобы продолжить:",
       "edit-collection": "Изменить коллекцию",
@@ -247,9 +218,6 @@
     "Errors": {
       "not-match": "Имя не совпадает.",
       "repeated-name": "Коллекция с таким именем уже существует.",
-      "empty-input": "Пожалуйста, введите значение",
-      "required-collection-name": "Название коллекции обязательно",
-      "max-length-50": "Максимальная длина — 50 символов",
       "collection-created": "Коллекция успешно создана",
       "collection-edited": "Коллекция успешно изменена",
       "collection-edit-failed": "Не удалось изменить коллекцию",
@@ -270,13 +238,11 @@
       "none": "Нет",
       "collections": "Коллекции",
       "empty": "Пусто",
-      "sign-in-google": "Войти через Google",
       "back": "Назад",
       "no-results": "Ничего не найдено",
       "search": "Поиск...",
       "menu": "Меню",
-      "fullscreen": "Полный экран",
-      "exit-fullscreen": "Выйти из полноэкранного режима"
+      "fullscreen": "Полный экран"
     },
     "pagination": {
       "previous": "Назад",
@@ -290,7 +256,6 @@
       "no-users-found": "Пользователи не найдены",
       "results": "Результаты",
       "user-card": {
-        "joined": "С нами с {date}",
         "compare": "Сравнить",
         "view-profile": "Профиль"
       },
@@ -309,17 +274,10 @@
       },
       "stats": {
         "total-solves": "Всего сборок",
-        "avg-of-5": "Среднее из 5",
-        "best-window": "лучшая серия",
-        "mean-session": "Среднее за сессию",
-        "last-12-solves": "последние 12 сборок",
         "time-on-timer": "Время за таймером",
         "lifetime": "за всё время",
-        "consistency": "Стабильность",
-        "ok-total": "ок / всего",
         "events": "Дисциплины",
-        "favorite": "Любимая",
-        "all-categories": "все дисциплины"
+        "favorite": "Любимая"
       },
       "cubes-tab": {
         "col-name": "Название",
@@ -361,7 +319,6 @@
         "time": "Время",
         "image": "Картинка",
         "date": "Дата",
-        "cube-used": "Куб",
         "tps": "tps",
         "not-available": "Н/Д"
       },
@@ -382,7 +339,6 @@
       }
     },
     "NavMain": {
-      "application": "Приложение",
       "platform": "Платформа",
       "timer": "Таймер",
       "solves": "Сборки",
@@ -394,7 +350,6 @@
       "leaderboards": "Рейтинги",
       "multiplayer": "Мультиплеер",
       "free-play": "Свободная игра",
-      "clash-mode": "Режим Clash",
       "install-app": "Установить приложение",
       "settings": "Настройки",
       "account": "Аккаунт",
@@ -425,7 +380,6 @@
       "start-cue": "Сигнал старта",
       "hold-to-start": "Удержание старта",
       "hold-to-start-time": "Время удержания",
-      "manual-mode": "Ручной режим",
       "decimal-places": "Знаки после запятой",
       "features": "Функции",
       "scramble-image": "Картинка скрамбла",
@@ -445,15 +399,11 @@
       "theme": "Тема",
       "custom-background-image": "Свой фон",
       "allowed-file-types": "Только изображения (JPEG, PNG, GIF).",
-      "max-file-size": "Макс. размер файла:",
       "data": "Данные",
       "preferences": "Предпочтения",
       "auto-select": "Автовыбор при старте",
       "import-from-file": "Импорт из файла",
       "export-to-file": "Экспорт в файл",
-      "legend": "NexusTimer — минималистичный опенсорсный таймер для спидкубинга.",
-      "suggest": "Предложить идею",
-      "report-bug": "Сообщить об ошибке",
       "dark": "Темная",
       "light": "Светлая",
       "system": "Системная",
@@ -463,8 +413,6 @@
     "backup-modal": {
       "title": "Умное восстановление",
       "description": "NexusTimer автоматически определит и воссоздаст структуру данных.",
-      "alert-category": "Для CSTimer и CubeDesk может потребоваться ручная настройка категорий.",
-      "drag-drop": "Перетащите файлы сюда или нажмите для выбора.",
       "loading-part-1": "Это займет меньше минуты.",
       "loading-part-2": "Пожалуйста, подождите.",
       "welcome": "Добро пожаловать:"
@@ -479,15 +427,11 @@
       "options": "Опции",
       "help": "Помощь",
       "account": "Аккаунт",
-      "privacy-policy": "Приватность",
-      "tos": "Условия",
-      "source": "Исходный код",
       "last-backup": "Последний бэкап:",
       "up-to-date": "Актуально",
       "no-backup": "Нет бэкапа",
       "loading": "Загрузка...",
       "no-backup-yet": "Бэкапов пока нет",
-      "tip": "Совет:",
       "backup-tip": "Делайте бэкапы регулярно.",
       "save-data-title": "Сохранить данные",
       "save-data-description": "Сохранить данные в облако?",
@@ -524,7 +468,6 @@
       "solves-selected": "Выбрано: {count}",
       "select-all": "Выбрать все",
       "deselect-all": "Снять все",
-      "success-transfer": "Успешно перенесено {count} сборок",
       "failed-transfer": "Ошибка переноса.",
       "no-solves": "Сборок нет",
       "empty-vault": "История пуста.",
@@ -545,8 +488,6 @@
       "update-info": "Обновить",
       "update-failed": "Ошибка обновления",
       "update-success": "Данные обновлены",
-      "change-picture": "Сменить фото",
-      "avatar-requirements": "JPG, GIF или PNG. До 800 КБ",
       "pronouns": {
         "he": "Он",
         "she": "Она",
@@ -563,7 +504,6 @@
       "description": "Изучайте наборы алгоритмов для разных головоломок с 3D-визуализацией.",
       "suggestions": "Нашли ошибку? Сообщите на GitHub.",
       "edit-github": "Редактировать на GitHub",
-      "skill": "Уровень",
       "casual-enthusiast": "Любитель",
       "dedicated-learner": "Ученик",
       "algorithm-master": "Мастер алгоритмов",
@@ -590,8 +530,7 @@
         "parity-4x4": "Алгоритмы паритетов для 4x4.",
         "parity-5x5": "Алгоритмы паритетов для 5x5.",
         "l4e": "Последние 4 ребра Пираминкса."
-      },
-      "alternative": "Альтернатива"
+      }
     },
     "Metadata": {
       "title": "Nexus Timer — Профессиональный таймер для кубика Рубика",
@@ -761,9 +700,7 @@
       "save-to-cube-empty": "Нет доступных кубиков для этого события"
     },
     "results-tab": {
-      "latest": "Последние",
       "best": "Лучшие",
-      "worst": "Худшие",
       "average": "Среднее",
       "updating-live": "Обновление в реальном времени",
       "cubers": "Куберы"
@@ -773,9 +710,7 @@
     "room-card": {
       "users-online": "В сети:",
       "event": "Дисциплина:",
-      "max-time-per-round": "Макс. время:",
       "next-round-starts-in": "Старт через :",
-      "created-at": "Создано в",
       "join": "Войти"
     },
     "room-not-found": "Комната не найдена",
@@ -783,8 +718,6 @@
     "share-room-text": "Заходи в мою комнату на NexusTimer!",
     "invite": "Пригласить",
     "OpenGraph": {
-      "invited-to-room": "Вас пригласили в комнату",
-      "join-now": "Зайти сейчас!",
       "room": "Комната {roomId}",
       "description": "Заходи в мою комнату на NexusTimer для живой конкуренции! ID: {roomId}"
     }

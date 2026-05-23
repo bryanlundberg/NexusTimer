@@ -33,13 +33,10 @@
     },
     "Auth": {
       "sign-in": "Iniciar sesión",
-      "nexus-community": "Comunidad Nexus",
-      "login-description": "Inicia sesión para acceder a más funciones.",
       "continue-google": "Continuar con Google",
       "continue-discord": "Continuar con Discord"
     },
     "CoreHeader": {
-      "server-online": "Servidor: Online",
       "give-feedback": "Dar Feedback"
     },
     "Feedback": {
@@ -63,14 +60,9 @@
     },
     "HomePage": {
       "title": "Cronómetro",
-      "hint": "Consejo",
-      "optimal-yellow-layer": "Capa Amarilla Óptima",
-      "white-on-top-green-forward": "Blanco arriba, Verde al frente",
-      "hints-yellow-layer": "Consejos: Capa amarilla",
       "solving": "Resolviendo...",
       "tap-to-start": "Toca para comenzar",
       "space-to-start": "Presiona ESPACIO para comenzar",
-      "preview": "Vista previa",
       "empty-scramble": "Elige un cubo para cargar un scramble.",
       "congratulations": "¡Felicidades!",
       "new_best_average": "¡Nuevo mejor promedio!",
@@ -107,20 +99,12 @@
       "share": "Compartir",
       "last": "Último",
       "alert": {
-        "empty-cubes": "No se seleccionó ningún cubo. \nPor favor elige uno.",
         "title": "¡Atención!",
         "select-cube": "¡Comienza seleccionando un cubo!"
       },
       "dropdown": {
-        "view-details": "Ver detalles",
         "transfer-collection": "Transferir colección",
-        "remove-bookmark": "Quitar marcador",
-        "add-bookmark": "Añadir marcador",
-        "remove-penalty": "Quitar penalización",
-        "add-penalty": "Añadir penalización",
-        "copy-to-clipboard": "Copiar al portapapeles",
-        "move-to-history": "Mover al historial",
-        "delete-solve": "Eliminar tiempo"
+        "move-to-history": "Mover al historial"
       },
       "dialogs": {
         "move-to-history": "¿Mover los tiempos al historial?",
@@ -155,8 +139,6 @@
       "best-time": "Mejor Tiempo",
       "worst-time": "Peor Tiempo",
       "average": "Promedio",
-      "overall-average": "Promedio General",
-      "ao5-current": "Ao5 (Actual)",
       "time-spent": "Tiempo invertido",
       "success-rate": "Tasa de Éxito",
       "standard-deviation": "Desviación Estándar",
@@ -167,7 +149,6 @@
       "cube-tab": "Cubo",
       "cube-all": "Cubo (Todo)",
       "cube-session": "Cubo (Sesión)",
-      "time-by-cube": "Distribución de Tiempos",
       "solves-by-cube": "Distribución de Resoluciones",
       "global-tooltip": "Combina todos los tiempos (historial y sesión) de cada cubo dentro de la misma categoría.",
       "sessions-tooltip": "Cuenta solo los tiempos de la sesión para cada cubo en la misma categoría.",
@@ -180,7 +161,6 @@
       "favorite": "Favorito",
       "category": "Categoría",
       "solves": "Tiempos",
-      "created-at": "Creado el",
       "status": "Estado",
       "using": "En uso",
       "idle": "Inactivo",
@@ -193,14 +173,8 @@
       "import-from-other-timers-description": "Importa datos de otras aplicaciones.",
       "delete": "Borrar",
       "edit": "Editar",
-      "chart-solves-label": "Tiempos",
       "created": "Creado",
-      "no-cubes-description": "Empieza a agregar colecciones de cubos para verlas aquí.",
-      "no-solve-data": "No hay tiempos registrados",
-      "solves-label": "Tiempos",
       "total": "total",
-      "marked-as-favorite": "Marcado como favorito",
-      "removed-from-favorites": "Quitado de favoritos",
       "utilize": "Usar",
       "utilize-cube": "Usar `{name}`"
     },
@@ -215,9 +189,7 @@
       "name": "Nombre",
       "new-collection": "Nueva colección",
       "select-an-option": "Seleccione una opción",
-      "to-continue": "para continuar:",
-      "warning-alert": "Advertencia:",
-      "warning-msg": "Esta acción no es reversible."
+      "to-continue": "para continuar:"
     },
     "Inputs": {
       "delete": "Eliminar",
@@ -231,11 +203,9 @@
       "empty": "Vacío",
       "collections": "Colecciones",
       "back": "Atrás",
-      "sign-in-google": "Iniciar sesión con Google",
       "no-results": "No se encontraron resultados",
       "search": "Buscar...",
       "menu": "Menú",
-      "exit-fullscreen": "Salir de pantalla completa",
       "fullscreen": "Pantalla completa"
     },
     "pagination": {
@@ -250,7 +220,6 @@
       "no-users-found": "No se encontraron usuarios que coincidan con tus criterios",
       "results": "Resultados",
       "user-card": {
-        "joined": "Se unió el {date}",
         "compare": "Comparar",
         "view-profile": "Ver Perfil"
       },
@@ -269,17 +238,10 @@
       },
       "stats": {
         "total-solves": "Soluciones totales",
-        "avg-of-5": "Media de 5",
-        "best-window": "mejor ventana",
-        "mean-session": "Media de sesión",
-        "last-12-solves": "últimas 12 soluciones",
         "time-on-timer": "Tiempo en cronómetro",
         "lifetime": "acumulado",
-        "consistency": "Consistencia",
-        "ok-total": "ok / total",
         "events": "Eventos",
-        "favorite": "Favorito",
-        "all-categories": "todas las categorías"
+        "favorite": "Favorito"
       },
       "cubes-tab": {
         "col-name": "Nombre",
@@ -321,7 +283,6 @@
         "time": "Tiempo",
         "image": "Imagen",
         "date": "Fecha",
-        "cube-used": "Cubo usado",
         "tps": "tps",
         "not-available": "N/D"
       },
@@ -348,7 +309,6 @@
       "inspection": "Inspección",
       "start-cue": "Señal de inicio",
       "hold-to-start": "Mantener para iniciar",
-      "manual-mode": "Modo manual",
       "features": "Características",
       "scramble-image": "Imagen del scramble",
       "session-stats": "Estadísticas de sesión",
@@ -368,13 +328,9 @@
       "theme": "Tema",
       "custom-background-image": "Imagen de fondo personalizada",
       "allowed-file-types": "Solo se permiten imágenes (JPEG, PNG, GIF).",
-      "max-file-size": "Tamaño máximo permitido:",
       "data": "Datos de la aplicación",
       "import-from-file": "Importar desde archivo",
       "export-to-file": "Exportar a archivo",
-      "legend": "NexusTimer es una herramienta minimalista de código abierto para speedcubing.",
-      "suggest": "Sugerir un cambio",
-      "report-bug": "Reportar un error",
       "auto-select": "Selección automática al inicio",
       "preferences": "Preferencias",
       "dark": "Oscuro",
@@ -389,18 +345,13 @@
     "backup-modal": {
       "title": "Restauración Inteligente de Respaldo",
       "description": "Deja que NexusTimer importe todo inteligentemente; detectará y recreará automáticamente una estructura de datos compatible.",
-      "alert-category": "CSTimer y CubeDesk requieren ajuste manual de categorías.",
-      "drag-drop": "Arrastra y suelta tus archivos aquí, o haz clic para seleccionar.",
       "loading-part-1": "Esta acción toma menos de un minuto.",
       "loading-part-2": "Por favor espera, no cierres esta ventana.",
       "welcome": "Bienvenido:"
     },
     "Errors": {
-      "empty-input": "Por favor introduce un valor",
       "not-match": "El nombre no coincide.",
       "repeated-name": "Esa colección de nombres ya existe.",
-      "required-collection-name": "El nombre de la colección es obligatorio",
-      "max-length-50": "La longitud máxima es de 50 caracteres",
       "collection-created": "Colección de cubos creada exitosamente",
       "collection-edited": "Colección de cubos editada exitosamente",
       "collection-edit-failed": "Error al editar la colección de cubos",
@@ -432,7 +383,6 @@
       "no-backup": "Sin copia de seguridad",
       "loading": "Cargando...",
       "no-backup-yet": "Aún no hay copias de seguridad",
-      "tip": "Consejo:",
       "backup-tip": "Mantén tus datos seguros haciendo copias de seguridad regularmente.",
       "load-data-description": "¿Quieres descargar los datos de tu cuenta desde la nube?",
       "load-data-title": "Cargar datos",
@@ -440,12 +390,9 @@
       "save-data-description": "¿Quieres guardar los datos de tu cuenta en la nube?",
       "save-data-title": "Guardar datos",
       "save-data-warning": "Esto sobrescribirá los datos guardados previamente.",
-      "source": "Fuente",
       "title": "Ajustes",
-      "tos": "Términos de servicio",
       "not-authenticated": "Autenticarse para otorgar acceso",
       "options": "Opciones",
-      "privacy-policy": "política de privacidad",
       "unlink-account": "Desvincular cuenta",
       "unlink-account-para1": "¿Estás seguro de que quieres desvincularte de la cuenta?",
       "unlink-account-para2": "Al desvincularse se eliminarán todos los datos de este dispositivo.",
@@ -485,7 +432,6 @@
       "inspection": "Habilita el tiempo de inspección oficial (WCA).",
       "inspection-time": "Establece la duración de la inspección (5-60 segundos).",
       "language-description": "Cambia el idioma de la aplicación.",
-      "manual-mode": "Habilita la entrada de tiempos manual en lugar del cronómetro.",
       "new-personal-best-sound": "Reproduce un sonido al lograr un nuevo récord personal (PB).",
       "quick-action-buttons": "Muestra botones para acciones rápidas como Borrar y DNF.",
       "scramble-background": "Muestra el scramble como elemento de fondo.",
@@ -506,16 +452,13 @@
       "no-solves": "No hay tiempos disponibles",
       "select-all": "Seleccionar todo",
       "solves-selected": "Tiempos: ({count} seleccionados)",
-      "success-transfer": "Se han transferido con éxito {count} tiempos de {source} a {destination}",
       "title": "Transferir tiempos",
       "transfer": "Transferir",
       "transferring": "Transfiriendo..."
     },
     "AccountPage": {
-      "profile": "Perfil",
       "personal-info": "Información Personal",
       "personal-info-description": "Actualiza tu información pública y cómo te ven otros usuarios.",
-      "backup-status": "Estado de la copia de seguridad",
       "go-to-profile": "Ir al perfil",
       "name": "Nombre",
       "name-required": "El nombre es obligatorio",
@@ -530,8 +473,6 @@
       "update-info": "Actualizar información",
       "update-failed": "Error al actualizar el usuario",
       "update-success": "Usuario actualizado con éxito",
-      "change-picture": "Cambiar foto",
-      "avatar-requirements": "JPG, GIF o PNG. Tamaño máx. de 800K",
       "pronouns": {
         "he": "Él",
         "she": "Ella",
@@ -539,7 +480,6 @@
       }
     },
     "NavMain": {
-      "application": "Aplicación",
       "platform": "Plataforma",
       "timer": "Cronómetro",
       "solves": "Tiempos",
@@ -551,7 +491,6 @@
       "leaderboards": "Clasificaciones",
       "multiplayer": "Multijugador",
       "free-play": "Juego Libre",
-      "clash-mode": "Modo Clash",
       "install-app": "Instalar App",
       "settings": "Ajustes",
       "account": "Cuenta",
@@ -570,7 +509,6 @@
       "description": "Explore una amplia gama de conjuntos de algoritmos para varios acertijos, completos con visualizaciones 3D interactivas para mejorar su experiencia de aprendizaje.",
       "suggestions": "Si encuentra algún error o desea ampliar con más algoritmos, envíelo a nuestro GitHub.",
       "edit-github": "Editar estos algoritmos en Github",
-      "skill": "Nivel",
       "casual-enthusiast": "Entusiasta Casual",
       "dedicated-learner": "Estudiante Dedicado",
       "algorithm-master": "Maestro de Algoritmos",
@@ -597,8 +535,7 @@
         "parity-4x4": "Estos algoritmos abordan los errores de paridad únicos que pueden ocurrir al resolver un cubo de Rubik de 4x4, que no ocurren en un cubo de 3x3 estándar. Son esenciales para completar la resolución después de reducir el 4x4 a un estado de 3x3.",
         "parity-5x5": "Estos algoritmos abordan los errores de paridad únicos que pueden ocurrir al resolver un cubo de Rubik de 5x5, que no ocurren en un cubo de 3x3 estándar. Son esenciales para completar la resolución después de reducir el 5x5 a un estado de 3x3.",
         "l4e": "Últimas 4 aristas (Pyraminx): estos algoritmos se utilizan para resolver las últimas cuatro piezas de arista de un rompecabezas Pyraminx. El objetivo es posicionar y orientar estas piezas correctamente para completar el rompecabezas."
-      },
-      "alternative": "Alternativa"
+      }
     },
     "TrainerPage": {
       "breadcrumb": "Entrenador",
@@ -768,9 +705,7 @@
       "save-to-cube-empty": "No hay cubos disponibles para este evento"
     },
     "results-tab": {
-      "latest": "Último",
       "best": "Mejor",
-      "worst": "Peor",
       "average": "Promedio",
       "updating-live": "Actualizando en vivo",
       "cubers": "Cuberos"
@@ -780,9 +715,7 @@
     "room-card": {
       "users-online": "Usuarios en línea:",
       "event": "Evento:",
-      "max-time-per-round": "Tiempo máx. por ronda:",
       "next-round-starts-in": "Siguiente ronda en:",
-      "created-at": "Creado a las",
       "join": "Unirse"
     },
     "room-not-found": "Sala no encontrada",
@@ -790,8 +723,6 @@
     "share-room-text": "¡Únete a mi sala en NexusTimer!",
     "invite": "Invitar",
     "OpenGraph": {
-      "invited-to-room": "Te han invitado a una sala",
-      "join-now": "¡Únete ahora!",
       "room": "Sala {roomId}",
       "description": "¡Únete a mi sala en NexusTimer para competir en vivo! ID: {roomId}"
     }

@@ -34,7 +34,6 @@
       "start-cue": "Show a visual cue when the timer is ready to start",
       "hold-to-start": "Require holding the spacebar before starting the timer",
       "hold-to-start-time": "Set how long to hold the spacebar before starting (300-1000ms)",
-      "manual-mode": "Enable manual time entry instead of using the timer",
       "decimal-places": "Set the number of decimal places to display in times (1-4)",
       "scramble-image": "Show a visual representation of the scramble",
       "session-stats": "Display statistics for the current solving session",
@@ -65,8 +64,6 @@
     },
     "Auth": {
       "sign-in": "Sign In",
-      "nexus-community": "Nexus Community",
-      "login-description": "Log in to access more features.",
       "continue-google": "Continue with Google",
       "continue-discord": "Continue with Discord",
       "welcome-back": "Welcome back, cuber",
@@ -79,8 +76,6 @@
       "email": "Email",
       "password": "Password",
       "loading": "Loading...",
-      "invalid-credentials": "Invalid email or password.",
-      "register-failed": "Registration failed. Please try again.",
       "no-account": "Don't have an account?",
       "have-account": "Already have an account?",
       "sign-up": "Sign up",
@@ -89,17 +84,6 @@
       "verification-code": "Verification code",
       "verify-button": "Verify",
       "back": "Back",
-      "resend-sent": "A new code is on its way.",
-      "join-headline": "Join the speedcubing community.",
-      "join-subhead": "Track every solve, analyze your averages, and compete with cubers around the world.",
-      "perk-stats": "Deep statistics and personal records across all WCA puzzles",
-      "perk-leaderboards": "Global leaderboards to compare against the community",
-      "perk-multiplayer": "Real-time multiplayer rooms with friends",
-      "perk-trainer": "Algorithm trainer for OLL, PLL, and more",
-      "join-footer": "Free forever · No ads · Open source",
-      "invalid-code": "Invalid or expired code.",
-      "no-code": "Didn't receive it?",
-      "resend-code": "Resend",
       "forgot-password": "Forgot your password?",
       "forgot-password-title": "Reset your password",
       "forgot-password-subtitle": "Enter your email and we'll send you a reset link.",
@@ -127,7 +111,6 @@
       }
     },
     "CoreHeader": {
-      "server-online": "Server: Online",
       "give-feedback": "Give Feedback"
     },
     "Feedback": {
@@ -151,14 +134,9 @@
     },
     "HomePage": {
       "title": "Timer",
-      "hint": "Hint",
-      "optimal-yellow-layer": "Optimal Yellow Layer",
-      "white-on-top-green-forward": "White on top, Green forward",
-      "hints-yellow-layer": "Hints: Yellow layer",
       "solving": "Solving...",
       "tap-to-start": "Tap to start",
       "space-to-start": "Press SPACE to start",
-      "preview": "Preview",
       "empty-scramble": "Choose a cube to load a scramble.",
       "congratulations": "Congratulations!",
       "new_best_average": "New best average!",
@@ -205,19 +183,11 @@
       },
       "alert": {
         "title": "Attention!",
-        "empty-cubes": "No cube selected. Please choose one.",
         "select-cube": "Start by selecting a cube!"
       },
       "dropdown": {
-        "view-details": "View Details",
         "transfer-collection": "Transfer Collection",
-        "remove-bookmark": "Remove Bookmark",
-        "add-bookmark": "Add Bookmark",
-        "remove-penalty": "Remove Penalty",
-        "add-penalty": "Add Penalty",
-        "copy-to-clipboard": "Copy to Clipboard",
-        "move-to-history": "Move to History",
-        "delete-solve": "Delete Solve"
+        "move-to-history": "Move to History"
       },
       "empty-solves": "Nothing here yet!",
       "empty-solves-description": "Toggle the switch at the top to see your history.",
@@ -243,8 +213,6 @@
       "best-time": "Best Time",
       "worst-time": "Worst Time",
       "average": "Average",
-      "overall-average": "Overall Average",
-      "ao5-current": "Ao5 (Current)",
       "time-spent": "Time Spent",
       "success-rate": "Success Rate",
       "standard-deviation": "Standard Deviation",
@@ -253,7 +221,6 @@
       "cube-tab": "Cube",
       "cube-all": "Cube (All)",
       "cube-session": "Cube (Session)",
-      "time-by-cube": "Time Distribution",
       "solves-by-cube": "Solves Distribution",
       "global-tooltip": "Combines all historical and session solves for every cube in the same category.",
       "sessions-tooltip": "Counts only session solves for every cube in the same category.",
@@ -275,11 +242,9 @@
     "CubesPage": {
       "title": "Cubes",
       "no-cubes-for-display": "No cubes for display.",
-      "no-cubes-description": "Start adding cube collections to your vault to see them here.",
       "favorite": "Favorite",
       "category": "Category",
       "solves": "Solves",
-      "created-at": "Created At",
       "status": "Status",
       "using": "Using",
       "idle": "Idle",
@@ -293,12 +258,7 @@
       "edit": "Edit",
       "delete": "Delete",
       "created": "Created",
-      "solves-label": "Solves",
       "total": "total",
-      "marked-as-favorite": "Marked as favorite",
-      "removed-from-favorites": "Removed from favorites",
-      "no-solve-data": "No solve data available",
-      "chart-solves-label": "Solves",
       "utilize": "Utilize",
       "utilize-cube": "Utilize `{name}`",
       "session-solves": "Session solves",
@@ -307,8 +267,6 @@
     "Cubes-modal": {
       "delete-collection": "Delete collection",
       "delete-collection-description": "This cube collection will be deleted, along with all of its solves, records, and settings.",
-      "warning-alert": "Warning:",
-      "warning-msg": "This action is not reversible.",
       "input-collection-name": "Enter the collection name",
       "to-continue": "to continue:",
       "edit-collection": "Edit collection",
@@ -322,9 +280,6 @@
     "Errors": {
       "not-match": "The name does not match.",
       "repeated-name": "That collection name already exists.",
-      "empty-input": "Please enter a value",
-      "required-collection-name": "Required collection name",
-      "max-length-50": "Maximum length is 50 characters",
       "collection-created": "Cube collection created successfully",
       "collection-edited": "Cube collection edited successfully",
       "collection-edit-failed": "Failed to edit cube collection",
@@ -345,13 +300,11 @@
       "none": "None",
       "collections": "Collections",
       "empty": "Empty",
-      "sign-in-google": "Sign In with Google",
       "back": "Back",
       "no-results": "No results found",
       "search": "Search...",
       "menu": "Menu",
-      "fullscreen": "Fullscreen",
-      "exit-fullscreen": "Exit Fullscreen"
+      "fullscreen": "Fullscreen"
     },
     "pagination": {
       "previous": "Previous",
@@ -365,7 +318,6 @@
       "no-users-found": "No users found matching your criteria",
       "results": "Results",
       "user-card": {
-        "joined": "Joined {date}",
         "compare": "Compare",
         "view-profile": "View Profile"
       },
@@ -379,8 +331,7 @@
         "title": "Achievements",
         "counter": "{unlocked} / {total}",
         "view-all": "View all",
-        "empty": "No achievements unlocked yet.",
-        "locked-hint": "Locked"
+        "empty": "No achievements unlocked yet."
       },
       "edit-profile": "Edit profile",
       "no-backup-data": "This account has no backup data to display.",
@@ -392,17 +343,10 @@
       },
       "stats": {
         "total-solves": "Total Solves",
-        "avg-of-5": "Avg of 5",
-        "best-window": "best window",
-        "mean-session": "Mean Session",
-        "last-12-solves": "last 12 solves",
         "time-on-timer": "Time on Timer",
         "lifetime": "lifetime",
-        "consistency": "Consistency",
-        "ok-total": "ok / total",
         "events": "Events",
-        "favorite": "Favorite",
-        "all-categories": "all categories"
+        "favorite": "Favorite"
       },
       "cubes-tab": {
         "col-name": "Name",
@@ -444,7 +388,6 @@
         "time": "Time",
         "image": "Image",
         "date": "Date",
-        "cube-used": "Cube used",
         "tps": "tps",
         "not-available": "N/A"
       },
@@ -465,7 +408,6 @@
       }
     },
     "NavMain": {
-      "application": "Application",
       "platform": "Platform",
       "timer": "Timer",
       "solves": "Solves",
@@ -479,7 +421,6 @@
       "leaderboards": "Leaderboards",
       "multiplayer": "Multiplayer",
       "free-play": "Free Play",
-      "clash-mode": "Clash Mode",
       "install-app": "Install App",
       "settings": "Settings",
       "account": "Account",
@@ -510,7 +451,6 @@
       "start-cue": "Start cue",
       "hold-to-start": "Hold to start",
       "hold-to-start-time": "Hold to start time",
-      "manual-mode": "Manual mode",
       "decimal-places": "Decimal places",
       "features": "Features",
       "scramble-image": "Scramble image",
@@ -535,7 +475,6 @@
       "theme": "Theme",
       "custom-background-image": "Custom background image",
       "allowed-file-types": "Only image files (JPEG, PNG, GIF) are allowed.",
-      "max-file-size": "Maximum file size allowed is",
       "data": "App Data",
       "privacy": "Privacy",
       "analytics": "Google Analytics",
@@ -543,9 +482,6 @@
       "auto-select": "Auto-select at startup",
       "import-from-file": "Import from file",
       "export-to-file": "Export to file",
-      "legend": "NexusTimer is a minimalist, open-source web timer built for speedcubing.",
-      "suggest": "Suggest a change",
-      "report-bug": "Report a bug",
       "dark": "Dark",
       "light": "Light",
       "system": "System",
@@ -555,8 +491,6 @@
     "backup-modal": {
       "title": "Intelligent Backup Restoration",
       "description": "Let NexusTimer smartly import everything; it will automatically detect and recreate a compatible data structure.",
-      "alert-category": "CSTimer and CubeDesk require manual adjustment of categories.",
-      "drag-drop": "Drag and drop your files here, or click to select.",
       "loading-part-1": "This action takes less than a minute.",
       "loading-part-2": "Please wait, don't close this window.",
       "welcome": "Welcome:"
@@ -571,15 +505,11 @@
       "options": "Options",
       "help": "Help",
       "account": "Account",
-      "privacy-policy": "Privacy Policy",
-      "tos": "Terms of Service",
-      "source": "Source",
       "last-backup": "Last backup:",
       "up-to-date": "Up to date",
       "no-backup": "No backup",
       "loading": "Loading...",
       "no-backup-yet": "There is no backup yet",
-      "tip": "Tip:",
       "backup-tip": "Keep your data safe by backing up regularly.",
       "save-data-title": "Save data",
       "save-data-description": "Do you want save your account data on the cloud?",
@@ -616,17 +546,14 @@
       "solves-selected": "Solves: ({count} selected)",
       "select-all": "Select All",
       "deselect-all": "Deselect All",
-      "success-transfer": "Successfully transferred {count} solves from {source} to {destination}",
       "failed-transfer": "Failed to transfer solves. Please try again.",
       "no-solves": "No solves available",
       "empty-vault": "Your history is currently empty.",
       "cubes-unavailable": "Cubes data is not available"
     },
     "AccountPage": {
-      "profile": "Profile",
       "personal-info": "Personal Info",
       "personal-info-description": "Update your public information and how other users see you.",
-      "backup-status": "Backup Status",
       "go-to-profile": "Go to Profile",
       "name": "Name",
       "name-required": "Name is required",
@@ -641,8 +568,6 @@
       "update-info": "Update Info",
       "update-failed": "Failed to update user",
       "update-success": "User updated successfully",
-      "change-picture": "Change picture",
-      "avatar-requirements": "JPG, GIF or PNG. Max size of 800K",
       "pronouns": {
         "he": "He",
         "she": "She",
@@ -659,7 +584,6 @@
       "description": "Explore a wide range of algorithm sets for various puzzles, complete with interactive 3D visualizations to enhance your learning experience.",
       "suggestions": "If you find any errors or want to extend with more algorithms, please submit it on our GitHub.",
       "edit-github": "Edit this algorithms on Github",
-      "skill": "Skill",
       "casual-enthusiast": "Casual Enthusiast",
       "dedicated-learner": "Dedicated Learner",
       "algorithm-master": "Algorithm Master",
@@ -686,8 +610,7 @@
         "parity-4x4": "These algorithms address the unique parity errors that can occur when solving a 4x4 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 4x4 to a 3x3 state.",
         "parity-5x5": "These algorithms address the unique parity errors that can occur when solving a 5x5 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 5x5 to a 3x3 state.",
         "l4e": "Last 4 slots (Pyraminx) - These algorithms are used to solve the last four edge pieces of a Pyraminx puzzle. The goal is to position and orient these pieces correctly to complete the puzzle."
-      },
-      "alternative": "Alternative"
+      }
     },
     "TrainerPage": {
       "breadcrumb": "Trainer",
@@ -864,9 +787,7 @@
       "save-to-cube-empty": "No cubes available for this event"
     },
     "results-tab": {
-      "latest": "Latest",
       "best": "Best",
-      "worst": "Worst",
       "average": "Average",
       "updating-live": "Updating live",
       "cubers": "Cubers"
@@ -876,9 +797,7 @@
     "room-card": {
       "users-online": "Users online:",
       "event": "Event:",
-      "max-time-per-round": "Max Time per Round:",
       "next-round-starts-in": "Next round starts in:",
-      "created-at": "Created at",
       "join": "Join"
     },
     "room-not-found": "Room not found",
@@ -886,8 +805,6 @@
     "share-room-text": "Join my cubing room on NexusTimer!",
     "invite": "Invite",
     "OpenGraph": {
-      "invited-to-room": "You're invited to a room",
-      "join-now": "Join now!",
       "room": "Room {roomId}",
       "description": "Join my room on NexusTimer to compete live! ID: {roomId}"
     }

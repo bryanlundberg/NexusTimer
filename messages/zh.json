@@ -31,7 +31,6 @@
       "start-cue": "当计时器准备好启动时显示视觉提示",
       "hold-to-start": "启动计时器前需要按住空格键",
       "hold-to-start-time": "设置启动前按住空格键的时间（300-1000ms）",
-      "manual-mode": "启用手动输入时间，而不是使用计时器",
       "decimal-places": "设置时间显示的保留小数位数（1-4位）",
       "scramble-image": "显示打乱状态（scramble）的视觉示意图",
       "session-stats": "显示当前还原组（session）的统计数据",
@@ -56,13 +55,10 @@
     },
     "Auth": {
       "sign-in": "登录",
-      "nexus-community": "Nexus 社区",
-      "login-description": "登录以访问更多功能。",
       "continue-google": "使用 Google 继续",
       "continue-discord": "使用 Discord 继续"
     },
     "CoreHeader": {
-      "server-online": "服务器：在线",
       "give-feedback": "提供反馈"
     },
     "Feedback": {
@@ -86,14 +82,9 @@
     },
     "HomePage": {
       "title": "计时器",
-      "hint": "提示",
-      "optimal-yellow-layer": "最佳黄面底层",
-      "white-on-top-green-forward": "白顶绿前",
-      "hints-yellow-layer": "提示：黄色面",
       "solving": "还原中...",
       "tap-to-start": "点击开始",
       "space-to-start": "按空格键开始",
-      "preview": "预览",
       "empty-scramble": "选择一个魔方以加载打乱公式。",
       "congratulations": "恭喜！",
       "new_best_average": "新的最佳平均！",
@@ -140,19 +131,11 @@
       },
       "alert": {
         "title": "注意！",
-        "empty-cubes": "未选择魔方。请选择一个。",
         "select-cube": "开始前先选择一个魔方！"
       },
       "dropdown": {
-        "view-details": "查看详情",
         "transfer-collection": "转移收藏",
-        "remove-bookmark": "移除书签",
-        "add-bookmark": "添加书签",
-        "remove-penalty": "移除惩罚",
-        "add-penalty": "添加惩罚",
-        "copy-to-clipboard": "复制到剪贴板",
-        "move-to-history": "移至历史记录",
-        "delete-solve": "删除纪录"
+        "move-to-history": "移至历史记录"
       },
       "empty-solves": "这里还没有内容！",
       "empty-solves-description": "点击顶部的开关以查看你的历史记录。",
@@ -178,8 +161,6 @@
       "best-time": "最佳时间",
       "worst-time": "最差时间",
       "average": "平均",
-      "overall-average": "总平均",
-      "ao5-current": "当前 Ao5",
       "time-spent": "累计用时",
       "success-rate": "成功率",
       "standard-deviation": "标准差",
@@ -188,7 +169,6 @@
       "cube-tab": "魔方",
       "cube-all": "魔方（全部）",
       "cube-session": "魔方（当前组）",
-      "time-by-cube": "时间分布",
       "solves-by-cube": "还原分布",
       "global-tooltip": "合并同一类别下所有魔方的历史和当前组还原纪录。",
       "sessions-tooltip": "仅统计同一类别下所有魔方的当前组还原纪录。",
@@ -200,11 +180,9 @@
     "CubesPage": {
       "title": "魔方",
       "no-cubes-for-display": "没有魔方可显示。",
-      "no-cubes-description": "开始在你的保险库中添加魔方收藏，以便在此处查看它们。",
       "favorite": "收藏",
       "category": "类别",
       "solves": "还原数",
-      "created-at": "创建于",
       "status": "状态",
       "using": "正在使用",
       "idle": "闲置中",
@@ -218,12 +196,7 @@
       "edit": "编辑",
       "delete": "删除",
       "created": "已创建",
-      "solves-label": "还原纪录",
       "total": "总计",
-      "marked-as-favorite": "已设为收藏",
-      "removed-from-favorites": "已取消收藏",
-      "no-solve-data": "暂无还原数据",
-      "chart-solves-label": "还原纪录",
       "utilize": "使用",
       "utilize-cube": "使用 `{name}`",
       "session-solves": "当前组还原",
@@ -232,8 +205,6 @@
     "Cubes-modal": {
       "delete-collection": "删除系列",
       "delete-collection-description": "此魔方系列及其所有还原纪录、成绩和设置都将被删除。",
-      "warning-alert": "警告：",
-      "warning-msg": "此操作不可逆。",
       "input-collection-name": "输入系列名称",
       "to-continue": "以继续：",
       "edit-collection": "编辑系列",
@@ -247,9 +218,6 @@
     "Errors": {
       "not-match": "名称不匹配。",
       "repeated-name": "该系列名称已存在。",
-      "empty-input": "请输入一个值",
-      "required-collection-name": "系列名称为必填项",
-      "max-length-50": "最大长度为 50 个字符",
       "collection-created": "魔方系列创建成功",
       "collection-edited": "魔方系列编辑成功",
       "collection-edit-failed": "魔方系列编辑失败",
@@ -270,13 +238,11 @@
       "none": "无",
       "collections": "系列",
       "empty": "空白",
-      "sign-in-google": "使用 Google 登录",
       "back": "返回",
       "no-results": "未找到结果",
       "search": "搜索...",
       "menu": "菜单",
-      "fullscreen": "全屏",
-      "exit-fullscreen": "退出全屏"
+      "fullscreen": "全屏"
     },
     "pagination": {
       "previous": "上一页",
@@ -290,7 +256,6 @@
       "no-users-found": "未找到匹配的魔友",
       "results": "结果",
       "user-card": {
-        "joined": "于 {date} 加入",
         "compare": "对比成绩",
         "view-profile": "查看资料"
       },
@@ -309,17 +274,10 @@
       },
       "stats": {
         "total-solves": "总还原次数",
-        "avg-of-5": "5次均值",
-        "best-window": "最佳区间",
-        "mean-session": "本次平均",
-        "last-12-solves": "最近12次",
         "time-on-timer": "计时器总用时",
         "lifetime": "累计",
-        "consistency": "稳定性",
-        "ok-total": "成功 / 总计",
         "events": "项目",
-        "favorite": "主项",
-        "all-categories": "全部项目"
+        "favorite": "主项"
       },
       "cubes-tab": {
         "col-name": "名称",
@@ -361,7 +319,6 @@
         "time": "时间",
         "image": "图像",
         "date": "日期",
-        "cube-used": "魔方型号",
         "tps": "TPS",
         "not-available": "暂无"
       },
@@ -382,7 +339,6 @@
       }
     },
     "NavMain": {
-      "application": "应用程序",
       "platform": "平台",
       "timer": "计时器",
       "solves": "记录",
@@ -394,7 +350,6 @@
       "leaderboards": "排行榜",
       "multiplayer": "多人对战",
       "free-play": "自由练习",
-      "clash-mode": "Clash 模式",
       "install-app": "安装应用",
       "settings": "设置",
       "account": "账户",
@@ -425,7 +380,6 @@
       "start-cue": "启动提示",
       "hold-to-start": "按住启动",
       "hold-to-start-time": "按住等待时间",
-      "manual-mode": "手动模式",
       "decimal-places": "小数位数",
       "features": "功能",
       "scramble-image": "打乱示意图",
@@ -445,15 +399,11 @@
       "theme": "主题",
       "custom-background-image": "自定义背景图片",
       "allowed-file-types": "仅支持图片文件 (JPEG, PNG, GIF)",
-      "max-file-size": "最大允许文件大小为",
       "data": "应用数据",
       "preferences": "偏好设置",
       "auto-select": "启动时自动选择",
       "import-from-file": "从文件导入",
       "export-to-file": "导出到文件",
-      "legend": "NexusTimer 是一款为速拧打造的极简、开源魔方计时器。",
-      "suggest": "功能建议",
-      "report-bug": "报告错误",
       "dark": "深色",
       "light": "浅色",
       "system": "跟随系统",
@@ -463,8 +413,6 @@
     "backup-modal": {
       "title": "智能备份恢复",
       "description": "让 NexusTimer 智能导入一切；它会自动检测并重建兼容的数据结构。",
-      "alert-category": "CSTimer 和 CubeDesk 需要手动调整类别。",
-      "drag-drop": "将文件拖放到此处，或点击选择。",
       "loading-part-1": "此操作不到一分钟。",
       "loading-part-2": "请稍候，不要关闭此窗口。",
       "welcome": "欢迎："
@@ -479,15 +427,11 @@
       "options": "选项",
       "help": "帮助",
       "account": "账户",
-      "privacy-policy": "隐私政策",
-      "tos": "服务条款",
-      "source": "源码",
       "last-backup": "最近备份：",
       "up-to-date": "已是最新",
       "no-backup": "无备份",
       "loading": "加载中...",
       "no-backup-yet": "目前尚无备份",
-      "tip": "提示：",
       "backup-tip": "定期备份以确保数据安全。",
       "save-data-title": "保存数据",
       "save-data-description": "你想将账户数据保存在云端吗？",
@@ -524,7 +468,6 @@
       "solves-selected": "记录：（已选 {count} 个）",
       "select-all": "全选",
       "deselect-all": "取消全选",
-      "success-transfer": "已成功将 {count} 个还原纪录从 {source} 转移到 {destination}",
       "failed-transfer": "还原纪录转移失败。请重试。",
       "no-solves": "无可用记录",
       "empty-vault": "你的历史记录目前为空。",
@@ -545,8 +488,6 @@
       "update-info": "更新信息",
       "update-failed": "更新用户失败",
       "update-success": "用户更新成功",
-      "change-picture": "更换头像",
-      "avatar-requirements": "支持 JPG, GIF 或 PNG。最大 800K",
       "pronouns": {
         "he": "他",
         "she": "她",
@@ -563,7 +504,6 @@
       "description": "探索各种谜题的广泛算法集，配备交互式 3D 可视化，提升你的学习体验。",
       "suggestions": "如果你发现任何错误或想增加更多算法，请在我们的 GitHub 上提交。",
       "edit-github": "在 GitHub 上编辑此算法",
-      "skill": "技能等级",
       "casual-enthusiast": "业余爱好者",
       "dedicated-learner": "专注学习者",
       "algorithm-master": "算法大师",
@@ -590,8 +530,7 @@
         "parity-4x4": "解决 4x4 魔方中特有的特殊情况（Parity）算法。",
         "parity-5x5": "解决 5x5 魔方中特有的特殊情况（Parity）算法。",
         "l4e": "金字塔魔方最后四条棱块的还原算法。"
-      },
-      "alternative": "备选方案"
+      }
     },
     "Metadata": {
       "title": "Nexus Timer - 专业魔方计时器",
@@ -761,9 +700,7 @@
       "save-to-cube-empty": "此项目没有可用的魔方"
     },
     "results-tab": {
-      "latest": "最近",
       "best": "最佳",
-      "worst": "最差",
       "average": "平均",
       "updating-live": "实时更新中",
       "cubers": "魔友"
@@ -773,9 +710,7 @@
     "room-card": {
       "users-online": "在线人数：",
       "event": "项目：",
-      "max-time-per-round": "每轮最大时间：",
       "next-round-starts-in": "下一轮开始：",
-      "created-at": "创建于",
       "join": "加入"
     },
     "room-not-found": "找不到房间",
@@ -783,8 +718,6 @@
     "share-room-text": "快来加入我在 NexusTimer 的房间吧！",
     "invite": "邀请",
     "OpenGraph": {
-      "invited-to-room": "有人邀请你加入房间",
-      "join-now": "立即加入！",
       "room": "房间 {roomId}",
       "description": "加入我在 NexusTimer 的房间一起实时竞技！ID: {roomId}"
     }

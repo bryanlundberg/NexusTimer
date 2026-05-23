@@ -31,7 +31,6 @@
       "start-cue": "타이머가 시작될 준비가 되면 시각적 신호를 표시합니다",
       "hold-to-start": "타이머를 시작하기 위해 스페이스바를 길게 누르도록 설정합니다",
       "hold-to-start-time": "시작 전 스페이스바를 누르고 있어야 하는 시간을 설정합니다 (300-1000ms)",
-      "manual-mode": "타이머 대신 수동으로 시간을 입력하도록 설정합니다",
       "decimal-places": "시간에 표시할 소수점 자릿수를 설정합니다 (1-4자)",
       "scramble-image": "스크램블의 시각적 이미지를 표시합니다",
       "session-stats": "현재 세션의 통계를 표시합니다",
@@ -56,13 +55,10 @@
     },
     "Auth": {
       "sign-in": "로그인",
-      "nexus-community": "Nexus 커뮤니티",
-      "login-description": "로그인하여 더 많은 기능을 사용해 보세요.",
       "continue-google": "Google 계정으로 계속하기",
       "continue-discord": "Discord 계정으로 계속하기"
     },
     "CoreHeader": {
-      "server-online": "서버: 온라인",
       "give-feedback": "피드백 보내기"
     },
     "Feedback": {
@@ -86,14 +82,9 @@
     },
     "HomePage": {
       "title": "타이머",
-      "hint": "힌트",
-      "optimal-yellow-layer": "최적의 옐로우 레이어",
-      "white-on-top-green-forward": "흰색 상단, 초록색 전면",
-      "hints-yellow-layer": "힌트: 노란색 면",
       "solving": "솔빙 중...",
       "tap-to-start": "터치하여 시작",
       "space-to-start": "스페이스바를 눌러 시작",
-      "preview": "미리보기",
       "empty-scramble": "스크램블을 로드할 큐브를 선택하세요.",
       "congratulations": "축하합니다!",
       "new_best_average": "새로운 최고 평균!",
@@ -140,19 +131,11 @@
       },
       "alert": {
         "title": "알림!",
-        "empty-cubes": "선택된 큐브가 없습니다. 하나를 선택해 주세요.",
         "select-cube": "큐브를 먼저 선택하고 시작하세요!"
       },
       "dropdown": {
-        "view-details": "상세 보기",
         "transfer-collection": "컬렉션 이동",
-        "remove-bookmark": "북마크 제거",
-        "add-bookmark": "북마크 추가",
-        "remove-penalty": "페널티 제거",
-        "add-penalty": "페널티 추가",
-        "copy-to-clipboard": "클립보드에 복사",
-        "move-to-history": "기록실로 이동",
-        "delete-solve": "기록 삭제"
+        "move-to-history": "기록실로 이동"
       },
       "empty-solves": "아직 기록이 없습니다!",
       "empty-solves-description": "상단의 스위치를 켜서 전체 기록을 확인하세요.",
@@ -178,8 +161,6 @@
       "best-time": "최고 기록",
       "worst-time": "최악 기록",
       "average": "평균",
-      "overall-average": "전체 평균",
-      "ao5-current": "현재 Ao5",
       "time-spent": "소요 시간",
       "success-rate": "성공률",
       "standard-deviation": "표준 편차",
@@ -188,7 +169,6 @@
       "cube-tab": "큐브",
       "cube-all": "큐브 (전체)",
       "cube-session": "큐브 (세션)",
-      "time-by-cube": "시간 분포",
       "solves-by-cube": "솔빙 분포",
       "global-tooltip": "동일 카테고리의 모든 큐브에 대한 전체 및 세션 기록을 합산합니다.",
       "sessions-tooltip": "동일 카테고리의 모든 큐브에 대한 세션 기록만 계산합니다.",
@@ -200,11 +180,9 @@
     "CubesPage": {
       "title": "큐브",
       "no-cubes-for-display": "표시할 큐브가 없습니다.",
-      "no-cubes-description": "기록을 보려면 큐브 컬렉션을 먼저 추가하세요.",
       "favorite": "즐겨찾기",
       "category": "카테고리",
       "solves": "기록수",
-      "created-at": "생성일",
       "status": "상태",
       "using": "사용 중",
       "idle": "대기 중",
@@ -218,12 +196,7 @@
       "edit": "수정",
       "delete": "삭제",
       "created": "생성됨",
-      "solves-label": "기록",
       "total": "합계",
-      "marked-as-favorite": "즐겨찾기에 추가됨",
-      "removed-from-favorites": "즐겨찾기에서 제거됨",
-      "no-solve-data": "기록 데이터 없음",
-      "chart-solves-label": "기록",
       "utilize": "사용",
       "utilize-cube": "`{name}` 사용",
       "session-solves": "세션 기록",
@@ -232,8 +205,6 @@
     "Cubes-modal": {
       "delete-collection": "컬렉션 삭제",
       "delete-collection-description": "이 컬렉션과 관련된 모든 기록 및 설정이 삭제됩니다.",
-      "warning-alert": "경고:",
-      "warning-msg": "이 작업은 되돌릴 수 없습니다.",
       "input-collection-name": "컬렉션 이름을 입력하세요",
       "to-continue": "계속하려면:",
       "edit-collection": "컬렉션 수정",
@@ -247,9 +218,6 @@
     "Errors": {
       "not-match": "이름이 일치하지 않습니다.",
       "repeated-name": "이미 존재하는 컬렉션 이름입니다.",
-      "empty-input": "값을 입력해 주세요",
-      "required-collection-name": "컬렉션 이름이 필요합니다",
-      "max-length-50": "최대 길이는 50자입니다",
       "collection-created": "큐브 컬렉션이 생성되었습니다",
       "collection-edited": "큐브 컬렉션이 수정되었습니다",
       "collection-edit-failed": "컬렉션 수정 실패",
@@ -270,13 +238,11 @@
       "none": "없음",
       "collections": "컬렉션",
       "empty": "비어 있음",
-      "sign-in-google": "Google로 로그인",
       "back": "뒤로",
       "no-results": "결과 없음",
       "search": "검색...",
       "menu": "메뉴",
-      "fullscreen": "전체 화면",
-      "exit-fullscreen": "전체 화면 종료"
+      "fullscreen": "전체 화면"
     },
     "pagination": {
       "previous": "이전",
@@ -290,7 +256,6 @@
       "no-users-found": "조건에 맞는 사용자를 찾을 수 없습니다",
       "results": "결과",
       "user-card": {
-        "joined": "{date}에 가입함",
         "compare": "비교하기",
         "view-profile": "프로필 보기"
       },
@@ -309,17 +274,10 @@
       },
       "stats": {
         "total-solves": "총 기록 수",
-        "avg-of-5": "5회 평균",
-        "best-window": "최고 구간",
-        "mean-session": "세션 평균",
-        "last-12-solves": "최근 12회",
         "time-on-timer": "타이머 총 시간",
         "lifetime": "누적",
-        "consistency": "일관성",
-        "ok-total": "성공 / 전체",
         "events": "이벤트",
-        "favorite": "주종목",
-        "all-categories": "전체 카테고리"
+        "favorite": "주종목"
       },
       "cubes-tab": {
         "col-name": "이름",
@@ -361,7 +319,6 @@
         "time": "시간",
         "image": "이미지",
         "date": "날짜",
-        "cube-used": "사용 큐브",
         "tps": "TPS",
         "not-available": "N/A"
       },
@@ -382,7 +339,6 @@
       }
     },
     "NavMain": {
-      "application": "애플리케이션",
       "platform": "플랫폼",
       "timer": "타이머",
       "solves": "기록",
@@ -394,7 +350,6 @@
       "leaderboards": "순위표",
       "multiplayer": "멀티플레이어",
       "free-play": "자유 연습",
-      "clash-mode": "Clash 모드",
       "install-app": "앱 설치",
       "settings": "설정",
       "account": "계정",
@@ -425,7 +380,6 @@
       "start-cue": "시작 신호",
       "hold-to-start": "누르고 시작",
       "hold-to-start-time": "대기 시간",
-      "manual-mode": "수동 입력",
       "decimal-places": "소수점 자릿수",
       "features": "기능",
       "scramble-image": "스크램블 이미지",
@@ -445,15 +399,11 @@
       "theme": "테마",
       "custom-background-image": "사용자 배경 이미지",
       "allowed-file-types": "이미지 파일(JPEG, PNG, GIF)만 가능합니다.",
-      "max-file-size": "최대 허용 크기:",
       "data": "데이터",
       "preferences": "환경 설정",
       "auto-select": "시작 시 자동 선택",
       "import-from-file": "파일에서 가져오기",
       "export-to-file": "파일로 내보내기",
-      "legend": "NexusTimer는 스피드큐빙을 위한 미니멀한 오픈소스 타이머입니다.",
-      "suggest": "기능 제안",
-      "report-bug": "버그 신고",
       "dark": "다크 모드",
       "light": "라이트 모드",
       "system": "시스템 설정",
@@ -463,8 +413,6 @@
     "backup-modal": {
       "title": "지능형 백업 복원",
       "description": "NexusTimer가 데이터를 스마트하게 분석하여 호환되는 구조로 자동 복원합니다.",
-      "alert-category": "CSTimer나 CubeDesk 데이터는 카테고리 수동 조정이 필요할 수 있습니다.",
-      "drag-drop": "파일을 드래그하거나 클릭하여 선택하세요.",
       "loading-part-1": "1분 이내에 완료됩니다.",
       "loading-part-2": "잠시만 기다려 주세요.",
       "welcome": "환영합니다:"
@@ -479,15 +427,11 @@
       "options": "옵션",
       "help": "도움말",
       "account": "계정",
-      "privacy-policy": "개인정보 처리방침",
-      "tos": "이용 약관",
-      "source": "소스 코드",
       "last-backup": "최근 백업:",
       "up-to-date": "최신 상태",
       "no-backup": "백업 없음",
       "loading": "로딩 중...",
       "no-backup-yet": "아직 백업이 없습니다",
-      "tip": "팁:",
       "backup-tip": "정기적인 백업으로 데이터를 안전하게 보관하세요.",
       "save-data-title": "데이터 저장",
       "save-data-description": "데이터를 클라우드에 저장할까요?",
@@ -524,7 +468,6 @@
       "solves-selected": "기록: ({count}개 선택됨)",
       "select-all": "전체 선택",
       "deselect-all": "선택 해제",
-      "success-transfer": "{count}개의 기록이 성공적으로 이동되었습니다",
       "failed-transfer": "이동 실패. 다시 시도해 주세요.",
       "no-solves": "이동할 기록이 없습니다",
       "empty-vault": "기록실이 비어 있습니다.",
@@ -545,8 +488,6 @@
       "update-info": "정보 업데이트",
       "update-failed": "업데이트 실패",
       "update-success": "업데이트 성공",
-      "change-picture": "사진 변경",
-      "avatar-requirements": "JPG, GIF, PNG 가능. 최대 800K",
       "pronouns": {
         "he": "그 (He)",
         "she": "그녀 (She)",
@@ -563,7 +504,6 @@
       "description": "다양한 퍼즐의 알고리즘 세트를 3D 시각화와 함께 학습하세요.",
       "suggestions": "오류 제보나 알고리즘 추가 제안은 GitHub를 이용해 주세요.",
       "edit-github": "GitHub에서 알고리즘 수정",
-      "skill": "숙련도",
       "casual-enthusiast": "입문자",
       "dedicated-learner": "숙련자",
       "algorithm-master": "마스터",
@@ -590,8 +530,7 @@
         "parity-4x4": "4x4 큐브의 예외 상황(Parity) 처리 알고리즘입니다.",
         "parity-5x5": "5x5 큐브의 예외 상황(Parity) 처리 알고리즘입니다.",
         "l4e": "피라밍크스의 마지막 4개 엣지를 맞추는 알고리즘입니다."
-      },
-      "alternative": "대안 (Alternative)"
+      }
     },
     "Metadata": {
       "title": "Nexus Timer - 전문 루빅스 큐브 타이머",
@@ -761,9 +700,7 @@
       "save-to-cube-empty": "이 이벤트에 사용할 수 있는 큐브가 없습니다"
     },
     "results-tab": {
-      "latest": "최근",
       "best": "최고",
-      "worst": "최악",
       "average": "평균",
       "updating-live": "실시간 업데이트 중",
       "cubers": "큐버들"
@@ -773,9 +710,7 @@
     "room-card": {
       "users-online": "접속자:",
       "event": "종목:",
-      "max-time-per-round": "최대 시간:",
       "next-round-starts-in": "다음 라운드:",
-      "created-at": "생성 시각",
       "join": "입장"
     },
     "room-not-found": "방을 찾을 수 없습니다",
@@ -783,8 +718,6 @@
     "share-room-text": "NexusTimer 방으로 오세요!",
     "invite": "초대하기",
     "OpenGraph": {
-      "invited-to-room": "방에 초대되었습니다",
-      "join-now": "지금 참여하기!",
       "room": "{roomId}번 방",
       "description": "NexusTimer 실시간 대결에 참여하세요! ID: {roomId}"
     }
