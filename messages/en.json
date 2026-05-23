@@ -372,7 +372,15 @@
       "tabs": {
         "overview": "Overview",
         "cubes": "Cubes",
-        "timeline": "Timeline"
+        "timeline": "Timeline",
+        "achievements": "Achievements"
+      },
+      "badges": {
+        "title": "Achievements",
+        "counter": "{unlocked} / {total}",
+        "view-all": "View all",
+        "empty": "No achievements unlocked yet.",
+        "locked-hint": "Locked"
       },
       "edit-profile": "Edit profile",
       "no-backup-data": "This account has no backup data to display.",

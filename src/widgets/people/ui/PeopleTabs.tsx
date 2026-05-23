@@ -6,9 +6,11 @@ import { usePeopleTab } from '@/features/people-tab/model/usePeopleTab'
 import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
 import { ProfileHeroBanner } from '@/widgets/people/ui/profile-hero-banner'
+import { ProfileBadgesStrip } from '@/widgets/people/ui/profile-badges-strip'
 import { ProfileStatsBar } from '@/widgets/people/ui/profile-stats-bar'
-import { UserDocument } from '@/entities/user/model/user'
+import { UserProfile } from '@/entities/user/model/user'
 import { Cube } from '@/entities/cube/model/types'
+import useUserBadges from '@/entities/achievement/model/useUserBadges'
 import { useTranslations } from 'next-intl'
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
@@ -19,7 +21,7 @@ import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
 import { CheckCircle2, GitCompareIcon } from 'lucide-react'
 
 interface PeopleTabsProps {
-  user: UserDocument
+  user: UserProfile
   cubes: Array<Cube>
 }
 
@@ -27,6 +29,7 @@ const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE] as const
 
 export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
   const t = useTranslations('Index.PeoplePage.tabs')
+  const userBadges = useUserBadges({ user, cubes })
   const tProfile = useTranslations('Index.PeoplePage')
   const tCard = useTranslations('Index.PeoplePage.user-card')
 
@@ -64,7 +67,8 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
   const labels: Record<PTabs, string> = {
     [PTabs.OVERVIEW]: t('overview'),
     [PTabs.CUBES]: t('cubes'),
-    [PTabs.TIMELINE]: t('timeline')
+    [PTabs.TIMELINE]: t('timeline'),
+    [PTabs.ACHIEVEMENTS]: t('achievements')
   }
 
   const updateIndicator = useCallback(() => {
@@ -90,8 +94,9 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
     <div className="flex flex-col w-full">
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
 
-      <ProfileHeroBanner user={user} cubes={cubes} />
+      <ProfileHeroBanner user={user} cubes={cubes} level={userBadges.unlocked.length} />
       <ProfileStatsBar cubes={cubes} />
+      <ProfileBadgesStrip badges={userBadges} />
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full">
         {/* Tabs nav + actions row */}
@@ -148,7 +153,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
 
         {/* Tab content */}
         <div className="px-4 md:px-6 py-0">
-          <PeopleContent cubes={cubes} />
+          <PeopleContent cubes={cubes} badges={userBadges} />
         </div>
       </Tabs>
     </div>
