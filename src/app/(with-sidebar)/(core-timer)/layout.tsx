@@ -1,5 +1,4 @@
 import React from 'react'
-import StatisticsProvider from '@/components/statistics-provider'
 import BackgroundImageApp from '@/components/background-image-app'
 import SyncBackupProvider from '@/components/sync-backup-provider'
 import { Metadata } from 'next'
@@ -43,9 +42,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <BackgroundImageApp>
-        <SyncBackupProvider>
-          <StatisticsProvider>{children}</StatisticsProvider>
-        </SyncBackupProvider>
+        <SyncBackupProvider>{children}</SyncBackupProvider>
       </BackgroundImageApp>
     </>
   )
