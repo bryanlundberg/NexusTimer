@@ -7,7 +7,7 @@ import QuickActions from '@/features/manage-solves/ui/QuickActions'
 import DisplayContainer from '@/features/timer/ui/display-container'
 import DisplayTime from '@/features/timer/ui/display-time'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
-import useDeviceMatch from '@/shared/model/useDeviceMatch'
+import { useIsMobile } from '@/shared/model/use-mobile'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 
@@ -41,7 +41,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
     settings
   })
 
-  const { device } = useDeviceMatch()
+  const isMobile = useIsMobile()
 
   const isBestTime = timerStatistics.global.best === lastSolve?.time && !isSolving && settings.sounds.newPersonalBest
 
@@ -58,7 +58,7 @@ export default function Timer({ children }: { children?: ReactNode }) {
           timerStatus={timerStatus}
           lastSolve={lastSolve}
           solvingTime={solvingTime}
-          device={device}
+          isMobile={isMobile}
           inspectionTime={inspectionTime}
           hideWhileSolving={settings.features.hideWhileSolving}
           inspectionRequired={settings.timer.inspection}

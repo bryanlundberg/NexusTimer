@@ -10,7 +10,7 @@ import genScramble from '@/shared/lib/timer/genScramble'
 import DisplayTime from '@/features/timer/ui/display-time'
 import ConfirmSolveModal from '@/features/free-play-room/ui/confirm-solve-modal'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
-import useDeviceMatch from '@/shared/model/useDeviceMatch'
+import { useIsMobile } from '@/shared/model/use-mobile'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { Cube } from '@/entities/cube/model/types'
@@ -105,7 +105,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     return alreadySolvedInFirebase || hasSolvedCurrentScramble
   }, [alreadySolvedInFirebase, hasSolvedCurrentScramble])
 
-  const { device } = useDeviceMatch()
+  const isMobile = useIsMobile()
 
   const handleSubmitTime = async (dnf: boolean, plus2: boolean, cubeId: string | null) => {
     setModalOpen(false)
@@ -349,7 +349,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
                 timerStatus={timerStatus}
                 lastSolve={lastSolve}
                 solvingTime={solvingTime}
-                device={device}
+                isMobile={isMobile}
                 inspectionTime={inspectionTime}
                 hideWhileSolving={settings.features.hideWhileSolving}
                 className="text-center"

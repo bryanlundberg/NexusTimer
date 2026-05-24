@@ -15,7 +15,7 @@ interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   lastSolve: Solve | null
   timerStatus: TimerStatus
   solvingTime: number
-  device: any
+  isMobile: boolean
   inspectionTime: number
   inspectionRequired: boolean
   hideWhileSolving: boolean
@@ -36,7 +36,7 @@ export default function DisplayTime({
   lastSolve,
   timerStatus,
   solvingTime,
-  device,
+  isMobile,
   inspectionTime,
   inspectionRequired,
   hideWhileSolving,
@@ -173,9 +173,9 @@ export default function DisplayTime({
                   id={'touch'}
                 >
                   {timerMode === TimerMode.NORMAL
-                    ? device === 'Desktop'
-                      ? `${t('space-to-start')}`
-                      : `${t('tap-to-start')}`
+                    ? isMobile
+                      ? `${t('tap-to-start')}`
+                      : `${t('space-to-start')}`
                     : null}
 
                   {timerMode === TimerMode.STACKMAT && t('start-stackmat')}
