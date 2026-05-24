@@ -19,12 +19,12 @@ export function MobileBottomNavItem({ url, icon: Icon, label, active }: Props) {
       href={url}
       onClick={() => triggerHaptic()}
       aria-current={active ? 'page' : undefined}
-      className="relative flex h-full items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-ring/60 rounded-md"
+      className="relative flex h-full w-full items-center justify-center outline-none focus-visible:ring-2 focus-visible:ring-ring/60 rounded-md"
     >
       <motion.div
         whileTap={{ scale: 0.92 }}
         transition={{ type: 'spring', stiffness: 500, damping: 22 }}
-        className="flex flex-col items-center justify-center gap-1 py-2 px-3"
+        className="flex w-full flex-col items-center justify-center gap-1 py-2 px-1"
       >
         <Icon
           className={cn('size-5 transition-colors', active ? 'text-foreground' : 'text-muted-foreground')}

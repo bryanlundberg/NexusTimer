@@ -25,7 +25,7 @@ export function MobileBottomNav() {
       <LayoutGroup>
         <ul className="grid grid-cols-4">
           {PLATFORM_ROUTES.map((route) => (
-            <li key={route.url} className="flex">
+            <li key={route.url} className="flex w-full">
               <MobileBottomNavItem
                 url={route.url}
                 icon={route.icon}
