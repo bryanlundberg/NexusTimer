@@ -1,8 +1,11 @@
 [{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "com.nexustimer.twa",
-        "sha256_cert_fingerprints": ["D5:A4:76:E7:A3:D1:E8:86:E4:98:D3:0D:63:F1:50:1B:65:2A:C7:E6:0D:CF:61:B2:A8:6D:DE:17:1B:7F:65:D2"]
-      }
-    }]
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.nexustimer",
+    "sha256_cert_fingerprints": [
+      "71:74:DF:63:46:6F:F1:60:A7:E6:8D:F7:38:B9:5D:DB:2A:62:89:4D:89:77:A7:B4:90:A5:1D:8C:79:8D:0B:AF",
+      "3E:5F:B7:65:16:55:21:E6:8A:4F:CA:1C:AE:02:8F:F7:0A:FB:1C:2B:52:12:A0:DA:5C:0E:C1:B3:AB:FF:EA:88"
+    ]
+  }
+}]

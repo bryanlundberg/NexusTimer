@@ -92,7 +92,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
 
   useAudioTrigger({
     audioSrc: '/sounds/new-round.mp3',
-    trigger: shouldPlaySound,
+    trigger: shouldPlaySound && settings.sounds.newRound,
     autoplay: true
   })
 

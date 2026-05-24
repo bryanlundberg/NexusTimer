@@ -28,6 +28,7 @@ import { Settings } from '@/shared/types/Settings'
 import { useTrainerStats } from '@/features/trainer/model/useTrainerStats'
 import { useTrainerSolves } from '@/features/trainer/model/useTrainerSolves'
 import { postTrainerSolve } from '@/features/trainer/model/postTrainerSolve'
+import { deleteTrainerSolve } from '@/features/trainer/model/mutateTrainerSolve'
 import { patchTrainerTarget } from '@/features/trainer/model/patchTrainerTarget'
 import { TRAINER_DEFAULT_TARGET_SECONDS } from '@/features/trainer/lib/constants'
 import { buildVizConfig, formatMs } from '@/features/trainer/lib/trainerUtils'
@@ -49,6 +50,9 @@ export default function TrainerExperience() {
   const setRotationMode = useTrainerStore((s) => s.setRotationMode)
   const advanceCase = useTrainerStore((s) => s.advanceCase)
   const recordSolve = useTrainerStore((s) => s.recordSolve)
+  const attachLastSolveId = useTrainerStore((s) => s.attachLastSolveId)
+  const undoLastSolve = useTrainerStore((s) => s.undoLastSolve)
+  const lastSolve = useTrainerStore((s) => s.lastSolve)
   const hydrateMethodStats = useTrainerStore((s) => s.hydrateMethodStats)
 
   const timerStatus = useTimerStore((s) => s.timerStatus)
@@ -96,7 +100,7 @@ export default function TrainerExperience() {
   )
 
   const trainerSettings = useMemo<Settings>(
-    () => ({ ...settings, timer: { ...settings.timer, inspection: false, holdToStart: false } }),
+    () => ({ ...settings, timer: { ...settings.timer, inspection: false } }),
     [settings]
   )
 
@@ -119,7 +123,10 @@ export default function TrainerExperience() {
       advanceCase(sessionCases.length)
       if (!isAuthed) return
       postTrainerSolve({ methodSlug, caseId: solvedCaseId, timeMs: roundedMs, penalty: 'OK' })
-        .then(() => Promise.all([mutateStats(), mutateSolves()]))
+        .then((res) => {
+          if (res?.solve?._id) attachLastSolveId(res.solve._id)
+          return Promise.all([mutateStats(), mutateSolves()])
+        })
         .catch((err) => {
           console.error('Failed to persist trainer solve:', err)
         })
@@ -127,6 +134,20 @@ export default function TrainerExperience() {
   })
 
   const handleSkip = () => advanceCase(sessionCases.length)
+
+  const handleUndoLast = () => {
+    const undone = undoLastSolve()
+    if (!undone) return
+    if (isAuthed && undone.persistedId) {
+      deleteTrainerSolve(undone.persistedId)
+        .then(() => Promise.all([mutateStats(), mutateSolves()]))
+        .catch((err) => {
+          console.error('Failed to delete trainer solve:', err)
+          mutateStats()
+          mutateSolves()
+        })
+    }
+  }
 
   const handleToggleLearned = async () => {
     if (!currentCase || !isAuthed) return
@@ -291,6 +312,12 @@ export default function TrainerExperience() {
               ao12={currentStats?.ao12 != null ? formatMs(currentStats.ao12) : undefined}
               totalSolves={currentStats?.totalSolves ?? 0}
               onSkip={handleSkip}
+              onUndoLast={
+                lastSolve && timerStatus === TimerStatus.IDLE && (!isAuthed || !!lastSolve.persistedId)
+                  ? handleUndoLast
+                  : undefined
+              }
+              lastSolveTime={lastSolve ? formatMs(lastSolve.timeMs) : undefined}
               onToggleLearned={isAuthed ? handleToggleLearned : undefined}
               historyHref={isAuthed && currentCase ? '/algorithms/trainer/history' : undefined}
               targetSeconds={targetSeconds}
@@ -303,7 +330,7 @@ export default function TrainerExperience() {
               onViewAlgorithms={currentCase ? handleOpenAlgorithms : undefined}
             />
 
-            <div className="lg:hidden mt-auto pt-2">
+            <div className={cn('lg:hidden mt-auto pt-2', timerStatus !== TimerStatus.IDLE && 'hidden')}>
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="outline" size="sm" className="w-full h-9">

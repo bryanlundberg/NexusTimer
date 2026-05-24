@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What is NexusTimer
 
-NexusTimer is a full-stack speedcubing timer and analytics PWA built with Next.js 16, React 19, and TypeScript. It features real-time 3D cube visualization, statistical analysis, community leaderboards, multiplayer modes, and supports 10 languages.
+NexusTimer is a full-stack speedcubing timer and analytics PWA built with Next.js 16, React 19, and TypeScript. It features real-time 3D cube visualization, statistical analysis, community leaderboards, multiplayer modes, and supports 11 languages.
 
 ## Commands
 
@@ -40,10 +40,10 @@ The project follows **Feature-Sliced Design (FSD)** under `src/`:
 - **State**: Zustand stores for client state, SWR for server data fetching, IndexedDB (via `idb`) for offline-first local persistence
 - **Database**: MongoDB via Mongoose for user data, solves, backups. Firebase Realtime Database + Firestore for multiplayer features.
 - **Auth**: NextAuth v5 (beta) with Google and Discord OAuth providers. Config at `src/shared/config/auth/auth.ts`.
-- **i18n**: next-intl with cookie-based locale selection. 10 locales in `messages/{locale}.json`. English is the default fallback; messages are deep-merged.
+- **i18n**: next-intl with cookie-based locale selection. 11 locales in `messages/{locale}.json`. English is the default fallback; messages are deep-merged.
 - **UI**: Shadcn/ui (Radix-based) + Tailwind CSS v4. 3D rendering with Three.js/React Three Fiber. Charts with Recharts.
 - **PWA**: Serwist service worker (`src/app/sw.ts`)
-- **Multiplayer**: PeerJS for P2P connections, Firebase for room management
+- **Multiplayer**: Firebase Realtime Database
 
 ## Code Style
 

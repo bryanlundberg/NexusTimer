@@ -12,19 +12,15 @@ import Link from 'next/link'
 import { NavUser } from '@/widgets/sidebar/ui/nav-user'
 import * as React from 'react'
 import { useSession } from 'next-auth/react'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 import { useTranslations } from 'next-intl'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import DiscordButton from '@/features/authentication/ui/DiscordButton'
-import GoogleButton from '@/features/authentication/ui/GoogleButton'
 import { Ellipsis, LogInIcon, SmilePlus } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import FeedbackModal from '@/features/feedback/ui/FeedbackModal'
@@ -119,31 +115,17 @@ export default function CoreHeader({
               </DropdownMenu>
             </div>
           ) : (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-7 gap-1.5 px-2 text-xs text-muted-foreground hover:text-foreground animate-pulse hover:animate-none"
-                >
-                  <LogInIcon className="size-3.5" />
-                  <span className="hidden sm:inline">{tAuth('sign-in')}</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-64 p-4">
-                <div className="flex flex-col gap-2 mb-4">
-                  <DropdownMenuLabel className="p-0 font-bold text-lg leading-none">
-                    {tAuth('nexus-community')}
-                  </DropdownMenuLabel>
-                  <p className="text-sm text-muted-foreground leading-snug">{tAuth('login-description')}</p>
-                </div>
-                <DropdownMenuSeparator className="mb-4" />
-                <DropdownMenuGroup className="flex flex-col gap-2">
-                  <DiscordButton />
-                  <GoogleButton />
-                </DropdownMenuGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Link
+              href="/sign-in"
+              className={buttonVariants({
+                variant: 'ghost',
+                size: 'sm',
+                className: 'h-7 gap-1.5 px-2 text-xs text-muted-foreground hover:text-foreground'
+              })}
+            >
+              <LogInIcon className="size-3.5" />
+              <span className="hidden sm:inline">{tAuth('sign-in')}</span>
+            </Link>
           )}
         </div>
       </div>

@@ -8,17 +8,49 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'An end-to-end, highly customizable speedcubing application.',
     start_url: '/app',
     scope: '/',
-    display: 'fullscreen',
-    background_color: '#ffffff',
+    display: 'standalone',
+    display_override: ['standalone', 'minimal-ui'],
+    background_color: '#000000',
     theme_color: '#000000',
     icons: [
       {
-        src: '/icon512_rounded.png',
-        sizes: '512x512',
-        type: 'image/png'
+        src: '/android/mipmap-ldpi/ic_launcher.webp',
+        sizes: '36x36',
+        type: 'image/webp'
       },
       {
-        src: '/icon512_maskable.png',
+        src: '/android/mipmap-mdpi/ic_launcher.webp',
+        sizes: '48x48',
+        type: 'image/webp'
+      },
+      {
+        src: '/android/mipmap-hdpi/ic_launcher.webp',
+        sizes: '72x72',
+        type: 'image/webp'
+      },
+      {
+        src: '/android/mipmap-xhdpi/ic_launcher.webp',
+        sizes: '96x96',
+        type: 'image/webp'
+      },
+      {
+        src: '/android/mipmap-xxhdpi/ic_launcher.webp',
+        sizes: '144x144',
+        type: 'image/webp'
+      },
+      {
+        src: '/android/mipmap-xxxhdpi/ic_launcher.webp',
+        sizes: '192x192',
+        type: 'image/webp'
+      },
+      {
+        src: '/android/ic_launcher-web.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'any'
+      },
+      {
+        src: '/android/playstore-icon.png',
         sizes: '512x512',
         type: 'image/png',
         purpose: 'maskable'

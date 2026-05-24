@@ -2,42 +2,28 @@
 
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
-
-const CONSENT_KEY = 'nexustimer_cookie_consent'
-
-type ConsentValue = 'granted' | 'denied'
-
-function updateGtagConsent(analytics: ConsentValue) {
-  if (typeof window === 'undefined' || !window.gtag) return
-  window.gtag('consent', 'update', {
-    analytics_storage: analytics,
-    functionality_storage: 'granted',
-    security_storage: 'granted'
-  })
-}
+import { getStoredConsent, setAnalyticsConsent, updateGtagConsent } from '@/shared/lib/analyticsConsent'
 
 export default function CookieConsentBanner() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const stored = localStorage.getItem(CONSENT_KEY)
+    const stored = getStoredConsent()
     if (!stored) {
       setVisible(true)
       return
     }
     // Re-apply persisted consent on every page load
-    updateGtagConsent(stored as ConsentValue)
+    updateGtagConsent(stored)
   }, [])
 
   function handleAccept() {
-    localStorage.setItem(CONSENT_KEY, 'granted')
-    updateGtagConsent('granted')
+    setAnalyticsConsent('granted')
     setVisible(false)
   }
 
   function handleReject() {
-    localStorage.setItem(CONSENT_KEY, 'denied')
-    updateGtagConsent('denied')
+    setAnalyticsConsent('denied')
     setVisible(false)
   }
 

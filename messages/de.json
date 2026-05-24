@@ -31,7 +31,6 @@
       "start-cue": "Visueller Hinweis, wenn der Timer startbereit ist",
       "hold-to-start": "Leertaste gedrückt halten, um den Timer zu starten",
       "hold-to-start-time": "Dauer des Gedrückthaltens der Leertaste festlegen (300-1000ms)",
-      "manual-mode": "Manuelle Zeiteingabe anstatt Timer-Nutzung aktivieren",
       "decimal-places": "Anzahl der Dezimalstellen bei Zeitangaben festlegen (1-4)",
       "scramble-image": "Visuelle Darstellung des Scrambles anzeigen",
       "session-stats": "Statistiken für die aktuelle Sitzung anzeigen",
@@ -56,13 +55,10 @@
     },
     "Auth": {
       "sign-in": "Anmelden",
-      "nexus-community": "Nexus Community",
-      "login-description": "Melde dich an, um auf weitere Funktionen zuzugreifen.",
       "continue-google": "Mit Google fortfahren",
       "continue-discord": "Mit Discord fortfahren"
     },
     "CoreHeader": {
-      "server-online": "Server: Online",
       "give-feedback": "Feedback geben"
     },
     "Feedback": {
@@ -86,14 +82,9 @@
     },
     "HomePage": {
       "title": "Timer",
-      "hint": "Hinweis",
-      "optimal-yellow-layer": "Optimale gelbe Ebene",
-      "white-on-top-green-forward": "Weiß oben, Grün vorne",
-      "hints-yellow-layer": "Hinweise: Gelbe Ebene",
       "solving": "Löse...",
       "tap-to-start": "Tippen zum Starten",
       "space-to-start": "LEERTASTE drücken zum Starten",
-      "preview": "Vorschau",
       "empty-scramble": "Wähle einen Würfel, um ein Scramble zu laden.",
       "congratulations": "Herzlichen Glückwunsch!",
       "new_best_average": "Neuer bester Durchschnitt!",
@@ -140,19 +131,11 @@
       },
       "alert": {
         "title": "Achtung!",
-        "empty-cubes": "Kein Würfel ausgewählt. Bitte wähle einen.",
         "select-cube": "Wähle zuerst einen Würfel aus!"
       },
       "dropdown": {
-        "view-details": "Details anzeigen",
         "transfer-collection": "Sammlung übertragen",
-        "remove-bookmark": "Lesezeichen entfernen",
-        "add-bookmark": "Lesezeichen hinzufügen",
-        "remove-penalty": "Strafe entfernen",
-        "add-penalty": "Strafe hinzufügen",
-        "copy-to-clipboard": "In Zwischenablage kopieren",
-        "move-to-history": "In Verlauf verschieben",
-        "delete-solve": "Zeit löschen"
+        "move-to-history": "In Verlauf verschieben"
       },
       "empty-solves": "Hier ist noch nichts!",
       "empty-solves-description": "Nutze den Schalter oben, um deinen Verlauf zu sehen.",
@@ -178,8 +161,6 @@
       "best-time": "Bestzeit",
       "worst-time": "Schlechteste Zeit",
       "average": "Durchschnitt",
-      "overall-average": "Gesamtdurchschnitt",
-      "ao5-current": "Ao5 (Aktuell)",
       "time-spent": "Zeitaufwand",
       "success-rate": "Erfolgsquote",
       "standard-deviation": "Standardabweichung",
@@ -188,7 +169,6 @@
       "cube-tab": "Würfel",
       "cube-all": "Würfel (Alle)",
       "cube-session": "Würfel (Sitzung)",
-      "time-by-cube": "Zeitverteilung",
       "solves-by-cube": "Solve-Verteilung",
       "global-tooltip": "Kombiniert alle Zeiten für jeden Würfel derselben Kategorie.",
       "sessions-tooltip": "Zählt nur Sitzungszeiten für jeden Würfel derselben Kategorie.",
@@ -200,11 +180,9 @@
     "CubesPage": {
       "title": "Würfel",
       "no-cubes-for-display": "Keine Würfel zum Anzeigen.",
-      "no-cubes-description": "Füge Würfel-Sammlungen hinzu, um sie hier zu sehen.",
       "favorite": "Favorit",
       "category": "Kategorie",
       "solves": "Zeiten",
-      "created-at": "Erstellt am",
       "status": "Status",
       "using": "In Gebrauch",
       "idle": "Inaktiv",
@@ -218,12 +196,7 @@
       "edit": "Bearbeiten",
       "delete": "Löschen",
       "created": "Erstellt",
-      "solves-label": "Zeiten",
       "total": "gesamt",
-      "marked-as-favorite": "Als Favorit markiert",
-      "removed-from-favorites": "Aus Favoriten entfernt",
-      "no-solve-data": "Keine Zeitdaten verfügbar",
-      "chart-solves-label": "Zeiten",
       "utilize": "Nutzen",
       "utilize-cube": "`{name}` nutzen",
       "session-solves": "Sitzungszeiten",
@@ -232,8 +205,6 @@
     "Cubes-modal": {
       "delete-collection": "Sammlung löschen",
       "delete-collection-description": "Diese Sammlung wird mit allen Zeiten, Rekorden und Einstellungen gelöscht.",
-      "warning-alert": "Warnung:",
-      "warning-msg": "Diese Aktion kann nicht rückgängig gemacht werden.",
       "input-collection-name": "Sammlungsnamen eingeben",
       "to-continue": "um fortzufahren:",
       "edit-collection": "Sammlung bearbeiten",
@@ -247,9 +218,6 @@
     "Errors": {
       "not-match": "Name stimmt nicht überein.",
       "repeated-name": "Dieser Sammlungsname existiert bereits.",
-      "empty-input": "Bitte einen Wert eingeben",
-      "required-collection-name": "Sammlungsname erforderlich",
-      "max-length-50": "Maximale Länge beträgt 50 Zeichen",
       "collection-created": "Sammlung erfolgreich erstellt",
       "collection-edited": "Sammlung erfolgreich bearbeitet",
       "collection-edit-failed": "Bearbeiten der Sammlung fehlgeschlagen",
@@ -270,13 +238,11 @@
       "none": "Keine",
       "collections": "Sammlungen",
       "empty": "Leer",
-      "sign-in-google": "Mit Google anmelden",
       "back": "Zurück",
       "no-results": "Keine Ergebnisse gefunden",
       "search": "Suchen...",
       "menu": "Menü",
-      "fullscreen": "Vollbild",
-      "exit-fullscreen": "Vollbild beenden"
+      "fullscreen": "Vollbild"
     },
     "pagination": {
       "previous": "Vorherige",
@@ -290,7 +256,6 @@
       "no-users-found": "Keine passenden Nutzer gefunden",
       "results": "Ergebnisse",
       "user-card": {
-        "joined": "Beigetreten am {date}",
         "compare": "Vergleichen",
         "view-profile": "Profil ansehen"
       },
@@ -309,17 +274,10 @@
       },
       "stats": {
         "total-solves": "Solves gesamt",
-        "avg-of-5": "Ø von 5",
-        "best-window": "bestes Fenster",
-        "mean-session": "Sessionsmittel",
-        "last-12-solves": "letzte 12 Solves",
         "time-on-timer": "Zeit am Timer",
         "lifetime": "gesamt",
-        "consistency": "Konsistenz",
-        "ok-total": "ok / gesamt",
         "events": "Events",
-        "favorite": "Lieblingsevent",
-        "all-categories": "alle Kategorien"
+        "favorite": "Lieblingsevent"
       },
       "cubes-tab": {
         "col-name": "Name",
@@ -361,7 +319,6 @@
         "time": "Zeit",
         "image": "Bild",
         "date": "Datum",
-        "cube-used": "Würfel",
         "tps": "tps",
         "not-available": "N/V"
       },
@@ -382,7 +339,6 @@
       }
     },
     "NavMain": {
-      "application": "Anwendung",
       "platform": "Plattform",
       "timer": "Timer",
       "solves": "Zeiten",
@@ -394,7 +350,6 @@
       "leaderboards": "Bestenlisten",
       "multiplayer": "Mehrspieler",
       "free-play": "Freies Spiel",
-      "clash-mode": "Clash-Modus",
       "install-app": "App installieren",
       "settings": "Einstellungen",
       "account": "Konto",
@@ -425,7 +380,6 @@
       "start-cue": "Startsignal",
       "hold-to-start": "Halten zum Starten",
       "hold-to-start-time": "Haltezeit",
-      "manual-mode": "Manueller Modus",
       "decimal-places": "Dezimalstellen",
       "features": "Funktionen",
       "scramble-image": "Scramble-Bild",
@@ -445,15 +399,11 @@
       "theme": "Thema",
       "custom-background-image": "Eigenes Hintergrundbild",
       "allowed-file-types": "Nur Bilddateien (JPEG, PNG, GIF) sind erlaubt.",
-      "max-file-size": "Maximale Dateigröße ist",
       "data": "Daten",
       "preferences": "Präferenzen",
       "auto-select": "Auto-Auswahl beim Start",
       "import-from-file": "Aus Datei importieren",
       "export-to-file": "In Datei exportieren",
-      "legend": "NexusTimer ist ein minimalistischer Open-Source Web-Timer für Speedcubing.",
-      "suggest": "Änderung vorschlagen",
-      "report-bug": "Fehler melden",
       "dark": "Dunkel",
       "light": "Hell",
       "system": "System",
@@ -463,8 +413,6 @@
     "backup-modal": {
       "title": "Intelligente Backup-Wiederherstellung",
       "description": "NexusTimer importiert alles intelligent; kompatible Datenstrukturen werden automatisch erkannt.",
-      "alert-category": "CSTimer und CubeDesk erfordern manuelle Kategorie-Anpassung.",
-      "drag-drop": "Dateien hierher ziehen oder zum Auswählen klicken.",
       "loading-part-1": "Dauert weniger als eine Minute.",
       "loading-part-2": "Bitte warten, Fenster nicht schließen.",
       "welcome": "Willkommen:"
@@ -479,15 +427,11 @@
       "options": "Optionen",
       "help": "Hilfe",
       "account": "Konto",
-      "privacy-policy": "Datenschutz",
-      "tos": "Nutzungsbedingungen",
-      "source": "Quelle",
       "last-backup": "Letztes Backup:",
       "up-to-date": "Aktuell",
       "no-backup": "Kein Backup",
       "loading": "Lade...",
       "no-backup-yet": "Noch kein Backup vorhanden",
-      "tip": "Tipp:",
       "backup-tip": "Sichere deine Daten regelmäßig.",
       "save-data-title": "Daten speichern",
       "save-data-description": "Daten in der Cloud speichern?",
@@ -524,7 +468,6 @@
       "solves-selected": "Zeiten: ({count} ausgewählt)",
       "select-all": "Alle wählen",
       "deselect-all": "Alle abwählen",
-      "success-transfer": "{count} Zeiten erfolgreich übertragen",
       "failed-transfer": "Übertragung fehlgeschlagen.",
       "no-solves": "Keine Zeiten vorhanden",
       "empty-vault": "Dein Verlauf ist leer.",
@@ -545,8 +488,6 @@
       "update-info": "Aktualisieren",
       "update-failed": "Update fehlgeschlagen",
       "update-success": "Update erfolgreich",
-      "change-picture": "Bild ändern",
-      "avatar-requirements": "JPG, GIF oder PNG. Max. 800K",
       "pronouns": {
         "he": "Er",
         "she": "Sie",
@@ -563,7 +504,6 @@
       "description": "Entdecke Algorithmen für verschiedene Puzzles mit interaktiven 3D-Ansichten.",
       "suggestions": "Fehler? Melde sie auf GitHub.",
       "edit-github": "Auf GitHub bearbeiten",
-      "skill": "Level",
       "casual-enthusiast": "Hobby-Cuber",
       "dedicated-learner": "Engagierter Lerner",
       "algorithm-master": "Algorithmus-Meister",
@@ -590,8 +530,7 @@
         "parity-4x4": "Spezielle Parity-Fälle beim 4x4.",
         "parity-5x5": "Spezielle Parity-Fälle beim 5x5.",
         "l4e": "Letzte 4 Kanten beim Pyraminx."
-      },
-      "alternative": "Alternative"
+      }
     },
     "Metadata": {
       "title": "Nexus Timer - Professioneller Zauberwürfel Timer",
@@ -761,9 +700,7 @@
       "save-to-cube-empty": "Keine Würfel für dieses Event verfügbar"
     },
     "results-tab": {
-      "latest": "Letzte",
       "best": "Beste",
-      "worst": "Schlechteste",
       "average": "Durchschnitt",
       "updating-live": "Live-Update",
       "cubers": "Cuber"
@@ -773,9 +710,7 @@
     "room-card": {
       "users-online": "Nutzer online:",
       "event": "Event:",
-      "max-time-per-round": "Max. Zeit pro Runde:",
       "next-round-starts-in": "Nächste Runde in:",
-      "created-at": "Erstellt um",
       "join": "Beitreten"
     },
     "room-not-found": "Raum nicht gefunden",
@@ -783,8 +718,6 @@
     "share-room-text": "Komm in meinen Raum auf NexusTimer!",
     "invite": "Einladen",
     "OpenGraph": {
-      "invited-to-room": "Du wurdest in einen Raum eingeladen",
-      "join-now": "Jetzt beitreten!",
       "room": "Raum {roomId}",
       "description": "Komm in meinen Raum auf NexusTimer! ID: {roomId}"
     }

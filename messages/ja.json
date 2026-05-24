@@ -31,7 +31,6 @@
       "start-cue": "タイマーの準備ができたときに視覚的な合図を表示します",
       "hold-to-start": "タイマーを開始する前にスペースキーを長押しする必要があります",
       "hold-to-start-time": "開始前にスペースキーを押し続ける時間を設定します (300-1000ms)",
-      "manual-mode": "タイマーを使用せず、手動でタイムを入力できるようにします",
       "decimal-places": "タイムに表示する小数点以下の桁数を設定します (1-4桁)",
       "scramble-image": "スクランブル後の状態を画像で表示します",
       "session-stats": "現在のセッションの統計を表示します",
@@ -56,13 +55,10 @@
     },
     "Auth": {
       "sign-in": "サインイン",
-      "nexus-community": "Nexus コミュニティ",
-      "login-description": "サインインして、より多くの機能にアクセスしましょう。",
       "continue-google": "Google で続行",
       "continue-discord": "Discord で続行"
     },
     "CoreHeader": {
-      "server-online": "サーバー: オンライン",
       "give-feedback": "フィードバック"
     },
     "Feedback": {
@@ -86,14 +82,9 @@
     },
     "HomePage": {
       "title": "タイマー",
-      "hint": "ヒント",
-      "optimal-yellow-layer": "最適なイエローレイヤー",
-      "white-on-top-green-forward": "白が上、緑が手前",
-      "hints-yellow-layer": "ヒント: 黄色面",
       "solving": "ソルブ中...",
       "tap-to-start": "タップして開始",
       "space-to-start": "スペースキーを押して開始",
-      "preview": "プレビュー",
       "empty-scramble": "キューブを選択してスクランブルを読み込んでください。",
       "congratulations": "おめでとうございます！",
       "new_best_average": "ベストアベレージ更新！",
@@ -140,19 +131,11 @@
       },
       "alert": {
         "title": "注意！",
-        "empty-cubes": "キューブが選択されていません。選択してください。",
         "select-cube": "キューブを選択して開始してください！"
       },
       "dropdown": {
-        "view-details": "詳細を見る",
         "transfer-collection": "コレクションを移動",
-        "remove-bookmark": "ブックマークを解除",
-        "add-bookmark": "ブックマークに追加",
-        "remove-penalty": "ペナルティを解除",
-        "add-penalty": "ペナルティを追加",
-        "copy-to-clipboard": "クリップボードにコピー",
-        "move-to-history": "アーカイブへ移動",
-        "delete-solve": "タイムを削除"
+        "move-to-history": "アーカイブへ移動"
       },
       "empty-solves": "履歴がまだありません！",
       "empty-solves-description": "上部のスイッチを切り替えて履歴を表示します。",
@@ -178,8 +161,6 @@
       "best-time": "ベストタイム",
       "worst-time": "ワーストタイム",
       "average": "平均",
-      "overall-average": "総合平均",
-      "ao5-current": "現在のAo5",
       "time-spent": "合計時間",
       "success-rate": "成功率",
       "standard-deviation": "標準偏差",
@@ -188,7 +169,6 @@
       "cube-tab": "キューブ",
       "cube-all": "キューブ (すべて)",
       "cube-session": "キューブ (セッション)",
-      "time-by-cube": "タイム分布",
       "solves-by-cube": "ソルブ分布",
       "global-tooltip": "同じカテゴリ内の全キューブのアーカイブとセッションの履歴を合算します。",
       "sessions-tooltip": "同じカテゴリ内の全キューブのセッション履歴のみを計算します。",
@@ -200,11 +180,9 @@
     "CubesPage": {
       "title": "キューブ",
       "no-cubes-for-display": "表示するキューブがありません。",
-      "no-cubes-description": "キューブコレクションを追加して、ここに表示しましょう。",
       "favorite": "お気に入り",
       "category": "カテゴリ",
       "solves": "ソルブ数",
-      "created-at": "作成日",
       "status": "ステータス",
       "using": "使用中",
       "idle": "待機中",
@@ -218,12 +196,7 @@
       "edit": "編集",
       "delete": "削除",
       "created": "作成済み",
-      "solves-label": "ソルブ履歴",
       "total": "合計",
-      "marked-as-favorite": "お気に入りに追加しました",
-      "removed-from-favorites": "お気に入りから削除しました",
-      "no-solve-data": "ソルブデータなし",
-      "chart-solves-label": "ソルブ",
       "utilize": "使用",
       "utilize-cube": "`{name}` を使用",
       "session-solves": "セッションのソルブ",
@@ -232,8 +205,6 @@
     "Cubes-modal": {
       "delete-collection": "コレクションを削除",
       "delete-collection-description": "このコレクションとすべてのタイム、記録、設定が削除されます。",
-      "warning-alert": "警告：",
-      "warning-msg": "この操作は取り消せません。",
       "input-collection-name": "コレクション名を入力",
       "to-continue": "して続行：",
       "edit-collection": "コレクションを編集",
@@ -247,9 +218,6 @@
     "Errors": {
       "not-match": "名前が一致しません。",
       "repeated-name": "そのコレクション名はすでに存在します。",
-      "empty-input": "値を入力してください",
-      "required-collection-name": "コレクション名は必須です",
-      "max-length-50": "最大50文字までです",
       "collection-created": "コレクションを作成しました",
       "collection-edited": "コレクションを編集しました",
       "collection-edit-failed": "コレクションの編集に失敗しました",
@@ -270,13 +238,11 @@
       "none": "なし",
       "collections": "コレクション",
       "empty": "空",
-      "sign-in-google": "Googleでサインイン",
       "back": "戻る",
       "no-results": "結果が見つかりません",
       "search": "検索...",
       "menu": "メニュー",
-      "fullscreen": "全画面表示",
-      "exit-fullscreen": "全画面表示を終了"
+      "fullscreen": "全画面表示"
     },
     "pagination": {
       "previous": "前へ",
@@ -290,7 +256,6 @@
       "no-users-found": "条件に合うユーザーが見つかりません",
       "results": "件の結果",
       "user-card": {
-        "joined": "{date}に登録",
         "compare": "比較する",
         "view-profile": "プロフィールを見る"
       },
@@ -309,17 +274,10 @@
       },
       "stats": {
         "total-solves": "総ソルブ数",
-        "avg-of-5": "5回平均",
-        "best-window": "ベスト区間",
-        "mean-session": "セッション平均",
-        "last-12-solves": "直近12ソルブ",
         "time-on-timer": "タイマー累計時間",
         "lifetime": "累計",
-        "consistency": "安定性",
-        "ok-total": "成功 / 合計",
         "events": "種目",
-        "favorite": "得意種目",
-        "all-categories": "全カテゴリ"
+        "favorite": "得意種目"
       },
       "cubes-tab": {
         "col-name": "名前",
@@ -361,7 +319,6 @@
         "time": "タイム",
         "image": "画像",
         "date": "日付",
-        "cube-used": "使用キューブ",
         "tps": "TPS",
         "not-available": "なし"
       },
@@ -382,7 +339,6 @@
       }
     },
     "NavMain": {
-      "application": "アプリケーション",
       "platform": "プラットフォーム",
       "timer": "タイマー",
       "solves": "記録",
@@ -394,7 +350,6 @@
       "leaderboards": "ランキング",
       "multiplayer": "マルチプレイヤー",
       "free-play": "フリープレイ",
-      "clash-mode": "クラッシュモード",
       "install-app": "アプリをインストール",
       "settings": "設定",
       "account": "アカウント",
@@ -425,7 +380,6 @@
       "start-cue": "開始合図",
       "hold-to-start": "長押しで開始",
       "hold-to-start-time": "長押し時間",
-      "manual-mode": "手動入力",
       "decimal-places": "小数点以下の桁数",
       "features": "機能設定",
       "scramble-image": "スクランブル画像",
@@ -445,15 +399,11 @@
       "theme": "テーマ",
       "custom-background-image": "カスタム背景",
       "allowed-file-types": "画像ファイル（JPEG, PNG, GIF）のみ",
-      "max-file-size": "最大サイズ：",
       "data": "アプリデータ",
       "preferences": "環境設定",
       "auto-select": "起動時に自動選択",
       "import-from-file": "ファイルから読込",
       "export-to-file": "ファイルに書出",
-      "legend": "NexusTimerはスピードキュービング用のミニマルなオープンソースタイマーです。",
-      "suggest": "変更を提案",
-      "report-bug": "バグを報告",
       "dark": "ダーク",
       "light": "ライト",
       "system": "システム設定",
@@ -463,8 +413,6 @@
     "backup-modal": {
       "title": "インテリジェント復元",
       "description": "NexusTimerがデータを自動的に判別し、最適な構造で復元します。",
-      "alert-category": "CSTimerやCubeDeskからの移行はカテゴリの手動調整が必要な場合があります。",
-      "drag-drop": "ファイルをここにドラッグするか、クリックして選択。",
       "loading-part-1": "1分以内に完了します。",
       "loading-part-2": "少々お待ちください。",
       "welcome": "ようこそ："
@@ -479,15 +427,11 @@
       "options": "オプション",
       "help": "ヘルプ",
       "account": "アカウント",
-      "privacy-policy": "プライバシーポリシー",
-      "tos": "利用規約",
-      "source": "ソース",
       "last-backup": "最終バックアップ：",
       "up-to-date": "最新です",
       "no-backup": "バックアップなし",
       "loading": "読み込み中...",
       "no-backup-yet": "バックアップがありません",
-      "tip": "ヒント：",
       "backup-tip": "定期的にバックアップしてデータを守りましょう。",
       "save-data-title": "データを保存",
       "save-data-description": "クラウドに保存しますか？",
@@ -524,7 +468,6 @@
       "solves-selected": "タイム：({count}個選択中)",
       "select-all": "すべて選択",
       "deselect-all": "選択解除",
-      "success-transfer": "{count}個のタイムを移動しました",
       "failed-transfer": "移動に失敗しました。再試行してください。",
       "no-solves": "移動できるタイムがありません",
       "empty-vault": "履歴が空です。",
@@ -545,8 +488,6 @@
       "update-info": "情報を更新",
       "update-failed": "更新に失敗しました",
       "update-success": "更新に成功しました",
-      "change-picture": "写真を変更",
-      "avatar-requirements": "JPG, GIF, PNG。最大800K",
       "pronouns": {
         "he": "彼 (He)",
         "she": "彼女 (She)",
@@ -563,7 +504,6 @@
       "description": "様々なパズルに対応した手順セットを3Dビューで学習できます。",
       "suggestions": "間違いの報告や手順の追加提案はGitHubへお願いします。",
       "edit-github": "GitHubで手順を編集",
-      "skill": "レベル",
       "casual-enthusiast": "エンジョイ勢",
       "dedicated-learner": "練習中",
       "algorithm-master": "マスター",
@@ -590,8 +530,7 @@
         "parity-4x4": "4x4特有のパリティ手順です。",
         "parity-5x5": "5x5特有のパリティ手順です。",
         "l4e": "ピラミンクスの最後のエッジ4つを揃える手順です。"
-      },
-      "alternative": "別解"
+      }
     },
     "Metadata": {
       "title": "Nexus Timer - ルービックキューブ専用プロタイマー",
@@ -761,9 +700,7 @@
       "save-to-cube-empty": "このイベントに利用できるキューブがありません"
     },
     "results-tab": {
-      "latest": "最近",
       "best": "ベスト",
-      "worst": "ワースト",
       "average": "平均",
       "updating-live": "リアルタイム更新中",
       "cubers": "キューバー"
@@ -773,9 +710,7 @@
     "room-card": {
       "users-online": "オンライン人数：",
       "event": "種目：",
-      "max-time-per-round": "最大時間：",
       "next-round-starts-in": "次ラウンド：",
-      "created-at": "作成時刻",
       "join": "参加"
     },
     "room-not-found": "部屋が見つかりません",
@@ -783,8 +718,6 @@
     "share-room-text": "NexusTimerの部屋に来てください！",
     "invite": "招待",
     "OpenGraph": {
-      "invited-to-room": "部屋に招待されました",
-      "join-now": "今すぐ参加！",
       "room": "ルーム {roomId}",
       "description": "NexusTimerでリアルタイムに対戦しましょう！ ID: {roomId}"
     }

@@ -14,7 +14,8 @@ export const defaultSettings: Settings = {
     sessionStats: true,
     quickActionButtons: true,
     hideWhileSolving: false,
-    scrambleBackground: false
+    scrambleBackground: false,
+    haptics: true
   },
   alerts: {
     bestTime: true,
@@ -27,6 +28,10 @@ export const defaultSettings: Settings = {
   },
   sounds: {
     newPersonalBest: true,
+    inspection: true,
+    newRound: true,
+    favorite: true,
+    trash: true,
     voiceGender: 'male'
   },
   sync: {

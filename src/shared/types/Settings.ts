@@ -15,6 +15,7 @@ type Features = {
   quickActionButtons: boolean
   hideWhileSolving: boolean
   scrambleBackground: boolean
+  haptics: boolean
 }
 
 type Alerts = {
@@ -30,6 +31,10 @@ type Preferences = {
 
 type Sounds = {
   newPersonalBest: boolean
+  inspection: boolean
+  newRound: boolean
+  favorite: boolean
+  trash: boolean
   voiceGender: 'male' | 'female'
 }
 

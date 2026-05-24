@@ -48,7 +48,7 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
               {t('StatsPage.cube-tab')}
             </TabsTrigger>
           </TabsList>
-          <TabsContent value={StatisticsTabs.CATEGORY} className="relative min-h-[200px]">
+          <TabsContent value={StatisticsTabs.CATEGORY} className="relative min-h-50">
             {loadingProps.data ? (
               <div className="absolute inset-0 flex items-center justify-center bg-background/50 z-10">
                 <Loader2 className="size-8 animate-spin text-primary" />
@@ -57,7 +57,7 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
               <LineGraphStatistics solves={statistics.data.global} />
             )}
           </TabsContent>
-          <TabsContent value={StatisticsTabs.CUBE} className="relative min-h-[200px]">
+          <TabsContent value={StatisticsTabs.CUBE} className="relative min-h-50">
             {loadingProps.data ? (
               <div className="absolute inset-0 flex items-center justify-center bg-background/50 z-10">
                 <Loader2 className="size-8 animate-spin text-primary" />

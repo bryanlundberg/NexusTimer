@@ -40,9 +40,7 @@ export default function DialogMoveHistorial() {
               <Button variant={'ghost'} onClick={overlayStore.close}>
                 {t('Inputs.cancel')}
               </Button>
-              <Button variant={'ghost'} onClick={handleMoveSessionToHistorial}>
-                {t('Inputs.move')}
-              </Button>
+              <Button onClick={handleMoveSessionToHistorial}>{t('Inputs.move')}</Button>
             </div>
           </DialogFooter>
         </DialogHeader>

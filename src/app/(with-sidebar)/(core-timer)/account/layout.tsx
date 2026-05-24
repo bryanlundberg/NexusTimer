@@ -4,7 +4,7 @@ import AccountNotAuth from '@/features/account/ui/account-not-auth'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await auth()
-  if (!session?.user.id) return <AccountNotAuth />
+  if (!session?.user?.id) return <AccountNotAuth />
 
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
