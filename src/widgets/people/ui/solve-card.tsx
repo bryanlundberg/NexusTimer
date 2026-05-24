@@ -2,7 +2,7 @@ import * as React from 'react'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import Image from 'next/image'
 import { Solve } from '@/entities/solve/model/types'
-import calculateBestAo from '@/shared/lib/statistics/calculateBestAo'
+import calcBestAo from '@/shared/lib/statistics/calcBestAo'
 import formatTime from '@/shared/lib/formatTime'
 import { defer } from 'es-toolkit/compat'
 import { useTranslations } from 'next-intl'
@@ -28,7 +28,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
     setSolvesCount(solves?.length || 0)
     defer(() => {
       try {
-        const ao5Ms = calculateBestAo(solves || [], 5)
+        const ao5Ms = calcBestAo(solves || [], 5)
         const safeAo5 = !isFinite(ao5Ms) || ao5Ms <= 0 ? 0 : ao5Ms
         setAo5Str(safeAo5 === 0 ? '--' : formatTime(safeAo5))
 

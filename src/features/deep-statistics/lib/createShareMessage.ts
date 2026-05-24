@@ -1,9 +1,9 @@
-import getMean from '../../../shared/lib/statistics/getMean'
-import getWorstTime from '../../../shared/lib/statistics/getWorstTime'
-import getBestTime from '../../../shared/lib/statistics/getBestTime'
-import getDeviation from '../../../shared/lib/statistics/getDeviation'
-import calculateCurrentAo from '../../../shared/lib/statistics/calculateCurrentAo'
-import formatTime from '../../../shared/lib/formatTime'
+import getMean from '@/shared/lib/statistics/getMean'
+import getWorstTime from '@/shared/lib/statistics/getWorstTime'
+import getBestTime from '@/shared/lib/statistics/getBestTime'
+import getDeviation from '@/shared/lib/statistics/getDeviation'
+import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
+import formatTime from '@/shared/lib/formatTime'
 import { SolveTab } from '@/shared/types/enums'
 import { Solve } from '@/entities/solve/model/types'
 
@@ -43,7 +43,7 @@ export function createShareMessage({
 
   // Summary
   if (type !== SolveTab.ALL) {
-    const aoValue = calculateCurrentAo([...dataSet], dataSet.length)
+    const aoValue = calcCurrentAo([...dataSet], dataSet.length)
     const aoLabel = aoValue === 0 ? 'DNF' : formatTime(aoValue)
     content += `\nAo${dataSet.length}: ${aoLabel} | ${avg}: ${formatTime(mean)} (σ = ${formatTime(deviation)})`
   } else {

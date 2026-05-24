@@ -10,7 +10,7 @@ import { Solve } from '@/entities/solve/model/types'
  * @param {number} ao - The desired average length (e.g., 3, 5, 12).
  * @returns {number} The current average of X (AoX) for the given solves.
  */
-export default function calculateCurrentAo(solves: Solve[], ao: number): number {
+export default function calcCurrentAo(solves: Solve[], ao: number): number {
   if (ao <= 2) {
     return 0
   }

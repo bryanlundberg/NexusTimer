@@ -11,7 +11,7 @@ import { Solve } from '@/entities/solve/model/types'
  * @param {number} ao - The desired average length (e.g., 3, 5, 12).
  * @returns {number} The best average of X (AoX) for the given solves.
  */
-export default function calculateBestAo(solves: Solve[], ao: number): number {
+export default function calcBestAo(solves: Solve[], ao: number): number {
   // If the number of solves is less than the desired average, return 0
   if (!solves || solves.length < ao) {
     return 0

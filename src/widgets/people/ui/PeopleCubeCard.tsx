@@ -8,7 +8,7 @@ import formatTime from '@/shared/lib/formatTime'
 import { Badge } from '@/components/ui/badge'
 import _ from 'lodash'
 import { motion } from 'framer-motion'
-import calculateBestAo from '@/shared/lib/statistics/calculateBestAo'
+import calcBestAo from '@/shared/lib/statistics/calcBestAo'
 import { AreaChart, Area, ResponsiveContainer } from 'recharts'
 import { GRID } from '@/widgets/people/ui/cubes-tab-content'
 
@@ -38,7 +38,7 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
   const pb = validSolves.length > 0 ? _.minBy(validSolves, (s) => s.time + (s.plus2 ? 2000 : 0)) : null
   const pbTime = pb ? pb.time + (pb.plus2 ? 2000 : 0) : null
 
-  const ao5Ms = calculateBestAo(allSolves, 5)
+  const ao5Ms = calcBestAo(allSolves, 5)
   const ao5Str = !isFinite(ao5Ms) || ao5Ms <= 0 ? '--' : formatTime(ao5Ms)
 
   const totalTime = allSolves.reduce((acc, s) => acc + (s.time || 0), 0)

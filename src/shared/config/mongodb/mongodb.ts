@@ -2,14 +2,14 @@ import { setServers } from 'node:dns'
 setServers(['8.8.8.8', '1.1.1.1'])
 
 import mongoose from 'mongoose'
-import '../../../entities/user/model/user'
-import '../../../entities/solve/model/solve'
-import '../../../entities/backup/model/backup'
-import '../../../entities/trainer-solve/model/trainer-solve'
-import '../../../entities/trainer-stats/model/trainer-stats'
-import '../../../entities/log/model/log'
-import '../../../entities/user-credential/model/user-credential'
-import '../../../entities/pending-registration/model/pending-registration'
+import '@/entities/user/model/user'
+import '@/entities/solve/model/solve'
+import '@/entities/backup/model/backup'
+import '@/entities/trainer-solve/model/trainer-solve'
+import '@/entities/trainer-stats/model/trainer-stats'
+import '@/entities/log/model/log'
+import '@/entities/user-credential/model/user-credential'
+import '@/entities/pending-registration/model/pending-registration'
 
 const connectDB = async () => {
   if (mongoose.connections[0].readyState === 1) {

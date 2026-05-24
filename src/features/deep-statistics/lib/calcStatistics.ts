@@ -1,9 +1,9 @@
 import { sort } from 'fast-sort'
-import calculateBestAo from '../../../shared/lib/statistics/calculateBestAo'
-import calculateCurrentAo from '../../../shared/lib/statistics/calculateCurrentAo'
-import getDeviation from '../../../shared/lib/statistics/getDeviation'
-import getMean from '../../../shared/lib/statistics/getMean'
-import getSolvesMetrics from '../../../shared/lib/statistics/getSolvesMetrics'
+import calcBestAo from '@/shared/lib/statistics/calcBestAo'
+import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
+import getDeviation from '@/shared/lib/statistics/getDeviation'
+import getMean from '@/shared/lib/statistics/getMean'
+import getSolvesMetrics from '@/shared/lib/statistics/getSolvesMetrics'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
 import { defaultTimerStatistics } from '@/shared/model/timer/defaultTimerStatistics'
@@ -57,7 +57,7 @@ export default function calcStatistics({
     const aoValues = [3, 5, 12, 50, 100]
     for (const aoValue of aoValues) {
       statistics[`ao${aoValue}` as keyof CubeStatistics] =
-        type === 'global' ? calculateBestAo(solves, aoValue) : calculateCurrentAo(solves, aoValue)
+        type === 'global' ? calcBestAo(solves, aoValue) : calcCurrentAo(solves, aoValue)
     }
 
     return statistics

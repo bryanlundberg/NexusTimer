@@ -14,7 +14,7 @@ import {
 } from 'lightweight-charts'
 import formatTime from '@/shared/lib/formatTime'
 import getWorstTime from '@/shared/lib/statistics/getWorstTime'
-import calculateCurrentAo from '@/shared/lib/statistics/calculateCurrentAo'
+import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
 import getMean from '@/shared/lib/statistics/getMean'
 import getDeviation from '@/shared/lib/statistics/getDeviation'
 import { Solve } from '@/entities/solve/model/types'
@@ -78,10 +78,10 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
 
       // Precalculate Ao5 and Ao12
       const window = reversedDataSet.slice(0, index + 1).reverse()
-      const ao5Value = calculateCurrentAo(window, 5)
+      const ao5Value = calcCurrentAo(window, 5)
       if (ao5Value > 0) ao5Map.set(timeIndex, ao5Value)
 
-      const ao12Value = calculateCurrentAo(window, 12)
+      const ao12Value = calcCurrentAo(window, 12)
       if (ao12Value > 0) ao12Map.set(timeIndex, ao12Value)
     })
 
