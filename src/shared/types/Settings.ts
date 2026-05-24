@@ -15,6 +15,7 @@ type Features = {
   quickActionButtons: boolean
   hideWhileSolving: boolean
   scrambleBackground: boolean
+  scrambleSize: 'normal' | 'large'
   haptics: boolean
 }
 
