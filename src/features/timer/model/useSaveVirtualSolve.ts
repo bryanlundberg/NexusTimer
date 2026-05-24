@@ -1,0 +1,71 @@
+import { useCallback } from 'react'
+import { useSession } from 'next-auth/react'
+import { CubeEngine } from 'cube-state-engine'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { sendSolveToServer } from '@/shared/lib/actions'
+import { cubesDB } from '@/entities/cube/api/indexdb'
+import genId from '@/shared/lib/genId'
+import { Solve } from '@/entities/solve/model/types'
+
+interface SavePayload {
+  timeMs: number
+  scramble: string | null
+  dnf: boolean
+}
+
+export function useSaveVirtualSolve(engine: CubeEngine | null | undefined) {
+  const { data: session } = useSession()
+  const selectedCube = useTimerStore((store) => store.selectedCube)
+  const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
+  const setLastSolve = useTimerStore((store) => store.setLastSolve)
+  const updateSetting = useSettingsStore((state) => state.updateSetting)
+  const solvesSinceLastSync = useSettingsStore((state) => state.settings.sync.totalSolves)
+
+  return useCallback(
+    async ({ timeMs, scramble, dnf }: SavePayload) => {
+      if (!selectedCube || !scramble) return
+
+      const now = Date.now()
+      const newSolve: Solve = {
+        id: genId(),
+        startTime: now - timeMs,
+        endTime: now,
+        scramble,
+        bookmark: false,
+        time: timeMs,
+        dnf,
+        plus2: false,
+        rating: Math.floor(Math.random() * 20) + scramble.length,
+        cubeId: selectedCube.id,
+        comment: '',
+        isDeleted: false,
+        updatedAt: now
+      }
+
+      sendSolveToServer({
+        solve: newSolve,
+        userId: session?.user?.id ?? undefined,
+        solution: engine?.getMoves(true),
+        puzzle: selectedCube.category === '2x2' ? '2x2x2' : '3x3x3',
+        smart: false
+      }).catch((e) => {
+        console.warn('sendSolveToServer error (ignored):', e)
+      })
+
+      const updatedCube = {
+        ...selectedCube,
+        solves: {
+          ...selectedCube.solves,
+          session: [newSolve, ...selectedCube.solves.session]
+        }
+      }
+
+      await cubesDB.update(updatedCube)
+      setSelectedCube(updatedCube)
+      setLastSolve({ ...newSolve })
+      updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
+    },
+    [engine, selectedCube, session?.user?.id, setSelectedCube, setLastSolve, updateSetting, solvesSinceLastSync]
+  )
+}
