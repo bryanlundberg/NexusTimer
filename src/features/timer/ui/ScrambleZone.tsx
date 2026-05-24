@@ -38,12 +38,12 @@ export function ScrambleZone() {
   const t = useTranslations('Index')
   const { height } = useWindowSize()
 
-  const overlayStore = useOverlayStore()
+  const openOverlay = useOverlayStore((store) => store.open)
 
   const isCompact = height <= SCRAMBLE_HEIGHT || ((scramble?.length ?? 0) > 80 && height <= 750)
 
   const handleOpenCustomScramble = () => {
-    overlayStore.open({
+    openOverlay({
       id: 'enter-custom-scramble',
       component: <EnterCustomScramble />,
       metadata: {}
@@ -54,9 +54,9 @@ export function ScrambleZone() {
     <>
       <motion.div
         className="relative mx-auto"
-        initial={{ opacity: 0, y: -50 }}
+        initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: 'easeOut', delay: 0.3 }}
+        transition={{ duration: 0.2, ease: 'easeOut' }}
       >
         <div
           className={`h-auto text-balance p-2 text-lg md:text-xl lg:text-2xl font-semilight text-center rounded-md w-fit ${
