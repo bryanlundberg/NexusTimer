@@ -1,50 +1,36 @@
 import { useTranslations } from 'next-intl'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import MenuSelectOption from './MenuSelectOption'
+
+const NONE_VALUE = 'none'
 
 export default function MenuSelectDefaultStartCube() {
-  const { settings } = useSettingsStore()
   const t = useTranslations('Index')
   const cubes = useTimerStore((state) => state.cubes)
+  const defaultCube = useSettingsStore((state) => state.settings.preferences.defaultCube)
   const updateSetting = useSettingsStore((state) => state.updateSetting)
 
-  const handleCubeSelect = (cubeId: string) => {
-    const defaultCubeKey = 'preferences.defaultCube'
-    const newValue = cubeId === 'none' ? '' : cubes?.find((cube) => cube.id === cubeId)?.id
-
-    if (newValue === undefined) return
-
-    updateSetting(defaultCubeKey, newValue)
+  const handleSelect = (cubeId: string) => {
+    if (cubeId === NONE_VALUE) {
+      updateSetting('preferences.defaultCube', '')
+      return
+    }
+    const exists = cubes?.find((cube) => cube.id === cubeId)
+    if (!exists) return
+    updateSetting('preferences.defaultCube', exists.id)
   }
 
-  const defaultCube = settings.preferences.defaultCube
-
   return (
-    <div className="px-3 py-2 transition-colors hover:bg-muted/30">
-      <div className="flex justify-between items-center gap-3">
-        <div className="flex flex-col gap-0.5 min-w-0">
-          <span className="text-sm font-medium leading-tight">{t('Settings-menu.auto-select')}</span>
-          <span className="text-xs text-muted-foreground leading-snug">
-            {t('Settings-descriptions.auto-select-description')}
-          </span>
-        </div>
-        <Select defaultValue={defaultCube || 'none'} value={defaultCube || 'none'} onValueChange={handleCubeSelect}>
-          <SelectTrigger className="w-[140px] sm:w-[180px] shrink-0 bg-background">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="none">{t('Inputs.none')}</SelectItem>
-            {cubes?.map((cube) => {
-              return (
-                <SelectItem value={cube.id} key={cube.id}>
-                  {cube.name}
-                </SelectItem>
-              )
-            })}
-          </SelectContent>
-        </Select>
-      </div>
-    </div>
+    <MenuSelectOption
+      label={t('Settings-menu.auto-select')}
+      description={t('Settings-descriptions.auto-select-description')}
+      value={defaultCube || NONE_VALUE}
+      onValueChange={handleSelect}
+      options={[
+        { value: NONE_VALUE, label: t('Inputs.none') },
+        ...(cubes?.map((cube) => ({ value: cube.id, label: cube.name })) ?? [])
+      ]}
+    />
   )
 }
