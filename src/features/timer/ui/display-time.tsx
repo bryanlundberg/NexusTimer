@@ -106,7 +106,9 @@ export default function DisplayTime({
                   <motion.div
                     className={cn(
                       'font-light',
-                      height < 700 ? 'text-8xl md:text-9xl' : 'text-9xl md:text-[11rem] lg:text-[16rem]'
+                      height < 700
+                        ? 'text-6xl sm:text-8xl md:text-9xl'
+                        : 'text-7xl sm:text-9xl md:text-[11rem] lg:text-[16rem]'
                     )}
                     initial={{ scale: 1.2 }}
                     animate={{ scale: 1 }}
@@ -120,7 +122,9 @@ export default function DisplayTime({
                     <motion.div
                       className={cn(
                         'font-light',
-                        height < 700 ? 'text-8xl md:text-9xl' : 'text-9xl md:text-[11rem] lg:text-[16rem]'
+                        height < 700
+                          ? 'text-6xl sm:text-8xl md:text-9xl'
+                          : 'text-7xl sm:text-9xl md:text-[11rem] lg:text-[16rem]'
                       )}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -132,7 +136,9 @@ export default function DisplayTime({
                     <motion.div
                       className={cn(
                         'font-light',
-                        height < 700 ? 'text-6xl md:text-7xl' : 'text-7xl md:text-8xl lg:text-[10rem]'
+                        height < 700
+                          ? 'text-4xl sm:text-6xl md:text-7xl'
+                          : 'text-5xl sm:text-7xl md:text-8xl lg:text-[10rem]'
                       )}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -145,7 +151,7 @@ export default function DisplayTime({
                       <motion.span
                         className={cn(
                           'text-destructive font-light',
-                          height < 700 ? 'text-4xl' : 'text-5xl lg:text-6xl'
+                          height < 700 ? 'text-2xl sm:text-4xl' : 'text-3xl sm:text-5xl lg:text-6xl'
                         )}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
