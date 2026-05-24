@@ -11,7 +11,6 @@ export default function BackgroundImageApp({ children }: { children: ReactNode }
         style={{
           backgroundImage: backgroundImage ? `url(${backgroundImage})` : '',
           backgroundPosition: backgroundImage ? 'center' : '',
-          backgroundAttachment: backgroundImage ? 'fixed' : '',
           backgroundRepeat: backgroundImage ? 'no-repeat' : '',
           backgroundSize: backgroundImage ? 'cover' : ''
         }}
