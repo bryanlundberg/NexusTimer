@@ -114,7 +114,7 @@ export default function StatisticsChart({ statistics, loadingProps }: Statistics
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.35, duration: 0.4 }}
-      className="border border-border/50 rounded-2xl bg-background/80 backdrop-blur-xl overflow-hidden mb-2"
+      className="bg-background/80 backdrop-blur-xl overflow-hidden mb-2"
     >
       <Table>
         <TableHeader>
