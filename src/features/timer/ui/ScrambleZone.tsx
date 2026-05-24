@@ -1,8 +1,12 @@
-import genSolution from '@/shared/lib/timer/genSolution'
-import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Pencil2Icon } from '@radix-ui/react-icons'
+import { Keyboard, Lightbulb } from 'lucide-react'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
+
+import { Button } from '@/components/ui/button'
 import { Drawer, DrawerTrigger } from '@/components/ui/drawer'
 import {
   Dialog,
@@ -12,21 +16,21 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import { Keyboard, Lightbulb } from 'lucide-react'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { useWindowSize } from 'react-use-size'
-import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-import { cn } from '@/shared/lib/utils'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { Button } from '@/components/ui/button'
+
+import { cn } from '@/shared/lib/utils'
+import genSolution from '@/shared/lib/timer/genSolution'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { Layers } from '@/shared/types/enums'
+import { CrossSolution } from '@/shared/types/types'
+
 import EnterCustomScramble from '@/features/enter-custom-scramble/ui/enter-custom-scramble'
 import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
-import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
-import { Layers } from '@/shared/types/enums'
 import { TimerMode } from '@/features/timer/model/enums'
-import { CrossSolution } from '@/shared/types/types'
-import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { HINT_CATEGORIES, SCRAMBLE_SIZE_CLASSES } from '@/features/timer/model/const'
+import { useScrambleOverflow } from '@/features/timer/model/useScrambleOverflow'
 
 export function ScrambleZone() {
   const selectedCube = useTimerStore((store) => store.selectedCube)
@@ -35,12 +39,20 @@ export function ScrambleZone() {
   const isSolving = useTimerStore((store) => store.isSolving)
   const timerMode = useTimerStore((store) => store.timerMode)
   const settings = useSettingsStore((store) => store.settings)
-  const t = useTranslations('Index')
-  const { height } = useWindowSize()
-
   const openOverlay = useOverlayStore((store) => store.open)
+  const t = useTranslations('Index')
 
-  const isCompact = height <= SCRAMBLE_HEIGHT || ((scramble?.length ?? 0) > 80 && height <= 750)
+  const measureRef = useRef<HTMLParagraphElement>(null)
+  const { scrambleSize, scrambleBackground } = settings.features
+  const isOverflowing = useScrambleOverflow(measureRef, [scramble, selectedCube, scrambleSize])
+
+  const sizeClasses = SCRAMBLE_SIZE_CLASSES[scrambleSize]
+  const scrambleText = selectedCube ? scramble : t('HomePage.empty-scramble')
+  const showModalButton = isOverflowing && !!selectedCube
+  const showHintButton =
+    !isSolving && !!selectedCube && HINT_CATEGORIES.includes(selectedCube.category as (typeof HINT_CATEGORIES)[number])
+  const showVirtualKeyboard = timerMode === TimerMode.VIRTUAL && !isSolving && !!selectedCube
+  const showEditButton = !isSolving && !!selectedCube
 
   const handleOpenCustomScramble = () => {
     openOverlay({
@@ -50,125 +62,124 @@ export function ScrambleZone() {
     })
   }
 
-  return (
-    <>
-      <motion.div
-        className="relative mx-auto"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, ease: 'easeOut' }}
-      >
-        <div
-          className={`h-auto text-balance p-2 text-lg md:text-xl lg:text-2xl font-semilight text-center rounded-md w-fit ${
-            settings.features.scrambleBackground ? 'bg-secondary' : ''
-          }`}
-        >
-          {!isCompact ? (
-            <p data-testid="scramble-text-zone">{selectedCube ? scramble : t('HomePage.empty-scramble')}</p>
-          ) : (
-            <>
-              {selectedCube ? (
-                <Dialog>
-                  <DialogTrigger className={cn('text-lg opacity-60 hover:opacity-100 transition-opacity')}>
-                    [ Show scramble ]
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-xl">
-                    <DialogHeader>
-                      <VisuallyHidden>
-                        <DialogTitle>[ Show scramble ]</DialogTitle>
-                      </VisuallyHidden>
-                      <DialogDescription className={'text-xl text-card-foreground'}>{scramble}</DialogDescription>
-                    </DialogHeader>
-                  </DialogContent>
-                </Dialog>
-              ) : (
-                t('HomePage.empty-scramble')
-              )}
-            </>
-          )}
-        </div>
+  const handleShowHints = () => {
+    if (!selectedCube) return
+    genSolution(selectedCube.category, scramble, Layers.YELLOW).then((res: CrossSolution) => setHints(res))
+  }
 
-        <div className="absolute bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
-          <TooltipProvider delayDuration={250}>
-            {!isSolving && selectedCube && (
+  return (
+    <motion.div
+      className="relative mx-auto w-full max-w-7xl"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
+    >
+      <div
+        className={cn(
+          'relative h-auto text-balance p-2 font-semilight text-center rounded-md mx-auto w-full max-w-7xl',
+          sizeClasses,
+          scrambleBackground && 'bg-secondary'
+        )}
+      >
+        <p ref={measureRef} aria-hidden className="absolute inset-x-0 invisible pointer-events-none">
+          {scrambleText}
+        </p>
+
+        {showModalButton ? (
+          <Dialog>
+            <DialogTrigger className="text-sm opacity-60 hover:opacity-100 transition-opacity">
+              [ Show scramble ]
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-xl">
+              <DialogHeader>
+                <VisuallyHidden>
+                  <DialogTitle>Scramble</DialogTitle>
+                </VisuallyHidden>
+                <DialogDescription className={cn('text-card-foreground', sizeClasses)}>{scramble}</DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
+        ) : (
+          <p data-testid="scramble-text-zone">{scrambleText}</p>
+        )}
+      </div>
+
+      <div className="absolute bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
+        <TooltipProvider delayDuration={250}>
+          {showEditButton && (
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="[&>svg]:transition-transform [&>svg]:duration-200 [&:hover>svg]:-rotate-12 [&:active>svg]:scale-90"
+                  onClick={handleOpenCustomScramble}
+                >
+                  <Pencil2Icon />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{t('HomePage.edit-scramble')}</p>
+              </TooltipContent>
+            </Tooltip>
+          )}
+
+          {showHintButton && (
+            <Drawer>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button
-                    variant={'ghost'}
-                    size={'icon'}
-                    className="[&>svg]:transition-transform [&>svg]:duration-200 [&:hover>svg]:-rotate-12 [&:active>svg]:scale-90"
-                    onClick={handleOpenCustomScramble}
-                  >
-                    <Pencil2Icon />
-                  </Button>
+                  <DrawerTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="[&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-yellow-400 [&:hover>svg]:drop-shadow-[0_0_6px_rgba(250,204,21,0.4)]"
+                      onClick={handleShowHints}
+                    >
+                      <Lightbulb />
+                    </Button>
+                  </DrawerTrigger>
                 </TooltipTrigger>
+
+                <DrawerHintPanel />
                 <TooltipContent>
-                  <p>{t('HomePage.edit-scramble')}</p>
+                  <p>{t('HomePage.hints')}</p>
                 </TooltipContent>
               </Tooltip>
-            )}
+            </Drawer>
+          )}
 
-            {selectedCube?.category && ['3x3', '3x3 OH'].includes(selectedCube.category) && !isSolving && (
-              <Drawer>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <DrawerTrigger asChild>
-                      <Button
-                        variant={'ghost'}
-                        size={'icon'}
-                        className="[&>svg]:transition-all [&>svg]:duration-300 [&:hover>svg]:text-yellow-400 [&:hover>svg]:drop-shadow-[0_0_6px_rgba(250,204,21,0.4)]"
-                        onClick={() => {
-                          if (!selectedCube) return
-                          genSolution(selectedCube.category, scramble, Layers.YELLOW).then((res: CrossSolution) =>
-                            setHints(res)
-                          )
-                        }}
-                      >
-                        <Lightbulb />
-                      </Button>
-                    </DrawerTrigger>
-                  </TooltipTrigger>
-
-                  <DrawerHintPanel />
-                  <TooltipContent>
-                    <p>{t('HomePage.hints')}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </Drawer>
-            )}
-            {timerMode === TimerMode.VIRTUAL && !isSolving && selectedCube && (
-              <Tooltip>
-                <Dialog>
-                  <TooltipTrigger asChild>
-                    <DialogTrigger asChild>
-                      <Button variant={'ghost'} size={'icon'}>
-                        <Keyboard />
-                      </Button>
-                    </DialogTrigger>
-                  </TooltipTrigger>
-                  <DialogContent className="sm:max-w-xl">
-                    <DialogHeader>
-                      <DialogTitle>Keyboard controls</DialogTitle>
-                    </DialogHeader>
-                    <div className="w-full flex items-center justify-center p-2">
-                      <Image
-                        src={'/utils/keyboard.jpg'}
-                        alt={'keyboard controls'}
-                        width={600}
-                        height={400}
-                        className="w-full h-auto"
-                      />
-                    </div>
-                  </DialogContent>
-                  <TooltipContent>
-                    <p>Keyboard</p>
-                  </TooltipContent>
-                </Dialog>
-              </Tooltip>
-            )}
-          </TooltipProvider>
-        </div>
-      </motion.div>
-    </>
+          {showVirtualKeyboard && (
+            <Tooltip>
+              <Dialog>
+                <TooltipTrigger asChild>
+                  <DialogTrigger asChild>
+                    <Button variant="ghost" size="icon">
+                      <Keyboard />
+                    </Button>
+                  </DialogTrigger>
+                </TooltipTrigger>
+                <DialogContent className="sm:max-w-xl">
+                  <DialogHeader>
+                    <DialogTitle>Keyboard controls</DialogTitle>
+                  </DialogHeader>
+                  <div className="w-full flex items-center justify-center p-2">
+                    <Image
+                      src="/utils/keyboard.jpg"
+                      alt="keyboard controls"
+                      width={600}
+                      height={400}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </DialogContent>
+                <TooltipContent>
+                  <p>Keyboard</p>
+                </TooltipContent>
+              </Dialog>
+            </Tooltip>
+          )}
+        </TooltipProvider>
+      </div>
+    </motion.div>
   )
 }
