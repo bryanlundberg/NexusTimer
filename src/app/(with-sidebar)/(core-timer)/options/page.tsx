@@ -28,6 +28,7 @@ import ThemeSelect from '@/features/settings/ui/ThemeSelect'
 import CustomTheme from '@/features/settings/ui/CustomTheme'
 import MenuSelectColor from '@/features/settings/ui/MenuSelectColor'
 import MenuSelectVoiceGender from '@/features/settings/ui/MenuSelectVoiceGender'
+import MenuSelectScrambleSize from '@/features/settings/ui/MenuSelectScrambleSize'
 import MenuSelectDefaultStartCube from '@/features/settings/ui/MenuSelectDefaultStartCube'
 import { DataImportExport } from '@/features/settings/ui/DataImportExport'
 import MenuToggleAnalytics from '@/features/settings/ui/MenuToggleAnalytics'
@@ -154,6 +155,7 @@ export default function OptionsPage() {
             control={control}
             description={t('Settings-descriptions.scramble-background')}
           />
+          <MenuSelectScrambleSize />
           <MenuOption
             name={'features.haptics'}
             label={t('Settings-menu.haptics')}
