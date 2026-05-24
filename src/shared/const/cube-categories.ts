@@ -2,7 +2,9 @@ export const CUBE_CATEGORIES = [
   '2x2',
   '3x3',
   '3x3 OH',
+  '3x3 BLD',
   '4x4',
+  '4x4 BLD',
   '5x5',
   '6x6',
   '7x7',
@@ -17,7 +19,9 @@ export type CubeCategory =
   | '2x2'
   | '3x3'
   | '3x3 OH'
+  | '3x3 BLD'
   | '4x4'
+  | '4x4 BLD'
   | '5x5'
   | '6x6'
   | '7x7'
