@@ -26,10 +26,26 @@ export const cubeCollection: CubeCollection[] = [
     twistyId: '333'
   },
   {
+    event: '333',
+    id: 13,
+    name: '3x3 BLD',
+    src: '/categories/bld333.svg',
+    displayId: '3x3x3',
+    twistyId: '333'
+  },
+  {
     event: '444',
     id: 4,
     name: '4x4',
     src: '/categories/cube444.svg',
+    displayId: '4x4x4',
+    twistyId: '444'
+  },
+  {
+    event: '444',
+    id: 14,
+    name: '4x4 BLD',
+    src: '/categories/bld444.svg',
     displayId: '4x4x4',
     twistyId: '444'
   },
