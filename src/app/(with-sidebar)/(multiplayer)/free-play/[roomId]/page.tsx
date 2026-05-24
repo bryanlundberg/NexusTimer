@@ -284,8 +284,8 @@ export default function FreePlayRoomPage() {
         <div className="flex items-center gap-1 rounded-full border border-border bg-muted/50 p-1.5">
           <AvatarGroup variant="css">
             {onlineUsers.map((user, index) => (
-              <Avatar key={index} className="relative size-7">
-                <AvatarImage className="object-cover" src={user.image || ''} />
+              <Avatar key={user.id ?? index} className="relative size-7">
+                {user.image && <AvatarImage className="object-cover" src={user.image} />}
                 <AvatarFallback className="text-[10px]">{user.name?.[0]}</AvatarFallback>
                 {user.status === TimerStatus.SOLVING && (
                   <div className="absolute inset-0 w-full h-full">
