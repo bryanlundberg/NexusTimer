@@ -16,6 +16,9 @@ const nextConfig = {
   experimental: {
     turbopackFileSystemCacheForDev: true
   },
+  allowedDevOrigins: [
+    '*.trycloudflare.com',
+  ],
   images: {
     remotePatterns: [
       {
