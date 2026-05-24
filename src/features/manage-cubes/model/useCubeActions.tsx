@@ -52,13 +52,13 @@ export const useCubeActions = (cube?: Cube) => {
 
   const handleFavorite = async () => {
     const isFavoriting = !cube?.favorite
-    await editCubeCollection({ favorite: isFavoriting, id: cube!.id })
 
     if (isFavoriting && settings.sounds.favorite) {
       const audio = new Audio('/sounds/favorite.mp3')
       audio.play()
     }
 
+    await editCubeCollection({ favorite: isFavoriting, id: cube!.id })
     const cubes = await cubesDB.getAll()
     setCubes(cubes)
     toast.success(t('Errors.favorite-updated'), { duration: 1000 })

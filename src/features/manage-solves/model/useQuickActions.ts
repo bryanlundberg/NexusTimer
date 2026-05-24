@@ -39,13 +39,13 @@ export default function useQuickActions(solve: Solve) {
     if (!tab) return
 
     const newBookmarkStatus = !solve.bookmark
-    await toggleBookmark({ cubeId, solveId, bookmark: newBookmarkStatus, solveTab: tab })
 
     if (newBookmarkStatus && settings.sounds.favorite) {
       const audio = new Audio('/sounds/favorite.mp3')
       audio.play()
     }
 
+    await toggleBookmark({ cubeId, solveId, bookmark: newBookmarkStatus, solveTab: tab })
     syncUI()
   }
 
@@ -69,13 +69,14 @@ export default function useQuickActions(solve: Solve) {
     const { cubeId, id: solveId } = solve
     const tab = await inferSolveTab()
     if (!tab) return
-    await deleteSolve({ cubeId, solveId, solveTab: tab })
-    syncUI()
 
     if (settings.sounds.trash) {
-      const audio = new Audio('/sounds/trash-effect.mp3')
+      const audio = new Audio('/sounds/trash-effect.wav')
       audio.play()
     }
+
+    await deleteSolve({ cubeId, solveId, solveTab: tab })
+    syncUI()
 
     toast.success(`Solve ${formatTime(solve.time)} deleted`, { duration: 1500 })
   }
