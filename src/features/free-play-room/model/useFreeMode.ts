@@ -89,7 +89,7 @@ export default function useFreeMode() {
       const presenceRef = ref(rtdb, `rooms/${roomId}/presence`)
       onValue(presenceRef, (snapshot) => {
         const data = snapshot.val()
-        setUsers(data ? Object.values(data) : [])
+        setUsers(data ? Object.entries(data).map(([id, value]) => ({ ...(value as object), id }) as UserPresence) : [])
       })
     }, [roomId])
 
