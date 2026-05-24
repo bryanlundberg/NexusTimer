@@ -4,6 +4,7 @@ import { locales } from '@/shared/config/i18n/locales'
 import { SidebarInset } from '@/components/ui/sidebar'
 import { AppSidebar } from '@/widgets/sidebar/ui/AppSidebar'
 import StatisticsProvider from '@/components/statistics-provider'
+import AppShellProviders from '@/components/app-shell-providers'
 
 export const metadata: Metadata = {
   alternates: {
@@ -14,11 +15,11 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <>
+    <AppShellProviders>
       <AppSidebar />
       <SidebarInset className={'overflow-hidden'}>
         <StatisticsProvider>{children}</StatisticsProvider>
       </SidebarInset>
-    </>
+    </AppShellProviders>
   )
 }

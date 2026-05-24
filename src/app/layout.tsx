@@ -3,17 +3,10 @@ import './globals.css'
 import { inter } from '@/shared/config/fonts'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages, getTranslations } from 'next-intl/server'
-import { SessionProvider } from 'next-auth/react'
-import { auth } from '@/shared/config/auth/auth'
-import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import { locales } from '@/shared/config/i18n/locales'
 import JsonLd from './jsonld'
 import { ThemeProvider } from '@/components/theme-provider'
-import { SidebarProvider } from '@/components/ui/sidebar'
-import AlertsProvider from '@/components/alerts-provider'
 import { Metadata, Viewport } from 'next'
-import { Overlay } from '@/shared/ui/overlay/overlay'
-import PreloadAppProvider from '@/components/preload-app-provider'
 import Script from 'next/script'
 import CookieConsentBanner from '@/components/cookie-consent-banner'
 import { OfflineIndicator } from '@/shared/ui/offline-indicator/OfflineIndicator'
@@ -111,7 +104,6 @@ export const viewport: Viewport = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale()
   const messages = await getMessages()
-  const session = await auth()
 
   const t = await getTranslations({ locale, namespace: 'Metadata' })
   const title = t('title')
@@ -123,13 +115,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <link rel="preconnect" href="https://res.cloudinary.com" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
         <link rel="preconnect" href="https://firebaseio.com" />
         <link rel="dns-prefetch" href="https://firebaseio.com" />
         <JsonLd locale={locale} title={title} description={description} url={url} />
-        {/* Consent Mode v2: defaults BEFORE GA loads — required for GDPR compliance.
-            Native inline script so it executes synchronously in <head> before GA;
-            next/script beforeInteractive would warn under React 19 and isn't meant
-            to be placed manually inside <head>. */}
         <script
           id="google-consent-default"
           dangerouslySetInnerHTML={{
@@ -147,8 +137,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
       </head>
       <body className={inter.className}>
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-441RYCJK0K" strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-441RYCJK0K" strategy="lazyOnload" />
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -156,23 +146,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             gtag('config', 'G-441RYCJK0K');
           `}
         </Script>
-        <NuqsAdapter>
-          <SessionProvider session={session}>
-            <NextIntlClientProvider messages={messages}>
-              <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem disableTransitionOnChange>
-                <SidebarProvider>
-                  <AlertsProvider>
-                    <OfflineIndicator />
-                    <PreloadAppProvider>{children}</PreloadAppProvider>
-                    <Overlay />
-                    <CookieConsentBanner />
-                  </AlertsProvider>
-                </SidebarProvider>
-              </ThemeProvider>
-            </NextIntlClientProvider>
-            <Toaster />
-          </SessionProvider>
-        </NuqsAdapter>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem disableTransitionOnChange>
+            <OfflineIndicator />
+            {children}
+            <CookieConsentBanner />
+          </ThemeProvider>
+        </NextIntlClientProvider>
+        <Toaster />
       </body>
     </html>
   )
