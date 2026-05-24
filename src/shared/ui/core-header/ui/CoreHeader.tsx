@@ -41,7 +41,7 @@ export default function CoreHeader({
   secondaryBreadcrumb
 }: CoreHeaderProps) {
   const { data: session } = useSession()
-  const { open } = useOverlayStore()
+  const open = useOverlayStore((store) => store.open)
   const pathname = usePathname()
   const showColorStripe = /\/(trainer|people)(\/.*)?$/.test(pathname)
   const tAuth = useTranslations('Index.Auth')
