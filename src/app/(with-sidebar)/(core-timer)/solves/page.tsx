@@ -28,7 +28,7 @@ export default function SolvesPage() {
   }, [selectedCube, tabMode])
 
   return (
-    <div className={'h-dvh flex flex-col'}>
+    <div className={'flex-1 min-h-0 flex flex-col'}>
       <CoreHeader breadcrumbPath={'/solves'} breadcrumb={t('SolvesPage.title')} />
       <SolvesPageHeader handleSearch={handleSearch} />
       <SolvesGrid solves={displaySolves} />

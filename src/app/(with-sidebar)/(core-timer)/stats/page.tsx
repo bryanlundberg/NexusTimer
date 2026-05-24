@@ -13,7 +13,7 @@ export default function StatsPage() {
   const { stats, loadingProps } = useDeepStatistics()
   const t = useTranslations('Index.StatsPage')
   return (
-    <div className="max-h-dvh overflow-auto">
+    <div className="flex-1 min-h-0 overflow-auto">
       <FadeIn>
         <CoreHeader breadcrumbPath={'/stats'} breadcrumb={t('title')} />
         <div className="px-3 pt-1 pb-6 flex flex-col w-full min-h-full">
