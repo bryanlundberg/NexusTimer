@@ -15,6 +15,7 @@ export const defaultSettings: Settings = {
     quickActionButtons: true,
     hideWhileSolving: false,
     scrambleBackground: false,
+    scrambleSize: 'normal',
     haptics: true
   },
   alerts: {
