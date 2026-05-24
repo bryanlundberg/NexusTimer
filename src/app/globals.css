@@ -12,6 +12,24 @@
   }
 }
 
+@keyframes sidebarOrbPrimary {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(35px, 50px, 0) scale(1.25); }
+  66% { transform: translate3d(-15px, 25px, 0) scale(0.9); }
+}
+
+@keyframes sidebarOrbSecondary {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(-25px, -35px, 0) scale(0.85); }
+  66% { transform: translate3d(20px, 15px, 0) scale(1.2); }
+}
+
+@keyframes sidebarOrbTertiary {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(15px, -30px, 0) scale(1.15); }
+}
+
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
