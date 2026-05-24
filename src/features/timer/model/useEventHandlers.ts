@@ -46,7 +46,7 @@ export default function useEventHandlers({
       if (!el) return false
       const quickActionButtons = document.querySelector('#quick-action-buttons')
       if (quickActionButtons?.contains(el)) return true
-      return !!el.closest('button, a, input, textarea, select, [role="button"]')
+      return !!el.closest('button, a, input, textarea, select, [role="button"], [data-no-timer-touch]')
     }
 
     const handleTouchStart = (event: TouchEvent): void => {
@@ -108,17 +108,17 @@ export default function useEventHandlers({
 
     window.addEventListener('keydown', handleKeyDown)
     window.addEventListener('keyup', handleKeyUp)
-    touchElements.forEach((element: any) => {
-      element.addEventListener('touchstart', handleTouchStart)
-      element.addEventListener('touchend', handleTouchEnd)
+    touchElements.forEach((element) => {
+      element.addEventListener('touchstart', handleTouchStart as EventListener, { passive: false })
+      element.addEventListener('touchend', handleTouchEnd as EventListener, { passive: false })
     })
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('keyup', handleKeyUp)
-      touchElements.forEach((element: any) => {
-        element.removeEventListener('touchstart', handleTouchStart)
-        element.removeEventListener('touchend', handleTouchEnd)
+      touchElements.forEach((element) => {
+        element.removeEventListener('touchstart', handleTouchStart as EventListener)
+        element.removeEventListener('touchend', handleTouchEnd as EventListener)
       })
     }
   }, [handleHoldWithReleasedState, handleReleaseWithReleasedState, resetAndRelease, handleHold, isSolving, timerMode])

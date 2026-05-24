@@ -26,41 +26,9 @@ export default function ScrambleImagePanel() {
         >
           <div
             className={'w-fit mx-auto'}
-            onPointerDownCapture={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              setZoomInScramble(true)
-            }}
-            onPointerUpCapture={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-            }}
-            onClickCapture={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-            }}
-            onTouchStartCapture={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              setZoomInScramble(true)
-            }}
-            onTouchEndCapture={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-            }}
-            onMouseDownCapture={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-              setZoomInScramble(true)
-            }}
-            onMouseUpCapture={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-            }}
-            onContextMenu={(e) => {
-              e.preventDefault()
-              e.stopPropagation()
-            }}
+            data-no-timer-touch
+            onClick={() => setZoomInScramble(true)}
+            onContextMenu={(e) => e.preventDefault()}
           >
             <ScrambleDisplay
               className={cn('w-20 h-20 md:w-32 mx-auto cursor-pointer', height <= SCRAMBLE_HEIGHT && 'h-18 max-w-20')}
