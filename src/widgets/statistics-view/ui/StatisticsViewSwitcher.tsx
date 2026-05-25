@@ -31,11 +31,7 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
     )
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2, duration: 0.4 }}
-    >
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2, duration: 0.4 }}>
       <StatisticsViewContainer>
         <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3 w-full">
           <TabsList className="w-full justify-between mb-1">

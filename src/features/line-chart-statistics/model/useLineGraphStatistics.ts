@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from 'next-intl'
 import React from 'react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTheme } from 'next-themes'
 import { convert } from 'colorizr'
 import {
@@ -23,6 +23,14 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import SolveDetails from '@/features/manage-solves/ui/SolveDetails'
 
+export const CHART_COLORS = {
+  pb: '#FBBF24',
+  worst: '#DC2626',
+  ao5: '#3B82F6',
+  ao12: '#10B981',
+  sd: '#8B5CF6'
+} as const
+
 export default function useLineGraphStatistics(dataSet: Solve[]) {
   const t = useTranslations('Index.StatsPage')
   const chartContainerRef = useRef<HTMLDivElement | null>(null)
@@ -37,12 +45,28 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
   const cubes = useTimerStore((s) => s.cubes)
   const overlay = useOverlayStore()
 
+  const chartRef = useRef<any>(null)
+  const lineSeriesRef = useRef<any>(null)
+  const pbSeriesRef = useRef<any>(null)
+  const ao5SeriesRef = useRef<any>(null)
+  const ao12SeriesRef = useRef<any>(null)
+  const pbPriceLineRef = useRef<any>(null)
+  const worstPriceLineRef = useRef<any>(null)
+  const sdUpperPriceLineRef = useRef<any>(null)
+  const sdLowerPriceLineRef = useRef<any>(null)
+
+  const stateRef = useRef({ showBestTime, showWorstTime, showAo5, showAo12, showStandardDeviation })
+  stateRef.current = { showBestTime, showWorstTime, showAo5, showAo12, showStandardDeviation }
+
   const {
     structuredData,
     solveMap,
     pbAtStepMap,
     ao5Map,
     ao12Map,
+    pbData,
+    pbMarkers,
+    pbValue,
     meanTime,
     stdDev,
     worstTime,
@@ -76,13 +100,17 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       }
       pbAtStepMap.set(timeIndex, runningBest)
 
-      // Precalculate Ao5 and Ao12
-      const window = reversedDataSet.slice(0, index + 1).reverse()
-      const ao5Value = calcCurrentAo(window, 5)
-      if (ao5Value > 0) ao5Map.set(timeIndex, ao5Value)
+      if (index >= 4) {
+        const window5 = reversedDataSet.slice(index - 4, index + 1)
+        const ao5Value = calcCurrentAo(window5, 5)
+        if (ao5Value > 0) ao5Map.set(timeIndex, ao5Value)
+      }
 
-      const ao12Value = calcCurrentAo(window, 12)
-      if (ao12Value > 0) ao12Map.set(timeIndex, ao12Value)
+      if (index >= 11) {
+        const window12 = reversedDataSet.slice(index - 11, index + 1)
+        const ao12Value = calcCurrentAo(window12, 12)
+        if (ao12Value > 0) ao12Map.set(timeIndex, ao12Value)
+      }
     })
 
     const mean = getMean(dataSet)
@@ -93,12 +121,35 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     const ao5Data = Array.from(ao5Map.entries()).map(([time, value]) => ({ time, value }))
     const ao12Data = Array.from(ao12Map.entries()).map(([time, value]) => ({ time, value }))
 
+    const pbData: any[] = []
+    const pbMarkers: any[] = []
+    let currentBest = Infinity
+    structuredData.forEach((item) => {
+      if (item.value <= currentBest) {
+        currentBest = item.value
+        pbData.push({ time: item.time, value: item.value })
+        pbMarkers.push({
+          time: item.time,
+          position: 'inBar' as any,
+          color: CHART_COLORS.pb,
+          shape: 'circle' as any,
+          size: 1
+        })
+      } else if (pbData.length > 0) {
+        pbData.push({ time: item.time, value: currentBest })
+      }
+    })
+    const pbValue = pbData.length > 0 ? pbData[pbData.length - 1].value : null
+
     return {
       structuredData,
       solveMap,
       pbAtStepMap,
       ao5Map,
       ao12Map,
+      pbData,
+      pbMarkers,
+      pbValue,
       meanTime: mean,
       stdDev: sd,
       worstTime: worst,
@@ -116,325 +167,245 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     const chartOptions: DeepPartial<ChartOptions> = {
       layout: {
         textColor: 'gray',
-        background: {
-          color: backgroundColor
-        },
+        background: { color: backgroundColor },
         attributionLogo: false
       },
       grid: {
-        vertLines: {
-          color: gridColor
-        },
-        horzLines: {
-          color: gridColor
-        }
+        vertLines: { color: gridColor },
+        horzLines: { color: gridColor }
       },
       localization: {
-        priceFormatter: (time: number) => {
-          return formatTime(time)
-        },
-        timeFormatter: (time: number) => {
-          return time.toString()
-        }
+        priceFormatter: (time: number) => formatTime(time),
+        timeFormatter: (time: number) => time.toString()
       },
       timeScale: {
-        tickMarkFormatter: (time: number) => {
-          return time.toString()
-        },
+        tickMarkFormatter: (time: number) => time.toString(),
         fixRightEdge: true,
         fixLeftEdge: true,
         allowBoldLabels: false
       },
-      kineticScroll: {
-        mouse: true
-      },
-      handleScale: {
-        axisPressedMouseMove: {
-          price: false
-        }
-      },
+      kineticScroll: { mouse: true },
+      handleScale: { axisPressedMouseMove: { price: false } },
       crosshair: {
-        mode: 1, // CrosshairMode.Normal
-        vertLine: {
-          color: primaryColor,
-          width: 1,
-          style: 2, // LineStyle.Dashed
-          visible: true,
-          labelVisible: false
-        },
+        mode: 1,
+        vertLine: { color: primaryColor, width: 1, style: 2, visible: true, labelVisible: false },
         horzLine: {
           color: primaryColor,
           width: 1,
-          style: 2, // LineStyle.Dashed
+          style: 2,
           visible: true,
           labelVisible: true,
           labelBackgroundColor: primaryColor
         }
       }
     }
+
     const container = chartContainerRef.current
     const tooltip = tooltipRef.current
+    if (!container || !tooltip) return
 
-    if (container && tooltip) {
-      container.innerHTML = ''
-      const chart = createChart(container, chartOptions)
+    container.innerHTML = ''
+    const chart = createChart(container, chartOptions)
+    chartRef.current = chart
 
-      const firstPane = chart.panes()[0]
+    const firstPane = chart.panes()[0]
+    createTextWatermark(firstPane, {
+      horzAlign: 'center',
+      vertAlign: 'center',
+      lines: [{ text: 'nexustimer.com', color: 'rgba(120,120,120, 0.1)', fontSize: 24 }]
+    })
 
-      createTextWatermark(firstPane, {
-        horzAlign: 'center',
-        vertAlign: 'center',
-        lines: [
-          {
-            text: 'nexustimer.com',
-            color: 'rgba(120,120,120, 0.1)',
-            fontSize: 24
-          }
-        ]
-      })
+    const lineSeries = chart.addSeries(LineSeries, {
+      lastValueVisible: false,
+      priceLineVisible: false,
+      lineWidth: 1.5 as any,
+      color: primaryColor,
+      priceScaleId: 'right'
+    })
+    lineSeries.setData(structuredData)
+    lineSeriesRef.current = lineSeries
 
-      const lineSeries = chart.addSeries(LineSeries, {
+    if (pbData.length > 0) {
+      const pbSeries = chart.addSeries(LineSeries, {
         lastValueVisible: false,
         priceLineVisible: false,
-        lineWidth: 1.5 as any,
-        color: primaryColor,
-        priceScaleId: 'right'
+        lineWidth: 2,
+        color: CHART_COLORS.pb,
+        lineStyle: 2,
+        priceScaleId: 'right',
+        visible: stateRef.current.showBestTime
       })
+      pbSeries.setData(pbData)
+      createSeriesMarkers(pbSeries, pbMarkers)
+      pbSeriesRef.current = pbSeries
 
-      lineSeries.setData(structuredData)
-
-      if (showBestTime) {
-        const pbData: any[] = []
-        const pbMarkers: any[] = []
-        let currentBest = Infinity
-
-        structuredData.forEach((item) => {
-          if (item.value <= currentBest) {
-            // It's a PB (or tie)
-            currentBest = item.value
-            pbData.push({
-              time: item.time,
-              value: item.value
-            })
-            // Add marker for the PB solve
-            pbMarkers.push({
-              time: item.time,
-              position: 'inBar' as any,
-              color: '#FBBF24',
-              shape: 'circle' as any,
-              size: 1
-            })
-          } else if (pbData.length > 0) {
-            // Not a PB, but we want the line to continue horizontally
-            pbData.push({
-              time: item.time,
-              value: currentBest
-            })
-          }
-        })
-
-        if (pbData.length > 0) {
-          const pbSeries = chart.addSeries(LineSeries, {
-            lastValueVisible: false,
-            priceLineVisible: false,
-            lineWidth: 2,
-            color: '#FBBF24', // Yellow
-            lineStyle: 2, // Dashed
-            priceScaleId: 'right'
-          })
-
-          pbSeries.setData(pbData)
-          createSeriesMarkers(pbSeries, pbMarkers)
-
-          // Add a fixed price line for the current PB (the last value in pbData is the overall best)
-          const overallBest = pbData[pbData.length - 1].value
-          const pbPriceLine: CreatePriceLineOptions = {
-            price: overallBest,
-            color: '#FBBF24', // Yellow
-            lineWidth: 1,
-            lineStyle: 2, // Dashed
-            axisLabelVisible: true,
-            title: 'PB'
-          }
-          lineSeries.createPriceLine(pbPriceLine)
-        }
-      }
-
-      if (showWorstTime) {
-        const worstTimeLine: CreatePriceLineOptions = {
-          price: worstTime,
-          color: '#DC2626', // Red
+      if (stateRef.current.showBestTime && pbValue != null) {
+        const pbPriceLine: CreatePriceLineOptions = {
+          price: pbValue,
+          color: CHART_COLORS.pb,
           lineWidth: 1,
-          lineStyle: 0, // Solid
+          lineStyle: 2,
           axisLabelVisible: true,
-          title: 'Worst'
+          title: 'PB'
         }
-        lineSeries.createPriceLine(worstTimeLine)
-      }
-
-      if (showStandardDeviation) {
-        // Upper bound (mean + stdDev)
-        const upperBoundLine: CreatePriceLineOptions = {
-          price: meanTime + stdDev,
-          color: '#8B5CF6', // Purple
-          lineWidth: 1,
-          lineStyle: 3, // Dotted
-          axisLabelVisible: true,
-          title: `+σ`
-        }
-        lineSeries.createPriceLine(upperBoundLine)
-
-        // Lower bound (mean - stdDev)
-        const lowerBoundLine: CreatePriceLineOptions = {
-          price: Math.max(0, meanTime - stdDev),
-          color: '#8B5CF6', // Purple
-          lineWidth: 1,
-          lineStyle: 3, // Dotted
-          axisLabelVisible: true,
-          title: `-σ`
-        }
-        lineSeries.createPriceLine(lowerBoundLine)
-      }
-
-      if (showAo5) {
-        const ao5Series = chart.addSeries(LineSeries, {
-          lastValueVisible: false,
-          priceLineVisible: false,
-          lineWidth: 1,
-          color: '#3B82F6' // Blue
-        })
-        ao5Series.setData(ao5Data as any)
-      }
-
-      if (showAo12) {
-        const ao12Series = chart.addSeries(LineSeries, {
-          lastValueVisible: false,
-          priceLineVisible: false,
-          lineWidth: 1,
-          color: '#10B981' // Emerald/Greenish
-        })
-        ao12Series.setData(ao12Data as any)
-      }
-
-      chart.autoSizeActive()
-      chart.timeScale().fitContent()
-
-      // Setup custom tooltip
-      chart.subscribeCrosshairMove((param) => {
-        if (
-          param.point === undefined ||
-          !param.time ||
-          param.point.x < 0 ||
-          param.point.x > container.clientWidth ||
-          param.point.y < 0 ||
-          param.point.y > container.clientHeight
-        ) {
-          tooltip.style.display = 'none'
-          return
-        }
-
-        const solve = solveMap.get(param.time as number)
-        if (!solve) {
-          tooltip.style.display = 'none'
-          return
-        }
-
-        moment.locale(locale)
-
-        const cubeName = cubeNameById.get(solve.cubeId) || 'Unknown'
-
-        const currentPb = pbAtStepMap.get(param.time as number)
-        let tooltipContent = `
-          <div class="mt-1 text-xs">${cubeName}</div>
-          <div class="font-bold text-base">${formatTime(solve.time)}</div>
-          <div class="text-xs opacity-80">Solve #${param.time}</div>
-          <div class="mt-1 text-xs">${moment(solve.endTime).format('LL')}</div>
-          ${currentPb !== undefined ? `<div class="mt-1 text-xs text-yellow-500">PB: ${formatTime(currentPb)}</div>` : ''}
-        `
-
-        if (showAo5) {
-          const ao5Value = ao5Map.get(param.time as number)
-          if (ao5Value && ao5Value > 0) {
-            tooltipContent += `<div class="mt-1 text-xs text-blue-400">Ao5: ${formatTime(ao5Value)}</div>`
-          }
-        }
-
-        if (showAo12) {
-          const ao12Value = ao12Map.get(param.time as number)
-          if (ao12Value && ao12Value > 0) {
-            tooltipContent += `<div class="mt-1 text-xs text-emerald-400">Ao12: ${formatTime(ao12Value)}</div>`
-          }
-        }
-
-        if (solve.dnf) {
-          tooltipContent += `<div class="mt-1 text-xs text-red-500">DNF</div>`
-        } else if (solve.plus2) {
-          tooltipContent += `<div class="mt-1 text-xs text-yellow-500">+2</div>`
-        }
-
-        tooltip.innerHTML = tooltipContent
-        tooltip.style.display = 'block'
-
-        const tooltipWidth = tooltip.clientWidth
-        const tooltipHeight = tooltip.clientHeight
-        const chartRect = container.getBoundingClientRect()
-
-        // Position the tooltip
-        let left = param.point.x + 15
-        if (left + tooltipWidth > chartRect.width) {
-          left = param.point.x - tooltipWidth - 15
-        }
-
-        let top = param.point.y - tooltipHeight - 10
-        if (top < 0) {
-          top = param.point.y + 15
-        }
-
-        tooltip.style.left = `${left}px`
-        tooltip.style.top = `${top}px`
-      })
-
-      chart.subscribeClick((param) => {
-        if (!param.time) return
-        const solve = solveMap.get(param.time as number)
-        if (!solve) return
-        overlay.open({
-          id: 'solve-details',
-          metadata: { ...solve },
-          component: React.createElement(SolveDetails)
-        })
-      })
-
-      // Make chart responsive with screen resize
-      const resizeObserver = new ResizeObserver((entries) => {
-        if (entries.length === 0 || entries[0].target !== container) {
-          return
-        }
-        const newRect = entries[0].contentRect
-        chart.applyOptions({ height: newRect.height, width: newRect.width })
-      })
-      resizeObserver.observe(container)
-
-      return () => {
-        resizeObserver.disconnect()
-        chart.remove()
+        pbPriceLineRef.current = lineSeries.createPriceLine(pbPriceLine)
       }
     }
+
+    if (stateRef.current.showWorstTime) {
+      worstPriceLineRef.current = lineSeries.createPriceLine({
+        price: worstTime,
+        color: CHART_COLORS.worst,
+        lineWidth: 1,
+        lineStyle: 0,
+        axisLabelVisible: true,
+        title: 'Worst'
+      })
+    }
+
+    if (stateRef.current.showStandardDeviation) {
+      sdUpperPriceLineRef.current = lineSeries.createPriceLine({
+        price: meanTime + stdDev,
+        color: CHART_COLORS.sd,
+        lineWidth: 1,
+        lineStyle: 3,
+        axisLabelVisible: true,
+        title: `+σ`
+      })
+      sdLowerPriceLineRef.current = lineSeries.createPriceLine({
+        price: Math.max(0, meanTime - stdDev),
+        color: CHART_COLORS.sd,
+        lineWidth: 1,
+        lineStyle: 3,
+        axisLabelVisible: true,
+        title: `-σ`
+      })
+    }
+
+    const ao5Series = chart.addSeries(LineSeries, {
+      lastValueVisible: false,
+      priceLineVisible: false,
+      lineWidth: 1,
+      color: CHART_COLORS.ao5,
+      visible: stateRef.current.showAo5
+    })
+    ao5Series.setData(ao5Data as any)
+    ao5SeriesRef.current = ao5Series
+
+    const ao12Series = chart.addSeries(LineSeries, {
+      lastValueVisible: false,
+      priceLineVisible: false,
+      lineWidth: 1,
+      color: CHART_COLORS.ao12,
+      visible: stateRef.current.showAo12
+    })
+    ao12Series.setData(ao12Data as any)
+    ao12SeriesRef.current = ao12Series
+
+    chart.autoSizeActive()
+    chart.timeScale().fitContent()
+
+    chart.subscribeCrosshairMove((param) => {
+      if (
+        param.point === undefined ||
+        !param.time ||
+        param.point.x < 0 ||
+        param.point.x > container.clientWidth ||
+        param.point.y < 0 ||
+        param.point.y > container.clientHeight
+      ) {
+        tooltip.style.display = 'none'
+        return
+      }
+
+      const solve = solveMap.get(param.time as number)
+      if (!solve) {
+        tooltip.style.display = 'none'
+        return
+      }
+
+      moment.locale(locale)
+      const cubeName = cubeNameById.get(solve.cubeId) || 'Unknown'
+      const currentPb = pbAtStepMap.get(param.time as number)
+      let tooltipContent = `
+        <div class="mt-1 text-xs">${cubeName}</div>
+        <div class="font-bold text-base">${formatTime(solve.time)}</div>
+        <div class="text-xs opacity-80">Solve #${param.time}</div>
+        <div class="mt-1 text-xs">${moment(solve.endTime).format('LL')}</div>
+        ${currentPb !== undefined ? `<div class="mt-1 text-xs text-yellow-500">PB: ${formatTime(currentPb)}</div>` : ''}
+      `
+
+      const ao5Value = ao5Map.get(param.time as number)
+      if (ao5Value && ao5Value > 0) {
+        tooltipContent += `<div class="mt-1 text-xs text-blue-400">Ao5: ${formatTime(ao5Value)}</div>`
+      }
+      const ao12Value = ao12Map.get(param.time as number)
+      if (ao12Value && ao12Value > 0) {
+        tooltipContent += `<div class="mt-1 text-xs text-emerald-400">Ao12: ${formatTime(ao12Value)}</div>`
+      }
+
+      if (solve.dnf) {
+        tooltipContent += `<div class="mt-1 text-xs text-red-500">DNF</div>`
+      } else if (solve.plus2) {
+        tooltipContent += `<div class="mt-1 text-xs text-yellow-500">+2</div>`
+      }
+
+      tooltip.innerHTML = tooltipContent
+      tooltip.style.display = 'block'
+
+      const tooltipWidth = tooltip.clientWidth
+      const tooltipHeight = tooltip.clientHeight
+      const chartRect = container.getBoundingClientRect()
+      let left = param.point.x + 15
+      if (left + tooltipWidth > chartRect.width) left = param.point.x - tooltipWidth - 15
+      let top = param.point.y - tooltipHeight - 10
+      if (top < 0) top = param.point.y + 15
+      tooltip.style.left = `${left}px`
+      tooltip.style.top = `${top}px`
+    })
+
+    chart.subscribeClick((param) => {
+      if (!param.time) return
+      const solve = solveMap.get(param.time as number)
+      if (!solve) return
+      overlay.open({
+        id: 'solve-details',
+        metadata: { ...solve },
+        component: React.createElement(SolveDetails)
+      })
+    })
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      if (entries.length === 0 || entries[0].target !== container) return
+      const newRect = entries[0].contentRect
+      chart.applyOptions({ height: newRect.height, width: newRect.width })
+    })
+    resizeObserver.observe(container)
+
+    return () => {
+      resizeObserver.disconnect()
+      chart.remove()
+      chartRef.current = null
+      lineSeriesRef.current = null
+      pbSeriesRef.current = null
+      ao5SeriesRef.current = null
+      ao12SeriesRef.current = null
+      pbPriceLineRef.current = null
+      worstPriceLineRef.current = null
+      sdUpperPriceLineRef.current = null
+      sdLowerPriceLineRef.current = null
+    }
   }, [
-    dataSet,
     locale,
-    t,
-    showBestTime,
-    showWorstTime,
-    showStandardDeviation,
-    showAo5,
-    showAo12,
     resolvedTheme,
     structuredData,
     solveMap,
     pbAtStepMap,
     ao5Map,
     ao12Map,
+    pbData,
+    pbMarkers,
+    pbValue,
     meanTime,
     stdDev,
     worstTime,
@@ -443,9 +414,91 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     cubeNameById
   ])
 
+  // Toggle: PB series
+  useEffect(() => {
+    const series = lineSeriesRef.current
+    const pbSeries = pbSeriesRef.current
+    if (!series) return
+    if (pbSeries) pbSeries.applyOptions({ visible: showBestTime })
+
+    if (showBestTime && pbValue != null && !pbPriceLineRef.current) {
+      pbPriceLineRef.current = series.createPriceLine({
+        price: pbValue,
+        color: CHART_COLORS.pb,
+        lineWidth: 1,
+        lineStyle: 2,
+        axisLabelVisible: true,
+        title: 'PB'
+      })
+    } else if (!showBestTime && pbPriceLineRef.current) {
+      series.removePriceLine(pbPriceLineRef.current)
+      pbPriceLineRef.current = null
+    }
+  }, [showBestTime, pbValue])
+
+  // Toggle: worst price line
+  useEffect(() => {
+    const series = lineSeriesRef.current
+    if (!series) return
+    if (showWorstTime && !worstPriceLineRef.current) {
+      worstPriceLineRef.current = series.createPriceLine({
+        price: worstTime,
+        color: CHART_COLORS.worst,
+        lineWidth: 1,
+        lineStyle: 0,
+        axisLabelVisible: true,
+        title: 'Worst'
+      })
+    } else if (!showWorstTime && worstPriceLineRef.current) {
+      series.removePriceLine(worstPriceLineRef.current)
+      worstPriceLineRef.current = null
+    }
+  }, [showWorstTime, worstTime])
+
+  // Toggle: standard deviation price lines
+  useEffect(() => {
+    const series = lineSeriesRef.current
+    if (!series) return
+    if (showStandardDeviation && !sdUpperPriceLineRef.current) {
+      sdUpperPriceLineRef.current = series.createPriceLine({
+        price: meanTime + stdDev,
+        color: CHART_COLORS.sd,
+        lineWidth: 1,
+        lineStyle: 3,
+        axisLabelVisible: true,
+        title: `+σ`
+      })
+      sdLowerPriceLineRef.current = series.createPriceLine({
+        price: Math.max(0, meanTime - stdDev),
+        color: CHART_COLORS.sd,
+        lineWidth: 1,
+        lineStyle: 3,
+        axisLabelVisible: true,
+        title: `-σ`
+      })
+    } else if (!showStandardDeviation && sdUpperPriceLineRef.current) {
+      series.removePriceLine(sdUpperPriceLineRef.current)
+      if (sdLowerPriceLineRef.current) series.removePriceLine(sdLowerPriceLineRef.current)
+      sdUpperPriceLineRef.current = null
+      sdLowerPriceLineRef.current = null
+    }
+  }, [showStandardDeviation, meanTime, stdDev])
+
+  // Toggle: Ao5 / Ao12 visibility
+  useEffect(() => {
+    if (ao5SeriesRef.current) ao5SeriesRef.current.applyOptions({ visible: showAo5 })
+  }, [showAo5])
+
+  useEffect(() => {
+    if (ao12SeriesRef.current) ao12SeriesRef.current.applyOptions({ visible: showAo12 })
+  }, [showAo12])
+
+  const hasData = useMemo(() => dataSet.length > 0, [dataSet])
+
   return {
     chartContainerRef,
     tooltipRef,
+    hasData,
     showBestTime,
     setShowBestTime,
     showWorstTime,

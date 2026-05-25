@@ -2,12 +2,16 @@ import { Checkbox } from '@/components/ui/checkbox'
 import useLineGraphStatistics from '@/features/line-chart-statistics/model/useLineGraphStatistics'
 import { Solve } from '@/entities/solve/model/types'
 import { useTranslations } from 'next-intl'
+import LineGraphLegend from './LineGraphLegend'
 
 export default function LineGraphStatistics({ solves }: { solves: Solve[] }) {
   const t = useTranslations('Index')
   const {
+    showBestTime,
     showWorstTime,
     setShowWorstTime,
+    showAo5,
+    showAo12,
     showStandardDeviation,
     setShowStandardDeviation,
     tooltipRef,
@@ -50,6 +54,15 @@ export default function LineGraphStatistics({ solves }: { solves: Solve[] }) {
           style={{ pointerEvents: 'none' }}
         ></div>
       </div>
+
+      <LineGraphLegend
+        primaryLabel={t('StatsPage.title')}
+        showBestTime={showBestTime}
+        showWorstTime={showWorstTime}
+        showAo5={showAo5}
+        showAo12={showAo12}
+        showStandardDeviation={showStandardDeviation}
+      />
     </div>
   )
 }
