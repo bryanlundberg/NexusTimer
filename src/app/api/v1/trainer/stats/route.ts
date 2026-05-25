@@ -1,66 +1,59 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
+import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
-import { auth } from '@/shared/config/auth/auth'
 import TrainerStats from '@/entities/trainer-stats/model/trainer-stats'
 import type { TrainerMethodStatsDoc } from '@/entities/trainer-stats/model/types'
 import { TRAINER_TARGET_OPTIONS } from '@/features/trainer/lib/constants'
+import { requireUser } from '@/shared/api/require-user'
+import { parseJsonBody } from '@/shared/api/parse-json'
+import { ok, serverError } from '@/shared/api/responses'
 
-const VALID_TARGET_SECONDS = new Set(TRAINER_TARGET_OPTIONS)
+const TARGET_SET: ReadonlySet<number> = new Set(TRAINER_TARGET_OPTIONS)
+const updateTargetSchema = z.object({
+  method: z.string().min(1),
+  targetSeconds: z.number().refine((n) => TARGET_SET.has(n), 'targetSeconds must be 1–5')
+})
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await auth()
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const userId = await requireUser()
+    if (userId instanceof Response) return userId
 
     await connectDB()
 
-    const userId = session.user.id
     const methodSlug = request.nextUrl.searchParams.get('method')
 
     const doc = await TrainerStats.findOne({ user: userId }).lean<{ methods: Record<string, TrainerMethodStatsDoc> }>()
     const methods = doc?.methods ?? {}
 
     if (methodSlug) {
-      return NextResponse.json({ method: methodSlug, stats: methods[methodSlug] ?? null })
+      return ok({ method: methodSlug, stats: methods[methodSlug] ?? null })
     }
 
-    return NextResponse.json({ methods })
+    return ok({ methods })
   } catch (error) {
-    console.error('Error fetching trainer stats:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return serverError('trainer/stats:GET', error)
   }
 }
 
 export async function PATCH(request: NextRequest) {
   try {
-    const session = await auth()
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const userId = await requireUser()
+    if (userId instanceof Response) return userId
 
-    const body = await request.json()
-    const { method, targetSeconds } = body
-
-    if (typeof method !== 'string' || !method) {
-      return NextResponse.json({ error: 'method is required' }, { status: 400 })
-    }
-    if (!VALID_TARGET_SECONDS.has(targetSeconds)) {
-      return NextResponse.json({ error: 'targetSeconds must be 1–5' }, { status: 400 })
-    }
+    const body = await parseJsonBody(request, updateTargetSchema)
+    if (body instanceof Response) return body
 
     await connectDB()
 
     await TrainerStats.findOneAndUpdate(
-      { user: session.user.id },
-      { $set: { [`methods.${method}.targetSeconds`]: targetSeconds } },
+      { user: userId },
+      { $set: { [`methods.${body.method}.targetSeconds`]: body.targetSeconds } },
       { upsert: true }
     )
 
-    return NextResponse.json({ ok: true })
+    return ok({ ok: true })
   } catch (error) {
-    console.error('Error updating trainer target:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return serverError('trainer/stats:PATCH', error)
   }
 }
