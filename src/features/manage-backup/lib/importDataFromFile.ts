@@ -306,7 +306,7 @@ export function normalizeOldData(cubes: Cube[]): Cube[] {
     return {
       ...cube,
       isDeleted: cube.isDeleted ?? false,
-      updatedAt: cube.updatedAt ? cube.updatedAt : cube.createdAt,
+      updatedAt: cube.updatedAt ?? cube.createdAt,
       solves: {
         session: cube.solves.session.map((solve: Solve) => ({
           ...solve,
