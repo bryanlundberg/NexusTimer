@@ -1,21 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 import UserAchievement from '@/entities/achievement/model/user-achievement'
 import { auth } from '@/shared/config/auth/auth'
+import { badRequest, notFound, ok, serverError, unauthorized } from '@/shared/api/responses'
 
 export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const userId = (await params).id
 
-    if (!userId) {
-      return NextResponse.json({ error: 'ID is required' }, { status: 404 })
-    }
+    if (!userId) return badRequest('ID is required')
 
     const session = await auth()
-    if (!session || session.user.id !== userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    if (!session || session.user.id !== userId) return unauthorized()
 
     const body = await request.json()
 
@@ -24,35 +21,29 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     const { email, createdAt, updatedAt, __v, ...rest } = body
     const updatedUser = await User.findOneAndUpdate({ _id: userId }, { ...rest }, { returnDocument: 'after' })
 
-    return NextResponse.json(updatedUser)
+    return ok(updatedUser)
   } catch (error) {
-    console.error('Error updating user:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return serverError('users/[id]:PATCH', error)
   }
 }
 
-export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(_request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const userId = (await params).id
 
-    if (!userId) {
-      return NextResponse.json({ error: 'ID is required' }, { status: 404 })
-    }
+    if (!userId) return badRequest('ID is required')
 
     await connectDB()
     const user = await User.findById(userId)
 
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 })
-    }
+    if (!user) return notFound('User not found')
 
     const granted = await UserAchievement.find({ userId: user._id }, { key: 1, _id: 0 }).lean<{ key: string }[]>()
 
     const { email, __v, ...rest } = user.toObject()
 
-    return NextResponse.json({ ...rest, grantedAchievements: granted.map((a) => a.key) })
+    return ok({ ...rest, grantedAchievements: granted.map((a) => a.key) })
   } catch (error) {
-    console.error('Error fetching user:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return serverError('users/[id]:GET', error)
   }
 }
