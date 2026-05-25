@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import mongoose from 'mongoose'
 import { locales } from '@/shared/config/i18n/locales'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
@@ -25,9 +24,6 @@ export default async function UserLayout({
   params: Promise<{ userId: string }>
 }) {
   const { userId } = await params
-
-  if (!mongoose.Types.ObjectId.isValid(userId)) notFound()
-
   await connectDB()
   const exists = await User.exists({ _id: userId })
 
