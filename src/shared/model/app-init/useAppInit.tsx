@@ -9,6 +9,7 @@ export function useAppInit() {
   const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
   const setNewScramble = useTimerStore((store) => store.setNewScramble)
   const settings = useSettingsStore((store) => store.settings)
+  const updateSetting = useSettingsStore((store) => store.updateSetting)
   const [isAppReady, setIsAppReady] = useState(false)
   const { data: session } = useSession()
 
@@ -18,16 +19,14 @@ export function useAppInit() {
       const defaultCubeId = settings.preferences.defaultCube
       setCubes(cubes)
 
-      if (defaultCubeId) {
-        const defaultCube = await cubesDB.getById(defaultCubeId)
-        if (defaultCube) {
-          setSelectedCube(defaultCube)
-          setNewScramble(defaultCube)
-        } else {
-          setSelectedCube(null)
-        }
+      const defaultCube = defaultCubeId ? cubes.find((cube) => cube.id === defaultCubeId) : undefined
+
+      if (defaultCube) {
+        setSelectedCube(defaultCube)
+        setNewScramble(defaultCube)
       } else {
         setSelectedCube(null)
+        if (defaultCubeId) updateSetting('preferences.defaultCube', '')
       }
 
       setIsAppReady(true)
