@@ -17,7 +17,6 @@ export default function Timer({ children }: { children?: ReactNode }) {
   const isSolving = useTimerStore((store) => store.isSolving)
   const lastSolve = useTimerStore((store) => store.lastSolve)
   const timerStatus = useTimerStore((store) => store.timerStatus)
-  const solvingTime = useTimerStore((store) => store.solvingTime)
   const timerStatistics = useTimerStore((store) => store.timerStatistics)
   const setLastSolve = useTimerStore((store) => store.setLastSolve)
   const setTimerStatus = useTimerStore((store) => store.setTimerStatus)
@@ -57,7 +56,6 @@ export default function Timer({ children }: { children?: ReactNode }) {
           isSolving={isSolving}
           timerStatus={timerStatus}
           lastSolve={lastSolve}
-          solvingTime={solvingTime}
           isMobile={isMobile}
           inspectionTime={inspectionTime}
           hideWhileSolving={settings.features.hideWhileSolving}

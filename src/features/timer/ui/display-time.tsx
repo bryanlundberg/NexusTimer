@@ -1,4 +1,3 @@
-import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import React from 'react'
@@ -8,13 +7,13 @@ import { useWindowSize } from 'react-use-size'
 import { cn } from '@/shared/lib/utils'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { Solve } from '@/entities/solve/model/types'
+import { SolvingTimeDecimals, SolvingTimeInteger } from '@/features/timer/ui/SolvingTimeText'
 
 interface DisplayTimeProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   className?: string
   isSolving: boolean
   lastSolve: Solve | null
   timerStatus: TimerStatus
-  solvingTime: number
   isMobile: boolean
   inspectionTime: number
   inspectionRequired: boolean
@@ -35,7 +34,6 @@ export default function DisplayTime({
   isSolving,
   lastSolve,
   timerStatus,
-  solvingTime,
   isMobile,
   inspectionTime,
   inspectionRequired,
@@ -127,7 +125,7 @@ export default function DisplayTime({
                       transition={{ duration: 0.2 }}
                       id={'touch'}
                     >
-                      {formatTime(solvingTime).split('.')[0]}
+                      <SolvingTimeInteger />
                     </motion.div>
                     <motion.div
                       className={cn(
@@ -141,7 +139,7 @@ export default function DisplayTime({
                       transition={{ duration: 0.3, delay: 0.1 }}
                       id={'touch'}
                     >
-                      .{formatTime(solvingTime, settings.timer.decimals).split('.')[1]}
+                      <SolvingTimeDecimals decimals={settings.timer.decimals} />
                     </motion.div>
                     {lastSolve?.plus2 && !isSolving && (
                       <motion.span

@@ -45,7 +45,6 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     isSolving,
     lastSolve,
     timerStatus,
-    solvingTime,
     timerMode,
     setTimerStatus,
     setIsSolving,
@@ -164,7 +163,6 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
                 isSolving={isSolving}
                 timerStatus={timerStatus}
                 lastSolve={lastSolve}
-                solvingTime={solvingTime}
                 isMobile={isMobile}
                 inspectionTime={inspectionTime}
                 hideWhileSolving={settings.features.hideWhileSolving}

@@ -6,7 +6,6 @@ import { Solve } from '@/entities/solve/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export default function useSolveData() {
-  const solvingTime = useTimerStore((store) => store.solvingTime)
   const selectedCube = useTimerStore((store) => store.selectedCube)
   const scramble = useTimerStore((store) => store.scramble)
   const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
@@ -18,6 +17,7 @@ export default function useSolveData() {
 
   const saveSolveMainTimer = async () => {
     if (selectedCube && scramble) {
+      const solvingTime = useTimerStore.getState().solvingTime
       const lastSolve: Solve = {
         id: genId(),
         startTime: Date.now() - solvingTime,
