@@ -12,7 +12,7 @@ export const setTrainerLearned = async (payload: SetLearnedPayload) => {
   })
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}))
-    throw new Error(errorData?.error ?? `Failed to update learned (${res.status})`)
+    throw new Error(errorData?.message ?? `Failed to update learned (${res.status})`)
   }
   return res.json()
 }

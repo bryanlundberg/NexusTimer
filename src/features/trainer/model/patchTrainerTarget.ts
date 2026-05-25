@@ -6,7 +6,7 @@ export const patchTrainerTarget = async (methodSlug: string, targetSeconds: numb
   })
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}))
-    throw new Error(errorData?.error ?? `Failed to update target (${res.status})`)
+    throw new Error(errorData?.message ?? `Failed to update target (${res.status})`)
   }
   return res.json()
 }

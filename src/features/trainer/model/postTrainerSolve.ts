@@ -8,7 +8,7 @@ export const postTrainerSolve = async (payload: TrainerSolveInput) => {
   })
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}))
-    throw new Error(errorData?.error ?? `Failed to record solve (${res.status})`)
+    throw new Error(errorData?.message ?? `Failed to record solve (${res.status})`)
   }
   return res.json()
 }

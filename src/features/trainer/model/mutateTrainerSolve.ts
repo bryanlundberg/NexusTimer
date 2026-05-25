@@ -8,7 +8,7 @@ export const patchTrainerSolve = async (id: string, penalty: TrainerPenalty) => 
   })
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}))
-    throw new Error(errorData?.error ?? `Failed to update solve (${res.status})`)
+    throw new Error(errorData?.message ?? `Failed to update solve (${res.status})`)
   }
   return res.json()
 }
@@ -17,7 +17,7 @@ export const deleteTrainerSolve = async (id: string) => {
   const res = await fetch(`/api/v1/trainer/solves/${id}`, { method: 'DELETE' })
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}))
-    throw new Error(errorData?.error ?? `Failed to delete solve (${res.status})`)
+    throw new Error(errorData?.message ?? `Failed to delete solve (${res.status})`)
   }
   return res.json()
 }
