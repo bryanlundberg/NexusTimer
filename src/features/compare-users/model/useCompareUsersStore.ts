@@ -2,11 +2,6 @@ import { create } from 'zustand'
 import { UserDocument } from '@/entities/user/model/user'
 
 type CompareUsersProps = {
-  isOpenModal: boolean
-  openModal: () => void
-  closeModal: () => void
-  setIsOpenModal: (isOpen: boolean) => void
-
   isOpenOverlay: boolean
   openOverlay: () => void
   closeOverlay: () => void
@@ -17,14 +12,9 @@ type CompareUsersProps = {
 }
 
 export const useCompareUsersStore = create<CompareUsersProps>((set) => ({
-  isOpenModal: false,
-  openModal: () => set({ isOpenModal: true }),
-  closeModal: () => set({ isOpenModal: false }),
-  setIsOpenModal: (isOpen: boolean) => set({ isOpenModal: isOpen }),
-
   isOpenOverlay: false,
-  openOverlay: () => set({ isOpenOverlay: true, isOpenModal: false }),
-  closeOverlay: () => set({ isOpenOverlay: false, isOpenModal: false }),
+  openOverlay: () => set({ isOpenOverlay: true }),
+  closeOverlay: () => set({ isOpenOverlay: false }),
 
   users: [],
   addUser: (user: UserDocument) =>
