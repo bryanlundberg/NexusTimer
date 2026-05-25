@@ -55,10 +55,6 @@ export default function DisplayTime({
         animate={{
           opacity: 1,
           scale: timerStatus === TimerStatus.READY ? 1.05 : 1,
-          filter:
-            timerStatus === TimerStatus.HOLDING
-              ? 'drop-shadow(0 0 60px currentColor)'
-              : 'drop-shadow(0 0 0px currentColor)',
           transition: {
             type: 'spring',
             stiffness: 300,
