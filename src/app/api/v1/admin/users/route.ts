@@ -2,7 +2,6 @@ import { NextRequest } from 'next/server'
 import { Model, Types } from 'mongoose'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
-import Backup from '@/entities/backup/model/backup'
 import Solve from '@/entities/solve/model/solve'
 import TrainerSolve from '@/entities/trainer-solve/model/trainer-solve'
 import TrainerLearned from '@/entities/trainer-learned/model/trainer-learned'
@@ -26,7 +25,6 @@ type RelatedCollection = {
 
 const RELATED_COLLECTIONS: RelatedCollection[] = [
   { key: 'solves', model: Solve, filter: ({ userId }) => ({ user: userId }) },
-  { key: 'backups', model: Backup, filter: ({ userId }) => ({ user: userId }) },
   { key: 'trainerSolves', model: TrainerSolve, filter: ({ userId }) => ({ user: userId }) },
   { key: 'trainerLearned', model: TrainerLearned, filter: ({ userId }) => ({ user: userId }) },
   { key: 'trainerStats', model: TrainerStats, filter: ({ userId }) => ({ user: userId }) },
