@@ -1,16 +1,28 @@
+import { NextRequest } from 'next/server'
+import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
-import Solve from '@/entities/solve/model/solve'
-import { NextResponse } from 'next/server'
+import Solve, { LEADERBOARD_PUZZLES } from '@/entities/solve/model/solve'
+import { parseSearchParams } from '@/shared/api/parse-query'
+import { ok, serverError } from '@/shared/api/responses'
 
-export async function GET(request: Request) {
-  await connectDB()
+const leaderboardsQuerySchema = z.object({
+  puzzle: z.enum(LEADERBOARD_PUZZLES).optional()
+})
 
-  const { searchParams } = new URL(request.url)
-  const puzzle = searchParams.get('puzzle')
-  const filter: Record<string, any> = {}
-  if (puzzle) filter.puzzle = puzzle
+export async function GET(request: NextRequest) {
+  try {
+    const query = parseSearchParams(request, leaderboardsQuerySchema)
+    if (query instanceof Response) return query
 
-  const leaderboards = await Solve.find(filter).sort({ time: 1, createdAt: 1 }).limit(100).populate('user')
+    await connectDB()
 
-  return NextResponse.json(leaderboards)
+    const filter: Record<string, string> = {}
+    if (query.puzzle) filter.puzzle = query.puzzle
+
+    const leaderboards = await Solve.find(filter).sort({ time: 1, createdAt: 1 }).limit(100).populate('user')
+
+    return ok(leaderboards)
+  } catch (error) {
+    return serverError('leaderboards:GET', error)
+  }
 }

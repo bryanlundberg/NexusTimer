@@ -1,74 +1,59 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 import { Types } from 'mongoose'
 import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
-import { auth } from '@/shared/config/auth/auth'
 import TrainerSolve from '@/entities/trainer-solve/model/trainer-solve'
 import TrainerStats from '@/entities/trainer-stats/model/trainer-stats'
 import { trainerSolveInputSchema } from '@/entities/trainer-solve/model/schema'
 import { TRAINER_RECENT_TIMES_WINDOW } from '@/entities/trainer-stats/model/constants'
+import { requireUser } from '@/shared/api/require-user'
+import { parseJsonBody } from '@/shared/api/parse-json'
+import { parseSearchParams } from '@/shared/api/parse-query'
+import { created, ok, serverError } from '@/shared/api/responses'
+import { objectIdSchema } from '@/shared/api/zod-helpers'
 
 const listQuerySchema = z.object({
   methodSlug: z.string().min(1),
   caseId: z.string().min(1).optional(),
   limit: z.coerce.number().int().min(1).max(100).default(12),
-  before: z
-    .string()
-    .refine((v) => Types.ObjectId.isValid(v), 'Invalid cursor')
-    .optional()
+  before: objectIdSchema.optional()
 })
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await auth()
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const userId = await requireUser()
+    if (userId instanceof Response) return userId
 
-    const parsed = listQuerySchema.safeParse({
-      methodSlug: request.nextUrl.searchParams.get('methodSlug'),
-      caseId: request.nextUrl.searchParams.get('caseId') ?? undefined,
-      limit: request.nextUrl.searchParams.get('limit') ?? undefined,
-      before: request.nextUrl.searchParams.get('before') ?? undefined
-    })
-    if (!parsed.success) {
-      return NextResponse.json({ error: 'Invalid query', issues: parsed.error.issues }, { status: 400 })
-    }
-    const { methodSlug, caseId, limit, before } = parsed.data
+    const query = parseSearchParams(request, listQuerySchema)
+    if (query instanceof Response) return query
+    const { methodSlug, caseId, limit, before } = query
 
     await connectDB()
 
-    const filter: Record<string, unknown> = { user: session.user.id, methodSlug }
+    const filter: Record<string, unknown> = { user: userId, methodSlug }
     if (caseId) filter.caseId = caseId
     if (before) filter._id = { $lt: new Types.ObjectId(before) }
 
     const solves = await TrainerSolve.find(filter).sort({ _id: -1 }).limit(limit).lean()
-    return NextResponse.json({ solves })
+    return ok({ solves })
   } catch (error) {
-    console.error('Error listing trainer solves:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return serverError('trainer/solves:GET', error)
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth()
-    if (!session?.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
+    const userId = await requireUser()
+    if (userId instanceof Response) return userId
 
-    const parsed = trainerSolveInputSchema.safeParse(await request.json())
-    if (!parsed.success) {
-      return NextResponse.json({ error: 'Invalid payload', issues: parsed.error.issues }, { status: 400 })
-    }
+    const body = await parseJsonBody(request, trainerSolveInputSchema)
+    if (body instanceof Response) return body
 
-    const { methodSlug, caseId, timeMs, penalty } = parsed.data
+    const { methodSlug, caseId, timeMs, penalty } = body
     const isCounted = penalty !== 'DNF'
     const effectiveTime = penalty === '+2' ? timeMs + 2000 : timeMs
 
     await connectDB()
-
-    const userId = session.user.id
 
     const solve = await TrainerSolve.create({
       user: userId,
@@ -112,9 +97,8 @@ export async function POST(request: NextRequest) {
       setDefaultsOnInsert: true
     })
 
-    return NextResponse.json({ solve }, { status: 201 })
+    return created({ solve })
   } catch (error) {
-    console.error('Error recording trainer solve:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return serverError('trainer/solves:POST', error)
   }
 }

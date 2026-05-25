@@ -1,5 +1,8 @@
 import { model, models, Schema } from 'mongoose'
 
+export const LEADERBOARD_PUZZLES = ['3x3x3', '2x2x2'] as const
+export type LeaderboardPuzzle = (typeof LEADERBOARD_PUZZLES)[number]
+
 const SolveSchema = new Schema(
   {
     user: {
@@ -21,7 +24,7 @@ const SolveSchema = new Schema(
     },
     puzzle: {
       type: String,
-      enum: ['3x3x3', '2x2x2'],
+      enum: LEADERBOARD_PUZZLES,
       required: [true, 'Please provide a cube type']
     },
     smart: {

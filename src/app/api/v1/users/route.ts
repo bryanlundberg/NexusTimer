@@ -1,6 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
+import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
+import { parseJsonBody } from '@/shared/api/parse-json'
+import { ok, serverError } from '@/shared/api/responses'
+
+const createUserSchema = z.object({
+  email: z.string().email(),
+  name: z.string().min(1),
+  image: z.string().min(1),
+  provider: z.string().optional(),
+  providerId: z.string().optional()
+})
 
 export async function GET(request: NextRequest) {
   try {
@@ -11,7 +22,7 @@ export async function GET(request: NextRequest) {
     const name = searchParams.get('name') || ''
     const region = searchParams.get('region') || ''
 
-    const query: any = {}
+    const query: Record<string, unknown> = {}
 
     if (name) {
       query.name = { $regex: name, $options: 'i' }
@@ -29,25 +40,23 @@ export async function GET(request: NextRequest) {
       User.find(query).countDocuments()
     ])
 
-    return NextResponse.json({
+    return ok({
       events: users,
       page: page,
       pages: Math.ceil(docsCount / PER_PAGE) - 1 > 0 ? Math.ceil(docsCount / PER_PAGE) - 1 : 0,
       docs: docsCount
     })
-  } catch (e) {
-    console.error(e)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  } catch (error) {
+    return serverError('users:GET', error)
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, name, image, provider, providerId } = await request.json()
+    const body = await parseJsonBody(request, createUserSchema)
+    if (body instanceof Response) return body
 
-    if (!email || !name || !image) {
-      return NextResponse.json({ error: 'Incomplete fields' }, { status: 400 })
-    }
+    const { email, name, image, provider, providerId } = body
 
     await connectDB()
 
@@ -57,7 +66,7 @@ export async function POST(request: NextRequest) {
       }
     })
 
-    if (user) return NextResponse.json(user)
+    if (user) return ok(user)
 
     user = await User.findOneAndUpdate(
       { email },
@@ -72,9 +81,8 @@ export async function POST(request: NextRequest) {
       user = await User.create({ email, name, image, providers: [{ provider, providerId }] })
     }
 
-    return NextResponse.json(user)
+    return ok(user)
   } catch (error) {
-    console.error('Error creating user:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return serverError('users:POST', error)
   }
 }

@@ -1,30 +1,28 @@
 import { z } from 'zod'
+import { codeAtom, emailAtom, nameAtom, passwordAtom } from './atoms'
 
 export const registerRequestSchema = z.object({
-  name: z.string().trim().min(2).max(50),
-  email: z.string().email(),
-  password: z.string().min(8).max(72)
+  name: nameAtom(),
+  email: emailAtom(),
+  password: passwordAtom()
 })
 
 export const verifyCodeRequestSchema = z.object({
-  email: z.string().email(),
-  code: z
-    .string()
-    .length(6)
-    .regex(/^\d{6}$/)
+  email: emailAtom(),
+  code: codeAtom()
 })
 
 export const resendRequestSchema = z.object({
-  email: z.string().email()
+  email: emailAtom()
 })
 
 export const forgotPasswordRequestSchema = z.object({
-  email: z.string().email()
+  email: emailAtom()
 })
 
 export const resetPasswordRequestSchema = z.object({
   oobCode: z.string().min(1),
-  password: z.string().min(8).max(72)
+  password: passwordAtom()
 })
 
 export type RegisterRequest = z.infer<typeof registerRequestSchema>

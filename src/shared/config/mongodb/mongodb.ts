@@ -4,7 +4,6 @@ setServers(['8.8.8.8', '1.1.1.1'])
 import mongoose from 'mongoose'
 import '@/entities/user/model/user'
 import '@/entities/solve/model/solve'
-import '@/entities/backup/model/backup'
 import '@/entities/trainer-solve/model/trainer-solve'
 import '@/entities/trainer-stats/model/trainer-stats'
 import '@/entities/log/model/log'

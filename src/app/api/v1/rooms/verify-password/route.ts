@@ -1,26 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server'
-import crypto from 'crypto'
+import { z } from 'zod'
 import bcrypt from 'bcryptjs'
+import { signRoomId } from '@/shared/lib/rooms/sign-room-id'
+import { parseJsonBody } from '@/shared/api/parse-json'
+import { notFound, serverError } from '@/shared/api/responses'
 
-function signRoomId(roomId: string): string {
-  return crypto
-    .createHmac('sha256', process.env.NEXTAUTH_SECRET || '')
-    .update(roomId)
-    .digest('hex')
-}
+const verifyBodySchema = z.object({
+  roomId: z.string().min(1),
+  password: z.string().min(1)
+})
 
 export async function POST(request: NextRequest) {
   try {
-    const { roomId, password } = await request.json()
-    if (!roomId || !password) {
-      return NextResponse.json({ error: 'Missing params' }, { status: 400 })
-    }
+    const body = await parseJsonBody(request, verifyBodySchema)
+    if (body instanceof Response) return body
 
+    const { roomId, password } = body
     const firebaseUrl = `${process.env.NEXT_PUBLIC_REALTIME}/rooms/${roomId}/passwordHash.json`
     const res = await fetch(firebaseUrl)
-    if (!res.ok) {
-      return NextResponse.json({ error: 'Room not found' }, { status: 404 })
-    }
+    if (!res.ok) return notFound('Room not found')
 
     const storedHash: string | null = await res.json()
     if (!storedHash) {
@@ -40,7 +38,7 @@ export async function POST(request: NextRequest) {
       maxAge: 60 * 60 * 24 // 24h
     })
     return response
-  } catch {
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+  } catch (error) {
+    return serverError('rooms/verify-password:POST', error)
   }
 }

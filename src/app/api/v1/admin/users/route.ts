@@ -1,8 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 import { Model, Types } from 'mongoose'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
-import Backup from '@/entities/backup/model/backup'
 import Solve from '@/entities/solve/model/solve'
 import TrainerSolve from '@/entities/trainer-solve/model/trainer-solve'
 import TrainerLearned from '@/entities/trainer-learned/model/trainer-learned'
@@ -14,6 +13,9 @@ import PendingRegistration from '@/entities/pending-registration/model/pending-r
 import PasswordResetToken from '@/entities/password-reset-token/model/password-reset-token'
 import Session from '@/entities/session/model/session'
 import { sessionCache } from '@/shared/lib/session-cache'
+import { requireAdmin } from '@/shared/api/require-admin'
+import { parseEmailParam } from '@/shared/api/admin-helpers'
+import { badRequest, notFound, ok, serverError } from '@/shared/api/responses'
 
 type RelatedCollection = {
   key: string
@@ -23,7 +25,6 @@ type RelatedCollection = {
 
 const RELATED_COLLECTIONS: RelatedCollection[] = [
   { key: 'solves', model: Solve, filter: ({ userId }) => ({ user: userId }) },
-  { key: 'backups', model: Backup, filter: ({ userId }) => ({ user: userId }) },
   { key: 'trainerSolves', model: TrainerSolve, filter: ({ userId }) => ({ user: userId }) },
   { key: 'trainerLearned', model: TrainerLearned, filter: ({ userId }) => ({ user: userId }) },
   { key: 'trainerStats', model: TrainerStats, filter: ({ userId }) => ({ user: userId }) },
@@ -34,16 +35,6 @@ const RELATED_COLLECTIONS: RelatedCollection[] = [
   { key: 'pendingRegistrations', model: PendingRegistration, filter: ({ email }) => ({ email }) },
   { key: 'sessions', model: Session, filter: ({ userId }) => ({ userId }) }
 ]
-
-function unauthorized(request: NextRequest) {
-  const expected = process.env.ADMIN_TOKEN
-  const token = request.headers.get('x-admin-token')
-  return !expected || !token || token !== expected
-}
-
-function parseEmail(request: NextRequest) {
-  return request.nextUrl.searchParams.get('email')?.trim().toLowerCase() || null
-}
 
 async function deleteUploadthingFile(url: string) {
   try {
@@ -60,21 +51,22 @@ async function deleteUploadthingFile(url: string) {
 
 export async function GET(request: NextRequest) {
   try {
-    if (unauthorized(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const denied = requireAdmin(request)
+    if (denied) return denied
 
-    const email = parseEmail(request)
-    if (!email) return NextResponse.json({ error: 'email query param is required' }, { status: 400 })
+    const email = parseEmailParam(request)
+    if (!email) return badRequest('email query param is required')
 
     await connectDB()
     const user = await User.findOne({ email })
-    if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    if (!user) return notFound('User not found')
 
     const ctx = { userId: user._id, email }
     const counts = Object.fromEntries(
       await Promise.all(RELATED_COLLECTIONS.map(async (c) => [c.key, await c.model.countDocuments(c.filter(ctx))]))
     )
 
-    return NextResponse.json({
+    return ok({
       user: {
         _id: user._id,
         email: user.email,
@@ -85,21 +77,21 @@ export async function GET(request: NextRequest) {
       counts
     })
   } catch (error) {
-    console.error('Error previewing user deletion:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return serverError('admin/users:GET', error)
   }
 }
 
 export async function DELETE(request: NextRequest) {
   try {
-    if (unauthorized(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    const denied = requireAdmin(request)
+    if (denied) return denied
 
-    const email = parseEmail(request)
-    if (!email) return NextResponse.json({ error: 'email query param is required' }, { status: 400 })
+    const email = parseEmailParam(request)
+    if (!email) return badRequest('email query param is required')
 
     await connectDB()
     const user = await User.findOne({ email })
-    if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    if (!user) return notFound('User not found')
 
     if (user.backup?.url) await deleteUploadthingFile(user.backup.url)
 
@@ -118,11 +110,10 @@ export async function DELETE(request: NextRequest) {
 
     await User.deleteOne({ _id: user._id })
 
-    return NextResponse.json({
+    return ok({
       deleted: { user: { _id: user._id, email }, ...deleted }
     })
   } catch (error) {
-    console.error('Error deleting user:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return serverError('admin/users:DELETE', error)
   }
 }

@@ -1,20 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
 import { cookies } from 'next/headers'
-
-function signRoomId(roomId: string): string {
-  return crypto
-    .createHmac('sha256', process.env.NEXTAUTH_SECRET || '')
-    .update(roomId)
-    .digest('hex')
-}
+import { signRoomId } from '@/shared/lib/rooms/sign-room-id'
+import { badRequest } from '@/shared/api/responses'
 
 export async function GET(request: NextRequest) {
   try {
     const roomId = request.nextUrl.searchParams.get('roomId')
-    if (!roomId) {
-      return NextResponse.json({ error: 'Missing roomId' }, { status: 400 })
-    }
+    if (!roomId) return badRequest('Missing roomId')
 
     const cookieStore = await cookies()
     const cookieValue = cookieStore.get('rooms_auth')?.value
