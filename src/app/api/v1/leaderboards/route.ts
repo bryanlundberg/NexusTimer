@@ -1,16 +1,20 @@
+import { NextRequest } from 'next/server'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import Solve from '@/entities/solve/model/solve'
-import { NextResponse } from 'next/server'
+import { ok, serverError } from '@/shared/api/responses'
 
-export async function GET(request: Request) {
-  await connectDB()
+export async function GET(request: NextRequest) {
+  try {
+    await connectDB()
 
-  const { searchParams } = new URL(request.url)
-  const puzzle = searchParams.get('puzzle')
-  const filter: Record<string, any> = {}
-  if (puzzle) filter.puzzle = puzzle
+    const puzzle = request.nextUrl.searchParams.get('puzzle')
+    const filter: Record<string, string> = {}
+    if (puzzle) filter.puzzle = puzzle
 
-  const leaderboards = await Solve.find(filter).sort({ time: 1, createdAt: 1 }).limit(100).populate('user')
+    const leaderboards = await Solve.find(filter).sort({ time: 1, createdAt: 1 }).limit(100).populate('user')
 
-  return NextResponse.json(leaderboards)
+    return ok(leaderboards)
+  } catch (error) {
+    return serverError('leaderboards:GET', error)
+  }
 }
