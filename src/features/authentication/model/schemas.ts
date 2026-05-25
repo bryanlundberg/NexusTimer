@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { codeAtom, emailAtom, nameAtom, passwordAtom, passwordRequiredAtom } from './atoms'
 
 export interface AuthSchemaMessages {
   emailInvalid: string
@@ -12,40 +13,41 @@ export interface AuthSchemaMessages {
   passwordsDontMatch: string
 }
 
+const passwordMsgs = (m: AuthSchemaMessages) => ({ tooShort: m.passwordTooShort, tooLong: m.passwordTooLong })
+const nameMsgs = (m: AuthSchemaMessages) => ({ tooShort: m.nameTooShort, tooLong: m.nameTooLong })
+const codeMsgs = (m: AuthSchemaMessages) => ({ length: m.codeLength, numeric: m.codeNumeric })
+
 export function createSignInSchema(messages: AuthSchemaMessages) {
   return z.object({
-    email: z.string().email(messages.emailInvalid),
-    password: z.string().min(1, messages.passwordRequired)
+    email: emailAtom(messages.emailInvalid),
+    password: passwordRequiredAtom(messages.passwordRequired)
   })
 }
 
 export function createSignUpSchema(messages: AuthSchemaMessages) {
   return z.object({
-    name: z.string().trim().min(2, messages.nameTooShort).max(50, messages.nameTooLong),
-    email: z.string().email(messages.emailInvalid),
-    password: z.string().min(8, messages.passwordTooShort).max(72, messages.passwordTooLong)
+    name: nameAtom(nameMsgs(messages)),
+    email: emailAtom(messages.emailInvalid),
+    password: passwordAtom(passwordMsgs(messages))
   })
 }
 
 export function createVerifyCodeSchema(messages: AuthSchemaMessages) {
   return z.object({
-    code: z
-      .string()
-      .length(6, messages.codeLength)
-      .regex(/^\d{6}$/, messages.codeNumeric)
+    code: codeAtom(codeMsgs(messages))
   })
 }
 
 export function createForgotPasswordSchema(messages: AuthSchemaMessages) {
   return z.object({
-    email: z.string().email(messages.emailInvalid)
+    email: emailAtom(messages.emailInvalid)
   })
 }
 
 export function createResetPasswordSchema(messages: AuthSchemaMessages) {
   return z
     .object({
-      password: z.string().min(8, messages.passwordTooShort).max(72, messages.passwordTooLong),
+      password: passwordAtom(passwordMsgs(messages)),
       confirmPassword: z.string()
     })
     .refine((values) => values.password === values.confirmPassword, {
