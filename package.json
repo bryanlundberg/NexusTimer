@@ -133,6 +133,7 @@
     "@testing-library/react": "^16.2.0",
     "@types/bcryptjs": "^3.0.0",
     "@types/canvas-confetti": "^1.9.0",
+    "@types/jest": "^30.0.0",
     "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.17",
     "@types/luxon": "^3.4.2",
