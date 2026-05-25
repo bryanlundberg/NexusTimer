@@ -1,9 +1,8 @@
 'use client'
 import dynamic from 'next/dynamic'
 import * as React from 'react'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import FreePlayHeader from '@/widgets/navigation-header/ui/FreePlayHeader'
@@ -13,21 +12,28 @@ import RoomCard from '@/features/free-play/ui/room-card'
 import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 import { Plus, Radio, Gamepad2 } from 'lucide-react'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 
 export default function FreePlayPage() {
   const t = useTranslations('Multiplayer')
   const { useRooms } = useFreeMode()
   const rooms = useRooms()
-  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false)
-  const [privateRoomTarget, setPrivateRoomTarget] = useState<{ roomId: string; name: string } | null>(null)
+  const open = useOverlayStore((store) => store.open)
 
   const displayRooms = useMemo(
     () => (rooms ? rooms.filter((room: any) => room?.presence && Object.keys(room.presence).length > 0) : []),
     [rooms]
   )
 
+  const handleCreateRoom = () => {
+    open({ id: 'create-room', component: <CreateRoomModal /> })
+  }
+
   const handleJoinPrivate = (room: any) => {
-    setPrivateRoomTarget({ roomId: room.roomId, name: room.name })
+    open({
+      id: 'join-private-room',
+      component: <JoinPrivateRoomModal room={{ roomId: room.roomId, name: room.name }} />
+    })
   }
 
   return (
@@ -52,15 +58,10 @@ export default function FreePlayPage() {
           <h1 className="text-3xl font-bold tracking-tight lg:text-4xl mb-2">{t('title')}</h1>
           <p className="text-muted-foreground max-w-lg mb-6">{t('description')}</p>
 
-          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
-            <DialogTrigger asChild>
-              <Button size="default" className="gap-2">
-                <Plus className="size-4" />
-                {t('new-room')}
-              </Button>
-            </DialogTrigger>
-            <CreateRoomModal />
-          </Dialog>
+          <Button size="default" className="gap-2" onClick={handleCreateRoom}>
+            <Plus className="size-4" />
+            {t('new-room')}
+          </Button>
         </motion.div>
 
         {/* Rooms Section */}
@@ -129,13 +130,6 @@ export default function FreePlayPage() {
           </motion.aside>
         </div>
       </div>
-
-      {/* Join private room modal */}
-      <Dialog open={Boolean(privateRoomTarget)} onOpenChange={(open) => !open && setPrivateRoomTarget(null)}>
-        {privateRoomTarget && (
-          <JoinPrivateRoomModal room={privateRoomTarget} onClose={() => setPrivateRoomTarget(null)} />
-        )}
-      </Dialog>
     </ScrollArea>
   )
 }

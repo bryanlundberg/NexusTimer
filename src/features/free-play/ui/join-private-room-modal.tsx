@@ -5,18 +5,19 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Lock } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 
 interface JoinPrivateRoomModalProps {
   room: {
     roomId: string
     name: string
   }
-  onClose: () => void
 }
 
-export default function JoinPrivateRoomModal({ room, onClose }: JoinPrivateRoomModalProps) {
+export default function JoinPrivateRoomModal({ room }: JoinPrivateRoomModalProps) {
   const t = useTranslations('Multiplayer.join-private-room')
   const router = useRouter()
+  const close = useOverlayStore((store) => store.close)
   const [code, setCode] = useState('')
   const [error, setError] = useState(false)
   const [isJoining, setIsJoining] = useState(false)
@@ -87,7 +88,7 @@ export default function JoinPrivateRoomModal({ room, onClose }: JoinPrivateRoomM
         </div>
 
         <div className="flex gap-2">
-          <Button variant="outline" className="flex-1" onClick={onClose} disabled={isJoining}>
+          <Button variant="outline" className="flex-1" onClick={close} disabled={isJoining}>
             {t('cancel')}
           </Button>
           <Button className="flex-1" onClick={handleJoin} disabled={code.length !== 6 || isJoining}>
