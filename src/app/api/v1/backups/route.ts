@@ -1,27 +1,34 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
+import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 import Backup from '@/entities/backup/model/backup'
-import { auth } from '@/shared/config/auth/auth'
+import { requireUser } from '@/shared/api/require-user'
+import { parseJsonBody } from '@/shared/api/parse-json'
+import { notFound, ok, serverError, unauthorized } from '@/shared/api/responses'
+
+const backupBodySchema = z.object({
+  _id: z.string().min(1),
+  data: z.string().min(1)
+})
 
 export async function POST(request: NextRequest) {
   try {
-    const { _id, data } = await request.json()
-    if (!_id || !data) return NextResponse.json({ error: 'Incorrect params' }, { status: 400 })
+    const userId = await requireUser()
+    if (userId instanceof Response) return userId
+
+    const body = await parseJsonBody(request, backupBodySchema)
+    if (body instanceof Response) return body
+
+    if (userId !== body._id) return unauthorized()
+
     await connectDB()
 
-    const session = await auth()
-    if (!session || session.user.id !== _id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-    }
-
-    const user = await User.findById(_id)
-    if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 })
-    }
+    const user = await User.findById(body._id)
+    if (!user) return notFound('User not found')
 
     const encoder = new TextEncoder()
-    const dataBuffer = encoder.encode(data)
+    const dataBuffer = encoder.encode(body.data)
     const CHUNK_SIZE = 8 * 1024 * 1024
     const chunks: Buffer[] = []
 
@@ -29,24 +36,23 @@ export async function POST(request: NextRequest) {
       chunks.push(Buffer.from(dataBuffer.slice(i, i + CHUNK_SIZE)))
     }
 
-    await Backup.deleteMany({ user: _id })
+    await Backup.deleteMany({ user: body._id })
 
     await Promise.all(
       chunks.map(async (chunk, index) => {
         return await Backup.create({
-          user: _id,
+          user: body._id,
           data: chunk,
           index: index
         })
       })
     )
 
-    return NextResponse.json({
-      user: _id,
-      data
+    return ok({
+      user: body._id,
+      data: body.data
     })
   } catch (error) {
-    console.error('Error creating backup:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    return serverError('backups:POST', error)
   }
 }
