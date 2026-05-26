@@ -37,19 +37,24 @@ export default function LineGraphLegend({
   ]
 
   return (
-    <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3 text-xs">
+    <div className="flex flex-wrap items-center gap-1.5 mt-3">
       {entries
         .filter((e) => e.visible)
         .map((entry) => (
-          <div key={entry.label} className="flex items-center gap-1.5">
+          <div
+            key={entry.label}
+            className={cn(
+              'flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-border/40 bg-muted/30 text-[11px]'
+            )}
+          >
             <span
-              className={cn('inline-block w-4 h-[2px] rounded-sm')}
+              className="inline-block w-3 h-[2px] rounded-full"
               style={{
                 background:
                   entry.style === 'dashed'
-                    ? `repeating-linear-gradient(to right, ${entry.color} 0 4px, transparent 4px 7px)`
+                    ? `repeating-linear-gradient(to right, ${entry.color} 0 3px, transparent 3px 5px)`
                     : entry.style === 'dotted'
-                      ? `repeating-linear-gradient(to right, ${entry.color} 0 2px, transparent 2px 4px)`
+                      ? `repeating-linear-gradient(to right, ${entry.color} 0 1.5px, transparent 1.5px 3px)`
                       : entry.color
               }}
             />
