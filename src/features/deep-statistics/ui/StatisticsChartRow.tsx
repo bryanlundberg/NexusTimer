@@ -14,7 +14,7 @@ export default function StatisticsChartRow({ row, columns, isLoading }: Statisti
   const Icon = row.icon
 
   return (
-    <TableRow className="border-b border-border/30 transition-colors group">
+    <TableRow className="border-b border-border/60 transition-colors group">
       <TableCell
         className={cn(
           STICKY_CELL_BASE,
@@ -38,6 +38,7 @@ export default function StatisticsChartRow({ row, columns, isLoading }: Statisti
             value={row.getValue(column.scope)}
             highlight={row.highlight}
             groupStart={isGroupStart}
+            group={column.group}
           />
         )
       })}
