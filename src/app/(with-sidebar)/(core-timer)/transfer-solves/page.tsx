@@ -47,17 +47,28 @@ export default function TransferSolvesPage() {
 
       {selectedSolves.length > 0 && (
         <div className={'w-full bg-primary text-primary-foreground px-2 pb-2'}>
-          <div className={'flex justify-between items-center mt-2'}>
-            <div data-testid="solves-selected-counter">{t('solves-selected', { count: selectedSolves.length })}</div>
+          <div className={'flex justify-between items-center mt-2 gap-2'}>
+            <div data-testid="solves-selected-counter" className={'text-sm sm:text-base'}>
+              {t('solves-selected', { count: selectedSolves.length })}
+            </div>
             <div className={'flex gap-2'}>
               <Button
                 data-testid="select-all-button"
-                variant={selectedSolves.length === displaySolves.length ? 'outline' : 'ghost'}
+                variant={selectedSolves.length === displaySolves.length ? 'secondary' : 'ghost'}
+                className={
+                  selectedSolves.length === displaySolves.length
+                    ? ''
+                    : 'text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground'
+                }
                 onClick={() => handleToggleAll('select')}
               >
                 {t('select-all')}
               </Button>
-              <Button variant={'outline'} onClick={() => handleToggleAll('deselect')} data-testid="deselect-all-button">
+              <Button
+                variant={'secondary'}
+                onClick={() => handleToggleAll('deselect')}
+                data-testid="deselect-all-button"
+              >
                 {t('deselect-all')}
               </Button>
             </div>
