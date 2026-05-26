@@ -6,6 +6,7 @@ import EmptyGrid from '@/features/solves-grid/ui/EmptyGrid'
 import VirtualizedGrid from '@/shared/ui/VirtualizedGrid'
 import { useCallback } from 'react'
 import { cn } from '@/shared/lib/utils'
+import { useIsMobile } from '@/shared/model/use-mobile'
 
 interface SolvesGridProps {
   selectedSolves: string[]
@@ -15,6 +16,7 @@ interface SolvesGridProps {
 export default function SolvesGrid({ selectedSolves, displaySolves }: SolvesGridProps) {
   const t = useTranslations('Index.TransferSolvesPage')
   const toggleSolveSelection = useTransferSolvesStore((s) => s.toggleSolveSelection)
+  const isMobile = useIsMobile()
 
   const renderItem = useCallback(
     (solve: Solve) => (
@@ -36,9 +38,9 @@ export default function SolvesGrid({ selectedSolves, displaySolves }: SolvesGrid
       <div className="flex-1 min-h-0">
         <VirtualizedGrid
           items={displaySolves}
-          cellWidth={220}
-          cellHeight={160}
-          gridGap={10}
+          cellWidth={isMobile ? 110 : 160}
+          cellHeight={isMobile ? 92 : 120}
+          gridGap={8}
           className={cn('px-2 pt-2 pb-3')}
           renderItem={renderItem}
           getItemKey={getItemKey}
