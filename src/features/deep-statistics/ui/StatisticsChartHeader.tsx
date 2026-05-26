@@ -4,7 +4,13 @@ import { InformationCircleIcon } from '@heroicons/react/24/outline'
 import { Boxes, User } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { cn } from '@/shared/lib/utils'
-import { ColumnDef, GROUP_DIVIDER_LEFT, STICKY_CELL_BASE } from '@/features/deep-statistics/model/statisticsChartConfig'
+import {
+  ColumnDef,
+  GROUP_BG,
+  GROUP_DIVIDER_LEFT,
+  GROUP_HEADER_BG,
+  STICKY_CELL_BASE
+} from '@/features/deep-statistics/model/statisticsChartConfig'
 
 interface StatisticsChartHeaderProps {
   columns: ColumnDef[]
@@ -34,7 +40,8 @@ export default function StatisticsChartHeader({ columns }: StatisticsChartHeader
         <TableHead
           colSpan={personalColCount}
           className={cn(
-            'sticky top-0 z-20 bg-muted text-center py-2',
+            'sticky top-0 z-20 text-center py-2',
+            GROUP_HEADER_BG.personal,
             'text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-bold text-foreground/70',
             GROUP_DIVIDER_LEFT
           )}
@@ -47,8 +54,9 @@ export default function StatisticsChartHeader({ columns }: StatisticsChartHeader
         <TableHead
           colSpan={cubeColCount}
           className={cn(
-            'sticky top-0 z-20 bg-muted text-center py-2',
-            'text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-bold text-primary/80',
+            'sticky top-0 z-20 text-center py-2',
+            GROUP_HEADER_BG.cube,
+            'text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-bold text-primary',
             GROUP_DIVIDER_LEFT
           )}
         >
@@ -59,14 +67,18 @@ export default function StatisticsChartHeader({ columns }: StatisticsChartHeader
         </TableHead>
       </TableRow>
 
-      <TableRow className="border-b border-border/40 bg-muted hover:bg-muted">
+      <TableRow className="border-b border-border hover:bg-transparent">
         {columns.map((column, idx) => {
           const prevGroup = idx > 0 ? columns[idx - 1].group : null
           const isGroupStart = column.group !== prevGroup
           return (
             <TableHead
               key={column.key}
-              className={cn('sticky top-9 z-20 bg-muted text-center py-2 min-w-30', isGroupStart && GROUP_DIVIDER_LEFT)}
+              className={cn(
+                'sticky top-9 z-20 text-center py-2 min-w-30',
+                GROUP_BG[column.group],
+                isGroupStart && GROUP_DIVIDER_LEFT
+              )}
             >
               <TooltipProvider delayDuration={200}>
                 <Tooltip>
