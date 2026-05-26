@@ -20,14 +20,14 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
       onClick={onToggle}
       className={`relative grow flex items-center justify-center font-medium text-center transition duration-200 rounded-md cursor-pointer w-full h-full bg-secondary text-secondary-foreground ${isSelected ? 'ring-3 ring-primary' : ''}`}
     >
-      <div className="tracking-wider pt-2">
-        <span className="text-md">{formatTime(solve.time).split('.')[0]}</span>
-        <span className="text-sm">.{formatTime(solve.time).split('.')[1]}</span>
+      <div className="flex items-end gap-1">
+        <span className="text-base sm:text-2xl font-semibold">{formatTime(solve.time).split('.')[0]}</span>
+        <span className="text-xs sm:text-base opacity-80">.{formatTime(solve.time).split('.')[1]}</span>
+        {solve.plus2 && <span className="ms-1 sm:ms-2 text-sm sm:text-lg font-black text-red-600">+2</span>}
+        {solve.dnf && <span className="ms-1 text-xs sm:text-md font-black text-red-600">DNF</span>}
       </div>
-      <div className="absolute z-20 text-xs top-1 left-1">
+      <div className="absolute z-20 text-[10px] sm:text-xs top-1 left-1 opacity-80">
         {moment(solve.startTime).locale(locale).format('L')}
-        {solve.dnf && <span className="text-red-500 font-bold ml-1">DNF</span>}
-        {solve.plus2 && <span className="text-yellow-500 font-bold ml-1">+2</span>}
       </div>
     </Button>
   )
