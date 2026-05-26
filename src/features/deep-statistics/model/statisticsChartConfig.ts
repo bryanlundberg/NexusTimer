@@ -21,8 +21,16 @@ export interface RowDef {
   getValue: (scope: StatisticScope) => string | number
 }
 
-export const STICKY_CELL_BASE = 'sticky left-0 z-10 bg-background border-r border-border/40'
-export const GROUP_DIVIDER_LEFT = 'border-l border-border/40'
+export const STICKY_CELL_BASE = 'sticky left-0 z-10 bg-background border-r border-border'
+export const GROUP_DIVIDER_LEFT = 'border-l border-border'
+export const GROUP_BG: Record<ColumnGroup, string> = {
+  personal: 'bg-muted/30 dark:bg-transparent',
+  cube: 'bg-primary/[0.04] dark:bg-primary/[0.025]'
+}
+export const GROUP_HEADER_BG: Record<ColumnGroup, string> = {
+  personal: 'bg-muted',
+  cube: 'bg-primary/10 dark:bg-primary/15'
+}
 
 export function useStatisticsColumns(): ColumnDef[] {
   const t = useTranslations('Index')
