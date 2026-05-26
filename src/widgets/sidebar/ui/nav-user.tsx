@@ -71,7 +71,7 @@ export function NavUser({
             {t('NavMain.account')}
           </DropdownMenuItem>
 
-          <DropdownMenuItem onClick={() => router.push('/people/' + user.id)}>
+          <DropdownMenuItem onClick={() => router.push('/options')}>
             <GearIcon />
             {t('NavMain.settings')}
           </DropdownMenuItem>
