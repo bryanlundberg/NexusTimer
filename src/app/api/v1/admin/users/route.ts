@@ -16,6 +16,7 @@ import { sessionCache } from '@/shared/lib/session-cache'
 import { requireAdmin } from '@/shared/api/require-admin'
 import { parseEmailParam } from '@/shared/api/admin-helpers'
 import { badRequest, notFound, ok, serverError } from '@/shared/api/responses'
+import { files } from '@/shared/config/files'
 
 type RelatedCollection = {
   key: string
@@ -36,16 +37,11 @@ const RELATED_COLLECTIONS: RelatedCollection[] = [
   { key: 'sessions', model: Session, filter: ({ userId }) => ({ userId }) }
 ]
 
-async function deleteUploadthingFile(url: string) {
+async function deleteBackupFile(userId: string) {
   try {
-    const base = process.env.NEXTAUTH_URL || 'http://localhost:3000'
-    await fetch(`${base}/api/uploadthing`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url })
-    })
+    await files.delete(`backups/${userId}.bin`)
   } catch (error) {
-    console.error('Error deleting UploadThing file:', error)
+    console.error('Error deleting backup file:', error)
   }
 }
 
@@ -93,7 +89,7 @@ export async function DELETE(request: NextRequest) {
     const user = await User.findOne({ email })
     if (!user) return notFound('User not found')
 
-    if (user.backup?.url) await deleteUploadthingFile(user.backup.url)
+    if (user.backup?.url) await deleteBackupFile(String(user._id))
 
     const userSessions = await Session.find({ userId: user._id }, { sessionId: 1 }).lean<{ sessionId: string }[]>()
     await Promise.all(userSessions.map((s) => sessionCache.invalidate(s.sessionId)))
