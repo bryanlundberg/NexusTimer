@@ -23,7 +23,7 @@ export default async function uploadFile(file: File, path: string, filename?: st
       formData.append('filename', filename)
     }
 
-    const response = await fetch('/api/v1/upload-image', {
+    const response = await fetch('/api/v1/users/avatar', {
       method: 'POST',
       body: formData
     })
