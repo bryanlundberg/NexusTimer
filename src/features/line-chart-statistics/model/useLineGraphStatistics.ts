@@ -133,7 +133,7 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
           position: 'inBar' as any,
           color: CHART_COLORS.pb,
           shape: 'circle' as any,
-          size: 1
+          size: 1.5
         })
       } else if (pbData.length > 0) {
         pbData.push({ time: item.time, value: currentBest })
@@ -161,18 +161,28 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
 
   useEffect(() => {
     const backgroundColor = convert(getComputedStyle(document.documentElement).getPropertyValue('--background'), 'rgb')
-    const gridColor = 'rgba(78,78,78,0.22)'
+    const mutedForeground = convert(
+      getComputedStyle(document.documentElement).getPropertyValue('--muted-foreground'),
+      'rgb'
+    )
+    const gridColor = 'rgba(120,120,120,0.08)'
     const primaryColor = convert(getComputedStyle(document.documentElement).getPropertyValue('--primary'), 'rgb')
 
     const chartOptions: DeepPartial<ChartOptions> = {
       layout: {
-        textColor: 'gray',
+        textColor: mutedForeground,
         background: { color: backgroundColor },
-        attributionLogo: false
+        attributionLogo: false,
+        fontFamily: 'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        fontSize: 11
       },
       grid: {
-        vertLines: { color: gridColor },
-        horzLines: { color: gridColor }
+        vertLines: { visible: false },
+        horzLines: { color: gridColor, style: 0 }
+      },
+      rightPriceScale: {
+        borderVisible: false,
+        scaleMargins: { top: 0.15, bottom: 0.1 }
       },
       localization: {
         priceFormatter: (time: number) => formatTime(time),
@@ -182,7 +192,8 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         tickMarkFormatter: (time: number) => time.toString(),
         fixRightEdge: true,
         fixLeftEdge: true,
-        allowBoldLabels: false
+        allowBoldLabels: false,
+        borderVisible: false
       },
       kineticScroll: { mouse: true },
       handleScale: { axisPressedMouseMove: { price: false } },
@@ -212,15 +223,18 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     createTextWatermark(firstPane, {
       horzAlign: 'center',
       vertAlign: 'center',
-      lines: [{ text: 'nexustimer.com', color: 'rgba(120,120,120, 0.1)', fontSize: 24 }]
+      lines: [{ text: 'nexustimer.com', color: 'rgba(120,120,120, 0.05)', fontSize: 14 }]
     })
 
     const lineSeries = chart.addSeries(LineSeries, {
       lastValueVisible: false,
       priceLineVisible: false,
-      lineWidth: 1.5 as any,
+      lineWidth: 2 as any,
       color: primaryColor,
-      priceScaleId: 'right'
+      priceScaleId: 'right',
+      crosshairMarkerRadius: 5,
+      crosshairMarkerBorderWidth: 2,
+      crosshairMarkerBorderColor: backgroundColor
     })
     lineSeries.setData(structuredData)
     lineSeriesRef.current = lineSeries
@@ -233,7 +247,8 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         color: CHART_COLORS.pb,
         lineStyle: 2,
         priceScaleId: 'right',
-        visible: stateRef.current.showBestTime
+        visible: stateRef.current.showBestTime,
+        crosshairMarkerVisible: false
       })
       pbSeries.setData(pbData)
       createSeriesMarkers(pbSeries, pbMarkers)
@@ -285,9 +300,10 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     const ao5Series = chart.addSeries(LineSeries, {
       lastValueVisible: false,
       priceLineVisible: false,
-      lineWidth: 1,
+      lineWidth: 2,
       color: CHART_COLORS.ao5,
-      visible: stateRef.current.showAo5
+      visible: stateRef.current.showAo5,
+      crosshairMarkerVisible: false
     })
     ao5Series.setData(ao5Data as any)
     ao5SeriesRef.current = ao5Series
@@ -295,9 +311,10 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     const ao12Series = chart.addSeries(LineSeries, {
       lastValueVisible: false,
       priceLineVisible: false,
-      lineWidth: 1,
+      lineWidth: 2,
       color: CHART_COLORS.ao12,
-      visible: stateRef.current.showAo12
+      visible: stateRef.current.showAo12,
+      crosshairMarkerVisible: false
     })
     ao12Series.setData(ao12Data as any)
     ao12SeriesRef.current = ao12Series
@@ -327,30 +344,42 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       moment.locale(locale)
       const cubeName = cubeNameById.get(solve.cubeId) || 'Unknown'
       const currentPb = pbAtStepMap.get(param.time as number)
-      let tooltipContent = `
-        <div class="mt-1 text-xs">${cubeName}</div>
-        <div class="font-bold text-base">${formatTime(solve.time)}</div>
-        <div class="text-xs opacity-80">Solve #${param.time}</div>
-        <div class="mt-1 text-xs">${moment(solve.endTime).format('LL')}</div>
-        ${currentPb !== undefined ? `<div class="mt-1 text-xs text-yellow-500">PB: ${formatTime(currentPb)}</div>` : ''}
+      const ao5Value = ao5Map.get(param.time as number)
+      const ao12Value = ao12Map.get(param.time as number)
+
+      const flagBadge = solve.dnf
+        ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-red-500/15 text-red-500">DNF</span>`
+        : solve.plus2
+          ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-yellow-500/15 text-yellow-500">+2</span>`
+          : ''
+
+      const row = (color: string, label: string, value: string) => `
+        <div class="flex items-center gap-2 text-xs">
+          <span class="inline-block size-1.5 rounded-full shrink-0" style="background:${color}"></span>
+          <span class="text-muted-foreground">${label}</span>
+          <span class="ml-auto font-medium tabular-nums">${value}</span>
+        </div>
       `
 
-      const ao5Value = ao5Map.get(param.time as number)
-      if (ao5Value && ao5Value > 0) {
-        tooltipContent += `<div class="mt-1 text-xs text-blue-400">Ao5: ${formatTime(ao5Value)}</div>`
-      }
-      const ao12Value = ao12Map.get(param.time as number)
-      if (ao12Value && ao12Value > 0) {
-        tooltipContent += `<div class="mt-1 text-xs text-emerald-400">Ao12: ${formatTime(ao12Value)}</div>`
-      }
+      const metricRows: string[] = []
+      if (currentPb !== undefined) metricRows.push(row(CHART_COLORS.pb, 'PB', formatTime(currentPb)))
+      if (ao5Value && ao5Value > 0) metricRows.push(row(CHART_COLORS.ao5, 'Ao5', formatTime(ao5Value)))
+      if (ao12Value && ao12Value > 0) metricRows.push(row(CHART_COLORS.ao12, 'Ao12', formatTime(ao12Value)))
 
-      if (solve.dnf) {
-        tooltipContent += `<div class="mt-1 text-xs text-red-500">DNF</div>`
-      } else if (solve.plus2) {
-        tooltipContent += `<div class="mt-1 text-xs text-yellow-500">+2</div>`
-      }
-
-      tooltip.innerHTML = tooltipContent
+      tooltip.innerHTML = `
+        <div class="flex flex-col gap-1 min-w-36">
+          <div class="flex items-center justify-between gap-3">
+            <span class="text-[11px] text-muted-foreground truncate">${cubeName}</span>
+            <span class="text-[10px] text-muted-foreground/70 tabular-nums">#${param.time}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-lg tabular-nums leading-tight">${formatTime(solve.time)}</span>
+            ${flagBadge}
+          </div>
+          <div class="text-[10px] text-muted-foreground/70">${moment(solve.endTime).format('LL')}</div>
+          ${metricRows.length > 0 ? `<div class="h-px bg-border/40 my-0.5"></div>${metricRows.join('')}` : ''}
+        </div>
+      `
       tooltip.style.display = 'block'
 
       const tooltipWidth = tooltip.clientWidth
