@@ -176,7 +176,10 @@
       "created": "Creado",
       "total": "total",
       "utilize": "Usar",
-      "utilize-cube": "Usar `{name}`"
+      "utilize-cube": "Usar `{name}`",
+      "collections-count": "{count, plural, =1 {# colección} other {# colecciones}}",
+      "active-count": "{count, plural, =1 {# activa} other {# activas}}",
+      "total-solves-count": "{count, plural, =1 {# tiempo} other {# tiempos}}"
     },
     "Cubes-modal": {
       "category": "Categoría",

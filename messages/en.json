@@ -263,7 +263,10 @@
       "utilize": "Utilize",
       "utilize-cube": "Utilize `{name}`",
       "session-solves": "Session solves",
-      "historical-solves": "Historical solves"
+      "historical-solves": "Historical solves",
+      "collections-count": "{count, plural, =1 {# collection} other {# collections}}",
+      "active-count": "{count, plural, =1 {# active} other {# active}}",
+      "total-solves-count": "{count, plural, =1 {# solve} other {# solves}}"
     },
     "Cubes-modal": {
       "delete-collection": "Delete collection",
