@@ -45,6 +45,14 @@ async function deleteBackupFile(userId: string) {
   }
 }
 
+async function deleteAvatarFile(userId: string) {
+  try {
+    await files.delete(`avatars/${userId}`)
+  } catch (error) {
+    console.error('Error deleting avatar file:', error)
+  }
+}
+
 export async function GET(request: NextRequest) {
   try {
     const denied = requireAdmin(request)
@@ -90,6 +98,7 @@ export async function DELETE(request: NextRequest) {
     if (!user) return notFound('User not found')
 
     if (user.backup?.url) await deleteBackupFile(String(user._id))
+    await deleteAvatarFile(String(user._id))
 
     const userSessions = await Session.find({ userId: user._id }, { sessionId: 1 }).lean<{ sessionId: string }[]>()
     await Promise.all(userSessions.map((s) => sessionCache.invalidate(s.sessionId)))
