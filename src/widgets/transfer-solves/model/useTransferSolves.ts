@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useQueryState } from 'nuqs'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { sort } from 'fast-sort'
 import { toast } from 'sonner'
 import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
@@ -30,6 +30,12 @@ export default function useTransferSolves() {
     const session = cubes?.find((cube) => cube.id === sourceCollection)?.solves.session || []
     return sort(session.filter((solve) => !solve?.isDeleted)).desc((solve) => solve.endTime)
   }, [sourceCollection, cubes])
+
+  useEffect(() => {
+    return () => {
+      clearSelectedSolves()
+    }
+  }, [clearSelectedSolves])
 
   const handleToggleAll = (type: 'select' | 'deselect') => {
     if (type === 'select') setSelectedSolves(displaySolves.map((solve) => solve.id))
