@@ -128,9 +128,6 @@ importers:
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
-      cloudinary:
-        specifier: ^2.7.0
-        version: 2.7.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -172,7 +169,7 @@ importers:
         version: 0.8.2
       files-sdk:
         specifier: ^1.6.0
-        version: 1.6.0(@aws-sdk/client-s3@3.1053.0)(@aws-sdk/s3-presigned-post@3.1053.0)(@aws-sdk/s3-request-presigner@3.1053.0)(cloudinary@2.7.0)(zod@3.25.76)
+        version: 1.6.0(@aws-sdk/client-s3@3.1053.0)(@aws-sdk/s3-presigned-post@3.1053.0)(@aws-sdk/s3-request-presigner@3.1053.0)(zod@3.25.76)
       firebase:
         specifier: ^12.1.0
         version: 12.1.0
@@ -3312,10 +3309,6 @@ packages:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
 
-  cloudinary@2.7.0:
-    resolution: {integrity: sha512-qrqDn31+qkMCzKu1GfRpzPNAO86jchcNwEHCUiqvPHNSFqu7FTNF9FuAkBUyvM1CFFgFPu64NT0DyeREwLwK0w==}
-    engines: {node: '>=9'}
-
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
@@ -5663,14 +5656,6 @@ packages:
 
   pure-rand@6.1.0:
     resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
-
-  q@1.5.1:
-    resolution: {integrity: sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==}
-    engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
-    deprecated: |-
-      You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
-
-      (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qr.js@0.0.0:
     resolution: {integrity: sha512-c4iYnWb+k2E+vYpRimHqSu575b1/wKl4XFeJGpFmrJQz5I88v9aY2czh7s0w36srfCM1sXgC/xpoJz5dJfq+OQ==}
@@ -9950,11 +9935,6 @@ snapshots:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
 
-  cloudinary@2.7.0:
-    dependencies:
-      lodash: 4.18.1
-      q: 1.5.1
-
   clsx@2.1.1: {}
 
   cluster-key-slot@1.1.2: {}
@@ -10891,7 +10871,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  files-sdk@1.6.0(@aws-sdk/client-s3@3.1053.0)(@aws-sdk/s3-presigned-post@3.1053.0)(@aws-sdk/s3-request-presigner@3.1053.0)(cloudinary@2.7.0)(zod@3.25.76):
+  files-sdk@1.6.0(@aws-sdk/client-s3@3.1053.0)(@aws-sdk/s3-presigned-post@3.1053.0)(@aws-sdk/s3-request-presigner@3.1053.0)(zod@3.25.76):
     dependencies:
       commander: 14.0.3
     optionalDependencies:
@@ -10899,7 +10879,6 @@ snapshots:
       '@aws-sdk/s3-presigned-post': 3.1053.0
       '@aws-sdk/s3-request-presigner': 3.1053.0
       '@modelcontextprotocol/sdk': 1.29.0(zod@3.25.76)
-      cloudinary: 2.7.0
       zod: 3.25.76
     transitivePeerDependencies:
       - '@cfworker/json-schema'
@@ -12610,8 +12589,6 @@ snapshots:
   punycode@2.3.1: {}
 
   pure-rand@6.1.0: {}
-
-  q@1.5.1: {}
 
   qr.js@0.0.0: {}
 
