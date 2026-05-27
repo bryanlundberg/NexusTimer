@@ -1,17 +1,15 @@
-import {
-  defaultChartAoValues,
-  defaultChartValuesA,
-  defaultChartValuesN,
-  defaultChartValuesS
-} from '@/features/deep-statistics/model/defaultChartValues'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useSyncExternalStore } from 'react'
 import moment from 'moment'
 import { useQueryState } from 'nuqs'
 import { STATES } from '@/shared/const/states'
 import { DateRange } from '@/shared/types/enums'
-import { Solve } from '@/entities/solve/model/types'
-import { Cube } from '@/entities/cube/model/types'
+import {
+  getServerSnapshot,
+  getSnapshot,
+  requestDeepStats,
+  subscribe
+} from '@/features/deep-statistics/model/deepStatsController'
 
 export default function useDeepStatistics() {
   const selectedCube = useTimerStore((store) => store.selectedCube)
@@ -19,50 +17,6 @@ export default function useDeepStatistics() {
   const [dateRange] = useQueryState(STATES.STATISTICS_PAGE.DATE_RANGE.KEY, {
     defaultValue: STATES.STATISTICS_PAGE.DATE_RANGE.DEFAULT_VALUE as DateRange
   })
-  const [loadingProps, setLoadingProps] = useState<Record<string, boolean>>({
-    average: true,
-    timeSpent: true,
-    counter: true,
-    stats: true,
-    deviation: true,
-    successRate: true,
-    best: true,
-    data: true
-  })
-  const [worker, setWorker] = useState<Worker | null>(null)
-  const [stats, setStats] = useState({
-    average: defaultChartValuesN,
-    timeSpent: defaultChartValuesS,
-    counter: defaultChartValuesN,
-    stats: defaultChartAoValues,
-    deviation: defaultChartValuesN,
-    successRate: defaultChartValuesS,
-    best: defaultChartValuesN,
-    data: defaultChartValuesA
-  })
-
-  const resetStats = () => {
-    setStats({
-      average: defaultChartValuesN,
-      timeSpent: defaultChartValuesS,
-      counter: defaultChartValuesN,
-      stats: defaultChartAoValues,
-      deviation: defaultChartValuesN,
-      successRate: defaultChartValuesS,
-      best: defaultChartValuesN,
-      data: defaultChartValuesA
-    })
-    setLoadingProps({
-      average: true,
-      timeSpent: true,
-      counter: true,
-      stats: true,
-      deviation: true,
-      successRate: true,
-      best: true,
-      data: true
-    })
-  }
 
   const startTimestamp = useMemo(() => {
     switch (dateRange as DateRange) {
@@ -82,108 +36,15 @@ export default function useDeepStatistics() {
         return moment().subtract(365, 'days').startOf('day').valueOf()
       case DateRange.ALL_TIME:
       default:
-        return 0 // no filter
+        return 0
     }
   }, [dateRange])
 
-  const filterSolves = (solves: Solve[]): Solve[] => {
-    if (!solves) return []
-    const nonDeleted = solves.filter((s) => !s.isDeleted)
-    if (!startTimestamp || startTimestamp <= 0) return nonDeleted
-    return nonDeleted.filter((s) => {
-      const ts = s.endTime ?? s.startTime
-      return ts >= startTimestamp
-    })
-  }
-
-  const filteredCubes: Cube[] | null = useMemo(() => {
-    if (!cubes) return null
-    return cubes.map((c) => ({
-      ...c,
-      solves: {
-        session: filterSolves(c.solves?.session || []),
-        all: filterSolves(c.solves?.all || [])
-      }
-    }))
-  }, [cubes, startTimestamp])
-
-  const filteredSelectedCube: Cube | null = useMemo(() => {
-    if (!selectedCube) return null
-    return {
-      ...selectedCube,
-      solves: {
-        session: filterSolves(selectedCube.solves?.session || []),
-        all: filterSolves(selectedCube.solves?.all || [])
-      }
-    } as Cube
-  }, [selectedCube, startTimestamp])
+  const state = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    requestDeepStats(cubes || null, selectedCube || null, startTimestamp)
+  }, [cubes, selectedCube, startTimestamp])
 
-    const w = new Worker(new URL('../worker/deep-statistics.worker.ts', import.meta.url), { type: 'module' })
-
-    setWorker(w)
-
-    w.onmessage = (e: MessageEvent) => {
-      if (e.data.partial) {
-        setStats((prev) => ({
-          ...prev,
-          [e.data.key]: e.data.value
-        }))
-        setLoadingProps((prev) => ({
-          ...prev,
-          [e.data.key]: false
-        }))
-      }
-      if (e.data.done) {
-        setLoadingProps({
-          average: false,
-          timeSpent: false,
-          counter: false,
-          stats: false,
-          deviation: false,
-          successRate: false,
-          best: false,
-          data: false
-        })
-      }
-    }
-
-    w.onerror = (err) => {
-      console.error('Worker error:', err)
-    }
-
-    w.postMessage({
-      command: 'start',
-      data: {
-        cubes: filteredCubes || [],
-        selectedCube: filteredSelectedCube || null
-      }
-    })
-
-    return () => {
-      w.terminate()
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!worker) return
-    if (!filteredCubes || !filteredSelectedCube) {
-      return
-    }
-    resetStats()
-    worker.postMessage({
-      command: 'start',
-      data: {
-        cubes: filteredCubes || [],
-        selectedCube: filteredSelectedCube || null
-      }
-    })
-  }, [filteredCubes, filteredSelectedCube, worker])
-
-  return {
-    stats,
-    loadingProps
-  }
+  return state
 }
