@@ -3,7 +3,6 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import * as React from 'react'
 import { useEffect, useRef } from 'react'
-import FadeIn from '@/shared/ui/fade-in/fade-in'
 import TimerContainer from '@/features/timer/ui/TimerContainer'
 import DialogFirstRunNoCubes from '@/features/timer/ui/dialog-first-run-no-cubes'
 import HeaderTimer from '@/features/timer/ui/HeaderTimer'
@@ -49,17 +48,15 @@ export default function TimerPage() {
   }, [lastSolve?.time, timerStatistics.global.best, isSolving])
 
   return (
-    <>
-      <FadeIn className={'flex flex-col grow relative'}>
-        <h1 className="sr-only">{t('description')}</h1>
-        <CoreHeader breadcrumbPath={'/app'} breadcrumb={tHomePage('title')} />
-        <TimerContainer>
-          <HeaderTimer />
-          <MainTimer />
-          <TimerWidgets />
-        </TimerContainer>
-        <ScrambleModal />
-      </FadeIn>
-    </>
+    <div className="flex flex-col grow relative">
+      <h1 className="sr-only">{t('description')}</h1>
+      <CoreHeader breadcrumbPath={'/app'} breadcrumb={tHomePage('title')} />
+      <TimerContainer>
+        <HeaderTimer />
+        <MainTimer />
+        <TimerWidgets />
+      </TimerContainer>
+      <ScrambleModal />
+    </div>
   )
 }
