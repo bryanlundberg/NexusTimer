@@ -1,0 +1,93 @@
+name: Algorithm suggestion or correction
+description: Suggest a new algorithm or report an incorrect one in the algorithm trainer / lists.
+title: 'algs: '
+labels: ['algorithms']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to add a new algorithm to a method, fix an incorrect algorithm, or improve the recommended notation. For full method additions or large reworks, please open a feature request instead.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of request
+      options:
+        - New algorithm suggestion
+        - Correction to an existing algorithm
+        - Better notation / shorter alternative
+        - Wrong image / preview
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: puzzle
+    attributes:
+      label: Puzzle
+      description: 3x3, 2x2, Pyraminx, Skewb, ...
+      placeholder: 3x3
+    validations:
+      required: true
+
+  - type: input
+    id: method
+    attributes:
+      label: Method / set
+      description: CFOP, Roux, ZZ, OLL, PLL, COLL, OH, ...
+      placeholder: PLL
+    validations:
+      required: true
+
+  - type: input
+    id: case
+    attributes:
+      label: Case name or identifier
+      placeholder: T-Perm, OLL 21, F2L 37, ...
+    validations:
+      required: true
+
+  - type: input
+    id: current
+    attributes:
+      label: Current algorithm in NexusTimer
+      description: If reporting a correction, paste exactly what the app currently shows.
+      placeholder: R U R' U' R' F R2 U' R' U' R U R' F'
+    validations:
+      required: false
+
+  - type: input
+    id: proposed
+    attributes:
+      label: Proposed algorithm
+      description: Use standard WCA notation (uppercase moves, prime for counter-clockwise, 2 for double).
+      placeholder: x R' U R' D2 R U' R' D2 R2
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why is this better? Ergonomics, finger tricks, recognition, popular in the community, source?
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source / reference
+      description: Link to algdb.net, SpeedCubeDB, a tutorial, world-class cuber video, etc.
+      placeholder: https://algdb.net/puzzle/333/pll/t
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checks
+      options:
+        - label: I verified the algorithm solves the case correctly.
+          required: true
+        - label: I searched existing issues and did not find a duplicate.
+          required: true

@@ -1,0 +1,44 @@
+name: Documentation issue
+description: Report problems or improvements for the README, CONTRIBUTING, setup, env vars or in-app docs.
+title: 'docs: '
+labels: ['documentation']
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page or file affected
+      description: File path in the repo or URL of the affected page.
+      placeholder: CONTRIBUTING.md, README.md, .env.local.example, ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is confusing, outdated or missing?
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested correction or improvement
+      description: If you already have wording in mind, paste it here.
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Environment / context
+      description: If the issue is about setup, share your OS, Node/pnpm version and the steps you followed.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and did not find a duplicate.
+          required: true

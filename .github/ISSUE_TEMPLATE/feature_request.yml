@@ -1,0 +1,82 @@
+name: Feature request
+description: Suggest a new feature or improvement for NexusTimer.
+title: 'feat: '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement. Please describe the problem first, then the solution you have in mind.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What problem are you trying to solve? Who experiences it and when?
+      placeholder: As a 3x3 cuber practising OH, I cannot filter solves by hand because ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the behaviour, UI or API you would like to see.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches you thought about and why they fall short.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Timer
+        - Solves / Manage solves
+        - Statistics / Deep stats
+        - Cubes / Collections
+        - Account / Auth
+        - Backups / Sync
+        - Multiplayer (Nexus Connect / Free play)
+        - Trainer
+        - Algorithms
+        - Leaderboards / Community / Profiles
+        - Settings
+        - Internationalization (i18n)
+        - PWA / Service Worker
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: cubing_value
+    attributes:
+      label: Why this matters for speedcubing
+      description: How does this improve the practice or workflow of a cuber?
+    validations:
+      required: true
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups or references
+      description: Screenshots, links, or examples from other apps that illustrate the idea.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and discussions and did not find a duplicate.
+          required: true
+        - label: I would be willing to help implement this feature.
+          required: false
