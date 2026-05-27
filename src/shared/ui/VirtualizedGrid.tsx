@@ -1,5 +1,7 @@
 import { useVirtualizer } from '@tanstack/react-virtual'
-import { useRef, useMemo, useEffect, useState, ReactNode, memo, useCallback } from 'react'
+import { useRef, useMemo, useEffect, useLayoutEffect, useState, ReactNode, memo, useCallback } from 'react'
+
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 interface VirtualizedGridProps<T> {
   items: T[]
@@ -25,40 +27,46 @@ function VirtualizedGridComponent<T>({
   const parentRef = useRef<HTMLDivElement>(null)
   const [containerWidth, setContainerWidth] = useState(0)
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!parentRef.current) return
 
-    let timeoutId: NodeJS.Timeout
+    const node = parentRef.current
+    let timeoutId: NodeJS.Timeout | null = null
+    let initialized = false
 
-    const updateWidth = () => {
-      if (parentRef.current) {
-        const width = parentRef.current.clientWidth
-        if (width !== containerWidth) {
-          clearTimeout(timeoutId)
-          timeoutId = setTimeout(() => {
-            setContainerWidth(width)
-          }, 100)
-        }
-      }
+    const applyWidth = (width: number) => {
+      setContainerWidth((prev) => (prev === width ? prev : width))
     }
 
-    updateWidth()
+    const measure = () => {
+      const width = node.clientWidth
+      if (!initialized) {
+        initialized = true
+        applyWidth(width)
+        return
+      }
+      if (timeoutId) clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => applyWidth(width), 100)
+    }
 
-    const resizeObserver = new ResizeObserver(updateWidth)
-    resizeObserver.observe(parentRef.current)
+    measure()
+
+    const resizeObserver = new ResizeObserver(measure)
+    resizeObserver.observe(node)
 
     return () => {
-      clearTimeout(timeoutId)
+      if (timeoutId) clearTimeout(timeoutId)
       resizeObserver.disconnect()
     }
-  }, [containerWidth])
+  }, [])
 
   const columns = useMemo(() => {
-    if (containerWidth === 0) return 3
+    if (containerWidth === 0) return 0
     return Math.max(1, Math.floor(containerWidth / (cellWidth + gridGap)))
   }, [containerWidth, cellWidth, gridGap])
 
   const rows = useMemo(() => {
+    if (columns === 0) return 0
     return Math.ceil(items.length / columns)
   }, [items.length, columns])
 
