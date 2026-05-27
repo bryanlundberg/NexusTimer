@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -19,7 +19,7 @@ import {
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 import { cn } from '@/shared/lib/utils'
-import genSolution from '@/shared/lib/timer/genSolution'
+import genSolution, { prewarmSolver } from '@/shared/lib/timer/genSolution'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
@@ -53,6 +53,11 @@ export function ScrambleZone() {
     !isSolving && !!selectedCube && HINT_CATEGORIES.includes(selectedCube.category as (typeof HINT_CATEGORIES)[number])
   const showVirtualKeyboard = timerMode === TimerMode.VIRTUAL && !isSolving && !!selectedCube
   const showEditButton = !isSolving && !!selectedCube
+
+  useEffect(() => {
+    if (!showHintButton) return
+    prewarmSolver()
+  }, [showHintButton])
 
   const handleOpenCustomScramble = () => {
     openOverlay({
