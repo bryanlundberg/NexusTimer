@@ -9,6 +9,7 @@ import { DeepStatistics } from '@/shared/types/statistics'
 import StatisticsViewContainer from '@/widgets/statistics-view/ui/StatisticsViewContainer'
 import { STATES } from '@/shared/const/states'
 import { BarChart3Icon, BoxIcon, Loader2 } from 'lucide-react'
+import { motion } from 'motion/react'
 
 interface StatisticsViewSwitcherProps {
   statistics: DeepStatistics
@@ -29,18 +30,34 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
       </StatisticsViewContainer>
     )
 
+  const tabs = [
+    { value: StatisticsTabs.CATEGORY, icon: BarChart3Icon, label: t('StatsPage.category-tab') },
+    { value: StatisticsTabs.CUBE, icon: BoxIcon, label: t('StatsPage.cube-tab') }
+  ]
+
   return (
     <StatisticsViewContainer>
       <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3 w-full">
-        <TabsList className="w-full justify-between mb-1">
-          <TabsTrigger value={StatisticsTabs.CATEGORY} className="w-full gap-2">
-            <BarChart3Icon className="size-4" />
-            {t('StatsPage.category-tab')}
-          </TabsTrigger>
-          <TabsTrigger value={StatisticsTabs.CUBE} className="w-full gap-2">
-            <BoxIcon className="size-4" />
-            {t('StatsPage.cube-tab')}
-          </TabsTrigger>
+        <TabsList className="relative grid w-full grid-cols-2 mb-1">
+          {tabs.map((tab) => (
+            <TabsTrigger
+              key={tab.value}
+              value={tab.value}
+              className="relative z-10 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent"
+            >
+              {tabStats === tab.value && (
+                <motion.span
+                  layoutId="stats-tab-indicator"
+                  className="absolute inset-0 rounded-md bg-background shadow-sm dark:border dark:border-input dark:bg-input/30"
+                  transition={{ type: 'spring', bounce: 0.15, duration: 0.5 }}
+                />
+              )}
+              <span className="relative z-10 inline-flex items-center gap-1.5">
+                <tab.icon className="size-4" />
+                {tab.label}
+              </span>
+            </TabsTrigger>
+          ))}
         </TabsList>
         <TabsContent value={StatisticsTabs.CATEGORY} className="relative min-h-50">
           {loadingProps.data ? (
