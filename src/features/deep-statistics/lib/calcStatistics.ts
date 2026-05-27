@@ -1,4 +1,3 @@
-import { sort } from 'fast-sort'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
 import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
 import getDeviation from '@/shared/lib/statistics/getDeviation'
@@ -35,14 +34,25 @@ export default function calcStatistics({
 
   // Reusable function for calculating statistics
   const calculateStatistics = (solves: Solve[], type: string): CubeStatistics => {
-    // Filter out DNF solves for best time calculation
-    const validSolves = solves.filter((solve) => !solve.dnf)
-    const pbSolves = sort(validSolves).asc((solve) => solve.time)
+    // Single O(n) pass to find best/worst and detect any DNF.
+    let best = Infinity
+    let worst = -Infinity
+    let hasDnf = false
+    let validCount = 0
+    for (const solve of solves) {
+      if (solve.dnf) {
+        hasDnf = true
+        continue
+      }
+      validCount++
+      if (solve.time < best) best = solve.time
+      if (solve.time > worst) worst = solve.time
+    }
 
     // Default object with initial values
     const statistics: CubeStatistics = {
       count: solves.length,
-      best: validSolves.length > 0 ? pbSolves[0]?.time || 0 : 0,
+      best: validCount > 0 ? best : 0,
       deviation: getDeviation(solves),
       mean: getMean(solves),
       ao3: 0,
@@ -50,7 +60,7 @@ export default function calcStatistics({
       ao12: 0,
       ao50: 0,
       ao100: 0,
-      worst: solves.some((solve) => solve.dnf) ? 0 : pbSolves[pbSolves.length - 1]?.time || 0
+      worst: hasDnf || validCount === 0 ? 0 : worst
     }
 
     // Calculate average of X (AoX) statistics
