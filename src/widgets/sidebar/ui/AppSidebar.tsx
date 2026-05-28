@@ -1,7 +1,10 @@
 'use client'
 
 import * as React from 'react'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
+import { useActiveIndicator } from '@/widgets/sidebar/model/useActiveIndicator'
 import {
   BoxesIcon,
   Brain,
@@ -40,10 +43,20 @@ import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { open, openMobile, setOpenMobile, isMobile } = useSidebar()
+  const { open, openMobile, setOpenMobile, isMobile, state } = useSidebar()
   const t = useTranslations('Index')
   const { isInstallable, install } = usePwaInstall()
   const { handleCreate } = useCubeActions()
+  const pathname = usePathname() ?? ''
+  const [hash, setHash] = useState<string>('')
+  const { menuRef, indicator } = useActiveIndicator<HTMLDivElement>([pathname, hash, state])
+
+  useEffect(() => {
+    const updateHash = () => setHash(window.location.hash || '')
+    updateHash()
+    window.addEventListener('hashchange', updateHash)
+    return () => window.removeEventListener('hashchange', updateHash)
+  }, [])
 
   const data = useMemo(
     () => ({
@@ -173,10 +186,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="group-data-[collapsible=icon]:overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        <NavMain items={data.platform} label={t('NavMain.platform')} />
-        <NavMain items={data.training} label={t('NavMain.training')} />
-        <NavMain items={data.community} label={t('NavMain.community')} />
-        <NavMain items={data.multiplayer} label={t('NavMain.multiplayer')} />
+        <div ref={menuRef} className="relative isolate">
+          {!isMobile && indicator && (
+            <motion.div
+              className="absolute top-0 left-0 rounded-md bg-sidebar-accent pointer-events-none -z-10"
+              style={{ width: indicator.width, height: indicator.height }}
+              initial={false}
+              animate={{ x: indicator.left, y: indicator.top }}
+              transition={{ type: 'spring', stiffness: 500, damping: 40 }}
+            />
+          )}
+          <NavMain items={data.platform} label={t('NavMain.platform')} />
+          <NavMain items={data.training} label={t('NavMain.training')} />
+          <NavMain items={data.community} label={t('NavMain.community')} />
+          <NavMain items={data.multiplayer} label={t('NavMain.multiplayer')} />
+        </div>
       </SidebarContent>
       <SidebarFooter className="group-data-[collapsible=icon]:hidden">
         {isInstallable && (

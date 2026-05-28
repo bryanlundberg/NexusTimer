@@ -2,11 +2,13 @@ import { DependencyList, RefObject, useEffect, useRef, useState } from 'react'
 
 type Indicator = { top: number; left: number; width: number; height: number } | null
 
-export function useActiveIndicator(deps: DependencyList): {
-  menuRef: RefObject<HTMLUListElement | null>
+export function useActiveIndicator<T extends HTMLElement = HTMLElement>(
+  deps: DependencyList
+): {
+  menuRef: RefObject<T | null>
   indicator: Indicator
 } {
-  const menuRef = useRef<HTMLUListElement>(null)
+  const menuRef = useRef<T>(null)
   const [indicator, setIndicator] = useState<Indicator>(null)
 
   useEffect(() => {
