@@ -1,10 +1,9 @@
 'use client'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Label } from '@/components/ui/label'
 import { useLeaderboards } from '@/features/leaderboards/model/useLeaderboards'
 import { Spinner } from '@/components/ui/spinner'
 import LeaderboardTable from '@/features/leaderboards-table/ui/LeaderboardTable'
+import LeaderboardHero from '@/features/leaderboards/ui/LeaderboardHero'
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
@@ -20,22 +19,9 @@ export default function LeaderboardPage() {
     <ScrollArea className={'max-h-dvh overflow-auto'}>
       <CoreHeader breadcrumbs={[{ label: tNavMain('leaderboards'), href: '/leaderboards' }]} />
 
-      <PageBody variant="data" className="space-y-8">
-        <div className={'flex flex-row gap-3 px-3'}>
-          <div className={'flex flex-row gap-2 items-center'}>
-            <Label>{t('type')}</Label>
-            <Select value={puzzle} onValueChange={setPuzzle}>
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="3x3x3">Virtual 3x3</SelectItem>
-                <SelectItem value="2x2x2">Virtual 2x2</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
+      <LeaderboardHero puzzle={puzzle} setPuzzle={setPuzzle} />
 
+      <PageBody variant="data" className="space-y-8">
         {isLoading ? (
           <div className={'flex flex-row gap-3 justify-center items-center'}>
             <Spinner /> {t('thinking')}
