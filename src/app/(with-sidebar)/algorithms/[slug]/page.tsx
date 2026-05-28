@@ -10,6 +10,7 @@ import TrainerCTA from '@/features/algorithms-list/ui/trainer-cta'
 import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
 import { getLocale, getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { locales } from '@/shared/config/i18n/locales'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -163,13 +164,16 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
       <CoreHeader
-        breadcrumbPath={'/algorithms'}
-        breadcrumb={t('title')}
-        secondaryBreadcrumbPath={`/algorithms/${slug}`}
-        secondaryBreadcrumb={slug.toUpperCase()}
+        breadcrumbs={[
+          { label: t('title'), href: '/algorithms' },
+          { label: slug.toUpperCase(), href: `/algorithms/${slug}` }
+        ]}
       />
 
-      <div className="p-3 sm:p-4 md:p-8 lg:p-12 max-w-3xl mx-auto">
+      <PageBody
+        variant="hero"
+        className="px-3 pb-3 sm:px-4 sm:pb-4 md:px-8 md:pb-8 lg:px-12 lg:pb-12 max-w-3xl mx-auto"
+      >
         <Information
           title={`${collection.title} - ${t('title')}`}
           description={t(`descriptions.${collection.slug}`)}
@@ -186,7 +190,7 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
         {collection.file && (
           <Suggestions link={ALGORITHMS_GITHUB_URL + `/${collection.file.toLowerCase()}`} message={t('edit-github')} />
         )}
-      </div>
+      </PageBody>
     </ScrollArea>
   )
 }
