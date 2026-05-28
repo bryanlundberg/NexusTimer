@@ -16,9 +16,11 @@ import {
   useSidebar
 } from '@/components/ui/sidebar'
 import { PlusIcon } from '@radix-ui/react-icons'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import { useActiveIndicator } from '@/widgets/sidebar/model/useActiveIndicator'
 
 export function NavMain({
   items,
@@ -44,7 +46,7 @@ export function NavMain({
 }) {
   const pathname = usePathname() ?? ''
   const [hash, setHash] = useState<string>('')
-  const { setOpenMobile, isMobile } = useSidebar()
+  const { setOpenMobile, isMobile, state } = useSidebar()
 
   const handleNavClick = () => {
     if (isMobile) setOpenMobile(false)
@@ -68,10 +70,21 @@ export function NavMain({
     return pathname === base || (pathname.startsWith(base + '/') && base !== '/')
   }
 
+  const { menuRef, indicator } = useActiveIndicator([pathname, hash, items, state])
+
   return (
     <SidebarGroup>
       {label && <SidebarGroupLabel>{label}</SidebarGroupLabel>}
-      <SidebarMenu>
+      <SidebarMenu ref={menuRef} className="relative isolate">
+        {indicator && (
+          <motion.div
+            className="absolute top-0 left-0 rounded-md bg-sidebar-accent pointer-events-none -z-10"
+            style={{ width: indicator.width, height: indicator.height }}
+            initial={false}
+            animate={{ x: indicator.left, y: indicator.top }}
+            transition={{ type: 'spring', stiffness: 500, damping: 40 }}
+          />
+        )}
         {items.map((item) => {
           const subActive = item.items?.some((s) => isPathActive(s.url)) ?? false
           const itemActive = isPathActive(item.url) || subActive
@@ -80,7 +93,13 @@ export function NavMain({
           return (
             <Collapsible key={item.title} asChild defaultOpen={isOpen}>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip={item.title} isActive={itemActive}>
+                <SidebarMenuButton
+                  asChild
+                  tooltip={item.title}
+                  isActive={itemActive}
+                  data-active-item={itemActive ? 'true' : undefined}
+                  className="data-[active=true]:bg-transparent"
+                >
                   <Link href={item.url} onClick={handleNavClick}>
                     <item.icon />
                     <span>{item.title}</span>
