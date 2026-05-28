@@ -1,0 +1,136 @@
+name: Bug report
+description: Report a reproducible bug in NexusTimer.
+title: 'bug: '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please fill out the form below so we can reproduce and fix it quickly.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of the bug.
+      placeholder: When I do X, Y happens instead of Z.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Minimal steps required to reproduce the issue.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Start a solve with '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      placeholder: I expected the timer to stop and record the solve.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      placeholder: The timer kept running and the solve was not saved.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      description: Which part of the app is affected?
+      options:
+        - Timer
+        - Solves / Manage solves
+        - Statistics / Deep stats
+        - Cubes / Collections
+        - Account / Auth
+        - Backups / Sync
+        - Multiplayer (Nexus Connect / Free play)
+        - Trainer
+        - Algorithms
+        - Leaderboards / Community / Profiles
+        - Settings
+        - Internationalization (i18n)
+        - PWA / Service Worker
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: account_state
+    attributes:
+      label: Account state
+      options:
+        - Signed in
+        - Signed out
+        - Not applicable
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device_type
+    attributes:
+      label: Device type
+      options:
+        - Desktop
+        - Laptop
+        - Mobile
+        - Tablet
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Chrome 131, Firefox 133, Safari 18, ...
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: Windows 11, macOS 15, Ubuntu 24.04, Android 15, iOS 18
+    validations:
+      required: true
+
+  - type: textarea
+    id: media
+    attributes:
+      label: Screenshots or recordings
+      description: Drag and drop images, GIFs or short screen recordings here.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Anything else worth knowing? Workarounds you tried, related issues, hardware (Bluetooth smartcube), etc.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and did not find a duplicate.
+          required: true
+        - label: I can reproduce this consistently with the steps above.
+          required: false

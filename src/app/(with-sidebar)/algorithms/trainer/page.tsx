@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 import TrainerExperience from '@/features/trainer/ui/TrainerExperience'
 
 export default async function TrainerPage() {
@@ -8,13 +9,13 @@ export default async function TrainerPage() {
   return (
     <div className="min-h-dvh flex flex-col">
       <CoreHeader
-        breadcrumbPath={'/algorithms'}
-        breadcrumb={tAlgs('title')}
-        secondaryBreadcrumbPath={`#`}
-        secondaryBreadcrumb={t('breadcrumb')}
+        breadcrumbs={[{ label: tAlgs('title'), href: '/algorithms' }, { label: t('breadcrumb') }]}
+        accentStripe
       />
 
-      <TrainerExperience />
+      <PageBody variant="data" className="flex-1 flex flex-col pt-0">
+        <TrainerExperience />
+      </PageBody>
     </div>
   )
 }

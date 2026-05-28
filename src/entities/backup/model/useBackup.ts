@@ -5,10 +5,10 @@ import { normalizeOldData, preventDuplicateDeleteStatus } from '@/features/manag
 
 export const useBackup = (url: string | undefined) => {
   const [isLoading, setIsLoading] = useState(false)
-  const [backup, setBackup] = useState<Cube[] | null>(null)
+  const [backup, setBackup] = useState<Cube[]>([])
 
   useEffect(() => {
-    setBackup(null)
+    setBackup([])
     if (!url) {
       setIsLoading(false)
       return
@@ -25,9 +25,8 @@ export const useBackup = (url: string | undefined) => {
         const data = strFromU8(decompressed)
 
         setBackup(preventDuplicateDeleteStatus(normalizeOldData(JSON.parse(data))))
-      } catch (error) {
-        console.error('Error fetching backup:', error)
-        setBackup(null)
+      } catch {
+        setBackup([])
       } finally {
         setIsLoading(false)
       }

@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import TrainerHistoryView from '@/features/trainer/ui/TrainerHistoryView'
 
@@ -9,13 +10,13 @@ export default async function TrainerHistoryPage() {
   return (
     <ScrollArea className="max-h-dvh overflow-auto">
       <CoreHeader
-        breadcrumbPath={'/algorithms/trainer'}
-        breadcrumb={tTrainer('breadcrumb')}
-        secondaryBreadcrumbPath={`#`}
-        secondaryBreadcrumb={t('breadcrumb')}
+        breadcrumbs={[{ label: tTrainer('breadcrumb'), href: '/algorithms/trainer' }, { label: t('breadcrumb') }]}
+        accentStripe
       />
 
-      <TrainerHistoryView />
+      <PageBody variant="data">
+        <TrainerHistoryView />
+      </PageBody>
     </ScrollArea>
   )
 }

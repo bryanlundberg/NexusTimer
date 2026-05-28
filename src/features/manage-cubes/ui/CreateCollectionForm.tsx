@@ -22,6 +22,7 @@ import { useEffect } from 'react'
 export default function CreateCollectionForm() {
   const t = useTranslations('Index')
   const setCubes = useTimerStore((state) => state.setCubes)
+  const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   const overlayStore = useOverlayStore((state) => ({
     close: state.close,
     activeOverlay: state.activeOverlay
@@ -56,9 +57,10 @@ export default function CreateCollectionForm() {
         return
       }
 
-      await createCubeCollection(form)
+      const newCube = await createCubeCollection(form)
       const newCubes = await cubesDB.getAll()
       setCubes(newCubes)
+      setSelectedCube(newCube)
       overlayStore.close()
       toast.success(t('Errors.collection-created'))
     } catch (err) {

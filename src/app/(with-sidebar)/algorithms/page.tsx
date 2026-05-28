@@ -6,6 +6,7 @@ import AlgorithmMethod from '@/features/algorithm-method/ui/AlgorithmMethod'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { useTranslations } from 'next-intl'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { BookOpen } from 'lucide-react'
 
 export default function AlgorithmsMethodsPage() {
@@ -17,9 +18,9 @@ export default function AlgorithmsMethodsPage() {
 
   return (
     <ScrollArea className="max-h-dvh overflow-auto">
-      <CoreHeader breadcrumbPath={'/algorithms'} breadcrumb={t('title')} />
+      <CoreHeader breadcrumbs={[{ label: t('title'), href: '/algorithms' }]} />
 
-      <div className="p-4 md:p-8 lg:p-12">
+      <PageBody variant="hero" className="px-4 pb-4 md:px-8 md:pb-8 lg:px-12 lg:pb-12">
         {/* Hero section */}
         <div className="relative overflow-hidden rounded-xl bg-linear-to-br from-primary/10 via-primary/5 to-transparent border border-primary/10 p-8 mb-8">
           <div className="relative z-10">
@@ -72,7 +73,7 @@ export default function AlgorithmsMethodsPage() {
           ))}
 
         <Suggestions message={t('suggestions')} />
-      </div>
+      </PageBody>
     </ScrollArea>
   )
 }

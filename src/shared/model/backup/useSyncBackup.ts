@@ -160,8 +160,8 @@ export const useSyncBackup = () => {
           setSelectedCube(null)
         }
       }
-    } catch (error) {
-      console.error('Error loading backup:', error)
+    } catch {
+      toast.error('Error loading backup')
     }
   }
 

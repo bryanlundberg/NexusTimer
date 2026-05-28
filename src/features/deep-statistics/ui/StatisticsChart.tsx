@@ -1,6 +1,5 @@
 import { Table, TableBody } from '@/components/ui/table'
 import { DeepStatistics } from '@/shared/types/statistics'
-import { motion } from 'framer-motion'
 import { useStatisticsColumns, useStatisticsRows } from '@/features/deep-statistics/model/statisticsChartConfig'
 import StatisticsChartHeader from './StatisticsChartHeader'
 import StatisticsChartRow from './StatisticsChartRow'
@@ -15,12 +14,7 @@ export default function StatisticsChart({ statistics, loadingProps }: Statistics
   const rows = useStatisticsRows(statistics)
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.35, duration: 0.4 }}
-      className="bg-background overflow-hidden mb-2"
-    >
+    <div className="bg-background overflow-hidden mb-2">
       <Table>
         <StatisticsChartHeader columns={columns} />
         <TableBody>
@@ -29,6 +23,6 @@ export default function StatisticsChart({ statistics, loadingProps }: Statistics
           ))}
         </TableBody>
       </Table>
-    </motion.div>
+    </div>
   )
 }

@@ -11,6 +11,7 @@ import { Cube } from '@/entities/cube/model/types'
 
 type InMsg = {
   command: 'start'
+  requestId: number
   data: {
     cubes: Cube[]
     selectedCube: Cube
@@ -18,11 +19,12 @@ type InMsg = {
 }
 
 self.onmessage = (event: MessageEvent<InMsg>) => {
-  const { command, data } = event.data
+  const { command, requestId, data } = event.data
   if (command === 'start') {
     if (data.selectedCube) {
       const sendPartial = (key: string, value: any) => {
         ;(self as unknown as DedicatedWorkerGlobalScope).postMessage({
+          requestId,
           partial: true,
           key,
           value
@@ -101,6 +103,7 @@ self.onmessage = (event: MessageEvent<InMsg>) => {
         })
       )
       ;(self as unknown as DedicatedWorkerGlobalScope).postMessage({
+        requestId,
         done: true
       })
     }

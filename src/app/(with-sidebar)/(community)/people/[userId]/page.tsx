@@ -5,9 +5,9 @@ import PeopleSkeleton from '@/shared/ui/skeletons/people-skeleton'
 import { useBackup } from '@/entities/backup/model/useBackup'
 import { useUser } from '@/entities/user/model/useUser'
 import { filterCubes } from '@/entities/cube/lib/filterCubes'
-import FadeIn from '@/shared/ui/fade-in/fade-in'
 import { UserHeader } from '@/widgets/people/ui/UserHeader'
 import { PeopleTabs } from '@/widgets/people/ui/PeopleTabs'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 
 export default function PeopleDetailsPage() {
   const { userId } = useParams<{ userId: string }>() ?? { userId: '' }
@@ -24,10 +24,12 @@ export default function PeopleDetailsPage() {
       {isLoadingUser || isActuallyLoadingBackup ? (
         <PeopleSkeleton />
       ) : (
-        <FadeIn className={'-mt-2'}>
+        <>
           <UserHeader user={user} />
-          <PeopleTabs user={user} cubes={cubes} />
-        </FadeIn>
+          <PageBody variant="hero">
+            <PeopleTabs user={user} cubes={cubes} />
+          </PageBody>
+        </>
       )}
     </ScrollArea>
   )

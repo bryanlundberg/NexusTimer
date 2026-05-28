@@ -35,21 +35,34 @@ export default function getSolvesMetrics({
   // Filter cubes by the specified category
   const filteredCubes = cubesDB.filter((cube) => cube.category === category)
 
-  // Iterate through cubes in the specified category
+  let targetAll: Solve[] | null = null
+  let targetSession: Solve[] | null = null
+
+  // Iterate through cubes in the specified category, filtering deleted solves once per cube
   for (const cube of filteredCubes) {
-    // Exclude deleted solves from all aggregations
-    result.global.push(...cube.solves.all.filter(notDeleted), ...cube.solves.session.filter(notDeleted))
-    result.session.push(...cube.solves.session.filter(notDeleted))
+    const allFiltered = cube.solves.all.filter(notDeleted)
+    const sessionFiltered = cube.solves.session.filter(notDeleted)
+    result.global.push(...allFiltered, ...sessionFiltered)
+    result.session.push(...sessionFiltered)
+
+    if (cube.name === cubeName) {
+      targetAll = allFiltered
+      targetSession = sessionFiltered
+    }
   }
 
-  // Find the target cube by its name
-  const targetCube = cubesDB.find((cube) => cube.name === cubeName)
+  // Fallback: target cube might be in a different category — preserve original lookup semantics.
+  if (!targetAll) {
+    const targetCube = cubesDB.find((cube) => cube.name === cubeName)
+    if (targetCube) {
+      targetAll = targetCube.solves.all.filter(notDeleted)
+      targetSession = targetCube.solves.session.filter(notDeleted)
+    }
+  }
 
-  // If the target cube is found, update metrics for 'cubeAll' and 'cubeSession'
-  if (targetCube) {
-    // Exclude deleted solves for the specific cube too
-    result.cubeAll.push(...targetCube.solves.all.filter(notDeleted), ...targetCube.solves.session.filter(notDeleted))
-    result.cubeSession.push(...targetCube.solves.session.filter(notDeleted))
+  if (targetAll && targetSession) {
+    result.cubeAll.push(...targetAll, ...targetSession)
+    result.cubeSession.push(...targetSession)
   }
 
   // Sort solves in descending order based on endTime for each category

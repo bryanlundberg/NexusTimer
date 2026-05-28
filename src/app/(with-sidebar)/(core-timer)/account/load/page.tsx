@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import { useUser } from '@/entities/user/model/useUser'
-import { BackupLoadMode } from '@/entities/backup/model/enums'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 
 export default function AccountLoadPage() {
   const t = useTranslations('Index')
@@ -35,13 +35,13 @@ export default function AccountLoadPage() {
   return (
     <>
       <CoreHeader
-        breadcrumbPath={'/account'}
-        breadcrumb={t('SettingsPage.account')}
-        secondaryBreadcrumb={t('SettingsPage.load-data-title')}
-        secondaryBreadcrumbPath={'/account/load'}
+        breadcrumbs={[
+          { label: t('SettingsPage.account'), href: '/account' },
+          { label: t('SettingsPage.load-data-title'), href: '/account/load' }
+        ]}
       />
 
-      <div className="p-3 max-w-2xl mx-auto mt-5">
+      <PageBody variant="hero" className="px-3 pb-3 max-w-2xl mx-auto">
         <p>{t('SettingsPage.load-data-description')}</p>
         <p className="text-yellow-600">{t('SettingsPage.load-data-warning')}</p>
 
@@ -63,7 +63,7 @@ export default function AccountLoadPage() {
             )}
           </Button>
         </div>
-      </div>
+      </PageBody>
     </>
   )
 }

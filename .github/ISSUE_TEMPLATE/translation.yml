@@ -1,0 +1,87 @@
+name: Translation issue or contribution
+description: Report a missing, wrong or hardcoded string, or propose translations for a new or existing locale.
+title: 'i18n: '
+labels: ['i18n']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to report translation problems or propose new translations. For bulk translation work, you can attach a JSON file or paste the relevant entries directly.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of issue
+      options:
+        - Missing or incorrect translation
+        - Hardcoded English string (not translatable)
+        - Missing context for translators
+        - New locale request / contribution
+        - Bulk translation update for an existing locale
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: locale
+    attributes:
+      label: Affected locale
+      options:
+        - English (en)
+        - Spanish (es)
+        - German (de)
+        - French (fr)
+        - Hindi (hi)
+        - Japanese (ja)
+        - Korean (ko)
+        - Portuguese (pt)
+        - Russian (ru)
+        - Ukrainian (uk)
+        - Chinese (zh)
+        - All / multiple locales
+        - New locale (specify below)
+    validations:
+      required: true
+
+  - type: input
+    id: key
+    attributes:
+      label: Translation key or screen
+      description: If known, the i18n key path or the screen where the string appears.
+      placeholder: settings.profile.title  /  Timer page header
+    validations:
+      required: false
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current text
+      description: Copy what the app shows today.
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested text or fix
+      description: |
+        Proposed translation, or for hardcoded strings the key you suggest using.
+        For bulk updates, paste the JSON snippet or attach the locale file.
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Where does this string appear, what does it refer to? A screenshot is very helpful.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues and did not find a duplicate.
+          required: true

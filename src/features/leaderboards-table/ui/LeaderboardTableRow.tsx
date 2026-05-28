@@ -1,20 +1,32 @@
-import { TableCell, TableRow } from '@/components/ui/table'
+'use client'
+
+import { motion } from 'framer-motion'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { GlobeAmericasIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
-import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import formatTime from '@/shared/lib/formatTime'
 import calcTurnsPerSecond from '@/shared/lib/statistics/calcTurnsPerSecond'
-import { format } from 'date-fns'
+import moment from 'moment'
 import useLeaderboardRow from '@/features/leaderboards-table/model/useLeaderboardRow'
 import { SolveServer } from '@/entities/solve/model/types'
 import { useLocale, useTranslations } from 'next-intl'
+import { GRID } from '@/features/leaderboards-table/ui/LeaderboardTable'
 
 interface LeaderboardTableRowProps {
   solve: SolveServer
   index: number
+}
+
+function TimeDisplay({ value }: { value: string }) {
+  const [main, decimal] = value.includes('.') ? value.split('.') : [value, null]
+  return (
+    <div className="flex items-baseline gap-0.5">
+      <span className="text-sm font-bold tabular-nums">{main}</span>
+      {decimal && <span className="text-xs text-muted-foreground tabular-nums">.{decimal}</span>}
+    </div>
+  )
 }
 
 export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRowProps) {
@@ -25,24 +37,35 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
 
   if (!solve?.user) return null
 
+  const rank = index + 1
+  const tps = solve.solution ? calcTurnsPerSecond(solve.solution, solve.time) : null
+
   return (
-    <TableRow key={solve._id} onClick={openModal} className={'hover:cursor-pointer'}>
-      <TableCell className="font-medium text-center">{index + 1}</TableCell>
-      <TableCell className="font-medium overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
+    <motion.div
+      onClick={openModal}
+      variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
+      className={`grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150 cursor-pointer`}
+    >
+      <span className="text-xs font-mono text-muted-foreground tabular-nums text-right select-none">
+        {String(rank).padStart(2, '0')}
+      </span>
+
+      <div className="min-w-0">
         <Tooltip>
           <TooltipTrigger asChild>
             <div
-              className={'flex flex-row items-center justify-center gap-2 hover:underline'}
+              className="flex flex-row items-center gap-2 min-w-0 hover:underline w-fit"
               onClick={(e) => {
                 e.stopPropagation()
                 router.push(`/people/${solve.user._id}`)
               }}
             >
-              <Avatar>
-                <AvatarImage className={'object-cover'} src={solve.user.image} />
-                <AvatarFallback>{solve.user.name.slice(0, 2)}</AvatarFallback>
+              <Avatar className="size-7 shrink-0">
+                <AvatarImage className="object-cover" src={solve.user.image} />
+                <AvatarFallback className="text-[10px]">{solve.user.name.slice(0, 2)}</AvatarFallback>
               </Avatar>
-              {solve.user.name}
+              <span className="text-sm font-medium truncate">{solve.user.name}</span>
             </div>
           </TooltipTrigger>
           <TooltipContent>
@@ -56,10 +79,10 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
             </h2>
 
             {solve.user?.timezone && (
-              <div className={'flex items-center gap-1'}>
-                <GlobeAmericasIcon className={'size-5'} />
+              <div className="flex items-center gap-1">
+                <GlobeAmericasIcon className="size-5" />
                 {solve.user?.timezone}
-                <span className={'opacity-50'}>
+                <span className="opacity-50">
                   (
                   {new Intl.DateTimeFormat(locale, {
                     timeZone: solve.user.timezone,
@@ -72,18 +95,21 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
             {solve.user?.goal && <Badge>{solve.user?.goal}</Badge>}
           </TooltipContent>
         </Tooltip>
-      </TableCell>
-      <TableCell className="font-medium hidden sm:table-cell">{solve.puzzle}</TableCell>
-      <TableCell className="font-medium hidden md:table-cell overflow-hidden max-w-20 sm:max-w-32 md:max-w-40 lg:max-w-96 whitespace-normal">
-        {solve.solution ? `${calcTurnsPerSecond(solve.solution, solve.time)} ${t('tps')}` : t('not-available')}
-      </TableCell>
-      <TableCell>{formatTime(solve.time)}</TableCell>
-      <TableCell className="hidden sm:table-cell text-right">
-        <ScrambleDisplay className={'size-20'} show scramble={solve.scramble} event={solve.puzzle} />
-      </TableCell>
-      <TableCell className="font-medium hidden sm:table-cell">
-        {format(new Date(solve.createdAt), 'd MMM yyyy')}
-      </TableCell>
-    </TableRow>
+      </div>
+
+      <Badge variant="outline" className="font-mono text-[10px] px-1.5 py-0 h-4 w-fit shrink-0">
+        {solve.puzzle}
+      </Badge>
+
+      <span className="text-[10px] font-mono text-muted-foreground/70 tabular-nums">
+        {tps ? `${tps}` : t('not-available')}
+      </span>
+
+      <TimeDisplay value={formatTime(solve.time)} />
+
+      <span className="text-xs text-muted-foreground tabular-nums">
+        {moment(solve.createdAt).locale(locale).format('ll')}
+      </span>
+    </motion.div>
   )
 }

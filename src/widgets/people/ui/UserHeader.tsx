@@ -12,10 +12,11 @@ export function UserHeader({ user }: Props) {
   const t = useTranslations('Index.NavMain')
   return (
     <CoreHeader
-      breadcrumbPath={'/people'}
-      breadcrumb={t('people')}
-      secondaryBreadcrumbPath={`/people/${user._id}`}
-      secondaryBreadcrumb={user.name}
+      breadcrumbs={[
+        { label: t('people'), href: '/people' },
+        { label: user.name, href: `/people/${user._id}` }
+      ]}
+      accentStripe
     />
   )
 }

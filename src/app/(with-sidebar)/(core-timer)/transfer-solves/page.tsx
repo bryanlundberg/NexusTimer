@@ -5,6 +5,7 @@ import SolvesGrid from '@/widgets/transfer-solves/ui/SolvesGrid'
 import useTransferSolves from '@/widgets/transfer-solves/model/useTransferSolves'
 import { Button } from '@/components/ui/button'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 
 export default function TransferSolvesPage() {
   const {
@@ -35,14 +36,16 @@ export default function TransferSolvesPage() {
 
   return (
     <div className={'h-dvh flex flex-col relative'}>
-      <CoreHeader breadcrumbPath={'/transfer-solves'} breadcrumb={t('title')} />
+      <CoreHeader breadcrumbs={[{ label: t('title'), href: '/transfer-solves' }]} />
 
-      <TransferSolvesHeader
-        cubes={cubes || []}
-        isTransferring={isTransferring}
-        handleTransfer={handleTransfer}
-        selectedSolves={selectedSolves.length}
-      />
+      <PageBody variant="data" className="px-3">
+        <TransferSolvesHeader
+          cubes={cubes || []}
+          isTransferring={isTransferring}
+          handleTransfer={handleTransfer}
+          selectedSolves={selectedSolves.length}
+        />
+      </PageBody>
       <SolvesGrid selectedSolves={selectedSolves} displaySolves={displaySolves} />
 
       {selectedSolves.length > 0 && (

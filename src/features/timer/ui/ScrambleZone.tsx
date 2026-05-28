@@ -1,6 +1,5 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Pencil2Icon } from '@radix-ui/react-icons'
 import { Keyboard, Lightbulb } from 'lucide-react'
@@ -19,7 +18,7 @@ import {
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
 import { cn } from '@/shared/lib/utils'
-import genSolution from '@/shared/lib/timer/genSolution'
+import genSolution, { prewarmSolver } from '@/shared/lib/timer/genSolution'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
@@ -54,6 +53,11 @@ export function ScrambleZone() {
   const showVirtualKeyboard = timerMode === TimerMode.VIRTUAL && !isSolving && !!selectedCube
   const showEditButton = !isSolving && !!selectedCube
 
+  useEffect(() => {
+    if (!showHintButton) return
+    prewarmSolver()
+  }, [showHintButton])
+
   const handleOpenCustomScramble = () => {
     openOverlay({
       id: 'enter-custom-scramble',
@@ -68,12 +72,7 @@ export function ScrambleZone() {
   }
 
   return (
-    <motion.div
-      className="relative mx-auto w-full max-w-7xl"
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2, ease: 'easeOut' }}
-    >
+    <div className="relative mx-auto w-full max-w-7xl">
       <div
         className={cn(
           'relative h-auto text-balance p-2 font-semilight text-center rounded-md mx-auto w-full max-w-7xl',
@@ -180,6 +179,6 @@ export function ScrambleZone() {
           )}
         </TooltipProvider>
       </div>
-    </motion.div>
+    </div>
   )
 }

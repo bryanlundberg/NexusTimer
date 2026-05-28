@@ -12,53 +12,39 @@ import { Solve } from '@/entities/solve/model/types'
  * @returns {number} The best average of X (AoX) for the given solves.
  */
 export default function calcBestAo(solves: Solve[], ao: number): number {
-  // If the number of solves is less than the desired average, return 0
-  if (!solves || solves.length < ao) {
+  if (!solves || solves.length < ao || ao < 3) {
     return 0
   }
 
   const n = solves.length
+  const divisor = ao - 2
   let bestAo = Infinity
 
   for (let i = 0; i <= n - ao; i++) {
-    // Get the current window of solves
-    const windowSolves = solves.slice(i, i + ao)
-
-    // Count DNFs in the window
-    const dnfCount = windowSolves.filter((solve) => solve.dnf).length
-
-    // If more than one DNF, this window's average is DNF, so skip it
-    if (dnfCount > 1) {
-      continue
-    }
-
-    // Sort solves by time, treating DNFs as worst times
-    const sortedSolves = [...windowSolves].sort((a, b) => {
-      if (a.dnf) return 1
-      if (b.dnf) return -1
-      return a.time - b.time
-    })
-
-    // Remove the best and worst time from the array
-    const trimmedSolves = sortedSolves.slice(1, ao - 1)
-
-    // Check if there's a DNF in the trimmed solves
-    if (trimmedSolves.some((solve) => solve.dnf)) {
-      // If there's a DNF in the trimmed solves, this window's average is DNF, so skip it
-      continue
-    }
-
-    // Calculate the sum of trimmed solve times
+    let minTime = Infinity
+    let maxTime = -Infinity
     let sum = 0
-    let validCount = 0
-    for (const solve of trimmedSolves) {
+    let dnfCount = 0
+
+    for (let j = i; j < i + ao; j++) {
+      const solve = solves[j]
+      if (solve.dnf) {
+        dnfCount++
+        if (dnfCount > 1) break
+        continue
+      }
       sum += solve.time
-      validCount++
+      if (solve.time < minTime) minTime = solve.time
+      if (solve.time > maxTime) maxTime = solve.time
     }
 
-    // Calculate the average of the trimmed solves
-    const currentAo = sum / validCount
-    bestAo = Math.min(bestAo, currentAo)
+    if (dnfCount > 1) continue
+
+    // DNF (if present) is treated as the worst, so it's already excluded from `sum`.
+    // We still need to drop the best real time. With no DNF, we also drop the worst real time.
+    const trimmedSum = dnfCount === 1 ? sum - minTime : sum - minTime - maxTime
+    const currentAo = trimmedSum / divisor
+    if (currentAo < bestAo) bestAo = currentAo
   }
 
   return bestAo
