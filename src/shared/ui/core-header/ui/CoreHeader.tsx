@@ -6,6 +6,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
+  BreadcrumbPage,
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb'
 import Link from 'next/link'
@@ -14,36 +15,25 @@ import * as React from 'react'
 import { useSession } from 'next-auth/react'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { useTranslations } from 'next-intl'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-import { Ellipsis, LogInIcon, SmilePlus } from 'lucide-react'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { LogInIcon, SmilePlus } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import FeedbackModal from '@/features/feedback/ui/FeedbackModal'
-import { usePathname } from 'next/navigation'
 
-interface CoreHeaderProps {
-  breadcrumbPath: string
-  breadcrumb: string
-
-  secondaryBreadcrumbPath?: string
-  secondaryBreadcrumb?: string
+export interface BreadcrumbEntry {
+  label: string
+  href?: string
 }
 
-export default function CoreHeader({
-  breadcrumb,
-  breadcrumbPath,
-  secondaryBreadcrumbPath,
-  secondaryBreadcrumb
-}: CoreHeaderProps) {
+interface CoreHeaderProps {
+  breadcrumbs: BreadcrumbEntry[]
+  actions?: React.ReactNode
+  accentStripe?: boolean
+}
+
+export default function CoreHeader({ breadcrumbs, actions, accentStripe = false }: CoreHeaderProps) {
   const { data: session } = useSession()
   const open = useOverlayStore((store) => store.open)
-  const pathname = usePathname()
-  const showColorStripe = /\/(trainer|people)(\/.*)?$/.test(pathname)
   const tAuth = useTranslations('Index.Auth')
   const tHeader = useTranslations('Index.CoreHeader')
 
@@ -55,39 +45,56 @@ export default function CoreHeader({
   }
 
   return (
-    <div className="w-full sticky top-0 z-50 mb-2">
-      <div className="border-b px-2 py-1 flex justify-between items-center bg-background/60 backdrop-blur-md">
-        <div className="flex items-center gap-4">
-          <SidebarTrigger className="h-8 w-8" />
-          <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4" />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href={breadcrumbPath} className="font-medium hover:text-primary transition-colors">
-                    {breadcrumb}
-                  </Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              {secondaryBreadcrumb && secondaryBreadcrumbPath && (
-                <>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
-                      <Link href={secondaryBreadcrumbPath} className="font-medium hover:text-primary transition-colors">
-                        {secondaryBreadcrumb}
-                      </Link>
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-                </>
-              )}
+    <div className="w-full sticky top-0 z-50" data-testid="core-header">
+      <div className="h-12 border-b px-2 flex justify-between items-center gap-2 bg-background/60 backdrop-blur-md">
+        <div className="flex items-center gap-2 min-w-0">
+          <SidebarTrigger className="size-8 shrink-0" />
+          <Separator orientation="vertical" className="data-[orientation=vertical]:h-4" />
+          <Breadcrumb className="min-w-0">
+            <BreadcrumbList className="flex-nowrap">
+              {breadcrumbs.map((crumb, index) => {
+                const isLast = index === breadcrumbs.length - 1
+                return (
+                  <React.Fragment key={`${crumb.label}-${index}`}>
+                    <BreadcrumbItem className="min-w-0">
+                      {isLast || !crumb.href ? (
+                        <BreadcrumbPage className="font-medium truncate">{crumb.label}</BreadcrumbPage>
+                      ) : (
+                        <BreadcrumbLink asChild>
+                          <Link href={crumb.href} className="font-medium hover:text-primary transition-colors truncate">
+                            {crumb.label}
+                          </Link>
+                        </BreadcrumbLink>
+                      )}
+                    </BreadcrumbItem>
+                    {!isLast && <BreadcrumbSeparator />}
+                  </React.Fragment>
+                )
+              })}
             </BreadcrumbList>
           </Breadcrumb>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1 shrink-0">
+          {actions}
+
           {session?.user ? (
-            <div className={'flex items-center gap-2'}>
+            <>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="size-8"
+                    onClick={handleOpenFeedback}
+                    aria-label={tHeader('give-feedback')}
+                    data-testid="header-feedback-button"
+                  >
+                    <SmilePlus className="size-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom">{tHeader('give-feedback')}</TooltipContent>
+              </Tooltip>
               <NavUser
                 user={{
                   id: session.user.id as string,
@@ -96,31 +103,14 @@ export default function CoreHeader({
                   avatar: session?.user?.image || ''
                 }}
               />
-
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="h-8 px-3 rounded-md">
-                    <Ellipsis />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem asChild>
-                      <Button variant={'ghost'} className={'w-full flex justify-between'} onClick={handleOpenFeedback}>
-                        {tHeader('give-feedback')} <SmilePlus />
-                      </Button>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+            </>
           ) : (
             <Link
               href="/sign-in"
               className={buttonVariants({
                 variant: 'ghost',
                 size: 'sm',
-                className: 'h-7 gap-1.5 px-2 text-xs text-muted-foreground hover:text-foreground'
+                className: 'h-8 gap-1.5 px-2 text-xs text-muted-foreground hover:text-foreground'
               })}
             >
               <LogInIcon className="size-3.5" />
@@ -129,7 +119,7 @@ export default function CoreHeader({
           )}
         </div>
       </div>
-      {showColorStripe && (
+      {accentStripe && (
         <div className="flex w-full h-0.75">
           <div className="flex-1 bg-white" />
           <div className="flex-1 bg-yellow-500" />
