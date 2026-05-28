@@ -8,6 +8,7 @@ import SolvesGrid from '@/features/solves-grid/ui/SolvesGrid'
 import { STATES } from '@/shared/const/states'
 import { SolveTab } from '@/shared/types/enums'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { useTranslations } from 'next-intl'
 
 export default function SolvesPage() {
@@ -29,8 +30,10 @@ export default function SolvesPage() {
 
   return (
     <div className={'flex-1 min-h-0 flex flex-col'}>
-      <CoreHeader breadcrumbPath={'/solves'} breadcrumb={t('SolvesPage.title')} />
-      <SolvesPageHeader handleSearch={handleSearch} />
+      <CoreHeader breadcrumbs={[{ label: t('SolvesPage.title'), href: '/solves' }]} />
+      <PageBody variant="data">
+        <SolvesPageHeader handleSearch={handleSearch} />
+      </PageBody>
       <SolvesGrid solves={displaySolves} />
     </div>
   )
