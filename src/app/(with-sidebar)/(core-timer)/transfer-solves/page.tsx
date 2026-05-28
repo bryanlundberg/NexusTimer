@@ -38,7 +38,7 @@ export default function TransferSolvesPage() {
     <div className={'h-dvh flex flex-col relative'}>
       <CoreHeader breadcrumbs={[{ label: t('title'), href: '/transfer-solves' }]} />
 
-      <PageBody variant="data" className="px-4 sm:px-6">
+      <PageBody variant="data" className="px-3">
         <TransferSolvesHeader
           cubes={cubes || []}
           isTransferring={isTransferring}
