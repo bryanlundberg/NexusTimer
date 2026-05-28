@@ -4,5 +4,5 @@ import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 
 export default function FreePlayHeader() {
   const t = useTranslations('Multiplayer')
-  return <CoreHeader breadcrumbPath={'/free-play'} breadcrumb={t('title')} />
+  return <CoreHeader breadcrumbs={[{ label: t('title'), href: '/free-play' }]} />
 }
