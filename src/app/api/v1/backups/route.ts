@@ -7,7 +7,11 @@ import { notFound, ok, serverError, unauthorized } from '@/shared/api/responses'
 
 const MAX_BACKUP_BYTES = 32 * 1024 * 1024
 
-const backupKey = (userId: string) => `backups/${userId}.txt`
+const compactIso = (timestamp: number) =>
+  new Date(timestamp)
+    .toISOString()
+    .replace(/[-:]/g, '')
+    .replace(/\.\d{3}Z$/, 'Z')
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,13 +23,15 @@ export async function POST(request: NextRequest) {
     if (blob.size > MAX_BACKUP_BYTES) return serverError('backups:POST', new Error('Backup too large'))
 
     const userId = session.user.id
-    const key = backupKey(userId)
-
-    await files.upload(key, blob, { contentType: 'application/octet-stream' })
-
-    const baseUrl = await files.url(key)
     const updatedAt = Date.now()
-    const url = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}v=${updatedAt}`
+    const key = `backups/${userId}/${compactIso(updatedAt)}.txt`
+
+    await files.upload(key, blob, {
+      contentType: 'application/octet-stream',
+      cacheControl: 'public, max-age=31536000, immutable'
+    })
+
+    const url = await files.url(key)
 
     await connectDB()
     const user = await User.findByIdAndUpdate(userId, { backup: { url, updatedAt } }, { new: true })

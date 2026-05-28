@@ -39,9 +39,13 @@ const RELATED_COLLECTIONS: RelatedCollection[] = [
 
 async function deleteBackupFile(userId: string) {
   try {
-    await files.delete(`backups/${userId}.txt`)
+    const keys: string[] = []
+    for await (const file of files.listAll({ prefix: `backups/${userId}/` })) {
+      keys.push(file.key)
+    }
+    if (keys.length > 0) await files.delete(keys)
   } catch (error) {
-    console.error('Error deleting backup file:', error)
+    console.error('Error deleting backup files:', error)
   }
 }
 
@@ -97,7 +101,7 @@ export async function DELETE(request: NextRequest) {
     const user = await User.findOne({ email })
     if (!user) return notFound('User not found')
 
-    if (user.backup?.url) await deleteBackupFile(String(user._id))
+    await deleteBackupFile(String(user._id))
     await deleteAvatarFile(String(user._id))
 
     const userSessions = await Session.find({ userId: user._id }, { sessionId: 1 }).lean<{ sessionId: string }[]>()
