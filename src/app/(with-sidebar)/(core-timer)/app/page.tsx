@@ -12,6 +12,7 @@ import ScrambleModal from '@/features/timer/ui/ScrambleModal'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { fireConfetti } from '@/shared/lib/fireConfetti'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 
 export default function TimerPage() {
   const resetTimerStore = useTimerStore((state) => state.reset)
@@ -50,12 +51,14 @@ export default function TimerPage() {
   return (
     <div className="flex flex-col grow relative">
       <h1 className="sr-only">{t('description')}</h1>
-      <CoreHeader breadcrumbPath={'/app'} breadcrumb={tHomePage('title')} />
-      <TimerContainer>
-        <HeaderTimer />
-        <MainTimer />
-        <TimerWidgets />
-      </TimerContainer>
+      <CoreHeader breadcrumbs={[{ label: tHomePage('title'), href: '/app' }]} />
+      <PageBody variant="data" className="flex flex-col grow">
+        <TimerContainer>
+          <HeaderTimer />
+          <MainTimer />
+          <TimerWidgets />
+        </TimerContainer>
+      </PageBody>
       <ScrambleModal />
     </div>
   )
