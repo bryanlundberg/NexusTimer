@@ -7,11 +7,7 @@ interface TimerContainer extends React.HTMLAttributes<HTMLDivElement> {
 
 export default function TimerContainer({ children, className, ...rest }: TimerContainer) {
   return (
-    <div
-      id="touch"
-      {...rest}
-      className={twMerge('flex flex-col justify-between px-2 pt-1 sm:px-3 grow z-2', className)}
-    >
+    <div id="touch" {...rest} className={twMerge('flex flex-col justify-between px-2 sm:px-3 grow z-2', className)}>
       {children}
     </div>
   )
