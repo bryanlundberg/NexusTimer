@@ -7,7 +7,7 @@ import { notFound, ok, serverError, unauthorized } from '@/shared/api/responses'
 
 const MAX_BACKUP_BYTES = 32 * 1024 * 1024
 
-const backupKey = (userId: string) => `backups/${userId}.bin`
+const backupKey = (userId: string) => `backups/${userId}.txt`
 
 export async function POST(request: NextRequest) {
   try {

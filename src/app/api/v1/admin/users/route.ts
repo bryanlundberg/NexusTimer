@@ -39,7 +39,7 @@ const RELATED_COLLECTIONS: RelatedCollection[] = [
 
 async function deleteBackupFile(userId: string) {
   try {
-    await files.delete(`backups/${userId}.bin`)
+    await files.delete(`backups/${userId}.txt`)
   } catch (error) {
     console.error('Error deleting backup file:', error)
   }
