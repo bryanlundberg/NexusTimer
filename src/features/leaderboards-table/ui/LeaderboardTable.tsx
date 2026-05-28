@@ -1,32 +1,45 @@
-import { Table, TableBody, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+'use client'
+
 import LeaderboardTableRow from '@/features/leaderboards-table/ui/LeaderboardTableRow'
 import { SolveServer } from '@/entities/solve/model/types'
 import { useTranslations } from 'next-intl'
+import { motion } from 'framer-motion'
 
 interface LeaderboardTableProps {
   solves: SolveServer[]
 }
 
+export const GRID = 'grid-cols-[2.5rem_minmax(10rem,1fr)_6rem_5rem_6rem_8rem]'
+
 export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
   const t = useTranslations('Index.LeaderboardsPage.table')
+
+  const safeSolves = solves && solves.length > 0 ? solves : []
+
   return (
-    <Table containerClassName={'overflow-hidden'}>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-20 text-center">#</TableHead>
-          <TableHead className="w-full md:w-auto text-center">{t('user')}</TableHead>
-          <TableHead className="hidden sm:table-cell">{t('category')}</TableHead>
-          <TableHead className="hidden md:table-cell">{t('scramble')}</TableHead>
-          <TableHead>{t('time')}</TableHead>
-          <TableHead className="hidden sm:table-cell">{t('image')}</TableHead>
-          <TableHead className="hidden sm:table-cell">{t('date')}</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {(solves && solves.length > 0 ? solves : []).map((solve: any, index: number) => {
-          return <LeaderboardTableRow key={solve._id} solve={solve} index={index} />
-        })}
-      </TableBody>
-    </Table>
+    <div className="overflow-x-auto">
+      <div className="min-w-[640px]">
+        <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">#</span>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('user')}</span>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            {t('category')}
+          </span>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('tps')}</span>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('time')}</span>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('date')}</span>
+        </div>
+
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.03 } } }}
+        >
+          {safeSolves.map((solve, index) => (
+            <LeaderboardTableRow key={solve._id} solve={solve} index={index} />
+          ))}
+        </motion.div>
+      </div>
+    </div>
   )
 }
