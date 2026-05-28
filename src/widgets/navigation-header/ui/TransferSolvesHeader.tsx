@@ -32,7 +32,7 @@ export default function TransferSolvesHeader({
   )
 
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-center gap-2 w-full mb-2 px-2">
+    <div className="flex flex-col sm:flex-row justify-between items-center gap-2 w-full mb-4">
       <div className={'flex flex-col gap-1 grow md:flex-row w-full'}>
         <Select
           value={sourceCollection}
