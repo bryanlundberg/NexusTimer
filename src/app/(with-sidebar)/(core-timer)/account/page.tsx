@@ -9,6 +9,7 @@ import AccountInfoForm from '@/features/account-form/ui/AccountInfoForm'
 import { useUser } from '@/entities/user/model/useUser'
 import { SquareArrowOutUpRight, CloudUpload, CloudDownload, ChevronRight, Mail } from 'lucide-react'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { Separator } from '@/components/ui/separator'
 
 export default function AccountPage() {
@@ -19,9 +20,9 @@ export default function AccountPage() {
 
   return (
     <div className="flex flex-col pb-10">
-      <CoreHeader breadcrumbPath={'/account'} breadcrumb={t('SettingsPage.account')} />
+      <CoreHeader breadcrumbs={[{ label: t('SettingsPage.account'), href: '/account' }]} />
 
-      <div className="max-w-3xl mx-auto w-full px-4 mt-6 space-y-10">
+      <PageBody variant="hero" className="max-w-3xl mx-auto w-full px-4 space-y-10">
         {/* Profile Hero Section */}
         <section className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
           <AvatarUploader />
@@ -98,7 +99,7 @@ export default function AccountPage() {
             </Link>
           </div>
         </section>
-      </div>
+      </PageBody>
     </div>
   )
 }
