@@ -15,7 +15,6 @@ import { useUploadThing } from '@/shared/lib/uploadthing-helpers'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
 import { Cube } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
-import { Solve } from '@/entities/solve/model/types'
 
 export const useSyncBackup = () => {
   const { data: session } = useSession()
@@ -166,8 +165,8 @@ export const useSyncBackup = () => {
           setSelectedCube(null)
         }
       }
-    } catch (error) {
-      console.error('Error loading backup:', error)
+    } catch {
+      toast.error('Error loading backup')
     }
   }
 
