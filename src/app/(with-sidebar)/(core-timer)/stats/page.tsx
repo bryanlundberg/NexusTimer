@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import StatsPageHeader from '@/widgets/navigation-header/ui/StatsPageHeader'
 import useDeepStatistics from '@/features/deep-statistics/model/useDeepStatistics'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { useTranslations } from 'next-intl'
 
 const StatisticsViewSwitcher = dynamic(() => import('@/widgets/statistics-view/ui/StatisticsViewSwitcher'))
@@ -13,8 +14,8 @@ export default function StatsPage() {
   const t = useTranslations('Index.StatsPage')
   return (
     <div className="flex-1 min-h-0 overflow-auto">
-      <CoreHeader breadcrumbPath={'/stats'} breadcrumb={t('title')} />
-      <div className="px-3 pt-1 pb-6 flex flex-col w-full min-h-full">
+      <CoreHeader breadcrumbs={[{ label: t('title'), href: '/stats' }]} />
+      <PageBody variant="data" className="px-3 pb-6 flex flex-col w-full min-h-full">
         <StatsPageHeader />
         <div className="grid grid-cols-1 gap-4 grow">
           <StatisticsViewSwitcher statistics={stats} loadingProps={loadingProps} />
@@ -22,7 +23,7 @@ export default function StatsPage() {
             <StatisticsChart statistics={stats} loadingProps={loadingProps} />
           </div>
         </div>
-      </div>
+      </PageBody>
     </div>
   )
 }
