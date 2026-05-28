@@ -1,6 +1,5 @@
 'use client'
 import * as React from 'react'
-import FadeIn from '@/shared/ui/fade-in/fade-in'
 import { Skeleton } from '@/components/ui/skeleton'
 import { UserDocument } from '@/entities/user/model/user'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -9,6 +8,7 @@ import { TablePagination } from '@/widgets/people/ui/table-pagination'
 import UserCard from '@/widgets/people/ui/user-card'
 import { useTranslations } from 'next-intl'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 import PeoplePageHeader from '@/widgets/navigation-header/ui/PeoplePageHeader'
 import { useQueryState } from 'nuqs'
 
@@ -26,62 +26,60 @@ export default function PeoplePage() {
 
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
-      <FadeIn>
-        <CoreHeader breadcrumbPath={'/people'} breadcrumb={t('title')} />
-        <div className="px-2 pb-8 flex flex-col w-full max-w-2xl mx-auto mt-4">
-          <PeoplePageHeader total={data?.docs} showing={data?.events?.length} />
+      <CoreHeader breadcrumbs={[{ label: t('title'), href: '/people' }]} accentStripe />
+      <PageBody variant="hero" className="px-2 pb-8 flex flex-col w-full max-w-2xl mx-auto">
+        <PeoplePageHeader total={data?.docs} showing={data?.events?.length} />
 
-          <div className="overflow-hidden">
-            {/* Table header */}
-            <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-2 border-b border-border/60">
-              <span className="hidden sm:block" />
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                {t('title')}
-              </span>
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground pr-1">
-                {t('col-actions')}
-              </span>
-            </div>
-
-            {/* Skeleton rows */}
-            {isLoading &&
-              Array(10)
-                .fill(0)
-                .map((_, i) => (
-                  <div
-                    key={i}
-                    className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0"
-                  >
-                    <Skeleton className="hidden sm:block size-9 rounded-lg" />
-                    <div className="flex flex-col gap-1.5 min-w-0">
-                      <Skeleton className="h-3.5 w-40" />
-                      <Skeleton className="h-2.5 w-24" />
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Skeleton className="h-8 w-8 sm:w-24 rounded-md" />
-                    </div>
-                  </div>
-                ))}
-
-            {/* Empty state */}
-            {!isLoading && (!data?.events || data.events.length === 0) && (
-              <div className="py-12 text-center text-sm text-muted-foreground">{t('no-users-found')}</div>
-            )}
-
-            {/* Rows */}
-            {!isLoading &&
-              data?.events &&
-              data.events.length > 0 &&
-              data.events.map((user: UserDocument) => <UserCard key={user._id} user={user} />)}
+        <div className="overflow-hidden">
+          {/* Table header */}
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-2 border-b border-border/60">
+            <span className="hidden sm:block" />
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {t('title')}
+            </span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground pr-1">
+              {t('col-actions')}
+            </span>
           </div>
 
-          {!isLoading && data?.pages !== undefined && data.pages > 0 && (
-            <div className="mt-4">
-              <TablePagination totalPages={data.pages} />
-            </div>
+          {/* Skeleton rows */}
+          {isLoading &&
+            Array(10)
+              .fill(0)
+              .map((_, i) => (
+                <div
+                  key={i}
+                  className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0"
+                >
+                  <Skeleton className="hidden sm:block size-9 rounded-lg" />
+                  <div className="flex flex-col gap-1.5 min-w-0">
+                    <Skeleton className="h-3.5 w-40" />
+                    <Skeleton className="h-2.5 w-24" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Skeleton className="h-8 w-8 sm:w-24 rounded-md" />
+                  </div>
+                </div>
+              ))}
+
+          {/* Empty state */}
+          {!isLoading && (!data?.events || data.events.length === 0) && (
+            <div className="py-12 text-center text-sm text-muted-foreground">{t('no-users-found')}</div>
           )}
+
+          {/* Rows */}
+          {!isLoading &&
+            data?.events &&
+            data.events.length > 0 &&
+            data.events.map((user: UserDocument) => <UserCard key={user._id} user={user} />)}
         </div>
-      </FadeIn>
+
+        {!isLoading && data?.pages !== undefined && data.pages > 0 && (
+          <div className="mt-4">
+            <TablePagination totalPages={data.pages} />
+          </div>
+        )}
+      </PageBody>
     </ScrollArea>
   )
 }
