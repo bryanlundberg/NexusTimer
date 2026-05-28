@@ -38,6 +38,7 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import useAlert from '@/shared/model/useAlert'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
+import { PageBody } from '@/shared/ui/page-body/PageBody'
 
 export default function OptionsPage() {
   const { settings, setSettings } = useSettingsStore()
@@ -78,8 +79,8 @@ export default function OptionsPage() {
 
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
-      <CoreHeader breadcrumbPath={'/options'} breadcrumb={t('SettingsPage.options')} />
-      <div key={formKey} className="w-full max-w-lg mx-auto px-3 sm:px-4 py-4">
+      <CoreHeader breadcrumbs={[{ label: t('SettingsPage.options'), href: '/options' }]} />
+      <PageBody variant="hero" key={formKey} className="w-full max-w-lg mx-auto px-3 sm:px-4 pb-4">
         <MenuSelectLanguage />
         <Separator className="my-4 opacity-50" />
         <MenuSection id="timer" icon={<LapTimerIcon />} title={t('Settings-menu.timer')}>
@@ -279,7 +280,7 @@ export default function OptionsPage() {
             {t('SettingsPage.delete-app-data')}
           </Button>
         </div>
-      </div>
+      </PageBody>
     </ScrollArea>
   )
 }
