@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
-import { motion, useScroll, useSpring } from 'motion/react'
+import { motion, useScroll, useSpring, useReducedMotion } from 'motion/react'
 import { LandingHero } from './LandingHero'
 import { useLenis } from './useLenis'
 import SkyOutro from './SkyOutro'
@@ -19,9 +19,9 @@ const LandingBelowFold = dynamic(() => import('./LandingBelowFold'), {
 
 export default function LandingShell({ featureTable, footer }: { featureTable: ReactNode; footer: ReactNode }) {
   const t = useTranslations('LandingPage')
-  const [hidden, setHidden] = useState(false)
+  const reduce = useReducedMotion()
+  const [scrolled, setScrolled] = useState(false)
   const [showBelowFold, setShowBelowFold] = useState(false)
-  const lastScrollY = useRef(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
@@ -43,12 +43,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
     (e: React.UIEvent<HTMLDivElement>) => {
       const currentScrollY = e.currentTarget.scrollTop
       if (!showBelowFold && currentScrollY > 100) setShowBelowFold(true)
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        setHidden(true)
-      } else {
-        setHidden(false)
-      }
-      lastScrollY.current = currentScrollY
+      setScrolled(currentScrollY > 24)
     },
     [showBelowFold]
   )
@@ -68,11 +63,39 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
             aria-hidden
           />
 
-          <header
-            style={{ transform: hidden ? 'translateY(-100%)' : 'translateY(0)', opacity: hidden ? 0 : 1 }}
-            className="w-full sticky top-0 z-50 backdrop-blur-2xl bg-white/70 border-b border-gray-100 transition-all duration-300"
-          >
-            <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+          <header className="sticky top-0 z-50 w-full px-3 sm:px-4">
+            <motion.div
+              initial={false}
+              animate={scrolled ? 'pill' : 'bar'}
+              variants={{
+                bar: {
+                  maxWidth: '80rem',
+                  marginTop: '0rem',
+                  borderRadius: '0px',
+                  paddingTop: '1rem',
+                  paddingBottom: '1rem',
+                  paddingLeft: '1.5rem',
+                  paddingRight: '1.5rem',
+                  backgroundColor: 'rgba(255,255,255,0)',
+                  boxShadow: '0 0 0 0 rgba(15,23,42,0)',
+                  backdropFilter: 'blur(0px)'
+                },
+                pill: {
+                  maxWidth: '52rem',
+                  marginTop: '0.75rem',
+                  borderRadius: '9999px',
+                  paddingTop: '0.5rem',
+                  paddingBottom: '0.5rem',
+                  paddingLeft: '1rem',
+                  paddingRight: '0.55rem',
+                  backgroundColor: 'rgba(255,255,255,0.72)',
+                  boxShadow: '0 14px 40px -16px rgba(15,23,42,0.32)',
+                  backdropFilter: 'blur(16px)'
+                }
+              }}
+              transition={{ duration: reduce ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="mx-auto flex items-center justify-between"
+            >
               <div className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-lg bg-gray-900 flex items-center justify-center">
                   <Image className="invert p-0.5" src="/logo.png" alt="NexusTimer Logo" width={24} height={24} />
@@ -113,7 +136,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </header>
 
           <main className="flex-1">
