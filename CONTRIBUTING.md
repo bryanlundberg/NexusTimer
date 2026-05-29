@@ -23,17 +23,18 @@ pnpm dev
 
 ### What the Docker setup includes
 
-A single local MongoDB instance, Firebase Emulator and Redis Server. That's it.
+A single local MongoDB instance, Firebase Emulator, Redis Server and a MinIO instance. That's it.
 
 ### Environment variables
 
-The only variable you need for standard development is the MongoDB connection, already set up to point at the Docker container. In your `.env.local`
+`.env.local.example` already points every service at its Docker container, so you don't need to configure anything to start. The defaults cover:
 
-```
-MONGODB_URI=mongodb://localhost:27017/nxtimer-dev
-```
+- **MongoDB**: main database (`MONGODB_URI`).
+- **Redis**: session cache (`REDIS_URL`). UI at `http://localhost:5540`.
+- **Firebase Emulator**: multiplayer / clash mode, no real Firebase project needed. UI at `http://localhost:4000`.
+- **MinIO**: S3-compatible file storage, no third-party account needed. Console at `http://localhost:9101` (`minioadmin` / `minioadmin`).
 
-Leave every other variable as-is unless your PR touches that specific feature, it's not required to configure everything.
+Leave every other variable as-is unless your PR touches that specific feature.
 
 ## Contribution Guidelines
 
