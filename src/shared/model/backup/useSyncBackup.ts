@@ -11,7 +11,6 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useState } from 'react'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { UserDocument } from '@/entities/user/model/user'
-import { useUploadThing } from '@/shared/lib/uploadthing-helpers'
 import { BackupLoadMode } from '@/entities/backup/model/enums'
 import { Cube } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
@@ -25,30 +24,16 @@ export const useSyncBackup = () => {
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
 
-  const { startUpload } = useUploadThing('backupUploader', {
-    onClientUploadComplete: () => {
-      setIsUploading(false)
-      toast.dismiss('upload-backup')
-      setUploadCompleted(true)
-    },
-    onUploadError: (e) => {
-      console.error(e)
-      setIsUploading(false)
-      toast.error('Error occurred while uploading')
-    },
-    onUploadBegin: () => {
-      toast.loading('Saving new backup, please do not close this page...', { id: 'upload-backup' })
-    }
-  })
-
   const handleUploadBackup = async () => {
     if (isUploading) return
     setIsUploading(true)
+    toast.loading('Saving new backup, please do not close this page...', { id: 'upload-backup' })
 
     const cubes = await cubesDB.getAllDatabase()
 
     if (!cubes || !session || !session.user || !session.user.id) {
       setIsUploading(false)
+      toast.dismiss('upload-backup')
       return toast.error('Failed to retrieve cubes or session data.')
     }
 
@@ -56,13 +41,23 @@ export const useSyncBackup = () => {
 
     const compressed = compressSync(strToU8(text))
     const blob = new Blob([compressed], { type: 'application/octet-stream' })
-    const file = new File([blob], `${session.user.id}.txt`, { type: 'application/octet-stream' })
 
     try {
-      await startUpload([file])
+      const res = await fetch('/api/v1/backups', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/octet-stream' },
+        body: blob
+      })
+
+      if (!res.ok) throw new Error(`Upload failed with status ${res.status}`)
+
+      setIsUploading(false)
+      toast.dismiss('upload-backup')
+      setUploadCompleted(true)
     } catch (err) {
       console.error(err)
       setIsUploading(false)
+      toast.dismiss('upload-backup')
       toast.error('Error occurred while uploading')
     }
   }

@@ -22,5 +22,38 @@ services:
       - "4000:4000"
       - "9000:9000"
 
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - "9100:9000"
+      - "9101:9001"
+    volumes:
+      - nexus_minio:/data
+    healthcheck:
+      test: [ "CMD", "mc", "ready", "local" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  minio-init:
+    image: minio/mc:latest
+    depends_on:
+      - minio
+    entrypoint: [ "/bin/sh", "-c" ]
+    command:
+      - |
+        until /usr/bin/mc alias set local http://minio:9000 minioadmin minioadmin; do
+          echo 'waiting for minio...'
+          sleep 2
+        done
+        /usr/bin/mc mb --ignore-existing local/nexustimer-dev
+        /usr/bin/mc anonymous set download local/nexustimer-dev
+        echo 'minio init done'
+
 volumes:
   nexus_mongo:
+  nexus_minio:
