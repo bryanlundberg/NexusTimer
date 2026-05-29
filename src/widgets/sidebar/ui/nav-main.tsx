@@ -80,7 +80,13 @@ export function NavMain({
           return (
             <Collapsible key={item.title} asChild defaultOpen={isOpen}>
               <SidebarMenuItem>
-                <SidebarMenuButton asChild tooltip={item.title} isActive={itemActive}>
+                <SidebarMenuButton
+                  asChild
+                  tooltip={item.title}
+                  isActive={itemActive}
+                  data-active-item={itemActive ? 'true' : undefined}
+                  className="md:data-[active=true]:bg-transparent"
+                >
                   <Link href={item.url} onClick={handleNavClick}>
                     <item.icon />
                     <span>{item.title}</span>
