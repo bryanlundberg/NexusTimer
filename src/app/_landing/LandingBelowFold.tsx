@@ -2,7 +2,6 @@
 
 import type { ReactNode } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import {
   ArrowRight,
   AudioWaveform,
@@ -16,7 +15,15 @@ import {
   Zap
 } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
-import { motion, useScroll, useTransform, useInView, useMotionValueEvent, AnimatePresence } from 'motion/react'
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  useMotionValueEvent,
+  useReducedMotion,
+  AnimatePresence
+} from 'motion/react'
 import { useState, useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 
@@ -74,28 +81,9 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   )
 }
 
-function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
+function useShowcaseCards() {
   const t = useTranslations('LandingPage')
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    container: scrollContainer,
-    offset: ['start start', 'end end']
-  })
-  const xMobile = useTransform(scrollYProgress, [0, 1], ['0%', '-72%'])
-  const xDesktop = useTransform(scrollYProgress, [0, 1], ['0%', '-55%'])
-  const x = isMobile ? xMobile : xDesktop
-
-  const cards = [
+  return [
     {
       title: t('showcase.public-profiles-title'),
       description: t('showcase.public-profiles-desc'),
@@ -122,56 +110,136 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
       imageSrc: '/landing/Screenshot_38.png'
     }
   ]
+}
 
-  if (isMobile) return null
+function ShowcaseHeader() {
+  const t = useTranslations('LandingPage')
+  return (
+    <div className="mx-auto max-w-7xl px-6 mb-10">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="flex items-center gap-2.5 mb-4 text-sm font-medium text-primary"
+      >
+        <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+        {t('showcase.label')}
+      </motion.div>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.1 }}
+        className="text-balance text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900"
+      >
+        {t('showcase.title')}
+      </motion.h2>
+    </div>
+  )
+}
+
+function ShowcaseCard({
+  card,
+  index,
+  total
+}: {
+  card: ReturnType<typeof useShowcaseCards>[number]
+  index: number
+  total: number
+}) {
+  return (
+    <div className="group relative h-full overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 transition-colors duration-500 hover:border-primary/40">
+      <Image
+        src={card.imageSrc}
+        alt={card.title}
+        width={800}
+        height={500}
+        className="object-cover object-top w-full h-full transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+      {/* Index marker — earns its place: it's an ordered tour through the app */}
+      <div className="absolute top-5 left-5 flex items-center gap-2 text-white/80">
+        <span className="font-mono text-xs tabular-nums">{String(index + 1).padStart(2, '0')}</span>
+        <span className="h-px w-6 bg-white/30" />
+        <span className="font-mono text-xs tabular-nums text-white/50">{String(total).padStart(2, '0')}</span>
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+        <h3 className="font-bold text-xl md:text-2xl text-white mb-2">{card.title}</h3>
+        <p className="text-sm text-white/70 leading-relaxed max-w-md text-pretty">{card.description}</p>
+      </div>
+    </div>
+  )
+}
+
+function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
+  const cards = useShowcaseCards()
+  const containerRef = useRef<HTMLDivElement>(null)
+  const reduce = useReducedMotion()
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    container: scrollContainer,
+    offset: ['start start', 'end end']
+  })
+  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-55%'])
+  const trackScale = useTransform(scrollYProgress, [0, 1], [0.04, 1])
+
+  // Mobile: a horizontal sticky pin fights the native vertical scroll, so the
+  // cards become a clean vertical reveal stack instead.
+  if (isMobile) {
+    return (
+      <section className="relative py-20">
+        <ShowcaseHeader />
+        <div className="mx-auto max-w-xl px-6 flex flex-col gap-6">
+          {cards.map((card, index) => (
+            <motion.div
+              key={card.title}
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-10%' }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="aspect-[16/10]"
+            >
+              <ShowcaseCard card={card} index={index} total={cards.length} />
+            </motion.div>
+          ))}
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section ref={containerRef} className="relative h-[300vh]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 mb-12">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4"
-          >
-            {t('showcase.label')}
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900"
-          >
-            {t('showcase.title')}
-          </motion.h2>
+        <ShowcaseHeader />
+
+        {/* Horizontal progress track — brand-blue fill that reflects how far
+            through the showcase the visitor has scrolled */}
+        <div className="mx-auto w-full max-w-7xl px-6 mb-8">
+          <div className="h-0.5 w-40 overflow-hidden rounded-full bg-gray-200">
+            <motion.div style={{ scaleX: trackScale }} className="h-full w-full origin-left rounded-full bg-primary" />
+          </div>
         </div>
 
         <motion.div style={{ x }} className="flex gap-6 pl-6 md:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]">
           {cards.map((card, index) => (
             <motion.div
               key={card.title}
-              initial={{ opacity: 0, y: 40 }}
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[35vw]"
+              className="flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[35vw] aspect-[16/10]"
             >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 transition-all duration-700 hover:border-gray-300 hover:shadow-2xl hover:shadow-black/5">
-                <Image
-                  src={card.imageSrc}
-                  alt={card.title}
-                  width={800}
-                  height={500}
-                  className="object-cover object-top w-full h-full transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                  <h3 className="font-bold text-xl md:text-2xl text-white mb-2">{card.title}</h3>
-                  <p className="text-sm text-white/70 leading-relaxed max-w-md">{card.description}</p>
-                </div>
-              </div>
+              <ShowcaseCard card={card} index={index} total={cards.length} />
             </motion.div>
           ))}
         </motion.div>
@@ -610,83 +678,6 @@ export default function LandingBelowFold({
           </motion.div>
         </div>
       </section>
-
-      <ScrollRevealSection scrollContainer={scrollContainerRef}>
-        <section className="relative py-20 md:py-32">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mx-auto max-w-4xl px-6"
-          >
-            <div className="relative rounded-[2rem] border border-gray-200 overflow-hidden">
-              <div className="relative bg-white rounded-[2rem] p-12 md:p-20 text-center">
-                <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                  <Image
-                    src="/bg.webp"
-                    alt=""
-                    width={400}
-                    height={400}
-                    unoptimized
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="relative z-10">
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gray-50 border border-gray-200 mb-8"
-                  >
-                    <Image src="/landing/cube.gif" alt="" width={40} height={40} unoptimized />
-                  </motion.div>
-                  <motion.h3
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-5"
-                  >
-                    {t('cta.title')}
-                  </motion.h3>
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
-                    className="text-gray-500 text-base md:text-lg mb-10 max-w-md mx-auto"
-                  >
-                    {t('cta.subtitle')}
-                  </motion.p>
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.5 }}
-                    className="flex flex-wrap items-center justify-center gap-4"
-                  >
-                    <Link
-                      href="/app"
-                      className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-gray-900 text-white font-semibold px-8 py-4 text-sm hover:bg-gray-800 transition-all duration-300 hover:scale-105"
-                    >
-                      {t('cta.primary')}
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                    <Link
-                      href="/options?redirect=import"
-                      className="inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-7 py-4 text-sm text-gray-700 hover:bg-gray-50 hover:border-gray-300 transition-all duration-300"
-                    >
-                      {t('cta.secondary')}
-                    </Link>
-                  </motion.div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-      </ScrollRevealSection>
     </>
   )
 }
