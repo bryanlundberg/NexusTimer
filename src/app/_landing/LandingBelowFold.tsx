@@ -190,7 +190,6 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
     offset: ['start start', 'end end']
   })
   const x = useTransform(scrollYProgress, [0, 1], ['0%', '-55%'])
-  const trackScale = useTransform(scrollYProgress, [0, 1], [0.04, 1])
 
   // Mobile: a horizontal sticky pin fights the native vertical scroll, so the
   // cards become a clean vertical reveal stack instead.
@@ -220,14 +219,6 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
     <section ref={containerRef} className="relative h-[300vh]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         <ShowcaseHeader />
-
-        {/* Horizontal progress track — brand-blue fill that reflects how far
-            through the showcase the visitor has scrolled */}
-        <div className="mx-auto w-full max-w-7xl px-6 mb-8">
-          <div className="h-0.5 w-40 overflow-hidden rounded-full bg-gray-200">
-            <motion.div style={{ scaleX: trackScale }} className="h-full w-full origin-left rounded-full bg-primary" />
-          </div>
-        </div>
 
         <motion.div style={{ x }} className="flex gap-6 pl-6 md:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]">
           {cards.map((card, index) => (
@@ -539,47 +530,62 @@ export default function LandingBelowFold({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.06 }}
+                  style={
+                    feature.featured
+                      ? { background: 'linear-gradient(150deg, oklch(0.62 0.2 262) 0%, oklch(0.48 0.19 264) 100%)' }
+                      : undefined
+                  }
                   className={cn(
                     'group relative overflow-hidden rounded-2xl border p-6 flex flex-col transition-colors duration-300',
-                    feature.accent
-                      ? 'border-white/15 bg-[oklch(0.28_0.075_262)]'
-                      : 'border-white/10 bg-[oklch(0.2_0.045_264)]',
+                    feature.featured
+                      ? 'border-transparent text-white shadow-[0_24px_60px_-24px_rgba(59,108,246,0.65)]'
+                      : feature.accent
+                        ? 'border-primary/20 bg-primary/[0.06]'
+                        : 'border-gray-200/80 bg-gray-50',
                     feature.span
                   )}
                 >
-                  <feature.icon
-                    aria-hidden
-                    className={cn(
-                      'pointer-events-none absolute -bottom-6 -right-5 text-white/[0.06]',
-                      feature.featured ? 'h-52 w-52' : 'h-28 w-28'
-                    )}
-                  />
+                  {/* Featured tile carries the brand color and a faint watermark
+                      of its own icon for depth */}
                   {feature.featured && (
-                    <div
+                    <feature.icon
                       aria-hidden
-                      className="pointer-events-none absolute -top-10 -right-10 h-52 w-52 rounded-full blur-3xl"
-                      style={{
-                        background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
-                        opacity: 0.1
-                      }}
+                      strokeWidth={1.25}
+                      className="pointer-events-none absolute -bottom-8 -right-7 h-56 w-56 text-white/10"
                     />
                   )}
                   <div className="relative z-10 flex h-full flex-col">
-                    <div className="w-fit rounded-xl border border-white/10 bg-white/10 p-2.5 mb-5">
-                      <feature.icon className="h-5 w-5 text-white/90 transition-colors duration-300" />
+                    <div
+                      className={cn(
+                        'flex items-center justify-center rounded-xl border mb-5',
+                        feature.featured
+                          ? 'bg-white/15 border-white/25'
+                          : feature.accent
+                            ? 'bg-primary/15 border-primary/25'
+                            : 'bg-white border-gray-200',
+                        feature.featured ? 'h-14 w-14' : 'h-11 w-11'
+                      )}
+                    >
+                      <feature.icon
+                        strokeWidth={1.75}
+                        className={cn(
+                          feature.featured ? 'text-white' : 'text-primary',
+                          feature.featured ? 'h-7 w-7' : 'h-5 w-5'
+                        )}
+                      />
                     </div>
                     <h3
                       className={cn(
-                        'font-semibold text-white mb-2',
-                        feature.featured ? 'text-xl md:text-2xl' : 'text-base'
+                        'font-semibold mb-2',
+                        feature.featured ? 'text-white text-xl md:text-2xl' : 'text-gray-900 text-base'
                       )}
                     >
                       {feature.title}
                     </h3>
                     <p
                       className={cn(
-                        'text-gray-300/90 leading-relaxed text-pretty',
-                        feature.featured ? 'text-sm md:text-base max-w-sm' : 'text-sm'
+                        'leading-relaxed text-pretty',
+                        feature.featured ? 'text-white/80 text-sm md:text-base max-w-sm' : 'text-gray-600 text-sm'
                       )}
                     >
                       {feature.description}
