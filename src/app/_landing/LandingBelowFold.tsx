@@ -471,47 +471,119 @@ export default function LandingBelowFold({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-center mb-16"
+              className="text-center mb-14"
             >
-              <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">{t('capabilities.label')}</p>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">{t('capabilities.title')}</h2>
+              <div className="inline-flex items-center gap-2.5 mb-4 text-sm font-medium text-primary">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                {t('capabilities.label')}
+              </div>
+              <h2 className="text-balance text-3xl md:text-5xl font-bold tracking-tight text-gray-900">
+                {t('capabilities.title')}
+              </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:auto-rows-[208px]">
               {[
-                { icon: Timer, title: t('capabilities.timer-title'), description: t('capabilities.timer-desc') },
+                {
+                  icon: Timer,
+                  title: t('capabilities.timer-title'),
+                  description: t('capabilities.timer-desc'),
+                  span: 'md:col-span-2 lg:col-span-2 lg:row-span-2',
+                  featured: true,
+                  accent: false
+                },
                 {
                   icon: BarChart3,
                   title: t('capabilities.analytics-title'),
-                  description: t('capabilities.analytics-desc')
+                  description: t('capabilities.analytics-desc'),
+                  span: 'lg:col-span-2',
+                  featured: false,
+                  accent: false
                 },
                 {
                   icon: Users,
                   title: t('capabilities.multiplayer-title'),
-                  description: t('capabilities.multiplayer-desc')
+                  description: t('capabilities.multiplayer-desc'),
+                  span: '',
+                  featured: false,
+                  accent: true
                 },
-                { icon: Globe, title: t('capabilities.profiles-title'), description: t('capabilities.profiles-desc') },
+                {
+                  icon: Globe,
+                  title: t('capabilities.profiles-title'),
+                  description: t('capabilities.profiles-desc'),
+                  span: '',
+                  featured: false,
+                  accent: false
+                },
                 {
                   icon: AudioWaveform,
                   title: t('capabilities.algorithms-title'),
-                  description: t('capabilities.algorithms-desc')
+                  description: t('capabilities.algorithms-desc'),
+                  span: 'lg:col-span-2',
+                  featured: false,
+                  accent: false
                 },
-                { icon: DatabaseZap, title: t('capabilities.cloud-title'), description: t('capabilities.cloud-desc') }
+                {
+                  icon: DatabaseZap,
+                  title: t('capabilities.cloud-title'),
+                  description: t('capabilities.cloud-desc'),
+                  span: 'md:col-span-2 lg:col-span-2',
+                  featured: false,
+                  accent: true
+                }
               ].map((feature, index) => (
                 <motion.div
                   key={feature.title}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.07 }}
-                  className="group relative rounded-2xl border border-gray-100 bg-white p-6 hover:border-gray-200 hover:shadow-sm transition-all duration-300"
+                  transition={{ duration: 0.5, delay: index * 0.06 }}
+                  className={cn(
+                    'group relative overflow-hidden rounded-2xl border p-6 flex flex-col transition-colors duration-300',
+                    feature.accent
+                      ? 'border-white/15 bg-[oklch(0.28_0.075_262)]'
+                      : 'border-white/10 bg-[oklch(0.2_0.045_264)]',
+                    feature.span
+                  )}
                 >
-                  <div className="relative z-10">
-                    <div className="p-2.5 rounded-xl bg-gray-50 border border-gray-100 w-fit mb-5 group-hover:bg-gray-100 transition-colors duration-300">
-                      <feature.icon className="h-5 w-5 text-gray-400 group-hover:text-gray-600 transition-colors duration-300" />
+                  <feature.icon
+                    aria-hidden
+                    className={cn(
+                      'pointer-events-none absolute -bottom-6 -right-5 text-white/[0.06]',
+                      feature.featured ? 'h-52 w-52' : 'h-28 w-28'
+                    )}
+                  />
+                  {feature.featured && (
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute -top-10 -right-10 h-52 w-52 rounded-full blur-3xl"
+                      style={{
+                        background: 'radial-gradient(circle, var(--primary) 0%, transparent 70%)',
+                        opacity: 0.1
+                      }}
+                    />
+                  )}
+                  <div className="relative z-10 flex h-full flex-col">
+                    <div className="w-fit rounded-xl border border-white/10 bg-white/10 p-2.5 mb-5">
+                      <feature.icon className="h-5 w-5 text-white/90 transition-colors duration-300" />
                     </div>
-                    <h3 className="text-base font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                    <p className="text-sm text-gray-500 leading-relaxed">{feature.description}</p>
+                    <h3
+                      className={cn(
+                        'font-semibold text-white mb-2',
+                        feature.featured ? 'text-xl md:text-2xl' : 'text-base'
+                      )}
+                    >
+                      {feature.title}
+                    </h3>
+                    <p
+                      className={cn(
+                        'text-gray-300/90 leading-relaxed text-pretty',
+                        feature.featured ? 'text-sm md:text-base max-w-sm' : 'text-sm'
+                      )}
+                    >
+                      {feature.description}
+                    </p>
                   </div>
                 </motion.div>
               ))}

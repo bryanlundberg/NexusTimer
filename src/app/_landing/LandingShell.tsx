@@ -88,9 +88,9 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
                   paddingBottom: '0.5rem',
                   paddingLeft: '1rem',
                   paddingRight: '0.55rem',
-                  backgroundColor: 'rgba(255,255,255,0.72)',
-                  boxShadow: '0 14px 40px -16px rgba(15,23,42,0.32)',
-                  backdropFilter: 'blur(16px)'
+                  backgroundColor: 'rgba(255,255,255,0.80)',
+                  boxShadow: '0 14px 40px -16px rgba(15,23,42,0.28)',
+                  backdropFilter: 'blur(10px)'
                 }
               }}
               transition={{ duration: reduce ? 0 : 0.5, ease: [0.16, 1, 0.3, 1] }}
