@@ -50,7 +50,10 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-1/4 mx-auto h-[420px] w-[min(680px,90vw)] -translate-y-1/4 rounded-full blur-3xl"
-        style={{ background: 'radial-gradient(ellipse at center, var(--primary) 0%, transparent 65%)', opacity: 0.06 }}
+        style={{
+          background: 'radial-gradient(ellipse at center, var(--cube-blue) 0%, transparent 65%)',
+          opacity: 0.12
+        }}
       />
 
       <motion.div
@@ -62,7 +65,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
       >
         <motion.div
           variants={item}
-          className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50/80 px-4 py-1.5 text-xs text-gray-600 mb-10"
+          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur px-4 py-1.5 text-xs text-gray-300 mb-10"
         >
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
@@ -77,7 +80,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
 
         <motion.h1
           variants={item}
-          className="text-balance text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 mb-4"
+          className="text-balance text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4"
         >
           {t('hero.title-before')}{' '}
           <span className="relative inline-block whitespace-nowrap text-primary">
@@ -94,12 +97,12 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
 
         <motion.p
           variants={item}
-          className="text-base md:text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed mb-4 text-pretty"
+          className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-4 text-pretty"
         >
           {t('hero.subtitle')}
         </motion.p>
 
-        <motion.div variants={item} className="flex items-center justify-center gap-2 text-sm text-gray-400 mb-10">
+        <motion.div variants={item} className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-10">
           <span>{t('hero.built-for')}</span>
           <RotatingText
             text={[
@@ -113,14 +116,14 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
               t('hero.rotating.7')
             ]}
             duration={2000}
-            className="text-gray-900 font-semibold"
+            className="text-white font-semibold"
           />
         </motion.div>
 
         <motion.div variants={item} className="flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/app"
-            className="group relative inline-flex items-center justify-center gap-2.5 rounded-full bg-gray-900 text-white font-semibold px-8 py-4 text-sm transition-all duration-300 hover:bg-gray-800 hover:scale-[1.03] hover:shadow-[0_8px_30px_-8px_var(--primary)]"
+            className="group relative inline-flex items-center justify-center gap-2.5 rounded-full bg-white text-gray-900 font-semibold px-8 py-4 text-sm transition-all duration-300 hover:bg-gray-200 hover:scale-[1.03] hover:shadow-[0_8px_40px_-6px_var(--cube-blue)]"
           >
             <Image
               src="/landing/cube.gif"
@@ -135,18 +138,18 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
           </Link>
           <Link
             href="/options?redirect=import"
-            className="inline-flex items-center justify-center rounded-full border border-gray-200 bg-white px-7 py-4 text-sm text-gray-700 transition-all duration-300 hover:border-primary/40 hover:bg-primary/5 hover:text-gray-900"
+            className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-4 text-sm text-gray-200 backdrop-blur transition-all duration-300 hover:border-primary/50 hover:bg-primary/10 hover:text-white"
           >
             {t('hero.cta-secondary')}
           </Link>
         </motion.div>
 
-        <motion.div variants={item} className="mt-12 flex items-center justify-center gap-4 text-xs text-gray-400">
+        <motion.div variants={item} className="mt-12 flex items-center justify-center gap-4 text-xs text-gray-500">
           <div className="flex -space-x-2">
             {[1, 2, 7].map((num) => (
               <Image
                 key={num}
-                className="inline-block h-7 w-7 rounded-full border-2 border-white shadow-lg"
+                className="inline-block h-7 w-7 rounded-full border-2 border-[var(--lp-bg)] shadow-lg"
                 src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${num}.png`}
                 alt="Community member"
                 width={28}
@@ -162,7 +165,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: reduce ? 0 : 1.4, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-300"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-600"
       >
         <span className="text-[10px] uppercase tracking-[0.25em]">{t('hero.scroll')}</span>
         <ChevronDown className="h-4 w-4 animate-bounce" />
