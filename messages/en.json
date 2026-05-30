@@ -871,25 +871,10 @@
     "brands": {
       "label": "Works with your favorite brands"
     },
-    "capabilities": {
-      "label": "Capabilities",
-      "title": "Built to make you faster",
-      "timer-title": "Customizable timer",
-      "timer-desc": "Stackmat-style controls, adjustable inspection, keyboard or touch — adapts to your flow.",
-      "analytics-title": "Per-cube analytics",
-      "analytics-desc": "Each puzzle gets its own stats profile. Session averages stay clean, insights stay sharp.",
-      "multiplayer-title": "Multiplayer rooms",
-      "multiplayer-desc": "Synced scrambles, live leaderboards. Great for club nights or remote practice sessions.",
-      "profiles-title": "Community profiles",
-      "profiles-desc": "Public pages with your collection, PBs, and solve trajectory. Connect with cubers worldwide.",
-      "algorithms-title": "Algorithm trainer",
-      "algorithms-desc": "Drill OLL, PLL, and more with built-in recognition and spaced repetition.",
-      "cloud-title": "Cloud sync + offline",
-      "cloud-desc": "Works without internet. Sign in to sync across devices — your data is always yours."
-    },
     "how-it-works": {
       "label": "Getting started",
       "title": "Four steps, zero setup",
+      "peel-place-solve": "peel · place · solve",
       "step": "Step",
       "step1-title": "Start or import",
       "step1-desc": "Use Nexus fresh or bring your solves from csTimer, Twisty Timer, or CubeDesk.",
@@ -899,6 +884,12 @@
       "step3-desc": "Trend lines, averages, and weak-spot analysis appear after a few solves.",
       "step4-title": "Track progress",
       "step4-desc": "Compare weeks, months, or your entire trajectory over time."
+    },
+    "community": {
+      "headline": "A real community. A real sport.",
+      "sub": "From late-night practice to the competition floor, NexusTimer is built with the cubers who live it.",
+      "cap-home": "Practice at home",
+      "cap-friends": "Club night with friends"
     },
     "cross-platform": {
       "label": "Cross platform",

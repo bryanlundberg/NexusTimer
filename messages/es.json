@@ -785,22 +785,6 @@
     "brands": {
       "label": "Compatible con tus marcas favoritas"
     },
-    "capabilities": {
-      "label": "Funcionalidades",
-      "title": "Diseñado para hacerte más rápido",
-      "timer-title": "Cronómetro personalizable",
-      "timer-desc": "Controles estilo Stackmat, inspección ajustable, teclado o táctil — se adapta a tu flujo.",
-      "analytics-title": "Análisis por cubo",
-      "analytics-desc": "Cada puzzle tiene su propio perfil de estadísticas. Los promedios de sesión se mantienen limpios.",
-      "multiplayer-title": "Salas multijugador",
-      "multiplayer-desc": "Scrambles sincronizados, clasificaciones en vivo. Ideal para noches de club o sesiones remotas.",
-      "profiles-title": "Perfiles de comunidad",
-      "profiles-desc": "Páginas públicas con tu colección, récords personales y trayectoria. Conecta con cuberos de todo el mundo.",
-      "algorithms-title": "Entrenador de algoritmos",
-      "algorithms-desc": "Practica OLL, PLL y más con reconocimiento integrado y repetición espaciada.",
-      "cloud-title": "Sincronización en la nube + sin conexión",
-      "cloud-desc": "Funciona sin internet. Inicia sesión para sincronizar entre dispositivos — tus datos siempre son tuyos."
-    },
     "how-it-works": {
       "label": "Primeros pasos",
       "title": "Cuatro pasos, sin configuración",

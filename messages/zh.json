@@ -777,22 +777,6 @@
     "brands": {
       "label": "兼容你喜爱的品牌"
     },
-    "capabilities": {
-      "label": "功能",
-      "title": "为让你更快而生",
-      "timer-title": "可定制计时器",
-      "timer-desc": "Stackmat 风格控制、可调观察时间、键盘或触控——适应你的习惯。",
-      "analytics-title": "每魔方分析",
-      "analytics-desc": "每个魔方有独立统计档案，会话平均值保持干净，洞察清晰。",
-      "multiplayer-title": "多人对战房间",
-      "multiplayer-desc": "同步打乱，实时排行榜。适合俱乐部聚会或远程练习。",
-      "profiles-title": "社区档案",
-      "profiles-desc": "展示你的收藏、个人最佳和还原轨迹的公开主页，与全球魔方爱好者互动。",
-      "algorithms-title": "算法训练器",
-      "algorithms-desc": "结合内置识别和间隔重复练习 OLL、PLL 等。",
-      "cloud-title": "云同步 + 离线",
-      "cloud-desc": "无网络也能使用。登录后跨设备同步——数据永远属于你。"
-    },
     "how-it-works": {
       "label": "快速开始",
       "title": "四步，零配置",

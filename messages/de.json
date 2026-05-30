@@ -777,22 +777,6 @@
     "brands": {
       "label": "Kompatibel mit deinen Lieblingsmarken"
     },
-    "capabilities": {
-      "label": "Funktionen",
-      "title": "Entwickelt, um dich schneller zu machen",
-      "timer-title": "Anpassbarer Timer",
-      "timer-desc": "Stackmat-ähnliche Steuerung, einstellbare Inspektion, Tastatur oder Touch — passt sich deinem Stil an.",
-      "analytics-title": "Analysen pro Würfel",
-      "analytics-desc": "Jedes Puzzle hat sein eigenes Statistikprofil. Sitzungsdurchschnitte bleiben sauber.",
-      "multiplayer-title": "Mehrspieler-Räume",
-      "multiplayer-desc": "Synchronisierte Scrambles, Live-Bestenlisten. Ideal für Clubabende oder Remote-Sessions.",
-      "profiles-title": "Community-Profile",
-      "profiles-desc": "Öffentliche Seiten mit deiner Sammlung, PBs und Entwicklung. Verbinde dich mit Cubern weltweit.",
-      "algorithms-title": "Algorithmus-Trainer",
-      "algorithms-desc": "Übe OLL, PLL und mehr mit integrierter Erkennung und Spaced Repetition.",
-      "cloud-title": "Cloud-Sync + Offline",
-      "cloud-desc": "Funktioniert ohne Internet. Melde dich an, um geräteübergreifend zu synchronisieren — deine Daten gehören dir."
-    },
     "how-it-works": {
       "label": "Erste Schritte",
       "title": "Vier Schritte, kein Setup",

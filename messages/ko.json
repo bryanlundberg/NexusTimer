@@ -777,22 +777,6 @@
     "brands": {
       "label": "좋아하는 브랜드와 호환"
     },
-    "capabilities": {
-      "label": "기능",
-      "title": "더 빠르게 만들기 위해 설계",
-      "timer-title": "맞춤 타이머",
-      "timer-desc": "Stackmat 스타일 컨트롤, 조정 가능한 인스펙션, 키보드 또는 터치 — 스타일에 맞게 적응.",
-      "analytics-title": "큐브별 분석",
-      "analytics-desc": "각 퍼즐에 자체 통계 프로필. 세션 평균은 깨끗하게 유지.",
-      "multiplayer-title": "멀티플레이어 방",
-      "multiplayer-desc": "동기화 스크램블, 라이브 리더보드. 클럽 모임이나 원격 연습에 최적.",
-      "profiles-title": "커뮤니티 프로필",
-      "profiles-desc": "컬렉션, PB, 솔빙 궤적이 담긴 공개 페이지. 전 세계 큐버와 연결.",
-      "algorithms-title": "알고리즘 트레이너",
-      "algorithms-desc": "내장 인식 및 간격 반복으로 OLL, PLL 등을 연습.",
-      "cloud-title": "클라우드 동기화 + 오프라인",
-      "cloud-desc": "인터넷 없이 작동. 로그인하면 기기 간 동기화 — 데이터는 항상 내 것."
-    },
     "how-it-works": {
       "label": "시작하기",
       "title": "4단계, 설정 없음",

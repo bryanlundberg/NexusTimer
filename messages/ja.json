@@ -777,22 +777,6 @@
     "brands": {
       "label": "お気に入りブランドに対応"
     },
-    "capabilities": {
-      "label": "機能",
-      "title": "あなたを速くするために作られた",
-      "timer-title": "カスタマイズ可能なタイマー",
-      "timer-desc": "Stackmat風コントロール、調整可能なインスペクション、キーボードまたはタッチ。",
-      "analytics-title": "キューブ別分析",
-      "analytics-desc": "パズルごとに独自の統計プロフィール。セッション平均はクリーンに保たれる。",
-      "multiplayer-title": "マルチプレイヤールーム",
-      "multiplayer-desc": "同期スクランブル、ライブランキング。クラブナイトやリモートセッションに最適。",
-      "profiles-title": "コミュニティプロフィール",
-      "profiles-desc": "コレクション、PB、軌跡を公開。世界中のキューバーとつながる。",
-      "algorithms-title": "アルゴリズムトレーナー",
-      "algorithms-desc": "OLL、PLL等を内蔵認識と間隔反復でトレーニング。",
-      "cloud-title": "クラウド同期 + オフライン",
-      "cloud-desc": "インターネットなしで動作。サインインでデバイス間同期 — データは常にあなたのもの。"
-    },
     "how-it-works": {
       "label": "はじめ方",
       "title": "4ステップ、設定不要",
