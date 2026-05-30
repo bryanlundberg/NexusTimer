@@ -169,3 +169,18 @@
     overflow: hidden;
   }
 }
+
+.lp-root {
+  --lp-bg: oklch(0.16 0.012 265);
+  --lp-bg-deep: oklch(0.115 0.012 266);
+
+  --cube-white: oklch(0.97 0 0);
+  --cube-yellow: oklch(0.86 0.17 95);
+  --cube-red: oklch(0.635 0.23 26);
+  --cube-orange: oklch(0.72 0.185 52);
+  --cube-green: oklch(0.74 0.18 150);
+  --cube-blue: oklch(0.623 0.214 259.815);
+
+  color-scheme: dark;
+  background-color: var(--lp-bg);
+}
