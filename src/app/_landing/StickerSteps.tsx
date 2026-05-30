@@ -52,7 +52,7 @@ export default function StickerSteps() {
   ]
 
   return (
-    <section className="relative py-20 md:py-32">
+    <section className="lp-cv relative py-20 md:py-32">
       <div className="mx-auto max-w-4xl px-6">
         <motion.h2
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}

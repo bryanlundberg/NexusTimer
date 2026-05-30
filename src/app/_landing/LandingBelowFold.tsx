@@ -16,6 +16,7 @@ import {
 import { useState, useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import StickerSteps from './StickerSteps'
+import { Reveal } from './Reveal'
 
 /**
  * A real photo dropped behind a section as toned texture. Heavy scrim keeps the
@@ -124,18 +125,19 @@ function useCounter(target: number, duration: number = 2000) {
 
   useEffect(() => {
     if (!inView) return
-    let start = 0
-    const step = target / (duration / 16)
-    const timer = setInterval(() => {
-      start += step
-      if (start >= target) {
-        setCount(target)
-        clearInterval(timer)
+    let frame = 0
+    const startTime = performance.now()
+    const tick = (now: number) => {
+      const progress = Math.min(1, (now - startTime) / duration)
+      if (progress < 1) {
+        setCount(Math.floor(progress * target))
+        frame = requestAnimationFrame(tick)
       } else {
-        setCount(Math.floor(start))
+        setCount(target)
       }
-    }, 16)
-    return () => clearInterval(timer)
+    }
+    frame = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(frame)
   }, [inView, target, duration])
 
   return { count, ref }
@@ -206,24 +208,15 @@ function ShowcaseHeader() {
   const t = useTranslations('LandingPage')
   return (
     <div className="mx-auto max-w-7xl px-6 mb-10">
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="flex items-center gap-2.5 mb-4 text-sm font-medium text-primary"
-      >
+      <Reveal className="flex items-center gap-2.5 mb-4 text-sm font-medium text-primary">
         <span className="h-1.5 w-1.5 rounded-full bg-primary" />
         {t('showcase.label')}
-      </motion.div>
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.1 }}
-        className="text-balance text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white"
-      >
-        {t('showcase.title')}
-      </motion.h2>
+      </Reveal>
+      <Reveal delay={0.1}>
+        <h2 className="text-balance text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+          {t('showcase.title')}
+        </h2>
+      </Reveal>
     </div>
   )
 }
@@ -352,7 +345,7 @@ function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HT
   const t = useTranslations('LandingPage')
 
   return (
-    <section className="relative py-32 md:py-48 overflow-hidden">
+    <section className="lp-cv relative py-32 md:py-48 overflow-hidden">
       <PhotoBackdrop src="/landing/5.avif" scrollContainer={scrollContainer} overlay={90} vignette />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6">
@@ -475,19 +468,13 @@ function StatItem({
   const { count, ref } = useCounter(value)
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      className="text-center"
-    >
+    <Reveal delay={delay} className="text-center">
       <span ref={ref} className="text-4xl md:text-6xl font-black text-white tabular-nums tracking-tight">
         {count}
         <span style={{ color: accent }}>{suffix}</span>
       </span>
       <p className="text-xs text-gray-300 mt-3 uppercase tracking-[0.2em]">{label}</p>
-    </motion.div>
+    </Reveal>
   )
 }
 
@@ -571,7 +558,7 @@ function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObje
             opacity: glowOpacity,
             background: 'radial-gradient(circle, var(--cube-blue) 0%, transparent 65%)'
           }}
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-xl"
         />
 
         <motion.div style={{ opacity: headerOpacity, y: headerY }} className="relative z-20">
@@ -614,36 +601,28 @@ export default function LandingBelowFold({
 
       <HorizontalShowcase scrollContainer={scrollContainerRef} />
 
-      <section className="relative py-16 overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
+      <section className="lp-cv relative py-16 overflow-hidden">
+        <Reveal>
           <p className="text-center text-[10px] uppercase tracking-[0.3em] text-gray-500 mb-8">{t('brands.label')}</p>
           <div className="relative">
             <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[var(--lp-bg)] to-transparent z-10 pointer-events-none" />
             <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[var(--lp-bg)] to-transparent z-10 pointer-events-none" />
-            <motion.div
-              animate={{ x: [0, -800] }}
-              transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-              className="flex gap-6 whitespace-nowrap"
-            >
+            {/* mr-6 per item (not flex gap) so translateX(-50%) loops seamlessly */}
+            <div className="lp-marquee flex whitespace-nowrap">
               {[
                 ...['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng'],
                 ...['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng']
               ].map((item, index) => (
                 <span
                   key={`${item}-${index}`}
-                  className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-gray-400"
+                  className="mr-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-gray-400"
                 >
                   {item}
                 </span>
               ))}
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </Reveal>
       </section>
 
       <StickerSteps />
@@ -657,32 +636,20 @@ export default function LandingBelowFold({
 
       <StickyTestimonials scrollContainer={scrollContainerRef} />
 
-      <section className="relative py-20 md:py-28">
+      <section className="lp-cv relative py-20 md:py-28">
         <div className="mx-auto max-w-3xl px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-14"
-          >
+          <Reveal className="text-center mb-14">
             <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('faq.label')}</p>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">{t('faq.title')}</h2>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-col gap-3"
-          >
+          </Reveal>
+          <Reveal delay={0.1} className="flex flex-col gap-3">
             <FAQItem question={t('faq.q0')} answer={t('faq.a0')} />
             <FAQItem question={t('faq.q1')} answer={t('faq.a1')} />
             <FAQItem question={t('faq.q2')} answer={t('faq.a2')} />
             <FAQItem question={t('faq.q3')} answer={t('faq.a3')} />
             <FAQItem question={t('faq.q4')} answer={t('faq.a4')} />
             <FAQItem question={t('faq.q5')} answer={t('faq.a5')} />
-          </motion.div>
+          </Reveal>
         </div>
       </section>
     </>

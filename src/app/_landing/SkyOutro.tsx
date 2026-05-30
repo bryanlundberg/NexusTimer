@@ -8,14 +8,11 @@ import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 
-function CloudShape({ className, drift = 0 }: { className?: string; drift?: number }) {
-  const reduce = useReducedMotion()
+function CloudShape({ className }: { className?: string }) {
   return (
-    <motion.div
+    <div
       aria-hidden
       className={className}
-      animate={reduce || drift === 0 ? undefined : { x: [0, drift, 0] }}
-      transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
       style={{
         filter: 'blur(2px)',
         background: [
@@ -86,13 +83,13 @@ export default function SkyOutro({
       />
 
       <motion.div style={left} className="pointer-events-none absolute bottom-0 left-0 -z-10 h-[55%] w-[75%]">
-        <CloudShape className="absolute inset-0" drift={10} />
+        <CloudShape className="absolute inset-0" />
       </motion.div>
       <motion.div style={right} className="pointer-events-none absolute bottom-0 right-0 -z-10 h-[55%] w-[75%]">
-        <CloudShape className="absolute inset-0" drift={-10} />
+        <CloudShape className="absolute inset-0" />
       </motion.div>
       <motion.div style={floor} className="pointer-events-none absolute bottom-0 left-0 right-0 -z-10 h-[40%]">
-        <CloudShape className="absolute inset-0 scale-x-150" drift={6} />
+        <CloudShape className="absolute inset-0 scale-x-150" />
       </motion.div>
 
       <div className="relative z-10 pt-[40vh] pb-24 md:pb-40">
@@ -105,7 +102,7 @@ export default function SkyOutro({
         >
           <div className="relative overflow-hidden rounded-[20px] border border-white/10 shadow-[0_40px_120px_-40px_rgba(59,108,246,0.5)] ring-1 ring-white/5">
             <div
-              className="relative backdrop-blur-xl rounded-[20px] p-12 md:p-20 text-center"
+              className="relative backdrop-blur-md rounded-[20px] p-12 md:p-20 text-center"
               style={{ backgroundColor: 'color-mix(in oklch, oklch(0.14 0.03 265) 58%, transparent)' }}
             >
               <div
