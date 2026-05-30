@@ -584,6 +584,108 @@ function HowItWorks({ scrollContainer }: { scrollContainer: React.RefObject<HTML
   )
 }
 
+function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
+  const t = useTranslations('LandingPage')
+  const reduce = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    container: scrollContainer,
+    offset: ['start start', 'end end']
+  })
+
+  const deviceScale = useTransform(scrollYProgress, [0, 1], [0.86, 1.5])
+  const deviceY = useTransform(scrollYProgress, [0, 1], [24, -12])
+  const radius = useTransform(scrollYProgress, [0, 0.6], [14, 2])
+  const chromeOpacity = useTransform(scrollYProgress, [0.15, 0.45], [1, 0])
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.26], [1, 0])
+  const headerY = useTransform(scrollYProgress, [0, 0.3], [0, -56])
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.5], [0, 0.2])
+  const phoneOpacity = useTransform(scrollYProgress, [0.06, 0.34], [0, 1])
+  const phoneX = useTransform(scrollYProgress, [0.06, 0.4], [70, 0])
+  const phoneScale = useTransform(scrollYProgress, [0.1, 1], [0.9, 1.12])
+
+  const header = (
+    <div className="text-center px-6">
+      <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('cross-platform.label')}</p>
+      <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-5">{t('cross-platform.title')}</h2>
+      <p className="text-gray-400 text-base max-w-xl mx-auto">{t('cross-platform.subtitle')}</p>
+    </div>
+  )
+
+  const browser = (
+    <motion.div
+      style={reduce ? undefined : { borderRadius: radius }}
+      className="relative overflow-hidden rounded-xl border border-white/10 shadow-2xl shadow-black/50 ring-1 ring-white/5"
+    >
+      <motion.div
+        style={reduce ? undefined : { opacity: chromeOpacity }}
+        className="bg-neutral-900 h-8 flex items-center px-4 gap-2 border-b border-white/5"
+      >
+        <div className="flex gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-red)]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-yellow)]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-green)]" />
+        </div>
+        <div className="mx-auto rounded-md bg-neutral-100 px-16 py-0.5 text-[10px] text-gray-500">nexustimer.com</div>
+      </motion.div>
+      <Image src="/landing/desk2.png" alt="NexusTimer desktop view" width={1200} height={750} className="w-full" />
+    </motion.div>
+  )
+
+  if (reduce) {
+    return (
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16">{header}</div>
+          <div className="relative mx-auto w-full max-w-4xl px-6">
+            {browser}
+            <div className="absolute -right-4 md:right-8 -bottom-8 md:-bottom-12 w-32 md:w-48">
+              <Image
+                src="/landing/iphone13.png"
+                alt="NexusTimer mobile view"
+                width={300}
+                height={600}
+                className="w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section ref={ref} className="relative h-[160vh]">
+      <div className="sticky top-0 flex h-screen flex-col items-center justify-center gap-10 md:gap-14 overflow-hidden">
+        <motion.div
+          aria-hidden
+          style={{
+            opacity: glowOpacity,
+            background: 'radial-gradient(circle, var(--cube-blue) 0%, transparent 65%)'
+          }}
+          className="pointer-events-none absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+        />
+
+        <motion.div style={{ opacity: headerOpacity, y: headerY }} className="relative z-20">
+          {header}
+        </motion.div>
+
+        <motion.div style={{ scale: deviceScale, y: deviceY }} className="relative z-10 w-full max-w-4xl px-6">
+          {browser}
+        </motion.div>
+
+        <motion.div
+          style={{ opacity: phoneOpacity, x: phoneX, scale: phoneScale }}
+          className="absolute right-[5%] bottom-[8%] z-20 w-24 md:w-40"
+        >
+          <Image src="/landing/iphone13.png" alt="NexusTimer mobile view" width={300} height={600} className="w-full" />
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
 export default function LandingBelowFold({
   scrollContainerRef,
   featureTable
@@ -781,73 +883,7 @@ export default function LandingBelowFold({
 
       <HowItWorks scrollContainer={scrollContainerRef} />
 
-      <ScrollRevealSection scrollContainer={scrollContainerRef}>
-        <section className="relative py-20 md:py-32 overflow-hidden">
-          <div className="mx-auto max-w-7xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="text-center mb-16"
-            >
-              <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('cross-platform.label')}</p>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-5">
-                {t('cross-platform.title')}
-              </h2>
-              <p className="text-gray-400 text-base max-w-xl mx-auto">{t('cross-platform.subtitle')}</p>
-            </motion.div>
-
-            <div className="relative flex items-center justify-center">
-              <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="relative w-full max-w-4xl"
-              >
-                <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 ring-1 ring-white/5">
-                  <div className="bg-neutral-900 h-8 flex items-center px-4 gap-2 border-b border-white/5">
-                    <div className="flex gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-red)]" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-yellow)]" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-green)]" />
-                    </div>
-                    <div className="mx-auto rounded-md bg-neutral-100 px-16 py-0.5 text-[10px] text-gray-500">
-                      nexustimer.com
-                    </div>
-                  </div>
-                  <Image
-                    src="/landing/desk2.png"
-                    alt="NexusTimer desktop view"
-                    width={1200}
-                    height={750}
-                    className="w-full"
-                  />
-                </div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: 40, y: 20 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute -right-4 md:right-8 -bottom-8 md:-bottom-12 w-32 md:w-48"
-                >
-                  <div className="bg-transparent">
-                    <Image
-                      src="/landing/iphone13.png"
-                      alt="NexusTimer mobile view"
-                      width={300}
-                      height={600}
-                      className="w-full"
-                    />
-                  </div>
-                </motion.div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-      </ScrollRevealSection>
+      <CrossPlatformZoom scrollContainer={scrollContainerRef} />
 
       {featureTable}
 
