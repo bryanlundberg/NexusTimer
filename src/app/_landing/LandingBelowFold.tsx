@@ -2,18 +2,7 @@
 
 import type { ReactNode } from 'react'
 import Image from 'next/image'
-import {
-  ArrowRight,
-  AudioWaveform,
-  BarChart3,
-  ChevronDown,
-  DatabaseZap,
-  Globe,
-  Quote,
-  Timer,
-  Users,
-  Zap
-} from 'lucide-react'
+import { AudioWaveform, BarChart3, ChevronDown, DatabaseZap, Globe, Quote, Timer, Users } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import {
   motion,
@@ -56,13 +45,13 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
   return (
     <motion.div
-      className="border border-gray-200 rounded-xl overflow-hidden bg-white hover:bg-gray-50 transition-colors"
+      className="border border-white/10 rounded-xl overflow-hidden bg-white/[0.03] hover:bg-white/[0.06] transition-colors"
       layout
     >
       <button onClick={() => setOpen(!open)} className="w-full px-6 py-5 flex items-center justify-between text-left">
-        <span className="text-sm font-semibold text-gray-800 pr-4">{question}</span>
+        <span className="text-sm font-semibold text-gray-100 pr-4">{question}</span>
         <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
-          <ChevronDown className="h-4 w-4 text-gray-400 shrink-0" />
+          <ChevronDown className="h-4 w-4 text-gray-500 shrink-0" />
         </motion.div>
       </button>
       <AnimatePresence>
@@ -73,7 +62,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <p className="px-6 pb-5 text-sm text-gray-500 leading-relaxed">{answer}</p>
+            <p className="px-6 pb-5 text-sm text-gray-400 leading-relaxed">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -130,7 +119,7 @@ function ShowcaseHeader() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: 0.1 }}
-        className="text-balance text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900"
+        className="text-balance text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white"
       >
         {t('showcase.title')}
       </motion.h2>
@@ -148,7 +137,7 @@ function ShowcaseCard({
   total: number
 }) {
   return (
-    <div className="group relative h-full overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 transition-colors duration-500 hover:border-primary/40">
+    <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/10 transition-colors duration-500 hover:border-primary/40">
       <Image
         src={card.imageSrc}
         alt={card.title}
@@ -267,12 +256,19 @@ function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HT
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {[
-            { value: 17, suffix: '+', label: t('stats.wca-events') },
-            { value: 10, suffix: '', label: t('stats.languages') },
-            { value: 100, suffix: '%', label: t('stats.free') },
-            { value: 5, suffix: '★', label: t('stats.open-source') }
+            { value: 17, suffix: '+', label: t('stats.wca-events'), accent: 'var(--cube-blue)' },
+            { value: 10, suffix: '', label: t('stats.languages'), accent: 'var(--cube-green)' },
+            { value: 100, suffix: '%', label: t('stats.free'), accent: 'var(--cube-orange)' },
+            { value: 5, suffix: '★', label: t('stats.open-source'), accent: 'var(--cube-yellow)' }
           ].map((stat, i) => (
-            <StatItem key={stat.label} value={stat.value} suffix={stat.suffix} label={stat.label} delay={i * 0.1} />
+            <StatItem
+              key={stat.label}
+              value={stat.value}
+              suffix={stat.suffix}
+              label={stat.label}
+              delay={i * 0.1}
+              accent={stat.accent}
+            />
           ))}
         </div>
       </div>
@@ -306,7 +302,7 @@ function StickyTestimonials({ scrollContainer }: { scrollContainer: React.RefObj
     <section ref={containerRef} style={{ height: `${testimonials.length * 100}vh` }} className="relative">
       <div className="sticky top-0 h-screen flex items-center">
         <div className="mx-auto max-w-3xl w-full px-6">
-          <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-10 text-center">
+          <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-10 text-center">
             {t('testimonials.label')}
           </p>
 
@@ -323,21 +319,21 @@ function StickyTestimonials({ scrollContainer }: { scrollContainer: React.RefObj
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className={cn('absolute inset-0 flex flex-col items-center text-center', index === 0 && 'relative')}
               >
-                <Quote className="h-8 w-8 text-gray-200 mb-6" />
-                <p className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-900 leading-relaxed mb-8 max-w-2xl">
+                <Quote className="h-8 w-8 text-white/15 mb-6" />
+                <p className="text-xl md:text-2xl lg:text-3xl font-medium text-white leading-relaxed mb-8 max-w-2xl">
                   {tm.text}
                 </p>
                 <div className="flex items-center gap-3">
                   <Image
-                    className="h-10 w-10 rounded-full border-2 border-gray-100"
+                    className="h-10 w-10 rounded-full border-2 border-white/10"
                     src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${tm.avatar}.png`}
                     alt="User avatar"
                     width={40}
                     height={40}
                   />
                   <div className="text-left">
-                    <span className="text-sm font-semibold text-gray-900 block">{tm.user}</span>
-                    <span className="text-xs text-gray-400">{tm.role}</span>
+                    <span className="text-sm font-semibold text-white block">{tm.user}</span>
+                    <span className="text-xs text-gray-500">{tm.role}</span>
                   </div>
                 </div>
               </motion.div>
@@ -350,7 +346,7 @@ function StickyTestimonials({ scrollContainer }: { scrollContainer: React.RefObj
                 key={i}
                 className={cn(
                   'h-1 rounded-full transition-all duration-500',
-                  i === current ? 'w-8 bg-gray-900' : 'w-2 bg-gray-200'
+                  i === current ? 'w-8 bg-white' : 'w-2 bg-white/15'
                 )}
               />
             ))}
@@ -387,7 +383,19 @@ function ScrollRevealSection({
   )
 }
 
-function StatItem({ value, suffix, label, delay }: { value: number; suffix: string; label: string; delay: number }) {
+function StatItem({
+  value,
+  suffix,
+  label,
+  delay,
+  accent
+}: {
+  value: number
+  suffix: string
+  label: string
+  delay: number
+  accent: string
+}) {
   const { count, ref } = useCounter(value)
 
   return (
@@ -398,12 +406,181 @@ function StatItem({ value, suffix, label, delay }: { value: number; suffix: stri
       transition={{ duration: 0.5, delay }}
       className="text-center"
     >
-      <span ref={ref} className="text-4xl md:text-6xl font-black text-gray-900 tabular-nums tracking-tight">
+      <span ref={ref} className="text-4xl md:text-6xl font-black text-white tabular-nums tracking-tight">
         {count}
-        <span className="text-gray-400">{suffix}</span>
+        <span style={{ color: accent }}>{suffix}</span>
       </span>
-      <p className="text-xs text-gray-400 mt-3 uppercase tracking-[0.2em]">{label}</p>
+      <p className="text-xs text-gray-500 mt-3 uppercase tracking-[0.2em]">{label}</p>
     </motion.div>
+  )
+}
+
+// Per-step visual: each step earns its own artifact instead of a generic icon.
+// All flavor is numeric / proper-noun / SVG, so nothing here needs translating.
+function StepAccent({ step }: { step: number }) {
+  if (step === 0) {
+    return (
+      <div className="mt-5 flex flex-wrap gap-2">
+        {['csTimer', 'Twisty Timer', 'CubeDesk'].map((source) => (
+          <span
+            key={source}
+            className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs font-medium text-gray-300"
+          >
+            {source}
+          </span>
+        ))}
+      </div>
+    )
+  }
+
+  if (step === 1) {
+    return (
+      <div className="mt-5 inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5">
+        <span className="h-2 w-2 rounded-full bg-primary" />
+        <span className="text-xs font-medium text-gray-400">3×3</span>
+        <span className="font-mono text-lg font-bold tabular-nums text-white">8.42</span>
+      </div>
+    )
+  }
+
+  if (step === 2) {
+    // Times trending down across sessions. currentColor inherits the brand blue.
+    return (
+      <svg
+        viewBox="0 0 132 44"
+        className="mt-5 h-11 w-36 overflow-visible text-[var(--cube-green)]"
+        fill="none"
+        aria-hidden
+      >
+        <polyline
+          points="0,8 22,15 44,11 66,23 88,19 110,30 132,35"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <circle cx="132" cy="35" r="3.5" fill="currentColor" />
+      </svg>
+    )
+  }
+
+  // Week-over-week: bars shrink, the latest lands in brand blue.
+  return (
+    <div className="mt-5 flex items-end gap-1.5" aria-hidden>
+      {[
+        { h: 34, on: false },
+        { h: 27, on: false },
+        { h: 21, on: false },
+        { h: 15, on: true }
+      ].map((bar, i) => (
+        <span
+          key={i}
+          style={{ height: bar.h }}
+          className={cn('w-3 rounded-sm', bar.on ? 'bg-[var(--cube-green)]' : 'bg-white/15')}
+        />
+      ))}
+    </div>
+  )
+}
+
+function HowItWorks({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
+  const t = useTranslations('LandingPage')
+  const reduce = useReducedMotion()
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  const steps = [
+    { title: t('how-it-works.step1-title'), desc: t('how-it-works.step1-desc') },
+    { title: t('how-it-works.step2-title'), desc: t('how-it-works.step2-desc') },
+    { title: t('how-it-works.step3-title'), desc: t('how-it-works.step3-desc') },
+    { title: t('how-it-works.step4-title'), desc: t('how-it-works.step4-desc') }
+  ]
+
+  // Drives the brand line filling the spine top→bottom as the section is read.
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    container: scrollContainer,
+    offset: ['start 75%', 'end 70%']
+  })
+
+  // active = how many nodes are lit (1..N). Node 1 lights as soon as we arrive.
+  const [active, setActive] = useState(reduce ? steps.length : 1)
+  useMotionValueEvent(scrollYProgress, 'change', (p) => {
+    if (reduce) return
+    setActive(Math.min(steps.length, Math.max(1, Math.ceil(p * steps.length))))
+  })
+
+  return (
+    <section ref={sectionRef} className="relative py-20 md:py-32">
+      <div className="mx-auto max-w-2xl px-6">
+        <motion.header
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-14 md:mb-16"
+        >
+          <div className="inline-flex items-center gap-2.5 mb-4 text-sm font-medium text-primary">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            {t('how-it-works.label')}
+          </div>
+          <h2 className="text-balance text-3xl md:text-5xl font-bold tracking-tight text-white">
+            {t('how-it-works.title')}
+          </h2>
+        </motion.header>
+
+        <ol>
+          {steps.map((step, i) => {
+            const on = active >= i + 1
+            const segmentOn = active >= i + 2
+            const last = i === steps.length - 1
+
+            return (
+              <motion.li
+                key={step.title}
+                initial={reduce ? { opacity: 0 } : { opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-12%' }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="relative flex gap-5 md:gap-7"
+              >
+                <div className="relative z-10 flex w-10 flex-shrink-0 flex-col items-center">
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      backgroundColor: on ? 'var(--primary)' : 'rgba(255,255,255,0.05)',
+                      borderColor: on ? 'var(--primary)' : 'rgba(255,255,255,0.15)',
+                      color: on ? '#ffffff' : 'rgb(148 163 184)',
+                      scale: on ? 1 : 0.92
+                    }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border font-mono text-sm font-semibold tabular-nums shadow-sm"
+                  >
+                    {i + 1}
+                  </motion.div>
+                  {!last && (
+                    <div className="relative mt-1.5 w-px flex-1">
+                      <div className="absolute inset-0 bg-white/15" />
+                      <motion.div
+                        initial={false}
+                        animate={{ scaleY: segmentOn ? 1 : 0 }}
+                        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute inset-0 origin-top bg-primary"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                <div className={cn('flex-1', last ? 'pb-0' : 'pb-14 md:pb-16')}>
+                  <h3 className="text-lg md:text-xl font-semibold tracking-tight text-white">{step.title}</h3>
+                  <p className="mt-2 text-sm md:text-base text-gray-400 leading-relaxed text-pretty">{step.desc}</p>
+                  <StepAccent step={i} />
+                </div>
+              </motion.li>
+            )
+          })}
+        </ol>
+      </div>
+    </section>
   )
 }
 
@@ -429,10 +606,10 @@ export default function LandingBelowFold({
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-center text-[10px] uppercase tracking-[0.3em] text-gray-400 mb-8">{t('brands.label')}</p>
+          <p className="text-center text-[10px] uppercase tracking-[0.3em] text-gray-500 mb-8">{t('brands.label')}</p>
           <div className="relative">
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[var(--lp-bg)] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[var(--lp-bg)] to-transparent z-10 pointer-events-none" />
             <motion.div
               animate={{ x: [0, -800] }}
               transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
@@ -444,7 +621,7 @@ export default function LandingBelowFold({
               ].map((item, index) => (
                 <span
                   key={`${item}-${index}`}
-                  className="inline-flex items-center rounded-full border border-gray-100 bg-gray-50 px-6 py-2.5 text-sm font-medium text-gray-500"
+                  className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-gray-400"
                 >
                   {item}
                 </span>
@@ -468,7 +645,7 @@ export default function LandingBelowFold({
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                 {t('capabilities.label')}
               </div>
-              <h2 className="text-balance text-3xl md:text-5xl font-bold tracking-tight text-gray-900">
+              <h2 className="text-balance text-3xl md:text-5xl font-bold tracking-tight text-white">
                 {t('capabilities.title')}
               </h2>
             </motion.div>
@@ -481,7 +658,7 @@ export default function LandingBelowFold({
                   description: t('capabilities.timer-desc'),
                   span: 'md:col-span-2 lg:col-span-2 lg:row-span-2',
                   featured: true,
-                  accent: false
+                  tint: null
                 },
                 {
                   icon: BarChart3,
@@ -489,7 +666,7 @@ export default function LandingBelowFold({
                   description: t('capabilities.analytics-desc'),
                   span: 'lg:col-span-2',
                   featured: false,
-                  accent: false
+                  tint: 'var(--cube-green)'
                 },
                 {
                   icon: Users,
@@ -497,7 +674,7 @@ export default function LandingBelowFold({
                   description: t('capabilities.multiplayer-desc'),
                   span: '',
                   featured: false,
-                  accent: true
+                  tint: 'var(--cube-orange)'
                 },
                 {
                   icon: Globe,
@@ -505,7 +682,7 @@ export default function LandingBelowFold({
                   description: t('capabilities.profiles-desc'),
                   span: '',
                   featured: false,
-                  accent: false
+                  tint: 'var(--cube-blue)'
                 },
                 {
                   icon: AudioWaveform,
@@ -513,7 +690,7 @@ export default function LandingBelowFold({
                   description: t('capabilities.algorithms-desc'),
                   span: 'lg:col-span-2',
                   featured: false,
-                  accent: false
+                  tint: 'var(--cube-red)'
                 },
                 {
                   icon: DatabaseZap,
@@ -521,7 +698,7 @@ export default function LandingBelowFold({
                   description: t('capabilities.cloud-desc'),
                   span: 'md:col-span-2 lg:col-span-2',
                   featured: false,
-                  accent: true
+                  tint: 'var(--cube-yellow)'
                 }
               ].map((feature, index) => (
                 <motion.div
@@ -539,45 +716,36 @@ export default function LandingBelowFold({
                     'group relative overflow-hidden rounded-2xl border p-6 flex flex-col transition-colors duration-300',
                     feature.featured
                       ? 'border-transparent text-white shadow-[0_24px_60px_-24px_rgba(59,108,246,0.65)]'
-                      : feature.accent
-                        ? 'border-primary/20 bg-primary/[0.06]'
-                        : 'border-gray-200/80 bg-gray-50',
+                      : 'border-white/10 bg-white/5 hover:border-white/20',
                     feature.span
                   )}
                 >
-                  {/* Featured tile carries the brand color and a faint watermark
-                      of its own icon for depth */}
-                  {feature.featured && (
-                    <feature.icon
-                      aria-hidden
-                      strokeWidth={1.25}
-                      className="pointer-events-none absolute -bottom-8 -right-7 h-56 w-56 text-white/10"
-                    />
-                  )}
                   <div className="relative z-10 flex h-full flex-col">
                     <div
                       className={cn(
                         'flex items-center justify-center rounded-xl border mb-5',
-                        feature.featured
-                          ? 'bg-white/15 border-white/25'
-                          : feature.accent
-                            ? 'bg-primary/15 border-primary/25'
-                            : 'bg-white border-gray-200',
+                        feature.featured ? 'bg-white/15 border-white/25' : 'border-transparent',
                         feature.featured ? 'h-14 w-14' : 'h-11 w-11'
                       )}
+                      style={
+                        feature.featured || !feature.tint
+                          ? undefined
+                          : {
+                              backgroundColor: `color-mix(in oklch, ${feature.tint} 16%, transparent)`,
+                              borderColor: `color-mix(in oklch, ${feature.tint} 34%, transparent)`
+                            }
+                      }
                     >
                       <feature.icon
                         strokeWidth={1.75}
-                        className={cn(
-                          feature.featured ? 'text-white' : 'text-primary',
-                          feature.featured ? 'h-7 w-7' : 'h-5 w-5'
-                        )}
+                        className={cn(feature.featured ? 'text-white' : '', feature.featured ? 'h-7 w-7' : 'h-5 w-5')}
+                        style={feature.featured ? undefined : { color: feature.tint ?? undefined }}
                       />
                     </div>
                     <h3
                       className={cn(
                         'font-semibold mb-2',
-                        feature.featured ? 'text-white text-xl md:text-2xl' : 'text-gray-900 text-base'
+                        feature.featured ? 'text-white text-xl md:text-2xl' : 'text-white text-base'
                       )}
                     >
                       {feature.title}
@@ -585,11 +753,24 @@ export default function LandingBelowFold({
                     <p
                       className={cn(
                         'leading-relaxed text-pretty',
-                        feature.featured ? 'text-white/80 text-sm md:text-base max-w-sm' : 'text-gray-600 text-sm'
+                        feature.featured ? 'text-white/80 text-sm md:text-base max-w-sm' : 'text-gray-300 text-sm'
                       )}
                     >
                       {feature.description}
                     </p>
+
+                    {/* Speedcubing flavor: the anchor tile reads like a real
+                        timer — a mono solve time over a scramble. */}
+                    {feature.featured && (
+                      <div className="mt-auto pt-8">
+                        <div className="font-mono font-black tabular-nums leading-none text-white text-5xl md:text-7xl">
+                          8.42
+                        </div>
+                        <p className="mt-3 font-mono text-[11px] md:text-xs text-white/55 tracking-wide truncate">
+                          {"R U R' U' F2 L' D B2 R2  ·  ao5 8.91"}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -598,63 +779,7 @@ export default function LandingBelowFold({
         </section>
       </ScrollRevealSection>
 
-      <ScrollRevealSection scrollContainer={scrollContainerRef}>
-        <section className="relative py-20 md:py-28">
-          <div className="mx-auto max-w-5xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="text-center mb-20"
-            >
-              <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">{t('how-it-works.label')}</p>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">{t('how-it-works.title')}</h2>
-            </motion.div>
-
-            <div className="relative">
-              <div className="hidden md:block absolute top-10 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
-
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6">
-                {[
-                  { number: 1, title: t('how-it-works.step1-title'), desc: t('how-it-works.step1-desc'), icon: Zap },
-                  { number: 2, title: t('how-it-works.step2-title'), desc: t('how-it-works.step2-desc'), icon: Timer },
-                  {
-                    number: 3,
-                    title: t('how-it-works.step3-title'),
-                    desc: t('how-it-works.step3-desc'),
-                    icon: BarChart3
-                  },
-                  {
-                    number: 4,
-                    title: t('how-it-works.step4-title'),
-                    desc: t('how-it-works.step4-desc'),
-                    icon: ArrowRight
-                  }
-                ].map((step, i) => (
-                  <motion.div
-                    key={step.number}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: i * 0.15 }}
-                    className="relative flex flex-col items-center text-center group"
-                  >
-                    <div className="relative z-10 h-20 w-20 rounded-2xl border border-gray-200 bg-white flex items-center justify-center mb-6 shadow-sm group-hover:border-gray-300 group-hover:shadow-md transition-all duration-500">
-                      <step.icon className="h-7 w-7 text-gray-900" />
-                    </div>
-                    <span className="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-2">
-                      {t('how-it-works.step')} {step.number}
-                    </span>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.title}</h3>
-                    <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      </ScrollRevealSection>
+      <HowItWorks scrollContainer={scrollContainerRef} />
 
       <ScrollRevealSection scrollContainer={scrollContainerRef}>
         <section className="relative py-20 md:py-32 overflow-hidden">
@@ -666,11 +791,11 @@ export default function LandingBelowFold({
               transition={{ duration: 0.7 }}
               className="text-center mb-16"
             >
-              <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">{t('cross-platform.label')}</p>
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-5">
+              <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('cross-platform.label')}</p>
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-5">
                 {t('cross-platform.title')}
               </h2>
-              <p className="text-gray-500 text-base max-w-xl mx-auto">{t('cross-platform.subtitle')}</p>
+              <p className="text-gray-400 text-base max-w-xl mx-auto">{t('cross-platform.subtitle')}</p>
             </motion.div>
 
             <div className="relative flex items-center justify-center">
@@ -681,14 +806,14 @@ export default function LandingBelowFold({
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="relative w-full max-w-4xl"
               >
-                <div className="relative rounded-xl overflow-hidden border border-gray-200 shadow-2xl shadow-gray-200/50">
-                  <div className="bg-neutral-800 h-8 flex items-center px-4 gap-2">
+                <div className="relative rounded-xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 ring-1 ring-white/5">
+                  <div className="bg-neutral-900 h-8 flex items-center px-4 gap-2 border-b border-white/5">
                     <div className="flex gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-200" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-200" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-200" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-red)]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-yellow)]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-green)]" />
                     </div>
-                    <div className="mx-auto rounded-md bg-neutral-100 px-16 py-0.5 text-[10px] text-gray-400">
+                    <div className="mx-auto rounded-md bg-neutral-100 px-16 py-0.5 text-[10px] text-gray-500">
                       nexustimer.com
                     </div>
                   </div>
@@ -737,8 +862,8 @@ export default function LandingBelowFold({
             transition={{ duration: 0.5 }}
             className="text-center mb-14"
           >
-            <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">{t('faq.label')}</p>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">{t('faq.title')}</h2>
+            <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('faq.label')}</p>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">{t('faq.title')}</h2>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
