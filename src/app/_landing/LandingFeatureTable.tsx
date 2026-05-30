@@ -159,23 +159,23 @@ export default async function LandingFeatureTable() {
     <section className="relative py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center mb-12">
-          <p className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-4">{t('label')}</p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">{t('title')}</h2>
-          <p className="text-sm md:text-base text-gray-500 mt-5">{t('subtitle')}</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('label')}</p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">{t('title')}</h2>
+          <p className="text-sm md:text-base text-gray-400 mt-5">{t('subtitle')}</p>
         </div>
 
         <div>
           {TABLES_DATA.map((table, index) => (
             <table key={index} className="w-full table-auto border-collapse max-w-4xl mx-auto mb-2 last:mb-0">
               <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="py-4 text-left text-gray-700 ps-4 w-full">
+                <tr className="border-b border-white/10">
+                  <th className="py-4 text-left text-gray-200 ps-4 w-full">
                     <div className="flex flex-col">
                       <p className="text-sm font-semibold">{table.title}</p>
-                      <p className="text-xs font-normal text-gray-400">{table.description}</p>
+                      <p className="text-xs font-normal text-gray-500">{table.description}</p>
                     </div>
                   </th>
-                  <th className="py-4 text-gray-700 px-3">
+                  <th className="py-4 text-gray-200 px-3">
                     <div className="flex flex-col items-center gap-1.5">
                       <Image
                         src="/logo.png"
@@ -185,24 +185,24 @@ export default async function LandingFeatureTable() {
                         className="size-5"
                         unoptimized
                       />
-                      <span className="text-xs font-semibold text-gray-900">NXTimer</span>
+                      <span className="text-xs font-semibold text-white">NXTimer</span>
                     </div>
                   </th>
-                  <th className="py-4 text-xs text-gray-400 align-bottom px-3 font-medium">csTimer</th>
-                  <th className="py-4 text-xs text-gray-400 align-bottom text-nowrap px-3 hidden md:table-cell font-medium">
+                  <th className="py-4 text-xs text-gray-500 align-bottom px-3 font-medium">csTimer</th>
+                  <th className="py-4 text-xs text-gray-500 align-bottom text-nowrap px-3 hidden md:table-cell font-medium">
                     Cube Desk
                   </th>
-                  <th className="py-4 text-xs text-gray-400 align-bottom text-nowrap px-3 hidden md:table-cell font-medium">
+                  <th className="py-4 text-xs text-gray-500 align-bottom text-nowrap px-3 hidden md:table-cell font-medium">
                     Twisty Timer
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {table.features.map((feature, fIndex) => (
-                  <tr key={fIndex} className="border-b border-gray-50 hover:bg-gray-50 transition-colors">
-                    <td className="py-5 text-sm text-gray-700 ps-4">
+                  <tr key={fIndex} className="border-b border-white/5 hover:bg-white/5 transition-colors">
+                    <td className="py-5 text-sm text-gray-200 ps-4">
                       <div className="font-medium">{feature.name}</div>
-                      <div className="text-xs text-gray-400 mt-0.5">{feature.description}</div>
+                      <div className="text-xs text-gray-500 mt-0.5">{feature.description}</div>
                     </td>
                     <td>
                       <RatedIcon type={feature.nxTimer as 'check' | 'cross' | 'partial'} />
