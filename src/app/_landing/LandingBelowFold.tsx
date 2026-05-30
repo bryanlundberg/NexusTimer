@@ -97,8 +97,8 @@ function PhotoBand({
       className="pointer-events-none absolute inset-x-0 top-0 -z-10 overflow-hidden"
       style={{ height }}
     >
-      <motion.div style={reduce ? undefined : { y }} className="absolute -inset-x-[6%] -top-[6%] bottom-0">
-        <Image src={src} alt="" fill sizes="100vw" className="object-cover opacity-90" />
+      <motion.div style={reduce ? undefined : { y }} className="absolute -inset-x-[6%] -top-[26%] bottom-0">
+        <Image src={src} alt="" fill sizes="100vw" className="object-cover opacity-10" />
       </motion.div>
       <div
         className="absolute inset-0"
@@ -334,7 +334,7 @@ function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HT
 
   return (
     <section className="relative py-32 md:py-48 overflow-hidden">
-      <PhotoBackdrop src="/landing/5.png" scrollContainer={scrollContainer} overlay={58} vignette />
+      <PhotoBackdrop src="/landing/5.png" scrollContainer={scrollContainer} overlay={90} vignette />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
@@ -626,7 +626,7 @@ export default function LandingBelowFold({
       <CrossPlatformZoom scrollContainer={scrollContainerRef} />
 
       <div className="relative overflow-hidden">
-        <PhotoBand src="/landing/4.png" scrollContainer={scrollContainerRef} height="40vh" />
+        <PhotoBand src="/landing/7.png" scrollContainer={scrollContainerRef} height="70vh" />
         <div className="relative z-10">{featureTable}</div>
       </div>
 

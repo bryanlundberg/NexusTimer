@@ -182,7 +182,7 @@ export default async function LandingFeatureTable() {
                         alt="Nexus Timer logo"
                         width={64}
                         height={64}
-                        className="size-5"
+                        className="size-5 brightness-0 invert"
                         unoptimized
                       />
                       <span className="text-xs font-semibold text-white">NXTimer</span>
