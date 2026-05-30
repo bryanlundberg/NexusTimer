@@ -7,7 +7,6 @@ import { useTranslations } from 'next-intl'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useRef } from 'react'
 import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
-import { SolveTimerAnimation } from './SolveTimerAnimation'
 
 export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.RefObject<HTMLDivElement | null> }) {
   const t = useTranslations('LandingPage')
@@ -30,7 +29,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
       ref={sectionRef}
       className="relative min-h-[calc(100dvh-64px)] flex flex-col items-center justify-center px-6"
     >
-      {/* Ambient brand spotlight, very faint, anchored behind the timer */}
+      {/* Ambient brand spotlight, very faint, anchored behind the headline */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-1/4 mx-auto h-[420px] w-[min(680px,90vw)] -translate-y-1/4 rounded-full blur-3xl"
@@ -39,6 +38,25 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
           opacity: 0.12
         }}
       />
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 grid h-[150px] w-[150px] -translate-x-1/2 -translate-y-1/2 grid-cols-3 grid-rows-3 gap-2 rotate-12 opacity-[0.13] sm:h-[200px] sm:w-[200px]"
+      >
+        {[
+          'var(--cube-white)',
+          'var(--cube-red)',
+          'var(--cube-blue)',
+          'var(--cube-green)',
+          'var(--cube-yellow)',
+          'var(--cube-orange)',
+          'var(--cube-blue)',
+          'var(--cube-white)',
+          'var(--cube-green)'
+        ].map((c, i) => (
+          <span key={i} className="rounded-[5px]" style={{ backgroundColor: c }} />
+        ))}
+      </div>
 
       <motion.div style={{ y, opacity }} className="relative max-w-5xl mx-auto text-center mt-5">
         <div
@@ -52,13 +70,9 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
           {t('hero.badge')}
         </div>
 
-        <div className="lp-rise mb-8" style={{ animationDelay: '0.12s' }}>
-          <SolveTimerAnimation />
-        </div>
-
         <h1
           className="lp-rise text-balance text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4"
-          style={{ animationDelay: '0.19s' }}
+          style={{ animationDelay: '0.12s' }}
         >
           {t('hero.title-before')}{' '}
           <span className="relative inline-block whitespace-nowrap text-primary">
@@ -72,14 +86,14 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
 
         <p
           className="lp-rise text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-4 text-pretty"
-          style={{ animationDelay: '0.26s' }}
+          style={{ animationDelay: '0.19s' }}
         >
           {t('hero.subtitle')}
         </p>
 
         <div
           className="lp-rise flex items-center justify-center gap-2 text-sm text-gray-500 mb-10"
-          style={{ animationDelay: '0.33s' }}
+          style={{ animationDelay: '0.26s' }}
         >
           <span>{t('hero.built-for')}</span>
           <RotatingText
@@ -98,7 +112,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
           />
         </div>
 
-        <div className="lp-rise flex flex-wrap items-center justify-center gap-4" style={{ animationDelay: '0.4s' }}>
+        <div className="lp-rise flex flex-wrap items-center justify-center gap-4" style={{ animationDelay: '0.33s' }}>
           <Link
             href="/app"
             className="group relative inline-flex items-center justify-center gap-2.5 rounded-full bg-white text-gray-900 font-semibold px-8 py-4 text-sm transition-all duration-300 hover:bg-gray-200 hover:scale-[1.03] hover:shadow-[0_8px_40px_-6px_var(--cube-blue)]"
@@ -124,7 +138,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
 
         <div
           className="lp-rise mt-12 flex items-center justify-center gap-4 text-xs text-gray-500"
-          style={{ animationDelay: '0.47s' }}
+          style={{ animationDelay: '0.4s' }}
         >
           <div className="flex -space-x-2">
             {[1, 2, 7].map((num) => (
