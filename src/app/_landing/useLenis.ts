@@ -25,9 +25,9 @@ export function useLenis(wrapperRef: RefObject<HTMLElement | null>, contentRef: 
     const lenis = new Lenis({
       wrapper,
       content,
-      lerp: 0.09,
+      lerp: 0.075,
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 0.95,
       touchMultiplier: 1.5
     })
 
