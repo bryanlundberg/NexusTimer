@@ -16,7 +16,106 @@ import {
 import { useState, useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import StickerSteps from './StickerSteps'
-import CommunityBreak from './CommunityBreak'
+
+/**
+ * A real photo dropped behind a section as toned texture. Heavy scrim keeps the
+ * foreground text well above AA contrast; a gentle parallax echoes the hall shot.
+ */
+function PhotoBackdrop({
+  src,
+  scrollContainer,
+  parallax = true,
+  overlay = 72,
+  objectPosition = 'center',
+  fade = 18,
+  vignette = false
+}: {
+  src: string
+  scrollContainer: React.RefObject<HTMLDivElement | null>
+  parallax?: boolean
+  overlay?: number
+  objectPosition?: string
+  fade?: number
+  vignette?: boolean
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    container: scrollContainer,
+    offset: ['start end', 'end start']
+  })
+  const y = useTransform(scrollYProgress, [0, 1], ['-7%', '7%'])
+
+  const mid = `color-mix(in oklch, var(--lp-bg) ${overlay}%, transparent)`
+  // vignette: photo only surfaces through a soft centre ellipse, fading to solid
+  // lp-bg on all four edges so it never touches the screen border.
+  // default: solid lp-bg holds at top/bottom so it never seams vertically.
+  const bg = vignette
+    ? `radial-gradient(ellipse 76% 64% at 50% 50%, transparent 26%, var(--lp-bg) 84%), linear-gradient(0deg, ${mid}, ${mid})`
+    : `linear-gradient(to bottom, var(--lp-bg) 0%, var(--lp-bg) ${fade}%, ${mid} ${fade + 22}%, ${mid} ${
+        78 - fade
+      }%, var(--lp-bg) ${100 - fade}%, var(--lp-bg) 100%)`
+
+  return (
+    <div ref={ref} aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <motion.div style={parallax && !reduce ? { y } : undefined} className="absolute -inset-[10%]">
+        <Image src={src} alt="" fill sizes="100vw" className="object-cover opacity-90" style={{ objectPosition }} />
+      </motion.div>
+      <div className="absolute inset-0" style={{ background: bg }} />
+    </div>
+  )
+}
+
+/**
+ * A horizontal photo pinned as a band across the TOP of a section: it covers the
+ * heading and the first sliver of content, then dissolves into lp-bg before the
+ * body begins. Sides fade too so it never reaches the screen edge.
+ */
+function PhotoBand({
+  src,
+  scrollContainer,
+  height = '64vh'
+}: {
+  src: string
+  scrollContainer: React.RefObject<HTMLDivElement | null>
+  height?: string
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const reduce = useReducedMotion()
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    container: scrollContainer,
+    offset: ['start end', 'end start']
+  })
+  const y = useTransform(scrollYProgress, [0, 1], ['-5%', '5%'])
+
+  return (
+    <div
+      ref={ref}
+      aria-hidden
+      className="pointer-events-none absolute inset-x-0 top-0 -z-10 overflow-hidden"
+      style={{ height }}
+    >
+      <motion.div style={reduce ? undefined : { y }} className="absolute -inset-x-[6%] -top-[6%] bottom-0">
+        <Image src={src} alt="" fill sizes="100vw" className="object-cover opacity-90" />
+      </motion.div>
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(to bottom, color-mix(in oklch, var(--lp-bg) 58%, transparent) 0%, color-mix(in oklch, var(--lp-bg) 60%, transparent) 42%, var(--lp-bg) 100%)'
+        }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to right, var(--lp-bg) 0%, transparent 16%, transparent 84%, var(--lp-bg) 100%)'
+        }}
+      />
+    </div>
+  )
+}
 
 function useCounter(target: number, duration: number = 2000) {
   const [count, setCount] = useState(0)
@@ -232,28 +331,10 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
 
 function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
   const t = useTranslations('LandingPage')
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    container: scrollContainer,
-    offset: ['start end', 'end start']
-  })
-  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100])
-  const y2 = useTransform(scrollYProgress, [0, 1], [50, -150])
-  const rotate1 = useTransform(scrollYProgress, [0, 1], [-5, 5])
-  const rotate2 = useTransform(scrollYProgress, [0, 1], [5, -5])
 
   return (
-    <section ref={ref} className="relative py-32 md:py-48 overflow-hidden">
-      <motion.div style={{ y: y1, rotate: rotate1 }} className="absolute -left-20 top-1/4 opacity-20">
-        <Image src="/categories/cube333.png" alt="" width={200} height={200} className="blur-[1px]" />
-      </motion.div>
-      <motion.div style={{ y: y2, rotate: rotate2 }} className="absolute -right-16 top-1/3 opacity-15">
-        <Image src="/categories/pyramix.png" alt="" width={180} height={180} className="blur-[1px]" />
-      </motion.div>
-      <motion.div style={{ y: y1 }} className="absolute left-1/4 bottom-10 opacity-10">
-        <Image src="/categories/cube222.png" alt="" width={120} height={120} className="blur-[2px]" />
-      </motion.div>
+    <section className="relative py-32 md:py-48 overflow-hidden">
+      <PhotoBackdrop src="/landing/5.png" scrollContainer={scrollContainer} overlay={58} vignette />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
@@ -386,7 +467,7 @@ function StatItem({
         {count}
         <span style={{ color: accent }}>{suffix}</span>
       </span>
-      <p className="text-xs text-gray-500 mt-3 uppercase tracking-[0.2em]">{label}</p>
+      <p className="text-xs text-gray-300 mt-3 uppercase tracking-[0.2em]">{label}</p>
     </motion.div>
   )
 }
@@ -544,9 +625,10 @@ export default function LandingBelowFold({
 
       <CrossPlatformZoom scrollContainer={scrollContainerRef} />
 
-      <CommunityBreak scrollContainer={scrollContainerRef} />
-
-      {featureTable}
+      <div className="relative overflow-hidden">
+        <PhotoBand src="/landing/4.png" scrollContainer={scrollContainerRef} height="40vh" />
+        <div className="relative z-10">{featureTable}</div>
+      </div>
 
       <StickyTestimonials scrollContainer={scrollContainerRef} />
 
