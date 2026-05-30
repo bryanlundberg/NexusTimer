@@ -177,27 +177,27 @@ function useShowcaseCards() {
     {
       title: t('showcase.public-profiles-title'),
       description: t('showcase.public-profiles-desc'),
-      imageSrc: '/landing/Screenshot_44.png'
+      imageSrc: '/landing/Screenshot_44.avif'
     },
     {
       title: t('showcase.stats-per-cube-title'),
       description: t('showcase.stats-per-cube-desc'),
-      imageSrc: '/landing/Screenshot_40.png'
+      imageSrc: '/landing/Screenshot_40.avif'
     },
     {
       title: t('showcase.deep-analytics-title'),
       description: t('showcase.deep-analytics-desc'),
-      imageSrc: '/landing/Screenshot_41.png'
+      imageSrc: '/landing/Screenshot_41.avif'
     },
     {
       title: 'Algorithm Trainer',
       description: 'Measure execution time per algorithm.',
-      imageSrc: '/landing/Screenshot_14.png'
+      imageSrc: '/landing/Screenshot_14.avif'
     },
     {
       title: t('showcase.real-time-battles-title'),
       description: t('showcase.real-time-battles-desc'),
-      imageSrc: '/landing/Screenshot_38.png'
+      imageSrc: '/landing/Screenshot_38.avif'
     }
   ]
 }
@@ -274,12 +274,27 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
     return () => window.removeEventListener('resize', check)
   }, [])
 
+  const rowRef = useRef<HTMLDivElement>(null)
+  const [maxScroll, setMaxScroll] = useState(0)
+
+  useEffect(() => {
+    const measure = () => {
+      const el = rowRef.current
+      if (el) setMaxScroll(Math.max(0, el.scrollWidth - el.clientWidth))
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [isMobile])
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     container: scrollContainer,
     offset: ['start start', 'end end']
   })
-  const x = useTransform(scrollYProgress, [0, 1], ['0%', '-55%'])
+  // Travel the exact measured overflow in px, so every card is revealed no
+  // matter the card size or viewport width (a fixed % guesses wrong on wide screens).
+  const x = useTransform(scrollYProgress, [0, 1], [0, -maxScroll])
 
   // Mobile: a horizontal sticky pin fights the native vertical scroll, so the
   // cards become a clean vertical reveal stack instead.
@@ -306,11 +321,15 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
   }
 
   return (
-    <section ref={containerRef} className="relative h-[300vh]">
+    <section ref={containerRef} className="relative h-[255vh]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         <ShowcaseHeader />
 
-        <motion.div style={{ x }} className="flex gap-6 pl-6 md:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]">
+        <motion.div
+          ref={rowRef}
+          style={{ x }}
+          className="flex gap-6 pl-6 pr-6 md:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] md:pr-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))]"
+        >
           {cards.map((card, index) => (
             <motion.div
               key={card.title}
@@ -318,7 +337,7 @@ function HorizontalShowcase({ scrollContainer }: { scrollContainer: React.RefObj
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[35vw] aspect-[16/10]"
+              className="flex-shrink-0 w-[90vw] md:w-[54vw] lg:w-[44vw] aspect-[16/10]"
             >
               <ShowcaseCard card={card} index={index} total={cards.length} />
             </motion.div>
@@ -334,7 +353,7 @@ function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HT
 
   return (
     <section className="relative py-32 md:py-48 overflow-hidden">
-      <PhotoBackdrop src="/landing/5.png" scrollContainer={scrollContainer} overlay={90} vignette />
+      <PhotoBackdrop src="/landing/5.avif" scrollContainer={scrollContainer} overlay={90} vignette />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
@@ -517,7 +536,7 @@ function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObje
         </div>
         <div className="mx-auto rounded-md bg-neutral-100 px-16 py-0.5 text-[10px] text-gray-500">nexustimer.com</div>
       </motion.div>
-      <Image src="/landing/desk2.png" alt="NexusTimer desktop view" width={1200} height={750} className="w-full" />
+      <Image src="/landing/desk2.avif" alt="NexusTimer desktop view" width={1200} height={750} className="w-full" />
     </motion.div>
   )
 
@@ -530,7 +549,7 @@ function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObje
             {browser}
             <div className="absolute -right-4 md:right-8 -bottom-8 md:-bottom-12 w-32 md:w-48">
               <Image
-                src="/landing/iphone13.png"
+                src="/landing/iphone13.avif"
                 alt="NexusTimer mobile view"
                 width={300}
                 height={600}
@@ -567,7 +586,13 @@ function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObje
           style={{ opacity: phoneOpacity, x: phoneX, scale: phoneScale }}
           className="absolute right-[5%] bottom-[8%] z-20 w-24 md:w-40"
         >
-          <Image src="/landing/iphone13.png" alt="NexusTimer mobile view" width={300} height={600} className="w-full" />
+          <Image
+            src="/landing/iphone13.avif"
+            alt="NexusTimer mobile view"
+            width={300}
+            height={600}
+            className="w-full"
+          />
         </motion.div>
       </div>
     </section>
@@ -626,7 +651,7 @@ export default function LandingBelowFold({
       <CrossPlatformZoom scrollContainer={scrollContainerRef} />
 
       <div className="relative overflow-hidden">
-        <PhotoBand src="/landing/7.png" scrollContainer={scrollContainerRef} height="70vh" />
+        <PhotoBand src="/landing/7.avif" scrollContainer={scrollContainerRef} height="70vh" />
         <div className="relative z-10">{featureTable}</div>
       </div>
 
