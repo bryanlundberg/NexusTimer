@@ -415,78 +415,137 @@ function StatItem({
   )
 }
 
-// Per-step visual: each step earns its own artifact instead of a generic icon.
-// All flavor is numeric / proper-noun / SVG, so nothing here needs translating.
-function StepAccent({ step }: { step: number }) {
+function StepArtifact({ step }: { step: number }) {
   if (step === 0) {
     return (
-      <div className="mt-5 flex flex-wrap gap-2">
-        {['csTimer', 'Twisty Timer', 'CubeDesk'].map((source) => (
-          <span
-            key={source}
-            className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 font-mono text-xs font-medium text-gray-300"
-          >
-            {source}
-          </span>
-        ))}
+      <div className="inline-flex items-center gap-2 font-mono text-sm">
+        <span className="font-bold tabular-nums text-white">1,204</span>
+        <span className="text-xs text-gray-400">solves</span>
+        <span className="text-[var(--cube-green)]">✓</span>
       </div>
     )
   }
-
   if (step === 1) {
     return (
-      <div className="mt-5 inline-flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5">
-        <span className="h-2 w-2 rounded-full bg-primary" />
-        <span className="text-xs font-medium text-gray-400">3×3</span>
-        <span className="font-mono text-lg font-bold tabular-nums text-white">8.42</span>
+      <div className="inline-flex items-center gap-2.5 font-mono text-sm">
+        <span className="rounded bg-white/10 px-1.5 py-0.5 text-[11px] text-gray-300">333</span>
+        <span className="font-bold tabular-nums text-white">8.42</span>
+        <span className="hidden text-xs text-gray-500 sm:inline">{"R U R' U'"}</span>
       </div>
     )
   }
-
   if (step === 2) {
-    // Times trending down across sessions. currentColor inherits the brand blue.
     return (
-      <svg
-        viewBox="0 0 132 44"
-        className="mt-5 h-11 w-36 overflow-visible text-[var(--cube-green)]"
-        fill="none"
-        aria-hidden
-      >
-        <polyline
-          points="0,8 22,15 44,11 66,23 88,19 110,30 132,35"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <circle cx="132" cy="35" r="3.5" fill="currentColor" />
-      </svg>
+      <div className="flex items-center gap-2 font-mono text-xs">
+        <span className="rounded-md border border-white/10 bg-white/5 px-2 py-1">
+          <span className="text-gray-500">ao5 </span>
+          <span className="font-bold tabular-nums text-white">8.91</span>
+        </span>
+        <span
+          className="rounded-md px-2 py-1"
+          style={{
+            borderWidth: 1,
+            borderColor: 'color-mix(in oklch, var(--cube-green) 34%, transparent)',
+            backgroundColor: 'color-mix(in oklch, var(--cube-green) 12%, transparent)'
+          }}
+        >
+          <span className="text-gray-400">PB </span>
+          <span className="font-bold tabular-nums text-[var(--cube-green)]">6.71 ▲</span>
+        </span>
+      </div>
     )
   }
-
-  // Week-over-week: bars shrink, the latest lands in brand blue.
   return (
-    <div className="mt-5 flex items-end gap-1.5" aria-hidden>
-      {[
-        { h: 34, on: false },
-        { h: 27, on: false },
-        { h: 21, on: false },
-        { h: 15, on: true }
-      ].map((bar, i) => (
-        <span
-          key={i}
-          style={{ height: bar.h }}
-          className={cn('w-3 rounded-sm', bar.on ? 'bg-[var(--cube-green)]' : 'bg-white/15')}
-        />
-      ))}
+    <div className="flex items-center gap-2.5">
+      <div className="flex items-end gap-1" aria-hidden>
+        {[14, 11, 12, 8, 6].map((h, i) => (
+          <span
+            key={i}
+            style={{ height: h }}
+            className={cn('w-1.5 rounded-sm', i === 4 ? 'bg-[var(--cube-green)]' : 'bg-white/20')}
+          />
+        ))}
+      </div>
+      <span className="font-mono text-xs font-bold tabular-nums text-[var(--cube-green)]">−1.8s</span>
     </div>
   )
 }
 
-function HowItWorks({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
+function CapabilityArtifact({ kind }: { kind: string }) {
+  if (kind === 'analytics') {
+    return (
+      <div className="grid grid-cols-3 gap-2 font-mono">
+        {[
+          { k: 'ao5', v: '8.91' },
+          { k: 'ao12', v: '9.34' },
+          { k: 'PB', v: '6.71' }
+        ].map((s) => (
+          <div key={s.k} className="rounded-md border border-[var(--chip-bd)] bg-[var(--chip-bg)] px-2.5 py-2">
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--muted)]">{s.k}</div>
+            <div className="text-base font-bold tabular-nums text-[var(--ink)]">{s.v}</div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+  if (kind === 'multiplayer') {
+    return (
+      <div className="space-y-1.5 font-mono text-sm">
+        <div className="flex items-center justify-between gap-4 rounded-md border-2 border-[var(--chip-bd)] bg-[var(--chip-bg)] px-2.5 py-1.5">
+          <span className="text-xs font-semibold text-[var(--ink)]">you</span>
+          <span className="font-bold tabular-nums text-[var(--ink)]">8.42</span>
+        </div>
+        <div className="flex items-center justify-between gap-4 rounded-md px-2.5 py-1.5">
+          <span className="text-xs text-[var(--muted)]">rival</span>
+          <span className="font-bold tabular-nums text-[var(--muted)]">9.10</span>
+        </div>
+      </div>
+    )
+  }
+  if (kind === 'profiles') {
+    return (
+      <div className="space-y-1.5 font-mono text-xs">
+        {[
+          ['333', '8.42'],
+          ['222', '2.10'],
+          ['pyra', '3.05']
+        ].map(([ev, v]) => (
+          <div key={ev} className="flex items-center justify-between gap-3">
+            <span className="rounded border border-[var(--chip-bd)] bg-[var(--chip-bg)] px-1.5 py-0.5 text-[10px] text-[var(--ink)]">
+              {ev}
+            </span>
+            <span className="font-bold tabular-nums text-[var(--ink)]">{v}</span>
+          </div>
+        ))}
+      </div>
+    )
+  }
+  if (kind === 'algorithms') {
+    return (
+      <div className="flex items-center gap-3 font-mono">
+        <span className="rounded-md border border-[var(--chip-bd)] bg-[var(--chip-bg)] px-2.5 py-1 text-xs font-bold text-[var(--ink)]">
+          OLL 21
+        </span>
+        <span className="truncate text-sm font-medium tabular-nums text-[var(--muted)]">{"R U2 R' U' R U' R'"}</span>
+      </div>
+    )
+  }
+  return (
+    <div className="flex items-center gap-4 font-mono">
+      <div>
+        <div className="text-2xl font-bold tabular-nums text-[var(--ink)]">12,480</div>
+        <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--muted)]">solves synced</div>
+      </div>
+      <span className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-[var(--chip-bd)] bg-[var(--chip-bg)] px-3 py-1 text-xs font-semibold text-[var(--ink)]">
+        ✓ up to date
+      </span>
+    </div>
+  )
+}
+
+function HowItWorks() {
   const t = useTranslations('LandingPage')
   const reduce = useReducedMotion()
-  const sectionRef = useRef<HTMLDivElement>(null)
 
   const steps = [
     { title: t('how-it-works.step1-title'), desc: t('how-it-works.step1-desc') },
@@ -495,29 +554,15 @@ function HowItWorks({ scrollContainer }: { scrollContainer: React.RefObject<HTML
     { title: t('how-it-works.step4-title'), desc: t('how-it-works.step4-desc') }
   ]
 
-  // Drives the brand line filling the spine top→bottom as the section is read.
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    container: scrollContainer,
-    offset: ['start 75%', 'end 70%']
-  })
-
-  // active = how many nodes are lit (1..N). Node 1 lights as soon as we arrive.
-  const [active, setActive] = useState(reduce ? steps.length : 1)
-  useMotionValueEvent(scrollYProgress, 'change', (p) => {
-    if (reduce) return
-    setActive(Math.min(steps.length, Math.max(1, Math.ceil(p * steps.length))))
-  })
-
   return (
-    <section ref={sectionRef} className="relative py-20 md:py-32">
+    <section className="relative py-20 md:py-32">
       <div className="mx-auto max-w-2xl px-6">
         <motion.header
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-14 md:mb-16"
+          className="mb-12 md:mb-14"
         >
           <div className="inline-flex items-center gap-2.5 mb-4 text-sm font-medium text-primary">
             <span className="h-1.5 w-1.5 rounded-full bg-primary" />
@@ -528,57 +573,60 @@ function HowItWorks({ scrollContainer }: { scrollContainer: React.RefObject<HTML
           </h2>
         </motion.header>
 
-        <ol>
-          {steps.map((step, i) => {
-            const on = active >= i + 1
-            const segmentOn = active >= i + 2
-            const last = i === steps.length - 1
+        <motion.div
+          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-10%' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]"
+        >
+          <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.02] px-5 py-3.5 md:px-7">
+            <div className="flex items-center gap-2 font-mono text-xs text-gray-400">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--cube-green)] opacity-60" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--cube-green)]" />
+              </span>
+              session log
+            </div>
+            <span className="font-mono text-xs text-gray-500">zero setup</span>
+          </div>
 
-            return (
+          <ol>
+            {steps.map((step, i) => (
               <motion.li
                 key={step.title}
-                initial={reduce ? { opacity: 0 } : { opacity: 0, y: 28 }}
+                initial={reduce ? { opacity: 0 } : { opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-12%' }}
-                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="relative flex gap-5 md:gap-7"
+                viewport={{ once: true, margin: '-8%' }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="grid grid-cols-[auto_1fr] gap-4 border-b border-white/5 px-5 py-5 transition-colors last:border-0 hover:bg-white/[0.02] md:gap-6 md:px-7"
               >
-                <div className="relative z-10 flex w-10 flex-shrink-0 flex-col items-center">
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      backgroundColor: on ? 'var(--primary)' : 'rgba(255,255,255,0.05)',
-                      borderColor: on ? 'var(--primary)' : 'rgba(255,255,255,0.15)',
-                      color: on ? '#ffffff' : 'rgb(148 163 184)',
-                      scale: on ? 1 : 0.92
-                    }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border font-mono text-sm font-semibold tabular-nums shadow-sm"
-                  >
-                    {i + 1}
-                  </motion.div>
-                  {!last && (
-                    <div className="relative mt-1.5 w-px flex-1">
-                      <div className="absolute inset-0 bg-white/15" />
-                      <motion.div
-                        initial={false}
-                        animate={{ scaleY: segmentOn ? 1 : 0 }}
-                        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute inset-0 origin-top bg-primary"
-                      />
-                    </div>
-                  )}
-                </div>
-
-                <div className={cn('flex-1', last ? 'pb-0' : 'pb-14 md:pb-16')}>
-                  <h3 className="text-lg md:text-xl font-semibold tracking-tight text-white">{step.title}</h3>
-                  <p className="mt-2 text-sm md:text-base text-gray-400 leading-relaxed text-pretty">{step.desc}</p>
-                  <StepAccent step={i} />
+                <div className="pt-0.5 font-mono text-sm tabular-nums text-gray-600">{`0${i + 1}`}</div>
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div className="md:max-w-xs">
+                    <h3 className="text-base font-semibold tracking-tight text-white">{step.title}</h3>
+                    <p className="mt-1 text-sm text-gray-400 leading-relaxed text-pretty">{step.desc}</p>
+                    {i === 0 && (
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {['csTimer', 'Twisty Timer', 'CubeDesk'].map((s) => (
+                          <span
+                            key={s}
+                            className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 font-mono text-[11px] text-gray-300"
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <div className="shrink-0 md:pl-4">
+                    <StepArtifact step={i} />
+                  </div>
                 </div>
               </motion.li>
-            )
-          })}
-        </ol>
+            ))}
+          </ol>
+        </motion.div>
       </div>
     </section>
   )
@@ -752,7 +800,7 @@ export default function LandingBelowFold({
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:auto-rows-[208px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 lg:auto-rows-[248px]">
               {[
                 {
                   icon: Timer,
@@ -760,7 +808,8 @@ export default function LandingBelowFold({
                   description: t('capabilities.timer-desc'),
                   span: 'md:col-span-2 lg:col-span-2 lg:row-span-2',
                   featured: true,
-                  tint: null
+                  tint: null,
+                  kind: 'timer'
                 },
                 {
                   icon: BarChart3,
@@ -768,7 +817,8 @@ export default function LandingBelowFold({
                   description: t('capabilities.analytics-desc'),
                   span: 'lg:col-span-2',
                   featured: false,
-                  tint: 'var(--cube-green)'
+                  tint: 'var(--cube-green)',
+                  kind: 'analytics'
                 },
                 {
                   icon: Users,
@@ -776,7 +826,8 @@ export default function LandingBelowFold({
                   description: t('capabilities.multiplayer-desc'),
                   span: '',
                   featured: false,
-                  tint: 'var(--cube-orange)'
+                  tint: 'var(--cube-orange)',
+                  kind: 'multiplayer'
                 },
                 {
                   icon: Globe,
@@ -784,7 +835,8 @@ export default function LandingBelowFold({
                   description: t('capabilities.profiles-desc'),
                   span: '',
                   featured: false,
-                  tint: 'var(--cube-blue)'
+                  tint: 'var(--cube-white)',
+                  kind: 'profiles'
                 },
                 {
                   icon: AudioWaveform,
@@ -792,7 +844,8 @@ export default function LandingBelowFold({
                   description: t('capabilities.algorithms-desc'),
                   span: 'lg:col-span-2',
                   featured: false,
-                  tint: 'var(--cube-red)'
+                  tint: 'var(--cube-red)',
+                  kind: 'algorithms'
                 },
                 {
                   icon: DatabaseZap,
@@ -800,7 +853,8 @@ export default function LandingBelowFold({
                   description: t('capabilities.cloud-desc'),
                   span: 'md:col-span-2 lg:col-span-2',
                   featured: false,
-                  tint: 'var(--cube-yellow)'
+                  tint: 'var(--cube-yellow)',
+                  kind: 'cloud'
                 }
               ].map((feature, index) => (
                 <motion.div
@@ -810,70 +864,105 @@ export default function LandingBelowFold({
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.06 }}
                   style={
-                    feature.featured
-                      ? { background: 'linear-gradient(150deg, oklch(0.62 0.2 262) 0%, oklch(0.48 0.19 264) 100%)' }
-                      : undefined
+                    (feature.featured
+                      ? {
+                          background: 'linear-gradient(150deg, oklch(0.62 0.2 262) 0%, oklch(0.44 0.18 264) 100%)',
+                          borderColor: 'rgba(0,0,0,0.45)',
+                          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.18), 0 26px 60px -28px var(--cube-blue)',
+                          '--ink': '#ffffff',
+                          '--muted': 'rgba(255,255,255,0.72)',
+                          '--chip-bg': 'rgba(255,255,255,0.16)',
+                          '--chip-bd': 'rgba(255,255,255,0.24)'
+                        }
+                      : {
+                          backgroundColor: feature.tint as string,
+                          borderColor: 'rgba(0,0,0,0.45)',
+                          boxShadow: `inset 0 1px 0 rgba(255,255,255,0.22), 0 18px 46px -28px ${feature.tint}`,
+                          '--ink': '#15171e',
+                          '--muted': 'rgba(18,20,28,0.66)',
+                          '--chip-bg': 'rgba(0,0,0,0.12)',
+                          '--chip-bd': 'rgba(0,0,0,0.22)'
+                        }) as unknown as React.CSSProperties
                   }
                   className={cn(
-                    'group relative overflow-hidden rounded-2xl border p-6 flex flex-col transition-colors duration-300',
-                    feature.featured
-                      ? 'border-transparent text-white shadow-[0_24px_60px_-24px_rgba(59,108,246,0.65)]'
-                      : 'border-white/10 bg-white/5 hover:border-white/20',
+                    'group relative overflow-hidden rounded-lg border-2 p-5 md:p-6 flex flex-col',
                     feature.span
                   )}
                 >
-                  <div className="relative z-10 flex h-full flex-col">
-                    <div
-                      className={cn(
-                        'flex items-center justify-center rounded-xl border mb-5',
-                        feature.featured ? 'bg-white/15 border-white/25' : 'border-transparent',
-                        feature.featured ? 'h-14 w-14' : 'h-11 w-11'
-                      )}
-                      style={
-                        feature.featured || !feature.tint
-                          ? undefined
-                          : {
-                              backgroundColor: `color-mix(in oklch, ${feature.tint} 16%, transparent)`,
-                              borderColor: `color-mix(in oklch, ${feature.tint} 34%, transparent)`
-                            }
-                      }
-                    >
-                      <feature.icon
-                        strokeWidth={1.75}
-                        className={cn(feature.featured ? 'text-white' : '', feature.featured ? 'h-7 w-7' : 'h-5 w-5')}
-                        style={feature.featured ? undefined : { color: feature.tint ?? undefined }}
-                      />
-                    </div>
-                    <h3
-                      className={cn(
-                        'font-semibold mb-2',
-                        feature.featured ? 'text-white text-xl md:text-2xl' : 'text-white text-base'
-                      )}
-                    >
-                      {feature.title}
-                    </h3>
-                    <p
-                      className={cn(
-                        'leading-relaxed text-pretty',
-                        feature.featured ? 'text-white/80 text-sm md:text-base max-w-sm' : 'text-gray-300 text-sm'
-                      )}
-                    >
-                      {feature.description}
-                    </p>
+                  {/* plastic-sticker sheen */}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/15 via-transparent to-transparent"
+                  />
 
-                    {/* Speedcubing flavor: the anchor tile reads like a real
-                        timer — a mono solve time over a scramble. */}
-                    {feature.featured && (
+                  {feature.featured ? (
+                    <div className="relative z-10 flex h-full flex-col text-white">
+                      <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-md border border-white/25 bg-white/15">
+                        <feature.icon strokeWidth={1.75} className="h-7 w-7 text-white" />
+                      </div>
+                      <h3 className="mb-2 text-xl font-semibold text-white md:text-2xl">{feature.title}</h3>
+                      <p className="max-w-sm text-sm leading-relaxed text-pretty text-white/80 md:text-base">
+                        {feature.description}
+                      </p>
+
+                      {/* The anchor tile reads like a live timer: solve time + averages + scramble */}
                       <div className="mt-auto pt-8">
-                        <div className="font-mono font-black tabular-nums leading-none text-white text-5xl md:text-7xl">
-                          8.42
+                        <div className="flex items-end gap-4">
+                          <div className="font-mono text-5xl font-black leading-none tabular-nums text-white md:text-7xl">
+                            8.42
+                          </div>
+                          <div className="flex flex-col gap-1.5 pb-1 font-mono">
+                            <span className="rounded bg-white/15 px-2 py-0.5 text-[11px]">
+                              <span className="text-white/55">ao5 </span>
+                              <span className="font-bold tabular-nums text-white">8.91</span>
+                            </span>
+                            <span className="rounded bg-white/15 px-2 py-0.5 text-[11px]">
+                              <span className="text-white/55">PB </span>
+                              <span className="font-bold tabular-nums text-white">6.71</span>
+                            </span>
+                          </div>
                         </div>
-                        <p className="mt-3 font-mono text-[11px] md:text-xs text-white/55 tracking-wide truncate">
-                          {"R U R' U' F2 L' D B2 R2  ·  ao5 8.91"}
+                        <p className="mt-4 truncate font-mono text-[11px] tracking-wide text-white/55 md:text-xs">
+                          {"scramble  ·  R U R' U' F2 L' D B2 R2 U'"}
                         </p>
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  ) : feature.span.includes('col-span-2') ? (
+                    <div
+                      className="relative z-10 flex h-full items-center gap-5 md:gap-8"
+                      style={{ color: 'var(--ink)' }}
+                    >
+                      <div className="min-w-0 flex-1">
+                        <div className="mb-2.5 flex items-center gap-2.5">
+                          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--chip-bd)] bg-[var(--chip-bg)]">
+                            <feature.icon strokeWidth={2} className="h-5 w-5 text-[var(--ink)]" />
+                          </div>
+                          <h3 className="text-base font-bold text-[var(--ink)]">{feature.title}</h3>
+                        </div>
+                        <p className="line-clamp-2 max-w-sm text-sm font-medium leading-relaxed text-pretty text-[var(--muted)]">
+                          {feature.description}
+                        </p>
+                      </div>
+                      <div className="shrink-0">
+                        <CapabilityArtifact kind={feature.kind} />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="relative z-10 flex h-full flex-col" style={{ color: 'var(--ink)' }}>
+                      <div className="mb-3 flex items-center gap-2.5">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--chip-bd)] bg-[var(--chip-bg)]">
+                          <feature.icon strokeWidth={2} className="h-5 w-5 text-[var(--ink)]" />
+                        </div>
+                        <h3 className="text-base font-bold text-[var(--ink)]">{feature.title}</h3>
+                      </div>
+                      <p className="line-clamp-2 text-sm font-medium leading-relaxed text-pretty text-[var(--muted)]">
+                        {feature.description}
+                      </p>
+                      <div className="mt-auto pt-5">
+                        <CapabilityArtifact kind={feature.kind} />
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </div>
@@ -881,7 +970,7 @@ export default function LandingBelowFold({
         </section>
       </ScrollRevealSection>
 
-      <HowItWorks scrollContainer={scrollContainerRef} />
+      <HowItWorks />
 
       <CrossPlatformZoom scrollContainer={scrollContainerRef} />
 
