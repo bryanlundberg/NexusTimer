@@ -62,7 +62,7 @@ export default function SkyOutro({
         aria-hidden
         style={{
           background:
-            'linear-gradient(to bottom, #ffffff 0%, #ffffff 10%, oklch(0.96 0.006 258) 22%, oklch(0.86 0.014 260) 33%, oklch(0.7 0.026 261) 45%, oklch(0.52 0.036 263) 57%, oklch(0.34 0.04 264) 70%, oklch(0.18 0.03 265) 85%, oklch(0.08 0.02 266) 100%)'
+            'linear-gradient(to bottom, var(--lp-bg) 0%, oklch(0.16 0.012 265) 14%, oklch(0.152 0.018 264) 34%, oklch(0.135 0.024 264) 54%, oklch(0.11 0.024 265) 72%, oklch(0.08 0.02 266) 87%, oklch(0.05 0.015 266) 100%)'
         }}
         className="pointer-events-none absolute inset-0 -z-20"
       />
