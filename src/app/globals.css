@@ -184,3 +184,41 @@
   color-scheme: dark;
   background-color: var(--lp-bg);
 }
+
+@keyframes lp-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes lp-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.lp-rise {
+  animation: lp-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.lp-underline {
+  transform-origin: left;
+  animation: lp-grow 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-rise,
+  .lp-underline {
+    animation: none;
+  }
+}

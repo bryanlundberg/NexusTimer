@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import Lenis from 'lenis'
+import type Lenis from 'lenis'
 import type { RefObject } from 'react'
 
 /**
@@ -22,25 +22,32 @@ export function useLenis(wrapperRef: RefObject<HTMLElement | null>, contentRef: 
     if (!wrapper || !content) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const lenis = new Lenis({
-      wrapper,
-      content,
-      lerp: 0.075,
-      smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.5
+    let lenis: Lenis | undefined
+    let frame = 0
+    let cancelled = false
+
+    import('lenis').then(({ default: Lenis }) => {
+      if (cancelled) return
+      lenis = new Lenis({
+        wrapper,
+        content,
+        lerp: 0.075,
+        smoothWheel: true,
+        wheelMultiplier: 0.95,
+        touchMultiplier: 1.5
+      })
+
+      const raf = (time: number) => {
+        lenis?.raf(time)
+        frame = requestAnimationFrame(raf)
+      }
+      frame = requestAnimationFrame(raf)
     })
 
-    let frame = 0
-    const raf = (time: number) => {
-      lenis.raf(time)
-      frame = requestAnimationFrame(raf)
-    }
-    frame = requestAnimationFrame(raf)
-
     return () => {
+      cancelled = true
       cancelAnimationFrame(frame)
-      lenis.destroy()
+      lenis?.destroy()
     }
   }, [wrapperRef, contentRef])
 }

@@ -12,7 +12,7 @@ export function SolveTimerAnimation() {
 
   useEffect(() => {
     const timeouts: ReturnType<typeof setTimeout>[] = []
-    let interval: ReturnType<typeof setInterval> | undefined
+    let frame = 0
 
     const cycle = () => {
       setPhase('inspecting')
@@ -22,19 +22,20 @@ export function SolveTimerAnimation() {
         setTimeout(() => {
           setPhase('solving')
           const solveTarget = 3 + Math.random() * 3
-          const startTime = Date.now()
+          const startTime = performance.now()
 
-          interval = setInterval(() => {
-            const elapsed = (Date.now() - startTime) / 1000
+          const tick = () => {
+            const elapsed = (performance.now() - startTime) / 1000
             if (elapsed >= solveTarget) {
               setTime(solveTarget)
               setPhase('done')
-              if (interval) clearInterval(interval)
               timeouts.push(setTimeout(cycle, 2200))
             } else {
               setTime(elapsed)
+              frame = requestAnimationFrame(tick)
             }
-          }, 10)
+          }
+          frame = requestAnimationFrame(tick)
         }, 1500)
       )
     }
@@ -42,7 +43,7 @@ export function SolveTimerAnimation() {
     timeouts.push(setTimeout(cycle, 800))
     return () => {
       timeouts.forEach(clearTimeout)
-      if (interval) clearInterval(interval)
+      cancelAnimationFrame(frame)
     }
   }, [])
 

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { motion, useScroll, useTransform, useReducedMotion, type Variants } from 'motion/react'
+import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useRef } from 'react'
 import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
 import { SolveTimerAnimation } from './SolveTimerAnimation'
@@ -25,22 +25,6 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
   const y = reduce ? 0 : yRaw
   const opacity = reduce ? 1 : opacityRaw
 
-  const container: Variants = {
-    hidden: {},
-    show: {
-      transition: { staggerChildren: reduce ? 0 : 0.09, delayChildren: 0.05 }
-    }
-  }
-  const item: Variants = {
-    hidden: reduce ? { opacity: 0 } : { opacity: 0, y: 24, filter: 'blur(8px)' },
-    show: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
-    }
-  }
-
   return (
     <section
       ref={sectionRef}
@@ -56,53 +40,47 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
         }}
       />
 
-      <motion.div
-        style={{ y, opacity }}
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="relative max-w-5xl mx-auto text-center mt-5"
-      >
-        <motion.div
-          variants={item}
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur px-4 py-1.5 text-xs text-gray-300 mb-10"
+      <motion.div style={{ y, opacity }} className="relative max-w-5xl mx-auto text-center mt-5">
+        <div
+          className="lp-rise inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur px-4 py-1.5 text-xs text-gray-300 mb-10"
+          style={{ animationDelay: '0.05s' }}
         >
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
           </span>
           {t('hero.badge')}
-        </motion.div>
+        </div>
 
-        <motion.div variants={item} className="mb-8">
+        <div className="lp-rise mb-8" style={{ animationDelay: '0.12s' }}>
           <SolveTimerAnimation />
-        </motion.div>
+        </div>
 
-        <motion.h1
-          variants={item}
-          className="text-balance text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4"
+        <h1
+          className="lp-rise text-balance text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4"
+          style={{ animationDelay: '0.19s' }}
         >
           {t('hero.title-before')}{' '}
           <span className="relative inline-block whitespace-nowrap text-primary">
             {t('hero.title-highlight')}
-            <motion.span
+            <span
               aria-hidden
-              className="absolute -bottom-1 left-0 h-[3px] w-full origin-left rounded-full bg-primary/60"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.7, delay: reduce ? 0 : 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="lp-underline absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-primary/60"
             />
           </span>
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          variants={item}
-          className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-4 text-pretty"
+        <p
+          className="lp-rise text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-4 text-pretty"
+          style={{ animationDelay: '0.26s' }}
         >
           {t('hero.subtitle')}
-        </motion.p>
+        </p>
 
-        <motion.div variants={item} className="flex items-center justify-center gap-2 text-sm text-gray-500 mb-10">
+        <div
+          className="lp-rise flex items-center justify-center gap-2 text-sm text-gray-500 mb-10"
+          style={{ animationDelay: '0.33s' }}
+        >
           <span>{t('hero.built-for')}</span>
           <RotatingText
             text={[
@@ -118,9 +96,9 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
             duration={2000}
             className="text-white font-semibold"
           />
-        </motion.div>
+        </div>
 
-        <motion.div variants={item} className="flex flex-wrap items-center justify-center gap-4">
+        <div className="lp-rise flex flex-wrap items-center justify-center gap-4" style={{ animationDelay: '0.4s' }}>
           <Link
             href="/app"
             className="group relative inline-flex items-center justify-center gap-2.5 rounded-full bg-white text-gray-900 font-semibold px-8 py-4 text-sm transition-all duration-300 hover:bg-gray-200 hover:scale-[1.03] hover:shadow-[0_8px_40px_-6px_var(--cube-blue)]"
@@ -142,9 +120,12 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
           >
             {t('hero.cta-secondary')}
           </Link>
-        </motion.div>
+        </div>
 
-        <motion.div variants={item} className="mt-12 flex items-center justify-center gap-4 text-xs text-gray-500">
+        <div
+          className="lp-rise mt-12 flex items-center justify-center gap-4 text-xs text-gray-500"
+          style={{ animationDelay: '0.47s' }}
+        >
           <div className="flex -space-x-2">
             {[1, 2, 7].map((num) => (
               <Image
@@ -154,11 +135,12 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
                 alt="Community member"
                 width={28}
                 height={28}
+                loading="lazy"
               />
             ))}
           </div>
           <span>{t('hero.social-proof')}</span>
-        </motion.div>
+        </div>
       </motion.div>
 
       <motion.div
