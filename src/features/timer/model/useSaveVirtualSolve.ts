@@ -7,11 +7,14 @@ import { sendSolveToServer } from '@/shared/lib/actions'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import genId from '@/shared/lib/genId'
 import { Solve } from '@/entities/solve/model/types'
+import { ReplayMove } from '@/entities/replay/model/types'
 
 interface SavePayload {
   timeMs: number
   scramble: string | null
   dnf: boolean
+  replayMoves?: ReplayMove[]
+  smart?: boolean
 }
 
 export function useSaveVirtualSolve(engine: CubeEngine | null | undefined) {
@@ -23,10 +26,11 @@ export function useSaveVirtualSolve(engine: CubeEngine | null | undefined) {
   const solvesSinceLastSync = useSettingsStore((state) => state.settings.sync.totalSolves)
 
   return useCallback(
-    async ({ timeMs, scramble, dnf }: SavePayload) => {
+    async ({ timeMs, scramble, dnf, replayMoves, smart = false }: SavePayload) => {
       if (!selectedCube || !scramble) return
 
       const now = Date.now()
+      const puzzle = selectedCube.category === '2x2' ? '2x2x2' : '3x3x3'
       const newSolve: Solve = {
         id: genId(),
         startTime: now - timeMs,
@@ -40,15 +44,18 @@ export function useSaveVirtualSolve(engine: CubeEngine | null | undefined) {
         cubeId: selectedCube.id,
         comment: '',
         isDeleted: false,
-        updatedAt: now
+        updatedAt: now,
+        ...(replayMoves && replayMoves.length > 0
+          ? { replay: { version: 1, puzzle, scramble, durationMs: timeMs, moves: replayMoves } }
+          : {})
       }
 
       sendSolveToServer({
         solve: newSolve,
         userId: session?.user?.id ?? undefined,
         solution: engine?.getMoves(true),
-        puzzle: selectedCube.category === '2x2' ? '2x2x2' : '3x3x3',
-        smart: false
+        puzzle,
+        smart
       }).catch((e) => {
         console.warn('sendSolveToServer error (ignored):', e)
       })
