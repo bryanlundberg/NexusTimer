@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { GlobeAmericasIcon } from '@heroicons/react/24/outline'
+import { PlayIcon } from '@radix-ui/react-icons'
 import { useRouter } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
 import formatTime from '@/shared/lib/formatTime'
@@ -39,6 +40,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
 
   const rank = index + 1
   const tps = solve.solution ? calcTurnsPerSecond(solve.solution, solve.time) : null
+  const hasReplay = Boolean(solve.replay?.moves?.length)
 
   return (
     <motion.div
@@ -105,7 +107,19 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
         {tps ? `${tps}` : t('not-available')}
       </span>
 
-      <TimeDisplay value={formatTime(solve.time)} />
+      <div className="flex items-center gap-1.5 min-w-0">
+        <TimeDisplay value={formatTime(solve.time)} />
+        {hasReplay && (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <span className="inline-flex shrink-0 text-primary">
+                <PlayIcon className="size-3.5" />
+              </span>
+            </TooltipTrigger>
+            <TooltipContent>{t('replay-available')}</TooltipContent>
+          </Tooltip>
+        )}
+      </div>
 
       <span className="text-xs text-muted-foreground tabular-nums">
         {moment(solve.createdAt).locale(locale).format('ll')}
