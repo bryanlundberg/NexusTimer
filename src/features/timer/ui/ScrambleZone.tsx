@@ -86,8 +86,8 @@ export function ScrambleZone() {
       layout
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.35, ease: 'easeInOut' }}
+      exit={{ opacity: 0, transition: { duration: 0.1, ease: 'easeIn' } }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
       className={cn(
         'leading-none',
         isNext
