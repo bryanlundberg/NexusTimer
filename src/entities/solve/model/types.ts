@@ -25,6 +25,19 @@ export type Solve = {
   replay?: SolveReplay
 }
 
+const solveReplayMoveSchema = z.object({
+  m: z.string(),
+  t: z.number()
+})
+
+const solveReplaySchema = z.object({
+  version: z.literal(1),
+  puzzle: z.string(),
+  scramble: z.string(),
+  durationMs: z.number(),
+  moves: z.array(solveReplayMoveSchema)
+})
+
 const SolveServerSchema = z.object({
   _id: z.string(),
   user: userSchema,
@@ -34,7 +47,8 @@ const SolveServerSchema = z.object({
   puzzle: z.enum(CUBE_CATEGORIES),
   createdAt: z.string(),
   updatedAt: z.string().optional(),
-  smart: z.boolean().optional()
+  smart: z.boolean().optional(),
+  replay: solveReplaySchema.optional()
 })
 
 export type SolveServer = z.infer<typeof SolveServerSchema>
