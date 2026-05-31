@@ -5,6 +5,7 @@ import { Compass, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
 import { useVirtualCube } from '@/features/timer/model/useVirtualCube'
 import { useSolveSession } from '@/features/timer/model/useSolveSession'
 import { useSmartCubeMoves } from '@/features/smart-cube/model/useSmartCubeMoves'
@@ -22,6 +23,9 @@ export function SmartCubeTimer({ connection }: SmartCubeTimerProps) {
   const selectedCube = useTimerStore((store) => store.selectedCube)
   const setNewScramble = useTimerStore((store) => store.setNewScramble)
   const setIsSolvingStore = useTimerStore((store) => store.setIsSolving)
+  const setScrambleGuide = useScrambleGuideStore((store) => store.setGuide)
+  const setScrambleReady = useScrambleGuideStore((store) => store.setReady)
+  const resetScrambleGuide = useScrambleGuideStore((store) => store.reset)
 
   const { containerRef, player, engine, recreatePlayer } = useVirtualCube({
     cubeSize: CUBE_SIZE,
@@ -35,7 +39,7 @@ export function SmartCubeTimer({ connection }: SmartCubeTimerProps) {
     if (selectedCube) setNewScramble(selectedCube)
   }, [selectedCube, setNewScramble])
 
-  const { phase, isReady, solvingTime, processMove } = useSolveSession({
+  const { phase, solvingTime, guide, processMove } = useSolveSession({
     player,
     engine,
     scramble,
@@ -49,6 +53,13 @@ export function SmartCubeTimer({ connection }: SmartCubeTimerProps) {
   useEffect(() => {
     setIsSolvingStore(phase === 'solving')
   }, [phase, setIsSolvingStore])
+
+  useEffect(() => {
+    setScrambleGuide(guide)
+    setScrambleReady(phase === 'armed')
+  }, [guide, phase, setScrambleGuide, setScrambleReady])
+
+  useEffect(() => () => resetScrambleGuide(), [resetScrambleGuide])
 
   useEffect(() => {
     if (!scramble && selectedCube) setNewScramble(selectedCube)
@@ -69,7 +80,7 @@ export function SmartCubeTimer({ connection }: SmartCubeTimerProps) {
     }
   }, [engine, recreatePlayer, connection])
 
-  const hint = phase === 'scrambling' ? 'Apply the scramble on your cube…' : isReady ? 'Ready — start solving' : ''
+  const hint = phase === 'scrambling' ? 'Apply the scramble on your cube…' : ''
 
   return (
     <div className="grow flex flex-col items-center justify-center gap-3">
