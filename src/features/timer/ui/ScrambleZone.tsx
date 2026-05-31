@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Pencil2Icon } from '@radix-ui/react-icons'
 import { Keyboard, Lightbulb } from 'lucide-react'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
@@ -21,7 +22,9 @@ import { cn } from '@/shared/lib/utils'
 import genSolution, { prewarmSolver } from '@/shared/lib/timer/genSolution'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import type { ScrambleGuideItem } from '@/shared/lib/timer/scrambleGuide'
 import { Layers } from '@/shared/types/enums'
 import { CrossSolution } from '@/shared/types/types'
 
@@ -38,6 +41,8 @@ export function ScrambleZone() {
   const isSolving = useTimerStore((store) => store.isSolving)
   const timerMode = useTimerStore((store) => store.timerMode)
   const settings = useSettingsStore((store) => store.settings)
+  const guide = useScrambleGuideStore((store) => store.guide)
+  const scrambleReady = useScrambleGuideStore((store) => store.ready)
   const openOverlay = useOverlayStore((store) => store.open)
   const t = useTranslations('Index')
 
@@ -47,7 +52,8 @@ export function ScrambleZone() {
 
   const sizeClasses = SCRAMBLE_SIZE_CLASSES[scrambleSize]
   const scrambleText = selectedCube ? scramble : t('HomePage.empty-scramble')
-  const showModalButton = isOverflowing && !!selectedCube
+  const showGuide = guide != null && (guide.corrections.length > 0 || guide.pending.length > 0)
+  const showModalButton = isOverflowing && !!selectedCube && !showGuide && !scrambleReady
   const showHintButton =
     !isSolving && !!selectedCube && HINT_CATEGORIES.includes(selectedCube.category as (typeof HINT_CATEGORIES)[number])
   const showVirtualKeyboard = timerMode === TimerMode.VIRTUAL && !isSolving && !!selectedCube
@@ -71,6 +77,31 @@ export function ScrambleZone() {
     genSolution(selectedCube.category, scramble, Layers.YELLOW).then((res: CrossSolution) => setHints(res))
   }
 
+  const renderGuideMove = (
+    item: ScrambleGuideItem,
+    { isCorrection, isNext }: { isCorrection: boolean; isNext: boolean }
+  ) => (
+    <motion.span
+      key={item.key}
+      layout
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.35, ease: 'easeInOut' }}
+      className={cn(
+        'leading-none',
+        isNext
+          ? cn(
+              'inline-flex items-center justify-center size-[2.1em] rounded-full border-2 font-semibold',
+              isCorrection ? 'border-destructive bg-destructive/10 text-destructive' : 'border-primary bg-primary/10'
+            )
+          : isCorrection && 'text-destructive font-medium'
+      )}
+    >
+      {item.move}
+    </motion.span>
+  )
+
   return (
     <div className="relative mx-auto w-full max-w-7xl">
       <div
@@ -84,7 +115,26 @@ export function ScrambleZone() {
           {scrambleText}
         </p>
 
-        {showModalButton ? (
+        {scrambleReady ? (
+          <motion.p
+            data-testid="scramble-text-zone"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
+            className="font-semibold tracking-wide text-primary"
+          >
+            Ready
+          </motion.p>
+        ) : showGuide ? (
+          <p data-testid="scramble-text-zone" className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
+            <AnimatePresence initial={false} mode="popLayout">
+              {guide!.corrections.map((item, i) => renderGuideMove(item, { isCorrection: true, isNext: i === 0 }))}
+              {guide!.pending.map((item, i) =>
+                renderGuideMove(item, { isCorrection: false, isNext: guide!.corrections.length === 0 && i === 0 })
+              )}
+            </AnimatePresence>
+          </p>
+        ) : showModalButton ? (
           <Dialog>
             <DialogTrigger className="text-sm opacity-60 hover:opacity-100 transition-opacity">
               [ Show scramble ]
