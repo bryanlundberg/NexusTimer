@@ -444,7 +444,8 @@
     "solve-details": {
       "unknown-category": "Unknown",
       "move-to-history": "Move to History",
-      "transfer-collection": "Transfer Collection"
+      "transfer-collection": "Transfer Collection",
+      "watch-replay": "Watch replay"
     },
     "Settings-menu": {
       "locale": "Region",

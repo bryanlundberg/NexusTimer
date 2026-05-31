@@ -375,7 +375,8 @@
     "solve-details": {
       "unknown-category": "Desconocido",
       "move-to-history": "Mover al Historial",
-      "transfer-collection": "Transferir Colección"
+      "transfer-collection": "Transferir Colección",
+      "watch-replay": "Ver repetición"
     },
     "SettingsPage": {
       "account": "Cuenta",
