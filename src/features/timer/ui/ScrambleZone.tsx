@@ -57,7 +57,8 @@ export function ScrambleZone() {
   const showHintButton =
     !isSolving && !!selectedCube && HINT_CATEGORIES.includes(selectedCube.category as (typeof HINT_CATEGORIES)[number])
   const showVirtualKeyboard = timerMode === TimerMode.VIRTUAL && !isSolving && !!selectedCube
-  const showEditButton = !isSolving && !!selectedCube
+  const showEditButton =
+    !isSolving && !!selectedCube && timerMode !== TimerMode.SMART_CUBE && timerMode !== TimerMode.VIRTUAL
 
   useEffect(() => {
     if (!showHintButton) return
