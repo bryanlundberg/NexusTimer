@@ -1,8 +1,13 @@
+'use client'
+
+import { useState } from 'react'
+import dynamic from 'next/dynamic'
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { CalendarIcon, ClockIcon } from '@radix-ui/react-icons'
+import { CalendarIcon, ClockIcon, PlayIcon } from '@radix-ui/react-icons'
 import { DateTime } from 'luxon'
 import { useLocale, useTranslations } from 'next-intl'
+import { Button } from '@/components/ui/button'
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Badge } from '@/components/ui/badge'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
@@ -10,14 +15,21 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { Solve } from '@/entities/solve/model/types'
 import QuickActions from '@/features/manage-solves/ui/QuickActions'
 
+const RealtimeReplayPlayer = dynamic(
+  () => import('@/features/solve-replay/ui/RealtimeReplayPlayer').then((m) => m.RealtimeReplayPlayer),
+  { ssr: false }
+)
+
 export default function SolveDetails() {
   const t = useTranslations('Index')
   const overlayStore = useOverlayStore()
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const locale = useLocale()
   const { activeOverlay } = overlayStore
+  const [showReplay, setShowReplay] = useState(false)
 
   const solve = activeOverlay?.metadata as Solve | undefined
+  const replay = solve?.replay
   const formattedDate = DateTime.fromMillis(solve?.endTime || 0)
     .setLocale(locale)
     .toFormat('DDDD')
@@ -70,6 +82,20 @@ export default function SolveDetails() {
             />
           </div>
         </div>
+
+        {/* Real-speed replay */}
+        {replay && (
+          <div className="px-4 pb-4 sm:px-5">
+            {showReplay ? (
+              <RealtimeReplayPlayer replay={replay} />
+            ) : (
+              <Button type="button" variant="secondary" className="w-full gap-1.5" onClick={() => setShowReplay(true)}>
+                <PlayIcon className="size-4" />
+                {t('solve-details.watch-replay')}
+              </Button>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Actions - compact bottom bar */}
