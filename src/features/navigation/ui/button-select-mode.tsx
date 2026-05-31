@@ -33,6 +33,9 @@ export default function ButtonSelectMode() {
     if (selectedCube.category !== '3x3' && selectedCube.category !== '2x2' && timerMode === TimerMode.VIRTUAL) {
       setTimerMode(TimerMode.NORMAL)
     }
+    if (selectedCube.category !== '3x3' && timerMode === TimerMode.SMART_CUBE) {
+      setTimerMode(TimerMode.NORMAL)
+    }
   }, [selectedCube, setTimerMode, timerMode])
 
   const handleNexusConnectClick = async () => {
@@ -79,7 +82,11 @@ export default function ButtonSelectMode() {
             >
               {t('HomePage.modes.virtual')}
             </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem data-testid={'mode-smart'} value={TimerMode.SMART_CUBE} disabled>
+            <DropdownMenuRadioItem
+              data-testid={'mode-smart'}
+              value={TimerMode.SMART_CUBE}
+              disabled={selectedCube?.category !== '3x3'}
+            >
               {t('HomePage.modes.smart')}
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem
