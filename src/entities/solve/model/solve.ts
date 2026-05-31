@@ -3,6 +3,25 @@ import { model, models, Schema } from 'mongoose'
 export const LEADERBOARD_PUZZLES = ['3x3x3', '2x2x2'] as const
 export type LeaderboardPuzzle = (typeof LEADERBOARD_PUZZLES)[number]
 
+const ReplayMoveSchema = new Schema(
+  {
+    m: { type: String, required: true },
+    t: { type: Number, required: true }
+  },
+  { _id: false }
+)
+
+const ReplaySchema = new Schema(
+  {
+    version: { type: Number, required: true },
+    puzzle: { type: String, required: true },
+    scramble: { type: String, required: true },
+    durationMs: { type: Number, required: true },
+    moves: { type: [ReplayMoveSchema], default: [] }
+  },
+  { _id: false }
+)
+
 const SolveSchema = new Schema(
   {
     user: {
@@ -30,6 +49,10 @@ const SolveSchema = new Schema(
     smart: {
       type: Boolean,
       default: false
+    },
+    replay: {
+      type: ReplaySchema,
+      required: false
     }
   },
   { timestamps: true }
