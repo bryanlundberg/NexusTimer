@@ -5,3 +5,4 @@ onlyBuiltDependencies:
   - '@swc/core'
   - sharp
   - unrs-resolver
+  - smartcube-web-bluetooth
