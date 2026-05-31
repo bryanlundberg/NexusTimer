@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 import { userSchema } from '@/entities/user/model/types'
+import { SolveReplay } from '@/entities/replay/model/types'
 
 export type Solves = {
   session: Array<Solve>
@@ -21,6 +22,7 @@ export type Solve = {
   comment?: string
   isDeleted?: boolean
   updatedAt?: number
+  replay?: SolveReplay
 }
 
 const SolveServerSchema = z.object({
