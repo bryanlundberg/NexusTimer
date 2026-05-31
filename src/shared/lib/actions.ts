@@ -30,7 +30,8 @@ export async function sendSolveToServer({
       scramble: solve.scramble,
       solution: solution ? cleanRotations(solution.toString()) : null,
       puzzle: puzzle,
-      smart
+      smart,
+      replay: solve.replay ?? null
     })
 
     return true
