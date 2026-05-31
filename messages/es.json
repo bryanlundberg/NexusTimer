@@ -287,7 +287,8 @@
         "image": "Imagen",
         "date": "Fecha",
         "tps": "tps",
-        "not-available": "N/D"
+        "not-available": "N/D",
+        "replay-available": "Repetición disponible"
       },
       "comparative": {
         "title": "Comparativa",

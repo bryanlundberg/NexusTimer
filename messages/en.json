@@ -393,7 +393,8 @@
         "image": "Image",
         "date": "Date",
         "tps": "tps",
-        "not-available": "N/A"
+        "not-available": "N/A",
+        "replay-available": "Replay available"
       },
       "comparative": {
         "title": "Comparative",
