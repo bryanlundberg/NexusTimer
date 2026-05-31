@@ -2,12 +2,19 @@
 
 import { DialogContent, DialogTitle } from '@/components/ui/dialog'
 import * as React from 'react'
+import dynamic from 'next/dynamic'
 import { TwistyPlayer } from 'cubing/twisty'
 import formatTime from '@/shared/lib/formatTime'
 import calcTurnsPerSecond from '@/shared/lib/statistics/calcTurnsPerSecond'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { useTranslations } from 'next-intl'
+import type { SolveReplay } from '@/entities/replay/model/types'
+
+const RealtimeReplayPlayer = dynamic(
+  () => import('@/features/solve-replay/ui/RealtimeReplayPlayer').then((m) => m.RealtimeReplayPlayer),
+  { ssr: false }
+)
 
 export function ReplaySolveDetails() {
   const t = useTranslations('Index.leaderboard-solve-details')
@@ -15,23 +22,30 @@ export function ReplaySolveDetails() {
   const { metadata } = activeOverlay || {}
   if (!metadata) return null
 
+  const replay = metadata.replay as SolveReplay | undefined
+  const hasReplay = Boolean(replay && replay.moves.length > 0)
+
   return (
     <DialogContent className={'flex flex-col justify-center items-center gap-4'}>
       <DialogTitle>{t('user-solution')}</DialogTitle>
-      <AlgorithmRender
-        config={
-          {
-            alg: metadata.solution || metadata.scramble || '',
-            experimentalDragInput: 'none',
-            tempoScale: metadata.solution ? metadata.solution.split(' ').length / (metadata.time / 1000) : 1,
-            experimentalSetupAnchor: 'end',
-            puzzle: metadata.puzzle || '3x3x3',
-            background: 'none'
-          } as unknown as TwistyPlayer
-        }
-        width={400}
-        height={400}
-      />
+      {hasReplay ? (
+        <RealtimeReplayPlayer replay={replay!} size={400} />
+      ) : (
+        <AlgorithmRender
+          config={
+            {
+              alg: metadata.solution || metadata.scramble || '',
+              experimentalDragInput: 'none',
+              tempoScale: metadata.solution ? metadata.solution.split(' ').length / (metadata.time / 1000) : 1,
+              experimentalSetupAnchor: 'end',
+              puzzle: metadata.puzzle || '3x3x3',
+              background: 'none'
+            } as unknown as TwistyPlayer
+          }
+          width={400}
+          height={400}
+        />
+      )}
 
       <div className="flex flex-col gap-2 items-center">
         <div className="text-lg font-bold">
