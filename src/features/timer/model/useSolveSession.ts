@@ -4,6 +4,17 @@ import { CubeEngine } from 'cube-state-engine'
 import { useSolveClock } from '@/features/timer/model/useSolveClock'
 import { useSolveReplayRecorder } from '@/features/timer/model/useSolveReplayRecorder'
 import { useSaveVirtualSolve } from '@/features/timer/model/useSaveVirtualSolve'
+import {
+  formatMove,
+  guideFromState,
+  initGuideState,
+  parseMove,
+  stepGuide,
+  tokenizeScramble,
+  type GuideState,
+  type ScrambleGuide,
+  type ScrambleMove
+} from '@/shared/lib/timer/scrambleGuide'
 
 export type SolvePhase = 'scrambling' | 'armed' | 'solving' | 'solved'
 export type ScrambleMode = 'auto' | 'manual'
@@ -36,6 +47,8 @@ export function useSolveSession({
 }: UseSolveSessionArgs) {
   const initialPhase: SolvePhase = scrambleMode === 'auto' ? 'armed' : 'scrambling'
   const [phase, setPhaseState] = useState<SolvePhase>(initialPhase)
+  // Live guidance while applying a manual scramble (null in `auto` mode).
+  const [guide, setGuide] = useState<ScrambleGuide | null>(null)
 
   const clock = useSolveClock()
   const recorder = useSolveReplayRecorder()
@@ -43,6 +56,11 @@ export function useSolveSession({
 
   const phaseRef = useRef<SolvePhase>(initialPhase)
   const targetStateRef = useRef<string | null>(null)
+  // Cube state after each scramble prefix, used to reconcile guidance with the
+  // real cube: returning to any valid prefix clears accumulated corrections.
+  const prefixStatesRef = useRef<string[]>([])
+  const scrambleTokensRef = useRef<ScrambleMove[]>([])
+  const guideStateRef = useRef<GuideState>(initGuideState())
   const processedSolveRef = useRef(false)
   const postSolveLockRef = useRef(0)
   const postSolveTimeoutRef = useRef<number | null>(null)
@@ -131,11 +149,26 @@ export function useSolveSession({
       if (!scrambling) recorder.record(move)
 
       if (scrambling) {
+        const parsed = isRotation ? null : parseMove(move)
+        if (parsed) {
+          guideStateRef.current = stepGuide(scrambleTokensRef.current, guideStateRef.current, parsed)
+        }
         try {
-          if (targetStateRef.current && JSON.stringify(engine.state()) === targetStateRef.current) {
+          const stateJson = JSON.stringify(engine.state())
+          if (targetStateRef.current && stateJson === targetStateRef.current) {
             setPhase('armed')
+            setGuide(null)
+            return
+          }
+          if (parsed) {
+            const prefixIndex = prefixStatesRef.current.lastIndexOf(stateJson)
+            const gs = guideStateRef.current
+            if (prefixIndex >= 0 && (gs.index !== prefixIndex || gs.acc !== 0 || gs.errors.length > 0)) {
+              guideStateRef.current = { index: prefixIndex, acc: 0, errors: [] }
+            }
           }
         } catch {}
+        if (parsed) setGuide(guideFromState(scrambleTokensRef.current, guideStateRef.current))
         return
       }
 
@@ -168,6 +201,8 @@ export function useSolveSession({
       try {
         engine?.reset()
       } catch {}
+      guideStateRef.current = initGuideState()
+      setGuide(guideFromState(scrambleTokensRef.current, guideStateRef.current))
       setPhase('scrambling')
     }
 
@@ -182,15 +217,29 @@ export function useSolveSession({
     if (!engine) return
 
     if (scrambleMode === 'manual' && scramble) {
+      const tokens = tokenizeScramble(scramble)
+      scrambleTokensRef.current = tokens
+      guideStateRef.current = initGuideState()
+      setGuide(guideFromState(tokens, guideStateRef.current))
       try {
-        const target = new CubeEngine('', { size: cubeSize })
-        target.applyMoves(scramble, { record: false })
-        targetStateRef.current = JSON.stringify(target.state())
+        const probe = new CubeEngine('', { size: cubeSize })
+        const states = [JSON.stringify(probe.state())]
+        for (const token of tokens) {
+          probe.applyMoves(formatMove(token), { record: false })
+          states.push(JSON.stringify(probe.state()))
+        }
+        prefixStatesRef.current = states
+        targetStateRef.current = states[states.length - 1]
       } catch {
+        prefixStatesRef.current = []
         targetStateRef.current = null
       }
     } else {
       targetStateRef.current = null
+      prefixStatesRef.current = []
+      scrambleTokensRef.current = []
+      guideStateRef.current = initGuideState()
+      setGuide(null)
     }
 
     processedSolveRef.current = false
@@ -211,6 +260,7 @@ export function useSolveSession({
     isReady: phase === 'armed',
     isSolving: phase === 'solving',
     solvingTime: clock.solvingTime,
+    guide,
     processMove,
     cancel
   }
