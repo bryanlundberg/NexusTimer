@@ -64,7 +64,12 @@
       "solution": "Solution",
       "moves": "Moves",
       "tps": "TPS",
-      "replay": "Replay"
+      "replay": "Replay",
+      "phases": "Phases",
+      "cross": "Cross",
+      "f2l": "F2L",
+      "oll": "OLL",
+      "pll": "PLL"
     },
     "Auth": {
       "sign-in": "Sign In",
@@ -396,6 +401,7 @@
         "image": "Image",
         "date": "Date",
         "tps": "tps",
+        "moves": "Moves",
         "not-available": "N/A",
         "replay-available": "Replay available"
       },
