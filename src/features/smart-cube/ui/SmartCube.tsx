@@ -159,7 +159,7 @@ export default function SmartCube() {
   if (macRequest) {
     return (
       <form
-        className="flex w-full max-w-xs flex-col grow items-center justify-center gap-3"
+        className="flex w-full max-w-xs flex-col grow items-center justify-center gap-3 mx-auto"
         onSubmit={(e) => {
           e.preventDefault()
           submitMac()
