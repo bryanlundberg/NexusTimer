@@ -1,5 +1,7 @@
 packages:
   - '.'
+minimumReleaseAgeExclude:
+  - cube-state-engine
 onlyBuiltDependencies:
   - '@parcel/watcher'
   - '@swc/core'
