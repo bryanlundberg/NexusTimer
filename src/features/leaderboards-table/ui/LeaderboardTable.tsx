@@ -9,7 +9,7 @@ interface LeaderboardTableProps {
   solves: SolveServer[]
 }
 
-export const GRID = 'grid-cols-[2.5rem_minmax(10rem,1fr)_6rem_5rem_6rem_8rem]'
+export const GRID = 'grid-cols-[2.5rem_minmax(10rem,1fr)_6rem_4rem_4rem_6rem_8rem]'
 
 export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
   const t = useTranslations('Index.LeaderboardsPage.table')
@@ -26,6 +26,7 @@ export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
             {t('category')}
           </span>
           <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('tps')}</span>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('moves')}</span>
           <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('time')}</span>
           <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('date')}</span>
         </div>
