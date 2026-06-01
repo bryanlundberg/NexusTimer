@@ -11,16 +11,13 @@ interface UseRealtimeReplayArgs {
 
 export function useRealtimeReplay({ player, replay }: UseRealtimeReplayArgs) {
   const [status, setStatus] = useState<ReplayStatus>('idle')
-  const [speed, setSpeed] = useState(1)
+  const [index, setIndex] = useState(0)
+
+  const total = replay?.moves.length ?? 0
 
   const idxRef = useRef(0)
   const lastMoveTimeRef = useRef(0)
   const timeoutRef = useRef<number | null>(null)
-  const speedRef = useRef(speed)
-
-  useEffect(() => {
-    speedRef.current = speed
-  }, [speed])
 
   const clearPending = useCallback(() => {
     if (timeoutRef.current != null) {
@@ -29,12 +26,24 @@ export function useRealtimeReplay({ player, replay }: UseRealtimeReplayArgs) {
     }
   }, [])
 
-  const resetCube = useCallback(() => {
-    if (!player) return
-    try {
-      player.alg = ''
-    } catch {}
-  }, [player])
+  const render = useCallback(
+    (n: number) => {
+      if (!player || !replay) return n
+      const clamped = Math.max(0, Math.min(n, replay.moves.length))
+      try {
+        player.alg = replay.moves
+          .slice(0, clamped)
+          .map((move) => move.m)
+          .join(' ')
+        player.jumpToEnd()
+      } catch {}
+      idxRef.current = clamped
+      lastMoveTimeRef.current = clamped === 0 ? 0 : replay.moves[clamped - 1].t
+      setIndex(clamped)
+      return clamped
+    },
+    [player, replay]
+  )
 
   const scheduleNext = useCallback(() => {
     if (!player || !replay) return
@@ -44,7 +53,7 @@ export function useRealtimeReplay({ player, replay }: UseRealtimeReplayArgs) {
       return
     }
     const target = moves[idxRef.current].t
-    const delay = Math.max(0, (target - lastMoveTimeRef.current) / speedRef.current)
+    const delay = Math.max(0, target - lastMoveTimeRef.current)
     timeoutRef.current = window.setTimeout(() => {
       const move = moves[idxRef.current]
       try {
@@ -52,36 +61,47 @@ export function useRealtimeReplay({ player, replay }: UseRealtimeReplayArgs) {
       } catch {}
       lastMoveTimeRef.current = move.t
       idxRef.current += 1
+      setIndex(idxRef.current)
       scheduleNext()
     }, delay)
   }, [player, replay])
 
-  const play = useCallback(() => {
-    if (!player || !replay || replay.moves.length === 0) return
-    clearPending()
-    resetCube()
-    idxRef.current = 0
-    lastMoveTimeRef.current = 0
-    setStatus('playing')
-    scheduleNext()
-  }, [player, replay, clearPending, resetCube, scheduleNext])
+  const playFrom = useCallback(
+    (start: number) => {
+      if (!player || !replay || replay.moves.length === 0) return
+      clearPending()
+      render(start)
+      setStatus('playing')
+      scheduleNext()
+    },
+    [player, replay, clearPending, render, scheduleNext]
+  )
 
   const pause = useCallback(() => {
     clearPending()
     setStatus((prev) => (prev === 'playing' ? 'paused' : prev))
   }, [clearPending])
 
-  const resume = useCallback(() => {
-    if (!player || !replay) return
-    setStatus('playing')
-    scheduleNext()
-  }, [player, replay, scheduleNext])
+  const seek = useCallback(
+    (n: number) => {
+      clearPending()
+      const clamped = render(n)
+      setStatus(clamped >= total && total > 0 ? 'done' : 'paused')
+    },
+    [clearPending, render, total]
+  )
 
-  const restart = useCallback(() => {
-    play()
-  }, [play])
+  const next = useCallback(() => seek(idxRef.current + 1), [seek])
+  const prev = useCallback(() => seek(idxRef.current - 1), [seek])
+  const restart = useCallback(() => playFrom(0), [playFrom])
+
+  const toggle = useCallback(() => {
+    if (status === 'playing') pause()
+    else if (idxRef.current >= total) playFrom(0)
+    else playFrom(idxRef.current)
+  }, [status, total, pause, playFrom])
 
   useEffect(() => clearPending, [clearPending, player, replay])
 
-  return { status, speed, setSpeed, play, pause, resume, restart }
+  return { status, index, total, toggle, pause, restart, next, prev, seek }
 }

@@ -1,10 +1,9 @@
 'use client'
 
-import * as React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { TwistyPlayer } from 'cubing/twisty'
-import { Pause, Play, RotateCcw } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Pause, Play, RotateCcw, SkipBack, SkipForward } from 'lucide-react'
+import { cn } from '@/shared/lib/utils'
 import type { SolveReplay } from '@/entities/replay/model/types'
 import { useRealtimeReplay } from '@/features/solve-replay/model/useRealtimeReplay'
 
@@ -13,13 +12,14 @@ interface RealtimeReplayPlayerProps {
   size?: number
 }
 
-const SPEEDS = [0.5, 1, 2] as const
+const ICON_BUTTON =
+  'inline-flex items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-30'
 
-export function RealtimeReplayPlayer({ replay, size = 300 }: RealtimeReplayPlayerProps) {
+export function RealtimeReplayPlayer({ replay, size = 232 }: RealtimeReplayPlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [player, setPlayer] = useState<TwistyPlayer | null>(null)
 
-  const { status, speed, setSpeed, play, pause, resume, restart } = useRealtimeReplay({ player, replay })
+  const { status, index, total, toggle, restart, next, prev, seek } = useRealtimeReplay({ player, replay })
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -32,7 +32,7 @@ export function RealtimeReplayPlayer({ replay, size = 300 }: RealtimeReplayPlaye
       controlPanel: 'none',
       tempoScale: 4,
       background: 'none',
-      experimentalDragInput: 'none'
+      experimentalDragInput: 'auto'
     })
     twisty.style.width = `${size}px`
     twisty.style.height = `${size}px`
@@ -49,48 +49,71 @@ export function RealtimeReplayPlayer({ replay, size = 300 }: RealtimeReplayPlaye
   }, [replay, size])
 
   const isPlaying = status === 'playing'
-
-  const handlePrimary = () => {
-    if (isPlaying) pause()
-    else if (status === 'paused') resume()
-    else play()
-  }
+  const pct = total > 0 ? (index / total) * 100 : 0
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      <div ref={containerRef} className="rounded-md overflow-hidden" />
+    <div className="flex w-full flex-col items-center gap-4">
+      <div ref={containerRef} className="rounded-lg" />
 
-      <div className="flex items-center gap-2">
-        <Button type="button" size="sm" variant="secondary" onClick={handlePrimary} className="gap-1.5">
-          {isPlaying ? <Pause className="size-4" /> : <Play className="size-4" />}
-          {isPlaying ? 'Pause' : status === 'paused' ? 'Resume' : 'Play'}
-        </Button>
+      <div className="flex w-full flex-col gap-3">
+        <div className="flex items-center gap-3">
+          <div className="group relative flex-1">
+            <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted group-focus-within:ring-2 group-focus-within:ring-ring">
+              <div
+                className="h-full rounded-full bg-primary transition-[width] duration-150"
+                style={{ width: `${pct}%` }}
+              />
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={total}
+              value={index}
+              onChange={(event) => seek(Number(event.target.value))}
+              aria-label="Reconstruction position"
+              aria-valuetext={`Move ${index} of ${total}`}
+              className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+            />
+          </div>
+          <span className="min-w-[3.25rem] text-right font-mono text-xs tabular-nums text-muted-foreground">
+            {index}/{total}
+          </span>
+        </div>
 
-        <Button
-          type="button"
-          size="sm"
-          variant="ghost"
-          onClick={restart}
-          disabled={status === 'idle'}
-          className="gap-1.5"
-        >
-          <RotateCcw className="size-4" />
-          Restart
-        </Button>
-
-        <div className="flex items-center rounded-md border p-0.5">
-          {SPEEDS.map((s) => (
-            <button
-              key={s}
-              type="button"
-              onClick={() => setSpeed(s)}
-              className={`px-2 py-0.5 text-xs rounded-sm tabular-nums transition-colors ${
-                speed === s ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              {s}x
-            </button>
-          ))}
+        <div className="flex items-center justify-center gap-1">
+          <button type="button" aria-label="Restart" onClick={restart} className={cn(ICON_BUTTON, 'size-9')}>
+            <RotateCcw className="size-4" />
+          </button>
+          <button
+            type="button"
+            aria-label="Previous move"
+            onClick={prev}
+            disabled={index <= 0}
+            className={cn(ICON_BUTTON, 'size-9')}
+          >
+            <SkipBack className="size-4" />
+          </button>
+          <button
+            type="button"
+            aria-label={isPlaying ? 'Pause' : 'Play'}
+            onClick={toggle}
+            className="mx-1 inline-flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm transition-transform hover:bg-primary/90 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            {isPlaying ? (
+              <Pause className="size-5 fill-current" />
+            ) : (
+              <Play className="size-5 translate-x-px fill-current" />
+            )}
+          </button>
+          <button
+            type="button"
+            aria-label="Next move"
+            onClick={next}
+            disabled={index >= total}
+            className={cn(ICON_BUTTON, 'size-9')}
+          >
+            <SkipForward className="size-4" />
+          </button>
         </div>
       </div>
     </div>

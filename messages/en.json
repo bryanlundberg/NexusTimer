@@ -61,7 +61,10 @@
       "user-solution": "Reconstruction",
       "time": "Time",
       "scramble": "Scramble",
-      "solution": "Solution"
+      "solution": "Solution",
+      "moves": "Moves",
+      "tps": "TPS",
+      "replay": "Replay"
     },
     "Auth": {
       "sign-in": "Sign In",
