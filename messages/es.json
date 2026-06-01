@@ -29,7 +29,10 @@
       "user-solution": "Reconstrucción",
       "time": "Tiempo",
       "scramble": "Scramble",
-      "solution": "Solución"
+      "solution": "Solución",
+      "moves": "Movimientos",
+      "tps": "TPS",
+      "replay": "Repetición"
     },
     "Auth": {
       "sign-in": "Iniciar sesión",
