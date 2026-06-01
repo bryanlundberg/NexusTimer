@@ -14,7 +14,7 @@ export default function PuzzleSwitch({ value, onChange }: PuzzleSwitchProps) {
   return (
     <div
       role="tablist"
-      className="inline-flex items-center gap-1 p-1 rounded-lg border border-border/60 bg-background/60"
+      className="inline-flex w-fit shrink-0 items-center gap-1 p-1 rounded-lg border border-border/60 bg-background/60"
     >
       {LEADERBOARD_PUZZLE_OPTIONS.map((option) => (
         <PuzzleSwitchTab

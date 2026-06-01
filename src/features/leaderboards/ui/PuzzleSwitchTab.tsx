@@ -18,7 +18,7 @@ export default function PuzzleSwitchTab({ option, active, layoutId, onSelect }: 
       onClick={() => onSelect(option.value)}
       aria-pressed={active}
       className={cn(
-        'relative flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer',
+        'relative flex shrink-0 items-center gap-2 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-colors cursor-pointer',
         active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
       )}
     >
@@ -34,9 +34,12 @@ export default function PuzzleSwitchTab({ option, active, layoutId, onSelect }: 
         alt={option.label}
         animate={{ opacity: active ? 1 : 0.6, rotate: active ? [0, -8, 8, 0] : 0 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className="relative size-6"
+        className="relative size-6 shrink-0"
       />
-      <span className="relative font-mono">{option.label}</span>
+      <span className="relative flex flex-col items-start leading-tight">
+        <span className="font-mono">{option.label}</span>
+        <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">{option.mode}</span>
+      </span>
     </button>
   )
 }

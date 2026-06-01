@@ -14,6 +14,7 @@ import useLeaderboardRow from '@/features/leaderboards-table/model/useLeaderboar
 import { SolveServer } from '@/entities/solve/model/types'
 import { useLocale, useTranslations } from 'next-intl'
 import { GRID } from '@/features/leaderboards-table/ui/LeaderboardTable'
+import { cn } from '@/shared/lib/utils'
 
 interface LeaderboardTableRowProps {
   solve: SolveServer
@@ -44,10 +45,13 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
 
   return (
     <motion.div
-      onClick={openModal}
+      onClick={hasReplay ? openModal : undefined}
       variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
-      className={`grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150 cursor-pointer`}
+      className={cn(
+        `grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent transition-colors duration-150`,
+        hasReplay && 'hover:bg-muted/20 hover:border-l-primary cursor-pointer'
+      )}
     >
       <span className="text-xs font-mono text-muted-foreground tabular-nums text-right select-none">
         {String(rank).padStart(2, '0')}
