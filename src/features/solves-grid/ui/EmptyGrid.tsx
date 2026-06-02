@@ -1,25 +1,52 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
+import { motion, useReducedMotion, type Variants } from 'motion/react'
+import { Nexi } from '@/shared/ui/nexi'
 
 export default function EmptyGrid({ title, description }: { title?: string; description?: string }) {
   const t = useTranslations('Index.SolvesPage')
+  const reduceMotion = useReducedMotion()
+
+  const container: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: reduceMotion ? 0 : 0.07,
+        delayChildren: reduceMotion ? 0 : 0.08
+      }
+    }
+  }
+
+  const item: Variants = {
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 10 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: reduceMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] }
+    }
+  }
+
   return (
-    <div
-      className="w-full flex flex-col items-center justify-center text-center text-sm sm:text-md font-mono py-20 max-w-96 mx-auto"
+    <motion.div
+      variants={container}
+      initial="hidden"
+      animate="show"
+      className="flex flex-col items-center justify-center grow py-12 px-2 text-center"
       data-testid="empty-solves-grid"
     >
-      <Image
-        src={'/utils/empty-solves.svg'}
-        alt="empty"
-        width={200}
-        height={200}
-        className="object-scale-down mb-10 size-40"
-        priority={true}
-      />
-      <h2 className="text-2xl font-bold mb-4 text-center text-balance">{title ? title : t('empty-solves')}</h2>
-      <p className="text-gray-600 text-center text-balance">
+      <motion.div variants={item} className="relative grid place-items-center size-36 shrink-0" aria-hidden="true">
+        <div className="absolute inset-7 rounded-full bg-primary/10 blur-2xl" />
+        <div className="absolute inset-11 rounded-full bg-primary/15 blur-xl" />
+        <Nexi state="empty" size={120} aria-label={title ? title : t('empty-solves')} />
+      </motion.div>
+
+      <motion.h2 variants={item} className="mt-1 text-lg font-semibold tracking-tight text-balance text-foreground">
+        {title ? title : t('empty-solves')}
+      </motion.h2>
+      <motion.p variants={item} className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground text-pretty">
         {description ? description : t('empty-solves-description')}
-      </p>
-    </div>
+      </motion.p>
+    </motion.div>
   )
 }
