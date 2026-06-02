@@ -63,7 +63,7 @@
     "colorizr": "^3.0.8",
     "country-flag-icons": "^1.5.18",
     "cube-solver": "^2.4.1",
-    "cube-state-engine": "^1.5.1",
+    "cube-state-engine": "^1.6.0",
     "cubing": "^0.56.0",
     "date-fns": "^2.30.0",
     "es-toolkit": "^1.42.0",
