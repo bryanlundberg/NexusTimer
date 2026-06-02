@@ -7,14 +7,15 @@ import { DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFoot
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { Nexi, type NexiState } from '@/shared/ui/nexi'
 
-const RATING_EMOJIS = [
-  { value: 1, emoji: '😞', labelKey: 'rating-1' },
-  { value: 2, emoji: '😕', labelKey: 'rating-2' },
-  { value: 3, emoji: '😐', labelKey: 'rating-3' },
-  { value: 4, emoji: '😊', labelKey: 'rating-4' },
-  { value: 5, emoji: '🤩', labelKey: 'rating-5' }
-] as const
+const RATING_NEXI = [
+  { value: 1, state: 'oops', labelKey: 'rating-1' },
+  { value: 2, state: 'sleep', labelKey: 'rating-2' },
+  { value: 3, state: 'idle', labelKey: 'rating-3' },
+  { value: 4, state: 'hello', labelKey: 'rating-4' },
+  { value: 5, state: 'pb', labelKey: 'rating-5' }
+] as const satisfies ReadonlyArray<{ value: number; state: NexiState; labelKey: string }>
 
 export default function FeedbackModal() {
   const { data: session } = useSession()
@@ -50,7 +51,7 @@ export default function FeedbackModal() {
     return (
       <DialogContent className="sm:max-w-md">
         <div className="flex flex-col items-center gap-4 py-8">
-          <span className="text-5xl">🎉</span>
+          <Nexi state="pb" size={88} aria-label={t('thanks')} />
           <DialogTitle>{t('thanks')}</DialogTitle>
           <Button onClick={close} variant="outline">
             {t('close')}
@@ -67,17 +68,20 @@ export default function FeedbackModal() {
         <DialogDescription>{t('description')}</DialogDescription>
       </DialogHeader>
 
-      <div className="flex justify-center gap-2 py-4">
-        {RATING_EMOJIS.map(({ value, emoji, labelKey }) => (
+      <div className="flex justify-center gap-1 py-4">
+        {RATING_NEXI.map(({ value, state, labelKey }) => (
           <button
             key={value}
             type="button"
             onClick={() => setRating(value)}
-            className={`flex flex-col items-center gap-1 p-3 rounded-lg transition-all cursor-pointer ${
-              rating === value ? 'bg-accent scale-110 ring-2 ring-primary' : 'hover:bg-accent/50'
+            aria-pressed={rating === value}
+            className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all cursor-pointer ${
+              rating === value
+                ? 'bg-accent scale-110 ring-2 ring-primary'
+                : 'opacity-60 hover:opacity-100 hover:bg-accent/50'
             }`}
           >
-            <span className="text-3xl">{emoji}</span>
+            <Nexi state={state} size={48} aria-label={t(labelKey)} />
             <span className="text-xs text-muted-foreground">{t(labelKey)}</span>
           </button>
         ))}
