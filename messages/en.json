@@ -251,6 +251,8 @@
     "CubesPage": {
       "title": "Cubes",
       "no-cubes-for-display": "No cubes for display.",
+      "empty-title": "No collections yet",
+      "empty-description": "Create your first collection or bring data from another timer. Nexi is ready for your first solve.",
       "favorite": "Favorite",
       "category": "Category",
       "solves": "Solves",

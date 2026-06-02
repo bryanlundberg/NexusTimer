@@ -166,6 +166,8 @@
     "CubesPage": {
       "title": "Cubos",
       "no-cubes-for-display": "No hay cubos para mostrar.",
+      "empty-title": "Aún no tienes colecciones",
+      "empty-description": "Crea tu primera colección o importa datos de otro timer. Nexi te espera para tu primer solve.",
       "favorite": "Favorito",
       "category": "Categoría",
       "solves": "Tiempos",
