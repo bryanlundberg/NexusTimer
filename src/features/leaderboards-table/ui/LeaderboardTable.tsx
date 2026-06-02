@@ -17,8 +17,8 @@ export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
   const safeSolves = solves && solves.length > 0 ? solves : []
 
   return (
-    <div className="overflow-x-auto">
-      <div className="min-w-[640px]">
+    <div className="overflow-x-auto max-w-4xl mx-auto">
+      <div className="min-w-160">
         <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
           <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">#</span>
           <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('user')}</span>
