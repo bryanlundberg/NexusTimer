@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { Compass, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
@@ -191,8 +192,38 @@ export default function SmartCube() {
   }
 
   return (
-    <div className="flex flex-col grow items-center justify-center gap-2 sm:gap-3">
-      {isConnected && connection && <SmartCubeTimer connection={connection} />}
+    <div className="flex flex-col grow items-center justify-center gap-2 sm:gap-3 relative">
+      {isConnected && connection && (
+        <SmartCubeTimer
+          connection={connection}
+          secondaryActions={(onSync, gyroActive, onReset) => (
+            <div className="absolute bottom-2 left-0 flex flex-col items-start gap-0.5">
+              <Button
+                type="button"
+                size="sm"
+                variant="ghost"
+                onClick={onSync}
+                className="h-7 px-2 gap-1 text-xs text-muted-foreground hover:text-foreground"
+              >
+                <RotateCcw className="size-3" />
+                Reset State
+              </Button>
+              {gyroActive && (
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="ghost"
+                  onClick={onReset}
+                  className="h-7 px-2 gap-1 text-xs text-muted-foreground hover:text-foreground"
+                >
+                  <Compass className="size-3" />
+                  Reset Orientation
+                </Button>
+              )}
+            </div>
+          )}
+        />
+      )}
 
       <div className="flex flex-col items-center gap-1">
         <Button
