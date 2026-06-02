@@ -126,7 +126,7 @@ export default function EmptyCubes({
       <motion.div variants={item} className="relative grid place-items-center size-40 shrink-0" aria-hidden="true">
         <div className="absolute inset-8 rounded-full bg-primary/10 blur-2xl" />
         <div className="absolute inset-12 rounded-full bg-primary/15 blur-xl" />
-        <Nexi state="empty" size={132} aria-label={t('no-cubes-for-display')} />
+        <Nexi state="loading" size={132} aria-label={t('no-cubes-for-display')} />
       </motion.div>
 
       {(!hideTitle || !hideDescription) && (
