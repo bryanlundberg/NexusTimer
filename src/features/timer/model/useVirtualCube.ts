@@ -10,7 +10,7 @@ interface UseVirtualCubeArgs {
   dragInput?: 'auto' | 'none'
 }
 
-const PLAYER_SIZE_PX = '320px'
+const PLAYER_SIZE_PX = 'min(320px, 30vw)'
 
 interface PlayerOptions {
   seed?: boolean
