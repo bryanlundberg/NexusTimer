@@ -1,8 +1,6 @@
 'use client'
 
-import { useCallback, useEffect } from 'react'
-import { Compass, RotateCcw } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useCallback, useEffect, type ReactNode } from 'react'
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
@@ -14,11 +12,12 @@ import type { SmartCubeConnection } from 'smartcube-web-bluetooth'
 
 interface SmartCubeTimerProps {
   connection: SmartCubeConnection
+  secondaryActions?: (onSync: () => void, gyroActive: boolean, onReset: () => void) => ReactNode
 }
 
 const CUBE_SIZE = 3
 
-export function SmartCubeTimer({ connection }: SmartCubeTimerProps) {
+export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerProps) {
   const scramble = useTimerStore((store) => store.scramble)
   const selectedCube = useTimerStore((store) => store.selectedCube)
   const setNewScramble = useTimerStore((store) => store.setNewScramble)
@@ -86,24 +85,7 @@ export function SmartCubeTimer({ connection }: SmartCubeTimerProps) {
 
       <div className="text-2xl sm:text-3xl tabular-nums">{formatTime(solvingTime || 0)}</div>
 
-      <div className="flex flex-wrap items-center justify-center gap-1.5">
-        <Button type="button" size="sm" variant="secondary" onClick={syncSolved} className="gap-1.5 text-xs sm:text-sm">
-          <RotateCcw className="size-3.5 sm:size-4" />
-          Reset State
-        </Button>
-        {gyroActive && (
-          <Button
-            type="button"
-            size="sm"
-            variant="ghost"
-            onClick={resetOrientation}
-            className="gap-1.5 text-xs sm:text-sm"
-          >
-            <Compass className="size-3.5 sm:size-4" />
-            Reset Orientation
-          </Button>
-        )}
-      </div>
+      {secondaryActions?.(syncSolved, gyroActive, resetOrientation)}
     </div>
   )
 }
