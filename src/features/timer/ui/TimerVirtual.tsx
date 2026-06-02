@@ -39,9 +39,9 @@ export default function TimerVirtual() {
   useVirtualKeyboardMoves({ is3x3, processMove, cancel })
 
   return (
-    <div className="grow flex justify-center items-center flex-col gap-4">
+    <div className="grow flex justify-center items-center flex-col gap-2 sm:gap-4">
       <div ref={containerRef} />
-      <div className="text-3xl">{formatTime(solvingTime || 0)}</div>
+      <div className="text-2xl sm:text-3xl">{formatTime(solvingTime || 0)}</div>
     </div>
   )
 }
