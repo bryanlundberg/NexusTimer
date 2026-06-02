@@ -22,7 +22,7 @@ export function ReplaySolveDetails() {
   if (!metadata) return null
 
   return (
-    <DialogContent className="flex flex-col gap-3 p-5 sm:max-w-sm">
+    <DialogContent className="flex max-h-[80dvh] flex-col gap-3 overflow-y-auto p-5 sm:max-w-sm">
       <DialogTitle className="flex items-center justify-between gap-2 text-base leading-none">
         <span>{t('user-solution')}</span>
         <Badge variant="outline" className="h-5 shrink-0 px-1.5 font-mono text-[10px]">
