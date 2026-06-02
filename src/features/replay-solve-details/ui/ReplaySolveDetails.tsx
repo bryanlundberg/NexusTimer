@@ -17,12 +17,15 @@ const RealtimeReplayPlayer = dynamic(
   { ssr: false }
 )
 
-const TABS = ['replay', 'solution'] as const
+enum Tab {
+  Replay = 'replay',
+  Solution = 'solution'
+}
 
 export function ReplaySolveDetails() {
   const t = useTranslations('Index.leaderboard-solve-details')
   const { metadata, replay, hasReplay, tps, moveCount, simplifiedSolution, markers } = useReplaySolveDetails()
-  const [activeTab, setActiveTab] = useState<(typeof TABS)[number]>('replay')
+  const [activeTab, setActiveTab] = useState<Tab>(Tab.Replay)
 
   if (!metadata) return null
 
@@ -36,9 +39,9 @@ export function ReplaySolveDetails() {
       </DialogTitle>
       <DialogDescription className="sr-only">{metadata.scramble}</DialogDescription>
 
-      <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as (typeof TABS)[number])} className="gap-3">
+      <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as Tab)} className="gap-3">
         <TabsList className="grid w-full grid-cols-2">
-          {TABS.map((tab) => (
+          {Object.values(Tab).map((tab) => (
             <TabsTrigger
               key={tab}
               value={tab}
@@ -56,7 +59,7 @@ export function ReplaySolveDetails() {
           ))}
         </TabsList>
 
-        <TabsContent value="replay" className="flex flex-col gap-4">
+        <TabsContent value={Tab.Replay} className="flex flex-col gap-4">
           <div className="grid grid-cols-3 divide-x divide-border/60 rounded-lg border bg-muted/30">
             <Stat label={t('time')} value={formatTime(metadata.time)} />
             <Stat label={t('moves')} value={moveCount ?? '—'} />
@@ -65,7 +68,7 @@ export function ReplaySolveDetails() {
           {hasReplay && <RealtimeReplayPlayer replay={replay!} markers={markers} />}
         </TabsContent>
 
-        <TabsContent value="solution" className="flex flex-col gap-3">
+        <TabsContent value={Tab.Solution} className="flex flex-col gap-3">
           <Field label={t('scramble')} value={metadata.scramble} />
           {simplifiedSolution && <Field label={t('solution')} value={simplifiedSolution} />}
         </TabsContent>
