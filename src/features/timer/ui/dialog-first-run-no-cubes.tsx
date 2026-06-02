@@ -6,6 +6,7 @@ import EmptyCubes from '@/features/manage-cubes/ui/EmptyCubes'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 import { useTranslations } from 'next-intl'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
 export default function DialogFirstRunNoCubes() {
   const router = useRouter()
@@ -20,13 +21,15 @@ export default function DialogFirstRunNoCubes() {
   }
 
   return (
-    <DialogContent className="max-w-[450px] max-h-[90vh] overflow-y-auto">
-      <DialogHeader>
-        <DialogTitle>{t('title')}</DialogTitle>
-        <DialogDescription>{t('description')}</DialogDescription>
-      </DialogHeader>
+    <DialogContent className="max-w-112.5 max-h-[90vh] overflow-y-auto">
+      <VisuallyHidden>
+        <DialogHeader>
+          <DialogTitle>{t('title')}</DialogTitle>
+          <DialogDescription>{t('description')}</DialogDescription>
+        </DialogHeader>
+      </VisuallyHidden>
 
-      <EmptyCubes hideDescription hideTitle onCreate={handleCreateCollection} />
+      <EmptyCubes onCreate={handleCreateCollection} />
     </DialogContent>
   )
 }
