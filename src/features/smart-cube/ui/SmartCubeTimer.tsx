@@ -80,24 +80,27 @@ export function SmartCubeTimer({ connection }: SmartCubeTimerProps) {
     }
   }, [engine, recreatePlayer, connection])
 
-  const hint = phase === 'scrambling' ? 'Apply the scramble on your cube…' : ''
-
   return (
-    <div className="grow flex flex-col items-center justify-center gap-3">
+    <div className="grow flex flex-col items-center justify-center gap-1.5 sm:gap-3">
       <div ref={containerRef} className="rounded-md overflow-hidden" />
 
-      <div className="text-3xl tabular-nums">{formatTime(solvingTime || 0)}</div>
-      <p className="h-5 text-sm text-muted-foreground">{hint}</p>
+      <div className="text-2xl sm:text-3xl tabular-nums">{formatTime(solvingTime || 0)}</div>
 
-      <div className="flex items-center gap-2">
-        <Button type="button" size="sm" variant="secondary" onClick={syncSolved} className="gap-1.5">
-          <RotateCcw className="size-4" />
-          Sync (cube solved)
+      <div className="flex flex-wrap items-center justify-center gap-1.5">
+        <Button type="button" size="sm" variant="secondary" onClick={syncSolved} className="gap-1.5 text-xs sm:text-sm">
+          <RotateCcw className="size-3.5 sm:size-4" />
+          Reset State
         </Button>
         {gyroActive && (
-          <Button type="button" size="sm" variant="ghost" onClick={resetOrientation} className="gap-1.5">
-            <Compass className="size-4" />
-            Reset orientation
+          <Button
+            type="button"
+            size="sm"
+            variant="ghost"
+            onClick={resetOrientation}
+            className="gap-1.5 text-xs sm:text-sm"
+          >
+            <Compass className="size-3.5 sm:size-4" />
+            Reset Orientation
           </Button>
         )}
       </div>
