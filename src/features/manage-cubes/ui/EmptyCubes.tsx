@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { FileTextIcon, PlusIcon } from '@radix-ui/react-icons'
 import { DatabaseBackupIcon } from 'lucide-react'
@@ -9,7 +8,8 @@ import { useTranslations } from 'next-intl'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
 import { cn } from '@/shared/lib/utils'
-import { motion } from 'motion/react'
+import { motion, useReducedMotion, type Variants } from 'motion/react'
+import { Nexi } from '@/shared/ui/nexi'
 
 interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {
   onCreate?: () => void
@@ -30,6 +30,7 @@ export default function EmptyCubes({
   const t = useTranslations('Index.CubesPage')
   const open = useOverlayStore((state) => state.open)
   const close = useOverlayStore((state) => state.close)
+  const reduceMotion = useReducedMotion()
 
   const handleClickOnCreate = () => {
     if (onCreate) return onCreate()
@@ -49,109 +50,125 @@ export default function EmptyCubes({
     close()
   }
 
+  const container: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: reduceMotion ? 0 : 0.07,
+        delayChildren: reduceMotion ? 0 : 0.08
+      }
+    }
+  }
+
+  const item: Variants = {
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 10 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: reduceMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] }
+    }
+  }
+
   const CardActionButton = ({
     onClick,
     icon,
     title,
     description,
-    variant,
-    'data-testid': dataTestId,
-    index = 0
+    'data-testid': dataTestId
   }: {
     onClick: () => void
     icon: React.ReactNode
     title: string
     description: string
-    variant: any
     'data-testid'?: string
-    index?: number
   }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: 0.2 + index * 0.08, ease: 'easeOut' }}
-    >
+    <motion.div variants={item}>
       <Button
-        className="w-full justify-start h-auto py-5 transition-colors"
-        variant={variant}
+        className={cn(
+          'group/action w-full h-auto justify-start gap-4 px-4 py-3.5 text-left',
+          'border border-border/70 bg-card/40 hover:bg-accent hover:border-primary/30'
+        )}
+        variant="ghost"
         onClick={onClick}
         data-testid={dataTestId}
       >
-        <div className="flex items-start gap-4 text-left w-full">
-          <div className="shrink-0">{icon}</div>
-          <div className="flex flex-col flex-1 min-w-0">
-            <span className="font-medium leading-none mb-1 break-words whitespace-normal">{title}</span>
-            <span className="text-sm text-muted-foreground leading-snug break-words whitespace-normal">
-              {description}
-            </span>
-          </div>
-        </div>
+        <span
+          className={cn(
+            'grid place-items-center size-9 shrink-0 rounded-md',
+            'bg-primary/10 text-primary transition-colors group-hover/action:bg-primary/15',
+            '[&_svg]:size-4.5'
+          )}
+        >
+          {icon}
+        </span>
+        <span className="flex flex-col min-w-0 flex-1">
+          <span className="font-medium leading-tight wrap-break-word whitespace-normal">{title}</span>
+          <span className="mt-0.5 text-xs text-muted-foreground leading-snug wrap-break-word whitespace-normal">
+            {description}
+          </span>
+        </span>
       </Button>
     </motion.div>
   )
 
   return (
-    <>
-      <div
-        {...rest}
-        data-testid="empty-cubes-container"
-        className={cn('flex flex-col items-center justify-center h-full grow mx-auto w-full', className)}
-      >
-        <div className="flex flex-col items-center justify-center gap-3 w-full">
-          <motion.div
-            className="relative mb-4"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-          >
-            <div className="absolute inset-0 bg-primary/10 rounded-full"></div>
-            <div className="absolute inset-4 bg-primary/20 rounded-full"></div>
-            <div className="absolute inset-0">
-              <Image
-                src={'/utils/iron-cube.png'}
-                alt={t('no-cubes-for-display')}
-                width={200}
-                height={200}
-                draggable={false}
-                className="object-contain w-full h-full"
-                unoptimized
-              />
-            </div>
-          </motion.div>
+    <motion.div
+      {...(rest as any)}
+      data-testid="empty-cubes-container"
+      variants={container}
+      initial="hidden"
+      animate="show"
+      className={cn(
+        'flex flex-col items-center justify-center h-full grow mx-auto w-full max-w-sm px-2 text-center',
+        className
+      )}
+    >
+      <motion.div variants={item} className="relative grid place-items-center size-40 shrink-0" aria-hidden="true">
+        <div className="absolute inset-8 rounded-full bg-primary/10 blur-2xl" />
+        <div className="absolute inset-12 rounded-full bg-primary/15 blur-xl" />
+        <Nexi state="empty" size={132} aria-label={t('no-cubes-for-display')} />
+      </motion.div>
 
-          <div className={'flex flex-col gap-3 w-full'}>
-            <CardActionButton
-              icon={<PlusIcon />}
-              variant={'ghost'}
-              onClick={handleClickOnCreate}
-              data-testid="empty-cubes-create-button"
-              title={t('new-collection')}
-              description={t('new-collection-description')}
-              index={0}
-            />
-            {session?.user && (
-              <CardActionButton
-                icon={<DatabaseBackupIcon />}
-                variant={'ghost'}
-                onClick={handleClickOnRestoreAccountData}
-                data-testid="empty-cubes-restore-account-button"
-                title={t('restore-account-data')}
-                description={t('restore-account-data-description')}
-                index={1}
-              />
-            )}
-            <CardActionButton
-              icon={<FileTextIcon />}
-              variant={'ghost'}
-              onClick={handleClickOnImportOtherTimers}
-              data-testid="empty-cubes-import-other-timers-button"
-              title={t('import-from-other-timers')}
-              description={t('import-from-other-timers-description')}
-              index={session?.user ? 2 : 1}
-            />
-          </div>
+      {(!hideTitle || !hideDescription) && (
+        <div className="mt-1 mb-6 flex flex-col gap-2">
+          {!hideTitle && (
+            <motion.h2 variants={item} className="text-lg font-semibold tracking-tight text-balance text-foreground">
+              {t('empty-title')}
+            </motion.h2>
+          )}
+          {!hideDescription && (
+            <motion.p variants={item} className="text-sm leading-relaxed text-muted-foreground text-pretty">
+              {t('empty-description')}
+            </motion.p>
+          )}
         </div>
+      )}
+
+      <div className="flex flex-col gap-2.5 w-full">
+        <CardActionButton
+          icon={<PlusIcon />}
+          onClick={handleClickOnCreate}
+          data-testid="empty-cubes-create-button"
+          title={t('new-collection')}
+          description={t('new-collection-description')}
+        />
+        {session?.user && (
+          <CardActionButton
+            icon={<DatabaseBackupIcon />}
+            onClick={handleClickOnRestoreAccountData}
+            data-testid="empty-cubes-restore-account-button"
+            title={t('restore-account-data')}
+            description={t('restore-account-data-description')}
+          />
+        )}
+        <CardActionButton
+          icon={<FileTextIcon />}
+          onClick={handleClickOnImportOtherTimers}
+          data-testid="empty-cubes-import-other-timers-button"
+          title={t('import-from-other-timers')}
+          description={t('import-from-other-timers-description')}
+        />
       </div>
-    </>
+    </motion.div>
   )
 }
