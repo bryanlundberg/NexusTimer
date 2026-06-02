@@ -1,49 +1,34 @@
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
+import { buildCfopPhases } from '@/shared/lib/timer/solveAnalysis'
 import { formatTps } from '@/shared/lib/formatTps'
 import formatTime from '@/shared/lib/formatTime'
 import type { SolveReplay, ReplayMove } from '@/entities/replay/model/types'
 import type { ReplayMarker } from '@/features/solve-replay/ui/RealtimeReplayPlayer'
 
-type F2lSlot = { moveIndex: number; at: number; duration: number }
+function phaseMarkers(analysis: ReturnType<typeof tryAnalyzeSolution>): ReplayMarker[] {
+  const phases = buildCfopPhases(analysis)
+  if (!phases) return []
 
-function buildMarkers(analysis: ReturnType<typeof tryAnalyzeSolution>): ReplayMarker[] {
-  if (!analysis || analysis.method !== 'CFOP') return []
-  const { cross, f2l, oll, pll } = analysis
-  if (!cross || !oll || !pll) return []
-
-  const f2lSlots = f2l as F2lSlot[]
-
-  return [
-    {
-      key: 'cross',
-      label: formatTime(cross.duration, 1),
-      moveIndex: cross.moveIndex,
-      lineClass: 'bg-sky-500',
-      labelClass: 'text-sky-500'
-    },
-    ...f2lSlots.map((slot, i) => ({
-      key: `f2l-${i}`,
-      label: formatTime(slot.duration, 1),
-      moveIndex: slot.moveIndex,
-      lineClass: 'bg-emerald-500',
-      labelClass: 'text-emerald-500'
-    })),
-    {
-      key: 'oll',
-      label: formatTime(oll.duration, 1),
-      moveIndex: oll.moveIndex,
-      lineClass: 'bg-amber-400',
-      labelClass: 'text-amber-400'
-    },
-    {
-      key: 'pll',
-      label: formatTime(pll.duration, 1),
-      moveIndex: pll.moveIndex,
-      lineClass: 'bg-rose-500',
-      labelClass: 'text-rose-500'
+  return phases.flatMap((phase) => {
+    const marker: ReplayMarker = {
+      key: phase.key,
+      label: formatTime(phase.duration, 1),
+      moveIndex: phase.moveIndex,
+      lineClass: phase.bgClass,
+      labelClass: phase.textClass
     }
-  ]
+    if (phase.slots) {
+      return phase.slots.map((slot) => ({
+        key: slot.key,
+        label: formatTime(slot.duration, 1),
+        moveIndex: slot.moveIndex,
+        lineClass: slot.bgClass,
+        labelClass: slot.textClass
+      }))
+    }
+    return [marker]
+  })
 }
 
 export function useReplaySolveDetails() {
@@ -59,7 +44,7 @@ export function useReplaySolveDetails() {
   const simplifiedSolution = analysis
     ? (analysis.moves as ReplayMove[]).map((x) => x.m).join(' ')
     : (metadata?.solution ?? null)
-  const markers = buildMarkers(analysis)
+  const markers = phaseMarkers(analysis)
 
   return { metadata, replay, hasReplay, analysis, tps, moveCount, simplifiedSolution, markers }
 }
