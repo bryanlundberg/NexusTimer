@@ -17,8 +17,9 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
-import { Check, Star } from 'lucide-react'
+import { Check, PlusIcon, Star } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
+import { Nexi } from '@/shared/ui/nexi'
 
 export default function SelectCollection() {
   const close = useOverlayStore((state) => state.close)
@@ -53,11 +54,13 @@ export default function SelectCollection() {
       </VisuallyHidden>
 
       <CommandInput placeholder={t('Inputs.search')} />
-      <CommandList className="max-h-[400px]">
+      <CommandList className="max-h-100">
         <CommandEmpty>
           <div className="flex flex-col items-center gap-3 py-4">
+            <Nexi state="solving" size={72} aria-label={t('Inputs.no-results')} />
             <p className="text-muted-foreground text-sm">{t('Inputs.no-results')}</p>
             <Button onClick={handleCreate} variant={'secondary'} size={'sm'}>
+              <PlusIcon className="size-4" />
               {t('CubesPage.new-collection')}
             </Button>
           </div>
