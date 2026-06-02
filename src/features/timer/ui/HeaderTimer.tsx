@@ -10,6 +10,7 @@ import * as React from 'react'
 import ButtonNextScramble from '@/features/navigation/ui/button-next-scramble'
 import ButtonSelectMode from '@/features/navigation/ui/button-select-mode'
 import NewRecordBadge from '@/features/timer/ui/NewRecordBadge'
+import RecordRipple from '@/features/timer/ui/RecordRipple'
 
 export default function HeaderTimer() {
   const isSolving = useTimerStore((store) => store.isSolving)
@@ -24,24 +25,27 @@ export default function HeaderTimer() {
     lastSolve != null && !lastSolve.dnf && lastSolve.time <= timerStatistics.global.best && settings.alerts.bestTime
 
   return (
-    <div
-      className={cn(
-        'w-full flex flex-col items-center transition-opacity duration-150',
-        isHidden ? 'opacity-30 pointer-events-none' : 'opacity-100'
-      )}
-    >
-      <div className={'flex items-center gap-2 mb-2 w-full'}>
-        <MainCubeSelector />
-        <ButtonNextScramble />
-        <ButtonSelectMode />
-      </div>
-
-      <ScrambleZone />
-      {isPersonalBest && (
-        <div className={cn('flex justify-center mt-10', height <= SCRAMBLE_HEIGHT && 'mt-5')} id="touch">
-          <NewRecordBadge />
+    <>
+      <RecordRipple active={isPersonalBest} solveId={lastSolve?.id} />
+      <div
+        className={cn(
+          'w-full flex flex-col items-center transition-opacity duration-150',
+          isHidden ? 'opacity-30 pointer-events-none' : 'opacity-100'
+        )}
+      >
+        <div className={'flex items-center gap-2 mb-2 w-full'}>
+          <MainCubeSelector />
+          <ButtonNextScramble />
+          <ButtonSelectMode />
         </div>
-      )}
-    </div>
+
+        <ScrambleZone />
+        {isPersonalBest && (
+          <div className={cn('flex justify-center mt-10', height <= SCRAMBLE_HEIGHT && 'mt-5')} id="touch">
+            <NewRecordBadge />
+          </div>
+        )}
+      </div>
+    </>
   )
 }
