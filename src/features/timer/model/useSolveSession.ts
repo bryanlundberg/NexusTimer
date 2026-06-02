@@ -146,7 +146,7 @@ export function useSolveSession({
       try {
         engine.applyMoves(move, { record: !scrambling })
       } catch {}
-      if (!scrambling) recorder.record(move)
+      if (!scrambling) recorder.record(move, phase === 'armed' && isRotation ? { t: 0 } : undefined)
 
       if (scrambling) {
         const parsed = isRotation ? null : parseMove(move)
