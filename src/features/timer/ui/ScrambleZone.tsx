@@ -154,7 +154,7 @@ export function ScrambleZone() {
         )}
       </div>
 
-      <div className="absolute bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
+      <div className="absolute z-10 bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
         <TooltipProvider delayDuration={250}>
           {showEditButton && (
             <Tooltip>
