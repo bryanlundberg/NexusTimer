@@ -9,6 +9,7 @@ interface UseVirtualCubeArgs {
   tempoScale?: number
   dragInput?: 'auto' | 'none'
   sizePx?: string
+  cameraDistance?: number
 }
 
 const PLAYER_SIZE_PX = 'min(320px, 30vw)'
@@ -18,6 +19,7 @@ interface PlayerOptions {
   tempoScale?: number
   dragInput?: 'auto' | 'none'
   sizePx?: string
+  cameraDistance?: number
 }
 
 const buildPlayer = (cubeSize: number, scramble: string | null, opts?: PlayerOptions) => {
@@ -26,6 +28,7 @@ const buildPlayer = (cubeSize: number, scramble: string | null, opts?: PlayerOpt
     controlPanel: 'none',
     tempoScale: opts?.tempoScale ?? 3,
     background: 'none',
+    ...(opts?.cameraDistance != null ? { cameraDistance: opts.cameraDistance } : {}),
     ...(opts?.dragInput ? { experimentalDragInput: opts.dragInput } : {})
   })
   const size = opts?.sizePx ?? PLAYER_SIZE_PX
@@ -39,7 +42,15 @@ const buildPlayer = (cubeSize: number, scramble: string | null, opts?: PlayerOpt
   return player
 }
 
-export function useVirtualCube({ cubeSize, scramble, seed = true, tempoScale, dragInput, sizePx }: UseVirtualCubeArgs) {
+export function useVirtualCube({
+  cubeSize,
+  scramble,
+  seed = true,
+  tempoScale,
+  dragInput,
+  sizePx,
+  cameraDistance
+}: UseVirtualCubeArgs) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [player, setPlayer] = useState<TwistyPlayer | null>(null)
   const [engine, setEngine] = useState<CubeEngine | null>(null)
@@ -52,7 +63,7 @@ export function useVirtualCube({ cubeSize, scramble, seed = true, tempoScale, dr
     } catch {}
 
     const newEngine = new CubeEngine('', { size: cubeSize })
-    const newPlayer = buildPlayer(cubeSize, scramble, { seed, tempoScale, dragInput, sizePx })
+    const newPlayer = buildPlayer(cubeSize, scramble, { seed, tempoScale, dragInput, sizePx, cameraDistance })
     containerRef.current.appendChild(newPlayer)
 
     if (seed && scramble) {
@@ -87,10 +98,10 @@ export function useVirtualCube({ cubeSize, scramble, seed = true, tempoScale, dr
     try {
       player?.remove()
     } catch {}
-    const newPlayer = buildPlayer(cubeSize, scramble, { seed, tempoScale, dragInput, sizePx })
+    const newPlayer = buildPlayer(cubeSize, scramble, { seed, tempoScale, dragInput, sizePx, cameraDistance })
     containerRef.current.appendChild(newPlayer)
     setPlayer(newPlayer)
-  }, [player, cubeSize, scramble, seed, tempoScale, dragInput, sizePx])
+  }, [player, cubeSize, scramble, seed, tempoScale, dragInput, sizePx, cameraDistance])
 
   return { containerRef, player, engine, recreatePlayer }
 }
