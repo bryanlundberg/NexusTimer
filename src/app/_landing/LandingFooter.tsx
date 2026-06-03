@@ -32,7 +32,7 @@ export default async function LandingFooter() {
             </Link>
           </div>
 
-          <div className="grid-cols-3 gap-8 hidden md:grid">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
               <h4 className="text-xs font-semibold text-gray-300 mb-6 uppercase tracking-[0.15em]">{t('product')}</h4>
               <ul className="space-y-3">
