@@ -35,7 +35,8 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
     seed: false,
     tempoScale: 5,
     dragInput: 'auto',
-    sizePx: 'min(180px, 38vw)'
+    sizePx: 'min(180px, 38vw)',
+    cameraDistance: 8
   })
 
   const onAdvanceScramble = useCallback(() => {
