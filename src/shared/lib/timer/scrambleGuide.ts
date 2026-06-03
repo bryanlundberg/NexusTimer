@@ -129,3 +129,24 @@ export function guideFromState(scramble: ScrambleMove[], state: GuideState): Scr
 export function isComplete(scramble: ScrambleMove[], state: GuideState): boolean {
   return state.errors.length === 0 && state.acc === 0 && state.index >= scramble.length
 }
+
+export interface TruncatedGuide {
+  corrections: ScrambleGuideItem[]
+  pending: ScrambleGuideItem[]
+  hiddenCount: number
+}
+
+export function truncateGuide(guide: ScrambleGuide, max: number): TruncatedGuide {
+  const total = guide.corrections.length + guide.pending.length
+  if (max <= 0 || total <= max) {
+    return { corrections: guide.corrections, pending: guide.pending, hiddenCount: 0 }
+  }
+
+  // Reserve one slot for the `…` indicator that replaces the hidden moves.
+  const budget = Math.max(1, max - 1)
+  const corrections = guide.corrections.slice(0, budget)
+  const remaining = budget - corrections.length
+  const pending = remaining > 0 ? guide.pending.slice(0, remaining) : []
+
+  return { corrections, pending, hiddenCount: total - corrections.length - pending.length }
+}

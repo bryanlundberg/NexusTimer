@@ -24,14 +24,14 @@ import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import type { ScrambleGuideItem } from '@/shared/lib/timer/scrambleGuide'
+import { truncateGuide, type ScrambleGuideItem } from '@/shared/lib/timer/scrambleGuide'
 import { Layers } from '@/shared/types/enums'
 import { CrossSolution } from '@/shared/types/types'
 
 import EnterCustomScramble from '@/features/enter-custom-scramble/ui/enter-custom-scramble'
 import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
 import { TimerMode } from '@/features/timer/model/enums'
-import { HINT_CATEGORIES, SCRAMBLE_SIZE_CLASSES } from '@/features/timer/model/const'
+import { HINT_CATEGORIES, SCRAMBLE_GUIDE_MAX_MOVES, SCRAMBLE_SIZE_CLASSES } from '@/features/timer/model/const'
 import { useScrambleOverflow } from '@/features/timer/model/useScrambleOverflow'
 
 export function ScrambleZone() {
@@ -53,6 +53,7 @@ export function ScrambleZone() {
   const sizeClasses = SCRAMBLE_SIZE_CLASSES[scrambleSize]
   const scrambleText = selectedCube ? scramble : t('HomePage.empty-scramble')
   const showGuide = guide != null && (guide.corrections.length > 0 || guide.pending.length > 0)
+  const visibleGuide = guide != null ? truncateGuide(guide, SCRAMBLE_GUIDE_MAX_MOVES) : null
   const showModalButton = isOverflowing && !!selectedCube && !showGuide && !scrambleReady
   const showHintButton =
     !isSolving && !!selectedCube && HINT_CATEGORIES.includes(selectedCube.category as (typeof HINT_CATEGORIES)[number])
@@ -129,9 +130,27 @@ export function ScrambleZone() {
         ) : showGuide ? (
           <p data-testid="scramble-text-zone" className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
             <AnimatePresence initial={false} mode="popLayout">
-              {guide!.corrections.map((item, i) => renderGuideMove(item, { isCorrection: true, isNext: i === 0 }))}
-              {guide!.pending.map((item, i) =>
-                renderGuideMove(item, { isCorrection: false, isNext: guide!.corrections.length === 0 && i === 0 })
+              {visibleGuide!.corrections.map((item, i) =>
+                renderGuideMove(item, { isCorrection: true, isNext: i === 0 })
+              )}
+              {visibleGuide!.pending.map((item, i) =>
+                renderGuideMove(item, {
+                  isCorrection: false,
+                  isNext: visibleGuide!.corrections.length === 0 && i === 0
+                })
+              )}
+              {visibleGuide!.hiddenCount > 0 && (
+                <motion.span
+                  key="guide-overflow"
+                  layout
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, transition: { duration: 0.1, ease: 'easeIn' } }}
+                  transition={{ duration: 0.45, ease: 'easeOut' }}
+                  className="leading-none text-muted-foreground font-medium select-none tabular-nums"
+                >
+                  …
+                </motion.span>
               )}
             </AnimatePresence>
           </p>

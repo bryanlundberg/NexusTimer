@@ -8,7 +8,9 @@ import {
   parseMove,
   stepGuide,
   tokenizeScramble,
-  type ScrambleGuide
+  truncateGuide,
+  type ScrambleGuide,
+  type ScrambleGuideItem
 } from '@/shared/lib/timer/scrambleGuide'
 
 const run = (scramble: string, moves: string[]) => {
@@ -121,5 +123,52 @@ describe('corrections', () => {
     expect(corrections('U2 F', ['U', 'D'])).toEqual(["D'"])
     expect(pending('U2 F', ['U', 'D'])).toEqual(['U', 'F'])
     expect(pending('U2 F', ['U', 'D', "D'"])).toEqual(['U', 'F'])
+  })
+})
+
+describe('truncateGuide', () => {
+  const item = (move: string): ScrambleGuideItem => ({ key: move, move })
+  const guideOf = (corrections: string[], pending: string[]): ScrambleGuide => ({
+    corrections: corrections.map(item),
+    pending: pending.map(item)
+  })
+
+  it('returns the guide untouched when it fits', () => {
+    const guide = guideOf(["R'"], ['U', 'F'])
+    const out = truncateGuide(guide, 16)
+    expect(moves(out.corrections)).toEqual(["R'"])
+    expect(moves(out.pending)).toEqual(['U', 'F'])
+    expect(out.hiddenCount).toBe(0)
+  })
+
+  it('does not hide anything when total equals the cap', () => {
+    const out = truncateGuide(guideOf([], ['R', 'U', 'F']), 3)
+    expect(moves(out.pending)).toEqual(['R', 'U', 'F'])
+    expect(out.hiddenCount).toBe(0)
+  })
+
+  it('caps a long scramble and reports the hidden count', () => {
+    const pendingMoves = Array.from({ length: 60 }, (_, i) => `m${i}`)
+    const out = truncateGuide(guideOf([], pendingMoves), 16)
+    // One slot is reserved for the ellipsis indicator.
+    expect(out.pending).toHaveLength(15)
+    expect(moves(out.pending)[0]).toBe('m0')
+    expect(out.hiddenCount).toBe(45)
+  })
+
+  it('keeps corrections first and fills the rest with pending', () => {
+    const out = truncateGuide(guideOf(['c0', 'c1', 'c2'], ['p0', 'p1', 'p2', 'p3', 'p4']), 5)
+    expect(moves(out.corrections)).toEqual(['c0', 'c1', 'c2'])
+    expect(moves(out.pending)).toEqual(['p0']) // budget 4 - 3 corrections = 1
+    expect(out.hiddenCount).toBe(4)
+  })
+
+  it('drops pending entirely when corrections alone exceed the cap', () => {
+    const errors = Array.from({ length: 30 }, (_, i) => `c${i}`)
+    const out = truncateGuide(guideOf(errors, ['p0', 'p1']), 16)
+    expect(out.corrections).toHaveLength(15)
+    expect(moves(out.corrections)[0]).toBe('c0')
+    expect(out.pending).toEqual([])
+    expect(out.hiddenCount).toBe(17) // 15 hidden corrections + 2 pending
   })
 })
