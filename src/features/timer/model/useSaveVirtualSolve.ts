@@ -1,5 +1,4 @@
 import { useCallback } from 'react'
-import { useSession } from 'next-auth/react'
 import { CubeEngine } from 'cube-state-engine'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
@@ -18,7 +17,6 @@ interface SavePayload {
 }
 
 export function useSaveVirtualSolve(engine: CubeEngine | null | undefined) {
-  const { data: session } = useSession()
   const selectedCube = useTimerStore((store) => store.selectedCube)
   const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
   const setLastSolve = useTimerStore((store) => store.setLastSolve)
@@ -52,7 +50,6 @@ export function useSaveVirtualSolve(engine: CubeEngine | null | undefined) {
 
       sendSolveToServer({
         solve: newSolve,
-        userId: session?.user?.id ?? undefined,
         solution: engine?.getMoves(true),
         puzzle,
         smart
@@ -73,6 +70,6 @@ export function useSaveVirtualSolve(engine: CubeEngine | null | undefined) {
       setLastSolve({ ...newSolve })
       updateSetting('sync.totalSolves', 1 + solvesSinceLastSync)
     },
-    [engine, selectedCube, session?.user?.id, setSelectedCube, setLastSolve, updateSetting, solvesSinceLastSync]
+    [engine, selectedCube, setSelectedCube, setLastSolve, updateSetting, solvesSinceLastSync]
   )
 }
