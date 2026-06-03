@@ -37,7 +37,7 @@ type UseTimerStore = {
   reset: () => void
 }
 
-export const useTimerStore = create<UseTimerStore>((set) => ({
+export const useTimerStore = create<UseTimerStore>((set, get) => ({
   selectedCube: null,
   scramble: null,
   cubes: null,
@@ -111,7 +111,12 @@ export const useTimerStore = create<UseTimerStore>((set) => ({
     set({ timerStatistics: stats })
   },
   setTimerMode: (mode: TimerMode) => {
-    set({ timerMode: mode })
+    if (mode === get().timerMode) return
+    const selectedCube = get().selectedCube
+    set({
+      timerMode: mode,
+      scramble: selectedCube ? genScramble(selectedCube.category) : null
+    })
   },
   reset: () =>
     set({
