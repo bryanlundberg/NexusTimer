@@ -108,7 +108,14 @@
       "new-scramble": "नया स्क्रैम्बल",
       "edit-scramble": "स्क्रैम्बल संपादित करें",
       "hints": "संकेत",
-      "start-stackmat": "शुरू करने के लिए अपना Stackmat प्रारंभ करें"
+      "start-stackmat": "शुरू करने के लिए अपना Stackmat प्रारंभ करें",
+      "reset-state": "स्थिति रीसेट करें",
+      "reset-orientation": "दिशा रीसेट करें",
+      "ready": "तैयार",
+      "connecting": "कनेक्ट हो रहा है…",
+      "disconnect": "डिस्कनेक्ट करें",
+      "retry-connection": "पुनः कनेक्ट करें",
+      "connect-smart-cube": "स्मार्ट क्यूब कनेक्ट करें"
     },
     "SolvesPage": {
       "title": "समाधान",

@@ -108,7 +108,14 @@
       "new-scramble": "新的打乱",
       "edit-scramble": "编辑打乱",
       "hints": "提示",
-      "start-stackmat": "启动你的 Stackmat 以开始计时"
+      "start-stackmat": "启动你的 Stackmat 以开始计时",
+      "reset-state": "重置状态",
+      "reset-orientation": "重置方向",
+      "ready": "准备就绪",
+      "connecting": "连接中…",
+      "disconnect": "断开连接",
+      "retry-connection": "重试连接",
+      "connect-smart-cube": "连接智能魔方"
     },
     "SolvesPage": {
       "title": "还原纪录",

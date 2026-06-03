@@ -94,7 +94,14 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "Nuevo scramble",
-      "start-stackmat": "Inicia tu Stackmat para comenzar"
+      "start-stackmat": "Inicia tu Stackmat para comenzar",
+      "reset-state": "Reiniciar estado",
+      "reset-orientation": "Reiniciar orientación",
+      "ready": "Listo",
+      "connecting": "Conectando…",
+      "disconnect": "Desconectar",
+      "retry-connection": "Reintentar conexión",
+      "connect-smart-cube": "Conectar Smart Cube"
     },
     "SolvesPage": {
       "title": "Tiempos",

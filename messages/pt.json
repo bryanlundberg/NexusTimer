@@ -108,7 +108,14 @@
       "new-scramble": "Novo embaralhamento",
       "edit-scramble": "Editar embaralhamento",
       "hints": "Dicas",
-      "start-stackmat": "Inicie seu Stackmat para começar"
+      "start-stackmat": "Inicie seu Stackmat para começar",
+      "reset-state": "Reiniciar estado",
+      "reset-orientation": "Reiniciar orientação",
+      "ready": "Pronto",
+      "connecting": "Conectando…",
+      "disconnect": "Desconectar",
+      "retry-connection": "Tentar conectar novamente",
+      "connect-smart-cube": "Conectar Smart Cube"
     },
     "SolvesPage": {
       "title": "Tempos",

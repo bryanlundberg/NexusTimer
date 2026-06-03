@@ -108,7 +108,14 @@
       "new-scramble": "Neues Scramble",
       "edit-scramble": "Scramble bearbeiten",
       "hints": "Hinweise",
-      "start-stackmat": "Starte dein Stackmat zum Beginnen"
+      "start-stackmat": "Starte dein Stackmat zum Beginnen",
+      "reset-state": "Status zurücksetzen",
+      "reset-orientation": "Ausrichtung zurücksetzen",
+      "ready": "Bereit",
+      "connecting": "Verbinde…",
+      "disconnect": "Trennen",
+      "retry-connection": "Verbindung erneut versuchen",
+      "connect-smart-cube": "Smart Cube verbinden"
     },
     "SolvesPage": {
       "title": "Zeiten",

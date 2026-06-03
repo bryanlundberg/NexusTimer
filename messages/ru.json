@@ -108,7 +108,14 @@
       "new-scramble": "Новый скрамбл",
       "edit-scramble": "Редактировать скрамбл",
       "hints": "Подсказки",
-      "start-stackmat": "Запустите Stackmat, чтобы начать"
+      "start-stackmat": "Запустите Stackmat, чтобы начать",
+      "reset-state": "Сбросить состояние",
+      "reset-orientation": "Сбросить ориентацию",
+      "ready": "Готово",
+      "connecting": "Подключение…",
+      "disconnect": "Отключить",
+      "retry-connection": "Повторить подключение",
+      "connect-smart-cube": "Подключить Smart Cube"
     },
     "SolvesPage": {
       "title": "Сборки",

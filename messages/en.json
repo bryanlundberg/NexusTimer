@@ -169,7 +169,14 @@
       "new-scramble": "New scramble",
       "edit-scramble": "Edit scramble",
       "hints": "Hints",
-      "start-stackmat": "Start your Stackmat to begin"
+      "start-stackmat": "Start your Stackmat to begin",
+      "reset-state": "Reset State",
+      "reset-orientation": "Reset Orientation",
+      "ready": "Ready",
+      "connecting": "Connecting…",
+      "disconnect": "Disconnect",
+      "retry-connection": "Retry connection",
+      "connect-smart-cube": "Connect Smart Cube"
     },
     "SolvesPage": {
       "title": "Solves",

@@ -160,7 +160,14 @@
       "new-scramble": "Новий скрамбл",
       "edit-scramble": "Редагувати скрамбл",
       "hints": "Підказки",
-      "start-stackmat": "Запустіть Stackmat, щоб почати"
+      "start-stackmat": "Запустіть Stackmat, щоб почати",
+      "reset-state": "Скинути стан",
+      "reset-orientation": "Скинути орієнтацію",
+      "ready": "Готово",
+      "connecting": "Підключення…",
+      "disconnect": "Відключити",
+      "retry-connection": "Повторити підключення",
+      "connect-smart-cube": "Підключити Smart Cube"
     },
     "SolvesPage": {
       "title": "Спроби",

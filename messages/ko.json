@@ -108,7 +108,14 @@
       "new-scramble": "새 스크램블",
       "edit-scramble": "스크램블 수정",
       "hints": "힌트",
-      "start-stackmat": "타이머를 시작하려면 Stackmat을 연결하세요"
+      "start-stackmat": "타이머를 시작하려면 Stackmat을 연결하세요",
+      "reset-state": "상태 초기화",
+      "reset-orientation": "방향 초기화",
+      "ready": "준비 완료",
+      "connecting": "연결 중…",
+      "disconnect": "연결 해제",
+      "retry-connection": "다시 연결",
+      "connect-smart-cube": "스마트 큐브 연결"
     },
     "SolvesPage": {
       "title": "기록",

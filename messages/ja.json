@@ -108,7 +108,14 @@
       "new-scramble": "新しいスクランブル",
       "edit-scramble": "スクランブル編集",
       "hints": "ヒント",
-      "start-stackmat": "Stackmatを起動して開始してください"
+      "start-stackmat": "Stackmatを起動して開始してください",
+      "reset-state": "状態をリセット",
+      "reset-orientation": "向きをリセット",
+      "ready": "準備完了",
+      "connecting": "接続中…",
+      "disconnect": "切断",
+      "retry-connection": "再接続",
+      "connect-smart-cube": "スマートキューブを接続"
     },
     "SolvesPage": {
       "title": "ソルブ履歴",
