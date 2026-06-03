@@ -116,7 +116,18 @@
       "disconnect": "Отключить",
       "retry-connection": "Повторить подключение",
       "connect-smart-cube": "Подключить Smart Cube",
-      "connection-error": "Не удалось подключиться к smart cube. Проверьте MAC-адрес и попробуйте снова."
+      "connection-error": "Не удалось подключиться к smart cube. Проверьте MAC-адрес и попробуйте снова.",
+      "how-to-connect": "Как подключить",
+      "how-to-connect-title": "Как подключить",
+      "how-to-connect-desc": "Подключитесь по Bluetooth одним из этих способов.",
+      "htc-chrome-title": "Включите экспериментальные функции в Chrome",
+      "htc-chrome-step-1": "Откройте это в Chrome:",
+      "htc-chrome-step-2": "Установите «Enabled» и перезапустите Chrome.",
+      "htc-mac-title": "Или введите MAC вручную",
+      "htc-mac-step-1": "Формат: AA:BB:CC:DD:EE:FF.",
+      "htc-mac-step-2": "Найдите его в приложении кубика, на коробке, в батарейном отсеке или здесь в Chrome:",
+      "htc-copy": "Копировать",
+      "htc-copied": "Скопировано"
     },
     "SolvesPage": {
       "title": "Сборки",

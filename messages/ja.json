@@ -116,7 +116,18 @@
       "disconnect": "切断",
       "retry-connection": "再接続",
       "connect-smart-cube": "スマートキューブを接続",
-      "connection-error": "スマートキューブに接続できませんでした。MACアドレスを確認して再試行してください。"
+      "connection-error": "スマートキューブに接続できませんでした。MACアドレスを確認して再試行してください。",
+      "how-to-connect": "接続方法",
+      "how-to-connect-title": "接続方法",
+      "how-to-connect-desc": "次のいずれかの方法でBluetooth接続します。",
+      "htc-chrome-title": "Chromeで実験的機能を有効にする",
+      "htc-chrome-step-1": "Chromeで次を開きます：",
+      "htc-chrome-step-2": "Enabledに設定し、Chromeを再起動します。",
+      "htc-mac-title": "またはMACを手動で入力",
+      "htc-mac-step-1": "形式：AA:BB:CC:DD:EE:FF。",
+      "htc-mac-step-2": "キューブのアプリ、箱、電池ボックス、またはここChromeで確認できます：",
+      "htc-copy": "コピー",
+      "htc-copied": "コピーしました"
     },
     "SolvesPage": {
       "title": "ソルブ履歴",

@@ -102,7 +102,18 @@
       "disconnect": "Desconectar",
       "retry-connection": "Reintentar conexión",
       "connect-smart-cube": "Conectar Smart Cube",
-      "connection-error": "No se pudo conectar con el smart cube. Verifica la dirección MAC e inténtalo de nuevo."
+      "connection-error": "No se pudo conectar con el smart cube. Verifica la dirección MAC e inténtalo de nuevo.",
+      "how-to-connect": "Cómo conectar",
+      "how-to-connect-title": "Cómo conectar",
+      "how-to-connect-desc": "Conecta por Bluetooth usando una de estas opciones.",
+      "htc-chrome-title": "Activa las funciones experimentales en Chrome",
+      "htc-chrome-step-1": "Abre esto en Chrome:",
+      "htc-chrome-step-2": "Ponlo en Enabled y reinicia Chrome.",
+      "htc-mac-title": "O introduce la MAC manualmente",
+      "htc-mac-step-1": "Formato: AA:BB:CC:DD:EE:FF.",
+      "htc-mac-step-2": "Búscala en la app del cubo, en su caja, en el compartimento de la batería o aquí en Chrome:",
+      "htc-copy": "Copiar",
+      "htc-copied": "Copiado"
     },
     "SolvesPage": {
       "title": "Tiempos",

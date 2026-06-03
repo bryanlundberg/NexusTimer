@@ -116,7 +116,18 @@
       "disconnect": "Trennen",
       "retry-connection": "Verbindung erneut versuchen",
       "connect-smart-cube": "Smart Cube verbinden",
-      "connection-error": "Verbindung zum Smart Cube fehlgeschlagen. Überprüfe die MAC-Adresse und versuche es erneut."
+      "connection-error": "Verbindung zum Smart Cube fehlgeschlagen. Überprüfe die MAC-Adresse und versuche es erneut.",
+      "how-to-connect": "Wie verbinden",
+      "how-to-connect-title": "Wie man verbindet",
+      "how-to-connect-desc": "Verbinde dich über Bluetooth mit einer dieser Optionen.",
+      "htc-chrome-title": "Experimentelle Funktionen in Chrome aktivieren",
+      "htc-chrome-step-1": "Öffne dies in Chrome:",
+      "htc-chrome-step-2": "Auf „Enabled“ setzen und Chrome neu starten.",
+      "htc-mac-title": "Oder die MAC manuell eingeben",
+      "htc-mac-step-1": "Format: AA:BB:CC:DD:EE:FF.",
+      "htc-mac-step-2": "Finde sie in der Cube-App, auf der Verpackung, im Batteriefach oder hier in Chrome:",
+      "htc-copy": "Kopieren",
+      "htc-copied": "Kopiert"
     },
     "SolvesPage": {
       "title": "Zeiten",

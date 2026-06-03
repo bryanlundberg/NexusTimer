@@ -116,7 +116,18 @@
       "disconnect": "연결 해제",
       "retry-connection": "다시 연결",
       "connect-smart-cube": "스마트 큐브 연결",
-      "connection-error": "스마트 큐브에 연결하지 못했습니다. MAC 주소를 확인하고 다시 시도하세요."
+      "connection-error": "스마트 큐브에 연결하지 못했습니다. MAC 주소를 확인하고 다시 시도하세요.",
+      "how-to-connect": "연결 방법",
+      "how-to-connect-title": "연결 방법",
+      "how-to-connect-desc": "다음 옵션 중 하나로 Bluetooth를 통해 연결하세요.",
+      "htc-chrome-title": "Chrome에서 실험적 기능 활성화",
+      "htc-chrome-step-1": "Chrome에서 다음을 엽니다:",
+      "htc-chrome-step-2": "Enabled로 설정한 후 Chrome을 다시 시작하세요.",
+      "htc-mac-title": "또는 MAC을 직접 입력",
+      "htc-mac-step-1": "형식: AA:BB:CC:DD:EE:FF.",
+      "htc-mac-step-2": "큐브 앱, 포장 상자, 배터리 칸 또는 여기 Chrome에서 찾으세요:",
+      "htc-copy": "복사",
+      "htc-copied": "복사됨"
     },
     "SolvesPage": {
       "title": "기록",

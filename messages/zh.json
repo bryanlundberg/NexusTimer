@@ -116,7 +116,18 @@
       "disconnect": "断开连接",
       "retry-connection": "重试连接",
       "connect-smart-cube": "连接智能魔方",
-      "connection-error": "无法连接智能魔方。请检查 MAC 地址后重试。"
+      "connection-error": "无法连接智能魔方。请检查 MAC 地址后重试。",
+      "how-to-connect": "如何连接",
+      "how-to-connect-title": "如何连接",
+      "how-to-connect-desc": "使用以下任一选项通过蓝牙连接。",
+      "htc-chrome-title": "在 Chrome 中启用实验性功能",
+      "htc-chrome-step-1": "在 Chrome 中打开此地址：",
+      "htc-chrome-step-2": "设置为 Enabled，然后重启 Chrome。",
+      "htc-mac-title": "或手动输入 MAC",
+      "htc-mac-step-1": "格式：AA:BB:CC:DD:EE:FF。",
+      "htc-mac-step-2": "可在魔方 App、包装盒、电池仓或此处的 Chrome 中查找：",
+      "htc-copy": "复制",
+      "htc-copied": "已复制"
     },
     "SolvesPage": {
       "title": "还原纪录",

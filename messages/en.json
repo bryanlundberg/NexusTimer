@@ -177,7 +177,18 @@
       "disconnect": "Disconnect",
       "retry-connection": "Retry connection",
       "connect-smart-cube": "Connect Smart Cube",
-      "connection-error": "Couldn't connect to the smart cube. Check the MAC address and try again."
+      "connection-error": "Couldn't connect to the smart cube. Check the MAC address and try again.",
+      "how-to-connect": "How to connect",
+      "how-to-connect-title": "How to connect",
+      "how-to-connect-desc": "Connect over Bluetooth using one of these options.",
+      "htc-chrome-title": "Enable experimental features in Chrome",
+      "htc-chrome-step-1": "Open this in Chrome:",
+      "htc-chrome-step-2": "Set it to Enabled, then relaunch Chrome.",
+      "htc-mac-title": "Or enter the MAC manually",
+      "htc-mac-step-1": "Format: AA:BB:CC:DD:EE:FF.",
+      "htc-mac-step-2": "Find it in the cube's app, its box, the battery compartment, or here in Chrome:",
+      "htc-copy": "Copy",
+      "htc-copied": "Copied"
     },
     "SolvesPage": {
       "title": "Solves",
