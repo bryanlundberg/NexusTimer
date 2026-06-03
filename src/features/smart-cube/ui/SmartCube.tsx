@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 import { Compass, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -120,11 +121,18 @@ export default function SmartCube() {
         await newConnection.sendCommand({ type: 'REQUEST_BATTERY' })
       }
     } catch (error) {
-      console.error('[SmartCube] connection error', error)
       resolveMacRequest(null)
       cleanup()
       setConnection(null)
+
+      if (error instanceof DOMException && error.name === 'NotFoundError') {
+        setStatus('idle')
+        return
+      }
+
+      console.error('[SmartCube] connection error', error)
       setStatus('error')
+      toast.error(t('connection-error'))
     }
   }
 
