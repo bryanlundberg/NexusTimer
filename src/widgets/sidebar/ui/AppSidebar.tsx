@@ -101,8 +101,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           title: t('NavMain.trainer'),
           url: '/algorithms/trainer',
-          icon: Dumbbell,
-          badge: 'New'
+          icon: Dumbbell
         },
         {
           title: t('AlgorithmsPage.title'),
@@ -125,7 +124,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           title: t('NavMain.leaderboards'),
           url: '/leaderboards',
-          icon: TableProperties
+          icon: TableProperties,
+          badge: 'New'
         }
       ],
       multiplayer: [
