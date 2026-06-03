@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Pencil2Icon } from '@radix-ui/react-icons'
 import { Keyboard, Lightbulb } from 'lucide-react'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
@@ -23,12 +22,10 @@ import genSolution, { prewarmSolver } from '@/shared/lib/timer/genSolution'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
-import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { truncateGuide, type ScrambleGuideItem } from '@/shared/lib/timer/scrambleGuide'
 import { Layers } from '@/shared/types/enums'
 import { CrossSolution } from '@/shared/types/types'
 
-import EnterCustomScramble from '@/features/enter-custom-scramble/ui/enter-custom-scramble'
 import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
 import { TimerMode } from '@/features/timer/model/enums'
 import { HINT_CATEGORIES, SCRAMBLE_GUIDE_MAX_MOVES, SCRAMBLE_SIZE_CLASSES } from '@/features/timer/model/const'
@@ -43,7 +40,6 @@ export function ScrambleZone() {
   const settings = useSettingsStore((store) => store.settings)
   const guide = useScrambleGuideStore((store) => store.guide)
   const scrambleReady = useScrambleGuideStore((store) => store.ready)
-  const openOverlay = useOverlayStore((store) => store.open)
   const t = useTranslations('Index')
 
   const measureRef = useRef<HTMLParagraphElement>(null)
@@ -58,21 +54,11 @@ export function ScrambleZone() {
   const showHintButton =
     !isSolving && !!selectedCube && HINT_CATEGORIES.includes(selectedCube.category as (typeof HINT_CATEGORIES)[number])
   const showVirtualKeyboard = timerMode === TimerMode.VIRTUAL && !isSolving && !!selectedCube
-  const showEditButton =
-    !isSolving && !!selectedCube && timerMode !== TimerMode.SMART_CUBE && timerMode !== TimerMode.VIRTUAL
 
   useEffect(() => {
     if (!showHintButton) return
     prewarmSolver()
   }, [showHintButton])
-
-  const handleOpenCustomScramble = () => {
-    openOverlay({
-      id: 'enter-custom-scramble',
-      component: <EnterCustomScramble />,
-      metadata: {}
-    })
-  }
 
   const handleShowHints = () => {
     if (!selectedCube) return
@@ -175,24 +161,6 @@ export function ScrambleZone() {
 
       <div className="absolute z-10 bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
         <TooltipProvider delayDuration={250}>
-          {showEditButton && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="[&>svg]:transition-transform [&>svg]:duration-200 [&:hover>svg]:-rotate-12 [&:active>svg]:scale-90"
-                  onClick={handleOpenCustomScramble}
-                >
-                  <Pencil2Icon />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{t('HomePage.edit-scramble')}</p>
-              </TooltipContent>
-            </Tooltip>
-          )}
-
           {showHintButton && (
             <Drawer>
               <Tooltip>
