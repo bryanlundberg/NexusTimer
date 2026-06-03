@@ -103,8 +103,6 @@ export default function SmartCube() {
       })
 
       subscriptionRef.current = newConnection.events$.subscribe((event: SmartCubeEvent) => {
-        console.log('[SmartCube] event', event)
-
         if (event.type === 'DISCONNECT') {
           setStatus('idle')
           setDeviceName(null)
