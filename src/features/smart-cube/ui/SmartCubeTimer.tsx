@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useEffect, type ReactNode } from 'react'
-import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
@@ -10,6 +9,7 @@ import { useSolveSession } from '@/features/timer/model/useSolveSession'
 import { useSmartCubeMoves } from '@/features/smart-cube/model/useSmartCubeMoves'
 import { useSmartCubeGyro } from '@/features/smart-cube/model/useSmartCubeGyro'
 import type { SmartCubeConnection } from 'smartcube-web-bluetooth'
+import { SolvingTime } from '@/features/smart-cube/ui/SolvingTime'
 
 interface SmartCubeTimerProps {
   connection: SmartCubeConnection
@@ -34,7 +34,8 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
     scramble,
     seed: false,
     tempoScale: 5,
-    dragInput: 'auto'
+    dragInput: 'auto',
+    sizePx: 'min(180px, 38vw)'
   })
 
   const onAdvanceScramble = useCallback(() => {
@@ -83,11 +84,11 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
       <div ref={containerRef} className="rounded-md overflow-hidden" />
 
       {phase === 'inspecting' && inspectionTime != null ? (
-        <div className="text-2xl sm:text-3xl tabular-nums font-semibold text-orange-500">
+        <div className="text-5xl sm:text-7xl tabular-nums font-semibold text-orange-500">
           {Math.max(0, Math.trunc(inspectionTime))}
         </div>
       ) : (
-        <div className="text-2xl sm:text-3xl tabular-nums">{formatTime(solvingTime || 0)}</div>
+        <SolvingTime ms={solvingTime || 0} />
       )}
 
       {secondaryActions?.(syncSolved, gyroActive, resetOrientation)}
