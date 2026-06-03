@@ -1,0 +1,47 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ripple {
+  width: 30vmax;
+  height: 30vmax;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(250, 204, 21, 0.35) 0%,
+    rgba(250, 204, 21, 0.50) 45%,
+    rgba(250, 204, 21, 0) 72%
+  );
+  transform: scale(0);
+  opacity: 0;
+  animation: record-ripple 2000ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes record-ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(8);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ripple {
+    animation: none;
+    opacity: 0;
+  }
+}

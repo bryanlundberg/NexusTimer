@@ -138,7 +138,7 @@
       "tap-to-start": "Торкніться, щоб почати",
       "space-to-start": "Натисніть ПРОБІЛ, щоб почати",
       "empty-scramble": "Виберіть куб, щоб завантажити скрамбл.",
-      "congratulations": "Вітаємо!",
+      "congratulations": "Вітаємо! {time}",
       "new_best_average": "Нове найкраще середнє!",
       "new_worst_time": "Ой, це ваш найгірший час!",
       "personal_best": "Ви побили свій особистий рекорд (PB)!",
@@ -147,7 +147,6 @@
       "best": "Найкраще",
       "counter": "Лічильник",
       "select-cube": "Вибрати куб",
-      "enter-custom-scramble": "Ввести власний скрамбл",
       "mode": "Режим",
       "modes": {
         "normal": "Звичайний",
@@ -158,9 +157,27 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "Новий скрамбл",
-      "edit-scramble": "Редагувати скрамбл",
       "hints": "Підказки",
-      "start-stackmat": "Запустіть Stackmat, щоб почати"
+      "start-stackmat": "Запустіть Stackmat, щоб почати",
+      "reset-state": "Скинути стан",
+      "reset-orientation": "Скинути орієнтацію",
+      "ready": "Готово",
+      "connecting": "Підключення…",
+      "disconnect": "Відключити",
+      "retry-connection": "Повторити підключення",
+      "connect-smart-cube": "Підключити Smart Cube",
+      "connection-error": "Не вдалося підключитися до smart cube. Перевірте MAC-адресу та спробуйте ще раз.",
+      "how-to-connect": "Як підключити",
+      "how-to-connect-title": "Як підключити",
+      "how-to-connect-desc": "Підключіться через Bluetooth одним із цих способів.",
+      "htc-chrome-title": "Увімкніть експериментальні функції в Chrome",
+      "htc-chrome-step-1": "Відкрийте це в Chrome:",
+      "htc-chrome-step-2": "Встановіть «Enabled» і перезапустіть Chrome.",
+      "htc-mac-title": "Або введіть MAC вручну",
+      "htc-mac-step-1": "Формат: AA:BB:CC:DD:EE:FF.",
+      "htc-mac-step-2": "Знайдіть її в застосунку кубика, на коробці, у відсіку для батарейок або тут у Chrome:",
+      "htc-copy": "Копіювати",
+      "htc-copied": "Скопійовано"
     },
     "SolvesPage": {
       "title": "Спроби",
@@ -226,16 +243,6 @@
       "sessions-tooltip": "Враховує лише сесійні спроби для кожного куба тієї самої категорії.",
       "cube-all-tooltip": "Поєднує всі історичні та сесійні спроби лише для вибраного куба.",
       "cube-session-tooltip": "Враховує лише сесійні спроби лише для вибраного куба.",
-      "date-range": {
-        "all-time": "За весь час",
-        "today": "Сьогодні",
-        "this-week": "Цього тижня",
-        "last-week": "Останні 7 днів",
-        "this-month": "Цього місяця",
-        "last-month": "Останні 30 днів",
-        "this-year": "Цього року",
-        "last-year": "Останні 365 днів"
-      },
       "empty-statistics": "Статистика недоступна",
       "empty-statistics-description": "Схоже, ваше сховище спроб поки порожнє."
     },

@@ -1,18 +1,51 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
-import { BarChart3Icon } from 'lucide-react'
+import { motion, useReducedMotion, type Variants } from 'motion/react'
+import { Nexi } from '@/shared/ui/nexi'
 
 export default function StatisticsEmpty() {
   const t = useTranslations('Index.StatsPage')
+  const reduceMotion = useReducedMotion()
+
+  const container: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: reduceMotion ? 0 : 0.07,
+        delayChildren: reduceMotion ? 0 : 0.08
+      }
+    }
+  }
+
+  const item: Variants = {
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 10 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: reduceMotion ? 0 : 0.4, ease: [0.22, 1, 0.36, 1] }
+    }
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center grow py-12">
-      <div className="inline-flex items-center justify-center rounded-2xl bg-muted/50 p-4 mb-4">
-        <BarChart3Icon className="size-8 text-muted-foreground/50" />
-      </div>
-      <h2 className="text-xl font-bold mb-2 text-center text-balance">{t('empty-statistics')}</h2>
-      <p className="text-sm text-muted-foreground text-center text-balance max-w-xs">
+    <motion.div
+      variants={container}
+      initial="hidden"
+      animate="show"
+      className="flex flex-col items-center justify-center grow py-12 px-2 text-center"
+    >
+      <motion.div variants={item} className="relative grid place-items-center size-36 shrink-0" aria-hidden="true">
+        <div className="absolute inset-7 rounded-full bg-primary/10 blur-2xl" />
+        <div className="absolute inset-11 rounded-full bg-primary/15 blur-xl" />
+        <Nexi state="think" size={120} aria-label={t('empty-statistics')} />
+      </motion.div>
+
+      <motion.h2 variants={item} className="mt-1 text-lg font-semibold tracking-tight text-balance text-foreground">
+        {t('empty-statistics')}
+      </motion.h2>
+      <motion.p variants={item} className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground text-pretty">
         {t('empty-statistics-description')}
-      </p>
-    </div>
+      </motion.p>
+    </motion.div>
   )
 }

@@ -26,7 +26,7 @@ export default function PeopleDetailsPage() {
       ) : (
         <>
           <UserHeader user={user} />
-          <PageBody variant="hero">
+          <PageBody variant="hero" className={'pt-0'}>
             <PeopleTabs user={user} cubes={cubes} />
           </PageBody>
         </>

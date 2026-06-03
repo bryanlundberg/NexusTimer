@@ -45,7 +45,7 @@ export default function AccountSavePage() {
             }}
             aria-disabled={isUploading}
           >
-            <Button variant={'secondary'} className="w-full" disabled={isUploading}>
+            <Button variant={'ghost'} className="w-full" disabled={isUploading}>
               {t('Inputs.back')}
             </Button>
           </Link>

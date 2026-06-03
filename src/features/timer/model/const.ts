@@ -1,5 +1,7 @@
 export const SCRAMBLE_MAX_HEIGHT_RATIO = 0.25
 
+export const SCRAMBLE_GUIDE_MAX_MOVES = 20
+
 export const HINT_CATEGORIES = ['3x3', '3x3 OH'] as const
 
 export const SCRAMBLE_SIZE_CLASSES = {

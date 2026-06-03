@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { Pencil2Icon } from '@radix-ui/react-icons'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Keyboard, Lightbulb } from 'lucide-react'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 
@@ -21,14 +21,14 @@ import { cn } from '@/shared/lib/utils'
 import genSolution, { prewarmSolver } from '@/shared/lib/timer/genSolution'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
+import { truncateGuide, type ScrambleGuideItem } from '@/shared/lib/timer/scrambleGuide'
 import { Layers } from '@/shared/types/enums'
 import { CrossSolution } from '@/shared/types/types'
 
-import EnterCustomScramble from '@/features/enter-custom-scramble/ui/enter-custom-scramble'
 import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
 import { TimerMode } from '@/features/timer/model/enums'
-import { HINT_CATEGORIES, SCRAMBLE_SIZE_CLASSES } from '@/features/timer/model/const'
+import { HINT_CATEGORIES, SCRAMBLE_GUIDE_MAX_MOVES, SCRAMBLE_SIZE_CLASSES } from '@/features/timer/model/const'
 import { useScrambleOverflow } from '@/features/timer/model/useScrambleOverflow'
 
 export function ScrambleZone() {
@@ -38,7 +38,8 @@ export function ScrambleZone() {
   const isSolving = useTimerStore((store) => store.isSolving)
   const timerMode = useTimerStore((store) => store.timerMode)
   const settings = useSettingsStore((store) => store.settings)
-  const openOverlay = useOverlayStore((store) => store.open)
+  const guide = useScrambleGuideStore((store) => store.guide)
+  const scrambleReady = useScrambleGuideStore((store) => store.ready)
   const t = useTranslations('Index')
 
   const measureRef = useRef<HTMLParagraphElement>(null)
@@ -47,29 +48,47 @@ export function ScrambleZone() {
 
   const sizeClasses = SCRAMBLE_SIZE_CLASSES[scrambleSize]
   const scrambleText = selectedCube ? scramble : t('HomePage.empty-scramble')
-  const showModalButton = isOverflowing && !!selectedCube
+  const showGuide = guide != null && (guide.corrections.length > 0 || guide.pending.length > 0)
+  const visibleGuide = guide != null ? truncateGuide(guide, SCRAMBLE_GUIDE_MAX_MOVES) : null
+  const showModalButton = isOverflowing && !!selectedCube && !showGuide && !scrambleReady
   const showHintButton =
     !isSolving && !!selectedCube && HINT_CATEGORIES.includes(selectedCube.category as (typeof HINT_CATEGORIES)[number])
   const showVirtualKeyboard = timerMode === TimerMode.VIRTUAL && !isSolving && !!selectedCube
-  const showEditButton = !isSolving && !!selectedCube
 
   useEffect(() => {
     if (!showHintButton) return
     prewarmSolver()
   }, [showHintButton])
 
-  const handleOpenCustomScramble = () => {
-    openOverlay({
-      id: 'enter-custom-scramble',
-      component: <EnterCustomScramble />,
-      metadata: {}
-    })
-  }
-
   const handleShowHints = () => {
     if (!selectedCube) return
     genSolution(selectedCube.category, scramble, Layers.YELLOW).then((res: CrossSolution) => setHints(res))
   }
+
+  const renderGuideMove = (
+    item: ScrambleGuideItem,
+    { isCorrection, isNext }: { isCorrection: boolean; isNext: boolean }
+  ) => (
+    <motion.span
+      key={item.key}
+      layout
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.1, ease: 'easeIn' } }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
+      className={cn(
+        'leading-none',
+        isNext
+          ? cn(
+              'inline-flex items-center justify-center size-[2.1em] rounded-full border-2 font-semibold',
+              isCorrection ? 'border-destructive bg-destructive/10 text-destructive' : 'border-primary bg-primary/10'
+            )
+          : isCorrection && 'text-destructive font-medium'
+      )}
+    >
+      {item.move}
+    </motion.span>
+  )
 
   return (
     <div className="relative mx-auto w-full max-w-7xl">
@@ -84,7 +103,44 @@ export function ScrambleZone() {
           {scrambleText}
         </p>
 
-        {showModalButton ? (
+        {scrambleReady ? (
+          <motion.p
+            data-testid="scramble-text-zone"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.35, ease: 'easeInOut' }}
+            className="font-semibold tracking-wide text-primary"
+          >
+            {t('HomePage.ready')}
+          </motion.p>
+        ) : showGuide ? (
+          <p data-testid="scramble-text-zone" className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
+            <AnimatePresence initial={false} mode="popLayout">
+              {visibleGuide!.corrections.map((item, i) =>
+                renderGuideMove(item, { isCorrection: true, isNext: i === 0 })
+              )}
+              {visibleGuide!.pending.map((item, i) =>
+                renderGuideMove(item, {
+                  isCorrection: false,
+                  isNext: visibleGuide!.corrections.length === 0 && i === 0
+                })
+              )}
+              {visibleGuide!.hiddenCount > 0 && (
+                <motion.span
+                  key="guide-overflow"
+                  layout
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, transition: { duration: 0.1, ease: 'easeIn' } }}
+                  transition={{ duration: 0.45, ease: 'easeOut' }}
+                  className="leading-none text-muted-foreground font-medium select-none tabular-nums"
+                >
+                  …
+                </motion.span>
+              )}
+            </AnimatePresence>
+          </p>
+        ) : showModalButton ? (
           <Dialog>
             <DialogTrigger className="text-sm opacity-60 hover:opacity-100 transition-opacity">
               [ Show scramble ]
@@ -103,26 +159,8 @@ export function ScrambleZone() {
         )}
       </div>
 
-      <div className="absolute bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
+      <div className="absolute z-10 bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
         <TooltipProvider delayDuration={250}>
-          {showEditButton && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="[&>svg]:transition-transform [&>svg]:duration-200 [&:hover>svg]:-rotate-12 [&:active>svg]:scale-90"
-                  onClick={handleOpenCustomScramble}
-                >
-                  <Pencil2Icon />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{t('HomePage.edit-scramble')}</p>
-              </TooltipContent>
-            </Tooltip>
-          )}
-
           {showHintButton && (
             <Drawer>
               <Tooltip>

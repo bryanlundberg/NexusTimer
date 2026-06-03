@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import { Box } from 'lucide-react'
 
 export default function MainCubeSelector() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
@@ -38,7 +39,7 @@ export default function MainCubeSelector() {
     <div className="flex-1 min-w-0">
       <Button variant={'outline'} className={'w-full justify-between overflow-hidden'} onClick={handleOpenSelector}>
         <div className="flex items-center gap-2 truncate">
-          {selectedCubeData && (
+          {selectedCubeData ? (
             <Image
               src={selectedCubeData.src}
               alt={selectedCubeData.name}
@@ -46,6 +47,8 @@ export default function MainCubeSelector() {
               height={20}
               className="invert dark:invert-0"
             />
+          ) : (
+            <Box className="size-5 shrink-0 text-muted-foreground" />
           )}
           <span className={'truncate mr-2'}>{selectedCube ? selectedCube.name : t('HomePage.select-cube')}</span>
         </div>

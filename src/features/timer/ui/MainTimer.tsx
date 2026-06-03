@@ -7,6 +7,7 @@ import { TimerMode } from '@/features/timer/model/enums'
 const Stackmat = dynamic(() => import('@/features/timer/ui/stackmat'), { ssr: false })
 const TimerVirtual = dynamic(() => import('@/features/timer/ui/TimerVirtual'), { ssr: false })
 const NXConnect = dynamic(() => import('@/features/nexus-connect/ui/NXConnect'), { ssr: false })
+const SmartCube = dynamic(() => import('@/features/smart-cube/ui/SmartCube'), { ssr: false })
 
 export function MainTimer() {
   const timerMode = useTimerStore((store) => store.timerMode)
@@ -31,6 +32,8 @@ export function MainTimer() {
       )}
 
       {timerMode === TimerMode.VIRTUAL && (event === '333' || event === '222') && <TimerVirtual />}
+
+      {timerMode === TimerMode.SMART_CUBE && event === '333' && <SmartCube />}
     </>
   )
 }

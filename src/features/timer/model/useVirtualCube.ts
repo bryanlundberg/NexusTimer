@@ -5,20 +5,36 @@ import { CubeEngine } from 'cube-state-engine'
 interface UseVirtualCubeArgs {
   cubeSize: number
   scramble: string | null
+  seed?: boolean
+  tempoScale?: number
+  dragInput?: 'auto' | 'none'
+  sizePx?: string
+  cameraDistance?: number
 }
 
-const PLAYER_SIZE_PX = '320px'
+const PLAYER_SIZE_PX = 'min(320px, 30vw)'
 
-const buildPlayer = (cubeSize: number, scramble: string | null) => {
+interface PlayerOptions {
+  seed?: boolean
+  tempoScale?: number
+  dragInput?: 'auto' | 'none'
+  sizePx?: string
+  cameraDistance?: number
+}
+
+const buildPlayer = (cubeSize: number, scramble: string | null, opts?: PlayerOptions) => {
   const player = new TwistyPlayer({
     puzzle: cubeSize === 2 ? '2x2x2' : '3x3x3',
     controlPanel: 'none',
-    tempoScale: 3,
-    background: 'none'
+    tempoScale: opts?.tempoScale ?? 3,
+    background: 'none',
+    ...(opts?.cameraDistance != null ? { cameraDistance: opts.cameraDistance } : {}),
+    ...(opts?.dragInput ? { experimentalDragInput: opts.dragInput } : {})
   })
-  player.style.width = PLAYER_SIZE_PX
-  player.style.height = PLAYER_SIZE_PX
-  if (scramble) {
+  const size = opts?.sizePx ?? PLAYER_SIZE_PX
+  player.style.width = size
+  player.style.height = size
+  if (opts?.seed !== false && scramble) {
     try {
       player.experimentalSetupAlg = scramble
     } catch {}
@@ -26,7 +42,15 @@ const buildPlayer = (cubeSize: number, scramble: string | null) => {
   return player
 }
 
-export function useVirtualCube({ cubeSize, scramble }: UseVirtualCubeArgs) {
+export function useVirtualCube({
+  cubeSize,
+  scramble,
+  seed = true,
+  tempoScale,
+  dragInput,
+  sizePx,
+  cameraDistance
+}: UseVirtualCubeArgs) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [player, setPlayer] = useState<TwistyPlayer | null>(null)
   const [engine, setEngine] = useState<CubeEngine | null>(null)
@@ -39,10 +63,10 @@ export function useVirtualCube({ cubeSize, scramble }: UseVirtualCubeArgs) {
     } catch {}
 
     const newEngine = new CubeEngine('', { size: cubeSize })
-    const newPlayer = buildPlayer(cubeSize, scramble)
+    const newPlayer = buildPlayer(cubeSize, scramble, { seed, tempoScale, dragInput, sizePx, cameraDistance })
     containerRef.current.appendChild(newPlayer)
 
-    if (scramble) {
+    if (seed && scramble) {
       try {
         newEngine.reset()
         newEngine.applyMoves(scramble)
@@ -60,23 +84,24 @@ export function useVirtualCube({ cubeSize, scramble }: UseVirtualCubeArgs) {
   }, [cubeSize])
 
   useEffect(() => {
+    if (!seed) return
     if (!player || !engine || !scramble) return
     try {
       player.experimentalSetupAlg = scramble
       engine.reset()
       engine.applyMoves(scramble)
     } catch {}
-  }, [player, engine, scramble])
+  }, [player, engine, scramble, seed])
 
   const recreatePlayer = useCallback(() => {
     if (!containerRef.current) return
     try {
       player?.remove()
     } catch {}
-    const newPlayer = buildPlayer(cubeSize, scramble)
+    const newPlayer = buildPlayer(cubeSize, scramble, { seed, tempoScale, dragInput, sizePx, cameraDistance })
     containerRef.current.appendChild(newPlayer)
     setPlayer(newPlayer)
-  }, [player, cubeSize, scramble])
+  }, [player, cubeSize, scramble, seed, tempoScale, dragInput, sizePx, cameraDistance])
 
   return { containerRef, player, engine, recreatePlayer }
 }

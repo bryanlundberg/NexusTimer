@@ -61,7 +61,15 @@
       "user-solution": "Reconstruction",
       "time": "Time",
       "scramble": "Scramble",
-      "solution": "Solution"
+      "solution": "Solution",
+      "moves": "Moves",
+      "tps": "TPS",
+      "replay": "Replay",
+      "phases": "Phases",
+      "cross": "Cross",
+      "f2l": "F2L",
+      "oll": "OLL",
+      "pll": "PLL"
     },
     "Auth": {
       "sign-in": "Sign In",
@@ -139,7 +147,7 @@
       "tap-to-start": "Tap to start",
       "space-to-start": "Press SPACE to start",
       "empty-scramble": "Choose a cube to load a scramble.",
-      "congratulations": "Congratulations!",
+      "congratulations": "Congratulations! {time}",
       "new_best_average": "New best average!",
       "new_worst_time": "Oops, you got your worst time!",
       "personal_best": "You've beaten your personal best (PB)!",
@@ -148,7 +156,6 @@
       "best": "Best",
       "counter": "Counter",
       "select-cube": "Select Cube",
-      "enter-custom-scramble": "Enter custom scramble",
       "mode": "Mode",
       "modes": {
         "normal": "Normal",
@@ -159,9 +166,27 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "New scramble",
-      "edit-scramble": "Edit scramble",
       "hints": "Hints",
-      "start-stackmat": "Start your Stackmat to begin"
+      "start-stackmat": "Start your Stackmat to begin",
+      "reset-state": "Reset State",
+      "reset-orientation": "Reset Orientation",
+      "ready": "Ready",
+      "connecting": "Connecting…",
+      "disconnect": "Disconnect",
+      "retry-connection": "Retry connection",
+      "connect-smart-cube": "Connect Smart Cube",
+      "connection-error": "Couldn't connect to the smart cube. Check the MAC address and try again.",
+      "how-to-connect": "How to connect",
+      "how-to-connect-title": "How to connect",
+      "how-to-connect-desc": "Connect over Bluetooth using one of these options.",
+      "htc-chrome-title": "Enable experimental features in Chrome",
+      "htc-chrome-step-1": "Open this in Chrome:",
+      "htc-chrome-step-2": "Set it to Enabled, then relaunch Chrome.",
+      "htc-mac-title": "Or enter the MAC manually",
+      "htc-mac-step-1": "Format: AA:BB:CC:DD:EE:FF.",
+      "htc-mac-step-2": "Find it in the cube's app, its box, the battery compartment, or here in Chrome:",
+      "htc-copy": "Copy",
+      "htc-copied": "Copied"
     },
     "SolvesPage": {
       "title": "Solves",
@@ -227,22 +252,14 @@
       "sessions-tooltip": "Counts only session solves for every cube in the same category.",
       "cube-all-tooltip": "Combines all historical and session solves for only the selected cube.",
       "cube-session-tooltip": "Counts only session solves for only the selected cube.",
-      "date-range": {
-        "all-time": "All Time",
-        "today": "Today",
-        "this-week": "This Week",
-        "last-week": "Last 7 days",
-        "this-month": "This Month",
-        "last-month": "Last 30 days",
-        "this-year": "This Year",
-        "last-year": "Last 365 days"
-      },
       "empty-statistics": "No Statistics Available",
       "empty-statistics-description": "It looks like your solve vault is currently empty."
     },
     "CubesPage": {
       "title": "Cubes",
       "no-cubes-for-display": "No cubes for display.",
+      "empty-title": "No collections yet",
+      "empty-description": "Create your first collection or bring data from another timer. Nexi is ready for your first solve.",
       "favorite": "Favorite",
       "category": "Category",
       "solves": "Solves",
@@ -393,7 +410,9 @@
         "image": "Image",
         "date": "Date",
         "tps": "tps",
-        "not-available": "N/A"
+        "moves": "Moves",
+        "not-available": "N/A",
+        "replay-available": "Replay available"
       },
       "comparative": {
         "title": "Comparative",
@@ -423,8 +442,9 @@
       "community": "Community",
       "people": "People",
       "leaderboards": "Leaderboards",
-      "multiplayer": "Multiplayer",
+      "multiplayer": "Online",
       "free-play": "Free Play",
+      "footer-tagline": "Your cubing buddy",
       "install-app": "Install App",
       "settings": "Settings",
       "account": "Account",
@@ -444,7 +464,8 @@
     "solve-details": {
       "unknown-category": "Unknown",
       "move-to-history": "Move to History",
-      "transfer-collection": "Transfer Collection"
+      "transfer-collection": "Transfer Collection",
+      "watch-replay": "Watch replay"
     },
     "Settings-menu": {
       "locale": "Region",

@@ -16,17 +16,23 @@ export default async function LandingFooter() {
               <span className="text-xl font-bold text-white">NexusTimer</span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed max-w-md">{t('tagline')}</p>
-            <Image
-              src="/utils/android-apk.webp"
-              alt="Download Nexus Connect App"
-              width={200}
-              height={60}
-              className="mt-6 -ms-4"
-              unoptimized
-            />
+            <Link
+              href={'https://play.google.com/store/apps/details?id=com.nexustimer'}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                src="/landing/gp.avif"
+                alt="Download Nexus Timer App"
+                width={200}
+                height={60}
+                className="mt-6 -ms-4"
+                unoptimized
+              />
+            </Link>
           </div>
 
-          <div className="grid-cols-3 gap-8 hidden md:grid">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
               <h4 className="text-xs font-semibold text-gray-300 mb-6 uppercase tracking-[0.15em]">{t('product')}</h4>
               <ul className="space-y-3">

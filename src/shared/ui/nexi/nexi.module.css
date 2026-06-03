@@ -1,0 +1,826 @@
+.nexi {
+  --s: 220px;
+  --indigo: #5b63f5;
+  --indigo-l: #8a90ff;
+  --indigo-d: #3a3fb0;
+  --c-white: #eef0f4;
+  --c-yellow: #ffce3a;
+  --c-red: #f0473f;
+  --c-orange: #ff8a3c;
+  --c-blue: #3b82f6;
+  --c-green: #2ec27e;
+  position: relative;
+  width: var(--s);
+  height: var(--s);
+  flex: 0 0 auto;
+  font-size: var(--s);
+}
+
+.body {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0.78em;
+  height: 0.78em;
+  border-radius: 0.18em;
+  background: radial-gradient(120% 120% at 30% 22%, #9aa0ff 0%, #6970f7 34%, #5b63f5 52%, #474fd6 76%, #3a3fb0 100%);
+  box-shadow:
+    inset 0 0.03em 0.02em rgba(255, 255, 255, 0.55),
+    inset 0 -0.05em 0.06em rgba(30, 30, 80, 0.55),
+    inset 0 0 0 0.006em rgba(255, 255, 255, 0.1),
+    0 0.12em 0.22em rgba(58, 63, 176, 0.45);
+  animation: nexi-float 3.6s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+/* faint 3x3 cube grid */
+.body::before {
+  content: '';
+  position: absolute;
+  inset: 0.07em;
+  border-radius: 0.12em;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 32.5%,
+      rgba(255, 255, 255, 0.07) 33%,
+      rgba(255, 255, 255, 0.07) 34%,
+      transparent 34.5%,
+      transparent 65.5%,
+      rgba(255, 255, 255, 0.07) 66%,
+      rgba(255, 255, 255, 0.07) 67%,
+      transparent 67.5%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 32.5%,
+      rgba(0, 0, 0, 0.1) 33%,
+      rgba(0, 0, 0, 0.1) 34%,
+      transparent 34.5%,
+      transparent 65.5%,
+      rgba(0, 0, 0, 0.1) 66%,
+      rgba(0, 0, 0, 0.1) 67%,
+      transparent 67.5%
+    );
+  pointer-events: none;
+  opacity: 0.6;
+}
+/* top specular */
+.body::after {
+  content: '';
+  position: absolute;
+  top: 0.05em;
+  left: 0.11em;
+  width: 0.28em;
+  height: 0.12em;
+  background: radial-gradient(100% 100% at 30% 30%, rgba(255, 255, 255, 0.5), transparent 70%);
+  border-radius: 50%;
+  filter: blur(0.01em);
+  pointer-events: none;
+}
+
+/* ---- face ---- */
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.1em;
+  z-index: 3;
+}
+.eyes {
+  display: flex;
+  gap: 0.135em;
+  align-items: center;
+  transition: transform 0.3s;
+}
+.eye {
+  position: relative;
+  width: 0.135em;
+  height: 0.175em;
+  border-radius: 50%;
+  background: #15152c;
+  transform-origin: 50% 50%;
+}
+.eye::after {
+  content: '';
+  position: absolute;
+  top: 0.018em;
+  left: 0.022em;
+  width: 0.052em;
+  height: 0.052em;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.92;
+}
+.mouth {
+  margin-top: 0.05em;
+  width: 0.135em;
+  height: 0.07em;
+  border-bottom: 0.032em solid #15152c;
+  border-radius: 0 0 0.12em 0.12em;
+  border-left: 0.032em solid transparent;
+  border-right: 0.032em solid transparent;
+  transition: all 0.25s;
+}
+.cheeks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.cheeks span {
+  position: absolute;
+  top: 0.46em;
+  width: 0.085em;
+  height: 0.05em;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 150, 170, 0.55), transparent);
+}
+.cheeks span:first-child {
+  left: 0.165em;
+}
+.cheeks span:last-child {
+  right: 0.165em;
+}
+.brows {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.brows span {
+  position: absolute;
+  top: 0.255em;
+  width: 0.11em;
+  height: 0.026em;
+  border-radius: 0.03em;
+  background: #15152c;
+}
+.brows span:first-child {
+  left: 0.245em;
+  transform: rotate(11deg);
+}
+.brows span:last-child {
+  right: 0.245em;
+  transform: rotate(-11deg);
+}
+
+/* ---- corner cube sticker (signals "I'm a cube") ---- */
+.sticker {
+  position: absolute;
+  right: 0.135em;
+  bottom: 0.135em;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.012em;
+  width: 0.13em;
+  height: 0.13em;
+  padding: 0.014em;
+  border-radius: 0.035em;
+  background: #10101f;
+  box-shadow:
+    0 0.006em 0.01em rgba(0, 0, 0, 0.4),
+    inset 0 0 0 0.004em rgba(255, 255, 255, 0.08);
+}
+.sticker i {
+  border-radius: 0.012em;
+  display: block;
+}
+.sticker i:nth-child(1) {
+  background: var(--c-white);
+}
+.sticker i:nth-child(2) {
+  background: var(--c-red);
+}
+.sticker i:nth-child(3) {
+  background: var(--c-green);
+}
+.sticker i:nth-child(4) {
+  background: var(--c-yellow);
+}
+
+/* ---- ground shadow ---- */
+.shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 0.04em;
+  transform: translateX(-50%);
+  width: 0.6em;
+  height: 0.075em;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(0, 0, 0, 0.5), transparent 75%);
+  animation: nexi-shadow 3.6s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* ---- fx layer (sparkles / dots / confetti) ---- */
+.fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+.spark {
+  position: absolute;
+  width: 0.1em;
+  height: 0.1em;
+  background: var(--c, var(--c-yellow));
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  opacity: 0;
+  transform: scale(0);
+}
+.confetti {
+  position: absolute;
+  width: 0.05em;
+  height: 0.07em;
+  border-radius: 0.012em;
+  background: var(--c);
+  top: 0.1em;
+  opacity: 0;
+}
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.09em;
+  height: 0.09em;
+  margin: -0.045em;
+  border-radius: 50%;
+  background: var(--c);
+}
+.qmark {
+  position: absolute;
+  top: 0.02em;
+  right: 0.16em;
+  font-family: 'Space Grotesk', ui-monospace, monospace;
+  font-weight: 700;
+  font-size: 0.16em;
+  color: var(--indigo-l);
+  opacity: 0;
+}
+.thinkDot {
+  position: absolute;
+  top: 0.04em;
+  width: 0.05em;
+  height: 0.05em;
+  border-radius: 50%;
+  background: var(--indigo-l);
+  opacity: 0;
+  animation: nexi-think 1.6s ease-in-out infinite;
+}
+.zzz {
+  position: absolute;
+  top: 0.12em;
+  right: 0.16em;
+  font-family: 'Space Grotesk', ui-monospace, monospace;
+  font-weight: 700;
+  color: var(--indigo-l);
+  opacity: 0;
+  animation: nexi-zzz 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes nexi-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6%);
+  }
+}
+@keyframes nexi-shadow {
+  0%,
+  100% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(-50%) scaleX(0.82);
+    opacity: 0.32;
+  }
+}
+@keyframes nexi-blink {
+  0%,
+  93%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.12);
+  }
+}
+@keyframes nexi-q {
+  0%,
+  55%,
+  100% {
+    opacity: 0;
+    transform: translateY(0.04em);
+  }
+  70%,
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes nexi-think {
+  0%,
+  100% {
+    opacity: 0.18;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-0.025em);
+  }
+}
+@keyframes nexi-zzz {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0.06em) scale(0.6);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0.14em, -0.2em) scale(1.15);
+  }
+}
+@keyframes nexi-wave {
+  0%,
+  100% {
+    rotate: -8deg;
+  }
+  50% {
+    rotate: 8deg;
+  }
+}
+@keyframes nexi-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-0.1em);
+  }
+}
+@keyframes nexi-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+}
+@keyframes nexi-droop {
+  0%,
+  100% {
+    rotate: -3deg;
+  }
+  50% {
+    rotate: 3deg;
+  }
+}
+
+/* IDLE */
+.nexiIdle .eye {
+  animation: nexi-blink 4.6s infinite;
+}
+
+/* EMPTY: tilt + look around + question mark */
+.nexiEmpty .body {
+  animation:
+    nexi-float 3.6s ease-in-out infinite,
+    nexi-tilt 5s ease-in-out infinite;
+}
+.nexiEmpty .eyes {
+  animation: nexi-look 5s ease-in-out infinite;
+}
+.nexiEmpty .eye {
+  animation: nexi-blink 4.2s infinite;
+}
+.nexiEmpty .qmark {
+  animation: nexi-q 3.2s ease-in-out infinite;
+}
+@keyframes nexi-tilt {
+  0%,
+  100% {
+    rotate: -4deg;
+  }
+  50% {
+    rotate: 4deg;
+  }
+}
+@keyframes nexi-look {
+  0%,
+  100% {
+    transform: translateX(-0.02em);
+  }
+  50% {
+    transform: translateX(0.02em);
+  }
+}
+
+/* SOLVING: determined, brows, sweat, focus shake, yellow sticker */
+.nexiSolving .body {
+  animation:
+    nexi-float 3.6s ease-in-out infinite,
+    nexi-focus 0.28s ease-in-out infinite;
+}
+.nexiSolving .eye {
+  transform: scaleY(0.62) translateY(0.02em);
+}
+.nexiSolving .eye::after {
+  opacity: 0;
+}
+.nexiSolving .brows {
+  opacity: 1;
+}
+.nexiSolving .mouth {
+  width: 0.1em;
+  height: 0;
+  border-bottom-width: 0.03em;
+  border-radius: 0.1em;
+  margin-top: 0.09em;
+}
+.nexiSolving .cheeks span {
+  opacity: 0.35;
+}
+.nexiSolving .sticker i {
+  background: var(--c-yellow) !important;
+}
+.nexiSolving .sticker i:nth-child(2) {
+  background: #ffe07a !important;
+}
+@keyframes nexi-focus {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  25% {
+    translate: -0.004em 0;
+  }
+  75% {
+    translate: 0.004em 0;
+  }
+}
+.nexiSolving .sweat {
+  position: absolute;
+  top: 0.27em;
+  right: 0.235em;
+  width: 0.06em;
+  height: 0.085em;
+  background: linear-gradient(#bfe3ff, #6fb8ff);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  transform: rotate(0deg);
+  z-index: 6;
+  animation: nexi-sweat 2.2s ease-in infinite;
+  opacity: 0;
+}
+@keyframes nexi-sweat {
+  0% {
+    opacity: 0;
+    transform: translateY(-0.04em) scale(0.6);
+  }
+  20% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0.14em) scale(1);
+  }
+  85%,
+  100% {
+    opacity: 0;
+    transform: translateY(0.2em) scale(0.9);
+  }
+}
+
+/* LOADING: gentle spin-wobble, calm eyes, orbiting dots, sticker cycles */
+.nexiLoading .body {
+  animation:
+    nexi-float 3.6s ease-in-out infinite,
+    nexi-wob 1.8s ease-in-out infinite;
+}
+.nexiLoading .eye {
+  height: 0.06em;
+  border-radius: 0.06em;
+}
+.nexiLoading .eye::after {
+  opacity: 0;
+}
+.nexiLoading .mouth {
+  width: 0.07em;
+  height: 0.07em;
+  border-radius: 50%;
+  border: 0.028em solid #15152c;
+}
+.nexiLoading .sticker i {
+  animation: nexi-cycle 1.2s linear infinite;
+}
+.nexiLoading .sticker i:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.nexiLoading .sticker i:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.nexiLoading .sticker i:nth-child(4) {
+  animation-delay: 0.9s;
+}
+@keyframes nexi-wob {
+  0%,
+  100% {
+    rotate: -3deg;
+  }
+  50% {
+    rotate: 3deg;
+  }
+}
+@keyframes nexi-cycle {
+  0% {
+    background: var(--c-red);
+  }
+  25% {
+    background: var(--c-blue);
+  }
+  50% {
+    background: var(--c-green);
+  }
+  75% {
+    background: var(--c-yellow);
+  }
+  100% {
+    background: var(--c-red);
+  }
+}
+.nexiLoading .orbit {
+  animation: nexi-orbit 1.4s linear infinite;
+}
+@keyframes nexi-orbit {
+  from {
+    transform: rotate(0) translateX(0.46em) rotate(0);
+  }
+  to {
+    transform: rotate(360deg) translateX(0.46em) rotate(-360deg);
+  }
+}
+
+/* PB: jump, happy eyes, big smile, sparkles + confetti, rainbow sticker */
+.nexiPb .body {
+  animation: nexi-jump 1.1s cubic-bezier(0.5, 0, 0.3, 1) infinite;
+}
+.nexiPb .shadow {
+  animation: nexi-shadow-pb 1.1s cubic-bezier(0.5, 0, 0.3, 1) infinite;
+}
+.nexiPb .eye {
+  height: 0.075em;
+  background: transparent;
+  border-top: 0.04em solid #15152c;
+  border-radius: 0.14em 0.14em 0 0;
+}
+.nexiPb .eye::after {
+  opacity: 0;
+}
+.nexiPb .mouth {
+  width: 0.16em;
+  height: 0.11em;
+  background: #15152c;
+  border: 0;
+  border-radius: 0 0 0.14em 0.14em;
+  margin-top: 0.04em;
+}
+.nexiPb .cheeks span {
+  opacity: 1;
+  width: 0.1em;
+}
+.nexiPb .sticker i {
+  animation: nexi-cycle 0.6s linear infinite;
+}
+@keyframes nexi-jump {
+  0%,
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+  15% {
+    transform: translateY(0.02em) scaleY(0.9) scaleX(1.06);
+  }
+  45% {
+    transform: translateY(-0.16em) scaleY(1.06) scaleX(0.96);
+  }
+  75% {
+    transform: translateY(0) scaleY(0.96) scaleX(1.03);
+  }
+}
+@keyframes nexi-shadow-pb {
+  0%,
+  100% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 0.5;
+  }
+  45% {
+    transform: translateX(-50%) scaleX(0.6);
+    opacity: 0.25;
+  }
+}
+.nexiPb .spark {
+  animation: nexi-spark 1.4s ease-in-out infinite;
+}
+@keyframes nexi-spark {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(0);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1) rotate(90deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1) rotate(120deg);
+  }
+  80% {
+    opacity: 0;
+    transform: scale(0.4) rotate(160deg);
+  }
+}
+.nexiPb .confetti {
+  animation: nexi-confetti 1.6s ease-in infinite;
+}
+@keyframes nexi-confetti {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0.7em) rotate(320deg);
+  }
+}
+
+/* HELLO: greeting wiggle + open smile */
+.nexiHello .body {
+  animation:
+    nexi-float 3.6s ease-in-out infinite,
+    nexi-wave 1.4s ease-in-out infinite;
+}
+.nexiHello .mouth {
+  width: 0.13em;
+  height: 0.085em;
+  background: #15152c;
+  border: 0;
+  border-radius: 0 0 0.12em 0.12em;
+  margin-top: 0.05em;
+}
+.nexiHello .cheeks span {
+  opacity: 1;
+}
+.nexiHello .sticker i {
+  background: var(--c-green) !important;
+}
+.nexiHello .sticker i:nth-child(2) {
+  background: #7fe3b4 !important;
+}
+
+/* WINK: one eye winks, energetic — motivación */
+.nexiWink .body {
+  animation: nexi-bounce 1s ease-in-out infinite;
+}
+.nexiWink .eye:last-child {
+  height: 0.07em;
+  background: transparent;
+  border-top: 0.042em solid #15152c;
+  border-radius: 0.14em 0.14em 0 0;
+}
+.nexiWink .eye:last-child::after {
+  opacity: 0;
+}
+.nexiWink .mouth {
+  width: 0.15em;
+  height: 0.1em;
+  background: #15152c;
+  border: 0;
+  border-radius: 0 0 0.14em 0.14em;
+  margin-top: 0.04em;
+}
+.nexiWink .cheeks span {
+  opacity: 1;
+  width: 0.1em;
+}
+.nexiWink .sticker i {
+  background: var(--c-blue) !important;
+}
+.nexiWink .sticker i:nth-child(3) {
+  background: #8ab8ff !important;
+}
+
+/* THINK: eyes look up, dots */
+.nexiThink .body {
+  animation:
+    nexi-float 4.4s ease-in-out infinite,
+    nexi-tilt 6s ease-in-out infinite;
+}
+.nexiThink .eyes {
+  transform: translate(0.035em, -0.025em);
+}
+.nexiThink .eye {
+  height: 0.15em;
+}
+.nexiThink .mouth {
+  width: 0.06em;
+  height: 0;
+  border-bottom: 0.03em solid #15152c;
+  border-radius: 0.1em;
+  transform: translateX(-0.03em);
+  margin-top: 0.08em;
+}
+
+/* SLEEP: closed eyes, breathing, zzz */
+.nexiSleep .body {
+  animation: nexi-breathe 3.6s ease-in-out infinite;
+  rotate: -7deg;
+  transform-origin: 60% 90%;
+}
+.nexiSleep .eye {
+  height: 0.05em;
+  background: transparent;
+  border-top: 0.04em solid #15152c;
+  border-radius: 0.14em 0.14em 0 0;
+}
+.nexiSleep .eye::after {
+  opacity: 0;
+}
+.nexiSleep .mouth {
+  width: 0.05em;
+  height: 0.05em;
+  border: 0.026em solid #15152c;
+  border-radius: 50%;
+  margin-top: 0.07em;
+}
+.nexiSleep .cheeks span {
+  opacity: 0.5;
+}
+
+/* OOPS / DNF: worried, frown, sad brows */
+.nexiOops .body {
+  animation:
+    nexi-float 3.6s ease-in-out infinite,
+    nexi-droop 1.4s ease-in-out infinite;
+}
+.nexiOops .eye {
+  height: 0.13em;
+}
+.nexiOops .mouth {
+  border-bottom: 0;
+  border-top: 0.032em solid #15152c;
+  border-radius: 0.12em 0.12em 0 0;
+  margin-top: 0.085em;
+  width: 0.12em;
+}
+.nexiOops .brows {
+  opacity: 1;
+}
+.nexiOops .brows span {
+  top: 0.245em;
+}
+.nexiOops .brows span:first-child {
+  transform: rotate(-14deg);
+}
+.nexiOops .brows span:last-child {
+  transform: rotate(14deg);
+}
+.nexiOops .sticker i {
+  background: var(--c-red) !important;
+}
+.nexiOops .sticker i:nth-child(3) {
+  background: #ff9a94 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .body,
+  .shadow,
+  .eye,
+  .eyes,
+  .spark,
+  .confetti,
+  .orbit,
+  .qmark,
+  .sweat,
+  .sticker i,
+  .thinkDot,
+  .zzz {
+    animation: none !important;
+  }
+  .nexiPb .body {
+    transform: none;
+  }
+}

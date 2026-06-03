@@ -1,8 +1,7 @@
 'use client'
 
-import type { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { useState, useRef, useCallback } from 'react'
 import { useTranslations } from 'next-intl'
@@ -11,6 +10,8 @@ import { LandingHero } from './LandingHero'
 import { useLenis } from './useLenis'
 import SkyOutro from './SkyOutro'
 import LandingBelowFold from './LandingBelowFold'
+import { Nexi } from '@/shared/ui/nexi'
+import * as React from 'react'
 
 export default function LandingShell({ featureTable, footer }: { featureTable: ReactNode; footer: ReactNode }) {
   const t = useTranslations('LandingPage')
@@ -76,10 +77,8 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
               className="mx-auto flex items-center justify-between"
             >
               <div className="flex items-center gap-3">
-                <div className="h-8 w-8 rounded-lg bg-white/10 ring-1 ring-white/15 flex items-center justify-center">
-                  <Image className="p-0.5" src="/logo_white.png" alt="NexusTimer Logo" width={24} height={24} />
-                </div>
-                <span className="text-sm font-bold tracking-wide text-white">NexusTimer</span>
+                <Nexi state="pb" size={38} />
+                <span className="text-md font-bold tracking-wide text-white">NXTimer</span>
               </div>
               <nav className="hidden md:flex items-center gap-8 text-sm text-gray-400">
                 {[

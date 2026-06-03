@@ -23,6 +23,7 @@ export default function CreateCollectionForm() {
   const t = useTranslations('Index')
   const setCubes = useTimerStore((state) => state.setCubes)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
+  const setNewScramble = useTimerStore((state) => state.setNewScramble)
   const overlayStore = useOverlayStore((state) => ({
     close: state.close,
     activeOverlay: state.activeOverlay
@@ -61,6 +62,7 @@ export default function CreateCollectionForm() {
       const newCubes = await cubesDB.getAll()
       setCubes(newCubes)
       setSelectedCube(newCube)
+      setNewScramble(newCube)
       overlayStore.close()
       toast.success(t('Errors.collection-created'))
     } catch (err) {

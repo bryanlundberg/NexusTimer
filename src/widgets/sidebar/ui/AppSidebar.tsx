@@ -41,6 +41,7 @@ import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
 import { NavMain } from '@/widgets/sidebar/ui/nav-main'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
+import { Nexi } from '@/shared/ui/nexi'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { open, openMobile, setOpenMobile, isMobile, state } = useSidebar()
@@ -101,8 +102,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           title: t('NavMain.trainer'),
           url: '/algorithms/trainer',
-          icon: Dumbbell,
-          badge: 'New'
+          icon: Dumbbell
         },
         {
           title: t('AlgorithmsPage.title'),
@@ -125,7 +125,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           title: t('NavMain.leaderboards'),
           url: '/leaderboards',
-          icon: TableProperties
+          icon: TableProperties,
+          badge: 'New'
         }
       ],
       multiplayer: [
@@ -215,12 +216,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         )}
         <div className="rounded-lg border bg-linear-to-br from-sidebar-accent/40 via-sidebar-accent/10 to-transparent p-3 flex flex-col gap-3">
           <div className="flex items-center gap-2">
-            <div className="flex size-7 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground shrink-0">
-              <Image src="/logo.png" alt="" width={48} height={48} className="invert p-1 size-6" />
-            </div>
+            <Nexi state="idle" size={38} />
             <div className="min-w-0">
-              <p className="text-xs font-semibold leading-tight truncate">Nexus Timer</p>
-              <p className="text-[10px] text-muted-foreground leading-tight">Open source PWA</p>
+              <p className="text-xs font-semibold leading-tight truncate">Nexi</p>
+              <p className="text-[10px] text-muted-foreground leading-tight">{t('NavMain.footer-tagline')}</p>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-1.5">

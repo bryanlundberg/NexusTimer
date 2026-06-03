@@ -1,40 +1,17 @@
 import { useEffect } from 'react'
-import { CubeEngine } from 'cube-state-engine'
-import type { TwistyPlayer } from 'cubing/twisty'
 import { VIRTUAL_KEYMAP } from './virtualKeymap'
 
 interface UseVirtualKeyboardMovesArgs {
-  player: TwistyPlayer | null
-  engine: CubeEngine | null | undefined
   is3x3: boolean
-  isRunning: boolean
-  isSolved: boolean
-  isLocked: () => boolean
-  onMove: () => void
-  onSolved: () => void
-  onCancel: () => void
+  processMove: (move: string, opts?: { isRotation?: boolean }) => void
+  cancel: () => void
 }
 
-export function useVirtualKeyboardMoves({
-  player,
-  engine,
-  is3x3,
-  isRunning,
-  isSolved,
-  isLocked,
-  onMove,
-  onSolved,
-  onCancel
-}: UseVirtualKeyboardMovesArgs) {
+export function useVirtualKeyboardMoves({ is3x3, processMove, cancel }: UseVirtualKeyboardMovesArgs) {
   useEffect(() => {
-    if (!player || !engine) return
-
     const onKeyDown = (e: KeyboardEvent) => {
-      if (!player || !engine || engine.isSolved()) return
-      if (isLocked()) return
-
       if (e.key === 'Escape') {
-        onCancel()
+        cancel()
         return
       }
 
@@ -42,19 +19,10 @@ export function useVirtualKeyboardMoves({
       if (!mapping) return
       if (mapping.require3x3 && !is3x3) return
 
-      player.experimentalAddMove(mapping.move)
-      mapping.apply(engine)
-
-      if (!mapping.isRotation && !isRunning && !isSolved) {
-        onMove()
-      }
-
-      if (engine.isSolved()) {
-        onSolved()
-      }
+      processMove(mapping.move, { isRotation: mapping.isRotation })
     }
 
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [player, engine, is3x3, isRunning, isSolved, isLocked, onMove, onSolved, onCancel])
+  }, [is3x3, processMove, cancel])
 }

@@ -1,5 +1,5 @@
 import { StatisticsTabs } from '@/widgets/statistics-view/model/enums'
-import { DateRange, Order, SolveTab, Sort } from '@/shared/types/enums'
+import { Order, SolveTab, Sort } from '@/shared/types/enums'
 import { PeopleTabs } from '@/widgets/people/model/types'
 
 export const STATES = {
@@ -25,10 +25,6 @@ export const STATES = {
     TAB_MODE: {
       KEY: 'tab-stats',
       DEFAULT_VALUE: StatisticsTabs.CATEGORY
-    },
-    DATE_RANGE: {
-      KEY: 'date-range',
-      DEFAULT_VALUE: DateRange.THIS_YEAR
     }
   },
   TRANSFER_SOLVES_PAGE: {

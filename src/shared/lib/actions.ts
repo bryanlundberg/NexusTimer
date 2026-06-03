@@ -3,10 +3,10 @@
 import connectDB from '@/shared/config/mongodb/mongodb'
 import type { Solve as ISolve } from '@/entities/solve/model/types'
 import Solve from '@/entities/solve/model/solve'
+import { auth } from '@/shared/config/auth/auth'
 
 interface SendSolveToServerParams {
   solve: Partial<ISolve>
-  userId?: string
   solution?: string | never[]
   puzzle?: string
   smart?: boolean
@@ -15,14 +15,15 @@ interface SendSolveToServerParams {
 export async function sendSolveToServer({
   solve,
   solution,
-  userId,
   puzzle,
   smart = false
 }: SendSolveToServerParams): Promise<boolean> {
   try {
-    await connectDB()
-
+    const session = await auth()
+    const userId = session?.user?.id
     if (!userId) return true
+
+    await connectDB()
 
     await Solve.create({
       user: userId,
@@ -30,7 +31,8 @@ export async function sendSolveToServer({
       scramble: solve.scramble,
       solution: solution ? cleanRotations(solution.toString()) : null,
       puzzle: puzzle,
-      smart
+      smart,
+      replay: solve.replay ?? null
     })
 
     return true
