@@ -12,6 +12,7 @@ import {
   type SmartCubeEvent
 } from 'smartcube-web-bluetooth'
 import { SmartCubeTimer } from '@/features/smart-cube/ui/SmartCubeTimer'
+import { HowToConnectDialog } from '@/features/smart-cube/ui/HowToConnectDialog'
 
 type ConnectionStatus = 'idle' | 'connecting' | 'connected' | 'error'
 type Subscription = ReturnType<SmartCubeConnection['events$']['subscribe']>
@@ -128,7 +129,6 @@ export default function SmartCube() {
         return
       }
 
-      console.error('[SmartCube] connection error', error)
       setStatus('error')
       toast.error(t('connection-error'))
     }
@@ -234,21 +234,25 @@ export default function SmartCube() {
       )}
 
       <div className="flex flex-col items-center gap-1">
-        <Button
-          onClick={isConnected ? handleDisconnect : handleConnect}
-          disabled={status === 'connecting'}
-          variant={isConnected ? 'outline' : 'default'}
-          size="sm"
-          className="sm:h-9 sm:px-4 sm:text-sm"
-        >
-          {status === 'connecting'
-            ? t('connecting')
-            : isConnected
-              ? t('disconnect')
-              : status === 'error'
-                ? t('retry-connection')
-                : t('connect-smart-cube')}
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            onClick={isConnected ? handleDisconnect : handleConnect}
+            disabled={status === 'connecting'}
+            variant={isConnected ? 'outline' : 'default'}
+            size="sm"
+            className="sm:h-9 sm:px-4 sm:text-sm"
+          >
+            {status === 'connecting'
+              ? t('connecting')
+              : isConnected
+                ? t('disconnect')
+                : status === 'error'
+                  ? t('retry-connection')
+                  : t('connect-smart-cube')}
+          </Button>
+
+          {!isConnected && <HowToConnectDialog />}
+        </div>
 
         {isConnected && deviceName && <p className="text-xs sm:text-sm text-muted-foreground">{deviceName}</p>}
       </div>
