@@ -1,8 +1,13 @@
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { Nexi } from '@/shared/ui/nexi'
+import formatTime from '@/shared/lib/formatTime'
 
-export default function NewRecordBadge() {
+interface NewRecordBadgeProps {
+  time: number
+}
+
+export default function NewRecordBadge({ time }: NewRecordBadgeProps) {
   const t = useTranslations('Index.HomePage')
 
   return (
@@ -15,7 +20,7 @@ export default function NewRecordBadge() {
     >
       <Nexi state="pb" size={32} aria-hidden />
       <div className="flex flex-col text-left">
-        <span className="text-sm font-semibold">{t('congratulations')}</span>
+        <span className="text-sm font-semibold">{t('congratulations', { time: formatTime(time) })}</span>
         <span className="text-xs text-muted-foreground">{t('personal_best')}</span>
       </div>
     </motion.div>
