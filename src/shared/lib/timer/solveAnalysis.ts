@@ -19,6 +19,53 @@ export type BarSegment = {
   pct: number
 }
 
+/** Builds the phase breakdown for any supported method, or null if unsupported. */
+export function buildPhases(analysis: Analysis): PhaseInfo[] | null {
+  return buildCfopPhases(analysis) ?? buildRouxPhases(analysis)
+}
+
+/** Returns null if the analysis is not Roux or is missing required phases. */
+export function buildRouxPhases(analysis: Analysis): PhaseInfo[] | null {
+  if (!analysis || analysis.method !== 'Roux') return null
+  const { firstBlock, secondBlock, cmll, lse } = analysis
+  if (!firstBlock || !secondBlock || !cmll || !lse) return null
+
+  return [
+    {
+      key: 'firstBlock',
+      label: 'FB',
+      duration: firstBlock.duration,
+      moveIndex: firstBlock.moveIndex,
+      bgClass: 'bg-sky-500',
+      textClass: 'text-sky-500'
+    },
+    {
+      key: 'secondBlock',
+      label: 'SB',
+      duration: secondBlock.duration,
+      moveIndex: secondBlock.moveIndex,
+      bgClass: 'bg-indigo-500',
+      textClass: 'text-indigo-500'
+    },
+    {
+      key: 'cmll',
+      label: 'CMLL',
+      duration: cmll.duration,
+      moveIndex: cmll.moveIndex,
+      bgClass: 'bg-amber-400',
+      textClass: 'text-amber-400'
+    },
+    {
+      key: 'lse',
+      label: 'LSE',
+      duration: lse.duration,
+      moveIndex: lse.moveIndex,
+      bgClass: 'bg-rose-500',
+      textClass: 'text-rose-500'
+    }
+  ]
+}
+
 /** Returns null if the analysis is not CFOP or is missing required phases. */
 export function buildCfopPhases(analysis: Analysis): PhaseInfo[] | null {
   if (!analysis || analysis.method !== 'CFOP') return null
@@ -71,7 +118,7 @@ export function buildCfopPhases(analysis: Analysis): PhaseInfo[] | null {
   ]
 }
 
-export function buildCfopBarSegments(phases: PhaseInfo[], totalMs: number): BarSegment[] {
+export function buildBarSegments(phases: PhaseInfo[], totalMs: number): BarSegment[] {
   if (!phases.length || totalMs <= 0) return []
 
   const segments: Array<{ key: string; bgClass: string; duration: number }> = []
