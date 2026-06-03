@@ -1,16 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import formatTime from '@/shared/lib/formatTime'
-
-function getIntegerPart(time: number) {
-  return formatTime(time).split('.')[0]
-}
-
-function getDecimalPart(time: number, decimals: number) {
-  const part = formatTime(time, decimals).split('.')[1]
-  return part ? '.' + part : ''
-}
+import { getIntegerPart, getDecimalPart } from '@/shared/lib/formatTimeParts'
 
 export function SolvingTimeInteger() {
   const ref = useRef<HTMLSpanElement>(null)
@@ -41,5 +32,9 @@ export function SolvingTimeDecimals({ decimals }: { decimals: number }) {
     })
   }, [decimals])
 
-  return <span ref={ref}>{getDecimalPart(useTimerStore.getState().solvingTime, decimals)}</span>
+  return (
+    <span className={'text-muted-foreground'} ref={ref}>
+      {getDecimalPart(useTimerStore.getState().solvingTime, decimals)}
+    </span>
+  )
 }
