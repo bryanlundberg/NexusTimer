@@ -42,7 +42,7 @@ export default function HeaderTimer() {
         <ScrambleZone />
         {isPersonalBest && (
           <div className={cn('flex justify-center mt-10', height <= SCRAMBLE_HEIGHT && 'mt-5')} id="touch">
-            <NewRecordBadge />
+            <NewRecordBadge time={lastSolve.time} />
           </div>
         )}
       </div>
