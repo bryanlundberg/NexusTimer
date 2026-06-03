@@ -12,6 +12,8 @@ import { Cube } from '@/entities/cube/model/types'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 import { useLocale, useTranslations } from 'next-intl'
 import moment from 'moment'
+import { Nexi } from '@/shared/ui/nexi'
+import * as React from 'react'
 
 export default function CompareUsersModal() {
   const t = useTranslations('Index.LeaderboardsPage.comparative')
@@ -32,10 +34,7 @@ export default function CompareUsersModal() {
         className={'flex items-center justify-between p-4 border-b bg-muted/20 sticky top-0 z-50 backdrop-blur-md'}
       >
         <div className="flex items-center gap-3">
-          <div className="flex aspect-square size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
-            <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert size-8`} />
-          </div>
-          <span className="text-sm font-bold tracking-tight text-foreground hidden sm:block">NexusTimer</span>
+          <Nexi state="idle" size={38} />
         </div>
         <h2 className="text-lg font-bold tracking-tight text-foreground">{t('title')}</h2>
         <button onClick={closeOverlay} className="p-2 hover:bg-muted rounded-full transition-colors group">
