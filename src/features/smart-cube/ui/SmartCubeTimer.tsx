@@ -3,6 +3,7 @@
 import { useCallback, useEffect, type ReactNode } from 'react'
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
 import { useVirtualCube } from '@/features/timer/model/useVirtualCube'
 import { useSolveSession } from '@/features/timer/model/useSolveSession'
@@ -25,6 +26,8 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
   const setScrambleGuide = useScrambleGuideStore((store) => store.setGuide)
   const setScrambleReady = useScrambleGuideStore((store) => store.setReady)
   const resetScrambleGuide = useScrambleGuideStore((store) => store.reset)
+  const inspectionEnabled = useSettingsStore((store) => store.settings.timer.inspection)
+  const inspectionTimeMs = useSettingsStore((store) => store.settings.timer.inspectionTime)
 
   const { containerRef, player, engine, recreatePlayer } = useVirtualCube({
     cubeSize: CUBE_SIZE,
@@ -38,7 +41,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
     if (selectedCube) setNewScramble(selectedCube)
   }, [selectedCube, setNewScramble])
 
-  const { phase, solvingTime, guide, processMove } = useSolveSession({
+  const { phase, solvingTime, inspectionTime, guide, processMove } = useSolveSession({
     player,
     engine,
     scramble,
@@ -46,7 +49,8 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
     smart: true,
     scrambleMode: 'manual',
     onAdvanceScramble,
-    recreatePlayer
+    recreatePlayer,
+    inspection: { enabled: inspectionEnabled, durationMs: inspectionTimeMs }
   })
 
   useEffect(() => {
@@ -55,7 +59,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
 
   useEffect(() => {
     setScrambleGuide(guide)
-    setScrambleReady(phase === 'armed')
+    setScrambleReady(phase === 'armed' || phase === 'inspecting')
   }, [guide, phase, setScrambleGuide, setScrambleReady])
 
   useEffect(() => () => resetScrambleGuide(), [resetScrambleGuide])
@@ -83,7 +87,13 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
     <div className="grow flex flex-col items-center justify-center gap-1.5 sm:gap-3">
       <div ref={containerRef} className="rounded-md overflow-hidden" />
 
-      <div className="text-2xl sm:text-3xl tabular-nums">{formatTime(solvingTime || 0)}</div>
+      {phase === 'inspecting' && inspectionTime != null ? (
+        <div className="text-2xl sm:text-3xl tabular-nums font-semibold text-orange-500">
+          {Math.max(0, Math.trunc(inspectionTime))}
+        </div>
+      ) : (
+        <div className="text-2xl sm:text-3xl tabular-nums">{formatTime(solvingTime || 0)}</div>
+      )}
 
       {secondaryActions?.(syncSolved, gyroActive, resetOrientation)}
     </div>
