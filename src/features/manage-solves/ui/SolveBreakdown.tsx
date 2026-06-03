@@ -1,5 +1,5 @@
 import formatTime from '@/shared/lib/formatTime'
-import { buildCfopBarSegments, buildCfopPhases } from '@/shared/lib/timer/solveAnalysis'
+import { buildBarSegments, buildPhases } from '@/shared/lib/timer/solveAnalysis'
 import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
 
 interface SolveBreakdownProps {
@@ -8,10 +8,10 @@ interface SolveBreakdownProps {
 }
 
 export function SolveBreakdown({ analysis, totalMs }: SolveBreakdownProps) {
-  const phases = buildCfopPhases(analysis)
+  const phases = buildPhases(analysis)
   if (!phases) return null
 
-  const barSegments = buildCfopBarSegments(phases, totalMs)
+  const barSegments = buildBarSegments(phases, totalMs)
 
   return (
     <div className="flex flex-col gap-3">
