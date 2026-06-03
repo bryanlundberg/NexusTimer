@@ -7,7 +7,6 @@ import { auth } from '@/shared/config/auth/auth'
 
 interface SendSolveToServerParams {
   solve: Partial<ISolve>
-  userId?: string
   solution?: string | never[]
   puzzle?: string
   smart?: boolean
