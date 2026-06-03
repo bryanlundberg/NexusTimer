@@ -115,7 +115,8 @@
       "connecting": "Verbinde…",
       "disconnect": "Trennen",
       "retry-connection": "Verbindung erneut versuchen",
-      "connect-smart-cube": "Smart Cube verbinden"
+      "connect-smart-cube": "Smart Cube verbinden",
+      "connection-error": "Verbindung zum Smart Cube fehlgeschlagen. Überprüfe die MAC-Adresse und versuche es erneut."
     },
     "SolvesPage": {
       "title": "Zeiten",

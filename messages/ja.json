@@ -115,7 +115,8 @@
       "connecting": "接続中…",
       "disconnect": "切断",
       "retry-connection": "再接続",
-      "connect-smart-cube": "スマートキューブを接続"
+      "connect-smart-cube": "スマートキューブを接続",
+      "connection-error": "スマートキューブに接続できませんでした。MACアドレスを確認して再試行してください。"
     },
     "SolvesPage": {
       "title": "ソルブ履歴",

@@ -115,7 +115,8 @@
       "connecting": "Connexion…",
       "disconnect": "Déconnecter",
       "retry-connection": "Réessayer la connexion",
-      "connect-smart-cube": "Connecter le Smart Cube"
+      "connect-smart-cube": "Connecter le Smart Cube",
+      "connection-error": "Impossible de se connecter au smart cube. Vérifiez l'adresse MAC et réessayez."
     },
     "SolvesPage": {
       "title": "Temps",

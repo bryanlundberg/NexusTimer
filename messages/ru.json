@@ -115,7 +115,8 @@
       "connecting": "Подключение…",
       "disconnect": "Отключить",
       "retry-connection": "Повторить подключение",
-      "connect-smart-cube": "Подключить Smart Cube"
+      "connect-smart-cube": "Подключить Smart Cube",
+      "connection-error": "Не удалось подключиться к smart cube. Проверьте MAC-адрес и попробуйте снова."
     },
     "SolvesPage": {
       "title": "Сборки",

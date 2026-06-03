@@ -115,7 +115,8 @@
       "connecting": "कनेक्ट हो रहा है…",
       "disconnect": "डिस्कनेक्ट करें",
       "retry-connection": "पुनः कनेक्ट करें",
-      "connect-smart-cube": "स्मार्ट क्यूब कनेक्ट करें"
+      "connect-smart-cube": "स्मार्ट क्यूब कनेक्ट करें",
+      "connection-error": "स्मार्ट क्यूब से कनेक्ट नहीं हो सका। MAC पता जांचें और पुनः प्रयास करें।"
     },
     "SolvesPage": {
       "title": "समाधान",

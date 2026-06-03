@@ -176,7 +176,8 @@
       "connecting": "Connecting…",
       "disconnect": "Disconnect",
       "retry-connection": "Retry connection",
-      "connect-smart-cube": "Connect Smart Cube"
+      "connect-smart-cube": "Connect Smart Cube",
+      "connection-error": "Couldn't connect to the smart cube. Check the MAC address and try again."
     },
     "SolvesPage": {
       "title": "Solves",

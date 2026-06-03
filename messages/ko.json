@@ -115,7 +115,8 @@
       "connecting": "연결 중…",
       "disconnect": "연결 해제",
       "retry-connection": "다시 연결",
-      "connect-smart-cube": "스마트 큐브 연결"
+      "connect-smart-cube": "스마트 큐브 연결",
+      "connection-error": "스마트 큐브에 연결하지 못했습니다. MAC 주소를 확인하고 다시 시도하세요."
     },
     "SolvesPage": {
       "title": "기록",

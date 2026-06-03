@@ -115,7 +115,8 @@
       "connecting": "连接中…",
       "disconnect": "断开连接",
       "retry-connection": "重试连接",
-      "connect-smart-cube": "连接智能魔方"
+      "connect-smart-cube": "连接智能魔方",
+      "connection-error": "无法连接智能魔方。请检查 MAC 地址后重试。"
     },
     "SolvesPage": {
       "title": "还原纪录",
