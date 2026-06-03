@@ -1,6 +1,6 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { IconButton } from '@/components/ui/shadcn-io/icon-button'
-import { Star, Clock, Hash } from 'lucide-react'
+import { Clock, Hash, Star } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { GearIcon, PlayIcon, TrashIcon } from '@radix-ui/react-icons'
 import { DateTime } from 'luxon'
@@ -101,25 +101,15 @@ export function CubeCard({ cube }: CubeCardProps) {
 
       <CardFooter className="pt-1">
         <div className="flex w-full items-center justify-between gap-2 text-sm">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant={'default'}
-                  size={'sm'}
-                  onClick={handleRedirect}
-                  data-testid={`utilize-cube-button-${cube.name}`}
-                >
-                  <PlayIcon className="mr-1 h-4 w-4" />
-                  {t('CubesPage.utilize')}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{t('CubesPage.utilize-cube', { name: cube.name })}</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-
+          <Button
+            variant={'default'}
+            size={'sm'}
+            onClick={handleRedirect}
+            data-testid={`utilize-cube-button-${cube.name}`}
+          >
+            <PlayIcon className="mr-1 h-4 w-4" />
+            {t('CubesPage.utilize')}
+          </Button>
           <div className="flex items-center gap-1">
             <TooltipProvider>
               <Tooltip>
