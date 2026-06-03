@@ -1,13 +1,13 @@
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
-import { buildCfopPhases } from '@/shared/lib/timer/solveAnalysis'
+import { buildPhases } from '@/shared/lib/timer/solveAnalysis'
 import { formatTps } from '@/shared/lib/formatTps'
 import formatTime from '@/shared/lib/formatTime'
 import type { SolveReplay, ReplayMove } from '@/entities/replay/model/types'
 import type { ReplayMarker } from '@/features/solve-replay/ui/RealtimeReplayPlayer'
 
 function phaseMarkers(analysis: ReturnType<typeof tryAnalyzeSolution>): ReplayMarker[] {
-  const phases = buildCfopPhases(analysis)
+  const phases = buildPhases(analysis)
   if (!phases) return []
 
   return phases.flatMap((phase) => {
