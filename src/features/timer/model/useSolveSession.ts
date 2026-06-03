@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { TwistyPlayer } from 'cubing/twisty'
-import { CubeEngine } from 'cube-state-engine'
+import { CubeEngine, simplifyMoves } from 'cube-state-engine'
 import { useSolveClock } from '@/features/timer/model/useSolveClock'
 import { useSolveReplayRecorder } from '@/features/timer/model/useSolveReplayRecorder'
 import { useSaveVirtualSolve } from '@/features/timer/model/useSaveVirtualSolve'
@@ -18,6 +18,11 @@ import {
 
 export type SolvePhase = 'scrambling' | 'armed' | 'inspecting' | 'solving' | 'solved'
 export type ScrambleMode = 'auto' | 'manual'
+
+export interface SolveStats {
+  moveCount: number
+  tps: number
+}
 
 export interface InspectionConfig {
   enabled: boolean
@@ -61,6 +66,7 @@ export function useSolveSession({
   // Live guidance while applying a manual scramble (null in `auto` mode).
   const [guide, setGuide] = useState<ScrambleGuide | null>(null)
   const [inspectionTime, setInspectionTime] = useState<number | null>(null)
+  const [solveStats, setSolveStats] = useState<SolveStats | null>(null)
 
   const clock = useSolveClock()
   const recorder = useSolveReplayRecorder()
@@ -130,13 +136,21 @@ export function useSolveSession({
       if (processedSolveRef.current) return
       processedSolveRef.current = true
 
-      const { clock, recorder, saveSolve, scramble, smart, onAdvanceScramble, recreatePlayer } = latest.current
+      const { clock, recorder, saveSolve, engine, scramble, smart, onAdvanceScramble, recreatePlayer } = latest.current
       stopInspection()
       const finalTime = clock.stop()
       postSolveLockRef.current = Date.now() + POST_SOLVE_LOCK_MS
       setPhase('solved')
 
       if (!dnf) {
+        try {
+          const simplified = simplifyMoves(engine?.getMoves(false) ?? []) as string[]
+          const moveCount = simplified.length
+          const tps = finalTime > 0 ? moveCount / (finalTime / 1000) : 0
+          setSolveStats(moveCount > 0 ? { moveCount, tps } : null)
+        } catch {
+          setSolveStats(null)
+        }
         try {
           saveSolve({ timeMs: finalTime, scramble: scramble ?? null, dnf, replayMoves: recorder.getMoves(), smart })
         } catch (e) {
@@ -234,6 +248,7 @@ export function useSolveSession({
       if (ready && !isRotation) {
         stopInspection()
         clock.start()
+        setSolveStats(null)
         setPhase('solving')
       }
 
@@ -251,6 +266,7 @@ export function useSolveSession({
     clock.reset()
     recorder.reset()
     stopInspection()
+    setSolveStats(null)
     processedSolveRef.current = false
     postSolveLockRef.current = 0
 
@@ -280,6 +296,7 @@ export function useSolveSession({
     clock.reset()
     recorder.reset()
     stopInspection()
+    setSolveStats(null)
     processedSolveRef.current = false
     postSolveLockRef.current = 0
     try {
@@ -308,6 +325,9 @@ export function useSolveSession({
     stopInspection()
 
     if (scrambleMode === 'manual' && scramble) {
+      try {
+        engine.reset()
+      } catch {}
       const tokens = tokenizeScramble(scramble)
       scrambleTokensRef.current = tokens
       guideStateRef.current = initGuideState()
@@ -372,6 +392,7 @@ export function useSolveSession({
     solvingTime: clock.solvingTime,
     inspectionTime,
     guide,
+    solveStats,
     processMove,
     cancel,
     resetState

@@ -43,7 +43,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
     if (selectedCube) setNewScramble(selectedCube)
   }, [selectedCube, setNewScramble])
 
-  const { phase, solvingTime, inspectionTime, guide, processMove, resetState } = useSolveSession({
+  const { phase, solvingTime, inspectionTime, guide, solveStats, processMove, resetState } = useSolveSession({
     player,
     engine,
     scramble,
@@ -90,6 +90,18 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
         </div>
       ) : (
         <SolvingTime ms={solvingTime || 0} />
+      )}
+
+      {solveStats && (
+        <div className="flex items-center gap-2 text-xs sm:text-sm tabular-nums text-muted-foreground">
+          <span>
+            <span className="font-semibold text-foreground">{solveStats.moveCount}</span> moves
+          </span>
+          <span className="text-muted-foreground/50">·</span>
+          <span>
+            <span className="font-semibold text-foreground">{solveStats.tps.toFixed(2)}</span> TPS
+          </span>
+        </div>
       )}
 
       {secondaryActions?.(syncSolved, gyroActive, resetOrientation)}
