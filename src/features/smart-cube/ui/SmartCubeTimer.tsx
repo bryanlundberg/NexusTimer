@@ -41,7 +41,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
     if (selectedCube) setNewScramble(selectedCube)
   }, [selectedCube, setNewScramble])
 
-  const { phase, solvingTime, inspectionTime, guide, processMove } = useSolveSession({
+  const { phase, solvingTime, inspectionTime, guide, processMove, resetState } = useSolveSession({
     player,
     engine,
     scramble,
@@ -72,16 +72,11 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
   const { active: gyroActive, resetOrientation } = useSmartCubeGyro({ player, connection })
 
   const syncSolved = useCallback(() => {
-    try {
-      engine?.reset()
-    } catch {}
-    try {
-      recreatePlayer()
-    } catch {}
+    resetState()
     if (connection.capabilities.reset) {
       connection.sendCommand({ type: 'REQUEST_RESET' }).catch(() => {})
     }
-  }, [engine, recreatePlayer, connection])
+  }, [resetState, connection])
 
   return (
     <div className="grow flex flex-col items-center justify-center gap-1.5 sm:gap-3">

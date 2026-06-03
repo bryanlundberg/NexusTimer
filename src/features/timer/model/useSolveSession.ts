@@ -274,6 +274,33 @@ export function useSolveSession({
     } catch {}
   }, [setPhase, stopInspection, startInspection])
 
+  const resetState = useCallback(() => {
+    const { engine, scrambleMode, clock, recorder, armedPhase, inspectionEnabled, recreatePlayer } = latest.current
+    clock.stop()
+    clock.reset()
+    recorder.reset()
+    stopInspection()
+    processedSolveRef.current = false
+    postSolveLockRef.current = 0
+    try {
+      engine?.reset()
+    } catch {}
+    guideStateRef.current = initGuideState()
+
+    if (scrambleMode === 'manual') {
+      setGuide(guideFromState(scrambleTokensRef.current, guideStateRef.current))
+      setPhase('scrambling')
+    } else {
+      setGuide(null)
+      setPhase(armedPhase)
+      if (inspectionEnabled) startInspection()
+    }
+
+    try {
+      recreatePlayer()
+    } catch {}
+  }, [setPhase, stopInspection, startInspection])
+
   const resetClock = clock.reset
   const resetRecorder = recorder.reset
   useEffect(() => {
@@ -346,6 +373,7 @@ export function useSolveSession({
     inspectionTime,
     guide,
     processMove,
-    cancel
+    cancel,
+    resetState
   }
 }
