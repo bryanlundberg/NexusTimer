@@ -86,7 +86,7 @@
       "tap-to-start": "タップして開始",
       "space-to-start": "スペースキーを押して開始",
       "empty-scramble": "キューブを選択してスクランブルを読み込んでください。",
-      "congratulations": "おめでとうございます！",
+      "congratulations": "おめでとうございます！ {time}",
       "new_best_average": "ベストアベレージ更新！",
       "new_worst_time": "おっと、ワーストタイムです！",
       "personal_best": "自己ベスト(PB)を更新しました！",

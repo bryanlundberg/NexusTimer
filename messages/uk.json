@@ -138,7 +138,7 @@
       "tap-to-start": "Торкніться, щоб почати",
       "space-to-start": "Натисніть ПРОБІЛ, щоб почати",
       "empty-scramble": "Виберіть куб, щоб завантажити скрамбл.",
-      "congratulations": "Вітаємо!",
+      "congratulations": "Вітаємо! {time}",
       "new_best_average": "Нове найкраще середнє!",
       "new_worst_time": "Ой, це ваш найгірший час!",
       "personal_best": "Ви побили свій особистий рекорд (PB)!",

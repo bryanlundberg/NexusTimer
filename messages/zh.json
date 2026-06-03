@@ -86,7 +86,7 @@
       "tap-to-start": "点击开始",
       "space-to-start": "按空格键开始",
       "empty-scramble": "选择一个魔方以加载打乱公式。",
-      "congratulations": "恭喜！",
+      "congratulations": "恭喜！ {time}",
       "new_best_average": "新的最佳平均！",
       "new_worst_time": "哎呀，你得到了最差时间！",
       "personal_best": "你打破了个人最好成绩 (PB)！",

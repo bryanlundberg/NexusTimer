@@ -86,7 +86,7 @@
       "tap-to-start": "Нажмите, чтобы начать",
       "space-to-start": "Нажмите ПРОБЕЛ, чтобы начать",
       "empty-scramble": "Выберите куб, чтобы загрузить скрамбл.",
-      "congratulations": "Поздравляем!",
+      "congratulations": "Поздравляем! {time}",
       "new_best_average": "Новый лучший средний результат!",
       "new_worst_time": "Упс, у вас худшее время!",
       "personal_best": "Вы побили свой личный рекорд (PB)!",

@@ -86,7 +86,7 @@
       "tap-to-start": "Toque para começar",
       "space-to-start": "Pressione ESPAÇO para começar",
       "empty-scramble": "Escolha um cubo para carregar um embaralhamento.",
-      "congratulations": "Parabéns!",
+      "congratulations": "Parabéns! {time}",
       "new_best_average": "Nova melhor média!",
       "new_worst_time": "Ops, você obteve seu pior tempo!",
       "personal_best": "Você superou seu recorde pessoal (PB)!",

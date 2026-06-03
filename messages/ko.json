@@ -86,7 +86,7 @@
       "tap-to-start": "터치하여 시작",
       "space-to-start": "스페이스바를 눌러 시작",
       "empty-scramble": "스크램블을 로드할 큐브를 선택하세요.",
-      "congratulations": "축하합니다!",
+      "congratulations": "축하합니다! {time}",
       "new_best_average": "새로운 최고 평균!",
       "new_worst_time": "이런, 최악의 시간을 기록했네요!",
       "personal_best": "개인 최고 기록(PB)을 경신했습니다!",

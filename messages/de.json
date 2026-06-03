@@ -86,7 +86,7 @@
       "tap-to-start": "Tippen zum Starten",
       "space-to-start": "LEERTASTE drücken zum Starten",
       "empty-scramble": "Wähle einen Würfel, um ein Scramble zu laden.",
-      "congratulations": "Herzlichen Glückwunsch!",
+      "congratulations": "Herzlichen Glückwunsch! {time}",
       "new_best_average": "Neuer bester Durchschnitt!",
       "new_worst_time": "Ups, schlechteste Zeit!",
       "personal_best": "Du hast deine persönliche Bestleistung (PB) übertroffen!",

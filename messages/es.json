@@ -72,7 +72,7 @@
       "tap-to-start": "Toca para comenzar",
       "space-to-start": "Presiona ESPACIO para comenzar",
       "empty-scramble": "Elige un cubo para cargar un scramble.",
-      "congratulations": "¡Felicidades!",
+      "congratulations": "¡Felicidades! {time}",
       "new_best_average": "¡Nuevo mejor promedio!",
       "new_worst_time": "¡Vaya, tu peor tiempo!",
       "personal_best": "Has superado tu mejor marca personal (PB).",

@@ -86,7 +86,7 @@
       "tap-to-start": "शुरू करने के लिए टैप करें",
       "space-to-start": "शुरू करने के लिए SPACE दबाएं",
       "empty-scramble": "स्क्रैम्बल लोड करने के लिए एक क्यूब चुनें।",
-      "congratulations": "बधाई हो!",
+      "congratulations": "बधाई हो! {time}",
       "new_best_average": "नया सर्वश्रेष्ठ औसत!",
       "new_worst_time": "ओह, आपको अपना सबसे खराब समय मिला!",
       "personal_best": "आपने अपना व्यक्तिगत सर्वश्रेष्ठ (PB) तोड़ दिया है!",
