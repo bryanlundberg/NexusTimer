@@ -95,7 +95,6 @@
       "best": "Melhor",
       "counter": "Contador",
       "select-cube": "Selecionar Cubo",
-      "enter-custom-scramble": "Inserir embaralhamento personalizado",
       "mode": "Modo",
       "modes": {
         "normal": "Normal",
@@ -106,7 +105,6 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "Novo embaralhamento",
-      "edit-scramble": "Editar embaralhamento",
       "hints": "Dicas",
       "start-stackmat": "Inicie seu Stackmat para começar",
       "reset-state": "Reiniciar estado",

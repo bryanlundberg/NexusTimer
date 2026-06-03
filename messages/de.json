@@ -95,7 +95,6 @@
       "best": "Beste",
       "counter": "Zähler",
       "select-cube": "Würfel wählen",
-      "enter-custom-scramble": "Eigenes Scramble eingeben",
       "mode": "Modus",
       "modes": {
         "normal": "Normal",
@@ -106,7 +105,6 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "Neues Scramble",
-      "edit-scramble": "Scramble bearbeiten",
       "hints": "Hinweise",
       "start-stackmat": "Starte dein Stackmat zum Beginnen",
       "reset-state": "Status zurücksetzen",

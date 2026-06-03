@@ -95,7 +95,6 @@
       "best": "सर्वश्रेष्ठ",
       "counter": "काउंटर",
       "select-cube": "क्यूब चुनें",
-      "enter-custom-scramble": "कस्टम स्क्रैम्बल दर्ज करें",
       "mode": "मोड",
       "modes": {
         "normal": "सामान्य",
@@ -106,7 +105,6 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "नया स्क्रैम्बल",
-      "edit-scramble": "स्क्रैम्बल संपादित करें",
       "hints": "संकेत",
       "start-stackmat": "शुरू करने के लिए अपना Stackmat प्रारंभ करें",
       "reset-state": "स्थिति रीसेट करें",

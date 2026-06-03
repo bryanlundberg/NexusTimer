@@ -95,7 +95,6 @@
       "best": "Meilleur",
       "counter": "Compteur",
       "select-cube": "Sélectionner un cube",
-      "enter-custom-scramble": "Saisir un mélange personnalisé",
       "mode": "Mode",
       "modes": {
         "normal": "Normal",
@@ -106,7 +105,6 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "Nouveau mélange",
-      "edit-scramble": "Modifier le mélange",
       "hints": "Conseils",
       "start-stackmat": "Lancez votre Stackmat pour commencer",
       "reset-state": "Réinitialiser l'état",

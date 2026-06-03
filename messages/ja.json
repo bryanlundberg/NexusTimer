@@ -95,7 +95,6 @@
       "best": "ベスト",
       "counter": "カウンター",
       "select-cube": "キューブ選択",
-      "enter-custom-scramble": "カスタムスクランブルを入力",
       "mode": "モード",
       "modes": {
         "normal": "ノーマル",
@@ -106,7 +105,6 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "新しいスクランブル",
-      "edit-scramble": "スクランブル編集",
       "hints": "ヒント",
       "start-stackmat": "Stackmatを起動して開始してください",
       "reset-state": "状態をリセット",

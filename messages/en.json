@@ -156,7 +156,6 @@
       "best": "Best",
       "counter": "Counter",
       "select-cube": "Select Cube",
-      "enter-custom-scramble": "Enter custom scramble",
       "mode": "Mode",
       "modes": {
         "normal": "Normal",
@@ -167,7 +166,6 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "New scramble",
-      "edit-scramble": "Edit scramble",
       "hints": "Hints",
       "start-stackmat": "Start your Stackmat to begin",
       "reset-state": "Reset State",

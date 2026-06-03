@@ -95,7 +95,6 @@
       "best": "Лучшее",
       "counter": "Счетчик",
       "select-cube": "Выбрать куб",
-      "enter-custom-scramble": "Введите свой скрамбл",
       "mode": "Режим",
       "modes": {
         "normal": "Обычный",
@@ -106,7 +105,6 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "Новый скрамбл",
-      "edit-scramble": "Редактировать скрамбл",
       "hints": "Подсказки",
       "start-stackmat": "Запустите Stackmat, чтобы начать",
       "reset-state": "Сбросить состояние",

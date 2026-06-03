@@ -95,7 +95,6 @@
       "best": "最佳",
       "counter": "计数器",
       "select-cube": "选择魔方",
-      "enter-custom-scramble": "输入自定义打乱",
       "mode": "模式",
       "modes": {
         "normal": "常规",
@@ -106,7 +105,6 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "新的打乱",
-      "edit-scramble": "编辑打乱",
       "hints": "提示",
       "start-stackmat": "启动你的 Stackmat 以开始计时",
       "reset-state": "重置状态",

@@ -95,7 +95,6 @@
       "best": "최고",
       "counter": "카운터",
       "select-cube": "큐브 선택",
-      "enter-custom-scramble": "사용자 지정 스크램블 입력",
       "mode": "모드",
       "modes": {
         "normal": "일반",
@@ -106,7 +105,6 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "새 스크램블",
-      "edit-scramble": "스크램블 수정",
       "hints": "힌트",
       "start-stackmat": "타이머를 시작하려면 Stackmat을 연결하세요",
       "reset-state": "상태 초기화",

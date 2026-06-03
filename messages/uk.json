@@ -147,7 +147,6 @@
       "best": "Найкраще",
       "counter": "Лічильник",
       "select-cube": "Вибрати куб",
-      "enter-custom-scramble": "Ввести власний скрамбл",
       "mode": "Режим",
       "modes": {
         "normal": "Звичайний",
@@ -158,7 +157,6 @@
         "nexus-connect": "Nexus Connect"
       },
       "new-scramble": "Новий скрамбл",
-      "edit-scramble": "Редагувати скрамбл",
       "hints": "Підказки",
       "start-stackmat": "Запустіть Stackmat, щоб почати",
       "reset-state": "Скинути стан",
