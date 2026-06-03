@@ -124,7 +124,7 @@ export function ScrambleZone() {
             transition={{ duration: 0.35, ease: 'easeInOut' }}
             className="font-semibold tracking-wide text-primary"
           >
-            Ready
+            {t('HomePage.ready')}
           </motion.p>
         ) : showGuide ? (
           <p data-testid="scramble-text-zone" className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
