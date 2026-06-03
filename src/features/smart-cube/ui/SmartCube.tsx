@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Compass, RotateCcw } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -35,6 +36,7 @@ function writeStoredMac(deviceId: string, mac: string): void {
 }
 
 export default function SmartCube() {
+  const t = useTranslations('Index.HomePage')
   const [status, setStatus] = useState<ConnectionStatus>('idle')
   const [deviceName, setDeviceName] = useState<string | null>(null)
   const [connection, setConnection] = useState<SmartCubeConnection | null>(null)
@@ -206,7 +208,7 @@ export default function SmartCube() {
                 className="h-7 px-2 gap-1 text-xs text-muted-foreground hover:text-foreground"
               >
                 <RotateCcw className="size-3" />
-                Reset State
+                {t('reset-state')}
               </Button>
               {gyroActive && (
                 <Button
@@ -217,7 +219,7 @@ export default function SmartCube() {
                   className="h-7 px-2 gap-1 text-xs text-muted-foreground hover:text-foreground"
                 >
                   <Compass className="size-3" />
-                  Reset Orientation
+                  {t('reset-orientation')}
                 </Button>
               )}
             </div>
@@ -234,12 +236,12 @@ export default function SmartCube() {
           className="sm:h-9 sm:px-4 sm:text-sm"
         >
           {status === 'connecting'
-            ? 'Connecting…'
+            ? t('connecting')
             : isConnected
-              ? 'Disconnect'
+              ? t('disconnect')
               : status === 'error'
-                ? 'Retry connection'
-                : 'Connect Smart Cube'}
+                ? t('retry-connection')
+                : t('connect-smart-cube')}
         </Button>
 
         {isConnected && deviceName && <p className="text-xs sm:text-sm text-muted-foreground">{deviceName}</p>}
