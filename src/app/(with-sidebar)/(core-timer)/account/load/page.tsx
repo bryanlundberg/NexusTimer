@@ -47,7 +47,7 @@ export default function AccountLoadPage() {
 
         <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
           <Link href={'/account'} className="flex-1">
-            <Button className="w-full" variant={'secondary'}>
+            <Button className="w-full" variant={'ghost'}>
               {t('Inputs.back')}
             </Button>
           </Link>

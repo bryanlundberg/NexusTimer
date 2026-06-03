@@ -62,7 +62,7 @@ export default function CompareUsersListModal() {
       </Table>
 
       <div className="grid grid-cols-2 gap-2 mt-4">
-        <Button className={'w-full'} variant="secondary" onClick={close}>
+        <Button className={'w-full'} variant="ghost" onClick={close}>
           {t('close')}
         </Button>
         <Button className={'w-full'} onClick={handleCompare}>

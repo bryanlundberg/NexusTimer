@@ -136,7 +136,7 @@ export default function EditCollectionForm() {
         <DialogFooter>
           <div className="flex justify-between w-full">
             <DialogClose asChild>
-              <Button variant={'outline'} data-testid="drawer-edit-cancel-button">
+              <Button variant={'ghost'} data-testid="drawer-edit-cancel-button">
                 {t('Inputs.cancel')}
               </Button>
             </DialogClose>

@@ -116,7 +116,7 @@ export default function DeleteCollectionForm() {
         <DialogFooter>
           <div className="flex justify-between w-full">
             <DialogClose asChild>
-              <Button variant={'outline'} data-testid="dialog-delete-cube-cancel-button">
+              <Button variant={'ghost'} data-testid="dialog-delete-cube-cancel-button">
                 {t('Inputs.cancel')}
               </Button>
             </DialogClose>
