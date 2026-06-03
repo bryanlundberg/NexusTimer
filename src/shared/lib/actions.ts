@@ -3,6 +3,7 @@
 import connectDB from '@/shared/config/mongodb/mongodb'
 import type { Solve as ISolve } from '@/entities/solve/model/types'
 import Solve from '@/entities/solve/model/solve'
+import { auth } from '@/shared/config/auth/auth'
 
 interface SendSolveToServerParams {
   solve: Partial<ISolve>
@@ -15,14 +16,15 @@ interface SendSolveToServerParams {
 export async function sendSolveToServer({
   solve,
   solution,
-  userId,
   puzzle,
   smart = false
 }: SendSolveToServerParams): Promise<boolean> {
   try {
-    await connectDB()
-
+    const session = await auth()
+    const userId = session?.user?.id
     if (!userId) return true
+
+    await connectDB()
 
     await Solve.create({
       user: userId,
