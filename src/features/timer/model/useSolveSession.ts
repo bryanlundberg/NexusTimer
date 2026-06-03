@@ -16,10 +16,16 @@ import {
   type ScrambleMove
 } from '@/shared/lib/timer/scrambleGuide'
 
-export type SolvePhase = 'scrambling' | 'armed' | 'solving' | 'solved'
+export type SolvePhase = 'scrambling' | 'armed' | 'inspecting' | 'solving' | 'solved'
 export type ScrambleMode = 'auto' | 'manual'
 
+export interface InspectionConfig {
+  enabled: boolean
+  durationMs: number
+}
+
 const POST_SOLVE_LOCK_MS = 2000
+const DEFAULT_INSPECTION_MS = 15000
 const ROTATION_RE = /^[xyz]['2]?$/
 
 interface UseSolveSessionArgs {
@@ -33,6 +39,7 @@ interface UseSolveSessionArgs {
   scrambleMode: ScrambleMode
   onAdvanceScramble: () => void
   recreatePlayer: () => void
+  inspection?: InspectionConfig
 }
 
 export function useSolveSession({
@@ -43,12 +50,17 @@ export function useSolveSession({
   smart,
   scrambleMode,
   onAdvanceScramble,
-  recreatePlayer
+  recreatePlayer,
+  inspection = { enabled: false, durationMs: DEFAULT_INSPECTION_MS }
 }: UseSolveSessionArgs) {
-  const initialPhase: SolvePhase = scrambleMode === 'auto' ? 'armed' : 'scrambling'
+  const inspectionEnabled = inspection.enabled
+  const inspectionDuration = inspection.durationMs || DEFAULT_INSPECTION_MS
+  const armedPhase: SolvePhase = inspectionEnabled ? 'inspecting' : 'armed'
+  const initialPhase: SolvePhase = scrambleMode === 'auto' ? armedPhase : 'scrambling'
   const [phase, setPhaseState] = useState<SolvePhase>(initialPhase)
   // Live guidance while applying a manual scramble (null in `auto` mode).
   const [guide, setGuide] = useState<ScrambleGuide | null>(null)
+  const [inspectionTime, setInspectionTime] = useState<number | null>(null)
 
   const clock = useSolveClock()
   const recorder = useSolveReplayRecorder()
@@ -64,6 +76,8 @@ export function useSolveSession({
   const processedSolveRef = useRef(false)
   const postSolveLockRef = useRef(0)
   const postSolveTimeoutRef = useRef<number | null>(null)
+  const inspectionIdRef = useRef<number | null>(null)
+  const inspectionStartRef = useRef<number | null>(null)
 
   // Latest values for the stable callbacks below, so they never read stale state.
   const latest = useRef({
@@ -76,7 +90,10 @@ export function useSolveSession({
     recorder,
     saveSolve,
     onAdvanceScramble,
-    recreatePlayer
+    recreatePlayer,
+    inspectionEnabled,
+    inspectionDuration,
+    armedPhase
   })
   latest.current = {
     player,
@@ -88,7 +105,10 @@ export function useSolveSession({
     recorder,
     saveSolve,
     onAdvanceScramble,
-    recreatePlayer
+    recreatePlayer,
+    inspectionEnabled,
+    inspectionDuration,
+    armedPhase
   }
 
   const setPhase = useCallback((next: SolvePhase) => {
@@ -96,37 +116,76 @@ export function useSolveSession({
     setPhaseState(next)
   }, [])
 
-  const finalize = useCallback(() => {
-    if (processedSolveRef.current) return
-    processedSolveRef.current = true
-
-    const { clock, recorder, saveSolve, scramble, smart, onAdvanceScramble, recreatePlayer } = latest.current
-    const finalTime = clock.stop()
-    postSolveLockRef.current = Date.now() + POST_SOLVE_LOCK_MS
-    setPhase('solved')
-
-    try {
-      saveSolve({ timeMs: finalTime, scramble: scramble ?? null, dnf: false, replayMoves: recorder.getMoves(), smart })
-    } catch (e) {
-      console.warn('saveSolve error (ignored):', e)
+  const stopInspection = useCallback(() => {
+    if (inspectionIdRef.current != null) {
+      window.clearInterval(inspectionIdRef.current)
+      inspectionIdRef.current = null
     }
+    inspectionStartRef.current = null
+    setInspectionTime(null)
+  }, [])
 
-    if (postSolveTimeoutRef.current != null) window.clearTimeout(postSolveTimeoutRef.current)
-    postSolveTimeoutRef.current = window.setTimeout(() => {
-      postSolveTimeoutRef.current = null
-      postSolveLockRef.current = 0
-      try {
-        onAdvanceScramble()
-      } catch (e) {
-        console.warn('onAdvanceScramble error (ignored):', e)
+  const finalize = useCallback(
+    (dnf = false) => {
+      if (processedSolveRef.current) return
+      processedSolveRef.current = true
+
+      const { clock, recorder, saveSolve, scramble, smart, onAdvanceScramble, recreatePlayer } = latest.current
+      stopInspection()
+      const finalTime = clock.stop()
+      postSolveLockRef.current = Date.now() + POST_SOLVE_LOCK_MS
+      setPhase('solved')
+
+      if (!dnf) {
+        try {
+          saveSolve({ timeMs: finalTime, scramble: scramble ?? null, dnf, replayMoves: recorder.getMoves(), smart })
+        } catch (e) {
+          console.warn('saveSolve error (ignored):', e)
+        }
       }
-      try {
-        recreatePlayer()
-      } catch (e) {
-        console.warn('recreatePlayer error (ignored):', e)
+
+      if (postSolveTimeoutRef.current != null) window.clearTimeout(postSolveTimeoutRef.current)
+      postSolveTimeoutRef.current = window.setTimeout(() => {
+        postSolveTimeoutRef.current = null
+        postSolveLockRef.current = 0
+        try {
+          onAdvanceScramble()
+        } catch (e) {
+          console.warn('onAdvanceScramble error (ignored):', e)
+        }
+        try {
+          recreatePlayer()
+        } catch (e) {
+          console.warn('recreatePlayer error (ignored):', e)
+        }
+      }, POST_SOLVE_LOCK_MS)
+    },
+    [setPhase, stopInspection]
+  )
+
+  const startInspection = useCallback(() => {
+    const { inspectionDuration } = latest.current
+    if (inspectionIdRef.current != null) window.clearInterval(inspectionIdRef.current)
+    inspectionStartRef.current = Date.now()
+    setInspectionTime(inspectionDuration / 1000)
+    inspectionIdRef.current = window.setInterval(() => {
+      if (inspectionStartRef.current == null) return
+      const remaining = inspectionDuration - (Date.now() - inspectionStartRef.current)
+      if (remaining <= 0) {
+        finalize(true)
+        return
       }
-    }, POST_SOLVE_LOCK_MS)
-  }, [setPhase])
+      setInspectionTime(remaining / 1000)
+    }, 100)
+  }, [finalize])
+
+  // Transition into the post-scramble ready state, starting inspection if enabled.
+  const arm = useCallback(() => {
+    const { armedPhase, inspectionEnabled } = latest.current
+    setGuide(null)
+    setPhase(armedPhase)
+    if (inspectionEnabled) startInspection()
+  }, [setPhase, startInspection])
 
   const processMove = useCallback(
     (move: string, opts?: { isRotation?: boolean }) => {
@@ -146,7 +205,8 @@ export function useSolveSession({
       try {
         engine.applyMoves(move, { record: !scrambling })
       } catch {}
-      if (!scrambling) recorder.record(move, phase === 'armed' && isRotation ? { t: 0 } : undefined)
+      const ready = phase === 'armed' || phase === 'inspecting'
+      if (!scrambling) recorder.record(move, ready && isRotation ? { t: 0 } : undefined)
 
       if (scrambling) {
         const parsed = isRotation ? null : parseMove(move)
@@ -156,8 +216,7 @@ export function useSolveSession({
         try {
           const stateJson = JSON.stringify(engine.state())
           if (targetStateRef.current && stateJson === targetStateRef.current) {
-            setPhase('armed')
-            setGuide(null)
+            arm()
             return
           }
           if (parsed) {
@@ -172,7 +231,8 @@ export function useSolveSession({
         return
       }
 
-      if (phase === 'armed' && !isRotation) {
+      if (ready && !isRotation) {
+        stopInspection()
         clock.start()
         setPhase('solving')
       }
@@ -181,14 +241,16 @@ export function useSolveSession({
         if (engine.isSolved()) finalize()
       } catch {}
     },
-    [setPhase, finalize]
+    [setPhase, finalize, arm, stopInspection]
   )
 
   const cancel = useCallback(() => {
-    const { clock, recorder, engine, scrambleMode, onAdvanceScramble, recreatePlayer } = latest.current
+    const { clock, recorder, engine, scrambleMode, armedPhase, inspectionEnabled, onAdvanceScramble, recreatePlayer } =
+      latest.current
     clock.stop()
     clock.reset()
     recorder.reset()
+    stopInspection()
     processedSolveRef.current = false
     postSolveLockRef.current = 0
 
@@ -196,7 +258,8 @@ export function useSolveSession({
       try {
         onAdvanceScramble()
       } catch {}
-      setPhase('armed')
+      setPhase(armedPhase)
+      if (inspectionEnabled) startInspection()
     } else {
       try {
         engine?.reset()
@@ -209,12 +272,13 @@ export function useSolveSession({
     try {
       recreatePlayer()
     } catch {}
-  }, [setPhase])
+  }, [setPhase, stopInspection, startInspection])
 
   const resetClock = clock.reset
   const resetRecorder = recorder.reset
   useEffect(() => {
     if (!engine) return
+    stopInspection()
 
     if (scrambleMode === 'manual' && scramble) {
       const tokens = tokenizeScramble(scramble)
@@ -245,21 +309,41 @@ export function useSolveSession({
     processedSolveRef.current = false
     resetClock()
     resetRecorder()
-    setPhase(scrambleMode === 'auto' ? 'armed' : 'scrambling')
-  }, [scramble, engine, scrambleMode, cubeSize, resetClock, resetRecorder, setPhase])
+    if (scrambleMode === 'auto') {
+      setPhase(armedPhase)
+      if (inspectionEnabled) startInspection()
+    } else {
+      setPhase('scrambling')
+    }
+  }, [
+    scramble,
+    engine,
+    scrambleMode,
+    cubeSize,
+    armedPhase,
+    inspectionEnabled,
+    resetClock,
+    resetRecorder,
+    setPhase,
+    stopInspection,
+    startInspection
+  ])
 
   useEffect(
     () => () => {
       if (postSolveTimeoutRef.current != null) window.clearTimeout(postSolveTimeoutRef.current)
+      if (inspectionIdRef.current != null) window.clearInterval(inspectionIdRef.current)
     },
     []
   )
 
   return {
     phase,
-    isReady: phase === 'armed',
+    isReady: phase === 'armed' || phase === 'inspecting',
+    isInspecting: phase === 'inspecting',
     isSolving: phase === 'solving',
     solvingTime: clock.solvingTime,
+    inspectionTime,
     guide,
     processMove,
     cancel
