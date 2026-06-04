@@ -1,10 +1,10 @@
-# <img src="./.github/images/branding_v2.webp" width="100%" alt="NexusTimer Branding" />
+# <img src="./.github/images/branding_v3.avif" width="100%" alt="NexusTimer Branding" />
 
 <div align="center">
   <p align="center">
-    <strong>NexusTimer</strong> is the most advanced speedcubing manager tool designed. 
+    <strong>NexusTimer</strong> is an advanced speedcubing manager built around hierarchical statistical analysis,
 <br />
-Implements hierarchical statistical analysis, enabling independent metrics tracking at both category and individual cube levels.
+with independent metrics tracked at both the category and the individual cube level.
     <br />
     <a href="https://github.com/bryanlundberg/NexusTimer/issues">Report Bug</a>
     ·
@@ -30,17 +30,19 @@ Implements hierarchical statistical analysis, enabling independent metrics track
   </a>
 </div>
 
+<div align="center">
+  <a href="https://play.google.com/store/apps/details?id=com.nexustimer">
+    <img src="./.github/images/gp.avif" alt="Get it on Google Play" height="60">
+  </a>
+</div>
+
 ---
 
-## 📖 About The Project
+## About The Project
 
-NexusTimer is an app designed for tracking your training sessions on the Rubik's Cube. While originally inspired
-by [Twisty Timer](https://github.com/aricneto/TwistyTimer), it has evolved into a unique desktop experience with a focus
-on deep analytics and a clean interface.
+NexusTimer is a speedcubing timer and analytics tool. It started as a project inspired by [Twisty Timer](https://github.com/aricneto/TwistyTimer) and grew into a full environment for timing solves and studying performance in depth. The interface keeps your data in the foreground: times, averages, and trends are the content, and everything else stays out of the way.
 
-For those new to speedcubing, it's a challenge where cubers aim to solve the Rubik's Cube as quickly as possible.
-Currently, the world record stands at **2.76 seconds** (41.65% faster than the video below
-by [Feliks Zemdegs](https://www.worldcubeassociation.org/persons/2009ZEMD01) 😁).
+Speedcubing is the practice of solving the Rubik's Cube as quickly as possible. The clip below shows a solve by [Feliks Zemdegs](https://www.worldcubeassociation.org/persons/2009ZEMD01).
 
 <div align="center">
   <img src="https://raw.githubusercontent.com/bryanlundberg/NexusTimer/main/.github/images/wr.gif" alt="Speedcubing preview">
@@ -48,49 +50,25 @@ by [Feliks Zemdegs](https://www.worldcubeassociation.org/persons/2009ZEMD01) �
 
 ---
 
-## 🧊 Virtual Cube Preview
+## A Record For Every Cube, Not Just Every Category
 
-NexusTimer features a real-time 3D visualization of scramble sequences using a virtual cube. Also, there is a leaderboard community for sharing your best times and comparing them with other cubers around the world.
+Most timers only track statistics by category. Every 3x3 solve lands in the same pile no matter which cube you used, so the moment you switch mains the history of the old cube dissolves into one shared average. There is no way to look back and ask what you actually achieved on a specific cube.
 
-<div align="center">
-  <a href="https://youtu.be/3eY8-qQgJAo?si=-SJ8W7tFdI8ulrWH">
-    <img src="./.github/images/virtual-cube-preview.svg" alt="NexusTimer – Virtual Cube Preview" width="600">
-  </a>
-</div>
-
+NexusTimer keeps statistics at the individual cube level as well as by category. Each cube holds its own records, averages, and full solve history, and that record stays intact as the years pass. When you think back to an old main you retired long ago, you can still see the bests you set with it, the averages you held, and every solve you logged on it. The category view remains for the aggregate picture, but the per cube history is what turns a retired puzzle into something you can actually revisit.
 
 ---
 
-## 📸 Screenshots
+## Profiles and the Social Layer
 
-<div align="center">
-  <img src="./.github/images/v6/Screenshot_42.png" width="24%" />
-  <img src="./.github/images/v6/Screenshot_41.png" width="24%" />
-  <img src="./.github/images/v6/Screenshot_40.png" width="24%" />
-  <img src="./.github/images/v6/Screenshot_44.png" width="24%" />
-</div>
+Every account generates a public profile, and it is one of the most complete a speedcubing app exposes. It brings together your personal bests by category, your solve history and trends, the cubes you own, and your trajectory over time, so a profile reads as a full picture of a cuber rather than a single headline average.
 
-## 🌍 Languages Available
-
-NexusTimer is available in several languages:
-
-- 🇺🇸 English
-- 🇩🇪 German
-- 🇪🇸 Spanish
-- 🇫🇷 French
-- 🇮🇳 Hindi
-- 🇯🇵 Japanese
-- 🇰🇷 Korean
-- 🇵🇹 Portuguese
-- 🇷🇺 Russian
-- 🇨🇳 Chinese
-- 🇺🇦 Ukrainian
+That depth is what makes the social layer worth using. You can open another cuber's profile and compare it against your own metric by metric, connect with other people, and measure yourself on community leaderboards. Data analysis is the core of the project, and these features give that data a purpose.
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
-A general overview of the infrastructure and main components behind NexusTimer.
+The diagram below outlines the infrastructure and the main components that sit behind NexusTimer, from the client and its offline first persistence layer to the services that handle accounts, solve storage, and the real time features. It is meant as a high level map rather than an exhaustive specification, enough to understand how the pieces fit together before reading the source.
 
 <div align="center">
   <img src="./.github/images/nxtimer-infra.png" alt="NexusTimer Infrastructure Overview" width="100%" />
@@ -98,17 +76,18 @@ A general overview of the infrastructure and main components behind NexusTimer.
 
 ---
 
-## 🤝 Contributing
+## Languages Available
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any
-contributions you make are **greatly appreciated**.
-
-Please read the [Contributing Guidelines](https://github.com/bryanlundberg/NexusTimer/blob/main/CONTRIBUTING.md) for
-more details.
+NexusTimer is translated into eleven languages, with English as the default fallback and every other locale deep merged on top of it, so a missing string in one language quietly falls back to English instead of breaking the interface. The application is currently available in English, German, Spanish, French, Hindi, Japanese, Korean, Portuguese, Russian, Chinese, and Ukrainian.
 
 ---
 
-## 📄 License
+## Contributing
 
-This project is licensed under the GNU General Public License v3.0 - see
-the [LICENSE](https://github.com/bryanlundberg/NexusTimer/blob/main/LICENSE) file for details.
+Contributions are welcome, whether a bug report, a translation, a fix, or a new feature. Please read the [Contributing Guidelines](https://github.com/bryanlundberg/NexusTimer/blob/main/CONTRIBUTING.md) before opening a pull request so your change matches the project conventions.
+
+---
+
+## License
+
+This project is licensed under the GNU General Public License v3.0. See the [LICENSE](https://github.com/bryanlundberg/NexusTimer/blob/main/LICENSE) file for the full terms.
