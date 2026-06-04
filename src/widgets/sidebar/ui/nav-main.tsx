@@ -15,7 +15,7 @@ import {
   SidebarMenuSubItem,
   useSidebar
 } from '@/components/ui/sidebar'
-import { PlusIcon } from '@radix-ui/react-icons'
+import { ChevronRightIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -114,7 +114,7 @@ export function NavMain({
                   <>
                     <CollapsibleTrigger asChild>
                       <SidebarMenuAction className="data-[state=open]:rotate-90">
-                        <PlusIcon />
+                        <ChevronRightIcon />
                         <span className="sr-only">Toggle</span>
                       </SidebarMenuAction>
                     </CollapsibleTrigger>
