@@ -1,7 +1,5 @@
-import { resend } from '@/shared/lib/resend'
 import { getWelcomeEmailSubject, renderWelcomeEmail } from './welcome-email-template'
-
-const FROM_ADDRESS = 'NexusTimer <onboarding@nexustimer.com>'
+import brevo from '@/shared/lib/brevo'
 
 interface SendWelcomeEmailArgs {
   email: string
@@ -9,10 +7,10 @@ interface SendWelcomeEmailArgs {
 }
 
 export async function sendWelcomeEmail({ email, name }: SendWelcomeEmailArgs) {
-  await resend.emails.send({
-    from: FROM_ADDRESS,
-    to: email,
-    subject: getWelcomeEmailSubject(),
-    html: renderWelcomeEmail({ name })
+  await brevo.transactionalEmails.sendTransacEmail({
+    to: [{ email }],
+    sender: { name: 'Nexus Timer', email: 'noreply@nexustimer.com' },
+    htmlContent: renderWelcomeEmail({ name }),
+    subject: getWelcomeEmailSubject()
   })
 }
