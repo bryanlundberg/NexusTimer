@@ -24,6 +24,7 @@
     "@aws-sdk/s3-request-presigner": "^3.1053.0",
     "@firebase/database": "^1.1.0",
     "@firebase/firestore": "^4.9.0",
+    "@getbrevo/brevo": "^5.0.4",
     "@heroicons/react": "^2.2.0",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-alert-dialog": "^1.1.6",

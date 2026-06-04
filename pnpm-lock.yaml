@@ -23,6 +23,9 @@ importers:
       '@firebase/firestore':
         specifier: ^4.9.0
         version: 4.9.0(@firebase/app@0.14.1)
+      '@getbrevo/brevo':
+        specifier: ^5.0.4
+        version: 5.0.4
       '@heroicons/react':
         specifier: ^2.2.0
         version: 2.2.0(react@19.2.1)
@@ -991,6 +994,10 @@ packages:
 
   '@formatjs/intl-localematcher@0.8.6':
     resolution: {integrity: sha512-AZRgUxj0q93lyF7Z5lFS85bLINXuBLX4R3tCKicO6fSWo6cvh9GQfoR3B1WlsqQwefZ1QORTivhInx7gM6HUzQ==}
+
+  '@getbrevo/brevo@5.0.4':
+    resolution: {integrity: sha512-wN4mHE6O0Pb/d/Dh3E4MAm2zCHbLLUcFF8/wgwTeMPy9KzHBYLu7S/nsJbzd0AWL09MHn8vwue8ULL9YOzluOQ==}
+    engines: {node: '>=18.0.0'}
 
   '@grpc/grpc-js@1.9.15':
     resolution: {integrity: sha512-nqE7Hc0AzI+euzUwDAy0aY5hCp10r734gMGRdU+qOPX0XSceI2ULrcXB5U2xSc5VkWwalCj4M7GzCAygZl2KoQ==}
@@ -7659,6 +7666,8 @@ snapshots:
   '@formatjs/intl-localematcher@0.8.6':
     dependencies:
       '@formatjs/fast-memoize': 3.1.4
+
+  '@getbrevo/brevo@5.0.4': {}
 
   '@grpc/grpc-js@1.9.15':
     dependencies:
