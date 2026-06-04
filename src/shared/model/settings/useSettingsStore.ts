@@ -3,7 +3,7 @@ import { Settings } from '@/shared/types/Settings'
 import { defaultSettings } from '@/shared/model/settings/defaultSettings'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { cloneDeep } from 'es-toolkit';
+import { cloneDeep } from 'es-toolkit'
 
 // Type for nested paths in Settings object
 type NestedPaths<T> = T extends object
@@ -58,7 +58,7 @@ export const useSettingsStore = create<SettingsStoreProps>()(
     }),
     {
       name: 'settings-modal-store',
-      version: 2
+      version: 3
     }
   )
 )
