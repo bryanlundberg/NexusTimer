@@ -32,12 +32,15 @@ export default async function SignUpPage() {
           <OAuthProviders />
         </div>
 
-        <p className="text-sm text-muted-foreground">
-          {t('have-account')}{' '}
-          <Link href="/sign-in" className="font-medium text-foreground hover:underline">
+        <div className="w-full flex items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-4 py-3 text-sm">
+          <span className="text-muted-foreground">{t('have-account')}</span>
+          <Link
+            href="/sign-in"
+            className="font-semibold text-primary underline underline-offset-4 hover:text-primary/80"
+          >
             {t('sign-in')}
           </Link>
-        </p>
+        </div>
       </div>
     </div>
   )
