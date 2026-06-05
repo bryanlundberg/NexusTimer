@@ -40,7 +40,6 @@ type Sounds = {
 }
 
 type Sync = {
-  autoSaveEnabled: boolean
   autoLoadEnabled: boolean
   backupInterval: number
   lastSync: number
