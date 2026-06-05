@@ -232,12 +232,6 @@ export default function OptionsPage() {
         <Separator className="my-4 opacity-50" />
         <MenuSection icon={<Link2Icon />} title={t('SettingsPage.cloud-sync')} id="cloud-sync">
           <MenuOption
-            label={t('SettingsPage.enable-auto-save')}
-            name={'sync.autoSaveEnabled'}
-            control={control}
-            description={t('SettingsPage.auto-save-description')}
-          />
-          <MenuOption
             label={t('SettingsPage.enable-auto-load')}
             name={'sync.autoLoadEnabled'}
             control={control}

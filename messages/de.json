@@ -76,10 +76,6 @@
       "thanks": "Danke fur dein Feedback!",
       "close": "Schliessen"
     },
-    "DialogFirstRunNoCubes": {
-      "title": "Willkommen bei NexusTimer",
-      "description": "Du hast noch keine Sammlungen. Erstelle deine erste Sammlung oder importiere ein Backup, um zu starten."
-    },
     "HomePage": {
       "title": "Timer",
       "solving": "Löse...",
@@ -463,12 +459,10 @@
       "delete-app-data-subtitle": "Dies löscht alle Würfel und Zeiten dauerhaft. Bist du sicher?",
       "delete-app-data-success": "Alle Daten gelöscht",
       "cloud-sync": "Cloud-Sync",
-      "enable-auto-save": "Auto-Speichern aktivieren",
-      "auto-save-description": "Speichert Daten automatisch in der Cloud",
       "enable-auto-load": "Auto-Laden aktivieren",
       "auto-load-description": "Lädt Cloud-Daten beim Start automatisch",
-      "backup-interval": "Backup-Intervall",
-      "backup-interval-description": "Anzahl der Solves zwischen Backups",
+      "backup-interval": "Häufigkeit der Backup-Erinnerung",
+      "backup-interval-description": "Zeigt nach dieser Anzahl an Solves eine Erinnerung zum Cloud-Backup an",
       "sync-toast": {
         "title": "Zeit zum Synchronisieren!",
         "description": "Lokale Daten mit Cloud-Backup zusammenführen?",

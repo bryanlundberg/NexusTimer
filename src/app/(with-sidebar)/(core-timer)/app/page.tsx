@@ -4,35 +4,21 @@ import { useTranslations } from 'next-intl'
 import * as React from 'react'
 import { useEffect } from 'react'
 import TimerContainer from '@/features/timer/ui/TimerContainer'
-import DialogFirstRunNoCubes from '@/features/timer/ui/dialog-first-run-no-cubes'
 import HeaderTimer from '@/features/timer/ui/HeaderTimer'
 import { MainTimer } from '@/features/timer/ui/MainTimer'
 import TimerWidgets from '@/features/timer/ui/TimerWidgets'
 import ScrambleModal from '@/features/timer/ui/ScrambleModal'
-import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 
 export default function TimerPage() {
   const resetTimerStore = useTimerStore((state) => state.reset)
   const t = useTranslations('Metadata')
-  const cubes = useTimerStore((store) => store.cubes)
-  const open = useOverlayStore((store) => store.open)
   const tHomePage = useTranslations('Index.HomePage')
 
   useEffect(() => {
     resetTimerStore()
   }, [])
-
-  useEffect(() => {
-    if (!Array.isArray(cubes) || cubes.length === 0) {
-      return open({
-        id: 'no-cubes',
-        component: <DialogFirstRunNoCubes />,
-        metadata: {}
-      })
-    }
-  }, [cubes, open])
 
   return (
     <div className="flex flex-col grow relative">
