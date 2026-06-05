@@ -151,9 +151,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <OfflineIndicator />
             {children}
             <CookieConsentBanner />
+            <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>
-        <Toaster />
       </body>
     </html>
   )
