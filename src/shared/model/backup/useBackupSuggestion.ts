@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 import { useUser } from '@/entities/user/model/useUser'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
-import { isSyncCooldownElapsed, SYNC_TOAST_DURATION_MS, SYNC_TOAST_ID } from '@/shared/model/backup/syncPolicy'
+import { SYNC_TOAST_DURATION_MS, SYNC_TOAST_ID } from '@/shared/model/backup/syncPolicy'
 import SyncSuggestionToast from '@/components/sync-suggestion-toast'
 
 export const useBackupSuggestion = () => {
@@ -40,20 +40,11 @@ export const useBackupSuggestion = () => {
     const solvesIntervalReached = Number(settings.sync.backupInterval) <= Number(settings.sync.totalSolves)
 
     if (!solvesIntervalReached) return
-    if (!isSyncCooldownElapsed(settings.sync.lastSync)) return
 
     toast.custom(() => React.createElement(SyncSuggestionToast, { onConfirm: confirm, onDismiss: dismiss }), {
       duration: SYNC_TOAST_DURATION_MS,
       id: SYNC_TOAST_ID,
       style: { width: '100%' }
     })
-  }, [
-    confirm,
-    dismiss,
-    session?.user?.id,
-    settings?.sync.lastSync,
-    settings?.sync.backupInterval,
-    settings?.sync.totalSolves,
-    isOffline
-  ])
+  }, [confirm, dismiss, session?.user?.id, settings?.sync.backupInterval, settings?.sync.totalSolves, isOffline])
 }
