@@ -467,8 +467,7 @@
         "title": "동기화할 시간입니다!",
         "description": "로컬 데이터를 클라우드 백업과 병합하여 최신 상태로 유지할까요?",
         "cancel": "취소",
-        "merge": "병합",
-        "loaded": "데이터를 성공적으로 불러왔습니다"
+        "merge": "병합"
       }
     },
     "TransferSolvesPage": {

@@ -467,8 +467,7 @@
         "title": "Zeit zum Synchronisieren!",
         "description": "Lokale Daten mit Cloud-Backup zusammenführen?",
         "cancel": "Abbrechen",
-        "merge": "Zusammenführen",
-        "loaded": "Daten erfolgreich geladen"
+        "merge": "Zusammenführen"
       }
     },
     "TransferSolvesPage": {

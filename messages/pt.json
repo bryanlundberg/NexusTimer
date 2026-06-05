@@ -467,8 +467,7 @@
         "title": "Ei! Hora de sincronizar!",
         "description": "Mesclar seus dados locais com o backup na nuvem?",
         "cancel": "Cancelar",
-        "merge": "Mesclar",
-        "loaded": "Dados carregados com sucesso"
+        "merge": "Mesclar"
       }
     },
     "TransferSolvesPage": {

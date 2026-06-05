@@ -556,8 +556,7 @@
         "title": "Hey there! Time to Sync!",
         "description": "Merge your local data with cloud backup to sync your device and create an updated backup?",
         "cancel": "Cancel",
-        "merge": "Merge",
-        "loaded": "Data loaded successfully"
+        "merge": "Merge"
       }
     },
     "TransferSolvesPage": {

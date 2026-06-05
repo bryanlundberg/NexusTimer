@@ -467,8 +467,7 @@
         "title": "嗨！该同步了！",
         "description": "将本地数据与云端备份合并以同步你的设备并创建更新的备份吗？",
         "cancel": "取消",
-        "merge": "合并",
-        "loaded": "数据加载成功"
+        "merge": "合并"
       }
     },
     "TransferSolvesPage": {

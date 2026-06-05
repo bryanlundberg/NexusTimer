@@ -467,8 +467,7 @@
         "title": "Hé ! Temps de synchroniser !",
         "description": "Fusionner vos données locales avec la sauvegarde cloud ?",
         "cancel": "Annuler",
-        "merge": "Fusionner",
-        "loaded": "Données chargées avec succès"
+        "merge": "Fusionner"
       }
     },
     "TransferSolvesPage": {

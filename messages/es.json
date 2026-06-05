@@ -440,8 +440,7 @@
         "title": "¡Hola! ¡Es hora de sincronizar!",
         "description": "¿Fusionar tus datos locales con el respaldo en la nube para sincronizar tu dispositivo y crear un respaldo actualizado?",
         "cancel": "Cancelar",
-        "merge": "Fusionar",
-        "loaded": "Datos cargados correctamente"
+        "merge": "Fusionar"
       }
     },
     "others": {

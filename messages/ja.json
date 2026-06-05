@@ -467,8 +467,7 @@
         "title": "同期の時間です！",
         "description": "ローカルデータをクラウドと同期して最新の状態にしますか？",
         "cancel": "キャンセル",
-        "merge": "マージ",
-        "loaded": "データを正常に読み込みました"
+        "merge": "マージ"
       }
     },
     "TransferSolvesPage": {

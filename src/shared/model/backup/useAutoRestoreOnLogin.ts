@@ -2,15 +2,12 @@
 import { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { useIsOnline } from 'react-use-is-online'
-import { useTranslations } from 'next-intl'
-import { toast } from 'sonner'
 import { useUser } from '@/entities/user/model/useUser'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import { useInitialSyncBackup } from '@/shared/model/backup/useInitialSyncBackup'
 
 export const useAutoRestoreOnLogin = () => {
-  const t = useTranslations('Index.SettingsPage.sync-toast')
   const { handleDownloadData } = useSyncBackup()
   const firstLoaded = useInitialSyncBackup((store) => store.firstLoaded)
   const setFirstLoaded = useInitialSyncBackup((store) => store.setFirstLoaded)
@@ -28,9 +25,7 @@ export const useAutoRestoreOnLogin = () => {
 
     setFirstLoaded(true)
 
-    handleDownloadData({ user }).then(() => {
-      toast.success(t('loaded'))
-    })
+    handleDownloadData({ user })
   }, [
     firstLoaded,
     handleDownloadData,
@@ -38,7 +33,6 @@ export const useAutoRestoreOnLogin = () => {
     settings.sync.autoLoadEnabled,
     user,
     setFirstLoaded,
-    isOffline,
-    t
+    isOffline
   ])
 }
