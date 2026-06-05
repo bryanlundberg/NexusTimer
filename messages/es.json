@@ -62,10 +62,6 @@
       "thanks": "Gracias por tu feedback!",
       "close": "Cerrar"
     },
-    "DialogFirstRunNoCubes": {
-      "title": "Bienvenido a NexusTimer",
-      "description": "Aún no tienes ninguna colección. Puedes crear tu primera colección o importar un respaldo para comenzar."
-    },
     "HomePage": {
       "title": "Cronómetro",
       "solving": "Resolviendo...",
@@ -436,17 +432,16 @@
       "delete-app-data-subtitle": "Esta acción eliminará permanentemente todos tus cubos y tiempos y no se puede deshacer. ¿Estás seguro de que quieres continuar?",
       "delete-app-data-success": "Todos los datos de la aplicación han sido eliminados",
       "cloud-sync": "Sincronización en la nube",
-      "enable-auto-save": "Habilitar guardado automático en la nube",
-      "auto-save-description": "Guarda automáticamente tus datos en la nube",
       "enable-auto-load": "Habilitar carga automática de la nube",
       "auto-load-description": "Carga automáticamente tus datos desde la nube al abrir la aplicación",
-      "backup-interval": "Intervalo de respaldo",
-      "backup-interval-description": "Número de resoluciones entre cada respaldo automático en la nube",
+      "backup-interval": "Frecuencia del recordatorio de respaldo",
+      "backup-interval-description": "Muestra un recordatorio para respaldar en la nube tras esta cantidad de resoluciones",
       "sync-toast": {
         "title": "¡Hola! ¡Es hora de sincronizar!",
         "description": "¿Fusionar tus datos locales con el respaldo en la nube para sincronizar tu dispositivo y crear un respaldo actualizado?",
         "cancel": "Cancelar",
-        "merge": "Fusionar"
+        "merge": "Fusionar",
+        "loaded": "Datos cargados correctamente"
       }
     },
     "others": {

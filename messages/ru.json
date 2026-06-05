@@ -76,10 +76,6 @@
       "thanks": "Спасибо за ваш отзыв!",
       "close": "Закрыть"
     },
-    "DialogFirstRunNoCubes": {
-      "title": "Добро пожаловать в NexusTimer",
-      "description": "У вас пока нет коллекций. Создайте свою первую коллекцию или импортируйте бэкап, чтобы начать."
-    },
     "HomePage": {
       "title": "Таймер",
       "solving": "Сборка...",
@@ -463,17 +459,16 @@
       "delete-app-data-subtitle": "Это навсегда удалит все кубы и сборки. Продолжить?",
       "delete-app-data-success": "Все данные удалены",
       "cloud-sync": "Облачная синхронизация",
-      "enable-auto-save": "Автосохранение",
-      "auto-save-description": "Автоматически сохранять в облако",
       "enable-auto-load": "Автозагрузка",
       "auto-load-description": "Загружать из облака при запуске",
-      "backup-interval": "Интервал бэкапа",
-      "backup-interval-description": "Количество сборок между бэкапами",
+      "backup-interval": "Частота напоминаний о бэкапе",
+      "backup-interval-description": "Показывать напоминание о бэкапе в облако после такого количества сборок",
       "sync-toast": {
         "title": "Пора синхронизироваться!",
         "description": "Объединить локальные данные с облаком?",
         "cancel": "Отмена",
-        "merge": "Слить"
+        "merge": "Слить",
+        "loaded": "Данные успешно загружены"
       }
     },
     "TransferSolvesPage": {

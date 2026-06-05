@@ -76,10 +76,6 @@
       "thanks": "Merci pour votre avis !",
       "close": "Fermer"
     },
-    "DialogFirstRunNoCubes": {
-      "title": "Bienvenue sur NexusTimer",
-      "description": "Vous n'avez pas encore de collections. Vous pouvez créer votre première collection ou importer une sauvegarde pour commencer."
-    },
     "HomePage": {
       "title": "Chronomètre",
       "solving": "Résolution...",
@@ -463,17 +459,16 @@
       "delete-app-data-subtitle": "Cette action supprimera définitivement tous vos cubos et temps. Êtes-vous sûr ?",
       "delete-app-data-success": "Toutes les données ont été supprimées",
       "cloud-sync": "Synchro Cloud",
-      "enable-auto-save": "Activer la sauvegarde auto",
-      "auto-save-description": "Sauvegarde automatiquement vos données sur le cloud",
       "enable-auto-load": "Activer le chargement auto",
       "auto-load-description": "Charge automatiquement vos données depuis le cloud à l'ouverture",
-      "backup-interval": "Intervalle de sauvegarde",
-      "backup-interval-description": "Nombre de temps entre chaque sauvegarde auto",
+      "backup-interval": "Fréquence du rappel de sauvegarde",
+      "backup-interval-description": "Affiche un rappel de sauvegarde dans le cloud après ce nombre de résolutions",
       "sync-toast": {
         "title": "Hé ! Temps de synchroniser !",
         "description": "Fusionner vos données locales avec la sauvegarde cloud ?",
         "cancel": "Annuler",
-        "merge": "Fusionner"
+        "merge": "Fusionner",
+        "loaded": "Données chargées avec succès"
       }
     },
     "TransferSolvesPage": {
