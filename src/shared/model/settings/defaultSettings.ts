@@ -36,7 +36,6 @@ export const defaultSettings: Settings = {
     voiceGender: 'male'
   },
   sync: {
-    autoSaveEnabled: true,
     autoLoadEnabled: true,
     backupInterval: 25,
     lastSync: Date.now(),
