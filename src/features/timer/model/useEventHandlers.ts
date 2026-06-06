@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { TimerMode } from '@/features/timer/model/enums'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 
 type HandleHoldFunction = (isReleased: boolean) => void
 type HandleReleaseFunction = () => void
@@ -21,6 +22,7 @@ export default function useEventHandlers({
   isSolving
 }: UseEventHandlersProps) {
   const releasedKey = useRef<boolean>(true)
+  const activationKey = useSettingsStore((state) => state.settings.timer.activationKey) || 'Space'
 
   const handleHoldWithReleasedState = () => {
     handleHold(releasedKey.current)
@@ -79,7 +81,7 @@ export default function useEventHandlers({
       if (isTypingTarget()) {
         return
       }
-      if (event.code === 'Space') {
+      if (event.code === activationKey) {
         handleHoldWithReleasedState()
         return
       }
@@ -95,7 +97,7 @@ export default function useEventHandlers({
         resetAndRelease()
         return
       }
-      if (event.code !== 'Space') {
+      if (event.code !== activationKey) {
         return
       }
       if (isTypingTarget()) {
@@ -121,7 +123,15 @@ export default function useEventHandlers({
         element.removeEventListener('touchend', handleTouchEnd as EventListener)
       })
     }
-  }, [handleHoldWithReleasedState, handleReleaseWithReleasedState, resetAndRelease, handleHold, isSolving, timerMode])
+  }, [
+    handleHoldWithReleasedState,
+    handleReleaseWithReleasedState,
+    resetAndRelease,
+    handleHold,
+    isSolving,
+    timerMode,
+    activationKey
+  ])
 
   return {
     isReleased: () => releasedKey.current
