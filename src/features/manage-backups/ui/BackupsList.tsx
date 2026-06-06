@@ -4,12 +4,14 @@ import { Database } from 'lucide-react'
 import { Spinner } from '@/components/ui/spinner'
 import { useBackups } from '@/entities/backup/model/useBackups'
 import { useDeleteBackup } from '../model/useDeleteBackup'
+import { useApplyBackup } from '../model/useApplyBackup'
 import BackupListItem from './BackupListItem'
 
 export default function BackupsList() {
   const t = useTranslations('Index')
   const { backups, isLoading } = useBackups()
   const { deleteBackup, deletingId } = useDeleteBackup()
+  const { applyBackup, applyingId } = useApplyBackup()
 
   if (isLoading) {
     return (
@@ -36,7 +38,9 @@ export default function BackupsList() {
           key={backup.id}
           backup={backup}
           isDeleting={deletingId === backup.id}
+          isApplying={applyingId === backup.id}
           onDelete={() => deleteBackup(backup.id)}
+          onApply={() => applyBackup(backup)}
         />
       ))}
     </ul>
