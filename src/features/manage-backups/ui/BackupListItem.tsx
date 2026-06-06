@@ -1,7 +1,7 @@
 'use client'
 import moment from 'moment'
 import { useLocale, useTranslations } from 'next-intl'
-import { Database, Trash2, CheckCircle2, Loader2 } from 'lucide-react'
+import { Database, Trash2, CheckCircle2, Loader2, Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { formatBytes } from '@/shared/lib/format-bytes'
 import { BackupFile } from '@/entities/backup/model/types'
@@ -9,10 +9,12 @@ import { BackupFile } from '@/entities/backup/model/types'
 interface BackupListItemProps {
   backup: BackupFile
   isDeleting: boolean
+  isApplying: boolean
   onDelete: () => void
+  onApply: () => void
 }
 
-export default function BackupListItem({ backup, isDeleting, onDelete }: BackupListItemProps) {
+export default function BackupListItem({ backup, isDeleting, isApplying, onDelete, onApply }: BackupListItemProps) {
   const t = useTranslations('Index')
   const locale = useLocale()
   const created = moment(backup.createdAt).locale(locale)
@@ -41,8 +43,19 @@ export default function BackupListItem({ backup, isDeleting, onDelete }: BackupL
       <Button
         variant="ghost"
         size="icon"
+        onClick={onApply}
+        disabled={isApplying || isDeleting}
+        aria-label={t('SettingsPage.backup-apply')}
+        className="shrink-0 text-muted-foreground hover:text-primary"
+      >
+        {isApplying ? <Loader2 className="size-4 animate-spin" /> : <Send className="size-4" />}
+      </Button>
+
+      <Button
+        variant="ghost"
+        size="icon"
         onClick={onDelete}
-        disabled={isDeleting}
+        disabled={isDeleting || isApplying}
         aria-label={t('Inputs.delete')}
         className="shrink-0 text-muted-foreground hover:text-destructive"
       >
