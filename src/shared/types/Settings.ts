@@ -7,6 +7,7 @@ type Timer = {
   inspectionTime: number
   holdToStartTime: number
   decimals: number
+  activationKey: string
 }
 
 type Features = {
