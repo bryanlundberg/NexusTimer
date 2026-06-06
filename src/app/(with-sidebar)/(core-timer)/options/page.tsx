@@ -30,6 +30,7 @@ import MenuSelectColor from '@/features/settings/ui/MenuSelectColor'
 import MenuSelectVoiceGender from '@/features/settings/ui/MenuSelectVoiceGender'
 import MenuSelectScrambleSize from '@/features/settings/ui/MenuSelectScrambleSize'
 import MenuSelectDefaultStartCube from '@/features/settings/ui/MenuSelectDefaultStartCube'
+import MenuSelectActivationKey from '@/features/settings/ui/MenuSelectActivationKey'
 import { DataImportExport } from '@/features/settings/ui/DataImportExport'
 import MenuToggleAnalytics from '@/features/settings/ui/MenuToggleAnalytics'
 import useWebsiteColors from '@/shared/model/useWebsiteColors'
@@ -84,6 +85,7 @@ export default function OptionsPage() {
         <MenuSelectLanguage />
         <Separator className="my-4 opacity-50" />
         <MenuSection id="timer" icon={<LapTimerIcon />} title={t('Settings-menu.timer')}>
+          <MenuSelectActivationKey />
           <MenuOption
             label={t('Settings-menu.inspection')}
             name={'timer.inspection'}
