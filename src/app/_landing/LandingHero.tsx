@@ -21,6 +21,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
   })
   const yRaw = useTransform(scrollYProgress, [0, 1], [0, -120])
   const opacityRaw = useTransform(scrollYProgress, [0, 0.7], [1, 0])
+  const bgYRaw = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
   const y = reduce ? 0 : yRaw
   const opacity = reduce ? 1 : opacityRaw
 
@@ -29,6 +30,26 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
       ref={sectionRef}
       className="relative min-h-[calc(100dvh-64px)] flex flex-col items-center justify-center px-6"
     >
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <motion.div style={reduce ? undefined : { y: bgYRaw }} className="absolute -inset-[8%]">
+          <Image src="/landing/4.avif" alt="" fill priority sizes="100vw" className="object-cover opacity-[0.08]" />
+        </motion.div>
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to bottom, var(--lp-bg) 0%, transparent 30%, transparent 70%, var(--lp-bg) 100%)'
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to right, var(--lp-bg) 0%, transparent 18%, transparent 82%, var(--lp-bg) 100%)'
+          }}
+        />
+      </div>
+
       {/* Ambient brand spotlight, very faint, anchored behind the headline */}
       <div
         aria-hidden
