@@ -1,7 +1,7 @@
 'use client'
 import moment from 'moment'
 import { useLocale, useTranslations } from 'next-intl'
-import { Database, Trash2, CheckCircle2, Loader2, Send } from 'lucide-react'
+import { Database, Trash2, Loader2, Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { formatBytes } from '@/shared/lib/format-bytes'
 import { BackupFile } from '@/entities/backup/model/types'
@@ -26,15 +26,7 @@ export default function BackupListItem({ backup, isDeleting, isApplying, onDelet
       </div>
 
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2">
-          <p className="text-sm font-medium truncate">{created.format('LLL')}</p>
-          {backup.isCurrent && (
-            <span className="inline-flex items-center gap-1 text-xs text-emerald-600 dark:text-emerald-400">
-              <CheckCircle2 className="size-3" />
-              {t('SettingsPage.backup-current')}
-            </span>
-          )}
-        </div>
+        <p className="text-sm font-medium truncate">{created.format('LLL')}</p>
         <p className="text-xs text-muted-foreground mt-0.5">
           {created.fromNow()} · {formatBytes(backup.size)}
         </p>
