@@ -148,13 +148,13 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
   return (
     <motion.div
-      className="border border-white/10 rounded-xl overflow-hidden bg-white/[0.03] hover:bg-white/[0.06] transition-colors"
+      className="border border-gray-900/10 rounded-xl overflow-hidden bg-gray-900/[0.03] hover:bg-gray-900/[0.06] transition-colors"
       layout
     >
       <button onClick={() => setOpen(!open)} className="w-full px-6 py-5 flex items-center justify-between text-left">
-        <span className="text-sm font-semibold text-gray-100 pr-4">{question}</span>
+        <span className="text-sm font-semibold text-gray-900 pr-4">{question}</span>
         <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
-          <ChevronDown className="h-4 w-4 text-gray-500 shrink-0" />
+          <ChevronDown className="h-4 w-4 text-gray-400 shrink-0" />
         </motion.div>
       </button>
       <AnimatePresence>
@@ -165,7 +165,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <p className="px-6 pb-5 text-sm text-gray-400 leading-relaxed">{answer}</p>
+            <p className="px-6 pb-5 text-sm text-gray-600 leading-relaxed">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -213,7 +213,7 @@ function ShowcaseHeader() {
         {t('showcase.label')}
       </Reveal>
       <Reveal delay={0.1}>
-        <h2 className="text-balance text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+        <h2 className="text-balance text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900">
           {t('showcase.title')}
         </h2>
       </Reveal>
@@ -231,7 +231,7 @@ function ShowcaseCard({
   total: number
 }) {
   return (
-    <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/10 transition-colors duration-500 hover:border-primary/40">
+    <div className="group relative h-full overflow-hidden rounded-2xl border border-gray-900/10 bg-gray-900/5 transition-colors duration-500 hover:border-primary/40">
       <Image
         src={card.imageSrc}
         alt={card.title}
@@ -414,20 +414,20 @@ function StickyTestimonials({ scrollContainer }: { scrollContainer: React.RefObj
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className={cn('absolute inset-0 flex flex-col items-center text-center', index === 0 && 'relative')}
               >
-                <Quote className="h-8 w-8 text-white/15 mb-6" />
-                <p className="text-xl md:text-2xl lg:text-3xl font-medium text-white leading-relaxed mb-8 max-w-2xl">
+                <Quote className="h-8 w-8 text-gray-900/20 mb-6" />
+                <p className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-900 leading-relaxed mb-8 max-w-2xl">
                   {tm.text}
                 </p>
                 <div className="flex items-center gap-3">
                   <Image
-                    className="h-10 w-10 rounded-full border-2 border-white/10"
+                    className="h-10 w-10 rounded-full border-2 border-gray-900/10"
                     src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${tm.avatar}.png`}
                     alt="User avatar"
                     width={40}
                     height={40}
                   />
                   <div className="text-left">
-                    <span className="text-sm font-semibold text-white block">{tm.user}</span>
+                    <span className="text-sm font-semibold text-gray-900 block">{tm.user}</span>
                     <span className="text-xs text-gray-500">{tm.role}</span>
                   </div>
                 </div>
@@ -441,7 +441,7 @@ function StickyTestimonials({ scrollContainer }: { scrollContainer: React.RefObj
                 key={i}
                 className={cn(
                   'h-1 rounded-full transition-all duration-500',
-                  i === current ? 'w-8 bg-white' : 'w-2 bg-white/15'
+                  i === current ? 'w-8 bg-gray-900' : 'w-2 bg-gray-900/15'
                 )}
               />
             ))}
@@ -469,11 +469,11 @@ function StatItem({
 
   return (
     <Reveal delay={delay} className="text-center">
-      <span ref={ref} className="text-4xl md:text-6xl font-black text-white tabular-nums tracking-tight">
+      <span ref={ref} className="text-4xl md:text-6xl font-black text-gray-900 tabular-nums tracking-tight">
         {count}
         <span style={{ color: accent }}>{suffix}</span>
       </span>
-      <p className="text-xs text-gray-300 mt-3 uppercase tracking-[0.2em]">{label}</p>
+      <p className="text-xs text-gray-600 mt-3 uppercase tracking-[0.2em]">{label}</p>
     </Reveal>
   )
 }
@@ -502,15 +502,15 @@ function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObje
   const header = (
     <div className="text-center px-6">
       <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('cross-platform.label')}</p>
-      <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-5">{t('cross-platform.title')}</h2>
-      <p className="text-gray-400 text-base max-w-xl mx-auto">{t('cross-platform.subtitle')}</p>
+      <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-5">{t('cross-platform.title')}</h2>
+      <p className="text-gray-600 text-base max-w-xl mx-auto">{t('cross-platform.subtitle')}</p>
     </div>
   )
 
   const browser = (
     <motion.div
       style={reduce ? undefined : { borderRadius: radius }}
-      className="relative overflow-hidden rounded-xl border border-white/10 shadow-2xl shadow-black/50 ring-1 ring-white/5"
+      className="relative overflow-hidden rounded-xl border border-gray-900/10 shadow-2xl shadow-black/10 ring-1 ring-gray-900/5"
     >
       <motion.div
         style={reduce ? undefined : { opacity: chromeOpacity }}
@@ -556,7 +556,7 @@ function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObje
           aria-hidden
           style={{
             opacity: glowOpacity,
-            background: 'radial-gradient(circle, var(--cube-blue) 0%, transparent 65%)'
+            background: 'radial-gradient(circle, var(--cube-red) 0%, transparent 65%)'
           }}
           className="pointer-events-none absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-xl"
         />
@@ -615,7 +615,7 @@ export default function LandingBelowFold({
               ].map((item, index) => (
                 <span
                   key={`${item}-${index}`}
-                  className="mr-6 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-6 py-2.5 text-sm font-medium text-gray-400"
+                  className="mr-6 inline-flex items-center rounded-full border border-gray-900/10 bg-gray-900/5 px-6 py-2.5 text-sm font-medium text-gray-600"
                 >
                   {item}
                 </span>
@@ -640,7 +640,7 @@ export default function LandingBelowFold({
         <div className="mx-auto max-w-3xl px-6">
           <Reveal className="text-center mb-14">
             <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('faq.label')}</p>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">{t('faq.title')}</h2>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">{t('faq.title')}</h2>
           </Reveal>
           <Reveal delay={0.1} className="flex flex-col gap-3">
             <FAQItem question={t('faq.q0')} answer={t('faq.a0')} />
