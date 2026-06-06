@@ -7,7 +7,8 @@ export const defaultSettings: Settings = {
     startCue: false,
     holdToStart: false,
     holdToStartTime: 300,
-    decimals: 2
+    decimals: 2,
+    activationKey: 'Space'
   },
   features: {
     scrambleImage: true,
