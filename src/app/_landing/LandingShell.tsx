@@ -10,6 +10,7 @@ import { LandingHero } from './LandingHero'
 import { useLenis } from './useLenis'
 import SkyOutro from './SkyOutro'
 import LandingBelowFold from './LandingBelowFold'
+import ZoomBridge from './ZoomBridge'
 import { Nexi } from '@/shared/ui/nexi'
 import * as React from 'react'
 
@@ -122,6 +123,8 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
 
             <LandingBelowFold scrollContainerRef={containerRef} featureTable={featureTable} />
           </main>
+
+          <ZoomBridge scrollContainer={containerRef} />
 
           <SkyOutro scrollContainerRef={containerRef}>{footer}</SkyOutro>
         </div>
