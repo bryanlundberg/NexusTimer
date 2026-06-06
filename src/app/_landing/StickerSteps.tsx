@@ -19,7 +19,7 @@ export default function StickerSteps() {
   const stickers: Sticker[] = [
     {
       n: 1,
-      color: 'var(--cube-blue)',
+      color: 'var(--cube-red)',
       ink: '#ffffff',
       title: t('how-it-works.step1-title'),
       desc: t('how-it-works.step1-desc'),
@@ -59,7 +59,7 @@ export default function StickerSteps() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-3 text-balance text-3xl font-bold tracking-tight text-white md:text-5xl"
+          className="mb-3 text-balance text-3xl font-bold tracking-tight text-gray-900 md:text-5xl"
         >
           {t('how-it-works.title')}
         </motion.h2>
@@ -68,7 +68,7 @@ export default function StickerSteps() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.08 }}
-          className="mb-10 font-mono text-sm lowercase tracking-[0.25em] text-gray-400"
+          className="mb-10 font-mono text-sm lowercase tracking-[0.25em] text-gray-600"
         >
           {t('how-it-works.peel-place-solve')}
         </motion.p>
@@ -81,9 +81,9 @@ export default function StickerSteps() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="relative rounded-[22px] p-4 sm:p-7"
           style={{
-            backgroundColor: 'oklch(0.2 0.006 265)',
-            border: '1px dashed rgba(255,255,255,0.14)',
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), inset 0 0 60px rgba(0,0,0,0.25)'
+            backgroundColor: 'oklch(0.92 0.006 26)',
+            border: '1px dashed rgba(0,0,0,0.10)',
+            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.60), inset 0 0 60px rgba(0,0,0,0.04)'
           }}
         >
           {/* registration crosses on the backing — printer's marks */}
@@ -91,7 +91,7 @@ export default function StickerSteps() {
             <span
               key={pos}
               aria-hidden
-              className={`pointer-events-none absolute ${pos} text-white/15`}
+              className={`pointer-events-none absolute ${pos} text-gray-900/20`}
               style={{ fontSize: 12, lineHeight: 1 }}
             >
               +
