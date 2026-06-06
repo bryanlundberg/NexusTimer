@@ -34,8 +34,8 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-1/4 mx-auto h-[420px] w-[min(680px,90vw)] -translate-y-1/4 rounded-full blur-3xl"
         style={{
-          background: 'radial-gradient(ellipse at center, var(--cube-blue) 0%, transparent 65%)',
-          opacity: 0.12
+          background: 'radial-gradient(ellipse at center, var(--cube-red) 0%, transparent 65%)',
+          opacity: 0.14
         }}
       />
 
@@ -60,7 +60,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
 
       <motion.div style={{ y, opacity }} className="relative max-w-5xl mx-auto text-center mt-5">
         <div
-          className="lp-rise inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 backdrop-blur px-4 py-1.5 text-xs text-gray-300 mb-10"
+          className="lp-rise inline-flex items-center gap-2 rounded-full border border-gray-900/10 bg-gray-900/5 backdrop-blur px-4 py-1.5 text-xs text-gray-600 mb-10"
           style={{ animationDelay: '0.05s' }}
         >
           <span className="relative flex h-1.5 w-1.5">
@@ -71,7 +71,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
         </div>
 
         <h1
-          className="lp-rise text-balance text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4"
+          className="lp-rise text-balance text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 mb-4"
           style={{ animationDelay: '0.12s' }}
         >
           {t('hero.title-before')}{' '}
@@ -85,7 +85,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
         </h1>
 
         <p
-          className="lp-rise text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-4 text-pretty"
+          className="lp-rise text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed mb-4 text-pretty"
           style={{ animationDelay: '0.19s' }}
         >
           {t('hero.subtitle')}
@@ -108,14 +108,14 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
               t('hero.rotating.7')
             ]}
             duration={2000}
-            className="text-white font-semibold"
+            className="text-gray-900 font-semibold"
           />
         </div>
 
         <div className="lp-rise flex flex-wrap items-center justify-center gap-4" style={{ animationDelay: '0.33s' }}>
           <Link
             href="/app"
-            className="group relative inline-flex items-center justify-center gap-2.5 rounded-full bg-white text-gray-900 font-semibold px-8 py-4 text-sm transition-all duration-300 hover:bg-gray-200 hover:scale-[1.03] hover:shadow-[0_8px_40px_-6px_var(--cube-blue)]"
+            className="group relative inline-flex items-center justify-center gap-2.5 rounded-full bg-primary text-white font-semibold px-8 py-4 text-sm transition-all duration-300 hover:opacity-90 hover:scale-[1.03] hover:shadow-[0_8px_40px_-6px_var(--cube-red)]"
           >
             <Image
               src="/landing/cube.gif"
@@ -130,7 +130,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
           </Link>
           <Link
             href="/options?redirect=import"
-            className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-4 text-sm text-gray-200 backdrop-blur transition-all duration-300 hover:border-primary/50 hover:bg-primary/10 hover:text-white"
+            className="inline-flex items-center justify-center rounded-full border border-gray-900/15 bg-gray-900/5 px-7 py-4 text-sm text-gray-700 backdrop-blur transition-all duration-300 hover:border-primary/50 hover:bg-primary/10 hover:text-gray-900"
           >
             {t('hero.cta-secondary')}
           </Link>
@@ -161,7 +161,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: reduce ? 0 : 1.4, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-600"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400"
       >
         <span className="text-[10px] uppercase tracking-[0.25em]">{t('hero.scroll')}</span>
         <ChevronDown className="h-4 w-4 animate-bounce" />
