@@ -23,7 +23,8 @@ import {
 } from '@/components/ui/dialog'
 import { createCubeCollection } from '@/features/manage-cubes/api/createCubeCollection'
 import { useEffect } from 'react'
-import { Boxes, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
+import { Nexi } from '@/shared/ui/nexi'
 
 export default function CreateCollectionForm() {
   const t = useTranslations('Index')
@@ -87,9 +88,7 @@ export default function CreateCollectionForm() {
     >
       <DialogHeader className="shrink-0">
         <DialogTitle className="flex items-center gap-3">
-          <span className="bg-primary/10 text-primary flex size-10 shrink-0 items-center justify-center rounded-full">
-            <Boxes className="size-5" />
-          </span>
+          <Nexi state="idle" size={38} />
           <span className="my-auto">{t('Cubes-modal.new-collection')}</span>
         </DialogTitle>
         <DialogDescription>{t('CubesPage.new-collection-description')}</DialogDescription>
