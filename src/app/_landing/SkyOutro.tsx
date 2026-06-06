@@ -16,11 +16,11 @@ function CloudShape({ className }: { className?: string }) {
       style={{
         filter: 'blur(2px)',
         background: [
-          'radial-gradient(38% 60% at 30% 70%, oklch(0.22 0.06 264) 0%, transparent 72%)',
-          'radial-gradient(30% 70% at 50% 55%, oklch(0.24 0.065 263) 0%, transparent 72%)',
-          'radial-gradient(34% 64% at 68% 68%, oklch(0.2 0.06 265) 0%, transparent 72%)',
-          'radial-gradient(22% 48% at 84% 76%, oklch(0.18 0.055 266) 0%, transparent 74%)',
-          'radial-gradient(22% 50% at 16% 78%, oklch(0.18 0.055 266) 0%, transparent 74%)'
+          'radial-gradient(38% 60% at 30% 70%, oklch(0.20 0.018 264) 0%, transparent 72%)',
+          'radial-gradient(30% 70% at 50% 55%, oklch(0.22 0.022 264) 0%, transparent 72%)',
+          'radial-gradient(34% 64% at 68% 68%, oklch(0.18 0.016 264) 0%, transparent 72%)',
+          'radial-gradient(22% 48% at 84% 76%, oklch(0.16 0.012 264) 0%, transparent 74%)',
+          'radial-gradient(22% 50% at 16% 78%, oklch(0.16 0.012 264) 0%, transparent 74%)'
         ].join(',')
       }}
     />
@@ -54,12 +54,16 @@ export default function SkyOutro({
   const floor = reduce ? { y: '20%', opacity: 0.7 } : { y: floorY, opacity: cloudsOpacity }
 
   return (
-    <section ref={ref} className="relative isolate overflow-hidden">
+    <section
+      ref={ref}
+      className="relative isolate overflow-hidden"
+      style={{ '--primary': 'oklch(0.65 0.28 264)', '--primary-foreground': 'oklch(0.97 0 0)' } as React.CSSProperties}
+    >
       <div
         aria-hidden
         style={{
           background:
-            'linear-gradient(to bottom, var(--lp-bg) 0%, oklch(0.16 0.012 265) 14%, oklch(0.152 0.018 264) 34%, oklch(0.135 0.024 264) 54%, oklch(0.11 0.024 265) 72%, oklch(0.08 0.02 266) 87%, oklch(0.05 0.015 266) 100%)'
+            'linear-gradient(to bottom, oklch(0.10 0.008 264) 0%, oklch(0.09 0.006 264) 20%, oklch(0.07 0.004 264) 50%, oklch(0.05 0.002 264) 80%, oklch(0.04 0 0) 100%)'
         }}
         className="pointer-events-none absolute inset-0 -z-20"
       />
@@ -100,10 +104,10 @@ export default function SkyOutro({
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-4xl px-6"
         >
-          <div className="relative overflow-hidden rounded-[20px] border border-white/10 shadow-[0_40px_120px_-40px_rgba(59,108,246,0.5)] ring-1 ring-white/5">
+          <div className="relative overflow-hidden rounded-[20px] border border-white/10 shadow-[0_40px_120px_-40px_rgba(50,100,255,0.50)] ring-1 ring-white/5">
             <div
               className="relative backdrop-blur-md rounded-[20px] p-12 md:p-20 text-center"
-              style={{ backgroundColor: 'color-mix(in oklch, oklch(0.14 0.03 265) 58%, transparent)' }}
+              style={{ backgroundColor: 'color-mix(in oklch, oklch(0.10 0.020 264) 65%, transparent)' }}
             >
               <div
                 aria-hidden
