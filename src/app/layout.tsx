@@ -1,6 +1,6 @@
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
-import { inter } from '@/shared/config/fonts'
+import { saira } from '@/shared/config/fonts'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages, getTranslations } from 'next-intl/server'
 import { locales } from '@/shared/config/i18n/locales'
@@ -136,7 +136,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={saira.className}>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-441RYCJK0K" strategy="lazyOnload" />
         <Script id="google-analytics" strategy="lazyOnload">
           {`
