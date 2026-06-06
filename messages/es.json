@@ -366,6 +366,8 @@
       "system": "Sistema",
       "close": "Cerrar",
       "decimal-places": "Decimales",
+      "activation-key": "Tecla de activación",
+      "activation-key-listening": "Pulsa una tecla…",
       "fullscreen": "Pantalla completa",
       "hold-to-start-time": "Tiempo de pulsación",
       "inspection-time": "Tiempo de inspección"
@@ -453,6 +455,7 @@
       "custom-background-description": "Carga una imagen de fondo personalizada (Máx. 4MB).",
       "data-import-export": "Haz copias de seguridad de tus datos en un archivo o restaura una anterior.",
       "decimal-places": "Establece el número de decimales a mostrar (1-4).",
+      "activation-key": "Tecla para mantener pulsada e iniciar/detener el cronómetro",
       "hide-while-solving": "Oculta el cronómetro y otros elementos mientras resuelves.",
       "hold-to-start": "Requiere mantener pulsado antes de comenzar.",
       "hold-to-start-time": "Establece cuánto tiempo debes mantener pulsado (300-1000 ms).",
