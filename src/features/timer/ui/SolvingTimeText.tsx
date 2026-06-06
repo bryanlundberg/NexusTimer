@@ -33,7 +33,7 @@ export function SolvingTimeDecimals({ decimals }: { decimals: number }) {
   }, [decimals])
 
   return (
-    <span className={'text-muted-foreground'} ref={ref}>
+    <span className={'opacity-60'} ref={ref}>
       {getDecimalPart(useTimerStore.getState().solvingTime, decimals)}
     </span>
   )
