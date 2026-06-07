@@ -191,6 +191,16 @@
       "historial": "History",
       "filter-by-time": "Filter by time",
       "show": "Show",
+      "selection": {
+        "selected": "{count} selected",
+        "delete": "Delete",
+        "move-to-history": "Move to history",
+        "cancel": "Cancel",
+        "delete-confirm-title": "Delete {count} solves?",
+        "delete-confirm-desc": "This action cannot be undone.",
+        "deleted-toast": "{count} solves deleted",
+        "moved-toast": "{count} solves moved to history"
+      },
       "tooltips": {
         "move-to-history": "Move solves to history"
       },
