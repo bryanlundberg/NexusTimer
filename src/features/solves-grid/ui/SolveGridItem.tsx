@@ -3,8 +3,12 @@ import formatTime from '@/shared/lib/formatTime'
 import { useLocale } from 'next-intl'
 import { DateTime } from 'luxon'
 import { ChatBubbleIcon } from '@radix-ui/react-icons'
+import { Check } from 'lucide-react'
 import useSolveGridItem from '@/features/solves-grid/model/useSolveGridItem'
+import { useSolvesSelection } from '@/features/solves-grid/model/SolvesSelectionContext'
+import { useLongPress } from '@/features/solves-grid/model/useLongPress'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/shared/lib/utils'
 
 interface SolveGridItemProps {
   index: number
@@ -15,14 +19,44 @@ interface SolveGridItemProps {
 export default function SolveGridItem({ index, orderedSolves, solve }: SolveGridItemProps) {
   const locale = useLocale()
   const { handleOpenSolveDetails } = useSolveGridItem(solve)
+  const { selectionMode, isSelected, enterSelection, toggle } = useSolvesSelection()
+  const selected = isSelected(solve.id)
+
+  const { isSuppressed, handlers } = useLongPress({ onLongPress: () => enterSelection(solve.id) })
+
+  const handleClick = () => {
+    // Ignore the synthetic click that follows a long press (item is already selected).
+    if (isSuppressed()) return
+    if (selectionMode) {
+      toggle(solve.id)
+      return
+    }
+    handleOpenSolveDetails()
+  }
+
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault()
+    // On touch, a long press also fires a native contextmenu — skip it so the
+    // pressed item stays selected instead of being toggled back off.
+    if (isSuppressed()) return
+    if (selectionMode) toggle(solve.id)
+    else enterSelection(solve.id)
+  }
+
   return (
     <Button
       variant={'outline'}
       data-testid={`solve-grid-item-${index}`}
-      onClick={handleOpenSolveDetails}
-      className={
-        'relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 rounded-md cursor-pointer p-2 sm:p-3 hover:ring-2 hover:ring-primary hover:scale-[1.02] active:scale-[0.98]'
-      }
+      onClick={handleClick}
+      onContextMenu={handleContextMenu}
+      {...handlers}
+      aria-pressed={selectionMode ? selected : undefined}
+      style={{ WebkitTouchCallout: 'none' }}
+      className={cn(
+        'relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 rounded-md cursor-pointer p-2 sm:p-3 select-none active:scale-[0.98]',
+        selectionMode ? 'hover:ring-2 hover:ring-primary' : 'hover:ring-2 hover:ring-primary hover:scale-[1.02]',
+        selected && 'ring-2 ring-primary bg-primary/10'
+      )}
     >
       {orderedSolves[index].bookmark && (
         <div
@@ -31,7 +65,19 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
         />
       )}
 
-      <div className="absolute top-1 right-1 sm:top-2 sm:right-2 text-[10px] text-muted-foreground">#{index + 1}</div>
+      {selectionMode ? (
+        <div
+          className={cn(
+            'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center rounded-full border transition-colors',
+            selected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40'
+          )}
+          data-testid={`solve-select-indicator-${index}`}
+        >
+          {selected && <Check className="size-3" />}
+        </div>
+      ) : (
+        <div className="absolute top-1 right-1 sm:top-2 sm:right-2 text-[10px] text-muted-foreground">#{index + 1}</div>
+      )}
 
       <div className="flex items-end gap-1 tabular-nums">
         <span className="text-base sm:text-2xl font-semibold">
