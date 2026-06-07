@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { useTranslations } from 'next-intl'
 import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
+import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 
 export default function UserCard({ user }: { user: UserDocument }) {
   const t = useTranslations('Index.PeoplePage.user-card')
@@ -62,6 +63,7 @@ export default function UserCard({ user }: { user: UserDocument }) {
             </AvatarFallback>
           </Avatar>
           <span className="font-bold text-sm truncate">{user.name}</span>
+          {user.wcaId && <WcaBadge wcaId={user.wcaId} className="shrink-0" />}
           {user.pronoun && <span className="text-xs text-muted-foreground shrink-0">{user.pronoun}</span>}
           {user.goal && (
             <Badge
