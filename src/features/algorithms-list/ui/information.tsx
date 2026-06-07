@@ -10,16 +10,16 @@ interface InformationProps {
 
 export default function Information({ title, description, algorithmCount, actions }: InformationProps) {
   return (
-    <div className="mb-6 rounded-xl border border-primary/10 bg-gradient-to-r from-primary/8 via-primary/4 to-transparent p-5">
+    <div className="mb-6 border-b pb-6">
       <div className="flex items-start justify-between gap-4">
-        <div className="min-w-0 space-y-1">
-          <h1 className="text-xl font-bold tracking-tight">{title}</h1>
+        <div className="min-w-0 space-y-2">
+          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">{title}</h1>
           {description && <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">{description}</p>}
         </div>
         {algorithmCount !== undefined && (
-          <div className="hidden shrink-0 flex-col items-center rounded-lg bg-primary/10 px-3 py-1.5 sm:flex">
-            <span className="text-lg font-bold text-primary leading-none">{algorithmCount}</span>
-            <span className="mt-0.5 text-[10px] font-medium text-muted-foreground">Algs</span>
+          <div className="hidden shrink-0 flex-col items-center rounded-lg border bg-card px-3 py-1.5 text-center sm:flex">
+            <span className="text-lg font-bold leading-none tabular-nums">{algorithmCount}</span>
+            <span className="mt-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">Algs</span>
           </div>
         )}
       </div>

@@ -22,35 +22,32 @@ export default function AlgorithmsMethodsPage() {
 
       <PageBody variant="hero" className="px-4 pb-4 md:px-8 md:pb-8 lg:px-12 lg:pb-12">
         {/* Hero section */}
-        <div className="relative overflow-hidden rounded-xl bg-linear-to-br from-primary/10 via-primary/5 to-transparent border border-primary/10 p-8 mb-8">
-          <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="p-2.5 rounded-lg bg-primary/15 text-primary">
-                <BookOpen className="h-6 w-6" />
+        <div className="mb-8 pb-8">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground">
+                <BookOpen className="h-3.5 w-3.5" />
+                {t('title')}
               </div>
-              <h1 className="text-3xl font-bold tracking-tight">{t('header')}</h1>
+              <h1 className="text-4xl font-bold tracking-tight md:text-5xl">{t('header')}</h1>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t('description')}</p>
             </div>
-            <p className="text-muted-foreground max-w-2xl text-sm leading-relaxed">{t('description')}</p>
-            <div className="flex items-center gap-6 mt-5">
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-primary">{totalSets}</span>
-                <span className="text-xs text-muted-foreground">{t('title')}</span>
+
+            <div className="grid grid-cols-3 gap-3 md:w-auto">
+              <div className="rounded-lg border bg-card px-4 py-3 text-center md:text-left">
+                <div className="text-2xl font-bold tabular-nums">{totalSets}</div>
+                <div className="mt-0.5 text-[11px] uppercase tracking-wide text-muted-foreground">{t('title')}</div>
               </div>
-              <div className="h-8 w-px bg-border" />
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-primary">{totalAlgorithms}+</span>
-                <span className="text-xs text-muted-foreground">Algorithms</span>
+              <div className="rounded-lg border bg-card px-4 py-3 text-center md:text-left">
+                <div className="text-2xl font-bold tabular-nums">{totalAlgorithms}+</div>
+                <div className="mt-0.5 text-[11px] uppercase tracking-wide text-muted-foreground">Algorithms</div>
               </div>
-              <div className="h-8 w-px bg-border" />
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold text-primary">{Object.keys(groupedSets).length}</span>
-                <span className="text-xs text-muted-foreground">Puzzles</span>
+              <div className="rounded-lg border bg-card px-4 py-3 text-center md:text-left">
+                <div className="text-2xl font-bold tabular-nums">{Object.keys(groupedSets).length}</div>
+                <div className="mt-0.5 text-[11px] uppercase tracking-wide text-muted-foreground">Puzzles</div>
               </div>
             </div>
           </div>
-          {/* Decorative background elements */}
-          <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full bg-primary/5 blur-2xl" />
-          <div className="absolute -right-4 -bottom-4 h-24 w-24 rounded-full bg-primary/8 blur-xl" />
         </div>
 
         {/* Algorithm sets grouped by puzzle */}

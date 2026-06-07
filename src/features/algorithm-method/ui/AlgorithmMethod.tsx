@@ -22,7 +22,7 @@ export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
 
   return (
     <Link href={`/algorithms/${slug}`} className="group focus:outline-none focus:ring-2 focus:ring-primary rounded-xl">
-      <Card className="h-full transition-all duration-200 hover:shadow-md hover:border-primary/30 bg-card/50 group-hover:bg-muted/50">
+      <Card className="h-full bg-card/50 ring-1 ring-transparent transition-all duration-200 group-hover:ring-2 group-hover:ring-primary">
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
