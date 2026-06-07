@@ -49,32 +49,32 @@ export default function TransferSolvesPage() {
       <SolvesGrid selectedSolves={selectedSolves} displaySolves={displaySolves} />
 
       {selectedSolves.length > 0 && (
-        <div className={'w-full bg-primary text-primary-foreground px-2 pb-2'}>
-          <div className={'flex justify-between items-center mt-2 gap-2'}>
-            <div data-testid="solves-selected-counter" className={'text-sm sm:text-base'}>
+        <div className="absolute inset-x-0 bottom-0 z-20 px-3 pb-3">
+          <div className="animate-in slide-in-from-bottom-4 fade-in-0 mx-auto flex max-w-2xl items-center gap-2 rounded-xl bg-foreground p-2 text-background shadow-xl ring-1 ring-foreground/10 duration-300 ease-out">
+            <span
+              data-testid="solves-selected-counter"
+              className="min-w-0 flex-1 truncate ps-2 text-sm font-medium tabular-nums"
+            >
               {t('solves-selected', { count: selectedSolves.length })}
-            </div>
-            <div className={'flex gap-2'}>
-              <Button
-                data-testid="select-all-button"
-                variant={selectedSolves.length === displaySolves.length ? 'secondary' : 'ghost'}
-                className={
-                  selectedSolves.length === displaySolves.length
-                    ? ''
-                    : 'text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground'
-                }
-                onClick={() => handleToggleAll('select')}
-              >
-                {t('select-all')}
-              </Button>
-              <Button
-                variant={'secondary'}
-                onClick={() => handleToggleAll('deselect')}
-                data-testid="deselect-all-button"
-              >
-                {t('deselect-all')}
-              </Button>
-            </div>
+            </span>
+            <Button
+              data-testid="select-all-button"
+              variant="ghost"
+              size="sm"
+              className="gap-1.5 bg-background text-foreground hover:bg-background/85 hover:text-foreground dark:hover:bg-background/85"
+              onClick={() => handleToggleAll('select')}
+            >
+              {t('select-all')}
+            </Button>
+            <Button
+              data-testid="deselect-all-button"
+              variant="ghost"
+              size="sm"
+              className="gap-1.5 text-background hover:bg-background/15 hover:text-background dark:hover:bg-background/15"
+              onClick={() => handleToggleAll('deselect')}
+            >
+              {t('deselect-all')}
+            </Button>
           </div>
         </div>
       )}
