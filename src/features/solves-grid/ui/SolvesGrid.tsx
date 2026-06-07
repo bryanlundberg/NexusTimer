@@ -30,7 +30,7 @@ export default function SolvesGrid({ solves }: SolvesGridProps) {
         cellWidth={isMobile ? 110 : 160}
         cellHeight={isMobile ? 92 : 120}
         gridGap={8}
-        className="px-2 pb-4 pt-1"
+        className="px-3 pb-4 pt-1"
         renderItem={renderItem}
         getItemKey={getItemKey}
       />
