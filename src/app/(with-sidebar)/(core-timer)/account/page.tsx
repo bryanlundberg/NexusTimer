@@ -28,7 +28,7 @@ export default function AccountPage() {
       <CoreHeader breadcrumbs={[{ label: t('SettingsPage.account'), href: '/account' }]} />
 
       <PageBody variant="hero" className="max-w-3xl mx-auto w-full px-4 space-y-8">
-        <ProfileHero session={session!} bio={user?.bio} />
+        <ProfileHero session={session!} bio={user?.bio} wcaId={user?.wcaId} mutate={mutate} />
 
         <Tabs value={tab} onValueChange={setTab} className="gap-8">
           <AnimatedTabsList items={tabs} activeValue={tab} layoutId="account-tab-indicator" className="max-w-sm" />
