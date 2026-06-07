@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { Alg } from 'cubing/alg'
 import type { TwistyPlayer } from 'cubing/twisty'
 import type { TrainerPenalty } from '@/entities/trainer-solve/model/constants'
+import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 
 export const formatMs = (ms: number): string => (ms / 1000).toFixed(2)
 
@@ -72,4 +73,6 @@ export const buildVizConfig = (
   algMoves: string,
   overrides?: Record<string, unknown>
 ): Partial<TwistyPlayer> =>
-  _.merge({}, VIZ_BASE, overrides ?? {}, { puzzle, alg: algMoves }) as unknown as Partial<TwistyPlayer>
+  applyYellowOrientation(
+    _.merge({}, VIZ_BASE, overrides ?? {}, { puzzle, alg: algMoves })
+  ) as unknown as Partial<TwistyPlayer>
