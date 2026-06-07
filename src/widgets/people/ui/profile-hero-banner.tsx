@@ -11,6 +11,7 @@ import { sort } from 'fast-sort'
 import { useLocale, useTranslations } from 'next-intl'
 import moment from 'moment'
 import { ArrowUpIcon } from '@heroicons/react/24/solid'
+import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 
 interface Props {
   user: UserDocument
@@ -77,6 +78,9 @@ export function ProfileHeroBanner({ user, cubes, level }: Props) {
           <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-none flex items-baseline gap-2 flex-wrap">
             {user.name}
             {user.pronoun && <span className="text-base font-normal text-muted-foreground">{user.pronoun}</span>}
+            {user.wcaId && (
+              <WcaBadge wcaId={user.wcaId} showCode className="text-base font-normal" iconClassName="size-5" />
+            )}
           </h1>
           <div className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
             {user.bio && <span className="wrap-break-word">{user.bio}</span>}
