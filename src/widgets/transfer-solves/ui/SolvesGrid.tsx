@@ -41,7 +41,7 @@ export default function SolvesGrid({ selectedSolves, displaySolves }: SolvesGrid
           cellWidth={isMobile ? 110 : 160}
           cellHeight={isMobile ? 92 : 120}
           gridGap={8}
-          className={cn('px-2 pt-2 pb-3')}
+          className={cn('px-3 pt-2 pb-3')}
           renderItem={renderItem}
           getItemKey={getItemKey}
         />
