@@ -69,7 +69,7 @@ export default function DateRangeFilter() {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button size={'icon'} variant={'ghost'}>
+          <Button size={'icon'} variant={'outline'} className={'size-9'}>
             <DotsVerticalIcon />
           </Button>
         </DropdownMenuTrigger>

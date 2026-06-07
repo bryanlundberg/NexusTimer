@@ -8,7 +8,7 @@ interface PageBodyProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const variantClasses: Record<PageBodyVariant, string> = {
-  data: 'pt-4',
+  data: 'pt-3',
   hero: 'pt-8'
 }
 
