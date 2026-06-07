@@ -23,8 +23,8 @@ export default function AlgorithmsMethodsPage() {
       <PageBody variant="hero" className="px-4 pb-4 md:px-8 md:pb-8 lg:px-12 lg:pb-12">
         {/* Hero section */}
         <div className="mb-8 pb-8">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-2xl">
+          <div className="flex flex-col gap-6 lg:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl me-auto">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground">
                 <BookOpen className="h-3.5 w-3.5" />
                 {t('title')}

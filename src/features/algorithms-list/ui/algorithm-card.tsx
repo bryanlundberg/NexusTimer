@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from '@/shared/lib/utils'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import AlgorithmModal from '@/features/algorithms-list/ui/algorithm-modal'
 import ActionButton from '@/features/algorithms-list/ui/action-button'
 import AlternativeRow from '@/features/algorithms-list/ui/alternative-row'
@@ -35,16 +36,18 @@ export default function AlgorithmCard({
   const [primary, ...alternatives] = algorithm.algs
   const canExpand = alternatives.length > 0
 
-  const vizConfig = _.merge(
-    {
-      visualization: 'experimental-2D-LL',
-      background: 'none',
-      controlPanel: 'none',
-      alg: primary?.moves,
-      experimentalStickering: 'OLL',
-      experimentalSetupAnchor: 'end'
-    },
-    virtualization
+  const vizConfig = applyYellowOrientation(
+    _.merge(
+      {
+        visualization: 'experimental-2D-LL',
+        background: 'none',
+        controlPanel: 'none',
+        alg: primary?.moves,
+        experimentalStickering: 'OLL',
+        experimentalSetupAnchor: 'end'
+      },
+      virtualization
+    )
   )
 
   const openPreview = (alg: string) => {
