@@ -1,54 +1,72 @@
-import { ArrowLeftIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
-import Image from 'next/image'
+import { ArrowLeftIcon, HomeIcon } from '@radix-ui/react-icons'
 import { Button } from '@/components/ui/button'
+import { Nexi } from '@/shared/ui/nexi'
 
 export default function NotFound() {
   return (
-    <div className="min-h-dvh max-h-dvh flex overflow-auto relative grow">
-      <Image
-        src="/bg.webp"
-        alt=""
-        priority
-        className="blur-sm object-cover absolute inset-0 w-full h-full"
-        width={480}
-        height={480}
+    <div className="relative grow min-h-dvh flex items-center justify-center overflow-hidden bg-background px-6 py-16">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            'radial-gradient(60% 60% at 50% 35%, color-mix(in oklch, var(--primary) 22%, transparent) 0%, transparent 70%)'
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.04] dark:opacity-[0.07]"
+        style={{
+          backgroundImage:
+            'linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)',
+          backgroundSize: '48px 48px',
+          maskImage: 'radial-gradient(70% 70% at 50% 40%, #000 0%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(70% 70% at 50% 40%, #000 0%, transparent 75%)'
+        }}
       />
 
-      <div className="flex flex-1 items-center justify-center p-8 relative z-10">
-        <div className="bg-gradient-to-br from-gray-50 to-gray-200 p-8 flex flex-col gap-6 rounded-2xl shadow-xl max-w-lg">
-          <h1 className="text-4xl font-extrabold text-gray-800">Lost in the void?</h1>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            The page you&apos;re looking for seems to have slipped into another dimension.
-          </p>
+      <main className="relative z-10 flex flex-col items-center text-center max-w-xl">
+        <div className="flex items-center justify-center gap-2 sm:gap-4 select-none">
+          <span className="text-[7rem] sm:text-[9rem] font-extrabold leading-none tracking-tighter bg-linear-to-b from-foreground to-muted-foreground bg-clip-text text-transparent">
+            4
+          </span>
+          <Nexi
+            state="empty"
+            size={150}
+            style={{ filter: 'drop-shadow(0 14px 30px color-mix(in oklch, var(--primary) 45%, transparent))' }}
+          />
+          <span className="text-[7rem] sm:text-[9rem] font-extrabold leading-none tracking-tighter bg-linear-to-b from-foreground to-muted-foreground bg-clip-text text-transparent">
+            4
+          </span>
+        </div>
+
+        <span className="mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
+          <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+          Error 404 · Page not found
+        </span>
+
+        <h1 className="mt-6 text-2xl sm:text-3xl font-bold text-foreground text-balance">
+          Looks like this page got scrambled
+        </h1>
+        <p className="mt-3 text-base text-muted-foreground leading-relaxed text-pretty">
+          Nexi searched every layer of the cube but couldn&apos;t solve this one. The page you&apos;re after may have
+          been moved or never existed.
+        </p>
+
+        <div className="mt-8 flex flex-col sm:flex-row items-center gap-3">
           <Link href="/app">
-            <Button variant={'secondary'}>
-              <ArrowLeftIcon className="w-5 h-5" /> Back to Home
+            <Button size="lg">
+              <ArrowLeftIcon className="size-4" /> Back to timer
+            </Button>
+          </Link>
+          <Link href="/">
+            <Button variant="ghost" size="lg">
+              <HomeIcon className="size-4" /> Go to homepage
             </Button>
           </Link>
         </div>
-      </div>
-
-      <div className="w-1/2 relative items-center justify-center p-8 z-10 hidden lg:flex">
-        <Image
-          src="/utils/not_found.jpg"
-          alt="Not found illustration"
-          width={600}
-          height={600}
-          priority
-          style={{
-            animation: 'floatAnim 6s ease-in-out infinite'
-          }}
-          className="rounded-full shadow-xl"
-        />
-      </div>
-
-      <style>{`
-        @keyframes floatAnim {
-          0%, 100% { transform: translateY(0) rotate(-2deg); }
-          50% { transform: translateY(-30px) rotate(2deg); }
-        }
-      `}</style>
+      </main>
     </div>
   )
 }
