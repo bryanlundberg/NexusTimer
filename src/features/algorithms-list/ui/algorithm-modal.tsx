@@ -3,6 +3,7 @@ import * as React from 'react'
 import { TwistyPlayer } from 'cubing/twisty'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import { Badge } from '@/components/ui/badge'
 
 export default function AlgorithmModal() {
@@ -21,14 +22,13 @@ export default function AlgorithmModal() {
       <div className="rounded-xl bg-muted/30 p-3 size-fit flex items-center justify-center w-full aspect-square max-w-[300px]">
         <AlgorithmRender
           config={
-            {
+            applyYellowOrientation({
               alg: activeOverlay?.metadata?.alg || '',
-              experimentalDragInput: 'none',
               tempoScale: 1,
               experimentalSetupAnchor: 'end',
               puzzle: activeOverlay?.metadata?.cube || '3x3',
               background: 'none'
-            } as unknown as TwistyPlayer
+            }) as unknown as TwistyPlayer
           }
           width={300}
           height={300}
