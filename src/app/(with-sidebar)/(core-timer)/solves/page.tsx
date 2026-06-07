@@ -1,7 +1,6 @@
 'use client'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useQueryState } from 'nuqs'
-import { useDebouncedCallback } from 'use-debounce'
 import { useMemo } from 'react'
 import SolvesPageHeader from '@/widgets/navigation-header/ui/SolvesPageHeader'
 import SolvesGrid from '@/features/solves-grid/ui/SolvesGrid'
@@ -17,11 +16,6 @@ export default function SolvesPage() {
   const [tabMode] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, {
     defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE
   })
-  const [, setQuery] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, {
-    defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE
-  })
-
-  const handleSearch = useDebouncedCallback((value) => setQuery(value), 1000)
 
   const displaySolves = useMemo(() => {
     if (!selectedCube) return []
@@ -32,7 +26,7 @@ export default function SolvesPage() {
     <div className={'flex-1 min-h-0 flex flex-col'}>
       <CoreHeader breadcrumbs={[{ label: t('SolvesPage.title'), href: '/solves' }]} />
       <PageBody variant="data">
-        <SolvesPageHeader handleSearch={handleSearch} />
+        <SolvesPageHeader />
       </PageBody>
       <SolvesGrid solves={displaySolves} />
     </div>
