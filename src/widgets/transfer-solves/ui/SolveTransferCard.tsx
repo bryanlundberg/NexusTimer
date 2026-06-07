@@ -3,6 +3,8 @@ import { Solve } from '@/entities/solve/model/types'
 import { Button } from '@/components/ui/button'
 import { useLocale } from 'next-intl'
 import moment from 'moment'
+import { Check } from 'lucide-react'
+import { cn } from '@/shared/lib/utils'
 
 interface SolveTransferCardProps {
   solve: Solve
@@ -18,7 +20,11 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
       id={solve.id}
       data-testid={`solve-card-${solve.id}`}
       onClick={onToggle}
-      className={`relative grow flex items-center justify-center font-medium text-center transition duration-200 rounded-md cursor-pointer w-full h-full bg-secondary text-secondary-foreground hover:scale-[1.02] active:scale-[0.98] ${isSelected ? 'ring-3 ring-primary' : ''}`}
+      aria-pressed={isSelected}
+      className={cn(
+        'relative grow flex items-center justify-center font-medium text-center transition duration-200 rounded-md cursor-pointer w-full h-full select-none hover:ring-2 hover:ring-primary hover:scale-[1.02] active:scale-[0.98]',
+        isSelected ? 'ring-2 ring-primary bg-primary/10' : 'bg-secondary text-secondary-foreground'
+      )}
     >
       <div className="flex items-end gap-1 tabular-nums">
         <span className="text-base sm:text-2xl font-semibold">{formatTime(solve.time).split('.')[0]}</span>
@@ -36,6 +42,15 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
       </div>
       <div className="absolute z-20 text-[10px] sm:text-xs top-1 left-1 text-muted-foreground">
         {moment(solve.startTime).locale(locale).format('L')}
+      </div>
+      <div
+        className={cn(
+          'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center rounded-full border transition-colors',
+          isSelected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40'
+        )}
+        data-testid={`solve-select-indicator-${solve.id}`}
+      >
+        {isSelected && <Check className="size-3" />}
       </div>
     </Button>
   )
