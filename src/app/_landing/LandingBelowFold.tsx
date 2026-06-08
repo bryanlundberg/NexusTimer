@@ -352,7 +352,7 @@ function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HT
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {[
             { value: 17, suffix: '+', label: t('stats.wca-events'), accent: 'var(--cube-blue)' },
-            { value: 10, suffix: '', label: t('stats.languages'), accent: 'var(--cube-green)' },
+            { value: 17, suffix: '', label: t('stats.languages'), accent: 'var(--cube-green)' },
             { value: 100, suffix: '%', label: t('stats.free'), accent: 'var(--cube-orange)' },
             { value: 5, suffix: '★', label: t('stats.open-source'), accent: 'var(--cube-yellow)' }
           ].map((stat, i) => (

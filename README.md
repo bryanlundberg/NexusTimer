@@ -78,7 +78,7 @@ The diagram below outlines the infrastructure and the main components that sit b
 
 ## Languages Available
 
-NexusTimer is translated into eleven languages, with English as the default fallback and every other locale deep merged on top of it, so a missing string in one language quietly falls back to English instead of breaking the interface. The application is currently available in English, German, Spanish, French, Hindi, Japanese, Korean, Portuguese, Russian, Chinese, and Ukrainian.
+NexusTimer is translated into seventeen languages, with English as the default fallback and every other locale deep merged on top of it, so a missing string in one language quietly falls back to English instead of breaking the interface. The application is currently available in English, German, Spanish, French, Hindi, Japanese, Korean, Portuguese, Russian, Chinese, Ukrainian, Italian, Polish, Indonesian, Vietnamese, Thai, and Filipino.
 
 ---
 
