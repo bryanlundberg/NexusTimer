@@ -7,7 +7,6 @@ import importDataFromFile, {
   preventDuplicateDeleteStatus
 } from '@/features/manage-backup/lib/importDataFromFile'
 import { useRouter } from 'next/navigation'
-import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { toast } from 'sonner'
 import ImportReview from './ImportReview'
 import { Dropzone, DropzoneContent, DropzoneEmptyState } from '@/components/ui/shadcn-io/dropzone'
@@ -16,7 +15,14 @@ import { Cube } from '@/entities/cube/model/types'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 
-export default function ImportBackup() {
+const SUPPORTED_TIMERS = [
+  { src: '/logo.png', alt: 'NexusTimer', name: 'NexusTimer', brand: true },
+  { src: '/timer-logos/cstimer.jpg', alt: 'csTimer', name: 'csTimer' },
+  { src: '/timer-logos/twistytimer.jpg', alt: 'TwistyTimer', name: 'TwistyTimer' },
+  { src: '/timer-logos/cubedesk.jpg', alt: 'CubeDesk', name: 'CubeDesk' }
+]
+
+export default function ImportBackupInline() {
   const t = useTranslations('Index.backup-modal')
   const [isImporting, setIsImporting] = useState(false)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
@@ -39,7 +45,6 @@ export default function ImportBackup() {
         }
       } catch (error) {
         toast.error('Backup import failed. Please try again.')
-
         console.error(error)
       } finally {
         setIsImporting(false)
@@ -69,71 +74,54 @@ export default function ImportBackup() {
   }
 
   return (
-    <>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <div className="flex flex-auto items-center justify-center">
-            <DialogTitle>{t('title')}</DialogTitle>
-          </div>
-        </DialogHeader>
-        {!isImporting ? (
-          <Dropzone onDrop={handleImportBackup} onError={console.error} accept={{ 'application/txt': ['.txt'] }}>
-            <DropzoneEmptyState />
-            <DropzoneContent />
-          </Dropzone>
-        ) : (
-          <div className="text-center mx-auto flex-col items-center gap-2">
-            <div className="flex justify-center mt-3">
-              <Spinner />
-            </div>
-            <div className="mx-auto mt-2">{t('loading-part-1')}</div>
-            <div className="font-bold">{t('loading-part-2')}</div>
-          </div>
-        )}
-        <div className="flex flex-auto items-center justify-center">
-          <div className="font-medium mt-3">{t('welcome')}</div>
+    <div className="flex flex-col gap-3">
+      {!isImporting ? (
+        <Dropzone
+          onDrop={handleImportBackup}
+          onError={console.error}
+          accept={{ 'application/txt': ['.txt'] }}
+          className="min-h-35"
+          data-testid="import-backup-dropzone"
+        >
+          <DropzoneEmptyState />
+          <DropzoneContent />
+        </Dropzone>
+      ) : (
+        <div className="flex min-h-35 flex-col items-center justify-center gap-2 rounded-md border border-dashed text-center">
+          <Spinner />
+          <div className="mt-1">{t('loading-part-1')}</div>
+          <div className="font-bold">{t('loading-part-2')}</div>
         </div>
-        <DialogFooter>
-          <ul className="flex items-center justify-center flex-auto gap-2">
-            <div className="rounded-2xl size-[64px] flex items-center justify-center bg-sidebar-primary">
+      )}
+
+      <div className="flex flex-wrap items-center gap-3">
+        {SUPPORTED_TIMERS.map((timer) => (
+          <div key={timer.name} className="flex flex-col items-center gap-1">
+            {timer.brand ? (
+              <div className="flex size-8 items-center justify-center rounded-xl bg-sidebar-primary">
+                <Image
+                  src={timer.src}
+                  alt={timer.alt}
+                  width={36}
+                  height={36}
+                  draggable={false}
+                  className="size-full p-2 invert"
+                />
+              </div>
+            ) : (
               <Image
-                src={'/logo.png'}
-                alt={'logo'}
+                src={timer.src}
+                alt={timer.alt}
                 width={48}
                 height={48}
                 draggable={false}
-                className={'p-3 w-full h-full invert'}
+                className="size-8 rounded-xl"
               />
-            </div>
-            <Image
-              src={'/timer-logos/cstimer.jpg'}
-              alt="cstimer logo"
-              width={64}
-              height={64}
-              className="rounded-2xl"
-              draggable={false}
-            />
-
-            <Image
-              src={'/timer-logos/twistytimer.jpg'}
-              alt="twistytimer logo"
-              width={64}
-              height={64}
-              className="rounded-2xl"
-              draggable={false}
-            />
-
-            <Image
-              src={'/timer-logos/cubedesk.jpg'}
-              alt="cubedesk logo"
-              width={64}
-              height={64}
-              className="rounded-2xl"
-              draggable={false}
-            />
-          </ul>
-        </DialogFooter>
-      </DialogContent>
-    </>
+            )}
+            <span className="text-[10px] text-muted-foreground">{timer.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }

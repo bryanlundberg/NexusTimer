@@ -1,26 +1,32 @@
 import exportDataToFile from '@/features/settings/lib/exportDataToFile'
 import { useTranslations } from 'next-intl'
-import { DownloadIcon, UploadIcon } from '@radix-ui/react-icons'
+import { UploadIcon } from '@radix-ui/react-icons'
 import { Button } from '@/components/ui/button'
-import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import ImportBackup from '@/features/manage-backup/ui/ImportBackup'
+import ImportBackupInline from '@/features/manage-backup/ui/ImportBackupInline'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { Merge } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { toast } from 'sonner'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { useQueryState } from 'nuqs'
-import { useEffect } from 'react'
 import { normalizeOldData, preventDuplicateDeleteStatus } from '@/features/manage-backup/lib/importDataFromFile'
+import { useQueryState } from 'nuqs'
+import { useEffect, useRef } from 'react'
 
 export function DataImportExport() {
   const t = useTranslations('Index')
-  const open = useOverlayStore((state) => state.open)
   const setCubes = useTimerStore((state) => state.setCubes)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   const resetTimer = useTimerStore((state) => state.reset)
   const setLastSolve = useTimerStore((state) => state.setLastSolve)
   const [redirect, setRedirect] = useQueryState('redirect', { defaultValue: '' })
+  const importSectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (redirect === 'import') {
+      importSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      setRedirect('')
+    }
+  }, [redirect, setRedirect])
 
   const handleExport = async () => {
     try {
@@ -30,20 +36,6 @@ export function DataImportExport() {
       console.error('Error exporting data:', error)
     }
   }
-
-  const handleOpenImport = () => {
-    open({
-      id: 'import-backup',
-      component: <ImportBackup />
-    })
-  }
-
-  useEffect(() => {
-    if (redirect === 'import') {
-      handleOpenImport()
-      setRedirect('')
-    }
-  }, [redirect, setRedirect])
 
   const handleNormalizeDatabase = async () => {
     try {
@@ -69,17 +61,16 @@ export function DataImportExport() {
   }
 
   return (
-    <div className="px-3 py-2">
-      <div className="flex flex-wrap gap-2">
-        <Button
-          variant={'outline'}
-          onClick={handleOpenImport}
-          data-testid="open-import-backup-button"
-          className="flex items-center gap-1"
-        >
-          <DownloadIcon /> {t('Settings-menu.import-from-file')}
-        </Button>
+    <div className="flex flex-col gap-4 px-3 py-2">
+      <div ref={importSectionRef} className="flex flex-col gap-2 scroll-mt-20">
+        <div>
+          <p className="text-sm font-medium">{t('Settings-menu.import-from-file')}</p>
+          <p className="text-xs text-muted-foreground">{t('backup-modal.description')}</p>
+        </div>
+        <ImportBackupInline />
+      </div>
 
+      <div className="flex flex-wrap gap-2 border-t pt-3">
         <Button
           variant={'outline'}
           className="flex items-center gap-1"
@@ -96,7 +87,7 @@ export function DataImportExport() {
               variant={'outline'}
               className={'flex items-center gap-1'}
               onClick={handleNormalizeDatabase}
-              data-testid="export-data-to-file-button"
+              data-testid="normalize-database-button"
             >
               <Merge />
               Normalize Database
@@ -108,7 +99,8 @@ export function DataImportExport() {
           </TooltipContent>
         </Tooltip>
       </div>
-      <div className="text-xs text-muted-foreground mt-2">{t('Settings-descriptions.data-import-export')}</div>
+
+      <div className="text-xs text-muted-foreground">{t('Settings-descriptions.data-import-export')}</div>
     </div>
   )
 }

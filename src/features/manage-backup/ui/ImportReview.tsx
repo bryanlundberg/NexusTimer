@@ -36,9 +36,13 @@ export default function ImportReview({
   onCancel: () => void
   onConfirm: (editedCubes: Cube[]) => void
 }) {
+  // Deleted cubes are still imported (to preserve sync/tombstone state) but are not shown for review.
+  const visibleCubes = useMemo(() => cubes.filter((c) => !c.isDeleted), [cubes])
+  const deletedCubes = useMemo(() => cubes.filter((c) => c.isDeleted), [cubes])
+
   const defaultValues: ImportReviewValues = useMemo(
-    () => ({ cubes: cubes.map((c) => ({ cubeId: c.id, name: c.name, category: c.category })) }),
-    [cubes]
+    () => ({ cubes: visibleCubes.map((c) => ({ cubeId: c.id, name: c.name, category: c.category })) }),
+    [visibleCubes]
   )
   const {
     control,
@@ -52,32 +56,40 @@ export default function ImportReview({
 
   const totalSolvesById = useMemo(() => {
     const map = new Map<string, number>()
-    for (const c of cubes) {
+    for (const c of visibleCubes) {
       const total = (c.solves?.session?.length || 0) + (c.solves?.all?.length || 0)
       map.set(c.id, total)
     }
     return map
-  }, [cubes])
+  }, [visibleCubes])
 
   const onSubmit = (values: ImportReviewValues) => {
     const normalized = values.cubes.map((c) => normalizeName(c.name))
     const duplicates = getDuplicateIndices(normalized)
-    if (duplicates.size > 0) {
-      values.cubes.forEach((_, i) => {
-        if (duplicates.has(i)) setError(`cubes.${i}.name`, { type: 'validate', message: 'Repeated collection name' })
-      })
-      return
-    }
+    let hasErrors = false
+    values.cubes.forEach((_, i) => {
+      if (!normalized[i]) {
+        setError(`cubes.${i}.name`, { type: 'validate', message: 'Name is required' })
+        hasErrors = true
+      } else if (duplicates.has(i)) {
+        setError(`cubes.${i}.name`, { type: 'validate', message: 'Repeated collection name' })
+        hasErrors = true
+      }
+    })
+    if (hasErrors) return
 
     const idsToKeep = new Set(values.cubes.map((c) => c.cubeId))
-    const edited = cubes
+    const edited = visibleCubes
       .filter((c) => idsToKeep.has(c.id))
       .map((c) => {
         const v = values.cubes.find((x) => x.cubeId === c.id)!
         return { ...c, name: v.name, category: v.category } as Cube
       })
-    onConfirm(edited)
+    // Re-attach deleted cubes untouched so their tombstone state survives the import.
+    onConfirm([...edited, ...deletedCubes])
   }
+
+  const hasValidationErrors = Boolean(errors.cubes?.some?.((c) => c?.name))
 
   const watchedCubes = watch('cubes')
   useEffect(() => {
@@ -85,9 +97,11 @@ export default function ImportReview({
     const normalized = watchedCubes.map((c) => normalizeName(c.name))
     const duplicates = getDuplicateIndices(normalized)
 
-    normalized.forEach((_, i) => {
-      if (duplicates.has(i)) {
-        setError(`cubes.${i}.name`, { type: 'validate', message: 'Nombre repetido' })
+    normalized.forEach((name, i) => {
+      if (!name) {
+        setError(`cubes.${i}.name`, { type: 'validate', message: 'Name is required' })
+      } else if (duplicates.has(i)) {
+        setError(`cubes.${i}.name`, { type: 'validate', message: 'Repeated collection name' })
       } else {
         clearErrors(`cubes.${i}.name`)
       }
@@ -188,7 +202,7 @@ export default function ImportReview({
           <Button type="button" variant="secondary" onClick={onCancel}>
             Cancel
           </Button>
-          <Button type="submit" form="import-review-form">
+          <Button type="submit" form="import-review-form" disabled={hasValidationErrors || fields.length === 0}>
             Confirm
           </Button>
         </div>
