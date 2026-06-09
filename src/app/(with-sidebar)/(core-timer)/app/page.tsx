@@ -10,6 +10,7 @@ import TimerWidgets from '@/features/timer/ui/TimerWidgets'
 import ScrambleModal from '@/features/timer/ui/ScrambleModal'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
+import OnboardingTour from '@/features/onboarding-tour/ui/OnboardingTour'
 
 export default function TimerPage() {
   const resetTimerStore = useTimerStore((state) => state.reset)
@@ -32,6 +33,7 @@ export default function TimerPage() {
         </TimerContainer>
       </PageBody>
       <ScrambleModal />
+      <OnboardingTour />
     </div>
   )
 }
