@@ -267,3 +267,27 @@
     transition: none;
   }
 }
+
+@keyframes onboarding-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 3px color-mix(in oklab, var(--primary) 85%, transparent),
+      0 0 0 6px color-mix(in oklab, var(--primary) 25%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 4px var(--primary),
+      0 0 16px 4px color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+}
+.onboarding-pulse {
+  animation: onboarding-pulse 1.4s ease-in-out infinite;
+  border-radius: 0.5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  .onboarding-pulse {
+    animation: none;
+    box-shadow: 0 0 0 3px var(--primary);
+  }
+}
