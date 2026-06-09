@@ -28,8 +28,6 @@ export function useOnboardingTour() {
   const [run, setRun] = useState(false)
   const [stepIndex, setStepIndex] = useState<number>(STEP.WELCOME)
 
-  const totalSolves = cubes?.reduce((acc, cube) => acc + cube.solves.all.length, 0) ?? 0
-
   const finish = () => {
     setRun(false)
     setStepIndex(STEP.WELCOME)
@@ -37,10 +35,10 @@ export function useOnboardingTour() {
   }
 
   useEffect(() => {
-    if (hasCompletedTour || status !== 'unauthenticated' || cubes == null || totalSolves > 0) return
+    if (hasCompletedTour || status !== 'unauthenticated' || cubes == null || cubes.length > 0) return
     const id = setTimeout(() => setRun(true), 500)
     return () => clearTimeout(id)
-  }, [cubes, totalSolves, hasCompletedTour, status])
+  }, [cubes, hasCompletedTour, status])
 
   useEffect(() => {
     if (!run) return
