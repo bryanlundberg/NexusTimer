@@ -37,7 +37,12 @@ export default function MainCubeSelector() {
 
   return (
     <div className="flex-1 min-w-0">
-      <Button variant={'outline'} className={'w-full justify-between overflow-hidden'} onClick={handleOpenSelector}>
+      <Button
+        variant={'outline'}
+        className={'w-full justify-between overflow-hidden'}
+        onClick={handleOpenSelector}
+        data-tour="onboarding-cube-selector"
+      >
         <div className="flex items-center gap-2 truncate">
           {selectedCubeData ? (
             <Image
