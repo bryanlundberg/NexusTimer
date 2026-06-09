@@ -1,5 +1,22 @@
 {
   "Index": {
+    "OnboardingTour": {
+      "skip": "Quitter le guide",
+      "welcome": {
+        "title": "Bienvenue sur Nexus Timer !",
+        "content": "Il vous faut une collection de cubes avant de pouvoir utiliser le timer. Voulez-vous un guide rapide de 20 secondes pour créer la première ?",
+        "cta": "Oui, guidez-moi",
+        "dismiss": "Non, merci"
+      },
+      "select": {
+        "title": "Choisissez votre cube",
+        "content": "Ouvrez le sélecteur de cubes pour choisir ou créer une collection."
+      },
+      "create": {
+        "title": "Créer une collection",
+        "content": "Cliquez ici pour démarrer votre première collection."
+      }
+    },
     "sidebar-rotating-text": {
       "text1": "Prêt à résoudre ?",
       "text2": "Battez votre record",

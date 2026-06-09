@@ -3,6 +3,23 @@
     "Offline": {
       "offline": "Sin conexión"
     },
+    "OnboardingTour": {
+      "skip": "Salir de la guía",
+      "welcome": {
+        "title": "¡Bienvenido a Nexus Timer!",
+        "content": "Necesitas una colección de cubos antes de poder usar el timer. ¿Quieres una guía rápida de 20 segundos para crear la primera?",
+        "cta": "Sí, guíame",
+        "dismiss": "Ahora no"
+      },
+      "select": {
+        "title": "Elige tu cubo",
+        "content": "Abre el selector de cubos para elegir o crear una colección."
+      },
+      "create": {
+        "title": "Crea una colección",
+        "content": "Pulsa aquí para empezar tu primera colección."
+      }
+    },
     "sidebar-rotating-text": {
       "text1": "¿Listo para resolver?",
       "text2": "Rompe tu récord",

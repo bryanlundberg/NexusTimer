@@ -3,6 +3,23 @@
     "Offline": {
       "offline": "Offline"
     },
+    "OnboardingTour": {
+      "skip": "Keluar dari panduan",
+      "welcome": {
+        "title": "Selamat datang di Nexus Timer!",
+        "content": "Kamu memerlukan koleksi cube sebelum timer bisa digunakan. Mau panduan singkat 20 detik untuk membuat yang pertama?",
+        "cta": "Ya, pandu saya",
+        "dismiss": "Lain kali"
+      },
+      "select": {
+        "title": "Pilih cube-mu",
+        "content": "Buka pemilih cube untuk memilih atau membuat koleksi."
+      },
+      "create": {
+        "title": "Buat koleksi",
+        "content": "Klik di sini untuk memulai koleksi pertamamu."
+      }
+    },
     "sidebar-rotating-text": {
       "text1": "Siap menyelesaikan?",
       "text2": "Pecahkan rekormu",
