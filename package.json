@@ -78,7 +78,7 @@
     "idb": "^8.0.3",
     "input-otp": "^1.4.2",
     "lenis": "^1.3.23",
-    "lightweight-charts": "^5.0.7",
+    "lightweight-charts": "^5.2.0",
     "lodash": "^4.18.1",
     "lucide-react": "^0.439.0",
     "luxon": "^3.5.0",
