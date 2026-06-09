@@ -3,6 +3,18 @@ import getDeviation from './getDeviation'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { StatisticValue } from '@/shared/types/statistics'
+import { CubeSolves } from '@/features/deep-statistics/model/types'
+
+export function calcDeviationFromMetrics(solveMetrics: CubeSolves): StatisticValue<number> {
+  const { global, session, cubeAll, cubeSession } = solveMetrics
+
+  return {
+    global: getDeviation(global),
+    session: getDeviation(session),
+    cubeAll: getDeviation(cubeAll),
+    cubeSession: getDeviation(cubeSession)
+  }
+}
 
 /**
  * Calculates the standard deviation of solve times for different solve sets (global, session, cubeSession, cubeAll) of a specific cube.
@@ -21,18 +33,5 @@ export default function calcDeviation({
   category: CubeCategory
   cubeName: string
 }): StatisticValue<number> {
-  // Get solve metrics for global, session, cubeSession, and cubeAll
-  const { global, session, cubeAll, cubeSession } = getSolvesMetrics({
-    cubesDB,
-    category,
-    cubeName
-  })
-
-  // Calculate standard deviation for each solve set
-  return {
-    global: getDeviation(global),
-    session: getDeviation(session),
-    cubeAll: getDeviation(cubeAll),
-    cubeSession: getDeviation(cubeSession)
-  }
+  return calcDeviationFromMetrics(getSolvesMetrics({ cubesDB, category, cubeName }))
 }
