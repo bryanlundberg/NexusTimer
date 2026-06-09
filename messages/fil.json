@@ -3,6 +3,23 @@
     "Offline": {
       "offline": "Offline"
     },
+    "OnboardingTour": {
+      "skip": "Lumabas sa gabay",
+      "welcome": {
+        "title": "Maligayang pagdating sa Nexus Timer!",
+        "content": "Kailangan mo ng koleksyon ng cube bago gumana ang timer. Gusto mo ba ng mabilis na 20-segundong gabay para gumawa ng iyong una?",
+        "cta": "Oo, gabayan mo ako",
+        "dismiss": "Hindi na, salamat"
+      },
+      "select": {
+        "title": "Piliin ang iyong cube",
+        "content": "Buksan ang cube selector para pumili o gumawa ng koleksyon."
+      },
+      "create": {
+        "title": "Gumawa ng koleksyon",
+        "content": "I-click dito para simulan ang iyong unang koleksyon."
+      }
+    },
     "sidebar-rotating-text": {
       "text1": "Handa nang mag-solve?",
       "text2": "Talunin ang record mo",

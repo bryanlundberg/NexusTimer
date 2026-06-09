@@ -1,5 +1,22 @@
 {
   "Index": {
+    "OnboardingTour": {
+      "skip": "가이드 종료",
+      "welcome": {
+        "title": "Nexus Timer에 오신 것을 환영합니다!",
+        "content": "타이머를 실행하려면 큐브 컬렉션이 필요합니다. 첫 컬렉션을 만드는 20초짜리 빠른 가이드를 보시겠어요?",
+        "cta": "네, 안내해 주세요",
+        "dismiss": "아니요, 괜찮아요"
+      },
+      "select": {
+        "title": "큐브 선택",
+        "content": "큐브 선택기를 열어 컬렉션을 선택하거나 만드세요."
+      },
+      "create": {
+        "title": "컬렉션 만들기",
+        "content": "여기를 클릭하여 첫 컬렉션을 시작하세요."
+      }
+    },
     "sidebar-rotating-text": {
       "text1": "솔빙 준비되셨나요?",
       "text2": "기록을 경신하세요",

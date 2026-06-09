@@ -3,6 +3,23 @@
     "Offline": {
       "offline": "Offline"
     },
+    "OnboardingTour": {
+      "skip": "Exit guide",
+      "welcome": {
+        "title": "Welcome to Nexus Timer!",
+        "content": "You need a cube collection before the timer can run. Want a quick 20-second guide to create your first one?",
+        "cta": "Yes, guide me",
+        "dismiss": "No, thanks"
+      },
+      "select": {
+        "title": "Pick your cube",
+        "content": "Open the cube selector to choose or create a collection."
+      },
+      "create": {
+        "title": "Create a collection",
+        "content": "Click here to start your first collection."
+      }
+    },
     "sidebar-rotating-text": {
       "text1": "Ready to solve?",
       "text2": "Break your record",
