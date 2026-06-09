@@ -8,7 +8,7 @@ import {
   TRAINER_DEFAULT_ROTATION_MODE,
   TRAINER_RECENT_WINDOW
 } from '@/features/trainer/lib/constants'
-import { wcaAverage, shuffledRange } from '@/features/trainer/lib/trainerUtils'
+import { averageOfLastN, shuffledRange } from '@/features/trainer/lib/trainerUtils'
 
 const initialPickedIds = (slug: string): Set<string> => {
   const set = ALGORITHM_SETS.find((s) => s.slug === slug)
@@ -144,8 +144,8 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
         totalSolves,
         best,
         last: timeMs,
-        ao5: wcaAverage(recentTimes, 5),
-        ao12: wcaAverage(recentTimes, 12),
+        ao5: averageOfLastN(recentTimes, 5),
+        ao12: averageOfLastN(recentTimes, 12),
         recentTimes
       }
       return {
@@ -204,8 +204,8 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
           totalSolves: sc.totalSolves ?? 0,
           best: sc.bestSingleMs ?? null,
           last: sc.lastSolveMs ?? null,
-          ao5: wcaAverage(recentTimes, 5),
-          ao12: wcaAverage(recentTimes, 12),
+          ao5: averageOfLastN(recentTimes, 5),
+          ao12: averageOfLastN(recentTimes, 12),
           recentTimes
         }
       }
