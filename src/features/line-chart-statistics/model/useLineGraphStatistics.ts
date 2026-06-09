@@ -14,7 +14,6 @@ import {
 } from 'lightweight-charts'
 import formatTime from '@/shared/lib/formatTime'
 import getWorstTime from '@/shared/lib/statistics/getWorstTime'
-import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
 import getMean from '@/shared/lib/statistics/getMean'
 import getDeviation from '@/shared/lib/statistics/getDeviation'
 import { Solve } from '@/entities/solve/model/types'
@@ -87,6 +86,10 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     }
 
     let runningBest = Infinity
+    let sum5 = 0
+    let dnf5 = 0
+    let sum12 = 0
+    let dnf12 = 0
     reversedDataSet.forEach((i: Solve, index: number) => {
       const timeIndex = index + 1
       structuredData.push({
@@ -100,17 +103,23 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       }
       pbAtStepMap.set(timeIndex, runningBest)
 
-      if (index >= 4) {
-        const window5 = reversedDataSet.slice(index - 4, index + 1)
-        const ao5Value = calcCurrentAo(window5, 5)
-        if (ao5Value > 0) ao5Map.set(timeIndex, ao5Value)
+      if (i.dnf) dnf5++
+      else sum5 += i.time
+      if (index >= 5) {
+        const leaving = reversedDataSet[index - 5]
+        if (leaving.dnf) dnf5--
+        else sum5 -= leaving.time
       }
+      if (index >= 4 && dnf5 === 0) ao5Map.set(timeIndex, sum5 / 5)
 
-      if (index >= 11) {
-        const window12 = reversedDataSet.slice(index - 11, index + 1)
-        const ao12Value = calcCurrentAo(window12, 12)
-        if (ao12Value > 0) ao12Map.set(timeIndex, ao12Value)
+      if (i.dnf) dnf12++
+      else sum12 += i.time
+      if (index >= 12) {
+        const leaving = reversedDataSet[index - 12]
+        if (leaving.dnf) dnf12--
+        else sum12 -= leaving.time
       }
+      if (index >= 11 && dnf12 === 0) ao12Map.set(timeIndex, sum12 / 12)
     })
 
     const mean = getMean(dataSet)
@@ -193,8 +202,10 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         fixRightEdge: true,
         fixLeftEdge: true,
         allowBoldLabels: false,
-        borderVisible: false
+        borderVisible: false,
+        enableConflation: true
       },
+      hoveredSeriesOnTop: false,
       kineticScroll: { mouse: true },
       handleScale: { axisPressedMouseMove: { price: false } },
       crosshair: {
@@ -322,6 +333,10 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     chart.autoSizeActive()
     chart.timeScale().fitContent()
 
+    let lastTooltipTime: number | null = null
+    let tooltipWidth = 0
+    let tooltipHeight = 0
+
     chart.subscribeCrosshairMove((param) => {
       if (
         param.point === undefined ||
@@ -332,61 +347,65 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         param.point.y > container.clientHeight
       ) {
         tooltip.style.display = 'none'
+        lastTooltipTime = null
         return
       }
 
       const solve = solveMap.get(param.time as number)
       if (!solve) {
         tooltip.style.display = 'none'
+        lastTooltipTime = null
         return
       }
 
-      moment.locale(locale)
-      const cubeName = cubeNameById.get(solve.cubeId) || 'Unknown'
-      const currentPb = pbAtStepMap.get(param.time as number)
-      const ao5Value = ao5Map.get(param.time as number)
-      const ao12Value = ao12Map.get(param.time as number)
+      if (param.time !== lastTooltipTime) {
+        moment.locale(locale)
+        const cubeName = cubeNameById.get(solve.cubeId) || 'Unknown'
+        const currentPb = pbAtStepMap.get(param.time as number)
+        const ao5Value = ao5Map.get(param.time as number)
+        const ao12Value = ao12Map.get(param.time as number)
 
-      const flagBadge = solve.dnf
-        ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-red-500/15 text-red-500">DNF</span>`
-        : solve.plus2
-          ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-yellow-500/15 text-yellow-500">+2</span>`
-          : ''
+        const flagBadge = solve.dnf
+          ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-red-500/15 text-red-500">DNF</span>`
+          : solve.plus2
+            ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-yellow-500/15 text-yellow-500">+2</span>`
+            : ''
 
-      const row = (color: string, label: string, value: string) => `
-        <div class="flex items-center gap-2 text-xs">
-          <span class="inline-block size-1.5 rounded-full shrink-0" style="background:${color}"></span>
-          <span class="text-muted-foreground">${label}</span>
-          <span class="ml-auto font-medium tabular-nums">${value}</span>
-        </div>
-      `
-
-      const metricRows: string[] = []
-      if (currentPb !== undefined) metricRows.push(row(CHART_COLORS.pb, 'PB', formatTime(currentPb)))
-      if (ao5Value && ao5Value > 0) metricRows.push(row(CHART_COLORS.ao5, 'Ao5', formatTime(ao5Value)))
-      if (ao12Value && ao12Value > 0) metricRows.push(row(CHART_COLORS.ao12, 'Ao12', formatTime(ao12Value)))
-
-      tooltip.innerHTML = `
-        <div class="flex flex-col gap-1 min-w-36">
-          <div class="flex items-center justify-between gap-3">
-            <span class="text-[11px] text-muted-foreground truncate">${cubeName}</span>
-            <span class="text-[10px] text-muted-foreground/70 tabular-nums">#${param.time}</span>
+        const row = (color: string, label: string, value: string) => `
+          <div class="flex items-center gap-2 text-xs">
+            <span class="inline-block size-1.5 rounded-full shrink-0" style="background:${color}"></span>
+            <span class="text-muted-foreground">${label}</span>
+            <span class="ml-auto font-medium tabular-nums">${value}</span>
           </div>
-          <div class="flex items-center gap-2">
-            <span class="font-bold text-lg tabular-nums leading-tight">${formatTime(solve.time)}</span>
-            ${flagBadge}
-          </div>
-          <div class="text-[10px] text-muted-foreground/70">${moment(solve.endTime).format('LL')}</div>
-          ${metricRows.length > 0 ? `<div class="h-px bg-border/40 my-0.5"></div>${metricRows.join('')}` : ''}
-        </div>
-      `
-      tooltip.style.display = 'block'
+        `
 
-      const tooltipWidth = tooltip.clientWidth
-      const tooltipHeight = tooltip.clientHeight
-      const chartRect = container.getBoundingClientRect()
+        const metricRows: string[] = []
+        if (currentPb !== undefined) metricRows.push(row(CHART_COLORS.pb, 'PB', formatTime(currentPb)))
+        if (ao5Value && ao5Value > 0) metricRows.push(row(CHART_COLORS.ao5, 'Ao5', formatTime(ao5Value)))
+        if (ao12Value && ao12Value > 0) metricRows.push(row(CHART_COLORS.ao12, 'Ao12', formatTime(ao12Value)))
+
+        tooltip.innerHTML = `
+          <div class="flex flex-col gap-1 min-w-36">
+            <div class="flex items-center justify-between gap-3">
+              <span class="text-[11px] text-muted-foreground truncate">${cubeName}</span>
+              <span class="text-[10px] text-muted-foreground/70 tabular-nums">#${param.time}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-lg tabular-nums leading-tight">${formatTime(solve.time)}</span>
+              ${flagBadge}
+            </div>
+            <div class="text-[10px] text-muted-foreground/70">${moment(solve.endTime).format('LL')}</div>
+            ${metricRows.length > 0 ? `<div class="h-px bg-border/40 my-0.5"></div>${metricRows.join('')}` : ''}
+          </div>
+        `
+        tooltip.style.display = 'block'
+        tooltipWidth = tooltip.clientWidth
+        tooltipHeight = tooltip.clientHeight
+        lastTooltipTime = param.time as number
+      }
+
       let left = param.point.x + 15
-      if (left + tooltipWidth > chartRect.width) left = param.point.x - tooltipWidth - 15
+      if (left + tooltipWidth > container.clientWidth) left = param.point.x - tooltipWidth - 15
       let top = param.point.y - tooltipHeight - 10
       if (top < 0) top = param.point.y + 15
       tooltip.style.left = `${left}px`
