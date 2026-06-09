@@ -3,21 +3,10 @@ import calcBestAo from './calcBestAo'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { AoStatistics } from '@/shared/types/statistics'
+import { CubeSolves } from '@/features/deep-statistics/model/types'
 
-export default function calcAoStatistics({
-  cubesDB,
-  category,
-  cubeName
-}: {
-  cubesDB: Cube[] | null
-  category: CubeCategory
-  cubeName: string
-}): AoStatistics {
-  const { global, session, cubeAll, cubeSession } = getSolvesMetrics({
-    cubesDB,
-    category,
-    cubeName
-  })
+export function calcAoFromMetrics(solveMetrics: CubeSolves): AoStatistics {
+  const { global, session, cubeAll, cubeSession } = solveMetrics
 
   return {
     global: {
@@ -53,4 +42,16 @@ export default function calcAoStatistics({
       ao1000: calcBestAo(cubeSession, 1000)
     }
   }
+}
+
+export default function calcAoStatistics({
+  cubesDB,
+  category,
+  cubeName
+}: {
+  cubesDB: Cube[] | null
+  category: CubeCategory
+  cubeName: string
+}): AoStatistics {
+  return calcAoFromMetrics(getSolvesMetrics({ cubesDB, category, cubeName }))
 }
