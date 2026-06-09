@@ -2,9 +2,7 @@ import getMean from '@/shared/lib/statistics/getMean'
 import getWorstTime from '@/shared/lib/statistics/getWorstTime'
 import getBestTime from '@/shared/lib/statistics/getBestTime'
 import getDeviation from '@/shared/lib/statistics/getDeviation'
-import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
 import formatTime from '@/shared/lib/formatTime'
-import { SolveTab } from '@/shared/types/enums'
 import { Solve } from '@/entities/solve/model/types'
 
 interface createShareMessage {
@@ -12,7 +10,6 @@ interface createShareMessage {
   solves: Solve[] | null
   translations: {
     statsTitle: string
-    avg: string
     listOfTimes: string
     date: string
   }
@@ -21,14 +18,14 @@ interface createShareMessage {
 export function createShareMessage({
   type,
   solves,
-  translations: { statsTitle, avg, listOfTimes, date }
+  translations: { statsTitle, listOfTimes, date }
 }: createShareMessage): string {
   if (!solves || solves.length === 0) return ''
 
   const dataSet: Solve[] = [...solves]
   dataSet.sort((a, b) => b.endTime - a.endTime)
 
-  if (type !== SolveTab.ALL) {
+  if (type !== 'all') {
     const solveCount = Number(type)
     dataSet.splice(solveCount)
   }
@@ -41,14 +38,9 @@ export function createShareMessage({
   // Header
   let content = `${statsTitle}: ${date}`
 
-  // Summary
-  if (type !== SolveTab.ALL) {
-    const aoValue = calcCurrentAo([...dataSet], dataSet.length)
-    const aoLabel = aoValue === 0 ? 'DNF' : formatTime(aoValue)
-    content += `\nAo${dataSet.length}: ${aoLabel} | ${avg}: ${formatTime(mean)} (σ = ${formatTime(deviation)})`
-  } else {
-    content += `\n${avg} ${dataSet.length}: ${formatTime(mean)} (σ = ${formatTime(deviation)})`
-  }
+  // Summary: plain average, still labeled as Ao
+  const aoLabel = mean === 0 ? 'DNF' : formatTime(mean)
+  content += `\nAo${dataSet.length}: ${aoLabel} (σ = ${formatTime(deviation)})`
 
   // Space row
   content += `\n\n`
