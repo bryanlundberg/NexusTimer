@@ -3,6 +3,23 @@
     "Offline": {
       "offline": "Ngoại tuyến"
     },
+    "OnboardingTour": {
+      "skip": "Thoát hướng dẫn",
+      "welcome": {
+        "title": "Chào mừng đến với Nexus Timer!",
+        "content": "Bạn cần một bộ sưu tập cube trước khi có thể dùng đồng hồ bấm giờ. Bạn có muốn hướng dẫn nhanh 20 giây để tạo bộ sưu tập đầu tiên không?",
+        "cta": "Có, hướng dẫn tôi",
+        "dismiss": "Không, cảm ơn"
+      },
+      "select": {
+        "title": "Chọn cube của bạn",
+        "content": "Mở bộ chọn cube để chọn hoặc tạo một bộ sưu tập."
+      },
+      "create": {
+        "title": "Tạo bộ sưu tập",
+        "content": "Nhấp vào đây để bắt đầu bộ sưu tập đầu tiên của bạn."
+      }
+    },
     "sidebar-rotating-text": {
       "text1": "Sẵn sàng giải chưa?",
       "text2": "Phá kỷ lục của bạn",
