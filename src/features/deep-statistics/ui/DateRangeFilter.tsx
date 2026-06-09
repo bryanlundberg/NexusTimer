@@ -45,7 +45,6 @@ export default function DateRangeFilter() {
         solves: tempSolves,
         translations: {
           statsTitle: t('SolvesPage.share-clipboard.header'),
-          avg: t('SolvesPage.share-clipboard.average'),
           listOfTimes: t('SolvesPage.share-clipboard.list-of-times'),
           date: date
         }

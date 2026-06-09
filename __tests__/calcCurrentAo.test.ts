@@ -23,8 +23,8 @@ describe('calcCurrentAo', () => {
     })
   })
 
-  describe('ao=3 (returns the middle time after trimming best and worst)', () => {
-    it('returns the middle time of three solves', () => {
+  describe('ao=3 (mean of three solves)', () => {
+    it('returns the mean of three solves', () => {
       const solves = makeSolves([1000, 2000, 3000])
       expect(calcCurrentAo(solves, 3)).toBe(2000)
     })
@@ -35,11 +35,10 @@ describe('calcCurrentAo', () => {
     })
   })
 
-  describe('ao=5 (average of the middle three after trimming best and worst)', () => {
+  describe('ao=5 (mean of five solves)', () => {
     it('computes ao5 for the first 5 solves of FAKE_SESSION', () => {
-      // times = [14553, 13718, 11875, 14108, 15054]
-      // trimmed = [13718, 14108, 14553] → mean = 14126.333...
-      expect(calcCurrentAo(FAKE_SESSION.slice(0, 5), 5)).toBe(14126.333333333334)
+      // times = [14553, 13718, 11875, 14108, 15054] → mean = 13861.6
+      expect(calcCurrentAo(FAKE_SESSION.slice(0, 5), 5)).toBe(13861.6)
     })
 
     it('uses the first ao solves when more are provided', () => {
@@ -50,7 +49,7 @@ describe('calcCurrentAo', () => {
   })
 
   describe('DNF handling', () => {
-    it('treats a single DNF as the worst solve and trims it', () => {
+    it('returns 0 when a DNF is present', () => {
       const solves = [
         makeSolve({ time: 1000 }),
         makeSolve({ time: 2000 }),
@@ -58,19 +57,12 @@ describe('calcCurrentAo', () => {
         makeSolve({ time: 4000 }),
         makeSolve({ time: 99999, dnf: true })
       ]
-      // best=1000, worst=DNF, middle three = [2000, 3000, 4000] → 3000
-      expect(calcCurrentAo(solves, 5)).toBe(3000)
+      expect(calcCurrentAo(solves, 5)).toBe(0)
     })
 
-    it('returns 0 when more than one DNF is present', () => {
-      const solves = [
-        makeSolve({ time: 1000 }),
-        makeSolve({ time: 2000 }),
-        makeSolve({ time: 3000 }),
-        makeSolve({ time: 99999, dnf: true }),
-        makeSolve({ time: 99999, dnf: true })
-      ]
-      expect(calcCurrentAo(solves, 5)).toBe(0)
+    it('returns the mean when no DNF is present', () => {
+      const solves = makeSolves([1000, 2000, 3000, 4000, 5000])
+      expect(calcCurrentAo(solves, 5)).toBe(3000)
     })
   })
 })

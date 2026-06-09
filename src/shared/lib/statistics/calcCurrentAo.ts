@@ -2,9 +2,8 @@ import { Solve } from '@/entities/solve/model/types'
 
 /**
  * Calculates the current average of X (AoX) from a given array of solves.
- * For averages, the best and worst times are removed, and the average of the remaining times is calculated.
- * DNF solves are always considered the worst times. If there is more than one DNF, the average is DNF (represented as 0).
- * If a DNF remains after removing the best and worst times, the average is DNF.
+ * The average is the plain arithmetic mean of the most recent 'ao' solves.
+ * If any of them is a DNF, the average is DNF (represented as 0), since a DNF can't be averaged.
  *
  * @param {Solve[]} solves - An array of Solve objects.
  * @param {number} ao - The desired average length (e.g., 3, 5, 12).
@@ -22,36 +21,12 @@ export default function calcCurrentAo(solves: Solve[], ao: number): number {
   // Get the most recent 'ao' solves
   const aoSolves = solves.slice(0, ao)
 
-  // Count DNFs
-  const dnfCount = aoSolves.filter((solve) => solve.dnf).length
-
-  // If more than one DNF, the average is DNF (represented as 0)
-  if (dnfCount > 1) {
+  // A DNF can't be averaged, so the average is DNF (represented as 0)
+  if (aoSolves.some((solve) => solve.dnf)) {
     return 0
   }
 
-  // Sort solves by time, treating DNFs as worst times
-  const sortedSolves = [...aoSolves].sort((a, b) => {
-    if (a.dnf) return 1
-    if (b.dnf) return -1
-    return a.time - b.time
-  })
+  const sum = aoSolves.reduce((total, solve) => total + solve.time, 0)
 
-  // Remove the best and worst time from the array to trim the average
-  const trimmedSolves = sortedSolves.slice(1, ao - 1)
-
-  // Calculate the sum of trimmed solve times
-  let sum = 0
-  let validCount = 0
-  for (let i = 0; i < trimmedSolves.length; i++) {
-    if (trimmedSolves[i].dnf) {
-      // If there's a DNF in the trimmed solves, the average is DNF
-      return 0
-    }
-    sum += trimmedSolves[i].time
-    validCount++
-  }
-
-  // Calculate the average of the trimmed solves
-  return sum / validCount
+  return sum / ao
 }

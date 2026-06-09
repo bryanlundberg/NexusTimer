@@ -17,25 +17,25 @@ describe('calcBestAo', () => {
   })
 
   describe('ao=3 (single window)', () => {
-    it('returns the middle time after trimming best and worst', () => {
+    it('returns the mean of three solves', () => {
       expect(calcBestAo(makeSolves([1000, 2000, 3000]), 3)).toBe(2000)
     })
   })
 
   describe('ao=5 (single window)', () => {
-    it('returns the trimmed mean of 5 solves', () => {
-      // sorted=[1,2,3,4,5]*1000 → trim=[2000,3000,4000] → 3000
+    it('returns the mean of 5 solves', () => {
+      // mean of [1,2,3,4,5]*1000 → 3000
       expect(calcBestAo(makeSolves([1000, 2000, 3000, 4000, 5000]), 5)).toBe(3000)
     })
   })
 
   describe('multiple windows', () => {
-    it('picks the window with the lowest trimmed mean', () => {
-      // Window A (slow): [3000, 4000, 5000, 6000, 7000] → trim → 5000
-      // Window B (mixed): [4000, 5000, 6000, 7000, 1000] → trim → 5000
-      // Window C (fast):  [5000, 6000, 7000, 1000, 2000] → trim=[2000,5000,6000] → 4333.33
+    it('picks the window with the lowest mean', () => {
+      // Window A: [3000, 4000, 5000, 6000, 7000] → 5000
+      // Window B: [4000, 5000, 6000, 7000, 1000] → 4600
+      // Window C: [5000, 6000, 7000, 1000, 2000] → 4200
       const result = calcBestAo(makeSolves([3000, 4000, 5000, 6000, 7000, 1000, 2000]), 5)
-      expect(result).toBeCloseTo(4333.333333, 4)
+      expect(result).toBe(4200)
     })
 
     it('does not depend on input order beyond consecutive windows', () => {
@@ -46,37 +46,31 @@ describe('calcBestAo', () => {
   })
 
   describe('DNF handling', () => {
-    it('treats a single DNF as the worst solve and still trims', () => {
-      const solves = [
-        makeSolve({ time: 1000 }),
-        makeSolve({ time: 2000 }),
-        makeSolve({ time: 3000 }),
-        makeSolve({ time: 4000 }),
-        makeSolve({ time: 99999, dnf: true })
-      ]
-      // sorted by time, DNF last: [1000,2000,3000,4000,DNF] → trim=[2000,3000,4000] → 3000
-      expect(calcBestAo(solves, 5)).toBe(3000)
-    })
-
-    it('skips windows with more than one DNF', () => {
+    it('skips windows containing a DNF', () => {
       const solves = [
         makeSolve({ time: 1000, dnf: true }),
-        makeSolve({ time: 2000, dnf: true }),
+        makeSolve({ time: 2000 }),
         makeSolve({ time: 3000 }),
         makeSolve({ time: 4000 }),
         makeSolve({ time: 5000 }),
         makeSolve({ time: 6000 }),
         makeSolve({ time: 7000 })
       ]
-      // Window [0..4] has 2 DNFs → skipped
-      // Window [1..5] has 1 DNF → sorted [3000,4000,5000,6000,DNF] → trim=[4000,5000,6000] → 5000
-      // Window [2..6] valid: [3000,4000,5000,6000,7000] → trim=[4000,5000,6000] → 5000
-      expect(calcBestAo(solves, 5)).toBe(5000)
+      // Window [0..4] has a DNF → skipped
+      // Window [1..5]: [2000,3000,4000,5000,6000] → 4000
+      // Window [2..6]: [3000,4000,5000,6000,7000] → 5000
+      expect(calcBestAo(solves, 5)).toBe(4000)
     })
 
-    it('returns Infinity when every window has too many DNFs', () => {
-      const solves = makeSolves([1000, 2000, 3000, 4000, 5000]).map((s) => ({ ...s, dnf: true }))
-      // Every solve is DNF → window dnfCount=5 → always skipped → bestAo never updated
+    it('returns Infinity when every window has a DNF', () => {
+      const solves = [
+        makeSolve({ time: 1000 }),
+        makeSolve({ time: 2000 }),
+        makeSolve({ time: 3000, dnf: true }),
+        makeSolve({ time: 4000 }),
+        makeSolve({ time: 5000 })
+      ]
+      // The single window contains a DNF → skipped → bestAo never updated
       expect(calcBestAo(solves, 5)).toBe(Infinity)
     })
   })

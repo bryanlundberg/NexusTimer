@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import { database } from '@/shared/config/indexdb/indexdb'
 import { Solve } from '@/entities/solve/model/types'
 import { Cube } from '@/entities/cube/model/types'
@@ -11,14 +10,15 @@ export const cubesDB = {
     const all = (await Cubes.find().get()) as Cube[]
 
     return all
-      .map((cube) => {
-        const cubeCopy = _.cloneDeep(cube)
-        if (cubeCopy.solves) {
-          cubeCopy.solves.session = cubeCopy.solves.session.filter((solve) => !solve?.isDeleted)
-          cubeCopy.solves.all = cubeCopy.solves.all.filter((solve) => !solve?.isDeleted)
-        }
-        return cubeCopy
-      })
+      .map((cube) => ({
+        ...cube,
+        solves: cube.solves
+          ? {
+              session: cube.solves.session.filter((solve) => !solve?.isDeleted),
+              all: cube.solves.all.filter((solve) => !solve?.isDeleted)
+            }
+          : cube.solves
+      }))
       .filter((cube) => !cube.isDeleted)
   },
 
@@ -31,11 +31,13 @@ export const cubesDB = {
     if (!cube) throw new Error('Cube not found')
     if (cube.isDeleted) throw new Error('Cube deleted')
 
-    const cubeCopy = _.cloneDeep(cube)
-    cubeCopy.solves.session = cubeCopy.solves.session.filter((solve: Solve) => !solve?.isDeleted)
-    cubeCopy.solves.all = cubeCopy.solves.all.filter((solve: Solve) => !solve?.isDeleted)
-
-    return cubeCopy
+    return {
+      ...cube,
+      solves: {
+        session: cube.solves.session.filter((solve: Solve) => !solve?.isDeleted),
+        all: cube.solves.all.filter((solve: Solve) => !solve?.isDeleted)
+      }
+    }
   },
 
   async add(cube: Cube): Promise<Cube> {

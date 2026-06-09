@@ -2,19 +2,9 @@ import getSolvesMetrics from './getSolvesMetrics'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { StatisticValue } from '@/shared/types/statistics'
+import { CubeSolves } from '@/features/deep-statistics/model/types'
 
-export default function calcAverageStatistics({
-  cubesDB,
-  category,
-  cubeName
-}: {
-  cubesDB: Cube[] | null
-  category: CubeCategory
-  cubeName: string
-}): StatisticValue<number> {
-  // Get solve metrics for global, session, cubeSession, and cubeAll
-  const solveMetrics = getSolvesMetrics({ cubesDB, category, cubeName })
-
+export function calcAverageFromMetrics(solveMetrics: CubeSolves): StatisticValue<number> {
   // Filter out DNF solves from each solve set
   const filteredGlobal = solveMetrics.global.filter((solve) => !solve.dnf)
   const filteredSession = solveMetrics.session.filter((solve) => !solve.dnf)
@@ -40,4 +30,16 @@ export default function calcAverageStatistics({
     cubeSession: cubeSessionTime > 0 ? cubeSessionTime : 0,
     cubeAll: cubeAllTime > 0 ? cubeAllTime : 0
   }
+}
+
+export default function calcAverageStatistics({
+  cubesDB,
+  category,
+  cubeName
+}: {
+  cubesDB: Cube[] | null
+  category: CubeCategory
+  cubeName: string
+}): StatisticValue<number> {
+  return calcAverageFromMetrics(getSolvesMetrics({ cubesDB, category, cubeName }))
 }

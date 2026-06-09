@@ -3,21 +3,10 @@ import calcPenaltyRate from './calcPenaltyRate'
 import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { StatisticValue } from '@/shared/types/statistics'
+import { CubeSolves } from '@/features/deep-statistics/model/types'
 
-export default function calcSuccessRate({
-  cubesDB,
-  category,
-  cubeName
-}: {
-  cubesDB: Cube[] | null
-  category: CubeCategory
-  cubeName: string
-}): StatisticValue<string> {
-  const { global, session, cubeAll, cubeSession } = getSolvesMetrics({
-    cubesDB,
-    category,
-    cubeName
-  })
+export function calcSuccessRateFromMetrics(solveMetrics: CubeSolves): StatisticValue<string> {
+  const { global, session, cubeAll, cubeSession } = solveMetrics
 
   const globalRate = calcPenaltyRate(global)
   const sessionRate = calcPenaltyRate(session)
@@ -30,6 +19,18 @@ export default function calcSuccessRate({
     cubeAll: calculatePercentage(cubeAllRate, cubeAll.length),
     cubeSession: calculatePercentage(cubeSessionRate, cubeSession.length)
   }
+}
+
+export default function calcSuccessRate({
+  cubesDB,
+  category,
+  cubeName
+}: {
+  cubesDB: Cube[] | null
+  category: CubeCategory
+  cubeName: string
+}): StatisticValue<string> {
+  return calcSuccessRateFromMetrics(getSolvesMetrics({ cubesDB, category, cubeName }))
 }
 
 /**
