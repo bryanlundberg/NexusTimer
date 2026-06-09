@@ -36,9 +36,9 @@ describe('calcAoStatistics', () => {
       ]
     })
     const result = calcAoStatistics({ cubesDB: [cube], category: '3x3', cubeName: 'A' })
-    // ao3: best window trim mean from [1000,2000,3000] → 2000
+    // ao3: best window mean from [1000,2000,3000] → 2000
     expect(result.session.ao3).toBe(2000)
-    // ao5: single window trim mean → [2000,3000,4000] → 3000
+    // ao5: single window mean of [1000,2000,3000,4000,5000] → 3000
     expect(result.session.ao5).toBe(3000)
     // ao12+: not enough solves → 0
     expect(result.session.ao12).toBe(0)
