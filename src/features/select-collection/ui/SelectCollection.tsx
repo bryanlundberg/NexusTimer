@@ -8,6 +8,7 @@ import {
   CommandSeparator
 } from '@/components/ui/command'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import { useOnboardingStore } from '@/features/onboarding-tour/model/useOnboardingStore'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { DialogDescription, DialogTitle } from '@/components/ui/dialog'
 import { Cube } from '@/entities/cube/model/types'
@@ -24,6 +25,7 @@ import { Nexi } from '@/shared/ui/nexi'
 export default function SelectCollection() {
   const close = useOverlayStore((state) => state.close)
   const isOpen = useOverlayStore((state) => state.activeOverlay !== null)
+  const lockSelectClose = useOnboardingStore((state) => state.lockSelectClose)
   const cubes = useTimerStore((state) => state.cubes)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const t = useTranslations('Index')
@@ -45,6 +47,9 @@ export default function SelectCollection() {
     <CommandDialog
       open={isOpen}
       onOpenChange={(open) => {
+        // During the onboarding tour, force the user to click the "create
+        // collection" button — ignore outside-click/ESC dismissals.
+        if (!open && lockSelectClose) return
         if (!open) close()
       }}
     >
@@ -59,7 +64,7 @@ export default function SelectCollection() {
           <div className="flex flex-col items-center gap-3 py-4">
             <Nexi state="solving" size={72} aria-label={t('Inputs.no-results')} />
             <p className="text-muted-foreground text-sm">{t('Inputs.no-results')}</p>
-            <Button onClick={handleCreate} variant={'secondary'} size={'sm'}>
+            <Button onClick={handleCreate} variant={'secondary'} size={'sm'} data-tour="onboarding-create-collection">
               <PlusIcon className="size-4" />
               {t('CubesPage.new-collection')}
             </Button>
