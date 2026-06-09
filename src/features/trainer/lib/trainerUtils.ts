@@ -34,13 +34,10 @@ export const penaltyDotClass = (penalty: TrainerPenalty, timeMs?: number, target
   return penalty === '+2' ? 'bg-amber-500/70' : 'bg-emerald-500/70'
 }
 
-export const wcaAverage = (times: number[], n: number): number | null => {
+export const averageOfLastN = (times: number[], n: number): number | null => {
   if (times.length < n) return null
   const window = times.slice(-n)
-  const sorted = [...window].sort((a, b) => a - b)
-  const trimmed = sorted.slice(1, -1)
-  if (trimmed.length === 0) return null
-  return trimmed.reduce((acc, v) => acc + v, 0) / trimmed.length
+  return window.reduce((acc, v) => acc + v, 0) / n
 }
 
 // Fisher-Yates shuffle; avoids starting on `exclude` index when possible.
