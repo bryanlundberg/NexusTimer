@@ -75,11 +75,13 @@ export function ProfileHeroBanner({ user, cubes, level }: Props) {
               </Badge>
             )}
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-none flex items-baseline gap-2 flex-wrap">
-            {user.name}
-            {user.pronoun && <span className="text-base font-normal text-muted-foreground">{user.pronoun}</span>}
+          <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-none flex items-baseline gap-2 min-w-0">
+            <span className="min-w-0 truncate">{user.name}</span>
+            {user.pronoun && (
+              <span className="text-base font-normal text-muted-foreground shrink-0">{user.pronoun}</span>
+            )}
             {user.wcaId && (
-              <WcaBadge wcaId={user.wcaId} showCode className="text-base font-normal" iconClassName="size-5" />
+              <WcaBadge wcaId={user.wcaId} showCode className="text-base font-normal shrink-0" iconClassName="size-5" />
             )}
           </h1>
           <div className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
