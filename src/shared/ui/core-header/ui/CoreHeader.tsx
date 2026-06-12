@@ -58,10 +58,13 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
                   <React.Fragment key={`${crumb.label}-${index}`}>
                     <BreadcrumbItem className="min-w-0">
                       {isLast || !crumb.href ? (
-                        <BreadcrumbPage className="font-medium truncate">{crumb.label}</BreadcrumbPage>
+                        <BreadcrumbPage className="font-medium truncate min-w-0">{crumb.label}</BreadcrumbPage>
                       ) : (
                         <BreadcrumbLink asChild>
-                          <Link href={crumb.href} className="font-medium hover:text-primary transition-colors truncate">
+                          <Link
+                            href={crumb.href}
+                            className="font-medium hover:text-primary transition-colors truncate min-w-0"
+                          >
                             {crumb.label}
                           </Link>
                         </BreadcrumbLink>
