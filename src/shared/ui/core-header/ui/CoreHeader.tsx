@@ -108,13 +108,13 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
             <Link
               href="/sign-in"
               className={buttonVariants({
-                variant: 'ghost',
+                variant: 'default',
                 size: 'sm',
-                className: 'h-8 gap-1.5 px-2 text-xs text-muted-foreground hover:text-foreground'
+                className: 'h-8 gap-1.5 px-3 text-xs font-medium'
               })}
             >
               <LogInIcon className="size-3.5" />
-              <span className="hidden sm:inline">{tAuth('sign-in')}</span>
+              <span>{tAuth('sign-in')}</span>
             </Link>
           )}
         </div>
