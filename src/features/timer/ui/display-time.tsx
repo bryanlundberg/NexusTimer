@@ -78,7 +78,7 @@ export default function DisplayTime({
           ) : (
             <motion.div
               key="timer"
-              className="relative flex flex-col gap-1 font-mono"
+              className="relative flex flex-col gap-1 font-mono tabular-nums tracking-tight"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -99,7 +99,7 @@ export default function DisplayTime({
                   timerStatus === TimerStatus.READY) ? (
                   <motion.div
                     className={cn(
-                      'font-light',
+                      'font-normal',
                       height < 700
                         ? 'text-6xl sm:text-8xl md:text-9xl'
                         : 'text-7xl sm:text-9xl md:text-[11rem] lg:text-[16rem]'
@@ -115,7 +115,7 @@ export default function DisplayTime({
                   <>
                     <motion.div
                       className={cn(
-                        'font-light',
+                        'font-normal',
                         height < 700
                           ? 'text-6xl sm:text-8xl md:text-9xl'
                           : 'text-7xl sm:text-9xl md:text-[11rem] lg:text-[16rem]'
@@ -129,7 +129,7 @@ export default function DisplayTime({
                     </motion.div>
                     <motion.div
                       className={cn(
-                        'font-light',
+                        'font-normal',
                         height < 700
                           ? 'text-4xl sm:text-6xl md:text-7xl'
                           : 'text-5xl sm:text-7xl md:text-8xl lg:text-[10rem]'
@@ -144,7 +144,7 @@ export default function DisplayTime({
                     {lastSolve?.plus2 && !isSolving && (
                       <motion.span
                         className={cn(
-                          'text-destructive font-light',
+                          'text-destructive font-normal',
                           height < 700 ? 'text-2xl sm:text-4xl' : 'text-3xl sm:text-5xl lg:text-6xl'
                         )}
                         initial={{ opacity: 0, x: -10 }}
