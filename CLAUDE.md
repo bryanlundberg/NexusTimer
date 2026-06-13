@@ -11,7 +11,7 @@ NexusTimer is a full-stack speedcubing timer and analytics PWA built with Next.j
 ```bash
 pnpm dev              # Dev server with Turbopack (localhost:3000)
 pnpm build            # Production build (uses webpack, not turbo)
-pnpm lint             # ESLint
+pnpm exec tsc --noEmit  # Typecheck (no lint script/ESLint config; Prettier runs via lint-staged on commit)
 pnpm test             # Jest unit tests
 pnpm test -- --testPathPattern="path/to/test"  # Run single test file
 pnpm test:watch       # Jest watch mode
