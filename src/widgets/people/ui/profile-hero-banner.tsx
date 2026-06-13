@@ -12,6 +12,8 @@ import { useLocale, useTranslations } from 'next-intl'
 import moment from 'moment'
 import { ArrowUpIcon } from '@heroicons/react/24/solid'
 import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
+import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
+import { getCountryName } from '@/shared/lib/getCountryName'
 
 interface Props {
   user: UserDocument
@@ -41,12 +43,6 @@ export function ProfileHeroBanner({ user, cubes, level }: Props) {
   const cubeImage = cubeCollection.find((c) => c.name === '3x3')?.src
 
   const memberSince = moment(user.createdAt).locale(locale).format('MMM YYYY')
-
-  const timezoneAbbr = user.timezone
-    ? (new Intl.DateTimeFormat('en-US', { timeZone: user.timezone, timeZoneName: 'short' })
-        .formatToParts(new Date())
-        .find((p) => p.type === 'timeZoneName')?.value ?? null)
-    : null
 
   return (
     <div className="w-full px-4 md:px-6 py-6 flex flex-col sm:flex-row items-start justify-between gap-6 border-b border-border/40 bg-muted/20">
@@ -87,13 +83,16 @@ export function ProfileHeroBanner({ user, cubes, level }: Props) {
           <div className="flex items-center gap-1.5 text-sm text-muted-foreground flex-wrap">
             {user.bio && <span className="wrap-break-word">{user.bio}</span>}
             {user.bio && <span className="opacity-50">·</span>}
-            <span>{t('member-since', { date: memberSince })}</span>
-            {timezoneAbbr && (
+            {user.country && (
               <>
+                <span className="flex items-center gap-1.5">
+                  <CountryFlag code={user.country} className="shrink-0" />
+                  {getCountryName(user.country, locale)}
+                </span>
                 <span className="opacity-50">·</span>
-                <span className="text-xs uppercase">{timezoneAbbr}</span>
               </>
             )}
+            <span>{t('member-since', { date: memberSince })}</span>
           </div>
         </div>
       </div>
