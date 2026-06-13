@@ -31,6 +31,14 @@
 
 
 @theme inline {
+  --font-sans: var(--font-saira), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-numeric), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-cube-white: var(--cube-white);
+  --color-cube-yellow: var(--cube-yellow);
+  --color-cube-red: var(--cube-red);
+  --color-cube-orange: var(--cube-orange);
+  --color-cube-green: var(--cube-green);
+  --color-cube-blue: var(--cube-blue);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -69,7 +77,21 @@
 }
 
 :root {
-  --radius: 0.65rem;
+  --radius: 0.5rem;
+
+  --font-saira: 'Saira', ui-sans-serif, system-ui, sans-serif;
+  --font-mono-numeric: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --cube-white: oklch(0.97 0 0);
+  --cube-yellow: oklch(0.86 0.17 95);
+  --cube-red: oklch(0.635 0.23 26);
+  --cube-orange: oklch(0.72 0.185 52);
+  --cube-green: oklch(0.74 0.18 150);
+  --cube-blue: oklch(0.623 0.214 259.815);
+  --ease-solve: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 100ms;
+  --dur-base: 100ms;
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.141 0.005 285.823);
   --card: oklch(1 0 0);
