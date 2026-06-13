@@ -1,6 +1,7 @@
 'use client'
 
 import { Tabs } from '@/components/ui/tabs'
+import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
 import { Button } from '@/components/ui/button'
 import { usePeopleTab } from '@/features/people-tab/model/usePeopleTab'
 import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
@@ -12,8 +13,7 @@ import { UserProfile } from '@/entities/user/model/user'
 import { Cube } from '@/entities/cube/model/types'
 import useUserBadges from '@/entities/achievement/model/useUserBadges'
 import { useTranslations } from 'next-intl'
-import { useRef, useEffect, useState, useCallback } from 'react'
-import { motion } from 'framer-motion'
+import { useRef, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
@@ -60,9 +60,6 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
   }
 
   const { value, set } = usePeopleTab()
-  const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map())
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [indicator, setIndicator] = useState({ left: 0, width: 0 })
 
   const labels: Record<PTabs, string> = {
     [PTabs.OVERVIEW]: t('overview'),
@@ -70,25 +67,6 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
     [PTabs.TIMELINE]: t('timeline'),
     [PTabs.ACHIEVEMENTS]: t('achievements')
   }
-
-  const updateIndicator = useCallback(() => {
-    const el = tabRefs.current.get(value)
-    const container = containerRef.current
-    if (el && container) {
-      const containerRect = container.getBoundingClientRect()
-      const elRect = el.getBoundingClientRect()
-      setIndicator({ left: elRect.left - containerRect.left, width: elRect.width })
-    }
-  }, [value])
-
-  useEffect(() => {
-    updateIndicator()
-  }, [updateIndicator])
-
-  useEffect(() => {
-    window.addEventListener('resize', updateIndicator)
-    return () => window.removeEventListener('resize', updateIndicator)
-  }, [updateIndicator])
 
   return (
     <div className="flex flex-col w-full">
@@ -101,32 +79,12 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full">
         {/* Tabs nav + actions row */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-4 md:px-6 py-3 mt-3">
-          <div
-            ref={containerRef}
-            role="tablist"
-            className="relative inline-flex h-9 w-fit items-center rounded-lg bg-muted/40 p-0.75"
-          >
-            <motion.div
-              className="absolute top-0.75 bottom-0.75 rounded-md bg-background/60 shadow-sm dark:bg-input/20"
-              animate={{ left: indicator.left, width: indicator.width }}
-              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-            />
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                ref={(el) => {
-                  if (el) tabRefs.current.set(tab, el)
-                }}
-                role="tab"
-                aria-selected={value === tab}
-                data-state={value === tab ? 'active' : 'inactive'}
-                onClick={() => set(tab)}
-                className="relative z-10 inline-flex h-[calc(100%-1px)] items-center justify-center rounded-md px-3 py-1 text-sm font-medium whitespace-nowrap transition-colors text-muted-foreground data-[state=active]:text-foreground"
-              >
-                {labels[tab]}
-              </button>
-            ))}
-          </div>
+          <AnimatedTabsList
+            items={tabs.map((tab) => ({ value: tab, label: labels[tab] }))}
+            activeValue={value}
+            layoutId="people-tab-indicator"
+            fitted
+          />
 
           <div className="flex items-center gap-2">
             {isCurrentUser && (
