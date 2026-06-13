@@ -7,7 +7,7 @@ export interface UserDocument {
   image: string
   bio?: string
   pronoun?: string
-  timezone?: string
+  country?: string
   goal?: string
   wcaId?: string
   wcaVerifiedAt?: number
@@ -54,7 +54,7 @@ const UserSchema = new Schema(
     pronoun: {
       type: String
     },
-    timezone: {
+    country: {
       type: String
     },
     goal: {
@@ -90,7 +90,6 @@ UserSchema.index({ email: 1 }, { unique: true })
 UserSchema.index({ 'providers.provider': 1, 'providers.providerId': 1 }, { unique: true, sparse: true })
 UserSchema.index({ 'backup.updatedAt': -1, createdAt: -1 })
 UserSchema.index({ name: 1 })
-UserSchema.index({ timezone: 1 })
 UserSchema.index({ wcaId: 1 }, { unique: true, sparse: true })
 
 export default models.User || model('User', UserSchema)
