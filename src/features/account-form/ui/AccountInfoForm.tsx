@@ -7,10 +7,12 @@ import * as React from 'react'
 import { toast } from 'sonner'
 import { useMemo } from 'react'
 import { useSession } from 'next-auth/react'
-import { TimeZone } from '@/features/time-zone/ui/TimeZone'
+import { countries } from 'country-flag-icons'
+import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
+import { getCountryName } from '@/shared/lib/getCountryName'
 import { UserDocument } from '@/entities/user/model/user'
 import { KeyedMutator } from 'swr'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AccountInfoForm as IAccountInfoForm, accountInfoSchema } from '@/features/account-form/model/types'
 import { Loader2, Save } from 'lucide-react'
@@ -18,8 +20,15 @@ import { Loader2, Save } from 'lucide-react'
 export default function AccountInfoForm({ user, mutate }: { user?: UserDocument; mutate: KeyedMutator<any> }) {
   const { data: session, update } = useSession()
   const t = useTranslations('Index.AccountPage')
+  const locale = useLocale()
 
-  const timezones = useMemo(() => Intl.supportedValuesOf('timeZone'), [])
+  const countryOptions = useMemo(
+    () =>
+      countries
+        .map((code) => ({ code, name: getCountryName(code, locale) }))
+        .sort((a, b) => a.name.localeCompare(b.name, locale)),
+    [locale]
+  )
   const {
     register,
     handleSubmit,
@@ -29,7 +38,7 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
     resolver: zodResolver(accountInfoSchema),
     defaultValues: {
       name: user?.name || '',
-      timezone: user?.timezone || '',
+      country: user?.country || '',
       goal: user?.goal || '',
       pronoun: user?.pronoun || '',
       bio: user?.bio || ''
@@ -39,7 +48,7 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
   const handleSaveChanges = async (form: IAccountInfoForm) => {
     const updatedForm = {
       ...form,
-      timezone: form.timezone || undefined,
+      country: form.country || undefined,
       goal: form.goal || undefined,
       pronoun: form.pronoun || undefined,
       bio: form.bio || undefined
@@ -108,26 +117,28 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium">{t('timezone')}</label>
+          <label className="text-sm font-medium">{t('country')}</label>
           <Controller
             control={control}
             render={({ field }) => (
               <Select value={field.value} onValueChange={field.onChange}>
                 <SelectTrigger className="w-full h-10">
-                  <SelectValue placeholder={t('select-timezone')} />
+                  <SelectValue placeholder={t('select-country')} />
                 </SelectTrigger>
                 <SelectContent>
-                  {timezones.map((tz: string) => (
-                    <SelectItem key={tz} value={tz}>
-                      {tz}
+                  {countryOptions.map(({ code, name }) => (
+                    <SelectItem key={code} value={code}>
+                      <span className="flex items-center gap-2">
+                        <CountryFlag code={code} />
+                        {name}
+                      </span>
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
             )}
-            name={'timezone'}
+            name={'country'}
           />
-          {user?.timezone && <TimeZone timeZone={user.timezone} />}
         </div>
 
         <div className="space-y-2">
