@@ -282,8 +282,6 @@
     "PeoplePage": {
       "title": "魔友",
       "search-placeholder": "按名称搜索",
-      "region-placeholder": "地区",
-      "region-all": "全部",
       "no-users-found": "未找到匹配的魔友",
       "results": "结果",
       "user-card": {
@@ -355,7 +353,7 @@
       },
       "comparative": {
         "title": "成绩对比",
-        "timezone": "时区",
+        "country": "国家/地区",
         "first-solve": "第一次还原",
         "total-solves": "总还原次数",
         "total-cubes": "魔方总数",
@@ -509,10 +507,10 @@
       "name": "名称",
       "name-required": "名称为必填项",
       "name-min-length": "名称长度必须至少为 5 个字符",
-      "timezone": "时区",
-      "select-timezone": "选择时区",
       "pronoun": "人称代词",
       "select-pronoun": "选择人称代词",
+      "country": "国家/地区",
+      "select-country": "选择国家/地区",
       "goal": "目标",
       "bio": "简介",
       "bio-placeholder": "向大家介绍一下你自己吧",

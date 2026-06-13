@@ -282,8 +282,6 @@
     "PeoplePage": {
       "title": "Pessoas",
       "search-placeholder": "Buscar por nome",
-      "region-placeholder": "Região",
-      "region-all": "Todas",
       "no-users-found": "Nenhum usuário encontrado com seus critérios",
       "results": "Resultados",
       "user-card": {
@@ -355,7 +353,7 @@
       },
       "comparative": {
         "title": "Comparação",
-        "timezone": "Fuso Horário",
+        "country": "País",
         "first-solve": "Primeiro tempo",
         "total-solves": "Total de tempos",
         "total-cubes": "Total de cubos",
@@ -509,10 +507,10 @@
       "name": "Nome",
       "name-required": "O nome é obrigatório",
       "name-min-length": "O nome deve ter pelo menos 5 caracteres",
-      "timezone": "Fuso horário",
-      "select-timezone": "Selecionar fuso",
       "pronoun": "Pronome",
       "select-pronoun": "Selecionar pronome",
+      "country": "País",
+      "select-country": "Selecionar país",
       "goal": "Objetivo",
       "bio": "Bio",
       "bio-placeholder": "Conte-nos sobre você",

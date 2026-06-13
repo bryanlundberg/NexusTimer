@@ -358,8 +358,6 @@
     "PeoplePage": {
       "title": "Orang",
       "search-placeholder": "Cari berdasarkan nama",
-      "region-placeholder": "Wilayah",
-      "region-all": "Semua",
       "no-users-found": "Tidak ada pengguna yang cocok dengan kriteriamu",
       "results": "Hasil",
       "user-card": {
@@ -440,7 +438,7 @@
       },
       "comparative": {
         "title": "Perbandingan",
-        "timezone": "Zona Waktu",
+        "country": "Negara",
         "first-solve": "Solve pertama",
         "total-solves": "Total solve",
         "total-cubes": "Total Kubus",
@@ -625,10 +623,10 @@
       "name": "Nama",
       "name-required": "Nama wajib diisi",
       "name-min-length": "Nama harus minimal 5 karakter",
-      "timezone": "Zona waktu",
-      "select-timezone": "Pilih zona waktu",
       "pronoun": "Kata ganti",
       "select-pronoun": "Pilih kata ganti",
+      "country": "Negara",
+      "select-country": "Pilih negara",
       "goal": "Target",
       "bio": "Bio",
       "bio-placeholder": "Ceritakan tentang dirimu",

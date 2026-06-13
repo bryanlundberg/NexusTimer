@@ -282,8 +282,6 @@
     "PeoplePage": {
       "title": "Люди",
       "search-placeholder": "Поиск по имени",
-      "region-placeholder": "Регион",
-      "region-all": "Все",
       "no-users-found": "Пользователи не найдены",
       "results": "Результаты",
       "user-card": {
@@ -355,7 +353,7 @@
       },
       "comparative": {
         "title": "Сравнение",
-        "timezone": "Часовой пояс",
+        "country": "Страна",
         "first-solve": "Первая сборка",
         "total-solves": "Всего сборок",
         "total-cubes": "Всего кубов",
@@ -509,10 +507,10 @@
       "name": "Имя",
       "name-required": "Имя обязательно",
       "name-min-length": "Минимум 5 символов",
-      "timezone": "Часовой пояс",
-      "select-timezone": "Выбрать пояс",
       "pronoun": "Обращение",
       "select-pronoun": "Выбрать обращение",
+      "country": "Страна",
+      "select-country": "Выберите страну",
       "goal": "Цель",
       "bio": "О себе",
       "bio-placeholder": "Расскажите немного о себе",

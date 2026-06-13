@@ -282,8 +282,6 @@
     "PeoplePage": {
       "title": "사람들",
       "search-placeholder": "이름으로 검색",
-      "region-placeholder": "지역",
-      "region-all": "전체",
       "no-users-found": "조건에 맞는 사용자를 찾을 수 없습니다",
       "results": "결과",
       "user-card": {
@@ -355,7 +353,7 @@
       },
       "comparative": {
         "title": "기록 비교",
-        "timezone": "시간대",
+        "country": "국가",
         "first-solve": "첫 솔빙",
         "total-solves": "총 솔빙 횟수",
         "total-cubes": "총 큐브 수",
@@ -509,10 +507,10 @@
       "name": "이름",
       "name-required": "이름은 필수 항목입니다",
       "name-min-length": "이름은 5자 이상이어야 합니다",
-      "timezone": "시간대",
-      "select-timezone": "시간대 선택",
       "pronoun": "칭호",
       "select-pronoun": "칭호 선택",
+      "country": "국가",
+      "select-country": "국가 선택",
       "goal": "목표",
       "bio": "소개",
       "bio-placeholder": "자신을 소개해 주세요",

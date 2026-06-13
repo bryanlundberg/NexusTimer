@@ -358,8 +358,6 @@
     "PeoplePage": {
       "title": "ผู้คน",
       "search-placeholder": "ค้นหาตามชื่อ",
-      "region-placeholder": "ภูมิภาค",
-      "region-all": "ทั้งหมด",
       "no-users-found": "ไม่พบผู้ใช้ที่ตรงกับเกณฑ์ของคุณ",
       "results": "ผลลัพธ์",
       "user-card": {
@@ -440,7 +438,7 @@
       },
       "comparative": {
         "title": "เปรียบเทียบ",
-        "timezone": "เขตเวลา",
+        "country": "ประเทศ",
         "first-solve": "การต่อครั้งแรก",
         "total-solves": "การต่อทั้งหมด",
         "total-cubes": "ลูกบาศก์ทั้งหมด",
@@ -625,10 +623,10 @@
       "name": "ชื่อ",
       "name-required": "ต้องระบุชื่อ",
       "name-min-length": "ชื่อต้องมีอย่างน้อย 5 ตัวอักษร",
-      "timezone": "เขตเวลา",
-      "select-timezone": "เลือกเขตเวลา",
       "pronoun": "สรรพนาม",
       "select-pronoun": "เลือกสรรพนาม",
+      "country": "ประเทศ",
+      "select-country": "เลือกประเทศ",
       "goal": "เป้าหมาย",
       "bio": "ประวัติย่อ",
       "bio-placeholder": "บอกเล่าเกี่ยวกับตัวคุณ",

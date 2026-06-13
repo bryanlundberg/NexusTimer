@@ -282,8 +282,6 @@
     "PeoplePage": {
       "title": "लोग",
       "search-placeholder": "नाम से खोजें",
-      "region-placeholder": "क्षेत्र",
-      "region-all": "सभी",
       "no-users-found": "आपके मानदंडों से मेल खाने वाला कोई उपयोगकर्ता नहीं मिला",
       "results": "परिणाम",
       "user-card": {
@@ -355,7 +353,7 @@
       },
       "comparative": {
         "title": "तुलनात्मक",
-        "timezone": "समय क्षेत्र",
+        "country": "देश",
         "first-solve": "पहला समाधान",
         "total-solves": "कुल समाधान",
         "total-cubes": "कुल क्यूब्स",
@@ -509,10 +507,10 @@
       "name": "नाम",
       "name-required": "नाम आवश्यक है",
       "name-min-length": "नाम कम से कम 5 वर्ण लंबा होना चाहिए",
-      "timezone": "समय क्षेत्र",
-      "select-timezone": "समय क्षेत्र चुनें",
       "pronoun": "सर्वनाम",
       "select-pronoun": "सर्वनाम चुनें",
+      "country": "देश",
+      "select-country": "देश चुनें",
       "goal": "लक्ष्य",
       "bio": "जीवनी",
       "bio-placeholder": "हमें अपने बारे में कुछ बताएं",
