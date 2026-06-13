@@ -43,6 +43,7 @@ import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
 import { Nexi } from '@/shared/ui/nexi'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { INDICATOR_SPRING } from '@/shared/lib/motion'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { open, openMobile, setOpenMobile, isMobile, state } = useSidebar()
@@ -197,7 +198,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               style={{ width: indicator.width, height: indicator.height }}
               initial={false}
               animate={{ x: indicator.left, y: indicator.top }}
-              transition={{ type: 'spring', stiffness: 500, damping: 40 }}
+              transition={INDICATOR_SPRING}
             />
           )}
           <NavMain items={data.platform} label={t('NavMain.platform')} />
