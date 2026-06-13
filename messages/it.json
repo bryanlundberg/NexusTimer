@@ -656,7 +656,6 @@
     },
     "AlgorithmsPage": {
       "title": "Algoritmi",
-      "header": "Padroneggia il tuo percorso di cubing con l'allenamento sugli algoritmi",
       "description": "Esplora un'ampia gamma di set di algoritmi per vari puzzle, completi di visualizzazioni 3D interattive per migliorare la tua esperienza di apprendimento.",
       "suggestions": "Se trovi degli errori o vuoi aggiungere altri algoritmi, inviali sul nostro GitHub.",
       "edit-github": "Modifica questi algoritmi su GitHub",

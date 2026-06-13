@@ -656,7 +656,6 @@
     },
     "AlgorithmsPage": {
       "title": "Algorytmy",
-      "header": "Opanuj swoją cubingową drogę dzięki treningowi algorytmów",
       "description": "Odkryj szeroki wybór zestawów algorytmów dla różnych układanek, wraz z interaktywnymi wizualizacjami 3D, które wzbogacą Twoją naukę.",
       "suggestions": "Jeśli znajdziesz błędy lub chcesz dodać więcej algorytmów, prześlij je na naszym GitHubie.",
       "edit-github": "Edytuj te algorytmy na GitHubie",

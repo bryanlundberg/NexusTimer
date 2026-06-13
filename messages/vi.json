@@ -656,7 +656,6 @@
     },
     "AlgorithmsPage": {
       "title": "Thuật toán",
-      "header": "Làm chủ hành trình cubing với luyện tập thuật toán",
       "description": "Khám phá nhiều bộ thuật toán cho các loại puzzle khác nhau, kèm theo hình ảnh 3D tương tác để nâng cao trải nghiệm học tập của bạn.",
       "suggestions": "Nếu bạn tìm thấy lỗi hoặc muốn bổ sung thêm thuật toán, vui lòng gửi trên GitHub của chúng tôi.",
       "edit-github": "Chỉnh sửa các thuật toán này trên GitHub",

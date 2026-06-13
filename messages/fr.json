@@ -540,7 +540,6 @@
     },
     "AlgorithmsPage": {
       "title": "Algorithmes",
-      "header": "Maîtrisez votre parcours avec l'entraînement aux algorithmes",
       "description": "Explorez une large gamme de sets d'algorithmes pour divers puzzles, avec des visualisations 3D interactives.",
       "suggestions": "Si vous trouvez des erreurs ou voulez ajouter des algos, contactez-nous sur GitHub.",
       "edit-github": "Modifier ces algorithmes sur GitHub",

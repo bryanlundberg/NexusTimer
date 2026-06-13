@@ -540,7 +540,6 @@
     },
     "AlgorithmsPage": {
       "title": "算法",
-      "header": "通过算法训练大师你的速拧之旅",
       "description": "探索各种谜题的广泛算法集，配备交互式 3D 可视化，提升你的学习体验。",
       "suggestions": "如果你发现任何错误或想增加更多算法，请在我们的 GitHub 上提交。",
       "edit-github": "在 GitHub 上编辑此算法",

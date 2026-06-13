@@ -540,7 +540,6 @@
     },
     "AlgorithmsPage": {
       "title": "알고리즘",
-      "header": "알고리즘 훈련으로 마스터하는 큐빙 여정",
       "description": "다양한 퍼즐의 알고리즘 세트를 3D 시각화와 함께 학습하세요.",
       "suggestions": "오류 제보나 알고리즘 추가 제안은 GitHub를 이용해 주세요.",
       "edit-github": "GitHub에서 알고리즘 수정",

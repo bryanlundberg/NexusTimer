@@ -540,7 +540,6 @@
     },
     "AlgorithmsPage": {
       "title": "Algorithmen",
-      "header": "Meistere dein Training mit Algorithmen",
       "description": "Entdecke Algorithmen für verschiedene Puzzles mit interaktiven 3D-Ansichten.",
       "suggestions": "Fehler? Melde sie auf GitHub.",
       "edit-github": "Auf GitHub bearbeiten",

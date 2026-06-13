@@ -656,7 +656,6 @@
     },
     "AlgorithmsPage": {
       "title": "Algoritma",
-      "header": "Kuasai Perjalanan Cubing-mu dengan Latihan Algoritma",
       "description": "Jelajahi beragam set algoritma untuk berbagai puzzle, lengkap dengan visualisasi 3D interaktif untuk meningkatkan pengalaman belajarmu.",
       "suggestions": "Jika kamu menemukan kesalahan atau ingin menambahkan lebih banyak algoritma, silakan kirim di GitHub kami.",
       "edit-github": "Edit algoritma ini di GitHub",

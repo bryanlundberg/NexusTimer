@@ -656,7 +656,6 @@
     },
     "AlgorithmsPage": {
       "title": "Algorithms",
-      "header": "Master Your Cubing Journey with Algorithm Training",
       "description": "Explore a wide range of algorithm sets for various puzzles, complete with interactive 3D visualizations to enhance your learning experience.",
       "suggestions": "If you find any errors or want to extend with more algorithms, please submit it on our GitHub.",
       "edit-github": "Edit this algorithms on Github",

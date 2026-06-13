@@ -656,7 +656,6 @@
     },
     "AlgorithmsPage": {
       "title": "Mga Algorithm",
-      "header": "Bihasain ang Iyong Cubing Journey sa Algorithm Training",
       "description": "Tuklasin ang malawak na hanay ng mga algorithm set para sa iba't ibang puzzle, kumpleto ng interactive na 3D visualizations para mapahusay ang karanasan mo sa pag-aaral.",
       "suggestions": "Kung may makita kang mga error o gusto mong magdagdag ng mas maraming algorithm, mangyaring isumite ito sa aming GitHub.",
       "edit-github": "I-edit ang mga algorithm na ito sa GitHub",

@@ -540,7 +540,6 @@
     },
     "AlgorithmsPage": {
       "title": "手順 (Algorithms)",
-      "header": "アルゴリズム練習でキューブをマスターしよう",
       "description": "様々なパズルに対応した手順セットを3Dビューで学習できます。",
       "suggestions": "間違いの報告や手順の追加提案はGitHubへお願いします。",
       "edit-github": "GitHubで手順を編集",
