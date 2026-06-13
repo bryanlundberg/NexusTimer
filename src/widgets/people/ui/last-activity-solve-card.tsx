@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import moment from 'moment'
 import formatTime from '@/shared/lib/formatTime'
-import { Badge } from '@/components/ui/badge'
+import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { useLocale } from 'next-intl'
@@ -62,9 +62,7 @@ export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardPro
             </div>
           </div>
           <div className="flex flex-col items-end gap-1 shrink-0">
-            <Badge variant="outline" className="text-[9px] font-mono px-1.5 py-0 h-4">
-              {solve.category}
-            </Badge>
+            <CategoryBadge category={solve.category} className="text-[9px] px-1.5 py-0 h-4" />
             <span className="text-[10px] font-mono text-muted-foreground/50">#{index}</span>
           </div>
         </div>
