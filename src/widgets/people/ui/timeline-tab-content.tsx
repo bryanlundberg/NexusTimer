@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/pagination'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import { Cube } from '@/entities/cube/model/types'
-import { Badge } from '@/components/ui/badge'
+import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import formatTime from '@/shared/lib/formatTime'
 import moment from 'moment'
 import { useLocale, useTranslations } from 'next-intl'
@@ -110,9 +110,7 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
 
                   {/* Category badge */}
                   <div className="min-w-0 flex flex-col gap-0.5">
-                    <Badge variant="outline" className="font-mono text-[10px] px-1.5 py-0 h-4 w-fit shrink-0">
-                      {solve.category}
-                    </Badge>
+                    <CategoryBadge category={solve.category} className="text-[10px] px-1.5 py-0 h-4 w-fit shrink-0" />
                   </div>
 
                   {/* Scramble text only */}
