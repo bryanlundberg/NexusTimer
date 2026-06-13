@@ -11,6 +11,7 @@ type RotatingTextProps = {
   transition?: Transition
   y?: number
   containerClassName?: string
+  paused?: boolean
 } & HTMLMotionProps<'div'>
 
 function RotatingText({
@@ -19,17 +20,18 @@ function RotatingText({
   duration = 2000,
   transition = { duration: 0.3, ease: 'easeOut' },
   containerClassName,
+  paused = false,
   ...props
 }: RotatingTextProps) {
   const [index, setIndex] = React.useState(0)
 
   React.useEffect(() => {
-    if (!Array.isArray(text)) return
+    if (!Array.isArray(text) || paused) return
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % text.length)
     }, duration)
     return () => clearInterval(interval)
-  }, [text, duration])
+  }, [text, duration, paused])
 
   const currentText = Array.isArray(text) ? text[index] : text
 

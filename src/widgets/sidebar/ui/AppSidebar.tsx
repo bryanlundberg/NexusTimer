@@ -42,6 +42,7 @@ import { NavMain } from '@/widgets/sidebar/ui/nav-main'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
 import { Nexi } from '@/shared/ui/nexi'
+import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { open, openMobile, setOpenMobile, isMobile, state } = useSidebar()
@@ -49,6 +50,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { isInstallable, install } = usePwaInstall()
   const { handleCreate } = useCubeActions()
   const pathname = usePathname() ?? ''
+  const isSolving = useTimerStore((store) => store.isSolving)
   const [hash, setHash] = useState<string>('')
   const { menuRef, indicator } = useActiveIndicator<HTMLDivElement>([pathname, hash, state])
 
@@ -177,6 +179,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       t('sidebar-rotating-text.text20')
                     ]}
                     duration={10000}
+                    paused={isSolving}
                     transition={{ duration: 0.2, ease: 'easeInOut' }}
                     className={'text-xs text-muted-foreground p-0'}
                   />
