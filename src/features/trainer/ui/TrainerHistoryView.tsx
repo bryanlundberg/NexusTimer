@@ -1,12 +1,13 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import { Tabs, TabsContent } from '@/components/ui/tabs'
+import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
 import TrainerSolveHistoryTable from '@/features/trainer/ui/TrainerSolveHistoryTable'
@@ -29,6 +30,8 @@ export default function TrainerHistoryView() {
 
   const { data: session } = useSession()
   const isAuthed = !!session?.user?.id
+
+  const [tab, setTab] = useState('method')
 
   const caseById = useMemo(() => {
     const map = new Map<string, AlgorithmCollection>()
@@ -82,11 +85,17 @@ export default function TrainerHistoryView() {
         </div>
       </div>
 
-      <Tabs defaultValue="method" className="flex flex-col gap-3">
-        <TabsList className="self-start">
-          <TabsTrigger value="method">{t('tabs.method')}</TabsTrigger>
-          <TabsTrigger value="case">{t('tabs.currentCase')}</TabsTrigger>
-        </TabsList>
+      <Tabs value={tab} onValueChange={setTab} className="flex flex-col gap-3">
+        <AnimatedTabsList
+          items={[
+            { value: 'method', label: t('tabs.method') },
+            { value: 'case', label: t('tabs.currentCase') }
+          ]}
+          activeValue={tab}
+          layoutId="trainer-history-tab-indicator"
+          fitted
+          className="self-start"
+        />
 
         <TabsContent value="method">
           <TrainerSolveHistoryTable
