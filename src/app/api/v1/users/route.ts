@@ -20,16 +20,11 @@ export async function GET(request: NextRequest) {
     const page = Math.max(0, Number(searchParams.get('page')) || 0)
     const PER_PAGE = 50
     const name = searchParams.get('name') || ''
-    const region = searchParams.get('region') || ''
 
     const query: Record<string, unknown> = {}
 
     if (name) {
       query.name = { $regex: name, $options: 'i' }
-    }
-
-    if (region && region !== 'all') {
-      query.timezone = { $regex: `^${region}`, $options: 'i' }
     }
 
     const [users, docsCount] = await Promise.all([
