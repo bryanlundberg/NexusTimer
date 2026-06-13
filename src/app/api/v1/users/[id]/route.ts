@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server'
 import { z } from 'zod'
+import { hasFlag } from 'country-flag-icons'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 import UserAchievement from '@/entities/achievement/model/user-achievement'
@@ -13,7 +14,7 @@ const updateUserSchema = z
     image: z.string().url().optional(),
     bio: z.string().max(500).optional(),
     pronoun: z.string().max(30).optional(),
-    timezone: z.string().max(100).optional(),
+    country: z.string().length(2).toUpperCase().refine(hasFlag, 'Invalid country code').optional(),
     goal: z.string().max(200).optional(),
     lastSeenAt: z.number().int().nonnegative().optional()
   })
