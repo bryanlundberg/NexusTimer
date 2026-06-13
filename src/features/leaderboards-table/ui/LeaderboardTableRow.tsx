@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { Badge } from '@/components/ui/badge'
+import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { PlayIcon } from '@radix-ui/react-icons'
 import formatTime from '@/shared/lib/formatTime'
 import { formatTps } from '@/shared/lib/formatTps'
@@ -53,9 +53,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
         <UserCell user={solve.user} />
       </div>
 
-      <Badge variant="outline" className="font-mono text-[10px] px-1.5 py-0 h-4 w-fit shrink-0">
-        {solve.puzzle}
-      </Badge>
+      <CategoryBadge category={solve.puzzle} className="text-[10px] px-1.5 py-0 h-4" />
 
       <span className="text-[10px] font-mono text-muted-foreground/70 tabular-nums">{tps ?? t('not-available')}</span>
 
