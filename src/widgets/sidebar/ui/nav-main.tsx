@@ -91,7 +91,7 @@ export function NavMain({
                     <item.icon />
                     <span>{item.title}</span>
                     {item.badge && (
-                      <span className="ml-auto rounded-full bg-red-500 px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white group-data-[collapsible=icon]:hidden">
+                      <span className="ml-auto rounded-full bg-cube-red px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white group-data-[collapsible=icon]:hidden">
                         {item.badge}
                       </span>
                     )}

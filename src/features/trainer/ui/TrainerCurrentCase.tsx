@@ -15,7 +15,7 @@ import {
   Undo2
 } from 'lucide-react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from 'cubing/twisty'
 import { cn } from '@/shared/lib/utils'
 
 interface TrainerCurrentCaseProps {
@@ -183,21 +183,14 @@ export default function TrainerCurrentCase({
       <div className="flex flex-row items-center gap-3 sm:gap-4">
         {showSolveInfo && (
           <div
-            className="shrink-0 rounded-md border bg-muted/40 p-1 sm:p-2 flex items-center justify-center relative overflow-hidden"
+            className="shrink-0 size-16 sm:size-28 rounded-md border bg-muted/40 p-1 sm:p-2 flex items-center justify-center relative overflow-hidden"
             style={{
               backgroundImage:
                 'repeating-linear-gradient(45deg, color-mix(in oklab, currentColor 8%, transparent) 0 6px, transparent 6px 14px)'
             }}
           >
             {vizConfig ? (
-              <>
-                <span className="sm:hidden">
-                  <AlgorithmRender config={vizConfig} width={56} height={56} />
-                </span>
-                <span className="hidden sm:inline-flex">
-                  <AlgorithmRender config={vizConfig} width={96} height={96} />
-                </span>
-              </>
+              <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
             ) : (
               <div className="size-14 sm:size-24 rounded-md bg-muted" />
             )}
@@ -207,12 +200,14 @@ export default function TrainerCurrentCase({
         <div className="flex flex-1 min-w-0 items-center justify-center">
           <div
             className={cn(
-              'font-mono font-bold tabular-nums leading-none transition-colors',
-              'text-6xl sm:text-7xl md:text-8xl',
+              'flex items-baseline tabular-nums tracking-tight leading-none transition-colors font-normal',
               timeColorClass
             )}
           >
-            {currentTime}
+            <span className="text-6xl sm:text-7xl md:text-8xl">{currentTime.split('.')[0]}</span>
+            <span className="text-4xl sm:text-5xl md:text-6xl opacity-80">
+              {currentTime.includes('.') ? '.' + currentTime.split('.')[1] : ''}
+            </span>
           </div>
         </div>
       </div>
@@ -228,11 +223,7 @@ export default function TrainerCurrentCase({
           >
             <Undo2 className="h-4 w-4" />
             <span>{t('actions.undoLast')}</span>
-            {lastSolveTime && (
-              <span className="font-mono tabular-nums opacity-90 border-l border-current/30 pl-2 ml-1">
-                {lastSolveTime}
-              </span>
-            )}
+            {lastSolveTime && <span className="font-mono tabular-nums opacity-75">{lastSolveTime}</span>}
           </Button>
         </div>
       )}

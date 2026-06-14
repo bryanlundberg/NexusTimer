@@ -6,7 +6,7 @@ export const userSchema = z.object({
   email: z.string().email(),
   image: z.string(),
   pronoun: z.string().optional(),
-  timezone: z.string().optional(),
+  country: z.string().optional(),
   goal: z.string().optional(),
   bio: z.string().optional()
 })

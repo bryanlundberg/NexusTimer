@@ -282,8 +282,6 @@
     "PeoplePage": {
       "title": "Personen",
       "search-placeholder": "Nach Namen suchen",
-      "region-placeholder": "Region",
-      "region-all": "Alle",
       "no-users-found": "Keine passenden Nutzer gefunden",
       "results": "Ergebnisse",
       "user-card": {
@@ -355,7 +353,7 @@
       },
       "comparative": {
         "title": "Vergleich",
-        "timezone": "Zeitzone",
+        "country": "Land",
         "first-solve": "Erster Solve",
         "total-solves": "Gesamtanzahl Solves",
         "total-cubes": "Gesamtanzahl Würfel",
@@ -509,10 +507,10 @@
       "name": "Name",
       "name-required": "Name ist erforderlich",
       "name-min-length": "Mindestens 5 Zeichen",
-      "timezone": "Zeitzone",
-      "select-timezone": "Zeitzone wählen",
       "pronoun": "Pronomen",
       "select-pronoun": "Pronomen wählen",
+      "country": "Land",
+      "select-country": "Land auswählen",
       "goal": "Ziel",
       "bio": "Bio",
       "bio-placeholder": "Erzähl uns von dir",
@@ -542,7 +540,6 @@
     },
     "AlgorithmsPage": {
       "title": "Algorithmen",
-      "header": "Meistere dein Training mit Algorithmen",
       "description": "Entdecke Algorithmen für verschiedene Puzzles mit interaktiven 3D-Ansichten.",
       "suggestions": "Fehler? Melde sie auf GitHub.",
       "edit-github": "Auf GitHub bearbeiten",

@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { Session } from 'next-auth'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useQueryState } from 'nuqs'
 import { toast } from 'sonner'
 import Link from 'next/link'
@@ -10,6 +10,8 @@ import { KeyedMutator } from 'swr'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { AvatarUploader } from '@/features/update-user-avatar/ui/AvatarUploader'
 import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
+import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
+import { getCountryName } from '@/shared/lib/getCountryName'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -26,11 +28,13 @@ interface ProfileHeroProps {
   session: Session
   bio?: string
   wcaId?: string
+  country?: string
   mutate?: KeyedMutator<any>
 }
 
-export default function ProfileHero({ session, bio, wcaId, mutate }: ProfileHeroProps) {
+export default function ProfileHero({ session, bio, wcaId, country, mutate }: ProfileHeroProps) {
   const tAccount = useTranslations('Index.AccountPage')
+  const locale = useLocale()
   const [wcaStatus, setWcaStatus] = useQueryState('wca')
   const [isUnlinking, setIsUnlinking] = useState(false)
 
@@ -114,9 +118,20 @@ export default function ProfileHero({ session, bio, wcaId, mutate }: ProfileHero
           )}
         </h1>
 
-        <div className="flex items-center gap-2 text-muted-foreground text-sm">
-          <Mail className="size-3.5" />
-          <span className="truncate">{session.user?.email}</span>
+        <div className="flex items-center gap-2 text-muted-foreground text-sm flex-wrap justify-center sm:justify-start">
+          <span className="flex items-center gap-2 min-w-0">
+            <Mail className="size-3.5 shrink-0" />
+            <span className="truncate">{session.user?.email}</span>
+          </span>
+          {country && (
+            <>
+              <span className="opacity-50">·</span>
+              <span className="flex items-center gap-1.5 shrink-0">
+                <CountryFlag code={country} />
+                {getCountryName(country, locale)}
+              </span>
+            </>
+          )}
         </div>
 
         {bio && <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{bio}</p>}

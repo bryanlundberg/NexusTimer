@@ -358,8 +358,6 @@
     "PeoplePage": {
       "title": "Ludzie",
       "search-placeholder": "Szukaj po imieniu",
-      "region-placeholder": "Region",
-      "region-all": "Wszystkie",
       "no-users-found": "Nie znaleziono użytkowników spełniających kryteria",
       "results": "Wyniki",
       "user-card": {
@@ -440,7 +438,7 @@
       },
       "comparative": {
         "title": "Porównanie",
-        "timezone": "Strefa czasowa",
+        "country": "Kraj",
         "first-solve": "Pierwsze ułożenie",
         "total-solves": "Wszystkie ułożenia",
         "total-cubes": "Wszystkie kostki",
@@ -625,10 +623,10 @@
       "name": "Imię",
       "name-required": "Imię jest wymagane",
       "name-min-length": "Imię musi mieć co najmniej 5 znaków",
-      "timezone": "Strefa czasowa",
-      "select-timezone": "Wybierz strefę czasową",
       "pronoun": "Zaimek",
       "select-pronoun": "Wybierz zaimek",
+      "country": "Kraj",
+      "select-country": "Wybierz kraj",
       "goal": "Cel",
       "bio": "Bio",
       "bio-placeholder": "Opowiedz coś o sobie",
@@ -658,7 +656,6 @@
     },
     "AlgorithmsPage": {
       "title": "Algorytmy",
-      "header": "Opanuj swoją cubingową drogę dzięki treningowi algorytmów",
       "description": "Odkryj szeroki wybór zestawów algorytmów dla różnych układanek, wraz z interaktywnymi wizualizacjami 3D, które wzbogacą Twoją naukę.",
       "suggestions": "Jeśli znajdziesz błędy lub chcesz dodać więcej algorytmów, prześlij je na naszym GitHubie.",
       "edit-github": "Edytuj te algorytmy na GitHubie",

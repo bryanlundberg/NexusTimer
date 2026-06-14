@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo } from 'react'
 import { useTranslations } from 'next-intl'
-import { BarChart3, Sparkles } from 'lucide-react'
+import { BarChart3 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
@@ -16,7 +16,7 @@ import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
 import { useTrainerPrefsStore } from '@/features/trainer/model/useTrainerPrefsStore'
 import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from 'cubing/twisty'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
 import { useTrainerSession } from '@/features/trainer/model/useTrainerSession'
 import useTimer from '@/features/timer/model/useTimer'
@@ -256,7 +256,6 @@ export default function TrainerExperience() {
           </span>
         </div>
         <Progress value={learnedPct} />
-        <div className="text-right text-[10px] text-muted-foreground font-mono tabular-nums">{learnedPct}%</div>
       </div>
 
       <div className="grid grid-cols-2 gap-2">
@@ -340,10 +339,7 @@ export default function TrainerExperience() {
                 </SheetTrigger>
                 <SheetContent side="bottom" className="p-4 max-h-[80vh] overflow-y-auto">
                   <SheetHeader className="px-0">
-                    <SheetTitle className="flex items-center gap-2">
-                      <Sparkles className="h-4 w-4 text-primary" />
-                      {set.title}
-                    </SheetTitle>
+                    <SheetTitle>{set.title}</SheetTitle>
                   </SheetHeader>
                   <div className="mt-2">{methodPanel}</div>
                 </SheetContent>
@@ -352,10 +348,7 @@ export default function TrainerExperience() {
           </div>
 
           <aside className="hidden lg:flex flex-col gap-3 w-72 shrink-0">
-            <div className="flex items-center gap-2">
-              <Sparkles className="h-3.5 w-3.5 text-primary" />
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{set.title}</h3>
-            </div>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{set.title}</h3>
             {methodPanel}
           </aside>
         </div>

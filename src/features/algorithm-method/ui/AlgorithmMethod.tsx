@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import * as React from 'react'
 import { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 import { useTranslations } from 'next-intl'
@@ -22,7 +23,7 @@ export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
 
   return (
     <Link href={`/algorithms/${slug}`} className="group focus:outline-none focus:ring-2 focus:ring-primary rounded-xl">
-      <Card className="h-full bg-card/50 ring-1 ring-transparent transition-all duration-200 group-hover:ring-2 group-hover:ring-primary">
+      <Card className="h-full shadow-none bg-card/50 ring-1 ring-transparent transition-all duration-200 group-hover:ring-2 group-hover:ring-primary">
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
@@ -41,9 +42,7 @@ export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
         <CardContent className="pt-0">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Badge variant="outline" className="text-[11px] font-medium">
-                {puzzle}
-              </Badge>
+              <CategoryBadge category={puzzle} className="text-[11px] font-medium" />
               <span className="text-xs text-muted-foreground">{algorithms.length} algs</span>
             </div>
             <Badge variant="secondary" className={`text-[11px] font-medium border-0 ${difficultyColor}`}>

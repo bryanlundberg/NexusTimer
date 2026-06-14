@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -34,8 +35,28 @@ interface TrainerSolveHistoryTableProps {
   targetMs?: number
 }
 
-const GRID_WITH_CASE = 'grid-cols-[28px_64px_1fr_56px_28px]'
-const GRID_NO_CASE = 'grid-cols-[1fr_56px_28px]'
+const GRID_WITH_CASE = 'grid-cols-[28px_1fr_7rem_6rem_28px]'
+const GRID_NO_CASE = 'grid-cols-[1fr_6rem_28px]'
+
+function TimeCell({ timeMs, penalty, targetMs }: { timeMs: number; penalty: TrainerPenalty; targetMs?: number }) {
+  const formatted = formatTime(timeMs, penalty)
+  const [main, decimal] = formatted.includes('.') ? formatted.split('.') : [formatted, null]
+  return (
+    <div className="flex items-center gap-1.5">
+      <span className={cn('size-1.5 rounded-full shrink-0', penaltyDotClass(penalty, timeMs, targetMs))} />
+      <div
+        className={cn(
+          'flex items-baseline gap-0.5 tabular-nums',
+          penalty === 'DNF' && 'text-muted-foreground line-through',
+          penalty === '+2' && 'text-amber-600 dark:text-amber-400'
+        )}
+      >
+        <span className="text-sm font-semibold">{main}</span>
+        {decimal && <span className="text-xs text-muted-foreground">.{decimal}</span>}
+      </div>
+    </div>
+  )
+}
 
 export default function TrainerSolveHistoryTable({
   solves,
@@ -64,39 +85,48 @@ export default function TrainerSolveHistoryTable({
 
   if (solves.length === 0) {
     return (
-      <div className="rounded-lg border bg-card/40 px-3 py-6">
-        <p className="text-xs text-muted-foreground text-center">
-          {isLoading ? t('loading') : (emptyLabel ?? t('empty'))}
-        </p>
+      <div className="px-3 py-8 text-center">
+        <p className="text-xs text-muted-foreground">{isLoading ? t('loading') : (emptyLabel ?? t('empty'))}</p>
       </div>
     )
   }
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="overflow-hidden rounded-lg border bg-card/40">
+      <div>
         <div
           className={cn(
-            'grid items-center gap-2 px-2.5 py-1.5 text-[10px] uppercase tracking-wider text-muted-foreground bg-muted/40 border-b',
+            'grid items-center gap-x-4 px-3 py-2 border-b border-border/60',
             showCase ? GRID_WITH_CASE : GRID_NO_CASE
           )}
         >
           {showCase && <span />}
-          <span>{t('time')}</span>
-          {showCase && <span>{t('case')}</span>}
-          <span className="text-right">{t('ago')}</span>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('time')}</span>
+          {showCase && (
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {t('case')}
+            </span>
+          )}
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('ago')}</span>
           <span />
         </div>
 
-        <ul className="flex flex-col divide-y">
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.03 } } }}
+        >
           {solves.map((solve) => {
             const algCase = showCase ? caseById?.get(solve.caseId) : undefined
             const vizConfig = showCase ? vizConfigByCaseId.get(solve.caseId) : undefined
             return (
-              <li
+              <motion.div
                 key={solve._id}
+                variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
                 className={cn(
-                  'grid items-center gap-2 px-2.5 h-9 text-xs transition-colors hover:bg-muted/40',
+                  'grid items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0',
+                  'border-l-2 border-l-transparent transition-colors duration-150 hover:bg-muted/20 hover:border-l-primary',
                   showCase ? GRID_WITH_CASE : GRID_NO_CASE
                 )}
               >
@@ -106,26 +136,13 @@ export default function TrainerSolveHistoryTable({
                   </div>
                 )}
 
-                <span className="flex items-center gap-1.5 font-mono tabular-nums">
-                  <span
-                    className={cn(
-                      'size-1.5 rounded-full shrink-0',
-                      penaltyDotClass(solve.penalty, solve.timeMs, targetMs)
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      solve.penalty === 'DNF' && 'text-muted-foreground line-through',
-                      solve.penalty === '+2' && 'text-amber-600 dark:text-amber-400'
-                    )}
-                  >
-                    {formatTime(solve.timeMs, solve.penalty)}
-                  </span>
-                </span>
+                <TimeCell timeMs={solve.timeMs} penalty={solve.penalty} targetMs={targetMs} />
 
-                {showCase && <span className="truncate text-muted-foreground">{algCase?.name ?? solve.caseId}</span>}
+                {showCase && (
+                  <span className="truncate text-xs text-muted-foreground">{algCase?.name ?? solve.caseId}</span>
+                )}
 
-                <span className="text-right text-muted-foreground tabular-nums">{formatRelative(solve.createdAt)}</span>
+                <span className="text-xs text-muted-foreground tabular-nums">{formatRelative(solve.createdAt)}</span>
 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -162,10 +179,10 @@ export default function TrainerSolveHistoryTable({
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
-              </li>
+              </motion.div>
             )
           })}
-        </ul>
+        </motion.div>
       </div>
 
       {!reachedEnd && (

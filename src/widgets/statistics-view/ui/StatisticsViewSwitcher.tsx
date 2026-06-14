@@ -1,4 +1,4 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Tabs, TabsContent } from '@/components/ui/tabs'
 import { StatisticsTabs } from '@/widgets/statistics-view/model/enums'
 import LineGraphStatistics from '@/features/line-chart-statistics/ui/LineGraphStatistics'
 import StatisticsEmpty from '@/features/deep-statistics/ui/StatisticsEmpty'
@@ -9,7 +9,7 @@ import { DeepStatistics } from '@/shared/types/statistics'
 import StatisticsViewContainer from '@/widgets/statistics-view/ui/StatisticsViewContainer'
 import { STATES } from '@/shared/const/states'
 import { BarChart3Icon, BoxIcon, Loader2 } from 'lucide-react'
-import { motion } from 'motion/react'
+import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
 
 interface StatisticsViewSwitcherProps {
   statistics: DeepStatistics
@@ -38,27 +38,7 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
   return (
     <StatisticsViewContainer>
       <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3 w-full">
-        <TabsList className="relative grid w-full grid-cols-2 mb-1">
-          {tabs.map((tab) => (
-            <TabsTrigger
-              key={tab.value}
-              value={tab.value}
-              className="relative z-10 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent"
-            >
-              {tabStats === tab.value && (
-                <motion.span
-                  layoutId="stats-tab-indicator"
-                  className="absolute inset-0 rounded-md bg-background shadow-sm dark:border dark:border-input dark:bg-input/30"
-                  transition={{ type: 'spring', bounce: 0.15, duration: 0.5 }}
-                />
-              )}
-              <span className="relative z-10 inline-flex items-center gap-1.5">
-                <tab.icon className="size-4" />
-                {tab.label}
-              </span>
-            </TabsTrigger>
-          ))}
-        </TabsList>
+        <AnimatedTabsList items={tabs} activeValue={tabStats} layoutId="stats-tab-indicator" className="mb-1" />
         <TabsContent value={StatisticsTabs.CATEGORY} className="relative min-h-50">
           {loadingProps.data ? (
             <div className="absolute inset-0 flex items-center justify-center bg-background/50 z-10">

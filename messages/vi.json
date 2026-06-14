@@ -358,8 +358,6 @@
     "PeoplePage": {
       "title": "Mọi người",
       "search-placeholder": "Tìm theo tên",
-      "region-placeholder": "Khu vực",
-      "region-all": "Tất cả",
       "no-users-found": "Không tìm thấy người dùng nào phù hợp với tiêu chí của bạn",
       "results": "Kết quả",
       "user-card": {
@@ -440,7 +438,7 @@
       },
       "comparative": {
         "title": "So sánh",
-        "timezone": "Múi giờ",
+        "country": "Quốc gia",
         "first-solve": "Lượt giải đầu tiên",
         "total-solves": "Tổng lượt giải",
         "total-cubes": "Tổng số khối",
@@ -625,10 +623,10 @@
       "name": "Tên",
       "name-required": "Tên là bắt buộc",
       "name-min-length": "Tên phải có ít nhất 5 ký tự",
-      "timezone": "Múi giờ",
-      "select-timezone": "Chọn múi giờ",
       "pronoun": "Đại từ",
       "select-pronoun": "Chọn đại từ",
+      "country": "Quốc gia",
+      "select-country": "Chọn quốc gia",
       "goal": "Mục tiêu",
       "bio": "Tiểu sử",
       "bio-placeholder": "Giới thiệu về bản thân bạn",
@@ -658,7 +656,6 @@
     },
     "AlgorithmsPage": {
       "title": "Thuật toán",
-      "header": "Làm chủ hành trình cubing với luyện tập thuật toán",
       "description": "Khám phá nhiều bộ thuật toán cho các loại puzzle khác nhau, kèm theo hình ảnh 3D tương tác để nâng cao trải nghiệm học tập của bạn.",
       "suggestions": "Nếu bạn tìm thấy lỗi hoặc muốn bổ sung thêm thuật toán, vui lòng gửi trên GitHub của chúng tôi.",
       "edit-github": "Chỉnh sửa các thuật toán này trên GitHub",

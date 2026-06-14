@@ -358,8 +358,6 @@
     "PeoplePage": {
       "title": "Persone",
       "search-placeholder": "Cerca per nome",
-      "region-placeholder": "Regione",
-      "region-all": "Tutte",
       "no-users-found": "Nessun utente trovato corrispondente ai criteri",
       "results": "Risultati",
       "user-card": {
@@ -440,7 +438,7 @@
       },
       "comparative": {
         "title": "Confronto",
-        "timezone": "Fuso orario",
+        "country": "Paese",
         "first-solve": "Primo solve",
         "total-solves": "Solve totali",
         "total-cubes": "Cubi totali",
@@ -625,10 +623,10 @@
       "name": "Nome",
       "name-required": "Il nome è obbligatorio",
       "name-min-length": "Il nome deve avere almeno 5 caratteri",
-      "timezone": "Fuso orario",
-      "select-timezone": "Seleziona fuso orario",
       "pronoun": "Pronome",
       "select-pronoun": "Seleziona pronome",
+      "country": "Paese",
+      "select-country": "Seleziona paese",
       "goal": "Obiettivo",
       "bio": "Bio",
       "bio-placeholder": "Parlaci di te",
@@ -658,7 +656,6 @@
     },
     "AlgorithmsPage": {
       "title": "Algoritmi",
-      "header": "Padroneggia il tuo percorso di cubing con l'allenamento sugli algoritmi",
       "description": "Esplora un'ampia gamma di set di algoritmi per vari puzzle, completi di visualizzazioni 3D interattive per migliorare la tua esperienza di apprendimento.",
       "suggestions": "Se trovi degli errori o vuoi aggiungere altri algoritmi, inviali sul nostro GitHub.",
       "edit-github": "Modifica questi algoritmi su GitHub",

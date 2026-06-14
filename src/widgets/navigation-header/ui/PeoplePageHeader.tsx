@@ -1,12 +1,10 @@
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import * as React from 'react'
 import { useTranslations } from 'next-intl'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useMemo, useState } from 'react'
-import { TimeZones } from '@/shared/types/enums'
+import { useState } from 'react'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 
 interface PeoplePageHeaderProps {
@@ -19,22 +17,14 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
   const router = useRouter()
   const searchParams = useSearchParams()
   const search = searchParams!.get('search')
-  const region = searchParams!.get('region')
   const [searchTerm, setSearchTerm] = useState(search)
-  const [selectedRegion, setSelectedRegion] = useState(region || 'all')
 
-  const regionOptions = useMemo(() => Object.values(TimeZones), [])
   const basketCount = useCompareUsersStore((state) => state.users.length)
 
   const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     const newSearchParams = new URLSearchParams()
     if (searchTerm) newSearchParams.set('search', searchTerm)
-    if (selectedRegion && selectedRegion !== 'all') {
-      newSearchParams.set('region', selectedRegion)
-    } else {
-      newSearchParams.delete('region')
-    }
     newSearchParams.set('page', '0')
     router.push(`/people?${newSearchParams.toString()}`)
   }
@@ -72,19 +62,6 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
             />
           </div>
           <div className="flex gap-2">
-            <Select value={selectedRegion} onValueChange={setSelectedRegion}>
-              <SelectTrigger className="flex-1 sm:w-40">
-                <SelectValue placeholder={t('region-placeholder')} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{t('region-all')}</SelectItem>
-                {regionOptions.sort().map((r) => (
-                  <SelectItem key={r} value={r}>
-                    {r}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
             <Button onClick={handleSearch} className="shrink-0" size="sm">
               {t('search')}
             </Button>

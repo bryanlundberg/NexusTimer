@@ -282,8 +282,6 @@
     "PeoplePage": {
       "title": "ユーザー",
       "search-placeholder": "名前で検索",
-      "region-placeholder": "地域",
-      "region-all": "すべて",
       "no-users-found": "条件に合うユーザーが見つかりません",
       "results": "件の結果",
       "user-card": {
@@ -355,7 +353,7 @@
       },
       "comparative": {
         "title": "記録比較",
-        "timezone": "タイムゾーン",
+        "country": "国",
         "first-solve": "最初のソルブ",
         "total-solves": "合計ソルブ数",
         "total-cubes": "合計キューブ数",
@@ -509,10 +507,10 @@
       "name": "名前",
       "name-required": "名前は必須です",
       "name-min-length": "名前は5文字以上必要です",
-      "timezone": "タイムゾーン",
-      "select-timezone": "タイムゾーンを選択",
       "pronoun": "代名詞",
       "select-pronoun": "代名詞を選択",
+      "country": "国",
+      "select-country": "国を選択",
       "goal": "目標",
       "bio": "自己紹介",
       "bio-placeholder": "自分について教えてください",
@@ -542,7 +540,6 @@
     },
     "AlgorithmsPage": {
       "title": "手順 (Algorithms)",
-      "header": "アルゴリズム練習でキューブをマスターしよう",
       "description": "様々なパズルに対応した手順セットを3Dビューで学習できます。",
       "suggestions": "間違いの報告や手順の追加提案はGitHubへお願いします。",
       "edit-github": "GitHubで手順を編集",

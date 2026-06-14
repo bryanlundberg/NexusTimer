@@ -122,7 +122,7 @@ export default function OptionsPage() {
             name={'timer.decimals'}
             label={t('Settings-menu.decimal-places')}
             control={control}
-            inputProps={{ max: 4, min: 1, step: 1 }}
+            inputProps={{ max: 3, min: 1, step: 1 }}
             description={t('Settings-descriptions.decimal-places')}
           />
         </MenuSection>

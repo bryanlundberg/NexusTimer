@@ -1,10 +1,11 @@
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
-import { GlobeAmericasIcon } from '@heroicons/react/24/outline'
 import { useRouter } from 'next/navigation'
 import { useLocale } from 'next-intl'
 import type { SolveServer } from '@/entities/solve/model/types'
+import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
+import { getCountryName } from '@/shared/lib/getCountryName'
 
 interface UserCellProps {
   user: SolveServer['user']
@@ -36,18 +37,10 @@ export function UserCell({ user }: UserCellProps) {
           {user.name}
           {user?.pronoun && <span className="text-sm text-muted-foreground font-normal">{user.pronoun}</span>}
         </h2>
-        {user?.timezone && (
-          <div className="flex items-center gap-1">
-            <GlobeAmericasIcon className="size-5" />
-            {user.timezone}
-            <span className="opacity-50">
-              (
-              {new Intl.DateTimeFormat(locale, {
-                timeZone: user.timezone,
-                timeStyle: 'short'
-              }).format(new Date())}
-              )
-            </span>
+        {user?.country && (
+          <div className="flex items-center justify-center gap-1.5">
+            <CountryFlag code={user.country} />
+            {getCountryName(user.country, locale)}
           </div>
         )}
         {user?.goal && <Badge>{user.goal}</Badge>}

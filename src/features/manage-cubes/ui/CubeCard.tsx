@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { IconButton } from '@/components/ui/shadcn-io/icon-button'
 import { Clock, Hash, Star } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { GearIcon, PlayIcon, TrashIcon } from '@radix-ui/react-icons'
 import { DateTime } from 'luxon'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -69,9 +70,7 @@ export function CubeCard({ cube }: CubeCardProps) {
           />
         </div>
         <div className="flex items-center gap-2 mt-1">
-          <Badge variant="outline" className="text-xs">
-            {cube.category}
-          </Badge>
+          <CategoryBadge category={cube.category} className="text-xs" />
           {isActive ? (
             <Badge variant="secondary" className="text-xs gap-1">
               <PlayIcon className="h-3 w-3" />

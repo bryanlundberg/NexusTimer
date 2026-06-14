@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Badge } from '@/components/ui/badge'
-import { motion } from 'motion/react'
+import { Tabs, TabsContent } from '@/components/ui/tabs'
+import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
+import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import dynamic from 'next/dynamic'
 import formatTime from '@/shared/lib/formatTime'
 import { useTranslations } from 'next-intl'
@@ -33,31 +33,16 @@ export function ReplaySolveDetails() {
     <DialogContent className="flex max-h-[80dvh] flex-col gap-3 overflow-y-auto p-5 sm:max-w-sm">
       <DialogTitle className="flex items-center justify-between gap-2 text-base leading-none">
         <span>{t('user-solution')}</span>
-        <Badge variant="outline" className="h-5 shrink-0 px-1.5 font-mono text-[10px]">
-          {metadata.puzzle}
-        </Badge>
+        <CategoryBadge category={metadata.puzzle} className="h-5 shrink-0 px-1.5 text-[10px]" />
       </DialogTitle>
       <DialogDescription className="sr-only">{metadata.scramble}</DialogDescription>
 
       <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as Tab)} className="gap-3">
-        <TabsList className="grid w-full grid-cols-2">
-          {Object.values(Tab).map((tab) => (
-            <TabsTrigger
-              key={tab}
-              value={tab}
-              className="relative z-10 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent"
-            >
-              {activeTab === tab && (
-                <motion.span
-                  layoutId="replay-solve-tab-indicator"
-                  className="absolute inset-0 rounded-md bg-background shadow-sm dark:border dark:border-input dark:bg-input/30"
-                  transition={{ type: 'spring', bounce: 0.15, duration: 0.5 }}
-                />
-              )}
-              <span className="relative z-10">{t(tab)}</span>
-            </TabsTrigger>
-          ))}
-        </TabsList>
+        <AnimatedTabsList
+          items={Object.values(Tab).map((tab) => ({ value: tab, label: t(tab) }))}
+          activeValue={activeTab}
+          layoutId="replay-solve-tab-indicator"
+        />
 
         <TabsContent value={Tab.Replay} className="flex flex-col gap-4">
           <div className="grid grid-cols-3 divide-x divide-border/60 rounded-lg border bg-muted/30">

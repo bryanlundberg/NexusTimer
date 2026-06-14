@@ -358,8 +358,6 @@
     "PeoplePage": {
       "title": "Mga Tao",
       "search-placeholder": "Hanapin ayon sa pangalan",
-      "region-placeholder": "Rehiyon",
-      "region-all": "Lahat",
       "no-users-found": "Walang user na tumutugma sa criteria mo",
       "results": "Mga Resulta",
       "user-card": {
@@ -440,7 +438,7 @@
       },
       "comparative": {
         "title": "Paghahambing",
-        "timezone": "Time Zone",
+        "country": "Bansa",
         "first-solve": "Unang solve",
         "total-solves": "Kabuuang solve",
         "total-cubes": "Kabuuang Cube",
@@ -625,10 +623,10 @@
       "name": "Pangalan",
       "name-required": "Kailangan ang pangalan",
       "name-min-length": "Ang pangalan ay dapat hindi bababa sa 5 character",
-      "timezone": "Timezone",
-      "select-timezone": "Pumili ng timezone",
       "pronoun": "Panghalip",
       "select-pronoun": "Pumili ng panghalip",
+      "country": "Bansa",
+      "select-country": "Pumili ng bansa",
       "goal": "Layunin",
       "bio": "Bio",
       "bio-placeholder": "Ikwento ang tungkol sa sarili mo",
@@ -658,7 +656,6 @@
     },
     "AlgorithmsPage": {
       "title": "Mga Algorithm",
-      "header": "Bihasain ang Iyong Cubing Journey sa Algorithm Training",
       "description": "Tuklasin ang malawak na hanay ng mga algorithm set para sa iba't ibang puzzle, kumpleto ng interactive na 3D visualizations para mapahusay ang karanasan mo sa pag-aaral.",
       "suggestions": "Kung may makita kang mga error o gusto mong magdagdag ng mas maraming algorithm, mangyaring isumite ito sa aming GitHub.",
       "edit-github": "I-edit ang mga algorithm na ito sa GitHub",

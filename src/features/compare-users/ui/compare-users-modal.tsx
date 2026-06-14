@@ -13,6 +13,8 @@ import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 import { useLocale, useTranslations } from 'next-intl'
 import moment from 'moment'
 import { Nexi } from '@/shared/ui/nexi'
+import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
+import { getCountryName } from '@/shared/lib/getCountryName'
 import * as React from 'react'
 
 export default function CompareUsersModal() {
@@ -69,13 +71,19 @@ export default function CompareUsersModal() {
           })}
         </CompareTableRow>
 
-        <CompareTableRow title={t('timezone')}>
+        <CompareTableRow title={t('country')}>
           {users.map((user) => {
-            const value = user.timezone || '—'
             return (
               <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-3'}>
-                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto px-3 font-medium'}>
-                  {value}
+                <Badge variant={user.country ? 'secondary' : 'outline'} className={'mx-auto px-3 font-medium'}>
+                  {user.country ? (
+                    <span className="flex items-center gap-1.5">
+                      <CountryFlag code={user.country} className="w-3.5" />
+                      {getCountryName(user.country, locale)}
+                    </span>
+                  ) : (
+                    '—'
+                  )}
                 </Badge>
               </div>
             )
