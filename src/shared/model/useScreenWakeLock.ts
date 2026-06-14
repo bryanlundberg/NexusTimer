@@ -13,15 +13,12 @@ export const useScreenWakeLock = (enabled: boolean) => {
   })
 
   useEffect(() => {
-    if (!isSupported) return
+    if (!isSupported || !enabled) return
 
-    if (enabled) request()
-    else release()
+    request()
 
     return () => {
-      if (isSupported) {
-        release().catch(() => {})
-      }
+      release().catch(() => {})
     }
   }, [enabled, isSupported, request, release])
 
