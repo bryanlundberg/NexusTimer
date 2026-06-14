@@ -4,13 +4,7 @@ import { useMemo } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 
-const INTENSITY = [
-  'bg-sidebar-accent/40',
-  'bg-cube-green/30',
-  'bg-cube-green/55',
-  'bg-cube-green/80',
-  'bg-cube-green'
-] as const
+const INTENSITY = ['bg-muted-foreground/15', 'bg-primary/30', 'bg-primary/55', 'bg-primary/80', 'bg-primary'] as const
 
 function intensityLevel(count: number): number {
   if (count <= 0) return 0
