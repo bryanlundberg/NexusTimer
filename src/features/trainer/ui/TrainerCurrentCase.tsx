@@ -207,12 +207,14 @@ export default function TrainerCurrentCase({
         <div className="flex flex-1 min-w-0 items-center justify-center">
           <div
             className={cn(
-              'font-normal tabular-nums tracking-tight leading-none transition-colors',
-              'text-6xl sm:text-7xl md:text-8xl',
+              'flex items-baseline tabular-nums tracking-tight leading-none transition-colors font-normal',
               timeColorClass
             )}
           >
-            {currentTime}
+            <span className="text-6xl sm:text-7xl md:text-8xl">{currentTime.split('.')[0]}</span>
+            <span className="text-4xl sm:text-5xl md:text-6xl opacity-80">
+              {currentTime.includes('.') ? '.' + currentTime.split('.')[1] : ''}
+            </span>
           </div>
         </div>
       </div>
