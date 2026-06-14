@@ -30,7 +30,11 @@ export default function AnimatedTabsList({
 }: AnimatedTabsListProps) {
   return (
     <TabsList
-      className={cn('relative', fitted ? 'inline-flex w-fit' : 'grid w-full', className)}
+      className={cn(
+        'relative h-auto rounded-xl bg-muted/60 p-1',
+        fitted ? 'inline-flex w-fit' : 'grid w-full',
+        className
+      )}
       style={fitted ? undefined : { gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
     >
       {items.map(({ value, label, icon: Icon, disabled }) => (
@@ -38,12 +42,12 @@ export default function AnimatedTabsList({
           key={value}
           value={value}
           disabled={disabled}
-          className="relative z-10 data-[state=active]:bg-transparent data-[state=active]:shadow-none dark:data-[state=active]:bg-transparent"
+          className="relative z-10 rounded-lg border-transparent py-2.5 text-muted-foreground transition-colors data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-transparent md:py-2 dark:text-muted-foreground dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent dark:data-[state=active]:text-foreground"
         >
           {activeValue === value && (
             <motion.span
               layoutId={layoutId}
-              className="absolute inset-0 rounded-md bg-background shadow-sm dark:border dark:border-input dark:bg-input/30"
+              className="absolute inset-0 rounded-lg bg-background shadow-sm"
               transition={INDICATOR_SPRING}
             />
           )}
