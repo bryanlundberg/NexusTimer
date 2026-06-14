@@ -42,17 +42,23 @@ export function useAutoNextRound({
       return userSolves && Object.values(userSolves).some((solve: any) => solve.roundIndex === currentRound)
     })
 
-    if (
+    const everyoneSolved =
       usersThatSolved.length === onlineUserIds.length &&
       usersThatSolved.includes(session.user.id) &&
       alreadySolvedInFirebase
-    ) {
+
+    if (!everyoneSolved) return
+
+    // Pause for 3s so players can see the last solver's result before advancing.
+    const timeoutId = setTimeout(() => {
       const durationMs = maxRoundTime * 1000
       const newScramble = genScramble(event as CubeCategory)
       updateRoomScramble(roomId, newScramble)
       updateRoomRoundLimit(roomId, durationMs)
       incrementRoomRound(roomId, currentRound + 1)
-    }
+    }, 3000)
+
+    return () => clearTimeout(timeoutId)
     // useFreeMode functions intentionally omitted — see useFreePlayPresence note.
   }, [
     solves,
