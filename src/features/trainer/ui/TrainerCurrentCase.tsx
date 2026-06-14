@@ -230,11 +230,7 @@ export default function TrainerCurrentCase({
           >
             <Undo2 className="h-4 w-4" />
             <span>{t('actions.undoLast')}</span>
-            {lastSolveTime && (
-              <span className="font-mono tabular-nums opacity-90 border-l border-current/30 pl-2 ml-1">
-                {lastSolveTime}
-              </span>
-            )}
+            {lastSolveTime && <span className="font-mono tabular-nums opacity-75">{lastSolveTime}</span>}
           </Button>
         </div>
       )}
