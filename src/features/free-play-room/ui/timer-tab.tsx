@@ -50,6 +50,7 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     setIsSolving,
     setSolvingTime,
     setTimerMode,
+    setLastSolve,
     reset
   } = useTimerStore()
 
@@ -115,9 +116,10 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
     setHasSolvedCurrentScramble(false)
     setModalOpen(false)
     setSolvingTime(0)
+    setLastSolve(null)
     reset()
     resetAll()
-  }, [scramble, reset, setSolvingTime, resetAll])
+  }, [scramble, reset, setSolvingTime, setLastSolve, resetAll])
 
   return (
     <div className="flex h-full" id="touch">
