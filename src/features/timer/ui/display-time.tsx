@@ -78,7 +78,7 @@ export default function DisplayTime({
           ) : (
             <motion.div
               key="timer"
-              className="relative flex flex-col gap-1 font-mono tabular-nums tracking-tight"
+              className="relative flex flex-col gap-1 tabular-nums"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
