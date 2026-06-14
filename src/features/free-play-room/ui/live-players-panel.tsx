@@ -2,7 +2,7 @@
 
 import formatTime from '@/shared/lib/formatTime'
 import { motion } from 'motion/react'
-import { History, Trophy } from 'lucide-react'
+import { Radio, Trophy } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
 interface LivePlayersPanelProps {
@@ -100,26 +100,27 @@ export default function LivePlayersPanel({ onlineUsers, solves, currentRound, se
 
   if (!onlineUsers.length) return null
 
-  const previousRound = currentRound - 1
-  const wins = computeWins(solves, currentRound)
+  // The current round counts towards wins only once everyone online has solved it,
+  const currentRoundComplete = onlineUsers.every((user) => {
+    const userSolves = solves[user.id] ?? {}
+    return (Object.values(userSolves) as any[]).some((s) => s.roundIndex === currentRound)
+  })
+  const wins = computeWins(solves, currentRoundComplete ? currentRound + 1 : currentRound)
 
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-1.5 px-1 pb-1 border-b border-border">
-        <History className="size-3 text-muted-foreground" />
-        <span className="text-[11px] text-muted-foreground">{t('previous-round')}</span>
+        <Radio className="size-3 text-muted-foreground" />
+        <span className="text-[11px] text-muted-foreground">{t('current-round')}</span>
       </div>
       {onlineUsers.map((user, i) => {
         const userSolves = solves[user.id] ?? {}
-        const prevSolve =
-          previousRound >= 0
-            ? ((Object.values(userSolves) as any[]).find((s) => s.roundIndex === previousRound) ?? null)
-            : null
+        const currentSolve = (Object.values(userSolves) as any[]).find((s) => s.roundIndex === currentRound) ?? null
         return (
           <PlayerCard
             key={user.id}
             user={user}
-            solve={prevSolve}
+            solve={currentSolve}
             wins={wins[user.id] ?? 0}
             isSelf={user.id === sessionUserId}
             index={i}
