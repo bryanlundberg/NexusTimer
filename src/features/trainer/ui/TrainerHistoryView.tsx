@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Layers, Target } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
@@ -88,13 +88,11 @@ export default function TrainerHistoryView() {
       <Tabs value={tab} onValueChange={setTab} className="flex flex-col gap-3">
         <AnimatedTabsList
           items={[
-            { value: 'method', label: t('tabs.method') },
-            { value: 'case', label: t('tabs.currentCase') }
+            { value: 'method', icon: Layers, label: t('tabs.method') },
+            { value: 'case', icon: Target, label: t('tabs.currentCase') }
           ]}
           activeValue={tab}
           layoutId="trainer-history-tab-indicator"
-          fitted
-          className="self-start"
         />
 
         <TabsContent value="method">
