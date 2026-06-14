@@ -42,7 +42,6 @@ import { NavMain } from '@/widgets/sidebar/ui/nav-main'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
 import { SidebarActivity } from '@/widgets/sidebar/ui/sidebar-activity'
-import { Nexi } from '@/shared/ui/nexi'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { INDICATOR_SPRING } from '@/shared/lib/motion'
 
@@ -220,34 +219,25 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <span>{t('NavMain.install-app')}</span>
           </button>
         )}
-        <div className="rounded-lg border bg-linear-to-br from-sidebar-accent/40 via-sidebar-accent/10 to-transparent p-3 flex flex-col gap-3">
-          <div className="flex items-center gap-2">
-            <Nexi state="idle" size={38} />
-            <div className="min-w-0">
-              <p className="text-xs font-semibold leading-tight truncate">Nexi</p>
-              <p className="text-[10px] text-muted-foreground leading-tight">{t('NavMain.footer-tagline')}</p>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-1.5">
-            <a
-              href="https://github.com/bryanlundberg/NexusTimer"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 rounded-md border bg-background/50 py-1.5 text-[11px] font-medium hover:bg-accent transition-colors"
-            >
-              <GithubIcon className="size-3.5" />
-              GitHub
-            </a>
-            <a
-              href="https://discord.gg/eCgTKcavec"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 rounded-md border bg-background/50 py-1.5 text-[11px] font-medium hover:bg-accent transition-colors"
-            >
-              <DiscordLogoIcon className="size-3.5" />
-              Discord
-            </a>
-          </div>
+        <div className="flex items-center justify-center gap-1">
+          <a
+            href="https://github.com/bryanlundberg/NexusTimer"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="flex size-7 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
+          >
+            <GithubIcon className="size-4" />
+          </a>
+          <a
+            href="https://discord.gg/eCgTKcavec"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Discord"
+            className="flex size-7 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
+          >
+            <DiscordLogoIcon className="size-4" />
+          </a>
         </div>
       </SidebarFooter>
     </Sidebar>
