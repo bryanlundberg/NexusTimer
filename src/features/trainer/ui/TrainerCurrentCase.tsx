@@ -207,7 +207,7 @@ export default function TrainerCurrentCase({
         <div className="flex flex-1 min-w-0 items-center justify-center">
           <div
             className={cn(
-              'font-mono font-normal tabular-nums tracking-tight leading-none transition-colors',
+              'font-normal tabular-nums tracking-tight leading-none transition-colors',
               'text-6xl sm:text-7xl md:text-8xl',
               timeColorClass
             )}
