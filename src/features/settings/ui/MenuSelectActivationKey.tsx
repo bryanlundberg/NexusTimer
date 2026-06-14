@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { useIsFinePointer } from '@/shared/model/use-fine-pointer'
 import { Button } from '@/components/ui/button'
 import { MenuRow } from './MenuRow'
 
@@ -21,6 +22,7 @@ export default function MenuSelectActivationKey() {
   const activationKey = useSettingsStore((state) => state.settings.timer.activationKey) || 'Space'
   const updateSetting = useSettingsStore((state) => state.updateSetting)
   const t = useTranslations('Index')
+  const isFinePointer = useIsFinePointer()
   const [recording, setRecording] = useState(false)
 
   useEffect(() => {
@@ -39,6 +41,9 @@ export default function MenuSelectActivationKey() {
     window.addEventListener('keydown', handleKeyDown, { capture: true })
     return () => window.removeEventListener('keydown', handleKeyDown, { capture: true })
   }, [recording, updateSetting])
+
+  // Hide the setting on touch-only devices.
+  if (!isFinePointer) return null
 
   return (
     <MenuRow label={t('Settings-menu.activation-key')} description={t('Settings-descriptions.activation-key')}>
