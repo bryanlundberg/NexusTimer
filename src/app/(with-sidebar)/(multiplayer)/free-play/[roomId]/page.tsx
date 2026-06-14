@@ -51,6 +51,7 @@ export default function FreePlayRoomPage() {
     updateRoomRoundLimit,
     updateRoomScramble,
     useRoomCurrentRound,
+    useRoomSolves,
     incrementRoomRound,
     useRoomIsPrivate,
     useRoomCreatedBy,
@@ -63,6 +64,7 @@ export default function FreePlayRoomPage() {
   const timerStatus = useTimerStore((state) => state.timerStatus)
   const roundLimit = useRoomRoundLimit(roomId?.toString() || '')
   const currentRound = useRoomCurrentRound(roomId?.toString() || '')
+  const solves = useRoomSolves(roomId?.toString() || '')
 
   useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
   const { mmss, isFinished } = useCountdown(roundLimit || 0)
@@ -146,6 +148,20 @@ export default function FreePlayRoomPage() {
     if (!event) return
     if (!maxRoundTime) return
 
+    // If everyone online already solved this round, let useAutoNextRound's 3s
+    // pause own the transition so the last result stays visible. Only the
+    // time-limit path advances early when players are still missing (AFK/slow).
+    const onlineUserIds = Array.isArray(onlineUsers)
+      ? onlineUsers.map((user: any) => user.id)
+      : Object.values(onlineUsers || {}).map((user: any) => user.id)
+    const everyoneSolved =
+      onlineUserIds.length > 0 &&
+      onlineUserIds.every((userId) => {
+        const userSolves = solves[userId]
+        return userSolves && Object.values(userSolves).some((solve: any) => solve.roundIndex === currentRound)
+      })
+    if (everyoneSolved) return
+
     if (handledRoundRef.current === (roundLimit ?? null)) return
     handledRoundRef.current = roundLimit ?? null
 
@@ -154,7 +170,7 @@ export default function FreePlayRoomPage() {
     updateRoomScramble(roomId.toString(), newScramble)
     updateRoomRoundLimit(roomId.toString(), durationMs)
     incrementRoomRound(roomId.toString(), currentRound + 1)
-  }, [isFinished, roomAuthority, session?.user?.id, roomId, currentRound])
+  }, [isFinished, roomAuthority, session?.user?.id, roomId, currentRound, solves, onlineUsers])
 
   const [currentTab, setCurrentTab] = React.useState<TabKey>('timer')
 
