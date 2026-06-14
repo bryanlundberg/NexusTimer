@@ -15,7 +15,7 @@ import {
   Undo2
 } from 'lucide-react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from 'cubing/twisty'
 import { cn } from '@/shared/lib/utils'
 
 interface TrainerCurrentCaseProps {
@@ -183,21 +183,14 @@ export default function TrainerCurrentCase({
       <div className="flex flex-row items-center gap-3 sm:gap-4">
         {showSolveInfo && (
           <div
-            className="shrink-0 rounded-md border bg-muted/40 p-1 sm:p-2 flex items-center justify-center relative overflow-hidden"
+            className="shrink-0 size-16 sm:size-28 rounded-md border bg-muted/40 p-1 sm:p-2 flex items-center justify-center relative overflow-hidden"
             style={{
               backgroundImage:
                 'repeating-linear-gradient(45deg, color-mix(in oklab, currentColor 8%, transparent) 0 6px, transparent 6px 14px)'
             }}
           >
             {vizConfig ? (
-              <>
-                <span className="sm:hidden">
-                  <AlgorithmRender config={vizConfig} width={56} height={56} />
-                </span>
-                <span className="hidden sm:inline-flex">
-                  <AlgorithmRender config={vizConfig} width={96} height={96} />
-                </span>
-              </>
+              <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
             ) : (
               <div className="size-14 sm:size-24 rounded-md bg-muted" />
             )}
