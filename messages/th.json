@@ -473,7 +473,8 @@
       "public-profile": "โปรไฟล์สาธารณะ",
       "save-data": "บันทึกข้อมูล",
       "download-data": "ดาวน์โหลดข้อมูล",
-      "log-out": "ออกจากระบบ"
+      "log-out": "ออกจากระบบ",
+      "activity-solves": "การไข"
     },
     "tooltips": {
       "plus-two": "โทษ +2",

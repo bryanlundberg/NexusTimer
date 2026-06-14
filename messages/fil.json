@@ -473,7 +473,8 @@
       "public-profile": "Public Profile",
       "save-data": "I-save ang data",
       "download-data": "I-download ang data",
-      "log-out": "Mag-log out"
+      "log-out": "Mag-log out",
+      "activity-solves": "solves"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",

@@ -385,7 +385,8 @@
       "public-profile": "Profil public",
       "save-data": "Sauvegarder les données",
       "download-data": "Télécharger les données",
-      "log-out": "Déconnexion"
+      "log-out": "Déconnexion",
+      "activity-solves": "résolutions"
     },
     "tooltips": {
       "plus-two": "+2 Pénalité",

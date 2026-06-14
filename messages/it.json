@@ -473,7 +473,8 @@
       "public-profile": "Profilo pubblico",
       "save-data": "Salva dati",
       "download-data": "Scarica dati",
-      "log-out": "Esci"
+      "log-out": "Esci",
+      "activity-solves": "soluzioni"
     },
     "tooltips": {
       "plus-two": "Penalità +2",

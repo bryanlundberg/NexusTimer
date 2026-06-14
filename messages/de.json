@@ -385,7 +385,8 @@
       "public-profile": "Öffentliches Profil",
       "save-data": "Daten speichern",
       "download-data": "Daten laden",
-      "log-out": "Abmelden"
+      "log-out": "Abmelden",
+      "activity-solves": "Lösungen"
     },
     "tooltips": {
       "plus-two": "+2 Strafe",

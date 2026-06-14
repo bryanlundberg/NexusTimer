@@ -385,7 +385,8 @@
       "public-profile": "सार्वजनिक प्रोफ़ाइल",
       "save-data": "डेटा सहेजें",
       "download-data": "डेटा डाउनलोड करें",
-      "log-out": "लॉग आउट"
+      "log-out": "लॉग आउट",
+      "activity-solves": "सॉल्व"
     },
     "tooltips": {
       "plus-two": "+2 जुर्माना",

@@ -385,7 +385,8 @@
       "public-profile": "公開プロフィール",
       "save-data": "データを保存",
       "download-data": "データをダウンロード",
-      "log-out": "ログアウト"
+      "log-out": "ログアウト",
+      "activity-solves": "解き"
     },
     "tooltips": {
       "plus-two": "+2ペナルティ",

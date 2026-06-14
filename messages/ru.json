@@ -385,7 +385,8 @@
       "public-profile": "Публичный профиль",
       "save-data": "Сохранить данные",
       "download-data": "Загрузить данные",
-      "log-out": "Выйти"
+      "log-out": "Выйти",
+      "activity-solves": "сборки"
     },
     "tooltips": {
       "plus-two": "+2 штрафа",

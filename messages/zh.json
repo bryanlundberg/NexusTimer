@@ -385,7 +385,8 @@
       "public-profile": "公开资料",
       "save-data": "保存数据",
       "download-data": "下载数据",
-      "log-out": "退出登录"
+      "log-out": "退出登录",
+      "activity-solves": "次还原"
     },
     "tooltips": {
       "plus-two": "+2 惩罚",

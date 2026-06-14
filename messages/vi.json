@@ -473,7 +473,8 @@
       "public-profile": "Hồ sơ công khai",
       "save-data": "Lưu dữ liệu",
       "download-data": "Tải dữ liệu",
-      "log-out": "Đăng xuất"
+      "log-out": "Đăng xuất",
+      "activity-solves": "lượt giải"
     },
     "tooltips": {
       "plus-two": "Phạt +2",

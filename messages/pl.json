@@ -473,7 +473,8 @@
       "public-profile": "Profil publiczny",
       "save-data": "Zapisz dane",
       "download-data": "Pobierz dane",
-      "log-out": "Wyloguj się"
+      "log-out": "Wyloguj się",
+      "activity-solves": "ułożenia"
     },
     "tooltips": {
       "plus-two": "Kara +2",

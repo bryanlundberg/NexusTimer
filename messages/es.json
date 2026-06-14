@@ -553,7 +553,8 @@
       "public-profile": "Perfil Público",
       "save-data": "Guardar datos",
       "download-data": "Descargar datos",
-      "log-out": "Cerrar sesión"
+      "log-out": "Cerrar sesión",
+      "activity-solves": "soluciones"
     },
     "AccessCard": {
       "title": "Acceso",

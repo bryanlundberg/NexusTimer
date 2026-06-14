@@ -385,7 +385,8 @@
       "public-profile": "Perfil público",
       "save-data": "Salvar dados",
       "download-data": "Baixar dados",
-      "log-out": "Sair"
+      "log-out": "Sair",
+      "activity-solves": "soluções"
     },
     "tooltips": {
       "plus-two": "+2 Penalidade",

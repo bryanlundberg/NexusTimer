@@ -473,7 +473,8 @@
       "public-profile": "Profil Publik",
       "save-data": "Simpan data",
       "download-data": "Unduh data",
-      "log-out": "Keluar"
+      "log-out": "Keluar",
+      "activity-solves": "solve"
     },
     "tooltips": {
       "plus-two": "Penalti +2",

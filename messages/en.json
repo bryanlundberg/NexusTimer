@@ -473,7 +473,8 @@
       "public-profile": "Public Profile",
       "save-data": "Save data",
       "download-data": "Download data",
-      "log-out": "Log out"
+      "log-out": "Log out",
+      "activity-solves": "solves"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",

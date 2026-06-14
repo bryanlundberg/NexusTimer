@@ -439,7 +439,8 @@
       "public-profile": "Публічний профіль",
       "save-data": "Зберегти дані",
       "download-data": "Завантажити дані",
-      "log-out": "Вийти"
+      "log-out": "Вийти",
+      "activity-solves": "збірки"
     },
     "tooltips": {
       "plus-two": "Штраф +2",
