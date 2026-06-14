@@ -24,16 +24,19 @@ export function SidebarActivity() {
     const year = now.getFullYear()
     const month = now.getMonth()
     const daysInMonth = new Date(year, month + 1, 0).getDate()
-    // Monday-first offset (getDay: 0=Sun..6=Sat)
-    const firstWeekday = (new Date(year, month, 1).getDay() + 6) % 7
+    const firstWeekday = new Date(year, month, 1).getDay()
     const todayDate = now.getDate()
 
     const counts = new Array(daysInMonth + 1).fill(0)
     let total = 0
 
+    const seen = new Set<string>()
     for (const cube of cubes ?? []) {
       const allSolves = [...(cube.solves?.session ?? []), ...(cube.solves?.all ?? [])]
       for (const solve of allSolves) {
+        if (!solve || solve.isDeleted) continue
+        if (seen.has(solve.id)) continue
+        seen.add(solve.id)
         const ts = solve.endTime
         if (!ts) continue
         const d = new Date(ts)
@@ -52,11 +55,11 @@ export function SidebarActivity() {
       const label = `${dateFmt.format(new Date(year, month, day))} - ${counts[day]}`
       cells.push({ day, count: counts[day], isToday: day === todayDate, label })
     }
+    while (cells.length % 7 !== 0) cells.push({ day: null, count: 0, isToday: false, label: '' })
 
     const monthLabel = new Intl.DateTimeFormat(locale, { month: 'long' }).format(now)
     const weekdayLabels = Array.from({ length: 7 }, (_, i) =>
-      // 2024-01-01 is a Monday
-      new Intl.DateTimeFormat(locale, { weekday: 'narrow' }).format(new Date(2024, 0, 1 + i))
+      new Intl.DateTimeFormat(locale, { weekday: 'narrow' }).format(new Date(2024, 0, 7 + i))
     )
 
     return { cells, total, monthLabel, weekdayLabels }
@@ -80,7 +83,11 @@ export function SidebarActivity() {
       <div className="grid grid-cols-7 gap-1">
         {cells.map((cell, i) =>
           cell.day === null ? (
-            <span key={i} className="aspect-square" />
+            <span
+              key={i}
+              aria-hidden
+              className="aspect-square rounded-[3px] border border-dashed border-muted-foreground/15 bg-transparent"
+            />
           ) : (
             <span
               key={i}
