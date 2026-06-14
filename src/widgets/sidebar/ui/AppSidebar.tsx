@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { useActiveIndicator } from '@/widgets/sidebar/model/useActiveIndicator'
@@ -9,6 +9,7 @@ import {
   BoxesIcon,
   Brain,
   ChartColumnIcon,
+  ChevronDown,
   Dumbbell,
   GithubIcon,
   HistoryIcon,
@@ -55,12 +56,30 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [hash, setHash] = useState<string>('')
   const { menuRef, indicator } = useActiveIndicator<HTMLDivElement>([pathname, hash, state])
 
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [showScrollHint, setShowScrollHint] = useState(false)
+
   useEffect(() => {
     const updateHash = () => setHash(window.location.hash || '')
     updateHash()
     window.addEventListener('hashchange', updateHash)
     return () => window.removeEventListener('hashchange', updateHash)
   }, [])
+
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+    const update = () => setShowScrollHint(el.scrollHeight - el.scrollTop - el.clientHeight > 8)
+    update()
+    el.addEventListener('scroll', update, { passive: true })
+    const ro = new ResizeObserver(update)
+    ro.observe(el)
+    if (menuRef.current) ro.observe(menuRef.current)
+    return () => {
+      el.removeEventListener('scroll', update)
+      ro.disconnect()
+    }
+  }, [menuRef])
 
   const data = useMemo(
     () => ({
@@ -190,7 +209,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="group-data-[collapsible=icon]:overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+      <SidebarContent
+        ref={scrollRef}
+        className="group-data-[collapsible=icon]:overflow-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      >
         <div ref={menuRef} className="relative isolate">
           {!isMobile && indicator && (
             <motion.div
@@ -205,6 +227,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <NavMain items={data.training} label={t('NavMain.training')} />
           <NavMain items={data.community} label={t('NavMain.community')} />
           <NavMain items={data.multiplayer} label={t('NavMain.multiplayer')} />
+        </div>
+
+        <div className="pointer-events-none sticky bottom-0 z-10 -mt-7 flex h-7 items-end justify-center group-data-[collapsible=icon]:hidden">
+          <motion.span
+            initial={false}
+            animate={showScrollHint ? { opacity: [0.25, 0.85, 0.25], y: [0, 2, 0] } : { opacity: 0, y: 0 }}
+            transition={showScrollHint ? { duration: 1.6, repeat: Infinity, ease: 'easeInOut' } : { duration: 0.2 }}
+          >
+            <ChevronDown className="size-4 text-muted-foreground" />
+          </motion.span>
         </div>
       </SidebarContent>
       <SidebarFooter className="group-data-[collapsible=icon]:hidden">
