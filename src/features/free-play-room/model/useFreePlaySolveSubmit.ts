@@ -26,6 +26,7 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
   const setSelectedCube = useTimerStore((store) => store.setSelectedCube)
   const setCubes = useTimerStore((store) => store.setCubes)
   const setSolvingTime = useTimerStore((store) => store.setSolvingTime)
+  const setLastSolve = useTimerStore((store) => store.setLastSolve)
 
   const submit = useCallback(
     async ({ dnf, plus2, cubeId }: SubmitParams) => {
@@ -37,6 +38,24 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
         plus2,
         scramble,
         roundIndex: currentRound
+      })
+
+      // Only for reflect the penalty (+2 / DNF) on the timer display after submitting.
+      const now = Date.now()
+      setLastSolve({
+        id: genId(),
+        startTime: now - solvingTime,
+        endTime: now,
+        scramble,
+        bookmark: false,
+        time: solvingTime,
+        dnf,
+        plus2,
+        rating: 0,
+        cubeId: cubeId ?? '',
+        comment: '',
+        isDeleted: false,
+        updatedAt: now
       })
 
       if (!cubeId) return
@@ -83,7 +102,8 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
       addUserSolve,
       selectedCube,
       setSelectedCube,
-      setCubes
+      setCubes,
+      setLastSolve
     ]
   )
 
