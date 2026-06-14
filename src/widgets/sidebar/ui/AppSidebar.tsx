@@ -41,6 +41,7 @@ import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
 import { NavMain } from '@/widgets/sidebar/ui/nav-main'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
+import { SidebarActivity } from '@/widgets/sidebar/ui/sidebar-activity'
 import { Nexi } from '@/shared/ui/nexi'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { INDICATOR_SPRING } from '@/shared/lib/motion'
@@ -208,6 +209,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </div>
       </SidebarContent>
       <SidebarFooter className="group-data-[collapsible=icon]:hidden">
+        <SidebarActivity />
         {isInstallable && (
           <button
             type="button"
