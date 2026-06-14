@@ -31,8 +31,6 @@
 
 
 @theme inline {
-  --font-sans: var(--font-saira), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-mono-numeric), ui-monospace, SFMono-Regular, Menlo, monospace;
   --color-cube-white: var(--cube-white);
   --color-cube-yellow: var(--cube-yellow);
   --color-cube-red: var(--cube-red);

@@ -1,6 +1,5 @@
 import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
-import { saira, numericMono } from '@/shared/config/fonts'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages, getTranslations } from 'next-intl/server'
 import { locales } from '@/shared/config/i18n/locales'
@@ -136,7 +135,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           }}
         />
       </head>
-      <body className={`${saira.variable} ${numericMono.variable}`}>
+      <body className={`font-sans`}>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-441RYCJK0K" strategy="lazyOnload" />
         <Script id="google-analytics" strategy="lazyOnload">
           {`
