@@ -728,6 +728,7 @@
     "inspection-on": "Инспекция включена",
     "inspection-off": "Инспекция отключена",
     "previous-round": "Предыдущий раунд",
+    "current-round": "Текущий раунд",
     "confirm-solve": {
       "title": "Подтвердите время ({time})",
       "description": "Как записать эту сборку?",

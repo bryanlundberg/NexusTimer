@@ -851,6 +851,7 @@
     "inspection-on": "Đã bật quan sát",
     "inspection-off": "Đã tắt quan sát",
     "previous-round": "Vòng trước",
+    "current-round": "Vòng hiện tại",
     "confirm-solve": {
       "title": "Xác nhận thời gian lượt giải ({time})",
       "description": "Bạn muốn ghi nhận lượt giải này như thế nào?",

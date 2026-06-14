@@ -851,6 +851,7 @@
     "inspection-on": "Inspekcja włączona",
     "inspection-off": "Inspekcja wyłączona",
     "previous-round": "Poprzednia runda",
+    "current-round": "Bieżąca runda",
     "confirm-solve": {
       "title": "Potwierdź czas ułożenia ({time})",
       "description": "Jak chcesz zarejestrować to ułożenie?",

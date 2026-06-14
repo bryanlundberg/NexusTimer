@@ -728,6 +728,7 @@
     "inspection-on": "인스펙션 활성화됨",
     "inspection-off": "인스펙션 비활성화됨",
     "previous-round": "이전 라운드",
+    "current-round": "현재 라운드",
     "confirm-solve": {
       "title": "기록 확인 ({time})",
       "description": "이 기록을 어떻게 등록할까요?",

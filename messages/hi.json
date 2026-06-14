@@ -728,6 +728,7 @@
     "inspection-on": "निरीक्षण सक्रिय",
     "inspection-off": "निरीक्षण निष्क्रिय",
     "previous-round": "पिछला राउंड",
+    "current-round": "वर्तमान राउंड",
     "confirm-solve": {
       "title": "समाधान समय की पुष्टि करें ({time})",
       "description": "आप इस समाधान को कैसे पंजीकृत करना चाहेंगे?",

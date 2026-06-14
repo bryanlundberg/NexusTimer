@@ -851,6 +851,7 @@
     "inspection-on": "Inspection enabled",
     "inspection-off": "Inspection disabled",
     "previous-round": "Previous round",
+    "current-round": "Current round",
     "confirm-solve": {
       "title": "Confirm Solve Time ({time})",
       "description": "How would you like to register this solve?",

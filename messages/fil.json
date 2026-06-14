@@ -851,6 +851,7 @@
     "inspection-on": "Naka-enable ang inspection",
     "inspection-off": "Naka-disable ang inspection",
     "previous-round": "Nakaraang round",
+    "current-round": "Kasalukuyang round",
     "confirm-solve": {
       "title": "Kumpirmahin ang Solve Time ({time})",
       "description": "Paano mo gustong i-record ang solve na ito?",

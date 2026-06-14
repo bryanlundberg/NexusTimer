@@ -797,6 +797,7 @@
     "inspection-on": "Інспекцію увімкнено",
     "inspection-off": "Інспекцію вимкнено",
     "previous-round": "Попередній раунд",
+    "current-round": "Поточний раунд",
     "confirm-solve": {
       "title": "Підтвердьте час спроби ({time})",
       "description": "Як зареєструвати цю спробу?",

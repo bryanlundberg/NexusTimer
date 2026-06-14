@@ -728,6 +728,7 @@
     "inspection-on": "Inspection activée",
     "inspection-off": "Inspection désactivée",
     "previous-round": "Tour précédent",
+    "current-round": "Tour actuel",
     "confirm-solve": {
       "title": "Confirmer le temps ({time})",
       "description": "Comment voulez-vous enregistrer ce temps ?",

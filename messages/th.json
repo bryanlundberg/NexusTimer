@@ -851,6 +851,7 @@
     "inspection-on": "เปิดการตรวจสอบแล้ว",
     "inspection-off": "ปิดการตรวจสอบแล้ว",
     "previous-round": "รอบก่อนหน้า",
+    "current-round": "รอบปัจจุบัน",
     "confirm-solve": {
       "title": "ยืนยันเวลาการต่อ ({time})",
       "description": "คุณต้องการบันทึกการต่อนี้อย่างไร?",

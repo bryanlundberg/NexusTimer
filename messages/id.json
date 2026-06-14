@@ -851,6 +851,7 @@
     "inspection-on": "Inspeksi diaktifkan",
     "inspection-off": "Inspeksi dinonaktifkan",
     "previous-round": "Ronde sebelumnya",
+    "current-round": "Ronde saat ini",
     "confirm-solve": {
       "title": "Konfirmasi Waktu Solve ({time})",
       "description": "Bagaimana kamu ingin mencatat solve ini?",

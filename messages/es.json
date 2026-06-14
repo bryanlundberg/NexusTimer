@@ -749,6 +749,7 @@
     "inspection-on": "Inspección activada",
     "inspection-off": "Inspección desactivada",
     "previous-round": "Ronda anterior",
+    "current-round": "Ronda actual",
     "confirm-solve": {
       "title": "Confirmar tiempo ({time})",
       "description": "¿Cómo quieres registrar este tiempo?",

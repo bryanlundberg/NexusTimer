@@ -728,6 +728,7 @@
     "inspection-on": "Inspektion aktiviert",
     "inspection-off": "Inspektion deaktiviert",
     "previous-round": "Vorherige Runde",
+    "current-round": "Aktuelle Runde",
     "confirm-solve": {
       "title": "Zeit bestätigen ({time})",
       "description": "Wie soll diese Zeit gewertet werden?",

@@ -851,6 +851,7 @@
     "inspection-on": "Ispezione abilitata",
     "inspection-off": "Ispezione disabilitata",
     "previous-round": "Round precedente",
+    "current-round": "Round attuale",
     "confirm-solve": {
       "title": "Conferma il tempo del solve ({time})",
       "description": "Come vuoi registrare questo solve?",
