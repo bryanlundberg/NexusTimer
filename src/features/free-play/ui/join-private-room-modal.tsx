@@ -35,6 +35,7 @@ export default function JoinPrivateRoomModal({ room }: JoinPrivateRoomModalProps
     const data = await res.json()
 
     if (data.success) {
+      close()
       router.push(`/free-play/${room.roomId}`)
     } else {
       setError(true)

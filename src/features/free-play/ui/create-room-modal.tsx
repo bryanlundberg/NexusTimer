@@ -14,6 +14,7 @@ import genScramble from '@/shared/lib/timer/genScramble'
 import { RoomStatus } from '@/entities/free-play-mode/model/enums'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 
 const CODE_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
 
@@ -38,6 +39,7 @@ export default function CreateRoomModal() {
   const t = useTranslations('Multiplayer.create-room')
   const { data: session } = useSession()
   const router = useRouter()
+  const close = useOverlayStore((store) => store.close)
   const [isPrivate, setIsPrivate] = useState(false)
   const [roomCode, setRoomCode] = useState('')
   const [codeCopied, setCodeCopied] = useState(false)
@@ -87,6 +89,7 @@ export default function CreateRoomModal() {
       ...(isPrivate && { passwordHash: await hashRoomCode(roomCode) })
     })
 
+    close()
     router.push(`/free-play/${roomId}`)
   }
 
