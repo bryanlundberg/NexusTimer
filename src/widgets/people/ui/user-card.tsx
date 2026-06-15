@@ -10,8 +10,10 @@ import { useCompareUsersStore } from '@/features/compare-users/model/useCompareU
 import { useTranslations } from 'next-intl'
 import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
 import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
+import { PresenceDot } from '@/features/presence/ui/PresenceDot'
+import { resolvePresenceDisplay, type PresenceState } from '@/features/presence/model/usePresence'
 
-export default function UserCard({ user }: { user: UserDocument }) {
+export default function UserCard({ user, presence }: { user: UserDocument; presence?: PresenceState }) {
   const t = useTranslations('Index.PeoplePage.user-card')
   const router = useRouter()
   const addUser = useCompareUsersStore((state) => state.addUser)
@@ -44,24 +46,32 @@ export default function UserCard({ user }: { user: UserDocument }) {
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
 
       {/* Avatar */}
-      <div ref={avatarRef} className="hidden sm:block shrink-0">
+      <div ref={avatarRef} className="hidden sm:block shrink-0 relative">
         <Avatar className="size-9 rounded-lg">
           <AvatarImage className="object-cover" src={user.image} alt={user.name} />
           <AvatarFallback className="rounded-lg text-xs font-bold">
             {user.name.substring(0, 2).toUpperCase()}
           </AvatarFallback>
         </Avatar>
+        <span className="absolute -bottom-0.5 right-2 rounded-full bg-background p-px">
+          <PresenceDot state={resolvePresenceDisplay(presence)} className="size-2" />
+        </span>
       </div>
 
       {/* Name + meta */}
       <div className="min-w-0 flex flex-col gap-0.5">
         <div className="flex items-center gap-2">
-          <Avatar className="sm:hidden size-8 rounded-lg shrink-0">
-            <AvatarImage className="object-cover" src={user.image} alt={user.name} />
-            <AvatarFallback className="rounded-lg text-xs font-bold">
-              {user.name.substring(0, 2).toUpperCase()}
-            </AvatarFallback>
-          </Avatar>
+          <div className="relative sm:hidden shrink-0">
+            <Avatar className="size-8 rounded-lg">
+              <AvatarImage className="object-cover" src={user.image} alt={user.name} />
+              <AvatarFallback className="rounded-lg text-xs font-bold">
+                {user.name.substring(0, 2).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+            <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-px">
+              <PresenceDot state={resolvePresenceDisplay(presence)} className="size-2" />
+            </span>
+          </div>
           <span className="font-bold text-sm truncate">{user.name}</span>
           {user.wcaId && <WcaBadge wcaId={user.wcaId} className="shrink-0" />}
           {user.pronoun && <span className="text-xs text-muted-foreground shrink-0">{user.pronoun}</span>}
