@@ -4,6 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { UserDocument } from '@/entities/user/model/user'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { useUsers } from '@/entities/user/model/useUsers'
+import { usePresenceList } from '@/features/presence/model/usePresence'
 import { TablePagination } from '@/widgets/people/ui/table-pagination'
 import UserCard from '@/widgets/people/ui/user-card'
 import { useTranslations } from 'next-intl'
@@ -21,6 +22,9 @@ export default function PeoplePage() {
     name: search || undefined,
     page: Number(page) || 0
   })
+
+  const visibleIds = React.useMemo(() => (data?.events ?? []).map((user: UserDocument) => user._id), [data?.events])
+  const presence = usePresenceList(visibleIds)
 
   return (
     <ScrollArea className={'max-h-dvh overflow-auto'}>
@@ -69,7 +73,9 @@ export default function PeoplePage() {
           {!isLoading &&
             data?.events &&
             data.events.length > 0 &&
-            data.events.map((user: UserDocument) => <UserCard key={user._id} user={user} />)}
+            data.events.map((user: UserDocument) => (
+              <UserCard key={user._id} user={user} presence={presence[user._id]} />
+            ))}
         </div>
 
         {!isLoading && data?.pages !== undefined && data.pages > 0 && (
