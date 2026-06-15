@@ -3,7 +3,7 @@ import type { PresenceDisplay } from '@/features/presence/model/usePresence'
 
 const OUTER = 'M8 0 A8 8 0 1 0 8 16 A8 8 0 1 0 8 0 Z'
 const RING_HOLE = 'M8 4 A4 4 0 1 0 8 12 A4 4 0 1 0 8 4 Z' // -> hollow ring (offline/invisible)
-const MOON_BITE = 'M4 -2.5 A6.5 6.5 0 1 0 4 10.5 A6.5 6.5 0 1 0 4 -2.5 Z' // -> crescent (away)
+const MOON_BITE = 'M4.5 -2 A6.5 6.5 0 1 0 4.5 11 A6.5 6.5 0 1 0 4.5 -2 Z' // -> crescent (away)
 const DND_BAR = 'M4 6.5 H12 A1.5 1.5 0 0 1 12 9.5 H4 A1.5 1.5 0 0 1 4 6.5 Z' // -> circle w/ bar (busy)
 
 const SHAPES: Record<PresenceDisplay, string> = {
