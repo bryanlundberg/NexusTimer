@@ -1,11 +1,13 @@
 'use client'
 import { useAppInit } from '@/shared/model/app-init/useAppInit'
+import { usePresenceHeartbeat } from '@/features/presence/model/usePresenceHeartbeat'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import useWebsiteColors from '@/shared/model/useWebsiteColors'
 import { useEffect } from 'react'
 
 export default function PreloadAppProvider({ children }: { children: React.ReactNode }) {
   const { isAppReady } = useAppInit()
+  usePresenceHeartbeat()
   const settings = useSettingsStore((store) => store.settings)
   const { applyColorTheme } = useWebsiteColors()
 

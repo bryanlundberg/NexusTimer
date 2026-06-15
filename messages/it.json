@@ -468,12 +468,23 @@
       "free-play": "Gioco libero",
       "install-app": "Installa app",
       "settings": "Impostazioni",
-      "account": "Account",
+      "account": "Il mio account",
+      "adjust-app": "Impostazioni",
       "public-profile": "Profilo pubblico",
-      "save-data": "Salva dati",
-      "download-data": "Scarica dati",
+      "save-data": "Crea backup",
+      "download-data": "Ripristina backup",
       "log-out": "Esci",
       "activity-solves": "soluzioni"
+    },
+    "Presence": {
+      "online": "Online",
+      "away": "Assente",
+      "busy": "Concentrato",
+      "busy-desc": "Concentrato, le notifiche sono silenziate",
+      "invisible": "Invisibile",
+      "invisible-desc": "Apparirai offline",
+      "offline": "Offline",
+      "last-seen": "Ultimo accesso {time}"
     },
     "tooltips": {
       "plus-two": "Penalità +2",

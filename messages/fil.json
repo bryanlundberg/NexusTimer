@@ -468,12 +468,23 @@
       "free-play": "Free Play",
       "install-app": "I-install ang App",
       "settings": "Mga Setting",
-      "account": "Account",
+      "account": "Aking Account",
+      "adjust-app": "Mga Setting",
       "public-profile": "Public Profile",
-      "save-data": "I-save ang data",
-      "download-data": "I-download ang data",
+      "save-data": "Gumawa ng backup",
+      "download-data": "I-restore ang backup",
       "log-out": "Mag-log out",
       "activity-solves": "solves"
+    },
+    "Presence": {
+      "online": "Online",
+      "away": "Wala",
+      "busy": "Nakatutok",
+      "busy-desc": "Nakatutok, naka-silent ang mga abiso",
+      "invisible": "Invisible",
+      "invisible-desc": "Magpapakita kang offline",
+      "offline": "Offline",
+      "last-seen": "Huling nakita {time}"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",

@@ -381,12 +381,23 @@
       "free-play": "Свободная игра",
       "install-app": "Установить приложение",
       "settings": "Настройки",
-      "account": "Аккаунт",
+      "account": "Мой аккаунт",
+      "adjust-app": "Настройки",
       "public-profile": "Публичный профиль",
-      "save-data": "Сохранить данные",
-      "download-data": "Загрузить данные",
+      "save-data": "Создать резервную копию",
+      "download-data": "Восстановить из резервной копии",
       "log-out": "Выйти",
       "activity-solves": "сборки"
+    },
+    "Presence": {
+      "online": "В сети",
+      "away": "Нет на месте",
+      "busy": "В фокусе",
+      "busy-desc": "Сосредоточен, уведомления отключены",
+      "invisible": "Невидимый",
+      "invisible-desc": "Вы будете отображаться офлайн",
+      "offline": "Не в сети",
+      "last-seen": "Был(а) в сети {time}"
     },
     "tooltips": {
       "plus-two": "+2 штрафа",

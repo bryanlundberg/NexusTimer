@@ -381,12 +381,23 @@
       "free-play": "自由练习",
       "install-app": "安装应用",
       "settings": "设置",
-      "account": "账户",
+      "account": "我的账户",
+      "adjust-app": "设置",
       "public-profile": "公开资料",
-      "save-data": "保存数据",
-      "download-data": "下载数据",
+      "save-data": "创建备份",
+      "download-data": "恢复备份",
       "log-out": "退出登录",
       "activity-solves": "次还原"
+    },
+    "Presence": {
+      "online": "在线",
+      "away": "离开",
+      "busy": "专注中",
+      "busy-desc": "专注中，通知已静音",
+      "invisible": "隐身",
+      "invisible-desc": "你将显示为离线",
+      "offline": "离线",
+      "last-seen": "最后在线 {time}"
     },
     "tooltips": {
       "plus-two": "+2 惩罚",
