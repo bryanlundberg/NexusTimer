@@ -1,6 +1,6 @@
 'use client'
 
-import { HardDriveDownload, HardDriveUpload, LogOut, PencilIcon, RssIcon } from 'lucide-react'
+import { Globe, HardDriveDownload, HardDriveUpload, LogOut, Settings, UserRound } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -17,7 +17,6 @@ import {
 import { useRouter } from 'next/navigation'
 import useLogout from '@/features/logout/model/useLogout'
 import { useTranslations } from 'next-intl'
-import { GearIcon } from '@radix-ui/react-icons'
 import { Button } from '@/components/ui/button'
 import { usePresenceStatus } from '@/features/presence/model/usePresenceStatus'
 import { PresenceDot } from '@/features/presence/ui/PresenceDot'
@@ -41,19 +40,19 @@ export function NavUser({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant={'ghost'} size={'icon'} className={'rounded-full'}>
-          <span className="relative">
+      <div className="relative inline-flex">
+        <DropdownMenuTrigger asChild>
+          <Button variant={'ghost'} size={'icon'} className={'rounded-full'}>
             <Avatar className="size-8 rounded-lg">
               <AvatarImage className={'object-cover'} src={user.avatar} alt={user.name} />
               <AvatarFallback className="rounded-lg">CN</AvatarFallback>
             </Avatar>
-            <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-px">
-              <PresenceDot state={statusDisplay} className="size-2" />
-            </span>
-          </span>
-        </Button>
-      </DropdownMenuTrigger>
+          </Button>
+        </DropdownMenuTrigger>
+        <span className="pointer-events-none absolute bottom-1 right-1 z-10 rounded-full bg-background p-px">
+          <PresenceDot state={statusDisplay} className="size-2" />
+        </span>
+      </div>
       <DropdownMenuContent
         className="w-[--radix-dropdown-menu-trigger-width] max-w-40 rounded-lg"
         side={'bottom'}
@@ -107,17 +106,17 @@ export function NavUser({
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={() => router.push('/people/' + user.id)}>
-            <RssIcon />
+            <Globe />
             {t('NavMain.public-profile')}
           </DropdownMenuItem>
 
           <DropdownMenuItem onClick={() => router.push('/account')}>
-            <PencilIcon />
+            <UserRound />
             {t('NavMain.account')}
           </DropdownMenuItem>
 
           <DropdownMenuItem onClick={() => router.push('/options')}>
-            <GearIcon />
+            <Settings />
             {t('NavMain.adjust-app')}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
@@ -132,8 +131,11 @@ export function NavUser({
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleResetDeviceData}>
-          <LogOut />
+        <DropdownMenuItem
+          onClick={handleResetDeviceData}
+          className="text-red-600 focus:text-red-600 focus:bg-red-50 dark:text-red-500 dark:focus:text-red-500 dark:focus:bg-red-950/40"
+        >
+          <LogOut className="text-red-600 dark:text-red-500" />
           {t('NavMain.log-out')}
         </DropdownMenuItem>
       </DropdownMenuContent>
