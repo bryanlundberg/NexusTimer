@@ -14,6 +14,8 @@ import { ArrowUpIcon } from '@heroicons/react/24/solid'
 import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { getCountryName } from '@/shared/lib/getCountryName'
+import { PresenceDot } from '@/features/presence/ui/PresenceDot'
+import { usePresence, resolvePresenceDisplay } from '@/features/presence/model/usePresence'
 
 interface Props {
   user: UserDocument
@@ -44,6 +46,8 @@ export function ProfileHeroBanner({ user, cubes, level }: Props) {
 
   const memberSince = moment(user.createdAt).locale(locale).format('MMM YYYY')
 
+  const presence = usePresence(user._id)
+
   return (
     <div className="w-full px-4 md:px-6 py-6 flex flex-col sm:flex-row items-start justify-between gap-6 border-b border-border/40 bg-muted/20">
       {/* Left: avatar + user info */}
@@ -58,6 +62,9 @@ export function ProfileHeroBanner({ user, cubes, level }: Props) {
               LV.{level}
             </span>
           )}
+          <span className="absolute -bottom-0.5 -right-0.5 rounded-full bg-background p-0.5">
+            <PresenceDot state={resolvePresenceDisplay(presence)} className="size-3" />
+          </span>
         </div>
 
         <div className="flex flex-col gap-1.5 min-w-0">
