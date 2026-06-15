@@ -381,12 +381,23 @@
       "free-play": "フリープレイ",
       "install-app": "アプリをインストール",
       "settings": "設定",
-      "account": "アカウント",
+      "account": "マイアカウント",
+      "adjust-app": "設定",
       "public-profile": "公開プロフィール",
-      "save-data": "データを保存",
-      "download-data": "データをダウンロード",
+      "save-data": "バックアップを作成",
+      "download-data": "バックアップを復元",
       "log-out": "ログアウト",
       "activity-solves": "解き"
+    },
+    "Presence": {
+      "online": "オンライン",
+      "away": "離席中",
+      "busy": "集中モード",
+      "busy-desc": "集中中、通知はミュートされています",
+      "invisible": "非表示",
+      "invisible-desc": "オフラインとして表示されます",
+      "offline": "オフライン",
+      "last-seen": "最終ログイン {time}"
     },
     "tooltips": {
       "plus-two": "+2ペナルティ",

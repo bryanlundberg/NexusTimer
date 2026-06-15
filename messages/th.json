@@ -468,12 +468,23 @@
       "free-play": "เล่นอิสระ",
       "install-app": "ติดตั้งแอป",
       "settings": "การตั้งค่า",
-      "account": "บัญชี",
+      "account": "บัญชีของฉัน",
+      "adjust-app": "การตั้งค่า",
       "public-profile": "โปรไฟล์สาธารณะ",
-      "save-data": "บันทึกข้อมูล",
-      "download-data": "ดาวน์โหลดข้อมูล",
+      "save-data": "สร้างข้อมูลสำรอง",
+      "download-data": "กู้คืนข้อมูลสำรอง",
       "log-out": "ออกจากระบบ",
       "activity-solves": "การไข"
+    },
+    "Presence": {
+      "online": "ออนไลน์",
+      "away": "ไม่อยู่",
+      "busy": "กำลังโฟกัส",
+      "busy-desc": "มีสมาธิ การแจ้งเตือนถูกปิดเสียง",
+      "invisible": "ล่องหน",
+      "invisible-desc": "คุณจะปรากฏเป็นออฟไลน์",
+      "offline": "ออฟไลน์",
+      "last-seen": "เห็นล่าสุด {time}"
     },
     "tooltips": {
       "plus-two": "โทษ +2",

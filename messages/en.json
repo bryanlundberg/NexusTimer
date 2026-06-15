@@ -468,11 +468,12 @@
       "free-play": "Free Play",
       "install-app": "Install App",
       "settings": "Settings",
-      "account": "Account",
+      "adjust-app": "Settings",
+      "account": "My Account",
       "public-profile": "Public Profile",
-      "save-data": "Save data",
-      "download-data": "Download data",
-      "log-out": "Log out",
+      "save-data": "Create Backup",
+      "download-data": "Restore Backup",
+      "log-out": "Sign Out",
       "activity-solves": "solves"
     },
     "tooltips": {
@@ -767,6 +768,16 @@
         "loadMore": "Load more",
         "empty": "No solves yet."
       }
+    },
+    "Presence": {
+      "online": "Online",
+      "away": "Away",
+      "busy": "In the zone",
+      "busy-desc": "Focused, notifications are silenced",
+      "invisible": "Invisible",
+      "invisible-desc": "You'll appear offline",
+      "offline": "Offline",
+      "last-seen": "Last seen {time}"
     }
   },
   "Metadata": {

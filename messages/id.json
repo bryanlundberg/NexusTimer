@@ -468,12 +468,23 @@
       "free-play": "Main Bebas",
       "install-app": "Pasang Aplikasi",
       "settings": "Pengaturan",
-      "account": "Akun",
+      "account": "Akun Saya",
+      "adjust-app": "Pengaturan",
       "public-profile": "Profil Publik",
-      "save-data": "Simpan data",
-      "download-data": "Unduh data",
+      "save-data": "Buat cadangan",
+      "download-data": "Pulihkan cadangan",
       "log-out": "Keluar",
       "activity-solves": "solve"
+    },
+    "Presence": {
+      "online": "Online",
+      "away": "Tidak ada",
+      "busy": "Sedang fokus",
+      "busy-desc": "Fokus, notifikasi dibisukan",
+      "invisible": "Tak terlihat",
+      "invisible-desc": "Anda akan tampak offline",
+      "offline": "Offline",
+      "last-seen": "Terakhir dilihat {time}"
     },
     "tooltips": {
       "plus-two": "Penalti +2",

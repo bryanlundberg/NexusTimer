@@ -549,12 +549,23 @@
       "free-play": "Juego Libre",
       "install-app": "Instalar App",
       "settings": "Ajustes",
-      "account": "Cuenta",
+      "account": "Mi cuenta",
+      "adjust-app": "Ajustes",
       "public-profile": "Perfil Público",
-      "save-data": "Guardar datos",
-      "download-data": "Descargar datos",
+      "save-data": "Crear copia de seguridad",
+      "download-data": "Restaurar copia de seguridad",
       "log-out": "Cerrar sesión",
       "activity-solves": "soluciones"
+    },
+    "Presence": {
+      "online": "En línea",
+      "away": "Ausente",
+      "busy": "En modo concentración",
+      "busy-desc": "Concentrado, las notificaciones están silenciadas",
+      "invisible": "Invisible",
+      "invisible-desc": "Aparecerás como desconectado",
+      "offline": "Desconectado",
+      "last-seen": "Última conexión {time}"
     },
     "AccessCard": {
       "title": "Acceso",

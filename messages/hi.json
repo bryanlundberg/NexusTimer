@@ -381,12 +381,23 @@
       "free-play": "फ्री प्ले",
       "install-app": "ऐप इंस्टॉल करें",
       "settings": "सेटिंग्स",
-      "account": "खाता",
+      "account": "मेरा खाता",
+      "adjust-app": "सेटिंग्स",
       "public-profile": "सार्वजनिक प्रोफ़ाइल",
-      "save-data": "डेटा सहेजें",
-      "download-data": "डेटा डाउनलोड करें",
+      "save-data": "बैकअप बनाएं",
+      "download-data": "बैकअप पुनर्स्थापित करें",
       "log-out": "लॉग आउट",
       "activity-solves": "सॉल्व"
+    },
+    "Presence": {
+      "online": "ऑनलाइन",
+      "away": "अनुपस्थित",
+      "busy": "फोकस में",
+      "busy-desc": "केंद्रित, सूचनाएं म्यूट हैं",
+      "invisible": "अदृश्य",
+      "invisible-desc": "आप ऑफ़लाइन दिखाई देंगे",
+      "offline": "ऑफ़लाइन",
+      "last-seen": "अंतिम बार देखा गया {time}"
     },
     "tooltips": {
       "plus-two": "+2 जुर्माना",

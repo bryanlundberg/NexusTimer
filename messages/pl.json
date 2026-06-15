@@ -468,12 +468,23 @@
       "free-play": "Swobodna gra",
       "install-app": "Zainstaluj aplikację",
       "settings": "Ustawienia",
-      "account": "Konto",
+      "account": "Moje konto",
+      "adjust-app": "Ustawienia",
       "public-profile": "Profil publiczny",
-      "save-data": "Zapisz dane",
-      "download-data": "Pobierz dane",
+      "save-data": "Utwórz kopię zapasową",
+      "download-data": "Przywróć kopię zapasową",
       "log-out": "Wyloguj się",
       "activity-solves": "ułożenia"
+    },
+    "Presence": {
+      "online": "Online",
+      "away": "Zaraz wracam",
+      "busy": "Skupienie",
+      "busy-desc": "Skupiony, powiadomienia są wyciszone",
+      "invisible": "Niewidoczny",
+      "invisible-desc": "Będziesz widoczny jako offline",
+      "offline": "Offline",
+      "last-seen": "Ostatnio widziany {time}"
     },
     "tooltips": {
       "plus-two": "Kara +2",

@@ -468,12 +468,23 @@
       "free-play": "Chơi tự do",
       "install-app": "Cài đặt ứng dụng",
       "settings": "Cài đặt",
-      "account": "Tài khoản",
+      "account": "Tài khoản của tôi",
+      "adjust-app": "Cài đặt",
       "public-profile": "Hồ sơ công khai",
-      "save-data": "Lưu dữ liệu",
-      "download-data": "Tải dữ liệu",
+      "save-data": "Tạo bản sao lưu",
+      "download-data": "Khôi phục bản sao lưu",
       "log-out": "Đăng xuất",
       "activity-solves": "lượt giải"
+    },
+    "Presence": {
+      "online": "Trực tuyến",
+      "away": "Vắng mặt",
+      "busy": "Đang tập trung",
+      "busy-desc": "Đang tập trung, thông báo đã tắt",
+      "invisible": "Ẩn",
+      "invisible-desc": "Bạn sẽ hiển thị ngoại tuyến",
+      "offline": "Ngoại tuyến",
+      "last-seen": "Lần cuối truy cập {time}"
     },
     "tooltips": {
       "plus-two": "Phạt +2",
