@@ -935,7 +935,14 @@
       "cubes-owned-name": "所持キューブ表示",
       "cubes-owned-desc": "所持キューブをプロフィールに表示。",
       "trajectory-name": "軌跡進捗表示",
-      "trajectory-desc": "全ソルブ履歴と経時的進捗を表示。"
+      "trajectory-desc": "全ソルブ履歴と経時的進捗を表示。",
+      "smart-cube-name": "スマートキューブ対応",
+      "smart-cube-desc": "Bluetoothスマートキューブを接続して、回転とタイムを自動で記録。",
+      "algorithm-trainer-name": "アルゴリズムトレーナー",
+      "algorithm-trainer-desc": "アルゴリズムセットを練習・暗記して、解きを上達させましょう。",
+      "legend-full": "完全対応",
+      "legend-partial": "一部対応",
+      "legend-none": "非対応"
     }
   }
 }

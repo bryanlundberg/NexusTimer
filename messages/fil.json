@@ -1058,7 +1058,14 @@
       "cubes-owned-name": "Ipakita ang mga Cube na Pag-aari",
       "cubes-owned-desc": "Ipakita ang mga cube na pag-aari mo sa profile mo.",
       "trajectory-name": "Ipakita ang Trajectory Progress",
-      "trajectory-desc": "Ipakita ang buong solve history at progress mo sa paglipas ng panahon."
+      "trajectory-desc": "Ipakita ang buong solve history at progress mo sa paglipas ng panahon.",
+      "smart-cube-name": "Suporta sa Smart Cube",
+      "smart-cube-desc": "Ikonekta ang mga Bluetooth smart cube para awtomatikong ma-track ang mga galaw at oras.",
+      "algorithm-trainer-name": "Algorithm Trainer",
+      "algorithm-trainer-desc": "Magsanay at kabisaduhin ang mga algorithm set para humusay sa pag-solve.",
+      "legend-full": "Buong suporta",
+      "legend-partial": "Bahagya",
+      "legend-none": "Hindi available"
     }
   }
 }

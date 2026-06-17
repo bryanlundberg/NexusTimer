@@ -935,7 +935,14 @@
       "cubes-owned-name": "보유 큐브 표시",
       "cubes-owned-desc": "보유한 큐브를 프로필에 표시.",
       "trajectory-name": "궤적 진행 표시",
-      "trajectory-desc": "전체 풀이 기록과 시간에 따른 진행 표시."
+      "trajectory-desc": "전체 풀이 기록과 시간에 따른 진행 표시.",
+      "smart-cube-name": "스마트 큐브 지원",
+      "smart-cube-desc": "블루투스 스마트 큐브를 연결해 동작과 기록을 자동으로 추적하세요.",
+      "algorithm-trainer-name": "알고리즘 트레이너",
+      "algorithm-trainer-desc": "알고리즘 세트를 연습하고 암기해 솔빙 실력을 키우세요.",
+      "legend-full": "완전 지원",
+      "legend-partial": "부분 지원",
+      "legend-none": "미지원"
     }
   }
 }

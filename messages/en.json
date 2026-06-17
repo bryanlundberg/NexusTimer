@@ -1058,7 +1058,14 @@
       "cubes-owned-name": "Display Cubes Owned",
       "cubes-owned-desc": "Show the cubes you own on your profile.",
       "trajectory-name": "Display Trajectory Progress",
-      "trajectory-desc": "Show your full solve history and progress over time."
+      "trajectory-desc": "Show your full solve history and progress over time.",
+      "legend-full": "Full support",
+      "legend-partial": "Partial",
+      "legend-none": "Not available",
+      "smart-cube-name": "Smart Cube Support",
+      "smart-cube-desc": "Connect Bluetooth smart cubes to track moves and times automatically.",
+      "algorithm-trainer-name": "Algorithm Trainer",
+      "algorithm-trainer-desc": "Drill and memorize algorithm sets to sharpen your solving."
     }
   }
 }

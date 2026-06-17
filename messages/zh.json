@@ -935,7 +935,14 @@
       "cubes-owned-name": "展示拥有的魔方",
       "cubes-owned-desc": "在档案中展示你拥有的魔方。",
       "trajectory-name": "展示轨迹进度",
-      "trajectory-desc": "展示你完整的还原历史和随时间的进步。"
+      "trajectory-desc": "展示你完整的还原历史和随时间的进步。",
+      "smart-cube-name": "智能魔方支持",
+      "smart-cube-desc": "连接蓝牙智能魔方，自动记录转动和成绩。",
+      "algorithm-trainer-name": "公式训练器",
+      "algorithm-trainer-desc": "练习并记忆公式集，提升你的还原水平。",
+      "legend-full": "完全支持",
+      "legend-partial": "部分支持",
+      "legend-none": "不支持"
     }
   }
 }

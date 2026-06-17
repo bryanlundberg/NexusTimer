@@ -1058,7 +1058,14 @@
       "cubes-owned-name": "Hiển thị khối sở hữu",
       "cubes-owned-desc": "Hiển thị các khối bạn sở hữu trên hồ sơ của bạn.",
       "trajectory-name": "Hiển thị tiến trình hành trình",
-      "trajectory-desc": "Hiển thị toàn bộ lịch sử giải và tiến độ của bạn theo thời gian."
+      "trajectory-desc": "Hiển thị toàn bộ lịch sử giải và tiến độ của bạn theo thời gian.",
+      "smart-cube-name": "Hỗ trợ smart cube",
+      "smart-cube-desc": "Kết nối smart cube Bluetooth để tự động ghi lại các bước xoay và thời gian.",
+      "algorithm-trainer-name": "Trình luyện thuật toán",
+      "algorithm-trainer-desc": "Luyện tập và ghi nhớ các bộ thuật toán để giải tốt hơn.",
+      "legend-full": "Hỗ trợ đầy đủ",
+      "legend-partial": "Một phần",
+      "legend-none": "Không có"
     }
   }
 }

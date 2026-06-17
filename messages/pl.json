@@ -1058,7 +1058,14 @@
       "cubes-owned-name": "Wyświetlanie posiadanych kostek",
       "cubes-owned-desc": "Pokaż na profilu kostki, które posiadasz.",
       "trajectory-name": "Wyświetlanie postępów drogi",
-      "trajectory-desc": "Pokaż całą swoją historię ułożeń i postępy w czasie."
+      "trajectory-desc": "Pokaż całą swoją historię ułożeń i postępy w czasie.",
+      "smart-cube-name": "Obsługa smart cube",
+      "smart-cube-desc": "Połącz smart cube przez Bluetooth, aby automatycznie śledzić ruchy i czasy.",
+      "algorithm-trainer-name": "Trener algorytmów",
+      "algorithm-trainer-desc": "Ćwicz i zapamiętuj zestawy algorytmów, aby poprawić układanie.",
+      "legend-full": "Pełne wsparcie",
+      "legend-partial": "Częściowe",
+      "legend-none": "Niedostępne"
     }
   }
 }

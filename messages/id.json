@@ -1058,7 +1058,14 @@
       "cubes-owned-name": "Tampilkan Kubus yang Dimiliki",
       "cubes-owned-desc": "Tampilkan kubus yang kamu miliki di profilmu.",
       "trajectory-name": "Tampilkan Kemajuan Perjalanan",
-      "trajectory-desc": "Tampilkan seluruh riwayat solve dan kemajuanmu dari waktu ke waktu."
+      "trajectory-desc": "Tampilkan seluruh riwayat solve dan kemajuanmu dari waktu ke waktu.",
+      "smart-cube-name": "Dukungan Smart Cube",
+      "smart-cube-desc": "Hubungkan smart cube Bluetooth untuk melacak gerakan dan waktu secara otomatis.",
+      "algorithm-trainer-name": "Pelatih Algoritma",
+      "algorithm-trainer-desc": "Latih dan hafalkan kumpulan algoritma untuk mengasah penyelesaianmu.",
+      "legend-full": "Dukungan penuh",
+      "legend-partial": "Sebagian",
+      "legend-none": "Tidak tersedia"
     }
   }
 }

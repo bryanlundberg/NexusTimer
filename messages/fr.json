@@ -935,7 +935,14 @@
       "cubes-owned-name": "Afficher les cubes possédés",
       "cubes-owned-desc": "Montrez les cubes que vous possédez sur votre profil.",
       "trajectory-name": "Afficher la progression de trajectoire",
-      "trajectory-desc": "Montrez votre historique complet de résolutions et progression dans le temps."
+      "trajectory-desc": "Montrez votre historique complet de résolutions et progression dans le temps.",
+      "smart-cube-name": "Prise en charge des smart cubes",
+      "smart-cube-desc": "Connectez des smart cubes Bluetooth pour suivre automatiquement les mouvements et les temps.",
+      "algorithm-trainer-name": "Entraîneur d'algorithmes",
+      "algorithm-trainer-desc": "Entraînez-vous et mémorisez des ensembles d'algorithmes pour progresser.",
+      "legend-full": "Pris en charge",
+      "legend-partial": "Partiel",
+      "legend-none": "Non disponible"
     }
   }
 }

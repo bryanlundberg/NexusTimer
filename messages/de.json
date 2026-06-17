@@ -935,7 +935,14 @@
       "cubes-owned-name": "Besessene Würfel anzeigen",
       "cubes-owned-desc": "Zeige die Würfel, die du besitzt, in deinem Profil.",
       "trajectory-name": "Entwicklungsfortschritt anzeigen",
-      "trajectory-desc": "Zeige deine vollständige Lösungshistorie und Entwicklung über die Zeit."
+      "trajectory-desc": "Zeige deine vollständige Lösungshistorie und Entwicklung über die Zeit.",
+      "smart-cube-name": "Smart-Cube-Unterstützung",
+      "smart-cube-desc": "Verbinde Bluetooth-Smart-Cubes, um Züge und Zeiten automatisch zu erfassen.",
+      "algorithm-trainer-name": "Algorithmus-Trainer",
+      "algorithm-trainer-desc": "Übe und merke dir Algorithmensätze, um dein Lösen zu verbessern.",
+      "legend-full": "Voll unterstützt",
+      "legend-partial": "Teilweise",
+      "legend-none": "Nicht verfügbar"
     }
   }
 }

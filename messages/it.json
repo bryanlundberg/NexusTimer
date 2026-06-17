@@ -1058,7 +1058,14 @@
       "cubes-owned-name": "Mostra i cubi posseduti",
       "cubes-owned-desc": "Mostra i cubi che possiedi sul tuo profilo.",
       "trajectory-name": "Mostra i progressi del percorso",
-      "trajectory-desc": "Mostra la tua intera cronologia di solve e i progressi nel tempo."
+      "trajectory-desc": "Mostra la tua intera cronologia di solve e i progressi nel tempo.",
+      "smart-cube-name": "Supporto smart cube",
+      "smart-cube-desc": "Collega smart cube Bluetooth per registrare mosse e tempi automaticamente.",
+      "algorithm-trainer-name": "Allenatore di algoritmi",
+      "algorithm-trainer-desc": "Esercitati e memorizza set di algoritmi per migliorare le tue risoluzioni.",
+      "legend-full": "Supporto completo",
+      "legend-partial": "Parziale",
+      "legend-none": "Non disponibile"
     }
   }
 }
