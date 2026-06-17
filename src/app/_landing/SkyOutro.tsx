@@ -96,7 +96,7 @@ export default function SkyOutro({
         <CloudShape className="absolute inset-0 scale-x-150" />
       </motion.div>
 
-      <div className="relative z-10 pt-[40vh] pb-24 md:pb-40">
+      <div className="relative z-10 pt-[18vh] pb-24 md:pb-40">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
