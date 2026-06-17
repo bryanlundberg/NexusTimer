@@ -79,7 +79,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
 
         <motion.div style={{ y, opacity }} className="relative max-w-5xl mx-auto text-center mt-5">
           <h1
-            className="lp-rise text-balance text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4"
+            className="lp-rise font-display text-balance text-3xl md:text-5xl lg:text-6xl font-bold tracking-[-0.02em] text-white mb-4"
             style={{ animationDelay: '0.12s' }}
           >
             {t('hero.title-before')}{' '}
