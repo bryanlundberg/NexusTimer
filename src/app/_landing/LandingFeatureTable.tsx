@@ -208,7 +208,7 @@ export default async function LandingFeatureTable() {
       <div className="mx-auto max-w-5xl px-6">
         <div className="text-center mb-12">
           <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('label')}</p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">{t('title')}</h2>
+          <h2 className="font-display text-3xl md:text-5xl font-bold tracking-[-0.02em] text-gray-900">{t('title')}</h2>
           <p className="text-sm md:text-base text-gray-600 mt-5 max-w-2xl mx-auto text-pretty">{t('subtitle')}</p>
         </div>
 
@@ -227,7 +227,7 @@ export default async function LandingFeatureTable() {
                 className="size-5 brightness-0"
                 unoptimized
               />
-              <span className="text-xs font-bold text-gray-900">NXTimer</span>
+              <span className="font-display text-xs font-bold text-gray-900">NXTimer</span>
             </div>
             <div className="flex items-end justify-center px-2 pb-4">
               <span className="text-xs font-medium text-gray-500">csTimer</span>
