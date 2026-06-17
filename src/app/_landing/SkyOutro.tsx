@@ -27,6 +27,29 @@ function CloudShape({ className }: { className?: string }) {
   )
 }
 
+function FloatingStickers({ reduce }: { reduce: boolean | null }) {
+  const stickers = [
+    { c: 'var(--cube-red)', cls: 'left-[5%] top-[16%] h-8 w-8', dur: 6, delay: 0 },
+    { c: 'var(--cube-blue)', cls: 'right-[7%] top-[22%] h-10 w-10', dur: 7, delay: 0.6 },
+    { c: 'var(--cube-green)', cls: 'left-[10%] bottom-[18%] h-6 w-6', dur: 8, delay: 1.2 },
+    { c: 'var(--cube-yellow)', cls: 'right-[11%] bottom-[22%] h-9 w-9', dur: 6.5, delay: 0.3 },
+    { c: 'var(--cube-orange)', cls: 'left-[3%] top-[50%] h-5 w-5', dur: 7.5, delay: 0.9 }
+  ]
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      {stickers.map((s, i) => (
+        <motion.span
+          key={i}
+          className={`absolute hidden rounded-[7px] shadow-lg sm:block ${s.cls}`}
+          style={{ backgroundColor: s.c, opacity: 0.85 }}
+          animate={reduce ? undefined : { y: [0, -14, 0], rotate: [0, 10, 0] }}
+          transition={{ duration: s.dur, repeat: Infinity, ease: 'easeInOut', delay: s.delay }}
+        />
+      ))}
+    </div>
+  )
+}
+
 export default function SkyOutro({
   scrollContainerRef,
   children
@@ -104,9 +127,9 @@ export default function SkyOutro({
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-4xl px-6"
         >
-          <div className="relative overflow-hidden rounded-[20px] border border-white/10 shadow-[0_40px_120px_-40px_rgba(50,100,255,0.50)] ring-1 ring-white/5">
+          <div className="relative overflow-hidden rounded-[24px] border border-white/10 shadow-[0_40px_120px_-40px_rgba(50,100,255,0.50)] ring-1 ring-white/5">
             <div
-              className="relative backdrop-blur-md rounded-[20px] p-12 md:p-20 text-center"
+              className="relative backdrop-blur-md rounded-[24px] px-7 py-14 md:p-20 text-center"
               style={{ backgroundColor: 'color-mix(in oklch, oklch(0.10 0.020 264) 65%, transparent)' }}
             >
               <div
@@ -117,22 +140,16 @@ export default function SkyOutro({
                   opacity: 0.22
                 }}
               />
+
+              <FloatingStickers reduce={reduce} />
+
               <div className="relative z-10">
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  whileInView={{ scale: 1, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 border border-white/15 mb-8"
-                >
-                  <Image src="/landing/cube.gif" alt="" width={40} height={40} unoptimized />
-                </motion.div>
                 <motion.h3
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="text-balance text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-5"
+                  className="text-balance text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent mb-5"
                 >
                   {t('cta.title')}
                 </motion.h3>
@@ -154,17 +171,52 @@ export default function SkyOutro({
                 >
                   <Link
                     href="/app"
-                    className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-white text-gray-900 font-semibold px-8 py-4 text-sm transition-all duration-300 hover:bg-gray-100 hover:scale-[1.03] hover:shadow-[0_8px_40px_-6px_var(--primary)]"
+                    className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-white text-gray-900 font-semibold px-8 py-4 text-sm transition-all duration-300 hover:shadow-[0_12px_44px_-10px_var(--primary)]"
                   >
-                    {t('cta.primary')}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <span
+                      aria-hidden
+                      className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-black/5 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
+                    />
+                    <Image
+                      src="/landing/cube.gif"
+                      alt=""
+                      width={22}
+                      height={22}
+                      unoptimized
+                      className="relative transition-transform duration-300 group-hover:rotate-[18deg]"
+                    />
+                    <span className="relative">{t('cta.primary')}</span>
+                    <ArrowRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                   <Link
                     href="/options?redirect=import"
-                    className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-7 py-4 text-sm text-gray-200 transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:text-white"
+                    className="group inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-7 py-4 text-sm font-medium text-gray-200 transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:text-white"
                   >
                     {t('cta.secondary')}
                   </Link>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  className="mt-10 flex items-center justify-center gap-3 text-xs text-gray-400"
+                >
+                  <div className="flex -space-x-2">
+                    {[1, 2, 7].map((num) => (
+                      <Image
+                        key={num}
+                        className="inline-block h-7 w-7 rounded-full border-2 border-white/15 shadow-lg"
+                        src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${num}.png`}
+                        alt="Community member"
+                        width={28}
+                        height={28}
+                        loading="lazy"
+                      />
+                    ))}
+                  </div>
+                  <span>{t('hero.social-proof')}</span>
                 </motion.div>
               </div>
             </div>
