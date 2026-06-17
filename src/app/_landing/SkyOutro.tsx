@@ -149,7 +149,7 @@ export default function SkyOutro({
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 }}
-                  className="text-balance text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent mb-5"
+                  className="font-display text-balance text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.02em] bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent mb-5"
                 >
                   {t('cta.title')}
                 </motion.h3>
