@@ -31,6 +31,7 @@
 
 
 @theme inline {
+  --font-display: var(--font-space-grotesk), 'Saira', ui-sans-serif, system-ui, sans-serif;
   --color-cube-white: var(--cube-white);
   --color-cube-yellow: var(--cube-yellow);
   --color-cube-red: var(--cube-red);
@@ -77,6 +78,7 @@
 :root {
   --radius: 0.5rem;
 
+  --font-space-grotesk: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --font-saira: 'Saira', ui-sans-serif, system-ui, sans-serif;
   --font-mono-numeric: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
   --cube-white: oklch(0.97 0 0);
