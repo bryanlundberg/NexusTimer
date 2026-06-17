@@ -79,7 +79,7 @@ export default function LandingShell({ featureTable, footer }: { featureTable: R
             >
               <div className="flex items-center gap-3">
                 <Nexi state="pb" size={38} />
-                <span className="text-md font-bold tracking-wide text-gray-900">NXTimer</span>
+                <span className="font-display text-md font-bold tracking-wide text-gray-900">NXTimer</span>
               </div>
               <nav className="hidden md:flex items-center gap-8 text-sm text-gray-600">
                 {[
