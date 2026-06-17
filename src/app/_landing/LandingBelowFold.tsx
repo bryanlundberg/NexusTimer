@@ -213,7 +213,7 @@ function ShowcaseHeader() {
         {t('showcase.label')}
       </Reveal>
       <Reveal delay={0.1}>
-        <h2 className="text-balance text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900">
+        <h2 className="font-display text-balance text-3xl md:text-5xl lg:text-6xl font-bold tracking-[-0.02em] text-gray-900">
           {t('showcase.title')}
         </h2>
       </Reveal>
@@ -465,7 +465,7 @@ function StickyTestimonials({ scrollContainer }: { scrollContainer: React.RefObj
                 className={cn('absolute inset-0 flex flex-col items-center text-center', index === 0 && 'relative')}
               >
                 <Quote className="h-8 w-8 text-gray-900/20 mb-6" />
-                <p className="text-xl md:text-2xl lg:text-3xl font-medium text-gray-900 leading-relaxed mb-8 max-w-2xl">
+                <p className="font-display text-xl md:text-2xl lg:text-3xl font-medium text-gray-900 leading-relaxed mb-8 max-w-2xl tracking-[-0.01em]">
                   {tm.text}
                 </p>
                 <div className="flex items-center gap-3">
@@ -519,7 +519,10 @@ function StatItem({
 
   return (
     <Reveal delay={delay} className="text-center">
-      <span ref={ref} className="text-4xl md:text-6xl font-black text-gray-900 tabular-nums tracking-tight">
+      <span
+        ref={ref}
+        className="font-display text-4xl md:text-6xl font-black text-gray-900 tabular-nums tracking-[-0.03em]"
+      >
         {count}
         <span style={{ color: accent }}>{suffix}</span>
       </span>
@@ -537,7 +540,7 @@ function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObje
       <div className="mx-auto max-w-7xl">
         <div className="mb-16 text-center px-6">
           <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('cross-platform.label')}</p>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-5">
+          <h2 className="font-display text-3xl md:text-5xl font-bold tracking-[-0.02em] text-gray-900 mb-5">
             {t('cross-platform.title')}
           </h2>
           <p className="text-gray-600 text-base max-w-xl mx-auto">{t('cross-platform.subtitle')}</p>
@@ -624,7 +627,9 @@ export default function LandingBelowFold({
         <div className="mx-auto max-w-3xl px-6">
           <Reveal className="text-center mb-14">
             <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('faq.label')}</p>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900">{t('faq.title')}</h2>
+            <h2 className="font-display text-3xl md:text-5xl font-bold tracking-[-0.02em] text-gray-900">
+              {t('faq.title')}
+            </h2>
           </Reveal>
           <Reveal delay={0.1} className="flex flex-col gap-3">
             <FAQItem question={t('faq.q0')} answer={t('faq.a0')} />
