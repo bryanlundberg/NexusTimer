@@ -1,4 +1,5 @@
 import { Toaster } from '@/components/ui/sonner'
+import { spaceGrotesk } from '@/shared/config/fonts'
 import './globals.css'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages, getTranslations } from 'next-intl/server'
@@ -135,7 +136,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           }}
         />
       </head>
-      <body className={`font-sans`}>
+      <body className={`font-sans ${spaceGrotesk.variable}`}>
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-441RYCJK0K" strategy="lazyOnload" />
         <Script id="google-analytics" strategy="lazyOnload">
           {`
