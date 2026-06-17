@@ -13,7 +13,7 @@ export default async function LandingFooter() {
           <div className="col-span-1">
             <div className="flex items-center gap-3 mb-6">
               <Image src="/logo_white.png" alt="NexusTimer Logo" width={32} height={32} />
-              <span className="text-xl font-bold text-white">NexusTimer</span>
+              <span className="font-display text-xl font-bold text-white">NexusTimer</span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed max-w-md">{t('tagline')}</p>
             <Link
