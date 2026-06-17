@@ -193,6 +193,7 @@
 .lp-root {
   --lp-bg: oklch(0.97 0.004 26);
   --lp-bg-deep: oklch(0.93 0.008 26);
+  --lp-hero-dark: oklch(0.19 0.012 26);
 
   --cube-white: oklch(0.97 0 0);
   --cube-yellow: oklch(0.86 0.17 95);
