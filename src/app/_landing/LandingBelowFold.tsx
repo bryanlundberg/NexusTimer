@@ -479,108 +479,53 @@ function StatItem({
 }
 
 function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
+  void scrollContainer
   const t = useTranslations('LandingPage')
-  const reduce = useReducedMotion()
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    container: scrollContainer,
-    offset: ['start start', 'end end']
-  })
 
-  const deviceScale = useTransform(scrollYProgress, [0, 1], [0.86, 1.5])
-  const deviceY = useTransform(scrollYProgress, [0, 1], [24, -12])
-  const radius = useTransform(scrollYProgress, [0, 0.6], [14, 2])
-  const chromeOpacity = useTransform(scrollYProgress, [0.15, 0.45], [1, 0])
-  const headerOpacity = useTransform(scrollYProgress, [0, 0.26], [1, 0])
-  const headerY = useTransform(scrollYProgress, [0, 0.3], [0, -56])
-  const glowOpacity = useTransform(scrollYProgress, [0, 0.5], [0, 0.2])
-  const phoneOpacity = useTransform(scrollYProgress, [0.06, 0.34], [0, 1])
-  const phoneX = useTransform(scrollYProgress, [0.06, 0.4], [70, 0])
-  const phoneScale = useTransform(scrollYProgress, [0.1, 1], [0.9, 1.12])
-
-  const header = (
-    <div className="text-center px-6">
-      <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('cross-platform.label')}</p>
-      <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-5">{t('cross-platform.title')}</h2>
-      <p className="text-gray-600 text-base max-w-xl mx-auto">{t('cross-platform.subtitle')}</p>
-    </div>
-  )
-
-  const browser = (
-    <motion.div
-      style={reduce ? undefined : { borderRadius: radius }}
-      className="relative overflow-hidden rounded-xl border border-gray-900/10 shadow-2xl shadow-black/10 ring-1 ring-gray-900/5"
-    >
-      <motion.div
-        style={reduce ? undefined : { opacity: chromeOpacity }}
-        className="bg-neutral-900 h-8 flex items-center px-4 gap-2 border-b border-white/5"
-      >
-        <div className="flex gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-red)]" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-yellow)]" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-green)]" />
+  return (
+    <section className="relative py-20 md:py-28 overflow-hidden">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-16 text-center px-6">
+          <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('cross-platform.label')}</p>
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 mb-5">
+            {t('cross-platform.title')}
+          </h2>
+          <p className="text-gray-600 text-base max-w-xl mx-auto">{t('cross-platform.subtitle')}</p>
         </div>
-        <div className="mx-auto rounded-md bg-neutral-100 px-16 py-0.5 text-[10px] text-gray-500">nexustimer.com</div>
-      </motion.div>
-      <Image src="/landing/desk2.avif" alt="NexusTimer desktop view" width={1200} height={750} className="w-full" />
-    </motion.div>
-  )
 
-  if (reduce) {
-    return (
-      <section className="relative py-20 md:py-28 overflow-hidden">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-16">{header}</div>
-          <div className="relative mx-auto w-full max-w-4xl px-6">
-            {browser}
-            <div className="absolute -right-4 md:right-8 -bottom-8 md:-bottom-12 w-32 md:w-48">
+        <div className="relative mx-auto w-full max-w-4xl px-6">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-xl border border-gray-900/10 shadow-2xl shadow-black/10 ring-1 ring-gray-900/5">
+              <div className="bg-neutral-900 h-8 flex items-center px-4 gap-2 border-b border-white/5">
+                <div className="flex gap-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-red)]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-yellow)]" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[var(--cube-green)]" />
+                </div>
+                <div className="mx-auto rounded-md bg-neutral-100 px-16 py-0.5 text-[10px] text-gray-500">
+                  nexustimer.com
+                </div>
+              </div>
               <Image
-                src="/landing/iphone13.avif"
-                alt="NexusTimer mobile view"
-                width={300}
-                height={600}
+                src="/landing/desk1.png"
+                alt="NexusTimer desktop view"
+                width={1200}
+                height={750}
                 className="w-full"
               />
             </div>
+          </Reveal>
+
+          <div className="absolute -right-2 md:-right-6 -bottom-6 md:-bottom-10 z-20 w-24 md:w-40 drop-shadow-2xl">
+            <Image
+              src="/landing/cellphone.webp"
+              alt="NexusTimer mobile view"
+              width={300}
+              height={600}
+              className="w-full"
+            />
           </div>
         </div>
-      </section>
-    )
-  }
-
-  return (
-    <section ref={ref} className="relative h-[160vh]">
-      <div className="sticky top-0 flex h-screen flex-col items-center justify-center gap-10 md:gap-14 overflow-hidden">
-        <motion.div
-          aria-hidden
-          style={{
-            opacity: glowOpacity,
-            background: 'radial-gradient(circle, var(--cube-red) 0%, transparent 65%)'
-          }}
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-xl"
-        />
-
-        <motion.div style={{ opacity: headerOpacity, y: headerY }} className="relative z-20">
-          {header}
-        </motion.div>
-
-        <motion.div style={{ scale: deviceScale, y: deviceY }} className="relative z-10 w-full max-w-4xl px-6">
-          {browser}
-        </motion.div>
-
-        <motion.div
-          style={{ opacity: phoneOpacity, x: phoneX, scale: phoneScale }}
-          className="absolute right-[5%] bottom-[8%] z-20 w-24 md:w-40"
-        >
-          <Image
-            src="/landing/iphone13.avif"
-            alt="NexusTimer mobile view"
-            width={300}
-            height={600}
-            className="w-full"
-          />
-        </motion.div>
       </div>
     </section>
   )
@@ -597,37 +542,26 @@ export default function LandingBelowFold({
 
   return (
     <>
+      <CrossPlatformZoom scrollContainer={scrollContainerRef} />
       <ParallaxBand scrollContainer={scrollContainerRef} />
-
-      <HorizontalShowcase scrollContainer={scrollContainerRef} />
 
       <section className="lp-cv relative py-16 overflow-hidden">
         <Reveal>
           <p className="text-center text-[10px] uppercase tracking-[0.3em] text-gray-500 mb-8">{t('brands.label')}</p>
-          <div className="relative">
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[var(--lp-bg)] to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[var(--lp-bg)] to-transparent z-10 pointer-events-none" />
-            {/* mr-6 per item (not flex gap) so translateX(-50%) loops seamlessly */}
-            <div className="lp-marquee flex whitespace-nowrap">
-              {[
-                ...['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng'],
-                ...['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng']
-              ].map((item, index) => (
-                <span
-                  key={`${item}-${index}`}
-                  className="mr-6 inline-flex items-center rounded-full border border-gray-900/10 bg-gray-900/5 px-6 py-2.5 text-sm font-medium text-gray-600"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
+          <div className="mx-auto max-w-xl px-6 flex flex-wrap justify-center gap-2">
+            {['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng', 'Cyclone Boys'].map((item) => (
+              <span
+                key={item}
+                className="inline-flex items-center rounded-full border border-gray-900/10 bg-gray-900/5 px-4 py-1.5 text-sm font-medium text-gray-600"
+              >
+                {item}
+              </span>
+            ))}
           </div>
         </Reveal>
       </section>
 
       <StickerSteps />
-
-      <CrossPlatformZoom scrollContainer={scrollContainerRef} />
 
       <div className="relative overflow-hidden">
         <PhotoBand src="/landing/7.avif" scrollContainer={scrollContainerRef} height="70vh" />
