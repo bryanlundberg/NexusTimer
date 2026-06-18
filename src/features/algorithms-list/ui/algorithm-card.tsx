@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import _ from 'lodash'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
-import { Bookmark, BookmarkCheck, ChevronDown, EyeIcon } from 'lucide-react'
+import { Bookmark, BookmarkCheck, ChevronDown, Play } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/shared/lib/utils'
@@ -106,7 +106,7 @@ export default function AlgorithmCard({
               onClick={onToggleLearned}
             />
           )}
-          <ActionButton icon={EyeIcon} label="Preview" onClick={() => primary && openPreview(primary.moves)} />
+          <ActionButton icon={Play} label="Play" onClick={() => primary && openPreview(primary.moves)} />
           {canExpand && (
             <ChevronDown
               className={cn(

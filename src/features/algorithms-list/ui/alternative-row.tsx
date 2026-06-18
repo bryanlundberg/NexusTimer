@@ -1,4 +1,4 @@
-import { EyeIcon } from 'lucide-react'
+import { Play } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Alg } from '@/features/algorithms-list/model/types'
 
@@ -23,10 +23,10 @@ export default function AlternativeRow({ alt, index, onPreview }: AlternativeRow
           e.stopPropagation()
           onPreview()
         }}
-        aria-label="Preview"
-        title="Preview"
+        aria-label="Play"
+        title="Play"
       >
-        <EyeIcon className="size-3" />
+        <Play className="size-3" />
       </Button>
     </div>
   )
