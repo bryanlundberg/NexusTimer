@@ -3,7 +3,7 @@ import formatTime from '@/shared/lib/formatTime'
 import { useLocale } from 'next-intl'
 import { DateTime } from 'luxon'
 import { ChatBubbleIcon } from '@radix-ui/react-icons'
-import { Check } from 'lucide-react'
+import { Check, Star } from 'lucide-react'
 import useSolveGridItem from '@/features/solves-grid/model/useSolveGridItem'
 import { useSolvesSelection } from '@/features/solves-grid/model/SolvesSelectionContext'
 import { useLongPress } from '@/features/solves-grid/model/useLongPress'
@@ -60,9 +60,12 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
     >
       {orderedSolves[index].bookmark && (
         <div
-          className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-md bg-yellow-500"
+          className="pointer-events-none absolute left-0 top-0 size-5 overflow-hidden rounded-tl-md"
           data-testid={`bookmark-icon-${index}`}
-        />
+        >
+          <div className="absolute left-0 top-0 size-0 border-r-[20px] border-t-[20px] border-r-transparent border-t-yellow-500" />
+          <Star className="absolute left-[2px] top-[2px] size-2 fill-white text-white" />
+        </div>
       )}
 
       {selectionMode ? (
