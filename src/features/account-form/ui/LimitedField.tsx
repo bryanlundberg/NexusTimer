@@ -13,7 +13,7 @@ export function LimitedField({
 }: {
   control: Control<AccountInfoForm>
   register: UseFormRegister<AccountInfoForm>
-  name: 'goal' | 'bio'
+  name: 'name' | 'goal' | 'bio'
   max: number
   multiline?: boolean
   placeholder?: string

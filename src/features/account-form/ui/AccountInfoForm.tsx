@@ -1,4 +1,3 @@
-import { Input } from '@/components/ui/input'
 import { Controller, useForm } from 'react-hook-form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
@@ -98,7 +97,7 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
         <div className="space-y-2">
           <label className="text-sm font-medium">{t('name')}</label>
-          <Input {...register('name')} maxLength={NAME_MAX_LENGTH} className="h-10" />
+          <LimitedField control={control} register={register} name="name" max={NAME_MAX_LENGTH} />
           {nameErrorMessage && <p className="text-destructive text-xs font-medium">{nameErrorMessage}</p>}
         </div>
 
