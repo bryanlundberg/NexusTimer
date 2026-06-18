@@ -26,6 +26,7 @@ interface RealtimeReplayPlayerProps {
   replay: SolveReplay
   markers?: ReplayMarker[]
   size?: number
+  tempoScale?: number
 }
 
 function buildSegments(markers: ReplayMarker[], total: number): BarSegment[] {
@@ -42,7 +43,7 @@ function buildSegments(markers: ReplayMarker[], total: number): BarSegment[] {
 const ICON_BUTTON =
   'inline-flex items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-30'
 
-export function RealtimeReplayPlayer({ replay, markers = [], size = 232 }: RealtimeReplayPlayerProps) {
+export function RealtimeReplayPlayer({ replay, markers = [], size = 232, tempoScale = 4 }: RealtimeReplayPlayerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [player, setPlayer] = useState<TwistyPlayer | null>(null)
 
@@ -57,7 +58,7 @@ export function RealtimeReplayPlayer({ replay, markers = [], size = 232 }: Realt
       experimentalSetupAlg: replay.scramble,
       experimentalSetupAnchor: 'start',
       controlPanel: 'none',
-      tempoScale: 4,
+      tempoScale,
       background: 'none',
       experimentalDragInput: 'auto'
     })
@@ -74,6 +75,10 @@ export function RealtimeReplayPlayer({ replay, markers = [], size = 232 }: Realt
       setPlayer(null)
     }
   }, [replay, size])
+
+  useEffect(() => {
+    if (player) player.tempoScale = tempoScale
+  }, [player, tempoScale])
 
   const isPlaying = status === 'playing'
   const pct = total > 0 ? (index / total) * 100 : 0
