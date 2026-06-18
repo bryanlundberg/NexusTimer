@@ -1,7 +1,6 @@
 import { Input } from '@/components/ui/input'
 import { Controller, useForm } from 'react-hook-form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import * as React from 'react'
 import { toast } from 'sonner'
@@ -14,7 +13,14 @@ import { UserDocument } from '@/entities/user/model/user'
 import { KeyedMutator } from 'swr'
 import { useLocale, useTranslations } from 'next-intl'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AccountInfoForm as IAccountInfoForm, accountInfoSchema } from '@/features/account-form/model/types'
+import {
+  AccountInfoForm as IAccountInfoForm,
+  BIO_MAX_LENGTH,
+  GOAL_MAX_LENGTH,
+  NAME_MAX_LENGTH,
+  accountInfoSchema
+} from '@/features/account-form/model/types'
+import { LimitedField } from '@/features/account-form/ui/LimitedField'
 import { Loader2, Save } from 'lucide-react'
 
 export default function AccountInfoForm({ user, mutate }: { user?: UserDocument; mutate: KeyedMutator<any> }) {
@@ -32,10 +38,11 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { errors, isSubmitting, isDirty, isValid },
     control
   } = useForm({
     resolver: zodResolver(accountInfoSchema),
+    mode: 'onChange',
     defaultValues: {
       name: user?.name || '',
       country: user?.country || '',
@@ -83,16 +90,7 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-5">
         <div className="space-y-2">
           <label className="text-sm font-medium">{t('name')}</label>
-          <Input
-            {...register('name', {
-              required: t('name-required'),
-              minLength: {
-                value: 5,
-                message: t('name-min-length')
-              }
-            })}
-            className="h-10"
-          />
+          <Input {...register('name')} maxLength={NAME_MAX_LENGTH} className="h-10" />
           {nameErrorMessage && <p className="text-destructive text-xs font-medium">{nameErrorMessage}</p>}
         </div>
 
@@ -143,24 +141,26 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
 
         <div className="space-y-2">
           <label className="text-sm font-medium">{t('goal')}</label>
-          <Input {...register('goal')} className="h-10" />
+          <LimitedField control={control} register={register} name="goal" max={GOAL_MAX_LENGTH} />
         </div>
       </div>
 
       {/* Bio */}
       <div className="space-y-2">
         <label className="text-sm font-medium">{t('bio')}</label>
-        <Textarea
+        <LimitedField
+          control={control}
+          register={register}
+          name="bio"
+          max={BIO_MAX_LENGTH}
+          multiline
           placeholder={t('bio-placeholder')}
-          {...register('bio')}
-          className="w-full resize-none min-h-[100px]"
-          rows={4}
         />
       </div>
 
       {/* Submit */}
       <div className="flex justify-end pt-2">
-        <Button type="submit" disabled={isSubmitting || !isDirty} className="gap-2 min-w-[160px]">
+        <Button type="submit" disabled={isSubmitting || !isDirty || !isValid} className="gap-2 min-w-40">
           {isSubmitting ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
           {t('update-info')}
         </Button>
