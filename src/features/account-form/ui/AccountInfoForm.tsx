@@ -28,11 +28,19 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
   const t = useTranslations('Index.AccountPage')
   const locale = useLocale()
 
-  const countryOptions = useMemo(
+  const countryItems = useMemo(
     () =>
       countries
         .map((code) => ({ code, name: getCountryName(code, locale) }))
-        .sort((a, b) => a.name.localeCompare(b.name, locale)),
+        .sort((a, b) => a.name.localeCompare(b.name, locale))
+        .map(({ code, name }) => (
+          <SelectItem key={code} value={code}>
+            <span className="flex items-center gap-2">
+              <CountryFlag code={code} />
+              {name}
+            </span>
+          </SelectItem>
+        )),
     [locale]
   )
   const {
@@ -123,16 +131,7 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
                 <SelectTrigger className="w-full h-10">
                   <SelectValue placeholder={t('select-country')} />
                 </SelectTrigger>
-                <SelectContent>
-                  {countryOptions.map(({ code, name }) => (
-                    <SelectItem key={code} value={code}>
-                      <span className="flex items-center gap-2">
-                        <CountryFlag code={code} />
-                        {name}
-                      </span>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
+                <SelectContent>{countryItems}</SelectContent>
               </Select>
             )}
             name={'country'}
