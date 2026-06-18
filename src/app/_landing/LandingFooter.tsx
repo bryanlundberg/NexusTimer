@@ -97,7 +97,7 @@ export default async function LandingFooter() {
                 </li>
                 <li>
                   <Link
-                    href="https://github.com/NexusTimer"
+                    href="https://github.com/bryanlundberg/NexusTimer"
                     target="_blank"
                     className="text-sm text-gray-400 hover:text-white transition-colors duration-300"
                   >
