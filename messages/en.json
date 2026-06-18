@@ -423,7 +423,6 @@
       "title": "Leaderboard Rankings",
       "description": "Explore the top 100 performers and their solves across various categories. Discover detailed insights about each participant and their achievements.",
       "type": "Type",
-      "thinking": "Thinking...",
       "table": {
         "user": "User",
         "category": "Category",

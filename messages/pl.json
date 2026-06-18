@@ -423,7 +423,6 @@
       "title": "Rankingi tabel wyników",
       "description": "Odkryj 100 najlepszych zawodników i ich ułożenia w różnych kategoriach. Poznaj szczegółowe informacje o każdym uczestniku i jego osiągnięciach.",
       "type": "Typ",
-      "thinking": "Przetwarzanie...",
       "table": {
         "user": "Użytkownik",
         "category": "Kategoria",

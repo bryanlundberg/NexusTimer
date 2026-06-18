@@ -340,7 +340,6 @@
       "title": "Bestenlisten",
       "description": "Entdecke die Top 100 und ihre Zeiten in verschiedenen Kategorien. Erfahre mehr über die Teilnehmer.",
       "type": "Typ",
-      "thinking": "Überlege...",
       "table": {
         "user": "Nutzer",
         "category": "Kategorie",

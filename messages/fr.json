@@ -340,7 +340,6 @@
       "title": "Classements",
       "description": "Explorez les 100 meilleurs performeurs et leurs temps dans diverses catégories. Découvrez des informations détaillées sur chaque participant.",
       "type": "Type",
-      "thinking": "Réflexion...",
       "table": {
         "user": "Utilisateur",
         "category": "Catégorie",

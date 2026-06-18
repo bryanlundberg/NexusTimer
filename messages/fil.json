@@ -423,7 +423,6 @@
       "title": "Mga Ranggo sa Leaderboard",
       "description": "Tuklasin ang top 100 na performer at ang kanilang mga solve sa iba't ibang kategorya. Alamin ang detalyadong impormasyon tungkol sa bawat kalahok at sa kanilang mga tagumpay.",
       "type": "Uri",
-      "thinking": "Nag-iisip...",
       "table": {
         "user": "User",
         "category": "Kategorya",

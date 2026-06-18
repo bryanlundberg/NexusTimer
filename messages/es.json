@@ -316,7 +316,6 @@
       "title": "Clasificaciones",
       "description": "Explora los 100 mejores y sus resoluciones en varias categorías. Descubre información detallada sobre cada participante y sus logros.",
       "type": "Tipo",
-      "thinking": "Pensando...",
       "table": {
         "user": "Usuario",
         "category": "Categoría",

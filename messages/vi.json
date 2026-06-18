@@ -423,7 +423,6 @@
       "title": "Bảng xếp hạng",
       "description": "Khám phá 100 người chơi hàng đầu và các lượt giải của họ trên nhiều hạng mục. Tìm hiểu thông tin chi tiết về từng người tham gia và thành tích của họ.",
       "type": "Loại",
-      "thinking": "Đang xử lý...",
       "table": {
         "user": "Người dùng",
         "category": "Hạng mục",

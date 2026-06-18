@@ -340,7 +340,6 @@
       "title": "Classificações",
       "description": "Explore os 100 melhores e seus tempos em várias categorias. Descubra informações detalhadas sobre cada participante.",
       "type": "Tipo",
-      "thinking": "Pensando...",
       "table": {
         "user": "Usuário",
         "category": "Categoria",

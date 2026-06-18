@@ -423,7 +423,6 @@
       "title": "Peringkat Papan Skor",
       "description": "Jelajahi 100 pemain teratas dan solve mereka di berbagai kategori. Temukan wawasan mendetail tentang setiap peserta dan pencapaiannya.",
       "type": "Tipe",
-      "thinking": "Memikirkan...",
       "table": {
         "user": "Pengguna",
         "category": "Kategori",

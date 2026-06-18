@@ -423,7 +423,6 @@
       "title": "Classifiche",
       "description": "Esplora i 100 migliori e i loro solve in varie categorie. Scopri dettagli approfonditi su ogni partecipante e i suoi risultati.",
       "type": "Tipo",
-      "thinking": "Elaborazione...",
       "table": {
         "user": "Utente",
         "category": "Categoria",
