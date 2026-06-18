@@ -56,13 +56,13 @@ export default function QuickActions({
               data-testid="delete-solve-button"
               variant="ghost"
               size="sm"
-              className="gap-1.5 text-muted-foreground hover:text-destructive"
+              className="gap-1.5 h-12 min-w-12 sm:h-8 sm:min-w-0 text-muted-foreground hover:text-destructive"
               onPointerDown={() => {
                 handleDeleteSolve()
                 onDeleteSolve()
               }}
             >
-              <Trash className="size-3.5" />
+              <Trash className="size-5 sm:size-3.5" />
               <span className="hidden sm:inline text-xs">{t('tooltips.delete')}</span>
             </Button>
           </TooltipTrigger>
@@ -80,7 +80,7 @@ export default function QuickActions({
               variant="ghost"
               size="sm"
               className={cn(
-                'gap-1.5 text-xs font-medium',
+                'gap-1.5 h-12 min-w-12 sm:h-8 sm:min-w-0 text-base sm:text-xs font-medium',
                 solve?.plus2 ? 'text-destructive hover:text-destructive' : 'text-muted-foreground'
               )}
               onPointerDown={handleTogglePlus2}
@@ -101,7 +101,7 @@ export default function QuickActions({
               variant="ghost"
               size="sm"
               className={cn(
-                'gap-1.5 text-xs font-medium',
+                'gap-1.5 h-12 min-w-12 sm:h-8 sm:min-w-0 text-base sm:text-xs font-medium',
                 solve?.dnf ? 'text-destructive hover:text-destructive' : 'text-muted-foreground'
               )}
               onPointerDown={handleToggleDNF}
@@ -123,12 +123,12 @@ export default function QuickActions({
               variant="ghost"
               size="sm"
               className={cn(
-                'gap-1.5',
+                'gap-1.5 h-12 min-w-12 sm:h-8 sm:min-w-0',
                 solve?.bookmark ? 'text-yellow-400 hover:text-yellow-400' : 'text-muted-foreground'
               )}
               onPointerDown={handleToggleBookmark}
             >
-              <Bookmark className="size-3.5" fill={solve?.bookmark ? 'currentColor' : 'none'} />
+              <Bookmark className="size-5 sm:size-3.5" fill={solve?.bookmark ? 'currentColor' : 'none'} />
               <span className="hidden sm:inline text-xs">{t('tooltips.bookmark')}</span>
             </Button>
           </TooltipTrigger>
@@ -145,11 +145,11 @@ export default function QuickActions({
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground"
+                  className="h-12 min-w-12 sm:h-8 sm:min-w-0 text-muted-foreground"
                   aria-label={t('tooltips.more-actions')}
                   data-testid="more-actions-button"
                 >
-                  <MoreHorizontal className="size-3.5" />
+                  <MoreHorizontal className="size-5 sm:size-3.5" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
