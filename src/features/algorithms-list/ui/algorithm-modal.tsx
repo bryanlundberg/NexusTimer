@@ -1,45 +1,46 @@
-import { DialogContent, DialogTitle } from '@/components/ui/dialog'
-import * as React from 'react'
-import { TwistyPlayer } from 'cubing/twisty'
+'use client'
+
+import { useMemo } from 'react'
+import dynamic from 'next/dynamic'
+import { DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import { Badge } from '@/components/ui/badge'
+import { buildAlgorithmReplay } from '@/features/solve-replay/lib/buildAlgorithmReplay'
+
+const RealtimeReplayPlayer = dynamic(
+  () => import('@/features/solve-replay/ui/RealtimeReplayPlayer').then((m) => m.RealtimeReplayPlayer),
+  { ssr: false }
+)
+
+const TEMPO_SCALE = 1
+const MOVE_MS = 1100
 
 export default function AlgorithmModal() {
-  const { activeOverlay } = useOverlayStore()
-  if (!activeOverlay?.metadata || !activeOverlay?.metadata?.alg || !activeOverlay?.metadata?.cube) return null
+  const metadata = useOverlayStore((s) => s.activeOverlay?.metadata)
+  const alg = metadata?.alg as string | undefined
+  const cube = (metadata?.cube as string | undefined) || '3x3'
+
+  const replay = useMemo(() => (alg ? buildAlgorithmReplay(alg, cube, MOVE_MS) : null), [alg, cube])
+
+  if (!metadata || !alg || !replay) return null
 
   return (
-    <DialogContent className="flex flex-col justify-center items-center gap-6 overflow-auto">
+    <DialogContent className="flex max-h-[80dvh] flex-col items-center gap-5 overflow-y-auto p-5 sm:max-w-sm">
       <div className="flex flex-col items-center gap-2">
-        <DialogTitle className="text-lg font-semibold">{activeOverlay?.metadata?.name}</DialogTitle>
+        <DialogTitle className="text-lg font-semibold">{metadata.name}</DialogTitle>
         <Badge variant="outline" className="text-xs">
-          {activeOverlay?.metadata?.cube}
+          {cube}
         </Badge>
       </div>
+      <DialogDescription className="sr-only">{alg}</DialogDescription>
 
-      <div className="rounded-xl bg-muted/30 p-3 size-fit flex items-center justify-center w-full aspect-square max-w-[300px]">
-        <AlgorithmRender
-          config={
-            applyYellowOrientation({
-              alg: activeOverlay?.metadata?.alg || '',
-              tempoScale: 1,
-              experimentalSetupAnchor: 'end',
-              puzzle: activeOverlay?.metadata?.cube || '3x3',
-              background: 'none'
-            }) as unknown as TwistyPlayer
-          }
-          width={300}
-          height={300}
-        />
-      </div>
+      <RealtimeReplayPlayer replay={replay} size={260} tempoScale={TEMPO_SCALE} />
 
       <div className="w-full rounded-lg border bg-muted/20 p-3 sm:p-4 text-center">
         <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider block mb-1.5">
           Algorithm
         </span>
-        <code className="text-sm sm:text-base font-mono break-all">{activeOverlay?.metadata?.alg}</code>
+        <code className="text-sm sm:text-base font-mono break-all">{alg}</code>
       </div>
     </DialogContent>
   )
