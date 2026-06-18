@@ -7,15 +7,16 @@ import UserAchievement from '@/entities/achievement/model/user-achievement'
 import { auth } from '@/shared/config/auth/auth'
 import { parseJsonBody } from '@/shared/api/parse-json'
 import { badRequest, notFound, ok, serverError, unauthorized } from '@/shared/api/responses'
+import { bioSchema, goalSchema, nameSchema } from '@/features/account-form/model/types'
 
 const updateUserSchema = z
   .object({
-    name: z.string().trim().min(1).max(50).optional(),
+    name: nameSchema.optional(),
     image: z.string().url().optional(),
-    bio: z.string().max(500).optional(),
+    bio: bioSchema.optional(),
     pronoun: z.string().max(30).optional(),
     country: z.string().length(2).toUpperCase().refine(hasFlag, 'Invalid country code').optional(),
-    goal: z.string().max(200).optional(),
+    goal: goalSchema.optional(),
     lastSeenAt: z.number().int().nonnegative().optional()
   })
   .strict()
