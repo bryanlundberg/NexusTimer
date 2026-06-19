@@ -183,6 +183,7 @@ export default function SkyOutro({
                       width={22}
                       height={22}
                       unoptimized
+                      style={{ width: 22, height: 22 }}
                       className="relative transition-transform duration-300 group-hover:rotate-[18deg]"
                     />
                     <span className="relative">{t('cta.primary')}</span>
