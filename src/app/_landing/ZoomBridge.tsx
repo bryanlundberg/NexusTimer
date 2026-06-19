@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import { useTranslations } from 'next-intl'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 
 const LP_BG = 'oklch(0.97 0.004 26)'
@@ -9,6 +10,7 @@ const CTA_TOP = 'oklch(0.10 0.008 264)'
 export default function ZoomBridge({ scrollContainer }: { scrollContainer: React.RefObject<HTMLDivElement | null> }) {
   const ref = useRef<HTMLDivElement>(null)
   const reduce = useReducedMotion()
+  const t = useTranslations('LandingPage')
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -47,8 +49,8 @@ export default function ZoomBridge({ scrollContainer }: { scrollContainer: React
           style={{ scale, color: textColor, fontSize: 'clamp(2.75rem, 13vw, 11rem)' }}
           className="relative z-10 select-none text-center font-black leading-[0.92] tracking-tighter will-change-transform"
         >
-          <span className="block">ARE YOU</span>
-          <span className="block">READY?</span>
+          <span className="block">{t('zoom-cta.line1')}</span>
+          <span className="block">{t('zoom-cta.line2')}</span>
         </motion.div>
       </motion.div>
     </section>
