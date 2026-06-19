@@ -826,6 +826,7 @@
     "how-it-works": {
       "label": "快速开始",
       "title": "四步，零配置",
+      "peel-place-solve": "导入 · 还原 · 分析 · 提升",
       "step": "步骤",
       "step1-title": "开始或导入",
       "step1-desc": "全新使用 Nexus，或从 csTimer、Twisty Timer、CubeDesk 导入记录。",

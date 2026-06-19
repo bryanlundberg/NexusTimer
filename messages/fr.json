@@ -826,6 +826,7 @@
     "how-it-works": {
       "label": "Pour commencer",
       "title": "Quatre étapes, zéro configuration",
+      "peel-place-solve": "importer · résoudre · analyser · progresser",
       "step": "Étape",
       "step1-title": "Démarrer ou importer",
       "step1-desc": "Utilisez Nexus depuis le début ou importez vos résolutions depuis csTimer, Twisty Timer ou CubeDesk.",

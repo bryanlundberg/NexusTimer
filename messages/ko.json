@@ -826,6 +826,7 @@
     "how-it-works": {
       "label": "시작하기",
       "title": "4단계, 설정 없음",
+      "peel-place-solve": "가져오기 · 솔브 · 분석 · 향상",
       "step": "단계",
       "step1-title": "시작 또는 가져오기",
       "step1-desc": "새로 시작하거나 csTimer, Twisty Timer, CubeDesk에서 기록을 가져오세요.",

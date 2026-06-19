@@ -826,6 +826,7 @@
     "how-it-works": {
       "label": "शुरू करें",
       "title": "चार कदम, शून्य सेटअप",
+      "peel-place-solve": "इम्पोर्ट · सॉल्व · विश्लेषण · सुधार",
       "step": "कदम",
       "step1-title": "शुरू करें या आयात करें",
       "step1-desc": "Nexus को नए सिरे से उपयोग करें या csTimer, Twisty Timer, या CubeDesk से अपने हल लाएँ।",

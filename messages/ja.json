@@ -826,6 +826,7 @@
     "how-it-works": {
       "label": "はじめ方",
       "title": "4ステップ、設定不要",
+      "peel-place-solve": "インポート · ソルブ · 分析 · 上達",
       "step": "ステップ",
       "step1-title": "始めるかインポート",
       "step1-desc": "Nexusを新規で使うか、csTimer、Twisty Timer、CubeDesからソルブを持ってくる。",

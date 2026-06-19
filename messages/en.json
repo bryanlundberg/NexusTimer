@@ -948,7 +948,7 @@
     "how-it-works": {
       "label": "Getting started",
       "title": "Four steps, zero setup",
-      "peel-place-solve": "peel · place · solve",
+      "peel-place-solve": "import · solve · analyze · improve",
       "step": "Step",
       "step1-title": "Start or import",
       "step1-desc": "Use Nexus fresh or bring your solves from csTimer, Twisty Timer, or CubeDesk.",

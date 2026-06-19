@@ -948,7 +948,7 @@
     "how-it-works": {
       "label": "Pagsisimula",
       "title": "Apat na hakbang, walang setup",
-      "peel-place-solve": "balatan · ilagay · solve",
+      "peel-place-solve": "i-import · mag-solve · suriin · pagbutihin",
       "step": "Hakbang",
       "step1-title": "Magsimula o mag-import",
       "step1-desc": "Gamitin ang Nexus mula sa simula o dalhin ang mga solve mo mula sa csTimer, Twisty Timer, o CubeDesk.",

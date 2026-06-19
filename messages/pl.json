@@ -948,7 +948,7 @@
     "how-it-works": {
       "label": "Pierwsze kroki",
       "title": "Cztery kroki, zero konfiguracji",
-      "peel-place-solve": "odklej · ustaw · ułóż",
+      "peel-place-solve": "importuj · układaj · analizuj · ulepszaj",
       "step": "Krok",
       "step1-title": "Zacznij lub zaimportuj",
       "step1-desc": "Korzystaj z Nexus od zera lub zaimportuj swoje ułożenia z csTimer, Twisty Timer lub CubeDesk.",

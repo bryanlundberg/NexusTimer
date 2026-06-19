@@ -847,6 +847,7 @@
     "how-it-works": {
       "label": "Primeros pasos",
       "title": "Cuatro pasos, sin configuración",
+      "peel-place-solve": "importar · resolver · analizar · mejorar",
       "step": "Paso",
       "step1-title": "Empieza o importa",
       "step1-desc": "Usa Nexus desde cero o trae tus soluciones desde csTimer, Twisty Timer o CubeDesk.",
