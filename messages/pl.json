@@ -907,7 +907,7 @@
       "badge": "Darmowy i open source — na zawsze",
       "title-before": "Stoper, który pokazuje, jak naprawdę się",
       "title-highlight": "rozwijasz",
-      "subtitle": "Profile wydajności dla każdej kostki. Dogłębna analiza. Rywalizacja w czasie rzeczywistym.",
+      "subtitle": "Profile wyników dla każdej kostki. Dogłębna analiza. Rywalizacja w czasie rzeczywistym.",
       "built-for": "Stworzony dla",
       "rotating": {
         "0": "Speedsolving 3x3",
@@ -919,7 +919,7 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "Odkryj swoją wydajność",
+      "cta-primary": "Odkryj swoje wyniki",
       "cta-secondary": "Zaimportuj swoje ułożenia",
       "social-proof": "Dołącz do rosnącej społeczności cuberów",
       "scroll": "Przewiń"
@@ -934,10 +934,10 @@
       "label": "Wewnątrz aplikacji",
       "title": "Zobacz ją w akcji",
       "stats-per-cube-title": "Statystyki dla kostki",
-      "stats-per-cube-desc": "Oddzielne profile wydajności dla każdej układanki. Bez mieszanych średnich, bez szumu.",
+      "stats-per-cube-desc": "Oddzielne profile wyników dla każdej układanki. Bez mieszanych średnich, bez szumu.",
       "deep-analytics-title": "Dogłębna analiza",
       "deep-analytics-desc": "Linie trendu, porównania sesji i metryki, które ujawniają, gdzie kryje się Twój czas.",
-      "real-time-battles-title": "Bitwy w czasie rzeczywistym",
+      "real-time-battles-title": "Pojedynki w czasie rzeczywistym",
       "real-time-battles-desc": "Twórz pokoje i ścigaj się jeden na jednego. Zsynchronizowane scramble, wyniki na żywo.",
       "public-profiles-title": "Profile publiczne",
       "public-profiles-desc": "Twoja kolekcja, rekordy życiowe i cała droga rozwoju — widoczne dla społeczności."
@@ -988,7 +988,7 @@
       "q3": "Jak działają pokoje Clash?",
       "a3": "Utwórz pokój, zaproś znajomych i synchronizuj rundy w czasie rzeczywistym. Świetne na spotkania lub sesje online.",
       "q4": "Dlaczego muszę tworzyć kolekcje kostek?",
-      "a4": "Mamy unikalny system statystyk, który śledzi wydajność dla każdej kostki. Pomaga to zidentyfikować mocne i słabe strony z każdą kostką, bez wpływu na średnie sesji.",
+      "a4": "Mamy unikalny system statystyk, który śledzi wyniki dla każdej kostki. Pomaga to zidentyfikować mocne i słabe strony z każdą kostką, bez wpływu na średnie sesji.",
       "q5": "Jak NexusTimer się utrzymuje?",
       "a5": "Obecnie NexusTimer działa z pokrytymi wszystkimi kosztami. Badamy zrównoważone opcje finansowania, aby zapewnić jego długowieczność."
     },
@@ -999,7 +999,7 @@
       "secondary": "Zaimportuj swoje ułożenia"
     },
     "footer": {
-      "tagline": "Profil wydajności dla cuberów. Śledź, analizuj i poprawiaj swoje ułożenia dzięki statystykom dla każdej kostki.",
+      "tagline": "Profil wyników dla cuberów. Śledź, analizuj i poprawiaj swoje ułożenia dzięki statystykom dla każdej kostki.",
       "product": "Produkt",
       "timer-app": "Aplikacja stopera",
       "statistics": "Statystyki",
@@ -1031,22 +1031,22 @@
       "offline-name": "Tryb offline",
       "offline-desc": "Korzystaj ze stopera bez połączenia z internetem.",
       "stats-per-cube-name": "Statystyki dla kostki",
-      "stats-per-cube-desc": "Analizuj swoją wydajność dla każdej pojedynczej kostki.",
+      "stats-per-cube-desc": "Analizuj swoje wyniki dla każdej pojedynczej kostki.",
       "cloud-sync-name": "Synchronizacja w chmurze",
       "cloud-sync-desc": "Synchronizuj dane na wielu urządzeniach za pomocą chmury.",
       "online-mode-name": "Tryb online",
       "online-mode-desc": "Twórz pokoje i koordynuj rozgrywki w czasie rzeczywistym z innymi użytkownikami.",
       "stats-title": "Statystyki i analiza",
-      "stats-section-desc": "Szczegółowe informacje o wydajności",
+      "stats-section-desc": "Szczegółowe informacje o wynikach",
       "global-stats-name": "Statystyki globalne",
       "global-stats-desc": "Ogólne statystyki, w tym średnie, najlepsze/najgorsze czasy i więcej.",
       "session-stats-name": "Statystyki sesji",
       "session-stats-desc": "Szczegółowe statystyki sesji, w tym średnie, najlepsze/najgorsze czasy i więcej.",
       "cube-stats-name": "Statystyki dla kostki",
       "cube-stats-desc": "Szczegółowe statystyki dla każdej pojedynczej kostki.",
-      "performance-graphs-name": "Wykresy wydajności",
+      "performance-graphs-name": "Wykresy wyników",
       "performance-graphs-desc": "Wizualizuj swoje czasy układania i trendy w czasie.",
-      "social-title": "Społeczność i kontakty",
+      "social-title": "Społeczność i interakcje",
       "social-desc": "Zaangażowanie użytkowników i funkcje społecznościowe",
       "profile-system-name": "System profili",
       "profile-system-desc": "Twórz i personalizuj swój profil użytkownika.",
@@ -1056,7 +1056,7 @@
       "personal-bests-desc": "Prezentuj swoje najlepsze czasy na profilu, w tym średnie.",
       "cubes-owned-name": "Wyświetlanie posiadanych kostek",
       "cubes-owned-desc": "Pokaż na profilu kostki, które posiadasz.",
-      "trajectory-name": "Wyświetlanie postępów drogi",
+      "trajectory-name": "Wyświetlanie postępów rozwoju",
       "trajectory-desc": "Pokaż całą swoją historię ułożeń i postępy w czasie.",
       "smart-cube-name": "Obsługa smart cube",
       "smart-cube-desc": "Połącz smart cube przez Bluetooth, aby automatycznie śledzić ruchy i czasy.",
@@ -1065,6 +1065,10 @@
       "legend-full": "Pełne wsparcie",
       "legend-partial": "Częściowe",
       "legend-none": "Niedostępne"
+    },
+    "zoom-cta": {
+      "line1": "JESTEŚ",
+      "line2": "GOTOWY?"
     }
   }
 }

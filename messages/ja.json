@@ -816,7 +816,7 @@
       "deep-analytics-title": "深い分析",
       "deep-analytics-desc": "トレンドライン、セッション比較、タイムの隠れどころを明かすメトリクス。",
       "real-time-battles-title": "リアルタイム対戦",
-      "real-time-battles-desc": "ルームを作ってタイマン対決。同期スクランブル、ライブ結果。",
+      "real-time-battles-desc": "ルームを作って1対1で対戦。同期スクランブル、ライブ結果。",
       "public-profiles-title": "公開プロフィール",
       "public-profiles-desc": "コレクション、自己ベスト、全軌跡 — コミュニティに公開。"
     },
@@ -829,7 +829,7 @@
       "peel-place-solve": "インポート · ソルブ · 分析 · 上達",
       "step": "ステップ",
       "step1-title": "始めるかインポート",
-      "step1-desc": "Nexusを新規で使うか、csTimer、Twisty Timer、CubeDesからソルブを持ってくる。",
+      "step1-desc": "Nexusを新規で使うか、csTimer、Twisty Timer、CubeDeskからソルブを持ってくる。",
       "step2-title": "いつも通りソルブ",
       "step2-desc": "各ソルブは自動でキューブ別に分類される。手動セッション不要。",
       "step3-title": "データを読む",
@@ -860,7 +860,7 @@
       "q0": "NexusTimerは本当に無料ですか？",
       "a0": "はい。NexusTimerは無料で、これからもそのつもりです。",
       "q1": "他のタイマーからインポートできますか？",
-      "a1": "もちろん。csTimer、Twisty Timer、CubeDesなど人気タイマーに対応しています。",
+      "a1": "もちろん。csTimer、Twisty Timer、CubeDeskなど人気タイマーに対応しています。",
       "q2": "複数のデバイスで使えますか？",
       "a2": "はい。モバイルとデスクトップに対応。クラウド経由でデータを同期できます。",
       "q3": "クラッシュルームはどう機能しますか？",
@@ -939,10 +939,14 @@
       "smart-cube-name": "スマートキューブ対応",
       "smart-cube-desc": "Bluetoothスマートキューブを接続して、回転とタイムを自動で記録。",
       "algorithm-trainer-name": "アルゴリズムトレーナー",
-      "algorithm-trainer-desc": "アルゴリズムセットを練習・暗記して、解きを上達させましょう。",
+      "algorithm-trainer-desc": "アルゴリズムセットを練習・暗記して、ソルブを上達させましょう。",
       "legend-full": "完全対応",
       "legend-partial": "一部対応",
       "legend-none": "非対応"
+    },
+    "zoom-cta": {
+      "line1": "準備は",
+      "line2": "いいですか？"
     }
   }
 }

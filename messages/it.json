@@ -966,13 +966,13 @@
     },
     "testimonials": {
       "label": "Cosa dicono i cuber",
-      "t0-text": "Sono passato da altri timer e non sono mai tornato indietro. La modalità Clash è una svolta per il nostro club.",
+      "t0-text": "Sono passato da altri timer e non me ne sono mai pentito. La modalità Clash è una svolta per il nostro club.",
       "t0-user": "@cubeOrigin",
       "t0-role": "Organizzatore di club",
       "t1-text": "Adoro l'interfaccia pulita e il fatto che sia gratuita. Il backup sul cloud tiene i miei tempi al sicuro su tutti i dispositivi.",
       "t1-user": "@layersLast",
       "t1-role": "Speedcuber",
-      "t2-text": "Importazione ed esportazione funzionano alla perfezione. Le statistiche per cubo mi hanno aiutato a colpire i miei punti deboli.",
+      "t2-text": "Importazione ed esportazione funzionano alla perfezione. Le statistiche per cubo mi hanno aiutato a lavorare sui miei punti deboli.",
       "t2-user": "@OH_enthusiast",
       "t2-role": "Specialista one-handed"
     },
@@ -1060,11 +1060,15 @@
       "trajectory-desc": "Mostra la tua intera cronologia di solve e i progressi nel tempo.",
       "smart-cube-name": "Supporto smart cube",
       "smart-cube-desc": "Collega smart cube Bluetooth per registrare mosse e tempi automaticamente.",
-      "algorithm-trainer-name": "Allenatore di algoritmi",
+      "algorithm-trainer-name": "Trainer di algoritmi",
       "algorithm-trainer-desc": "Esercitati e memorizza set di algoritmi per migliorare le tue risoluzioni.",
       "legend-full": "Supporto completo",
       "legend-partial": "Parziale",
       "legend-none": "Non disponibile"
+    },
+    "zoom-cta": {
+      "line1": "SEI",
+      "line2": "PRONTO?"
     }
   }
 }

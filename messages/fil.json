@@ -1065,6 +1065,10 @@
       "legend-full": "Buong suporta",
       "legend-partial": "Bahagya",
       "legend-none": "Hindi available"
+    },
+    "zoom-cta": {
+      "line1": "HANDA KA",
+      "line2": "NA BA?"
     }
   }
 }

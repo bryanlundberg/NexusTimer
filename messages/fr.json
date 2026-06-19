@@ -783,7 +783,7 @@
     },
     "hero": {
       "badge": "Gratuit et open source — pour toujours",
-      "title-before": "Le minuteur qui montre comment vous progressez",
+      "title-before": "Le timer qui montre comment vous progressez",
       "title-highlight": "vraiment",
       "subtitle": "Profils de performance par cube. Analyses approfondies. Compétition en temps réel.",
       "built-for": "Conçu pour",
@@ -844,7 +844,7 @@
     },
     "testimonials": {
       "label": "Ce que disent les cubeurs",
-      "t0-text": "J'ai changé d'autres minuteurs et je n'ai jamais regardé en arrière. Le mode Clash change la donne pour notre club.",
+      "t0-text": "J'ai quitté d'autres timers et je ne regrette pas. Le mode Clash change la donne pour notre club.",
       "t0-user": "@cubeOrigin",
       "t0-role": "Organisateur de club",
       "t1-text": "J'adore l'interface épurée et que ce soit gratuit. La sauvegarde cloud garde mes temps en sécurité.",
@@ -859,10 +859,10 @@
       "title": "Questions fréquentes",
       "q0": "NexusTimer est-il vraiment gratuit ?",
       "a0": "Oui. NexusTimer est gratuit et nous prévoyons de le garder ainsi.",
-      "q1": "Puis-je importer depuis d'autres minuteurs ?",
-      "a1": "Absolument. Nous supportons l'import/export avec des minuteurs populaires comme csTimer, Twisty Timer, CubeDesk.",
+      "q1": "Puis-je importer depuis d'autres timers ?",
+      "a1": "Absolument. Nous prenons en charge l'import/export avec des timers populaires comme csTimer, Twisty Timer, CubeDesk.",
       "q2": "Fonctionne-t-il sur plusieurs appareils ?",
-      "a2": "Oui, NexusTimer supporte mobile et ordinateur. Synchronisez vos données via le cloud.",
+      "a2": "Oui, NexusTimer fonctionne sur mobile et ordinateur. Synchronisez vos données via le cloud.",
       "q3": "Comment fonctionnent les salles Clash ?",
       "a3": "Créez une salle, invitez vos amis et synchronisez les manches en temps réel.",
       "q4": "Pourquoi dois-je créer des collections de cubes ?",
@@ -879,7 +879,7 @@
     "footer": {
       "tagline": "Le profil de performance pour les cubeurs. Suivez, analysez et améliorez vos résolutions avec des statistiques par cube.",
       "product": "Produit",
-      "timer-app": "Application minuteur",
+      "timer-app": "Application timer",
       "statistics": "Statistiques",
       "multiplayer": "Multijoueur",
       "algorithms": "Algorithmes",
@@ -896,18 +896,18 @@
     },
     "comparison": {
       "label": "Comparaison",
-      "title": "Plus qu'un simple minuteur",
-      "subtitle": "Voyez comment NexusTimer se compare aux autres minuteurs de cubing populaires.",
+      "title": "Plus qu'un simple timer",
+      "subtitle": "Voyez comment NexusTimer se compare aux autres timers de cubing populaires.",
       "core-title": "Fonctionnalités principales intégrées",
-      "core-desc": "Capacités essentielles du minuteur",
+      "core-desc": "Fonctions essentielles du timer",
       "random-scrambles-name": "Scrambles d'état aléatoire",
       "random-scrambles-desc": "Au lieu de mouvements aléatoires, obtenez des scrambles qui mettent votre cube dans un état aléatoire.",
       "cross-platform-name": "Support multiplateforme",
       "cross-platform-desc": "Accédez à l'application sur plusieurs appareils et systèmes d'exploitation.",
-      "import-timers-name": "Importer d'autres minuteurs",
-      "import-timers-desc": "Importez et exportez facilement vos données vers et depuis d'autres minuteurs populaires.",
+      "import-timers-name": "Importer d'autres timers",
+      "import-timers-desc": "Importez et exportez facilement vos données vers et depuis d'autres timers populaires.",
       "offline-name": "Mode hors ligne",
-      "offline-desc": "Utilisez le minuteur sans connexion internet.",
+      "offline-desc": "Utilisez le timer sans connexion internet.",
       "stats-per-cube-name": "Statistiques par cube",
       "stats-per-cube-desc": "Analysez vos performances pour chaque cube individuel.",
       "cloud-sync-name": "Synchronisation cloud",
@@ -943,6 +943,10 @@
       "legend-full": "Pris en charge",
       "legend-partial": "Partiel",
       "legend-none": "Non disponible"
+    },
+    "zoom-cta": {
+      "line1": "ES-TU",
+      "line2": "PRÊT ?"
     }
   }
 }

@@ -815,7 +815,7 @@
       "stats-per-cube-desc": "Isolierte Leistungsprofile für jedes Puzzle. Keine gemischten Durchschnitte, kein Rauschen.",
       "deep-analytics-title": "Tiefgehende Analysen",
       "deep-analytics-desc": "Trendlinien, Sitzungsvergleiche und Metriken, die zeigen, wo deine Zeit steckt.",
-      "real-time-battles-title": "Echtzeit-Kämpfe",
+      "real-time-battles-title": "Echtzeit-Duelle",
       "real-time-battles-desc": "Erstelle Räume und tritt Kopf-an-Kopf an. Synchronisierte Scrambles, Live-Ergebnisse.",
       "public-profiles-title": "Öffentliche Profile",
       "public-profiles-desc": "Deine Sammlung, Bestzeiten und vollständige Entwicklung — für die Community sichtbar."
@@ -844,7 +844,7 @@
     },
     "testimonials": {
       "label": "Was Cuber sagen",
-      "t0-text": "Von anderen Timern gewechselt und nie zurückgeschaut. Der Clash-Modus ist ein Gamechanger für unseren Club.",
+      "t0-text": "Von anderen Timern gewechselt und es nie bereut. Der Clash-Modus ist ein Gamechanger für unseren Club.",
       "t0-user": "@cubeOrigin",
       "t0-role": "Club-Organisator",
       "t1-text": "Ich liebe die saubere Oberfläche und dass es kostenlos ist. Cloud-Backup hält meine Zeiten sicher.",
@@ -852,7 +852,7 @@
       "t1-role": "Speedcuber",
       "t2-text": "Import und Export funktioniert einfach. Statistiken pro Würfel halfen mir, meine Schwachstellen zu finden.",
       "t2-user": "@OH_enthusiast",
-      "t2-role": "Einhändig-Spezialist"
+      "t2-role": "Einhand-Spezialist"
     },
     "faq": {
       "label": "FAQ",
@@ -932,7 +932,7 @@
       "compare-profiles-desc": "Sieh und vergleiche Profile anderer Nutzer.",
       "personal-bests-name": "Persönliche Bestleistungen anzeigen",
       "personal-bests-desc": "Zeige deine Bestzeiten in deinem Profil inklusive Durchschnitte.",
-      "cubes-owned-name": "Besessene Würfel anzeigen",
+      "cubes-owned-name": "Eigene Würfel anzeigen",
       "cubes-owned-desc": "Zeige die Würfel, die du besitzt, in deinem Profil.",
       "trajectory-name": "Entwicklungsfortschritt anzeigen",
       "trajectory-desc": "Zeige deine vollständige Lösungshistorie und Entwicklung über die Zeit.",
@@ -943,6 +943,10 @@
       "legend-full": "Voll unterstützt",
       "legend-partial": "Teilweise",
       "legend-none": "Nicht verfügbar"
+    },
+    "zoom-cta": {
+      "line1": "BIST DU",
+      "line2": "BEREIT?"
     }
   }
 }

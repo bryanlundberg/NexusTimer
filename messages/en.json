@@ -1065,6 +1065,10 @@
       "smart-cube-desc": "Connect Bluetooth smart cubes to track moves and times automatically.",
       "algorithm-trainer-name": "Algorithm Trainer",
       "algorithm-trainer-desc": "Drill and memorize algorithm sets to sharpen your solving."
+    },
+    "zoom-cta": {
+      "line1": "ARE YOU",
+      "line2": "READY?"
     }
   }
 }

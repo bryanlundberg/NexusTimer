@@ -785,7 +785,7 @@
       "badge": "영원히 무료 오픈소스",
       "title-before": "당신이 정말로",
       "title-highlight": "실력이 향상되고 있음을 보여주는 타이머",
-      "subtitle": "큐브별 성능 프로필. 심층 분석. 실시간 대전.",
+      "subtitle": "큐브별 기록 프로필. 심층 분석. 실시간 대전.",
       "built-for": "지원 종목",
       "rotating": {
         "0": "3x3 스피드 솔빙",
@@ -812,7 +812,7 @@
       "label": "앱 내부",
       "title": "실제 동작 확인",
       "stats-per-cube-title": "큐브별 통계",
-      "stats-per-cube-desc": "각 퍼즐에 대한 독립적인 성능 프로필. 혼합 평균 없음, 노이즈 없음.",
+      "stats-per-cube-desc": "각 퍼즐에 대한 독립적인 기록 프로필. 혼합 평균 없음, 노이즈 없음.",
       "deep-analytics-title": "심층 분석",
       "deep-analytics-desc": "트렌드 라인, 세션 비교, 시간이 숨겨진 곳을 밝혀주는 지표.",
       "real-time-battles-title": "실시간 대전",
@@ -844,7 +844,7 @@
     },
     "testimonials": {
       "label": "큐버들의 이야기",
-      "t0-text": "다른 타이머에서 바꾼 후 한 번도 돌아보지 않았어요. 클래시 모드는 우리 클럽에서 게임 체인저예요.",
+      "t0-text": "다른 타이머에서 바꾼 뒤 한 번도 후회하지 않았어요. 클래시 모드는 우리 클럽에서 게임 체인저예요.",
       "t0-user": "@cubeOrigin",
       "t0-role": "클럽 운영자",
       "t1-text": "깔끔한 UI와 무료인 점이 마음에 들어요. 클라우드 백업 덕분에 기록이 안전해요.",
@@ -866,7 +866,7 @@
       "q3": "클래시 방은 어떻게 작동하나요?",
       "a3": "방을 만들고 친구를 초대해 실시간으로 라운드를 동기화하세요.",
       "q4": "왜 큐브 컬렉션을 만들어야 하나요?",
-      "a4": "큐브별 성능을 추적하는 고유한 통계 시스템이 있어 세션 평균에 영향을 주지 않습니다.",
+      "a4": "큐브별 기록을 추적하는 고유한 통계 시스템이 있어 세션 평균에 영향을 주지 않습니다.",
       "q5": "NexusTimer는 어떻게 유지되나요?",
       "a5": "현재 NexusTimer는 모든 비용을 자체 부담합니다. 지속 가능한 자금 조달 방안을 모색 중입니다."
     },
@@ -877,7 +877,7 @@
       "secondary": "풀이 기록 가져오기"
     },
     "footer": {
-      "tagline": "큐버를 위한 성능 프로필. 큐브별 통계로 풀이를 추적, 분석, 향상시키세요.",
+      "tagline": "큐버를 위한 기록 프로필. 큐브별 통계로 풀이를 추적, 분석, 향상시키세요.",
       "product": "제품",
       "timer-app": "타이머 앱",
       "statistics": "통계",
@@ -909,20 +909,20 @@
       "offline-name": "오프라인 모드",
       "offline-desc": "인터넷 연결 없이 타이머 사용.",
       "stats-per-cube-name": "큐브별 통계",
-      "stats-per-cube-desc": "각 큐브의 성능을 개별 분석.",
+      "stats-per-cube-desc": "각 큐브의 기록을 개별 분석.",
       "cloud-sync-name": "클라우드 동기화",
       "cloud-sync-desc": "클라우드를 통해 여러 기기에 데이터 동기화.",
       "online-mode-name": "온라인 모드",
       "online-mode-desc": "방을 만들고 다른 사용자와 실시간 대결.",
       "stats-title": "통계 & 분석",
-      "stats-section-desc": "심층 성능 인사이트",
+      "stats-section-desc": "심층 기록 분석",
       "global-stats-name": "전체 통계",
       "global-stats-desc": "평균, 최고/최저 기록 등을 포함한 종합 통계.",
       "session-stats-name": "세션 통계",
       "session-stats-desc": "평균, 최고/최저 기록 등을 포함한 상세 세션 통계.",
       "cube-stats-name": "큐브별 통계",
       "cube-stats-desc": "각 큐브의 상세 통계.",
-      "performance-graphs-name": "성능 그래프",
+      "performance-graphs-name": "기록 그래프",
       "performance-graphs-desc": "시간에 따른 풀이 기록과 트렌드 시각화.",
       "social-title": "소셜 & 커뮤니티",
       "social-desc": "사용자 참여 및 소셜 기능",
@@ -943,6 +943,10 @@
       "legend-full": "완전 지원",
       "legend-partial": "부분 지원",
       "legend-none": "미지원"
+    },
+    "zoom-cta": {
+      "line1": "준비",
+      "line2": "되셨나요?"
     }
   }
 }

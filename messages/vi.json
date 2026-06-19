@@ -1045,7 +1045,7 @@
       "cube-stats-name": "Thống kê theo khối",
       "cube-stats-desc": "Thống kê chi tiết cho từng khối riêng lẻ.",
       "performance-graphs-name": "Biểu đồ thành tích",
-      "performance-graphs-desc": "Hình dung thời gian giải và xu hướng của bạn theo thời gian.",
+      "performance-graphs-desc": "Trực quan hóa thời gian giải và xu hướng của bạn theo thời gian.",
       "social-title": "Xã hội & Cộng đồng",
       "social-desc": "Tương tác người dùng và các tính năng xã hội",
       "profile-system-name": "Hệ thống hồ sơ",
@@ -1053,7 +1053,7 @@
       "compare-profiles-name": "So sánh hồ sơ",
       "compare-profiles-desc": "Xem và so sánh hồ sơ của người dùng khác.",
       "personal-bests-name": "Hiển thị kỷ lục cá nhân",
-      "personal-bests-desc": "Khoe những thời gian tốt nhất của bạn trên hồ sơ bao gồm cả trung bình.",
+      "personal-bests-desc": "Trưng bày những thời gian tốt nhất của bạn trên hồ sơ bao gồm cả trung bình.",
       "cubes-owned-name": "Hiển thị khối sở hữu",
       "cubes-owned-desc": "Hiển thị các khối bạn sở hữu trên hồ sơ của bạn.",
       "trajectory-name": "Hiển thị tiến trình hành trình",
@@ -1065,6 +1065,10 @@
       "legend-full": "Hỗ trợ đầy đủ",
       "legend-partial": "Một phần",
       "legend-none": "Không có"
+    },
+    "zoom-cta": {
+      "line1": "BẠN ĐÃ",
+      "line2": "SẴN SÀNG?"
     }
   }
 }

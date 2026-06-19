@@ -819,7 +819,7 @@
         "7": "Clock"
       },
       "cta-primary": "Descubre tu rendimiento",
-      "cta-secondary": "Importa tus soluciones",
+      "cta-secondary": "Importa tus tiempos",
       "social-proof": "Únete a una comunidad creciente de cuberos",
       "scroll": "Desplazar"
     },
@@ -831,7 +831,7 @@
     },
     "showcase": {
       "label": "Dentro de la app",
-      "title": "Vélo en acción",
+      "title": "Míralo en acción",
       "stats-per-cube-title": "Estadísticas por cubo",
       "stats-per-cube-desc": "Perfiles de rendimiento aislados para cada puzzle. Sin promedios mixtos, sin ruido.",
       "deep-analytics-title": "Análisis profundo",
@@ -850,11 +850,11 @@
       "peel-place-solve": "importar · resolver · analizar · mejorar",
       "step": "Paso",
       "step1-title": "Empieza o importa",
-      "step1-desc": "Usa Nexus desde cero o trae tus soluciones desde csTimer, Twisty Timer o CubeDesk.",
+      "step1-desc": "Usa Nexus desde cero o trae tus tiempos desde csTimer, Twisty Timer o CubeDesk.",
       "step2-title": "Resuelve como siempre",
-      "step2-desc": "Cada solución se categoriza por cubo automáticamente. Sin sesiones manuales.",
+      "step2-desc": "Cada resolución se clasifica por cubo automáticamente. Sin sesiones manuales.",
       "step3-title": "Lee los datos",
-      "step3-desc": "Líneas de tendencia, promedios y análisis de puntos débiles aparecen tras unas pocas soluciones.",
+      "step3-desc": "Líneas de tendencia, promedios y análisis de puntos débiles aparecen tras unas pocas resoluciones.",
       "step4-title": "Sigue tu progreso",
       "step4-desc": "Compara semanas, meses o toda tu trayectoria a lo largo del tiempo."
     },
@@ -865,7 +865,7 @@
     },
     "testimonials": {
       "label": "Lo que dicen los cuberos",
-      "t0-text": "Cambié de otros cronómetros y nunca miré atrás. El modo Clash es un cambio de juego para nuestro club.",
+      "t0-text": "Cambié de otros cronómetros y nunca miré atrás. El modo Clash lo cambia todo para nuestro club.",
       "t0-user": "@cubeOrigin",
       "t0-role": "Organizador de club",
       "t1-text": "Me encanta la interfaz limpia y que sea gratis. La copia de seguridad en la nube mantiene mis tiempos seguros.",
@@ -892,13 +892,13 @@
       "a5": "Actualmente NexusTimer cubre todos sus costes. Estamos explorando opciones de financiación sostenible para garantizar su longevidad."
     },
     "cta": {
-      "title": "Empieza tu primera solución.",
-      "subtitle": "Todas las herramientas que necesitas para rastrear, analizar y mejorar.",
+      "title": "Haz tu primera resolución.",
+      "subtitle": "Todas las herramientas que necesitas para registrar, analizar y mejorar.",
       "primary": "Ir a la App",
-      "secondary": "Importa tus soluciones"
+      "secondary": "Importa tus tiempos"
     },
     "footer": {
-      "tagline": "El perfil de rendimiento para cuberos. Rastrea, analiza y mejora tus soluciones con estadísticas por cubo.",
+      "tagline": "El perfil de rendimiento para cuberos. Registra, analiza y mejora tus tiempos con estadísticas por cubo.",
       "product": "Producto",
       "timer-app": "App de cronómetro",
       "statistics": "Estadísticas",
@@ -953,10 +953,10 @@
       "compare-profiles-desc": "Ver y comparar perfiles de otros usuarios.",
       "personal-bests-name": "Mostrar mejores marcas personales",
       "personal-bests-desc": "Muestra tus mejores tiempos en tu perfil incluyendo promedios.",
-      "cubes-owned-name": "Mostrar cubos poseídos",
-      "cubes-owned-desc": "Muestra los cubos que posees en tu perfil.",
+      "cubes-owned-name": "Mostrar tus cubos",
+      "cubes-owned-desc": "Muestra los cubos que tienes en tu perfil.",
       "trajectory-name": "Mostrar progreso de trayectoria",
-      "trajectory-desc": "Muestra tu historial completo de soluciones y progreso a lo largo del tiempo.",
+      "trajectory-desc": "Muestra tu historial completo de resoluciones y progreso a lo largo del tiempo.",
       "legend-full": "Compatible",
       "legend-partial": "Parcial",
       "legend-none": "No disponible",
@@ -964,6 +964,10 @@
       "smart-cube-desc": "Conecta smart cubes por Bluetooth para registrar movimientos y tiempos automáticamente.",
       "algorithm-trainer-name": "Entrenador de algoritmos",
       "algorithm-trainer-desc": "Practica y memoriza conjuntos de algoritmos para mejorar tus resoluciones."
+    },
+    "zoom-cta": {
+      "line1": "¿ESTÁS",
+      "line2": "LISTO?"
     }
   }
 }

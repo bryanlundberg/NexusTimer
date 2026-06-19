@@ -785,7 +785,7 @@
       "badge": "永久免费且开源",
       "title-before": "展示你如何",
       "title-highlight": "真正进步的计时器",
-      "subtitle": "每个魔方的性能档案。深度分析。实时竞技。",
+      "subtitle": "每个魔方的成绩档案。深度分析。实时竞技。",
       "built-for": "适用于",
       "rotating": {
         "0": "3x3 速拧",
@@ -797,7 +797,7 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "发现你的表现",
+      "cta-primary": "查看你的成绩",
       "cta-secondary": "导入还原记录",
       "social-proof": "加入不断壮大的魔方社区",
       "scroll": "滚动"
@@ -811,8 +811,8 @@
     "showcase": {
       "label": "应用内部",
       "title": "看看实际效果",
-      "stats-per-cube-title": "每魔方统计",
-      "stats-per-cube-desc": "每个魔方独立的性能档案，无混合平均值，无干扰。",
+      "stats-per-cube-title": "各魔方统计",
+      "stats-per-cube-desc": "每个魔方独立的成绩档案，无混合平均值，无干扰。",
       "deep-analytics-title": "深度分析",
       "deep-analytics-desc": "趋势线、会话对比和揭示时间流失的指标。",
       "real-time-battles-title": "实时对战",
@@ -850,7 +850,7 @@
       "t1-text": "喜欢简洁的界面和免费。云备份让我的记录在各设备上都安全。",
       "t1-user": "@layersLast",
       "t1-role": "速拧爱好者",
-      "t2-text": "导入导出开箱即用。每魔方统计帮我找到了弱项。",
+      "t2-text": "导入导出开箱即用。各魔方统计帮我找到了弱项。",
       "t2-user": "@OH_enthusiast",
       "t2-role": "单手专家"
     },
@@ -877,7 +877,7 @@
       "secondary": "导入还原记录"
     },
     "footer": {
-      "tagline": "魔方爱好者的性能档案。用每魔方统计追踪、分析并提升你的还原水平。",
+      "tagline": "魔方爱好者的成绩档案。用各魔方统计追踪、分析并提升你的还原水平。",
       "product": "产品",
       "timer-app": "计时器应用",
       "statistics": "统计",
@@ -908,21 +908,21 @@
       "import-timers-desc": "轻松与其他热门计时器互相导入导出数据。",
       "offline-name": "离线模式",
       "offline-desc": "无需网络连接即可使用计时器。",
-      "stats-per-cube-name": "每魔方统计",
+      "stats-per-cube-name": "各魔方统计",
       "stats-per-cube-desc": "分析每个魔方的表现。",
       "cloud-sync-name": "云同步",
       "cloud-sync-desc": "通过云在多设备间同步数据。",
       "online-mode-name": "在线模式",
       "online-mode-desc": "创建房间，与其他用户实时协调对局。",
       "stats-title": "统计与分析",
-      "stats-section-desc": "深度性能洞察",
+      "stats-section-desc": "深度成绩分析",
       "global-stats-name": "全局统计",
       "global-stats-desc": "包含平均值、最佳/最差时间等的总体统计。",
       "session-stats-name": "会话统计",
       "session-stats-desc": "包含平均值、最佳/最差时间等的详细会话统计。",
       "cube-stats-name": "魔方专属统计",
       "cube-stats-desc": "每个魔方的详细统计。",
-      "performance-graphs-name": "性能图表",
+      "performance-graphs-name": "成绩图表",
       "performance-graphs-desc": "可视化还原时间和随时间变化的趋势。",
       "social-title": "社交与社区",
       "social-desc": "用户互动和社交功能",
@@ -943,6 +943,10 @@
       "legend-full": "完全支持",
       "legend-partial": "部分支持",
       "legend-none": "不支持"
+    },
+    "zoom-cta": {
+      "line1": "准备好",
+      "line2": "了吗？"
     }
   }
 }

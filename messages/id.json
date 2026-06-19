@@ -937,7 +937,7 @@
       "stats-per-cube-desc": "Profil performa terpisah untuk setiap puzzle. Tanpa rata-rata campuran, tanpa gangguan.",
       "deep-analytics-title": "Analitik Mendalam",
       "deep-analytics-desc": "Garis tren, perbandingan sesi, dan metrik yang mengungkap di mana waktumu tersembunyi.",
-      "real-time-battles-title": "Pertarungan Waktu Nyata",
+      "real-time-battles-title": "Duel Waktu Nyata",
       "real-time-battles-desc": "Buat ruang dan beradu cepat satu lawan satu. Scramble tersinkron, hasil langsung.",
       "public-profiles-title": "Profil Publik",
       "public-profiles-desc": "Koleksimu, rekor pribadi, dan seluruh perjalananmu — terlihat oleh komunitas."
@@ -1065,6 +1065,10 @@
       "legend-full": "Dukungan penuh",
       "legend-partial": "Sebagian",
       "legend-none": "Tidak tersedia"
+    },
+    "zoom-cta": {
+      "line1": "SUDAH",
+      "line2": "SIAP?"
     }
   }
 }
