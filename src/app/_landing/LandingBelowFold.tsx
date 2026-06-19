@@ -596,7 +596,6 @@ export default function LandingBelowFold({
   return (
     <>
       <CrossPlatformZoom scrollContainer={scrollContainerRef} />
-      <ParallaxBand scrollContainer={scrollContainerRef} />
 
       <section className="lp-cv relative py-16 overflow-hidden">
         <Reveal>
@@ -613,6 +612,8 @@ export default function LandingBelowFold({
           </div>
         </Reveal>
       </section>
+
+      <ParallaxBand scrollContainer={scrollContainerRef} />
 
       <StickerSteps />
 
