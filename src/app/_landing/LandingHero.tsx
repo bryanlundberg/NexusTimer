@@ -135,6 +135,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
                 width={24}
                 height={24}
                 unoptimized
+                style={{ width: 24, height: 24 }}
                 className="relative transition-transform duration-300 group-hover:rotate-[18deg]"
               />
               <span className="relative">{t('hero.cta-primary')}</span>
