@@ -153,20 +153,6 @@ export default function StickerSteps() {
                     <p className="mt-1.5 text-sm font-medium leading-relaxed text-pretty" style={{ opacity: 0.82 }}>
                       {s.desc}
                     </p>
-
-                    {s.n === 1 && (
-                      <div className="mt-4 flex flex-wrap gap-1.5">
-                        {['csTimer', 'Twisty Timer', 'CubeDesk'].map((b) => (
-                          <span
-                            key={b}
-                            className="rounded-full px-2.5 py-0.5 font-mono text-[11px] font-semibold"
-                            style={{ backgroundColor: 'rgba(0,0,0,0.16)', color: s.ink }}
-                          >
-                            {b}
-                          </span>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 </div>
 
