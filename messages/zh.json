@@ -844,15 +844,15 @@
     },
     "testimonials": {
       "label": "魔方爱好者怎么说",
-      "t0-text": "从其他计时器切换过来后再也没回去。Clash 模式对我们俱乐部来说是革命性的。",
-      "t0-user": "@cubeOrigin",
-      "t0-role": "俱乐部组织者",
-      "t1-text": "喜欢简洁的界面和免费。云备份让我的记录在各设备上都安全。",
-      "t1-user": "@layersLast",
-      "t1-role": "速拧爱好者",
-      "t2-text": "导入导出开箱即用。各魔方统计帮我找到了弱项。",
-      "t2-user": "@OH_enthusiast",
-      "t2-role": "单手专家"
+      "t0-text": "界面简洁好用，而且个人主页是我见过最完整的。",
+      "t0-user": "@steadyturns",
+      "t0-role": "业余爱好者",
+      "t1-text": "离线也能完美运行，我可以在车上练习，不用担心网络。",
+      "t1-user": "@offgridsolver",
+      "t1-role": "每日通勤者",
+      "t2-text": "连接智能魔方和导入旧成绩只用了一分钟。",
+      "t2-user": "@cubecollector",
+      "t2-role": "回归的魔方爱好者"
     },
     "faq": {
       "label": "FAQ",

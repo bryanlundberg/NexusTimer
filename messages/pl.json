@@ -966,15 +966,15 @@
     },
     "testimonials": {
       "label": "Co mówią cuberzy",
-      "t0-text": "Przeszedłem z innych stoperów i nigdy nie żałowałem. Tryb Clash to przełom dla naszego klubu.",
-      "t0-user": "@cubeOrigin",
-      "t0-role": "Organizator klubu",
-      "t1-text": "Uwielbiam czysty interfejs i to, że jest za darmo. Kopia w chmurze trzyma moje czasy bezpiecznie na wszystkich urządzeniach.",
-      "t1-user": "@layersLast",
-      "t1-role": "Speedcuber",
-      "t2-text": "Import i eksport po prostu działają. Statystyki dla kostki pomogły mi namierzyć moje słabe punkty.",
-      "t2-user": "@OH_enthusiast",
-      "t2-role": "Specjalista one-handed"
+      "t0-text": "Interfejs jest czysty i przyjemny w obsłudze, a profile są najbardziej kompletne, jakie widziałem.",
+      "t0-user": "@steadyturns",
+      "t0-role": "Amator",
+      "t1-text": "Działa świetnie offline, więc mogę ćwiczyć w samochodzie bez martwienia się o połączenie.",
+      "t1-user": "@offgridsolver",
+      "t1-role": "Codzienny pasażer",
+      "t2-text": "Podłączenie smart cube i import starych czasów zajęły minutę.",
+      "t2-user": "@cubecollector",
+      "t2-role": "Powracający cuber"
     },
     "faq": {
       "label": "FAQ",

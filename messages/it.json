@@ -966,15 +966,15 @@
     },
     "testimonials": {
       "label": "Cosa dicono i cuber",
-      "t0-text": "Sono passato da altri timer e non me ne sono mai pentito. La modalità Clash è una svolta per il nostro club.",
-      "t0-user": "@cubeOrigin",
-      "t0-role": "Organizzatore di club",
-      "t1-text": "Adoro l'interfaccia pulita e il fatto che sia gratuita. Il backup sul cloud tiene i miei tempi al sicuro su tutti i dispositivi.",
-      "t1-user": "@layersLast",
-      "t1-role": "Speedcuber",
-      "t2-text": "Importazione ed esportazione funzionano alla perfezione. Le statistiche per cubo mi hanno aiutato a lavorare sui miei punti deboli.",
-      "t2-user": "@OH_enthusiast",
-      "t2-role": "Specialista one-handed"
+      "t0-text": "L'interfaccia è pulita e piacevole da usare, e i profili sono i più completi che abbia visto.",
+      "t0-user": "@steadyturns",
+      "t0-role": "Cuber per hobby",
+      "t1-text": "Funziona perfettamente offline, così posso allenarmi in auto senza preoccuparmi della connessione.",
+      "t1-user": "@offgridsolver",
+      "t1-role": "Pendolare quotidiano",
+      "t2-text": "Collegare il mio smart cube e importare i vecchi tempi ha richiesto un minuto.",
+      "t2-user": "@cubecollector",
+      "t2-role": "Cuber di ritorno"
     },
     "faq": {
       "label": "FAQ",

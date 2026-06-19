@@ -844,15 +844,15 @@
     },
     "testimonials": {
       "label": "O que os cubers dizem",
-      "t0-text": "Mudei de outros cronômetros e nunca me arrependi. O modo Clash é revolucionário para o nosso clube.",
-      "t0-user": "@cubeOrigin",
-      "t0-role": "Organizador de clube",
-      "t1-text": "Adoro a interface limpa e que é gratuito. O backup em nuvem mantém meus tempos seguros.",
-      "t1-user": "@layersLast",
-      "t1-role": "Speedcuber",
-      "t2-text": "Importar e exportar simplesmente funciona. As estatísticas por cubo me ajudaram a identificar meus pontos fracos.",
-      "t2-user": "@OH_enthusiast",
-      "t2-role": "Especialista com uma mão"
+      "t0-text": "A interface é limpa e agradável de usar, e os perfis são os mais completos que já vi.",
+      "t0-user": "@steadyturns",
+      "t0-role": "Cuber amador",
+      "t1-text": "Funciona perfeitamente offline, então posso praticar no carro sem me preocupar com a conexão.",
+      "t1-user": "@offgridsolver",
+      "t1-role": "Usuário diário",
+      "t2-text": "Conectar meu smart cube e importar meus tempos antigos levou um minuto.",
+      "t2-user": "@cubecollector",
+      "t2-role": "Cuber de volta"
     },
     "faq": {
       "label": "FAQ",

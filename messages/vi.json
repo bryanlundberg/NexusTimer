@@ -966,15 +966,15 @@
     },
     "testimonials": {
       "label": "Cuber nói gì",
-      "t0-text": "Chuyển từ các đồng hồ khác và không bao giờ hối tiếc. Chế độ Clash là bước ngoặt cho câu lạc bộ của chúng tôi.",
-      "t0-user": "@cubeOrigin",
-      "t0-role": "Người tổ chức câu lạc bộ",
-      "t1-text": "Thích giao diện gọn gàng và việc nó miễn phí. Sao lưu đám mây giữ thời gian của tôi an toàn trên mọi thiết bị.",
-      "t1-user": "@layersLast",
-      "t1-role": "Speedcuber",
-      "t2-text": "Nhập và xuất chạy mượt mà. Thống kê theo khối giúp tôi nhắm vào điểm yếu của mình.",
-      "t2-user": "@OH_enthusiast",
-      "t2-role": "Chuyên gia one-handed"
+      "t0-text": "Giao diện gọn gàng và dùng rất thích, còn hồ sơ thì đầy đủ nhất mà tôi từng thấy.",
+      "t0-user": "@steadyturns",
+      "t0-role": "Cuber nghiệp dư",
+      "t1-text": "Hoạt động hoàn hảo khi ngoại tuyến, nên tôi có thể luyện trong ô tô mà không lo về kết nối.",
+      "t1-user": "@offgridsolver",
+      "t1-role": "Người đi làm hằng ngày",
+      "t2-text": "Kết nối smart cube và nhập các thời gian cũ chỉ mất một phút.",
+      "t2-user": "@cubecollector",
+      "t2-role": "Cuber quay lại"
     },
     "faq": {
       "label": "FAQ",

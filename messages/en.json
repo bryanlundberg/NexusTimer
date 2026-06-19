@@ -966,15 +966,15 @@
     },
     "testimonials": {
       "label": "What cubers say",
-      "t0-text": "Switched from other timers and never looked back. The Clash Mode is a game-changer for our club.",
-      "t0-user": "@cubeOrigin",
-      "t0-role": "Club organizer",
-      "t1-text": "Love the clean UI and that it's free. Cloud backup keeps my times safe across devices.",
-      "t1-user": "@layersLast",
-      "t1-role": "Speedcuber",
-      "t2-text": "Import and export just works. Stats per cube helped me target my weak spots.",
-      "t2-user": "@OH_enthusiast",
-      "t2-role": "One-handed specialist"
+      "t0-text": "The interface is clean and a pleasure to use, and the profiles are the most complete I've seen.",
+      "t0-user": "@steadyturns",
+      "t0-role": "Hobby cuber",
+      "t1-text": "It works perfectly offline, so I can practice in the car without worrying about a connection.",
+      "t1-user": "@offgridsolver",
+      "t1-role": "Daily commuter",
+      "t2-text": "Connecting my smart cube and importing my old times took just a minute.",
+      "t2-user": "@cubecollector",
+      "t2-role": "Returning cuber"
     },
     "faq": {
       "label": "FAQ",

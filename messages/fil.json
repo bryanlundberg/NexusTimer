@@ -966,15 +966,15 @@
     },
     "testimonials": {
       "label": "Sabi ng mga cuber",
-      "t0-text": "Lumipat mula sa ibang timers at hindi na bumalik. Game-changer ang Clash Mode para sa club namin.",
-      "t0-user": "@cubeOrigin",
-      "t0-role": "Organizer ng club",
-      "t1-text": "Gustong-gusto ko ang malinis na UI at na libre ito. Pinananatiling ligtas ng cloud backup ang mga oras ko sa lahat ng device.",
-      "t1-user": "@layersLast",
-      "t1-role": "Speedcuber",
-      "t2-text": "Gumagana lang ang import at export. Tumulong ang stats bawat cube para tutukan ang weak spots ko.",
-      "t2-user": "@OH_enthusiast",
-      "t2-role": "One-handed specialist"
+      "t0-text": "Malinis at masarap gamitin ang interface, at ang mga profile ang pinakakumpleto na nakita ko.",
+      "t0-user": "@steadyturns",
+      "t0-role": "Hobby na cuber",
+      "t1-text": "Gumagana nang perpekto offline, kaya nakakapag-practice ako sa kotse nang walang alala sa koneksyon.",
+      "t1-user": "@offgridsolver",
+      "t1-role": "Araw-araw na komyuter",
+      "t2-text": "Isang minuto lang ang pag-connect ng smart cube ko at pag-import ng mga lumang oras.",
+      "t2-user": "@cubecollector",
+      "t2-role": "Bumalik na cuber"
     },
     "faq": {
       "label": "FAQ",

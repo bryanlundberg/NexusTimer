@@ -966,15 +966,15 @@
     },
     "testimonials": {
       "label": "Apa kata para cuber",
-      "t0-text": "Beralih dari timer lain dan tak pernah menyesal. Mode Clash mengubah segalanya untuk klub kami.",
-      "t0-user": "@cubeOrigin",
-      "t0-role": "Organisator klub",
-      "t1-text": "Suka antarmuka yang bersih dan gratis. Cadangan cloud menjaga waktuku aman di semua perangkat.",
-      "t1-user": "@layersLast",
-      "t1-role": "Speedcuber",
-      "t2-text": "Impor dan ekspor langsung berfungsi. Statistik per kubus membantuku menyasar titik lemahku.",
-      "t2-user": "@OH_enthusiast",
-      "t2-role": "Spesialis one-handed"
+      "t0-text": "Antarmukanya bersih dan nyaman dipakai, dan profilnya paling lengkap yang pernah kulihat.",
+      "t0-user": "@steadyturns",
+      "t0-role": "Cuber hobi",
+      "t1-text": "Berfungsi sempurna saat offline, jadi aku bisa latihan di mobil tanpa khawatir koneksi.",
+      "t1-user": "@offgridsolver",
+      "t1-role": "Komuter harian",
+      "t2-text": "Menghubungkan smart cube dan mengimpor waktu lamaku hanya butuh semenit.",
+      "t2-user": "@cubecollector",
+      "t2-role": "Cuber yang kembali"
     },
     "faq": {
       "label": "FAQ",
