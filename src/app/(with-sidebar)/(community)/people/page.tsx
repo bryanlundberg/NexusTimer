@@ -7,6 +7,7 @@ import { useUsers } from '@/entities/user/model/useUsers'
 import { usePresenceList } from '@/features/presence/model/usePresence'
 import { TablePagination } from '@/widgets/people/ui/table-pagination'
 import UserCard from '@/widgets/people/ui/user-card'
+import PeopleEmptyState from '@/widgets/people/ui/PeopleEmptyState'
 import { useTranslations } from 'next-intl'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
@@ -65,9 +66,7 @@ export default function PeoplePage() {
               ))}
 
           {/* Empty state */}
-          {!isLoading && (!data?.events || data.events.length === 0) && (
-            <div className="py-12 text-center text-sm text-muted-foreground">{t('no-users-found')}</div>
-          )}
+          {!isLoading && (!data?.events || data.events.length === 0) && <PeopleEmptyState />}
 
           {/* Rows */}
           {!isLoading &&
