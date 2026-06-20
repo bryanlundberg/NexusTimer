@@ -39,7 +39,7 @@ export function CubeCard({ cube }: CubeCardProps) {
     <Card
       key={cube.id}
       className={cn(
-        'relative overflow-hidden gap-2 bg-card/50 transition-colors duration-200 hover:bg-card/80 hover:ring-2 hover:ring-primary',
+        'relative overflow-hidden gap-2 bg-card/50 shadow-none transition-colors duration-200 hover:bg-card/80 hover:ring-2 hover:ring-primary',
         isActive && 'border-primary/15'
       )}
     >
