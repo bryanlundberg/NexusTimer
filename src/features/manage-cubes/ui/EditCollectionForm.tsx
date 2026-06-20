@@ -73,7 +73,6 @@ export default function EditCollectionForm() {
       }
 
       overlayStore.close()
-      toast.success(t('Errors.collection-edited'))
     } catch (err) {
       console.log(err)
       toast.error(t('Errors.collection-edit-failed'))
