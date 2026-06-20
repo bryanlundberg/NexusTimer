@@ -18,7 +18,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
-import { CheckCircle2, GitCompareIcon } from 'lucide-react'
+import { CheckCircle2, GitCompareIcon, Pencil } from 'lucide-react'
 
 interface PeopleTabsProps {
   user: UserProfile
@@ -78,7 +78,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full">
         {/* Tabs nav + actions row */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-4 md:px-6 py-3 mt-3">
+        <div className="flex flex-row items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
           <AnimatedTabsList
             items={tabs.map((tab) => ({ value: tab, label: labels[tab] }))}
             activeValue={value}
@@ -86,10 +86,11 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
             fitted
           />
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             {isCurrentUser && (
-              <Button variant="secondary" size="sm" onClick={() => router.push('/account')}>
-                {tProfile('edit-profile')}
+              <Button variant="secondary" size="sm" className="gap-1.5" onClick={() => router.push('/account')}>
+                <Pencil className="size-4" />
+                <span className="hidden sm:inline">{tProfile('edit-profile')}</span>
               </Button>
             )}
             <Button
@@ -104,7 +105,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
               ) : (
                 <GitCompareIcon className="size-4" />
               )}
-              {tCard('compare')}
+              <span className="hidden sm:inline">{tCard('compare')}</span>
             </Button>
           </div>
         </div>
