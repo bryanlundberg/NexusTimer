@@ -6,13 +6,10 @@ import EditCollectionForm from '@/features/manage-cubes/ui/EditCollectionForm'
 import { editCubeCollection } from '@/features/manage-cubes/api/editCubeCollection'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { toast } from 'sonner'
 import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
-import { useTranslations } from 'next-intl'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 
 export const useCubeActions = (cube?: Cube) => {
-  const t = useTranslations('Index')
   const router = useRouter()
   const { open } = useOverlayStore()
   const { settings } = useSettingsStore()
@@ -61,7 +58,6 @@ export const useCubeActions = (cube?: Cube) => {
     await editCubeCollection({ favorite: isFavoriting, id: cube!.id })
     const cubes = await cubesDB.getAll()
     setCubes(cubes)
-    toast.success(t('Errors.favorite-updated'), { duration: 1000 })
   }
 
   return {
