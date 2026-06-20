@@ -46,7 +46,7 @@ export default function PeoplePage() {
 
           {/* Skeleton rows */}
           {isLoading &&
-            Array(10)
+            Array(5)
               .fill(0)
               .map((_, i) => (
                 <div
