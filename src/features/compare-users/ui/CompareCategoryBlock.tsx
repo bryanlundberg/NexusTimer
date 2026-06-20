@@ -1,14 +1,16 @@
-import { Trophy } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
-import { cn } from '@/shared/lib/utils'
+import Image from 'next/image'
 import formatTime from '@/shared/lib/formatTime'
 import CompareTableRow from './CompareTableRow'
+import ValueCell from './ValueCell'
 import { CompareUser } from '@/features/compare-users/model/compare'
 import { CubeCategory } from '@/shared/const/cube-categories'
+import { cubeCollection } from '@/shared/const/cube-collection'
 import { useTranslations } from 'next-intl'
 
 export default function CompareCategoryBlock({ category, users }: { category: CubeCategory; users: CompareUser[] }) {
   const t = useTranslations('Index.LeaderboardsPage.comparative')
+  const src = cubeCollection.find((c) => c.name === category)?.src
+
   const singles = users
     .map((u) => u[category]?.single)
     .filter((v) => typeof v === 'number' && !isNaN(v) && v > 0) as number[]
@@ -24,68 +26,46 @@ export default function CompareCategoryBlock({ category, users }: { category: Cu
 
   return (
     <>
-      <CompareTableRow className={'mt-8 border-t pt-4'} title={`${category} ${t('single')}`}>
+      {/* Category section header */}
+      <div className={'flex w-max items-center mt-10 border-t border-border/50 pt-4 pb-1'}>
+        <div className={'w-32 sticky left-0 z-40 px-4 bg-background flex items-center gap-2.5'}>
+          <div className={'flex items-center justify-center size-8 rounded-lg bg-muted shrink-0'}>
+            {src && (
+              <Image unoptimized src={src} alt={category} width={20} height={20} className={'object-scale-down'} />
+            )}
+          </div>
+          <span className={'font-bold text-sm tracking-tight'}>{category}</span>
+        </div>
+        {users.map((user) => (
+          <div key={user._id} className={'w-52 shrink-0'} />
+        ))}
+      </div>
+
+      <CompareTableRow title={t('single')}>
         {users.map((user) => {
           const val = user[category]?.single
           const hasValue = typeof val === 'number' && !isNaN(val) && val > 0
           const isBest = hasValue && bestSingle !== undefined && val === bestSingle
-          return (
-            <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-4 flex justify-center'}>
-              <Badge
-                variant={isBest ? 'default' : hasValue ? 'secondary' : 'outline'}
-                className={cn(
-                  'mx-auto h-9 px-4 text-sm font-medium transition-all duration-300',
-                  isBest && 'ring-2 ring-primary ring-offset-2 scale-110 shadow-lg'
-                )}
-              >
-                {isBest && <Trophy className="w-3.5 h-3.5 mr-1.5 fill-current animate-pulse" />}
-                {hasValue ? formatTime(val) : '—'}
-              </Badge>
-            </div>
-          )
+          return <ValueCell key={user._id} value={hasValue ? formatTime(val as number) : '—'} isBest={!!isBest} />
         })}
       </CompareTableRow>
 
-      <CompareTableRow title={`${category} ${t('average')}`}>
+      <CompareTableRow title={t('average')}>
         {users.map((user) => {
           const val = user[category]?.average
           const hasValue = typeof val === 'number' && !isNaN(val) && val > 0
           const isBest = hasValue && bestAverage !== undefined && val === bestAverage
-          return (
-            <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-4 flex justify-center'}>
-              <Badge
-                variant={isBest ? 'default' : hasValue ? 'secondary' : 'outline'}
-                className={cn(
-                  'mx-auto h-9 px-4 text-sm font-medium transition-all duration-300',
-                  isBest && 'ring-2 ring-primary ring-offset-2 scale-110 shadow-lg'
-                )}
-              >
-                {isBest && <Trophy className="w-3.5 h-3.5 mr-1.5 fill-current animate-pulse" />}
-                {hasValue ? formatTime(val) : '—'}
-              </Badge>
-            </div>
-          )
+          return <ValueCell key={user._id} value={hasValue ? formatTime(val as number) : '—'} isBest={!!isBest} />
         })}
       </CompareTableRow>
 
-      <CompareTableRow title={`${category} ${t('count')}`}>
+      <CompareTableRow title={t('count')}>
         {users.map((user) => {
           const val = user[category]?.count
           const hasValue = val !== undefined && val !== null && !isNaN(val as number) && (val as number) !== 0
           const isBest = hasValue && bestCount !== undefined && val === bestCount
           return (
-            <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-4 flex justify-center'}>
-              <Badge
-                variant={isBest ? 'default' : hasValue ? 'secondary' : 'outline'}
-                className={cn(
-                  'mx-auto h-9 px-4 text-sm font-medium transition-all duration-300',
-                  isBest && 'ring-2 ring-primary ring-offset-2 scale-110 shadow-lg'
-                )}
-              >
-                {isBest && <Trophy className="w-3.5 h-3.5 mr-1.5 fill-current animate-pulse" />}
-                {hasValue ? (val as number).toLocaleString() : '—'}
-              </Badge>
-            </div>
+            <ValueCell key={user._id} value={hasValue ? (val as number).toLocaleString() : '—'} isBest={!!isBest} />
           )
         })}
       </CompareTableRow>
