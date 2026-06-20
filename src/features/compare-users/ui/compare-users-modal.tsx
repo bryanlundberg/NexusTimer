@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { XIcon } from 'lucide-react'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
 import { useUserBackups } from '@/features/compare-users/model/useUserBackups'
 import CompareTableRow from '@/features/compare-users/ui/CompareTableRow'
 import CompareCategoryBlock from '@/features/compare-users/ui/CompareCategoryBlock'
@@ -74,17 +73,18 @@ export default function CompareUsersModal() {
         <CompareTableRow title={t('country')}>
           {users.map((user) => {
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-3'}>
-                <Badge variant={user.country ? 'secondary' : 'outline'} className={'mx-auto px-3 font-medium'}>
-                  {user.country ? (
-                    <span className="flex items-center gap-1.5">
-                      <CountryFlag code={user.country} className="w-3.5" />
-                      {getCountryName(user.country, locale)}
-                    </span>
-                  ) : (
-                    '—'
-                  )}
-                </Badge>
+              <div
+                key={user._id}
+                className={'w-52 shrink-0 px-2 py-3 flex justify-center items-center gap-1.5 text-sm'}
+              >
+                {user.country ? (
+                  <>
+                    <CountryFlag code={user.country} className="w-3.5" />
+                    <span className="font-medium">{getCountryName(user.country, locale)}</span>
+                  </>
+                ) : (
+                  <span className="text-muted-foreground/40">—</span>
+                )}
               </div>
             )
           })}
@@ -94,10 +94,12 @@ export default function CompareUsersModal() {
           {users.map((user) => {
             const value = moment(user.createdAt).isValid() ? moment(user.createdAt).locale(locale).fromNow() : '—'
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-3'}>
-                <Badge variant={'outline'} className={'mx-auto px-3 font-medium bg-muted/30'}>
-                  {value}
-                </Badge>
+              <div key={user._id} className={'w-52 shrink-0 px-2 py-3 text-center text-sm'}>
+                {value === '—' ? (
+                  <span className="text-muted-foreground/40">—</span>
+                ) : (
+                  <span className="font-medium text-foreground">{value}</span>
+                )}
               </div>
             )
           })}
@@ -114,10 +116,12 @@ export default function CompareUsersModal() {
             const hasValue = totalSolves && !isNaN(totalSolves) && totalSolves !== 0
             const value = hasValue ? totalSolves.toLocaleString() : '—'
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-3'}>
-                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto px-3 font-medium'}>
-                  {value}
-                </Badge>
+              <div key={user._id} className={'w-52 shrink-0 px-2 py-3 text-center text-sm tabular-nums'}>
+                {value === '—' ? (
+                  <span className="text-muted-foreground/40">—</span>
+                ) : (
+                  <span className="font-semibold text-foreground">{value}</span>
+                )}
               </div>
             )
           })}
@@ -130,10 +134,12 @@ export default function CompareUsersModal() {
             const hasValue = totalCubes && !isNaN(totalCubes) && totalCubes !== 0
             const value = hasValue ? totalCubes.toLocaleString() : '—'
             return (
-              <div key={user._id} className={'w-52 text-center shrink-0 px-2 py-3'}>
-                <Badge variant={value !== '—' ? 'secondary' : 'outline'} className={'mx-auto px-3 font-medium'}>
-                  {value}
-                </Badge>
+              <div key={user._id} className={'w-52 shrink-0 px-2 py-3 text-center text-sm tabular-nums'}>
+                {value === '—' ? (
+                  <span className="text-muted-foreground/40">—</span>
+                ) : (
+                  <span className="font-semibold text-foreground">{value}</span>
+                )}
               </div>
             )
           })}
