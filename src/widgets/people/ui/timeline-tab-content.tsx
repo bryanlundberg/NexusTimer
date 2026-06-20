@@ -12,7 +12,8 @@ import {
 } from '@/components/ui/pagination'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import { Cube } from '@/entities/cube/model/types'
-import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
+import Image from 'next/image'
+import { cubeCollection } from '@/shared/const/cube-collection'
 import formatTime from '@/shared/lib/formatTime'
 import moment from 'moment'
 import { useLocale, useTranslations } from 'next-intl'
@@ -34,7 +35,7 @@ interface TimelineTabContentProps {
 }
 
 const ITEMS_PER_PAGE = 20
-const GRID = 'grid-cols-[2.5rem_8rem_minmax(0,1fr)_7rem_8rem]'
+const GRID = 'grid-cols-[min-content_minmax(0,13rem)_7rem_minmax(16rem,1.5fr)_8rem]'
 
 export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
   const locale = useLocale()
@@ -67,18 +68,18 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
   return (
     <div className="space-y-4">
       <div className="overflow-x-auto">
-        <div className="min-w-[580px]">
+        <div className="min-w-[780px]">
           {/* Header */}
           <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">#</span>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              {t('col-category')}
-            </span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              {t('col-scramble')}
+              {t('col-cube')}
             </span>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
               {t('col-time')}
+            </span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {t('col-scramble')}
             </span>
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
               {t('col-date')}
@@ -95,6 +96,7 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
             {currentItems.map((solve, i) => {
               const globalIndex = solves.length - ((page - 1) * ITEMS_PER_PAGE + i)
               const displayTime = solve.time + (solve.plus2 ? 2000 : 0)
+              const categorySrc = cubeCollection.find((c) => c.name === solve.category)?.src
 
               return (
                 <motion.div
@@ -104,19 +106,28 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
                   transition={{ duration: 0.2, ease: 'easeOut' }}
                 >
                   {/* # */}
-                  <span className="text-xs font-mono text-muted-foreground tabular-nums text-right select-none">
+                  <span className="text-xs font-mono text-muted-foreground tabular-nums text-left select-none">
                     {String(globalIndex).padStart(2, '0')}
                   </span>
 
-                  {/* Category badge */}
-                  <div className="min-w-0 flex flex-col gap-0.5">
-                    <CategoryBadge category={solve.category} className="text-[10px] px-1.5 py-0 h-4 w-fit shrink-0" />
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="flex items-center justify-center size-9 rounded-lg bg-muted shrink-0">
+                      {categorySrc && (
+                        <Image
+                          unoptimized
+                          src={categorySrc}
+                          alt={solve.category}
+                          title={solve.category}
+                          width={22}
+                          height={22}
+                          className="object-scale-down"
+                        />
+                      )}
+                    </div>
+                    <span className="text-xs font-medium text-foreground/80 truncate" title={solve.cubeName}>
+                      {solve.cubeName}
+                    </span>
                   </div>
-
-                  {/* Scramble text only */}
-                  <span className="text-[10px] font-mono text-muted-foreground/70 break-all leading-relaxed">
-                    {solve.scramble}
-                  </span>
 
                   {/* Time */}
                   <div className="flex items-baseline gap-1">
@@ -129,6 +140,10 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
                       </>
                     )}
                   </div>
+
+                  <span className="text-[10px] font-mono text-muted-foreground/70 break-all leading-relaxed">
+                    {solve.scramble}
+                  </span>
 
                   {/* Date */}
                   <span className="text-xs text-muted-foreground tabular-nums">
