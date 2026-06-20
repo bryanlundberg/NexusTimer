@@ -356,6 +356,8 @@
       "title": "Ludzie",
       "search-placeholder": "Szukaj po imieniu",
       "no-users-found": "Nie znaleziono użytkowników spełniających kryteria",
+      "no-results-for": "Nie znaleziono cuberów dla <b>„{query}”</b>",
+      "clear-search": "Wyczyść wyszukiwanie",
       "results": "Wyniki",
       "user-card": {
         "compare": "Porównaj",

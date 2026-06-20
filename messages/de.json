@@ -280,6 +280,8 @@
       "title": "Personen",
       "search-placeholder": "Nach Namen suchen",
       "no-users-found": "Keine passenden Nutzer gefunden",
+      "no-results-for": "Keine Cuber gefunden für <b>„{query}“</b>",
+      "clear-search": "Suche zurücksetzen",
       "results": "Ergebnisse",
       "user-card": {
         "compare": "Vergleichen",

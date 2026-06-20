@@ -356,6 +356,8 @@
       "title": "Mga Tao",
       "search-placeholder": "Hanapin ayon sa pangalan",
       "no-users-found": "Walang user na tumutugma sa criteria mo",
+      "no-results-for": "Walang cuber na nahanap para sa <b>“{query}”</b>",
+      "clear-search": "I-clear ang paghahanap",
       "results": "Mga Resulta",
       "user-card": {
         "compare": "Ikumpara",

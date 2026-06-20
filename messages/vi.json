@@ -356,6 +356,8 @@
       "title": "Mọi người",
       "search-placeholder": "Tìm theo tên",
       "no-users-found": "Không tìm thấy người dùng nào phù hợp với tiêu chí của bạn",
+      "no-results-for": "Không tìm thấy cuber cho <b>“{query}”</b>",
+      "clear-search": "Xóa tìm kiếm",
       "results": "Kết quả",
       "user-card": {
         "compare": "So sánh",

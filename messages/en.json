@@ -356,6 +356,8 @@
       "title": "People",
       "search-placeholder": "Search by name",
       "no-users-found": "No users found matching your criteria",
+      "no-results-for": "No cubers found for <b>“{query}”</b>",
+      "clear-search": "Clear search",
       "results": "Results",
       "user-card": {
         "compare": "Compare",

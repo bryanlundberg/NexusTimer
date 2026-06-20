@@ -356,6 +356,8 @@
       "title": "ผู้คน",
       "search-placeholder": "ค้นหาตามชื่อ",
       "no-users-found": "ไม่พบผู้ใช้ที่ตรงกับเกณฑ์ของคุณ",
+      "no-results-for": "ไม่พบนักเล่นลูกบาศก์สำหรับ <b>“{query}”</b>",
+      "clear-search": "ล้างการค้นหา",
       "results": "ผลลัพธ์",
       "user-card": {
         "compare": "เปรียบเทียบ",

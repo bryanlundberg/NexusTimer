@@ -259,6 +259,8 @@
       "title": "Personas",
       "search-placeholder": "Buscar por nombre",
       "no-users-found": "No se encontraron usuarios que coincidan con tus criterios",
+      "no-results-for": "No se encontraron cubers para <b>“{query}”</b>",
+      "clear-search": "Limpiar búsqueda",
       "results": "Resultados",
       "user-card": {
         "compare": "Comparar",

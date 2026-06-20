@@ -356,6 +356,8 @@
       "title": "Orang",
       "search-placeholder": "Cari berdasarkan nama",
       "no-users-found": "Tidak ada pengguna yang cocok dengan kriteriamu",
+      "no-results-for": "Tidak ada cuber untuk <b>“{query}”</b>",
+      "clear-search": "Hapus pencarian",
       "results": "Hasil",
       "user-card": {
         "compare": "Bandingkan",

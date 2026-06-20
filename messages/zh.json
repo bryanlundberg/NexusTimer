@@ -280,6 +280,8 @@
       "title": "魔友",
       "search-placeholder": "按名称搜索",
       "no-users-found": "未找到匹配的魔友",
+      "no-results-for": "未找到与 <b>“{query}”</b> 匹配的玩家",
+      "clear-search": "清除搜索",
       "results": "结果",
       "user-card": {
         "compare": "对比成绩",

@@ -280,6 +280,8 @@
       "title": "ユーザー",
       "search-placeholder": "名前で検索",
       "no-users-found": "条件に合うユーザーが見つかりません",
+      "no-results-for": "<b>「{query}」</b>に一致するキューバーが見つかりません",
+      "clear-search": "検索をクリア",
       "results": "件の結果",
       "user-card": {
         "compare": "比較する",

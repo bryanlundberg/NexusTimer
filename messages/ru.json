@@ -280,6 +280,8 @@
       "title": "Люди",
       "search-placeholder": "Поиск по имени",
       "no-users-found": "Пользователи не найдены",
+      "no-results-for": "Кьюберы по запросу <b>«{query}»</b> не найдены",
+      "clear-search": "Очистить поиск",
       "results": "Результаты",
       "user-card": {
         "compare": "Сравнить",

@@ -332,6 +332,8 @@
       "title": "Люди",
       "search-placeholder": "Пошук за іменем",
       "no-users-found": "Не знайдено користувачів за вашими критеріями",
+      "no-results-for": "Кьюберів за запитом <b>«{query}»</b> не знайдено",
+      "clear-search": "Очистити пошук",
       "results": "Результати",
       "user-card": {
         "compare": "Порівняти",

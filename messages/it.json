@@ -356,6 +356,8 @@
       "title": "Persone",
       "search-placeholder": "Cerca per nome",
       "no-users-found": "Nessun utente trovato corrispondente ai criteri",
+      "no-results-for": "Nessun cuber trovato per <b>“{query}”</b>",
+      "clear-search": "Cancella ricerca",
       "results": "Risultati",
       "user-card": {
         "compare": "Confronta",
