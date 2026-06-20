@@ -315,6 +315,7 @@
       },
       "timeline-tab": {
         "col-category": "Kategorie",
+        "col-cube": "Würfel",
         "col-scramble": "Scramble",
         "col-time": "Zeit",
         "col-date": "Datum"

@@ -398,6 +398,7 @@
       },
       "timeline-tab": {
         "col-category": "Kategorya",
+        "col-cube": "Cube",
         "col-scramble": "Scramble",
         "col-time": "Oras",
         "col-date": "Petsa"

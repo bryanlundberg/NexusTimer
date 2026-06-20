@@ -315,6 +315,7 @@
       },
       "timeline-tab": {
         "col-category": "Categoria",
+        "col-cube": "Cubo",
         "col-scramble": "Embaralhamento",
         "col-time": "Tempo",
         "col-date": "Data"

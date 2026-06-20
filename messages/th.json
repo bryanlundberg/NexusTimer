@@ -398,6 +398,7 @@
       },
       "timeline-tab": {
         "col-category": "หมวดหมู่",
+        "col-cube": "ลูกบาศก์",
         "col-scramble": "Scramble",
         "col-time": "เวลา",
         "col-date": "วันที่"

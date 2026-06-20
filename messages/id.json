@@ -398,6 +398,7 @@
       },
       "timeline-tab": {
         "col-category": "Kategori",
+        "col-cube": "Kubus",
         "col-scramble": "Scramble",
         "col-time": "Waktu",
         "col-date": "Tanggal"

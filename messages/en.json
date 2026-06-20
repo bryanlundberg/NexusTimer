@@ -398,6 +398,7 @@
       },
       "timeline-tab": {
         "col-category": "Category",
+        "col-cube": "Cube",
         "col-scramble": "Scramble",
         "col-time": "Time",
         "col-date": "Date"

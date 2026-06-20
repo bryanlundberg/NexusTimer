@@ -315,6 +315,7 @@
       },
       "timeline-tab": {
         "col-category": "Catégorie",
+        "col-cube": "Cube",
         "col-scramble": "Mélange",
         "col-time": "Temps",
         "col-date": "Date"

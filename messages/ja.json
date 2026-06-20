@@ -315,6 +315,7 @@
       },
       "timeline-tab": {
         "col-category": "種目",
+        "col-cube": "キューブ",
         "col-scramble": "スクランブル",
         "col-time": "タイム",
         "col-date": "日付"

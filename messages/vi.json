@@ -398,6 +398,7 @@
       },
       "timeline-tab": {
         "col-category": "Hạng mục",
+        "col-cube": "Khối",
         "col-scramble": "Scramble",
         "col-time": "Thời gian",
         "col-date": "Ngày"
