@@ -1,11 +1,8 @@
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
-import * as React from 'react'
 import { useTranslations } from 'next-intl'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useState } from 'react'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
+import { usePeopleSearch } from '@/widgets/navigation-header/model/usePeopleSearch'
 
 interface PeoplePageHeaderProps {
   total?: number
@@ -14,20 +11,8 @@ interface PeoplePageHeaderProps {
 
 export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderProps) {
   const t = useTranslations('Index.PeoplePage')
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const search = searchParams!.get('search')
-  const [searchTerm, setSearchTerm] = useState(search)
-
+  const { searchTerm, setSearchTerm } = usePeopleSearch()
   const basketCount = useCompareUsersStore((state) => state.users.length)
-
-  const handleSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    const newSearchParams = new URLSearchParams()
-    if (searchTerm) newSearchParams.set('search', searchTerm)
-    newSearchParams.set('page', '0')
-    router.push(`/people?${newSearchParams.toString()}`)
-  }
 
   return (
     <div className="flex flex-col justify-between gap-4 mb-4">
@@ -44,6 +29,15 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
               total,
               b: (chunks) => <span className="font-semibold text-foreground">{chunks}</span>
             })}
+            {basketCount > 0 && (
+              <>
+                {' · '}
+                {t.rich('compare-basket', {
+                  count: basketCount,
+                  b: (chunks) => <span className="font-semibold text-primary">{chunks}</span>
+                })}
+              </>
+            )}
           </span>
         )}
       </div>
@@ -58,23 +52,9 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
               value={searchTerm || ''}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-9 w-full sm:w-52"
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch(e as any)}
             />
           </div>
-          <div className="flex gap-2">
-            <Button onClick={handleSearch} className="shrink-0" size="sm">
-              {t('search')}
-            </Button>
-          </div>
         </div>
-        {basketCount > 0 && (
-          <span className="text-[11px] text-muted-foreground sm:text-right">
-            {t.rich('compare-basket', {
-              count: basketCount,
-              b: (chunks) => <span className="font-semibold text-primary">{chunks}</span>
-            })}
-          </span>
-        )}
       </div>
     </div>
   )
