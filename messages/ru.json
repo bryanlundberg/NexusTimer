@@ -249,10 +249,7 @@
     "Errors": {
       "not-match": "Имя не совпадает.",
       "repeated-name": "Коллекция с таким именем уже существует.",
-      "collection-created": "Коллекция успешно создана",
-      "collection-edited": "Коллекция успешно изменена",
       "collection-edit-failed": "Не удалось изменить коллекцию",
-      "favorite-updated": "Статус избранного обновлен",
       "required-field": "Обязательное поле",
       "collection-deleted": "Коллекция успешно удалена",
       "collection-delete-failed": "Не удалось удалить коллекцию",

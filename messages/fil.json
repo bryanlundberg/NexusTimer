@@ -325,10 +325,7 @@
     "Errors": {
       "not-match": "Hindi tugma ang pangalan.",
       "repeated-name": "May ganyang pangalan na ng collection.",
-      "collection-created": "Matagumpay na nagawa ang cube collection",
-      "collection-edited": "Matagumpay na na-edit ang cube collection",
       "collection-edit-failed": "Nabigo sa pag-edit ng cube collection",
-      "favorite-updated": "Na-update ang favorite status ng cube",
       "required-field": "Kinakailangang field",
       "collection-deleted": "Matagumpay na nabura ang collection",
       "collection-delete-failed": "Nabigo sa pagbura ng collection",

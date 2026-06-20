@@ -249,10 +249,7 @@
     "Errors": {
       "not-match": "नाम मेल नहीं खाता।",
       "repeated-name": "वह संग्रह नाम पहले से मौजूद है।",
-      "collection-created": "क्यूब संग्रह सफलतापूर्वक बनाया गया",
-      "collection-edited": "क्यूब संग्रह सफलतापूर्वक संपादित किया गया",
       "collection-edit-failed": "क्यूब संग्रह संपादित करने में विफल",
-      "favorite-updated": "पसंदीदा स्थिति अपडेट की गई",
       "required-field": "आवश्यक फ़ील्ड",
       "collection-deleted": "संग्रह सफलतापूर्वक हटा दिया गया",
       "collection-delete-failed": "संग्रह हटाने में विफल",

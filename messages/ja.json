@@ -249,10 +249,7 @@
     "Errors": {
       "not-match": "名前が一致しません。",
       "repeated-name": "そのコレクション名はすでに存在します。",
-      "collection-created": "コレクションを作成しました",
-      "collection-edited": "コレクションを編集しました",
       "collection-edit-failed": "コレクションの編集に失敗しました",
-      "favorite-updated": "お気に入り状態を更新しました",
       "required-field": "必須項目です",
       "collection-deleted": "コレクションを削除しました",
       "collection-delete-failed": "コレクションの削除に失敗しました",

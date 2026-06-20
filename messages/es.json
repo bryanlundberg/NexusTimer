@@ -396,10 +396,7 @@
     "Errors": {
       "not-match": "El nombre no coincide.",
       "repeated-name": "Esa colección de nombres ya existe.",
-      "collection-created": "Colección de cubos creada exitosamente",
-      "collection-edited": "Colección de cubos editada exitosamente",
       "collection-edit-failed": "Error al editar la colección de cubos",
-      "favorite-updated": "Estado de favorito actualizado",
       "required-field": "Campo requerido",
       "collection-deleted": "Colección eliminada exitosamente",
       "collection-delete-failed": "Error al eliminar la colección",

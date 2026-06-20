@@ -249,10 +249,7 @@
     "Errors": {
       "not-match": "Name stimmt nicht überein.",
       "repeated-name": "Dieser Sammlungsname existiert bereits.",
-      "collection-created": "Sammlung erfolgreich erstellt",
-      "collection-edited": "Sammlung erfolgreich bearbeitet",
       "collection-edit-failed": "Bearbeiten der Sammlung fehlgeschlagen",
-      "favorite-updated": "Favoritenstatus aktualisiert",
       "required-field": "Pflichtfeld",
       "collection-deleted": "Sammlung erfolgreich gelöscht",
       "collection-delete-failed": "Löschen der Sammlung fehlgeschlagen",

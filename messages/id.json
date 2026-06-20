@@ -325,10 +325,7 @@
     "Errors": {
       "not-match": "Nama tidak cocok.",
       "repeated-name": "Nama koleksi itu sudah ada.",
-      "collection-created": "Koleksi kubus berhasil dibuat",
-      "collection-edited": "Koleksi kubus berhasil diedit",
       "collection-edit-failed": "Gagal mengedit koleksi kubus",
-      "favorite-updated": "Status favorit kubus diperbarui",
       "required-field": "Kolom wajib diisi",
       "collection-deleted": "Koleksi berhasil dihapus",
       "collection-delete-failed": "Gagal menghapus koleksi",

@@ -325,10 +325,7 @@
     "Errors": {
       "not-match": "The name does not match.",
       "repeated-name": "That collection name already exists.",
-      "collection-created": "Cube collection created successfully",
-      "collection-edited": "Cube collection edited successfully",
       "collection-edit-failed": "Failed to edit cube collection",
-      "favorite-updated": "Cube favorite status updated",
       "required-field": "Required field",
       "collection-deleted": "Collection deleted successfully",
       "collection-delete-failed": "Failed to delete collection",

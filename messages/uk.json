@@ -301,10 +301,7 @@
     "Errors": {
       "not-match": "Назва не збігається.",
       "repeated-name": "Колекція з такою назвою вже існує.",
-      "collection-created": "Колекцію кубів успішно створено",
-      "collection-edited": "Колекцію кубів успішно відредаговано",
       "collection-edit-failed": "Не вдалося відредагувати колекцію кубів",
-      "favorite-updated": "Статус улюбленого куба оновлено",
       "required-field": "Обов'язкове поле",
       "collection-deleted": "Колекцію успішно видалено",
       "collection-delete-failed": "Не вдалося видалити колекцію",

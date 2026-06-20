@@ -249,10 +249,7 @@
     "Errors": {
       "not-match": "Le nom ne correspond pas.",
       "repeated-name": "Ce nom de collection existe déjà.",
-      "collection-created": "Collection de cubes créée avec succès",
-      "collection-edited": "Collection de cubes modifiée avec succès",
       "collection-edit-failed": "Échec de la modification de la collection",
-      "favorite-updated": "Statut favori mis à jour",
       "required-field": "Champ requis",
       "collection-deleted": "Collection supprimée avec succès",
       "collection-delete-failed": "Échec de la suppression de la collection",

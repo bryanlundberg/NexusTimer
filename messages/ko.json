@@ -249,10 +249,7 @@
     "Errors": {
       "not-match": "이름이 일치하지 않습니다.",
       "repeated-name": "이미 존재하는 컬렉션 이름입니다.",
-      "collection-created": "큐브 컬렉션이 생성되었습니다",
-      "collection-edited": "큐브 컬렉션이 수정되었습니다",
       "collection-edit-failed": "컬렉션 수정 실패",
-      "favorite-updated": "즐겨찾기 상태가 업데이트되었습니다",
       "required-field": "필수 필드",
       "collection-deleted": "컬렉션이 삭제되었습니다",
       "collection-delete-failed": "컬렉션 삭제 실패",

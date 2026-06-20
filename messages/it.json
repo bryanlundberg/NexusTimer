@@ -325,10 +325,7 @@
     "Errors": {
       "not-match": "Il nome non corrisponde.",
       "repeated-name": "Questo nome di collezione esiste già.",
-      "collection-created": "Collezione di cubi creata con successo",
-      "collection-edited": "Collezione di cubi modificata con successo",
       "collection-edit-failed": "Impossibile modificare la collezione di cubi",
-      "favorite-updated": "Stato preferito del cubo aggiornato",
       "required-field": "Campo obbligatorio",
       "collection-deleted": "Collezione eliminata con successo",
       "collection-delete-failed": "Impossibile eliminare la collezione",

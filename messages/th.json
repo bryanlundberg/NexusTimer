@@ -325,10 +325,7 @@
     "Errors": {
       "not-match": "ชื่อไม่ตรงกัน",
       "repeated-name": "ชื่อคอลเลกชันนั้นมีอยู่แล้ว",
-      "collection-created": "สร้างคอลเลกชันลูกบาศก์สำเร็จ",
-      "collection-edited": "แก้ไขคอลเลกชันลูกบาศก์สำเร็จ",
       "collection-edit-failed": "แก้ไขคอลเลกชันลูกบาศก์ไม่สำเร็จ",
-      "favorite-updated": "อัปเดตสถานะรายการโปรดของลูกบาศก์แล้ว",
       "required-field": "ช่องที่จำเป็น",
       "collection-deleted": "ลบคอลเลกชันสำเร็จ",
       "collection-delete-failed": "ลบคอลเลกชันไม่สำเร็จ",

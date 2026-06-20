@@ -249,10 +249,7 @@
     "Errors": {
       "not-match": "名称不匹配。",
       "repeated-name": "该系列名称已存在。",
-      "collection-created": "魔方系列创建成功",
-      "collection-edited": "魔方系列编辑成功",
       "collection-edit-failed": "魔方系列编辑失败",
-      "favorite-updated": "收藏状态已更新",
       "required-field": "必填字段",
       "collection-deleted": "系列删除成功",
       "collection-delete-failed": "系列删除失败",

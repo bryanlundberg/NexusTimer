@@ -325,10 +325,7 @@
     "Errors": {
       "not-match": "Tên không khớp.",
       "repeated-name": "Tên bộ sưu tập đó đã tồn tại.",
-      "collection-created": "Tạo bộ sưu tập khối thành công",
-      "collection-edited": "Chỉnh sửa bộ sưu tập khối thành công",
       "collection-edit-failed": "Không thể chỉnh sửa bộ sưu tập khối",
-      "favorite-updated": "Đã cập nhật trạng thái yêu thích của khối",
       "required-field": "Trường bắt buộc",
       "collection-deleted": "Đã xóa bộ sưu tập thành công",
       "collection-delete-failed": "Không thể xóa bộ sưu tập",

@@ -325,10 +325,7 @@
     "Errors": {
       "not-match": "Nazwa nie pasuje.",
       "repeated-name": "Taka nazwa kolekcji już istnieje.",
-      "collection-created": "Kolekcja kostek utworzona pomyślnie",
-      "collection-edited": "Kolekcja kostek edytowana pomyślnie",
       "collection-edit-failed": "Nie udało się edytować kolekcji kostek",
-      "favorite-updated": "Status ulubionej kostki zaktualizowany",
       "required-field": "Pole wymagane",
       "collection-deleted": "Kolekcja usunięta pomyślnie",
       "collection-delete-failed": "Nie udało się usunąć kolekcji",
