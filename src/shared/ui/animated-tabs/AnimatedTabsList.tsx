@@ -42,12 +42,12 @@ export default function AnimatedTabsList({
           key={value}
           value={value}
           disabled={disabled}
-          className="relative z-10 rounded-lg border-transparent py-2.5 text-muted-foreground transition-colors data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-transparent md:py-2 dark:text-muted-foreground dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent dark:data-[state=active]:text-foreground"
+          className="relative z-10 rounded-lg border-transparent py-2.5 font-medium text-muted-foreground transition-colors hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-transparent md:py-2 dark:text-muted-foreground dark:hover:text-foreground dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent dark:data-[state=active]:text-foreground"
         >
           {activeValue === value && (
             <motion.span
               layoutId={layoutId}
-              className="absolute inset-0 rounded-lg bg-background shadow-sm"
+              className="absolute inset-0 rounded-lg bg-background shadow-sm ring-1 ring-border/70"
               transition={INDICATOR_SPRING}
             />
           )}
