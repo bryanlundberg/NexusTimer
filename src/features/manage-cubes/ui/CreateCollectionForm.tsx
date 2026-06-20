@@ -7,7 +7,6 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CreateCubeFormData, createCubeFormSchema } from '@/entities/cube/model/schema'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
@@ -71,7 +70,6 @@ export default function CreateCollectionForm() {
       setSelectedCube(newCube)
       setNewScramble(newCube)
       overlayStore.close()
-      toast.success(t('Errors.collection-created'))
     } catch (err) {
       console.log(err)
     }
