@@ -1,4 +1,4 @@
-jest.mock('../src/shared/const/algorithms-sets', () => ({
+vi.mock('../src/shared/const/algorithms-sets', () => ({
   ALGORITHM_SETS: [
     {
       slug: 'oll',
