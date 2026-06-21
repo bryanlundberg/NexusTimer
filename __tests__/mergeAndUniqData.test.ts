@@ -217,4 +217,185 @@ describe('mergeAndUniqData', () => {
       expect(localCube.solves.all.map((s) => s.id)).toEqual(['s2'])
     })
   })
+
+  // A solve id can live in more than one cube after a transfer between cubes. The
+  // merge must keep a single live copy (the most recently updated one) and mark
+  // every other instance isDeleted:true, whether it sits in session or all.
+  describe('cross-cube reconciliation of a solve id (transferred solves)', () => {
+    const instancesOf = (cubes: Awaited<ReturnType<typeof mergeAndUniqData>>, solveId: string) => {
+      const out: Array<{ cubeId: string; bucket: 'session' | 'all'; isDeleted: boolean }> = []
+      for (const cube of cubes) {
+        for (const s of cube.solves.session)
+          if (s.id === solveId) out.push({ cubeId: cube.id, bucket: 'session', isDeleted: !!s.isDeleted })
+        for (const s of cube.solves.all)
+          if (s.id === solveId) out.push({ cubeId: cube.id, bucket: 'all', isDeleted: !!s.isDeleted })
+      }
+      return out
+    }
+    const live = (instances: ReturnType<typeof instancesOf>) => instances.filter((i) => !i.isDeleted)
+
+    it('keeps a single live copy in the destination cube after a transfer A -> B', async () => {
+      const backup = [
+        makeCube({
+          id: 'A',
+          updatedAt: 100,
+          sessionSolves: [makeSolve({ id: 'x', cubeId: 'A', isDeleted: false, updatedAt: 50, startTime: 1 })]
+        })
+      ]
+      const local = [
+        makeCube({
+          id: 'A',
+          updatedAt: 200,
+          sessionSolves: [makeSolve({ id: 'x', cubeId: 'A', isDeleted: true, updatedAt: 200, startTime: 1 })]
+        }),
+        makeCube({
+          id: 'B',
+          updatedAt: 200,
+          sessionSolves: [makeSolve({ id: 'x', cubeId: 'B', isDeleted: false, updatedAt: 201, startTime: 1 })]
+        })
+      ]
+      const result = await mergeAndUniqData(backup, local)
+      const liveOnes = live(instancesOf(result, 'x'))
+      expect(liveOnes).toHaveLength(1)
+      expect(liveOnes[0].cubeId).toBe('B')
+    })
+
+    it('keeps the most recently updated copy live when the same id is live in two cubes', async () => {
+      const backup = [
+        makeCube({
+          id: 'A',
+          updatedAt: 100,
+          allSolves: [makeSolve({ id: 'x', isDeleted: false, updatedAt: 100, startTime: 1 })]
+        })
+      ]
+      const local = [
+        makeCube({
+          id: 'B',
+          updatedAt: 100,
+          allSolves: [makeSolve({ id: 'x', isDeleted: false, updatedAt: 200, startTime: 1 })]
+        })
+      ]
+      const result = await mergeAndUniqData(backup, local)
+      const liveOnes = live(instancesOf(result, 'x'))
+      expect(liveOnes).toHaveLength(1)
+      expect(liveOnes[0].cubeId).toBe('B')
+    })
+
+    it('marks the losing instance deleted even when it lives in the session bucket', async () => {
+      const backup = [
+        makeCube({
+          id: 'A',
+          updatedAt: 100,
+          sessionSolves: [makeSolve({ id: 'x', isDeleted: false, updatedAt: 100, startTime: 1 })]
+        })
+      ]
+      const local = [
+        makeCube({
+          id: 'B',
+          updatedAt: 100,
+          allSolves: [makeSolve({ id: 'x', isDeleted: false, updatedAt: 200, startTime: 1 })]
+        })
+      ]
+      const result = await mergeAndUniqData(backup, local)
+      const loser = instancesOf(result, 'x').find((i) => i.cubeId === 'A')
+      expect(loser).toMatchObject({ bucket: 'session', isDeleted: true })
+    })
+
+    it('marks the losing instance deleted even when it lives in the all bucket', async () => {
+      const backup = [
+        makeCube({
+          id: 'A',
+          updatedAt: 100,
+          allSolves: [makeSolve({ id: 'x', isDeleted: false, updatedAt: 100, startTime: 1 })]
+        })
+      ]
+      const local = [
+        makeCube({
+          id: 'B',
+          updatedAt: 100,
+          sessionSolves: [makeSolve({ id: 'x', isDeleted: false, updatedAt: 200, startTime: 1 })]
+        })
+      ]
+      const result = await mergeAndUniqData(backup, local)
+      const loser = instancesOf(result, 'x').find((i) => i.cubeId === 'A')
+      expect(loser).toMatchObject({ bucket: 'all', isDeleted: true })
+    })
+
+    it('keeps the non-deleted instance live when updatedAt ties', async () => {
+      const backup = [
+        makeCube({
+          id: 'A',
+          updatedAt: 100,
+          allSolves: [makeSolve({ id: 'x', isDeleted: true, updatedAt: 100, startTime: 1 })]
+        })
+      ]
+      const local = [
+        makeCube({
+          id: 'B',
+          updatedAt: 100,
+          allSolves: [makeSolve({ id: 'x', isDeleted: false, updatedAt: 100, startTime: 1 })]
+        })
+      ]
+      const result = await mergeAndUniqData(backup, local)
+      const liveOnes = live(instancesOf(result, 'x'))
+      expect(liveOnes).toHaveLength(1)
+      expect(liveOnes[0].cubeId).toBe('B')
+    })
+
+    it('leaves solve ids that appear in only one cube untouched', async () => {
+      const backup = [
+        makeCube({
+          id: 'A',
+          updatedAt: 100,
+          allSolves: [makeSolve({ id: 'x', isDeleted: false, updatedAt: 100, startTime: 1 })]
+        })
+      ]
+      const local = [
+        makeCube({
+          id: 'B',
+          updatedAt: 100,
+          allSolves: [makeSolve({ id: 'y', isDeleted: false, updatedAt: 100, startTime: 1 })]
+        })
+      ]
+      const result = await mergeAndUniqData(backup, local)
+      expect(live(instancesOf(result, 'x'))).toHaveLength(1)
+      expect(live(instancesOf(result, 'y'))).toHaveLength(1)
+    })
+
+    it('preserves the winner data and only flips isDeleted on the loser', async () => {
+      const backup = [
+        makeCube({
+          id: 'A',
+          updatedAt: 100,
+          allSolves: [makeSolve({ id: 'x', time: 1111, isDeleted: false, updatedAt: 100, startTime: 1 })]
+        })
+      ]
+      const local = [
+        makeCube({
+          id: 'B',
+          updatedAt: 100,
+          allSolves: [makeSolve({ id: 'x', time: 2222, isDeleted: false, updatedAt: 200, startTime: 1 })]
+        })
+      ]
+      const result = await mergeAndUniqData(backup, local)
+      const winner = result.find((c) => c.id === 'B')!.solves.all.find((s) => s.id === 'x')!
+      const loser = result.find((c) => c.id === 'A')!.solves.all.find((s) => s.id === 'x')!
+      expect(winner).toMatchObject({ time: 2222, isDeleted: false })
+      expect(loser).toMatchObject({ time: 1111, isDeleted: true })
+    })
+
+    it('does not mutate the losing input solve', async () => {
+      const loserSolve = makeSolve({ id: 'x', isDeleted: false, updatedAt: 100, startTime: 1 })
+      const backup = [makeCube({ id: 'A', updatedAt: 100, allSolves: [loserSolve] })]
+      const local = [
+        makeCube({
+          id: 'B',
+          updatedAt: 100,
+          allSolves: [makeSolve({ id: 'x', isDeleted: false, updatedAt: 200, startTime: 1 })]
+        })
+      ]
+      await mergeAndUniqData(backup, local)
+      expect(loserSolve.isDeleted).toBe(false)
+    })
+  })
 })
