@@ -1,5 +1,5 @@
 'use client'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { GitCompareIcon } from 'lucide-react'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
