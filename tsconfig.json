@@ -7,7 +7,7 @@
       "esnext",
       "WebWorker"
     ],
-    "types": ["@serwist/next/typings", "jest", "node"],
+    "types": ["@serwist/next/typings", "vitest/globals", "node"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -36,7 +36,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/timer/TimerWidgets.tsx",
-    "jest.config.js",
     "src/components/stackmat.tsx",
     ".next/dev/types/**/*.ts"
   ],
