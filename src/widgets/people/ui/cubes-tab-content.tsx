@@ -4,7 +4,7 @@ import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import { Cube } from '@/entities/cube/model/types'
 import PeopleCubeCard from '@/widgets/people/ui/PeopleCubeCard'
 import { useTranslations } from 'next-intl'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 interface CubesTabContentProps {
   cubes: Cube[]
