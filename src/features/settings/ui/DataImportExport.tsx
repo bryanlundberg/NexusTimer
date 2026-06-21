@@ -9,6 +9,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { toast } from 'sonner'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { normalizeOldData, preventDuplicateDeleteStatus } from '@/features/manage-backup/lib/importDataFromFile'
+import { reconcileSolvesAcrossCubes } from '@/shared/model/backup/reconcileSolvesAcrossCubes'
 import { useQueryState } from 'nuqs'
 import { useEffect, useRef } from 'react'
 
@@ -41,7 +42,7 @@ export function DataImportExport() {
     try {
       const db = await cubesDB.getAllDatabase()
 
-      const normalizedDB = preventDuplicateDeleteStatus(normalizeOldData(db))
+      const normalizedDB = reconcileSolvesAcrossCubes(preventDuplicateDeleteStatus(normalizeOldData(db)))
 
       await cubesDB.clear()
       for (const cube of normalizedDB) {
