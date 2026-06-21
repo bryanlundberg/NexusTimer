@@ -1,7 +1,6 @@
 import { TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { InformationCircleIcon } from '@heroicons/react/24/outline'
-import { Boxes, User } from 'lucide-react'
+import { Boxes, Info, User } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { cn } from '@/shared/lib/utils'
 import {
@@ -85,7 +84,7 @@ export default function StatisticsChartHeader({ columns }: StatisticsChartHeader
                   <TooltipTrigger asChild>
                     <div className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] uppercase tracking-wider font-semibold text-muted-foreground cursor-help">
                       {column.label}
-                      <InformationCircleIcon className="size-3.5 opacity-50" />
+                      <Info className="size-3.5 opacity-50" />
                     </div>
                   </TooltipTrigger>
                   <TooltipContent side="bottom" className="max-w-xs">
