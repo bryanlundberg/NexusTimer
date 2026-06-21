@@ -1,9 +1,10 @@
 import { MoveSolveSessionDTO } from '@/features/manage-solves/model/types'
+import { Cube } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { SolveTab } from '@/shared/types/enums'
 import { findIndex } from 'es-toolkit/compat'
 
-export default async function moveSolveSession(dto: MoveSolveSessionDTO) {
+export default async function moveSolveSession(dto: MoveSolveSessionDTO): Promise<Cube> {
   const { cubeId, solveId, fromTab } = dto
 
   const cube = await cubesDB.getById(cubeId)

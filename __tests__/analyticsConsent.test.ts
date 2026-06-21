@@ -34,7 +34,7 @@ describe('analyticsConsent', () => {
     })
 
     it('forwards the consent value to gtag when available', () => {
-      const gtag = jest.fn()
+      const gtag = vi.fn()
       ;(window as unknown as { gtag: typeof gtag }).gtag = gtag
       setAnalyticsConsent('denied')
       expect(gtag).toHaveBeenCalledWith('consent', 'update', {
@@ -55,7 +55,7 @@ describe('analyticsConsent', () => {
     })
 
     it('calls gtag with the consent update payload', () => {
-      const gtag = jest.fn()
+      const gtag = vi.fn()
       ;(window as unknown as { gtag: typeof gtag }).gtag = gtag
       updateGtagConsent('granted')
       expect(gtag).toHaveBeenCalledTimes(1)

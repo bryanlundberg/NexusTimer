@@ -16,11 +16,11 @@ describe('accountInfoSchema', () => {
     expect(result.success).toBe(true)
   })
 
-  it('rejects a name shorter than 5 chars', () => {
-    const result = accountInfoSchema.safeParse({ name: 'Abc' })
+  it('rejects a name shorter than 3 chars', () => {
+    const result = accountInfoSchema.safeParse({ name: 'Ab' })
     expect(result.success).toBe(false)
     if (!result.success) {
-      expect(result.error.issues[0].message).toBe('Name must be at least 5 characters long')
+      expect(result.error.issues[0].message).toBe('Name must be at least 3 characters long')
     }
   })
 
