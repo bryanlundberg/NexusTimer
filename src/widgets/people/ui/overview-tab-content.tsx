@@ -8,7 +8,7 @@ import { Cube } from '@/entities/cube/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import { useLocale } from 'next-intl'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
   const locale = useLocale()

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { PlayIcon } from '@radix-ui/react-icons'

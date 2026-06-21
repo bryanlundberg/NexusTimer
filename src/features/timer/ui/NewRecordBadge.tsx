@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { useTranslations } from 'next-intl'
 import { Nexi } from '@/shared/ui/nexi'
 import formatTime from '@/shared/lib/formatTime'

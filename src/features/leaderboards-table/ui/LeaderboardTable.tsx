@@ -3,7 +3,7 @@
 import LeaderboardTableRow from '@/features/leaderboards-table/ui/LeaderboardTableRow'
 import { SolveServer } from '@/entities/solve/model/types'
 import { useTranslations } from 'next-intl'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 interface LeaderboardTableProps {
   solves: SolveServer[]

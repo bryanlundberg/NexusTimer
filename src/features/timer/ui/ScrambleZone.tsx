@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'motion/react'
 import { Keyboard, Lightbulb } from 'lucide-react'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 

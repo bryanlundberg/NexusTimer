@@ -6,7 +6,7 @@ import calcBestAo from '@/shared/lib/statistics/calcBestAo'
 import formatTime from '@/shared/lib/formatTime'
 import { defer } from 'es-toolkit/compat'
 import { useTranslations } from 'next-intl'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { AreaChart, Area, ResponsiveContainer } from 'recharts'
 
 interface SolveCardProps {

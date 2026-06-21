@@ -6,7 +6,7 @@ import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { useLocale } from 'next-intl'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 interface LastActivitySolveCardProps {
   solve: {

@@ -1,6 +1,6 @@
 'use client'
 import { ReactNode } from 'react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import ButtonNextScramble from '@/features/navigation/ui/button-next-scramble'
 import ButtonCreateCollection from '@/features/navigation/ui/button-create-collection'

@@ -10,7 +10,7 @@ const CreateRoomModal = dynamic(() => import('@/features/free-play/ui/create-roo
 const JoinPrivateRoomModal = dynamic(() => import('@/features/free-play/ui/join-private-room-modal'))
 import RoomCard from '@/features/free-play/ui/room-card'
 import { useTranslations } from 'next-intl'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Plus, Radio, Gamepad2 } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 

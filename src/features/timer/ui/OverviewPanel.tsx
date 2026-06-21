@@ -1,7 +1,7 @@
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 export default function OverviewPanel() {
   const timerStatistics = useTimerStore((store) => store.timerStatistics)

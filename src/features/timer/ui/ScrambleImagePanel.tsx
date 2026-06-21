@@ -1,6 +1,6 @@
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'motion/react'
 import { cn } from '@/shared/lib/utils'
 import { useWindowSize } from 'react-use-size'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'

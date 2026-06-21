@@ -1,7 +1,7 @@
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 export default function StatisticsPanel() {
   const settings = useSettingsStore((store) => store.settings)
