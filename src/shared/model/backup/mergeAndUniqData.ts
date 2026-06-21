@@ -1,4 +1,5 @@
 import { formatCubesDatesAndOrder, preventDuplicateDeleteStatus } from '@/features/manage-backup/lib/importDataFromFile'
+import { reconcileSolvesAcrossCubes } from '@/shared/model/backup/reconcileSolvesAcrossCubes'
 import { Cube } from '@/entities/cube/model/types'
 
 export async function mergeAndUniqData(backupData: Cube[], localCubesData: Cube[]): Promise<Cube[]> {
@@ -50,5 +51,7 @@ export async function mergeAndUniqData(backupData: Cube[], localCubesData: Cube[
   }
 
   const mergedCubes = Array.from(cubeMap.values())
-  return formatCubesDatesAndOrder(preventDuplicateDeleteStatus(mergedCubes))
+  const dedupedPerCube = preventDuplicateDeleteStatus(mergedCubes)
+  const reconciled = reconcileSolvesAcrossCubes(dedupedPerCube)
+  return formatCubesDatesAndOrder(reconciled)
 }
