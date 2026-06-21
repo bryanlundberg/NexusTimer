@@ -1,7 +1,7 @@
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import React from 'react'
-import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion'
+import { AnimatePresence, HTMLMotionProps, motion } from 'motion/react'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useWindowSize } from 'react-use-size'
 import { cn } from '@/shared/lib/utils'
