@@ -3,7 +3,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { UpdateIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { useState } from 'react'
 
 export default function ButtonNextScramble() {
