@@ -1,4 +1,4 @@
-jest.mock('pretty-ms', () => ({
+vi.mock('pretty-ms', () => ({
   __esModule: true,
   default: (ms: number) => `${ms}ms`
 }))
