@@ -10,7 +10,7 @@ import formatTime from '@/shared/lib/formatTime'
 import { sort } from 'fast-sort'
 import { useLocale, useTranslations } from 'next-intl'
 import moment from 'moment'
-import { ArrowUpIcon } from '@heroicons/react/24/solid'
+import { ArrowUp } from 'lucide-react'
 import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { getCountryName } from '@/shared/lib/getCountryName'
@@ -119,7 +119,7 @@ export function ProfileHeroBanner({ user, cubes, level }: Props) {
             </div>
             {pb3x3.isNew && (
               <div className="flex items-center gap-1 text-xs">
-                <ArrowUpIcon className="size-3 text-emerald-500" />
+                <ArrowUp className="size-3 text-emerald-500" />
                 <span className="font-semibold text-emerald-500">{t('new-pb')}</span>
                 <span className="text-muted-foreground">{t('pb-broken', { days: pb3x3.daysAgo })}</span>
               </div>
