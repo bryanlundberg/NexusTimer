@@ -12,6 +12,11 @@ import type { TwistyPlayer } from 'cubing/twisty'
  * O = IgnoreNonPrimary (OLL), P = PermuteNonPrimary (PLL), - = Regular. The
  * D-layer pieces sit at slots 4–7 of EDGES/CORNERS and slot 5 of CENTERS, so
  * each entry mirrors the built-in U-layer stickering onto those D-layer slots.
+ *
+ * Note: PLL/COLL/ZBLL use `-` (Regular) rather than the built-in `P`
+ * (PermuteNonPrimary) on the last-layer pieces. `P` dims the top facelet and
+ * only colors the sides; `-` keeps every top sticker highlighted, which is
+ * needed to read corner orientation in ZBLL and looks cleaner for PLL.
  */
 const D_LAYER_MASKS: Record<string, Record<string, string>> = {
   OLL: {
@@ -19,7 +24,7 @@ const D_LAYER_MASKS: Record<string, Record<string, string>> = {
     '3x3x3': 'EDGES:DDDDOOOODDDD,CORNERS:DDDDOOOO,CENTERS:DDDDD-'
   },
   PLL: {
-    '3x3x3': 'EDGES:DDDDPPPPDDDD,CORNERS:DDDDPPPP,CENTERS:DDDDDD'
+    '3x3x3': 'EDGES:DDDD----DDDD,CORNERS:DDDD----,CENTERS:DDDDD-'
   }
 }
 
