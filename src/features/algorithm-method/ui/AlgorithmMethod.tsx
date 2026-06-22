@@ -2,14 +2,14 @@ import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
-import * as React from 'react'
 import { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 import { useTranslations } from 'next-intl'
 import { ArrowRight } from 'lucide-react'
+import MethodThumbnail from '@/features/algorithm-method/ui/MethodThumbnail'
 
 export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
   const t = useTranslations('Index.AlgorithmsPage')
-  const { slug, title, subtitle, puzzle, Icon, difficulty, algorithms } = set
+  const { slug, title, subtitle, puzzle, difficulty, algorithms } = set
 
   const difficultyLabel =
     difficulty === 1 ? t('casual-enthusiast') : difficulty === 2 ? t('dedicated-learner') : t('algorithm-master')
@@ -27,9 +27,7 @@ export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
         <CardHeader className="pb-3">
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary/15">
-                <Icon className="h-5 w-5" aria-hidden="true" />
-              </div>
+              <MethodThumbnail set={set} />
               <div>
                 <CardTitle className="text-base font-semibold">{title}</CardTitle>
                 <CardDescription className="text-xs mt-0.5">{subtitle}</CardDescription>
