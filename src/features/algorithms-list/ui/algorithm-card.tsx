@@ -75,11 +75,11 @@ export default function AlgorithmCard({
       >
         <div
           className={cn(
-            'flex size-11 shrink-0 items-center justify-center rounded-md bg-muted/40 sm:size-12',
+            'flex size-14 shrink-0 items-center justify-center rounded-md bg-muted/40 sm:size-16',
             isLearned && 'ring-1 ring-primary/40'
           )}
         >
-          <AlgorithmRender config={vizConfig} width={40} height={40} />
+          <AlgorithmRender config={vizConfig} width={72} height={72} />
         </div>
 
         <div className="flex flex-1 min-w-0 flex-col gap-0.5">
@@ -92,7 +92,7 @@ export default function AlgorithmCard({
               <span className="shrink-0 text-[10px] tabular-nums text-muted-foreground">+{alternatives.length}</span>
             )}
           </div>
-          <code className="block min-w-0 break-all font-mono text-xs leading-relaxed text-muted-foreground">
+          <code className="block min-w-0 break-all font-mono leading-relaxed text-muted-foreground">
             {primary?.moves ?? '—'}
           </code>
         </div>
