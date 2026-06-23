@@ -81,7 +81,7 @@
     "luxon": "^3.5.0",
     "moment": "^2.30.1",
     "mongoose": "^9.4.1",
-    "motion": "^12.23.9",
+    "motion": "^12.40.0",
     "next": "16.2.6",
     "next-auth": "5.0.0-beta.30",
     "next-intl": "^4.9.2",
