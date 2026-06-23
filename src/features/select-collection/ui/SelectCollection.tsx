@@ -24,7 +24,7 @@ import { Nexi } from '@/shared/ui/nexi'
 
 export default function SelectCollection() {
   const close = useOverlayStore((state) => state.close)
-  const isOpen = useOverlayStore((state) => state.activeOverlay !== null)
+  const isOpen = useOverlayStore((state) => state.isOpen)
   const lockSelectClose = useOnboardingStore((state) => state.lockSelectClose)
   const cubes = useTimerStore((state) => state.cubes)
   const selectedCube = useTimerStore((state) => state.selectedCube)
