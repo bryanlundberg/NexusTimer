@@ -14,7 +14,7 @@ export default function StatisticsChart({ statistics, loadingProps }: Statistics
   const rows = useStatisticsRows(statistics)
 
   return (
-    <div className="bg-background overflow-hidden mb-2">
+    <div className="bg-background/75 overflow-hidden mb-2">
       <Table>
         <StatisticsChartHeader columns={columns} />
         <TableBody>
