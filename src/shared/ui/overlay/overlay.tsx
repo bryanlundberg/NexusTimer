@@ -1,35 +1,30 @@
 'use client'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { Dialog } from '@/components/ui/dialog'
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect } from 'react'
+
+const CLOSE_ANIMATION_MS = 250
 
 export const Overlay = () => {
-  const overlayStore = useOverlayStore((state) => ({
-    activeOverlay: state.activeOverlay,
-    close: state.close
-  }))
-
-  const isOpen = !!overlayStore.activeOverlay
-  const component = overlayStore.activeOverlay?.component
-  const [renderedComponent, setRenderedComponent] = useState<ReactNode | null>(null)
+  const activeOverlay = useOverlayStore((state) => state.activeOverlay)
+  const isOpen = useOverlayStore((state) => state.isOpen)
+  const close = useOverlayStore((state) => state.close)
+  const clear = useOverlayStore((state) => state.clear)
 
   useEffect(() => {
-    if (component) {
-      setRenderedComponent(component)
-      return
-    }
-    const timeout = setTimeout(() => setRenderedComponent(null), 250)
+    if (isOpen || !activeOverlay) return
+    const timeout = setTimeout(() => clear(), CLOSE_ANIMATION_MS)
     return () => clearTimeout(timeout)
-  }, [component])
+  }, [isOpen, activeOverlay, clear])
 
   return (
     <Dialog
       open={isOpen}
       onOpenChange={(open) => {
-        if (!open) overlayStore.close()
+        if (!open) close()
       }}
     >
-      {renderedComponent}
+      {activeOverlay?.component}
     </Dialog>
   )
 }
