@@ -9,18 +9,25 @@ type OverlayConfig<T = any> = {
 
 type OverlayStoreState = {
   activeOverlay: OverlayConfig | null
+  isOpen: boolean
   open: <T = any>(config: OverlayConfig<T>) => void
   close: () => void
+  clear: () => void
 }
 
 export const useOverlayStore = create<OverlayStoreState>((set) => ({
   activeOverlay: null,
+  isOpen: false,
 
   open: (config) => {
-    set({ activeOverlay: config })
+    set({ activeOverlay: config, isOpen: true })
   },
 
   close: () => {
+    set({ isOpen: false })
+  },
+
+  clear: () => {
     set({ activeOverlay: null })
   }
 }))
