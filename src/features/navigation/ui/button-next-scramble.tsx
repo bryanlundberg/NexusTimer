@@ -1,19 +1,18 @@
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { UpdateIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
-import { motion } from 'motion/react'
-import { useState } from 'react'
+import { useRef } from 'react'
+import RefreshIcon from '@/components/ui/refresh-icon'
+import type { AnimatedIconHandle } from '@/components/ui/types'
 
 export default function ButtonNextScramble() {
   const t = useTranslations('Index')
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const setNewScramble = useTimerStore((state) => state.setNewScramble)
-  const [spin, setSpin] = useState(0)
+  const iconRef = useRef<AnimatedIconHandle>(null)
 
   const handleClick = () => {
-    setSpin((prev) => prev + 360)
     setNewScramble(selectedCube)
   }
 
@@ -22,14 +21,14 @@ export default function ButtonNextScramble() {
       <TooltipProvider delayDuration={100}>
         <Tooltip>
           <TooltipTrigger asChild disabled={selectedCube === null}>
-            <Button variant={'ghost'} className="py-0 px-3" onClick={handleClick}>
-              <motion.span
-                className="inline-flex"
-                animate={{ rotate: spin }}
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
-              >
-                <UpdateIcon />
-              </motion.span>
+            <Button
+              variant={'ghost'}
+              className="py-0 px-3"
+              onClick={handleClick}
+              onMouseEnter={() => iconRef.current?.startAnimation()}
+              onMouseLeave={() => iconRef.current?.stopAnimation()}
+            >
+              <RefreshIcon ref={iconRef} size={16} />
             </Button>
           </TooltipTrigger>
           <TooltipContent>
