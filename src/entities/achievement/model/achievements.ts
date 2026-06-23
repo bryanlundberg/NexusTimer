@@ -106,8 +106,16 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     type: 'granted'
   },
   {
+    id: 'playstore-beta',
+    title: 'Play Store Pioneer',
+    description: 'Joined the official Play Store beta testing program.',
+    icon: 'icons8-google-play-50.png',
+    color: 'rgb(220 204 61 / 0.8)',
+    type: 'granted'
+  },
+  {
     id: 'first-year',
-    title: 'Beta Tester',
+    title: 'Early User',
     description: 'Joined during the first year after launch.',
     icon: 'icons8-metal-music-50.png',
     color: 'rgba(0,191,255,0.8)',
