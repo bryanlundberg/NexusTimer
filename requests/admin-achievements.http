@@ -9,6 +9,7 @@
 ###   public-sponsor   → Project Patron
 ###   contributor      → Contributor
 ###   bug-hunter       → Bug Hunter
+###   playstore-beta   → Play Store Pioneer
 ### -----------------------------------------------------------------------
 
 
@@ -65,4 +66,15 @@ Content-Type: application/json
 {
   "email": "{{email}}",
   "key": "bug-hunter"
+}
+
+
+### Grant: Play Store Pioneer
+POST {{baseUrl}}/api/v1/admin/achievements
+x-admin-token: {{adminToken}}
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "key": "playstore-beta"
 }
