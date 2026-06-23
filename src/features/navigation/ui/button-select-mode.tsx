@@ -10,14 +10,15 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { MixIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import type { AnimatedIconHandle } from '@/components/ui/types'
 import { TimerMode } from '@/features/timer/model/enums'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import ConnectQR from '@/features/nexus-connect/ui/ConnectQR'
 import { useNexusConnectStore } from '@/features/nexus-connect/model/useNexusConnectStore'
 import genId from '@/shared/lib/genId'
+import LayoutDashboardIcon from '@/components/ui/layout-dashboard-icon'
 
 export default function ButtonSelectMode() {
   const timerMode = useTimerStore((state) => state.timerMode)
@@ -27,6 +28,7 @@ export default function ButtonSelectMode() {
   const open = useOverlayStore((state) => state.open)
   const connectId = useNexusConnectStore((state) => state.nexusConnectId)
   const setConnectId = useNexusConnectStore((state) => state.setNexusConnectId)
+  const iconRef = useRef<AnimatedIconHandle>(null)
 
   useEffect(() => {
     if (!selectedCube) return
@@ -56,10 +58,12 @@ export default function ButtonSelectMode() {
           <Button
             data-testid={'button-select-mode'}
             variant="ghost"
-            className="py-0 px-3 [&>svg]:transition-transform [&>svg]:duration-300 [&:hover>svg]:rotate-180"
+            className="py-0 px-3"
             disabled={!selectedCube}
+            onMouseEnter={() => iconRef.current?.startAnimation()}
+            onMouseLeave={() => iconRef.current?.stopAnimation()}
           >
-            <MixIcon />
+            <LayoutDashboardIcon ref={iconRef} />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-fit">
