@@ -76,6 +76,14 @@ export default function manifest(): MetadataRoute.Manifest {
     orientation: 'portrait',
     launch_handler: {
       client_mode: 'focus-existing'
-    }
+    },
+    related_applications: [
+      {
+        platform: 'play',
+        id: 'com.nexustimer',
+        url: 'https://play.google.com/store/apps/details?id=com.nexustimer'
+      }
+    ],
+    prefer_related_applications: true
   }
 }
