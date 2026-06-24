@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "Phiên",
+      "cube": "Khối",
+      "time": "Thời gian",
+      "solves": "{count} lượt giải",
+      "best": "Tốt nhất",
+      "select-cube": "Chọn khối",
+      "no-solves": "Chưa có lượt giải",
+      "show": "Hiện lượt giải",
+      "hide": "Ẩn lượt giải"
+    },
     "Offline": {
       "offline": "Ngoại tuyến"
     },

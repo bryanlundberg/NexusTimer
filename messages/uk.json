@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "Сесія",
+      "cube": "Куб",
+      "time": "Час",
+      "solves": "{count} спроб",
+      "best": "Найкраще",
+      "select-cube": "Вибрати куб",
+      "no-solves": "Ще немає спроб",
+      "show": "Показати спроби",
+      "hide": "Сховати спроби"
+    },
     "Offline": {
       "offline": "Офлайн"
     },

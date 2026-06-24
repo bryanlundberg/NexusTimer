@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "当前组",
+      "cube": "魔方",
+      "time": "时间",
+      "solves": "{count} 次",
+      "best": "最佳",
+      "select-cube": "选择魔方",
+      "no-solves": "暂无还原记录",
+      "show": "显示还原",
+      "hide": "隐藏还原"
+    },
     "OnboardingTour": {
       "skip": "退出引导",
       "welcome": {

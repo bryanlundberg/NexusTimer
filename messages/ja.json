@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "セッション",
+      "cube": "キューブ",
+      "time": "タイム",
+      "solves": "{count} ソルブ",
+      "best": "ベスト",
+      "select-cube": "キューブ選択",
+      "no-solves": "まだソルブがありません",
+      "show": "ソルブを表示",
+      "hide": "ソルブを非表示"
+    },
     "OnboardingTour": {
       "skip": "ガイドを終了",
       "welcome": {

@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "세션",
+      "cube": "큐브",
+      "time": "타임",
+      "solves": "{count}개 기록",
+      "best": "최고",
+      "select-cube": "큐브 선택",
+      "no-solves": "아직 기록이 없습니다",
+      "show": "기록 표시",
+      "hide": "기록 숨기기"
+    },
     "OnboardingTour": {
       "skip": "가이드 종료",
       "welcome": {

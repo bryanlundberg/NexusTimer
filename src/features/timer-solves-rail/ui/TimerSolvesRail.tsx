@@ -4,6 +4,7 @@ import * as React from 'react'
 import { useMemo, useRef, useState } from 'react'
 import { motion } from 'motion/react'
 import { useVirtualizer } from '@tanstack/react-virtual'
+import { useTranslations } from 'next-intl'
 import { Tabs } from '@/components/ui/tabs'
 import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
 import { HistoryIcon, ShellIcon } from 'lucide-react'
@@ -30,14 +31,15 @@ export default function TimerSolvesRail() {
   const cubes = useTimerStore((state) => state.cubes)
   const scrollRef = useRef<HTMLDivElement>(null)
   const open = useOverlayStore((state) => state.open)
+  const t = useTranslations('Index.SolvesRail')
 
   const openSolveDetails = (solve: Solve) => {
     open({ id: 'solve-details', metadata: { ...solve }, component: <SolveDetails /> })
   }
 
   const tabs = [
-    { value: 'session', icon: ShellIcon, label: 'Session' },
-    { value: 'cube', icon: HistoryIcon, label: 'Cube' }
+    { value: 'session', icon: ShellIcon, label: t('session') },
+    { value: 'cube', icon: HistoryIcon, label: t('cube') }
   ]
 
   const solves = useMemo<Solve[]>(() => {
@@ -94,9 +96,9 @@ export default function TimerSolvesRail() {
 
         {/* Summary strip */}
         <div className="flex items-center justify-between px-2 pb-2 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-          <span className="tabular-nums">{solves.length} solves</span>
+          <span className="tabular-nums">{t('solves', { count: solves.length })}</span>
           <span className="inline-flex items-center gap-1">
-            <span>best</span>
+            <span>{t('best')}</span>
             <span className="font-mono tabular-nums text-foreground">{bestLabel}</span>
           </span>
         </div>
@@ -107,7 +109,7 @@ export default function TimerSolvesRail() {
           style={{ gridTemplateColumns: GRID_COLS }}
         >
           <span>#</span>
-          <span className="text-right">Time</span>
+          <span className="text-right">{t('time')}</span>
           <span className="text-right">Ao5</span>
           <span className="text-right">Ao12</span>
         </div>
@@ -115,7 +117,7 @@ export default function TimerSolvesRail() {
         {/* Rows (virtualized) */}
         {rows.length === 0 ? (
           <p className="px-3 py-6 text-center text-xs text-muted-foreground">
-            {!selectedCube ? 'Select a cube' : 'No solves yet'}
+            {!selectedCube ? t('select-cube') : t('no-solves')}
           </p>
         ) : (
           <div ref={scrollRef} className="min-h-0 flex-1 overflow-auto scrollbar-hide">

@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "Sitzung",
+      "cube": "Würfel",
+      "time": "Zeit",
+      "solves": "{count} Zeiten",
+      "best": "Beste",
+      "select-cube": "Würfel wählen",
+      "no-solves": "Noch keine Zeiten",
+      "show": "Zeiten anzeigen",
+      "hide": "Zeiten ausblenden"
+    },
     "OnboardingTour": {
       "skip": "Anleitung verlassen",
       "welcome": {

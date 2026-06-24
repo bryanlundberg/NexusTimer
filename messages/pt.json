@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "Sessão",
+      "cube": "Cubo",
+      "time": "Tempo",
+      "solves": "{count} tempos",
+      "best": "Melhor",
+      "select-cube": "Selecionar Cubo",
+      "no-solves": "Ainda sem tempos",
+      "show": "Mostrar tempos",
+      "hide": "Ocultar tempos"
+    },
     "OnboardingTour": {
       "skip": "Sair do guia",
       "welcome": {

@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "Сессия",
+      "cube": "Куб",
+      "time": "Время",
+      "solves": "{count} сборок",
+      "best": "Лучшее",
+      "select-cube": "Выбрать куб",
+      "no-solves": "Пока нет сборок",
+      "show": "Показать сборки",
+      "hide": "Скрыть сборки"
+    },
     "OnboardingTour": {
       "skip": "Выйти из гида",
       "welcome": {

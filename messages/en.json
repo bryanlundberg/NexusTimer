@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "Session",
+      "cube": "Cube",
+      "time": "Time",
+      "solves": "{count} solves",
+      "best": "best",
+      "select-cube": "Select a cube",
+      "no-solves": "No solves yet",
+      "show": "Show solves",
+      "hide": "Hide solves"
+    },
     "Offline": {
       "offline": "Offline"
     },

@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "Session",
+      "cube": "Cube",
+      "time": "Oras",
+      "solves": "{count} solve",
+      "best": "Best",
+      "select-cube": "Pumili ng Cube",
+      "no-solves": "Wala pang solve",
+      "show": "Ipakita ang mga solve",
+      "hide": "Itago ang mga solve"
+    },
     "Offline": {
       "offline": "Offline"
     },

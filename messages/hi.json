@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "सत्र",
+      "cube": "क्यूब",
+      "time": "समय",
+      "solves": "{count} समाधान",
+      "best": "सर्वश्रेष्ठ",
+      "select-cube": "क्यूब चुनें",
+      "no-solves": "अभी तक कोई समाधान नहीं",
+      "show": "समाधान दिखाएँ",
+      "hide": "समाधान छिपाएँ"
+    },
     "OnboardingTour": {
       "skip": "गाइड से बाहर निकलें",
       "welcome": {

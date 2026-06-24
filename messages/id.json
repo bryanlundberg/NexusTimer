@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "Sesi",
+      "cube": "Kubus",
+      "time": "Waktu",
+      "solves": "{count} solve",
+      "best": "Terbaik",
+      "select-cube": "Pilih Kubus",
+      "no-solves": "Belum ada solve",
+      "show": "Tampilkan solve",
+      "hide": "Sembunyikan solve"
+    },
     "Offline": {
       "offline": "Offline"
     },

@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "เซสชัน",
+      "cube": "ลูกบาศก์",
+      "time": "เวลา",
+      "solves": "{count} ครั้ง",
+      "best": "ดีที่สุด",
+      "select-cube": "เลือกลูกบาศก์",
+      "no-solves": "ยังไม่มีการต่อ",
+      "show": "แสดงการต่อ",
+      "hide": "ซ่อนการต่อ"
+    },
     "Offline": {
       "offline": "ออฟไลน์"
     },

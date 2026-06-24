@@ -1,5 +1,16 @@
 {
   "Index": {
+    "SolvesRail": {
+      "session": "Sesja",
+      "cube": "Kostka",
+      "time": "Czas",
+      "solves": "{count} ułożeń",
+      "best": "Najlepszy",
+      "select-cube": "Wybierz kostkę",
+      "no-solves": "Brak ułożeń",
+      "show": "Pokaż ułożenia",
+      "hide": "Ukryj ułożenia"
+    },
     "Offline": {
       "offline": "Offline"
     },

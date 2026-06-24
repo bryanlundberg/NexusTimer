@@ -3,10 +3,12 @@ import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { PanelRightClose, PanelRightOpen } from 'lucide-react'
 import { useTimerRailStore } from '@/features/timer-solves-rail/model/useTimerRailStore'
+import { useTranslations } from 'next-intl'
 
 export default function TimerRailToggle() {
   const isOpen = useTimerRailStore((state) => state.isOpen)
   const toggle = useTimerRailStore((state) => state.toggle)
+  const t = useTranslations('Index.SolvesRail')
 
   return (
     <TooltipProvider delayDuration={100}>
@@ -18,13 +20,13 @@ export default function TimerRailToggle() {
             className="hidden md:inline-flex py-0 px-3 ms-auto"
             onClick={toggle}
             aria-pressed={isOpen}
-            aria-label={isOpen ? 'Hide solves panel' : 'Show solves panel'}
+            aria-label={isOpen ? t('hide') : t('show')}
           >
             {isOpen ? <PanelRightClose size={16} /> : <PanelRightOpen size={16} />}
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>{isOpen ? 'Hide solves' : 'Show solves'}</p>
+          <p>{isOpen ? t('hide') : t('show')}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
