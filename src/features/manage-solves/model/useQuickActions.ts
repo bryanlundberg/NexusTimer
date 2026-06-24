@@ -77,8 +77,6 @@ export default function useQuickActions(solve: Solve) {
 
     await deleteSolve({ cubeId, solveId, solveTab: tab })
     syncUI()
-
-    toast.success(`Solve ${formatTime(solve.time)} deleted`, { duration: 1500 })
   }
 
   const handleClipboard = (customMessage?: { title?: string; description?: string }) => {
