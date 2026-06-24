@@ -92,16 +92,18 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     let dnf12 = 0
     reversedDataSet.forEach((i: Solve, index: number) => {
       const timeIndex = index + 1
-      structuredData.push({
-        time: timeIndex,
-        value: i.time
-      })
+      if (!i.dnf) {
+        structuredData.push({
+          time: timeIndex,
+          value: i.time
+        })
+      }
       solveMap.set(timeIndex, i)
 
-      if (i.time <= runningBest) {
+      if (!i.dnf && i.time <= runningBest) {
         runningBest = i.time
       }
-      pbAtStepMap.set(timeIndex, runningBest)
+      if (runningBest !== Infinity) pbAtStepMap.set(timeIndex, runningBest)
 
       if (i.dnf) dnf5++
       else sum5 += i.time
