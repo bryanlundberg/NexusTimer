@@ -11,6 +11,7 @@ import ButtonNextScramble from '@/features/navigation/ui/button-next-scramble'
 import ButtonSelectMode from '@/features/navigation/ui/button-select-mode'
 import NewRecordBadge from '@/features/timer/ui/NewRecordBadge'
 import RecordRipple from '@/features/timer/ui/RecordRipple'
+import TimerRailToggle from '@/features/timer-solves-rail/ui/TimerRailToggle'
 
 export default function HeaderTimer() {
   const isSolving = useTimerStore((store) => store.isSolving)
@@ -37,6 +38,7 @@ export default function HeaderTimer() {
           <MainCubeSelector />
           <ButtonNextScramble />
           <ButtonSelectMode />
+          <TimerRailToggle />
         </div>
 
         <ScrambleZone />
