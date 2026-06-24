@@ -498,7 +498,9 @@
       "unknown-category": "Unknown",
       "move-to-history": "Move to History",
       "transfer-collection": "Transfer Collection",
-      "watch-replay": "Watch replay"
+      "watch-replay": "Watch replay",
+      "delete-confirm-title": "Delete this solve?",
+      "delete-confirm-desc": "This action cannot be undone."
     },
     "Settings-menu": {
       "locale": "Region",

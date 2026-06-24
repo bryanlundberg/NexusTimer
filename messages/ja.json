@@ -420,7 +420,9 @@
     "solve-details": {
       "unknown-category": "不明",
       "move-to-history": "アーカイブへ移動",
-      "transfer-collection": "コレクションを移動"
+      "transfer-collection": "コレクションを移動",
+      "delete-confirm-title": "このソルブを削除しますか？",
+      "delete-confirm-desc": "この操作は取り消せません。"
     },
     "Settings-menu": {
       "locale": "地域",

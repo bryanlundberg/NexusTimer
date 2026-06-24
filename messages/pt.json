@@ -420,7 +420,9 @@
     "solve-details": {
       "unknown-category": "Desconhecido",
       "move-to-history": "Mover para o Histórico",
-      "transfer-collection": "Transferir Coleção"
+      "transfer-collection": "Transferir Coleção",
+      "delete-confirm-title": "Excluir esta resolução?",
+      "delete-confirm-desc": "Esta ação não pode ser desfeita."
     },
     "Settings-menu": {
       "locale": "Região",

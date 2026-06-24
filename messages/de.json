@@ -420,7 +420,9 @@
     "solve-details": {
       "unknown-category": "Unbekannt",
       "move-to-history": "In Verlauf verschieben",
-      "transfer-collection": "Sammlung übertragen"
+      "transfer-collection": "Sammlung übertragen",
+      "delete-confirm-title": "Diesen Solve löschen?",
+      "delete-confirm-desc": "Diese Aktion kann nicht rückgängig gemacht werden."
     },
     "Settings-menu": {
       "locale": "Region",

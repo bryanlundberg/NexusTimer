@@ -474,7 +474,9 @@
     "solve-details": {
       "unknown-category": "Невідома",
       "move-to-history": "Перемістити в історію",
-      "transfer-collection": "Перенести колекцію"
+      "transfer-collection": "Перенести колекцію",
+      "delete-confirm-title": "Видалити цей розв'язок?",
+      "delete-confirm-desc": "Цю дію не можна скасувати."
     },
     "Settings-menu": {
       "locale": "Регіон",

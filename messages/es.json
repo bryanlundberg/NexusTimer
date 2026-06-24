@@ -428,7 +428,9 @@
       "unknown-category": "Desconocido",
       "move-to-history": "Mover al Historial",
       "transfer-collection": "Transferir Colección",
-      "watch-replay": "Ver repetición"
+      "watch-replay": "Ver repetición",
+      "delete-confirm-title": "¿Eliminar este tiempo?",
+      "delete-confirm-desc": "Esta acción no se puede deshacer."
     },
     "SettingsPage": {
       "account": "Cuenta",

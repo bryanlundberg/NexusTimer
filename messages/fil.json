@@ -508,7 +508,9 @@
       "unknown-category": "Hindi Alam",
       "move-to-history": "Ilipat sa History",
       "transfer-collection": "Ilipat ang Collection",
-      "watch-replay": "Panoorin ang replay"
+      "watch-replay": "Panoorin ang replay",
+      "delete-confirm-title": "Burahin ang solve na ito?",
+      "delete-confirm-desc": "Hindi na maibabalik ang aksyong ito."
     },
     "Settings-menu": {
       "locale": "Rehiyon",

@@ -420,7 +420,9 @@
     "solve-details": {
       "unknown-category": "Неизвестно",
       "move-to-history": "В историю",
-      "transfer-collection": "Сменить коллекцию"
+      "transfer-collection": "Сменить коллекцию",
+      "delete-confirm-title": "Удалить это решение?",
+      "delete-confirm-desc": "Это действие нельзя отменить."
     },
     "Settings-menu": {
       "locale": "Регион",

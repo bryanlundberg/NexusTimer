@@ -508,7 +508,9 @@
       "unknown-category": "Không xác định",
       "move-to-history": "Chuyển vào lịch sử",
       "transfer-collection": "Chuyển bộ sưu tập",
-      "watch-replay": "Xem phát lại"
+      "watch-replay": "Xem phát lại",
+      "delete-confirm-title": "Xóa solve này?",
+      "delete-confirm-desc": "Hành động này không thể hoàn tác."
     },
     "Settings-menu": {
       "locale": "Khu vực",

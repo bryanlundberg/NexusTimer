@@ -420,7 +420,9 @@
     "solve-details": {
       "unknown-category": "अज्ञात",
       "move-to-history": "इतिहास में ले जाएं",
-      "transfer-collection": "संग्रह स्थानांतरित करें"
+      "transfer-collection": "संग्रह स्थानांतरित करें",
+      "delete-confirm-title": "इस सॉल्व को हटाएँ?",
+      "delete-confirm-desc": "इस क्रिया को पूर्ववत नहीं किया जा सकता।"
     },
     "Settings-menu": {
       "locale": "क्षेत्र",

@@ -420,7 +420,9 @@
     "solve-details": {
       "unknown-category": "Inconnu",
       "move-to-history": "Déplacer vers l'historique",
-      "transfer-collection": "Transférer la collection"
+      "transfer-collection": "Transférer la collection",
+      "delete-confirm-title": "Supprimer ce solve ?",
+      "delete-confirm-desc": "Cette action est irréversible."
     },
     "Settings-menu": {
       "locale": "Région",

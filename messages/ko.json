@@ -420,7 +420,9 @@
     "solve-details": {
       "unknown-category": "알 수 없음",
       "move-to-history": "기록실로 이동",
-      "transfer-collection": "컬렉션 이동"
+      "transfer-collection": "컬렉션 이동",
+      "delete-confirm-title": "이 솔브를 삭제하시겠습니까?",
+      "delete-confirm-desc": "이 작업은 되돌릴 수 없습니다."
     },
     "Settings-menu": {
       "locale": "지역",

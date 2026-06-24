@@ -508,7 +508,9 @@
       "unknown-category": "Tidak diketahui",
       "move-to-history": "Pindahkan ke Riwayat",
       "transfer-collection": "Transfer Koleksi",
-      "watch-replay": "Tonton putar ulang"
+      "watch-replay": "Tonton putar ulang",
+      "delete-confirm-title": "Hapus solve ini?",
+      "delete-confirm-desc": "Tindakan ini tidak dapat dibatalkan."
     },
     "Settings-menu": {
       "locale": "Wilayah",

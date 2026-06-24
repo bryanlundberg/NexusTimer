@@ -508,7 +508,9 @@
       "unknown-category": "Nieznana",
       "move-to-history": "Przenieś do historii",
       "transfer-collection": "Przenieś kolekcję",
-      "watch-replay": "Obejrzyj powtórkę"
+      "watch-replay": "Obejrzyj powtórkę",
+      "delete-confirm-title": "Usunąć ten solve?",
+      "delete-confirm-desc": "Tej akcji nie można cofnąć."
     },
     "Settings-menu": {
       "locale": "Region",

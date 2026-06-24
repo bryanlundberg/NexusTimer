@@ -508,7 +508,9 @@
       "unknown-category": "Sconosciuta",
       "move-to-history": "Sposta nella cronologia",
       "transfer-collection": "Trasferisci collezione",
-      "watch-replay": "Guarda il replay"
+      "watch-replay": "Guarda il replay",
+      "delete-confirm-title": "Eliminare questo solve?",
+      "delete-confirm-desc": "Questa azione non può essere annullata."
     },
     "Settings-menu": {
       "locale": "Regione",

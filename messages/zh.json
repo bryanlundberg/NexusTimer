@@ -420,7 +420,9 @@
     "solve-details": {
       "unknown-category": "未知类别",
       "move-to-history": "移至历史记录",
-      "transfer-collection": "转移收藏"
+      "transfer-collection": "转移收藏",
+      "delete-confirm-title": "删除此还原？",
+      "delete-confirm-desc": "此操作无法撤销。"
     },
     "Settings-menu": {
       "locale": "地区",
