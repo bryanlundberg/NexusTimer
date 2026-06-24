@@ -112,10 +112,12 @@ export default function useQuickActions(solve: Solve) {
     const selectedCubeUpdated = await cubesDB.getById(cubeId)
     if (!selectedCubeUpdated) return
 
-    setSelectedCube(selectedCubeUpdated)
-
     if (cubes) {
       setCubes(cubes.map((cube) => (cube.id === selectedCubeUpdated.id ? selectedCubeUpdated : cube)))
+    }
+
+    if (selectedCube?.id === selectedCubeUpdated.id) {
+      setSelectedCube(selectedCubeUpdated)
     }
 
     toast.success(`Solve ${formatTime(solve.time)} moved`, { duration: 1500 })
@@ -123,11 +125,14 @@ export default function useQuickActions(solve: Solve) {
   }
 
   const syncUI = async () => {
-    const updatedCube = await cubesDB.getById(selectedCube?.id || '')
-    setSelectedCube(updatedCube || null)
+    const updatedCube = await cubesDB.getById(solve.cubeId)
 
     if (cubes && updatedCube) {
       setCubes(cubes.map((cube) => (cube.id === updatedCube.id ? updatedCube : cube)))
+    }
+
+    if (updatedCube && selectedCube?.id === updatedCube.id) {
+      setSelectedCube(updatedCube)
     }
 
     let updatedSolve = updatedCube?.solves.session.find((s) => s.id === solve.id && !s.isDeleted)
