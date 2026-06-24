@@ -1,4 +1,15 @@
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle
+} from '@/components/ui/alert-dialog'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { CopyIcon, CubeIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
@@ -39,6 +50,13 @@ export default function QuickActions({
     handleTransferCollection,
     handleClipboard
   } = useQuickActions(solve!)
+  const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false)
+
+  const handleConfirmDelete = () => {
+    handleDeleteSolve()
+    onDeleteSolve()
+    setConfirmDeleteOpen(false)
+  }
 
   const showDropdown =
     !hideCopyButton || !hideMoveToHistory || (tabMode === SolveTab.SESSION && !hideTransferCollection)
@@ -57,10 +75,7 @@ export default function QuickActions({
               variant="ghost"
               size="sm"
               className="gap-1.5 h-12 min-w-12 sm:h-8 sm:min-w-0 text-muted-foreground hover:text-destructive"
-              onPointerDown={() => {
-                handleDeleteSolve()
-                onDeleteSolve()
-              }}
+              onPointerDown={() => setConfirmDeleteOpen(true)}
             >
               <Trash className="size-5 sm:size-3.5" />
               <span className="hidden sm:inline text-xs">{t('tooltips.delete')}</span>
@@ -191,6 +206,19 @@ export default function QuickActions({
           </>
         )}
       </div>
+
+      <AlertDialog open={confirmDeleteOpen} onOpenChange={setConfirmDeleteOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t('solve-details.delete-confirm-title')}</AlertDialogTitle>
+            <AlertDialogDescription>{t('solve-details.delete-confirm-desc')}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t('Inputs.cancel')}</AlertDialogCancel>
+            <AlertDialogAction onClick={handleConfirmDelete}>{t('tooltips.delete')}</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </TooltipProvider>
   )
 }
