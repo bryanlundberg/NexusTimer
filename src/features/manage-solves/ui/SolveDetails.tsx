@@ -20,6 +20,7 @@ export default function SolveDetails() {
   const t = useTranslations('Index')
   const { activeOverlay } = useOverlayStore()
   const selectedCube = useTimerStore((state) => state.selectedCube)
+  const setLastSolve = useTimerStore((state) => state.setLastSolve)
   const locale = useLocale()
 
   const solve = activeOverlay?.metadata as Solve | undefined
@@ -105,7 +106,9 @@ export default function SolveDetails() {
       </div>
 
       {/* Actions - compact bottom bar */}
-      <div className="px-4 py-2.5 border-t shrink-0 sm:px-5">{solve && <QuickActions solve={solve} />}</div>
+      <div className="px-4 py-2.5 border-t shrink-0 sm:px-5">
+        {solve && <QuickActions solve={solve} onDeleteSolve={() => setLastSolve(null)} />}
+      </div>
     </DialogContent>
   )
 }
