@@ -1,9 +1,11 @@
 import { Solve } from '@/entities/solve/model/types'
+import { calcAoFromWindow } from './getAoTolerance'
 
 /**
  * Calculates the current average of X (AoX) from a given array of solves.
- * The average is the plain arithmetic mean of the most recent 'ao' solves.
- * If any of them is a DNF, the average is DNF (represented as 0), since a DNF can't be averaged.
+ * DNFs are removed and the remaining times averaged, as long as the number of
+ * DNFs stays within the tolerance for that average length (see getAoTolerance).
+ * If there are more DNFs than tolerated, the average is DNF (represented as 0).
  *
  * @param {Solve[]} solves - An array of Solve objects.
  * @param {number} ao - The desired average length (e.g., 3, 5, 12).
@@ -18,15 +20,6 @@ export default function calcCurrentAo(solves: Solve[], ao: number): number {
     return 0
   }
 
-  // Get the most recent 'ao' solves
-  const aoSolves = solves.slice(0, ao)
-
-  // A DNF can't be averaged, so the average is DNF (represented as 0)
-  if (aoSolves.some((solve) => solve.dnf)) {
-    return 0
-  }
-
-  const sum = aoSolves.reduce((total, solve) => total + solve.time, 0)
-
-  return sum / ao
+  // Average the most recent 'ao' solves using the shared DNF tolerance rule
+  return calcAoFromWindow(solves.slice(0, ao), ao)
 }

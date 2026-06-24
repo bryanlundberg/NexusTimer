@@ -49,7 +49,7 @@ describe('calcCurrentAo', () => {
   })
 
   describe('DNF handling', () => {
-    it('returns 0 when a DNF is present', () => {
+    it('tolerates one DNF in an ao5 by averaging the rest', () => {
       const solves = [
         makeSolve({ time: 1000 }),
         makeSolve({ time: 2000 }),
@@ -57,7 +57,25 @@ describe('calcCurrentAo', () => {
         makeSolve({ time: 4000 }),
         makeSolve({ time: 99999, dnf: true })
       ]
+      // ao5 tolerates 1 DNF → mean of the 4 valid times = 2500
+      expect(calcCurrentAo(solves, 5)).toBe(2500)
+    })
+
+    it('returns 0 (DNF) when an ao5 has more DNFs than tolerated', () => {
+      const solves = [
+        makeSolve({ time: 1000 }),
+        makeSolve({ time: 2000 }),
+        makeSolve({ time: 3000 }),
+        makeSolve({ time: 4000, dnf: true }),
+        makeSolve({ time: 99999, dnf: true })
+      ]
+      // ao5 tolerates only 1 DNF, here there are 2 → DNF
       expect(calcCurrentAo(solves, 5)).toBe(0)
+    })
+
+    it('returns 0 (DNF) for an ao3 with any DNF (tolerance 0)', () => {
+      const solves = [makeSolve({ time: 1000 }), makeSolve({ time: 2000 }), makeSolve({ time: 3000, dnf: true })]
+      expect(calcCurrentAo(solves, 3)).toBe(0)
     })
 
     it('returns the mean when no DNF is present', () => {
