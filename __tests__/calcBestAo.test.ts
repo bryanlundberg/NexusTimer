@@ -46,7 +46,7 @@ describe('calcBestAo', () => {
   })
 
   describe('DNF handling', () => {
-    it('skips windows containing a DNF', () => {
+    it('tolerates one DNF per ao5 window, averaging the rest', () => {
       const solves = [
         makeSolve({ time: 1000, dnf: true }),
         makeSolve({ time: 2000 }),
@@ -56,21 +56,21 @@ describe('calcBestAo', () => {
         makeSolve({ time: 6000 }),
         makeSolve({ time: 7000 })
       ]
-      // Window [0..4] has a DNF → skipped
+      // Window [0..4]: 1 DNF tolerated → mean of [2000,3000,4000,5000] = 3500
       // Window [1..5]: [2000,3000,4000,5000,6000] → 4000
       // Window [2..6]: [3000,4000,5000,6000,7000] → 5000
-      expect(calcBestAo(solves, 5)).toBe(4000)
+      expect(calcBestAo(solves, 5)).toBe(3500)
     })
 
-    it('returns Infinity when every window has a DNF', () => {
+    it('returns Infinity when every window exceeds the DNF tolerance', () => {
       const solves = [
-        makeSolve({ time: 1000 }),
-        makeSolve({ time: 2000 }),
-        makeSolve({ time: 3000, dnf: true }),
+        makeSolve({ time: 1000, dnf: true }),
+        makeSolve({ time: 2000, dnf: true }),
+        makeSolve({ time: 3000 }),
         makeSolve({ time: 4000 }),
         makeSolve({ time: 5000 })
       ]
-      // The single window contains a DNF → skipped → bestAo never updated
+      // The single ao5 window has 2 DNFs > tolerance (1) → skipped → never updated
       expect(calcBestAo(solves, 5)).toBe(Infinity)
     })
   })
