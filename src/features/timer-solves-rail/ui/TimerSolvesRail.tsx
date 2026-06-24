@@ -12,6 +12,7 @@ import { cn } from '@/shared/lib/utils'
 import { sort } from 'fast-sort'
 import formatTime from '@/shared/lib/formatTime'
 import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
+import calcBestAo from '@/shared/lib/statistics/calcBestAo'
 import getBestTime from '@/shared/lib/statistics/getBestTime'
 import { Solve } from '@/entities/solve/model/types'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
@@ -22,6 +23,7 @@ import SolveDetails from '@/features/manage-solves/ui/SolveDetails'
 type RailTab = 'session' | 'cube'
 
 const GRID_COLS = '1.3rem minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)'
+const STAT_COLS = '2.5rem minmax(0, 1fr) minmax(0, 1fr)'
 const ROW_HEIGHT = 36
 
 export default function TimerSolvesRail() {
@@ -56,17 +58,45 @@ export default function TimerSolvesRail() {
     return valid.length === 0 ? '-' : formatTime(getBestTime({ solves: valid }))
   }, [solves])
 
+  const stats = useMemo(() => {
+    const actualAo = (n: number) => {
+      if (solves.length < n) return '-'
+      const ao = calcCurrentAo(solves, n)
+      return ao === 0 ? 'DNF' : formatTime(ao)
+    }
+
+    const bestAo = (n: number) => {
+      const best = calcBestAo(solves, n)
+      return Number.isFinite(best) && best > 0 ? formatTime(best) : '-'
+    }
+
+    const valid = solves.filter((solve) => !solve.dnf)
+    const current = solves[0]
+    const actualSingle = !current ? '-' : current.dnf ? 'DNF' : formatTime(current.time)
+    const bestSingle = valid.length === 0 ? '-' : formatTime(getBestTime({ solves: valid }))
+
+    return [
+      { label: 'Single', actual: actualSingle, best: bestSingle },
+      { label: 'Ao3', actual: actualAo(3), best: bestAo(3) },
+      { label: 'Ao5', actual: actualAo(5), best: bestAo(5) },
+      { label: 'Ao12', actual: actualAo(12), best: bestAo(12) }
+    ]
+  }, [solves])
+
   const rows = useMemo(() => {
+    const formatAo = (window: Solve[], n: number) => {
+      if (window.length < n) return '-'
+      const ao = calcCurrentAo(window, n)
+      return ao === 0 ? 'DNF' : formatTime(ao)
+    }
     return solves.map((solve, index) => {
-      const ao5 = calcCurrentAo(solves.slice(index, index + 5), 5)
-      const ao12 = calcCurrentAo(solves.slice(index, index + 12), 12)
       return {
         id: solve.id,
         dnf: solve.dnf,
         time: solve.dnf ? 'DNF' : `${formatTime(solve.time)}${solve.plus2 ? '+' : ''}`,
         number: solves.length - index,
-        ao5: ao5 === 0 ? '-' : formatTime(ao5),
-        ao12: ao12 === 0 ? '-' : formatTime(ao12)
+        ao5: formatAo(solves.slice(index, index + 5), 5),
+        ao12: formatAo(solves.slice(index, index + 12), 12)
       }
     })
   }, [solves])
@@ -101,6 +131,33 @@ export default function TimerSolvesRail() {
             <span>{t('best')}</span>
             <span className="font-mono tabular-nums text-foreground">{bestLabel}</span>
           </span>
+        </div>
+
+        {/* Stats */}
+        <div className="px-3 pb-3">
+          <div
+            className="grid items-end gap-x-2 pb-1 text-[9px] font-medium uppercase tracking-[0.12em] text-muted-foreground/70"
+            style={{ gridTemplateColumns: STAT_COLS }}
+          >
+            <span />
+            <span className="text-right">Actual</span>
+            <span className="text-right">Best</span>
+          </div>
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="grid items-baseline gap-x-2 py-0.5"
+              style={{ gridTemplateColumns: STAT_COLS }}
+            >
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                {stat.label}
+              </span>
+              <span className="text-right font-mono text-xs tabular-nums text-muted-foreground">{stat.actual}</span>
+              <span className="text-right font-mono text-xs font-semibold tabular-nums text-foreground">
+                {stat.best}
+              </span>
+            </div>
+          ))}
         </div>
 
         {/* Column header */}
