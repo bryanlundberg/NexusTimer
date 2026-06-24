@@ -15,6 +15,8 @@ import getBestTime from '@/shared/lib/statistics/getBestTime'
 import { Solve } from '@/entities/solve/model/types'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTimerRailStore } from '@/features/timer-solves-rail/model/useTimerRailStore'
+import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
+import SolveDetails from '@/features/manage-solves/ui/SolveDetails'
 
 type RailTab = 'session' | 'cube'
 
@@ -27,6 +29,11 @@ export default function TimerSolvesRail() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const cubes = useTimerStore((state) => state.cubes)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const open = useOverlayStore((state) => state.open)
+
+  const openSolveDetails = (solve: Solve) => {
+    open({ id: 'solve-details', metadata: { ...solve }, component: <SolveDetails /> })
+  }
 
   const tabs = [
     { value: 'session', icon: ShellIcon, label: 'Session' },
@@ -115,6 +122,7 @@ export default function TimerSolvesRail() {
             <div style={{ height: virtualizer.getTotalSize(), width: '100%', position: 'relative' }}>
               {virtualizer.getVirtualItems().map((virtualRow) => {
                 const row = rows[virtualRow.index]
+                const solve = solves[virtualRow.index]
                 return (
                   <div
                     key={row.id}
@@ -129,6 +137,7 @@ export default function TimerSolvesRail() {
                   >
                     <button
                       type="button"
+                      onClick={() => openSolveDetails(solve)}
                       className="grid h-full w-full items-center gap-1.5 border-b border-border/50 px-2 text-left transition-colors hover:bg-muted/50"
                       style={{ gridTemplateColumns: GRID_COLS }}
                     >
