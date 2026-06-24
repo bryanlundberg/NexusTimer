@@ -102,7 +102,6 @@ export function useStatisticsRows(statistics: DeepStatistics): RowDef[] {
     {
       label: t('StatsPage.best-time'),
       loadingKey: 'best',
-      highlight: true,
       icon: Trophy,
       getValue: (scope) => (statistics.best[scope] > 0 ? formatTime(statistics.best[scope]) : '--')
     },
