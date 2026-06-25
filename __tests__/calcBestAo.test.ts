@@ -30,12 +30,9 @@ describe('calcBestAo', () => {
   })
 
   describe('multiple windows', () => {
-    it('picks the window with the lowest mean', () => {
-      // Window A: [3000, 4000, 5000, 6000, 7000] → 5000
-      // Window B: [4000, 5000, 6000, 7000, 1000] → 4600
-      // Window C: [5000, 6000, 7000, 1000, 2000] → 4200
+    it('picks the window with the lowest trimmed mean', () => {
       const result = calcBestAo(makeSolves([3000, 4000, 5000, 6000, 7000, 1000, 2000]), 5)
-      expect(result).toBe(4200)
+      expect(result).toBeCloseTo(4333.33, 1)
     })
 
     it('does not depend on input order beyond consecutive windows', () => {
@@ -46,7 +43,7 @@ describe('calcBestAo', () => {
   })
 
   describe('DNF handling', () => {
-    it('tolerates one DNF per ao5 window, averaging the rest', () => {
+    it('tolerates one DNF per ao5 window (DNF trimmed as the worst)', () => {
       const solves = [
         makeSolve({ time: 1000, dnf: true }),
         makeSolve({ time: 2000 }),
@@ -56,10 +53,7 @@ describe('calcBestAo', () => {
         makeSolve({ time: 6000 }),
         makeSolve({ time: 7000 })
       ]
-      // Window [0..4]: 1 DNF tolerated → mean of [2000,3000,4000,5000] = 3500
-      // Window [1..5]: [2000,3000,4000,5000,6000] → 4000
-      // Window [2..6]: [3000,4000,5000,6000,7000] → 5000
-      expect(calcBestAo(solves, 5)).toBe(3500)
+      expect(calcBestAo(solves, 5)).toBe(4000)
     })
 
     it('returns Infinity when every window exceeds the DNF tolerance', () => {
