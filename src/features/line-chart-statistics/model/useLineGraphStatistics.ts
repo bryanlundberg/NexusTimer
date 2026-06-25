@@ -16,6 +16,7 @@ import formatTime from '@/shared/lib/formatTime'
 import getWorstTime from '@/shared/lib/statistics/getWorstTime'
 import getMean from '@/shared/lib/statistics/getMean'
 import getDeviation from '@/shared/lib/statistics/getDeviation'
+import { calcAoFromWindow } from '@/shared/lib/statistics/getAoTolerance'
 import { Solve } from '@/entities/solve/model/types'
 import moment from 'moment'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
@@ -29,6 +30,9 @@ export const CHART_COLORS = {
   ao12: '#10B981',
   sd: '#8B5CF6'
 } as const
+
+const AO5_SIZE = 5
+const AO12_SIZE = 12
 
 export default function useLineGraphStatistics(dataSet: Solve[]) {
   const t = useTranslations('Index.StatsPage')
@@ -86,10 +90,6 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
     }
 
     let runningBest = Infinity
-    let sum5 = 0
-    let dnf5 = 0
-    let sum12 = 0
-    let dnf12 = 0
     reversedDataSet.forEach((i: Solve, index: number) => {
       const timeIndex = index + 1
       if (!i.dnf) {
@@ -105,23 +105,13 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       }
       if (runningBest !== Infinity) pbAtStepMap.set(timeIndex, runningBest)
 
-      if (i.dnf) dnf5++
-      else sum5 += i.time
-      if (index >= 5) {
-        const leaving = reversedDataSet[index - 5]
-        if (leaving.dnf) dnf5--
-        else sum5 -= leaving.time
+      const setRollingAo = (size: number, map: Map<number, number>) => {
+        if (index < size - 1) return
+        const ao = calcAoFromWindow(reversedDataSet.slice(index - size + 1, index + 1), size)
+        if (ao > 0) map.set(timeIndex, ao)
       }
-      if (index >= 4 && dnf5 === 0) ao5Map.set(timeIndex, sum5 / 5)
-
-      if (i.dnf) dnf12++
-      else sum12 += i.time
-      if (index >= 12) {
-        const leaving = reversedDataSet[index - 12]
-        if (leaving.dnf) dnf12--
-        else sum12 -= leaving.time
-      }
-      if (index >= 11 && dnf12 === 0) ao12Map.set(timeIndex, sum12 / 12)
+      setRollingAo(AO5_SIZE, ao5Map)
+      setRollingAo(AO12_SIZE, ao12Map)
     })
 
     const mean = getMean(dataSet)
