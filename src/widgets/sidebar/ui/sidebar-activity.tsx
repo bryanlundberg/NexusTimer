@@ -7,10 +7,10 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 const INTENSITY = ['bg-muted-foreground/15', 'bg-primary/30', 'bg-primary/55', 'bg-primary/80', 'bg-primary'] as const
 
 function intensityLevel(count: number): number {
-  if (count >= 100) return 4
-  if (count >= 50) return 3
-  if (count >= 20) return 2
-  if (count >= 5) return 1
+  if (count >= 50) return 4
+  if (count >= 20) return 3
+  if (count >= 5) return 2
+  if (count >= 1) return 1
   return 0
 }
 
