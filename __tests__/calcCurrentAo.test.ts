@@ -35,10 +35,9 @@ describe('calcCurrentAo', () => {
     })
   })
 
-  describe('ao=5 (mean of five solves)', () => {
+  describe('ao=5 (trimmed mean of five solves)', () => {
     it('computes ao5 for the first 5 solves of FAKE_SESSION', () => {
-      // times = [14553, 13718, 11875, 14108, 15054] → mean = 13861.6
-      expect(calcCurrentAo(FAKE_SESSION.slice(0, 5), 5)).toBe(13861.6)
+      expect(calcCurrentAo(FAKE_SESSION.slice(0, 5), 5)).toBeCloseTo(14126.33, 1)
     })
 
     it('uses the first ao solves when more are provided', () => {
@@ -49,7 +48,7 @@ describe('calcCurrentAo', () => {
   })
 
   describe('DNF handling', () => {
-    it('tolerates one DNF in an ao5 by averaging the rest', () => {
+    it('tolerates one DNF in an ao5 (DNF is trimmed as the worst)', () => {
       const solves = [
         makeSolve({ time: 1000 }),
         makeSolve({ time: 2000 }),
@@ -57,8 +56,8 @@ describe('calcCurrentAo', () => {
         makeSolve({ time: 4000 }),
         makeSolve({ time: 99999, dnf: true })
       ]
-      // ao5 tolerates 1 DNF → mean of the 4 valid times = 2500
-      expect(calcCurrentAo(solves, 5)).toBe(2500)
+
+      expect(calcCurrentAo(solves, 5)).toBe(3000)
     })
 
     it('returns 0 (DNF) when an ao5 has more DNFs than tolerated', () => {
