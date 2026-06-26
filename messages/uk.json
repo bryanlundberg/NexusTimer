@@ -210,12 +210,18 @@
       "historial": "Історія",
       "filter-by-time": "Фільтр за часом",
       "show": "Показати",
+      "finish-session": "Завершити",
+      "selection": {
+        "move-to-session": "Перемістити до сесії",
+        "moved-to-session-toast": "{count} складань переміщено до сесії"
+      },
       "tooltips": {
-        "move-to-history": "Перемістити спроби в історію"
+        "move-to-history": "Завершити тренування"
       },
       "dialogs": {
-        "move-to-history": "Перемістити спроби в історію?",
-        "move-to-history-para": "Ви зможете отримати до них доступ, перемкнувши перемикач історії."
+        "move-to-history": "Завершити тренування?",
+        "move-to-history-para": "Усі результати сесії для всіх кубів цієї категорії буде переміщено до історії. Ви все одно зможете отримати до них доступ на вкладці «Історія».",
+        "confirm": "Завершити"
       },
       "toast": {
         "unable-action": "Дія недоступна",
@@ -474,6 +480,7 @@
     "solve-details": {
       "unknown-category": "Невідома",
       "move-to-history": "Перемістити в історію",
+      "move-to-session": "Перемістити в сесію",
       "transfer-collection": "Перенести колекцію",
       "delete-confirm-title": "Видалити цей розв'язок?",
       "delete-confirm-desc": "Цю дію не можна скасувати."

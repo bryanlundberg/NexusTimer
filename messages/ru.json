@@ -158,12 +158,18 @@
       "historial": "История",
       "filter-by-time": "Фильтр по времени",
       "show": "Показать",
+      "finish-session": "Завершить",
+      "selection": {
+        "move-to-session": "Переместить в сессию",
+        "moved-to-session-toast": "{count} сборок перемещено в сессию"
+      },
       "tooltips": {
-        "move-to-history": "Переместить сборки в историю"
+        "move-to-history": "Завершить тренировку"
       },
       "dialogs": {
-        "move-to-history": "Переместить сборки в историю?",
-        "move-to-history-para": "Вы сможете найти их, включив фильтр истории."
+        "move-to-history": "Завершить тренировку?",
+        "move-to-history-para": "Все результаты сессии для всех кубов этой категории будут перемещены в историю. Вы по-прежнему сможете найти их во вкладке «История».",
+        "confirm": "Завершить"
       },
       "toast": {
         "unable-action": "Действие недоступно",
@@ -420,6 +426,7 @@
     "solve-details": {
       "unknown-category": "Неизвестно",
       "move-to-history": "В историю",
+      "move-to-session": "В сессию",
       "transfer-collection": "Сменить коллекцию",
       "delete-confirm-title": "Удалить это решение?",
       "delete-confirm-desc": "Это действие нельзя отменить."

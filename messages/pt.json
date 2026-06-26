@@ -158,12 +158,18 @@
       "historial": "Histórico",
       "filter-by-time": "Filtrar por tempo",
       "show": "Mostrar",
+      "finish-session": "Finalizar",
+      "selection": {
+        "move-to-session": "Mover para a sessão",
+        "moved-to-session-toast": "{count} solves movidos para a sessão"
+      },
       "tooltips": {
-        "move-to-history": "Mover tempos para o histórico"
+        "move-to-history": "Finalizar prática"
       },
       "dialogs": {
-        "move-to-history": "Mover tempos para o histórico?",
-        "move-to-history-para": "Você poderá acessá-los ativando o interruptor de histórico."
+        "move-to-history": "Finalizar prática?",
+        "move-to-history-para": "Todos os tempos da sessão de cada cubo desta categoria serão movidos para o histórico. Você ainda poderá acessá-los na aba Histórico.",
+        "confirm": "Finalizar"
       },
       "toast": {
         "unable-action": "Ação indisponível",
@@ -420,6 +426,7 @@
     "solve-details": {
       "unknown-category": "Desconhecido",
       "move-to-history": "Mover para o Histórico",
+      "move-to-session": "Mover para a Sessão",
       "transfer-collection": "Transferir Coleção",
       "delete-confirm-title": "Excluir esta resolução?",
       "delete-confirm-desc": "Esta ação não pode ser desfeita."

@@ -158,12 +158,18 @@
       "historial": "इतिहास",
       "filter-by-time": "समय के अनुसार फ़िल्टर करें",
       "show": "दिखाएं",
+      "finish-session": "पूर्ण करें",
+      "selection": {
+        "move-to-session": "सत्र में ले जाएं",
+        "moved-to-session-toast": "{count} समाधान सत्र में ले जाए गए"
+      },
       "tooltips": {
-        "move-to-history": "समाधानों को इतिहास में ले जाएं"
+        "move-to-history": "अभ्यास पूर्ण करें"
       },
       "dialogs": {
-        "move-to-history": "समाधानों को इतिहास में ले जाएं?",
-        "move-to-history-para": "आप इतिहास स्विच को चालू करके उन तक पहुंच पाएंगे।"
+        "move-to-history": "अभ्यास पूर्ण करें?",
+        "move-to-history-para": "इस श्रेणी के सभी क्यूब के सत्र के सभी समय इतिहास में ले जाए जाएंगे। आप उन्हें इतिहास टैब में देख सकते हैं।",
+        "confirm": "पूर्ण करें"
       },
       "toast": {
         "unable-action": "क्रिया अनुपलब्ध",
@@ -420,6 +426,7 @@
     "solve-details": {
       "unknown-category": "अज्ञात",
       "move-to-history": "इतिहास में ले जाएं",
+      "move-to-session": "सत्र में ले जाएं",
       "transfer-collection": "संग्रह स्थानांतरित करें",
       "delete-confirm-title": "इस सॉल्व को हटाएँ?",
       "delete-confirm-desc": "इस क्रिया को पूर्ववत नहीं किया जा सकता।"

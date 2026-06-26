@@ -227,14 +227,18 @@
         "delete-confirm-title": "Eliminare {count} solve?",
         "delete-confirm-desc": "Questa azione non può essere annullata.",
         "deleted-toast": "{count} solve eliminati",
-        "moved-toast": "{count} solve spostati nella cronologia"
+        "moved-toast": "{count} solve spostati nella cronologia",
+        "move-to-session": "Sposta nella sessione",
+        "moved-to-session-toast": "{count} solve spostati nella sessione"
       },
+      "finish-session": "Concludi",
       "tooltips": {
-        "move-to-history": "Sposta i solve nella cronologia"
+        "move-to-history": "Concludi sessione"
       },
       "dialogs": {
-        "move-to-history": "Spostare i solve nella cronologia?",
-        "move-to-history-para": "Potrai accedervi attivando l'interruttore della cronologia."
+        "move-to-history": "Concludere la sessione?",
+        "move-to-history-para": "Tutti i tempi della sessione di ogni cubo di questa categoria verranno spostati nella cronologia. Potrai comunque accedervi dalla scheda Cronologia.",
+        "confirm": "Concludi"
       },
       "toast": {
         "unable-action": "Azione non disponibile",
@@ -507,6 +511,7 @@
     "solve-details": {
       "unknown-category": "Sconosciuta",
       "move-to-history": "Sposta nella cronologia",
+      "move-to-session": "Sposta nella sessione",
       "transfer-collection": "Trasferisci collezione",
       "watch-replay": "Guarda il replay",
       "delete-confirm-title": "Eliminare questo solve?",

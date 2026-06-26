@@ -227,14 +227,18 @@
         "delete-confirm-title": "Hapus {count} solve?",
         "delete-confirm-desc": "Tindakan ini tidak dapat dibatalkan.",
         "deleted-toast": "{count} solve dihapus",
-        "moved-toast": "{count} solve dipindahkan ke riwayat"
+        "moved-toast": "{count} solve dipindahkan ke riwayat",
+        "move-to-session": "Pindahkan ke sesi",
+        "moved-to-session-toast": "{count} solve dipindahkan ke sesi"
       },
+      "finish-session": "Selesai",
       "tooltips": {
-        "move-to-history": "Pindahkan solve ke riwayat"
+        "move-to-history": "Selesaikan sesi"
       },
       "dialogs": {
-        "move-to-history": "Pindahkan solve ke riwayat?",
-        "move-to-history-para": "Kamu dapat mengaksesnya dengan mengaktifkan sakelar riwayat."
+        "move-to-history": "Selesaikan sesi?",
+        "move-to-history-para": "Semua waktu sesi untuk setiap cube di kategori ini akan dipindahkan ke riwayat. Kamu tetap dapat mengaksesnya di tab Riwayat.",
+        "confirm": "Selesai"
       },
       "toast": {
         "unable-action": "Tindakan tidak tersedia",
@@ -507,6 +511,7 @@
     "solve-details": {
       "unknown-category": "Tidak diketahui",
       "move-to-history": "Pindahkan ke Riwayat",
+      "move-to-session": "Pindahkan ke Sesi",
       "transfer-collection": "Transfer Koleksi",
       "watch-replay": "Tonton putar ulang",
       "delete-confirm-title": "Hapus solve ini?",

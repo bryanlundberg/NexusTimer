@@ -158,12 +158,18 @@
       "historial": "アーカイブ",
       "filter-by-time": "タイムでフィルタリング",
       "show": "表示",
+      "finish-session": "完了",
+      "selection": {
+        "move-to-session": "セッションへ移動",
+        "moved-to-session-toast": "{count}件のソルブをセッションへ移動しました"
+      },
       "tooltips": {
-        "move-to-history": "ソルブをアーカイブへ移動"
+        "move-to-history": "練習を完了"
       },
       "dialogs": {
-        "move-to-history": "ソルブをアーカイブへ移動しますか？",
-        "move-to-history-para": "アーカイブスイッチをONにすると確認できます。"
+        "move-to-history": "練習を完了しますか？",
+        "move-to-history-para": "このカテゴリのすべてのキューブのセッションタイムがアーカイブへ移動されます。アーカイブタブからいつでも確認できます。",
+        "confirm": "完了"
       },
       "toast": {
         "unable-action": "実行できません",
@@ -420,6 +426,7 @@
     "solve-details": {
       "unknown-category": "不明",
       "move-to-history": "アーカイブへ移動",
+      "move-to-session": "セッションへ移動",
       "transfer-collection": "コレクションを移動",
       "delete-confirm-title": "このソルブを削除しますか？",
       "delete-confirm-desc": "この操作は取り消せません。"

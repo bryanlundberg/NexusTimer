@@ -158,12 +158,18 @@
       "historial": "历史记录",
       "filter-by-time": "按时间过滤",
       "show": "显示",
+      "finish-session": "完成",
+      "selection": {
+        "move-to-session": "移至当前组",
+        "moved-to-session-toast": "已将 {count} 个还原移至当前组"
+      },
       "tooltips": {
-        "move-to-history": "将还原纪录移至历史记录"
+        "move-to-history": "完成练习"
       },
       "dialogs": {
-        "move-to-history": "将还原纪录移至历史记录？",
-        "move-to-history-para": "你可以通过切换历史记录开关来查看它们。"
+        "move-to-history": "完成练习？",
+        "move-to-history-para": "该类别下所有魔方的当前组时间都将移至历史记录。你仍可在“历史记录”标签页中查看它们。",
+        "confirm": "完成"
       },
       "toast": {
         "unable-action": "操作不可用",
@@ -420,6 +426,7 @@
     "solve-details": {
       "unknown-category": "未知类别",
       "move-to-history": "移至历史记录",
+      "move-to-session": "移至当前组",
       "transfer-collection": "转移收藏",
       "delete-confirm-title": "删除此还原？",
       "delete-confirm-desc": "此操作无法撤销。"

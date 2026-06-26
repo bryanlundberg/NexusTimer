@@ -227,14 +227,18 @@
         "delete-confirm-title": "Usunąć {count} ułożeń?",
         "delete-confirm-desc": "Tej akcji nie można cofnąć.",
         "deleted-toast": "Usunięto {count} ułożeń",
-        "moved-toast": "Przeniesiono {count} ułożeń do historii"
+        "moved-toast": "Przeniesiono {count} ułożeń do historii",
+        "move-to-session": "Przenieś do sesji",
+        "moved-to-session-toast": "Przeniesiono {count} ułożeń do sesji"
       },
+      "finish-session": "Zakończ",
       "tooltips": {
-        "move-to-history": "Przenieś ułożenia do historii"
+        "move-to-history": "Zakończ trening"
       },
       "dialogs": {
-        "move-to-history": "Przenieść ułożenia do historii?",
-        "move-to-history-para": "Będziesz mieć do nich dostęp po włączeniu przełącznika historii."
+        "move-to-history": "Zakończyć trening?",
+        "move-to-history-para": "Wszystkie czasy sesji dla każdej kostki w tej kategorii zostaną przeniesione do historii. Nadal będziesz mieć do nich dostęp w zakładce Historia.",
+        "confirm": "Zakończ"
       },
       "toast": {
         "unable-action": "Akcja niedostępna",
@@ -507,6 +511,7 @@
     "solve-details": {
       "unknown-category": "Nieznana",
       "move-to-history": "Przenieś do historii",
+      "move-to-session": "Przenieś do sesji",
       "transfer-collection": "Przenieś kolekcję",
       "watch-replay": "Obejrzyj powtórkę",
       "delete-confirm-title": "Usunąć ten solve?",

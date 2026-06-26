@@ -158,12 +158,18 @@
       "historial": "Historique",
       "filter-by-time": "Filtrer par temps",
       "show": "Afficher",
+      "finish-session": "Terminer",
+      "selection": {
+        "move-to-session": "Déplacer vers la session",
+        "moved-to-session-toast": "{count} temps déplacés vers la session"
+      },
       "tooltips": {
-        "move-to-history": "Déplacer les temps vers l'historique"
+        "move-to-history": "Terminer la séance"
       },
       "dialogs": {
-        "move-to-history": "Déplacer les temps vers l'historique ?",
-        "move-to-history-para": "Vous pourrez y accéder en activant l'interrupteur d'historique."
+        "move-to-history": "Terminer la séance ?",
+        "move-to-history-para": "Tous les temps de session des cubes de cette catégorie seront déplacés vers l'historique. Vous pourrez toujours y accéder dans l'onglet Historique.",
+        "confirm": "Terminer"
       },
       "toast": {
         "unable-action": "Action indisponible",
@@ -420,6 +426,7 @@
     "solve-details": {
       "unknown-category": "Inconnu",
       "move-to-history": "Déplacer vers l'historique",
+      "move-to-session": "Déplacer vers la session",
       "transfer-collection": "Transférer la collection",
       "delete-confirm-title": "Supprimer ce solve ?",
       "delete-confirm-desc": "Cette action est irréversible."

@@ -227,14 +227,18 @@
         "delete-confirm-title": "ลบการต่อ {count} รายการ?",
         "delete-confirm-desc": "การกระทำนี้ไม่สามารถยกเลิกได้",
         "deleted-toast": "ลบการต่อ {count} รายการแล้ว",
-        "moved-toast": "ย้ายการต่อ {count} รายการไปยังประวัติแล้ว"
+        "moved-toast": "ย้ายการต่อ {count} รายการไปยังประวัติแล้ว",
+        "move-to-session": "ย้ายไปเซสชัน",
+        "moved-to-session-toast": "ย้ายการต่อ {count} รายการไปยังเซสชันแล้ว"
       },
+      "finish-session": "เสร็จสิ้น",
       "tooltips": {
-        "move-to-history": "ย้ายการต่อไปยังประวัติ"
+        "move-to-history": "เสร็จสิ้นเซสชัน"
       },
       "dialogs": {
-        "move-to-history": "ย้ายการต่อไปยังประวัติ?",
-        "move-to-history-para": "คุณสามารถเข้าถึงได้โดยเปิดสวิตช์ประวัติ"
+        "move-to-history": "เสร็จสิ้นเซสชันหรือไม่?",
+        "move-to-history-para": "เวลาของเซสชันสำหรับลูกบาศก์ทุกลูกในหมวดหมู่นี้จะถูกย้ายไปยังประวัติ คุณยังสามารถเข้าถึงได้ในแท็บประวัติ",
+        "confirm": "เสร็จสิ้น"
       },
       "toast": {
         "unable-action": "การกระทำไม่พร้อมใช้งาน",
@@ -507,6 +511,7 @@
     "solve-details": {
       "unknown-category": "ไม่ทราบ",
       "move-to-history": "ย้ายไปประวัติ",
+      "move-to-session": "ย้ายไปเซสชัน",
       "transfer-collection": "โอนคอลเลกชัน",
       "watch-replay": "ดูรีเพลย์",
       "delete-confirm-title": "ลบโซลฟ์นี้?",

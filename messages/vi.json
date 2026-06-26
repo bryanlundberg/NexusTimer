@@ -227,14 +227,18 @@
         "delete-confirm-title": "Xóa {count} lượt giải?",
         "delete-confirm-desc": "Thao tác này không thể hoàn tác.",
         "deleted-toast": "Đã xóa {count} lượt giải",
-        "moved-toast": "Đã chuyển {count} lượt giải vào lịch sử"
+        "moved-toast": "Đã chuyển {count} lượt giải vào lịch sử",
+        "move-to-session": "Chuyển đến phiên",
+        "moved-to-session-toast": "Đã chuyển {count} lượt giải đến phiên"
       },
+      "finish-session": "Hoàn tất",
       "tooltips": {
-        "move-to-history": "Chuyển lượt giải vào lịch sử"
+        "move-to-history": "Hoàn tất phiên"
       },
       "dialogs": {
-        "move-to-history": "Chuyển lượt giải vào lịch sử?",
-        "move-to-history-para": "Bạn có thể truy cập chúng bằng cách bật công tắc lịch sử."
+        "move-to-history": "Hoàn tất phiên?",
+        "move-to-history-para": "Tất cả thời gian phiên của mọi khối Rubik trong danh mục này sẽ được chuyển vào lịch sử. Bạn vẫn có thể truy cập chúng trong tab Lịch sử.",
+        "confirm": "Hoàn tất"
       },
       "toast": {
         "unable-action": "Thao tác không khả dụng",
@@ -507,6 +511,7 @@
     "solve-details": {
       "unknown-category": "Không xác định",
       "move-to-history": "Chuyển vào lịch sử",
+      "move-to-session": "Chuyển đến phiên",
       "transfer-collection": "Chuyển bộ sưu tập",
       "watch-replay": "Xem phát lại",
       "delete-confirm-title": "Xóa solve này?",

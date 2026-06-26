@@ -158,12 +158,18 @@
       "historial": "기록실",
       "filter-by-time": "시간별 필터링",
       "show": "표시",
+      "finish-session": "완료",
+      "selection": {
+        "move-to-session": "세션으로 이동",
+        "moved-to-session-toast": "{count}개의 솔브를 세션으로 이동했습니다"
+      },
       "tooltips": {
-        "move-to-history": "기록을 기록실로 이동"
+        "move-to-history": "연습 완료"
       },
       "dialogs": {
-        "move-to-history": "기록을 기록실로 이동할까요?",
-        "move-to-history-para": "기록 스위치를 켜서 다시 확인할 수 있습니다."
+        "move-to-history": "연습을 완료할까요?",
+        "move-to-history-para": "이 카테고리에 속한 모든 큐브의 세션 기록이 기록실로 이동됩니다. 기록실 탭에서 계속 확인할 수 있습니다.",
+        "confirm": "완료"
       },
       "toast": {
         "unable-action": "작업을 수행할 수 없음",
@@ -420,6 +426,7 @@
     "solve-details": {
       "unknown-category": "알 수 없음",
       "move-to-history": "기록실로 이동",
+      "move-to-session": "세션으로 이동",
       "transfer-collection": "컬렉션 이동",
       "delete-confirm-title": "이 솔브를 삭제하시겠습니까?",
       "delete-confirm-desc": "이 작업은 되돌릴 수 없습니다."

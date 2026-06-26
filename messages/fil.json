@@ -227,14 +227,18 @@
         "delete-confirm-title": "Burahin ang {count} na solve?",
         "delete-confirm-desc": "Hindi na maibabalik ang aksyong ito.",
         "deleted-toast": "{count} na solve ang nabura",
-        "moved-toast": "{count} na solve ang nailipat sa history"
+        "moved-toast": "{count} na solve ang nailipat sa history",
+        "move-to-session": "Ilipat sa session",
+        "moved-to-session-toast": "{count} na solve ang nailipat sa session"
       },
+      "finish-session": "Tapusin",
       "tooltips": {
-        "move-to-history": "Ilipat ang mga solve sa history"
+        "move-to-history": "Tapusin ang session"
       },
       "dialogs": {
-        "move-to-history": "Ilipat ang mga solve sa history?",
-        "move-to-history-para": "Maa-access mo ang mga ito sa pag-on ng history switch."
+        "move-to-history": "Tapusin ang session?",
+        "move-to-history-para": "Ililipat sa history ang lahat ng oras ng session para sa bawat cube sa kategoryang ito. Maa-access mo pa rin ang mga ito sa tab na History.",
+        "confirm": "Tapusin"
       },
       "toast": {
         "unable-action": "Hindi magagawa ang aksyon",
@@ -507,6 +511,7 @@
     "solve-details": {
       "unknown-category": "Hindi Alam",
       "move-to-history": "Ilipat sa History",
+      "move-to-session": "Ilipat sa Session",
       "transfer-collection": "Ilipat ang Collection",
       "watch-replay": "Panoorin ang replay",
       "delete-confirm-title": "Burahin ang solve na ito?",

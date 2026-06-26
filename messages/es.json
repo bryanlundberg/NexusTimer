@@ -156,8 +156,9 @@
         "move-to-history": "Mover al historial"
       },
       "dialogs": {
-        "move-to-history": "¿Mover los tiempos al historial?",
-        "move-to-history-para": "Podrás acceder a ellos activando el interruptor del historial."
+        "move-to-history": "¿Finalizar práctica?",
+        "move-to-history-para": "Se moverán al historial todos los tiempos de las sesiones de los cubos de la misma categoría. Podrás seguir accediendo a ellos en la pestaña Historial.",
+        "confirm": "Finalizar"
       },
       "empty-solves": "¡Nada por aquí!",
       "empty-solves-description": "Activa el interruptor en la parte superior para ver tu historial.",
@@ -176,8 +177,13 @@
         "unable-action": "Acción no disponible",
         "warning-select-cube": "Por favor, selecciona un cubo primero."
       },
+      "finish-session": "Finalizar",
+      "selection": {
+        "move-to-session": "Mover a la sesión",
+        "moved-to-session-toast": "{count} tiempos movidos a la sesión"
+      },
       "tooltips": {
-        "move-to-history": "Mover tiempos al historial"
+        "move-to-history": "Finalizar práctica"
       },
       "show": "Mostrar"
     },
@@ -427,6 +433,7 @@
     "solve-details": {
       "unknown-category": "Desconocido",
       "move-to-history": "Mover al Historial",
+      "move-to-session": "Mover a la Sesión",
       "transfer-collection": "Transferir Colección",
       "watch-replay": "Ver repetición",
       "delete-confirm-title": "¿Eliminar este tiempo?",

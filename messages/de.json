@@ -158,12 +158,18 @@
       "historial": "Verlauf",
       "filter-by-time": "Nach Zeit filtern",
       "show": "Anzeigen",
+      "finish-session": "Abschließen",
+      "selection": {
+        "move-to-session": "In Sitzung verschieben",
+        "moved-to-session-toast": "{count} Lösungen in die Sitzung verschoben"
+      },
       "tooltips": {
-        "move-to-history": "Zeiten in den Verlauf verschieben"
+        "move-to-history": "Übung abschließen"
       },
       "dialogs": {
-        "move-to-history": "Zeiten in den Verlauf verschieben?",
-        "move-to-history-para": "Du kannst über den Verlaufs-Schalter darauf zugreifen."
+        "move-to-history": "Übung abschließen?",
+        "move-to-history-para": "Alle Sitzungszeiten aller Würfel dieser Kategorie werden in den Verlauf verschoben. Du kannst weiterhin über den Verlauf-Tab darauf zugreifen.",
+        "confirm": "Abschließen"
       },
       "toast": {
         "unable-action": "Aktion nicht verfügbar",
@@ -420,6 +426,7 @@
     "solve-details": {
       "unknown-category": "Unbekannt",
       "move-to-history": "In Verlauf verschieben",
+      "move-to-session": "In Sitzung verschieben",
       "transfer-collection": "Sammlung übertragen",
       "delete-confirm-title": "Diesen Solve löschen?",
       "delete-confirm-desc": "Diese Aktion kann nicht rückgängig gemacht werden."

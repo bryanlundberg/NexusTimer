@@ -216,6 +216,7 @@
     "SolvesPage": {
       "title": "Solves",
       "session": "Session",
+      "finish-session": "Finalize",
       "historial": "History",
       "filter-by-time": "Filter by time",
       "show": "Show",
@@ -227,14 +228,17 @@
         "delete-confirm-title": "Delete {count} solves?",
         "delete-confirm-desc": "This action cannot be undone.",
         "deleted-toast": "{count} solves deleted",
-        "moved-toast": "{count} solves moved to history"
+        "moved-toast": "{count} solves moved to history",
+        "move-to-session": "Move to session",
+        "moved-to-session-toast": "{count} solves moved to session"
       },
       "tooltips": {
-        "move-to-history": "Move solves to history"
+        "move-to-history": "Finalize practice"
       },
       "dialogs": {
-        "move-to-history": "Move solves to history?",
-        "move-to-history-para": "You will be able to access them by toggling the history switch."
+        "move-to-history": "Finalize practice?",
+        "move-to-history-para": "All session times for every cube in this category will be moved to history. You can still access them in the History tab.",
+        "confirm": "Finalize"
       },
       "toast": {
         "unable-action": "Action unavailable",
@@ -497,6 +501,7 @@
     "solve-details": {
       "unknown-category": "Unknown",
       "move-to-history": "Move to History",
+      "move-to-session": "Move to Session",
       "transfer-collection": "Transfer Collection",
       "watch-replay": "Watch replay",
       "delete-confirm-title": "Delete this solve?",
