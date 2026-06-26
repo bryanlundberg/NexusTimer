@@ -40,7 +40,7 @@ export default function DialogMoveHistorial() {
               <Button variant={'ghost'} onClick={overlayStore.close}>
                 {t('Inputs.cancel')}
               </Button>
-              <Button onClick={handleMoveSessionToHistorial}>{t('Inputs.move')}</Button>
+              <Button onClick={handleMoveSessionToHistorial}>{t('SolvesPage.dialogs.confirm')}</Button>
             </div>
           </DialogFooter>
         </DialogHeader>
