@@ -40,10 +40,12 @@ describe('moveSolvesBatch', () => {
 
     const result = await moveSolvesBatch({ cubeId: 'A', solveIds: ['a1'], fromTab: SolveTab.ALL })
 
-    expect(result.solves.all.find((s) => s.id === 'a1')!.isDeleted).toBe(true)
+    const allA1 = result.solves.all.find((s) => s.id === 'a1')!
+    expect(allA1.isDeleted).toBe(true)
     const moved = result.solves.session.find((s) => s.id === 'a1')!
     expect(moved).toBeDefined()
     expect(moved.isDeleted).toBe(false)
+    expect(moved.updatedAt).toBe(allA1.updatedAt! + 1)
   })
 
   it('replaces an existing solve in the target bucket instead of duplicating it', async () => {
