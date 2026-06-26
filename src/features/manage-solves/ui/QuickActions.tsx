@@ -187,7 +187,10 @@ export default function QuickActions({
                       handleMoveToHistorial()
                     }}
                   >
-                    <CubeIcon className="mr-2" /> {t('solve-details.move-to-history')}
+                    <CubeIcon className="mr-2" />{' '}
+                    {t(
+                      tabMode === SolveTab.SESSION ? 'solve-details.move-to-history' : 'solve-details.move-to-session'
+                    )}
                   </DropdownMenuItem>
                 )}
                 {tabMode === SolveTab.SESSION && !hideTransferCollection && (
