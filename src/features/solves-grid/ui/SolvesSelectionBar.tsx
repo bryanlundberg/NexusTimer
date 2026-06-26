@@ -26,6 +26,7 @@ export default function SolvesSelectionBar() {
     defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE
   })
   const tab = tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL
+  const isSession = tab === SolveTab.SESSION
   const { selectionMode, selectedIds, exit } = useSolvesSelection()
   const { deleteSelected, moveSelectedToHistory } = useSolvesBulkActions(tab)
   const [confirmOpen, setConfirmOpen] = useState(false)
@@ -37,7 +38,12 @@ export default function SolvesSelectionBar() {
   const handleMove = async () => {
     const ids = Array.from(selectedIds)
     await moveSelectedToHistory(ids)
-    toast.success(t('SolvesPage.selection.moved-toast', { count: ids.length }), { duration: 1500 })
+    toast.success(
+      t(isSession ? 'SolvesPage.selection.moved-toast' : 'SolvesPage.selection.moved-to-session-toast', {
+        count: ids.length
+      }),
+      { duration: 1500 }
+    )
     exit()
   }
 
@@ -66,19 +72,19 @@ export default function SolvesSelectionBar() {
           {t('SolvesPage.selection.selected', { count })}
         </span>
 
-        {tab === SolveTab.SESSION && (
-          <Button
-            variant="ghost"
-            size="sm"
-            className="gap-1.5 bg-background text-foreground hover:bg-background/85 hover:text-foreground dark:hover:bg-background/85"
-            disabled={count === 0}
-            onClick={handleMove}
-            data-testid="bulk-move-to-history-button"
-          >
-            <ArrowRightLeft className="size-3.5" />
-            <span className="hidden text-xs sm:inline">{t('SolvesPage.selection.move-to-history')}</span>
-          </Button>
-        )}
+        <Button
+          variant="ghost"
+          size="sm"
+          className="gap-1.5 bg-background text-foreground hover:bg-background/85 hover:text-foreground dark:hover:bg-background/85"
+          disabled={count === 0}
+          onClick={handleMove}
+          data-testid={isSession ? 'bulk-move-to-history-button' : 'bulk-move-to-session-button'}
+        >
+          <ArrowRightLeft className="size-3.5" />
+          <span className="hidden text-xs sm:inline">
+            {t(isSession ? 'SolvesPage.selection.move-to-history' : 'SolvesPage.selection.move-to-session')}
+          </span>
+        </Button>
 
         <Button
           variant="ghost"
