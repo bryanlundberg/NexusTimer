@@ -117,7 +117,7 @@ export default function SelectCollection() {
             </div>
           </aside>
 
-          <div className="flex min-w-0 flex-1 flex-col">
+          <div className="flex min-h-0 min-w-0 flex-1 flex-col">
             <div className="flex items-center gap-2 border-b px-3">
               <Search className="size-4 shrink-0 text-muted-foreground" />
               <input
