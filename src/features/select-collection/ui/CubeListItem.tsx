@@ -1,6 +1,5 @@
 import { Cube } from '@/entities/cube/model/types'
 import { cubeCollection } from '@/shared/const/cube-collection'
-import { cubeColorClass } from '@/shared/const/cube-colors'
 import { cn } from '@/shared/lib/utils'
 import getBestTime from '@/shared/lib/statistics/getBestTime'
 import formatTime from '@/shared/lib/formatTime'
@@ -36,22 +35,20 @@ export function CubeListItem({
         isSelected ? 'bg-primary/10' : 'hover:bg-muted'
       )}
     >
-      <span className={cn('size-2 shrink-0 rounded-full', cubeColorClass(cube.category))} />
-
       {foundCube ? (
         <Image
           unoptimized
           src={foundCube.src}
           alt={foundCube.name}
-          width={20}
-          height={20}
-          className="shrink-0 object-scale-down opacity-80 dark:invert-0"
+          width={22}
+          height={22}
+          className="shrink-0 object-scale-down opacity-90 dark:invert-0"
         />
       ) : null}
 
       <div className="flex min-w-0 flex-1 flex-col">
         <p className={cn('truncate text-sm', isSelected && 'font-medium')}>{cube.name}</p>
-        <p className="truncate text-xs text-muted-foreground">PB {pb ?? '—'}</p>
+        <p className="truncate text-xs text-muted-foreground">PB {pb ?? '--'}</p>
       </div>
 
       <div className="flex shrink-0 items-center gap-2">
