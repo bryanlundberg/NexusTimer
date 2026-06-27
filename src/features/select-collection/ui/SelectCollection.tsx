@@ -10,11 +10,13 @@ import { Button } from '@/components/ui/button'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 import { PlusIcon, Search } from 'lucide-react'
 import { Nexi } from '@/shared/ui/nexi'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { FilterRow } from '@/features/select-collection/ui/FilterRow'
 import { CubeListItem } from '@/features/select-collection/ui/CubeListItem'
 
 type Filter = CubeCategory | 'all'
+
+const ONBOARDING_TARGET = 'onboarding-create-collection'
 
 export default function SelectCollection() {
   const close = useOverlayStore((state) => state.close)
@@ -30,6 +32,15 @@ export default function SelectCollection() {
 
   const [filter, setFilter] = useState<Filter>('all')
   const [query, setQuery] = useState('')
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    const mql = window.matchMedia('(min-width: 640px)')
+    const onChange = () => setIsDesktop(mql.matches)
+    onChange()
+    mql.addEventListener('change', onChange)
+    return () => mql.removeEventListener('change', onChange)
+  }, [])
 
   const allCubes = useMemo(() => cubes ?? [], [cubes])
 
@@ -108,7 +119,7 @@ export default function SelectCollection() {
                 variant="ghost"
                 size="sm"
                 onClick={handleCreate}
-                data-tour="onboarding-create-collection"
+                data-tour={isDesktop ? ONBOARDING_TARGET : undefined}
                 className="w-full justify-start gap-2"
               >
                 <PlusIcon className="size-4" />
@@ -126,6 +137,18 @@ export default function SelectCollection() {
                 placeholder={t('Inputs.search')}
                 className="h-10 w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground sm:h-11"
               />
+              {!isDesktop && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleCreate}
+                  data-tour={ONBOARDING_TARGET}
+                  aria-label={t('CubesPage.new-collection')}
+                  className="size-8 shrink-0"
+                >
+                  <PlusIcon className="size-4" />
+                </Button>
+              )}
             </div>
 
             <div className="flex-1 space-y-1 overflow-y-auto p-2">
