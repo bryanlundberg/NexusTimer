@@ -11,7 +11,6 @@ import {
   ChartColumnIcon,
   ChevronDown,
   Dumbbell,
-  GithubIcon,
   HistoryIcon,
   LandPlot,
   MonitorDown,
@@ -33,7 +32,8 @@ import {
   SidebarMenuItem,
   useSidebar
 } from '@/components/ui/sidebar'
-import { DiscordLogoIcon } from '@radix-ui/react-icons'
+import GithubIcon from '@/components/ui/github-icon'
+import DiscordIcon from '@/components/ui/discord-icon'
 import { usePwaInstall } from '@/shared/model/usePwaInstall'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -259,7 +259,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             aria-label="GitHub"
             className="flex size-7 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
           >
-            <GithubIcon className="size-4" />
+            <GithubIcon size={16} />
           </a>
           <a
             href="https://discord.gg/eCgTKcavec"
@@ -268,7 +268,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             aria-label="Discord"
             className="flex size-7 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
           >
-            <DiscordLogoIcon className="size-4" />
+            <DiscordIcon size={16} />
           </a>
         </div>
       </SidebarFooter>
