@@ -6,6 +6,7 @@ import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { PlayIcon } from '@radix-ui/react-icons'
 import GearIcon from '@/components/ui/gear-icon'
 import TrashIcon from '@/components/ui/trash-icon'
+import PlayerIcon from '@/components/ui/player-icon'
 import { DateTime } from 'luxon'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
@@ -31,6 +32,7 @@ export function CubeCard({ cube }: CubeCardProps) {
   const src = cubeCollection.find((c) => c.name === cube.category)?.src
   const gearRef = useRef<AnimatedIconHandle>(null)
   const trashRef = useRef<AnimatedIconHandle>(null)
+  const playRef = useRef<AnimatedIconHandle>(null)
 
   const uniqueSolves = (() => {
     const uniqueIds = new Set<string>()
@@ -110,9 +112,11 @@ export function CubeCard({ cube }: CubeCardProps) {
             variant={'default'}
             size={'sm'}
             onClick={handleRedirect}
+            onMouseEnter={() => playRef.current?.startAnimation()}
+            onMouseLeave={() => playRef.current?.stopAnimation()}
             data-testid={`utilize-cube-button-${cube.name}`}
           >
-            <PlayIcon className="mr-1 h-4 w-4" />
+            <PlayerIcon ref={playRef} size={14} className="mr-1" />
             {t('CubesPage.utilize')}
           </Button>
           <div className="flex items-center gap-1">
