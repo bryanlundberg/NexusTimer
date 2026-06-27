@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 import { PlusIcon, Search } from 'lucide-react'
 import { Nexi } from '@/shared/ui/nexi'
+import { cn } from '@/shared/lib/utils'
 import { useEffect, useMemo, useState } from 'react'
 import { FilterRow } from '@/features/select-collection/ui/FilterRow'
 import { CubeListItem } from '@/features/select-collection/ui/CubeListItem'
@@ -32,6 +33,7 @@ export default function SelectCollection() {
 
   const [filter, setFilter] = useState<Filter>('all')
   const [query, setQuery] = useState('')
+  const [searchFocused, setSearchFocused] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
 
   useEffect(() => {
@@ -129,14 +131,30 @@ export default function SelectCollection() {
           </aside>
 
           <div className="flex min-h-0 min-w-0 flex-1 flex-col">
-            <div className="flex items-center gap-2 border-b px-3">
-              <Search className="size-4 shrink-0 text-muted-foreground" />
-              <input
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder={t('Inputs.search')}
-                className="h-10 w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground sm:h-11"
-              />
+            <div className="flex items-center gap-2 border-b p-2">
+              <div
+                className={cn(
+                  'flex flex-1 items-center gap-2 rounded-lg border px-3 transition-all duration-300 ease-out',
+                  searchFocused
+                    ? 'border-primary/40 bg-background ring-2 ring-primary/15'
+                    : 'border-transparent bg-muted/40'
+                )}
+              >
+                <Search
+                  className={cn(
+                    'size-4 shrink-0 transition-all duration-300',
+                    searchFocused ? 'scale-110 text-primary' : 'text-muted-foreground'
+                  )}
+                />
+                <input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onFocus={() => setSearchFocused(true)}
+                  onBlur={() => setSearchFocused(false)}
+                  placeholder={t('Inputs.search')}
+                  className="h-9 w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+                />
+              </div>
               {!isDesktop && (
                 <Button
                   variant="ghost"
@@ -144,7 +162,7 @@ export default function SelectCollection() {
                   onClick={handleCreate}
                   data-tour={ONBOARDING_TARGET}
                   aria-label={t('CubesPage.new-collection')}
-                  className="size-8 shrink-0"
+                  className="size-9 shrink-0"
                 >
                   <PlusIcon className="size-4" />
                 </Button>
@@ -155,7 +173,12 @@ export default function SelectCollection() {
               {visibleCubes.length === 0 ? (
                 <div className="flex h-full flex-col items-center justify-center gap-3 py-4">
                   <Nexi state="solving" size={72} aria-label={t('Inputs.no-results')} />
-                  <p className="text-sm text-muted-foreground">{t('Inputs.no-results')}</p>
+                  <p className="text-sm text-muted-foreground">
+                    {t('Inputs.no-results')}
+                    {query.trim() && (
+                      <span className="ml-1 font-medium text-foreground">&quot;{query.trim()}&quot;</span>
+                    )}
+                  </p>
                   <Button onClick={handleCreate} variant="secondary" size="sm">
                     <PlusIcon className="size-4" />
                     {t('CubesPage.new-collection')}
