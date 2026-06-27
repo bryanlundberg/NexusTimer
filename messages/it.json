@@ -1088,5 +1088,12 @@
       "line1": "SEI",
       "line2": "PRONTO?"
     }
+  },
+  "Cookies": {
+    "title": "Rispettiamo la tua privacy",
+    "description": "Utilizziamo cookie e tecnologie simili per ricordare le tue preferenze e analizzare il traffico del sito. Accettando, acconsenti a questo utilizzo.",
+    "privacy-policy": "Informativa sulla privacy",
+    "accept": "Accetta",
+    "decline": "Rifiuta"
   }
 }

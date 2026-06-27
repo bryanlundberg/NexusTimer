@@ -1088,5 +1088,12 @@
       "line1": "BẠN ĐÃ",
       "line2": "SẴN SÀNG?"
     }
+  },
+  "Cookies": {
+    "title": "Chúng tôi tôn trọng quyền riêng tư của bạn",
+    "description": "Chúng tôi sử dụng cookie và các công nghệ tương tự để ghi nhớ tùy chọn của bạn và phân tích lưu lượng trang web. Khi chấp nhận, bạn đồng ý với việc sử dụng này.",
+    "privacy-policy": "Chính sách bảo mật",
+    "accept": "Chấp nhận",
+    "decline": "Từ chối"
   }
 }

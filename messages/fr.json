@@ -968,5 +968,12 @@
       "line1": "ES-TU",
       "line2": "PRÊT ?"
     }
+  },
+  "Cookies": {
+    "title": "Nous respectons votre vie privée",
+    "description": "Nous utilisons des cookies et des technologies similaires pour mémoriser vos préférences et analyser le trafic du site. En acceptant, vous consentez à cette utilisation.",
+    "privacy-policy": "Politique de confidentialité",
+    "accept": "Accepter",
+    "decline": "Refuser"
   }
 }

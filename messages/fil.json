@@ -1088,5 +1088,12 @@
       "line1": "HANDA KA",
       "line2": "NA BA?"
     }
+  },
+  "Cookies": {
+    "title": "Pinahahalagahan namin ang iyong privacy",
+    "description": "Gumagamit kami ng cookies at katulad na teknolohiya upang tandaan ang iyong mga kagustuhan at suriin ang trapiko ng site. Sa pagtanggap, pumapayag ka sa paggamit na ito.",
+    "privacy-policy": "Patakaran sa Privacy",
+    "accept": "Tanggapin",
+    "decline": "Tanggihan"
   }
 }

@@ -968,5 +968,12 @@
       "line1": "准备好",
       "line2": "了吗？"
     }
+  },
+  "Cookies": {
+    "title": "我们重视您的隐私",
+    "description": "我们使用 Cookie 及类似技术来记住您的偏好并分析网站流量。点击接受即表示您同意此类使用。",
+    "privacy-policy": "隐私政策",
+    "accept": "接受",
+    "decline": "拒绝"
   }
 }

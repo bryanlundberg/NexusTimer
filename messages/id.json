@@ -1088,5 +1088,12 @@
       "line1": "SUDAH",
       "line2": "SIAP?"
     }
+  },
+  "Cookies": {
+    "title": "Kami menghargai privasi Anda",
+    "description": "Kami menggunakan cookie dan teknologi serupa untuk mengingat preferensi Anda dan menganalisis lalu lintas situs. Dengan menerima, Anda menyetujui penggunaan ini.",
+    "privacy-policy": "Kebijakan Privasi",
+    "accept": "Terima",
+    "decline": "Tolak"
   }
 }

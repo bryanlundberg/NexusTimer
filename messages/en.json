@@ -1088,5 +1088,12 @@
       "line1": "ARE YOU",
       "line2": "READY?"
     }
+  },
+  "Cookies": {
+    "title": "We value your privacy",
+    "description": "We use cookies and similar technologies to remember your preferences and analyze site traffic. By accepting, you consent to this use.",
+    "privacy-policy": "Privacy Policy",
+    "accept": "Accept",
+    "decline": "Decline"
   }
 }

@@ -968,5 +968,12 @@
       "line1": "BIST DU",
       "line2": "BEREIT?"
     }
+  },
+  "Cookies": {
+    "title": "Wir schätzen deine Privatsphäre",
+    "description": "Wir verwenden Cookies und ähnliche Technologien, um deine Einstellungen zu speichern und den Website-Traffic zu analysieren. Mit dem Akzeptieren stimmst du dieser Nutzung zu.",
+    "privacy-policy": "Datenschutzerklärung",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen"
   }
 }

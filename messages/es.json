@@ -989,5 +989,12 @@
       "line1": "¿ESTÁS",
       "line2": "LISTO?"
     }
+  },
+  "Cookies": {
+    "title": "Valoramos tu privacidad",
+    "description": "Usamos cookies y tecnologías similares para recordar tus preferencias y analizar el tráfico del sitio. Al aceptar, consientes este uso.",
+    "privacy-policy": "Política de privacidad",
+    "accept": "Aceptar",
+    "decline": "Rechazar"
   }
 }

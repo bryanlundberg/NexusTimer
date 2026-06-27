@@ -1088,5 +1088,12 @@
       "line1": "JESTEŚ",
       "line2": "GOTOWY?"
     }
+  },
+  "Cookies": {
+    "title": "Szanujemy Twoją prywatność",
+    "description": "Używamy plików cookie i podobnych technologii, aby zapamiętywać Twoje preferencje i analizować ruch w witrynie. Akceptując, wyrażasz zgodę na to wykorzystanie.",
+    "privacy-policy": "Polityka prywatności",
+    "accept": "Akceptuj",
+    "decline": "Odrzuć"
   }
 }
