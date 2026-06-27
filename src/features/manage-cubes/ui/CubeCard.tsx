@@ -3,11 +3,15 @@ import { IconButton } from '@/components/ui/shadcn-io/icon-button'
 import { Clock, Hash, Star } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
-import { GearIcon, PlayIcon, TrashIcon } from '@radix-ui/react-icons'
+import { PlayIcon } from '@radix-ui/react-icons'
+import GearIcon from '@/components/ui/gear-icon'
+import TrashIcon from '@/components/ui/trash-icon'
 import { DateTime } from 'luxon'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
 import { Cube } from '@/entities/cube/model/types'
+import { useRef } from 'react'
+import type { AnimatedIconHandle } from '@/components/ui/types'
 import { useLocale, useTranslations } from 'next-intl'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 import { cubeCollection } from '@/shared/const/cube-collection'
@@ -25,6 +29,8 @@ export function CubeCard({ cube }: CubeCardProps) {
   const { resolvedTheme } = useTheme()
   const { handleEdit, handleDelete, handleRedirect, handleFavorite } = useCubeActions(cube)
   const src = cubeCollection.find((c) => c.name === cube.category)?.src
+  const gearRef = useRef<AnimatedIconHandle>(null)
+  const trashRef = useRef<AnimatedIconHandle>(null)
 
   const uniqueSolves = (() => {
     const uniqueIds = new Set<string>()
@@ -116,11 +122,13 @@ export function CubeCard({ cube }: CubeCardProps) {
                   <Button
                     variant={'ghost'}
                     size={'icon'}
-                    className="h-8 w-8 [&>svg]:transition-transform [&>svg]:duration-300 [&:hover>svg]:rotate-90"
+                    className="h-8 w-8"
                     onClick={handleEdit}
+                    onMouseEnter={() => gearRef.current?.startAnimation()}
+                    onMouseLeave={() => gearRef.current?.stopAnimation()}
                     data-testid={`edit-cube-button-${cube.name}`}
                   >
-                    <GearIcon className="h-4 w-4" />
+                    <GearIcon ref={gearRef} size={16} />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -137,11 +145,13 @@ export function CubeCard({ cube }: CubeCardProps) {
                   <Button
                     variant={'ghost'}
                     size={'icon'}
-                    className="h-8 w-8 text-muted-foreground hover:text-destructive [&>svg]:transition-transform [&>svg]:duration-200 [&:hover>svg]:scale-110 [&:active>svg]:scale-90"
+                    className="h-8 w-8 text-muted-foreground hover:text-destructive"
                     onClick={handleDelete}
+                    onMouseEnter={() => trashRef.current?.startAnimation()}
+                    onMouseLeave={() => trashRef.current?.stopAnimation()}
                     data-testid={`delete-cube-button-${cube.name}`}
                   >
-                    <TrashIcon className="h-4 w-4" />
+                    <TrashIcon ref={trashRef} size={16} />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
