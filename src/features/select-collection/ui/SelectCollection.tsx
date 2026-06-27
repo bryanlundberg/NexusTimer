@@ -1,26 +1,20 @@
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator
-} from '@/components/ui/command'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { useOnboardingStore } from '@/features/onboarding-tour/model/useOnboardingStore'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-import { DialogDescription, DialogTitle } from '@/components/ui/dialog'
-import { Cube } from '@/entities/cube/model/types'
-import { cubeCollection } from '@/shared/const/cube-collection'
-import Image from 'next/image'
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
+import { CUBE_CATEGORIES, CubeCategory } from '@/shared/const/cube-categories'
+import { cubeColorClass } from '@/shared/const/cube-colors'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
-import { Check, PlusIcon, Star } from 'lucide-react'
-import { cn } from '@/shared/lib/utils'
+import { PlusIcon, Search } from 'lucide-react'
 import { Nexi } from '@/shared/ui/nexi'
+import { useMemo, useState } from 'react'
+import { FilterRow } from '@/features/select-collection/ui/FilterRow'
+import { CubeListItem } from '@/features/select-collection/ui/CubeListItem'
+
+type Filter = CubeCategory | 'all'
 
 export default function SelectCollection() {
   const close = useOverlayStore((state) => state.close)
@@ -34,8 +28,31 @@ export default function SelectCollection() {
   const setNewScramble = useTimerStore((state) => state.setNewScramble)
   const setLastSolve = useTimerStore((state) => state.setLastSolve)
 
+  const [filter, setFilter] = useState<Filter>('all')
+  const [query, setQuery] = useState('')
+
+  const allCubes = useMemo(() => cubes ?? [], [cubes])
+
+  const disciplines = useMemo(() => {
+    return CUBE_CATEGORIES.map((category) => ({
+      category,
+      count: allCubes.filter((c) => c.category === category).length
+    })).filter((d) => d.count > 0)
+  }, [allCubes])
+
+  const visibleCubes = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    return allCubes
+      .filter((c) => (filter === 'all' ? true : c.category === filter))
+      .filter((c) => (q ? c.name.toLowerCase().includes(q) : true))
+      .sort((a, b) => {
+        if (a.favorite !== b.favorite) return a.favorite ? -1 : 1
+        return a.category.localeCompare(b.category) || a.name.localeCompare(b.name)
+      })
+  }, [allCubes, filter, query])
+
   const onSelect = (id: string) => {
-    const choseCube = cubes?.find((cube) => cube.id === id)
+    const choseCube = allCubes.find((cube) => cube.id === id)
     if (!choseCube) return
     setSelectedCube(choseCube)
     setNewScramble(choseCube)
@@ -44,7 +61,7 @@ export default function SelectCollection() {
   }
 
   return (
-    <CommandDialog
+    <Dialog
       open={isOpen}
       onOpenChange={(open) => {
         // During the onboarding tour, force the user to click the "create
@@ -53,95 +70,88 @@ export default function SelectCollection() {
         if (!open) close()
       }}
     >
-      <VisuallyHidden>
-        <DialogTitle></DialogTitle>
-        <DialogDescription></DialogDescription>
-      </VisuallyHidden>
+      <DialogContent className="overflow-hidden p-0 sm:max-w-lg" showCloseButton={false}>
+        <VisuallyHidden>
+          <DialogTitle></DialogTitle>
+          <DialogDescription></DialogDescription>
+        </VisuallyHidden>
 
-      <CommandInput placeholder={t('Inputs.search')} />
-      <CommandList className="max-h-100">
-        <CommandEmpty>
-          <div className="flex flex-col items-center gap-3 py-4">
-            <Nexi state="solving" size={72} aria-label={t('Inputs.no-results')} />
-            <p className="text-muted-foreground text-sm">{t('Inputs.no-results')}</p>
-            <Button onClick={handleCreate} variant={'secondary'} size={'sm'} data-tour="onboarding-create-collection">
-              <PlusIcon className="size-4" />
-              {t('CubesPage.new-collection')}
-            </Button>
-          </div>
-        </CommandEmpty>
+        <div className="flex h-[70dvh] max-h-112 flex-col sm:h-104 sm:max-h-none sm:flex-row">
+          <aside className="hidden w-44 shrink-0 flex-col border-r bg-muted/30 sm:flex">
+            <div className="px-4 pb-2 pt-4">
+              <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
+                {t('CubesPage.category')}
+              </p>
+            </div>
 
-        {cubes && cubes.length > 0 && cubes.some((c: Cube) => c.favorite) && (
-          <>
-            <CommandGroup heading={t('Inputs.favorites')}>
-              {cubes
-                .filter((cube: Cube) => cube.favorite)
-                .sort((a: Cube, b: Cube) => a.category.localeCompare(b.category))
-                .map((cube) => (
-                  <Item cube={cube} key={cube.id} onSelect={onSelect} isSelected={selectedCube?.id === cube.id} />
-                ))}
-            </CommandGroup>
-          </>
-        )}
-
-        <CommandSeparator />
-        {cubes && cubes.length > 0 && (
-          <CommandGroup heading={t('Inputs.collections')}>
-            {cubes
-              .filter((cube: Cube) => !cube.favorite)
-              .sort((a: Cube, b: Cube) => a.category.localeCompare(b.category))
-              .map((cube) => (
-                <Item cube={cube} key={cube.id} onSelect={onSelect} isSelected={selectedCube?.id === cube.id} />
+            <div className="flex-1 space-y-0.5 overflow-y-auto px-2">
+              <FilterRow
+                label={t('SolvesPage.all')}
+                count={allCubes.length}
+                active={filter === 'all'}
+                onClick={() => setFilter('all')}
+              />
+              {disciplines.map((d) => (
+                <FilterRow
+                  key={d.category}
+                  label={d.category}
+                  count={d.count}
+                  colorClass={cubeColorClass(d.category)}
+                  active={filter === d.category}
+                  onClick={() => setFilter(d.category)}
+                />
               ))}
-          </CommandGroup>
-        )}
-      </CommandList>
-    </CommandDialog>
-  )
-}
+            </div>
 
-function Item({ cube, onSelect, isSelected }: { cube: Cube; onSelect: (id: string) => void; isSelected: boolean }) {
-  const foundCube = cubeCollection.find((i) => i.name === cube.category)
+            <div className="border-t p-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleCreate}
+                data-tour="onboarding-create-collection"
+                className="w-full justify-start gap-2"
+              >
+                <PlusIcon className="size-4" />
+                {t('CubesPage.new-collection')}
+              </Button>
+            </div>
+          </aside>
 
-  return (
-    <CommandItem
-      key={cube.id}
-      value={cube.name}
-      onSelect={() => onSelect(cube.id)}
-      className={cn(
-        'w-full py-2.5 px-3 rounded-lg transition-colors',
-        isSelected && 'bg-primary/10 border border-primary/20'
-      )}
-    >
-      <div className="flex flex-row items-center gap-3 w-full min-w-0">
-        <div
-          className={cn(
-            'flex items-center justify-center size-9 rounded-lg shrink-0',
-            isSelected ? 'bg-primary/15' : 'bg-muted'
-          )}
-        >
-          {foundCube ? (
-            <Image
-              unoptimized
-              src={foundCube.src}
-              alt={foundCube.name}
-              width={22}
-              height={22}
-              className="object-scale-down"
-            />
-          ) : null}
+          <div className="flex min-w-0 flex-1 flex-col">
+            <div className="flex items-center gap-2 border-b px-3">
+              <Search className="size-4 shrink-0 text-muted-foreground" />
+              <input
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={t('Inputs.search')}
+                className="h-10 w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground sm:h-11"
+              />
+            </div>
+
+            <div className="flex-1 space-y-1 overflow-y-auto p-2">
+              {visibleCubes.length === 0 ? (
+                <div className="flex h-full flex-col items-center justify-center gap-3 py-4">
+                  <Nexi state="solving" size={72} aria-label={t('Inputs.no-results')} />
+                  <p className="text-sm text-muted-foreground">{t('Inputs.no-results')}</p>
+                  <Button onClick={handleCreate} variant="secondary" size="sm">
+                    <PlusIcon className="size-4" />
+                    {t('CubesPage.new-collection')}
+                  </Button>
+                </div>
+              ) : (
+                visibleCubes.map((cube) => (
+                  <CubeListItem
+                    key={cube.id}
+                    cube={cube}
+                    onSelect={onSelect}
+                    isSelected={selectedCube?.id === cube.id}
+                  />
+                ))
+              )}
+            </div>
+          </div>
         </div>
-
-        <div className="flex flex-col min-w-0 flex-1">
-          <p className={cn('truncate text-sm', isSelected && 'font-medium')}>{cube.name}</p>
-          <p className="text-xs text-muted-foreground truncate">{cube.category}</p>
-        </div>
-
-        <div className="flex items-center gap-2 shrink-0">
-          {cube.favorite && <Star className="size-3.5 text-yellow-500 fill-yellow-500" />}
-          {isSelected && <Check className="size-4 text-primary" />}
-        </div>
-      </div>
-    </CommandItem>
+      </DialogContent>
+    </Dialog>
   )
 }
