@@ -2,6 +2,7 @@ export enum PeopleTabs {
   OVERVIEW = 'overview',
   CUBES = 'cubes',
   TIMELINE = 'timeline',
+  ALGORITHMS = 'algorithms',
   ACHIEVEMENTS = 'achievements'
 }
 
