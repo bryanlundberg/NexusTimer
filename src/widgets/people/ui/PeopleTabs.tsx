@@ -12,6 +12,7 @@ import { ProfileStatsBar } from '@/widgets/people/ui/profile-stats-bar'
 import { UserProfile } from '@/entities/user/model/user'
 import { Cube } from '@/entities/cube/model/types'
 import useUserBadges from '@/entities/achievement/model/useUserBadges'
+import { useUserLearned } from '@/entities/trainer-learned/model/useUserLearned'
 import { useTranslations } from 'next-intl'
 import { useRef, useState } from 'react'
 import { useSession } from 'next-auth/react'
@@ -25,11 +26,12 @@ interface PeopleTabsProps {
   cubes: Array<Cube>
 }
 
-const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE] as const
+const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE, PTabs.ALGORITHMS] as const
 
 export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
   const t = useTranslations('Index.PeoplePage.tabs')
   const userBadges = useUserBadges({ user, cubes })
+  const { data: learned } = useUserLearned(user._id)
   const tProfile = useTranslations('Index.PeoplePage')
   const tCard = useTranslations('Index.PeoplePage.user-card')
 
@@ -65,6 +67,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
     [PTabs.OVERVIEW]: t('overview'),
     [PTabs.CUBES]: t('cubes'),
     [PTabs.TIMELINE]: t('timeline'),
+    [PTabs.ALGORITHMS]: t('algorithms'),
     [PTabs.ACHIEVEMENTS]: t('achievements')
   }
 
@@ -73,7 +76,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
 
       <ProfileHeroBanner user={user} cubes={cubes} level={userBadges.unlocked.length} />
-      <ProfileStatsBar cubes={cubes} />
+      <ProfileStatsBar cubes={cubes} algorithmsLearned={learned?.total ?? 0} />
       <ProfileBadgesStrip badges={userBadges} />
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full">
@@ -112,7 +115,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
 
         {/* Tab content */}
         <div className="px-4 md:px-6 py-0">
-          <PeopleContent cubes={cubes} badges={userBadges} />
+          <PeopleContent cubes={cubes} badges={userBadges} learnedMethods={learned?.methods} />
         </div>
       </Tabs>
     </div>
