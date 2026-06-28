@@ -470,7 +470,8 @@
         "last-backup": "Last Backup?",
         "never": "Never",
         "close": "Close",
-        "compare": "Compare"
+        "compare": "Compare",
+        "add-more": "Add more"
       }
     },
     "NavMain": {

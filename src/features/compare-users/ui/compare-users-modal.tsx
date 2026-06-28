@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { XIcon } from 'lucide-react'
+import { XIcon, PlusIcon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useUserBackups } from '@/features/compare-users/model/useUserBackups'
@@ -19,8 +20,14 @@ import * as React from 'react'
 export default function CompareUsersModal() {
   const t = useTranslations('Index.LeaderboardsPage.comparative')
   const locale = useLocale()
+  const router = useRouter()
   const closeOverlay = useCompareUsersStore((state) => state.closeOverlay)
   const users = useCompareUsersStore((state) => state.users)
+
+  const handleAddMore = () => {
+    closeOverlay()
+    router.push('/people')
+  }
   const userCubes = useUserBackups(users)
 
   const usersStats: CompareUser[] = useCompareUsersStats(users, userCubes)
@@ -68,6 +75,31 @@ export default function CompareUsersModal() {
               </div>
             )
           })}
+          <div className={'w-52 py-6 z-50 flex justify-center'}>
+            <button
+              onClick={handleAddMore}
+              title={t('add-more')}
+              className={'flex flex-col items-center gap-4 group focus:outline-none cursor-pointer'}
+            >
+              <div
+                className={
+                  'size-24 rounded-full border-4 border-dashed border-muted-foreground/30 flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300'
+                }
+              >
+                <PlusIcon
+                  className={'size-10 text-muted-foreground/50 group-hover:text-primary transition-colors'}
+                  strokeWidth={1.5}
+                />
+              </div>
+              <span
+                className={
+                  'font-bold text-base tracking-tight text-muted-foreground group-hover:text-primary transition-colors'
+                }
+              >
+                {t('add-more')}
+              </span>
+            </button>
+          </div>
         </CompareTableRow>
 
         <CompareTableRow title={t('country')}>
