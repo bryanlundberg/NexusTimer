@@ -79,7 +79,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
       <ProfileStatsBar cubes={cubes} algorithmsLearned={learned?.total ?? 0} />
       <ProfileBadgesStrip badges={userBadges} />
 
-      <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full">
+      <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
         {/* Tabs nav + actions row */}
         <div className="flex flex-row items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
           <AnimatedTabsList
