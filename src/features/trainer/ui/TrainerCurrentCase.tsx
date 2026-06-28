@@ -229,9 +229,9 @@ export default function TrainerCurrentCase({
       )}
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-center">
-        <Stat label={t('stats.best')} value={best ?? '—'} />
-        <Stat label="ao5" value={ao5 ?? '—'} />
-        <Stat label="ao12" value={ao12 ?? '—'} />
+        <Stat label={t('stats.best')} value={best ?? '--'} />
+        <Stat label="ao5" value={ao5 ?? '--'} />
+        <Stat label="ao12" value={ao12 ?? '--'} />
         <Stat label={t('stats.solves')} value={String(totalSolves ?? 0)} />
       </div>
     </div>
