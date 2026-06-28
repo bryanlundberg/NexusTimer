@@ -382,7 +382,13 @@
         "overview": "Panoramica",
         "cubes": "Cubi",
         "timeline": "Cronologia",
+        "algorithms": "Algoritmi",
         "achievements": "Obiettivi"
+      },
+      "algorithms": {
+        "total-learned": "algoritmi appresi",
+        "methods-count": "{count, plural, one {# metodo} other {# metodi}}",
+        "view-cases": "{count, plural, one {# caso} other {# casi}}"
       },
       "badges": {
         "title": "Obiettivi",
@@ -403,7 +409,8 @@
         "time-on-timer": "Tempo sul timer",
         "lifetime": "in totale",
         "events": "Eventi",
-        "favorite": "Preferito"
+        "favorite": "Preferito",
+        "algorithms": "Algoritmi"
       },
       "cubes-tab": {
         "col-name": "Nome",

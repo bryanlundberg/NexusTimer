@@ -307,7 +307,13 @@
       "tabs": {
         "overview": "概览",
         "cubes": "魔方",
-        "timeline": "Timeline"
+        "timeline": "Timeline",
+        "algorithms": "算法"
+      },
+      "algorithms": {
+        "total-learned": "个已学算法",
+        "methods-count": "{count, plural, other {# 个方法}}",
+        "view-cases": "{count, plural, other {# 个情况}}"
       },
       "edit-profile": "编辑资料",
       "no-backup-data": "此账户暂无备份数据可显示。",
@@ -322,7 +328,8 @@
         "time-on-timer": "计时器总用时",
         "lifetime": "累计",
         "events": "项目",
-        "favorite": "主项"
+        "favorite": "主项",
+        "algorithms": "算法"
       },
       "cubes-tab": {
         "col-name": "名称",

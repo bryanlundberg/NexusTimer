@@ -382,7 +382,13 @@
         "overview": "Przegląd",
         "cubes": "Kostki",
         "timeline": "Oś czasu",
+        "algorithms": "Algorytmy",
         "achievements": "Osiągnięcia"
+      },
+      "algorithms": {
+        "total-learned": "wyuczonych algorytmów",
+        "methods-count": "{count, plural, one {# metoda} other {# metod}}",
+        "view-cases": "{count, plural, one {# przypadek} other {# przypadków}}"
       },
       "badges": {
         "title": "Osiągnięcia",
@@ -403,7 +409,8 @@
         "time-on-timer": "Czas na stoperze",
         "lifetime": "łącznie",
         "events": "Konkurencje",
-        "favorite": "Ulubiona"
+        "favorite": "Ulubiona",
+        "algorithms": "Algorytmy"
       },
       "cubes-tab": {
         "col-name": "Nazwa",

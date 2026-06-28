@@ -307,7 +307,13 @@
       "tabs": {
         "overview": "개요",
         "cubes": "큐브",
-        "timeline": "Timeline"
+        "timeline": "Timeline",
+        "algorithms": "알고리즘"
+      },
+      "algorithms": {
+        "total-learned": "개의 알고리즘 학습됨",
+        "methods-count": "{count, plural, other {# 메서드}}",
+        "view-cases": "{count, plural, other {# 케이스}}"
       },
       "edit-profile": "프로필 수정",
       "no-backup-data": "표시할 백업 데이터가 없는 계정입니다.",
@@ -322,7 +328,8 @@
         "time-on-timer": "타이머 총 시간",
         "lifetime": "누적",
         "events": "이벤트",
-        "favorite": "주종목"
+        "favorite": "주종목",
+        "algorithms": "알고리즘"
       },
       "cubes-tab": {
         "col-name": "이름",

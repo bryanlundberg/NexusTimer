@@ -307,7 +307,13 @@
       "tabs": {
         "overview": "Übersicht",
         "cubes": "Würfel",
-        "timeline": "Timeline"
+        "timeline": "Timeline",
+        "algorithms": "Algorithmen"
+      },
+      "algorithms": {
+        "total-learned": "Algorithmen gelernt",
+        "methods-count": "{count, plural, one {# Methode} other {# Methoden}}",
+        "view-cases": "{count, plural, one {# Fall} other {# Fälle}}"
       },
       "edit-profile": "Profil bearbeiten",
       "no-backup-data": "Keine Backup-Daten vorhanden.",
@@ -322,7 +328,8 @@
         "time-on-timer": "Zeit am Timer",
         "lifetime": "gesamt",
         "events": "Events",
-        "favorite": "Lieblingsevent"
+        "favorite": "Lieblingsevent",
+        "algorithms": "Algorithmen"
       },
       "cubes-tab": {
         "col-name": "Name",

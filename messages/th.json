@@ -382,7 +382,13 @@
         "overview": "ภาพรวม",
         "cubes": "ลูกบาศก์",
         "timeline": "ไทม์ไลน์",
+        "algorithms": "อัลกอริทึม",
         "achievements": "ความสำเร็จ"
+      },
+      "algorithms": {
+        "total-learned": "อัลกอริทึมที่เรียนรู้แล้ว",
+        "methods-count": "{count, plural, other {# วิธี}}",
+        "view-cases": "{count, plural, other {# เคส}}"
       },
       "badges": {
         "title": "ความสำเร็จ",
@@ -403,7 +409,8 @@
         "time-on-timer": "เวลาบนตัวจับเวลา",
         "lifetime": "ตลอดทั้งชีวิต",
         "events": "ประเภท",
-        "favorite": "รายการโปรด"
+        "favorite": "รายการโปรด",
+        "algorithms": "อัลกอริทึม"
       },
       "cubes-tab": {
         "col-name": "ชื่อ",

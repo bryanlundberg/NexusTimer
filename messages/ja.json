@@ -307,7 +307,13 @@
       "tabs": {
         "overview": "概要",
         "cubes": "キューブ",
-        "timeline": "Timeline"
+        "timeline": "Timeline",
+        "algorithms": "アルゴリズム"
+      },
+      "algorithms": {
+        "total-learned": "個のアルゴリズムを習得",
+        "methods-count": "{count, plural, other {# メソッド}}",
+        "view-cases": "{count, plural, other {# ケース}}"
       },
       "edit-profile": "プロフィールを編集",
       "no-backup-data": "このアカウントには表示できるデータがありません。",
@@ -322,7 +328,8 @@
         "time-on-timer": "タイマー累計時間",
         "lifetime": "累計",
         "events": "種目",
-        "favorite": "得意種目"
+        "favorite": "得意種目",
+        "algorithms": "アルゴリズム"
       },
       "cubes-tab": {
         "col-name": "名前",

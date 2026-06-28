@@ -382,7 +382,13 @@
         "overview": "Pangkalahatan",
         "cubes": "Mga Cube",
         "timeline": "Timeline",
+        "algorithms": "Mga Algorithm",
         "achievements": "Mga Achievement"
+      },
+      "algorithms": {
+        "total-learned": "natutunang algorithm",
+        "methods-count": "{count, plural, other {# paraan}}",
+        "view-cases": "{count, plural, other {# kaso}}"
       },
       "badges": {
         "title": "Mga Achievement",
@@ -403,7 +409,8 @@
         "time-on-timer": "Oras sa Timer",
         "lifetime": "habambuhay",
         "events": "Mga Event",
-        "favorite": "Paborito"
+        "favorite": "Paborito",
+        "algorithms": "Mga Algorithm"
       },
       "cubes-tab": {
         "col-name": "Pangalan",

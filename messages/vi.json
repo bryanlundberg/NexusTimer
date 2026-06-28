@@ -382,7 +382,13 @@
         "overview": "Tổng quan",
         "cubes": "Khối",
         "timeline": "Dòng thời gian",
+        "algorithms": "Thuật toán",
         "achievements": "Thành tích"
+      },
+      "algorithms": {
+        "total-learned": "thuật toán đã học",
+        "methods-count": "{count, plural, other {# phương pháp}}",
+        "view-cases": "{count, plural, other {# trường hợp}}"
       },
       "badges": {
         "title": "Thành tích",
@@ -403,7 +409,8 @@
         "time-on-timer": "Thời gian trên đồng hồ",
         "lifetime": "trọn đời",
         "events": "Nội dung",
-        "favorite": "Yêu thích"
+        "favorite": "Yêu thích",
+        "algorithms": "Thuật toán"
       },
       "cubes-tab": {
         "col-name": "Tên",

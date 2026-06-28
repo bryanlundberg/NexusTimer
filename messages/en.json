@@ -382,7 +382,13 @@
         "overview": "Overview",
         "cubes": "Cubes",
         "timeline": "Timeline",
+        "algorithms": "Algorithms",
         "achievements": "Achievements"
+      },
+      "algorithms": {
+        "total-learned": "algorithms learned",
+        "methods-count": "{count, plural, one {# method} other {# methods}}",
+        "view-cases": "{count, plural, one {# case} other {# cases}}"
       },
       "badges": {
         "title": "Achievements",
@@ -403,7 +409,8 @@
         "time-on-timer": "Time on Timer",
         "lifetime": "lifetime",
         "events": "Events",
-        "favorite": "Favorite"
+        "favorite": "Favorite",
+        "algorithms": "Algorithms"
       },
       "cubes-tab": {
         "col-name": "Name",

@@ -382,7 +382,13 @@
         "overview": "Ikhtisar",
         "cubes": "Kubus",
         "timeline": "Linimasa",
+        "algorithms": "Algoritma",
         "achievements": "Pencapaian"
+      },
+      "algorithms": {
+        "total-learned": "algoritma dipelajari",
+        "methods-count": "{count, plural, other {# metode}}",
+        "view-cases": "{count, plural, other {# kasus}}"
       },
       "badges": {
         "title": "Pencapaian",
@@ -403,7 +409,8 @@
         "time-on-timer": "Waktu di Timer",
         "lifetime": "seumur hidup",
         "events": "Event",
-        "favorite": "Favorit"
+        "favorite": "Favorit",
+        "algorithms": "Algoritma"
       },
       "cubes-tab": {
         "col-name": "Nama",

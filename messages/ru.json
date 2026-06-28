@@ -307,7 +307,13 @@
       "tabs": {
         "overview": "Обзор",
         "cubes": "Кубы",
-        "timeline": "Timeline"
+        "timeline": "Timeline",
+        "algorithms": "Алгоритмы"
+      },
+      "algorithms": {
+        "total-learned": "выученных алгоритмов",
+        "methods-count": "{count, plural, one {# метод} other {# методов}}",
+        "view-cases": "{count, plural, one {# случай} other {# случаев}}"
       },
       "edit-profile": "Изменить профиль",
       "no-backup-data": "У этого аккаунта нет данных для отображения.",
@@ -322,7 +328,8 @@
         "time-on-timer": "Время за таймером",
         "lifetime": "за всё время",
         "events": "Дисциплины",
-        "favorite": "Любимая"
+        "favorite": "Любимая",
+        "algorithms": "Алгоритмы"
       },
       "cubes-tab": {
         "col-name": "Название",

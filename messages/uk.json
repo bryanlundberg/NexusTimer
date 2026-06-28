@@ -359,7 +359,13 @@
       "tabs": {
         "overview": "Огляд",
         "cubes": "Куби",
-        "timeline": "Хронологія"
+        "timeline": "Хронологія",
+        "algorithms": "Алгоритми"
+      },
+      "algorithms": {
+        "total-learned": "вивчених алгоритмів",
+        "methods-count": "{count, plural, one {# метод} other {# методів}}",
+        "view-cases": "{count, plural, one {# випадок} other {# випадків}}"
       },
       "edit-profile": "Редагувати профіль",
       "no-backup-data": "У цього облікового запису немає резервних даних для показу.",
@@ -374,7 +380,8 @@
         "time-on-timer": "Час на таймері",
         "lifetime": "за весь час",
         "events": "Дисципліни",
-        "favorite": "Улюблена"
+        "favorite": "Улюблена",
+        "algorithms": "Алгоритми"
       },
       "cubes-tab": {
         "col-name": "Назва",

@@ -307,7 +307,13 @@
       "tabs": {
         "overview": "अवलोकन",
         "cubes": "क्यूब्स",
-        "timeline": "Timeline"
+        "timeline": "Timeline",
+        "algorithms": "एल्गोरिदम"
+      },
+      "algorithms": {
+        "total-learned": "एल्गोरिदम सीखे",
+        "methods-count": "{count, plural, one {# विधि} other {# विधियाँ}}",
+        "view-cases": "{count, plural, one {# केस} other {# केस}}"
       },
       "edit-profile": "प्रोफ़ाइल संपादित करें",
       "no-backup-data": "इस खाते में प्रदर्शित करने के लिए कोई बैकअप डेटा नहीं है।",
@@ -322,7 +328,8 @@
         "time-on-timer": "टाइमर पर समय",
         "lifetime": "संचित",
         "events": "इवेंट",
-        "favorite": "पसंदीदा"
+        "favorite": "पसंदीदा",
+        "algorithms": "एल्गोरिदम"
       },
       "cubes-tab": {
         "col-name": "नाम",
