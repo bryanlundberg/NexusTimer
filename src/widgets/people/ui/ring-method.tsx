@@ -9,11 +9,13 @@ const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 export default function RingMethod({
   view,
   selected,
-  onSelect
+  onSelect,
+  strokeClass = 'stroke-emerald-500'
 }: {
   view: LearnedMethodView
   selected: boolean
   onSelect: () => void
+  strokeClass?: string
 }) {
   const { set, learnedCount, total, percent } = view
   const offset = CIRCUMFERENCE * (1 - percent / 100)
@@ -25,7 +27,7 @@ export default function RingMethod({
       aria-pressed={selected}
       title={`${set.title} — ${set.subtitle} · ${learnedCount}/${total}`}
       className={cn(
-        'flex w-26 flex-col items-center my-2 gap-2 rounded-2xl border border-border bg-card/50 p-3 shadow-sm focus:outline-none focus-visible:ring-2 hover:ring-2 hover:ring-primary focus-visible:ring-primary',
+        'flex w-26 flex-col items-center my-2 gap-2 rounded-2xl border border-border bg-card/50 p-3 focus:outline-none focus-visible:ring-2 hover:ring-2 hover:ring-primary focus-visible:ring-primary',
         selected ? 'ring-2 ring-primary shadow-md' : 'hover:shadow-md'
       )}
     >
@@ -41,7 +43,7 @@ export default function RingMethod({
             strokeLinecap="round"
             strokeDasharray={CIRCUMFERENCE}
             strokeDashoffset={offset}
-            className="stroke-emerald-500"
+            className={strokeClass}
           />
         </svg>
         <span className="absolute inset-0 flex flex-col items-center justify-center leading-none">
