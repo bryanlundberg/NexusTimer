@@ -31,7 +31,8 @@ export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMet
   const orderedMethods = useMemo(() => byPuzzle.flatMap((group) => group.methods), [byPuzzle])
 
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null)
-  const selected = orderedMethods.find((m) => m.set.slug === selectedSlug) ?? null
+  const effectiveSlug = selectedSlug ?? orderedMethods[0]?.set.slug ?? null
+  const selected = orderedMethods.find((m) => m.set.slug === effectiveSlug) ?? null
 
   if (total === 0) return <EmptyTabContent />
 
@@ -42,7 +43,7 @@ export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMet
           <RingMethod
             key={view.set.slug}
             view={view}
-            selected={view.set.slug === selectedSlug}
+            selected={view.set.slug === effectiveSlug}
             onSelect={() => setSelectedSlug(view.set.slug)}
             strokeClass={strokeClass}
           />
