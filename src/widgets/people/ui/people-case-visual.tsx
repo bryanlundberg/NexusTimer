@@ -8,7 +8,7 @@ import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import type { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 import type { LearnedCase } from '@/entities/trainer-learned/lib/buildLearnedMethods'
 
-const SIZE = 56
+const SIZE = 96
 
 export default function PeopleCaseVisual({ set, item }: { set: ALGORITHM_SET; item: LearnedCase }) {
   const ref = useRef<HTMLDivElement>(null)
