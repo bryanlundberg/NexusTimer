@@ -7,10 +7,26 @@ import PeopleCaseVisual from '@/widgets/people/ui/people-case-visual'
 import { buildLearnedMethods } from '@/entities/trainer-learned/lib/buildLearnedMethods'
 import type { LearnedMethod } from '@/entities/trainer-learned/model/useUserLearned'
 import RingMethod from '@/widgets/people/ui/ring-method'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import type { Colors } from '@/shared/types/colors'
+
+const CHART_STROKE: Record<Colors, string> = {
+  green: 'stroke-violet-500',
+  violet: 'stroke-emerald-500',
+  blue: 'stroke-orange-500',
+  orange: 'stroke-sky-500',
+  red: 'stroke-emerald-500',
+  rose: 'stroke-teal-500',
+  yellow: 'stroke-violet-500',
+  neutral: 'stroke-sky-500'
+}
 
 export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMethod[] }) {
   const t = useTranslations('Index.PeoplePage.algorithms')
   const { total, byPuzzle } = useMemo(() => buildLearnedMethods(methods), [methods])
+
+  const colorTheme = useSettingsStore((store) => store.settings.preferences.colorTheme)
+  const strokeClass = CHART_STROKE[colorTheme] ?? 'stroke-emerald-500'
 
   const orderedMethods = useMemo(() => byPuzzle.flatMap((group) => group.methods), [byPuzzle])
 
@@ -28,6 +44,7 @@ export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMet
             view={view}
             selected={view.set.slug === selectedSlug}
             onSelect={() => setSelectedSlug(view.set.slug)}
+            strokeClass={strokeClass}
           />
         ))}
       </div>
@@ -40,7 +57,7 @@ export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMet
           </div>
           <div className="flex flex-wrap gap-2.5">
             {selected.cases.map((item) => (
-              <div key={item.id} className="rounded-xl border border-border/70 bg-background p-2 shadow-sm">
+              <div key={item.id} className="rounded-xl border border-border/70 bg-background p-2">
                 <PeopleCaseVisual set={selected.set} item={item} />
               </div>
             ))}
