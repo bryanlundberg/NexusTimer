@@ -26,9 +26,10 @@ function StatItem({ label, value, sub, highlight }: StatItemProps) {
 
 interface Props {
   cubes: Cube[]
+  algorithmsLearned?: number
 }
 
-export function ProfileStatsBar({ cubes }: Props) {
+export function ProfileStatsBar({ cubes, algorithmsLearned = 0 }: Props) {
   const t = useTranslations('Index.PeoplePage.stats')
 
   const uniqueSolves = useMemo(() => {
@@ -60,7 +61,7 @@ export function ProfileStatsBar({ cubes }: Props) {
       }
     }
     const entries = Object.entries(countByCategory)
-    if (entries.length === 0) return '—'
+    if (entries.length === 0) return '--'
     return entries.reduce((best, curr) => (curr[1] > best[1] ? curr : best))[0]
   }, [cubes])
 
@@ -73,10 +74,15 @@ export function ProfileStatsBar({ cubes }: Props) {
 
   return (
     <div className="w-full border-b border-border/40 bg-muted/20 grid grid-cols-2 sm:flex sm:divide-x sm:divide-border/40 divide-y divide-border/40 sm:divide-y-0 [&>*:nth-child(odd)]:border-r [&>*:nth-child(odd)]:border-border/40 sm:[&>*:nth-child(odd)]:border-r-0">
-      <StatItem label={t('events')} value={eventsWithSolves > 0 ? String(eventsWithSolves) : '—'} />
+      <StatItem label={t('events')} value={eventsWithSolves > 0 ? String(eventsWithSolves) : '--'} />
       <StatItem label={t('favorite')} value={favoriteEvent} />
       <StatItem label={t('time-on-timer')} value={formatTotalTime(totalTimeMs)} sub={t('lifetime')} />
-      <StatItem label={t('total-solves')} value={uniqueSolves.length > 0 ? String(uniqueSolves.length) : '—'} />
+      <StatItem label={t('total-solves')} value={uniqueSolves.length > 0 ? String(uniqueSolves.length) : '--'} />
+      <StatItem
+        label={t('algorithms')}
+        value={algorithmsLearned > 0 ? String(algorithmsLearned) : '--'}
+        highlight={algorithmsLearned > 0}
+      />
     </div>
   )
 }
