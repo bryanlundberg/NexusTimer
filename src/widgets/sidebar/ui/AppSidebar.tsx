@@ -142,13 +142,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           title: t('NavMain.people'),
           url: '/people',
-          icon: UsersRound
+          icon: UsersRound,
+          badge: 'New'
         },
         {
           title: t('NavMain.leaderboards'),
           url: '/leaderboards',
-          icon: TableProperties,
-          badge: 'New'
+          icon: TableProperties
         }
       ],
       multiplayer: [
