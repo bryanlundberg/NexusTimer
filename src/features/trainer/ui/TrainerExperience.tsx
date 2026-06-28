@@ -261,7 +261,7 @@ export default function TrainerExperience() {
       <div className="grid grid-cols-2 gap-2">
         <MetricTile
           label={t('stats.bestSingle')}
-          value={methodTotals.bestSingle != null ? formatMs(methodTotals.bestSingle) : '—'}
+          value={methodTotals.bestSingle != null ? formatMs(methodTotals.bestSingle) : '--'}
         />
         <MetricTile label={t('stats.totalSolves')} value={String(methodTotals.totalSolves)} />
         <MetricTile label={t('stats.picked')} value={`${totalCases}/${totalSetCases}`} />
