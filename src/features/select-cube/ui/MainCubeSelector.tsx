@@ -39,23 +39,25 @@ export default function MainCubeSelector() {
     <div className="flex-1 min-w-0">
       <Button
         variant={'outline'}
-        className={'w-full justify-between overflow-hidden'}
+        className={'w-full justify-between h-auto min-h-9 items-center whitespace-normal text-left'}
         onClick={handleOpenSelector}
         data-tour="onboarding-cube-selector"
       >
-        <div className="flex items-center gap-2 truncate">
+        <div className="flex items-start gap-2 min-w-0">
           {selectedCubeData ? (
             <Image
               src={selectedCubeData.src}
               alt={selectedCubeData.name}
               width={20}
               height={20}
-              className="invert dark:invert-0"
+              className="invert dark:invert-0 shrink-0 mt-0.5"
             />
           ) : (
-            <Box className="size-5 shrink-0 text-muted-foreground" />
+            <Box className="size-5 shrink-0 text-muted-foreground mt-0.5" />
           )}
-          <span className={'truncate mr-2'}>{selectedCube ? selectedCube.name : t('HomePage.select-cube')}</span>
+          <span className={'mr-2 min-w-0 flex-1 break-words whitespace-normal'}>
+            {selectedCube ? selectedCube.name : t('HomePage.select-cube')}
+          </span>
         </div>
         <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 select-none shrink-0">
           <span className="text-xs">⌘</span>J
