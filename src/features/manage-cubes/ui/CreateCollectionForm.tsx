@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import { cn } from '@/shared/lib/utils'
@@ -24,6 +23,7 @@ import { createCubeCollection } from '@/features/manage-cubes/api/createCubeColl
 import { useEffect } from 'react'
 import { Check } from 'lucide-react'
 import { Nexi } from '@/shared/ui/nexi'
+import { ProductSearchInput } from '@/features/search/ui/ProductSearchInput'
 
 export default function CreateCollectionForm() {
   const t = useTranslations('Index')
@@ -39,7 +39,6 @@ export default function CreateCollectionForm() {
     handleSubmit,
     setError,
     formState: { errors },
-    register,
     watch,
     setValue,
     reset
@@ -96,12 +95,13 @@ export default function CreateCollectionForm() {
         <div className="space-y-5 py-1">
           <div className="space-y-2">
             <Label htmlFor="name">{t('Cubes-modal.name')}</Label>
-            <Input
-              autoComplete={'off'}
-              data-testid="drawer-input-name"
+            <ProductSearchInput
               id="name"
+              data-testid="drawer-input-name"
               placeholder="E.g: X Man Tornado V3 M"
-              {...register('name')}
+              value={formWatch.name}
+              onValueChange={(value) => setValue('name', value, { shouldValidate: true })}
+              onSelect={(hit) => setValue('name', hit.name, { shouldValidate: true })}
             />
 
             {errors?.name && (
