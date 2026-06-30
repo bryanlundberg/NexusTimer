@@ -89,7 +89,7 @@ export default function SelectCollection() {
           <DialogDescription></DialogDescription>
         </VisuallyHidden>
 
-        <div className="flex h-[70dvh] max-h-112 flex-col sm:h-104 sm:max-h-none sm:flex-row">
+        <div className="flex h-[70dvh] max-h-112 min-w-0 flex-col overflow-hidden sm:h-104 sm:max-h-none sm:flex-row">
           <aside className="hidden w-44 shrink-0 flex-col border-r bg-muted/30 sm:flex">
             <div className="px-4 pb-2 pt-4">
               <p className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
