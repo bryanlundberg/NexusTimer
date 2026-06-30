@@ -22,6 +22,7 @@ Content-Type: application/json
 #< ../scraped-products/Pyraminx.json
 #< ../scraped-products/Megaminx.json
 #< ../scraped-products/Skewb.json
+#< ../scraped-products/SQ1.json
 
 
 
