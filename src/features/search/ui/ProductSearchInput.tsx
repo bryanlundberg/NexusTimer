@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useId, useRef, useState } from 'react'
-import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
+import { Fragment, useEffect, useId, useRef, useState } from 'react'
+import { Search, X } from 'lucide-react'
 import { Spinner } from '@/components/ui/spinner'
 import { cn } from '@/shared/lib/utils'
+import { cubeColorClass } from '@/shared/const/cube-colors'
 import { useSearch } from '../model/useSearch'
 import type { ProductHit } from '../model/types'
 
@@ -17,6 +17,21 @@ interface ProductSearchInputProps {
   'data-testid'?: string
 }
 
+function highlightMatch(text: string | null | undefined, query: string) {
+  if (!text) return text ?? ''
+  const q = query.trim()
+  if (!q) return text
+  const index = text.toLowerCase().indexOf(q.toLowerCase())
+  if (index === -1) return text
+  return (
+    <Fragment>
+      {text.slice(0, index)}
+      <span className="text-primary font-semibold">{text.slice(index, index + q.length)}</span>
+      {text.slice(index + q.length)}
+    </Fragment>
+  )
+}
+
 export function ProductSearchInput({
   value,
   onValueChange,
@@ -26,10 +41,13 @@ export function ProductSearchInput({
   'data-testid': dataTestId
 }: ProductSearchInputProps) {
   const [open, setOpen] = useState(false)
+  const [focused, setFocused] = useState(false)
   const [highlight, setHighlight] = useState(-1)
   const containerRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
   const listboxId = useId()
 
+  const trimmed = value.trim()
   const { hits, isLoading } = useSearch<ProductHit>('products', open ? value : '')
 
   useEffect(() => {
@@ -44,61 +62,98 @@ export function ProductSearchInput({
     setHighlight(-1)
   }, [hits])
 
-  const showDropdown = open && value.trim().length > 0 && (hits.length > 0 || isLoading)
+  const showDropdown = open && trimmed.length > 0 && (hits.length > 0 || isLoading)
 
   function choose(hit: ProductHit) {
     onSelect(hit)
     setOpen(false)
   }
 
+  function clear() {
+    onValueChange('')
+    setOpen(false)
+    inputRef.current?.focus()
+  }
+
   function onKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (!showDropdown) return
+    if (event.key === 'Escape') {
+      setOpen(false)
+      return
+    }
+    if (!showDropdown || hits.length === 0) return
 
     if (event.key === 'ArrowDown') {
       event.preventDefault()
-      setHighlight((h) => Math.min(h + 1, hits.length - 1))
+      setHighlight((h) => (h + 1) % hits.length)
     } else if (event.key === 'ArrowUp') {
       event.preventDefault()
-      setHighlight((h) => Math.max(h - 1, 0))
+      setHighlight((h) => (h <= 0 ? hits.length - 1 : h - 1))
     } else if (event.key === 'Enter') {
       if (highlight >= 0 && hits[highlight]) {
         event.preventDefault()
         choose(hits[highlight])
       }
-    } else if (event.key === 'Escape') {
-      setOpen(false)
     }
   }
 
   return (
     <div ref={containerRef} className="relative">
-      <Input
-        id={id}
-        data-testid={dataTestId}
-        autoComplete="off"
-        role="combobox"
-        aria-expanded={showDropdown}
-        aria-controls={listboxId}
-        aria-autocomplete="list"
-        value={value}
-        placeholder={placeholder}
-        onChange={(event) => {
-          onValueChange(event.target.value)
-          setOpen(true)
-        }}
-        onFocus={() => setOpen(true)}
-        onKeyDown={onKeyDown}
-      />
+      {/* Field */}
+      <div
+        className={cn(
+          'flex items-center gap-2 rounded-lg border px-2.5 transition-colors duration-150',
+          focused ? 'border-primary/50 ring-primary/15 bg-background ring-2' : 'border-input bg-background/60'
+        )}
+      >
+        <Search
+          className={cn('size-4 shrink-0 transition-colors', focused ? 'text-primary' : 'text-muted-foreground')}
+        />
+        <input
+          ref={inputRef}
+          id={id}
+          data-testid={dataTestId}
+          autoComplete="off"
+          role="combobox"
+          aria-expanded={showDropdown}
+          aria-controls={listboxId}
+          aria-autocomplete="list"
+          value={value}
+          placeholder={placeholder}
+          onChange={(event) => {
+            onValueChange(event.target.value)
+            setOpen(true)
+          }}
+          onFocus={() => {
+            setFocused(true)
+            setOpen(true)
+          }}
+          onBlur={() => setFocused(false)}
+          onKeyDown={onKeyDown}
+          className="placeholder:text-muted-foreground h-9 w-full bg-transparent text-sm outline-none"
+        />
+        {isLoading && <Spinner className="text-muted-foreground size-4 shrink-0" />}
+        {!isLoading && value.length > 0 && (
+          <button
+            type="button"
+            onClick={clear}
+            aria-label="Clear"
+            className="text-muted-foreground hover:text-foreground shrink-0 rounded p-0.5 transition-colors"
+          >
+            <X className="size-4" />
+          </button>
+        )}
+      </div>
 
+      {/* Dropdown */}
       {showDropdown && (
         <ul
           id={listboxId}
           role="listbox"
-          className="bg-popover text-popover-foreground absolute z-50 mt-1 max-h-72 w-full overflow-y-auto rounded-md border p-1 shadow-md"
+          className="bg-popover absolute z-50 mt-1.5 max-h-72 w-full overflow-y-auto overflow-x-hidden rounded-lg border p-1 shadow-md"
         >
           {isLoading && hits.length === 0 && (
-            <li className="text-muted-foreground flex items-center gap-2 px-2 py-2 text-sm">
-              <Spinner className="size-4" />
+            <li className="text-muted-foreground flex items-center gap-2 px-2 py-1.5 text-xs">
+              <Spinner className="size-3.5" />
               Searching…
             </li>
           )}
@@ -114,27 +169,31 @@ export function ProductSearchInput({
                 choose(hit)
               }}
               className={cn(
-                'flex cursor-pointer items-center gap-3 rounded-sm px-2 py-2',
-                index === highlight ? 'bg-accent' : 'hover:bg-accent/50'
+                'flex cursor-pointer items-center gap-2.5 rounded-md px-2 py-1.5 transition-colors',
+                index === highlight ? 'bg-accent' : 'hover:bg-accent/60'
               )}
             >
-              <div className="bg-muted relative flex size-10 shrink-0 items-center justify-center overflow-hidden rounded">
+              <div className="bg-muted/40 flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md border">
                 {hit.image ? (
-                  <img src={hit.image} alt={hit.name} loading="lazy" className="size-full object-contain" />
-                ) : null}
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium">{hit.name}</p>
-                {hit.brand && hit.brand.length > 0 && (
-                  <p className="text-muted-foreground truncate text-xs">{hit.brand.join(', ')}</p>
+                  <img src={hit.image} alt={hit.name ?? ''} loading="lazy" className="size-full object-contain p-0.5" />
+                ) : (
+                  <Search className="text-muted-foreground/50 size-3.5" />
                 )}
               </div>
 
+              <p className="min-w-0 flex-1 truncate text-sm">
+                {hit.name ? (
+                  highlightMatch(hit.name, value)
+                ) : (
+                  <span className="text-muted-foreground italic">Sin nombre</span>
+                )}
+              </p>
+
               {hit.category && (
-                <Badge variant="secondary" className="shrink-0">
+                <span className="text-muted-foreground flex shrink-0 items-center gap-1 text-[11px] font-medium">
+                  <span className={cn('size-1.5 rounded-full', cubeColorClass(hit.category))} />
                   {hit.category}
-                </Badge>
+                </span>
               )}
             </li>
           ))}
