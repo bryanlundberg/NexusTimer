@@ -1,0 +1,30 @@
+### Admin Ingestion API
+@baseUrl = http://localhost:3000
+@adminToken = WRONG_VALUE
+
+
+### Index stats
+GET {{baseUrl}}/api/v1/admin/ingestion/products
+x-admin-token: {{adminToken}}
+
+
+### Ingest from a file (upserts by id)
+POST {{baseUrl}}/api/v1/admin/ingestion/products
+x-admin-token: {{adminToken}}
+Content-Type: application/json
+
+#< ../scraped-products/2x2.json
+< ../scraped-products/3x3.json
+#< ../scraped-products/4x4.json
+#< ../scraped-products/5x5.json
+#< ../scraped-products/6x6.json
+#< ../scraped-products/7x7.json
+#< ../scraped-products/Pyraminx.json
+#< ../scraped-products/Megaminx.json
+#< ../scraped-products/Skewb.json
+
+
+
+### Delete the whole index (pass index id to confirm)
+DELETE {{baseUrl}}/api/v1/admin/ingestion/products?index=products
+x-admin-token: {{adminToken}}
