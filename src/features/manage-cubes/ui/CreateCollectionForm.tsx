@@ -8,7 +8,7 @@ import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CreateCubeFormData, createCubeFormSchema } from '@/entities/cube/model/schema'
-import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
+import { CUBE_CATEGORIES, isValidCategory } from '@/shared/const/cube-categories'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import {
@@ -101,7 +101,12 @@ export default function CreateCollectionForm() {
               placeholder="E.g: X Man Tornado V3 M"
               value={formWatch.name}
               onValueChange={(value) => setValue('name', value, { shouldValidate: true })}
-              onSelect={(hit) => setValue('name', hit.name, { shouldValidate: true })}
+              onSelect={(hit) => {
+                setValue('name', hit.name ?? '', { shouldValidate: true })
+                if (hit.category && isValidCategory(hit.category)) {
+                  setValue('category', hit.category, { shouldValidate: true })
+                }
+              }}
             />
 
             {errors?.name && (
