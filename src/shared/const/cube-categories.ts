@@ -12,7 +12,8 @@ export const CUBE_CATEGORIES = [
   'Skewb',
   'Pyraminx',
   'Megaminx',
-  'Clock'
+  'Clock',
+  'FTO'
 ] as const
 
 export type CubeCategory =
@@ -30,6 +31,7 @@ export type CubeCategory =
   | 'Pyraminx'
   | 'Megaminx'
   | 'Clock'
+  | 'FTO'
 
 export function isValidCategory(category: string): category is CubeCategory {
   return CUBE_CATEGORIES.includes(category as CubeCategory)
