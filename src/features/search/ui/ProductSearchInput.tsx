@@ -48,7 +48,8 @@ export function ProductSearchInput({
   const listboxId = useId()
 
   const trimmed = value.trim()
-  const { hits, isLoading } = useSearch<ProductHit>('products', open ? value : '')
+  const { hits: rawHits, isLoading } = useSearch<ProductHit>('products', open ? value : '')
+  const hits = rawHits.filter((hit) => Boolean(hit.name && hit.name.trim()))
 
   useEffect(() => {
     function onClickOutside(event: MouseEvent) {
@@ -181,13 +182,7 @@ export function ProductSearchInput({
                 )}
               </div>
 
-              <p className="min-w-0 flex-1 truncate text-sm">
-                {hit.name ? (
-                  highlightMatch(hit.name, value)
-                ) : (
-                  <span className="text-muted-foreground italic">Sin nombre</span>
-                )}
-              </p>
+              <p className="min-w-0 flex-1 truncate text-sm">{highlightMatch(hit.name, value)}</p>
 
               {hit.category && (
                 <span className="text-muted-foreground flex shrink-0 items-center gap-1 text-[11px] font-medium">
