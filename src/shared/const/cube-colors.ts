@@ -13,6 +13,7 @@ const CATEGORY_CUBE_COLOR: Record<string, string> = {
   Pyraminx: 'bg-cube-red',
   Megaminx: 'bg-cube-yellow',
   Clock: 'bg-cube-blue',
+  FTO: 'bg-cube-white',
   '3x3x3': 'bg-cube-blue',
   '2x2x2': 'bg-cube-yellow'
 }
