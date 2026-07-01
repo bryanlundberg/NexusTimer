@@ -38,7 +38,7 @@ export default function CreateCollectionForm() {
   const {
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: { errors, isSubmitted },
     watch,
     setValue,
     reset
@@ -100,11 +100,11 @@ export default function CreateCollectionForm() {
               data-testid="drawer-input-name"
               placeholder="E.g: X Man Tornado V3 M"
               value={formWatch.name}
-              onValueChange={(value) => setValue('name', value, { shouldValidate: true })}
+              onValueChange={(value) => setValue('name', value, { shouldValidate: isSubmitted })}
               onSelect={(hit) => {
-                setValue('name', hit.name ?? '', { shouldValidate: true })
+                setValue('name', hit.name ?? '', { shouldValidate: isSubmitted })
                 if (hit.category && isValidCategory(hit.category)) {
-                  setValue('category', hit.category, { shouldValidate: true })
+                  setValue('category', hit.category, { shouldValidate: isSubmitted })
                 }
               }}
             />
