@@ -137,6 +137,9 @@ importers:
       country-flag-icons:
         specifier: ^1.5.18
         version: 1.6.17
+      cstimer_module:
+        specifier: ^0.1.5
+        version: 0.1.5
       cube-solver:
         specifier: ^2.4.1
         version: 2.4.1
@@ -275,9 +278,6 @@ importers:
       resend:
         specifier: ^4.1.2
         version: 4.8.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
-      scrambow:
-        specifier: ^1.8.1
-        version: 1.8.1
       sharp:
         specifier: 0.32.6
         version: 0.32.6
@@ -3232,10 +3232,6 @@ packages:
   commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
 
-  commander@8.3.0:
-    resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
-    engines: {node: '>= 12'}
-
   common-tags@1.8.2:
     resolution: {integrity: sha512-gk/Z852D2Wtb//0I+kRFNKKE9dIIVirjoqPoA1wJU+XePVXZfGeBpk45+A1rKO4Q43prqWBNY/MiIeRLbPWUaA==}
     engines: {node: '>=4.0.0'}
@@ -3293,6 +3289,9 @@ packages:
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
+
+  cstimer_module@0.1.5:
+    resolution: {integrity: sha512-5vAYZEnMOjk6iExR9b8eY6XzDpJoKP4HKCD0FhBKpNIzQoxj3foGEVjmQCZsgFU3nuAewTlP6ULcZxvqFyCDJg==}
 
   cube-solver@2.4.1:
     resolution: {integrity: sha512-dDaCE0F4y3VTnh/vzvjV5Li154zLQQJ8tVUKEsWvy8g3Fuq4hf3Z0+cNlBiFq6hhrXNHJ6+deRJwQBV2oUzkDg==}
@@ -5391,10 +5390,6 @@ packages:
 
   scheduler@0.27.0:
     resolution: {integrity: sha512-eNv+WrVbKu1f3vbYJT/xtiF5syA5HPIMtf9IgY/nKg0sWqzAUEvqY/xm7OcZc/qafLx/iO9FgOmeSAp4v5ti/Q==}
-
-  scrambow@1.8.1:
-    resolution: {integrity: sha512-K4AXNdRQmndx6qGGfZN1i/SKvz5IZtm3sAfvXznMDHfcN7A6t3KMj187bFtb1J8D12Tub8u4Qddu9a2kkYW2OA==}
-    hasBin: true
 
   scroll@3.0.1:
     resolution: {integrity: sha512-pz7y517OVls1maEzlirKO5nPYle9AXsFzTMNJrRGmT951mzpIBy7sNHOg5o/0MQd/NqliCiWnAi0kZneMPFLcg==}
@@ -9087,8 +9082,6 @@ snapshots:
 
   commander@2.20.3: {}
 
-  commander@8.3.0: {}
-
   common-tags@1.8.2: {}
 
   concat-map@0.0.1: {}
@@ -9136,6 +9129,8 @@ snapshots:
   css.escape@1.5.1: {}
 
   csstype@3.2.3: {}
+
+  cstimer_module@0.1.5: {}
 
   cube-solver@2.4.1: {}
 
@@ -11314,10 +11309,6 @@ snapshots:
       xmlchars: 2.2.0
 
   scheduler@0.27.0: {}
-
-  scrambow@1.8.1:
-    dependencies:
-      commander: 8.3.0
 
   scroll@3.0.1: {}
 
