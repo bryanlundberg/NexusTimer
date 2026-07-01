@@ -112,5 +112,13 @@ export const cubeCollection: CubeCollection[] = [
     src: '/categories/clock.svg',
     displayId: 'clock',
     twistyId: 'clock'
+  },
+  {
+    event: 'fto',
+    id: 15,
+    name: 'FTO',
+    src: '/categories/fto.svg',
+    displayId: 'fto',
+    twistyId: 'fto'
   }
 ]
