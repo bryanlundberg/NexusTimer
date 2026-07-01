@@ -66,22 +66,6 @@ That depth is what makes the social layer worth using. You can open another cube
 
 ---
 
-## Architecture Overview
-
-The diagram below outlines the infrastructure and the main components that sit behind NexusTimer, from the client and its offline first persistence layer to the services that handle accounts, solve storage, and the real time features. It is meant as a high level map rather than an exhaustive specification, enough to understand how the pieces fit together before reading the source.
-
-<div align="center">
-  <img src="./.github/images/nxtimer-infra.png" alt="NexusTimer Infrastructure Overview" width="100%" />
-</div>
-
----
-
-## Languages Available
-
-NexusTimer is translated into seventeen languages, with English as the default fallback and every other locale deep merged on top of it, so a missing string in one language quietly falls back to English instead of breaking the interface. The application is currently available in English, German, Spanish, French, Hindi, Japanese, Korean, Portuguese, Russian, Chinese, Ukrainian, Italian, Polish, Indonesian, Vietnamese, Thai, and Filipino.
-
----
-
 ## Contributing
 
 Contributions are welcome, whether a bug report, a translation, a fix, or a new feature. Please read the [Contributing Guidelines](https://github.com/bryanlundberg/NexusTimer/blob/main/CONTRIBUTING.md) before opening a pull request so your change matches the project conventions.
