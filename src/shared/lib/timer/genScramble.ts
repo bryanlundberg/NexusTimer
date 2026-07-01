@@ -1,15 +1,24 @@
-import { Scrambow } from 'scrambow'
+import * as cstimer from 'cstimer_module'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { CubeCollection } from '@/shared/types/types'
 import { cubeCollection } from '@/shared/const/cube-collection'
 
-/**
- * Generates a scramble for the given cube category using Scrambow.
- *
- * @param {CubeCategory} category - The cube category for which to generate a scramble.
- * @throws {Error} Throws an error if the scrambler is not available for the specified category.
- * @returns {string} The generated scramble string.
- */
+const CSTIMER_SCRAMBLE: Record<CubeCategory, { type: string; length?: number }> = {
+  '2x2': { type: '222so' },
+  '3x3': { type: '333' },
+  '3x3 OH': { type: '333' },
+  '3x3 BLD': { type: '333ni' },
+  '4x4': { type: '444wca' },
+  '4x4 BLD': { type: '444bld' },
+  '5x5': { type: '555wca', length: 60 },
+  '6x6': { type: '666wca', length: 80 },
+  '7x7': { type: '777wca', length: 100 },
+  SQ1: { type: 'sqrs' },
+  Skewb: { type: 'skbso' },
+  Pyraminx: { type: 'pyrso' },
+  Megaminx: { type: 'mgmp', length: 70 },
+  Clock: { type: 'clkwca' }
+}
 
 export default function genScramble(category: CubeCategory) {
   const findEvent = (category: CubeCategory) => cubeCollection.find((cube: CubeCollection) => cube.name === category)
@@ -20,12 +29,13 @@ export default function genScramble(category: CubeCategory) {
     throw new Error('Error: Scrambler not available for this category.')
   }
 
-  // Initialize Scrambow with the event code
-  const scramble = new Scrambow(eventId.event)
+  const config = CSTIMER_SCRAMBLE[category]
 
-  // Get one scramble from Scrambow
-  const newScramble = scramble.get(1)
+  if (!config) {
+    throw new Error('Error: Scrambler not available for this category.')
+  }
 
-  // Return the scramble string from the first element of the array
-  return newScramble?.[0]?.scramble_string || 'Error: Unable to retrieve scramble.'
+  const newScramble = cstimer.getScramble(config.type, config.length ?? 0)
+
+  return newScramble?.trim() || 'Error: Unable to retrieve scramble.'
 }
