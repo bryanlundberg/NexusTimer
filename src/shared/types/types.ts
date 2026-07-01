@@ -28,6 +28,7 @@ export type Event =
   | '555bf'
   | '333mbf'
   | '333ft'
+  | 'fto'
 
 type TwistyTimerEvent =
   | null
@@ -42,6 +43,7 @@ type TwistyTimerEvent =
   | 'pyra'
   | 'sq1'
   | 'clock'
+  | 'fto'
 
 export type CubeCollection = {
   event: Event
