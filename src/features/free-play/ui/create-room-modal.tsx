@@ -150,6 +150,7 @@ export default function CreateRoomModal() {
                       <SelectItem value="Megaminx">Megaminx</SelectItem>
                       <SelectItem value="Pyraminx">Pyraminx</SelectItem>
                       <SelectItem value="Skewb">Skewb</SelectItem>
+                      <SelectItem value="FTO">FTO</SelectItem>
                       <SelectItem value="square1">Square-1</SelectItem>
                     </SelectContent>
                   </Select>
