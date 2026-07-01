@@ -54,6 +54,27 @@ services:
         /usr/bin/mc anonymous set download local/nexustimer-dev
         echo 'minio init done'
 
+  meilisearch:
+    image: getmeili/meilisearch:v1.48
+    ports:
+      - "7700:7700"
+    environment:
+      MEILI_MASTER_KEY: "optional-field-do-not-change-this-text-only-if-you-will-work-with-indexing-search"
+    volumes:
+      - nexus_meilisearch:/meili_data
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--spider",
+          "-q",
+          "http://127.0.0.1:7700/health"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 volumes:
   nexus_mongo:
   nexus_minio:
+  nexus_meilisearch:

@@ -79,6 +79,7 @@
     "lodash": "^4.18.1",
     "lucide-react": "^0.439.0",
     "luxon": "^3.5.0",
+    "meilisearch": "^0.58.0",
     "moment": "^2.30.1",
     "mongoose": "^9.4.1",
     "motion": "^12.40.0",

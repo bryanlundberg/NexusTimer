@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import { cn } from '@/shared/lib/utils'
@@ -9,7 +8,7 @@ import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CreateCubeFormData, createCubeFormSchema } from '@/entities/cube/model/schema'
-import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
+import { CUBE_CATEGORIES, isValidCategory } from '@/shared/const/cube-categories'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import {
@@ -24,6 +23,7 @@ import { createCubeCollection } from '@/features/manage-cubes/api/createCubeColl
 import { useEffect } from 'react'
 import { Check } from 'lucide-react'
 import { Nexi } from '@/shared/ui/nexi'
+import { ProductSearchInput } from '@/features/search/ui/ProductSearchInput'
 
 export default function CreateCollectionForm() {
   const t = useTranslations('Index')
@@ -38,8 +38,7 @@ export default function CreateCollectionForm() {
   const {
     handleSubmit,
     setError,
-    formState: { errors },
-    register,
+    formState: { errors, isSubmitted },
     watch,
     setValue,
     reset
@@ -96,12 +95,18 @@ export default function CreateCollectionForm() {
         <div className="space-y-5 py-1">
           <div className="space-y-2">
             <Label htmlFor="name">{t('Cubes-modal.name')}</Label>
-            <Input
-              autoComplete={'off'}
-              data-testid="drawer-input-name"
+            <ProductSearchInput
               id="name"
+              data-testid="drawer-input-name"
               placeholder="E.g: X Man Tornado V3 M"
-              {...register('name')}
+              value={formWatch.name}
+              onValueChange={(value) => setValue('name', value, { shouldValidate: isSubmitted })}
+              onSelect={(hit) => {
+                setValue('name', hit.name ?? '', { shouldValidate: isSubmitted })
+                if (hit.category && isValidCategory(hit.category)) {
+                  setValue('category', hit.category, { shouldValidate: isSubmitted })
+                }
+              }}
             />
 
             {errors?.name && (

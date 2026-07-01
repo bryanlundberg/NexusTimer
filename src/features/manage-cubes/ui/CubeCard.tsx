@@ -55,7 +55,7 @@ export function CubeCard({ cube }: CubeCardProps) {
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2 min-w-0 flex-1">
             <CardTitle
-              className="text-base font-semibold cursor-pointer hover:text-primary truncate transition-colors"
+              className="text-base font-semibold cursor-pointer hover:text-primary break-words transition-colors"
               onClick={handleRedirect}
               data-testid={`cube-name-${cube.name}`}
             >
