@@ -3,14 +3,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button'
 import * as React from 'react'
 import { toast } from 'sonner'
-import { useMemo } from 'react'
 import { useSession } from 'next-auth/react'
-import { countries } from 'country-flag-icons'
-import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
-import { getCountryName } from '@/shared/lib/getCountryName'
+import { CountryCombobox } from '@/shared/ui/country-combobox/CountryCombobox'
 import { UserDocument } from '@/entities/user/model/user'
 import { KeyedMutator } from 'swr'
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
   AccountInfoForm as IAccountInfoForm,
@@ -25,23 +22,7 @@ import { Loader2, Save } from 'lucide-react'
 export default function AccountInfoForm({ user, mutate }: { user?: UserDocument; mutate: KeyedMutator<any> }) {
   const { data: session, update } = useSession()
   const t = useTranslations('Index.AccountPage')
-  const locale = useLocale()
 
-  const countryItems = useMemo(
-    () =>
-      countries
-        .map((code) => ({ code, name: getCountryName(code, locale) }))
-        .sort((a, b) => a.name.localeCompare(b.name, locale))
-        .map(({ code, name }) => (
-          <SelectItem key={code} value={code}>
-            <span className="flex items-center gap-2">
-              <CountryFlag code={code} />
-              {name}
-            </span>
-          </SelectItem>
-        )),
-    [locale]
-  )
   const {
     register,
     handleSubmit,
@@ -126,12 +107,14 @@ export default function AccountInfoForm({ user, mutate }: { user?: UserDocument;
           <Controller
             control={control}
             render={({ field }) => (
-              <Select value={field.value} onValueChange={field.onChange}>
-                <SelectTrigger className="w-full h-10">
-                  <SelectValue placeholder={t('select-country')} />
-                </SelectTrigger>
-                <SelectContent>{countryItems}</SelectContent>
-              </Select>
+              <CountryCombobox
+                value={field.value || null}
+                onChange={(code) => field.onChange(code || '')}
+                placeholder={t('select-country')}
+                searchPlaceholder={t('search-country')}
+                emptyText={t('no-country-found')}
+                className="w-full h-10"
+              />
             )}
             name={'country'}
           />
