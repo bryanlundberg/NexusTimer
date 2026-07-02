@@ -16,6 +16,8 @@ import {
 import { useState, useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import StickerSteps from './StickerSteps'
+import FeatureBento from './FeatureBento'
+import { CubeGridTexture } from './CubeDecor'
 import { Reveal } from './Reveal'
 
 /**
@@ -613,6 +615,8 @@ export default function LandingBelowFold({
         </Reveal>
       </section>
 
+      <FeatureBento />
+
       <ParallaxBand scrollContainer={scrollContainerRef} />
 
       <StickerSteps />
@@ -624,7 +628,18 @@ export default function LandingBelowFold({
 
       <StickyTestimonials scrollContainer={scrollContainerRef} />
 
-      <section className="lp-cv relative py-20 md:py-28">
+      <section className="lp-cv relative overflow-hidden py-20 md:py-28">
+        {/* blueprint cubes surfacing through a soft vignette */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 text-gray-900"
+          style={{
+            maskImage: 'radial-gradient(ellipse 80% 70% at 50% 45%, black 30%, transparent 78%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 45%, black 30%, transparent 78%)'
+          }}
+        >
+          <CubeGridTexture opacity={0.06} />
+        </div>
         <div className="mx-auto max-w-3xl px-6">
           <Reveal className="text-center mb-14">
             <p className="text-xs uppercase tracking-[0.3em] text-gray-500 mb-4">{t('faq.label')}</p>
