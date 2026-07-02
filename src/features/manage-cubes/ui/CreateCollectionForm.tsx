@@ -125,7 +125,7 @@ export default function CreateCollectionForm() {
               </span>
             </div>
 
-            <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5 sm:gap-2">
+            <div className="grid grid-cols-4 sm:grid-cols-8 gap-1.5 sm:gap-2">
               {cubeCollection.map((e) => {
                 const selected = formWatch.category === e.name
                 return (
