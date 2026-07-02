@@ -18,7 +18,7 @@ export function usePeopleSearch() {
     const timeout = setTimeout(() => {
       lastCommitted.current = searchTerm
       setSearch(searchTerm || null)
-      setPage('0')
+      setPage(null)
     }, DEBOUNCE_MS)
 
     return () => clearTimeout(timeout)
@@ -33,7 +33,7 @@ export function usePeopleSearch() {
 
   const clearSearch = useCallback(() => {
     setSearch(null)
-    setPage('0')
+    setPage(null)
   }, [setSearch, setPage])
 
   return { search, searchTerm, setSearchTerm, clearSearch }
