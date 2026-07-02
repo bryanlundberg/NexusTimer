@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { motion, useReducedMotion } from 'motion/react'
+import { ScrambleTexture } from './CubeDecor'
 
 type Sticker = {
   n: number
@@ -52,7 +53,17 @@ export default function StickerSteps() {
   ]
 
   return (
-    <section className="lp-cv relative py-20 md:py-32">
+    <section className="lp-cv relative overflow-hidden py-20 md:py-32">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 text-gray-900"
+        style={{
+          maskImage: 'linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)'
+        }}
+      >
+        <ScrambleTexture opacity={0.055} />
+      </div>
       <div className="mx-auto max-w-4xl px-6">
         <motion.h2
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20 }}
