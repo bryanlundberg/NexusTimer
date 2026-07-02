@@ -8,7 +8,9 @@ import { StackmatAdapter } from '@/features/hardware/adapters/StackmatAdapter'
 import useSolveData from '@/features/timer/model/useSolveData'
 
 export default function Stackmat() {
-  const { timerStatus, setTimerStatus, setIsSolving, setSolvingTime, isSolving } = useTimerStore()
+  const timerStatus = useTimerStore((state) => state.timerStatus)
+  const isSolving = useTimerStore((state) => state.isSolving)
+  const { setTimerStatus, setIsSolving, setSolvingTime } = useTimerStore.getState()
 
   useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
 
