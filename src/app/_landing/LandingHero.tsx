@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useRef } from 'react'
 import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
+import { FloatingStickers, GrainTexture } from './CubeDecor'
 
 export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.RefObject<HTMLDivElement | null> }) {
   const t = useTranslations('LandingPage')
@@ -46,6 +47,8 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
                 'linear-gradient(to right, var(--lp-hero-dark) 0%, transparent 18%, transparent 82%, var(--lp-hero-dark) 100%)'
             }}
           />
+          <GrainTexture opacity={0.05} />
+          <FloatingStickers opacity={0.35} />
         </div>
 
         {/* Ambient brand spotlight, very faint, anchored behind the headline */}
