@@ -13,7 +13,7 @@ interface FreePlayStackmatListenerProps {
 }
 
 export default function FreePlayStackmatListener({ onFinish, disabled }: FreePlayStackmatListenerProps) {
-  const { setSolvingTime, setIsSolving, setTimerStatus } = useTimerStore()
+  const { setSolvingTime, setIsSolving, setTimerStatus } = useTimerStore.getState()
   const stackmatAdapter = useMemo(() => new StackmatAdapter(), [])
   const { state } = useHardwareTimer({ adapter: stackmatAdapter, autoConnect: true, connectOptions: CONNECT_OPTIONS })
   const wasRunningRef = useRef(false)
