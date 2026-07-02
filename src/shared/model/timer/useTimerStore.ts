@@ -64,7 +64,8 @@ export const useTimerStore = create<UseTimerStore>((set, get) => ({
       if (!cube || typeof cube !== 'object') {
         return {
           event: null,
-          selectedCube: null
+          selectedCube: null,
+          lastSolve: null
         }
       }
 
@@ -81,7 +82,8 @@ export const useTimerStore = create<UseTimerStore>((set, get) => ({
       return {
         event: selectedEvent?.event,
         selectedCube: filteredCube,
-        cubes: state.cubes?.map((item) => (item.id === cube.id ? filteredCube : item))
+        cubes: state.cubes?.map((item) => (item.id === cube.id ? filteredCube : item)),
+        lastSolve: state.selectedCube?.id === cube.id ? state.lastSolve : null
       }
     })
   },
