@@ -9,6 +9,8 @@ import { parseJsonBody } from '@/shared/api/parse-json'
 import { badRequest, notFound, ok, serverError, unauthorized } from '@/shared/api/responses'
 import { bioSchema, goalSchema, nameSchema } from '@/features/account-form/model/types'
 
+const PUBLIC_PROJECTION = '-email -providers -__v'
+
 const updateUserSchema = z
   .object({
     name: nameSchema.optional(),
@@ -35,6 +37,8 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     await connectDB()
 
     const updatedUser = await User.findOneAndUpdate({ _id: userId }, body, { returnDocument: 'after' })
+      .select(PUBLIC_PROJECTION)
+      .lean()
 
     return ok(updatedUser)
   } catch (error) {
@@ -49,15 +53,13 @@ export async function GET(_request: NextRequest, { params }: { params: Promise<{
     if (!userId) return badRequest('ID is required')
 
     await connectDB()
-    const user = await User.findById(userId)
+    const user = await User.findById(userId).select(PUBLIC_PROJECTION).lean()
 
     if (!user) return notFound('User not found')
 
     const granted = await UserAchievement.find({ userId: user._id }, { key: 1, _id: 0 }).lean<{ key: string }[]>()
 
-    const { email, __v, ...rest } = user.toObject()
-
-    return ok({ ...rest, grantedAchievements: granted.map((a) => a.key) })
+    return ok({ ...user, grantedAchievements: granted.map((a) => a.key) })
   } catch (error) {
     return serverError('users/[id]:GET', error)
   }
