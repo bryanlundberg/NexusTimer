@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import _ from 'lodash'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
 import { Bookmark, BookmarkCheck, ChevronDown, Play } from 'lucide-react'
@@ -36,18 +36,22 @@ export default function AlgorithmCard({
   const [primary, ...alternatives] = algorithm.algs
   const canExpand = alternatives.length > 0
 
-  const vizConfig = applyYellowOrientation(
-    _.merge(
-      {
-        visualization: 'experimental-2D-LL',
-        background: 'none',
-        controlPanel: 'none',
-        alg: primary?.moves,
-        experimentalStickering: 'OLL',
-        experimentalSetupAnchor: 'end'
-      },
-      virtualization
-    )
+  const vizConfig = useMemo(
+    () =>
+      applyYellowOrientation(
+        _.merge(
+          {
+            visualization: 'experimental-2D-LL',
+            background: 'none',
+            controlPanel: 'none',
+            alg: primary?.moves,
+            experimentalStickering: 'OLL',
+            experimentalSetupAnchor: 'end'
+          },
+          virtualization
+        )
+      ),
+    [primary?.moves, virtualization]
   )
 
   const openPreview = (alg: string) => {
