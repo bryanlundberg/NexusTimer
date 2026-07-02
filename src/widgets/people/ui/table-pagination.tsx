@@ -10,34 +10,35 @@ import * as React from 'react'
 import { useQueryState } from 'nuqs'
 
 export const TablePagination = ({ totalPages }: { totalPages: number }) => {
-  const [page, setPage] = useQueryState('page', { defaultValue: '0' })
+  const [page, setPage] = useQueryState('page', { defaultValue: '1' })
+  const current = Math.max(1, Number(page) || 1)
 
   return (
     <Pagination className={'pb-2'}>
       <PaginationContent>
         <PaginationItem>
-          {+page > 0 && (
+          {current > 1 && (
             <PaginationPrevious
               href={'#'}
               onClick={async (e) => {
                 e.preventDefault()
-                await setPage((Number(page) - 1).toString())
+                await setPage(current - 1 > 1 ? (current - 1).toString() : null)
               }}
             />
           )}
         </PaginationItem>
         <PaginationItem>
           <PaginationLink href="#" isActive onClick={(e) => e.preventDefault()}>
-            {Number(page)}
+            {current}
           </PaginationLink>
         </PaginationItem>
-        {totalPages > 0 && +page < totalPages && (
+        {current < totalPages && (
           <PaginationItem>
             <PaginationNext
               href="#"
               onClick={async (e) => {
                 e.preventDefault()
-                await setPage((Number(page) + 1).toString())
+                await setPage((current + 1).toString())
               }}
             />
           </PaginationItem>
