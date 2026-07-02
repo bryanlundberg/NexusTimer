@@ -295,7 +295,10 @@
     },
     "PeoplePage": {
       "title": "ユーザー",
-      "search-placeholder": "名前で検索",
+      "search-placeholder": "名前またはWCA IDで検索",
+      "all-countries": "すべての国",
+      "search-country": "国を検索…",
+      "no-country-found": "国が見つかりません",
       "no-users-found": "条件に合うユーザーが見つかりません",
       "no-results-for": "<b>「{query}」</b>に一致するキューバーが見つかりません",
       "clear-search": "検索をクリア",
@@ -570,7 +573,9 @@
         "he": "彼 (He)",
         "she": "彼女 (She)",
         "other": "その他"
-      }
+      },
+      "search-country": "国を検索…",
+      "no-country-found": "国が見つかりません"
     },
     "AccessCard": {
       "title": "アクセス",

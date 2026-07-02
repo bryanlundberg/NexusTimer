@@ -295,7 +295,10 @@
     },
     "PeoplePage": {
       "title": "사람들",
-      "search-placeholder": "이름으로 검색",
+      "search-placeholder": "이름 또는 WCA ID로 검색",
+      "all-countries": "모든 국가",
+      "search-country": "국가 검색…",
+      "no-country-found": "국가를 찾을 수 없습니다",
       "no-users-found": "조건에 맞는 사용자를 찾을 수 없습니다",
       "no-results-for": "<b>“{query}”</b>에 대한 큐버를 찾을 수 없습니다",
       "clear-search": "검색 지우기",
@@ -570,7 +573,9 @@
         "he": "그 (He)",
         "she": "그녀 (She)",
         "other": "기타"
-      }
+      },
+      "search-country": "국가 검색…",
+      "no-country-found": "국가를 찾을 수 없습니다"
     },
     "AccessCard": {
       "title": "액세스",

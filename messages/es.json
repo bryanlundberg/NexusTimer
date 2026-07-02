@@ -274,7 +274,10 @@
     },
     "PeoplePage": {
       "title": "Personas",
-      "search-placeholder": "Buscar por nombre",
+      "search-placeholder": "Buscar por nombre o WCA ID",
+      "all-countries": "Todos los países",
+      "search-country": "Buscar país…",
+      "no-country-found": "No se encontró el país",
       "no-users-found": "No se encontraron usuarios que coincidan con tus criterios",
       "no-results-for": "No se encontraron cubers para <b>“{query}”</b>",
       "clear-search": "Limpiar búsqueda",
@@ -559,7 +562,9 @@
         "he": "Él",
         "she": "Ella",
         "other": "Otro"
-      }
+      },
+      "search-country": "Buscar país…",
+      "no-country-found": "No se encontró el país"
     },
     "NavMain": {
       "platform": "Plataforma",

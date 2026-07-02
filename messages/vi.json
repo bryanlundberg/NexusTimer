@@ -369,7 +369,10 @@
     },
     "PeoplePage": {
       "title": "Mọi người",
-      "search-placeholder": "Tìm theo tên",
+      "search-placeholder": "Tìm theo tên hoặc WCA ID",
+      "all-countries": "Tất cả quốc gia",
+      "search-country": "Tìm quốc gia…",
+      "no-country-found": "Không tìm thấy quốc gia",
       "no-users-found": "Không tìm thấy người dùng nào phù hợp với tiêu chí của bạn",
       "no-results-for": "Không tìm thấy cuber cho <b>“{query}”</b>",
       "clear-search": "Xóa tìm kiếm",
@@ -683,7 +686,9 @@
         "he": "Anh ấy",
         "she": "Cô ấy",
         "other": "Khác"
-      }
+      },
+      "search-country": "Tìm quốc gia…",
+      "no-country-found": "Không tìm thấy quốc gia"
     },
     "AccessCard": {
       "title": "Truy cập",

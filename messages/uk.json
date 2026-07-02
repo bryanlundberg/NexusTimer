@@ -347,7 +347,10 @@
     },
     "PeoplePage": {
       "title": "Люди",
-      "search-placeholder": "Пошук за іменем",
+      "search-placeholder": "Пошук за іменем або WCA ID",
+      "all-countries": "Всі країни",
+      "search-country": "Пошук країни…",
+      "no-country-found": "Країну не знайдено",
       "no-users-found": "Не знайдено користувачів за вашими критеріями",
       "no-results-for": "Кьюберів за запитом <b>«{query}»</b> не знайдено",
       "clear-search": "Очистити пошук",
@@ -633,7 +636,9 @@
         "he": "Він",
         "she": "Вона",
         "other": "Інше"
-      }
+      },
+      "search-country": "Пошук країни…",
+      "no-country-found": "Країну не знайдено"
     },
     "AccessCard": {
       "title": "Доступ",

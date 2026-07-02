@@ -369,7 +369,10 @@
     },
     "PeoplePage": {
       "title": "ผู้คน",
-      "search-placeholder": "ค้นหาตามชื่อ",
+      "search-placeholder": "ค้นหาตามชื่อหรือ WCA ID",
+      "all-countries": "ทุกประเทศ",
+      "search-country": "ค้นหาประเทศ…",
+      "no-country-found": "ไม่พบประเทศ",
       "no-users-found": "ไม่พบผู้ใช้ที่ตรงกับเกณฑ์ของคุณ",
       "no-results-for": "ไม่พบนักเล่นลูกบาศก์สำหรับ <b>“{query}”</b>",
       "clear-search": "ล้างการค้นหา",
@@ -683,7 +686,9 @@
         "he": "เขา (ชาย)",
         "she": "เธอ (หญิง)",
         "other": "อื่น ๆ"
-      }
+      },
+      "search-country": "ค้นหาประเทศ…",
+      "no-country-found": "ไม่พบประเทศ"
     },
     "AccessCard": {
       "title": "การเข้าถึง",

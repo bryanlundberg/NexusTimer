@@ -369,7 +369,10 @@
     },
     "PeoplePage": {
       "title": "Mga Tao",
-      "search-placeholder": "Hanapin ayon sa pangalan",
+      "search-placeholder": "Hanapin ayon sa pangalan o WCA ID",
+      "all-countries": "Lahat ng bansa",
+      "search-country": "Maghanap ng bansa…",
+      "no-country-found": "Walang nahanap na bansa",
       "no-users-found": "Walang user na tumutugma sa criteria mo",
       "no-results-for": "Walang cuber na nahanap para sa <b>“{query}”</b>",
       "clear-search": "I-clear ang paghahanap",
@@ -683,7 +686,9 @@
         "he": "Siya (lalaki)",
         "she": "Siya (babae)",
         "other": "Iba pa"
-      }
+      },
+      "search-country": "Maghanap ng bansa…",
+      "no-country-found": "Walang nahanap na bansa"
     },
     "AccessCard": {
       "title": "Access",

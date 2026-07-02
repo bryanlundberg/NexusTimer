@@ -369,7 +369,10 @@
     },
     "PeoplePage": {
       "title": "Orang",
-      "search-placeholder": "Cari berdasarkan nama",
+      "search-placeholder": "Cari berdasarkan nama atau WCA ID",
+      "all-countries": "Semua negara",
+      "search-country": "Cari negara…",
+      "no-country-found": "Negara tidak ditemukan",
       "no-users-found": "Tidak ada pengguna yang cocok dengan kriteriamu",
       "no-results-for": "Tidak ada cuber untuk <b>“{query}”</b>",
       "clear-search": "Hapus pencarian",
@@ -683,7 +686,9 @@
         "he": "Dia (laki-laki)",
         "she": "Dia (perempuan)",
         "other": "Lainnya"
-      }
+      },
+      "search-country": "Cari negara…",
+      "no-country-found": "Negara tidak ditemukan"
     },
     "AccessCard": {
       "title": "Akses",

@@ -369,7 +369,10 @@
     },
     "PeoplePage": {
       "title": "People",
-      "search-placeholder": "Search by name",
+      "search-placeholder": "Search by name or WCA ID",
+      "all-countries": "All countries",
+      "search-country": "Search country…",
+      "no-country-found": "No country found",
       "no-users-found": "No users found matching your criteria",
       "no-results-for": "No cubers found for <b>“{query}”</b>",
       "clear-search": "Clear search",
@@ -674,7 +677,9 @@
         "he": "He",
         "she": "She",
         "other": "Other"
-      }
+      },
+      "search-country": "Search country…",
+      "no-country-found": "No country found"
     },
     "AccessCard": {
       "title": "Access",

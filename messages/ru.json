@@ -295,7 +295,10 @@
     },
     "PeoplePage": {
       "title": "Люди",
-      "search-placeholder": "Поиск по имени",
+      "search-placeholder": "Поиск по имени или WCA ID",
+      "all-countries": "Все страны",
+      "search-country": "Поиск страны…",
+      "no-country-found": "Страна не найдена",
       "no-users-found": "Пользователи не найдены",
       "no-results-for": "Кьюберы по запросу <b>«{query}»</b> не найдены",
       "clear-search": "Очистить поиск",
@@ -570,7 +573,9 @@
         "he": "Он",
         "she": "Она",
         "other": "Другое"
-      }
+      },
+      "search-country": "Поиск страны…",
+      "no-country-found": "Страна не найдена"
     },
     "AccessCard": {
       "title": "Доступ",

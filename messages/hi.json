@@ -295,7 +295,10 @@
     },
     "PeoplePage": {
       "title": "लोग",
-      "search-placeholder": "नाम से खोजें",
+      "search-placeholder": "नाम या WCA ID से खोजें",
+      "all-countries": "सभी देश",
+      "search-country": "देश खोजें…",
+      "no-country-found": "कोई देश नहीं मिला",
       "no-users-found": "आपके मानदंडों से मेल खाने वाला कोई उपयोगकर्ता नहीं मिला",
       "no-results-for": "<b>“{query}”</b> के लिए कोई क्यूबर नहीं मिला",
       "clear-search": "खोज साफ़ करें",
@@ -570,7 +573,9 @@
         "he": "वह (पुरुष)",
         "she": "वह (महिला)",
         "other": "अन्य"
-      }
+      },
+      "search-country": "देश खोजें…",
+      "no-country-found": "कोई देश नहीं मिला"
     },
     "AccessCard": {
       "title": "पहुंच",

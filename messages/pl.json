@@ -369,7 +369,10 @@
     },
     "PeoplePage": {
       "title": "Ludzie",
-      "search-placeholder": "Szukaj po imieniu",
+      "search-placeholder": "Szukaj po imieniu lub WCA ID",
+      "all-countries": "Wszystkie kraje",
+      "search-country": "Szukaj kraju…",
+      "no-country-found": "Nie znaleziono kraju",
       "no-users-found": "Nie znaleziono użytkowników spełniających kryteria",
       "no-results-for": "Nie znaleziono cuberów dla <b>„{query}”</b>",
       "clear-search": "Wyczyść wyszukiwanie",
@@ -683,7 +686,9 @@
         "he": "On",
         "she": "Ona",
         "other": "Inne"
-      }
+      },
+      "search-country": "Szukaj kraju…",
+      "no-country-found": "Nie znaleziono kraju"
     },
     "AccessCard": {
       "title": "Dostęp",
