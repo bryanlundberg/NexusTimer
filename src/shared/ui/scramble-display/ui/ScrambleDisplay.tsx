@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { cubeCollection } from '@/shared/const/cube-collection'
+import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'
 
 interface ScrambleDisplay extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
@@ -22,25 +23,23 @@ export default function ScrambleDisplay({
   ...rest
 }: ScrambleDisplay) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const playerRef = useRef<TwistyPlayer | null>(null)
 
   useEffect(() => {
     if (!show || !containerRef.current) return
 
-    const existingPlayer = containerRef.current.querySelector('twisty-player')
-    if (existingPlayer) {
-      existingPlayer.remove()
-    }
     const id = cubeCollection.find((u) => u.name === event)
     const displayId = id?.displayId ?? '3x3x3'
 
     const player = new TwistyPlayer({
       puzzle: puzzle ?? (displayId || '3x3x3'),
-      alg: scramble ? scramble : '',
+      alg: scramble ?? '',
       hintFacelets: 'none',
       background: 'none',
       controlPanel: 'none',
       visualization: visualization
     })
+    playerRef.current = player
 
     containerRef.current.appendChild(player)
 
@@ -50,9 +49,21 @@ export default function ScrambleDisplay({
     player.style.minHeight = '100%'
 
     return () => {
-      player.remove()
+      disposeTwistyPlayer(player)
+      playerRef.current = null
     }
-  }, [show, event, scramble, visualization])
+  }, [show, event, visualization, puzzle])
+
+  // Update the algorithm in place on the existing player instead of rebuilding.
+  useEffect(() => {
+    const player = playerRef.current
+    if (!player) return
+    try {
+      player.alg = scramble ?? ''
+    } catch {
+      // ignore invalid alg
+    }
+  }, [scramble])
 
   if (!show) return null
 
