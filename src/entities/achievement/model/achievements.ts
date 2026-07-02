@@ -1,6 +1,6 @@
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 import { Achievement, SolveStats } from './types'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import { Cube } from '@/entities/cube/model/types'
 
 export function computeSolveStats(cubes: Cube[]): SolveStats {
@@ -33,7 +33,7 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
           cube3x3Count++
           if (solve.time < 10000) has3x3Sub10 = true
         }
-        const date = moment(solve.startTime).format('YYYY-MM-DD')
+        const date = dayjs(solve.startTime).format('YYYY-MM-DD')
         solvesByDate.set(date, (solvesByDate.get(date) ?? 0) + 1)
       }
 
@@ -53,9 +53,9 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
     const sortedDates = Array.from(solvesByDate.keys()).sort()
     let current = 1
     for (let i = 1; i < sortedDates.length; i++) {
-      const prev = moment(sortedDates[i - 1])
-      const curr = moment(sortedDates[i])
-      if (curr.diff(prev, 'days') === 1) {
+      const prev = dayjs(sortedDates[i - 1])
+      const curr = dayjs(sortedDates[i])
+      if (curr.diff(prev, 'day') === 1) {
         current++
         if (current > longestDateStreak) longestDateStreak = current
       } else {
@@ -120,7 +120,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     icon: 'icons8-metal-music-50.png',
     color: 'rgba(0,191,255,0.8)',
     type: 'computed',
-    condition: ({ user }) => moment(user.createdAt).isBefore(moment('2024-07-11').add(1, 'year'))
+    condition: ({ user }) => dayjs(user.createdAt).isBefore(dayjs('2024-07-11').add(1, 'year'))
   },
   {
     id: 'speed-demon',

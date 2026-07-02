@@ -1,7 +1,7 @@
 'use client'
 import { Session } from 'next-auth'
 import { useLocale, useTranslations } from 'next-intl'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import { useUser } from '@/entities/user/model/useUser'
 import { Clock, CheckCircle2, AlertCircle } from 'lucide-react'
 
@@ -11,7 +11,7 @@ export default function AccountLastBackup({ session }: { session: Session }) {
   const locale = useLocale()
 
   const hasBackup = user?.backup?.updatedAt
-  const timeAgo = hasBackup ? moment(user.backup.updatedAt).locale(locale).fromNow() : null
+  const timeAgo = hasBackup ? dayjs(user.backup.updatedAt).locale(locale).fromNow() : null
 
   return (
     <div className="flex items-center gap-4 p-4 rounded-xl bg-muted/40 border border-border/40">

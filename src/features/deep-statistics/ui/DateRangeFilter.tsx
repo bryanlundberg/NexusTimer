@@ -14,7 +14,7 @@ import {
 import { createShareMessage } from '@/features/deep-statistics/lib/createShareMessage'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { DotsVerticalIcon, DragHandleHorizontalIcon, DragHandleVerticalIcon, Share1Icon } from '@radix-ui/react-icons'
-import { DateTime } from 'luxon'
+import dayjs from '@/shared/lib/dayjs'
 import { useLocale, useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { useQueryState } from 'nuqs'
@@ -35,7 +35,7 @@ export default function DateRangeFilter() {
 
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const locale = useLocale()
-  const date = DateTime.now().setLocale(locale).toLocaleString()
+  const date = dayjs().locale(locale).format('L')
   const handleShare = (type: 'all' | '3' | '5' | '12' | '50' | '100') => {
     if (selectedCube) {
       const tempSolves = tabMode === SolveTab.ALL ? selectedCube.solves.all : selectedCube.solves.session

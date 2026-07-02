@@ -1,5 +1,5 @@
 'use client'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import { useLocale, useTranslations } from 'next-intl'
 import { Database, Trash2, Loader2, Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -17,7 +17,7 @@ interface BackupListItemProps {
 export default function BackupListItem({ backup, isDeleting, isApplying, onDelete, onApply }: BackupListItemProps) {
   const t = useTranslations('Index')
   const locale = useLocale()
-  const created = moment(backup.createdAt).locale(locale)
+  const created = dayjs(backup.createdAt).locale(locale)
 
   return (
     <li className="flex items-center gap-4 p-4 rounded-xl border border-border/60 bg-muted/30">

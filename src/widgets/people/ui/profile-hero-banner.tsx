@@ -9,7 +9,7 @@ import { cubeCollection } from '@/shared/const/cube-collection'
 import formatTime from '@/shared/lib/formatTime'
 import { sort } from 'fast-sort'
 import { useLocale, useTranslations } from 'next-intl'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import { ArrowUp } from 'lucide-react'
 import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
@@ -38,13 +38,13 @@ export function ProfileHeroBanner({ user, cubes, level }: Props) {
     if (solves.length === 0) return null
 
     const best = sort(solves).asc((s) => s.time)[0]
-    const daysAgo = moment().diff(moment(best.endTime), 'days')
+    const daysAgo = dayjs().diff(dayjs(best.endTime), 'day')
     return { time: best.time, endTime: best.endTime, daysAgo, isNew: daysAgo <= 30 }
   }, [cubes])
 
   const cubeImage = cubeCollection.find((c) => c.name === '3x3')?.src
 
-  const memberSince = moment(user.createdAt).locale(locale).format('MMM YYYY')
+  const memberSince = dayjs(user.createdAt).locale(locale).format('MMM YYYY')
 
   const presence = usePresence(user._id)
 
@@ -109,7 +109,7 @@ export function ProfileHeroBanner({ user, cubes, level }: Props) {
         <div className="hidden sm:flex items-center gap-4 md:gap-6 sm:ml-auto shrink-0">
           <div className="flex flex-col items-start sm:items-end gap-0.5">
             <p className="text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">
-              {t('pb-label', { date: moment(pb3x3.endTime).locale(locale).format('MMM D, YYYY') })}
+              {t('pb-label', { date: dayjs(pb3x3.endTime).locale(locale).format('MMM D, YYYY') })}
             </p>
             <div className="flex items-baseline gap-1">
               <span className="text-4xl sm:text-5xl md:text-6xl font-black tabular-nums leading-none">

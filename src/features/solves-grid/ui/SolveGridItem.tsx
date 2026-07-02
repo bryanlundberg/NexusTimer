@@ -1,7 +1,7 @@
 import { Solve } from '@/entities/solve/model/types'
 import formatTime from '@/shared/lib/formatTime'
 import { useLocale } from 'next-intl'
-import { DateTime } from 'luxon'
+import dayjs from '@/shared/lib/dayjs'
 import { ChatBubbleIcon } from '@radix-ui/react-icons'
 import { Check, Star } from 'lucide-react'
 import useSolveGridItem from '@/features/solves-grid/model/useSolveGridItem'
@@ -108,9 +108,9 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
       </div>
 
       <div className="mt-1 sm:mt-2 text-[10px] sm:text-xs text-muted-foreground">
-        {DateTime.fromMillis(orderedSolves[index].endTime || 0)
-          .setLocale(locale)
-          .toFormat('MMM dd, yyyy')}
+        {dayjs(orderedSolves[index].endTime || 0)
+          .locale(locale)
+          .format('MMM DD, YYYY')}
       </div>
 
       <div className="absolute left-1 bottom-1 sm:left-2 sm:bottom-2 flex items-center gap-2 text-xs text-muted-foreground">

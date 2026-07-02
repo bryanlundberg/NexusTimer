@@ -3,7 +3,7 @@
 import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { CalendarIcon, ClockIcon } from '@radix-ui/react-icons'
-import { DateTime } from 'luxon'
+import dayjs from '@/shared/lib/dayjs'
 import { useLocale, useTranslations } from 'next-intl'
 import { DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Badge } from '@/components/ui/badge'
@@ -30,12 +30,9 @@ export default function SolveDetails() {
   const moveCount = analysis ? (analysis.moves as ReplayMove[]).length : null
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
 
-  const formattedDate = DateTime.fromMillis(solve?.endTime || 0)
-    .setLocale(locale)
-    .toFormat('DDDD')
-  const formattedTime = DateTime.fromMillis(solve?.endTime || 0)
-    .setLocale(locale)
-    .toFormat('HH:mm:ss')
+  const solveDate = dayjs(solve?.endTime || 0).locale(locale)
+  const formattedDate = solveDate.format('dddd, LL')
+  const formattedTime = solveDate.format('HH:mm:ss')
 
   return (
     <DialogContent

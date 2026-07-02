@@ -15,7 +15,7 @@ import { Cube } from '@/entities/cube/model/types'
 import Image from 'next/image'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import formatTime from '@/shared/lib/formatTime'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import { useLocale, useTranslations } from 'next-intl'
 import { CubeCategory } from '@/shared/const/cube-categories'
 
@@ -147,7 +147,7 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
 
                   {/* Date */}
                   <span className="text-xs text-muted-foreground tabular-nums">
-                    {moment(solve.startTime).locale(locale).format('ll · HH:mm')}
+                    {dayjs(solve.startTime).locale(locale).format('ll · HH:mm')}
                   </span>
                 </motion.div>
               )

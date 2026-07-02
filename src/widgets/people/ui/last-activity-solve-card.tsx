@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { cubeCollection } from '@/shared/const/cube-collection'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import formatTime from '@/shared/lib/formatTime'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import ScrambleDisplay from '@/shared/ui/scramble-display/ui/ScrambleDisplay'
@@ -58,7 +58,7 @@ export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardPro
           <div className="flex-1 min-w-0">
             <div className="text-sm font-bold tracking-tight truncate">{solve.cubeName}</div>
             <div className="text-[10px] text-muted-foreground">
-              {moment(solve.startTime).locale(locale).format('LLL')}
+              {dayjs(solve.startTime).locale(locale).format('LLL')}
             </div>
           </div>
           <div className="flex flex-col items-end gap-1 shrink-0">

@@ -11,7 +11,7 @@ import { CompareUser } from '@/features/compare-users/model/compare'
 import { Cube } from '@/entities/cube/model/types'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 import { useLocale, useTranslations } from 'next-intl'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import { Nexi } from '@/shared/ui/nexi'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { getCountryName } from '@/shared/lib/getCountryName'
@@ -124,7 +124,7 @@ export default function CompareUsersModal() {
 
         <CompareTableRow title={t('first-solve')}>
           {users.map((user) => {
-            const value = moment(user.createdAt).isValid() ? moment(user.createdAt).locale(locale).fromNow() : '—'
+            const value = dayjs(user.createdAt).isValid() ? dayjs(user.createdAt).locale(locale).fromNow() : '—'
             return (
               <div key={user._id} className={'w-52 shrink-0 px-2 py-3 text-center text-sm'}>
                 {value === '—' ? (

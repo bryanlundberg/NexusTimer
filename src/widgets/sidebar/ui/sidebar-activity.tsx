@@ -3,6 +3,7 @@
 import { useMemo } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import dayjs from '@/shared/lib/dayjs'
 
 const INTENSITY = ['bg-muted-foreground/15', 'bg-primary/30', 'bg-primary/55', 'bg-primary/80', 'bg-primary'] as const
 
@@ -20,12 +21,12 @@ export function SidebarActivity() {
   const cubes = useTimerStore((store) => store.cubes)
 
   const { cells, total, monthLabel, weekdayLabels } = useMemo(() => {
-    const now = new Date()
-    const year = now.getFullYear()
-    const month = now.getMonth()
-    const daysInMonth = new Date(year, month + 1, 0).getDate()
-    const firstWeekday = new Date(year, month, 1).getDay()
-    const todayDate = now.getDate()
+    const now = dayjs().locale(locale)
+    const year = now.year()
+    const month = now.month()
+    const daysInMonth = now.daysInMonth()
+    const firstWeekday = now.startOf('month').day()
+    const todayDate = now.date()
 
     const counts = new Array(daysInMonth + 1).fill(0)
     let total = 0
@@ -47,20 +48,16 @@ export function SidebarActivity() {
       }
     }
 
-    const dateFmt = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', year: 'numeric' })
-
     const cells: Array<{ day: number | null; count: number; isToday: boolean; label: string }> = []
     for (let i = 0; i < firstWeekday; i++) cells.push({ day: null, count: 0, isToday: false, label: '' })
     for (let day = 1; day <= daysInMonth; day++) {
-      const label = `${dateFmt.format(new Date(year, month, day))} - ${counts[day]}`
+      const label = `${now.date(day).format('ll')} - ${counts[day]}`
       cells.push({ day, count: counts[day], isToday: day === todayDate, label })
     }
     while (cells.length % 7 !== 0) cells.push({ day: null, count: 0, isToday: false, label: '' })
 
-    const monthLabel = new Intl.DateTimeFormat(locale, { month: 'long' }).format(now)
-    const weekdayLabels = Array.from({ length: 7 }, (_, i) =>
-      new Intl.DateTimeFormat(locale, { weekday: 'narrow' }).format(new Date(2024, 0, 7 + i))
-    )
+    const monthLabel = now.format('MMMM')
+    const weekdayLabels = Array.from({ length: 7 }, (_, i) => now.day(i).format('dd').charAt(0))
 
     return { cells, total, monthLabel, weekdayLabels }
   }, [cubes, locale])

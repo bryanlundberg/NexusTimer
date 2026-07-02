@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import dayjs from '@/shared/lib/dayjs'
 import { Alg } from 'cubing/alg'
 import type { TwistyPlayer } from 'cubing/twisty'
 import type { TrainerPenalty } from '@/entities/trainer-solve/model/constants'
@@ -13,9 +14,8 @@ export const formatTime = (ms: number, penalty: TrainerPenalty): string => {
 }
 
 export const formatRelative = (iso: string): string => {
-  const date = new Date(iso)
-  const diff = Date.now() - date.getTime()
-  const sec = Math.floor(diff / 1000)
+  const date = dayjs(iso)
+  const sec = dayjs().diff(date, 'second')
   if (sec < 60) return `${sec}s`
   const min = Math.floor(sec / 60)
   if (min < 60) return `${min}m`
@@ -23,7 +23,7 @@ export const formatRelative = (iso: string): string => {
   if (hr < 24) return `${hr}h`
   const days = Math.floor(hr / 24)
   if (days < 7) return `${days}d`
-  return date.toLocaleDateString()
+  return date.format('L')
 }
 
 export const penaltyDotClass = (penalty: TrainerPenalty, timeMs?: number, targetMs?: number): string => {

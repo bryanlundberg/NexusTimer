@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { cubeCollection } from '@/shared/const/cube-collection'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import { Cube } from '@/entities/cube/model/types'
 import { useLocale, useTranslations } from 'next-intl'
 import formatTime from '@/shared/lib/formatTime'
@@ -74,7 +74,7 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
           <CategoryBadge category={cube.category} className="text-[10px] px-1.5 py-0 h-4 shrink-0" />
         </div>
         <span className="text-[10px] text-muted-foreground">
-          {t('created')}: {moment(cube.createdAt).locale(locale).format('LL')}
+          {t('created')}: {dayjs(cube.createdAt).locale(locale).format('LL')}
         </span>
       </div>
 

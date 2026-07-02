@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import _ from 'lodash'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import formatTime from '@/shared/lib/formatTime'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import SolveCard from '@/widgets/people/ui/solve-card'
@@ -53,7 +53,7 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
             <SolveCard
               event={category as CubeCategory}
               time={formatTime(solves[0].time)}
-              date={moment(solves[0].endTime).locale(locale).format('LL')}
+              date={dayjs(solves[0].endTime).locale(locale).format('LL')}
               bgImage={cubeCollection.find((c) => c.name === category)?.src || undefined}
               solves={solves}
             />

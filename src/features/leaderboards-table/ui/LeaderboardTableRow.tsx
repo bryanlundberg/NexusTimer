@@ -7,7 +7,7 @@ import { PlayIcon } from '@radix-ui/react-icons'
 import formatTime from '@/shared/lib/formatTime'
 import { formatTps } from '@/shared/lib/formatTps'
 import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import useLeaderboardRow from '@/features/leaderboards-table/model/useLeaderboardRow'
 import { TimeDisplay } from '@/features/leaderboards-table/ui/TimeDisplay'
 import { UserCell } from '@/features/leaderboards-table/ui/UserCell'
@@ -76,7 +76,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
       </div>
 
       <span className="text-xs text-muted-foreground tabular-nums">
-        {moment(solve.createdAt).locale(locale).format('ll')}
+        {dayjs(solve.createdAt).locale(locale).format('ll')}
       </span>
     </motion.div>
   )

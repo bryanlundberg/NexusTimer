@@ -2,7 +2,7 @@ import formatTime from '@/shared/lib/formatTime'
 import { Solve } from '@/entities/solve/model/types'
 import { Button } from '@/components/ui/button'
 import { useLocale } from 'next-intl'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import { Check } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 
@@ -41,7 +41,7 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
         )}
       </div>
       <div className="absolute z-20 text-[10px] sm:text-xs top-1 left-1 text-muted-foreground">
-        {moment(solve.startTime).locale(locale).format('L')}
+        {dayjs(solve.startTime).locale(locale).format('L')}
       </div>
       <div
         className={cn(

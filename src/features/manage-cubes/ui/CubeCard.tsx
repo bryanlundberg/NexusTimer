@@ -7,7 +7,7 @@ import { PlayIcon } from '@radix-ui/react-icons'
 import GearIcon from '@/components/ui/gear-icon'
 import TrashIcon from '@/components/ui/trash-icon'
 import PlayerIcon from '@/components/ui/player-icon'
-import { DateTime } from 'luxon'
+import dayjs from '@/shared/lib/dayjs'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Button } from '@/components/ui/button'
 import { Cube } from '@/entities/cube/model/types'
@@ -94,7 +94,7 @@ export function CubeCard({ cube }: CubeCardProps) {
         <div className="flex items-center gap-4 text-sm text-muted-foreground">
           <div className="flex items-center gap-1.5">
             <Clock className="h-3.5 w-3.5" />
-            <span>{DateTime.fromMillis(cube.createdAt).setLocale(locale).toLocaleString()}</span>
+            <span>{dayjs(cube.createdAt).locale(locale).format('L')}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <Hash className="h-3.5 w-3.5" />

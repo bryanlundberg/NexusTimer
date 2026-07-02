@@ -1,7 +1,7 @@
 import { Cube } from '@/entities/cube/model/types'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 
-const OUTPUT_FILE_NAME = `Backup-NT-${moment().format('YYYY-MM-DD HH:mm:ss')}.txt`
+const OUTPUT_FILE_NAME = `Backup-NT-${dayjs().format('YYYY-MM-DD HH:mm:ss')}.txt`
 
 /**
  * Exports the cube data to a JSON file and initiates a download.

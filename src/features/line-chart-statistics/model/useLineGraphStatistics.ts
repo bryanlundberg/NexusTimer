@@ -18,7 +18,7 @@ import getMean from '@/shared/lib/statistics/getMean'
 import getDeviation from '@/shared/lib/statistics/getDeviation'
 import { calcAoFromWindow } from '@/shared/lib/statistics/getAoTolerance'
 import { Solve } from '@/entities/solve/model/types'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import SolveDetails from '@/features/manage-solves/ui/SolveDetails'
@@ -351,7 +351,6 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
       }
 
       if (param.time !== lastTooltipTime) {
-        moment.locale(locale)
         const cubeName = cubeNameById.get(solve.cubeId) || 'Unknown'
         const currentPb = pbAtStepMap.get(param.time as number)
         const ao5Value = ao5Map.get(param.time as number)
@@ -386,7 +385,7 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
               <span class="font-bold text-lg tabular-nums leading-tight">${formatTime(solve.time)}</span>
               ${flagBadge}
             </div>
-            <div class="text-[10px] text-muted-foreground/70">${moment(solve.endTime).format('LL')}</div>
+            <div class="text-[10px] text-muted-foreground/70">${dayjs(solve.endTime).locale(locale).format('LL')}</div>
             ${metricRows.length > 0 ? `<div class="h-px bg-border/40 my-0.5"></div>${metricRows.join('')}` : ''}
           </div>
         `

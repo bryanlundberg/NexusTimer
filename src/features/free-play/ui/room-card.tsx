@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { useCountdown } from '@/shared/model/useCountdown'
 import { useLocale, useTranslations } from 'next-intl'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 
 interface RoomCardProps {
   room: {
@@ -93,7 +93,7 @@ export default function RoomCard({ room, onJoinPrivate }: RoomCardProps) {
             <Clock className="size-3" />
             {formatTime(room.maxRoundTime * 1000)}
           </span>
-          <span>{moment(room.createdAt).locale(locale).fromNow()}</span>
+          <span>{dayjs(room.createdAt).locale(locale).fromNow()}</span>
         </div>
         <ArrowRight className="size-3.5 text-muted-foreground/0 group-hover:text-foreground transition-colors duration-200" />
       </div>

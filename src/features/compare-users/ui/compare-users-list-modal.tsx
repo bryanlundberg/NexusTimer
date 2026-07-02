@@ -4,7 +4,7 @@ import { GitCompareIcon, Users, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useLocale, useTranslations } from 'next-intl'
-import moment from 'moment'
+import dayjs from '@/shared/lib/dayjs'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 
@@ -50,7 +50,7 @@ export default function CompareUsersListModal() {
               <div className="flex min-w-0 flex-1 flex-col">
                 <span className="truncate text-sm font-medium">{user.name}</span>
                 <span className="truncate text-xs text-muted-foreground">
-                  {user?.backup?.updatedAt ? moment(user.backup.updatedAt).locale(locale).fromNow() : t('never')}
+                  {user?.backup?.updatedAt ? dayjs(user.backup.updatedAt).locale(locale).fromNow() : t('never')}
                 </span>
               </div>
               <Button
