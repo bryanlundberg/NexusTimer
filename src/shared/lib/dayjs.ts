@@ -21,8 +21,6 @@ import 'dayjs/locale/th'
 dayjs.extend(localizedFormat)
 dayjs.extend(relativeTime)
 
-// dayjs no trae locale 'fil'; se registra el tagalo (tl-ph) bajo ese nombre.
-// Tercer argumento true = solo registrar, sin cambiar el locale global.
 dayjs.locale('fil', { ...tlPh, name: 'fil' }, true)
 
 export default dayjs
