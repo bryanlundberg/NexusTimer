@@ -41,18 +41,11 @@ export default function TimerTab({ maxRoundTime, event, onlineUsers }: TimerTabP
   const { data: session } = useSession()
 
   const { settings } = useSettingsStore()
-  const {
-    isSolving,
-    lastSolve,
-    timerStatus,
-    timerMode,
-    setTimerStatus,
-    setIsSolving,
-    setSolvingTime,
-    setTimerMode,
-    setLastSolve,
-    reset
-  } = useTimerStore()
+  const isSolving = useTimerStore((state) => state.isSolving)
+  const lastSolve = useTimerStore((state) => state.lastSolve)
+  const timerStatus = useTimerStore((state) => state.timerStatus)
+  const timerMode = useTimerStore((state) => state.timerMode)
+  const { setTimerStatus, setIsSolving, setSolvingTime, setTimerMode, setLastSolve, reset } = useTimerStore.getState()
 
   const [modalOpen, setModalOpen] = useState(false)
   const [hasSolvedCurrentScramble, setHasSolvedCurrentScramble] = useState(false)
