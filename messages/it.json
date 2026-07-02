@@ -934,7 +934,7 @@
       "start-timing": "Inizia a cronometrare"
     },
     "hero": {
-      "badge": "Gratuito e open source — per sempre",
+      "badge": "Gratuito e open source, per sempre",
       "title-before": "Il timer che ti mostra quanto stai",
       "title-highlight": "davvero migliorando",
       "subtitle": "Profili di performance per ogni cubo. Analisi approfondite. Competizione in tempo reale.",
@@ -970,7 +970,26 @@
       "real-time-battles-title": "Sfide in tempo reale",
       "real-time-battles-desc": "Crea stanze e gareggia testa a testa. Scramble sincronizzati, risultati dal vivo.",
       "public-profiles-title": "Profili pubblici",
-      "public-profiles-desc": "La tua collezione, i tuoi record personali e l'intero percorso — visibili alla community."
+      "public-profiles-desc": "La tua collezione, i tuoi record personali e l'intero percorso, visibili alla community."
+    },
+    "bento": {
+      "label": "Il kit completo",
+      "title": "Fatto come ragiona un cuber",
+      "subtitle": "Prima il timer, ma qui vive anche tutto ciò che circonda le tue solve: i tuoi cubi, i tuoi amici, i tuoi progressi.",
+      "smart-title": "Pronto per gli smart cube",
+      "smart-desc": "Collega smart cube GAN, MoYu o QiYi via Bluetooth. Ogni rotazione viene tracciata dal vivo, mossa per mossa.",
+      "lb-title": "Classifiche",
+      "lb-desc": "Scala le classifiche globali e per evento con i tuoi migliori single e medie.",
+      "online-title": "Stanze online",
+      "online-desc": "Entra in una stanza e risolvi lo stesso scramble con gli amici, dal vivo e senza pressioni.",
+      "profile-title": "Profili pubblici",
+      "profile-desc": "I tuoi PB, i tuoi cubi principali e il tuo percorso in una pagina condivisibile.",
+      "stats-title": "Statistiche approfondite",
+      "stats-desc": "Linee di tendenza e analisi per cubo che mostrano i tuoi tempi scendere.",
+      "compare-title": "Confronta i profili",
+      "compare-desc": "Metti più cuber in una tabella e scopri chi vince ogni statistica.",
+      "algs-title": "Algoritmi",
+      "algs-desc": "Set completi di algoritmi per ogni caso, pronti da studiare e allenare."
     },
     "brands": {
       "label": "Funziona con i tuoi marchi preferiti"

@@ -934,7 +934,7 @@
       "start-timing": "Bắt đầu bấm giờ"
     },
     "hero": {
-      "badge": "Miễn phí và mã nguồn mở — mãi mãi",
+      "badge": "Miễn phí và mã nguồn mở, mãi mãi",
       "title-before": "Đồng hồ cho bạn thấy bạn đang thực sự",
       "title-highlight": "tiến bộ ra sao",
       "subtitle": "Hồ sơ thành tích theo từng khối. Phân tích chuyên sâu. Thi đấu thời gian thực.",
@@ -970,7 +970,26 @@
       "real-time-battles-title": "Đối đầu thời gian thực",
       "real-time-battles-desc": "Tạo phòng và đua trực tiếp một đối một. Scramble đồng bộ, kết quả trực tiếp.",
       "public-profiles-title": "Hồ sơ công khai",
-      "public-profiles-desc": "Bộ sưu tập, kỷ lục cá nhân, và toàn bộ hành trình của bạn — hiển thị cho cộng đồng."
+      "public-profiles-desc": "Bộ sưu tập, kỷ lục cá nhân, và toàn bộ hành trình của bạn, hiển thị cho cộng đồng."
+    },
+    "bento": {
+      "label": "Bộ công cụ đầy đủ",
+      "title": "Xây dựng theo cách cuber suy nghĩ",
+      "subtitle": "Timer là chính, nhưng mọi thứ quanh các lần giải của bạn cũng ở đây: cube của bạn, bạn bè của bạn, tiến bộ của bạn.",
+      "smart-title": "Sẵn sàng cho smart cube",
+      "smart-desc": "Kết nối smart cube GAN, MoYu hoặc QiYi qua Bluetooth. Mọi bước xoay được ghi lại trực tiếp.",
+      "lb-title": "Bảng xếp hạng",
+      "lb-desc": "Leo hạng toàn cầu và theo thể loại với single và average tốt nhất của bạn.",
+      "online-title": "Phòng online",
+      "online-desc": "Vào phòng và giải cùng một scramble với bạn bè, trực tiếp và thoải mái.",
+      "profile-title": "Hồ sơ công khai",
+      "profile-desc": "PB, cube chính và hành trình của bạn trên một trang có thể chia sẻ.",
+      "stats-title": "Thống kê chuyên sâu",
+      "stats-desc": "Đường xu hướng và phân tích theo từng cube cho thấy thời gian của bạn đang giảm.",
+      "compare-title": "So sánh hồ sơ",
+      "compare-desc": "Xếp nhiều cuber vào một bảng và xem ai thắng ở từng chỉ số.",
+      "algs-title": "Công thức",
+      "algs-desc": "Bộ công thức đầy đủ cho mọi trường hợp, sẵn sàng để học và luyện tập."
     },
     "brands": {
       "label": "Hoạt động với các thương hiệu yêu thích của bạn"

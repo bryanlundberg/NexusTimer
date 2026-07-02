@@ -934,7 +934,7 @@
       "start-timing": "Zacznij mierzyć czas"
     },
     "hero": {
-      "badge": "Darmowy i open source — na zawsze",
+      "badge": "Darmowy i open source, na zawsze",
       "title-before": "Stoper, który pokazuje, jak naprawdę się",
       "title-highlight": "rozwijasz",
       "subtitle": "Profile wyników dla każdej kostki. Dogłębna analiza. Rywalizacja w czasie rzeczywistym.",
@@ -970,7 +970,26 @@
       "real-time-battles-title": "Pojedynki w czasie rzeczywistym",
       "real-time-battles-desc": "Twórz pokoje i ścigaj się jeden na jednego. Zsynchronizowane scramble, wyniki na żywo.",
       "public-profiles-title": "Profile publiczne",
-      "public-profiles-desc": "Twoja kolekcja, rekordy życiowe i cała droga rozwoju — widoczne dla społeczności."
+      "public-profiles-desc": "Twoja kolekcja, rekordy życiowe i cała droga rozwoju, widoczne dla społeczności."
+    },
+    "bento": {
+      "label": "Pełny zestaw narzędzi",
+      "title": "Zbudowany tak, jak myśli kostkarz",
+      "subtitle": "Najpierw timer, ale wszystko wokół twoich ułożeń też żyje tutaj: twoje kostki, twoi znajomi, twój postęp.",
+      "smart-title": "Gotowy na smart kostki",
+      "smart-desc": "Połącz smart kostki GAN, MoYu lub QiYi przez Bluetooth. Każdy ruch jest śledzony na żywo.",
+      "lb-title": "Rankingi",
+      "lb-desc": "Wspinaj się w rankingach globalnych i konkurencji dzięki najlepszym singlom i średnim.",
+      "online-title": "Pokoje online",
+      "online-desc": "Dołącz do pokoju i układaj ten sam scramble ze znajomymi, na żywo i na luzie.",
+      "profile-title": "Profile publiczne",
+      "profile-desc": "Twoje rekordy, główne kostki i rozwój na jednej stronie do udostępnienia.",
+      "stats-title": "Dogłębne statystyki",
+      "stats-desc": "Linie trendu i analizy dla każdej kostki pokazują, jak spadają twoje czasy.",
+      "compare-title": "Porównuj profile",
+      "compare-desc": "Zestaw kilku kostkarzy w jednej tabeli i zobacz, kto wygrywa każdą statystykę.",
+      "algs-title": "Algorytmy",
+      "algs-desc": "Kompletne zestawy algorytmów dla każdego przypadku, gotowe do nauki i treningu."
     },
     "brands": {
       "label": "Działa z Twoimi ulubionymi markami"

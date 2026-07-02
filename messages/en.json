@@ -935,7 +935,7 @@
       "start-timing": "Start Timing"
     },
     "hero": {
-      "badge": "Free and open source — forever",
+      "badge": "Free and open source, forever",
       "title-before": "The timer that shows how you're",
       "title-highlight": "really improving",
       "subtitle": "Performance profiles per cube. Deep analytics. Real-time competition.",
@@ -971,7 +971,26 @@
       "real-time-battles-title": "Real-time Battles",
       "real-time-battles-desc": "Create rooms and race head-to-head. Synced scrambles, live results.",
       "public-profiles-title": "Public Profiles",
-      "public-profiles-desc": "Your collection, personal bests, and full trajectory — visible to the community."
+      "public-profiles-desc": "Your collection, personal bests, and full trajectory, visible to the community."
+    },
+    "bento": {
+      "label": "The full toolkit",
+      "title": "Built like a cuber thinks",
+      "subtitle": "Timer first, but everything around your solves lives here too: your cubes, your friends, your progress.",
+      "smart-title": "Smart cube ready",
+      "smart-desc": "Pair GAN, MoYu or QiYi smart cubes over Bluetooth. Every turn is tracked live, move by move.",
+      "lb-title": "Leaderboards",
+      "lb-desc": "Climb global and event rankings with your best singles and averages.",
+      "online-title": "Online rooms",
+      "online-desc": "Join a room and solve the same scramble with friends, live and casual.",
+      "profile-title": "Public profiles",
+      "profile-desc": "Your PBs, main cubes and trajectory on one shareable page.",
+      "stats-title": "Deep statistics",
+      "stats-desc": "Trend lines and per-cube analytics that show your times dropping.",
+      "compare-title": "Compare profiles",
+      "compare-desc": "Line up several cubers in one table and see who takes each stat.",
+      "algs-title": "Algorithms",
+      "algs-desc": "Full algorithm sets for every case, ready to study and train."
     },
     "brands": {
       "label": "Works with your favorite brands"

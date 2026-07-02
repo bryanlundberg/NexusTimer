@@ -814,7 +814,7 @@
       "start-timing": "Timing starten"
     },
     "hero": {
-      "badge": "Kostenlos und Open Source — für immer",
+      "badge": "Kostenlos und Open Source, für immer",
       "title-before": "Der Timer, der zeigt, wie du dich wirklich",
       "title-highlight": "verbesserst",
       "subtitle": "Leistungsprofile pro Würfel. Tiefgehende Analysen. Echtzeit-Wettkämpfe.",
@@ -850,7 +850,26 @@
       "real-time-battles-title": "Echtzeit-Duelle",
       "real-time-battles-desc": "Erstelle Räume und tritt Kopf-an-Kopf an. Synchronisierte Scrambles, Live-Ergebnisse.",
       "public-profiles-title": "Öffentliche Profile",
-      "public-profiles-desc": "Deine Sammlung, Bestzeiten und vollständige Entwicklung — für die Community sichtbar."
+      "public-profiles-desc": "Deine Sammlung, Bestzeiten und vollständige Entwicklung, für die Community sichtbar."
+    },
+    "bento": {
+      "label": "Das komplette Toolkit",
+      "title": "Gebaut, wie ein Cuber denkt",
+      "subtitle": "Timer zuerst, aber alles rund um deine Solves lebt auch hier: deine Cubes, deine Leute, dein Fortschritt.",
+      "smart-title": "Bereit für Smart Cubes",
+      "smart-desc": "Verbinde GAN, MoYu oder QiYi Smart Cubes per Bluetooth. Jeder Zug wird live erfasst, Move für Move.",
+      "lb-title": "Ranglisten",
+      "lb-desc": "Klettere in globalen und Event-Rankings mit deinen besten Singles und Averages.",
+      "online-title": "Online-Räume",
+      "online-desc": "Tritt einem Raum bei und löse denselben Scramble mit Freunden, live und entspannt.",
+      "profile-title": "Öffentliche Profile",
+      "profile-desc": "Deine PBs, Main Cubes und Entwicklung auf einer teilbaren Seite.",
+      "stats-title": "Tiefe Statistiken",
+      "stats-desc": "Trendlinien und Analysen pro Cube zeigen, wie deine Zeiten sinken.",
+      "compare-title": "Profile vergleichen",
+      "compare-desc": "Stelle mehrere Cuber in einer Tabelle gegenüber und sieh, wer welche Statistik gewinnt.",
+      "algs-title": "Algorithmen",
+      "algs-desc": "Komplette Algorithmus-Sets für jeden Fall, bereit zum Lernen und Trainieren."
     },
     "brands": {
       "label": "Kompatibel mit deinen Lieblingsmarken"

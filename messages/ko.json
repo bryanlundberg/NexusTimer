@@ -850,7 +850,26 @@
       "real-time-battles-title": "실시간 대전",
       "real-time-battles-desc": "방을 만들고 1:1 대결. 동기화된 스크램블, 라이브 결과.",
       "public-profiles-title": "공개 프로필",
-      "public-profiles-desc": "컬렉션, 개인 최고 기록, 전체 궤적 — 커뮤니티에 공개."
+      "public-profiles-desc": "컬렉션, 개인 최고 기록, 전체 궤적, 커뮤니티에 공개."
+    },
+    "bento": {
+      "label": "풀 툴킷",
+      "title": "큐버의 생각대로 만들어졌습니다",
+      "subtitle": "타이머가 우선이지만, 솔브를 둘러싼 모든 것도 여기에: 내 큐브, 내 친구들, 나의 성장.",
+      "smart-title": "스마트 큐브 지원",
+      "smart-desc": "GAN, MoYu, QiYi 스마트 큐브를 블루투스로 연결하세요. 모든 회전이 실시간으로 기록됩니다.",
+      "lb-title": "리더보드",
+      "lb-desc": "최고의 싱글과 평균 기록으로 글로벌 및 종목별 랭킹을 올라가세요.",
+      "online-title": "온라인 룸",
+      "online-desc": "룸에 들어가 친구들과 같은 스크램블을 부담 없이 함께 풀어보세요.",
+      "profile-title": "공개 프로필",
+      "profile-desc": "PB, 메인 큐브, 성장 궤적을 공유 가능한 한 페이지에.",
+      "stats-title": "심층 통계",
+      "stats-desc": "트렌드 라인과 큐브별 분석으로 기록 단축을 확인하세요.",
+      "compare-title": "프로필 비교",
+      "compare-desc": "여러 큐버를 한 표에 놓고 어떤 기록에서 앞서는지 확인하세요.",
+      "algs-title": "알고리즘",
+      "algs-desc": "모든 케이스의 알고리즘 세트를 학습하고 훈련하세요."
     },
     "brands": {
       "label": "좋아하는 브랜드와 호환"

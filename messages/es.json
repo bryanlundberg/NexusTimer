@@ -835,7 +835,7 @@
       "start-timing": "Empezar a cronometrar"
     },
     "hero": {
-      "badge": "Gratis y de código abierto — para siempre",
+      "badge": "Gratis y de código abierto, para siempre",
       "title-before": "El cronómetro que muestra cómo realmente estás",
       "title-highlight": "mejorando",
       "subtitle": "Perfiles de rendimiento por cubo. Análisis profundo. Competición en tiempo real.",
@@ -871,7 +871,26 @@
       "real-time-battles-title": "Batallas en tiempo real",
       "real-time-battles-desc": "Crea salas y compite cara a cara. Scrambles sincronizados, resultados en vivo.",
       "public-profiles-title": "Perfiles públicos",
-      "public-profiles-desc": "Tu colección, mejores marcas y trayectoria completa — visible para la comunidad."
+      "public-profiles-desc": "Tu colección, mejores marcas y trayectoria completa, visible para la comunidad."
+    },
+    "bento": {
+      "label": "El kit completo",
+      "title": "Hecho como piensa un cubero",
+      "subtitle": "Primero el timer, pero todo lo que rodea tus solves también vive aquí: tus cubos, tu gente, tu progreso.",
+      "smart-title": "Listo para smart cubes",
+      "smart-desc": "Conecta cubos inteligentes GAN, MoYu o QiYi por Bluetooth. Cada giro se registra en vivo, movimiento a movimiento.",
+      "lb-title": "Clasificaciones",
+      "lb-desc": "Escala rankings globales y por evento con tus mejores singles y promedios.",
+      "online-title": "Salas online",
+      "online-desc": "Entra a una sala y resuelve el mismo scramble con amigos, en vivo y sin presión.",
+      "profile-title": "Perfiles públicos",
+      "profile-desc": "Tus PBs, cubos principales y trayectoria en una página para compartir.",
+      "stats-title": "Estadísticas profundas",
+      "stats-desc": "Líneas de tendencia y análisis por cubo que muestran cómo bajan tus tiempos.",
+      "compare-title": "Compara perfiles",
+      "compare-desc": "Alinea a varios cuberos en una tabla y mira quién se lleva cada stat.",
+      "algs-title": "Algoritmos",
+      "algs-desc": "Sets completos de algoritmos por caso, listos para estudiar y entrenar."
     },
     "brands": {
       "label": "Compatible con tus marcas favoritas"

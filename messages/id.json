@@ -934,7 +934,7 @@
       "start-timing": "Mulai Menghitung Waktu"
     },
     "hero": {
-      "badge": "Gratis dan open source — selamanya",
+      "badge": "Gratis dan open source, selamanya",
       "title-before": "Timer yang menunjukkan seberapa kamu",
       "title-highlight": "benar-benar berkembang",
       "subtitle": "Profil performa per kubus. Analitik mendalam. Kompetisi waktu nyata.",
@@ -970,7 +970,26 @@
       "real-time-battles-title": "Duel Waktu Nyata",
       "real-time-battles-desc": "Buat ruang dan beradu cepat satu lawan satu. Scramble tersinkron, hasil langsung.",
       "public-profiles-title": "Profil Publik",
-      "public-profiles-desc": "Koleksimu, rekor pribadi, dan seluruh perjalananmu — terlihat oleh komunitas."
+      "public-profiles-desc": "Koleksimu, rekor pribadi, dan seluruh perjalananmu, terlihat oleh komunitas."
+    },
+    "bento": {
+      "label": "Perangkat lengkap",
+      "title": "Dibuat seperti cara cuber berpikir",
+      "subtitle": "Timer yang utama, tapi semua hal di sekitar solve-mu juga ada di sini: cube-mu, temanmu, progresmu.",
+      "smart-title": "Siap smart cube",
+      "smart-desc": "Sambungkan smart cube GAN, MoYu, atau QiYi lewat Bluetooth. Setiap putaran terekam langsung.",
+      "lb-title": "Papan peringkat",
+      "lb-desc": "Naiki peringkat global dan per event dengan single dan average terbaikmu.",
+      "online-title": "Ruang online",
+      "online-desc": "Masuk ke ruang dan selesaikan scramble yang sama bersama teman, langsung dan santai.",
+      "profile-title": "Profil publik",
+      "profile-desc": "PB, cube utama, dan perjalananmu dalam satu halaman yang bisa dibagikan.",
+      "stats-title": "Statistik mendalam",
+      "stats-desc": "Garis tren dan analisis per cube yang menunjukkan waktumu terus turun.",
+      "compare-title": "Bandingkan profil",
+      "compare-desc": "Susun beberapa cuber dalam satu tabel dan lihat siapa yang unggul di tiap statistik.",
+      "algs-title": "Algoritma",
+      "algs-desc": "Set algoritma lengkap untuk setiap kasus, siap dipelajari dan dilatih."
     },
     "brands": {
       "label": "Bekerja dengan merek favoritmu"

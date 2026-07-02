@@ -814,7 +814,7 @@
       "start-timing": "Commencer à chronométrer"
     },
     "hero": {
-      "badge": "Gratuit et open source — pour toujours",
+      "badge": "Gratuit et open source, pour toujours",
       "title-before": "Le timer qui montre comment vous progressez",
       "title-highlight": "vraiment",
       "subtitle": "Profils de performance par cube. Analyses approfondies. Compétition en temps réel.",
@@ -850,7 +850,26 @@
       "real-time-battles-title": "Batailles en temps réel",
       "real-time-battles-desc": "Créez des salles et affrontez-vous. Scrambles synchronisés, résultats en direct.",
       "public-profiles-title": "Profils publics",
-      "public-profiles-desc": "Votre collection, vos meilleurs temps et votre trajectoire complète — visibles par la communauté."
+      "public-profiles-desc": "Votre collection, vos meilleurs temps et votre trajectoire complète, visibles par la communauté."
+    },
+    "bento": {
+      "label": "La boîte à outils complète",
+      "title": "Conçu comme pense un cubeur",
+      "subtitle": "Le timer d'abord, mais tout ce qui entoure tes solves vit ici aussi : tes cubes, tes amis, ta progression.",
+      "smart-title": "Prêt pour les smart cubes",
+      "smart-desc": "Connecte des smart cubes GAN, MoYu ou QiYi en Bluetooth. Chaque rotation est suivie en direct, mouvement par mouvement.",
+      "lb-title": "Classements",
+      "lb-desc": "Grimpe dans les classements mondiaux et par épreuve avec tes meilleurs singles et moyennes.",
+      "online-title": "Salons en ligne",
+      "online-desc": "Rejoins un salon et résous le même scramble avec des amis, en direct et sans pression.",
+      "profile-title": "Profils publics",
+      "profile-desc": "Tes PBs, tes cubes principaux et ta progression sur une page à partager.",
+      "stats-title": "Statistiques avancées",
+      "stats-desc": "Courbes de tendance et analyses par cube qui montrent tes temps baisser.",
+      "compare-title": "Comparer les profils",
+      "compare-desc": "Aligne plusieurs cubeurs dans un tableau et vois qui remporte chaque stat.",
+      "algs-title": "Algorithmes",
+      "algs-desc": "Des sets d'algorithmes complets pour chaque cas, prêts à étudier et à entraîner."
     },
     "brands": {
       "label": "Compatible avec vos marques préférées"

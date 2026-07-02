@@ -934,7 +934,7 @@
       "start-timing": "Simulan ang Pag-time"
     },
     "hero": {
-      "badge": "Libre at open source — habambuhay",
+      "badge": "Libre at open source, habambuhay",
       "title-before": "Ang timer na nagpapakita kung paano ka talagang",
       "title-highlight": "umuunlad",
       "subtitle": "Performance profiles bawat cube. Malalim na analytics. Real-time na kompetisyon.",
@@ -970,7 +970,26 @@
       "real-time-battles-title": "Real-time na Labanan",
       "real-time-battles-desc": "Gumawa ng rooms at magkarera nang harapan. Naka-sync na scrambles, live na resulta.",
       "public-profiles-title": "Mga Public Profile",
-      "public-profiles-desc": "Ang collection mo, mga personal best, at buong trajectory — nakikita ng komunidad."
+      "public-profiles-desc": "Ang collection mo, mga personal best, at buong trajectory, nakikita ng komunidad."
+    },
+    "bento": {
+      "label": "Kumpletong toolkit",
+      "title": "Ginawa ayon sa isip ng cuber",
+      "subtitle": "Timer muna, pero nandito rin ang lahat ng nakapaligid sa mga solve mo: ang mga cube mo, mga kaibigan mo, ang progreso mo.",
+      "smart-title": "Handa sa smart cube",
+      "smart-desc": "Ikonekta ang GAN, MoYu, o QiYi smart cubes gamit ang Bluetooth. Bawat ikot ay live na naitatala.",
+      "lb-title": "Mga leaderboard",
+      "lb-desc": "Umakyat sa global at per-event na ranking gamit ang best singles at averages mo.",
+      "online-title": "Mga online room",
+      "online-desc": "Sumali sa room at sabay-sabay na lutasin ang parehong scramble kasama ang mga kaibigan, live at chill.",
+      "profile-title": "Mga pampublikong profile",
+      "profile-desc": "Ang mga PB mo, main cubes, at progreso sa isang page na maaaring i-share.",
+      "stats-title": "Malalim na estadistika",
+      "stats-desc": "Mga trend line at pagsusuri kada cube na nagpapakitang bumababa ang mga oras mo.",
+      "compare-title": "Ikumpara ang mga profile",
+      "compare-desc": "Ilagay ang ilang cuber sa isang table at tingnan kung sino ang nangunguna sa bawat stat.",
+      "algs-title": "Mga algorithm",
+      "algs-desc": "Kumpletong set ng mga algorithm para sa bawat case, handa para pag-aralan at sanayin."
     },
     "brands": {
       "label": "Gumagana sa paborito mong brands"

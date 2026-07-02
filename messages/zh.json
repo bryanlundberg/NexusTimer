@@ -850,7 +850,26 @@
       "real-time-battles-title": "实时对战",
       "real-time-battles-desc": "创建房间，面对面竞速。同步打乱，实时结果。",
       "public-profiles-title": "公开档案",
-      "public-profiles-desc": "你的收藏、个人最佳和完整轨迹——对社区可见。"
+      "public-profiles-desc": "你的收藏、个人最佳和完整轨迹, , 对社区可见。"
+    },
+    "bento": {
+      "label": "完整工具箱",
+      "title": "按魔友的思维打造",
+      "subtitle": "计时器优先,但围绕复原的一切也都在这里:你的魔方、你的朋友、你的进步。",
+      "smart-title": "智能魔方支持",
+      "smart-desc": "通过蓝牙连接 GAN、MoYu 或 QiYi 智能魔方,每一次转动都实时记录。",
+      "lb-title": "排行榜",
+      "lb-desc": "用你最好的单次和平均成绩,冲击全球及项目排行榜。",
+      "online-title": "在线房间",
+      "online-desc": "加入房间,和朋友一起轻松复原同一个打乱,实时同步。",
+      "profile-title": "公开主页",
+      "profile-desc": "你的 PB、主力魔方和成长轨迹,都在一个可分享的页面上。",
+      "stats-title": "深度统计",
+      "stats-desc": "趋势线和按魔方划分的分析,让你看到成绩不断进步。",
+      "compare-title": "对比主页",
+      "compare-desc": "把几位魔友放进同一张表格,看看每项数据谁更强。",
+      "algs-title": "公式库",
+      "algs-desc": "覆盖每种情况的完整公式集,随时学习和练习。"
     },
     "brands": {
       "label": "兼容你喜爱的品牌"
