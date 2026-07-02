@@ -17,11 +17,13 @@ import { useQueryState } from 'nuqs'
 export default function PeoplePage() {
   const t = useTranslations('Index.PeoplePage')
   const [search] = useQueryState('search')
+  const [country] = useQueryState('country')
   const [page] = useQueryState('page')
 
   const { data, isLoading } = useUsers({
     name: search || undefined,
-    page: Number(page) || 0
+    country: country || undefined,
+    page: Number(page) || 1
   })
 
   const visibleIds = React.useMemo(() => (data?.events ?? []).map((user: UserDocument) => user._id), [data?.events])
@@ -77,7 +79,7 @@ export default function PeoplePage() {
             ))}
         </div>
 
-        {!isLoading && data?.pages !== undefined && data.pages > 0 && (
+        {!isLoading && data?.pages !== undefined && data.pages > 1 && (
           <div className="mt-4">
             <TablePagination totalPages={data.pages} />
           </div>
