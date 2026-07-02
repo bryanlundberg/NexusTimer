@@ -1,6 +1,10 @@
 import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { X } from 'lucide-react'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
+import { useQueryState } from 'nuqs'
+import { CountryCombobox } from '@/shared/ui/country-combobox/CountryCombobox'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { usePeopleSearch } from '@/widgets/navigation-header/model/usePeopleSearch'
 
@@ -13,6 +17,13 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
   const t = useTranslations('Index.PeoplePage')
   const { searchTerm, setSearchTerm } = usePeopleSearch()
   const basketCount = useCompareUsersStore((state) => state.users.length)
+  const [country, setCountry] = useQueryState('country')
+  const [, setPage] = useQueryState('page')
+
+  const handleCountryChange = async (code: string | null) => {
+    await setCountry(code)
+    await setPage(null)
+  }
 
   return (
     <div className="flex flex-col justify-between gap-4 mb-4">
@@ -53,6 +64,28 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-9 w-full sm:w-52"
             />
+          </div>
+          <div className="flex items-center gap-1">
+            <CountryCombobox
+              value={country}
+              onChange={handleCountryChange}
+              placeholder={t('all-countries')}
+              clearLabel={t('all-countries')}
+              searchPlaceholder={t('search-country')}
+              emptyText={t('no-country-found')}
+              className="w-full sm:w-44 h-9"
+            />
+            {country && (
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label={t('clear-search')}
+                className="size-7 shrink-0 text-muted-foreground/60 hover:text-foreground"
+                onClick={() => handleCountryChange(null)}
+              >
+                <X className="size-3.5" />
+              </Button>
+            )}
           </div>
         </div>
       </div>
