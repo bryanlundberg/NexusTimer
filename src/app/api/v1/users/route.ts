@@ -15,7 +15,7 @@ const createUserSchema = z.object({
 
 const PER_PAGE = 25
 
-const LIST_PROJECTION = 'name image bio pronoun country goal wcaId wcaVerifiedAt lastSeenAt backup.updatedAt createdAt'
+const PUBLIC_PROJECTION = '-email -providers -__v'
 
 const escapeRegex = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
 
     const [users, docsCount] = await Promise.all([
       User.find(query)
-        .select(LIST_PROJECTION)
+        .select(PUBLIC_PROJECTION)
         .sort({ 'backup.updatedAt': -1, createdAt: -1 })
         .skip((page - 1) * PER_PAGE)
         .limit(PER_PAGE)
