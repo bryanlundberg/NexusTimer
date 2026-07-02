@@ -3,15 +3,17 @@ import { fetcher } from '@/shared/lib/fetcher'
 
 export interface UsersParams {
   name?: string
+  country?: string
   page?: number
 }
 
 export const useUsers = (params?: UsersParams) => {
-  const { name, page } = params || {}
+  const { name, country, page } = params || {}
 
   const queryParams = new URLSearchParams()
   if (name) queryParams.append('name', name)
-  if (page !== undefined) queryParams.append('page', page.toString())
+  if (country) queryParams.append('country', country)
+  if (page !== undefined && page > 1) queryParams.append('page', page.toString())
 
   const queryString = queryParams.toString()
   const url = `/api/v1/users${queryString ? `?${queryString}` : ''}`
