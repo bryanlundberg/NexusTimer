@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useRef } from 'react'
 import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
-import { FloatingStickers, GrainTexture } from './CubeDecor'
+import { FloatingStickers } from './CubeDecor'
 
 export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.RefObject<HTMLDivElement | null> }) {
   const t = useTranslations('LandingPage')
@@ -30,36 +30,8 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
     <section ref={sectionRef} className="relative px-2 pb-2 sm:px-3 sm:pb-3">
       <div className="relative min-h-[calc(100dvh-80px)] flex flex-col items-center justify-center overflow-hidden rounded-[28px] px-6 bg-[var(--lp-hero-dark)] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6)] ring-1 ring-white/5">
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-          <motion.div style={reduce ? undefined : { y: bgYRaw }} className="absolute -inset-[8%]">
-            <Image src="/landing/4.avif" alt="" fill priority sizes="100vw" className="object-cover opacity-[0.12]" />
-          </motion.div>
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'linear-gradient(to bottom, var(--lp-hero-dark) 0%, transparent 30%, transparent 70%, var(--lp-hero-dark) 100%)'
-            }}
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'linear-gradient(to right, var(--lp-hero-dark) 0%, transparent 18%, transparent 82%, var(--lp-hero-dark) 100%)'
-            }}
-          />
-          <GrainTexture opacity={0.05} />
           <FloatingStickers opacity={0.35} />
         </div>
-
-        {/* Ambient brand spotlight, very faint, anchored behind the headline */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-1/4 mx-auto h-[520px] w-[min(820px,95vw)] -translate-y-1/4 rounded-full blur-3xl"
-          style={{
-            background: 'radial-gradient(ellipse at center, #000 0%, rgba(0,0,0,0.6) 40%, transparent 72%)',
-            opacity: 0.9
-          }}
-        />
 
         <div
           aria-hidden
