@@ -3,6 +3,10 @@ import { CubeCategory } from '@/shared/const/cube-categories'
 import { CubeCollection } from '@/shared/types/types'
 import { cubeCollection } from '@/shared/const/cube-collection'
 
+if (typeof window !== 'undefined' && window.onmessage) {
+  window.onmessage = null
+}
+
 const CSTIMER_SCRAMBLE: Record<CubeCategory, { type: string; length?: number }> = {
   '2x2': { type: '222so' },
   '3x3': { type: '333' },
