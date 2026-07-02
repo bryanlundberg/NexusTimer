@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { TwistyPlayer } from 'cubing/twisty'
 import { CubeEngine } from 'cube-state-engine'
+import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'
 
 interface UseVirtualCubeArgs {
   cubeSize: number
@@ -58,9 +59,7 @@ export function useVirtualCube({
   useEffect(() => {
     if (!containerRef.current) return
 
-    try {
-      player?.remove()
-    } catch {}
+    disposeTwistyPlayer(player)
 
     const newEngine = new CubeEngine('', { size: cubeSize })
     const newPlayer = buildPlayer(cubeSize, scramble, { seed, tempoScale, dragInput, sizePx, cameraDistance })
@@ -77,9 +76,7 @@ export function useVirtualCube({
     setEngine(newEngine)
 
     return () => {
-      try {
-        newPlayer.remove()
-      } catch {}
+      disposeTwistyPlayer(newPlayer)
     }
   }, [cubeSize])
 
@@ -95,9 +92,7 @@ export function useVirtualCube({
 
   const recreatePlayer = useCallback(() => {
     if (!containerRef.current) return
-    try {
-      player?.remove()
-    } catch {}
+    disposeTwistyPlayer(player)
     const newPlayer = buildPlayer(cubeSize, scramble, { seed, tempoScale, dragInput, sizePx, cameraDistance })
     containerRef.current.appendChild(newPlayer)
     setPlayer(newPlayer)
