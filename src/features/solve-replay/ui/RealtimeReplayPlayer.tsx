@@ -6,6 +6,7 @@ import { Pause, Play, RotateCcw, SkipBack, SkipForward } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import type { SolveReplay } from '@/entities/replay/model/types'
 import { useRealtimeReplay } from '@/features/solve-replay/model/useRealtimeReplay'
+import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'
 
 export interface ReplayMarker {
   key: string
@@ -69,9 +70,7 @@ export function RealtimeReplayPlayer({ replay, markers = [], size = 232, tempoSc
     setPlayer(twisty)
 
     return () => {
-      try {
-        twisty.remove()
-      } catch {}
+      disposeTwistyPlayer(twisty)
       setPlayer(null)
     }
   }, [replay, size])
