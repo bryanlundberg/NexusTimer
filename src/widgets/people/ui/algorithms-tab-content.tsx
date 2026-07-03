@@ -18,7 +18,21 @@ const CHART_STROKE: Record<Colors, string> = {
   red: 'stroke-emerald-500',
   rose: 'stroke-teal-500',
   yellow: 'stroke-violet-500',
-  neutral: 'stroke-sky-500'
+  neutral: 'stroke-sky-500',
+  amber: 'stroke-indigo-500',
+  lime: 'stroke-fuchsia-500',
+  emerald: 'stroke-rose-500',
+  teal: 'stroke-orange-500',
+  cyan: 'stroke-pink-500',
+  sky: 'stroke-amber-500',
+  indigo: 'stroke-lime-500',
+  purple: 'stroke-yellow-500',
+  fuchsia: 'stroke-emerald-500',
+  pink: 'stroke-teal-500',
+  slate: 'stroke-blue-500',
+  zinc: 'stroke-violet-500',
+  gray: 'stroke-orange-500',
+  stone: 'stroke-sky-500'
 }
 
 export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMethod[] }) {
