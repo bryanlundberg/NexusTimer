@@ -6,6 +6,7 @@ import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 import { useHardwareTimer } from '@/features/hardware/react/useHardwareTimer'
 import { StackmatAdapter } from '@/features/hardware/adapters/StackmatAdapter'
 import useSolveData from '@/features/timer/model/useSolveData'
+import { useStackmatReset } from '@/features/timer/model/useStackmatReset'
 
 export default function Stackmat() {
   const timerStatus = useTimerStore((state) => state.timerStatus)
@@ -23,6 +24,8 @@ export default function Stackmat() {
 
   const { saveSolveManualMode } = useSolveData()
   const wasRunningRef = useRef(false)
+
+  useStackmatReset(state)
 
   useEffect(() => {
     if (state.running) {
