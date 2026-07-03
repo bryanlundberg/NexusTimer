@@ -10,11 +10,14 @@ import { BackupLoadMode } from '@/entities/backup/model/enums'
 import { Cube } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { mergeAndUniqData } from '@/shared/model/backup/mergeAndUniqData'
+import { uploadWithProgress } from '@/shared/lib/backup/uploadWithProgress'
+import { showUploadToast, UPLOAD_BACKUP_TOAST_ID } from '@/shared/model/backup/uploadToast'
 
 export const useSyncBackup = () => {
   const { data: session } = useSession()
   const setCubes = useTimerStore((state) => state.setCubes)
   const [isUploading, setIsUploading] = useState(false)
+  const [uploadProgress, setUploadProgress] = useState(0)
   const updateSetting = useSettingsStore((state) => state.updateSetting)
   const [uploadCompleted, setUploadCompleted] = useState(false)
   const selectedCube = useTimerStore((state) => state.selectedCube)
@@ -23,13 +26,14 @@ export const useSyncBackup = () => {
   const handleUploadBackup = async () => {
     if (isUploading) return
     setIsUploading(true)
-    toast.loading('Saving new backup, please do not close this page...', { id: 'upload-backup' })
+    setUploadProgress(0)
+    showUploadToast(0)
 
     const cubes = await cubesDB.getAllDatabase()
 
     if (!cubes || !session || !session.user || !session.user.id) {
       setIsUploading(false)
-      toast.dismiss('upload-backup')
+      toast.dismiss(UPLOAD_BACKUP_TOAST_ID)
       return toast.error('Failed to retrieve cubes or session data.')
     }
 
@@ -39,21 +43,22 @@ export const useSyncBackup = () => {
     const blob = new Blob([compressed], { type: 'application/octet-stream' })
 
     try {
-      const res = await fetch('/api/v1/backups', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/octet-stream' },
-        body: blob
+      const res = await uploadWithProgress('/api/v1/backups', blob, (percent) => {
+        setUploadProgress(percent)
+        showUploadToast(percent)
       })
 
       if (!res.ok) throw new Error(`Upload failed with status ${res.status}`)
 
       setIsUploading(false)
-      toast.dismiss('upload-backup')
+      setUploadProgress(0)
+      toast.dismiss(UPLOAD_BACKUP_TOAST_ID)
       setUploadCompleted(true)
     } catch (err) {
       console.error(err)
       setIsUploading(false)
-      toast.dismiss('upload-backup')
+      setUploadProgress(0)
+      toast.dismiss(UPLOAD_BACKUP_TOAST_ID)
       toast.error('Error occurred while uploading')
     }
   }
@@ -113,6 +118,7 @@ export const useSyncBackup = () => {
     handleDownloadData,
     handleUploadBackup,
     isUploading,
+    uploadProgress,
     uploadCompleted
   }
 }
