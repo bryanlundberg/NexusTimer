@@ -1,6 +1,5 @@
 import { importNexusTimerData, normalizeOldData } from '@/features/manage-backup/lib/importDataFromFile'
 import { toast } from 'sonner'
-import { compressSync, decompressSync, strFromU8, strToU8 } from 'fflate'
 import { useSession } from 'next-auth/react'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useState } from 'react'
@@ -39,8 +38,7 @@ export const useSyncBackup = () => {
 
     const text = JSON.stringify(cubes)
 
-    const compressed = compressSync(strToU8(text))
-    const blob = new Blob([compressed], { type: 'application/octet-stream' })
+    const blob = new Blob([text], { type: 'application/json' })
 
     try {
       const res = await uploadWithProgress('/api/v1/backups', blob, (percent) => {
@@ -83,10 +81,7 @@ export const useSyncBackup = () => {
       }
 
       const doc = await fetch(`${user.backup.url}`)
-      const compressed = new Uint8Array(await doc.arrayBuffer())
-
-      const decompressed = decompressSync(compressed)
-      const data = strFromU8(decompressed)
+      const data = await doc.text()
 
       const backupData = importNexusTimerData(data)
       const existingCubes = await cubesDB.getAllDatabase()
