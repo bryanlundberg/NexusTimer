@@ -129,6 +129,15 @@
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
+      "modes-subtitle": "Wähle, wie du deine Zeiten erfasst",
+      "modes-desc": {
+        "normal": "Timing per Tastatur oder Touch",
+        "manual": "Zeiten manuell eingeben",
+        "stackmat": "Stackmat-Timer verwenden",
+        "virtual": "Würfel am Bildschirm, Tastatursteuerung",
+        "smart": "Bluetooth-Smart-Cube verbinden",
+        "nexus-connect": "Handy als Fernsteuerung nutzen"
+      },
       "new-scramble": "Neues Scramble",
       "hints": "Hinweise",
       "start-stackmat": "Starte dein Stackmat zum Beginnen",

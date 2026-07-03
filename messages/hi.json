@@ -129,6 +129,15 @@
         "smart": "स्मार्ट क्यूब",
         "nexus-connect": "Nexus Connect"
       },
+      "modes-subtitle": "चुनें कि आप अपने समय कैसे दर्ज करें",
+      "modes-desc": {
+        "normal": "कीबोर्ड या टच से टाइमिंग",
+        "manual": "अपने समय हाथ से लिखें",
+        "stackmat": "Stackmat टाइमर का उपयोग करें",
+        "virtual": "स्क्रीन पर क्यूब, कीबोर्ड नियंत्रण",
+        "smart": "Bluetooth स्मार्ट क्यूब कनेक्ट करें",
+        "nexus-connect": "अपने फ़ोन को रिमोट टाइमर बनाएं"
+      },
       "new-scramble": "नया स्क्रैम्बल",
       "hints": "संकेत",
       "start-stackmat": "शुरू करने के लिए अपना Stackmat प्रारंभ करें",

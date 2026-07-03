@@ -190,6 +190,15 @@
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
+      "modes-subtitle": "Piliin kung paano itatala ang iyong mga solve",
+      "modes-desc": {
+        "normal": "Timing gamit ang keyboard o touch",
+        "manual": "I-type ang oras nang mano-mano",
+        "stackmat": "Gumamit ng Stackmat timer",
+        "virtual": "Cube sa screen, keyboard controls",
+        "smart": "Ikonekta ang Bluetooth smart cube",
+        "nexus-connect": "Gamitin ang telepono bilang remote timer"
+      },
       "new-scramble": "Bagong scramble",
       "hints": "Mga Hint",
       "start-stackmat": "Simulan ang Stackmat mo para magsimula",

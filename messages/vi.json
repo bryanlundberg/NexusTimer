@@ -190,6 +190,15 @@
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
+      "modes-subtitle": "Chọn cách ghi lại thời gian của bạn",
+      "modes-desc": {
+        "normal": "Bấm giờ bằng bàn phím hoặc chạm",
+        "manual": "Nhập thời gian thủ công",
+        "stackmat": "Dùng đồng hồ Stackmat",
+        "virtual": "Khối trên màn hình, điều khiển bằng bàn phím",
+        "smart": "Kết nối smart cube Bluetooth",
+        "nexus-connect": "Dùng điện thoại làm bộ đếm giờ từ xa"
+      },
       "new-scramble": "Scramble mới",
       "hints": "Gợi ý",
       "start-stackmat": "Khởi động Stackmat của bạn để bắt đầu",

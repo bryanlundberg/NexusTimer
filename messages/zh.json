@@ -129,6 +129,15 @@
         "smart": "智能魔方",
         "nexus-connect": "Nexus Connect"
       },
+      "modes-subtitle": "选择记录成绩的方式",
+      "modes-desc": {
+        "normal": "键盘或触屏计时",
+        "manual": "手动输入成绩",
+        "stackmat": "使用 Stackmat 计时器",
+        "virtual": "屏幕魔方，键盘操作",
+        "smart": "连接蓝牙智能魔方",
+        "nexus-connect": "手机用作远程计时器"
+      },
       "new-scramble": "新的打乱",
       "hints": "提示",
       "start-stackmat": "启动你的 Stackmat 以开始计时",

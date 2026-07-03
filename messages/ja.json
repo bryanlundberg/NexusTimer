@@ -129,6 +129,15 @@
         "smart": "スマートキューブ",
         "nexus-connect": "Nexus Connect"
       },
+      "modes-subtitle": "ソルブの記録方法を選択",
+      "modes-desc": {
+        "normal": "キーボードまたはタッチで計測",
+        "manual": "タイムを手動で入力",
+        "stackmat": "Stackmatタイマーを使用",
+        "virtual": "画面上のキューブをキーボードで操作",
+        "smart": "Bluetoothスマートキューブを接続",
+        "nexus-connect": "スマホをリモートタイマーとして使用"
+      },
       "new-scramble": "新しいスクランブル",
       "hints": "ヒント",
       "start-stackmat": "Stackmatを起動して開始してください",

@@ -129,6 +129,15 @@
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
+      "modes-subtitle": "Choisissez comment enregistrer vos temps",
+      "modes-desc": {
+        "normal": "Chronométrage clavier ou tactile",
+        "manual": "Saisissez vos temps à la main",
+        "stackmat": "Utilisez un minuteur Stackmat",
+        "virtual": "Cube à l'écran, contrôles clavier",
+        "smart": "Connectez un smart cube Bluetooth",
+        "nexus-connect": "Votre téléphone comme télécommande"
+      },
       "new-scramble": "Nouveau mélange",
       "hints": "Conseils",
       "start-stackmat": "Lancez votre Stackmat pour commencer",

@@ -190,6 +190,15 @@
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
+      "modes-subtitle": "เลือกวิธีบันทึกเวลาของคุณ",
+      "modes-desc": {
+        "normal": "จับเวลาด้วยคีย์บอร์ดหรือสัมผัส",
+        "manual": "พิมพ์เวลาด้วยตนเอง",
+        "stackmat": "ใช้ตัวจับเวลา Stackmat",
+        "virtual": "ลูกบาศก์บนหน้าจอ ควบคุมด้วยคีย์บอร์ด",
+        "smart": "เชื่อมต่อสมาร์ทคิวบ์ Bluetooth",
+        "nexus-connect": "ใช้โทรศัพท์เป็นตัวจับเวลาระยะไกล"
+      },
       "new-scramble": "Scramble ใหม่",
       "hints": "คำใบ้",
       "start-stackmat": "เริ่ม Stackmat ของคุณเพื่อเริ่มต้น",

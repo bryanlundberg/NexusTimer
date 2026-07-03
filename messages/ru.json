@@ -129,6 +129,15 @@
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
+      "modes-subtitle": "Выберите способ записи сборок",
+      "modes-desc": {
+        "normal": "Замер с клавиатуры или касанием",
+        "manual": "Вводите время вручную",
+        "stackmat": "Используйте таймер Stackmat",
+        "virtual": "Куб на экране, управление клавиатурой",
+        "smart": "Подключите Bluetooth смарт-куб",
+        "nexus-connect": "Телефон как пульт-таймер"
+      },
       "new-scramble": "Новый скрамбл",
       "hints": "Подсказки",
       "start-stackmat": "Запустите Stackmat, чтобы начать",
