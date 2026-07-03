@@ -8,7 +8,7 @@ export const uploadWithProgress = (
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
     xhr.open('POST', url)
-    xhr.setRequestHeader('Content-Type', 'application/octet-stream')
+    xhr.setRequestHeader('Content-Type', blob.type || 'application/octet-stream')
     xhr.timeout = UPLOAD_TIMEOUT_MS
 
     xhr.upload.onprogress = (event) => {
