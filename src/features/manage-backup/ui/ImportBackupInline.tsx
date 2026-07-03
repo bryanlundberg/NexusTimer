@@ -79,7 +79,7 @@ export default function ImportBackupInline() {
         <Dropzone
           onDrop={handleImportBackup}
           onError={console.error}
-          accept={{ 'application/txt': ['.txt'] }}
+          accept={{ 'application/json': ['.json'], 'text/plain': ['.txt'] }}
           className="min-h-35"
           data-testid="import-backup-dropzone"
         >
