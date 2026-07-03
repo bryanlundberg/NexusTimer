@@ -4,7 +4,6 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { TimerStatus } from '@/features/timer/model/enums'
 import { useHardwareTimer } from '@/features/hardware/react/useHardwareTimer'
 import { StackmatAdapter } from '@/features/hardware/adapters/StackmatAdapter'
-import { useStackmatReset } from '@/features/timer/model/useStackmatReset'
 
 const CONNECT_OPTIONS = { moyuMode: false }
 
@@ -18,8 +17,6 @@ export default function FreePlayStackmatListener({ onFinish, disabled }: FreePla
   const stackmatAdapter = useMemo(() => new StackmatAdapter(), [])
   const { state } = useHardwareTimer({ adapter: stackmatAdapter, autoConnect: true, connectOptions: CONNECT_OPTIONS })
   const wasRunningRef = useRef(false)
-
-  useStackmatReset(state)
 
   useEffect(() => {
     if (state.running) setSolvingTime(state.timeMs)
