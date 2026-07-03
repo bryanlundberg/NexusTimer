@@ -3,7 +3,6 @@ import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
@@ -19,6 +18,26 @@ import ConnectQR from '@/features/nexus-connect/ui/ConnectQR'
 import { useNexusConnectStore } from '@/features/nexus-connect/model/useNexusConnectStore'
 import genId from '@/shared/lib/genId'
 import LayoutDashboardIcon from '@/components/ui/layout-dashboard-icon'
+import { cn } from '@/shared/lib/utils'
+import { Bluetooth, Cable, Check, ChevronDown, Gamepad2, Keyboard, Smartphone, Timer } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+
+interface ModeConfig {
+  value: TimerMode
+  tKey: string
+  testId: string
+  icon: LucideIcon
+  requires?: string[]
+}
+
+const MODES: ModeConfig[] = [
+  { value: TimerMode.NORMAL, tKey: 'normal', testId: 'mode-normal', icon: Timer },
+  { value: TimerMode.MANUAL, tKey: 'manual', testId: 'mode-manual', icon: Keyboard },
+  { value: TimerMode.STACKMAT, tKey: 'stackmat', testId: 'mode-stackmat', icon: Cable },
+  { value: TimerMode.VIRTUAL, tKey: 'virtual', testId: 'mode-virtual', icon: Gamepad2, requires: ['2x2', '3x3'] },
+  { value: TimerMode.SMART_CUBE, tKey: 'smart', testId: 'mode-smart', icon: Bluetooth, requires: ['3x3'] },
+  { value: TimerMode.NEXUS_CONNECT, tKey: 'nexus-connect', testId: 'mode-nexus-connect', icon: Smartphone }
+]
 
 export default function ButtonSelectMode() {
   const timerMode = useTimerStore((state) => state.timerMode)
@@ -51,58 +70,89 @@ export default function ButtonSelectMode() {
     })
   }
 
+  const isModeDisabled = (mode: ModeConfig) =>
+    !!mode.requires && (!selectedCube || !mode.requires.includes(selectedCube.category))
+
+  const activeMode = MODES.find((mode) => mode.value === timerMode) ?? MODES[0]
+
   return (
-    <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            data-testid={'button-select-mode'}
-            variant="ghost"
-            className="py-0 px-3"
-            disabled={!selectedCube}
-            onMouseEnter={() => iconRef.current?.startAnimation()}
-            onMouseLeave={() => iconRef.current?.stopAnimation()}
-          >
-            <LayoutDashboardIcon ref={iconRef} />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-fit">
-          <DropdownMenuLabel>{t('HomePage.mode')}</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuRadioGroup value={timerMode} onValueChange={(e: any) => setTimerMode(e)}>
-            <DropdownMenuRadioItem value={TimerMode.NORMAL} data-testid={'mode-normal'}>
-              {t('HomePage.modes.normal')}
-            </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value={TimerMode.MANUAL} data-testid={'mode-manual'}>
-              {t('HomePage.modes.manual')}
-            </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem value={TimerMode.STACKMAT} data-testid={'mode-stackmat'}>
-              {t('HomePage.modes.stackmat')}
-            </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem
-              data-testid={'mode-virtual'}
-              value={TimerMode.VIRTUAL}
-              disabled={selectedCube?.category !== '3x3' && selectedCube?.category !== '2x2'}
-            >
-              {t('HomePage.modes.virtual')}
-            </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem
-              data-testid={'mode-smart'}
-              value={TimerMode.SMART_CUBE}
-              disabled={selectedCube?.category !== '3x3'}
-            >
-              {t('HomePage.modes.smart')}
-            </DropdownMenuRadioItem>
-            <DropdownMenuRadioItem
-              data-testid={'mode-nexus-connect'}
-              value={TimerMode.NEXUS_CONNECT}
-              onClick={handleNexusConnectClick}
-            >
-              {t('HomePage.modes.nexus-connect')}
-            </DropdownMenuRadioItem>
-          </DropdownMenuRadioGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          data-testid={'button-select-mode'}
+          variant="ghost"
+          className="group py-0 px-3 gap-2"
+          disabled={!selectedCube}
+          onMouseEnter={() => iconRef.current?.startAnimation()}
+          onMouseLeave={() => iconRef.current?.stopAnimation()}
+        >
+          <LayoutDashboardIcon ref={iconRef} />
+          <span className="hidden md:inline-block max-w-28 truncate text-sm font-medium">
+            {t(`HomePage.modes.${activeMode.tKey}`)}
+          </span>
+          <ChevronDown className="hidden md:block size-3.5 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-72 p-0">
+        <div className="px-3 pt-2.5 pb-2">
+          <p className="text-sm font-semibold leading-none">{t('HomePage.mode')}</p>
+          <p className="mt-1 text-xs text-muted-foreground">{t('HomePage.modes-subtitle')}</p>
+        </div>
+        <DropdownMenuSeparator className="my-0" />
+        <DropdownMenuRadioGroup
+          value={timerMode}
+          onValueChange={(value) => setTimerMode(value as TimerMode)}
+          className="p-1.5 flex flex-col gap-0.5"
+        >
+          {MODES.map((mode) => {
+            const isActive = timerMode === mode.value
+            const isDisabled = isModeDisabled(mode)
+            const Icon = mode.icon
+
+            return (
+              <DropdownMenuRadioItem
+                key={mode.value}
+                value={mode.value}
+                data-testid={mode.testId}
+                disabled={isDisabled}
+                onClick={mode.value === TimerMode.NEXUS_CONNECT ? handleNexusConnectClick : undefined}
+                className={cn(
+                  'group/mode flex cursor-pointer items-start gap-3 rounded-md p-2 pl-2 pr-2.5 transition-colors [&>span]:hidden',
+                  isActive && 'bg-accent/50'
+                )}
+              >
+                <div
+                  className={cn(
+                    'flex size-9 shrink-0 items-center justify-center rounded-lg border transition-colors',
+                    isActive ? 'border-primary/40 bg-primary/10' : 'border-border bg-muted/40 group-focus/mode:bg-muted'
+                  )}
+                >
+                  <Icon className={cn('size-4', isActive ? 'text-primary' : 'text-muted-foreground')} />
+                </div>
+                <div className="flex min-w-0 grow flex-col gap-0.5">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-sm font-medium leading-tight">{t(`HomePage.modes.${mode.tKey}`)}</span>
+                    {mode.requires && (
+                      <span className="rounded-sm border border-border bg-muted px-1 py-px font-mono text-[10px] font-medium leading-tight text-muted-foreground">
+                        {mode.requires.join(' · ')}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-xs leading-snug text-muted-foreground">
+                    {t(`HomePage.modes-desc.${mode.tKey}`)}
+                  </span>
+                </div>
+                <Check
+                  className={cn(
+                    'size-4 shrink-0 self-center text-primary transition-opacity duration-150',
+                    isActive ? 'opacity-100' : 'opacity-0'
+                  )}
+                />
+              </DropdownMenuRadioItem>
+            )
+          })}
+        </DropdownMenuRadioGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
