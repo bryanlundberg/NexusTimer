@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import _ from 'lodash'
-import { decompressSync, strFromU8 } from 'fflate'
 import { Cube } from '@/entities/cube/model/types'
 
 interface User {
@@ -23,10 +22,7 @@ export function useUserBackups(users: User[]) {
             if (user.backup?.url) {
               const response = await fetch(user.backup.url)
               if (!response.ok) throw new Error('Network response was not ok')
-              const compressed = new Uint8Array(await response.arrayBuffer())
-              const decompressed = decompressSync(compressed)
-              const data = strFromU8(decompressed)
-              const cubeData = JSON.parse(data) as Cube[]
+              const cubeData = (await response.json()) as Cube[]
               const merged = _.groupBy(cubeData, 'category')
               return [user._id, merged] as const
             }
