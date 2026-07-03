@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
-import { decompressSync, strFromU8 } from 'fflate'
 import {
   importNexusTimerData,
   normalizeOldData,
@@ -33,8 +32,7 @@ export function useApplyBackup() {
       const res = await fetch(backup.url)
       if (!res.ok) throw new Error(`Fetch failed with status ${res.status}`)
 
-      const compressed = new Uint8Array(await res.arrayBuffer())
-      const data = strFromU8(decompressSync(compressed))
+      const data = await res.text()
       const cubes = preventDuplicateDeleteStatus(normalizeOldData(importNexusTimerData(data)))
 
       await cubesDB.clear()
