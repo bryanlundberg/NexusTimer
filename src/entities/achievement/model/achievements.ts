@@ -9,9 +9,16 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
 
   let totalValid = 0
   let has3x3Sub10 = false
+  let has3x3Sub8 = false
+  let hasOHSub30 = false
+  let hasBLDSuccess = false
+  let hasNewYearSolve = false
   let max3x3SolvesPerCube = 0
   let currentCleanStreak = 0
   let longestCleanStreak = 0
+  let bookmarkCount = 0
+  let commentCount = 0
+  let hasReplay = false
 
   for (const cube of cubes) {
     let cube3x3Count = 0
@@ -26,14 +33,22 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
         continue
       }
 
+      if (solve.bookmark) bookmarkCount++
+      if (solve.comment && solve.comment.trim().length > 0) commentCount++
+      if (solve.replay) hasReplay = true
+
       if (!solve.dnf) {
         totalValid++
         categoriesWithValidSolves.add(cube.category)
         if (cube.category === '3x3') {
           cube3x3Count++
           if (solve.time < 10000) has3x3Sub10 = true
+          if (solve.time < 8000) has3x3Sub8 = true
         }
+        if (cube.category === '3x3 OH' && solve.time < 30000) hasOHSub30 = true
+        if (cube.category === '3x3 BLD') hasBLDSuccess = true
         const date = dayjs(solve.startTime).format('YYYY-MM-DD')
+        if (date.endsWith('-01-01')) hasNewYearSolve = true
         solvesByDate.set(date, (solvesByDate.get(date) ?? 0) + 1)
       }
 
@@ -72,11 +87,18 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
   return {
     totalValid,
     has3x3Sub10,
+    has3x3Sub8,
+    hasOHSub30,
+    hasBLDSuccess,
+    hasNewYearSolve,
     max3x3SolvesPerCube,
     categoriesWithValidSolves,
     maxSolvesInOneDay,
     longestDateStreak,
-    longestCleanStreak
+    longestCleanStreak,
+    bookmarkCount,
+    commentCount,
+    hasReplay
   }
 }
 
@@ -131,6 +153,30 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     condition: ({ stats }) => stats.has3x3Sub10
   },
   {
+    id: 'sub-8-3x3',
+    title: 'World Class',
+    description: 'Registered a sub-8 second solve on 3x3.',
+    icon: 'icons8-crown-50.png',
+    type: 'computed',
+    condition: ({ stats }) => stats.has3x3Sub8
+  },
+  {
+    id: 'oh-sub-30',
+    title: 'One Hand Wonder',
+    description: 'Registered a sub-30 second solve on 3x3 One-Handed.',
+    icon: 'icons8-pet-commands-summon-50.png',
+    type: 'computed',
+    condition: ({ stats }) => stats.hasOHSub30
+  },
+  {
+    id: 'bld-success',
+    title: 'Blindfolded',
+    description: 'Completed a successful 3x3 Blindfolded solve.',
+    icon: 'icons8-brain-50.png',
+    type: 'computed',
+    condition: ({ stats }) => stats.hasBLDSuccess
+  },
+  {
     id: 'over-9999-3x3',
     title: "It's over 9000!",
     description: 'Completed over 9,999 solves on 3x3 cubes.',
@@ -147,12 +193,28 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     condition: ({ stats }) => stats.totalValid >= 100000
   },
   {
+    id: 'collector-5',
+    title: 'Starter Pack',
+    description: 'Own at least 5 different cubes.',
+    icon: 'icons8-shield-50.png',
+    type: 'computed',
+    condition: ({ cubes }) => cubes.length >= 5
+  },
+  {
     id: 'collector',
     title: 'Puzzle Collector',
     description: 'Own at least 25 different cubes.',
     icon: 'icons8-money-box-50.png',
     type: 'computed',
     condition: ({ cubes }) => cubes.length >= 25
+  },
+  {
+    id: 'collector-50',
+    title: 'Cube Hoarder',
+    description: 'Own at least 50 different cubes.',
+    icon: 'icons8-monster-face-50.png',
+    type: 'computed',
+    condition: ({ cubes }) => cubes.length >= 50
   },
   {
     id: 'eventglot',
@@ -171,6 +233,14 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     condition: ({ stats }) => stats.maxSolvesInOneDay > 500
   },
   {
+    id: 'streak-30',
+    title: 'Habit Formed',
+    description: 'Maintained a solve streak for 30 consecutive days.',
+    icon: 'icons8-combo-chart-50.png',
+    type: 'computed',
+    condition: ({ stats }) => stats.longestDateStreak >= 30
+  },
+  {
     id: 'consistency-is-key',
     title: 'Consistency is Key',
     description: 'Maintained a solve streak for 365 consecutive days.',
@@ -185,5 +255,37 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     icon: 'icons8-wizard-50.png',
     type: 'computed',
     condition: ({ stats }) => stats.longestCleanStreak >= 1000
+  },
+  {
+    id: 'new-year-solve',
+    title: 'New Year, New PB',
+    description: 'Completed a solve on January 1st.',
+    icon: 'icons8-golden-opportunity-50.png',
+    type: 'computed',
+    condition: ({ stats }) => stats.hasNewYearSolve
+  },
+  {
+    id: 'bookmarker',
+    title: 'Curator',
+    description: 'Bookmarked 25 solves.',
+    icon: 'icons8-clover-50.png',
+    type: 'computed',
+    condition: ({ stats }) => stats.bookmarkCount >= 25
+  },
+  {
+    id: 'commentator',
+    title: 'Storyteller',
+    description: 'Left comments on 10 solves.',
+    icon: 'icons8-strategy-news-50.png',
+    type: 'computed',
+    condition: ({ stats }) => stats.commentCount >= 10
+  },
+  {
+    id: 'smart-mover',
+    title: 'Smart Mover',
+    description: 'Recorded a solve replay with a smart cube.',
+    icon: 'icons8-usb-connector-50.png',
+    type: 'computed',
+    condition: ({ stats }) => stats.hasReplay
   }
 ]
