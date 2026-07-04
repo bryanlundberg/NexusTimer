@@ -21,15 +21,27 @@ export interface RowDef {
   getValue: (scope: StatisticScope) => string | number
 }
 
-export const STICKY_CELL_BASE = 'sticky left-0 z-10 bg-background border-r border-border'
-export const GROUP_DIVIDER_LEFT = 'border-l border-border'
-export const GROUP_BG: Record<ColumnGroup, string> = {
-  personal: 'bg-muted/30 dark:bg-transparent',
-  cube: 'bg-primary/[0.04] dark:bg-primary/[0.025]'
+/**
+ * Shared grid template so the header and every row stay perfectly aligned.
+ * A row is 3 tracks: [metric label] [Personal group block] [Cube group block].
+ * Each group block internally holds its 2 scope columns.
+ */
+export const ROW_GRID =
+  'grid grid-cols-[minmax(0,1.05fr)_minmax(0,1.5fr)_minmax(0,1.5fr)] gap-1.5 sm:gap-2.5 items-stretch'
+
+/** Inner grid for the 2 scope columns living inside a group block. */
+export const GROUP_INNER_GRID = 'grid grid-cols-2'
+
+/** Soft rounded background for each group block (no hard table borders). */
+export const GROUP_BLOCK: Record<ColumnGroup, string> = {
+  personal: 'rounded-xl bg-muted/40 dark:bg-muted/25',
+  cube: 'rounded-xl bg-primary/[0.06] dark:bg-primary/[0.07] ring-1 ring-inset ring-primary/10'
 }
-export const GROUP_HEADER_BG: Record<ColumnGroup, string> = {
-  personal: 'bg-muted',
-  cube: 'bg-primary/10 dark:bg-primary/15'
+
+/** Group chip styles used in the header. */
+export const GROUP_CHIP: Record<ColumnGroup, string> = {
+  personal: 'bg-muted text-muted-foreground',
+  cube: 'bg-primary/15 text-primary'
 }
 
 export function useStatisticsColumns(): ColumnDef[] {
