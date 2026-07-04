@@ -32,3 +32,10 @@ export type MoveSolveSessionDTO = {
   solveId: string
   fromTab: SolveTab
 }
+
+export type UpdateCommentSolveDTO = {
+  cubeId: string
+  solveId: string
+  comment: string
+  solveTab: SolveTab
+}
