@@ -11,6 +11,7 @@ import { useTranslations } from 'next-intl'
 import { useReplaySolveDetails } from '@/features/replay-solve-details/model/useReplaySolveDetails'
 import { Stat } from '@/features/replay-solve-details/ui/Stat'
 import { Field } from '@/features/replay-solve-details/ui/Field'
+import { Clock, RotateCw, Zap } from 'lucide-react'
 
 const RealtimeReplayPlayer = dynamic(
   () => import('@/features/solve-replay/ui/RealtimeReplayPlayer').then((m) => m.RealtimeReplayPlayer),
@@ -45,10 +46,10 @@ export function ReplaySolveDetails() {
         />
 
         <TabsContent value={Tab.Replay} className="flex flex-col gap-4">
-          <div className="grid grid-cols-3 divide-x divide-border/60 rounded-lg border bg-muted/30">
-            <Stat label={t('time')} value={formatTime(metadata.time)} />
-            <Stat label={t('moves')} value={moveCount ?? '—'} />
-            <Stat label={t('tps')} value={tps ?? '—'} />
+          <div className="grid grid-cols-3 gap-2">
+            <Stat icon={<Clock className="size-3" />} label={t('time')} value={formatTime(metadata.time)} />
+            <Stat icon={<RotateCw className="size-3" />} label={t('moves')} value={moveCount ?? '—'} />
+            <Stat icon={<Zap className="size-3" />} label={t('tps')} value={tps ?? '—'} />
           </div>
           {hasReplay && <RealtimeReplayPlayer replay={replay!} markers={markers} />}
         </TabsContent>
