@@ -454,8 +454,8 @@
       "col-actions": "Akcje"
     },
     "LeaderboardsPage": {
-      "title": "Rankingi tabel wyników",
-      "description": "Odkryj 100 najlepszych zawodników i ich ułożenia w różnych kategoriach. Poznaj szczegółowe informacje o każdym uczestniku i jego osiągnięciach.",
+      "title": "Najszybsze ułożenia",
+      "description": "100 najszybszych ułożeń dla wybranej układanki i trybu, uszeregowanych według czasu, z autorem, TPS, liczbą ruchów i datą każdego.",
       "type": "Typ",
       "table": {
         "user": "Użytkownik",

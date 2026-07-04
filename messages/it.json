@@ -454,8 +454,8 @@
       "col-actions": "Azioni"
     },
     "LeaderboardsPage": {
-      "title": "Classifiche",
-      "description": "Esplora i 100 migliori e i loro solve in varie categorie. Scopri dettagli approfonditi su ogni partecipante e i suoi risultati.",
+      "title": "Solve più veloci",
+      "description": "I 100 solve più veloci per il puzzle e la modalità selezionati, ordinati per tempo, con autore, TPS, numero di mosse e data per ciascuno.",
       "type": "Tipo",
       "table": {
         "user": "Utente",

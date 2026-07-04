@@ -352,8 +352,8 @@
       "col-actions": "Acciones"
     },
     "LeaderboardsPage": {
-      "title": "Clasificaciones",
-      "description": "Explora los 100 mejores y sus resoluciones en varias categorías. Descubre información detallada sobre cada participante y sus logros.",
+      "title": "Solves más rápidos",
+      "description": "Los 100 solves más rápidos del puzzle y modo seleccionado, ordenados por tiempo, con el autor, TPS, movimientos y fecha de cada uno.",
       "type": "Tipo",
       "table": {
         "user": "Usuario",

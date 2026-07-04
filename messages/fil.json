@@ -454,8 +454,8 @@
       "col-actions": "Mga Aksyon"
     },
     "LeaderboardsPage": {
-      "title": "Mga Ranggo sa Leaderboard",
-      "description": "Tuklasin ang top 100 na performer at ang kanilang mga solve sa iba't ibang kategorya. Alamin ang detalyadong impormasyon tungkol sa bawat kalahok at sa kanilang mga tagumpay.",
+      "title": "Pinakamabilis na Solve",
+      "description": "Ang 100 pinakamabilis na solve para sa napiling puzzle at mode, nakaayos ayon sa oras, kasama ang gumawa, TPS, bilang ng galaw at petsa ng bawat isa.",
       "type": "Uri",
       "table": {
         "user": "User",

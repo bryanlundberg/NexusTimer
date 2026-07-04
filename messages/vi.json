@@ -454,8 +454,8 @@
       "col-actions": "Hành động"
     },
     "LeaderboardsPage": {
-      "title": "Bảng xếp hạng",
-      "description": "Khám phá 100 người chơi hàng đầu và các lượt giải của họ trên nhiều hạng mục. Tìm hiểu thông tin chi tiết về từng người tham gia và thành tích của họ.",
+      "title": "Lượt giải nhanh nhất",
+      "description": "100 lượt giải nhanh nhất cho câu đố và chế độ đã chọn, xếp theo thời gian, kèm người giải, TPS, số bước và ngày của mỗi lượt.",
       "type": "Loại",
       "table": {
         "user": "Người dùng",

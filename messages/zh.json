@@ -373,8 +373,8 @@
       "col-actions": "操作"
     },
     "LeaderboardsPage": {
-      "title": "排行榜",
-      "description": "探索各个类别的前 100 名及其还原成绩。深入了解每位参与者及其成就。",
+      "title": "最快还原",
+      "description": "所选魔方和模式下最快的 100 次还原，按用时排序，包含每次还原的完成者、TPS、步数和日期。",
       "type": "类型",
       "table": {
         "user": "魔友",

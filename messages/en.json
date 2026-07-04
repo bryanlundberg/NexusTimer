@@ -454,8 +454,8 @@
       "col-actions": "Actions"
     },
     "LeaderboardsPage": {
-      "title": "Leaderboard Rankings",
-      "description": "Explore the top 100 performers and their solves across various categories. Discover detailed insights about each participant and their achievements.",
+      "title": "Fastest Solves",
+      "description": "The 100 fastest solves for the selected puzzle and mode, ranked by time, with the solver, TPS, move count and date for each.",
       "type": "Type",
       "table": {
         "user": "User",

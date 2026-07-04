@@ -454,8 +454,8 @@
       "col-actions": "Aksi"
     },
     "LeaderboardsPage": {
-      "title": "Peringkat Papan Skor",
-      "description": "Jelajahi 100 pemain teratas dan solve mereka di berbagai kategori. Temukan wawasan mendetail tentang setiap peserta dan pencapaiannya.",
+      "title": "Solve Tercepat",
+      "description": "100 solve tercepat untuk puzzle dan mode yang dipilih, diurutkan berdasarkan waktu, lengkap dengan pemain, TPS, jumlah gerakan, dan tanggal setiap solve.",
       "type": "Tipe",
       "table": {
         "user": "Pengguna",

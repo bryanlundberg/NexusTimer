@@ -373,8 +373,8 @@
       "col-actions": "Aktionen"
     },
     "LeaderboardsPage": {
-      "title": "Bestenlisten",
-      "description": "Entdecke die Top 100 und ihre Zeiten in verschiedenen Kategorien. Erfahre mehr über die Teilnehmer.",
+      "title": "Schnellste Lösungen",
+      "description": "Die 100 schnellsten Lösungen für das ausgewählte Puzzle und den Modus, nach Zeit sortiert, mit Löser, TPS, Zugzahl und Datum für jede.",
       "type": "Typ",
       "table": {
         "user": "Nutzer",

@@ -373,8 +373,8 @@
       "col-actions": "Actions"
     },
     "LeaderboardsPage": {
-      "title": "Classements",
-      "description": "Explorez les 100 meilleurs performeurs et leurs temps dans diverses catégories. Découvrez des informations détaillées sur chaque participant.",
+      "title": "Solves les plus rapides",
+      "description": "Les 100 solves les plus rapides pour le puzzle et le mode sélectionnés, classés par temps, avec l'auteur, le TPS, le nombre de mouvements et la date de chacun.",
       "type": "Type",
       "table": {
         "user": "Utilisateur",
