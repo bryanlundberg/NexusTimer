@@ -25,7 +25,7 @@ const compactIso = (timestamp: number) =>
 
 /** Build the key for a brand-new backup created at `timestamp`. */
 export const newBackupKey = (userId: string, timestamp: number): string =>
-  backupKey(userId, `${compactIso(timestamp)}.txt`)
+  backupKey(userId, `${compactIso(timestamp)}.json`)
 
 /** Parse the compact ISO stamp a backup name encodes back to ms. */
 const parseCompactIso = (name: string): number | null => {

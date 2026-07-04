@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     const key = newBackupKey(userId, updatedAt)
 
     await files.upload(key, blob, {
-      contentType: 'application/octet-stream',
+      contentType: 'application/json',
       cacheControl: 'public, max-age=31536000, immutable'
     })
 
