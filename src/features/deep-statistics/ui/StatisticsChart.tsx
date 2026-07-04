@@ -27,7 +27,7 @@ export default function StatisticsChart({ statistics, loadingProps }: Statistics
   }
 
   return (
-    <div className="mb-2 rounded-2xl border border-border/50 bg-background/60 p-2 sm:p-3">
+    <div className="mb-2 bg-background/60">
       <StatisticsChartHeader columns={columns} />
       <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-1">
         {rows.map((row) => (
