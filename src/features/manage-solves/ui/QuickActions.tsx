@@ -27,6 +27,7 @@ interface QuickActionsProps {
   hideCopyButton?: boolean
   hideMoveToHistory?: boolean
   hideTransferCollection?: boolean
+  variant?: 'default' | 'modal'
   onDeleteSolve?: () => void
 }
 
@@ -35,6 +36,7 @@ export default function QuickActions({
   hideCopyButton = false,
   hideMoveToHistory = false,
   hideTransferCollection = false,
+  variant = 'default',
   onDeleteSolve = () => {}
 }: QuickActionsProps) {
   const t = useTranslations('Index')
@@ -60,6 +62,173 @@ export default function QuickActions({
 
   const showDropdown =
     !hideCopyButton || !hideMoveToHistory || (tabMode === SolveTab.SESSION && !hideTransferCollection)
+
+  const isOk = !solve?.plus2 && !solve?.dnf
+
+  const deleteDialog = (
+    <AlertDialog open={confirmDeleteOpen} onOpenChange={setConfirmDeleteOpen}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{t('solve-details.delete-confirm-title')}</AlertDialogTitle>
+          <AlertDialogDescription>{t('solve-details.delete-confirm-desc')}</AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>{t('Inputs.cancel')}</AlertDialogCancel>
+          <AlertDialogAction onClick={handleConfirmDelete}>{t('tooltips.delete')}</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
+
+  const moreDropdown = showDropdown && (
+    <DropdownMenu modal={false}>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-9 min-w-9 sm:h-8 sm:min-w-0 text-muted-foreground"
+          aria-label={t('tooltips.more-actions')}
+          data-testid="more-actions-button"
+        >
+          <MoreHorizontal className="size-4 sm:size-3.5" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        {!hideCopyButton && (
+          <DropdownMenuItem
+            data-testid="copy-solve-button"
+            onSelect={(e) => {
+              e.preventDefault()
+              handleClipboard()
+            }}
+          >
+            <CopyIcon className="mr-2" /> {t('tooltips.copy')}
+          </DropdownMenuItem>
+        )}
+        {!hideMoveToHistory && (
+          <DropdownMenuItem
+            data-testid="move-to-history-button"
+            onSelect={(e) => {
+              e.preventDefault()
+              handleMoveToHistorial()
+            }}
+          >
+            <CubeIcon className="mr-2" />{' '}
+            {t(tabMode === SolveTab.SESSION ? 'solve-details.move-to-history' : 'solve-details.move-to-session')}
+          </DropdownMenuItem>
+        )}
+        {tabMode === SolveTab.SESSION && !hideTransferCollection && (
+          <DropdownMenuItem
+            data-testid="transfer-collection-button"
+            onSelect={(e) => {
+              e.preventDefault()
+              handleTransferCollection()
+            }}
+          >
+            <ArrowRightLeftIcon size={12} className="mr-2" /> {t('solve-details.transfer-collection')}
+          </DropdownMenuItem>
+        )}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+
+  if (variant === 'modal') {
+    return (
+      <TooltipProvider delayDuration={100}>
+        <div
+          className="flex items-center justify-between gap-2"
+          id="quick-action-buttons"
+          data-testid="quick-action-buttons"
+        >
+          {/* Penalty segmented control */}
+          <div className="inline-flex items-center rounded-lg border overflow-hidden text-xs font-medium">
+            <button
+              type="button"
+              onPointerDown={() => {
+                if (solve?.plus2) handleTogglePlus2()
+                else if (solve?.dnf) handleToggleDNF()
+              }}
+              className={cn(
+                'px-3 py-1.5 transition-colors',
+                isOk ? 'bg-emerald-500/15 text-emerald-500' : 'text-muted-foreground hover:bg-muted'
+              )}
+            >
+              OK
+            </button>
+            <button
+              type="button"
+              data-testid="plus-two-button"
+              onPointerDown={() => {
+                if (!solve?.plus2) handleTogglePlus2()
+              }}
+              className={cn(
+                'px-3 py-1.5 border-l transition-colors',
+                solve?.plus2 ? 'bg-destructive/15 text-destructive' : 'text-muted-foreground hover:bg-muted'
+              )}
+            >
+              +2
+            </button>
+            <button
+              type="button"
+              data-testid="dnf-button"
+              onPointerDown={() => {
+                if (!solve?.dnf) handleToggleDNF()
+              }}
+              className={cn(
+                'px-3 py-1.5 border-l transition-colors',
+                solve?.dnf ? 'bg-destructive/15 text-destructive' : 'text-muted-foreground hover:bg-muted'
+              )}
+            >
+              DNF
+            </button>
+          </div>
+
+          {/* Icon cluster */}
+          <div className="flex items-center gap-0.5 text-muted-foreground">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  data-testid="bookmark-button"
+                  variant="ghost"
+                  size="sm"
+                  className={cn(
+                    'h-9 min-w-9 sm:h-8 sm:min-w-0',
+                    solve?.bookmark ? 'text-yellow-400 hover:text-yellow-400' : 'text-muted-foreground'
+                  )}
+                  onPointerDown={handleToggleBookmark}
+                >
+                  <Bookmark className="size-4 sm:size-3.5" fill={solve?.bookmark ? 'currentColor' : 'none'} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{t('tooltips.bookmark')}</p>
+              </TooltipContent>
+            </Tooltip>
+
+            {moreDropdown}
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  data-testid="delete-solve-button"
+                  variant="ghost"
+                  size="sm"
+                  className="h-9 min-w-9 sm:h-8 sm:min-w-0 text-muted-foreground hover:text-destructive"
+                  onPointerDown={() => setConfirmDeleteOpen(true)}
+                >
+                  <Trash className="size-4 sm:size-3.5" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{t('tooltips.delete')}</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+        </div>
+        {deleteDialog}
+      </TooltipProvider>
+    )
+  }
 
   return (
     <TooltipProvider delayDuration={100}>
