@@ -29,6 +29,38 @@
   50% { transform: translate3d(15px, -30px, 0) scale(1.15); }
 }
 
+@keyframes badge-beam-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.badge-beam {
+  --badge-beam-color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+  inset: -3px;
+  border-radius: 9999px;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 270deg,
+    var(--badge-beam-color) 325deg,
+    color-mix(in srgb, var(--badge-beam-color), white 35%) 340deg,
+    transparent 360deg
+  );
+  -webkit-mask-image: radial-gradient(closest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+  mask-image: radial-gradient(closest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+  opacity: 0.45;
+  animation: badge-beam-spin 4.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .badge-beam {
+    animation: none;
+    display: none;
+  }
+}
+
 
 @theme inline {
   --font-display: var(--font-space-grotesk), 'Saira', ui-sans-serif, system-ui, sans-serif;
