@@ -16,11 +16,18 @@ export interface Achievement {
 export interface SolveStats {
   totalValid: number
   has3x3Sub10: boolean
+  has3x3Sub8: boolean
+  hasOHSub30: boolean
+  hasBLDSuccess: boolean
+  hasNewYearSolve: boolean
   max3x3SolvesPerCube: number
   categoriesWithValidSolves: Set<string>
   maxSolvesInOneDay: number
   longestDateStreak: number
   longestCleanStreak: number
+  bookmarkCount: number
+  commentCount: number
+  hasReplay: boolean
 }
 
 export interface AchievementData {
