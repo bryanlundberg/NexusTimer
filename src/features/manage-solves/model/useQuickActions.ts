@@ -11,6 +11,7 @@ import { cubesDB } from '@/entities/cube/api/indexdb'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { SolveTab } from '@/shared/types/enums'
 import moveSolveSession from '@/features/manage-solves/api/moveSolveSession'
+import { updateComment } from '@/features/manage-solves/api/updateComment'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 
 export default function useQuickActions(solve: Solve) {
@@ -94,6 +95,21 @@ export default function useQuickActions(solve: Solve) {
     })
   }
 
+  const handleCopyScramble = () => {
+    if ('clipboard' in navigator && solve?.scramble) {
+      navigator.clipboard.writeText(solve.scramble)
+      toast('', { description: 'Copied to clipboard', duration: 1000 })
+    }
+  }
+
+  const handleUpdateComment = async (comment: string) => {
+    const { cubeId, id: solveId } = solve
+    const tab = await inferSolveTab()
+    if (!tab) return
+    await updateComment({ cubeId, solveId, comment, solveTab: tab })
+    syncUI()
+  }
+
   const handleTransferCollection = () => {
     if (!selectedCube) return
     router.push(`/transfer-solves?source-collection=${selectedCube.id}`) // TODO: change source-collection to constant
@@ -160,6 +176,8 @@ export default function useQuickActions(solve: Solve) {
     handleTogglePlus2,
     handleDeleteSolve,
     handleClipboard,
+    handleCopyScramble,
+    handleUpdateComment,
     handleTransferCollection,
     handleMoveToHistorial
   }
