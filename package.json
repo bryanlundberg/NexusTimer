@@ -69,7 +69,6 @@
     "eslint": "9.26.0",
     "eslint-config-next": "16.0.3",
     "fast-sort": "^3.4.1",
-    "fflate": "^0.8.2",
     "files-sdk": "^1.6.0",
     "firebase": "^12.1.0",
     "idb": "^8.0.3",
