@@ -1,3 +1,4 @@
+import { gunzipSync } from 'node:zlib'
 import { NextRequest, after } from 'next/server'
 import { auth } from '@/shared/config/auth/auth'
 import connectDB from '@/shared/config/mongodb/mongodb'
@@ -16,20 +17,38 @@ const MAX_BACKUP_BYTES = 32 * 1024 * 1024
 
 const MAX_BACKUPS_RETAINED = 10
 
+/** gzip streams start with the magic bytes 0x1f 0x8b. */
+const isGzip = (bytes: Uint8Array): boolean => bytes.length >= 2 && bytes[0] === 0x1f && bytes[1] === 0x8b
+
 export async function POST(request: NextRequest) {
   try {
     const session = await auth()
     if (!session?.user?.id) return unauthorized()
 
-    const blob = await request.blob()
-    if (blob.size === 0) return serverError('backups:POST', new Error('Empty body'))
-    if (blob.size > MAX_BACKUP_BYTES) return serverError('backups:POST', new Error('Backup too large'))
+    const received = new Uint8Array(await request.arrayBuffer())
+    if (received.length === 0) return serverError('backups:POST', new Error('Empty body'))
+
+    let json: Buffer
+    try {
+      json = isGzip(received) ? gunzipSync(received) : Buffer.from(received)
+    } catch {
+      return badRequest('Malformed backup payload')
+    }
+
+    if (json.length === 0) return serverError('backups:POST', new Error('Empty backup'))
+    if (json.length > MAX_BACKUP_BYTES) return serverError('backups:POST', new Error('Backup too large'))
+
+    try {
+      JSON.parse(json.toString('utf8'))
+    } catch {
+      return badRequest('Backup is not valid JSON')
+    }
 
     const userId = session.user.id
     const updatedAt = Date.now()
     const key = newBackupKey(userId, updatedAt)
 
-    await files.upload(key, blob, {
+    await files.upload(key, new Blob([json], { type: 'application/json' }), {
       contentType: 'application/json',
       cacheControl: 'public, max-age=31536000, immutable'
     })
