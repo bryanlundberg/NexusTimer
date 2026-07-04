@@ -10,6 +10,7 @@ import { Cube } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { mergeAndUniqData } from '@/shared/model/backup/mergeAndUniqData'
 import { uploadWithProgress } from '@/shared/lib/backup/uploadWithProgress'
+import { gzipJson } from '@/shared/lib/backup/gzip'
 import { showUploadToast, UPLOAD_BACKUP_TOAST_ID } from '@/shared/model/backup/uploadToast'
 
 export const useSyncBackup = () => {
@@ -38,7 +39,7 @@ export const useSyncBackup = () => {
 
     const text = JSON.stringify(cubes)
 
-    const blob = new Blob([text], { type: 'application/json' })
+    const blob = await gzipJson(text)
 
     try {
       const res = await uploadWithProgress('/api/v1/backups', blob, (percent) => {
