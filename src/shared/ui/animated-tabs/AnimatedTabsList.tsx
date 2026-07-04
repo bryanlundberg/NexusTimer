@@ -31,7 +31,7 @@ export default function AnimatedTabsList({
   return (
     <TabsList
       className={cn(
-        'relative h-auto rounded-xl bg-muted/60 p-1',
+        'relative h-auto gap-0 rounded-lg bg-muted/30 p-0.5',
         fitted ? 'inline-flex w-fit' : 'grid w-full',
         className
       )}
@@ -42,14 +42,16 @@ export default function AnimatedTabsList({
           key={value}
           value={value}
           disabled={disabled}
-          className="relative z-10 rounded-lg border-transparent py-2.5 font-medium text-muted-foreground transition-colors hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-transparent md:py-2 dark:text-muted-foreground dark:hover:text-foreground dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent dark:data-[state=active]:text-foreground"
+          className="group relative z-10 rounded-md border-transparent py-2.5 font-display text-[13px] font-semibold uppercase tracking-[0.12em] text-muted-foreground transition-colors hover:text-foreground data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none data-[state=active]:border-transparent md:py-2 dark:text-muted-foreground dark:hover:text-foreground dark:data-[state=active]:border-transparent dark:data-[state=active]:bg-transparent dark:data-[state=active]:text-foreground"
         >
           {activeValue === value && (
             <motion.span
               layoutId={layoutId}
-              className="absolute inset-0 rounded-lg bg-background shadow-sm ring-1 ring-border/70"
+              className="absolute inset-0 rounded-md bg-background shadow-sm ring-1 ring-border/70"
               transition={INDICATOR_SPRING}
-            />
+            >
+              <span className="absolute left-[3px] top-1/2 h-[55%] w-[3px] -translate-y-1/2 rounded-full bg-primary" />
+            </motion.span>
           )}
           <span className="relative z-10 inline-flex items-center gap-1.5">
             {Icon && <Icon className="size-4" />}
