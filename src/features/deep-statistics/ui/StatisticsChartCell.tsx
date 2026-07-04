@@ -1,46 +1,29 @@
-import { TableCell } from '@/components/ui/table'
-import { Loader2 } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
-import { ColumnGroup, GROUP_BG, GROUP_DIVIDER_LEFT } from '@/features/deep-statistics/model/statisticsChartConfig'
+import { ColumnGroup } from '@/features/deep-statistics/model/statisticsChartConfig'
 
 interface StatisticsChartCellProps {
   isLoading: boolean
   value: string | number
   highlight?: boolean
-  groupStart?: boolean
   group: ColumnGroup
 }
 
-export default function StatisticsChartCell({
-  isLoading,
-  value,
-  highlight,
-  groupStart,
-  group
-}: StatisticsChartCellProps) {
-  if (isLoading) {
-    return (
-      <TableCell
+export default function StatisticsChartCell({ isLoading, value, highlight, group }: StatisticsChartCellProps) {
+  const displayValue = isLoading ? '--' : value
+  const isEmpty = displayValue === '--'
+
+  return (
+    <div className="flex items-center justify-center px-1.5 py-2 sm:px-2 sm:py-2.5">
+      <span
         className={cn(
-          'text-center transition-colors group-hover:bg-muted/60',
-          GROUP_BG[group],
-          groupStart && GROUP_DIVIDER_LEFT
+          'tabular-nums font-mono text-[11px] sm:text-sm leading-none transition-colors',
+          isEmpty && 'text-muted-foreground/40',
+          !isEmpty && group === 'cube' && 'text-foreground',
+          !isEmpty && highlight && 'font-bold text-primary'
         )}
       >
-        <Loader2 className="size-4 animate-spin text-muted-foreground/50 mx-auto" />
-      </TableCell>
-    )
-  }
-  return (
-    <TableCell
-      className={cn(
-        'text-center tabular-nums font-mono text-[11px] sm:text-sm transition-colors group-hover:bg-muted/60',
-        GROUP_BG[group],
-        groupStart && GROUP_DIVIDER_LEFT,
-        highlight && value !== '--' && 'text-primary font-bold'
-      )}
-    >
-      {value}
-    </TableCell>
+        {displayValue}
+      </span>
+    </div>
   )
 }
