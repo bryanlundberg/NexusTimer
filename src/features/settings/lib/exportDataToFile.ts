@@ -1,7 +1,7 @@
 import { Cube } from '@/entities/cube/model/types'
 import dayjs from '@/shared/lib/dayjs'
 
-const OUTPUT_FILE_NAME = `Backup-NT-${dayjs().format('YYYY-MM-DD HH:mm:ss')}.txt`
+const OUTPUT_FILE_NAME = `Backup-NT-${dayjs().format('YYYY-MM-DD HH:mm:ss')}.json`
 
 /**
  * Exports the cube data to a JSON file and initiates a download.
@@ -24,7 +24,7 @@ export default async function exportDataToFile(cubes: Cube[]): Promise<void> {
    * Create a Blob with the stringified cubes.
    * @type {Blob}
    */
-  const blob = new Blob([stringifiedCubes], { type: 'text/plain' })
+  const blob = new Blob([stringifiedCubes], { type: 'application/json' })
 
   /**
    * Create a URL for the Blob.
