@@ -24,6 +24,7 @@ export const AchievementIcon = React.forwardRef<HTMLDivElement, AchievementIconP
       )}
       style={achievement.color && !locked ? { backgroundColor: achievement.color, borderColor: achievement.color } : {}}
     >
+      {achievement.type === 'granted' && !locked && <span aria-hidden className="badge-beam" />}
       <Image
         src={`/achievements/${achievement.icon}`}
         unoptimized
