@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import _ from 'lodash'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
-import { Bookmark, BookmarkCheck, ChevronDown, Play } from 'lucide-react'
+import { ChevronDown, Play } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/shared/lib/utils'
@@ -10,6 +10,7 @@ import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import AlgorithmModal from '@/features/algorithms-list/ui/algorithm-modal'
 import ActionButton from '@/features/algorithms-list/ui/action-button'
+import LearnedToggle from '@/features/algorithms-list/ui/learned-toggle'
 import AlternativeRow from '@/features/algorithms-list/ui/alternative-row'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
@@ -101,15 +102,8 @@ export default function AlgorithmCard({
           </code>
         </div>
 
-        <div className="flex shrink-0 items-center gap-0.5 self-center">
-          {onToggleLearned && (
-            <ActionButton
-              icon={isLearned ? BookmarkCheck : Bookmark}
-              label={isLearned ? 'Marked as learned' : 'Mark as learned'}
-              active={isLearned}
-              onClick={onToggleLearned}
-            />
-          )}
+        <div className="flex shrink-0 items-center gap-1 self-center">
+          {onToggleLearned && <LearnedToggle learned={isLearned} onClick={onToggleLearned} />}
           <ActionButton icon={Play} label="Play" onClick={() => primary && openPreview(primary.moves)} />
           {canExpand && (
             <ChevronDown
