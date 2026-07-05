@@ -48,7 +48,7 @@ export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMet
   const effectiveSlug = selectedSlug ?? orderedMethods[0]?.set.slug ?? null
   const selected = orderedMethods.find((m) => m.set.slug === effectiveSlug) ?? null
 
-  if (total === 0) return <EmptyTabContent />
+  if (total === 0) return <EmptyTabContent message={t('no-learned')} />
 
   return (
     <div className="flex flex-col gap-5">
