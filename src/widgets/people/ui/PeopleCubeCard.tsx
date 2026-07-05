@@ -9,7 +9,6 @@ import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import _ from 'lodash'
 import { motion } from 'motion/react'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
-import { AreaChart, Area, ResponsiveContainer } from 'recharts'
 import { GRID } from '@/widgets/people/ui/cubes-tab-content'
 
 interface PeopleCubeCardProps {
@@ -44,11 +43,6 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
   const totalTime = allSolves.reduce((acc, s) => acc + (s.time || 0), 0)
 
   const cubeImg = cubeCollection.find((item) => item.name === cube.category)?.src || ''
-
-  const chartData = React.useMemo(() => {
-    const valid = allSolves.filter((s) => !s.dnf && s.time > 0)
-    return valid.slice(-20).map((s) => ({ v: s.time + (s.plus2 ? 2000 : 0) }))
-  }, [allSolves])
 
   return (
     <motion.div
@@ -90,27 +84,22 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
       {/* Time on cube */}
       <StatCell value={totalTime > 0 ? formatTime(totalTime) : '--'} />
 
-      {/* Distribution: sparkline + counters */}
-      <div className="flex flex-col gap-1 w-full">
-        <div className="h-8 w-full">
-          {chartData.length > 1 ? (
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={chartData} margin={{ top: 2, right: 0, left: 0, bottom: 2 }}>
-                <Area
-                  type="monotone"
-                  dataKey="v"
-                  stroke="var(--primary)"
-                  strokeWidth={1.5}
-                  fill="var(--primary)"
-                  fillOpacity={0.1}
-                  dot={false}
-                  isAnimationActive={false}
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          ) : (
-            <div className="flex items-center justify-center h-full text-muted-foreground text-xs">—</div>
-          )}
+      {/* Distribution: segmented pill + counters */}
+      <div className="flex flex-col gap-1.5 w-full">
+        <div className="h-2.5 w-full rounded-full overflow-hidden bg-muted/50 flex">
+          {totalSolves > 0 ? (
+            <>
+              {successCount > 0 && (
+                <span className="h-full bg-green-500" style={{ width: `${(successCount / totalSolves) * 100}%` }} />
+              )}
+              {plus2Count > 0 && (
+                <span className="h-full bg-yellow-500" style={{ width: `${(plus2Count / totalSolves) * 100}%` }} />
+              )}
+              {dnfCount > 0 && (
+                <span className="h-full bg-red-500" style={{ width: `${(dnfCount / totalSolves) * 100}%` }} />
+              )}
+            </>
+          ) : null}
         </div>
         <div className="flex items-center gap-2">
           <span className="size-1.5 rounded-full bg-green-500 shrink-0" />
