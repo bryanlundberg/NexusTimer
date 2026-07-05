@@ -8,7 +8,6 @@ import {
   ComponentBooleanIcon,
   FileTextIcon,
   LapTimerIcon,
-  Link2Icon,
   LockClosedIcon,
   MagicWandIcon,
   SpeakerLoudIcon,
@@ -230,22 +229,6 @@ export default function OptionsPage() {
         <Separator className="my-4 opacity-50" />
         <MenuSection id="preferences" icon={<BoxModelIcon />} title={t('Settings-menu.preferences')}>
           <MenuSelectDefaultStartCube />
-        </MenuSection>
-        <Separator className="my-4 opacity-50" />
-        <MenuSection icon={<Link2Icon />} title={t('SettingsPage.cloud-sync')} id="cloud-sync">
-          <MenuOption
-            label={t('SettingsPage.enable-auto-load')}
-            name={'sync.autoLoadEnabled'}
-            control={control}
-            description={t('SettingsPage.auto-load-description')}
-          />
-          <MenuInputOption
-            name={'sync.backupInterval'}
-            label={t('SettingsPage.backup-interval')}
-            control={control}
-            inputProps={{ min: defaultSettings.sync.backupInterval, max: 100, step: 5 }}
-            description={t('SettingsPage.backup-interval-description')}
-          />
         </MenuSection>
         <Separator className="my-4 opacity-50" />
         <MenuSection id="privacy" icon={<LockClosedIcon />} title={t('Settings-menu.privacy')}>
