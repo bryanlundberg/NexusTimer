@@ -28,12 +28,20 @@ interface ModeConfig {
   testId: string
   icon: LucideIcon
   requires?: string[]
+  comingSoon?: boolean
 }
 
 const MODES: ModeConfig[] = [
   { value: TimerMode.NORMAL, tKey: 'normal', testId: 'mode-normal', icon: Timer },
   { value: TimerMode.MANUAL, tKey: 'manual', testId: 'mode-manual', icon: Keyboard },
   { value: TimerMode.STACKMAT, tKey: 'stackmat', testId: 'mode-stackmat', icon: Cable },
+  {
+    value: TimerMode.STACKMAT_BLUETOOTH,
+    tKey: 'stackmat-bluetooth',
+    testId: 'mode-stackmat-bluetooth',
+    icon: Bluetooth,
+    comingSoon: true
+  },
   { value: TimerMode.VIRTUAL, tKey: 'virtual', testId: 'mode-virtual', icon: Gamepad2, requires: ['2x2', '3x3'] },
   { value: TimerMode.SMART_CUBE, tKey: 'smart', testId: 'mode-smart', icon: Bluetooth, requires: ['3x3'] },
   { value: TimerMode.NEXUS_CONNECT, tKey: 'nexus-connect', testId: 'mode-nexus-connect', icon: Smartphone }
@@ -71,7 +79,7 @@ export default function ButtonSelectMode() {
   }
 
   const isModeDisabled = (mode: ModeConfig) =>
-    !!mode.requires && (!selectedCube || !mode.requires.includes(selectedCube.category))
+    !!mode.comingSoon || (!!mode.requires && (!selectedCube || !mode.requires.includes(selectedCube.category)))
 
   const activeMode = MODES.find((mode) => mode.value === timerMode) ?? MODES[0]
 
@@ -135,6 +143,11 @@ export default function ButtonSelectMode() {
                     {mode.requires && (
                       <span className="rounded-sm border border-border bg-muted px-1 py-px font-mono text-[10px] font-medium leading-tight text-muted-foreground">
                         {mode.requires.join(' · ')}
+                      </span>
+                    )}
+                    {mode.comingSoon && (
+                      <span className="rounded-sm border border-primary/40 bg-primary/10 px-1 py-px font-mono text-[10px] font-medium leading-tight text-primary">
+                        {t('HomePage.modes-soon')}
                       </span>
                     )}
                   </div>
