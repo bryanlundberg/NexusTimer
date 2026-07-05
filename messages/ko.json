@@ -358,6 +358,7 @@
       "timeline-tab": {
         "col-category": "이벤트",
         "col-cube": "큐브",
+        "col-cube-record": "기록 큐브",
         "col-scramble": "스크램블",
         "col-time": "시간",
         "col-date": "날짜"

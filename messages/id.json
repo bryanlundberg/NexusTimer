@@ -439,6 +439,7 @@
       "timeline-tab": {
         "col-category": "Kategori",
         "col-cube": "Kubus",
+        "col-cube-record": "Cube rekor",
         "col-scramble": "Scramble",
         "col-time": "Waktu",
         "col-date": "Tanggal"

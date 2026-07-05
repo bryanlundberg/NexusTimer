@@ -358,6 +358,7 @@
       "timeline-tab": {
         "col-category": "種目",
         "col-cube": "キューブ",
+        "col-cube-record": "記録のキューブ",
         "col-scramble": "スクランブル",
         "col-time": "タイム",
         "col-date": "日付"

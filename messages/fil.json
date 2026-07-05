@@ -439,6 +439,7 @@
       "timeline-tab": {
         "col-category": "Kategorya",
         "col-cube": "Cube",
+        "col-cube-record": "Cube ng rekord",
         "col-scramble": "Scramble",
         "col-time": "Oras",
         "col-date": "Petsa"

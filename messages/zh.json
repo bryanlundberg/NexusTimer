@@ -358,6 +358,7 @@
       "timeline-tab": {
         "col-category": "项目",
         "col-cube": "魔方",
+        "col-cube-record": "记录魔方",
         "col-scramble": "打乱",
         "col-time": "时间",
         "col-date": "日期"

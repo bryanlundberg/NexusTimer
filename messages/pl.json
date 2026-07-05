@@ -439,6 +439,7 @@
       "timeline-tab": {
         "col-category": "Kategoria",
         "col-cube": "Kostka",
+        "col-cube-record": "Kostka rekordu",
         "col-scramble": "Scramble",
         "col-time": "Czas",
         "col-date": "Data"

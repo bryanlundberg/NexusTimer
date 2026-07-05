@@ -358,6 +358,7 @@
       "timeline-tab": {
         "col-category": "Catégorie",
         "col-cube": "Cube",
+        "col-cube-record": "Cube du record",
         "col-scramble": "Mélange",
         "col-time": "Temps",
         "col-date": "Date"

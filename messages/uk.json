@@ -410,6 +410,7 @@
       "timeline-tab": {
         "col-category": "Категорія",
         "col-cube": "Кубик",
+        "col-cube-record": "Кубик рекорду",
         "col-scramble": "Скрамбл",
         "col-time": "Час",
         "col-date": "Дата"

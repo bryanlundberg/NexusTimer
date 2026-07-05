@@ -439,6 +439,7 @@
       "timeline-tab": {
         "col-category": "หมวดหมู่",
         "col-cube": "ลูกบาศก์",
+        "col-cube-record": "ลูกบาศก์สถิติ",
         "col-scramble": "Scramble",
         "col-time": "เวลา",
         "col-date": "วันที่"
