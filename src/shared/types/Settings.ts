@@ -41,8 +41,6 @@ type Sounds = {
 }
 
 type Sync = {
-  autoLoadEnabled: boolean
-  backupInterval: number
   lastSync: number
   totalSolves: number
 }
