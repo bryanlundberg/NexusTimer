@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import _ from 'lodash'
 import { Badge } from '@/components/ui/badge'
 import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
@@ -22,6 +23,7 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
   const groups = useMemo(() => _.groupBy(algorithms, 'group'), [algorithms])
   const [activeGroups, setActiveGroups] = useState<string[]>([])
 
+  const router = useRouter()
   const { data: session } = useSession()
   const isAuthed = !!session?.user?.id
   const { learnedIds, mutate: mutateLearned } = useTrainerLearned(methodSlug, isAuthed)
@@ -36,7 +38,11 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
   }
 
   const handleToggleLearned = async (caseId: string) => {
-    if (!methodSlug || !isAuthed) return
+    if (!methodSlug) return
+    if (!isAuthed) {
+      router.push('/sign-in')
+      return
+    }
     const wasLearned = learnedSet.has(caseId)
     const nextLearned = !wasLearned
     const optimistic = new Set(learnedIds)
@@ -110,7 +116,7 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
             virtualization={virtualization}
             puzzle={puzzle}
             isLearned={learnedSet.has(item.id)}
-            onToggleLearned={isAuthed && methodSlug ? () => handleToggleLearned(item.id) : undefined}
+            onToggleLearned={methodSlug ? () => handleToggleLearned(item.id) : undefined}
           />
         ))}
       </div>
