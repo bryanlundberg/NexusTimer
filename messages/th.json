@@ -186,15 +186,18 @@
         "normal": "ปกติ",
         "manual": "ด้วยตนเอง",
         "stackmat": "Stackmat",
+        "stackmat-bluetooth": "Stackmat Bluetooth",
         "virtual": "เสมือน",
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
       "modes-subtitle": "เลือกวิธีบันทึกเวลาของคุณ",
+      "modes-soon": "เร็วๆ นี้",
       "modes-desc": {
         "normal": "จับเวลาด้วยคีย์บอร์ดหรือสัมผัส",
         "manual": "พิมพ์เวลาด้วยตนเอง",
         "stackmat": "ใช้ตัวจับเวลา Stackmat",
+        "stackmat-bluetooth": "ใช้ตัวจับเวลา Stackmat แบบบลูทูธ",
         "virtual": "ลูกบาศก์บนหน้าจอ ควบคุมด้วยคีย์บอร์ด",
         "smart": "เชื่อมต่อสมาร์ทคิวบ์ Bluetooth",
         "nexus-connect": "ใช้โทรศัพท์เป็นตัวจับเวลาระยะไกล"

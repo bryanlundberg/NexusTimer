@@ -186,15 +186,18 @@
         "normal": "Normalny",
         "manual": "Ręczny",
         "stackmat": "Stackmat",
+        "stackmat-bluetooth": "Stackmat Bluetooth",
         "virtual": "Wirtualny",
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
       "modes-subtitle": "Wybierz sposób rejestrowania czasów",
+      "modes-soon": "Wkrótce",
       "modes-desc": {
         "normal": "Pomiar klawiaturą lub dotykiem",
         "manual": "Wpisuj czasy ręcznie",
         "stackmat": "Użyj timera Stackmat",
+        "stackmat-bluetooth": "Użyj timera Stackmat Bluetooth",
         "virtual": "Kostka na ekranie, sterowanie klawiaturą",
         "smart": "Połącz smart kostkę Bluetooth",
         "nexus-connect": "Użyj telefonu jako zdalnego timera"

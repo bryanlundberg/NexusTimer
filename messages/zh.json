@@ -125,15 +125,18 @@
         "normal": "常规",
         "manual": "手动",
         "stackmat": "Stackmat",
+        "stackmat-bluetooth": "Stackmat Bluetooth",
         "virtual": "虚拟",
         "smart": "智能魔方",
         "nexus-connect": "Nexus Connect"
       },
       "modes-subtitle": "选择记录成绩的方式",
+      "modes-soon": "即将推出",
       "modes-desc": {
         "normal": "键盘或触屏计时",
         "manual": "手动输入成绩",
         "stackmat": "使用 Stackmat 计时器",
+        "stackmat-bluetooth": "使用蓝牙 Stackmat 计时器",
         "virtual": "屏幕魔方，键盘操作",
         "smart": "连接蓝牙智能魔方",
         "nexus-connect": "手机用作远程计时器"

@@ -186,15 +186,18 @@
         "normal": "Normal",
         "manual": "Manual",
         "stackmat": "Stackmat",
+        "stackmat-bluetooth": "Stackmat Bluetooth",
         "virtual": "Virtual",
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
       "modes-subtitle": "Pilih cara merekam solve Anda",
+      "modes-soon": "Segera",
       "modes-desc": {
         "normal": "Timing dengan keyboard atau sentuhan",
         "manual": "Ketik waktu Anda secara manual",
         "stackmat": "Gunakan timer Stackmat",
+        "stackmat-bluetooth": "Gunakan timer Stackmat Bluetooth",
         "virtual": "Kubus di layar, kontrol keyboard",
         "smart": "Hubungkan smart cube Bluetooth",
         "nexus-connect": "Gunakan ponsel sebagai timer jarak jauh"

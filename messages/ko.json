@@ -125,15 +125,18 @@
         "normal": "일반",
         "manual": "수동",
         "stackmat": "Stackmat",
+        "stackmat-bluetooth": "Stackmat Bluetooth",
         "virtual": "가상",
         "smart": "스마트 큐브",
         "nexus-connect": "Nexus Connect"
       },
       "modes-subtitle": "솔브 기록 방식을 선택하세요",
+      "modes-soon": "곧",
       "modes-desc": {
         "normal": "키보드 또는 터치로 계측",
         "manual": "기록을 직접 입력",
         "stackmat": "Stackmat 타이머 사용",
+        "stackmat-bluetooth": "블루투스 Stackmat 타이머 사용",
         "virtual": "화면 속 큐브를 키보드로 조작",
         "smart": "블루투스 스마트 큐브 연결",
         "nexus-connect": "휴대폰을 원격 타이머로 사용"

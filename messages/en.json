@@ -186,15 +186,18 @@
         "normal": "Normal",
         "manual": "Manual",
         "stackmat": "Stackmat",
+        "stackmat-bluetooth": "Stackmat Bluetooth",
         "virtual": "Virtual",
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
       "modes-subtitle": "Choose how you record your solves",
+      "modes-soon": "Soon",
       "modes-desc": {
         "normal": "Keyboard or touch timing",
         "manual": "Type your times by hand",
         "stackmat": "Use a Stackmat speed timer",
+        "stackmat-bluetooth": "Use a Bluetooth Stackmat timer",
         "virtual": "On-screen cube, keyboard controls",
         "smart": "Connect a Bluetooth smart cube",
         "nexus-connect": "Use your phone as a remote timer"

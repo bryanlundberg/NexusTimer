@@ -186,15 +186,18 @@
         "normal": "Thường",
         "manual": "Thủ công",
         "stackmat": "Stackmat",
+        "stackmat-bluetooth": "Stackmat Bluetooth",
         "virtual": "Ảo",
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
       "modes-subtitle": "Chọn cách ghi lại thời gian của bạn",
+      "modes-soon": "Sắp có",
       "modes-desc": {
         "normal": "Bấm giờ bằng bàn phím hoặc chạm",
         "manual": "Nhập thời gian thủ công",
         "stackmat": "Dùng đồng hồ Stackmat",
+        "stackmat-bluetooth": "Dùng bộ hẹn giờ Stackmat Bluetooth",
         "virtual": "Khối trên màn hình, điều khiển bằng bàn phím",
         "smart": "Kết nối smart cube Bluetooth",
         "nexus-connect": "Dùng điện thoại làm bộ đếm giờ từ xa"

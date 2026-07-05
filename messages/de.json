@@ -125,15 +125,18 @@
         "normal": "Normal",
         "manual": "Manuell",
         "stackmat": "Stackmat",
+        "stackmat-bluetooth": "Stackmat Bluetooth",
         "virtual": "Virtuell",
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
       "modes-subtitle": "Wähle, wie du deine Zeiten erfasst",
+      "modes-soon": "Bald",
       "modes-desc": {
         "normal": "Timing per Tastatur oder Touch",
         "manual": "Zeiten manuell eingeben",
         "stackmat": "Stackmat-Timer verwenden",
+        "stackmat-bluetooth": "Bluetooth-Stackmat-Timer verwenden",
         "virtual": "Würfel am Bildschirm, Tastatursteuerung",
         "smart": "Bluetooth-Smart-Cube verbinden",
         "nexus-connect": "Handy als Fernsteuerung nutzen"

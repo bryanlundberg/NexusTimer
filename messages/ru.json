@@ -125,15 +125,18 @@
         "normal": "Обычный",
         "manual": "Ручной",
         "stackmat": "Stackmat",
+        "stackmat-bluetooth": "Stackmat Bluetooth",
         "virtual": "Виртуальный",
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
       "modes-subtitle": "Выберите способ записи сборок",
+      "modes-soon": "Скоро",
       "modes-desc": {
         "normal": "Замер с клавиатуры или касанием",
         "manual": "Вводите время вручную",
         "stackmat": "Используйте таймер Stackmat",
+        "stackmat-bluetooth": "Используйте таймер Stackmat по Bluetooth",
         "virtual": "Куб на экране, управление клавиатурой",
         "smart": "Подключите Bluetooth смарт-куб",
         "nexus-connect": "Телефон как пульт-таймер"

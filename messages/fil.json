@@ -186,15 +186,18 @@
         "normal": "Normal",
         "manual": "Manual",
         "stackmat": "Stackmat",
+        "stackmat-bluetooth": "Stackmat Bluetooth",
         "virtual": "Virtual",
         "smart": "Smart Cube",
         "nexus-connect": "Nexus Connect"
       },
       "modes-subtitle": "Piliin kung paano itatala ang iyong mga solve",
+      "modes-soon": "Malapit na",
       "modes-desc": {
         "normal": "Timing gamit ang keyboard o touch",
         "manual": "I-type ang oras nang mano-mano",
         "stackmat": "Gumamit ng Stackmat timer",
+        "stackmat-bluetooth": "Gumamit ng Bluetooth Stackmat timer",
         "virtual": "Cube sa screen, keyboard controls",
         "smart": "Ikonekta ang Bluetooth smart cube",
         "nexus-connect": "Gamitin ang telepono bilang remote timer"

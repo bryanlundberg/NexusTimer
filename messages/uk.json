@@ -177,15 +177,18 @@
         "normal": "Звичайний",
         "manual": "Ручний",
         "stackmat": "Stackmat",
+        "stackmat-bluetooth": "Stackmat Bluetooth",
         "virtual": "Віртуальний",
         "smart": "Смарткуб",
         "nexus-connect": "Nexus Connect"
       },
       "modes-subtitle": "Оберіть спосіб запису збірок",
+      "modes-soon": "Скоро",
       "modes-desc": {
         "normal": "Замір з клавіатури або дотиком",
         "manual": "Вводьте час вручну",
         "stackmat": "Використовуйте таймер Stackmat",
+        "stackmat-bluetooth": "Використовуйте таймер Stackmat через Bluetooth",
         "virtual": "Куб на екрані, керування клавіатурою",
         "smart": "Підключіть Bluetooth смарт-куб",
         "nexus-connect": "Телефон як дистанційний таймер"
