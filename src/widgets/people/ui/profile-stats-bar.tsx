@@ -5,7 +5,7 @@ import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
 import { cn } from '@/shared/lib/utils'
 import prettyMilliseconds from 'pretty-ms'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 
 interface StatItemProps {
   label: string
@@ -31,6 +31,7 @@ interface Props {
 
 export function ProfileStatsBar({ cubes, algorithmsLearned = 0 }: Props) {
   const t = useTranslations('Index.PeoplePage.stats')
+  const locale = useLocale()
 
   const uniqueSolves = useMemo(() => {
     const seen = new Set<string>()
@@ -71,7 +72,10 @@ export function ProfileStatsBar({ cubes, algorithmsLearned = 0 }: Props) {
     <div className="w-full border-b border-border/40 bg-muted/20 grid grid-cols-2 sm:flex sm:divide-x sm:divide-border/40 divide-y divide-border/40 sm:divide-y-0 [&>*:nth-child(odd)]:border-r [&>*:nth-child(odd)]:border-border/40 sm:[&>*:nth-child(odd)]:border-r-0">
       <StatItem label={t('favorite')} value={favoriteEvent} />
       <StatItem label={t('time-on-timer')} value={formatTotalTime(totalTimeMs)} sub={t('lifetime')} />
-      <StatItem label={t('total-solves')} value={uniqueSolves.length > 0 ? String(uniqueSolves.length) : '--'} />
+      <StatItem
+        label={t('total-solves')}
+        value={uniqueSolves.length > 0 ? uniqueSolves.length.toLocaleString(locale) : '--'}
+      />
       <StatItem label={t('algorithms')} value={algorithmsLearned > 0 ? String(algorithmsLearned) : '--'} />
     </div>
   )
