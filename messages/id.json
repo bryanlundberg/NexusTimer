@@ -18,17 +18,17 @@
       "skip": "Keluar dari panduan",
       "welcome": {
         "title": "Selamat datang di Nexus Timer!",
-        "content": "Kamu memerlukan koleksi cube sebelum timer bisa digunakan. Mau panduan singkat 20 detik untuk membuat yang pertama?",
+        "content": "NXTimer menyimpan statistikmu berdasarkan cube. Sebelum mulai, daftarkan cube yang paling dekat denganmu. Hanya butuh 20 detik!",
         "cta": "Ya, pandu saya",
         "dismiss": "Lain kali"
       },
       "select": {
         "title": "Pilih cube-mu",
-        "content": "Buka pemilih cube untuk memilih atau membuat koleksi."
+        "content": "Buka pemilih cube untuk menambahkan cube yang akan kamu hitung waktunya."
       },
       "create": {
-        "title": "Buat koleksi",
-        "content": "Klik di sini untuk memulai koleksi pertamamu."
+        "title": "Daftarkan cube-mu",
+        "content": "Buat koleksi pertamamu untuk mulai melacak waktu dan statistik cube ini."
       }
     },
     "sidebar-rotating-text": {

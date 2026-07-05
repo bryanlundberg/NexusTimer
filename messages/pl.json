@@ -18,17 +18,17 @@
       "skip": "Zakończ przewodnik",
       "welcome": {
         "title": "Witaj w Nexus Timer!",
-        "content": "Zanim uruchomisz stoper, potrzebujesz kolekcji kostek. Chcesz szybki, 20-sekundowy przewodnik, jak utworzyć pierwszą?",
+        "content": "NXTimer porządkuje Twoje statystyki według kostki. Zanim zaczniesz, zarejestruj tę, którą masz najbliżej. Zajmie to 20 sekund!",
         "cta": "Tak, poprowadź mnie",
         "dismiss": "Nie, dziękuję"
       },
       "select": {
         "title": "Wybierz swoją kostkę",
-        "content": "Otwórz selektor kostek, aby wybrać lub utworzyć kolekcję."
+        "content": "Otwórz selektor kostek, aby dodać kostkę, którą będziesz mierzyć."
       },
       "create": {
-        "title": "Utwórz kolekcję",
-        "content": "Kliknij tutaj, aby rozpocząć swoją pierwszą kolekcję."
+        "title": "Zarejestruj swoją kostkę",
+        "content": "Utwórz swoją pierwszą kolekcję, aby zacząć śledzić czasy i statystyki tej kostki."
       }
     },
     "sidebar-rotating-text": {

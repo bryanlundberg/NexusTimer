@@ -18,17 +18,17 @@
       "skip": "Esci dalla guida",
       "welcome": {
         "title": "Benvenuto in Nexus Timer!",
-        "content": "Ti serve una collezione di cubi prima di poter usare il timer. Vuoi una guida rapida di 20 secondi per crearne una?",
+        "content": "NXTimer ordina le tue statistiche per cubo. Prima di iniziare, registra quello che hai più vicino. Bastano 20 secondi!",
         "cta": "Sì, guidami",
         "dismiss": "No, grazie"
       },
       "select": {
         "title": "Scegli il tuo cubo",
-        "content": "Apri il selettore dei cubi per scegliere o creare una collezione."
+        "content": "Apri il selettore dei cubi per aggiungere il cubo che vuoi cronometrare."
       },
       "create": {
-        "title": "Crea una collezione",
-        "content": "Clicca qui per iniziare la tua prima collezione."
+        "title": "Registra il tuo cubo",
+        "content": "Crea la tua prima collezione per iniziare a registrare tempi e statistiche di questo cubo."
       }
     },
     "sidebar-rotating-text": {

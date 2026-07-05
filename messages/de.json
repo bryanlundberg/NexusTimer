@@ -15,17 +15,17 @@
       "skip": "Anleitung verlassen",
       "welcome": {
         "title": "Willkommen bei Nexus Timer!",
-        "content": "Du brauchst eine Würfelsammlung, bevor der Timer laufen kann. Möchtest du eine kurze 20-Sekunden-Anleitung, um deine erste zu erstellen?",
+        "content": "NXTimer sortiert deine Statistiken nach Würfel. Bevor du loslegst, registriere den Würfel, der dir am nächsten ist. Es dauert nur 20 Sekunden!",
         "cta": "Ja, zeig es mir",
         "dismiss": "Nein, danke"
       },
       "select": {
         "title": "Wähle deinen Würfel",
-        "content": "Öffne die Würfelauswahl, um eine Sammlung auszuwählen oder zu erstellen."
+        "content": "Öffne die Würfelauswahl, um den Würfel hinzuzufügen, den du timen möchtest."
       },
       "create": {
-        "title": "Sammlung erstellen",
-        "content": "Klicke hier, um deine erste Sammlung zu starten."
+        "title": "Registriere deinen Würfel",
+        "content": "Erstelle deine erste Sammlung, um Zeiten und Statistiken für diesen Würfel zu erfassen."
       }
     },
     "sidebar-rotating-text": {

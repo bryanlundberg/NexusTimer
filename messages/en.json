@@ -18,17 +18,17 @@
       "skip": "Exit guide",
       "welcome": {
         "title": "Welcome to Nexus Timer!",
-        "content": "You need a cube collection before the timer can run. Want a quick 20-second guide to create your first one?",
+        "content": "NXTimer keeps your statistics ordered by cube. Before getting started, register the one nearest you. It takes 20 seconds!",
         "cta": "Yes, guide me",
         "dismiss": "No, thanks"
       },
       "select": {
         "title": "Pick your cube",
-        "content": "Open the cube selector to choose or create a collection."
+        "content": "Open the cube selector to add the cube you'll be timing."
       },
       "create": {
-        "title": "Create a collection",
-        "content": "Click here to start your first collection."
+        "title": "Register your cube",
+        "content": "Create your first collection to start tracking this cube's times and stats."
       }
     },
     "sidebar-rotating-text": {

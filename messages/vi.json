@@ -18,17 +18,17 @@
       "skip": "Thoát hướng dẫn",
       "welcome": {
         "title": "Chào mừng đến với Nexus Timer!",
-        "content": "Bạn cần một bộ sưu tập cube trước khi có thể dùng đồng hồ bấm giờ. Bạn có muốn hướng dẫn nhanh 20 giây để tạo bộ sưu tập đầu tiên không?",
+        "content": "NXTimer sắp xếp thống kê của bạn theo từng cube. Trước khi bắt đầu, hãy đăng ký cube gần bạn nhất. Chỉ mất 20 giây!",
         "cta": "Có, hướng dẫn tôi",
         "dismiss": "Không, cảm ơn"
       },
       "select": {
         "title": "Chọn cube của bạn",
-        "content": "Mở bộ chọn cube để chọn hoặc tạo một bộ sưu tập."
+        "content": "Mở bộ chọn cube để thêm cube bạn sẽ bấm giờ."
       },
       "create": {
-        "title": "Tạo bộ sưu tập",
-        "content": "Nhấp vào đây để bắt đầu bộ sưu tập đầu tiên của bạn."
+        "title": "Đăng ký cube của bạn",
+        "content": "Tạo bộ sưu tập đầu tiên của bạn để bắt đầu theo dõi thời gian và thống kê của cube này."
       }
     },
     "sidebar-rotating-text": {

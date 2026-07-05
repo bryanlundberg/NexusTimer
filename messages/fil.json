@@ -18,17 +18,17 @@
       "skip": "Lumabas sa gabay",
       "welcome": {
         "title": "Maligayang pagdating sa Nexus Timer!",
-        "content": "Kailangan mo ng koleksyon ng cube bago gumana ang timer. Gusto mo ba ng mabilis na 20-segundong gabay para gumawa ng iyong una?",
+        "content": "Inaayos ng NXTimer ang iyong mga estadistika ayon sa cube. Bago magsimula, irehistro ang pinakamalapit sa iyo. 20 segundo lang ito!",
         "cta": "Oo, gabayan mo ako",
         "dismiss": "Hindi na, salamat"
       },
       "select": {
         "title": "Piliin ang iyong cube",
-        "content": "Buksan ang cube selector para pumili o gumawa ng koleksyon."
+        "content": "Buksan ang cube selector para idagdag ang cube na iyong ita-time."
       },
       "create": {
-        "title": "Gumawa ng koleksyon",
-        "content": "I-click dito para simulan ang iyong unang koleksyon."
+        "title": "Irehistro ang iyong cube",
+        "content": "Gumawa ng iyong unang koleksyon para simulang subaybayan ang mga oras at estadistika ng cube na ito."
       }
     },
     "sidebar-rotating-text": {
