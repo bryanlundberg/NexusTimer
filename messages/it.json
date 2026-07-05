@@ -402,6 +402,7 @@
       },
       "algorithms": {
         "total-learned": "algoritmi appresi",
+        "no-learned": "Questo utente non ha ancora contrassegnato alcun algoritmo come appreso.",
         "methods-count": "{count, plural, one {# metodo} other {# metodi}}",
         "view-cases": "{count, plural, one {# caso} other {# casi}}"
       },
@@ -412,7 +413,7 @@
         "empty": "Nessun obiettivo sbloccato ancora."
       },
       "edit-profile": "Modifica profilo",
-      "no-backup-data": "Questo account non ha dati di backup da mostrare.",
+      "no-backup-data": "Questo utente non ha ancora creato un backup dei propri dati, quindi non c'è nulla da mostrare.",
       "solve-card": {
         "single": "Singolo",
         "ao5": "Ao5 (Migliore)",

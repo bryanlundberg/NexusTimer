@@ -402,6 +402,7 @@
       },
       "algorithms": {
         "total-learned": "algoritma dipelajari",
+        "no-learned": "Pengguna ini belum menandai algoritma apa pun sebagai dipelajari.",
         "methods-count": "{count, plural, other {# metode}}",
         "view-cases": "{count, plural, other {# kasus}}"
       },
@@ -412,7 +413,7 @@
         "empty": "Belum ada pencapaian yang terbuka."
       },
       "edit-profile": "Edit profil",
-      "no-backup-data": "Akun ini tidak memiliki data cadangan untuk ditampilkan.",
+      "no-backup-data": "Pengguna ini belum membuat cadangan datanya, jadi tidak ada yang bisa ditampilkan.",
       "solve-card": {
         "single": "Tunggal",
         "ao5": "Ao5 (Terbaik)",

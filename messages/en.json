@@ -402,6 +402,7 @@
       },
       "algorithms": {
         "total-learned": "algorithms learned",
+        "no-learned": "This user hasn't marked any algorithm as learned yet.",
         "methods-count": "{count, plural, one {# method} other {# methods}}",
         "view-cases": "{count, plural, one {# case} other {# cases}}"
       },
@@ -412,7 +413,7 @@
         "empty": "No achievements unlocked yet."
       },
       "edit-profile": "Edit profile",
-      "no-backup-data": "This account has no backup data to display.",
+      "no-backup-data": "This user hasn't created a backup of their data yet, so there's nothing to display.",
       "solve-card": {
         "single": "Single",
         "ao5": "Ao5 (Best)",

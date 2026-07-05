@@ -327,11 +327,12 @@
       },
       "algorithms": {
         "total-learned": "algorithmes appris",
+        "no-learned": "Cet utilisateur n'a encore marqué aucun algorithme comme appris.",
         "methods-count": "{count, plural, one {# méthode} other {# méthodes}}",
         "view-cases": "{count, plural, one {# cas} other {# cas}}"
       },
       "edit-profile": "Modifier le profil",
-      "no-backup-data": "Ce compte n'a pas de données de sauvegarde à afficher.",
+      "no-backup-data": "Cet utilisateur n'a pas encore créé de sauvegarde de ses données, il n'y a donc rien à afficher.",
       "solve-card": {
         "single": "Single",
         "ao5": "Ao5 (Meilleur)",

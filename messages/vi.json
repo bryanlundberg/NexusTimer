@@ -402,6 +402,7 @@
       },
       "algorithms": {
         "total-learned": "thuật toán đã học",
+        "no-learned": "Người dùng này chưa đánh dấu bất kỳ thuật toán nào là đã học.",
         "methods-count": "{count, plural, other {# phương pháp}}",
         "view-cases": "{count, plural, other {# trường hợp}}"
       },
@@ -412,7 +413,7 @@
         "empty": "Chưa mở khóa thành tích nào."
       },
       "edit-profile": "Chỉnh sửa hồ sơ",
-      "no-backup-data": "Tài khoản này không có dữ liệu sao lưu để hiển thị.",
+      "no-backup-data": "Người dùng này chưa tạo bản sao lưu dữ liệu của mình, nên không có gì để hiển thị.",
       "solve-card": {
         "single": "Đơn",
         "ao5": "Ao5 (Tốt nhất)",

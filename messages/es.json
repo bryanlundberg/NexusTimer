@@ -306,11 +306,12 @@
       },
       "algorithms": {
         "total-learned": "algoritmos aprendidos",
+        "no-learned": "Este usuario aún no ha marcado ningún algoritmo como aprendido.",
         "methods-count": "{count, plural, one {# método} other {# métodos}}",
         "view-cases": "{count, plural, one {# caso} other {# casos}}"
       },
       "edit-profile": "Editar perfil",
-      "no-backup-data": "Esta cuenta no tiene datos de respaldo para mostrar.",
+      "no-backup-data": "Este usuario aún no ha creado un respaldo de sus datos, así que no hay nada que mostrar.",
       "solve-card": {
         "single": "Single",
         "ao5": "Ao5 (Mejor)",

@@ -402,6 +402,7 @@
       },
       "algorithms": {
         "total-learned": "wyuczonych algorytmów",
+        "no-learned": "Ten użytkownik nie oznaczył jeszcze żadnego algorytmu jako nauczonego.",
         "methods-count": "{count, plural, one {# metoda} other {# metod}}",
         "view-cases": "{count, plural, one {# przypadek} other {# przypadków}}"
       },
@@ -412,7 +413,7 @@
         "empty": "Brak odblokowanych osiągnięć."
       },
       "edit-profile": "Edytuj profil",
-      "no-backup-data": "To konto nie ma danych kopii zapasowej do wyświetlenia.",
+      "no-backup-data": "Ten użytkownik nie utworzył jeszcze kopii zapasowej swoich danych, więc nie ma nic do wyświetlenia.",
       "solve-card": {
         "single": "Pojedyncze",
         "ao5": "Ao5 (Najlepsze)",

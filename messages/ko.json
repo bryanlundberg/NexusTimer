@@ -327,11 +327,12 @@
       },
       "algorithms": {
         "total-learned": "개의 알고리즘 학습됨",
+        "no-learned": "이 사용자는 아직 학습한 알고리즘을 표시하지 않았습니다.",
         "methods-count": "{count, plural, other {# 메서드}}",
         "view-cases": "{count, plural, other {# 케이스}}"
       },
       "edit-profile": "프로필 수정",
-      "no-backup-data": "표시할 백업 데이터가 없는 계정입니다.",
+      "no-backup-data": "이 사용자는 아직 데이터 백업을 만들지 않아 표시할 내용이 없습니다.",
       "solve-card": {
         "single": "싱글",
         "ao5": "최고 Ao5",

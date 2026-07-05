@@ -327,11 +327,12 @@
       },
       "algorithms": {
         "total-learned": "個のアルゴリズムを習得",
+        "no-learned": "このユーザーはまだアルゴリズムを習得済みとしてマークしていません。",
         "methods-count": "{count, plural, other {# メソッド}}",
         "view-cases": "{count, plural, other {# ケース}}"
       },
       "edit-profile": "プロフィールを編集",
-      "no-backup-data": "このアカウントには表示できるデータがありません。",
+      "no-backup-data": "このユーザーはまだデータのバックアップを作成していないため、表示できるものがありません。",
       "solve-card": {
         "single": "単発",
         "ao5": "ベストAo5",

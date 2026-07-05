@@ -327,11 +327,12 @@
       },
       "algorithms": {
         "total-learned": "Algorithmen gelernt",
+        "no-learned": "Dieser Benutzer hat noch keinen Algorithmus als gelernt markiert.",
         "methods-count": "{count, plural, one {# Methode} other {# Methoden}}",
         "view-cases": "{count, plural, one {# Fall} other {# Fälle}}"
       },
       "edit-profile": "Profil bearbeiten",
-      "no-backup-data": "Keine Backup-Daten vorhanden.",
+      "no-backup-data": "Dieser Benutzer hat noch kein Backup seiner Daten erstellt, daher gibt es nichts anzuzeigen.",
       "solve-card": {
         "single": "Single",
         "ao5": "Ao5 (Bester)",

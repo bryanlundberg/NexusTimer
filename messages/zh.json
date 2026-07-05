@@ -327,11 +327,12 @@
       },
       "algorithms": {
         "total-learned": "个已学算法",
+        "no-learned": "该用户尚未将任何算法标记为已学。",
         "methods-count": "{count, plural, other {# 个方法}}",
         "view-cases": "{count, plural, other {# 个情况}}"
       },
       "edit-profile": "编辑资料",
-      "no-backup-data": "此账户暂无备份数据可显示。",
+      "no-backup-data": "该用户尚未创建数据备份，因此没有可显示的内容。",
       "solve-card": {
         "single": "最快 (Single)",
         "ao5": "最佳 Ao5",

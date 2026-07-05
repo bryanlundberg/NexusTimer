@@ -402,6 +402,7 @@
       },
       "algorithms": {
         "total-learned": "natutunang algorithm",
+        "no-learned": "Hindi pa namarkahan ng user na ito ang anumang algorithm bilang natutunan.",
         "methods-count": "{count, plural, other {# paraan}}",
         "view-cases": "{count, plural, other {# kaso}}"
       },
@@ -412,7 +413,7 @@
         "empty": "Wala pang na-unlock na achievement."
       },
       "edit-profile": "I-edit ang profile",
-      "no-backup-data": "Walang backup data ang account na ito na maipapakita.",
+      "no-backup-data": "Hindi pa gumagawa ng backup ng kanyang data ang user na ito, kaya walang maipapakita.",
       "solve-card": {
         "single": "Single",
         "ao5": "Ao5 (Best)",
