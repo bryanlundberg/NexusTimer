@@ -2,6 +2,7 @@ export enum TimerMode {
   NORMAL = 'normal',
   MANUAL = 'manual',
   STACKMAT = 'stackmat',
+  STACKMAT_BLUETOOTH = 'stackmat-bluetooth',
   VIRTUAL = 'virtual',
   SMART_CUBE = 'smart-cube',
   NEXUS_CONNECT = 'nexus-connect'
