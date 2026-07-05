@@ -531,17 +531,7 @@
       "delete-app-data-title": "Supprimer toutes les données ?",
       "delete-app-data-subtitle": "Cette action supprimera définitivement tous vos cubos et temps. Êtes-vous sûr ?",
       "delete-app-data-success": "Toutes les données ont été supprimées",
-      "cloud-sync": "Synchro Cloud",
-      "enable-auto-load": "Activer le chargement auto",
-      "auto-load-description": "Charge automatiquement vos données depuis le cloud à l'ouverture",
-      "backup-interval": "Fréquence du rappel de sauvegarde",
-      "backup-interval-description": "Affiche un rappel de sauvegarde dans le cloud après ce nombre de résolutions",
-      "sync-toast": {
-        "title": "Hé ! Temps de synchroniser !",
-        "description": "Fusionner vos données locales avec la sauvegarde cloud ?",
-        "cancel": "Annuler",
-        "merge": "Fusionner"
-      }
+      "cloud-sync": "Synchro Cloud"
     },
     "TransferSolvesPage": {
       "title": "Transférer les temps",

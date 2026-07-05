@@ -491,17 +491,7 @@
       "delete-app-data-title": "¿Eliminar todos los datos de la aplicación?",
       "delete-app-data-subtitle": "Esta acción eliminará permanentemente todos tus cubos y tiempos y no se puede deshacer. ¿Estás seguro de que quieres continuar?",
       "delete-app-data-success": "Todos los datos de la aplicación han sido eliminados",
-      "cloud-sync": "Sincronización en la nube",
-      "enable-auto-load": "Habilitar carga automática de la nube",
-      "auto-load-description": "Carga automáticamente tus datos desde la nube al abrir la aplicación",
-      "backup-interval": "Frecuencia del recordatorio de respaldo",
-      "backup-interval-description": "Muestra un recordatorio para respaldar en la nube tras esta cantidad de resoluciones",
-      "sync-toast": {
-        "title": "¡Hola! ¡Es hora de sincronizar!",
-        "description": "¿Fusionar tus datos locales con el respaldo en la nube para sincronizar tu dispositivo y crear un respaldo actualizado?",
-        "cancel": "Cancelar",
-        "merge": "Fusionar"
-      }
+      "cloud-sync": "Sincronización en la nube"
     },
     "others": {
       "suggestions": "Sugerencias"

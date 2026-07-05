@@ -633,17 +633,7 @@
       "delete-app-data-title": "Delete all app data?",
       "delete-app-data-subtitle": "This action will permanently delete all your cubes and solves data and cannot be undone. Are you sure you want to proceed?",
       "delete-app-data-success": "All app data has been deleted",
-      "cloud-sync": "Cloud Sync",
-      "enable-auto-load": "Enable Automatic Load Cloud",
-      "auto-load-description": "Automatically load your data from the cloud when you open the app",
-      "backup-interval": "Backup reminder frequency",
-      "backup-interval-description": "Show a reminder to back up to the cloud after this many solves",
-      "sync-toast": {
-        "title": "Hey there! Time to Sync!",
-        "description": "Merge your local data with cloud backup to sync your device and create an updated backup?",
-        "cancel": "Cancel",
-        "merge": "Merge"
-      }
+      "cloud-sync": "Cloud Sync"
     },
     "TransferSolvesPage": {
       "title": "Transfer Solves",

@@ -531,17 +531,7 @@
       "delete-app-data-title": "Alle Daten löschen?",
       "delete-app-data-subtitle": "Dies löscht alle Würfel und Zeiten dauerhaft. Bist du sicher?",
       "delete-app-data-success": "Alle Daten gelöscht",
-      "cloud-sync": "Cloud-Sync",
-      "enable-auto-load": "Auto-Laden aktivieren",
-      "auto-load-description": "Lädt Cloud-Daten beim Start automatisch",
-      "backup-interval": "Häufigkeit der Backup-Erinnerung",
-      "backup-interval-description": "Zeigt nach dieser Anzahl an Solves eine Erinnerung zum Cloud-Backup an",
-      "sync-toast": {
-        "title": "Zeit zum Synchronisieren!",
-        "description": "Lokale Daten mit Cloud-Backup zusammenführen?",
-        "cancel": "Abbrechen",
-        "merge": "Zusammenführen"
-      }
+      "cloud-sync": "Cloud-Sync"
     },
     "TransferSolvesPage": {
       "title": "Zeiten übertragen",

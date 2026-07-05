@@ -642,17 +642,7 @@
       "delete-app-data-title": "Xóa tất cả dữ liệu ứng dụng?",
       "delete-app-data-subtitle": "Thao tác này sẽ xóa vĩnh viễn toàn bộ dữ liệu khối và lượt giải của bạn và không thể hoàn tác. Bạn có chắc muốn tiếp tục?",
       "delete-app-data-success": "Đã xóa toàn bộ dữ liệu ứng dụng",
-      "cloud-sync": "Đồng bộ đám mây",
-      "enable-auto-load": "Bật tự động tải từ đám mây",
-      "auto-load-description": "Tự động tải dữ liệu của bạn từ đám mây khi mở ứng dụng",
-      "backup-interval": "Tần suất nhắc sao lưu",
-      "backup-interval-description": "Hiển thị nhắc nhở sao lưu lên đám mây sau số lượt giải này",
-      "sync-toast": {
-        "title": "Này bạn! Đến lúc đồng bộ rồi!",
-        "description": "Hợp nhất dữ liệu cục bộ với bản sao lưu đám mây để đồng bộ thiết bị và tạo bản sao lưu cập nhật?",
-        "cancel": "Hủy",
-        "merge": "Hợp nhất"
-      }
+      "cloud-sync": "Đồng bộ đám mây"
     },
     "TransferSolvesPage": {
       "title": "Chuyển lượt giải",

@@ -642,17 +642,7 @@
       "delete-app-data-title": "Burahin ang lahat ng app data?",
       "delete-app-data-subtitle": "Permanenteng buburahin ng aksyong ito ang lahat ng data ng mga cube at solve mo at hindi na maibabalik. Sigurado ka bang gusto mong magpatuloy?",
       "delete-app-data-success": "Nabura na ang lahat ng app data",
-      "cloud-sync": "Cloud Sync",
-      "enable-auto-load": "I-enable ang Automatic Load Cloud",
-      "auto-load-description": "Awtomatikong i-load ang data mo mula sa cloud kapag binuksan ang app",
-      "backup-interval": "Dalas ng paalala sa backup",
-      "backup-interval-description": "Magpakita ng paalala na mag-back up sa cloud pagkatapos ng ganitong dami ng solve",
-      "sync-toast": {
-        "title": "Uy! Oras na para mag-Sync!",
-        "description": "Pagsamahin ang lokal na data mo sa cloud backup para i-sync ang device mo at gumawa ng updated na backup?",
-        "cancel": "Kanselahin",
-        "merge": "Pagsamahin"
-      }
+      "cloud-sync": "Cloud Sync"
     },
     "TransferSolvesPage": {
       "title": "Ilipat ang mga Solve",

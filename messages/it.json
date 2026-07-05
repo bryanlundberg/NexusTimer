@@ -642,17 +642,7 @@
       "delete-app-data-title": "Eliminare tutti i dati dell'app?",
       "delete-app-data-subtitle": "Questa azione eliminerà definitivamente tutti i dati dei tuoi cubi e solve e non può essere annullata. Sei sicuro di voler procedere?",
       "delete-app-data-success": "Tutti i dati dell'app sono stati eliminati",
-      "cloud-sync": "Sincronizzazione cloud",
-      "enable-auto-load": "Abilita caricamento automatico dal cloud",
-      "auto-load-description": "Carica automaticamente i tuoi dati dal cloud quando apri l'app",
-      "backup-interval": "Frequenza promemoria backup",
-      "backup-interval-description": "Mostra un promemoria per il backup sul cloud dopo questo numero di solve",
-      "sync-toast": {
-        "title": "Ehi! È ora di sincronizzare!",
-        "description": "Unire i dati locali con il backup sul cloud per sincronizzare il dispositivo e creare un backup aggiornato?",
-        "cancel": "Annulla",
-        "merge": "Unisci"
-      }
+      "cloud-sync": "Sincronizzazione cloud"
     },
     "TransferSolvesPage": {
       "title": "Trasferisci solve",

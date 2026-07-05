@@ -642,17 +642,7 @@
       "delete-app-data-title": "Usunąć wszystkie dane aplikacji?",
       "delete-app-data-subtitle": "Ta akcja trwale usunie wszystkie dane Twoich kostek i ułożeń i nie można jej cofnąć. Czy na pewno chcesz kontynuować?",
       "delete-app-data-success": "Wszystkie dane aplikacji zostały usunięte",
-      "cloud-sync": "Synchronizacja w chmurze",
-      "enable-auto-load": "Włącz automatyczne wczytywanie z chmury",
-      "auto-load-description": "Automatycznie wczytuj dane z chmury po otwarciu aplikacji",
-      "backup-interval": "Częstotliwość przypomnień o kopii zapasowej",
-      "backup-interval-description": "Pokaż przypomnienie o kopii zapasowej w chmurze po tylu ułożeniach",
-      "sync-toast": {
-        "title": "Hej! Czas na synchronizację!",
-        "description": "Połączyć dane lokalne z kopią zapasową w chmurze, aby zsynchronizować urządzenie i utworzyć zaktualizowaną kopię?",
-        "cancel": "Anuluj",
-        "merge": "Połącz"
-      }
+      "cloud-sync": "Synchronizacja w chmurze"
     },
     "TransferSolvesPage": {
       "title": "Przenoszenie ułożeń",

@@ -531,17 +531,7 @@
       "delete-app-data-title": "Excluir todos os dados?",
       "delete-app-data-subtitle": "Esta ação excluirá permanentemente todos os seus cubos e tempos. Confirmar?",
       "delete-app-data-success": "Todos os dados da aplicação foram excluídos",
-      "cloud-sync": "Sincronização Cloud",
-      "enable-auto-load": "Habilitar carregamento automático",
-      "auto-load-description": "Carrega automaticamente seus dados da nuvem ao abrir",
-      "backup-interval": "Frequência do lembrete de backup",
-      "backup-interval-description": "Mostra um lembrete para fazer backup na nuvem após esta quantidade de resoluções",
-      "sync-toast": {
-        "title": "Ei! Hora de sincronizar!",
-        "description": "Mesclar seus dados locais com o backup na nuvem?",
-        "cancel": "Cancelar",
-        "merge": "Mesclar"
-      }
+      "cloud-sync": "Sincronização Cloud"
     },
     "TransferSolvesPage": {
       "title": "Transferir tempos",

@@ -531,17 +531,7 @@
       "delete-app-data-title": "Удалить всё?",
       "delete-app-data-subtitle": "Это навсегда удалит все кубы и сборки. Продолжить?",
       "delete-app-data-success": "Все данные удалены",
-      "cloud-sync": "Облачная синхронизация",
-      "enable-auto-load": "Автозагрузка",
-      "auto-load-description": "Загружать из облака при запуске",
-      "backup-interval": "Частота напоминаний о бэкапе",
-      "backup-interval-description": "Показывать напоминание о бэкапе в облако после такого количества сборок",
-      "sync-toast": {
-        "title": "Пора синхронизироваться!",
-        "description": "Объединить локальные данные с облаком?",
-        "cancel": "Отмена",
-        "merge": "Слить"
-      }
+      "cloud-sync": "Облачная синхронизация"
     },
     "TransferSolvesPage": {
       "title": "Перенос сборок",

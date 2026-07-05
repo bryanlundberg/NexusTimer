@@ -642,17 +642,7 @@
       "delete-app-data-title": "Hapus semua data aplikasi?",
       "delete-app-data-subtitle": "Tindakan ini akan menghapus semua data kubus dan solve-mu secara permanen dan tidak dapat dibatalkan. Apakah kamu yakin ingin melanjutkan?",
       "delete-app-data-success": "Semua data aplikasi telah dihapus",
-      "cloud-sync": "Sinkronisasi Cloud",
-      "enable-auto-load": "Aktifkan Muat Otomatis dari Cloud",
-      "auto-load-description": "Muat datamu secara otomatis dari cloud saat membuka aplikasi",
-      "backup-interval": "Frekuensi pengingat cadangan",
-      "backup-interval-description": "Tampilkan pengingat untuk mencadangkan ke cloud setelah sekian banyak solve",
-      "sync-toast": {
-        "title": "Hai! Waktunya Sinkronisasi!",
-        "description": "Gabungkan data lokalmu dengan cadangan cloud untuk menyinkronkan perangkatmu dan membuat cadangan terbaru?",
-        "cancel": "Batal",
-        "merge": "Gabungkan"
-      }
+      "cloud-sync": "Sinkronisasi Cloud"
     },
     "TransferSolvesPage": {
       "title": "Transfer Solve",

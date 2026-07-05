@@ -531,17 +531,7 @@
       "delete-app-data-title": "删除所有应用数据？",
       "delete-app-data-subtitle": "此操作将永久删除你所有的魔方和还原纪录，且无法撤销。你确定要继续吗？",
       "delete-app-data-success": "所有应用数据已删除",
-      "cloud-sync": "云同步",
-      "enable-auto-load": "启用云端自动加载",
-      "auto-load-description": "打开应用时自动从云端加载数据",
-      "backup-interval": "备份提醒频率",
-      "backup-interval-description": "在完成这么多次还原后显示云端备份提醒",
-      "sync-toast": {
-        "title": "嗨！该同步了！",
-        "description": "将本地数据与云端备份合并以同步你的设备并创建更新的备份吗？",
-        "cancel": "取消",
-        "merge": "合并"
-      }
+      "cloud-sync": "云同步"
     },
     "TransferSolvesPage": {
       "title": "转移还原纪录",

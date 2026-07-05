@@ -531,17 +531,7 @@
       "delete-app-data-title": "全データを削除しますか？",
       "delete-app-data-subtitle": "すべてのキューブとタイムデータが完全に削除されます。よろしいですか？",
       "delete-app-data-success": "すべてのデータを削除しました",
-      "cloud-sync": "クラウド同期",
-      "enable-auto-load": "自動読み込みを有効にする",
-      "auto-load-description": "アプリ起動時にクラウドから読み込みます",
-      "backup-interval": "バックアップ通知の頻度",
-      "backup-interval-description": "この回数のソルブ後にクラウドへのバックアップを促す通知を表示します",
-      "sync-toast": {
-        "title": "同期の時間です！",
-        "description": "ローカルデータをクラウドと同期して最新の状態にしますか？",
-        "cancel": "キャンセル",
-        "merge": "マージ"
-      }
+      "cloud-sync": "クラウド同期"
     },
     "TransferSolvesPage": {
       "title": "タイムを移動",

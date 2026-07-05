@@ -531,17 +531,7 @@
       "delete-app-data-title": "모든 데이터를 삭제할까요?",
       "delete-app-data-subtitle": "모든 큐브와 기록 데이터가 영구적으로 삭제됩니다. 계속하시겠습니까?",
       "delete-app-data-success": "모든 데이터가 삭제되었습니다",
-      "cloud-sync": "클라우드 동기화",
-      "enable-auto-load": "자동 로드 활성화",
-      "auto-load-description": "앱 시작 시 자동으로 클라우드에서 로드합니다",
-      "backup-interval": "백업 알림 빈도",
-      "backup-interval-description": "이 횟수만큼 솔빙한 후 클라우드 백업 알림을 표시합니다",
-      "sync-toast": {
-        "title": "동기화할 시간입니다!",
-        "description": "로컬 데이터를 클라우드 백업과 병합하여 최신 상태로 유지할까요?",
-        "cancel": "취소",
-        "merge": "병합"
-      }
+      "cloud-sync": "클라우드 동기화"
     },
     "TransferSolvesPage": {
       "title": "기록 이동",
