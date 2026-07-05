@@ -14,7 +14,7 @@ import { Cube } from '@/entities/cube/model/types'
 import useUserBadges from '@/entities/achievement/model/useUserBadges'
 import { useUserLearned } from '@/entities/trainer-learned/model/useUserLearned'
 import { useTranslations } from 'next-intl'
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
@@ -71,6 +71,20 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
     [PTabs.ACHIEVEMENTS]: t('achievements')
   }
 
+  const counts = useMemo<Partial<Record<PTabs, number>>>(() => {
+    const solves = [
+      ...cubes.flatMap((cube) => cube.solves.session.map((s) => ({ ...s, category: cube.category }))),
+      ...cubes.flatMap((cube) => cube.solves.all.map((s) => ({ ...s, category: cube.category })))
+    ].filter((s) => !s.isDeleted)
+
+    return {
+      [PTabs.OVERVIEW]: new Set(solves.map((s) => s.category)).size,
+      [PTabs.CUBES]: cubes.length,
+      [PTabs.TIMELINE]: solves.length,
+      [PTabs.ALGORITHMS]: learned?.total ?? 0
+    }
+  }, [cubes, learned?.total])
+
   return (
     <div className="flex flex-col w-full">
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
@@ -83,7 +97,19 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
         {/* Tabs nav + actions row */}
         <div className="flex flex-row items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
           <AnimatedTabsList
-            items={tabs.map((tab) => ({ value: tab, label: labels[tab] }))}
+            items={tabs.map((tab) => ({
+              value: tab,
+              label: (
+                <span className="inline-flex items-center gap-1.5">
+                  {labels[tab]}
+                  {counts[tab] != null && (
+                    <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 rounded-full bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/10 group-data-[state=active]:text-primary">
+                      {counts[tab]}
+                    </span>
+                  )}
+                </span>
+              )
+            }))}
             activeValue={value}
             layoutId="people-tab-indicator"
             fitted
