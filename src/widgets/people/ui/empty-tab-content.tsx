@@ -1,10 +1,14 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
-export default function EmptyTabContent() {
+interface EmptyTabContentProps {
+  message?: string
+}
+
+export default function EmptyTabContent({ message }: EmptyTabContentProps) {
   const t = useTranslations('Index.PeoplePage')
   return (
-    <div className="relative flex flex-col items-center justify-center h-96 bg-card/50 overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center h-96 overflow-hidden">
       <Image
         src="/bg.webp"
         alt="Background Image"
@@ -20,7 +24,7 @@ export default function EmptyTabContent() {
         }}
       ></Image>
       <div className="relative scroll-m-20 text-xl tracking-tight max-w-prose md:max-w-xl mx-auto text-center px-4">
-        {t('no-backup-data')}
+        {message ?? t('no-backup-data')}
       </div>
     </div>
   )
