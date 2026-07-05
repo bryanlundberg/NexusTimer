@@ -49,9 +49,7 @@ export default function AnimatedTabsList({
               layoutId={layoutId}
               className="absolute inset-0 rounded-md bg-background shadow-sm ring-1 ring-border/70"
               transition={INDICATOR_SPRING}
-            >
-              <span className="absolute left-[3px] top-1/2 h-[55%] w-[3px] -translate-y-1/2 rounded-full bg-primary" />
-            </motion.span>
+            />
           )}
           <span className="relative z-10 inline-flex items-center gap-1.5">
             {Icon && <Icon className="size-4" />}
