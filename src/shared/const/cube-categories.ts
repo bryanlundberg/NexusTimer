@@ -40,3 +40,12 @@ export type CubeCategory =
 export function isValidCategory(category: string): category is CubeCategory {
   return CUBE_CATEGORIES.includes(category as CubeCategory)
 }
+
+/**
+ * Returns the canonical sort index for a category based on CUBE_CATEGORIES order.
+ * Unknown categories are pushed to the end.
+ */
+export function getCategoryOrder(category: string): number {
+  const index = CUBE_CATEGORIES.indexOf(category as CubeCategory)
+  return index === -1 ? CUBE_CATEGORIES.length : index
+}
