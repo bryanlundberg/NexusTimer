@@ -12,7 +12,7 @@ export default function TimerVirtual() {
   const setNewScramble = useTimerStore((store) => store.setNewScramble)
   const setIsSolvingStore = useTimerStore((store) => store.setIsSolving)
 
-  const cubeSize = selectedCube?.category === '2x2' ? 2 : 3
+  const cubeSize = selectedCube?.category === '2x2' || selectedCube?.category === '2x2 Virtual' ? 2 : 3
   const is3x3 = cubeSize === 3
 
   const { containerRef, player, engine, recreatePlayer } = useVirtualCube({ cubeSize, scramble })
