@@ -22,7 +22,9 @@ const CSTIMER_SCRAMBLE: Record<CubeCategory, { type: string; length?: number }> 
   Pyraminx: { type: 'pyrso' },
   Megaminx: { type: 'mgmp', length: 70 },
   Clock: { type: 'clkwca' },
-  FTO: { type: 'ftoso' }
+  FTO: { type: 'ftoso' },
+  '2x2 Virtual': { type: '222so' },
+  '3x3 Virtual': { type: '333' }
 }
 
 export default function genScramble(category: CubeCategory) {
