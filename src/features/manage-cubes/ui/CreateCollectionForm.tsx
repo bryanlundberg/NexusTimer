@@ -125,7 +125,7 @@ export default function CreateCollectionForm() {
               </span>
             </div>
 
-            <div className="grid grid-cols-4 sm:grid-cols-8 gap-1.5 sm:gap-2">
+            <div className="grid grid-cols-4 sm:grid-cols-9 gap-1.5 sm:gap-2">
               {cubeCollection.map((e) => {
                 const selected = formWatch.category === e.name
                 return (
@@ -138,7 +138,7 @@ export default function CreateCollectionForm() {
                     title={e.name}
                     onClick={() => setValue('category', e.name)}
                     className={cn(
-                      'group focus-visible:ring-ring focus-visible:ring-offset-background relative flex min-w-0 flex-col items-center gap-1 rounded-lg border-0 p-1.5 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:gap-1.5 sm:border sm:p-2',
+                      'group focus-visible:ring-ring focus-visible:ring-offset-background relative flex min-w-0 flex-col items-center gap-1 border-0 p-1.5 transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:gap-1.5 sm:border sm:p-2',
                       selected
                         ? 'border-primary bg-primary/5 ring-2 ring-primary'
                         : 'border-border hover:border-primary/40 hover:bg-accent'
@@ -157,11 +157,11 @@ export default function CreateCollectionForm() {
                       width={56}
                       height={56}
                       draggable={false}
-                      className="size-9 transition-transform duration-150 group-hover:scale-105 motion-reduce:transform-none sm:size-12"
+                      className="size-9 transition-transform duration-150 motion-reduce:transform-none sm:size-12"
                     />
                     <span
                       className={cn(
-                        'hidden w-full truncate text-center text-[11px] leading-tight font-medium sm:block',
+                        'w-full truncate text-center text-[8px] leading-tight font-medium block',
                         selected ? 'text-foreground' : 'text-muted-foreground'
                       )}
                     >
