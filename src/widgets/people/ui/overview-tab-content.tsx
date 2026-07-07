@@ -3,6 +3,7 @@ import _ from 'lodash'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import PeopleOverviewRow, { type CategorySolve } from '@/widgets/people/ui/PeopleOverviewRow'
 import { Cube } from '@/entities/cube/model/types'
+import { getCategoryOrder } from '@/shared/const/cube-categories'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 
@@ -29,7 +30,7 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
   }, [cubes])
 
   const rows = useMemo(
-    () => _.orderBy(Object.entries(solvesByCategory), ([, solves]) => solves.length, 'desc'),
+    () => _.orderBy(Object.entries(solvesByCategory), ([category]) => getCategoryOrder(category), 'asc'),
     [solvesByCategory]
   )
 
