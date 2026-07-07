@@ -48,9 +48,17 @@ export function CubeCard({ cube }: CubeCardProps) {
       key={cube.id}
       className={cn(
         'relative overflow-hidden gap-2 bg-card/50 shadow-none transition-colors duration-200 hover:bg-card/80 hover:ring-2 hover:ring-primary',
-        isActive && 'border-primary/15'
+        isActive && 'border-primary/15',
+        cube.favorite &&
+          'border-amber-400/50 bg-gradient-to-br from-amber-400/25 via-amber-300/15 to-amber-400/10 ring-1 ring-amber-400/40 hover:ring-amber-400 hover:from-amber-400/30 dark:border-amber-400/40 dark:from-amber-400/15 dark:via-amber-300/[0.08] dark:to-transparent'
       )}
     >
+      {cube.favorite && (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-amber-400/0 via-amber-400 to-amber-400/0"
+        />
+      )}
       <CardHeader className="pb-0">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2 min-w-0 flex-1">
