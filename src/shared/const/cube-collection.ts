@@ -120,5 +120,21 @@ export const cubeCollection: CubeCollection[] = [
     src: '/categories/fto.svg',
     displayId: 'fto',
     twistyId: 'fto'
+  },
+  {
+    event: '222',
+    id: 16,
+    name: '2x2 Virtual',
+    src: '/categories/cube222virtual.svg',
+    displayId: '2x2x2',
+    twistyId: '222'
+  },
+  {
+    event: '333',
+    id: 17,
+    name: '3x3 Virtual',
+    src: '/categories/cube333virtual.svg',
+    displayId: '3x3x3',
+    twistyId: '333'
   }
 ]
