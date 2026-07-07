@@ -28,8 +28,11 @@ interface ModeConfig {
   testId: string
   icon: LucideIcon
   requires?: string[]
+  badge?: string
   comingSoon?: boolean
 }
+
+const VIRTUAL_ONLY_CATEGORIES: string[] = ['2x2 Virtual', '3x3 Virtual']
 
 const MODES: ModeConfig[] = [
   { value: TimerMode.NORMAL, tKey: 'normal', testId: 'mode-normal', icon: Timer },
@@ -42,7 +45,14 @@ const MODES: ModeConfig[] = [
     icon: Bluetooth,
     comingSoon: true
   },
-  { value: TimerMode.VIRTUAL, tKey: 'virtual', testId: 'mode-virtual', icon: Gamepad2, requires: ['2x2', '3x3'] },
+  {
+    value: TimerMode.VIRTUAL,
+    tKey: 'virtual',
+    testId: 'mode-virtual',
+    icon: Gamepad2,
+    requires: VIRTUAL_ONLY_CATEGORIES,
+    badge: '2x2 · 3x3 Virtual'
+  },
   { value: TimerMode.SMART_CUBE, tKey: 'smart', testId: 'mode-smart', icon: Bluetooth, requires: ['3x3'] },
   { value: TimerMode.NEXUS_CONNECT, tKey: 'nexus-connect', testId: 'mode-nexus-connect', icon: Smartphone }
 ]
@@ -59,7 +69,14 @@ export default function ButtonSelectMode() {
 
   useEffect(() => {
     if (!selectedCube) return
-    if (selectedCube.category !== '3x3' && selectedCube.category !== '2x2' && timerMode === TimerMode.VIRTUAL) {
+    const isVirtualOnly = VIRTUAL_ONLY_CATEGORIES.includes(selectedCube.category)
+
+    if (isVirtualOnly) {
+      if (timerMode !== TimerMode.VIRTUAL) setTimerMode(TimerMode.VIRTUAL)
+      return
+    }
+
+    if (timerMode === TimerMode.VIRTUAL) {
       setTimerMode(TimerMode.NORMAL)
     }
     if (selectedCube.category !== '3x3' && timerMode === TimerMode.SMART_CUBE) {
@@ -78,8 +95,13 @@ export default function ButtonSelectMode() {
     })
   }
 
-  const isModeDisabled = (mode: ModeConfig) =>
-    !!mode.comingSoon || (!!mode.requires && (!selectedCube || !mode.requires.includes(selectedCube.category)))
+  const isModeDisabled = (mode: ModeConfig) => {
+    if (mode.comingSoon) return true
+    if (selectedCube && VIRTUAL_ONLY_CATEGORIES.includes(selectedCube.category)) {
+      return mode.value !== TimerMode.VIRTUAL
+    }
+    return !!mode.requires && (!selectedCube || !mode.requires.includes(selectedCube.category))
+  }
 
   const activeMode = MODES.find((mode) => mode.value === timerMode) ?? MODES[0]
 
@@ -140,9 +162,9 @@ export default function ButtonSelectMode() {
                 <div className="flex min-w-0 grow flex-col gap-0.5">
                   <div className="flex items-center gap-1.5">
                     <span className="text-sm font-medium leading-tight">{t(`HomePage.modes.${mode.tKey}`)}</span>
-                    {mode.requires && (
+                    {(mode.badge || mode.requires) && (
                       <span className="rounded-sm border border-border bg-muted px-1 py-px font-mono text-[10px] font-medium leading-tight text-muted-foreground">
-                        {mode.requires.join(' · ')}
+                        {mode.badge ?? mode.requires!.join(' · ')}
                       </span>
                     )}
                     {mode.comingSoon && (
