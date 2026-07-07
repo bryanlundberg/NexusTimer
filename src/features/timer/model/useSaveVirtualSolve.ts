@@ -28,7 +28,7 @@ export function useSaveVirtualSolve(engine: CubeEngine | null | undefined) {
       if (!selectedCube || !scramble) return
 
       const now = Date.now()
-      const puzzle = selectedCube.category === '2x2' ? '2x2x2' : '3x3x3'
+      const puzzle = selectedCube.category === '2x2' || selectedCube.category === '2x2 Virtual' ? '2x2x2' : '3x3x3'
       const newSolve: Solve = {
         id: genId(),
         startTime: now - timeMs,
