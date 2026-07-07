@@ -1,3 +1,5 @@
+import { useMemo } from 'react'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
@@ -7,6 +9,20 @@ import { Cube } from '@/entities/cube/model/types'
 import { useQueryState } from 'nuqs'
 import { STATES } from '@/shared/const/states'
 import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTransferSolvesStore'
+import { getCategoryOrder } from '@/shared/const/cube-categories'
+import { cubeCollection } from '@/shared/const/cube-collection'
+import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
+
+function CubeOption({ cube }: { cube: Cube }) {
+  const src = cubeCollection.find((c) => c.name === cube.category)?.src
+  return (
+    <div className="flex w-full items-center gap-2">
+      {src && <Image src={src} alt={`${cube.category} icon`} width={20} height={20} unoptimized className="shrink-0" />}
+      <span className="truncate">{cube.name}</span>
+      <CategoryBadge category={cube.category} className="ms-auto text-[10px]" />
+    </div>
+  )
+}
 
 interface TransferSolvesHeaderProps {
   cubes: Cube[]
@@ -31,6 +47,14 @@ export default function TransferSolvesHeader({
     { defaultValue: STATES.TRANSFER_SOLVES_PAGE.DESTINATION_COLLECTION.DEFAULT_VALUE }
   )
 
+  const sortedCubes = useMemo(
+    () =>
+      (cubes ?? [])
+        .slice()
+        .sort((a, b) => getCategoryOrder(a.category) - getCategoryOrder(b.category) || a.name.localeCompare(b.name)),
+    [cubes]
+  )
+
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center gap-2 w-full">
       <div className={'flex flex-col gap-1 grow md:flex-row w-full'}>
@@ -46,9 +70,9 @@ export default function TransferSolvesHeader({
             <SelectValue placeholder={t('collection-origin')} />
           </SelectTrigger>
           <SelectContent data-testid="source-collection-content">
-            {cubes?.map((cube) => (
+            {sortedCubes.map((cube) => (
               <SelectItem key={cube.id} value={cube.id} data-testid={`source-collection-${cube.name}`}>
-                {cube.name} ({cube.category})
+                <CubeOption cube={cube} />
               </SelectItem>
             ))}
           </SelectContent>
@@ -61,11 +85,11 @@ export default function TransferSolvesHeader({
             <SelectValue placeholder={t('collection-destination')} />
           </SelectTrigger>
           <SelectContent data-testid="destination-collection-content">
-            {cubes
-              ?.filter((cube) => cube.id !== sourceCollection)
+            {sortedCubes
+              .filter((cube) => cube.id !== sourceCollection)
               .map((cube) => (
                 <SelectItem key={cube.id} value={cube.id} data-testid={`destination-collection-${cube.name}`}>
-                  {cube.name} ({cube.category})
+                  <CubeOption cube={cube} />
                 </SelectItem>
               ))}
           </SelectContent>
