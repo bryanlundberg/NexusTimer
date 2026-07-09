@@ -8,8 +8,10 @@ import DisplayContainer from '@/features/timer/ui/display-container'
 import DisplayTime from '@/features/timer/ui/display-time'
 import { useAudioTrigger } from '@/shared/model/useAudioTrigger'
 import { useIsMobile } from '@/shared/model/use-mobile'
-import { TimerStatus } from '@/features/timer/model/enums'
+import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
+import { useNexusConnectStore } from '@/features/nexus-connect/model/useNexusConnectStore'
+import ConnectQRInline from '@/features/nexus-connect/ui/ConnectQRInline'
 
 export default function Timer({ children }: { children?: ReactNode }) {
   const settings = useSettingsStore((store) => store.settings)
@@ -23,6 +25,9 @@ export default function Timer({ children }: { children?: ReactNode }) {
   const setIsSolving = useTimerStore((store) => store.setIsSolving)
   const setSolvingTime = useTimerStore((store) => store.setSolvingTime)
   const timerMode = useTimerStore((store) => store.timerMode)
+  const nexusConnected = useNexusConnectStore((store) => store.isConnected)
+
+  const showNexusQR = timerMode === TimerMode.NEXUS_CONNECT && !nexusConnected
 
   useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
 
@@ -51,17 +56,20 @@ export default function Timer({ children }: { children?: ReactNode }) {
 
   return (
     <DisplayContainer>
-      {selectedCube && (
-        <DisplayTime
-          isSolving={isSolving}
-          timerStatus={timerStatus}
-          lastSolve={lastSolve}
-          isMobile={isMobile}
-          inspectionTime={inspectionTime}
-          hideWhileSolving={settings.features.hideWhileSolving}
-          inspectionRequired={settings.timer.inspection}
-        />
-      )}
+      {selectedCube &&
+        (showNexusQR ? (
+          <ConnectQRInline />
+        ) : (
+          <DisplayTime
+            isSolving={isSolving}
+            timerStatus={timerStatus}
+            lastSolve={lastSolve}
+            isMobile={isMobile}
+            inspectionTime={inspectionTime}
+            hideWhileSolving={settings.features.hideWhileSolving}
+            inspectionRequired={settings.timer.inspection}
+          />
+        ))}
       {lastSolve && settings.features.quickActionButtons && timerStatus === TimerStatus.IDLE && (
         <QuickActions
           solve={lastSolve}
