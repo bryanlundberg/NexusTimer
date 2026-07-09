@@ -24,6 +24,7 @@ export default function NXConnect() {
   const updateSetting = useSettingsStore((state) => state.updateSetting)
   const solvesSinceLastSync = useSettingsStore((state) => state.settings.sync.totalSolves)
   const nexusConnectId = useNexusConnectStore((state) => state.nexusConnectId)
+  const setIsConnected = useNexusConnectStore((state) => state.setIsConnected)
   const isSolving = useTimerStore((state) => state.isSolving)
   const [connectSessionData, setConnectSessionData] = useState<any>(null)
   const startSolveTime = useRef<number | null>(null)
@@ -70,14 +71,16 @@ export default function NXConnect() {
     onValue(connectionRef, (snapshot) => {
       const data = snapshot.val()
       setConnectSessionData(data)
+      setIsConnected(Boolean(data?.secondary))
     })
   }, [nexusConnectId])
 
   useEffect(() => {
     return () => {
       stopLocalTimer()
+      setIsConnected(false)
     }
-  }, [])
+  }, [setIsConnected])
 
   useEffect(() => {
     if (!connectSessionData) return
@@ -148,7 +151,6 @@ export default function NXConnect() {
       isSolving: false,
       updatedAt: Date.now()
     })
-
     ;(async () => {
       await update(connectionRef, {
         primary: {
