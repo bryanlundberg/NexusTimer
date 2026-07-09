@@ -13,8 +13,6 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useRef } from 'react'
 import type { AnimatedIconHandle } from '@/components/ui/types'
 import { TimerMode } from '@/features/timer/model/enums'
-import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
-import ConnectQR from '@/features/nexus-connect/ui/ConnectQR'
 import { useNexusConnectStore } from '@/features/nexus-connect/model/useNexusConnectStore'
 import genId from '@/shared/lib/genId'
 import LayoutDashboardIcon from '@/components/ui/layout-dashboard-icon'
@@ -62,7 +60,6 @@ export default function ButtonSelectMode() {
   const setTimerMode = useTimerStore((state) => state.setTimerMode)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const t = useTranslations('Index')
-  const open = useOverlayStore((state) => state.open)
   const connectId = useNexusConnectStore((state) => state.nexusConnectId)
   const setConnectId = useNexusConnectStore((state) => state.setNexusConnectId)
   const iconRef = useRef<AnimatedIconHandle>(null)
@@ -84,15 +81,8 @@ export default function ButtonSelectMode() {
     }
   }, [selectedCube, setTimerMode, timerMode])
 
-  const handleNexusConnectClick = async () => {
-    const id = connectId || genId()
-    if (!connectId) setConnectId(id)
-
-    open({
-      id: 'nexus-connect-info',
-      component: <ConnectQR />,
-      metadata: {}
-    })
+  const handleNexusConnectClick = () => {
+    if (!connectId) setConnectId(genId())
   }
 
   const isModeDisabled = (mode: ModeConfig) => {
