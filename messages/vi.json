@@ -223,7 +223,13 @@
       "htc-mac-step-1": "Định dạng: AA:BB:CC:DD:EE:FF.",
       "htc-mac-step-2": "Tìm nó trong ứng dụng của khối, trên hộp, ngăn pin, hoặc tại đây trong Chrome:",
       "htc-copy": "Sao chép",
-      "htc-copied": "Đã sao chép"
+      "htc-copied": "Đã sao chép",
+      "nx-scan-hint": "Quét mã QR này bằng ứng dụng Nexus Connect để ghép nối thiết bị của bạn.",
+      "nx-how-to": "Cách kết nối",
+      "nx-how-to-desc": "Làm theo các bước sau để ghép nối điện thoại với NexusTimer.",
+      "nx-step-1": "Cài đặt ứng dụng Nexus Connect.",
+      "nx-step-2": "Chạm Quét QR trong ứng dụng.",
+      "nx-step-3": "Hướng vào mã QR trên màn hình này."
     },
     "SolvesPage": {
       "title": "Lượt giải",

@@ -223,7 +223,13 @@
       "htc-mac-step-1": "Format: AA:BB:CC:DD:EE:FF.",
       "htc-mac-step-2": "Znajdź go w aplikacji kostki, na pudełku, w komorze baterii lub tutaj w Chrome:",
       "htc-copy": "Kopiuj",
-      "htc-copied": "Skopiowano"
+      "htc-copied": "Skopiowano",
+      "nx-scan-hint": "Zeskanuj ten kod QR aplikacją Nexus Connect, aby sparować urządzenie.",
+      "nx-how-to": "Jak połączyć",
+      "nx-how-to-desc": "Wykonaj te kroki, aby sparować telefon z NexusTimer.",
+      "nx-step-1": "Zainstaluj aplikację Nexus Connect.",
+      "nx-step-2": "Dotknij Skanuj QR w aplikacji.",
+      "nx-step-3": "Skieruj ją na kod QR na tym ekranie."
     },
     "SolvesPage": {
       "title": "Ułożenia",

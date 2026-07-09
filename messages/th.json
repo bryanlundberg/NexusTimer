@@ -223,7 +223,13 @@
       "htc-mac-step-1": "รูปแบบ: AA:BB:CC:DD:EE:FF",
       "htc-mac-step-2": "ค้นหาได้ในแอปของลูกบาศก์ บนกล่อง ในช่องใส่แบตเตอรี่ หรือที่นี่ใน Chrome:",
       "htc-copy": "คัดลอก",
-      "htc-copied": "คัดลอกแล้ว"
+      "htc-copied": "คัดลอกแล้ว",
+      "nx-scan-hint": "สแกน QR นี้ด้วยแอป Nexus Connect เพื่อจับคู่อุปกรณ์ของคุณ",
+      "nx-how-to": "วิธีเชื่อมต่อ",
+      "nx-how-to-desc": "ทำตามขั้นตอนเหล่านี้เพื่อจับคู่โทรศัพท์กับ NexusTimer",
+      "nx-step-1": "ติดตั้งแอป Nexus Connect",
+      "nx-step-2": "แตะ Scan QR ในแอป",
+      "nx-step-3": "เล็งไปที่ QR บนหน้าจอนี้"
     },
     "SolvesPage": {
       "title": "การต่อ",

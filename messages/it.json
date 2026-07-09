@@ -223,7 +223,13 @@
       "htc-mac-step-1": "Formato: AA:BB:CC:DD:EE:FF.",
       "htc-mac-step-2": "Trovalo nell'app del cubo, sulla scatola, nel vano batteria o qui in Chrome:",
       "htc-copy": "Copia",
-      "htc-copied": "Copiato"
+      "htc-copied": "Copiato",
+      "nx-scan-hint": "Scansiona questo QR con l'app Nexus Connect per associare il tuo dispositivo.",
+      "nx-how-to": "Come connettersi",
+      "nx-how-to-desc": "Segui questi passaggi per associare il tuo telefono a NexusTimer.",
+      "nx-step-1": "Installa l'app Nexus Connect.",
+      "nx-step-2": "Tocca Scansiona QR nell'app.",
+      "nx-step-3": "Puntalo sul QR di questo schermo."
     },
     "SolvesPage": {
       "title": "Solve",

@@ -162,7 +162,13 @@
       "htc-mac-step-1": "प्रारूप: AA:BB:CC:DD:EE:FF।",
       "htc-mac-step-2": "इसे क्यूब के ऐप, उसके बॉक्स, बैटरी कम्पार्टमेंट, या यहाँ Chrome में खोजें:",
       "htc-copy": "कॉपी करें",
-      "htc-copied": "कॉपी हो गया"
+      "htc-copied": "कॉपी हो गया",
+      "nx-scan-hint": "अपने डिवाइस को जोड़ने के लिए इस QR को Nexus Connect ऐप से स्कैन करें।",
+      "nx-how-to": "कैसे कनेक्ट करें",
+      "nx-how-to-desc": "अपने फ़ोन को NexusTimer से जोड़ने के लिए इन चरणों का पालन करें।",
+      "nx-step-1": "Nexus Connect ऐप इंस्टॉल करें।",
+      "nx-step-2": "ऐप में Scan QR पर टैप करें।",
+      "nx-step-3": "इसे इस स्क्रीन के QR की ओर करें।"
     },
     "SolvesPage": {
       "title": "समाधान",

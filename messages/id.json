@@ -223,7 +223,13 @@
       "htc-mac-step-1": "Format: AA:BB:CC:DD:EE:FF.",
       "htc-mac-step-2": "Temukan di aplikasi kubus, kotaknya, kompartemen baterai, atau di sini di Chrome:",
       "htc-copy": "Salin",
-      "htc-copied": "Tersalin"
+      "htc-copied": "Tersalin",
+      "nx-scan-hint": "Pindai QR ini dengan aplikasi Nexus Connect untuk memasangkan perangkatmu.",
+      "nx-how-to": "Cara menghubungkan",
+      "nx-how-to-desc": "Ikuti langkah-langkah ini untuk memasangkan ponselmu dengan NexusTimer.",
+      "nx-step-1": "Pasang aplikasi Nexus Connect.",
+      "nx-step-2": "Ketuk Scan QR di aplikasi.",
+      "nx-step-3": "Arahkan ke QR di layar ini."
     },
     "SolvesPage": {
       "title": "Solve",

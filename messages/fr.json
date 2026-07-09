@@ -162,7 +162,13 @@
       "htc-mac-step-1": "Format : AA:BB:CC:DD:EE:FF.",
       "htc-mac-step-2": "Trouvez-la dans l'app du cube, sur sa boîte, dans le compartiment des piles, ou ici dans Chrome :",
       "htc-copy": "Copier",
-      "htc-copied": "Copié"
+      "htc-copied": "Copié",
+      "nx-scan-hint": "Scannez ce QR code avec l'application Nexus Connect pour associer votre appareil.",
+      "nx-how-to": "Comment se connecter",
+      "nx-how-to-desc": "Suivez ces étapes pour associer votre téléphone à NexusTimer.",
+      "nx-step-1": "Installez l'application Nexus Connect.",
+      "nx-step-2": "Appuyez sur Scanner le QR dans l'application.",
+      "nx-step-3": "Pointez-la vers le QR code de cet écran."
     },
     "SolvesPage": {
       "title": "Temps",

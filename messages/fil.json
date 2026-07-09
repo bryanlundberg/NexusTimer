@@ -223,7 +223,13 @@
       "htc-mac-step-1": "Format: AA:BB:CC:DD:EE:FF.",
       "htc-mac-step-2": "Hanapin ito sa app ng cube, sa kahon nito, sa battery compartment, o dito sa Chrome:",
       "htc-copy": "Kopyahin",
-      "htc-copied": "Nakopya"
+      "htc-copied": "Nakopya",
+      "nx-scan-hint": "I-scan ang QR na ito gamit ang Nexus Connect app para ipares ang iyong device.",
+      "nx-how-to": "Paano kumonekta",
+      "nx-how-to-desc": "Sundin ang mga hakbang na ito para ipares ang iyong telepono sa NexusTimer.",
+      "nx-step-1": "I-install ang Nexus Connect app.",
+      "nx-step-2": "I-tap ang Scan QR sa app.",
+      "nx-step-3": "Itutok ito sa QR sa screen na ito."
     },
     "SolvesPage": {
       "title": "Mga Solve",

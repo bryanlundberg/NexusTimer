@@ -162,7 +162,13 @@
       "htc-mac-step-1": "形式：AA:BB:CC:DD:EE:FF。",
       "htc-mac-step-2": "キューブのアプリ、箱、電池ボックス、またはここChromeで確認できます：",
       "htc-copy": "コピー",
-      "htc-copied": "コピーしました"
+      "htc-copied": "コピーしました",
+      "nx-scan-hint": "Nexus Connect アプリでこの QR を読み取ってデバイスをペアリングします。",
+      "nx-how-to": "接続方法",
+      "nx-how-to-desc": "次の手順で NexusTimer とスマートフォンをペアリングします。",
+      "nx-step-1": "Nexus Connect アプリをインストールします。",
+      "nx-step-2": "アプリで「QR をスキャン」をタップします。",
+      "nx-step-3": "画面の QR にカメラを向けます。"
     },
     "SolvesPage": {
       "title": "ソルブ履歴",

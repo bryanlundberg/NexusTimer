@@ -223,7 +223,13 @@
       "htc-mac-step-1": "Format: AA:BB:CC:DD:EE:FF.",
       "htc-mac-step-2": "Find it in the cube's app, its box, the battery compartment, or here in Chrome:",
       "htc-copy": "Copy",
-      "htc-copied": "Copied"
+      "htc-copied": "Copied",
+      "nx-scan-hint": "Scan this QR with the Nexus Connect app to pair your device.",
+      "nx-how-to": "How to connect",
+      "nx-how-to-desc": "Follow these steps to pair your phone with NexusTimer.",
+      "nx-step-1": "Install the Nexus Connect app.",
+      "nx-step-2": "Tap Scan QR in the app.",
+      "nx-step-3": "Point it at the QR on this screen."
     },
     "SolvesPage": {
       "title": "Solves",

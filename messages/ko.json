@@ -162,7 +162,13 @@
       "htc-mac-step-1": "형식: AA:BB:CC:DD:EE:FF.",
       "htc-mac-step-2": "큐브 앱, 포장 상자, 배터리 칸 또는 여기 Chrome에서 찾으세요:",
       "htc-copy": "복사",
-      "htc-copied": "복사됨"
+      "htc-copied": "복사됨",
+      "nx-scan-hint": "Nexus Connect 앱으로 이 QR을 스캔해 기기를 연결하세요.",
+      "nx-how-to": "연결 방법",
+      "nx-how-to-desc": "다음 단계를 따라 휴대폰을 NexusTimer와 연결하세요.",
+      "nx-step-1": "Nexus Connect 앱을 설치하세요.",
+      "nx-step-2": "앱에서 QR 스캔을 누르세요.",
+      "nx-step-3": "화면의 QR을 비추세요."
     },
     "SolvesPage": {
       "title": "기록",

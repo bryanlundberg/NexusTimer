@@ -162,7 +162,13 @@
       "htc-mac-step-1": "格式：AA:BB:CC:DD:EE:FF。",
       "htc-mac-step-2": "可在魔方 App、包装盒、电池仓或此处的 Chrome 中查找：",
       "htc-copy": "复制",
-      "htc-copied": "已复制"
+      "htc-copied": "已复制",
+      "nx-scan-hint": "使用 Nexus Connect 应用扫描此二维码以配对你的设备。",
+      "nx-how-to": "如何连接",
+      "nx-how-to-desc": "按以下步骤将手机与 NexusTimer 配对。",
+      "nx-step-1": "安装 Nexus Connect 应用。",
+      "nx-step-2": "在应用中点击“扫描二维码”。",
+      "nx-step-3": "将镜头对准此屏幕上的二维码。"
     },
     "SolvesPage": {
       "title": "还原纪录",
