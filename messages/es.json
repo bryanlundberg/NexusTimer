@@ -263,11 +263,10 @@
       "delete-collection": "Eliminar colección",
       "delete-collection-description": "Esta colección de cubos se eliminará, junto con todas sus soluciones, registros y configuraciones.",
       "edit-collection": "Editar colección",
-      "input-collection-name": "Introduzca el nombre de la colección",
       "name": "Nombre",
       "new-collection": "Nueva colección",
       "select-an-option": "Seleccione una opción",
-      "to-continue": "para continuar:"
+      "delete-confirmation-check": "Entiendo que \"{name}\" y todas sus soluciones se eliminarán permanentemente."
     },
     "Inputs": {
       "delete": "Eliminar",
@@ -444,7 +443,6 @@
       "welcome": "Bienvenido:"
     },
     "Errors": {
-      "not-match": "El nombre no coincide.",
       "repeated-name": "Esa colección de nombres ya existe.",
       "collection-edit-failed": "Error al editar la colección de cubos",
       "required-field": "Campo requerido",

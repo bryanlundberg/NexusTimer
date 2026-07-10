@@ -323,18 +323,16 @@
     "Cubes-modal": {
       "delete-collection": "Видалити колекцію",
       "delete-collection-description": "Цю колекцію кубів буде видалено разом з усіма її спробами, рекордами та налаштуваннями.",
-      "input-collection-name": "Введіть назву колекції",
-      "to-continue": "щоб продовжити:",
       "edit-collection": "Редагувати колекцію",
       "danger-msg": "Зміна категорії колекції також змінює спроби, пов'язані з цією категорією.",
       "name": "Назва",
       "category": "Категорія",
       "select-an-option": "Виберіть варіант",
       "new-collection": "Нова колекція",
-      "current-selection": "Поточний вибір:"
+      "current-selection": "Поточний вибір:",
+      "delete-confirmation-check": "Я розумію, що «{name}» та всі її спроби буде видалено назавжди."
     },
     "Errors": {
-      "not-match": "Назва не збігається.",
       "repeated-name": "Колекція з такою назвою вже існує.",
       "collection-edit-failed": "Не вдалося відредагувати колекцію кубів",
       "required-field": "Обов'язкове поле",

@@ -271,18 +271,16 @@
     "Cubes-modal": {
       "delete-collection": "Excluir coleção",
       "delete-collection-description": "Esta coleção de cubos será excluída, juntamente com todos os seus tempos, recordes e configurações.",
-      "input-collection-name": "Digite o nome da coleção",
-      "to-continue": "para continuar:",
       "edit-collection": "Editar coleção",
       "danger-msg": "Modificar a categoria da coleção também altera os tempos associados a essa categoria.",
       "name": "Nome",
       "category": "Categoria",
       "select-an-option": "Selecione uma opção",
       "new-collection": "Nova coleção",
-      "current-selection": "Seleção atual:"
+      "current-selection": "Seleção atual:",
+      "delete-confirmation-check": "Entendo que \"{name}\" e todos os seus tempos serão excluídos permanentemente."
     },
     "Errors": {
-      "not-match": "O nome não corresponde.",
       "repeated-name": "Esse nome de coleção já existe.",
       "collection-edit-failed": "Falha ao editar a coleção de cubos",
       "required-field": "Campo obrigatório",

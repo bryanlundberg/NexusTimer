@@ -271,18 +271,16 @@
     "Cubes-modal": {
       "delete-collection": "删除系列",
       "delete-collection-description": "此魔方系列及其所有还原纪录、成绩和设置都将被删除。",
-      "input-collection-name": "输入系列名称",
-      "to-continue": "以继续：",
       "edit-collection": "编辑系列",
       "danger-msg": "修改系列类别也会改变与该类别关联的还原纪录。",
       "name": "名称",
       "category": "类别",
       "select-an-option": "选择一个选项",
       "new-collection": "新系列",
-      "current-selection": "当前选择："
+      "current-selection": "当前选择：",
+      "delete-confirmation-check": "我了解\"{name}\"及其所有还原纪录将被永久删除。"
     },
     "Errors": {
-      "not-match": "名称不匹配。",
       "repeated-name": "该系列名称已存在。",
       "collection-edit-failed": "魔方系列编辑失败",
       "required-field": "必填字段",

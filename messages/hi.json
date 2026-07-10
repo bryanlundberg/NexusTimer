@@ -271,18 +271,16 @@
     "Cubes-modal": {
       "delete-collection": "संग्रह हटाएं",
       "delete-collection-description": "यह क्यूब संग्रह, इसके सभी समाधानों, रिकॉर्डों और सेटिंग्स के साथ हटा दिया जाएगा।",
-      "input-collection-name": "संग्रह का नाम दर्ज करें",
-      "to-continue": "जारी रखने के लिए:",
       "edit-collection": "संग्रह संपादित करें",
       "danger-msg": "संग्रह श्रेणी को संशोधित करने से उस श्रेणी से जुड़े समाधान भी बदल जाते हैं।",
       "name": "नाम",
       "category": "श्रेणी",
       "select-an-option": "एक विकल्प चुनें",
       "new-collection": "नया संग्रह",
-      "current-selection": "वर्तमान चयन:"
+      "current-selection": "वर्तमान चयन:",
+      "delete-confirmation-check": "मैं समझता/समझती हूँ कि \"{name}\" और इसके सभी समाधान स्थायी रूप से हटा दिए जाएँगे।"
     },
     "Errors": {
-      "not-match": "नाम मेल नहीं खाता।",
       "repeated-name": "वह संग्रह नाम पहले से मौजूद है।",
       "collection-edit-failed": "क्यूब संग्रह संपादित करने में विफल",
       "required-field": "आवश्यक फ़ील्ड",

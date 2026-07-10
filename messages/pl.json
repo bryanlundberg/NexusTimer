@@ -345,18 +345,16 @@
     "Cubes-modal": {
       "delete-collection": "Usuń kolekcję",
       "delete-collection-description": "Ta kolekcja kostek zostanie usunięta wraz ze wszystkimi ułożeniami, rekordami i ustawieniami.",
-      "input-collection-name": "Wpisz nazwę kolekcji",
-      "to-continue": "aby kontynuować:",
       "edit-collection": "Edytuj kolekcję",
       "danger-msg": "Zmiana kategorii kolekcji zmienia również ułożenia powiązane z tą kategorią.",
       "name": "Nazwa",
       "category": "Kategoria",
       "select-an-option": "Wybierz opcję",
       "new-collection": "Nowa kolekcja",
-      "current-selection": "Bieżący wybór:"
+      "current-selection": "Bieżący wybór:",
+      "delete-confirmation-check": "Rozumiem, że \"{name}\" i wszystkie jego ułożenia zostaną trwale usunięte."
     },
     "Errors": {
-      "not-match": "Nazwa nie pasuje.",
       "repeated-name": "Taka nazwa kolekcji już istnieje.",
       "collection-edit-failed": "Nie udało się edytować kolekcji kostek",
       "required-field": "Pole wymagane",

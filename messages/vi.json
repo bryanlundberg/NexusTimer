@@ -345,18 +345,16 @@
     "Cubes-modal": {
       "delete-collection": "Xóa bộ sưu tập",
       "delete-collection-description": "Bộ sưu tập khối này sẽ bị xóa, cùng với tất cả lượt giải, kỷ lục và cài đặt của nó.",
-      "input-collection-name": "Nhập tên bộ sưu tập",
-      "to-continue": "để tiếp tục:",
       "edit-collection": "Chỉnh sửa bộ sưu tập",
       "danger-msg": "Thay đổi hạng mục của bộ sưu tập cũng thay đổi các lượt giải liên quan đến hạng mục đó.",
       "name": "Tên",
       "category": "Hạng mục",
       "select-an-option": "Chọn một tùy chọn",
       "new-collection": "Bộ sưu tập mới",
-      "current-selection": "Lựa chọn hiện tại:"
+      "current-selection": "Lựa chọn hiện tại:",
+      "delete-confirmation-check": "Tôi hiểu rằng \"{name}\" và tất cả lượt giải của nó sẽ bị xóa vĩnh viễn."
     },
     "Errors": {
-      "not-match": "Tên không khớp.",
       "repeated-name": "Tên bộ sưu tập đó đã tồn tại.",
       "collection-edit-failed": "Không thể chỉnh sửa bộ sưu tập khối",
       "required-field": "Trường bắt buộc",

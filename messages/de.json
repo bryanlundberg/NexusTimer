@@ -271,18 +271,16 @@
     "Cubes-modal": {
       "delete-collection": "Sammlung löschen",
       "delete-collection-description": "Diese Sammlung wird mit allen Zeiten, Rekorden und Einstellungen gelöscht.",
-      "input-collection-name": "Sammlungsnamen eingeben",
-      "to-continue": "um fortzufahren:",
       "edit-collection": "Sammlung bearbeiten",
       "danger-msg": "Das Ändern der Kategorie ändert auch die zugehörigen Zeiten.",
       "name": "Name",
       "category": "Kategorie",
       "select-an-option": "Option wählen",
       "new-collection": "Neue Sammlung",
-      "current-selection": "Aktuelle Auswahl:"
+      "current-selection": "Aktuelle Auswahl:",
+      "delete-confirmation-check": "Ich verstehe, dass \"{name}\" und alle zugehörigen Zeiten dauerhaft gelöscht werden."
     },
     "Errors": {
-      "not-match": "Name stimmt nicht überein.",
       "repeated-name": "Dieser Sammlungsname existiert bereits.",
       "collection-edit-failed": "Bearbeiten der Sammlung fehlgeschlagen",
       "required-field": "Pflichtfeld",

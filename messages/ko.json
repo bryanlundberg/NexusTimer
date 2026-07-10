@@ -271,18 +271,16 @@
     "Cubes-modal": {
       "delete-collection": "컬렉션 삭제",
       "delete-collection-description": "이 컬렉션과 관련된 모든 기록 및 설정이 삭제됩니다.",
-      "input-collection-name": "컬렉션 이름을 입력하세요",
-      "to-continue": "계속하려면:",
       "edit-collection": "컬렉션 수정",
       "danger-msg": "카테고리를 변경하면 해당 카테고리와 연동된 기록들도 변경됩니다.",
       "name": "이름",
       "category": "카테고리",
       "select-an-option": "옵션 선택",
       "new-collection": "새 컬렉션",
-      "current-selection": "현재 선택:"
+      "current-selection": "현재 선택:",
+      "delete-confirmation-check": "\"{name}\" 컬렉션과 모든 기록이 영구적으로 삭제된다는 것을 이해합니다."
     },
     "Errors": {
-      "not-match": "이름이 일치하지 않습니다.",
       "repeated-name": "이미 존재하는 컬렉션 이름입니다.",
       "collection-edit-failed": "컬렉션 수정 실패",
       "required-field": "필수 필드",

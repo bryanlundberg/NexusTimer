@@ -345,18 +345,16 @@
     "Cubes-modal": {
       "delete-collection": "Hapus koleksi",
       "delete-collection-description": "Koleksi kubus ini akan dihapus, beserta semua solve, rekor, dan pengaturannya.",
-      "input-collection-name": "Masukkan nama koleksi",
-      "to-continue": "untuk melanjutkan:",
       "edit-collection": "Edit koleksi",
       "danger-msg": "Mengubah kategori koleksi juga mengubah solve yang terkait dengan kategori tersebut.",
       "name": "Nama",
       "category": "Kategori",
       "select-an-option": "Pilih opsi",
       "new-collection": "Koleksi baru",
-      "current-selection": "Pilihan saat ini:"
+      "current-selection": "Pilihan saat ini:",
+      "delete-confirmation-check": "Saya mengerti bahwa \"{name}\" dan semua solve-nya akan dihapus secara permanen."
     },
     "Errors": {
-      "not-match": "Nama tidak cocok.",
       "repeated-name": "Nama koleksi itu sudah ada.",
       "collection-edit-failed": "Gagal mengedit koleksi kubus",
       "required-field": "Kolom wajib diisi",

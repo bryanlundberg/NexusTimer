@@ -345,18 +345,16 @@
     "Cubes-modal": {
       "delete-collection": "Elimina collezione",
       "delete-collection-description": "Questa collezione di cubi verrà eliminata, insieme a tutti i suoi solve, record e impostazioni.",
-      "input-collection-name": "Inserisci il nome della collezione",
-      "to-continue": "per continuare:",
       "edit-collection": "Modifica collezione",
       "danger-msg": "Modificare la categoria della collezione cambia anche i solve associati a quella categoria.",
       "name": "Nome",
       "category": "Categoria",
       "select-an-option": "Seleziona un'opzione",
       "new-collection": "Nuova collezione",
-      "current-selection": "Selezione attuale:"
+      "current-selection": "Selezione attuale:",
+      "delete-confirmation-check": "Capisco che \"{name}\" e tutti i suoi solve verranno eliminati definitivamente."
     },
     "Errors": {
-      "not-match": "Il nome non corrisponde.",
       "repeated-name": "Questo nome di collezione esiste già.",
       "collection-edit-failed": "Impossibile modificare la collezione di cubi",
       "required-field": "Campo obbligatorio",

@@ -345,18 +345,16 @@
     "Cubes-modal": {
       "delete-collection": "Delete collection",
       "delete-collection-description": "This cube collection will be deleted, along with all of its solves, records, and settings.",
-      "input-collection-name": "Enter the collection name",
-      "to-continue": "to continue:",
       "edit-collection": "Edit collection",
       "danger-msg": "Modifying the collection category also changes the solves associated with that category.",
       "name": "Name",
       "category": "Category",
       "select-an-option": "Select an option",
       "new-collection": "New collection",
-      "current-selection": "Current selection:"
+      "current-selection": "Current selection:",
+      "delete-confirmation-check": "I understand that \"{name}\" and all of its solves will be permanently deleted."
     },
     "Errors": {
-      "not-match": "The name does not match.",
       "repeated-name": "That collection name already exists.",
       "collection-edit-failed": "Failed to edit cube collection",
       "required-field": "Required field",

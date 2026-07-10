@@ -271,18 +271,16 @@
     "Cubes-modal": {
       "delete-collection": "Удалить коллекцию",
       "delete-collection-description": "Коллекция будет удалена вместе со всеми сборками, рекордами и настройками.",
-      "input-collection-name": "Введите название коллекции",
-      "to-continue": "чтобы продолжить:",
       "edit-collection": "Изменить коллекцию",
       "danger-msg": "Изменение категории также изменит категорию связанных сборок.",
       "name": "Имя",
       "category": "Категория",
       "select-an-option": "Выберите вариант",
       "new-collection": "Новая коллекция",
-      "current-selection": "Текущий выбор:"
+      "current-selection": "Текущий выбор:",
+      "delete-confirmation-check": "Я понимаю, что «{name}» и все её сборки будут удалены навсегда."
     },
     "Errors": {
-      "not-match": "Имя не совпадает.",
       "repeated-name": "Коллекция с таким именем уже существует.",
       "collection-edit-failed": "Не удалось изменить коллекцию",
       "required-field": "Обязательное поле",

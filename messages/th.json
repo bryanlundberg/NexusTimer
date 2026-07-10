@@ -345,18 +345,16 @@
     "Cubes-modal": {
       "delete-collection": "ลบคอลเลกชัน",
       "delete-collection-description": "คอลเลกชันลูกบาศก์นี้จะถูกลบ พร้อมกับการต่อ สถิติ และการตั้งค่าทั้งหมด",
-      "input-collection-name": "ป้อนชื่อคอลเลกชัน",
-      "to-continue": "เพื่อดำเนินการต่อ:",
       "edit-collection": "แก้ไขคอลเลกชัน",
       "danger-msg": "การเปลี่ยนหมวดหมู่ของคอลเลกชันจะเปลี่ยนการต่อที่เกี่ยวข้องกับหมวดหมู่นั้นด้วย",
       "name": "ชื่อ",
       "category": "หมวดหมู่",
       "select-an-option": "เลือกตัวเลือก",
       "new-collection": "คอลเลกชันใหม่",
-      "current-selection": "ที่เลือกอยู่ในปัจจุบัน:"
+      "current-selection": "ที่เลือกอยู่ในปัจจุบัน:",
+      "delete-confirmation-check": "ฉันเข้าใจว่า \"{name}\" และการต่อทั้งหมดจะถูกลบอย่างถาวร"
     },
     "Errors": {
-      "not-match": "ชื่อไม่ตรงกัน",
       "repeated-name": "ชื่อคอลเลกชันนั้นมีอยู่แล้ว",
       "collection-edit-failed": "แก้ไขคอลเลกชันลูกบาศก์ไม่สำเร็จ",
       "required-field": "ช่องที่จำเป็น",

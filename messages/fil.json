@@ -345,18 +345,16 @@
     "Cubes-modal": {
       "delete-collection": "Burahin ang collection",
       "delete-collection-description": "Mabubura ang cube collection na ito, kasama ang lahat ng solves, records, at settings nito.",
-      "input-collection-name": "Ilagay ang pangalan ng collection",
-      "to-continue": "para magpatuloy:",
       "edit-collection": "I-edit ang collection",
       "danger-msg": "Ang pagbabago ng kategorya ng collection ay nagbabago rin sa mga solve na nauugnay sa kategoryang iyon.",
       "name": "Pangalan",
       "category": "Kategorya",
       "select-an-option": "Pumili ng opsyon",
       "new-collection": "Bagong collection",
-      "current-selection": "Kasalukuyang napili:"
+      "current-selection": "Kasalukuyang napili:",
+      "delete-confirmation-check": "Nauunawaan ko na ang \"{name}\" at lahat ng solves nito ay permanenteng mabubura."
     },
     "Errors": {
-      "not-match": "Hindi tugma ang pangalan.",
       "repeated-name": "May ganyang pangalan na ng collection.",
       "collection-edit-failed": "Nabigo sa pag-edit ng cube collection",
       "required-field": "Kinakailangang field",

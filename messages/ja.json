@@ -271,18 +271,16 @@
     "Cubes-modal": {
       "delete-collection": "コレクションを削除",
       "delete-collection-description": "このコレクションとすべてのタイム、記録、設定が削除されます。",
-      "input-collection-name": "コレクション名を入力",
-      "to-continue": "して続行：",
       "edit-collection": "コレクションを編集",
       "danger-msg": "カテゴリを変更すると、そのカテゴリに関連付けられたタイムも変更されます。",
       "name": "名前",
       "category": "カテゴリ",
       "select-an-option": "オプションを選択",
       "new-collection": "新規コレクション",
-      "current-selection": "現在の選択："
+      "current-selection": "現在の選択：",
+      "delete-confirmation-check": "「{name}」とそのすべてのタイムが完全に削除されることを理解しています。"
     },
     "Errors": {
-      "not-match": "名前が一致しません。",
       "repeated-name": "そのコレクション名はすでに存在します。",
       "collection-edit-failed": "コレクションの編集に失敗しました",
       "required-field": "必須項目です",
