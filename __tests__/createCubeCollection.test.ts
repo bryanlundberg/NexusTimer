@@ -64,10 +64,11 @@ describe('createCubeCollection', () => {
     expect(cube.id.length).toBeGreaterThan(0)
   })
 
-  it('throws and does not persist when the name already exists (case-insensitive)', async () => {
+  it('allows creating a cube with an existing name (uniqueness is based on ID)', async () => {
     getAll.mockResolvedValue([makeCube({ name: 'new cube' })])
 
-    await expect(createCubeCollection(dto)).rejects.toThrow('Cube name already exists')
-    expect(add).not.toHaveBeenCalled()
+    const cube = await createCubeCollection(dto)
+    expect(cube.name).toBe('New Cube')
+    expect(add).toHaveBeenCalledTimes(1)
   })
 })
