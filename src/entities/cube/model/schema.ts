@@ -2,7 +2,7 @@ import { z } from 'zod'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 
 export const createCubeFormSchema = z.object({
-  name: z.string().min(1, 'Required collection name').max(50, 'Maximum length is 50 characters'),
+  name: z.string().min(1, 'Required collection name'),
   category: z.enum(CUBE_CATEGORIES)
 })
 
