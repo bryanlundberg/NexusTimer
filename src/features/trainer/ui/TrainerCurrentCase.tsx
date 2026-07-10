@@ -175,7 +175,7 @@ export default function TrainerCurrentCase({
 
       <div className="flex items-center justify-between gap-4 rounded-2xl border bg-muted/40 px-4 py-3">
         <div className="flex items-center gap-5 sm:gap-8 min-w-0">
-          <BarStat label={t('stats.best')} value={best ?? '--'} accent />
+          <BarStat label={t('stats.best')} value={best ?? '--'} />
           <BarStat label="ao5" value={ao5 ?? '--'} />
           <BarStat label="ao12" value={ao12 ?? '--'} className="hidden sm:flex" />
           {execTotal != null && (
