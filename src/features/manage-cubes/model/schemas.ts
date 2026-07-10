@@ -2,11 +2,11 @@ import { z } from 'zod'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 
 export const deleteCollectionSchema = z.object({
-  confirmationName: z.string().trim().min(1, 'You must enter the collection name')
+  confirmDeletion: z.boolean().refine((value) => value, 'You must confirm before deleting')
 })
 
 export const updateCollectionSchema = z.object({
-  name: z.string().trim().min(1, 'Name is required').max(50, 'Name must be at most 50 characters'),
+  name: z.string().trim().min(1, 'Name is required'),
   category: z.enum(CUBE_CATEGORIES)
 })
 
