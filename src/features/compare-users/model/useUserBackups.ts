@@ -22,7 +22,15 @@ export function useUserBackups(users: User[]) {
             if (user.backup?.url) {
               const response = await fetch(user.backup.url)
               if (!response.ok) throw new Error('Network response was not ok')
-              const cubeData = (await response.json()) as Cube[]
+              const cubeData = ((await response.json()) as Cube[])
+                .filter((cube) => !cube.isDeleted)
+                .map((cube) => ({
+                  ...cube,
+                  solves: {
+                    all: (cube.solves?.all ?? []).filter((solve) => !solve.isDeleted),
+                    session: (cube.solves?.session ?? []).filter((solve) => !solve.isDeleted)
+                  }
+                }))
               const merged = _.groupBy(cubeData, 'category')
               return [user._id, merged] as const
             }
