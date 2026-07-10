@@ -9,11 +9,11 @@ import {
   DialogHeader,
   DialogTitle
 } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
+import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { DeleteCollectionFormData, deleteCollectionSchema } from '@/features/manage-cubes/model/schemas'
@@ -32,30 +32,18 @@ export default function DeleteCollectionForm() {
     activeOverlay: state.activeOverlay
   }))
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    setError,
-    reset
-  } = useForm({
+  const { handleSubmit, control, watch, reset } = useForm({
     resolver: zodResolver(deleteCollectionSchema),
     defaultValues: {
-      confirmationName: ''
+      confirmDeletion: false
     }
   })
 
-  const handleDeleteCube = async (form: DeleteCollectionFormData) => {
+  const confirmDeletion = watch('confirmDeletion')
+
+  const handleDeleteCube = async (_form: DeleteCollectionFormData) => {
     if (!activeOverlay?.metadata?.id) return
     try {
-      if (form.confirmationName.trim() !== activeOverlay?.metadata?.name) {
-        setError('confirmationName', {
-          type: 'manual',
-          message: t('Errors.not-match')
-        })
-        return
-      }
-
       await deleteCubeCollection({ id: activeOverlay?.metadata.id })
       const cubes = await cubesDB.getAll()
       setCubes(cubes)
@@ -101,18 +89,23 @@ export default function DeleteCollectionForm() {
           </AlertDescription>
         </Alert>
 
-        <Label className="text-secondary-foreground/50 flex flex-wrap">
-          <span>{t('Cubes-modal.input-collection-name')} </span>
-          <span className="text-secondary-foreground">{activeOverlay?.metadata?.name}</span>{' '}
-          <span>{t('Cubes-modal.to-continue')}</span>
-        </Label>
-        <Input {...register('confirmationName')} data-testid="dialog-delete-cube-input" />
+        <Controller
+          control={control}
+          name="confirmDeletion"
+          render={({ field }) => (
+            <Label className="flex items-start gap-2">
+              <Checkbox
+                checked={field.value}
+                onCheckedChange={field.onChange}
+                data-testid="dialog-delete-cube-checkbox"
+              />
+              <span className="text-secondary-foreground text-sm">
+                {t('Cubes-modal.delete-confirmation-check', { name: activeOverlay?.metadata?.name ?? '' })}
+              </span>
+            </Label>
+          )}
+        />
 
-        {errors && errors.confirmationName && (
-          <p className="text-destructive text-sm" data-testid="dialog-delete-cube-error-message">
-            {errors.confirmationName.message?.toString()}
-          </p>
-        )}
         <DialogFooter>
           <div className="flex justify-between w-full">
             <DialogClose asChild>
@@ -123,6 +116,7 @@ export default function DeleteCollectionForm() {
 
             <Button
               variant={'default'}
+              disabled={!confirmDeletion}
               onClick={handleSubmit(handleDeleteCube)}
               data-testid="dialog-delete-cube-accept-button"
             >
