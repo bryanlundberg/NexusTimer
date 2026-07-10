@@ -37,7 +37,6 @@ export default function CreateCollectionForm() {
 
   const {
     handleSubmit,
-    setError,
     formState: { errors, isSubmitted },
     watch,
     setValue,
@@ -54,15 +53,6 @@ export default function CreateCollectionForm() {
 
   const handleSubmitNewCollection = async (form: CreateCubeFormData) => {
     try {
-      const cubes = await cubesDB.getAll()
-      if (cubes?.some((cube) => cube.name.toLowerCase() === form.name.trim().toLowerCase())) {
-        setError('name', {
-          type: 'manual',
-          message: t('Errors.repeated-name')
-        })
-        return
-      }
-
       const newCube = await createCubeCollection(form)
       const newCubes = await cubesDB.getAll()
       setCubes(newCubes)
