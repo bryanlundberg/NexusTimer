@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
-import { SkipForward, BookmarkCheck, Bookmark, ListChecks, Eye, EyeOff, Undo2 } from 'lucide-react'
+import { SkipForward, Check, Circle, ListChecks, Eye, EyeOff, Undo2 } from 'lucide-react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import type { TwistyPlayer } from 'cubing/twisty'
 import type { ReactNode } from 'react'
@@ -199,15 +199,24 @@ export default function TrainerCurrentCase({
             </Button>
           )}
           <Button
-            variant={isLearned ? 'default' : 'outline'}
-            size="icon"
-            className="h-9 w-9"
+            variant="outline"
+            size="sm"
             onClick={onToggleLearned}
             disabled={!onToggleLearned}
+            aria-pressed={isLearned}
             aria-label={isLearned ? t('actions.markedAsLearned') : t('actions.markAsLearned')}
             title={isLearned ? t('actions.markedAsLearned') : t('actions.markAsLearned')}
+            className={cn(
+              'h-9 gap-1.5 px-2.5 text-xs font-medium',
+              isLearned
+                ? 'border-primary/40 bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary'
+                : 'text-muted-foreground'
+            )}
           >
-            {isLearned ? <BookmarkCheck className="h-4 w-4" /> : <Bookmark className="h-4 w-4" />}
+            {isLearned ? <Check className="size-3.5" /> : <Circle className="size-3.5" />}
+            <span className="hidden sm:inline">
+              {isLearned ? t('actions.markedAsLearned') : t('actions.markAsLearned')}
+            </span>
           </Button>
         </div>
       </div>
