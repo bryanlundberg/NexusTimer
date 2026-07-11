@@ -10,12 +10,13 @@ import { Tabs, TabsContent } from '@/components/ui/tabs'
 import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
+import TrainerMethodOverview from '@/features/trainer/ui/TrainerMethodOverview'
 import TrainerSolveHistoryTable from '@/features/trainer/ui/TrainerSolveHistoryTable'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
 import { useTrainerSession } from '@/features/trainer/model/useTrainerSession'
 import { useTrainerSolvesPaginated } from '@/features/trainer/model/useTrainerSolvesPaginated'
 import { useTrainerStats } from '@/features/trainer/model/useTrainerStats'
-import { deleteTrainerSolve, patchTrainerSolve } from '@/features/trainer/model/mutateTrainerSolve'
+import { deleteTrainerSolve } from '@/features/trainer/model/mutateTrainerSolve'
 import { buildVizConfig } from '@/features/trainer/lib/trainerUtils'
 import { TRAINER_DEFAULT_TARGET_SECONDS } from '@/features/trainer/lib/constants'
 import type { AlgorithmCollection } from '@/features/algorithms-list/model/types'
@@ -44,18 +45,9 @@ export default function TrainerHistoryView() {
     return buildVizConfig(set.puzzle, currentCase.algs?.[0]?.moves ?? '', set.virtualization as Record<string, unknown>)
   }, [currentCase, set])
 
-  const { mutate: mutateStats } = useTrainerStats(methodSlug, isAuthed)
+  const { stats, isLoading: statsLoading, mutate: mutateStats } = useTrainerStats(methodSlug, isAuthed)
   const caseQuery = useTrainerSolvesPaginated(methodSlug, currentCase?.id, isAuthed)
   const methodQuery = useTrainerSolvesPaginated(methodSlug, null, isAuthed)
-
-  const handlePenaltyChange = async (id: string, penalty: 'OK' | '+2' | 'DNF') => {
-    try {
-      await patchTrainerSolve(id, penalty)
-      await Promise.all([mutateStats(), caseQuery.mutate(), methodQuery.mutate()])
-    } catch (err) {
-      console.error('Failed to update solve penalty:', err)
-    }
-  }
 
   const handleDeleteSolve = async (id: string) => {
     try {
@@ -85,6 +77,8 @@ export default function TrainerHistoryView() {
         </div>
       </div>
 
+      <TrainerMethodOverview set={set} stats={stats} targetMs={targetSeconds * 1000} isLoading={statsLoading} />
+
       <Tabs value={tab} onValueChange={setTab} className="flex flex-col gap-3">
         <AnimatedTabsList
           items={[
@@ -102,7 +96,6 @@ export default function TrainerHistoryView() {
             isLoadingMore={methodQuery.isLoadingMore}
             reachedEnd={methodQuery.reachedEnd}
             onLoadMore={methodQuery.loadMore}
-            onChangePenalty={handlePenaltyChange}
             onDelete={handleDeleteSolve}
             showCase
             caseById={caseById}
@@ -137,7 +130,6 @@ export default function TrainerHistoryView() {
                 isLoadingMore={caseQuery.isLoadingMore}
                 reachedEnd={caseQuery.reachedEnd}
                 onLoadMore={caseQuery.loadMore}
-                onChangePenalty={handlePenaltyChange}
                 onDelete={handleDeleteSolve}
                 emptyLabel={t('emptyCase')}
                 targetMs={targetSeconds * 1000}
