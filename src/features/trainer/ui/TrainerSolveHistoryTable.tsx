@@ -4,13 +4,13 @@ import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 import { Button } from '@/components/ui/button'
-import { Trash2 } from 'lucide-react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
+import TrainerSolveTimeCell from './TrainerSolveTimeCell'
+import TrainerDeleteSolveButton from './TrainerDeleteSolveButton'
 import type { TrainerSolveListItem } from '@/features/trainer/model/types'
-import type { TrainerPenalty } from '@/entities/trainer-solve/model/constants'
 import type { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 import { cn } from '@/shared/lib/utils'
-import { buildVizConfig, formatTime, formatRelative, penaltyDotClass } from '@/features/trainer/lib/trainerUtils'
+import { buildVizConfig, formatRelative } from '@/features/trainer/lib/trainerUtils'
 
 interface TrainerSolveHistoryTableProps {
   solves: TrainerSolveListItem[]
@@ -29,26 +29,6 @@ interface TrainerSolveHistoryTableProps {
 
 const GRID_WITH_CASE = 'grid-cols-[28px_1fr_7rem_6rem_28px]'
 const GRID_NO_CASE = 'grid-cols-[1fr_6rem_28px]'
-
-function TimeCell({ timeMs, penalty, targetMs }: { timeMs: number; penalty: TrainerPenalty; targetMs?: number }) {
-  const formatted = formatTime(timeMs, penalty)
-  const [main, decimal] = formatted.includes('.') ? formatted.split('.') : [formatted, null]
-  return (
-    <div className="flex items-center gap-1.5">
-      <span className={cn('size-1.5 rounded-full shrink-0', penaltyDotClass(penalty, timeMs, targetMs))} />
-      <div
-        className={cn(
-          'flex items-baseline gap-0.5 tabular-nums',
-          penalty === 'DNF' && 'text-muted-foreground line-through',
-          penalty === '+2' && 'text-amber-600 dark:text-amber-400'
-        )}
-      >
-        <span className="text-sm font-semibold">{main}</span>
-        {decimal && <span className="text-xs text-muted-foreground">.{decimal}</span>}
-      </div>
-    </div>
-  )
-}
 
 export default function TrainerSolveHistoryTable({
   solves,
@@ -127,7 +107,7 @@ export default function TrainerSolveHistoryTable({
                   </div>
                 )}
 
-                <TimeCell timeMs={solve.timeMs} penalty={solve.penalty} targetMs={targetMs} />
+                <TrainerSolveTimeCell timeMs={solve.timeMs} penalty={solve.penalty} targetMs={targetMs} />
 
                 {showCase && (
                   <span className="truncate text-xs text-muted-foreground">{algCase?.name ?? solve.caseId}</span>
@@ -135,17 +115,7 @@ export default function TrainerSolveHistoryTable({
 
                 <span className="text-xs text-muted-foreground tabular-nums">{formatRelative(solve.createdAt)}</span>
 
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  haptic
-                  className="h-6 w-6 shrink-0 text-muted-foreground hover:text-destructive"
-                  aria-label={t('delete')}
-                  title={t('delete')}
-                  onClick={() => onDelete(solve._id)}
-                >
-                  <Trash2 className="h-3.5 w-3.5" />
-                </Button>
+                <TrainerDeleteSolveButton label={t('delete')} onClick={() => onDelete(solve._id)} />
               </motion.div>
             )
           })}
