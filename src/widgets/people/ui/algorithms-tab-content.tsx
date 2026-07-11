@@ -8,39 +8,14 @@ import { buildLearnedMethods } from '@/entities/trainer-learned/lib/buildLearned
 import type { LearnedMethod } from '@/entities/trainer-learned/model/useUserLearned'
 import RingMethod from '@/widgets/people/ui/ring-method'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import type { Colors } from '@/shared/types/colors'
-
-const CHART_STROKE: Record<Colors, string> = {
-  green: 'stroke-violet-500',
-  violet: 'stroke-emerald-500',
-  blue: 'stroke-orange-500',
-  orange: 'stroke-sky-500',
-  red: 'stroke-emerald-500',
-  rose: 'stroke-teal-500',
-  yellow: 'stroke-violet-500',
-  neutral: 'stroke-sky-500',
-  amber: 'stroke-indigo-500',
-  lime: 'stroke-fuchsia-500',
-  emerald: 'stroke-rose-500',
-  teal: 'stroke-orange-500',
-  cyan: 'stroke-pink-500',
-  sky: 'stroke-amber-500',
-  indigo: 'stroke-lime-500',
-  purple: 'stroke-yellow-500',
-  fuchsia: 'stroke-emerald-500',
-  pink: 'stroke-teal-500',
-  slate: 'stroke-blue-500',
-  zinc: 'stroke-violet-500',
-  gray: 'stroke-orange-500',
-  stone: 'stroke-sky-500'
-}
+import { CHART_CONTRAST, DEFAULT_CHART_CONTRAST } from '@/shared/lib/chartContrastColor'
 
 export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMethod[] }) {
   const t = useTranslations('Index.PeoplePage.algorithms')
   const { total, byPuzzle } = useMemo(() => buildLearnedMethods(methods), [methods])
 
   const colorTheme = useSettingsStore((store) => store.settings.preferences.colorTheme)
-  const strokeClass = CHART_STROKE[colorTheme] ?? 'stroke-emerald-500'
+  const strokeClass = (CHART_CONTRAST[colorTheme] ?? DEFAULT_CHART_CONTRAST).stroke
 
   const orderedMethods = useMemo(() => byPuzzle.flatMap((group) => group.methods), [byPuzzle])
 
