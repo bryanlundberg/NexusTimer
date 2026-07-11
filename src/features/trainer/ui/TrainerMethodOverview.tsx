@@ -64,16 +64,26 @@ export default function TrainerMethodOverview({ set, stats, targetMs, isLoading 
         />
       </div>
 
-      {(best || worst.length > 0) && (
+      {(best.length > 0 || worst.length > 0) && (
         <div className="grid sm:grid-cols-2 gap-x-6 gap-y-4 pt-2">
-          {best && (
+          {best.length > 0 && (
             <div className="flex flex-col gap-1">
               <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                 <span className="h-3.5 w-1 rounded-full bg-cube-green" aria-hidden />
                 <TrendingUp className="size-3" />
                 {t('bestCase')}
               </span>
-              <TrainerCaseRow ranked={best} puzzle={set.puzzle} vizDefaults={vizDefaults} targetMs={targetMs} />
+              <div className="flex flex-col divide-y divide-border/40">
+                {best.map((r) => (
+                  <TrainerCaseRow
+                    key={r.algCase.id}
+                    ranked={r}
+                    puzzle={set.puzzle}
+                    vizDefaults={vizDefaults}
+                    targetMs={targetMs}
+                  />
+                ))}
+              </div>
             </div>
           )}
 
