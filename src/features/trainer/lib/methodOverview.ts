@@ -4,6 +4,7 @@ import type { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 
 // A case needs this many attempts before it can be ranked best/worst algorithm
 export const MIN_ATTEMPTS_TO_RANK = 3
+export const BEST_COUNT = 3
 export const WORST_COUNT = 3
 
 export interface RankedCase {
@@ -17,7 +18,7 @@ export interface MethodOverviewSummary {
   avgMs: number | null
   bestSingleMs: number | null
   practicedCount: number
-  best: RankedCase | null
+  best: RankedCase[]
   worst: RankedCase[]
 }
 
@@ -51,8 +52,9 @@ export function computeMethodOverview(stats: TrainerMethodStatsDoc | null, set: 
     avgMs: stats && stats.totalSolves > 0 ? stats.totalTimeMs / stats.totalSolves : null,
     bestSingleMs: stats?.bestSingleMs ?? null,
     practicedCount: practiced,
-    best: ranked[0] ?? null,
-    // Slowest first; never overlaps with the best case.
-    worst: ranked.slice(1).slice(-WORST_COUNT).reverse()
+    // Fastest first.
+    best: ranked.slice(0, BEST_COUNT),
+    // Slowest first; never overlaps with the best cases.
+    worst: ranked.slice(BEST_COUNT).slice(-WORST_COUNT).reverse()
   }
 }
