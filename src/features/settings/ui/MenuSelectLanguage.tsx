@@ -8,7 +8,7 @@ export default function MenuSelectLanguage() {
   const t = useTranslations('Index')
 
   return (
-    <MenuSection id="region" icon={<GlobeIcon />} title={t('Settings-menu.locale')}>
+    <MenuSection id="region" accent="bg-cube-red" icon={<GlobeIcon />} title={t('Settings-menu.locale')}>
       <MenuRow label={t('Settings-menu.language')} description={t('Settings-descriptions.language-description')}>
         <SelectLanguage />
       </MenuRow>
