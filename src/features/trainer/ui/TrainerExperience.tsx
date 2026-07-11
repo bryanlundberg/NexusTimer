@@ -3,8 +3,8 @@
 import { useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { BarChart3 } from 'lucide-react'
-import { buttonVariants } from '@/components/ui/button'
+import { BarChart3, ChevronRight } from 'lucide-react'
+import { CHART_CONTRAST, DEFAULT_CHART_CONTRAST } from '@/shared/lib/chartContrastColor'
 import TrainerCurrentCase from '@/features/trainer/ui/TrainerCurrentCase'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
 import TrainerEditTargetModal from '@/features/trainer/ui/TrainerEditTargetModal'
@@ -58,6 +58,7 @@ export default function TrainerExperience() {
   const setIsSolving = useTimerStore((s) => s.setIsSolving)
   const setSolvingTime = useTimerStore((s) => s.setSolvingTime)
   const settings = useSettingsStore((s) => s.settings)
+  const contrast = CHART_CONTRAST[settings.preferences.colorTheme] ?? DEFAULT_CHART_CONTRAST
 
   const { data: session } = useSession()
   const isAuthed = !!session?.user?.id
@@ -237,10 +238,15 @@ export default function TrainerExperience() {
               href="/algorithms/trainer/history"
               aria-label={t('methodStats')}
               title={t('methodStats')}
-              className={cn(buttonVariants({ variant: 'outline', size: 'sm' }), 'h-8 gap-2 ms-auto')}
+              className={cn(
+                'ms-auto inline-flex items-center gap-2 h-9 px-3.5 rounded-lg text-sm font-medium text-white',
+                'shadow-sm transition-all hover:opacity-90 hover:shadow-md active:scale-[0.98]',
+                contrast.bg
+              )}
             >
-              <BarChart3 className="h-3.5 w-3.5" />
+              <BarChart3 className="size-4" />
               <span>{t('methodStats')}</span>
+              <ChevronRight className="size-3.5 opacity-80" />
             </Link>
           )}
         </div>
