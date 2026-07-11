@@ -119,7 +119,7 @@ export default function TrainerExperience() {
       const solvedCaseId = currentCase.id
       advanceCase(sessionCases.length)
       if (!isAuthed) return
-      postTrainerSolve({ methodSlug, caseId: solvedCaseId, timeMs: roundedMs, penalty: 'OK' })
+      postTrainerSolve({ methodSlug, caseId: solvedCaseId, timeMs: roundedMs })
         .then((res) => {
           if (res?.solve?._id) attachLastSolveId(res.solve._id)
           return Promise.all([mutateStats(), mutateSolves()])
