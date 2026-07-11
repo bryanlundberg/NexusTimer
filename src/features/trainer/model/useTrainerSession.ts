@@ -23,7 +23,7 @@ export const useTrainerSession = () => {
   }
 
   const currentAlg = currentCase ? pickRef.current?.alg : undefined
-  const setup = currentCase ? (currentCase.setup ?? invertAlgorithm(currentCase.algs[0].moves)) : ''
+  const setup = currentCase ? currentCase.setup?.trim() || invertAlgorithm(currentCase.algs[0].moves) : ''
 
   return { set, sessionCases, currentCase, currentAlg, setup }
 }
