@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { useSession } from 'next-auth/react'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 
 export function useAppInit() {
@@ -11,7 +10,6 @@ export function useAppInit() {
   const settings = useSettingsStore((store) => store.settings)
   const updateSetting = useSettingsStore((store) => store.updateSetting)
   const [isAppReady, setIsAppReady] = useState(false)
-  const { data: session } = useSession()
 
   useEffect(() => {
     const loadData = async () => {
@@ -34,24 +32,6 @@ export function useAppInit() {
 
     loadData()
   }, [])
-
-  useEffect(() => {
-    if (!session?.user?.id) return
-
-    const updateLastSeen = async () => {
-      try {
-        await fetch(`/api/v1/users/${session.user.id}`, {
-          method: 'PATCH',
-          body: JSON.stringify({ lastSeenAt: Date.now() }),
-          headers: { 'Content-Type': 'application/json' }
-        })
-      } catch (error) {
-        console.error('Failed to update last seen at:', error)
-      }
-    }
-
-    updateLastSeen()
-  }, [session?.user?.id])
 
   return { isAppReady }
 }
