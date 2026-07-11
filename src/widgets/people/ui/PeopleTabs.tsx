@@ -9,6 +9,7 @@ import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
 import { ProfileHeroBanner } from '@/widgets/people/ui/profile-hero-banner'
 import { ProfileBadgesStrip } from '@/widgets/people/ui/profile-badges-strip'
 import { ProfileStatsBar } from '@/widgets/people/ui/profile-stats-bar'
+import { StatsBarSkeleton, TabTableSkeleton } from '@/shared/ui/skeletons/people-skeleton'
 import { UserProfile } from '@/entities/user/model/user'
 import { Cube } from '@/entities/cube/model/types'
 import useUserBadges from '@/entities/achievement/model/useUserBadges'
@@ -24,11 +25,12 @@ import { CheckCircle2, GitCompareIcon, Pencil } from 'lucide-react'
 interface PeopleTabsProps {
   user: UserProfile
   cubes: Array<Cube>
+  isLoadingStats?: boolean
 }
 
 const tabs = [PTabs.OVERVIEW, PTabs.CUBES, PTabs.TIMELINE, PTabs.ALGORITHMS] as const
 
-export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
+export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsProps) {
   const t = useTranslations('Index.PeoplePage.tabs')
   const userBadges = useUserBadges({ user, cubes })
   const { data: learned } = useUserLearned(user._id)
@@ -90,8 +92,12 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
 
       <ProfileHeroBanner user={user} cubes={cubes} level={userBadges.unlocked.length} />
-      <ProfileStatsBar cubes={cubes} algorithmsLearned={learned?.total ?? 0} />
-      <ProfileBadgesStrip badges={userBadges} />
+      {isLoadingStats ? (
+        <StatsBarSkeleton />
+      ) : (
+        <ProfileStatsBar cubes={cubes} algorithmsLearned={learned?.total ?? 0} />
+      )}
+      {!isLoadingStats && <ProfileBadgesStrip badges={userBadges} />}
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
         {/* Tabs nav + actions row */}
@@ -103,7 +109,7 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
                 label: (
                   <span className="inline-flex items-center gap-1.5">
                     {labels[tab]}
-                    {counts[tab] != null && (
+                    {!isLoadingStats && counts[tab] != null && (
                       <span className="inline-flex items-center justify-center min-w-[1.125rem] h-[1.125rem] px-1 rounded-full bg-muted text-[10px] font-semibold tabular-nums leading-none text-muted-foreground transition-colors group-data-[state=active]:bg-primary/10 group-data-[state=active]:text-primary">
                         {counts[tab]}
                       </span>
@@ -143,7 +149,11 @@ export function PeopleTabs({ user, cubes }: PeopleTabsProps) {
 
         {/* Tab content */}
         <div className="px-4 md:px-6 py-0">
-          <PeopleContent cubes={cubes} badges={userBadges} learnedMethods={learned?.methods} />
+          {isLoadingStats ? (
+            <TabTableSkeleton />
+          ) : (
+            <PeopleContent cubes={cubes} badges={userBadges} learnedMethods={learned?.methods} />
+          )}
         </div>
       </Tabs>
     </div>
