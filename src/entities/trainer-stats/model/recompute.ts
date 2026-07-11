@@ -7,16 +7,16 @@ import { TRAINER_RECENT_TIMES_WINDOW } from '@/entities/trainer-stats/model/cons
 /**
  * Recomputes case-level + method-level aggregates from the solves collection
  * for a single (user, method, case). Used after destructive mutations
- * (delete / penalty edit) where $inc/$min cannot be unwound atomically.
+ * (delete) where $inc/$min cannot be unwound atomically.
  */
 export async function recomputeCaseAndMethod(userId: string, methodSlug: string, caseId: string) {
   // 1. Pull solves for this case (small, scoped scan).
   // _id order === insertion order; matches the { user, methodSlug, caseId, _id } index.
   const solves = await TrainerSolve.find({ user: userId, methodSlug, caseId })
     .sort({ _id: 1 })
-    .lean<Array<{ _id: unknown; timeMs: number; penalty: 'OK' | '+2' | 'DNF'; createdAt: Date }>>()
+    .lean<Array<{ _id: unknown; timeMs: number; createdAt: Date }>>()
 
-  const counted = solves.filter((s) => s.penalty !== 'DNF')
+  const counted = solves
   const lastSolve = solves[solves.length - 1]
 
   const caseStats: TrainerCaseStatsDoc = {
@@ -45,7 +45,7 @@ export async function recomputeCaseAndMethod(userId: string, methodSlug: string,
     totalTimeMs: number
     bestSingleMs: number | null
   }>([
-    { $match: { user: new Types.ObjectId(userId), methodSlug, penalty: { $ne: 'DNF' } } },
+    { $match: { user: new Types.ObjectId(userId), methodSlug } },
     {
       $group: {
         _id: null,
