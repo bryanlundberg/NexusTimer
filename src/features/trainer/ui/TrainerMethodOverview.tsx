@@ -2,13 +2,15 @@
 
 import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
-import { Hash, Timer, Zap, Grid3x3, TrendingUp, TrendingDown } from 'lucide-react'
+import { Hash, Timer, BookOpenCheck, Grid3x3, TrendingUp, TrendingDown, BarChart3 } from 'lucide-react'
 import type { TrainerMethodStatsDoc } from '@/entities/trainer-stats/model/types'
 import type { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 import { computeMethodOverview } from '@/features/trainer/lib/methodOverview'
+import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
 import { formatMs } from '@/features/trainer/lib/trainerUtils'
 import TrainerStatCard from './TrainerStatCard'
 import TrainerCaseRow from './TrainerCaseRow'
+import TrainerCasePaceChart from './TrainerCasePaceChart'
 
 interface TrainerMethodOverviewProps {
   set: ALGORITHM_SET
@@ -19,8 +21,10 @@ interface TrainerMethodOverviewProps {
 
 export default function TrainerMethodOverview({ set, stats, targetMs, isLoading }: TrainerMethodOverviewProps) {
   const t = useTranslations('Index.TrainerHistoryPage.overview')
+  const tStats = useTranslations('Index.TrainerPage.stats')
+  const { learnedIds } = useTrainerLearned(set.slug)
 
-  const { totalSolves, avgMs, bestSingleMs, practicedCount, best, worst } = useMemo(
+  const { totalSolves, avgMs, practicedCount, ranked, best, worst } = useMemo(
     () => computeMethodOverview(stats, set),
     [stats, set]
   )
@@ -50,9 +54,9 @@ export default function TrainerMethodOverview({ set, stats, targetMs, isLoading 
           accent="border-cube-yellow/70"
         />
         <TrainerStatCard
-          icon={Zap}
-          label={t('bestSingle')}
-          value={bestSingleMs !== null ? `${formatMs(bestSingleMs)}s` : '—'}
+          icon={BookOpenCheck}
+          label={tStats('algorithmsLearned')}
+          value={`${learnedIds.length}/${set.algorithms.length}`}
           accent="border-cube-green/70"
         />
         <TrainerStatCard
@@ -69,7 +73,6 @@ export default function TrainerMethodOverview({ set, stats, targetMs, isLoading 
           {best.length > 0 && (
             <div className="flex flex-col gap-1">
               <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                <span className="h-3.5 w-1 rounded-full bg-cube-green" aria-hidden />
                 <TrendingUp className="size-3" />
                 {t('bestCase')}
               </span>
@@ -107,6 +110,17 @@ export default function TrainerMethodOverview({ set, stats, targetMs, isLoading 
               </div>
             </div>
           )}
+        </div>
+      )}
+
+      {ranked.length >= 2 && (
+        <div className="flex flex-col gap-2 pt-3">
+          <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <span className="h-3.5 w-1 rounded-full bg-cube-yellow" aria-hidden />
+            <BarChart3 className="size-3" />
+            {t('coverage')}
+          </span>
+          <TrainerCasePaceChart ranked={ranked} puzzle={set.puzzle} vizDefaults={vizDefaults} />
         </div>
       )}
     </div>
