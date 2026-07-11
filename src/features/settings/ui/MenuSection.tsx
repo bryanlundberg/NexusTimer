@@ -4,23 +4,19 @@ interface MenuSectionProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
   icon: React.ReactNode
   title: string
+  accent?: string
   className?: string
 }
 
-export function MenuSection({ children, icon, title, className, ...rest }: MenuSectionProps) {
+export function MenuSection({ children, icon, title, accent, className, ...rest }: MenuSectionProps) {
   return (
-    <>
-      <div
-        {...rest}
-        className={cn(
-          'flex items-center gap-2.5 font-medium sticky bg-background/95 backdrop-blur-lg top-0 py-2.5 z-10 px-3',
-          className
-        )}
-      >
-        <div className="text-muted-foreground">{icon}</div>
-        <span className="text-sm tracking-wide uppercase text-muted-foreground">{title}</span>
+    <section {...rest} className={cn('scroll-mt-16', className)}>
+      <div className="flex items-center gap-2.5 px-3 pb-1.5">
+        <span className={cn('h-4 w-1 rounded-full', accent ?? 'bg-primary/60')} aria-hidden />
+        <div className="text-muted-foreground [&>svg]:size-4">{icon}</div>
+        <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">{title}</span>
       </div>
-      <div className="py-1">{children}</div>
-    </>
+      <div className="mt-1">{children}</div>
+    </section>
   )
 }
