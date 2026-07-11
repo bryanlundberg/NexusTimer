@@ -63,9 +63,7 @@ export async function POST(request: NextRequest) {
     const body = await parseJsonBody(request, trainerSolveInputSchema)
     if (body instanceof Response) return body
 
-    const { methodSlug, caseId, timeMs, penalty } = body
-    const isCounted = penalty !== 'DNF'
-    const effectiveTime = penalty === '+2' ? timeMs + 2000 : timeMs
+    const { methodSlug, caseId, timeMs } = body
 
     await connectDB()
 
@@ -73,8 +71,7 @@ export async function POST(request: NextRequest) {
       user: userId,
       methodSlug,
       caseId,
-      timeMs: effectiveTime,
-      penalty
+      timeMs
     })
 
     // Aggregate update — atomic in a single op so averages/records stay
@@ -84,24 +81,21 @@ export async function POST(request: NextRequest) {
 
     const update: Record<string, Record<string, unknown>> = {
       $set: {
-        [`${casePath}.lastSolveMs`]: effectiveTime,
+        [`${casePath}.lastSolveMs`]: timeMs,
         [`${casePath}.lastSolveAt`]: solve.createdAt.getTime()
-      }
-    }
-
-    if (isCounted) {
-      update.$inc = {
+      },
+      $inc: {
         [`${methodPath}.totalSolves`]: 1,
-        [`${methodPath}.totalTimeMs`]: effectiveTime,
+        [`${methodPath}.totalTimeMs`]: timeMs,
         [`${casePath}.totalSolves`]: 1,
-        [`${casePath}.totalTimeMs`]: effectiveTime
-      }
-      update.$min = {
-        [`${methodPath}.bestSingleMs`]: effectiveTime,
-        [`${casePath}.bestSingleMs`]: effectiveTime
-      }
-      update.$push = {
-        [`${casePath}.recentTimes`]: { $each: [effectiveTime], $slice: -TRAINER_RECENT_TIMES_WINDOW }
+        [`${casePath}.totalTimeMs`]: timeMs
+      },
+      $min: {
+        [`${methodPath}.bestSingleMs`]: timeMs,
+        [`${casePath}.bestSingleMs`]: timeMs
+      },
+      $push: {
+        [`${casePath}.recentTimes`]: { $each: [timeMs], $slice: -TRAINER_RECENT_TIMES_WINDOW }
       }
     }
 
