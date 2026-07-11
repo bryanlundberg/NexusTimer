@@ -1,7 +1,4 @@
 import { model, models, Schema } from 'mongoose'
-import { TRAINER_PENALTIES, TrainerPenalty } from '@/entities/trainer-solve/model/constants'
-
-export type { TrainerPenalty }
 
 export interface TrainerSolveDocument {
   _id: string
@@ -9,7 +6,6 @@ export interface TrainerSolveDocument {
   methodSlug: string
   caseId: string
   timeMs: number
-  penalty: TrainerPenalty
   createdAt: Date
   updatedAt: Date
 }
@@ -33,11 +29,6 @@ const TrainerSolveSchema = new Schema(
       type: Number,
       required: [true, 'timeMs is required'],
       min: 0
-    },
-    penalty: {
-      type: String,
-      enum: TRAINER_PENALTIES,
-      default: 'OK'
     }
   },
   { timestamps: true }
