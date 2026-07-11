@@ -18,6 +18,7 @@ export interface MethodOverviewSummary {
   avgMs: number | null
   bestSingleMs: number | null
   practicedCount: number
+  ranked: RankedCase[]
   best: RankedCase[]
   worst: RankedCase[]
 }
@@ -52,6 +53,7 @@ export function computeMethodOverview(stats: TrainerMethodStatsDoc | null, set: 
     avgMs: stats && stats.totalSolves > 0 ? stats.totalTimeMs / stats.totalSolves : null,
     bestSingleMs: stats?.bestSingleMs ?? null,
     practicedCount: practiced,
+    ranked,
     // Fastest first.
     best: ranked.slice(0, BEST_COUNT),
     // Slowest first; never overlaps with the best cases.
