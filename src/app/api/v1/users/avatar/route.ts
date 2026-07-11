@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server'
 import { auth } from '@/shared/config/auth/auth'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
+import { userProfileCache } from '@/entities/user/model/user-cache'
 import { files } from '@/shared/config/files'
 import { badRequest, notFound, ok, serverError, unauthorized } from '@/shared/api/responses'
 
@@ -33,6 +34,8 @@ export async function POST(request: NextRequest) {
     await connectDB()
     const user = await User.findByIdAndUpdate(userId, { image: url }, { new: true })
     if (!user) return notFound('User not found')
+
+    await userProfileCache.invalidate(userId)
 
     return ok({ url, public_id: key })
   } catch (error) {
