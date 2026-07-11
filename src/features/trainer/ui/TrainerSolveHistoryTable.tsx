@@ -19,6 +19,7 @@ interface TrainerSolveHistoryTableProps {
   reachedEnd?: boolean
   onLoadMore?: () => void
   onDelete: (id: string) => void
+  deletingIds?: Set<string>
   showCase?: boolean
   caseById?: Map<string, AlgorithmCollection>
   puzzle?: string
@@ -37,6 +38,7 @@ export default function TrainerSolveHistoryTable({
   reachedEnd,
   onLoadMore,
   onDelete,
+  deletingIds,
   showCase = false,
   caseById,
   puzzle,
@@ -90,14 +92,17 @@ export default function TrainerSolveHistoryTable({
           {solves.map((solve) => {
             const algCase = showCase ? caseById?.get(solve.caseId) : undefined
             const vizConfig = showCase ? vizConfigByCaseId.get(solve.caseId) : undefined
+            const isDeleting = deletingIds?.has(solve._id) ?? false
             return (
               <motion.div
                 key={solve._id}
                 variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
+                aria-disabled={isDeleting}
                 className={cn(
                   'grid items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0',
                   'border-l-2 border-l-transparent transition-colors duration-150 hover:bg-muted/20 hover:border-l-primary',
+                  isDeleting && 'opacity-40 pointer-events-none',
                   showCase ? GRID_WITH_CASE : GRID_NO_CASE
                 )}
               >
@@ -107,7 +112,7 @@ export default function TrainerSolveHistoryTable({
                   </div>
                 )}
 
-                <TrainerSolveTimeCell timeMs={solve.timeMs} penalty={solve.penalty} targetMs={targetMs} />
+                <TrainerSolveTimeCell timeMs={solve.timeMs} targetMs={targetMs} />
 
                 {showCase && (
                   <span className="truncate text-xs text-muted-foreground">{algCase?.name ?? solve.caseId}</span>
@@ -115,7 +120,11 @@ export default function TrainerSolveHistoryTable({
 
                 <span className="text-xs text-muted-foreground tabular-nums">{formatRelative(solve.createdAt)}</span>
 
-                <TrainerDeleteSolveButton label={t('delete')} onClick={() => onDelete(solve._id)} />
+                <TrainerDeleteSolveButton
+                  label={t('delete')}
+                  pending={isDeleting}
+                  onClick={() => onDelete(solve._id)}
+                />
               </motion.div>
             )
           })}
