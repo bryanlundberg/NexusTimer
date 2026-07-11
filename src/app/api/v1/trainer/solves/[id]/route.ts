@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server'
 import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import TrainerSolve from '@/entities/trainer-solve/model/trainer-solve'
+import { solvesCache } from '@/entities/trainer-solve/model/solves-cache'
 import { TRAINER_PENALTIES } from '@/entities/trainer-solve/model/constants'
 import { recomputeCaseAndMethod } from '@/entities/trainer-stats/model/recompute'
 import { requireUser } from '@/shared/api/require-user'
@@ -36,6 +37,7 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     await solve.save()
 
     await recomputeCaseAndMethod(userId, solve.methodSlug, solve.caseId)
+    await solvesCache.invalidate(userId, solve.methodSlug)
 
     return ok({ solve })
   } catch (error) {
@@ -55,6 +57,7 @@ export async function DELETE(_request: NextRequest, { params }: { params: Promis
     if (!solve) return notFound()
 
     await recomputeCaseAndMethod(userId, solve.methodSlug, solve.caseId)
+    await solvesCache.invalidate(userId, solve.methodSlug)
 
     return ok({ ok: true })
   } catch (error) {
