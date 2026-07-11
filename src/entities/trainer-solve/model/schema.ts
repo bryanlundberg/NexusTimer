@@ -1,13 +1,11 @@
 import { z } from 'zod'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
-import { TRAINER_PENALTIES } from '@/entities/trainer-solve/model/constants'
 
 export const trainerSolveInputSchema = z
   .object({
     methodSlug: z.string().min(1),
     caseId: z.string().min(1),
-    timeMs: z.number().finite().nonnegative(),
-    penalty: z.enum(TRAINER_PENALTIES).default('OK')
+    timeMs: z.number().finite().nonnegative()
   })
   .superRefine((data, ctx) => {
     const set = ALGORITHM_SETS.find((s) => s.slug === data.methodSlug)
