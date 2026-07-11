@@ -11,8 +11,9 @@ import { TRAINER_RECENT_TIMES_WINDOW } from '@/entities/trainer-stats/model/cons
  */
 export async function recomputeCaseAndMethod(userId: string, methodSlug: string, caseId: string) {
   // 1. Pull solves for this case (small, scoped scan).
+  // _id order === insertion order; matches the { user, methodSlug, caseId, _id } index.
   const solves = await TrainerSolve.find({ user: userId, methodSlug, caseId })
-    .sort({ createdAt: 1 })
+    .sort({ _id: 1 })
     .lean<Array<{ _id: unknown; timeMs: number; penalty: 'OK' | '+2' | 'DNF'; createdAt: Date }>>()
 
   const counted = solves.filter((s) => s.penalty !== 'DNF')
