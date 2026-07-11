@@ -11,7 +11,6 @@ export interface UserDocument {
   goal?: string
   wcaId?: string
   wcaVerifiedAt?: number
-  lastSeenAt?: number
   backup?: {
     url: string
     updatedAt: number
@@ -64,9 +63,6 @@ const UserSchema = new Schema(
       type: String
     },
     wcaVerifiedAt: {
-      type: Number
-    },
-    lastSeenAt: {
       type: Number
     },
     backup: {
