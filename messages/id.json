@@ -491,7 +491,8 @@
         "last-backup": "Cadangan terakhir?",
         "never": "Tidak pernah",
         "close": "Tutup",
-        "compare": "Bandingkan"
+        "compare": "Bandingkan",
+        "add-more": "Tambah lagi"
       }
     },
     "NavMain": {
@@ -814,6 +815,16 @@
         "loading": "Memuat…",
         "loadMore": "Muat lebih banyak",
         "empty": "Belum ada solve."
+      },
+      "overview": {
+        "attempts": "percobaan",
+        "average": "Rata-rata",
+        "bestCase": "Kasus terbaik",
+        "bestSingle": "Single terbaik",
+        "coverage": "Kasus yang dilatih",
+        "empty": "Latih beberapa kasus untuk melihat ringkasan metode.",
+        "executions": "Eksekusi",
+        "focusCases": "Perlu latihan"
       }
     }
   },

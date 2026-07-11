@@ -74,18 +74,76 @@
       "custom-background-description": "Загрузить свое фоновое изображение (макс. 4 МБ)",
       "data-import-export": "Резервное копирование данных в файл или восстановление из него",
       "auto-select-description": "Автоматически выбирать куб при запуске приложения",
-      "language-description": "Изменить язык приложения"
+      "language-description": "Изменить язык приложения",
+      "analytics": "Разрешить анонимную статистику использования, чтобы улучшать NexusTimer",
+      "favorite-sound": "Проигрывать звук при добавлении в избранное",
+      "haptics": "Вибрация, когда таймер готов к старту (только поддерживаемые устройства)",
+      "inspection-sound": "Голосовые оповещения во время инспекции",
+      "new-round-sound": "Проигрывать звук при новом раунде мультиплеера",
+      "scramble-size": "Выберите размер текста скрамбла",
+      "trash-sound": "Проигрывать звук при удалении сборки"
     },
     "leaderboard-solve-details": {
       "user-solution": "Реконструкция",
       "time": "Время",
       "scramble": "Скрамбл",
-      "solution": "Решение"
+      "solution": "Решение",
+      "cross": "Крест",
+      "f2l": "F2L",
+      "moves": "Ходы",
+      "oll": "OLL",
+      "phases": "Фазы",
+      "pll": "PLL",
+      "replay": "Повтор",
+      "tps": "TPS"
     },
     "Auth": {
       "sign-in": "Войти",
       "continue-google": "Продолжить через Google",
-      "continue-discord": "Продолжить через Discord"
+      "continue-discord": "Продолжить через Discord",
+      "back": "Назад",
+      "back-to-sign-in": "Вернуться ко входу",
+      "confirm-password": "Подтвердите пароль",
+      "create-account": "Создать аккаунт",
+      "email": "Эл. почта",
+      "forgot-password": "Забыли пароль?",
+      "forgot-password-sent-description": "Если аккаунт для {email} существует, мы отправили ссылку для сброса пароля.",
+      "forgot-password-sent-title": "Проверьте почту",
+      "forgot-password-submit": "Отправить ссылку для сброса",
+      "forgot-password-subtitle": "Введите свою почту, и мы отправим ссылку для сброса.",
+      "forgot-password-title": "Сброс пароля",
+      "have-account": "Уже есть аккаунт?",
+      "invalid-token": "Эта ссылка для сброса недействительна или устарела.",
+      "loading": "Загрузка...",
+      "name": "Имя",
+      "name-placeholder": "Ваше имя",
+      "new-password": "Новый пароль",
+      "no-account": "Нет аккаунта?",
+      "or-continue-with": "Или продолжить с",
+      "password": "Пароль",
+      "reset-password-for": "Сброс пароля для {email}",
+      "reset-password-submit": "Сбросить пароль",
+      "reset-password-subtitle": "Введите новый пароль дважды, чтобы продолжить.",
+      "reset-password-title": "Выберите новый пароль",
+      "sign-in-subtitle": "Войдите, чтобы продолжить отслеживать свои сборки.",
+      "sign-up": "Зарегистрироваться",
+      "sign-up-subtitle": "Сохраняйте сборки, поднимайтесь в рейтингах, учите алгоритмы.",
+      "validation": {
+        "code-length": "Код должен состоять из 6 цифр",
+        "code-numeric": "Код должен содержать только цифры",
+        "email-invalid": "Неверный адрес эл. почты",
+        "name-too-long": "Имя должно быть не длиннее 50 символов",
+        "name-too-short": "Имя должно содержать минимум 2 символа",
+        "password-required": "Пароль обязателен",
+        "password-too-long": "Пароль должен быть не длиннее 72 символов",
+        "password-too-short": "Пароль должен содержать минимум 8 символов",
+        "passwords-dont-match": "Пароли не совпадают"
+      },
+      "verification-code": "Код подтверждения",
+      "verify-button": "Подтвердить",
+      "verify-description": "Мы отправили 6-значный код на {email}",
+      "verify-title": "Проверьте почту",
+      "welcome-back": "С возвращением, кубер"
     },
     "CoreHeader": {
       "give-feedback": "Оставить отзыв"
@@ -179,7 +237,15 @@
       "finish-session": "Завершить",
       "selection": {
         "move-to-session": "Переместить в сессию",
-        "moved-to-session-toast": "{count} сборок перемещено в сессию"
+        "moved-to-session-toast": "{count} сборок перемещено в сессию",
+        "cancel": "Отмена",
+        "delete": "Удалить",
+        "delete-confirm-desc": "Это действие нельзя отменить.",
+        "delete-confirm-title": "Удалить сборки ({count})?",
+        "deleted-toast": "Удалено сборок: {count}",
+        "move-to-history": "Переместить в историю",
+        "moved-toast": "Перемещено в историю: {count}",
+        "selected": "Выбрано: {count}"
       },
       "tooltips": {
         "move-to-history": "Завершить тренировку"
@@ -266,7 +332,12 @@
       "utilize": "Использовать",
       "utilize-cube": "Использовать `{name}`",
       "session-solves": "Сборки сессии",
-      "historical-solves": "История сборок"
+      "historical-solves": "История сборок",
+      "active-count": "{count, plural, one {# активная} few {# активные} many {# активных} other {# активные}}",
+      "collections-count": "{count, plural, one {# коллекция} few {# коллекции} many {# коллекций} other {# коллекции}}",
+      "empty-description": "Создай первую коллекцию или перенеси данные из другого таймера. Nexi готов к твоей первой сборке.",
+      "empty-title": "Пока нет коллекций",
+      "total-solves-count": "{count, plural, one {# сборка} few {# сборки} many {# сборок} other {# сборки}}"
     },
     "Cubes-modal": {
       "delete-collection": "Удалить коллекцию",
@@ -327,7 +398,8 @@
         "overview": "Обзор",
         "cubes": "Кубы",
         "timeline": "Timeline",
-        "algorithms": "Алгоритмы"
+        "algorithms": "Алгоритмы",
+        "achievements": "Достижения"
       },
       "algorithms": {
         "total-learned": "выученных алгоритмов",
@@ -379,7 +451,13 @@
       "showing-members": "Показано <b>{showing}</b> из <b>{total}</b> участников",
       "search": "Поиск",
       "compare-basket": "<b>{count}</b> в сравнении",
-      "col-actions": "Действия"
+      "col-actions": "Действия",
+      "badges": {
+        "counter": "{unlocked} / {total}",
+        "empty": "Пока нет разблокированных достижений.",
+        "title": "Достижения",
+        "view-all": "Показать все"
+      }
     },
     "LeaderboardsPage": {
       "title": "Самые быстрые сборки",
@@ -393,7 +471,9 @@
         "image": "Картинка",
         "date": "Дата",
         "tps": "tps",
-        "not-available": "Н/Д"
+        "not-available": "Н/Д",
+        "moves": "Ходы",
+        "replay-available": "Доступен повтор"
       },
       "comparative": {
         "title": "Сравнение",
@@ -408,7 +488,8 @@
         "last-backup": "Последний бэкап?",
         "never": "Никогда",
         "close": "Закрыть",
-        "compare": "Сравнить"
+        "compare": "Сравнить",
+        "add-more": "Добавить ещё"
       }
     },
     "NavMain": {
@@ -431,7 +512,9 @@
       "save-data": "Создать резервную копию",
       "download-data": "Восстановить из резервной копии",
       "log-out": "Выйти",
-      "activity-solves": "сборки"
+      "activity-solves": "сборки",
+      "trainer": "Тренажёр",
+      "training": "Тренировка"
     },
     "Presence": {
       "online": "В сети",
@@ -457,7 +540,8 @@
       "move-to-session": "В сессию",
       "transfer-collection": "Сменить коллекцию",
       "delete-confirm-title": "Удалить это решение?",
-      "delete-confirm-desc": "Это действие нельзя отменить."
+      "delete-confirm-desc": "Это действие нельзя отменить.",
+      "watch-replay": "Смотреть повтор"
     },
     "Settings-menu": {
       "locale": "Регион",
@@ -498,7 +582,17 @@
       "light": "Светлая",
       "system": "Системная",
       "close": "Закрыть",
-      "fullscreen": "Полный экран"
+      "fullscreen": "Полный экран",
+      "analytics": "Google Analytics",
+      "favorite-sound": "Избранное",
+      "haptics": "Вибрация",
+      "inspection-sound": "Инспекция",
+      "new-round-sound": "Новый раунд",
+      "privacy": "Конфиденциальность",
+      "scramble-size": "Размер скрамбла",
+      "scramble-size-large": "Крупный",
+      "scramble-size-normal": "Обычный",
+      "trash-sound": "Удаление"
     },
     "backup-modal": {
       "title": "Умное восстановление",
@@ -535,7 +629,22 @@
       "delete-app-data-title": "Удалить всё?",
       "delete-app-data-subtitle": "Это навсегда удалит все кубы и сборки. Продолжить?",
       "delete-app-data-success": "Все данные удалены",
-      "cloud-sync": "Облачная синхронизация"
+      "cloud-sync": "Облачная синхронизация",
+      "backup-applied": "Бэкап применён",
+      "backup-apply": "Применить бэкап",
+      "backup-apply-confirm": "Применить",
+      "backup-apply-error": "Не удалось применить бэкап",
+      "backup-apply-subtitle": "Это перезапишет все локальные данные этим бэкапом. Текущие кубы и сборки будут заменены без возможности восстановления.",
+      "backup-apply-title": "Применить этот бэкап?",
+      "backup-current": "Текущий",
+      "backup-delete-error": "Не удалось удалить бэкап",
+      "backup-delete-subtitle": "Это навсегда удалит бэкап из облака без возможности отмены.",
+      "backup-delete-title": "Удалить этот бэкап?",
+      "backup-deleted": "Бэкап удалён",
+      "backups-tab": "Бэкапы",
+      "manage-backups-description": "Просматривайте и удаляйте бэкапы, сохранённые в облаке.",
+      "manage-backups-title": "Управление бэкапами",
+      "no-backups": "У вас пока нет сохранённых бэкапов."
     },
     "TransferSolvesPage": {
       "title": "Перенос сборок",
@@ -583,7 +692,9 @@
         "other": "Другое"
       },
       "search-country": "Поиск страны…",
-      "no-country-found": "Страна не найдена"
+      "no-country-found": "Страна не найдена",
+      "personal-info": "Личные данные",
+      "personal-info-description": "Обнови свою публичную информацию и то, как тебя видят другие пользователи."
     },
     "AccessCard": {
       "title": "Доступ",
@@ -675,7 +786,11 @@
         "markedAsLearned": "Отмечено как изучено",
         "markAsLearned": "Отметить как изучено",
         "skip": "Пропустить",
-        "history": "История"
+        "history": "История",
+        "hideSolveInfo": "Скрыть информацию о сборке",
+        "showSolveInfo": "Показать информацию о сборке",
+        "undoLast": "Отменить",
+        "viewAlgorithms": "Показать алгоритмы"
       },
       "editTargetModal": {
         "title": "Изменить целевое время",
@@ -694,6 +809,9 @@
       },
       "cta": {
         "practiceNow": "Практиковать сейчас"
+      },
+      "algorithmsModal": {
+        "title": "Алгоритмы"
       }
     },
     "TrainerHistoryPage": {
@@ -718,7 +836,20 @@
         "loading": "Загрузка…",
         "loadMore": "Загрузить ещё",
         "empty": "Пока нет solves."
+      },
+      "overview": {
+        "attempts": "попыток",
+        "average": "Среднее",
+        "bestCase": "Лучший случай",
+        "bestSingle": "Лучший сингл",
+        "coverage": "Отработанные случаи",
+        "empty": "Отработай несколько случаев, чтобы увидеть обзор метода.",
+        "executions": "Выполнения",
+        "focusCases": "Требуют работы"
       }
+    },
+    "Offline": {
+      "offline": "Офлайн"
     }
   },
   "Multiplayer": {
@@ -1014,5 +1145,29 @@
     "privacy-policy": "Политика конфиденциальности",
     "accept": "Принять",
     "decline": "Отклонить"
+  },
+  "Metadata": {
+    "title": "Nexus Timer — профессиональный таймер для кубика Рубика",
+    "description": "Nexus Timer — профессиональная платформа для тренировок и анализа твоего пути с кубиком Рубика.",
+    "keywords": {
+      "key1": "timer",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "speedcubing timer",
+      "key5": "rubiks cube timer",
+      "key6": "online timer",
+      "key7": "web timer",
+      "key8": "rubiks",
+      "key9": "wca",
+      "key10": "online rubiks cube timer",
+      "key11": "speed cubing",
+      "key12": "cubing",
+      "key13": "cubing timer",
+      "key14": "world cubing association"
+    }
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer — профессиональный таймер для кубика Рубика",
+    "description": "Nexus Timer — профессиональная платформа для тренировок и анализа твоего пути с кубиком Рубика."
   }
 }

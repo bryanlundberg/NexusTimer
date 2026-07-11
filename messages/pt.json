@@ -74,18 +74,76 @@
       "custom-background-description": "Carregar uma imagem de fundo personalizada (máx. 4MB)",
       "data-import-export": "Fazer backup de seus dados para um arquivo ou restaurar de um backup anterior",
       "auto-select-description": "Selecionar automaticamente um cubo ao iniciar o aplicativo",
-      "language-description": "Alterar o idioma usado em todo o aplicativo"
+      "language-description": "Alterar o idioma usado em todo o aplicativo",
+      "analytics": "Permitir estatísticas de uso anônimas para ajudar a melhorar o NexusTimer",
+      "favorite-sound": "Tocar um som ao salvar um favorito",
+      "haptics": "Vibrar quando o timer estiver pronto para iniciar (apenas dispositivos compatíveis)",
+      "inspection-sound": "Tocar alertas de voz durante a inspeção",
+      "new-round-sound": "Tocar um som a cada nova rodada multiplayer",
+      "scramble-size": "Escolha o tamanho do texto do embaralhamento",
+      "trash-sound": "Tocar um som ao excluir um solve"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstrução",
       "time": "Tempo",
       "scramble": "Embaralhamento",
-      "solution": "Solução"
+      "solution": "Solução",
+      "cross": "Cross",
+      "f2l": "F2L",
+      "moves": "Movimentos",
+      "oll": "OLL",
+      "phases": "Fases",
+      "pll": "PLL",
+      "replay": "Replay",
+      "tps": "TPS"
     },
     "Auth": {
       "sign-in": "Entrar",
       "continue-google": "Continuar com Google",
-      "continue-discord": "Continuar com Discord"
+      "continue-discord": "Continuar com Discord",
+      "back": "Voltar",
+      "back-to-sign-in": "Voltar ao login",
+      "confirm-password": "Confirmar senha",
+      "create-account": "Criar conta",
+      "email": "E-mail",
+      "forgot-password": "Esqueceu sua senha?",
+      "forgot-password-sent-description": "Se existir uma conta para {email}, enviamos um link para redefinir sua senha.",
+      "forgot-password-sent-title": "Verifique sua caixa de entrada",
+      "forgot-password-submit": "Enviar link de redefinição",
+      "forgot-password-subtitle": "Digite seu e-mail e enviaremos um link de redefinição.",
+      "forgot-password-title": "Redefinir sua senha",
+      "have-account": "Já tem uma conta?",
+      "invalid-token": "Este link de redefinição é inválido ou expirou.",
+      "loading": "Carregando...",
+      "name": "Nome",
+      "name-placeholder": "Seu nome",
+      "new-password": "Nova senha",
+      "no-account": "Não tem uma conta?",
+      "or-continue-with": "Ou continue com",
+      "password": "Senha",
+      "reset-password-for": "Redefinindo a senha de {email}",
+      "reset-password-submit": "Redefinir senha",
+      "reset-password-subtitle": "Digite sua nova senha duas vezes para continuar.",
+      "reset-password-title": "Escolha uma nova senha",
+      "sign-in-subtitle": "Entre para continuar registrando seus solves.",
+      "sign-up": "Cadastrar-se",
+      "sign-up-subtitle": "Salve seus solves, suba nos rankings, aprenda algoritmos.",
+      "validation": {
+        "code-length": "O código deve ter 6 dígitos",
+        "code-numeric": "O código deve ser numérico",
+        "email-invalid": "Endereço de e-mail inválido",
+        "name-too-long": "O nome deve ter no máximo 50 caracteres",
+        "name-too-short": "O nome deve ter pelo menos 2 caracteres",
+        "password-required": "A senha é obrigatória",
+        "password-too-long": "A senha deve ter no máximo 72 caracteres",
+        "password-too-short": "A senha deve ter pelo menos 8 caracteres",
+        "passwords-dont-match": "As senhas não coincidem"
+      },
+      "verification-code": "Código de verificação",
+      "verify-button": "Verificar",
+      "verify-description": "Enviamos um código de 6 dígitos para {email}",
+      "verify-title": "Verifique seu e-mail",
+      "welcome-back": "Bem-vindo de volta, cuber"
     },
     "CoreHeader": {
       "give-feedback": "Dar Feedback"
@@ -179,7 +237,15 @@
       "finish-session": "Finalizar",
       "selection": {
         "move-to-session": "Mover para a sessão",
-        "moved-to-session-toast": "{count} solves movidos para a sessão"
+        "moved-to-session-toast": "{count} solves movidos para a sessão",
+        "cancel": "Cancelar",
+        "delete": "Excluir",
+        "delete-confirm-desc": "Esta ação não pode ser desfeita.",
+        "delete-confirm-title": "Excluir {count} solves?",
+        "deleted-toast": "{count} solves excluídos",
+        "move-to-history": "Mover para o histórico",
+        "moved-toast": "{count} solves movidos para o histórico",
+        "selected": "{count} selecionados"
       },
       "tooltips": {
         "move-to-history": "Finalizar prática"
@@ -266,7 +332,12 @@
       "utilize": "Utilizar",
       "utilize-cube": "Utilizar `{name}`",
       "session-solves": "Tempos da sessão",
-      "historical-solves": "Tempos históricos"
+      "historical-solves": "Tempos históricos",
+      "active-count": "{count, plural, =1 {# ativa} other {# ativas}}",
+      "collections-count": "{count, plural, =1 {# coleção} other {# coleções}}",
+      "empty-description": "Crie sua primeira coleção ou traga dados de outro timer. O Nexi está pronto para o seu primeiro solve.",
+      "empty-title": "Nenhuma coleção ainda",
+      "total-solves-count": "{count, plural, =1 {# solve} other {# solves}}"
     },
     "Cubes-modal": {
       "delete-collection": "Excluir coleção",
@@ -327,7 +398,8 @@
         "overview": "Visão Geral",
         "cubes": "Cubos",
         "timeline": "Timeline",
-        "algorithms": "Algoritmos"
+        "algorithms": "Algoritmos",
+        "achievements": "Conquistas"
       },
       "algorithms": {
         "total-learned": "algoritmos aprendidos",
@@ -379,7 +451,13 @@
       "showing-members": "Exibindo <b>{showing}</b> de <b>{total}</b> membros",
       "search": "Buscar",
       "compare-basket": "<b>{count}</b> na comparação",
-      "col-actions": "Ações"
+      "col-actions": "Ações",
+      "badges": {
+        "counter": "{unlocked} / {total}",
+        "empty": "Nenhuma conquista desbloqueada ainda.",
+        "title": "Conquistas",
+        "view-all": "Ver todas"
+      }
     },
     "LeaderboardsPage": {
       "title": "Solves mais rápidos",
@@ -393,7 +471,9 @@
         "image": "Imagem",
         "date": "Data",
         "tps": "tps",
-        "not-available": "N/D"
+        "not-available": "N/D",
+        "moves": "Movimentos",
+        "replay-available": "Replay disponível"
       },
       "comparative": {
         "title": "Comparação",
@@ -408,7 +488,8 @@
         "last-backup": "Último Backup?",
         "never": "Nunca",
         "close": "Fechar",
-        "compare": "Comparar"
+        "compare": "Comparar",
+        "add-more": "Adicionar mais"
       }
     },
     "NavMain": {
@@ -431,7 +512,9 @@
       "save-data": "Criar backup",
       "download-data": "Restaurar backup",
       "log-out": "Sair",
-      "activity-solves": "soluções"
+      "activity-solves": "soluções",
+      "trainer": "Treinador",
+      "training": "Treinamento"
     },
     "Presence": {
       "online": "Online",
@@ -457,7 +540,8 @@
       "move-to-session": "Mover para a Sessão",
       "transfer-collection": "Transferir Coleção",
       "delete-confirm-title": "Excluir esta resolução?",
-      "delete-confirm-desc": "Esta ação não pode ser desfeita."
+      "delete-confirm-desc": "Esta ação não pode ser desfeita.",
+      "watch-replay": "Assistir replay"
     },
     "Settings-menu": {
       "locale": "Região",
@@ -498,7 +582,17 @@
       "light": "Claro",
       "system": "Sistema",
       "close": "X",
-      "fullscreen": "Tela cheia"
+      "fullscreen": "Tela cheia",
+      "analytics": "Google Analytics",
+      "favorite-sound": "Favorito",
+      "haptics": "Resposta tátil",
+      "inspection-sound": "Inspeção",
+      "new-round-sound": "Nova rodada",
+      "privacy": "Privacidade",
+      "scramble-size": "Tamanho do embaralhamento",
+      "scramble-size-large": "Grande",
+      "scramble-size-normal": "Normal",
+      "trash-sound": "Excluir"
     },
     "backup-modal": {
       "title": "Restauração Inteligente de Backup",
@@ -535,7 +629,22 @@
       "delete-app-data-title": "Excluir todos os dados?",
       "delete-app-data-subtitle": "Esta ação excluirá permanentemente todos os seus cubos e tempos. Confirmar?",
       "delete-app-data-success": "Todos os dados da aplicação foram excluídos",
-      "cloud-sync": "Sincronização Cloud"
+      "cloud-sync": "Sincronização Cloud",
+      "backup-applied": "Backup aplicado",
+      "backup-apply": "Aplicar backup",
+      "backup-apply-confirm": "Aplicar",
+      "backup-apply-error": "Não foi possível aplicar o backup",
+      "backup-apply-subtitle": "Isso substituirá todos os seus dados locais por este backup. Seus cubos e solves atuais serão substituídos e não poderão ser recuperados.",
+      "backup-apply-title": "Aplicar este backup?",
+      "backup-current": "Atual",
+      "backup-delete-error": "Não foi possível excluir o backup",
+      "backup-delete-subtitle": "Isso remove permanentemente este backup da nuvem e não pode ser desfeito.",
+      "backup-delete-title": "Excluir este backup?",
+      "backup-deleted": "Backup excluído",
+      "backups-tab": "Backups",
+      "manage-backups-description": "Veja e remova os backups armazenados na nuvem.",
+      "manage-backups-title": "Gerenciar backups",
+      "no-backups": "Você ainda não tem backups armazenados."
     },
     "TransferSolvesPage": {
       "title": "Transferir tempos",
@@ -583,7 +692,9 @@
         "other": "Outro"
       },
       "search-country": "Buscar país…",
-      "no-country-found": "Nenhum país encontrado"
+      "no-country-found": "Nenhum país encontrado",
+      "personal-info": "Informações pessoais",
+      "personal-info-description": "Atualize suas informações públicas e como outros usuários veem você."
     },
     "AccessCard": {
       "title": "Acesso",
@@ -675,7 +786,11 @@
         "markedAsLearned": "Marcado como aprendido",
         "markAsLearned": "Marcar como aprendido",
         "skip": "Pular",
-        "history": "Histórico"
+        "history": "Histórico",
+        "hideSolveInfo": "Ocultar informações do solve",
+        "showSolveInfo": "Mostrar informações do solve",
+        "undoLast": "Desfazer",
+        "viewAlgorithms": "Ver algoritmos"
       },
       "editTargetModal": {
         "title": "Editar tempo objetivo",
@@ -694,6 +809,9 @@
       },
       "cta": {
         "practiceNow": "Praticar agora"
+      },
+      "algorithmsModal": {
+        "title": "Algoritmos"
       }
     },
     "TrainerHistoryPage": {
@@ -718,7 +836,20 @@
         "loading": "Carregando…",
         "loadMore": "Carregar mais",
         "empty": "Ainda não há solves."
+      },
+      "overview": {
+        "attempts": "tentativas",
+        "average": "Média",
+        "bestCase": "Melhor caso",
+        "bestSingle": "Melhor single",
+        "coverage": "Casos praticados",
+        "empty": "Pratique alguns casos para ver o resumo do seu método.",
+        "executions": "Execuções",
+        "focusCases": "Precisa melhorar"
       }
+    },
+    "Offline": {
+      "offline": "Offline"
     }
   },
   "Multiplayer": {
@@ -1014,5 +1145,29 @@
     "privacy-policy": "Política de Privacidade",
     "accept": "Aceitar",
     "decline": "Recusar"
+  },
+  "Metadata": {
+    "title": "Nexus Timer - Timer profissional de Cubo Mágico",
+    "description": "O Nexus Timer é uma plataforma profissional para treinar e analisar sua jornada com o Cubo Mágico.",
+    "keywords": {
+      "key1": "timer",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "speedcubing timer",
+      "key5": "rubiks cube timer",
+      "key6": "online timer",
+      "key7": "web timer",
+      "key8": "rubiks",
+      "key9": "wca",
+      "key10": "online rubiks cube timer",
+      "key11": "speed cubing",
+      "key12": "cubing",
+      "key13": "cubing timer",
+      "key14": "world cubing association"
+    }
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - Timer profissional de Cubo Mágico",
+    "description": "O Nexus Timer é uma plataforma profissional para treinar e analisar sua jornada com o Cubo Mágico."
   }
 }

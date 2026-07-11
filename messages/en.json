@@ -787,6 +787,16 @@
       "breadcrumb": "History",
       "signInPrompt": "Sign in to view your trainer history.",
       "backToPractice": "Back to practice",
+      "overview": {
+        "executions": "Executions",
+        "average": "Average",
+        "bestSingle": "Best single",
+        "coverage": "Cases practiced",
+        "bestCase": "Best case",
+        "focusCases": "Needs work",
+        "attempts": "attempts",
+        "empty": "Practice a few cases to see your method overview."
+      },
       "tabs": {
         "method": "Method",
         "currentCase": "Current case"

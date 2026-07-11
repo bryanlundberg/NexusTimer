@@ -491,7 +491,8 @@
         "last-backup": "Sao lưu lần cuối?",
         "never": "Chưa bao giờ",
         "close": "Đóng",
-        "compare": "So sánh"
+        "compare": "So sánh",
+        "add-more": "Thêm nữa"
       }
     },
     "NavMain": {
@@ -814,6 +815,16 @@
         "loading": "Đang tải…",
         "loadMore": "Tải thêm",
         "empty": "Chưa có lượt giải nào."
+      },
+      "overview": {
+        "attempts": "lần thử",
+        "average": "Trung bình",
+        "bestCase": "Trường hợp tốt nhất",
+        "bestSingle": "Đơn tốt nhất",
+        "coverage": "Trường hợp đã luyện",
+        "empty": "Luyện vài trường hợp để xem tổng quan phương pháp.",
+        "executions": "Lượt thực hiện",
+        "focusCases": "Cần luyện thêm"
       }
     }
   },

@@ -74,18 +74,76 @@
       "custom-background-description": "Eigenes Hintergrundbild hochladen (max. 4MB)",
       "data-import-export": "Daten in Datei sichern oder aus Backup wiederherstellen",
       "auto-select-description": "Beim Programmstart automatisch einen Würfel auswählen",
-      "language-description": "Die in der App verwendete Sprache ändern"
+      "language-description": "Die in der App verwendete Sprache ändern",
+      "analytics": "Anonyme Nutzungsstatistiken erlauben, um NexusTimer zu verbessern",
+      "favorite-sound": "Sound beim Speichern eines Favoriten abspielen",
+      "haptics": "Vibrieren, wenn der Timer startbereit ist (nur unterstützte Geräte)",
+      "inspection-sound": "Sprachansagen während der Inspektion abspielen",
+      "new-round-sound": "Sound bei neuer Multiplayer-Runde abspielen",
+      "scramble-size": "Textgröße des Scrambles wählen",
+      "trash-sound": "Sound beim Löschen eines Solves abspielen"
     },
     "leaderboard-solve-details": {
       "user-solution": "Rekonstruktion",
       "time": "Zeit",
       "scramble": "Scramble",
-      "solution": "Lösung"
+      "solution": "Lösung",
+      "cross": "Cross",
+      "f2l": "F2L",
+      "moves": "Züge",
+      "oll": "OLL",
+      "phases": "Phasen",
+      "pll": "PLL",
+      "replay": "Replay",
+      "tps": "TPS"
     },
     "Auth": {
       "sign-in": "Anmelden",
       "continue-google": "Mit Google fortfahren",
-      "continue-discord": "Mit Discord fortfahren"
+      "continue-discord": "Mit Discord fortfahren",
+      "back": "Zurück",
+      "back-to-sign-in": "Zurück zur Anmeldung",
+      "confirm-password": "Passwort bestätigen",
+      "create-account": "Konto erstellen",
+      "email": "E-Mail",
+      "forgot-password": "Passwort vergessen?",
+      "forgot-password-sent-description": "Falls ein Konto für {email} existiert, haben wir einen Link zum Zurücksetzen des Passworts gesendet.",
+      "forgot-password-sent-title": "Prüfe deinen Posteingang",
+      "forgot-password-submit": "Link zum Zurücksetzen senden",
+      "forgot-password-subtitle": "Gib deine E-Mail ein und wir senden dir einen Link zum Zurücksetzen.",
+      "forgot-password-title": "Passwort zurücksetzen",
+      "have-account": "Du hast bereits ein Konto?",
+      "invalid-token": "Dieser Link ist ungültig oder abgelaufen.",
+      "loading": "Wird geladen...",
+      "name": "Name",
+      "name-placeholder": "Dein Name",
+      "new-password": "Neues Passwort",
+      "no-account": "Noch kein Konto?",
+      "or-continue-with": "Oder fortfahren mit",
+      "password": "Passwort",
+      "reset-password-for": "Passwort zurücksetzen für {email}",
+      "reset-password-submit": "Passwort zurücksetzen",
+      "reset-password-subtitle": "Gib dein neues Passwort zweimal ein, um fortzufahren.",
+      "reset-password-title": "Wähle ein neues Passwort",
+      "sign-in-subtitle": "Melde dich an, um deine Solves weiter zu tracken.",
+      "sign-up": "Registrieren",
+      "sign-up-subtitle": "Speichere deine Solves, erklimme Bestenlisten, lerne Algorithmen.",
+      "validation": {
+        "code-length": "Der Code muss 6 Ziffern haben",
+        "code-numeric": "Der Code darf nur Ziffern enthalten",
+        "email-invalid": "Ungültige E-Mail-Adresse",
+        "name-too-long": "Der Name darf höchstens 50 Zeichen haben",
+        "name-too-short": "Der Name muss mindestens 2 Zeichen haben",
+        "password-required": "Passwort ist erforderlich",
+        "password-too-long": "Das Passwort darf höchstens 72 Zeichen haben",
+        "password-too-short": "Das Passwort muss mindestens 8 Zeichen haben",
+        "passwords-dont-match": "Die Passwörter stimmen nicht überein"
+      },
+      "verification-code": "Bestätigungscode",
+      "verify-button": "Bestätigen",
+      "verify-description": "Wir haben einen 6-stelligen Code an {email} gesendet",
+      "verify-title": "Prüfe deine E-Mails",
+      "welcome-back": "Willkommen zurück, Cuber"
     },
     "CoreHeader": {
       "give-feedback": "Feedback geben"
@@ -179,7 +237,15 @@
       "finish-session": "Abschließen",
       "selection": {
         "move-to-session": "In Sitzung verschieben",
-        "moved-to-session-toast": "{count} Lösungen in die Sitzung verschoben"
+        "moved-to-session-toast": "{count} Lösungen in die Sitzung verschoben",
+        "cancel": "Abbrechen",
+        "delete": "Löschen",
+        "delete-confirm-desc": "Diese Aktion kann nicht rückgängig gemacht werden.",
+        "delete-confirm-title": "{count} Solves löschen?",
+        "deleted-toast": "{count} Solves gelöscht",
+        "move-to-history": "In den Verlauf verschieben",
+        "moved-toast": "{count} Solves in den Verlauf verschoben",
+        "selected": "{count} ausgewählt"
       },
       "tooltips": {
         "move-to-history": "Übung abschließen"
@@ -266,7 +332,12 @@
       "utilize": "Nutzen",
       "utilize-cube": "`{name}` nutzen",
       "session-solves": "Sitzungszeiten",
-      "historical-solves": "Verlaufszeiten"
+      "historical-solves": "Verlaufszeiten",
+      "active-count": "{count, plural, =1 {# aktiv} other {# aktiv}}",
+      "collections-count": "{count, plural, =1 {# Sammlung} other {# Sammlungen}}",
+      "empty-description": "Erstelle deine erste Sammlung oder importiere Daten aus einem anderen Timer. Nexi ist bereit für deinen ersten Solve.",
+      "empty-title": "Noch keine Sammlungen",
+      "total-solves-count": "{count, plural, =1 {# Solve} other {# Solves}}"
     },
     "Cubes-modal": {
       "delete-collection": "Sammlung löschen",
@@ -327,7 +398,8 @@
         "overview": "Übersicht",
         "cubes": "Würfel",
         "timeline": "Timeline",
-        "algorithms": "Algorithmen"
+        "algorithms": "Algorithmen",
+        "achievements": "Erfolge"
       },
       "algorithms": {
         "total-learned": "Algorithmen gelernt",
@@ -379,7 +451,13 @@
       "showing-members": "<b>{showing}</b> von <b>{total}</b> Mitgliedern",
       "search": "Suchen",
       "compare-basket": "<b>{count}</b> im Vergleich",
-      "col-actions": "Aktionen"
+      "col-actions": "Aktionen",
+      "badges": {
+        "counter": "{unlocked} / {total}",
+        "empty": "Noch keine Erfolge freigeschaltet.",
+        "title": "Erfolge",
+        "view-all": "Alle ansehen"
+      }
     },
     "LeaderboardsPage": {
       "title": "Schnellste Lösungen",
@@ -393,7 +471,9 @@
         "image": "Bild",
         "date": "Datum",
         "tps": "tps",
-        "not-available": "N/V"
+        "not-available": "N/V",
+        "moves": "Züge",
+        "replay-available": "Replay verfügbar"
       },
       "comparative": {
         "title": "Vergleich",
@@ -408,7 +488,8 @@
         "last-backup": "Letztes Backup?",
         "never": "Nie",
         "close": "Schließen",
-        "compare": "Vergleichen"
+        "compare": "Vergleichen",
+        "add-more": "Mehr hinzufügen"
       }
     },
     "NavMain": {
@@ -431,7 +512,9 @@
       "save-data": "Backup erstellen",
       "download-data": "Backup wiederherstellen",
       "log-out": "Abmelden",
-      "activity-solves": "Lösungen"
+      "activity-solves": "Lösungen",
+      "trainer": "Trainer",
+      "training": "Training"
     },
     "Presence": {
       "online": "Online",
@@ -457,7 +540,8 @@
       "move-to-session": "In Sitzung verschieben",
       "transfer-collection": "Sammlung übertragen",
       "delete-confirm-title": "Diesen Solve löschen?",
-      "delete-confirm-desc": "Diese Aktion kann nicht rückgängig gemacht werden."
+      "delete-confirm-desc": "Diese Aktion kann nicht rückgängig gemacht werden.",
+      "watch-replay": "Replay ansehen"
     },
     "Settings-menu": {
       "locale": "Region",
@@ -498,7 +582,17 @@
       "light": "Hell",
       "system": "System",
       "close": "X",
-      "fullscreen": "Vollbild"
+      "fullscreen": "Vollbild",
+      "analytics": "Google Analytics",
+      "favorite-sound": "Favorit",
+      "haptics": "Haptisches Feedback",
+      "inspection-sound": "Inspektion",
+      "new-round-sound": "Neue Runde",
+      "privacy": "Datenschutz",
+      "scramble-size": "Scramble-Größe",
+      "scramble-size-large": "Groß",
+      "scramble-size-normal": "Normal",
+      "trash-sound": "Löschen"
     },
     "backup-modal": {
       "title": "Intelligente Backup-Wiederherstellung",
@@ -535,7 +629,22 @@
       "delete-app-data-title": "Alle Daten löschen?",
       "delete-app-data-subtitle": "Dies löscht alle Würfel und Zeiten dauerhaft. Bist du sicher?",
       "delete-app-data-success": "Alle Daten gelöscht",
-      "cloud-sync": "Cloud-Sync"
+      "cloud-sync": "Cloud-Sync",
+      "backup-applied": "Backup angewendet",
+      "backup-apply": "Backup anwenden",
+      "backup-apply-confirm": "Anwenden",
+      "backup-apply-error": "Backup konnte nicht angewendet werden",
+      "backup-apply-subtitle": "Dies überschreibt alle lokalen Daten mit diesem Backup. Deine aktuellen Cubes und Solves werden ersetzt und können nicht wiederhergestellt werden.",
+      "backup-apply-title": "Dieses Backup anwenden?",
+      "backup-current": "Aktuell",
+      "backup-delete-error": "Backup konnte nicht gelöscht werden",
+      "backup-delete-subtitle": "Dies entfernt das Backup dauerhaft aus der Cloud und kann nicht rückgängig gemacht werden.",
+      "backup-delete-title": "Dieses Backup löschen?",
+      "backup-deleted": "Backup gelöscht",
+      "backups-tab": "Backups",
+      "manage-backups-description": "Sieh dir die in der Cloud gespeicherten Backups an und entferne sie.",
+      "manage-backups-title": "Backups verwalten",
+      "no-backups": "Du hast noch keine gespeicherten Backups."
     },
     "TransferSolvesPage": {
       "title": "Zeiten übertragen",
@@ -583,7 +692,9 @@
         "other": "Andere"
       },
       "search-country": "Land suchen…",
-      "no-country-found": "Kein Land gefunden"
+      "no-country-found": "Kein Land gefunden",
+      "personal-info": "Persönliche Daten",
+      "personal-info-description": "Aktualisiere deine öffentlichen Informationen und wie andere Nutzer dich sehen."
     },
     "AccessCard": {
       "title": "Zugriff",
@@ -675,7 +786,11 @@
         "markedAsLearned": "Als gelernt markiert",
         "markAsLearned": "Als gelernt markieren",
         "skip": "Überspringen",
-        "history": "Verlauf"
+        "history": "Verlauf",
+        "hideSolveInfo": "Solve-Infos ausblenden",
+        "showSolveInfo": "Solve-Infos anzeigen",
+        "undoLast": "Rückgängig",
+        "viewAlgorithms": "Algorithmen ansehen"
       },
       "editTargetModal": {
         "title": "Zielzeit bearbeiten",
@@ -694,6 +809,9 @@
       },
       "cta": {
         "practiceNow": "Jetzt üben"
+      },
+      "algorithmsModal": {
+        "title": "Algorithmen"
       }
     },
     "TrainerHistoryPage": {
@@ -718,7 +836,20 @@
         "loading": "Lädt…",
         "loadMore": "Mehr laden",
         "empty": "Noch keine Solves."
+      },
+      "overview": {
+        "attempts": "Versuche",
+        "average": "Durchschnitt",
+        "bestCase": "Bester Fall",
+        "bestSingle": "Bester Single",
+        "coverage": "Geübte Fälle",
+        "empty": "Übe ein paar Fälle, um deine Methodenübersicht zu sehen.",
+        "executions": "Ausführungen",
+        "focusCases": "Braucht Übung"
       }
+    },
+    "Offline": {
+      "offline": "Offline"
     }
   },
   "Multiplayer": {
@@ -1014,5 +1145,29 @@
     "privacy-policy": "Datenschutzerklärung",
     "accept": "Akzeptieren",
     "decline": "Ablehnen"
+  },
+  "Metadata": {
+    "title": "Nexus Timer – Professioneller Zauberwürfel-Timer",
+    "description": "Nexus Timer ist eine professionelle Plattform, um dein Training mit dem Zauberwürfel zu verfolgen und zu analysieren.",
+    "keywords": {
+      "key1": "timer",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "speedcubing timer",
+      "key5": "rubiks cube timer",
+      "key6": "online timer",
+      "key7": "web timer",
+      "key8": "rubiks",
+      "key9": "wca",
+      "key10": "online rubiks cube timer",
+      "key11": "speed cubing",
+      "key12": "cubing",
+      "key13": "cubing timer",
+      "key14": "world cubing association"
+    }
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer – Professioneller Zauberwürfel-Timer",
+    "description": "Nexus Timer ist eine professionelle Plattform, um dein Training mit dem Zauberwürfel zu verfolgen und zu analysieren."
   }
 }

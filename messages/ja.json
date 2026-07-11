@@ -74,18 +74,76 @@
       "custom-background-description": "タイマーをカスタマイズするための背景画像をアップロードします (最大4MB)",
       "data-import-export": "データをファイルにバックアップ、またはバックアップから復元します",
       "auto-select-description": "アプリ起動時にキューブを自動的に選択します",
-      "language-description": "アプリで使用する言語を変更します"
+      "language-description": "アプリで使用する言語を変更します",
+      "analytics": "NexusTimer の改善のため匿名の利用統計を許可する",
+      "favorite-sound": "お気に入り保存時にサウンドを再生",
+      "haptics": "タイマーの開始準備が整ったら振動（対応デバイスのみ）",
+      "inspection-sound": "インスペクション中に音声アラートを再生",
+      "new-round-sound": "マルチプレイの新ラウンドでサウンドを再生",
+      "scramble-size": "スクランブルの文字サイズを選択",
+      "trash-sound": "ソルブ削除時にサウンドを再生"
     },
     "leaderboard-solve-details": {
       "user-solution": "再構築 (Reconstruction)",
       "time": "タイム",
       "scramble": "スクランブル",
-      "solution": "ソルーション"
+      "solution": "ソルーション",
+      "cross": "クロス",
+      "f2l": "F2L",
+      "moves": "手数",
+      "oll": "OLL",
+      "phases": "フェーズ",
+      "pll": "PLL",
+      "replay": "リプレイ",
+      "tps": "TPS"
     },
     "Auth": {
       "sign-in": "サインイン",
       "continue-google": "Google で続行",
-      "continue-discord": "Discord で続行"
+      "continue-discord": "Discord で続行",
+      "back": "戻る",
+      "back-to-sign-in": "ログインに戻る",
+      "confirm-password": "パスワードを確認",
+      "create-account": "アカウントを作成",
+      "email": "メールアドレス",
+      "forgot-password": "パスワードをお忘れですか？",
+      "forgot-password-sent-description": "{email} のアカウントが存在する場合、パスワードリセット用のリンクを送信しました。",
+      "forgot-password-sent-title": "受信トレイを確認してください",
+      "forgot-password-submit": "リセットリンクを送信",
+      "forgot-password-subtitle": "メールアドレスを入力すると、リセットリンクをお送りします。",
+      "forgot-password-title": "パスワードをリセット",
+      "have-account": "すでにアカウントをお持ちですか？",
+      "invalid-token": "このリセットリンクは無効か期限切れです。",
+      "loading": "読み込み中...",
+      "name": "名前",
+      "name-placeholder": "あなたの名前",
+      "new-password": "新しいパスワード",
+      "no-account": "アカウントをお持ちでないですか？",
+      "or-continue-with": "または次で続行",
+      "password": "パスワード",
+      "reset-password-for": "{email} のパスワードをリセット中",
+      "reset-password-submit": "パスワードをリセット",
+      "reset-password-subtitle": "続行するには新しいパスワードを2回入力してください。",
+      "reset-password-title": "新しいパスワードを選択",
+      "sign-in-subtitle": "ログインしてソルブの記録を続けましょう。",
+      "sign-up": "新規登録",
+      "sign-up-subtitle": "ソルブを保存し、ランキングを駆け上がり、アルゴリズムを学ぼう。",
+      "validation": {
+        "code-length": "コードは6桁である必要があります",
+        "code-numeric": "コードは数字のみです",
+        "email-invalid": "無効なメールアドレスです",
+        "name-too-long": "名前は50文字以内にしてください",
+        "name-too-short": "名前は2文字以上にしてください",
+        "password-required": "パスワードは必須です",
+        "password-too-long": "パスワードは72文字以内にしてください",
+        "password-too-short": "パスワードは8文字以上にしてください",
+        "passwords-dont-match": "パスワードが一致しません"
+      },
+      "verification-code": "確認コード",
+      "verify-button": "確認",
+      "verify-description": "{email} に6桁のコードを送信しました",
+      "verify-title": "メールを確認してください",
+      "welcome-back": "おかえりなさい、キューバー"
     },
     "CoreHeader": {
       "give-feedback": "フィードバック"
@@ -179,7 +237,15 @@
       "finish-session": "完了",
       "selection": {
         "move-to-session": "セッションへ移動",
-        "moved-to-session-toast": "{count}件のソルブをセッションへ移動しました"
+        "moved-to-session-toast": "{count}件のソルブをセッションへ移動しました",
+        "cancel": "キャンセル",
+        "delete": "削除",
+        "delete-confirm-desc": "この操作は元に戻せません。",
+        "delete-confirm-title": "{count} 件のソルブを削除しますか？",
+        "deleted-toast": "{count} 件のソルブを削除しました",
+        "move-to-history": "履歴に移動",
+        "moved-toast": "{count} 件のソルブを履歴に移動しました",
+        "selected": "{count} 件選択中"
       },
       "tooltips": {
         "move-to-history": "練習を完了"
@@ -266,7 +332,12 @@
       "utilize": "使用",
       "utilize-cube": "`{name}` を使用",
       "session-solves": "セッションのソルブ",
-      "historical-solves": "過去のソルブ"
+      "historical-solves": "過去のソルブ",
+      "active-count": "{count, plural, other {# 個アクティブ}}",
+      "collections-count": "{count, plural, other {# コレクション}}",
+      "empty-description": "最初のコレクションを作成するか、他のタイマーからデータを取り込みましょう。Nexi は初めてのソルブを待っています。",
+      "empty-title": "コレクションはまだありません",
+      "total-solves-count": "{count, plural, other {# ソルブ}}"
     },
     "Cubes-modal": {
       "delete-collection": "コレクションを削除",
@@ -327,7 +398,8 @@
         "overview": "概要",
         "cubes": "キューブ",
         "timeline": "Timeline",
-        "algorithms": "アルゴリズム"
+        "algorithms": "アルゴリズム",
+        "achievements": "実績"
       },
       "algorithms": {
         "total-learned": "個のアルゴリズムを習得",
@@ -379,7 +451,13 @@
       "showing-members": "<b>{total}</b>人中 <b>{showing}</b>人を表示中",
       "search": "検索",
       "compare-basket": "<b>{count}</b>人を比較中",
-      "col-actions": "アクション"
+      "col-actions": "アクション",
+      "badges": {
+        "counter": "{unlocked} / {total}",
+        "empty": "まだ解除された実績はありません。",
+        "title": "実績",
+        "view-all": "すべて見る"
+      }
     },
     "LeaderboardsPage": {
       "title": "最速の記録",
@@ -393,7 +471,9 @@
         "image": "画像",
         "date": "日付",
         "tps": "TPS",
-        "not-available": "なし"
+        "not-available": "なし",
+        "moves": "手数",
+        "replay-available": "リプレイあり"
       },
       "comparative": {
         "title": "記録比較",
@@ -408,7 +488,8 @@
         "last-backup": "最終バックアップ",
         "never": "なし",
         "close": "閉じる",
-        "compare": "比較"
+        "compare": "比較",
+        "add-more": "さらに追加"
       }
     },
     "NavMain": {
@@ -431,7 +512,9 @@
       "save-data": "バックアップを作成",
       "download-data": "バックアップを復元",
       "log-out": "ログアウト",
-      "activity-solves": "解き"
+      "activity-solves": "解き",
+      "trainer": "トレーナー",
+      "training": "トレーニング"
     },
     "Presence": {
       "online": "オンライン",
@@ -457,7 +540,8 @@
       "move-to-session": "セッションへ移動",
       "transfer-collection": "コレクションを移動",
       "delete-confirm-title": "このソルブを削除しますか？",
-      "delete-confirm-desc": "この操作は取り消せません。"
+      "delete-confirm-desc": "この操作は取り消せません。",
+      "watch-replay": "リプレイを見る"
     },
     "Settings-menu": {
       "locale": "地域",
@@ -498,7 +582,17 @@
       "light": "ライト",
       "system": "システム設定",
       "close": "閉じる",
-      "fullscreen": "全画面表示"
+      "fullscreen": "全画面表示",
+      "analytics": "Google アナリティクス",
+      "favorite-sound": "お気に入り",
+      "haptics": "触覚フィードバック",
+      "inspection-sound": "インスペクション",
+      "new-round-sound": "新ラウンド",
+      "privacy": "プライバシー",
+      "scramble-size": "スクランブルサイズ",
+      "scramble-size-large": "大",
+      "scramble-size-normal": "標準",
+      "trash-sound": "削除"
     },
     "backup-modal": {
       "title": "インテリジェント復元",
@@ -535,7 +629,22 @@
       "delete-app-data-title": "全データを削除しますか？",
       "delete-app-data-subtitle": "すべてのキューブとタイムデータが完全に削除されます。よろしいですか？",
       "delete-app-data-success": "すべてのデータを削除しました",
-      "cloud-sync": "クラウド同期"
+      "cloud-sync": "クラウド同期",
+      "backup-applied": "バックアップを適用しました",
+      "backup-apply": "バックアップを適用",
+      "backup-apply-confirm": "適用",
+      "backup-apply-error": "バックアップを適用できませんでした",
+      "backup-apply-subtitle": "ローカルデータはすべてこのバックアップで上書きされます。現在のキューブとソルブは置き換えられ、復元できません。",
+      "backup-apply-title": "このバックアップを適用しますか？",
+      "backup-current": "現在",
+      "backup-delete-error": "バックアップを削除できませんでした",
+      "backup-delete-subtitle": "このバックアップはクラウドから完全に削除され、元に戻せません。",
+      "backup-delete-title": "このバックアップを削除しますか？",
+      "backup-deleted": "バックアップを削除しました",
+      "backups-tab": "バックアップ",
+      "manage-backups-description": "クラウドに保存されたバックアップを表示・削除します。",
+      "manage-backups-title": "バックアップの管理",
+      "no-backups": "保存されたバックアップはまだありません。"
     },
     "TransferSolvesPage": {
       "title": "タイムを移動",
@@ -583,7 +692,9 @@
         "other": "その他"
       },
       "search-country": "国を検索…",
-      "no-country-found": "国が見つかりません"
+      "no-country-found": "国が見つかりません",
+      "personal-info": "個人情報",
+      "personal-info-description": "公開情報や他のユーザーからの見え方を更新します。"
     },
     "AccessCard": {
       "title": "アクセス",
@@ -675,7 +786,11 @@
         "markedAsLearned": "習得済みとしてマーク",
         "markAsLearned": "習得済みにする",
         "skip": "スキップ",
-        "history": "履歴"
+        "history": "履歴",
+        "hideSolveInfo": "ソルブ情報を隠す",
+        "showSolveInfo": "ソルブ情報を表示",
+        "undoLast": "元に戻す",
+        "viewAlgorithms": "アルゴリズムを見る"
       },
       "editTargetModal": {
         "title": "目標タイムを編集",
@@ -694,6 +809,9 @@
       },
       "cta": {
         "practiceNow": "今すぐ練習"
+      },
+      "algorithmsModal": {
+        "title": "アルゴリズム"
       }
     },
     "TrainerHistoryPage": {
@@ -718,7 +836,20 @@
         "loading": "読み込み中…",
         "loadMore": "さらに読み込む",
         "empty": "Solve はまだありません。"
+      },
+      "overview": {
+        "attempts": "回",
+        "average": "平均",
+        "bestCase": "ベストケース",
+        "bestSingle": "ベストシングル",
+        "coverage": "練習済みケース",
+        "empty": "いくつかケースを練習すると、メソッドの概要が表示されます。",
+        "executions": "実行回数",
+        "focusCases": "要練習"
       }
+    },
+    "Offline": {
+      "offline": "オフライン"
     }
   },
   "Multiplayer": {
@@ -1014,5 +1145,29 @@
     "privacy-policy": "プライバシーポリシー",
     "accept": "同意する",
     "decline": "拒否する"
+  },
+  "Metadata": {
+    "title": "Nexus Timer - プロフェッショナル・ルービックキューブタイマー",
+    "description": "Nexus Timer はルービックキューブのトレーニングと分析のためのプロフェッショナルなプラットフォームです。",
+    "keywords": {
+      "key1": "timer",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "speedcubing timer",
+      "key5": "rubiks cube timer",
+      "key6": "online timer",
+      "key7": "web timer",
+      "key8": "rubiks",
+      "key9": "wca",
+      "key10": "online rubiks cube timer",
+      "key11": "speed cubing",
+      "key12": "cubing",
+      "key13": "cubing timer",
+      "key14": "world cubing association"
+    }
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - プロフェッショナル・ルービックキューブタイマー",
+    "description": "Nexus Timer はルービックキューブのトレーニングと分析のためのプロフェッショナルなプラットフォームです。"
   }
 }

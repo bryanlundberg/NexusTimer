@@ -83,13 +83,22 @@
       "data-import-export": "Зробити резервну копію даних у файл або відновити з попередньої копії",
       "auto-select-description": "Автоматично обирати куб під час запуску застосунку",
       "language-description": "Змінити мову, що використовується в застосунку",
-      "analytics": "Дозволити збір анонімної аналітики використання, щоб допомогти покращити NexusTimer"
+      "analytics": "Дозволити збір анонімної аналітики використання, щоб допомогти покращити NexusTimer",
+      "scramble-size": "Обери розмір тексту скрамбла"
     },
     "leaderboard-solve-details": {
       "user-solution": "Реконструкція",
       "time": "Час",
       "scramble": "Скрамбл",
-      "solution": "Розв'язок"
+      "solution": "Розв'язок",
+      "cross": "Хрест",
+      "f2l": "F2L",
+      "moves": "Ходи",
+      "oll": "OLL",
+      "phases": "Фази",
+      "pll": "PLL",
+      "replay": "Повтор",
+      "tps": "TPS"
     },
     "Auth": {
       "sign-in": "Увійти",
@@ -231,7 +240,15 @@
       "finish-session": "Завершити",
       "selection": {
         "move-to-session": "Перемістити до сесії",
-        "moved-to-session-toast": "{count} складань переміщено до сесії"
+        "moved-to-session-toast": "{count} складань переміщено до сесії",
+        "cancel": "Скасувати",
+        "delete": "Видалити",
+        "delete-confirm-desc": "Цю дію не можна скасувати.",
+        "delete-confirm-title": "Видалити збірки ({count})?",
+        "deleted-toast": "Видалено збірок: {count}",
+        "move-to-history": "Перемістити в історію",
+        "moved-toast": "Переміщено в історію: {count}",
+        "selected": "Вибрано: {count}"
       },
       "tooltips": {
         "move-to-history": "Завершити тренування"
@@ -318,7 +335,12 @@
       "utilize": "Використати",
       "utilize-cube": "Використати `{name}`",
       "session-solves": "Спроби сесії",
-      "historical-solves": "Історичні спроби"
+      "historical-solves": "Історичні спроби",
+      "active-count": "{count, plural, one {# активна} few {# активні} many {# активних} other {# активні}}",
+      "collections-count": "{count, plural, one {# колекція} few {# колекції} many {# колекцій} other {# колекції}}",
+      "empty-description": "Створи свою першу колекцію або перенеси дані з іншого таймера. Nexi готовий до твоєї першої збірки.",
+      "empty-title": "Ще немає колекцій",
+      "total-solves-count": "{count, plural, one {# збірка} few {# збірки} many {# збірок} other {# збірки}}"
     },
     "Cubes-modal": {
       "delete-collection": "Видалити колекцію",
@@ -379,7 +401,8 @@
         "overview": "Огляд",
         "cubes": "Куби",
         "timeline": "Хронологія",
-        "algorithms": "Алгоритми"
+        "algorithms": "Алгоритми",
+        "achievements": "Досягнення"
       },
       "algorithms": {
         "total-learned": "вивчених алгоритмів",
@@ -431,7 +454,13 @@
       "showing-members": "Показано <b>{showing}</b> з <b>{total}</b> учасників",
       "search": "Пошук",
       "compare-basket": "<b>{count}</b> у кошику порівняння",
-      "col-actions": "Дії"
+      "col-actions": "Дії",
+      "badges": {
+        "counter": "{unlocked} / {total}",
+        "empty": "Ще немає розблокованих досягнень.",
+        "title": "Досягнення",
+        "view-all": "Переглянути всі"
+      }
     },
     "LeaderboardsPage": {
       "title": "Найшвидші збірки",
@@ -445,7 +474,9 @@
         "image": "Зображення",
         "date": "Дата",
         "tps": "tps",
-        "not-available": "Н/Д"
+        "not-available": "Н/Д",
+        "moves": "Ходи",
+        "replay-available": "Доступний повтор"
       },
       "comparative": {
         "title": "Порівняння",
@@ -460,7 +491,8 @@
         "last-backup": "Остання резервна копія?",
         "never": "Ніколи",
         "close": "Закрити",
-        "compare": "Порівняти"
+        "compare": "Порівняти",
+        "add-more": "Додати ще"
       }
     },
     "NavMain": {
@@ -511,7 +543,8 @@
       "move-to-session": "Перемістити в сесію",
       "transfer-collection": "Перенести колекцію",
       "delete-confirm-title": "Видалити цей розв'язок?",
-      "delete-confirm-desc": "Цю дію не можна скасувати."
+      "delete-confirm-desc": "Цю дію не можна скасувати.",
+      "watch-replay": "Дивитися повтор"
     },
     "Settings-menu": {
       "locale": "Регіон",
@@ -559,7 +592,10 @@
       "light": "Світла",
       "system": "Системна",
       "close": "X",
-      "fullscreen": "На весь екран"
+      "fullscreen": "На весь екран",
+      "scramble-size": "Розмір скрамбла",
+      "scramble-size-large": "Великий",
+      "scramble-size-normal": "Звичайний"
     },
     "backup-modal": {
       "title": "Розумне відновлення резервної копії",
@@ -596,7 +632,22 @@
       "delete-app-data-title": "Видалити всі дані застосунку?",
       "delete-app-data-subtitle": "Ця дія назавжди видалить усі ваші дані про куби та спроби й не може бути скасована. Ви впевнені, що хочете продовжити?",
       "delete-app-data-success": "Усі дані застосунку видалено",
-      "cloud-sync": "Хмарна синхронізація"
+      "cloud-sync": "Хмарна синхронізація",
+      "backup-applied": "Бекап застосовано",
+      "backup-apply": "Застосувати бекап",
+      "backup-apply-confirm": "Застосувати",
+      "backup-apply-error": "Не вдалося застосувати бекап",
+      "backup-apply-subtitle": "Це перезапише всі твої локальні дані цим бекапом. Поточні кубики та збірки буде замінено без можливості відновлення.",
+      "backup-apply-title": "Застосувати цей бекап?",
+      "backup-current": "Поточний",
+      "backup-delete-error": "Не вдалося видалити бекап",
+      "backup-delete-subtitle": "Це назавжди видалить цей бекап із хмари без можливості відновлення.",
+      "backup-delete-title": "Видалити цей бекап?",
+      "backup-deleted": "Бекап видалено",
+      "backups-tab": "Бекапи",
+      "manage-backups-description": "Переглядай і видаляй бекапи, збережені в хмарі.",
+      "manage-backups-title": "Керування бекапами",
+      "no-backups": "У тебе ще немає збережених бекапів."
     },
     "TransferSolvesPage": {
       "title": "Перенесення спроб",
@@ -717,7 +768,8 @@
         "history": "Історія",
         "showSolveInfo": "Показати інфо спроби",
         "hideSolveInfo": "Сховати інфо спроби",
-        "viewAlgorithms": "Переглянути алгоритми"
+        "viewAlgorithms": "Переглянути алгоритми",
+        "undoLast": "Скасувати"
       },
       "algorithmsModal": {
         "title": "Алгоритми"
@@ -763,6 +815,16 @@
         "loading": "Завантаження…",
         "loadMore": "Завантажити ще",
         "empty": "Поки немає спроб."
+      },
+      "overview": {
+        "attempts": "спроб",
+        "average": "Середнє",
+        "bestCase": "Найкращий випадок",
+        "bestSingle": "Найкращий сингл",
+        "coverage": "Відпрацьовані випадки",
+        "empty": "Відпрацюй кілька випадків, щоб побачити огляд методу.",
+        "executions": "Виконання",
+        "focusCases": "Потребують роботи"
       }
     }
   },

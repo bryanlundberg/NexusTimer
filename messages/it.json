@@ -491,7 +491,8 @@
         "last-backup": "Ultimo backup?",
         "never": "Mai",
         "close": "Chiudi",
-        "compare": "Confronta"
+        "compare": "Confronta",
+        "add-more": "Aggiungi altri"
       }
     },
     "NavMain": {
@@ -814,6 +815,16 @@
         "loading": "Caricamento…",
         "loadMore": "Carica altri",
         "empty": "Ancora nessun solve."
+      },
+      "overview": {
+        "attempts": "tentativi",
+        "average": "Media",
+        "bestCase": "Caso migliore",
+        "bestSingle": "Miglior singolo",
+        "coverage": "Casi praticati",
+        "empty": "Esercitati con qualche caso per vedere il riepilogo del metodo.",
+        "executions": "Esecuzioni",
+        "focusCases": "Da migliorare"
       }
     }
   },

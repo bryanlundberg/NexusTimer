@@ -68,6 +68,49 @@
       "pll": "PLL"
     },
     "Auth": {
+      "back": "Atrás",
+      "back-to-sign-in": "Volver a iniciar sesión",
+      "confirm-password": "Confirmar contraseña",
+      "create-account": "Crear cuenta",
+      "email": "Correo electrónico",
+      "forgot-password": "¿Olvidaste tu contraseña?",
+      "forgot-password-sent-description": "Si existe una cuenta para {email}, enviamos un enlace para restablecer tu contraseña.",
+      "forgot-password-sent-title": "Revisa tu bandeja de entrada",
+      "forgot-password-submit": "Enviar enlace de restablecimiento",
+      "forgot-password-subtitle": "Escribe tu correo y te enviaremos un enlace de restablecimiento.",
+      "forgot-password-title": "Restablecer tu contraseña",
+      "have-account": "¿Ya tienes una cuenta?",
+      "invalid-token": "Este enlace de restablecimiento no es válido o ha expirado.",
+      "loading": "Cargando...",
+      "name": "Nombre",
+      "name-placeholder": "Tu nombre",
+      "new-password": "Nueva contraseña",
+      "no-account": "¿No tienes una cuenta?",
+      "or-continue-with": "O continúa con",
+      "password": "Contraseña",
+      "reset-password-for": "Restableciendo la contraseña de {email}",
+      "reset-password-submit": "Restablecer contraseña",
+      "reset-password-subtitle": "Escribe tu nueva contraseña dos veces para continuar.",
+      "reset-password-title": "Elige una nueva contraseña",
+      "sign-in-subtitle": "Inicia sesión para seguir registrando tus tiempos.",
+      "sign-up": "Registrarse",
+      "sign-up-subtitle": "Guarda tus tiempos, sube en los rankings, aprende algoritmos.",
+      "validation": {
+        "code-length": "El código debe tener 6 dígitos",
+        "code-numeric": "El código debe ser numérico",
+        "email-invalid": "Dirección de correo no válida",
+        "name-too-long": "El nombre debe tener como máximo 50 caracteres",
+        "name-too-short": "El nombre debe tener al menos 2 caracteres",
+        "password-required": "La contraseña es obligatoria",
+        "password-too-long": "La contraseña debe tener como máximo 72 caracteres",
+        "password-too-short": "La contraseña debe tener al menos 8 caracteres",
+        "passwords-dont-match": "Las contraseñas no coinciden"
+      },
+      "verification-code": "Código de verificación",
+      "verify-button": "Verificar",
+      "verify-description": "Enviamos un código de 6 dígitos a {email}",
+      "verify-title": "Revisa tu correo",
+      "welcome-back": "Bienvenido de vuelta, cubero",
       "sign-in": "Iniciar sesión",
       "continue-google": "Continuar con Google",
       "continue-discord": "Continuar con Discord"
@@ -197,6 +240,14 @@
       },
       "finish-session": "Finalizar",
       "selection": {
+        "cancel": "Cancelar",
+        "delete": "Eliminar",
+        "delete-confirm-desc": "Esta acción no se puede deshacer.",
+        "delete-confirm-title": "¿Eliminar {count} tiempos?",
+        "deleted-toast": "{count} tiempos eliminados",
+        "move-to-history": "Mover al historial",
+        "moved-toast": "{count} tiempos movidos al historial",
+        "selected": "{count} seleccionados",
         "move-to-session": "Mover a la sesión",
         "moved-to-session-toast": "{count} tiempos movidos a la sesión"
       },
@@ -229,6 +280,8 @@
       "empty-statistics-description": "Parece que tu registro de tiempos está actualmente vacío."
     },
     "CubesPage": {
+      "historical-solves": "Tiempos históricos",
+      "session-solves": "Tiempos de la sesión",
       "title": "Cubos",
       "no-cubes-for-display": "No hay cubos para mostrar.",
       "empty-title": "Aún no tienes colecciones",
@@ -290,6 +343,12 @@
       "next": "Siguiente"
     },
     "PeoplePage": {
+      "badges": {
+        "counter": "{unlocked} / {total}",
+        "empty": "Aún no has desbloqueado logros.",
+        "title": "Logros",
+        "view-all": "Ver todos"
+      },
       "title": "Personas",
       "search-placeholder": "Buscar por nombre o WCA ID",
       "all-countries": "Todos los países",
@@ -304,6 +363,7 @@
         "view-profile": "Ver Perfil"
       },
       "tabs": {
+        "achievements": "Logros",
         "overview": "Resumen",
         "cubes": "Cubos",
         "timeline": "Timeline",
@@ -378,6 +438,7 @@
         "replay-available": "Repetición disponible"
       },
       "comparative": {
+        "add-more": "Añadir más",
         "title": "Comparativa",
         "country": "País",
         "first-solve": "Primera resolución",
@@ -394,6 +455,15 @@
       }
     },
     "Settings-menu": {
+      "analytics": "Google Analytics",
+      "favorite-sound": "Favorito",
+      "inspection-sound": "Inspección",
+      "new-round-sound": "Nueva ronda",
+      "privacy": "Privacidad",
+      "scramble-size": "Tamaño del scramble",
+      "scramble-size-large": "Grande",
+      "scramble-size-normal": "Normal",
+      "trash-sound": "Eliminar",
       "locale": "Región",
       "language": "Idioma",
       "timer": "Cronómetro",
@@ -468,6 +538,21 @@
       "delete-confirm-desc": "Esta acción no se puede deshacer."
     },
     "SettingsPage": {
+      "backup-applied": "Respaldo aplicado",
+      "backup-apply": "Aplicar respaldo",
+      "backup-apply-confirm": "Aplicar",
+      "backup-apply-error": "No se pudo aplicar el respaldo",
+      "backup-apply-subtitle": "Esto sobrescribirá todos tus datos locales con este respaldo. Tus cubos y tiempos actuales serán reemplazados y no se podrán recuperar.",
+      "backup-apply-title": "¿Aplicar este respaldo?",
+      "backup-current": "Actual",
+      "backup-delete-error": "No se pudo eliminar el respaldo",
+      "backup-delete-subtitle": "Esto elimina permanentemente este respaldo de la nube y no se puede deshacer.",
+      "backup-delete-title": "¿Eliminar este respaldo?",
+      "backup-deleted": "Respaldo eliminado",
+      "backups-tab": "Respaldos",
+      "manage-backups-description": "Consulta y elimina los respaldos guardados en la nube.",
+      "manage-backups-title": "Gestionar respaldos",
+      "no-backups": "Aún no tienes respaldos guardados.",
       "account": "Cuenta",
       "fetching-last-backup": "Obteniendo información del servidor espera un momento...",
       "help": "Ayuda",
@@ -501,6 +586,12 @@
       "suggestions": "Sugerencias"
     },
     "Settings-descriptions": {
+      "analytics": "Permite estadísticas de uso anónimas para ayudar a mejorar NexusTimer",
+      "favorite-sound": "Reproduce un sonido al guardar un favorito",
+      "inspection-sound": "Reproduce alertas de voz durante la inspección",
+      "new-round-sound": "Reproduce un sonido en cada nueva ronda multijugador",
+      "scramble-size": "Elige el tamaño del texto del scramble",
+      "trash-sound": "Reproduce un sonido al eliminar un tiempo",
       "auto-select-description": "Selecciona automáticamente un cubo al iniciar la aplicación.",
       "best-average-alert": "Muestra una alerta cuando logres un nuevo mejor promedio.",
       "best-time-alert": "Muestra una alerta cuando logres un nuevo mejor tiempo.",
@@ -575,6 +666,8 @@
       "no-country-found": "No se encontró el país"
     },
     "NavMain": {
+      "trainer": "Entrenador",
+      "training": "Entrenamiento",
       "platform": "Plataforma",
       "timer": "Cronómetro",
       "solves": "Tiempos",
@@ -644,6 +737,9 @@
       }
     },
     "TrainerPage": {
+      "algorithmsModal": {
+        "title": "Algoritmos"
+      },
       "breadcrumb": "Entrenador",
       "chooseMethod": "Elige un método",
       "algsSuffix": "{count} algs",
@@ -667,6 +763,10 @@
         "noDataYet": "Sin datos aún"
       },
       "actions": {
+        "hideSolveInfo": "Ocultar info del solve",
+        "showSolveInfo": "Mostrar info del solve",
+        "undoLast": "Deshacer",
+        "viewAlgorithms": "Ver algoritmos",
         "editTargetTime": "Editar tiempo objetivo",
         "pickCases": "Elegir casos",
         "markedAsLearned": "Marcado como aprendido",
@@ -697,6 +797,16 @@
       "breadcrumb": "Historial",
       "signInPrompt": "Inicia sesión para ver tu historial del entrenador.",
       "backToPractice": "Volver a practicar",
+      "overview": {
+        "executions": "Ejecuciones",
+        "average": "Promedio",
+        "bestSingle": "Mejor single",
+        "coverage": "Casos practicados",
+        "bestCase": "Mejor caso",
+        "focusCases": "A mejorar",
+        "attempts": "intentos",
+        "empty": "Practica algunos casos para ver el resumen del método."
+      },
       "tabs": {
         "method": "Método",
         "currentCase": "Caso actual"

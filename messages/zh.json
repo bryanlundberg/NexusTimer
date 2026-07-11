@@ -74,18 +74,76 @@
       "custom-background-description": "上传自定义背景图片（最大 4MB）",
       "data-import-export": "将数据备份到文件或从之前的备份中恢复",
       "auto-select-description": "在应用程序启动时自动选择一个魔方",
-      "language-description": "更改应用程序使用的语言"
+      "language-description": "更改应用程序使用的语言",
+      "analytics": "允许匿名使用统计，帮助改进 NexusTimer",
+      "favorite-sound": "收藏时播放提示音",
+      "haptics": "计时器准备就绪时震动（仅支持的设备）",
+      "inspection-sound": "观察期间播放语音提醒",
+      "new-round-sound": "多人新回合时播放提示音",
+      "scramble-size": "选择打乱公式的文字大小",
+      "trash-sound": "删除复原记录时播放提示音"
     },
     "leaderboard-solve-details": {
       "user-solution": "还原重建",
       "time": "时间",
       "scramble": "打乱公式",
-      "solution": "还原方案"
+      "solution": "还原方案",
+      "cross": "十字",
+      "f2l": "F2L",
+      "moves": "步数",
+      "oll": "OLL",
+      "phases": "阶段",
+      "pll": "PLL",
+      "replay": "回放",
+      "tps": "TPS"
     },
     "Auth": {
       "sign-in": "登录",
       "continue-google": "使用 Google 继续",
-      "continue-discord": "使用 Discord 继续"
+      "continue-discord": "使用 Discord 继续",
+      "back": "返回",
+      "back-to-sign-in": "返回登录",
+      "confirm-password": "确认密码",
+      "create-account": "创建账号",
+      "email": "邮箱",
+      "forgot-password": "忘记密码？",
+      "forgot-password-sent-description": "如果 {email} 的账号存在，我们已发送重置密码的链接。",
+      "forgot-password-sent-title": "请查看你的收件箱",
+      "forgot-password-submit": "发送重置链接",
+      "forgot-password-subtitle": "输入你的邮箱，我们会发送重置链接。",
+      "forgot-password-title": "重置密码",
+      "have-account": "已有账号？",
+      "invalid-token": "此重置链接无效或已过期。",
+      "loading": "加载中...",
+      "name": "名字",
+      "name-placeholder": "你的名字",
+      "new-password": "新密码",
+      "no-account": "还没有账号？",
+      "or-continue-with": "或继续使用",
+      "password": "密码",
+      "reset-password-for": "正在为 {email} 重置密码",
+      "reset-password-submit": "重置密码",
+      "reset-password-subtitle": "输入两次新密码以继续。",
+      "reset-password-title": "设置新密码",
+      "sign-in-subtitle": "登录以继续记录你的复原。",
+      "sign-up": "注册",
+      "sign-up-subtitle": "保存复原记录，冲击排行榜，学习公式。",
+      "validation": {
+        "code-length": "验证码必须是 6 位数字",
+        "code-numeric": "验证码只能包含数字",
+        "email-invalid": "邮箱地址无效",
+        "name-too-long": "名字不能超过 50 个字符",
+        "name-too-short": "名字至少需要 2 个字符",
+        "password-required": "密码为必填项",
+        "password-too-long": "密码不能超过 72 个字符",
+        "password-too-short": "密码至少需要 8 个字符",
+        "passwords-dont-match": "两次输入的密码不一致"
+      },
+      "verification-code": "验证码",
+      "verify-button": "验证",
+      "verify-description": "我们已向 {email} 发送 6 位验证码",
+      "verify-title": "请查看你的邮箱",
+      "welcome-back": "欢迎回来，魔友"
     },
     "CoreHeader": {
       "give-feedback": "提供反馈"
@@ -179,7 +237,15 @@
       "finish-session": "完成",
       "selection": {
         "move-to-session": "移至当前组",
-        "moved-to-session-toast": "已将 {count} 个还原移至当前组"
+        "moved-to-session-toast": "已将 {count} 个还原移至当前组",
+        "cancel": "取消",
+        "delete": "删除",
+        "delete-confirm-desc": "此操作无法撤销。",
+        "delete-confirm-title": "删除 {count} 条复原记录？",
+        "deleted-toast": "已删除 {count} 条复原记录",
+        "move-to-history": "移至历史记录",
+        "moved-toast": "已将 {count} 条复原记录移至历史",
+        "selected": "已选择 {count} 条"
       },
       "tooltips": {
         "move-to-history": "完成练习"
@@ -266,7 +332,12 @@
       "utilize": "使用",
       "utilize-cube": "使用 `{name}`",
       "session-solves": "当前组还原",
-      "historical-solves": "历史还原"
+      "historical-solves": "历史还原",
+      "active-count": "{count, plural, other {# 个活跃}}",
+      "collections-count": "{count, plural, other {# 个收藏集}}",
+      "empty-description": "创建你的第一个收藏集，或从其他计时器导入数据。Nexi 已准备好迎接你的第一次复原。",
+      "empty-title": "还没有收藏集",
+      "total-solves-count": "{count, plural, other {# 次复原}}"
     },
     "Cubes-modal": {
       "delete-collection": "删除系列",
@@ -327,7 +398,8 @@
         "overview": "概览",
         "cubes": "魔方",
         "timeline": "Timeline",
-        "algorithms": "算法"
+        "algorithms": "算法",
+        "achievements": "成就"
       },
       "algorithms": {
         "total-learned": "个已学算法",
@@ -379,7 +451,13 @@
       "showing-members": "显示 <b>{showing}</b> / <b>{total}</b> 位成员",
       "search": "搜索",
       "compare-basket": "<b>{count}</b> 个对比中",
-      "col-actions": "操作"
+      "col-actions": "操作",
+      "badges": {
+        "counter": "{unlocked} / {total}",
+        "empty": "还没有解锁任何成就。",
+        "title": "成就",
+        "view-all": "查看全部"
+      }
     },
     "LeaderboardsPage": {
       "title": "最快还原",
@@ -393,7 +471,9 @@
         "image": "图像",
         "date": "日期",
         "tps": "TPS",
-        "not-available": "暂无"
+        "not-available": "暂无",
+        "moves": "步数",
+        "replay-available": "可回放"
       },
       "comparative": {
         "title": "成绩对比",
@@ -408,7 +488,8 @@
         "last-backup": "最近备份？",
         "never": "从未",
         "close": "关闭",
-        "compare": "对比"
+        "compare": "对比",
+        "add-more": "添加更多"
       }
     },
     "NavMain": {
@@ -431,7 +512,9 @@
       "save-data": "创建备份",
       "download-data": "恢复备份",
       "log-out": "退出登录",
-      "activity-solves": "次还原"
+      "activity-solves": "次还原",
+      "trainer": "训练器",
+      "training": "训练"
     },
     "Presence": {
       "online": "在线",
@@ -457,7 +540,8 @@
       "move-to-session": "移至当前组",
       "transfer-collection": "转移收藏",
       "delete-confirm-title": "删除此还原？",
-      "delete-confirm-desc": "此操作无法撤销。"
+      "delete-confirm-desc": "此操作无法撤销。",
+      "watch-replay": "观看回放"
     },
     "Settings-menu": {
       "locale": "地区",
@@ -498,7 +582,17 @@
       "light": "浅色",
       "system": "跟随系统",
       "close": "关闭",
-      "fullscreen": "全屏"
+      "fullscreen": "全屏",
+      "analytics": "Google Analytics",
+      "favorite-sound": "收藏",
+      "haptics": "触觉反馈",
+      "inspection-sound": "观察",
+      "new-round-sound": "新回合",
+      "privacy": "隐私",
+      "scramble-size": "打乱文字大小",
+      "scramble-size-large": "大",
+      "scramble-size-normal": "标准",
+      "trash-sound": "删除"
     },
     "backup-modal": {
       "title": "智能备份恢复",
@@ -535,7 +629,22 @@
       "delete-app-data-title": "删除所有应用数据？",
       "delete-app-data-subtitle": "此操作将永久删除你所有的魔方和还原纪录，且无法撤销。你确定要继续吗？",
       "delete-app-data-success": "所有应用数据已删除",
-      "cloud-sync": "云同步"
+      "cloud-sync": "云同步",
+      "backup-applied": "备份已应用",
+      "backup-apply": "应用备份",
+      "backup-apply-confirm": "应用",
+      "backup-apply-error": "无法应用备份",
+      "backup-apply-subtitle": "这将用此备份覆盖你的所有本地数据。当前的魔方和复原记录将被替换且无法恢复。",
+      "backup-apply-title": "应用此备份？",
+      "backup-current": "当前",
+      "backup-delete-error": "无法删除备份",
+      "backup-delete-subtitle": "这将从云端永久删除此备份，且无法撤销。",
+      "backup-delete-title": "删除此备份？",
+      "backup-deleted": "备份已删除",
+      "backups-tab": "备份",
+      "manage-backups-description": "查看并删除存储在云端的备份。",
+      "manage-backups-title": "管理备份",
+      "no-backups": "你还没有存储的备份。"
     },
     "TransferSolvesPage": {
       "title": "转移还原纪录",
@@ -583,7 +692,9 @@
         "other": "其他"
       },
       "search-country": "搜索国家…",
-      "no-country-found": "未找到国家"
+      "no-country-found": "未找到国家",
+      "personal-info": "个人信息",
+      "personal-info-description": "更新你的公开信息以及其他用户看到你的方式。"
     },
     "AccessCard": {
       "title": "访问",
@@ -675,7 +786,11 @@
         "markedAsLearned": "已标记为学会",
         "markAsLearned": "标记为学会",
         "skip": "跳过",
-        "history": "历史"
+        "history": "历史",
+        "hideSolveInfo": "隐藏复原信息",
+        "showSolveInfo": "显示复原信息",
+        "undoLast": "撤销",
+        "viewAlgorithms": "查看公式"
       },
       "editTargetModal": {
         "title": "编辑目标时间",
@@ -694,6 +809,9 @@
       },
       "cta": {
         "practiceNow": "立即练习"
+      },
+      "algorithmsModal": {
+        "title": "公式"
       }
     },
     "TrainerHistoryPage": {
@@ -718,7 +836,20 @@
         "loading": "加载中…",
         "loadMore": "加载更多",
         "empty": "尚无 solve。"
+      },
+      "overview": {
+        "attempts": "次尝试",
+        "average": "平均",
+        "bestCase": "最佳情况",
+        "bestSingle": "最佳单次",
+        "coverage": "已练习情况",
+        "empty": "练习几个情况后即可查看方法概览。",
+        "executions": "执行次数",
+        "focusCases": "需要加强"
       }
+    },
+    "Offline": {
+      "offline": "离线"
     }
   },
   "Multiplayer": {
@@ -1014,5 +1145,29 @@
     "privacy-policy": "隐私政策",
     "accept": "接受",
     "decline": "拒绝"
+  },
+  "Metadata": {
+    "title": "Nexus Timer - 专业魔方计时器",
+    "description": "Nexus Timer 是一个用于训练和分析你魔方之旅的专业平台。",
+    "keywords": {
+      "key1": "timer",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "speedcubing timer",
+      "key5": "rubiks cube timer",
+      "key6": "online timer",
+      "key7": "web timer",
+      "key8": "rubiks",
+      "key9": "wca",
+      "key10": "online rubiks cube timer",
+      "key11": "speed cubing",
+      "key12": "cubing",
+      "key13": "cubing timer",
+      "key14": "world cubing association"
+    }
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - 专业魔方计时器",
+    "description": "Nexus Timer 是一个用于训练和分析你魔方之旅的专业平台。"
   }
 }

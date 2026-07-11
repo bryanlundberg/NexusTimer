@@ -74,18 +74,76 @@
       "custom-background-description": "अपने टाइमर को व्यक्तिगत बनाने के लिए एक कस्टम पृष्ठभूमि छवि अपलोड करें (अधिकतम 4MB)",
       "data-import-export": "अपने डेटा को फ़ाइल में बैकअप लें या पिछले बैकअप से पुनर्स्थापित करें",
       "auto-select-description": "एप्लिकेशन शुरू होने पर स्वचालित रूप से एक क्यूब चुनें",
-      "language-description": "संपूर्ण एप्लिकेशन में उपयोग की जाने वाली भाषा बदलें"
+      "language-description": "संपूर्ण एप्लिकेशन में उपयोग की जाने वाली भाषा बदलें",
+      "analytics": "NexusTimer को बेहतर बनाने में मदद के लिए अनाम उपयोग विश्लेषण की अनुमति दें",
+      "favorite-sound": "पसंदीदा सहेजते समय ध्वनि चलाएँ",
+      "haptics": "टाइमर शुरू होने के लिए तैयार होने पर कंपन करें (केवल समर्थित डिवाइस)",
+      "inspection-sound": "निरीक्षण के दौरान वॉयस अलर्ट चलाएँ",
+      "new-round-sound": "नए मल्टीप्लेयर राउंड पर ध्वनि चलाएँ",
+      "scramble-size": "स्क्रैम्बल टेक्स्ट का आकार चुनें",
+      "trash-sound": "सॉल्व हटाते समय ध्वनि चलाएँ"
     },
     "leaderboard-solve-details": {
       "user-solution": "पुनर्निर्माण (Reconstruction)",
       "time": "समय",
       "scramble": "स्क्रैम्बल",
-      "solution": "समाधान"
+      "solution": "समाधान",
+      "cross": "क्रॉस",
+      "f2l": "F2L",
+      "moves": "मूव्स",
+      "oll": "OLL",
+      "phases": "चरण",
+      "pll": "PLL",
+      "replay": "रीप्ले",
+      "tps": "TPS"
     },
     "Auth": {
       "sign-in": "साइन इन करें",
       "continue-google": "गूगल के साथ जारी रखें",
-      "continue-discord": "डिस्कॉर्ड के साथ जारी रखें"
+      "continue-discord": "डिस्कॉर्ड के साथ जारी रखें",
+      "back": "वापस",
+      "back-to-sign-in": "साइन इन पर वापस जाएँ",
+      "confirm-password": "पासवर्ड की पुष्टि करें",
+      "create-account": "खाता बनाएँ",
+      "email": "ईमेल",
+      "forgot-password": "पासवर्ड भूल गए?",
+      "forgot-password-sent-description": "यदि {email} के लिए कोई खाता मौजूद है, तो हमने पासवर्ड रीसेट करने का लिंक भेज दिया है।",
+      "forgot-password-sent-title": "अपना इनबॉक्स देखें",
+      "forgot-password-submit": "रीसेट लिंक भेजें",
+      "forgot-password-subtitle": "अपना ईमेल दर्ज करें और हम आपको रीसेट लिंक भेजेंगे।",
+      "forgot-password-title": "पासवर्ड रीसेट करें",
+      "have-account": "पहले से खाता है?",
+      "invalid-token": "यह रीसेट लिंक अमान्य है या समाप्त हो गया है।",
+      "loading": "लोड हो रहा है...",
+      "name": "नाम",
+      "name-placeholder": "आपका नाम",
+      "new-password": "नया पासवर्ड",
+      "no-account": "खाता नहीं है?",
+      "or-continue-with": "या इसके साथ जारी रखें",
+      "password": "पासवर्ड",
+      "reset-password-for": "{email} के लिए पासवर्ड रीसेट हो रहा है",
+      "reset-password-submit": "पासवर्ड रीसेट करें",
+      "reset-password-subtitle": "जारी रखने के लिए अपना नया पासवर्ड दो बार दर्ज करें।",
+      "reset-password-title": "नया पासवर्ड चुनें",
+      "sign-in-subtitle": "अपने सॉल्व ट्रैक करते रहने के लिए साइन इन करें।",
+      "sign-up": "साइन अप करें",
+      "sign-up-subtitle": "अपने सॉल्व सहेजें, लीडरबोर्ड पर चढ़ें, एल्गोरिद्म सीखें।",
+      "validation": {
+        "code-length": "कोड 6 अंकों का होना चाहिए",
+        "code-numeric": "कोड केवल अंकों का होना चाहिए",
+        "email-invalid": "अमान्य ईमेल पता",
+        "name-too-long": "नाम अधिकतम 50 अक्षरों का हो सकता है",
+        "name-too-short": "नाम कम से कम 2 अक्षरों का होना चाहिए",
+        "password-required": "पासवर्ड आवश्यक है",
+        "password-too-long": "पासवर्ड अधिकतम 72 अक्षरों का हो सकता है",
+        "password-too-short": "पासवर्ड कम से कम 8 अक्षरों का होना चाहिए",
+        "passwords-dont-match": "पासवर्ड मेल नहीं खाते"
+      },
+      "verification-code": "सत्यापन कोड",
+      "verify-button": "सत्यापित करें",
+      "verify-description": "हमने {email} पर 6 अंकों का कोड भेजा है",
+      "verify-title": "अपना ईमेल देखें",
+      "welcome-back": "वापसी पर स्वागत है, क्यूबर"
     },
     "CoreHeader": {
       "give-feedback": "फीडबैक दें"
@@ -179,7 +237,15 @@
       "finish-session": "पूर्ण करें",
       "selection": {
         "move-to-session": "सत्र में ले जाएं",
-        "moved-to-session-toast": "{count} समाधान सत्र में ले जाए गए"
+        "moved-to-session-toast": "{count} समाधान सत्र में ले जाए गए",
+        "cancel": "रद्द करें",
+        "delete": "हटाएँ",
+        "delete-confirm-desc": "यह क्रिया पूर्ववत नहीं की जा सकती।",
+        "delete-confirm-title": "{count} सॉल्व हटाएँ?",
+        "deleted-toast": "{count} सॉल्व हटाए गए",
+        "move-to-history": "इतिहास में ले जाएँ",
+        "moved-toast": "{count} सॉल्व इतिहास में ले जाए गए",
+        "selected": "{count} चयनित"
       },
       "tooltips": {
         "move-to-history": "अभ्यास पूर्ण करें"
@@ -266,7 +332,12 @@
       "utilize": "उपयोग करें",
       "utilize-cube": "`{name}` का उपयोग करें",
       "session-solves": "सत्र समाधान",
-      "historical-solves": "ऐतिहासिक समाधान"
+      "historical-solves": "ऐतिहासिक समाधान",
+      "active-count": "{count, plural, =1 {# सक्रिय} other {# सक्रिय}}",
+      "collections-count": "{count, plural, =1 {# संग्रह} other {# संग्रह}}",
+      "empty-description": "अपना पहला संग्रह बनाएँ या किसी अन्य टाइमर से डेटा लाएँ। Nexi आपके पहले सॉल्व के लिए तैयार है।",
+      "empty-title": "अभी तक कोई संग्रह नहीं",
+      "total-solves-count": "{count, plural, =1 {# सॉल्व} other {# सॉल्व}}"
     },
     "Cubes-modal": {
       "delete-collection": "संग्रह हटाएं",
@@ -327,7 +398,8 @@
         "overview": "अवलोकन",
         "cubes": "क्यूब्स",
         "timeline": "Timeline",
-        "algorithms": "एल्गोरिदम"
+        "algorithms": "एल्गोरिदम",
+        "achievements": "उपलब्धियाँ"
       },
       "algorithms": {
         "total-learned": "एल्गोरिदम सीखे",
@@ -379,7 +451,13 @@
       "showing-members": "<b>{total}</b> में से <b>{showing}</b> सदस्य दिखाए जा रहे हैं",
       "search": "खोजें",
       "compare-basket": "<b>{count}</b> तुलना में",
-      "col-actions": "क्रियाएं"
+      "col-actions": "क्रियाएं",
+      "badges": {
+        "counter": "{unlocked} / {total}",
+        "empty": "अभी तक कोई उपलब्धि अनलॉक नहीं हुई है।",
+        "title": "उपलब्धियाँ",
+        "view-all": "सभी देखें"
+      }
     },
     "LeaderboardsPage": {
       "title": "सबसे तेज़ सॉल्व",
@@ -393,7 +471,9 @@
         "image": "छवि",
         "date": "तारीख",
         "tps": "tps",
-        "not-available": "N/A"
+        "not-available": "N/A",
+        "moves": "मूव्स",
+        "replay-available": "रीप्ले उपलब्ध"
       },
       "comparative": {
         "title": "तुलनात्मक",
@@ -408,7 +488,8 @@
         "last-backup": "पिछला बैकअप?",
         "never": "कभी नहीं",
         "close": "बंद करें",
-        "compare": "तुलना करें"
+        "compare": "तुलना करें",
+        "add-more": "और जोड़ें"
       }
     },
     "NavMain": {
@@ -431,7 +512,9 @@
       "save-data": "बैकअप बनाएं",
       "download-data": "बैकअप पुनर्स्थापित करें",
       "log-out": "लॉग आउट",
-      "activity-solves": "सॉल्व"
+      "activity-solves": "सॉल्व",
+      "trainer": "ट्रेनर",
+      "training": "ट्रेनिंग"
     },
     "Presence": {
       "online": "ऑनलाइन",
@@ -457,7 +540,8 @@
       "move-to-session": "सत्र में ले जाएं",
       "transfer-collection": "संग्रह स्थानांतरित करें",
       "delete-confirm-title": "इस सॉल्व को हटाएँ?",
-      "delete-confirm-desc": "इस क्रिया को पूर्ववत नहीं किया जा सकता।"
+      "delete-confirm-desc": "इस क्रिया को पूर्ववत नहीं किया जा सकता।",
+      "watch-replay": "रीप्ले देखें"
     },
     "Settings-menu": {
       "locale": "क्षेत्र",
@@ -498,7 +582,17 @@
       "light": "लाइट",
       "system": "सिस्टम",
       "close": "X",
-      "fullscreen": "पूर्ण स्क्रीन"
+      "fullscreen": "पूर्ण स्क्रीन",
+      "analytics": "Google Analytics",
+      "favorite-sound": "पसंदीदा",
+      "haptics": "हैप्टिक फ़ीडबैक",
+      "inspection-sound": "निरीक्षण",
+      "new-round-sound": "नया राउंड",
+      "privacy": "गोपनीयता",
+      "scramble-size": "स्क्रैम्बल आकार",
+      "scramble-size-large": "बड़ा",
+      "scramble-size-normal": "सामान्य",
+      "trash-sound": "हटाएँ"
     },
     "backup-modal": {
       "title": "बुद्धिमान बैकअप बहाली",
@@ -535,7 +629,22 @@
       "delete-app-data-title": "सारा ऐप डेटा हटाएं?",
       "delete-app-data-subtitle": "यह क्रिया आपके सभी क्यूब्स और समाधान डेटा को स्थायी रूप से हटा देगी और इसे पूर्ववत नहीं किया जा सकता है। क्या आप वाकई आगे बढ़ना चाहते हैं?",
       "delete-app-data-success": "सारा ऐप डेटा हटा दिया गया है",
-      "cloud-sync": "क्लाउड सिंक"
+      "cloud-sync": "क्लाउड सिंक",
+      "backup-applied": "बैकअप लागू किया गया",
+      "backup-apply": "बैकअप लागू करें",
+      "backup-apply-confirm": "लागू करें",
+      "backup-apply-error": "बैकअप लागू नहीं किया जा सका",
+      "backup-apply-subtitle": "यह आपके सभी स्थानीय डेटा को इस बैकअप से बदल देगा। आपके वर्तमान क्यूब और सॉल्व बदल दिए जाएँगे और पुनर्प्राप्त नहीं किए जा सकेंगे।",
+      "backup-apply-title": "यह बैकअप लागू करें?",
+      "backup-current": "वर्तमान",
+      "backup-delete-error": "बैकअप हटाया नहीं जा सका",
+      "backup-delete-subtitle": "यह इस बैकअप को क्लाउड से स्थायी रूप से हटा देगा और इसे पूर्ववत नहीं किया जा सकता।",
+      "backup-delete-title": "यह बैकअप हटाएँ?",
+      "backup-deleted": "बैकअप हटाया गया",
+      "backups-tab": "बैकअप",
+      "manage-backups-description": "क्लाउड में संग्रहीत बैकअप देखें और हटाएँ।",
+      "manage-backups-title": "बैकअप प्रबंधित करें",
+      "no-backups": "आपके पास अभी तक कोई संग्रहीत बैकअप नहीं है।"
     },
     "TransferSolvesPage": {
       "title": "समाधान स्थानांतरित करें",
@@ -583,7 +692,9 @@
         "other": "अन्य"
       },
       "search-country": "देश खोजें…",
-      "no-country-found": "कोई देश नहीं मिला"
+      "no-country-found": "कोई देश नहीं मिला",
+      "personal-info": "व्यक्तिगत जानकारी",
+      "personal-info-description": "अपनी सार्वजनिक जानकारी अपडेट करें और देखें कि अन्य उपयोगकर्ता आपको कैसे देखते हैं।"
     },
     "AccessCard": {
       "title": "पहुंच",
@@ -675,7 +786,11 @@
         "markedAsLearned": "सीखा हुआ चिह्नित",
         "markAsLearned": "सीखा हुआ चिह्नित करें",
         "skip": "छोड़ें",
-        "history": "इतिहास"
+        "history": "इतिहास",
+        "hideSolveInfo": "सॉल्व जानकारी छिपाएँ",
+        "showSolveInfo": "सॉल्व जानकारी दिखाएँ",
+        "undoLast": "पूर्ववत करें",
+        "viewAlgorithms": "एल्गोरिद्म देखें"
       },
       "editTargetModal": {
         "title": "लक्ष्य समय संपादित करें",
@@ -694,6 +809,9 @@
       },
       "cta": {
         "practiceNow": "अभी अभ्यास करें"
+      },
+      "algorithmsModal": {
+        "title": "एल्गोरिद्म"
       }
     },
     "TrainerHistoryPage": {
@@ -718,7 +836,20 @@
         "loading": "लोड हो रहा है…",
         "loadMore": "और लोड करें",
         "empty": "अभी कोई solve नहीं।"
+      },
+      "overview": {
+        "attempts": "प्रयास",
+        "average": "औसत",
+        "bestCase": "सर्वश्रेष्ठ केस",
+        "bestSingle": "सर्वश्रेष्ठ सिंगल",
+        "coverage": "अभ्यास किए गए केस",
+        "empty": "अपनी मेथड का अवलोकन देखने के लिए कुछ केस का अभ्यास करें।",
+        "executions": "निष्पादन",
+        "focusCases": "अभ्यास चाहिए"
       }
+    },
+    "Offline": {
+      "offline": "ऑफ़लाइन"
     }
   },
   "Multiplayer": {
@@ -1014,5 +1145,29 @@
     "privacy-policy": "गोपनीयता नीति",
     "accept": "स्वीकार करें",
     "decline": "अस्वीकार करें"
+  },
+  "Metadata": {
+    "title": "Nexus Timer - प्रोफ़ेशनल रूबिक्स क्यूब टाइमर",
+    "description": "Nexus Timer रूबिक्स क्यूब के साथ आपकी यात्रा के प्रशिक्षण और विश्लेषण के लिए एक प्रोफ़ेशनल प्लेटफ़ॉर्म है।",
+    "keywords": {
+      "key1": "timer",
+      "key2": "nxtimer",
+      "key3": "nexustimer",
+      "key4": "speedcubing timer",
+      "key5": "rubiks cube timer",
+      "key6": "online timer",
+      "key7": "web timer",
+      "key8": "rubiks",
+      "key9": "wca",
+      "key10": "online rubiks cube timer",
+      "key11": "speed cubing",
+      "key12": "cubing",
+      "key13": "cubing timer",
+      "key14": "world cubing association"
+    }
+  },
+  "OpenGraphImage": {
+    "title": "Nexus Timer - प्रोफ़ेशनल रूबिक्स क्यूब टाइमर",
+    "description": "Nexus Timer रूबिक्स क्यूब के साथ आपकी यात्रा के प्रशिक्षण और विश्लेषण के लिए एक प्रोफ़ेशनल प्लेटफ़ॉर्म है।"
   }
 }

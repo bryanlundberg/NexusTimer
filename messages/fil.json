@@ -491,7 +491,8 @@
         "last-backup": "Huling Backup?",
         "never": "Kailanman",
         "close": "Isara",
-        "compare": "Ikumpara"
+        "compare": "Ikumpara",
+        "add-more": "Magdagdag pa"
       }
     },
     "NavMain": {
@@ -814,6 +815,16 @@
         "loading": "Naglo-load…",
         "loadMore": "Mag-load pa",
         "empty": "Wala pang solve."
+      },
+      "overview": {
+        "attempts": "mga pagsubok",
+        "average": "Average",
+        "bestCase": "Pinakamahusay na case",
+        "bestSingle": "Pinakamahusay na single",
+        "coverage": "Mga na-practice na case",
+        "empty": "Mag-practice ng ilang case para makita ang overview ng method.",
+        "executions": "Mga pagsasagawa",
+        "focusCases": "Kailangang sanayin"
       }
     }
   },

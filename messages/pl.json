@@ -491,7 +491,8 @@
         "last-backup": "Ostatnia kopia zapasowa?",
         "never": "Nigdy",
         "close": "Zamknij",
-        "compare": "Porównaj"
+        "compare": "Porównaj",
+        "add-more": "Dodaj więcej"
       }
     },
     "NavMain": {
@@ -814,6 +815,16 @@
         "loading": "Ładowanie…",
         "loadMore": "Wczytaj więcej",
         "empty": "Brak ułożeń."
+      },
+      "overview": {
+        "attempts": "prób",
+        "average": "Średnia",
+        "bestCase": "Najlepszy przypadek",
+        "bestSingle": "Najlepszy pojedynczy",
+        "coverage": "Przećwiczone przypadki",
+        "empty": "Przećwicz kilka przypadków, aby zobaczyć podsumowanie metody.",
+        "executions": "Wykonania",
+        "focusCases": "Do poprawy"
       }
     }
   },
