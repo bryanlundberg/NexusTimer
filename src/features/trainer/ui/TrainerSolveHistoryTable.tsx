@@ -4,14 +4,7 @@ import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-import { Trash2, Plus, X, Check, MoreVertical } from 'lucide-react'
+import { Trash2 } from 'lucide-react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import type { TrainerSolveListItem } from '@/features/trainer/model/types'
 import type { TrainerPenalty } from '@/entities/trainer-solve/model/constants'
@@ -25,7 +18,6 @@ interface TrainerSolveHistoryTableProps {
   isLoadingMore?: boolean
   reachedEnd?: boolean
   onLoadMore?: () => void
-  onChangePenalty: (id: string, penalty: TrainerPenalty) => void
   onDelete: (id: string) => void
   showCase?: boolean
   caseById?: Map<string, AlgorithmCollection>
@@ -64,7 +56,6 @@ export default function TrainerSolveHistoryTable({
   isLoadingMore,
   reachedEnd,
   onLoadMore,
-  onChangePenalty,
   onDelete,
   showCase = false,
   caseById,
@@ -144,41 +135,17 @@ export default function TrainerSolveHistoryTable({
 
                 <span className="text-xs text-muted-foreground tabular-nums">{formatRelative(solve.createdAt)}</span>
 
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-6 w-6 shrink-0" aria-label={t('solveActions')}>
-                      <MoreVertical className="h-3.5 w-3.5" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-40">
-                    <DropdownMenuItem
-                      onClick={() => onChangePenalty(solve._id, 'OK')}
-                      disabled={solve.penalty === 'OK'}
-                    >
-                      <Check className="h-3.5 w-3.5" />
-                      OK
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={() => onChangePenalty(solve._id, '+2')}
-                      disabled={solve.penalty === '+2'}
-                    >
-                      <Plus className="h-3.5 w-3.5" />
-                      +2
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={() => onChangePenalty(solve._id, 'DNF')}
-                      disabled={solve.penalty === 'DNF'}
-                    >
-                      <X className="h-3.5 w-3.5" />
-                      DNF
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem variant="destructive" onClick={() => onDelete(solve._id)}>
-                      <Trash2 className="h-3.5 w-3.5" />
-                      {t('delete')}
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  haptic
+                  className="h-6 w-6 shrink-0 text-muted-foreground hover:text-destructive"
+                  aria-label={t('delete')}
+                  title={t('delete')}
+                  onClick={() => onDelete(solve._id)}
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                </Button>
               </motion.div>
             )
           })}
