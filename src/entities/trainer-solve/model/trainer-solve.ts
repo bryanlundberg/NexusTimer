@@ -43,7 +43,7 @@ const TrainerSolveSchema = new Schema(
   { timestamps: true }
 )
 
-TrainerSolveSchema.index({ user: 1, methodSlug: 1, caseId: 1, createdAt: -1 })
-TrainerSolveSchema.index({ user: 1, methodSlug: 1, createdAt: -1 })
+TrainerSolveSchema.index({ user: 1, methodSlug: 1, caseId: 1, _id: -1 })
+TrainerSolveSchema.index({ user: 1, methodSlug: 1, _id: -1 })
 
 export default models.TrainerSolve || model('TrainerSolve', TrainerSolveSchema)
