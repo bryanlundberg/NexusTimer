@@ -2,7 +2,7 @@ import { getRedis } from '@/shared/config/redis/redis'
 
 // First page of the solve history per (user, method), newest first, as a
 // Redis LIST of JSON items. Kept hot via write-through LPUSH on each solve;
-// destructive mutations (delete / penalty edit) just drop the key.
+// destructive mutations (delete) just drop the key.
 //
 // Keep in sync with TRAINER_PAGE_SIZE (features/trainer/lib/constants).
 export const SOLVES_FIRST_PAGE_SIZE = 25
