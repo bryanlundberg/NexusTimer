@@ -15,11 +15,7 @@ interface TrainerProgressChartProps {
 export default function TrainerProgressChart({ solves, targetMs, label }: TrainerProgressChartProps) {
   // Solves arrive newest-first; the chart reads left to right chronologically.
   const data = useMemo(
-    () =>
-      [...solves]
-        .reverse()
-        .filter((s) => s.penalty !== 'DNF')
-        .map((s, i) => ({ index: i + 1, seconds: +(s.timeMs / 1000).toFixed(2) })),
+    () => [...solves].reverse().map((s, i) => ({ index: i + 1, seconds: +(s.timeMs / 1000).toFixed(2) })),
     [solves]
   )
 
