@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server'
 import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
+import { userProfileCache } from '@/entities/user/model/user-cache'
 import UserAchievement from '@/entities/achievement/model/user-achievement'
 import { GRANTED_ACHIEVEMENT_KEYS, isGrantedAchievementKey } from '@/entities/achievement/model/granted-keys'
 import { requireAdmin } from '@/shared/api/require-admin'
@@ -64,6 +65,8 @@ export async function POST(request: NextRequest) {
       { upsert: true, new: true }
     )
 
+    await userProfileCache.invalidate(user._id.toString())
+
     return ok({
       granted: { key: achievement.key, createdAt: achievement.createdAt },
       user: { _id: user._id, email: user.email }
@@ -89,6 +92,8 @@ export async function DELETE(request: NextRequest) {
     if (!user) return notFound('User not found')
 
     const result = await UserAchievement.deleteOne({ userId: user._id, key })
+
+    await userProfileCache.invalidate(user._id.toString())
 
     return ok({
       removed: { key, deletedCount: result.deletedCount },
