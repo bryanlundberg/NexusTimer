@@ -32,6 +32,7 @@ export default function TrainerHistoryView() {
   const isAuthed = !!session?.user?.id
 
   const [tab, setTab] = useState('method')
+  const [deletingIds, setDeletingIds] = useState<Set<string>>(new Set())
 
   const caseById = useMemo(() => {
     const map = new Map<string, AlgorithmCollection>()
@@ -49,11 +50,18 @@ export default function TrainerHistoryView() {
   const methodQuery = useTrainerSolvesPaginated(methodSlug, null, isAuthed)
 
   const handleDeleteSolve = async (id: string) => {
+    setDeletingIds((prev) => new Set(prev).add(id))
     try {
       await deleteTrainerSolve(id)
       await Promise.all([mutateStats(), caseQuery.mutate(), methodQuery.mutate()])
     } catch (err) {
       console.error('Failed to delete solve:', err)
+    } finally {
+      setDeletingIds((prev) => {
+        const next = new Set(prev)
+        next.delete(id)
+        return next
+      })
     }
   }
 
@@ -86,6 +94,7 @@ export default function TrainerHistoryView() {
             reachedEnd={methodQuery.reachedEnd}
             onLoadMore={methodQuery.loadMore}
             onDelete={handleDeleteSolve}
+            deletingIds={deletingIds}
             showCase
             caseById={caseById}
             puzzle={set.puzzle}
@@ -112,6 +121,7 @@ export default function TrainerHistoryView() {
                 reachedEnd={caseQuery.reachedEnd}
                 onLoadMore={caseQuery.loadMore}
                 onDelete={handleDeleteSolve}
+                deletingIds={deletingIds}
                 emptyLabel={t('emptyCase')}
                 targetMs={targetSeconds * 1000}
               />
