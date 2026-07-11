@@ -287,19 +287,13 @@ export default function TrainerExperience() {
   )
 }
 
-function MiniSparkline({
-  solves,
-  targetMs
-}: {
-  solves: { _id: string; timeMs: number; penalty: 'OK' | '+2' | 'DNF' }[]
-  targetMs: number
-}) {
+function MiniSparkline({ solves, targetMs }: { solves: { _id: string; timeMs: number }[]; targetMs: number }) {
   const ordered = [...solves].slice(0, 24).reverse()
   if (ordered.length === 0) return null
 
-  const validTimes = ordered.filter((s) => s.penalty !== 'DNF').map((s) => s.timeMs + (s.penalty === '+2' ? 2000 : 0))
-  const max = validTimes.length > 0 ? Math.max(...validTimes) : 1
-  const min = validTimes.length > 0 ? Math.min(...validTimes) : 0
+  const times = ordered.map((s) => s.timeMs)
+  const max = times.length > 0 ? Math.max(...times) : 1
+  const min = times.length > 0 ? Math.min(...times) : 0
   const range = Math.max(max - min, 1)
   const L = ordered.length
 
@@ -315,14 +309,10 @@ function MiniSparkline({
       {ordered.map((s, j) => {
         const distanceFromNewest = L - 1 - j
         const vis = visibilityClass(distanceFromNewest)
-        if (s.penalty === 'DNF') {
-          return <div key={s._id} className={cn('w-1 h-full rounded-sm bg-red-500/40', vis)} />
-        }
-        const adjusted = s.timeMs + (s.penalty === '+2' ? 2000 : 0)
-        const ratio = (adjusted - min) / range
+        const ratio = (s.timeMs - min) / range
         const heightPct = Math.max(20, Math.round(ratio * 80 + 20))
         const colorClass =
-          adjusted <= targetMs ? 'bg-emerald-500' : adjusted <= targetMs * 1.25 ? 'bg-amber-500' : 'bg-red-500'
+          s.timeMs <= targetMs ? 'bg-emerald-500' : s.timeMs <= targetMs * 1.25 ? 'bg-amber-500' : 'bg-red-500'
         return <div key={s._id} className={cn('w-1 rounded-sm', colorClass, vis)} style={{ height: `${heightPct}%` }} />
       })}
     </div>
