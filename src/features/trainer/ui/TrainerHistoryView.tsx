@@ -3,15 +3,14 @@
 import { useMemo, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
-import Link from 'next/link'
-import { ArrowLeft, Layers, Target } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Layers, Target } from 'lucide-react'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
-import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
+import TrainerHistoryHeader from '@/features/trainer/ui/TrainerHistoryHeader'
+import TrainerCurrentCaseInfo from '@/features/trainer/ui/TrainerCurrentCaseInfo'
 import TrainerMethodOverview from '@/features/trainer/ui/TrainerMethodOverview'
 import TrainerSolveHistoryTable from '@/features/trainer/ui/TrainerSolveHistoryTable'
+import TrainerProgressChart from '@/features/trainer/ui/TrainerProgressChart'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
 import { useTrainerSession } from '@/features/trainer/model/useTrainerSession'
 import { useTrainerSolvesPaginated } from '@/features/trainer/model/useTrainerSolvesPaginated'
@@ -63,19 +62,8 @@ export default function TrainerHistoryView() {
   }
 
   return (
-    <div className="p-3 sm:p-4 flex flex-col gap-4 max-w-3xl">
-      <div className="flex items-center gap-2 flex-wrap">
-        <Link href="/algorithms/trainer">
-          <Button variant="outline" size="sm" className="h-8">
-            <ArrowLeft className="h-3.5 w-3.5" />
-            {t('backToPractice')}
-          </Button>
-        </Link>
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{set.title}</h3>
-        <div className="ml-auto min-w-0 max-w-48">
-          <TrainerMethodSelect value={set.slug} onChange={setMethod} />
-        </div>
-      </div>
+    <div className="p-3 sm:p-4 flex flex-col gap-4 max-w-3xl mx-auto">
+      <TrainerHistoryHeader title={set.title} select={{ value: set.slug, onChange: setMethod }} />
 
       <TrainerMethodOverview set={set} stats={stats} targetMs={targetSeconds * 1000} isLoading={statsLoading} />
 
@@ -89,7 +77,8 @@ export default function TrainerHistoryView() {
           layoutId="trainer-history-tab-indicator"
         />
 
-        <TabsContent value="method">
+        <TabsContent value="method" className="flex flex-col gap-3">
+          <TrainerProgressChart solves={methodQuery.solves} targetMs={targetSeconds * 1000} label={t('table.time')} />
           <TrainerSolveHistoryTable
             solves={methodQuery.solves}
             isLoading={methodQuery.isLoading}
@@ -109,21 +98,13 @@ export default function TrainerHistoryView() {
         <TabsContent value="case" className="flex flex-col gap-3">
           {currentCase ? (
             <>
-              <div className="flex items-center gap-3 rounded-lg border bg-card/40 p-3">
-                <div className="size-14 rounded-md overflow-hidden bg-muted/30 flex items-center justify-center shrink-0">
-                  {currentVizConfig ? <AlgorithmRender config={currentVizConfig} width={56} height={56} /> : null}
-                </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                    {currentCase.group}
-                  </span>
-                  <span className="text-sm font-semibold truncate">{currentCase.name}</span>
-                  <span className="text-[11px] text-muted-foreground tabular-nums">
-                    {caseQuery.solves.length} {caseQuery.reachedEnd ? t('total') : t('loaded')}
-                  </span>
-                </div>
-              </div>
-
+              <TrainerCurrentCaseInfo
+                algCase={currentCase}
+                vizConfig={currentVizConfig}
+                count={caseQuery.solves.length}
+                reachedEnd={caseQuery.reachedEnd}
+              />
+              <TrainerProgressChart solves={caseQuery.solves} targetMs={targetSeconds * 1000} label={t('table.time')} />
               <TrainerSolveHistoryTable
                 solves={caseQuery.solves}
                 isLoading={caseQuery.isLoading}
