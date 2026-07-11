@@ -73,10 +73,35 @@ function ThemePreviewDark({ selected }: { selected: boolean }) {
   )
 }
 
+function ThemePreviewSystem({ selected }: { selected: boolean }) {
+  return (
+    <div
+      className={`relative w-28 h-20 sm:w-36 sm:h-24 rounded-xl overflow-hidden cursor-pointer transition-all duration-200 ${
+        selected ? 'ring-3 ring-primary/60 scale-[1.02]' : 'border border-neutral-500 hover:border-neutral-400'
+      }`}
+    >
+      <div className="h-full w-full flex">
+        {/* Light half */}
+        <div className="w-1/2 h-full bg-neutral-50 flex flex-col gap-1 sm:gap-1.5 p-1.5 sm:p-2">
+          <div className="w-8 sm:w-10 h-1.5 rounded-full bg-neutral-300" />
+          <div className="flex-1 rounded-md bg-neutral-200" />
+          <div className="h-2.5 sm:h-3 rounded-md bg-neutral-100" />
+        </div>
+        {/* Dark half */}
+        <div className="w-1/2 h-full bg-zinc-950 flex flex-col gap-1 sm:gap-1.5 p-1.5 sm:p-2">
+          <div className="w-8 sm:w-10 h-1.5 rounded-full bg-zinc-800" />
+          <div className="flex-1 rounded-md bg-zinc-900" />
+          <div className="h-2.5 sm:h-3 rounded-md bg-zinc-900/50" />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function ThemeSelect() {
   const { backgroundImage, deleteBackgroundImage } = useBackgroundImageStore()
   const { startTransition } = useThemeTransition()
-  const { setTheme, resolvedTheme } = useTheme()
+  const { setTheme, theme, resolvedTheme } = useTheme()
   const t = useTranslations('Index.Settings-menu')
 
   const [mounted, setMounted] = useState(false)
@@ -86,10 +111,10 @@ export default function ThemeSelect() {
 
   const handleSetTheme = useCallback(
     (mode: Themes) => {
-      if (!mode || mode === resolvedTheme) return
+      if (!mode || mode === theme) return
       startTransition(() => setTheme(mode))
     },
-    [resolvedTheme, setTheme, startTransition]
+    [theme, setTheme, startTransition]
   )
 
   if (!mounted) {
@@ -100,7 +125,7 @@ export default function ThemeSelect() {
     <div className="flex px-3 py-2 gap-3 flex-wrap">
       <div className="flex flex-col items-center">
         <div className="relative">
-          <ThemePreviewLight selected={resolvedTheme === 'light'} />
+          <ThemePreviewLight selected={theme === 'light'} />
           <ThemeToggleButton
             theme={resolvedTheme as 'light' | 'dark'}
             onClick={() => handleSetTheme('light')}
@@ -114,7 +139,7 @@ export default function ThemeSelect() {
 
       <div className="flex flex-col items-center">
         <div className="relative">
-          <ThemePreviewDark selected={resolvedTheme === 'dark'} />
+          <ThemePreviewDark selected={theme === 'dark'} />
           <ThemeToggleButton
             theme={resolvedTheme as 'light' | 'dark'}
             onClick={() => handleSetTheme('dark')}
@@ -124,6 +149,20 @@ export default function ThemeSelect() {
           />
         </div>
         <div className="mt-1.5 text-xs font-medium">{t('dark')}</div>
+      </div>
+
+      <div className="flex flex-col items-center">
+        <div className="relative">
+          <ThemePreviewSystem selected={theme === 'system'} />
+          <ThemeToggleButton
+            theme={resolvedTheme as 'light' | 'dark'}
+            onClick={() => handleSetTheme('system')}
+            variant="circle"
+            start="center"
+            className="absolute inset-0 h-full w-full rounded-xl p-0 m-0 opacity-0"
+          />
+        </div>
+        <div className="mt-1.5 text-xs font-medium">{t('system')}</div>
       </div>
 
       {backgroundImage && (
