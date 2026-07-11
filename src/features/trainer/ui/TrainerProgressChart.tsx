@@ -5,6 +5,8 @@ import { Area, AreaChart, CartesianGrid, ReferenceLine, XAxis, YAxis } from 'rec
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
 import type { ChartConfig } from '@/components/ui/chart'
 import type { TrainerSolveListItem } from '@/features/trainer/model/types'
+import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
+import { CHART_CONTRAST, DEFAULT_CHART_CONTRAST } from '@/shared/lib/chartContrastColor'
 
 interface TrainerProgressChartProps {
   solves: TrainerSolveListItem[]
@@ -13,6 +15,9 @@ interface TrainerProgressChartProps {
 }
 
 export default function TrainerProgressChart({ solves, targetMs, label }: TrainerProgressChartProps) {
+  const colorTheme = useSettingsStore((store) => store.settings.preferences.colorTheme)
+  const contrast = CHART_CONTRAST[colorTheme] ?? DEFAULT_CHART_CONTRAST
+
   // Solves arrive newest-first; the chart reads left to right chronologically.
   const data = useMemo(
     () => [...solves].reverse().map((s, i) => ({ index: i + 1, seconds: +(s.timeMs / 1000).toFixed(2) })),
@@ -20,7 +25,7 @@ export default function TrainerProgressChart({ solves, targetMs, label }: Traine
   )
 
   const config = {
-    seconds: { label, color: 'var(--cube-blue)' }
+    seconds: { label, color: contrast.hex }
   } satisfies ChartConfig
 
   if (data.length < 2) return null
