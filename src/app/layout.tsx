@@ -147,7 +147,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           `}
         </Script>
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider attribute="class" defaultTheme={'light'} enableSystem disableTransitionOnChange>
+          <ThemeProvider attribute="class" defaultTheme={'system'} enableSystem disableTransitionOnChange>
             <OfflineIndicator />
             {children}
             <CookieConsentBanner />
