@@ -3,6 +3,7 @@ import { NextRequest, after } from 'next/server'
 import { auth } from '@/shared/config/auth/auth'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
+import { userProfileCache } from '@/entities/user/model/user-cache'
 import { files } from '@/shared/config/files'
 import {
   backupKey,
@@ -58,6 +59,8 @@ export async function POST(request: NextRequest) {
     await connectDB()
     const user = await User.findByIdAndUpdate(userId, { backup: { url, updatedAt } }, { new: true })
     if (!user) return notFound('User not found')
+
+    await userProfileCache.invalidate(userId)
 
     // Prune older backups after the response flushes so the upload stays fast.
     after(() => pruneUserBackups(userId, MAX_BACKUPS_RETAINED).catch((e) => console.error('[backups:POST:prune]', e)))
@@ -127,6 +130,7 @@ export async function DELETE(request: NextRequest) {
         current = null
         await User.findByIdAndUpdate(userId, { $unset: { backup: 1 } })
       }
+      await userProfileCache.invalidate(userId)
     }
 
     return ok({ deleted: file, current })
