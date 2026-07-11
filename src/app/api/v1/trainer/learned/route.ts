@@ -2,6 +2,7 @@ import { NextRequest } from 'next/server'
 import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import TrainerLearned from '@/entities/trainer-learned/model/trainer-learned'
+import { learnedCache } from '@/entities/trainer-learned/model/learned-cache'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { requireUser } from '@/shared/api/require-user'
 import { parseJsonBody } from '@/shared/api/parse-json'
@@ -37,13 +38,19 @@ export async function GET(request: NextRequest) {
     const query = parseSearchParams(request, listQuerySchema)
     if (query instanceof Response) return query
 
+    const cached = await learnedCache.get(userId, query.methodSlug)
+    if (cached) return ok({ caseIds: cached })
+
     await connectDB()
 
     const docs = await TrainerLearned.find({ user: userId, methodSlug: query.methodSlug })
       .select({ caseId: 1, _id: 0 })
       .lean<Array<{ caseId: string }>>()
 
-    return ok({ caseIds: docs.map((d) => d.caseId) })
+    const caseIds = docs.map((d) => d.caseId)
+    await learnedCache.prime(userId, query.methodSlug, caseIds)
+
+    return ok({ caseIds })
   } catch (error) {
     return serverError('trainer/learned:GET', error)
   }
@@ -67,6 +74,13 @@ export async function POST(request: NextRequest) {
     } else {
       await TrainerLearned.deleteOne(filter)
     }
+
+    // Write-through: Mongo is the source of truth, Redis mirrors it.
+    // The profile summary is an aggregate, so it is invalidated instead.
+    await Promise.all([
+      learnedCache.setLearned(userId, methodSlug, caseId, learned),
+      learnedCache.invalidateSummary(userId)
+    ])
 
     return ok({ ok: true, learned })
   } catch (error) {
