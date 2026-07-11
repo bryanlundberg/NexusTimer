@@ -3,6 +3,7 @@ import { Types } from 'mongoose'
 import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import TrainerSolve from '@/entities/trainer-solve/model/trainer-solve'
+import { solvesCache, SOLVES_FIRST_PAGE_SIZE } from '@/entities/trainer-solve/model/solves-cache'
 import TrainerStats from '@/entities/trainer-stats/model/trainer-stats'
 import { trainerSolveInputSchema } from '@/entities/trainer-solve/model/schema'
 import { TRAINER_RECENT_TIMES_WINDOW } from '@/entities/trainer-stats/model/constants'
@@ -28,11 +29,24 @@ export async function GET(request: NextRequest) {
     if (query instanceof Response) return query
     const { methodSlug, caseId, limit, before } = query
 
+    const isFirstPage = !caseId && !before
+    if (isFirstPage) {
+      const cached = await solvesCache.getFirstPage(userId, methodSlug, limit)
+      if (cached) return ok({ solves: cached })
+    }
+
     await connectDB()
 
     const filter: Record<string, unknown> = { user: userId, methodSlug }
     if (caseId) filter.caseId = caseId
     if (before) filter._id = { $lt: new Types.ObjectId(before) }
+
+    if (isFirstPage) {
+      const fetchLimit = Math.max(limit, SOLVES_FIRST_PAGE_SIZE)
+      const solves = await TrainerSolve.find(filter).sort({ _id: -1 }).limit(fetchLimit).lean()
+      await solvesCache.prime(userId, methodSlug, solves, solves.length < SOLVES_FIRST_PAGE_SIZE)
+      return ok({ solves: solves.slice(0, limit) })
+    }
 
     const solves = await TrainerSolve.find(filter).sort({ _id: -1 }).limit(limit).lean()
     return ok({ solves })
@@ -96,6 +110,8 @@ export async function POST(request: NextRequest) {
       new: true,
       setDefaultsOnInsert: true
     })
+
+    await solvesCache.push(userId, methodSlug, solve.toJSON())
 
     return created({ solve })
   } catch (error) {
