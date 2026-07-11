@@ -24,7 +24,10 @@ export async function GET(request: NextRequest) {
     if (query.puzzle) filter.puzzle = query.puzzle
     if (query.smart !== undefined) filter.smart = query.smart
 
-    const leaderboards = await Solve.find(filter).sort({ time: 1, createdAt: 1 }).limit(100).populate('user')
+    const leaderboards = await Solve.find(filter)
+      .sort({ time: 1, createdAt: 1 })
+      .limit(100)
+      .populate('user', 'name image country pronoun goal')
 
     return ok(leaderboards)
   } catch (error) {
