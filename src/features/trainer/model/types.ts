@@ -1,5 +1,3 @@
-import type { TrainerPenalty } from '@/entities/trainer-solve/model/constants'
-
 export type TrainerRotationMode = 'sequential' | 'shuffle' | 'random'
 
 export interface TrainerCaseStats {
@@ -17,6 +15,5 @@ export interface TrainerSolveListItem {
   methodSlug: string
   caseId: string
   timeMs: number
-  penalty: TrainerPenalty
   createdAt: string
 }
