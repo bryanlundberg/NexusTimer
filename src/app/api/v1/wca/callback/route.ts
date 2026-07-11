@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
+import { userProfileCache } from '@/entities/user/model/user-cache'
 import { auth } from '@/shared/config/auth/auth'
 
 const WCA_BASE = 'https://www.worldcubeassociation.org'
@@ -52,7 +53,6 @@ export async function GET(request: NextRequest) {
     if (!meResponse.ok) return redirectWith(origin, 'error')
 
     const meData = await meResponse.json()
-    console.log('[wca/callback] /api/v0/me payload:', JSON.stringify(meData, null, 2))
     const wcaId: string | undefined = meData?.me?.wca_id
 
     if (!wcaId) return redirectWith(origin, 'no-id')
@@ -61,6 +61,7 @@ export async function GET(request: NextRequest) {
 
     try {
       await User.findByIdAndUpdate(session.user.id, { wcaId, wcaVerifiedAt: Date.now() })
+      await userProfileCache.invalidate(session.user.id)
     } catch (error) {
       if (error instanceof Error && 'code' in error && (error as { code?: number }).code === 11000) {
         return redirectWith(origin, 'taken')
