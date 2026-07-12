@@ -242,29 +242,32 @@ export default function SmartCube({ renderConnected }: SmartCubeProps = {}) {
         />
       )}
 
-      <div className="flex flex-col items-center gap-1">
+      {isConnected ? (
+        <div className="flex items-center gap-3">
+          {deviceName && <span className="text-xs sm:text-sm text-muted-foreground">{deviceName}</span>}
+          <Button onClick={handleDisconnect} variant="outline" size="sm" className="sm:h-9 sm:px-4 sm:text-sm">
+            {t('disconnect')}
+          </Button>
+        </div>
+      ) : (
         <div className="flex items-center gap-2">
           <Button
-            onClick={isConnected ? handleDisconnect : handleConnect}
+            onClick={handleConnect}
             disabled={status === 'connecting'}
-            variant={isConnected ? 'outline' : 'default'}
+            variant="default"
             size="sm"
             className="sm:h-9 sm:px-4 sm:text-sm"
           >
             {status === 'connecting'
               ? t('connecting')
-              : isConnected
-                ? t('disconnect')
-                : status === 'error'
-                  ? t('retry-connection')
-                  : t('connect-smart-cube')}
+              : status === 'error'
+                ? t('retry-connection')
+                : t('connect-smart-cube')}
           </Button>
 
-          {!isConnected && <HowToConnectDialog />}
+          <HowToConnectDialog />
         </div>
-
-        {isConnected && deviceName && <p className="text-xs sm:text-sm text-muted-foreground">{deviceName}</p>}
-      </div>
+      )}
     </div>
   )
 }
