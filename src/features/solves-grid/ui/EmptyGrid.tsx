@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { motion, useReducedMotion, type Variants } from 'motion/react'
-import { Nexi } from '@/shared/ui/nexi'
+import { Nexi, NexiGridBackdrop } from '@/shared/ui/nexi'
 import type { NexiState } from '@/shared/ui/nexi'
 
 export default function EmptyGrid({
@@ -45,6 +45,7 @@ export default function EmptyGrid({
       data-testid="empty-solves-grid"
     >
       <motion.div variants={item} className="relative grid place-items-center size-36 shrink-0" aria-hidden="true">
+        <NexiGridBackdrop />
         <div className="absolute inset-7 rounded-full bg-primary/10 blur-2xl" />
         <div className="absolute inset-11 rounded-full bg-primary/15 blur-xl" />
         <Nexi state={nexiState} size={120} aria-label={title ? title : t('empty-solves')} />
