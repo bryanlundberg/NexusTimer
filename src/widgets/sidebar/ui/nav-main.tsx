@@ -22,7 +22,8 @@ import React, { useEffect, useState } from 'react'
 
 export function NavMain({
   items,
-  label
+  label,
+  accent
 }: {
   items: {
     title: string
@@ -41,6 +42,7 @@ export function NavMain({
     }[]
   }[]
   label?: string
+  accent?: string
 }) {
   const pathname = usePathname() ?? ''
   const [hash, setHash] = useState<string>('')
@@ -69,8 +71,22 @@ export function NavMain({
   }
 
   return (
-    <SidebarGroup>
-      {label && <SidebarGroupLabel>{label}</SidebarGroupLabel>}
+    <SidebarGroup
+      style={accent ? ({ ['--nav-accent']: accent } as React.CSSProperties) : undefined}
+      className="group-data-[collapsible=icon]:mt-1 group-data-[collapsible=icon]:border-t group-data-[collapsible=icon]:border-sidebar-border/60 group-data-[collapsible=icon]:pt-2"
+    >
+      {label && (
+        <SidebarGroupLabel>
+          {accent && (
+            <span
+              aria-hidden
+              className="mr-1.5 inline-block size-1.5 rounded-[2px]"
+              style={{ backgroundColor: 'var(--nav-accent)' }}
+            />
+          )}
+          {label}
+        </SidebarGroupLabel>
+      )}
       <SidebarMenu>
         {items.map((item) => {
           const subActive = item.items?.some((s) => isPathActive(s.url)) ?? false
@@ -85,9 +101,18 @@ export function NavMain({
                   tooltip={item.title}
                   isActive={itemActive}
                   data-active-item={itemActive ? 'true' : undefined}
-                  className="md:data-[active=true]:bg-transparent"
+                  className={`relative md:data-[active=true]:bg-transparent group-data-[collapsible=icon]:[&>svg]:opacity-90 ${
+                    accent ? '[&>svg]:text-[color:var(--nav-accent)]' : ''
+                  }`}
                 >
                   <Link href={item.url} onClick={handleNavClick}>
+                    {accent && itemActive && (
+                      <span
+                        aria-hidden
+                        className="absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full group-data-[collapsible=icon]:hidden"
+                        style={{ backgroundColor: 'var(--nav-accent)' }}
+                      />
+                    )}
                     <item.icon />
                     <span>{item.title}</span>
                     {item.badge && (
