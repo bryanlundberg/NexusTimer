@@ -25,6 +25,7 @@ import { ZBLL_T_ALGS } from '@/shared/data/algs/zbll-t'
 export const ALGORITHM_SETS = [
   {
     slug: 'pbl',
+    goal: 'full',
     title: 'PBL',
     subtitle: 'Permute Both Layers',
     puzzle: '2x2x2',
@@ -41,6 +42,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'ocll',
+    goal: 'oll',
     title: 'OCLL',
     subtitle: 'Orient Corners of the Last Layer',
     algorithms: OCLL_ALGS,
@@ -55,6 +57,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'cll',
+    goal: 'full',
     title: 'CLL',
     subtitle: 'Corners of the Last Layer',
     puzzle: '2x2x2',
@@ -69,6 +72,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'eg-1',
+    goal: 'full',
     title: 'EG-1',
     subtitle: 'EG-1 Algorithms',
     puzzle: '2x2x2',
@@ -84,6 +88,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'eg-2',
+    goal: 'full',
     title: 'EG-2',
     subtitle: 'EG-2 Algorithms',
     puzzle: '2x2x2',
@@ -99,6 +104,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'oll',
+    goal: 'oll',
     title: 'OLL',
     subtitle: 'Orientation of the Last Layer',
     puzzle: '3x3x3',
@@ -112,6 +118,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'pll',
+    goal: 'full',
     title: 'PLL',
     subtitle: 'Permutation of the Last Layer',
     puzzle: '3x3x3',
@@ -125,6 +132,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'coll',
+    goal: 'oll+cp',
     title: 'COLL',
     subtitle: 'Corners of the Last Layer',
     puzzle: '3x3x3',
@@ -138,6 +146,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'ble',
+    goal: 'oll',
     title: 'BLE',
     subtitle: "Brooks' Last Edge",
     puzzle: '3x3x3',
@@ -151,6 +160,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'vls',
+    goal: 'oll',
     title: 'VLS',
     subtitle: 'Valk Last Slot',
     puzzle: '3x3x3',
@@ -167,6 +177,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'cls',
+    goal: 'oll',
     title: 'CLS',
     subtitle: 'Corners and Last Slot',
     puzzle: '3x3x3',
@@ -183,6 +194,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'wv',
+    goal: 'oll',
     title: 'WV',
     subtitle: 'Winter Variation',
     puzzle: '3x3x3',
@@ -198,6 +210,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'zbll-s',
+    goal: 'full',
     title: 'ZBLL-S',
     subtitle: 'ZBLL Sune',
     puzzle: '3x3x3',
@@ -211,6 +224,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'zbll-as',
+    goal: 'full',
     title: 'ZBLL-AS',
     subtitle: 'ZBLL Antisune',
     puzzle: '3x3x3',
@@ -224,6 +238,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'zbll-u',
+    goal: 'full',
     title: 'ZBLL-U',
     subtitle: 'ZBLL U',
     puzzle: '3x3x3',
@@ -237,6 +252,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'zbll-t',
+    goal: 'full',
     title: 'ZBLL-T',
     subtitle: 'ZBLL T',
     puzzle: '3x3x3',
@@ -250,6 +266,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'zbll-pi',
+    goal: 'full',
     title: 'ZBLL-PI',
     subtitle: 'ZBLL PI',
     puzzle: '3x3x3',
@@ -263,6 +280,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'zbll-l',
+    goal: 'full',
     title: 'ZBLL-L',
     subtitle: 'ZBLL L',
     puzzle: '3x3x3',
@@ -276,6 +294,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'zbll-h',
+    goal: 'full',
     title: 'ZBLL-H',
     subtitle: 'ZBLL H',
     puzzle: '3x3x3',
@@ -289,6 +308,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'parity-4x4',
+    goal: 'full',
     title: 'Parity-4x4',
     subtitle: '4x4 Parity Algorithms',
     puzzle: '4x4x4',
@@ -305,6 +325,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'parity-5x5',
+    goal: 'full',
     title: 'Parity-5x5',
     subtitle: '5x5 Parity Algorithms',
     puzzle: '5x5x5',
@@ -321,6 +342,7 @@ export const ALGORITHM_SETS = [
   },
   {
     slug: 'l4e',
+    goal: 'full',
     title: 'L4E',
     subtitle: 'Last 4 slots (Pyraminx)',
     puzzle: 'pyraminx',
@@ -339,3 +361,7 @@ export const ALGORITHM_SETS = [
 ] as const
 
 export type ALGORITHM_SET = (typeof ALGORITHM_SETS)[number]
+
+// Terminal condition used by the smart-cube trainer to auto-detect when a case
+// is solved (see `matchesGoal` in cube-state-engine).
+export type TrainerGoal = 'full' | 'oll' | 'oll+cp' | 'f2l' | 'cross'
