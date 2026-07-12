@@ -9,7 +9,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
 import { cn } from '@/shared/lib/utils'
 import { motion, useReducedMotion, type Variants } from 'motion/react'
-import { Nexi } from '@/shared/ui/nexi'
+import { Nexi, NexiGridBackdrop } from '@/shared/ui/nexi'
 
 interface EmptyCubesProps extends React.HTMLAttributes<HTMLDivElement> {
   onCreate?: () => void
@@ -124,6 +124,7 @@ export default function EmptyCubes({
       )}
     >
       <motion.div variants={item} className="relative grid place-items-center size-40 shrink-0" aria-hidden="true">
+        <NexiGridBackdrop />
         <div className="absolute inset-8 rounded-full bg-primary/10 blur-2xl" />
         <div className="absolute inset-12 rounded-full bg-primary/15 blur-xl" />
         <Nexi state="loading" size={132} aria-label={t('no-cubes-for-display')} />
