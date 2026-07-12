@@ -2,7 +2,7 @@ import { Layers } from '@/shared/types/enums'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { CrossSolution } from '@/shared/types/types'
 
-type SolveTask = { scramble: string; type: 'cross' | 'xcross' }
+export type SolveTask = { scramble: string; type: 'cross' | 'xcross' | 'kociemba' }
 type WorkerRequest = { id: number; tasks: SolveTask[] }
 type WorkerResponse = { id: number; results: string[] }
 
@@ -36,6 +36,22 @@ export function prewarmSolver(): void {
   getWorker()
 }
 
+/**
+ * Generic bridge to the cube-solver worker: runs a batch of solve tasks and
+ * resolves to their solutions (same order). Returns empty strings when no
+ * worker is available (SSR). Used by both cross/xcross generation and the
+ * trainer's transition solver.
+ */
+export function solveTasks(tasks: SolveTask[]): Promise<string[]> {
+  const worker = getWorker()
+  if (!worker) return Promise.resolve(tasks.map(() => ''))
+  return new Promise<string[]>((resolve) => {
+    const id = nextRequestId++
+    pending.set(id, resolve)
+    worker.postMessage({ id, tasks } satisfies WorkerRequest)
+  })
+}
+
 export default function genSolution(
   event: CubeCategory,
   scramble: string | null,
@@ -45,9 +61,7 @@ export default function genSolution(
 
   if (event !== '3x3' && event !== '3x3 OH') return Promise.resolve(empty)
   if (layer !== Layers.YELLOW) return Promise.resolve(empty)
-
-  const worker = getWorker()
-  if (!worker) return Promise.resolve(empty)
+  if (!getWorker()) return Promise.resolve(empty)
 
   const rotations = ['', 'y', 'y y', "y'"]
   const buildScramble = (rot: string) => (rot ? `${rot} ${scramble}` : `${scramble}`)
@@ -56,16 +70,10 @@ export default function genSolution(
     ...rotations.map((r) => ({ scramble: buildScramble(r), type: 'xcross' as const }))
   ]
 
-  return new Promise<CrossSolution>((resolve) => {
-    const id = nextRequestId++
-    pending.set(id, (results) => {
-      resolve({
-        cross: results.slice(0, 4),
-        xcross: results.slice(4, 8),
-        fb: [],
-        eoline: []
-      })
-    })
-    worker.postMessage({ id, tasks } satisfies WorkerRequest)
-  })
+  return solveTasks(tasks).then((results) => ({
+    cross: results.slice(0, 4),
+    xcross: results.slice(4, 8),
+    fb: [],
+    eoline: []
+  }))
 }
