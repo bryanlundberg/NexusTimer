@@ -45,6 +45,7 @@ interface UseSolveSessionArgs {
   onAdvanceScramble: () => void
   recreatePlayer: () => void
   inspection?: InspectionConfig
+  goalPredicate?: (engine: CubeEngine) => boolean
 }
 
 export function useSolveSession({
@@ -56,8 +57,10 @@ export function useSolveSession({
   scrambleMode,
   onAdvanceScramble,
   recreatePlayer,
-  inspection = { enabled: false, durationMs: DEFAULT_INSPECTION_MS }
+  inspection = { enabled: false, durationMs: DEFAULT_INSPECTION_MS },
+  goalPredicate
 }: UseSolveSessionArgs) {
+  const isGoalMet = goalPredicate ?? ((eng: CubeEngine) => eng.isSolved())
   const inspectionEnabled = inspection.enabled
   const inspectionDuration = inspection.durationMs || DEFAULT_INSPECTION_MS
   const armedPhase: SolvePhase = inspectionEnabled ? 'inspecting' : 'armed'
@@ -99,7 +102,8 @@ export function useSolveSession({
     recreatePlayer,
     inspectionEnabled,
     inspectionDuration,
-    armedPhase
+    armedPhase,
+    isGoalMet
   })
   latest.current = {
     player,
@@ -114,7 +118,8 @@ export function useSolveSession({
     recreatePlayer,
     inspectionEnabled,
     inspectionDuration,
-    armedPhase
+    armedPhase,
+    isGoalMet
   }
 
   const setPhase = useCallback((next: SolvePhase) => {
@@ -203,7 +208,7 @@ export function useSolveSession({
 
   const processMove = useCallback(
     (move: string, opts?: { isRotation?: boolean }) => {
-      const { player, engine, clock, recorder } = latest.current
+      const { player, engine, clock, recorder, isGoalMet } = latest.current
       if (!player || !engine) return
       if (Date.now() < postSolveLockRef.current) return
 
@@ -252,9 +257,13 @@ export function useSolveSession({
         setPhase('solving')
       }
 
-      try {
-        if (engine.isSolved()) finalize()
-      } catch {}
+      // Only test the terminal goal once actually solving, so a goal already
+      // satisfied at the armed/case state cannot finalize with ~0 time.
+      if (phaseRef.current === 'solving') {
+        try {
+          if (isGoalMet(engine)) finalize()
+        } catch {}
+      }
     },
     [setPhase, finalize, arm, stopInspection]
   )
