@@ -243,7 +243,7 @@ export default function SmartCube({ renderConnected }: SmartCubeProps = {}) {
       )}
 
       {isConnected ? (
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col items-center gap-1">
           {deviceName && <span className="text-xs sm:text-sm text-muted-foreground">{deviceName}</span>}
           <Button onClick={handleDisconnect} variant="outline" size="sm" className="sm:h-9 sm:px-4 sm:text-sm">
             {t('disconnect')}
