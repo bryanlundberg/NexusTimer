@@ -162,6 +162,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     [t, handleCreate]
   )
 
+  const activeAccent = useMemo(() => {
+    const matches = (items: { url: string; items?: { url: string }[] }[]) =>
+      items.some((it) => {
+        const hit = (url: string) => !!url && (pathname === url || (url !== '/' && pathname.startsWith(url + '/')))
+        return hit(it.url) || (it.items?.some((s) => hit(s.url.split('#')[0])) ?? false)
+      })
+    if (matches(data.training)) return 'var(--cube-green)'
+    if (matches(data.community)) return 'var(--cube-orange)'
+    if (matches(data.multiplayer)) return 'var(--cube-red)'
+    return 'var(--cube-blue)'
+  }, [data, pathname])
+
   return (
     <Sidebar collapsible={'icon'} {...props}>
       <SidebarBgEffect />
@@ -216,17 +228,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <div ref={menuRef} className="relative isolate">
           {!isMobile && indicator && (
             <motion.div
-              className="absolute top-0 left-0 rounded-md bg-sidebar-accent pointer-events-none -z-10"
-              style={{ width: indicator.width, height: indicator.height }}
+              className="absolute top-0 left-0 rounded-md pointer-events-none -z-10"
+              style={{
+                width: indicator.width,
+                height: indicator.height,
+                backgroundColor: 'var(--sidebar-accent)',
+                boxShadow: `inset 0 0 0 1px color-mix(in oklch, ${activeAccent} 14%, var(--sidebar-border))`
+              }}
               initial={false}
               animate={{ x: indicator.left, y: indicator.top }}
               transition={INDICATOR_SPRING}
             />
           )}
-          <NavMain items={data.platform} label={t('NavMain.platform')} />
-          <NavMain items={data.training} label={t('NavMain.training')} />
-          <NavMain items={data.community} label={t('NavMain.community')} />
-          <NavMain items={data.multiplayer} label={t('NavMain.multiplayer')} />
+          <NavMain items={data.platform} label={t('NavMain.platform')} accent="var(--cube-blue)" />
+          <NavMain items={data.training} label={t('NavMain.training')} accent="var(--cube-green)" />
+          <NavMain items={data.community} label={t('NavMain.community')} accent="var(--cube-orange)" />
+          <NavMain items={data.multiplayer} label={t('NavMain.multiplayer')} accent="var(--cube-red)" />
         </div>
 
         <div className="pointer-events-none sticky bottom-0 z-10 -mt-7 flex h-7 items-end justify-center group-data-[collapsible=icon]:hidden">
