@@ -2,7 +2,7 @@
 
 export function SidebarBgEffect() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden group-data-[collapsible=icon]:hidden">
       <div
         className="absolute -top-16 -left-16 size-56 rounded-full bg-primary/20 blur-2xl dark:bg-primary/10 will-change-transform"
         style={{ animation: 'sidebarOrbPrimary 16s ease-in-out infinite' }}
