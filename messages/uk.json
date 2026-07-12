@@ -650,6 +650,8 @@
       "no-backups": "У тебе ще немає збережених бекапів."
     },
     "TransferSolvesPage": {
+      "no-source-title": "Did you record a solve with the wrong cube?",
+      "no-source-description": "Here you can transfer it to the correct collection.",
       "title": "Перенесення спроб",
       "collection-origin": "Колекція-джерело",
       "collection-destination": "Колекція-призначення",

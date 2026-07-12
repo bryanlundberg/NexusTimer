@@ -647,6 +647,8 @@
       "no-backups": "У вас пока нет сохранённых бэкапов."
     },
     "TransferSolvesPage": {
+      "no-source-title": "Did you record a solve with the wrong cube?",
+      "no-source-description": "Here you can transfer it to the correct collection.",
       "title": "Перенос сборок",
       "collection-origin": "Откуда",
       "collection-destination": "Куда",

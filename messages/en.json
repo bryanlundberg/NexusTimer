@@ -640,6 +640,8 @@
       "cloud-sync": "Cloud Sync"
     },
     "TransferSolvesPage": {
+      "no-source-title": "Did you record a solve with the wrong cube?",
+      "no-source-description": "Here you can transfer it to the correct collection.",
       "title": "Transfer Solves",
       "collection-origin": "Collection Origin",
       "collection-destination": "Collection Destination",

@@ -616,6 +616,8 @@
       "worst-time-alert": "Muestra una alerta cuando obtengas tu peor tiempo en la sesión."
     },
     "TransferSolvesPage": {
+      "no-source-title": "¿Hiciste alguna resolución con el cubo equivocado?",
+      "no-source-description": "Aquí puedes transferirlo a la colección correcta.",
       "collection-destination": "Colección de destino",
       "collection-origin": "Colección de origen",
       "cubes-unavailable": "Los datos de los cubos no están disponibles",

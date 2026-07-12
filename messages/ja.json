@@ -647,6 +647,8 @@
       "no-backups": "保存されたバックアップはまだありません。"
     },
     "TransferSolvesPage": {
+      "no-source-title": "Did you record a solve with the wrong cube?",
+      "no-source-description": "Here you can transfer it to the correct collection.",
       "title": "タイムを移動",
       "collection-origin": "移動元",
       "collection-destination": "移動先",

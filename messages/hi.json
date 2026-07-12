@@ -647,6 +647,8 @@
       "no-backups": "आपके पास अभी तक कोई संग्रहीत बैकअप नहीं है।"
     },
     "TransferSolvesPage": {
+      "no-source-title": "Did you record a solve with the wrong cube?",
+      "no-source-description": "Here you can transfer it to the correct collection.",
       "title": "समाधान स्थानांतरित करें",
       "collection-origin": "संग्रह स्रोत",
       "collection-destination": "संग्रह गंतव्य",

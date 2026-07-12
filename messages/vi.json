@@ -650,6 +650,8 @@
       "cloud-sync": "Đồng bộ đám mây"
     },
     "TransferSolvesPage": {
+      "no-source-title": "Did you record a solve with the wrong cube?",
+      "no-source-description": "Here you can transfer it to the correct collection.",
       "title": "Chuyển lượt giải",
       "collection-origin": "Bộ sưu tập nguồn",
       "collection-destination": "Bộ sưu tập đích",

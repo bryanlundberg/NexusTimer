@@ -647,6 +647,8 @@
       "no-backups": "你还没有存储的备份。"
     },
     "TransferSolvesPage": {
+      "no-source-title": "Did you record a solve with the wrong cube?",
+      "no-source-description": "Here you can transfer it to the correct collection.",
       "title": "转移还原纪录",
       "collection-origin": "来源系列",
       "collection-destination": "目标系列",

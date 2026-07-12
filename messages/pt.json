@@ -647,6 +647,8 @@
       "no-backups": "Você ainda não tem backups armazenados."
     },
     "TransferSolvesPage": {
+      "no-source-title": "Did you record a solve with the wrong cube?",
+      "no-source-description": "Here you can transfer it to the correct collection.",
       "title": "Transferir tempos",
       "collection-origin": "Origem",
       "collection-destination": "Destino",

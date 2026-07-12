@@ -647,6 +647,8 @@
       "no-backups": "아직 저장된 백업이 없습니다."
     },
     "TransferSolvesPage": {
+      "no-source-title": "Did you record a solve with the wrong cube?",
+      "no-source-description": "Here you can transfer it to the correct collection.",
       "title": "기록 이동",
       "collection-origin": "원본 컬렉션",
       "collection-destination": "대상 컬렉션",

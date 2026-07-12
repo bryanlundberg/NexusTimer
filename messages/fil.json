@@ -650,6 +650,8 @@
       "cloud-sync": "Cloud Sync"
     },
     "TransferSolvesPage": {
+      "no-source-title": "Did you record a solve with the wrong cube?",
+      "no-source-description": "Here you can transfer it to the correct collection.",
       "title": "Ilipat ang mga Solve",
       "collection-origin": "Pinagmulang Collection",
       "collection-destination": "Patutunguhang Collection",

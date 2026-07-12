@@ -650,6 +650,8 @@
       "cloud-sync": "การซิงค์คลาวด์"
     },
     "TransferSolvesPage": {
+      "no-source-title": "Did you record a solve with the wrong cube?",
+      "no-source-description": "Here you can transfer it to the correct collection.",
       "title": "โอนการต่อ",
       "collection-origin": "คอลเลกชันต้นทาง",
       "collection-destination": "คอลเลกชันปลายทาง",
