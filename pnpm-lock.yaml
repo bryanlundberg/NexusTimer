@@ -138,8 +138,8 @@ importers:
         specifier: ^2.4.1
         version: 2.4.1
       cube-state-engine:
-        specifier: ^1.7.1
-        version: 1.7.1
+        specifier: ^1.8.0
+        version: 1.8.0
       cubing:
         specifier: ^0.56.0
         version: 0.56.0
@@ -3232,8 +3232,8 @@ packages:
   cube-solver@2.4.1:
     resolution: {integrity: sha512-dDaCE0F4y3VTnh/vzvjV5Li154zLQQJ8tVUKEsWvy8g3Fuq4hf3Z0+cNlBiFq6hhrXNHJ6+deRJwQBV2oUzkDg==}
 
-  cube-state-engine@1.7.1:
-    resolution: {integrity: sha512-dcW1XC/CRm4z8c5eHsdOSOwajhSP6hM74BLapnBacFBJmOrsfw1PuFYm6p9TrJh6AuBxTEJlyrFu7fxRectEcg==}
+  cube-state-engine@1.8.0:
+    resolution: {integrity: sha512-ysx5Jnk6QSllNZ4rSJm0ds2gTVW4XM//BmgWdJAexfali31ECzAcR3UvujGrAbcLXZEEOCq7fnsDsCXLbWBiNg==}
 
   cubing@0.56.0:
     resolution: {integrity: sha512-8CabQLEkWA2iCy4LeyCPN5fCUnfjmz3QJ/Zo6EInEdPX/X/QNHbLhjljfumNHFoM234davupDj/i6D+ml7wAVQ==}
@@ -8973,7 +8973,7 @@ snapshots:
 
   cube-solver@2.4.1: {}
 
-  cube-state-engine@1.7.1: {}
+  cube-state-engine@1.8.0: {}
 
   cubing@0.56.0:
     dependencies:

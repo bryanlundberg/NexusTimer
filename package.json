@@ -62,7 +62,7 @@
     "country-flag-icons": "^1.5.18",
     "cstimer_module": "^0.1.5",
     "cube-solver": "^2.4.1",
-    "cube-state-engine": "^1.7.1",
+    "cube-state-engine": "^1.8.0",
     "cubing": "^0.56.0",
     "dayjs": "^1.11.21",
     "es-toolkit": "^1.42.0",
