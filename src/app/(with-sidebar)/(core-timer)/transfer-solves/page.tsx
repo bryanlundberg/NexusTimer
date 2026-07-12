@@ -46,7 +46,7 @@ export default function TransferSolvesPage() {
           selectedSolves={selectedSolves.length}
         />
       </PageBody>
-      <SolvesGrid selectedSolves={selectedSolves} displaySolves={displaySolves} />
+      <SolvesGrid selectedSolves={selectedSolves} displaySolves={displaySolves} hasSource={!!sourceCollection} />
 
       {selectedSolves.length > 0 && (
         <div className="absolute inset-x-0 bottom-0 z-20 px-3 pb-3">
