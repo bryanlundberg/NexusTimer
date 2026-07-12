@@ -119,6 +119,17 @@ export function useTrainerSmartSession({
         if (reached) {
           setGuide({ corrections: [], pending: [] })
           setPhase('ready')
+          return
+        }
+
+        let solved = false
+        try {
+          solved = engine.isSolved()
+        } catch {}
+        if (solved) {
+          guideStateRef.current = initGuideState()
+          moveLogRef.current = ''
+          setGuide(guideFromState(tokensRef.current, guideStateRef.current))
         }
         return
       }
