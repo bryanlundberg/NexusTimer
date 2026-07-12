@@ -20,6 +20,6 @@ export default function CubesDashboard() {
     })
   }, [cubes])
 
-  if (!cubes?.length) return <EmptyCubes className={'mx-auto w-fit'} />
+  if (!cubes?.length) return <EmptyCubes className={'min-h-[70dvh]'} />
   return <CubesList cubes={sortedCubes} />
 }
