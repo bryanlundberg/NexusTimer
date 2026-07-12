@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { Compass, RotateCcw } from 'lucide-react'
@@ -37,7 +37,14 @@ function writeStoredMac(deviceId: string, mac: string): void {
   }
 }
 
-export default function SmartCube() {
+interface SmartCubeProps {
+  // When provided, renders custom content while connected (e.g. the trainer's
+  // own smart timer) instead of the default main-timer SmartCubeTimer. All the
+  // connection lifecycle (connect/disconnect/MAC dialog) is reused as-is.
+  renderConnected?: (connection: SmartCubeConnection) => ReactNode
+}
+
+export default function SmartCube({ renderConnected }: SmartCubeProps = {}) {
   const t = useTranslations('Index.HomePage')
   const [status, setStatus] = useState<ConnectionStatus>('idle')
   const [deviceName, setDeviceName] = useState<string | null>(null)
@@ -201,7 +208,9 @@ export default function SmartCube() {
 
   return (
     <div className="flex flex-col grow items-center justify-center gap-2 sm:gap-3 relative">
-      {isConnected && connection && (
+      {isConnected && connection && renderConnected && renderConnected(connection)}
+
+      {isConnected && connection && !renderConnected && (
         <SmartCubeTimer
           connection={connection}
           secondaryActions={(onSync, gyroActive, onReset) => (
