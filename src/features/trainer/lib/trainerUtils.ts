@@ -46,6 +46,9 @@ export const shuffledRange = (total: number, exclude: number | null = null): num
 export const invertAlgorithm = (moves: string): string =>
   new Alg(moves.replace(/[()]/g, '').replace(/\s+/g, ' ').trim()).invert().toString()
 
+export const cleanMoves = (moves: string): string =>
+  (moves ?? '').replace(/[()]/g, ' ').replace(/2'/g, '2').replace(/'2/g, '2').replace(/\s+/g, ' ').trim()
+
 const VIZ_BASE = {
   visualization: 'experimental-2D-LL',
   background: 'none',
