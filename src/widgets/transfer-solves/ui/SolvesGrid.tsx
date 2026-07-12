@@ -11,9 +11,10 @@ import { useIsMobile } from '@/shared/model/use-mobile'
 interface SolvesGridProps {
   selectedSolves: string[]
   displaySolves: Solve[]
+  hasSource?: boolean
 }
 
-export default function SolvesGrid({ selectedSolves, displaySolves }: SolvesGridProps) {
+export default function SolvesGrid({ selectedSolves, displaySolves, hasSource = true }: SolvesGridProps) {
   const t = useTranslations('Index.TransferSolvesPage')
   const toggleSolveSelection = useTransferSolvesStore((s) => s.toggleSolveSelection)
   const isMobile = useIsMobile()
@@ -31,7 +32,12 @@ export default function SolvesGrid({ selectedSolves, displaySolves }: SolvesGrid
 
   const getItemKey = useCallback((solve: Solve) => solve.id, [])
 
-  if (displaySolves.length === 0) return <EmptyGrid title={t('no-solves')} description={t('empty-vault')} />
+  if (displaySolves.length === 0) {
+    if (!hasSource) {
+      return <EmptyGrid title={t('no-source-title')} description={t('no-source-description')} nexiState="hello" />
+    }
+    return <EmptyGrid title={t('no-solves')} description={t('empty-vault')} />
+  }
 
   return (
     <>
