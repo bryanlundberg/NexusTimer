@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { motion, useReducedMotion, type Variants } from 'motion/react'
-import { Nexi } from '@/shared/ui/nexi'
+import { Nexi, NexiGridBackdrop } from '@/shared/ui/nexi'
 
 export default function StatisticsEmpty() {
   const t = useTranslations('Index.StatsPage')
@@ -35,6 +35,7 @@ export default function StatisticsEmpty() {
       className="flex flex-col items-center justify-center grow py-12 px-2 text-center"
     >
       <motion.div variants={item} className="relative grid place-items-center size-36 shrink-0" aria-hidden="true">
+        <NexiGridBackdrop />
         <div className="absolute inset-7 rounded-full bg-primary/10 blur-2xl" />
         <div className="absolute inset-11 rounded-full bg-primary/15 blur-xl" />
         <Nexi state="think" size={120} aria-label={t('empty-statistics')} />
