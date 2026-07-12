@@ -32,6 +32,7 @@ interface TrainerCurrentCaseProps {
   onToggleSolveInfo?: () => void
   onViewAlgorithms?: () => void
   sparklineSlot?: ReactNode
+  centerSlot?: ReactNode
 }
 
 export default function TrainerCurrentCase({
@@ -59,7 +60,8 @@ export default function TrainerCurrentCase({
   showSolveInfo = true,
   onToggleSolveInfo,
   onViewAlgorithms,
-  sparklineSlot
+  sparklineSlot,
+  centerSlot
 }: TrainerCurrentCaseProps) {
   const t = useTranslations('Index.TrainerPage')
   const [intPart, decPart] = currentTime.includes('.')
@@ -142,34 +144,38 @@ export default function TrainerCurrentCase({
       </div>
 
       <div className="flex flex-1 flex-col items-center justify-center gap-6 min-h-0 py-6">
-        {setup && (
-          <code className="max-w-2xl text-center text-base sm:text-lg font-mono tracking-wide text-muted-foreground break-words px-4">
-            {setup}
-          </code>
-        )}
+        {centerSlot ?? (
+          <>
+            {setup && (
+              <code className="max-w-2xl text-center text-base sm:text-lg font-mono tracking-wide text-muted-foreground break-words px-4">
+                {setup}
+              </code>
+            )}
 
-        <div
-          className={cn(
-            'flex items-baseline tabular-nums tracking-tight leading-none transition-colors font-normal',
-            timeColorClass
-          )}
-        >
-          <span className="text-7xl sm:text-8xl md:text-9xl">{intPart}</span>
-          <span className="text-5xl sm:text-6xl md:text-7xl opacity-60">{decPart}</span>
-        </div>
+            <div
+              className={cn(
+                'flex items-baseline tabular-nums tracking-tight leading-none transition-colors font-normal',
+                timeColorClass
+              )}
+            >
+              <span className="text-7xl sm:text-8xl md:text-9xl">{intPart}</span>
+              <span className="text-5xl sm:text-6xl md:text-7xl opacity-60">{decPart}</span>
+            </div>
 
-        {onUndoLast && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onUndoLast}
-            aria-label={t('actions.undoLast')}
-            className="h-8 gap-2 text-muted-foreground hover:text-foreground"
-          >
-            <Undo2 className="h-3.5 w-3.5" />
-            <span>{t('actions.undoLast')}</span>
-            {lastSolveTime && <span className="font-mono tabular-nums opacity-75">{lastSolveTime}</span>}
-          </Button>
+            {onUndoLast && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={onUndoLast}
+                aria-label={t('actions.undoLast')}
+                className="h-8 gap-2 text-muted-foreground hover:text-foreground"
+              >
+                <Undo2 className="h-3.5 w-3.5" />
+                <span>{t('actions.undoLast')}</span>
+                {lastSolveTime && <span className="font-mono tabular-nums opacity-75">{lastSolveTime}</span>}
+              </Button>
+            )}
+          </>
         )}
       </div>
 
