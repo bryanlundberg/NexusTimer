@@ -59,18 +59,17 @@ export default function TrainerExperience() {
   const undoLastSolve = useTrainerStore((s) => s.undoLastSolve)
   const lastSolve = useTrainerStore((s) => s.lastSolve)
   const hydrateMethodStats = useTrainerStore((s) => s.hydrateMethodStats)
-  const rotationMode = useTrainerStore((s) => s.rotationMode)
   const setCaseIndex = useTrainerStore((s) => s.setCaseIndex)
 
   // On entering the trainer, start on a random case.
   const didRandomizeStartRef = useRef(false)
   useEffect(() => {
     if (didRandomizeStartRef.current || sessionCases.length === 0) return
-    if (rotationMode !== 'sequential' && sessionCases.length > 1) {
+    if (sessionCases.length > 1) {
       setCaseIndex(Math.floor(Math.random() * sessionCases.length))
     }
     didRandomizeStartRef.current = true
-  }, [sessionCases.length, rotationMode, setCaseIndex])
+  }, [sessionCases.length, setCaseIndex])
 
   const timerStatus = useTimerStore((s) => s.timerStatus)
   const solvingTime = useTimerStore((s) => s.solvingTime)
