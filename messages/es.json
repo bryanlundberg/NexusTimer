@@ -793,6 +793,15 @@
       },
       "cta": {
         "practiceNow": "Practicar ahora"
+      },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "Aplica el setup en el cubo",
+        "ready": "¡Listo! Empieza a resolver",
+        "solving": "Resolviendo…",
+        "solved": "Resuelto",
+        "resync": "Reiniciar estado",
+        "exit": "Salir del modo smart"
       }
     },
     "TrainerHistoryPage": {

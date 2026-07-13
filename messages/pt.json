@@ -812,6 +812,15 @@
       "cta": {
         "practiceNow": "Praticar agora"
       },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "Aplique o setup no cubo",
+        "ready": "Pronto! Comece a resolver",
+        "solving": "Resolvendo…",
+        "solved": "Resolvido",
+        "resync": "Reiniciar estado",
+        "exit": "Sair do modo smart"
+      },
       "algorithmsModal": {
         "title": "Algoritmos"
       }

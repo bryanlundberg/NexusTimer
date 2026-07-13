@@ -812,6 +812,15 @@
       "cta": {
         "practiceNow": "Jetzt üben"
       },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "Wende das Setup auf den Würfel an",
+        "ready": "Bereit! Beginne zu lösen",
+        "solving": "Löse…",
+        "solved": "Gelöst",
+        "resync": "Zustand zurücksetzen",
+        "exit": "Smart-Modus verlassen"
+      },
       "algorithmsModal": {
         "title": "Algorithmen"
       }

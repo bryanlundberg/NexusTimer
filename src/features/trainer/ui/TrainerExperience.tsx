@@ -1,9 +1,11 @@
 'use client'
 
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { BarChart3, ChevronRight } from 'lucide-react'
+import { BarChart3, Bluetooth, ChevronRight } from 'lucide-react'
+import SmartCube from '@/features/smart-cube/ui/SmartCube'
+import TrainerSmartTimer from '@/features/trainer/ui/TrainerSmartTimer'
 import { CHART_CONTRAST, DEFAULT_CHART_CONTRAST } from '@/shared/lib/chartContrastColor'
 import TrainerCurrentCase from '@/features/trainer/ui/TrainerCurrentCase'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
@@ -17,6 +19,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import type { TwistyPlayer } from 'cubing/twisty'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
 import { useTrainerSession } from '@/features/trainer/model/useTrainerSession'
+import { useSmartCubeStore } from '@/features/smart-cube/model/useSmartCubeStore'
 import useTimer from '@/features/timer/model/useTimer'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
@@ -37,6 +40,23 @@ export default function TrainerExperience() {
   const t = useTranslations('Index.TrainerPage')
   const { set, sessionCases, currentCase, currentAlg, setup } = useTrainerSession()
   const methodSlug = set.slug
+  const smartAvailable = set.puzzle === '3x3x3'
+  const smartConnected = useSmartCubeStore((s) => s.status === 'connected')
+  const disconnectSmart = useSmartCubeStore((s) => s.disconnect)
+  const [smartMode, setSmartMode] = useState(false)
+
+  // Leaving a non-3x3 method turns smart mode off,
+  useEffect(() => {
+    if (!smartAvailable) {
+      if (smartMode) setSmartMode(false)
+      if (smartConnected) disconnectSmart()
+    }
+  }, [smartAvailable, smartMode, smartConnected, disconnectSmart])
+
+  // If a cube is already connected, enter smart mode automatically.
+  useEffect(() => {
+    if (smartConnected && smartAvailable) setSmartMode(true)
+  }, [smartConnected, smartAvailable])
 
   const targetSeconds = useTrainerStore((s) => s.targetByMethod[s.methodSlug] ?? TRAINER_DEFAULT_TARGET_SECONDS)
   const caseStats = useTrainerStore((s) => s.caseStats)
@@ -50,6 +70,17 @@ export default function TrainerExperience() {
   const undoLastSolve = useTrainerStore((s) => s.undoLastSolve)
   const lastSolve = useTrainerStore((s) => s.lastSolve)
   const hydrateMethodStats = useTrainerStore((s) => s.hydrateMethodStats)
+  const setCaseIndex = useTrainerStore((s) => s.setCaseIndex)
+
+  // On entering the trainer, start on a random case.
+  const didRandomizeStartRef = useRef(false)
+  useEffect(() => {
+    if (didRandomizeStartRef.current || sessionCases.length === 0) return
+    if (sessionCases.length > 1) {
+      setCaseIndex(Math.floor(Math.random() * sessionCases.length))
+    }
+    didRandomizeStartRef.current = true
+  }, [sessionCases.length, setCaseIndex])
 
   const timerStatus = useTimerStore((s) => s.timerStatus)
   const solvingTime = useTimerStore((s) => s.solvingTime)
@@ -108,7 +139,9 @@ export default function TrainerExperience() {
     inspectionRequired: false,
     setIsSolving,
     setSolvingTime,
-    timerMode: TimerMode.NORMAL,
+    // In smart mode, use MANUAL so the keyboard (space) handlers are not bound
+    // and can't interfere with cube-move driven timing.
+    timerMode: smartMode ? TimerMode.MANUAL : TimerMode.NORMAL,
     settings: trainerSettings,
     onFinishSolve: () => {
       if (!currentCase) return
@@ -233,6 +266,22 @@ export default function TrainerExperience() {
           <div className="flex-1 min-w-0 max-w-sm">
             <TrainerMethodSelect value={set.slug} onChange={setMethod} />
           </div>
+          {smartAvailable && (
+            <button
+              type="button"
+              onClick={() => setSmartMode((v) => !v)}
+              aria-pressed={smartMode}
+              className={cn(
+                'inline-flex items-center gap-1.5 h-9 px-3 rounded-lg text-sm font-medium border transition-colors',
+                smartMode
+                  ? 'bg-primary text-primary-foreground border-primary'
+                  : 'bg-transparent text-muted-foreground hover:text-foreground'
+              )}
+            >
+              <Bluetooth className="size-4" />
+              <span>{t('smart.smartCube')}</span>
+            </button>
+          )}
           {isAuthed && (
             <Link
               href="/algorithms/trainer/history"
@@ -281,6 +330,17 @@ export default function TrainerExperience() {
           onToggleSolveInfo={toggleShowSolveInfo}
           onViewAlgorithms={currentCase ? handleOpenAlgorithms : undefined}
           sparklineSlot={<MiniSparkline solves={methodSolves} targetMs={targetSeconds * 1000} />}
+          centerSlot={
+            smartMode && smartAvailable ? (
+              <div className="w-full flex-1 flex flex-col items-center justify-center">
+                <SmartCube
+                  renderConnected={(connection) => <TrainerSmartTimer connection={connection} />}
+                  onCancel={() => setSmartMode(false)}
+                  cancelLabel={t('smart.exit')}
+                />
+              </div>
+            ) : undefined
+          }
         />
       </div>
     </div>

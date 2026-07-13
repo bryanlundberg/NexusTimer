@@ -3,8 +3,9 @@ import cubeSolver from 'cube-solver'
 
 cubeSolver.initialize('cross')
 cubeSolver.initialize('xcross')
+cubeSolver.initialize('kociemba')
 
-type SolveTask = { scramble: string; type: 'cross' | 'xcross' }
+type SolveTask = { scramble: string; type: 'cross' | 'xcross' | 'kociemba' }
 
 type InMsg = {
   id: number

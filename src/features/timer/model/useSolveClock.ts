@@ -12,45 +12,45 @@ export function useSolveClock(): SolveClock {
   const [solvingTime, setSolvingTime] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const performanceStartRef = useRef<number | null>(null)
-  const intervalRef = useRef<number | null>(null)
+  const rafRef = useRef<number | null>(null)
 
-  const clearInterval = () => {
-    if (intervalRef.current != null) {
-      window.clearInterval(intervalRef.current)
-      intervalRef.current = null
+  const cancelRaf = () => {
+    if (rafRef.current != null) {
+      cancelAnimationFrame(rafRef.current)
+      rafRef.current = null
     }
   }
 
   const start = useCallback(() => {
-    if (isRunning) return
+    if (rafRef.current != null) return
     setIsRunning(true)
     performanceStartRef.current = performance.now()
     setSolvingTime(0)
-    intervalRef.current = window.setInterval(() => {
-      if (performanceStartRef.current != null) {
-        setSolvingTime(performance.now() - performanceStartRef.current)
-      }
-    }, 10)
-  }, [isRunning])
+    const tick = () => {
+      if (performanceStartRef.current == null) return
+      setSolvingTime(performance.now() - performanceStartRef.current)
+      rafRef.current = requestAnimationFrame(tick)
+    }
+    rafRef.current = requestAnimationFrame(tick)
+  }, [])
 
   const stop = useCallback((): number => {
-    clearInterval()
+    cancelRaf()
     setIsRunning(false)
-    const finalTime =
-      performanceStartRef.current != null ? performance.now() - performanceStartRef.current : solvingTime
+    const finalTime = performanceStartRef.current != null ? performance.now() - performanceStartRef.current : 0
     setSolvingTime(finalTime)
     performanceStartRef.current = null
     return finalTime
-  }, [solvingTime])
+  }, [])
 
   const reset = useCallback(() => {
-    clearInterval()
+    cancelRaf()
     setIsRunning(false)
     performanceStartRef.current = null
     setSolvingTime(0)
   }, [])
 
-  useEffect(() => () => clearInterval(), [])
+  useEffect(() => () => cancelRaf(), [])
 
   return { solvingTime, isRunning, start, stop, reset }
 }

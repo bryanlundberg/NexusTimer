@@ -1,5 +1,3 @@
-export type TrainerRotationMode = 'sequential' | 'shuffle' | 'random'
-
 export interface TrainerCaseStats {
   caseId: string
   totalSolves: number
