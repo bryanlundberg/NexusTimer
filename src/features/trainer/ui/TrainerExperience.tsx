@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { BarChart3, Bluetooth, ChevronRight, X } from 'lucide-react'
+import { BarChart3, Bluetooth, ChevronRight } from 'lucide-react'
 import SmartCube from '@/features/smart-cube/ui/SmartCube'
 import TrainerSmartTimer from '@/features/trainer/ui/TrainerSmartTimer'
 import { CHART_CONTRAST, DEFAULT_CHART_CONTRAST } from '@/shared/lib/chartContrastColor'
@@ -59,6 +59,18 @@ export default function TrainerExperience() {
   const undoLastSolve = useTrainerStore((s) => s.undoLastSolve)
   const lastSolve = useTrainerStore((s) => s.lastSolve)
   const hydrateMethodStats = useTrainerStore((s) => s.hydrateMethodStats)
+  const rotationMode = useTrainerStore((s) => s.rotationMode)
+  const setCaseIndex = useTrainerStore((s) => s.setCaseIndex)
+
+  // On entering the trainer, start on a random case.
+  const didRandomizeStartRef = useRef(false)
+  useEffect(() => {
+    if (didRandomizeStartRef.current || sessionCases.length === 0) return
+    if (rotationMode !== 'sequential' && sessionCases.length > 1) {
+      setCaseIndex(Math.floor(Math.random() * sessionCases.length))
+    }
+    didRandomizeStartRef.current = true
+  }, [sessionCases.length, rotationMode, setCaseIndex])
 
   const timerStatus = useTimerStore((s) => s.timerStatus)
   const solvingTime = useTimerStore((s) => s.solvingTime)
@@ -310,17 +322,12 @@ export default function TrainerExperience() {
           sparklineSlot={<MiniSparkline solves={methodSolves} targetMs={targetSeconds * 1000} />}
           centerSlot={
             smartMode && smartAvailable ? (
-              <div className="relative w-full flex-1 flex flex-col items-center justify-center">
-                <button
-                  type="button"
-                  onClick={() => setSmartMode(false)}
-                  aria-label={t('smart.exit')}
-                  title={t('smart.exit')}
-                  className="absolute top-0 right-0 inline-flex items-center justify-center size-8 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                >
-                  <X className="size-4" />
-                </button>
-                <SmartCube renderConnected={(connection) => <TrainerSmartTimer connection={connection} />} />
+              <div className="w-full flex-1 flex flex-col items-center justify-center">
+                <SmartCube
+                  renderConnected={(connection) => <TrainerSmartTimer connection={connection} />}
+                  onCancel={() => setSmartMode(false)}
+                  cancelLabel={t('smart.exit')}
+                />
               </div>
             ) : undefined
           }
