@@ -15,6 +15,9 @@ const initialPickedIds = (slug: string): Set<string> => {
   return new Set(set?.algorithms.map((a) => a.id) ?? [])
 }
 
+const initialCaseIndex = (pickedSize: number, mode: TrainerRotationMode): number =>
+  mode !== 'sequential' && pickedSize > 1 ? Math.floor(Math.random() * pickedSize) : 0
+
 interface TrainerLastSolve {
   caseId: string
   timeMs: number
@@ -64,19 +67,21 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
   lastSolve: null,
 
   setMethod: (slug) => {
+    const picked = initialPickedIds(slug)
     set({
       methodSlug: slug,
-      pickedIds: initialPickedIds(slug),
-      caseIndex: 0,
+      pickedIds: picked,
+      caseIndex: initialCaseIndex(picked.size, get().rotationMode),
       shuffleQueue: [],
       lastSolve: null
     })
   },
 
   setPickedIds: (ids) => {
+    const picked = new Set(ids)
     set({
-      pickedIds: new Set(ids),
-      caseIndex: 0,
+      pickedIds: picked,
+      caseIndex: initialCaseIndex(picked.size, get().rotationMode),
       shuffleQueue: [],
       lastSolve: null
     })
