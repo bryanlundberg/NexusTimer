@@ -29,6 +29,9 @@ interface UseTrainerSmartSessionArgs {
   targetScramble: string
   targetStateJson: string | null
   onSolved: (timeMs: number, historyFromSolved: string) => void
+  // Rebuilds the virtual player from scratch (solved). Used by `resync` so the
+  // 3D view snaps back to solved along with the tracked engine state.
+  recreatePlayer?: () => void
 }
 
 /**
@@ -45,7 +48,8 @@ export function useTrainerSmartSession({
   goal,
   targetScramble,
   targetStateJson,
-  onSolved
+  onSolved,
+  recreatePlayer
 }: UseTrainerSmartSessionArgs) {
   const [phase, setPhaseState] = useState<SmartTrainerPhase>('guiding')
   const [guide, setGuide] = useState<ScrambleGuide | null>(null)
@@ -61,8 +65,8 @@ export function useTrainerSmartSession({
   const lockRef = useRef(0)
 
   // Stable refs so the move handler never reads stale values.
-  const latest = useRef({ engine, player, goal, onSolved, clock })
-  latest.current = { engine, player, goal, onSolved, clock }
+  const latest = useRef({ engine, player, goal, onSolved, clock, recreatePlayer })
+  latest.current = { engine, player, goal, onSolved, clock, recreatePlayer }
 
   const setPhase = useCallback((next: SmartTrainerPhase) => {
     phaseRef.current = next
@@ -157,16 +161,18 @@ export function useTrainerSmartSession({
     guideStateRef.current = initGuideState()
     targetJsonRef.current = targetStateJson
     processedRef.current = false
-    clock.reset()
     setGuide(guideFromState(tokensRef.current, guideStateRef.current))
     setPhase('guiding')
   }, [targetScramble, targetStateJson])
 
-  // Re-align the engine to a solved physical cube
+  // Re-align the engine (and the 3D view) to a solved physical cube
   const resync = useCallback(() => {
-    const { engine } = latest.current
+    const { engine, recreatePlayer } = latest.current
     try {
       engine?.reset()
+    } catch {}
+    try {
+      recreatePlayer?.()
     } catch {}
     moveLogRef.current = ''
     guideStateRef.current = initGuideState()
