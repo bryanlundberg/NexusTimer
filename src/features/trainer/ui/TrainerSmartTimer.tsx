@@ -53,7 +53,7 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
     [set, currentAlg]
   )
 
-  const { containerRef, player, engine } = useVirtualCube({
+  const { containerRef, player, engine, recreatePlayer } = useVirtualCube({
     cubeSize: CUBE_SIZE,
     scramble: null,
     seed: false,
@@ -100,7 +100,8 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
     goal,
     targetScramble: target.scramble,
     targetStateJson: target.json,
-    onSolved: handleSolved
+    onSolved: handleSolved,
+    recreatePlayer
   })
 
   useEffect(() => {
