@@ -793,6 +793,15 @@
       },
       "cta": {
         "practiceNow": "Mag-practice ngayon"
+      },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "Ilapat ang setup sa cube",
+        "ready": "Handa na! Simulan nang i-solve",
+        "solving": "Nire-solve…",
+        "solved": "Na-solve",
+        "resync": "I-reset ang estado",
+        "exit": "Lumabas sa smart mode"
       }
     },
     "TrainerHistoryPage": {

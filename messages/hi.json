@@ -812,6 +812,15 @@
       "cta": {
         "practiceNow": "अभी अभ्यास करें"
       },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "क्यूब पर सेटअप लगाएं",
+        "ready": "तैयार! हल करना शुरू करें",
+        "solving": "हल हो रहा है…",
+        "solved": "हल हो गया",
+        "resync": "स्थिति रीसेट करें",
+        "exit": "स्मार्ट मोड से बाहर निकलें"
+      },
       "algorithmsModal": {
         "title": "एल्गोरिद्म"
       }

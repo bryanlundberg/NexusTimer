@@ -812,6 +812,15 @@
       "cta": {
         "practiceNow": "Практиковать сейчас"
       },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "Примените сетап на кубике",
+        "ready": "Готово! Начинайте сборку",
+        "solving": "Сборка…",
+        "solved": "Собрано",
+        "resync": "Сбросить состояние",
+        "exit": "Выйти из умного режима"
+      },
       "algorithmsModal": {
         "title": "Алгоритмы"
       }

@@ -793,6 +793,15 @@
       },
       "cta": {
         "practiceNow": "Latihan sekarang"
+      },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "Terapkan setup pada kubus",
+        "ready": "Siap! Mulai menyelesaikan",
+        "solving": "Menyelesaikan…",
+        "solved": "Selesai",
+        "resync": "Setel ulang status",
+        "exit": "Keluar dari mode smart"
       }
     },
     "TrainerHistoryPage": {

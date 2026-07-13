@@ -812,6 +812,15 @@
       "cta": {
         "practiceNow": "今すぐ練習"
       },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "キューブにセットアップを適用してください",
+        "ready": "準備完了！ソルブを開始",
+        "solving": "ソルブ中…",
+        "solved": "完成",
+        "resync": "状態をリセット",
+        "exit": "スマートモードを終了"
+      },
       "algorithmsModal": {
         "title": "アルゴリズム"
       }

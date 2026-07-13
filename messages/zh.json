@@ -812,6 +812,15 @@
       "cta": {
         "practiceNow": "立即练习"
       },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "在魔方上应用设置",
+        "ready": "准备好了！开始还原",
+        "solving": "还原中…",
+        "solved": "已还原",
+        "resync": "重置状态",
+        "exit": "退出智能模式"
+      },
       "algorithmsModal": {
         "title": "公式"
       }

@@ -812,6 +812,15 @@
       "cta": {
         "practiceNow": "지금 연습"
       },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "큐브에 셋업을 적용하세요",
+        "ready": "준비 완료! 풀기 시작",
+        "solving": "푸는 중…",
+        "solved": "완성",
+        "resync": "상태 초기화",
+        "exit": "스마트 모드 종료"
+      },
       "algorithmsModal": {
         "title": "알고리즘"
       }

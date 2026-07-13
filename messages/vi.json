@@ -793,6 +793,15 @@
       },
       "cta": {
         "practiceNow": "Luyện tập ngay"
+      },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "Áp dụng setup lên khối",
+        "ready": "Sẵn sàng! Bắt đầu giải",
+        "solving": "Đang giải…",
+        "solved": "Đã giải",
+        "resync": "Đặt lại trạng thái",
+        "exit": "Thoát chế độ smart"
       }
     },
     "TrainerHistoryPage": {

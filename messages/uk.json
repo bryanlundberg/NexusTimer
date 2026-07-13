@@ -793,6 +793,15 @@
       },
       "cta": {
         "practiceNow": "Тренуватися зараз"
+      },
+      "smart": {
+        "smartCube": "Smart Cube",
+        "applySetup": "Застосуйте сетап на кубику",
+        "ready": "Готово! Починайте збирати",
+        "solving": "Збирання…",
+        "solved": "Зібрано",
+        "resync": "Скинути стан",
+        "exit": "Вийти з розумного режиму"
       }
     },
     "TrainerHistoryPage": {
