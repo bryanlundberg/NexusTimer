@@ -14,6 +14,8 @@ interface TwistyProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export default function AlgorithmRender({ className, width = 140, height = 140, config, ...rest }: TwistyProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const playerRef = useRef<TwistyPlayer | null>(null)
+  const puzzleRef = useRef<unknown>(undefined)
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -32,20 +34,46 @@ export default function AlgorithmRender({ className, width = 140, height = 140, 
 
   useEffect(() => {
     const container = containerRef.current
-    if (!container || !visible) return
+    if (!container) return
 
-    const player = new TwistyPlayer(config)
-    container.appendChild(player)
+    if (!visible) {
+      if (playerRef.current) {
+        disposeTwistyPlayer(playerRef.current)
+        playerRef.current = null
+        puzzleRef.current = undefined
+      }
+      return
+    }
 
-    player.style.width = typeof width === 'number' ? `${width}px` : width
-    player.style.height = typeof height === 'number' ? `${height}px` : height
-    player.style.maxWidth = '100%'
-    player.style.borderRadius = '8px'
+    const puzzle = (config as { puzzle?: unknown } | undefined)?.puzzle
+    const sizeStyle = {
+      width: typeof width === 'number' ? `${width}px` : width,
+      height: typeof height === 'number' ? `${height}px` : height
+    }
 
-    return () => {
-      disposeTwistyPlayer(player)
+    if (!playerRef.current || puzzleRef.current !== puzzle) {
+      if (playerRef.current) disposeTwistyPlayer(playerRef.current)
+      const player = new TwistyPlayer(config)
+      container.appendChild(player)
+      player.style.width = sizeStyle.width
+      player.style.height = sizeStyle.height
+      player.style.maxWidth = '100%'
+      player.style.borderRadius = '8px'
+      playerRef.current = player
+      puzzleRef.current = puzzle
+    } else {
+      if (config) Object.assign(playerRef.current, config)
+      playerRef.current.style.width = sizeStyle.width
+      playerRef.current.style.height = sizeStyle.height
     }
   }, [visible, width, height, config])
+
+  useEffect(() => {
+    return () => {
+      if (playerRef.current) disposeTwistyPlayer(playerRef.current)
+      playerRef.current = null
+    }
+  }, [])
 
   return <div {...rest} ref={containerRef} className={className} />
 }
