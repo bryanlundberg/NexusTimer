@@ -16,30 +16,13 @@ import { trainerSolveInputSchema } from '@/entities/trainer-solve/model/schema'
 const validInput = {
   methodSlug: 'oll',
   caseId: 'oll-1',
-  timeMs: 1234,
-  penalty: 'OK' as const
+  timeMs: 1234
 }
 
 describe('trainerSolveInputSchema', () => {
   describe('happy paths', () => {
     it('accepts a valid payload', () => {
       expect(trainerSolveInputSchema.safeParse(validInput).success).toBe(true)
-    })
-
-    it("defaults penalty to 'OK' when omitted", () => {
-      const result = trainerSolveInputSchema.safeParse({
-        methodSlug: 'oll',
-        caseId: 'oll-1',
-        timeMs: 1234
-      })
-      expect(result.success).toBe(true)
-      if (result.success) {
-        expect(result.data.penalty).toBe('OK')
-      }
-    })
-
-    it.each(['OK', '+2', 'DNF'] as const)('accepts penalty %s', (penalty) => {
-      expect(trainerSolveInputSchema.safeParse({ ...validInput, penalty }).success).toBe(true)
     })
 
     it('accepts a timeMs of 0', () => {
@@ -86,12 +69,6 @@ describe('trainerSolveInputSchema', () => {
 
     it('rejects NaN', () => {
       expect(trainerSolveInputSchema.safeParse({ ...validInput, timeMs: NaN }).success).toBe(false)
-    })
-  })
-
-  describe('penalty validation', () => {
-    it('rejects an unknown penalty', () => {
-      expect(trainerSolveInputSchema.safeParse({ ...validInput, penalty: '+4' }).success).toBe(false)
     })
   })
 })
