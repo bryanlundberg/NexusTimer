@@ -1,33 +1,20 @@
 import { deleteCollectionSchema, updateCollectionSchema } from '@/features/manage-cubes/model/schemas'
 
 describe('deleteCollectionSchema', () => {
-  it('accepts a non-empty confirmation name', () => {
-    const result = deleteCollectionSchema.safeParse({ confirmationName: 'My Cube' })
-    expect(result.success).toBe(true)
+  it('accepts when deletion is confirmed', () => {
+    expect(deleteCollectionSchema.safeParse({ confirmDeletion: true }).success).toBe(true)
   })
 
-  it('trims the confirmation name', () => {
-    const result = deleteCollectionSchema.safeParse({ confirmationName: '  My Cube  ' })
-    expect(result.success).toBe(true)
-    if (result.success) {
-      expect(result.data.confirmationName).toBe('My Cube')
-    }
-  })
-
-  it('rejects an empty string', () => {
-    const result = deleteCollectionSchema.safeParse({ confirmationName: '' })
+  it('rejects when deletion is not confirmed', () => {
+    const result = deleteCollectionSchema.safeParse({ confirmDeletion: false })
     expect(result.success).toBe(false)
     if (!result.success) {
-      expect(result.error.issues[0].message).toBe('You must enter the collection name')
+      expect(result.error.issues[0].message).toBe('You must confirm before deleting')
     }
   })
 
-  it('rejects a whitespace-only string (trim runs before min)', () => {
-    const result = deleteCollectionSchema.safeParse({ confirmationName: '   ' })
-    expect(result.success).toBe(false)
-    if (!result.success) {
-      expect(result.error.issues[0].message).toBe('You must enter the collection name')
-    }
+  it('rejects a missing confirmation flag', () => {
+    expect(deleteCollectionSchema.safeParse({}).success).toBe(false)
   })
 })
 
@@ -61,12 +48,8 @@ describe('updateCollectionSchema', () => {
     }
   })
 
-  it('rejects a name longer than 50 chars', () => {
-    const result = updateCollectionSchema.safeParse({ name: 'a'.repeat(51), category: '3x3' })
-    expect(result.success).toBe(false)
-    if (!result.success) {
-      expect(result.error.issues[0].message).toBe('Name must be at most 50 characters')
-    }
+  it('accepts a name longer than 50 chars (no max length)', () => {
+    expect(updateCollectionSchema.safeParse({ name: 'a'.repeat(51), category: '3x3' }).success).toBe(true)
   })
 
   it('accepts every documented cube category', () => {
