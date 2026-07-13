@@ -42,9 +42,11 @@ interface SmartCubeProps {
   // own smart timer) instead of the default main-timer SmartCubeTimer. All the
   // connection lifecycle (connect/disconnect/MAC dialog) is reused as-is.
   renderConnected?: (connection: SmartCubeConnection) => ReactNode
+  onCancel?: () => void
+  cancelLabel?: string
 }
 
-export default function SmartCube({ renderConnected }: SmartCubeProps = {}) {
+export default function SmartCube({ renderConnected, onCancel, cancelLabel }: SmartCubeProps = {}) {
   const t = useTranslations('Index.HomePage')
   const [status, setStatus] = useState<ConnectionStatus>('idle')
   const [deviceName, setDeviceName] = useState<string | null>(null)
@@ -250,22 +252,36 @@ export default function SmartCube({ renderConnected }: SmartCubeProps = {}) {
           </Button>
         </div>
       ) : (
-        <div className="flex items-center gap-2">
-          <Button
-            onClick={handleConnect}
-            disabled={status === 'connecting'}
-            variant="default"
-            size="sm"
-            className="sm:h-9 sm:px-4 sm:text-sm"
-          >
-            {status === 'connecting'
-              ? t('connecting')
-              : status === 'error'
-                ? t('retry-connection')
-                : t('connect-smart-cube')}
-          </Button>
+        <div className="flex flex-col items-center gap-2">
+          <div className="flex items-center gap-2">
+            <Button
+              onClick={handleConnect}
+              disabled={status === 'connecting'}
+              variant="default"
+              size="sm"
+              className="sm:h-9 sm:px-4 sm:text-sm"
+            >
+              {status === 'connecting'
+                ? t('connecting')
+                : status === 'error'
+                  ? t('retry-connection')
+                  : t('connect-smart-cube')}
+            </Button>
 
-          <HowToConnectDialog />
+            <HowToConnectDialog />
+          </div>
+
+          {onCancel && (
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={onCancel}
+              className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground"
+            >
+              {cancelLabel ?? 'Cancel'}
+            </Button>
+          )}
         </div>
       )}
     </div>
