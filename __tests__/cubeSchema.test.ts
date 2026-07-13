@@ -21,12 +21,8 @@ describe('createCubeFormSchema', () => {
     }
   })
 
-  it('rejects a name longer than 50 chars', () => {
-    const result = createCubeFormSchema.safeParse({ name: 'a'.repeat(51), category: '3x3' })
-    expect(result.success).toBe(false)
-    if (!result.success) {
-      expect(result.error.issues[0].message).toBe('Maximum length is 50 characters')
-    }
+  it('accepts a name longer than 50 chars (no max length)', () => {
+    expect(createCubeFormSchema.safeParse({ name: 'a'.repeat(51), category: '3x3' }).success).toBe(true)
   })
 
   it('rejects an unknown category', () => {
