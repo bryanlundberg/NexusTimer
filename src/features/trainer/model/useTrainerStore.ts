@@ -1,11 +1,10 @@
 import { create } from 'zustand'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
-import { TrainerCaseStats, TrainerRotationMode } from '@/features/trainer/model/types'
+import { TrainerCaseStats } from '@/features/trainer/model/types'
 import type { TrainerMethodStatsDoc } from '@/entities/trainer-stats/model/types'
 import {
   TRAINER_DEFAULT_SLUG,
   TRAINER_DEFAULT_TARGET_SECONDS,
-  TRAINER_DEFAULT_ROTATION_MODE,
   TRAINER_RECENT_WINDOW
 } from '@/features/trainer/lib/constants'
 import { averageOfLastN, shuffledRange } from '@/features/trainer/lib/trainerUtils'
@@ -15,8 +14,7 @@ const initialPickedIds = (slug: string): Set<string> => {
   return new Set(set?.algorithms.map((a) => a.id) ?? [])
 }
 
-const initialCaseIndex = (pickedSize: number, mode: TrainerRotationMode): number =>
-  mode !== 'sequential' && pickedSize > 1 ? Math.floor(Math.random() * pickedSize) : 0
+const initialCaseIndex = (pickedSize: number): number => (pickedSize > 1 ? Math.floor(Math.random() * pickedSize) : 0)
 
 interface TrainerLastSolve {
   caseId: string
@@ -31,7 +29,6 @@ interface TrainerState {
   pickedIds: Set<string>
   caseIndex: number
 
-  rotationMode: TrainerRotationMode
   shuffleQueue: number[]
 
   targetByMethod: Record<string, number>
@@ -41,7 +38,6 @@ interface TrainerState {
   setMethod: (slug: string) => void
   setPickedIds: (ids: Set<string>) => void
   setCaseIndex: (index: number) => void
-  setRotationMode: (mode: TrainerRotationMode) => void
   advanceCase: (totalSessionCases: number) => void
   prevCase: (totalSessionCases: number) => void
 
@@ -60,7 +56,6 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
   methodSlug: TRAINER_DEFAULT_SLUG,
   pickedIds: initialPickedIds(TRAINER_DEFAULT_SLUG),
   caseIndex: 0,
-  rotationMode: TRAINER_DEFAULT_ROTATION_MODE,
   shuffleQueue: [],
   targetByMethod: {},
   caseStats: {},
@@ -71,7 +66,7 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
     set({
       methodSlug: slug,
       pickedIds: picked,
-      caseIndex: initialCaseIndex(picked.size, get().rotationMode),
+      caseIndex: initialCaseIndex(picked.size),
       shuffleQueue: [],
       lastSolve: null
     })
@@ -81,7 +76,7 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
     const picked = new Set(ids)
     set({
       pickedIds: picked,
-      caseIndex: initialCaseIndex(picked.size, get().rotationMode),
+      caseIndex: initialCaseIndex(picked.size),
       shuffleQueue: [],
       lastSolve: null
     })
@@ -89,30 +84,16 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
 
   setCaseIndex: (index) => set({ caseIndex: Math.max(0, index) }),
 
-  setRotationMode: (mode) => set({ rotationMode: mode, shuffleQueue: [], lastSolve: null }),
-
+  // Cases are always shuffled: walk through a permutation, reshuffling when it
+  // runs out so every case appears once per cycle without immediate repeats.
   advanceCase: (totalSessionCases) => {
     if (totalSessionCases <= 0) return
-    const { rotationMode, caseIndex, shuffleQueue } = get()
-
     if (totalSessionCases === 1) {
       set({ caseIndex: 0 })
       return
     }
 
-    if (rotationMode === 'sequential') {
-      set({ caseIndex: (caseIndex + 1) % totalSessionCases })
-      return
-    }
-
-    if (rotationMode === 'random') {
-      let next = Math.floor(Math.random() * totalSessionCases)
-      if (next === caseIndex) next = (next + 1) % totalSessionCases
-      set({ caseIndex: next })
-      return
-    }
-
-    // shuffle: walk through a permutation, reshuffle when exhausted.
+    const { caseIndex, shuffleQueue } = get()
     let queue = shuffleQueue.filter((i) => i < totalSessionCases)
     if (queue.length === 0) {
       queue = shuffledRange(totalSessionCases, caseIndex)
@@ -227,7 +208,6 @@ export const useTrainerStore = create<TrainerState>((set, get) => ({
       methodSlug: TRAINER_DEFAULT_SLUG,
       pickedIds: initialPickedIds(TRAINER_DEFAULT_SLUG),
       caseIndex: 0,
-      rotationMode: TRAINER_DEFAULT_ROTATION_MODE,
       shuffleQueue: [],
       targetByMethod: {},
       caseStats: {},
