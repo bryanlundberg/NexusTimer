@@ -19,6 +19,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import type { TwistyPlayer } from 'cubing/twisty'
 import { useTrainerStore } from '@/features/trainer/model/useTrainerStore'
 import { useTrainerSession } from '@/features/trainer/model/useTrainerSession'
+import { useSmartCubeStore } from '@/features/smart-cube/model/useSmartCubeStore'
 import useTimer from '@/features/timer/model/useTimer'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
@@ -40,12 +41,22 @@ export default function TrainerExperience() {
   const { set, sessionCases, currentCase, currentAlg, setup } = useTrainerSession()
   const methodSlug = set.slug
   const smartAvailable = set.puzzle === '3x3x3'
+  const smartConnected = useSmartCubeStore((s) => s.status === 'connected')
+  const disconnectSmart = useSmartCubeStore((s) => s.disconnect)
   const [smartMode, setSmartMode] = useState(false)
 
-  // Leaving a 3x3 method (smart is unsupported elsewhere) turns smart mode off,
+  // Leaving a non-3x3 method turns smart mode off,
   useEffect(() => {
-    if (!smartAvailable && smartMode) setSmartMode(false)
-  }, [smartAvailable, smartMode])
+    if (!smartAvailable) {
+      if (smartMode) setSmartMode(false)
+      if (smartConnected) disconnectSmart()
+    }
+  }, [smartAvailable, smartMode, smartConnected, disconnectSmart])
+
+  // If a cube is already connected, enter smart mode automatically.
+  useEffect(() => {
+    if (smartConnected && smartAvailable) setSmartMode(true)
+  }, [smartConnected, smartAvailable])
 
   const targetSeconds = useTrainerStore((s) => s.targetByMethod[s.methodSlug] ?? TRAINER_DEFAULT_TARGET_SECONDS)
   const caseStats = useTrainerStore((s) => s.caseStats)
