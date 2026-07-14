@@ -11,7 +11,6 @@ import TrainerCurrentCase from '@/features/trainer/ui/TrainerCurrentCase'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
 import TrainerEditTargetModal from '@/features/trainer/ui/TrainerEditTargetModal'
 import TrainerPickCasesModal from '@/features/trainer/ui/TrainerPickCasesModal'
-import TrainerAlgorithmsModal from '@/features/trainer/ui/TrainerAlgorithmsModal'
 import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
 import { useTrainerPrefsStore } from '@/features/trainer/model/useTrainerPrefsStore'
 import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned'
@@ -212,15 +211,6 @@ export default function TrainerExperience() {
     })
   }
 
-  const handleOpenAlgorithms = () => {
-    if (!currentCase) return
-    open({
-      id: 'trainer-algorithms',
-      metadata: { caseName: currentCase.name, algs: currentCase.algs },
-      component: <TrainerAlgorithmsModal />
-    })
-  }
-
   const handleOpenPickCases = () => {
     open({
       id: 'trainer-pick-cases',
@@ -266,22 +256,6 @@ export default function TrainerExperience() {
           <div className="flex-1 min-w-0 max-w-sm">
             <TrainerMethodSelect value={set.slug} onChange={setMethod} />
           </div>
-          {smartAvailable && (
-            <button
-              type="button"
-              onClick={() => setSmartMode((v) => !v)}
-              aria-pressed={smartMode}
-              className={cn(
-                'inline-flex items-center gap-1.5 h-9 px-3 rounded-lg text-sm font-medium border transition-colors',
-                smartMode
-                  ? 'bg-primary text-primary-foreground border-primary'
-                  : 'bg-transparent text-muted-foreground hover:text-foreground'
-              )}
-            >
-              <Bluetooth className="size-4" />
-              <span>{t('smart.smartCube')}</span>
-            </button>
-          )}
           {isAuthed && (
             <Link
               href="/algorithms/trainer/history"
@@ -328,7 +302,26 @@ export default function TrainerExperience() {
           onPickCases={handleOpenPickCases}
           showSolveInfo={showSolveInfo}
           onToggleSolveInfo={toggleShowSolveInfo}
-          onViewAlgorithms={currentCase ? handleOpenAlgorithms : undefined}
+          smartToggleSlot={
+            smartAvailable ? (
+              <button
+                type="button"
+                onClick={() => setSmartMode((v) => !v)}
+                aria-pressed={smartMode}
+                aria-label={t('smart.smartCube')}
+                title={t('smart.smartCube')}
+                className={cn(
+                  'inline-flex items-center gap-1.5 h-9 px-3 rounded-lg text-sm font-medium border transition-colors shrink-0',
+                  smartMode
+                    ? 'bg-primary text-primary-foreground border-primary'
+                    : 'bg-transparent text-muted-foreground hover:text-foreground'
+                )}
+              >
+                <Bluetooth className="size-4" />
+                <span className="hidden sm:inline">{t('smart.smartCube')}</span>
+              </button>
+            ) : undefined
+          }
           sparklineSlot={<MiniSparkline solves={methodSolves} targetMs={targetSeconds * 1000} />}
           centerSlot={
             smartMode && smartAvailable ? (
