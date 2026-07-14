@@ -30,7 +30,7 @@ interface TrainerCurrentCaseProps {
   onPickCases?: () => void
   showSolveInfo?: boolean
   onToggleSolveInfo?: () => void
-  onViewAlgorithms?: () => void
+  smartToggleSlot?: ReactNode
   sparklineSlot?: ReactNode
   centerSlot?: ReactNode
 }
@@ -59,7 +59,7 @@ export default function TrainerCurrentCase({
   onPickCases,
   showSolveInfo = true,
   onToggleSolveInfo,
-  onViewAlgorithms,
+  smartToggleSlot,
   sparklineSlot,
   centerSlot
 }: TrainerCurrentCaseProps) {
@@ -72,35 +72,7 @@ export default function TrainerCurrentCase({
     <div className="flex flex-col flex-1 min-h-0">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2 min-w-0">
-          <button
-            type="button"
-            onClick={onViewAlgorithms}
-            disabled={!onViewAlgorithms}
-            aria-label={t('actions.viewAlgorithms')}
-            title={t('actions.viewAlgorithms')}
-            className={cn(
-              'group flex items-center gap-3 rounded-xl border bg-muted/40 p-2 pr-3.5 text-left transition-colors min-w-0',
-              onViewAlgorithms && 'hover:bg-muted/70 hover:border-border cursor-pointer'
-            )}
-          >
-            <div
-              className="shrink-0 size-14 rounded-lg border bg-muted/40 p-1 flex items-center justify-center overflow-hidden"
-              style={{
-                backgroundImage:
-                  'repeating-linear-gradient(45deg, color-mix(in oklab, currentColor 8%, transparent) 0 6px, transparent 6px 14px)'
-              }}
-            >
-              {showSolveInfo && vizConfig ? (
-                <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
-              ) : (
-                <div className="size-full rounded bg-muted/60" />
-              )}
-            </div>
-            <div className="flex flex-col leading-tight min-w-0">
-              <span className="text-sm font-bold tracking-tight truncate">{caseName || '—'}</span>
-              {caseGroup && <span className="text-xs text-muted-foreground truncate">{caseGroup}</span>}
-            </div>
-          </button>
+          {smartToggleSlot}
 
           {onPickCases && pickedCount != null && totalCount != null && (
             <Button
@@ -146,35 +118,56 @@ export default function TrainerCurrentCase({
       <div className="flex flex-1 flex-col items-center justify-center gap-6 min-h-0 py-6">
         {centerSlot ?? (
           <>
+            {(caseName || caseGroup) && (
+              <div className="flex flex-col items-center leading-tight text-center">
+                <span className="text-base font-bold tracking-tight">{caseName || '—'}</span>
+                {caseGroup && <span className="text-xs text-muted-foreground">{caseGroup}</span>}
+              </div>
+            )}
+
+            {showSolveInfo && vizConfig && (
+              <div
+                className="size-32 sm:size-40 rounded-lg border bg-muted/40 p-2 flex items-center justify-center overflow-hidden"
+                style={{
+                  backgroundImage:
+                    'repeating-linear-gradient(45deg, color-mix(in oklab, currentColor 8%, transparent) 0 6px, transparent 6px 14px)'
+                }}
+              >
+                <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
+              </div>
+            )}
+
             {setup && (
               <code className="max-w-2xl text-center text-base sm:text-lg font-mono tracking-wide text-muted-foreground break-words px-4">
                 {setup}
               </code>
             )}
 
-            <div
-              className={cn(
-                'flex items-baseline tabular-nums tracking-tight leading-none transition-colors font-normal',
-                timeColorClass
-              )}
-            >
-              <span className="text-7xl sm:text-8xl md:text-9xl">{intPart}</span>
-              <span className="text-5xl sm:text-6xl md:text-7xl opacity-60">{decPart}</span>
-            </div>
-
-            {onUndoLast && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={onUndoLast}
-                aria-label={t('actions.undoLast')}
-                className="h-8 gap-2 text-muted-foreground hover:text-foreground"
+            <div className="relative flex items-center justify-center">
+              <div
+                className={cn(
+                  'flex items-baseline tabular-nums tracking-tight leading-none transition-colors font-normal',
+                  timeColorClass
+                )}
               >
-                <Undo2 className="h-3.5 w-3.5" />
-                <span>{t('actions.undoLast')}</span>
-                {lastSolveTime && <span className="font-mono tabular-nums opacity-75">{lastSolveTime}</span>}
-              </Button>
-            )}
+                <span className="text-7xl sm:text-8xl md:text-9xl">{intPart}</span>
+                <span className="text-5xl sm:text-6xl md:text-7xl opacity-60">{decPart}</span>
+              </div>
+
+              {onUndoLast && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={onUndoLast}
+                  aria-label={t('actions.undoLast')}
+                  className="absolute left-full top-1/2 -translate-y-1/2 ml-3 h-8 gap-2 text-muted-foreground hover:text-foreground"
+                >
+                  <Undo2 className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline">{t('actions.undoLast')}</span>
+                  {lastSolveTime && <span className="font-mono tabular-nums opacity-75">{lastSolveTime}</span>}
+                </Button>
+              )}
+            </div>
           </>
         )}
       </div>
