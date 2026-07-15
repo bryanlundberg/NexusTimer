@@ -37,12 +37,18 @@ export default function PeoplePage() {
 
         <div className="overflow-hidden">
           {/* Table header */}
-          <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-2 border-b border-border/60">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_7rem_7rem_7rem] items-center gap-x-4 px-3 py-2 border-b border-border/60">
             <span className="hidden sm:block" />
             <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
               {t('title')}
             </span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground pr-1">
+            <span className="hidden sm:block text-center text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              {t('col-country')}
+            </span>
+            <span className="hidden sm:block text-center text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+              WCA
+            </span>
+            <span className="text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground pr-1">
               {t('col-actions')}
             </span>
           </div>
@@ -54,14 +60,13 @@ export default function PeoplePage() {
               .map((_, i) => (
                 <div
                   key={i}
-                  className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0"
+                  className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_7rem_7rem_7rem] items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0"
                 >
                   <Skeleton className="hidden sm:block size-9 rounded-lg" />
-                  <div className="flex flex-col gap-1.5 min-w-0">
-                    <Skeleton className="h-3.5 w-40" />
-                    <Skeleton className="h-2.5 w-24" />
-                  </div>
-                  <div className="flex items-center gap-2">
+                  <Skeleton className="h-3.5 w-40" />
+                  <Skeleton className="hidden sm:block h-3.5 w-16" />
+                  <Skeleton className="hidden sm:block h-3.5 w-12" />
+                  <div className="flex items-center justify-end gap-2">
                     <Skeleton className="h-8 w-8 sm:w-24 rounded-md" />
                   </div>
                 </div>
