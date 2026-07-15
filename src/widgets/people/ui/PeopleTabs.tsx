@@ -8,8 +8,7 @@ import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
 import { ProfileHeroBanner } from '@/widgets/people/ui/profile-hero-banner'
 import { ProfileBadgesStrip } from '@/widgets/people/ui/profile-badges-strip'
-import { ProfileStatsBar } from '@/widgets/people/ui/profile-stats-bar'
-import { StatsBarSkeleton, TabTableSkeleton } from '@/shared/ui/skeletons/people-skeleton'
+import { TabTableSkeleton } from '@/shared/ui/skeletons/people-skeleton'
 import { UserProfile } from '@/entities/user/model/user'
 import { Cube } from '@/entities/cube/model/types'
 import useUserBadges from '@/entities/achievement/model/useUserBadges'
@@ -91,12 +90,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
     <div className="flex flex-col w-full">
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
 
-      <ProfileHeroBanner user={user} cubes={cubes} level={userBadges.unlocked.length} />
-      {isLoadingStats ? (
-        <StatsBarSkeleton />
-      ) : (
-        <ProfileStatsBar cubes={cubes} algorithmsLearned={learned?.total ?? 0} />
-      )}
+      <ProfileHeroBanner user={user} level={userBadges.unlocked.length} />
       {!isLoadingStats && <ProfileBadgesStrip badges={userBadges} />}
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
