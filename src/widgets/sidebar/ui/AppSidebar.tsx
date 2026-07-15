@@ -125,7 +125,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           title: t('NavMain.trainer'),
           url: '/algorithms/trainer',
-          icon: Dumbbell
+          icon: Dumbbell,
+          badge: 'New'
         },
         {
           title: t('AlgorithmsPage.title'),
@@ -143,8 +144,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           title: t('NavMain.people'),
           url: '/people',
-          icon: UsersRound,
-          badge: 'New'
+          icon: UsersRound
         },
         {
           title: t('NavMain.leaderboards'),
