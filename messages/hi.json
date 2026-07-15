@@ -451,6 +451,7 @@
       "showing-members": "<b>{total}</b> में से <b>{showing}</b> सदस्य दिखाए जा रहे हैं",
       "search": "खोजें",
       "compare-basket": "<b>{count}</b> तुलना में",
+      "col-country": "देश",
       "col-actions": "क्रियाएं",
       "badges": {
         "counter": "{unlocked} / {total}",

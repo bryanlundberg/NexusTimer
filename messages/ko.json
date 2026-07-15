@@ -451,6 +451,7 @@
       "showing-members": "전체 <b>{total}</b>명 중 <b>{showing}</b>명 표시",
       "search": "검색",
       "compare-basket": "<b>{count}</b>명 비교 중",
+      "col-country": "국가",
       "col-actions": "작업",
       "badges": {
         "counter": "{unlocked} / {total}",

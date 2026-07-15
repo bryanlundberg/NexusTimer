@@ -460,6 +460,7 @@
       "showing-members": "Menampilkan <b>{showing}</b> dari <b>{total}</b> anggota",
       "search": "Cari",
       "compare-basket": "<b>{count}</b> di keranjang perbandingan",
+      "col-country": "Negara",
       "col-actions": "Aksi"
     },
     "LeaderboardsPage": {

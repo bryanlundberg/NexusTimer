@@ -460,6 +460,7 @@
       "showing-members": "Ipinapakita ang <b>{showing}</b> sa <b>{total}</b> na miyembro",
       "search": "Maghanap",
       "compare-basket": "<b>{count}</b> sa compare basket",
+      "col-country": "Bansa",
       "col-actions": "Mga Aksyon"
     },
     "LeaderboardsPage": {

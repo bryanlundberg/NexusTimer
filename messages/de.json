@@ -451,6 +451,7 @@
       "showing-members": "<b>{showing}</b> von <b>{total}</b> Mitgliedern",
       "search": "Suchen",
       "compare-basket": "<b>{count}</b> im Vergleich",
+      "col-country": "Land",
       "col-actions": "Aktionen",
       "badges": {
         "counter": "{unlocked} / {total}",

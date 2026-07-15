@@ -460,6 +460,7 @@
       "showing-members": "Wyświetlanie <b>{showing}</b> z <b>{total}</b> członków",
       "search": "Szukaj",
       "compare-basket": "<b>{count}</b> w koszyku porównania",
+      "col-country": "Kraj",
       "col-actions": "Akcje"
     },
     "LeaderboardsPage": {

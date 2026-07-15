@@ -451,6 +451,7 @@
       "showing-members": "Показано <b>{showing}</b> из <b>{total}</b> участников",
       "search": "Поиск",
       "compare-basket": "<b>{count}</b> в сравнении",
+      "col-country": "Страна",
       "col-actions": "Действия",
       "badges": {
         "counter": "{unlocked} / {total}",

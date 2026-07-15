@@ -419,6 +419,7 @@
       "showing-members": "Mostrando <b>{showing}</b> de <b>{total}</b> miembros",
       "search": "Buscar",
       "compare-basket": "<b>{count}</b> en la comparación",
+      "col-country": "País",
       "col-actions": "Acciones"
     },
     "LeaderboardsPage": {

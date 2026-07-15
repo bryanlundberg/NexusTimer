@@ -460,6 +460,7 @@
       "showing-members": "กำลังแสดง <b>{showing}</b> จาก <b>{total}</b> สมาชิก",
       "search": "ค้นหา",
       "compare-basket": "<b>{count}</b> ในตะกร้าเปรียบเทียบ",
+      "col-country": "ประเทศ",
       "col-actions": "การกระทำ"
     },
     "LeaderboardsPage": {

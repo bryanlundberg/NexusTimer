@@ -460,6 +460,7 @@
       "showing-members": "Showing <b>{showing}</b> of <b>{total}</b> members",
       "search": "Search",
       "compare-basket": "<b>{count}</b> in compare basket",
+      "col-country": "Country",
       "col-actions": "Actions"
     },
     "LeaderboardsPage": {

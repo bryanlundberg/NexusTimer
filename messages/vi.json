@@ -460,6 +460,7 @@
       "showing-members": "Đang hiển thị <b>{showing}</b> trong <b>{total}</b> thành viên",
       "search": "Tìm kiếm",
       "compare-basket": "<b>{count}</b> trong giỏ so sánh",
+      "col-country": "Quốc gia",
       "col-actions": "Hành động"
     },
     "LeaderboardsPage": {

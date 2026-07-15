@@ -451,6 +451,7 @@
       "showing-members": "显示 <b>{showing}</b> / <b>{total}</b> 位成员",
       "search": "搜索",
       "compare-basket": "<b>{count}</b> 个对比中",
+      "col-country": "国家",
       "col-actions": "操作",
       "badges": {
         "counter": "{unlocked} / {total}",
