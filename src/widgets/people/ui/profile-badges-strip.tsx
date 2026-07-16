@@ -32,7 +32,7 @@ export function ProfileBadgesStrip({ badges }: Props) {
         {t('view-all')}
       </button>
 
-      <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-x-auto sm:overflow-hidden">
+      <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-x-auto overflow-y-hidden scrollbar-hide sm:overflow-hidden">
         {visible.map((badge) => (
           <div key={badge.id} className="scale-75 origin-center -mx-1 shrink-0">
             <AchievementItem achievement={badge} />
