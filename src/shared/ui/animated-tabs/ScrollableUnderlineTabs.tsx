@@ -65,7 +65,7 @@ export default function ScrollableUnderlineTabs({
           type="button"
           aria-label="Scroll tabs left"
           onClick={() => scrollByStep(-1)}
-          className="absolute left-0 top-0 z-20 flex h-full items-center bg-gradient-to-r from-background via-background to-transparent pr-6 text-muted-foreground transition-colors hover:text-foreground sm:hidden"
+          className="absolute inset-y-0 left-0 z-20 flex w-9 items-center justify-center border-b border-r border-border bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
         >
           <ChevronLeft className="size-4" />
         </button>
@@ -109,7 +109,7 @@ export default function ScrollableUnderlineTabs({
           type="button"
           aria-label="Scroll tabs right"
           onClick={() => scrollByStep(1)}
-          className="absolute right-0 top-0 z-20 flex h-full items-center bg-gradient-to-l from-background via-background to-transparent pl-6 text-muted-foreground transition-colors hover:text-foreground sm:hidden"
+          className="absolute inset-y-0 right-0 z-20 flex w-9 items-center justify-center border-b border-l border-border bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
         >
           <ChevronRight className="size-4" />
         </button>
