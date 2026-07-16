@@ -6,7 +6,7 @@ import { STATES } from '@/shared/const/states'
 import { SolveTab } from '@/shared/types/enums'
 import { Tabs } from '@/components/ui/tabs'
 import { HistoryIcon, ShellIcon } from 'lucide-react'
-import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
+import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 
 export default function SolvesTabSwitcher() {
   const t = useTranslations('Index')
@@ -21,7 +21,7 @@ export default function SolvesTabSwitcher() {
 
   return (
     <Tabs value={tabMode} onValueChange={(value) => setTabMode(value as SolveTab)} className="w-full sm:w-auto">
-      <AnimatedTabsList items={tabs} activeValue={tabMode} layoutId="solves-tab-indicator" />
+      <ScrollableUnderlineTabs items={tabs} activeValue={tabMode} layoutId="solves-tab-indicator" />
     </Tabs>
   )
 }
