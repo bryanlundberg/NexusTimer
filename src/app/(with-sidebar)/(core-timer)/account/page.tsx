@@ -9,7 +9,7 @@ import BackupsNav from '@/features/manage-backups/ui/BackupsNav'
 import { useUser } from '@/entities/user/model/useUser'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
-import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
+import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 
 export default function AccountPage() {
   const { data: session } = useSession()
@@ -31,7 +31,12 @@ export default function AccountPage() {
         <ProfileHero session={session!} bio={user?.bio} wcaId={user?.wcaId} country={user?.country} mutate={mutate} />
 
         <Tabs value={tab} onValueChange={setTab} className="gap-8">
-          <AnimatedTabsList items={tabs} activeValue={tab} layoutId="account-tab-indicator" className="max-w-sm" />
+          <ScrollableUnderlineTabs
+            items={tabs}
+            activeValue={tab}
+            layoutId="account-tab-indicator"
+            className="max-w-sm"
+          />
 
           <TabsContent value="account" className="space-y-6">
             <div>
