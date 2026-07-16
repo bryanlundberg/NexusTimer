@@ -166,13 +166,13 @@ export default function DisplayTime({
                   exit={{ opacity: 0, y: -5 }}
                   id={'touch'}
                 >
-                  {timerMode === TimerMode.NORMAL
-                    ? isMobile
-                      ? `${t('tap-to-start')}`
-                      : `${t('space-to-start')}`
-                    : null}
+                  {timerMode === TimerMode.NORMAL && (isMobile ? t('tap-to-start') : t('space-to-start'))}
+
+                  {timerMode === TimerMode.KEYBOARD_STACKMAT && t('hold-ctrl-to-start')}
 
                   {timerMode === TimerMode.STACKMAT && t('start-stackmat')}
+
+                  {timerMode === TimerMode.NEXUS_CONNECT && t('nexus-start')}
                 </motion.div>
               ) : null}
             </motion.div>
