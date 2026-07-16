@@ -26,6 +26,8 @@ export function MainTimer() {
     <>
       {timerMode === TimerMode.NORMAL && <Timer />}
 
+      {timerMode === TimerMode.KEYBOARD_STACKMAT && <Timer />}
+
       {timerMode === TimerMode.MANUAL && <ManualMode />}
 
       {timerMode === TimerMode.STACKMAT && (
