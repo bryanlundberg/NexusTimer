@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { Layers, Target } from 'lucide-react'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
-import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
+import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 import TrainerHistoryHeader from '@/features/trainer/ui/TrainerHistoryHeader'
 import TrainerCurrentCaseInfo from '@/features/trainer/ui/TrainerCurrentCaseInfo'
 import TrainerMethodOverview from '@/features/trainer/ui/TrainerMethodOverview'
@@ -76,7 +76,7 @@ export default function TrainerHistoryView() {
       <TrainerMethodOverview set={set} stats={stats} targetMs={targetSeconds * 1000} isLoading={statsLoading} />
 
       <Tabs value={tab} onValueChange={setTab} className="flex flex-col gap-3">
-        <AnimatedTabsList
+        <ScrollableUnderlineTabs
           items={[
             { value: 'method', icon: Layers, label: t('tabs.method') },
             { value: 'case', icon: Target, label: t('tabs.currentCase') }
