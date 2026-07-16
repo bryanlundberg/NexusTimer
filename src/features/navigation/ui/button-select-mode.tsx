@@ -44,6 +44,12 @@ const MODES: ModeConfig[] = [
     comingSoon: true
   },
   {
+    value: TimerMode.KEYBOARD_STACKMAT,
+    tKey: 'keyboard-stackmat',
+    testId: 'mode-keyboard-stackmat',
+    icon: Keyboard
+  },
+  {
     value: TimerMode.VIRTUAL,
     tKey: 'virtual',
     testId: 'mode-virtual',
