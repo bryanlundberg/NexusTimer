@@ -1,7 +1,7 @@
 'use client'
 
 import { Tabs } from '@/components/ui/tabs'
-import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
+import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 import { Button } from '@/components/ui/button'
 import { usePeopleTab } from '@/features/people-tab/model/usePeopleTab'
 import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
@@ -96,8 +96,8 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
         {/* Tabs nav + actions row */}
         <div className="flex flex-row items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
-          <div className="min-w-0 flex-1 overflow-x-auto">
-            <AnimatedTabsList
+          <div className="min-w-0 flex-1">
+            <ScrollableUnderlineTabs
               items={tabs.map((tab) => ({
                 value: tab,
                 label: (
@@ -113,7 +113,6 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
               }))}
               activeValue={value}
               layoutId="people-tab-indicator"
-              fitted
             />
           </div>
 
