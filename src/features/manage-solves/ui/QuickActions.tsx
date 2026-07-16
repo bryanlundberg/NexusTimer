@@ -278,25 +278,18 @@ export default function QuickActions({
           </TooltipContent>
         </Tooltip>
 
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              data-testid="dnf-button"
-              variant="ghost"
-              size="sm"
-              className={cn(
-                'gap-1.5 h-12 min-w-12 sm:h-8 sm:min-w-0 text-base sm:text-xs font-medium',
-                solve?.dnf ? 'text-destructive hover:text-destructive' : 'text-muted-foreground'
-              )}
-              onPointerDown={handleToggleDNF}
-            >
-              <span>DNF</span>
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>{t('tooltips.dnf')}</p>
-          </TooltipContent>
-        </Tooltip>
+        <Button
+          data-testid="dnf-button"
+          variant="ghost"
+          size="sm"
+          className={cn(
+            'gap-1.5 h-12 min-w-12 sm:h-8 sm:min-w-0 text-base sm:text-xs font-medium',
+            solve?.dnf ? 'text-destructive hover:text-destructive' : 'text-muted-foreground'
+          )}
+          onPointerDown={handleToggleDNF}
+        >
+          <span>DNF</span>
+        </Button>
 
         <div className="w-px h-4 bg-border mx-0.5" />
 
