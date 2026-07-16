@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
-import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
+import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import dynamic from 'next/dynamic'
 import formatTime from '@/shared/lib/formatTime'
@@ -39,7 +39,7 @@ export function ReplaySolveDetails() {
       <DialogDescription className="sr-only">{metadata.scramble}</DialogDescription>
 
       <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as Tab)} className="gap-3">
-        <AnimatedTabsList
+        <ScrollableUnderlineTabs
           items={Object.values(Tab).map((tab) => ({ value: tab, label: t(tab) }))}
           activeValue={activeTab}
           layoutId="replay-solve-tab-indicator"
