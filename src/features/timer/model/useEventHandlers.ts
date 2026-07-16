@@ -40,7 +40,12 @@ export default function useEventHandlers({
   }
 
   useEffect(() => {
-    if (timerMode === TimerMode.STACKMAT || timerMode === TimerMode.MANUAL || timerMode === TimerMode.NEXUS_CONNECT)
+    if (
+      timerMode === TimerMode.STACKMAT ||
+      timerMode === TimerMode.MANUAL ||
+      timerMode === TimerMode.NEXUS_CONNECT ||
+      timerMode === TimerMode.KEYBOARD_STACKMAT
+    )
       return
 
     const isExcludedTouchTarget = (target: EventTarget | null): boolean => {
@@ -132,6 +137,113 @@ export default function useEventHandlers({
     timerMode,
     activationKey
   ])
+
+  // KEYBOARD STACKMAT MODE
+  // Simulates a Stackmat with the keyboard: both Ctrl keys (left + right) must be
+  // held together to count as preparation. Releasing either one triggers the release
+  // (starts inspection/hold or the solve, same state machine as Normal mode).
+  // Any key stops a running solve (same behaviour as Normal mode).
+  const leftCtrlDown = useRef<boolean>(false)
+  const rightCtrlDown = useRef<boolean>(false)
+  const bothEngaged = useRef<boolean>(false)
+
+  // Keep the latest callbacks/state in a ref so the keyboard-stackmat listeners can
+  // be attached ONCE per mode (below) without being torn down on every re-render.
+  // Inspection/holding re-render this component every ~10ms; re-subscribing there and
+  // resetting the Ctrl-held flags would drop an in-progress gesture and prevent the
+  // timer from starting.
+  const latest = useRef({
+    handleHold,
+    handleHoldWithReleasedState,
+    handleReleaseWithReleasedState,
+    resetAndRelease,
+    isSolving
+  })
+  latest.current = {
+    handleHold,
+    handleHoldWithReleasedState,
+    handleReleaseWithReleasedState,
+    resetAndRelease,
+    isSolving
+  }
+
+  useEffect(() => {
+    if (timerMode !== TimerMode.KEYBOARD_STACKMAT) return
+
+    const isTypingTarget = (): boolean => {
+      const ae = document.activeElement as HTMLElement | null
+      if (!ae) return false
+      const tag = ae.tagName?.toLowerCase()
+      if (tag === 'input' || tag === 'textarea' || ae.isContentEditable) return true
+      const role = ae.getAttribute?.('role')
+      return role === 'textbox'
+    }
+
+    const clearCtrlState = () => {
+      leftCtrlDown.current = false
+      rightCtrlDown.current = false
+      bothEngaged.current = false
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === 'Escape') {
+        clearCtrlState()
+        latest.current.resetAndRelease()
+        return
+      }
+      if (isTypingTarget()) return
+
+      // While solving, any key stops the timer (matches Normal mode).
+      if (latest.current.isSolving) {
+        latest.current.handleHold(true)
+        releasedKey.current = true
+        clearCtrlState()
+        return
+      }
+
+      if (event.code === 'ControlLeft') leftCtrlDown.current = true
+      else if (event.code === 'ControlRight') rightCtrlDown.current = true
+      else return
+
+      // Engage preparation only once both Ctrl keys are held together.
+      if (leftCtrlDown.current && rightCtrlDown.current && !bothEngaged.current) {
+        bothEngaged.current = true
+        latest.current.handleHoldWithReleasedState()
+      }
+    }
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (event.code === 'Escape') {
+        clearCtrlState()
+        latest.current.resetAndRelease()
+        return
+      }
+      if (event.code !== 'ControlLeft' && event.code !== 'ControlRight') return
+      if (isTypingTarget()) return
+
+      if (event.code === 'ControlLeft') leftCtrlDown.current = false
+      if (event.code === 'ControlRight') rightCtrlDown.current = false
+
+      // Releasing either Ctrl while both were engaged triggers the release.
+      if (bothEngaged.current) {
+        bothEngaged.current = false
+        latest.current.handleReleaseWithReleasedState()
+      }
+    }
+
+    const handleBlur = () => clearCtrlState()
+
+    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keyup', handleKeyUp)
+    window.addEventListener('blur', handleBlur)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('keyup', handleKeyUp)
+      window.removeEventListener('blur', handleBlur)
+      clearCtrlState()
+    }
+  }, [timerMode])
 
   return {
     isReleased: () => releasedKey.current
