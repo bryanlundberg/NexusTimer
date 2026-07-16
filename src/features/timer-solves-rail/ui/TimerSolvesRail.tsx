@@ -6,7 +6,7 @@ import { motion } from 'motion/react'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { useTranslations } from 'next-intl'
 import { Tabs } from '@/components/ui/tabs'
-import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
+import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 import { HistoryIcon, ShellIcon } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import { sort } from 'fast-sort'
@@ -120,7 +120,7 @@ export default function TimerSolvesRail() {
         {/* Switch */}
         <div className="p-2">
           <Tabs value={tab} onValueChange={(value) => setTab(value as RailTab)}>
-            <AnimatedTabsList items={tabs} activeValue={tab} layoutId="timer-rail-tab-indicator" />
+            <ScrollableUnderlineTabs items={tabs} activeValue={tab} layoutId="timer-rail-tab-indicator" />
           </Tabs>
         </div>
 
