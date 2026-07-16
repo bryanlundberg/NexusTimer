@@ -9,7 +9,7 @@ import { DeepStatistics } from '@/shared/types/statistics'
 import StatisticsViewContainer from '@/widgets/statistics-view/ui/StatisticsViewContainer'
 import { STATES } from '@/shared/const/states'
 import { BarChart3Icon, BoxIcon, Loader2 } from 'lucide-react'
-import AnimatedTabsList from '@/shared/ui/animated-tabs/AnimatedTabsList'
+import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 
 interface StatisticsViewSwitcherProps {
   statistics: DeepStatistics
@@ -38,7 +38,7 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
   return (
     <StatisticsViewContainer>
       <Tabs value={tabStats} onValueChange={setTabStats} className="mb-3 w-full">
-        <AnimatedTabsList items={tabs} activeValue={tabStats} layoutId="stats-tab-indicator" className="mb-1" />
+        <ScrollableUnderlineTabs items={tabs} activeValue={tabStats} layoutId="stats-tab-indicator" className="mb-1" />
         <TabsContent value={StatisticsTabs.CATEGORY} className="relative min-h-50">
           {loadingProps.data ? (
             <div className="absolute inset-0 flex items-center justify-center bg-background/50 z-10">
