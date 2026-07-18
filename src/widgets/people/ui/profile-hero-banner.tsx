@@ -29,7 +29,7 @@ export function ProfileHeroBanner({ user, level }: Props) {
       {/* Left: avatar + user info */}
       <div className="flex items-center gap-4 min-w-0">
         <div className="relative shrink-0">
-          <Avatar className="size-16 sm:size-20 md:size-24 rounded-lg shadow-xl ring-2 ring-border/40">
+          <Avatar className="size-16 sm:size-20 md:size-24 rounded-full shadow-xl ring-2 ring-border/40">
             <AvatarImage className="object-cover" src={user.image} alt={user.name} />
             <AvatarFallback>{user.name.substring(0, 2).toUpperCase()}</AvatarFallback>
           </Avatar>
