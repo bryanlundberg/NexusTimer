@@ -21,6 +21,7 @@ import { ZBLL_L_ALGS } from '@/shared/data/algs/zbll-l'
 import { ZBLL_PI_ALGS } from '@/shared/data/algs/zbll-pi'
 import { ZBLL_U_ALGS } from '@/shared/data/algs/zbll-u'
 import { ZBLL_T_ALGS } from '@/shared/data/algs/zbll-t'
+import { SV_ALGS } from '@/shared/data/algs/sv'
 
 export const ALGORITHM_SETS = [
   {
@@ -191,6 +192,23 @@ export const ALGORITHM_SETS = [
       hintFacelets: 'none'
     },
     file: 'cls.ts'
+  },
+  {
+    slug: 'sv',
+    goal: 'oll',
+    title: 'SV',
+    subtitle: 'Summer Variation',
+    puzzle: '3x3x3',
+    algorithms: SV_ALGS,
+    Icon: Grid3x3,
+    difficulty: 2,
+    virtualization: {
+      experimentalStickering: 'OLL',
+      visualization: '3D',
+      experimentalDragInput: 'none',
+      hintFacelets: 'none'
+    },
+    file: 'sv.ts'
   },
   {
     slug: 'wv',
