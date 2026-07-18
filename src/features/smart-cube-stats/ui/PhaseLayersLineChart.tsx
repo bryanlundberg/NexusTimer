@@ -50,7 +50,10 @@ export default function PhaseLayersLineChart({ series, phases }: PhaseLayersLine
         fixRightEdge: true,
         tickMarkFormatter: (time: number) => `#${time}`
       },
-      localization: { priceFormatter: (value: number) => formatTime(value, 1) },
+      localization: {
+        priceFormatter: (value: number) => formatTime(value, 1),
+        timeFormatter: (time: number) => `#${time}`
+      },
       handleScroll: false,
       handleScale: false
     })
