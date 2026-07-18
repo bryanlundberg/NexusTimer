@@ -48,24 +48,19 @@ export function groupVisibility(
 export const GROUP_INNER_GRID = 'grid grid-cols-2'
 
 /**
- * Soft rounded backgrounds for a group block (no hard table borders).
- * The primary-tinted treatment follows the active tab instead of being fixed to
- * the "cube" column, so the table keeps its original look — only the spotlight moves.
+ * Soft rounded background for a group block, with a dimmed opacity when inactive.
  */
-const GROUP_BLOCK_ACTIVE = 'rounded-xl bg-primary/[0.06] dark:bg-primary/[0.07] ring-1 ring-inset ring-primary/30'
-const GROUP_BLOCK_INACTIVE = 'rounded-xl bg-muted/40 dark:bg-muted/25'
+const GROUP_BLOCK_BASE = 'rounded-xl bg-muted/70 dark:bg-muted/25'
 
-/** Returns the block background/ring for a group given the active tab's group. */
 export function groupBlockClass(group: ColumnGroup, activeGroup: ColumnGroup): string {
-  return group === activeGroup ? GROUP_BLOCK_ACTIVE : GROUP_BLOCK_INACTIVE
+  return group === activeGroup ? GROUP_BLOCK_BASE : `${GROUP_BLOCK_BASE} opacity-35`
 }
 
-/** Group chip styles: the active group gets the primary chip, others stay muted. */
-const GROUP_CHIP_ACTIVE = 'bg-primary/15 text-primary'
-const GROUP_CHIP_INACTIVE = 'bg-muted text-muted-foreground'
+/** Group chip styles: neutral for both, inactive dimmed with opacity. */
+const GROUP_CHIP_BASE = 'bg-muted text-muted-foreground'
 
 export function groupChipClass(group: ColumnGroup, activeGroup: ColumnGroup): string {
-  return group === activeGroup ? GROUP_CHIP_ACTIVE : GROUP_CHIP_INACTIVE
+  return group === activeGroup ? GROUP_CHIP_BASE : `${GROUP_CHIP_BASE} opacity-35`
 }
 
 export function useStatisticsColumns(): ColumnDef[] {
