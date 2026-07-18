@@ -70,7 +70,7 @@ export default function CompareUsersListModal() {
         <Button className={'w-full'} variant="ghost" onClick={close}>
           {t('close')}
         </Button>
-        <Button className={'w-full gap-1.5'} onClick={handleCompare} disabled={users.length < 2}>
+        <Button className={'w-full gap-1.5'} onClick={handleCompare} disabled={users.length < 1}>
           <GitCompareIcon className="size-4" />
           {t('compare')}
         </Button>
