@@ -1,5 +1,5 @@
 export enum StatisticsTabs {
   CATEGORY = 'category',
   CUBE = 'cube',
-  EMPTY = 'empty'
+  SMART = 'smart'
 }
