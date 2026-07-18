@@ -35,6 +35,7 @@ export default function PhaseLayersLineChart({ series, phases }: PhaseLayersLine
 
     const chart = createChart(container, {
       autoSize: true,
+      hoveredSeriesOnTop: false,
       layout: {
         textColor: theme.text,
         background: { color: theme.background },
