@@ -1,15 +1,22 @@
 import { Boxes } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { cn } from '@/shared/lib/utils'
-import { ColumnDef, ROW_GRID } from '@/features/deep-statistics/model/statisticsChartConfig'
+import { TooltipProvider } from '@/components/ui/tooltip'
+import {
+  ColumnDef,
+  ColumnGroup,
+  groupVisibility,
+  ROW_GRID
+} from '@/features/deep-statistics/model/statisticsChartConfig'
 import GroupChip from './GroupChip'
 import ColumnLabels from './ColumnLabels'
 
 interface StatisticsChartHeaderProps {
   columns: ColumnDef[]
+  activeGroup: ColumnGroup
 }
 
-export default function StatisticsChartHeader({ columns }: StatisticsChartHeaderProps) {
+export default function StatisticsChartHeader({ columns, activeGroup }: StatisticsChartHeaderProps) {
   const t = useTranslations('Index')
   const personalCols = columns.filter((c) => c.group === 'personal')
   const cubeCols = columns.filter((c) => c.group === 'cube')
@@ -24,16 +31,22 @@ export default function StatisticsChartHeader({ columns }: StatisticsChartHeader
             {t('StatsPage.title')}
           </span>
         </div>
-        <GroupChip group="personal" label="Personal" />
-        <GroupChip group="cube" label="Cube" />
+        <div className={groupVisibility('personal', activeGroup, 'block')}>
+          <GroupChip group="personal" label="Personal" activeGroup={activeGroup} />
+        </div>
+        <div className={groupVisibility('cube', activeGroup, 'block')}>
+          <GroupChip group="cube" label="Cube" activeGroup={activeGroup} />
+        </div>
       </div>
 
       {/* Scope sub-labels */}
-      <div className={cn(ROW_GRID, 'mt-1.5')}>
-        <div aria-hidden />
-        <ColumnLabels group="personal" columns={personalCols} />
-        <ColumnLabels group="cube" columns={cubeCols} />
-      </div>
+      <TooltipProvider delayDuration={200}>
+        <div className={cn(ROW_GRID, 'mt-1.5')}>
+          <div aria-hidden />
+          <ColumnLabels group="personal" columns={personalCols} activeGroup={activeGroup} />
+          <ColumnLabels group="cube" columns={cubeCols} activeGroup={activeGroup} />
+        </div>
+      </TooltipProvider>
     </div>
   )
 }
