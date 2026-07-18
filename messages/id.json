@@ -757,7 +757,8 @@
         "zbll-h": "ZBLL H (ZBLL-H) adalah bagian dari metode ZBLL untuk menyelesaikan lapisan terakhir kubus Rubik. Berfokus pada kasus di mana sudut berada dalam konfigurasi H, memungkinkan algoritma efisien untuk menyelesaikan seluruh lapisan terakhir dalam satu rangkaian gerakan.",
         "parity-4x4": "Algoritma ini mengatasi kesalahan parity unik yang dapat terjadi saat menyelesaikan kubus Rubik 4x4, yang tidak terjadi pada kubus 3x3 standar. Algoritma ini penting untuk menyelesaikan solve setelah mereduksi 4x4 ke kondisi 3x3.",
         "parity-5x5": "Algoritma ini mengatasi kesalahan parity unik yang dapat terjadi saat menyelesaikan kubus Rubik 5x5, yang tidak terjadi pada kubus 3x3 standar. Algoritma ini penting untuk menyelesaikan solve setelah mereduksi 5x5 ke kondisi 3x3.",
-        "l4e": "4 slot terakhir (Pyraminx) - Algoritma ini digunakan untuk menyelesaikan empat bagian edge terakhir dari puzzle Pyraminx. Tujuannya adalah memposisikan dan mengorientasikan bagian-bagian ini dengan benar untuk menyelesaikan puzzle."
+        "l4e": "4 slot terakhir (Pyraminx) - Algoritma ini digunakan untuk menyelesaikan empat bagian edge terakhir dari puzzle Pyraminx. Tujuannya adalah memposisikan dan mengorientasikan bagian-bagian ini dengan benar untuk menyelesaikan puzzle.",
+        "sv": "Algoritma SV (Summer Variation) menyelesaikan pasangan F2L terakhir sekaligus mengorientasikan sudut lapisan terakhir, mirip dengan WV (Winter Variation) tetapi untuk konfigurasi pasangan dan sudut yang berbeda. Pilihan ini menyoroti kasus-kasus paling berguna untuk dipelajari."
       }
     },
     "TrainerPage": {

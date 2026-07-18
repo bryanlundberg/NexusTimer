@@ -757,7 +757,8 @@
         "zbll-h": "ZBLL H (ZBLL-H) to podzbiór metody ZBLL do układania ostatniej warstwy kostki Rubika. Skupia się na przypadkach, w których narożniki są w układzie H, co pozwala na efektywne ułożenie całej ostatniej warstwy w jednej sekwencji ruchów.",
         "parity-4x4": "Te algorytmy rozwiązują unikalne błędy parzystości, które mogą wystąpić podczas układania kostki Rubika 4x4, a których nie ma na standardowej kostce 3x3. Są niezbędne do ukończenia układania po zredukowaniu 4x4 do stanu 3x3.",
         "parity-5x5": "Te algorytmy rozwiązują unikalne błędy parzystości, które mogą wystąpić podczas układania kostki Rubika 5x5, a których nie ma na standardowej kostce 3x3. Są niezbędne do ukończenia układania po zredukowaniu 5x5 do stanu 3x3.",
-        "l4e": "Ostatnie 4 krawędzie (Pyraminx) - Te algorytmy służą do ułożenia ostatnich czterech elementów krawędziowych Pyraminxa. Celem jest prawidłowe rozmieszczenie i zorientowanie tych elementów, aby ukończyć układankę."
+        "l4e": "Ostatnie 4 krawędzie (Pyraminx) - Te algorytmy służą do ułożenia ostatnich czterech elementów krawędziowych Pyraminxa. Celem jest prawidłowe rozmieszczenie i zorientowanie tych elementów, aby ukończyć układankę.",
+        "sv": "Algorytmy SV (Summer Variation) rozwiązują ostatnią parę F2L, jednocześnie orientując narożniki ostatniej warstwy, podobnie jak WV (Winter Variation), ale dla innych konfiguracji pary i narożnika. Ten zestaw podkreśla najbardziej przydatne przypadki do nauki."
       }
     },
     "TrainerPage": {

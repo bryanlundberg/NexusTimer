@@ -757,7 +757,8 @@
         "zbll-h": "ZBLL H (ZBLL-H) là một tập con của phương pháp ZBLL để giải tầng cuối của khối Rubik. Nó tập trung vào các trường hợp góc ở dạng H, cho phép các thuật toán hiệu quả để giải toàn bộ tầng cuối trong một chuỗi bước.",
         "parity-4x4": "Các thuật toán này xử lý các lỗi parity đặc thù có thể xảy ra khi giải khối Rubik 4x4, vốn không xuất hiện trên khối 3x3 thông thường. Chúng rất cần thiết để hoàn tất việc giải sau khi đưa khối 4x4 về trạng thái 3x3.",
         "parity-5x5": "Các thuật toán này xử lý các lỗi parity đặc thù có thể xảy ra khi giải khối Rubik 5x5, vốn không xuất hiện trên khối 3x3 thông thường. Chúng rất cần thiết để hoàn tất việc giải sau khi đưa khối 5x5 về trạng thái 3x3.",
-        "l4e": "4 cạnh cuối (Pyraminx) - Các thuật toán này được dùng để giải bốn mảnh cạnh cuối của puzzle Pyraminx. Mục tiêu là đặt vị trí và định hướng các mảnh này chính xác để hoàn thành puzzle."
+        "l4e": "4 cạnh cuối (Pyraminx) - Các thuật toán này được dùng để giải bốn mảnh cạnh cuối của puzzle Pyraminx. Mục tiêu là đặt vị trí và định hướng các mảnh này chính xác để hoàn thành puzzle.",
+        "sv": "Các thuật toán SV (Summer Variation) giải cặp F2L cuối cùng đồng thời định hướng các góc của tầng cuối, tương tự như WV (Winter Variation) nhưng áp dụng cho các cấu hình cặp và góc khác. Bộ sưu tập này nêu bật những trường hợp hữu ích nhất cần học."
       }
     },
     "TrainerPage": {

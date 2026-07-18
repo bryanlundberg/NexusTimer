@@ -754,7 +754,8 @@
         "zbll-h": "ZBLL H - Resolve a última camada em uma sequência se os cantos estiverem em H.",
         "parity-4x4": "Algoritmos para paridades de 4x4.",
         "parity-5x5": "Algoritmos para paridades de 5x5.",
-        "l4e": "Últimos 4 meios do Pyraminx."
+        "l4e": "Últimos 4 meios do Pyraminx.",
+        "sv": "Os algoritmos SV (Summer Variation) resolvem o seu último par de F2L enquanto orientam simultaneamente os cantos da última camada, de forma semelhante ao WV (Winter Variation), mas cobrindo outras configurações de par e canto. Esta seleção destaca os casos mais úteis para aprender."
       }
     },
     "Metadata": {

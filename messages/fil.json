@@ -757,7 +757,8 @@
         "zbll-h": "Ang ZBLL H (ZBLL-H) ay subset ng ZBLL method para lutasin ang last layer ng Rubik's Cube. Nakatuon ito sa mga kaso kung saan nasa H configuration ang corners, na nagpapahintulot ng episyenteng algorithm para lutasin ang buong last layer sa isang move sequence.",
         "parity-4x4": "Tinutugunan ng mga algorithm na ito ang natatanging parity errors na maaaring mangyari kapag nilulutas ang 4x4 Rubik's Cube, na hindi nangyayari sa standard na 3x3 cube. Mahalaga ang mga ito para makumpleto ang solve pagkatapos i-reduce ang 4x4 sa 3x3 state.",
         "parity-5x5": "Tinutugunan ng mga algorithm na ito ang natatanging parity errors na maaaring mangyari kapag nilulutas ang 5x5 Rubik's Cube, na hindi nangyayari sa standard na 3x3 cube. Mahalaga ang mga ito para makumpleto ang solve pagkatapos i-reduce ang 5x5 sa 3x3 state.",
-        "l4e": "Last 4 slots (Pyraminx) - Ginagamit ang mga algorithm na ito para lutasin ang huling apat na edge piece ng Pyraminx puzzle. Ang layunin ay maposisyon at ma-orient nang tama ang mga pirasong ito para makumpleto ang puzzle."
+        "l4e": "Last 4 slots (Pyraminx) - Ginagamit ang mga algorithm na ito para lutasin ang huling apat na edge piece ng Pyraminx puzzle. Ang layunin ay maposisyon at ma-orient nang tama ang mga pirasong ito para makumpleto ang puzzle.",
+        "sv": "Ang mga algorithm ng SV (Summer Variation) ay lumulutas sa huling F2L pair habang sabay na inaayos ang orientation ng mga corner ng huling layer, katulad ng WV (Winter Variation) ngunit para sa ibang pares at corner configuration. Itinatampok ng seleksyong ito ang mga pinaka-kapaki-pakinabang na kaso na dapat matutunan."
       }
     },
     "TrainerPage": {

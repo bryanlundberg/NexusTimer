@@ -754,7 +754,8 @@
         "zbll-h": "ZBLL H - Résout la dernière couche en une séquence si les coins sont en H.",
         "parity-4x4": "Algorithmes pour les parités du 4x4.",
         "parity-5x5": "Algorithmes pour les parités du 5x5.",
-        "l4e": "Dernières 4 arêtes du Pyraminx."
+        "l4e": "Dernières 4 arêtes du Pyraminx.",
+        "sv": "Les algorithmes SV (Summer Variation) résolvent votre dernière paire F2L tout en orientant simultanément les coins de la dernière couche, un peu comme WV (Winter Variation) mais pour d'autres configurations de paire et de coin. Cette sélection met en avant les cas les plus utiles à apprendre."
       }
     },
     "Metadata": {

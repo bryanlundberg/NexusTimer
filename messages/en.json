@@ -747,7 +747,8 @@
         "zbll-h": "ZBLL H (ZBLL-H) is a subset of the ZBLL method for solving the last layer of a Rubik's Cube. It focuses on cases where the corners are in an H configuration, allowing for efficient algorithms to solve the entire last layer in one move sequence.",
         "parity-4x4": "These algorithms address the unique parity errors that can occur when solving a 4x4 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 4x4 to a 3x3 state.",
         "parity-5x5": "These algorithms address the unique parity errors that can occur when solving a 5x5 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 5x5 to a 3x3 state.",
-        "l4e": "Last 4 slots (Pyraminx) - These algorithms are used to solve the last four edge pieces of a Pyraminx puzzle. The goal is to position and orient these pieces correctly to complete the puzzle."
+        "l4e": "Last 4 slots (Pyraminx) - These algorithms are used to solve the last four edge pieces of a Pyraminx puzzle. The goal is to position and orient these pieces correctly to complete the puzzle.",
+        "sv": "SV (Summer Variation) algorithms solve your final F2L pair while simultaneously orienting the corners of the last layer, similar to WV (Winter Variation) but covering different pair and corner configurations. This selection highlights the most useful cases to learn."
       }
     },
     "TrainerPage": {

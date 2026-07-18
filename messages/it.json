@@ -757,7 +757,8 @@
         "zbll-h": "ZBLL H (ZBLL-H) è un sottoinsieme del metodo ZBLL per risolvere l'ultimo strato del cubo di Rubik. Si concentra sui casi in cui gli angoli sono in configurazione H, consentendo algoritmi efficienti per risolvere l'intero ultimo strato in un'unica sequenza.",
         "parity-4x4": "Questi algoritmi risolvono gli errori di parità unici che possono verificarsi risolvendo un cubo di Rubik 4x4, che non si presentano su un normale cubo 3x3. Sono essenziali per completare la risoluzione dopo aver ridotto il 4x4 a uno stato 3x3.",
         "parity-5x5": "Questi algoritmi risolvono gli errori di parità unici che possono verificarsi risolvendo un cubo di Rubik 5x5, che non si presentano su un normale cubo 3x3. Sono essenziali per completare la risoluzione dopo aver ridotto il 5x5 a uno stato 3x3.",
-        "l4e": "Ultimi 4 spigoli (Pyraminx) - Questi algoritmi vengono usati per risolvere gli ultimi quattro spigoli di un Pyraminx. L'obiettivo è posizionare e orientare correttamente questi pezzi per completare il puzzle."
+        "l4e": "Ultimi 4 spigoli (Pyraminx) - Questi algoritmi vengono usati per risolvere gli ultimi quattro spigoli di un Pyraminx. L'obiettivo è posizionare e orientare correttamente questi pezzi per completare il puzzle.",
+        "sv": "Gli algoritmi SV (Summer Variation) risolvono l'ultima coppia F2L orientando contemporaneamente gli spigoli dell'ultimo strato, in modo simile a WV (Winter Variation) ma per configurazioni di coppia e spigolo diverse. Questa selezione evidenzia i casi più utili da imparare."
       }
     },
     "TrainerPage": {

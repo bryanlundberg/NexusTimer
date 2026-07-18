@@ -754,7 +754,8 @@
         "zbll-h": "ZBLL H - Löst die letzte Ebene in einem Schritt bei H-Ecken.",
         "parity-4x4": "Spezielle Parity-Fälle beim 4x4.",
         "parity-5x5": "Spezielle Parity-Fälle beim 5x5.",
-        "l4e": "Letzte 4 Kanten beim Pyraminx."
+        "l4e": "Letzte 4 Kanten beim Pyraminx.",
+        "sv": "SV-Algorithmen (Summer Variation) lösen dein letztes F2L-Paar und orientieren gleichzeitig die Ecken der letzten Schicht, ähnlich wie WV (Winter Variation), jedoch für andere Paar- und Eckenkonfigurationen. Diese Auswahl hebt die nützlichsten Fälle hervor."
       }
     },
     "Metadata": {
