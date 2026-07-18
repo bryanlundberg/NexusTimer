@@ -10,7 +10,7 @@ import { useQueryState } from 'nuqs'
 import { DeepStatistics } from '@/shared/types/statistics'
 import StatisticsViewContainer from '@/widgets/statistics-view/ui/StatisticsViewContainer'
 import { STATES } from '@/shared/const/states'
-import { BarChart3Icon, BluetoothIcon, BoxIcon, CalendarIcon, Loader2 } from 'lucide-react'
+import { BarChart3Icon, BluetoothIcon, BoxIcon, Loader2 } from 'lucide-react'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 
 interface StatisticsViewSwitcherProps {
@@ -33,12 +33,10 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
   const tabs = [
     { value: StatisticsTabs.CATEGORY, icon: BarChart3Icon, label: t('StatsPage.category-tab') },
     { value: StatisticsTabs.CUBE, icon: BoxIcon, label: t('StatsPage.cube-tab') },
-    { value: StatisticsTabs.EMPTY, icon: CalendarIcon, label: 'Activity' },
     { value: StatisticsTabs.SMART, icon: BluetoothIcon, label: t('StatsPage.smart-tab'), disabled: !isSmartCategory }
   ]
 
   const isCube = tabStats === StatisticsTabs.CUBE
-  const isEmpty = tabStats === StatisticsTabs.EMPTY
   const isSmart = tabStats === StatisticsTabs.SMART
   const activeGroup = isCube ? 'cube' : 'personal'
   const activeSolves = isCube ? statistics.data.cubeAll : statistics.data.global
@@ -66,18 +64,14 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
           <StatisticsMessage title={t('StatsPage.smart-tab')} description={t('StatsPage.smart-only-3x3')} />
         )}
 
-        {selectedCube && isEmpty && (
-          <div className="flex min-h-50 items-center justify-center text-sm text-muted-foreground">temporal empty</div>
-        )}
-
-        {selectedCube && !isEmpty && !isSmart && hasNoSolves && (
+        {selectedCube && !isSmart && hasNoSolves && (
           <StatisticsMessage
             title={t('StatsPage.empty-solves')}
             description={t('StatsPage.empty-solves-description')}
           />
         )}
 
-        {selectedCube && !isEmpty && !isSmart && !hasNoSolves && (
+        {selectedCube && !isSmart && !hasNoSolves && (
           <>
             <div className="relative min-h-50">
               {loadingProps.data ? (
