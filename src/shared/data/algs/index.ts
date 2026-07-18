@@ -14,6 +14,7 @@ export { PARITY_555_ALGS } from './parity-555'
 export { PBL_ALGS } from './pbl'
 export { PLL_ALGS } from './pll'
 export { SARAH_ALGS } from './sarah'
+export { SV_ALGS } from './sv'
 export { VLS_ALGS } from './vls'
 export { WV_ALGS } from './vw'
 export { ZBLL_AS_ALGS } from './zbll-as'
@@ -38,6 +39,7 @@ import { PARITY_555_ALGS } from './parity-555'
 import { PBL_ALGS } from './pbl'
 import { PLL_ALGS } from './pll'
 import { SARAH_ALGS } from './sarah'
+import { SV_ALGS } from './sv'
 import { VLS_ALGS } from './vls'
 import { WV_ALGS } from './vw'
 import { ZBLL_AS_ALGS } from './zbll-as'
@@ -63,6 +65,7 @@ export const ALL_ALGS: AlgorithmCollection[] = [
   ...PBL_ALGS,
   ...PLL_ALGS,
   ...SARAH_ALGS,
+  ...SV_ALGS,
   ...VLS_ALGS,
   ...WV_ALGS,
   ...ZBLL_AS_ALGS,
