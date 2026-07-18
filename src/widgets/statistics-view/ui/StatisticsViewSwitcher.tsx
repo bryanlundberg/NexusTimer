@@ -3,19 +3,23 @@ import { StatisticsTabs } from '@/widgets/statistics-view/model/enums'
 import LineGraphStatistics from '@/features/line-chart-statistics/ui/LineGraphStatistics'
 import StatisticsChart from '@/features/deep-statistics/ui/StatisticsChart'
 import StatisticsMessage from '@/features/deep-statistics/ui/StatisticsMessage'
+import SmartCubeView from '@/features/smart-cube-stats/ui/SmartCubeView'
 import { useTranslations } from 'next-intl'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useQueryState } from 'nuqs'
 import { DeepStatistics } from '@/shared/types/statistics'
 import StatisticsViewContainer from '@/widgets/statistics-view/ui/StatisticsViewContainer'
 import { STATES } from '@/shared/const/states'
-import { BarChart3Icon, BoxIcon, CalendarIcon, Loader2 } from 'lucide-react'
+import { BarChart3Icon, BluetoothIcon, BoxIcon, CalendarIcon, Loader2 } from 'lucide-react'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 
 interface StatisticsViewSwitcherProps {
   statistics: DeepStatistics
   loadingProps: Record<string, boolean>
 }
+
+// Categories that support smart-cube move analytics.
+const SMART_CATEGORIES = ['3x3', '3x3 OH']
 
 export default function StatisticsViewSwitcher({ statistics, loadingProps }: StatisticsViewSwitcherProps) {
   const t = useTranslations('Index')
@@ -24,18 +28,26 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
     defaultValue: STATES.STATISTICS_PAGE.TAB_MODE.DEFAULT_VALUE
   })
 
+  const isSmartCategory = SMART_CATEGORIES.includes(selectedCube?.category ?? '')
+
   const tabs = [
     { value: StatisticsTabs.CATEGORY, icon: BarChart3Icon, label: t('StatsPage.category-tab') },
     { value: StatisticsTabs.CUBE, icon: BoxIcon, label: t('StatsPage.cube-tab') },
-    { value: StatisticsTabs.EMPTY, icon: CalendarIcon, label: 'Activity' }
+    { value: StatisticsTabs.EMPTY, icon: CalendarIcon, label: 'Activity' },
+    { value: StatisticsTabs.SMART, icon: BluetoothIcon, label: t('StatsPage.smart-tab'), disabled: !isSmartCategory }
   ]
 
   const isCube = tabStats === StatisticsTabs.CUBE
   const isEmpty = tabStats === StatisticsTabs.EMPTY
+  const isSmart = tabStats === StatisticsTabs.SMART
   const activeGroup = isCube ? 'cube' : 'personal'
   const activeSolves = isCube ? statistics.data.cubeAll : statistics.data.global
   // Cube selected but the active dataset has no solves (only once loading is done).
   const hasNoSolves = !loadingProps.data && activeSolves.length === 0
+
+  const cubeSolves = selectedCube
+    ? [...(selectedCube.solves?.all ?? []), ...(selectedCube.solves?.session ?? [])]
+    : undefined
 
   return (
     <StatisticsViewContainer>
@@ -49,18 +61,23 @@ export default function StatisticsViewSwitcher({ statistics, loadingProps }: Sta
           />
         )}
 
+        {selectedCube && isSmart && isSmartCategory && <SmartCubeView solves={cubeSolves} />}
+        {selectedCube && isSmart && !isSmartCategory && (
+          <StatisticsMessage title={t('StatsPage.smart-tab')} description={t('StatsPage.smart-only-3x3')} />
+        )}
+
         {selectedCube && isEmpty && (
           <div className="flex min-h-50 items-center justify-center text-sm text-muted-foreground">temporal empty</div>
         )}
 
-        {selectedCube && !isEmpty && hasNoSolves && (
+        {selectedCube && !isEmpty && !isSmart && hasNoSolves && (
           <StatisticsMessage
             title={t('StatsPage.empty-solves')}
             description={t('StatsPage.empty-solves-description')}
           />
         )}
 
-        {selectedCube && !isEmpty && !hasNoSolves && (
+        {selectedCube && !isEmpty && !isSmart && !hasNoSolves && (
           <>
             <div className="relative min-h-50">
               {loadingProps.data ? (
