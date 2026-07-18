@@ -29,12 +29,7 @@ export default function ColumnLabels({ group, columns, activeGroup }: ColumnLabe
         <Tooltip key={column.key}>
           <TooltipTrigger asChild>
             <div className="flex items-center justify-center gap-1 px-1 cursor-help">
-              <span
-                className={cn(
-                  'truncate text-[9px] sm:text-[11px] font-semibold uppercase tracking-wider',
-                  group === activeGroup ? 'text-primary/80' : 'text-muted-foreground'
-                )}
-              >
+              <span className="truncate text-[9px] font-semibold uppercase tracking-wider text-muted-foreground sm:text-[11px]">
                 {column.label}
               </span>
               <Info className="size-3 shrink-0 opacity-40" />
