@@ -314,7 +314,10 @@
       "cube-all-tooltip": "Combines all historical and session solves for only the selected cube.",
       "cube-session-tooltip": "Counts only session solves for only the selected cube.",
       "empty-statistics": "No Statistics Available",
-      "empty-statistics-description": "It looks like your solve vault is currently empty."
+      "empty-statistics-description": "It looks like your solve vault is currently empty.",
+      "empty-statistics-select-cube": "Select a cube to load your statistics.",
+      "empty-solves": "No solves yet",
+      "empty-solves-description": "This cube doesn't have any solves yet. Complete a solve to see your statistics."
     },
     "CubesPage": {
       "title": "Cubes",

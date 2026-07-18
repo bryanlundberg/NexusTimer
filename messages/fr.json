@@ -311,7 +311,10 @@
       "cube-all-tooltip": "Combine tout l'historique et les résolutions de session uniquement pour le cube sélectionné.",
       "cube-session-tooltip": "Compte uniquement les résolutions de session uniquement pour le cube sélectionné.",
       "empty-statistics": "Aucune statistique disponible",
-      "empty-statistics-description": "Il semble que votre coffre de résolutions soit actuellement vide."
+      "empty-statistics-description": "Il semble que votre coffre de résolutions soit actuellement vide.",
+      "empty-statistics-select-cube": "Sélectionne un cube pour charger tes statistiques.",
+      "empty-solves": "Aucun solve pour le moment",
+      "empty-solves-description": "Ce cube n'a encore aucun solve. Termine un solve pour voir tes statistiques."
     },
     "CubesPage": {
       "title": "Cubes",

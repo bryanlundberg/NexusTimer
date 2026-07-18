@@ -314,7 +314,10 @@
       "cube-all-tooltip": "Kết hợp tất cả lượt giải lịch sử và phiên chỉ cho khối đã chọn.",
       "cube-session-tooltip": "Chỉ tính lượt giải phiên cho khối đã chọn.",
       "empty-statistics": "Không có thống kê khả dụng",
-      "empty-statistics-description": "Có vẻ như kho lượt giải của bạn hiện đang trống."
+      "empty-statistics-description": "Có vẻ như kho lượt giải của bạn hiện đang trống.",
+      "empty-statistics-select-cube": "Chọn một khối để tải thống kê của bạn.",
+      "empty-solves": "Chưa có lượt giải nào",
+      "empty-solves-description": "Khối này chưa có lượt giải nào. Hoàn thành một lượt giải để xem thống kê của bạn."
     },
     "CubesPage": {
       "title": "Khối",

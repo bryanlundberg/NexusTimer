@@ -281,7 +281,10 @@
       "global-tooltip": "Combina todos los tiempos (historial y sesión) de cada cubo dentro de la misma categoría.",
       "sessions-tooltip": "Cuenta solo los tiempos de la sesión para cada cubo en la misma categoría.",
       "empty-statistics": "No hay estadísticas disponibles",
-      "empty-statistics-description": "Parece que tu registro de tiempos está actualmente vacío."
+      "empty-statistics-description": "Parece que tu registro de tiempos está actualmente vacío.",
+      "empty-statistics-select-cube": "Selecciona un cubo para cargar tus estadísticas.",
+      "empty-solves": "Aún no hay solves",
+      "empty-solves-description": "Este cubo todavía no tiene solves. Completa un solve para ver tus estadísticas."
     },
     "CubesPage": {
       "historical-solves": "Tiempos históricos",

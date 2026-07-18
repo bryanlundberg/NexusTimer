@@ -311,7 +311,10 @@
       "cube-all-tooltip": "選択したキューブのアーカイブとセッションの全履歴を合算します。",
       "cube-session-tooltip": "選択したキューブのセッション履歴のみを計算します。",
       "empty-statistics": "統計データなし",
-      "empty-statistics-description": "ソルブ履歴がまだ空のようです。"
+      "empty-statistics-description": "ソルブ履歴がまだ空のようです。",
+      "empty-statistics-select-cube": "統計を読み込むにはキューブを選択してください。",
+      "empty-solves": "まだソルブがありません",
+      "empty-solves-description": "このキューブにはまだソルブがありません。ソルブを完了すると統計が表示されます。"
     },
     "CubesPage": {
       "title": "キューブ",

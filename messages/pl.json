@@ -314,7 +314,10 @@
       "cube-all-tooltip": "Łączy wszystkie historyczne i sesyjne ułożenia tylko dla wybranej kostki.",
       "cube-session-tooltip": "Liczy tylko ułożenia sesyjne dla wybranej kostki.",
       "empty-statistics": "Brak dostępnych statystyk",
-      "empty-statistics-description": "Wygląda na to, że Twój zbiór ułożeń jest obecnie pusty."
+      "empty-statistics-description": "Wygląda na to, że Twój zbiór ułożeń jest obecnie pusty.",
+      "empty-statistics-select-cube": "Wybierz kostkę, aby wczytać statystyki.",
+      "empty-solves": "Brak ułożeń",
+      "empty-solves-description": "Ta kostka nie ma jeszcze żadnych ułożeń. Wykonaj ułożenie, aby zobaczyć statystyki."
     },
     "CubesPage": {
       "title": "Kostki",

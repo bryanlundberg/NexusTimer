@@ -314,7 +314,10 @@
       "cube-all-tooltip": "Combina tutti i solve storici e di sessione solo per il cubo selezionato.",
       "cube-session-tooltip": "Conta solo i solve di sessione per il cubo selezionato.",
       "empty-statistics": "Nessuna statistica disponibile",
-      "empty-statistics-description": "Sembra che il tuo archivio di solve sia vuoto al momento."
+      "empty-statistics-description": "Sembra che il tuo archivio di solve sia vuoto al momento.",
+      "empty-statistics-select-cube": "Seleziona un cubo per caricare le tue statistiche.",
+      "empty-solves": "Ancora nessun solve",
+      "empty-solves-description": "Questo cubo non ha ancora nessun solve. Completa un solve per vedere le tue statistiche."
     },
     "CubesPage": {
       "title": "Cubi",

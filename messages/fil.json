@@ -314,7 +314,10 @@
       "cube-all-tooltip": "Pinagsasama ang lahat ng historical at session solves para lang sa piniling cube.",
       "cube-session-tooltip": "Binibilang lang ang session solves para sa piniling cube.",
       "empty-statistics": "Walang Available na Statistics",
-      "empty-statistics-description": "Mukhang walang laman ang solve vault mo sa ngayon."
+      "empty-statistics-description": "Mukhang walang laman ang solve vault mo sa ngayon.",
+      "empty-statistics-select-cube": "Pumili ng cube para i-load ang iyong mga istatistika.",
+      "empty-solves": "Wala pang solves",
+      "empty-solves-description": "Wala pang solves ang cube na ito. Tumapos ng isang solve para makita ang iyong mga istatistika."
     },
     "CubesPage": {
       "title": "Mga Cube",

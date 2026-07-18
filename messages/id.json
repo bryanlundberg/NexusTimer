@@ -314,7 +314,10 @@
       "cube-all-tooltip": "Menggabungkan semua solve riwayat dan sesi hanya untuk kubus yang dipilih.",
       "cube-session-tooltip": "Menghitung hanya solve sesi untuk kubus yang dipilih.",
       "empty-statistics": "Tidak Ada Statistik Tersedia",
-      "empty-statistics-description": "Sepertinya brankas solve-mu saat ini kosong."
+      "empty-statistics-description": "Sepertinya brankas solve-mu saat ini kosong.",
+      "empty-statistics-select-cube": "Pilih kubus untuk memuat statistikmu.",
+      "empty-solves": "Belum ada solve",
+      "empty-solves-description": "Kubus ini belum memiliki solve. Selesaikan satu solve untuk melihat statistikmu."
     },
     "CubesPage": {
       "title": "Kubus",

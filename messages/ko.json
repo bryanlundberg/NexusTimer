@@ -311,7 +311,10 @@
       "cube-all-tooltip": "선택한 큐브에 대한 전체 및 세션 기록을 합산합니다.",
       "cube-session-tooltip": "선택한 큐브에 대한 세션 기록만 계산합니다.",
       "empty-statistics": "통계 데이터 없음",
-      "empty-statistics-description": "아직 솔빙 기록이 없는 것 같습니다."
+      "empty-statistics-description": "아직 솔빙 기록이 없는 것 같습니다.",
+      "empty-statistics-select-cube": "통계를 불러오려면 큐브를 선택하세요.",
+      "empty-solves": "아직 기록이 없습니다",
+      "empty-solves-description": "이 큐브에는 아직 기록이 없습니다. 솔브를 완료하면 통계를 볼 수 있습니다."
     },
     "CubesPage": {
       "title": "큐브",

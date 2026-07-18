@@ -311,7 +311,10 @@
       "cube-all-tooltip": "Kombiniert alle Zeiten nur für den gewählten Würfel.",
       "cube-session-tooltip": "Zählt nur Sitzungszeiten für den gewählten Würfel.",
       "empty-statistics": "Keine Statistiken verfügbar",
-      "empty-statistics-description": "Es sieht so aus, als wäre dein Zeitarchiv leer."
+      "empty-statistics-description": "Es sieht so aus, als wäre dein Zeitarchiv leer.",
+      "empty-statistics-select-cube": "Wähle einen Würfel, um deine Statistiken zu laden.",
+      "empty-solves": "Noch keine Lösungen",
+      "empty-solves-description": "Dieser Würfel hat noch keine Lösungen. Löse ihn einmal, um deine Statistiken zu sehen."
     },
     "CubesPage": {
       "title": "Würfel",

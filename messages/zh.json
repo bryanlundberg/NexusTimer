@@ -311,7 +311,10 @@
       "cube-all-tooltip": "仅合并所选魔方的所有历史和当前组还原纪录。",
       "cube-session-tooltip": "仅统计所选魔方的当前组还原纪录。",
       "empty-statistics": "暂无统计数据",
-      "empty-statistics-description": "你的还原保险库目前似乎是空的。"
+      "empty-statistics-description": "你的还原保险库目前似乎是空的。",
+      "empty-statistics-select-cube": "选择一个魔方以加载你的统计数据。",
+      "empty-solves": "还没有还原记录",
+      "empty-solves-description": "这个魔方还没有还原记录。完成一次还原即可查看统计数据。"
     },
     "CubesPage": {
       "title": "魔方",
