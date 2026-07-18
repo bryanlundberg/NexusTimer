@@ -1,55 +1,66 @@
 import { Skeleton } from '@/components/ui/skeleton'
 
-export function HeroBannerSkeleton() {
+/** Matches CoreHeader: sticky 12-height bar + accent stripe. */
+export function CoreHeaderSkeleton() {
   return (
-    <div className="w-full px-4 md:px-6 py-6 flex flex-col sm:flex-row items-start justify-between gap-6 border-b border-border/40 bg-muted/20">
-      {/* Left: avatar + info */}
-      <div className="flex items-center gap-4 min-w-0">
-        <Skeleton className="size-16 sm:size-20 md:size-24 rounded-lg shrink-0" />
-        <div className="flex flex-col gap-2 min-w-0">
-          <Skeleton className="h-3 w-12" />
-          <Skeleton className="h-7 w-48 sm:w-64" />
-          <div className="flex items-center gap-2 flex-wrap">
-            <Skeleton className="h-3 w-32" />
-            <Skeleton className="h-3 w-20" />
-          </div>
-        </div>
+    <div className="w-full">
+      <div className="h-12 border-b px-2 flex items-center gap-2">
+        <Skeleton className="size-8 rounded-md shrink-0" />
+        <div className="h-4 w-px bg-border shrink-0" />
+        <Skeleton className="h-3.5 w-16" />
+        <span className="text-border/60">/</span>
+        <Skeleton className="h-3.5 w-28" />
       </div>
-
-      {/* Right: PB — hidden on mobile */}
-      <div className="hidden sm:flex items-center gap-4 md:gap-6 sm:ml-auto shrink-0">
-        <div className="flex flex-col items-end gap-1.5">
-          <Skeleton className="h-2.5 w-48" />
-          <Skeleton className="h-12 w-36 md:h-14 md:w-44" />
-        </div>
-        <Skeleton className="w-16 h-16 sm:w-20 sm:h-20 md:w-[90px] md:h-[90px] rounded-lg" />
+      <div className="flex w-full h-0.75" aria-hidden>
+        <div className="flex-1 bg-cube-white" />
+        <div className="flex-1 bg-cube-yellow" />
+        <div className="flex-1 bg-cube-red" />
+        <div className="flex-1 bg-cube-orange" />
+        <div className="flex-1 bg-cube-blue" />
+        <div className="flex-1 bg-cube-green" />
       </div>
     </div>
   )
 }
 
-export function StatsBarSkeleton() {
+export function HeroBannerSkeleton() {
   return (
-    <div className="w-full border-b border-border/40 bg-muted/20 grid grid-cols-2 sm:flex sm:divide-x sm:divide-border/40 divide-y divide-border/40 sm:divide-y-0 [&>*:nth-child(odd)]:border-r [&>*:nth-child(odd)]:border-border/40 sm:[&>*:nth-child(odd)]:border-r-0">
-      {Array.from({ length: 4 }).map((_, i) => (
-        <div key={i} className="flex flex-col gap-1.5 px-4 py-3 flex-1">
-          <Skeleton className="h-2.5 w-16" />
-          <Skeleton className="h-7 w-20" />
+    <div className="w-full px-4 md:px-6 py-6 flex items-center gap-4 min-w-0 border-b border-border/40">
+      <Skeleton className="size-16 sm:size-20 md:size-24 rounded-full shrink-0" />
+      <div className="flex flex-col gap-1.5 min-w-0">
+        <Skeleton className="h-8 w-48 sm:w-64" />
+        <div className="flex items-center gap-2 flex-wrap">
+          <Skeleton className="h-3.5 w-32" />
+          <Skeleton className="h-3.5 w-20" />
         </div>
-      ))}
+      </div>
+    </div>
+  )
+}
+
+export function BadgesStripSkeleton() {
+  return (
+    <div className="w-full px-4 md:px-6 py-3 flex items-center gap-3 border-b border-border/40">
+      <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-hidden">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <Skeleton key={i} className="size-8 rounded-lg shrink-0" />
+        ))}
+      </div>
+      <Skeleton className="h-3.5 w-14 shrink-0" />
     </div>
   )
 }
 
 export function TabsNavSkeleton() {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-4 md:px-6 py-3 border-b border-border/40">
-      <div className="flex items-center gap-1 bg-muted/40 rounded-lg p-0.75 w-fit">
-        <Skeleton className="h-7 w-20 rounded-md" />
-        <Skeleton className="h-7 w-16 rounded-md" />
-        <Skeleton className="h-7 w-20 rounded-md" />
+    <div className="flex flex-row items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
+      <div className="flex items-center gap-4 min-w-0 flex-1">
+        <Skeleton className="h-4 w-20" />
+        <Skeleton className="h-4 w-16" />
+        <Skeleton className="h-4 w-20" />
+        <Skeleton className="h-4 w-24" />
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 shrink-0">
         <Skeleton className="h-8 w-24 rounded-md" />
         <Skeleton className="h-8 w-24 rounded-md" />
       </div>
@@ -93,11 +104,14 @@ export function TabTableSkeleton() {
 export default function PeopleSkeleton() {
   return (
     <div className="flex flex-col grow">
-      <HeroBannerSkeleton />
-      <StatsBarSkeleton />
-      <TabsNavSkeleton />
-      <div className="px-4 md:px-6 py-0">
-        <TabTableSkeleton />
+      <CoreHeaderSkeleton />
+      <div className="w-full max-w-4xl mx-auto flex flex-col">
+        <HeroBannerSkeleton />
+        <BadgesStripSkeleton />
+        <TabsNavSkeleton />
+        <div className="px-4 md:px-6 py-0">
+          <TabTableSkeleton />
+        </div>
       </div>
     </div>
   )
