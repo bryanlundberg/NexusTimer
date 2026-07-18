@@ -317,7 +317,21 @@
       "empty-statistics-description": "Wygląda na to, że Twój zbiór ułożeń jest obecnie pusty.",
       "empty-statistics-select-cube": "Wybierz kostkę, aby wczytać statystyki.",
       "empty-solves": "Brak ułożeń",
-      "empty-solves-description": "Ta kostka nie ma jeszcze żadnych ułożeń. Wykonaj ułożenie, aby zobaczyć statystyki."
+      "empty-solves-description": "Ta kostka nie ma jeszcze żadnych ułożeń. Wykonaj ułożenie, aby zobaczyć statystyki.",
+      "smart-tab": "Smart Cube",
+      "smart-avg-tps": "Śr. TPS",
+      "smart-avg-moves": "Śr. ruchy",
+      "smart-paused-time": "Pauzy",
+      "smart-paused-hint": "Przerwy powyżej 0,5s",
+      "smart-method": "Metoda",
+      "smart-phase-average": "Średnia faz",
+      "smart-layers-title": "Ostatnie {count} ułożeń wg faz",
+      "smart-empty": "Nie masz jeszcze ułożeń",
+      "smart-empty-description": "Aby zobaczyć te analizy, potrzebujesz smart kostki.",
+      "smart-only-3x3": "Statystyki Smart Cube są dostępne tylko dla 3x3 i 3x3 OH.",
+      "smart-pauses": "Pauzy",
+      "smart-per-solve": "na ułożenie",
+      "smart-avg-pauses": "Śr. pauzy"
     },
     "CubesPage": {
       "title": "Kostki",

@@ -314,7 +314,21 @@
       "empty-statistics-description": "ソルブ履歴がまだ空のようです。",
       "empty-statistics-select-cube": "統計を読み込むにはキューブを選択してください。",
       "empty-solves": "まだソルブがありません",
-      "empty-solves-description": "このキューブにはまだソルブがありません。ソルブを完了すると統計が表示されます。"
+      "empty-solves-description": "このキューブにはまだソルブがありません。ソルブを完了すると統計が表示されます。",
+      "smart-tab": "Smart Cube",
+      "smart-avg-tps": "平均TPS",
+      "smart-avg-moves": "平均手数",
+      "smart-paused-time": "停止時間",
+      "smart-paused-hint": "0.5秒超の間隔",
+      "smart-method": "手法",
+      "smart-phase-average": "フェーズ平均",
+      "smart-layers-title": "直近{count}ソルブのフェーズ別",
+      "smart-empty": "ソルブがまだありません",
+      "smart-empty-description": "これらの分析にはスマートキューブが必要です。",
+      "smart-only-3x3": "スマートキューブの統計は3x3と3x3 OHのみで利用できます。",
+      "smart-pauses": "停止回数",
+      "smart-per-solve": "1ソルブあたり",
+      "smart-avg-pauses": "平均停止回数"
     },
     "CubesPage": {
       "title": "キューブ",

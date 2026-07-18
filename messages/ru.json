@@ -314,7 +314,21 @@
       "empty-statistics-description": "Похоже, ваше хранилище сборок пусто.",
       "empty-statistics-select-cube": "Выберите куб, чтобы загрузить статистику.",
       "empty-solves": "Пока нет сборок",
-      "empty-solves-description": "У этого куба пока нет сборок. Выполните сборку, чтобы увидеть статистику."
+      "empty-solves-description": "У этого куба пока нет сборок. Сделайте сборку, чтобы увидеть статистику.",
+      "smart-tab": "Smart Cube",
+      "smart-avg-tps": "Ср. TPS",
+      "smart-avg-moves": "Ср. ходы",
+      "smart-paused-time": "Паузы",
+      "smart-paused-hint": "Промежутки более 0,5с",
+      "smart-method": "Метод",
+      "smart-phase-average": "Среднее по фазам",
+      "smart-layers-title": "Последние {count} сборок по фазам",
+      "smart-empty": "У вас пока нет сборок",
+      "smart-empty-description": "Для этой аналитики нужен смарт-куб.",
+      "smart-only-3x3": "Статистика Smart Cube доступна только для 3x3 и 3x3 OH.",
+      "smart-pauses": "Паузы",
+      "smart-per-solve": "за сборку",
+      "smart-avg-pauses": "Ср. паузы"
     },
     "CubesPage": {
       "title": "Кубы",
