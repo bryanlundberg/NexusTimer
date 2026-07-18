@@ -5,7 +5,6 @@ import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { useTranslations } from 'next-intl'
 import StatisticsViewSwitcher from '@/widgets/statistics-view/ui/StatisticsViewSwitcher'
-import StatisticsChart from '@/features/deep-statistics/ui/StatisticsChart'
 
 export default function StatsPage() {
   const { stats, loadingProps } = useDeepStatistics()
@@ -17,9 +16,6 @@ export default function StatsPage() {
         <StatsPageHeader />
         <div className="grid grid-cols-1 gap-4 grow">
           <StatisticsViewSwitcher statistics={stats} loadingProps={loadingProps} />
-          <div className="w-full">
-            <StatisticsChart statistics={stats} loadingProps={loadingProps} />
-          </div>
         </div>
       </PageBody>
     </div>

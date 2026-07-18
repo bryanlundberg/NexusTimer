@@ -1,31 +1,20 @@
-import { motion, useReducedMotion, type Variants } from 'motion/react'
 import { cn } from '@/shared/lib/utils'
-import { ColumnDef, RowDef, ROW_GRID } from '@/features/deep-statistics/model/statisticsChartConfig'
+import { ColumnDef, ColumnGroup, RowDef, ROW_GRID } from '@/features/deep-statistics/model/statisticsChartConfig'
 import GroupBlock from './GroupBlock'
 
 interface StatisticsChartRowProps {
   row: RowDef
   columns: ColumnDef[]
   isLoading: boolean
+  activeGroup: ColumnGroup
 }
 
-export default function StatisticsChartRow({ row, columns, isLoading }: StatisticsChartRowProps) {
-  const reduceMotion = useReducedMotion()
+export default function StatisticsChartRow({ row, columns, isLoading, activeGroup }: StatisticsChartRowProps) {
   const personalCols = columns.filter((c) => c.group === 'personal')
   const cubeCols = columns.filter((c) => c.group === 'cube')
 
-  const item: Variants = {
-    hidden: { opacity: 0, y: reduceMotion ? 0 : 8 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: reduceMotion ? 0 : 0.35, ease: [0.22, 1, 0.36, 1] }
-    }
-  }
-
   return (
-    <motion.div
-      variants={item}
+    <div
       className={cn(
         ROW_GRID,
         'group rounded-xl px-1 transition-colors hover:bg-muted/40',
@@ -44,8 +33,8 @@ export default function StatisticsChartRow({ row, columns, isLoading }: Statisti
         </span>
       </div>
 
-      <GroupBlock group="personal" columns={personalCols} row={row} isLoading={isLoading} />
-      <GroupBlock group="cube" columns={cubeCols} row={row} isLoading={isLoading} />
-    </motion.div>
+      <GroupBlock group="personal" columns={personalCols} row={row} isLoading={isLoading} activeGroup={activeGroup} />
+      <GroupBlock group="cube" columns={cubeCols} row={row} isLoading={isLoading} activeGroup={activeGroup} />
+    </div>
   )
 }

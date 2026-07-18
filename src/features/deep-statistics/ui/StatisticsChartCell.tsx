@@ -1,14 +1,13 @@
 import { cn } from '@/shared/lib/utils'
-import { ColumnGroup } from '@/features/deep-statistics/model/statisticsChartConfig'
 
 interface StatisticsChartCellProps {
   isLoading: boolean
   value: string | number
   highlight?: boolean
-  group: ColumnGroup
+  isActiveGroup: boolean
 }
 
-export default function StatisticsChartCell({ isLoading, value, highlight, group }: StatisticsChartCellProps) {
+export default function StatisticsChartCell({ isLoading, value, highlight, isActiveGroup }: StatisticsChartCellProps) {
   const displayValue = isLoading ? '--' : value
   const isEmpty = displayValue === '--'
 
@@ -18,7 +17,7 @@ export default function StatisticsChartCell({ isLoading, value, highlight, group
         className={cn(
           'tabular-nums font-mono text-[11px] sm:text-sm leading-none transition-colors',
           isEmpty && 'text-muted-foreground/40',
-          !isEmpty && group === 'cube' && 'text-foreground',
+          !isEmpty && isActiveGroup && 'text-foreground',
           !isEmpty && highlight && 'font-bold text-primary'
         )}
       >

@@ -23,25 +23,44 @@ export interface RowDef {
 
 /**
  * Shared grid template so the header and every row stay perfectly aligned.
- * A row is 3 tracks: [metric label] [Personal group block] [Cube group block].
+ * On mobile only the active group is shown → 2 tracks: [metric label] [active group block].
+ * From md+ both groups are shown → 3 tracks: [metric label] [Personal] [Cube].
  * Each group block internally holds its 2 scope columns.
  */
 export const ROW_GRID =
-  'grid grid-cols-[minmax(0,1.05fr)_minmax(0,1.5fr)_minmax(0,1.5fr)] gap-1.5 sm:gap-2.5 items-stretch'
+  'grid grid-cols-[minmax(0,1.05fr)_minmax(0,3fr)] md:grid-cols-[minmax(0,1.05fr)_minmax(0,1.5fr)_minmax(0,1.5fr)] gap-1.5 sm:gap-2.5 items-stretch'
+
+/**
+ * Visibility helper: hide the non-active group on mobile, always show from md+.
+ * The md display type must match the element's own layout — group blocks and
+ * column labels are grids, so restoring `md:grid` (not `md:block`) keeps their
+ * inner scope columns side by side instead of stacking into a vertical column.
+ */
+export function groupVisibility(
+  group: ColumnGroup,
+  activeGroup: ColumnGroup,
+  mdDisplay: 'grid' | 'block' = 'grid'
+): string {
+  return group === activeGroup ? '' : `hidden md:${mdDisplay}`
+}
 
 /** Inner grid for the 2 scope columns living inside a group block. */
 export const GROUP_INNER_GRID = 'grid grid-cols-2'
 
-/** Soft rounded background for each group block (no hard table borders). */
-export const GROUP_BLOCK: Record<ColumnGroup, string> = {
-  personal: 'rounded-xl bg-muted/40 dark:bg-muted/25',
-  cube: 'rounded-xl bg-primary/[0.06] dark:bg-primary/[0.07] ring-1 ring-inset ring-primary/10'
+/**
+ * Soft rounded background for a group block, with a dimmed opacity when inactive.
+ */
+const GROUP_BLOCK_BASE = 'rounded-xl bg-muted/70 dark:bg-muted/25'
+
+export function groupBlockClass(group: ColumnGroup, activeGroup: ColumnGroup): string {
+  return group === activeGroup ? GROUP_BLOCK_BASE : `${GROUP_BLOCK_BASE} opacity-35`
 }
 
-/** Group chip styles used in the header. */
-export const GROUP_CHIP: Record<ColumnGroup, string> = {
-  personal: 'bg-muted text-muted-foreground',
-  cube: 'bg-primary/15 text-primary'
+/** Group chip styles: neutral for both, inactive dimmed with opacity. */
+const GROUP_CHIP_BASE = 'bg-muted text-muted-foreground'
+
+export function groupChipClass(group: ColumnGroup, activeGroup: ColumnGroup): string {
+  return group === activeGroup ? GROUP_CHIP_BASE : `${GROUP_CHIP_BASE} opacity-35`
 }
 
 export function useStatisticsColumns(): ColumnDef[] {

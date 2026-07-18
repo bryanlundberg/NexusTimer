@@ -1,6 +1,6 @@
 import { Boxes, User } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
-import { ColumnGroup, GROUP_CHIP } from '@/features/deep-statistics/model/statisticsChartConfig'
+import { ColumnGroup, groupChipClass } from '@/features/deep-statistics/model/statisticsChartConfig'
 
 const GROUP_ICON: Record<ColumnGroup, typeof User> = {
   personal: User,
@@ -10,9 +10,10 @@ const GROUP_ICON: Record<ColumnGroup, typeof User> = {
 interface GroupChipProps {
   group: ColumnGroup
   label: string
+  activeGroup: ColumnGroup
 }
 
-export default function GroupChip({ group, label }: GroupChipProps) {
+export default function GroupChip({ group, label, activeGroup }: GroupChipProps) {
   const Icon = GROUP_ICON[group]
   return (
     <div className="flex items-center justify-center">
@@ -20,7 +21,7 @@ export default function GroupChip({ group, label }: GroupChipProps) {
         className={cn(
           'inline-flex items-center gap-1.5 rounded-full px-2.5 py-1',
           'text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.18em]',
-          GROUP_CHIP[group]
+          groupChipClass(group, activeGroup)
         )}
       >
         <Icon className="size-3" />
