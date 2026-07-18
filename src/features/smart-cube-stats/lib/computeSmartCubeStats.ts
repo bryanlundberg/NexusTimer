@@ -106,7 +106,7 @@ export function computeSmartCubeStats(solves: Solve[] | undefined): SmartCubeSta
   for (const solve of solves) {
     if (isSmartSolve(solve)) unique.set(solve.id, solve)
   }
-  const smart = [...unique.values()].sort(chronological).slice(-SMART_SOLVES_WINDOW)
+  const smart = Array.from(unique.values()).sort(chronological).slice(-SMART_SOLVES_WINDOW)
   if (!smart.length) return EMPTY_STATS
 
   interface Analyzed {
@@ -147,7 +147,7 @@ export function computeSmartCubeStats(solves: Solve[] | undefined): SmartCubeSta
   // Dominant method = most frequent (ties resolved toward a known method).
   let method: string | null = null
   let best = -1
-  for (const [name, count] of methodCounts) {
+  for (const [name, count] of Array.from(methodCounts.entries())) {
     if (count > best || (count === best && method === 'unknown')) {
       best = count
       method = name
