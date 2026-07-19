@@ -112,7 +112,6 @@
     "three": "^0.180.0",
     "ts-deepmerge": "^8.0.0",
     "tw-animate-css": "^1.3.4",
-    "typescript": "5.2.2",
     "ua-parser-js": "^2.0.10",
     "use-debounce": "^10.0.4",
     "uuid": "14.0.0",
@@ -135,6 +134,7 @@
     "lint-staged": "^16.2.4",
     "prettier": "3.6.2",
     "serwist": "^9.2.1",
+    "typescript": "6.0.3",
     "vitest": "^4.1.9"
   },
   "lint-staged": {
