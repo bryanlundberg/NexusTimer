@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { TwistyPlayer } from 'cubing/twisty'
 import { AlgorithmsList } from '@/features/algorithms-list/ui/AlgorithmsList'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
+import SuggestAlgorithmButton from '@/features/suggest-algorithm/ui/SuggestAlgorithmButton'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Information from '@/features/algorithms-list/ui/information'
 import TrainerCTA from '@/features/algorithms-list/ui/trainer-cta'
@@ -187,9 +188,25 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
           methodSlug={collection.slug}
         />
 
-        {collection.file && (
-          <Suggestions link={ALGORITHMS_GITHUB_URL + `/${collection.file.toLowerCase()}`} message={t('edit-github')} />
-        )}
+        <div className="mt-6 flex flex-col items-center gap-1 sm:flex-row sm:justify-center sm:gap-6">
+          <SuggestAlgorithmButton
+            methods={[
+              {
+                slug: collection.slug,
+                title: collection.title,
+                puzzle: collection.puzzle,
+                caseNames: collection.algorithms.map((a) => a.name)
+              }
+            ]}
+            initialSlug={collection.slug}
+          />
+          {collection.file && (
+            <Suggestions
+              link={ALGORITHMS_GITHUB_URL + `/${collection.file.toLowerCase()}`}
+              message={t('edit-github')}
+            />
+          )}
+        </div>
       </PageBody>
     </ScrollArea>
   )
