@@ -58,4 +58,7 @@ const SolveSchema = new Schema(
   { timestamps: true }
 )
 
+SolveSchema.index({ puzzle: 1, smart: 1, time: 1, createdAt: 1 })
+SolveSchema.index({ time: 1, createdAt: 1 })
+
 export default models.Solve || model('Solve', SolveSchema)
