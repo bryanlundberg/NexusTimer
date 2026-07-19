@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
 import AlgorithmMethod from '@/features/algorithm-method/ui/AlgorithmMethod'
+import SuggestAlgorithmButton from '@/features/suggest-algorithm/ui/SuggestAlgorithmButton'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { useTranslations } from 'next-intl'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
@@ -36,7 +37,17 @@ export default function AlgorithmsMethodsPage() {
             </section>
           ))}
 
-        <Suggestions message={t('suggestions')} />
+        <div className="flex flex-col items-center gap-1 sm:flex-row sm:justify-center sm:gap-6">
+          <SuggestAlgorithmButton
+            methods={ALGORITHM_SETS.map((set) => ({
+              slug: set.slug,
+              title: set.title,
+              puzzle: set.puzzle,
+              caseNames: set.algorithms.map((a) => a.name)
+            }))}
+          />
+          <Suggestions message={t('edit-github')} />
+        </div>
       </PageBody>
     </ScrollArea>
   )
