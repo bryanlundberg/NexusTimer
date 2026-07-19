@@ -99,7 +99,7 @@ async function extractProduct(page: Page) {
 
       values = [...new Set(values)]
 
-      values = values.map((v) => v.replace(/\s+/g, ' ').trim()).filter(Boolean)
+      values = values.map((v) => v?.replace(/\s+/g, ' ').trim()).filter(Boolean)
 
       specs[key] = values.length > 1 ? values : values.length === 1 ? values[0] : null
     })
