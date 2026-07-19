@@ -53,7 +53,7 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
       aria-pressed={selectionMode ? selected : undefined}
       style={{ WebkitTouchCallout: 'none' }}
       className={cn(
-        'relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 rounded-md cursor-pointer p-2 sm:p-3 select-none active:scale-[0.98]',
+        'relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 rounded-md cursor-pointer p-2 sm:p-3 select-none pointer-coarse:active:scale-[0.98]',
         selectionMode ? 'hover:ring-2 hover:ring-primary' : 'hover:ring-2 hover:ring-primary hover:scale-[1.02]',
         selected && 'ring-2 ring-primary bg-primary/10'
       )}
