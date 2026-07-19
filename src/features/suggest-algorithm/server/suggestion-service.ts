@@ -1,19 +1,24 @@
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
+import getRedis from '@/shared/config/redis/redis'
 import { createGithubIssue } from './github-app'
 import type { SuggestionBody } from '../model/api-schemas'
 
-const RATE_LIMIT = 10
-const RATE_WINDOW_MS = 60 * 60 * 1000
-const requestLog = new Map<string, number[]>()
+const RATE_LIMIT = 5
+const RATE_WINDOW_SECONDS = 60 * 60
 
-export function isRateLimited(ip: string) {
-  const now = Date.now()
-  const timestamps = (requestLog.get(ip) || []).filter((t) => now - t < RATE_WINDOW_MS)
-  if (timestamps.length >= RATE_LIMIT) return true
-  timestamps.push(now)
-  requestLog.set(ip, timestamps)
-  if (requestLog.size > 10_000) requestLog.clear()
-  return false
+export async function isRateLimited(ip: string) {
+  try {
+    const redis = await getRedis()
+    const key = `rate-limit:algorithm-suggestions:${ip}`
+    const count = await redis.incr(key)
+    if (count === 1) {
+      await redis.expire(key, RATE_WINDOW_SECONDS)
+    }
+    return count > RATE_LIMIT
+  } catch (error) {
+    console.error('[algorithms/suggestions:rate-limit]', error)
+    return false
+  }
 }
 
 export function findAlgorithmSet(slug: string) {
