@@ -11,7 +11,7 @@ import { badRequest, created, serverError } from '@/shared/api/responses'
 export async function POST(request: NextRequest) {
   try {
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
-    if (isRateLimited(ip)) {
+    if (await isRateLimited(ip)) {
       return badRequest('Too many suggestions, please try again later')
     }
 
