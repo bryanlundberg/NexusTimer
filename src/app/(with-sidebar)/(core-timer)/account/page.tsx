@@ -48,7 +48,7 @@ export default function AccountPage() {
           </TabsContent>
 
           <TabsContent value="backups">
-            <BackupsNav session={session!} />
+            <BackupsNav />
           </TabsContent>
         </Tabs>
       </PageBody>
