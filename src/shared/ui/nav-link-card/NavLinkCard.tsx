@@ -1,28 +1,29 @@
 import Link from 'next/link'
-import { ChevronRight, type LucideIcon } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 
 interface NavLinkCardProps {
   href: string
-  icon: LucideIcon
   title: string
   description: string
   className?: string
 }
 
-export default function NavLinkCard({ href, icon: Icon, title, description, className }: NavLinkCardProps) {
+export default function NavLinkCard({ href, title, description, className }: NavLinkCardProps) {
   return (
-    <Link href={href} className={cn('group', className)}>
-      <div className="flex items-center gap-4 p-4 rounded-xl border border-border/60 hover:border-primary/30 hover:bg-accent/50 transition-all">
-        <div className="shrink-0 flex items-center justify-center size-10 rounded-lg bg-primary/10 text-primary">
-          <Icon className="size-5" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium">{title}</p>
-          <p className="text-xs text-muted-foreground truncate">{description}</p>
-        </div>
-        <ChevronRight className="size-4 text-muted-foreground group-hover:text-primary transition-colors" />
-      </div>
+    <Link
+      href={href}
+      className={cn(
+        'group relative block overflow-hidden rounded-xl border border-border/40 bg-background p-5',
+        className
+      )}
+    >
+      {/* Speed lines */}
+      <span className="absolute right-[18px] top-0 h-[26px] w-[3px] -translate-y-full -skew-x-[20deg] bg-primary opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100" />
+      <span className="absolute right-[28px] top-0 h-[18px] w-[3px] -translate-y-full -skew-x-[20deg] bg-primary/50 opacity-0 transition-all delay-75 duration-200 group-hover:translate-y-0 group-hover:opacity-100" />
+      <span className="absolute right-[38px] top-0 h-[10px] w-[3px] -translate-y-full -skew-x-[20deg] bg-primary/25 opacity-0 transition-all delay-150 duration-200 group-hover:translate-y-0 group-hover:opacity-100" />
+
+      <p className="text-sm font-medium">{title}</p>
+      <p className="mt-1 text-xs text-muted-foreground line-clamp-2">{description}</p>
     </Link>
   )
 }
