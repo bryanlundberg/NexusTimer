@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Loader2 } from 'lucide-react'
+import { CloudDownload, Info, Loader2 } from 'lucide-react'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import { useUser } from '@/entities/user/model/useUser'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
@@ -26,7 +26,7 @@ export default function AccountLoadPage() {
     try {
       await handleDownloadData({ user })
       router.push('/app')
-      toast.success('Data loaded successfully')
+      toast.success(t('SettingsPage.load-data-toast'))
     } catch (error) {
       setIsLoading(false)
     }
@@ -41,27 +41,43 @@ export default function AccountLoadPage() {
         ]}
       />
 
-      <PageBody variant="hero" className="px-3 pb-3 max-w-2xl mx-auto">
-        <p>{t('SettingsPage.load-data-description')}</p>
-        <p className="text-yellow-600">{t('SettingsPage.load-data-warning')}</p>
+      <PageBody variant="hero" className="mx-auto w-full max-w-md px-4 pb-8" aria-busy={isLoading}>
+        <div className="flex flex-col items-center pt-8 text-center">
+          <CloudDownload className="size-8 text-muted-foreground" />
+          <h1 className="mt-4 text-xl font-semibold tracking-tight">{t('SettingsPage.load-data-title')}</h1>
+          <p className="mt-2 text-sm text-muted-foreground">{t('SettingsPage.load-data-description')}</p>
+        </div>
 
-        <div className="flex gap-2 w-full justify-between mt-5 flex-col-reverse sm:flex-row">
-          <Link href={'/account'} className="flex-1">
-            <Button className="w-full" variant={'ghost'}>
+        <div className="mt-6 flex items-start gap-3 rounded-xl border border-sky-500/20 bg-sky-500/5 p-3.5">
+          <Info className="mt-0.5 size-4 shrink-0 text-sky-500" />
+          <p className="text-xs leading-relaxed text-sky-600 dark:text-sky-400">
+            {t('SettingsPage.load-data-warning')}
+          </p>
+        </div>
+
+        <div className="mt-8 flex flex-col gap-2">
+          <Button onClick={handleDownloadDataWrapper} disabled={!user || isLoading}>
+            {isLoading ? (
+              <span className="inline-flex items-center gap-2">
+                <Loader2 className="size-4 animate-spin" />
+                {t('SettingsPage.load-data-action')}
+              </span>
+            ) : (
+              t('SettingsPage.load-data-action')
+            )}
+          </Button>
+
+          <Link
+            href="/account"
+            aria-disabled={isLoading}
+            onClick={(e) => {
+              if (isLoading) e.preventDefault()
+            }}
+          >
+            <Button variant="ghost" className="w-full" disabled={isLoading}>
               {t('Inputs.back')}
             </Button>
           </Link>
-
-          <Button className="flex-1" onClick={handleDownloadDataWrapper} disabled={!user || isLoading}>
-            {isLoading ? (
-              <span className="inline-flex items-center gap-2">
-                <Loader2 className="h-4 w-4 animate-spin" />
-                <span>{t('Inputs.continue')}</span>
-              </span>
-            ) : (
-              t('Inputs.continue')
-            )}
-          </Button>
         </div>
       </PageBody>
     </>
