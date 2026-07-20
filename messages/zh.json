@@ -640,11 +640,11 @@
       "no-backup-yet": "目前尚无备份",
       "backup-tip": "定期备份以确保数据安全。",
       "save-data-title": "保存数据",
-      "save-data-description": "你想将账户数据保存在云端吗？",
-      "save-data-warning": "这将覆盖之前保存的数据。",
+      "save-data-description": "将你的魔方、成绩和设置备份到云端。",
+      "save-data-warning": "将上传此设备数据的备份并成为当前备份。之前的备份会保留在历史记录中。",
       "load-data-title": "加载数据",
-      "load-data-description": "你想从云端下载账户数据吗？",
-      "load-data-warning": "这将把当前数据与保存的数据合并。",
+      "load-data-description": "从最新的云端备份恢复数据。",
+      "load-data-warning": "恢复时，云端数据会与本地数据合并。不会替换或删除任何内容。",
       "reset-settings": "重置设置",
       "delete-app-data": "删除应用数据",
       "reset-settings-success": "设置已恢复默认",
@@ -666,7 +666,11 @@
       "backups-tab": "备份",
       "manage-backups-description": "查看并删除存储在云端的备份。",
       "manage-backups-title": "管理备份",
-      "no-backups": "你还没有存储的备份。"
+      "no-backups": "你还没有存储的备份。",
+      "save-data-action": "立即备份",
+      "load-data-action": "恢复数据",
+      "save-data-toast": "备份已保存",
+      "load-data-toast": "数据已加载"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

@@ -643,11 +643,11 @@
       "no-backup-yet": "Belum ada cadangan",
       "backup-tip": "Jaga data tetap aman dengan rutin mencadangkan.",
       "save-data-title": "Simpan data",
-      "save-data-description": "Apakah kamu ingin menyimpan data akunmu di cloud?",
-      "save-data-warning": "Ini akan menimpa data yang disimpan sebelumnya.",
+      "save-data-description": "Cadangkan cube, waktu, dan pengaturanmu ke cloud.",
+      "save-data-warning": "Cadangan dengan data perangkat ini akan diunggah dan menjadi cadangan terkinimu. Cadangan sebelumnya tetap tersimpan di riwayat.",
       "load-data-title": "Muat data",
-      "load-data-description": "Apakah kamu ingin mengunduh data akunmu dari cloud?",
-      "load-data-warning": "Ini akan menggabungkan data saat ini dengan data tersimpan.",
+      "load-data-description": "Pulihkan datamu dari cadangan cloud terbaru.",
+      "load-data-warning": "Saat memulihkan, data cloud digabungkan dengan data lokalmu. Tidak ada yang diganti atau dihapus.",
       "manage-backups-title": "Kelola cadangan",
       "manage-backups-description": "Lihat dan hapus cadangan yang tersimpan di cloud.",
       "backups-tab": "Cadangan",
@@ -669,7 +669,11 @@
       "delete-app-data-title": "Hapus semua data aplikasi?",
       "delete-app-data-subtitle": "Tindakan ini akan menghapus semua data kubus dan solve-mu secara permanen dan tidak dapat dibatalkan. Apakah kamu yakin ingin melanjutkan?",
       "delete-app-data-success": "Semua data aplikasi telah dihapus",
-      "cloud-sync": "Sinkronisasi Cloud"
+      "cloud-sync": "Sinkronisasi Cloud",
+      "save-data-action": "Cadangkan sekarang",
+      "load-data-action": "Pulihkan data",
+      "save-data-toast": "Cadangan disimpan",
+      "load-data-toast": "Data dimuat"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

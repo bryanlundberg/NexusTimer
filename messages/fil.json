@@ -643,11 +643,11 @@
       "no-backup-yet": "Wala pang backup",
       "backup-tip": "Panatilihing ligtas ang data mo sa pamamagitan ng regular na pag-backup.",
       "save-data-title": "I-save ang data",
-      "save-data-description": "Gusto mo bang i-save ang account data mo sa cloud?",
-      "save-data-warning": "Mao-overwrite nito ang dating na-save na data.",
+      "save-data-description": "I-back up ang iyong mga cube, oras, at setting sa cloud.",
+      "save-data-warning": "Ia-upload ang backup ng data ng device na ito at magiging kasalukuyang backup mo. Mananatili sa history ang mga naunang backup.",
       "load-data-title": "I-load ang data",
-      "load-data-description": "Gusto mo bang i-download ang account data mo mula sa cloud?",
-      "load-data-warning": "Pagsasamahin nito ang kasalukuyang data sa na-save na data.",
+      "load-data-description": "Ibalik ang iyong data mula sa pinakabagong cloud backup.",
+      "load-data-warning": "Kapag nag-restore, pinagsasama ang data sa cloud sa lokal na data mo. Walang papalitan o mabubura.",
       "manage-backups-title": "Pamahalaan ang mga backup",
       "manage-backups-description": "Tingnan at alisin ang mga backup na naka-store sa cloud.",
       "backups-tab": "Mga Backup",
@@ -669,7 +669,11 @@
       "delete-app-data-title": "Burahin ang lahat ng app data?",
       "delete-app-data-subtitle": "Permanenteng buburahin ng aksyong ito ang lahat ng data ng mga cube at solve mo at hindi na maibabalik. Sigurado ka bang gusto mong magpatuloy?",
       "delete-app-data-success": "Nabura na ang lahat ng app data",
-      "cloud-sync": "Cloud Sync"
+      "cloud-sync": "Cloud Sync",
+      "save-data-action": "I-back up ngayon",
+      "load-data-action": "Ibalik ang data",
+      "save-data-toast": "Na-save ang backup",
+      "load-data-toast": "Na-load ang data"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

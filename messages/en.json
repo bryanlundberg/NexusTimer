@@ -633,11 +633,11 @@
       "no-backup-yet": "There is no backup yet",
       "backup-tip": "Keep your data safe by backing up regularly.",
       "save-data-title": "Save data",
-      "save-data-description": "Do you want save your account data on the cloud?",
-      "save-data-warning": "This will overwrite previously saved data.",
+      "save-data-description": "Back up your cubes, solves and settings to the cloud.",
+      "save-data-warning": "A backup with this device's data will be uploaded and become your current backup. Previous backups are kept in your history.",
       "load-data-title": "Load data",
-      "load-data-description": "Do you want to download your account data from the cloud?",
-      "load-data-warning": "This will merge current data with saved data.",
+      "load-data-description": "Restore your data from your latest cloud backup.",
+      "load-data-warning": "When you restore, the cloud data is combined with your local data. Nothing is replaced or deleted.",
       "manage-backups-title": "Manage backups",
       "manage-backups-description": "View and remove the backups stored in the cloud.",
       "backups-tab": "Backups",
@@ -659,7 +659,11 @@
       "delete-app-data-title": "Delete all app data?",
       "delete-app-data-subtitle": "This action will permanently delete all your cubes and solves data and cannot be undone. Are you sure you want to proceed?",
       "delete-app-data-success": "All app data has been deleted",
-      "cloud-sync": "Cloud Sync"
+      "cloud-sync": "Cloud Sync",
+      "save-data-action": "Back up now",
+      "load-data-action": "Restore data",
+      "save-data-toast": "Backup saved",
+      "load-data-toast": "Data loaded"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

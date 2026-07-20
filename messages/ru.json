@@ -640,11 +640,11 @@
       "no-backup-yet": "Бэкапов пока нет",
       "backup-tip": "Делайте бэкапы регулярно.",
       "save-data-title": "Сохранить данные",
-      "save-data-description": "Сохранить данные в облако?",
-      "save-data-warning": "Это перезапишет старые данные в облаке.",
+      "save-data-description": "Сохраните резервную копию кубов, сборок и настроек в облаке.",
+      "save-data-warning": "Копия с данными этого устройства будет загружена и станет текущей. Предыдущие копии сохраняются в истории.",
       "load-data-title": "Загрузить данные",
-      "load-data-description": "Загрузить данные из облака?",
-      "load-data-warning": "Это объединит локальные данные с облачными.",
+      "load-data-description": "Восстановите данные из последней облачной копии.",
+      "load-data-warning": "При восстановлении данные из облака объединяются с локальными данными. Ничего не заменяется и не удаляется.",
       "reset-settings": "Сброс настроек",
       "delete-app-data": "Удалить все данные",
       "reset-settings-success": "Настройки сброшены",
@@ -666,7 +666,11 @@
       "backups-tab": "Бэкапы",
       "manage-backups-description": "Просматривайте и удаляйте бэкапы, сохранённые в облаке.",
       "manage-backups-title": "Управление бэкапами",
-      "no-backups": "У вас пока нет сохранённых бэкапов."
+      "no-backups": "У вас пока нет сохранённых бэкапов.",
+      "save-data-action": "Создать копию сейчас",
+      "load-data-action": "Восстановить данные",
+      "save-data-toast": "Копия сохранена",
+      "load-data-toast": "Данные загружены"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

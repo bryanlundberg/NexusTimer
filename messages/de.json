@@ -640,11 +640,11 @@
       "no-backup-yet": "Noch kein Backup vorhanden",
       "backup-tip": "Sichere deine Daten regelmäßig.",
       "save-data-title": "Daten speichern",
-      "save-data-description": "Daten in der Cloud speichern?",
-      "save-data-warning": "Dies überschreibt alte Cloud-Daten.",
+      "save-data-description": "Sichere deine Cubes, Zeiten und Einstellungen in der Cloud.",
+      "save-data-warning": "Ein Backup mit den Daten dieses Geräts wird hochgeladen und zu deinem aktuellen Backup. Frühere Backups bleiben in deinem Verlauf erhalten.",
       "load-data-title": "Daten laden",
-      "load-data-description": "Daten aus der Cloud laden?",
-      "load-data-warning": "Dies führt lokale und Cloud-Daten zusammen.",
+      "load-data-description": "Stelle deine Daten aus deinem letzten Cloud-Backup wieder her.",
+      "load-data-warning": "Beim Wiederherstellen werden die Cloud-Daten mit deinen lokalen Daten zusammengeführt. Nichts wird ersetzt oder gelöscht.",
       "reset-settings": "Einstellungen zurücksetzen",
       "delete-app-data": "App-Daten löschen",
       "reset-settings-success": "Einstellungen zurückgesetzt",
@@ -666,7 +666,11 @@
       "backups-tab": "Backups",
       "manage-backups-description": "Sieh dir die in der Cloud gespeicherten Backups an und entferne sie.",
       "manage-backups-title": "Backups verwalten",
-      "no-backups": "Du hast noch keine gespeicherten Backups."
+      "no-backups": "Du hast noch keine gespeicherten Backups.",
+      "save-data-action": "Jetzt sichern",
+      "load-data-action": "Daten wiederherstellen",
+      "save-data-toast": "Backup gespeichert",
+      "load-data-toast": "Daten geladen"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

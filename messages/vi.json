@@ -643,11 +643,11 @@
       "no-backup-yet": "Chưa có bản sao lưu nào",
       "backup-tip": "Giữ dữ liệu an toàn bằng cách sao lưu thường xuyên.",
       "save-data-title": "Lưu dữ liệu",
-      "save-data-description": "Bạn có muốn lưu dữ liệu tài khoản của mình lên đám mây?",
-      "save-data-warning": "Thao tác này sẽ ghi đè dữ liệu đã lưu trước đó.",
+      "save-data-description": "Sao lưu cube, thành tích và cài đặt của bạn lên đám mây.",
+      "save-data-warning": "Bản sao lưu với dữ liệu của thiết bị này sẽ được tải lên và trở thành bản sao lưu hiện tại. Các bản trước đó vẫn được giữ trong lịch sử.",
       "load-data-title": "Tải dữ liệu",
-      "load-data-description": "Bạn có muốn tải dữ liệu tài khoản của mình từ đám mây?",
-      "load-data-warning": "Thao tác này sẽ hợp nhất dữ liệu hiện tại với dữ liệu đã lưu.",
+      "load-data-description": "Khôi phục dữ liệu từ bản sao lưu đám mây mới nhất.",
+      "load-data-warning": "Khi khôi phục, dữ liệu trên đám mây được kết hợp với dữ liệu cục bộ của bạn. Không có gì bị thay thế hay xóa.",
       "manage-backups-title": "Quản lý bản sao lưu",
       "manage-backups-description": "Xem và xóa các bản sao lưu được lưu trên đám mây.",
       "backups-tab": "Bản sao lưu",
@@ -669,7 +669,11 @@
       "delete-app-data-title": "Xóa tất cả dữ liệu ứng dụng?",
       "delete-app-data-subtitle": "Thao tác này sẽ xóa vĩnh viễn toàn bộ dữ liệu khối và lượt giải của bạn và không thể hoàn tác. Bạn có chắc muốn tiếp tục?",
       "delete-app-data-success": "Đã xóa toàn bộ dữ liệu ứng dụng",
-      "cloud-sync": "Đồng bộ đám mây"
+      "cloud-sync": "Đồng bộ đám mây",
+      "save-data-action": "Sao lưu ngay",
+      "load-data-action": "Khôi phục dữ liệu",
+      "save-data-toast": "Đã lưu bản sao lưu",
+      "load-data-toast": "Đã tải dữ liệu"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

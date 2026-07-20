@@ -640,11 +640,11 @@
       "no-backup-yet": "아직 백업이 없습니다",
       "backup-tip": "정기적인 백업으로 데이터를 안전하게 보관하세요.",
       "save-data-title": "데이터 저장",
-      "save-data-description": "데이터를 클라우드에 저장할까요?",
-      "save-data-warning": "이전 클라우드 데이터가 덮어씌워집니다.",
+      "save-data-description": "큐브, 기록, 설정을 클라우드에 백업하세요.",
+      "save-data-warning": "이 기기의 데이터로 백업이 업로드되어 현재 백업이 됩니다. 이전 백업은 기록에 보관됩니다.",
       "load-data-title": "데이터 불러오기",
-      "load-data-description": "클라우드에서 데이터를 가져올까요?",
-      "load-data-warning": "현재 기기 데이터와 클라우드 데이터가 병합됩니다.",
+      "load-data-description": "최신 클라우드 백업에서 데이터를 복원하세요.",
+      "load-data-warning": "복원 시 클라우드 데이터가 로컬 데이터와 병합됩니다. 아무것도 교체되거나 삭제되지 않습니다.",
       "reset-settings": "설정 초기화",
       "delete-app-data": "앱 데이터 삭제",
       "reset-settings-success": "설정이 기본값으로 초기화되었습니다",
@@ -666,7 +666,11 @@
       "backups-tab": "백업",
       "manage-backups-description": "클라우드에 저장된 백업을 확인하고 제거하세요.",
       "manage-backups-title": "백업 관리",
-      "no-backups": "아직 저장된 백업이 없습니다."
+      "no-backups": "아직 저장된 백업이 없습니다.",
+      "save-data-action": "지금 백업",
+      "load-data-action": "데이터 복원",
+      "save-data-toast": "백업이 저장되었습니다",
+      "load-data-toast": "데이터를 불러왔습니다"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

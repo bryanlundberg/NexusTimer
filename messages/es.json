@@ -584,12 +584,12 @@
       "loading": "Cargando...",
       "no-backup-yet": "Aún no hay copias de seguridad",
       "backup-tip": "Mantén tus datos seguros haciendo copias de seguridad regularmente.",
-      "load-data-description": "¿Quieres descargar los datos de tu cuenta desde la nube?",
+      "load-data-description": "Restaura tus datos desde tu última copia en la nube.",
       "load-data-title": "Cargar datos",
-      "load-data-warning": "Esto fusionará los datos actuales con los datos guardados.",
-      "save-data-description": "¿Quieres guardar los datos de tu cuenta en la nube?",
+      "load-data-warning": "Al restaurar, los datos de la nube se combinan con tus datos locales. No se reemplaza ni se elimina nada.",
+      "save-data-description": "Respalda tus cubos, tiempos y ajustes en la nube.",
       "save-data-title": "Guardar datos",
-      "save-data-warning": "Esto sobrescribirá los datos guardados previamente.",
+      "save-data-warning": "Se subirá una copia con los datos de este dispositivo y pasará a ser tu copia actual. Las anteriores se conservan en tu historial.",
       "title": "Ajustes",
       "not-authenticated": "Autenticarse para otorgar acceso",
       "options": "Opciones",
@@ -602,7 +602,11 @@
       "delete-app-data-title": "¿Eliminar todos los datos de la aplicación?",
       "delete-app-data-subtitle": "Esta acción eliminará permanentemente todos tus cubos y tiempos y no se puede deshacer. ¿Estás seguro de que quieres continuar?",
       "delete-app-data-success": "Todos los datos de la aplicación han sido eliminados",
-      "cloud-sync": "Sincronización en la nube"
+      "cloud-sync": "Sincronización en la nube",
+      "save-data-action": "Respaldar ahora",
+      "load-data-action": "Restaurar datos",
+      "save-data-toast": "Copia guardada",
+      "load-data-toast": "Datos cargados"
     },
     "others": {
       "suggestions": "Sugerencias"

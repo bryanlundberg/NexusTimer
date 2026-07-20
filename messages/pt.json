@@ -640,11 +640,11 @@
       "no-backup-yet": "Ainda não há backups",
       "backup-tip": "Mantenha seus dados seguros fazendo backups regularmente.",
       "save-data-title": "Salvar dados",
-      "save-data-description": "Quer salvar os dados da sua conta na nuvem?",
-      "save-data-warning": "Isso substituirá os dados salvos anteriormente.",
+      "save-data-description": "Faça backup dos seus cubos, tempos e configurações na nuvem.",
+      "save-data-warning": "Um backup com os dados deste dispositivo será enviado e se tornará seu backup atual. Os anteriores ficam guardados no seu histórico.",
       "load-data-title": "Carregar dados",
-      "load-data-description": "Quer baixar os dados da sua conta da nuvem?",
-      "load-data-warning": "Isso mesclará os dados atuais com os dados salvos.",
+      "load-data-description": "Restaure seus dados do seu último backup na nuvem.",
+      "load-data-warning": "Ao restaurar, os dados da nuvem são combinados com seus dados locais. Nada é substituído ou excluído.",
       "reset-settings": "Redefinir configurações",
       "delete-app-data": "Excluir dados da App",
       "reset-settings-success": "Configurações redefinidas com sucesso",
@@ -666,7 +666,11 @@
       "backups-tab": "Backups",
       "manage-backups-description": "Veja e remova os backups armazenados na nuvem.",
       "manage-backups-title": "Gerenciar backups",
-      "no-backups": "Você ainda não tem backups armazenados."
+      "no-backups": "Você ainda não tem backups armazenados.",
+      "save-data-action": "Fazer backup agora",
+      "load-data-action": "Restaurar dados",
+      "save-data-toast": "Backup salvo",
+      "load-data-toast": "Dados carregados"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

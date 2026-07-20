@@ -643,11 +643,11 @@
       "no-backup-yet": "Nie ma jeszcze kopii zapasowej",
       "backup-tip": "Chroń swoje dane, regularnie wykonując kopie zapasowe.",
       "save-data-title": "Zapisz dane",
-      "save-data-description": "Czy chcesz zapisać dane swojego konta w chmurze?",
-      "save-data-warning": "Spowoduje to nadpisanie wcześniej zapisanych danych.",
+      "save-data-description": "Utwórz kopię zapasową kostek, czasów i ustawień w chmurze.",
+      "save-data-warning": "Kopia z danymi tego urządzenia zostanie przesłana i stanie się Twoją aktualną kopią. Poprzednie pozostają w historii.",
       "load-data-title": "Wczytaj dane",
-      "load-data-description": "Czy chcesz pobrać dane swojego konta z chmury?",
-      "load-data-warning": "Spowoduje to połączenie bieżących danych z zapisanymi.",
+      "load-data-description": "Przywróć dane z ostatniej kopii zapasowej w chmurze.",
+      "load-data-warning": "Podczas przywracania dane z chmury są łączone z Twoimi lokalnymi danymi. Nic nie jest zastępowane ani usuwane.",
       "manage-backups-title": "Zarządzaj kopiami zapasowymi",
       "manage-backups-description": "Przeglądaj i usuwaj kopie zapasowe przechowywane w chmurze.",
       "backups-tab": "Kopie zapasowe",
@@ -669,7 +669,11 @@
       "delete-app-data-title": "Usunąć wszystkie dane aplikacji?",
       "delete-app-data-subtitle": "Ta akcja trwale usunie wszystkie dane Twoich kostek i ułożeń i nie można jej cofnąć. Czy na pewno chcesz kontynuować?",
       "delete-app-data-success": "Wszystkie dane aplikacji zostały usunięte",
-      "cloud-sync": "Synchronizacja w chmurze"
+      "cloud-sync": "Synchronizacja w chmurze",
+      "save-data-action": "Utwórz kopię teraz",
+      "load-data-action": "Przywróć dane",
+      "save-data-toast": "Kopia zapisana",
+      "load-data-toast": "Dane wczytane"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

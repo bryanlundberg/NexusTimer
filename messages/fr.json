@@ -640,11 +640,11 @@
       "no-backup-yet": "Il n'y a pas encore de sauvegarde",
       "backup-tip": "Gardez vos données en sécurité en effectuant des sauvegardes régulières.",
       "save-data-title": "Sauvegarder les données",
-      "save-data-description": "Voulez-vous sauvegarder vos données sur le cloud ?",
-      "save-data-warning": "Cela écrasera les données précédemment enregistrées.",
+      "save-data-description": "Sauvegardez vos cubes, temps et réglages dans le cloud.",
+      "save-data-warning": "Une sauvegarde avec les données de cet appareil sera envoyée et deviendra votre sauvegarde actuelle. Les précédentes sont conservées dans votre historique.",
       "load-data-title": "Charger les données",
-      "load-data-description": "Voulez-vous télécharger vos données depuis le cloud ?",
-      "load-data-warning": "Cela fusionnera les données actuelles avec les données sauvegardées.",
+      "load-data-description": "Restaurez vos données depuis votre dernière sauvegarde cloud.",
+      "load-data-warning": "Lors de la restauration, les données du cloud sont combinées avec vos données locales. Rien n'est remplacé ni supprimé.",
       "reset-settings": "Réinitialiser les paramètres",
       "delete-app-data": "Supprimer les données de l'application",
       "reset-settings-success": "Les paramètres ont été réinitialisés",
@@ -666,7 +666,11 @@
       "backups-tab": "Sauvegardes",
       "manage-backups-description": "Consulte et supprime les sauvegardes stockées dans le cloud.",
       "manage-backups-title": "Gérer les sauvegardes",
-      "no-backups": "Tu n’as pas encore de sauvegarde."
+      "no-backups": "Tu n’as pas encore de sauvegarde.",
+      "save-data-action": "Sauvegarder maintenant",
+      "load-data-action": "Restaurer les données",
+      "save-data-toast": "Sauvegarde enregistrée",
+      "load-data-toast": "Données chargées"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

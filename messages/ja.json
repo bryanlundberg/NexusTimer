@@ -640,11 +640,11 @@
       "no-backup-yet": "バックアップがありません",
       "backup-tip": "定期的にバックアップしてデータを守りましょう。",
       "save-data-title": "データを保存",
-      "save-data-description": "クラウドに保存しますか？",
-      "save-data-warning": "以前のクラウドデータは上書きされます。",
+      "save-data-description": "キューブ、記録、設定をクラウドにバックアップします。",
+      "save-data-warning": "このデバイスのデータのバックアップがアップロードされ、現在のバックアップになります。以前のバックアップは履歴に保存されます。",
       "load-data-title": "データを読込",
-      "load-data-description": "クラウドから読み込みますか？",
-      "load-data-warning": "現在のデータとマージされます。",
+      "load-data-description": "最新のクラウドバックアップからデータを復元します。",
+      "load-data-warning": "復元時にクラウドのデータとローカルデータが統合されます。何も置き換えられたり削除されたりしません。",
       "reset-settings": "設定をリセット",
       "delete-app-data": "全データを削除",
       "reset-settings-success": "設定をデフォルトに戻しました",
@@ -666,7 +666,11 @@
       "backups-tab": "バックアップ",
       "manage-backups-description": "クラウドに保存されたバックアップを表示・削除します。",
       "manage-backups-title": "バックアップの管理",
-      "no-backups": "保存されたバックアップはまだありません。"
+      "no-backups": "保存されたバックアップはまだありません。",
+      "save-data-action": "今すぐバックアップ",
+      "load-data-action": "データを復元",
+      "save-data-toast": "バックアップを保存しました",
+      "load-data-toast": "データを読み込みました"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",

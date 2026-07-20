@@ -643,11 +643,11 @@
       "no-backup-yet": "Non c'è ancora alcun backup",
       "backup-tip": "Mantieni i tuoi dati al sicuro eseguendo backup regolari.",
       "save-data-title": "Salva dati",
-      "save-data-description": "Vuoi salvare i dati del tuo account sul cloud?",
-      "save-data-warning": "Questo sovrascriverà i dati salvati in precedenza.",
+      "save-data-description": "Esegui il backup di cubi, tempi e impostazioni nel cloud.",
+      "save-data-warning": "Verrà caricato un backup con i dati di questo dispositivo, che diventerà il tuo backup attuale. I precedenti restano nella cronologia.",
       "load-data-title": "Carica dati",
-      "load-data-description": "Vuoi scaricare i dati del tuo account dal cloud?",
-      "load-data-warning": "Questo unirà i dati attuali con quelli salvati.",
+      "load-data-description": "Ripristina i tuoi dati dall'ultimo backup nel cloud.",
+      "load-data-warning": "Durante il ripristino, i dati del cloud vengono combinati con i tuoi dati locali. Nulla viene sostituito o eliminato.",
       "manage-backups-title": "Gestisci backup",
       "manage-backups-description": "Visualizza e rimuovi i backup salvati sul cloud.",
       "backups-tab": "Backup",
@@ -669,7 +669,11 @@
       "delete-app-data-title": "Eliminare tutti i dati dell'app?",
       "delete-app-data-subtitle": "Questa azione eliminerà definitivamente tutti i dati dei tuoi cubi e solve e non può essere annullata. Sei sicuro di voler procedere?",
       "delete-app-data-success": "Tutti i dati dell'app sono stati eliminati",
-      "cloud-sync": "Sincronizzazione cloud"
+      "cloud-sync": "Sincronizzazione cloud",
+      "save-data-action": "Esegui backup ora",
+      "load-data-action": "Ripristina dati",
+      "save-data-toast": "Backup salvato",
+      "load-data-toast": "Dati caricati"
     },
     "TransferSolvesPage": {
       "no-source-title": "Did you record a solve with the wrong cube?",
