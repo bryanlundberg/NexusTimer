@@ -7,7 +7,7 @@ import { getCategoryOrder } from '@/shared/const/cube-categories'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 
-const GRID = 'grid-cols-[minmax(9rem,1.2fr)_6rem_6rem_minmax(6rem,1fr)_8.5rem_5rem_3.5rem_3.5rem_7rem]'
+const GRID = 'grid-cols-[minmax(9rem,1.2fr)_6rem_6rem_minmax(12rem,2.5fr)_8.5rem_5rem_3.5rem_3.5rem_7rem]'
 
 export { GRID }
 
