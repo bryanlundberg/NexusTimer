@@ -22,7 +22,7 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
       onClick={onToggle}
       aria-pressed={isSelected}
       className={cn(
-        'relative grow flex items-center justify-center font-medium text-center transition duration-200 rounded-md cursor-pointer w-full h-full select-none hover:ring-2 hover:ring-primary hover:scale-[1.02] pointer-coarse:active:scale-[0.98]',
+        'relative grow flex items-center justify-center font-medium text-center transition duration-200 rounded-md cursor-pointer w-full h-full select-none active:translate-y-0 active:scale-100 hover:ring-2 hover:ring-primary hover:scale-[1.02] pointer-coarse:active:scale-[0.98]',
         isSelected ? 'ring-2 ring-primary bg-primary/10' : 'bg-secondary text-secondary-foreground'
       )}
     >
