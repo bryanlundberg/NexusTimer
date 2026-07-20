@@ -32,11 +32,13 @@ export default function BackupsList() {
   }
 
   return (
-    <ul className="flex flex-col gap-2">
-      {backups.map((backup) => (
+    <ul className="px-1">
+      {backups.map((backup, i) => (
         <BackupListItem
           key={backup.id}
           backup={backup}
+          isLatest={i === 0}
+          isLast={i === backups.length - 1}
           isDeleting={deletingId === backup.id}
           isApplying={applyingId === backup.id}
           onDelete={() => deleteBackup(backup.id)}
