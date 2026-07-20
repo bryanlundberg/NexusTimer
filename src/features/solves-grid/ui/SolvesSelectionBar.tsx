@@ -1,5 +1,6 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { cn } from '@/shared/lib/utils'
 import { useTranslations } from 'next-intl'
 import { useQueryState } from 'nuqs'
 import { toast } from 'sonner'
@@ -30,8 +31,19 @@ export default function SolvesSelectionBar() {
   const { selectionMode, selectedIds, exit } = useSolvesSelection()
   const { deleteSelected, moveSelectedToHistory } = useSolvesBulkActions(tab)
   const [confirmOpen, setConfirmOpen] = useState(false)
+  const [shouldRender, setShouldRender] = useState(selectionMode)
+  const [visible, setVisible] = useState(false)
 
-  if (!selectionMode) return null
+  useEffect(() => {
+    if (selectionMode) {
+      setShouldRender(true)
+      const raf = requestAnimationFrame(() => requestAnimationFrame(() => setVisible(true)))
+      return () => cancelAnimationFrame(raf)
+    }
+    setVisible(false)
+  }, [selectionMode])
+
+  if (!shouldRender) return null
 
   const count = selectedIds.size
 
@@ -56,8 +68,18 @@ export default function SolvesSelectionBar() {
   }
 
   return (
-    <div className="absolute inset-x-0 bottom-0 z-20 px-3 pb-3">
-      <div className="animate-in slide-in-from-bottom-4 fade-in-0 mx-auto flex max-w-2xl items-center gap-2 rounded-xl bg-foreground p-2 text-background shadow-xl ring-1 ring-foreground/10 duration-300 ease-out">
+    <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 px-3 pb-3">
+      <div
+        onTransitionEnd={(e) => {
+          if (e.propertyName === 'translate' && !selectionMode) setShouldRender(false)
+        }}
+        className={cn(
+          'pointer-events-auto mx-auto flex max-w-2xl items-center gap-2 rounded-xl bg-foreground p-2 text-background shadow-xl ring-1 ring-foreground/10 transition-[translate,opacity]',
+          visible
+            ? 'translate-y-0 opacity-100 duration-400 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]'
+            : 'translate-y-[calc(100%+16px)] opacity-0 duration-200 ease-in'
+        )}
+      >
         <Button
           variant="ghost"
           size="icon"
