@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
-import { CloudUpload, Loader2, TriangleAlert } from 'lucide-react'
+import { CloudUpload, Info, Loader2 } from 'lucide-react'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
@@ -39,9 +39,9 @@ export default function AccountSavePage() {
           <p className="mt-2 text-sm text-muted-foreground">{t('SettingsPage.save-data-description')}</p>
         </div>
 
-        <div className="mt-6 flex items-start gap-3 rounded-xl border border-amber-500/20 bg-amber-500/5 p-3.5">
-          <TriangleAlert className="mt-0.5 size-4 shrink-0 text-amber-500" />
-          <p className="text-xs leading-relaxed text-amber-600 dark:text-amber-400">
+        <div className="mt-6 flex items-start gap-3 rounded-xl border border-sky-500/20 bg-sky-500/5 p-3.5">
+          <Info className="mt-0.5 size-4 shrink-0 text-sky-500" />
+          <p className="text-xs leading-relaxed text-sky-600 dark:text-sky-400">
             {t('SettingsPage.save-data-warning')}
           </p>
         </div>
