@@ -877,7 +877,7 @@
     "Presence": {
       "online": "Online",
       "away": "Away",
-      "busy": "In the zone",
+      "busy": "Concentration",
       "busy-desc": "Focused, notifications are silenced",
       "invisible": "Invisible",
       "invisible-desc": "You'll appear offline",

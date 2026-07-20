@@ -720,7 +720,7 @@
     "Presence": {
       "online": "En línea",
       "away": "Ausente",
-      "busy": "En modo concentración",
+      "busy": "Concentración",
       "busy-desc": "Concentrado, las notificaciones están silenciadas",
       "invisible": "Invisible",
       "invisible-desc": "Aparecerás como desconectado",
