@@ -13,7 +13,7 @@ export default function NavLinkCard({ href, title, description, className }: Nav
     <Link
       href={href}
       className={cn(
-        'group relative block overflow-hidden rounded-xl border border-border/40 bg-background p-5',
+        'group relative block overflow-hidden rounded-xl border border-border/40 bg-background p-5 transition hover:ring-2 hover:ring-primary',
         className
       )}
     >
