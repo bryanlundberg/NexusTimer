@@ -13,7 +13,7 @@ interface StatisticsMessageProps {
  */
 export default function StatisticsMessage({ title, description }: StatisticsMessageProps) {
   return (
-    <div className="flex grow flex-col items-center justify-center px-2 py-12 text-center">
+    <div className="flex grow flex-col items-center justify-center overflow-x-clip px-2 py-12 text-center">
       <div className="relative grid size-36 shrink-0 place-items-center" aria-hidden="true">
         <NexiGridBackdrop />
         <div className="absolute inset-7 rounded-full bg-primary/10 blur-2xl" />
