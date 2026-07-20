@@ -544,7 +544,7 @@
     "Presence": {
       "online": "Online",
       "away": "Tidak ada",
-      "busy": "Konsentrasi",
+      "busy": "Sedang fokus",
       "busy-desc": "Fokus, notifikasi dibisukan",
       "invisible": "Tak terlihat",
       "invisible-desc": "Anda akan tampak offline",

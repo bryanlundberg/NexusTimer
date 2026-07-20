@@ -544,7 +544,7 @@
     "Presence": {
       "online": "Online",
       "away": "Assente",
-      "busy": "Concentrazione",
+      "busy": "Concentrato",
       "busy-desc": "Concentrato, le notifiche sono silenziate",
       "invisible": "Invisibile",
       "invisible-desc": "Apparirai offline",

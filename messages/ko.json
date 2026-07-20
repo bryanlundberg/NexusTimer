@@ -541,7 +541,7 @@
     "Presence": {
       "online": "온라인",
       "away": "자리 비움",
-      "busy": "집중",
+      "busy": "집중 중",
       "busy-desc": "집중 중, 알림이 무음으로 설정됨",
       "invisible": "숨김",
       "invisible-desc": "오프라인으로 표시됩니다",

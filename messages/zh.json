@@ -541,7 +541,7 @@
     "Presence": {
       "online": "在线",
       "away": "离开",
-      "busy": "专注",
+      "busy": "专注中",
       "busy-desc": "专注中，通知已静音",
       "invisible": "隐身",
       "invisible-desc": "你将显示为离线",

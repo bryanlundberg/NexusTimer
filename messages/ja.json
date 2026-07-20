@@ -541,7 +541,7 @@
     "Presence": {
       "online": "オンライン",
       "away": "離席中",
-      "busy": "集中",
+      "busy": "集中中",
       "busy-desc": "集中中、通知はミュートされています",
       "invisible": "非表示",
       "invisible-desc": "オフラインとして表示されます",
