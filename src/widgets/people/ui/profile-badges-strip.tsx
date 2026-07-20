@@ -34,9 +34,14 @@ export function ProfileBadgesStrip({ badges }: Props) {
 
       <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-x-auto overflow-y-hidden scrollbar-hide sm:overflow-hidden">
         {visible.map((badge) => (
-          <div key={badge.id} className="scale-75 origin-center -mx-1 shrink-0">
+          <button
+            key={badge.id}
+            type="button"
+            onClick={() => set(PeopleTabs.ACHIEVEMENTS)}
+            className="scale-75 origin-center -mx-1 shrink-0 cursor-pointer"
+          >
             <AchievementItem achievement={badge} />
-          </div>
+          </button>
         ))}
         {overflow > 0 && <span className="text-xs font-semibold text-muted-foreground shrink-0">+{overflow}</span>}
       </div>
