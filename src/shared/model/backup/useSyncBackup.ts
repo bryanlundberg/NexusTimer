@@ -49,6 +49,9 @@ export const useSyncBackup = () => {
 
       if (!res.ok) throw new Error(`Upload failed with status ${res.status}`)
 
+      updateSetting('sync.lastSync', Date.now())
+      updateSetting('sync.totalSolves', 0)
+
       setIsUploading(false)
       setUploadProgress(0)
       toast.dismiss(UPLOAD_BACKUP_TOAST_ID)
