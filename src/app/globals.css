@@ -89,9 +89,35 @@
   }
 }
 
+@keyframes sidebar-glitch {
+  0% { text-shadow: none; }
+  15% { text-shadow: -3px 0 rgba(255, 45, 85, 0.9), 3px 0 rgba(0, 225, 255, 0.9); }
+  30% { text-shadow: 3px 0 rgba(255, 45, 85, 0.85), -3px 0 rgba(0, 225, 255, 0.85); }
+  45% { text-shadow: -2px 0 rgba(255, 45, 85, 0.8), 2px 0 rgba(0, 225, 255, 0.8); }
+  60% { text-shadow: 2px 0 rgba(255, 45, 85, 0.7), -2px 0 rgba(0, 225, 255, 0.7); }
+  80% { text-shadow: -1px 0 rgba(255, 45, 85, 0.5), 1px 0 rgba(0, 225, 255, 0.5); }
+  100% { text-shadow: none; }
+}
+
+.sidebar-glitch-text {
+  will-change: text-shadow;
+}
+
+.sidebar-glitch:hover .sidebar-glitch-text {
+  animation: sidebar-glitch 0.2s steps(2, end) 2;
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-glitch:hover .sidebar-glitch-text {
+    animation: none;
+  }
+}
+
 
 @theme inline {
   --font-display: var(--font-space-grotesk), 'Saira', ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-chakra), 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --color-cube-white: var(--cube-white);
   --color-cube-yellow: var(--cube-yellow);
   --color-cube-red: var(--cube-red);
@@ -139,6 +165,7 @@
   --radius: 0.5rem;
 
   --font-space-grotesk: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-chakra: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif;
   --font-saira: 'Saira', ui-sans-serif, system-ui, sans-serif;
   --font-mono-numeric: 'Source Code Pro', ui-monospace, SFMono-Regular, Menlo, monospace;
   --cube-white: oklch(0.97 0 0);
