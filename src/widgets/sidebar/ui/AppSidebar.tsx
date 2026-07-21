@@ -181,13 +181,20 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader className={'mt-2'}>
         <SidebarMenu>
           <SidebarMenuItem>
-            <Link href={'/app'} className={`flex items-center gap-2`} onClick={() => isMobile && setOpenMobile(false)}>
+            <Link
+              href={'/app'}
+              className={`sidebar-glitch flex items-center gap-2`}
+              onClick={() => isMobile && setOpenMobile(false)}
+            >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                 <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert size-8`} />
               </div>
               {open || openMobile ? (
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">Nexus Timer</span>
+                  <span className="sidebar-glitch-text truncate font-brand text-base font-bold tracking-tight">
+                    <span className="text-foreground">NEXUSTIMER</span>
+                    <span className="text-muted-foreground">.COM</span>
+                  </span>
                   <RotatingText
                     text={[
                       t('sidebar-rotating-text.text1'),
