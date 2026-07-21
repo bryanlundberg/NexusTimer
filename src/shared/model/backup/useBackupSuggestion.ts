@@ -6,7 +6,7 @@ import { useUser } from '@/entities/user/model/useUser'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 
-const BACKUP_INTERVAL_SOLVES = 25
+export const BACKUP_INTERVAL_SOLVES = 25
 
 export const useBackupSuggestion = () => {
   const { handleDownloadData, handleUploadBackup } = useSyncBackup()
