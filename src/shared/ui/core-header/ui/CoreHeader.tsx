@@ -18,6 +18,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { LogInIcon, SmilePlus } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import FeedbackModal from '@/features/feedback/ui/FeedbackModal'
+import SyncProgress from '@/shared/ui/core-header/ui/SyncProgress'
 import { cn } from '@/shared/lib/utils'
 
 export interface BreadcrumbEntry {
@@ -92,6 +93,7 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
 
           {session?.user ? (
             <>
+              <SyncProgress />
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
