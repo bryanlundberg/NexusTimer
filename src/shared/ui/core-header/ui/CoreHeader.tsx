@@ -12,7 +12,7 @@ import Link from 'next/link'
 import { NavUser } from '@/widgets/sidebar/ui/nav-user'
 import * as React from 'react'
 import { useSession } from 'next-auth/react'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { LogInIcon, SmilePlus } from 'lucide-react'
@@ -122,14 +122,10 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
           ) : (
             <Link
               href="/sign-in"
-              className={buttonVariants({
-                variant: 'default',
-                size: 'sm',
-                className: 'h-9 gap-1.5 px-3.5 text-sm font-medium'
-              })}
+              className="header-signin group relative inline-flex h-9 items-center gap-1.5 overflow-hidden rounded-lg px-4 text-sm font-medium text-primary-foreground shadow-sm transition-transform duration-200 hover:scale-[1.04] active:scale-95"
             >
-              <LogInIcon className="size-3.5" />
-              <span>{tAuth('sign-in')}</span>
+              <LogInIcon className="relative z-[2] size-4 transition-transform duration-200 group-hover:-translate-x-0.5 group-hover:rotate-[-8deg]" />
+              <span className="relative z-[2]">{tAuth('sign-in')}</span>
             </Link>
           )}
         </div>
