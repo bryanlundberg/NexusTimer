@@ -44,6 +44,51 @@
   }
 }
 
+@keyframes header-signin-beam {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.header-signin {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--primary);
+}
+
+.header-signin::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -60%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 250deg,
+    rgba(255, 255, 255, 0.8) 320deg,
+    rgba(255, 255, 255, 0.25) 345deg,
+    transparent 360deg
+  );
+  animation: header-signin-beam 4s linear infinite;
+  pointer-events: none;
+}
+
+.header-signin::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 1.5px;
+  border-radius: 6.5px;
+  background: var(--primary);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-signin::before {
+    animation: none;
+    display: none;
+  }
+}
+
 
 @theme inline {
   --font-display: var(--font-space-grotesk), 'Saira', ui-sans-serif, system-ui, sans-serif;
