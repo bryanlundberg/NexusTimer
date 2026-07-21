@@ -1,6 +1,5 @@
 'use client'
 import { SidebarTrigger } from '@/components/ui/sidebar'
-import { Separator } from '@/components/ui/separator'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -19,6 +18,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { LogInIcon, SmilePlus } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import FeedbackModal from '@/features/feedback/ui/FeedbackModal'
+import { cn } from '@/shared/lib/utils'
 
 export interface BreadcrumbEntry {
   label: string
@@ -46,24 +46,33 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
 
   return (
     <div className="w-full sticky top-0 z-50" data-testid="core-header">
-      <div className="h-12 border-b px-2 flex justify-between items-center gap-2 bg-background/60 backdrop-blur-md">
-        <div className="flex items-center gap-2 min-w-0">
-          <SidebarTrigger className="size-8 shrink-0" />
-          <Separator orientation="vertical" className="data-[orientation=vertical]:h-4" />
+      <div className="h-14 border-b px-3 flex justify-between items-center gap-2 bg-background/60 backdrop-blur-md">
+        <div className="flex items-center gap-3 min-w-0">
+          <SidebarTrigger className="size-9 rounded-lg border bg-muted/40 hover:bg-muted shrink-0 [&_svg]:size-5" />
           <Breadcrumb className="min-w-0">
-            <BreadcrumbList className="flex-nowrap">
+            <BreadcrumbList className="flex-nowrap gap-1.5 sm:gap-2">
               {breadcrumbs.map((crumb, index) => {
                 const isLast = index === breadcrumbs.length - 1
+                const isSingle = breadcrumbs.length === 1
                 return (
                   <React.Fragment key={`${crumb.label}-${index}`}>
                     <BreadcrumbItem className="min-w-0">
                       {isLast || !crumb.href ? (
-                        <BreadcrumbPage className="font-medium truncate min-w-0">{crumb.label}</BreadcrumbPage>
+                        <BreadcrumbPage
+                          className={cn(
+                            'leading-none truncate min-w-0',
+                            isSingle
+                              ? 'text-sm font-medium text-muted-foreground'
+                              : 'text-base font-medium text-foreground'
+                          )}
+                        >
+                          {crumb.label}
+                        </BreadcrumbPage>
                       ) : (
                         <BreadcrumbLink asChild>
                           <Link
                             href={crumb.href}
-                            className="font-medium hover:text-primary transition-colors truncate min-w-0"
+                            className="text-sm text-muted-foreground hover:text-primary transition-colors truncate min-w-0"
                           >
                             {crumb.label}
                           </Link>
@@ -78,7 +87,7 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
           </Breadcrumb>
         </div>
 
-        <div className="flex items-center gap-1 shrink-0">
+        <div className="flex items-center gap-2 shrink-0">
           {actions}
 
           {session?.user ? (
@@ -86,17 +95,20 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
-                    variant="ghost"
-                    size="icon"
-                    className="size-8"
+                    variant="outline"
+                    size="sm"
+                    className="h-9 gap-1.5 px-2.5 sm:px-3"
                     onClick={handleOpenFeedback}
                     aria-label={tHeader('give-feedback')}
                     data-testid="header-feedback-button"
                   >
                     <SmilePlus className="size-4" />
+                    <span className="hidden sm:inline text-sm font-medium">{tHeader('give-feedback')}</span>
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="bottom">{tHeader('give-feedback')}</TooltipContent>
+                <TooltipContent side="bottom" className="sm:hidden">
+                  {tHeader('give-feedback')}
+                </TooltipContent>
               </Tooltip>
               <NavUser
                 user={{
@@ -113,7 +125,7 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
               className={buttonVariants({
                 variant: 'default',
                 size: 'sm',
-                className: 'h-8 gap-1.5 px-3 text-xs font-medium'
+                className: 'h-9 gap-1.5 px-3.5 text-sm font-medium'
               })}
             >
               <LogInIcon className="size-3.5" />
