@@ -118,6 +118,18 @@
     "CoreHeader": {
       "give-feedback": "Dar Feedback"
     },
+    "SyncProgress": {
+      "tooltip": "Sincronización automática en {count} solves",
+      "tooltip-last": "El próximo solve creará un nuevo punto de restauración",
+      "modal-title": "Respaldo automático",
+      "modal-description": "Cada {threshold} solves, NexusTimer crea automáticamente un nuevo punto de restauración con tus cubos y solves.",
+      "modal-remaining": "{count} solves para el próximo punto de restauración",
+      "modal-remaining-last": "El próximo solve creará un nuevo punto de restauración",
+      "modal-shared": "Es la información que se comparte con tus otros dispositivos al iniciar sesión.",
+      "modal-save": "Guardar ahora",
+      "modal-backups": "Ver mis respaldos",
+      "modal-close": "Cerrar"
+    },
     "Feedback": {
       "title": "Dar Feedback",
       "description": "Como es tu experiencia con NexusTimer?",
