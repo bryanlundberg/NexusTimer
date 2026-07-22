@@ -28,7 +28,10 @@ export default function AchievementsTabContent({ badges }: Props) {
       ) : (
         <div className="grid grid-cols-[repeat(auto-fill,minmax(220px,1fr))] gap-3">
           {unlocked.map((badge) => (
-            <div key={badge.id} className="flex items-center gap-3 rounded-xl border border-border/40 bg-card/40 p-3">
+            <div
+              key={badge.id}
+              className="notch-bl-tr [--nblt:12px] flex items-center gap-3 border border-border/40 bg-card/40 p-3 transition-colors hover:border-primary"
+            >
               <div className="shrink-0">
                 <AchievementItem achievement={badge} disableTooltip />
               </div>
