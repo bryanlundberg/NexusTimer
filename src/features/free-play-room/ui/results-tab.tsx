@@ -86,9 +86,9 @@ export default function ResultsTab() {
       </motion.div>
 
       {/* Leaderboard */}
-      <div className="rounded-xl border border-border overflow-hidden">
+      <div>
         {/* Header row with round labels */}
-        <div className="px-4 py-2.5 border-b border-border flex items-center justify-between gap-4">
+        <div className="px-4 py-2.5 border-b border-border/60 flex items-center justify-between gap-4">
           <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{t('cubers')}</span>
           <div className="flex gap-4 shrink-0">
             {visibleRounds.map((r) => (
@@ -99,12 +99,12 @@ export default function ResultsTab() {
           </div>
         </div>
 
-        <ul className="divide-y divide-border">
+        <ul>
           {usersData.map((p, i) => {
             return (
               <motion.li
                 key={p.userId}
-                className="px-4 py-3"
+                className="px-4 py-3 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent transition-colors hover:bg-muted/20 hover:border-l-primary"
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.25, delay: 0.05 * i }}
