@@ -431,3 +431,42 @@
     box-shadow: 0 0 0 3px var(--primary);
   }
 }
+
+/* Notched (cut-corner) cards for the solves grid */
+.solve-notch {
+  --notch: 14px;
+  --notch-border: 1px;
+  --notch-border-color: var(--border);
+  --notch-fill: var(--background);
+  --notch-shape: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--notch)),
+    calc(100% - var(--notch)) 100%,
+    0 100%
+  );
+  position: relative;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--notch-border-color) !important;
+  clip-path: var(--notch-shape);
+}
+.solve-notch::before {
+  content: '';
+  position: absolute;
+  inset: var(--notch-border);
+  z-index: -1;
+  background-color: var(--notch-fill);
+  clip-path: var(--notch-shape);
+  pointer-events: none;
+  transition: background-color 200ms ease;
+}
+.solve-notch:hover {
+  --notch-border: 2px;
+  --notch-border-color: var(--primary);
+}
+.solve-notch[data-selected='true'] {
+  --notch-border: 2px;
+  --notch-border-color: var(--primary);
+  --notch-fill: color-mix(in oklab, var(--primary) 12%, var(--background));
+}
