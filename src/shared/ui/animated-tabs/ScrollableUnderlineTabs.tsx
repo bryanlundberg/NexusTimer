@@ -1,7 +1,6 @@
 'use client'
-import { Fragment, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { Fragment, ReactNode, ElementType, useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'motion/react'
-import type { LucideIcon } from 'lucide-react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { cn } from '@/shared/lib/utils'
@@ -10,7 +9,7 @@ import { INDICATOR_SPRING } from '@/shared/lib/motion'
 export interface ScrollableTabItem {
   value: string
   label: ReactNode
-  icon?: LucideIcon
+  icon?: ElementType
   disabled?: boolean
 }
 
