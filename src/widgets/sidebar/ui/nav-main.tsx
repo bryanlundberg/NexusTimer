@@ -75,18 +75,7 @@ export function NavMain({
       style={accent ? ({ ['--nav-accent']: accent } as React.CSSProperties) : undefined}
       className="group-data-[collapsible=icon]:mt-1 group-data-[collapsible=icon]:border-t group-data-[collapsible=icon]:border-sidebar-border/60 group-data-[collapsible=icon]:pt-2"
     >
-      {label && (
-        <SidebarGroupLabel>
-          {accent && (
-            <span
-              aria-hidden
-              className="mr-1.5 inline-block size-1.5 rounded-none"
-              style={{ backgroundColor: 'var(--nav-accent)' }}
-            />
-          )}
-          {label}
-        </SidebarGroupLabel>
-      )}
+      {label && <SidebarGroupLabel>{label}</SidebarGroupLabel>}
       <SidebarMenu>
         {items.map((item) => {
           const subActive = item.items?.some((s) => isPathActive(s.url)) ?? false
