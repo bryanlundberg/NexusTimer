@@ -37,6 +37,15 @@ export function CubeStatIcon(props: IconProps) {
   )
 }
 
+export function PersonalStatIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="12" cy="8" r="3.6" />
+      <path d="M5 20a7 7 0 0 1 14 0" />
+    </Svg>
+  )
+}
+
 export function SmartStatIcon(props: IconProps) {
   return (
     <Svg {...props}>
