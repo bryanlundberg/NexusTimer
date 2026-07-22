@@ -745,6 +745,48 @@
   --cat-fill: color-mix(in oklab, var(--primary) 25%, var(--background));
 }
 
+/* Notched rows for the cube selector list */
+.select-item-notch {
+  --si-notch: 12px;
+  --si-border: 0px;
+  --si-border-color: transparent;
+  --si-fill: transparent;
+  --si-shape: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--si-notch)),
+    calc(100% - var(--si-notch)) 100%,
+    0 100%
+  );
+  position: relative;
+  isolation: isolate;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--si-border-color) !important;
+  clip-path: var(--si-shape);
+}
+.select-item-notch::before {
+  content: '';
+  position: absolute;
+  inset: var(--si-border);
+  z-index: -1;
+  background-color: var(--si-fill);
+  clip-path: var(--si-shape);
+  pointer-events: none;
+  transition: background-color 150ms ease;
+}
+.select-item-notch:hover {
+  --si-fill: var(--muted);
+}
+.select-item-notch[data-selected='true'] {
+  --si-border: 1.5px;
+  --si-border-color: color-mix(in oklab, var(--primary) 55%, transparent);
+  --si-fill: color-mix(in oklab, var(--primary) 18%, var(--background));
+}
+.select-item-notch[data-selected='true']:hover {
+  --si-fill: color-mix(in oklab, var(--primary) 22%, var(--background));
+}
+
 /* Single cut on the bottom-left corner */
 .notch-bl {
   --nbl: 10px;
