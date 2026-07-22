@@ -51,15 +51,15 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
       onContextMenu={handleContextMenu}
       {...handlers}
       aria-pressed={selectionMode ? selected : undefined}
+      data-selected={selected ? 'true' : undefined}
       style={{ WebkitTouchCallout: 'none' }}
       className={cn(
-        'relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 rounded-md cursor-pointer p-2 sm:p-3 select-none active:translate-y-0 active:scale-100 hover:ring-2 hover:ring-primary',
-        selected && 'ring-2 ring-primary bg-primary/10'
+        'solve-notch relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 sm:p-3 select-none active:translate-y-0 active:scale-100'
       )}
     >
       {orderedSolves[index].bookmark && (
         <div
-          className="pointer-events-none absolute left-0 top-0 size-5 overflow-hidden rounded-tl-md"
+          className="pointer-events-none absolute left-0 top-0 size-5 overflow-hidden"
           data-testid={`bookmark-icon-${index}`}
         >
           <div className="absolute left-0 top-0 size-0 border-r-[20px] border-t-[20px] border-r-transparent border-t-yellow-500" />
@@ -70,7 +70,7 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
       {selectionMode ? (
         <div
           className={cn(
-            'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center rounded-full border transition-colors',
+            'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center rounded-[3px] border transition-colors',
             selected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40'
           )}
           data-testid={`solve-select-indicator-${index}`}
