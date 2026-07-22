@@ -45,7 +45,7 @@ export default function CompareUsersModal() {
           <Nexi state="idle" size={38} />
         </div>
         <h2 className="text-lg font-bold tracking-tight text-foreground">{t('title')}</h2>
-        <button onClick={closeOverlay} className="p-2 hover:bg-muted rounded-full transition-colors group">
+        <button onClick={closeOverlay} className="p-2 hover:bg-muted rounded-none transition-colors group">
           <XIcon className="w-5 h-5 text-muted-foreground group-hover:text-foreground" />
         </button>
       </header>
@@ -83,7 +83,7 @@ export default function CompareUsersModal() {
             >
               <div
                 className={
-                  'size-24 rounded-full border-4 border-dashed border-muted-foreground/30 flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300'
+                  'size-24 notch-bl-tr [--nblt:18px] border-4 border-dashed border-muted-foreground/30 flex items-center justify-center group-hover:border-primary/50 group-hover:bg-primary/5 transition-all duration-300'
                 }
               >
                 <PlusIcon
