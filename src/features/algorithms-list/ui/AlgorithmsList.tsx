@@ -82,7 +82,7 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
                 key={group}
                 variant={activeGroups.includes(group) ? 'default' : 'outline'}
                 onClick={() => handleChooseGroup(group)}
-                className="cursor-pointer transition-all hover:shadow-sm select-none text-[10px] sm:text-xs px-2 py-0.5 whitespace-normal break-all max-w-full"
+                className="badge-notch cursor-pointer transition-colors select-none text-[10px] sm:text-xs px-2 py-0.5 whitespace-normal break-all max-w-full"
               >
                 <span className="min-w-0 break-all">{group}</span>
                 <span className="ml-1 opacity-60 shrink-0">{groups[group].length}</span>
@@ -108,7 +108,7 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
       </div>
 
       {/* Algorithm rows */}
-      <div className="rounded-lg border bg-card/30 divide-y overflow-hidden">
+      <div className="algo-panel-notch divide-y divide-border/60 overflow-hidden">
         {displayedAlgs.map((item) => (
           <AlgorithmCard
             algorithm={item}
