@@ -30,6 +30,22 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
   if (!solve?.user) return null
 
   const rank = index + 1
+  const rankClass =
+    rank === 1
+      ? 'text-amber-400'
+      : rank === 2
+        ? 'text-zinc-300'
+        : rank === 3
+          ? 'text-amber-600'
+          : 'text-muted-foreground'
+  const rankBorderClass =
+    rank === 1
+      ? 'border-l-amber-400/80'
+      : rank === 2
+        ? 'border-l-zinc-300/80'
+        : rank === 3
+          ? 'border-l-amber-600/80'
+          : 'border-l-transparent'
   const hasReplay = Boolean(solve.replay?.moves?.length)
   const analysis = hasReplay ? tryAnalyzeSolution(solve.replay!.moves as ReplayMove[]) : null
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
@@ -41,11 +57,19 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
       variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
       className={cn(
-        `grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent transition-colors duration-150`,
-        hasReplay && 'hover:bg-muted/20 hover:border-l-primary cursor-pointer'
+        `grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 border-l-2 transition-colors duration-150`,
+        rankBorderClass,
+        hasReplay && 'hover:bg-muted/20 cursor-pointer',
+        hasReplay && rank > 3 && 'hover:border-l-primary'
       )}
     >
-      <span className="text-xs font-mono text-muted-foreground tabular-nums text-right select-none">
+      <span
+        className={cn(
+          'font-mono tabular-nums text-right select-none',
+          rankClass,
+          rank <= 3 ? 'text-sm font-bold' : 'text-xs'
+        )}
+      >
         {String(rank).padStart(2, '0')}
       </span>
 
@@ -53,7 +77,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
         <UserCell user={solve.user} />
       </div>
 
-      <CategoryBadge category={solve.puzzle} className="text-[10px] px-1.5 py-0 h-4" />
+      <CategoryBadge category={solve.puzzle} className="badge-notch text-[10px] px-1.5 py-0 h-4" />
 
       <span className="text-[10px] font-mono text-muted-foreground/70 tabular-nums">{tps ?? t('not-available')}</span>
 
