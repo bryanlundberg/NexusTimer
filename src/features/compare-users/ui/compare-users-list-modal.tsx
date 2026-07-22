@@ -26,7 +26,7 @@ export default function CompareUsersListModal() {
       <DialogHeader>
         <DialogTitle className="flex items-center gap-2">
           {t('title')}
-          <span className="ml-auto rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground tabular-nums">
+          <span className="badge-notch ml-auto bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground tabular-nums">
             {users.length}
           </span>
         </DialogTitle>
@@ -41,7 +41,7 @@ export default function CompareUsersListModal() {
           {users.map((user) => (
             <div
               key={user._id}
-              className="group flex items-center gap-3 rounded-xl border border-border/60 bg-muted/30 p-2.5 transition-colors hover:bg-muted/50"
+              className="group flex items-center gap-3 notch-bl [--nbl:12px] border border-border/60 bg-muted/30 p-2.5 transition-colors hover:bg-muted/50"
             >
               <Avatar className="size-10 shrink-0 ring-2 ring-background">
                 <AvatarImage className="object-cover" src={user.image} />
