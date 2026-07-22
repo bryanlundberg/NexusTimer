@@ -1,4 +1,3 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { IconButton } from '@/components/ui/shadcn-io/icon-button'
 import { Clock, Hash, Star } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
@@ -44,14 +43,11 @@ export function CubeCard({ cube }: CubeCardProps) {
   const isActive = cube.solves.session.length > 0
 
   return (
-    <Card
+    <div
       key={cube.id}
-      className={cn(
-        'relative overflow-hidden gap-2 bg-card/50 shadow-none transition-colors duration-200 hover:bg-card/80 hover:ring-2 hover:ring-primary',
-        isActive && 'border-primary/15',
-        cube.favorite &&
-          'border-amber-400/50 bg-gradient-to-br from-amber-400/25 via-amber-300/15 to-amber-400/10 ring-1 ring-amber-400/40 hover:ring-amber-400 hover:from-amber-400/30 dark:border-amber-400/40 dark:from-amber-400/15 dark:via-amber-300/[0.08] dark:to-transparent'
-      )}
+      data-active={isActive ? 'true' : undefined}
+      data-favorite={cube.favorite ? 'true' : undefined}
+      className={cn('cube-notch group relative flex flex-col gap-2 p-4 text-card-foreground')}
     >
       {cube.favorite && (
         <span
@@ -59,123 +55,122 @@ export function CubeCard({ cube }: CubeCardProps) {
           className="pointer-events-none absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-amber-400/0 via-amber-400 to-amber-400/0"
         />
       )}
-      <CardHeader className="pb-0">
-        <div className="flex justify-between items-start">
-          <div className="flex items-center gap-2 min-w-0 flex-1">
-            <CardTitle
-              className="text-base font-semibold cursor-pointer hover:text-primary break-words transition-colors"
-              onClick={handleRedirect}
-              data-testid={`cube-name-${cube.name}`}
-            >
-              {cube.name}
-            </CardTitle>
-            {isActive && (
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-              </span>
-            )}
-          </div>
-          <IconButton
-            data-testid={`favorite-cube-button-${cube.name}`}
-            icon={Star}
-            active={cube.favorite}
-            color={[251, 191, 36]}
-            onClick={handleFavorite}
-            size="sm"
-          />
-        </div>
-        <div className="flex items-center gap-2 mt-1">
-          <CategoryBadge category={cube.category} className="text-xs" />
-          {isActive ? (
-            <Badge variant="secondary" className="text-xs gap-1">
-              <PlayIcon className="h-3 w-3" />
-              {t('CubesPage.using')}
-            </Badge>
-          ) : (
-            <span className="text-xs text-muted-foreground">{t('CubesPage.idle')}</span>
+
+      {/* Header */}
+      <div className="flex justify-between items-start">
+        <div className="flex items-center gap-2 min-w-0 flex-1">
+          <h3
+            className="text-base font-semibold cursor-pointer hover:text-primary break-words transition-colors"
+            onClick={handleRedirect}
+            data-testid={`cube-name-${cube.name}`}
+          >
+            {cube.name}
+          </h3>
+          {isActive && (
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            </span>
           )}
         </div>
-      </CardHeader>
+        <IconButton
+          data-testid={`favorite-cube-button-${cube.name}`}
+          icon={Star}
+          active={cube.favorite}
+          color={[251, 191, 36]}
+          onClick={handleFavorite}
+          size="sm"
+        />
+      </div>
 
-      <CardContent className="pb-0">
-        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <Clock className="h-3.5 w-3.5" />
-            <span>{dayjs(cube.createdAt).locale(locale).format('L')}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Hash className="h-3.5 w-3.5" />
-            <span>
-              {cube.solves.session.length}/{cube.solves.all.length}
-              <span className="text-muted-foreground/70"> ({uniqueSolves})</span>
-            </span>
-          </div>
+      <div className="flex items-center gap-2">
+        <CategoryBadge category={cube.category} className="text-xs" />
+        {isActive ? (
+          <Badge variant="secondary" className="text-xs gap-1">
+            <PlayIcon className="h-3 w-3" />
+            {t('CubesPage.using')}
+          </Badge>
+        ) : (
+          <span className="text-xs text-muted-foreground">{t('CubesPage.idle')}</span>
+        )}
+      </div>
+
+      {/* Meta */}
+      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+        <div className="flex items-center gap-1.5">
+          <Clock className="h-3.5 w-3.5" />
+          <span>{dayjs(cube.createdAt).locale(locale).format('L')}</span>
         </div>
-      </CardContent>
-
-      <CardFooter className="pt-1">
-        <div className="flex w-full items-center justify-between gap-2 text-sm">
-          <Button
-            variant={'default'}
-            size={'sm'}
-            onClick={handleRedirect}
-            onMouseEnter={() => playRef.current?.startAnimation()}
-            onMouseLeave={() => playRef.current?.stopAnimation()}
-            data-testid={`utilize-cube-button-${cube.name}`}
-          >
-            <PlayerIcon ref={playRef} size={14} className="mr-1" />
-            {t('CubesPage.utilize')}
-          </Button>
-          <div className="flex items-center gap-1">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant={'ghost'}
-                    size={'icon'}
-                    className="h-8 w-8"
-                    onClick={handleEdit}
-                    onMouseEnter={() => gearRef.current?.startAnimation()}
-                    onMouseLeave={() => gearRef.current?.stopAnimation()}
-                    data-testid={`edit-cube-button-${cube.name}`}
-                  >
-                    <GearIcon ref={gearRef} size={16} />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>
-                    {t('CubesPage.edit')} {cube.name}
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    variant={'ghost'}
-                    size={'icon'}
-                    className="h-8 w-8 text-muted-foreground hover:text-destructive"
-                    onClick={handleDelete}
-                    onMouseEnter={() => trashRef.current?.startAnimation()}
-                    onMouseLeave={() => trashRef.current?.stopAnimation()}
-                    data-testid={`delete-cube-button-${cube.name}`}
-                  >
-                    <TrashIcon ref={trashRef} size={16} />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>
-                    {t('CubesPage.delete')} {cube.name}
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
+        <div className="flex items-center gap-1.5">
+          <Hash className="h-3.5 w-3.5" />
+          <span>
+            {cube.solves.session.length}/{cube.solves.all.length}
+            <span className="text-muted-foreground/70"> ({uniqueSolves})</span>
+          </span>
         </div>
-      </CardFooter>
+      </div>
+
+      {/* Footer */}
+      <div className="mt-auto flex w-full items-center justify-between gap-2 text-sm pt-1">
+        <Button
+          variant={'default'}
+          size={'sm'}
+          onClick={handleRedirect}
+          onMouseEnter={() => playRef.current?.startAnimation()}
+          onMouseLeave={() => playRef.current?.stopAnimation()}
+          data-testid={`utilize-cube-button-${cube.name}`}
+        >
+          <PlayerIcon ref={playRef} size={14} className="mr-1" />
+          {t('CubesPage.utilize')}
+        </Button>
+        <div className="flex items-center gap-1">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant={'ghost'}
+                  size={'icon'}
+                  className="h-8 w-8"
+                  onClick={handleEdit}
+                  onMouseEnter={() => gearRef.current?.startAnimation()}
+                  onMouseLeave={() => gearRef.current?.stopAnimation()}
+                  data-testid={`edit-cube-button-${cube.name}`}
+                >
+                  <GearIcon ref={gearRef} size={16} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>
+                  {t('CubesPage.edit')} {cube.name}
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant={'ghost'}
+                  size={'icon'}
+                  className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                  onClick={handleDelete}
+                  onMouseEnter={() => trashRef.current?.startAnimation()}
+                  onMouseLeave={() => trashRef.current?.stopAnimation()}
+                  data-testid={`delete-cube-button-${cube.name}`}
+                >
+                  <TrashIcon ref={trashRef} size={16} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>
+                  {t('CubesPage.delete')} {cube.name}
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      </div>
 
       <div
         className={cn(
@@ -185,6 +180,6 @@ export function CubeCard({ cube }: CubeCardProps) {
       >
         <Image src={src} alt={`${cube.category} icon`} width={140} height={140} unoptimized />
       </div>
-    </Card>
+    </div>
   )
 }
