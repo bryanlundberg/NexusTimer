@@ -96,7 +96,7 @@ export default function FreePlayPage() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.2 }}
-                  className="flex flex-col items-center justify-center py-16 px-6 rounded-xl border border-dashed border-muted-foreground/20"
+                  className="flex flex-col items-center justify-center py-16 px-6 notch-bl-tr [--nblt:16px] border border-dashed border-muted-foreground/20"
                 >
                   <Gamepad2 className="size-10 text-muted-foreground/30 mb-4" />
                   <h3 className="text-base font-semibold mb-1">{t('no-active-rooms')}</h3>
@@ -114,7 +114,7 @@ export default function FreePlayPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 0.25 }}
           >
-            <div className="rounded-xl border border-border p-5">
+            <div className="notch-br [--nbr:16px] border border-border p-5">
               <h3 className="text-sm font-semibold mb-4">{t('how-to-play.title')}</h3>
               <ol className="space-y-3 text-sm text-muted-foreground">
                 {(['step1', 'step2', 'step3'] as const).map((step, i) => (
