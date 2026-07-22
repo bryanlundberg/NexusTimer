@@ -34,7 +34,7 @@ export default function Segmented<T extends string>({
       role="tablist"
       aria-label={props['aria-label']}
       className={cn(
-        'inline-flex w-fit shrink-0 items-center gap-1 p-1 rounded-lg border border-border/60 bg-background/60',
+        'inline-flex w-fit shrink-0 items-center gap-1 p-1 rounded-none border border-border/60 bg-background/60',
         className
       )}
     >
@@ -48,14 +48,14 @@ export default function Segmented<T extends string>({
             aria-selected={active}
             onClick={() => onChange(option.value)}
             className={cn(
-              'relative flex shrink-0 items-center gap-2 px-2.5 py-1.5 rounded-md text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-solve)] cursor-pointer',
+              'relative flex shrink-0 items-center gap-2 px-2.5 py-1.5 rounded-none text-xs font-semibold transition-colors duration-[var(--dur-fast)] ease-[var(--ease-solve)] cursor-pointer',
               active ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
             )}
           >
             {active && (
               <motion.span
                 layoutId={layoutId}
-                className="absolute inset-0 rounded-md bg-primary/10 ring-1 ring-primary/30 shadow-sm"
+                className="absolute inset-0 rounded-none bg-primary/15 ring-1 ring-primary/40 shadow-sm"
                 transition={INDICATOR_SPRING}
               />
             )}
