@@ -28,7 +28,7 @@ export default function AlgorithmModal() {
     <DialogContent className="flex max-h-[80dvh] flex-col items-center gap-5 overflow-y-auto p-5 sm:max-w-sm">
       <div className="flex flex-col items-center gap-2">
         <DialogTitle className="text-lg font-semibold">{metadata.name}</DialogTitle>
-        <Badge variant="outline" className="text-xs">
+        <Badge variant="outline" className="badge-notch text-xs">
           {cube}
         </Badge>
       </div>
@@ -36,10 +36,8 @@ export default function AlgorithmModal() {
 
       <RealtimeReplayPlayer replay={replay} size={260} tempoScale={TEMPO_SCALE} />
 
-      <div className="w-full rounded-lg border bg-muted/20 p-3 sm:p-4 text-center">
-        <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider block mb-1.5">
-          Algorithm
-        </span>
+      <div className="notch-bl-tr [--nblt:14px] w-full border border-border bg-black p-3 sm:p-4 text-center text-white">
+        <span className="text-[10px] text-white/60 font-medium uppercase tracking-wider block mb-1.5">Algorithm</span>
         <code className="text-sm sm:text-base font-mono break-all">{alg}</code>
       </div>
     </DialogContent>
