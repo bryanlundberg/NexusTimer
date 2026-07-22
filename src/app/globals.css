@@ -573,3 +573,129 @@
   --notch-border-color: var(--primary);
   --notch-fill: color-mix(in oklab, var(--primary) 12%, var(--background));
 }
+
+/* Notched cards for the cubes dashboard, same clutch language as
+   the solves grid, tuned for larger cards and richer favorite/active states. */
+.cube-notch {
+  --cube-notch: 20px;
+  --cube-notch-border: 1px;
+  --cube-notch-border-color: var(--border);
+  --cube-notch-fill: color-mix(in oklab, var(--card) 50%, var(--background));
+  --cube-notch-shape: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--cube-notch)),
+    calc(100% - var(--cube-notch)) 100%,
+    0 100%
+  );
+  position: relative;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--cube-notch-border-color) !important;
+  clip-path: var(--cube-notch-shape);
+  transition: background-color 200ms ease;
+}
+.cube-notch::before {
+  content: '';
+  position: absolute;
+  inset: var(--cube-notch-border);
+  z-index: -1;
+  background-color: var(--cube-notch-fill);
+  clip-path: var(--cube-notch-shape);
+  pointer-events: none;
+  transition: background-color 200ms ease;
+}
+.cube-notch:hover {
+  --cube-notch-border: 2px;
+  --cube-notch-border-color: var(--primary);
+  --cube-notch-fill: color-mix(in oklab, var(--card) 80%, var(--background));
+}
+.cube-notch[data-active='true'] {
+  --cube-notch-border-color: color-mix(in oklab, var(--primary) 25%, var(--border));
+}
+.cube-notch[data-favorite='true'] {
+  --cube-notch-border-color: color-mix(in oklab, #fbbf24 45%, transparent);
+  --cube-notch-fill: color-mix(in oklab, #fbbf24 14%, var(--background));
+}
+.cube-notch[data-favorite='true']:hover {
+  --cube-notch-border: 2px;
+  --cube-notch-border-color: #fbbf24;
+  --cube-notch-fill: color-mix(in oklab, #fbbf24 20%, var(--background));
+}
+
+/* Notched alert boxes (edit / delete modals) — cut bottom-right corner with a
+   toned border. */
+.alert-notch {
+  --alert-notch: 14px;
+  --alert-notch-border: 1.5px;
+  --alert-notch-border-color: var(--border);
+  --alert-notch-fill: #000;
+  --alert-notch-shape: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--alert-notch)),
+    calc(100% - var(--alert-notch)) 100%,
+    0 100%
+  );
+  position: relative;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--alert-notch-border-color) !important;
+  clip-path: var(--alert-notch-shape);
+}
+.alert-notch::before {
+  content: '';
+  position: absolute;
+  inset: var(--alert-notch-border);
+  z-index: -1;
+  background-color: var(--alert-notch-fill);
+  clip-path: var(--alert-notch-shape);
+  pointer-events: none;
+}
+.alert-notch[data-tone='warning'] {
+  --alert-notch-border-color: color-mix(in oklab, #eab308 70%, transparent);
+}
+.alert-notch[data-tone='danger'] {
+  --alert-notch-border-color: color-mix(in oklab, #ef4444 70%, transparent);
+}
+
+/* Notched square badge for status icons, replaces the round background. */
+.icon-notch {
+  --icon-notch: 9px;
+  --icon-notch-border: 1px;
+  --icon-notch-border-color: var(--border);
+  --icon-notch-fill: color-mix(in oklab, var(--foreground) 8%, var(--background));
+  --icon-notch-shape: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--icon-notch)),
+    calc(100% - var(--icon-notch)) 100%,
+    0 100%
+  );
+  position: relative;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--icon-notch-border-color) !important;
+  clip-path: var(--icon-notch-shape);
+}
+.icon-notch::before {
+  content: '';
+  position: absolute;
+  inset: var(--icon-notch-border);
+  z-index: -1;
+  background-color: var(--icon-notch-fill);
+  clip-path: var(--icon-notch-shape);
+  pointer-events: none;
+}
+.icon-notch[data-tone='warning'] {
+  --icon-notch-border-color: color-mix(in oklab, #eab308 55%, transparent);
+  --icon-notch-fill: color-mix(in oklab, #eab308 12%, var(--background));
+}
+.icon-notch[data-tone='danger'] {
+  --icon-notch-border-color: color-mix(in oklab, #ef4444 55%, transparent);
+  --icon-notch-fill: color-mix(in oklab, #ef4444 12%, var(--background));
+}
+.icon-notch[data-tone='success'] {
+  --icon-notch-border-color: color-mix(in oklab, #22c55e 55%, transparent);
+  --icon-notch-fill: color-mix(in oklab, #22c55e 12%, var(--background));
+}
