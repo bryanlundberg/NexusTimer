@@ -39,23 +39,23 @@ export default function MainCubeSelector() {
     <div className="flex-1 min-w-0">
       <Button
         variant={'outline'}
-        className={'w-full justify-between h-auto min-h-9 items-center whitespace-normal text-left'}
+        className={'w-full justify-between h-9 items-center text-left'}
         onClick={handleOpenSelector}
         data-tour="onboarding-cube-selector"
       >
-        <div className="flex items-start gap-2 min-w-0">
+        <div className="flex items-center gap-2 min-w-0">
           {selectedCubeData ? (
             <Image
               src={selectedCubeData.src}
               alt={selectedCubeData.name}
               width={20}
               height={20}
-              className="invert dark:invert-0 shrink-0 mt-0.5"
+              className="invert dark:invert-0 shrink-0"
             />
           ) : (
-            <Box className="size-5 shrink-0 text-muted-foreground mt-0.5" />
+            <Box className="size-5 shrink-0 text-muted-foreground" />
           )}
-          <span className={'mr-2 min-w-0 flex-1 break-words whitespace-normal'}>
+          <span className={'mr-2 min-w-0 flex-1 truncate'}>
             {selectedCube ? selectedCube.name : t('HomePage.select-cube')}
           </span>
         </div>
