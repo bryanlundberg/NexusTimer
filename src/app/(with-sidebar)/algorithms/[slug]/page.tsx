@@ -173,7 +173,7 @@ export default async function AlgorithmsMethodPage({ params }: Props) {
 
       <PageBody
         variant="hero"
-        className="px-3 pb-3 sm:px-4 sm:pb-4 md:px-8 md:pb-8 lg:px-12 lg:pb-12 max-w-3xl mx-auto"
+        className="px-3 pb-3 sm:px-4 sm:pb-4 md:px-8 md:pb-8 lg:px-12 lg:pb-12 max-w-4xl mx-auto"
       >
         <Information
           title={`${collection.title} - ${t('title')}`}
