@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { CloudUpload, RefreshCw, MonitorSmartphone } from 'lucide-react'
+import { CloudUpload } from 'lucide-react'
 import { DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
@@ -22,13 +22,8 @@ export default function SyncInfoModal() {
   return (
     <DialogContent className="sm:max-w-md">
       <DialogHeader>
-        <div className="mx-auto flex size-11 items-center justify-center rounded-full bg-primary/10 text-primary">
-          <RefreshCw className="size-5" />
-        </div>
         <DialogTitle className="text-center">{t('modal-title')}</DialogTitle>
-        <DialogDescription className="text-center">
-          {t('modal-description', { threshold: BACKUP_INTERVAL_SOLVES })}
-        </DialogDescription>
+        <DialogDescription className="text-center">{t('modal-description')}</DialogDescription>
       </DialogHeader>
 
       <div className="space-y-2 pt-2">
@@ -36,11 +31,6 @@ export default function SyncInfoModal() {
         <p className="text-center text-sm font-medium text-muted-foreground">
           {isLast ? t('modal-remaining-last') : t('modal-remaining', { count: remaining })}
         </p>
-      </div>
-
-      <div className="mt-2 flex items-start gap-3 rounded-xl border bg-muted/40 p-3.5">
-        <MonitorSmartphone className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
-        <p className="text-xs leading-relaxed text-muted-foreground">{t('modal-shared')}</p>
       </div>
 
       <DialogFooter className="gap-2 sm:justify-between">
