@@ -26,7 +26,7 @@ export const defaultSettings: Settings = {
   },
   preferences: {
     defaultCube: '',
-    colorTheme: 'slate'
+    colorTheme: 'teal'
   },
   sounds: {
     newPersonalBest: true,
