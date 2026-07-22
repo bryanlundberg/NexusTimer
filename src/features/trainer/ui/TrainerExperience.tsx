@@ -262,7 +262,7 @@ export default function TrainerExperience() {
               aria-label={t('methodStats')}
               title={t('methodStats')}
               className={cn(
-                'ms-auto inline-flex items-center gap-2 h-9 px-3.5 rounded-lg text-sm font-medium text-white',
+                'ms-auto inline-flex items-center gap-2 h-9 px-3.5 rounded-none text-sm font-medium text-white',
                 'shadow-sm transition-all hover:opacity-90 hover:shadow-md active:scale-[0.98]',
                 contrast.bg
               )}
@@ -311,7 +311,7 @@ export default function TrainerExperience() {
                 aria-label={t('smart.smartCube')}
                 title={t('smart.smartCube')}
                 className={cn(
-                  'inline-flex items-center gap-1.5 h-9 px-3 rounded-lg text-sm font-medium border transition-colors shrink-0',
+                  'btn-notch inline-flex items-center gap-1.5 h-9 px-3 text-sm font-medium border transition-colors shrink-0',
                   smartMode
                     ? 'bg-primary text-primary-foreground border-primary'
                     : 'bg-transparent text-muted-foreground hover:text-foreground'
