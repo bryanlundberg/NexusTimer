@@ -141,7 +141,7 @@ export default function QuickActions({
           data-testid="quick-action-buttons"
         >
           {/* Penalty segmented control */}
-          <div className="inline-flex items-center rounded-lg border overflow-hidden text-xs font-medium">
+          <div className="inline-flex items-center rounded-none border overflow-hidden text-xs font-medium">
             <button
               type="button"
               onPointerDown={() => {
