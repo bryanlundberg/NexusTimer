@@ -271,9 +271,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <button
             type="button"
             onClick={install}
-            className="flex items-center gap-2 rounded-md border bg-background/60 px-3 py-2 text-xs font-medium cursor-pointer hover:bg-accent transition-colors"
+            className="notch-bl-tr [--nblt:9px] group flex items-center gap-2 border bg-background/60 px-3 py-2 text-xs font-medium cursor-pointer transition-colors hover:border-primary hover:bg-accent"
           >
-            <MonitorDown className="size-4 text-primary" />
+            <MonitorDown className="size-4 text-primary transition-transform group-hover:translate-y-0.5" />
             <span>{t('NavMain.install-app')}</span>
           </button>
         )}
