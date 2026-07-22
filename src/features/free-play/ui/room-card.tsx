@@ -30,14 +30,14 @@ export default function RoomCard({ room, onJoinPrivate }: RoomCardProps) {
   const isPrivate = Boolean(room.passwordHash)
 
   const cardContent = (
-    <div className="rounded-xl border border-border p-4 transition-colors duration-200 hover:border-foreground/20 h-full flex flex-col gap-3">
+    <div className="notch-bl-tr [--nblt:12px] border border-border p-4 transition-colors duration-200 hover:border-primary h-full flex flex-col gap-3">
       {/* Header row */}
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-1.5 min-w-0">
           {isPrivate && <Lock className="size-3 text-muted-foreground shrink-0" />}
           <h3 className="text-sm font-semibold truncate">{room.name}</h3>
         </div>
-        <span className="flex-shrink-0 rounded-md bg-muted px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+        <span className="badge-notch flex-shrink-0 bg-muted px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
           {room.event}
         </span>
       </div>
