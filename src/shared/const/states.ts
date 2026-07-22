@@ -19,6 +19,10 @@ export const STATES = {
     ORDER: {
       KEY: 'order',
       DEFAULT_VALUE: Order.DESC
+    },
+    FILTER: {
+      KEY: 'filter',
+      DEFAULT_VALUE: ''
     }
   },
   STATISTICS_PAGE: {
