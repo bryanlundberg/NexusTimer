@@ -139,7 +139,7 @@ export default function SelectCollection() {
                   <span className="max-w-24 truncate">{filterLabel}</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="z-[60] max-h-72 min-w-44">
+              <DropdownMenuContent align="end" className="z-[60] min-w-44">
                 <DropdownMenuItem onClick={() => setFilter('all')}>
                   <span className="size-2 shrink-0 rounded-full bg-muted-foreground" />
                   <span className="flex-1">{t('SolvesPage.all')}</span>
