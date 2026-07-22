@@ -31,7 +31,7 @@ export default function DialogMoveHistorial() {
 
   return (
     <>
-      <DialogContent className="max-w-96 rounded-md">
+      <DialogContent className="max-w-96">
         <DialogHeader>
           <DialogTitle>{t('SolvesPage.dialogs.move-to-history')}</DialogTitle>
           <DialogDescription>{t('SolvesPage.dialogs.move-to-history-para')}</DialogDescription>
