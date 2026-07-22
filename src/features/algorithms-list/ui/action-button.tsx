@@ -14,7 +14,7 @@ export default function ActionButton({ icon: Icon, label, onClick, active }: Act
     <Button
       variant="ghost"
       size="icon"
-      className={cn('size-7', active ? 'text-primary' : 'text-muted-foreground hover:text-foreground')}
+      className={cn('btn-notch size-7', active ? 'text-primary' : 'text-muted-foreground hover:text-foreground')}
       onClick={(e) => {
         e.stopPropagation()
         onClick()
