@@ -17,8 +17,8 @@ export default function StatisticsChartRow({ row, columns, isLoading, activeGrou
     <div
       className={cn(
         ROW_GRID,
-        'group rounded-xl px-1 transition-colors hover:bg-muted/40',
-        row.highlight && 'bg-primary/[0.04]'
+        'group rounded-none px-1 transition-colors hover:bg-primary/5 hover:shadow-[inset_2px_0_0_var(--primary)]',
+        row.highlight && 'bg-primary/[0.06] shadow-[inset_2px_0_0_var(--primary)]'
       )}
     >
       {/* Metric label */}
