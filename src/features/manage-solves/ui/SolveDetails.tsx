@@ -56,7 +56,7 @@ export default function SolveDetails() {
 
   return (
     <DialogContent
-      showCloseButton={true}
+      showCloseButton={false}
       className="gap-0 p-0 overflow-hidden max-h-[90dvh] sm:max-w-md flex flex-col"
       data-testid="solve-details-dialog-content"
       onInteractOutside={preventNestedDismiss}
@@ -69,7 +69,7 @@ export default function SolveDetails() {
               {solve?.dnf ? 'DNF' : formatTime(totalMs)}
               {solve?.plus2 && !solve?.dnf && <span className="text-destructive text-base align-top">+</span>}
             </DialogTitle>
-            <Badge variant="secondary" className="text-[10px]">
+            <Badge variant="secondary" className="badge-notch text-[10px]">
               {selectedCube?.category || t('solve-details.unknown-category')}
             </Badge>
           </div>
@@ -90,19 +90,19 @@ export default function SolveDetails() {
         {analysis && (
           <div className="px-4 pb-3 sm:px-5 flex flex-col gap-3">
             <div className="grid grid-cols-3 gap-2">
-              <div className="flex flex-col items-center gap-1 rounded-lg bg-muted/40 py-2.5">
+              <div className="notch-bl [--nbl:10px] flex flex-col items-center gap-1 bg-muted/40 py-2.5">
                 <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
                   <RotateCw className="size-3" /> Moves
                 </span>
                 <span className="font-mono text-sm font-semibold tabular-nums">{moveCount ?? '—'}</span>
               </div>
-              <div className="flex flex-col items-center gap-1 rounded-lg bg-muted/40 py-2.5">
+              <div className="rounded-none flex flex-col items-center gap-1 bg-muted/40 py-2.5">
                 <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
                   <Zap className="size-3" /> TPS
                 </span>
                 <span className="font-mono text-sm font-semibold tabular-nums">{tps ?? '—'}</span>
               </div>
-              <div className="flex flex-col items-center gap-1 rounded-lg bg-muted/40 py-2.5">
+              <div className="notch-br [--nbr:8px] flex flex-col items-center gap-1 bg-muted/40 py-2.5">
                 <span className="flex items-center gap-1 text-[10px] text-muted-foreground">
                   <Layers className="size-3" /> Method
                 </span>
@@ -123,13 +123,13 @@ export default function SolveDetails() {
               type="button"
               aria-label={t('tooltips.copy')}
               onClick={handleCopyScramble}
-              className="absolute right-0 top-0 rounded-md border p-1 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              className="absolute right-0 top-0 rounded-none border p-1 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
             >
               <CopyIcon className="size-3.5" />
             </button>
           </div>
-          <div className="flex items-center justify-center gap-2">
-            <div className="rounded-md bg-muted/40 p-1.5">
+          <div className="flex flex-col items-center gap-2.5">
+            <div className="notch-bl-tr [--nblt:12px] bg-muted/40 p-2">
               <ScrambleDisplay
                 show={true}
                 scramble={solve?.scramble || ''}
@@ -137,20 +137,21 @@ export default function SolveDetails() {
                 className={cn(
                   'flex items-center justify-center',
                   visualization === '2D'
-                    ? 'w-20 h-16 sm:w-28 sm:h-20 md:w-32 md:h-24'
-                    : 'w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24'
+                    ? 'w-28 h-20 sm:w-32 sm:h-24 md:w-36 md:h-28'
+                    : 'w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28'
                 )}
                 visualization={visualization}
               />
             </div>
-            <div className="flex flex-col rounded-md border overflow-hidden text-[10px] font-medium">
-              {(['2D', '3D'] as const).map((v) => (
+            <div className="inline-flex rounded-none border overflow-hidden text-[10px] font-medium">
+              {(['2D', '3D'] as const).map((v, i) => (
                 <button
                   key={v}
                   type="button"
                   onClick={() => setVisualization(v)}
                   className={cn(
-                    'px-2 py-1.5 transition-colors',
+                    'px-4 py-1 transition-colors',
+                    i > 0 && 'border-l',
                     visualization === v ? 'bg-primary/15 text-primary' : 'text-muted-foreground hover:bg-muted'
                   )}
                 >
@@ -163,7 +164,7 @@ export default function SolveDetails() {
       </div>
 
       {/* Actions - compact bottom bar */}
-      <div className="px-4 py-2.5 border-t shrink-0 sm:px-5">
+      <div className="px-4 py-2.5 shrink-0 sm:px-5">
         {solve && <QuickActions solve={solve} variant="modal" onDeleteSolve={() => setLastSolve(null)} />}
       </div>
     </DialogContent>
