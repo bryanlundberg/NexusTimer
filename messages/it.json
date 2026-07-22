@@ -155,7 +155,7 @@
       "tooltip": "Auto-sync in {count} solves",
       "tooltip-last": "Your next solve will create a new restore point",
       "modal-title": "Automatic backup",
-      "modal-description": "Every {threshold} solves, NexusTimer automatically creates a new restore point with your cubes and solves.",
+      "modal-description": "NexusTimer automatically creates a new restore point with your cubes and solves.",
       "modal-remaining": "{count} solves left until the next restore point",
       "modal-remaining-last": "Your next solve will create a new restore point",
       "modal-shared": "This is the information shared with your other devices when you sign in.",
