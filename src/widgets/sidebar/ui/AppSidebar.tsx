@@ -183,7 +183,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className={`sidebar-glitch flex items-center gap-2`}
               onClick={() => isMobile && setOpenMobile(false)}
             >
-              <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+              <div className="flex aspect-square size-8 items-center justify-center notch-tl-br [--ntlbr:8px] bg-sidebar-primary text-sidebar-primary-foreground">
                 <Image src={'/logo.png'} alt={'logo'} width={32} height={32} className={`p-1.5 invert size-8`} />
               </div>
               {open || openMobile ? (
