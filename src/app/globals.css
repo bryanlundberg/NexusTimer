@@ -745,6 +745,13 @@
   --cat-fill: color-mix(in oklab, var(--primary) 25%, var(--background));
 }
 
+/* Single cut on the bottom-left corner */
+.notch-bl {
+  --nbl: 10px;
+  border-radius: 0 !important;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, var(--nbl) 100%, 0 calc(100% - var(--nbl)));
+}
+
 .legend-notch {
   --lg-notch: 7px;
   --lg-border: 1px;
