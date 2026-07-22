@@ -26,13 +26,13 @@ export default async function SignInPage() {
           <p className="text-sm text-muted-foreground">{t('sign-in-subtitle')}</p>
         </div>
 
-        <div className="w-full rounded-xl border bg-background/80 backdrop-blur-sm p-6 shadow-sm flex flex-col gap-5">
+        <div className="w-full notch-bl-tr [--nblt:16px] border bg-background/80 backdrop-blur-sm p-6 shadow-sm flex flex-col gap-5">
           <SignInForm />
           <AuthDivider label={t('or-continue-with')} />
           <OAuthProviders />
         </div>
 
-        <div className="w-full flex items-center justify-center gap-2 rounded-xl border border-primary/30 bg-primary/5 px-4 py-3 text-sm">
+        <div className="w-full flex items-center justify-center gap-2 notch-bl-tr [--nblt:10px] border border-primary/30 bg-primary/5 px-4 py-3 text-sm">
           <span className="text-muted-foreground">{t('no-account')}</span>
           <Link
             href="/sign-up"
