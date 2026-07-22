@@ -21,7 +21,6 @@ import {
 } from '@/components/ui/dialog'
 import { createCubeCollection } from '@/features/manage-cubes/api/createCubeCollection'
 import { useEffect } from 'react'
-import { Check } from 'lucide-react'
 import { Nexi } from '@/shared/ui/nexi'
 import { ProductSearchInput } from '@/features/search/ui/ProductSearchInput'
 
@@ -123,22 +122,15 @@ export default function CreateCollectionForm() {
                     type="button"
                     key={e.name}
                     data-testid={'checkbox-category-' + e.name}
+                    data-selected={selected ? 'true' : undefined}
                     aria-pressed={selected}
                     aria-label={e.name}
                     title={e.name}
                     onClick={() => setValue('category', e.name)}
                     className={cn(
-                      'group focus-visible:ring-ring focus-visible:ring-offset-background relative flex min-w-0 flex-col items-center gap-1 border-0 p-1.5 transition-colors duration-150 focus-visible:ring-1 focus-visible:ring-offset-2 focus-visible:outline-none sm:gap-1.5 sm:p-2',
-                      selected
-                        ? 'border-primary bg-primary/5 ring-1 ring-primary'
-                        : 'border-border hover:border-primary/40 hover:bg-accent'
+                      'category-notch group focus-visible:outline-none relative flex min-w-0 flex-col items-center gap-1 p-1.5 sm:gap-1.5 sm:p-2'
                     )}
                   >
-                    {selected && (
-                      <span className="bg-primary text-primary-foreground absolute right-0 top-0 flex size-4 items-center justify-center rounded-none">
-                        <Check className="size-3" />
-                      </span>
-                    )}
                     <Image
                       priority
                       unoptimized
@@ -147,7 +139,10 @@ export default function CreateCollectionForm() {
                       width={56}
                       height={56}
                       draggable={false}
-                      className="size-9 transition-transform duration-150 motion-reduce:transform-none sm:size-12"
+                      className={cn(
+                        'size-9 transition-transform duration-150 motion-reduce:transform-none sm:size-12',
+                        selected ? 'scale-105' : 'group-hover:scale-105'
+                      )}
                     />
                     <span
                       className={cn(
