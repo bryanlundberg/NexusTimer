@@ -461,6 +461,43 @@
   pointer-events: none;
 }
 
+.field-notch {
+  --f-cut: 9px;
+  --f-shape: polygon(
+    0 0,
+    calc(100% - var(--f-cut)) 0,
+    100% var(--f-cut),
+    100% 100%,
+    var(--f-cut) 100%,
+    0 calc(100% - var(--f-cut))
+  );
+  --f-border: var(--input);
+  --f-fill: var(--background);
+  position: relative;
+  isolation: isolate;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-color: var(--f-border) !important;
+  clip-path: var(--f-shape);
+}
+.field-notch::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background-color: var(--f-fill);
+  clip-path: var(--f-shape);
+  pointer-events: none;
+}
+.field-notch:focus-within {
+  --f-border: var(--primary);
+}
+.field-notch:has([aria-invalid='true']),
+.field-notch[aria-invalid='true'] {
+  --f-border: var(--destructive);
+}
+
 /* Angular buttons: top-left & bottom-right sharp, top-right & bottom-left cut */
 .btn-notch {
   --btn-cut: 9px;
