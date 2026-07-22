@@ -20,7 +20,7 @@ export default function SolvesTabSwitcher() {
   ]
 
   return (
-    <Tabs value={tabMode} onValueChange={(value) => setTabMode(value as SolveTab)} className="w-full sm:w-auto">
+    <Tabs value={tabMode} onValueChange={(value) => setTabMode(value as SolveTab)} className="w-auto">
       <ScrollableUnderlineTabs items={tabs} activeValue={tabMode} layoutId="solves-tab-indicator" />
     </Tabs>
   )
