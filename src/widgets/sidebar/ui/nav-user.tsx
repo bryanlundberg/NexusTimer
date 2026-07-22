@@ -109,8 +109,8 @@ export function NavUser({
                 aria-pressed={status === value}
                 onClick={() => setStatus(value)}
                 className={cn(
-                  'flex size-7 items-center justify-center rounded-md transition-colors hover:bg-accent',
-                  status === value && 'bg-background shadow-sm ring-1 ring-border'
+                  'flex size-7 items-center justify-center rounded-md transition-colors',
+                  status === value ? 'bg-background shadow-sm ring-1 ring-border' : 'hover:bg-accent'
                 )}
               >
                 <PresenceDot state={display} className="size-3" />
