@@ -47,7 +47,10 @@ export default function AlgorithmsTabContent({ methods }: { methods?: LearnedMet
           </div>
           <div className="flex flex-wrap gap-2.5">
             {selected.cases.map((item) => (
-              <div key={item.id} className="rounded-xl border border-border/70 bg-background p-2">
+              <div
+                key={item.id}
+                className="notch-tl-br [--ntlbr:10px] border border-border/70 bg-background p-2 transition-colors hover:border-primary"
+              >
                 <PeopleCaseVisual set={selected.set} item={item} />
               </div>
             ))}
