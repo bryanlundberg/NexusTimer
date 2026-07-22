@@ -50,7 +50,7 @@ export const GROUP_INNER_GRID = 'grid grid-cols-2'
 /**
  * Soft rounded background for a group block, with a dimmed opacity when inactive.
  */
-const GROUP_BLOCK_BASE = 'rounded-xl bg-muted/70 dark:bg-muted/25'
+const GROUP_BLOCK_BASE = 'rounded-sm bg-muted/70 dark:bg-muted/25'
 
 export function groupBlockClass(group: ColumnGroup, activeGroup: ColumnGroup): string {
   return group === activeGroup ? GROUP_BLOCK_BASE : `${GROUP_BLOCK_BASE} opacity-35`
