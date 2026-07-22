@@ -787,11 +787,108 @@
   --si-fill: color-mix(in oklab, var(--primary) 22%, var(--background));
 }
 
+/* Algorithm method cards */
+.algo-card-notch {
+  --ac-notch: 12px;
+  --ac-border: 1px;
+  --ac-border-color: var(--border);
+  --ac-fill: color-mix(in oklab, var(--card) 55%, var(--background));
+  --ac-shape: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--ac-notch)),
+    calc(100% - var(--ac-notch)) 100%,
+    0 100%
+  );
+  position: relative;
+  isolation: isolate;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--ac-border-color) !important;
+  clip-path: var(--ac-shape);
+  transition:
+    background-color 200ms ease,
+    filter 200ms ease;
+}
+.algo-card-notch::before {
+  content: '';
+  position: absolute;
+  inset: var(--ac-border);
+  z-index: -1;
+  background-color: var(--ac-fill);
+  clip-path: var(--ac-shape);
+  pointer-events: none;
+  transition: background-color 200ms ease;
+}
+.algo-card-notch:hover,
+.group:hover .algo-card-notch {
+  --ac-border: 2px;
+  --ac-border-color: var(--primary);
+  --ac-fill: color-mix(in oklab, var(--primary) 9%, var(--background));
+  filter: drop-shadow(0 0 12px color-mix(in oklab, var(--primary) 40%, transparent));
+}
+
+/* Algorithm list panel — cut bottom-right corner with a traced border. */
+.algo-panel-notch {
+  --ap-notch: 14px;
+  --ap-border: 1px;
+  --ap-border-color: var(--border);
+  --ap-fill: color-mix(in oklab, var(--card) 30%, var(--background));
+  --ap-shape: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--ap-notch)),
+    calc(100% - var(--ap-notch)) 100%,
+    0 100%
+  );
+  position: relative;
+  isolation: isolate;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--ap-border-color) !important;
+  clip-path: var(--ap-shape);
+}
+.algo-panel-notch::before {
+  content: '';
+  position: absolute;
+  inset: var(--ap-border);
+  z-index: -1;
+  background-color: var(--ap-fill);
+  clip-path: var(--ap-shape);
+  pointer-events: none;
+}
+
+/* Semi-diagonal (slanted) difficulty bars. */
+.diag-bar {
+  border-radius: 0 !important;
+  clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%);
+}
+
+/* Small cut-corner badges. */
+.badge-notch {
+  border-radius: 0 !important;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%);
+}
+
 /* Single cut on the bottom-left corner */
 .notch-bl {
   --nbl: 10px;
   border-radius: 0 !important;
   clip-path: polygon(0 0, 100% 0, 100% 100%, var(--nbl) 100%, 0 calc(100% - var(--nbl)));
+}
+
+/* Cut on bottom-left and top-right corners. */
+.notch-bl-tr {
+  --nblt: 10px;
+  border-radius: 0 !important;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--nblt)) 0,
+    100% var(--nblt),
+    100% 100%,
+    var(--nblt) 100%,
+    0 calc(100% - var(--nblt))
+  );
 }
 
 .legend-notch {
