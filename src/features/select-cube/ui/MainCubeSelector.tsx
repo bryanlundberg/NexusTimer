@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { Box } from 'lucide-react'
+import { Box, ChevronDown } from 'lucide-react'
 
 export default function MainCubeSelector() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
@@ -39,7 +39,8 @@ export default function MainCubeSelector() {
     <div className="flex-1 min-w-0">
       <Button
         variant={'outline'}
-        className={'w-full justify-between h-9 items-center text-left'}
+        notch={false}
+        className={'w-full justify-between h-9 items-center text-left rounded-sm px-3 hover:bg-transparent'}
         onClick={handleOpenSelector}
         data-tour="onboarding-cube-selector"
       >
@@ -50,18 +51,20 @@ export default function MainCubeSelector() {
               alt={selectedCubeData.name}
               width={20}
               height={20}
-              className="invert dark:invert-0 shrink-0"
+              className="invert dark:invert-0 shrink-0 size-4"
             />
           ) : (
-            <Box className="size-5 shrink-0 text-muted-foreground" />
+            <Box className="size-4 shrink-0 text-muted-foreground" />
           )}
-          <span className={'mr-2 min-w-0 flex-1 truncate'}>
+          <span className="h-5 w-px shrink-0 bg-border" aria-hidden />
+          <span className={'min-w-0 flex-1 truncate'}>
             {selectedCube ? selectedCube.name : t('HomePage.select-cube')}
           </span>
         </div>
-        <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 select-none shrink-0">
-          <span className="text-xs">⌘</span>J
-        </kbd>
+        <div className="flex items-center gap-2 shrink-0">
+          <span className="h-5 w-px bg-border" aria-hidden />
+          <ChevronDown className="size-3 text-primary" />
+        </div>
       </Button>
     </div>
   )
