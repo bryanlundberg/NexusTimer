@@ -5,7 +5,8 @@ import { useQueryState } from 'nuqs'
 import { STATES } from '@/shared/const/states'
 import { SolveTab } from '@/shared/types/enums'
 import { Tabs } from '@/components/ui/tabs'
-import { HistoryIcon, ShellIcon } from 'lucide-react'
+import CubesIcon from '@/components/ui/cubes-icon'
+import StackIcon from '@/components/ui/stack-icon'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 
 export default function SolvesTabSwitcher() {
@@ -15,8 +16,8 @@ export default function SolvesTabSwitcher() {
   })
 
   const tabs = [
-    { value: SolveTab.SESSION, icon: ShellIcon, label: t('SolvesPage.session') },
-    { value: SolveTab.ALL, icon: HistoryIcon, label: t('SolvesPage.historial') }
+    { value: SolveTab.SESSION, icon: CubesIcon, label: t('SolvesPage.session') },
+    { value: SolveTab.ALL, icon: StackIcon, label: t('SolvesPage.historial') }
   ]
 
   return (
