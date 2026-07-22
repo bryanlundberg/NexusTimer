@@ -61,6 +61,7 @@ type RippleButtonProps = HTMLMotionProps<'button'> & {
   scale?: number
   transition?: Transition
   haptic?: boolean
+  notch?: boolean
 } & VariantProps<typeof buttonVariants>
 
 function RippleButton({
@@ -74,8 +75,10 @@ function RippleButton({
   scale = 10,
   transition = { duration: 0.6, ease: 'easeOut' },
   haptic = true,
+  notch = true,
   ...props
 }: RippleButtonProps) {
+  const notched = notch && size !== 'icon'
   const [ripples, setRipples] = React.useState<Ripple[]>([])
   const buttonRef = React.useRef<HTMLButtonElement>(null)
   React.useImperativeHandle(ref as any, () => buttonRef.current as HTMLButtonElement)
@@ -117,7 +120,12 @@ function RippleButton({
       ref={buttonRef}
       data-slot="ripple-button"
       onClick={handleClick}
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(
+        buttonVariants({ variant, size }),
+        notched && 'btn-notch',
+        notched && variant === 'outline' && 'btn-notch-border',
+        className
+      )}
       {...(props as any)}
     >
       {children}
