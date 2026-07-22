@@ -9,7 +9,7 @@ interface AchievementTooltipProps {
 
 export function AchievementTooltip({ achievement }: AchievementTooltipProps) {
   return (
-    <TooltipContent className="p-2 bg-black text-white dark:bg-white dark:text-black rounded-md shadow-lg border border-primary">
+    <TooltipContent className="p-2.5 bg-black text-white dark:bg-white dark:text-black rounded-none shadow-lg border border-primary/30">
       <div className="flex items-center justify-center mb-2">
         <Image
           src={`/achievements/${achievement.icon}`}
@@ -22,7 +22,7 @@ export function AchievementTooltip({ achievement }: AchievementTooltipProps) {
         />
         <div className="ml-3 space-y-1">
           <p className="font-bold text-sm leading-none">{achievement.title}</p>
-          <p className="text-xs text-muted-foreground leading-snug">{achievement.description}</p>
+          <p className="text-xs text-white/70 dark:text-black/70 leading-snug">{achievement.description}</p>
         </div>
       </div>
     </TooltipContent>
