@@ -76,9 +76,9 @@ export default function TrainerCurrentCase({
 
           {onPickCases && pickedCount != null && totalCount != null && (
             <Button
-              variant="outline"
+              variant="secondary"
               size="icon"
-              className="h-9 w-9 shrink-0"
+              className="btn-notch h-9 w-9 shrink-0"
               onClick={onPickCases}
               aria-label={t('actions.pickCases')}
               title={`${t('actions.pickCases')} (${pickedCount}/${totalCount})`}
@@ -88,9 +88,9 @@ export default function TrainerCurrentCase({
           )}
           {onSkip && (
             <Button
-              variant="outline"
+              variant="secondary"
               size="icon"
-              className="h-9 w-9 shrink-0"
+              className="btn-notch h-9 w-9 shrink-0"
               onClick={onSkip}
               aria-label={t('actions.skip')}
               title={t('actions.skip')}
@@ -127,7 +127,7 @@ export default function TrainerCurrentCase({
 
             {showSolveInfo && vizConfig && (
               <div
-                className="size-32 sm:size-40 rounded-lg border bg-muted/40 p-2 flex items-center justify-center overflow-hidden"
+                className="size-32 sm:size-40 rounded-none border bg-muted/40 p-2 flex items-center justify-center overflow-hidden"
                 style={{
                   backgroundImage:
                     'repeating-linear-gradient(45deg, color-mix(in oklab, currentColor 8%, transparent) 0 6px, transparent 6px 14px)'
@@ -172,7 +172,7 @@ export default function TrainerCurrentCase({
         )}
       </div>
 
-      <div className="flex items-center justify-between gap-4 rounded-2xl border bg-muted/40 px-4 py-3">
+      <div className="notch-bl-tr flex items-center justify-between gap-4 border bg-muted/40 px-4 py-3 [--nblt:16px]">
         <div className="flex items-center gap-5 sm:gap-8 min-w-0">
           <BarStat label={t('stats.best')} value={best ?? '--'} />
           <BarStat label="ao5" value={ao5 ?? '--'} />
@@ -189,7 +189,7 @@ export default function TrainerCurrentCase({
             <Button
               variant="outline"
               size="icon"
-              className="h-9 w-9"
+              className="btn-notch h-9 w-9"
               onClick={onToggleSolveInfo}
               aria-label={showSolveInfo ? t('actions.hideSolveInfo') : t('actions.showSolveInfo')}
               title={showSolveInfo ? t('actions.hideSolveInfo') : t('actions.showSolveInfo')}
