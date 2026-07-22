@@ -92,6 +92,8 @@ export default function SolvesSelectionBar() {
     toast(t('SolvesPage.toast.success-copy'), {
       description: t('SolvesPage.toast.success-copy-description')
     })
+
+    exit()
   }
 
   const handleDelete = async () => {
