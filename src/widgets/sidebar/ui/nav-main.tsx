@@ -80,7 +80,7 @@ export function NavMain({
           {accent && (
             <span
               aria-hidden
-              className="mr-1.5 inline-block size-1.5 rounded-[2px]"
+              className="mr-1.5 inline-block size-1.5 rounded-none"
               style={{ backgroundColor: 'var(--nav-accent)' }}
             />
           )}
@@ -109,7 +109,7 @@ export function NavMain({
                     {accent && itemActive && (
                       <span
                         aria-hidden
-                        className="absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full group-data-[collapsible=icon]:hidden"
+                        className="absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-none group-data-[collapsible=icon]:hidden"
                         style={{ backgroundColor: 'var(--nav-accent)' }}
                       />
                     )}
