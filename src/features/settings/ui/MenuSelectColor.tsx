@@ -48,13 +48,12 @@ export default function MenuSelectColor() {
             <button
               key={color.key}
               onClick={() => handleChooseColor(color.key)}
-              className={`group relative size-9 sm:size-11 rounded-full bg-gradient-to-br ${color.gradient} transition-all duration-200 focus:outline-hidden cursor-pointer shrink-0 ${
-                isSelected
-                  ? 'ring-3 ring-primary/50 ring-offset-2 ring-offset-background scale-110'
-                  : 'hover:scale-110 hover:shadow-lg'
+              style={{ clipPath: 'polygon(26% 0, 100% 0, 74% 100%, 0 100%)' }}
+              className={`group relative size-9 sm:size-11 rounded-none bg-gradient-to-br ${color.gradient} transition-all duration-200 focus:outline-hidden cursor-pointer shrink-0 ${
+                isSelected ? 'scale-110 brightness-110' : 'opacity-80 hover:opacity-100 hover:scale-110'
               }`}
             >
-              <div className="absolute inset-0 rounded-full bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
               {isSelected && (
                 <svg
                   className="absolute inset-0 m-auto size-5 text-white drop-shadow-md"
