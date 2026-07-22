@@ -29,7 +29,7 @@ export default function CompareCategoryBlock({ category, users }: { category: Cu
       {/* Category section header */}
       <div className={'flex w-max items-center mt-10 border-t border-border/50 pt-4 pb-1'}>
         <div className={'w-32 sticky left-0 z-40 px-4 bg-background flex items-center gap-2.5'}>
-          <div className={'flex items-center justify-center size-8 rounded-lg bg-muted shrink-0'}>
+          <div className={'flex items-center justify-center size-8 rounded-none bg-muted shrink-0'}>
             {src && (
               <Image unoptimized src={src} alt={category} width={20} height={20} className={'object-scale-down'} />
             )}
