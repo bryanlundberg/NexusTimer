@@ -109,7 +109,7 @@ export default function SolvesSelectionBar() {
           if (e.propertyName === 'translate' && !selectionMode) setShouldRender(false)
         }}
         className={cn(
-          'pointer-events-auto mx-auto flex max-w-2xl items-center gap-1 sm:gap-2 rounded-xl bg-foreground p-2 text-background shadow-xl ring-1 ring-foreground/10 transition-[translate,opacity]',
+          'notch-bl pointer-events-auto mx-auto flex max-w-2xl items-center gap-1 sm:gap-2 bg-foreground p-2 text-background shadow-xl transition-[translate,opacity]',
           visible
             ? 'translate-y-0 opacity-100 duration-400 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]'
             : 'translate-y-[calc(100%+16px)] opacity-0 duration-200 ease-in'
@@ -132,21 +132,19 @@ export default function SolvesSelectionBar() {
         <Button
           variant="ghost"
           size="sm"
-          className="shrink-0 gap-1.5 bg-background text-foreground hover:bg-background/85 hover:text-foreground dark:hover:bg-background/85"
+          className="shrink-0 gap-1.5 text-red-500 hover:bg-red-500/15 hover:text-red-500 dark:hover:bg-red-500/15"
           disabled={count === 0}
-          onClick={handleMove}
-          data-testid={isSession ? 'bulk-move-to-history-button' : 'bulk-move-to-session-button'}
+          onClick={() => setConfirmOpen(true)}
+          data-testid="bulk-delete-button"
         >
-          <ArrowRightLeft className="size-3.5" />
-          <span className="hidden text-xs sm:inline">
-            {t(isSession ? 'SolvesPage.selection.move-to-history' : 'SolvesPage.selection.move-to-session')}
-          </span>
+          <Trash className="size-3.5" />
+          <span className="hidden text-xs sm:inline">{t('SolvesPage.selection.delete')}</span>
         </Button>
 
         <Button
-          variant="ghost"
+          variant="secondary"
           size="sm"
-          className="shrink-0 gap-1.5 bg-background text-foreground hover:bg-background/85 hover:text-foreground dark:hover:bg-background/85"
+          className="shrink-0 gap-1.5"
           disabled={count === 0}
           onClick={handleShare}
           data-testid="bulk-share-button"
@@ -156,15 +154,17 @@ export default function SolvesSelectionBar() {
         </Button>
 
         <Button
-          variant="ghost"
+          variant="default"
           size="sm"
-          className="shrink-0 gap-1.5 bg-red-500 text-white hover:bg-red-600 hover:text-white dark:hover:bg-red-600"
+          className="shrink-0 gap-1.5"
           disabled={count === 0}
-          onClick={() => setConfirmOpen(true)}
-          data-testid="bulk-delete-button"
+          onClick={handleMove}
+          data-testid={isSession ? 'bulk-move-to-history-button' : 'bulk-move-to-session-button'}
         >
-          <Trash className="size-3.5" />
-          <span className="hidden text-xs sm:inline">{t('SolvesPage.selection.delete')}</span>
+          <ArrowRightLeft className="size-3.5" />
+          <span className="hidden text-xs sm:inline">
+            {t(isSession ? 'SolvesPage.selection.move-to-history' : 'SolvesPage.selection.move-to-session')}
+          </span>
         </Button>
       </div>
 
