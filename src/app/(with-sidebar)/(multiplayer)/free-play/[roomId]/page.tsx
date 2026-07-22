@@ -364,7 +364,7 @@ export default function FreePlayRoomPage() {
 
       {/* Tab content */}
       <div className="flex-1 min-h-0 overflow-hidden mx-2 md:mx-4">
-        <div className="h-full rounded-xl border border-border bg-card overflow-hidden">
+        <div className="h-full notch-bl-tr [--nblt:16px] border border-border bg-card overflow-hidden">
           <div className={`h-full overflow-y-auto ${currentTab !== 'timer' ? 'hidden' : ''}`}>
             <TimerTab maxRoundTime={maxRoundTime} event={event} onlineUsers={onlineUsers} />
           </div>
