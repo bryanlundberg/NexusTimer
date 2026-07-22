@@ -41,12 +41,7 @@ export default function LineGraphLegend({
       {entries
         .filter((e) => e.visible)
         .map((entry) => (
-          <div
-            key={entry.label}
-            className={cn(
-              'flex items-center gap-1.5 px-2 py-0.5 rounded-full border border-border/40 bg-muted/30 text-[11px]'
-            )}
-          >
+          <div key={entry.label} className={cn('legend-notch flex items-center gap-1.5 px-2.5 py-1 text-[11px]')}>
             <span
               className="inline-block w-3 h-[2px] rounded-full"
               style={{
