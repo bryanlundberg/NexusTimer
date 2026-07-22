@@ -100,12 +100,7 @@ export function ProductSearchInput({
   return (
     <div ref={containerRef} className="relative">
       {/* Field */}
-      <div
-        className={cn(
-          'flex items-center gap-2 rounded-lg border px-2.5 transition-colors duration-150',
-          focused ? 'border-primary/50 ring-primary/15 bg-background ring-2' : 'border-input bg-background/60'
-        )}
-      >
+      <div className={cn('field-notch flex items-center gap-2 px-2.5 transition-colors duration-150')}>
         <Search
           className={cn('size-4 shrink-0 transition-colors', focused ? 'text-primary' : 'text-muted-foreground')}
         />
@@ -147,52 +142,57 @@ export function ProductSearchInput({
 
       {/* Dropdown */}
       {showDropdown && (
-        <ul
-          id={listboxId}
-          role="listbox"
-          className="bg-popover absolute z-50 mt-1.5 max-h-72 w-full overflow-y-auto overflow-x-hidden rounded-lg border p-1 shadow-md"
-        >
-          {isLoading && hits.length === 0 && (
-            <li className="text-muted-foreground flex items-center gap-2 px-2 py-1.5 text-xs">
-              <Spinner className="size-3.5" />
-              Searching…
-            </li>
-          )}
+        <div className="gaming-panel absolute z-50 mt-1.5 w-full">
+          <ul id={listboxId} role="listbox" className="max-h-72 w-full overflow-y-auto overflow-x-hidden p-1">
+            {isLoading && hits.length === 0 && (
+              <li className="text-muted-foreground flex items-center gap-2 px-2 py-1.5 text-xs">
+                <Spinner className="size-3.5" />
+                Searching…
+              </li>
+            )}
 
-          {hits.map((hit, index) => (
-            <li
-              key={hit.id}
-              role="option"
-              aria-selected={index === highlight}
-              onMouseEnter={() => setHighlight(index)}
-              onMouseDown={(event) => {
-                event.preventDefault()
-                choose(hit)
-              }}
-              className={cn(
-                'flex cursor-pointer items-center gap-2.5 rounded-md px-2 py-1.5 transition-colors',
-                index === highlight ? 'bg-accent' : 'hover:bg-accent/60'
-              )}
-            >
-              <div className="bg-muted/40 flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md border">
-                {hit.image ? (
-                  <img src={hit.image} alt={hit.name ?? ''} loading="lazy" className="size-full object-contain p-0.5" />
-                ) : (
-                  <Search className="text-muted-foreground/50 size-3.5" />
+            {hits.map((hit, index) => (
+              <li
+                key={hit.id}
+                role="option"
+                aria-selected={index === highlight}
+                onMouseEnter={() => setHighlight(index)}
+                onMouseDown={(event) => {
+                  event.preventDefault()
+                  choose(hit)
+                }}
+                className={cn(
+                  'flex cursor-pointer items-center gap-2.5 rounded-none px-2 py-1.5 transition-colors',
+                  index === highlight
+                    ? 'bg-primary/15 text-foreground shadow-[inset_2px_0_0_var(--primary)]'
+                    : 'hover:bg-primary/10'
                 )}
-              </div>
+              >
+                <div className="bg-muted/40 flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-md border">
+                  {hit.image ? (
+                    <img
+                      src={hit.image}
+                      alt={hit.name ?? ''}
+                      loading="lazy"
+                      className="size-full object-contain p-0.5"
+                    />
+                  ) : (
+                    <Search className="text-muted-foreground/50 size-3.5" />
+                  )}
+                </div>
 
-              <p className="min-w-0 flex-1 truncate text-sm">{highlightMatch(hit.name, value)}</p>
+                <p className="min-w-0 flex-1 truncate text-sm">{highlightMatch(hit.name, value)}</p>
 
-              {hit.category && (
-                <span className="text-muted-foreground flex shrink-0 items-center gap-1 text-[11px] font-medium">
-                  <span className={cn('size-1.5 rounded-full', cubeColorClass(hit.category))} />
-                  {hit.category}
-                </span>
-              )}
-            </li>
-          ))}
-        </ul>
+                {hit.category && (
+                  <span className="text-muted-foreground flex shrink-0 items-center gap-1 text-[11px] font-medium">
+                    <span className={cn('size-1.5 rounded-full', cubeColorClass(hit.category))} />
+                    {hit.category}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   )
