@@ -22,6 +22,8 @@ export default function TransferSolvesPage() {
     t
   } = useTransferSolves()
 
+  const allSelected = displaySolves.length > 0 && selectedSolves.length === displaySolves.length
+
   useEffect(() => {
     if (!cubes || cubes.length === 0) {
       setSourceCollection(null)
@@ -39,18 +41,13 @@ export default function TransferSolvesPage() {
       <CoreHeader breadcrumbs={[{ label: t('title'), href: '/transfer-solves' }]} />
 
       <PageBody variant="data" className="px-3">
-        <TransferSolvesHeader
-          cubes={cubes || []}
-          isTransferring={isTransferring}
-          handleTransfer={handleTransfer}
-          selectedSolves={selectedSolves.length}
-        />
+        <TransferSolvesHeader cubes={cubes || []} />
       </PageBody>
       <SolvesGrid selectedSolves={selectedSolves} displaySolves={displaySolves} hasSource={!!sourceCollection} />
 
       {selectedSolves.length > 0 && (
         <div className="absolute inset-x-0 bottom-0 z-20 px-3 pb-3">
-          <div className="animate-in slide-in-from-bottom-4 fade-in-0 mx-auto flex max-w-2xl items-center gap-2 rounded-xl bg-foreground p-2 text-background shadow-xl ring-1 ring-foreground/10 duration-300 ease-out">
+          <div className="notch-bl animate-in slide-in-from-bottom-4 fade-in-0 mx-auto flex max-w-2xl items-center gap-2 bg-foreground p-2 text-background shadow-xl duration-300 ease-out">
             <span
               data-testid="solves-selected-counter"
               className="min-w-0 flex-1 truncate ps-2 text-sm font-medium tabular-nums"
@@ -58,22 +55,27 @@ export default function TransferSolvesPage() {
               {t('solves-selected', { count: selectedSolves.length })}
             </span>
             <Button
-              data-testid="select-all-button"
+              data-testid="toggle-all-button"
               variant="ghost"
               size="sm"
-              className="gap-1.5 bg-background text-foreground hover:bg-background/85 hover:text-foreground dark:hover:bg-background/85"
-              onClick={() => handleToggleAll('select')}
+              className="gap-1.5 bg-background/15 text-background hover:bg-background/30 hover:text-background dark:bg-background/15 dark:hover:bg-background/30"
+              onClick={() => handleToggleAll(allSelected ? 'deselect' : 'select')}
             >
-              {t('select-all')}
+              {allSelected ? t('deselect-all') : t('select-all')}
             </Button>
             <Button
-              data-testid="deselect-all-button"
-              variant="ghost"
+              data-testid="transfer-solves-button"
               size="sm"
-              className="gap-1.5 text-background hover:bg-background/15 hover:text-background dark:hover:bg-background/15"
-              onClick={() => handleToggleAll('deselect')}
+              onClick={handleTransfer}
+              disabled={
+                !sourceCollection ||
+                !destinationCollection ||
+                sourceCollection === destinationCollection ||
+                isTransferring ||
+                selectedSolves.length === 0
+              }
             >
-              {t('deselect-all')}
+              {isTransferring ? t('transferring') : t('transfer')}
             </Button>
           </div>
         </div>
