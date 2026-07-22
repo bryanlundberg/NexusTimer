@@ -124,7 +124,7 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
           ) : (
             <Link
               href="/sign-in"
-              className="header-signin group relative inline-flex h-9 items-center gap-1.5 overflow-hidden rounded-lg px-4 text-sm font-medium text-primary-foreground shadow-sm transition-transform duration-200 hover:scale-[1.04] active:scale-95"
+              className="header-signin btn-notch group relative inline-flex h-9 items-center gap-1.5 overflow-hidden px-4 text-sm font-medium text-primary-foreground shadow-sm transition-transform duration-200 hover:scale-[1.04] active:scale-95"
             >
               <LogInIcon className="relative z-[2] size-4 transition-transform duration-200 group-hover:-translate-x-0.5 group-hover:rotate-[-8deg]" />
               <span className="relative z-[2]">{tAuth('sign-in')}</span>
