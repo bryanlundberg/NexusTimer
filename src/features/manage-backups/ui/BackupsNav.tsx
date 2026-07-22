@@ -17,17 +17,19 @@ export default function BackupsNav() {
           href="/account/save"
           title={t('SettingsPage.save-data-title')}
           description={t('SettingsPage.save-data-description')}
+          className="rounded-none"
         />
         <NavLinkCard
           href="/account/load"
           title={t('SettingsPage.load-data-title')}
           description={t('SettingsPage.load-data-description')}
+          className="rounded-none"
         />
         <NavLinkCard
           href="/account/backups"
           title={t('SettingsPage.manage-backups-title')}
           description={t('SettingsPage.manage-backups-description')}
-          className="sm:col-span-2"
+          className="rounded-none sm:col-span-2"
         />
       </div>
     </div>
