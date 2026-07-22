@@ -47,9 +47,24 @@ export function ReplaySolveDetails() {
 
         <TabsContent value={Tab.Replay} className="flex flex-col gap-4">
           <div className="grid grid-cols-3 gap-2">
-            <Stat icon={<Clock className="size-3" />} label={t('time')} value={formatTime(metadata.time)} />
-            <Stat icon={<RotateCw className="size-3" />} label={t('moves')} value={moveCount ?? '—'} />
-            <Stat icon={<Zap className="size-3" />} label={t('tps')} value={tps ?? '—'} />
+            <Stat
+              icon={<Clock className="size-3" />}
+              label={t('time')}
+              value={formatTime(metadata.time)}
+              className="notch-bl [--nbl:10px]"
+            />
+            <Stat
+              icon={<RotateCw className="size-3" />}
+              label={t('moves')}
+              value={moveCount ?? '—'}
+              className="rounded-none"
+            />
+            <Stat
+              icon={<Zap className="size-3" />}
+              label={t('tps')}
+              value={tps ?? '—'}
+              className="notch-br [--nbr:10px]"
+            />
           </div>
           {hasReplay && <RealtimeReplayPlayer replay={replay!} markers={markers} />}
         </TabsContent>
