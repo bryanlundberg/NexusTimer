@@ -74,7 +74,12 @@ export default function DeleteCollectionForm() {
           </DialogDescription>
         </DialogHeader>
 
-        <Alert variant="destructive" className={'bg-black'} data-testid="dialog-delete-cube-warning">
+        <Alert
+          variant="destructive"
+          data-tone="danger"
+          className={'alert-notch'}
+          data-testid="dialog-delete-cube-warning"
+        >
           <AlertCircleIcon />
           <AlertTitle>{t('Errors.permanent-delete-warning')}</AlertTitle>
           <AlertDescription>
@@ -107,9 +112,9 @@ export default function DeleteCollectionForm() {
         />
 
         <DialogFooter>
-          <div className="flex justify-between w-full">
+          <div className="flex justify-end gap-2 w-full">
             <DialogClose asChild>
-              <Button variant={'ghost'} data-testid="dialog-delete-cube-cancel-button">
+              <Button variant={'secondary'} data-testid="dialog-delete-cube-cancel-button">
                 {t('Inputs.cancel')}
               </Button>
             </DialogClose>
