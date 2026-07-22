@@ -166,9 +166,9 @@ export default function CreateCollectionForm() {
       </div>
 
       <DialogFooter className="shrink-0">
-        <div className="flex w-full justify-between">
+        <div className="flex w-full justify-end gap-2">
           <DialogClose asChild>
-            <Button variant={'ghost'} data-testid="drawer-cancel-button">
+            <Button variant={'secondary'} data-testid="drawer-cancel-button">
               {t('Inputs.cancel')}
             </Button>
           </DialogClose>
