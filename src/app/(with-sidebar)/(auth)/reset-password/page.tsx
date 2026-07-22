@@ -29,7 +29,7 @@ export default async function ResetPasswordPage({ searchParams }: Props) {
           <p className="text-sm text-muted-foreground">{t('reset-password-subtitle')}</p>
         </div>
 
-        <div className="w-full rounded-xl border bg-background/80 backdrop-blur-sm p-6 shadow-sm flex flex-col gap-5">
+        <div className="w-full notch-bl-tr [--nblt:16px] border bg-background/80 backdrop-blur-sm p-6 shadow-sm flex flex-col gap-5">
           <ResetPasswordContent oobCode={oobCode ?? null} />
         </div>
 
