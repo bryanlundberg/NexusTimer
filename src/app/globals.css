@@ -877,6 +877,34 @@
   clip-path: polygon(0 0, 100% 0, 100% 100%, var(--nbl) 100%, 0 calc(100% - var(--nbl)));
 }
 
+/* Single cut on the bottom-right corner */
+.notch-br {
+  --nbr: 12px;
+  border-radius: 0 !important;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--nbr)), calc(100% - var(--nbr)) 100%, 0 100%);
+}
+
+/* Single cut on the top-left corner */
+.notch-tl {
+  --ntl: 12px;
+  border-radius: 0 !important;
+  clip-path: polygon(var(--ntl) 0, 100% 0, 100% 100%, 0 100%, 0 var(--ntl));
+}
+
+/* Cut on top-left and bottom-right corners. */
+.notch-tl-br {
+  --ntlbr: 12px;
+  border-radius: 0 !important;
+  clip-path: polygon(
+    var(--ntlbr) 0,
+    100% 0,
+    100% calc(100% - var(--ntlbr)),
+    calc(100% - var(--ntlbr)) 100%,
+    0 100%,
+    0 var(--ntlbr)
+  );
+}
+
 /* Cut on bottom-left and top-right corners. */
 .notch-bl-tr {
   --nblt: 10px;
