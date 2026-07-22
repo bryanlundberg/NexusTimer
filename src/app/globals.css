@@ -744,3 +744,32 @@
   --cat-border-color: var(--primary);
   --cat-fill: color-mix(in oklab, var(--primary) 25%, var(--background));
 }
+
+.legend-notch {
+  --lg-notch: 7px;
+  --lg-border: 1px;
+  --lg-border-color: color-mix(in oklab, var(--border) 55%, transparent);
+  --lg-fill: color-mix(in oklab, var(--muted) 40%, var(--background));
+  --lg-shape: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--lg-notch)),
+    calc(100% - var(--lg-notch)) 100%,
+    0 100%
+  );
+  position: relative;
+  isolation: isolate;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--lg-border-color) !important;
+  clip-path: var(--lg-shape);
+}
+.legend-notch::before {
+  content: '';
+  position: absolute;
+  inset: var(--lg-border);
+  z-index: -1;
+  background-color: var(--lg-fill);
+  clip-path: var(--lg-shape);
+  pointer-events: none;
+}
