@@ -877,6 +877,13 @@
   clip-path: polygon(0 0, 100% 0, 100% 100%, var(--nbl) 100%, 0 calc(100% - var(--nbl)));
 }
 
+/* Very subtle abstract texture behind modal content */
+.modal-texture {
+  background-image:
+    radial-gradient(65% 55% at 12% 4%, color-mix(in oklab, var(--primary) 4%, transparent), transparent 70%),
+    radial-gradient(60% 55% at 90% 98%, color-mix(in oklab, var(--primary) 2.5%, transparent), transparent 72%);
+}
+
 /* Cut on all four corners */
 .notch-4 {
   --n4: 8px;
