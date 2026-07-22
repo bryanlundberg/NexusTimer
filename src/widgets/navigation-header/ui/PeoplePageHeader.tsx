@@ -62,7 +62,7 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
               placeholder={t('search-placeholder')}
               value={searchTerm || ''}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 w-full sm:w-52"
+              className="pl-9 w-full sm:w-80"
             />
           </div>
           <div className="flex items-center gap-1">
