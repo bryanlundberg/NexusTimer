@@ -877,6 +877,22 @@
   clip-path: polygon(0 0, 100% 0, 100% 100%, var(--nbl) 100%, 0 calc(100% - var(--nbl)));
 }
 
+/* Cut on all four corners */
+.notch-4 {
+  --n4: 8px;
+  border-radius: 0 !important;
+  clip-path: polygon(
+    var(--n4) 0,
+    calc(100% - var(--n4)) 0,
+    100% var(--n4),
+    100% calc(100% - var(--n4)),
+    calc(100% - var(--n4)) 100%,
+    var(--n4) 100%,
+    0 calc(100% - var(--n4)),
+    0 var(--n4)
+  );
+}
+
 /* Single cut on the bottom-right corner */
 .notch-br {
   --nbr: 12px;
