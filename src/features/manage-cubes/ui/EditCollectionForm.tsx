@@ -84,7 +84,7 @@ export default function EditCollectionForm() {
           </DialogTitle>
         </DialogHeader>
 
-        <Alert className="bg-black">
+        <Alert data-tone="warning" className="alert-notch">
           <AlertDescription className="text-yellow-300">{t('Cubes-modal.danger-msg')}</AlertDescription>
         </Alert>
 
@@ -122,9 +122,9 @@ export default function EditCollectionForm() {
           )}
         />
         <DialogFooter>
-          <div className="flex justify-between w-full">
+          <div className="flex justify-end gap-2 w-full">
             <DialogClose asChild>
-              <Button variant={'ghost'} data-testid="drawer-edit-cancel-button">
+              <Button variant={'secondary'} data-testid="drawer-edit-cancel-button">
                 {t('Inputs.cancel')}
               </Button>
             </DialogClose>
