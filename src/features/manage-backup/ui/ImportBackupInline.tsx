@@ -98,7 +98,7 @@ export default function ImportBackupInline() {
         {SUPPORTED_TIMERS.map((timer) => (
           <div key={timer.name} className="flex flex-col items-center gap-1">
             {timer.brand ? (
-              <div className="flex size-8 items-center justify-center rounded-xl bg-sidebar-primary">
+              <div className="flex size-8 items-center justify-center rounded-full bg-sidebar-primary">
                 <Image
                   src={timer.src}
                   alt={timer.alt}
@@ -115,7 +115,7 @@ export default function ImportBackupInline() {
                 width={48}
                 height={48}
                 draggable={false}
-                className="size-8 rounded-xl"
+                className="size-8 rounded-full"
               />
             )}
             <span className="text-[10px] text-muted-foreground">{timer.name}</span>
