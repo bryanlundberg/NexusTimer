@@ -162,7 +162,7 @@
 }
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0.45rem;
 
   --font-space-grotesk: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --font-chakra: 'Chakra Petch', ui-sans-serif, system-ui, sans-serif;
@@ -430,6 +430,72 @@
     animation: none;
     box-shadow: 0 0 0 3px var(--primary);
   }
+}
+
+/* dropdown / popover panel: angular cut corners, primary-tinted
+   border traced on the cuts, and a soft primary glow shadow. */
+.gaming-panel {
+  --gp-cut: 10px;
+  --gp-shape: polygon(
+    0 0,
+    calc(100% - var(--gp-cut)) 0,
+    100% var(--gp-cut),
+    100% 100%,
+    var(--gp-cut) 100%,
+    0 calc(100% - var(--gp-cut))
+  );
+  position: relative;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: color-mix(in oklab, var(--primary) 55%, var(--border)) !important;
+  clip-path: var(--gp-shape);
+  filter: drop-shadow(0 10px 22px color-mix(in oklab, var(--primary) 20%, transparent));
+}
+.gaming-panel::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  background-color: var(--popover);
+  clip-path: var(--gp-shape);
+  pointer-events: none;
+}
+
+/* Angular buttons: top-left & bottom-right sharp, top-right & bottom-left cut */
+.btn-notch {
+  --btn-cut: 9px;
+  --btn-shape: polygon(
+    0 0,
+    calc(100% - var(--btn-cut)) 0,
+    100% var(--btn-cut),
+    100% 100%,
+    var(--btn-cut) 100%,
+    0 calc(100% - var(--btn-cut))
+  );
+  border-radius: 0 !important;
+  clip-path: var(--btn-shape);
+}
+
+/* Bordered variant: the element is filled with the border color and an
+   inset ::after (same notch shape) provides the fill, leaving a uniform
+   border that traces the cut corners too. */
+.btn-notch-border {
+  --btn-border-color: var(--border);
+  --btn-fill: var(--background);
+  border: 0 !important;
+  background-color: var(--btn-border-color) !important;
+}
+.btn-notch-border::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  z-index: -1;
+  background-color: var(--btn-fill);
+  clip-path: var(--btn-shape);
+  pointer-events: none;
+}
+.btn-notch-border:hover {
+  --btn-fill: var(--accent);
 }
 
 /* Notched (cut-corner) cards for the solves grid */
