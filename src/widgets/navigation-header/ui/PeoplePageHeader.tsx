@@ -55,7 +55,7 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
 
       {/* Right: search + basket */}
       <div className="flex flex-col gap-1.5 w-full sm:w-auto">
-        <div className="flex flex-col sm:flex-row gap-2">
+        <div className="flex flex-col-reverse sm:flex-row gap-2">
           <div className="relative group flex-1 sm:flex-none">
             <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
             <Input
