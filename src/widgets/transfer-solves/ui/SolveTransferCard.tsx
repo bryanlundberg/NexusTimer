@@ -17,13 +17,14 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
   return (
     <Button
       variant={'outline'}
+      notch={false}
       id={solve.id}
       data-testid={`solve-card-${solve.id}`}
       onClick={onToggle}
       aria-pressed={isSelected}
+      data-selected={isSelected ? 'true' : undefined}
       className={cn(
-        'relative grow flex items-center justify-center font-medium text-center transition duration-200 rounded-md cursor-pointer w-full h-full select-none active:translate-y-0 active:scale-100 hover:ring-2 hover:ring-primary hover:scale-[1.02] pointer-coarse:active:scale-[0.98]',
-        isSelected ? 'ring-2 ring-primary bg-primary/10' : 'bg-secondary text-secondary-foreground'
+        'solve-notch relative grow flex items-center justify-center font-medium text-center transition duration-200 cursor-pointer w-full h-full p-2 sm:p-3 select-none active:translate-y-0 active:scale-100'
       )}
     >
       <div className="flex items-end gap-1 tabular-nums">
@@ -45,7 +46,7 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
       </div>
       <div
         className={cn(
-          'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center rounded-full border transition-colors',
+          'absolute top-1 right-1 sm:top-2 sm:right-2 flex size-4 items-center justify-center rounded-[3px] border transition-colors',
           isSelected ? 'border-primary bg-primary text-primary-foreground' : 'border-muted-foreground/40'
         )}
         data-testid={`solve-select-indicator-${solve.id}`}
