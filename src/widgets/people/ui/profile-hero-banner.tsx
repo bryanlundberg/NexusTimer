@@ -46,7 +46,7 @@ export function ProfileHeroBanner({ user, level }: Props) {
         <div className="flex flex-col gap-1.5 min-w-0">
           {user.goal && (
             <div className="flex items-center gap-2 flex-wrap">
-              <Badge variant="destructive" className="text-[10px] font-bold uppercase px-1.5 py-0 h-4">
+              <Badge variant="default" className="badge-notch text-[10px] font-bold uppercase px-1.5 py-0 h-4">
                 {user.goal}
               </Badge>
             </div>
