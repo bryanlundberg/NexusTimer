@@ -7,7 +7,8 @@ import { useVirtualizer } from '@tanstack/react-virtual'
 import { useTranslations } from 'next-intl'
 import { Tabs } from '@/components/ui/tabs'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
-import { HistoryIcon, ShellIcon } from 'lucide-react'
+import CubesIcon from '@/components/ui/cubes-icon'
+import CubeIcon from '@/components/ui/cube-icon'
 import { cn } from '@/shared/lib/utils'
 import { sort } from 'fast-sort'
 import formatTime from '@/shared/lib/formatTime'
@@ -40,8 +41,8 @@ export default function TimerSolvesRail() {
   }
 
   const tabs = [
-    { value: 'session', icon: ShellIcon, label: t('session') },
-    { value: 'cube', icon: HistoryIcon, label: t('cube') }
+    { value: 'session', icon: CubesIcon, label: t('session') },
+    { value: 'cube', icon: CubeIcon, label: t('cube') }
   ]
 
   const solves = useMemo<Solve[]>(() => {
