@@ -46,6 +46,7 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
   return (
     <Button
       variant={'outline'}
+      notch={false}
       data-testid={`solve-grid-item-${index}`}
       onClick={handleClick}
       onContextMenu={handleContextMenu}
