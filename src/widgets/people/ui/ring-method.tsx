@@ -25,11 +25,9 @@ export default function RingMethod({
       type="button"
       onClick={onSelect}
       aria-pressed={selected}
+      data-selected={selected ? 'true' : undefined}
       title={`${set.title} — ${set.subtitle} · ${learnedCount}/${total}`}
-      className={cn(
-        'flex w-26 flex-col items-center my-2 gap-2 rounded-2xl border border-border bg-card/50 p-3 focus:outline-none focus-visible:ring-2 hover:ring-2 hover:ring-primary focus-visible:ring-primary',
-        selected ? 'ring-2 ring-primary shadow-md' : 'hover:shadow-md'
-      )}
+      className={cn('category-notch flex w-26 flex-col items-center my-2 gap-2 p-3 focus:outline-none')}
     >
       <div className="relative">
         <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} className="-rotate-90">
