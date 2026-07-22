@@ -24,7 +24,7 @@ export default async function ForgotPasswordPage() {
           <p className="text-sm text-muted-foreground">{t('forgot-password-subtitle')}</p>
         </div>
 
-        <div className="w-full rounded-xl border bg-background/80 backdrop-blur-sm p-6 shadow-sm flex flex-col gap-5">
+        <div className="w-full notch-bl-tr [--nblt:16px] border bg-background/80 backdrop-blur-sm p-6 shadow-sm flex flex-col gap-5">
           <ForgotPasswordForm />
         </div>
 
