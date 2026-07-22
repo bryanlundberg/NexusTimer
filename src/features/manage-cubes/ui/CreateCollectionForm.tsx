@@ -135,7 +135,7 @@ export default function CreateCollectionForm() {
                     )}
                   >
                     {selected && (
-                      <span className="bg-primary text-primary-foreground absolute -top-1.5 -right-1.5 flex size-4 items-center justify-center rounded-full">
+                      <span className="bg-primary text-primary-foreground absolute right-0 top-0 flex size-4 items-center justify-center rounded-none">
                         <Check className="size-3" />
                       </span>
                     )}
