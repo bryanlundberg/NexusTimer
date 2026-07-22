@@ -1,7 +1,9 @@
 import { motion } from 'motion/react'
-import { MixIcon } from '@radix-ui/react-icons'
+import { useRef } from 'react'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
+import LayoutDashboardIcon from '@/components/ui/layout-dashboard-icon'
+import type { AnimatedIconHandle } from '@/components/ui/types'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,6 +22,7 @@ interface ModeDropdownProps {
 
 export default function ModeDropdown({ value, onChange }: ModeDropdownProps) {
   const tIndex = useTranslations('Index')
+  const iconRef = useRef<AnimatedIconHandle>(null)
 
   return (
     <motion.div
@@ -33,9 +36,11 @@ export default function ModeDropdown({ value, onChange }: ModeDropdownProps) {
           <Button
             data-testid="button-select-mode"
             variant="ghost"
-            className="py-0 px-3 [&>svg]:transition-transform [&>svg]:duration-300 [&:hover>svg]:rotate-180"
+            className="group py-0 px-3"
+            onMouseEnter={() => iconRef.current?.startAnimation()}
+            onMouseLeave={() => iconRef.current?.stopAnimation()}
           >
-            <MixIcon />
+            <LayoutDashboardIcon ref={iconRef} />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-fit">
