@@ -27,6 +27,7 @@ export default function SolvesFilterButton() {
         <DropdownMenuLabel>{t('SolvesPage.show')}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
+          highlight="rounded"
           checked={enabled.ok}
           onCheckedChange={() => toggle('ok')}
           onSelect={(e) => e.preventDefault()}
@@ -34,6 +35,7 @@ export default function SolvesFilterButton() {
           OK
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
+          highlight="rounded"
           checked={enabled.plus2}
           onCheckedChange={() => toggle('plus2')}
           onSelect={(e) => e.preventDefault()}
@@ -41,6 +43,7 @@ export default function SolvesFilterButton() {
           +2
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
+          highlight="rounded"
           checked={enabled.dnf}
           onCheckedChange={() => toggle('dnf')}
           onSelect={(e) => e.preventDefault()}
