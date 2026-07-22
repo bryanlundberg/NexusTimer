@@ -1,10 +1,11 @@
-import { Boxes, User } from 'lucide-react'
+import type { ComponentType } from 'react'
 import { cn } from '@/shared/lib/utils'
 import { ColumnGroup, groupChipClass } from '@/features/deep-statistics/model/statisticsChartConfig'
+import { PersonalStatIcon, CubeStatIcon } from '@/components/ui/stats-icons'
 
-const GROUP_ICON: Record<ColumnGroup, typeof User> = {
-  personal: User,
-  cube: Boxes
+const GROUP_ICON: Record<ColumnGroup, ComponentType<{ className?: string }>> = {
+  personal: PersonalStatIcon,
+  cube: CubeStatIcon
 }
 
 interface GroupChipProps {
