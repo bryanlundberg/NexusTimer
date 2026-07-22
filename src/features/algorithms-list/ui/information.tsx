@@ -17,9 +17,9 @@ export default function Information({ title, description, algorithmCount, action
           {description && <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">{description}</p>}
         </div>
         {algorithmCount !== undefined && (
-          <div className="hidden shrink-0 flex-col items-center rounded-lg border bg-card px-3 py-1.5 text-center sm:flex">
+          <div className="hidden size-14 shrink-0 flex-col items-center justify-center gap-0.5 rounded-none border bg-card text-center sm:flex">
             <span className="text-lg font-bold leading-none tabular-nums">{algorithmCount}</span>
-            <span className="mt-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">Algs</span>
+            <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">Algs</span>
           </div>
         )}
       </div>
