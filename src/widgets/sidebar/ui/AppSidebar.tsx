@@ -5,22 +5,20 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion } from 'motion/react'
 import { usePathname } from 'next/navigation'
 import { useActiveIndicator } from '@/widgets/sidebar/model/useActiveIndicator'
+import { ChevronDown, MonitorDown, PlusIcon } from 'lucide-react'
 import {
-  BoxesIcon,
-  Brain,
-  ChartColumnIcon,
-  ChevronDown,
-  Dumbbell,
-  HistoryIcon,
-  LandPlot,
-  MonitorDown,
-  PlusIcon,
-  ReplaceIcon,
-  Settings,
-  TableProperties,
-  TimerIcon,
-  UsersRound
-} from 'lucide-react'
+  TimerNavIcon,
+  SolvesNavIcon,
+  StatsNavIcon,
+  CubeNavIcon,
+  TransferNavIcon,
+  SettingsNavIcon,
+  TrainerNavIcon,
+  AlgorithmsNavIcon,
+  PeopleNavIcon,
+  LeaderboardsNavIcon,
+  FreePlayNavIcon
+} from '@/components/ui/nav-icons'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 
 import {
@@ -88,22 +86,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           title: t('NavMain.timer'),
           url: '/app',
-          icon: TimerIcon
+          icon: TimerNavIcon
         },
         {
           title: t('NavMain.solves'),
           url: '/solves',
-          icon: HistoryIcon
+          icon: SolvesNavIcon
         },
         {
           title: t('NavMain.statistics'),
           url: '/stats',
-          icon: ChartColumnIcon
+          icon: StatsNavIcon
         },
         {
           title: t('NavMain.cubes'),
           url: '/cubes',
-          icon: BoxesIcon,
+          icon: CubeNavIcon,
           action: {
             icon: PlusIcon,
             label: t('CubesPage.new-collection'),
@@ -113,24 +111,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           title: t('NavMain.transfer'),
           url: '/transfer-solves',
-          icon: ReplaceIcon
+          icon: TransferNavIcon
         },
         {
           title: t('NavMain.settings'),
           url: '/options',
-          icon: Settings
+          icon: SettingsNavIcon
         }
       ],
       training: [
         {
           title: t('NavMain.trainer'),
           url: '/algorithms/trainer',
-          icon: Dumbbell
+          icon: TrainerNavIcon
         },
         {
           title: t('AlgorithmsPage.title'),
           url: '/algorithms',
-          icon: Brain,
+          icon: AlgorithmsNavIcon,
           items: [
             ...ALGORITHM_SETS.map((set) => ({
               title: set.title.toUpperCase(),
@@ -143,19 +141,19 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {
           title: t('NavMain.people'),
           url: '/people',
-          icon: UsersRound
+          icon: PeopleNavIcon
         },
         {
           title: t('NavMain.leaderboards'),
           url: '/leaderboards',
-          icon: TableProperties
+          icon: LeaderboardsNavIcon
         }
       ],
       multiplayer: [
         {
           title: t('NavMain.free-play'),
           url: '/free-play',
-          icon: LandPlot
+          icon: FreePlayNavIcon
         }
       ]
     }),
