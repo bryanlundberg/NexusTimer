@@ -589,6 +589,7 @@
     0 100%
   );
   position: relative;
+  isolation: isolate;
   border: 0 !important;
   border-radius: 0 !important;
   background-color: var(--cube-notch-border-color) !important;
@@ -638,6 +639,7 @@
     0 100%
   );
   position: relative;
+  isolation: isolate;
   border: 0 !important;
   border-radius: 0 !important;
   background-color: var(--alert-notch-border-color) !important;
@@ -673,6 +675,7 @@
     0 100%
   );
   position: relative;
+  isolation: isolate;
   border: 0 !important;
   border-radius: 0 !important;
   background-color: var(--icon-notch-border-color) !important;
@@ -698,4 +701,46 @@
 .icon-notch[data-tone='success'] {
   --icon-notch-border-color: color-mix(in oklab, #22c55e 55%, transparent);
   --icon-notch-fill: color-mix(in oklab, #22c55e 12%, var(--background));
+}
+
+/* Notched category tiles cut-corner picker cells with a
+   traced border and a distinct selected state. */
+.category-notch {
+  --cat-notch: 11px;
+  --cat-border: 1px;
+  --cat-border-color: var(--border);
+  --cat-fill: color-mix(in oklab, var(--card) 45%, var(--background));
+  --cat-shape: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - var(--cat-notch)),
+    calc(100% - var(--cat-notch)) 100%,
+    0 100%
+  );
+  position: relative;
+  isolation: isolate;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--cat-border-color) !important;
+  clip-path: var(--cat-shape);
+  transition: background-color 150ms ease;
+}
+.category-notch::before {
+  content: '';
+  position: absolute;
+  inset: var(--cat-border);
+  z-index: -1;
+  background-color: var(--cat-fill);
+  clip-path: var(--cat-shape);
+  pointer-events: none;
+  transition: background-color 150ms ease;
+}
+.category-notch:hover {
+  --cat-border-color: color-mix(in oklab, var(--primary) 45%, var(--border));
+  --cat-fill: color-mix(in oklab, var(--primary) 7%, var(--background));
+}
+.category-notch[data-selected='true'] {
+  --cat-border: 1.5px;
+  --cat-border-color: var(--primary);
+  --cat-fill: color-mix(in oklab, var(--primary) 25%, var(--background));
 }
