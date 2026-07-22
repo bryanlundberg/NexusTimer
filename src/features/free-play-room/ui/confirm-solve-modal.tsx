@@ -75,7 +75,7 @@ export default function ConfirmSolveModal({ isOpen, onClose, onChoose, category 
           <div className="mb-4 space-y-1.5">
             <label className="text-xs text-muted-foreground">{t('save-to-cube-label')}</label>
             <Select value={selectedCubeId} onValueChange={handleSelect} disabled={cubes.length === 0}>
-              <SelectTrigger className="w-full h-9">
+              <SelectTrigger className="w-full h-9 [--f-border:var(--primary)]">
                 <SelectValue placeholder={cubes.length === 0 ? t('save-to-cube-empty') : t('save-to-cube-none')} />
               </SelectTrigger>
               <SelectContent>
