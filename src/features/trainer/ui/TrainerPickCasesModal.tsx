@@ -57,28 +57,24 @@ const CaseTile = memo(function CaseTile({ alg, config, isSelected, onToggle }: C
       ref={ref}
       type="button"
       onClick={() => onToggle(alg.id)}
-      className={cn(
-        'group relative flex flex-col items-center gap-1.5 rounded-lg border p-2 cursor-pointer transition-colors',
-        isSelected
-          ? 'border-primary bg-primary/5 ring-2 ring-primary/30'
-          : 'border-input bg-background/60 hover:bg-muted/40 hover:border-muted-foreground/40'
-      )}
+      data-selected={isSelected ? 'true' : undefined}
+      className={cn('category-notch group relative flex flex-col items-center gap-1.5 p-2 cursor-pointer')}
     >
       {isSelected && (
-        <div className="absolute top-1.5 right-1.5 size-4 rounded-full bg-primary text-primary-foreground flex items-center justify-center z-10">
+        <div className="absolute top-1.5 right-1.5 size-4 rounded-[3px] bg-primary text-primary-foreground flex items-center justify-center z-10">
           <Check className="size-3" />
         </div>
       )}
       <div
         className={cn(
-          'rounded-md bg-muted/40 p-1 pointer-events-none flex items-center justify-center size-[80px]',
+          'rounded-none bg-muted/40 p-1 pointer-events-none flex items-center justify-center size-[80px]',
           !isSelected && 'opacity-80'
         )}
       >
         {visible ? (
           <AlgorithmRender config={config} width={72} height={72} />
         ) : (
-          <div className="size-[72px] rounded animate-pulse bg-muted" />
+          <div className="size-[72px] rounded-none animate-pulse bg-muted" />
         )}
       </div>
       <span className="text-[11px] font-medium truncate w-full text-center">{alg.name}</span>
@@ -129,29 +125,17 @@ export default function TrainerPickCasesModal({
     [groups]
   )
 
-  const selectAll = useCallback(() => setSelected(new Set(algorithms.map((a) => a.id))), [algorithms])
-  const selectNone = useCallback(() => setSelected(new Set()), [])
-
   const handleApply = () => {
     onApply(selected)
     close()
   }
 
   return (
-    <DialogContent className="sm:max-w-3xl gap-0 p-0 overflow-hidden flex flex-col" style={{ maxHeight: '85vh' }}>
+    <DialogContent className="sm:max-w-3xl gap-0 p-0 overflow-hidden flex flex-col" style={{ maxHeight: '76vh' }}>
       <DialogHeader className="p-6 pb-3 shrink-0">
         <DialogTitle>{t('title')}</DialogTitle>
         <DialogDescription>{t('description', { selected: selected.size, total: algorithms.length })}</DialogDescription>
       </DialogHeader>
-
-      <div className="flex items-center gap-2 px-6 pb-3 shrink-0">
-        <Button type="button" variant="outline" size="sm" onClick={selectAll}>
-          {t('selectAll')}
-        </Button>
-        <Button type="button" variant="outline" size="sm" onClick={selectNone}>
-          {t('clear')}
-        </Button>
-      </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto px-6">
         <div className="flex flex-col gap-5 py-2">
@@ -172,7 +156,7 @@ export default function TrainerPickCasesModal({
                   </button>
                   <Badge
                     variant={allSelected ? 'default' : 'outline'}
-                    className="text-[10px] font-normal cursor-pointer"
+                    className="badge-notch text-[10px] font-normal cursor-pointer"
                     onClick={() => toggleGroup(groupName)}
                   >
                     {selectedCount} / {items.length}
@@ -198,7 +182,7 @@ export default function TrainerPickCasesModal({
       </div>
 
       <DialogFooter className="p-6 pt-3 border-t shrink-0">
-        <Button type="button" variant="outline" onClick={close}>
+        <Button type="button" variant="secondary" onClick={close}>
           {t('cancel')}
         </Button>
         <Button type="button" onClick={handleApply} disabled={selected.size === 0}>
