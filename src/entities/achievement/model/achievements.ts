@@ -115,7 +115,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'contributor',
     title: 'Contributor',
     description: 'Contributed code, translations or assets to the project.',
-    icon: 'icons8-diversity-50.png',
+    icon: 'icons8-decentralized-network-50.png',
     color: 'rgba(34,197,94,0.8)',
     type: 'granted'
   },
@@ -139,7 +139,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'first-year',
     title: 'Early User',
     description: 'Joined during the first year after launch.',
-    icon: 'icons8-metal-music-50.png',
+    icon: 'icons8-rook-50.png',
     color: 'rgba(0,191,255,0.8)',
     type: 'computed',
     condition: ({ user }) => dayjs(user.createdAt).isBefore(dayjs('2024-07-11').add(1, 'year'))
@@ -164,7 +164,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'oh-sub-30',
     title: 'One Hand Wonder',
     description: 'Registered a sub-30 second solve on 3x3 One-Handed.',
-    icon: 'icons8-pet-commands-summon-50.png',
+    icon: 'icons8-knight-shield-50.png',
     type: 'computed',
     condition: ({ stats }) => stats.hasOHSub30
   },
@@ -268,7 +268,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'bookmarker',
     title: 'Curator',
     description: 'Bookmarked 25 solves.',
-    icon: 'icons8-clover-50.png',
+    icon: 'icons8-mind-map-50.png',
     type: 'computed',
     condition: ({ stats }) => stats.bookmarkCount >= 25
   },
