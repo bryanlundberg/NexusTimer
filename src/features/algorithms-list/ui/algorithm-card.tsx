@@ -68,10 +68,12 @@ export default function AlgorithmCard({
   }
 
   return (
-    <div className={cn('transition-colors', isLearned && 'bg-primary/5', expanded && 'bg-muted/30', className)}>
+    <div
+      className={cn('transition-colors', isLearned && 'bg-primary/5 shadow-[inset_2px_0_0_var(--primary)]', className)}
+    >
       <div
         className={cn(
-          'flex items-start gap-2 px-2 py-2 transition-colors hover:bg-muted/40 sm:gap-3 sm:px-3 sm:py-2.5',
+          'flex items-start gap-2 px-2 py-2 transition-colors sm:gap-3 sm:px-3 sm:py-2.5',
           canExpand && 'cursor-pointer'
         )}
         onClick={() => canExpand && setExpanded((v) => !v)}
@@ -80,17 +82,17 @@ export default function AlgorithmCard({
       >
         <div
           className={cn(
-            'flex size-14 shrink-0 items-center justify-center rounded-md bg-muted/40 sm:size-16',
+            'badge-notch flex size-16 shrink-0 items-center justify-center bg-muted/40 sm:size-20',
             isLearned && 'ring-1 ring-primary/40'
           )}
         >
-          <AlgorithmRender config={vizConfig} width={72} height={72} />
+          <AlgorithmRender config={vizConfig} width={92} height={92} />
         </div>
 
         <div className="flex flex-1 min-w-0 flex-col gap-0.5">
           <div className="flex min-w-0 items-center gap-2">
             <h3 className="truncate text-sm font-medium">{algorithm.name}</h3>
-            <Badge variant="outline" className="shrink-0 text-[10px] font-normal">
+            <Badge variant="outline" className="badge-notch shrink-0 text-[10px] font-normal">
               {algorithm.group}
             </Badge>
             {canExpand && (
