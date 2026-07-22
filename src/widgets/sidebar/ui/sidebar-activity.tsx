@@ -63,7 +63,7 @@ export function SidebarActivity() {
   }, [cubes, locale])
 
   return (
-    <div className="rounded-lg border bg-background/40 p-3">
+    <div className="notch-bl-tr [--nblt:12px] border bg-background/40 p-3">
       <div className="mb-2 flex items-center justify-between">
         <span className="text-[11px] font-semibold capitalize leading-none">{monthLabel}</span>
         <span className="text-[10px] tabular-nums text-muted-foreground leading-none">
@@ -83,13 +83,13 @@ export function SidebarActivity() {
             <span
               key={i}
               aria-hidden
-              className="aspect-square rounded-[3px] border border-dashed border-muted-foreground/15 bg-transparent"
+              className="aspect-square rounded-none border border-dashed border-muted-foreground/15 bg-transparent"
             />
           ) : (
             <span
               key={i}
               title={cell.label}
-              className={`aspect-square rounded-[3px] ${INTENSITY[intensityLevel(cell.count)]} ${
+              className={`aspect-square rounded-none ${INTENSITY[intensityLevel(cell.count)]} ${
                 cell.isToday ? 'ring-1 ring-primary ring-offset-1 ring-offset-sidebar' : ''
               }`}
             />
