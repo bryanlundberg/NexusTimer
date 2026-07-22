@@ -37,7 +37,7 @@ export default function DialogMoveHistorial() {
           <DialogDescription>{t('SolvesPage.dialogs.move-to-history-para')}</DialogDescription>
           <DialogFooter>
             <div className="flex justify-end gap-1 mt-5">
-              <Button variant={'ghost'} onClick={overlayStore.close}>
+              <Button variant={'secondary'} onClick={overlayStore.close}>
                 {t('Inputs.cancel')}
               </Button>
               <Button onClick={handleMoveSessionToHistorial}>{t('SolvesPage.dialogs.confirm')}</Button>
