@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
@@ -22,51 +21,47 @@ export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
         : 'bg-red-500/15 text-red-600 dark:text-red-400'
 
   return (
-    <Link href={`/algorithms/${slug}`} className="group focus:outline-none focus:ring-2 focus:ring-primary rounded-xl">
-      <Card className="h-full shadow-none bg-card/50 ring-1 ring-transparent transition-all duration-200 group-hover:ring-2 group-hover:ring-primary">
-        <CardHeader className="pb-3">
-          <div className="flex items-start justify-between">
-            <div className="flex items-center gap-3">
-              <MethodThumbnail set={set} />
-              <div>
-                <CardTitle className="text-base font-semibold">{title}</CardTitle>
-                <CardDescription className="text-xs mt-0.5">{subtitle}</CardDescription>
-              </div>
+    <Link href={`/algorithms/${slug}`} className="group focus:outline-none rounded-none">
+      <div className="algo-card-notch flex h-full flex-col gap-3 p-4 text-card-foreground">
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-3">
+            <MethodThumbnail set={set} />
+            <div>
+              <h3 className="text-base font-semibold">{title}</h3>
+              <p className="text-xs mt-0.5 text-muted-foreground">{subtitle}</p>
             </div>
-            <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0" />
           </div>
-        </CardHeader>
+          <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary" />
+        </div>
 
-        <CardContent className="pt-0">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <CategoryBadge category={puzzle} className="text-[11px] font-medium" />
-              <span className="text-xs text-muted-foreground">{algorithms.length} algs</span>
-            </div>
-            <Badge variant="secondary" className={`text-[11px] font-medium border-0 ${difficultyColor}`}>
-              {difficultyLabel}
-            </Badge>
+        <div className="mt-auto flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <CategoryBadge category={puzzle} className="badge-notch text-[11px] font-medium" />
+            <span className="text-xs text-muted-foreground">{algorithms.length} algs</span>
           </div>
+          <Badge variant="secondary" className={`badge-notch text-[11px] font-medium border-0 ${difficultyColor}`}>
+            {difficultyLabel}
+          </Badge>
+        </div>
 
-          {/* Difficulty dots */}
-          <div className="flex items-center gap-1.5 mt-3">
-            {[1, 2, 3].map((level) => (
-              <div
-                key={level}
-                className={`h-1.5 flex-1 rounded-full transition-colors ${
-                  level <= difficulty
-                    ? difficulty === 1
-                      ? 'bg-emerald-500'
-                      : difficulty === 2
-                        ? 'bg-amber-500'
-                        : 'bg-red-500'
-                    : 'bg-muted'
-                }`}
-              />
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+        {/* Difficulty bars */}
+        <div className="flex items-center gap-1.5">
+          {[1, 2, 3].map((level) => (
+            <div
+              key={level}
+              className={`diag-bar h-2 flex-1 transition-colors ${
+                level <= difficulty
+                  ? difficulty === 1
+                    ? 'bg-emerald-500'
+                    : difficulty === 2
+                      ? 'bg-amber-500'
+                      : 'bg-red-500'
+                  : 'bg-muted'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
     </Link>
   )
 }
