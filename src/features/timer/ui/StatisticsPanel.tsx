@@ -36,7 +36,7 @@ export default function StatisticsPanel() {
 
   const renderStatistic = (label: string, key: 'ao5' | 'ao12' | 'ao50' | 'ao100', testId: string) => (
     <motion.div
-      className={`font-medium text-right md:text-left md:flex md:flex-col md:justify-center md:rounded-md md:py-2 md:px-3 ${isRecord(key) ? `${bgRecord} md:px-3 rounded-md px-1` : 'md:bg-card/40'}`}
+      className={`stat-notch-r font-medium text-right md:text-left md:flex md:flex-col md:justify-center md:py-2 md:px-3 ${isRecord(key) ? `${bgRecord} md:px-3 rounded-md px-1` : 'md:bg-primary/10'}`}
       variants={itemVariants}
     >
       <span className="md:text-[8px] md:uppercase md:opacity-70">
