@@ -41,16 +41,18 @@ export default function ManualModeForm({
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`flex flex-col items-center gap-4 ${className}`}>
-      <Input
-        autoFocus
-        className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl h-24 md:h-32 text-center w-full max-w-md font-mono py-4"
-        placeholder={placeholder}
-        value={value}
-        onChange={handleChange}
-        inputMode="numeric"
-        pattern="[0-9]*"
-      />
+    <form onSubmit={handleSubmit} className={`flex w-full flex-col items-center gap-4 ${className}`}>
+      <div className="w-full max-w-md">
+        <Input
+          autoFocus
+          className="h-24 w-full py-6 text-center font-mono text-5xl leading-none tracking-tight sm:text-6xl md:h-32 md:text-7xl lg:text-8xl"
+          placeholder={placeholder}
+          value={value}
+          onChange={handleChange}
+          inputMode="numeric"
+          pattern="[0-9]*"
+        />
+      </div>
       {value && <div className="text-xl font-mono text-muted-foreground">{formatTime(convertToMs(value))}</div>}
     </form>
   )
