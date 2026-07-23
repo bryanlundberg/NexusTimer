@@ -75,45 +75,6 @@ export default async function LandingFeatureTable() {
       ]
     },
     {
-      title: t('stats-title'),
-      description: t('stats-section-desc'),
-      accent: 'var(--cube-blue)',
-      features: [
-        {
-          name: t('global-stats-name'),
-          description: t('global-stats-desc'),
-          nxTimer: 'check',
-          csTimer: 'cross',
-          cubeDesk: 'check',
-          twistyTimer: 'check'
-        },
-        {
-          name: t('session-stats-name'),
-          description: t('session-stats-desc'),
-          nxTimer: 'check',
-          csTimer: 'check',
-          cubeDesk: 'check',
-          twistyTimer: 'check'
-        },
-        {
-          name: t('cube-stats-name'),
-          description: t('cube-stats-desc'),
-          nxTimer: 'check',
-          csTimer: 'cross',
-          cubeDesk: 'cross',
-          twistyTimer: 'cross'
-        },
-        {
-          name: t('performance-graphs-name'),
-          description: t('performance-graphs-desc'),
-          nxTimer: 'check',
-          csTimer: 'check',
-          cubeDesk: 'partial',
-          twistyTimer: 'partial'
-        }
-      ]
-    },
-    {
       title: t('core-title'),
       description: t('core-desc'),
       accent: 'var(--cube-red)',
@@ -135,22 +96,6 @@ export default async function LandingFeatureTable() {
           twistyTimer: 'cross'
         },
         {
-          name: t('import-timers-name'),
-          description: t('import-timers-desc'),
-          nxTimer: 'check',
-          csTimer: 'cross',
-          cubeDesk: 'partial',
-          twistyTimer: 'cross'
-        },
-        {
-          name: t('offline-name'),
-          description: t('offline-desc'),
-          nxTimer: 'check',
-          csTimer: 'check',
-          cubeDesk: 'cross',
-          twistyTimer: 'check'
-        },
-        {
           name: t('stats-per-cube-name'),
           description: t('stats-per-cube-desc'),
           nxTimer: 'check',
@@ -162,7 +107,7 @@ export default async function LandingFeatureTable() {
           name: t('cloud-sync-name'),
           description: t('cloud-sync-desc'),
           nxTimer: 'check',
-          csTimer: 'partial',
+          csTimer: 'check',
           cubeDesk: 'check',
           twistyTimer: 'cross'
         },
@@ -170,7 +115,7 @@ export default async function LandingFeatureTable() {
           name: t('online-mode-name'),
           description: t('online-mode-desc'),
           nxTimer: 'check',
-          csTimer: 'partial',
+          csTimer: 'check',
           cubeDesk: 'partial',
           twistyTimer: 'cross'
         },
