@@ -127,9 +127,9 @@ export default function SkyOutro({
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-4xl px-6"
         >
-          <div className="relative overflow-hidden rounded-[24px] border border-white/10 shadow-[0_40px_120px_-40px_rgba(50,100,255,0.50)] ring-1 ring-white/5">
+          <div className="relative overflow-hidden notch-bl-tr [--nblt:30px] border border-white/10 shadow-[0_40px_120px_-40px_rgba(50,100,255,0.50)] ring-1 ring-white/5">
             <div
-              className="relative backdrop-blur-md rounded-[24px] px-7 py-14 md:p-20 text-center"
+              className="relative backdrop-blur-md rounded-none px-7 py-14 md:p-20 text-center"
               style={{ backgroundColor: 'color-mix(in oklch, oklch(0.10 0.020 264) 65%, transparent)' }}
             >
               <div
@@ -171,7 +171,7 @@ export default function SkyOutro({
                 >
                   <Link
                     href="/app"
-                    className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-white text-gray-900 font-semibold px-8 py-4 text-sm transition-all duration-300 hover:shadow-[0_12px_44px_-10px_var(--primary)]"
+                    className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden notch-bl-tr [--nblt:12px] bg-white text-gray-900 font-semibold px-8 py-4 text-sm transition-all duration-300 hover:shadow-[0_12px_44px_-10px_var(--primary)]"
                   >
                     <span
                       aria-hidden
@@ -191,7 +191,7 @@ export default function SkyOutro({
                   </Link>
                   <Link
                     href="/options?redirect=import"
-                    className="group inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-7 py-4 text-sm font-medium text-gray-200 transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:text-white"
+                    className="group inline-flex items-center justify-center notch-tl-br [--ntlbr:12px] border border-white/20 bg-white/5 px-7 py-4 text-sm font-medium text-gray-200 transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:text-white"
                   >
                     {t('cta.secondary')}
                   </Link>
