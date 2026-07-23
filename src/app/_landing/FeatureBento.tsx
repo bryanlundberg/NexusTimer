@@ -69,59 +69,75 @@ function SmartCubeVisual() {
 
 function CompareVisual() {
   const reduce = useReducedMotion()
-  const stats = ['single', 'ao5', 'ao12']
   const users = [
-    { name: 'redsito', avatar: 3, times: ['5.87', '7.31', '8.02'] },
-    { name: 'aki_3x3', avatar: 9, times: ['6.02', '7.02', '8.11'] },
-    { name: 'mia', avatar: 5, times: ['6.40', '7.55', '7.89'] },
-    { name: 'cubeghost', avatar: 4, times: ['7.12', '8.20', '9.04'] }
+    { name: 'redsito', avatar: 3 },
+    { name: 'aki_3x3', avatar: 9 },
+    { name: 'mia', avatar: 5 }
   ]
-  const best = stats.map((_, c) => Math.min(...users.map((u) => parseFloat(u.times[c]))))
-
-  const COLS = 'grid grid-cols-[minmax(0,1.4fr)_repeat(3,minmax(0,1fr))] items-center gap-2'
+  const categories = [
+    { cat: '3×3', color: 'var(--cube-red)', times: [6.4, 5.87, 6.72] },
+    { cat: '2×2', color: 'var(--cube-yellow)', times: [1.94, 2.31, 2.02] },
+    { cat: 'OH', color: 'var(--cube-blue)', times: [12.41, 11.86, 13.1] },
+    { cat: 'Pyraminx', color: 'var(--cube-green)', times: [3.55, 3.9, 3.18] }
+  ]
+  const fmt = (n: number) => n.toFixed(2)
+  const COLS = 'grid grid-cols-[4.75rem_repeat(3,minmax(0,1fr))] items-center'
 
   return (
-    <div className="flex flex-col gap-1.5">
-      <div className={`${COLS} px-3 pb-1`}>
+    <div className="flex flex-col">
+      {/* Header: users are the columns */}
+      <div className={`${COLS} border-b border-gray-900/8 pb-2`}>
         <span />
-        {stats.map((s) => (
-          <span key={s} className="text-right text-[9px] uppercase tracking-[0.2em] text-gray-500">
-            {s}
-          </span>
-        ))}
-      </div>
-      {users.map((u, i) => (
-        <motion.div
-          key={u.name}
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.12 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className={`${COLS} rounded-lg border border-gray-900/8 bg-white/70 px-3 py-2`}
-        >
-          <span className="flex min-w-0 items-center gap-2">
+        {users.map((u) => (
+          <span key={u.name} className="flex min-w-0 flex-col items-center gap-1">
             <Image
               src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${u.avatar}.png`}
               alt=""
-              width={24}
-              height={24}
-              className="h-6 w-6 shrink-0 rounded-full border-2 border-gray-900/10"
+              width={28}
+              height={28}
+              className="h-7 w-7 shrink-0 rounded-full border-2 border-gray-900/10"
             />
-            <span className="truncate text-xs font-semibold text-gray-800">{u.name}</span>
+            <span className="max-w-full truncate text-[10px] font-bold text-gray-800">{u.name}</span>
           </span>
-          {u.times.map((tm, c) => (
-            <span
-              key={c}
-              className={cn(
-                'text-right font-mono text-xs tabular-nums sm:text-sm',
-                parseFloat(tm) === best[c] ? 'font-bold text-[var(--cube-green)]' : 'text-gray-500'
-              )}
+        ))}
+      </div>
+
+      {/* Rows: categories, winner (fastest) gets the trophy */}
+      <div className="mt-1.5 flex flex-col gap-1">
+        {categories.map((row, i) => {
+          const best = Math.min(...row.times)
+          return (
+            <motion.div
+              key={row.cat}
+              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.12 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className={`${COLS} notch-br [--nbr:8px] border border-gray-900/8 bg-white/70 py-2 pl-2.5 pr-1`}
             >
-              {tm}
-            </span>
-          ))}
-        </motion.div>
-      ))}
+              <span className="flex items-center gap-1.5">
+                <span className="size-2 shrink-0 rounded-[3px]" style={{ backgroundColor: row.color }} />
+                <span className="text-[11px] font-semibold text-gray-800">{row.cat}</span>
+              </span>
+              {row.times.map((tm, c) => {
+                const isBest = tm === best
+                return (
+                  <span
+                    key={c}
+                    className={cn(
+                      'flex items-center justify-center gap-1 font-mono text-xs tabular-nums',
+                      isBest ? 'font-bold text-amber-500' : 'text-gray-500'
+                    )}
+                  >
+                    {isBest && <Trophy className="size-3 shrink-0 fill-amber-500 text-amber-500" />}
+                    {fmt(tm)}
+                  </span>
+                )
+              })}
+            </motion.div>
+          )
+        })}
+      </div>
     </div>
   )
 }
@@ -155,7 +171,7 @@ function AlgorithmsVisual() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: 0.3 + i * 0.09 }}
-              className="rounded-md border border-gray-900/8 bg-white/70 px-2 py-1 font-mono text-xs font-semibold text-gray-800"
+              className="notch-br [--nbr:5px] border border-gray-900/8 bg-white/70 px-2 py-1 font-mono text-xs font-semibold text-gray-800"
             >
               {m}
             </motion.span>
@@ -169,42 +185,59 @@ function AlgorithmsVisual() {
 function LeaderboardVisual() {
   const reduce = useReducedMotion()
   const rows = [
-    { rank: 1, name: 'aki_3x3', time: '5.87', color: 'var(--cube-yellow)' },
-    { rank: 2, name: 'cubeghost', time: '6.12', color: 'var(--cube-white)' },
-    { rank: 3, name: 'redsito', time: '6.40', color: 'var(--cube-orange)' }
+    { rank: 1, name: 'aki_3x3', avatar: 9, time: '5.87', tps: '9.2', medal: '#f5b301', rankText: 'text-[#f5b301]' },
+    { rank: 2, name: 'cubeghost', avatar: 4, time: '6.12', tps: '8.4', medal: '#c9ccd1', rankText: 'text-gray-400' },
+    { rank: 3, name: 'redsito', avatar: 3, time: '6.40', tps: '8.0', medal: '#c07b2f', rankText: 'text-[#c07b2f]' }
   ]
+  const GRID = 'grid grid-cols-[1.3rem_minmax(0,1fr)_2.4rem_auto] items-center gap-2'
   return (
-    <div className="flex flex-col gap-2">
-      {rows.map((r, i) => (
-        <motion.div
-          key={r.rank}
-          initial={reduce ? { opacity: 0 } : { opacity: 0, x: -18 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.45, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className={cn(
-            'relative flex items-center gap-3 overflow-hidden rounded-lg border border-gray-900/8 bg-white/70 px-3 py-2',
-            i === 0 && 'ring-1 ring-[var(--cube-yellow)]/50'
-          )}
-        >
-          {i === 0 && !reduce && (
-            <motion.span
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
-              animate={{ x: ['-100%', '100%'] }}
-              transition={{ duration: 2.2, repeat: Infinity, repeatDelay: 1.6, ease: 'easeInOut' }}
-            />
-          )}
-          <span
-            className="flex h-6 w-6 items-center justify-center rounded-md font-mono text-[11px] font-black text-gray-900"
-            style={{ backgroundColor: r.color }}
+    <div className="flex flex-col">
+      {/* header */}
+      <div className={`${GRID} px-2 pb-1.5`}>
+        <span className="text-[8px] font-semibold uppercase tracking-[0.15em] text-gray-400">#</span>
+        <span className="text-[8px] font-semibold uppercase tracking-[0.15em] text-gray-400">Solver</span>
+        <span className="text-right text-[8px] font-semibold uppercase tracking-[0.15em] text-gray-400">TPS</span>
+        <span className="text-right text-[8px] font-semibold uppercase tracking-[0.15em] text-gray-400">Time</span>
+      </div>
+      <div className="flex flex-col gap-1.5">
+        {rows.map((r, i) => (
+          <motion.div
+            key={r.rank}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, x: -18 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.45, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+            className={cn(
+              `${GRID} relative overflow-hidden notch-br [--nbr:9px] border border-l-[3px] border-gray-900/8 bg-white/70 px-2.5 py-1.5`
+            )}
+            style={{ borderLeftColor: r.medal }}
           >
-            {r.rank}
-          </span>
-          <span className="flex-1 truncate text-xs font-semibold text-gray-800">{r.name}</span>
-          <span className="font-mono text-xs tabular-nums text-gray-500">{r.time}</span>
-        </motion.div>
-      ))}
+            {i === 0 && !reduce && (
+              <motion.span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+                animate={{ x: ['-100%', '100%'] }}
+                transition={{ duration: 2.2, repeat: Infinity, repeatDelay: 1.6, ease: 'easeInOut' }}
+              />
+            )}
+            <span className={cn('relative font-mono text-[11px] font-bold tabular-nums', r.rankText)}>
+              {String(r.rank).padStart(2, '0')}
+            </span>
+            <span className="relative flex min-w-0 items-center gap-1.5">
+              <Image
+                src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${r.avatar}.png`}
+                alt=""
+                width={20}
+                height={20}
+                className="h-5 w-5 shrink-0 rounded-full border border-gray-900/10"
+              />
+              <span className="truncate text-xs font-semibold text-gray-800">{r.name}</span>
+            </span>
+            <span className="relative text-right font-mono text-[10px] tabular-nums text-gray-400">{r.tps}</span>
+            <span className="relative font-mono text-xs font-bold tabular-nums text-gray-900">{r.time}</span>
+          </motion.div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -244,38 +277,108 @@ function RoomVisual() {
 
 function ProfileVisual() {
   const reduce = useReducedMotion()
-  const pbs = [
-    { label: 'single', value: '5.87' },
-    { label: 'ao5', value: '7.31' },
-    { label: 'ao12', value: '8.02' }
+  const tabs = [
+    { label: 'Overview', count: 3, active: true },
+    { label: 'Cubes', count: 5, active: false },
+    { label: 'Timeline', count: 214, active: false },
+    { label: 'Algorithms', count: 57, active: false }
+  ]
+  const rows = [
+    { cat: '3×3', single: '5.87', ao5: '7.31', ao12: '8.02' },
+    { cat: '2×2', single: '1.94', ao5: '2.63', ao12: '2.91' },
+    { cat: 'Pyraminx', single: '2.40', ao5: '3.18', ao12: '3.55' }
   ]
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex items-center gap-3">
-        <Image
-          src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_3.png"
-          alt=""
-          width={36}
-          height={36}
-          className="h-9 w-9 rounded-full border-2 border-gray-900/10"
-        />
-        <div>
-          <p className="text-xs font-bold text-gray-900">redsito</p>
-          <p className="text-[10px] text-gray-500">3×3 main · GAN 356</p>
+    <div className="flex flex-col">
+      {/* mini hero */}
+      <div className="flex items-center gap-3 pb-3">
+        <div className="relative shrink-0">
+          <Image
+            src="https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_3.png"
+            alt=""
+            width={44}
+            height={44}
+            className="h-11 w-11 rounded-full shadow-md ring-2 ring-gray-900/10"
+          />
+          <span className="absolute -bottom-1 left-0 rounded-[3px] bg-[var(--cube-red)] px-1 text-[8px] font-black leading-tight text-white">
+            LV.6
+          </span>
+          <span className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-white bg-[var(--cube-green)]" />
+        </div>
+        <div className="min-w-0">
+          <span className="inline-block notch-br [--nbr:4px] bg-gray-900 px-1.5 text-[8px] font-bold uppercase leading-tight text-white">
+            sub-7
+          </span>
+          <p className="mt-0.5 text-base font-black leading-none tracking-tight text-gray-900">redsito</p>
+          <div className="mt-1 flex flex-wrap items-center gap-x-1 gap-y-0.5 text-[10px] text-gray-500">
+            <span>🇲🇽 Mexico</span>
+            <span className="opacity-40">·</span>
+            <span className="inline-flex items-center gap-1 font-medium text-[#000000]">
+              <Image
+                src="/timer-logos/wca.svg"
+                alt="WCA"
+                width={12}
+                height={12}
+                className="h-3 w-3 shrink-0 brightness-0"
+                unoptimized
+              />
+              #2016REDS01
+            </span>
+            <span className="opacity-40">·</span>
+            <span>Member since Jan 2024</span>
+          </div>
         </div>
       </div>
-      <div className="flex gap-2">
-        {pbs.map((pb, i) => (
-          <motion.div
-            key={pb.label}
-            initial={reduce ? { opacity: 0 } : { opacity: 0, rotateX: 90 }}
-            whileInView={{ opacity: 1, rotateX: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-            className="flex-1 rounded-lg border border-gray-900/8 bg-white/70 px-2 py-1.5 text-center"
+
+      {/* tabs */}
+      <div className="flex items-center gap-4 border-b border-gray-900/8 pb-2">
+        {tabs.map((tb) => (
+          <span
+            key={tb.label}
+            className={cn(
+              'relative inline-flex items-center gap-1 pb-1.5 text-[10px] font-semibold',
+              tb.active ? 'text-gray-900' : 'text-gray-400'
+            )}
           >
-            <p className="font-mono text-sm font-bold tabular-nums text-gray-900">{pb.value}</p>
-            <p className="text-[9px] uppercase tracking-wider text-gray-500">{pb.label}</p>
+            {tb.label}
+            <span
+              className={cn(
+                'inline-flex min-w-[14px] items-center justify-center rounded-full px-1 text-[8px] font-bold tabular-nums',
+                tb.active ? 'bg-[var(--cube-orange)]/15 text-[var(--cube-orange)]' : 'bg-gray-900/8 text-gray-400'
+              )}
+            >
+              {tb.count}
+            </span>
+            {tb.active && (
+              <span className="absolute -bottom-[9px] left-0 h-0.5 w-full rounded-full bg-[var(--cube-orange)]" />
+            )}
+          </span>
+        ))}
+      </div>
+
+      {/* table */}
+      <div className="mt-3 flex flex-col gap-1">
+        <div className="grid grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,1fr))] px-2 pb-0.5">
+          <span />
+          {['single', 'ao5', 'ao12'].map((h) => (
+            <span key={h} className="text-right text-[8px] uppercase tracking-[0.15em] text-gray-400">
+              {h}
+            </span>
+          ))}
+        </div>
+        {rows.map((r, i) => (
+          <motion.div
+            key={r.cat}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.15 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="grid grid-cols-[minmax(0,1.3fr)_repeat(3,minmax(0,1fr))] items-center notch-br [--nbr:7px] border border-gray-900/8 bg-white/70 px-2 py-1.5"
+          >
+            <span className="text-[11px] font-semibold text-gray-800">{r.cat}</span>
+            <span className="text-right font-mono text-[11px] font-bold tabular-nums text-gray-900">{r.single}</span>
+            <span className="text-right font-mono text-[11px] tabular-nums text-gray-500">{r.ao5}</span>
+            <span className="text-right font-mono text-[11px] tabular-nums text-gray-500">{r.ao12}</span>
           </motion.div>
         ))}
       </div>
@@ -422,8 +525,12 @@ function BentoCard({
     >
       <div className="flex items-center gap-3">
         <span
-          className="flex size-8 shrink-0 items-center justify-center rounded-full"
-          style={{ backgroundColor: `color-mix(in oklch, ${accent} 15%, transparent)` }}
+          className="flex size-8 shrink-0 items-center justify-center notch-br [--nbr:7px]"
+          style={{
+            backgroundColor: `color-mix(in oklch, ${accent} 15%, transparent)`,
+            color: accent,
+            boxShadow: `inset 0 0 0 1px color-mix(in oklch, ${accent} 25%, transparent)`
+          }}
         >
           <Icon className="size-4" style={{ color: accent }} />
         </span>
