@@ -49,7 +49,7 @@ function SmartCubeVisual() {
           transition={{ duration: 2.6, delay: i * 0.85, repeat: Infinity, ease: 'easeOut' }}
         />
       ))}
-      <span className="relative z-10 flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--cube-blue)]/12 ring-1 ring-[var(--cube-blue)]/30">
+      <span className="relative z-10 flex h-11 w-11 items-center justify-center notch-br [--nbr:10px] bg-[var(--cube-blue)]/12 ring-1 ring-[var(--cube-blue)]/30">
         <Bluetooth className="h-5 w-5 text-[var(--cube-blue)]" />
       </span>
       {moves.map((m, i) => (
@@ -416,7 +416,7 @@ function BentoCard({
       viewport={{ once: true, margin: '-8%' }}
       transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
-        'relative flex flex-col overflow-hidden rounded-2xl border border-gray-900/10 bg-gray-900/[0.03] p-6',
+        'relative flex flex-col overflow-hidden notch-bl-tr [--nblt:20px] border border-gray-900/10 bg-gray-900/[0.03] p-6',
         className
       )}
     >
