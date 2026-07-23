@@ -214,7 +214,7 @@ export default function QuickActions({
                   variant="ghost"
                   size="sm"
                   className="h-9 min-w-9 sm:h-8 sm:min-w-0 text-muted-foreground hover:text-destructive"
-                  onPointerDown={() => setConfirmDeleteOpen(true)}
+                  onClick={() => setConfirmDeleteOpen(true)}
                 >
                   <Trash className="size-4 sm:size-3.5" />
                 </Button>
@@ -244,7 +244,7 @@ export default function QuickActions({
               variant="ghost"
               size="sm"
               className="gap-1.5 h-12 min-w-12 sm:h-8 sm:min-w-0 text-muted-foreground hover:text-destructive"
-              onPointerDown={() => setConfirmDeleteOpen(true)}
+              onClick={() => setConfirmDeleteOpen(true)}
             >
               <Trash className="size-5 sm:size-3.5" />
               <span className="hidden sm:inline text-xs">{t('tooltips.delete')}</span>
