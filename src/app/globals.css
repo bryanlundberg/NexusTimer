@@ -312,7 +312,7 @@
 .lp-root {
   --lp-bg: oklch(0.97 0.004 26);
   --lp-bg-deep: oklch(0.93 0.008 26);
-  --lp-hero-dark: oklch(0.19 0 0);
+  --lp-hero-dark: oklch(0.08 0 0);
 
   --cube-white: oklch(0.97 0 0);
   --cube-yellow: oklch(0.86 0.17 95);
@@ -321,9 +321,9 @@
   --cube-green: oklch(0.74 0.18 150);
   --cube-blue: oklch(0.623 0.214 259.815);
 
-  --primary: oklch(0.635 0.23 26);
-  --primary-foreground: oklch(0.97 0 0);
-  --ring: oklch(0.635 0.23 26);
+  --primary: oklch(0.7 0.14 182);
+  --primary-foreground: oklch(0.99 0.01 180);
+  --ring: oklch(0.7 0.14 182);
 
   color-scheme: light;
   background-color: var(--lp-bg);
