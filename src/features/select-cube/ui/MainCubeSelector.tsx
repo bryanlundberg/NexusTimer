@@ -6,7 +6,8 @@ import { useEffect } from 'react'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { Box, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
+import { CubeNavIcon } from '@/components/ui/nav-icons'
 
 export default function MainCubeSelector() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
@@ -54,7 +55,7 @@ export default function MainCubeSelector() {
               className="invert dark:invert-0 shrink-0 size-4"
             />
           ) : (
-            <Box className="size-4 shrink-0 text-muted-foreground" />
+            <CubeNavIcon className="size-4 shrink-0 text-muted-foreground" />
           )}
           <span className="h-5 w-px shrink-0 bg-border" aria-hidden />
           <span className={'min-w-0 flex-1 truncate'}>
