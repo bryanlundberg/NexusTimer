@@ -1,38 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { motion, useInView, useReducedMotion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
 import { Bluetooth, Trophy, Users, User, LineChart, ArrowLeftRight, BookOpen } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import { CubeGridTexture } from './CubeDecor'
 import { Reveal } from './Reveal'
-
-function formatFake(ms: number) {
-  const s = Math.floor(ms / 1000)
-  const cs = Math.floor((ms % 1000) / 10)
-  return `${s}.${String(cs).padStart(2, '0')}`
-}
-
-function TickingTime({ base, className }: { base: number; className?: string }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref)
-  const reduce = useReducedMotion()
-  const [ms, setMs] = useState(base)
-
-  useEffect(() => {
-    if (!inView || reduce) return
-    const id = setInterval(() => setMs((m) => (m > base + 4000 ? base : m + 30)), 30)
-    return () => clearInterval(id)
-  }, [inView, reduce, base])
-
-  return (
-    <span ref={ref} className={cn('font-mono tabular-nums', className)}>
-      {formatFake(ms)}
-    </span>
-  )
-}
 
 function SmartCubeVisual() {
   const reduce = useReducedMotion()
@@ -265,33 +239,67 @@ function LeaderboardVisual() {
 
 function RoomVisual() {
   const reduce = useReducedMotion()
-  const lanes = [
-    { name: 'you', color: 'var(--cube-green)', dur: 3.2, base: 6480 },
-    { name: 'mia', color: 'var(--cube-blue)', dur: 3.9, base: 7150 }
+  const players = [
+    { name: 'redsito', avatar: 3, color: 'var(--cube-green)', status: 'solving' },
+    { name: 'aki_3x3', avatar: 9, color: 'var(--cube-blue)', status: 'ready' },
+    { name: 'mia', avatar: 5, color: 'var(--cube-orange)', status: 'ready' }
   ]
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">
-        <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--cube-red)] opacity-60" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--cube-red)]" />
+      <div className="flex items-center justify-between">
+        <span className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--cube-red)] opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--cube-red)]" />
+          </span>
+          LIVE
         </span>
-        LIVE
+        <span className="font-mono text-[10px] tabular-nums text-gray-400">room #A7F2</span>
       </div>
-      {lanes.map((l) => (
-        <div key={l.name} className="flex items-center gap-3">
-          <span className="w-8 text-[11px] font-semibold text-gray-600">{l.name}</span>
-          <div className="h-2 flex-1 overflow-hidden rounded-full bg-gray-900/8">
-            <motion.div
-              className="h-full rounded-full"
-              style={{ backgroundColor: l.color }}
-              animate={reduce ? { width: '70%' } : { width: ['4%', '96%', '4%'] }}
-              transition={{ duration: l.dur * 2, repeat: Infinity, ease: 'easeInOut' }}
-            />
+
+      <div className="relative flex items-center justify-center gap-2 py-1">
+        {players.map((p, i) => (
+          <div key={p.name} className="flex min-w-0 flex-1 flex-col items-center gap-1">
+            <motion.span
+              className="relative flex"
+              animate={reduce ? undefined : { y: [0, -3, 0] }}
+              transition={{ duration: 2.2, delay: i * 0.3, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <Image
+                src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${p.avatar}.png`}
+                alt=""
+                width={44}
+                height={44}
+                className="h-11 w-11 rounded-full"
+                style={{ boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${p.color}` }}
+              />
+              <span
+                className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-white"
+                style={{ backgroundColor: p.status === 'solving' ? 'var(--cube-green)' : 'var(--cube-yellow)' }}
+              />
+            </motion.span>
+            <span className="max-w-full truncate text-[10px] font-semibold text-gray-700">{p.name}</span>
+            <span
+              className="text-[8px] font-bold uppercase tracking-wide"
+              style={{ color: p.status === 'solving' ? 'var(--cube-green)' : '#9ca3af' }}
+            >
+              {p.status}
+            </span>
+
+            {/* VS chips between avatars */}
+            {i < players.length - 1 && (
+              <motion.span
+                className="absolute top-3 z-10 flex size-6 items-center justify-center notch-br [--nbr:5px] bg-gray-900 font-display text-[9px] font-black italic text-white shadow-md"
+                style={{ left: `${33.33 * (i + 1)}%`, transform: 'translateX(-50%)' }}
+                animate={reduce ? undefined : { scale: [1, 1.12, 1] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                VS
+              </motion.span>
+            )}
           </div>
-          <TickingTime base={l.base} className="w-10 text-right text-xs text-gray-700" />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }
@@ -413,6 +421,7 @@ function StatsVisual() {
     {
       label: '3×3',
       value: '8.9',
+      time: undefined as string | undefined,
       color: 'var(--cube-blue)',
       d: 'M30 26 C 65 34, 100 26, 135 38 S 200 46, 246 52',
       end: { x: 246, y: 52 },
@@ -421,11 +430,28 @@ function StatsVisual() {
       dash: '5 5',
       width: 2,
       opacity: 0.7,
-      delay: 0.2
+      delay: 0.2,
+      stacked: false
+    },
+    {
+      label: 'Moyu Weilong GTS',
+      value: '8.4',
+      time: '8.42',
+      color: 'var(--cube-orange)',
+      d: 'M30 30 C 65 42, 100 32, 135 44 S 200 56, 246 64',
+      end: { x: 246, y: 64 },
+      bubble: { x: 28, y: 1, w: 104 },
+      ink: '#4a2c00',
+      dash: undefined,
+      width: 2,
+      opacity: 0.92,
+      delay: 0.6,
+      stacked: true
     },
     {
       label: 'GAN 356',
       value: '8.0',
+      time: undefined as string | undefined,
       color: 'var(--cube-green)',
       d: 'M30 34 C 65 46, 100 34, 135 48 S 200 62, 246 76',
       end: { x: 246, y: 76 },
@@ -434,7 +460,8 @@ function StatsVisual() {
       dash: undefined,
       width: 2.5,
       opacity: 1,
-      delay: 0.45
+      delay: 0.45,
+      stacked: false
     }
   ]
   return (
@@ -489,25 +516,61 @@ function StatsVisual() {
             viewport={{ once: true }}
             transition={{ delay: s.delay + 1.6, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
-            <rect
-              x={s.bubble.x}
-              y={s.bubble.y}
-              width={s.bubble.w}
-              height="18"
-              rx="9"
-              fill={s.color}
-              opacity={s.opacity}
-            />
-            <text
-              x={s.bubble.x + s.bubble.w / 2}
-              y={s.bubble.y + 12.5}
-              textAnchor="middle"
-              fill={s.ink}
-              fontWeight="700"
-              style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)', fontSize: 9 }}
-            >
-              {s.label} {s.value}
-            </text>
+            {s.stacked ? (
+              <>
+                <rect
+                  x={s.bubble.x}
+                  y={s.bubble.y}
+                  width={s.bubble.w}
+                  height="26"
+                  rx="7"
+                  fill={s.color}
+                  opacity={s.opacity}
+                />
+                <text
+                  x={s.bubble.x + s.bubble.w / 2}
+                  y={s.bubble.y + 12}
+                  textAnchor="middle"
+                  fill={s.ink}
+                  fontWeight="800"
+                  style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)', fontSize: 10 }}
+                >
+                  {s.time}
+                </text>
+                <text
+                  x={s.bubble.x + s.bubble.w / 2}
+                  y={s.bubble.y + 21.5}
+                  textAnchor="middle"
+                  fill={s.ink}
+                  fontWeight="700"
+                  style={{ fontFamily: 'var(--font-sans, ui-sans-serif, system-ui)', fontSize: 7 }}
+                >
+                  {s.label}
+                </text>
+              </>
+            ) : (
+              <>
+                <rect
+                  x={s.bubble.x}
+                  y={s.bubble.y}
+                  width={s.bubble.w}
+                  height="18"
+                  rx="9"
+                  fill={s.color}
+                  opacity={s.opacity}
+                />
+                <text
+                  x={s.bubble.x + s.bubble.w / 2}
+                  y={s.bubble.y + 12.5}
+                  textAnchor="middle"
+                  fill={s.ink}
+                  fontWeight="700"
+                  style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)', fontSize: 9 }}
+                >
+                  {s.label} {s.value}
+                </text>
+              </>
+            )}
           </motion.g>
         </g>
       ))}
