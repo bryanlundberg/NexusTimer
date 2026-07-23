@@ -217,7 +217,9 @@ export default function SkyOutro({
                       />
                     ))}
                   </div>
-                  <span>{t('hero.social-proof')}</span>
+                  <Link href="/people" className="transition-colors hover:text-white hover:underline">
+                    {t('hero.social-proof')}
+                  </Link>
                 </motion.div>
               </div>
             </div>
