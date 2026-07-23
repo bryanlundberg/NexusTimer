@@ -90,7 +90,7 @@ export default function StickerSteps() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-10%' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="relative rounded-[22px] p-4 sm:p-7"
+          className="relative notch-tl-br [--ntlbr:22px] p-4 sm:p-7"
           style={{
             backgroundColor: 'oklch(0.92 0.006 26)',
             border: '1px dashed rgba(0,0,0,0.10)',
@@ -123,7 +123,7 @@ export default function StickerSteps() {
               >
                 {/* die-cut sticker face */}
                 <div
-                  className="relative overflow-hidden rounded-[18px] p-5 sm:p-6"
+                  className="relative overflow-hidden notch-br [--nbr:18px] p-5 sm:p-6"
                   style={{
                     backgroundColor: s.color,
                     boxShadow: `0 14px 30px -16px ${s.color}, inset 0 0 0 2px rgba(255,255,255,0.18)`
