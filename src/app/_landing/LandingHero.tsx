@@ -8,6 +8,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useRef } from 'react'
 import { RotatingText } from '@/components/ui/shadcn-io/rotating-text'
 import { FloatingStickers } from './CubeDecor'
+import { Nexi } from '@/shared/ui/nexi'
 
 export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.RefObject<HTMLDivElement | null> }) {
   const t = useTranslations('LandingPage')
@@ -104,15 +105,13 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
                 aria-hidden
                 className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
               />
-              <Image
-                src="/landing/cube.gif"
-                alt=""
-                width={24}
-                height={24}
-                unoptimized
-                style={{ width: 24, height: 24 }}
-                className="relative transition-transform duration-300 group-hover:rotate-[18deg]"
-              />
+              <span className="relative flex h-6 w-6 items-center justify-center">
+                <Nexi
+                  state="hello"
+                  size={24}
+                  className="origin-center -translate-x-1 scale-50 opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:scale-100 group-hover:opacity-100"
+                />
+              </span>
               <span className="relative">{t('hero.cta-primary')}</span>
               <ArrowRight className="relative h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
@@ -141,7 +140,9 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
                 />
               ))}
             </div>
-            <span>{t('hero.social-proof')}</span>
+            <Link href="/people" className="transition-colors hover:text-white hover:underline">
+              {t('hero.social-proof')}
+            </Link>
           </div>
         </motion.div>
 
