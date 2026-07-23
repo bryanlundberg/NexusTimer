@@ -54,7 +54,7 @@ export default function OverviewPanel() {
       {stats.map(({ label, value, testId }) => (
         <motion.div
           key={testId}
-          className="font-medium md:flex md:flex-col md:justify-center md:bg-card/40 md:rounded-md md:py-2 md:px-3"
+          className="stat-notch font-medium md:flex md:flex-col md:justify-center md:bg-primary/10 md:py-2 md:px-3"
           variants={itemVariants}
         >
           <span className="md:text-[8px] md:uppercase md:opacity-70">
