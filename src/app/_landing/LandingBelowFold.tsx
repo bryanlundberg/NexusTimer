@@ -150,7 +150,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
   return (
     <motion.div
-      className="border border-gray-900/10 rounded-xl overflow-hidden bg-gray-900/[0.03] hover:bg-gray-900/[0.06] transition-colors"
+      className="border border-gray-900/10 notch-tl-br [--ntlbr:16px] overflow-hidden bg-gray-900/[0.03] hover:bg-gray-900/[0.06] transition-colors"
       layout
     >
       <button onClick={() => setOpen(!open)} className="w-full px-6 py-5 flex items-center justify-between text-left">
@@ -233,7 +233,7 @@ function ShowcaseCard({
   total: number
 }) {
   return (
-    <div className="group relative h-full overflow-hidden rounded-2xl border border-gray-900/10 bg-gray-900/5 transition-colors duration-500 hover:border-primary/40">
+    <div className="group relative h-full overflow-hidden notch-bl-tr [--nblt:20px] border border-gray-900/10 bg-gray-900/5 transition-colors duration-500 hover:border-primary/40">
       <Image
         src={card.imageSrc}
         alt={card.title}
@@ -388,8 +388,8 @@ function TestimonialsBackdrop({ reduce }: { reduce: boolean | null }) {
           <pattern id="tm-grid" width="54" height="54" patternUnits="userSpaceOnUse">
             <path d="M54 0H0V54" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.045" />
           </pattern>
-          <pattern id="tm-dots" width="27" height="27" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="1.4" fill="currentColor" opacity="0.07" />
+          <pattern id="tm-dots" width="54" height="54" patternUnits="userSpaceOnUse">
+            <circle cx="2" cy="2" r="1.1" fill="currentColor" opacity="0.04" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#tm-grid)" />
