@@ -900,6 +900,18 @@
   );
 }
 
+/* Notched timer stat cards (overview/statistics) */
+@media (min-width: 768px) {
+  .stat-notch {
+    border-radius: 0 !important;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .stat-notch-r {
+    border-radius: 0 !important;
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  }
+}
+
 /* Single cut on the bottom-right corner */
 .notch-br {
   --nbr: 12px;
