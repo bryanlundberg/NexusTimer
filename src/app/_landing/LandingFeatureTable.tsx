@@ -212,7 +212,7 @@ export default async function LandingFeatureTable() {
           <p className="text-sm md:text-base text-gray-600 mt-5 max-w-2xl mx-auto text-pretty">{t('subtitle')}</p>
         </div>
 
-        <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl border-4 border-gray-900/20 ring-1 ring-white/40 bg-white/55 px-2 pb-2 shadow-[0_30px_90px_-50px_rgba(0,0,0,0.35)] backdrop-blur-md md:px-4">
+        <div className="mx-auto max-w-4xl overflow-hidden notch-bl-tr [--nblt:30px] border-4 border-gray-900/20 ring-1 ring-white/40 bg-white/55 px-2 pb-2 shadow-[0_30px_90px_-50px_rgba(0,0,0,0.35)] backdrop-blur-md md:px-4">
           {/* Column headers */}
           <div className={COLS}>
             <div className="px-2 md:px-4" />
