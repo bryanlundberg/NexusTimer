@@ -28,7 +28,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
 
   return (
     <section ref={sectionRef} className="relative px-2 pb-2 sm:px-3 sm:pb-3">
-      <div className="relative min-h-[calc(100dvh-80px)] flex flex-col items-center justify-center overflow-hidden rounded-[28px] px-6 bg-[var(--lp-hero-dark)] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6)] ring-1 ring-white/5">
+      <div className="relative min-h-[calc(100dvh-80px)] flex flex-col items-center justify-center overflow-hidden notch-tl-br [--ntlbr:32px] px-6 bg-[var(--lp-hero-dark)] shadow-[0_30px_80px_-40px_rgba(0,0,0,0.6)] ring-1 ring-white/5">
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <FloatingStickers opacity={0.35} />
         </div>
@@ -98,7 +98,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
           <div className="lp-rise flex flex-wrap items-center justify-center gap-4" style={{ animationDelay: '0.33s' }}>
             <Link
               href="/app"
-              className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-primary text-white font-semibold px-8 py-4 text-sm transition-all duration-300"
+              className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden notch-bl-tr [--nblt:12px] bg-primary text-white font-semibold px-8 py-4 text-sm transition-all duration-300"
             >
               <span
                 aria-hidden
@@ -118,7 +118,7 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
             </Link>
             <Link
               href="/options?redirect=import"
-              className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl border border-white/15 bg-white/5 px-7 py-4 text-sm font-medium text-gray-200 backdrop-blur transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:text-white"
+              className="group relative inline-flex items-center justify-center overflow-hidden notch-tl-br [--ntlbr:12px] border border-white/15 bg-white/5 px-7 py-4 text-sm font-medium text-gray-200 backdrop-blur transition-all duration-300 hover:border-white/40 hover:bg-white/10 hover:text-white"
             >
               <span className="relative">{t('hero.cta-secondary')}</span>
             </Link>
