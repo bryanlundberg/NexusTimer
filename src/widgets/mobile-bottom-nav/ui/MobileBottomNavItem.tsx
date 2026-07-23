@@ -2,13 +2,13 @@
 
 import Link from 'next/link'
 import { motion } from 'motion/react'
-import { type LucideIcon } from 'lucide-react'
+import { type ElementType } from 'react'
 import { cn } from '@/shared/lib/utils'
 import { triggerHaptic } from '@/shared/model/useHaptics'
 
 type Props = {
   url: string
-  icon: LucideIcon
+  icon: ElementType
   label: string
   active: boolean
 }
