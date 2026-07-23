@@ -13,7 +13,8 @@ import {
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { CopyIcon, CubeIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
-import { ArrowRightLeftIcon, Bookmark, MoreHorizontal, Trash } from 'lucide-react'
+import { ArrowRightLeftIcon } from 'lucide-react'
+import { QaDeleteIcon, QaBookmarkIcon, QaMoreIcon } from '@/components/ui/quick-action-icons'
 import { useQueryState } from 'nuqs'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import useQuickActions from '@/features/manage-solves/model/useQuickActions'
@@ -90,7 +91,7 @@ export default function QuickActions({
           aria-label={t('tooltips.more-actions')}
           data-testid="more-actions-button"
         >
-          <MoreHorizontal className="size-4 sm:size-3.5" />
+          <QaMoreIcon className="size-4 sm:size-3.5" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
@@ -197,7 +198,7 @@ export default function QuickActions({
                   )}
                   onPointerDown={handleToggleBookmark}
                 >
-                  <Bookmark className="size-4 sm:size-3.5" fill={solve?.bookmark ? 'currentColor' : 'none'} />
+                  <QaBookmarkIcon className="size-4 sm:size-3.5" fill={solve?.bookmark ? 'currentColor' : 'none'} />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
@@ -216,7 +217,7 @@ export default function QuickActions({
                   className="h-9 min-w-9 sm:h-8 sm:min-w-0 text-muted-foreground hover:text-destructive"
                   onClick={() => setConfirmDeleteOpen(true)}
                 >
-                  <Trash className="size-4 sm:size-3.5" />
+                  <QaDeleteIcon className="size-4 sm:size-3.5" />
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
@@ -246,7 +247,7 @@ export default function QuickActions({
               className="gap-1.5 h-12 min-w-12 sm:h-8 sm:min-w-0 text-muted-foreground hover:text-destructive"
               onClick={() => setConfirmDeleteOpen(true)}
             >
-              <Trash className="size-5 sm:size-3.5" />
+              <QaDeleteIcon className="size-5 sm:size-3.5" />
               <span className="hidden sm:inline text-xs">{t('tooltips.delete')}</span>
             </Button>
           </TooltipTrigger>
@@ -305,7 +306,7 @@ export default function QuickActions({
               )}
               onPointerDown={handleToggleBookmark}
             >
-              <Bookmark className="size-5 sm:size-3.5" fill={solve?.bookmark ? 'currentColor' : 'none'} />
+              <QaBookmarkIcon className="size-5 sm:size-3.5" fill={solve?.bookmark ? 'currentColor' : 'none'} />
               <span className="hidden sm:inline text-xs">{t('tooltips.bookmark')}</span>
             </Button>
           </TooltipTrigger>
@@ -326,7 +327,7 @@ export default function QuickActions({
                   aria-label={t('tooltips.more-actions')}
                   data-testid="more-actions-button"
                 >
-                  <MoreHorizontal className="size-5 sm:size-3.5" />
+                  <QaMoreIcon className="size-5 sm:size-3.5" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
