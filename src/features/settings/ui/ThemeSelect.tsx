@@ -9,7 +9,7 @@ function ThemePreviewLight({ selected }: { selected: boolean }) {
   return (
     <div
       className={`relative w-28 h-20 sm:w-36 sm:h-24 notch-bl-tr [--nblt:14px] overflow-hidden cursor-pointer transition-all duration-200 ${
-        selected ? 'ring-3 ring-primary/60 scale-[1.02]' : 'border border-neutral-300 hover:border-neutral-400'
+        selected ? 'border-2 border-primary scale-[1.02]' : 'border border-neutral-300 hover:border-neutral-400'
       }`}
     >
       <div className="h-full w-full bg-neutral-50 flex">
@@ -43,7 +43,7 @@ function ThemePreviewDark({ selected }: { selected: boolean }) {
   return (
     <div
       className={`relative w-28 h-20 sm:w-36 sm:h-24 notch-bl-tr [--nblt:14px] overflow-hidden cursor-pointer transition-all duration-200 ${
-        selected ? 'ring-3 ring-primary/60 scale-[1.02]' : 'border border-neutral-700 hover:border-neutral-600'
+        selected ? 'border-2 border-primary scale-[1.02]' : 'border border-neutral-700 hover:border-neutral-600'
       }`}
     >
       <div className="h-full w-full bg-zinc-950 flex">
