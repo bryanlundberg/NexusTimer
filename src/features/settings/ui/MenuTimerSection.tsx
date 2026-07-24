@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl'
-import { LapTimerIcon } from '@radix-ui/react-icons'
+import { TimerIcon } from '@/components/ui/settings-icons'
 import { MenuSection } from './MenuSection'
 import { MenuOption } from './MenuOption'
 import MenuInputOption from './MenuInputOption'
@@ -10,7 +10,7 @@ export default function MenuTimerSection({ control }: { control: any }) {
   const t = useTranslations('Index')
 
   return (
-    <MenuSection id="timer" accent={SECTION_ACCENTS['timer']} icon={<LapTimerIcon />} title={t('Settings-menu.timer')}>
+    <MenuSection id="timer" accent={SECTION_ACCENTS['timer']} icon={<TimerIcon />} title={t('Settings-menu.timer')}>
       <MenuSelectActivationKey />
       <MenuOption
         label={t('Settings-menu.inspection')}
