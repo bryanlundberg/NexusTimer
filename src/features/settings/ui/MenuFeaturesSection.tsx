@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl'
-import { MagicWandIcon } from '@radix-ui/react-icons'
+import { FeaturesIcon } from '@/components/ui/settings-icons'
 import { MenuSection } from './MenuSection'
 import { MenuOption } from './MenuOption'
 import MenuSelectScrambleSize from './MenuSelectScrambleSize'
@@ -12,7 +12,7 @@ export default function MenuFeaturesSection({ control }: { control: any }) {
     <MenuSection
       id="features"
       accent={SECTION_ACCENTS['features']}
-      icon={<MagicWandIcon />}
+      icon={<FeaturesIcon />}
       title={t('Settings-menu.features')}
     >
       <MenuOption
