@@ -33,18 +33,6 @@ export default function MenuSoundsSection({ control }: { control: any }) {
         control={control}
         description={t('Settings-descriptions.new-round-sound')}
       />
-      <MenuOption
-        name={'sounds.favorite'}
-        label={t('Settings-menu.favorite-sound')}
-        control={control}
-        description={t('Settings-descriptions.favorite-sound')}
-      />
-      <MenuOption
-        name={'sounds.trash'}
-        label={t('Settings-menu.trash-sound')}
-        control={control}
-        description={t('Settings-descriptions.trash-sound')}
-      />
       <MenuSelectVoiceGender />
     </MenuSection>
   )
