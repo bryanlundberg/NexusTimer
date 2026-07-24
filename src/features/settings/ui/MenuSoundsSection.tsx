@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl'
-import { SpeakerLoudIcon } from '@radix-ui/react-icons'
+import { SoundsIcon } from '@/components/ui/settings-icons'
 import { MenuSection } from './MenuSection'
 import { MenuOption } from './MenuOption'
 import MenuSelectVoiceGender from './MenuSelectVoiceGender'
@@ -9,12 +9,7 @@ export default function MenuSoundsSection({ control }: { control: any }) {
   const t = useTranslations('Index')
 
   return (
-    <MenuSection
-      id="sounds"
-      accent={SECTION_ACCENTS['sounds']}
-      icon={<SpeakerLoudIcon />}
-      title={t('Settings-menu.sounds')}
-    >
+    <MenuSection id="sounds" accent={SECTION_ACCENTS['sounds']} icon={<SoundsIcon />} title={t('Settings-menu.sounds')}>
       <MenuOption
         name={'sounds.newPersonalBest'}
         label={t('Settings-menu.newPersonalBest')}
