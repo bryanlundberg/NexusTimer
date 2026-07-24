@@ -15,7 +15,7 @@ export default function NewRecordBadge({ time }: NewRecordBadgeProps) {
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.25 }}
-      className="flex items-center gap-3 rounded-2xl px-4 py-2.5 text-primary"
+      className="notch-bl-tr [--nblt:12px] flex items-center gap-3 border border-primary/25 bg-primary/[0.06] px-4 py-2.5 text-primary"
       role="status"
     >
       <Nexi state="pb" size={32} aria-hidden />
