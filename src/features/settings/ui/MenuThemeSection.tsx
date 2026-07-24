@@ -1,5 +1,5 @@
 import { useTranslations } from 'next-intl'
-import { ComponentBooleanIcon } from '@radix-ui/react-icons'
+import { ThemeIcon } from '@/components/ui/settings-icons'
 import { MenuSection } from './MenuSection'
 import ThemeSelect from './ThemeSelect'
 import CustomTheme from './CustomTheme'
@@ -13,7 +13,7 @@ export default function MenuThemeSection() {
     <MenuSection
       id="background"
       accent={SECTION_ACCENTS['background']}
-      icon={<ComponentBooleanIcon />}
+      icon={<ThemeIcon />}
       title={t('Settings-menu.theme')}
     >
       <ThemeSelect />
