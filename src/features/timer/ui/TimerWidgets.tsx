@@ -34,7 +34,7 @@ export default function TimerWidgets() {
         <div
           data-testid="best-average-alert"
           className={cn(
-            'p-1 text-xs sm:text-sm border rounded-md bg-background w-fit ms-auto',
+            'rounded-none px-2 py-1 text-xs sm:text-sm border border-primary/30 bg-primary/10 text-primary w-fit ms-auto',
             height <= SCRAMBLE_HEIGHT && 'text-[10px]'
           )}
         >
