@@ -675,6 +675,7 @@
       "backup-apply-confirm": "Applica",
       "backup-applied": "Backup applicato",
       "backup-apply-error": "Impossibile applicare il backup",
+      "danger-zone": "Zona pericolosa",
       "reset-settings": "Reimposta impostazioni",
       "delete-app-data": "Elimina dati app",
       "reset-settings-success": "Le impostazioni sono state riportate ai valori predefiniti",

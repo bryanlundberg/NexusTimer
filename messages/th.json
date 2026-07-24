@@ -675,6 +675,7 @@
       "backup-apply-confirm": "ใช้",
       "backup-applied": "ใช้ข้อมูลสำรองแล้ว",
       "backup-apply-error": "ไม่สามารถใช้ข้อมูลสำรองได้",
+      "danger-zone": "โซนอันตราย",
       "reset-settings": "รีเซ็ตการตั้งค่า",
       "delete-app-data": "ลบข้อมูลแอป",
       "reset-settings-success": "รีเซ็ตการตั้งค่ากลับเป็นค่าเริ่มต้นแล้ว",

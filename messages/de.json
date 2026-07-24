@@ -657,6 +657,7 @@
       "load-data-title": "Daten laden",
       "load-data-description": "Stelle deine Daten aus deinem letzten Cloud-Backup wieder her.",
       "load-data-warning": "Beim Wiederherstellen werden die Cloud-Daten mit deinen lokalen Daten zusammengeführt. Nichts wird ersetzt oder gelöscht.",
+      "danger-zone": "Gefahrenzone",
       "reset-settings": "Einstellungen zurücksetzen",
       "delete-app-data": "App-Daten löschen",
       "reset-settings-success": "Einstellungen zurückgesetzt",

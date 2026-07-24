@@ -675,6 +675,7 @@
       "backup-apply-confirm": "I-apply",
       "backup-applied": "Na-apply ang backup",
       "backup-apply-error": "Hindi ma-apply ang backup",
+      "danger-zone": "Mapanganib na bahagi",
       "reset-settings": "I-reset ang mga setting",
       "delete-app-data": "Burahin ang App data",
       "reset-settings-success": "Na-reset na ang mga setting sa default",

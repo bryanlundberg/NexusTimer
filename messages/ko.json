@@ -657,6 +657,7 @@
       "load-data-title": "데이터 불러오기",
       "load-data-description": "최신 클라우드 백업에서 데이터를 복원하세요.",
       "load-data-warning": "복원 시 클라우드 데이터가 로컬 데이터와 병합됩니다. 아무것도 교체되거나 삭제되지 않습니다.",
+      "danger-zone": "위험 구역",
       "reset-settings": "설정 초기화",
       "delete-app-data": "앱 데이터 삭제",
       "reset-settings-success": "설정이 기본값으로 초기화되었습니다",

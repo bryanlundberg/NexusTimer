@@ -675,6 +675,7 @@
       "backup-apply-confirm": "Zastosuj",
       "backup-applied": "Kopia zapasowa zastosowana",
       "backup-apply-error": "Nie udało się zastosować kopii zapasowej",
+      "danger-zone": "Strefa zagrożenia",
       "reset-settings": "Resetuj ustawienia",
       "delete-app-data": "Usuń dane aplikacji",
       "reset-settings-success": "Ustawienia zostały przywrócone do domyślnych",

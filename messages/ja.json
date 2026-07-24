@@ -657,6 +657,7 @@
       "load-data-title": "データを読込",
       "load-data-description": "最新のクラウドバックアップからデータを復元します。",
       "load-data-warning": "復元時にクラウドのデータとローカルデータが統合されます。何も置き換えられたり削除されたりしません。",
+      "danger-zone": "危険ゾーン",
       "reset-settings": "設定をリセット",
       "delete-app-data": "全データを削除",
       "reset-settings-success": "設定をデフォルトに戻しました",

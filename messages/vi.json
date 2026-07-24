@@ -675,6 +675,7 @@
       "backup-apply-confirm": "Áp dụng",
       "backup-applied": "Đã áp dụng bản sao lưu",
       "backup-apply-error": "Không thể áp dụng bản sao lưu",
+      "danger-zone": "Vùng nguy hiểm",
       "reset-settings": "Đặt lại cài đặt",
       "delete-app-data": "Xóa dữ liệu ứng dụng",
       "reset-settings-success": "Cài đặt đã được đặt lại về mặc định",

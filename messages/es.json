@@ -608,6 +608,7 @@
       "unlink-account": "Desvincular cuenta",
       "unlink-account-para1": "¿Estás seguro de que quieres desvincularte de la cuenta?",
       "unlink-account-para2": "Al desvincularse se eliminarán todos los datos de este dispositivo.",
+      "danger-zone": "Zona de peligro",
       "reset-settings": "Restablecer ajustes",
       "delete-app-data": "Eliminar datos de la App",
       "reset-settings-success": "Los ajustes se han restablecido por defecto",

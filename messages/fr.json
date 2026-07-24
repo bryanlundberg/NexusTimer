@@ -657,6 +657,7 @@
       "load-data-title": "Charger les données",
       "load-data-description": "Restaurez vos données depuis votre dernière sauvegarde cloud.",
       "load-data-warning": "Lors de la restauration, les données du cloud sont combinées avec vos données locales. Rien n'est remplacé ni supprimé.",
+      "danger-zone": "Zone de danger",
       "reset-settings": "Réinitialiser les paramètres",
       "delete-app-data": "Supprimer les données de l'application",
       "reset-settings-success": "Les paramètres ont été réinitialisés",

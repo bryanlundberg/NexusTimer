@@ -675,6 +675,7 @@
       "backup-apply-confirm": "Terapkan",
       "backup-applied": "Cadangan diterapkan",
       "backup-apply-error": "Tidak dapat menerapkan cadangan",
+      "danger-zone": "Zona berbahaya",
       "reset-settings": "Atur ulang pengaturan",
       "delete-app-data": "Hapus data Aplikasi",
       "reset-settings-success": "Pengaturan telah diatur ulang ke default",

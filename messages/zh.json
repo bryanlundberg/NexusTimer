@@ -657,6 +657,7 @@
       "load-data-title": "加载数据",
       "load-data-description": "从最新的云端备份恢复数据。",
       "load-data-warning": "恢复时，云端数据会与本地数据合并。不会替换或删除任何内容。",
+      "danger-zone": "危险区域",
       "reset-settings": "重置设置",
       "delete-app-data": "删除应用数据",
       "reset-settings-success": "设置已恢复默认",

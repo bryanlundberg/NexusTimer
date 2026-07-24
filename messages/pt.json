@@ -657,6 +657,7 @@
       "load-data-title": "Carregar dados",
       "load-data-description": "Restaure seus dados do seu último backup na nuvem.",
       "load-data-warning": "Ao restaurar, os dados da nuvem são combinados com seus dados locais. Nada é substituído ou excluído.",
+      "danger-zone": "Zona de perigo",
       "reset-settings": "Redefinir configurações",
       "delete-app-data": "Excluir dados da App",
       "reset-settings-success": "Configurações redefinidas com sucesso",

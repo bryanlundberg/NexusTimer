@@ -665,6 +665,7 @@
       "backup-apply-confirm": "Apply",
       "backup-applied": "Backup applied",
       "backup-apply-error": "Could not apply backup",
+      "danger-zone": "Danger zone",
       "reset-settings": "Reset settings",
       "delete-app-data": "Delete App data",
       "reset-settings-success": "Settings have been reset to default",
