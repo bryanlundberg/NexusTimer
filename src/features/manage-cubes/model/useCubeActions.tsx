@@ -7,12 +7,10 @@ import { editCubeCollection } from '@/features/manage-cubes/api/editCubeCollecti
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import CreateCollectionForm from '@/features/manage-cubes/ui/CreateCollectionForm'
-import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 
 export const useCubeActions = (cube?: Cube) => {
   const router = useRouter()
   const { open } = useOverlayStore()
-  const { settings } = useSettingsStore()
   const setCubes = useTimerStore((state) => state.setCubes)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   const setNewScramble = useTimerStore((state) => state.setNewScramble)
@@ -49,11 +47,6 @@ export const useCubeActions = (cube?: Cube) => {
 
   const handleFavorite = async () => {
     const isFavoriting = !cube?.favorite
-
-    if (isFavoriting && settings.sounds.favorite) {
-      const audio = new Audio('/sounds/favorite.mp3')
-      audio.play()
-    }
 
     await editCubeCollection({ favorite: isFavoriting, id: cube!.id })
     const cubes = await cubesDB.getAll()
