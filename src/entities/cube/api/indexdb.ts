@@ -1,6 +1,7 @@
 import { database } from '@/shared/config/indexdb/indexdb'
 import { Solve } from '@/entities/solve/model/types'
 import { Cube } from '@/entities/cube/model/types'
+import { reconcileCubeWrite } from '@/entities/cube/lib/reconcileCubeWrite'
 
 const STORE_NAME = 'nx-data'
 const Cubes = database.create(STORE_NAME)
@@ -45,7 +46,8 @@ export const cubesDB = {
   },
 
   async update(cube: Cube) {
-    return await Cubes.put(cube)
+    const stored = (await Cubes.get(cube.id)) as Cube | undefined
+    return await Cubes.put({ ...reconcileCubeWrite(stored, cube), updatedAt: Date.now() })
   },
 
   async saveBatch(cubesBatch: Cube[]) {
