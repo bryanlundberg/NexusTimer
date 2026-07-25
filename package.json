@@ -76,7 +76,7 @@
     "lodash": "^4.18.1",
     "lucide-react": "^0.439.0",
     "meilisearch": "^0.59.0",
-    "mongoose": "^9.4.1",
+    "mongoose": "^9.7.2",
     "motion": "^12.40.0",
     "next": "16.2.10",
     "next-auth": "5.0.0-beta.30",
