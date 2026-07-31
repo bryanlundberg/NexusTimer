@@ -20,7 +20,8 @@ const CATEGORY_BY_COLLECTION: Record<string, CubeCategory> = {
   megaminx: 'Megaminx',
   pyraminx: 'Pyraminx',
   skewb: 'Skewb',
-  'square-1': 'SQ1'
+  'square-1': 'SQ1',
+  fto: 'FTO'
 }
 
 function resolveCategory(url: string): CubeCategory | null {
