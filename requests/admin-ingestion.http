@@ -23,7 +23,7 @@ Content-Type: application/json
 #< ../scraped-products/Megaminx.json
 #< ../scraped-products/Skewb.json
 #< ../scraped-products/SQ1.json
-
+#< ../scraped-products/FTO.json
 
 
 ### Delete the whole index (pass index id to confirm)
