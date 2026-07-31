@@ -11,7 +11,8 @@ const urls = [
   'https://www.thecubicle.com/collections/megaminx?filter.p.product_type=Megaminx',
   'https://www.thecubicle.com/collections/pyraminx?filter.p.product_type=Pyraminx',
   'https://www.thecubicle.com/collections/skewb?filter.p.product_type=Skewb',
-  'https://www.thecubicle.com/collections/square-1?filter.p.product_type=Square-1'
+  'https://www.thecubicle.com/collections/square-1?filter.p.product_type=Square-1',
+  'https://www.thecubicle.com/collections/fto?filter.p.product_type=3x3%2CShape%20Mods'
 ]
 
 test('Collect all product URLs', async ({ browser }) => {
