@@ -27,6 +27,8 @@ import { Layers } from '@/shared/types/enums'
 import { CrossSolution } from '@/shared/types/types'
 
 import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
+import FocusModeToggle from '@/features/focus-mode/ui/FocusModeToggle'
+import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { TimerMode } from '@/features/timer/model/enums'
 import { HINT_CATEGORIES, SCRAMBLE_GUIDE_MAX_MOVES, SCRAMBLE_SIZE_CLASSES } from '@/features/timer/model/const'
 import { useScrambleOverflow } from '@/features/timer/model/useScrambleOverflow'
@@ -40,6 +42,7 @@ export function ScrambleZone() {
   const settings = useSettingsStore((store) => store.settings)
   const guide = useScrambleGuideStore((store) => store.guide)
   const scrambleReady = useScrambleGuideStore((store) => store.ready)
+  const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
   const t = useTranslations('Index')
 
   const measureRef = useRef<HTMLParagraphElement>(null)
@@ -52,8 +55,12 @@ export function ScrambleZone() {
   const visibleGuide = guide != null ? truncateGuide(guide, SCRAMBLE_GUIDE_MAX_MOVES) : null
   const showModalButton = isOverflowing && !!selectedCube && !showGuide && !scrambleReady
   const showHintButton =
-    !isSolving && !!selectedCube && HINT_CATEGORIES.includes(selectedCube.category as (typeof HINT_CATEGORIES)[number])
-  const showVirtualKeyboard = timerMode === TimerMode.VIRTUAL && !isSolving && !!selectedCube
+    !isSolving &&
+    !isFocusMode &&
+    !!selectedCube &&
+    HINT_CATEGORIES.includes(selectedCube.category as (typeof HINT_CATEGORIES)[number])
+  const showVirtualKeyboard = timerMode === TimerMode.VIRTUAL && !isSolving && !isFocusMode && !!selectedCube
+  const showFocusModeButton = !isSolving && !isFocusMode && !!selectedCube
 
   useEffect(() => {
     if (!showHintButton) return
@@ -161,6 +168,8 @@ export function ScrambleZone() {
 
       <div className="absolute z-10 bottom-0 right-0 cursor-pointer duration-300 transition translate-y-10 flex gap-3">
         <TooltipProvider delayDuration={250}>
+          {showFocusModeButton && <FocusModeToggle />}
+
           {showHintButton && (
             <Drawer>
               <Tooltip>
