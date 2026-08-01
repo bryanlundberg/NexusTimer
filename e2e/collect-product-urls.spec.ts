@@ -21,10 +21,11 @@ const EMPTY_NOTICE =
 test('Collect all product URLs', async ({ browser }) => {
   test.setTimeout(0)
 
-  const allProducts = await Promise.all(
-    urls.map(async (baseUrl) => {
-      const page = await browser.newPage()
+  const page = await browser.newPage()
+  const allProducts: string[][] = []
 
+  try {
+    for (const baseUrl of urls) {
       const productUrls: string[] = []
       let currentPage = 1
 
@@ -58,13 +59,13 @@ test('Collect all product URLs', async ({ browser }) => {
         currentPage++
       }
 
-      await page.close()
-
       console.log(`[${baseUrl}] found: ${productUrls.length}`)
 
-      return productUrls
-    })
-  )
+      allProducts.push(productUrls)
+    }
+  } finally {
+    await page.close().catch(() => {})
+  }
 
   const productUrls = [...new Set(allProducts.flat())]
 
