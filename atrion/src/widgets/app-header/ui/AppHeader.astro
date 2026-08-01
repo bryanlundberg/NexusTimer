@@ -10,7 +10,10 @@ const { user } = Astro.props
 
 <header>
   <div class="bar">
-    <span class="brand">Atrion</span>
+    <div class="brand">
+      <img src="/logo.png" alt="" width="22" height="22" />
+      <span>Atrion</span>
+    </div>
     <div class="who">
       <span class="user">{user.name || user.email}</span>
       <form method="post" action="/api/auth/logout">
@@ -37,9 +40,18 @@ const { user } = Astro.props
   }
 
   .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: var(--font-brand);
     font-size: 1rem;
     font-weight: 700;
+  }
+
+  .brand img {
+    display: block;
+    width: 22px;
+    height: 22px;
   }
 
   .who {
