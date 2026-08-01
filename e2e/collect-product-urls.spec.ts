@@ -15,6 +15,9 @@ const urls = [
   'https://www.thecubicle.com/collections/fto?filter.p.product_type=3x3%2CShape%20Mods'
 ]
 
+const EMPTY_NOTICE =
+  'Sorry, there are no products matching your search. If you have filters applied, try removing some to see results.'
+
 test('Collect all product URLs', async ({ browser }) => {
   test.setTimeout(0)
 
@@ -30,22 +33,24 @@ test('Collect all product URLs', async ({ browser }) => {
 
         console.log(`[${baseUrl}] page ${currentPage}`)
 
-        await page.goto(url, { waitUntil: 'networkidle' })
+        await page.goto(url, { waitUntil: 'domcontentloaded' })
 
-        const noProducts = await page
-          .getByText(
-            'Sorry, there are no products matching your search. If you have filters applied, try removing some to see results.'
-          )
-          .isVisible()
-          .catch(() => false)
+        const notice = page.getByText(EMPTY_NOTICE)
 
-        if (noProducts) break
+        await Promise.race([
+          page.locator('.product-card-grid a').first().waitFor({ state: 'attached', timeout: 30_000 }),
+          notice.waitFor({ state: 'visible', timeout: 30_000 })
+        ]).catch(() => null)
+
+        if (await notice.isVisible().catch(() => false)) break
 
         const links = await page.$$eval('.product-card-grid a', (elements) => [
           ...new Set(elements.map((a) => (a as HTMLAnchorElement).href))
         ])
 
-        if (links.length === 0) break
+        if (links.length === 0) {
+          throw new Error(`[${baseUrl}] page ${currentPage}: neither products nor the empty-state notice rendered`)
+        }
 
         console.log(`[${baseUrl}] page ${currentPage}: ${links.length} products`)
 
@@ -62,6 +67,11 @@ test('Collect all product URLs', async ({ browser }) => {
   )
 
   const productUrls = [...new Set(allProducts.flat())]
+
+  const empty = urls.filter((_, i) => allProducts[i].length === 0)
+  if (empty.length > 0) {
+    throw new Error(`${empty.length} collection(s) returned no products:\n  ${empty.join('\n  ')}`)
+  }
 
   await writeFile('cubes.json', JSON.stringify({ total: productUrls.length, products: productUrls }, null, 2), 'utf8')
 
