@@ -1,0 +1,87 @@
+---
+import type { ReviewListItem } from '@/entities/review/model/types'
+
+interface Props {
+  review: ReviewListItem
+}
+
+const { review } = Astro.props
+
+const date = new Intl.DateTimeFormat('en', { day: 'numeric', month: 'short', year: 'numeric' })
+---
+
+<li class="notch-panel row">
+  <div class="who">
+    <span class="name">{review.name || 'Unknown user'}</span>
+    <span class="email">{review.email || '—'}</span>
+  </div>
+  <div class="meta">
+    <span class="rating" title={`${review.rating} out of 5`}>
+      <span class="stars">{'★'.repeat(review.rating)}</span>
+      <span class="stars dim">{'★'.repeat(Math.max(0, 5 - review.rating))}</span>
+    </span>
+    <time datetime={review.createdAt.toISOString()}>{date.format(review.createdAt)}</time>
+  </div>
+  {review.comment && <p class="comment">{review.comment}</p>}
+</li>
+
+<style>
+  .row {
+    --np-cut: 14px;
+    --np-fill: color-mix(in oklab, var(--card) 50%, var(--background));
+    padding: 0.9rem 1rem;
+  }
+
+  .row:hover {
+    --np-border: 2px;
+    --np-border-color: var(--primary);
+    --np-fill: color-mix(in oklab, var(--card) 80%, var(--background));
+  }
+
+  .who {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .name {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .email {
+    color: var(--muted-foreground);
+    font-size: 0.78rem;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+  }
+
+  .stars {
+    color: var(--star);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .stars.dim {
+    color: var(--muted);
+  }
+
+  time {
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+  }
+
+  .comment {
+    margin: 0.65rem 0 0;
+    color: color-mix(in oklab, var(--foreground) 78%, transparent);
+    font-size: 0.85rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+</style>
