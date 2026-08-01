@@ -12,9 +12,13 @@ import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import OnboardingTour from '@/features/onboarding-tour/ui/OnboardingTour'
 import TimerSolvesRail from '@/features/timer-solves-rail/ui/TimerSolvesRail'
+import FocusModeExitButton from '@/features/focus-mode/ui/FocusModeExitButton'
+import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 
 export default function TimerPage() {
   const resetTimerStore = useTimerStore((state) => state.reset)
+  const isFocusMode = useFocusModeStore((state) => state.isFocusMode)
+  const exitFocusMode = useFocusModeStore((state) => state.exit)
   const t = useTranslations('Metadata')
   const tHomePage = useTranslations('Index.HomePage')
 
@@ -22,10 +26,13 @@ export default function TimerPage() {
     resetTimerStore()
   }, [])
 
+  useEffect(() => exitFocusMode, [exitFocusMode])
+
   return (
     <div className="flex flex-col grow min-h-0 relative">
       <h1 className="sr-only">{t('description')}</h1>
-      <CoreHeader breadcrumbs={[{ label: tHomePage('title'), href: '/app' }]} />
+      {!isFocusMode && <CoreHeader breadcrumbs={[{ label: tHomePage('title'), href: '/app' }]} />}
+      <FocusModeExitButton />
       <div className="flex grow min-h-0">
         <PageBody variant="data" className="flex flex-col grow min-w-0">
           <TimerContainer>
@@ -34,10 +41,10 @@ export default function TimerPage() {
             <TimerWidgets />
           </TimerContainer>
         </PageBody>
-        <TimerSolvesRail />
+        {!isFocusMode && <TimerSolvesRail />}
       </div>
       <ScrambleModal />
-      <OnboardingTour />
+      {!isFocusMode && <OnboardingTour />}
     </div>
   )
 }
