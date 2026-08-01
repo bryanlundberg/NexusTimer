@@ -84,7 +84,8 @@
       "data-import-export": "Backup your data to a file or restore from a previous backup",
       "auto-select-description": "Automatically select a cube at application start",
       "language-description": "Change the language used throughout the application",
-      "analytics": "Allow anonymous usage analytics to help improve NexusTimer"
+      "analytics": "Allow anonymous usage analytics to help improve NexusTimer",
+      "focus-mode-scramble": "Keep the scramble visible while focus mode is active"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstruction",
@@ -245,7 +246,9 @@
       "nx-how-to-desc": "Follow these steps to pair your phone with NexusTimer.",
       "nx-step-1": "Install the Nexus Connect app.",
       "nx-step-2": "Tap Scan QR in the app.",
-      "nx-step-3": "Point it at the QR on this screen."
+      "nx-step-3": "Point it at the QR on this screen.",
+      "focus-mode": "Focus mode",
+      "exit-focus-mode": "Exit focus mode"
     },
     "SolvesPage": {
       "title": "Solves",
@@ -619,7 +622,8 @@
       "light": "Light",
       "system": "System",
       "close": "X",
-      "fullscreen": "Fullscreen"
+      "fullscreen": "Fullscreen",
+      "focus-mode-scramble": "Scramble in focus mode"
     },
     "backup-modal": {
       "title": "Intelligent Backup Restoration",

@@ -84,7 +84,8 @@
       "data-import-export": "Sao lưu dữ liệu của bạn ra tệp hoặc khôi phục từ bản sao lưu trước",
       "auto-select-description": "Tự động chọn một khối khi khởi động ứng dụng",
       "language-description": "Thay đổi ngôn ngữ sử dụng trong toàn bộ ứng dụng",
-      "analytics": "Cho phép phân tích sử dụng ẩn danh để giúp cải thiện NexusTimer"
+      "analytics": "Cho phép phân tích sử dụng ẩn danh để giúp cải thiện NexusTimer",
+      "focus-mode-scramble": "Giữ scramble hiển thị khi chế độ tập trung đang bật"
     },
     "leaderboard-solve-details": {
       "user-solution": "Tái dựng",
@@ -245,7 +246,9 @@
       "nx-how-to-desc": "Làm theo các bước sau để ghép nối điện thoại với NexusTimer.",
       "nx-step-1": "Cài đặt ứng dụng Nexus Connect.",
       "nx-step-2": "Chạm Quét QR trong ứng dụng.",
-      "nx-step-3": "Hướng vào mã QR trên màn hình này."
+      "nx-step-3": "Hướng vào mã QR trên màn hình này.",
+      "focus-mode": "Chế độ tập trung",
+      "exit-focus-mode": "Thoát chế độ tập trung"
     },
     "SolvesPage": {
       "title": "Lượt giải",
@@ -629,7 +632,8 @@
       "light": "Sáng",
       "system": "Hệ thống",
       "close": "X",
-      "fullscreen": "Toàn màn hình"
+      "fullscreen": "Toàn màn hình",
+      "focus-mode-scramble": "Scramble trong chế độ tập trung"
     },
     "backup-modal": {
       "title": "Khôi phục sao lưu thông minh",

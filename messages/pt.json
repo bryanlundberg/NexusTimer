@@ -81,7 +81,8 @@
       "inspection-sound": "Tocar alertas de voz durante a inspeção",
       "new-round-sound": "Tocar um som a cada nova rodada multiplayer",
       "scramble-size": "Escolha o tamanho do texto do embaralhamento",
-      "trash-sound": "Tocar um som ao excluir um solve"
+      "trash-sound": "Tocar um som ao excluir um solve",
+      "focus-mode-scramble": "Manter o embaralhamento visível enquanto o modo de concentração estiver ativo"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstrução",
@@ -242,7 +243,9 @@
       "nx-how-to-desc": "Siga estes passos para parear seu celular com o NexusTimer.",
       "nx-step-1": "Instale o app Nexus Connect.",
       "nx-step-2": "Toque em Escanear QR no app.",
-      "nx-step-3": "Aponte para o QR desta tela."
+      "nx-step-3": "Aponte para o QR desta tela.",
+      "focus-mode": "Modo de concentração",
+      "exit-focus-mode": "Sair do modo de concentração"
     },
     "SolvesPage": {
       "title": "Tempos",
@@ -626,7 +629,8 @@
       "scramble-size": "Tamanho do embaralhamento",
       "scramble-size-large": "Grande",
       "scramble-size-normal": "Normal",
-      "trash-sound": "Excluir"
+      "trash-sound": "Excluir",
+      "focus-mode-scramble": "Embaralhamento no modo de concentração"
     },
     "backup-modal": {
       "title": "Restauração Inteligente de Backup",

@@ -84,7 +84,8 @@
       "data-import-export": "Zrób kopię zapasową danych do pliku lub przywróć z poprzedniej kopii",
       "auto-select-description": "Automatycznie wybierz kostkę przy uruchomieniu aplikacji",
       "language-description": "Zmień język używany w całej aplikacji",
-      "analytics": "Zezwól na anonimową analitykę użytkowania, aby pomóc ulepszać NexusTimer"
+      "analytics": "Zezwól na anonimową analitykę użytkowania, aby pomóc ulepszać NexusTimer",
+      "focus-mode-scramble": "Pokazuj scramble, gdy tryb skupienia jest aktywny"
     },
     "leaderboard-solve-details": {
       "user-solution": "Rekonstrukcja",
@@ -245,7 +246,9 @@
       "nx-how-to-desc": "Wykonaj te kroki, aby sparować telefon z NexusTimer.",
       "nx-step-1": "Zainstaluj aplikację Nexus Connect.",
       "nx-step-2": "Dotknij Skanuj QR w aplikacji.",
-      "nx-step-3": "Skieruj ją na kod QR na tym ekranie."
+      "nx-step-3": "Skieruj ją na kod QR na tym ekranie.",
+      "focus-mode": "Tryb skupienia",
+      "exit-focus-mode": "Wyjdź z trybu skupienia"
     },
     "SolvesPage": {
       "title": "Ułożenia",
@@ -629,7 +632,8 @@
       "light": "Jasny",
       "system": "Systemowy",
       "close": "X",
-      "fullscreen": "Pełny ekran"
+      "fullscreen": "Pełny ekran",
+      "focus-mode-scramble": "Scramble w trybie skupienia"
     },
     "backup-modal": {
       "title": "Inteligentne przywracanie kopii zapasowej",

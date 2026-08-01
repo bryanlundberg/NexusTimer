@@ -84,7 +84,8 @@
       "data-import-export": "Cadangkan datamu ke file atau pulihkan dari cadangan sebelumnya",
       "auto-select-description": "Pilih kubus secara otomatis saat aplikasi dimulai",
       "language-description": "Ubah bahasa yang digunakan di seluruh aplikasi",
-      "analytics": "Izinkan analitik penggunaan anonim untuk membantu meningkatkan NexusTimer"
+      "analytics": "Izinkan analitik penggunaan anonim untuk membantu meningkatkan NexusTimer",
+      "focus-mode-scramble": "Tetap tampilkan scramble saat mode fokus aktif"
     },
     "leaderboard-solve-details": {
       "user-solution": "Rekonstruksi",
@@ -245,7 +246,9 @@
       "nx-how-to-desc": "Ikuti langkah-langkah ini untuk memasangkan ponselmu dengan NexusTimer.",
       "nx-step-1": "Pasang aplikasi Nexus Connect.",
       "nx-step-2": "Ketuk Scan QR di aplikasi.",
-      "nx-step-3": "Arahkan ke QR di layar ini."
+      "nx-step-3": "Arahkan ke QR di layar ini.",
+      "focus-mode": "Mode fokus",
+      "exit-focus-mode": "Keluar dari mode fokus"
     },
     "SolvesPage": {
       "title": "Solve",
@@ -629,7 +632,8 @@
       "light": "Terang",
       "system": "Sistem",
       "close": "X",
-      "fullscreen": "Layar penuh"
+      "fullscreen": "Layar penuh",
+      "focus-mode-scramble": "Scramble di mode fokus"
     },
     "backup-modal": {
       "title": "Pemulihan Cadangan Cerdas",

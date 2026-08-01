@@ -81,7 +81,8 @@
       "inspection-sound": "Sprachansagen während der Inspektion abspielen",
       "new-round-sound": "Sound bei neuer Multiplayer-Runde abspielen",
       "scramble-size": "Textgröße des Scrambles wählen",
-      "trash-sound": "Sound beim Löschen eines Solves abspielen"
+      "trash-sound": "Sound beim Löschen eines Solves abspielen",
+      "focus-mode-scramble": "Scramble sichtbar lassen, während der Fokusmodus aktiv ist"
     },
     "leaderboard-solve-details": {
       "user-solution": "Rekonstruktion",
@@ -242,7 +243,9 @@
       "nx-how-to-desc": "Folge diesen Schritten, um dein Handy mit NexusTimer zu koppeln.",
       "nx-step-1": "Installiere die Nexus Connect App.",
       "nx-step-2": "Tippe in der App auf QR scannen.",
-      "nx-step-3": "Richte sie auf den QR-Code auf diesem Bildschirm."
+      "nx-step-3": "Richte sie auf den QR-Code auf diesem Bildschirm.",
+      "focus-mode": "Fokusmodus",
+      "exit-focus-mode": "Fokusmodus beenden"
     },
     "SolvesPage": {
       "title": "Zeiten",
@@ -626,7 +629,8 @@
       "scramble-size": "Scramble-Größe",
       "scramble-size-large": "Groß",
       "scramble-size-normal": "Normal",
-      "trash-sound": "Löschen"
+      "trash-sound": "Löschen",
+      "focus-mode-scramble": "Scramble im Fokusmodus"
     },
     "backup-modal": {
       "title": "Intelligente Backup-Wiederherstellung",

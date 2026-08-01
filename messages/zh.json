@@ -81,7 +81,8 @@
       "inspection-sound": "观察期间播放语音提醒",
       "new-round-sound": "多人新回合时播放提示音",
       "scramble-size": "选择打乱公式的文字大小",
-      "trash-sound": "删除复原记录时播放提示音"
+      "trash-sound": "删除复原记录时播放提示音",
+      "focus-mode-scramble": "在专注模式开启时保持显示打乱公式"
     },
     "leaderboard-solve-details": {
       "user-solution": "还原重建",
@@ -242,7 +243,9 @@
       "nx-how-to-desc": "按以下步骤将手机与 NexusTimer 配对。",
       "nx-step-1": "安装 Nexus Connect 应用。",
       "nx-step-2": "在应用中点击“扫描二维码”。",
-      "nx-step-3": "将镜头对准此屏幕上的二维码。"
+      "nx-step-3": "将镜头对准此屏幕上的二维码。",
+      "focus-mode": "专注模式",
+      "exit-focus-mode": "退出专注模式"
     },
     "SolvesPage": {
       "title": "还原纪录",
@@ -626,7 +629,8 @@
       "scramble-size": "打乱文字大小",
       "scramble-size-large": "大",
       "scramble-size-normal": "标准",
-      "trash-sound": "删除"
+      "trash-sound": "删除",
+      "focus-mode-scramble": "专注模式下的打乱公式"
     },
     "backup-modal": {
       "title": "智能备份恢复",

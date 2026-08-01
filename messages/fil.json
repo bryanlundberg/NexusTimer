@@ -84,7 +84,8 @@
       "data-import-export": "I-backup ang data mo sa isang file o i-restore mula sa nakaraang backup",
       "auto-select-description": "Awtomatikong pumili ng cube sa pagsisimula ng application",
       "language-description": "Baguhin ang wikang ginagamit sa buong application",
-      "analytics": "Pahintulutan ang anonymous na usage analytics para tumulong mapabuti ang NexusTimer"
+      "analytics": "Pahintulutan ang anonymous na usage analytics para tumulong mapabuti ang NexusTimer",
+      "focus-mode-scramble": "Panatilihing nakikita ang scramble habang aktibo ang focus mode"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstruction",
@@ -245,7 +246,9 @@
       "nx-how-to-desc": "Sundin ang mga hakbang na ito para ipares ang iyong telepono sa NexusTimer.",
       "nx-step-1": "I-install ang Nexus Connect app.",
       "nx-step-2": "I-tap ang Scan QR sa app.",
-      "nx-step-3": "Itutok ito sa QR sa screen na ito."
+      "nx-step-3": "Itutok ito sa QR sa screen na ito.",
+      "focus-mode": "Focus mode",
+      "exit-focus-mode": "Lumabas sa focus mode"
     },
     "SolvesPage": {
       "title": "Mga Solve",
@@ -629,7 +632,8 @@
       "light": "Maliwanag",
       "system": "System",
       "close": "X",
-      "fullscreen": "Fullscreen"
+      "fullscreen": "Fullscreen",
+      "focus-mode-scramble": "Scramble sa focus mode"
     },
     "backup-modal": {
       "title": "Intelligent Backup Restoration",

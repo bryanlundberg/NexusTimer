@@ -81,7 +81,8 @@
       "inspection-sound": "Jouer des alertes vocales pendant l’inspection",
       "new-round-sound": "Jouer un son à chaque nouvelle manche multijoueur",
       "scramble-size": "Choisir la taille du texte du mélange",
-      "trash-sound": "Jouer un son lors de la suppression d’un solve"
+      "trash-sound": "Jouer un son lors de la suppression d’un solve",
+      "focus-mode-scramble": "Garder le mélange visible lorsque le mode concentration est actif"
     },
     "leaderboard-solve-details": {
       "user-solution": "Reconstruction",
@@ -242,7 +243,9 @@
       "nx-how-to-desc": "Suivez ces étapes pour associer votre téléphone à NexusTimer.",
       "nx-step-1": "Installez l'application Nexus Connect.",
       "nx-step-2": "Appuyez sur Scanner le QR dans l'application.",
-      "nx-step-3": "Pointez-la vers le QR code de cet écran."
+      "nx-step-3": "Pointez-la vers le QR code de cet écran.",
+      "focus-mode": "Mode concentration",
+      "exit-focus-mode": "Quitter le mode concentration"
     },
     "SolvesPage": {
       "title": "Temps",
@@ -626,7 +629,8 @@
       "scramble-size": "Taille du mélange",
       "scramble-size-large": "Grande",
       "scramble-size-normal": "Normale",
-      "trash-sound": "Suppression"
+      "trash-sound": "Suppression",
+      "focus-mode-scramble": "Mélange en mode concentration"
     },
     "backup-modal": {
       "title": "Restauration intelligente de sauvegarde",

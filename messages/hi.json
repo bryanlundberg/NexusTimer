@@ -81,7 +81,8 @@
       "inspection-sound": "निरीक्षण के दौरान वॉयस अलर्ट चलाएँ",
       "new-round-sound": "नए मल्टीप्लेयर राउंड पर ध्वनि चलाएँ",
       "scramble-size": "स्क्रैम्बल टेक्स्ट का आकार चुनें",
-      "trash-sound": "सॉल्व हटाते समय ध्वनि चलाएँ"
+      "trash-sound": "सॉल्व हटाते समय ध्वनि चलाएँ",
+      "focus-mode-scramble": "फ़ोकस मोड सक्रिय होने पर स्क्रैम्बल दिखाते रहें"
     },
     "leaderboard-solve-details": {
       "user-solution": "पुनर्निर्माण (Reconstruction)",
@@ -242,7 +243,9 @@
       "nx-how-to-desc": "अपने फ़ोन को NexusTimer से जोड़ने के लिए इन चरणों का पालन करें।",
       "nx-step-1": "Nexus Connect ऐप इंस्टॉल करें।",
       "nx-step-2": "ऐप में Scan QR पर टैप करें।",
-      "nx-step-3": "इसे इस स्क्रीन के QR की ओर करें।"
+      "nx-step-3": "इसे इस स्क्रीन के QR की ओर करें।",
+      "focus-mode": "फ़ोकस मोड",
+      "exit-focus-mode": "फ़ोकस मोड से बाहर निकलें"
     },
     "SolvesPage": {
       "title": "समाधान",
@@ -626,7 +629,8 @@
       "scramble-size": "स्क्रैम्बल आकार",
       "scramble-size-large": "बड़ा",
       "scramble-size-normal": "सामान्य",
-      "trash-sound": "हटाएँ"
+      "trash-sound": "हटाएँ",
+      "focus-mode-scramble": "फ़ोकस मोड में स्क्रैम्बल"
     },
     "backup-modal": {
       "title": "बुद्धिमान बैकअप बहाली",

@@ -84,7 +84,8 @@
       "data-import-export": "สำรองข้อมูลของคุณไปยังไฟล์หรือกู้คืนจากการสำรองข้อมูลก่อนหน้า",
       "auto-select-description": "เลือกลูกบาศก์โดยอัตโนมัติเมื่อเริ่มแอปพลิเคชัน",
       "language-description": "เปลี่ยนภาษาที่ใช้ทั่วทั้งแอปพลิเคชัน",
-      "analytics": "อนุญาตให้เก็บข้อมูลการใช้งานแบบไม่ระบุตัวตนเพื่อช่วยปรับปรุง NexusTimer"
+      "analytics": "อนุญาตให้เก็บข้อมูลการใช้งานแบบไม่ระบุตัวตนเพื่อช่วยปรับปรุง NexusTimer",
+      "focus-mode-scramble": "แสดง scramble ต่อไปขณะที่โหมดโฟกัสทำงานอยู่"
     },
     "leaderboard-solve-details": {
       "user-solution": "การจำลองย้อนหลัง",
@@ -245,7 +246,9 @@
       "nx-how-to-desc": "ทำตามขั้นตอนเหล่านี้เพื่อจับคู่โทรศัพท์กับ NexusTimer",
       "nx-step-1": "ติดตั้งแอป Nexus Connect",
       "nx-step-2": "แตะ Scan QR ในแอป",
-      "nx-step-3": "เล็งไปที่ QR บนหน้าจอนี้"
+      "nx-step-3": "เล็งไปที่ QR บนหน้าจอนี้",
+      "focus-mode": "โหมดโฟกัส",
+      "exit-focus-mode": "ออกจากโหมดโฟกัส"
     },
     "SolvesPage": {
       "title": "การต่อ",
@@ -629,7 +632,8 @@
       "light": "สว่าง",
       "system": "ระบบ",
       "close": "X",
-      "fullscreen": "เต็มหน้าจอ"
+      "fullscreen": "เต็มหน้าจอ",
+      "focus-mode-scramble": "scramble ในโหมดโฟกัส"
     },
     "backup-modal": {
       "title": "การกู้คืนข้อมูลสำรองอัจฉริยะ",

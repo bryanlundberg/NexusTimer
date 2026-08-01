@@ -81,7 +81,8 @@
       "inspection-sound": "인스펙션 중 음성 알림 재생",
       "new-round-sound": "멀티플레이어 새 라운드에 소리 재생",
       "scramble-size": "스크램블 텍스트 크기 선택",
-      "trash-sound": "솔브 삭제 시 소리 재생"
+      "trash-sound": "솔브 삭제 시 소리 재생",
+      "focus-mode-scramble": "집중 모드가 활성화된 동안 스크램블을 계속 표시합니다"
     },
     "leaderboard-solve-details": {
       "user-solution": "복기 (Reconstruction)",
@@ -242,7 +243,9 @@
       "nx-how-to-desc": "다음 단계를 따라 휴대폰을 NexusTimer와 연결하세요.",
       "nx-step-1": "Nexus Connect 앱을 설치하세요.",
       "nx-step-2": "앱에서 QR 스캔을 누르세요.",
-      "nx-step-3": "화면의 QR을 비추세요."
+      "nx-step-3": "화면의 QR을 비추세요.",
+      "focus-mode": "집중 모드",
+      "exit-focus-mode": "집중 모드 종료"
     },
     "SolvesPage": {
       "title": "기록",
@@ -626,7 +629,8 @@
       "scramble-size": "스크램블 크기",
       "scramble-size-large": "크게",
       "scramble-size-normal": "보통",
-      "trash-sound": "삭제"
+      "trash-sound": "삭제",
+      "focus-mode-scramble": "집중 모드의 스크램블"
     },
     "backup-modal": {
       "title": "지능형 백업 복원",

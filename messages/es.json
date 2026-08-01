@@ -212,7 +212,9 @@
       "nx-how-to-desc": "Sigue estos pasos para vincular tu teléfono con NexusTimer.",
       "nx-step-1": "Instala la app Nexus Connect.",
       "nx-step-2": "Toca Escanear QR en la app.",
-      "nx-step-3": "Apúntala al QR de esta pantalla."
+      "nx-step-3": "Apúntala al QR de esta pantalla.",
+      "focus-mode": "Modo concentración",
+      "exit-focus-mode": "Salir del modo concentración"
     },
     "SolvesPage": {
       "title": "Tiempos",
@@ -537,7 +539,8 @@
       "activation-key-listening": "Pulsa una tecla…",
       "fullscreen": "Pantalla completa",
       "hold-to-start-time": "Tiempo de pulsación",
-      "inspection-time": "Tiempo de inspección"
+      "inspection-time": "Tiempo de inspección",
+      "focus-mode-scramble": "Scramble en modo concentración"
     },
     "backup-modal": {
       "title": "Restauración Inteligente de Respaldo",
@@ -652,7 +655,8 @@
       "session-stats": "Muestra estadísticas de la sesión actual.",
       "start-cue": "Muestra una señal visual cuando el cronómetro está listo.",
       "voice-gender-description": "Elige entre voz masculina o femenina para la inspección.",
-      "worst-time-alert": "Muestra una alerta cuando obtengas tu peor tiempo en la sesión."
+      "worst-time-alert": "Muestra una alerta cuando obtengas tu peor tiempo en la sesión.",
+      "focus-mode-scramble": "Mantiene el scramble visible mientras el modo concentración está activo"
     },
     "TransferSolvesPage": {
       "no-source-title": "¿Hiciste alguna resolución con el cubo equivocado?",

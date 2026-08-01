@@ -81,7 +81,8 @@
       "inspection-sound": "インスペクション中に音声アラートを再生",
       "new-round-sound": "マルチプレイの新ラウンドでサウンドを再生",
       "scramble-size": "スクランブルの文字サイズを選択",
-      "trash-sound": "ソルブ削除時にサウンドを再生"
+      "trash-sound": "ソルブ削除時にサウンドを再生",
+      "focus-mode-scramble": "集中モード中もスクランブルを表示します"
     },
     "leaderboard-solve-details": {
       "user-solution": "再構築 (Reconstruction)",
@@ -242,7 +243,9 @@
       "nx-how-to-desc": "次の手順で NexusTimer とスマートフォンをペアリングします。",
       "nx-step-1": "Nexus Connect アプリをインストールします。",
       "nx-step-2": "アプリで「QR をスキャン」をタップします。",
-      "nx-step-3": "画面の QR にカメラを向けます。"
+      "nx-step-3": "画面の QR にカメラを向けます。",
+      "focus-mode": "集中モード",
+      "exit-focus-mode": "集中モードを終了"
     },
     "SolvesPage": {
       "title": "ソルブ履歴",
@@ -626,7 +629,8 @@
       "scramble-size": "スクランブルサイズ",
       "scramble-size-large": "大",
       "scramble-size-normal": "標準",
-      "trash-sound": "削除"
+      "trash-sound": "削除",
+      "focus-mode-scramble": "集中モードのスクランブル"
     },
     "backup-modal": {
       "title": "インテリジェント復元",
