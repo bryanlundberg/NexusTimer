@@ -63,7 +63,7 @@ function fileSafe(category: CubeCategory): string {
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
-const CONCURRENCY = Number(process.env.SCRAPE_CONCURRENCY) > 0 ? Number(process.env.SCRAPE_CONCURRENCY) : 4
+const CONCURRENCY = 1
 const MAX_RETRIES = 4
 const RECYCLE_EVERY = 80
 const NAV_TIMEOUT = 45000
