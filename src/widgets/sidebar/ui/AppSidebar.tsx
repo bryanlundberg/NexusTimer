@@ -43,6 +43,7 @@ import { SidebarBgEffect } from '@/widgets/sidebar/ui/sidebar-bg-effect'
 import { SidebarActivity } from '@/widgets/sidebar/ui/sidebar-activity'
 import { SmartCubeIndicator } from '@/features/smart-cube/ui/SmartCubeIndicator'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { INDICATOR_SPRING } from '@/shared/lib/motion'
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -52,6 +53,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { handleCreate } = useCubeActions()
   const pathname = usePathname() ?? ''
   const isSolving = useTimerStore((store) => store.isSolving)
+  const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
   const [hash, setHash] = useState<string>('')
   const { menuRef, indicator } = useActiveIndicator<HTMLDivElement>([pathname, hash, state])
 
@@ -171,6 +173,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     if (matches(data.multiplayer)) return 'var(--cube-red)'
     return 'var(--cube-blue)'
   }, [data, pathname])
+
+  if (isFocusMode) return null
 
   return (
     <Sidebar collapsible={'icon'} {...props}>
