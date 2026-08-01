@@ -1,0 +1,133 @@
+name: Products ingestion
+on:
+  workflow_dispatch:
+    inputs:
+      skip_ingest:
+        description: 'Scrape only, do not push to Meilisearch'
+        type: boolean
+        default: false
+      concurrency:
+        description: 'Parallel pages per category'
+        type: string
+        default: '4'
+  schedule:
+    # 05:00 UTC on the 1st of every month
+    - cron: '0 5 1 * *'
+
+# Never let two ingestion runs overlap.
+concurrency:
+  group: products-ingestion
+  cancel-in-progress: false
+
+env:
+  PW_SKIP_WEBSERVER: '1'
+
+jobs:
+  collect:
+    name: Collect product URLs
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Collect URLs
+        run: pnpm exec playwright test e2e/collect-product-urls.spec.ts
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cubes-json
+          path: cubes.json
+          retention-days: 7
+          if-no-files-found: error
+
+  scrape:
+    name: Scrape ${{ matrix.category }}
+    needs: collect
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        category: ['2x2', '3x3', '4x4', '5x5', '6x6', '7x7', 'Megaminx', 'Pyraminx', 'Skewb', 'SQ1', 'FTO']
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: cubes-json
+
+      - name: Scrape category
+        env:
+          SCRAPE_CATEGORY: ${{ matrix.category }}
+          SCRAPE_CONCURRENCY: ${{ inputs.concurrency || '4' }}
+        run: pnpm exec playwright test e2e/scrape-products.spec.ts
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scraped-${{ matrix.category }}
+          path: scraped-products/*.json
+          retention-days: 7
+          if-no-files-found: error
+
+  ingest:
+    name: Ingest into Meilisearch
+    needs: scrape
+    # Runs even if some categories failed, so a single blocked category does not
+    # discard everything else that was scraped successfully.
+    if: ${{ always() && !cancelled() && !inputs.skip_ingest }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: scraped-*
+          path: downloaded
+          merge-multiple: true
+
+      - name: Show what was downloaded
+        run: ls -lh downloaded
+
+      - name: Push to Meilisearch
+        env:
+          INGESTION_BASE_URL: ${{ vars.INGESTION_BASE_URL }}
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+        run: bash scripts/ingest-products.sh downloaded
+
+      - name: Index stats
+        env:
+          INGESTION_BASE_URL: ${{ vars.INGESTION_BASE_URL }}
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+        run: |
+          curl -sS -f -H "x-admin-token: $ADMIN_TOKEN" \
+            "$INGESTION_BASE_URL/api/v1/admin/ingestion/products"
