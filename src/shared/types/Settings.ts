@@ -18,6 +18,7 @@ type Features = {
   scrambleBackground: boolean
   scrambleSize: 'normal' | 'large'
   haptics: boolean
+  focusModeScramble: boolean
 }
 
 type Alerts = {
