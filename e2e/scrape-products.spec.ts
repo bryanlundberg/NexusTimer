@@ -6,9 +6,22 @@ import { isValidCategory, type CubeCategory } from '@/shared/const/cube-categori
 const data = JSON.parse(fs.readFileSync('cubes.json', 'utf8'))
 const urls: string[] = data.products
 
-const CATEGORY: CubeCategory = '3x3'
+// Category to scrape. Override in CI with SCRAPE_CATEGORY (see .github/workflows/products-ingestion.yml).
+function resolveTargetCategory(): CubeCategory {
+  const fromEnv = process.env.SCRAPE_CATEGORY?.trim()
 
-const OUT_DIR = 'scraped-products'
+  if (!fromEnv) return '3x3'
+
+  if (!isValidCategory(fromEnv)) {
+    throw new Error(`SCRAPE_CATEGORY="${fromEnv}" is not a valid cube category`)
+  }
+
+  return fromEnv
+}
+
+const CATEGORY: CubeCategory = resolveTargetCategory()
+
+const OUT_DIR = process.env.SCRAPE_OUT_DIR?.trim() || 'scraped-products'
 
 const CATEGORY_BY_COLLECTION: Record<string, CubeCategory> = {
   '2x2-speed-cubes': '2x2',
@@ -50,7 +63,7 @@ function fileSafe(category: CubeCategory): string {
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
-const CONCURRENCY = 4
+const CONCURRENCY = Number(process.env.SCRAPE_CONCURRENCY) > 0 ? Number(process.env.SCRAPE_CONCURRENCY) : 4
 const MAX_RETRIES = 4
 const RECYCLE_EVERY = 80
 const NAV_TIMEOUT = 45000
