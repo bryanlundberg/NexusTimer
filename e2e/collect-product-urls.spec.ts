@@ -16,6 +16,8 @@ const urls = [
 ]
 
 test('Collect all product URLs', async ({ browser }) => {
+  test.setTimeout(0)
+
   const allProducts = await Promise.all(
     urls.map(async (baseUrl) => {
       const page = await browser.newPage()
