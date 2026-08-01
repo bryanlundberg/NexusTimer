@@ -8,14 +8,16 @@ import { usePlatformRouteMatch } from '@/widgets/mobile-bottom-nav/model/use-pla
 import { MobileBottomNavItem } from '@/widgets/mobile-bottom-nav/ui/MobileBottomNavItem'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { TimerStatus } from '@/features/timer/model/enums'
+import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 
 export function MobileBottomNav() {
   const t = useTranslations('Index.NavMain')
   const { isOnPlatformRoute, isActive } = usePlatformRouteMatch()
   const isSolving = useTimerStore((store) => store.isSolving)
   const timerStatus = useTimerStore((store) => store.timerStatus)
+  const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
 
-  if (!isOnPlatformRoute) return null
+  if (!isOnPlatformRoute || isFocusMode) return null
 
   const isHidden = isSolving || timerStatus !== TimerStatus.IDLE
 
