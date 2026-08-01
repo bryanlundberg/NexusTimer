@@ -47,6 +47,12 @@ export default function MenuFeaturesSection({ control }: { control: any }) {
       />
       <MenuSelectScrambleSize />
       <MenuOption
+        name={'features.focusModeScramble'}
+        label={t('Settings-menu.focus-mode-scramble')}
+        control={control}
+        description={t('Settings-descriptions.focus-mode-scramble')}
+      />
+      <MenuOption
         name={'features.haptics'}
         label={t('Settings-menu.haptics')}
         control={control}
