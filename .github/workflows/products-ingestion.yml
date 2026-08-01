@@ -6,10 +6,6 @@ on:
         description: 'Scrape only, do not push to Meilisearch'
         type: boolean
         default: false
-      concurrency:
-        description: 'Parallel pages per category'
-        type: string
-        default: '4'
   schedule:
     # 05:00 UTC on the 1st of every month
     - cron: '0 5 1 * *'
@@ -84,7 +80,6 @@ jobs:
       - name: Scrape category
         env:
           SCRAPE_CATEGORY: ${{ matrix.category }}
-          SCRAPE_CONCURRENCY: ${{ inputs.concurrency || '4' }}
         run: pnpm exec playwright test e2e/scrape-products.spec.ts
 
       - uses: actions/upload-artifact@v4
