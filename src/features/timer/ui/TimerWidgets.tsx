@@ -9,6 +9,7 @@ import { useWindowSize } from 'react-use-size'
 import { cn } from '@/shared/lib/utils'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
 import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
+import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 
 export default function TimerWidgets() {
   const isSolving = useTimerStore((store) => store.isSolving)
@@ -18,6 +19,7 @@ export default function TimerWidgets() {
   const settings = useSettingsStore((store) => store.settings)
   const t = useTranslations('Index.HomePage')
   const timerMode = useTimerStore((store) => store.timerMode)
+  const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
   const { height } = useWindowSize()
 
   const { ao5, ao12, ao50, ao100 } = timerStatistics.global
@@ -59,6 +61,8 @@ export default function TimerWidgets() {
         {t('new_worst_time')}
       </div>
     ) : null
+
+  if (isFocusMode) return null
 
   const isHidden = isSolving || timerStatus !== TimerStatus.IDLE
 
