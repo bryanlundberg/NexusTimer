@@ -12,6 +12,7 @@ import ButtonSelectMode from '@/features/navigation/ui/button-select-mode'
 import NewRecordBadge from '@/features/timer/ui/NewRecordBadge'
 import RecordRipple from '@/features/timer/ui/RecordRipple'
 import TimerRailToggle from '@/features/timer-solves-rail/ui/TimerRailToggle'
+import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 
 export default function HeaderTimer() {
   const isSolving = useTimerStore((store) => store.isSolving)
@@ -19,11 +20,17 @@ export default function HeaderTimer() {
   const lastSolve = useTimerStore((store) => store.lastSolve)
   const timerStatistics = useTimerStore((store) => store.timerStatistics)
   const settings = useSettingsStore((store) => store.settings)
+  const isFocusMode = useFocusModeStore((store) => store.isFocusMode)
   const { height } = useWindowSize()
 
   const isHidden = isSolving || timerStatus !== TimerStatus.IDLE
+  const showScramble = !isFocusMode || settings.features.focusModeScramble
   const isPersonalBest =
-    lastSolve != null && !lastSolve.dnf && lastSolve.time <= timerStatistics.global.best && settings.alerts.bestTime
+    !isFocusMode &&
+    lastSolve != null &&
+    !lastSolve.dnf &&
+    lastSolve.time <= timerStatistics.global.best &&
+    settings.alerts.bestTime
 
   return (
     <>
@@ -31,17 +38,21 @@ export default function HeaderTimer() {
       <div
         className={cn(
           'w-full flex flex-col items-center transition-opacity duration-150',
-          isHidden ? 'opacity-30 pointer-events-none' : 'opacity-100'
+          !isHidden && 'opacity-100',
+          isHidden && 'pointer-events-none',
+          isHidden && (isFocusMode ? 'opacity-0' : 'opacity-30')
         )}
       >
-        <div className={'flex items-center gap-2 mb-2 w-full'}>
-          <MainCubeSelector />
-          <ButtonNextScramble />
-          <ButtonSelectMode />
-          <TimerRailToggle />
-        </div>
+        {!isFocusMode && (
+          <div className={'flex items-center gap-2 mb-2 w-full'}>
+            <MainCubeSelector />
+            <ButtonNextScramble />
+            <ButtonSelectMode />
+            <TimerRailToggle />
+          </div>
+        )}
 
-        <ScrambleZone />
+        {showScramble && <ScrambleZone />}
         {isPersonalBest && (
           <div className={cn('flex justify-center mt-10', height <= SCRAMBLE_HEIGHT && 'mt-5')} id="touch">
             <NewRecordBadge time={lastSolve.time} />
