@@ -40,6 +40,21 @@ export function QaBookmarkIcon({ size = 24, ...props }: IconProps) {
   )
 }
 
+export function QaCommentIcon({ size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      {...props}
+    >
+      <path d="M2 3h20v13h-9l-5 4v-4H2z" />
+    </svg>
+  )
+}
+
 export function QaMoreIcon({ size = 24, ...props }: IconProps) {
   return (
     <svg
