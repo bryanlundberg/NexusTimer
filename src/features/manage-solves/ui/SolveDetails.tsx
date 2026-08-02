@@ -128,6 +128,14 @@ export default function SolveDetails() {
               <CopyIcon className="size-3.5" />
             </button>
           </div>
+          {solve?.comment && (
+            <p
+              data-testid="solve-comment"
+              className="mb-2.5 px-4 text-xs text-muted-foreground text-center break-words whitespace-pre-wrap"
+            >
+              {solve.comment}
+            </p>
+          )}
           <div className="flex flex-col items-center gap-2.5">
             <div className="notch-bl-tr [--nblt:12px] bg-muted/40 p-2">
               <ScrambleDisplay
