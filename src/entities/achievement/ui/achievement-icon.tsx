@@ -1,10 +1,10 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { cn } from '@/shared/lib/utils'
-import { Achievement as AchievementType } from '../model/types'
+import { RenderableBadge } from '../model/types'
 
 type AchievementIconProps = {
-  achievement: AchievementType
+  achievement: RenderableBadge
   locked: boolean
 } & React.HTMLAttributes<HTMLDivElement>
 
