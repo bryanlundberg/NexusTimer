@@ -410,7 +410,8 @@
       "no-results": "Aucun résultat trouvé",
       "search": "Rechercher...",
       "menu": "Menu",
-      "fullscreen": "Plein écran"
+      "fullscreen": "Plein écran",
+      "save": "Enregistrer"
     },
     "pagination": {
       "previous": "Précédent",
@@ -569,7 +570,8 @@
       "bookmark": "Signet",
       "copy": "Copier",
       "dnf": "DNF",
-      "more-actions": "Plus d'actions"
+      "more-actions": "Plus d'actions",
+      "comment": "Commentaire"
     },
     "solve-details": {
       "unknown-category": "Inconnu",
@@ -578,7 +580,10 @@
       "transfer-collection": "Transférer la collection",
       "delete-confirm-title": "Supprimer ce solve ?",
       "delete-confirm-desc": "Cette action est irréversible.",
-      "watch-replay": "Voir le replay"
+      "watch-replay": "Voir le replay",
+      "comment-title": "Commentaire du solve",
+      "comment-desc": "Vous seul pouvez voir cette note.",
+      "comment-placeholder": "Ajouter une note sur ce solve"
     },
     "Settings-menu": {
       "locale": "Région",

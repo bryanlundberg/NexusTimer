@@ -410,7 +410,8 @@
       "no-results": "결과 없음",
       "search": "검색...",
       "menu": "메뉴",
-      "fullscreen": "전체 화면"
+      "fullscreen": "전체 화면",
+      "save": "저장"
     },
     "pagination": {
       "previous": "이전",
@@ -569,7 +570,8 @@
       "bookmark": "북마크",
       "copy": "복사",
       "dnf": "DNF",
-      "more-actions": "추가 작업"
+      "more-actions": "추가 작업",
+      "comment": "댓글"
     },
     "solve-details": {
       "unknown-category": "알 수 없음",
@@ -578,7 +580,10 @@
       "transfer-collection": "컬렉션 이동",
       "delete-confirm-title": "이 솔브를 삭제하시겠습니까?",
       "delete-confirm-desc": "이 작업은 되돌릴 수 없습니다.",
-      "watch-replay": "리플레이 보기"
+      "watch-replay": "리플레이 보기",
+      "comment-title": "솔브 코멘트",
+      "comment-desc": "이 메모는 나만 볼 수 있습니다.",
+      "comment-placeholder": "이 솔브에 대한 메모 추가"
     },
     "Settings-menu": {
       "locale": "지역",

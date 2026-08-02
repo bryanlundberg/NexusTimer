@@ -413,7 +413,8 @@
       "no-results": "Walang nahanap na resulta",
       "search": "Maghanap...",
       "menu": "Menu",
-      "fullscreen": "Fullscreen"
+      "fullscreen": "Fullscreen",
+      "save": "I-save"
     },
     "pagination": {
       "previous": "Nakaraan",
@@ -572,7 +573,8 @@
       "bookmark": "Bookmark",
       "copy": "Kopyahin",
       "dnf": "DNF",
-      "more-actions": "Iba pang aksyon"
+      "more-actions": "Iba pang aksyon",
+      "comment": "Komento"
     },
     "solve-details": {
       "unknown-category": "Hindi Alam",
@@ -581,7 +583,10 @@
       "transfer-collection": "Ilipat ang Collection",
       "watch-replay": "Panoorin ang replay",
       "delete-confirm-title": "Burahin ang solve na ito?",
-      "delete-confirm-desc": "Hindi na maibabalik ang aksyong ito."
+      "delete-confirm-desc": "Hindi na maibabalik ang aksyong ito.",
+      "comment-title": "Komento sa solve",
+      "comment-desc": "Ikaw lang ang makakakita ng note na ito.",
+      "comment-placeholder": "Magdagdag ng note tungkol sa solve na ito"
     },
     "Settings-menu": {
       "locale": "Rehiyon",

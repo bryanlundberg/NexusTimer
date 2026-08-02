@@ -410,7 +410,8 @@
       "no-results": "未找到结果",
       "search": "搜索...",
       "menu": "菜单",
-      "fullscreen": "全屏"
+      "fullscreen": "全屏",
+      "save": "保存"
     },
     "pagination": {
       "previous": "上一页",
@@ -569,7 +570,8 @@
       "bookmark": "书签",
       "copy": "复制",
       "dnf": "DNF",
-      "more-actions": "更多操作"
+      "more-actions": "更多操作",
+      "comment": "备注"
     },
     "solve-details": {
       "unknown-category": "未知类别",
@@ -578,7 +580,10 @@
       "transfer-collection": "转移收藏",
       "delete-confirm-title": "删除此还原？",
       "delete-confirm-desc": "此操作无法撤销。",
-      "watch-replay": "观看回放"
+      "watch-replay": "观看回放",
+      "comment-title": "复原备注",
+      "comment-desc": "只有你能看到这条备注。",
+      "comment-placeholder": "为这次复原添加备注"
     },
     "Settings-menu": {
       "locale": "地区",

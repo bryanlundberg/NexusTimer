@@ -410,7 +410,8 @@
       "no-results": "Ничего не найдено",
       "search": "Поиск...",
       "menu": "Меню",
-      "fullscreen": "Полный экран"
+      "fullscreen": "Полный экран",
+      "save": "Сохранить"
     },
     "pagination": {
       "previous": "Назад",
@@ -569,7 +570,8 @@
       "bookmark": "Закладка",
       "copy": "Копировать",
       "dnf": "DNF",
-      "more-actions": "Больше действий"
+      "more-actions": "Больше действий",
+      "comment": "Комментарий"
     },
     "solve-details": {
       "unknown-category": "Неизвестно",
@@ -578,7 +580,10 @@
       "transfer-collection": "Сменить коллекцию",
       "delete-confirm-title": "Удалить это решение?",
       "delete-confirm-desc": "Это действие нельзя отменить.",
-      "watch-replay": "Смотреть повтор"
+      "watch-replay": "Смотреть повтор",
+      "comment-title": "Комментарий к сборке",
+      "comment-desc": "Эту заметку видите только вы.",
+      "comment-placeholder": "Добавьте заметку об этой сборке"
     },
     "Settings-menu": {
       "locale": "Регион",

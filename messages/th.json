@@ -413,7 +413,8 @@
       "no-results": "ไม่พบผลลัพธ์",
       "search": "ค้นหา...",
       "menu": "เมนู",
-      "fullscreen": "เต็มหน้าจอ"
+      "fullscreen": "เต็มหน้าจอ",
+      "save": "บันทึก"
     },
     "pagination": {
       "previous": "ก่อนหน้า",
@@ -572,7 +573,8 @@
       "bookmark": "บุ๊กมาร์ก",
       "copy": "คัดลอก",
       "dnf": "DNF",
-      "more-actions": "การกระทำเพิ่มเติม"
+      "more-actions": "การกระทำเพิ่มเติม",
+      "comment": "ความคิดเห็น"
     },
     "solve-details": {
       "unknown-category": "ไม่ทราบ",
@@ -581,7 +583,10 @@
       "transfer-collection": "โอนคอลเลกชัน",
       "watch-replay": "ดูรีเพลย์",
       "delete-confirm-title": "ลบโซลฟ์นี้?",
-      "delete-confirm-desc": "การกระทำนี้ไม่สามารถยกเลิกได้"
+      "delete-confirm-desc": "การกระทำนี้ไม่สามารถยกเลิกได้",
+      "comment-title": "ความคิดเห็นของ solve",
+      "comment-desc": "มีเพียงคุณเท่านั้นที่เห็นบันทึกนี้",
+      "comment-placeholder": "เพิ่มบันทึกเกี่ยวกับ solve นี้"
     },
     "Settings-menu": {
       "locale": "ภูมิภาค",

@@ -413,7 +413,8 @@
       "no-results": "Нічого не знайдено",
       "search": "Пошук...",
       "menu": "Меню",
-      "fullscreen": "На весь екран"
+      "fullscreen": "На весь екран",
+      "save": "Зберегти"
     },
     "pagination": {
       "previous": "Попередня",
@@ -572,7 +573,8 @@
       "bookmark": "Закладка",
       "copy": "Копіювати",
       "dnf": "DNF",
-      "more-actions": "Більше дій"
+      "more-actions": "Більше дій",
+      "comment": "Коментар"
     },
     "solve-details": {
       "unknown-category": "Невідома",
@@ -581,7 +583,10 @@
       "transfer-collection": "Перенести колекцію",
       "delete-confirm-title": "Видалити цей розв'язок?",
       "delete-confirm-desc": "Цю дію не можна скасувати.",
-      "watch-replay": "Дивитися повтор"
+      "watch-replay": "Дивитися повтор",
+      "comment-title": "Коментар до збірки",
+      "comment-desc": "Цю нотатку бачите лише ви.",
+      "comment-placeholder": "Додайте нотатку про цю збірку"
     },
     "Settings-menu": {
       "locale": "Регіон",

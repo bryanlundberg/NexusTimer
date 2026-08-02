@@ -413,7 +413,8 @@
       "no-results": "Nie znaleziono wyników",
       "search": "Szukaj...",
       "menu": "Menu",
-      "fullscreen": "Pełny ekran"
+      "fullscreen": "Pełny ekran",
+      "save": "Zapisz"
     },
     "pagination": {
       "previous": "Poprzednia",
@@ -572,7 +573,8 @@
       "bookmark": "Zakładka",
       "copy": "Kopiuj",
       "dnf": "DNF",
-      "more-actions": "Więcej akcji"
+      "more-actions": "Więcej akcji",
+      "comment": "Komentarz"
     },
     "solve-details": {
       "unknown-category": "Nieznana",
@@ -581,7 +583,10 @@
       "transfer-collection": "Przenieś kolekcję",
       "watch-replay": "Obejrzyj powtórkę",
       "delete-confirm-title": "Usunąć ten solve?",
-      "delete-confirm-desc": "Tej akcji nie można cofnąć."
+      "delete-confirm-desc": "Tej akcji nie można cofnąć.",
+      "comment-title": "Komentarz do ułożenia",
+      "comment-desc": "Tylko Ty widzisz tę notatkę.",
+      "comment-placeholder": "Dodaj notatkę o tym ułożeniu"
     },
     "Settings-menu": {
       "locale": "Region",

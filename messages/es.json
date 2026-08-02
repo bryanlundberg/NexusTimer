@@ -371,7 +371,8 @@
       "no-results": "No se encontraron resultados",
       "search": "Buscar...",
       "menu": "Menú",
-      "fullscreen": "Pantalla completa"
+      "fullscreen": "Pantalla completa",
+      "save": "Guardar"
     },
     "pagination": {
       "previous": "Anterior",
@@ -563,7 +564,8 @@
       "delete": "Borrar",
       "plus-two": "+2 penalización",
       "dnf": "No terminó (DNF)",
-      "more-actions": "Más acciones"
+      "more-actions": "Más acciones",
+      "comment": "Comentario"
     },
     "solve-details": {
       "unknown-category": "Desconocido",
@@ -572,7 +574,10 @@
       "transfer-collection": "Transferir Colección",
       "watch-replay": "Ver repetición",
       "delete-confirm-title": "¿Eliminar este tiempo?",
-      "delete-confirm-desc": "Esta acción no se puede deshacer."
+      "delete-confirm-desc": "Esta acción no se puede deshacer.",
+      "comment-title": "Comentario del solve",
+      "comment-desc": "Solo vos podés ver esta nota.",
+      "comment-placeholder": "Agregá una nota sobre este solve"
     },
     "SettingsPage": {
       "backup-applied": "Respaldo aplicado",

@@ -410,7 +410,8 @@
       "no-results": "結果が見つかりません",
       "search": "検索...",
       "menu": "メニュー",
-      "fullscreen": "全画面表示"
+      "fullscreen": "全画面表示",
+      "save": "保存"
     },
     "pagination": {
       "previous": "前へ",
@@ -569,7 +570,8 @@
       "bookmark": "ブックマーク",
       "copy": "コピー",
       "dnf": "DNF",
-      "more-actions": "その他の操作"
+      "more-actions": "その他の操作",
+      "comment": "コメント"
     },
     "solve-details": {
       "unknown-category": "不明",
@@ -578,7 +580,10 @@
       "transfer-collection": "コレクションを移動",
       "delete-confirm-title": "このソルブを削除しますか？",
       "delete-confirm-desc": "この操作は取り消せません。",
-      "watch-replay": "リプレイを見る"
+      "watch-replay": "リプレイを見る",
+      "comment-title": "ソルブのコメント",
+      "comment-desc": "このメモはあなただけが見られます。",
+      "comment-placeholder": "このソルブについてメモを追加"
     },
     "Settings-menu": {
       "locale": "地域",

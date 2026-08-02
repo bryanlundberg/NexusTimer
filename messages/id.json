@@ -413,7 +413,8 @@
       "no-results": "Tidak ada hasil ditemukan",
       "search": "Cari...",
       "menu": "Menu",
-      "fullscreen": "Layar penuh"
+      "fullscreen": "Layar penuh",
+      "save": "Simpan"
     },
     "pagination": {
       "previous": "Sebelumnya",
@@ -572,7 +573,8 @@
       "bookmark": "Markah",
       "copy": "Salin",
       "dnf": "DNF",
-      "more-actions": "Aksi lainnya"
+      "more-actions": "Aksi lainnya",
+      "comment": "Komentar"
     },
     "solve-details": {
       "unknown-category": "Tidak diketahui",
@@ -581,7 +583,10 @@
       "transfer-collection": "Transfer Koleksi",
       "watch-replay": "Tonton putar ulang",
       "delete-confirm-title": "Hapus solve ini?",
-      "delete-confirm-desc": "Tindakan ini tidak dapat dibatalkan."
+      "delete-confirm-desc": "Tindakan ini tidak dapat dibatalkan.",
+      "comment-title": "Komentar solve",
+      "comment-desc": "Hanya kamu yang bisa melihat catatan ini.",
+      "comment-placeholder": "Tambahkan catatan tentang solve ini"
     },
     "Settings-menu": {
       "locale": "Wilayah",

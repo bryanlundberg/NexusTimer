@@ -413,7 +413,8 @@
       "no-results": "Không tìm thấy kết quả",
       "search": "Tìm kiếm...",
       "menu": "Menu",
-      "fullscreen": "Toàn màn hình"
+      "fullscreen": "Toàn màn hình",
+      "save": "Lưu"
     },
     "pagination": {
       "previous": "Trước",
@@ -572,7 +573,8 @@
       "bookmark": "Đánh dấu",
       "copy": "Sao chép",
       "dnf": "DNF",
-      "more-actions": "Thêm hành động"
+      "more-actions": "Thêm hành động",
+      "comment": "Bình luận"
     },
     "solve-details": {
       "unknown-category": "Không xác định",
@@ -581,7 +583,10 @@
       "transfer-collection": "Chuyển bộ sưu tập",
       "watch-replay": "Xem phát lại",
       "delete-confirm-title": "Xóa solve này?",
-      "delete-confirm-desc": "Hành động này không thể hoàn tác."
+      "delete-confirm-desc": "Hành động này không thể hoàn tác.",
+      "comment-title": "Bình luận cho solve",
+      "comment-desc": "Chỉ bạn mới thấy ghi chú này.",
+      "comment-placeholder": "Thêm ghi chú về solve này"
     },
     "Settings-menu": {
       "locale": "Khu vực",

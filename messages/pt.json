@@ -410,7 +410,8 @@
       "no-results": "Nenhum resultado encontrado",
       "search": "Procurar...",
       "menu": "Menu",
-      "fullscreen": "Tela cheia"
+      "fullscreen": "Tela cheia",
+      "save": "Salvar"
     },
     "pagination": {
       "previous": "Anterior",
@@ -569,7 +570,8 @@
       "bookmark": "Marcador",
       "copy": "Copiar",
       "dnf": "DNF",
-      "more-actions": "Mais ações"
+      "more-actions": "Mais ações",
+      "comment": "Comentário"
     },
     "solve-details": {
       "unknown-category": "Desconhecido",
@@ -578,7 +580,10 @@
       "transfer-collection": "Transferir Coleção",
       "delete-confirm-title": "Excluir esta resolução?",
       "delete-confirm-desc": "Esta ação não pode ser desfeita.",
-      "watch-replay": "Assistir replay"
+      "watch-replay": "Assistir replay",
+      "comment-title": "Comentário do solve",
+      "comment-desc": "Apenas você pode ver esta nota.",
+      "comment-placeholder": "Adicione uma nota sobre este solve"
     },
     "Settings-menu": {
       "locale": "Região",

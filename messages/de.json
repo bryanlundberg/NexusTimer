@@ -410,7 +410,8 @@
       "no-results": "Keine Ergebnisse gefunden",
       "search": "Suchen...",
       "menu": "Menü",
-      "fullscreen": "Vollbild"
+      "fullscreen": "Vollbild",
+      "save": "Speichern"
     },
     "pagination": {
       "previous": "Vorherige",
@@ -569,7 +570,8 @@
       "bookmark": "Lesezeichen",
       "copy": "Kopieren",
       "dnf": "DNF",
-      "more-actions": "Weitere Aktionen"
+      "more-actions": "Weitere Aktionen",
+      "comment": "Kommentar"
     },
     "solve-details": {
       "unknown-category": "Unbekannt",
@@ -578,7 +580,10 @@
       "transfer-collection": "Sammlung übertragen",
       "delete-confirm-title": "Diesen Solve löschen?",
       "delete-confirm-desc": "Diese Aktion kann nicht rückgängig gemacht werden.",
-      "watch-replay": "Replay ansehen"
+      "watch-replay": "Replay ansehen",
+      "comment-title": "Solve-Kommentar",
+      "comment-desc": "Nur du kannst diese Notiz sehen.",
+      "comment-placeholder": "Notiz zu diesem Solve hinzufügen"
     },
     "Settings-menu": {
       "locale": "Region",

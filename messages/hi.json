@@ -410,7 +410,8 @@
       "no-results": "कोई परिणाम नहीं मिला",
       "search": "खोजें...",
       "menu": "मेनू",
-      "fullscreen": "पूर्ण स्क्रीन"
+      "fullscreen": "पूर्ण स्क्रीन",
+      "save": "सहेजें"
     },
     "pagination": {
       "previous": "पिछला",
@@ -569,7 +570,8 @@
       "bookmark": "बुकमार्क",
       "copy": "कॉपी",
       "dnf": "DNF",
-      "more-actions": "अधिक क्रियाएं"
+      "more-actions": "अधिक क्रियाएं",
+      "comment": "टिप्पणी"
     },
     "solve-details": {
       "unknown-category": "अज्ञात",
@@ -578,7 +580,10 @@
       "transfer-collection": "संग्रह स्थानांतरित करें",
       "delete-confirm-title": "इस सॉल्व को हटाएँ?",
       "delete-confirm-desc": "इस क्रिया को पूर्ववत नहीं किया जा सकता।",
-      "watch-replay": "रीप्ले देखें"
+      "watch-replay": "रीप्ले देखें",
+      "comment-title": "सॉल्व टिप्पणी",
+      "comment-desc": "यह नोट केवल आप देख सकते हैं।",
+      "comment-placeholder": "इस सॉल्व के बारे में एक नोट जोड़ें"
     },
     "Settings-menu": {
       "locale": "क्षेत्र",
