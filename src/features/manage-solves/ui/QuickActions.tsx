@@ -11,10 +11,11 @@ import {
   AlertDialogTitle
 } from '@/components/ui/alert-dialog'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { Textarea } from '@/components/ui/textarea'
 import { CopyIcon, CubeIcon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
 import { ArrowRightLeftIcon } from 'lucide-react'
-import { QaDeleteIcon, QaBookmarkIcon, QaMoreIcon } from '@/components/ui/quick-action-icons'
+import { QaDeleteIcon, QaBookmarkIcon, QaMoreIcon, QaCommentIcon } from '@/components/ui/quick-action-icons'
 import { useQueryState } from 'nuqs'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import useQuickActions from '@/features/manage-solves/model/useQuickActions'
@@ -22,6 +23,8 @@ import { Solve } from '@/entities/solve/model/types'
 import { STATES } from '@/shared/const/states'
 import { SolveTab } from '@/shared/types/enums'
 import { cn } from '@/shared/lib/utils'
+
+const COMMENT_MAX_LENGTH = 200
 
 interface QuickActionsProps {
   solve: Solve | null
@@ -51,14 +54,27 @@ export default function QuickActions({
     handleToggleDNF,
     handleMoveToHistorial,
     handleTransferCollection,
-    handleClipboard
+    handleClipboard,
+    handleUpdateComment
   } = useQuickActions(solve!)
   const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false)
+  const [commentOpen, setCommentOpen] = useState(false)
+  const [commentDraft, setCommentDraft] = useState('')
 
   const handleConfirmDelete = () => {
     handleDeleteSolve()
     onDeleteSolve()
     setConfirmDeleteOpen(false)
+  }
+
+  const handleOpenComment = () => {
+    setCommentDraft(solve?.comment ?? '')
+    setCommentOpen(true)
+  }
+
+  const handleSaveComment = async () => {
+    await handleUpdateComment(commentDraft.trim())
+    setCommentOpen(false)
   }
 
   const showDropdown =
@@ -79,6 +95,62 @@ export default function QuickActions({
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
+  )
+
+  // AlertDialog on purpose: SolveDetails' `preventNestedDismiss` already
+  // whitelists role="alertdialog", so nesting this inside it will not dismiss
+  // the parent modal. A plain Dialog (role="dialog") would.
+  const commentDialog = (
+    <AlertDialog open={commentOpen} onOpenChange={setCommentOpen}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{t('solve-details.comment-title')}</AlertDialogTitle>
+          <AlertDialogDescription>{t('solve-details.comment-desc')}</AlertDialogDescription>
+        </AlertDialogHeader>
+        <div className="flex flex-col gap-1">
+          <Textarea
+            autoFocus
+            rows={3}
+            maxLength={COMMENT_MAX_LENGTH}
+            value={commentDraft}
+            onChange={(event) => setCommentDraft(event.target.value)}
+            placeholder={t('solve-details.comment-placeholder')}
+            data-testid="comment-textarea"
+          />
+          <span className="text-[10px] text-muted-foreground self-end tabular-nums">
+            {commentDraft.length}/{COMMENT_MAX_LENGTH}
+          </span>
+        </div>
+        <AlertDialogFooter>
+          <AlertDialogCancel>{t('Inputs.cancel')}</AlertDialogCancel>
+          <AlertDialogAction onClick={handleSaveComment} data-testid="comment-save-button">
+            {t('Inputs.save')}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  )
+
+  const commentButton = (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          data-testid="comment-button"
+          variant="ghost"
+          size="sm"
+          className={cn(
+            'h-9 min-w-9 sm:h-8 sm:min-w-0',
+            solve?.comment ? 'text-primary hover:text-primary' : 'text-muted-foreground'
+          )}
+          onClick={handleOpenComment}
+        >
+          <QaCommentIcon className="size-4 sm:size-3.5" />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>{t('tooltips.comment')}</p>
+      </TooltipContent>
+    </Tooltip>
   )
 
   const moreDropdown = showDropdown && (
@@ -186,6 +258,8 @@ export default function QuickActions({
 
           {/* Icon cluster */}
           <div className="flex items-center gap-0.5 text-muted-foreground">
+            {commentButton}
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
@@ -227,6 +301,7 @@ export default function QuickActions({
           </div>
         </div>
         {deleteDialog}
+        {commentDialog}
       </TooltipProvider>
     )
   }
