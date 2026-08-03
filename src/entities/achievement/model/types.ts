@@ -46,6 +46,8 @@ export interface TieredAchievement extends AchievementBase {
   metric: (data: AchievementData) => number
   compare: TierCompare
   tiers: AchievementTier[]
+  unit?: string
+  formatValue?: (value: number) => string
 }
 
 export type Achievement = SimpleAchievement | TieredAchievement
