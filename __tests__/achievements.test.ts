@@ -300,8 +300,9 @@ describe('achievements — unlock rules', () => {
 
   describe('per-category ladders', () => {
     it('climbs the speed ladder of the category the solve was logged in', () => {
-      expect(levels([cubeWith([solve({ time: 59_000 })], '4x4')])['speed-4x4']).toBe(4)
-      expect(levels([cubeWith([solve({ time: 59_000 })], '4x4')])['speed-5x5']).toBeUndefined()
+      expect(levels([cubeWith([solve({ time: 29_000 })], '4x4')])['speed-4x4']).toBe(4)
+      expect(levels([cubeWith([solve({ time: 59_000 })], '4x4')])['speed-4x4']).toBe(2)
+      expect(levels([cubeWith([solve({ time: 29_000 })], '4x4')])['speed-5x5']).toBeUndefined()
     })
 
     it('scales thresholds per puzzle — the same time is not worth the same rung', () => {
@@ -311,14 +312,16 @@ describe('achievements — unlock rules', () => {
     })
 
     it('leaves 3x3 and 3x3 OH to their hand-tuned families', () => {
-      expect(levels([cubeWith([solve({ time: 5_000 })])])['speed-3x3-30000']).toBeUndefined()
-      expect(levels([cubeWith([solve({ time: 5_000 })], '3x3 OH')])['speed-3x3-oh']).toBeUndefined()
+      const families = resolveBadges({ user: makeUser(), cubes: [] }).families.map((f) => f.id)
+      expect(families.filter((id) => id === 'speed-3x3')).toHaveLength(1)
+      expect(families).not.toContain('speed-3x3-oh')
     })
 
     it('climbs the volume ladder at each threshold', () => {
       expect(levels([cubeWith(bulkSolves(49), 'Megaminx')])['volume-megaminx']).toBeUndefined()
       expect(levels([cubeWith(bulkSolves(50), 'Megaminx')])['volume-megaminx']).toBe(1)
       expect(levels([cubeWith(bulkSolves(250), 'Megaminx')])['volume-megaminx']).toBe(2)
+      expect(levels([cubeWith(bulkSolves(1_000), 'Megaminx')])['volume-megaminx']).toBe(3)
     })
 
     it('does not let a DNF count toward volume', () => {
