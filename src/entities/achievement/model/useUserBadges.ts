@@ -3,7 +3,7 @@ import { Cube } from '@/entities/cube/model/types'
 import { UserProfile } from '@/entities/user/model/user'
 import { resolveBadges } from './resolve-badges'
 
-export type { UserBadge, UserBadgesResult } from './resolve-badges'
+export type { UserBadge, UserBadgesResult, BadgeFamily, BadgeProgress } from './resolve-badges'
 
 /**
  * Resolves the unlock state of every badge for a user.
