@@ -133,11 +133,10 @@ describe('tier ladders', () => {
       expect(family.next).toBeUndefined()
     })
 
-    it('inherits artwork from the rung below until a tier declares its own', () => {
-      expect(familyFor('cube-collection', emptyCubes(1)).icon).toBe('icons8-shield-50.png')
-      expect(familyFor('cube-collection', emptyCubes(10)).icon).toBe('icons8-shield-50.png')
-      expect(familyFor('cube-collection', emptyCubes(25)).icon).toBe('icons8-money-box-50.png')
-      expect(familyFor('cube-collection', emptyCubes(60)).icon).toBe('icons8-monster-face-50.png')
+    it('keeps one piece of artwork for the whole family, at every rung', () => {
+      for (const n of [1, 10, 25, 60]) {
+        expect(familyFor('cube-collection', emptyCubes(n)).icon).toBe('badge-shelf.svg')
+      }
     })
   })
 
