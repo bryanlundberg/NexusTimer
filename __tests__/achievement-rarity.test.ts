@@ -80,19 +80,19 @@ describe('RarityAccumulator', () => {
     expect(accumulator.finalize({ registeredUsers: 4 }).badges['bug-hunter']).toEqual({ holders: 1, pct: 25 })
   })
 
-  it('rounds percentages to a single decimal', () => {
+  it('rounds percentages to two decimals', () => {
     const accumulator = new RarityAccumulator()
     accumulator.countUser(['collector-1'])
 
-    expect(accumulator.finalize({ registeredUsers: 3 }).badges['collector-1'].pct).toBe(33.3)
+    expect(accumulator.finalize({ registeredUsers: 3 }).badges['collector-1'].pct).toBe(33.33)
   })
 
   it('keeps a rare badge visible rather than rounding it to zero', () => {
     const accumulator = new RarityAccumulator()
     accumulator.countUser(['speed-sub-6'])
 
-    const entry = accumulator.finalize({ registeredUsers: 1000 }).badges['speed-sub-6']
-    expect(entry).toEqual({ holders: 1, pct: 0.1 })
+    const entry = accumulator.finalize({ registeredUsers: 10000 }).badges['speed-sub-6']
+    expect(entry).toEqual({ holders: 1, pct: 0.01 })
   })
 
   it('tracks progress without building the full report', () => {
