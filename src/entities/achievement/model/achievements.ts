@@ -896,7 +896,6 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     title: 'Big Cube Believer',
     description: 'Solved a 4x4, a 5x5, a 6x6 and a 7x7.',
     icon: 'badge-big-cubes.svg',
-    color: 'rgba(168,85,247,0.8)',
     type: 'computed',
     condition: ({ stats }) => solvedAll(stats, ['4x4', '5x5', '6x6', '7x7'])
   },
@@ -905,7 +904,6 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     title: 'Through the Screen',
     description: 'Completed a solve on a virtual puzzle.',
     icon: 'badge-monitor.svg',
-    color: 'rgba(56,189,248,0.8)',
     type: 'computed',
     condition: ({ stats }) => stats.countByCategory.has('2x2 Virtual') || stats.countByCategory.has('3x3 Virtual')
   },
@@ -914,7 +912,6 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     title: 'Off the Beaten Path',
     description: 'Solved a Square-1, a Skewb, a Clock and an FTO.',
     icon: 'badge-oddballs.svg',
-    color: 'rgba(251,146,60,0.8)',
     type: 'computed',
     condition: ({ stats }) => solvedAll(stats, ['SQ1', 'Skewb', 'Clock', 'FTO'])
   },
