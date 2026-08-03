@@ -1,0 +1,35 @@
+name: Achievement rarity
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 04:00 UTC every day
+    - cron: '0 4 * * *'
+
+concurrency:
+  group: achievement-rarity
+  cancel-in-progress: false
+
+jobs:
+  compute:
+    name: Recompute rarity
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Compute and publish rarity
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          INGESTION_BASE_URL: ${{ vars.INGESTION_BASE_URL }}
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+        run: node --import tsx scripts/compute-rarity.ts
