@@ -67,13 +67,12 @@ export function isTiered(achievement: Achievement): achievement is TieredAchieve
 
 export interface SolveStats {
   totalValid: number
-  best3x3Single: number
-  best3x3OHSingle: number
-  bldSuccessCount: number
+  bestByCategory: Map<string, number>
+  countByCategory: Map<string, number>
+  totalTimeSpent: number
   newYearSolveCount: number
   replayCount: number
   max3x3SolvesPerCube: number
-  categoriesWithValidSolves: Set<string>
   maxSolvesInOneDay: number
   longestDateStreak: number
   longestCleanStreak: number
