@@ -24,19 +24,9 @@ const VOLUME_THRESHOLDS = [50, 250, 1_000, 10_000]
 const SPEED_RANKS = ['Rookie', 'Runner', 'Sprinter', 'Master']
 const VOLUME_RANKS = ['Dabbler', 'Regular', 'Devotee', 'Specialist']
 
-const SPEED_ICONS = [
-  'icons8-last-24-hours-50.png',
-  'icons8-lightning-48.png',
-  'icons8-physics-50.png',
-  'icons8-crown-50.png'
-]
-
-const VOLUME_ICONS = [
-  'icons8-three-leaf-clover-50.png',
-  'icons8-combo-chart-50.png',
-  'icons8-mana-50.png',
-  'icons8-trophy-50.png'
-]
+function puzzleIcon(category: CubeCategory): string {
+  return `puzzle-${slug(category)}.svg`
+}
 
 /** Lowercased, spaces to dashes: `3x3 BLD` -> `3x3-bld`. */
 function slug(category: CubeCategory): string {
@@ -56,7 +46,7 @@ const clock = (ms: number) => (Number.isFinite(ms) ? duration(ms) : '--')
 function speedFamily(category: CubeCategory, thresholds: number[]): TieredAchievement {
   return {
     id: `speed-${slug(category)}`,
-    icon: SPEED_ICONS[0],
+    icon: puzzleIcon(category),
     type: 'tiered',
     metric: ({ stats }) => stats.bestByCategory.get(category) ?? Infinity,
     compare: 'lt',
@@ -66,8 +56,7 @@ function speedFamily(category: CubeCategory, thresholds: number[]): TieredAchiev
       level: index + 1,
       title: `${category} ${SPEED_RANKS[index]}`,
       description: `Solved a ${category} in under ${duration(threshold)}.`,
-      threshold,
-      icon: SPEED_ICONS[index]
+      threshold
     }))
   }
 }
@@ -75,7 +64,7 @@ function speedFamily(category: CubeCategory, thresholds: number[]): TieredAchiev
 function volumeFamily(category: CubeCategory): TieredAchievement {
   return {
     id: `volume-${slug(category)}`,
-    icon: VOLUME_ICONS[0],
+    icon: puzzleIcon(category),
     type: 'tiered',
     metric: ({ stats }) => stats.countByCategory.get(category) ?? 0,
     compare: 'gte',
@@ -85,8 +74,7 @@ function volumeFamily(category: CubeCategory): TieredAchievement {
       level: index + 1,
       title: `${category} ${VOLUME_RANKS[index]}`,
       description: `Completed ${threshold.toLocaleString('en-US')} ${category} solves.`,
-      threshold,
-      icon: VOLUME_ICONS[index]
+      threshold
     }))
   }
 }
