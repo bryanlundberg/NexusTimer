@@ -90,7 +90,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
     <div className="flex flex-col w-full">
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
 
-      <ProfileHeroBanner user={user} level={userBadges.unlocked.length} />
+      <ProfileHeroBanner user={user} level={userBadges.earnedTiers} />
       {!isLoadingStats && <ProfileBadgesStrip badges={userBadges} />}
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">

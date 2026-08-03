@@ -129,6 +129,7 @@
     "lint-staged": "^16.2.4",
     "prettier": "3.9.5",
     "serwist": "^9.2.1",
+    "tsx": "^4.20.6",
     "typescript": "6.0.3",
     "vitest": "^4.1.9"
   },

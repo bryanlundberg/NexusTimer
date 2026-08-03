@@ -1,44 +1,16 @@
 import { useMemo } from 'react'
 import { Cube } from '@/entities/cube/model/types'
 import { UserProfile } from '@/entities/user/model/user'
-import { Achievement } from './types'
-import { ACHIEVEMENTS_CONFIG, computeSolveStats } from './achievements'
+import { resolveBadges } from './resolve-badges'
 
-export interface UserBadge extends Achievement {
-  unlocked: boolean
-}
-
-export interface UserBadgesResult {
-  badges: UserBadge[]
-  unlocked: UserBadge[]
-  locked: UserBadge[]
-  total: number
-}
+export type { UserBadge, UserBadgesResult, BadgeFamily, BadgeProgress } from './resolve-badges'
 
 /**
- * Resolves the unlock state of every badge for a user. Aggregates over the
- * solve set are computed exactly once and reused across all predicates.
+ * Resolves the unlock state of every badge for a user.
  *
  * Call this **once per profile** (in `PeopleTabs`) and pass the result down
  * via props — otherwise each consumer re-runs the full O(N) sweep.
  */
-export default function useUserBadges({ user, cubes }: { user: UserProfile; cubes: Cube[] }): UserBadgesResult {
-  return useMemo(() => {
-    const stats = computeSolveStats(cubes)
-    const grantedKeys = new Set(user.grantedAchievements ?? [])
-    const data = { cubes, user, stats }
-
-    const badges: UserBadge[] = ACHIEVEMENTS_CONFIG.map((achievement) => {
-      const unlocked =
-        achievement.type === 'granted' ? grantedKeys.has(achievement.id) : Boolean(achievement.condition?.(data))
-      return { ...achievement, unlocked }
-    })
-
-    return {
-      badges,
-      unlocked: badges.filter((b) => b.unlocked),
-      locked: badges.filter((b) => !b.unlocked),
-      total: badges.length
-    }
-  }, [cubes, user])
+export default function useUserBadges({ user, cubes }: { user: UserProfile; cubes: Cube[] }) {
+  return useMemo(() => resolveBadges({ user, cubes }), [cubes, user])
 }
