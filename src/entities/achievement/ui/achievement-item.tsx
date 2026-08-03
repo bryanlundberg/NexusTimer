@@ -1,10 +1,10 @@
 import { Tooltip, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
-import { Achievement as AchievementType } from '../model/types'
+import { RenderableBadge } from '../model/types'
 import { AchievementIcon } from './achievement-icon'
 import { AchievementTooltip } from './achievement-tooltip'
 
 interface AchievementItemProps {
-  achievement: AchievementType
+  achievement: RenderableBadge
   locked?: boolean
   disableTooltip?: boolean
 }
