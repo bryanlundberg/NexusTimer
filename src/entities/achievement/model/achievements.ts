@@ -114,7 +114,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'public-sponsor',
     title: 'Project Patron',
     description: 'Sponsored the project to help keep the engine running.',
-    icon: 'icons8-favorite-50.png',
+    icon: 'badge-heart.svg',
     color: 'rgba(255,105,180,0.8)',
     type: 'granted'
   },
@@ -122,7 +122,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'contributor',
     title: 'Contributor',
     description: 'Contributed code, translations or assets to the project.',
-    icon: 'icons8-decentralized-network-50.png',
+    icon: 'badge-code-branch.svg',
     color: 'rgba(34,197,94,0.8)',
     type: 'granted'
   },
@@ -130,7 +130,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'bug-hunter',
     title: 'Bug Hunter',
     description: 'Found and reported a glitch in the Matrix.',
-    icon: 'icons8-bug-50.png',
+    icon: 'badge-bug.svg',
     color: 'rgba(239,68,68,0.8)',
     type: 'granted'
   },
@@ -138,7 +138,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'playstore-beta',
     title: 'Play Store Pioneer',
     description: 'Joined the official Play Store beta testing program.',
-    icon: 'icons8-google-play-50.png',
+    icon: 'badge-play-store.svg',
     color: 'rgb(220 204 61 / 0.8)',
     type: 'granted'
   },
@@ -146,14 +146,14 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'first-year',
     title: 'Early User',
     description: 'Joined during the first year after launch.',
-    icon: 'icons8-rook-50.png',
+    icon: 'badge-pioneer.svg',
     color: 'rgba(0,191,255,0.8)',
     type: 'computed',
     condition: ({ user }) => dayjs(user.createdAt).isBefore(dayjs('2024-07-11').add(1, 'year'))
   },
   {
     id: 'speed-3x3',
-    icon: 'icons8-last-24-hours-50.png',
+    icon: 'badge-stopwatch.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.bestByCategory.get('3x3') ?? Infinity,
     compare: 'lt',
@@ -213,30 +213,27 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 8,
         title: 'Speed Demon',
         description: 'Registered a sub-10 second solve.',
-        threshold: 10000,
-        icon: 'icons8-lightning-48.png'
+        threshold: 10000
       },
       {
         id: 'speed-sub-8',
         level: 9,
         title: 'World Class',
         description: 'Registered a sub-8 second solve on 3x3.',
-        threshold: 8000,
-        icon: 'icons8-crown-50.png'
+        threshold: 8000
       },
       {
         id: 'speed-sub-6',
         level: 10,
         title: 'Podium Pace',
         description: 'Registered a sub-6 second solve on 3x3.',
-        threshold: 6000,
-        icon: 'icons8-winner-50.png'
+        threshold: 6000
       }
     ]
   },
   {
     id: 'oh-speed',
-    icon: 'icons8-pet-commands-follow-50.png',
+    icon: 'badge-hand.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.bestByCategory.get('3x3 OH') ?? Infinity,
     compare: 'lt',
@@ -275,8 +272,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 5,
         title: 'One Hand Wonder',
         description: 'Registered a sub-30 second solve on 3x3 One-Handed.',
-        threshold: 30000,
-        icon: 'icons8-knight-shield-50.png'
+        threshold: 30000
       },
       {
         id: 'oh-sub-20',
@@ -290,14 +286,13 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 7,
         title: 'One Hand Master',
         description: 'Registered a sub-15 second solve on 3x3 One-Handed.',
-        threshold: 15000,
-        icon: 'icons8-physics-50.png'
+        threshold: 15000
       }
     ]
   },
   {
     id: 'bld',
-    icon: 'icons8-brain-50.png',
+    icon: 'badge-blindfold.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.countByCategory.get('3x3 BLD') ?? 0,
     compare: 'gte',
@@ -329,14 +324,13 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 4,
         title: "Mind's Eye",
         description: 'Completed 250 successful 3x3 Blindfolded solves.',
-        threshold: 250,
-        icon: 'icons8-ghost-50.png'
+        threshold: 250
       }
     ]
   },
   {
     id: 'solves-per-cube',
-    icon: 'icons8-pixel-cat-50.png',
+    icon: 'badge-worn-cube.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.max3x3SolvesPerCube,
     compare: 'gte',
@@ -382,22 +376,20 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 6,
         title: "It's over 9000!",
         description: 'Completed over 9,999 solves on 3x3 cubes.',
-        threshold: 9999,
-        icon: 'icons8-mana-50.png'
+        threshold: 9999
       },
       {
         id: 'cube-25000',
         level: 7,
         title: 'One Cube to Rule Them All',
         description: 'Logged 25,000 solves on a single 3x3.',
-        threshold: 25000,
-        icon: 'icons8-metal-music-50.png'
+        threshold: 25000
       }
     ]
   },
   {
     id: 'career-solves',
-    icon: 'icons8-three-leaf-clover-50.png',
+    icon: 'badge-trophy.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.totalValid,
     compare: 'gte',
@@ -464,22 +456,20 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 9,
         title: 'Cube Legend',
         description: 'Reached 100,000 career solves.',
-        threshold: 100000,
-        icon: 'icons8-trophy-50.png'
+        threshold: 100000
       },
       {
         id: 'career-250000',
         level: 10,
         title: 'Quarter Million Club',
         description: 'Reached 250,000 career solves.',
-        threshold: 250000,
-        icon: 'icons8-animated-50.png'
+        threshold: 250000
       }
     ]
   },
   {
     id: 'cube-collection',
-    icon: 'icons8-shield-50.png',
+    icon: 'badge-shelf.svg',
     type: 'tiered',
     metric: ({ cubes }) => cubes.length,
     compare: 'gte',
@@ -518,30 +508,27 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 5,
         title: 'Puzzle Collector',
         description: 'Own at least 25 different cubes.',
-        threshold: 25,
-        icon: 'icons8-money-box-50.png'
+        threshold: 25
       },
       {
         id: 'collector-50',
         level: 6,
         title: 'Cube Hoarder',
         description: 'Own at least 50 different cubes.',
-        threshold: 50,
-        icon: 'icons8-monster-face-50.png'
+        threshold: 50
       },
       {
         id: 'collector-100',
         level: 7,
         title: 'Museum Curator',
         description: 'Own at least 100 different cubes.',
-        threshold: 100,
-        icon: 'icons8-scary-tree-50.png'
+        threshold: 100
       }
     ]
   },
   {
     id: 'categories',
-    icon: 'icons8-clover-50.png',
+    icon: 'badge-palette.svg',
     type: 'tiered',
     metric: ({ stats }) => CUBE_CATEGORIES.filter((c) => stats.countByCategory.has(c)).length,
     compare: 'gte',
@@ -580,14 +567,13 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 5,
         title: 'Eventglot',
         description: 'Solved at least one cube in every available category.',
-        threshold: 17,
-        icon: 'icons8-diversity-50.png'
+        threshold: 17
       }
     ]
   },
   {
     id: 'marathon',
-    icon: 'icons8-pet-commands-summon-50.png',
+    icon: 'badge-finish-flag.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.maxSolvesInOneDay,
     compare: 'gt',
@@ -626,22 +612,20 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 5,
         title: 'Marathonist',
         description: 'Completed more than 500 solves in a single day.',
-        threshold: 500,
-        icon: 'icons8-finish-flag-50.png'
+        threshold: 500
       },
       {
         id: 'marathon-1000',
         level: 6,
         title: 'Where Did the Day Go',
         description: 'Completed more than 1,000 solves in a single day.',
-        threshold: 1000,
-        icon: 'icons8-metal-music-50.png'
+        threshold: 1000
       }
     ]
   },
   {
     id: 'daily-streak',
-    icon: 'icons8-last-24-hours-50.png',
+    icon: 'badge-flame.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.longestDateStreak,
     compare: 'gte',
@@ -673,8 +657,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 4,
         title: 'Habit Formed',
         description: 'Maintained a solve streak for 30 consecutive days.',
-        threshold: 30,
-        icon: 'icons8-combo-chart-50.png'
+        threshold: 30
       },
       {
         id: 'streak-60',
@@ -702,8 +685,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 8,
         title: 'Consistency is Key',
         description: 'Maintained a solve streak for 365 consecutive days.',
-        threshold: 365,
-        icon: 'icons8-workflow-50.png'
+        threshold: 365
       },
       {
         id: 'streak-730',
@@ -717,14 +699,13 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 10,
         title: 'Thousand Day Run',
         description: 'Maintained a solve streak for 1,000 consecutive days.',
-        threshold: 1000,
-        icon: 'icons8-winner-50.png'
+        threshold: 1000
       }
     ]
   },
   {
     id: 'clean-streak',
-    icon: 'icons8-clover-50.png',
+    icon: 'badge-clean-shield.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.longestCleanStreak,
     compare: 'gte',
@@ -777,8 +758,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 7,
         title: 'Zen Master',
         description: 'Performed 1,000 consecutive solves without any penalties (+2/DNF).',
-        threshold: 1000,
-        icon: 'icons8-wizard-50.png'
+        threshold: 1000
       }
     ]
   },
@@ -786,13 +766,13 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'new-year-solve',
     title: 'New Year, New PB',
     description: 'Completed a solve on January 1st.',
-    icon: 'icons8-golden-opportunity-50.png',
+    icon: 'badge-fireworks.svg',
     type: 'computed',
     condition: ({ stats }) => stats.newYearSolveCount > 0
   },
   {
     id: 'bookmarks',
-    icon: 'icons8-mind-map-50.png',
+    icon: 'badge-bookmark.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.bookmarkCount,
     compare: 'gte',
@@ -831,14 +811,13 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 5,
         title: 'Librarian',
         description: 'Bookmarked 500 solves.',
-        threshold: 500,
-        icon: 'icons8-animated-50.png'
+        threshold: 500
       }
     ]
   },
   {
     id: 'comments',
-    icon: 'icons8-strategy-news-50.png',
+    icon: 'badge-comment.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.commentCount,
     compare: 'gte',
@@ -870,14 +849,13 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 4,
         title: 'Diarist',
         description: 'Left comments on 200 solves.',
-        threshold: 200,
-        icon: 'icons8-question-mark-50.png'
+        threshold: 200
       }
     ]
   },
   {
     id: 'smart-cube',
-    icon: 'icons8-usb-connector-50.png',
+    icon: 'badge-smart-chip.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.replayCount,
     compare: 'gte',
@@ -902,8 +880,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 3,
         title: 'Fully Wired',
         description: 'Recorded 100 solve replays with a smart cube.',
-        threshold: 100,
-        icon: 'icons8-virtual-reality-50.png'
+        threshold: 100
       },
       {
         id: 'smart-500',
@@ -918,7 +895,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'big-cubes',
     title: 'Big Cube Believer',
     description: 'Solved a 4x4, a 5x5, a 6x6 and a 7x7.',
-    icon: 'icons8-shield-50.png',
+    icon: 'badge-big-cubes.svg',
     color: 'rgba(168,85,247,0.8)',
     type: 'computed',
     condition: ({ stats }) => solvedAll(stats, ['4x4', '5x5', '6x6', '7x7'])
@@ -927,7 +904,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'virtual-solver',
     title: 'Through the Screen',
     description: 'Completed a solve on a virtual puzzle.',
-    icon: 'icons8-virtual-reality-50.png',
+    icon: 'badge-monitor.svg',
     color: 'rgba(56,189,248,0.8)',
     type: 'computed',
     condition: ({ stats }) => stats.countByCategory.has('2x2 Virtual') || stats.countByCategory.has('3x3 Virtual')
@@ -936,14 +913,14 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'oddball-puzzles',
     title: 'Off the Beaten Path',
     description: 'Solved a Square-1, a Skewb, a Clock and an FTO.',
-    icon: 'icons8-monster-face-50.png',
+    icon: 'badge-oddballs.svg',
     color: 'rgba(251,146,60,0.8)',
     type: 'computed',
     condition: ({ stats }) => solvedAll(stats, ['SQ1', 'Skewb', 'Clock', 'FTO'])
   },
   {
     id: 'time-spent',
-    icon: 'icons8-last-24-hours-50.png',
+    icon: 'badge-hourglass.svg',
     type: 'tiered',
     metric: ({ stats }) => stats.totalTimeSpent,
     compare: 'gte',
@@ -975,24 +952,21 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         level: 4,
         title: 'Triple Digits',
         description: 'Spent 100 hours on the timer.',
-        threshold: 360_000_000,
-        icon: 'icons8-combo-chart-50.png'
+        threshold: 360_000_000
       },
       {
         id: 'time-1800000',
         level: 5,
         title: 'Time Sink',
         description: 'Spent 500 hours on the timer.',
-        threshold: 1_800_000_000,
-        icon: 'icons8-mana-50.png'
+        threshold: 1_800_000_000
       },
       {
         id: 'time-3600000',
         level: 6,
         title: 'A Thousand Hours',
         description: 'Spent 1,000 hours on the timer.',
-        threshold: 3_600_000_000,
-        icon: 'icons8-wizard-50.png'
+        threshold: 3_600_000_000
       }
     ]
   },
