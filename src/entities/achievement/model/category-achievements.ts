@@ -62,7 +62,7 @@ function speedFamily(category: CubeCategory, thresholds: number[]): TieredAchiev
     compare: 'lt',
     formatValue: clock,
     tiers: thresholds.map((threshold, index) => ({
-      id: `speed-${slug(category)}-${threshold}`,
+      id: `speed-${slug(category)}-${threshold / 1000}`,
       level: index + 1,
       title: `${category} ${SPEED_RANKS[index]}`,
       description: `Solved a ${category} in under ${duration(threshold)}.`,
