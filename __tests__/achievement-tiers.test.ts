@@ -3,37 +3,74 @@ import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { Cube } from '@/entities/cube/model/types'
 import { ACHIEVEMENTS_CONFIG } from '@/entities/achievement/model/achievements'
-import { resolveBadges, BadgeFamily } from '@/entities/achievement/model/resolve-badges'
+import { resolveBadges, BadgeFamily, UserBadge } from '@/entities/achievement/model/resolve-badges'
 import { isTiered } from '@/entities/achievement/model/types'
 import { makeCube } from './fixtures/cube'
 import { makeSolve } from './fixtures/solve'
 import { makeUser } from './fixtures/user'
 
-const LEGACY_BADGE_ORDER = [
+/**
+ * Family order drives how the profile reads top to bottom, so a reshuffle is a
+ * visual regression even when every unlock rule holds.
+ */
+const FAMILY_ORDER = [
   'public-sponsor',
   'contributor',
   'bug-hunter',
   'playstore-beta',
   'first-year',
-  'speed-demon',
-  'sub-8-3x3',
-  'oh-sub-30',
-  'bld-success',
-  'over-9999-3x3',
-  'career-100k',
-  'collector-5',
-  'collector',
-  'collector-50',
-  'eventglot',
-  'marathonist',
-  'streak-30',
-  'consistency-is-key',
-  'zen-master',
+  'speed-3x3',
+  'oh-speed',
+  'bld',
+  'solves-per-cube',
+  'career-solves',
+  'cube-collection',
+  'categories',
+  'marathon',
+  'daily-streak',
+  'clean-streak',
   'new-year-solve',
-  'bookmarker',
-  'commentator',
-  'smart-mover'
+  'bookmarks',
+  'comments',
+  'smart-cube'
 ]
+
+/**
+ * Tier ids are `{prefix}-{threshold in display units}` — seconds for the time
+ * ladders, raw counts everywhere else. `speed-sub-10` reads as "sub 10s".
+ */
+const TIER_PREFIX: Record<string, string> = {
+  'speed-3x3': 'speed-sub',
+  'oh-speed': 'oh-sub',
+  bld: 'bld',
+  'solves-per-cube': 'cube',
+  'career-solves': 'career',
+  'cube-collection': 'collector',
+  categories: 'categories',
+  marathon: 'marathon',
+  'daily-streak': 'streak',
+  'clean-streak': 'clean',
+  bookmarks: 'bookmarks',
+  comments: 'comments',
+  'smart-cube': 'smart'
+}
+
+/** Lowest rung of each ladder — nothing may demand more than a first session. */
+const OPENING_THRESHOLD: Record<string, number> = {
+  'speed-3x3': 120000,
+  'oh-speed': 120000,
+  bld: 1,
+  'solves-per-cube': 100,
+  'career-solves': 10,
+  'cube-collection': 1,
+  categories: 2,
+  marathon: 25,
+  'daily-streak': 3,
+  'clean-streak': 10,
+  bookmarks: 1,
+  comments: 1,
+  'smart-cube': 1
+}
 
 const TOTAL_TIERS = 92
 const TOTAL_FAMILIES = 19
@@ -45,10 +82,14 @@ function familyFor(id: string, cubes: Cube[]): BadgeFamily {
   return family
 }
 
+function allTiers(cubes: Cube[] = []): UserBadge[] {
+  return resolveBadges({ user: makeUser(), cubes }).families.flatMap((f) => f.tiers)
+}
+
 function tierUnlocked(id: string, cubes: Cube[]): boolean {
-  const badge = resolveBadges({ user: makeUser(), cubes }).badges.find((b) => b.id === id)
-  if (!badge) throw new Error(`no tier ${id}`)
-  return badge.unlocked
+  const tier = allTiers(cubes).find((t) => t.id === id)
+  if (!tier) throw new Error(`no tier ${id}`)
+  return tier.unlocked
 }
 
 const emptyCubes = (n: number) => Array.from({ length: n }, () => makeCube())
@@ -85,7 +126,6 @@ describe('tier ladders', () => {
     })
 
     it('inherits artwork from the rung below until a tier declares its own', () => {
-      // Tiers I-IV share the family icon; V and VI each introduce a new one.
       expect(familyFor('cube-collection', emptyCubes(1)).icon).toBe('icons8-shield-50.png')
       expect(familyFor('cube-collection', emptyCubes(10)).icon).toBe('icons8-shield-50.png')
       expect(familyFor('cube-collection', emptyCubes(25)).icon).toBe('icons8-money-box-50.png')
@@ -111,11 +151,11 @@ describe('tier ladders', () => {
       expect(familyFor('speed-3x3', cubeAt(5_500)).next).toBeUndefined()
     })
 
-    it('keeps the legacy rungs exclusive, matching the original rule', () => {
-      expect(tierUnlocked('speed-demon', cubeAt(10_000))).toBe(false)
-      expect(tierUnlocked('speed-demon', cubeAt(9_999))).toBe(true)
-      expect(tierUnlocked('sub-8-3x3', cubeAt(8_000))).toBe(false)
-      expect(tierUnlocked('sub-8-3x3', cubeAt(7_999))).toBe(true)
+    it('keeps every rung exclusive', () => {
+      expect(tierUnlocked('speed-sub-10', cubeAt(10_000))).toBe(false)
+      expect(tierUnlocked('speed-sub-10', cubeAt(9_999))).toBe(true)
+      expect(tierUnlocked('speed-sub-8', cubeAt(8_000))).toBe(false)
+      expect(tierUnlocked('speed-sub-8', cubeAt(7_999))).toBe(true)
     })
   })
 
@@ -138,16 +178,32 @@ describe('tier ladders', () => {
 
 describe('config integrity', () => {
   const result = resolveBadges({ user: makeUser(), cubes: [] })
+  const tiers = result.families.flatMap((f) => f.tiers)
 
-  it('keeps every pre-ladder badge, in its original relative order', () => {
-    const legacy = new Set(LEGACY_BADGE_ORDER)
-    expect(result.badges.filter((b) => legacy.has(b.id)).map((b) => b.id)).toEqual(LEGACY_BADGE_ORDER)
+  it('keeps families in their intended order', () => {
+    expect(result.families.map((f) => f.id)).toEqual(FAMILY_ORDER)
   })
 
-  it('groups the tiers into families without changing the family count', () => {
-    expect(result.total).toBe(TOTAL_TIERS)
-    expect(result.badges).toHaveLength(TOTAL_TIERS)
+  it('counts tiers and families', () => {
+    expect(tiers).toHaveLength(TOTAL_TIERS)
+    expect(result.totalTiers).toBe(TOTAL_TIERS)
     expect(result.families).toHaveLength(TOTAL_FAMILIES)
+  })
+
+  it('names every tier after the threshold it encodes', () => {
+    for (const achievement of ACHIEVEMENTS_CONFIG) {
+      if (!isTiered(achievement)) continue
+      const prefix = TIER_PREFIX[achievement.id]
+      expect(prefix, `${achievement.id} has no known prefix`).toBeTruthy()
+
+      // Time ladders are stored in ms but named in seconds.
+      const inIdUnits = (ms: number) => (achievement.formatValue ? ms / 1000 : ms)
+      const expected = achievement.tiers.map((t) => `${prefix}-${inIdUnits(t.threshold)}`)
+      expect(
+        achievement.tiers.map((t) => t.id),
+        `${achievement.id} ids drifted from thresholds`
+      ).toEqual(expected)
+    }
   })
 
   it('caps every ladder at ten rungs', () => {
@@ -157,38 +213,20 @@ describe('config integrity', () => {
   })
 
   it('opens every ladder on a rung a newcomer can reach', () => {
-    // Nothing should demand more than a first session to get off level zero.
-    const ceilings: Record<string, number> = {
-      'speed-3x3': 120000,
-      'oh-speed': 120000,
-      bld: 1,
-      'solves-per-cube': 100,
-      'career-solves': 10,
-      'cube-collection': 1,
-      categories: 2,
-      marathon: 25,
-      'daily-streak': 3,
-      'clean-streak': 10,
-      bookmarks: 1,
-      comments: 1,
-      'smart-cube': 1
-    }
-
     for (const achievement of ACHIEVEMENTS_CONFIG) {
       if (!isTiered(achievement)) continue
-      expect(achievement.tiers[0].threshold, `${achievement.id} opens too high`).toBe(ceilings[achievement.id])
+      expect(achievement.tiers[0].threshold, `${achievement.id} opens too high`).toBe(OPENING_THRESHOLD[achievement.id])
     }
   })
 
   it('keeps every tier id globally unique', () => {
-    const ids = result.badges.map((b) => b.id)
+    const ids = tiers.map((t) => t.id)
     expect(new Set(ids).size).toBe(ids.length)
   })
 
   it('never collides a family id with a tier id', () => {
-    const tierIds = new Set(result.badges.map((b) => b.id))
-    const collisions = result.families.filter((f) => f.maxLevel > 1 && tierIds.has(f.id))
-    expect(collisions).toEqual([])
+    const tierIds = new Set(tiers.map((t) => t.id))
+    expect(result.families.filter((f) => f.maxLevel > 1 && tierIds.has(f.id))).toEqual([])
   })
 
   it('orders every ladder from easiest to hardest', () => {
@@ -218,15 +256,14 @@ describe('config integrity', () => {
   })
 
   it('gives every tier a title, a description and a renderable icon', () => {
-    expect(result.badges.filter((b) => !b.icon || !b.title || !b.description)).toEqual([])
+    expect(tiers.filter((t) => !t.icon || !t.title || !t.description)).toEqual([])
   })
 
   it('points every icon at a file that actually ships', () => {
     // A missing PNG is a silent 404 at runtime: the badge renders as a blank
+    // circle and nothing in the type system or the unlock rules notices.
     const dir = path.join(process.cwd(), 'public', 'achievements')
-    const missing = [...new Set(result.badges.map((b) => b.icon))].filter(
-      (icon) => !fs.existsSync(path.join(dir, icon))
-    )
+    const missing = [...new Set(tiers.map((t) => t.icon))].filter((icon) => !fs.existsSync(path.join(dir, icon)))
     expect(missing).toEqual([])
   })
 
