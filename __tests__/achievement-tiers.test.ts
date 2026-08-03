@@ -3,16 +3,13 @@ import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { Cube } from '@/entities/cube/model/types'
 import { ACHIEVEMENTS_CONFIG } from '@/entities/achievement/model/achievements'
+import { CATEGORY_ACHIEVEMENTS } from '@/entities/achievement/model/category-achievements'
 import { resolveBadges, BadgeFamily, UserBadge } from '@/entities/achievement/model/resolve-badges'
 import { isTiered } from '@/entities/achievement/model/types'
 import { makeCube } from './fixtures/cube'
 import { makeSolve } from './fixtures/solve'
 import { makeUser } from './fixtures/user'
 
-/**
- * Family order drives how the profile reads top to bottom, so a reshuffle is a
- * visual regression even when every unlock rule holds.
- */
 const FAMILY_ORDER = [
   'public-sponsor',
   'contributor',
@@ -32,7 +29,12 @@ const FAMILY_ORDER = [
   'new-year-solve',
   'bookmarks',
   'comments',
-  'smart-cube'
+  'smart-cube',
+  'big-cubes',
+  'virtual-solver',
+  'oddball-puzzles',
+  'time-spent',
+  ...CATEGORY_ACHIEVEMENTS.map((a) => a.id)
 ]
 
 /**
@@ -52,7 +54,9 @@ const TIER_PREFIX: Record<string, string> = {
   'clean-streak': 'clean',
   bookmarks: 'bookmarks',
   comments: 'comments',
-  'smart-cube': 'smart'
+  'smart-cube': 'smart',
+  'time-spent': 'time',
+  ...Object.fromEntries(CATEGORY_ACHIEVEMENTS.map((a) => [a.id, a.id]))
 }
 
 /** Lowest rung of each ladder — nothing may demand more than a first session. */
@@ -69,11 +73,15 @@ const OPENING_THRESHOLD: Record<string, number> = {
   'clean-streak': 10,
   bookmarks: 1,
   comments: 1,
-  'smart-cube': 1
+  'smart-cube': 1,
+  'time-spent': 3_600_000
 }
 
-const TOTAL_TIERS = 92
-const TOTAL_FAMILIES = 19
+/** Generated ladders are checked by shape rather than by a hand-copied value. */
+const GENERATED = new Set(CATEGORY_ACHIEVEMENTS.map((a) => a.id))
+
+const TOTAL_TIERS = 229
+const TOTAL_FAMILIES = 55
 const MAX_LADDER_DEPTH = 10
 
 function familyFor(id: string, cubes: Cube[]): BadgeFamily {
@@ -215,6 +223,17 @@ describe('config integrity', () => {
   it('opens every ladder on a rung a newcomer can reach', () => {
     for (const achievement of ACHIEVEMENTS_CONFIG) {
       if (!isTiered(achievement)) continue
+
+      if (GENERATED.has(achievement.id)) {
+        const opening = achievement.tiers[0].threshold
+        // A speed ladder must open on a time a beginner can hit; a volume one
+        // within a handful of sessions.
+        if (achievement.compare === 'lt')
+          expect(opening, `${achievement.id} opens too fast`).toBeGreaterThanOrEqual(6_000)
+        else expect(opening, `${achievement.id} opens too high`).toBeLessThanOrEqual(50)
+        continue
+      }
+
       expect(achievement.tiers[0].threshold, `${achievement.id} opens too high`).toBe(OPENING_THRESHOLD[achievement.id])
     }
   })
