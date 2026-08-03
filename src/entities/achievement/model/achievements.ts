@@ -1,16 +1,16 @@
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
 import { Achievement, SolveStats } from './types'
+import { CATEGORY_ACHIEVEMENTS } from './category-achievements'
 import dayjs from '@/shared/lib/dayjs'
 import { Cube } from '@/entities/cube/model/types'
 
 export function computeSolveStats(cubes: Cube[]): SolveStats {
   const solvesByDate = new Map<string, number>()
-  const categoriesWithValidSolves = new Set<string>()
+  const bestByCategory = new Map<string, number>()
+  const countByCategory = new Map<string, number>()
 
   let totalValid = 0
-  let best3x3Single = Infinity
-  let best3x3OHSingle = Infinity
-  let bldSuccessCount = 0
+  let totalTimeSpent = 0
   let newYearSolveCount = 0
   let max3x3SolvesPerCube = 0
   let currentCleanStreak = 0
@@ -36,16 +36,19 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
       if (solve.comment && solve.comment.trim().length > 0) commentCount++
       if (solve.replay) replayCount++
 
+      // A DNF still cost the solver those minutes, so it counts as time spent.
+      totalTimeSpent += solve.time
+
       if (!solve.dnf) {
         totalValid++
-        categoriesWithValidSolves.add(cube.category)
-        if (cube.category === '3x3') {
-          cube3x3Count++
-          // Raw time a +2 penalty is deliberately not folded in here.
-          if (solve.time < best3x3Single) best3x3Single = solve.time
+        if (cube.category === '3x3') cube3x3Count++
+
+        countByCategory.set(cube.category, (countByCategory.get(cube.category) ?? 0) + 1)
+        // Raw time a +2 penalty is deliberately not folded in here.
+        if (solve.time < (bestByCategory.get(cube.category) ?? Infinity)) {
+          bestByCategory.set(cube.category, solve.time)
         }
-        if (cube.category === '3x3 OH' && solve.time < best3x3OHSingle) best3x3OHSingle = solve.time
-        if (cube.category === '3x3 BLD') bldSuccessCount++
+
         const date = dayjs(solve.startTime).format('YYYY-MM-DD')
         if (date.endsWith('-01-01')) newYearSolveCount++
         solvesByDate.set(date, (solvesByDate.get(date) ?? 0) + 1)
@@ -85,13 +88,12 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
 
   return {
     totalValid,
-    best3x3Single,
-    best3x3OHSingle,
-    bldSuccessCount,
+    bestByCategory,
+    countByCategory,
+    totalTimeSpent,
     newYearSolveCount,
     replayCount,
     max3x3SolvesPerCube,
-    categoriesWithValidSolves,
     maxSolvesInOneDay,
     longestDateStreak,
     longestCleanStreak,
@@ -101,6 +103,11 @@ export function computeSolveStats(cubes: Cube[]): SolveStats {
 }
 
 const seconds = (ms: number) => (Number.isFinite(ms) ? `${(ms / 1000).toFixed(2)}s` : '--')
+
+const hours = (ms: number) => `${(ms / 3_600_000).toFixed(1)}h`
+
+/** True when every listed category holds at least one valid solve. */
+const solvedAll = (stats: SolveStats, categories: string[]) => categories.every((c) => stats.countByCategory.has(c))
 
 export const ACHIEVEMENTS_CONFIG: Achievement[] = [
   {
@@ -148,7 +155,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'speed-3x3',
     icon: 'icons8-last-24-hours-50.png',
     type: 'tiered',
-    metric: ({ stats }) => stats.best3x3Single,
+    metric: ({ stats }) => stats.bestByCategory.get('3x3') ?? Infinity,
     compare: 'lt',
     formatValue: seconds,
     tiers: [
@@ -231,7 +238,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'oh-speed',
     icon: 'icons8-pet-commands-follow-50.png',
     type: 'tiered',
-    metric: ({ stats }) => stats.best3x3OHSingle,
+    metric: ({ stats }) => stats.bestByCategory.get('3x3 OH') ?? Infinity,
     compare: 'lt',
     formatValue: seconds,
     tiers: [
@@ -292,7 +299,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'bld',
     icon: 'icons8-brain-50.png',
     type: 'tiered',
-    metric: ({ stats }) => stats.bldSuccessCount,
+    metric: ({ stats }) => stats.countByCategory.get('3x3 BLD') ?? 0,
     compare: 'gte',
     unit: 'BLD solves',
     tiers: [
@@ -536,7 +543,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     id: 'categories',
     icon: 'icons8-clover-50.png',
     type: 'tiered',
-    metric: ({ stats }) => CUBE_CATEGORIES.filter((c) => stats.categoriesWithValidSolves.has(c)).length,
+    metric: ({ stats }) => CUBE_CATEGORIES.filter((c) => stats.countByCategory.has(c)).length,
     compare: 'gte',
     unit: 'categories',
     tiers: [
@@ -906,5 +913,88 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         threshold: 500
       }
     ]
-  }
+  },
+  {
+    id: 'big-cubes',
+    title: 'Big Cube Believer',
+    description: 'Solved a 4x4, a 5x5, a 6x6 and a 7x7.',
+    icon: 'icons8-shield-50.png',
+    color: 'rgba(168,85,247,0.8)',
+    type: 'computed',
+    condition: ({ stats }) => solvedAll(stats, ['4x4', '5x5', '6x6', '7x7'])
+  },
+  {
+    id: 'virtual-solver',
+    title: 'Through the Screen',
+    description: 'Completed a solve on a virtual puzzle.',
+    icon: 'icons8-virtual-reality-50.png',
+    color: 'rgba(56,189,248,0.8)',
+    type: 'computed',
+    condition: ({ stats }) => stats.countByCategory.has('2x2 Virtual') || stats.countByCategory.has('3x3 Virtual')
+  },
+  {
+    id: 'oddball-puzzles',
+    title: 'Off the Beaten Path',
+    description: 'Solved a Square-1, a Skewb, a Clock and an FTO.',
+    icon: 'icons8-monster-face-50.png',
+    color: 'rgba(251,146,60,0.8)',
+    type: 'computed',
+    condition: ({ stats }) => solvedAll(stats, ['SQ1', 'Skewb', 'Clock', 'FTO'])
+  },
+  {
+    id: 'time-spent',
+    icon: 'icons8-last-24-hours-50.png',
+    type: 'tiered',
+    metric: ({ stats }) => stats.totalTimeSpent,
+    compare: 'gte',
+    formatValue: hours,
+    tiers: [
+      {
+        id: 'time-1h',
+        level: 1,
+        title: 'First Hour',
+        description: 'Spent an hour on the timer.',
+        threshold: 3_600_000
+      },
+      {
+        id: 'time-10h',
+        level: 2,
+        title: 'Ten Hours Deep',
+        description: 'Spent 10 hours on the timer.',
+        threshold: 36_000_000
+      },
+      {
+        id: 'time-50h',
+        level: 3,
+        title: 'A Working Week',
+        description: 'Spent 50 hours on the timer.',
+        threshold: 180_000_000
+      },
+      {
+        id: 'time-100h',
+        level: 4,
+        title: 'Triple Digits',
+        description: 'Spent 100 hours on the timer.',
+        threshold: 360_000_000,
+        icon: 'icons8-combo-chart-50.png'
+      },
+      {
+        id: 'time-500h',
+        level: 5,
+        title: 'Time Sink',
+        description: 'Spent 500 hours on the timer.',
+        threshold: 1_800_000_000,
+        icon: 'icons8-mana-50.png'
+      },
+      {
+        id: 'time-1000h',
+        level: 6,
+        title: 'A Thousand Hours',
+        description: 'Spent 1,000 hours on the timer.',
+        threshold: 3_600_000_000,
+        icon: 'icons8-wizard-50.png'
+      }
+    ]
+  },
+  ...CATEGORY_ACHIEVEMENTS
 ]
