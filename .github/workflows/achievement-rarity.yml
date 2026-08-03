@@ -10,6 +10,9 @@ concurrency:
   group: achievement-rarity
   cancel-in-progress: false
 
+permissions:
+  contents: read
+
 jobs:
   compute:
     name: Recompute rarity
