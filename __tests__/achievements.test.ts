@@ -285,7 +285,9 @@ describe('achievements — unlock rules', () => {
         'solves-per-cube': 7,
         marathon: 6,
         'clean-streak': 7,
-        'cube-collection': 1
+        'cube-collection': 1,
+        'volume-3x3': 4,
+        'time-spent': 6
       })
     })
 
@@ -293,6 +295,63 @@ describe('achievements — unlock rules', () => {
       const cubes = [cubeWith(bulkSolves(6_000)), cubeWith(bulkSolves(6_000))]
       expect(levels(cubes)['solves-per-cube']).toBe(5)
       expect(levels(cubes)['career-solves']).toBe(6)
+    })
+  })
+
+  describe('per-category ladders', () => {
+    it('climbs the speed ladder of the category the solve was logged in', () => {
+      expect(levels([cubeWith([solve({ time: 59_000 })], '4x4')])['speed-4x4']).toBe(4)
+      expect(levels([cubeWith([solve({ time: 59_000 })], '4x4')])['speed-5x5']).toBeUndefined()
+    })
+
+    it('scales thresholds per puzzle — the same time is not worth the same rung', () => {
+      const time = 100_000
+      expect(levels([cubeWith([solve({ time })], '2x2')])['speed-2x2']).toBeUndefined()
+      expect(levels([cubeWith([solve({ time })], '7x7')])['speed-7x7']).toBe(4)
+    })
+
+    it('leaves 3x3 and 3x3 OH to their hand-tuned families', () => {
+      expect(levels([cubeWith([solve({ time: 5_000 })])])['speed-3x3-30000']).toBeUndefined()
+      expect(levels([cubeWith([solve({ time: 5_000 })], '3x3 OH')])['speed-3x3-oh']).toBeUndefined()
+    })
+
+    it('climbs the volume ladder at each threshold', () => {
+      expect(levels([cubeWith(bulkSolves(49), 'Megaminx')])['volume-megaminx']).toBeUndefined()
+      expect(levels([cubeWith(bulkSolves(50), 'Megaminx')])['volume-megaminx']).toBe(1)
+      expect(levels([cubeWith(bulkSolves(250), 'Megaminx')])['volume-megaminx']).toBe(2)
+    })
+
+    it('does not let a DNF count toward volume', () => {
+      expect(levels([cubeWith(bulkSolves(50, { dnf: true }), 'Skewb')])['volume-skewb']).toBeUndefined()
+    })
+  })
+
+  describe('exploration milestones', () => {
+    const oneEach = (categories: CubeCategory[]) => categories.map((c) => cubeWith([solve()], c))
+
+    it('needs all four big cubes, not three', () => {
+      expect(levels(oneEach(['4x4', '5x5', '6x6']))['big-cubes']).toBeUndefined()
+      expect(levels(oneEach(['4x4', '5x5', '6x6', '7x7']))['big-cubes']).toBe(1)
+    })
+
+    it('unlocks the virtual badge from either virtual category', () => {
+      expect(levels(oneEach(['3x3 Virtual']))['virtual-solver']).toBe(1)
+      expect(levels(oneEach(['2x2 Virtual']))['virtual-solver']).toBe(1)
+      expect(levels(oneEach(['3x3']))['virtual-solver']).toBeUndefined()
+    })
+
+    it('needs the whole oddball set', () => {
+      expect(levels(oneEach(['SQ1', 'Skewb', 'Clock']))['oddball-puzzles']).toBeUndefined()
+      expect(levels(oneEach(['SQ1', 'Skewb', 'Clock', 'FTO']))['oddball-puzzles']).toBe(1)
+    })
+  })
+
+  describe('time spent', () => {
+    it('climbs on accumulated timer time', () => {
+      const hour = (n: number) => [cubeWith(bulkSolves(n, { time: 3_600_000 }))]
+      expect(levels(hour(1))['time-spent']).toBe(1)
+      expect(levels(hour(10))['time-spent']).toBe(2)
+      expect(levels(hour(50))['time-spent']).toBe(3)
     })
   })
 
@@ -354,8 +413,30 @@ describe('computeSolveStats — aggregates behind the ladders', () => {
     expect(computeSolveStats(cubes).max3x3SolvesPerCube).toBe(90)
   })
 
-  it('collects the set of categories holding at least one valid solve', () => {
+  it('keys the per-category count by every category holding a valid solve', () => {
     const cubes = [cubeWith([solve()], '3x3'), cubeWith([solve({ dnf: true })], '4x4'), cubeWith([solve()], 'Megaminx')]
-    expect(Array.from(computeSolveStats(cubes).categoriesWithValidSolves).sort()).toEqual(['3x3', 'Megaminx'])
+    expect(Array.from(computeSolveStats(cubes).countByCategory.keys()).sort()).toEqual(['3x3', 'Megaminx'])
+  })
+
+  it('keeps the fastest valid single per category', () => {
+    const cubes = [
+      cubeWith([solve({ time: 20_000 }), solve({ time: 12_000 })], '4x4'),
+      cubeWith([solve({ time: 5_000 })], '5x5')
+    ]
+    const { bestByCategory } = computeSolveStats(cubes)
+    expect(bestByCategory.get('4x4')).toBe(12_000)
+    expect(bestByCategory.get('5x5')).toBe(5_000)
+    expect(bestByCategory.get('6x6')).toBeUndefined()
+  })
+
+  it('counts DNFs as time spent but never as a best single', () => {
+    const stats = computeSolveStats([cubeWith([solve({ time: 30_000 }), solve({ time: 1_000, dnf: true })], '4x4')])
+    expect(stats.totalTimeSpent).toBe(31_000)
+    expect(stats.bestByCategory.get('4x4')).toBe(30_000)
+  })
+
+  it('excludes soft-deleted solves from time spent', () => {
+    const stats = computeSolveStats([cubeWith([solve({ time: 30_000 }), solve({ time: 9_000, isDeleted: true })])])
+    expect(stats.totalTimeSpent).toBe(30_000)
   })
 })
