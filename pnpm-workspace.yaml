@@ -8,5 +8,6 @@ allowBuilds:
   smartcube-web-bluetooth: true
   '@firebase/util': false
   protobufjs: false
+  esbuild: false
 minimumReleaseAgeExclude:
   - cube-state-engine
