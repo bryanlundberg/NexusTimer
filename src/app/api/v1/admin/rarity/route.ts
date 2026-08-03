@@ -3,7 +3,11 @@ import { z } from 'zod'
 import { requireAdmin } from '@/shared/api/require-admin'
 import { parseJsonBody } from '@/shared/api/parse-json'
 import { ok, serverError } from '@/shared/api/responses'
-import { saveRarity } from '@/entities/achievement/model/rarity-store'
+import connectDB from '@/shared/config/mongodb/mongodb'
+import { getRedis } from '@/shared/config/redis/redis'
+import AchievementRarity, { ACHIEVEMENT_RARITY_ID } from '@/entities/achievement/model/achievement-rarity'
+
+const CACHE_KEY = 'achievement:rarity'
 
 const entrySchema = z.object({
   holders: z.number().int().nonnegative(),
@@ -27,7 +31,16 @@ export async function POST(request: NextRequest) {
     const stats = await parseJsonBody(request, statsSchema)
     if (stats instanceof Response) return stats
 
-    await saveRarity(stats)
+    await connectDB()
+
+    await AchievementRarity.replaceOne({ _id: ACHIEVEMENT_RARITY_ID }, stats, { upsert: true })
+
+    try {
+      const redis = await getRedis()
+      await redis.set(CACHE_KEY, JSON.stringify(stats))
+    } catch (error) {
+      console.error('rarity cache write failed:', error)
+    }
 
     return ok({ badges: Object.keys(stats.badges).length, computedAt: stats.computedAt })
   } catch (error) {
