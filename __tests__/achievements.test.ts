@@ -10,19 +10,38 @@ import { makeCube } from './fixtures/cube'
 import { makeSolve } from './fixtures/solve'
 import { makeUser } from './fixtures/user'
 
-const DEFAULT_TIME = 15_000 // slow enough to trip no speed badge
+/**
+ * CONTRACT TEST — do not relax these expectations.
+ *
+ * Every assertion here is a user-visible unlock rule: which rung of which
+ * family a given solve history earns. Changing one is a product decision, not
+ * something a refactor may do quietly.
+ *
+ * Assertions are on `{ family: level }` rather than on tier ids, so renaming a
+ * rung is free while moving a threshold is not.
+ */
+
+// Slower than the easiest rung of either speed ladder, so fixtures that care
+// about counts never accidentally earn a speed level too.
+const DEFAULT_TIME = 150_000
 
 function at(date: string): number {
   return dayjs(date).valueOf()
 }
 
+/**
+ * A neutral, mid-year day. The shared `makeSolve` fixture defaults `startTime`
+ * to 0 — the epoch — which formats as 1970-01-01 in UTC and every positive
+ * offset, silently unlocking `new-year-solve`. Every solve built here gets a
+ * real date so the suite is timezone-independent.
+ */
 const NEUTRAL_DAY = at('2025-03-01')
 
 function solve(overrides: Partial<Solve> = {}): Solve {
   return makeSolve({ startTime: NEUTRAL_DAY, time: DEFAULT_TIME, ...overrides })
 }
 
-/** Fast bulk builder - for large fixtures. */
+/** Fast bulk builder — avoids per-solve `Math.random()` for large fixtures. */
 function bulkSolves(count: number, overrides: Partial<Solve> = {}): Solve[] {
   const out: Solve[] = new Array(count)
   for (let i = 0; i < count; i++) {
@@ -30,7 +49,7 @@ function bulkSolves(count: number, overrides: Partial<Solve> = {}): Solve[] {
       id: `s-${i}`,
       cubeId: 'cube-1',
       scramble: '',
-      startTime: at('2025-03-01'),
+      startTime: NEUTRAL_DAY,
       endTime: 0,
       bookmark: false,
       time: DEFAULT_TIME,
@@ -43,12 +62,16 @@ function bulkSolves(count: number, overrides: Partial<Solve> = {}): Solve[] {
   return out
 }
 
-/** Ids of every non-granted badge the user has unlocked, sorted. */
-function unlockedIds(cubes: Cube[], user: UserProfile = makeUser()): string[] {
-  return resolveBadges({ user, cubes })
-    .unlocked.filter((b) => b.type !== 'granted')
-    .map((b) => b.id)
-    .sort()
+/**
+ * Level held in every family that has one, keyed by family id. Families sitting
+ * at zero are omitted so each expectation reads as "exactly what was earned".
+ */
+function levels(cubes: Cube[], user: UserProfile = makeUser()): Record<string, number> {
+  const out: Record<string, number> = {}
+  for (const family of resolveBadges({ user, cubes }).families) {
+    if (family.type !== 'granted' && family.level > 0) out[family.id] = family.level
+  }
+  return out
 }
 
 /** One cube holding `solves` in `all`. */
@@ -56,141 +79,142 @@ function cubeWith(solves: Solve[], category: CubeCategory = '3x3'): Cube {
   return makeCube({ category, allSolves: solves })
 }
 
-describe('achievements — baseline unlock rules', () => {
+describe('achievements — unlock rules', () => {
   it('unlocks nothing for a brand new account with no cubes', () => {
-    expect(unlockedIds([])).toEqual([])
+    expect(levels([])).toEqual({})
   })
 
   describe('first-year', () => {
     it('unlocks for accounts created inside the launch window', () => {
-      const user = makeUser({ createdAt: new Date('2024-08-01') })
-      expect(unlockedIds([], user)).toEqual(['first-year'])
+      expect(levels([], makeUser({ createdAt: new Date('2024-08-01') }))).toEqual({ 'first-year': 1 })
     })
 
     it('unlocks on the day before the cutoff and not on the cutoff itself', () => {
       // Built through dayjs on purpose: the condition compares against a *local*
       // midnight, so `new Date('2025-07-11')` (parsed as UTC) would land on the
       // wrong side of the boundary in any negative-offset timezone.
-      expect(unlockedIds([], makeUser({ createdAt: dayjs('2025-07-10').toDate() }))).toEqual(['first-year'])
-      expect(unlockedIds([], makeUser({ createdAt: dayjs('2025-07-11').toDate() }))).toEqual([])
+      expect(levels([], makeUser({ createdAt: dayjs('2025-07-10').toDate() }))).toEqual({ 'first-year': 1 })
+      expect(levels([], makeUser({ createdAt: dayjs('2025-07-11').toDate() }))).toEqual({})
     })
   })
 
   describe('3x3 single-solve speed', () => {
-    it('unlocks speed-demon under 10s but not at exactly 10s', () => {
-      expect(unlockedIds([cubeWith([solve({ time: 9_999 })])])).toEqual(['speed-demon'])
-      expect(unlockedIds([cubeWith([solve({ time: 10_000 })])])).toEqual([])
+    // One 3x3 cube with one solve also earns the opening rungs of the cube and
+    // category ladders; those are asserted alongside so the sets stay exact.
+    const withSolve = (time: number, overrides: Partial<Solve> = {}) => [cubeWith([solve({ time, ...overrides })])]
+
+    it('climbs the ladder as times drop past each threshold', () => {
+      expect(levels(withSolve(9_999))).toEqual({ 'speed-3x3': 8, 'cube-collection': 1 })
     })
 
-    it('unlocks both tiers under 8s, and only speed-demon at exactly 8s', () => {
-      expect(unlockedIds([cubeWith([solve({ time: 7_999 })])])).toEqual(['speed-demon', 'sub-8-3x3'])
-      expect(unlockedIds([cubeWith([solve({ time: 8_000 })])])).toEqual(['speed-demon'])
+    it('treats every rung as exclusive', () => {
+      expect(levels(withSolve(10_000))['speed-3x3']).toBe(7)
+      expect(levels(withSolve(9_999))['speed-3x3']).toBe(8)
+      expect(levels(withSolve(8_000))['speed-3x3']).toBe(8)
+      expect(levels(withSolve(7_999))['speed-3x3']).toBe(9)
+      expect(levels(withSolve(6_000))['speed-3x3']).toBe(9)
+      expect(levels(withSolve(5_999))['speed-3x3']).toBe(10)
     })
 
     it('ignores DNF solves however fast they are', () => {
-      expect(unlockedIds([cubeWith([solve({ time: 1_000, dnf: true })])])).toEqual([])
+      expect(levels(withSolve(1_000, { dnf: true }))['speed-3x3']).toBeUndefined()
     })
 
     it('ignores fast solves logged on a non-3x3 cube', () => {
-      expect(unlockedIds([cubeWith([solve({ time: 1_000 })], '4x4')])).toEqual([])
+      expect(levels([cubeWith([solve({ time: 1_000 })], '4x4')])['speed-3x3']).toBeUndefined()
     })
   })
 
-  describe('oh-sub-30', () => {
-    it('unlocks under 30s on 3x3 OH but not at exactly 30s', () => {
-      expect(unlockedIds([cubeWith([solve({ time: 29_999 })], '3x3 OH')])).toEqual(['oh-sub-30'])
-      expect(unlockedIds([cubeWith([solve({ time: 30_000 })], '3x3 OH')])).toEqual([])
+  describe('one-handed speed', () => {
+    const oh = (time: number) => [cubeWith([solve({ time })], '3x3 OH')]
+
+    it('keeps the sub-30 rung exclusive', () => {
+      expect(levels(oh(30_000))['oh-speed']).toBe(4)
+      expect(levels(oh(29_999))['oh-speed']).toBe(5)
+    })
+
+    it('does not feed the two-handed ladder', () => {
+      expect(levels(oh(5_000))['speed-3x3']).toBeUndefined()
     })
   })
 
-  describe('bld-success', () => {
-    it('unlocks on any successful BLD solve regardless of time', () => {
-      expect(unlockedIds([cubeWith([solve({ time: 600_000 })], '3x3 BLD')])).toEqual(['bld-success'])
+  describe('blindfolded', () => {
+    it('counts successes, however slow', () => {
+      expect(levels([cubeWith([solve({ time: 600_000 })], '3x3 BLD')])['bld']).toBe(1)
+      expect(levels([cubeWith(bulkSolves(10), '3x3 BLD')])['bld']).toBe(2)
     })
 
-    it('stays locked when every BLD attempt is a DNF', () => {
-      expect(unlockedIds([cubeWith([solve({ dnf: true })], '3x3 BLD')])).toEqual([])
+    it('stays locked when every attempt is a DNF', () => {
+      expect(levels([cubeWith([solve({ dnf: true })], '3x3 BLD')])['bld']).toBeUndefined()
     })
   })
 
-  describe('collector tiers', () => {
+  describe('cube collection', () => {
     const emptyCubes = (n: number) => Array.from({ length: n }, () => makeCube())
 
-    it('unlocks each tier at its exact threshold', () => {
-      expect(unlockedIds(emptyCubes(4))).toEqual([])
-      expect(unlockedIds(emptyCubes(5))).toEqual(['collector-5'])
-      expect(unlockedIds(emptyCubes(25))).toEqual(['collector', 'collector-5'])
-      expect(unlockedIds(emptyCubes(50))).toEqual(['collector', 'collector-5', 'collector-50'])
+    it('climbs a rung at each exact threshold', () => {
+      expect(levels(emptyCubes(1))).toEqual({ 'cube-collection': 1 })
+      expect(levels(emptyCubes(4))).toEqual({ 'cube-collection': 2 })
+      expect(levels(emptyCubes(5))).toEqual({ 'cube-collection': 3 })
+      expect(levels(emptyCubes(25))).toEqual({ 'cube-collection': 5 })
+      expect(levels(emptyCubes(50))).toEqual({ 'cube-collection': 6 })
+      expect(levels(emptyCubes(100))).toEqual({ 'cube-collection': 7 })
     })
 
     it('counts soft-deleted cubes toward the total', () => {
-      const cubes = [...emptyCubes(4), makeCube({ isDeleted: true })]
-      expect(unlockedIds(cubes)).toEqual(['collector-5'])
+      expect(levels([...emptyCubes(4), makeCube({ isDeleted: true })])).toEqual({ 'cube-collection': 3 })
     })
   })
 
-  describe('eventglot', () => {
+  describe('categories', () => {
     const oneSolvePerCategory = (categories: readonly CubeCategory[]) =>
-      categories.map((category) => cubeWith([solve({ time: category === '3x3 OH' ? 45_000 : DEFAULT_TIME })], category))
+      categories.map((category) => cubeWith([solve()], category))
 
-    it('unlocks once every category has a valid solve', () => {
-      expect(unlockedIds(oneSolvePerCategory(CUBE_CATEGORIES))).toEqual(['bld-success', 'collector-5', 'eventglot'])
+    it('tops out once every category has a valid solve', () => {
+      expect(levels(oneSolvePerCategory(CUBE_CATEGORIES))['categories']).toBe(5)
     })
 
-    it('stays locked when a single category is missing', () => {
-      const allButOne = CUBE_CATEGORIES.slice(0, -1)
-      expect(unlockedIds(oneSolvePerCategory(allButOne))).toEqual(['bld-success', 'collector-5'])
+    it('holds one rung short when a single category is missing', () => {
+      expect(levels(oneSolvePerCategory(CUBE_CATEGORIES.slice(0, -1)))['categories']).toBe(4)
     })
 
     it('does not count a category whose only solve is a DNF', () => {
       const cubes = oneSolvePerCategory(CUBE_CATEGORIES.slice(0, -1))
-      const last = CUBE_CATEGORIES[CUBE_CATEGORIES.length - 1]
-      cubes.push(cubeWith([solve({ dnf: true })], last))
-      expect(unlockedIds(cubes)).toEqual(['bld-success', 'collector-5'])
+      cubes.push(cubeWith([solve({ dnf: true })], CUBE_CATEGORIES[CUBE_CATEGORIES.length - 1]))
+      expect(levels(cubes)['categories']).toBe(4)
     })
   })
 
-  describe('marathonist', () => {
-    it('requires strictly more than 500 solves in one day', () => {
-      expect(unlockedIds([cubeWith(bulkSolves(500))])).toEqual([])
-      expect(unlockedIds([cubeWith(bulkSolves(501))])).toEqual(['marathonist'])
+  describe('marathon', () => {
+    it('requires strictly more than each threshold', () => {
+      expect(levels([cubeWith(bulkSolves(500))])['marathon']).toBe(4)
+      expect(levels([cubeWith(bulkSolves(501))])['marathon']).toBe(5)
     })
   })
 
   describe('daily streaks', () => {
     const consecutiveDays = (days: number) =>
-      Array.from({ length: days }, (_, i) =>
-        solve({ time: DEFAULT_TIME, startTime: dayjs('2025-01-05').add(i, 'day').valueOf() })
-      )
+      Array.from({ length: days }, (_, i) => solve({ startTime: dayjs('2025-01-05').add(i, 'day').valueOf() }))
 
-    it('stays locked at 29 consecutive days', () => {
-      expect(unlockedIds([cubeWith(consecutiveDays(29))])).toEqual([])
+    it('climbs with the length of the longest run', () => {
+      expect(levels([cubeWith(consecutiveDays(29))])['daily-streak']).toBe(3)
+      expect(levels([cubeWith(consecutiveDays(30))])['daily-streak']).toBe(4)
+      expect(levels([cubeWith(consecutiveDays(365))])['daily-streak']).toBe(8)
     })
 
-    it('unlocks streak-30 at 30 consecutive days', () => {
-      expect(unlockedIds([cubeWith(consecutiveDays(30))])).toEqual(['streak-30'])
-    })
-
-    it('unlocks both streak badges at 365 consecutive days', () => {
-      // Any 365-day window necessarily contains a January 1st, so `new-year-solve`
-      // rides along — that coupling is intentional, not an accident of the fixture.
-      expect(unlockedIds([cubeWith(consecutiveDays(365))])).toEqual([
-        'consistency-is-key',
-        'new-year-solve',
-        'streak-30'
-      ])
-    })
-
-    it('breaks the streak on a skipped day', () => {
+    it('breaks the run on a skipped day', () => {
       const solves = consecutiveDays(40)
       solves.splice(20, 1)
-      expect(unlockedIds([cubeWith(solves)])).toEqual([])
+      expect(levels([cubeWith(solves)])['daily-streak']).toBe(3)
+    })
+
+    it('picks up a January 1st inside a long run', () => {
+      expect(levels([cubeWith(consecutiveDays(365))])['new-year-solve']).toBe(1)
     })
   })
 
-  describe('zen-master', () => {
-    // Chunked at 400/day so `marathonist` (>500/day) stays out of the picture,
-    // and kept short enough that no streak badge fires either.
+  describe('clean streaks', () => {
+    // Chunked at 400/day so the marathon ladder stays out of the picture.
     const cleanRun = (count: number) => {
       const solves: Solve[] = []
       for (let i = 0; i < count; i += 400) {
@@ -202,79 +226,73 @@ describe('achievements — baseline unlock rules', () => {
       return solves
     }
 
-    it('stays locked at 999 penalty-free solves', () => {
-      expect(unlockedIds([cubeWith(cleanRun(999))])).toEqual([])
-    })
-
-    it('unlocks at 1000 penalty-free solves', () => {
-      expect(unlockedIds([cubeWith(cleanRun(1000))])).toEqual(['zen-master'])
+    it('climbs with the longest penalty-free run', () => {
+      expect(levels([cubeWith(cleanRun(999))])['clean-streak']).toBe(6)
+      expect(levels([cubeWith(cleanRun(1000))])['clean-streak']).toBe(7)
     })
 
     it('resets the run on a +2', () => {
       const solves = cleanRun(1200)
       solves[600] = { ...solves[600], plus2: true }
-      expect(unlockedIds([cubeWith(solves)])).toEqual([])
+      expect(levels([cubeWith(solves)])['clean-streak']).toBe(6)
     })
   })
 
-  describe('new-year-solve', () => {
-    it('unlocks for a valid solve on January 1st', () => {
-      expect(unlockedIds([cubeWith([solve({ time: DEFAULT_TIME, startTime: at('2025-01-01') })])])).toEqual([
-        'new-year-solve'
-      ])
-    })
-
-    it('stays locked on January 2nd', () => {
-      expect(unlockedIds([cubeWith([solve({ time: DEFAULT_TIME, startTime: at('2025-01-02') })])])).toEqual([])
+  describe('new year solve', () => {
+    it('unlocks for a valid solve on January 1st and not on the 2nd', () => {
+      expect(levels([cubeWith([solve({ startTime: at('2025-01-01') })])])['new-year-solve']).toBe(1)
+      expect(levels([cubeWith([solve({ startTime: at('2025-01-02') })])])['new-year-solve']).toBeUndefined()
     })
   })
 
-  describe('bookmarker', () => {
-    it('unlocks at 25 bookmarks and not at 24', () => {
-      expect(unlockedIds([cubeWith(bulkSolves(24, { bookmark: true }))])).toEqual([])
-      expect(unlockedIds([cubeWith(bulkSolves(25, { bookmark: true }))])).toEqual(['bookmarker'])
+  describe('bookmarks', () => {
+    it('climbs at each exact threshold', () => {
+      expect(levels([cubeWith(bulkSolves(24, { bookmark: true }))])['bookmarks']).toBe(2)
+      expect(levels([cubeWith(bulkSolves(25, { bookmark: true }))])['bookmarks']).toBe(3)
     })
 
     it('counts bookmarks on DNF solves', () => {
-      expect(unlockedIds([cubeWith(bulkSolves(25, { bookmark: true, dnf: true }))])).toEqual(['bookmarker'])
+      expect(levels([cubeWith(bulkSolves(25, { bookmark: true, dnf: true }))])['bookmarks']).toBe(3)
     })
 
     it('ignores bookmarks on soft-deleted solves', () => {
-      expect(unlockedIds([cubeWith(bulkSolves(25, { bookmark: true, isDeleted: true }))])).toEqual([])
+      expect(levels([cubeWith(bulkSolves(25, { bookmark: true, isDeleted: true }))])['bookmarks']).toBeUndefined()
     })
   })
 
-  describe('commentator', () => {
-    it('unlocks at 10 comments and not at 9', () => {
-      expect(unlockedIds([cubeWith(bulkSolves(9, { comment: 'nice' }))])).toEqual([])
-      expect(unlockedIds([cubeWith(bulkSolves(10, { comment: 'nice' }))])).toEqual(['commentator'])
+  describe('comments', () => {
+    it('climbs at each exact threshold', () => {
+      expect(levels([cubeWith(bulkSolves(9, { comment: 'nice' }))])['comments']).toBe(1)
+      expect(levels([cubeWith(bulkSolves(10, { comment: 'nice' }))])['comments']).toBe(2)
     })
 
     it('ignores whitespace-only comments', () => {
-      expect(unlockedIds([cubeWith(bulkSolves(10, { comment: '   ' }))])).toEqual([])
+      expect(levels([cubeWith(bulkSolves(10, { comment: '   ' }))])['comments']).toBeUndefined()
     })
   })
 
-  describe('smart-mover', () => {
+  describe('smart cube', () => {
     it('unlocks on the first solve carrying a replay', () => {
       const replay = { version: 1 as const, puzzle: '3x3', scramble: '', durationMs: 1_000, moves: [] }
-      expect(unlockedIds([cubeWith([solve({ time: DEFAULT_TIME, replay })])])).toEqual(['smart-mover'])
+      expect(levels([cubeWith([solve({ replay })])])['smart-cube']).toBe(1)
     })
   })
 
-  describe('high-volume badges', () => {
-    it('unlocks the full high-volume set at 100k solves on one 3x3 cube', () => {
-      expect(unlockedIds([cubeWith(bulkSolves(100_000))])).toEqual([
-        'career-100k',
-        'marathonist',
-        'over-9999-3x3',
-        'zen-master'
-      ])
+  describe('high-volume ladders', () => {
+    it('climbs career, per-cube, marathon and clean ladders together at 100k solves', () => {
+      expect(levels([cubeWith(bulkSolves(100_000))])).toEqual({
+        'career-solves': 9,
+        'solves-per-cube': 7,
+        marathon: 6,
+        'clean-streak': 7,
+        'cube-collection': 1
+      })
     })
 
-    it('measures over-9999-3x3 per cube, never as a career total', () => {
+    it('measures the per-cube ladder per cube, never as a career total', () => {
       const cubes = [cubeWith(bulkSolves(6_000)), cubeWith(bulkSolves(6_000))]
-      expect(unlockedIds(cubes)).not.toContain('over-9999-3x3')
+      expect(levels(cubes)['solves-per-cube']).toBe(5)
+      expect(levels(cubes)['career-solves']).toBe(6)
     })
   })
 
@@ -282,33 +300,29 @@ describe('achievements — baseline unlock rules', () => {
     it('unlocks only the keys present on the profile', () => {
       const user = makeUser({ grantedAchievements: ['bug-hunter', 'contributor'] })
       const granted = resolveBadges({ user, cubes: [] })
-        .unlocked.filter((b) => b.type === 'granted')
-        .map((b) => b.id)
+        .unlockedFamilies.filter((f) => f.type === 'granted')
+        .map((f) => f.id)
         .sort()
       expect(granted).toEqual(['bug-hunter', 'contributor'])
     })
 
     it('never unlocks a granted badge from solve data alone', () => {
       const result = resolveBadges({ user: makeUser(), cubes: [cubeWith(bulkSolves(100_000))] })
-      expect(result.unlocked.filter((b) => b.type === 'granted')).toEqual([])
+      expect(result.unlockedFamilies.filter((f) => f.type === 'granted')).toEqual([])
     })
   })
 
-  it('exposes a stable badge total with unlocked and locked partitioning the set', () => {
+  it('partitions families and counts rungs consistently', () => {
     const result = resolveBadges({ user: makeUser(), cubes: [] })
-    expect(result.total).toBe(result.badges.length)
-    expect(result.unlocked.length + result.locked.length).toBe(result.total)
+    expect(result.unlockedFamilies.length + result.lockedFamilies.length).toBe(result.families.length)
+    expect(result.earnedTiers).toBe(0)
+    expect(result.totalTiers).toBe(result.families.reduce((n, f) => n + f.maxLevel, 0))
   })
 })
 
-describe('computeSolveStats — numeric aggregates that survive the refactor', () => {
+describe('computeSolveStats — aggregates behind the ladders', () => {
   it('counts only valid solves toward the career total', () => {
-    const solves = [
-      solve({ time: DEFAULT_TIME }),
-      solve({ time: DEFAULT_TIME, dnf: true }),
-      solve({ time: DEFAULT_TIME, isDeleted: true }),
-      solve({ time: DEFAULT_TIME, plus2: true })
-    ]
+    const solves = [solve(), solve({ dnf: true }), solve({ isDeleted: true }), solve({ plus2: true })]
     expect(computeSolveStats([cubeWith(solves)]).totalValid).toBe(2)
   })
 
@@ -322,10 +336,8 @@ describe('computeSolveStats — numeric aggregates that survive the refactor', (
   })
 
   it('reports the longest date streak, not the current one', () => {
-    const early = [0, 1, 2, 3, 4].map((i) =>
-      solve({ time: DEFAULT_TIME, startTime: dayjs('2025-01-01').add(i, 'day').valueOf() })
-    )
-    const late = [solve({ time: DEFAULT_TIME, startTime: at('2025-06-01') })]
+    const early = [0, 1, 2, 3, 4].map((i) => solve({ startTime: dayjs('2025-01-01').add(i, 'day').valueOf() }))
+    const late = [solve({ startTime: at('2025-06-01') })]
     expect(computeSolveStats([cubeWith([...early, ...late])]).longestDateStreak).toBe(5)
   })
 
@@ -343,11 +355,7 @@ describe('computeSolveStats — numeric aggregates that survive the refactor', (
   })
 
   it('collects the set of categories holding at least one valid solve', () => {
-    const cubes = [
-      cubeWith([solve({ time: DEFAULT_TIME })], '3x3'),
-      cubeWith([solve({ dnf: true })], '4x4'),
-      cubeWith([solve({ time: DEFAULT_TIME })], 'Megaminx')
-    ]
+    const cubes = [cubeWith([solve()], '3x3'), cubeWith([solve({ dnf: true })], '4x4'), cubeWith([solve()], 'Megaminx')]
     expect(Array.from(computeSolveStats(cubes).categoriesWithValidSolves).sort()).toEqual(['3x3', 'Megaminx'])
   })
 })
