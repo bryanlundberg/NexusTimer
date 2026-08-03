@@ -15,12 +15,12 @@ const MAX_VISIBLE = 10
 export function ProfileBadgesStrip({ badges }: Props) {
   const t = useTranslations('Index.PeoplePage.badges')
   const { set } = usePeopleTab()
-  const { unlocked, total } = badges
+  const { unlockedFamilies } = badges
 
-  if (unlocked.length === 0) return null
+  if (unlockedFamilies.length === 0) return null
 
-  const visible = unlocked.slice(0, MAX_VISIBLE)
-  const overflow = unlocked.length - visible.length
+  const visible = unlockedFamilies.slice(0, MAX_VISIBLE)
+  const overflow = unlockedFamilies.length - visible.length
 
   return (
     <div className="w-full px-4 md:px-6 py-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3 border-b border-border/40">
@@ -33,14 +33,14 @@ export function ProfileBadgesStrip({ badges }: Props) {
       </button>
 
       <div className="flex items-center gap-1.5 min-w-0 flex-1 overflow-x-auto overflow-y-hidden scrollbar-hide sm:overflow-hidden">
-        {visible.map((badge) => (
+        {visible.map((family) => (
           <button
-            key={badge.id}
+            key={family.id}
             type="button"
             onClick={() => set(PeopleTabs.ACHIEVEMENTS)}
             className="scale-75 origin-center -mx-1 shrink-0 cursor-pointer"
           >
-            <AchievementItem achievement={badge} />
+            <AchievementItem achievement={family} level={family.level} maxLevel={family.maxLevel} />
           </button>
         ))}
         {overflow > 0 && <span className="text-xs font-semibold text-muted-foreground shrink-0">+{overflow}</span>}
