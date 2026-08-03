@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import { cn } from '@/shared/lib/utils'
 import { TooltipContent } from '@/components/ui/tooltip'
-import { Achievement as AchievementType } from '../model/types'
+import { RenderableBadge } from '../model/types'
 
 interface AchievementTooltipProps {
-  achievement: AchievementType
+  achievement: RenderableBadge
 }
 
 export function AchievementTooltip({ achievement }: AchievementTooltipProps) {
