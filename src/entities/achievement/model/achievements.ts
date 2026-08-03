@@ -950,28 +950,28 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
     formatValue: hours,
     tiers: [
       {
-        id: 'time-1h',
+        id: 'time-3600',
         level: 1,
         title: 'First Hour',
         description: 'Spent an hour on the timer.',
         threshold: 3_600_000
       },
       {
-        id: 'time-10h',
+        id: 'time-36000',
         level: 2,
         title: 'Ten Hours Deep',
         description: 'Spent 10 hours on the timer.',
         threshold: 36_000_000
       },
       {
-        id: 'time-50h',
+        id: 'time-180000',
         level: 3,
         title: 'A Working Week',
         description: 'Spent 50 hours on the timer.',
         threshold: 180_000_000
       },
       {
-        id: 'time-100h',
+        id: 'time-360000',
         level: 4,
         title: 'Triple Digits',
         description: 'Spent 100 hours on the timer.',
@@ -979,7 +979,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         icon: 'icons8-combo-chart-50.png'
       },
       {
-        id: 'time-500h',
+        id: 'time-1800000',
         level: 5,
         title: 'Time Sink',
         description: 'Spent 500 hours on the timer.',
@@ -987,7 +987,7 @@ export const ACHIEVEMENTS_CONFIG: Achievement[] = [
         icon: 'icons8-mana-50.png'
       },
       {
-        id: 'time-1000h',
+        id: 'time-3600000',
         level: 6,
         title: 'A Thousand Hours',
         description: 'Spent 1,000 hours on the timer.',
