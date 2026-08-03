@@ -2,18 +2,22 @@ import * as React from 'react'
 import Image from 'next/image'
 import { cn } from '@/shared/lib/utils'
 import { RenderableBadge } from '../model/types'
+import { toRoman } from '../lib/roman'
 
 type AchievementIconProps = {
   achievement: RenderableBadge
   locked: boolean
+  level?: number
+  maxLevel?: number
 } & React.HTMLAttributes<HTMLDivElement>
 
 export const AchievementIcon = React.forwardRef<HTMLDivElement, AchievementIconProps>(function AchievementIcon(
-  { achievement, locked, ...rest },
+  { achievement, locked, level, maxLevel, ...rest },
   ref
 ) {
   const color = achievement.color
   const colored = Boolean(color) && !locked
+  const numeral = (maxLevel ?? 1) > 1 && (level ?? 0) > 0 ? toRoman(level as number) : ''
 
   return (
     <div
@@ -46,12 +50,21 @@ export const AchievementIcon = React.forwardRef<HTMLDivElement, AchievementIconP
       <Image
         src={`/achievements/${achievement.icon}`}
         unoptimized
-        alt={achievement.title}
+        alt={numeral ? `${achievement.title} (level ${level})` : achievement.title}
         width={96}
         height={96}
         className="object-cover p-2 w-full h-full relative z-10"
         draggable={false}
       />
+
+      {numeral && (
+        <span
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 z-20 bg-black/55 text-center text-[9px] font-bold leading-[1.45] tracking-widest text-white"
+        >
+          {numeral}
+        </span>
+      )}
     </div>
   )
 })
