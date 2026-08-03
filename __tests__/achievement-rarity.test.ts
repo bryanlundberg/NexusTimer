@@ -4,7 +4,7 @@ import { RarityAccumulator, allAchievementIds } from '@/entities/achievement/mod
 describe('allAchievementIds', () => {
   it('lists every tier and every standalone badge exactly once', () => {
     const ids = allAchievementIds()
-    expect(ids).toHaveLength(92)
+    expect(ids).toHaveLength(229)
     expect(new Set(ids).size).toBe(ids.length)
   })
 
@@ -29,7 +29,7 @@ describe('RarityAccumulator', () => {
     accumulator.countUser(['collector-1'])
 
     const stats = accumulator.finalize({ registeredUsers: 1 })
-    expect(Object.keys(stats.badges)).toHaveLength(92)
+    expect(Object.keys(stats.badges)).toHaveLength(229)
     expect(stats.badges['collector-1']).toEqual({ holders: 1, pct: 100 })
     expect(stats.badges['speed-sub-6']).toEqual({ holders: 0, pct: 0 })
   })
