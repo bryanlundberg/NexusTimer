@@ -7,19 +7,25 @@ interface AchievementItemProps {
   achievement: RenderableBadge
   locked?: boolean
   disableTooltip?: boolean
+  level?: number
+  maxLevel?: number
 }
 
-export function AchievementItem({ achievement, locked = false, disableTooltip = false }: AchievementItemProps) {
-  if (disableTooltip) {
-    return <AchievementIcon achievement={achievement} locked={locked} />
-  }
+export function AchievementItem({
+  achievement,
+  locked = false,
+  disableTooltip = false,
+  level,
+  maxLevel
+}: AchievementItemProps) {
+  const icon = <AchievementIcon achievement={achievement} locked={locked} level={level} maxLevel={maxLevel} />
+
+  if (disableTooltip) return icon
 
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>
-          <AchievementIcon achievement={achievement} locked={locked} />
-        </TooltipTrigger>
+        <TooltipTrigger asChild>{icon}</TooltipTrigger>
         <AchievementTooltip achievement={achievement} />
       </Tooltip>
     </TooltipProvider>
