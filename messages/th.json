@@ -1056,7 +1056,7 @@
       "wca-events": "ประเภท WCA",
       "languages": "ภาษา",
       "free": "ฟรีตลอดไป",
-      "open-source": "โอเพนซอร์ส"
+      "reviews": "รีวิว"
     },
     "showcase": {
       "label": "ภายในแอป",
@@ -1109,7 +1109,9 @@
     "cross-platform": {
       "label": "ข้ามแพลตฟอร์ม",
       "title": "สวยงามบนทุกหน้าจอ",
-      "subtitle": "PWA ที่ติดตั้งได้บนทุกอุปกรณ์ ประสบการณ์เดียวกันบนเดสก์ท็อป แท็บเล็ต และโทรศัพท์"
+      "subtitle": "ประสบการณ์เดียวกันบนเดสก์ท็อป แท็บเล็ต และโทรศัพท์",
+      "android-note": "ชอบแอปแบบเนทีฟใช่ไหม? Nexus Timer มีบน Android",
+      "google-play": "ดาวน์โหลดได้จาก Google Play"
     },
     "testimonials": {
       "label": "เสียงจาก cuber",
@@ -1152,14 +1154,23 @@
       "statistics": "สถิติ",
       "multiplayer": "มัลติเพลเยอร์",
       "algorithms": "อัลกอริทึม",
+      "trainer": "ตัวฝึกอัลกอริทึม",
       "leaderboards": "ลีดเดอร์บอร์ด",
+      "people": "นักเล่นลูกบาศก์",
+      "cubes": "ลูกบาศก์ของฉัน",
       "company": "บริษัท",
       "contact": "ติดต่อเรา",
       "privacy": "นโยบายความเป็นส่วนตัว",
       "terms": "ข้อกำหนดในการให้บริการ",
+      "account-deletion": "ลบบัญชี",
       "community": "ชุมชน",
       "discord": "เซิร์ฟเวอร์ Discord",
       "github": "GitHub",
+      "forum": "ฟอรัม Speedsolving",
+      "feature-request": "ขอฟีเจอร์",
+      "report-bug": "รายงานข้อบกพร่อง",
+      "contribute": "ร่วมพัฒนา",
+      "language": "ภาษา",
       "disclaimer": "NexusTimer เป็นโครงการอิสระสำหรับชุมชนคิวบ์",
       "copyright": "© {year} NexusTimer สงวนลิขสิทธิ์"
     },

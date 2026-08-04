@@ -1056,7 +1056,7 @@
       "wca-events": "Mga WCA Event",
       "languages": "Mga Wika",
       "free": "Libre habambuhay",
-      "open-source": "Open source"
+      "reviews": "Mga Review"
     },
     "showcase": {
       "label": "Sa loob ng app",
@@ -1109,7 +1109,9 @@
     "cross-platform": {
       "label": "Cross platform",
       "title": "Maganda sa bawat screen",
-      "subtitle": "PWA na nai-install sa anumang device. Parehong karanasan sa desktop, tablet, at telepono."
+      "subtitle": "Parehong karanasan sa desktop, tablet, at telepono.",
+      "android-note": "Mas gusto ang native app? Nasa Android ang Nexus Timer.",
+      "google-play": "Makukuha sa Google Play"
     },
     "testimonials": {
       "label": "Sabi ng mga cuber",
@@ -1152,14 +1154,23 @@
       "statistics": "Statistics",
       "multiplayer": "Multiplayer",
       "algorithms": "Mga Algorithm",
+      "trainer": "Algorithm Trainer",
       "leaderboards": "Mga Leaderboard",
+      "people": "Mga Cuber",
+      "cubes": "Mga Cube Ko",
       "company": "Kumpanya",
       "contact": "Makipag-ugnayan",
       "privacy": "Privacy Policy",
       "terms": "Terms of Service",
+      "account-deletion": "Burahin ang Account",
       "community": "Komunidad",
       "discord": "Discord Server",
       "github": "GitHub",
+      "forum": "Speedsolving Forum",
+      "feature-request": "Humiling ng Feature",
+      "report-bug": "Mag-ulat ng Bug",
+      "contribute": "Mag-ambag",
+      "language": "Wika",
       "disclaimer": "Ang NexusTimer ay isang independent na proyekto para sa cubing community.",
       "copyright": "© {year} NexusTimer. Lahat ng karapatan ay nakalaan."
     },

@@ -1056,7 +1056,7 @@
       "wca-events": "Event WCA",
       "languages": "Bahasa",
       "free": "Gratis selamanya",
-      "open-source": "Open source"
+      "reviews": "Ulasan"
     },
     "showcase": {
       "label": "Di dalam aplikasi",
@@ -1109,7 +1109,9 @@
     "cross-platform": {
       "label": "Lintas platform",
       "title": "Indah di setiap layar",
-      "subtitle": "PWA yang terpasang di perangkat apa pun. Pengalaman sama di desktop, tablet, dan ponsel."
+      "subtitle": "Pengalaman sama di desktop, tablet, dan ponsel.",
+      "android-note": "Lebih suka aplikasi native? Nexus Timer ada di Android.",
+      "google-play": "Dapatkan di Google Play"
     },
     "testimonials": {
       "label": "Apa kata para cuber",
@@ -1152,14 +1154,23 @@
       "statistics": "Statistik",
       "multiplayer": "Multiplayer",
       "algorithms": "Algoritma",
+      "trainer": "Pelatih Algoritma",
       "leaderboards": "Papan Peringkat",
+      "people": "Cuber",
+      "cubes": "Kubus Saya",
       "company": "Perusahaan",
       "contact": "Hubungi Kami",
       "privacy": "Kebijakan Privasi",
       "terms": "Ketentuan Layanan",
+      "account-deletion": "Hapus Akun",
       "community": "Komunitas",
       "discord": "Server Discord",
       "github": "GitHub",
+      "forum": "Forum Speedsolving",
+      "feature-request": "Ajukan Fitur",
+      "report-bug": "Laporkan Bug",
+      "contribute": "Berkontribusi",
+      "language": "Bahasa",
       "disclaimer": "NexusTimer adalah proyek independen untuk komunitas cubing.",
       "copyright": "© {year} NexusTimer. Semua hak dilindungi."
     },

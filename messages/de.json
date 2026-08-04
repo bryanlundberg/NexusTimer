@@ -1056,7 +1056,7 @@
       "wca-events": "WCA-Events",
       "languages": "Sprachen",
       "free": "Für immer kostenlos",
-      "open-source": "Open Source"
+      "reviews": "Bewertungen"
     },
     "showcase": {
       "label": "In der App",
@@ -1109,7 +1109,9 @@
     "cross-platform": {
       "label": "Plattformübergreifend",
       "title": "Wunderschön auf jedem Bildschirm",
-      "subtitle": "PWA, die auf jedem Gerät installiert werden kann. Gleiche Erfahrung auf Desktop, Tablet und Handy."
+      "subtitle": "Gleiche Erfahrung auf Desktop, Tablet und Handy.",
+      "android-note": "Lieber eine native App? Nexus Timer gibt es für Android.",
+      "google-play": "Jetzt bei Google Play"
     },
     "testimonials": {
       "label": "Was Cuber sagen",
@@ -1152,14 +1154,23 @@
       "statistics": "Statistiken",
       "multiplayer": "Mehrspieler",
       "algorithms": "Algorithmen",
+      "trainer": "Algorithmus-Trainer",
       "leaderboards": "Bestenlisten",
+      "people": "Cuber",
+      "cubes": "Meine Würfel",
       "company": "Unternehmen",
       "contact": "Kontakt",
       "privacy": "Datenschutzrichtlinie",
       "terms": "Nutzungsbedingungen",
+      "account-deletion": "Konto löschen",
       "community": "Community",
       "discord": "Discord-Server",
       "github": "GitHub",
+      "forum": "Speedsolving-Forum",
+      "feature-request": "Funktion vorschlagen",
+      "report-bug": "Fehler melden",
+      "contribute": "Mitwirken",
+      "language": "Sprache",
       "disclaimer": "NexusTimer ist ein unabhängiges Projekt für die Cubing-Community.",
       "copyright": "© {year} NexusTimer. Alle Rechte vorbehalten."
     },

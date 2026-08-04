@@ -1056,7 +1056,7 @@
       "wca-events": "Соревнования WCA",
       "languages": "Языки",
       "free": "Бесплатно навсегда",
-      "open-source": "Открытый исходный код"
+      "reviews": "Отзывы"
     },
     "showcase": {
       "label": "Внутри приложения",
@@ -1109,7 +1109,9 @@
     "cross-platform": {
       "label": "Кроссплатформенность",
       "title": "Красиво на любом экране",
-      "subtitle": "PWA, которое устанавливается на любое устройство. Одинаковый опыт на компьютере, планшете и телефоне."
+      "subtitle": "Одинаковый опыт на компьютере, планшете и телефоне.",
+      "android-note": "Предпочитаете нативное приложение? Nexus Timer есть на Android.",
+      "google-play": "Доступно в Google Play"
     },
     "testimonials": {
       "label": "Что говорят куберы",
@@ -1152,14 +1154,23 @@
       "statistics": "Статистика",
       "multiplayer": "Мультиплеер",
       "algorithms": "Алгоритмы",
+      "trainer": "Тренажёр алгоритмов",
       "leaderboards": "Рейтинги",
+      "people": "Куберы",
+      "cubes": "Мои кубы",
       "company": "Компания",
       "contact": "Связаться с нами",
       "privacy": "Политика конфиденциальности",
       "terms": "Условия использования",
+      "account-deletion": "Удалить аккаунт",
       "community": "Сообщество",
       "discord": "Сервер Discord",
       "github": "GitHub",
+      "forum": "Форум Speedsolving",
+      "feature-request": "Предложить функцию",
+      "report-bug": "Сообщить об ошибке",
+      "contribute": "Внести вклад",
+      "language": "Язык",
       "disclaimer": "NexusTimer — независимый проект для сообщества кубинга.",
       "copyright": "© {year} NexusTimer. Все права защищены."
     },

@@ -1056,7 +1056,7 @@
       "wca-events": "WCA 项目",
       "languages": "语言",
       "free": "永久免费",
-      "open-source": "开源"
+      "reviews": "评分"
     },
     "showcase": {
       "label": "应用内部",
@@ -1109,7 +1109,9 @@
     "cross-platform": {
       "label": "跨平台",
       "title": "每块屏幕都美观",
-      "subtitle": "可安装在任何设备上的 PWA，桌面、平板、手机体验一致。"
+      "subtitle": "桌面、平板、手机体验一致。",
+      "android-note": "更喜欢原生应用？Nexus Timer 已上架 Android。",
+      "google-play": "在 Google Play 上获取"
     },
     "testimonials": {
       "label": "魔方爱好者怎么说",
@@ -1152,14 +1154,23 @@
       "statistics": "统计",
       "multiplayer": "多人对战",
       "algorithms": "算法",
+      "trainer": "公式训练器",
       "leaderboards": "排行榜",
+      "people": "魔友",
+      "cubes": "我的魔方",
       "company": "公司",
       "contact": "联系我们",
       "privacy": "隐私政策",
       "terms": "服务条款",
+      "account-deletion": "删除账户",
       "community": "社区",
       "discord": "Discord 服务器",
       "github": "GitHub",
+      "forum": "Speedsolving 论坛",
+      "feature-request": "功能建议",
+      "report-bug": "报告问题",
+      "contribute": "参与贡献",
+      "language": "语言",
       "disclaimer": "NexusTimer 是服务于魔方社区的独立项目。",
       "copyright": "© {year} NexusTimer. 保留所有权利。"
     },

@@ -1056,7 +1056,7 @@
       "wca-events": "WCA इवेंट",
       "languages": "भाषाएँ",
       "free": "हमेशा के लिए मुफ़्त",
-      "open-source": "ओपन सोर्स"
+      "reviews": "समीक्षाएँ"
     },
     "showcase": {
       "label": "ऐप के अंदर",
@@ -1109,7 +1109,9 @@
     "cross-platform": {
       "label": "क्रॉस प्लेटफ़ॉर्म",
       "title": "हर स्क्रीन पर सुंदर",
-      "subtitle": "PWA जो किसी भी डिवाइस पर इंस्टॉल होता है। डेस्कटॉप, टैबलेट और फ़ोन पर एक जैसा अनुभव।"
+      "subtitle": "डेस्कटॉप, टैबलेट और फ़ोन पर एक जैसा अनुभव।",
+      "android-note": "नेटिव ऐप पसंद है? Nexus Timer Android पर उपलब्ध है।",
+      "google-play": "Google Play पर पाएँ"
     },
     "testimonials": {
       "label": "क्यूबर्स क्या कहते हैं",
@@ -1152,14 +1154,23 @@
       "statistics": "आँकड़े",
       "multiplayer": "मल्टीप्लेयर",
       "algorithms": "एल्गोरिदम",
+      "trainer": "एल्गोरिद्म ट्रेनर",
       "leaderboards": "लीडरबोर्ड",
+      "people": "क्यूबर्स",
+      "cubes": "मेरे क्यूब्स",
       "company": "कंपनी",
       "contact": "संपर्क करें",
       "privacy": "गोपनीयता नीति",
       "terms": "सेवा की शर्तें",
+      "account-deletion": "खाता हटाएँ",
       "community": "कम्युनिटी",
       "discord": "Discord सर्वर",
       "github": "GitHub",
+      "forum": "Speedsolving फ़ोरम",
+      "feature-request": "फ़ीचर का अनुरोध करें",
+      "report-bug": "बग रिपोर्ट करें",
+      "contribute": "योगदान करें",
+      "language": "भाषा",
       "disclaimer": "NexusTimer क्यूबिंग कम्युनिटी के लिए एक स्वतंत्र प्रोजेक्ट है।",
       "copyright": "© {year} NexusTimer. सर्वाधिकार सुरक्षित।"
     },

@@ -1056,7 +1056,7 @@
       "wca-events": "WCA競技",
       "languages": "言語",
       "free": "永久無料",
-      "open-source": "オープンソース"
+      "reviews": "レビュー"
     },
     "showcase": {
       "label": "アプリの中身",
@@ -1109,7 +1109,9 @@
     "cross-platform": {
       "label": "クロスプラットフォーム",
       "title": "どの画面でも美しい",
-      "subtitle": "どのデバイスにもインストール可能なPWA。デスクトップ、タブレット、スマホで同じ体験。"
+      "subtitle": "デスクトップ、タブレット、スマホで同じ体験。",
+      "android-note": "ネイティブアプリ派の方へ。Nexus TimerはAndroidでも使えます。",
+      "google-play": "Google Play で手に入れよう"
     },
     "testimonials": {
       "label": "キューバーの声",
@@ -1152,14 +1154,23 @@
       "statistics": "統計",
       "multiplayer": "マルチプレイヤー",
       "algorithms": "アルゴリズム",
+      "trainer": "アルゴリズムトレーナー",
       "leaderboards": "ランキング",
+      "people": "キューバー",
+      "cubes": "マイキューブ",
       "company": "会社",
       "contact": "お問い合わせ",
       "privacy": "プライバシーポリシー",
       "terms": "利用規約",
+      "account-deletion": "アカウントを削除",
       "community": "コミュニティ",
       "discord": "Discordサーバー",
       "github": "GitHub",
+      "forum": "Speedsolvingフォーラム",
+      "feature-request": "機能をリクエスト",
+      "report-bug": "バグを報告",
+      "contribute": "コントリビュート",
+      "language": "言語",
       "disclaimer": "NexusTimerはキューバーコミュニティのための独立プロジェクトです。",
       "copyright": "© {year} NexusTimer. All rights reserved."
     },

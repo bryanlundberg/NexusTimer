@@ -1056,7 +1056,7 @@
       "wca-events": "WCA 종목",
       "languages": "언어",
       "free": "영원히 무료",
-      "open-source": "오픈소스"
+      "reviews": "리뷰"
     },
     "showcase": {
       "label": "앱 내부",
@@ -1109,7 +1109,9 @@
     "cross-platform": {
       "label": "크로스 플랫폼",
       "title": "모든 화면에서 아름다운",
-      "subtitle": "어떤 기기에서도 설치되는 PWA. 데스크톱, 태블릿, 스마트폰에서 동일한 경험."
+      "subtitle": "데스크톱, 태블릿, 스마트폰에서 동일한 경험.",
+      "android-note": "네이티브 앱을 원하시나요? Nexus Timer는 Android에서도 사용할 수 있습니다.",
+      "google-play": "Google Play에서 다운로드"
     },
     "testimonials": {
       "label": "큐버들의 이야기",
@@ -1152,14 +1154,23 @@
       "statistics": "통계",
       "multiplayer": "멀티플레이어",
       "algorithms": "알고리즘",
+      "trainer": "알고리즘 트레이너",
       "leaderboards": "리더보드",
+      "people": "큐버들",
+      "cubes": "내 큐브",
       "company": "회사",
       "contact": "문의하기",
       "privacy": "개인정보 처리방침",
       "terms": "서비스 약관",
+      "account-deletion": "계정 삭제",
       "community": "커뮤니티",
       "discord": "Discord 서버",
       "github": "GitHub",
+      "forum": "Speedsolving 포럼",
+      "feature-request": "기능 제안",
+      "report-bug": "버그 신고",
+      "contribute": "기여하기",
+      "language": "언어",
       "disclaimer": "NexusTimer는 큐빙 커뮤니티를 위한 독립 프로젝트입니다.",
       "copyright": "© {year} NexusTimer. All rights reserved."
     },

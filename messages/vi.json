@@ -1056,7 +1056,7 @@
       "wca-events": "Nội dung WCA",
       "languages": "Ngôn ngữ",
       "free": "Miễn phí mãi mãi",
-      "open-source": "Mã nguồn mở"
+      "reviews": "Đánh giá"
     },
     "showcase": {
       "label": "Bên trong ứng dụng",
@@ -1109,7 +1109,9 @@
     "cross-platform": {
       "label": "Đa nền tảng",
       "title": "Đẹp trên mọi màn hình",
-      "subtitle": "PWA cài đặt trên mọi thiết bị. Trải nghiệm như nhau trên máy tính, máy tính bảng và điện thoại."
+      "subtitle": "Trải nghiệm như nhau trên máy tính, máy tính bảng và điện thoại.",
+      "android-note": "Thích ứng dụng gốc? Nexus Timer đã có trên Android.",
+      "google-play": "Tải xuống trên Google Play"
     },
     "testimonials": {
       "label": "Cuber nói gì",
@@ -1152,14 +1154,23 @@
       "statistics": "Thống kê",
       "multiplayer": "Multiplayer",
       "algorithms": "Thuật toán",
+      "trainer": "Trình luyện thuật toán",
       "leaderboards": "Bảng xếp hạng",
+      "people": "Cuber",
+      "cubes": "Khối của tôi",
       "company": "Công ty",
       "contact": "Liên hệ",
       "privacy": "Chính sách bảo mật",
       "terms": "Điều khoản dịch vụ",
+      "account-deletion": "Xóa tài khoản",
       "community": "Cộng đồng",
       "discord": "Máy chủ Discord",
       "github": "GitHub",
+      "forum": "Diễn đàn Speedsolving",
+      "feature-request": "Đề xuất tính năng",
+      "report-bug": "Báo lỗi",
+      "contribute": "Đóng góp",
+      "language": "Ngôn ngữ",
       "disclaimer": "NexusTimer là một dự án độc lập dành cho cộng đồng cubing.",
       "copyright": "© {year} NexusTimer. Bảo lưu mọi quyền."
     },
