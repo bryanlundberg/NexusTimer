@@ -51,7 +51,7 @@ export function ProfileHeroBanner({ user, level }: Props) {
               </Badge>
             </div>
           )}
-          <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-none flex items-baseline gap-2 min-w-0">
+          <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight leading-none flex items-baseline gap-2 min-w-0">
             <span className="min-w-0 truncate">{user.name}</span>
             {user.pronoun && (
               <span className="text-base font-normal text-muted-foreground shrink-0">{user.pronoun}</span>
