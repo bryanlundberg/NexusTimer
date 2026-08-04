@@ -562,7 +562,7 @@ function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObje
                 </div>
               </div>
               <Image
-                src="/landing/desk1.png"
+                src="/landing/desk1.webp"
                 alt="NexusTimer desktop view"
                 width={1200}
                 height={750}
@@ -573,7 +573,7 @@ function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObje
 
           <div className="absolute -right-2 md:-right-6 -bottom-6 md:-bottom-10 z-20 w-24 md:w-40 drop-shadow-2xl">
             <Image
-              src="/landing/cellphone.webp"
+              src="/landing/cellphone2.webp"
               alt="NexusTimer mobile view"
               width={300}
               height={600}
