@@ -25,7 +25,7 @@ export default async function ResetPasswordPage({ searchParams }: Props) {
         <CubeGrid className="size-12 drop-shadow-xl" />
 
         <div className="text-center space-y-1">
-          <h1 className="text-3xl font-bold tracking-tight">{t('reset-password-title')}</h1>
+          <h1 className="font-display text-3xl font-bold tracking-tight">{t('reset-password-title')}</h1>
           <p className="text-sm text-muted-foreground">{t('reset-password-subtitle')}</p>
         </div>
 

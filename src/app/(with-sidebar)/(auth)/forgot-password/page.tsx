@@ -20,7 +20,7 @@ export default async function ForgotPasswordPage() {
         <CubeGrid className="size-12 drop-shadow-xl" />
 
         <div className="text-center space-y-1">
-          <h1 className="text-3xl font-bold tracking-tight">{t('forgot-password-title')}</h1>
+          <h1 className="font-display text-3xl font-bold tracking-tight">{t('forgot-password-title')}</h1>
           <p className="text-sm text-muted-foreground">{t('forgot-password-subtitle')}</p>
         </div>
 

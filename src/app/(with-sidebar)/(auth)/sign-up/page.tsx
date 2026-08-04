@@ -22,7 +22,7 @@ export default async function SignUpPage() {
         <CubeGrid className="size-12 rotate-36 drop-shadow-xl" />
 
         <div className="text-center space-y-1">
-          <h1 className="text-3xl font-bold tracking-tight">{t('create-account')}</h1>
+          <h1 className="font-display text-3xl font-bold tracking-tight">{t('create-account')}</h1>
           <p className="text-sm text-muted-foreground">{t('sign-up-subtitle')}</p>
         </div>
 
