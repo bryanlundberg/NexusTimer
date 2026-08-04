@@ -116,7 +116,7 @@
 
 
 @theme inline {
-  --font-display: var(--font-space-grotesk), 'Saira', ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-chakra), 'Chakra Petch', ui-sans-serif, system-ui, sans-serif;
   --font-brand: var(--font-chakra), 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --color-cube-white: var(--cube-white);
   --color-cube-yellow: var(--cube-yellow);
