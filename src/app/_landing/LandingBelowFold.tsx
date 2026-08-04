@@ -2,6 +2,7 @@
 
 import type { ReactNode } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ChevronDown, Quote } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import {
@@ -120,7 +121,7 @@ function PhotoBand({
   )
 }
 
-function useCounter(target: number, duration: number = 2000) {
+function useCounter(target: number, duration: number = 2000, decimals: number = 0) {
   const [count, setCount] = useState(0)
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true })
@@ -128,11 +129,12 @@ function useCounter(target: number, duration: number = 2000) {
   useEffect(() => {
     if (!inView) return
     let frame = 0
+    const factor = 10 ** decimals
     const startTime = performance.now()
     const tick = (now: number) => {
       const progress = Math.min(1, (now - startTime) / duration)
       if (progress < 1) {
-        setCount(Math.floor(progress * target))
+        setCount(Math.floor(progress * target * factor) / factor)
         frame = requestAnimationFrame(tick)
       } else {
         setCount(target)
@@ -140,7 +142,7 @@ function useCounter(target: number, duration: number = 2000) {
     }
     frame = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(frame)
-  }, [inView, target, duration])
+  }, [inView, target, duration, decimals])
 
   return { count, ref }
 }
@@ -356,7 +358,7 @@ function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HT
             { value: 17, suffix: '+', label: t('stats.wca-events'), accent: 'var(--cube-blue)' },
             { value: 17, suffix: '', label: t('stats.languages'), accent: 'var(--cube-green)' },
             { value: 100, suffix: '%', label: t('stats.free'), accent: 'var(--cube-orange)' },
-            { value: 5, suffix: '★', label: t('stats.open-source'), accent: 'var(--cube-yellow)' }
+            { value: 4.9, decimals: 1, suffix: '★', label: t('stats.reviews'), accent: 'var(--cube-yellow)' }
           ].map((stat, i) => (
             <StatItem
               key={stat.label}
@@ -365,6 +367,7 @@ function ParallaxBand({ scrollContainer }: { scrollContainer: React.RefObject<HT
               label={stat.label}
               delay={i * 0.1}
               accent={stat.accent}
+              decimals={stat.decimals}
             />
           ))}
         </div>
@@ -509,23 +512,25 @@ function StatItem({
   suffix,
   label,
   delay,
-  accent
+  accent,
+  decimals = 0
 }: {
   value: number
   suffix: string
   label: string
   delay: number
   accent: string
+  decimals?: number
 }) {
-  const { count, ref } = useCounter(value)
+  const { count, ref } = useCounter(value, 2000, decimals)
 
   return (
     <Reveal delay={delay} className="text-center">
       <span
         ref={ref}
-        className="font-display text-4xl md:text-6xl font-black text-gray-900 tabular-nums tracking-[-0.03em]"
+        className="font-display text-4xl md:text-6xl font-bold text-gray-900 tabular-nums tracking-[-0.03em]"
       >
-        {count}
+        {count.toFixed(decimals)}
         <span style={{ color: accent }}>{suffix}</span>
       </span>
       <p className="text-xs text-gray-600 mt-3 uppercase tracking-[0.2em]">{label}</p>
@@ -581,6 +586,26 @@ function CrossPlatformZoom({ scrollContainer }: { scrollContainer: React.RefObje
             />
           </div>
         </div>
+
+        <Reveal delay={0.15} className="mt-16 md:mt-20 flex flex-col items-center gap-3 px-6 text-center">
+          <p className="text-sm text-gray-500">{t('cross-platform.android-note')}</p>
+          <Link
+            href="https://play.google.com/store/apps/details?id=com.nexustimer"
+            target="_blank"
+            rel="noreferrer"
+            aria-label={t('cross-platform.google-play')}
+            className="inline-flex rounded-lg transition-transform duration-300 hover:scale-[1.04]"
+          >
+            <Image
+              src="/landing/gp.avif"
+              alt={t('cross-platform.google-play')}
+              width={186}
+              height={55}
+              className="h-[52px] w-auto rounded-lg shadow-lg shadow-black/10"
+              unoptimized
+            />
+          </Link>
+        </Reveal>
       </div>
     </section>
   )
