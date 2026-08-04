@@ -1,10 +1,44 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { getLocale, getTranslations } from 'next-intl/server'
+import { Code2 } from 'lucide-react'
+import LandingLanguageSelect from './LandingLanguageSelect'
+
+const REPO_URL = 'https://github.com/bryanlundberg/NexusTimer'
+const FORUM_URL = 'https://www.speedsolving.com/threads/nexus-timer-all-in-one-cubing-platform.92975/'
 
 export default async function LandingFooter() {
   const locale = await getLocale()
   const t = await getTranslations({ locale, namespace: 'LandingPage.footer' })
+
+  const linkClass = 'text-sm text-gray-400 hover:text-white transition-colors duration-300'
+
+  const productLinks = [
+    { href: '/app', label: t('timer-app') },
+    { href: '/stats', label: t('statistics') },
+    { href: '/cubes', label: t('cubes') },
+    { href: '/free-play', label: t('multiplayer') },
+    { href: '/algorithms', label: t('algorithms') },
+    { href: '/algorithms/trainer', label: t('trainer') },
+    { href: '/leaderboards', label: t('leaderboards') },
+    { href: '/people', label: t('people') }
+  ]
+
+  const companyLinks = [
+    { href: 'mailto:contact.nexustimer@gmail.com', label: t('contact'), external: true },
+    { href: '/privacy-policy', label: t('privacy') },
+    { href: '/terms-of-service', label: t('terms') },
+    { href: '/account-deletion', label: t('account-deletion') },
+    { href: REPO_URL, label: t('github'), external: true }
+  ]
+
+  const communityLinks = [
+    { href: 'https://discord.gg/eCgTKcavec', label: t('discord') },
+    { href: FORUM_URL, label: t('forum') },
+    { href: `${REPO_URL}/issues/new?template=feature_request.yml`, label: t('feature-request') },
+    { href: `${REPO_URL}/issues/new?template=bug_report.yml`, label: t('report-bug') },
+    { href: `${REPO_URL}/blob/main/CONTRIBUTING.md`, label: t('contribute') }
+  ]
 
   return (
     <footer className="w-full bg-transparent">
@@ -16,19 +50,15 @@ export default async function LandingFooter() {
               <span className="font-display text-xl font-bold text-white">NexusTimer</span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed max-w-md">{t('tagline')}</p>
+
             <Link
-              href={'https://play.google.com/store/apps/details?id=com.nexustimer'}
+              href={`${REPO_URL}/blob/main/LICENSE`}
               target="_blank"
               rel="noreferrer"
+              className="mt-6 inline-flex items-center gap-2 py-1.5 text-xs font-medium text-gray-300 transition-colors duration-300 hover:border-white/30 hover:text-white"
             >
-              <Image
-                src="/landing/gp.avif"
-                alt="Download Nexus Timer App"
-                width={200}
-                height={60}
-                className="mt-6 -ms-4"
-                unoptimized
-              />
+              <Code2 className="size-3.5" aria-hidden />
+              <span className="text-gray-400">GNU General Public License v3.0</span>
             </Link>
           </div>
 
@@ -36,81 +66,54 @@ export default async function LandingFooter() {
             <div>
               <h4 className="text-xs font-semibold text-gray-300 mb-6 uppercase tracking-[0.15em]">{t('product')}</h4>
               <ul className="space-y-3">
-                {[
-                  { href: '/app', label: t('timer-app') },
-                  { href: '/stats', label: t('statistics') },
-                  { href: '/free-play', label: t('multiplayer') },
-                  { href: '/algorithms', label: t('algorithms') },
-                  { href: '/leaderboards', label: t('leaderboards') }
-                ].map((link) => (
+                {productLinks.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-gray-400 hover:text-white transition-colors duration-300"
-                    >
+                    <Link href={link.href} className={linkClass}>
                       {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
+
             <div>
               <h4 className="text-xs font-semibold text-gray-300 mb-6 uppercase tracking-[0.15em]">{t('company')}</h4>
               <ul className="space-y-3">
-                <li>
-                  <a
-                    href="mailto:contact.nexustimer@gmail.com"
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-300"
-                  >
-                    {t('contact')}
-                  </a>
-                </li>
-                <li>
-                  <Link
-                    href="/privacy-policy"
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-300"
-                  >
-                    {t('privacy')}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/terms-of-service"
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-300"
-                  >
-                    {t('terms')}
-                  </Link>
-                </li>
+                {companyLinks.map((link) => (
+                  <li key={link.href}>
+                    {link.external ? (
+                      <a href={link.href} target="_blank" rel="noreferrer" className={linkClass}>
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link href={link.href} className={linkClass}>
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
               </ul>
             </div>
+
             <div>
               <h4 className="text-xs font-semibold text-gray-300 mb-6 uppercase tracking-[0.15em]">{t('community')}</h4>
               <ul className="space-y-3">
-                <li>
-                  <Link
-                    href="https://discord.gg/eCgTKcavec"
-                    target="_blank"
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-300"
-                  >
-                    {t('discord')}
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://github.com/bryanlundberg/NexusTimer"
-                    target="_blank"
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-300"
-                  >
-                    {t('github')}
-                  </Link>
-                </li>
+                {communityLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} target="_blank" rel="noreferrer" className={linkClass}>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
         </div>
 
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
-          <span className="text-xs text-gray-400 italic">{t('disclaimer')}</span>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <LandingLanguageSelect label={t('language')} />
+          </div>
           <span className="text-xs text-gray-400">{t('copyright', { year: new Date().getFullYear() })}</span>
         </div>
       </div>
