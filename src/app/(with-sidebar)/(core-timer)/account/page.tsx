@@ -40,7 +40,7 @@ export default function AccountPage() {
 
           <TabsContent value="account" className="space-y-6">
             <div>
-              <h2 className="text-lg font-semibold tracking-tight">{tAccount('personal-info')}</h2>
+              <h2 className="font-display text-lg font-semibold tracking-tight">{tAccount('personal-info')}</h2>
               <p className="text-sm text-muted-foreground mt-1">{tAccount('personal-info-description')}</p>
             </div>
 
