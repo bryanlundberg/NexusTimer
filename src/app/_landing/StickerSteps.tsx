@@ -70,7 +70,7 @@ export default function StickerSteps() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-3 text-balance text-3xl font-bold tracking-tight text-gray-900 md:text-5xl"
+          className="mb-3 text-balance font-display text-3xl font-bold tracking-tight text-gray-900 md:text-5xl"
         >
           {t('how-it-works.title')}
         </motion.h2>
