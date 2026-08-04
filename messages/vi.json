@@ -1115,15 +1115,15 @@
     },
     "testimonials": {
       "label": "Cuber nói gì",
-      "t0-text": "Giao diện gọn gàng và dùng rất thích, còn hồ sơ thì đầy đủ nhất mà tôi từng thấy.",
-      "t0-user": "@steadyturns",
-      "t0-role": "Cuber nghiệp dư",
-      "t1-text": "Hoạt động hoàn hảo khi ngoại tuyến, nên tôi có thể luyện trong ô tô mà không lo về kết nối.",
-      "t1-user": "@offgridsolver",
-      "t1-role": "Người đi làm hằng ngày",
-      "t2-text": "Kết nối smart cube và nhập các thời gian cũ chỉ mất một phút.",
-      "t2-user": "@cubecollector",
-      "t2-role": "Cuber quay lại"
+      "t0-text": "Tôi cày ZBLL mù mấy tháng trời. Giờ thấy rõ case nào thật sự chậm để tập.",
+      "t0-user": "@zbllgrind",
+      "t0-role": "Sub-12 CFOP",
+      "t1-text": "Kết nối GAN xong là khỏi chạm màn hình, thời gian tự nhảy vào.",
+      "t1-user": "@gandrift",
+      "t1-role": "GAN 356 i",
+      "t2-text": "Thứ Sáu bọn tôi mở room với anh em trong Discord. Vui hơn hẳn solve một mình.",
+      "t2-user": "@clubnight",
+      "t2-role": "Tổ chức offline"
     },
     "faq": {
       "label": "FAQ",

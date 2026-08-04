@@ -1115,15 +1115,15 @@
     },
     "testimonials": {
       "label": "What cubers say",
-      "t0-text": "The interface is clean and a pleasure to use, and the profiles are the most complete I've seen.",
-      "t0-user": "@steadyturns",
-      "t0-role": "Hobby cuber",
-      "t1-text": "It works perfectly offline, so I can practice in the car without worrying about a connection.",
-      "t1-user": "@offgridsolver",
-      "t1-role": "Daily commuter",
-      "t2-text": "Connecting my smart cube and importing my old times took just a minute.",
-      "t2-user": "@cubecollector",
-      "t2-role": "Returning cuber"
+      "t0-text": "I drilled ZBLL blind for months. Now I can see which cases are actually slow and drill those.",
+      "t0-user": "@zbllgrind",
+      "t0-role": "Sub-12 CFOP",
+      "t1-text": "Hooked up the GAN and never touched the screen again — the times just land in the app.",
+      "t1-user": "@gandrift",
+      "t1-role": "GAN 356 i",
+      "t2-text": "We run rooms on Fridays with people from the Discord. Way better than racing yourself.",
+      "t2-user": "@clubnight",
+      "t2-role": "Runs a cubing club"
     },
     "faq": {
       "label": "FAQ",

@@ -1115,15 +1115,15 @@
     },
     "testimonials": {
       "label": "O que os cubers dizem",
-      "t0-text": "A interface é limpa e agradável de usar, e os perfis são os mais completos que já vi.",
-      "t0-user": "@steadyturns",
-      "t0-role": "Cuber amador",
-      "t1-text": "Funciona perfeitamente offline, então posso praticar no carro sem me preocupar com a conexão.",
-      "t1-user": "@offgridsolver",
-      "t1-role": "Usuário diário",
-      "t2-text": "Conectar meu smart cube e importar meus tempos antigos levou um minuto.",
-      "t2-user": "@cubecollector",
-      "t2-role": "Cuber de volta"
+      "t0-text": "Fiquei meses treinando ZBLL no escuro. Agora vejo quais casos travam de verdade.",
+      "t0-user": "@zbllgrind",
+      "t0-role": "Sub-12 CFOP",
+      "t1-text": "Conectei o GAN e nunca mais toquei na tela, os tempos caem sozinhos.",
+      "t1-user": "@gandrift",
+      "t1-role": "GAN 356 i",
+      "t2-text": "Sexta-feira a gente abre sala com o pessoal do Discord. Bem melhor que treinar sozinho.",
+      "t2-user": "@clubnight",
+      "t2-role": "Organiza encontros"
     },
     "faq": {
       "label": "FAQ",

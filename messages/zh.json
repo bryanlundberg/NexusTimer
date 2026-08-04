@@ -1115,15 +1115,15 @@
     },
     "testimonials": {
       "label": "魔方爱好者怎么说",
-      "t0-text": "界面简洁好用，而且个人主页是我见过最完整的。",
-      "t0-user": "@steadyturns",
-      "t0-role": "业余爱好者",
-      "t1-text": "离线也能完美运行，我可以在车上练习，不用担心网络。",
-      "t1-user": "@offgridsolver",
-      "t1-role": "每日通勤者",
-      "t2-text": "连接智能魔方和导入旧成绩只用了一分钟。",
-      "t2-user": "@cubecollector",
-      "t2-role": "回归的魔方爱好者"
+      "t0-text": "盲练了几个月 ZBLL，现在能看出到底哪些 case 拖后腿。",
+      "t0-user": "@zbllgrind",
+      "t0-role": "Sub-12 CFOP",
+      "t1-text": "连上 GAN 就再没碰过屏幕，成绩自己就进去了。",
+      "t1-user": "@gandrift",
+      "t1-role": "GAN 356 i",
+      "t2-text": "周五和 Discord 的魔友开房间，比自己一个人刷有意思多了。",
+      "t2-user": "@clubnight",
+      "t2-role": "组织线下活动"
     },
     "faq": {
       "label": "FAQ",

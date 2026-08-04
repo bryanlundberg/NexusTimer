@@ -1115,15 +1115,15 @@
     },
     "testimonials": {
       "label": "Ce que disent les cubeurs",
-      "t0-text": "L'interface est épurée et agréable à utiliser, et les profils sont les plus complets que j'aie vus.",
-      "t0-user": "@steadyturns",
-      "t0-role": "Cubeur amateur",
-      "t1-text": "Ça marche parfaitement hors ligne, je peux donc m'entraîner en voiture sans me soucier de la connexion.",
-      "t1-user": "@offgridsolver",
-      "t1-role": "Usager quotidien",
-      "t2-text": "Connecter mon smart cube et importer mes anciens temps a pris une minute.",
-      "t2-user": "@cubecollector",
-      "t2-role": "Cubeur de retour"
+      "t0-text": "Je bourrais des ZBLL à l'aveugle. Maintenant je vois quels cas sont vraiment lents.",
+      "t0-user": "@zbllgrind",
+      "t0-role": "Sub-12 CFOP",
+      "t1-text": "GAN connecté, je ne touche plus l'écran — les temps arrivent tout seuls.",
+      "t1-user": "@gandrift",
+      "t1-role": "GAN 356 i",
+      "t2-text": "On fait des rooms le vendredi avec les gens du Discord. Bien mieux que de solve seul.",
+      "t2-user": "@clubnight",
+      "t2-role": "Organise des rencontres"
     },
     "faq": {
       "label": "FAQ",
