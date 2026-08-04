@@ -62,15 +62,6 @@ export const ERAS: Era[] = [
     accent: 'var(--cube-yellow)'
   },
   {
-    year: '2025',
-    date: 'Late 2025',
-    title: 'New navigation and layout',
-    text: 'The navigation had been designed when the app was much smaller and no longer fit what it did. The tabs were replaced with a permanent sidebar, sections were grouped by purpose (timer, training, community, multiplayer), and the statistics screens were rebuilt to fit more per page.',
-    images: shots('v6', 6),
-    ratio: 1.6,
-    accent: 'var(--primary)'
-  },
-  {
     year: '2026',
     date: '2026',
     title: 'Android and smart cubes',
