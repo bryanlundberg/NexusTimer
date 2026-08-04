@@ -2,7 +2,6 @@ import * as React from 'react'
 import Image from 'next/image'
 import _ from 'lodash'
 import { motion } from 'motion/react'
-import { AreaChart, Area, ResponsiveContainer } from 'recharts'
 import { useLocale } from 'next-intl'
 import dayjs from '@/shared/lib/dayjs'
 import formatTime from '@/shared/lib/formatTime'
@@ -25,18 +24,6 @@ export default function PeopleOverviewRow({ category, solves }: PeopleOverviewRo
 
   const ordered = React.useMemo(() => _.orderBy(solves, (s) => s.startTime, 'asc'), [solves])
 
-  const counts = React.useMemo(
-    () =>
-      solves.reduce(
-        (acc, s) => ({
-          plus2Count: acc.plus2Count + (!s.dnf && s.plus2 ? 1 : 0),
-          dnfCount: acc.dnfCount + (s.dnf ? 1 : 0)
-        }),
-        { plus2Count: 0, dnfCount: 0 }
-      ),
-    [solves]
-  )
-
   const validSolves = React.useMemo(() => solves.filter((s) => !s.dnf), [solves])
   const best = React.useMemo(
     () => (validSolves.length > 0 ? _.minBy(validSolves, (s) => s.time + (s.plus2 ? 2000 : 0)) : null),
@@ -46,15 +33,6 @@ export default function PeopleOverviewRow({ category, solves }: PeopleOverviewRo
 
   const ao5Ms = React.useMemo(() => calcBestAo(ordered, 5), [ordered])
   const ao5Str = !isFinite(ao5Ms) || ao5Ms <= 0 ? '--' : formatTime(ao5Ms)
-
-  const chartData = React.useMemo(
-    () =>
-      ordered
-        .filter((s) => !s.dnf && s.time > 0)
-        .slice(-20)
-        .map((s) => ({ v: s.time + (s.plus2 ? 2000 : 0) })),
-    [ordered]
-  )
 
   const cubeImg = cubeCollection.find((item) => item.name === category)?.src || ''
 
@@ -98,40 +76,6 @@ export default function PeopleOverviewRow({ category, solves }: PeopleOverviewRo
 
       {/* Total solves */}
       <span className="text-sm font-bold tabular-nums">{solves.length.toLocaleString(locale)}</span>
-
-      {/* Total +2 */}
-      <div className="flex items-center gap-1.5">
-        <span className="size-1.5 rounded-full bg-yellow-500 shrink-0" />
-        <span className="text-sm tabular-nums">{counts.plus2Count.toLocaleString(locale)}</span>
-      </div>
-
-      {/* Total DNF */}
-      <div className="flex items-center gap-1.5">
-        <span className="size-1.5 rounded-full bg-red-500 shrink-0" />
-        <span className="text-sm tabular-nums">{counts.dnfCount.toLocaleString(locale)}</span>
-      </div>
-
-      {/* Graph */}
-      <div className="h-8 w-full">
-        {chartData.length > 1 ? (
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={chartData} margin={{ top: 2, right: 0, left: 0, bottom: 2 }}>
-              <Area
-                type="monotone"
-                dataKey="v"
-                stroke="var(--primary)"
-                strokeWidth={1.5}
-                fill="var(--primary)"
-                fillOpacity={0.1}
-                dot={false}
-                isAnimationActive={false}
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        ) : (
-          <div className="flex items-center justify-center h-full text-muted-foreground text-xs">—</div>
-        )}
-      </div>
     </motion.div>
   )
 }
