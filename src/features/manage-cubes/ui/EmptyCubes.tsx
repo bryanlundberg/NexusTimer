@@ -133,12 +133,18 @@ export default function EmptyCubes({
       {(!hideTitle || !hideDescription) && (
         <div className="mt-1 mb-6 flex flex-col gap-2">
           {!hideTitle && (
-            <motion.h2 variants={item} className="text-lg font-semibold tracking-tight text-balance text-foreground">
+            <motion.h2
+              variants={item}
+              className="font-display text-lg font-semibold tracking-tight text-balance text-foreground"
+            >
               {t('empty-title')}
             </motion.h2>
           )}
           {!hideDescription && (
-            <motion.p variants={item} className="text-sm leading-relaxed text-muted-foreground text-pretty">
+            <motion.p
+              variants={item}
+              className="font-display text-sm leading-relaxed text-muted-foreground text-pretty"
+            >
               {t('empty-description')}
             </motion.p>
           )}
