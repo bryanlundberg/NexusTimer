@@ -25,6 +25,7 @@ export default async function LandingFooter() {
   ]
 
   const companyLinks = [
+    { href: '/about-us', label: t('about-us') },
     { href: 'mailto:contact.nexustimer@gmail.com', label: t('contact'), external: true },
     { href: '/privacy-policy', label: t('privacy') },
     { href: '/terms-of-service', label: t('terms') },
