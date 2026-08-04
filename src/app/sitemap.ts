@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/cubes', priority: 0.8, changeFrequency: 'weekly' as const },
     { path: '/transfer-solves', priority: 0.8, changeFrequency: 'monthly' as const },
     { path: '/options', priority: 0.7, changeFrequency: 'monthly' as const },
+    { path: '/about-us', priority: 0.7, changeFrequency: 'monthly' as const },
     { path: '/privacy-policy', priority: 0.6, changeFrequency: 'yearly' as const },
     { path: '/terms-of-service', priority: 0.6, changeFrequency: 'yearly' as const },
     { path: '/algorithms', priority: 0.9, changeFrequency: 'weekly' as const },
