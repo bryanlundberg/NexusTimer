@@ -1,6 +1,5 @@
 import * as React from 'react'
-import Image from 'next/image'
-import { cubeCollection } from '@/shared/const/cube-collection'
+import { CubeCategoryTile } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import dayjs from '@/shared/lib/dayjs'
 import { Cube } from '@/entities/cube/model/types'
 import { useLocale, useTranslations } from 'next-intl'
@@ -42,8 +41,6 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
 
   const totalTime = allSolves.reduce((acc, s) => acc + (s.time || 0), 0)
 
-  const cubeImg = cubeCollection.find((item) => item.name === cube.category)?.src || ''
-
   return (
     <motion.div
       className={`grid ${GRID} items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150`}
@@ -51,15 +48,7 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
       transition={{ duration: 0.25, ease: 'easeOut' }}
     >
       {/* Cube image */}
-      <Image
-        unoptimized
-        src={cubeImg}
-        alt={cube.name}
-        className="object-scale-down rounded-lg bg-muted/40 border border-border/30 p-0.5"
-        draggable={false}
-        width={40}
-        height={40}
-      />
+      <CubeCategoryTile category={cube.category} />
 
       {/* Name + category badge + date */}
       <div className="min-w-0">
