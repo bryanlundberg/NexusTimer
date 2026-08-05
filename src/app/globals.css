@@ -741,8 +741,8 @@
 }
 .category-notch[data-selected='true'] {
   --cat-border: 1.5px;
-  --cat-border-color: var(--primary);
-  --cat-fill: color-mix(in oklab, var(--primary) 25%, var(--background));
+  --cat-border-color: color-mix(in oklab, var(--primary) 75%, var(--border));
+  --cat-fill: color-mix(in oklab, var(--primary) 11%, var(--background));
 }
 
 /* Notched rows for the cube selector list */
