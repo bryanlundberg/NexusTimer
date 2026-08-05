@@ -39,7 +39,7 @@ export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
             <div className="flex items-center gap-2.5">
               <CategoryBadge
                 category={puzzle}
-                className="badge-notch border-transparent bg-foreground/[0.07] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-foreground/75"
+                className="border-transparent bg-foreground/[0.07] px-2 font-semibold uppercase tracking-[0.08em] text-foreground/75"
               />
               <span className="flex items-baseline gap-1">
                 <span className="text-sm font-bold tabular-nums">{algorithms.length}</span>
