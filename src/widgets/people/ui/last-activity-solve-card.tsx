@@ -1,5 +1,4 @@
-import Image from 'next/image'
-import { cubeCollection } from '@/shared/const/cube-collection'
+import { CubeCategoryTile } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import dayjs from '@/shared/lib/dayjs'
 import formatTime from '@/shared/lib/formatTime'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
@@ -24,7 +23,6 @@ interface LastActivitySolveCardProps {
 }
 
 export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardProps) {
-  const cubeInfo = cubeCollection.find((item) => item.name === solve.category)
   const locale = useLocale()
 
   return (
@@ -46,15 +44,7 @@ export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardPro
       <div className="p-4 pb-3">
         {/* Header: cube + meta */}
         <div className="flex items-center gap-3 mb-3">
-          <Image
-            unoptimized
-            src={cubeInfo?.src || ''}
-            alt={solve.category}
-            className="object-scale-down rounded-lg p-1 bg-muted/40 border border-border/40"
-            draggable={false}
-            width={36}
-            height={36}
-          />
+          <CubeCategoryTile category={solve.category} />
           <div className="flex-1 min-w-0">
             <div className="text-sm font-bold tracking-tight truncate">{solve.cubeName}</div>
             <div className="text-[10px] text-muted-foreground">
