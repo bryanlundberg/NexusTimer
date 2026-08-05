@@ -12,8 +12,7 @@ import {
 } from '@/components/ui/pagination'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import { Cube } from '@/entities/cube/model/types'
-import Image from 'next/image'
-import { cubeCollection } from '@/shared/const/cube-collection'
+import { CubeCategoryTile } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import formatTime from '@/shared/lib/formatTime'
 import dayjs from '@/shared/lib/dayjs'
 import { useLocale, useTranslations } from 'next-intl'
@@ -96,7 +95,6 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
             {currentItems.map((solve, i) => {
               const globalIndex = solves.length - ((page - 1) * ITEMS_PER_PAGE + i)
               const displayTime = solve.time + (solve.plus2 ? 2000 : 0)
-              const categorySrc = cubeCollection.find((c) => c.name === solve.category)?.src
 
               return (
                 <motion.div
@@ -111,19 +109,7 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
                   </span>
 
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="flex items-center justify-center size-9 rounded-lg bg-muted shrink-0">
-                      {categorySrc && (
-                        <Image
-                          unoptimized
-                          src={categorySrc}
-                          alt={solve.category}
-                          title={solve.category}
-                          width={22}
-                          height={22}
-                          className="object-scale-down"
-                        />
-                      )}
-                    </div>
+                    <CubeCategoryTile category={solve.category} />
                     <span className="text-xs font-medium text-foreground/80 truncate" title={solve.cubeName}>
                       {solve.cubeName}
                     </span>

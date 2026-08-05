@@ -4,7 +4,6 @@ import { cubeCollection } from '@/shared/const/cube-collection'
 import { cn } from '@/shared/lib/utils'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CreateCubeFormData, createCubeFormSchema } from '@/entities/cube/model/schema'
@@ -23,6 +22,7 @@ import { createCubeCollection } from '@/features/manage-cubes/api/createCubeColl
 import { useEffect } from 'react'
 import { Nexi } from '@/shared/ui/nexi'
 import { ProductSearchInput } from '@/features/search/ui/ProductSearchInput'
+import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 
 export default function CreateCollectionForm() {
   const t = useTranslations('Index')
@@ -131,19 +131,16 @@ export default function CreateCollectionForm() {
                       'category-notch group focus-visible:outline-none relative flex min-w-0 flex-col items-center gap-1 p-1.5 sm:gap-1.5 sm:p-2'
                     )}
                   >
-                    <Image
-                      priority
-                      unoptimized
-                      src={e.src}
-                      alt={e.event || ''}
-                      width={56}
-                      height={56}
-                      draggable={false}
+                    <span
                       className={cn(
-                        'size-9 transition-transform duration-150 motion-reduce:transform-none sm:size-12',
-                        selected ? 'scale-105' : 'group-hover:scale-105'
+                        'size-9 transition-[transform,color] duration-150 motion-reduce:transform-none sm:size-12',
+                        selected
+                          ? 'text-primary scale-105'
+                          : 'text-muted-foreground group-hover:text-foreground group-hover:scale-105'
                       )}
-                    />
+                    >
+                      <CubeCategoryIcon category={e.name} />
+                    </span>
                     <span
                       className={cn(
                         'w-full truncate text-center text-[8px] leading-tight font-medium block',

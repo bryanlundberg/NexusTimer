@@ -3,7 +3,7 @@ import { cubeCollection } from '@/shared/const/cube-collection'
 import { cn } from '@/shared/lib/utils'
 import getBestTime from '@/shared/lib/statistics/getBestTime'
 import formatTime from '@/shared/lib/formatTime'
-import Image from 'next/image'
+import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import { Star } from 'lucide-react'
 
 export function CubeListItem({
@@ -34,14 +34,9 @@ export function CubeListItem({
       className={cn('select-item-notch relative flex w-full items-center gap-3 px-3 py-2.5 text-left')}
     >
       {foundCube ? (
-        <Image
-          unoptimized
-          src={foundCube.src}
-          alt={foundCube.name}
-          width={22}
-          height={22}
-          className="shrink-0 object-scale-down opacity-90 dark:invert-0"
-        />
+        <span className={cn('size-[22px] shrink-0', isSelected ? 'text-foreground' : 'text-muted-foreground')}>
+          <CubeCategoryIcon category={foundCube.name} />
+        </span>
       ) : null}
 
       <div className="flex min-w-0 flex-1 flex-col">

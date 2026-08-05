@@ -1,12 +1,11 @@
 import * as React from 'react'
-import Image from 'next/image'
 import _ from 'lodash'
 import { motion } from 'motion/react'
 import { useLocale } from 'next-intl'
 import dayjs from '@/shared/lib/dayjs'
 import formatTime from '@/shared/lib/formatTime'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
-import { cubeCollection } from '@/shared/const/cube-collection'
+import { CubeCategoryTile } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { Solve } from '@/entities/solve/model/types'
 import { CubeCategory } from '@/shared/const/cube-categories'
@@ -34,8 +33,6 @@ export default function PeopleOverviewRow({ category, solves }: PeopleOverviewRo
   const ao5Ms = React.useMemo(() => calcBestAo(ordered, 5), [ordered])
   const ao5Str = !isFinite(ao5Ms) || ao5Ms <= 0 ? '--' : formatTime(ao5Ms)
 
-  const cubeImg = cubeCollection.find((item) => item.name === category)?.src || ''
-
   return (
     <motion.div
       className={`grid ${GRID} items-center gap-x-4 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 border-l-2 border-l-transparent hover:border-l-primary transition-colors duration-150`}
@@ -44,18 +41,8 @@ export default function PeopleOverviewRow({ category, solves }: PeopleOverviewRo
     >
       {/* Category with image */}
       <div className="flex items-center gap-2.5 min-w-0">
-        {cubeImg && (
-          <Image
-            unoptimized
-            src={cubeImg}
-            alt={category}
-            className="object-scale-down rounded-lg bg-muted/40 border border-border/30 p-0.5 shrink-0"
-            draggable={false}
-            width={36}
-            height={36}
-          />
-        )}
-        <CategoryBadge category={category as CubeCategory} className="text-[11px] px-1.5 py-0 h-5 shrink-0" />
+        <CubeCategoryTile category={category} />
+        <CategoryBadge category={category as CubeCategory} className="shrink-0" />
       </div>
 
       {/* Single */}

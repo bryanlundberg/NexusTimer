@@ -77,7 +77,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
         <UserCell user={solve.user} />
       </div>
 
-      <CategoryBadge category={solve.puzzle} className="badge-notch text-[10px] px-1.5 py-0 h-4" />
+      <CategoryBadge category={solve.puzzle} />
 
       <span className="text-[10px] font-mono text-muted-foreground/70 tabular-nums">{tps ?? t('not-available')}</span>
 

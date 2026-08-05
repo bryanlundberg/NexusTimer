@@ -97,7 +97,7 @@ export default function SuggestAlgorithmModal({ methods, initialSlug }: Props) {
                   <SelectItem key={m.slug} value={m.slug}>
                     <span className="flex items-center gap-2">
                       {m.title}
-                      <CategoryBadge category={m.puzzle} className="text-[11px] font-medium" />
+                      <CategoryBadge category={m.puzzle} />
                     </span>
                   </SelectItem>
                 ))}
