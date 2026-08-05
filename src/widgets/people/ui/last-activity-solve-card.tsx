@@ -52,7 +52,7 @@ export function LastActivitySolveCard({ solve, index }: LastActivitySolveCardPro
             </div>
           </div>
           <div className="flex flex-col items-end gap-1 shrink-0">
-            <CategoryBadge category={solve.category} className="text-[9px] px-1.5 py-0 h-4" />
+            <CategoryBadge category={solve.category} />
             <span className="text-[10px] font-mono text-muted-foreground/50">#{index}</span>
           </div>
         </div>
