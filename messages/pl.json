@@ -1108,9 +1108,9 @@
     },
     "cross-platform": {
       "label": "Wieloplatformowy",
-      "title": "Piękny na każdym ekranie",
+      "title": "Mierz czasy, gdzie chcesz",
       "subtitle": "To samo doświadczenie na komputerze, tablecie i telefonie.",
-      "android-note": "Wolisz natywną aplikację? Nexus Timer jest na Androida.",
+      "android-note": "Możesz go też zainstalować z Google Play.",
       "google-play": "Pobierz z Google Play"
     },
     "testimonials": {

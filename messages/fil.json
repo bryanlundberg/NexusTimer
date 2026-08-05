@@ -1108,9 +1108,9 @@
     },
     "cross-platform": {
       "label": "Cross platform",
-      "title": "Maganda sa bawat screen",
+      "title": "Mag-time kahit saan ka man",
       "subtitle": "Parehong karanasan sa desktop, tablet, at telepono.",
-      "android-note": "Mas gusto ang native app? Nasa Android ang Nexus Timer.",
+      "android-note": "Puwede mo rin itong i-install mula sa Google Play.",
       "google-play": "Makukuha sa Google Play"
     },
     "testimonials": {

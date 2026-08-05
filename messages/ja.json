@@ -1108,9 +1108,9 @@
     },
     "cross-platform": {
       "label": "クロスプラットフォーム",
-      "title": "どの画面でも美しい",
+      "title": "どこでもタイム計測",
       "subtitle": "デスクトップ、タブレット、スマホで同じ体験。",
-      "android-note": "ネイティブアプリ派の方へ。Nexus TimerはAndroidでも使えます。",
+      "android-note": "Google Play からインストールすることもできます。",
       "google-play": "Google Play で手に入れよう"
     },
     "testimonials": {

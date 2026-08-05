@@ -1108,9 +1108,9 @@
     },
     "cross-platform": {
       "label": "Кросплатформність",
-      "title": "Гарний на кожному екрані",
+      "title": "Засікай час будь-де",
       "subtitle": "Однаковий досвід на комп'ютері, планшеті й телефоні.",
-      "android-note": "Надаєте перевагу нативному застосунку? Nexus Timer є на Android.",
+      "android-note": "Його також можна встановити з Google Play.",
       "google-play": "Завантажити в Google Play"
     },
     "testimonials": {

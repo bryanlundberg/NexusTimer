@@ -1108,9 +1108,9 @@
     },
     "cross-platform": {
       "label": "Đa nền tảng",
-      "title": "Đẹp trên mọi màn hình",
+      "title": "Bấm giờ ở bất cứ đâu",
       "subtitle": "Trải nghiệm như nhau trên máy tính, máy tính bảng và điện thoại.",
-      "android-note": "Thích ứng dụng gốc? Nexus Timer đã có trên Android.",
+      "android-note": "Bạn cũng có thể cài đặt từ Google Play.",
       "google-play": "Tải xuống trên Google Play"
     },
     "testimonials": {

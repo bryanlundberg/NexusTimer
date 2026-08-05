@@ -1108,9 +1108,9 @@
     },
     "cross-platform": {
       "label": "Plattformübergreifend",
-      "title": "Wunderschön auf jedem Bildschirm",
+      "title": "Stoppe deine Zeiten, wo du willst",
       "subtitle": "Gleiche Erfahrung auf Desktop, Tablet und Handy.",
-      "android-note": "Lieber eine native App? Nexus Timer gibt es für Android.",
+      "android-note": "Du kannst ihn auch über Google Play installieren.",
       "google-play": "Jetzt bei Google Play"
     },
     "testimonials": {

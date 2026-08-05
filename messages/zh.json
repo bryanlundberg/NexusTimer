@@ -1108,9 +1108,9 @@
     },
     "cross-platform": {
       "label": "跨平台",
-      "title": "每块屏幕都美观",
+      "title": "随时随地计时",
       "subtitle": "桌面、平板、手机体验一致。",
-      "android-note": "更喜欢原生应用？Nexus Timer 已上架 Android。",
+      "android-note": "你也可以从 Google Play 安装。",
       "google-play": "在 Google Play 上获取"
     },
     "testimonials": {

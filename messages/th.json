@@ -1108,9 +1108,9 @@
     },
     "cross-platform": {
       "label": "ข้ามแพลตฟอร์ม",
-      "title": "สวยงามบนทุกหน้าจอ",
+      "title": "จับเวลาได้ทุกที่",
       "subtitle": "ประสบการณ์เดียวกันบนเดสก์ท็อป แท็บเล็ต และโทรศัพท์",
-      "android-note": "ชอบแอปแบบเนทีฟใช่ไหม? Nexus Timer มีบน Android",
+      "android-note": "ติดตั้งผ่าน Google Play ก็ได้เช่นกัน",
       "google-play": "ดาวน์โหลดได้จาก Google Play"
     },
     "testimonials": {

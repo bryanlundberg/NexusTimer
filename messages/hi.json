@@ -1108,9 +1108,9 @@
     },
     "cross-platform": {
       "label": "क्रॉस प्लेटफ़ॉर्म",
-      "title": "हर स्क्रीन पर सुंदर",
+      "title": "कहीं भी अपना टाइम नापें",
       "subtitle": "डेस्कटॉप, टैबलेट और फ़ोन पर एक जैसा अनुभव।",
-      "android-note": "नेटिव ऐप पसंद है? Nexus Timer Android पर उपलब्ध है।",
+      "android-note": "आप इसे Google Play से भी इंस्टॉल कर सकते हैं।",
       "google-play": "Google Play पर पाएँ"
     },
     "testimonials": {

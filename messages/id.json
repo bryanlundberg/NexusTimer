@@ -1108,9 +1108,9 @@
     },
     "cross-platform": {
       "label": "Lintas platform",
-      "title": "Indah di setiap layar",
+      "title": "Catat waktumu di mana saja",
       "subtitle": "Pengalaman sama di desktop, tablet, dan ponsel.",
-      "android-note": "Lebih suka aplikasi native? Nexus Timer ada di Android.",
+      "android-note": "Kamu juga bisa memasangnya lewat Google Play.",
       "google-play": "Dapatkan di Google Play"
     },
     "testimonials": {
