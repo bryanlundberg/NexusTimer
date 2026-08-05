@@ -42,7 +42,7 @@ export default function PeopleOverviewRow({ category, solves }: PeopleOverviewRo
       {/* Category with image */}
       <div className="flex items-center gap-2.5 min-w-0">
         <CubeCategoryTile category={category} />
-        <CategoryBadge category={category as CubeCategory} className="text-[11px] px-1.5 py-0 h-5 shrink-0" />
+        <CategoryBadge category={category as CubeCategory} className="shrink-0" />
       </div>
 
       {/* Single */}
