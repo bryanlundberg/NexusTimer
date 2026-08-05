@@ -624,22 +624,6 @@ export default function LandingBelowFold({
     <>
       <CrossPlatformZoom scrollContainer={scrollContainerRef} />
 
-      <section className="lp-cv relative py-16 overflow-hidden">
-        <Reveal>
-          <p className="text-center text-[10px] uppercase tracking-[0.3em] text-gray-500 mb-8">{t('brands.label')}</p>
-          <div className="mx-auto max-w-xl px-6 flex flex-wrap justify-center gap-2">
-            {['GAN', 'MoYu', 'QiYi', 'DaYan', 'YJ', 'ShengShou', 'YuXin', 'DianSheng', 'Cyclone Boys'].map((item) => (
-              <span
-                key={item}
-                className="inline-flex items-center rounded-full border border-gray-900/10 bg-gray-900/5 px-4 py-1.5 text-sm font-medium text-gray-600"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
       <FeatureBento />
 
       <ParallaxBand scrollContainer={scrollContainerRef} />
