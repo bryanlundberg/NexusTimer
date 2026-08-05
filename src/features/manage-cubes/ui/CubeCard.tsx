@@ -82,7 +82,7 @@ export function CubeCard({ cube }: CubeCardProps) {
       </div>
 
       <div className="flex items-center gap-2">
-        <CategoryBadge category={cube.category} className="text-xs" />
+        <CategoryBadge category={cube.category} />
         {isActive ? (
           <Badge variant="secondary" className="text-xs gap-1">
             <PlayIcon className="h-3 w-3" />
