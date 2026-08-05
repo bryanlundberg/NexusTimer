@@ -54,7 +54,7 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
       <div className="min-w-0">
         <div className="flex items-center gap-2 mb-0.5">
           <span className="font-bold text-sm truncate">{cube.name}</span>
-          <CategoryBadge category={cube.category} className="text-[10px] px-1.5 py-0 h-4 shrink-0" />
+          <CategoryBadge category={cube.category} className="shrink-0" />
         </div>
         <span className="text-[10px] text-muted-foreground">
           {t('created')}: {dayjs(cube.createdAt).locale(locale).format('LL')}
