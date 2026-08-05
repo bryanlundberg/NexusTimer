@@ -394,3 +394,28 @@ export function CubeCategoryIcon({ category, className, title }: IconProps & { c
 export function hasCubeCategoryIcon(category: string) {
   return category in ICONS
 }
+
+export function CubeCategoryTile({
+  category,
+  className,
+  title
+}: {
+  category: string
+  className?: string
+  title?: string
+}) {
+  return (
+    <span
+      title={title ?? category}
+      data-tone="muted"
+      className={cn(
+        'icon-notch inline-flex size-9 shrink-0 items-center justify-center text-muted-foreground',
+        className
+      )}
+    >
+      <span className="size-6">
+        <CubeCategoryIcon category={category} />
+      </span>
+    </span>
+  )
+}
