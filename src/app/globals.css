@@ -690,6 +690,10 @@
   clip-path: var(--icon-notch-shape);
   pointer-events: none;
 }
+.icon-notch[data-tone='muted'] {
+  --icon-notch-border-color: color-mix(in oklab, var(--border) 45%, transparent);
+  --icon-notch-fill: color-mix(in oklab, var(--foreground) 3%, var(--background));
+}
 .icon-notch[data-tone='warning'] {
   --icon-notch-border-color: color-mix(in oklab, #eab308 55%, transparent);
   --icon-notch-fill: color-mix(in oklab, #eab308 12%, var(--background));
