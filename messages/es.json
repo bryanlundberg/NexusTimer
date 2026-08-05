@@ -1032,7 +1032,6 @@
       "start-timing": "Empezar a cronometrar"
     },
     "hero": {
-      "badge": "Gratis y de código abierto, para siempre",
       "title-before": "El cronómetro que muestra cómo realmente estás",
       "title-highlight": "mejorando",
       "subtitle": "Perfiles de rendimiento por cubo. Análisis profundo. Competición en tiempo real.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "Descubre tu rendimiento",
-      "cta-secondary": "Importa tus tiempos",
+      "cta-primary": "Empieza tu primer solve",
+      "cta-secondary": "Explora los algoritmos",
       "social-proof": "Únete a una comunidad creciente de cuberos",
       "scroll": "Desplazar"
     },

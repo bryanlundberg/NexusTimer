@@ -1032,7 +1032,6 @@
       "start-timing": "Inizia a cronometrare"
     },
     "hero": {
-      "badge": "Gratuito e open source, per sempre",
       "title-before": "Il timer che ti mostra quanto stai",
       "title-highlight": "davvero migliorando",
       "subtitle": "Profili di performance per ogni cubo. Analisi approfondite. Competizione in tempo reale.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "Scopri la tua performance",
-      "cta-secondary": "Importa i tuoi solve",
+      "cta-primary": "Inizia il tuo primo solve",
+      "cta-secondary": "Esplora gli algoritmi",
       "social-proof": "Unisciti a una community di cuber in crescita",
       "scroll": "Scorri"
     },

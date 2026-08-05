@@ -1032,7 +1032,6 @@
       "start-timing": "Bắt đầu bấm giờ"
     },
     "hero": {
-      "badge": "Miễn phí và mã nguồn mở, mãi mãi",
       "title-before": "Đồng hồ cho bạn thấy bạn đang thực sự",
       "title-highlight": "tiến bộ ra sao",
       "subtitle": "Hồ sơ thành tích theo từng khối. Phân tích chuyên sâu. Thi đấu thời gian thực.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "Khám phá thành tích của bạn",
-      "cta-secondary": "Nhập các lượt giải của bạn",
+      "cta-primary": "Bắt đầu lượt giải đầu tiên",
+      "cta-secondary": "Khám phá thuật toán",
       "social-proof": "Tham gia cộng đồng cuber đang phát triển",
       "scroll": "Cuộn"
     },

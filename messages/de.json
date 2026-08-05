@@ -1032,7 +1032,6 @@
       "start-timing": "Timing starten"
     },
     "hero": {
-      "badge": "Kostenlos und Open Source, für immer",
       "title-before": "Der Timer, der zeigt, wie du dich wirklich",
       "title-highlight": "verbesserst",
       "subtitle": "Leistungsprofile pro Würfel. Tiefgehende Analysen. Echtzeit-Wettkämpfe.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "Entdecke deine Leistung",
-      "cta-secondary": "Lösungen importieren",
+      "cta-primary": "Starte deinen ersten Solve",
+      "cta-secondary": "Algorithmen entdecken",
       "social-proof": "Tritt einer wachsenden Cubing-Community bei",
       "scroll": "Scrollen"
     },

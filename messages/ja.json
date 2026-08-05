@@ -1032,7 +1032,6 @@
       "start-timing": "タイマーを始める"
     },
     "hero": {
-      "badge": "無料・オープンソース, 永遠に",
       "title-before": "あなたが本当に",
       "title-highlight": "上達していることを示すタイマー",
       "subtitle": "キューブごとのパフォーマンスプロフィール。深い分析。リアルタイム競技。",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "パフォーマンスを確認する",
-      "cta-secondary": "ソルブをインポート",
+      "cta-primary": "最初のソルブを始める",
+      "cta-secondary": "アルゴリズムを見る",
       "social-proof": "成長するキューバーコミュニティに参加しよう",
       "scroll": "スクロール"
     },

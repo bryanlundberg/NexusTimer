@@ -1032,7 +1032,6 @@
       "start-timing": "타이밍 시작"
     },
     "hero": {
-      "badge": "영원히 무료 오픈소스",
       "title-before": "당신이 정말로",
       "title-highlight": "실력이 향상되고 있음을 보여주는 타이머",
       "subtitle": "큐브별 기록 프로필. 심층 분석. 실시간 대전.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "나의 실력을 확인하세요",
-      "cta-secondary": "풀이 기록 가져오기",
+      "cta-primary": "첫 솔브 시작하기",
+      "cta-secondary": "알고리즘 둘러보기",
       "social-proof": "성장하는 큐버 커뮤니티에 참여하세요",
       "scroll": "스크롤"
     },

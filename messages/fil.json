@@ -1032,7 +1032,6 @@
       "start-timing": "Simulan ang Pag-time"
     },
     "hero": {
-      "badge": "Libre at open source, habambuhay",
       "title-before": "Ang timer na nagpapakita kung paano ka talagang",
       "title-highlight": "umuunlad",
       "subtitle": "Performance profiles bawat cube. Malalim na analytics. Real-time na kompetisyon.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "Tuklasin ang performance mo",
-      "cta-secondary": "I-import ang mga solve mo",
+      "cta-primary": "Simulan ang unang solve mo",
+      "cta-secondary": "Tuklasin ang mga algorithm",
       "social-proof": "Sumali sa lumalaking komunidad ng mga cuber",
       "scroll": "Mag-scroll"
     },

@@ -1032,7 +1032,6 @@
       "start-timing": "Zacznij mierzyć czas"
     },
     "hero": {
-      "badge": "Darmowy i open source, na zawsze",
       "title-before": "Stoper, który pokazuje, jak naprawdę się",
       "title-highlight": "rozwijasz",
       "subtitle": "Profile wyników dla każdej kostki. Dogłębna analiza. Rywalizacja w czasie rzeczywistym.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "Odkryj swoje wyniki",
-      "cta-secondary": "Zaimportuj swoje ułożenia",
+      "cta-primary": "Zacznij pierwsze ułożenie",
+      "cta-secondary": "Poznaj algorytmy",
       "social-proof": "Dołącz do rosnącej społeczności cuberów",
       "scroll": "Przewiń"
     },

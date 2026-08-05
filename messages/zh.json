@@ -1032,7 +1032,6 @@
       "start-timing": "开始计时"
     },
     "hero": {
-      "badge": "永久免费且开源",
       "title-before": "展示你如何",
       "title-highlight": "真正进步的计时器",
       "subtitle": "每个魔方的成绩档案。深度分析。实时竞技。",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "查看你的成绩",
-      "cta-secondary": "导入还原记录",
+      "cta-primary": "开始你的第一次还原",
+      "cta-secondary": "浏览算法",
       "social-proof": "加入不断壮大的魔方社区",
       "scroll": "滚动"
     },

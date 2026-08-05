@@ -1032,7 +1032,6 @@
       "start-timing": "Mulai Menghitung Waktu"
     },
     "hero": {
-      "badge": "Gratis dan open source, selamanya",
       "title-before": "Timer yang menunjukkan seberapa kamu",
       "title-highlight": "benar-benar berkembang",
       "subtitle": "Profil performa per kubus. Analitik mendalam. Kompetisi waktu nyata.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "Temukan performamu",
-      "cta-secondary": "Impor solve-mu",
+      "cta-primary": "Mulai solve pertamamu",
+      "cta-secondary": "Jelajahi algoritma",
       "social-proof": "Bergabunglah dengan komunitas cuber yang terus berkembang",
       "scroll": "Gulir"
     },
