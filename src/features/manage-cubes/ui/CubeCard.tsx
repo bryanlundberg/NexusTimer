@@ -14,8 +14,7 @@ import { useRef } from 'react'
 import type { AnimatedIconHandle } from '@/components/ui/types'
 import { useLocale, useTranslations } from 'next-intl'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
-import { cubeCollection } from '@/shared/const/cube-collection'
-import Image from 'next/image'
+import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import { useTheme } from 'next-themes'
 import { cn } from '@/shared/lib/utils'
 
@@ -28,7 +27,6 @@ export function CubeCard({ cube }: CubeCardProps) {
   const locale = useLocale()
   const { resolvedTheme } = useTheme()
   const { handleEdit, handleDelete, handleRedirect, handleFavorite } = useCubeActions(cube)
-  const src = cubeCollection.find((c) => c.name === cube.category)?.src
   const gearRef = useRef<AnimatedIconHandle>(null)
   const trashRef = useRef<AnimatedIconHandle>(null)
   const playRef = useRef<AnimatedIconHandle>(null)
@@ -173,12 +171,13 @@ export function CubeCard({ cube }: CubeCardProps) {
       </div>
 
       <div
+        aria-hidden
         className={cn(
-          'pointer-events-none select-none absolute -bottom-2 -right-2 text-foreground/10 rotate-12',
+          'pointer-events-none select-none absolute -bottom-2 -right-2 size-[140px] rotate-12 text-foreground',
           resolvedTheme === 'dark' ? 'opacity-5' : 'opacity-10'
         )}
       >
-        <Image src={src} alt={`${cube.category} icon`} width={140} height={140} unoptimized />
+        <CubeCategoryIcon category={cube.category} />
       </div>
     </div>
   )
