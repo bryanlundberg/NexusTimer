@@ -57,6 +57,29 @@ describe('csTimer backup', () => {
   it('leaves no solve carrying both penalties', () => {
     expect(solves.some((solve) => solve.dnf && solve.plus2)).toBe(false)
   })
+
+  it('reads the fourth field as the start of the solve, not its end', () => {
+    // csTimer lists a session chronologically, and that listing is ascending in
+    // `date + time` never in `date` alone. So `date` is when the solve started.
+    expect(solves.every((solve) => solve.endTime > solve.startTime)).toBe(true)
+    expect(solves.every((solve) => solve.endTime - solve.startTime === solve.time - (solve.plus2 ? 2000 : 0))).toBe(
+      true
+    )
+  })
+
+  it('keeps the session in the exact order csTimer lists it', () => {
+    const session10 = cubes.find((cube) => cube.solves.all.length === 12)!
+    expect(session10.solves.all.map((solve) => solve.time)).toEqual([
+      14250, 58740, 45690, 36980, 78540, 43430, 36590, 36740, 48970, 58740, 69540, 61250
+    ])
+  })
+
+  it('stores every cube ordered by endTime, the key the stats read', () => {
+    for (const cube of cubes) {
+      const ends = cube.solves.all.map((solve) => solve.endTime)
+      expect(ends).toEqual([...ends].sort((a, b) => a - b))
+    }
+  })
 })
 
 describe('CubeDesk backup', () => {
