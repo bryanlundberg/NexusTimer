@@ -1,4 +1,4 @@
-import calcBestAo from '@/shared/lib/statistics/calcBestAo'
+import calcBestAo, { findBestAoWindow } from '@/shared/lib/statistics/calcBestAo'
 import { makeSolve, makeSolves } from './fixtures/solve'
 
 describe('calcBestAo', () => {
@@ -67,5 +67,32 @@ describe('calcBestAo', () => {
       // The single ao5 window has 2 DNFs > tolerance (1) → skipped → never updated
       expect(calcBestAo(solves, 5)).toBe(Infinity)
     })
+  })
+})
+
+describe('findBestAoWindow', () => {
+  it('returns null for an empty array', () => {
+    expect(findBestAoWindow([], 5)).toBeNull()
+  })
+
+  it('returns null when solves are fewer than ao', () => {
+    expect(findBestAoWindow(makeSolves([1000, 2000, 3000]), 5)).toBeNull()
+  })
+
+  it('returns the winning window in original (chronological) order', () => {
+    const solves = makeSolves([3000, 4000, 5000, 6000, 7000, 1000, 2000])
+    const window = findBestAoWindow(solves, 5)
+    expect(window?.map((s) => s.time)).toEqual([5000, 6000, 7000, 1000, 2000])
+  })
+
+  it('returns null when every window exceeds the DNF tolerance', () => {
+    const solves = [
+      makeSolve({ time: 1000, dnf: true }),
+      makeSolve({ time: 2000, dnf: true }),
+      makeSolve({ time: 3000 }),
+      makeSolve({ time: 4000 }),
+      makeSolve({ time: 5000 })
+    ]
+    expect(findBestAoWindow(solves, 5)).toBeNull()
   })
 })
