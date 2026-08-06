@@ -2,15 +2,20 @@ import { Solve } from '@/entities/solve/model/types'
 
 /**
  * Calculates the standard deviation of solved times.
+ *
+ * DNFs are dropped first: a DNF has no meaningful duration, so letting it into
+ * the spread would inflate (or deflate) the deviation with a time the cuber
+ * never actually achieved. This mirrors `getMean`.
+ *
  * @param {Solve[]} solves - An array of Solve objects.
- * @returns {number} The standard deviation of solved times. Returns 0 if there are less than 2 solves.
+ * @returns {number} The standard deviation of solved times. Returns 0 if there are less than 2 valid solves.
  */
 export default function getDeviation(solves: Solve[]): number {
   if (!solves) {
     return 0
   }
 
-  const allSolves = [...solves]
+  const allSolves = solves.filter((solve) => !solve.dnf)
 
   // If there are less than 2 solves, the standard deviation is 0.
   if (allSolves.length < 2) {

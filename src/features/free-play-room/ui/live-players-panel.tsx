@@ -20,9 +20,8 @@ function computeWins(solves: Record<string, Record<string, any>>, totalRounds: n
     for (const [userId, userSolves] of Object.entries(solves)) {
       const solve = (Object.values(userSolves) as any[]).find((s) => s.roundIndex === r)
       if (!solve || solve.dnf) continue
-      const ms = solve.time + (solve.plus2 ? 2000 : 0)
-      if (ms < bestTime) {
-        bestTime = ms
+      if (solve.time < bestTime) {
+        bestTime = solve.time
         winnerId = userId
       }
     }
@@ -52,8 +51,7 @@ function PlayerCard({
       timeText = 'DNF'
       colorClass = 'text-destructive'
     } else {
-      const ms = solve.time + (solve.plus2 ? 2000 : 0)
-      timeText = formatTime(ms) + (solve.plus2 ? '+' : '')
+      timeText = formatTime(solve.time) + (solve.plus2 ? '+' : '')
       colorClass = 'text-emerald-500'
     }
   } else {

@@ -17,8 +17,12 @@ export default function getBestTime({ solves }: { solves: Solve[] }): number {
     throw new Error("Invalid solve data. Each solve object must have a 'time' property of type number.")
   }
 
+  // A DNF is never a personal best, no matter how fast the clock stopped.
+  const validSolves = solves.filter((solve) => !solve.dnf)
+  if (validSolves.length === 0) return 0
+
   // Sort solves in ascending order based on the 'time' property
-  const sortedSolves = sort(solves).asc((solve) => solve.time)
+  const sortedSolves = sort(validSolves).asc((solve) => solve.time)
 
   // Return the best time (first element after sorting)
   return sortedSolves[0].time

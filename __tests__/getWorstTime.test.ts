@@ -1,6 +1,6 @@
 import getWorstTime from '@/shared/lib/statistics/getWorstTime'
 import { FAKE_SESSION } from '../data/FAKE_SESSION'
-import { makeSolves } from './fixtures/solve'
+import { makeSolve, makeSolves } from './fixtures/solve'
 
 describe('getWorstTime', () => {
   it('returns 0 for an empty array', () => {
@@ -13,6 +13,15 @@ describe('getWorstTime', () => {
 
   it('returns the maximum time across solves', () => {
     expect(getWorstTime(makeSolves([3000, 1500, 2000]))).toBe(3000)
+  })
+
+  it('ignores DNFs so their clock reading never becomes the worst time', () => {
+    const solves = [makeSolve({ time: 90000, dnf: true }), makeSolve({ time: 3000 }), makeSolve({ time: 1500 })]
+    expect(getWorstTime(solves)).toBe(3000)
+  })
+
+  it('returns 0 when every solve is a DNF', () => {
+    expect(getWorstTime(makeSolves([1000, 2000], { dnf: true }))).toBe(0)
   })
 
   it('does not mutate the input array order', () => {
