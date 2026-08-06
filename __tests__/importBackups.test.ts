@@ -91,8 +91,41 @@ describe('CubeDesk backup', () => {
     solves = allSolves(cubes)
   })
 
-  it('creates one cube per session, including the empty ones', () => {
-    expect(cubes).toHaveLength(21)
+  it('splits a session into one cube per puzzle', () => {
+    // A CubeDesk session mixes puzzles behind a cube-type filter. `gfdsgfds` alone
+    // holds 8 of them, and importing it as a single 3x3 cube would blend 7x7, clock
+    // and sq1 into the same per-cube statistics.
+    expect(cubes).toHaveLength(18)
+    expect(cubes.every((cube) => cube.solves.all.length > 0)).toBe(true)
+
+    const mixed = cubes.filter((cube) => cube.name.startsWith('CubeDesk gfdsgfds'))
+    expect(mixed.map((cube) => cube.solves.all.length).sort((a, b) => b - a)).toEqual([
+      278, 77, 11, 10, 8, 5, 2, 2, 1, 1
+    ])
+  })
+
+  it('names each cube after its puzzle so the import review can tell them apart', () => {
+    const sssdfds = cubes.filter((cube) => cube.name.includes('sssdfds'))
+    expect(sssdfds.map((cube) => `${cube.name}:${cube.solves.all.length}`).sort()).toEqual([
+      'CubeDesk sssdfds (333):3',
+      'CubeDesk sssdfds (333oh):12'
+    ])
+  })
+
+  it('numbers repeated names, since import review rejects duplicates', () => {
+    // Two different CubeDesk sessions are both called `gfdsgfds`.
+    const names = cubes.map((cube) => cube.name.toLowerCase())
+    expect(new Set(names).size).toBe(names.length)
+    expect(names).toContain('cubedesk gfdsgfds (666) 2')
+  })
+
+  it('drops sessions that hold no solves', () => {
+    // 12 of the 21 sessions are empty; an empty session has no puzzle to assign.
+    expect(cubes.some((cube) => cube.solves.all.length === 0)).toBe(false)
+  })
+
+  it('points every solve at the cube it landed in', () => {
+    expect(cubes.every((cube) => cube.solves.all.every((solve) => solve.cubeId === cube.id))).toBe(true)
   })
 
   it('imports every solve exactly once', () => {
