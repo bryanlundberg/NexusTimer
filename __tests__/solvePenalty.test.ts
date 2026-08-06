@@ -183,7 +183,8 @@ describe('no reader re-applies the penalty', () => {
     'src/features/deep-statistics',
     'src/features/manage-backup',
     'src/features/manage-solves',
-    'src/shared/lib/statistics'
+    'src/shared/lib/statistics',
+    'src/widgets/people'
   ]
 
   const walk = (dir: string): string[] =>
