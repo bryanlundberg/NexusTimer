@@ -94,7 +94,6 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
           >
             {currentItems.map((solve, i) => {
               const globalIndex = solves.length - ((page - 1) * ITEMS_PER_PAGE + i)
-              const displayTime = solve.time + (solve.plus2 ? 2000 : 0)
 
               return (
                 <motion.div
@@ -121,7 +120,7 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
                       <span className="text-sm font-bold text-red-500">DNF</span>
                     ) : (
                       <>
-                        <TimeDisplay value={formatTime(displayTime)} />
+                        <TimeDisplay value={formatTime(solve.time)} />
                         {solve.plus2 && <span className="text-[10px] font-bold text-yellow-500">+2</span>}
                       </>
                     )}
