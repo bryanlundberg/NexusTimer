@@ -21,6 +21,15 @@ describe('getBestTime', () => {
     expect(solves.map((s) => s.time)).toEqual(snapshot)
   })
 
+  it('never returns a DNF, however fast its clock stopped', () => {
+    const solves = [makeSolve({ time: 500, dnf: true }), makeSolve({ time: 3000 }), makeSolve({ time: 2000 })]
+    expect(getBestTime({ solves })).toBe(2000)
+  })
+
+  it('returns 0 when every solve is a DNF', () => {
+    expect(getBestTime({ solves: makeSolves([1000, 2000], { dnf: true }) })).toBe(0)
+  })
+
   it('throws when a solve has a non-numeric time', () => {
     const bad = [makeSolve({ time: 1000 }), makeSolve({ time: 'oops' as unknown as number })]
     expect(() => getBestTime({ solves: bad })).toThrow(
