@@ -4,6 +4,7 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import genId from '@/shared/lib/genId'
 import { Solve } from '@/entities/solve/model/types'
+import { withPlus2 } from '@/entities/solve/lib/penalty'
 import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 
 interface SubmitParams {
@@ -32,8 +33,10 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
     async ({ dnf, plus2, cubeId }: SubmitParams) => {
       if (!session?.user?.id || !roomId || !solvingTime) return
 
+      const finalTime = withPlus2(solvingTime, plus2)
+
       await addUserSolve(roomId, session.user.id, {
-        time: solvingTime,
+        time: finalTime,
         dnf,
         plus2,
         scramble,
@@ -48,7 +51,7 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
         endTime: now,
         scramble,
         bookmark: false,
-        time: solvingTime,
+        time: finalTime,
         dnf,
         plus2,
         rating: 0,
@@ -69,7 +72,7 @@ export function useFreePlaySolveSubmit({ roomId, scramble, currentRound }: UseFr
           endTime: now,
           scramble,
           bookmark: false,
-          time: solvingTime,
+          time: finalTime,
           dnf,
           plus2,
           rating: Math.floor(Math.random() * 20) + (scramble?.length || 0),
