@@ -3,6 +3,7 @@ import { z } from 'zod'
 import _ from 'lodash'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
+import { PLUS_2_PENALTY_MS, withPlus2 } from '@/entities/solve/lib/penalty'
 
 const nxTimerSchema = z.array(
   z.object({
@@ -149,15 +150,17 @@ const importCsTimerData = (fileContent: string) => {
       }
 
       session.forEach((solve: any, solveIndex: number) => {
+        // csTimer stores the raw time plus a penalty marker (2000 = +2, -1 = DNF).
+        const isPlus2 = solve[0][0] === PLUS_2_PENALTY_MS
         const newSolve: Solve = {
           id: `${newCube.id}-${solve[3] * 1000}-${solveIndex}`,
           startTime: solve[3] * 1000 - solve[0][1],
           endTime: solve[3] * 1000,
           scramble: solve[1],
           bookmark: false,
-          time: solve[0][1] + (solve[0][0] === 2000 ? 2000 : 0),
+          time: withPlus2(solve[0][1], isPlus2),
           dnf: solve[0][0] === -1,
-          plus2: solve[0][0] === 2000,
+          plus2: isPlus2,
           rating: Math.floor(Math.random() * 20) + solve[1].length,
           cubeId: newCube.id,
           comment: ''
@@ -199,15 +202,21 @@ function importCubeDeskData(fileContent: string) {
 
     result.data.solves.forEach((solve) => {
       if (solve.session_id === session.id) {
+        // CubeDesk keeps the clock reading in `raw_time` (seconds) and puts the
+        // resolved time in `time`, which is -1 on a DNF. Rebuild from raw_time so
+        // the +2 is applied exactly once, and so a DNF keeps a real duration.
+        // A CubeDesk solve can carry both flags; ours cannot, and DNF wins.
+        const isDnf = solve.dnf
+        const isPlus2 = solve.plus_two && !isDnf
         const newSolve: Solve = {
           id: solve.id,
           startTime: solve.started_at,
           endTime: solve.ended_at,
           scramble: solve.scramble,
           bookmark: false,
-          time: solve.time * 1000,
-          dnf: solve.dnf,
-          plus2: solve.plus_two,
+          time: withPlus2(Math.round(solve.raw_time * 1000), isPlus2),
+          dnf: isDnf,
+          plus2: isPlus2,
           rating: Math.floor(Math.random() * 20) + solve.scramble.length,
           cubeId: session.id,
           comment: ''
@@ -256,15 +265,17 @@ function importTwistyTimerData(fileContent: string) {
       newCubeList.push(cube)
     }
 
+    // Twisty Timer exports the raw time and keeps the penalty in its own column.
+    const isPlus2 = penalty === 1
     const newSolve: Solve = {
       id: `${cube.id}-${date}`,
       startTime: Number(date) - Number(time),
       endTime: Number(date),
       scramble: scramble.toString(),
       bookmark: false,
-      time: Number(time),
+      time: withPlus2(Number(time), isPlus2),
       dnf: penalty === 2,
-      plus2: penalty === 1,
+      plus2: isPlus2,
       rating: scramble ? Math.floor(Math.random() * 20) + scramble.toString().length : 10,
       cubeId: cube.id,
       comment: comment ? comment.toString() : ''
