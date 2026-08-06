@@ -1,6 +1,7 @@
 import { Cube } from '@/entities/cube/model/types'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import { TogglePlus2SolveDTO } from '@/features/manage-solves/model/types'
+import { withPlus2, withoutPlus2 } from '@/entities/solve/lib/penalty'
 import { SolveTab } from '@/shared/types/enums'
 
 export async function togglePlus2(dto: TogglePlus2SolveDTO): Promise<Cube> {
@@ -19,13 +20,13 @@ export async function togglePlus2(dto: TogglePlus2SolveDTO): Promise<Cube> {
   }
 
   if (previousPlus2) {
-    list[idx].time -= 2000
+    list[idx].time = withoutPlus2(list[idx].time, true)
     list[idx].plus2 = false
     list[idx].updatedAt = Date.now()
     return await cubesDB.update(cube)
   }
 
-  list[idx].time += 2000
+  list[idx].time = withPlus2(list[idx].time, true)
   list[idx].plus2 = plus2
   list[idx].updatedAt = Date.now()
   return await cubesDB.update(cube)
