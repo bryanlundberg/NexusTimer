@@ -152,10 +152,11 @@ const importCsTimerData = (fileContent: string) => {
       session.forEach((solve: any, solveIndex: number) => {
         // csTimer stores the raw time plus a penalty marker (2000 = +2, -1 = DNF).
         const isPlus2 = solve[0][0] === PLUS_2_PENALTY_MS
+        const startTime = solve[3] * 1000
         const newSolve: Solve = {
           id: `${newCube.id}-${solve[3] * 1000}-${solveIndex}`,
-          startTime: solve[3] * 1000 - solve[0][1],
-          endTime: solve[3] * 1000,
+          startTime,
+          endTime: startTime + solve[0][1],
           scramble: solve[1],
           bookmark: false,
           time: withPlus2(solve[0][1], isPlus2),
@@ -290,9 +291,10 @@ function importTwistyTimerData(fileContent: string) {
 }
 
 export function formatCubesDatesAndOrder(cubes: Cube[]): Cube[] {
+  // A solve happens when the timer stops, so `endTime` is the canonical order
   return cubes.map((cube) => {
-    const sortedSession = _.sortBy(cube.solves.session, ['startTime'])
-    const sortedAll = _.sortBy(cube.solves.all, ['startTime'])
+    const sortedSession = _.sortBy(cube.solves.session, ['endTime', 'startTime'])
+    const sortedAll = _.sortBy(cube.solves.all, ['endTime', 'startTime'])
 
     return {
       ...cube,
