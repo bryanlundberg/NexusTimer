@@ -33,8 +33,8 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
   const totalSolves = successCount + plus2Count + dnfCount
 
   const validSolves = allSolves.filter((s) => !s.dnf)
-  const pb = validSolves.length > 0 ? _.minBy(validSolves, (s) => s.time + (s.plus2 ? 2000 : 0)) : null
-  const pbTime = pb ? pb.time + (pb.plus2 ? 2000 : 0) : null
+  const pb = validSolves.length > 0 ? _.minBy(validSolves, (s) => s.time) : null
+  const pbTime = pb ? pb.time : null
 
   const ao5Ms = calcBestAo(allSolves, 5)
   const ao5Str = !isFinite(ao5Ms) || ao5Ms <= 0 ? '--' : formatTime(ao5Ms)
