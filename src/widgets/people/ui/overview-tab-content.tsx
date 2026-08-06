@@ -7,7 +7,7 @@ import { getCategoryOrder } from '@/shared/const/cube-categories'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 
-const GRID = 'grid-cols-[minmax(9rem,1.2fr)_6rem_6rem_minmax(12rem,2.5fr)_8.5rem_5rem]'
+const GRID = 'grid-cols-[minmax(9rem,1.2fr)_6rem_minmax(6rem,12rem)_minmax(12rem,2.5fr)_8.5rem_5rem]'
 
 export { GRID }
 
@@ -49,7 +49,7 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
 
   return (
     <div className="overflow-x-auto">
-      <div className="min-w-137">
+      <div className="min-w-160">
         {/* Table header */}
         <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
           {headers.map((label, i) => (
