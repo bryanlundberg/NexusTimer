@@ -44,7 +44,7 @@ export default function SolveCard({ event, time, date, bgImage, solves }: SolveC
   const chartData = React.useMemo(() => {
     const valid = (solves || []).filter((s) => !s.dnf && s.time > 0)
     const last20 = valid.slice(-20)
-    return last20.map((s) => ({ v: s.time + (s.plus2 ? 2000 : 0) }))
+    return last20.map((s) => ({ v: s.time }))
   }, [solves])
 
   const [mainTime, decimalTime] = time.includes('.') ? time.split('.') : [time, null]
