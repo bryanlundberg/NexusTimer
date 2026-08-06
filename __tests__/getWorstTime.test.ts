@@ -1,6 +1,6 @@
 import getWorstTime from '@/shared/lib/statistics/getWorstTime'
 import { FAKE_SESSION } from '../data/FAKE_SESSION'
-import { makeSolves } from './fixtures/solve'
+import { makeSolve, makeSolves } from './fixtures/solve'
 
 describe('getWorstTime', () => {
   it('returns 0 for an empty array', () => {
