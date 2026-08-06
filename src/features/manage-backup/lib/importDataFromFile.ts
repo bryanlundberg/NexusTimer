@@ -107,7 +107,7 @@ export default async function importDataFromFile(file: File): Promise<Cube[] | f
       }
     }
 
-    return formatCubesDatesAndOrder(normalizeOldData(cubes))
+    return ensureUniqueCubeNames(formatCubesDatesAndOrder(normalizeOldData(cubes)))
   } catch (error) {
     console.error('Error reading file:', error)
     return false
@@ -188,11 +188,28 @@ function importCubeDeskData(fileContent: string) {
 
   let newCubeList: Cube[] = []
 
-  result.data.sessions.forEach((session) => {
+  // A CubeDesk session mixes puzzles: its UI filters by the selected cube, so one
+  // session can hold 7x7, clock and 3x3 at once. Ours is one puzzle per cube, the
+  // whole point of per-cube stats, so a session becomes one cube per puzzle.
+  const grouped = new Map<string, { sessionId: string; cubeType: string; solves: typeof result.data.solves }>()
+
+  for (const solve of result.data.solves) {
+    const key = `${solve.session_id}-${solve.cube_type}`
+    const bucket = grouped.get(key)
+    if (bucket) bucket.solves.push(solve)
+    else grouped.set(key, { sessionId: solve.session_id, cubeType: solve.cube_type, solves: [solve] })
+  }
+
+  const sessionsById = new Map(result.data.sessions.map((session) => [session.id, session]))
+
+  for (const [key, group] of grouped) {
+    const session = sessionsById.get(group.sessionId)
+    if (!session) continue
+
     const newCube: Cube = {
-      id: session.id,
-      name: 'CubeDesk ' + session.name,
-      category: '3x3', // Category not specified in Cubedesk backup -> Manual fix later by user...
+      id: key,
+      name: `CubeDesk ${session.name} (${group.cubeType})`,
+      category: '3x3', // Reviewed and reassigned by the user before the import lands.
       solves: {
         session: [],
         all: []
@@ -201,32 +218,30 @@ function importCubeDeskData(fileContent: string) {
       favorite: false
     }
 
-    result.data.solves.forEach((solve) => {
-      if (solve.session_id === session.id) {
-        // CubeDesk keeps the clock reading in `raw_time` (seconds) and puts the
-        // resolved time in `time`, which is -1 on a DNF. Rebuild from raw_time so
-        // the +2 is applied exactly once, and so a DNF keeps a real duration.
-        // A CubeDesk solve can carry both flags; ours cannot, and DNF wins.
-        const isDnf = solve.dnf
-        const isPlus2 = solve.plus_two && !isDnf
-        const newSolve: Solve = {
-          id: solve.id,
-          startTime: solve.started_at,
-          endTime: solve.ended_at,
-          scramble: solve.scramble,
-          bookmark: false,
-          time: withPlus2(Math.round(solve.raw_time * 1000), isPlus2),
-          dnf: isDnf,
-          plus2: isPlus2,
-          rating: Math.floor(Math.random() * 20) + solve.scramble.length,
-          cubeId: session.id,
-          comment: ''
-        }
-        newCube.solves.all.push(newSolve)
-      }
-    })
+    for (const solve of group.solves) {
+      // CubeDesk keeps the clock reading in `raw_time` (seconds) and puts the
+      // resolved time in `time`, which is -1 on a DNF. Rebuild from raw_time so
+      // the +2 is applied exactly once, and so a DNF keeps a real duration.
+      // A CubeDesk solve can carry both flags; ours cannot, and DNF wins.
+      const isDnf = solve.dnf
+      const isPlus2 = solve.plus_two && !isDnf
+      newCube.solves.all.push({
+        id: solve.id,
+        startTime: solve.started_at,
+        endTime: solve.ended_at,
+        scramble: solve.scramble,
+        bookmark: false,
+        time: withPlus2(Math.round(solve.raw_time * 1000), isPlus2),
+        dnf: isDnf,
+        plus2: isPlus2,
+        rating: Math.floor(Math.random() * 20) + solve.scramble.length,
+        cubeId: newCube.id,
+        comment: ''
+      })
+    }
+
     newCubeList.push(newCube)
-  })
+  }
 
   newCubeList = formatCubesDatesAndOrder(newCubeList)
   newCubeList = parseNXTimerSchema(newCubeList)
@@ -288,6 +303,24 @@ function importTwistyTimerData(fileContent: string) {
   newCubeList = parseNXTimerSchema(newCubeList)
 
   return newCubeList
+}
+
+export function ensureUniqueCubeNames(cubes: Cube[]): Cube[] {
+  const taken = new Set<string>()
+
+  return cubes.map((cube) => {
+    const base = (cube.name || 'Collection').trim()
+    let name = base
+    let suffix = 2
+
+    while (taken.has(name.toLowerCase())) {
+      name = `${base} ${suffix}`
+      suffix++
+    }
+
+    taken.add(name.toLowerCase())
+    return name === cube.name ? cube : { ...cube, name }
+  })
 }
 
 export function formatCubesDatesAndOrder(cubes: Cube[]): Cube[] {
