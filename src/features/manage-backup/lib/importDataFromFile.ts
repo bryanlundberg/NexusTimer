@@ -265,7 +265,7 @@ function importTwistyTimerData(fileContent: string) {
       newCubeList.push(cube)
     }
 
-    // Twisty Timer exports the raw time and keeps the penalty in its own column.
+    // Twisty Timer's Time column is already the resolved time: a +2 solve exports
     const isPlus2 = penalty === 1
     const newSolve: Solve = {
       id: `${cube.id}-${date}`,
@@ -273,7 +273,7 @@ function importTwistyTimerData(fileContent: string) {
       endTime: Number(date),
       scramble: scramble.toString(),
       bookmark: false,
-      time: withPlus2(Number(time), isPlus2),
+      time: Number(time),
       dnf: penalty === 2,
       plus2: isPlus2,
       rating: scramble ? Math.floor(Math.random() * 20) + scramble.toString().length : 10,
