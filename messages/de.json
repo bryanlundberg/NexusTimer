@@ -783,6 +783,8 @@
         "cll": "CLL löst die letzte Ebene beim 2x2 in einem Schritt nach der ersten Ebene.",
         "eg-1": "EG-1 löst die letzte Ebene (2x2) bei einem benachbarten Tausch unten.",
         "eg-2": "EG-2 löst die letzte Ebene (2x2) bei einem diagonalen Tausch unten.",
+        "f2l": "Die F2L-Algorithmen (First Two Layers) zum Lösen des Rubik's Cube mit der CFOP-Methode. Diese Algorithmen lösen die ersten beiden Schichten, indem Eck- und Kantensteine gleichzeitig gepaart werden, sobald das Kreuz fertig ist.",
+        "advanced-f2l": "Advanced-F2L-Algorithmen für die schwierigeren Eck-Kanten-Paar-Fälle der CFOP-Methode: Teile, die im letzten Slot gefangen sind, Teile in der falschen Schicht oder beide Teile gleichzeitig gefangen. Sie gehen über das intuitive F2L hinaus und decken die Fälle ab, die meist die meisten Züge kosten.",
         "oll": "OLL (Orientation of Last Layer) - Orientierung der letzten Ebene (CFOP).",
         "pll": "PLL (Permutation of Last Layer) - Permutation der letzten Ebene (CFOP).",
         "coll": "COLL orientiert und vertauscht die Ecken, wenn die Kanten bereits orientiert sind.",

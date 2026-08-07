@@ -783,6 +783,8 @@
         "cll": "CLL résout la dernière couche d'un 2x2 en un algorithme après l'orientation de la première couche.",
         "eg-1": "EG-1 résout la dernière couche d'un 2x2 avec un échange adjacent sur la couche du bas.",
         "eg-2": "EG-2 résout la dernière couche d'un 2x2 avec un échange diagonal sur la couche du bas.",
+        "f2l": "Les algorithmes F2L (First Two Layers) pour résoudre le Rubik's Cube avec la méthode CFOP. Ces algorithmes résolvent les deux premières couches en associant les pièces de coin et d'arête en même temps, une fois la croix terminée.",
+        "advanced-f2l": "Les algorithmes F2L avancés pour les cas d'association coin-arête les plus difficiles de la méthode CFOP : pièces coincées dans le dernier emplacement, pièces bloquées dans la mauvaise couche, ou les deux pièces coincées à la fois. Ils vont au-delà du F2L intuitif pour couvrir les cas qui coûtent généralement le plus de mouvements.",
         "oll": "OLL (Orientation of Last Layer) - Orienter toutes les pièces de la dernière couche (CFOP).",
         "pll": "PLL (Permutation of Last Layer) - Permuter les arêtes et les coins de la dernière couche (CFOP).",
         "coll": "COLL oriente et permute les coins de la dernière couche si les arêtes sont déjà orientées.",

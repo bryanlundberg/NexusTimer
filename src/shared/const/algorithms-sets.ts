@@ -13,6 +13,8 @@ import { PARITY_555_ALGS } from '@/shared/data/algs/parity-555'
 import { CLL_ALGS } from '@/shared/data/algs/cll'
 import { EG_1_ALGS } from '@/shared/data/algs/eg-1'
 import { EG_2_ALGS } from '@/shared/data/algs/eg-2'
+import { F2L_ALGS } from '@/shared/data/algs/f2l'
+import { ADVANCED_F2L_ALGS } from '@/shared/data/algs/advanced-f2l'
 import { L4E_ALGS } from '@/shared/data/algs/l4e'
 import { ZBLL_AS_ALGS } from '@/shared/data/algs/zbll-as'
 import { ZBLL_S_ALGS } from '@/shared/data/algs/zbll-s'
@@ -102,6 +104,36 @@ export const ALGORITHM_SETS = [
       visualization: '3D'
     },
     file: 'eg-2.ts'
+  },
+  {
+    slug: 'f2l',
+    goal: 'f2l',
+    title: 'F2L',
+    subtitle: 'First Two Layers',
+    puzzle: '3x3x3',
+    algorithms: F2L_ALGS,
+    Icon: Grid3x3,
+    difficulty: 2,
+    virtualization: {
+      experimentalStickering: 'F2L',
+      visualization: '3D'
+    },
+    file: 'f2l.ts'
+  },
+  {
+    slug: 'advanced-f2l',
+    goal: 'f2l',
+    title: 'Advanced F2L',
+    subtitle: 'Advanced First Two Layers',
+    puzzle: '3x3x3',
+    algorithms: ADVANCED_F2L_ALGS,
+    Icon: Grid3x3,
+    difficulty: 3,
+    virtualization: {
+      experimentalStickering: 'F2L',
+      visualization: '3D'
+    },
+    file: 'advanced-f2l.ts'
   },
   {
     slug: 'oll',

@@ -776,6 +776,8 @@
         "cll": "CLL is a subset of OLL for 2x2x2 cubes that solves the last layer in one algorithm after orienting the first layer.",
         "eg-1": "EG-1 is a set of algorithms used to solve the last layer of a 2x2 cube after the first layer is completed, specifically when there is an adjacent swap on the bottom layer.",
         "eg-2": "EG-2 is a set of algorithms used to solve the last layer of a 2x2 cube after the first layer is completed, specifically when there is a diagonal swap on the bottom layer.",
+        "f2l": "F2L (First Two Layers) algorithms for solving the Rubik's cube with the CFOP method. These algorithms solve the cross and the first two layers simultaneously by pairing up corner and edge pieces, once the cross is complete.",
+        "advanced-f2l": "Advanced F2L algorithms for the trickier CFOP corner-edge pair cases: pieces trapped in the last slot, pieces stuck in the wrong layer, or both pieces trapped at once. These go beyond intuitive F2L to cover the cases that usually cost the most moves.",
         "oll": "The OLL (Orientation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used to orient all of the pieces on the last layer, once the F2L is complete.",
         "pll": "The PLL (Permutation of Last Layer) algorithms for solving the Rubik's cube with the CFOP method. These algorithms are used for the final step of the CFOP method, to permute the edges and corners of the last layer, once all pieces are oriented.",
         "coll": "COLL (Corners and Orientation of Last Layer) algorithms are used to orient and permute the corners of your last layer at the same time, presuming that all of your last layer edges are already oriented.",

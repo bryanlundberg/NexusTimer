@@ -786,6 +786,8 @@
         "cll": "CLL là một tập con của OLL cho khối 2x2x2, giải tầng cuối bằng một thuật toán sau khi định hướng tầng đầu tiên.",
         "eg-1": "EG-1 là một bộ thuật toán dùng để giải tầng cuối của khối 2x2 sau khi hoàn thành tầng đầu, cụ thể khi có hoán đổi kề nhau ở tầng dưới.",
         "eg-2": "EG-2 là một bộ thuật toán dùng để giải tầng cuối của khối 2x2 sau khi hoàn thành tầng đầu, cụ thể khi có hoán đổi chéo ở tầng dưới.",
+        "f2l": "Các thuật toán F2L (First Two Layers) để giải Rubik theo phương pháp CFOP. Các thuật toán này giải hai tầng đầu tiên bằng cách ghép cặp các viên góc và viên cạnh cùng lúc, sau khi đã hoàn thành tầng chữ thập (cross).",
+        "advanced-f2l": "Các thuật toán F2L nâng cao cho những trường hợp ghép cặp góc-cạnh khó hơn trong phương pháp CFOP: các viên bị kẹt ở ô cuối, các viên bị kẹt sai tầng, hoặc cả hai viên bị kẹt cùng lúc. Chúng vượt ra ngoài F2L trực quan để xử lý những trường hợp thường tốn nhiều bước di chuyển nhất.",
         "oll": "Các thuật toán OLL (Định hướng tầng cuối) để giải khối Rubik bằng phương pháp CFOP. Chúng được dùng để định hướng tất cả các mảnh ở tầng cuối, sau khi hoàn thành F2L.",
         "pll": "Các thuật toán PLL (Hoán vị tầng cuối) để giải khối Rubik bằng phương pháp CFOP. Chúng được dùng cho bước cuối của phương pháp CFOP, để hoán vị các cạnh và góc của tầng cuối, sau khi tất cả các mảnh đã được định hướng.",
         "coll": "Các thuật toán COLL (Góc và định hướng tầng cuối) được dùng để định hướng và hoán vị các góc của tầng cuối cùng lúc, với giả định rằng tất cả các cạnh tầng cuối đã được định hướng.",

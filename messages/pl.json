@@ -786,6 +786,8 @@
         "cll": "CLL to podzbiór OLL dla kostek 2x2x2, który układa ostatnią warstwę jednym algorytmem po zorientowaniu pierwszej warstwy.",
         "eg-1": "EG-1 to zestaw algorytmów służących do ułożenia ostatniej warstwy kostki 2x2 po ukończeniu pierwszej warstwy, w szczególności gdy na dolnej warstwie występuje zamiana sąsiednia.",
         "eg-2": "EG-2 to zestaw algorytmów służących do ułożenia ostatniej warstwy kostki 2x2 po ukończeniu pierwszej warstwy, w szczególności gdy na dolnej warstwie występuje zamiana po przekątnej.",
+        "f2l": "Algorytmy F2L (First Two Layers) do układania kostki Rubika metodą CFOP. Te algorytmy rozwiązują pierwsze dwie warstwy, łącząc jednocześnie elementy narożne i krawędziowe, po ułożeniu krzyża.",
+        "advanced-f2l": "Zaawansowane algorytmy F2L dla trudniejszych przypadków parowania narożnik-krawędź w metodzie CFOP: elementy uwięzione w ostatnim slocie, elementy uwięzione w niewłaściwej warstwie lub obie części uwięzione jednocześnie. Wykraczają poza intuicyjne F2L, obejmując przypadki, które zwykle kosztują najwięcej ruchów.",
         "oll": "Algorytmy OLL (Orientacja ostatniej warstwy) do układania kostki Rubika metodą CFOP. Służą do zorientowania wszystkich elementów ostatniej warstwy po ukończeniu F2L.",
         "pll": "Algorytmy PLL (Permutacja ostatniej warstwy) do układania kostki Rubika metodą CFOP. Służą do ostatniego kroku metody CFOP, aby spermutować krawędzie i narożniki ostatniej warstwy po zorientowaniu wszystkich elementów.",
         "coll": "Algorytmy COLL (Narożniki i orientacja ostatniej warstwy) służą do jednoczesnego zorientowania i spermutowania narożników ostatniej warstwy, zakładając, że wszystkie krawędzie ostatniej warstwy są już zorientowane.",
