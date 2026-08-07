@@ -1,0 +1,71 @@
+---
+import { listReviews } from '@/entities/review/api/list-reviews'
+import ReviewCard from '@/entities/review/ui/ReviewCard.astro'
+
+const reviews = await listReviews()
+---
+
+<main>
+  <div class="head">
+    <h1>Reviews<span class="notch-bl-tr count">{reviews.length}</span></h1>
+  </div>
+
+  {reviews.length === 0 && <p class="notch-panel empty">No reviews yet.</p>}
+
+  <ul>
+    {reviews.map((review) => <ReviewCard review={review} />)}
+  </ul>
+</main>
+
+<style>
+  main {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  .head {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--font-brand);
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .count {
+    --nblt: 5px;
+    display: inline-block;
+    margin-left: 0.55rem;
+    padding: 0.1rem 0.45rem;
+    vertical-align: 0.12em;
+    background: var(--muted);
+    color: var(--muted-foreground);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .empty {
+    --np-cut: 14px;
+    margin: 0;
+    padding: 1.5rem;
+    color: var(--muted-foreground);
+    font-size: 0.88rem;
+    text-align: center;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>
