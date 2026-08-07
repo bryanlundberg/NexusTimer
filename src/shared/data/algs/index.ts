@@ -1,11 +1,13 @@
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 
+export { ADVANCED_F2L_ALGS } from './advanced-f2l'
 export { BLE_ALGS } from './ble'
 export { CLL_ALGS } from './cll'
 export { CLS_ALGS } from './cls'
 export { COLL_ALGS } from './coll'
 export { EG_1_ALGS } from './eg-1'
 export { EG_2_ALGS } from './eg-2'
+export { F2L_ALGS } from './f2l'
 export { L4E_ALGS } from './l4e'
 export { OCLL_ALGS } from './ocll'
 export { OLL_ALGS } from './oll'
@@ -25,12 +27,14 @@ export { ZBLL_S_ALGS } from './zbll-s'
 export { ZBLL_T_ALGS } from './zbll-t'
 export { ZBLL_U_ALGS } from './zbll-u'
 
+import { ADVANCED_F2L_ALGS } from './advanced-f2l'
 import { BLE_ALGS } from './ble'
 import { CLL_ALGS } from './cll'
 import { CLS_ALGS } from './cls'
 import { COLL_ALGS } from './coll'
 import { EG_1_ALGS } from './eg-1'
 import { EG_2_ALGS } from './eg-2'
+import { F2L_ALGS } from './f2l'
 import { L4E_ALGS } from './l4e'
 import { OCLL_ALGS } from './ocll'
 import { OLL_ALGS } from './oll'
@@ -51,12 +55,14 @@ import { ZBLL_T_ALGS } from './zbll-t'
 import { ZBLL_U_ALGS } from './zbll-u'
 
 export const ALL_ALGS: AlgorithmCollection[] = [
+  ...ADVANCED_F2L_ALGS,
   ...BLE_ALGS,
   ...CLL_ALGS,
   ...CLS_ALGS,
   ...COLL_ALGS,
   ...EG_1_ALGS,
   ...EG_2_ALGS,
+  ...F2L_ALGS,
   ...L4E_ALGS,
   ...OCLL_ALGS,
   ...OLL_ALGS,
