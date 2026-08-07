@@ -23,10 +23,10 @@ import type { TwistyPlayer } from 'cubing/twisty'
  * only colors the sides; `-` keeps every top sticker highlighted, which is
  * needed to read corner orientation in ZBLL and looks cleaner for PLL.
  *
- * `F2L` dims the D-layer instead of highlighting it — post-flip those are the
- * yellow last-layer pieces, which are irrelevant while solving F2L. Dim rather
- * than `I` (Ignored) keeps them recognisably yellow on top while the F2L pieces
- * stay at full brightness.
+ * `F2L` greys the D-layer out with `I` (Ignored) instead of highlighting it —
+ * post-flip those are the yellow last-layer pieces, which are irrelevant while
+ * solving F2L. `D` (Dim) would keep each sticker's own hue, which reads as
+ * meaningful; the flat grey leaves only the F2L pieces carrying color.
  */
 const D_LAYER_MASKS: Record<string, Record<string, string>> = {
   OLL: {
@@ -37,7 +37,7 @@ const D_LAYER_MASKS: Record<string, Record<string, string>> = {
     '3x3x3': 'EDGES:DDDD----DDDD,CORNERS:DDDD----,CENTERS:DDDDD-'
   },
   F2L: {
-    '3x3x3': 'EDGES:----DDDD----,CORNERS:----DDDD,CENTERS:-----D'
+    '3x3x3': 'EDGES:----IIII----,CORNERS:----IIII,CENTERS:-----I'
   }
 }
 
