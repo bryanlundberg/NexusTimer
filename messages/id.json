@@ -1032,7 +1032,6 @@
       "start-timing": "Mulai Menghitung Waktu"
     },
     "hero": {
-      "badge": "Gratis dan open source, selamanya",
       "title-before": "Timer yang menunjukkan seberapa kamu",
       "title-highlight": "benar-benar berkembang",
       "subtitle": "Profil performa per kubus. Analitik mendalam. Kompetisi waktu nyata.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "Temukan performamu",
-      "cta-secondary": "Impor solve-mu",
+      "cta-primary": "Mulai solve pertamamu",
+      "cta-secondary": "Jelajahi algoritma",
       "social-proof": "Bergabunglah dengan komunitas cuber yang terus berkembang",
       "scroll": "Gulir"
     },
@@ -1056,7 +1055,7 @@
       "wca-events": "Event WCA",
       "languages": "Bahasa",
       "free": "Gratis selamanya",
-      "open-source": "Open source"
+      "reviews": "Ulasan"
     },
     "showcase": {
       "label": "Di dalam aplikasi",
@@ -1089,9 +1088,6 @@
       "algs-title": "Algoritma",
       "algs-desc": "Set algoritma lengkap untuk setiap kasus, siap dipelajari dan dilatih."
     },
-    "brands": {
-      "label": "Bekerja dengan merek favoritmu"
-    },
     "how-it-works": {
       "label": "Memulai",
       "title": "Empat langkah, tanpa penyiapan",
@@ -1108,20 +1104,22 @@
     },
     "cross-platform": {
       "label": "Lintas platform",
-      "title": "Indah di setiap layar",
-      "subtitle": "PWA yang terpasang di perangkat apa pun. Pengalaman sama di desktop, tablet, dan ponsel."
+      "title": "Catat waktumu di mana saja",
+      "subtitle": "Pengalaman sama di desktop, tablet, dan ponsel.",
+      "android-note": "Kamu juga bisa memasangnya lewat Google Play.",
+      "google-play": "Dapatkan di Google Play"
     },
     "testimonials": {
       "label": "Apa kata para cuber",
-      "t0-text": "Antarmukanya bersih dan nyaman dipakai, dan profilnya paling lengkap yang pernah kulihat.",
-      "t0-user": "@steadyturns",
-      "t0-role": "Cuber hobi",
-      "t1-text": "Berfungsi sempurna saat offline, jadi aku bisa latihan di mobil tanpa khawatir koneksi.",
-      "t1-user": "@offgridsolver",
-      "t1-role": "Komuter harian",
-      "t2-text": "Menghubungkan smart cube dan mengimpor waktu lamaku hanya butuh semenit.",
-      "t2-user": "@cubecollector",
-      "t2-role": "Cuber yang kembali"
+      "t0-text": "Berbulan-bulan latihan ZBLL asal-asalan. Sekarang kelihatan case mana yang benar-benar lambat.",
+      "t0-user": "@zbllgrind",
+      "t0-role": "Sub-12 CFOP",
+      "t1-text": "Sambungin GAN, nggak pernah nyentuh layar lagi. Waktunya masuk sendiri.",
+      "t1-user": "@gandrift",
+      "t1-role": "GAN 356 i",
+      "t2-text": "Tiap Jumat bikin room bareng anak-anak Discord. Jauh lebih seru daripada solve sendiri.",
+      "t2-user": "@clubnight",
+      "t2-role": "Ngumpulin anak cubing"
     },
     "faq": {
       "label": "FAQ",
@@ -1152,14 +1150,24 @@
       "statistics": "Statistik",
       "multiplayer": "Multiplayer",
       "algorithms": "Algoritma",
+      "trainer": "Pelatih Algoritma",
       "leaderboards": "Papan Peringkat",
+      "people": "Cuber",
+      "cubes": "Kubus Saya",
       "company": "Perusahaan",
+      "about-us": "Tentang Kami",
       "contact": "Hubungi Kami",
       "privacy": "Kebijakan Privasi",
       "terms": "Ketentuan Layanan",
+      "account-deletion": "Hapus Akun",
       "community": "Komunitas",
       "discord": "Server Discord",
       "github": "GitHub",
+      "forum": "Forum Speedsolving",
+      "feature-request": "Ajukan Fitur",
+      "report-bug": "Laporkan Bug",
+      "contribute": "Berkontribusi",
+      "language": "Bahasa",
       "disclaimer": "NexusTimer adalah proyek independen untuk komunitas cubing.",
       "copyright": "© {year} NexusTimer. Semua hak dilindungi."
     },

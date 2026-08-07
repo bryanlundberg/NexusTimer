@@ -53,7 +53,7 @@ export default function ZoomBridge({ scrollContainer }: { scrollContainer: React
         </motion.div>
         <motion.div
           style={{ scale, color: textColor, fontSize: 'clamp(2.75rem, 13vw, 11rem)' }}
-          className="relative z-10 select-none text-center font-black leading-[0.92] tracking-tighter will-change-transform"
+          className="relative z-10 select-none text-center font-display font-bold leading-[0.92] tracking-tighter will-change-transform"
         >
           <span className="block">{t('zoom-cta.line1')}</span>
           <span className="block">{t('zoom-cta.line2')}</span>

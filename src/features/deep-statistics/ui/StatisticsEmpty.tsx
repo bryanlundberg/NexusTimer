@@ -41,10 +41,16 @@ export default function StatisticsEmpty() {
         <Nexi state="think" size={120} aria-label={t('empty-statistics')} />
       </motion.div>
 
-      <motion.h2 variants={item} className="mt-1 text-lg font-semibold tracking-tight text-balance text-foreground">
+      <motion.h2
+        variants={item}
+        className="mt-1 font-display text-lg font-semibold tracking-tight text-balance text-foreground"
+      >
         {t('empty-statistics')}
       </motion.h2>
-      <motion.p variants={item} className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground text-pretty">
+      <motion.p
+        variants={item}
+        className="mt-2 max-w-xs font-display text-sm leading-relaxed text-muted-foreground text-pretty"
+      >
         {t('empty-statistics-description')}
       </motion.p>
     </motion.div>

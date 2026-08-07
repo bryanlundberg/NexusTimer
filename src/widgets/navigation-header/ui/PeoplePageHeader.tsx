@@ -32,7 +32,9 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
         <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
           {t('directory-label')}
         </span>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight leading-none">{t('find-cubers')}</h2>
+        <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-none">
+          {t('find-cubers')}
+        </h2>
         {total !== undefined && showing !== undefined && (
           <span className="text-xs text-muted-foreground mt-0.5">
             {t.rich('showing-members', {

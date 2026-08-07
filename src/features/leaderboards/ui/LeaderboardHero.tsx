@@ -3,6 +3,7 @@
 import { Tabs } from '@/components/ui/tabs'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 import { LEADERBOARD_PUZZLE_OPTIONS } from '@/features/leaderboards/model/puzzle-options'
+import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 
 interface LeaderboardHeroProps {
   value: string
@@ -14,7 +15,9 @@ export default function LeaderboardHero({ value, onChange }: LeaderboardHeroProp
     value: option.value,
     label: (
       <span className="flex items-center gap-2">
-        <img src={option.src} alt="" className="size-5 shrink-0" />
+        <span className="size-5 shrink-0">
+          <CubeCategoryIcon category={option.label} />
+        </span>
         <span className="font-mono">{option.label}</span>
         <span className="text-[9px] font-medium uppercase tracking-wider opacity-70">{option.mode}</span>
       </span>

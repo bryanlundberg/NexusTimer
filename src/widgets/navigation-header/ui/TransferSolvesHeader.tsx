@@ -18,7 +18,7 @@ function CubeOption({ cube }: { cube: Cube }) {
     <div className="flex w-full items-center gap-2">
       {src && <Image src={src} alt={`${cube.category} icon`} width={20} height={20} unoptimized className="shrink-0" />}
       <span className="truncate">{cube.name}</span>
-      <CategoryBadge category={cube.category} className="ms-auto text-[10px]" />
+      <CategoryBadge category={cube.category} className="ms-auto" />
     </div>
   )
 }

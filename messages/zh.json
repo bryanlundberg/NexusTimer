@@ -1032,7 +1032,6 @@
       "start-timing": "开始计时"
     },
     "hero": {
-      "badge": "永久免费且开源",
       "title-before": "展示你如何",
       "title-highlight": "真正进步的计时器",
       "subtitle": "每个魔方的成绩档案。深度分析。实时竞技。",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "查看你的成绩",
-      "cta-secondary": "导入还原记录",
+      "cta-primary": "开始你的第一次还原",
+      "cta-secondary": "浏览算法",
       "social-proof": "加入不断壮大的魔方社区",
       "scroll": "滚动"
     },
@@ -1056,7 +1055,7 @@
       "wca-events": "WCA 项目",
       "languages": "语言",
       "free": "永久免费",
-      "open-source": "开源"
+      "reviews": "评分"
     },
     "showcase": {
       "label": "应用内部",
@@ -1089,9 +1088,6 @@
       "algs-title": "公式库",
       "algs-desc": "覆盖每种情况的完整公式集,随时学习和练习。"
     },
-    "brands": {
-      "label": "兼容你喜爱的品牌"
-    },
     "how-it-works": {
       "label": "快速开始",
       "title": "四步，零配置",
@@ -1108,20 +1104,22 @@
     },
     "cross-platform": {
       "label": "跨平台",
-      "title": "每块屏幕都美观",
-      "subtitle": "可安装在任何设备上的 PWA，桌面、平板、手机体验一致。"
+      "title": "随时随地计时",
+      "subtitle": "桌面、平板、手机体验一致。",
+      "android-note": "你也可以从 Google Play 安装。",
+      "google-play": "在 Google Play 上获取"
     },
     "testimonials": {
       "label": "魔方爱好者怎么说",
-      "t0-text": "界面简洁好用，而且个人主页是我见过最完整的。",
-      "t0-user": "@steadyturns",
-      "t0-role": "业余爱好者",
-      "t1-text": "离线也能完美运行，我可以在车上练习，不用担心网络。",
-      "t1-user": "@offgridsolver",
-      "t1-role": "每日通勤者",
-      "t2-text": "连接智能魔方和导入旧成绩只用了一分钟。",
-      "t2-user": "@cubecollector",
-      "t2-role": "回归的魔方爱好者"
+      "t0-text": "盲练了几个月 ZBLL，现在能看出到底哪些 case 拖后腿。",
+      "t0-user": "@zbllgrind",
+      "t0-role": "Sub-12 CFOP",
+      "t1-text": "连上 GAN 就再没碰过屏幕，成绩自己就进去了。",
+      "t1-user": "@gandrift",
+      "t1-role": "GAN 356 i",
+      "t2-text": "周五和 Discord 的魔友开房间，比自己一个人刷有意思多了。",
+      "t2-user": "@clubnight",
+      "t2-role": "组织线下活动"
     },
     "faq": {
       "label": "FAQ",
@@ -1152,14 +1150,24 @@
       "statistics": "统计",
       "multiplayer": "多人对战",
       "algorithms": "算法",
+      "trainer": "公式训练器",
       "leaderboards": "排行榜",
+      "people": "魔友",
+      "cubes": "我的魔方",
       "company": "公司",
+      "about-us": "关于我们",
       "contact": "联系我们",
       "privacy": "隐私政策",
       "terms": "服务条款",
+      "account-deletion": "删除账户",
       "community": "社区",
       "discord": "Discord 服务器",
       "github": "GitHub",
+      "forum": "Speedsolving 论坛",
+      "feature-request": "功能建议",
+      "report-bug": "报告问题",
+      "contribute": "参与贡献",
+      "language": "语言",
       "disclaimer": "NexusTimer 是服务于魔方社区的独立项目。",
       "copyright": "© {year} NexusTimer. 保留所有权利。"
     },

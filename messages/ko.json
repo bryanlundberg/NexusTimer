@@ -1032,7 +1032,6 @@
       "start-timing": "타이밍 시작"
     },
     "hero": {
-      "badge": "영원히 무료 오픈소스",
       "title-before": "당신이 정말로",
       "title-highlight": "실력이 향상되고 있음을 보여주는 타이머",
       "subtitle": "큐브별 기록 프로필. 심층 분석. 실시간 대전.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "나의 실력을 확인하세요",
-      "cta-secondary": "풀이 기록 가져오기",
+      "cta-primary": "첫 솔브 시작하기",
+      "cta-secondary": "알고리즘 둘러보기",
       "social-proof": "성장하는 큐버 커뮤니티에 참여하세요",
       "scroll": "스크롤"
     },
@@ -1056,7 +1055,7 @@
       "wca-events": "WCA 종목",
       "languages": "언어",
       "free": "영원히 무료",
-      "open-source": "오픈소스"
+      "reviews": "리뷰"
     },
     "showcase": {
       "label": "앱 내부",
@@ -1089,9 +1088,6 @@
       "algs-title": "알고리즘",
       "algs-desc": "모든 케이스의 알고리즘 세트를 학습하고 훈련하세요."
     },
-    "brands": {
-      "label": "좋아하는 브랜드와 호환"
-    },
     "how-it-works": {
       "label": "시작하기",
       "title": "4단계, 설정 없음",
@@ -1108,20 +1104,22 @@
     },
     "cross-platform": {
       "label": "크로스 플랫폼",
-      "title": "모든 화면에서 아름다운",
-      "subtitle": "어떤 기기에서도 설치되는 PWA. 데스크톱, 태블릿, 스마트폰에서 동일한 경험."
+      "title": "어디서나 타임 측정",
+      "subtitle": "데스크톱, 태블릿, 스마트폰에서 동일한 경험.",
+      "android-note": "Google Play에서 설치할 수도 있습니다.",
+      "google-play": "Google Play에서 다운로드"
     },
     "testimonials": {
       "label": "큐버들의 이야기",
-      "t0-text": "인터페이스가 깔끔하고 쓰기 편하며, 프로필은 지금까지 본 것 중 가장 완성도가 높아요.",
-      "t0-user": "@steadyturns",
-      "t0-role": "취미 큐버",
-      "t1-text": "오프라인에서도 완벽하게 작동해서 연결 걱정 없이 차에서 연습해요.",
-      "t1-user": "@offgridsolver",
-      "t1-role": "매일 통근자",
-      "t2-text": "스마트 큐브 연결과 예전 기록 가져오기가 1분이면 끝났어요.",
-      "t2-user": "@cubecollector",
-      "t2-role": "복귀한 큐버"
+      "t0-text": "몇 달을 ZBLL 감으로만 돌렸는데, 이제 어떤 케이스가 진짜 느린지 보여요.",
+      "t0-user": "@zbllgrind",
+      "t0-role": "Sub-12 CFOP",
+      "t1-text": "GAN 연결하고 나선 화면 안 만져요. 기록이 알아서 들어옵니다.",
+      "t1-user": "@gandrift",
+      "t1-role": "GAN 356 i",
+      "t2-text": "금요일엔 디스코드 사람들이랑 방 파요. 혼자 도는 것보다 훨씬 재밌어요.",
+      "t2-user": "@clubnight",
+      "t2-role": "정모 운영"
     },
     "faq": {
       "label": "FAQ",
@@ -1152,14 +1150,24 @@
       "statistics": "통계",
       "multiplayer": "멀티플레이어",
       "algorithms": "알고리즘",
+      "trainer": "알고리즘 트레이너",
       "leaderboards": "리더보드",
+      "people": "큐버들",
+      "cubes": "내 큐브",
       "company": "회사",
+      "about-us": "소개",
       "contact": "문의하기",
       "privacy": "개인정보 처리방침",
       "terms": "서비스 약관",
+      "account-deletion": "계정 삭제",
       "community": "커뮤니티",
       "discord": "Discord 서버",
       "github": "GitHub",
+      "forum": "Speedsolving 포럼",
+      "feature-request": "기능 제안",
+      "report-bug": "버그 신고",
+      "contribute": "기여하기",
+      "language": "언어",
       "disclaimer": "NexusTimer는 큐빙 커뮤니티를 위한 독립 프로젝트입니다.",
       "copyright": "© {year} NexusTimer. All rights reserved."
     },

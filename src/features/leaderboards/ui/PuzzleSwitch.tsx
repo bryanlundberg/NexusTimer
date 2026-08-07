@@ -2,6 +2,7 @@
 
 import Segmented from '@/shared/ui/segmented/Segmented'
 import { LEADERBOARD_PUZZLE_OPTIONS } from '@/features/leaderboards/model/puzzle-options'
+import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 
 interface PuzzleSwitchProps {
   value: string
@@ -19,7 +20,11 @@ export default function PuzzleSwitch({ value, onChange }: PuzzleSwitchProps) {
         value: option.value,
         label: <span className="font-mono">{option.label}</span>,
         sublabel: option.mode,
-        icon: <img src={option.src} alt="" className="size-6" />
+        icon: (
+          <span className="size-6">
+            <CubeCategoryIcon category={option.label} />
+          </span>
+        )
       }))}
     />
   )

@@ -7,7 +7,7 @@ import { getCategoryOrder } from '@/shared/const/cube-categories'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
 
-const GRID = 'grid-cols-[minmax(9rem,1.2fr)_6rem_6rem_minmax(12rem,2.5fr)_8.5rem_5rem_3.5rem_3.5rem_7rem]'
+const GRID = 'grid-cols-[minmax(9rem,1.2fr)_6rem_6rem_5rem_2rem]'
 
 export { GRID }
 
@@ -38,21 +38,11 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
     return <EmptyTabContent />
   }
 
-  const headers = [
-    tTimeline('col-category'),
-    tSolveCard('single'),
-    tCubes('col-ao5'),
-    tTimeline('col-cube-record'),
-    tTimeline('col-date'),
-    tCubes('col-solves'),
-    '+2',
-    'DNF',
-    tCubes('col-distribution')
-  ]
+  const headers = [tTimeline('col-category'), tSolveCard('single'), tCubes('col-ao5'), tCubes('col-solves')]
 
   return (
     <div className="overflow-x-auto">
-      <div className="min-w-205">
+      <div className="min-w-137">
         {/* Table header */}
         <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
           {headers.map((label, i) => (
@@ -60,6 +50,7 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
               {label}
             </span>
           ))}
+          <span />
         </div>
 
         {/* Rows */}

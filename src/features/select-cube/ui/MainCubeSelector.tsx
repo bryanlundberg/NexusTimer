@@ -4,7 +4,7 @@ import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import SelectCollection from '@/features/select-collection/ui/SelectCollection'
 import { useEffect } from 'react'
 import { cubeCollection } from '@/shared/const/cube-collection'
-import Image from 'next/image'
+import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import { useTranslations } from 'next-intl'
 import { ChevronDown } from 'lucide-react'
 import { CubeNavIcon } from '@/components/ui/nav-icons'
@@ -47,13 +47,9 @@ export default function MainCubeSelector() {
       >
         <div className="flex items-center gap-2 min-w-0">
           {selectedCubeData ? (
-            <Image
-              src={selectedCubeData.src}
-              alt={selectedCubeData.name}
-              width={20}
-              height={20}
-              className="invert dark:invert-0 shrink-0 size-4"
-            />
+            <span className="size-4 shrink-0">
+              <CubeCategoryIcon category={selectedCubeData.name} />
+            </span>
           ) : (
             <CubeNavIcon className="size-4 shrink-0 text-muted-foreground" />
           )}

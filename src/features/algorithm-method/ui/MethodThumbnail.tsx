@@ -7,9 +7,9 @@ import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import type { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 
-const SIZE = 44
+const DEFAULT_SIZE = 76
 
-export default function MethodThumbnail({ set }: { set: ALGORITHM_SET }) {
+export default function MethodThumbnail({ set, size = DEFAULT_SIZE }: { set: ALGORITHM_SET; size?: number }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [inView, setInView] = useState(false)
 
@@ -53,13 +53,13 @@ export default function MethodThumbnail({ set }: { set: ALGORITHM_SET }) {
   return (
     <div
       ref={containerRef}
-      className="flex shrink-0 items-center justify-center overflow-hidden rounded-lg bg-primary/5"
-      style={{ width: SIZE, height: SIZE }}
+      className="badge-notch flex shrink-0 items-center justify-center overflow-hidden border border-border/70 bg-primary/[0.07] p-1.5 transition-colors duration-200 group-hover:border-primary/40 group-hover:bg-primary/[0.12]"
+      style={{ width: size, height: size }}
     >
       {inView && firstMoves ? (
-        <AlgorithmRender config={config} width={SIZE} height={SIZE} />
+        <AlgorithmRender config={config} width={size - 14} height={size - 14} />
       ) : (
-        <div className="size-full animate-pulse rounded-lg bg-muted/50" />
+        <div className="size-full animate-pulse bg-muted/50" />
       )}
     </div>
   )

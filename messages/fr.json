@@ -1032,7 +1032,6 @@
       "start-timing": "Commencer à chronométrer"
     },
     "hero": {
-      "badge": "Gratuit et open source, pour toujours",
       "title-before": "Le timer qui montre comment vous progressez",
       "title-highlight": "vraiment",
       "subtitle": "Profils de performance par cube. Analyses approfondies. Compétition en temps réel.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "Découvrez vos performances",
-      "cta-secondary": "Importer vos résolutions",
+      "cta-primary": "Lance ton premier solve",
+      "cta-secondary": "Explorer les algorithmes",
       "social-proof": "Rejoignez une communauté grandissante de cubeurs",
       "scroll": "Défiler"
     },
@@ -1056,7 +1055,7 @@
       "wca-events": "Épreuves WCA",
       "languages": "Langues",
       "free": "Gratuit pour toujours",
-      "open-source": "Open source"
+      "reviews": "Avis"
     },
     "showcase": {
       "label": "Dans l'application",
@@ -1089,9 +1088,6 @@
       "algs-title": "Algorithmes",
       "algs-desc": "Des sets d'algorithmes complets pour chaque cas, prêts à étudier et à entraîner."
     },
-    "brands": {
-      "label": "Compatible avec vos marques préférées"
-    },
     "how-it-works": {
       "label": "Pour commencer",
       "title": "Quatre étapes, zéro configuration",
@@ -1108,20 +1104,22 @@
     },
     "cross-platform": {
       "label": "Multiplateforme",
-      "title": "Magnifique sur chaque écran",
-      "subtitle": "PWA qui s'installe sur n'importe quel appareil. Même expérience sur ordinateur, tablette et téléphone."
+      "title": "Chronomètre où tu veux",
+      "subtitle": "Même expérience sur ordinateur, tablette et téléphone.",
+      "android-note": "Tu peux aussi l'installer depuis Google Play.",
+      "google-play": "Disponible sur Google Play"
     },
     "testimonials": {
       "label": "Ce que disent les cubeurs",
-      "t0-text": "L'interface est épurée et agréable à utiliser, et les profils sont les plus complets que j'aie vus.",
-      "t0-user": "@steadyturns",
-      "t0-role": "Cubeur amateur",
-      "t1-text": "Ça marche parfaitement hors ligne, je peux donc m'entraîner en voiture sans me soucier de la connexion.",
-      "t1-user": "@offgridsolver",
-      "t1-role": "Usager quotidien",
-      "t2-text": "Connecter mon smart cube et importer mes anciens temps a pris une minute.",
-      "t2-user": "@cubecollector",
-      "t2-role": "Cubeur de retour"
+      "t0-text": "Je bourrais des ZBLL à l'aveugle. Maintenant je vois quels cas sont vraiment lents.",
+      "t0-user": "@zbllgrind",
+      "t0-role": "Sub-12 CFOP",
+      "t1-text": "GAN connecté, je ne touche plus l'écran. Les temps arrivent tout seuls.",
+      "t1-user": "@gandrift",
+      "t1-role": "GAN 356 i",
+      "t2-text": "On fait des rooms le vendredi avec les gens du Discord. Bien mieux que de solve seul.",
+      "t2-user": "@clubnight",
+      "t2-role": "Organise des rencontres"
     },
     "faq": {
       "label": "FAQ",
@@ -1152,14 +1150,24 @@
       "statistics": "Statistiques",
       "multiplayer": "Multijoueur",
       "algorithms": "Algorithmes",
+      "trainer": "Entraîneur d'algorithmes",
       "leaderboards": "Classements",
+      "people": "Cubeurs",
+      "cubes": "Mes cubes",
       "company": "Entreprise",
+      "about-us": "À propos",
       "contact": "Nous contacter",
       "privacy": "Politique de confidentialité",
       "terms": "Conditions d'utilisation",
+      "account-deletion": "Supprimer le compte",
       "community": "Communauté",
       "discord": "Serveur Discord",
       "github": "GitHub",
+      "forum": "Forum Speedsolving",
+      "feature-request": "Proposer une fonctionnalité",
+      "report-bug": "Signaler un bug",
+      "contribute": "Contribuer",
+      "language": "Langue",
       "disclaimer": "NexusTimer est un projet indépendant pour la communauté de cubing.",
       "copyright": "© {year} NexusTimer. Tous droits réservés."
     },

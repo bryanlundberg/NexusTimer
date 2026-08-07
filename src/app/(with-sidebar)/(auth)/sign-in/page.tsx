@@ -22,7 +22,7 @@ export default async function SignInPage() {
         <CubeGrid className="size-12 drop-shadow-xl" />
 
         <div className="text-center space-y-1">
-          <h1 className="text-3xl font-bold tracking-tight">{t('welcome-back')}</h1>
+          <h1 className="font-display text-3xl font-bold tracking-tight">{t('welcome-back')}</h1>
           <p className="text-sm text-muted-foreground">{t('sign-in-subtitle')}</p>
         </div>
 

@@ -1,6 +1,5 @@
 import * as React from 'react'
-import Image from 'next/image'
-import { cubeCollection } from '@/shared/const/cube-collection'
+import { CubeCategoryTile } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import dayjs from '@/shared/lib/dayjs'
 import { Cube } from '@/entities/cube/model/types'
 import { useLocale, useTranslations } from 'next-intl'
@@ -34,15 +33,13 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
   const totalSolves = successCount + plus2Count + dnfCount
 
   const validSolves = allSolves.filter((s) => !s.dnf)
-  const pb = validSolves.length > 0 ? _.minBy(validSolves, (s) => s.time + (s.plus2 ? 2000 : 0)) : null
-  const pbTime = pb ? pb.time + (pb.plus2 ? 2000 : 0) : null
+  const pb = validSolves.length > 0 ? _.minBy(validSolves, (s) => s.time) : null
+  const pbTime = pb ? pb.time : null
 
   const ao5Ms = calcBestAo(allSolves, 5)
   const ao5Str = !isFinite(ao5Ms) || ao5Ms <= 0 ? '--' : formatTime(ao5Ms)
 
   const totalTime = allSolves.reduce((acc, s) => acc + (s.time || 0), 0)
-
-  const cubeImg = cubeCollection.find((item) => item.name === cube.category)?.src || ''
 
   return (
     <motion.div
@@ -51,21 +48,13 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
       transition={{ duration: 0.25, ease: 'easeOut' }}
     >
       {/* Cube image */}
-      <Image
-        unoptimized
-        src={cubeImg}
-        alt={cube.name}
-        className="object-scale-down rounded-lg bg-muted/40 border border-border/30 p-0.5"
-        draggable={false}
-        width={40}
-        height={40}
-      />
+      <CubeCategoryTile category={cube.category} />
 
       {/* Name + category badge + date */}
       <div className="min-w-0">
         <div className="flex items-center gap-2 mb-0.5">
           <span className="font-bold text-sm truncate">{cube.name}</span>
-          <CategoryBadge category={cube.category} className="text-[10px] px-1.5 py-0 h-4 shrink-0" />
+          <CategoryBadge category={cube.category} className="shrink-0" />
         </div>
         <span className="text-[10px] text-muted-foreground">
           {t('created')}: {dayjs(cube.createdAt).locale(locale).format('LL')}

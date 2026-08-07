@@ -1032,7 +1032,6 @@
       "start-timing": "Bắt đầu bấm giờ"
     },
     "hero": {
-      "badge": "Miễn phí và mã nguồn mở, mãi mãi",
       "title-before": "Đồng hồ cho bạn thấy bạn đang thực sự",
       "title-highlight": "tiến bộ ra sao",
       "subtitle": "Hồ sơ thành tích theo từng khối. Phân tích chuyên sâu. Thi đấu thời gian thực.",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "Khám phá thành tích của bạn",
-      "cta-secondary": "Nhập các lượt giải của bạn",
+      "cta-primary": "Bắt đầu lượt giải đầu tiên",
+      "cta-secondary": "Khám phá thuật toán",
       "social-proof": "Tham gia cộng đồng cuber đang phát triển",
       "scroll": "Cuộn"
     },
@@ -1056,7 +1055,7 @@
       "wca-events": "Nội dung WCA",
       "languages": "Ngôn ngữ",
       "free": "Miễn phí mãi mãi",
-      "open-source": "Mã nguồn mở"
+      "reviews": "Đánh giá"
     },
     "showcase": {
       "label": "Bên trong ứng dụng",
@@ -1089,9 +1088,6 @@
       "algs-title": "Công thức",
       "algs-desc": "Bộ công thức đầy đủ cho mọi trường hợp, sẵn sàng để học và luyện tập."
     },
-    "brands": {
-      "label": "Hoạt động với các thương hiệu yêu thích của bạn"
-    },
     "how-it-works": {
       "label": "Bắt đầu",
       "title": "Bốn bước, không cần thiết lập",
@@ -1108,20 +1104,22 @@
     },
     "cross-platform": {
       "label": "Đa nền tảng",
-      "title": "Đẹp trên mọi màn hình",
-      "subtitle": "PWA cài đặt trên mọi thiết bị. Trải nghiệm như nhau trên máy tính, máy tính bảng và điện thoại."
+      "title": "Bấm giờ ở bất cứ đâu",
+      "subtitle": "Trải nghiệm như nhau trên máy tính, máy tính bảng và điện thoại.",
+      "android-note": "Bạn cũng có thể cài đặt từ Google Play.",
+      "google-play": "Tải xuống trên Google Play"
     },
     "testimonials": {
       "label": "Cuber nói gì",
-      "t0-text": "Giao diện gọn gàng và dùng rất thích, còn hồ sơ thì đầy đủ nhất mà tôi từng thấy.",
-      "t0-user": "@steadyturns",
-      "t0-role": "Cuber nghiệp dư",
-      "t1-text": "Hoạt động hoàn hảo khi ngoại tuyến, nên tôi có thể luyện trong ô tô mà không lo về kết nối.",
-      "t1-user": "@offgridsolver",
-      "t1-role": "Người đi làm hằng ngày",
-      "t2-text": "Kết nối smart cube và nhập các thời gian cũ chỉ mất một phút.",
-      "t2-user": "@cubecollector",
-      "t2-role": "Cuber quay lại"
+      "t0-text": "Tôi cày ZBLL mù mấy tháng trời. Giờ thấy rõ case nào thật sự chậm để tập.",
+      "t0-user": "@zbllgrind",
+      "t0-role": "Sub-12 CFOP",
+      "t1-text": "Kết nối GAN xong là khỏi chạm màn hình, thời gian tự nhảy vào.",
+      "t1-user": "@gandrift",
+      "t1-role": "GAN 356 i",
+      "t2-text": "Thứ Sáu bọn tôi mở room với anh em trong Discord. Vui hơn hẳn solve một mình.",
+      "t2-user": "@clubnight",
+      "t2-role": "Tổ chức offline"
     },
     "faq": {
       "label": "FAQ",
@@ -1152,14 +1150,24 @@
       "statistics": "Thống kê",
       "multiplayer": "Multiplayer",
       "algorithms": "Thuật toán",
+      "trainer": "Trình luyện thuật toán",
       "leaderboards": "Bảng xếp hạng",
+      "people": "Cuber",
+      "cubes": "Khối của tôi",
       "company": "Công ty",
+      "about-us": "Về chúng tôi",
       "contact": "Liên hệ",
       "privacy": "Chính sách bảo mật",
       "terms": "Điều khoản dịch vụ",
+      "account-deletion": "Xóa tài khoản",
       "community": "Cộng đồng",
       "discord": "Máy chủ Discord",
       "github": "GitHub",
+      "forum": "Diễn đàn Speedsolving",
+      "feature-request": "Đề xuất tính năng",
+      "report-bug": "Báo lỗi",
+      "contribute": "Đóng góp",
+      "language": "Ngôn ngữ",
       "disclaimer": "NexusTimer là một dự án độc lập dành cho cộng đồng cubing.",
       "copyright": "© {year} NexusTimer. Bảo lưu mọi quyền."
     },

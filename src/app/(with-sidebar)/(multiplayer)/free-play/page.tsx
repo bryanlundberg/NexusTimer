@@ -55,7 +55,7 @@ export default function FreePlayPage() {
             </span>
           </div>
 
-          <h1 className="text-3xl font-bold tracking-tight lg:text-4xl mb-2">{t('title')}</h1>
+          <h1 className="font-display text-3xl font-bold tracking-tight lg:text-4xl mb-2">{t('title')}</h1>
           <p className="text-muted-foreground max-w-lg mb-6">{t('description')}</p>
 
           <Button size="default" className="gap-2" onClick={handleCreateRoom}>
@@ -115,7 +115,7 @@ export default function FreePlayPage() {
             transition={{ duration: 0.4, delay: 0.25 }}
           >
             <div className="notch-br [--nbr:16px] border border-border p-5">
-              <h3 className="text-sm font-semibold mb-4">{t('how-to-play.title')}</h3>
+              <h3 className="font-display text-sm font-semibold mb-4">{t('how-to-play.title')}</h3>
               <ol className="space-y-3 text-sm text-muted-foreground">
                 {(['step1', 'step2', 'step3'] as const).map((step, i) => (
                   <li key={step} className="flex gap-3 items-start">

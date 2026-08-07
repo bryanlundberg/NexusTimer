@@ -116,7 +116,7 @@
 
 
 @theme inline {
-  --font-display: var(--font-space-grotesk), 'Saira', ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-chakra), 'Chakra Petch', ui-sans-serif, system-ui, sans-serif;
   --font-brand: var(--font-chakra), 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
   --color-cube-white: var(--cube-white);
   --color-cube-yellow: var(--cube-yellow);
@@ -690,6 +690,10 @@
   clip-path: var(--icon-notch-shape);
   pointer-events: none;
 }
+.icon-notch[data-tone='muted'] {
+  --icon-notch-border-color: color-mix(in oklab, var(--border) 45%, transparent);
+  --icon-notch-fill: color-mix(in oklab, var(--foreground) 3%, var(--background));
+}
 .icon-notch[data-tone='warning'] {
   --icon-notch-border-color: color-mix(in oklab, #eab308 55%, transparent);
   --icon-notch-fill: color-mix(in oklab, #eab308 12%, var(--background));
@@ -741,8 +745,8 @@
 }
 .category-notch[data-selected='true'] {
   --cat-border: 1.5px;
-  --cat-border-color: var(--primary);
-  --cat-fill: color-mix(in oklab, var(--primary) 25%, var(--background));
+  --cat-border-color: color-mix(in oklab, var(--primary) 75%, var(--border));
+  --cat-fill: color-mix(in oklab, var(--primary) 11%, var(--background));
 }
 
 /* Notched rows for the cube selector list */

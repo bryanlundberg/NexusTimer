@@ -45,7 +45,7 @@ export default function ResultsTab() {
     const userImage = onlineUser?.image ?? solveWithName?.userImage ?? null
 
     const validSolves = allSolves.filter((s) => !s.dnf)
-    const allTimes = validSolves.map((s) => s.time + (s.plus2 ? 2000 : 0))
+    const allTimes = validSolves.map((s) => s.time)
     const best = allTimes.length ? Math.min(...allTimes) : null
 
     // Average of last 5 rounds (relative to totalRounds), missed/DNF rounds count toward denominator
@@ -54,7 +54,7 @@ export default function ResultsTab() {
     const lastFiveTimes = lastFiveRounds.map((r) => {
       const s = solveByRound[r]
       if (!s || s.dnf) return null
-      return s.time + (s.plus2 ? 2000 : 0)
+      return s.time
     })
     const validLastFive = lastFiveTimes.filter((t): t is number => t !== null)
     const avg = validLastFive.length > 0 ? Math.round(validLastFive.reduce((a, b) => a + b, 0) / lastFiveCount) : null
@@ -65,7 +65,7 @@ export default function ResultsTab() {
   const formatSolve = (s: any): { text: string; missed: boolean; dnf: boolean } => {
     if (!s) return { text: '-', missed: true, dnf: false }
     if (s.dnf) return { text: 'DNF', missed: false, dnf: true }
-    const time = formatTime(s.time + (s.plus2 ? 2000 : 0))
+    const time = formatTime(s.time)
     return { text: s.plus2 ? `${time}+` : time, missed: false, dnf: false }
   }
 

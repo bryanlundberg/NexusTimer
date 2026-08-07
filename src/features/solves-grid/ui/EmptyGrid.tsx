@@ -51,10 +51,16 @@ export default function EmptyGrid({
         <Nexi state={nexiState} size={120} aria-label={title ? title : t('empty-solves')} />
       </motion.div>
 
-      <motion.h2 variants={item} className="mt-1 text-lg font-semibold tracking-tight text-balance text-foreground">
+      <motion.h2
+        variants={item}
+        className="mt-1 font-display text-lg font-semibold tracking-tight text-balance text-foreground"
+      >
         {title ? title : t('empty-solves')}
       </motion.h2>
-      <motion.p variants={item} className="mt-2 max-w-xs text-sm leading-relaxed text-muted-foreground text-pretty">
+      <motion.p
+        variants={item}
+        className="mt-2 max-w-xs font-display text-sm leading-relaxed text-muted-foreground text-pretty"
+      >
         {description ? description : t('empty-solves-description')}
       </motion.p>
     </motion.div>

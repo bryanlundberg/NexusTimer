@@ -1032,7 +1032,6 @@
       "start-timing": "タイマーを始める"
     },
     "hero": {
-      "badge": "無料・オープンソース, 永遠に",
       "title-before": "あなたが本当に",
       "title-highlight": "上達していることを示すタイマー",
       "subtitle": "キューブごとのパフォーマンスプロフィール。深い分析。リアルタイム競技。",
@@ -1047,8 +1046,8 @@
         "6": "Skewb",
         "7": "Clock"
       },
-      "cta-primary": "パフォーマンスを確認する",
-      "cta-secondary": "ソルブをインポート",
+      "cta-primary": "最初のソルブを始める",
+      "cta-secondary": "アルゴリズムを見る",
       "social-proof": "成長するキューバーコミュニティに参加しよう",
       "scroll": "スクロール"
     },
@@ -1056,7 +1055,7 @@
       "wca-events": "WCA競技",
       "languages": "言語",
       "free": "永久無料",
-      "open-source": "オープンソース"
+      "reviews": "レビュー"
     },
     "showcase": {
       "label": "アプリの中身",
@@ -1089,9 +1088,6 @@
       "algs-title": "アルゴリズム",
       "algs-desc": "すべてのケースのアルゴリズムセットを、学習とトレーニングに。"
     },
-    "brands": {
-      "label": "お気に入りブランドに対応"
-    },
     "how-it-works": {
       "label": "はじめ方",
       "title": "4ステップ、設定不要",
@@ -1108,20 +1104,22 @@
     },
     "cross-platform": {
       "label": "クロスプラットフォーム",
-      "title": "どの画面でも美しい",
-      "subtitle": "どのデバイスにもインストール可能なPWA。デスクトップ、タブレット、スマホで同じ体験。"
+      "title": "どこでもタイム計測",
+      "subtitle": "デスクトップ、タブレット、スマホで同じ体験。",
+      "android-note": "Google Play からインストールすることもできます。",
+      "google-play": "Google Play で手に入れよう"
     },
     "testimonials": {
       "label": "キューバーの声",
-      "t0-text": "インターフェースは洗練されていて使いやすく、プロフィールはこれまで見た中で一番充実しています。",
-      "t0-user": "@steadyturns",
-      "t0-role": "趣味のキューバー",
-      "t1-text": "オフラインでも完璧に動くので、接続を気にせず車で練習できます。",
-      "t1-user": "@offgridsolver",
-      "t1-role": "毎日の通勤者",
-      "t2-text": "スマートキューブの接続も昔のタイムのインポートも1分で完了。",
-      "t2-user": "@cubecollector",
-      "t2-role": "復帰したキューバー"
+      "t0-text": "何ヶ月もZBLLを手当たり次第に回してた。今はどのケースが遅いか一目で分かる。",
+      "t0-user": "@zbllgrind",
+      "t0-role": "Sub-12 CFOP",
+      "t1-text": "GANを繋いだら画面に触らなくなった。タイムが勝手に入ってく。",
+      "t1-user": "@gandrift",
+      "t1-role": "GAN 356 i",
+      "t2-text": "金曜はDiscordの人たちとルームを立ててる。一人で回すより断然楽しい。",
+      "t2-user": "@clubnight",
+      "t2-role": "オフ会主催"
     },
     "faq": {
       "label": "FAQ",
@@ -1152,14 +1150,24 @@
       "statistics": "統計",
       "multiplayer": "マルチプレイヤー",
       "algorithms": "アルゴリズム",
+      "trainer": "アルゴリズムトレーナー",
       "leaderboards": "ランキング",
+      "people": "キューバー",
+      "cubes": "マイキューブ",
       "company": "会社",
+      "about-us": "私たちについて",
       "contact": "お問い合わせ",
       "privacy": "プライバシーポリシー",
       "terms": "利用規約",
+      "account-deletion": "アカウントを削除",
       "community": "コミュニティ",
       "discord": "Discordサーバー",
       "github": "GitHub",
+      "forum": "Speedsolvingフォーラム",
+      "feature-request": "機能をリクエスト",
+      "report-bug": "バグを報告",
+      "contribute": "コントリビュート",
+      "language": "言語",
       "disclaimer": "NexusTimerはキューバーコミュニティのための独立プロジェクトです。",
       "copyright": "© {year} NexusTimer. All rights reserved."
     },
