@@ -783,6 +783,8 @@
         "cll": "CLL resolve a última camada de um 2x2 em um algoritmo após orientar a primeira camada.",
         "eg-1": "EG-1 resolve a última camada de um 2x2 com uma troca adjacente na camada de baixo.",
         "eg-2": "EG-2 resolve a última camada de um 2x2 com uma troca diagonal na camada de baixo.",
+        "f2l": "Os algoritmos F2L (First Two Layers) para resolver o cubo de Rubik com o método CFOP. Esses algoritmos resolvem as duas primeiras camadas emparelhando as peças de canto e de aresta ao mesmo tempo, depois que a cruz estiver completa.",
+        "advanced-f2l": "Algoritmos de F2L avançado para os casos mais difíceis de emparelhamento canto-aresta do método CFOP: peças presas no último slot, peças presas na camada errada, ou ambas as peças presas ao mesmo tempo. Vão além do F2L intuitivo para cobrir os casos que geralmente custam mais movimentos.",
         "oll": "OLL (Orientation of Last Layer) - Orientar todas as peças da última camada (CFOP).",
         "pll": "PLL (Permutation of Last Layer) - Permutar os meios e cantos da última camada (CFOP).",
         "coll": "COLL orienta e permuta os cantos se os meios já estiverem orientados.",
