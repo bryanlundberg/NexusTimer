@@ -13,10 +13,20 @@ import type { TwistyPlayer } from 'cubing/twisty'
  * D-layer pieces sit at slots 4–7 of EDGES/CORNERS and slot 5 of CENTERS, so
  * each entry mirrors the built-in U-layer stickering onto those D-layer slots.
  *
- * Note: PLL/COLL/ZBLL use `-` (Regular) rather than the built-in `P`
+ * The mask is indexed by piece *identity*, not by slot (see
+ * Cube3D.setStickeringMask), so a masked piece keeps its stickering wherever the
+ * algorithm moves it. That is what makes the `z2` flip work: the D-layer pieces
+ * are the ones that end up on top, and they carry the mask with them.
+ *
+ * PLL/COLL/ZBLL use `-` (Regular) rather than the built-in `P`
  * (PermuteNonPrimary) on the last-layer pieces. `P` dims the top facelet and
  * only colors the sides; `-` keeps every top sticker highlighted, which is
  * needed to read corner orientation in ZBLL and looks cleaner for PLL.
+ *
+ * `F2L` dims the D-layer instead of highlighting it — post-flip those are the
+ * yellow last-layer pieces, which are irrelevant while solving F2L. Dim rather
+ * than `I` (Ignored) keeps them recognisably yellow on top while the F2L pieces
+ * stay at full brightness.
  */
 const D_LAYER_MASKS: Record<string, Record<string, string>> = {
   OLL: {
@@ -25,6 +35,9 @@ const D_LAYER_MASKS: Record<string, Record<string, string>> = {
   },
   PLL: {
     '3x3x3': 'EDGES:DDDD----DDDD,CORNERS:DDDD----,CENTERS:DDDDD-'
+  },
+  F2L: {
+    '3x3x3': 'EDGES:----DDDD----,CORNERS:----DDDD,CENTERS:-----D'
   }
 }
 
@@ -35,9 +48,23 @@ type LooseViz = Partial<TwistyPlayer> & { experimentalStickering?: string; puzzl
 const normalizePuzzle = (puzzle: string): string => (puzzle === '2x2' ? '2x2x2' : puzzle === '3x3' ? '3x3x3' : puzzle)
 
 /**
+ * The rotation that puts the yellow layer on top for a given puzzle, or `''` for
+ * puzzles this module leaves alone (pyraminx has no `z2`). For renderers that
+ * build their own TwistyPlayer instead of going through `applyYellowOrientation`.
+ */
+export const yellowOrientationSetupAlg = (puzzle: string): string =>
+  SUPPORTED_PUZZLES.has(normalizePuzzle(puzzle)) ? 'z2' : ''
+
+/**
  * Orients 2x2–5x5 algorithm cases on the yellow (D) layer instead of the default
  * white (U) layer. 4x4/5x5 sets use `full` stickering, so they only get the `z2`
  * rotation (no mask). Unsupported puzzles are returned unchanged.
+ *
+ * Callers pair this with `experimentalSetupAnchor: 'end'`, which makes cubing.js
+ * derive the start state as `z2 · alg⁻¹`, so the rendered case is always the
+ * inverse of the algorithm printed next to it. Collections also carry a `setup`
+ * field, but it does not always describe the same case as `algs[0]`, so using it
+ * here would let the thumbnail drift from the algorithm text.
  */
 export const applyYellowOrientation = <T extends object>(config: T): T => {
   const viz = config as LooseViz
