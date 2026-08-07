@@ -115,7 +115,7 @@ export const ALGORITHM_SETS = [
     Icon: Grid3x3,
     difficulty: 2,
     virtualization: {
-      experimentalStickering: 'full',
+      experimentalStickering: 'F2L',
       visualization: '3D'
     },
     file: 'f2l.ts'
@@ -130,7 +130,7 @@ export const ALGORITHM_SETS = [
     Icon: Grid3x3,
     difficulty: 3,
     virtualization: {
-      experimentalStickering: 'full',
+      experimentalStickering: 'F2L',
       visualization: '3D'
     },
     file: 'advanced-f2l.ts'
