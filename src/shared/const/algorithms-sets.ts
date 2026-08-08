@@ -11,6 +11,7 @@ import { WV_ALGS } from '@/shared/data/algs/vw'
 import { PARITY_444_ALGS } from '@/shared/data/algs/parity-444'
 import { PARITY_555_ALGS } from '@/shared/data/algs/parity-555'
 import { L2C_555_ALGS } from '@/shared/data/algs/l2c-555'
+import { L2E_555_ALGS } from '@/shared/data/algs/l2e-555'
 import { CLL_ALGS } from '@/shared/data/algs/cll'
 import { EG_1_ALGS } from '@/shared/data/algs/eg-1'
 import { EG_2_ALGS } from '@/shared/data/algs/eg-2'
@@ -407,6 +408,23 @@ export const ALGORITHM_SETS = [
       experimentalDragInput: 'none'
     },
     file: 'l2c-555.ts'
+  },
+  {
+    slug: 'l2e-5x5',
+    goal: 'full',
+    title: 'L2E',
+    subtitle: 'Last Two Edges (5x5)',
+    puzzle: '5x5x5',
+    algorithms: L2E_555_ALGS,
+    Icon: Grid2x2Plus,
+    difficulty: 2,
+    virtualization: {
+      experimentalStickering: 'edges-only',
+      puzzle: '5x5x5',
+      visualization: '3D',
+      experimentalDragInput: 'none'
+    },
+    file: 'l2e-555.ts'
   },
   {
     slug: 'l4e',
