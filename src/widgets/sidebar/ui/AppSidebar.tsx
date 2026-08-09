@@ -17,7 +17,8 @@ import {
   AlgorithmsNavIcon,
   PeopleNavIcon,
   LeaderboardsNavIcon,
-  FreePlayNavIcon
+  FreePlayNavIcon,
+  VersusNavIcon
 } from '@/components/ui/nav-icons'
 import { useCubeActions } from '@/features/manage-cubes/model/useCubeActions'
 
@@ -157,6 +158,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           url: '/free-play',
           icon: FreePlayNavIcon
         }
+      ],
+      local: [
+        {
+          title: t('NavMain.versus'),
+          url: '/versus',
+          icon: VersusNavIcon
+        }
       ]
     }),
     [t, handleCreate]
@@ -171,6 +179,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     if (matches(data.training)) return 'var(--cube-green)'
     if (matches(data.community)) return 'var(--cube-orange)'
     if (matches(data.multiplayer)) return 'var(--cube-red)'
+    if (matches(data.local)) return 'var(--cube-yellow)'
     return 'var(--cube-blue)'
   }, [data, pathname])
 
@@ -253,6 +262,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <NavMain items={data.training} label={t('NavMain.training')} accent="var(--cube-green)" />
           <NavMain items={data.community} label={t('NavMain.community')} accent="var(--cube-orange)" />
           <NavMain items={data.multiplayer} label={t('NavMain.multiplayer')} accent="var(--cube-red)" />
+          <NavMain items={data.local} label={t('NavMain.local')} accent="var(--cube-yellow)" />
         </div>
 
         <div className="pointer-events-none sticky bottom-0 z-10 -mt-7 flex h-7 items-end justify-center group-data-[collapsible=icon]:hidden">
