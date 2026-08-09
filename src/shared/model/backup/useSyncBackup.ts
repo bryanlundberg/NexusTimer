@@ -49,7 +49,6 @@ export const useSyncBackup = () => {
 
       if (!res.ok) throw new Error(`Upload failed with status ${res.status}`)
 
-      updateSetting('sync.lastSync', Date.now())
       updateSetting('sync.totalSolves', 0)
 
       setIsUploading(false)
@@ -91,8 +90,6 @@ export const useSyncBackup = () => {
       const existingCubes = await cubesDB.getAllDatabase()
 
       const newCubes: Cube[] = await mergeAndUniqData(normalizeOldData(backupData), normalizeOldData(existingCubes))
-
-      updateSetting('sync.lastSync', Date.now())
 
       await cubesDB.clear()
       await cubesDB.saveBatch(newCubes)
