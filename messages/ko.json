@@ -543,6 +543,8 @@
       "leaderboards": "순위표",
       "multiplayer": "온라인",
       "free-play": "자유 연습",
+      "local": "Local",
+      "versus": "Versus",
       "install-app": "앱 설치",
       "settings": "설정",
       "account": "내 계정",
@@ -1025,6 +1027,22 @@
     "OpenGraph": {
       "room": "{roomId}번 방",
       "description": "NexusTimer 실시간 대결에 참여하세요! ID: {roomId}"
+    }
+  },
+  "VersusPage": {
+    "title": "Versus",
+    "description": "Split one device between 2 to 4 cubers and race on the same scramble.",
+    "players": "Players",
+    "round": "Round {round}",
+    "reset": "Reset match",
+    "player": "Player {number}",
+    "hold-to-start": "Hold to start",
+    "release-to-go": "Release to go",
+    "round-results": "Round results",
+    "next-round": "Next round",
+    "category-modal": {
+      "title": "Select event",
+      "description": "Everyone races the same scramble on the selected event."
     }
   },
   "LandingPage": {

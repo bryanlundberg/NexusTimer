@@ -543,6 +543,8 @@
       "leaderboards": "Рейтинги",
       "multiplayer": "Онлайн",
       "free-play": "Свободная игра",
+      "local": "Local",
+      "versus": "Versus",
       "install-app": "Установить приложение",
       "settings": "Настройки",
       "account": "Мой аккаунт",
@@ -1025,6 +1027,22 @@
     "OpenGraph": {
       "room": "Комната {roomId}",
       "description": "Заходи в мою комнату на NexusTimer для живой конкуренции! ID: {roomId}"
+    }
+  },
+  "VersusPage": {
+    "title": "Versus",
+    "description": "Split one device between 2 to 4 cubers and race on the same scramble.",
+    "players": "Players",
+    "round": "Round {round}",
+    "reset": "Reset match",
+    "player": "Player {number}",
+    "hold-to-start": "Hold to start",
+    "release-to-go": "Release to go",
+    "round-results": "Round results",
+    "next-round": "Next round",
+    "category-modal": {
+      "title": "Select event",
+      "description": "Everyone races the same scramble on the selected event."
     }
   },
   "LandingPage": {

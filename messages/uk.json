@@ -548,6 +548,8 @@
       "leaderboards": "Таблиця лідерів",
       "multiplayer": "Онлайн",
       "free-play": "Вільна гра",
+      "local": "Local",
+      "versus": "Versus",
       "install-app": "Встановити застосунок",
       "settings": "Налаштування",
       "account": "Мій обліковий запис",
@@ -1025,6 +1027,22 @@
     "OpenGraph": {
       "room": "Кімната {roomId}",
       "description": "Приєднуйтесь до моєї кімнати на NexusTimer, щоб позмагатися наживо! ID: {roomId}"
+    }
+  },
+  "VersusPage": {
+    "title": "Versus",
+    "description": "Split one device between 2 to 4 cubers and race on the same scramble.",
+    "players": "Players",
+    "round": "Round {round}",
+    "reset": "Reset match",
+    "player": "Player {number}",
+    "hold-to-start": "Hold to start",
+    "release-to-go": "Release to go",
+    "round-results": "Round results",
+    "next-round": "Next round",
+    "category-modal": {
+      "title": "Select event",
+      "description": "Everyone races the same scramble on the selected event."
     }
   },
   "LandingPage": {

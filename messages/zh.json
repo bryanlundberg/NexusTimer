@@ -543,6 +543,8 @@
       "leaderboards": "排行榜",
       "multiplayer": "在线",
       "free-play": "自由练习",
+      "local": "Local",
+      "versus": "Versus",
       "install-app": "安装应用",
       "settings": "设置",
       "account": "我的账户",
@@ -1025,6 +1027,22 @@
     "OpenGraph": {
       "room": "房间 {roomId}",
       "description": "加入我在 NexusTimer 的房间一起实时竞技！ID: {roomId}"
+    }
+  },
+  "VersusPage": {
+    "title": "Versus",
+    "description": "Split one device between 2 to 4 cubers and race on the same scramble.",
+    "players": "Players",
+    "round": "Round {round}",
+    "reset": "Reset match",
+    "player": "Player {number}",
+    "hold-to-start": "Hold to start",
+    "release-to-go": "Release to go",
+    "round-results": "Round results",
+    "next-round": "Next round",
+    "category-modal": {
+      "title": "Select event",
+      "description": "Everyone races the same scramble on the selected event."
     }
   },
   "LandingPage": {

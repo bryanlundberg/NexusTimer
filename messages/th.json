@@ -548,6 +548,8 @@
       "leaderboards": "ลีดเดอร์บอร์ด",
       "multiplayer": "ออนไลน์",
       "free-play": "เล่นอิสระ",
+      "local": "Local",
+      "versus": "Versus",
       "install-app": "ติดตั้งแอป",
       "settings": "การตั้งค่า",
       "account": "บัญชีของฉัน",
@@ -1025,6 +1027,22 @@
     "OpenGraph": {
       "room": "ห้อง {roomId}",
       "description": "เข้าร่วมห้องของฉันบน NexusTimer เพื่อแข่งขันแบบสด! ID: {roomId}"
+    }
+  },
+  "VersusPage": {
+    "title": "Versus",
+    "description": "Split one device between 2 to 4 cubers and race on the same scramble.",
+    "players": "Players",
+    "round": "Round {round}",
+    "reset": "Reset match",
+    "player": "Player {number}",
+    "hold-to-start": "Hold to start",
+    "release-to-go": "Release to go",
+    "round-results": "Round results",
+    "next-round": "Next round",
+    "category-modal": {
+      "title": "Select event",
+      "description": "Everyone races the same scramble on the selected event."
     }
   },
   "LandingPage": {

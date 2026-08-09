@@ -730,6 +730,8 @@
       "leaderboards": "Clasificaciones",
       "multiplayer": "En línea",
       "free-play": "Juego Libre",
+      "local": "Local",
+      "versus": "Versus",
       "install-app": "Instalar App",
       "settings": "Ajustes",
       "account": "Mi cuenta",
@@ -1025,6 +1027,22 @@
     "OpenGraph": {
       "room": "Sala {roomId}",
       "description": "¡Únete a mi sala en NexusTimer para competir en vivo! ID: {roomId}"
+    }
+  },
+  "VersusPage": {
+    "title": "Versus",
+    "description": "Divide un mismo dispositivo entre 2 y 4 cuberos y compitan con el mismo scramble.",
+    "players": "Jugadores",
+    "round": "Ronda {round}",
+    "reset": "Reiniciar partida",
+    "player": "Jugador {number}",
+    "hold-to-start": "Mantén para iniciar",
+    "release-to-go": "Suelta para arrancar",
+    "round-results": "Resultados de la ronda",
+    "next-round": "Siguiente ronda",
+    "category-modal": {
+      "title": "Selecciona evento",
+      "description": "Todos compiten con el mismo scramble del evento elegido."
     }
   },
   "LandingPage": {

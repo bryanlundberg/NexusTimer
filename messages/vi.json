@@ -548,6 +548,8 @@
       "leaderboards": "Bảng xếp hạng",
       "multiplayer": "Trực tuyến",
       "free-play": "Chơi tự do",
+      "local": "Local",
+      "versus": "Versus",
       "install-app": "Cài đặt ứng dụng",
       "settings": "Cài đặt",
       "account": "Tài khoản của tôi",
@@ -1025,6 +1027,22 @@
     "OpenGraph": {
       "room": "Phòng {roomId}",
       "description": "Tham gia phòng của tôi trên NexusTimer để thi đấu trực tiếp! ID: {roomId}"
+    }
+  },
+  "VersusPage": {
+    "title": "Versus",
+    "description": "Split one device between 2 to 4 cubers and race on the same scramble.",
+    "players": "Players",
+    "round": "Round {round}",
+    "reset": "Reset match",
+    "player": "Player {number}",
+    "hold-to-start": "Hold to start",
+    "release-to-go": "Release to go",
+    "round-results": "Round results",
+    "next-round": "Next round",
+    "category-modal": {
+      "title": "Select event",
+      "description": "Everyone races the same scramble on the selected event."
     }
   },
   "LandingPage": {

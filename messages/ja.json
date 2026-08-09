@@ -543,6 +543,8 @@
       "leaderboards": "ランキング",
       "multiplayer": "オンライン",
       "free-play": "フリープレイ",
+      "local": "Local",
+      "versus": "Versus",
       "install-app": "アプリをインストール",
       "settings": "設定",
       "account": "マイアカウント",
@@ -1025,6 +1027,22 @@
     "OpenGraph": {
       "room": "ルーム {roomId}",
       "description": "NexusTimerでリアルタイムに対戦しましょう！ ID: {roomId}"
+    }
+  },
+  "VersusPage": {
+    "title": "Versus",
+    "description": "Split one device between 2 to 4 cubers and race on the same scramble.",
+    "players": "Players",
+    "round": "Round {round}",
+    "reset": "Reset match",
+    "player": "Player {number}",
+    "hold-to-start": "Hold to start",
+    "release-to-go": "Release to go",
+    "round-results": "Round results",
+    "next-round": "Next round",
+    "category-modal": {
+      "title": "Select event",
+      "description": "Everyone races the same scramble on the selected event."
     }
   },
   "LandingPage": {
