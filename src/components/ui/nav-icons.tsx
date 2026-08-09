@@ -138,3 +138,12 @@ export function FreePlayNavIcon(props: IconProps) {
     </Svg>
   )
 }
+
+/* Versus — one screen split between two players */
+export function VersusNavIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path fillRule="evenodd" d="M3 3h18v8.2H3zM3 12.8h18V21H3z" />
+    </Svg>
+  )
+}
