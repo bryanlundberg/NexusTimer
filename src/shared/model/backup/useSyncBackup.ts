@@ -93,7 +93,6 @@ export const useSyncBackup = () => {
       const newCubes: Cube[] = await mergeAndUniqData(normalizeOldData(backupData), normalizeOldData(existingCubes))
 
       updateSetting('sync.lastSync', Date.now())
-      updateSetting('sync.totalSolves', 0)
 
       await cubesDB.clear()
       await cubesDB.saveBatch(newCubes)
