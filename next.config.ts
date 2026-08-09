@@ -16,7 +16,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   experimental: {
     turbopackFileSystemCacheForDev: true,
-    turbopackRustReactCompiler: true
+    turbopackRustReactCompiler: process.env.NODE_ENV !== 'production'
   },
   allowedDevOrigins: ['*.trycloudflare.com'],
   images: {
