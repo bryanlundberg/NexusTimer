@@ -266,6 +266,7 @@
         "deleted-toast": "ลบการต่อ {count} รายการแล้ว",
         "moved-toast": "ย้ายการต่อ {count} รายการไปยังประวัติแล้ว",
         "move-to-session": "ย้ายไปเซสชัน",
+        "select-all": "เลือกทั้งหมด",
         "moved-to-session-toast": "ย้ายการต่อ {count} รายการไปยังเซสชันแล้ว"
       },
       "finish-session": "เสร็จสิ้น",

@@ -256,6 +256,7 @@
       "finish-session": "完了",
       "selection": {
         "move-to-session": "セッションへ移動",
+        "select-all": "すべて選択",
         "moved-to-session-toast": "{count}件のソルブをセッションへ移動しました",
         "cancel": "キャンセル",
         "delete": "削除",

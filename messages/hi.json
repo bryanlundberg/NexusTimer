@@ -256,6 +256,7 @@
       "finish-session": "पूर्ण करें",
       "selection": {
         "move-to-session": "सत्र में ले जाएं",
+        "select-all": "सभी चुनें",
         "moved-to-session-toast": "{count} समाधान सत्र में ले जाए गए",
         "cancel": "रद्द करें",
         "delete": "हटाएँ",

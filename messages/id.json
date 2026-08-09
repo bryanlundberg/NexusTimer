@@ -266,6 +266,7 @@
         "deleted-toast": "{count} solve dihapus",
         "moved-toast": "{count} solve dipindahkan ke riwayat",
         "move-to-session": "Pindahkan ke sesi",
+        "select-all": "Pilih Semua",
         "moved-to-session-toast": "{count} solve dipindahkan ke sesi"
       },
       "finish-session": "Selesai",

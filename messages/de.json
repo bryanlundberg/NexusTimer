@@ -256,6 +256,7 @@
       "finish-session": "Abschließen",
       "selection": {
         "move-to-session": "In Sitzung verschieben",
+        "select-all": "Alle wählen",
         "moved-to-session-toast": "{count} Lösungen in die Sitzung verschoben",
         "cancel": "Abbrechen",
         "delete": "Löschen",

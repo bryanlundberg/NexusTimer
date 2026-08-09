@@ -267,7 +267,8 @@
         "deleted-toast": "{count} solves deleted",
         "moved-toast": "{count} solves moved to history",
         "move-to-session": "Move to session",
-        "moved-to-session-toast": "{count} solves moved to session"
+        "moved-to-session-toast": "{count} solves moved to session",
+        "select-all": "Select all"
       },
       "tooltips": {
         "move-to-history": "Finalize practice"

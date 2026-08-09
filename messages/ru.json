@@ -256,6 +256,7 @@
       "finish-session": "Завершить",
       "selection": {
         "move-to-session": "Переместить в сессию",
+        "select-all": "Выбрать все",
         "moved-to-session-toast": "{count} сборок перемещено в сессию",
         "cancel": "Отмена",
         "delete": "Удалить",
