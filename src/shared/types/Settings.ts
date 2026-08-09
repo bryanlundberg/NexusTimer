@@ -40,7 +40,6 @@ type Sounds = {
 }
 
 type Sync = {
-  lastSync: number
   totalSolves: number
 }
 
