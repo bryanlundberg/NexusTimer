@@ -256,6 +256,7 @@
       "finish-session": "완료",
       "selection": {
         "move-to-session": "세션으로 이동",
+        "select-all": "전체 선택",
         "moved-to-session-toast": "{count}개의 솔브를 세션으로 이동했습니다",
         "cancel": "취소",
         "delete": "삭제",

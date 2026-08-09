@@ -5,7 +5,7 @@ import EmptyGrid from '@/features/solves-grid/ui/EmptyGrid'
 import SolvesSelectionBar from '@/features/solves-grid/ui/SolvesSelectionBar'
 import { SolvesSelectionProvider } from '@/features/solves-grid/model/SolvesSelectionContext'
 import VirtualizedGrid from '@/shared/ui/VirtualizedGrid'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useIsMobile } from '@/shared/model/use-mobile'
 import { useQueryState } from 'nuqs'
 import { STATES } from '@/shared/const/states'
@@ -28,6 +28,8 @@ export default function SolvesGrid({ solves }: SolvesGridProps) {
 
   const getItemKey = useCallback((solve: Solve) => solve.id, [])
 
+  const allIds = useMemo(() => (orderedSolves ?? []).map((solve) => solve.id), [orderedSolves])
+
   if (!orderedSolves || orderedSolves.length === 0) return <EmptyGrid />
 
   return (
@@ -42,7 +44,7 @@ export default function SolvesGrid({ solves }: SolvesGridProps) {
           renderItem={renderItem}
           getItemKey={getItemKey}
         />
-        <SolvesSelectionBar />
+        <SolvesSelectionBar allIds={allIds} />
       </div>
     </SolvesSelectionProvider>
   )

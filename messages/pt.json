@@ -256,6 +256,7 @@
       "finish-session": "Finalizar",
       "selection": {
         "move-to-session": "Mover para a sessão",
+        "select-all": "Selecionar tudo",
         "moved-to-session-toast": "{count} solves movidos para a sessão",
         "cancel": "Cancelar",
         "delete": "Excluir",

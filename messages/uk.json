@@ -259,6 +259,7 @@
       "finish-session": "Завершити",
       "selection": {
         "move-to-session": "Перемістити до сесії",
+        "select-all": "Вибрати всі",
         "moved-to-session-toast": "{count} складань переміщено до сесії",
         "cancel": "Скасувати",
         "delete": "Видалити",

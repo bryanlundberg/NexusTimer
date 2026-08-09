@@ -267,7 +267,8 @@
         "moved-toast": "{count} tiempos movidos al historial",
         "selected": "{count} seleccionados",
         "move-to-session": "Mover a la sesión",
-        "moved-to-session-toast": "{count} tiempos movidos a la sesión"
+        "moved-to-session-toast": "{count} tiempos movidos a la sesión",
+        "select-all": "Seleccionar todo"
       },
       "tooltips": {
         "move-to-history": "Finalizar práctica"

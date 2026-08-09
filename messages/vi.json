@@ -266,6 +266,7 @@
         "deleted-toast": "Đã xóa {count} lượt giải",
         "moved-toast": "Đã chuyển {count} lượt giải vào lịch sử",
         "move-to-session": "Chuyển đến phiên",
+        "select-all": "Chọn tất cả",
         "moved-to-session-toast": "Đã chuyển {count} lượt giải đến phiên"
       },
       "finish-session": "Hoàn tất",

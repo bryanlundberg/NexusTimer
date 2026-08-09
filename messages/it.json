@@ -266,6 +266,7 @@
         "deleted-toast": "{count} solve eliminati",
         "moved-toast": "{count} solve spostati nella cronologia",
         "move-to-session": "Sposta nella sessione",
+        "select-all": "Seleziona tutto",
         "moved-to-session-toast": "{count} solve spostati nella sessione"
       },
       "finish-session": "Concludi",

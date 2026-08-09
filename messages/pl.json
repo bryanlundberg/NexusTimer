@@ -266,6 +266,7 @@
         "deleted-toast": "Usunięto {count} ułożeń",
         "moved-toast": "Przeniesiono {count} ułożeń do historii",
         "move-to-session": "Przenieś do sesji",
+        "select-all": "Zaznacz wszystko",
         "moved-to-session-toast": "Przeniesiono {count} ułożeń do sesji"
       },
       "finish-session": "Zakończ",

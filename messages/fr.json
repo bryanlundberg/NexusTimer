@@ -256,6 +256,7 @@
       "finish-session": "Terminer",
       "selection": {
         "move-to-session": "Déplacer vers la session",
+        "select-all": "Tout sélectionner",
         "moved-to-session-toast": "{count} temps déplacés vers la session",
         "cancel": "Annuler",
         "delete": "Supprimer",

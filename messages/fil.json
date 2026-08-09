@@ -266,6 +266,7 @@
         "deleted-toast": "{count} na solve ang nabura",
         "moved-toast": "{count} na solve ang nailipat sa history",
         "move-to-session": "Ilipat sa session",
+        "select-all": "Piliin Lahat",
         "moved-to-session-toast": "{count} na solve ang nailipat sa session"
       },
       "finish-session": "Tapusin",

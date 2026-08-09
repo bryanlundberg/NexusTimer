@@ -256,6 +256,7 @@
       "finish-session": "完成",
       "selection": {
         "move-to-session": "移至当前组",
+        "select-all": "全选",
         "moved-to-session-toast": "已将 {count} 个还原移至当前组",
         "cancel": "取消",
         "delete": "删除",
