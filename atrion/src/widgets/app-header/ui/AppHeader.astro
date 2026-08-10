@@ -1,0 +1,73 @@
+---
+import type { SessionUser } from '@/features/auth/model/session'
+
+interface Props {
+  user: SessionUser
+}
+
+const { user } = Astro.props
+---
+
+<header>
+  <div class="bar">
+    <div class="brand">
+      <img src="/logo.png" alt="" width="22" height="22" />
+      <span>Atrion</span>
+    </div>
+    <div class="who">
+      <span class="user">{user.name || user.email}</span>
+      <form method="post" action="/api/auth/logout">
+        <button class="btn-notch ghost small" type="submit">Sign out</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<style>
+  header {
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in oklab, var(--card) 45%, var(--background));
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-brand);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .brand img {
+    display: block;
+    width: 22px;
+    height: 22px;
+  }
+
+  .who {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .user {
+    color: var(--muted-foreground);
+    font-size: 0.8rem;
+  }
+
+  .small {
+    --btn-cut: 7px;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.78rem;
+  }
+</style>
