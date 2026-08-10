@@ -38,9 +38,14 @@ export default function LeaderboardHero({ value, onChange, view, onViewChange }:
 
   return (
     <div className="mx-auto w-full max-w-4xl px-3 pt-3">
-      <div className="flex items-center gap-3">
-        <Tabs value={value} onValueChange={onChange} className="min-w-0 flex-1">
-          <ScrollableUnderlineTabs items={items} activeValue={value} layoutId="leaderboard-puzzle-tabs" />
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
+        <Tabs value={value} onValueChange={onChange} className="min-w-0 md:flex-1">
+          <ScrollableUnderlineTabs
+            items={items}
+            activeValue={value}
+            layoutId="leaderboard-puzzle-tabs"
+            className="[&_[data-slot=tabs-trigger]]:grow md:[&_[data-slot=tabs-trigger]]:grow-0"
+          />
         </Tabs>
 
         <Segmented
@@ -49,6 +54,7 @@ export default function LeaderboardHero({ value, onChange, view, onViewChange }:
           options={viewOptions}
           layoutId="leaderboard-view"
           aria-label={t('view-label')}
+          className="w-full [&>button]:flex-1 [&>button]:justify-center md:w-auto md:[&>button]:flex-none"
         />
       </div>
     </div>
