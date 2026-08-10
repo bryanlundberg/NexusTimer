@@ -504,6 +504,9 @@
     "LeaderboardsPage": {
       "title": "Pinakamabilis na Solve",
       "description": "Ang 100 pinakamabilis na solve para sa napiling puzzle at mode, nakaayos ayon sa oras, kasama ang gumawa, TPS, bilang ng galaw at petsa ng bawat isa.",
+      "view-label": "View",
+      "view-all": "Lahat ng oras",
+      "view-persons": "Bawat tao",
       "type": "Uri",
       "table": {
         "user": "User",

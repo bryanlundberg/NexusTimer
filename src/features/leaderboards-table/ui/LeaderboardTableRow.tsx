@@ -6,9 +6,9 @@ import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
 import { PlayIcon } from '@radix-ui/react-icons'
 import formatTime from '@/shared/lib/formatTime'
 import { formatTps } from '@/shared/lib/formatTps'
-import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
 import dayjs from '@/shared/lib/dayjs'
 import useLeaderboardRow from '@/features/leaderboards-table/model/useLeaderboardRow'
+import { useSolveAnalysis } from '@/features/leaderboards-table/model/useSolveAnalysis'
 import { TimeDisplay } from '@/features/leaderboards-table/ui/TimeDisplay'
 import { UserCell } from '@/features/leaderboards-table/ui/UserCell'
 import { GRID } from '@/features/leaderboards-table/ui/LeaderboardTable'
@@ -26,6 +26,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
   const t = useTranslations('Index.LeaderboardsPage.table')
   const locale = useLocale()
   const { openModal } = useLeaderboardRow(solve)
+  const analysis = useSolveAnalysis(solve)
 
   if (!solve?.user) return null
 
@@ -47,7 +48,6 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
           ? 'border-l-amber-600/80'
           : 'border-l-transparent'
   const hasReplay = Boolean(solve.replay?.moves?.length)
-  const analysis = hasReplay ? tryAnalyzeSolution(solve.replay!.moves as ReplayMove[]) : null
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
   const moveCount = analysis ? (analysis.moves as ReplayMove[]).length : null
 

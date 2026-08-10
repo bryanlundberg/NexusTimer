@@ -504,6 +504,9 @@
     "LeaderboardsPage": {
       "title": "Lượt giải nhanh nhất",
       "description": "100 lượt giải nhanh nhất cho câu đố và chế độ đã chọn, xếp theo thời gian, kèm người giải, TPS, số bước và ngày của mỗi lượt.",
+      "view-label": "Chế độ xem",
+      "view-all": "Tất cả thành tích",
+      "view-persons": "Theo người",
       "type": "Loại",
       "table": {
         "user": "Người dùng",

@@ -504,6 +504,9 @@
     "LeaderboardsPage": {
       "title": "Fastest Solves",
       "description": "The 100 fastest solves for the selected puzzle and mode, ranked by time, with the solver, TPS, move count and date for each.",
+      "view-label": "View",
+      "view-all": "All times",
+      "view-persons": "By person",
       "type": "Type",
       "table": {
         "user": "User",

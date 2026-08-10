@@ -501,6 +501,9 @@
     "LeaderboardsPage": {
       "title": "最快还原",
       "description": "所选魔方和模式下最快的 100 次还原，按用时排序，包含每次还原的完成者、TPS、步数和日期。",
+      "view-label": "视图",
+      "view-all": "全部成绩",
+      "view-persons": "每人一条",
       "type": "类型",
       "table": {
         "user": "魔友",

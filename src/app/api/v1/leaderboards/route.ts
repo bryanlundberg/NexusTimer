@@ -10,8 +10,15 @@ const leaderboardsQuerySchema = z.object({
   smart: z
     .enum(['true', 'false'])
     .transform((value) => value === 'true')
+    .optional(),
+  unique: z
+    .enum(['true', 'false'])
+    .transform((value) => value === 'true')
     .optional()
 })
+
+const USER_FIELDS = 'name image country pronoun goal'
+const LIMIT = 100
 
 export async function GET(request: NextRequest) {
   try {
@@ -24,10 +31,23 @@ export async function GET(request: NextRequest) {
     if (query.puzzle) filter.puzzle = query.puzzle
     if (query.smart !== undefined) filter.smart = query.smart
 
+    if (query.unique) {
+      const bestPerUser = await Solve.aggregate([
+        { $match: filter },
+        { $sort: { time: 1, createdAt: 1 } },
+        { $group: { _id: '$user', solve: { $first: '$$ROOT' } } },
+        { $replaceRoot: { newRoot: '$solve' } },
+        { $sort: { time: 1, createdAt: 1 } },
+        { $limit: LIMIT }
+      ])
+
+      return ok(await Solve.populate(bestPerUser, { path: 'user', select: USER_FIELDS }))
+    }
+
     const leaderboards = await Solve.find(filter)
       .sort({ time: 1, createdAt: 1 })
-      .limit(100)
-      .populate('user', 'name image country pronoun goal')
+      .limit(LIMIT)
+      .populate('user', USER_FIELDS)
 
     return ok(leaderboards)
   } catch (error) {

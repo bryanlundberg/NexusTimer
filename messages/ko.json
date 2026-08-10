@@ -501,6 +501,9 @@
     "LeaderboardsPage": {
       "title": "최고 기록",
       "description": "선택한 퍼즐과 모드에서 가장 빠른 100개의 기록을 시간순으로 표시합니다. 각 기록의 주인공, TPS, 무브 수, 날짜도 함께 확인하세요.",
+      "view-label": "보기",
+      "view-all": "전체 기록",
+      "view-persons": "큐버별",
       "type": "유형",
       "table": {
         "user": "사용자",
