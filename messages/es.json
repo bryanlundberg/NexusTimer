@@ -462,6 +462,9 @@
     "LeaderboardsPage": {
       "title": "Solves más rápidos",
       "description": "Los 100 solves más rápidos del puzzle y modo seleccionado, ordenados por tiempo, con el autor, TPS, movimientos y fecha de cada uno.",
+      "view-label": "Vista",
+      "view-all": "Todos los tiempos",
+      "view-persons": "Por persona",
       "type": "Tipo",
       "table": {
         "user": "Usuario",

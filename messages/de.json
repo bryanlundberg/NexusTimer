@@ -501,6 +501,9 @@
     "LeaderboardsPage": {
       "title": "Schnellste Lösungen",
       "description": "Die 100 schnellsten Lösungen für das ausgewählte Puzzle und den Modus, nach Zeit sortiert, mit Löser, TPS, Zugzahl und Datum für jede.",
+      "view-label": "Ansicht",
+      "view-all": "Alle Zeiten",
+      "view-persons": "Pro Person",
       "type": "Typ",
       "table": {
         "user": "Nutzer",

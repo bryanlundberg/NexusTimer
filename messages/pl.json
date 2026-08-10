@@ -504,6 +504,9 @@
     "LeaderboardsPage": {
       "title": "Najszybsze ułożenia",
       "description": "100 najszybszych ułożeń dla wybranej układanki i trybu, uszeregowanych według czasu, z autorem, TPS, liczbą ruchów i datą każdego.",
+      "view-label": "Widok",
+      "view-all": "Wszystkie czasy",
+      "view-persons": "Na osobę",
       "type": "Typ",
       "table": {
         "user": "Użytkownik",

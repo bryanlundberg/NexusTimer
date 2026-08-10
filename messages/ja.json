@@ -501,6 +501,9 @@
     "LeaderboardsPage": {
       "title": "最速の記録",
       "description": "選択したパズルとモードの最速100記録を、タイム順に表示。各記録の達成者、TPS、手数、日付も確認できます。",
+      "view-label": "表示",
+      "view-all": "全記録",
+      "view-persons": "ユーザー別",
       "type": "タイプ",
       "table": {
         "user": "ユーザー",
