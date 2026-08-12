@@ -785,8 +785,9 @@
       "dedicated-learner": "Oddany uczeń",
       "algorithm-master": "Mistrz algorytmów",
       "filters": {
+        "puzzle": "Układanka",
         "clear": "Wyczyść filtry",
-        "results": "{sets} zestawów · {algorithms} algorytmów"
+        "results": "{sets} zestawów · {algorithms, number} algorytmów"
       },
       "descriptions": {
         "pbl": "Te algorytmy służą do jednoczesnej permutacji górnej i dolnej warstwy kostki 2x2, co pozwala na efektywne ułożenie układanki.",

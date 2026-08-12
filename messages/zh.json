@@ -782,8 +782,9 @@
       "dedicated-learner": "专注学习者",
       "algorithm-master": "算法大师",
       "filters": {
+        "puzzle": "魔方",
         "clear": "清除筛选",
-        "results": "{sets} 个公式组 · {algorithms} 个公式"
+        "results": "{sets} 个公式组 · {algorithms, number} 个公式"
       },
       "descriptions": {
         "pbl": "这些算法用于同时排列 2x2 魔方的顶层和底层，从而实现高效还原。",

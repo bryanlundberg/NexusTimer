@@ -782,8 +782,9 @@
       "dedicated-learner": "숙련자",
       "algorithm-master": "마스터",
       "filters": {
+        "puzzle": "퍼즐",
         "clear": "필터 지우기",
-        "results": "{sets}개 세트 · {algorithms}개 알고리즘"
+        "results": "{sets}개 세트 · {algorithms, number}개 알고리즘"
       },
       "descriptions": {
         "pbl": "2x2 큐브의 상단과 하단 레이어를 동시에 맞추는 알고리즘입니다.",

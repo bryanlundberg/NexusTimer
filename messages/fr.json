@@ -782,8 +782,9 @@
       "dedicated-learner": "Apprenti Dédié",
       "algorithm-master": "Maître des Algorithmes",
       "filters": {
+        "puzzle": "Puzzle",
         "clear": "Effacer les filtres",
-        "results": "{sets} sets · {algorithms} algorithmes"
+        "results": "{sets} sets · {algorithms, number} algorithmes"
       },
       "descriptions": {
         "pbl": "Algorithmes pour permuter les couches haut et bas d'un 2x2 simultanément.",

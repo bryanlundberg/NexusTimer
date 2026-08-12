@@ -782,8 +782,9 @@
       "dedicated-learner": "Engagierter Lerner",
       "algorithm-master": "Algorithmus-Meister",
       "filters": {
+        "puzzle": "Puzzle",
         "clear": "Filter zurücksetzen",
-        "results": "{sets} Sets · {algorithms} Algorithmen"
+        "results": "{sets} Sets · {algorithms, number} Algorithmen"
       },
       "descriptions": {
         "pbl": "Algorithmen zum gleichzeitigen Vertauschen der oberen und unteren Ebene (2x2).",

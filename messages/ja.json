@@ -782,8 +782,9 @@
       "dedicated-learner": "練習中",
       "algorithm-master": "マスター",
       "filters": {
+        "puzzle": "パズル",
         "clear": "フィルターをクリア",
-        "results": "{sets} セット · {algorithms} アルゴリズム"
+        "results": "{sets} セット · {algorithms, number} アルゴリズム"
       },
       "descriptions": {
         "pbl": "2x2の上下レイヤーを同時に揃える手順です。",

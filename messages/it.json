@@ -785,8 +785,9 @@
       "dedicated-learner": "Studente dedicato",
       "algorithm-master": "Maestro degli algoritmi",
       "filters": {
+        "puzzle": "Puzzle",
         "clear": "Cancella filtri",
-        "results": "{sets} set · {algorithms} algoritmi"
+        "results": "{sets} set · {algorithms, number} algoritmi"
       },
       "descriptions": {
         "pbl": "Questi algoritmi vengono usati per permutare contemporaneamente sia lo strato superiore che quello inferiore di un cubo 2x2, consentendo una risoluzione efficiente del puzzle.",

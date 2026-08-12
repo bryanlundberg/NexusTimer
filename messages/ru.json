@@ -782,8 +782,9 @@
       "dedicated-learner": "Ученик",
       "algorithm-master": "Мастер алгоритмов",
       "filters": {
+        "puzzle": "Головоломка",
         "clear": "Сбросить фильтры",
-        "results": "{sets} наборов · {algorithms} алгоритмов"
+        "results": "{sets} наборов · {algorithms, number} алгоритмов"
       },
       "descriptions": {
         "pbl": "Алгоритмы для одновременной перестановки слоев в 2x2.",

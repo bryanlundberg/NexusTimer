@@ -775,8 +775,9 @@
       "dedicated-learner": "Dedicated Learner",
       "algorithm-master": "Algorithm Master",
       "filters": {
+        "puzzle": "Puzzle",
         "clear": "Clear filters",
-        "results": "{sets} sets · {algorithms} algorithms"
+        "results": "{sets} sets · {algorithms, number} algorithms"
       },
       "descriptions": {
         "pbl": "These algorithms are used to permute both the top and bottom layers of a 2x2 cube simultaneously, allowing for efficient solving of the puzzle.",

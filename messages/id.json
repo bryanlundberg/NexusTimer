@@ -785,8 +785,9 @@
       "dedicated-learner": "Pembelajar Berdedikasi",
       "algorithm-master": "Master Algoritma",
       "filters": {
+        "puzzle": "Puzzle",
         "clear": "Hapus filter",
-        "results": "{sets} set · {algorithms} algoritma"
+        "results": "{sets} set · {algorithms, number} algoritma"
       },
       "descriptions": {
         "pbl": "Algoritma ini digunakan untuk mempermutasi lapisan atas dan bawah kubus 2x2 secara bersamaan, memungkinkan penyelesaian puzzle yang efisien.",

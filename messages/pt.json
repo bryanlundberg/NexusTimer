@@ -782,8 +782,9 @@
       "dedicated-learner": "Aprendiz Dedicado",
       "algorithm-master": "Mestre dos Algoritmos",
       "filters": {
+        "puzzle": "Puzzle",
         "clear": "Limpar filtros",
-        "results": "{sets} sets · {algorithms} algoritmos"
+        "results": "{sets} sets · {algorithms, number} algoritmos"
       },
       "descriptions": {
         "pbl": "Algoritmos para permutar as camadas superior e inferior de um 2x2 simultaneamente.",
