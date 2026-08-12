@@ -781,6 +781,10 @@
       "casual-enthusiast": "エンジョイ勢",
       "dedicated-learner": "練習中",
       "algorithm-master": "マスター",
+      "filters": {
+        "clear": "フィルターをクリア",
+        "results": "{sets} セット · {algorithms} アルゴリズム"
+      },
       "descriptions": {
         "pbl": "2x2の上下レイヤーを同時に揃える手順です。",
         "ocll": "最後のレイヤーのコーナー向きを揃える段階です。",

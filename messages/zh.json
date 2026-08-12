@@ -781,6 +781,10 @@
       "casual-enthusiast": "业余爱好者",
       "dedicated-learner": "专注学习者",
       "algorithm-master": "算法大师",
+      "filters": {
+        "clear": "清除筛选",
+        "results": "{sets} 个公式组 · {algorithms} 个公式"
+      },
       "descriptions": {
         "pbl": "这些算法用于同时排列 2x2 魔方的顶层和底层，从而实现高效还原。",
         "ocll": "COLL（Orient Corners of the Last Layer）- 此步骤专注于将顶层所有角块复位，为最终还原做好准备。",

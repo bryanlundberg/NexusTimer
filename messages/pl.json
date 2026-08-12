@@ -784,6 +784,10 @@
       "casual-enthusiast": "Entuzjasta amator",
       "dedicated-learner": "Oddany uczeń",
       "algorithm-master": "Mistrz algorytmów",
+      "filters": {
+        "clear": "Wyczyść filtry",
+        "results": "{sets} zestawów · {algorithms} algorytmów"
+      },
       "descriptions": {
         "pbl": "Te algorytmy służą do jednoczesnej permutacji górnej i dolnej warstwy kostki 2x2, co pozwala na efektywne ułożenie układanki.",
         "ocll": "COLL (Orientacja narożników ostatniej warstwy) - Ten krok skupia się na zorientowaniu wszystkich narożników ostatniej warstwy, aby przygotować się do końcowych kroków układania.",

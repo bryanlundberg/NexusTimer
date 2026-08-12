@@ -774,6 +774,10 @@
       "casual-enthusiast": "Casual Enthusiast",
       "dedicated-learner": "Dedicated Learner",
       "algorithm-master": "Algorithm Master",
+      "filters": {
+        "clear": "Clear filters",
+        "results": "{sets} sets · {algorithms} algorithms"
+      },
       "descriptions": {
         "pbl": "These algorithms are used to permute both the top and bottom layers of a 2x2 cube simultaneously, allowing for efficient solving of the puzzle.",
         "ocll": "COLL (Orient Corners of the Last Layer) - This step focuses on orienting all the corners of the last layer to prepare for the final steps of solving the puzzle.",

@@ -784,6 +784,10 @@
       "casual-enthusiast": "Entusiasta Casual",
       "dedicated-learner": "Estudiante Dedicado",
       "algorithm-master": "Maestro de Algoritmos",
+      "filters": {
+        "clear": "Limpiar filtros",
+        "results": "{sets} sets · {algorithms} algoritmos"
+      },
       "descriptions": {
         "pbl": "Estos algoritmos se utilizan para permutar simultáneamente las capas superior e inferior de un cubo 2x2, lo que permite una resolución eficiente del rompecabezas.",
         "ocll": "COLL (Orientación de las esquinas de la última capa): este paso se centra en orientar todas las esquinas de la última capa para prepararse para los pasos finales de la resolución del rompecabezas.",

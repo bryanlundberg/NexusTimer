@@ -781,6 +781,10 @@
       "casual-enthusiast": "Hobby-Cuber",
       "dedicated-learner": "Engagierter Lerner",
       "algorithm-master": "Algorithmus-Meister",
+      "filters": {
+        "clear": "Filter zurücksetzen",
+        "results": "{sets} Sets · {algorithms} Algorithmen"
+      },
       "descriptions": {
         "pbl": "Algorithmen zum gleichzeitigen Vertauschen der oberen und unteren Ebene (2x2).",
         "ocll": "COLL (Orient Corners of the Last Layer) - Ecken der letzten Ebene orientieren.",

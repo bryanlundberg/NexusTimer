@@ -781,6 +781,10 @@
       "casual-enthusiast": "입문자",
       "dedicated-learner": "숙련자",
       "algorithm-master": "마스터",
+      "filters": {
+        "clear": "필터 지우기",
+        "results": "{sets}개 세트 · {algorithms}개 알고리즘"
+      },
       "descriptions": {
         "pbl": "2x2 큐브의 상단과 하단 레이어를 동시에 맞추는 알고리즘입니다.",
         "ocll": "마지막 레이어의 코너 방향을 맞추는 단계입니다.",

@@ -781,6 +781,10 @@
       "casual-enthusiast": "Enthousiaste Casual",
       "dedicated-learner": "Apprenti Dédié",
       "algorithm-master": "Maître des Algorithmes",
+      "filters": {
+        "clear": "Effacer les filtres",
+        "results": "{sets} sets · {algorithms} algorithmes"
+      },
       "descriptions": {
         "pbl": "Algorithmes pour permuter les couches haut et bas d'un 2x2 simultanément.",
         "ocll": "COLL (Orient Corners of the Last Layer) - Orienter tous les coins de la dernière couche.",

@@ -784,6 +784,10 @@
       "casual-enthusiast": "Penggemar Santai",
       "dedicated-learner": "Pembelajar Berdedikasi",
       "algorithm-master": "Master Algoritma",
+      "filters": {
+        "clear": "Hapus filter",
+        "results": "{sets} set · {algorithms} algoritma"
+      },
       "descriptions": {
         "pbl": "Algoritma ini digunakan untuk mempermutasi lapisan atas dan bawah kubus 2x2 secara bersamaan, memungkinkan penyelesaian puzzle yang efisien.",
         "ocll": "COLL (Orientasi Sudut Lapisan Terakhir) - Langkah ini berfokus pada mengorientasikan semua sudut lapisan terakhir untuk bersiap menuju langkah akhir penyelesaian puzzle.",

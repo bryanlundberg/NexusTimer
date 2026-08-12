@@ -781,6 +781,10 @@
       "casual-enthusiast": "Любитель",
       "dedicated-learner": "Ученик",
       "algorithm-master": "Мастер алгоритмов",
+      "filters": {
+        "clear": "Сбросить фильтры",
+        "results": "{sets} наборов · {algorithms} алгоритмов"
+      },
       "descriptions": {
         "pbl": "Алгоритмы для одновременной перестановки слоев в 2x2.",
         "ocll": "COLL (Orient Corners) — ориентация углов последнего слоя.",
