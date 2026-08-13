@@ -1,4 +1,4 @@
-# <img src="./.github/images/branding_v3.avif" width="100%" alt="NexusTimer Branding" />
+# <img src="./.github/images/branding_v4.avif" width="100%" alt="NexusTimer Branding" />
 
 <div align="center">
   <p align="center">
