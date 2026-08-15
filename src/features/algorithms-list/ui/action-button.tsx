@@ -12,9 +12,11 @@ interface ActionButtonProps {
 export default function ActionButton({ icon: Icon, label, onClick, active }: ActionButtonProps) {
   return (
     <Button
-      variant="ghost"
-      size="icon"
-      className={cn('btn-notch size-7', active ? 'text-primary' : 'text-muted-foreground hover:text-foreground')}
+      type="button"
+      variant={active ? 'outline' : 'default'}
+      size="sm"
+      haptic
+      className={cn('btn-notch h-7 gap-1.5 px-2 text-xs font-medium', active && 'border-primary/40 text-primary')}
       onClick={(e) => {
         e.stopPropagation()
         onClick()
@@ -23,6 +25,7 @@ export default function ActionButton({ icon: Icon, label, onClick, active }: Act
       title={label}
     >
       <Icon className="size-3.5" />
+      <span className="hidden sm:inline">{label}</span>
     </Button>
   )
 }
