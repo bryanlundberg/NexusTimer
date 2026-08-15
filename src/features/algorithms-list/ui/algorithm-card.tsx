@@ -121,7 +121,7 @@ export default function AlgorithmCard({
       {expanded && canExpand && (
         <div className="space-y-1.5 px-2 pb-2.5 sm:px-3 sm:pl-17">
           {alternatives.map((alt, i) => (
-            <AlternativeRow key={alt.id} alt={alt} index={i + 1} onPreview={() => openPreview(alt.moves)} />
+            <AlternativeRow key={alt.id} alt={alt} index={i + 2} onPreview={() => openPreview(alt.moves)} />
           ))}
         </div>
       )}
