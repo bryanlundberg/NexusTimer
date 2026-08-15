@@ -1,12 +1,7 @@
 import { test, type Browser, type Page } from '@playwright/test'
-import fs from 'fs'
-import path from 'path'
 import { isValidCategory, type CubeCategory } from '@/shared/const/cube-categories'
+import { fetchPending, saveScraped, type ScrapedProduct } from './utils/catalog-api'
 
-const data = JSON.parse(fs.readFileSync('cubes.json', 'utf8'))
-const urls: string[] = data.products
-
-// Category to scrape. Override in CI with SCRAPE_CATEGORY (see .github/workflows/products-ingestion.yml).
 function resolveTargetCategory(): CubeCategory {
   const fromEnv = process.env.SCRAPE_CATEGORY?.trim()
 
@@ -21,44 +16,19 @@ function resolveTargetCategory(): CubeCategory {
 
 const CATEGORY: CubeCategory = resolveTargetCategory()
 
-const OUT_DIR = process.env.SCRAPE_OUT_DIR?.trim() || 'scraped-products'
+const MAX_WARNINGS = 25
+let warnings = 0
+let missingSpecs = 0
 
-const CATEGORY_BY_COLLECTION: Record<string, CubeCategory> = {
-  '2x2-speed-cubes': '2x2',
-  '3x3-speed-cubes': '3x3',
-  '4x4-speed-cubes': '4x4',
-  '5x5-speed-cubes': '5x5',
-  '6x6-speed-cubes': '6x6',
-  '7x7-speed-cubes': '7x7',
-  megaminx: 'Megaminx',
-  pyraminx: 'Pyraminx',
-  skewb: 'Skewb',
-  'square-1': 'SQ1',
-  fto: 'FTO'
-}
+function warn(message: string) {
+  if (warnings >= MAX_WARNINGS) return
 
-function resolveCategory(url: string): CubeCategory | null {
-  const slug = url.match(/\/collections\/([^/]+)\/products\//)?.[1]?.toLowerCase()
+  warnings++
+  console.warn(message)
 
-  if (!slug) return null
-
-  const category = CATEGORY_BY_COLLECTION[slug]
-
-  if (!category || !isValidCategory(category)) {
-    console.warn(`Unmapped collection: "${slug}" (${url})`)
-    return null
+  if (warnings === MAX_WARNINGS) {
+    console.warn(`[${CATEGORY}] further per-URL warnings suppressed, see the totals at the end.`)
   }
-
-  return category
-}
-
-// Unique id = product handle (slug in /products/<handle>). Valid as a Meilisearch id.
-function resolveId(url: string): string | null {
-  return url.match(/\/products\/([^/?#]+)/)?.[1] ?? null
-}
-
-function fileSafe(category: CubeCategory): string {
-  return category.replace(/[^a-z0-9]+/gi, '_')
 }
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
@@ -86,7 +56,7 @@ async function extractProduct(page: Page) {
   const product = await page.evaluate(() => {
     const brandLines = [...document.querySelectorAll('[itemprop="brand"] strong')]
       .map((e) => e.textContent?.trim())
-      .filter(Boolean)
+      .filter((value): value is string => Boolean(value))
 
     const brand = [...new Set(brandLines)]
 
@@ -95,7 +65,7 @@ async function extractProduct(page: Page) {
 
     const name = document.querySelector('[itemprop="name"]')?.textContent?.trim() ?? null
 
-    const specs: Record<string, any> = {}
+    const specs: Record<string, unknown> = {}
 
     document.querySelectorAll('table tbody tr').forEach((row) => {
       const th = row.querySelector('th')
@@ -105,15 +75,17 @@ async function extractProduct(page: Page) {
 
       const key = th.textContent!.trim()
 
-      let values = [...td.querySelectorAll('strong, a, span')].map((el) => el.textContent?.trim()).filter(Boolean)
+      let values = [...td.querySelectorAll('strong, a, span')]
+        .map((el) => el.textContent?.trim())
+        .filter((value): value is string => Boolean(value))
 
       if (values.length === 0) {
-        values = [td.textContent?.trim()].filter(Boolean)
+        values = [td.textContent?.trim()].filter((value): value is string => Boolean(value))
       }
 
       values = [...new Set(values)]
 
-      values = values.map((v) => v?.replace(/\s+/g, ' ').trim()).filter(Boolean)
+      values = values.map((v) => v.replace(/\s+/g, ' ').trim()).filter(Boolean)
 
       specs[key] = values.length > 1 ? values : values.length === 1 ? values[0] : null
     })
@@ -129,9 +101,9 @@ async function extractProduct(page: Page) {
 
 async function scrapeUrls(
   browser: Browser,
-  pending: string[],
+  pending: Array<{ id: string; url: string }>,
   category: CubeCategory,
-  onResult: (result: any) => void
+  onResult: (result: ScrapedProduct) => Promise<void>
 ): Promise<void> {
   let cursor = 0
   let done = 0
@@ -147,8 +119,7 @@ async function scrapeUrls(
         const i = cursor++
         if (i >= pending.length) break
 
-        const url = pending[i]
-        const id = resolveId(url)
+        const { id, url } = pending[i]
 
         const wait = cooldownUntil - Date.now()
         if (wait > 0) await sleep(wait)
@@ -165,16 +136,36 @@ async function scrapeUrls(
         for (let attempt = 1; attempt <= MAX_RETRIES && !ok; attempt++) {
           const page = await context.newPage()
           try {
-            await page.goto(url, {
+            const response = await page.goto(url, {
               waitUntil: 'domcontentloaded',
               timeout: NAV_TIMEOUT
             })
+
+            // A rate limit answers 200 with a verification page, so these retry
+            // instead of storing the product empty and marking it done.
+            if (response && !response.ok()) {
+              throw new Error(`HTTP ${response.status()} ${response.statusText()}`)
+            }
+
             const product = await extractProduct(page)
-            onResult({ id, url, category, ...product })
+
+            if (!product.name) {
+              throw new Error('no [itemprop="name"] on the page')
+            }
+
+            if (Object.keys(product.specs).length === 0) {
+              missingSpecs++
+              warn(`[${category}] no spec table rows found at ${url}`)
+            }
+
+            await onResult({ id, ...product })
             ok = true
             consecutiveFailures = 0
           } catch (error: any) {
             lastError = error
+            warn(
+              `[${category}] attempt ${attempt}/${MAX_RETRIES} failed for ${url}: ${String(error?.message).split('\n')[0]}`
+            )
             await sleep(800 * attempt)
           } finally {
             await page.close().catch(() => {})
@@ -183,7 +174,7 @@ async function scrapeUrls(
 
         if (!ok) {
           console.error(`[${category}] ${url} -> ${lastError?.message} (after ${MAX_RETRIES} retries)`)
-          onResult({ id, url, category, error: lastError?.message ?? 'unknown' })
+          await onResult({ id, error: lastError?.message ?? 'unknown' })
 
           consecutiveFailures++
           if (consecutiveFailures >= COOLDOWN_AFTER && Date.now() >= cooldownUntil) {
@@ -198,7 +189,7 @@ async function scrapeUrls(
         sinceRecycle++
         done++
         if (done % 25 === 0) {
-          console.log(`[${category}] ${done}/${pending.length} (this run)`)
+          console.log(`[${category}] ${done}/${pending.length}`)
         }
 
         if (REQUEST_DELAY > 0) {
@@ -213,64 +204,37 @@ async function scrapeUrls(
   await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()))
 }
 
-// Scrapes the CATEGORY above, resuming from any previous run.
 test(`Scrape ${CATEGORY}`, async ({ browser }) => {
   test.setTimeout(0)
 
-  fs.mkdirSync(OUT_DIR, { recursive: true })
-  const file = path.join(OUT_DIR, `${fileSafe(CATEGORY)}.json`)
+  const pending = await fetchPending(CATEGORY)
+  console.log(`[${CATEGORY}] pending ${pending.length}`)
 
-  const byId = new Map<string, any>()
-  if (fs.existsSync(file)) {
-    for (const r of JSON.parse(fs.readFileSync(file, 'utf8'))) {
-      if (r?.id) byId.set(r.id, r)
-    }
+  if (pending.length === 0) return
+
+  let failed = 0
+  const buffer: ScrapedProduct[] = []
+
+  const flush = async () => {
+    if (buffer.length === 0) return
+    await saveScraped(buffer.splice(0))
   }
 
-  const allUrls = urls.filter((url) => resolveCategory(url) === CATEGORY)
-  if (allUrls.length === 0) {
-    throw new Error(`No URLs for category "${CATEGORY}" in cubes.json`)
-  }
-
-  // Pending = not yet ok (missing or previously errored).
-  const pending = allUrls.filter((url) => {
-    const id = resolveId(url)
-    if (!id) return false
-    const prev = byId.get(id)
-    return !prev || prev.error
+  await scrapeUrls(browser, pending, CATEGORY, async (result) => {
+    if ('error' in result) failed++
+    buffer.push(result)
+    if (buffer.length >= SAVE_EVERY) await flush()
   })
 
-  console.log(
-    `[${CATEGORY}] total ${allUrls.length} · done ${allUrls.length - pending.length} · pending ${pending.length}`
-  )
+  await flush()
 
-  const persist = () => {
-    const ordered = allUrls.map((url) => byId.get(resolveId(url)!)).filter(Boolean)
-    fs.writeFileSync(file, JSON.stringify(ordered, null, 2))
-  }
+  console.log(`[${CATEGORY}] ${pending.length} processed, ${failed} failed`)
 
-  if (pending.length === 0) {
-    persist()
-    console.log(`[${CATEGORY}] already complete (${byId.size}).`)
-    return
-  }
-
-  let sinceSave = 0
-  await scrapeUrls(browser, pending, CATEGORY, (result) => {
-    if (result.id) byId.set(result.id, result)
-    if (++sinceSave >= SAVE_EVERY) {
-      persist()
-      sinceSave = 0
-    }
-  })
-
-  persist()
-
-  const ordered = allUrls.map((url) => byId.get(resolveId(url)!)).filter(Boolean)
-  const failed = ordered.filter((r) => r?.error).length
-
-  console.log(`[${CATEGORY}] ${ordered.length} products (${failed} failed) -> ${file}`)
   if (failed > 0) {
-    console.log(`[${CATEGORY}] Re-run the same test to retry the ${failed} failed ones.`)
+    console.log(`[${CATEGORY}] The failed ones stay pending and are retried on the next run.`)
+  }
+
+  if (missingSpecs > 0) {
+    console.log(`[${CATEGORY}] ${missingSpecs} stored without specs.`)
   }
 })
