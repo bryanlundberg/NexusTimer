@@ -9,6 +9,7 @@ import '@/entities/trainer-stats/model/trainer-stats'
 import '@/entities/log/model/log'
 import '@/entities/user-credential/model/user-credential'
 import '@/entities/pending-registration/model/pending-registration'
+import '@/entities/product/model/product'
 
 const connectDB = async () => {
   if (mongoose.connections[0].readyState === 1) {
