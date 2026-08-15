@@ -82,11 +82,11 @@ export default function AlgorithmCard({
       >
         <div
           className={cn(
-            'badge-notch flex size-16 shrink-0 items-center justify-center bg-muted/40 sm:size-20',
+            'badge-notch flex size-16 shrink-0 items-center justify-center overflow-hidden bg-muted/40 p-1 sm:size-20 sm:p-1.5',
             isLearned && 'ring-1 ring-primary/40'
           )}
         >
-          <AlgorithmRender config={vizConfig} width={92} height={92} />
+          <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
         </div>
 
         <div className="flex flex-1 min-w-0 flex-col gap-0.5">
