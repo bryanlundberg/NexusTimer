@@ -1,7 +1,6 @@
-import { analyzeSolution } from 'cube-state-engine'
-import type { ReplayMove } from '@/entities/replay/model/types'
+import { analyzeSolution, type TimedMove } from 'cube-state-engine'
 
-export function tryAnalyzeSolution(moves: ReplayMove[]) {
+export function tryAnalyzeSolution(moves: TimedMove[]) {
   if (!moves.length) return null
   try {
     return analyzeSolution(moves)
