@@ -39,7 +39,7 @@ export default function TrainerSmartTimer({ connection }: TrainerSmartTimerProps
   const t = useTranslations('Index.TrainerPage')
   const { set, sessionCases, currentCase, currentAlg, setup } = useTrainerSession()
   const methodSlug = set.slug
-  const goal = (set as { goal?: string }).goal ?? 'full'
+  const goal = set.goal
 
   const advanceCase = useTrainerStore((s) => s.advanceCase)
   const recordSolve = useTrainerStore((s) => s.recordSolve)
