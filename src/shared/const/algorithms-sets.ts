@@ -429,7 +429,3 @@ export const ALGORITHM_SETS = [
 ] as const
 
 export type ALGORITHM_SET = (typeof ALGORITHM_SETS)[number]
-
-// Terminal condition used by the smart-cube trainer to auto-detect when a case
-// is solved (see `matchesGoal` in cube-state-engine).
-export type TrainerGoal = 'full' | 'oll' | 'oll+cp' | 'f2l' | 'cross'
