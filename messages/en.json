@@ -804,6 +804,7 @@
         "parity-4x4": "These algorithms address the unique parity errors that can occur when solving a 4x4 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 4x4 to a 3x3 state.",
         "parity-5x5": "These algorithms address the unique parity errors that can occur when solving a 5x5 Rubik's Cube, which do not happen on a standard 3x3 cube. They are essential for completing the solve after reducing the 5x5 to a 3x3 state.",
         "l2c-5x5": "L2C (Last Two Centers) algorithms solve the final two centers of a 5x5 cube during the reduction step. They let you finish the centers without breaking the ones you have already built.",
+        "l2e-5x5": "L2E (Last Two Edges) algorithms fix the final two edge groups of a 5x5 cube during the reduction step, when the last two edges cannot be paired by simple slice moves.",
         "l4e": "Last 4 slots (Pyraminx) - These algorithms are used to solve the last four edge pieces of a Pyraminx puzzle. The goal is to position and orient these pieces correctly to complete the puzzle.",
         "sv": "SV (Summer Variation) algorithms solve your final F2L pair while simultaneously orienting the corners of the last layer, similar to WV (Winter Variation) but covering different pair and corner configurations. This selection highlights the most useful cases to learn."
       }

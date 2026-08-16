@@ -811,6 +811,7 @@
         "parity-4x4": "Algoritmos para paridades de 4x4.",
         "parity-5x5": "Algoritmos para paridades de 5x5.",
         "l2c-5x5": "Os algoritmos L2C (Last Two Centers) resolvem os dois últimos centros de um cubo 5x5 durante a redução, sem quebrar os centros já montados.",
+        "l2e-5x5": "Os algoritmos L2E (Last Two Edges) resolvem os dois últimos grupos de arestas de um cubo 5x5 durante a redução, quando não podem mais ser emparelhados com movimentos de slice simples.",
         "l4e": "Últimos 4 meios do Pyraminx.",
         "sv": "Os algoritmos SV (Summer Variation) resolvem o seu último par de F2L enquanto orientam simultaneamente os cantos da última camada, de forma semelhante ao WV (Winter Variation), mas cobrindo outras configurações de par e canto. Esta seleção destaca os casos mais úteis para aprender."
       }

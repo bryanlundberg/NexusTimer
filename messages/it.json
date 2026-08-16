@@ -814,6 +814,7 @@
         "parity-4x4": "Questi algoritmi risolvono gli errori di parità unici che possono verificarsi risolvendo un cubo di Rubik 4x4, che non si presentano su un normale cubo 3x3. Sono essenziali per completare la risoluzione dopo aver ridotto il 4x4 a uno stato 3x3.",
         "parity-5x5": "Questi algoritmi risolvono gli errori di parità unici che possono verificarsi risolvendo un cubo di Rubik 5x5, che non si presentano su un normale cubo 3x3. Sono essenziali per completare la risoluzione dopo aver ridotto il 5x5 a uno stato 3x3.",
         "l2c-5x5": "Gli algoritmi L2C (Last Two Centers) risolvono gli ultimi due centri di un cubo 5x5 durante la riduzione, senza rompere i centri già costruiti.",
+        "l2e-5x5": "Gli algoritmi L2E (Last Two Edges) risolvono le ultime due coppie di spigoli di un cubo 5x5 durante la riduzione, quando non possono più essere abbinate con semplici mosse di slice.",
         "l4e": "Ultimi 4 spigoli (Pyraminx) - Questi algoritmi vengono usati per risolvere gli ultimi quattro spigoli di un Pyraminx. L'obiettivo è posizionare e orientare correttamente questi pezzi per completare il puzzle.",
         "sv": "Gli algoritmi SV (Summer Variation) risolvono l'ultima coppia F2L orientando contemporaneamente gli spigoli dell'ultimo strato, in modo simile a WV (Winter Variation) ma per configurazioni di coppia e spigolo diverse. Questa selezione evidenzia i casi più utili da imparare."
       }

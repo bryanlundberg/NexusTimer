@@ -814,6 +814,7 @@
         "parity-4x4": "Algoritma ini mengatasi kesalahan parity unik yang dapat terjadi saat menyelesaikan kubus Rubik 4x4, yang tidak terjadi pada kubus 3x3 standar. Algoritma ini penting untuk menyelesaikan solve setelah mereduksi 4x4 ke kondisi 3x3.",
         "parity-5x5": "Algoritma ini mengatasi kesalahan parity unik yang dapat terjadi saat menyelesaikan kubus Rubik 5x5, yang tidak terjadi pada kubus 3x3 standar. Algoritma ini penting untuk menyelesaikan solve setelah mereduksi 5x5 ke kondisi 3x3.",
         "l2c-5x5": "Algoritma L2C (Last Two Centers) menyelesaikan dua center terakhir pada kubus 5x5 saat tahap reduction, tanpa merusak center yang sudah dibangun.",
+        "l2e-5x5": "Algoritma L2E (Last Two Edges) memperbaiki dua kelompok edge terakhir pada kubus 5x5 saat tahap reduction, ketika keduanya tidak bisa dipasangkan dengan gerakan slice biasa.",
         "l4e": "4 slot terakhir (Pyraminx) - Algoritma ini digunakan untuk menyelesaikan empat bagian edge terakhir dari puzzle Pyraminx. Tujuannya adalah memposisikan dan mengorientasikan bagian-bagian ini dengan benar untuk menyelesaikan puzzle.",
         "sv": "Algoritma SV (Summer Variation) menyelesaikan pasangan F2L terakhir sekaligus mengorientasikan sudut lapisan terakhir, mirip dengan WV (Winter Variation) tetapi untuk konfigurasi pasangan dan sudut yang berbeda. Pilihan ini menyoroti kasus-kasus paling berguna untuk dipelajari."
       }
