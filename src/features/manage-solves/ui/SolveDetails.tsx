@@ -18,7 +18,6 @@ import { formatTps } from '@/shared/lib/formatTps'
 import { SolveBreakdown } from '@/features/manage-solves/ui/SolveBreakdown'
 import { cn } from '@/shared/lib/utils'
 import { RotateCw, Zap, Layers } from 'lucide-react'
-import type { ReplayMove } from '@/entities/replay/model/types'
 
 export default function SolveDetails() {
   const t = useTranslations('Index')
@@ -35,7 +34,7 @@ export default function SolveDetails() {
   const [visualization, setVisualization] = useState<'2D' | '3D'>('2D')
 
   const analysis = solve?.replay?.moves?.length ? tryAnalyzeSolution(solve.replay.moves) : null
-  const moveCount = analysis ? (analysis.moves as ReplayMove[]).length : null
+  const moveCount = analysis ? analysis.moves.length : null
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
 
   const solveDate = dayjs(solve?.endTime || 0).locale(locale)

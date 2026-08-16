@@ -3,10 +3,11 @@ import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
 import { buildPhases } from '@/shared/lib/timer/solveAnalysis'
 import { formatTps } from '@/shared/lib/formatTps'
 import formatTime from '@/shared/lib/formatTime'
-import type { SolveReplay, ReplayMove } from '@/entities/replay/model/types'
+import type { SolveAnalysis } from 'cube-state-engine'
+import type { SolveReplay } from '@/entities/replay/model/types'
 import type { ReplayMarker } from '@/features/solve-replay/ui/RealtimeReplayPlayer'
 
-function phaseMarkers(analysis: ReturnType<typeof tryAnalyzeSolution>): ReplayMarker[] {
+function phaseMarkers(analysis: SolveAnalysis | null): ReplayMarker[] {
   const phases = buildPhases(analysis)
   if (!phases) return []
 
@@ -40,10 +41,8 @@ export function useReplaySolveDetails() {
   const analysis = hasReplay ? tryAnalyzeSolution(replay!.moves) : null
 
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
-  const moveCount = analysis ? (analysis.moves as ReplayMove[]).length : null
-  const simplifiedSolution = analysis
-    ? (analysis.moves as ReplayMove[]).map((x) => x.m).join(' ')
-    : (metadata?.solution ?? null)
+  const moveCount = analysis ? analysis.moves.length : null
+  const simplifiedSolution = analysis ? analysis.moves.map((x) => x.m).join(' ') : (metadata?.solution ?? null)
   const markers = phaseMarkers(analysis)
 
   return { metadata, replay, hasReplay, analysis, tps, moveCount, simplifiedSolution, markers }

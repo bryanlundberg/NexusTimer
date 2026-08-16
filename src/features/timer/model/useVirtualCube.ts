@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { TwistyPlayer } from 'cubing/twisty'
-import { CubeEngine } from 'cube-state-engine'
+import { CubeEngine, type CubeSize } from 'cube-state-engine'
 import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'
 
 interface UseVirtualCubeArgs {
-  cubeSize: number
+  cubeSize: CubeSize
   scramble: string | null
   seed?: boolean
   tempoScale?: number
@@ -23,7 +23,7 @@ interface PlayerOptions {
   cameraDistance?: number
 }
 
-const buildPlayer = (cubeSize: number, scramble: string | null, opts?: PlayerOptions) => {
+const buildPlayer = (cubeSize: CubeSize, scramble: string | null, opts?: PlayerOptions) => {
   const player = new TwistyPlayer({
     puzzle: cubeSize === 2 ? '2x2x2' : '3x3x3',
     controlPanel: 'none',

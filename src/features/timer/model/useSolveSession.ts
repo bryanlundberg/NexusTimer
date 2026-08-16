@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { TwistyPlayer } from 'cubing/twisty'
-import { CubeEngine, simplifyMoves } from 'cube-state-engine'
+import { CubeEngine, simplifyMoves, type CubeSize } from 'cube-state-engine'
 import { useSolveClock } from '@/features/timer/model/useSolveClock'
 import { useSolveReplayRecorder } from '@/features/timer/model/useSolveReplayRecorder'
 import { useSaveVirtualSolve } from '@/features/timer/model/useSaveVirtualSolve'
@@ -37,7 +37,7 @@ interface UseSolveSessionArgs {
   player: TwistyPlayer | null
   engine: CubeEngine | null | undefined
   scramble: string | null
-  cubeSize: number
+  cubeSize: CubeSize
   smart: boolean
   // `auto`: engine arrives scrambled, session starts `armed` (keyboard).
   // `manual`: engine starts solved, user reaches the scrambled state to arm (smart).
@@ -45,7 +45,6 @@ interface UseSolveSessionArgs {
   onAdvanceScramble: () => void
   recreatePlayer: () => void
   inspection?: InspectionConfig
-  goalPredicate?: (engine: CubeEngine) => boolean
 }
 
 export function useSolveSession({
@@ -57,10 +56,8 @@ export function useSolveSession({
   scrambleMode,
   onAdvanceScramble,
   recreatePlayer,
-  inspection = { enabled: false, durationMs: DEFAULT_INSPECTION_MS },
-  goalPredicate
+  inspection = { enabled: false, durationMs: DEFAULT_INSPECTION_MS }
 }: UseSolveSessionArgs) {
-  const isGoalMet = goalPredicate ?? ((eng: CubeEngine) => eng.isSolved())
   const inspectionEnabled = inspection.enabled
   const inspectionDuration = inspection.durationMs || DEFAULT_INSPECTION_MS
   const armedPhase: SolvePhase = inspectionEnabled ? 'inspecting' : 'armed'
@@ -102,8 +99,7 @@ export function useSolveSession({
     recreatePlayer,
     inspectionEnabled,
     inspectionDuration,
-    armedPhase,
-    isGoalMet
+    armedPhase
   })
   latest.current = {
     player,
@@ -118,8 +114,7 @@ export function useSolveSession({
     recreatePlayer,
     inspectionEnabled,
     inspectionDuration,
-    armedPhase,
-    isGoalMet
+    armedPhase
   }
 
   const setPhase = useCallback((next: SolvePhase) => {
@@ -149,8 +144,7 @@ export function useSolveSession({
 
       if (!dnf) {
         try {
-          const simplified = simplifyMoves(engine?.getMoves(false) ?? []) as string[]
-          const moveCount = simplified.length
+          const moveCount = simplifyMoves(engine?.getMoves(false) ?? []).length
           const tps = finalTime > 0 ? moveCount / (finalTime / 1000) : 0
           setSolveStats(moveCount > 0 ? { moveCount, tps } : null)
         } catch {
@@ -208,7 +202,7 @@ export function useSolveSession({
 
   const processMove = useCallback(
     (move: string, opts?: { isRotation?: boolean }) => {
-      const { player, engine, clock, recorder, isGoalMet } = latest.current
+      const { player, engine, clock, recorder } = latest.current
       if (!player || !engine) return
       if (Date.now() < postSolveLockRef.current) return
 
@@ -257,11 +251,11 @@ export function useSolveSession({
         setPhase('solving')
       }
 
-      // Only test the terminal goal once actually solving, so a goal already
-      // satisfied at the armed/case state cannot finalize with ~0 time.
+      // Only test for solved once actually solving, so a cube already solved at
+      // the armed state cannot finalize with ~0 time.
       if (phaseRef.current === 'solving') {
         try {
-          if (isGoalMet(engine)) finalize()
+          if (engine.isSolved()) finalize()
         } catch {}
       }
     },

@@ -1,18 +1,17 @@
 import { useCallback } from 'react'
-import { CubeEngine } from 'cube-state-engine'
+import { CubeEngine, type TimedMove } from 'cube-state-engine'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { sendSolveToServer } from '@/shared/lib/actions'
 import { cubesDB } from '@/entities/cube/api/indexdb'
 import genId from '@/shared/lib/genId'
 import { Solve } from '@/entities/solve/model/types'
-import { ReplayMove } from '@/entities/replay/model/types'
 
 interface SavePayload {
   timeMs: number
   scramble: string | null
   dnf: boolean
-  replayMoves?: ReplayMove[]
+  replayMoves?: TimedMove[]
   smart?: boolean
 }
 
