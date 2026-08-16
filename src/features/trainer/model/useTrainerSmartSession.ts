@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { TwistyPlayer } from 'cubing/twisty'
-import { CubeEngine, matchesGoal } from 'cube-state-engine'
+import { CubeEngine, matchesGoal, type GoalName } from 'cube-state-engine'
 import type { SmartCubeConnection } from 'smartcube-web-bluetooth'
 import { useSolveClock } from '@/features/timer/model/useSolveClock'
 import { useSmartCubeMoves } from '@/features/smart-cube/model/useSmartCubeMoves'
@@ -25,7 +25,7 @@ interface UseTrainerSmartSessionArgs {
   engine: CubeEngine | null
   player: TwistyPlayer | null
   connection: SmartCubeConnection | null
-  goal: string
+  goal: GoalName
   targetScramble: string
   targetStateJson: string | null
   onSolved: (timeMs: number, historyFromSolved: string) => void
