@@ -13,7 +13,6 @@ import { TimeDisplay } from '@/features/leaderboards-table/ui/TimeDisplay'
 import { UserCell } from '@/features/leaderboards-table/ui/UserCell'
 import { GRID } from '@/features/leaderboards-table/ui/LeaderboardTable'
 import { SolveServer } from '@/entities/solve/model/types'
-import type { ReplayMove } from '@/entities/replay/model/types'
 import { useLocale, useTranslations } from 'next-intl'
 import { cn } from '@/shared/lib/utils'
 
@@ -49,7 +48,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
           : 'border-l-transparent'
   const hasReplay = Boolean(solve.replay?.moves?.length)
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
-  const moveCount = analysis ? (analysis.moves as ReplayMove[]).length : null
+  const moveCount = analysis ? analysis.moves.length : null
 
   return (
     <motion.div
