@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react'
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
 import { AnimatePresence, motion } from 'motion/react'
 import { Keyboard, Lightbulb } from 'lucide-react'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
@@ -27,6 +26,7 @@ import { Layers } from '@/shared/types/enums'
 import { CrossSolution } from '@/shared/types/types'
 
 import DrawerHintPanel from '@/features/timer/ui/drawer-hint-panel'
+import VirtualKeymapEditor from '@/features/timer/ui/VirtualKeymapEditor'
 import FocusModeToggle from '@/features/focus-mode/ui/FocusModeToggle'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { TimerMode } from '@/features/timer/model/enums'
@@ -204,19 +204,17 @@ export function ScrambleZone() {
                     </Button>
                   </DialogTrigger>
                 </TooltipTrigger>
-                <DialogContent className="sm:max-w-xl">
+                <DialogContent
+                  className="p-4 sm:max-w-3xl sm:p-6"
+                  showCloseButton
+                  onPointerDownOutside={(e) => e.preventDefault()}
+                  onInteractOutside={(e) => e.preventDefault()}
+                >
                   <DialogHeader>
                     <DialogTitle>Keyboard controls</DialogTitle>
+                    <DialogDescription>Click any key to change the move it triggers.</DialogDescription>
                   </DialogHeader>
-                  <div className="w-full flex items-center justify-center p-2">
-                    <Image
-                      src="/utils/keyboard.jpg"
-                      alt="keyboard controls"
-                      width={600}
-                      height={400}
-                      className="w-full h-auto"
-                    />
-                  </div>
+                  <VirtualKeymapEditor />
                 </DialogContent>
                 <TooltipContent>
                   <p>Keyboard</p>
