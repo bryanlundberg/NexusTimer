@@ -73,7 +73,6 @@ export default function manifest(): MetadataRoute.Manifest {
       }
     ],
     categories: ['entertainment', 'games', 'productivity', 'utilities'],
-    orientation: 'portrait',
     launch_handler: {
       client_mode: 'focus-existing'
     },
