@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { locales } from '@/shared/config/i18n/locales'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 
@@ -10,8 +9,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { userId } = await params
   return {
     alternates: {
-      canonical: `/people/${userId}`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/people/${userId}`]))
+      canonical: `/people/${userId}`
     }
   }
 }

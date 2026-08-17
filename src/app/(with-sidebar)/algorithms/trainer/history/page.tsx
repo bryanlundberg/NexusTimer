@@ -1,8 +1,19 @@
+import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import TrainerHistoryView from '@/features/trainer/ui/TrainerHistoryView'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/algorithms/trainer/history'
+  },
+  robots: {
+    index: false,
+    follow: true
+  }
+}
 
 export default async function TrainerHistoryPage() {
   const tTrainer = await getTranslations('Index.TrainerPage')

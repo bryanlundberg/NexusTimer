@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { locales } from '@/shared/config/i18n/locales'
 import { H2, LegalBody, Li, Para } from '@/shared/ui/typography/Typography'
 import LegalHero from '@/app/(legal)/_components/LegalHero'
 
@@ -7,8 +6,7 @@ export const metadata: Metadata = {
   title: 'Privacy Policy - Nexus Timer',
   description: 'Read the Nexus Timer privacy policy to understand how we collect, store, and use your information.',
   alternates: {
-    canonical: '/privacy-policy',
-    languages: Object.fromEntries(locales.map((l) => [l, '/privacy-policy']))
+    canonical: '/privacy-policy'
   }
 }
 

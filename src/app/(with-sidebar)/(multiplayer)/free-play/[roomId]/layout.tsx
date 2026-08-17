@@ -16,6 +16,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `Nexus Timer - ${t('room', { roomId })}`,
       description: t('description', { roomId }),
       type: 'website'
+    },
+    alternates: {
+      canonical: `/free-play/${roomId}`
+    },
+    robots: {
+      index: false,
+      follow: false
     }
   }
 }
