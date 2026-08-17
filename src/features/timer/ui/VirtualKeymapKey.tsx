@@ -43,9 +43,6 @@ function VirtualKeymapKey({ code, label, move, isPressed, onSelect }: VirtualKey
           <span className="text-[length:min(0.875rem,3.1cqw)] leading-none font-semibold">
             {definition ? definition.move : '·'}
           </span>
-          {definition?.require3x3 && (
-            <span className="bg-primary/70 absolute top-[8%] right-[8%] size-[min(0.375rem,1.2cqw)] rounded-full" />
-          )}
         </button>
       </DropdownMenuTrigger>
 
