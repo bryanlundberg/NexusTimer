@@ -40,8 +40,6 @@ export default function JsonLd({ locale, title, description, url }: JsonLdProps)
       applicationSubCategory: 'Speedcubing Timer',
       operatingSystem: 'Any',
       browserRequirements: 'Requires JavaScript. Requires HTML5.',
-      softwareVersion: '1.0.0',
-      datePublished: '2023-01-01',
       inLanguage: locale,
       availableLanguage: availableLanguages,
       keywords: [
@@ -58,13 +56,6 @@ export default function JsonLd({ locale, title, description, url }: JsonLdProps)
         price: '0',
         priceCurrency: 'USD',
         availability: 'https://schema.org/InStock'
-      },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: '4.8',
-        ratingCount: '120',
-        bestRating: '5',
-        worstRating: '1'
       },
       author: organization,
       publisher: organization,
