@@ -751,7 +751,16 @@
         "other": "อื่น ๆ"
       },
       "search-country": "ค้นหาประเทศ…",
-      "no-country-found": "ไม่พบประเทศ"
+      "no-country-found": "ไม่พบประเทศ",
+      "crop-title": "ปรับรูปโปรไฟล์ของคุณ",
+      "crop-description": "ลากรูปภาพและซูมเพื่อเลือกส่วนที่จะอยู่ในวงกลม",
+      "crop-zoom": "ซูม",
+      "crop-zoom-in": "ซูมเข้า",
+      "crop-zoom-out": "ซูมออก",
+      "crop-cancel": "ยกเลิก",
+      "crop-confirm": "บันทึกรูปภาพ",
+      "crop-error": "ไม่สามารถประมวลผลรูปภาพได้ โปรดลองอีกครั้ง",
+      "crop-invalid-file": "ไฟล์นั้นไม่ใช่รูปภาพ โปรดเลือกไฟล์อื่น"
     },
     "AccessCard": {
       "title": "การเข้าถึง",

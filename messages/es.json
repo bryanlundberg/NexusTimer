@@ -717,7 +717,16 @@
         "other": "Otro"
       },
       "search-country": "Buscar país…",
-      "no-country-found": "No se encontró el país"
+      "no-country-found": "No se encontró el país",
+      "crop-title": "Ajusta tu imagen de perfil",
+      "crop-description": "Arrastra la imagen y haz zoom para elegir lo que queda dentro del círculo.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Acercar",
+      "crop-zoom-out": "Alejar",
+      "crop-cancel": "Cancelar",
+      "crop-confirm": "Guardar imagen",
+      "crop-error": "No se pudo procesar la imagen. Inténtalo de nuevo.",
+      "crop-invalid-file": "Ese archivo no es una imagen. Elige otro archivo."
     },
     "NavMain": {
       "trainer": "Entrenador",

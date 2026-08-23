@@ -751,7 +751,16 @@
         "other": "Iba pa"
       },
       "search-country": "Maghanap ng bansa…",
-      "no-country-found": "Walang nahanap na bansa"
+      "no-country-found": "Walang nahanap na bansa",
+      "crop-title": "I-adjust ang profile image mo",
+      "crop-description": "I-drag ang image at mag-zoom para piliin ang lalabas sa loob ng bilog.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Mag-zoom in",
+      "crop-zoom-out": "Mag-zoom out",
+      "crop-cancel": "Kanselahin",
+      "crop-confirm": "I-save ang image",
+      "crop-error": "Hindi ma-proseso ang image. Subukang muli.",
+      "crop-invalid-file": "Hindi image ang file na iyan. Pumili ng ibang file."
     },
     "AccessCard": {
       "title": "Access",
