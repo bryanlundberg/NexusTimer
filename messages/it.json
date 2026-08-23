@@ -751,7 +751,16 @@
         "other": "Altro"
       },
       "search-country": "Cerca paese…",
-      "no-country-found": "Nessun paese trovato"
+      "no-country-found": "Nessun paese trovato",
+      "crop-title": "Regola la tua immagine del profilo",
+      "crop-description": "Trascina l'immagine e usa lo zoom per scegliere cosa finisce nel cerchio.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Ingrandisci",
+      "crop-zoom-out": "Riduci",
+      "crop-cancel": "Annulla",
+      "crop-confirm": "Salva immagine",
+      "crop-error": "Impossibile elaborare l'immagine. Riprova.",
+      "crop-invalid-file": "Questo file non è un'immagine. Scegli un altro file."
     },
     "AccessCard": {
       "title": "Accesso",

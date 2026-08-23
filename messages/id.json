@@ -751,7 +751,16 @@
         "other": "Lainnya"
       },
       "search-country": "Cari negara…",
-      "no-country-found": "Negara tidak ditemukan"
+      "no-country-found": "Negara tidak ditemukan",
+      "crop-title": "Sesuaikan gambar profilmu",
+      "crop-description": "Geser gambar dan perbesar untuk memilih bagian yang masuk ke dalam lingkaran.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Perbesar",
+      "crop-zoom-out": "Perkecil",
+      "crop-cancel": "Batal",
+      "crop-confirm": "Simpan gambar",
+      "crop-error": "Tidak dapat memproses gambar. Silakan coba lagi.",
+      "crop-invalid-file": "File itu bukan gambar. Pilih file lain."
     },
     "AccessCard": {
       "title": "Akses",

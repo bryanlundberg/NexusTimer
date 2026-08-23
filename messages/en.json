@@ -741,7 +741,16 @@
         "other": "Other"
       },
       "search-country": "Search country…",
-      "no-country-found": "No country found"
+      "no-country-found": "No country found",
+      "crop-title": "Adjust your profile image",
+      "crop-description": "Drag the image and zoom to choose what goes inside the circle.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Zoom in",
+      "crop-zoom-out": "Zoom out",
+      "crop-cancel": "Cancel",
+      "crop-confirm": "Save image",
+      "crop-error": "Could not process the image. Please try again.",
+      "crop-invalid-file": "That file is not an image. Choose a different file."
     },
     "AccessCard": {
       "title": "Access",

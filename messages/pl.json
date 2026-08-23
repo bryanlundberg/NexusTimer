@@ -751,7 +751,16 @@
         "other": "Inne"
       },
       "search-country": "Szukaj kraju…",
-      "no-country-found": "Nie znaleziono kraju"
+      "no-country-found": "Nie znaleziono kraju",
+      "crop-title": "Dopasuj swój obraz profilowy",
+      "crop-description": "Przeciągnij obraz i przybliż, aby wybrać, co znajdzie się w okręgu.",
+      "crop-zoom": "Powiększenie",
+      "crop-zoom-in": "Przybliż",
+      "crop-zoom-out": "Oddal",
+      "crop-cancel": "Anuluj",
+      "crop-confirm": "Zapisz obraz",
+      "crop-error": "Nie udało się przetworzyć obrazu. Spróbuj ponownie.",
+      "crop-invalid-file": "Ten plik nie jest obrazem. Wybierz inny plik."
     },
     "AccessCard": {
       "title": "Dostęp",
