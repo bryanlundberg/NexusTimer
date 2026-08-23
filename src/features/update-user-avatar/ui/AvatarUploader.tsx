@@ -3,14 +3,22 @@ import { useUpdateUserAvatar } from '../model/useUpdateUserAvatar'
 import { AvatarCropDialog } from './AvatarCropDialog'
 import { useSession } from 'next-auth/react'
 import { Input } from '@/components/ui/input'
-import { useRef, useState, type ChangeEvent } from 'react'
+import { useEffect, useRef, useState, type ChangeEvent } from 'react'
 import { Camera, Loader2 } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { toast } from 'sonner'
 
 export function AvatarUploader() {
   const { data: session } = useSession()
   const { updateAvatar, isUploading } = useUpdateUserAvatar()
+  const tAccount = useTranslations('Index.AccountPage')
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const [imageSrc, setImageSrc] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!imageSrc) return
+    return () => URL.revokeObjectURL(imageSrc)
+  }, [imageSrc])
 
   const handleClick = () => {
     if (isUploading) return
@@ -20,12 +28,15 @@ export function AvatarUploader() {
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     event.target.value = ''
-    if (!file || !file.type.startsWith('image/')) return
+    if (!file) return
+    if (!file.type.startsWith('image/')) {
+      toast.error(tAccount('crop-invalid-file'))
+      return
+    }
     setImageSrc(URL.createObjectURL(file))
   }
 
   const handleCropCancel = () => {
-    if (imageSrc) URL.revokeObjectURL(imageSrc)
     setImageSrc(null)
   }
 
