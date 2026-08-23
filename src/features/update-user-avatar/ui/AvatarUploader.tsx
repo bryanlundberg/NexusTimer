@@ -1,18 +1,37 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useUpdateUserAvatar } from '../model/useUpdateUserAvatar'
+import { AvatarCropDialog } from './AvatarCropDialog'
 import { useSession } from 'next-auth/react'
 import { Input } from '@/components/ui/input'
-import { useRef } from 'react'
+import { useRef, useState, type ChangeEvent } from 'react'
 import { Camera, Loader2 } from 'lucide-react'
 
 export function AvatarUploader() {
   const { data: session } = useSession()
   const { updateAvatar, isUploading } = useUpdateUserAvatar()
   const fileInputRef = useRef<HTMLInputElement | null>(null)
+  const [imageSrc, setImageSrc] = useState<string | null>(null)
 
   const handleClick = () => {
     if (isUploading) return
     fileInputRef.current?.click()
+  }
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    event.target.value = ''
+    if (!file || !file.type.startsWith('image/')) return
+    setImageSrc(URL.createObjectURL(file))
+  }
+
+  const handleCropCancel = () => {
+    if (imageSrc) URL.revokeObjectURL(imageSrc)
+    setImageSrc(null)
+  }
+
+  const handleCropConfirm = (file: File) => {
+    handleCropCancel()
+    updateAvatar(file)
   }
 
   return (
@@ -49,7 +68,14 @@ export function AvatarUploader() {
         type="file"
         accept="image/*"
         disabled={isUploading}
-        onChange={(e) => updateAvatar(e.target.files?.[0])}
+        onChange={handleFileChange}
+      />
+
+      <AvatarCropDialog
+        open={imageSrc !== null}
+        imageSrc={imageSrc}
+        onConfirm={handleCropConfirm}
+        onCancel={handleCropCancel}
       />
     </div>
   )
