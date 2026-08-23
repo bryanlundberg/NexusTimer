@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import Cropper from 'react-easy-crop'
-import type { Area, Point } from 'react-easy-crop'
+import type { Area, Point, Size } from 'react-easy-crop'
 import { useTranslations } from 'next-intl'
 import { toast } from 'sonner'
 import { Loader2, ZoomIn, ZoomOut } from 'lucide-react'
@@ -18,7 +18,11 @@ import {
 import { getCroppedAvatarFile } from '../model/cropImage'
 
 const MIN_ZOOM = 1
-const MAX_ZOOM = 3
+const MAX_ZOOM = 4
+const ZOOM_STEP = 0.25
+
+// The crop circle is inset inside the frame so the image always overflows
+const CROP_AREA_RATIO = 0.8
 
 interface AvatarCropDialogProps {
   open: boolean
@@ -33,6 +37,10 @@ export function AvatarCropDialog({ open, imageSrc, onConfirm, onCancel }: Avatar
   const [zoom, setZoom] = useState(MIN_ZOOM)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
+  // Callback ref instead of useRef: the dialog content is mounted by Radix in a
+  // layout effect, so a ref read from an effect would still be null.
+  const [frame, setFrame] = useState<HTMLDivElement | null>(null)
+  const [cropSize, setCropSize] = useState<Size | null>(null)
 
   useEffect(() => {
     if (open) {
@@ -43,9 +51,23 @@ export function AvatarCropDialog({ open, imageSrc, onConfirm, onCancel }: Avatar
     }
   }, [open])
 
+  useEffect(() => {
+    if (!frame) return
+    const observer = new ResizeObserver(([entry]) => {
+      const size = Math.round(entry.contentRect.width * CROP_AREA_RATIO)
+      if (size > 0) setCropSize({ width: size, height: size })
+    })
+    observer.observe(frame)
+    return () => observer.disconnect()
+  }, [frame])
+
   const handleCropComplete = useCallback((_: Area, croppedAreaPixels: Area) => {
     setCroppedAreaPixels(croppedAreaPixels)
   }, [])
+
+  const stepZoom = (delta: number) => {
+    setZoom((current) => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, current + delta)))
+  }
 
   const handleCancel = () => {
     if (isProcessing) return
@@ -72,18 +94,22 @@ export function AvatarCropDialog({ open, imageSrc, onConfirm, onCancel }: Avatar
           <DialogDescription>{tAccount('crop-description')}</DialogDescription>
         </DialogHeader>
 
-        <div className="relative h-64 sm:h-80 w-full overflow-hidden rounded-md bg-muted">
+        <div
+          ref={setFrame}
+          className="relative mx-auto aspect-square w-full max-w-[min(100%,55vh)] overflow-hidden rounded-md bg-muted"
+        >
           {imageSrc && (
             <Cropper
               image={imageSrc}
               crop={crop}
               zoom={zoom}
               aspect={1}
+              cropSize={cropSize ?? undefined}
               cropShape="round"
               showGrid={false}
+              objectFit="cover"
               minZoom={MIN_ZOOM}
               maxZoom={MAX_ZOOM}
-              zoomWithScroll
               onCropChange={setCrop}
               onZoomChange={setZoom}
               onCropComplete={handleCropComplete}
@@ -91,8 +117,17 @@ export function AvatarCropDialog({ open, imageSrc, onConfirm, onCancel }: Avatar
           )}
         </div>
 
-        <div className="flex items-center gap-3">
-          <ZoomOut className="size-4 shrink-0 text-muted-foreground" />
+        <div className="flex items-center gap-1">
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            aria-label={tAccount('crop-zoom-out')}
+            disabled={zoom <= MIN_ZOOM}
+            onClick={() => stepZoom(-ZOOM_STEP)}
+          >
+            <ZoomOut className="size-4" />
+          </Button>
           <input
             type="range"
             min={MIN_ZOOM}
@@ -103,7 +138,16 @@ export function AvatarCropDialog({ open, imageSrc, onConfirm, onCancel }: Avatar
             onChange={(event) => setZoom(Number(event.target.value))}
             className="w-full accent-primary"
           />
-          <ZoomIn className="size-4 shrink-0 text-muted-foreground" />
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
+            aria-label={tAccount('crop-zoom-in')}
+            disabled={zoom >= MAX_ZOOM}
+            onClick={() => stepZoom(ZOOM_STEP)}
+          >
+            <ZoomIn className="size-4" />
+          </Button>
         </div>
 
         <DialogFooter>
