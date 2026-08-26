@@ -6,14 +6,12 @@ import { Solve } from '@/entities/solve/model/types'
 import { STATES } from '@/shared/const/states'
 import { Order, Sort } from '@/shared/types/enums'
 import { useSolvesFilter } from '@/features/solves-grid/model/useSolvesFilter'
+import { useSolvesSort } from '@/features/solves-grid/model/useSolvesSort'
 
 export default function useSolvesGrid(solves: Array<Solve>) {
   const { isVisible } = useSolvesFilter()
+  const { sortType, orderType } = useSolvesSort()
   const [query] = useQueryState(STATES.SOLVES_PAGE.QUERY.KEY, { defaultValue: STATES.SOLVES_PAGE.QUERY.DEFAULT_VALUE })
-  const [sortType] = useQueryState(STATES.SOLVES_PAGE.SORT.KEY, { defaultValue: STATES.SOLVES_PAGE.SORT.DEFAULT_VALUE })
-  const [orderType] = useQueryState(STATES.SOLVES_PAGE.ORDER.KEY, {
-    defaultValue: STATES.SOLVES_PAGE.ORDER.DEFAULT_VALUE
-  })
 
   const normalizedQuery = (query || '').trim()
 
@@ -27,17 +25,8 @@ export default function useSolvesGrid(solves: Array<Solve>) {
   const filteredByPenalty = useMemo(() => filteredByQuery.filter((u) => isVisible(u)), [filteredByQuery, isVisible])
 
   const orderedSolves = useMemo(() => {
-    const base = filteredByPenalty
-
-    if (sortType === Sort.DATE) {
-      return orderType === Order.ASC ? sort(base).asc((u) => u.endTime) : sort(base).desc((u) => u.endTime)
-    }
-
-    if (sortType === Sort.TIME) {
-      return orderType === Order.ASC ? sort(base).asc((u) => u.time) : sort(base).desc((u) => u.time)
-    }
-
-    return base
+    const key = sortType === Sort.TIME ? (u: Solve) => u.time : (u: Solve) => u.endTime
+    return orderType === Order.ASC ? sort(filteredByPenalty).asc(key) : sort(filteredByPenalty).desc(key)
   }, [filteredByPenalty, sortType, orderType])
 
   return {
