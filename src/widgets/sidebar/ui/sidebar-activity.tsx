@@ -2,7 +2,10 @@
 
 import { useMemo } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
+import { AnimatePresence, motion } from 'motion/react'
+import { ChevronDown } from 'lucide-react'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
+import { useSidebarActivityStore } from '@/widgets/sidebar/model/useSidebarActivityStore'
 import dayjs from '@/shared/lib/dayjs'
 
 const INTENSITY = ['bg-muted-foreground/15', 'bg-primary/30', 'bg-primary/55', 'bg-primary/80', 'bg-primary'] as const
@@ -19,6 +22,8 @@ export function SidebarActivity() {
   const locale = useLocale()
   const t = useTranslations('Index')
   const cubes = useTimerStore((store) => store.cubes)
+  const isCollapsed = useSidebarActivityStore((store) => store.isCollapsed)
+  const toggle = useSidebarActivityStore((store) => store.toggle)
 
   const { cells, total, monthLabel, weekdayLabels } = useMemo(() => {
     const now = dayjs().locale(locale)
@@ -64,38 +69,65 @@ export function SidebarActivity() {
 
   return (
     <div className="notch-bl-tr [--nblt:12px] border bg-background/40 p-3">
-      <div className="mb-2 flex items-center justify-between">
+      <button
+        type="button"
+        onClick={toggle}
+        aria-expanded={!isCollapsed}
+        aria-controls="sidebar-activity-grid"
+        aria-label={t('NavMain.activity-calendar')}
+        className="flex w-full items-center justify-between gap-2 cursor-pointer"
+      >
         <span className="text-[11px] font-semibold capitalize leading-none">{monthLabel}</span>
-        <span className="text-[10px] tabular-nums text-muted-foreground leading-none">
-          {total} {t('NavMain.activity-solves')}
-        </span>
-      </div>
-      <div className="mb-1 grid grid-cols-7 gap-1">
-        {weekdayLabels.map((w, i) => (
-          <span key={i} className="text-center text-[8px] uppercase text-muted-foreground/60 leading-none">
-            {w}
+        <span className="flex items-center gap-1">
+          <span className="text-[10px] tabular-nums text-muted-foreground leading-none">
+            {total} {t('NavMain.activity-solves')}
           </span>
-        ))}
-      </div>
-      <div className="grid grid-cols-7 gap-1">
-        {cells.map((cell, i) =>
-          cell.day === null ? (
-            <span
-              key={i}
-              aria-hidden
-              className="aspect-square rounded-none border border-dashed border-muted-foreground/15 bg-transparent"
-            />
-          ) : (
-            <span
-              key={i}
-              title={cell.label}
-              className={`aspect-square rounded-none ${INTENSITY[intensityLevel(cell.count)]} ${
-                cell.isToday ? 'ring-1 ring-primary ring-offset-1 ring-offset-sidebar' : ''
-              }`}
-            />
-          )
+          <ChevronDown
+            className={`size-3 text-muted-foreground transition-transform ${isCollapsed ? '-rotate-90' : ''}`}
+          />
+        </span>
+      </button>
+      <AnimatePresence initial={false}>
+        {!isCollapsed && (
+          <motion.div
+            id="sidebar-activity-grid"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            className="overflow-hidden"
+          >
+            <div className="pt-2 pb-0.5">
+              <div className="mb-1 grid grid-cols-7 gap-1">
+                {weekdayLabels.map((w, i) => (
+                  <span key={i} className="text-center text-[8px] uppercase text-muted-foreground/60 leading-none">
+                    {w}
+                  </span>
+                ))}
+              </div>
+              <div className="grid grid-cols-7 gap-1">
+                {cells.map((cell, i) =>
+                  cell.day === null ? (
+                    <span
+                      key={i}
+                      aria-hidden
+                      className="aspect-square rounded-none border border-dashed border-muted-foreground/15 bg-transparent"
+                    />
+                  ) : (
+                    <span
+                      key={i}
+                      title={cell.label}
+                      className={`aspect-square rounded-none ${INTENSITY[intensityLevel(cell.count)]} ${
+                        cell.isToday ? 'ring-1 ring-primary ring-offset-1 ring-offset-sidebar' : ''
+                      }`}
+                    />
+                  )
+                )}
+              </div>
+            </div>
+          </motion.div>
         )}
-      </div>
+      </AnimatePresence>
     </div>
   )
 }
