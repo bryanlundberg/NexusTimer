@@ -555,6 +555,7 @@
       "download-data": "恢复备份",
       "log-out": "退出登录",
       "activity-solves": "次还原",
+      "activity-calendar": "活动日历",
       "trainer": "训练器",
       "training": "训练"
     },
@@ -894,6 +895,7 @@
         "title": "选择案例",
         "description": "已选择 {selected} / {total} 个案例",
         "selectAll": "全选",
+        "deselectAll": "取消全选",
         "clear": "清空",
         "cancel": "取消",
         "applyWithCount": "应用 ({count})"

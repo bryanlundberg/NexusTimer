@@ -555,6 +555,7 @@
       "download-data": "백업 복원",
       "log-out": "로그아웃",
       "activity-solves": "풀이",
+      "activity-calendar": "활동 캘린더",
       "trainer": "트레이너",
       "training": "트레이닝"
     },
@@ -894,6 +895,7 @@
         "title": "케이스 선택",
         "description": "{total}개 중 {selected}개 케이스 선택됨",
         "selectAll": "전체 선택",
+        "deselectAll": "전체 선택 해제",
         "clear": "지우기",
         "cancel": "취소",
         "applyWithCount": "적용 ({count})"

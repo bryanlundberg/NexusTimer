@@ -555,6 +555,7 @@
       "download-data": "Restaurar backup",
       "log-out": "Sair",
       "activity-solves": "soluções",
+      "activity-calendar": "Calendário de atividade",
       "trainer": "Treinador",
       "training": "Treinamento"
     },
@@ -894,6 +895,7 @@
         "title": "Escolher casos",
         "description": "{selected} de {total} casos selecionados",
         "selectAll": "Selecionar todos",
+        "deselectAll": "Desmarcar todos",
         "clear": "Limpar",
         "cancel": "Cancelar",
         "applyWithCount": "Aplicar ({count})"

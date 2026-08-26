@@ -559,7 +559,8 @@
       "save-data": "Gumawa ng backup",
       "download-data": "I-restore ang backup",
       "log-out": "Mag-log out",
-      "activity-solves": "solves"
+      "activity-solves": "solves",
+      "activity-calendar": "Kalendaryo ng aktibidad"
     },
     "Presence": {
       "online": "Online",
@@ -876,6 +877,7 @@
         "title": "Pumili ng cases",
         "description": "{selected} sa {total} na cases ang napili",
         "selectAll": "Piliin lahat",
+        "deselectAll": "Alisin lahat ng pili",
         "clear": "Burahin",
         "cancel": "Kanselahin",
         "applyWithCount": "I-apply ({count})"

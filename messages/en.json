@@ -559,7 +559,8 @@
       "save-data": "Create Backup",
       "download-data": "Restore Backup",
       "log-out": "Sign Out",
-      "activity-solves": "solves"
+      "activity-solves": "solves",
+      "activity-calendar": "Activity calendar"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",
@@ -866,6 +867,7 @@
         "title": "Pick cases",
         "description": "{selected} of {total} cases selected",
         "selectAll": "Select all",
+        "deselectAll": "Deselect all",
         "clear": "Clear",
         "cancel": "Cancel",
         "applyWithCount": "Apply ({count})"

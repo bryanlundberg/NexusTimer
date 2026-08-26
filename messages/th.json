@@ -559,7 +559,8 @@
       "save-data": "สร้างข้อมูลสำรอง",
       "download-data": "กู้คืนข้อมูลสำรอง",
       "log-out": "ออกจากระบบ",
-      "activity-solves": "การไข"
+      "activity-solves": "การไข",
+      "activity-calendar": "ปฏิทินกิจกรรม"
     },
     "Presence": {
       "online": "ออนไลน์",
@@ -876,6 +877,7 @@
         "title": "เลือกกรณี",
         "description": "เลือกแล้ว {selected} จาก {total} กรณี",
         "selectAll": "เลือกทั้งหมด",
+        "deselectAll": "ยกเลิกเลือกทั้งหมด",
         "clear": "ล้าง",
         "cancel": "ยกเลิก",
         "applyWithCount": "ใช้ ({count})"

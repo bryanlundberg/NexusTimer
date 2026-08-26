@@ -559,7 +559,8 @@
       "save-data": "Tạo bản sao lưu",
       "download-data": "Khôi phục bản sao lưu",
       "log-out": "Đăng xuất",
-      "activity-solves": "lượt giải"
+      "activity-solves": "lượt giải",
+      "activity-calendar": "Lịch hoạt động"
     },
     "Presence": {
       "online": "Trực tuyến",
@@ -876,6 +877,7 @@
         "title": "Chọn trường hợp",
         "description": "Đã chọn {selected} trong {total} trường hợp",
         "selectAll": "Chọn tất cả",
+        "deselectAll": "Bỏ chọn tất cả",
         "clear": "Xóa",
         "cancel": "Hủy",
         "applyWithCount": "Áp dụng ({count})"

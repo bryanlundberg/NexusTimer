@@ -559,7 +559,8 @@
       "save-data": "Створити резервну копію",
       "download-data": "Відновити резервну копію",
       "log-out": "Вийти",
-      "activity-solves": "збірки"
+      "activity-solves": "збірки",
+      "activity-calendar": "Календар активності"
     },
     "Presence": {
       "online": "У мережі",
@@ -876,6 +877,7 @@
         "title": "Вибрати випадки",
         "description": "Обрано {selected} з {total} випадків",
         "selectAll": "Вибрати всі",
+        "deselectAll": "Зняти виділення",
         "clear": "Очистити",
         "cancel": "Скасувати",
         "applyWithCount": "Застосувати ({count})"

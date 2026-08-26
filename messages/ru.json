@@ -555,6 +555,7 @@
       "download-data": "Восстановить из резервной копии",
       "log-out": "Выйти",
       "activity-solves": "сборки",
+      "activity-calendar": "Календарь активности",
       "trainer": "Тренажёр",
       "training": "Тренировка"
     },
@@ -894,6 +895,7 @@
         "title": "Выбрать случаи",
         "description": "Выбрано {selected} из {total} случаев",
         "selectAll": "Выбрать все",
+        "deselectAll": "Снять выделение",
         "clear": "Очистить",
         "cancel": "Отмена",
         "applyWithCount": "Применить ({count})"

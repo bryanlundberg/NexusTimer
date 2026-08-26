@@ -555,6 +555,7 @@
       "download-data": "Backup wiederherstellen",
       "log-out": "Abmelden",
       "activity-solves": "Lösungen",
+      "activity-calendar": "Aktivitätskalender",
       "trainer": "Trainer",
       "training": "Training"
     },
@@ -894,6 +895,7 @@
         "title": "Fälle auswählen",
         "description": "{selected} von {total} Fällen ausgewählt",
         "selectAll": "Alle auswählen",
+        "deselectAll": "Alle abwählen",
         "clear": "Leeren",
         "cancel": "Abbrechen",
         "applyWithCount": "Anwenden ({count})"

@@ -555,6 +555,7 @@
       "download-data": "Restaurer une sauvegarde",
       "log-out": "Déconnexion",
       "activity-solves": "résolutions",
+      "activity-calendar": "Calendrier d'activité",
       "trainer": "Entraîneur",
       "training": "Entraînement"
     },
@@ -894,6 +895,7 @@
         "title": "Choisir les cas",
         "description": "{selected} sur {total} cas sélectionnés",
         "selectAll": "Tout sélectionner",
+        "deselectAll": "Tout désélectionner",
         "clear": "Effacer",
         "cancel": "Annuler",
         "applyWithCount": "Appliquer ({count})"

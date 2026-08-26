@@ -555,6 +555,7 @@
       "download-data": "बैकअप पुनर्स्थापित करें",
       "log-out": "लॉग आउट",
       "activity-solves": "सॉल्व",
+      "activity-calendar": "गतिविधि कैलेंडर",
       "trainer": "ट्रेनर",
       "training": "ट्रेनिंग"
     },
@@ -894,6 +895,7 @@
         "title": "केस चुनें",
         "description": "{total} में से {selected} केस चुने गए",
         "selectAll": "सभी चुनें",
+        "deselectAll": "सभी अचयनित करें",
         "clear": "साफ़ करें",
         "cancel": "रद्द करें",
         "applyWithCount": "लागू करें ({count})"

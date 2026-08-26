@@ -555,6 +555,7 @@
       "download-data": "バックアップを復元",
       "log-out": "ログアウト",
       "activity-solves": "解き",
+      "activity-calendar": "アクティビティカレンダー",
       "trainer": "トレーナー",
       "training": "トレーニング"
     },
@@ -894,6 +895,7 @@
         "title": "ケースを選択",
         "description": "{total} ケース中 {selected} 件選択",
         "selectAll": "すべて選択",
+        "deselectAll": "すべて選択解除",
         "clear": "クリア",
         "cancel": "キャンセル",
         "applyWithCount": "適用 ({count})"

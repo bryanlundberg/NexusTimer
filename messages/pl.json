@@ -559,7 +559,8 @@
       "save-data": "Utwórz kopię zapasową",
       "download-data": "Przywróć kopię zapasową",
       "log-out": "Wyloguj się",
-      "activity-solves": "ułożenia"
+      "activity-solves": "ułożenia",
+      "activity-calendar": "Kalendarz aktywności"
     },
     "Presence": {
       "online": "Online",
@@ -876,6 +877,7 @@
         "title": "Wybierz przypadki",
         "description": "Wybrano {selected} z {total} przypadków",
         "selectAll": "Zaznacz wszystkie",
+        "deselectAll": "Odznacz wszystkie",
         "clear": "Wyczyść",
         "cancel": "Anuluj",
         "applyWithCount": "Zastosuj ({count})"

@@ -559,7 +559,8 @@
       "save-data": "Crea backup",
       "download-data": "Ripristina backup",
       "log-out": "Esci",
-      "activity-solves": "soluzioni"
+      "activity-solves": "soluzioni",
+      "activity-calendar": "Calendario attività"
     },
     "Presence": {
       "online": "Online",
@@ -876,6 +877,7 @@
         "title": "Scegli i casi",
         "description": "{selected} di {total} casi selezionati",
         "selectAll": "Seleziona tutti",
+        "deselectAll": "Deseleziona tutti",
         "clear": "Cancella",
         "cancel": "Annulla",
         "applyWithCount": "Applica ({count})"

@@ -559,7 +559,8 @@
       "save-data": "Buat cadangan",
       "download-data": "Pulihkan cadangan",
       "log-out": "Keluar",
-      "activity-solves": "solve"
+      "activity-solves": "solve",
+      "activity-calendar": "Kalender aktivitas"
     },
     "Presence": {
       "online": "Online",
@@ -876,6 +877,7 @@
         "title": "Pilih kasus",
         "description": "{selected} dari {total} kasus dipilih",
         "selectAll": "Pilih semua",
+        "deselectAll": "Batalkan semua pilihan",
         "clear": "Bersihkan",
         "cancel": "Batal",
         "applyWithCount": "Terapkan ({count})"
