@@ -300,6 +300,7 @@
       "order": "Order",
       "ascending": "Ascending",
       "descending": "Descending",
+      "reset-sort": "Reset sort",
       "share": "Share",
       "last": "Last",
       "all": "All",

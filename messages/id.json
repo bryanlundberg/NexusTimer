@@ -300,6 +300,7 @@
       "order": "Urutan",
       "ascending": "Naik",
       "descending": "Turun",
+      "reset-sort": "Atur ulang urutan",
       "share": "Bagikan",
       "last": "Terakhir",
       "all": "Semua",
