@@ -3,14 +3,21 @@
 import { Tabs } from '@/components/ui/tabs'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
 import { LEADERBOARD_PUZZLE_OPTIONS } from '@/features/leaderboards/model/puzzle-options'
+import type { LeaderboardView } from '@/features/leaderboards/model/leaderboard-view'
 import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
+import Segmented from '@/shared/ui/segmented/Segmented'
+import { useTranslations } from 'next-intl'
 
 interface LeaderboardHeroProps {
   value: string
   onChange: (value: string) => void
+  view: LeaderboardView
+  onViewChange: (view: LeaderboardView) => void
 }
 
-export default function LeaderboardHero({ value, onChange }: LeaderboardHeroProps) {
+export default function LeaderboardHero({ value, onChange, view, onViewChange }: LeaderboardHeroProps) {
+  const t = useTranslations('Index.LeaderboardsPage')
+
   const items = LEADERBOARD_PUZZLE_OPTIONS.map((option) => ({
     value: option.value,
     label: (
@@ -24,11 +31,32 @@ export default function LeaderboardHero({ value, onChange }: LeaderboardHeroProp
     )
   }))
 
+  const viewOptions = [
+    { value: 'all' as const, label: t('view-all') },
+    { value: 'persons' as const, label: t('view-persons') }
+  ]
+
   return (
-    <div className="mx-auto w-full max-w-4xl px-3 pt-3 md:px-6">
-      <Tabs value={value} onValueChange={onChange} className="w-full">
-        <ScrollableUnderlineTabs items={items} activeValue={value} layoutId="leaderboard-puzzle-tabs" />
-      </Tabs>
+    <div className="mx-auto w-full max-w-4xl px-3 pt-3">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
+        <Tabs value={value} onValueChange={onChange} className="min-w-0 md:flex-1">
+          <ScrollableUnderlineTabs
+            items={items}
+            activeValue={value}
+            layoutId="leaderboard-puzzle-tabs"
+            className="[&_[data-slot=tabs-trigger]]:grow md:[&_[data-slot=tabs-trigger]]:grow-0"
+          />
+        </Tabs>
+
+        <Segmented
+          value={view}
+          onChange={onViewChange}
+          options={viewOptions}
+          layoutId="leaderboard-view"
+          aria-label={t('view-label')}
+          className="w-full [&>button]:flex-1 [&>button]:justify-center md:w-auto md:[&>button]:flex-none"
+        />
+      </div>
     </div>
   )
 }

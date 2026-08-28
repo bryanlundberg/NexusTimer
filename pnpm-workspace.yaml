@@ -11,3 +11,4 @@ allowBuilds:
   esbuild: false
 minimumReleaseAgeExclude:
   - cube-state-engine
+  - '@rednaxela101/cubing@0.63.5'

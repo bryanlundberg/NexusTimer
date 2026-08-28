@@ -1,5 +1,5 @@
 import { CubeCategory } from '@/shared/const/cube-categories'
-import { PuzzleID } from 'cubing/twisty'
+import { PuzzleID } from '@rednaxela101/cubing/twisty'
 
 export type CrossSolution = {
   cross: string[]
@@ -31,19 +31,7 @@ export type Event =
   | 'fto'
 
 type TwistyTimerEvent =
-  | null
-  | '222'
-  | '333'
-  | '444'
-  | '555'
-  | '666'
-  | '777'
-  | 'skewb'
-  | 'mega'
-  | 'pyra'
-  | 'sq1'
-  | 'clock'
-  | 'fto'
+  null | '222' | '333' | '444' | '555' | '666' | '777' | 'skewb' | 'mega' | 'pyra' | 'sq1' | 'clock' | 'fto'
 
 export type CubeCollection = {
   event: Event

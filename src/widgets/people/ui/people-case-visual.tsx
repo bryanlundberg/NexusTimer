@@ -2,7 +2,7 @@
 
 import _ from 'lodash'
 import { useEffect, useRef, useState } from 'react'
-import type { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
 import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 import type { ALGORITHM_SET } from '@/shared/const/algorithms-sets'

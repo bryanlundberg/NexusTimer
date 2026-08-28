@@ -1,5 +1,7 @@
+import { memo } from 'react'
 import Link from 'next/link'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
+import { PUZZLE_LABELS } from '@/features/algorithm-method/model/method-filters'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 import { useTranslations } from 'next-intl'
@@ -8,7 +10,7 @@ import MethodThumbnail from '@/features/algorithm-method/ui/MethodThumbnail'
 
 const DIFFICULTY_FILL = ['bg-emerald-500', 'bg-amber-500', 'bg-red-500'] as const
 
-export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
+function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
   const t = useTranslations('Index.AlgorithmsPage')
   const { slug, title, subtitle, puzzle, difficulty, algorithms } = set
 
@@ -38,7 +40,7 @@ export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2.5">
               <CategoryBadge
-                category={puzzle}
+                category={PUZZLE_LABELS[puzzle]}
                 className="border-transparent bg-foreground/[0.07] px-2 font-semibold uppercase tracking-[0.08em] text-foreground/75"
               />
               <span className="flex items-baseline gap-1">
@@ -68,3 +70,5 @@ export default function AlgorithmMethod({ set }: { set: ALGORITHM_SET }) {
     </Link>
   )
 }
+
+export default memo(AlgorithmMethod)

@@ -256,6 +256,7 @@
       "finish-session": "完成",
       "selection": {
         "move-to-session": "移至当前组",
+        "select-all": "全选",
         "moved-to-session-toast": "已将 {count} 个还原移至当前组",
         "cancel": "取消",
         "delete": "删除",
@@ -296,6 +297,7 @@
       "order": "顺序",
       "ascending": "升序",
       "descending": "降序",
+      "reset-sort": "重置排序",
       "share": "分享",
       "last": "最近一次",
       "all": "全部",
@@ -500,6 +502,9 @@
     "LeaderboardsPage": {
       "title": "最快还原",
       "description": "所选魔方和模式下最快的 100 次还原，按用时排序，包含每次还原的完成者、TPS、步数和日期。",
+      "view-label": "视图",
+      "view-all": "全部成绩",
+      "view-persons": "每人一条",
       "type": "类型",
       "table": {
         "user": "魔友",
@@ -551,6 +556,7 @@
       "download-data": "恢复备份",
       "log-out": "退出登录",
       "activity-solves": "次还原",
+      "activity-calendar": "活动日历",
       "trainer": "训练器",
       "training": "训练"
     },
@@ -743,6 +749,15 @@
       },
       "search-country": "搜索国家…",
       "no-country-found": "未找到国家",
+      "crop-title": "调整头像",
+      "crop-description": "拖动图片并缩放，选择要显示在圆圈内的部分。",
+      "crop-zoom": "缩放",
+      "crop-zoom-in": "放大",
+      "crop-zoom-out": "缩小",
+      "crop-cancel": "取消",
+      "crop-confirm": "保存图片",
+      "crop-error": "无法处理图片，请重试。",
+      "crop-invalid-file": "该文件不是图片，请选择其他文件。",
       "personal-info": "个人信息",
       "personal-info-description": "更新你的公开信息以及其他用户看到你的方式。"
     },
@@ -777,6 +792,11 @@
       "casual-enthusiast": "业余爱好者",
       "dedicated-learner": "专注学习者",
       "algorithm-master": "算法大师",
+      "filters": {
+        "puzzle": "魔方",
+        "clear": "清除筛选",
+        "results": "{sets} 个公式组 · {algorithms, number} 个公式"
+      },
       "descriptions": {
         "pbl": "这些算法用于同时排列 2x2 魔方的顶层和底层，从而实现高效还原。",
         "ocll": "COLL（Orient Corners of the Last Layer）- 此步骤专注于将顶层所有角块复位，为最终还原做好准备。",
@@ -877,6 +897,7 @@
         "title": "选择案例",
         "description": "已选择 {selected} / {total} 个案例",
         "selectAll": "全选",
+        "deselectAll": "取消全选",
         "clear": "清空",
         "cancel": "取消",
         "applyWithCount": "应用 ({count})"

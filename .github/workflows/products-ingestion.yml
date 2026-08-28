@@ -3,12 +3,12 @@ on:
   workflow_dispatch:
     inputs:
       skip_ingest:
-        description: 'Scrape only, do not push to Meilisearch'
+        description: 'Scrape only, do not publish to Meilisearch'
         type: boolean
         default: false
   schedule:
-    # 05:00 UTC on the 1st of every month
-    - cron: '0 5 1 * *'
+    # 05:00 UTC on the 1st and the 15th of every month
+    - cron: '0 5 1,15 * *'
 
 # Never let two ingestion runs overlap.
 concurrency:
@@ -39,14 +39,10 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Collect URLs
+        env:
+          INGESTION_BASE_URL: ${{ vars.INGESTION_BASE_URL }}
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
         run: pnpm exec playwright test e2e/collect-product-urls.spec.ts
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: cubes-json
-          path: cubes.json
-          retention-days: 7
-          if-no-files-found: error
 
   scrape:
     name: Scrape ${{ matrix.category }}
@@ -73,47 +69,30 @@ jobs:
       - name: Install Chromium
         run: pnpm exec playwright install --with-deps chromium
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: cubes-json
-
       - name: Scrape category
         env:
           SCRAPE_CATEGORY: ${{ matrix.category }}
+          INGESTION_BASE_URL: ${{ vars.INGESTION_BASE_URL }}
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
         run: pnpm exec playwright test e2e/scrape-products.spec.ts
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: scraped-${{ matrix.category }}
-          path: scraped-products/*.json
-          retention-days: 7
-          if-no-files-found: error
-
   ingest:
-    name: Ingest into Meilisearch
+    name: Publish to Meilisearch
     needs: scrape
     # Runs even if some categories failed, so a single blocked category does not
-    # discard everything else that was scraped successfully.
+    # hold back everything else that was scraped successfully.
     if: ${{ always() && !cancelled() && !inputs.skip_ingest }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: scraped-*
-          path: downloaded
-          merge-multiple: true
-
-      - name: Show what was downloaded
-        run: ls -lh downloaded
-
-      - name: Push to Meilisearch
+      - name: Publish scraped products
         env:
           INGESTION_BASE_URL: ${{ vars.INGESTION_BASE_URL }}
           ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
-        run: bash scripts/ingest-products.sh downloaded
+        run: |
+          curl -sS --fail-with-body -X POST \
+            -H "x-admin-token: $ADMIN_TOKEN" \
+            "${INGESTION_BASE_URL%/}/api/v1/admin/ingestion/products/publish"
 
       - name: Index stats
         env:

@@ -1,4 +1,4 @@
-import type { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 
 function collectCanvases(root: Element | ShadowRoot): HTMLCanvasElement[] {
   const out: HTMLCanvasElement[] = []

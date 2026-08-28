@@ -3,7 +3,6 @@ import { spaceGrotesk, chakraPetch } from '@/shared/config/fonts'
 import './globals.css'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages, getTranslations } from 'next-intl/server'
-import { locales } from '@/shared/config/i18n/locales'
 import JsonLd from './jsonld'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Metadata, Viewport } from 'next'
@@ -38,10 +37,6 @@ export async function generateMetadata(): Promise<Metadata> {
       t('keywords.key14')
     ],
     metadataBase: new URL('https://nexustimer.com'),
-    alternates: {
-      canonical: `/`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/`]))
-    },
     openGraph: {
       title: ogTitle,
       description: ogDescription,

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { notFound } from 'next/navigation'
-import { TwistyPlayer } from 'cubing/twisty'
+import { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { AlgorithmsList } from '@/features/algorithms-list/ui/AlgorithmsList'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
 import SuggestAlgorithmButton from '@/features/suggest-algorithm/ui/SuggestAlgorithmButton'
@@ -12,7 +12,6 @@ import { ALGORITHMS_GITHUB_URL } from '@/shared/const/algorithms-github-url'
 import { getLocale, getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
-import { locales } from '@/shared/config/i18n/locales'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -37,8 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         'algorithm trainer'
       ],
       alternates: {
-        canonical: `/algorithms/${slug}`,
-        languages: Object.fromEntries(locales.map((l) => [l, `/algorithms/${slug}`]))
+        canonical: `/algorithms/${slug}`
       },
       openGraph: {
         title,

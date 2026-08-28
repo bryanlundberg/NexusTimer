@@ -11,10 +11,15 @@ interface LeaderboardTableProps {
 
 export const GRID = 'grid-cols-[2.5rem_minmax(10rem,1fr)_6rem_4rem_4rem_6rem_8rem]'
 
+const STAGGER_BUDGET = 0.5
+const STAGGER_STEP = 0.03
+
 export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
   const t = useTranslations('Index.LeaderboardsPage.table')
 
   const safeSolves = solves && solves.length > 0 ? solves : []
+
+  const stagger = Math.min(STAGGER_STEP, STAGGER_BUDGET / Math.max(safeSolves.length, 1))
 
   return (
     <div className="overflow-x-auto max-w-4xl mx-auto">
@@ -34,7 +39,7 @@ export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
         <motion.div
           initial="hidden"
           animate="show"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.03 } } }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: stagger } } }}
         >
           {safeSolves.map((solve, index) => (
             <LeaderboardTableRow key={solve._id} solve={solve} index={index} />

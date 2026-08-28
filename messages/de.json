@@ -256,6 +256,7 @@
       "finish-session": "Abschließen",
       "selection": {
         "move-to-session": "In Sitzung verschieben",
+        "select-all": "Alle wählen",
         "moved-to-session-toast": "{count} Lösungen in die Sitzung verschoben",
         "cancel": "Abbrechen",
         "delete": "Löschen",
@@ -296,6 +297,7 @@
       "order": "Reihenfolge",
       "ascending": "Aufsteigend",
       "descending": "Absteigend",
+      "reset-sort": "Sortierung zurücksetzen",
       "share": "Teilen",
       "last": "Zuletzt",
       "all": "Alle",
@@ -500,6 +502,9 @@
     "LeaderboardsPage": {
       "title": "Schnellste Lösungen",
       "description": "Die 100 schnellsten Lösungen für das ausgewählte Puzzle und den Modus, nach Zeit sortiert, mit Löser, TPS, Zugzahl und Datum für jede.",
+      "view-label": "Ansicht",
+      "view-all": "Alle Zeiten",
+      "view-persons": "Pro Person",
       "type": "Typ",
       "table": {
         "user": "Nutzer",
@@ -551,6 +556,7 @@
       "download-data": "Backup wiederherstellen",
       "log-out": "Abmelden",
       "activity-solves": "Lösungen",
+      "activity-calendar": "Aktivitätskalender",
       "trainer": "Trainer",
       "training": "Training"
     },
@@ -743,6 +749,15 @@
       },
       "search-country": "Land suchen…",
       "no-country-found": "Kein Land gefunden",
+      "crop-title": "Profilbild anpassen",
+      "crop-description": "Ziehe das Bild und zoome, um den Ausschnitt im Kreis zu wählen.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Vergrößern",
+      "crop-zoom-out": "Verkleinern",
+      "crop-cancel": "Abbrechen",
+      "crop-confirm": "Bild speichern",
+      "crop-error": "Das Bild konnte nicht verarbeitet werden. Bitte versuche es erneut.",
+      "crop-invalid-file": "Diese Datei ist kein Bild. Wähle eine andere Datei.",
       "personal-info": "Persönliche Daten",
       "personal-info-description": "Aktualisiere deine öffentlichen Informationen und wie andere Nutzer dich sehen."
     },
@@ -777,6 +792,11 @@
       "casual-enthusiast": "Hobby-Cuber",
       "dedicated-learner": "Engagierter Lerner",
       "algorithm-master": "Algorithmus-Meister",
+      "filters": {
+        "puzzle": "Puzzle",
+        "clear": "Filter zurücksetzen",
+        "results": "{sets} Sets · {algorithms, number} Algorithmen"
+      },
       "descriptions": {
         "pbl": "Algorithmen zum gleichzeitigen Vertauschen der oberen und unteren Ebene (2x2).",
         "ocll": "COLL (Orient Corners of the Last Layer) - Ecken der letzten Ebene orientieren.",
@@ -877,6 +897,7 @@
         "title": "Fälle auswählen",
         "description": "{selected} von {total} Fällen ausgewählt",
         "selectAll": "Alle auswählen",
+        "deselectAll": "Alle abwählen",
         "clear": "Leeren",
         "cancel": "Abbrechen",
         "applyWithCount": "Anwenden ({count})"

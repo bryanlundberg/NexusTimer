@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import dayjs from '@/shared/lib/dayjs'
-import { Alg } from 'cubing/alg'
-import type { TwistyPlayer } from 'cubing/twisty'
+import { Alg } from '@rednaxela101/cubing/alg'
+import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
 
 export const formatMs = (ms: number): string => (ms / 1000).toFixed(2)

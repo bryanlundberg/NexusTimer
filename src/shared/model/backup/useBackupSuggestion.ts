@@ -6,7 +6,7 @@ import { useUser } from '@/entities/user/model/useUser'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useSyncBackup } from '@/shared/model/backup/useSyncBackup'
 
-export const BACKUP_INTERVAL_SOLVES = 25
+export const BACKUP_INTERVAL_SOLVES = 20
 
 export const useBackupSuggestion = () => {
   const { handleDownloadData, handleUploadBackup } = useSyncBackup()
@@ -20,7 +20,7 @@ export const useBackupSuggestion = () => {
     if (isSyncingRef.current) return
     isSyncingRef.current = true
     try {
-      await handleDownloadData({ user })
+      if (user?.backup?.url) await handleDownloadData({ user })
       await handleUploadBackup()
     } catch (error) {
       console.error('Sync error:', error)

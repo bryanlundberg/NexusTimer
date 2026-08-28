@@ -266,6 +266,7 @@
         "deleted-toast": "{count} na solve ang nabura",
         "moved-toast": "{count} na solve ang nailipat sa history",
         "move-to-session": "Ilipat sa session",
+        "select-all": "Piliin Lahat",
         "moved-to-session-toast": "{count} na solve ang nailipat sa session"
       },
       "finish-session": "Tapusin",
@@ -299,6 +300,7 @@
       "order": "Pagkakasunod",
       "ascending": "Pataas",
       "descending": "Pababa",
+      "reset-sort": "I-reset ang pagkakasunod",
       "share": "Ibahagi",
       "last": "Huli",
       "all": "Lahat",
@@ -503,6 +505,9 @@
     "LeaderboardsPage": {
       "title": "Pinakamabilis na Solve",
       "description": "Ang 100 pinakamabilis na solve para sa napiling puzzle at mode, nakaayos ayon sa oras, kasama ang gumawa, TPS, bilang ng galaw at petsa ng bawat isa.",
+      "view-label": "View",
+      "view-all": "Lahat ng oras",
+      "view-persons": "Bawat tao",
       "type": "Uri",
       "table": {
         "user": "User",
@@ -555,7 +560,8 @@
       "save-data": "Gumawa ng backup",
       "download-data": "I-restore ang backup",
       "log-out": "Mag-log out",
-      "activity-solves": "solves"
+      "activity-solves": "solves",
+      "activity-calendar": "Kalendaryo ng aktibidad"
     },
     "Presence": {
       "online": "Online",
@@ -747,7 +753,16 @@
         "other": "Iba pa"
       },
       "search-country": "Maghanap ng bansa…",
-      "no-country-found": "Walang nahanap na bansa"
+      "no-country-found": "Walang nahanap na bansa",
+      "crop-title": "I-adjust ang profile image mo",
+      "crop-description": "I-drag ang image at mag-zoom para piliin ang lalabas sa loob ng bilog.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Mag-zoom in",
+      "crop-zoom-out": "Mag-zoom out",
+      "crop-cancel": "Kanselahin",
+      "crop-confirm": "I-save ang image",
+      "crop-error": "Hindi ma-proseso ang image. Subukang muli.",
+      "crop-invalid-file": "Hindi image ang file na iyan. Pumili ng ibang file."
     },
     "AccessCard": {
       "title": "Access",
@@ -780,6 +795,11 @@
       "casual-enthusiast": "Casual Enthusiast",
       "dedicated-learner": "Dedicated Learner",
       "algorithm-master": "Algorithm Master",
+      "filters": {
+        "puzzle": "Puzzle",
+        "clear": "I-clear ang mga filter",
+        "results": "{sets} set · {algorithms, number} algorithm"
+      },
       "descriptions": {
         "pbl": "Ginagamit ang mga algorithm na ito para sabay na i-permute ang top at bottom layer ng 2x2 cube, na nagpapahintulot ng episyenteng pag-solve ng puzzle.",
         "ocll": "COLL (Orient Corners of the Last Layer) - Nakatuon ang hakbang na ito sa pag-orient ng lahat ng corner ng last layer para maghanda sa mga huling hakbang ng pag-solve.",
@@ -859,6 +879,7 @@
         "title": "Pumili ng cases",
         "description": "{selected} sa {total} na cases ang napili",
         "selectAll": "Piliin lahat",
+        "deselectAll": "Alisin lahat ng pili",
         "clear": "Burahin",
         "cancel": "Kanselahin",
         "applyWithCount": "I-apply ({count})"

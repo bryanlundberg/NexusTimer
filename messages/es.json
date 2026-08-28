@@ -223,6 +223,7 @@
       "ascending": "Ascendente",
       "date": "Fecha",
       "descending": "Descendente",
+      "reset-sort": "Restablecer orden",
       "time": "Tiempo",
       "share": "Compartir",
       "last": "Último",
@@ -267,7 +268,8 @@
         "moved-toast": "{count} tiempos movidos al historial",
         "selected": "{count} seleccionados",
         "move-to-session": "Mover a la sesión",
-        "moved-to-session-toast": "{count} tiempos movidos a la sesión"
+        "moved-to-session-toast": "{count} tiempos movidos a la sesión",
+        "select-all": "Seleccionar todo"
       },
       "tooltips": {
         "move-to-history": "Finalizar práctica"
@@ -461,6 +463,9 @@
     "LeaderboardsPage": {
       "title": "Solves más rápidos",
       "description": "Los 100 solves más rápidos del puzzle y modo seleccionado, ordenados por tiempo, con el autor, TPS, movimientos y fecha de cada uno.",
+      "view-label": "Vista",
+      "view-all": "Todos los tiempos",
+      "view-persons": "Por persona",
       "type": "Tipo",
       "table": {
         "user": "Usuario",
@@ -713,7 +718,16 @@
         "other": "Otro"
       },
       "search-country": "Buscar país…",
-      "no-country-found": "No se encontró el país"
+      "no-country-found": "No se encontró el país",
+      "crop-title": "Ajusta tu imagen de perfil",
+      "crop-description": "Arrastra la imagen y haz zoom para elegir lo que queda dentro del círculo.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Acercar",
+      "crop-zoom-out": "Alejar",
+      "crop-cancel": "Cancelar",
+      "crop-confirm": "Guardar imagen",
+      "crop-error": "No se pudo procesar la imagen. Inténtalo de nuevo.",
+      "crop-invalid-file": "Ese archivo no es una imagen. Elige otro archivo."
     },
     "NavMain": {
       "trainer": "Entrenador",
@@ -737,7 +751,8 @@
       "save-data": "Crear copia de seguridad",
       "download-data": "Restaurar copia de seguridad",
       "log-out": "Cerrar sesión",
-      "activity-solves": "soluciones"
+      "activity-solves": "soluciones",
+      "activity-calendar": "Calendario de actividad"
     },
     "Presence": {
       "online": "En línea",
@@ -780,6 +795,11 @@
       "casual-enthusiast": "Entusiasta Casual",
       "dedicated-learner": "Estudiante Dedicado",
       "algorithm-master": "Maestro de Algoritmos",
+      "filters": {
+        "puzzle": "Puzzle",
+        "clear": "Limpiar filtros",
+        "results": "{sets} sets · {algorithms, number} algoritmos"
+      },
       "descriptions": {
         "pbl": "Estos algoritmos se utilizan para permutar simultáneamente las capas superior e inferior de un cubo 2x2, lo que permite una resolución eficiente del rompecabezas.",
         "ocll": "COLL (Orientación de las esquinas de la última capa): este paso se centra en orientar todas las esquinas de la última capa para prepararse para los pasos finales de la resolución del rompecabezas.",
@@ -859,6 +879,7 @@
         "title": "Elegir casos",
         "description": "{selected} de {total} casos seleccionados",
         "selectAll": "Seleccionar todos",
+        "deselectAll": "Deseleccionar todos",
         "clear": "Limpiar",
         "cancel": "Cancelar",
         "applyWithCount": "Aplicar ({count})"

@@ -1,15 +1,16 @@
 'use client'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
-import AlgorithmMethod from '@/features/algorithm-method/ui/AlgorithmMethod'
+import MethodsExplorer from '@/features/algorithm-method/ui/MethodsExplorer'
 import SuggestAlgorithmButton from '@/features/suggest-algorithm/ui/SuggestAlgorithmButton'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
+import { countAlgorithms } from '@/features/algorithm-method/model/method-filters'
 import { useLocale, useTranslations } from 'next-intl'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { CubeGridTexture } from '@/app/_landing/CubeDecor'
 
-const totalAlgorithms = ALGORITHM_SETS.reduce((sum, set) => sum + set.algorithms.length, 0)
+const totalAlgorithms = countAlgorithms(ALGORITHM_SETS)
 
 export default function AlgorithmsMethodsPage() {
   const t = useTranslations('Index.AlgorithmsPage')
@@ -51,11 +52,7 @@ export default function AlgorithmsMethodsPage() {
           </div>
         </section>
 
-        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-          {ALGORITHM_SETS.map((set) => (
-            <AlgorithmMethod key={set.slug} set={set} />
-          ))}
-        </div>
+        <MethodsExplorer />
 
         <div className="flex flex-col items-center gap-1 sm:flex-row sm:justify-center sm:gap-6">
           <SuggestAlgorithmButton

@@ -16,8 +16,11 @@ export default function OnboardingTour() {
     options: {
       zIndex: 10000,
       arrowColor: 'var(--popover)',
+      arrowSize: 12,
+      arrowBase: 26,
+      offset: 14,
       overlayColor: 'color-mix(in oklab, var(--background) 78%, transparent)',
-      spotlightRadius: 16,
+      spotlightRadius: 0,
       overlayClickAction: false,
       dismissKeyAction: false
     }

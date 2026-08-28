@@ -53,7 +53,9 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
       {/* Name + category badge + date */}
       <div className="min-w-0">
         <div className="flex items-center gap-2 mb-0.5">
-          <span className="font-bold text-sm truncate">{cube.name}</span>
+          <span className="font-bold text-sm truncate" title={cube.name}>
+            {cube.name}
+          </span>
           <CategoryBadge category={cube.category} className="shrink-0" />
         </div>
         <span className="text-[10px] text-muted-foreground">

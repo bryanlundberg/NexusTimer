@@ -256,6 +256,7 @@
       "finish-session": "완료",
       "selection": {
         "move-to-session": "세션으로 이동",
+        "select-all": "전체 선택",
         "moved-to-session-toast": "{count}개의 솔브를 세션으로 이동했습니다",
         "cancel": "취소",
         "delete": "삭제",
@@ -296,6 +297,7 @@
       "order": "순서",
       "ascending": "오름차순",
       "descending": "내림차순",
+      "reset-sort": "정렬 초기화",
       "share": "공유",
       "last": "마지막",
       "all": "모두",
@@ -500,6 +502,9 @@
     "LeaderboardsPage": {
       "title": "최고 기록",
       "description": "선택한 퍼즐과 모드에서 가장 빠른 100개의 기록을 시간순으로 표시합니다. 각 기록의 주인공, TPS, 무브 수, 날짜도 함께 확인하세요.",
+      "view-label": "보기",
+      "view-all": "전체 기록",
+      "view-persons": "큐버별",
       "type": "유형",
       "table": {
         "user": "사용자",
@@ -551,6 +556,7 @@
       "download-data": "백업 복원",
       "log-out": "로그아웃",
       "activity-solves": "풀이",
+      "activity-calendar": "활동 캘린더",
       "trainer": "트레이너",
       "training": "트레이닝"
     },
@@ -743,6 +749,15 @@
       },
       "search-country": "국가 검색…",
       "no-country-found": "국가를 찾을 수 없습니다",
+      "crop-title": "프로필 이미지 조정",
+      "crop-description": "이미지를 드래그하고 확대해 원 안에 들어갈 부분을 선택하세요.",
+      "crop-zoom": "확대/축소",
+      "crop-zoom-in": "확대",
+      "crop-zoom-out": "축소",
+      "crop-cancel": "취소",
+      "crop-confirm": "이미지 저장",
+      "crop-error": "이미지를 처리할 수 없습니다. 다시 시도해 주세요.",
+      "crop-invalid-file": "해당 파일은 이미지가 아닙니다. 다른 파일을 선택해 주세요.",
       "personal-info": "개인 정보",
       "personal-info-description": "공개 정보와 다른 사용자에게 보이는 모습을 업데이트하세요."
     },
@@ -777,6 +792,11 @@
       "casual-enthusiast": "입문자",
       "dedicated-learner": "숙련자",
       "algorithm-master": "마스터",
+      "filters": {
+        "puzzle": "퍼즐",
+        "clear": "필터 지우기",
+        "results": "{sets}개 세트 · {algorithms, number}개 알고리즘"
+      },
       "descriptions": {
         "pbl": "2x2 큐브의 상단과 하단 레이어를 동시에 맞추는 알고리즘입니다.",
         "ocll": "마지막 레이어의 코너 방향을 맞추는 단계입니다.",
@@ -877,6 +897,7 @@
         "title": "케이스 선택",
         "description": "{total}개 중 {selected}개 케이스 선택됨",
         "selectAll": "전체 선택",
+        "deselectAll": "전체 선택 해제",
         "clear": "지우기",
         "cancel": "취소",
         "applyWithCount": "적용 ({count})"

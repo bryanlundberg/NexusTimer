@@ -54,11 +54,6 @@ export default function TimerSolvesRail() {
     return sort(combined).desc((solve) => solve.endTime)
   }, [cubes, selectedCube, tab])
 
-  const bestLabel = useMemo(() => {
-    const valid = solves.filter((solve) => !solve.dnf)
-    return valid.length === 0 ? '-' : formatTime(getBestTime({ solves: valid }))
-  }, [solves])
-
   const stats = useMemo(() => {
     const actualAo = (n: number) => {
       if (solves.length < n) return '-'
@@ -123,15 +118,6 @@ export default function TimerSolvesRail() {
           <Tabs value={tab} onValueChange={(value) => setTab(value as RailTab)}>
             <ScrollableUnderlineTabs items={tabs} activeValue={tab} layoutId="timer-rail-tab-indicator" />
           </Tabs>
-        </div>
-
-        {/* Summary strip */}
-        <div className="flex items-center justify-between px-2 pb-2 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-          <span className="tabular-nums">{t('solves', { count: solves.length })}</span>
-          <span className="inline-flex items-center gap-1">
-            <span>{t('best')}</span>
-            <span className="font-mono tabular-nums text-foreground">{bestLabel}</span>
-          </span>
         </div>
 
         {/* Stats */}

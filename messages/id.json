@@ -266,6 +266,7 @@
         "deleted-toast": "{count} solve dihapus",
         "moved-toast": "{count} solve dipindahkan ke riwayat",
         "move-to-session": "Pindahkan ke sesi",
+        "select-all": "Pilih Semua",
         "moved-to-session-toast": "{count} solve dipindahkan ke sesi"
       },
       "finish-session": "Selesai",
@@ -299,6 +300,7 @@
       "order": "Urutan",
       "ascending": "Naik",
       "descending": "Turun",
+      "reset-sort": "Atur ulang urutan",
       "share": "Bagikan",
       "last": "Terakhir",
       "all": "Semua",
@@ -503,6 +505,9 @@
     "LeaderboardsPage": {
       "title": "Solve Tercepat",
       "description": "100 solve tercepat untuk puzzle dan mode yang dipilih, diurutkan berdasarkan waktu, lengkap dengan pemain, TPS, jumlah gerakan, dan tanggal setiap solve.",
+      "view-label": "Tampilan",
+      "view-all": "Semua waktu",
+      "view-persons": "Per orang",
       "type": "Tipe",
       "table": {
         "user": "Pengguna",
@@ -555,7 +560,8 @@
       "save-data": "Buat cadangan",
       "download-data": "Pulihkan cadangan",
       "log-out": "Keluar",
-      "activity-solves": "solve"
+      "activity-solves": "solve",
+      "activity-calendar": "Kalender aktivitas"
     },
     "Presence": {
       "online": "Online",
@@ -747,7 +753,16 @@
         "other": "Lainnya"
       },
       "search-country": "Cari negara…",
-      "no-country-found": "Negara tidak ditemukan"
+      "no-country-found": "Negara tidak ditemukan",
+      "crop-title": "Sesuaikan gambar profilmu",
+      "crop-description": "Geser gambar dan perbesar untuk memilih bagian yang masuk ke dalam lingkaran.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Perbesar",
+      "crop-zoom-out": "Perkecil",
+      "crop-cancel": "Batal",
+      "crop-confirm": "Simpan gambar",
+      "crop-error": "Tidak dapat memproses gambar. Silakan coba lagi.",
+      "crop-invalid-file": "File itu bukan gambar. Pilih file lain."
     },
     "AccessCard": {
       "title": "Akses",
@@ -780,6 +795,11 @@
       "casual-enthusiast": "Penggemar Santai",
       "dedicated-learner": "Pembelajar Berdedikasi",
       "algorithm-master": "Master Algoritma",
+      "filters": {
+        "puzzle": "Puzzle",
+        "clear": "Hapus filter",
+        "results": "{sets} set · {algorithms, number} algoritma"
+      },
       "descriptions": {
         "pbl": "Algoritma ini digunakan untuk mempermutasi lapisan atas dan bawah kubus 2x2 secara bersamaan, memungkinkan penyelesaian puzzle yang efisien.",
         "ocll": "COLL (Orientasi Sudut Lapisan Terakhir) - Langkah ini berfokus pada mengorientasikan semua sudut lapisan terakhir untuk bersiap menuju langkah akhir penyelesaian puzzle.",
@@ -859,6 +879,7 @@
         "title": "Pilih kasus",
         "description": "{selected} dari {total} kasus dipilih",
         "selectAll": "Pilih semua",
+        "deselectAll": "Batalkan semua pilihan",
         "clear": "Bersihkan",
         "cancel": "Batal",
         "applyWithCount": "Terapkan ({count})"

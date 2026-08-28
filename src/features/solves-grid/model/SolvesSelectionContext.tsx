@@ -7,6 +7,7 @@ interface SolvesSelectionState {
   isSelected: (id: string) => boolean
   enterSelection: (id: string) => void
   toggle: (id: string) => void
+  selectAll: (ids: Array<string>) => void
   exit: () => void
 }
 
@@ -33,14 +34,20 @@ export function SolvesSelectionProvider({ children }: { children: ReactNode }) {
     })
   }, [])
 
+  const selectAll = useCallback((ids: Array<string>) => {
+    if (ids.length === 0) return
+    setSelectionMode(true)
+    setSelectedIds(new Set(ids))
+  }, [])
+
   const exit = useCallback(() => {
     setSelectionMode(false)
     setSelectedIds(new Set())
   }, [])
 
   const value = useMemo<SolvesSelectionState>(
-    () => ({ selectionMode, selectedIds, isSelected, enterSelection, toggle, exit }),
-    [selectionMode, selectedIds, isSelected, enterSelection, toggle, exit]
+    () => ({ selectionMode, selectedIds, isSelected, enterSelection, toggle, selectAll, exit }),
+    [selectionMode, selectedIds, isSelected, enterSelection, toggle, selectAll, exit]
   )
 
   return <SolvesSelectionContext.Provider value={value}>{children}</SolvesSelectionContext.Provider>

@@ -10,7 +10,7 @@ interface CubesTabContentProps {
   cubes: Cube[]
 }
 
-const GRID = 'grid-cols-[3rem_minmax(10rem,1fr)_5.5rem_5.5rem_4rem_7rem_9rem]'
+const GRID = 'grid-cols-[3rem_minmax(16rem,1.6fr)_5.5rem_5.5rem_4rem_7rem_9rem]'
 
 export { GRID }
 
@@ -26,7 +26,7 @@ export default function CubesTabContent({ cubes }: CubesTabContentProps) {
 
   return (
     <div className="overflow-x-auto">
-      <div className="min-w-[720px]">
+      <div className="min-w-[820px]">
         {/* Table header */}
         <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
           <span />

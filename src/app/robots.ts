@@ -1,32 +1,22 @@
-import { MetadataRoute } from "next";
+import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const sitemaps = [
-    "https://nexustimer.com/sitemap.xml"
-  ];
+  const sitemaps = ['https://nexustimer.com/sitemap.xml']
 
   return {
     rules: [
       {
-        userAgent: "*",
-        allow: "/",
-        disallow: [
-          "/private/",
-          "/api/",
-          "/_next/",
-          "/server-sitemap.xml",
-        ],
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/private/', '/api/', '/server-sitemap.xml']
       },
       {
-        userAgent: "Googlebot",
-        allow: "/",
-        disallow: [
-          "/private/",
-          "/api/",
-        ],
-      },
+        userAgent: 'Googlebot',
+        allow: '/',
+        disallow: ['/private/', '/api/']
+      }
     ],
     sitemap: sitemaps,
-    host: "https://nexustimer.com",
-  };
+    host: 'https://nexustimer.com'
+  }
 }

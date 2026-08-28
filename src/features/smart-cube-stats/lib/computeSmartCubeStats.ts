@@ -1,5 +1,5 @@
 import type { Solve } from '@/entities/solve/model/types'
-import type { ReplayMove } from '@/entities/replay/model/types'
+import type { TimedMove } from 'cube-state-engine'
 import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
 import { buildPhases, type PhaseInfo } from '@/shared/lib/timer/solveAnalysis'
 
@@ -66,7 +66,7 @@ const EMPTY_STATS: SmartCubeStats = {
 }
 
 /** Sum and count of inter-move gaps longer than the pause threshold. */
-function pauseStats(moves: ReplayMove[]): { ms: number; count: number } {
+function pauseStats(moves: TimedMove[]): { ms: number; count: number } {
   let ms = 0
   let count = 0
   for (let i = 1; i < moves.length; i++) {
@@ -135,7 +135,7 @@ export function computeSmartCubeStats(solves: Solve[] | undefined): SmartCubeSta
       method,
       total: analysis.total ?? solve.time,
       tps: analysis.tps ?? 0,
-      moveCount: (analysis.moves as ReplayMove[] | undefined)?.length ?? moves.length,
+      moveCount: analysis.moves.length,
       pausedMs: pauses.ms,
       pauseCount: pauses.count,
       phases: buildPhases(analysis)

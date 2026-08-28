@@ -267,7 +267,8 @@
         "deleted-toast": "{count} solves deleted",
         "moved-toast": "{count} solves moved to history",
         "move-to-session": "Move to session",
-        "moved-to-session-toast": "{count} solves moved to session"
+        "moved-to-session-toast": "{count} solves moved to session",
+        "select-all": "Select all"
       },
       "tooltips": {
         "move-to-history": "Finalize practice"
@@ -299,6 +300,7 @@
       "order": "Order",
       "ascending": "Ascending",
       "descending": "Descending",
+      "reset-sort": "Reset sort",
       "share": "Share",
       "last": "Last",
       "all": "All",
@@ -503,6 +505,9 @@
     "LeaderboardsPage": {
       "title": "Fastest Solves",
       "description": "The 100 fastest solves for the selected puzzle and mode, ranked by time, with the solver, TPS, move count and date for each.",
+      "view-label": "View",
+      "view-all": "All times",
+      "view-persons": "By person",
       "type": "Type",
       "table": {
         "user": "User",
@@ -555,7 +560,8 @@
       "save-data": "Create Backup",
       "download-data": "Restore Backup",
       "log-out": "Sign Out",
-      "activity-solves": "solves"
+      "activity-solves": "solves",
+      "activity-calendar": "Activity calendar"
     },
     "tooltips": {
       "plus-two": "+2 Penalty",
@@ -737,7 +743,16 @@
         "other": "Other"
       },
       "search-country": "Search country…",
-      "no-country-found": "No country found"
+      "no-country-found": "No country found",
+      "crop-title": "Adjust your profile image",
+      "crop-description": "Drag the image and zoom to choose what goes inside the circle.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Zoom in",
+      "crop-zoom-out": "Zoom out",
+      "crop-cancel": "Cancel",
+      "crop-confirm": "Save image",
+      "crop-error": "Could not process the image. Please try again.",
+      "crop-invalid-file": "That file is not an image. Choose a different file."
     },
     "AccessCard": {
       "title": "Access",
@@ -770,6 +785,11 @@
       "casual-enthusiast": "Casual Enthusiast",
       "dedicated-learner": "Dedicated Learner",
       "algorithm-master": "Algorithm Master",
+      "filters": {
+        "puzzle": "Puzzle",
+        "clear": "Clear filters",
+        "results": "{sets} sets · {algorithms, number} algorithms"
+      },
       "descriptions": {
         "pbl": "These algorithms are used to permute both the top and bottom layers of a 2x2 cube simultaneously, allowing for efficient solving of the puzzle.",
         "ocll": "COLL (Orient Corners of the Last Layer) - This step focuses on orienting all the corners of the last layer to prepare for the final steps of solving the puzzle.",
@@ -849,6 +869,7 @@
         "title": "Pick cases",
         "description": "{selected} of {total} cases selected",
         "selectAll": "Select all",
+        "deselectAll": "Deselect all",
         "clear": "Clear",
         "cancel": "Cancel",
         "applyWithCount": "Apply ({count})"

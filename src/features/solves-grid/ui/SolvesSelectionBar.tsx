@@ -4,7 +4,7 @@ import { cn } from '@/shared/lib/utils'
 import { useLocale, useTranslations } from 'next-intl'
 import { useQueryState } from 'nuqs'
 import { toast } from 'sonner'
-import { ArrowRightLeft, Share2, Trash, X } from 'lucide-react'
+import { ArrowRightLeft, ListChecks, Share2, Trash, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { createShareMessage } from '@/features/deep-statistics/lib/createShareMessage'
@@ -24,14 +24,18 @@ import { SolveTab } from '@/shared/types/enums'
 import { useSolvesSelection } from '@/features/solves-grid/model/SolvesSelectionContext'
 import useSolvesBulkActions from '@/features/solves-grid/model/useSolvesBulkActions'
 
-export default function SolvesSelectionBar() {
+interface SolvesSelectionBarProps {
+  allIds: Array<string>
+}
+
+export default function SolvesSelectionBar({ allIds }: SolvesSelectionBarProps) {
   const t = useTranslations('Index')
   const [tabMode] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, {
     defaultValue: STATES.SOLVES_PAGE.TAB_MODE.DEFAULT_VALUE
   })
   const tab = tabMode === SolveTab.SESSION ? SolveTab.SESSION : SolveTab.ALL
   const isSession = tab === SolveTab.SESSION
-  const { selectionMode, selectedIds, exit } = useSolvesSelection()
+  const { selectionMode, selectedIds, selectAll, exit } = useSolvesSelection()
   const { deleteSelected, moveSelectedToHistory } = useSolvesBulkActions(tab)
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const locale = useLocale()
@@ -51,6 +55,7 @@ export default function SolvesSelectionBar() {
   if (!shouldRender) return null
 
   const count = selectedIds.size
+  const allSelected = allIds.length > 0 && count === allIds.length
 
   const handleMove = async () => {
     const ids = Array.from(selectedIds)
@@ -130,6 +135,18 @@ export default function SolvesSelectionBar() {
         <span className="min-w-0 flex-1 truncate text-sm font-medium tabular-nums">
           {t('SolvesPage.selection.selected', { count })}
         </span>
+
+        <Button
+          variant="ghost"
+          size="sm"
+          className="shrink-0 gap-1.5 text-background hover:bg-background/15 hover:text-background dark:hover:bg-background/15"
+          disabled={allSelected}
+          onClick={() => selectAll(allIds)}
+          data-testid="bulk-select-all-button"
+        >
+          <ListChecks className="size-3.5" />
+          <span className="hidden text-xs sm:inline">{t('SolvesPage.selection.select-all')}</span>
+        </Button>
 
         <Button
           variant="ghost"

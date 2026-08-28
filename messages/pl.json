@@ -266,6 +266,7 @@
         "deleted-toast": "Usunięto {count} ułożeń",
         "moved-toast": "Przeniesiono {count} ułożeń do historii",
         "move-to-session": "Przenieś do sesji",
+        "select-all": "Zaznacz wszystko",
         "moved-to-session-toast": "Przeniesiono {count} ułożeń do sesji"
       },
       "finish-session": "Zakończ",
@@ -299,6 +300,7 @@
       "order": "Kolejność",
       "ascending": "Rosnąco",
       "descending": "Malejąco",
+      "reset-sort": "Zresetuj sortowanie",
       "share": "Udostępnij",
       "last": "Ostatnie",
       "all": "Wszystkie",
@@ -503,6 +505,9 @@
     "LeaderboardsPage": {
       "title": "Najszybsze ułożenia",
       "description": "100 najszybszych ułożeń dla wybranej układanki i trybu, uszeregowanych według czasu, z autorem, TPS, liczbą ruchów i datą każdego.",
+      "view-label": "Widok",
+      "view-all": "Wszystkie czasy",
+      "view-persons": "Na osobę",
       "type": "Typ",
       "table": {
         "user": "Użytkownik",
@@ -555,7 +560,8 @@
       "save-data": "Utwórz kopię zapasową",
       "download-data": "Przywróć kopię zapasową",
       "log-out": "Wyloguj się",
-      "activity-solves": "ułożenia"
+      "activity-solves": "ułożenia",
+      "activity-calendar": "Kalendarz aktywności"
     },
     "Presence": {
       "online": "Online",
@@ -747,7 +753,16 @@
         "other": "Inne"
       },
       "search-country": "Szukaj kraju…",
-      "no-country-found": "Nie znaleziono kraju"
+      "no-country-found": "Nie znaleziono kraju",
+      "crop-title": "Dopasuj swój obraz profilowy",
+      "crop-description": "Przeciągnij obraz i przybliż, aby wybrać, co znajdzie się w okręgu.",
+      "crop-zoom": "Powiększenie",
+      "crop-zoom-in": "Przybliż",
+      "crop-zoom-out": "Oddal",
+      "crop-cancel": "Anuluj",
+      "crop-confirm": "Zapisz obraz",
+      "crop-error": "Nie udało się przetworzyć obrazu. Spróbuj ponownie.",
+      "crop-invalid-file": "Ten plik nie jest obrazem. Wybierz inny plik."
     },
     "AccessCard": {
       "title": "Dostęp",
@@ -780,6 +795,11 @@
       "casual-enthusiast": "Entuzjasta amator",
       "dedicated-learner": "Oddany uczeń",
       "algorithm-master": "Mistrz algorytmów",
+      "filters": {
+        "puzzle": "Układanka",
+        "clear": "Wyczyść filtry",
+        "results": "{sets} zestawów · {algorithms, number} algorytmów"
+      },
       "descriptions": {
         "pbl": "Te algorytmy służą do jednoczesnej permutacji górnej i dolnej warstwy kostki 2x2, co pozwala na efektywne ułożenie układanki.",
         "ocll": "COLL (Orientacja narożników ostatniej warstwy) - Ten krok skupia się na zorientowaniu wszystkich narożników ostatniej warstwy, aby przygotować się do końcowych kroków układania.",
@@ -859,6 +879,7 @@
         "title": "Wybierz przypadki",
         "description": "Wybrano {selected} z {total} przypadków",
         "selectAll": "Zaznacz wszystkie",
+        "deselectAll": "Odznacz wszystkie",
         "clear": "Wyczyść",
         "cancel": "Anuluj",
         "applyWithCount": "Zastosuj ({count})"

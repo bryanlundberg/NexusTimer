@@ -266,6 +266,7 @@
         "deleted-toast": "{count} solve eliminati",
         "moved-toast": "{count} solve spostati nella cronologia",
         "move-to-session": "Sposta nella sessione",
+        "select-all": "Seleziona tutto",
         "moved-to-session-toast": "{count} solve spostati nella sessione"
       },
       "finish-session": "Concludi",
@@ -299,6 +300,7 @@
       "order": "Ordine",
       "ascending": "Crescente",
       "descending": "Decrescente",
+      "reset-sort": "Reimposta ordinamento",
       "share": "Condividi",
       "last": "Ultimi",
       "all": "Tutti",
@@ -503,6 +505,9 @@
     "LeaderboardsPage": {
       "title": "Solve più veloci",
       "description": "I 100 solve più veloci per il puzzle e la modalità selezionati, ordinati per tempo, con autore, TPS, numero di mosse e data per ciascuno.",
+      "view-label": "Vista",
+      "view-all": "Tutti i tempi",
+      "view-persons": "Per persona",
       "type": "Tipo",
       "table": {
         "user": "Utente",
@@ -555,7 +560,8 @@
       "save-data": "Crea backup",
       "download-data": "Ripristina backup",
       "log-out": "Esci",
-      "activity-solves": "soluzioni"
+      "activity-solves": "soluzioni",
+      "activity-calendar": "Calendario attività"
     },
     "Presence": {
       "online": "Online",
@@ -747,7 +753,16 @@
         "other": "Altro"
       },
       "search-country": "Cerca paese…",
-      "no-country-found": "Nessun paese trovato"
+      "no-country-found": "Nessun paese trovato",
+      "crop-title": "Regola la tua immagine del profilo",
+      "crop-description": "Trascina l'immagine e usa lo zoom per scegliere cosa finisce nel cerchio.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Ingrandisci",
+      "crop-zoom-out": "Riduci",
+      "crop-cancel": "Annulla",
+      "crop-confirm": "Salva immagine",
+      "crop-error": "Impossibile elaborare l'immagine. Riprova.",
+      "crop-invalid-file": "Questo file non è un'immagine. Scegli un altro file."
     },
     "AccessCard": {
       "title": "Accesso",
@@ -780,6 +795,11 @@
       "casual-enthusiast": "Appassionato casual",
       "dedicated-learner": "Studente dedicato",
       "algorithm-master": "Maestro degli algoritmi",
+      "filters": {
+        "puzzle": "Puzzle",
+        "clear": "Cancella filtri",
+        "results": "{sets} set · {algorithms, number} algoritmi"
+      },
       "descriptions": {
         "pbl": "Questi algoritmi vengono usati per permutare contemporaneamente sia lo strato superiore che quello inferiore di un cubo 2x2, consentendo una risoluzione efficiente del puzzle.",
         "ocll": "COLL (Orientamento degli angoli dell'ultimo strato) - Questo passaggio si concentra sull'orientamento di tutti gli angoli dell'ultimo strato per prepararsi ai passaggi finali della risoluzione.",
@@ -859,6 +879,7 @@
         "title": "Scegli i casi",
         "description": "{selected} di {total} casi selezionati",
         "selectAll": "Seleziona tutti",
+        "deselectAll": "Deseleziona tutti",
         "clear": "Cancella",
         "cancel": "Annulla",
         "applyWithCount": "Applica ({count})"

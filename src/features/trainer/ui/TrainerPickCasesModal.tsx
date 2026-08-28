@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import type { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { cn } from '@/shared/lib/utils'
 import { Check } from 'lucide-react'
 import { buildVizConfig } from '@/features/trainer/lib/trainerUtils'
@@ -94,6 +94,8 @@ export default function TrainerPickCasesModal({
   const { close } = useOverlayStore()
 
   const groups = useMemo(() => _.groupBy(algorithms, 'group'), [algorithms])
+  const allIds = useMemo(() => algorithms.map((a) => a.id), [algorithms])
+  const allSelected = allIds.length > 0 && allIds.every((id) => selected.has(id))
 
   const configById = useMemo(() => {
     const map = new Map<string, Partial<TwistyPlayer>>()
@@ -111,6 +113,13 @@ export default function TrainerPickCasesModal({
       return next
     })
   }, [])
+
+  const toggleAll = useCallback(() => {
+    setSelected((prev) => {
+      const isAllSelected = allIds.length > 0 && allIds.every((id) => prev.has(id))
+      return isAllSelected ? new Set<string>() : new Set(allIds)
+    })
+  }, [allIds])
 
   const toggleGroup = useCallback(
     (groupName: string) => {
@@ -133,8 +142,17 @@ export default function TrainerPickCasesModal({
   return (
     <DialogContent className="sm:max-w-3xl gap-0 p-0 overflow-hidden flex flex-col" style={{ maxHeight: '76vh' }}>
       <DialogHeader className="p-6 pb-3 shrink-0">
-        <DialogTitle>{t('title')}</DialogTitle>
-        <DialogDescription>{t('description', { selected: selected.size, total: algorithms.length })}</DialogDescription>
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex flex-col gap-2 text-left">
+            <DialogTitle>{t('title')}</DialogTitle>
+            <DialogDescription>
+              {t('description', { selected: selected.size, total: algorithms.length })}
+            </DialogDescription>
+          </div>
+          <Button type="button" variant="outline" size="sm" onClick={toggleAll} className="shrink-0">
+            {allSelected ? t('deselectAll') : t('selectAll')}
+          </Button>
+        </div>
       </DialogHeader>
 
       <div className="flex-1 min-h-0 overflow-y-auto px-6">

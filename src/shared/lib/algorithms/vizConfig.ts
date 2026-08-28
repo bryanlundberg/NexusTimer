@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import type { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 
 /**
  * cubing.js hardcodes its built-in OLL/PLL stickerings to the white (U) layer,

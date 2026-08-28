@@ -1,9 +1,9 @@
 import formatTime from '@/shared/lib/formatTime'
 import { buildBarSegments, buildPhases } from '@/shared/lib/timer/solveAnalysis'
-import { tryAnalyzeSolution } from '@/shared/lib/tryAnalyzeSolution'
+import type { SolveAnalysis } from 'cube-state-engine'
 
 interface SolveBreakdownProps {
-  analysis: ReturnType<typeof tryAnalyzeSolution>
+  analysis: SolveAnalysis | null
   totalMs: number
 }
 

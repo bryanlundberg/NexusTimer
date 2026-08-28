@@ -1,6 +1,6 @@
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/shared/lib/utils'
-import { cubeColorClass } from '@/shared/const/cube-colors'
+import { CubeColorDot } from '@/shared/ui/category-badge/CubeColorDot'
 
 interface CategoryBadgeProps {
   category: string
@@ -17,7 +17,7 @@ export function CategoryBadge({ category, className }: CategoryBadgeProps) {
         className
       )}
     >
-      <span className={cn('size-1.5 shrink-0 rounded-[2px]', cubeColorClass(category))} aria-hidden />
+      <CubeColorDot category={category} />
       {category}
     </Badge>
   )

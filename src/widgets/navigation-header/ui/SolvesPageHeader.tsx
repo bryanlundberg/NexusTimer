@@ -5,6 +5,7 @@ import { STATES } from '@/shared/const/states'
 import { SolveTab } from '@/shared/types/enums'
 import MainCubeSelector from '@/features/select-cube/ui/MainCubeSelector'
 import SolvesFilterButton from '@/features/solves-grid/ui/SolvesFilterButton'
+import SolvesSortButton from '@/features/solves-grid/ui/SolvesSortButton'
 
 export default function SolvesPageHeader() {
   const [tabMode] = useQueryState(STATES.SOLVES_PAGE.TAB_MODE.KEY, {
@@ -21,6 +22,7 @@ export default function SolvesPageHeader() {
 
       <div className="flex items-center gap-2 order-2 ml-auto md:order-3 md:ml-0">
         {isSession && <ButtonMoveSolves />}
+        <SolvesSortButton />
         <SolvesFilterButton />
       </div>
 

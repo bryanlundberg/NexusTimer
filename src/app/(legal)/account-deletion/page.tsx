@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { locales } from '@/shared/config/i18n/locales'
 import { H2, LegalBody, Li, Para } from '@/shared/ui/typography/Typography'
 import LegalHero from '@/app/(legal)/_components/LegalHero'
 
@@ -7,8 +6,7 @@ export const metadata: Metadata = {
   title: 'Account Deletion - Nexus Timer',
   description: 'Request the permanent deletion of your NexusTimer account and all associated data.',
   alternates: {
-    canonical: '/account-deletion',
-    languages: Object.fromEntries(locales.map((l) => [l, '/account-deletion']))
+    canonical: '/account-deletion'
   }
 }
 

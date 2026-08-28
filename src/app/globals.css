@@ -411,25 +411,63 @@
 @keyframes onboarding-pulse {
   0%,
   100% {
-    box-shadow:
-      0 0 0 3px color-mix(in oklab, var(--primary) 85%, transparent),
-      0 0 0 6px color-mix(in oklab, var(--primary) 25%, transparent);
+    filter: drop-shadow(0 0 2px color-mix(in oklab, var(--primary) 85%, transparent))
+      drop-shadow(0 0 7px color-mix(in oklab, var(--primary) 35%, transparent));
   }
   50% {
-    box-shadow:
-      0 0 0 4px var(--primary),
-      0 0 16px 4px color-mix(in oklab, var(--primary) 55%, transparent);
+    filter: drop-shadow(0 0 4px var(--primary))
+      drop-shadow(0 0 16px color-mix(in oklab, var(--primary) 60%, transparent));
   }
 }
 .onboarding-pulse {
   animation: onboarding-pulse 1.4s ease-in-out infinite;
-  border-radius: 0.5rem;
+  will-change: filter;
 }
 @media (prefers-reduced-motion: reduce) {
   .onboarding-pulse {
     animation: none;
-    box-shadow: 0 0 0 3px var(--primary);
+    filter: drop-shadow(0 0 3px var(--primary));
   }
+}
+
+.tour-notch {
+  --tn-cut: 16px;
+  --tn-border: 1px;
+  --tn-border-color: color-mix(in oklab, var(--primary) 22%, var(--border));
+  --tn-fill: var(--popover);
+  --tn-shape: polygon(
+    0 0,
+    calc(100% - var(--tn-cut)) 0,
+    100% var(--tn-cut),
+    100% 100%,
+    var(--tn-cut) 100%,
+    0 calc(100% - var(--tn-cut))
+  );
+  position: relative;
+  isolation: isolate;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-color: var(--tn-border-color) !important;
+  clip-path: var(--tn-shape);
+  filter: drop-shadow(0 18px 38px color-mix(in oklab, var(--foreground) 22%, transparent))
+    drop-shadow(0 0 18px color-mix(in oklab, var(--primary) 16%, transparent));
+}
+.tour-notch::before {
+  content: '';
+  position: absolute;
+  inset: var(--tn-border);
+  z-index: -1;
+  background-color: var(--tn-fill);
+  background-image:
+    radial-gradient(70% 60% at 6% 0%, color-mix(in oklab, var(--primary) 10%, transparent), transparent 70%),
+    radial-gradient(60% 55% at 100% 100%, color-mix(in oklab, var(--primary) 7%, transparent), transparent 72%);
+  clip-path: var(--tn-shape);
+  pointer-events: none;
+}
+
+.tour-cta {
+  filter: drop-shadow(0 6px 14px color-mix(in oklab, var(--primary) 32%, transparent));
 }
 
 /* dropdown / popover panel: angular cut corners, primary-tinted

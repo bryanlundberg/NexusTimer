@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
+import { PuzzleID, TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { CubeCategory } from '@/shared/const/cube-categories'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'

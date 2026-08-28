@@ -256,6 +256,7 @@
       "finish-session": "Terminer",
       "selection": {
         "move-to-session": "Déplacer vers la session",
+        "select-all": "Tout sélectionner",
         "moved-to-session-toast": "{count} temps déplacés vers la session",
         "cancel": "Annuler",
         "delete": "Supprimer",
@@ -296,6 +297,7 @@
       "order": "Ordre",
       "ascending": "Ascendant",
       "descending": "Descendant",
+      "reset-sort": "Réinitialiser le tri",
       "share": "Partager",
       "last": "Dernier",
       "all": "Tout",
@@ -500,6 +502,9 @@
     "LeaderboardsPage": {
       "title": "Solves les plus rapides",
       "description": "Les 100 solves les plus rapides pour le puzzle et le mode sélectionnés, classés par temps, avec l'auteur, le TPS, le nombre de mouvements et la date de chacun.",
+      "view-label": "Affichage",
+      "view-all": "Tous les temps",
+      "view-persons": "Par personne",
       "type": "Type",
       "table": {
         "user": "Utilisateur",
@@ -551,6 +556,7 @@
       "download-data": "Restaurer une sauvegarde",
       "log-out": "Déconnexion",
       "activity-solves": "résolutions",
+      "activity-calendar": "Calendrier d'activité",
       "trainer": "Entraîneur",
       "training": "Entraînement"
     },
@@ -743,6 +749,15 @@
       },
       "search-country": "Rechercher un pays…",
       "no-country-found": "Aucun pays trouvé",
+      "crop-title": "Ajuster votre image de profil",
+      "crop-description": "Faites glisser l'image et zoomez pour choisir ce qui apparaît dans le cercle.",
+      "crop-zoom": "Zoom",
+      "crop-zoom-in": "Zoom avant",
+      "crop-zoom-out": "Zoom arrière",
+      "crop-cancel": "Annuler",
+      "crop-confirm": "Enregistrer l'image",
+      "crop-error": "Impossible de traiter l'image. Veuillez réessayer.",
+      "crop-invalid-file": "Ce fichier n'est pas une image. Choisissez un autre fichier.",
       "personal-info": "Infos personnelles",
       "personal-info-description": "Mets à jour tes informations publiques et la façon dont les autres utilisateurs te voient."
     },
@@ -777,6 +792,11 @@
       "casual-enthusiast": "Enthousiaste Casual",
       "dedicated-learner": "Apprenti Dédié",
       "algorithm-master": "Maître des Algorithmes",
+      "filters": {
+        "puzzle": "Puzzle",
+        "clear": "Effacer les filtres",
+        "results": "{sets} sets · {algorithms, number} algorithmes"
+      },
       "descriptions": {
         "pbl": "Algorithmes pour permuter les couches haut et bas d'un 2x2 simultanément.",
         "ocll": "COLL (Orient Corners of the Last Layer) - Orienter tous les coins de la dernière couche.",
@@ -877,6 +897,7 @@
         "title": "Choisir les cas",
         "description": "{selected} sur {total} cas sélectionnés",
         "selectAll": "Tout sélectionner",
+        "deselectAll": "Tout désélectionner",
         "clear": "Effacer",
         "cancel": "Annuler",
         "applyWithCount": "Appliquer ({count})"

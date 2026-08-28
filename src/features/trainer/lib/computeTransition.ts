@@ -1,4 +1,4 @@
-import { Alg } from 'cubing/alg'
+import { Alg } from '@rednaxela101/cubing/alg'
 import { solveTasks } from '@/shared/lib/timer/genSolution'
 import { cleanMoves } from '@/features/trainer/lib/trainerUtils'
 

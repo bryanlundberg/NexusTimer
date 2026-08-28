@@ -1,7 +1,14 @@
+import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import TrainerExperience from '@/features/trainer/ui/TrainerExperience'
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/algorithms/trainer'
+  }
+}
 
 export default async function TrainerPage() {
   const tAlgs = await getTranslations('Index.AlgorithmsPage')

@@ -36,7 +36,6 @@ export const defaultSettings: Settings = {
     voiceGender: 'male'
   },
   sync: {
-    lastSync: Date.now(),
     totalSolves: 0
   }
 }

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import _ from 'lodash'
-import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
+import { PuzzleID, TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { ChevronDown, Play } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
@@ -82,11 +82,11 @@ export default function AlgorithmCard({
       >
         <div
           className={cn(
-            'badge-notch flex size-16 shrink-0 items-center justify-center bg-muted/40 sm:size-20',
+            'badge-notch flex size-16 shrink-0 items-center justify-center overflow-hidden bg-muted/40 p-1 sm:size-20 sm:p-1.5',
             isLearned && 'ring-1 ring-primary/40'
           )}
         >
-          <AlgorithmRender config={vizConfig} width={92} height={92} />
+          <AlgorithmRender config={vizConfig} width="100%" height="100%" className="size-full" />
         </div>
 
         <div className="flex flex-1 min-w-0 flex-col gap-0.5">
@@ -121,7 +121,7 @@ export default function AlgorithmCard({
       {expanded && canExpand && (
         <div className="space-y-1.5 px-2 pb-2.5 sm:px-3 sm:pl-17">
           {alternatives.map((alt, i) => (
-            <AlternativeRow key={alt.id} alt={alt} index={i + 1} onPreview={() => openPreview(alt.moves)} />
+            <AlternativeRow key={alt.id} alt={alt} index={i + 2} onPreview={() => openPreview(alt.moves)} />
           ))}
         </div>
       )}

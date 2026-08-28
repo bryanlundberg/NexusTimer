@@ -256,6 +256,7 @@
       "finish-session": "完了",
       "selection": {
         "move-to-session": "セッションへ移動",
+        "select-all": "すべて選択",
         "moved-to-session-toast": "{count}件のソルブをセッションへ移動しました",
         "cancel": "キャンセル",
         "delete": "削除",
@@ -296,6 +297,7 @@
       "order": "順序",
       "ascending": "昇順",
       "descending": "降順",
+      "reset-sort": "並び替えをリセット",
       "share": "共有",
       "last": "直前",
       "all": "すべて",
@@ -500,6 +502,9 @@
     "LeaderboardsPage": {
       "title": "最速の記録",
       "description": "選択したパズルとモードの最速100記録を、タイム順に表示。各記録の達成者、TPS、手数、日付も確認できます。",
+      "view-label": "表示",
+      "view-all": "全記録",
+      "view-persons": "ユーザー別",
       "type": "タイプ",
       "table": {
         "user": "ユーザー",
@@ -551,6 +556,7 @@
       "download-data": "バックアップを復元",
       "log-out": "ログアウト",
       "activity-solves": "解き",
+      "activity-calendar": "アクティビティカレンダー",
       "trainer": "トレーナー",
       "training": "トレーニング"
     },
@@ -743,6 +749,15 @@
       },
       "search-country": "国を検索…",
       "no-country-found": "国が見つかりません",
+      "crop-title": "プロフィール画像を調整",
+      "crop-description": "画像をドラッグしてズームし、円の中に入れる範囲を選びます。",
+      "crop-zoom": "ズーム",
+      "crop-zoom-in": "拡大",
+      "crop-zoom-out": "縮小",
+      "crop-cancel": "キャンセル",
+      "crop-confirm": "画像を保存",
+      "crop-error": "画像を処理できませんでした。もう一度お試しください。",
+      "crop-invalid-file": "そのファイルは画像ではありません。別のファイルを選んでください。",
       "personal-info": "個人情報",
       "personal-info-description": "公開情報や他のユーザーからの見え方を更新します。"
     },
@@ -777,6 +792,11 @@
       "casual-enthusiast": "エンジョイ勢",
       "dedicated-learner": "練習中",
       "algorithm-master": "マスター",
+      "filters": {
+        "puzzle": "パズル",
+        "clear": "フィルターをクリア",
+        "results": "{sets} セット · {algorithms, number} アルゴリズム"
+      },
       "descriptions": {
         "pbl": "2x2の上下レイヤーを同時に揃える手順です。",
         "ocll": "最後のレイヤーのコーナー向きを揃える段階です。",
@@ -877,6 +897,7 @@
         "title": "ケースを選択",
         "description": "{total} ケース中 {selected} 件選択",
         "selectAll": "すべて選択",
+        "deselectAll": "すべて選択解除",
         "clear": "クリア",
         "cancel": "キャンセル",
         "applyWithCount": "適用 ({count})"

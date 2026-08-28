@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import type { SolveReplay } from '@/entities/replay/model/types'
 
 export type ReplayStatus = 'idle' | 'playing' | 'paused' | 'done'
