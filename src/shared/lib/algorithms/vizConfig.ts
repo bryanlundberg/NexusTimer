@@ -41,7 +41,7 @@ const D_LAYER_MASKS: Record<string, Record<string, string>> = {
   }
 }
 
-const SUPPORTED_PUZZLES = new Set(['2x2x2', '3x3x3', '4x4x4', '5x5x5'])
+const SUPPORTED_PUZZLES = new Set(['2x2x2', '3x3x3', '4x4x4'])
 
 type LooseViz = Partial<TwistyPlayer> & { experimentalStickering?: string; puzzle?: string }
 
@@ -49,16 +49,16 @@ const normalizePuzzle = (puzzle: string): string => (puzzle === '2x2' ? '2x2x2' 
 
 /**
  * The rotation that puts the yellow layer on top for a given puzzle, or `''` for
- * puzzles this module leaves alone (pyraminx has no `z2`). For renderers that
+ * puzzles this module leaves alone (5x5, pyraminx). For renderers that
  * build their own TwistyPlayer instead of going through `applyYellowOrientation`.
  */
 export const yellowOrientationSetupAlg = (puzzle: string): string =>
   SUPPORTED_PUZZLES.has(normalizePuzzle(puzzle)) ? 'z2' : ''
 
 /**
- * Orients 2x2–5x5 algorithm cases on the yellow (D) layer instead of the default
- * white (U) layer. 4x4/5x5 sets use `full` stickering, so they only get the `z2`
- * rotation (no mask). Unsupported puzzles are returned unchanged.
+ * Orients 2x2–4x4 algorithm cases on the yellow (D) layer instead of the default
+ * white (U) layer. 4x4 sets use `full` stickering, so they only get the `z2`
+ * rotation (no mask). Unsupported puzzles (5x5, pyraminx) are returned unchanged.
  *
  * Callers pair this with `experimentalSetupAnchor: 'end'`, which makes cubing.js
  * derive the start state as `z2 · alg⁻¹`, so the rendered case is always the
