@@ -419,9 +419,9 @@ export const ALGORITHM_SETS = [
     Icon: Grid2x2Plus,
     difficulty: 2,
     virtualization: {
-      experimentalStickering: 'edges-only',
+      experimentalStickering: 'L2E',
       puzzle: '5x5x5',
-      visualization: '3D',
+      visualization: 'experimental-2D-LL',
       experimentalDragInput: 'none'
     },
     file: 'l2e-555.ts'
