@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { TwistyPlayer } from 'cubing/twisty'
+import { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'
 
 interface TwistyProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { TwistyPlayer } from 'cubing/twisty'
+import { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { Pause, Play, RotateCcw, SkipBack, SkipForward } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import type { SolveReplay } from '@/entities/replay/model/types'

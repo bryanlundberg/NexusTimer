@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import _ from 'lodash'
-import { PuzzleID, TwistyPlayer } from 'cubing/twisty'
+import { PuzzleID, TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { ChevronDown, Play } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'

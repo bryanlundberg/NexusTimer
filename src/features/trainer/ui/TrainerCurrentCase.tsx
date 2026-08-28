@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { SkipForward, Check, Circle, ListChecks, Eye, EyeOff, Undo2 } from 'lucide-react'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
-import type { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import type { ReactNode } from 'react'
 import { cn } from '@/shared/lib/utils'
 

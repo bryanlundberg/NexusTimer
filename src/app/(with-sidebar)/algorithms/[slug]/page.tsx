@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { notFound } from 'next/navigation'
-import { TwistyPlayer } from 'cubing/twisty'
+import { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { AlgorithmsList } from '@/features/algorithms-list/ui/AlgorithmsList'
 import Suggestions from '@/shared/ui/suggestions/suggestions'
 import SuggestAlgorithmButton from '@/features/suggest-algorithm/ui/SuggestAlgorithmButton'

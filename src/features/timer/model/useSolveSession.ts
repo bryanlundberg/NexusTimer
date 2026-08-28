@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { CubeEngine, simplifyMoves, type CubeSize } from 'cube-state-engine'
 import { useSolveClock } from '@/features/timer/model/useSolveClock'
 import { useSolveReplayRecorder } from '@/features/timer/model/useSolveReplayRecorder'

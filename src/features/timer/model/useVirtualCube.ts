@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { TwistyPlayer } from 'cubing/twisty'
+import { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { CubeEngine, type CubeSize } from 'cube-state-engine'
 import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Quaternion } from 'three'
-import type { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import type { SmartCubeConnection, SmartCubeEvent } from 'smartcube-web-bluetooth'
 
 interface UseSmartCubeGyroArgs {

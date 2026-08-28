@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { TwistyPlayer } from 'cubing/twisty'
+import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { CubeEngine, matchesGoal, type GoalName } from 'cube-state-engine'
 import type { SmartCubeConnection } from 'smartcube-web-bluetooth'
 import { useSolveClock } from '@/features/timer/model/useSolveClock'
