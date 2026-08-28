@@ -1,5 +1,5 @@
 import { Themes } from '@/shared/types/Themes'
-import { useBackgroundImageStore } from '@/shared/model/settings/useBackgroundImageStore'
+import CustomTheme from './CustomTheme'
 import { useTheme } from 'next-themes'
 import { useTranslations } from 'next-intl'
 import { useCallback, useEffect, useState } from 'react'
@@ -74,10 +74,10 @@ function ThemePreviewDark({ selected }: { selected: boolean }) {
 }
 
 export default function ThemeSelect() {
-  const { backgroundImage, deleteBackgroundImage } = useBackgroundImageStore()
   const { startTransition } = useThemeTransition()
   const { setTheme, theme, resolvedTheme } = useTheme()
   const t = useTranslations('Index.Settings-menu')
+  const tDescriptions = useTranslations('Index.Settings-descriptions')
 
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
@@ -97,55 +97,40 @@ export default function ThemeSelect() {
   }
 
   return (
-    <div className="flex px-3 py-2 gap-3 flex-wrap">
-      <div className="flex flex-col items-center">
-        <div className="relative">
-          <ThemePreviewLight selected={theme === 'light'} />
-          <ThemeToggleButton
-            theme={resolvedTheme as 'light' | 'dark'}
-            onClick={() => handleSetTheme('light')}
-            variant="circle"
-            start="center"
-            className="absolute inset-0 h-full w-full rounded-xl p-0 m-0 opacity-0"
-          />
-        </div>
-        <div className="mt-1.5 text-xs font-medium">{t('light')}</div>
-      </div>
-
-      <div className="flex flex-col items-center">
-        <div className="relative">
-          <ThemePreviewDark selected={theme === 'dark'} />
-          <ThemeToggleButton
-            theme={resolvedTheme as 'light' | 'dark'}
-            onClick={() => handleSetTheme('dark')}
-            variant="circle"
-            start="center"
-            className="absolute inset-0 h-full w-full rounded-xl p-0 m-0 opacity-0"
-          />
-        </div>
-        <div className="mt-1.5 text-xs font-medium">{t('dark')}</div>
-      </div>
-
-      {backgroundImage && (
+    <div className="flex flex-col px-3 py-2 gap-2">
+      <div className="flex gap-3 flex-wrap">
         <div className="flex flex-col items-center">
-          <div
-            className="relative w-28 h-20 sm:w-36 sm:h-24 notch-bl-tr [--nblt:14px] overflow-hidden cursor-pointer border border-neutral-400"
-            style={{
-              backgroundImage: `url(${backgroundImage})`,
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              backgroundSize: 'cover'
-            }}
-          >
-            <div
-              onClick={deleteBackgroundImage}
-              className="absolute top-1 right-1 w-5 h-5 text-xs text-white rounded-full bg-red-600 flex items-center justify-center hover:scale-110 transition duration-200"
-            >
-              {t('close')}
-            </div>
+          <div className="relative">
+            <ThemePreviewLight selected={theme === 'light'} />
+            <ThemeToggleButton
+              theme={resolvedTheme as 'light' | 'dark'}
+              onClick={() => handleSetTheme('light')}
+              variant="circle"
+              start="center"
+              className="absolute inset-0 h-full w-full rounded-xl p-0 m-0 opacity-0"
+            />
           </div>
+          <div className="mt-1.5 text-xs font-medium">{t('light')}</div>
         </div>
-      )}
+
+        <div className="flex flex-col items-center">
+          <div className="relative">
+            <ThemePreviewDark selected={theme === 'dark'} />
+            <ThemeToggleButton
+              theme={resolvedTheme as 'light' | 'dark'}
+              onClick={() => handleSetTheme('dark')}
+              variant="circle"
+              start="center"
+              className="absolute inset-0 h-full w-full rounded-xl p-0 m-0 opacity-0"
+            />
+          </div>
+          <div className="mt-1.5 text-xs font-medium">{t('dark')}</div>
+        </div>
+
+        <CustomTheme />
+      </div>
+
+      <div className="text-xs text-muted-foreground">{tDescriptions('custom-background-description')}</div>
     </div>
   )
 }
