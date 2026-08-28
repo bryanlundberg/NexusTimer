@@ -9,6 +9,7 @@ export { EG_1_ALGS } from './eg-1'
 export { EG_2_ALGS } from './eg-2'
 export { F2L_ALGS } from './f2l'
 export { L2C_555_ALGS } from './l2c-555'
+export { L2E_555_ALGS } from './l2e-555'
 export { L4E_ALGS } from './l4e'
 export { OCLL_ALGS } from './ocll'
 export { OLL_ALGS } from './oll'
@@ -37,6 +38,7 @@ import { EG_1_ALGS } from './eg-1'
 import { EG_2_ALGS } from './eg-2'
 import { F2L_ALGS } from './f2l'
 import { L2C_555_ALGS } from './l2c-555'
+import { L2E_555_ALGS } from './l2e-555'
 import { L4E_ALGS } from './l4e'
 import { OCLL_ALGS } from './ocll'
 import { OLL_ALGS } from './oll'
@@ -66,6 +68,7 @@ export const ALL_ALGS: AlgorithmCollection[] = [
   ...EG_2_ALGS,
   ...F2L_ALGS,
   ...L2C_555_ALGS,
+  ...L2E_555_ALGS,
   ...L4E_ALGS,
   ...OCLL_ALGS,
   ...OLL_ALGS,
