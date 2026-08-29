@@ -544,6 +544,11 @@
 /* Angular buttons: top-left & bottom-right sharp, top-right & bottom-left cut */
 .btn-notch {
   --btn-cut: 9px;
+  --btn-border-w: 1px;
+  /* The fill sits in a box inset by --btn-border-w on every side, so its cut lands
+     (2 - sqrt2) * --btn-border-w too far out and the diagonals would read ~41%
+     thicker than the straight edges. Pulling the inner cut back evens the stroke. */
+  --btn-cut-inner: calc(var(--btn-cut) - 0.586 * var(--btn-border-w));
   --btn-shape: polygon(
     0 0,
     calc(100% - var(--btn-cut)) 0,
@@ -552,13 +557,41 @@
     var(--btn-cut) 100%,
     0 calc(100% - var(--btn-cut))
   );
+  --btn-shape-inner: polygon(
+    0 0,
+    calc(100% - var(--btn-cut-inner)) 0,
+    100% var(--btn-cut-inner),
+    100% 100%,
+    var(--btn-cut-inner) 100%,
+    0 calc(100% - var(--btn-cut-inner))
+  );
   border-radius: 0 !important;
   clip-path: var(--btn-shape);
 }
 
-/* Bordered variant: the element is filled with the border color and an
-   inset ::after (same notch shape) provides the fill, leaving a uniform
-   border that traces the cut corners too. */
+/* Mirrored cut: top-left & bottom-right cut, top-right & bottom-left sharp. */
+.btn-notch-alt {
+  --btn-shape: polygon(
+    var(--btn-cut) 0,
+    100% 0,
+    100% calc(100% - var(--btn-cut)),
+    calc(100% - var(--btn-cut)) 100%,
+    0 100%,
+    0 var(--btn-cut)
+  );
+  --btn-shape-inner: polygon(
+    var(--btn-cut-inner) 0,
+    100% 0,
+    100% calc(100% - var(--btn-cut-inner)),
+    calc(100% - var(--btn-cut-inner)) 100%,
+    0 100%,
+    0 var(--btn-cut-inner)
+  );
+}
+
+/* Bordered variant: the element is filled with the border color and an inset
+   ::after (--btn-shape-inner) provides the fill, leaving a --btn-border-w
+   stroke that traces the cut corners at the same thickness. */
 .btn-notch-border {
   --btn-border-color: var(--border);
   --btn-fill: var(--background);
@@ -568,10 +601,10 @@
 .btn-notch-border::after {
   content: '';
   position: absolute;
-  inset: 1.5px;
+  inset: var(--btn-border-w, 1px);
   z-index: -1;
   background-color: var(--btn-fill);
-  clip-path: var(--btn-shape);
+  clip-path: var(--btn-shape-inner, var(--btn-shape));
   pointer-events: none;
 }
 .btn-notch-border:hover {
