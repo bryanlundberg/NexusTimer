@@ -41,7 +41,6 @@ export default function MethodThumbnail({ set, size = DEFAULT_SIZE }: { set: ALG
         background: 'none',
         controlPanel: 'none',
         experimentalStickering: 'OLL',
-        experimentalSetupAnchor: 'end',
         experimentalDragInput: 'none',
         hintFacelets: 'none',
         alg: firstMoves
