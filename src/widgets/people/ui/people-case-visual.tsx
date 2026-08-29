@@ -38,7 +38,6 @@ export default function PeopleCaseVisual({ set, item }: { set: ALGORITHM_SET; it
         background: 'none',
         controlPanel: 'none',
         experimentalStickering: 'OLL',
-        experimentalSetupAnchor: 'end',
         experimentalDragInput: 'none',
         hintFacelets: 'none',
         alg: item.moves
