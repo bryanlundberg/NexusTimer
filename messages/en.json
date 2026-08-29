@@ -301,6 +301,8 @@
       "ascending": "Ascending",
       "descending": "Descending",
       "reset-sort": "Reset sort",
+      "view-options": "View options",
+      "reset-view": "Reset view",
       "share": "Share",
       "last": "Last",
       "all": "All",
