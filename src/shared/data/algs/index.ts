@@ -18,6 +18,12 @@ export { PARITY_555_ALGS } from './parity-555'
 export { PBL_ALGS } from './pbl'
 export { PLL_ALGS } from './pll'
 export { SARAH_ALGS } from './sarah'
+export { SQ1_PARITY_ALGS } from './sq1parity'
+export { SQ1CO_ALGS } from './sq1co'
+export { SQ1CP_ALGS } from './sq1cp'
+export { SQ1CS_ALGS } from './sq1cs'
+export { SQ1EO_ALGS } from './sq1eo'
+export { SQ1EP_ALGS } from './sq1ep'
 export { SV_ALGS } from './sv'
 export { VLS_ALGS } from './vls'
 export { WV_ALGS } from './vw'
@@ -47,6 +53,12 @@ import { PARITY_555_ALGS } from './parity-555'
 import { PBL_ALGS } from './pbl'
 import { PLL_ALGS } from './pll'
 import { SARAH_ALGS } from './sarah'
+import { SQ1_PARITY_ALGS } from './sq1parity'
+import { SQ1CO_ALGS } from './sq1co'
+import { SQ1CP_ALGS } from './sq1cp'
+import { SQ1CS_ALGS } from './sq1cs'
+import { SQ1EO_ALGS } from './sq1eo'
+import { SQ1EP_ALGS } from './sq1ep'
 import { SV_ALGS } from './sv'
 import { VLS_ALGS } from './vls'
 import { WV_ALGS } from './vw'
@@ -77,6 +89,12 @@ export const ALL_ALGS: AlgorithmCollection[] = [
   ...PBL_ALGS,
   ...PLL_ALGS,
   ...SARAH_ALGS,
+  ...SQ1_PARITY_ALGS,
+  ...SQ1CO_ALGS,
+  ...SQ1CP_ALGS,
+  ...SQ1CS_ALGS,
+  ...SQ1EO_ALGS,
+  ...SQ1EP_ALGS,
   ...SV_ALGS,
   ...VLS_ALGS,
   ...WV_ALGS,
