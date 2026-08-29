@@ -1,4 +1,4 @@
-import { Grid2x2Icon, Grid2x2Plus, Grid3x3, TriangleIcon } from 'lucide-react'
+import { Diamond, Grid2x2Icon, Grid2x2Plus, Grid3x3, TriangleIcon } from 'lucide-react'
 import { PBL_ALGS } from '@/shared/data/algs/pbl'
 import { OCLL_ALGS } from '@/shared/data/algs/ocll'
 import { OLL_ALGS } from '@/shared/data/algs/oll'
@@ -26,6 +26,12 @@ import { ZBLL_PI_ALGS } from '@/shared/data/algs/zbll-pi'
 import { ZBLL_U_ALGS } from '@/shared/data/algs/zbll-u'
 import { ZBLL_T_ALGS } from '@/shared/data/algs/zbll-t'
 import { SV_ALGS } from '@/shared/data/algs/sv'
+import { SQ1CS_ALGS } from '@/shared/data/algs/sq1cs'
+import { SQ1CO_ALGS } from '@/shared/data/algs/sq1co'
+import { SQ1EO_ALGS } from '@/shared/data/algs/sq1eo'
+import { SQ1CP_ALGS } from '@/shared/data/algs/sq1cp'
+import { SQ1EP_ALGS } from '@/shared/data/algs/sq1ep'
+import { SQ1_PARITY_ALGS } from '@/shared/data/algs/sq1parity'
 
 export const ALGORITHM_SETS = [
   {
@@ -443,6 +449,108 @@ export const ALGORITHM_SETS = [
       cameraLongitude: 45
     },
     file: 'l4e.ts'
+  },
+  {
+    slug: 'sq1-cs',
+    goal: 'full',
+    title: 'CS',
+    subtitle: 'Cube Shape',
+    puzzle: 'square1',
+    algorithms: SQ1CS_ALGS,
+    Icon: Diamond,
+    difficulty: 2,
+    virtualization: {
+      experimentalStickering: 'full',
+      puzzle: 'square1',
+      visualization: '2D',
+      experimentalDragInput: 'none'
+    },
+    file: 'sq1cs.ts'
+  },
+  {
+    slug: 'sq1-co',
+    goal: 'full',
+    title: 'CO',
+    subtitle: 'Corner Orientation',
+    puzzle: 'square1',
+    algorithms: SQ1CO_ALGS,
+    Icon: Diamond,
+    difficulty: 2,
+    virtualization: {
+      experimentalStickering: 'full',
+      puzzle: 'square1',
+      visualization: '2D',
+      experimentalDragInput: 'none'
+    },
+    file: 'sq1co.ts'
+  },
+  {
+    slug: 'sq1-eo',
+    goal: 'full',
+    title: 'EO',
+    subtitle: 'Edge Orientation',
+    puzzle: 'square1',
+    algorithms: SQ1EO_ALGS,
+    Icon: Diamond,
+    difficulty: 2,
+    virtualization: {
+      experimentalStickering: 'full',
+      puzzle: 'square1',
+      visualization: '2D',
+      experimentalDragInput: 'none'
+    },
+    file: 'sq1eo.ts'
+  },
+  {
+    slug: 'sq1-cp',
+    goal: 'full',
+    title: 'CP',
+    subtitle: 'Corner Permutation',
+    puzzle: 'square1',
+    algorithms: SQ1CP_ALGS,
+    Icon: Diamond,
+    difficulty: 3,
+    virtualization: {
+      experimentalStickering: 'full',
+      puzzle: 'square1',
+      visualization: '2D',
+      experimentalDragInput: 'none'
+    },
+    file: 'sq1cp.ts'
+  },
+  {
+    slug: 'sq1-ep',
+    goal: 'full',
+    title: 'EP',
+    subtitle: 'Edge Permutation',
+    puzzle: 'square1',
+    algorithms: SQ1EP_ALGS,
+    Icon: Diamond,
+    difficulty: 3,
+    virtualization: {
+      experimentalStickering: 'full',
+      puzzle: 'square1',
+      visualization: '2D',
+      experimentalDragInput: 'none'
+    },
+    file: 'sq1ep.ts'
+  },
+  {
+    slug: 'sq1-parity',
+    goal: 'full',
+    title: 'Parity-SQ1',
+    subtitle: 'Parity',
+    puzzle: 'square1',
+    algorithms: SQ1_PARITY_ALGS,
+    Icon: Diamond,
+    difficulty: 3,
+    virtualization: {
+      experimentalStickering: 'full',
+      puzzle: 'square1',
+      visualization: 'experimental-2D-LL',
+      experimentalDragInput: 'none'
+    },
+    file: 'sq1parity.ts'
   }
 ] as const
 
