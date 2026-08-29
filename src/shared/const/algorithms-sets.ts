@@ -1,4 +1,4 @@
-import { Diamond, Grid2x2Icon, Grid2x2Plus, Grid3x3, TriangleIcon } from 'lucide-react'
+import { Diamond, Grid2x2Icon, Grid2x2Plus, Grid3x3, Pentagon, TriangleIcon } from 'lucide-react'
 import { PBL_ALGS } from '@/shared/data/algs/pbl'
 import { OCLL_ALGS } from '@/shared/data/algs/ocll'
 import { OLL_ALGS } from '@/shared/data/algs/oll'
@@ -32,6 +32,10 @@ import { SQ1EO_ALGS } from '@/shared/data/algs/sq1eo'
 import { SQ1CP_ALGS } from '@/shared/data/algs/sq1cp'
 import { SQ1EP_ALGS } from '@/shared/data/algs/sq1ep'
 import { SQ1_PARITY_ALGS } from '@/shared/data/algs/sq1parity'
+import { MEGAMINX_EO_ALGS } from '@/shared/data/algs/megaminx-eo'
+import { MEGAMINX_EP_ALGS } from '@/shared/data/algs/megaminx-ep'
+import { MEGAMINX_CO_ALGS } from '@/shared/data/algs/megaminx-co'
+import { MEGAMINX_CP_ALGS } from '@/shared/data/algs/megaminx-cp'
 
 export const ALGORITHM_SETS = [
   {
@@ -551,6 +555,74 @@ export const ALGORITHM_SETS = [
       experimentalDragInput: 'none'
     },
     file: 'sq1parity.ts'
+  },
+  {
+    slug: 'megaminx-eo',
+    goal: 'full',
+    title: 'EO',
+    subtitle: 'Edge Orientation',
+    puzzle: 'megaminx',
+    algorithms: MEGAMINX_EO_ALGS,
+    Icon: Pentagon,
+    difficulty: 1,
+    virtualization: {
+      experimentalStickering: 'OLL-EO',
+      puzzle: 'megaminx',
+      visualization: 'experimental-2D-LL',
+      experimentalDragInput: 'none'
+    },
+    file: 'megaminx-eo.ts'
+  },
+  {
+    slug: 'megaminx-ep',
+    goal: 'full',
+    title: 'EP',
+    subtitle: 'Edge Permutation',
+    puzzle: 'megaminx',
+    algorithms: MEGAMINX_EP_ALGS,
+    Icon: Pentagon,
+    difficulty: 2,
+    virtualization: {
+      experimentalStickering: 'PLL-EO',
+      puzzle: 'megaminx',
+      visualization: 'experimental-2D-LL',
+      experimentalDragInput: 'none'
+    },
+    file: 'megaminx-ep.ts'
+  },
+  {
+    slug: 'megaminx-co',
+    goal: 'full',
+    title: 'CO',
+    subtitle: 'Corner Orientation',
+    puzzle: 'megaminx',
+    algorithms: MEGAMINX_CO_ALGS,
+    Icon: Pentagon,
+    difficulty: 2,
+    virtualization: {
+      experimentalStickering: 'OLL-CO',
+      puzzle: 'megaminx',
+      visualization: 'experimental-2D-LL',
+      experimentalDragInput: 'none'
+    },
+    file: 'megaminx-co.ts'
+  },
+  {
+    slug: 'megaminx-cp',
+    goal: 'full',
+    title: 'CP',
+    subtitle: 'Corner Permutation',
+    puzzle: 'megaminx',
+    algorithms: MEGAMINX_CP_ALGS,
+    Icon: Pentagon,
+    difficulty: 3,
+    virtualization: {
+      experimentalStickering: 'PLL-CP', // TODO: Update cubing.js package with case PLL-CP, now shows default
+      puzzle: 'megaminx',
+      visualization: 'experimental-2D-LL',
+      experimentalDragInput: 'none'
+    },
+    file: 'megaminx-cp.ts'
   }
 ] as const
 
