@@ -69,16 +69,11 @@ export function NavUser({
           <PresenceDot state={statusDisplay} className="size-2" />
         </span>
       </div>
-      <DropdownMenuContent
-        className="w-64 overflow-hidden rounded-xl p-0 shadow-xl"
-        side={'bottom'}
-        align="end"
-        sideOffset={8}
-      >
+      <DropdownMenuContent className="w-64" innerClassName="p-px" side={'bottom'} align="end" sideOffset={8}>
         {/* Identity header */}
         <DropdownMenuItem
           onClick={() => router.push('/account')}
-          className="group relative m-0 cursor-pointer gap-3 rounded-none bg-gradient-to-br from-primary/5 via-transparent to-transparent px-3 py-3 focus:bg-accent/60"
+          className="group relative m-0 cursor-pointer gap-3 rounded-none bg-gradient-to-br from-primary/10 via-transparent to-transparent px-3 py-3"
         >
           <div className="relative shrink-0">
             <Avatar className="size-10 rounded-full shadow-sm ring-1 ring-border/60">
@@ -97,8 +92,10 @@ export function NavUser({
         </DropdownMenuItem>
 
         {/* Presence picker */}
-        <div className="flex items-center justify-between gap-2 border-y border-border/50 bg-muted/40 px-3 py-2">
-          <span className="truncate text-xs font-medium text-muted-foreground">{tp(status)}</span>
+        <div className="flex items-center justify-between gap-2 border-y border-primary/20 bg-muted/40 px-3 py-2">
+          <span className="truncate text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            {tp(status)}
+          </span>
           <div className="flex shrink-0 gap-1">
             {PRESENCE_OPTIONS.map(({ value, display }) => (
               <button
@@ -109,8 +106,8 @@ export function NavUser({
                 aria-pressed={status === value}
                 onClick={() => setStatus(value)}
                 className={cn(
-                  'flex size-7 items-center justify-center rounded-md transition-colors',
-                  status === value ? 'bg-background shadow-sm ring-1 ring-border' : 'hover:bg-accent'
+                  'chip-notch chip-notch-sm flex size-7 cursor-pointer items-center justify-center transition-colors',
+                  status === value ? 'bg-primary/20' : 'hover:bg-accent'
                 )}
               >
                 <PresenceDot state={display} className="size-3" />
@@ -120,14 +117,14 @@ export function NavUser({
         </div>
 
         {/* Navigation */}
-        <DropdownMenuGroup className="p-1.5">
+        <DropdownMenuGroup className="py-1">
           {navItems.map(({ icon: Icon, label, href }) => (
             <DropdownMenuItem
               key={href}
               onClick={() => router.push(href)}
-              className="cursor-pointer gap-2.5 rounded-lg px-2 py-1.5"
+              className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
             >
-              <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-muted">
+              <span className="chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center bg-muted">
                 <Icon className="size-3.5" />
               </span>
               {label}
@@ -135,14 +132,14 @@ export function NavUser({
           ))}
         </DropdownMenuGroup>
 
-        <DropdownMenuGroup className="border-t border-border/50 p-1.5">
+        <DropdownMenuGroup className="border-t border-primary/20 py-1">
           {dataItems.map(({ icon: Icon, label, href }) => (
             <DropdownMenuItem
               key={href}
               onClick={() => router.push(href)}
-              className="cursor-pointer gap-2.5 rounded-lg px-2 py-1.5"
+              className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
             >
-              <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-muted">
+              <span className="chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center bg-muted">
                 <Icon className="size-3.5" />
               </span>
               {label}
@@ -151,13 +148,14 @@ export function NavUser({
         </DropdownMenuGroup>
 
         {/* Log out */}
-        <div className="border-t border-border/50 bg-muted/30 p-1.5">
+        <div className="border-t border-primary/20 bg-muted/30 py-1">
           <DropdownMenuItem
+            variant="destructive"
             onClick={handleResetDeviceData}
-            className="cursor-pointer gap-2.5 rounded-lg px-2 py-1.5 text-red-600 focus:bg-red-50 focus:text-red-600 dark:text-red-500 dark:focus:bg-red-950/40 dark:focus:text-red-500"
+            className="cursor-pointer gap-2.5 rounded-none px-3 py-1.5"
           >
-            <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-red-500/10">
-              <LogOut className="size-3.5 text-red-600 dark:text-red-500" />
+            <span className="chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center bg-destructive/10">
+              <LogOut className="size-3.5 text-destructive" />
             </span>
             {t('NavMain.log-out')}
           </DropdownMenuItem>
