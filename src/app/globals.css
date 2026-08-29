@@ -578,6 +578,24 @@
   --btn-fill: var(--accent);
 }
 
+/* Small angular chips: icon tiles inside dropdown panels and menus. Same cut
+   language as .btn-notch, scaled down so it reads on 24-36px squares. */
+.chip-notch {
+  --chip-cut: 7px;
+  border-radius: 0 !important;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--chip-cut)) 0,
+    100% var(--chip-cut),
+    100% 100%,
+    var(--chip-cut) 100%,
+    0 calc(100% - var(--chip-cut))
+  );
+}
+.chip-notch-sm {
+  --chip-cut: 5px;
+}
+
 /* Notched (cut-corner) cards for the solves grid */
 .solve-notch {
   --notch: 14px;
