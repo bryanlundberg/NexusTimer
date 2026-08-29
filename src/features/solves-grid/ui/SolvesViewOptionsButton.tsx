@@ -33,7 +33,7 @@ export default function SolvesViewOptionsButton() {
         <Button
           variant={'outline'}
           size={'icon'}
-          className={'relative size-9'}
+          className={'btn-notch btn-notch-alt btn-notch-border relative size-9'}
           aria-label={t('SolvesPage.view-options')}
         >
           <SlidersHorizontal />
