@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import dayjs from '@/shared/lib/dayjs'
-import { Alg } from '@rednaxela101/cubing/alg'
 import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
+import { isSquare1Alg } from '@/shared/lib/algorithms/algNotation'
 
 export const formatMs = (ms: number): string => (ms / 1000).toFixed(2)
 
@@ -43,18 +43,19 @@ export const shuffledRange = (total: number, exclude: number | null = null): num
   return arr
 }
 
-export const invertAlgorithm = (moves: string): string =>
-  new Alg(moves.replace(/[()]/g, '').replace(/\s+/g, ' ').trim()).invert().toString()
+export { invertAlgorithm, isSquare1Alg } from '@/shared/lib/algorithms/algNotation'
 
-export const cleanMoves = (moves: string): string =>
-  (moves ?? '').replace(/[()]/g, ' ').replace(/2'/g, '2').replace(/'2/g, '2').replace(/\s+/g, ' ').trim()
+export const cleanMoves = (moves: string): string => {
+  const value = moves ?? ''
+  if (isSquare1Alg(value)) return value.replace(/\s+/g, ' ').trim()
+  return value.replace(/[()]/g, ' ').replace(/2'/g, '2').replace(/'2/g, '2').replace(/\s+/g, ' ').trim()
+}
 
 const VIZ_BASE = {
   visualization: 'experimental-2D-LL',
   background: 'none',
   controlPanel: 'none',
   experimentalStickering: 'OLL',
-  experimentalSetupAnchor: 'end',
   experimentalDragInput: 'none'
 }
 
