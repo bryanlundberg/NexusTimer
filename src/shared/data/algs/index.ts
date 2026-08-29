@@ -11,6 +11,10 @@ export { F2L_ALGS } from './f2l'
 export { L2C_555_ALGS } from './l2c-555'
 export { L2E_555_ALGS } from './l2e-555'
 export { L4E_ALGS } from './l4e'
+export { MEGAMINX_CO_ALGS } from './megaminx-co'
+export { MEGAMINX_CP_ALGS } from './megaminx-cp'
+export { MEGAMINX_EO_ALGS } from './megaminx-eo'
+export { MEGAMINX_EP_ALGS } from './megaminx-ep'
 export { OCLL_ALGS } from './ocll'
 export { OLL_ALGS } from './oll'
 export { PARITY_444_ALGS } from './parity-444'
@@ -46,6 +50,10 @@ import { F2L_ALGS } from './f2l'
 import { L2C_555_ALGS } from './l2c-555'
 import { L2E_555_ALGS } from './l2e-555'
 import { L4E_ALGS } from './l4e'
+import { MEGAMINX_CO_ALGS } from './megaminx-co'
+import { MEGAMINX_CP_ALGS } from './megaminx-cp'
+import { MEGAMINX_EO_ALGS } from './megaminx-eo'
+import { MEGAMINX_EP_ALGS } from './megaminx-ep'
 import { OCLL_ALGS } from './ocll'
 import { OLL_ALGS } from './oll'
 import { PARITY_444_ALGS } from './parity-444'
@@ -82,6 +90,10 @@ export const ALL_ALGS: AlgorithmCollection[] = [
   ...L2C_555_ALGS,
   ...L2E_555_ALGS,
   ...L4E_ALGS,
+  ...MEGAMINX_CO_ALGS,
+  ...MEGAMINX_CP_ALGS,
+  ...MEGAMINX_EO_ALGS,
+  ...MEGAMINX_EP_ALGS,
   ...OCLL_ALGS,
   ...OLL_ALGS,
   ...PARITY_444_ALGS,
