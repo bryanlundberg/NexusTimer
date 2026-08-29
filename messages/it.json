@@ -827,6 +827,12 @@
         "l2c-5x5": "Gli algoritmi L2C (Last Two Centers) risolvono gli ultimi due centri di un cubo 5x5 durante la riduzione, senza rompere i centri già costruiti.",
         "l2e-5x5": "Gli algoritmi L2E (Last Two Edges) risolvono le ultime due coppie di spigoli di un cubo 5x5 durante la riduzione, quando non possono più essere abbinate con semplici mosse di slice.",
         "l4e": "Ultimi 4 spigoli (Pyraminx) - Questi algoritmi vengono usati per risolvere gli ultimi quattro spigoli di un Pyraminx. L'obiettivo è posizionare e orientare correttamente questi pezzi per completare il puzzle.",
+        "sq1-cs": "CS (Cube Shape) - Questi algoritmi riportano uno Square-1 mescolato alla forma di cubo, il primo passo della risoluzione. I casi sono raggruppati in base al numero di slice richiesti dalla soluzione.",
+        "sq1-co": "CO (Corner Orientation) - Una volta tornato alla forma di cubo, questi algoritmi orientano tutti gli angoli dello Square-1 in modo che sopra e sotto mostrino il colore corretto, senza rompere la forma di cubo.",
+        "sq1-eo": "EO (Edge Orientation) - Questi algoritmi ruotano gli spigoli dello Square-1 nell'orientamento corretto una volta orientati gli angoli.",
+        "sq1-cp": "CP (Corner Permutation) - Questi algoritmi portano gli angoli dello Square-1 nella posizione corretta quando tutti i pezzi sono orientati.",
+        "sq1-ep": "EP (Edge Permutation) - Questi algoritmi completano lo Square-1 portando gli spigoli nella posizione corretta.",
+        "sq1-parity": "Parità - I casi di parità dello Square-1 compaiono quando angoli e spigoli non possono essere permutati con gli algoritmi normali. Questi algoritmi riportano il rompicapo a uno stato risolvibile.",
         "sv": "Gli algoritmi SV (Summer Variation) risolvono l'ultima coppia F2L orientando contemporaneamente gli spigoli dell'ultimo strato, in modo simile a WV (Winter Variation) ma per configurazioni di coppia e spigolo diverse. Questa selezione evidenzia i casi più utili da imparare."
       }
     },

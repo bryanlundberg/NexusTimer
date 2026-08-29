@@ -827,6 +827,12 @@
         "l2c-5x5": "Algoritma L2C (Last Two Centers) menyelesaikan dua center terakhir pada kubus 5x5 saat tahap reduction, tanpa merusak center yang sudah dibangun.",
         "l2e-5x5": "Algoritma L2E (Last Two Edges) memperbaiki dua kelompok edge terakhir pada kubus 5x5 saat tahap reduction, ketika keduanya tidak bisa dipasangkan dengan gerakan slice biasa.",
         "l4e": "4 slot terakhir (Pyraminx) - Algoritma ini digunakan untuk menyelesaikan empat bagian edge terakhir dari puzzle Pyraminx. Tujuannya adalah memposisikan dan mengorientasikan bagian-bagian ini dengan benar untuk menyelesaikan puzzle.",
+        "sq1-cs": "CS (Cube Shape) - Algoritma ini mengembalikan Square-1 yang teracak ke bentuk kubus, langkah pertama dalam menyelesaikan puzzle ini. Kasus dikelompokkan berdasarkan jumlah slice yang dibutuhkan solusinya.",
+        "sq1-co": "CO (Corner Orientation) - Setelah Square-1 kembali ke bentuk kubus, algoritma ini mengorientasikan semua sudut agar sisi atas dan bawah menunjukkan warna yang benar tanpa merusak bentuk kubus.",
+        "sq1-eo": "EO (Edge Orientation) - Algoritma ini memutar edge Square-1 ke orientasi yang benar setelah sudut-sudutnya terorientasi.",
+        "sq1-cp": "CP (Corner Permutation) - Algoritma ini menempatkan sudut Square-1 ke posisi yang benar setelah semua bagian terorientasi.",
+        "sq1-ep": "EP (Edge Permutation) - Algoritma ini menyelesaikan Square-1 dengan menempatkan edge ke posisi yang benar.",
+        "sq1-parity": "Parity - Kasus parity pada Square-1 muncul ketika sudut dan edge tidak bisa dipermutasi dengan algoritma biasa. Algoritma ini mengembalikan puzzle ke keadaan yang bisa diselesaikan.",
         "sv": "Algoritma SV (Summer Variation) menyelesaikan pasangan F2L terakhir sekaligus mengorientasikan sudut lapisan terakhir, mirip dengan WV (Winter Variation) tetapi untuk konfigurasi pasangan dan sudut yang berbeda. Pilihan ini menyoroti kasus-kasus paling berguna untuk dipelajari."
       }
     },

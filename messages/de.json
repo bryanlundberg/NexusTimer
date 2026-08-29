@@ -824,6 +824,12 @@
         "l2c-5x5": "L2C (Last Two Centers) sind Algorithmen, die beim 5x5 während der Reduktion die letzten beiden Zentren lösen, ohne die bereits gebauten Zentren zu zerstören.",
         "l2e-5x5": "L2E (Last Two Edges) sind Algorithmen, die beim 5x5 während der Reduktion die letzten beiden Kantenpaare lösen, wenn sie sich nicht mehr mit einfachen Slice-Zügen verbinden lassen.",
         "l4e": "Letzte 4 Kanten beim Pyraminx.",
+        "sq1-cs": "CS (Cube Shape) - Diese Algorithmen bringen einen verdrehten Square-1 zurück in die Würfelform, den ersten Schritt beim Lösen des Puzzles. Die Fälle sind danach gruppiert, wie viele Slices die Lösung benötigt.",
+        "sq1-co": "CO (Corner Orientation) - Sobald der Square-1 wieder Würfelform hat, orientieren diese Algorithmen alle Ecken, sodass oben und unten die richtigen Farben zeigen, ohne die Würfelform zu zerstören.",
+        "sq1-eo": "EO (Edge Orientation) - Diese Algorithmen drehen die Kanten des Square-1 in die richtige Orientierung, sobald die Ecken orientiert sind.",
+        "sq1-cp": "CP (Corner Permutation) - Diese Algorithmen bringen die Ecken des Square-1 an ihre richtige Position, sobald alle Teile orientiert sind.",
+        "sq1-ep": "EP (Edge Permutation) - Diese Algorithmen schließen den Square-1 ab, indem sie die Kanten an ihre richtige Position bringen.",
+        "sq1-parity": "Parität - Paritätsfälle beim Square-1 treten auf, wenn Ecken und Kanten mit den normalen Algorithmen nicht permutiert werden können. Diese Algorithmen bringen das Puzzle zurück in einen lösbaren Zustand.",
         "sv": "SV-Algorithmen (Summer Variation) lösen dein letztes F2L-Paar und orientieren gleichzeitig die Ecken der letzten Schicht, ähnlich wie WV (Winter Variation), jedoch für andere Paar- und Eckenkonfigurationen. Diese Auswahl hebt die nützlichsten Fälle hervor."
       }
     },

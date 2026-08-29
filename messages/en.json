@@ -817,6 +817,12 @@
         "l2c-5x5": "L2C (Last Two Centers) algorithms solve the final two centers of a 5x5 cube during the reduction step. They let you finish the centers without breaking the ones you have already built.",
         "l2e-5x5": "L2E (Last Two Edges) algorithms fix the final two edge groups of a 5x5 cube during the reduction step, when the last two edges cannot be paired by simple slice moves.",
         "l4e": "Last 4 slots (Pyraminx) - These algorithms are used to solve the last four edge pieces of a Pyraminx puzzle. The goal is to position and orient these pieces correctly to complete the puzzle.",
+        "sq1-cs": "CS (Cube Shape) - These algorithms bring a scrambled Square-1 back to a cube shape, the first step of solving the puzzle. Cases are grouped by how many slices the solution takes.",
+        "sq1-co": "CO (Corner Orientation) - Once the Square-1 is back to a cube shape, these algorithms orient every corner so the top and bottom layers show the correct colors, without breaking the cube shape.",
+        "sq1-eo": "EO (Edge Orientation) - These algorithms flip the edges of a Square-1 into their correct orientation after the corners are oriented, leaving the puzzle ready to be permuted.",
+        "sq1-cp": "CP (Corner Permutation) - These algorithms move the corners of a Square-1 into their correct positions once every piece is oriented.",
+        "sq1-ep": "EP (Edge Permutation) - These algorithms finish a Square-1 by moving the edges into their correct positions after the corners are permuted.",
+        "sq1-parity": "Parity - Square-1 parity cases show up when the corners and edges cannot be permuted with the regular algorithms. These algorithms bring the puzzle back to a solvable state.",
         "sv": "SV (Summer Variation) algorithms solve your final F2L pair while simultaneously orienting the corners of the last layer, similar to WV (Winter Variation) but covering different pair and corner configurations. This selection highlights the most useful cases to learn."
       }
     },

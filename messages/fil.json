@@ -827,6 +827,12 @@
         "l2c-5x5": "Ang L2C (Last Two Centers) na mga algorithm ay lumulutas sa huling dalawang center ng 5x5 cube sa yugto ng reduction. Natatapos mo ang mga center nang hindi nasisira ang mga naibuo mo na.",
         "l2e-5x5": "Ang L2E (Last Two Edges) na mga algorithm ay umaayos sa huling dalawang edge group ng 5x5 cube sa yugto ng reduction, kapag hindi na sila mapapares sa simpleng slice moves.",
         "l4e": "Last 4 slots (Pyraminx) - Ginagamit ang mga algorithm na ito para lutasin ang huling apat na edge piece ng Pyraminx puzzle. Ang layunin ay maposisyon at ma-orient nang tama ang mga pirasong ito para makumpleto ang puzzle.",
+        "sq1-cs": "CS (Cube Shape) - Ibinabalik ng mga algorithm na ito sa hugis-kubo ang isang na-scramble na Square-1, ang unang hakbang sa paglutas ng puzzle. Nakagrupo ang mga kaso ayon sa bilang ng slice na kailangan ng solusyon.",
+        "sq1-co": "CO (Corner Orientation) - Kapag nasa hugis-kubo na ulit ang Square-1, ino-orient ng mga algorithm na ito ang lahat ng sulok para tama ang kulay sa itaas at ibaba, nang hindi nasisira ang hugis.",
+        "sq1-eo": "EO (Edge Orientation) - Ibinabaling ng mga algorithm na ito ang mga gilid ng Square-1 sa tamang oryentasyon kapag naka-orient na ang mga sulok.",
+        "sq1-cp": "CP (Corner Permutation) - Inilalagay ng mga algorithm na ito ang mga sulok ng Square-1 sa tamang posisyon kapag naka-orient na ang lahat ng piraso.",
+        "sq1-ep": "EP (Edge Permutation) - Tinatapos ng mga algorithm na ito ang Square-1 sa pamamagitan ng paglalagay ng mga gilid sa tamang posisyon.",
+        "sq1-parity": "Parity - Lumilitaw ang mga parity case sa Square-1 kapag hindi na kayang i-permute ang mga sulok at gilid gamit ang karaniwang mga algorithm. Ibinabalik ng mga ito ang puzzle sa estadong kayang lutasin.",
         "sv": "Ang mga algorithm ng SV (Summer Variation) ay lumulutas sa huling F2L pair habang sabay na inaayos ang orientation ng mga corner ng huling layer, katulad ng WV (Winter Variation) ngunit para sa ibang pares at corner configuration. Itinatampok ng seleksyong ito ang mga pinaka-kapaki-pakinabang na kaso na dapat matutunan."
       }
     },

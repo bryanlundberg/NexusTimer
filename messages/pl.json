@@ -827,6 +827,12 @@
         "l2c-5x5": "Algorytmy L2C (Last Two Centers) układają dwa ostatnie centra kostki 5x5 na etapie redukcji, bez psucia już ułożonych centrów.",
         "l2e-5x5": "Algorytmy L2E (Last Two Edges) układają dwie ostatnie grupy krawędzi kostki 5x5 na etapie redukcji, gdy nie da się ich już połączyć prostymi ruchami slice.",
         "l4e": "Ostatnie 4 krawędzie (Pyraminx) - Te algorytmy służą do ułożenia ostatnich czterech elementów krawędziowych Pyraminxa. Celem jest prawidłowe rozmieszczenie i zorientowanie tych elementów, aby ukończyć układankę.",
+        "sq1-cs": "CS (Cube Shape) - Te algorytmy przywracają pomieszaną kostkę Square-1 do kształtu sześcianu, co jest pierwszym krokiem układania. Przypadki są pogrupowane według liczby cięć potrzebnych do rozwiązania.",
+        "sq1-co": "CO (Corner Orientation) - Gdy Square-1 wróci do kształtu sześcianu, te algorytmy ustawiają orientację wszystkich narożników, tak aby góra i dół miały właściwy kolor, bez psucia kształtu.",
+        "sq1-eo": "EO (Edge Orientation) - Te algorytmy obracają krawędzie Square-1 do właściwej orientacji, gdy narożniki są już zorientowane.",
+        "sq1-cp": "CP (Corner Permutation) - Te algorytmy przenoszą narożniki Square-1 na właściwe pozycje, gdy wszystkie elementy są zorientowane.",
+        "sq1-ep": "EP (Edge Permutation) - Te algorytmy kończą układanie Square-1, przenosząc krawędzie na właściwe pozycje.",
+        "sq1-parity": "Parzystość - Przypadki parzystości w Square-1 pojawiają się, gdy narożników i krawędzi nie da się ułożyć zwykłymi algorytmami. Te algorytmy przywracają układankę do stanu, który da się ułożyć.",
         "sv": "Algorytmy SV (Summer Variation) rozwiązują ostatnią parę F2L, jednocześnie orientując narożniki ostatniej warstwy, podobnie jak WV (Winter Variation), ale dla innych konfiguracji pary i narożnika. Ten zestaw podkreśla najbardziej przydatne przypadki do nauki."
       }
     },

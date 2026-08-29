@@ -824,6 +824,12 @@
         "l2c-5x5": "Os algoritmos L2C (Last Two Centers) resolvem os dois últimos centros de um cubo 5x5 durante a redução, sem quebrar os centros já montados.",
         "l2e-5x5": "Os algoritmos L2E (Last Two Edges) resolvem os dois últimos grupos de arestas de um cubo 5x5 durante a redução, quando não podem mais ser emparelhados com movimentos de slice simples.",
         "l4e": "Últimos 4 meios do Pyraminx.",
+        "sq1-cs": "CS (Cube Shape) - Estes algoritmos devolvem um Square-1 embaralhado à forma de cubo, o primeiro passo da resolução. Os casos são agrupados pelo número de slices que a solução exige.",
+        "sq1-co": "CO (Corner Orientation) - Depois de o Square-1 voltar à forma de cubo, estes algoritmos orientam todos os cantos para que o topo e a base mostrem a cor correta, sem quebrar a forma.",
+        "sq1-eo": "EO (Edge Orientation) - Estes algoritmos giram as arestas do Square-1 para a orientação correta depois de os cantos estarem orientados.",
+        "sq1-cp": "CP (Corner Permutation) - Estes algoritmos levam os cantos do Square-1 às posições corretas quando todas as peças já estão orientadas.",
+        "sq1-ep": "EP (Edge Permutation) - Estes algoritmos terminam o Square-1 levando as arestas às posições corretas.",
+        "sq1-parity": "Paridade - Os casos de paridade do Square-1 surgem quando cantos e arestas não podem ser permutados com os algoritmos normais. Estes algoritmos devolvem o quebra-cabeça a um estado solucionável.",
         "sv": "Os algoritmos SV (Summer Variation) resolvem o seu último par de F2L enquanto orientam simultaneamente os cantos da última camada, de forma semelhante ao WV (Winter Variation), mas cobrindo outras configurações de par e canto. Esta seleção destaca os casos mais úteis para aprender."
       }
     },

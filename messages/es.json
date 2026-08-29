@@ -827,6 +827,12 @@
         "l2c-5x5": "Los algoritmos L2C (Last Two Centers) resuelven los dos últimos centros de un cubo 5x5 durante la reducción. Permiten terminar los centros sin romper los que ya construiste.",
         "l2e-5x5": "Los algoritmos L2E (Last Two Edges) resuelven los dos últimos grupos de aristas de un cubo 5x5 durante la reducción, cuando ya no se pueden emparejar con movimientos de slice simples.",
         "l4e": "Últimas 4 aristas (Pyraminx): estos algoritmos se utilizan para resolver las últimas cuatro piezas de arista de un rompecabezas Pyraminx. El objetivo es posicionar y orientar estas piezas correctamente para completar el rompecabezas.",
+        "sq1-cs": "CS (Forma de cubo) - Estos algoritmos devuelven un Square-1 mezclado a la forma de cubo, el primer paso para resolver el rompecabezas. Los casos están agrupados según cuántos slices necesita la solución.",
+        "sq1-co": "CO (Orientación de esquinas) - Una vez que el Square-1 vuelve a la forma de cubo, estos algoritmos orientan todas las esquinas para que las caras superior e inferior muestren el color correcto, sin romper la forma de cubo.",
+        "sq1-eo": "EO (Orientación de aristas) - Estos algoritmos giran las aristas del Square-1 a su orientación correcta una vez que las esquinas están orientadas.",
+        "sq1-cp": "CP (Permutación de esquinas) - Estos algoritmos llevan las esquinas del Square-1 a su posición correcta cuando todas las piezas ya están orientadas.",
+        "sq1-ep": "EP (Permutación de aristas) - Estos algoritmos terminan el Square-1 llevando las aristas a su posición correcta una vez permutadas las esquinas.",
+        "sq1-parity": "Paridad - Los casos de paridad del Square-1 aparecen cuando las esquinas y las aristas no se pueden permutar con los algoritmos normales. Estos algoritmos devuelven el rompecabezas a un estado resoluble.",
         "sv": "Los algoritmos SV (Summer Variation) resuelven tu último par de F2L mientras orientan simultáneamente las esquinas de la última capa, de forma similar a WV (Winter Variation) pero cubriendo otras configuraciones de par y esquina. Esta selección resalta los casos más útiles para aprender."
       }
     },

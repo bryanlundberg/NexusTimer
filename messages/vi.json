@@ -827,6 +827,12 @@
         "l2c-5x5": "Các thuật toán L2C (Last Two Centers) giải hai tâm cuối cùng của khối 5x5 trong bước reduction mà không phá các tâm đã ghép.",
         "l2e-5x5": "Các thuật toán L2E (Last Two Edges) xử lý hai nhóm cạnh cuối cùng của khối 5x5 trong bước reduction, khi chúng không thể ghép bằng các nước slice đơn giản.",
         "l4e": "4 cạnh cuối (Pyraminx) - Các thuật toán này được dùng để giải bốn mảnh cạnh cuối của puzzle Pyraminx. Mục tiêu là đặt vị trí và định hướng các mảnh này chính xác để hoàn thành puzzle.",
+        "sq1-cs": "CS (Cube Shape) - Các thuật toán này đưa một Square-1 đã xáo trộn trở về hình khối lập phương, bước đầu tiên khi giải. Các trường hợp được nhóm theo số lát cắt mà lời giải cần.",
+        "sq1-co": "CO (Corner Orientation) - Sau khi Square-1 trở lại hình khối lập phương, các thuật toán này định hướng toàn bộ góc để mặt trên và mặt dưới đúng màu mà không phá hình khối.",
+        "sq1-eo": "EO (Edge Orientation) - Các thuật toán này lật các cạnh của Square-1 về đúng hướng sau khi các góc đã được định hướng.",
+        "sq1-cp": "CP (Corner Permutation) - Các thuật toán này đưa các góc của Square-1 về đúng vị trí khi mọi mảnh đã được định hướng.",
+        "sq1-ep": "EP (Edge Permutation) - Các thuật toán này hoàn tất Square-1 bằng cách đưa các cạnh về đúng vị trí.",
+        "sq1-parity": "Parity - Các trường hợp parity của Square-1 xuất hiện khi không thể hoán vị góc và cạnh bằng các thuật toán thông thường. Những thuật toán này đưa khối về trạng thái giải được.",
         "sv": "Các thuật toán SV (Summer Variation) giải cặp F2L cuối cùng đồng thời định hướng các góc của tầng cuối, tương tự như WV (Winter Variation) nhưng áp dụng cho các cấu hình cặp và góc khác. Bộ sưu tập này nêu bật những trường hợp hữu ích nhất cần học."
       }
     },
