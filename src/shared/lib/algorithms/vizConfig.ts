@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
+import { invertAlgorithm } from '@/shared/lib/algorithms/algNotation'
 
 /**
  * cubing.js hardcodes its built-in OLL/PLL stickerings to the white (U) layer,
@@ -45,7 +46,8 @@ const SUPPORTED_PUZZLES = new Set(['2x2x2', '3x3x3', '4x4x4'])
 
 type LooseViz = Partial<TwistyPlayer> & { experimentalStickering?: string; puzzle?: string }
 
-const normalizePuzzle = (puzzle: string): string => (puzzle === '2x2' ? '2x2x2' : puzzle === '3x3' ? '3x3x3' : puzzle)
+const normalizePuzzle = (puzzle: string): string =>
+  puzzle === '2x2' ? '2x2x2' : puzzle === '3x3' ? '3x3x3' : puzzle === 'sq1' ? 'square1' : puzzle
 
 /**
  * The rotation that puts the yellow layer on top for a given puzzle, or `''` for
@@ -56,23 +58,48 @@ export const yellowOrientationSetupAlg = (puzzle: string): string =>
   SUPPORTED_PUZZLES.has(normalizePuzzle(puzzle)) ? 'z2' : ''
 
 /**
- * Orients 2x2–4x4 algorithm cases on the yellow (D) layer instead of the default
- * white (U) layer. 4x4 sets use `full` stickering, so they only get the `z2`
- * rotation (no mask). Unsupported puzzles (5x5, pyraminx) are returned unchanged.
+ * Turns a case config into the still image the thumbnails show: the case the
+ * algorithm solves, so running the algorithm from there finishes the puzzle. That
+ * state is `alg⁻¹` applied to a solved puzzle, with `z2` in front on 2x2–4x4 so it
+ * sits on the yellow (D) layer instead of the default white (U) one. 4x4 sets use
+ * `full` stickering, so they only get the rotation (no mask), and 5x5, pyraminx
+ * and square1 are not reoriented at all.
  *
- * Callers pair this with `experimentalSetupAnchor: 'end'`, which makes cubing.js
- * derive the start state as `z2 · alg⁻¹`, so the rendered case is always the
- * inverse of the algorithm printed next to it. Collections also carry a `setup`
- * field, but it does not always describe the same case as `algs[0]`, so using it
- * here would let the thumbnail drift from the algorithm text.
+ * The state is inverted here and passed as `experimentalSetupAlg` with an empty
+ * `alg`, rather than handed to `experimentalSetupAnchor: 'end'` to invert. With
+ * nothing left to animate the player simply displays the setup, so the image no
+ * longer depends on where cubing.js parks the playhead: unanchored it only lands
+ * on the end of the alg while the setup alg is empty (`setupAnchor === "start" &&
+ * setupAlg.isEmpty() ? timeRange.end : timeRange.start`), which is what left every
+ * NxN thumbnail on a solved cube once the anchor was dropped.
+ *
+ * Collections also carry a `setup` field, but it does not always describe the same
+ * case as `algs[0]`, so using it here would let the thumbnail drift from the
+ * algorithm text.
  */
 export const applyYellowOrientation = <T extends object>(config: T): T => {
   const viz = config as LooseViz
   const puzzle = normalizePuzzle(viz.puzzle ?? '3x3x3')
-  if (!SUPPORTED_PUZZLES.has(puzzle)) return config
+  const oriented = SUPPORTED_PUZZLES.has(puzzle)
 
-  const mask = D_LAYER_MASKS[viz.experimentalStickering ?? '']?.[puzzle]
-  const patch: Record<string, string> = { experimentalSetupAlg: 'z2' }
+  // TwistyPlayer types `alg` as write-only, so it is read back off a loose shape.
+  const moves = String((config as { alg?: unknown }).alg ?? '')
+
+  let inverted: string
+  try {
+    inverted = invertAlgorithm(moves)
+  } catch {
+    // A case that does not parse keeps its config: better a wrong-looking
+    // thumbnail than throwing while the list renders.
+    return config
+  }
+
+  const patch: Record<string, string> = {
+    alg: '',
+    experimentalSetupAlg: [oriented ? 'z2' : '', inverted].filter(Boolean).join(' ')
+  }
+
+  const mask = oriented ? D_LAYER_MASKS[viz.experimentalStickering ?? '']?.[puzzle] : undefined
   if (mask) patch.experimentalStickeringMaskOrbits = mask
 
   return _.merge({}, config, patch) as T
