@@ -835,7 +835,11 @@
         "sq1-cp": "CP (Corner Permutation) - Algoritma ini menempatkan sudut Square-1 ke posisi yang benar setelah semua bagian terorientasi.",
         "sq1-ep": "EP (Edge Permutation) - Algoritma ini menyelesaikan Square-1 dengan menempatkan edge ke posisi yang benar.",
         "sq1-parity": "Parity - Kasus parity pada Square-1 muncul ketika sudut dan edge tidak bisa dipermutasi dengan algoritma biasa. Algoritma ini mengembalikan puzzle ke keadaan yang bisa diselesaikan.",
-        "sv": "Algoritma SV (Summer Variation) menyelesaikan pasangan F2L terakhir sekaligus mengorientasikan sudut lapisan terakhir, mirip dengan WV (Winter Variation) tetapi untuk konfigurasi pasangan dan sudut yang berbeda. Pilihan ini menyoroti kasus-kasus paling berguna untuk dipelajari."
+        "sv": "Algoritma SV (Summer Variation) menyelesaikan pasangan F2L terakhir sekaligus mengorientasikan sudut lapisan terakhir, mirip dengan WV (Winter Variation) tetapi untuk konfigurasi pasangan dan sudut yang berbeda. Pilihan ini menyoroti kasus-kasus paling berguna untuk dipelajari.",
+        "megaminx-eo": "EO (Edge Orientation) - Algoritma ini memutar edge lapisan terakhir Megaminx agar warna atasnya menghadap ke atas, langkah pertama dari lapisan terakhir.",
+        "megaminx-ep": "EP (Edge Permutation) - Algoritma ini memindahkan edge lapisan terakhir Megaminx yang sudah terorientasi ke posisi yang benar.",
+        "megaminx-co": "CO (Corner Orientation) - Setelah edge selesai, algoritma ini memutar corner lapisan terakhir Megaminx agar warna atasnya menghadap ke atas.",
+        "megaminx-cp": "CP (Corner Permutation) - Algoritma ini memindahkan corner lapisan terakhir Megaminx ke posisi yang benar untuk menyelesaikan puzzle."
       }
     },
     "TrainerPage": {

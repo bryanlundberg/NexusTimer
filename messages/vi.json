@@ -835,7 +835,11 @@
         "sq1-cp": "CP (Corner Permutation) - Các thuật toán này đưa các góc của Square-1 về đúng vị trí khi mọi mảnh đã được định hướng.",
         "sq1-ep": "EP (Edge Permutation) - Các thuật toán này hoàn tất Square-1 bằng cách đưa các cạnh về đúng vị trí.",
         "sq1-parity": "Parity - Các trường hợp parity của Square-1 xuất hiện khi không thể hoán vị góc và cạnh bằng các thuật toán thông thường. Những thuật toán này đưa khối về trạng thái giải được.",
-        "sv": "Các thuật toán SV (Summer Variation) giải cặp F2L cuối cùng đồng thời định hướng các góc của tầng cuối, tương tự như WV (Winter Variation) nhưng áp dụng cho các cấu hình cặp và góc khác. Bộ sưu tập này nêu bật những trường hợp hữu ích nhất cần học."
+        "sv": "Các thuật toán SV (Summer Variation) giải cặp F2L cuối cùng đồng thời định hướng các góc của tầng cuối, tương tự như WV (Winter Variation) nhưng áp dụng cho các cấu hình cặp và góc khác. Bộ sưu tập này nêu bật những trường hợp hữu ích nhất cần học.",
+        "megaminx-eo": "EO (Edge Orientation) - Các công thức này lật các viên cạnh của tầng cuối trên Megaminx để màu mặt trên hướng lên, bước đầu tiên của tầng cuối.",
+        "megaminx-ep": "EP (Edge Permutation) - Các công thức này đưa các viên cạnh đã định hướng của tầng cuối trên Megaminx về đúng vị trí.",
+        "megaminx-co": "CO (Corner Orientation) - Sau khi các viên cạnh đã xong, các công thức này xoay các viên góc của tầng cuối trên Megaminx để màu mặt trên hướng lên.",
+        "megaminx-cp": "CP (Corner Permutation) - Các công thức này đưa các viên góc của tầng cuối trên Megaminx về đúng vị trí để hoàn thành khối."
       }
     },
     "TrainerPage": {

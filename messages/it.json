@@ -835,7 +835,11 @@
         "sq1-cp": "CP (Corner Permutation) - Questi algoritmi portano gli angoli dello Square-1 nella posizione corretta quando tutti i pezzi sono orientati.",
         "sq1-ep": "EP (Edge Permutation) - Questi algoritmi completano lo Square-1 portando gli spigoli nella posizione corretta.",
         "sq1-parity": "Parità - I casi di parità dello Square-1 compaiono quando angoli e spigoli non possono essere permutati con gli algoritmi normali. Questi algoritmi riportano il rompicapo a uno stato risolvibile.",
-        "sv": "Gli algoritmi SV (Summer Variation) risolvono l'ultima coppia F2L orientando contemporaneamente gli spigoli dell'ultimo strato, in modo simile a WV (Winter Variation) ma per configurazioni di coppia e spigolo diverse. Questa selezione evidenzia i casi più utili da imparare."
+        "sv": "Gli algoritmi SV (Summer Variation) risolvono l'ultima coppia F2L orientando contemporaneamente gli spigoli dell'ultimo strato, in modo simile a WV (Winter Variation) ma per configurazioni di coppia e spigolo diverse. Questa selezione evidenzia i casi più utili da imparare.",
+        "megaminx-eo": "EO (Edge Orientation) - Questi algoritmi ruotano gli spigoli dell'ultimo strato del Megaminx in modo che il colore superiore sia rivolto verso l'alto, il primo passo dell'ultimo strato.",
+        "megaminx-ep": "EP (Edge Permutation) - Questi algoritmi portano gli spigoli già orientati dell'ultimo strato del Megaminx nella posizione corretta.",
+        "megaminx-co": "CO (Corner Orientation) - Una volta risolti gli spigoli, questi algoritmi ruotano gli angoli dell'ultimo strato del Megaminx in modo che il colore superiore sia rivolto verso l'alto.",
+        "megaminx-cp": "CP (Corner Permutation) - Questi algoritmi portano gli angoli dell'ultimo strato del Megaminx nella posizione corretta per completare il puzzle."
       }
     },
     "TrainerPage": {

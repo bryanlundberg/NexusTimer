@@ -835,7 +835,11 @@
         "sq1-cp": "CP (Permutación de esquinas) - Estos algoritmos llevan las esquinas del Square-1 a su posición correcta cuando todas las piezas ya están orientadas.",
         "sq1-ep": "EP (Permutación de aristas) - Estos algoritmos terminan el Square-1 llevando las aristas a su posición correcta una vez permutadas las esquinas.",
         "sq1-parity": "Paridad - Los casos de paridad del Square-1 aparecen cuando las esquinas y las aristas no se pueden permutar con los algoritmos normales. Estos algoritmos devuelven el rompecabezas a un estado resoluble.",
-        "sv": "Los algoritmos SV (Summer Variation) resuelven tu último par de F2L mientras orientan simultáneamente las esquinas de la última capa, de forma similar a WV (Winter Variation) pero cubriendo otras configuraciones de par y esquina. Esta selección resalta los casos más útiles para aprender."
+        "sv": "Los algoritmos SV (Summer Variation) resuelven tu último par de F2L mientras orientan simultáneamente las esquinas de la última capa, de forma similar a WV (Winter Variation) pero cubriendo otras configuraciones de par y esquina. Esta selección resalta los casos más útiles para aprender.",
+        "megaminx-eo": "EO (Orientación de aristas) - Estos algoritmos giran las aristas de la última capa del Megaminx para que el color superior quede hacia arriba, el primer paso de la última capa.",
+        "megaminx-ep": "EP (Permutación de aristas) - Estos algoritmos llevan las aristas ya orientadas de la última capa del Megaminx a su posición correcta.",
+        "megaminx-co": "CO (Orientación de esquinas) - Una vez resueltas las aristas, estos algoritmos giran las esquinas de la última capa del Megaminx para que el color superior quede hacia arriba.",
+        "megaminx-cp": "CP (Permutación de esquinas) - Estos algoritmos colocan las esquinas de la última capa del Megaminx en su posición correcta para terminar el puzzle."
       }
     },
     "TrainerPage": {

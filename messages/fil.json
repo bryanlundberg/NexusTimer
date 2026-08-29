@@ -835,7 +835,11 @@
         "sq1-cp": "CP (Corner Permutation) - Inilalagay ng mga algorithm na ito ang mga sulok ng Square-1 sa tamang posisyon kapag naka-orient na ang lahat ng piraso.",
         "sq1-ep": "EP (Edge Permutation) - Tinatapos ng mga algorithm na ito ang Square-1 sa pamamagitan ng paglalagay ng mga gilid sa tamang posisyon.",
         "sq1-parity": "Parity - Lumilitaw ang mga parity case sa Square-1 kapag hindi na kayang i-permute ang mga sulok at gilid gamit ang karaniwang mga algorithm. Ibinabalik ng mga ito ang puzzle sa estadong kayang lutasin.",
-        "sv": "Ang mga algorithm ng SV (Summer Variation) ay lumulutas sa huling F2L pair habang sabay na inaayos ang orientation ng mga corner ng huling layer, katulad ng WV (Winter Variation) ngunit para sa ibang pares at corner configuration. Itinatampok ng seleksyong ito ang mga pinaka-kapaki-pakinabang na kaso na dapat matutunan."
+        "sv": "Ang mga algorithm ng SV (Summer Variation) ay lumulutas sa huling F2L pair habang sabay na inaayos ang orientation ng mga corner ng huling layer, katulad ng WV (Winter Variation) ngunit para sa ibang pares at corner configuration. Itinatampok ng seleksyong ito ang mga pinaka-kapaki-pakinabang na kaso na dapat matutunan.",
+        "megaminx-eo": "EO (Edge Orientation) - Iniikot ng mga algorithm na ito ang mga edge ng huling layer ng Megaminx para nakaharap sa itaas ang kulay sa ibabaw. Ito ang unang hakbang ng huling layer.",
+        "megaminx-ep": "EP (Edge Permutation) - Inilalagay ng mga algorithm na ito sa tamang posisyon ang mga na-orient nang edge ng huling layer ng Megaminx.",
+        "megaminx-co": "CO (Corner Orientation) - Kapag tapos na ang mga edge, iniikot ng mga algorithm na ito ang mga corner ng huling layer ng Megaminx para nakaharap sa itaas ang kulay sa ibabaw.",
+        "megaminx-cp": "CP (Corner Permutation) - Inilalagay ng mga algorithm na ito sa tamang posisyon ang mga corner ng huling layer ng Megaminx para matapos ang puzzle."
       }
     },
     "TrainerPage": {

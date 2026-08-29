@@ -825,7 +825,11 @@
         "sq1-cp": "CP (Corner Permutation) - These algorithms move the corners of a Square-1 into their correct positions once every piece is oriented.",
         "sq1-ep": "EP (Edge Permutation) - These algorithms finish a Square-1 by moving the edges into their correct positions after the corners are permuted.",
         "sq1-parity": "Parity - Square-1 parity cases show up when the corners and edges cannot be permuted with the regular algorithms. These algorithms bring the puzzle back to a solvable state.",
-        "sv": "SV (Summer Variation) algorithms solve your final F2L pair while simultaneously orienting the corners of the last layer, similar to WV (Winter Variation) but covering different pair and corner configurations. This selection highlights the most useful cases to learn."
+        "sv": "SV (Summer Variation) algorithms solve your final F2L pair while simultaneously orienting the corners of the last layer, similar to WV (Winter Variation) but covering different pair and corner configurations. This selection highlights the most useful cases to learn.",
+        "megaminx-eo": "EO (Edge Orientation) - These algorithms flip the last layer edges of the Megaminx so the top color faces up, the first step of the last layer.",
+        "megaminx-ep": "EP (Edge Permutation) - These algorithms move the already oriented last layer edges of the Megaminx into their correct positions.",
+        "megaminx-co": "CO (Corner Orientation) - Once the edges are solved, these algorithms twist the last layer corners of the Megaminx so the top color faces up.",
+        "megaminx-cp": "CP (Corner Permutation) - These algorithms move the last layer corners of the Megaminx into their correct positions to finish the puzzle."
       }
     },
     "TrainerPage": {
