@@ -119,16 +119,16 @@ export default function ButtonSelectMode() {
           <ChevronDown className="hidden md:block size-3.5 opacity-60 transition-transform duration-200 group-data-[state=open]:rotate-180" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-72 p-0">
+      <DropdownMenuContent align="end" className="w-72" innerClassName="p-px">
         <div className="px-3 pt-2.5 pb-2">
-          <p className="text-sm font-semibold leading-none">{t('HomePage.mode')}</p>
-          <p className="mt-1 text-xs text-muted-foreground">{t('HomePage.modes-subtitle')}</p>
+          <p className="text-xs font-semibold uppercase tracking-wider leading-none">{t('HomePage.mode')}</p>
+          <p className="mt-1.5 text-xs text-muted-foreground">{t('HomePage.modes-subtitle')}</p>
         </div>
-        <DropdownMenuSeparator className="my-0" />
+        <DropdownMenuSeparator className="mx-0 my-0" />
         <DropdownMenuRadioGroup
           value={timerMode}
           onValueChange={(value) => setTimerMode(value as TimerMode)}
-          className="p-1.5 flex flex-col gap-0.5"
+          className="flex flex-col py-1"
         >
           {MODES.map((mode) => {
             const isActive = timerMode === mode.value
@@ -143,28 +143,30 @@ export default function ButtonSelectMode() {
                 disabled={isDisabled}
                 onClick={mode.value === TimerMode.NEXUS_CONNECT ? handleNexusConnectClick : undefined}
                 className={cn(
-                  'group/mode flex cursor-pointer items-start gap-3 rounded-md p-2 pl-2 pr-2.5 transition-colors [&>span]:hidden',
-                  isActive && 'bg-accent/50'
+                  'group/mode flex cursor-pointer items-start gap-3 rounded-none px-3 py-2 transition-colors [&>span]:hidden',
+                  isActive && 'bg-primary/10 shadow-[inset_2px_0_0_var(--primary)]'
                 )}
               >
                 <div
                   className={cn(
-                    'flex size-9 shrink-0 items-center justify-center rounded-lg border transition-colors',
-                    isActive ? 'border-primary/40 bg-primary/10' : 'border-border bg-muted/40 group-focus/mode:bg-muted'
+                    'chip-notch flex size-9 shrink-0 items-center justify-center transition-colors',
+                    isActive
+                      ? 'bg-primary/20 text-primary'
+                      : 'bg-muted/60 text-muted-foreground group-focus/mode:bg-muted'
                   )}
                 >
-                  <Icon className={cn('size-4', isActive ? 'text-primary' : 'text-muted-foreground')} />
+                  <Icon className="size-4" />
                 </div>
                 <div className="flex min-w-0 grow flex-col gap-0.5">
                   <div className="flex items-center gap-1.5">
                     <span className="text-sm font-medium leading-tight">{t(`HomePage.modes.${mode.tKey}`)}</span>
                     {(mode.badge || mode.requires) && (
-                      <span className="rounded-sm border border-border bg-muted px-1 py-px font-mono text-[10px] font-medium leading-tight text-muted-foreground">
+                      <span className="rounded-none border border-border bg-muted px-1 py-px font-mono text-[10px] font-medium leading-tight tracking-wide text-muted-foreground">
                         {mode.badge ?? mode.requires!.join(' · ')}
                       </span>
                     )}
                     {mode.comingSoon && (
-                      <span className="rounded-sm border border-primary/40 bg-primary/10 px-1 py-px font-mono text-[10px] font-medium leading-tight text-primary">
+                      <span className="rounded-none border border-primary/40 bg-primary/10 px-1 py-px font-mono text-[10px] font-medium leading-tight tracking-wide text-primary uppercase">
                         {t('HomePage.modes-soon')}
                       </span>
                     )}
