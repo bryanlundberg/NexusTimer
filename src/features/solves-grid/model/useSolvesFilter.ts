@@ -45,5 +45,7 @@ export function useSolvesFilter() {
     [disabled, setRaw]
   )
 
-  return { enabled, hasActiveFilter, isVisible, toggle }
+  const reset = useCallback(() => setRaw(null), [setRaw])
+
+  return { enabled, hasActiveFilter, isVisible, toggle, reset }
 }
