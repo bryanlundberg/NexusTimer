@@ -49,7 +49,7 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
     <div className="w-full sticky top-0 z-50" data-testid="core-header">
       <div className="h-14 border-b px-3 flex justify-between items-center gap-2 bg-background/60 backdrop-blur-md">
         <div className="flex items-center gap-3 min-w-0">
-          <SidebarTrigger className="size-9 rounded-lg border bg-muted/40 hover:bg-muted shrink-0 [&_svg]:size-5" />
+          <SidebarTrigger className="btn-notch btn-notch-alt btn-notch-border size-9 shrink-0 [&_svg]:size-5" />
           <Breadcrumb className="min-w-0">
             <BreadcrumbList className="flex-nowrap gap-1.5 sm:gap-2">
               {breadcrumbs.map((crumb, index) => {
