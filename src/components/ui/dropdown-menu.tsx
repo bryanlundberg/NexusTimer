@@ -27,10 +27,13 @@ function DropdownMenuTrigger({ ...props }: React.ComponentProps<typeof DropdownM
 
 function DropdownMenuContent({
   className,
+  innerClassName,
   sideOffset = 4,
   children,
   ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.Content>) {
+}: React.ComponentProps<typeof DropdownMenuPrimitive.Content> & {
+  innerClassName?: string
+}) {
   return (
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
@@ -42,7 +45,12 @@ function DropdownMenuContent({
         )}
         {...props}
       >
-        <div className="max-h-(--radix-dropdown-menu-content-available-height) overflow-x-hidden overflow-y-auto p-1.5">
+        <div
+          className={cn(
+            'max-h-(--radix-dropdown-menu-content-available-height) overflow-x-hidden overflow-y-auto p-1.5',
+            innerClassName
+          )}
+        >
           {children}
         </div>
       </DropdownMenuPrimitive.Content>
