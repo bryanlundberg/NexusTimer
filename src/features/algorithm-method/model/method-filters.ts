@@ -7,7 +7,8 @@ export const PUZZLE_LABELS: Record<MethodPuzzle, string> = {
   '3x3x3': '3x3',
   '4x4x4': '4x4',
   '5x5x5': '5x5',
-  pyraminx: 'Pyraminx'
+  pyraminx: 'Pyraminx',
+  square1: 'Square-1'
 }
 
 function buildPuzzleFacets() {
