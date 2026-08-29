@@ -46,8 +46,7 @@ export default function AlgorithmCard({
             background: 'none',
             controlPanel: 'none',
             alg: primary?.moves,
-            experimentalStickering: 'OLL',
-            experimentalSetupAnchor: 'end'
+            experimentalStickering: 'OLL'
           },
           virtualization
         )
@@ -82,7 +81,7 @@ export default function AlgorithmCard({
       >
         <div
           className={cn(
-            'badge-notch flex size-16 shrink-0 items-center justify-center overflow-hidden bg-muted/40 p-1 sm:size-20 sm:p-1.5',
+            'badge-notch flex size-24 shrink-0 items-center justify-center overflow-hidden bg-muted/40 p-1.5 sm:size-36 sm:p-2.5',
             isLearned && 'ring-1 ring-primary/40'
           )}
         >
@@ -119,7 +118,7 @@ export default function AlgorithmCard({
       </div>
 
       {expanded && canExpand && (
-        <div className="space-y-1.5 px-2 pb-2.5 sm:px-3 sm:pl-17">
+        <div className="space-y-1.5 px-2 pb-2.5 sm:px-3 sm:pl-33">
           {alternatives.map((alt, i) => (
             <AlternativeRow key={alt.id} alt={alt} index={i + 2} onPreview={() => openPreview(alt.moves)} />
           ))}
