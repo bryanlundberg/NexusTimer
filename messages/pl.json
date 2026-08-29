@@ -835,7 +835,11 @@
         "sq1-cp": "CP (Corner Permutation) - Te algorytmy przenoszą narożniki Square-1 na właściwe pozycje, gdy wszystkie elementy są zorientowane.",
         "sq1-ep": "EP (Edge Permutation) - Te algorytmy kończą układanie Square-1, przenosząc krawędzie na właściwe pozycje.",
         "sq1-parity": "Parzystość - Przypadki parzystości w Square-1 pojawiają się, gdy narożników i krawędzi nie da się ułożyć zwykłymi algorytmami. Te algorytmy przywracają układankę do stanu, który da się ułożyć.",
-        "sv": "Algorytmy SV (Summer Variation) rozwiązują ostatnią parę F2L, jednocześnie orientując narożniki ostatniej warstwy, podobnie jak WV (Winter Variation), ale dla innych konfiguracji pary i narożnika. Ten zestaw podkreśla najbardziej przydatne przypadki do nauki."
+        "sv": "Algorytmy SV (Summer Variation) rozwiązują ostatnią parę F2L, jednocześnie orientując narożniki ostatniej warstwy, podobnie jak WV (Winter Variation), ale dla innych konfiguracji pary i narożnika. Ten zestaw podkreśla najbardziej przydatne przypadki do nauki.",
+        "megaminx-eo": "EO (Edge Orientation) - Te algorytmy obracają krawędzie ostatniej warstwy Megaminxa tak, aby górny kolor był skierowany do góry. To pierwszy krok ostatniej warstwy.",
+        "megaminx-ep": "EP (Edge Permutation) - Te algorytmy ustawiają zorientowane krawędzie ostatniej warstwy Megaminxa na właściwych pozycjach.",
+        "megaminx-co": "CO (Corner Orientation) - Gdy krawędzie są już ułożone, te algorytmy obracają narożniki ostatniej warstwy Megaminxa tak, aby górny kolor był skierowany do góry.",
+        "megaminx-cp": "CP (Corner Permutation) - Te algorytmy ustawiają narożniki ostatniej warstwy Megaminxa na właściwych pozycjach, kończąc układankę."
       }
     },
     "TrainerPage": {
