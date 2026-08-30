@@ -17,7 +17,7 @@ export default function JsonLd({ locale, title, description, url }: JsonLdProps)
   const organization = {
     '@type': 'Organization',
     '@id': 'https://nexustimer.com/#organization',
-    name: 'Nexus Timer',
+    name: 'NexusTimer',
     url: 'https://nexustimer.com',
     logo: {
       '@type': 'ImageObject',
@@ -64,7 +64,7 @@ export default function JsonLd({ locale, title, description, url }: JsonLdProps)
         {
           '@type': 'ImageObject',
           url: 'https://nexustimer.com/app-desktop-view.webp',
-          caption: 'Nexus Timer desktop view'
+          caption: 'NexusTimer desktop view'
         }
       ],
       featureList: [
@@ -93,40 +93,10 @@ export default function JsonLd({ locale, title, description, url }: JsonLdProps)
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       '@id': 'https://nexustimer.com/#website',
-      name: 'Nexus Timer',
+      name: 'NexusTimer',
       url: 'https://nexustimer.com',
       inLanguage: locale,
       publisher: { '@id': 'https://nexustimer.com/#organization' }
-    },
-    {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'What is Nexus Timer?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Nexus Timer is a free online speedcubing timer with detailed statistics, algorithm training, multiplayer mode, and support for all WCA puzzle categories.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Is Nexus Timer free to use?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Yes, Nexus Timer is completely free to use with no ads or premium tiers.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Does Nexus Timer work offline?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Yes, Nexus Timer is a Progressive Web App (PWA) that works offline. Your solves are stored locally and sync to the cloud when connected.'
-          }
-        }
-      ]
     }
   ]
 

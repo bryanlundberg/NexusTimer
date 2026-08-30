@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { motion, useReducedMotion } from 'motion/react'
-import { Bluetooth, Trophy, Users, User, LineChart, ArrowLeftRight, BookOpen } from 'lucide-react'
+import { Bluetooth, Trophy, User, LineChart, ArrowLeftRight, BookOpen, TrendingDown } from 'lucide-react'
 import { cn } from '@/shared/lib/utils'
 import { CubeGridTexture } from './CubeDecor'
 import { Reveal } from './Reveal'
@@ -139,165 +139,108 @@ function CompareVisual() {
 
 function AlgorithmsVisual() {
   const reduce = useReducedMotion()
-  const moves = ['R', 'U', "R'", 'U', 'R', 'U2', "R'"]
-  const face = [1, 1, 0, 1, 1, 1, 0, 1, 0]
-  return (
-    <div className="flex items-center gap-4">
-      <div className="grid shrink-0 grid-cols-3 gap-1">
-        {face.map((on, i) => (
-          <motion.span
-            key={i}
-            initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: 0.1 + i * 0.05, ease: [0.16, 1, 0.3, 1] }}
-            className="h-4 w-4 rounded-[3px]"
-            style={{ backgroundColor: on ? 'var(--cube-yellow)' : 'rgba(0,0,0,0.10)' }}
-          />
-        ))}
-      </div>
-      <div className="min-w-0">
-        <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-gray-500">OLL 27 · Sune</p>
-        <div className="flex flex-wrap gap-1.5">
-          {moves.map((m, i) => (
-            <motion.span
-              key={i}
-              initial={reduce ? { opacity: 0 } : { opacity: 0, y: 6 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: 0.3 + i * 0.09 }}
-              className="notch-br [--nbr:5px] border border-gray-900/8 bg-white/70 px-2 py-1 font-mono text-xs font-semibold text-gray-800"
-            >
-              {m}
-            </motion.span>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-function LeaderboardVisual() {
-  const reduce = useReducedMotion()
-  const rows = [
-    { rank: 1, name: 'aki_3x3', avatar: 9, time: '5.87', tps: '9.2', medal: '#f5b301', rankText: 'text-[#f5b301]' },
-    { rank: 2, name: 'cubeghost', avatar: 4, time: '6.12', tps: '8.4', medal: '#c9ccd1', rankText: 'text-gray-400' },
-    { rank: 3, name: 'redsito', avatar: 3, time: '6.40', tps: '8.0', medal: '#c07b2f', rankText: 'text-[#c07b2f]' }
+  const sets = [
+    { label: 'OLL', count: 57, active: true },
+    { label: 'PLL', count: 21, active: false },
+    { label: 'F2L', count: 41, active: false },
+    { label: 'CMLL', count: 42, active: false }
   ]
-  const GRID = 'grid grid-cols-[1.3rem_minmax(0,1fr)_2.4rem_auto] items-center gap-2'
+  // Top-face sticker maps. All three cases already have the cross oriented, so
+  // they differ only in which corners are yellow: one for Sune and Anti-Sune,
+  // none for Pi, which leaves the bare cross.
+  const cases = [
+    {
+      name: 'OLL 27',
+      alias: 'Sune',
+      face: [1, 1, 0, 1, 1, 1, 0, 1, 0],
+      moves: ['R', 'U', "R'", 'U', 'R', 'U2', "R'"]
+    },
+    {
+      name: 'OLL 26',
+      alias: 'Anti-Sune',
+      face: [0, 1, 1, 1, 1, 1, 0, 1, 0],
+      moves: ['R', 'U2', "R'", "U'", 'R', "U'", "R'"]
+    },
+    {
+      name: 'OLL 22',
+      alias: 'Pi',
+      face: [0, 1, 0, 1, 1, 1, 0, 1, 0],
+      moves: ['R', 'U2', 'R2', "U'", 'R2', "U'", 'R2', 'U2', 'R']
+    }
+  ]
+
   return (
     <div className="flex flex-col">
-      {/* header */}
-      <div className={`${GRID} px-2 pb-1.5`}>
-        <span className="text-[8px] font-semibold uppercase tracking-[0.15em] text-gray-400">#</span>
-        <span className="text-[8px] font-semibold uppercase tracking-[0.15em] text-gray-400">Solver</span>
-        <span className="text-right text-[8px] font-semibold uppercase tracking-[0.15em] text-gray-400">TPS</span>
-        <span className="text-right text-[8px] font-semibold uppercase tracking-[0.15em] text-gray-400">Time</span>
-      </div>
-      <div className="flex flex-col gap-1.5">
-        {rows.map((r, i) => (
-          <motion.div
-            key={r.rank}
-            initial={reduce ? { opacity: 0 } : { opacity: 0, x: -18 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+      {/* set switcher */}
+      <div className="flex items-center gap-4 border-b border-gray-900/8 pb-2">
+        {sets.map((st) => (
+          <span
+            key={st.label}
             className={cn(
-              `${GRID} relative overflow-hidden notch-br [--nbr:9px] border border-l-[3px] border-gray-900/8 bg-white/70 px-2.5 py-1.5`
+              'relative inline-flex items-center gap-1 pb-1.5 text-[10px] font-semibold',
+              st.active ? 'text-gray-900' : 'text-gray-400'
             )}
-            style={{ borderLeftColor: r.medal }}
           >
-            {i === 0 && !reduce && (
-              <motion.span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
-                animate={{ x: ['-100%', '100%'] }}
-                transition={{ duration: 2.2, repeat: Infinity, repeatDelay: 1.6, ease: 'easeInOut' }}
-              />
+            {st.label}
+            <span
+              className={cn(
+                'inline-flex min-w-[14px] items-center justify-center rounded-full px-1 text-[8px] font-bold tabular-nums',
+                st.active ? 'bg-[var(--cube-blue)]/15 text-[var(--cube-blue)]' : 'bg-gray-900/8 text-gray-400'
+              )}
+            >
+              {st.count}
+            </span>
+            {st.active && (
+              <span className="absolute -bottom-[9px] left-0 h-0.5 w-full rounded-full bg-[var(--cube-blue)]" />
             )}
-            <span className={cn('relative font-mono text-[11px] font-bold tabular-nums', r.rankText)}>
-              {String(r.rank).padStart(2, '0')}
-            </span>
-            <span className="relative flex min-w-0 items-center gap-1.5">
-              <Image
-                src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${r.avatar}.png`}
-                alt=""
-                width={20}
-                height={20}
-                className="h-5 w-5 shrink-0 rounded-full border border-gray-900/10"
-              />
-              <span className="truncate text-xs font-semibold text-gray-800">{r.name}</span>
-            </span>
-            <span className="relative text-right font-mono text-[10px] tabular-nums text-gray-400">{r.tps}</span>
-            <span className="relative font-mono text-xs font-bold tabular-nums text-gray-900">{r.time}</span>
-          </motion.div>
+          </span>
         ))}
       </div>
-    </div>
-  )
-}
 
-function RoomVisual() {
-  const reduce = useReducedMotion()
-  const players = [
-    { name: 'redsito', avatar: 3, color: 'var(--cube-green)', status: 'solving' },
-    { name: 'aki_3x3', avatar: 9, color: 'var(--cube-blue)', status: 'ready' },
-    { name: 'mia', avatar: 5, color: 'var(--cube-orange)', status: 'ready' }
-  ]
-  return (
-    <div className="flex flex-col gap-3">
-      <div className="flex items-center justify-between">
-        <span className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--cube-red)] opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--cube-red)]" />
-          </span>
-          LIVE
-        </span>
-        <span className="font-mono text-[10px] tabular-nums text-gray-400">room #A7F2</span>
-      </div>
-
-      <div className="relative flex items-center justify-center gap-2 py-1">
-        {players.map((p, i) => (
-          <div key={p.name} className="flex min-w-0 flex-1 flex-col items-center gap-1">
-            <motion.span
-              className="relative flex"
-              animate={reduce ? undefined : { y: [0, -3, 0] }}
-              transition={{ duration: 2.2, delay: i * 0.3, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <Image
-                src={`https://cdn.jsdelivr.net/gh/alohe/avatars/png/vibrent_${p.avatar}.png`}
-                alt=""
-                width={44}
-                height={44}
-                className="h-11 w-11 rounded-full"
-                style={{ boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${p.color}` }}
-              />
-              <span
-                className="absolute -bottom-0.5 -right-0.5 size-2.5 rounded-full border-2 border-white"
-                style={{ backgroundColor: p.status === 'solving' ? 'var(--cube-green)' : 'var(--cube-yellow)' }}
-              />
-            </motion.span>
-            <span className="max-w-full truncate text-[10px] font-semibold text-gray-700">{p.name}</span>
-            <span
-              className="text-[8px] font-bold uppercase tracking-wide"
-              style={{ color: p.status === 'solving' ? 'var(--cube-green)' : '#9ca3af' }}
-            >
-              {p.status}
-            </span>
-
-            {/* VS chips between avatars */}
-            {i < players.length - 1 && (
-              <motion.span
-                className="absolute top-3 z-10 flex size-6 items-center justify-center notch-br [--nbr:5px] bg-gray-900 font-display text-[9px] font-black italic text-white shadow-md"
-                style={{ left: `${33.33 * (i + 1)}%`, transform: 'translateX(-50%)' }}
-                animate={reduce ? undefined : { scale: [1, 1.12, 1] }}
-                transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                VS
-              </motion.span>
-            )}
-          </div>
+      {/* cases */}
+      <div className="mt-3 flex flex-col gap-1.5">
+        {cases.map((c, ci) => (
+          <motion.div
+            key={c.name}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.15 + ci * 0.12, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center gap-3 notch-br [--nbr:7px] border border-gray-900/8 bg-white/70 px-2 py-1.5"
+          >
+            <div className="grid shrink-0 grid-cols-3 gap-[3px]">
+              {c.face.map((on, i) => (
+                <motion.span
+                  key={i}
+                  initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.2 + ci * 0.12 + i * 0.02, ease: [0.16, 1, 0.3, 1] }}
+                  className="size-3 rounded-[2px]"
+                  style={{ backgroundColor: on ? 'var(--cube-yellow)' : 'rgba(0,0,0,0.10)' }}
+                />
+              ))}
+            </div>
+            <div className="min-w-0">
+              <p className="text-[9px] uppercase tracking-[0.15em] text-gray-500">
+                <span className="font-semibold text-gray-700">{c.name}</span> · {c.alias}
+              </p>
+              <div className="mt-1 flex flex-wrap gap-1">
+                {c.moves.map((m, i) => (
+                  <motion.span
+                    key={i}
+                    initial={reduce ? { opacity: 0 } : { opacity: 0, y: 5 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: 0.3 + ci * 0.12 + i * 0.05 }}
+                    className="notch-br [--nbr:4px] bg-gray-900/[0.05] px-1.5 py-0.5 font-mono text-[10px] font-semibold text-gray-800"
+                  >
+                    {m}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         ))}
       </div>
     </div>
@@ -464,117 +407,167 @@ function StatsVisual() {
       stacked: false
     }
   ]
+  // solve-time histogram under the trend chart, bucketed 6s..12s
+  const bins = [8, 16, 30, 48, 72, 96, 84, 60, 40, 26, 15, 9]
+  const peak = bins.indexOf(Math.max(...bins))
+
   return (
-    <svg viewBox="0 0 260 110" className="h-32 w-full" aria-hidden>
-      {[
-        { y: 18, tick: '10.0' },
-        { y: 48, tick: '9.0' },
-        { y: 78, tick: '8.0' }
-      ].map((g) => (
-        <g key={g.y}>
-          <line x1="26" y1={g.y} x2="260" y2={g.y} stroke="currentColor" className="text-gray-900/8" strokeWidth="1" />
-          <text
-            x="0"
-            y={g.y + 3}
-            fill="currentColor"
-            className="text-gray-900/35"
-            style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)', fontSize: 8 }}
-          >
-            {g.tick}
-          </text>
-        </g>
-      ))}
-      {series.map((s) => (
-        <g key={s.label}>
-          <motion.path
-            d={s.d}
-            fill="none"
-            stroke={s.color}
-            strokeWidth={s.width}
-            strokeLinecap="round"
-            strokeDasharray={s.dash}
-            style={{ opacity: s.opacity }}
-            initial={reduce ? { pathLength: 1 } : { pathLength: 0 }}
-            whileInView={{ pathLength: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.6, ease: 'easeInOut', delay: s.delay }}
-          />
-          <motion.circle
-            cx={s.end.x}
-            cy={s.end.y}
-            r="3.5"
-            fill={s.color}
-            style={{ opacity: s.opacity }}
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: s.delay + 1.5, type: 'spring', stiffness: 300, damping: 15 }}
-          />
-          <motion.g
-            initial={{ opacity: 0, y: 6 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: s.delay + 1.6, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {s.stacked ? (
-              <>
-                <rect
-                  x={s.bubble.x}
-                  y={s.bubble.y}
-                  width={s.bubble.w}
-                  height="26"
-                  rx="7"
-                  fill={s.color}
-                  opacity={s.opacity}
-                />
-                <text
-                  x={s.bubble.x + s.bubble.w / 2}
-                  y={s.bubble.y + 12}
-                  textAnchor="middle"
-                  fill={s.ink}
-                  fontWeight="800"
-                  style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)', fontSize: 10 }}
-                >
-                  {s.time}
-                </text>
-                <text
-                  x={s.bubble.x + s.bubble.w / 2}
-                  y={s.bubble.y + 21.5}
-                  textAnchor="middle"
-                  fill={s.ink}
-                  fontWeight="700"
-                  style={{ fontFamily: 'var(--font-sans, ui-sans-serif, system-ui)', fontSize: 7 }}
-                >
-                  {s.label}
-                </text>
-              </>
-            ) : (
-              <>
-                <rect
-                  x={s.bubble.x}
-                  y={s.bubble.y}
-                  width={s.bubble.w}
-                  height="18"
-                  rx="9"
-                  fill={s.color}
-                  opacity={s.opacity}
-                />
-                <text
-                  x={s.bubble.x + s.bubble.w / 2}
-                  y={s.bubble.y + 12.5}
-                  textAnchor="middle"
-                  fill={s.ink}
-                  fontWeight="700"
-                  style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)', fontSize: 9 }}
-                >
-                  {s.label} {s.value}
-                </text>
-              </>
-            )}
-          </motion.g>
-        </g>
-      ))}
-    </svg>
+    <div className="flex flex-col">
+      <div className="mb-2 flex items-center justify-between">
+        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">Ao100 trend</span>
+        <span className="inline-flex items-center gap-1 notch-br [--nbr:4px] bg-[var(--cube-green)]/15 px-1.5 py-0.5 font-mono text-[10px] font-bold text-[var(--cube-green)]">
+          <TrendingDown className="size-3" aria-hidden />
+          1.42s
+        </span>
+      </div>
+
+      <svg viewBox="0 0 260 110" className="h-32 w-full" aria-hidden>
+        {[
+          { y: 18, tick: '10.0' },
+          { y: 48, tick: '9.0' },
+          { y: 78, tick: '8.0' }
+        ].map((g) => (
+          <g key={g.y}>
+            <line
+              x1="26"
+              y1={g.y}
+              x2="260"
+              y2={g.y}
+              stroke="currentColor"
+              className="text-gray-900/8"
+              strokeWidth="1"
+            />
+            <text
+              x="0"
+              y={g.y + 3}
+              fill="currentColor"
+              className="text-gray-900/35"
+              style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)', fontSize: 8 }}
+            >
+              {g.tick}
+            </text>
+          </g>
+        ))}
+        {series.map((s) => (
+          <g key={s.label}>
+            <motion.path
+              d={s.d}
+              fill="none"
+              stroke={s.color}
+              strokeWidth={s.width}
+              strokeLinecap="round"
+              strokeDasharray={s.dash}
+              style={{ opacity: s.opacity }}
+              initial={reduce ? { pathLength: 1 } : { pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.6, ease: 'easeInOut', delay: s.delay }}
+            />
+            <motion.circle
+              cx={s.end.x}
+              cy={s.end.y}
+              r="3.5"
+              fill={s.color}
+              style={{ opacity: s.opacity }}
+              initial={{ scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: s.delay + 1.5, type: 'spring', stiffness: 300, damping: 15 }}
+            />
+            <motion.g
+              initial={{ opacity: 0, y: 6 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: s.delay + 1.6, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {s.stacked ? (
+                <>
+                  <rect
+                    x={s.bubble.x}
+                    y={s.bubble.y}
+                    width={s.bubble.w}
+                    height="26"
+                    rx="7"
+                    fill={s.color}
+                    opacity={s.opacity}
+                  />
+                  <text
+                    x={s.bubble.x + s.bubble.w / 2}
+                    y={s.bubble.y + 12}
+                    textAnchor="middle"
+                    fill={s.ink}
+                    fontWeight="800"
+                    style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)', fontSize: 10 }}
+                  >
+                    {s.time}
+                  </text>
+                  <text
+                    x={s.bubble.x + s.bubble.w / 2}
+                    y={s.bubble.y + 21.5}
+                    textAnchor="middle"
+                    fill={s.ink}
+                    fontWeight="700"
+                    style={{ fontFamily: 'var(--font-sans, ui-sans-serif, system-ui)', fontSize: 7 }}
+                  >
+                    {s.label}
+                  </text>
+                </>
+              ) : (
+                <>
+                  <rect
+                    x={s.bubble.x}
+                    y={s.bubble.y}
+                    width={s.bubble.w}
+                    height="18"
+                    rx="9"
+                    fill={s.color}
+                    opacity={s.opacity}
+                  />
+                  <text
+                    x={s.bubble.x + s.bubble.w / 2}
+                    y={s.bubble.y + 12.5}
+                    textAnchor="middle"
+                    fill={s.ink}
+                    fontWeight="700"
+                    style={{ fontFamily: 'var(--font-mono, ui-monospace, monospace)', fontSize: 9 }}
+                  >
+                    {s.label} {s.value}
+                  </text>
+                </>
+              )}
+            </motion.g>
+          </g>
+        ))}
+      </svg>
+
+      {/* solve distribution */}
+      <div className="mt-3 border-t border-gray-900/8 pt-2.5">
+        <div className="mb-1.5 flex items-center justify-between text-[8px] uppercase tracking-[0.15em] text-gray-400">
+          <span>Solve distribution</span>
+          <span className="font-mono tracking-normal">2,481 solves</span>
+        </div>
+        <div className="flex h-9 items-end gap-[3px]">
+          {bins.map((h, i) => (
+            <motion.span
+              key={i}
+              initial={reduce ? { opacity: 0 } : { scaleY: 0 }}
+              whileInView={reduce ? { opacity: 1 } : { scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 + i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+              className="flex-1 origin-bottom rounded-[2px]"
+              style={{
+                height: `${h}%`,
+                backgroundColor: i === peak ? 'var(--cube-green)' : 'rgba(0,0,0,0.12)'
+              }}
+            />
+          ))}
+        </div>
+        <div className="mt-1 flex items-center justify-between font-mono text-[8px] text-gray-400">
+          <span>6s</span>
+          <span>12s</span>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -645,7 +638,6 @@ export default function FeatureBento() {
 
       <div className="mx-auto max-w-6xl px-6">
         <Reveal className="mb-12 text-center">
-          <p className="mb-4 text-xs uppercase tracking-[0.3em] text-gray-500">{t('label')}</p>
           <h2 className="font-display text-balance text-3xl font-bold tracking-[-0.02em] text-gray-900 md:text-5xl">
             {t('title')}
           </h2>
@@ -671,31 +663,13 @@ export default function FeatureBento() {
             delay={0.08}
           />
           <BentoCard
-            icon={Trophy}
-            accent="var(--cube-yellow)"
-            title={t('lb-title')}
-            desc={t('lb-desc')}
-            visual={<LeaderboardVisual />}
-            className="md:col-span-2"
-            delay={0.05}
-          />
-          <BentoCard
-            icon={Users}
-            accent="var(--cube-green)"
-            title={t('online-title')}
-            desc={t('online-desc')}
-            visual={<RoomVisual />}
-            className="md:col-span-2"
-            delay={0.1}
-          />
-          <BentoCard
             icon={User}
             accent="var(--cube-orange)"
             title={t('profile-title')}
             desc={t('profile-desc')}
             visual={<ProfileVisual />}
             className="md:col-span-2"
-            delay={0.15}
+            delay={0.05}
           />
           <BentoCard
             icon={BookOpen}
@@ -703,8 +677,8 @@ export default function FeatureBento() {
             title={t('algs-title')}
             desc={t('algs-desc')}
             visual={<AlgorithmsVisual />}
-            className="md:col-span-3"
-            delay={0.05}
+            className="md:col-span-2"
+            delay={0.1}
           />
           <BentoCard
             icon={LineChart}
@@ -712,8 +686,8 @@ export default function FeatureBento() {
             title={t('stats-title')}
             desc={t('stats-desc')}
             visual={<StatsVisual />}
-            className="md:col-span-3"
-            delay={0.1}
+            className="md:col-span-2"
+            delay={0.15}
           />
         </div>
       </div>

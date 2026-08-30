@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import LandingShell from './_landing/LandingShell'
 import LandingFooter from './_landing/LandingFooter'
-import LandingFeatureTable from './_landing/LandingFeatureTable'
 
 export const metadata: Metadata = {
   alternates: {
@@ -10,5 +9,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <LandingShell featureTable={<LandingFeatureTable />} footer={<LandingFooter />} />
+  return <LandingShell footer={<LandingFooter />} />
 }

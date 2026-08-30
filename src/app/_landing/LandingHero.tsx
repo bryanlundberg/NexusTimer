@@ -7,8 +7,9 @@ import { useTranslations } from 'next-intl'
 import { motion, useScroll, useTransform, useReducedMotion } from 'motion/react'
 import { useRef } from 'react'
 import { Nexi } from '@/shared/ui/nexi'
+import { CubeFace } from './CubeFace'
 
-const STRIP = [
+export const STRIP = [
   'var(--cube-yellow)',
   'var(--cube-red)',
   'var(--cube-orange)',
@@ -30,8 +31,13 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
   })
   const yRaw = useTransform(scrollYProgress, [0, 1], [0, -110])
   const opacityRaw = useTransform(scrollYProgress, [0, 0.72], [1, 0])
+  // The cube turns with the scroll rather than on a clock, so the only motion
+  // in the block is motion the reader is driving. It completes its quarter turn
+  // on the same stop where the copy has finished fading, not after.
+  const cubeRotateRaw = useTransform(scrollYProgress, [0, 0.72], [0, 90])
   const y = reduce ? 0 : yRaw
   const opacity = reduce ? 1 : opacityRaw
+  const cubeRotate = reduce ? 0 : cubeRotateRaw
 
   return (
     <section ref={sectionRef} className="relative px-2 pb-2 sm:px-3 sm:pb-3">
@@ -56,12 +62,25 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
             style={{ animationDelay: '0.12s' }}
           >
             {t('hero.title-before')}{' '}
-            <span className="relative inline-block whitespace-nowrap text-primary">
-              {t('hero.title-highlight')}
-              <span
+            <span className="whitespace-nowrap">
+              <span className="relative inline-block text-primary">
+                {t('hero.title-highlight')}
+                <span
+                  aria-hidden
+                  className="lp-underline absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-primary/60"
+                />
+              </span>
+              {/* The cube signs off the headline. Sized in em, so it is always a
+                  letter of this line, and turned by the scroll rather than by a
+                  clock. It stays inside the nowrap group so it can never be left
+                  stranded on a line of its own. */}
+              <motion.span
                 aria-hidden
-                className="lp-underline absolute -bottom-1 left-0 h-[3px] w-full rounded-full bg-primary/60"
-              />
+                className="ml-[0.18em] inline-block w-[0.66em]"
+                style={{ rotate: cubeRotate, verticalAlign: '0.14em' }}
+              >
+                <CubeFace className="w-full" />
+              </motion.span>
             </span>
           </h1>
 
@@ -128,7 +147,12 @@ export function LandingHero({ scrollContainerRef }: { scrollContainerRef: React.
           className="absolute bottom-7 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-gray-500"
         >
           <span className="text-[10px] uppercase tracking-[0.25em]">{t('hero.scroll')}</span>
-          <ChevronDown className="h-4 w-4 animate-bounce" />
+          <motion.span
+            animate={reduce ? undefined : { y: [0, 5, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          >
+            <ChevronDown className="h-4 w-4" />
+          </motion.span>
         </motion.div>
       </div>
     </section>
