@@ -1,5 +1,5 @@
 import * as React from 'react'
-import _ from 'lodash'
+import { minBy, orderBy } from 'es-toolkit'
 import { AnimatePresence, motion } from 'motion/react'
 import { useLocale, useTranslations } from 'next-intl'
 import { ChevronDown } from 'lucide-react'
@@ -26,10 +26,10 @@ export default function PeopleOverviewRow({ category, solves }: PeopleOverviewRo
   const tTimeline = useTranslations('Index.PeoplePage.timeline-tab')
   const [isOpen, setIsOpen] = React.useState(false)
 
-  const ordered = React.useMemo(() => _.orderBy(solves, (s) => s.endTime, 'asc'), [solves])
+  const ordered = React.useMemo(() => orderBy(solves, [(s) => s.endTime], ['asc']), [solves])
 
   const validSolves = React.useMemo(() => solves.filter((s) => !s.dnf), [solves])
-  const best = React.useMemo(() => (validSolves.length > 0 ? _.minBy(validSolves, (s) => s.time) : null), [validSolves])
+  const best = React.useMemo(() => (validSolves.length > 0 ? minBy(validSolves, (s) => s.time) : null), [validSolves])
   const bestTime = best ? best.time : null
 
   const ao5Ms = React.useMemo(() => calcBestAo(ordered, 5), [ordered])

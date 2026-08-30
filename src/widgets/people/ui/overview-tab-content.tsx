@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import _ from 'lodash'
+import { groupBy, orderBy } from 'es-toolkit'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import PeopleOverviewRow, { type CategorySolve } from '@/widgets/people/ui/PeopleOverviewRow'
 import { Cube } from '@/entities/cube/model/types'
@@ -26,15 +26,15 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
       )
     ].filter((s) => !s.isDeleted)
 
-    return _.groupBy(flat, 'category')
+    return groupBy(flat, (solve) => solve.category)
   }, [cubes])
 
   const rows = useMemo(
-    () => _.orderBy(Object.entries(solvesByCategory), ([category]) => getCategoryOrder(category), 'asc'),
+    () => orderBy(Object.entries(solvesByCategory), [([category]) => getCategoryOrder(category)], ['asc']),
     [solvesByCategory]
   )
 
-  if (_.isEmpty(solvesByCategory)) {
+  if (Object.keys(solvesByCategory).length === 0) {
     return <EmptyTabContent />
   }
 

@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { merge } from 'es-toolkit'
 import dayjs from '@/shared/lib/dayjs'
 import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { applyYellowOrientation } from '@/shared/lib/algorithms/vizConfig'
@@ -65,5 +65,5 @@ export const buildVizConfig = (
   overrides?: Record<string, unknown>
 ): Partial<TwistyPlayer> =>
   applyYellowOrientation(
-    _.merge({}, VIZ_BASE, overrides ?? {}, { puzzle, alg: algMoves })
+    merge(merge(merge({}, VIZ_BASE), overrides ?? {}), { puzzle, alg: algMoves })
   ) as unknown as Partial<TwistyPlayer>

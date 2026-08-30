@@ -1,4 +1,4 @@
-import _ from 'lodash'
+import { merge } from 'es-toolkit'
 import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { invertAlgorithm } from '@/shared/lib/algorithms/algNotation'
 
@@ -102,5 +102,5 @@ export const applyYellowOrientation = <T extends object>(config: T): T => {
   const mask = oriented ? D_LAYER_MASKS[viz.experimentalStickering ?? '']?.[puzzle] : undefined
   if (mask) patch.experimentalStickeringMaskOrbits = mask
 
-  return _.merge({}, config, patch) as T
+  return merge(merge({}, config), patch) as T
 }

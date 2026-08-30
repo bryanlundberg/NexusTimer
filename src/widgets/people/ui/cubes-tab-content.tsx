@@ -1,5 +1,5 @@
 import * as React from 'react'
-import _ from 'lodash'
+import { orderBy } from 'es-toolkit'
 import EmptyTabContent from '@/widgets/people/ui/empty-tab-content'
 import { Cube } from '@/entities/cube/model/types'
 import PeopleCubeCard from '@/widgets/people/ui/PeopleCubeCard'
@@ -18,11 +18,11 @@ export default function CubesTabContent({ cubes }: CubesTabContentProps) {
   const t = useTranslations('Index.CubesPage')
   const tPeople = useTranslations('Index.PeoplePage.cubes-tab')
 
-  if (_.isEmpty(cubes)) {
+  if (cubes.length === 0) {
     return <EmptyTabContent />
   }
 
-  const sortedCubes = _.orderBy(cubes, (cube) => cube.solves.session.length + cube.solves.all.length, 'desc')
+  const sortedCubes = orderBy(cubes, [(cube) => cube.solves.session.length + cube.solves.all.length], ['desc'])
 
   return (
     <div className="overflow-x-auto">

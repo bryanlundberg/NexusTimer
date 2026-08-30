@@ -1,6 +1,6 @@
 import { parse } from 'papaparse'
 import { z } from 'zod'
-import _ from 'lodash'
+import { sortBy } from 'es-toolkit'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
 import { PLUS_2_PENALTY_MS, withPlus2 } from '@/entities/solve/lib/penalty'
@@ -326,8 +326,8 @@ export function ensureUniqueCubeNames(cubes: Cube[]): Cube[] {
 export function formatCubesDatesAndOrder(cubes: Cube[]): Cube[] {
   // A solve happens when the timer stops, so `endTime` is the canonical order
   return cubes.map((cube) => {
-    const sortedSession = _.sortBy(cube.solves.session, ['endTime', 'startTime'])
-    const sortedAll = _.sortBy(cube.solves.all, ['endTime', 'startTime'])
+    const sortedSession = sortBy(cube.solves.session, ['endTime', 'startTime'])
+    const sortedAll = sortBy(cube.solves.all, ['endTime', 'startTime'])
 
     return {
       ...cube,

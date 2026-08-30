@@ -1,7 +1,7 @@
 'use client'
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import _ from 'lodash'
+import { groupBy } from 'es-toolkit'
 import { useTranslations } from 'next-intl'
 import { DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
@@ -93,7 +93,7 @@ export default function TrainerPickCasesModal({
   const [selected, setSelected] = useState<Set<string>>(new Set(initialSelected))
   const { close } = useOverlayStore()
 
-  const groups = useMemo(() => _.groupBy(algorithms, 'group'), [algorithms])
+  const groups = useMemo(() => groupBy(algorithms, (algorithm) => algorithm.group), [algorithms])
   const allIds = useMemo(() => algorithms.map((a) => a.id), [algorithms])
   const allSelected = allIds.length > 0 && allIds.every((id) => selected.has(id))
 

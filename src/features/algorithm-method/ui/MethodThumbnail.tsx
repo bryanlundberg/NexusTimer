@@ -1,6 +1,6 @@
 'use client'
 
-import _ from 'lodash'
+import { merge } from 'es-toolkit'
 import { useEffect, useRef, useState } from 'react'
 import type { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import AlgorithmRender from '@/shared/ui/twisty/AlgorithmRender'
@@ -35,7 +35,7 @@ export default function MethodThumbnail({ set, size = DEFAULT_SIZE }: { set: ALG
   const viz = set.virtualization as unknown as Partial<TwistyPlayer>
 
   const config: Partial<TwistyPlayer> = applyYellowOrientation(
-    _.merge(
+    merge(
       {
         visualization: 'experimental-2D-LL',
         background: 'none',

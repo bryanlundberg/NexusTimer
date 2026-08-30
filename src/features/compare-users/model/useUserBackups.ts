@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import _ from 'lodash'
+import { groupBy } from 'es-toolkit'
 import { Cube } from '@/entities/cube/model/types'
 
 interface User {
@@ -31,7 +31,7 @@ export function useUserBackups(users: User[]) {
                     session: (cube.solves?.session ?? []).filter((solve) => !solve.isDeleted)
                   }
                 }))
-              const merged = _.groupBy(cubeData, 'category')
+              const merged = groupBy(cubeData, (cube) => cube.category)
               return [user._id, merged] as const
             }
           } catch (e) {

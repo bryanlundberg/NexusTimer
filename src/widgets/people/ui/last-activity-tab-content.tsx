@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'motion/react'
-import _ from 'lodash'
+import { orderBy } from 'es-toolkit'
 import {
   Pagination,
   PaginationContent,
@@ -22,7 +22,7 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
   const ITEMS_PER_PAGE = 12
   const [page, setPage] = useState(1)
   const solves = useMemo(() => {
-    return _.orderBy(
+    return orderBy(
       [
         ...cubes.flatMap((cube) =>
           cube.solves.session.map((solve) => ({
@@ -39,8 +39,8 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
           }))
         )
       ],
-      'startTime',
-      'desc'
+      ['startTime'],
+      ['desc']
     )
   }, [cubes])
 
@@ -52,7 +52,7 @@ export default function LastActivityTabContent({ cubes }: LastActivityTabContent
     return solves.slice(startIndex, startIndex + ITEMS_PER_PAGE)
   }, [solves, page])
 
-  if (_.isEmpty(solves)) {
+  if (solves.length === 0) {
     return <EmptyTabContent />
   }
 

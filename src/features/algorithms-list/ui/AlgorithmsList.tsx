@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import _ from 'lodash'
+import { groupBy } from 'es-toolkit'
 import { Badge } from '@/components/ui/badge'
 import { PuzzleID, TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import AlgorithmCard from '@/features/algorithms-list/ui/algorithm-card'
@@ -20,7 +20,7 @@ interface AlgorithmsPageProps {
 }
 
 export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug }: AlgorithmsPageProps) => {
-  const groups = useMemo(() => _.groupBy(algorithms, 'group'), [algorithms])
+  const groups = useMemo(() => groupBy(algorithms, (algorithm) => algorithm.group), [algorithms])
   const [activeGroups, setActiveGroups] = useState<string[]>([])
 
   const router = useRouter()

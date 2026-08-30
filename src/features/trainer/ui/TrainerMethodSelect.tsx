@@ -1,6 +1,6 @@
 'use client'
 
-import _ from 'lodash'
+import { groupBy } from 'es-toolkit'
 import { useTranslations } from 'next-intl'
 import {
   Select,
@@ -20,7 +20,7 @@ interface TrainerMethodSelectProps {
 
 export default function TrainerMethodSelect({ value, onChange }: TrainerMethodSelectProps) {
   const t = useTranslations('Index.TrainerPage')
-  const grouped = _.groupBy(ALGORITHM_SETS, 'puzzle')
+  const grouped = groupBy(ALGORITHM_SETS, (set) => set.puzzle)
 
   return (
     <Select value={value} onValueChange={onChange}>

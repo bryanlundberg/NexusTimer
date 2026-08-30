@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import _ from 'lodash'
+import { merge } from 'es-toolkit'
 import { PuzzleID, TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { ChevronDown, Play } from 'lucide-react'
 
@@ -40,7 +40,7 @@ export default function AlgorithmCard({
   const vizConfig = useMemo(
     () =>
       applyYellowOrientation(
-        _.merge(
+        merge(
           {
             visualization: 'experimental-2D-LL',
             background: 'none',
@@ -48,7 +48,7 @@ export default function AlgorithmCard({
             alg: primary?.moves,
             experimentalStickering: 'OLL'
           },
-          virtualization
+          (virtualization ?? {}) as Partial<TwistyPlayer>
         )
       ),
     [primary?.moves, virtualization]

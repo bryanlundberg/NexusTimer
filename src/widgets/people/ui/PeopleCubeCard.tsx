@@ -5,7 +5,7 @@ import { Cube } from '@/entities/cube/model/types'
 import { useLocale, useTranslations } from 'next-intl'
 import formatTime from '@/shared/lib/formatTime'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
-import _ from 'lodash'
+import { minBy } from 'es-toolkit'
 import { motion } from 'motion/react'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
 import { GRID } from '@/widgets/people/ui/cubes-tab-content'
@@ -33,7 +33,7 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
   const totalSolves = successCount + plus2Count + dnfCount
 
   const validSolves = allSolves.filter((s) => !s.dnf)
-  const pb = validSolves.length > 0 ? _.minBy(validSolves, (s) => s.time) : null
+  const pb = validSolves.length > 0 ? minBy(validSolves, (s) => s.time) : null
   const pbTime = pb ? pb.time : null
 
   const ao5Ms = calcBestAo(allSolves, 5)

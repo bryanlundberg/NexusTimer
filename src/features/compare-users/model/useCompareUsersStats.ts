@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import _ from 'lodash'
 import calcBestTime from '@/shared/lib/statistics/calcBestTime'
 import calcTotalSolvesStatistics from '@/shared/lib/statistics/calcTotalSolvesStatistics'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
@@ -22,7 +21,7 @@ export function useCompareUsersStats(users: User[], userCubes: Record<string, an
 
         const single = calcBestTime({ cubesDB: cubeData, category, cubeName }).global
         const average = calcBestAo(
-          _.flatMap(cubeData, (cube: Cube) => [...(cube.solves.all || []), ...(cube.solves.session || [])]),
+          cubeData.flatMap((cube: Cube) => [...(cube.solves.all || []), ...(cube.solves.session || [])]),
           5
         )
         const count = calcTotalSolvesStatistics({ cubesDB: cubeData, category, cubeName }).global

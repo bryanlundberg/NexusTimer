@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'motion/react'
-import _ from 'lodash'
+import { orderBy } from 'es-toolkit'
 import {
   Pagination,
   PaginationContent,
@@ -42,7 +42,7 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
   const [page, setPage] = useState(1)
 
   const solves = useMemo<TimelineSolve[]>(() => {
-    return _.orderBy(
+    return orderBy(
       [
         ...cubes.flatMap((cube) =>
           cube.solves.session.map((solve) => ({ ...solve, category: cube.category, cubeName: cube.name }))
@@ -51,8 +51,8 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
           cube.solves.all.map((solve) => ({ ...solve, category: cube.category, cubeName: cube.name }))
         )
       ].filter((s) => !s.isDeleted),
-      'startTime',
-      'desc'
+      ['startTime'],
+      ['desc']
     )
   }, [cubes])
 
@@ -62,7 +62,7 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
     return solves.slice(start, start + ITEMS_PER_PAGE)
   }, [solves, page])
 
-  if (_.isEmpty(solves)) return <EmptyTabContent />
+  if (solves.length === 0) return <EmptyTabContent />
 
   return (
     <div className="space-y-4">
