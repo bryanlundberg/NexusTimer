@@ -25,9 +25,6 @@ export default function TimerVirtual() {
     player,
     engine,
     scramble,
-    cubeSize,
-    smart: false,
-    scrambleMode: 'auto',
     onAdvanceScramble,
     recreatePlayer
   })
