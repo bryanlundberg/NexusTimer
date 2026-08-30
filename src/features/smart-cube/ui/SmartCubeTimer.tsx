@@ -1,14 +1,10 @@
 'use client'
 
-import { useCallback, useEffect, type ReactNode } from 'react'
-import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
-import { useScrambleGuideStore } from '@/shared/model/timer/useScrambleGuideStore'
-import { useVirtualCube } from '@/features/timer/model/useVirtualCube'
-import { useSolveSession } from '@/features/timer/model/useSolveSession'
-import { useSmartCubeMoves } from '@/features/smart-cube/model/useSmartCubeMoves'
-import { useSmartCubeGyro } from '@/features/smart-cube/model/useSmartCubeGyro'
+import { useCallback, type ReactNode } from 'react'
 import type { SmartCubeConnection } from 'smartcube-web-bluetooth'
+import { useSmartSessionStore } from '@/features/smart-cube/model/useSmartSessionStore'
+import { useSmartCubePlayer } from '@/features/smart-cube/model/useSmartCubePlayer'
+import { useSmartCubeGyro } from '@/features/smart-cube/model/useSmartCubeGyro'
 import { SolvingTime } from '@/features/smart-cube/ui/SolvingTime'
 
 interface SmartCubeTimerProps {
@@ -16,69 +12,29 @@ interface SmartCubeTimerProps {
   secondaryActions?: (onSync: () => void, gyroActive: boolean, onReset: () => void) => ReactNode
 }
 
-const CUBE_SIZE = 3
-
+// View over the smart-cube session. The session runs in a module-level store
+// fed by the Bluetooth subscription, so mounting or unmounting this component
+// never starts, stops or interrupts tracking.
 export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerProps) {
-  const scramble = useTimerStore((store) => store.scramble)
-  const selectedCube = useTimerStore((store) => store.selectedCube)
-  const setNewScramble = useTimerStore((store) => store.setNewScramble)
-  const setIsSolvingStore = useTimerStore((store) => store.setIsSolving)
-  const setScrambleGuide = useScrambleGuideStore((store) => store.setGuide)
-  const setScrambleReady = useScrambleGuideStore((store) => store.setReady)
-  const resetScrambleGuide = useScrambleGuideStore((store) => store.reset)
-  const inspectionEnabled = useSettingsStore((store) => store.settings.timer.inspection)
-  const inspectionTimeMs = useSettingsStore((store) => store.settings.timer.inspectionTime)
+  const phase = useSmartSessionStore((store) => store.phase)
+  const solvingTime = useSmartSessionStore((store) => store.solvingTime)
+  const lastSolveTime = useSmartSessionStore((store) => store.lastSolveTime)
+  const inspectionTime = useSmartSessionStore((store) => store.inspectionTime)
+  const solveStats = useSmartSessionStore((store) => store.solveStats)
+  const resync = useSmartSessionStore((store) => store.resync)
 
-  const { containerRef, player, engine, recreatePlayer } = useVirtualCube({
-    cubeSize: CUBE_SIZE,
-    scramble,
-    seed: false,
-    tempoScale: 5,
-    dragInput: 'auto',
-    sizePx: 'min(180px, 38vw)',
-    cameraDistance: 8
-  })
-
-  const onAdvanceScramble = useCallback(() => {
-    if (selectedCube) setNewScramble(selectedCube)
-  }, [selectedCube, setNewScramble])
-
-  const { phase, solvingTime, inspectionTime, guide, solveStats, processMove, resetState } = useSolveSession({
-    player,
-    engine,
-    scramble,
-    cubeSize: CUBE_SIZE,
-    smart: true,
-    scrambleMode: 'manual',
-    onAdvanceScramble,
-    recreatePlayer,
-    inspection: { enabled: inspectionEnabled, durationMs: inspectionTimeMs }
-  })
-
-  useEffect(() => {
-    setIsSolvingStore(phase === 'solving')
-  }, [phase, setIsSolvingStore])
-
-  useEffect(() => {
-    setScrambleGuide(guide)
-    setScrambleReady(phase === 'armed' || phase === 'inspecting')
-  }, [guide, phase, setScrambleGuide, setScrambleReady])
-
-  useEffect(() => () => resetScrambleGuide(), [resetScrambleGuide])
-
-  useEffect(() => {
-    if (!scramble && selectedCube) setNewScramble(selectedCube)
-  }, [scramble, selectedCube, setNewScramble])
-
-  useSmartCubeMoves({ connection, onMove: processMove })
+  const { containerRef, player } = useSmartCubePlayer()
   const { active: gyroActive, resetOrientation } = useSmartCubeGyro({ player, connection })
 
   const syncSolved = useCallback(() => {
-    resetState()
+    resync()
     if (connection.capabilities.reset) {
       connection.sendCommand({ type: 'REQUEST_RESET' }).catch(() => {})
     }
-  }, [resetState, connection])
+  }, [resync, connection])
+
+  // The last time stays on screen while the next scramble is applied.
+  const displayTime = phase === 'solving' ? solvingTime : (lastSolveTime ?? solvingTime)
 
   return (
     <div className="grow flex flex-col items-center justify-center gap-1.5 sm:gap-3">
@@ -89,7 +45,7 @@ export function SmartCubeTimer({ connection, secondaryActions }: SmartCubeTimerP
           {Math.max(0, Math.trunc(inspectionTime))}
         </div>
       ) : (
-        <SolvingTime ms={solvingTime || 0} />
+        <SolvingTime ms={displayTime || 0} />
       )}
 
       {solveStats && (
