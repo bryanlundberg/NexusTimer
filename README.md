@@ -26,7 +26,7 @@ with independent metrics tracked at both the category and the individual cube le
     <img src="https://img.shields.io/github/issues/bryanlundberg/NexusTimer.svg?style=for-the-badge" alt="Issues">
   </a>
   <a href="https://github.com/bryanlundberg/NexusTimer/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/bryanlundberg/NexusTimer.svg?style=for-the-badge" alt="MIT License">
+    <img src="https://img.shields.io/github/license/bryanlundberg/NexusTimer.svg?style=for-the-badge" alt="GPL v3 License">
   </a>
 </div>
 
