@@ -5,6 +5,7 @@ import {
   type SmartCubeConnection,
   type SmartCubeEvent
 } from 'smartcube-web-bluetooth'
+import { useSmartSessionStore } from '@/features/smart-cube/model/useSmartSessionStore'
 
 export type SmartCubeStatus = 'idle' | 'connecting' | 'connected' | 'error'
 export type SmartCubeConnectResult = 'connected' | 'cancelled' | 'error'
@@ -62,14 +63,22 @@ export const useSmartCubeStore = create<SmartCubeState>((set, get) => {
         const connection = await connectSmartCube({ macAddressProvider })
 
         teardownSubscription()
+        // Moves go straight to the session store, outside React, so tracking
+        // runs for as long as the cube is connected with no page mounted.
         subscription = connection.events$.subscribe((event: SmartCubeEvent) => {
+          if (event.type === 'MOVE') {
+            useSmartSessionStore.getState().trackMove(event.move)
+            return
+          }
           if (event.type === 'DISCONNECT') {
             teardownSubscription()
+            useSmartSessionStore.getState().shutdown()
             set({ status: 'idle', connection: null, deviceName: null })
           }
         })
 
         set({ status: 'connected', connection, deviceName: connection.deviceName })
+        useSmartSessionStore.getState().start()
 
         if (connection.capabilities.facelets) {
           try {
@@ -86,6 +95,7 @@ export const useSmartCubeStore = create<SmartCubeState>((set, get) => {
         macResolver?.(null)
         macResolver = null
         teardownSubscription()
+        useSmartSessionStore.getState().shutdown()
         get()
           .connection?.disconnect()
           .catch(() => {})
@@ -105,6 +115,7 @@ export const useSmartCubeStore = create<SmartCubeState>((set, get) => {
       macResolver?.(null)
       macResolver = null
       teardownSubscription()
+      useSmartSessionStore.getState().shutdown()
       get()
         .connection?.disconnect()
         .catch(() => {})
