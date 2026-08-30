@@ -4,6 +4,7 @@ import { CubeEngine, matchesGoal, type GoalName } from 'cube-state-engine'
 import type { SmartCubeConnection } from 'smartcube-web-bluetooth'
 import { useSolveClock } from '@/features/timer/model/useSolveClock'
 import { useSmartCubeMoves } from '@/features/smart-cube/model/useSmartCubeMoves'
+import { useSmartSessionStore } from '@/features/smart-cube/model/useSmartSessionStore'
 import {
   guideFromState,
   initGuideState,
@@ -151,6 +152,14 @@ export function useTrainerSmartSession({
     },
     [finalize, setPhase]
   )
+
+  // The trainer drives the cube itself, so the main session must not arm or
+  // time anything while this is mounted. It keeps tracking either way.
+  useEffect(() => {
+    const setSuspended = useSmartSessionStore.getState().setSuspended
+    setSuspended(true)
+    return () => setSuspended(false)
+  }, [])
 
   useSmartCubeMoves({ connection, onMove: processMove })
 
