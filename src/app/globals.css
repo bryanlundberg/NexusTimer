@@ -972,7 +972,8 @@
   filter: drop-shadow(0 0 12px color-mix(in oklab, var(--primary) 40%, transparent));
 }
 
-/* Algorithm list panel — cut bottom-right corner with a traced border. */
+/* Shared surface panel — cut bottom-right corner with a traced border. Used by the
+   algorithm list and the trainer stage. */
 .algo-panel-notch {
   --ap-notch: 14px;
   --ap-border: 1px;
