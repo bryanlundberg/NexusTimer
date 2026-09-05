@@ -2,7 +2,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import React from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTheme } from 'next-themes'
-import { convert } from 'colorizr'
+import { convertCSS } from 'colorizr'
 import {
   ChartOptions,
   createChart,
@@ -161,13 +161,16 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
   }, [dataSet, cubes])
 
   useEffect(() => {
-    const backgroundColor = convert(getComputedStyle(document.documentElement).getPropertyValue('--background'), 'rgb')
-    const mutedForeground = convert(
+    const backgroundColor = convertCSS(
+      getComputedStyle(document.documentElement).getPropertyValue('--background'),
+      'rgb'
+    )
+    const mutedForeground = convertCSS(
       getComputedStyle(document.documentElement).getPropertyValue('--muted-foreground'),
       'rgb'
     )
     const gridColor = 'rgba(120,120,120,0.08)'
-    const primaryColor = convert(getComputedStyle(document.documentElement).getPropertyValue('--primary'), 'rgb')
+    const primaryColor = convertCSS(getComputedStyle(document.documentElement).getPropertyValue('--primary'), 'rgb')
 
     const chartOptions: DeepPartial<ChartOptions> = {
       layout: {
