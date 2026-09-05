@@ -180,75 +180,75 @@
   --dur-fast: 100ms;
   --dur-base: 100ms;
 
-  /* Generated: buildColorScheme('teal', ...) in shared/lib/colorScheme.ts. Teal is the
-     default theme, so first paint matches what the hook applies. Do not hand-edit. */
-  --background: oklch(1 0 182.503);
-  --foreground: oklch(0.145 0.0147 182.503);
-  --card: oklch(1 0 182.503);
-  --card-foreground: oklch(0.145 0.0147 182.503);
-  --popover: oklch(1 0 182.503);
-  --popover-foreground: oklch(0.145 0.0147 182.503);
-  --primary: oklch(0.704 0.14 182.503);
-  --primary-foreground: oklch(0.3466 0.056 182.503);
-  --secondary: oklch(0.968 0.0024 182.503);
-  --secondary-foreground: oklch(0.21 0.0147 182.503);
-  --muted: oklch(0.968 0.0024 182.503);
-  --muted-foreground: oklch(0.553 0.0161 182.503);
-  --accent: oklch(0.968 0.0024 182.503);
-  --accent-foreground: oklch(0.21 0.0147 182.503);
+  /* Generated: buildColorScheme('emerald', ...) in shared/lib/colorScheme.ts. Emerald is
+     the default theme, so first paint matches what the hook applies. Do not hand-edit. */
+  --background: oklch(1 0 162.48);
+  --foreground: oklch(0.145 0.0178 162.48);
+  --card: oklch(1 0 162.48);
+  --card-foreground: oklch(0.145 0.0178 162.48);
+  --popover: oklch(1 0 162.48);
+  --popover-foreground: oklch(0.145 0.0178 162.48);
+  --primary: oklch(0.696 0.17 162.48);
+  --primary-foreground: oklch(0.3411 0.068 162.48);
+  --secondary: oklch(0.968 0.0029 162.48);
+  --secondary-foreground: oklch(0.21 0.0178 162.48);
+  --muted: oklch(0.968 0.0029 162.48);
+  --muted-foreground: oklch(0.553 0.0196 162.48);
+  --accent: oklch(0.968 0.0029 162.48);
+  --accent-foreground: oklch(0.21 0.0178 162.48);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.9949 0.0147 27.325);
-  --border: oklch(0.925 0.0045 182.503);
-  --input: oklch(0.925 0.0045 182.503);
-  --ring: oklch(0.704 0.14 182.503);
-  --chart-1: oklch(0.66 0.18 182.503);
-  --chart-2: oklch(0.72 0.15 254.503);
-  --chart-3: oklch(0.6 0.16 326.503);
-  --chart-4: oklch(0.75 0.14 38.503);
-  --chart-5: oklch(0.64 0.19 110.503);
-  --sidebar: oklch(0.985 0.0011 182.503);
-  --sidebar-foreground: oklch(0.145 0.0147 182.503);
-  --sidebar-primary: oklch(0.704 0.14 182.503);
-  --sidebar-primary-foreground: oklch(0.3466 0.056 182.503);
-  --sidebar-accent: oklch(0.968 0.0024 182.503);
-  --sidebar-accent-foreground: oklch(0.21 0.0147 182.503);
-  --sidebar-border: oklch(0.925 0.0045 182.503);
-  --sidebar-ring: oklch(0.704 0.14 182.503);
+  --border: oklch(0.925 0.0055 162.48);
+  --input: oklch(0.925 0.0055 162.48);
+  --ring: oklch(0.696 0.17 162.48);
+  --chart-1: oklch(0.66 0.18 162.48);
+  --chart-2: oklch(0.72 0.15 234.48);
+  --chart-3: oklch(0.6 0.16 306.48);
+  --chart-4: oklch(0.75 0.14 18.48);
+  --chart-5: oklch(0.64 0.19 90.48);
+  --sidebar: oklch(0.985 0.0014 162.48);
+  --sidebar-foreground: oklch(0.145 0.0178 162.48);
+  --sidebar-primary: oklch(0.696 0.17 162.48);
+  --sidebar-primary-foreground: oklch(0.3411 0.068 162.48);
+  --sidebar-accent: oklch(0.968 0.0029 162.48);
+  --sidebar-accent-foreground: oklch(0.21 0.0178 162.48);
+  --sidebar-border: oklch(0.925 0.0055 162.48);
+  --sidebar-ring: oklch(0.696 0.17 162.48);
 }
 
 .dark {
-  --background: oklch(0.141 0.0296 184.704);
-  --foreground: oklch(0.985 0.0023 184.704);
-  --card: oklch(0.209 0.0296 184.704);
-  --card-foreground: oklch(0.985 0.0023 184.704);
-  --popover: oklch(0.209 0.0296 184.704);
-  --popover-foreground: oklch(0.985 0.0023 184.704);
-  --primary: oklch(0.6 0.118 184.704);
-  --primary-foreground: oklch(0.2229 0.0472 184.704);
-  --secondary: oklch(0.279 0.029 184.704);
-  --secondary-foreground: oklch(0.985 0.0023 184.704);
-  --muted: oklch(0.279 0.029 184.704);
-  --muted-foreground: oklch(0.708 0.0283 184.704);
-  --accent: oklch(0.279 0.029 184.704);
-  --accent-foreground: oklch(0.985 0.0023 184.704);
+  --background: oklch(0.141 0.0364 163.225);
+  --foreground: oklch(0.985 0.0028 163.225);
+  --card: oklch(0.209 0.0364 163.225);
+  --card-foreground: oklch(0.985 0.0028 163.225);
+  --popover: oklch(0.209 0.0364 163.225);
+  --popover-foreground: oklch(0.985 0.0028 163.225);
+  --primary: oklch(0.596 0.145 163.225);
+  --primary-foreground: oklch(0.2207 0.058 163.225);
+  --secondary: oklch(0.279 0.0356 163.225);
+  --secondary-foreground: oklch(0.985 0.0028 163.225);
+  --muted: oklch(0.279 0.0356 163.225);
+  --muted-foreground: oklch(0.708 0.0348 163.225);
+  --accent: oklch(0.279 0.0356 163.225);
+  --accent-foreground: oklch(0.985 0.0028 163.225);
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.3161 0.0764 22.216);
-  --border: oklch(1 0 184.704 / 10%);
-  --input: oklch(1 0 184.704 / 15%);
-  --ring: oklch(0.6 0.118 184.704);
-  --chart-1: oklch(0.71 0.18 184.704);
-  --chart-2: oklch(0.77 0.15 256.704);
-  --chart-3: oklch(0.65 0.16 328.704);
-  --chart-4: oklch(0.8 0.14 40.704);
-  --chart-5: oklch(0.69 0.19 112.704);
-  --sidebar: oklch(0.209 0.0296 184.704);
-  --sidebar-foreground: oklch(0.985 0.0023 184.704);
-  --sidebar-primary: oklch(0.6 0.118 184.704);
-  --sidebar-primary-foreground: oklch(0.2229 0.0472 184.704);
-  --sidebar-accent: oklch(0.279 0.029 184.704);
-  --sidebar-accent-foreground: oklch(0.985 0.0023 184.704);
-  --sidebar-border: oklch(1 0 184.704 / 10%);
-  --sidebar-ring: oklch(0.6 0.118 184.704);
+  --border: oklch(1 0 163.225 / 10%);
+  --input: oklch(1 0 163.225 / 15%);
+  --ring: oklch(0.596 0.145 163.225);
+  --chart-1: oklch(0.71 0.18 163.225);
+  --chart-2: oklch(0.77 0.15 235.225);
+  --chart-3: oklch(0.65 0.16 307.225);
+  --chart-4: oklch(0.8 0.14 19.225);
+  --chart-5: oklch(0.69 0.19 91.225);
+  --sidebar: oklch(0.209 0.0364 163.225);
+  --sidebar-foreground: oklch(0.985 0.0028 163.225);
+  --sidebar-primary: oklch(0.596 0.145 163.225);
+  --sidebar-primary-foreground: oklch(0.2207 0.058 163.225);
+  --sidebar-accent: oklch(0.279 0.0356 163.225);
+  --sidebar-accent-foreground: oklch(0.985 0.0028 163.225);
+  --sidebar-border: oklch(1 0 163.225 / 10%);
+  --sidebar-ring: oklch(0.596 0.145 163.225);
 }
 
 @layer base {
@@ -506,6 +506,11 @@
 
 .field-notch {
   --f-cut: 9px;
+  --f-border-w: 1px;
+  /* Same correction as .btn-notch: the fill is inset by --f-border-w on every side,
+     so an uncompensated cut lands (2 - sqrt2) * --f-border-w too far out and the
+     diagonals read ~41% thicker than the straight edges. */
+  --f-cut-inner: calc(var(--f-cut) - 0.586 * var(--f-border-w));
   --f-shape: polygon(
     0 0,
     calc(100% - var(--f-cut)) 0,
@@ -513,6 +518,14 @@
     100% 100%,
     var(--f-cut) 100%,
     0 calc(100% - var(--f-cut))
+  );
+  --f-shape-inner: polygon(
+    0 0,
+    calc(100% - var(--f-cut-inner)) 0,
+    100% var(--f-cut-inner),
+    100% 100%,
+    var(--f-cut-inner) 100%,
+    0 calc(100% - var(--f-cut-inner))
   );
   --f-border: var(--input);
   --f-fill: var(--background);
@@ -527,10 +540,10 @@
 .field-notch::before {
   content: '';
   position: absolute;
-  inset: 1px;
+  inset: var(--f-border-w);
   z-index: -1;
   background-color: var(--f-fill);
-  clip-path: var(--f-shape);
+  clip-path: var(--f-shape-inner, var(--f-shape));
   pointer-events: none;
 }
 .field-notch:focus-within {
@@ -539,6 +552,39 @@
 .field-notch:has([aria-invalid='true']),
 .field-notch[aria-invalid='true'] {
   --f-border: var(--destructive);
+}
+
+/* For field-notch elements that behave like buttons rather than text inputs.
+   The visible surface is the ::before fill, so the ghost hover has to move
+   --f-fill; hover:bg-* would only repaint the border layer underneath. */
+.field-notch-hover::before {
+  transition: background-color var(--dur-fast) var(--ease-solve);
+}
+.field-notch-hover:hover {
+  --f-fill: var(--accent);
+}
+.dark .field-notch-hover:hover {
+  --f-fill: color-mix(in oklab, var(--accent) 50%, var(--background));
+}
+
+/* Mirrored cut: top-left & bottom-right cut, top-right & bottom-left sharp. */
+.field-notch-alt {
+  --f-shape: polygon(
+    var(--f-cut) 0,
+    100% 0,
+    100% calc(100% - var(--f-cut)),
+    calc(100% - var(--f-cut)) 100%,
+    0 100%,
+    0 var(--f-cut)
+  );
+  --f-shape-inner: polygon(
+    var(--f-cut-inner) 0,
+    100% 0,
+    100% calc(100% - var(--f-cut-inner)),
+    calc(100% - var(--f-cut-inner)) 100%,
+    0 100%,
+    0 var(--f-cut-inner)
+  );
 }
 
 /* Angular buttons: top-left & bottom-right sharp, top-right & bottom-left cut */
