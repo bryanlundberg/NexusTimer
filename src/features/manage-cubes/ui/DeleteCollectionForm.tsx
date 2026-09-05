@@ -27,10 +27,8 @@ import { AlertCircleIcon } from 'lucide-react'
 export default function DeleteCollectionForm() {
   const t = useTranslations('Index')
   const setCubes = useTimerStore((state) => state.setCubes)
-  const { close, activeOverlay } = useOverlayStore((state) => ({
-    close: state.close,
-    activeOverlay: state.activeOverlay
-  }))
+  const close = useOverlayStore((state) => state.close)
+  const activeOverlay = useOverlayStore((state) => state.activeOverlay)
 
   const { handleSubmit, control, watch, reset } = useForm({
     resolver: zodResolver(deleteCollectionSchema),
