@@ -29,10 +29,8 @@ export default function CreateCollectionForm() {
   const setCubes = useTimerStore((state) => state.setCubes)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
   const setNewScramble = useTimerStore((state) => state.setNewScramble)
-  const overlayStore = useOverlayStore((state) => ({
-    close: state.close,
-    activeOverlay: state.activeOverlay
-  }))
+  const close = useOverlayStore((state) => state.close)
+  const activeOverlay = useOverlayStore((state) => state.activeOverlay)
 
   const {
     handleSubmit,
@@ -57,15 +55,15 @@ export default function CreateCollectionForm() {
       setCubes(newCubes)
       setSelectedCube(newCube)
       setNewScramble(newCube)
-      overlayStore.close()
+      close()
     } catch (err) {
       console.log(err)
     }
   }
 
   useEffect(() => {
-    overlayStore.activeOverlay ? reset() : null
-  }, [overlayStore.activeOverlay])
+    activeOverlay ? reset() : null
+  }, [activeOverlay])
 
   return (
     <DialogContent
