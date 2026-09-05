@@ -58,7 +58,7 @@ export default function TrainerSolveHistoryTable({
 
   if (solves.length === 0) {
     return (
-      <div className="px-3 py-8 text-center">
+      <div className="algo-panel-notch [--ap-notch:12px] px-3 py-8 text-center">
         <p className="text-xs text-muted-foreground">{isLoading ? t('loading') : (emptyLabel ?? t('empty'))}</p>
       </div>
     )
@@ -66,7 +66,7 @@ export default function TrainerSolveHistoryTable({
 
   return (
     <div className="flex flex-col gap-2">
-      <div>
+      <div className="algo-panel-notch [--ap-notch:12px] overflow-hidden">
         <div
           className={cn(
             'grid items-center gap-x-4 px-3 py-2 border-b border-border/60',
@@ -101,13 +101,13 @@ export default function TrainerSolveHistoryTable({
                 aria-disabled={isDeleting}
                 className={cn(
                   'grid items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0',
-                  'border-l-2 border-l-transparent transition-colors duration-150 hover:bg-muted/20 hover:border-l-primary',
+                  'transition-colors duration-150 hover:bg-muted/20',
                   isDeleting && 'opacity-40 pointer-events-none',
                   showCase ? GRID_WITH_CASE : GRID_NO_CASE
                 )}
               >
                 {showCase && (
-                  <div className="size-6 rounded-sm overflow-hidden bg-muted/30 flex items-center justify-center">
+                  <div className="chip-notch-sm size-6 overflow-hidden bg-muted/30 flex items-center justify-center">
                     {vizConfig ? <AlgorithmRender config={vizConfig} width={24} height={24} /> : null}
                   </div>
                 )}
