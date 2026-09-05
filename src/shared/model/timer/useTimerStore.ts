@@ -6,6 +6,7 @@ import { create } from 'zustand'
 import { DisplayTimerStatistics } from '@/features/deep-statistics/model/types'
 import { Solve } from '@/entities/solve/model/types'
 import { Cube } from '@/entities/cube/model/types'
+import { setStoredSelectedCubeId } from '@/shared/lib/selectedCubeStorage'
 import { CrossSolution } from '@/shared/types/types'
 import { Event } from '@/shared/types/types'
 
@@ -60,6 +61,8 @@ export const useTimerStore = create<UseTimerStore>((set, get) => ({
     set({ cubes: cubesDB })
   },
   setSelectedCube: (cube: Cube | null) => {
+    setStoredSelectedCubeId(cube?.id ?? null)
+
     set((state) => {
       if (!cube || typeof cube !== 'object') {
         return {
