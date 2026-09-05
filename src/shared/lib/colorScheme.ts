@@ -183,7 +183,7 @@ const buildChartRamp = (hue: number, mode: ColorSchemeMode): string[] =>
 
 /** Keys come back without the leading `--`. */
 export const buildColorScheme = (color: Colors, mode: ColorSchemeMode): Record<string, string> => {
-  const spec = PALETTES[color] ?? PALETTES.teal
+  const spec = PALETTES[color] ?? PALETTES.emerald
   const accent = spec.accent[mode]
   const { hue, tint } = spec.neutral ?? { hue: accent.h, tint: accentTint(accent.c, mode) }
   const ramp = RAMPS[mode]
