@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import { Layers, Target } from 'lucide-react'
 import { Tabs, TabsContent } from '@/components/ui/tabs'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
-import TrainerHistoryHeader from '@/features/trainer/ui/TrainerHistoryHeader'
+import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
 import TrainerCurrentCaseInfo from '@/features/trainer/ui/TrainerCurrentCaseInfo'
 import TrainerMethodOverview from '@/features/trainer/ui/TrainerMethodOverview'
 import TrainerSolveHistoryTable from '@/features/trainer/ui/TrainerSolveHistoryTable'
@@ -71,7 +71,11 @@ export default function TrainerHistoryView() {
 
   return (
     <div className="p-3 sm:p-4 flex flex-col gap-4 max-w-3xl mx-auto">
-      <TrainerHistoryHeader title={set.title} select={{ value: set.slug, onChange: setMethod }} />
+      <div className="flex items-center justify-center">
+        <div className="w-full min-w-0 max-w-xs">
+          <TrainerMethodSelect value={set.slug} onChange={setMethod} />
+        </div>
+      </div>
 
       <TrainerMethodOverview set={set} stats={stats} targetMs={targetSeconds * 1000} isLoading={statsLoading} />
 
