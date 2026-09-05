@@ -38,9 +38,10 @@ export default function TrainerEditTargetModal({ initial, onApply }: TrainerEdit
               key={seconds}
               type="button"
               onClick={() => setValue(seconds)}
+              data-selected={active ? 'true' : undefined}
               className={cn(
-                'flex flex-col items-center justify-center gap-0.5 rounded-lg border p-3 transition-colors cursor-pointer',
-                active ? 'border-primary bg-primary/10 text-primary' : 'border-input hover:bg-muted/50'
+                'category-notch flex cursor-pointer flex-col items-center justify-center gap-0.5 p-3 focus:outline-none',
+                active && 'text-primary'
               )}
             >
               <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
