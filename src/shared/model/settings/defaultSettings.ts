@@ -26,7 +26,6 @@ export const defaultSettings: Settings = {
     worstTime: false
   },
   preferences: {
-    defaultCube: '',
     colorTheme: 'emerald'
   },
   sounds: {
