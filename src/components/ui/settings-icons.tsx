@@ -84,17 +84,6 @@ export function ThemeIcon({ size, ...props }: IconProps) {
   )
 }
 
-export function PreferencesIcon({ size, ...props }: IconProps) {
-  return (
-    <svg {...baseProps({ size })} {...props}>
-      <path d="M4 8h16" />
-      <path d="M4 16h16" />
-      <rect x="8.5" y="5.5" width="5" height="5" rx="1.2" />
-      <rect x="13.5" y="13.5" width="5" height="5" rx="1.2" />
-    </svg>
-  )
-}
-
 export function PrivacyIcon({ size, ...props }: IconProps) {
   return (
     <svg {...baseProps({ size })} {...props}>
