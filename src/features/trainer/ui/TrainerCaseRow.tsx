@@ -24,7 +24,7 @@ export default function TrainerCaseRow({ ranked, puzzle, vizDefaults, targetMs }
 
   return (
     <div className="flex items-center gap-2.5 py-1.5">
-      <div className="size-8 rounded-sm overflow-hidden bg-muted/30 flex items-center justify-center shrink-0">
+      <div className="chip-notch-sm size-8 overflow-hidden bg-muted/30 flex items-center justify-center shrink-0">
         <AlgorithmRender config={vizConfig} width={32} height={32} />
       </div>
       <div className="flex flex-col min-w-0 flex-1">
