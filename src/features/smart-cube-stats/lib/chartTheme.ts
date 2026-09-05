@@ -1,4 +1,4 @@
-import { convert } from 'colorizr'
+import { convertCSS } from 'colorizr'
 
 export interface ChartTheme {
   background: string
@@ -11,7 +11,7 @@ export function readChartTheme(): ChartTheme {
   const root = document.documentElement
   const toRgb = (v: string, fallback: string) => {
     try {
-      return convert(getComputedStyle(root).getPropertyValue(v), 'rgb')
+      return convertCSS(getComputedStyle(root).getPropertyValue(v), 'rgb')
     } catch {
       return fallback
     }
