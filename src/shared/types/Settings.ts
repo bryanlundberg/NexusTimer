@@ -28,7 +28,6 @@ type Alerts = {
 }
 
 type Preferences = {
-  defaultCube: string
   colorTheme: Colors
 }
 
