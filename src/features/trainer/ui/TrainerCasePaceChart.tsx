@@ -41,7 +41,7 @@ export default function TrainerCasePaceChart({ ranked, puzzle, vizDefaults }: Tr
         const vizConfig = vizByCaseId.get(r.algCase.id)
         return (
           <div key={r.algCase.id} className="flex items-center gap-2" title={r.algCase.name}>
-            <div className="size-7 rounded-sm overflow-hidden bg-muted/30 flex items-center justify-center shrink-0">
+            <div className="chip-notch-sm size-7 overflow-hidden bg-muted/30 flex items-center justify-center shrink-0">
               {vizConfig ? <AlgorithmRender config={vizConfig} width={28} height={28} /> : null}
             </div>
             <div className="flex-1 min-w-0">
@@ -49,7 +49,7 @@ export default function TrainerCasePaceChart({ ranked, puzzle, vizDefaults }: Tr
                 initial={{ width: 0 }}
                 animate={{ width: `${widthPct}%` }}
                 transition={{ duration: 0.4, ease: 'easeOut', delay: i * 0.03 }}
-                className={cn('h-4 rounded-r-sm opacity-80', contrast.bg)}
+                className={cn('diag-bar h-4 opacity-80', contrast.bg)}
               />
             </div>
             <div className="w-24 shrink-0 flex items-baseline justify-end gap-1.5 tabular-nums">
