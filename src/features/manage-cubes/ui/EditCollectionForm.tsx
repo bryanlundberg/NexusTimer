@@ -24,12 +24,10 @@ export default function EditCollectionForm() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
   const setSelectedCube = useTimerStore((state) => state.setSelectedCube)
 
-  const overlayStore = useOverlayStore((state) => ({
-    close: state.close,
-    activeOverlay: state.activeOverlay
-  }))
+  const close = useOverlayStore((state) => state.close)
+  const activeOverlay = useOverlayStore((state) => state.activeOverlay)
 
-  const metadata = overlayStore.activeOverlay?.metadata
+  const metadata = activeOverlay?.metadata
 
   const {
     register,
@@ -61,7 +59,7 @@ export default function EditCollectionForm() {
         setSelectedCube(null)
       }
 
-      overlayStore.close()
+      close()
     } catch (err) {
       console.log(err)
       toast.error(t('Errors.collection-edit-failed'))
@@ -69,8 +67,8 @@ export default function EditCollectionForm() {
   }
 
   useEffect(() => {
-    overlayStore.activeOverlay ? reset() : null
-  }, [overlayStore.activeOverlay])
+    activeOverlay ? reset() : null
+  }, [activeOverlay])
 
   return (
     <>
