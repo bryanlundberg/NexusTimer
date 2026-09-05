@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 import { useTranslations } from 'next-intl'
-import { Hash, Timer, BookOpenCheck, Grid3x3, TrendingUp, TrendingDown, BarChart3 } from 'lucide-react'
+import { Hash, Timer, BookOpenCheck, Grid3x3, TrendingUp, TrendingDown } from 'lucide-react'
 import type { TrainerMethodStatsDoc } from '@/entities/trainer-stats/model/types'
 import type { ALGORITHM_SET } from '@/shared/const/algorithms-sets'
 import { computeMethodOverview } from '@/features/trainer/lib/methodOverview'
@@ -30,12 +30,12 @@ export default function TrainerMethodOverview({ set, stats, targetMs, isLoading 
   )
 
   if (isLoading) {
-    return <div className="h-24 rounded-lg bg-muted/30 animate-pulse" />
+    return <div className="algo-panel-notch [--ap-notch:10px] h-24 animate-pulse" />
   }
 
   if (totalSolves === 0) {
     return (
-      <div className="px-3 py-6 text-center">
+      <div className="algo-panel-notch [--ap-notch:10px] px-3 py-6 text-center">
         <p className="text-xs text-muted-foreground">{t('empty')}</p>
       </div>
     )
@@ -46,25 +46,18 @@ export default function TrainerMethodOverview({ set, stats, targetMs, isLoading 
   return (
     <div className="flex flex-col gap-2">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-3 py-1">
-        <TrainerStatCard icon={Hash} label={t('executions')} value={String(totalSolves)} accent="border-cube-blue/70" />
-        <TrainerStatCard
-          icon={Timer}
-          label={t('average')}
-          value={avgMs !== null ? `${formatMs(avgMs)}s` : '—'}
-          accent="border-cube-yellow/70"
-        />
+        <TrainerStatCard icon={Hash} label={t('executions')} value={String(totalSolves)} />
+        <TrainerStatCard icon={Timer} label={t('average')} value={avgMs !== null ? `${formatMs(avgMs)}s` : '—'} />
         <TrainerStatCard
           icon={BookOpenCheck}
           label={tStats('algorithmsLearned')}
           value={`${learnedIds.length}/${set.algorithms.length}`}
-          accent="border-cube-green/70"
         />
         <TrainerStatCard
           icon={Grid3x3}
           label={t('coverage')}
           value={`${practicedCount}/${set.algorithms.length}`}
           sub={`${Math.round((practicedCount / Math.max(set.algorithms.length, 1)) * 100)}%`}
-          accent="border-cube-orange/70"
         />
       </div>
 
@@ -93,7 +86,6 @@ export default function TrainerMethodOverview({ set, stats, targetMs, isLoading 
           {worst.length > 0 && (
             <div className="flex flex-col gap-1">
               <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                <span className="h-3.5 w-1 rounded-full bg-cube-orange" aria-hidden />
                 <TrendingDown className="size-3" />
                 {t('focusCases')}
               </span>
@@ -114,12 +106,7 @@ export default function TrainerMethodOverview({ set, stats, targetMs, isLoading 
       )}
 
       {ranked.length >= 2 && (
-        <div className="flex flex-col gap-2 pt-3">
-          <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            <span className="h-3.5 w-1 rounded-full bg-cube-yellow" aria-hidden />
-            <BarChart3 className="size-3" />
-            {t('coverage')}
-          </span>
+        <div className="pt-3">
           <TrainerCasePaceChart ranked={ranked} puzzle={set.puzzle} vizDefaults={vizDefaults} />
         </div>
       )}
