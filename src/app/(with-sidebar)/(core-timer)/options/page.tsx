@@ -20,7 +20,6 @@ import MenuFeaturesSection from '@/features/settings/ui/MenuFeaturesSection'
 import MenuAlertsSection from '@/features/settings/ui/MenuAlertsSection'
 import MenuSoundsSection from '@/features/settings/ui/MenuSoundsSection'
 import MenuThemeSection from '@/features/settings/ui/MenuThemeSection'
-import MenuPreferencesSection from '@/features/settings/ui/MenuPreferencesSection'
 import MenuPrivacySection from '@/features/settings/ui/MenuPrivacySection'
 import MenuDataSection from '@/features/settings/ui/MenuDataSection'
 
@@ -74,7 +73,6 @@ export default function OptionsPage() {
             <MenuAlertsSection control={control} />
             <MenuSoundsSection control={control} />
             <MenuThemeSection />
-            <MenuPreferencesSection />
             <MenuPrivacySection />
             <MenuDataSection />
             <SettingsDangerZone onResetSettings={handleResetSettings} onDeleteAppData={handleDeleteAppData} />
