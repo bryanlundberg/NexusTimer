@@ -82,7 +82,6 @@
       "trash-sound": "Magpatugtog ng tunog kapag nagde-delete ng solve",
       "custom-background-description": "Mag-upload ng custom background image para i-personalize ang timer mo (max 4MB)",
       "data-import-export": "I-backup ang data mo sa isang file o i-restore mula sa nakaraang backup",
-      "auto-select-description": "Awtomatikong pumili ng cube sa pagsisimula ng application",
       "language-description": "Baguhin ang wikang ginagamit sa buong application",
       "analytics": "Pahintulutan ang anonymous na usage analytics para tumulong mapabuti ang NexusTimer",
       "focus-mode-scramble": "Panatilihing nakikita ang scramble habang aktibo ang focus mode"
@@ -637,8 +636,6 @@
       "data": "App Data",
       "privacy": "Privacy",
       "analytics": "Google Analytics",
-      "preferences": "Mga Preference",
-      "auto-select": "Auto-select sa startup",
       "import-from-file": "Mag-import mula sa file",
       "export-to-file": "Mag-export sa file",
       "dark": "Madilim",

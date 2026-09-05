@@ -82,7 +82,6 @@
       "trash-sound": "Putar suara saat menghapus solve",
       "custom-background-description": "Unggah gambar latar belakang kustom untuk mempersonalisasi timer (maks 4MB)",
       "data-import-export": "Cadangkan datamu ke file atau pulihkan dari cadangan sebelumnya",
-      "auto-select-description": "Pilih kubus secara otomatis saat aplikasi dimulai",
       "language-description": "Ubah bahasa yang digunakan di seluruh aplikasi",
       "analytics": "Izinkan analitik penggunaan anonim untuk membantu meningkatkan NexusTimer",
       "focus-mode-scramble": "Tetap tampilkan scramble saat mode fokus aktif"
@@ -637,8 +636,6 @@
       "data": "Data Aplikasi",
       "privacy": "Privasi",
       "analytics": "Google Analytics",
-      "preferences": "Preferensi",
-      "auto-select": "Pilih otomatis saat mulai",
       "import-from-file": "Impor dari file",
       "export-to-file": "Ekspor ke file",
       "dark": "Gelap",

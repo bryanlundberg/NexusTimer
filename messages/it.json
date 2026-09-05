@@ -82,7 +82,6 @@
       "trash-sound": "Riproduci un suono quando elimini un solve",
       "custom-background-description": "Carica un'immagine di sfondo personalizzata per il tuo timer (max 4MB)",
       "data-import-export": "Esegui il backup dei tuoi dati su file o ripristina da un backup precedente",
-      "auto-select-description": "Seleziona automaticamente un cubo all'avvio dell'applicazione",
       "language-description": "Cambia la lingua usata in tutta l'applicazione",
       "analytics": "Consenti l'analisi anonima dell'utilizzo per aiutare a migliorare NexusTimer",
       "focus-mode-scramble": "Mantieni lo scramble visibile mentre la modalità concentrazione è attiva"
@@ -637,8 +636,6 @@
       "data": "Dati app",
       "privacy": "Privacy",
       "analytics": "Google Analytics",
-      "preferences": "Preferenze",
-      "auto-select": "Selezione automatica all'avvio",
       "import-from-file": "Importa da file",
       "export-to-file": "Esporta su file",
       "dark": "Scuro",

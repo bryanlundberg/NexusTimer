@@ -82,7 +82,6 @@
       "trash-sound": "Odtwórz dźwięk przy usuwaniu ułożenia",
       "custom-background-description": "Wgraj własny obraz tła, aby spersonalizować stoper (maks. 4MB)",
       "data-import-export": "Zrób kopię zapasową danych do pliku lub przywróć z poprzedniej kopii",
-      "auto-select-description": "Automatycznie wybierz kostkę przy uruchomieniu aplikacji",
       "language-description": "Zmień język używany w całej aplikacji",
       "analytics": "Zezwól na anonimową analitykę użytkowania, aby pomóc ulepszać NexusTimer",
       "focus-mode-scramble": "Pokazuj scramble, gdy tryb skupienia jest aktywny"
@@ -637,8 +636,6 @@
       "data": "Dane aplikacji",
       "privacy": "Prywatność",
       "analytics": "Google Analytics",
-      "preferences": "Preferencje",
-      "auto-select": "Automatyczny wybór przy starcie",
       "import-from-file": "Importuj z pliku",
       "export-to-file": "Eksportuj do pliku",
       "dark": "Ciemny",
