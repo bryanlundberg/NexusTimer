@@ -20,9 +20,6 @@ const loader = {
   isLoading: () => useLoaderStore.getState().isLoading
 }
 
-export const useLoader = () =>
-  useLoaderStore((state) => ({
-    isLoading: state.isLoading
-  }))
+export const useLoader = () => useLoaderStore((state) => state.isLoading)
 
 export default loader
