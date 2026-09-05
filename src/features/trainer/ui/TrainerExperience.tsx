@@ -3,14 +3,16 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
-import { BarChart3, Bluetooth, ChevronRight } from 'lucide-react'
+import { BarChart3, Bluetooth, Settings as SettingsIcon } from 'lucide-react'
 import SmartCube from '@/features/smart-cube/ui/SmartCube'
-import TrainerSmartTimer from '@/features/trainer/ui/TrainerSmartTimer'
 import { CHART_CONTRAST, DEFAULT_CHART_CONTRAST } from '@/shared/lib/chartContrastColor'
+import { Button } from '@/components/ui/button'
+import TrainerSmartTimer from '@/features/trainer/ui/TrainerSmartTimer'
 import TrainerCurrentCase from '@/features/trainer/ui/TrainerCurrentCase'
 import TrainerMethodSelect from '@/features/trainer/ui/TrainerMethodSelect'
 import TrainerEditTargetModal from '@/features/trainer/ui/TrainerEditTargetModal'
 import TrainerPickCasesModal from '@/features/trainer/ui/TrainerPickCasesModal'
+import TrainerSettingsModal from '@/features/trainer/ui/TrainerSettingsModal'
 import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
 import { useTrainerPrefsStore } from '@/features/trainer/model/useTrainerPrefsStore'
 import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned'
@@ -37,6 +39,7 @@ import { cn } from '@/shared/lib/utils'
 
 export default function TrainerExperience() {
   const t = useTranslations('Index.TrainerPage')
+  const tSettings = useTranslations('Index.SettingsPage')
   const { set, sessionCases, currentCase, currentAlg, setup } = useTrainerSession()
   const methodSlug = set.slug
   const smartAvailable = set.puzzle === '3x3x3'
@@ -59,7 +62,6 @@ export default function TrainerExperience() {
 
   const targetSeconds = useTrainerStore((s) => s.targetByMethod[s.methodSlug] ?? TRAINER_DEFAULT_TARGET_SECONDS)
   const caseStats = useTrainerStore((s) => s.caseStats)
-  const caseIndex = useTrainerStore((s) => s.caseIndex)
   const setMethod = useTrainerStore((s) => s.setMethod)
   const setPickedIds = useTrainerStore((s) => s.setPickedIds)
   const setTargetSeconds = useTrainerStore((s) => s.setTargetSeconds)
@@ -95,7 +97,6 @@ export default function TrainerExperience() {
 
   const { open } = useOverlayStore()
   const showSolveInfo = useTrainerPrefsStore((s) => s.showSolveInfo)
-  const toggleShowSolveInfo = useTrainerPrefsStore((s) => s.toggleShowSolveInfo)
 
   const currentStats = currentCase ? caseStats[currentCase.id] : undefined
 
@@ -205,9 +206,11 @@ export default function TrainerExperience() {
   }
 
   const handleOpenEditTarget = () => {
+    const state = useTrainerStore.getState()
+    const current = state.targetByMethod[state.methodSlug] ?? TRAINER_DEFAULT_TARGET_SECONDS
     open({
       id: 'trainer-edit-target',
-      component: <TrainerEditTargetModal initial={targetSeconds} onApply={handleApplyTarget} />
+      component: <TrainerEditTargetModal initial={current} onApply={handleApplyTarget} />
     })
   }
 
@@ -217,12 +220,19 @@ export default function TrainerExperience() {
       component: (
         <TrainerPickCasesModal
           algorithms={set.algorithms}
-          initialSelected={new Set(sessionCases.map((c) => c.id))}
+          initialSelected={new Set(useTrainerStore.getState().pickedIds)}
           vizConfig={set.virtualization as unknown as Partial<TwistyPlayer>}
           puzzle={set.puzzle}
           onApply={setPickedIds}
         />
       )
+    })
+  }
+
+  const handleOpenSettings = () => {
+    open({
+      id: 'trainer-settings',
+      component: <TrainerSettingsModal onEditTarget={handleOpenEditTarget} onPickCases={handleOpenPickCases} />
     })
   }
 
@@ -243,35 +253,46 @@ export default function TrainerExperience() {
   const displayedTime =
     timerStatus === TimerStatus.HOLDING || timerStatus === TimerStatus.READY ? '0.00' : formatMs(solvingTime)
 
-  const totalCases = sessionCases.length
-  const totalSetCases = set.algorithms.length
   const currentIsLearned = !!currentCase && learnedSet.has(currentCase.id)
-  const execIndex = totalCases > 0 ? (caseIndex % totalCases) + 1 : 0
 
   return (
     <div id="touch" className="flex flex-col flex-1 relative">
       <div className={cn('absolute inset-0 pointer-events-none transition-colors duration-150', stageOverlayClass)} />
       <div className="flex flex-col gap-4 w-full max-w-5xl mx-auto px-4 py-6 flex-1 min-h-0">
-        <div className="flex items-center gap-2 flex-wrap shrink-0">
-          <div className="flex-1 min-w-0 max-w-sm">
-            <TrainerMethodSelect value={set.slug} onChange={setMethod} />
-          </div>
-          {isAuthed && (
-            <Link
-              href="/algorithms/trainer/history"
-              aria-label={t('methodStats')}
-              title={t('methodStats')}
+        <div className="flex items-center justify-center gap-2 shrink-0">
+          {smartAvailable && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setSmartMode((v) => !v)}
+              aria-pressed={smartMode}
+              aria-label={t('smart.smartCube')}
+              title={t('smart.smartCube')}
               className={cn(
-                'ms-auto inline-flex items-center gap-2 h-9 px-3.5 rounded-none text-sm font-medium text-white',
-                'shadow-sm transition-all hover:opacity-90 hover:shadow-md active:scale-[0.98]',
-                contrast.bg
+                'btn-notch size-9 shrink-0',
+                smartMode
+                  ? 'bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary'
+                  : 'text-muted-foreground'
               )}
             >
-              <BarChart3 className="size-4" />
-              <span>{t('methodStats')}</span>
-              <ChevronRight className="size-3.5 opacity-80" />
-            </Link>
+              <Bluetooth className="size-4" />
+            </Button>
           )}
+
+          <div className="w-full min-w-0 max-w-xs">
+            <TrainerMethodSelect value={set.slug} onChange={setMethod} />
+          </div>
+
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleOpenSettings}
+            aria-label={tSettings('title')}
+            title={tSettings('title')}
+            className="btn-notch size-9 shrink-0 text-muted-foreground"
+          >
+            <SettingsIcon className="size-4" />
+          </Button>
         </div>
 
         <TrainerCurrentCase
@@ -284,9 +305,6 @@ export default function TrainerExperience() {
           isLearned={currentIsLearned}
           best={currentStats?.best != null ? formatMs(currentStats.best) : undefined}
           ao5={currentStats?.ao5 != null ? formatMs(currentStats.ao5) : undefined}
-          ao12={currentStats?.ao12 != null ? formatMs(currentStats.ao12) : undefined}
-          execIndex={execIndex}
-          execTotal={totalCases}
           onSkip={handleSkip}
           onUndoLast={
             lastSolve && timerStatus === TimerStatus.IDLE && (!isAuthed || !!lastSolve.persistedId)
@@ -295,34 +313,24 @@ export default function TrainerExperience() {
           }
           lastSolveTime={lastSolve ? formatMs(lastSolve.timeMs) : undefined}
           onToggleLearned={isAuthed ? handleToggleLearned : undefined}
-          targetSeconds={targetSeconds}
-          onEditTarget={handleOpenEditTarget}
-          pickedCount={totalCases}
-          totalCount={totalSetCases}
-          onPickCases={handleOpenPickCases}
           showSolveInfo={showSolveInfo}
-          onToggleSolveInfo={toggleShowSolveInfo}
-          smartToggleSlot={
-            smartAvailable ? (
-              <button
-                type="button"
-                onClick={() => setSmartMode((v) => !v)}
-                aria-pressed={smartMode}
-                aria-label={t('smart.smartCube')}
-                title={t('smart.smartCube')}
+          sparklineSlot={<MiniSparkline solves={methodSolves} targetMs={targetSeconds * 1000} />}
+          statsSlot={
+            isAuthed ? (
+              <Link
+                href="/algorithms/trainer/history"
+                aria-label={t('methodStats')}
+                title={t('methodStats')}
                 className={cn(
-                  'btn-notch inline-flex items-center gap-1.5 h-9 px-3 text-sm font-medium border transition-colors shrink-0',
-                  smartMode
-                    ? 'bg-primary text-primary-foreground border-primary'
-                    : 'bg-transparent text-muted-foreground hover:text-foreground'
+                  'btn-notch inline-flex h-9 items-center justify-center gap-1.5 px-2.5 text-xs font-medium text-white transition-opacity hover:opacity-90',
+                  contrast.bg
                 )}
               >
-                <Bluetooth className="size-4" />
-                <span className="hidden sm:inline">{t('smart.smartCube')}</span>
-              </button>
+                <BarChart3 className="size-4 shrink-0" />
+                <span className="hidden lg:inline">{t('methodStats')}</span>
+              </Link>
             ) : undefined
           }
-          sparklineSlot={<MiniSparkline solves={methodSolves} targetMs={targetSeconds * 1000} />}
           centerSlot={
             smartMode && smartAvailable ? (
               <div className="w-full flex-1 flex flex-col items-center justify-center">
