@@ -86,30 +86,9 @@ importers:
       '@serwist/next':
         specifier: ^9.2.3
         version: 9.5.12(next@16.3.4(@babel/core@7.29.7)(@playwright/test@1.61.0)(@types/node@24.13.2)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(react@19.2.8)(typescript@7.0.2)
-      '@tailwindcss/postcss':
-        specifier: ^4.2.0
-        version: 4.3.1
       '@tanstack/react-virtual':
         specifier: ^3.13.18
         version: 3.14.3(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
-      '@types/node':
-        specifier: ^24.0.0
-        version: 24.13.2
-      '@types/papaparse':
-        specifier: ^5.3.15
-        version: 5.5.2
-      '@types/react':
-        specifier: 19.2.18
-        version: 19.2.18
-      '@types/react-dom':
-        specifier: 19.2.7
-        version: 19.2.7(@types/react@19.2.18)
-      '@types/three':
-        specifier: ^0.185.4
-        version: 0.185.4
-      babel-plugin-react-compiler:
-        specifier: ^1.0.0
-        version: 1.0.0
       bcryptjs:
         specifier: ^3.0.3
         version: 3.0.3
@@ -143,12 +122,6 @@ importers:
       es-toolkit:
         specifier: ^1.42.0
         version: 1.47.1
-      eslint:
-        specifier: 9.26.0
-        version: 9.26.0(jiti@2.7.0)
-      eslint-config-next:
-        specifier: 16.2.10
-        version: 16.2.10(@typescript-eslint/parser@8.64.0(eslint@9.26.0(jiti@2.7.0))(typescript@7.0.2))(eslint@9.26.0(jiti@2.7.0))(typescript@7.0.2)
       fast-sort:
         specifier: ^3.4.1
         version: 3.4.1
@@ -200,9 +173,6 @@ importers:
       papaparse:
         specifier: ^5.5.2
         version: 5.5.3
-      postcss:
-        specifier: ^8.5.18
-        version: 8.5.23
       pretty-ms:
         specifier: ^9.3.1
         version: 9.3.1
@@ -266,9 +236,6 @@ importers:
       tailwind-merge:
         specifier: ^3.6.0
         version: 3.6.0
-      tailwindcss:
-        specifier: ^4.2.0
-        version: 4.3.1
       three:
         specifier: ^0.185.1
         version: 0.185.1
@@ -300,6 +267,9 @@ importers:
       '@playwright/test':
         specifier: ^1.50.1
         version: 1.61.0
+      '@tailwindcss/postcss':
+        specifier: ^4.3.1
+        version: 4.3.1
       '@testing-library/dom':
         specifier: ^10.4.0
         version: 10.4.1
@@ -312,9 +282,33 @@ importers:
       '@types/js-cookie':
         specifier: ^3.0.6
         version: 3.0.6
+      '@types/node':
+        specifier: ^24.13.2
+        version: 24.13.2
+      '@types/papaparse':
+        specifier: ^5.5.2
+        version: 5.5.2
+      '@types/react':
+        specifier: 19.2.18
+        version: 19.2.18
+      '@types/react-dom':
+        specifier: 19.2.7
+        version: 19.2.7(@types/react@19.2.18)
+      '@types/three':
+        specifier: ^0.185.4
+        version: 0.185.4
+      babel-plugin-react-compiler:
+        specifier: ^1.0.0
+        version: 1.0.0
       baseline-browser-mapping:
         specifier: ^2.8.32
         version: 2.10.37
+      eslint:
+        specifier: 9.26.0
+        version: 9.26.0(jiti@2.7.0)
+      eslint-config-next:
+        specifier: 16.2.10
+        version: 16.2.10(@typescript-eslint/parser@8.64.0(eslint@9.26.0(jiti@2.7.0))(typescript@7.0.2))(eslint@9.26.0(jiti@2.7.0))(typescript@7.0.2)
       husky:
         specifier: ^9.1.7
         version: 9.1.7
@@ -324,12 +318,18 @@ importers:
       lint-staged:
         specifier: ^16.2.4
         version: 16.4.0
+      postcss:
+        specifier: ^8.5.23
+        version: 8.5.23
       prettier:
         specifier: 3.9.6
         version: 3.9.6
       serwist:
         specifier: ^9.5.11
         version: 9.5.11(browserslist@4.28.6)(typescript@7.0.2)
+      tailwindcss:
+        specifier: ^4.3.1
+        version: 4.3.1
       tsx:
         specifier: ^4.20.6
         version: 4.23.1
