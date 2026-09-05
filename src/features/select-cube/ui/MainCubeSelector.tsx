@@ -1,13 +1,13 @@
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
-import { Button } from '@/components/ui/button'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import SelectCollection from '@/features/select-collection/ui/SelectCollection'
 import { useEffect } from 'react'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import { CubeCategoryIcon } from '@/shared/ui/cube-category-icon/CubeCategoryIcon'
 import { useTranslations } from 'next-intl'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDownIcon } from 'lucide-react'
 import { CubeNavIcon } from '@/components/ui/nav-icons'
+import { cn } from '@/shared/lib/utils'
 
 export default function MainCubeSelector() {
   const selectedCube = useTimerStore((state) => state.selectedCube)
@@ -38,14 +38,16 @@ export default function MainCubeSelector() {
 
   return (
     <div className="flex-1 min-w-0">
-      <Button
-        variant={'outline'}
-        notch={false}
-        className={'w-full justify-between h-9 items-center text-left rounded-sm px-3 hover:bg-transparent'}
+      <button
+        type="button"
+        className={cn(
+          "field-notch field-notch-alt field-notch-hover [--f-border:var(--border)] cursor-pointer hover:text-accent-foreground [&_svg:not([class*='text-'])]:text-muted-foreground flex h-9 w-full items-center justify-between gap-2 px-3 py-2 text-left text-sm whitespace-nowrap transition-[color] outline-none disabled:cursor-not-allowed disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+          !selectedCube && 'text-muted-foreground'
+        )}
         onClick={handleOpenSelector}
         data-tour="onboarding-cube-selector"
       >
-        <div className="flex items-center gap-2 min-w-0">
+        <span className="flex min-w-0 items-center gap-2">
           {selectedCubeData ? (
             <span className="size-4 shrink-0">
               <CubeCategoryIcon category={selectedCubeData.name} />
@@ -53,16 +55,12 @@ export default function MainCubeSelector() {
           ) : (
             <CubeNavIcon className="size-4 shrink-0 text-muted-foreground" />
           )}
-          <span className="h-5 w-px shrink-0 bg-border" aria-hidden />
-          <span className={'min-w-0 flex-1 truncate'}>
+          <span className="min-w-0 flex-1 truncate">
             {selectedCube ? selectedCube.name : t('HomePage.select-cube')}
           </span>
-        </div>
-        <div className="flex items-center gap-2 shrink-0">
-          <span className="h-5 w-px bg-border" aria-hidden />
-          <ChevronDown className="size-3 text-primary" />
-        </div>
-      </Button>
+        </span>
+        <ChevronDownIcon className="size-4 shrink-0 opacity-50" />
+      </button>
     </div>
   )
 }
