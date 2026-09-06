@@ -15,7 +15,11 @@ export default function TimerVirtual() {
   const cubeSize = selectedCube?.category === '2x2' || selectedCube?.category === '2x2 Virtual' ? 2 : 3
   const is3x3 = cubeSize === 3
 
-  const { containerRef, player, engine, recreatePlayer } = useVirtualCube({ cubeSize, scramble })
+  const { containerRef, player, engine, recreatePlayer } = useVirtualCube({
+    cubeSize,
+    scramble,
+    hintFacelets: 'floating'
+  })
 
   const onAdvanceScramble = useCallback(() => {
     if (selectedCube) setNewScramble(selectedCube)

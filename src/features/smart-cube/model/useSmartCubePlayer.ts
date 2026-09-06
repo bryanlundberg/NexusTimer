@@ -30,6 +30,7 @@ export function useSmartCubePlayer() {
     const next = new TwistyPlayer({
       puzzle: '3x3x3',
       controlPanel: 'none',
+      hintFacelets: 'none',
       tempoScale: 5,
       background: 'none',
       cameraDistance: 8,

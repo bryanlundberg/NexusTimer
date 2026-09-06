@@ -59,6 +59,7 @@ export function RealtimeReplayPlayer({ replay, markers = [], size = 232, tempoSc
       experimentalSetupAlg: replay.scramble,
       experimentalSetupAnchor: 'start',
       controlPanel: 'none',
+      hintFacelets: 'none',
       tempoScale,
       background: 'none',
       experimentalDragInput: 'auto'

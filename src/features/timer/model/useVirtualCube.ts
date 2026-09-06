@@ -3,6 +3,8 @@ import { TwistyPlayer } from '@rednaxela101/cubing/twisty'
 import { CubeEngine, type CubeSize } from 'cube-state-engine'
 import { disposeTwistyPlayer } from '@/shared/lib/twisty/disposeTwistyPlayer'
 
+type HintFacelets = 'auto' | 'floating' | 'none'
+
 interface UseVirtualCubeArgs {
   cubeSize: CubeSize
   scramble: string | null
@@ -11,6 +13,7 @@ interface UseVirtualCubeArgs {
   dragInput?: 'auto' | 'none'
   sizePx?: string
   cameraDistance?: number
+  hintFacelets?: HintFacelets
 }
 
 const PLAYER_SIZE_PX = 'min(320px, 30vw)'
@@ -21,12 +24,14 @@ interface PlayerOptions {
   dragInput?: 'auto' | 'none'
   sizePx?: string
   cameraDistance?: number
+  hintFacelets?: HintFacelets
 }
 
 const buildPlayer = (cubeSize: CubeSize, scramble: string | null, opts?: PlayerOptions) => {
   const player = new TwistyPlayer({
     puzzle: cubeSize === 2 ? '2x2x2' : '3x3x3',
     controlPanel: 'none',
+    hintFacelets: opts?.hintFacelets ?? 'none',
     tempoScale: opts?.tempoScale ?? 3,
     background: 'none',
     ...(opts?.cameraDistance != null ? { cameraDistance: opts.cameraDistance } : {}),
@@ -50,7 +55,8 @@ export function useVirtualCube({
   tempoScale,
   dragInput,
   sizePx,
-  cameraDistance
+  cameraDistance,
+  hintFacelets
 }: UseVirtualCubeArgs) {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [player, setPlayer] = useState<TwistyPlayer | null>(null)
@@ -62,7 +68,14 @@ export function useVirtualCube({
     disposeTwistyPlayer(player)
 
     const newEngine = new CubeEngine('', { size: cubeSize })
-    const newPlayer = buildPlayer(cubeSize, scramble, { seed, tempoScale, dragInput, sizePx, cameraDistance })
+    const newPlayer = buildPlayer(cubeSize, scramble, {
+      seed,
+      tempoScale,
+      dragInput,
+      sizePx,
+      cameraDistance,
+      hintFacelets
+    })
     containerRef.current.appendChild(newPlayer)
 
     if (seed && scramble) {
@@ -93,10 +106,17 @@ export function useVirtualCube({
   const recreatePlayer = useCallback(() => {
     if (!containerRef.current) return
     disposeTwistyPlayer(player)
-    const newPlayer = buildPlayer(cubeSize, scramble, { seed, tempoScale, dragInput, sizePx, cameraDistance })
+    const newPlayer = buildPlayer(cubeSize, scramble, {
+      seed,
+      tempoScale,
+      dragInput,
+      sizePx,
+      cameraDistance,
+      hintFacelets
+    })
     containerRef.current.appendChild(newPlayer)
     setPlayer(newPlayer)
-  }, [player, cubeSize, scramble, seed, tempoScale, dragInput, sizePx, cameraDistance])
+  }, [player, cubeSize, scramble, seed, tempoScale, dragInput, sizePx, cameraDistance, hintFacelets])
 
   return { containerRef, player, engine, recreatePlayer }
 }

@@ -215,8 +215,7 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'OLL',
       visualization: '3D',
-      experimentalDragInput: 'none',
-      hintFacelets: 'none'
+      experimentalDragInput: 'none'
     },
     file: 'vls.ts'
   },
@@ -232,8 +231,7 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'OLL',
       visualization: '3D',
-      experimentalDragInput: 'none',
-      hintFacelets: 'none'
+      experimentalDragInput: 'none'
     },
     file: 'cls.ts'
   },
@@ -249,8 +247,7 @@ export const ALGORITHM_SETS = [
     virtualization: {
       experimentalStickering: 'OLL',
       visualization: '3D',
-      experimentalDragInput: 'none',
-      hintFacelets: 'none'
+      experimentalDragInput: 'none'
     },
     file: 'sv.ts'
   },
