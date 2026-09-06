@@ -53,7 +53,7 @@ export default function AlgorithmRender({ className, width = 140, height = 140, 
 
     if (!playerRef.current || puzzleRef.current !== puzzle) {
       if (playerRef.current) disposeTwistyPlayer(playerRef.current)
-      const player = new TwistyPlayer(config)
+      const player = new TwistyPlayer({ hintFacelets: 'none', ...config })
       container.appendChild(player)
       player.style.width = sizeStyle.width
       player.style.height = sizeStyle.height
