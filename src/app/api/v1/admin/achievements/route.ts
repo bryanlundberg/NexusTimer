@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
     const achievement = await UserAchievement.findOneAndUpdate(
       { userId: user._id, key: body.key },
       { $setOnInsert: { userId: user._id, key: body.key } },
-      { upsert: true, new: true }
+      { upsert: true, returnDocument: 'after' }
     )
 
     await userProfileCache.invalidate(user._id.toString())

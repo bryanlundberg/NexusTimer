@@ -28,7 +28,7 @@ export async function createPendingRegistration({ email, name, password }: Creat
   await PendingRegistration.findOneAndUpdate(
     { email },
     { email, name, passwordHash, code, expiresAt },
-    { upsert: true, new: true }
+    { upsert: true, returnDocument: 'after' }
   )
 
   await sendVerificationEmail({ email, name, code })

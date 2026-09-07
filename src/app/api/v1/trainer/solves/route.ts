@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
 
     await TrainerStats.findOneAndUpdate({ user: userId }, update, {
       upsert: true,
-      new: true,
+      returnDocument: 'after',
       setDefaultsOnInsert: true
     })
 

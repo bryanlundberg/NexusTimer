@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     const url = `${baseUrl}${baseUrl.includes('?') ? '&' : '?'}v=${Date.now()}`
 
     await connectDB()
-    const user = await User.findByIdAndUpdate(userId, { image: url }, { new: true })
+    const user = await User.findByIdAndUpdate(userId, { image: url }, { returnDocument: 'after' })
     if (!user) return notFound('User not found')
 
     await userProfileCache.invalidate(userId)

@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     const url = await files.url(key)
 
     await connectDB()
-    const user = await User.findByIdAndUpdate(userId, { backup: { url, updatedAt } }, { new: true })
+    const user = await User.findByIdAndUpdate(userId, { backup: { url, updatedAt } }, { returnDocument: 'after' })
     if (!user) return notFound('User not found')
 
     await userProfileCache.invalidate(userId)
