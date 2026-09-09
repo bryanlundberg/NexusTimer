@@ -384,7 +384,8 @@ export const F2L_ALGS: AlgorithmCollection[] = [
       { moves: "R' U R U2 f R f'", id: 'ddfabd70-a5ba-4ca1-a423-5e51801a7f4b' },
       { moves: "R2 F R F' R U R' U2 R", id: '9a6c7c3b-ce0f-4c88-a921-cfa910b0626a' },
       { moves: "R' U R U' d' R U R'", id: '4bdb8cff-c680-44b2-b541-d63966bbc4aa' },
-      { moves: "R2 F R F' R U2 R' U R", id: '7e2f0c1b-d158-4763-816b-a89958183d48' }
+      { moves: "R2 F R F' R U2 R' U R", id: '7e2f0c1b-d158-4763-816b-a89958183d48' },
+      { moves: "y' R2 F R F' R U2 R' U R", id: 'eab3bbaf-ddc2-4071-91fb-6bf8a9c2601a' }
     ]
   },
   {
