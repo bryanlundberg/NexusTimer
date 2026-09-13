@@ -77,7 +77,9 @@ export function SidebarActivity() {
         aria-label={t('NavMain.activity-calendar')}
         className="flex w-full items-center justify-between gap-2 cursor-pointer"
       >
-        <span className="text-[11px] font-semibold capitalize leading-none">{monthLabel}</span>
+        <span className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] leading-none">
+          {monthLabel}
+        </span>
         <span className="flex items-center gap-1">
           <span className="text-[10px] tabular-nums text-muted-foreground leading-none">
             {total} {t('NavMain.activity-solves')}
@@ -97,7 +99,7 @@ export function SidebarActivity() {
             transition={{ duration: 0.2, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <div className="pt-2 pb-0.5">
+            <div className="px-0.5 pt-2 pb-0.5">
               <div className="mb-1 grid grid-cols-7 gap-1">
                 {weekdayLabels.map((w, i) => (
                   <span key={i} className="text-center text-[8px] uppercase text-muted-foreground/60 leading-none">
