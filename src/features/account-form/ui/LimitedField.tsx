@@ -6,6 +6,7 @@ import { AccountInfoForm } from '@/features/account-form/model/types'
 import { cn } from '@/shared/lib/utils'
 
 export function LimitedField({
+  id,
   control,
   register,
   name,
@@ -14,6 +15,7 @@ export function LimitedField({
   placeholder,
   icon: Icon
 }: {
+  id?: string
   control: Control<AccountInfoForm>
   register: UseFormRegister<AccountInfoForm>
   name: 'name' | 'goal' | 'bio'
@@ -22,6 +24,8 @@ export function LimitedField({
   placeholder?: string
   icon?: LucideIcon
 }) {
+  // React Compiler would memoize register(), leaving the input blank after reset().
+  'use no memo'
   const length = (useWatch({ control, name }) || '').length
   const over = length > max
 
@@ -30,6 +34,7 @@ export function LimitedField({
       <div className="relative">
         {multiline ? (
           <Textarea
+            id={id}
             placeholder={placeholder}
             {...register(name)}
             aria-invalid={over}
@@ -37,7 +42,13 @@ export function LimitedField({
             rows={4}
           />
         ) : (
-          <Input {...register(name)} aria-invalid={over} className={cn('peer h-10', Icon && 'pl-9')} />
+          <Input
+            id={id}
+            placeholder={placeholder}
+            {...register(name)}
+            aria-invalid={over}
+            className={cn('peer h-10', Icon && 'pl-9')}
+          />
         )}
         {Icon && (
           <Icon
