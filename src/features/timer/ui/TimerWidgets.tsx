@@ -1,6 +1,7 @@
 import StatisticsPanel from './StatisticsPanel'
 import OverviewPanel from './OverviewPanel'
 import ScramblePanel from './ScrambleImagePanel'
+import SolveDelta from './SolveDelta'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
@@ -30,21 +31,21 @@ export default function TimerWidgets() {
   if (ao50 !== 0 && ao50 === sessionAo50) newBestAverages.push('Ao50')
   if (ao100 !== 0 && ao100 === sessionAo100) newBestAverages.push('Ao100')
 
+  const compactAlert = height <= SCRAMBLE_HEIGHT && 'text-[10px]'
+
   const bestAverageAlert =
     settings.alerts.bestAverage && newBestAverages.length > 0 ? (
-      <div className="flex justify-end absolute -top-8 right-0" id="touch">
-        <div
-          data-testid="best-average-alert"
-          className={cn(
-            'chip-notch flex items-center gap-1.5 w-fit ms-auto px-2.5 py-1 text-xs sm:text-sm font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400',
-            height <= SCRAMBLE_HEIGHT && 'text-[10px]'
-          )}
-        >
-          <Trophy aria-hidden className="size-3.5 shrink-0 text-amber-500" />
-          <span>
-            {t('new_best_average')} <span className="font-mono font-semibold">{newBestAverages.join(' · ')}</span>
-          </span>
-        </div>
+      <div
+        data-testid="best-average-alert"
+        className={cn(
+          'chip-notch flex items-center gap-1.5 w-fit px-2.5 py-1 text-xs sm:text-sm font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400',
+          compactAlert
+        )}
+      >
+        <Trophy aria-hidden className="size-3.5 shrink-0 text-amber-500" />
+        <span>
+          {t('new_best_average')} <span className="font-mono font-semibold">{newBestAverages.join(' · ')}</span>
+        </span>
       </div>
     ) : null
 
@@ -56,10 +57,9 @@ export default function TimerWidgets() {
       <div
         data-testid="worst-time-alert"
         className={cn(
-          'chip-notch w-fit ms-auto px-2.5 py-1 text-xs sm:text-sm font-medium bg-destructive/10 text-destructive',
-          height <= SCRAMBLE_HEIGHT && 'text-[10px]'
+          'chip-notch w-fit px-2.5 py-1 text-xs sm:text-sm font-medium bg-destructive/10 text-destructive',
+          compactAlert
         )}
-        id="touch"
       >
         {t('new_worst_time')}
       </div>
@@ -78,8 +78,11 @@ export default function TimerWidgets() {
         )}
         id="touch"
       >
-        {bestAverageAlert}
-        {worstTimeAlert}
+        <div className="absolute bottom-full right-0 mb-1 flex flex-col items-end gap-1" id="touch">
+          {settings.alerts.solveDelta && !isHidden && lastSolve && <SolveDelta className={compactAlert || undefined} />}
+          {bestAverageAlert}
+          {worstTimeAlert}
+        </div>
         <div
           data-testid="timer-widgets-container"
           className={cn(
