@@ -54,11 +54,11 @@ describe('createSignUpSchema', () => {
   const schema = createSignUpSchema(messages)
 
   it('accepts a valid payload', () => {
-    expect(schema.safeParse({ name: 'Bryan', email: 'a@b.co', password: 'longenough' }).success).toBe(true)
+    expect(schema.safeParse({ name: 'Mateo', email: 'a@b.co', password: 'longenough' }).success).toBe(true)
   })
 
   it('trims the name before validating its length', () => {
-    expect(schema.safeParse({ name: '  Bryan  ', email: 'a@b.co', password: 'longenough' }).success).toBe(true)
+    expect(schema.safeParse({ name: '  Mateo  ', email: 'a@b.co', password: 'longenough' }).success).toBe(true)
     expect(schema.safeParse({ name: '   A   ', email: 'a@b.co', password: 'longenough' }).success).toBe(false)
   })
 
@@ -79,7 +79,7 @@ describe('createSignUpSchema', () => {
   })
 
   it('rejects a password shorter than 8 chars', () => {
-    const result = schema.safeParse({ name: 'Bryan', email: 'a@b.co', password: '1234567' })
+    const result = schema.safeParse({ name: 'Mateo', email: 'a@b.co', password: '1234567' })
     expect(result.success).toBe(false)
     if (!result.success) {
       expect(firstIssue(result).message).toBe('PASSWORD_TOO_SHORT')
@@ -87,7 +87,7 @@ describe('createSignUpSchema', () => {
   })
 
   it('rejects a password longer than 72 chars', () => {
-    const result = schema.safeParse({ name: 'Bryan', email: 'a@b.co', password: 'x'.repeat(73) })
+    const result = schema.safeParse({ name: 'Mateo', email: 'a@b.co', password: 'x'.repeat(73) })
     expect(result.success).toBe(false)
     if (!result.success) {
       expect(firstIssue(result).message).toBe('PASSWORD_TOO_LONG')

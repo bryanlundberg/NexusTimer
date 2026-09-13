@@ -2,7 +2,7 @@ import { userSchema } from '@/entities/user/model/types'
 
 const validUser = {
   _id: 'u1',
-  name: 'Bryan',
+  name: 'Mateo',
   email: 'a@b.co',
   image: 'https://example.com/avatar.png'
 }

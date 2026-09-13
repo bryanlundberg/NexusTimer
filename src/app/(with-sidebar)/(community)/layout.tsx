@@ -1,17 +1,12 @@
-'use client'
-import React from 'react'
-import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
-import FloatButton from '@/features/compare-users/ui/FloatButton'
-import CompareUsersModal from '@/features/compare-users/ui/compare-users-modal'
+import type { ReactNode } from 'react'
+import { CompareUsersOverlay } from '@/features/compare-users/ui/CompareUsersOverlay'
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  const users = useCompareUsersStore((state) => state.users)
-  const isOpenOverlay = useCompareUsersStore((state) => state.isOpenOverlay)
+// Must stay a server layout: client layouts get wrapped in ClientSegmentRoot, which logs a "unique key" warning in dev.
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       {children}
-      {users.length > 0 && <FloatButton/>}
-      {isOpenOverlay && <CompareUsersModal/>}
+      <CompareUsersOverlay />
     </>
   )
 }

@@ -715,6 +715,38 @@
       "empty-vault": "История пуста.",
       "cubes-unavailable": "Данные кубов недоступны"
     },
+    "MainColors": {
+      "label": "Основные цвета",
+      "placeholder": "Выбрать цвета",
+      "neutral": "Колор-нейтрал",
+      "colors": {
+        "white": "Белый",
+        "yellow": "Жёлтый",
+        "green": "Зелёный",
+        "blue": "Синий",
+        "red": "Красный",
+        "orange": "Оранжевый"
+      }
+    },
+    "CubingMethod": {
+      "label": "Метод",
+      "placeholder": "Выбрать метод",
+      "beginner": "Для начинающих",
+      "beginner-steps": "Послойный"
+    },
+    "ProfileLinks": {
+      "label": "Ссылки",
+      "description": "Ссылки на Instagram, YouTube, TikTok и Twitch показываются в профиле со своей иконкой.",
+      "placeholder": "Вставьте ссылку",
+      "add": "Добавить ссылку",
+      "reorder": "Перетащите или используйте стрелки, чтобы изменить порядок",
+      "remove": "Удалить ссылку",
+      "invalid": "Введите корректную ссылку"
+    },
+    "ProfileCompleteness": {
+      "title": "Профиль заполнен на {percent}%",
+      "complete": "заполнено"
+    },
     "AccountPage": {
       "go-to-profile": "В профиль",
       "name": "Имя",
@@ -722,6 +754,15 @@
       "name-min-length": "Минимум 5 символов",
       "pronoun": "Обращение",
       "select-pronoun": "Выбрать обращение",
+      "cubing-section": "Спидкубинг",
+      "identity-section": "Личные данные",
+      "clear": "Очистить",
+      "unsaved-changes": "Несохранённые изменения",
+      "fix-errors": "Исправьте отмеченные поля, чтобы сохранить",
+      "discard": "Отменить",
+      "preview": "Предпросмотр",
+      "goal-placeholder": "Напр., Sub-10 в 3x3",
+      "sections-nav": "Разделы формы",
       "country": "Страна",
       "select-country": "Выберите страну",
       "goal": "Цель",

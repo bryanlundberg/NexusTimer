@@ -715,6 +715,38 @@
       "empty-vault": "Dein Verlauf ist leer.",
       "cubes-unavailable": "Würfeldaten nicht verfügbar"
     },
+    "MainColors": {
+      "label": "Hauptfarben",
+      "placeholder": "Farben wählen",
+      "neutral": "Farbneutral",
+      "colors": {
+        "white": "Weiß",
+        "yellow": "Gelb",
+        "green": "Grün",
+        "blue": "Blau",
+        "red": "Rot",
+        "orange": "Orange"
+      }
+    },
+    "CubingMethod": {
+      "label": "Methode",
+      "placeholder": "Methode wählen",
+      "beginner": "Anfänger",
+      "beginner-steps": "Schicht für Schicht"
+    },
+    "ProfileLinks": {
+      "label": "Links",
+      "description": "Links zu Instagram, YouTube, TikTok und Twitch erscheinen mit eigenem Symbol in deinem Profil.",
+      "placeholder": "Link einfügen",
+      "add": "Link hinzufügen",
+      "reorder": "Ziehen oder mit den Pfeiltasten neu anordnen",
+      "remove": "Link entfernen",
+      "invalid": "Gib einen gültigen Link ein"
+    },
+    "ProfileCompleteness": {
+      "title": "Dein Profil ist zu {percent} % vollständig",
+      "complete": "vollständig"
+    },
     "AccountPage": {
       "go-to-profile": "Zum Profil",
       "name": "Name",
@@ -722,6 +754,15 @@
       "name-min-length": "Mindestens 5 Zeichen",
       "pronoun": "Pronomen",
       "select-pronoun": "Pronomen wählen",
+      "cubing-section": "Speedcubing",
+      "identity-section": "Identität",
+      "clear": "Leeren",
+      "unsaved-changes": "Ungespeicherte Änderungen",
+      "fix-errors": "Korrigiere die markierten Felder, um zu speichern",
+      "discard": "Verwerfen",
+      "preview": "Vorschau",
+      "goal-placeholder": "z. B. Sub-10 im 3x3",
+      "sections-nav": "Formularabschnitte",
       "country": "Land",
       "select-country": "Land auswählen",
       "goal": "Ziel",

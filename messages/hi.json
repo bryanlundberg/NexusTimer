@@ -715,6 +715,38 @@
       "empty-vault": "आपका इतिहास वर्तमान में खाली है।",
       "cubes-unavailable": "क्यूब्स डेटा उपलब्ध नहीं है"
     },
+    "MainColors": {
+      "label": "मुख्य रंग",
+      "placeholder": "रंग चुनें",
+      "neutral": "कलर न्यूट्रल",
+      "colors": {
+        "white": "सफ़ेद",
+        "yellow": "पीला",
+        "green": "हरा",
+        "blue": "नीला",
+        "red": "लाल",
+        "orange": "नारंगी"
+      }
+    },
+    "CubingMethod": {
+      "label": "मेथड",
+      "placeholder": "मेथड चुनें",
+      "beginner": "शुरुआती",
+      "beginner-steps": "लेयर बाय लेयर"
+    },
+    "ProfileLinks": {
+      "label": "लिंक",
+      "description": "Instagram, YouTube, TikTok और Twitch के लिंक आपकी प्रोफ़ाइल पर अपने आइकन के साथ दिखते हैं।",
+      "placeholder": "लिंक पेस्ट करें",
+      "add": "लिंक जोड़ें",
+      "reorder": "क्रम बदलने के लिए खींचें या एरो कुंजियों का उपयोग करें",
+      "remove": "लिंक हटाएँ",
+      "invalid": "सही लिंक डालें"
+    },
+    "ProfileCompleteness": {
+      "title": "आपकी प्रोफ़ाइल {percent}% पूरी है",
+      "complete": "पूरी"
+    },
     "AccountPage": {
       "go-to-profile": "प्रोफ़ाइल पर जाएं",
       "name": "नाम",
@@ -722,6 +754,15 @@
       "name-min-length": "नाम कम से कम 5 वर्ण लंबा होना चाहिए",
       "pronoun": "सर्वनाम",
       "select-pronoun": "सर्वनाम चुनें",
+      "cubing-section": "स्पीडक्यूबिंग",
+      "identity-section": "पहचान",
+      "clear": "साफ़ करें",
+      "unsaved-changes": "बिना सहेजे बदलाव",
+      "fix-errors": "सहेजने के लिए चिह्नित फ़ील्ड ठीक करें",
+      "discard": "रद्द करें",
+      "preview": "पूर्वावलोकन",
+      "goal-placeholder": "जैसे 3x3 में Sub-10",
+      "sections-nav": "फ़ॉर्म के सेक्शन",
       "country": "देश",
       "select-country": "देश चुनें",
       "goal": "लक्ष्य",

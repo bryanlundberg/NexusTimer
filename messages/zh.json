@@ -715,6 +715,38 @@
       "empty-vault": "你的历史记录目前为空。",
       "cubes-unavailable": "魔方数据不可用"
     },
+    "MainColors": {
+      "label": "主色",
+      "placeholder": "选择颜色",
+      "neutral": "全色底",
+      "colors": {
+        "white": "白色",
+        "yellow": "黄色",
+        "green": "绿色",
+        "blue": "蓝色",
+        "red": "红色",
+        "orange": "橙色"
+      }
+    },
+    "CubingMethod": {
+      "label": "解法",
+      "placeholder": "选择解法",
+      "beginner": "入门",
+      "beginner-steps": "层先法"
+    },
+    "ProfileLinks": {
+      "label": "链接",
+      "description": "Instagram、YouTube、TikTok 和 Twitch 链接会在你的主页上显示专属图标。",
+      "placeholder": "粘贴链接",
+      "add": "添加链接",
+      "reorder": "拖动或使用方向键调整顺序",
+      "remove": "移除链接",
+      "invalid": "请输入有效的链接"
+    },
+    "ProfileCompleteness": {
+      "title": "你的主页已完成 {percent}%",
+      "complete": "已完成"
+    },
     "AccountPage": {
       "go-to-profile": "前往个人资料",
       "name": "名称",
@@ -722,6 +754,15 @@
       "name-min-length": "名称长度必须至少为 5 个字符",
       "pronoun": "人称代词",
       "select-pronoun": "选择人称代词",
+      "cubing-section": "速拧",
+      "identity-section": "基本信息",
+      "clear": "清除",
+      "unsaved-changes": "有未保存的更改",
+      "fix-errors": "请修正标出的字段后再保存",
+      "discard": "放弃",
+      "preview": "预览",
+      "goal-placeholder": "例如：三阶 Sub-10",
+      "sections-nav": "表单分区",
       "country": "国家/地区",
       "select-country": "选择国家/地区",
       "goal": "目标",

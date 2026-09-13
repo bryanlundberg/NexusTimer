@@ -718,6 +718,38 @@
       "empty-vault": "ประวัติของคุณว่างอยู่ในขณะนี้",
       "cubes-unavailable": "ข้อมูลลูกบาศก์ไม่พร้อมใช้งาน"
     },
+    "MainColors": {
+      "label": "สีหลัก",
+      "placeholder": "เลือกสี",
+      "neutral": "Color neutral",
+      "colors": {
+        "white": "สีขาว",
+        "yellow": "สีเหลือง",
+        "green": "สีเขียว",
+        "blue": "สีน้ำเงิน",
+        "red": "สีแดง",
+        "orange": "สีส้ม"
+      }
+    },
+    "CubingMethod": {
+      "label": "วิธีแก้",
+      "placeholder": "เลือกวิธีแก้",
+      "beginner": "มือใหม่",
+      "beginner-steps": "แก้ทีละชั้น"
+    },
+    "ProfileLinks": {
+      "label": "ลิงก์",
+      "description": "ลิงก์ Instagram, YouTube, TikTok และ Twitch จะแสดงไอคอนของตัวเองบนโปรไฟล์ของคุณ",
+      "placeholder": "วางลิงก์",
+      "add": "เพิ่มลิงก์",
+      "reorder": "ลากหรือใช้ปุ่มลูกศรเพื่อจัดลำดับ",
+      "remove": "ลบลิงก์",
+      "invalid": "กรอกลิงก์ที่ถูกต้อง"
+    },
+    "ProfileCompleteness": {
+      "title": "โปรไฟล์ของคุณสมบูรณ์ {percent}%",
+      "complete": "สมบูรณ์"
+    },
     "AccountPage": {
       "personal-info": "ข้อมูลส่วนตัว",
       "personal-info-description": "อัปเดตข้อมูลสาธารณะของคุณและวิธีที่ผู้ใช้อื่นเห็นคุณ",
@@ -727,6 +759,15 @@
       "name-min-length": "ชื่อต้องมีอย่างน้อย 5 ตัวอักษร",
       "pronoun": "สรรพนาม",
       "select-pronoun": "เลือกสรรพนาม",
+      "cubing-section": "สปีดคิวบ์",
+      "identity-section": "ข้อมูลส่วนตัว",
+      "clear": "ล้าง",
+      "unsaved-changes": "มีการเปลี่ยนแปลงที่ยังไม่ได้บันทึก",
+      "fix-errors": "แก้ไขช่องที่ไฮไลต์เพื่อบันทึก",
+      "discard": "ยกเลิก",
+      "preview": "ตัวอย่าง",
+      "goal-placeholder": "เช่น Sub-10 ใน 3x3",
+      "sections-nav": "ส่วนของฟอร์ม",
       "country": "ประเทศ",
       "select-country": "เลือกประเทศ",
       "goal": "เป้าหมาย",

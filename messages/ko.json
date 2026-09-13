@@ -715,6 +715,38 @@
       "empty-vault": "기록실이 비어 있습니다.",
       "cubes-unavailable": "큐브 데이터를 사용할 수 없습니다"
     },
+    "MainColors": {
+      "label": "메인 색상",
+      "placeholder": "색상 선택",
+      "neutral": "컬러 뉴트럴",
+      "colors": {
+        "white": "흰색",
+        "yellow": "노란색",
+        "green": "초록색",
+        "blue": "파란색",
+        "red": "빨간색",
+        "orange": "주황색"
+      }
+    },
+    "CubingMethod": {
+      "label": "해법",
+      "placeholder": "해법 선택",
+      "beginner": "초보자",
+      "beginner-steps": "층별 해법"
+    },
+    "ProfileLinks": {
+      "label": "링크",
+      "description": "Instagram, YouTube, TikTok, Twitch 링크는 프로필에 전용 아이콘으로 표시됩니다.",
+      "placeholder": "링크 붙여넣기",
+      "add": "링크 추가",
+      "reorder": "드래그하거나 화살표 키로 순서를 바꾸세요",
+      "remove": "링크 삭제",
+      "invalid": "올바른 링크를 입력하세요"
+    },
+    "ProfileCompleteness": {
+      "title": "프로필 완성도 {percent}%",
+      "complete": "완료"
+    },
     "AccountPage": {
       "go-to-profile": "프로필로 이동",
       "name": "이름",
@@ -722,6 +754,15 @@
       "name-min-length": "이름은 5자 이상이어야 합니다",
       "pronoun": "칭호",
       "select-pronoun": "칭호 선택",
+      "cubing-section": "스피드큐빙",
+      "identity-section": "기본 정보",
+      "clear": "지우기",
+      "unsaved-changes": "저장하지 않은 변경 사항",
+      "fix-errors": "표시된 항목을 수정해야 저장할 수 있습니다",
+      "discard": "취소",
+      "preview": "미리보기",
+      "goal-placeholder": "예: 3x3 Sub-10",
+      "sections-nav": "양식 섹션",
       "country": "국가",
       "select-country": "국가 선택",
       "goal": "목표",

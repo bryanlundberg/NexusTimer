@@ -715,6 +715,38 @@
       "empty-vault": "履歴が空です。",
       "cubes-unavailable": "キューブデータがありません"
     },
+    "MainColors": {
+      "label": "メインカラー",
+      "placeholder": "色を選択",
+      "neutral": "カラーニュートラル",
+      "colors": {
+        "white": "白",
+        "yellow": "黄色",
+        "green": "緑",
+        "blue": "青",
+        "red": "赤",
+        "orange": "オレンジ"
+      }
+    },
+    "CubingMethod": {
+      "label": "解法",
+      "placeholder": "解法を選択",
+      "beginner": "初心者向け",
+      "beginner-steps": "一段ずつ揃える"
+    },
+    "ProfileLinks": {
+      "label": "リンク",
+      "description": "Instagram、YouTube、TikTok、Twitchのリンクはプロフィールに専用アイコンで表示されます。",
+      "placeholder": "リンクを貼り付け",
+      "add": "リンクを追加",
+      "reorder": "ドラッグまたは矢印キーで並べ替え",
+      "remove": "リンクを削除",
+      "invalid": "有効なリンクを入力してください"
+    },
+    "ProfileCompleteness": {
+      "title": "プロフィールの完成度は{percent}%です",
+      "complete": "完了"
+    },
     "AccountPage": {
       "go-to-profile": "プロフィールへ",
       "name": "名前",
@@ -722,6 +754,15 @@
       "name-min-length": "名前は5文字以上必要です",
       "pronoun": "代名詞",
       "select-pronoun": "代名詞を選択",
+      "cubing-section": "スピードキュービング",
+      "identity-section": "基本情報",
+      "clear": "クリア",
+      "unsaved-changes": "未保存の変更があります",
+      "fix-errors": "保存するにはハイライトされた項目を修正してください",
+      "discard": "破棄",
+      "preview": "プレビュー",
+      "goal-placeholder": "例: 3x3でSub-10",
+      "sections-nav": "フォームのセクション",
       "country": "国",
       "select-country": "国を選択",
       "goal": "目標",

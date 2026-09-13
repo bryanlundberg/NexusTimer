@@ -718,6 +718,38 @@
       "empty-vault": "Twoja historia jest obecnie pusta.",
       "cubes-unavailable": "Dane kostek są niedostępne"
     },
+    "MainColors": {
+      "label": "Główne kolory",
+      "placeholder": "Wybierz kolory",
+      "neutral": "Color neutral",
+      "colors": {
+        "white": "Biały",
+        "yellow": "Żółty",
+        "green": "Zielony",
+        "blue": "Niebieski",
+        "red": "Czerwony",
+        "orange": "Pomarańczowy"
+      }
+    },
+    "CubingMethod": {
+      "label": "Metoda",
+      "placeholder": "Wybierz metodę",
+      "beginner": "Dla początkujących",
+      "beginner-steps": "Warstwa po warstwie"
+    },
+    "ProfileLinks": {
+      "label": "Linki",
+      "description": "Linki do Instagrama, YouTube, TikToka i Twitcha mają na Twoim profilu własną ikonę.",
+      "placeholder": "Wklej link",
+      "add": "Dodaj link",
+      "reorder": "Przeciągnij lub użyj strzałek, aby zmienić kolejność",
+      "remove": "Usuń link",
+      "invalid": "Podaj prawidłowy link"
+    },
+    "ProfileCompleteness": {
+      "title": "Twój profil jest uzupełniony w {percent}%",
+      "complete": "uzupełnione"
+    },
     "AccountPage": {
       "personal-info": "Dane osobowe",
       "personal-info-description": "Zaktualizuj swoje publiczne informacje i to, jak widzą Cię inni użytkownicy.",
@@ -727,6 +759,15 @@
       "name-min-length": "Imię musi mieć co najmniej 5 znaków",
       "pronoun": "Zaimek",
       "select-pronoun": "Wybierz zaimek",
+      "cubing-section": "Speedcubing",
+      "identity-section": "Tożsamość",
+      "clear": "Wyczyść",
+      "unsaved-changes": "Niezapisane zmiany",
+      "fix-errors": "Popraw zaznaczone pola, aby zapisać",
+      "discard": "Odrzuć",
+      "preview": "Podgląd",
+      "goal-placeholder": "Np. Sub-10 na 3x3",
+      "sections-nav": "Sekcje formularza",
       "country": "Kraj",
       "select-country": "Wybierz kraj",
       "goal": "Cel",

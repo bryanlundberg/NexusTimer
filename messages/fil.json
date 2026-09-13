@@ -718,6 +718,38 @@
       "empty-vault": "Walang laman ang history mo sa ngayon.",
       "cubes-unavailable": "Hindi available ang data ng mga cube"
     },
+    "MainColors": {
+      "label": "Mga pangunahing kulay",
+      "placeholder": "Pumili ng mga kulay",
+      "neutral": "Color neutral",
+      "colors": {
+        "white": "Puti",
+        "yellow": "Dilaw",
+        "green": "Berde",
+        "blue": "Asul",
+        "red": "Pula",
+        "orange": "Orange"
+      }
+    },
+    "CubingMethod": {
+      "label": "Method",
+      "placeholder": "Pumili ng method",
+      "beginner": "Beginner",
+      "beginner-steps": "Layer by layer"
+    },
+    "ProfileLinks": {
+      "label": "Mga link",
+      "description": "Ang mga link ng Instagram, YouTube, TikTok at Twitch ay may sariling icon sa iyong profile.",
+      "placeholder": "I-paste ang link",
+      "add": "Magdagdag ng link",
+      "reorder": "I-drag o gamitin ang mga arrow key para ayusin ang order",
+      "remove": "Alisin ang link",
+      "invalid": "Maglagay ng wastong link"
+    },
+    "ProfileCompleteness": {
+      "title": "{percent}% kumpleto ang iyong profile",
+      "complete": "kumpleto"
+    },
     "AccountPage": {
       "personal-info": "Personal na Impormasyon",
       "personal-info-description": "I-update ang public na impormasyon mo at kung paano ka nakikita ng ibang user.",
@@ -727,6 +759,15 @@
       "name-min-length": "Ang pangalan ay dapat hindi bababa sa 5 character",
       "pronoun": "Panghalip",
       "select-pronoun": "Pumili ng panghalip",
+      "cubing-section": "Speedcubing",
+      "identity-section": "Pagkakakilanlan",
+      "clear": "I-clear",
+      "unsaved-changes": "Mga pagbabagong hindi naka-save",
+      "fix-errors": "Iwasto ang mga naka-highlight na field para mag-save",
+      "discard": "Huwag i-save",
+      "preview": "Preview",
+      "goal-placeholder": "Hal. Sub-10 sa 3x3",
+      "sections-nav": "Mga seksyon ng form",
       "country": "Bansa",
       "select-country": "Pumili ng bansa",
       "goal": "Layunin",

@@ -718,6 +718,38 @@
       "empty-vault": "Ваша історія поки порожня.",
       "cubes-unavailable": "Дані кубів недоступні"
     },
+    "MainColors": {
+      "label": "Основні кольори",
+      "placeholder": "Виберіть кольори",
+      "neutral": "Колор-нейтрал",
+      "colors": {
+        "white": "Білий",
+        "yellow": "Жовтий",
+        "green": "Зелений",
+        "blue": "Синій",
+        "red": "Червоний",
+        "orange": "Помаранчевий"
+      }
+    },
+    "CubingMethod": {
+      "label": "Метод",
+      "placeholder": "Виберіть метод",
+      "beginner": "Для початківців",
+      "beginner-steps": "Пошаровий"
+    },
+    "ProfileLinks": {
+      "label": "Посилання",
+      "description": "Посилання на Instagram, YouTube, TikTok і Twitch показуються в профілі з власною іконкою.",
+      "placeholder": "Вставте посилання",
+      "add": "Додати посилання",
+      "reorder": "Перетягніть або скористайтеся стрілками, щоб змінити порядок",
+      "remove": "Видалити посилання",
+      "invalid": "Введіть коректне посилання"
+    },
+    "ProfileCompleteness": {
+      "title": "Профіль заповнено на {percent}%",
+      "complete": "заповнено"
+    },
     "AccountPage": {
       "personal-info": "Особиста інформація",
       "personal-info-description": "Оновіть свою публічну інформацію та те, як вас бачать інші користувачі.",
@@ -727,6 +759,15 @@
       "name-min-length": "Ім'я має містити щонайменше 5 символів",
       "pronoun": "Займенник",
       "select-pronoun": "Виберіть займенник",
+      "cubing-section": "Спідкубінг",
+      "identity-section": "Особисті дані",
+      "clear": "Очистити",
+      "unsaved-changes": "Незбережені зміни",
+      "fix-errors": "Виправте позначені поля, щоб зберегти",
+      "discard": "Скасувати",
+      "preview": "Попередній перегляд",
+      "goal-placeholder": "Напр., Sub-10 у 3x3",
+      "sections-nav": "Розділи форми",
       "country": "Країна",
       "select-country": "Виберіть країну",
       "goal": "Ціль",

@@ -708,6 +708,38 @@
       "empty-vault": "Your history is currently empty.",
       "cubes-unavailable": "Cubes data is not available"
     },
+    "MainColors": {
+      "label": "Main colors",
+      "placeholder": "Select colors",
+      "neutral": "Color neutral",
+      "colors": {
+        "white": "White",
+        "yellow": "Yellow",
+        "green": "Green",
+        "blue": "Blue",
+        "red": "Red",
+        "orange": "Orange"
+      }
+    },
+    "CubingMethod": {
+      "label": "Method",
+      "placeholder": "Select method",
+      "beginner": "Beginner",
+      "beginner-steps": "Layer by layer"
+    },
+    "ProfileLinks": {
+      "label": "Links",
+      "description": "Instagram, YouTube, TikTok and Twitch links show their own icon on your profile.",
+      "placeholder": "Paste a link",
+      "add": "Add link",
+      "reorder": "Drag or use the arrow keys to reorder",
+      "remove": "Remove link",
+      "invalid": "Enter a valid link"
+    },
+    "ProfileCompleteness": {
+      "title": "Your profile is {percent}% complete",
+      "complete": "complete"
+    },
     "AccountPage": {
       "personal-info": "Personal Info",
       "personal-info-description": "Update your public information and how other users see you.",
@@ -717,6 +749,15 @@
       "name-min-length": "Name must be at least 5 characters long",
       "pronoun": "Pronoun",
       "select-pronoun": "Select pronoun",
+      "cubing-section": "Speedcubing",
+      "identity-section": "Identity",
+      "clear": "Clear",
+      "unsaved-changes": "Unsaved changes",
+      "fix-errors": "Fix the highlighted fields to save",
+      "discard": "Discard",
+      "preview": "Preview",
+      "goal-placeholder": "e.g. Sub-10 in 3x3",
+      "sections-nav": "Form sections",
       "country": "Country",
       "select-country": "Select country",
       "goal": "Goal",

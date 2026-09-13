@@ -1,4 +1,7 @@
 import { Schema, models, model } from 'mongoose'
+import { FACE_COLORS } from '@/shared/const/face-colors'
+import { CUBING_METHODS, type CubingMethod } from '@/shared/const/cubing-methods'
+import { Layers } from '@/shared/types/enums'
 
 export interface UserDocument {
   _id: string
@@ -9,6 +12,9 @@ export interface UserDocument {
   pronoun?: string
   country?: string
   goal?: string
+  method?: CubingMethod
+  mainColors?: Layers[]
+  links?: string[]
   wcaId?: string
   wcaVerifiedAt?: number
   backup?: {
@@ -58,6 +64,18 @@ const UserSchema = new Schema(
     },
     goal: {
       type: String
+    },
+    method: {
+      type: String,
+      enum: CUBING_METHODS
+    },
+    mainColors: {
+      type: [{ type: String, enum: FACE_COLORS }],
+      default: undefined
+    },
+    links: {
+      type: [String],
+      default: undefined
     },
     wcaId: {
       type: String
