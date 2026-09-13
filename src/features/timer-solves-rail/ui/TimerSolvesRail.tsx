@@ -20,6 +20,7 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTimerRailStore } from '@/features/timer-solves-rail/model/useTimerRailStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import SolveDetails from '@/features/manage-solves/ui/SolveDetails'
+import TimerRailTrend from '@/features/timer-solves-rail/ui/TimerRailTrend'
 
 type RailTab = 'session' | 'cube'
 
@@ -54,7 +55,7 @@ export default function TimerSolvesRail() {
     return sort(combined).desc((solve) => solve.endTime)
   }, [cubes, selectedCube, tab])
 
-  const stats = useMemo(() => {
+  const { stats, bestTime, bestAo5, bestAo12 } = useMemo(() => {
     const actualAo = (n: number) => {
       if (solves.length < n) return '-'
       const ao = calcCurrentAo(solves, n)
@@ -68,15 +69,28 @@ export default function TimerSolvesRail() {
 
     const valid = solves.filter((solve) => !solve.dnf)
     const current = solves[0]
+    const bestTime = valid.length === 0 ? null : getBestTime({ solves: valid })
     const actualSingle = !current ? '-' : current.dnf ? 'DNF' : formatTime(current.time)
-    const bestSingle = valid.length === 0 ? '-' : formatTime(getBestTime({ solves: valid }))
+    const bestSingle = bestTime === null ? '-' : formatTime(bestTime)
 
-    return [
-      { label: 'Single', actual: actualSingle, best: bestSingle },
-      { label: 'Ao3', actual: actualAo(3), best: bestAo(3) },
-      { label: 'Ao5', actual: actualAo(5), best: bestAo(5) },
-      { label: 'Ao12', actual: actualAo(12), best: bestAo(12) }
-    ]
+    const stat = (label: string, n: number, actual: string, best: string) => ({
+      label,
+      actual,
+      best,
+      isRecord: solves.length > n && actual !== '-' && actual !== 'DNF' && actual === best
+    })
+
+    return {
+      bestTime,
+      bestAo5: bestAo(5),
+      bestAo12: bestAo(12),
+      stats: [
+        stat('Single', 1, actualSingle, bestSingle),
+        stat('Ao3', 3, actualAo(3), bestAo(3)),
+        stat('Ao5', 5, actualAo(5), bestAo(5)),
+        stat('Ao12', 12, actualAo(12), bestAo(12))
+      ]
+    }
   }, [solves])
 
   const rows = useMemo(() => {
@@ -86,16 +100,22 @@ export default function TimerSolvesRail() {
       return ao === 0 ? 'DNF' : formatTime(ao)
     }
     return solves.map((solve, index) => {
+      const ao5 = formatAo(solves.slice(index, index + 5), 5)
+      const ao12 = formatAo(solves.slice(index, index + 12), 12)
       return {
         id: solve.id,
         dnf: solve.dnf,
-        time: solve.dnf ? 'DNF' : `${formatTime(solve.time)}${solve.plus2 ? '+' : ''}`,
+        plus2: solve.plus2,
+        time: solve.dnf ? 'DNF' : formatTime(solve.time),
         number: solves.length - index,
-        ao5: formatAo(solves.slice(index, index + 5), 5),
-        ao12: formatAo(solves.slice(index, index + 12), 12)
+        isBest: solves.length > 1 && !solve.dnf && solve.time === bestTime,
+        ao5,
+        ao12,
+        isBestAo5: solves.length > 5 && ao5 !== '-' && ao5 === bestAo5,
+        isBestAo12: solves.length > 12 && ao12 !== '-' && ao12 === bestAo12
       }
     })
-  }, [solves])
+  }, [solves, bestTime, bestAo5, bestAo12])
 
   const virtualizer = useVirtualizer({
     count: rows.length,
@@ -139,12 +159,20 @@ export default function TimerSolvesRail() {
               <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                 {stat.label}
               </span>
-              <span className="text-right font-mono text-xs tabular-nums text-muted-foreground">{stat.actual}</span>
+              <span
+                className={cn(
+                  'text-right font-mono text-xs tabular-nums',
+                  stat.isRecord ? 'font-semibold text-amber-700 dark:text-amber-400' : 'text-muted-foreground'
+                )}
+              >
+                {stat.actual}
+              </span>
               <span className="text-right font-mono text-xs font-semibold tabular-nums text-foreground">
                 {stat.best}
               </span>
             </div>
           ))}
+          <TimerRailTrend solves={solves} bestTime={bestTime} />
         </div>
 
         {/* Column header */}
@@ -184,23 +212,43 @@ export default function TimerSolvesRail() {
                     <button
                       type="button"
                       onClick={() => openSolveDetails(solve)}
-                      className="grid h-full w-full items-center gap-1.5 border-b border-border/50 px-2 text-left transition-colors hover:bg-muted/50"
+                      className={cn(
+                        'relative grid h-full w-full items-center gap-1.5 border-b border-border/50 px-2 text-left transition-colors hover:bg-muted/50',
+                        virtualRow.index === 0 && 'bg-primary/[0.04]'
+                      )}
                       style={{ gridTemplateColumns: GRID_COLS }}
                     >
-                      <span className="text-xs font-semibold tabular-nums text-muted-foreground">{row.number}</span>
+                      {virtualRow.index === 0 && (
+                        <span aria-hidden className="absolute inset-y-2 left-0 w-0.5 bg-primary" />
+                      )}
+                      <span className="text-xs font-semibold tabular-nums text-muted-foreground/70">{row.number}</span>
 
                       <span
                         className={cn(
                           'text-right font-mono text-sm font-semibold tabular-nums',
-                          row.dnf && 'text-red-500'
+                          row.dnf && 'text-destructive',
+                          row.isBest && 'text-amber-700 dark:text-amber-400'
                         )}
                       >
                         {row.time}
+                        {row.plus2 && <span className="text-destructive">+</span>}
                       </span>
 
-                      <span className="text-right font-mono text-xs tabular-nums text-muted-foreground">{row.ao5}</span>
+                      <span
+                        className={cn(
+                          'text-right font-mono text-xs tabular-nums',
+                          row.isBestAo5 ? 'font-semibold text-amber-700 dark:text-amber-400' : 'text-muted-foreground'
+                        )}
+                      >
+                        {row.ao5}
+                      </span>
 
-                      <span className="text-right font-mono text-xs tabular-nums text-muted-foreground">
+                      <span
+                        className={cn(
+                          'text-right font-mono text-xs tabular-nums',
+                          row.isBestAo12 ? 'font-semibold text-amber-700 dark:text-amber-400' : 'text-muted-foreground'
+                        )}
+                      >
                         {row.ao12}
                       </span>
                     </button>
