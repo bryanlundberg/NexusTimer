@@ -12,7 +12,6 @@ import { TimerMode, TimerStatus } from '@/features/timer/model/enums'
 import { useScreenWakeLock } from '@/shared/model/useScreenWakeLock'
 import { useNexusConnectStore } from '@/features/nexus-connect/model/useNexusConnectStore'
 import ConnectQRInline from '@/features/nexus-connect/ui/ConnectQRInline'
-
 export default function Timer({ children }: { children?: ReactNode }) {
   const settings = useSettingsStore((store) => store.settings)
   const selectedCube = useTimerStore((store) => store.selectedCube)
