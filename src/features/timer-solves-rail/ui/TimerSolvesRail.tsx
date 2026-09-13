@@ -25,7 +25,7 @@ import TimerRailTrend from '@/features/timer-solves-rail/ui/TimerRailTrend'
 type RailTab = 'session' | 'cube'
 
 const GRID_COLS = '1.3rem minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)'
-const STAT_COLS = '2.5rem minmax(0, 1fr) minmax(0, 1fr)'
+const STAT_COLS = '3.5rem minmax(0, 1fr) minmax(0, 1fr)'
 const ROW_HEIGHT = 36
 
 export default function TimerSolvesRail() {
@@ -85,13 +85,13 @@ export default function TimerSolvesRail() {
       bestAo5: bestAo(5),
       bestAo12: bestAo(12),
       stats: [
-        stat('Single', 1, actualSingle, bestSingle),
+        stat(t('single'), 1, actualSingle, bestSingle),
         stat('Ao3', 3, actualAo(3), bestAo(3)),
         stat('Ao5', 5, actualAo(5), bestAo(5)),
         stat('Ao12', 12, actualAo(12), bestAo(12))
       ]
     }
-  }, [solves])
+  }, [solves, t])
 
   const rows = useMemo(() => {
     const formatAo = (window: Solve[], n: number) => {
@@ -147,8 +147,8 @@ export default function TimerSolvesRail() {
             style={{ gridTemplateColumns: STAT_COLS }}
           >
             <span />
-            <span className="text-right">Actual</span>
-            <span className="text-right">Best</span>
+            <span className="truncate text-right">{t('current')}</span>
+            <span className="truncate text-right">{t('best')}</span>
           </div>
           {stats.map((stat) => (
             <div
