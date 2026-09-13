@@ -3,7 +3,7 @@ import { Settings } from '@/shared/types/Settings'
 import { defaultSettings } from '@/shared/model/settings/defaultSettings'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { cloneDeep } from 'es-toolkit'
+import { cloneDeep, toMerged } from 'es-toolkit'
 
 // Type for nested paths in Settings object
 type NestedPaths<T> = T extends object
@@ -58,7 +58,12 @@ export const useSettingsStore = create<SettingsStoreProps>()(
     }),
     {
       name: 'settings-modal-store',
-      version: 3
+      version: 3,
+      // Saved settings predate any key added since; fill those from the defaults.
+      merge: (persisted, current) => {
+        const saved = (persisted as Partial<SettingsStoreProps> | undefined)?.settings
+        return { ...current, settings: saved ? toMerged(defaultSettings, saved) : current.settings }
+      }
     }
   )
 )
