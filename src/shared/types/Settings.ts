@@ -25,6 +25,7 @@ type Alerts = {
   bestTime: boolean
   bestAverage: boolean
   worstTime: boolean
+  solveDelta: boolean
 }
 
 type Preferences = {
