@@ -4,7 +4,7 @@ import { Reveal } from '@/app/_landing/Reveal'
 import { CubeGridTexture } from '@/app/_landing/CubeDecor'
 import { Nexi } from '@/shared/ui/nexi'
 import EraCarousel from './EraCarousel'
-import { ABOUT, CTA, DISCORD_URL, ERAS, MISSION, REPO_URL } from './content'
+import { ABOUT, CTA, DISCORD_URL, ERAS, MISSION, REPO_URL, STATS } from './content'
 
 const MISSION_ICONS = { gift: Gift, code: Code2, shield: ShieldOff } as const
 
@@ -27,7 +27,7 @@ export default function AboutContent() {
 
       <main>
         {/* Hero */}
-        <section className="relative overflow-hidden px-6 pt-12 pb-20 md:pt-20 md:pb-28">
+        <section className="relative overflow-hidden px-6 pt-12 pb-12 md:pt-20 md:pb-16">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 -z-10 text-gray-900"
@@ -56,6 +56,20 @@ export default function AboutContent() {
           </div>
         </section>
 
+        {/* Stats */}
+        <section className="px-6 pb-20 md:pb-28">
+          <Reveal className="mx-auto grid max-w-5xl grid-cols-2 gap-px border border-gray-900/10 bg-gray-900/10 md:grid-cols-4">
+            {STATS.map((stat) => (
+              <div key={stat.label} className="bg-[var(--lp-bg)] px-4 py-6 text-center md:py-8">
+                <p className="font-display text-2xl md:text-4xl font-bold tabular-nums tracking-[-0.02em] text-gray-900">
+                  {stat.value}
+                </p>
+                <p className="mt-2 text-[11px] uppercase tracking-[0.2em] text-gray-500">{stat.label}</p>
+              </div>
+            ))}
+          </Reveal>
+        </section>
+
         {/* Timeline */}
         <section className="lp-cv relative px-6 pb-8">
           <div className="mx-auto max-w-5xl">
@@ -66,7 +80,7 @@ export default function AboutContent() {
 
             <ol className="relative border-l border-gray-900/10 pl-6 md:pl-10">
               {ERAS.map((era, index) => (
-                <li key={era.title} className="relative pb-16 last:pb-0">
+                <li key={era.title} className="relative pb-20 md:pb-24 last:pb-0">
                   <span
                     aria-hidden
                     className="absolute -left-[calc(1.5rem+5px)] top-2 h-2.5 w-2.5 rounded-[3px] md:-left-[calc(2.5rem+5px)]"
@@ -84,7 +98,28 @@ export default function AboutContent() {
                       <h2 className="font-display text-xl md:text-2xl font-bold tracking-[-0.01em] text-gray-900 mb-3">
                         {era.title}
                       </h2>
-                      <p className="text-sm md:text-base text-gray-600 leading-relaxed text-pretty">{era.text}</p>
+                      <div className="space-y-4">
+                        {era.paragraphs.map((paragraph) => (
+                          <p key={paragraph} className="text-sm md:text-base text-gray-600 leading-relaxed text-pretty">
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
+                      <ul className="mt-6 flex flex-wrap gap-2">
+                        {era.highlights.map((highlight) => (
+                          <li
+                            key={highlight}
+                            className="inline-flex items-center gap-2 border border-gray-900/10 bg-gray-900/[0.03] px-2.5 py-1 text-xs font-medium text-gray-700"
+                          >
+                            <span
+                              aria-hidden
+                              className="h-1.5 w-1.5 rounded-[2px]"
+                              style={{ backgroundColor: era.accent }}
+                            />
+                            {highlight}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
 
                     {era.images.length > 0 && (
