@@ -715,6 +715,38 @@
       "empty-vault": "Seu histórico está vazio.",
       "cubes-unavailable": "Dados dos cubos indisponíveis"
     },
+    "MainColors": {
+      "label": "Cores principais",
+      "placeholder": "Selecionar cores",
+      "neutral": "Color neutral",
+      "colors": {
+        "white": "Branco",
+        "yellow": "Amarelo",
+        "green": "Verde",
+        "blue": "Azul",
+        "red": "Vermelho",
+        "orange": "Laranja"
+      }
+    },
+    "CubingMethod": {
+      "label": "Método",
+      "placeholder": "Selecionar método",
+      "beginner": "Iniciante",
+      "beginner-steps": "Camada por camada"
+    },
+    "ProfileLinks": {
+      "label": "Links",
+      "description": "Links do Instagram, YouTube, TikTok e Twitch mostram o próprio ícone no seu perfil.",
+      "placeholder": "Cole um link",
+      "add": "Adicionar link",
+      "reorder": "Arraste ou use as setas para reordenar",
+      "remove": "Remover link",
+      "invalid": "Insira um link válido"
+    },
+    "ProfileCompleteness": {
+      "title": "Seu perfil está {percent}% completo",
+      "complete": "completo"
+    },
     "AccountPage": {
       "go-to-profile": "Ir ao Perfil",
       "name": "Nome",
@@ -722,6 +754,15 @@
       "name-min-length": "O nome deve ter pelo menos 5 caracteres",
       "pronoun": "Pronome",
       "select-pronoun": "Selecionar pronome",
+      "cubing-section": "Speedcubing",
+      "identity-section": "Identidade",
+      "clear": "Limpar",
+      "unsaved-changes": "Alterações não salvas",
+      "fix-errors": "Corrija os campos destacados para salvar",
+      "discard": "Descartar",
+      "preview": "Pré-visualização",
+      "goal-placeholder": "Ex.: Sub-10 no 3x3",
+      "sections-nav": "Seções do formulário",
       "country": "País",
       "select-country": "Selecionar país",
       "goal": "Objetivo",

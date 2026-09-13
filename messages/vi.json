@@ -718,6 +718,38 @@
       "empty-vault": "Lịch sử của bạn hiện đang trống.",
       "cubes-unavailable": "Dữ liệu khối không khả dụng"
     },
+    "MainColors": {
+      "label": "Màu chính",
+      "placeholder": "Chọn màu",
+      "neutral": "Color neutral",
+      "colors": {
+        "white": "Trắng",
+        "yellow": "Vàng",
+        "green": "Xanh lá",
+        "blue": "Xanh dương",
+        "red": "Đỏ",
+        "orange": "Cam"
+      }
+    },
+    "CubingMethod": {
+      "label": "Phương pháp",
+      "placeholder": "Chọn phương pháp",
+      "beginner": "Người mới",
+      "beginner-steps": "Giải từng tầng"
+    },
+    "ProfileLinks": {
+      "label": "Liên kết",
+      "description": "Liên kết Instagram, YouTube, TikTok và Twitch sẽ hiện biểu tượng riêng trên hồ sơ của bạn.",
+      "placeholder": "Dán liên kết",
+      "add": "Thêm liên kết",
+      "reorder": "Kéo hoặc dùng phím mũi tên để sắp xếp lại",
+      "remove": "Xóa liên kết",
+      "invalid": "Nhập liên kết hợp lệ"
+    },
+    "ProfileCompleteness": {
+      "title": "Hồ sơ của bạn đã hoàn thành {percent}%",
+      "complete": "hoàn thành"
+    },
     "AccountPage": {
       "personal-info": "Thông tin cá nhân",
       "personal-info-description": "Cập nhật thông tin công khai và cách người dùng khác nhìn thấy bạn.",
@@ -727,6 +759,15 @@
       "name-min-length": "Tên phải có ít nhất 5 ký tự",
       "pronoun": "Đại từ",
       "select-pronoun": "Chọn đại từ",
+      "cubing-section": "Speedcubing",
+      "identity-section": "Thông tin cá nhân",
+      "clear": "Xóa",
+      "unsaved-changes": "Có thay đổi chưa lưu",
+      "fix-errors": "Sửa các trường được đánh dấu để lưu",
+      "discard": "Hủy thay đổi",
+      "preview": "Xem trước",
+      "goal-placeholder": "VD: Sub-10 khối 3x3",
+      "sections-nav": "Các phần của biểu mẫu",
       "country": "Quốc gia",
       "select-country": "Chọn quốc gia",
       "goal": "Mục tiêu",

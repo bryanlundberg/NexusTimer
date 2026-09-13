@@ -718,6 +718,38 @@
       "empty-vault": "Riwayatmu saat ini kosong.",
       "cubes-unavailable": "Data kubus tidak tersedia"
     },
+    "MainColors": {
+      "label": "Warna utama",
+      "placeholder": "Pilih warna",
+      "neutral": "Color neutral",
+      "colors": {
+        "white": "Putih",
+        "yellow": "Kuning",
+        "green": "Hijau",
+        "blue": "Biru",
+        "red": "Merah",
+        "orange": "Oranye"
+      }
+    },
+    "CubingMethod": {
+      "label": "Metode",
+      "placeholder": "Pilih metode",
+      "beginner": "Pemula",
+      "beginner-steps": "Lapis demi lapis"
+    },
+    "ProfileLinks": {
+      "label": "Tautan",
+      "description": "Tautan Instagram, YouTube, TikTok, dan Twitch tampil dengan ikonnya sendiri di profilmu.",
+      "placeholder": "Tempel tautan",
+      "add": "Tambah tautan",
+      "reorder": "Seret atau gunakan tombol panah untuk mengurutkan",
+      "remove": "Hapus tautan",
+      "invalid": "Masukkan tautan yang valid"
+    },
+    "ProfileCompleteness": {
+      "title": "Profilmu {percent}% lengkap",
+      "complete": "lengkap"
+    },
     "AccountPage": {
       "personal-info": "Info Pribadi",
       "personal-info-description": "Perbarui informasi publikmu dan cara pengguna lain melihatmu.",
@@ -727,6 +759,15 @@
       "name-min-length": "Nama harus minimal 5 karakter",
       "pronoun": "Kata ganti",
       "select-pronoun": "Pilih kata ganti",
+      "cubing-section": "Speedcubing",
+      "identity-section": "Identitas",
+      "clear": "Hapus",
+      "unsaved-changes": "Perubahan belum disimpan",
+      "fix-errors": "Perbaiki kolom yang ditandai untuk menyimpan",
+      "discard": "Buang",
+      "preview": "Pratinjau",
+      "goal-placeholder": "Mis. Sub-10 di 3x3",
+      "sections-nav": "Bagian formulir",
       "country": "Negara",
       "select-country": "Pilih negara",
       "goal": "Target",
