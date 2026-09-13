@@ -9,7 +9,7 @@ import {
 describe('registerRequestSchema', () => {
   it('accepts a valid payload', () => {
     const result = registerRequestSchema.safeParse({
-      name: 'Bryan',
+      name: 'Mateo',
       email: 'a@b.co',
       password: 'longenough'
     })
@@ -18,13 +18,13 @@ describe('registerRequestSchema', () => {
 
   it('trims the name', () => {
     const result = registerRequestSchema.safeParse({
-      name: '  Bryan  ',
+      name: '  Mateo  ',
       email: 'a@b.co',
       password: 'longenough'
     })
     expect(result.success).toBe(true)
     if (result.success) {
-      expect(result.data.name).toBe('Bryan')
+      expect(result.data.name).toBe('Mateo')
     }
   })
 
@@ -42,16 +42,16 @@ describe('registerRequestSchema', () => {
 
   it('rejects invalid emails', () => {
     expect(
-      registerRequestSchema.safeParse({ name: 'Bryan', email: 'not-an-email', password: 'longenough' }).success
+      registerRequestSchema.safeParse({ name: 'Mateo', email: 'not-an-email', password: 'longenough' }).success
     ).toBe(false)
   })
 
   it('rejects a password shorter than 8 chars', () => {
-    expect(registerRequestSchema.safeParse({ name: 'Bryan', email: 'a@b.co', password: '1234567' }).success).toBe(false)
+    expect(registerRequestSchema.safeParse({ name: 'Mateo', email: 'a@b.co', password: '1234567' }).success).toBe(false)
   })
 
   it('rejects a password longer than 72 chars', () => {
-    expect(registerRequestSchema.safeParse({ name: 'Bryan', email: 'a@b.co', password: 'x'.repeat(73) }).success).toBe(
+    expect(registerRequestSchema.safeParse({ name: 'Mateo', email: 'a@b.co', password: 'x'.repeat(73) }).success).toBe(
       false
     )
   })
