@@ -4,7 +4,7 @@ import ScramblePanel from './ScrambleImagePanel'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useSettingsStore } from '@/shared/model/settings/useSettingsStore'
 import { useTranslations } from 'next-intl'
-
+import { Trophy } from 'lucide-react'
 import { useWindowSize } from 'react-use-size'
 import { cn } from '@/shared/lib/utils'
 import { SCRAMBLE_HEIGHT } from '@/shared/const/scramble-height'
@@ -36,11 +36,14 @@ export default function TimerWidgets() {
         <div
           data-testid="best-average-alert"
           className={cn(
-            'rounded-none px-2 py-1 text-xs sm:text-sm border border-primary/30 bg-primary/10 text-primary w-fit ms-auto',
+            'chip-notch flex items-center gap-1.5 w-fit ms-auto px-2.5 py-1 text-xs sm:text-sm font-medium bg-amber-500/15 text-amber-700 dark:text-amber-400',
             height <= SCRAMBLE_HEIGHT && 'text-[10px]'
           )}
         >
-          {t('new_best_average')}: {newBestAverages.join(', ')}
+          <Trophy aria-hidden className="size-3.5 shrink-0 text-amber-500" />
+          <span>
+            {t('new_best_average')} <span className="font-mono font-semibold">{newBestAverages.join(' · ')}</span>
+          </span>
         </div>
       </div>
     ) : null
@@ -53,7 +56,7 @@ export default function TimerWidgets() {
       <div
         data-testid="worst-time-alert"
         className={cn(
-          'p-1 text-xs sm:text-sm border rounded-md bg-background w-fit ms-auto',
+          'chip-notch w-fit ms-auto px-2.5 py-1 text-xs sm:text-sm font-medium bg-destructive/10 text-destructive',
           height <= SCRAMBLE_HEIGHT && 'text-[10px]'
         )}
         id="touch"
