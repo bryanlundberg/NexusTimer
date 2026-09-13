@@ -23,10 +23,11 @@ export const defaultSettings: Settings = {
   alerts: {
     bestTime: true,
     bestAverage: true,
-    worstTime: false
+    worstTime: false,
+    solveDelta: true
   },
   preferences: {
-    colorTheme: 'violet'
+    colorTheme: 'indigo'
   },
   sounds: {
     newPersonalBest: true,
