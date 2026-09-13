@@ -1,13 +1,26 @@
 'use client'
 
-export function SidebarBgEffect() {
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden group-data-[collapsible=icon]:hidden">
-      {/* Subtle glass highlight at the top */}
-      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-primary/[0.05] to-transparent dark:from-primary/10" />
+import type { CSSProperties } from 'react'
 
-      {/* Right-edge glow border */}
-      <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-primary/25 to-transparent dark:via-primary/20" />
+const FACE = [0, 1, 2].flatMap((row) => [0, 1, 2].map((col) => ({ x: 1 + col * 10, y: 1 + row * 10 })))
+
+export function SidebarBgEffect({ accent }: { accent: string }) {
+  return (
+    <div
+      className="pointer-events-none absolute inset-0 overflow-hidden group-data-[collapsible=icon]:hidden"
+      style={{ '--sidebar-ambient': accent } as CSSProperties}
+    >
+      <div className="sidebar-ambient absolute inset-x-0 top-0 h-64" />
+      <svg
+        aria-hidden
+        viewBox="0 0 30 30"
+        className="sidebar-watermark absolute -top-7 -right-8 size-28 rotate-12"
+        fill="currentColor"
+      >
+        {FACE.map(({ x, y }) => (
+          <rect key={`${x}-${y}`} x={x} y={y} width="8" height="8" rx="1.6" />
+        ))}
+      </svg>
     </div>
   )
 }
