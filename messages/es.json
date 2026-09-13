@@ -6,6 +6,8 @@
       "time": "Tiempo",
       "solves": "{count} tiempos",
       "best": "mejor",
+      "single": "Single",
+      "current": "Actual",
       "select-cube": "Seleccionar cubo",
       "no-solves": "Aún no hay tiempos",
       "show": "Mostrar tiempos",
@@ -151,6 +153,7 @@
       "tap-to-start": "Mantén pulsado para empezar",
       "space-to-start": "Mantén espacio para empezar",
       "empty-scramble": "Elige un cubo para cargar un scramble.",
+      "show-scramble": "Mostrar scramble",
       "congratulations": "¡Felicidades! {time}",
       "new_best_average": "¡Nuevo mejor promedio!",
       "new_worst_time": "¡Vaya, tu peor tiempo!",
@@ -525,6 +528,7 @@
       "best-time": "Mejor tiempo",
       "best-average": "Mejor promedio",
       "worst-time": "Peor tiempo",
+      "solve-delta": "Diferencia con el tiempo anterior",
       "sounds": "Sonidos",
       "voice-gender": "Género de voz",
       "male": "Hombre",
@@ -665,6 +669,7 @@
       "start-cue": "Muestra una señal visual cuando el cronómetro está listo.",
       "voice-gender-description": "Elige entre voz masculina o femenina para la inspección.",
       "worst-time-alert": "Muestra una alerta cuando obtengas tu peor tiempo en la sesión.",
+      "solve-delta": "Muestra cuánto más rápido o lento fue cada tiempo respecto al anterior.",
       "focus-mode-scramble": "Mantiene el scramble visible mientras el modo concentración está activo"
     },
     "TransferSolvesPage": {
