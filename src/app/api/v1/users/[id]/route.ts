@@ -4,22 +4,36 @@ import { hasFlag } from 'country-flag-icons'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User, { type UserProfile } from '@/entities/user/model/user'
 import { userProfileCache } from '@/entities/user/model/user-cache'
+import { buildUserUpdate } from '@/entities/user/lib/build-user-update'
 import UserAchievement from '@/entities/achievement/model/user-achievement'
 import { auth } from '@/shared/config/auth/auth'
 import { parseJsonBody } from '@/shared/api/parse-json'
 import { badRequest, notFound, ok, serverError, unauthorized } from '@/shared/api/responses'
-import { bioSchema, goalSchema, nameSchema } from '@/features/account-form/model/types'
+import {
+  bioSchema,
+  goalSchema,
+  mainColorsSchema,
+  methodSchema,
+  nameSchema,
+  profileLinksSchema
+} from '@/features/account-form/model/types'
 
 const PUBLIC_PROJECTION = '-email -providers -__v'
+
+const clearable = <T extends z.ZodTypeAny>(schema: T) =>
+  z.preprocess((value) => (value === '' ? null : value), schema.nullable()).optional()
 
 const updateUserSchema = z
   .object({
     name: nameSchema.optional(),
     image: z.string().url().optional(),
-    bio: bioSchema.optional(),
-    pronoun: z.string().max(30).optional(),
-    country: z.string().length(2).toUpperCase().refine(hasFlag, 'Invalid country code').optional(),
-    goal: goalSchema.optional()
+    bio: clearable(bioSchema),
+    pronoun: clearable(z.string().max(30)),
+    country: clearable(z.string().length(2).toUpperCase().refine(hasFlag, 'Invalid country code')),
+    goal: clearable(goalSchema),
+    method: clearable(methodSchema),
+    mainColors: mainColorsSchema.optional(),
+    links: profileLinksSchema.optional()
   })
   .strict()
 
@@ -36,9 +50,12 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
 
     await connectDB()
 
-    const updatedUser = await User.findOneAndUpdate({ _id: userId }, body, { returnDocument: 'after' })
-      .select(PUBLIC_PROJECTION)
-      .lean()
+    const update = buildUserUpdate(body)
+    const updatedUser = update
+      ? await User.findOneAndUpdate({ _id: userId }, update, { returnDocument: 'after' })
+          .select(PUBLIC_PROJECTION)
+          .lean()
+      : await User.findById(userId).select(PUBLIC_PROJECTION).lean()
 
     await userProfileCache.invalidate(userId)
 
