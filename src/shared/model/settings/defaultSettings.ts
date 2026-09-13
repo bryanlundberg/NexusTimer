@@ -26,7 +26,7 @@ export const defaultSettings: Settings = {
     worstTime: false
   },
   preferences: {
-    colorTheme: 'emerald'
+    colorTheme: 'violet'
   },
   sounds: {
     newPersonalBest: true,
