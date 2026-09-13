@@ -656,6 +656,11 @@
 .btn-notch-border:hover {
   --btn-fill: var(--accent);
 }
+.btn-notch-border[data-brand]:hover,
+.btn-notch-border[data-brand]:focus-visible {
+  --btn-border-color: var(--brand);
+  --btn-fill: color-mix(in oklab, var(--brand) 10%, var(--background));
+}
 
 /* Small angular chips: icon tiles inside dropdown panels and menus. Same cut
    language as .btn-notch, scaled down so it reads on 24-36px squares. */
