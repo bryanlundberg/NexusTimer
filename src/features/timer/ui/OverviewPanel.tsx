@@ -2,6 +2,7 @@ import formatTime from '@/shared/lib/formatTime'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
+import TimerStatTile from './TimerStatTile'
 
 export default function OverviewPanel() {
   const timerStatistics = useTimerStore((store) => store.timerStatistics)
@@ -30,41 +31,15 @@ export default function OverviewPanel() {
     }
   ]
 
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { x: -20, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: { duration: 0.2 } }
-  }
-
   return (
     <motion.div
       className="flex flex-col gap-1 md:grid md:grid-cols-2 md:gap-1.5"
-      variants={containerVariants}
+      variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
       initial="hidden"
       animate="visible"
     >
       {stats.map(({ label, value, testId }) => (
-        <motion.div
-          key={testId}
-          className="stat-notch font-medium md:flex md:flex-col md:justify-center md:bg-primary/10 md:py-2 md:px-3"
-          variants={itemVariants}
-        >
-          <span className="md:text-[8px] md:uppercase md:opacity-70">
-            {label}
-            {': '}
-          </span>
-          <span className="md:text-lg md:font-semibold md:text-foreground md:leading-none" data-testid={testId}>
-            {value}
-          </span>
-        </motion.div>
+        <TimerStatTile key={testId} label={label} value={value} testId={testId} side="left" />
       ))}
     </motion.div>
   )
