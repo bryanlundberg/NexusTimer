@@ -8,6 +8,8 @@ import dayjs from '@/shared/lib/dayjs'
 import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { getCountryName } from '@/shared/lib/getCountryName'
+import { ProfileTraits } from '@/entities/user/ui/ProfileTraits'
+import { ProfileLinks } from '@/entities/user/ui/ProfileLinks'
 import { PresenceDot } from '@/features/presence/ui/PresenceDot'
 import { usePresence, resolvePresenceDisplay } from '@/features/presence/model/usePresence'
 
@@ -75,9 +77,12 @@ export function ProfileHeroBanner({ user, level }: Props) {
             )}
             <span>{t('member-since', { date: memberSince })}</span>
           </div>
+          <ProfileTraits method={user.method} mainColors={user.mainColors} />
           {user.bio && <p className="text-sm text-muted-foreground wrap-break-word">{user.bio}</p>}
         </div>
       </div>
+
+      <ProfileLinks links={user.links} className="shrink-0 sm:max-w-[40%] sm:justify-end" />
     </div>
   )
 }
