@@ -5,13 +5,16 @@ import { useLocale, useTranslations } from 'next-intl'
 import { useQueryState } from 'nuqs'
 import { toast } from 'sonner'
 import Link from 'next/link'
-import { SquareArrowOutUpRight, Mail, X } from 'lucide-react'
+import { Eye, SquareArrowOutUpRight, Mail, X } from 'lucide-react'
 import { KeyedMutator } from 'swr'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { AvatarUploader } from '@/features/update-user-avatar/ui/AvatarUploader'
 import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { getCountryName } from '@/shared/lib/getCountryName'
+import { Layers } from '@/shared/types/enums'
+import { ProfileTraits } from '@/entities/user/ui/ProfileTraits'
+import { ProfileLinks } from '@/entities/user/ui/ProfileLinks'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -26,13 +29,29 @@ import {
 
 interface ProfileHeroProps {
   session: Session
+  name?: string
+  isPreview?: boolean
   bio?: string
   wcaId?: string
   country?: string
+  method?: string
+  mainColors?: Layers[]
+  links?: string[]
   mutate?: KeyedMutator<any>
 }
 
-export default function ProfileHero({ session, bio, wcaId, country, mutate }: ProfileHeroProps) {
+export default function ProfileHero({
+  session,
+  name,
+  isPreview = false,
+  bio,
+  wcaId,
+  country,
+  method,
+  mainColors,
+  links,
+  mutate
+}: ProfileHeroProps) {
   const tAccount = useTranslations('Index.AccountPage')
   const locale = useLocale()
   const [wcaStatus, setWcaStatus] = useQueryState('wca')
@@ -82,41 +101,49 @@ export default function ProfileHero({ session, bio, wcaId, country, mutate }: Pr
       <AvatarUploader />
 
       <div className="flex flex-col items-center sm:items-start gap-2 min-w-0 flex-1">
-        <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2 min-w-0">
-          <span className="truncate">{session.user?.name}</span>
-          {wcaId && (
-            <span className="flex items-center gap-1 shrink-0">
-              <WcaBadge wcaId={wcaId} showCode />
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <button
-                    type="button"
-                    aria-label={tAccount('wca-unlink')}
-                    className="text-muted-foreground hover:text-destructive transition-colors rounded-sm p-0.5"
-                  >
-                    <X className="size-3.5" />
-                  </button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>{tAccount('wca-unlink-title')}</AlertDialogTitle>
-                    <AlertDialogDescription>{tAccount('wca-unlink-description')}</AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>{tAccount('wca-cancel')}</AlertDialogCancel>
-                    <AlertDialogAction
-                      onClick={handleUnlink}
-                      disabled={isUnlinking}
-                      className={buttonVariants({ variant: 'destructive' })}
+        <div className="flex items-center gap-2 min-w-0 max-w-full">
+          <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2 min-w-0">
+            <span className="truncate">{name || session.user?.name}</span>
+            {wcaId && (
+              <span className="flex items-center gap-1 shrink-0">
+                <WcaBadge wcaId={wcaId} showCode />
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <button
+                      type="button"
+                      aria-label={tAccount('wca-unlink')}
+                      className="text-muted-foreground hover:text-destructive transition-colors rounded-sm p-0.5"
                     >
-                      {tAccount('wca-unlink-confirm')}
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
+                      <X className="size-3.5" />
+                    </button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>{tAccount('wca-unlink-title')}</AlertDialogTitle>
+                      <AlertDialogDescription>{tAccount('wca-unlink-description')}</AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>{tAccount('wca-cancel')}</AlertDialogCancel>
+                      <AlertDialogAction
+                        onClick={handleUnlink}
+                        disabled={isUnlinking}
+                        className={buttonVariants({ variant: 'destructive' })}
+                      >
+                        {tAccount('wca-unlink-confirm')}
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </span>
+            )}
+          </h1>
+          {isPreview && (
+            <span className="badge-notch inline-flex h-5 shrink-0 items-center gap-1 bg-primary/15 px-1.5 text-[10px] font-bold uppercase tracking-wider text-primary animate-in fade-in zoom-in-95 duration-150">
+              <Eye className="size-3" aria-hidden />
+              {tAccount('preview')}
             </span>
           )}
-        </h1>
+        </div>
 
         <div className="flex items-center gap-2 text-muted-foreground text-sm flex-wrap justify-center sm:justify-start">
           <span className="flex items-center gap-2 min-w-0">
@@ -134,7 +161,11 @@ export default function ProfileHero({ session, bio, wcaId, country, mutate }: Pr
           )}
         </div>
 
+        <ProfileTraits method={method} mainColors={mainColors} className="justify-center sm:justify-start" />
+
         {bio && <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{bio}</p>}
+
+        <ProfileLinks links={links} className="mt-1 justify-center sm:justify-start" />
 
         <div className="flex items-center gap-2 mt-3">
           <Link href={`/people/${session.user?.id}`}>
