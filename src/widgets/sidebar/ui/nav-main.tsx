@@ -19,6 +19,7 @@ import { ChevronRightIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import { cn } from '@/shared/lib/utils'
 
 export function NavMain({
   items,
@@ -70,16 +71,51 @@ export function NavMain({
     return pathname === base || (pathname.startsWith(base + '/') && base !== '/')
   }
 
+  const isItemActive = (item: (typeof items)[number]) =>
+    isPathActive(item.url) || (item.items?.some((s) => isPathActive(s.url)) ?? false)
+  const sectionActive = items.some(isItemActive)
+
   return (
     <SidebarGroup
       style={accent ? ({ ['--nav-accent']: accent } as React.CSSProperties) : undefined}
       className="group-data-[collapsible=icon]:mt-1 group-data-[collapsible=icon]:border-t group-data-[collapsible=icon]:border-sidebar-border/60 group-data-[collapsible=icon]:pt-2"
     >
-      {label && <SidebarGroupLabel>{label}</SidebarGroupLabel>}
+      {label && (
+        <SidebarGroupLabel className="gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.14em]">
+          {accent && (
+            <span
+              aria-hidden
+              className="size-2 shrink-0 rounded-[2px] transition-shadow duration-300"
+              style={{
+                backgroundColor: 'var(--nav-accent)',
+                boxShadow: sectionActive ? '0 0 0 3px color-mix(in oklch, var(--nav-accent) 22%, transparent)' : 'none'
+              }}
+            />
+          )}
+          <span
+            className={cn(
+              'truncate transition-colors duration-300',
+              sectionActive ? 'text-sidebar-foreground' : 'text-sidebar-foreground/55'
+            )}
+          >
+            {label}
+          </span>
+          <span
+            aria-hidden
+            className="h-px min-w-4 flex-1"
+            style={{
+              background: `linear-gradient(to right, ${
+                sectionActive && accent
+                  ? 'color-mix(in oklch, var(--nav-accent) 45%, transparent)'
+                  : 'var(--sidebar-border)'
+              }, transparent)`
+            }}
+          />
+        </SidebarGroupLabel>
+      )}
       <SidebarMenu>
         {items.map((item) => {
-          const subActive = item.items?.some((s) => isPathActive(s.url)) ?? false
-          const itemActive = isPathActive(item.url) || subActive
+          const itemActive = isItemActive(item)
           const isOpen = item.isActive
 
           return (
@@ -90,20 +126,23 @@ export function NavMain({
                   tooltip={item.title}
                   isActive={itemActive}
                   data-active-item={itemActive ? 'true' : undefined}
-                  className={`relative md:data-[active=true]:bg-transparent group-data-[collapsible=icon]:[&>svg]:opacity-90 ${
-                    accent ? '[&>svg]:text-[color:var(--nav-accent)]' : ''
-                  }`}
+                  className={cn(
+                    'nav-notch transition-[width,height,padding,color] text-sidebar-foreground/75 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground group-data-[collapsible=icon]:[&>svg]:opacity-90',
+                    accent && '[&>svg]:text-(--nav-accent)'
+                  )}
                 >
                   <Link href={item.url} onClick={handleNavClick}>
                     {accent && itemActive && (
                       <span
                         aria-hidden
-                        className="absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-none group-data-[collapsible=icon]:hidden"
+                        className="absolute left-0 top-1/2 h-4 w-0.5 -translate-y-1/2 md:hidden group-data-[collapsible=icon]:hidden"
                         style={{ backgroundColor: 'var(--nav-accent)' }}
                       />
                     )}
                     <item.icon />
-                    <span>{item.title}</span>
+                    <span className="motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-(--ease-snap) motion-safe:group-hover/menu-item:translate-x-0.5">
+                      {item.title}
+                    </span>
                     {item.badge && (
                       <span className="ml-auto rounded-full bg-cube-red px-1.5 py-0.5 text-[10px] font-semibold leading-none text-white group-data-[collapsible=icon]:hidden">
                         {item.badge}
@@ -113,6 +152,7 @@ export function NavMain({
                 </SidebarMenuButton>
                 {item.action && !item.items?.length ? (
                   <SidebarMenuAction
+                    className="motion-safe:[&>svg]:transition-transform motion-safe:[&>svg]:duration-200 motion-safe:[&>svg]:ease-(--ease-snap) hover:[&>svg]:rotate-90"
                     onClick={(e) => {
                       e.preventDefault()
                       e.stopPropagation()
@@ -137,8 +177,19 @@ export function NavMain({
                         {item.items?.map((subItem) => {
                           const subIsActive = isPathActive(subItem.url)
                           return (
-                            <SidebarMenuSubItem key={subItem.title}>
-                              <SidebarMenuSubButton asChild isActive={subIsActive}>
+                            <SidebarMenuSubItem key={subItem.url}>
+                              {accent && subIsActive && (
+                                <span
+                                  aria-hidden
+                                  className="absolute top-1/2 -left-[11.5px] h-3.5 w-0.5 -translate-y-1/2"
+                                  style={{ backgroundColor: 'var(--nav-accent)' }}
+                                />
+                              )}
+                              <SidebarMenuSubButton
+                                asChild
+                                isActive={subIsActive}
+                                className="nav-notch text-sidebar-foreground/70 hover:text-sidebar-foreground data-[active=true]:text-sidebar-foreground"
+                              >
                                 <Link href={subItem.url} onClick={handleNavClick}>
                                   <span>{subItem.title}</span>
                                 </Link>
