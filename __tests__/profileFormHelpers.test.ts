@@ -53,7 +53,7 @@ describe('splitPastedTokens', () => {
 })
 
 describe('getProfileCompleteness', () => {
-  it('counts filled fields and lists what is missing, ignoring pronoun and WCA ID', () => {
+  it('counts filled fields and lists what is missing, ignoring links and WCA ID', () => {
     const result = getProfileCompleteness({ bio: 'hi', pronoun: 'He', mainColors: [], links: ['https://a.com/'] })
     expect(result.done).toBe(2)
     expect(result.total).toBe(6)
@@ -61,14 +61,14 @@ describe('getProfileCompleteness', () => {
     expect(result.missing.map((m) => m.key)).toEqual(['country', 'goal', 'method', 'mainColors'])
   })
 
-  it('reaches 100 with every field set and no WCA ID', () => {
+  it('reaches 100 with every field set and no links or WCA ID', () => {
     const result = getProfileCompleteness({
       bio: 'hi',
+      pronoun: 'He',
       country: 'MX',
       goal: 'Sub-10',
       method: 'cfop',
-      mainColors: ['white'] as never,
-      links: ['https://a.com/']
+      mainColors: ['white'] as never
     })
     expect(result.percent).toBe(100)
     expect(result.missing).toEqual([])

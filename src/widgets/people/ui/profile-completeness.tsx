@@ -14,18 +14,17 @@ export function ProfileCompletenessBar({ user }: { user: UserDocument }) {
   const tAccount = useTranslations('Index.AccountPage')
   const tMethod = useTranslations('Index.CubingMethod')
   const tColors = useTranslations('Index.MainColors')
-  const tLinks = useTranslations('Index.ProfileLinks')
 
   const { percent, done, total, missing } = getProfileCompleteness(user)
   if (!missing.length) return null
 
   const labels: Record<CompletenessKey, string> = {
     bio: tAccount('bio'),
+    pronoun: tAccount('pronoun'),
     country: tAccount('country'),
     goal: tAccount('goal'),
     method: tMethod('label'),
-    mainColors: tColors('label'),
-    links: tLinks('label')
+    mainColors: tColors('label')
   }
 
   return (

@@ -8,11 +8,11 @@ export const PROFILE_SECTION_IDS = {
 
 const COMPLETENESS_FIELDS = [
   { key: 'bio', href: `/account?tab=account#${PROFILE_SECTION_IDS.identity}` },
+  { key: 'pronoun', href: `/account?tab=account#${PROFILE_SECTION_IDS.identity}` },
   { key: 'country', href: `/account?tab=account#${PROFILE_SECTION_IDS.identity}` },
   { key: 'goal', href: `/account?tab=account#${PROFILE_SECTION_IDS.speedcubing}` },
   { key: 'method', href: `/account?tab=account#${PROFILE_SECTION_IDS.speedcubing}` },
-  { key: 'mainColors', href: `/account?tab=account#${PROFILE_SECTION_IDS.speedcubing}` },
-  { key: 'links', href: `/account?tab=account#${PROFILE_SECTION_IDS.links}` }
+  { key: 'mainColors', href: `/account?tab=account#${PROFILE_SECTION_IDS.speedcubing}` }
 ] as const satisfies ReadonlyArray<{ key: keyof UserDocument; href: string }>
 
 export type CompletenessKey = (typeof COMPLETENESS_FIELDS)[number]['key']
