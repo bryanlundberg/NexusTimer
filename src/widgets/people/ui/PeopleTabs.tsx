@@ -8,6 +8,7 @@ import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
 import { ProfileHeroBanner } from '@/widgets/people/ui/profile-hero-banner'
 import { ProfileBadgesStrip } from '@/widgets/people/ui/profile-badges-strip'
+import { ProfileCompletenessBar } from '@/widgets/people/ui/profile-completeness'
 import { TabTableSkeleton } from '@/shared/ui/skeletons/people-skeleton'
 import { UserProfile } from '@/entities/user/model/user'
 import { Cube } from '@/entities/cube/model/types'
@@ -91,6 +92,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
 
       <ProfileHeroBanner user={user} level={userBadges.earnedTiers} />
+      {isCurrentUser && <ProfileCompletenessBar user={user} />}
       {!isLoadingStats && <ProfileBadgesStrip badges={userBadges} />}
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
