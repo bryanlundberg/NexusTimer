@@ -1,8 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { useVirtualizer } from '@tanstack/react-virtual'
+import { useMemo, useState } from 'react'
 import { Check, ChevronDown, Globe } from 'lucide-react'
 import { useLocale } from 'next-intl'
 import { countries } from 'country-flag-icons'
@@ -10,13 +9,9 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Command, CommandEmpty, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
+import { CountryVirtualList } from '@/shared/ui/country-combobox/CountryVirtualList'
 import { getCountryName } from '@/shared/lib/getCountryName'
 import { cn } from '@/shared/lib/utils'
-
-interface CountryItem {
-  code: string
-  name: string
-}
 
 interface CountryComboboxProps {
   value: string | null
@@ -26,68 +21,15 @@ interface CountryComboboxProps {
   emptyText: string
   clearLabel?: string
   className?: string
+  id?: string
+  reserveClearSlot?: boolean
 }
-
-const ROW_HEIGHT = 32
 
 const normalize = (value: string) =>
   value
     .toLowerCase()
     .normalize('NFD')
     .replace(/\p{Diacritic}/gu, '')
-
-/**
- * Virtualized rows. Lives in its own component so `useVirtualizer` mounts
- * together with its scroll container (the dialog content) — initializing it
- * in the parent leaves the list empty until the next re-render.
- */
-function CountryVirtualList({
-  items,
-  value,
-  onSelect
-}: {
-  items: CountryItem[]
-  value: string | null
-  onSelect: (code: string) => void
-}) {
-  const listRef = useRef<HTMLDivElement>(null)
-
-  const rowVirtualizer = useVirtualizer({
-    count: items.length,
-    getScrollElement: () => listRef.current,
-    estimateSize: () => ROW_HEIGHT,
-    overscan: 8
-  })
-
-  useEffect(() => {
-    if (!value) return
-    const index = items.findIndex((item) => item.code === value)
-    if (index >= 0) rowVirtualizer.scrollToIndex(index, { align: 'center' })
-  }, [])
-
-  return (
-    <div ref={listRef} className="max-h-72 overflow-y-auto overflow-x-hidden">
-      <div className="relative w-full" style={{ height: rowVirtualizer.getTotalSize() }}>
-        {rowVirtualizer.getVirtualItems().map((row) => {
-          const { code, name } = items[row.index]
-          return (
-            <CommandItem
-              key={code}
-              value={code}
-              onSelect={() => onSelect(code)}
-              className="absolute left-1 right-1 top-0"
-              style={{ height: row.size, transform: `translateY(${row.start}px)` }}
-            >
-              <CountryFlag code={code} />
-              <span className="truncate">{name}</span>
-              {value === code && <Check className="ml-auto size-4" />}
-            </CommandItem>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
 
 export function CountryCombobox({
   value,
@@ -96,7 +38,9 @@ export function CountryCombobox({
   searchPlaceholder,
   emptyText,
   clearLabel,
-  className
+  className,
+  id,
+  reserveClearSlot = false
 }: CountryComboboxProps) {
   const locale = useLocale()
   const [open, setOpen] = useState(false)
@@ -134,12 +78,13 @@ export function CountryCombobox({
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button
+          id={id}
           variant="outline"
           role="combobox"
           aria-expanded={open}
           className={cn('justify-between font-normal', !selected && 'text-muted-foreground', className)}
         >
-          <span className="flex items-center gap-2 truncate">
+          <span className="flex flex-1 items-center gap-2 truncate">
             {selected ? (
               <>
                 <CountryFlag code={selected.code} />
@@ -152,6 +97,7 @@ export function CountryCombobox({
               </>
             )}
           </span>
+          {reserveClearSlot && <span aria-hidden className="w-6 shrink-0" />}
           <ChevronDown className="size-4 shrink-0 opacity-50" />
         </Button>
       </DialogTrigger>
