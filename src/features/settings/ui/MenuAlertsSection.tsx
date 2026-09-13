@@ -27,6 +27,12 @@ export default function MenuAlertsSection({ control }: { control: any }) {
         control={control}
         description={t('Settings-descriptions.worst-time-alert')}
       />
+      <MenuOption
+        name={'alerts.solveDelta'}
+        label={t('Settings-menu.solve-delta')}
+        control={control}
+        description={t('Settings-descriptions.solve-delta')}
+      />
     </MenuSection>
   )
 }
