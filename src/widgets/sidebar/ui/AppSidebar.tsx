@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import { motion } from 'motion/react'
 import { usePathname } from 'next/navigation'
 import { useActiveIndicator } from '@/widgets/sidebar/model/useActiveIndicator'
@@ -46,8 +46,24 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useFocusModeStore } from '@/features/focus-mode/model/useFocusModeStore'
 import { INDICATOR_SPRING } from '@/shared/lib/motion'
 
+const SECTION_ACCENT = {
+  platform: 'var(--cube-blue)',
+  community: 'var(--cube-orange)',
+  multiplayer: 'var(--cube-red)',
+  training: 'var(--cube-green)'
+} as const
+
+type SectionKey = keyof typeof SECTION_ACCENT
+
+const SECTION_KEYS = Object.keys(SECTION_ACCENT) as SectionKey[]
+
+const subscribeNoop = () => () => {}
+const getIsMac = () => /Mac|iPhone|iPad/.test(navigator.userAgent)
+const getIsMacServer = () => false
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { open, openMobile, setOpenMobile, isMobile, state } = useSidebar()
+  const { open, openMobile, setOpenMobile, isMobile, state, toggleSidebar } = useSidebar()
+  const isMac = useSyncExternalStore(subscribeNoop, getIsMac, getIsMacServer)
   const t = useTranslations('Index')
   const { isInstallable, install } = usePwaInstall()
   const { handleCreate } = useCubeActions()
@@ -131,6 +147,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           title: t('AlgorithmsPage.title'),
           url: '/algorithms',
           icon: AlgorithmsNavIcon,
+          isActive: true,
           items: [
             ...ALGORITHM_SETS.map((set) => ({
               title: set.title.toUpperCase(),
@@ -162,24 +179,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     [t, handleCreate]
   )
 
-  const activeAccent = useMemo(() => {
+  const activeSection = useMemo<SectionKey | null>(() => {
     const matches = (items: { url: string; items?: { url: string }[] }[]) =>
       items.some((it) => {
         const hit = (url: string) => !!url && (pathname === url || (url !== '/' && pathname.startsWith(url + '/')))
         return hit(it.url) || (it.items?.some((s) => hit(s.url.split('#')[0])) ?? false)
       })
-    if (matches(data.training)) return 'var(--cube-green)'
-    if (matches(data.community)) return 'var(--cube-orange)'
-    if (matches(data.multiplayer)) return 'var(--cube-red)'
-    return 'var(--cube-blue)'
+    return SECTION_KEYS.find((key) => matches(data[key])) ?? null
   }, [data, pathname])
+  const activeAccent = SECTION_ACCENT[activeSection ?? 'platform']
 
   if (isFocusMode) return null
 
   return (
     <Sidebar collapsible={'icon'} {...props}>
-      <SidebarBgEffect />
-      <SidebarHeader className={'mt-2'}>
+      <SidebarBgEffect accent={activeAccent} />
+      <SidebarHeader className={'relative mt-2'}>
         <SidebarMenu>
           <SidebarMenuItem>
             <Link
@@ -229,6 +244,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </Link>
           </SidebarMenuItem>
         </SidebarMenu>
+        <div aria-hidden className="flex gap-1 px-1 pt-1 group-data-[collapsible=icon]:hidden">
+          {SECTION_KEYS.map((key) => {
+            const isActive = key === activeSection
+            return (
+              <span
+                key={key}
+                className="h-[3px] -skew-x-[35deg] transition-[flex-grow,opacity] duration-500 ease-(--ease-solve) motion-reduce:transition-none"
+                style={{
+                  backgroundColor: SECTION_ACCENT[key],
+                  flexGrow: isActive ? 2.5 : 1,
+                  opacity: isActive ? 1 : activeSection ? 0.25 : 0.45
+                }}
+              />
+            )
+          })}
+        </div>
       </SidebarHeader>
       <SidebarContent
         ref={scrollRef}
@@ -237,22 +268,27 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <div ref={menuRef} className="relative isolate">
           {!isMobile && indicator && (
             <motion.div
-              className="absolute top-0 left-0 rounded-md pointer-events-none -z-10"
+              className="nav-indicator pointer-events-none absolute top-0 left-0 -z-10"
               style={{
                 width: indicator.width,
                 height: indicator.height,
-                backgroundColor: 'var(--sidebar-accent)',
-                boxShadow: `inset 0 0 0 1px color-mix(in oklch, ${activeAccent} 14%, var(--sidebar-border))`
+                backgroundColor: `color-mix(in oklch, ${activeAccent} 14%, var(--sidebar-accent))`
               }}
               initial={false}
               animate={{ x: indicator.left, y: indicator.top }}
               transition={INDICATOR_SPRING}
-            />
+            >
+              <span
+                aria-hidden
+                className="absolute top-1/2 left-0 h-4 w-0.5 -translate-y-1/2 transition-colors duration-300 group-data-[collapsible=icon]:hidden"
+                style={{ backgroundColor: activeAccent }}
+              />
+            </motion.div>
           )}
-          <NavMain items={data.platform} label={t('NavMain.platform')} accent="var(--cube-blue)" />
-          <NavMain items={data.training} label={t('NavMain.training')} accent="var(--cube-green)" />
-          <NavMain items={data.community} label={t('NavMain.community')} accent="var(--cube-orange)" />
-          <NavMain items={data.multiplayer} label={t('NavMain.multiplayer')} accent="var(--cube-red)" />
+          <NavMain items={data.platform} label={t('NavMain.platform')} accent={SECTION_ACCENT.platform} />
+          <NavMain items={data.community} label={t('NavMain.community')} accent={SECTION_ACCENT.community} />
+          <NavMain items={data.multiplayer} label={t('NavMain.multiplayer')} accent={SECTION_ACCENT.multiplayer} />
+          <NavMain items={data.training} label={t('NavMain.training')} accent={SECTION_ACCENT.training} />
         </div>
 
         <div className="pointer-events-none sticky bottom-0 z-10 -mt-7 flex h-7 items-end justify-center group-data-[collapsible=icon]:hidden">
@@ -265,7 +301,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </motion.span>
         </div>
       </SidebarContent>
-      <SidebarFooter className="group-data-[collapsible=icon]:hidden">
+      <SidebarFooter className="relative group-data-[collapsible=icon]:hidden">
         <SmartCubeIndicator />
         <SidebarActivity />
         {isInstallable && (
@@ -278,25 +314,43 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <span>{t('NavMain.install-app')}</span>
           </button>
         )}
-        <div className="flex items-center justify-center gap-1">
-          <a
-            href="https://github.com/bryanlundberg/NexusTimer"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="flex size-7 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
-          >
-            <GithubIcon size={16} />
-          </a>
-          <a
-            href="https://discord.gg/eCgTKcavec"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Discord"
-            className="flex size-7 items-center justify-center rounded-md text-muted-foreground hover:bg-accent hover:text-foreground transition-colors"
-          >
-            <DiscordIcon size={16} />
-          </a>
+        <div className="flex items-center justify-between gap-2 px-1">
+          <div className="flex items-center gap-1">
+            <a
+              href="https://github.com/bryanlundberg/NexusTimer"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              className="chip-notch chip-notch-sm flex size-7 items-center justify-center text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
+            >
+              <GithubIcon size={16} />
+            </a>
+            <a
+              href="https://discord.gg/eCgTKcavec"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Discord"
+              className="chip-notch chip-notch-sm flex size-7 items-center justify-center text-muted-foreground transition-colors hover:bg-[#5865F2]/12 hover:text-[#5865F2]"
+            >
+              <DiscordIcon size={16} />
+            </a>
+          </div>
+          {!isMobile && (
+            <button
+              type="button"
+              onClick={toggleSidebar}
+              aria-label="Toggle Sidebar"
+              aria-keyshortcuts={isMac ? 'Meta+B' : 'Control+B'}
+              className="flex cursor-pointer items-center gap-1 text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <kbd className="flex h-5 min-w-5 items-center justify-center rounded-[3px] border border-sidebar-border bg-background/50 px-1 font-mono text-[10px] leading-none">
+                {isMac ? '⌘' : 'Ctrl'}
+              </kbd>
+              <kbd className="flex h-5 min-w-5 items-center justify-center rounded-[3px] border border-sidebar-border bg-background/50 px-1 font-mono text-[10px] leading-none">
+                B
+              </kbd>
+            </button>
+          )}
         </div>
       </SidebarFooter>
     </Sidebar>
