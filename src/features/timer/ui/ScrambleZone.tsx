@@ -150,7 +150,7 @@ export function ScrambleZone() {
         ) : showModalButton ? (
           <Dialog>
             <DialogTrigger className="text-sm opacity-60 hover:opacity-100 transition-opacity">
-              [ Show scramble ]
+              [ {t('HomePage.show-scramble')} ]
             </DialogTrigger>
             <DialogContent className="sm:max-w-xl">
               <DialogHeader>
