@@ -43,7 +43,7 @@ export default function LineGraphLegend({
         .map((entry) => (
           <div key={entry.label} className={cn('legend-notch flex items-center gap-1.5 px-2.5 py-1 text-[11px]')}>
             <span
-              className="inline-block w-3 h-[2px] rounded-full"
+              className="inline-block w-3 h-[2px]"
               style={{
                 background:
                   entry.style === 'dashed'
