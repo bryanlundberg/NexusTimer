@@ -25,13 +25,16 @@ export default function CubesTabContent({ cubes }: CubesTabContentProps) {
   const sortedCubes = orderBy(cubes, [(cube) => cube.solves.session.length + cube.solves.all.length], ['desc'])
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto border border-border/60 bg-card/40">
       <div className="min-w-[820px]">
         {/* Table header */}
-        <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
+        <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60 bg-muted/30`}>
           <span />
           {(['col-name', 'col-best', 'col-ao5', 'col-solves', 'col-time', 'col-distribution'] as const).map((key) => (
-            <span key={key} className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <span
+              key={key}
+              className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground"
+            >
               {tPeople(key)}
             </span>
           ))}
