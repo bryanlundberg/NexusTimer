@@ -35,20 +35,20 @@ export default function PeoplePage() {
       <PageBody variant="hero" className="px-2 pb-8 flex flex-col w-full max-w-2xl mx-auto">
         <PeoplePageHeader total={data?.docs} showing={data?.events?.length} />
 
-        <div className="overflow-hidden">
+        <div className="overflow-hidden border border-border/60 bg-card/40">
           {/* Table header */}
-          <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_7rem_7rem_7rem] items-center gap-x-4 px-3 py-2 border-b border-border/60">
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] sm:grid-cols-[3rem_minmax(0,1fr)_7rem_7rem_7rem] items-center gap-x-4 px-3 py-2 border-b border-border/60 bg-muted/30">
             <span className="hidden sm:block" />
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <span className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               {t('title')}
             </span>
-            <span className="hidden sm:block text-center text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <span className="hidden sm:block text-center font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               {t('col-country')}
             </span>
-            <span className="hidden sm:block text-center text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <span className="hidden sm:block text-center font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
               WCA
             </span>
-            <span className="text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground pr-1">
+            <span className="text-right font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground pr-1">
               {t('col-actions')}
             </span>
           </div>
