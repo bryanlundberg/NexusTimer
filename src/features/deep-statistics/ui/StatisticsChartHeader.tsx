@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import { cn } from '@/shared/lib/utils'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import {
@@ -15,6 +16,7 @@ interface StatisticsChartHeaderProps {
 }
 
 export default function StatisticsChartHeader({ columns, activeGroup }: StatisticsChartHeaderProps) {
+  const t = useTranslations('Index.StatsPage')
   const personalCols = columns.filter((c) => c.group === 'personal')
   const cubeCols = columns.filter((c) => c.group === 'cube')
 
@@ -24,10 +26,10 @@ export default function StatisticsChartHeader({ columns, activeGroup }: Statisti
       <div className={ROW_GRID}>
         <div aria-hidden />
         <div className={groupVisibility('personal', activeGroup, 'block')}>
-          <GroupChip group="personal" label="Personal" activeGroup={activeGroup} />
+          <GroupChip group="personal" label={t('category-tab')} activeGroup={activeGroup} />
         </div>
         <div className={groupVisibility('cube', activeGroup, 'block')}>
-          <GroupChip group="cube" label="Cube" activeGroup={activeGroup} />
+          <GroupChip group="cube" label={t('cube-tab')} activeGroup={activeGroup} />
         </div>
       </div>
 
