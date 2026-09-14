@@ -782,6 +782,14 @@
   --notch-border: 2px;
   --notch-border-color: var(--primary);
 }
+.solve-notch[data-record='true'] {
+  --notch-border-color: color-mix(in oklab, #f59e0b 55%, transparent);
+  --notch-fill: color-mix(in oklab, #f59e0b 9%, var(--background));
+}
+.solve-notch[data-record='true']:hover {
+  --notch-border: 2px;
+  --notch-border-color: #f59e0b;
+}
 .solve-notch[data-selected='true'] {
   --notch-border: 2px;
   --notch-border-color: var(--primary);
