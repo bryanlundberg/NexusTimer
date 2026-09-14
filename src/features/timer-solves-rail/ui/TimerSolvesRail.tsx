@@ -20,7 +20,7 @@ import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTimerRailStore } from '@/features/timer-solves-rail/model/useTimerRailStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import SolveDetails from '@/features/manage-solves/ui/SolveDetails'
-import TimerRailTrend from '@/features/timer-solves-rail/ui/TimerRailTrend'
+import SolvesTrend from '@/shared/ui/solves-trend/SolvesTrend'
 
 type RailTab = 'session' | 'cube'
 
@@ -172,7 +172,7 @@ export default function TimerSolvesRail() {
               </span>
             </div>
           ))}
-          <TimerRailTrend solves={solves} bestTime={bestTime} />
+          <SolvesTrend solves={solves} bestTime={bestTime} />
         </div>
 
         {/* Column header */}
