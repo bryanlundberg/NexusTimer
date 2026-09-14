@@ -41,12 +41,15 @@ export default function OverviewTabContent({ cubes }: { cubes: Cube[] }) {
   const headers = [tTimeline('col-category'), tSolveCard('single'), tCubes('col-ao5'), tCubes('col-solves')]
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto border border-border/60 bg-card/40">
       <div className="min-w-137">
         {/* Table header */}
-        <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
+        <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60 bg-muted/30`}>
           {headers.map((label, i) => (
-            <span key={i} className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+            <span
+              key={i}
+              className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground"
+            >
               {label}
             </span>
           ))}
