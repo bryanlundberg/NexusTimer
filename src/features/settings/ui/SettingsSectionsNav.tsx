@@ -18,29 +18,31 @@ export default function SettingsSectionsNav({ observeKey }: SettingsSectionsNavP
 
   return (
     <nav aria-label={t('SettingsPage.options')} className="hidden lg:flex w-52 shrink-0 sticky top-20 flex-col gap-0.5">
-      {SETTINGS_SECTIONS.map(({ id, icon: Icon, accent, titleKey }) => (
-        <button
-          key={id}
-          type="button"
-          onClick={() => scrollToSection(id)}
-          className={cn(
-            'flex items-center gap-2.5 rounded-md pl-2 pr-3 py-2 text-sm text-left transition-colors',
-            activeId === id
-              ? 'bg-muted/60 text-foreground font-medium'
-              : 'text-muted-foreground hover:text-foreground hover:bg-muted/40'
-          )}
-        >
-          <span
+      {SETTINGS_SECTIONS.map(({ id, icon: Icon, color, titleKey }) => {
+        const isActive = activeId === id
+        return (
+          <button
+            key={id}
+            type="button"
+            onClick={() => scrollToSection(id)}
+            data-active={isActive ? 'true' : undefined}
+            aria-current={isActive ? 'true' : undefined}
+            style={{ '--nav-accent': color } as React.CSSProperties}
             className={cn(
-              'h-4 w-0.5 rounded-full shrink-0 transition-colors',
-              activeId === id ? accent : 'bg-transparent'
+              'nav-notch flex items-center gap-2.5 pl-2 pr-3 py-2 text-sm text-left transition-colors',
+              isActive ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'
             )}
-            aria-hidden
-          />
-          <Icon className="size-4 shrink-0" />
-          <span className="truncate">{t(titleKey)}</span>
-        </button>
-      ))}
+          >
+            <span
+              className="h-4 w-0.5 shrink-0 transition-colors"
+              style={{ backgroundColor: isActive ? color : 'transparent' }}
+              aria-hidden
+            />
+            <Icon className="size-4 shrink-0 transition-colors" style={isActive ? { color } : undefined} />
+            <span className="truncate">{t(titleKey)}</span>
+          </button>
+        )
+      })}
     </nav>
   )
 }
