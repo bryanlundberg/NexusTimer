@@ -53,3 +53,70 @@ export function SmartStatIcon(props: IconProps) {
     </Svg>
   )
 }
+
+export function RollingAverageStatIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M3 12h18" />
+      <circle cx="5.5" cy="7.5" r="1.7" fill="currentColor" stroke="none" />
+      <circle cx="10" cy="16.5" r="1.7" fill="currentColor" stroke="none" />
+      <circle cx="14.5" cy="6.5" r="1.7" fill="currentColor" stroke="none" />
+      <circle cx="19" cy="15.5" r="1.7" fill="currentColor" stroke="none" />
+    </Svg>
+  )
+}
+
+export function BestTimeStatIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M7.5 2.5 11 9.2M16.5 2.5 13 9.2" />
+      <circle cx="12" cy="15" r="5.5" />
+      <path d="M11 13.5l1.2-1v5" />
+    </Svg>
+  )
+}
+
+export function MeanStatIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M6 4h12" />
+      <path d="M7 9l10 11M17 9 7 20" />
+    </Svg>
+  )
+}
+
+export function DeviationStatIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M2.5 19c3.5 0 5-12 9.5-12s6 12 9.5 12" />
+      <path d="M8 14.5V19M16 14.5V19" />
+    </Svg>
+  )
+}
+
+export function TimeSpentStatIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M6 3h12M6 21h12" />
+      <path d="M7.5 3v3.2L12 12l4.5-5.8V3M7.5 21v-3.2L12 12l4.5 5.8V21" />
+    </Svg>
+  )
+}
+
+export function SuccessRateStatIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M21 12a9 9 0 1 1-9-9" />
+      <path d="M8.5 12l2.5 2.5 6-6.5" />
+    </Svg>
+  )
+}
+
+export function CounterStatIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path d="M5.5 5v14M9.5 5v14M13.5 5v14M17.5 5v14" />
+      <path d="M3 16.5 20 7.5" />
+    </Svg>
+  )
+}
