@@ -4,6 +4,7 @@ export interface ChartTheme {
   background: string
   text: string
   grid: string
+  primary: string
 }
 
 /** Reads the current CSS-variable palette so lightweight-charts matches the app theme. */
@@ -19,7 +20,8 @@ export function readChartTheme(): ChartTheme {
   return {
     background: toRgb('--background', 'rgba(0,0,0,0)'),
     text: toRgb('--muted-foreground', '#888'),
-    grid: 'rgba(120,120,120,0.08)'
+    grid: 'rgba(120,120,120,0.08)',
+    primary: toRgb('--primary', '#888')
   }
 }
 
