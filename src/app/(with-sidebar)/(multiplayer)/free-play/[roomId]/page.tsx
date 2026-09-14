@@ -67,7 +67,7 @@ export default function FreePlayRoomPage() {
   const solves = useRoomSolves(roomId?.toString() || '')
 
   useScreenWakeLock(isSolving || timerStatus === TimerStatus.INSPECTING)
-  const { mmss, isFinished } = useCountdown(roundLimit || 0)
+  const { mmss, isFinished, remainingMs } = useCountdown(roundLimit || 0)
   const roomAuthority = useRoomAuthority(roomId?.toString() || '')
   const event = useRoomEvent(roomId?.toString() || '')
   const maxRoundTime = useFreeMode().useMaxRoundTime(roomId?.toString() || '')
@@ -174,6 +174,11 @@ export default function FreePlayRoomPage() {
 
   const [currentTab, setCurrentTab] = React.useState<TabKey>('timer')
 
+  const roundDurationMs = (maxRoundTime ?? 0) * 1000
+  const roundProgress =
+    remainingMs !== undefined && roundDurationMs > 0 ? Math.min(1, Math.max(0, remainingMs / roundDurationMs)) : 0
+  const isRoundEnding = remainingMs !== undefined && remainingMs <= 10_000
+
   const handleInvite = async () => {
     const shareData = {
       title: 'Nexus Timer',
@@ -231,7 +236,7 @@ export default function FreePlayRoomPage() {
     return (
       <div className="flex flex-col items-center justify-center h-dvh gap-6 px-4">
         <div className="flex flex-col items-center gap-2 text-center">
-          <div className="size-12 rounded-full bg-muted flex items-center justify-center mb-2">
+          <div className="icon-notch size-12 flex items-center justify-center mb-2">
             <Lock className="size-5 text-muted-foreground" />
           </div>
           <h2 className="text-lg font-semibold">{t('join-private-room.title')}</h2>
@@ -297,7 +302,7 @@ export default function FreePlayRoomPage() {
         </div>
 
         {/* Users pill */}
-        <div className="flex items-center gap-1 rounded-full border border-border bg-muted/50 p-1.5">
+        <div className="flex items-center gap-1 border border-border bg-muted/50 p-1.5">
           <AvatarGroup variant="css">
             {onlineUsers.map((user, index) => (
               <Avatar key={user.id ?? index} className="relative size-7">
@@ -340,7 +345,7 @@ export default function FreePlayRoomPage() {
           </AvatarGroup>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Button size="icon" variant="ghost" className="rounded-full size-7 shrink-0" onClick={handleInvite}>
+              <Button size="icon" variant="ghost" className="size-7 shrink-0" onClick={handleInvite}>
                 <Plus className="size-3.5" />
               </Button>
             </TooltipTrigger>
@@ -352,15 +357,28 @@ export default function FreePlayRoomPage() {
       </div>
 
       {/* Countdown */}
-      <motion.div
-        className="text-center text-xs text-muted-foreground pb-2"
-        key={mmss}
-        initial={{ opacity: 0.5, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.2 }}
-      >
-        {t('next-round-starts-in')} <span className="font-mono font-medium text-foreground">{mmss}</span>
-      </motion.div>
+      <div className="mx-auto flex w-full max-w-xs flex-col items-center gap-1.5 px-4 pb-3">
+        <motion.div
+          className="text-center text-xs text-muted-foreground"
+          key={mmss}
+          initial={{ opacity: 0.5, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.2 }}
+        >
+          {t('next-round-starts-in')}{' '}
+          <span
+            className={`font-mono font-medium tabular-nums transition-colors ${isRoundEnding ? 'text-destructive' : 'text-foreground'}`}
+          >
+            {mmss}
+          </span>
+        </motion.div>
+        <div className="h-1 w-full overflow-hidden bg-muted" aria-hidden>
+          <div
+            className={`h-full transition-[width,background-color] duration-1000 ease-linear motion-reduce:transition-none ${isRoundEnding ? 'bg-destructive' : 'bg-primary'}`}
+            style={{ width: `${roundProgress * 100}%` }}
+          />
+        </div>
+      </div>
 
       {/* Tab content */}
       <div className="flex-1 min-h-0 overflow-hidden mx-2 md:mx-4">
@@ -376,7 +394,7 @@ export default function FreePlayRoomPage() {
 
       {/* Tab bar */}
       <div className="px-3 pt-3 pb-4 md:pb-3">
-        <div className="relative flex items-center bg-muted/60 rounded-xl p-1 md:max-w-xs md:mx-auto">
+        <div className="chip-notch relative flex items-center bg-muted/60 p-1 md:max-w-xs md:mx-auto">
           {tabs.map((tab) => {
             const isActive = currentTab === tab.key
             const Icon = tab.icon
@@ -389,7 +407,7 @@ export default function FreePlayRoomPage() {
                 {isActive && (
                   <motion.div
                     layoutId="active-tab"
-                    className="absolute inset-0 bg-background rounded-lg shadow-sm"
+                    className="chip-notch absolute inset-0 bg-background"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
