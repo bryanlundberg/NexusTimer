@@ -1,5 +1,13 @@
 import { useTranslations } from 'next-intl'
-import { Activity, Clock, Hash, Percent, Sigma, Target, Trophy } from 'lucide-react'
+import {
+  BestTimeStatIcon,
+  CounterStatIcon,
+  DeviationStatIcon,
+  MeanStatIcon,
+  RollingAverageStatIcon,
+  SuccessRateStatIcon,
+  TimeSpentStatIcon
+} from '@/components/ui/stats-icons'
 import { DeepStatistics, StatisticScope } from '@/shared/types/statistics'
 import formatTime from '@/shared/lib/formatTime'
 
@@ -56,11 +64,9 @@ export function groupBlockClass(group: ColumnGroup, activeGroup: ColumnGroup): s
   return group === activeGroup ? GROUP_BLOCK_BASE : `${GROUP_BLOCK_BASE} opacity-35`
 }
 
-/** Group chip styles: neutral for both, inactive dimmed with opacity. */
-const GROUP_CHIP_BASE = 'bg-muted text-muted-foreground'
-
+/** Group chip styles: the active group reads in the theme color, the other one is dimmed. */
 export function groupChipClass(group: ColumnGroup, activeGroup: ColumnGroup): string {
-  return group === activeGroup ? GROUP_CHIP_BASE : `${GROUP_CHIP_BASE} opacity-35`
+  return group === activeGroup ? 'bg-primary/10 text-primary' : 'bg-muted text-muted-foreground opacity-35'
 }
 
 export function useStatisticsColumns(): ColumnDef[] {
@@ -103,67 +109,68 @@ export function useStatisticsRows(statistics: DeepStatistics): RowDef[] {
     {
       label: 'Ao5',
       loadingKey: 'stats',
-      icon: Sigma,
+      icon: RollingAverageStatIcon,
       getValue: (scope) => (statistics.stats[scope].ao5 === 0 ? '--' : formatTime(statistics.stats[scope].ao5))
     },
     {
       label: 'Ao12',
       loadingKey: 'stats',
-      icon: Sigma,
+      icon: RollingAverageStatIcon,
       getValue: (scope) => (statistics.stats[scope].ao12 === 0 ? '--' : formatTime(statistics.stats[scope].ao12))
     },
     {
       label: 'Ao50',
       loadingKey: 'stats',
-      icon: Sigma,
+      icon: RollingAverageStatIcon,
       getValue: (scope) => (statistics.stats[scope].ao50 === 0 ? '--' : formatTime(statistics.stats[scope].ao50))
     },
     {
       label: 'Ao100',
       loadingKey: 'stats',
-      icon: Sigma,
+      icon: RollingAverageStatIcon,
       getValue: (scope) => (statistics.stats[scope].ao100 === 0 ? '--' : formatTime(statistics.stats[scope].ao100))
     },
     {
       label: 'Ao1000',
       loadingKey: 'stats',
-      icon: Sigma,
+      icon: RollingAverageStatIcon,
       getValue: (scope) => (statistics.stats[scope].ao1000 === 0 ? '--' : formatTime(statistics.stats[scope].ao1000))
     },
     {
       label: t('StatsPage.best-time'),
       loadingKey: 'best',
-      icon: Trophy,
+      highlight: true,
+      icon: BestTimeStatIcon,
       getValue: (scope) => (statistics.best[scope] > 0 ? formatTime(statistics.best[scope]) : '--')
     },
     {
       label: t('StatsPage.average'),
       loadingKey: 'average',
-      icon: Target,
+      icon: MeanStatIcon,
       getValue: (scope) => (statistics.average[scope] === 0 ? '--' : formatTime(statistics.average[scope]))
     },
     {
       label: t('HomePage.deviation'),
       loadingKey: 'deviation',
-      icon: Activity,
+      icon: DeviationStatIcon,
       getValue: (scope) => (statistics.deviation[scope] === 0 ? '--' : formatTime(statistics.deviation[scope]))
     },
     {
       label: t('StatsPage.time-spent'),
       loadingKey: 'timeSpent',
-      icon: Clock,
+      icon: TimeSpentStatIcon,
       getValue: (scope) => statistics.timeSpent[scope]
     },
     {
       label: t('StatsPage.success-rate'),
       loadingKey: 'successRate',
-      icon: Percent,
+      icon: SuccessRateStatIcon,
       getValue: (scope) => (statistics.successRate[scope] === '' ? '--' : statistics.successRate[scope] + '%')
     },
     {
       label: t('StatsPage.counter'),
       loadingKey: 'counter',
-      icon: Hash,
+      icon: CounterStatIcon,
       getValue: (scope) => (statistics.counter[scope] === 0 ? '--' : statistics.counter[scope])
     }
   ]
