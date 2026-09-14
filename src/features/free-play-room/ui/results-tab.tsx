@@ -2,13 +2,17 @@
 
 import formatTime from '@/shared/lib/formatTime'
 import { useParams } from 'next/navigation'
-import { useSession } from 'next-auth/react'
 import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
-import { Trophy, TrendingDown, TrendingUp, Timer } from 'lucide-react'
 
 const ROUNDS_TO_SHOW = 5
+
+const PODIUM = [
+  'bg-amber-500/15 text-amber-700 dark:text-amber-400',
+  'bg-zinc-400/20 text-zinc-600 dark:text-zinc-300',
+  'bg-orange-700/15 text-orange-800 dark:text-orange-400'
+]
 
 export default function ResultsTab() {
   const t = useTranslations('Multiplayer.results-tab')
@@ -62,6 +66,20 @@ export default function ResultsTab() {
     return { userId, userName, userImage, solveByRound, best, avg }
   })
 
+  const byNullableTime = (a: number | null, b: number | null) =>
+    a === null ? (b === null ? 0 : 1) : b === null ? -1 : a - b
+  const rankedUsers = [...usersData].sort((a, b) => byNullableTime(a.avg, b.avg) || byNullableTime(a.best, b.best))
+
+  const roundWinnerTime = Object.fromEntries(
+    visibleRounds.map((r) => {
+      const times = usersData
+        .map((p) => p.solveByRound[r])
+        .filter((s) => s && !s.dnf)
+        .map((s) => s.time as number)
+      return [r, times.length > 1 ? Math.min(...times) : null]
+    })
+  ) as Record<number, number | null>
+
   const formatSolve = (s: any): { text: string; missed: boolean; dnf: boolean } => {
     if (!s) return { text: '-', missed: true, dnf: false }
     if (s.dnf) return { text: 'DNF', missed: false, dnf: true }
@@ -89,10 +107,15 @@ export default function ResultsTab() {
       <div>
         {/* Header row with round labels */}
         <div className="px-4 py-2.5 border-b border-border/60 flex items-center justify-between gap-4">
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{t('cubers')}</span>
+          <span className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+            {t('cubers')}
+          </span>
           <div className="flex gap-4 shrink-0">
             {visibleRounds.map((r) => (
-              <span key={r} className="text-xs font-medium text-muted-foreground w-14 text-right">
+              <span
+                key={r}
+                className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground w-14 text-right"
+              >
                 R{r}
               </span>
             ))}
@@ -100,10 +123,12 @@ export default function ResultsTab() {
         </div>
 
         <ul>
-          {usersData.map((p, i) => {
+          {rankedUsers.map((p, i) => {
+            const podium = PODIUM[i]
             return (
               <motion.li
                 key={p.userId}
+                layout="position"
                 className="px-4 py-3 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent transition-colors hover:bg-muted/20 hover:border-l-primary"
                 initial={{ opacity: 0, x: -8 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -111,14 +136,23 @@ export default function ResultsTab() {
               >
                 <div className="flex items-center justify-between gap-4">
                   <div className="flex items-center gap-3 min-w-0">
-                    <img
-                      src={p.userImage || undefined}
-                      alt={p.userName}
-                      className="h-8 w-8 rounded-full object-cover shrink-0"
-                    />
+                    <span
+                      className={`chip-notch chip-notch-sm flex size-6 shrink-0 items-center justify-center font-display text-[11px] font-bold tabular-nums ${
+                        podium ?? 'text-muted-foreground'
+                      }`}
+                    >
+                      {i + 1}
+                    </span>
+                    {p.userImage ? (
+                      <img src={p.userImage} alt={p.userName} className="h-8 w-8 rounded-full object-cover shrink-0" />
+                    ) : (
+                      <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center text-xs font-medium shrink-0">
+                        {(p.userName ?? '?')[0].toUpperCase()}
+                      </div>
+                    )}
                     <div className="min-w-0">
                       <div className="font-medium text-sm truncate">{p.userName}</div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-xs text-muted-foreground tabular-nums">
                         {t('best')} {p.best != null ? formatTime(p.best) : '-'} · {t('average')}{' '}
                         {p.avg != null ? formatTime(p.avg) : '-'}
                       </div>
@@ -126,11 +160,21 @@ export default function ResultsTab() {
                   </div>
                   <div className="flex gap-4 text-sm font-mono shrink-0">
                     {visibleRounds.map((r) => {
-                      const { text, missed, dnf } = formatSolve(p.solveByRound[r])
+                      const solve = p.solveByRound[r]
+                      const { text, missed, dnf } = formatSolve(solve)
+                      const isRoundWinner = !!solve && !solve.dnf && solve.time === roundWinnerTime[r]
                       return (
                         <span
                           key={r}
-                          className={`w-14 text-right ${missed ? 'text-muted-foreground/40' : dnf ? 'text-destructive' : ''}`}
+                          className={`w-14 text-right tabular-nums ${
+                            missed
+                              ? 'text-muted-foreground/40'
+                              : dnf
+                                ? 'text-destructive'
+                                : isRoundWinner
+                                  ? 'font-semibold text-amber-700 dark:text-amber-400'
+                                  : ''
+                          }`}
                         >
                           {text}
                         </span>
