@@ -71,8 +71,8 @@ export function TabsNavSkeleton() {
 /** Inner table skeleton — caller provides the `px-4 md:px-6` wrapper. */
 export function TabTableSkeleton() {
   return (
-    <div className="overflow-hidden">
-      <div className="flex items-center gap-4 px-3 py-2 border-b border-border/60">
+    <div className="overflow-hidden border border-border/60 bg-card/40">
+      <div className="flex items-center gap-4 px-3 py-2 border-b border-border/60 bg-muted/30">
         <Skeleton className="h-2.5 w-8 shrink-0" />
         <Skeleton className="h-2.5 flex-1 min-w-0" />
         <Skeleton className="hidden sm:block h-2.5 w-12 shrink-0" />
