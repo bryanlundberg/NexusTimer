@@ -5,14 +5,9 @@ import { useParams } from 'next/navigation'
 import useFreeMode from '@/features/free-play-room/model/useFreeMode'
 import { useTranslations } from 'next-intl'
 import { motion } from 'motion/react'
+import { PODIUM_CHIP } from '@/shared/const/podium'
 
 const ROUNDS_TO_SHOW = 5
-
-const PODIUM = [
-  'bg-amber-500/15 text-amber-700 dark:text-amber-400',
-  'bg-zinc-400/20 text-zinc-600 dark:text-zinc-300',
-  'bg-orange-700/15 text-orange-800 dark:text-orange-400'
-]
 
 export default function ResultsTab() {
   const t = useTranslations('Multiplayer.results-tab')
@@ -124,7 +119,7 @@ export default function ResultsTab() {
 
         <ul>
           {rankedUsers.map((p, i) => {
-            const podium = PODIUM[i]
+            const podium = PODIUM_CHIP[i]
             return (
               <motion.li
                 key={p.userId}
