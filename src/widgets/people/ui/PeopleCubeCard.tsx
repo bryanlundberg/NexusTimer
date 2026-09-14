@@ -77,7 +77,7 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
 
       {/* Distribution: segmented pill + counters */}
       <div className="flex flex-col gap-1.5 w-full">
-        <div className="h-2.5 w-full rounded-full overflow-hidden bg-muted/50 flex">
+        <div className="h-2 w-full overflow-hidden bg-muted/50 flex">
           {totalSolves > 0 ? (
             <>
               {successCount > 0 && (
@@ -93,11 +93,11 @@ export function PeopleCubeCard({ cube, index }: PeopleCubeCardProps) {
           ) : null}
         </div>
         <div className="flex items-center gap-2">
-          <span className="size-1.5 rounded-full bg-green-500 shrink-0" />
+          <span className="size-1.5 bg-green-500 shrink-0" />
           <span className="text-[10px] tabular-nums text-muted-foreground">{successCount}</span>
-          <span className="size-1.5 rounded-full bg-yellow-500 shrink-0" />
+          <span className="size-1.5 bg-yellow-500 shrink-0" />
           <span className="text-[10px] tabular-nums text-muted-foreground">{plus2Count}</span>
-          <span className="size-1.5 rounded-full bg-red-500 shrink-0" />
+          <span className="size-1.5 bg-red-500 shrink-0" />
           <span className="text-[10px] tabular-nums text-muted-foreground">{dnfCount}</span>
         </div>
       </div>
