@@ -17,6 +17,7 @@ interface LeaderboardHeroProps {
 
 export default function LeaderboardHero({ value, onChange, view, onViewChange }: LeaderboardHeroProps) {
   const t = useTranslations('Index.LeaderboardsPage')
+  const tNav = useTranslations('Index.NavMain')
 
   const items = LEADERBOARD_PUZZLE_OPTIONS.map((option) => ({
     value: option.value,
@@ -37,7 +38,18 @@ export default function LeaderboardHero({ value, onChange, view, onViewChange }:
   ]
 
   return (
-    <div className="mx-auto w-full max-w-4xl px-3 pt-3">
+    <div className="mx-auto w-full max-w-4xl px-3 pt-4">
+      <div className="mb-5 flex flex-col gap-1.5">
+        <span className="flex items-center gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          <span className="size-2 shrink-0 rounded-[2px] bg-cube-orange" aria-hidden />
+          {tNav('leaderboards')}
+        </span>
+        <h1 className="font-display text-2xl font-bold leading-none tracking-tight sm:text-3xl md:text-4xl">
+          {t('title')}
+        </h1>
+        <p className="max-w-xl text-xs text-muted-foreground text-pretty sm:text-sm">{t('description')}</p>
+      </div>
+
       <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         <Tabs value={value} onValueChange={onChange} className="min-w-0 md:flex-1">
           <ScrollableUnderlineTabs
