@@ -55,6 +55,18 @@ export default function PhaseLayersLineChart({ series, phases }: PhaseLayersLine
         priceFormatter: (value: number) => formatTime(value, 1),
         timeFormatter: (time: number) => `#${time}`
       },
+      crosshair: {
+        mode: 1,
+        vertLine: { color: theme.primary, width: 1, style: 2, visible: true, labelVisible: false },
+        horzLine: {
+          color: theme.primary,
+          width: 1,
+          style: 2,
+          visible: true,
+          labelVisible: true,
+          labelBackgroundColor: theme.primary
+        }
+      },
       handleScroll: false,
       handleScale: false
     })
@@ -140,7 +152,7 @@ export default function PhaseLayersLineChart({ series, phases }: PhaseLayersLine
             const pct = point.total > 0 ? Math.round((dur / point.total) * 100) : 0
             return `
               <div class="flex items-center gap-2 text-xs">
-                <span class="inline-block size-1.5 rounded-full shrink-0" style="background:${ph.color}"></span>
+                <span class="inline-block size-1.5 shrink-0" style="background:${ph.color}"></span>
                 <span class="text-muted-foreground">${ph.label}</span>
                 <span class="ml-auto font-medium tabular-nums">${formatTime(dur, 1)}</span>
                 <span class="w-8 text-right text-muted-foreground/70 tabular-nums">${pct}%</span>
@@ -180,11 +192,11 @@ export default function PhaseLayersLineChart({ series, phases }: PhaseLayersLine
         <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           {t('smart-layers-title', { count: series.length })}
         </h3>
-        <div className="flex flex-wrap gap-2.5">
+        <div className="flex flex-wrap items-center gap-1.5">
           {legend.map(({ phase, avg }) => (
-            <span key={phase.key} className="flex items-center gap-1 text-[10px] font-medium text-muted-foreground">
-              <span className="inline-block size-2 rounded-full" style={{ background: phase.color }} />
-              {phase.label}
+            <span key={phase.key} className="legend-notch flex items-center gap-1.5 px-2.5 py-1 text-[11px]">
+              <span className="inline-block size-2" style={{ background: phase.color }} />
+              <span className="font-medium text-muted-foreground">{phase.label}</span>
               <span className="text-muted-foreground/60 tabular-nums">{Math.round((avg / legendTotal) * 100)}%</span>
             </span>
           ))}
@@ -195,7 +207,7 @@ export default function PhaseLayersLineChart({ series, phases }: PhaseLayersLine
         <div ref={containerRef} className="absolute inset-0" />
         <div
           ref={tooltipRef}
-          className="pointer-events-none absolute z-10 hidden rounded-xl border border-border/50 bg-popover/95 p-2.5 text-popover-foreground shadow-xl backdrop-blur-md"
+          className="pointer-events-none absolute z-10 hidden rounded-xs border border-border/50 bg-popover/95 p-2.5 text-popover-foreground shadow-xl backdrop-blur-md"
         />
       </div>
     </div>
