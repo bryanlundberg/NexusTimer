@@ -360,14 +360,14 @@ export default function useLineGraphStatistics(dataSet: Solve[]) {
         const ao12Value = ao12Map.get(param.time as number)
 
         const flagBadge = solve.dnf
-          ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-red-500/15 text-red-500">DNF</span>`
+          ? `<span class="badge-notch px-1.5 py-0.5 text-[10px] font-semibold bg-red-500/15 text-red-500">DNF</span>`
           : solve.plus2
-            ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-yellow-500/15 text-yellow-500">+2</span>`
+            ? `<span class="badge-notch px-1.5 py-0.5 text-[10px] font-semibold bg-yellow-500/15 text-yellow-500">+2</span>`
             : ''
 
         const row = (color: string, label: string, value: string) => `
           <div class="flex items-center gap-2 text-xs">
-            <span class="inline-block size-1.5 rounded-full shrink-0" style="background:${color}"></span>
+            <span class="inline-block size-1.5 shrink-0" style="background:${color}"></span>
             <span class="text-muted-foreground">${label}</span>
             <span class="ml-auto font-medium tabular-nums">${value}</span>
           </div>
