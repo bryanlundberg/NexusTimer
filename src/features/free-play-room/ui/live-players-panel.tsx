@@ -64,10 +64,11 @@ function PlayerCard({
       initial={{ opacity: 0, x: 8 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.2, delay: index * 0.04 }}
-      className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl border bg-card w-full ${
+      className={`relative flex items-center gap-2.5 px-3 py-2.5 border bg-card w-full ${
         isSelf ? 'border-primary/30 bg-primary/5' : 'border-border'
       }`}
     >
+      {isSelf && <span aria-hidden className="absolute inset-y-2 left-0 w-0.5 bg-primary" />}
       <div className="shrink-0">
         {user.image ? (
           <img src={user.image} alt={user.name} className="h-7 w-7 rounded-full object-cover" />
@@ -81,7 +82,7 @@ function PlayerCard({
         <div className="flex items-center gap-1">
           <span className="text-xs font-medium truncate leading-tight">{user.name ?? '?'}</span>
           {wins > 0 && (
-            <span className="flex items-center gap-0.5 text-amber-400 shrink-0">
+            <span className="flex items-center gap-0.5 text-amber-600 dark:text-amber-400 shrink-0">
               <Trophy className="size-2.5" />
               <span className="text-[10px] font-bold leading-none">{wins}</span>
             </span>
@@ -108,8 +109,10 @@ export default function LivePlayersPanel({ onlineUsers, solves, currentRound, se
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-1.5 px-1 pb-1 border-b border-border">
-        <Radio className="size-3 text-muted-foreground" />
-        <span className="text-[11px] text-muted-foreground">{t('current-round')}</span>
+        <Radio className="size-3 text-cube-red" />
+        <span className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          {t('current-round')}
+        </span>
       </div>
       {onlineUsers.map((user, i) => {
         const userSolves = solves[user.id] ?? {}
