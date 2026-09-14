@@ -20,8 +20,8 @@ export default function GroupChip({ group, label, activeGroup }: GroupChipProps)
     <div className="flex items-center justify-center">
       <span
         className={cn(
-          'inline-flex items-center gap-1.5 rounded-none px-2.5 py-1',
-          'text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.18em]',
+          'chip-notch chip-notch-sm inline-flex items-center gap-1.5 px-2.5 py-1 transition-colors',
+          'font-display text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.18em]',
           groupChipClass(group, activeGroup)
         )}
       >
