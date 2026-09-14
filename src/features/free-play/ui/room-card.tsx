@@ -30,12 +30,18 @@ export default function RoomCard({ room, onJoinPrivate }: RoomCardProps) {
   const isPrivate = Boolean(room.passwordHash)
 
   const cardContent = (
-    <div className="notch-bl-tr [--nblt:12px] border border-border p-4 transition-colors duration-200 hover:border-primary h-full flex flex-col gap-3">
+    <div className="algo-card-notch p-4 h-full flex flex-col gap-3">
       {/* Header row */}
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-1.5 min-w-0">
+          {usersPresence.length > 0 && (
+            <span className="relative flex size-2 shrink-0" aria-hidden>
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:hidden" />
+              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+            </span>
+          )}
           {isPrivate && <Lock className="size-3 text-muted-foreground shrink-0" />}
-          <h3 className="text-sm font-semibold truncate">{room.name}</h3>
+          <h3 className="text-sm font-semibold truncate transition-colors group-hover:text-primary">{room.name}</h3>
         </div>
         <span className="badge-notch flex-shrink-0 bg-muted px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
           {room.event}
@@ -87,15 +93,15 @@ export default function RoomCard({ room, onJoinPrivate }: RoomCardProps) {
       </div>
 
       {/* Meta row */}
-      <div className="flex items-center justify-between pt-2 border-t border-border">
+      <div className="flex items-center justify-between pt-2 border-t border-border/60">
         <div className="flex items-center gap-3 text-xs text-muted-foreground">
-          <span className="flex items-center gap-1">
+          <span className="flex items-center gap-1 tabular-nums">
             <Clock className="size-3" />
             {formatTime(room.maxRoundTime * 1000)}
           </span>
           <span>{dayjs(room.createdAt).locale(locale).fromNow()}</span>
         </div>
-        <ArrowRight className="size-3.5 text-muted-foreground/0 group-hover:text-foreground transition-colors duration-200" />
+        <ArrowRight className="size-3.5 -translate-x-1 text-primary opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100 motion-reduce:translate-x-0" />
       </div>
     </div>
   )
