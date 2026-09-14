@@ -29,7 +29,8 @@ export default function PeoplePageHeader({ total, showing }: PeoplePageHeaderPro
     <div className="flex flex-col justify-between gap-4 mb-4">
       {/* Left: titles + count */}
       <div className="flex flex-col gap-1">
-        <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+        <span className="flex items-center gap-2 font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          <span className="size-2 shrink-0 rounded-[2px] bg-cube-orange" aria-hidden />
           {t('directory-label')}
         </span>
         <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-none">
