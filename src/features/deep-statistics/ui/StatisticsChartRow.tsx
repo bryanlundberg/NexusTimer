@@ -12,21 +12,31 @@ interface StatisticsChartRowProps {
 export default function StatisticsChartRow({ row, columns, isLoading, activeGroup }: StatisticsChartRowProps) {
   const personalCols = columns.filter((c) => c.group === 'personal')
   const cubeCols = columns.filter((c) => c.group === 'cube')
+  const Icon = row.icon
 
   return (
     <div
       className={cn(
         ROW_GRID,
-        'group rounded-none px-1 transition-colors hover:bg-primary/5 hover:shadow-[inset_2px_0_0_var(--primary)]',
-        row.highlight && 'bg-primary/[0.06] shadow-[inset_2px_0_0_var(--primary)]'
+        'group rounded-none px-1 transition-colors',
+        row.highlight
+          ? 'bg-amber-500/[0.07] shadow-[inset_2px_0_0_var(--color-amber-500)] hover:bg-amber-500/10'
+          : 'hover:bg-primary/5 hover:shadow-[inset_2px_0_0_var(--primary)]'
       )}
     >
       {/* Metric label */}
-      <div className="flex items-center px-1.5 py-2 sm:px-2">
+      <div className="flex min-w-0 items-center gap-2 px-1.5 py-2 sm:px-2">
+        <Icon
+          aria-hidden
+          className={cn(
+            'hidden size-3.5 shrink-0 transition-colors sm:block',
+            row.highlight ? 'text-amber-500' : 'text-muted-foreground/60 group-hover:text-primary'
+          )}
+        />
         <span
           className={cn(
             'truncate text-xs font-medium sm:text-sm',
-            row.highlight ? 'font-semibold text-primary' : 'text-foreground'
+            row.highlight ? 'font-semibold text-amber-700 dark:text-amber-400' : 'text-foreground'
           )}
         >
           {row.label}
