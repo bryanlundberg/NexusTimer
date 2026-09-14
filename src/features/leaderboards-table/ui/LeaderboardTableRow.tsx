@@ -15,6 +15,7 @@ import { GRID } from '@/features/leaderboards-table/ui/LeaderboardTable'
 import { SolveServer } from '@/entities/solve/model/types'
 import { useLocale, useTranslations } from 'next-intl'
 import { cn } from '@/shared/lib/utils'
+import { PODIUM_CHIP, PODIUM_COLOR } from '@/shared/const/podium'
 
 interface LeaderboardTableRowProps {
   solve: SolveServer
@@ -30,22 +31,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
   if (!solve?.user) return null
 
   const rank = index + 1
-  const rankClass =
-    rank === 1
-      ? 'text-amber-400'
-      : rank === 2
-        ? 'text-zinc-300'
-        : rank === 3
-          ? 'text-amber-600'
-          : 'text-muted-foreground'
-  const rankBorderClass =
-    rank === 1
-      ? 'border-l-amber-400/80'
-      : rank === 2
-        ? 'border-l-zinc-300/80'
-        : rank === 3
-          ? 'border-l-amber-600/80'
-          : 'border-l-transparent'
+  const podiumColor = PODIUM_COLOR[index]
   const hasReplay = Boolean(solve.replay?.moves?.length)
   const tps = analysis?.tps != null ? formatTps(analysis.tps) : null
   const moveCount = analysis ? analysis.moves.length : null
@@ -55,22 +41,28 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
       onClick={hasReplay ? openModal : undefined}
       variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
+      style={podiumColor ? { borderLeftColor: podiumColor } : undefined}
       className={cn(
-        `grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 border-l-2 transition-colors duration-150`,
-        rankBorderClass,
+        `grid ${GRID} items-center gap-x-4 px-3 py-2.5 border-b border-border/40 last:border-b-0 border-l-2 border-l-transparent transition-colors duration-150`,
+        rank === 1 && 'bg-amber-500/[0.04]',
         hasReplay && 'hover:bg-muted/20 cursor-pointer',
         hasReplay && rank > 3 && 'hover:border-l-primary'
       )}
     >
-      <span
-        className={cn(
-          'font-mono tabular-nums text-right select-none',
-          rankClass,
-          rank <= 3 ? 'text-sm font-bold' : 'text-xs'
-        )}
-      >
-        {String(rank).padStart(2, '0')}
-      </span>
+      {rank <= 3 ? (
+        <span
+          className={cn(
+            'chip-notch chip-notch-sm flex size-6 items-center justify-center justify-self-end font-display text-[11px] font-bold select-none',
+            PODIUM_CHIP[index]
+          )}
+        >
+          {rank}
+        </span>
+      ) : (
+        <span className="font-mono text-xs tabular-nums text-right text-muted-foreground select-none">
+          {String(rank).padStart(2, '0')}
+        </span>
+      )}
 
       <div className="min-w-0">
         <UserCell user={solve.user} />
@@ -85,7 +77,7 @@ export default function LeaderboardTableRow({ solve, index }: LeaderboardTableRo
       </span>
 
       <div className="flex items-center gap-1.5 min-w-0">
-        <TimeDisplay value={formatTime(solve.time)} />
+        <TimeDisplay value={formatTime(solve.time)} isRecord={rank === 1} />
         {hasReplay && (
           <Tooltip>
             <TooltipTrigger asChild>
