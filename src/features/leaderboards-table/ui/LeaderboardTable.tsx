@@ -21,19 +21,19 @@ export default function LeaderboardTable({ solves }: LeaderboardTableProps) {
 
   const stagger = Math.min(STAGGER_STEP, STAGGER_BUDGET / Math.max(safeSolves.length, 1))
 
+  const headerCell = 'font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground'
+
   return (
-    <div className="overflow-x-auto max-w-4xl mx-auto">
+    <div className="overflow-x-auto max-w-4xl mx-auto border border-border/60 bg-card/40">
       <div className="min-w-160">
-        <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">#</span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('user')}</span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-            {t('category')}
-          </span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('tps')}</span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('moves')}</span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('time')}</span>
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{t('date')}</span>
+        <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60 bg-muted/30`}>
+          <span className={`${headerCell} text-right`}>#</span>
+          <span className={headerCell}>{t('user')}</span>
+          <span className={headerCell}>{t('category')}</span>
+          <span className={headerCell}>{t('tps')}</span>
+          <span className={headerCell}>{t('moves')}</span>
+          <span className={headerCell}>{t('time')}</span>
+          <span className={headerCell}>{t('date')}</span>
         </div>
 
         <motion.div
