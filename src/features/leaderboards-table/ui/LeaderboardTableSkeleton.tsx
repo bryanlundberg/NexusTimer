@@ -9,9 +9,9 @@ interface LeaderboardTableSkeletonProps {
 
 export default function LeaderboardTableSkeleton({ rows = 10 }: LeaderboardTableSkeletonProps) {
   return (
-    <div className="overflow-x-auto max-w-4xl mx-auto">
+    <div className="overflow-x-auto max-w-4xl mx-auto border border-border/60 bg-card/40">
       <div className="min-w-160">
-        <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
+        <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60 bg-muted/30`}>
           <Skeleton className="h-2.5 w-4" />
           <Skeleton className="h-2.5 w-12" />
           <Skeleton className="h-2.5 w-16" />
