@@ -2,7 +2,7 @@ import { Solve } from '@/entities/solve/model/types'
 import formatTime from '@/shared/lib/formatTime'
 import { useLocale } from 'next-intl'
 import dayjs from '@/shared/lib/dayjs'
-import { Check, Star } from 'lucide-react'
+import { Check, Star, Trophy } from 'lucide-react'
 import { QaCommentIcon } from '@/components/ui/quick-action-icons'
 import useSolveGridItem from '@/features/solves-grid/model/useSolveGridItem'
 import { useSolvesSelection } from '@/features/solves-grid/model/SolvesSelectionContext'
@@ -14,13 +14,16 @@ interface SolveGridItemProps {
   index: number
   orderedSolves: Array<Solve>
   solve: Solve
+  isRecord?: boolean
 }
 
-export default function SolveGridItem({ index, orderedSolves, solve }: SolveGridItemProps) {
+export default function SolveGridItem({ index, orderedSolves, solve, isRecord = false }: SolveGridItemProps) {
   const locale = useLocale()
   const { handleOpenSolveDetails } = useSolveGridItem(solve)
   const { selectionMode, isSelected, enterSelection, toggle } = useSolvesSelection()
   const selected = isSelected(solve.id)
+  const item = orderedSolves[index]
+  const [integerPart, decimalPart] = formatTime(item.time).split('.')
 
   const { isSuppressed, handlers } = useLongPress({ onLongPress: () => enterSelection(solve.id) })
 
@@ -53,12 +56,13 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
       {...handlers}
       aria-pressed={selectionMode ? selected : undefined}
       data-selected={selected ? 'true' : undefined}
+      data-record={isRecord ? 'true' : undefined}
       style={{ WebkitTouchCallout: 'none' }}
       className={cn(
         'solve-notch relative grow flex flex-col items-center justify-center w-full h-full text-center transition duration-200 cursor-pointer p-2 sm:p-3 select-none active:translate-y-0 active:scale-100'
       )}
     >
-      {orderedSolves[index].bookmark && (
+      {item.bookmark && (
         <div
           className="pointer-events-none absolute left-0 top-0 size-5 overflow-hidden"
           data-testid={`bookmark-icon-${index}`}
@@ -79,25 +83,34 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
           {selected && <Check className="size-3" />}
         </div>
       ) : (
-        <div className="absolute top-1 right-1 sm:top-2 sm:right-2 text-[10px] text-muted-foreground">#{index + 1}</div>
+        <div className="absolute top-1 right-1 sm:top-2 sm:right-2 text-[10px] tabular-nums text-muted-foreground/70">
+          #{index + 1}
+        </div>
       )}
 
       <div className="flex items-end gap-1 tabular-nums">
-        {orderedSolves[index].dnf ? (
+        {item.dnf ? (
           <span className="text-base sm:text-2xl font-semibold text-destructive" data-testid={`dnf-icon-${index}`}>
             DNF
           </span>
         ) : (
           <>
-            <span className="text-base sm:text-2xl font-semibold">
-              {formatTime(orderedSolves[index].time).split('.')[0]}
+            <span
+              className={cn('text-base sm:text-2xl font-semibold', isRecord && 'text-amber-700 dark:text-amber-400')}
+            >
+              {integerPart}
             </span>
-            <span className="text-xs sm:text-base text-muted-foreground">
-              .{formatTime(orderedSolves[index].time).split('.')[1]}
+            <span
+              className={cn(
+                'text-xs sm:text-base',
+                isRecord ? 'text-amber-700/70 dark:text-amber-400/70' : 'text-muted-foreground'
+              )}
+            >
+              .{decimalPart}
             </span>
-            {orderedSolves[index].plus2 ? (
+            {item.plus2 ? (
               <span
-                className="badge-notch ms-1 sm:ms-2 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-red-500/15 text-red-600"
+                className="badge-notch ms-1 sm:ms-2 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive"
                 data-testid={`plus-two-icon-${index}`}
               >
                 +2
@@ -108,13 +121,14 @@ export default function SolveGridItem({ index, orderedSolves, solve }: SolveGrid
       </div>
 
       <div className="mt-1 sm:mt-2 text-[10px] sm:text-xs text-muted-foreground">
-        {dayjs(orderedSolves[index].endTime || 0)
+        {dayjs(item.endTime || 0)
           .locale(locale)
           .format('MMM DD, YYYY')}
       </div>
 
       <div className="absolute left-1 bottom-1 sm:left-2 sm:bottom-2 flex items-center gap-2 text-xs text-muted-foreground">
-        {orderedSolves[index].comment && (
+        {isRecord && <Trophy aria-hidden className="size-3 sm:size-3.5 text-amber-500" />}
+        {item.comment && (
           <span className="flex items-center gap-1" data-testid={`comment-icon-${index}`}>
             <QaCommentIcon className="size-3 sm:size-3.5" />
           </span>
