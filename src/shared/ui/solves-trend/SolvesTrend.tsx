@@ -9,12 +9,13 @@ import { Solve } from '@/entities/solve/model/types'
 const TREND_SIZE = 40
 const MIN_BAR = 18
 
-interface TimerRailTrendProps {
+interface SolvesTrendProps {
   solves: Solve[]
   bestTime: number | null
+  className?: string
 }
 
-export default function TimerRailTrend({ solves, bestTime }: TimerRailTrendProps) {
+export default function SolvesTrend({ solves, bestTime, className }: SolvesTrendProps) {
   const trend = useMemo(() => {
     const recent = solves.slice(0, TREND_SIZE).reverse()
     const times = recent.filter((solve) => !solve.dnf).map((solve) => solve.time)
@@ -42,7 +43,7 @@ export default function TimerRailTrend({ solves, bestTime }: TimerRailTrendProps
   if (!trend) return null
 
   return (
-    <div className="relative mt-2 h-10">
+    <div className={cn('relative mt-2 h-10', className)}>
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 border-t border-dashed border-primary/40"
