@@ -66,23 +66,18 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
 
   return (
     <div className="space-y-4">
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto border border-border/60 bg-card/40">
         <div className="min-w-[780px]">
           {/* Header */}
-          <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60`}>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">#</span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              {t('col-cube')}
-            </span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              {t('col-time')}
-            </span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              {t('col-scramble')}
-            </span>
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-              {t('col-date')}
-            </span>
+          <div className={`grid ${GRID} items-center gap-x-4 px-3 py-2 border-b border-border/60 bg-muted/30`}>
+            {(['#', t('col-cube'), t('col-time'), t('col-scramble'), t('col-date')] as const).map((label) => (
+              <span
+                key={label}
+                className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground"
+              >
+                {label}
+              </span>
+            ))}
           </div>
 
           {/* Rows */}
@@ -117,11 +112,11 @@ export default function TimelineTabContent({ cubes }: TimelineTabContentProps) {
                   {/* Time */}
                   <div className="flex items-baseline gap-1">
                     {solve.dnf ? (
-                      <span className="text-sm font-bold text-red-500">DNF</span>
+                      <span className="text-sm font-bold text-destructive">DNF</span>
                     ) : (
                       <>
                         <TimeDisplay value={formatTime(solve.time)} />
-                        {solve.plus2 && <span className="text-[10px] font-bold text-yellow-500">+2</span>}
+                        {solve.plus2 && <span className="text-[10px] font-bold text-destructive">+2</span>}
                       </>
                     )}
                   </div>
