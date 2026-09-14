@@ -18,7 +18,7 @@ export default function StatisticsChartCell({ isLoading, value, highlight, isAct
           'tabular-nums font-mono text-[11px] sm:text-sm leading-none transition-colors',
           isEmpty && 'text-muted-foreground/40',
           !isEmpty && isActiveGroup && 'text-foreground',
-          !isEmpty && highlight && 'font-bold text-primary'
+          !isEmpty && highlight && 'font-bold text-amber-700 dark:text-amber-400'
         )}
       >
         {displayValue}
