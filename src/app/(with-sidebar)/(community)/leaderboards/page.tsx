@@ -3,6 +3,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { useLeaderboards } from '@/features/leaderboards/model/useLeaderboards'
 import LeaderboardTable from '@/features/leaderboards-table/ui/LeaderboardTable'
 import LeaderboardTableSkeleton from '@/features/leaderboards-table/ui/LeaderboardTableSkeleton'
+import LeaderboardPodium from '@/features/leaderboards-table/ui/LeaderboardPodium'
 import LeaderboardHero from '@/features/leaderboards/ui/LeaderboardHero'
 import { LEADERBOARD_PUZZLE_OPTIONS } from '@/features/leaderboards/model/puzzle-options'
 import { LEADERBOARD_VIEWS } from '@/features/leaderboards/model/leaderboard-view'
@@ -33,8 +34,15 @@ export default function LeaderboardPage() {
 
       <LeaderboardHero value={selected} onChange={setSelected} view={view} onViewChange={setView} />
 
-      <PageBody variant="data" className="space-y-8">
-        {isLoading || isRenderingRows ? <LeaderboardTableSkeleton /> : <LeaderboardTable solves={deferredSolves} />}
+      <PageBody variant="data" className="space-y-6">
+        {isLoading || isRenderingRows ? (
+          <LeaderboardTableSkeleton />
+        ) : (
+          <>
+            <LeaderboardPodium key={`${selected}-${view}`} solves={deferredSolves ?? []} />
+            <LeaderboardTable solves={deferredSolves} />
+          </>
+        )}
       </PageBody>
     </ScrollArea>
   )
