@@ -9,6 +9,7 @@ import AlgorithmCard from '@/features/algorithms-list/ui/algorithm-card'
 import { AlgorithmCollection } from '@/features/algorithms-list/model/types'
 import { Filter } from 'lucide-react'
 import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 import { useTrainerLearned } from '@/features/trainer/model/useTrainerLearned'
 import { setTrainerLearned } from '@/features/trainer/model/mutateTrainerLearned'
 
@@ -20,6 +21,7 @@ interface AlgorithmsPageProps {
 }
 
 export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug }: AlgorithmsPageProps) => {
+  const t = useTranslations('Index')
   const groups = useMemo(() => groupBy(algorithms, (algorithm) => algorithm.group), [algorithms])
   const [activeGroups, setActiveGroups] = useState<string[]>([])
 
@@ -73,8 +75,11 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
       {groupKeys.length > 1 && (
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-3">
-            <Filter className="h-3.5 w-3.5 text-muted-foreground" />
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Filter by group</span>
+            <Filter className="h-3.5 w-3.5 text-cube-green" />
+            <span className="font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+              {t('AlgorithmsPage.filters.group')}
+            </span>
+            <span aria-hidden className="h-px min-w-4 flex-1 bg-gradient-to-r from-border to-transparent" />
           </div>
           <div className="flex flex-wrap gap-1.5 min-w-0">
             {groupKeys.map((group) => (
@@ -93,18 +98,29 @@ export const AlgorithmsList = ({ algorithms, virtualization, puzzle, methodSlug 
       )}
 
       {/* Results count */}
-      <div className="flex items-center justify-between mb-4">
-        <p className="text-xs text-muted-foreground">
-          {displayedAlgs.length} algorithm{displayedAlgs.length !== 1 ? 's' : ''}
+      <div className="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+        <p className="text-xs text-muted-foreground tabular-nums">
+          {t('TrainerPage.algsSuffix', { count: displayedAlgs.length })}
           {activeGroups.length > 0 && (
             <button onClick={() => setActiveGroups([])} className="ml-2 text-primary hover:underline">
-              Clear filter
+              {t('AlgorithmsPage.filters.clear')}
             </button>
           )}
-          {isAuthed && methodSlug && learnedIds.length > 0 && (
-            <span className="ml-2 text-muted-foreground">· {learnedIds.length} learned</span>
-          )}
         </p>
+        {isAuthed && methodSlug && algorithms.length > 0 && (
+          <div className="flex items-center gap-2 text-xs text-muted-foreground tabular-nums">
+            <span>
+              {t('TrainerPage.learned')} <span className="font-semibold text-foreground">{learnedIds.length}</span> /{' '}
+              {algorithms.length}
+            </span>
+            <div className="h-1 w-24 overflow-hidden bg-muted sm:w-32" aria-hidden>
+              <div
+                className="h-full bg-primary transition-[width] duration-500 ease-out"
+                style={{ width: `${Math.min(100, (learnedIds.length / algorithms.length) * 100)}%` }}
+              />
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Algorithm rows */}
