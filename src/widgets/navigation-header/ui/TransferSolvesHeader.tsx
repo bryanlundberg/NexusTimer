@@ -11,6 +11,7 @@ import { useTransferSolvesStore } from '@/widgets/transfer-solves/model/useTrans
 import { getCategoryOrder } from '@/shared/const/cube-categories'
 import { cubeCollection } from '@/shared/const/cube-collection'
 import { CategoryBadge } from '@/shared/ui/category-badge/CategoryBadge'
+import { cn } from '@/shared/lib/utils'
 
 function CubeOption({ cube }: { cube: Cube }) {
   const src = cubeCollection.find((c) => c.name === cube.category)?.src
@@ -20,6 +21,15 @@ function CubeOption({ cube }: { cube: Cube }) {
       <span className="truncate">{cube.name}</span>
       <CategoryBadge category={cube.category} className="ms-auto" />
     </div>
+  )
+}
+
+function FieldLabel({ color, children }: { color: string; children: React.ReactNode }) {
+  return (
+    <span className="flex items-center gap-2 px-0.5 font-display text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+      <span className="size-2 shrink-0 rounded-[2px]" style={{ backgroundColor: color }} aria-hidden />
+      <span className="truncate">{children}</span>
+    </span>
   )
 }
 
@@ -46,49 +56,64 @@ export default function TransferSolvesHeader({ cubes }: TransferSolvesHeaderProp
     [cubes]
   )
 
+  const isReady = !!sourceCollection && !!destinationCollection
+
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center gap-2 w-full">
-      <div className={'flex flex-col gap-1 grow md:flex-row w-full'}>
-        <Select
-          value={sourceCollection}
-          onValueChange={(value) => {
-            setSourceCollection(value)
-            setDestinationCollection('')
-            clearSelectedSolves()
-          }}
-        >
-          <SelectTrigger className="w-full" data-testid="source-collection-trigger">
-            <SelectValue placeholder={t('collection-origin')} />
-          </SelectTrigger>
-          <SelectContent data-testid="source-collection-content">
-            {sortedCubes.map((cube) => (
-              <SelectItem key={cube.id} value={cube.id} data-testid={`source-collection-${cube.name}`}>
-                <CubeOption cube={cube} />
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <div className={'flex items-center justify-center'}>
-          <ArrowRightIcon className={'size-4 rotate-90 md:rotate-0'} />
-        </div>
-        <Select value={destinationCollection} onValueChange={setDestinationCollection} disabled={!sourceCollection}>
-          <SelectTrigger
-            className="w-full"
-            aria-invalid={!!sourceCollection && !destinationCollection}
-            data-testid="destination-collection-trigger"
+      <div className={'flex flex-col gap-1 grow md:flex-row md:items-end md:gap-2 w-full'}>
+        <div className="flex w-full min-w-0 flex-col gap-1.5">
+          <FieldLabel color="var(--cube-blue)">{t('collection-origin')}</FieldLabel>
+          <Select
+            value={sourceCollection}
+            onValueChange={(value) => {
+              setSourceCollection(value)
+              setDestinationCollection('')
+              clearSelectedSolves()
+            }}
           >
-            <SelectValue placeholder={t('collection-destination')} />
-          </SelectTrigger>
-          <SelectContent data-testid="destination-collection-content">
-            {sortedCubes
-              .filter((cube) => cube.id !== sourceCollection)
-              .map((cube) => (
-                <SelectItem key={cube.id} value={cube.id} data-testid={`destination-collection-${cube.name}`}>
+            <SelectTrigger className="w-full" data-testid="source-collection-trigger">
+              <SelectValue placeholder={t('collection-origin')} />
+            </SelectTrigger>
+            <SelectContent data-testid="source-collection-content">
+              {sortedCubes.map((cube) => (
+                <SelectItem key={cube.id} value={cube.id} data-testid={`source-collection-${cube.name}`}>
                   <CubeOption cube={cube} />
                 </SelectItem>
               ))}
-          </SelectContent>
-        </Select>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className={'flex items-center justify-center py-1 md:py-0'}>
+          <span
+            className={cn(
+              'chip-notch chip-notch-sm flex size-9 items-center justify-center transition-colors duration-300',
+              isReady ? 'bg-primary/15 text-primary' : 'bg-muted text-muted-foreground'
+            )}
+          >
+            <ArrowRightIcon className={'size-4 rotate-90 md:rotate-0'} />
+          </span>
+        </div>
+        <div className="flex w-full min-w-0 flex-col gap-1.5">
+          <FieldLabel color="var(--cube-green)">{t('collection-destination')}</FieldLabel>
+          <Select value={destinationCollection} onValueChange={setDestinationCollection} disabled={!sourceCollection}>
+            <SelectTrigger
+              className="w-full"
+              aria-invalid={!!sourceCollection && !destinationCollection}
+              data-testid="destination-collection-trigger"
+            >
+              <SelectValue placeholder={t('collection-destination')} />
+            </SelectTrigger>
+            <SelectContent data-testid="destination-collection-content">
+              {sortedCubes
+                .filter((cube) => cube.id !== sourceCollection)
+                .map((cube) => (
+                  <SelectItem key={cube.id} value={cube.id} data-testid={`destination-collection-${cube.name}`}>
+                    <CubeOption cube={cube} />
+                  </SelectItem>
+                ))}
+            </SelectContent>
+          </Select>
+        </div>
       </div>
     </div>
   )
