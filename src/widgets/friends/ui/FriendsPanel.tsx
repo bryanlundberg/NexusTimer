@@ -5,12 +5,14 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Check, UserMinus, X } from 'lucide-react'
 import { Button, buttonVariants } from '@/components/ui/button'
+import { cn } from '@/shared/lib/utils'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useFriends } from '@/entities/friendship/model/useFriends'
 import type { FriendEntry } from '@/entities/friendship/model/types'
 import { useFriendActions } from '@/features/friends/model/useFriendActions'
 import { usePresenceList } from '@/features/presence/model/usePresence'
 import { FriendRow } from '@/widgets/friends/ui/FriendRow'
+import { MessageLink } from '@/features/chat/ui/MessageLink'
 
 function Section({ title, count, children }: { title: string; count: number; children: React.ReactNode }) {
   return (
@@ -80,22 +82,28 @@ export function FriendsPanel() {
         {data.friends.length === 0 ? (
           <div className="flex flex-col items-center gap-3 py-12 text-center">
             <p className="text-sm text-muted-foreground">{t('empty')}</p>
-            <Link href="/people" className={buttonVariants({ variant: 'outline', size: 'sm' })}>
+            <Link
+              href="/people"
+              className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'btn-notch btn-notch-border')}
+            >
               {t('find-cubers')}
             </Link>
           </div>
         ) : (
           renderRows(data.friends, (userId) => (
-            <Button
-              size="sm"
-              variant="ghost"
-              className="gap-1.5 h-8 text-muted-foreground"
-              disabled={pendingId === userId}
-              onClick={() => remove(userId)}
-            >
-              <UserMinus className="size-3.5" />
-              <span className="hidden sm:inline">{t('remove-friend')}</span>
-            </Button>
+            <>
+              <MessageLink userId={userId} className="h-8" />
+              <Button
+                size="sm"
+                variant="ghost"
+                className="gap-1.5 h-8 text-muted-foreground"
+                disabled={pendingId === userId}
+                onClick={() => remove(userId)}
+              >
+                <UserMinus className="size-3.5" />
+                <span className="hidden sm:inline">{t('remove-friend')}</span>
+              </Button>
+            </>
           ))
         )}
       </Section>
