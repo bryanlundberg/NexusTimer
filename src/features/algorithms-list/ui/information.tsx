@@ -17,9 +17,11 @@ export default function Information({ title, description, algorithmCount, action
           {description && <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">{description}</p>}
         </div>
         {algorithmCount !== undefined && (
-          <div className="hidden size-14 shrink-0 flex-col items-center justify-center gap-0.5 rounded-none border bg-card text-center sm:flex">
-            <span className="text-lg font-bold leading-none tabular-nums">{algorithmCount}</span>
-            <span className="text-[10px] font-medium uppercase tracking-wide text-muted-foreground">Algs</span>
+          <div className="icon-notch hidden size-16 shrink-0 flex-col items-center justify-center gap-1 text-center sm:flex">
+            <span className="font-display text-xl font-bold leading-none tabular-nums">{algorithmCount}</span>
+            <span className="font-display text-[9px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+              Algs
+            </span>
           </div>
         )}
       </div>
