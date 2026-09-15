@@ -1,7 +1,8 @@
-import Friendship, { pairKeyOf, type FriendshipDocument } from '@/entities/friendship/model/friendship'
+import Friendship, { type FriendshipDocument } from '@/entities/friendship/model/friendship'
 import { friendsCache } from '@/entities/friendship/model/friends-cache'
 import User from '@/entities/user/model/user'
 import type { FriendUser, RelationshipStatus } from '@/entities/friendship/model/types'
+import { pairKeyOf } from '@/shared/lib/pair-key'
 
 export const FRIEND_USER_PROJECTION = 'name image country wcaId'
 
@@ -16,6 +17,10 @@ export async function getFriendIds(userId: string): Promise<string[]> {
 
   await friendsCache.prime(userId, ids)
   return ids
+}
+
+export async function areFriends(userId: string, otherId: string): Promise<boolean> {
+  return (await getFriendIds(userId)).includes(otherId)
 }
 
 export async function getMutualFriendIds(userId: string, otherId: string): Promise<string[]> {
