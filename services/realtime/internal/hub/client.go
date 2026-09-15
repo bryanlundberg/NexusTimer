@@ -19,6 +19,9 @@ type client struct {
 	flushing  bool
 	closed    bool
 	pingTimer *time.Timer
+
+	// Only touched by readPump.
+	lastInbound time.Time
 }
 
 func newClient(h *Hub, userID string, conn *websocket.Conn) *client {
@@ -111,8 +114,22 @@ func (c *client) readPump() {
 	})
 
 	for {
-		if _, _, err := c.conn.NextReader(); err != nil {
+		_, payload, err := c.conn.ReadMessage()
+		if err != nil {
 			return
 		}
+		c.receive(payload)
 	}
+}
+
+func (c *client) receive(payload []byte) {
+	if c.hub.onInbound == nil {
+		return
+	}
+	now := time.Now()
+	if now.Sub(c.lastInbound) < c.hub.opts.MinInboundInterval {
+		return
+	}
+	c.lastInbound = now
+	c.hub.onInbound(c.userID, payload)
 }
