@@ -11,6 +11,8 @@ export async function publishToUser(userId: string, event: RealtimeEvent): Promi
   }
 }
 
-export async function publishToPair(userId: string, otherId: string, type: RealtimeEvent['type']): Promise<void> {
+type PairEventType = Extract<RealtimeEvent, { type: `friend:${string}` }>['type']
+
+export async function publishToPair(userId: string, otherId: string, type: PairEventType): Promise<void> {
   await Promise.all([publishToUser(userId, { type, userId: otherId }), publishToUser(otherId, { type, userId })])
 }
