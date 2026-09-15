@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import type { RealtimeTicketResponse } from '@/shared/lib/realtime/events'
-import { emitRealtime, type RealtimeClientEvent } from '@/features/realtime/model/realtime-bus'
+import { emitRealtime, setRealtimeSender, type RealtimeClientEvent } from '@/features/realtime/model/realtime-bus'
 
 const MAX_BACKOFF_MS = 30_000
 
@@ -48,6 +48,7 @@ export function useRealtimeConnection() {
 
         ws.onopen = () => {
           attempt = 0
+          setRealtimeSender((data) => ws.send(data))
           if (hasConnected) emitRealtime({ type: 'realtime:reconnected' })
           hasConnected = true
         }
@@ -59,7 +60,10 @@ export function useRealtimeConnection() {
           }
         }
         ws.onclose = () => {
-          if (socket === ws) socket = null
+          if (socket === ws) {
+            socket = null
+            setRealtimeSender(null)
+          }
           scheduleReconnect()
         }
       } catch {
@@ -81,6 +85,7 @@ export function useRealtimeConnection() {
       stopped = true
       window.removeEventListener('online', handleOnline)
       clearTimeout(retryTimer)
+      setRealtimeSender(null)
       socket?.close(1000)
     }
   }, [userId])
