@@ -833,7 +833,12 @@
       "filters": {
         "puzzle": "Puzzle",
         "clear": "Clear filters",
-        "results": "{sets} sets · {algorithms, number} algorithms"
+        "results": "{sets} sets · {algorithms, number} algorithms",
+        "group": "Filter by group"
+      },
+      "learned-toggle": {
+        "learned": "Learned",
+        "mark": "Mark learned"
       },
       "descriptions": {
         "pbl": "These algorithms are used to permute both the top and bottom layers of a 2x2 cube simultaneously, allowing for efficient solving of the puzzle.",

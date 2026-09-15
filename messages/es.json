@@ -843,7 +843,12 @@
       "filters": {
         "puzzle": "Puzzle",
         "clear": "Limpiar filtros",
-        "results": "{sets} sets · {algorithms, number} algoritmos"
+        "results": "{sets} sets · {algorithms, number} algoritmos",
+        "group": "Filtrar por grupo"
+      },
+      "learned-toggle": {
+        "learned": "Aprendido",
+        "mark": "Marcar aprendido"
       },
       "descriptions": {
         "pbl": "Estos algoritmos se utilizan para permutar simultáneamente las capas superior e inferior de un cubo 2x2, lo que permite una resolución eficiente del rompecabezas.",

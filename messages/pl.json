@@ -843,7 +843,12 @@
       "filters": {
         "puzzle": "Układanka",
         "clear": "Wyczyść filtry",
-        "results": "{sets} zestawów · {algorithms, number} algorytmów"
+        "results": "{sets} zestawów · {algorithms, number} algorytmów",
+        "group": "Filtruj według grupy"
+      },
+      "learned-toggle": {
+        "learned": "Opanowany",
+        "mark": "Oznacz jako opanowany"
       },
       "descriptions": {
         "pbl": "Te algorytmy służą do jednoczesnej permutacji górnej i dolnej warstwy kostki 2x2, co pozwala na efektywne ułożenie układanki.",

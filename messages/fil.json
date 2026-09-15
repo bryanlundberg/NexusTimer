@@ -843,7 +843,12 @@
       "filters": {
         "puzzle": "Puzzle",
         "clear": "I-clear ang mga filter",
-        "results": "{sets} set · {algorithms, number} algorithm"
+        "results": "{sets} set · {algorithms, number} algorithm",
+        "group": "I-filter ayon sa grupo"
+      },
+      "learned-toggle": {
+        "learned": "Natutunan",
+        "mark": "Markahan natutunan"
       },
       "descriptions": {
         "pbl": "Ginagamit ang mga algorithm na ito para sabay na i-permute ang top at bottom layer ng 2x2 cube, na nagpapahintulot ng episyenteng pag-solve ng puzzle.",

@@ -843,7 +843,12 @@
       "filters": {
         "puzzle": "Puzzle",
         "clear": "Cancella filtri",
-        "results": "{sets} set · {algorithms, number} algoritmi"
+        "results": "{sets} set · {algorithms, number} algoritmi",
+        "group": "Filtra per gruppo"
+      },
+      "learned-toggle": {
+        "learned": "Imparato",
+        "mark": "Segna imparato"
       },
       "descriptions": {
         "pbl": "Questi algoritmi vengono usati per permutare contemporaneamente sia lo strato superiore che quello inferiore di un cubo 2x2, consentendo una risoluzione efficiente del puzzle.",

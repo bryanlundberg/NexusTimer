@@ -843,7 +843,12 @@
       "filters": {
         "puzzle": "Puzzle",
         "clear": "Hapus filter",
-        "results": "{sets} set · {algorithms, number} algoritma"
+        "results": "{sets} set · {algorithms, number} algoritma",
+        "group": "Filter berdasarkan grup"
+      },
+      "learned-toggle": {
+        "learned": "Dipelajari",
+        "mark": "Tandai dipelajari"
       },
       "descriptions": {
         "pbl": "Algoritma ini digunakan untuk mempermutasi lapisan atas dan bawah kubus 2x2 secara bersamaan, memungkinkan penyelesaian puzzle yang efisien.",

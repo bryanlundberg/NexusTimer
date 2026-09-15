@@ -840,7 +840,12 @@
       "filters": {
         "puzzle": "Puzzle",
         "clear": "Filter zurücksetzen",
-        "results": "{sets} Sets · {algorithms, number} Algorithmen"
+        "results": "{sets} Sets · {algorithms, number} Algorithmen",
+        "group": "Nach Gruppe filtern"
+      },
+      "learned-toggle": {
+        "learned": "Gelernt",
+        "mark": "Als gelernt markieren"
       },
       "descriptions": {
         "pbl": "Algorithmen zum gleichzeitigen Vertauschen der oberen und unteren Ebene (2x2).",

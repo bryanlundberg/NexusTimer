@@ -843,7 +843,12 @@
       "filters": {
         "puzzle": "Khối",
         "clear": "Xóa bộ lọc",
-        "results": "{sets} bộ · {algorithms, number} thuật toán"
+        "results": "{sets} bộ · {algorithms, number} thuật toán",
+        "group": "Lọc theo nhóm"
+      },
+      "learned-toggle": {
+        "learned": "Đã học",
+        "mark": "Đánh dấu đã học"
       },
       "descriptions": {
         "pbl": "Các thuật toán này được dùng để hoán vị đồng thời cả tầng trên và tầng dưới của khối 2x2, giúp giải puzzle một cách hiệu quả.",

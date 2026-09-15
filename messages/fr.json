@@ -840,7 +840,12 @@
       "filters": {
         "puzzle": "Puzzle",
         "clear": "Effacer les filtres",
-        "results": "{sets} sets · {algorithms, number} algorithmes"
+        "results": "{sets} sets · {algorithms, number} algorithmes",
+        "group": "Filtrer par groupe"
+      },
+      "learned-toggle": {
+        "learned": "Appris",
+        "mark": "Marquer appris"
       },
       "descriptions": {
         "pbl": "Algorithmes pour permuter les couches haut et bas d'un 2x2 simultanément.",

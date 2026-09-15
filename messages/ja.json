@@ -840,7 +840,12 @@
       "filters": {
         "puzzle": "パズル",
         "clear": "フィルターをクリア",
-        "results": "{sets} セット · {algorithms, number} アルゴリズム"
+        "results": "{sets} セット · {algorithms, number} アルゴリズム",
+        "group": "グループで絞り込み"
+      },
+      "learned-toggle": {
+        "learned": "習得済み",
+        "mark": "習得済みにする"
       },
       "descriptions": {
         "pbl": "2x2の上下レイヤーを同時に揃える手順です。",

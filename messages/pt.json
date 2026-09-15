@@ -840,7 +840,12 @@
       "filters": {
         "puzzle": "Puzzle",
         "clear": "Limpar filtros",
-        "results": "{sets} sets · {algorithms, number} algoritmos"
+        "results": "{sets} sets · {algorithms, number} algoritmos",
+        "group": "Filtrar por grupo"
+      },
+      "learned-toggle": {
+        "learned": "Aprendido",
+        "mark": "Marcar aprendido"
       },
       "descriptions": {
         "pbl": "Algoritmos para permutar as camadas superior e inferior de um 2x2 simultaneamente.",
