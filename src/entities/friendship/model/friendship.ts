@@ -13,8 +13,6 @@ export interface FriendshipDocument {
   updatedAt: Date
 }
 
-export const pairKeyOf = (a: string, b: string) => (a < b ? `${a}:${b}` : `${b}:${a}`)
-
 const FriendshipSchema = new Schema(
   {
     pairKey: { type: String, required: true },
