@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server'
 import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
-import Friendship, { pairKeyOf, type FriendshipDocument } from '@/entities/friendship/model/friendship'
+import Friendship, { type FriendshipDocument } from '@/entities/friendship/model/friendship'
 import { friendsCache } from '@/entities/friendship/model/friends-cache'
 import { findFriendship, findFriendUsers, otherUserId, relationshipOf } from '@/entities/friendship/server/friends'
 import type { FriendEntry, FriendsResponse } from '@/entities/friendship/model/types'
@@ -11,8 +11,8 @@ import { parseJsonBody } from '@/shared/api/parse-json'
 import { objectIdSchema } from '@/shared/api/zod-helpers'
 import { badRequest, notFound, ok, serverError } from '@/shared/api/responses'
 import { publishToPair } from '@/shared/lib/realtime/publish'
-
-const DUPLICATE_KEY = 11000
+import { pairKeyOf } from '@/shared/lib/pair-key'
+import { isDuplicateKeyError } from '@/shared/api/mongo-errors'
 
 const requestSchema = z.object({ userId: objectIdSchema }).strict()
 
@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
       return ok({ status: 'pending_out' })
     } catch (error) {
       // Both users sent a request at the same moment: report whatever won
-      if ((error as { code?: number }).code !== DUPLICATE_KEY) throw error
+      if (!isDuplicateKeyError(error)) throw error
       return ok({ status: relationshipOf(await findFriendship(userId, otherId), userId) })
     }
   } catch (error) {
