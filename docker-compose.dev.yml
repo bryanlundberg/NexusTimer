@@ -12,6 +12,15 @@ services:
     image: redis/redisinsight:latest
     ports: [ "5540:5540" ]
 
+  realtime:
+    build: ./services/realtime
+    environment:
+      REDIS_URL: redis://redis:6379
+      REALTIME_SECRET: dev-realtime-secret
+    ports: [ "8080:8080" ]
+    depends_on:
+      - redis
+
   firebase:
     image: andreysenov/firebase-tools
     command: firebase emulators:start --project nxtimer-dev --only database
