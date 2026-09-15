@@ -119,6 +119,17 @@ export function PeopleNavIcon(props: IconProps) {
   )
 }
 
+/* Friends: solid person with a heart */
+export function FriendsNavIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <circle cx="9" cy="8" r="3.6" />
+      <path d="M2.5 20.5a6.5 6.5 0 0 1 11.2-4.5 3.6 3.6 0 0 0 .6 5.5H3.5a1 1 0 0 1-1-1z" />
+      <path d="M18 21.5l-3.4-3.3a2.2 2.2 0 0 1 3.4-2.8 2.2 2.2 0 0 1 3.4 2.8z" />
+    </Svg>
+  )
+}
+
 /* Leaderboards — solid podium */
 export function LeaderboardsNavIcon(props: IconProps) {
   return (
