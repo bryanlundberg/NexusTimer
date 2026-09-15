@@ -5,7 +5,7 @@ import MethodsExplorer from '@/features/algorithm-method/ui/MethodsExplorer'
 import SuggestAlgorithmButton from '@/features/suggest-algorithm/ui/SuggestAlgorithmButton'
 import { ALGORITHM_SETS } from '@/shared/const/algorithms-sets'
 import { countAlgorithms } from '@/features/algorithm-method/model/method-filters'
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
 import { CubeGridTexture } from '@/app/_landing/CubeDecor'
@@ -14,7 +14,6 @@ const totalAlgorithms = countAlgorithms(ALGORITHM_SETS)
 
 export default function AlgorithmsMethodsPage() {
   const t = useTranslations('Index.AlgorithmsPage')
-  const locale = useLocale()
 
   return (
     <ScrollArea className="max-h-dvh overflow-auto">
@@ -34,8 +33,9 @@ export default function AlgorithmsMethodsPage() {
           </div>
 
           <div className="mx-auto max-w-2xl text-center">
-            <p className="lp-rise mb-5 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              {ALGORITHM_SETS.length} sets · {totalAlgorithms.toLocaleString(locale)} algorithms
+            <p className="lp-rise mb-5 inline-flex items-center gap-2 font-display text-xs uppercase tracking-[0.3em] text-muted-foreground">
+              <span className="size-2 shrink-0 rounded-[2px] bg-cube-green" aria-hidden />
+              {t('filters.results', { sets: ALGORITHM_SETS.length, algorithms: totalAlgorithms })}
             </p>
             <h1
               className="lp-rise font-display text-3xl font-bold tracking-[-0.02em] text-balance md:text-5xl"
