@@ -16,9 +16,10 @@ import { usePresence, resolvePresenceDisplay } from '@/features/presence/model/u
 interface Props {
   user: UserDocument
   level: number
+  children?: React.ReactNode
 }
 
-export function ProfileHeroBanner({ user, level }: Props) {
+export function ProfileHeroBanner({ user, level, children }: Props) {
   const locale = useLocale()
   const t = useTranslations('Index.PeoplePage.hero')
 
@@ -79,6 +80,7 @@ export function ProfileHeroBanner({ user, level }: Props) {
           </div>
           <ProfileTraits method={user.method} mainColors={user.mainColors} />
           {user.bio && <p className="text-sm text-muted-foreground wrap-break-word">{user.bio}</p>}
+          {children}
         </div>
       </div>
 
