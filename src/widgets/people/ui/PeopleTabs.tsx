@@ -21,6 +21,9 @@ import { useRouter } from 'next/navigation'
 import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
 import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
 import { CheckCircle2, GitCompareIcon, Pencil } from 'lucide-react'
+import { useRelationship } from '@/entities/friendship/model/useFriends'
+import { FriendButton } from '@/features/friends/ui/FriendButton'
+import { MutualFriends } from '@/features/friends/ui/MutualFriends'
 
 interface PeopleTabsProps {
   user: UserProfile
@@ -40,6 +43,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
   const { data: session } = useSession()
   const isCurrentUser = session?.user?.id === user._id
   const router = useRouter()
+  const { data: relationship } = useRelationship(user._id)
 
   const addUser = useCompareUsersStore((state) => state.addUser)
   const removeUser = useCompareUsersStore((state) => state.removeUser)
@@ -91,7 +95,9 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
     <div className="flex flex-col w-full">
       {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
 
-      <ProfileHeroBanner user={user} level={userBadges.earnedTiers} />
+      <ProfileHeroBanner user={user} level={userBadges.earnedTiers}>
+        {relationship?.mutual && <MutualFriends mutual={relationship.mutual} />}
+      </ProfileHeroBanner>
       {isCurrentUser && <ProfileCompletenessBar user={user} />}
       {!isLoadingStats && <ProfileBadgesStrip badges={userBadges} />}
 
@@ -125,6 +131,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
                 <span className="hidden sm:inline">{tProfile('edit-profile')}</span>
               </Button>
             )}
+            {relationship?.status && <FriendButton userId={user._id} status={relationship.status} />}
             <Button
               ref={compareRef}
               variant={isAdded ? 'secondary' : 'outline'}
