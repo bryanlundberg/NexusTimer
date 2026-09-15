@@ -18,17 +18,23 @@ type Options struct {
 	// MaxQueue undelivered messages before a client gets disconnected.
 	MaxQueue       int
 	MaxMessageSize int64
+	// MinInboundInterval drops browser frames sent faster than this, so one socket cannot flood Redis.
+	MinInboundInterval time.Duration
 }
 
 func DefaultOptions() Options {
 	return Options{
-		WriteWait:      10 * time.Second,
-		PongWait:       60 * time.Second,
-		PingPeriod:     30 * time.Second,
-		MaxQueue:       16,
-		MaxMessageSize: 1024,
+		WriteWait:          10 * time.Second,
+		PongWait:           60 * time.Second,
+		PingPeriod:         30 * time.Second,
+		MaxQueue:           16,
+		MaxMessageSize:     1024,
+		MinInboundInterval: time.Second,
 	}
 }
+
+// InboundFunc handles a frame sent by a browser.
+type InboundFunc func(userID string, payload []byte)
 
 type Stats struct {
 	Users       int   `json:"users"`
@@ -36,19 +42,22 @@ type Stats struct {
 }
 
 type Hub struct {
-	opts   Options
-	logger *slog.Logger
+	opts      Options
+	logger    *slog.Logger
+	onInbound InboundFunc
 
 	mu    sync.RWMutex
 	users map[string]map[*client]struct{}
 	conns atomic.Int64
 }
 
-func New(opts Options, logger *slog.Logger) *Hub {
+// New creates a hub; onInbound may be nil to ignore frames sent by browsers.
+func New(opts Options, logger *slog.Logger, onInbound InboundFunc) *Hub {
 	return &Hub{
-		opts:   opts,
-		logger: logger,
-		users:  make(map[string]map[*client]struct{}),
+		opts:      opts,
+		logger:    logger,
+		onInbound: onInbound,
+		users:     make(map[string]map[*client]struct{}),
 	}
 }
 

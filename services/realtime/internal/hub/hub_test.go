@@ -61,7 +61,7 @@ func read(t *testing.T, conn *websocket.Conn) string {
 }
 
 func TestDeliverReachesEveryTabOfTheUserInOrder(t *testing.T) {
-	h := New(DefaultOptions(), discardLogger)
+	h := New(DefaultOptions(), discardLogger, nil)
 	tabA := connect(t, h, "u1")
 	tabB := connect(t, h, "u1")
 	other := connect(t, h, "u2")
@@ -83,7 +83,7 @@ func TestDeliverReachesEveryTabOfTheUserInOrder(t *testing.T) {
 }
 
 func TestClosedConnectionIsUnregistered(t *testing.T) {
-	h := New(DefaultOptions(), discardLogger)
+	h := New(DefaultOptions(), discardLogger, nil)
 	tabA := connect(t, h, "u1")
 	connect(t, h, "u1")
 	waitForConnections(t, h, 2)
@@ -94,7 +94,7 @@ func TestClosedConnectionIsUnregistered(t *testing.T) {
 }
 
 func TestSlowClientIsDisconnected(t *testing.T) {
-	h := New(DefaultOptions(), discardLogger)
+	h := New(DefaultOptions(), discardLogger, nil)
 	connect(t, h, "u1")
 	waitForConnections(t, h, 1)
 
@@ -119,7 +119,7 @@ func TestSilentConnectionIsDropped(t *testing.T) {
 	opts := DefaultOptions()
 	opts.PingPeriod = 50 * time.Millisecond
 	opts.PongWait = 150 * time.Millisecond
-	h := New(opts, discardLogger)
+	h := New(opts, discardLogger, nil)
 
 	// Never reading means the browser side never answers pings
 	connect(t, h, "u1")
@@ -128,8 +128,48 @@ func TestSilentConnectionIsDropped(t *testing.T) {
 	waitForConnections(t, h, 0)
 }
 
+func TestInboundFramesReachTheHandlerThrottled(t *testing.T) {
+	type frame struct{ userID, payload string }
+	received := make(chan frame, 4)
+
+	opts := DefaultOptions()
+	opts.MinInboundInterval = 200 * time.Millisecond
+	h := New(opts, discardLogger, func(userID string, payload []byte) {
+		received <- frame{userID, string(payload)}
+	})
+
+	conn := connect(t, h, "u1")
+	waitForConnections(t, h, 1)
+
+	for _, payload := range []string{"first", "too-soon"} {
+		if err := conn.WriteMessage(websocket.TextMessage, []byte(payload)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	time.Sleep(250 * time.Millisecond)
+	if err := conn.WriteMessage(websocket.TextMessage, []byte("later")); err != nil {
+		t.Fatal(err)
+	}
+
+	for _, want := range []frame{{"u1", "first"}, {"u1", "later"}} {
+		select {
+		case got := <-received:
+			if got != want {
+				t.Fatalf("got %+v, want %+v", got, want)
+			}
+		case <-time.After(2 * time.Second):
+			t.Fatalf("missing %+v", want)
+		}
+	}
+	select {
+	case got := <-received:
+		t.Fatalf("throttled frame was delivered: %+v", got)
+	default:
+	}
+}
+
 func TestCloseAllSendsServiceRestart(t *testing.T) {
-	h := New(DefaultOptions(), discardLogger)
+	h := New(DefaultOptions(), discardLogger, nil)
 	conn := connect(t, h, "u1")
 	waitForConnections(t, h, 1)
 
