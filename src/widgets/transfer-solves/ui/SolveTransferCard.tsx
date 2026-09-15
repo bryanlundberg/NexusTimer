@@ -14,6 +14,8 @@ interface SolveTransferCardProps {
 
 export default function SolveTransferCard({ solve, isSelected, onToggle }: SolveTransferCardProps) {
   const locale = useLocale()
+  const [integerPart, decimalPart] = formatTime(solve.time).split('.')
+
   return (
     <Button
       variant={'outline'}
@@ -27,21 +29,21 @@ export default function SolveTransferCard({ solve, isSelected, onToggle }: Solve
         'solve-notch relative grow flex items-center justify-center font-medium text-center transition duration-200 cursor-pointer w-full h-full p-2 sm:p-3 select-none active:translate-y-0 active:scale-100'
       )}
     >
-      <div className="flex items-end gap-1 tabular-nums">
-        <span className="text-base sm:text-2xl font-semibold">{formatTime(solve.time).split('.')[0]}</span>
-        <span className="text-xs sm:text-base text-muted-foreground">.{formatTime(solve.time).split('.')[1]}</span>
+      <div className={cn('flex items-end gap-1 tabular-nums transition-opacity', solve.dnf && 'opacity-60')}>
+        <span className="text-base sm:text-2xl font-semibold">{integerPart}</span>
+        <span className="text-xs sm:text-base text-muted-foreground">.{decimalPart}</span>
         {solve.plus2 && (
-          <span className="ms-1 sm:ms-2 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 rounded-full bg-red-500/15 text-red-600">
+          <span className="badge-notch ms-1 sm:ms-2 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive">
             +2
           </span>
         )}
         {solve.dnf && (
-          <span className="ms-1 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 rounded-full bg-red-500/15 text-red-600">
+          <span className="badge-notch ms-1 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 bg-destructive/15 text-destructive">
             DNF
           </span>
         )}
       </div>
-      <div className="absolute z-20 text-[10px] sm:text-xs top-1 left-1 text-muted-foreground">
+      <div className="absolute z-20 top-1 left-1 sm:top-2 sm:left-2 text-[10px] sm:text-xs tabular-nums text-muted-foreground/70">
         {dayjs(solve.startTime).locale(locale).format('L')}
       </div>
       <div
