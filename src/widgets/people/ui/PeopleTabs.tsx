@@ -24,6 +24,7 @@ import { CheckCircle2, GitCompareIcon, Pencil } from 'lucide-react'
 import { useRelationship } from '@/entities/friendship/model/useFriends'
 import { FriendButton } from '@/features/friends/ui/FriendButton'
 import { MutualFriends } from '@/features/friends/ui/MutualFriends'
+import { MessageLink } from '@/features/chat/ui/MessageLink'
 
 interface PeopleTabsProps {
   user: UserProfile
@@ -131,6 +132,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
                 <span className="hidden sm:inline">{tProfile('edit-profile')}</span>
               </Button>
             )}
+            {relationship?.status === 'friends' && <MessageLink userId={user._id} />}
             {relationship?.status && <FriendButton userId={user._id} status={relationship.status} />}
             <Button
               ref={compareRef}
