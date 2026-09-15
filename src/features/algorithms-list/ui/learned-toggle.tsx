@@ -1,4 +1,5 @@
 import { Check, Circle } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/shared/lib/utils'
 
@@ -9,6 +10,9 @@ interface LearnedToggleProps {
 }
 
 export default function LearnedToggle({ learned, onClick, className }: LearnedToggleProps) {
+  const t = useTranslations('Index.AlgorithmsPage.learned-toggle')
+  const label = learned ? t('learned') : t('mark')
+
   return (
     <Button
       type="button"
@@ -16,8 +20,8 @@ export default function LearnedToggle({ learned, onClick, className }: LearnedTo
       size="sm"
       haptic
       aria-pressed={learned}
-      aria-label={learned ? 'Marked as learned' : 'Mark as learned'}
-      title={learned ? 'Marked as learned — click to unmark' : 'Mark as learned'}
+      aria-label={label}
+      title={label}
       onClick={(e) => {
         e.stopPropagation()
         onClick()
@@ -31,7 +35,7 @@ export default function LearnedToggle({ learned, onClick, className }: LearnedTo
       )}
     >
       {learned ? <Check className="size-3.5" /> : <Circle className="size-3.5" />}
-      <span className="hidden sm:inline">{learned ? 'Learned' : 'Mark learned'}</span>
+      <span className="hidden sm:inline">{label}</span>
     </Button>
   )
 }
