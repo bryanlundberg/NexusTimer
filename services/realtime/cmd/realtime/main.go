@@ -52,7 +52,7 @@ func run(logger *slog.Logger) error {
 	}
 	defer events.Close()
 
-	connections := hub.New(hub.DefaultOptions(), logger)
+	connections := hub.New(hub.DefaultOptions(), logger, events.Relay)
 
 	var wg sync.WaitGroup
 	wg.Go(func() { events.Run(ctx, connections.Deliver) })
