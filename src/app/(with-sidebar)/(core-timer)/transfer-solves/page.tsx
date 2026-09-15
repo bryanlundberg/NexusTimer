@@ -6,6 +6,7 @@ import useTransferSolves from '@/widgets/transfer-solves/model/useTransferSolves
 import { Button } from '@/components/ui/button'
 import CoreHeader from '@/shared/ui/core-header/ui/CoreHeader'
 import { PageBody } from '@/shared/ui/page-body/PageBody'
+import { useTranslations } from 'next-intl'
 
 export default function TransferSolvesPage() {
   const {
@@ -22,6 +23,7 @@ export default function TransferSolvesPage() {
     t
   } = useTransferSolves()
 
+  const tRail = useTranslations('Index.SolvesRail')
   const allSelected = displaySolves.length > 0 && selectedSolves.length === displaySolves.length
 
   useEffect(() => {
@@ -42,6 +44,11 @@ export default function TransferSolvesPage() {
 
       <PageBody variant="data" className="px-3">
         <TransferSolvesHeader cubes={cubes || []} />
+        {sourceCollection && displaySolves.length > 0 && (
+          <p className="mt-3 text-xs text-muted-foreground tabular-nums">
+            {tRail('solves', { count: displaySolves.length })}
+          </p>
+        )}
       </PageBody>
       <SolvesGrid selectedSolves={selectedSolves} displaySolves={displaySolves} hasSource={!!sourceCollection} />
 
