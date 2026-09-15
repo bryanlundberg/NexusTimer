@@ -507,6 +507,21 @@
       "col-country": "ประเทศ",
       "col-actions": "การกระทำ"
     },
+    "FriendsPage": {
+      "title": "เพื่อน",
+      "add-friend": "เพิ่มเพื่อน",
+      "request-sent": "ส่งคำขอแล้ว",
+      "cancel-request": "ยกเลิกคำขอ",
+      "accept": "ยอมรับ",
+      "decline": "ปฏิเสธ",
+      "remove-friend": "ลบเพื่อน",
+      "requests": "คำขอเป็นเพื่อน",
+      "sent": "ส่งแล้ว",
+      "empty": "คุณยังไม่มีเพื่อน",
+      "find-cubers": "ค้นหา cuber",
+      "mutual": "{count, plural, other {เพื่อนร่วมกัน # คน}}",
+      "action-failed": "เกิดข้อผิดพลาด โปรดลองอีกครั้ง"
+    },
     "LeaderboardsPage": {
       "title": "อันดับลีดเดอร์บอร์ด",
       "description": "100 การต่อที่เร็วที่สุดสำหรับพัซเซิลและโหมดที่เลือก จัดเรียงตามเวลา พร้อมผู้ต่อ TPS จำนวนการหมุน และวันที่ของแต่ละรายการ",
@@ -554,6 +569,7 @@
       "trainer": "ตัวฝึก",
       "community": "ชุมชน",
       "people": "ผู้คน",
+      "friends": "เพื่อน",
       "leaderboards": "ลีดเดอร์บอร์ด",
       "multiplayer": "ออนไลน์",
       "free-play": "เล่นอิสระ",

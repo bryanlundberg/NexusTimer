@@ -504,6 +504,21 @@
         "view-all": "सभी देखें"
       }
     },
+    "FriendsPage": {
+      "title": "मित्र",
+      "add-friend": "मित्र जोड़ें",
+      "request-sent": "अनुरोध भेजा गया",
+      "cancel-request": "अनुरोध रद्द करें",
+      "accept": "स्वीकार करें",
+      "decline": "अस्वीकार करें",
+      "remove-friend": "मित्र हटाएँ",
+      "requests": "अनुरोध",
+      "sent": "भेजे गए",
+      "empty": "आपके अभी तक कोई मित्र नहीं हैं।",
+      "find-cubers": "क्यूबर खोजें",
+      "mutual": "{count, plural, one {# साझा मित्र} other {# साझा मित्र}}",
+      "action-failed": "कुछ गलत हो गया। फिर से कोशिश करें।"
+    },
     "LeaderboardsPage": {
       "title": "सबसे तेज़ सॉल्व",
       "description": "चयनित पज़ल और मोड के 100 सबसे तेज़ सॉल्व, समय के अनुसार क्रमबद्ध, हर एक में सॉल्वर, TPS, मूव्स और तारीख के साथ।",
@@ -549,6 +564,7 @@
       "transfer": "स्थानांतरण",
       "community": "समुदाय",
       "people": "लोग",
+      "friends": "मित्र",
       "leaderboards": "लीडरबोर्ड",
       "multiplayer": "ऑनलाइन",
       "free-play": "फ्री प्ले",

@@ -507,6 +507,21 @@
       "col-country": "Country",
       "col-actions": "Actions"
     },
+    "FriendsPage": {
+      "title": "Friends",
+      "add-friend": "Add friend",
+      "request-sent": "Request sent",
+      "cancel-request": "Cancel request",
+      "accept": "Accept",
+      "decline": "Decline",
+      "remove-friend": "Remove friend",
+      "requests": "Requests",
+      "sent": "Sent",
+      "empty": "You have no friends yet.",
+      "find-cubers": "Find cubers",
+      "mutual": "{count, plural, one {# mutual friend} other {# mutual friends}}",
+      "action-failed": "Something went wrong. Try again."
+    },
     "LeaderboardsPage": {
       "title": "Fastest Solves",
       "description": "The 100 fastest solves for the selected puzzle and mode, ranked by time, with the solver, TPS, move count and date for each.",
@@ -554,6 +569,7 @@
       "trainer": "Trainer",
       "community": "Community",
       "people": "People",
+      "friends": "Friends",
       "leaderboards": "Leaderboards",
       "multiplayer": "Online",
       "free-play": "Free Play",

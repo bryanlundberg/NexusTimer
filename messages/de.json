@@ -504,6 +504,21 @@
         "view-all": "Alle ansehen"
       }
     },
+    "FriendsPage": {
+      "title": "Freunde",
+      "add-friend": "Freund hinzufügen",
+      "request-sent": "Anfrage gesendet",
+      "cancel-request": "Anfrage zurückziehen",
+      "accept": "Annehmen",
+      "decline": "Ablehnen",
+      "remove-friend": "Freund entfernen",
+      "requests": "Anfragen",
+      "sent": "Gesendet",
+      "empty": "Du hast noch keine Freunde.",
+      "find-cubers": "Cuber finden",
+      "mutual": "{count, plural, one {# gemeinsamer Freund} other {# gemeinsame Freunde}}",
+      "action-failed": "Etwas ist schiefgelaufen. Versuche es erneut."
+    },
     "LeaderboardsPage": {
       "title": "Schnellste Lösungen",
       "description": "Die 100 schnellsten Lösungen für das ausgewählte Puzzle und den Modus, nach Zeit sortiert, mit Löser, TPS, Zugzahl und Datum für jede.",
@@ -549,6 +564,7 @@
       "transfer": "Übertragen",
       "community": "Community",
       "people": "Personen",
+      "friends": "Freunde",
       "leaderboards": "Bestenlisten",
       "multiplayer": "Online",
       "free-play": "Freies Spiel",

@@ -504,6 +504,21 @@
         "view-all": "Tout voir"
       }
     },
+    "FriendsPage": {
+      "title": "Amis",
+      "add-friend": "Ajouter en ami",
+      "request-sent": "Demande envoyée",
+      "cancel-request": "Annuler la demande",
+      "accept": "Accepter",
+      "decline": "Refuser",
+      "remove-friend": "Retirer des amis",
+      "requests": "Demandes",
+      "sent": "Envoyées",
+      "empty": "Vous n'avez pas encore d'amis.",
+      "find-cubers": "Chercher des cubers",
+      "mutual": "{count, plural, one {# ami en commun} other {# amis en commun}}",
+      "action-failed": "Une erreur s'est produite. Réessayez."
+    },
     "LeaderboardsPage": {
       "title": "Solves les plus rapides",
       "description": "Les 100 solves les plus rapides pour le puzzle et le mode sélectionnés, classés par temps, avec l'auteur, le TPS, le nombre de mouvements et la date de chacun.",
@@ -549,6 +564,7 @@
       "transfer": "Transférer",
       "community": "Communauté",
       "people": "Personnes",
+      "friends": "Amis",
       "leaderboards": "Classements",
       "multiplayer": "En ligne",
       "free-play": "Jeu Libre",

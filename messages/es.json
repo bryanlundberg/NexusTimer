@@ -465,6 +465,21 @@
       "col-country": "País",
       "col-actions": "Acciones"
     },
+    "FriendsPage": {
+      "title": "Amigos",
+      "add-friend": "Agregar amigo",
+      "request-sent": "Solicitud enviada",
+      "cancel-request": "Cancelar solicitud",
+      "accept": "Aceptar",
+      "decline": "Rechazar",
+      "remove-friend": "Eliminar amigo",
+      "requests": "Solicitudes",
+      "sent": "Enviadas",
+      "empty": "Aún no tienes amigos.",
+      "find-cubers": "Buscar cuberos",
+      "mutual": "{count, plural, one {# amigo en común} other {# amigos en común}}",
+      "action-failed": "Algo salió mal. Inténtalo de nuevo."
+    },
     "LeaderboardsPage": {
       "title": "Solves más rápidos",
       "description": "Los 100 solves más rápidos del puzzle y modo seleccionado, ordenados por tiempo, con el autor, TPS, movimientos y fecha de cada uno.",
@@ -785,6 +800,7 @@
       "transfer": "Transferir",
       "community": "Comunidad",
       "people": "Personas",
+      "friends": "Amigos",
       "leaderboards": "Clasificaciones",
       "multiplayer": "En línea",
       "free-play": "Juego Libre",

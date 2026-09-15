@@ -504,6 +504,21 @@
         "view-all": "すべて見る"
       }
     },
+    "FriendsPage": {
+      "title": "フレンド",
+      "add-friend": "フレンド追加",
+      "request-sent": "申請済み",
+      "cancel-request": "申請を取り消す",
+      "accept": "承認",
+      "decline": "拒否",
+      "remove-friend": "フレンド解除",
+      "requests": "フレンド申請",
+      "sent": "送信済み",
+      "empty": "まだフレンドがいません。",
+      "find-cubers": "キューバーを探す",
+      "mutual": "{count, plural, other {共通のフレンド#人}}",
+      "action-failed": "問題が発生しました。もう一度お試しください。"
+    },
     "LeaderboardsPage": {
       "title": "最速の記録",
       "description": "選択したパズルとモードの最速100記録を、タイム順に表示。各記録の達成者、TPS、手数、日付も確認できます。",
@@ -549,6 +564,7 @@
       "transfer": "データ移動",
       "community": "コミュニティ",
       "people": "ユーザー",
+      "friends": "フレンド",
       "leaderboards": "ランキング",
       "multiplayer": "オンライン",
       "free-play": "フリープレイ",

@@ -507,6 +507,21 @@
       "col-country": "Kraj",
       "col-actions": "Akcje"
     },
+    "FriendsPage": {
+      "title": "Znajomi",
+      "add-friend": "Dodaj znajomego",
+      "request-sent": "Zaproszenie wysłane",
+      "cancel-request": "Anuluj zaproszenie",
+      "accept": "Akceptuj",
+      "decline": "Odrzuć",
+      "remove-friend": "Usuń znajomego",
+      "requests": "Zaproszenia",
+      "sent": "Wysłane",
+      "empty": "Nie masz jeszcze znajomych.",
+      "find-cubers": "Znajdź cuberów",
+      "mutual": "{count, plural, one {# wspólny znajomy} few {# wspólnych znajomych} many {# wspólnych znajomych} other {# wspólnego znajomego}}",
+      "action-failed": "Coś poszło nie tak. Spróbuj ponownie."
+    },
     "LeaderboardsPage": {
       "title": "Najszybsze ułożenia",
       "description": "100 najszybszych ułożeń dla wybranej układanki i trybu, uszeregowanych według czasu, z autorem, TPS, liczbą ruchów i datą każdego.",
@@ -554,6 +569,7 @@
       "trainer": "Trener",
       "community": "Społeczność",
       "people": "Ludzie",
+      "friends": "Znajomi",
       "leaderboards": "Rankingi",
       "multiplayer": "Online",
       "free-play": "Swobodna gra",

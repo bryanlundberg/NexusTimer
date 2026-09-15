@@ -507,6 +507,21 @@
       "col-country": "Negara",
       "col-actions": "Aksi"
     },
+    "FriendsPage": {
+      "title": "Teman",
+      "add-friend": "Tambah teman",
+      "request-sent": "Permintaan terkirim",
+      "cancel-request": "Batalkan permintaan",
+      "accept": "Terima",
+      "decline": "Tolak",
+      "remove-friend": "Hapus teman",
+      "requests": "Permintaan",
+      "sent": "Terkirim",
+      "empty": "Kamu belum punya teman.",
+      "find-cubers": "Cari cuber",
+      "mutual": "{count, plural, other {# teman bersama}}",
+      "action-failed": "Terjadi kesalahan. Coba lagi."
+    },
     "LeaderboardsPage": {
       "title": "Solve Tercepat",
       "description": "100 solve tercepat untuk puzzle dan mode yang dipilih, diurutkan berdasarkan waktu, lengkap dengan pemain, TPS, jumlah gerakan, dan tanggal setiap solve.",
@@ -554,6 +569,7 @@
       "trainer": "Pelatih",
       "community": "Komunitas",
       "people": "Orang",
+      "friends": "Teman",
       "leaderboards": "Papan Peringkat",
       "multiplayer": "Online",
       "free-play": "Main Bebas",

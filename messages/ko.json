@@ -504,6 +504,21 @@
         "view-all": "모두 보기"
       }
     },
+    "FriendsPage": {
+      "title": "친구",
+      "add-friend": "친구 추가",
+      "request-sent": "요청 보냄",
+      "cancel-request": "요청 취소",
+      "accept": "수락",
+      "decline": "거절",
+      "remove-friend": "친구 삭제",
+      "requests": "친구 요청",
+      "sent": "보낸 요청",
+      "empty": "아직 친구가 없습니다.",
+      "find-cubers": "큐버 찾기",
+      "mutual": "{count, plural, other {함께 아는 친구 #명}}",
+      "action-failed": "문제가 발생했습니다. 다시 시도해 주세요."
+    },
     "LeaderboardsPage": {
       "title": "최고 기록",
       "description": "선택한 퍼즐과 모드에서 가장 빠른 100개의 기록을 시간순으로 표시합니다. 각 기록의 주인공, TPS, 무브 수, 날짜도 함께 확인하세요.",
@@ -549,6 +564,7 @@
       "transfer": "데이터 이동",
       "community": "커뮤니티",
       "people": "큐버들",
+      "friends": "친구",
       "leaderboards": "순위표",
       "multiplayer": "온라인",
       "free-play": "자유 연습",

@@ -507,6 +507,21 @@
       "col-country": "Bansa",
       "col-actions": "Mga Aksyon"
     },
+    "FriendsPage": {
+      "title": "Mga Kaibigan",
+      "add-friend": "Magdagdag ng kaibigan",
+      "request-sent": "Naipadala ang request",
+      "cancel-request": "Kanselahin ang request",
+      "accept": "Tanggapin",
+      "decline": "Tanggihan",
+      "remove-friend": "Alisin sa kaibigan",
+      "requests": "Mga Request",
+      "sent": "Naipadala",
+      "empty": "Wala ka pang kaibigan.",
+      "find-cubers": "Maghanap ng mga cuber",
+      "mutual": "{count, plural, one {# mutual na kaibigan} other {# mutual na kaibigan}}",
+      "action-failed": "Nagkaproblema. Subukang muli."
+    },
     "LeaderboardsPage": {
       "title": "Pinakamabilis na Solve",
       "description": "Ang 100 pinakamabilis na solve para sa napiling puzzle at mode, nakaayos ayon sa oras, kasama ang gumawa, TPS, bilang ng galaw at petsa ng bawat isa.",
@@ -554,6 +569,7 @@
       "trainer": "Trainer",
       "community": "Komunidad",
       "people": "Mga Tao",
+      "friends": "Mga Kaibigan",
       "leaderboards": "Mga Leaderboard",
       "multiplayer": "Online",
       "free-play": "Free Play",

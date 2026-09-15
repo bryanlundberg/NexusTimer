@@ -504,6 +504,21 @@
         "view-all": "查看全部"
       }
     },
+    "FriendsPage": {
+      "title": "好友",
+      "add-friend": "添加好友",
+      "request-sent": "已发送请求",
+      "cancel-request": "取消请求",
+      "accept": "接受",
+      "decline": "拒绝",
+      "remove-friend": "删除好友",
+      "requests": "好友请求",
+      "sent": "已发送",
+      "empty": "你还没有好友。",
+      "find-cubers": "寻找魔友",
+      "mutual": "{count, plural, other {# 位共同好友}}",
+      "action-failed": "出错了，请重试。"
+    },
     "LeaderboardsPage": {
       "title": "最快还原",
       "description": "所选魔方和模式下最快的 100 次还原，按用时排序，包含每次还原的完成者、TPS、步数和日期。",
@@ -549,6 +564,7 @@
       "transfer": "数据转移",
       "community": "社区",
       "people": "魔友",
+      "friends": "好友",
       "leaderboards": "排行榜",
       "multiplayer": "在线",
       "free-play": "自由练习",

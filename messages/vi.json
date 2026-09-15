@@ -507,6 +507,21 @@
       "col-country": "Quốc gia",
       "col-actions": "Hành động"
     },
+    "FriendsPage": {
+      "title": "Bạn bè",
+      "add-friend": "Kết bạn",
+      "request-sent": "Đã gửi lời mời",
+      "cancel-request": "Hủy lời mời",
+      "accept": "Chấp nhận",
+      "decline": "Từ chối",
+      "remove-friend": "Hủy kết bạn",
+      "requests": "Lời mời kết bạn",
+      "sent": "Đã gửi",
+      "empty": "Bạn chưa có bạn bè nào.",
+      "find-cubers": "Tìm cuber",
+      "mutual": "{count, plural, other {# bạn chung}}",
+      "action-failed": "Đã xảy ra lỗi. Vui lòng thử lại."
+    },
     "LeaderboardsPage": {
       "title": "Lượt giải nhanh nhất",
       "description": "100 lượt giải nhanh nhất cho câu đố và chế độ đã chọn, xếp theo thời gian, kèm người giải, TPS, số bước và ngày của mỗi lượt.",
@@ -554,6 +569,7 @@
       "trainer": "Trình luyện tập",
       "community": "Cộng đồng",
       "people": "Mọi người",
+      "friends": "Bạn bè",
       "leaderboards": "Bảng xếp hạng",
       "multiplayer": "Trực tuyến",
       "free-play": "Chơi tự do",
