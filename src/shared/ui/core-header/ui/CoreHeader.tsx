@@ -19,6 +19,7 @@ import { LogInIcon, SmilePlus } from 'lucide-react'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
 import FeedbackModal from '@/features/feedback/ui/FeedbackModal'
 import SyncProgress from '@/shared/ui/core-header/ui/SyncProgress'
+import { MessagesMenu } from '@/widgets/chat/ui/MessagesMenu'
 import { cn } from '@/shared/lib/utils'
 
 export interface BreadcrumbEntry {
@@ -88,18 +89,19 @@ export default function CoreHeader({ breadcrumbs, actions, accentStripe = false 
           </Breadcrumb>
         </div>
 
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           {actions}
 
           {session?.user ? (
             <>
               <SyncProgress />
+              <MessagesMenu />
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="h-9 gap-1.5 px-2.5 sm:px-3"
+                    className="h-9 gap-1.5 px-2 sm:px-3"
                     onClick={handleOpenFeedback}
                     aria-label={tHeader('give-feedback')}
                     data-testid="header-feedback-button"
