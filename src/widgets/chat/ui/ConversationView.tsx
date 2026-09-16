@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { ArrowLeft } from 'lucide-react'
 import { ConversationPeerSkeleton } from '@/shared/ui/skeletons/chat-skeleton'
-import { useUser } from '@/entities/user/model/useUser'
+import { useChat } from '@/entities/chat/model/useChat'
 import { ChatAvatar } from '@/entities/chat/ui/ChatAvatar'
 import { useActiveChatStore } from '@/features/chat/model/active-chat-store'
 import { ChatMenu } from '@/features/chat/ui/ChatMenu'
@@ -13,12 +13,11 @@ import { PresenceDot } from '@/features/presence/ui/PresenceDot'
 import { resolvePresenceDisplay, usePresence } from '@/features/presence/model/usePresence'
 import { ConversationBody } from '@/widgets/chat/ui/ConversationBody'
 
-export function ConversationView({ userId }: { userId: string }) {
+export function ConversationView({ chatId }: { chatId: string }) {
   const t = useTranslations('Index.ChatPage')
   const clearActiveChat = useActiveChatStore((state) => state.clearActiveChat)
-  const { data: user } = useUser(userId)
-  const presence = usePresence(userId)
-  const peer = user?.name ? { _id: userId, name: user.name as string, image: user.image as string } : undefined
+  const { peer } = useChat(chatId)
+  const presence = usePresence(peer?._id)
 
   return (
     <>
@@ -33,7 +32,7 @@ export function ConversationView({ userId }: { userId: string }) {
         </button>
 
         {peer ? (
-          <Link href={`/people/${userId}`} className="flex min-w-0 items-center gap-2.5 hover:opacity-80">
+          <Link href={`/people/${peer._id}`} className="flex min-w-0 items-center gap-2.5 hover:opacity-80">
             <div className="relative shrink-0">
               <ChatAvatar peer={peer} className="size-9" />
               <span className="absolute -right-0.5 -bottom-0.5 rounded-full bg-background p-px">
@@ -44,17 +43,17 @@ export function ConversationView({ userId }: { userId: string }) {
               <span title={peer.name} className="truncate text-sm font-bold">
                 {peer.name}
               </span>
-              <ChatPeerStatus userId={userId} presence={presence} />
+              <ChatPeerStatus chatId={chatId} presence={presence} />
             </span>
           </Link>
         ) : (
           <ConversationPeerSkeleton />
         )}
 
-        <ChatMenu userId={userId} onDeleted={clearActiveChat} className="ml-auto" />
+        <ChatMenu chatId={chatId} onDeleted={clearActiveChat} className="ml-auto" />
       </header>
 
-      <ConversationBody userId={userId} peer={peer} />
+      <ConversationBody chatId={chatId} peer={peer} />
     </>
   )
 }
