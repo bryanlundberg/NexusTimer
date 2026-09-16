@@ -1,6 +1,6 @@
 import type { MessageDocument } from '@/entities/chat/model/message'
 import Message from '@/entities/chat/model/message'
-import { requireChat, type ChatIdParams } from '@/entities/chat/server/require-chat'
+import { requireChat } from '@/entities/chat/server/require-chat'
 import { badRequest, notFound } from '@/shared/api/responses'
 import { objectIdSchema } from '@/shared/api/zod-helpers'
 
