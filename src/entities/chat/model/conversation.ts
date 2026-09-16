@@ -5,6 +5,8 @@ export interface ConversationDocument {
   pairKey: string
   members: Types.ObjectId[]
   lastMessage?: {
+    /** Absent on conversations last written before per-side deletion existed. */
+    messageId?: Types.ObjectId
     text: string
     senderId: Types.ObjectId
     createdAt: Date
@@ -14,6 +16,10 @@ export interface ConversationDocument {
   /** When each member's app received the messages, which turns one check into two. */
   deliveredAt?: Record<string, Date>
   readAt?: Record<string, Date>
+  /** Emptying the chat on one side: that member only sees messages newer than this. */
+  clearedAt?: Record<string, Date>
+  /** Deleting the chat on one side: hidden from that member's inbox until a newer message arrives. */
+  hiddenAt?: Record<string, Date>
   createdAt: Date
 }
 
@@ -23,7 +29,9 @@ const ConversationSchema = new Schema(
     members: { type: [{ type: Schema.Types.ObjectId, ref: 'User' }], required: true },
     lastMessage: {
       type: {
-        text: { type: String, required: true },
+        messageId: { type: Schema.Types.ObjectId, ref: 'Message' },
+        // Empty when the last message was deleted for everyone
+        text: { type: String, default: '' },
         senderId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
         createdAt: { type: Date, required: true }
       },
@@ -32,7 +40,9 @@ const ConversationSchema = new Schema(
     lastMessageAt: { type: Date },
     unread: { type: Map, of: Number, default: {} },
     deliveredAt: { type: Map, of: Date, default: {} },
-    readAt: { type: Map, of: Date, default: {} }
+    readAt: { type: Map, of: Date, default: {} },
+    clearedAt: { type: Map, of: Date, default: {} },
+    hiddenAt: { type: Map, of: Date, default: {} }
   },
   { timestamps: { createdAt: true, updatedAt: false } }
 )
