@@ -9,7 +9,9 @@ import { CountBadge } from '@/shared/ui/count-badge/CountBadge'
 import { useUser } from '@/entities/user/model/useUser'
 import { useInbox } from '@/entities/chat/model/useInbox'
 import { ChatAvatar } from '@/entities/chat/ui/ChatAvatar'
+import { useActiveChatStore } from '@/features/chat/model/active-chat-store'
 import { useChatDockStore, type DockWindow } from '@/features/chat/model/chat-dock-store'
+import { ChatMenu } from '@/features/chat/ui/ChatMenu'
 import { ChatPeerStatus } from '@/features/chat/ui/ChatPeerStatus'
 import { PresenceDot } from '@/features/presence/ui/PresenceDot'
 import { resolvePresenceDisplay, usePresence } from '@/features/presence/model/usePresence'
@@ -25,6 +27,7 @@ export function ChatWindow({ userId, minimized }: DockWindow) {
   const toggleMinimized = useChatDockStore((state) => state.toggleMinimized)
   const isFocusRequested = useChatDockStore((state) => state.focusedUserId === userId)
   const clearFocus = useChatDockStore((state) => state.clearFocus)
+  const setActiveChat = useActiveChatStore((state) => state.setActiveChat)
 
   const peer = user?.name ? { _id: userId, name: user.name as string, image: user.image as string } : undefined
   const unread = inbox?.threads.find((thread) => thread.user._id === userId)?.unread ?? 0
@@ -69,9 +72,13 @@ export function ChatWindow({ userId, minimized }: DockWindow) {
           )}
         </button>
 
+        <ChatMenu userId={userId} onDeleted={() => closeWindow(userId)} className={dockIconButtonClass} />
         <Link
-          href={`/messages/${userId}`}
-          onClick={() => closeWindow(userId)}
+          href="/messages"
+          onClick={() => {
+            setActiveChat(userId)
+            closeWindow(userId)
+          }}
           aria-label={t('expand')}
           title={t('expand')}
           className={dockIconButtonClass}
