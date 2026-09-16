@@ -22,8 +22,8 @@ export function ChatPeerStatus({ chatId, presence, className }: Props) {
   let label: string | null
   if (isTyping) label = tChat('typing')
   else if (display !== 'offline') label = tPresence(display)
-  else if (presence.lastOnline && presence.status !== 'invisible')
-    label = tPresence('last-seen', { time: dayjs(presence.lastOnline).locale(locale).fromNow() })
+  else if (presence.lastSeen)
+    label = tPresence('last-seen', { time: dayjs(presence.lastSeen).locale(locale).fromNow() })
   else label = null
 
   if (!label) return null
