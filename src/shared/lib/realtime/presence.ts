@@ -9,7 +9,6 @@ const GATEWAY_PREFIX = 'rt:gw:'
 
 /** Backstop for an entry whose delete never landed. Nothing refreshes the timestamp. */
 const CONN_MAX_AGE_SECONDS = 24 * 60 * 60
-const STATUS_TTL_SECONDS = 60 * 60 * 24 * 30
 
 export const statusKey = (userId: string) => STATUS_PREFIX + userId
 
@@ -117,26 +116,28 @@ async function readLiveGateways(instanceIds: string[]): Promise<ReadonlySet<stri
 }
 
 /**
- * Refreshes the mirror without announcing anything, so a wiped Redis cannot turn an invisible
- * person visible when their socket reopens.
+ * Redis is the only home of the declared status, so it is written without a TTL: an expiry would
+ * quietly turn an invisible person visible. A failed write has to reach the caller, since there
+ * is nothing else to fall back on.
  */
-export async function primePresenceStatus(userId: string, status: PresenceStatus): Promise<void> {
-  try {
-    const redis = await getRedis()
-    await redis.set(statusKey(userId), status, { EX: STATUS_TTL_SECONDS })
-  } catch (error) {
-    console.error('primePresenceStatus failed:', error)
-  }
-}
-
 export async function writePresenceStatus(userId: string, status: PresenceStatus): Promise<void> {
-  try {
-    const redis = await getRedis()
-    await redis.set(statusKey(userId), status, { EX: STATUS_TTL_SECONDS })
+  const redis = await getRedis()
+  await redis.set(statusKey(userId), status)
 
+  try {
     const [user] = await readPresence([userId])
     await redis.publish(presenceChannel(userId), JSON.stringify({ type: 'presence', users: [user] }))
   } catch (error) {
-    console.error('writePresenceStatus failed:', error)
+    console.error('writePresenceStatus publish failed:', error)
+  }
+}
+
+/** Nothing expires these, so a deleted account has to take them with it. */
+export async function clearPresence(userId: string): Promise<void> {
+  try {
+    const redis = await getRedis()
+    await redis.del([CONNS_PREFIX + userId, statusKey(userId), LAST_SEEN_PREFIX + userId])
+  } catch (error) {
+    console.error('clearPresence failed:', error)
   }
 }
