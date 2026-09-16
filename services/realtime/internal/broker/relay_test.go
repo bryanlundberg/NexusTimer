@@ -13,27 +13,31 @@ const (
 	alice = "64b7f0c2a1b2c3d4e5f60718"
 	bob   = "64b7f0c2a1b2c3d4e5f60719"
 	carol = "64b7f0c2a1b2c3d4e5f6071a"
+	chat  = "64b7f0c2a1b2c3d4e5f6071b"
 )
 
 func TestParseTyping(t *testing.T) {
 	cases := map[string]struct {
-		payload string
-		wantTo  string
-		wantOK  bool
+		payload    string
+		wantTo     string
+		wantChatID string
+		wantOK     bool
 	}{
-		"valid":          {`{"type":"typing","to":"` + bob + `"}`, bob, true},
-		"other type":     {`{"type":"message","to":"` + bob + `"}`, "", false},
-		"invalid user":   {`{"type":"typing","to":"not-an-id"}`, "", false},
-		"uppercase id":   {`{"type":"typing","to":"64B7F0C2A1B2C3D4E5F60719"}`, "", false},
-		"missing target": {`{"type":"typing"}`, "", false},
-		"not json":       {`typing`, "", false},
+		"valid":          {`{"type":"typing","to":"` + bob + `","chatId":"` + chat + `"}`, bob, chat, true},
+		"other type":     {`{"type":"message","to":"` + bob + `","chatId":"` + chat + `"}`, "", "", false},
+		"invalid user":   {`{"type":"typing","to":"not-an-id","chatId":"` + chat + `"}`, "", "", false},
+		"uppercase id":   {`{"type":"typing","to":"64B7F0C2A1B2C3D4E5F60719","chatId":"` + chat + `"}`, "", "", false},
+		"missing chat":   {`{"type":"typing","to":"` + bob + `"}`, "", "", false},
+		"invalid chat":   {`{"type":"typing","to":"` + bob + `","chatId":"nope"}`, "", "", false},
+		"missing target": {`{"type":"typing","chatId":"` + chat + `"}`, "", "", false},
+		"not json":       {`typing`, "", "", false},
 	}
 
 	for name, tc := range cases {
 		t.Run(name, func(t *testing.T) {
-			to, ok := parseTyping([]byte(tc.payload))
-			if to != tc.wantTo || ok != tc.wantOK {
-				t.Fatalf("got (%q, %v), want (%q, %v)", to, ok, tc.wantTo, tc.wantOK)
+			to, chatID, ok := parseTyping([]byte(tc.payload))
+			if to != tc.wantTo || chatID != tc.wantChatID || ok != tc.wantOK {
+				t.Fatalf("got (%q, %q, %v), want (%q, %q, %v)", to, chatID, ok, tc.wantTo, tc.wantChatID, tc.wantOK)
 			}
 		})
 	}
@@ -66,12 +70,12 @@ func TestRelayOnlyReachesFriends(t *testing.T) {
 	}
 	messages := sub.Channel()
 
-	b.Relay(alice, []byte(`{"type":"typing","to":"`+carol+`"}`))
-	b.Relay(alice, []byte(`{"type":"typing","to":"`+bob+`"}`))
+	b.Relay(alice, []byte(`{"type":"typing","to":"`+carol+`","chatId":"`+chat+`"}`))
+	b.Relay(alice, []byte(`{"type":"typing","to":"`+bob+`","chatId":"`+chat+`"}`))
 
 	select {
 	case msg := <-messages:
-		want := `{"type":"typing","userId":"` + alice + `"}`
+		want := `{"type":"typing","userId":"` + alice + `","chatId":"` + chat + `"}`
 		if msg.Channel != ChannelPrefix+bob || msg.Payload != want {
 			t.Fatalf("got %s %s, want typing from alice to bob only", msg.Channel, msg.Payload)
 		}
