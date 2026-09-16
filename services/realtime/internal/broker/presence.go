@@ -176,11 +176,18 @@ type selfStatusEvent struct {
 }
 
 func (b *Broker) selfStatus(ctx context.Context, userID string) []byte {
-	status, err := b.client.Get(ctx, statusKeyPrefix+userID).Result()
-	if err != nil && !errors.Is(err, redis.Nil) {
+	key := statusKeyPrefix + userID
+	pipe := b.client.Pipeline()
+	read := pipe.Get(ctx, key)
+	// The declared status must never expire, so a key an older deploy wrote with a TTL is healed
+	// the next time its owner connects.
+	pipe.Persist(ctx, key)
+	if _, err := pipe.Exec(ctx); err != nil && !errors.Is(err, redis.Nil) {
 		b.logger.Warn("self status read failed", "error", err)
 		return nil
 	}
+
+	status := read.Val()
 	if status == "" {
 		status = string(StateOnline)
 	}
