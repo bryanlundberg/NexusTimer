@@ -3,14 +3,23 @@ import { useSession } from 'next-auth/react'
 import { useSWRConfig } from 'swr'
 import useSWRInfinite from 'swr/infinite'
 import { fetcher } from '@/shared/lib/fetcher'
-import { apiPost } from '@/shared/api/client'
-import { NO_RECEIPTS, type ChatMessage, type MessagesPage, type Receipts } from '@/entities/chat/model/types'
-import { INBOX_KEY, messagesKey, readKey, useInbox } from '@/entities/chat/model/useInbox'
+import { apiDelete, apiPatch, apiPost } from '@/shared/api/client'
+import {
+  NO_RECEIPTS,
+  type ChatMessage,
+  type DeleteScope,
+  type MessageReaction,
+  type MessagesPage,
+  type Receipts
+} from '@/entities/chat/model/types'
+import { INBOX_KEY, messageKey, messagesKey, reactionsKey, readKey, useInbox } from '@/entities/chat/model/useInbox'
 import {
   appendMessage,
+  clearMessages,
   confirmMessage,
   failMessage,
   flattenPages,
+  patchMessage,
   removeMessage
 } from '@/entities/chat/lib/message-pages'
 import { mergeReceipts } from '@/entities/chat/lib/message-status'
@@ -41,6 +50,7 @@ export function useConversation(userId: string) {
 
   const update = (change: (pages?: MessagesPage[]) => MessagesPage[]) => mutate(change, { revalidate: false })
 
+  const messages = flattenPages(data)
   const lastTypingSentAt = useRef(0)
   const [liveReceipts, setLiveReceipts] = useState<Receipts>(NO_RECEIPTS)
   const isOtherTyping = useTypingUsers().has(userId)
@@ -75,6 +85,53 @@ export function useConversation(userId: string) {
     await deliver(message.text)
   }
 
+  const editMessage = async (messageId: string, text: string) => {
+    const trimmed = text.trim()
+    if (!enabled || !trimmed) return
+
+    await update((pages) => patchMessage(pages, messageId, { text: trimmed, editedAt: new Date().toISOString() }))
+    try {
+      const saved = await apiPatch<ChatMessage>(messageKey(userId, messageId), { text: trimmed })
+      await update((pages) => patchMessage(pages, messageId, saved))
+    } catch {
+      // The server refused it, so go back to whatever it really holds
+      void mutate()
+    }
+  }
+
+  const tombstone = () => ({ text: '', deletedAt: new Date().toISOString(), reactions: undefined })
+
+  const deleteMessage = async (messageId: string, scope: DeleteScope) => {
+    if (!enabled) return
+
+    await update((pages) =>
+      scope === 'me' ? removeMessage(pages, messageId) : patchMessage(pages, messageId, tombstone())
+    )
+    try {
+      await apiDelete(`${messageKey(userId, messageId)}?scope=${scope}`)
+    } catch {
+      void mutate()
+    }
+  }
+
+  const toggleReaction = async (messageId: string, emoji: string) => {
+    if (!enabled || !myId) return
+
+    const current = messages.find((message) => message._id === messageId)?.reactions ?? []
+    const mine = (reaction: MessageReaction) => reaction.userId === myId && reaction.emoji === emoji
+    const next = current.some(mine)
+      ? current.filter((reaction) => !mine(reaction))
+      : [...current, { userId: myId, emoji }]
+
+    await update((pages) => patchMessage(pages, messageId, { reactions: next }))
+    try {
+      const saved = await apiPost<{ reactions: MessageReaction[] }>(reactionsKey(userId, messageId), { emoji })
+      await update((pages) => patchMessage(pages, messageId, { reactions: saved.reactions }))
+    } catch {
+      void mutate()
+    }
+  }
+
   const notifyTyping = () => {
     const now = Date.now()
     if (!enabled || now - lastTypingSentAt.current < TYPING_SEND_INTERVAL_MS) return
@@ -85,6 +142,16 @@ export function useConversation(userId: string) {
     if (!enabled) return
     if (event.type === 'message:new' && event.userId === userId) {
       void update((pages) => appendMessage(pages, event.message))
+    } else if (event.type === 'message:edited' && event.userId === userId) {
+      void update((pages) => patchMessage(pages, event.message._id, event.message))
+    } else if (event.type === 'message:deleted' && event.userId === userId) {
+      void update((pages) =>
+        event.scope === 'me' ? removeMessage(pages, event.messageId) : patchMessage(pages, event.messageId, tombstone())
+      )
+    } else if (event.type === 'message:reactions' && event.userId === userId) {
+      void update((pages) => patchMessage(pages, event.messageId, { reactions: event.reactions }))
+    } else if ((event.type === 'chat:cleared' || event.type === 'chat:removed') && event.userId === userId) {
+      void update(clearMessages)
     } else if (event.type === 'chat:delivered' && event.userId === userId) {
       setLiveReceipts((current) => mergeReceipts(current, { deliveredAt: event.deliveredAt }))
     } else if (event.type === 'chat:seen' && event.userId === userId) {
@@ -112,8 +179,6 @@ export function useConversation(userId: string) {
     return () => document.removeEventListener('visibilitychange', markRead)
   }, [enabled, unread, userId, mutateGlobal])
 
-  const messages = flattenPages(data)
-
   return {
     myId,
     messages,
@@ -125,6 +190,9 @@ export function useConversation(userId: string) {
     loadOlder: () => setSize(size + 1),
     send,
     retry,
+    editMessage,
+    deleteMessage,
+    toggleReaction,
     notifyTyping
   }
 }
