@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { Check, UserMinus, X } from 'lucide-react'
@@ -8,8 +8,9 @@ import { Button, buttonVariants } from '@/components/ui/button'
 import { cn } from '@/shared/lib/utils'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useFriends } from '@/entities/friendship/model/useFriends'
-import type { FriendEntry } from '@/entities/friendship/model/types'
+import type { FriendEntry, FriendUser } from '@/entities/friendship/model/types'
 import { useFriendActions } from '@/features/friends/model/useFriendActions'
+import { FriendActionDialog, type FriendAction } from '@/features/friends/ui/FriendActionDialog'
 import { usePresenceList } from '@/features/presence/model/usePresence'
 import { FriendRow } from '@/widgets/friends/ui/FriendRow'
 import { MessageLink } from '@/features/chat/ui/MessageLink'
@@ -34,6 +35,7 @@ export function FriendsPanel() {
   const t = useTranslations('Index.FriendsPage')
   const { data, isLoading } = useFriends()
   const { add, remove, pendingId } = useFriendActions()
+  const [confirming, setConfirming] = useState<{ user: FriendUser; action: FriendAction } | null>(null)
 
   const friendIds = useMemo(() => (data?.friends ?? []).map((entry) => entry.user._id), [data?.friends])
   const presence = usePresenceList(friendIds)
@@ -48,33 +50,48 @@ export function FriendsPanel() {
     )
   }
 
-  const renderRows = (entries: FriendEntry[], actions: (userId: string) => React.ReactNode) =>
+  const renderRows = (entries: FriendEntry[], actions: (user: FriendUser) => React.ReactNode, stackActions = false) =>
     entries.map(({ user }) => (
-      <FriendRow key={user._id} user={user} presence={presence[user._id]} actions={actions(user._id)} />
+      <FriendRow
+        key={user._id}
+        user={user}
+        presence={presence[user._id]}
+        actions={actions(user)}
+        stackActions={stackActions}
+      />
     ))
 
   return (
     <div className="flex flex-col gap-4">
       {data.incoming.length > 0 && (
         <Section title={t('requests')} count={data.incoming.length}>
-          {renderRows(data.incoming, (userId) => (
-            <>
-              <Button size="sm" className="gap-1.5 h-8" disabled={pendingId === userId} onClick={() => add(userId)}>
-                <Check className="size-3.5" />
-                <span className="hidden sm:inline">{t('accept')}</span>
-              </Button>
-              <Button
-                size="sm"
-                variant="outline"
-                className="gap-1.5 h-8"
-                disabled={pendingId === userId}
-                onClick={() => remove(userId)}
-              >
-                <X className="size-3.5" />
-                <span className="hidden sm:inline">{t('decline')}</span>
-              </Button>
-            </>
-          ))}
+          {renderRows(
+            data.incoming,
+            (user) => (
+              <>
+                <Button
+                  size="sm"
+                  className="gap-1.5 h-8 max-sm:flex-1"
+                  disabled={pendingId === user._id}
+                  onClick={() => add(user._id)}
+                >
+                  <Check className="size-3.5" />
+                  {t('accept')}
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="gap-1.5 h-8 max-sm:flex-1"
+                  disabled={pendingId === user._id}
+                  onClick={() => setConfirming({ user, action: 'decline' })}
+                >
+                  <X className="size-3.5" />
+                  {t('decline')}
+                </Button>
+              </>
+            ),
+            true
+          )}
         </Section>
       )}
 
@@ -90,15 +107,15 @@ export function FriendsPanel() {
             </Link>
           </div>
         ) : (
-          renderRows(data.friends, (userId) => (
+          renderRows(data.friends, (user) => (
             <>
-              <MessageLink userId={userId} className="h-8" />
+              <MessageLink userId={user._id} className="h-8" />
               <Button
                 size="sm"
                 variant="ghost"
                 className="gap-1.5 h-8 text-muted-foreground"
-                disabled={pendingId === userId}
-                onClick={() => remove(userId)}
+                disabled={pendingId === user._id}
+                onClick={() => setConfirming({ user, action: 'remove-friend' })}
               >
                 <UserMinus className="size-3.5" />
                 <span className="hidden sm:inline">{t('remove-friend')}</span>
@@ -110,20 +127,31 @@ export function FriendsPanel() {
 
       {data.outgoing.length > 0 && (
         <Section title={t('sent')} count={data.outgoing.length}>
-          {renderRows(data.outgoing, (userId) => (
-            <Button
-              size="sm"
-              variant="ghost"
-              className="gap-1.5 h-8 text-muted-foreground"
-              disabled={pendingId === userId}
-              onClick={() => remove(userId)}
-            >
-              <X className="size-3.5" />
-              <span className="hidden sm:inline">{t('cancel-request')}</span>
-            </Button>
-          ))}
+          {renderRows(
+            data.outgoing,
+            (user) => (
+              <Button
+                size="sm"
+                variant="ghost"
+                className="gap-1.5 h-8 text-muted-foreground max-sm:flex-1"
+                disabled={pendingId === user._id}
+                onClick={() => setConfirming({ user, action: 'cancel-request' })}
+              >
+                <X className="size-3.5" />
+                {t('cancel-request')}
+              </Button>
+            ),
+            true
+          )}
         </Section>
       )}
+
+      <FriendActionDialog
+        friend={confirming?.user ?? null}
+        action={confirming?.action ?? 'remove-friend'}
+        onOpenChange={(open) => !open && setConfirming(null)}
+        onConfirm={remove}
+      />
     </div>
   )
 }
