@@ -1,10 +1,10 @@
 import connectDB from '@/shared/config/mongodb/mongodb'
 import Conversation, { type ConversationDocument } from '@/entities/chat/model/conversation'
-import { otherMemberId } from '@/entities/chat/server/chat'
+import { memberIds } from '@/entities/chat/server/chat'
 import { INBOX_LIMIT } from '@/entities/chat/model/types'
 import { requireUser } from '@/shared/api/require-user'
 import { ok, serverError } from '@/shared/api/responses'
-import { publishToUser } from '@/shared/lib/realtime/publish'
+import { publishToChat } from '@/shared/lib/realtime/publish'
 
 /**
  * Acknowledges every message received so far, turning the sender's single check into a double one.
@@ -39,11 +39,10 @@ export async function POST() {
 
     await Promise.all(
       pending.map((conversation) =>
-        publishToUser(otherMemberId(conversation, userId), {
-          type: 'chat:delivered',
-          userId,
-          deliveredAt: deliveredAt.toISOString()
-        })
+        publishToChat(
+          memberIds(conversation).filter((memberId) => memberId !== userId),
+          { type: 'chat:delivered', chatId: conversation._id.toString(), deliveredAt: deliveredAt.toISOString() }
+        )
       )
     )
 
