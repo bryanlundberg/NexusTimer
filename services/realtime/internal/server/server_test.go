@@ -31,7 +31,7 @@ func (f fakePinger) Ping(context.Context) error { return f.err }
 func newTestServer(t *testing.T, redis Pinger) (*hub.Hub, *httptest.Server) {
 	t.Helper()
 	logger := slog.New(slog.NewTextHandler(io.Discard, nil))
-	h := hub.New(hub.DefaultOptions(), logger, nil)
+	h := hub.New(hub.DefaultOptions(), logger, nil, nil)
 	cfg := config.Config{Secret: []byte(testSecret), AllowedOrigins: []string{allowedOrigin}}
 
 	srv := httptest.NewServer(New(cfg, h, redis, logger).Handler())
