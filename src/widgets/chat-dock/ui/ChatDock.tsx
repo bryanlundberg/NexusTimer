@@ -37,7 +37,7 @@ export function ChatDock() {
         .slice(0, capacity)
         .toReversed()
         .map((dockWindow) => (
-          <ChatWindow key={dockWindow.userId} {...dockWindow} />
+          <ChatWindow key={dockWindow.chatId} {...dockWindow} />
         ))}
     </div>
   )
