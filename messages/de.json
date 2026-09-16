@@ -518,6 +518,8 @@
       "requests": "Anfragen",
       "sent": "Gesendet",
       "empty": "Du hast noch keine Freunde.",
+      "no-requests": "Du hast keine offenen Anfragen.",
+      "no-sent": "Du hast keine Anfragen gesendet.",
       "find-cubers": "Cuber finden",
       "mutual": "{count, plural, one {# gemeinsamer Freund} other {# gemeinsame Freunde}}",
       "action-failed": "Etwas ist schiefgelaufen. Versuche es erneut.",

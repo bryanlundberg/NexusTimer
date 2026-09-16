@@ -518,6 +518,8 @@
       "requests": "Solicitações",
       "sent": "Enviadas",
       "empty": "Você ainda não tem amigos.",
+      "no-requests": "Você não tem solicitações pendentes.",
+      "no-sent": "Você não enviou nenhuma solicitação.",
       "find-cubers": "Buscar cubeiros",
       "mutual": "{count, plural, one {# amigo em comum} other {# amigos em comum}}",
       "action-failed": "Algo deu errado. Tente novamente.",

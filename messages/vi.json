@@ -521,6 +521,8 @@
       "requests": "Lời mời kết bạn",
       "sent": "Đã gửi",
       "empty": "Bạn chưa có bạn bè nào.",
+      "no-requests": "Bạn không có lời mời nào đang chờ.",
+      "no-sent": "Bạn chưa gửi lời mời nào.",
       "find-cubers": "Tìm cuber",
       "mutual": "{count, plural, other {# bạn chung}}",
       "action-failed": "Đã xảy ra lỗi. Vui lòng thử lại.",

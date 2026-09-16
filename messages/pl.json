@@ -521,6 +521,8 @@
       "requests": "Zaproszenia",
       "sent": "Wysłane",
       "empty": "Nie masz jeszcze znajomych.",
+      "no-requests": "Nie masz oczekujących zaproszeń.",
+      "no-sent": "Nie wysłano żadnych zaproszeń.",
       "find-cubers": "Znajdź cuberów",
       "mutual": "{count, plural, one {# wspólny znajomy} few {# wspólnych znajomych} many {# wspólnych znajomych} other {# wspólnego znajomego}}",
       "action-failed": "Coś poszło nie tak. Spróbuj ponownie.",

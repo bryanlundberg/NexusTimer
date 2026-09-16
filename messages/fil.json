@@ -521,6 +521,8 @@
       "requests": "Mga Request",
       "sent": "Naipadala",
       "empty": "Wala ka pang kaibigan.",
+      "no-requests": "Wala kang nakabinbing request.",
+      "no-sent": "Wala kang naipadalang request.",
       "find-cubers": "Maghanap ng mga cuber",
       "mutual": "{count, plural, one {# mutual na kaibigan} other {# mutual na kaibigan}}",
       "action-failed": "Nagkaproblema. Subukang muli.",

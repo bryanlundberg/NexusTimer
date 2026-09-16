@@ -518,6 +518,8 @@
       "requests": "Demandes",
       "sent": "Envoyées",
       "empty": "Vous n'avez pas encore d'amis.",
+      "no-requests": "Vous n'avez aucune demande en attente.",
+      "no-sent": "Vous n'avez envoyé aucune demande.",
       "find-cubers": "Chercher des cubers",
       "mutual": "{count, plural, one {# ami en commun} other {# amis en commun}}",
       "action-failed": "Une erreur s'est produite. Réessayez.",

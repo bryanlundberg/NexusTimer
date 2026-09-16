@@ -521,6 +521,8 @@
       "requests": "Requests",
       "sent": "Sent",
       "empty": "You have no friends yet.",
+      "no-requests": "You have no pending friend requests.",
+      "no-sent": "You have not sent any requests.",
       "find-cubers": "Find cubers",
       "mutual": "{count, plural, one {# mutual friend} other {# mutual friends}}",
       "action-failed": "Something went wrong. Try again.",

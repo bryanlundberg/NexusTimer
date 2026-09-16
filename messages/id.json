@@ -521,6 +521,8 @@
       "requests": "Permintaan",
       "sent": "Terkirim",
       "empty": "Kamu belum punya teman.",
+      "no-requests": "Kamu tidak punya permintaan yang tertunda.",
+      "no-sent": "Kamu belum mengirim permintaan apa pun.",
       "find-cubers": "Cari cuber",
       "mutual": "{count, plural, other {# teman bersama}}",
       "action-failed": "Terjadi kesalahan. Coba lagi.",

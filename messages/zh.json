@@ -518,6 +518,8 @@
       "requests": "好友请求",
       "sent": "已发送",
       "empty": "你还没有好友。",
+      "no-requests": "你没有待处理的好友请求。",
+      "no-sent": "你还没有发送任何请求。",
       "find-cubers": "寻找魔友",
       "mutual": "{count, plural, other {# 位共同好友}}",
       "action-failed": "出错了，请重试。",

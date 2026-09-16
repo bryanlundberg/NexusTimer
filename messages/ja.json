@@ -518,6 +518,8 @@
       "requests": "フレンド申請",
       "sent": "送信済み",
       "empty": "まだフレンドがいません。",
+      "no-requests": "保留中のフレンド申請はありません。",
+      "no-sent": "送信した申請はありません。",
       "find-cubers": "キューバーを探す",
       "mutual": "{count, plural, other {共通のフレンド#人}}",
       "action-failed": "問題が発生しました。もう一度お試しください。",

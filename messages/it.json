@@ -521,6 +521,8 @@
       "requests": "Richieste",
       "sent": "Inviate",
       "empty": "Non hai ancora amici.",
+      "no-requests": "Non hai richieste in sospeso.",
+      "no-sent": "Non hai inviato nessuna richiesta.",
       "find-cubers": "Trova cuber",
       "mutual": "{count, plural, one {# amico in comune} other {# amici in comune}}",
       "action-failed": "Qualcosa è andato storto. Riprova.",

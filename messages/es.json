@@ -479,6 +479,8 @@
       "requests": "Solicitudes",
       "sent": "Enviadas",
       "empty": "Aún no tienes amigos.",
+      "no-requests": "No tienes solicitudes pendientes.",
+      "no-sent": "No has enviado ninguna solicitud.",
       "find-cubers": "Buscar cuberos",
       "mutual": "{count, plural, one {# amigo en común} other {# amigos en común}}",
       "action-failed": "Algo salió mal. Inténtalo de nuevo.",
