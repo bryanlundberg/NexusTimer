@@ -1085,6 +1085,36 @@
   pointer-events: none;
 }
 
+.panel-notch-bl-tr {
+  --pn-notch: 14px;
+  --pn-border: 1px;
+  --pn-border-color: var(--border);
+  --pn-fill: color-mix(in oklab, var(--card) 30%, var(--background));
+  --pn-shape: polygon(
+    0 0,
+    calc(100% - var(--pn-notch)) 0,
+    100% var(--pn-notch),
+    100% 100%,
+    var(--pn-notch) 100%,
+    0 calc(100% - var(--pn-notch))
+  );
+  position: relative;
+  isolation: isolate;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background-color: var(--pn-border-color) !important;
+  clip-path: var(--pn-shape);
+}
+.panel-notch-bl-tr::before {
+  content: '';
+  position: absolute;
+  inset: var(--pn-border);
+  z-index: -1;
+  background-color: var(--pn-fill);
+  clip-path: var(--pn-shape);
+  pointer-events: none;
+}
+
 /* Semi-diagonal (slanted) difficulty bars. */
 .diag-bar {
   border-radius: 0 !important;
