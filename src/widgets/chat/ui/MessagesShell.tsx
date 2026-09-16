@@ -9,7 +9,7 @@ import { InboxList } from '@/widgets/chat/ui/InboxList'
 /** Inbox and conversation scroll on their own: side by side on desktop, one at a time on mobile. */
 export function MessagesShell({ children }: { children: React.ReactNode }) {
   const t = useTranslations('Index.ChatPage')
-  const activeUserId = useActiveChatStore((state) => state.activeUserId)
+  const activeChatId = useActiveChatStore((state) => state.activeChatId)
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
@@ -21,13 +21,13 @@ export function MessagesShell({ children }: { children: React.ReactNode }) {
         <aside
           className={cn(
             'min-h-0 w-full flex-col bg-card/40 md:flex md:w-80 md:shrink-0 md:border-r md:border-border/60 xl:w-96',
-            activeUserId ? 'hidden' : 'flex'
+            activeChatId ? 'hidden' : 'flex'
           )}
         >
-          <InboxList activeUserId={activeUserId} />
+          <InboxList activeChatId={activeChatId} />
         </aside>
 
-        <section className={cn('min-h-0 min-w-0 flex-1 flex-col md:flex', activeUserId ? 'flex' : 'hidden')}>
+        <section className={cn('min-h-0 min-w-0 flex-1 flex-col md:flex', activeChatId ? 'flex' : 'hidden')}>
           {children}
         </section>
       </div>
