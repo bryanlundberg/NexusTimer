@@ -1,10 +1,11 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import type { ChatPeer } from '@/entities/chat/model/types'
+import type { ChatPeer, DeleteScope } from '@/entities/chat/model/types'
 import { useRelationship } from '@/entities/friendship/model/useFriends'
 import { useConversation } from '@/features/chat/model/useConversation'
-import { MessageComposer } from '@/features/chat/ui/MessageComposer'
+import { MessageComposer, type ComposerEdit } from '@/features/chat/ui/MessageComposer'
 import { MessageList } from '@/widgets/chat/ui/MessageList'
 
 interface Props {
@@ -19,13 +20,25 @@ export function ConversationBody({ userId, peer, compact = false, focusRequested
   const t = useTranslations('Index.ChatPage')
   const { data: relationship } = useRelationship(userId)
   const conversation = useConversation(userId)
+  const [editing, setEditing] = useState<ComposerEdit | null>(null)
 
   const canMessage = relationship?.status === 'friends'
+  const { messages } = conversation
+
+  // The other member may delete the very message being edited, here or from another tab
+  useEffect(() => {
+    if (editing && !messages.some((message) => message._id === editing.id && !message.deletedAt)) setEditing(null)
+  }, [messages, editing])
+
+  const handleDelete = (messageId: string, scope: DeleteScope) => {
+    if (editing?.id === messageId) setEditing(null)
+    void conversation.deleteMessage(messageId, scope)
+  }
 
   return (
     <>
       <MessageList
-        messages={conversation.messages}
+        messages={messages}
         myId={conversation.myId}
         peer={peer}
         hasMore={conversation.hasMore}
@@ -36,6 +49,9 @@ export function ConversationBody({ userId, peer, compact = false, focusRequested
         compact={compact}
         onLoadOlder={conversation.loadOlder}
         onRetry={conversation.retry}
+        onReact={(messageId, emoji) => void conversation.toggleReaction(messageId, emoji)}
+        onEdit={(message) => setEditing({ id: message._id, text: message.text })}
+        onDelete={handleDelete}
       />
 
       {relationship && !canMessage ? (
@@ -50,6 +66,9 @@ export function ConversationBody({ userId, peer, compact = false, focusRequested
           compact={compact}
           focusRequested={focusRequested}
           onFocused={onFocused}
+          editing={editing}
+          onSaveEdit={(messageId, text) => void conversation.editMessage(messageId, text)}
+          onCancelEdit={() => setEditing(null)}
         />
       )}
     </>
