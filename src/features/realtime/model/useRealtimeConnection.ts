@@ -49,6 +49,7 @@ export function useRealtimeConnection() {
         ws.onopen = () => {
           attempt = 0
           setRealtimeSender((data) => ws.send(data))
+          emitRealtime({ type: 'realtime:connected' })
           if (hasConnected) emitRealtime({ type: 'realtime:reconnected' })
           hasConnected = true
         }
