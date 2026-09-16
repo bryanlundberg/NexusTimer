@@ -44,6 +44,19 @@ export function failMessage(pages: Pages, tempId: string): MessagesPage[] {
   }))
 }
 
+/** Merges fields into one message wherever its page is: edits, reactions and tombstones. */
+export function patchMessage(pages: Pages, id: string, patch: Partial<ChatMessage>): MessagesPage[] {
+  return (pages ?? []).map((page) => ({
+    ...page,
+    messages: page.messages.map((message) => (message._id === id ? { ...message, ...patch } : message))
+  }))
+}
+
+export function clearMessages(pages: Pages): MessagesPage[] {
+  const [newest] = pages ?? []
+  return [{ messages: [], hasMore: false, receipts: newest?.receipts ?? NO_RECEIPTS }]
+}
+
 export function removeMessage(pages: Pages, id: string): MessagesPage[] {
   return (pages ?? []).map((page) => ({ ...page, messages: page.messages.filter((message) => message._id !== id) }))
 }
