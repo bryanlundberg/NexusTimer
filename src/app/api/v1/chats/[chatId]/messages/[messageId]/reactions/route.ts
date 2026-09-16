@@ -1,12 +1,13 @@
 import { NextRequest } from 'next/server'
 import { z } from 'zod'
 import Message, { type MessageDocument } from '@/entities/chat/model/message'
+import { memberIds } from '@/entities/chat/server/chat'
 import { requireChatMessage, type MessageIdParams } from '@/entities/chat/server/require-chat-message'
 import { isSingleEmoji } from '@/entities/chat/lib/message-content'
 import { MAX_REACTION_LENGTH, MAX_REACTIONS_PER_USER } from '@/entities/chat/model/types'
 import { parseJsonBody } from '@/shared/api/parse-json'
 import { badRequest, forbidden, ok, serverError } from '@/shared/api/responses'
-import { publishToUser } from '@/shared/lib/realtime/publish'
+import { publishToChat } from '@/shared/lib/realtime/publish'
 import type { MessageReaction } from '@/shared/lib/realtime/events'
 
 const reactSchema = z
@@ -18,7 +19,7 @@ export async function POST(request: NextRequest, context: MessageIdParams) {
   try {
     const target = await requireChatMessage(context)
     if (target instanceof Response) return target
-    const { userId, otherId, message } = target
+    const { userId, chat, message } = target
 
     const body = await parseJsonBody(request, reactSchema)
     if (body instanceof Response) return body
@@ -38,7 +39,7 @@ export async function POST(request: NextRequest, context: MessageIdParams) {
       )
     }
 
-    // Read back so both members get the same list even when they react at the same time
+    // Read back so every member gets the same list even when they react at the same time
     const fresh = await Message.findOne({ _id: message._id }, { reactions: 1 }).lean<
       Pick<MessageDocument, 'reactions'>
     >()
@@ -47,14 +48,15 @@ export async function POST(request: NextRequest, context: MessageIdParams) {
       emoji: reaction.emoji
     }))
 
-    const messageId = message._id.toString()
-    await Promise.all([
-      publishToUser(otherId, { type: 'message:reactions', userId, messageId, reactions }),
-      publishToUser(userId, { type: 'message:reactions', userId: otherId, messageId, reactions })
-    ])
+    await publishToChat(memberIds(chat), {
+      type: 'message:reactions',
+      chatId: chat._id.toString(),
+      messageId: message._id.toString(),
+      reactions
+    })
 
     return ok({ reactions })
   } catch (error) {
-    return serverError('chats/[userId]/messages/[messageId]/reactions:POST', error)
+    return serverError('chats/[chatId]/messages/[messageId]/reactions:POST', error)
   }
 }
