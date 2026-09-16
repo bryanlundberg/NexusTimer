@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { MessageCircle } from 'lucide-react'
@@ -12,8 +12,7 @@ import { CountBadge } from '@/shared/ui/count-badge/CountBadge'
 import { Skeleton } from '@/components/ui/skeleton'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { useInbox } from '@/entities/chat/model/useInbox'
-import { useChatDockStore } from '@/features/chat/model/chat-dock-store'
-import { canUseDock } from '@/features/chat/model/useOpenChat'
+import { useOpenChat } from '@/features/chat/model/useOpenChat'
 import { getDockCapacity } from '@/features/chat/model/dock-capacity'
 import { useTypingUsers } from '@/features/chat/model/typing-store'
 import { usePresenceList } from '@/features/presence/model/usePresence'
@@ -24,9 +23,8 @@ export function MessagesMenu() {
   const t = useTranslations('Index.ChatPage')
   const { data: session } = useSession()
   const { data: inbox, isLoading } = useInbox()
-  const pathname = usePathname()
   const router = useRouter()
-  const openWindow = useChatDockStore((state) => state.openWindow)
+  const openChat = useOpenChat()
   const [open, setOpen] = useState(false)
 
   const threads = inbox?.threads ?? []
@@ -43,12 +41,6 @@ export function MessagesMenu() {
       return
     }
     setOpen(next)
-  }
-
-  // The dock is hidden on the messages page, so there the conversation opens in the page itself
-  const openThread = (userId: string) => {
-    if (canUseDock(pathname)) openWindow(userId)
-    else router.push(`/messages/${userId}`)
   }
 
   return (
@@ -115,7 +107,7 @@ export function MessagesMenu() {
           {threads.map((thread) => (
             <DropdownMenuItem
               key={thread.user._id}
-              onSelect={() => openThread(thread.user._id)}
+              onSelect={() => openChat(thread.user._id)}
               className="gap-3 border-b border-border/40 px-3 py-2.5 last:border-b-0"
             >
               <ThreadPreview
