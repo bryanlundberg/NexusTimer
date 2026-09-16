@@ -9,15 +9,17 @@ import { buttonVariants } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/shared/lib/utils'
 import { useInbox } from '@/entities/chat/model/useInbox'
+import { useActiveChatStore } from '@/features/chat/model/active-chat-store'
 import { useTypingUsers } from '@/features/chat/model/typing-store'
 import { usePresenceList } from '@/features/presence/model/usePresence'
 import { ChatEmptyState } from '@/widgets/chat/ui/ChatEmptyState'
 import { ThreadPreview } from '@/widgets/chat/ui/ThreadPreview'
 
-export function InboxList({ activeUserId }: { activeUserId?: string }) {
+export function InboxList({ activeUserId }: { activeUserId: string | null }) {
   const t = useTranslations('Index.ChatPage')
   const { data: session } = useSession()
   const { data, isLoading } = useInbox()
+  const setActiveChat = useActiveChatStore((state) => state.setActiveChat)
 
   const userIds = useMemo(() => (data?.threads ?? []).map((thread) => thread.user._id), [data?.threads])
   const presence = usePresenceList(userIds)
@@ -53,17 +55,18 @@ export function InboxList({ activeUserId }: { activeUserId?: string }) {
   }
 
   return (
-    <nav aria-label={t('title')} className="min-h-0 flex-1 overflow-y-auto">
+    <div aria-label={t('title')} className="min-h-0 flex-1 overflow-y-auto">
       {data.threads.map((thread) => {
         const isActive = thread.user._id === activeUserId
 
         return (
-          <Link
+          <button
             key={thread.user._id}
-            href={`/messages/${thread.user._id}`}
-            aria-current={isActive ? 'page' : undefined}
+            type="button"
+            onClick={() => setActiveChat(thread.user._id)}
+            aria-current={isActive || undefined}
             className={cn(
-              'flex w-full items-center gap-3 border-b border-l-2 border-b-border/40 border-l-transparent px-3 py-3 transition-colors duration-150 hover:bg-muted/20',
+              'flex w-full items-center gap-3 border-b border-l-2 border-b-border/40 border-l-transparent px-3 py-3 text-left transition-colors duration-150 hover:bg-muted/20',
               isActive && 'border-l-primary bg-muted/30'
             )}
           >
@@ -73,9 +76,9 @@ export function InboxList({ activeUserId }: { activeUserId?: string }) {
               presence={presence[thread.user._id]}
               isTyping={typingUsers.has(thread.user._id)}
             />
-          </Link>
+          </button>
         )
       })}
-    </nav>
+    </div>
   )
 }
