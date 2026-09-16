@@ -14,6 +14,24 @@ export interface RealtimeMessage {
   reactions?: MessageReaction[]
 }
 
+/** What a person declares about themselves. Only `invisible` never leaves the gateway. */
+export type PresenceStatus = 'online' | 'away' | 'busy' | 'invisible'
+
+export const PRESENCE_STATUSES: PresenceStatus[] = ['online', 'away', 'busy', 'invisible']
+
+export const isPresenceStatus = (value: unknown): value is PresenceStatus =>
+  typeof value === 'string' && PRESENCE_STATUSES.includes(value as PresenceStatus)
+
+/** What everyone else is allowed to see, resolved from the declared status and open sockets. */
+export type PresenceDisplay = 'online' | 'away' | 'busy' | 'offline'
+
+export interface PresenceUser {
+  userId: string
+  state: PresenceDisplay
+  /** Unix milliseconds. */
+  lastSeen?: number
+}
+
 export type RealtimeEvent =
   | { type: 'friend:request'; userId: string }
   | { type: 'friend:accepted'; userId: string }
@@ -28,9 +46,16 @@ export type RealtimeEvent =
   | { type: 'chat:delivered'; chatId: string; deliveredAt: string }
   | { type: 'chat:seen'; chatId: string; readAt: string }
   | { type: 'typing'; chatId: string; userId: string }
+  | { type: 'presence'; users: PresenceUser[] }
+  | { type: 'presence:self'; status: PresenceStatus }
 
-export type RealtimeClientFrame = { type: 'typing'; to: string; chatId: string }
+export type RealtimeClientFrame =
+  | { type: 'typing'; to: string; chatId: string }
+  | { type: 'presence:watch'; ids: string[] }
+  | { type: 'presence:idle'; idle: boolean }
 
 export type RealtimeTicketResponse = { url: string; ticket: string }
 
 export const userChannel = (userId: string) => `rt:user:${userId}`
+
+export const presenceChannel = (userId: string) => `rt:presence:${userId}`
