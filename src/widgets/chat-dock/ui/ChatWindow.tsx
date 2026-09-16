@@ -6,7 +6,7 @@ import { ChevronUp, Maximize2, Minus, X } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/shared/lib/utils'
 import { CountBadge } from '@/shared/ui/count-badge/CountBadge'
-import { useUser } from '@/entities/user/model/useUser'
+import { useChat } from '@/entities/chat/model/useChat'
 import { useInbox } from '@/entities/chat/model/useInbox'
 import { ChatAvatar } from '@/entities/chat/ui/ChatAvatar'
 import { useActiveChatStore } from '@/features/chat/model/active-chat-store'
@@ -18,19 +18,18 @@ import { resolvePresenceDisplay, usePresence } from '@/features/presence/model/u
 import { ConversationBody } from '@/widgets/chat/ui/ConversationBody'
 import { DockIconButton, dockIconButtonClass, keepFocusOnMouseDown } from '@/widgets/chat-dock/ui/DockIconButton'
 
-export function ChatWindow({ userId, minimized }: DockWindow) {
+export function ChatWindow({ chatId, minimized }: DockWindow) {
   const t = useTranslations('Index.ChatPage')
-  const { data: user } = useUser(userId)
-  const presence = usePresence(userId)
+  const { peer } = useChat(chatId)
+  const presence = usePresence(peer?._id)
   const { data: inbox } = useInbox()
   const closeWindow = useChatDockStore((state) => state.closeWindow)
   const toggleMinimized = useChatDockStore((state) => state.toggleMinimized)
-  const isFocusRequested = useChatDockStore((state) => state.focusedUserId === userId)
+  const isFocusRequested = useChatDockStore((state) => state.focusedChatId === chatId)
   const clearFocus = useChatDockStore((state) => state.clearFocus)
   const setActiveChat = useActiveChatStore((state) => state.setActiveChat)
 
-  const peer = user?.name ? { _id: userId, name: user.name as string, image: user.image as string } : undefined
-  const unread = inbox?.threads.find((thread) => thread.user._id === userId)?.unread ?? 0
+  const unread = inbox?.threads.find((thread) => thread._id === chatId)?.unread ?? 0
 
   return (
     <section
@@ -43,7 +42,7 @@ export function ChatWindow({ userId, minimized }: DockWindow) {
       <header className="flex h-14 shrink-0 items-center gap-0.5 border-b border-border/60 pr-1 pl-2.5">
         <button
           type="button"
-          onClick={() => toggleMinimized(userId)}
+          onClick={() => toggleMinimized(chatId)}
           onMouseDown={keepFocusOnMouseDown}
           aria-expanded={!minimized}
           title={peer?.name}
@@ -61,7 +60,7 @@ export function ChatWindow({ userId, minimized }: DockWindow) {
               </span>
               <span className="flex min-w-0 flex-1 flex-col gap-0.5">
                 <span className="truncate text-sm leading-tight font-bold">{peer.name}</span>
-                <ChatPeerStatus userId={userId} presence={presence} className="leading-tight" />
+                <ChatPeerStatus chatId={chatId} presence={presence} className="leading-tight" />
               </span>
             </>
           ) : (
@@ -72,12 +71,12 @@ export function ChatWindow({ userId, minimized }: DockWindow) {
           )}
         </button>
 
-        <ChatMenu userId={userId} onDeleted={() => closeWindow(userId)} className={dockIconButtonClass} />
+        <ChatMenu chatId={chatId} onDeleted={() => closeWindow(chatId)} className={dockIconButtonClass} />
         <Link
           href="/messages"
           onClick={() => {
-            setActiveChat(userId)
-            closeWindow(userId)
+            setActiveChat(chatId)
+            closeWindow(chatId)
           }}
           aria-label={t('expand')}
           title={t('expand')}
@@ -86,20 +85,20 @@ export function ChatWindow({ userId, minimized }: DockWindow) {
           <Maximize2 className="size-3.5" />
         </Link>
         <DockIconButton
-          onClick={() => toggleMinimized(userId)}
+          onClick={() => toggleMinimized(chatId)}
           aria-label={minimized ? t('restore') : t('minimize')}
           title={minimized ? t('restore') : t('minimize')}
         >
           {minimized ? <ChevronUp className="size-4" /> : <Minus className="size-4" />}
         </DockIconButton>
-        <DockIconButton onClick={() => closeWindow(userId)} aria-label={t('close')} title={t('close')}>
+        <DockIconButton onClick={() => closeWindow(chatId)} aria-label={t('close')} title={t('close')}>
           <X className="size-4" />
         </DockIconButton>
       </header>
 
       {!minimized && (
         <ConversationBody
-          userId={userId}
+          chatId={chatId}
           peer={peer}
           compact
           focusRequested={isFocusRequested}
