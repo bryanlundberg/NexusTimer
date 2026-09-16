@@ -8,24 +8,24 @@ import { INBOX_KEY, chatKey, messagesKey } from '@/entities/chat/model/useInbox'
  * Conversation-wide actions, both one-sided: the other member keeps their history.
  * Kept out of `useConversation` so the header can use them without a second subscription.
  */
-export function useChatActions(userId: string) {
+export function useChatActions(chatId: string) {
   const { mutate } = useSWRConfig()
 
   const revalidate = async () => {
     // useSWRInfinite stores its pages under a generated key that embeds the url
-    await mutate((key) => typeof key === 'string' && key.includes(messagesKey(userId)))
+    await mutate((key) => typeof key === 'string' && key.includes(messagesKey(chatId)))
     await mutate(INBOX_KEY)
   }
 
   return {
     /** Empties the history here and leaves the thread in the inbox. */
     clearChat: async () => {
-      await apiDelete(messagesKey(userId))
+      await apiDelete(messagesKey(chatId))
       await revalidate()
     },
     /** Empties it and drops the thread until a new message arrives. */
     deleteChat: async () => {
-      await apiDelete(chatKey(userId))
+      await apiDelete(chatKey(chatId))
       await revalidate()
     }
   }

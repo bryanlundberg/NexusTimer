@@ -4,11 +4,11 @@ import { fetcher } from '@/shared/lib/fetcher'
 import type { InboxResponse } from '@/entities/chat/model/types'
 
 export const INBOX_KEY = '/api/v1/chats'
-export const chatKey = (userId: string) => `${INBOX_KEY}/${userId}`
-export const messagesKey = (userId: string) => `${INBOX_KEY}/${userId}/messages`
-export const messageKey = (userId: string, messageId: string) => `${messagesKey(userId)}/${messageId}`
-export const reactionsKey = (userId: string, messageId: string) => `${messageKey(userId, messageId)}/reactions`
-export const readKey = (userId: string) => `${INBOX_KEY}/${userId}/read`
+export const chatKey = (chatId: string) => `${INBOX_KEY}/${chatId}`
+export const messagesKey = (chatId: string) => `${chatKey(chatId)}/messages`
+export const messageKey = (chatId: string, messageId: string) => `${messagesKey(chatId)}/${messageId}`
+export const reactionsKey = (chatId: string, messageId: string) => `${messageKey(chatId, messageId)}/reactions`
+export const readKey = (chatId: string) => `${chatKey(chatId)}/read`
 export const DELIVERED_KEY = `${INBOX_KEY}/delivered`
 
 export const useInbox = () => {

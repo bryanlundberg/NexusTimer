@@ -38,11 +38,11 @@ export function useChatRealtime() {
 
         // The unread badges are the only notice: no message text leaves the conversation
         acknowledgeDelivery()
-        clearTyping(event.userId)
+        clearTyping(event.chatId)
         break
       }
       case 'typing':
-        markTyping(event.userId)
+        markTyping(event.chatId)
         break
       case 'realtime:reconnected':
         acknowledgeDelivery()
