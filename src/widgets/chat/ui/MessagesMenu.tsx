@@ -14,7 +14,7 @@ import { InboxListSkeleton } from '@/shared/ui/skeletons/chat-skeleton'
 import { useInbox } from '@/entities/chat/model/useInbox'
 import { useOpenChat } from '@/features/chat/model/useOpenChat'
 import { getDockCapacity } from '@/features/chat/model/dock-capacity'
-import { useTypingUsers } from '@/features/chat/model/typing-store'
+import { useTypingChats } from '@/features/chat/model/typing-store'
 import { usePresenceList } from '@/features/presence/model/usePresence'
 import { ThreadPreview } from '@/widgets/chat/ui/ThreadPreview'
 
@@ -24,7 +24,7 @@ export function MessagesMenu() {
   const { data: session } = useSession()
   const { data: inbox, isLoading } = useInbox()
   const router = useRouter()
-  const openChat = useOpenChat()
+  const { openChat } = useOpenChat()
   const [open, setOpen] = useState(false)
 
   const threads = inbox?.threads ?? []
@@ -33,7 +33,7 @@ export function MessagesMenu() {
   // Presence listeners only while the menu is open
   const userIds = useMemo(() => (open ? threads.map((thread) => thread.user._id) : []), [open, threads])
   const presence = usePresenceList(userIds)
-  const typingUsers = useTypingUsers()
+  const typingChats = useTypingChats()
 
   const handleOpenChange = (next: boolean) => {
     if (next && getDockCapacity() === 0) {
@@ -100,15 +100,15 @@ export function MessagesMenu() {
 
           {threads.map((thread) => (
             <DropdownMenuItem
-              key={thread.user._id}
-              onSelect={() => openChat(thread.user._id)}
+              key={thread._id}
+              onSelect={() => openChat(thread._id)}
               className="gap-3 border-b border-border/40 px-3 py-2.5 last:border-b-0"
             >
               <ThreadPreview
                 thread={thread}
                 myId={session?.user?.id}
                 presence={presence[thread.user._id]}
-                isTyping={typingUsers.has(thread.user._id)}
+                isTyping={typingChats.has(thread._id)}
               />
             </DropdownMenuItem>
           ))}
