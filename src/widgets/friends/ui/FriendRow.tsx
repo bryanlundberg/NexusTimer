@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useLocale } from 'next-intl'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { cn } from '@/shared/lib/utils'
 import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 import { CountryFlag } from '@/shared/ui/country-flag/CountryFlag'
 import { getCountryName } from '@/shared/lib/getCountryName'
@@ -14,13 +15,19 @@ interface Props {
   user: FriendUser
   presence?: PresenceState
   actions: React.ReactNode
+  stackActions?: boolean
 }
 
-export function FriendRow({ user, presence, actions }: Props) {
+export function FriendRow({ user, presence, actions, stackActions = false }: Props) {
   const locale = useLocale()
 
   return (
-    <div className="flex items-center gap-3 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 transition-colors duration-150">
+    <div
+      className={cn(
+        'flex gap-3 px-3 py-3 border-b border-border/40 last:border-b-0 hover:bg-muted/20 transition-colors duration-150',
+        stackActions ? 'flex-col sm:flex-row sm:items-center' : 'items-center'
+      )}
+    >
       <Link href={`/people/${user._id}`} className="flex items-center gap-3 min-w-0 flex-1">
         <div className="relative shrink-0">
           <Avatar className="size-9 rounded-lg">
@@ -46,7 +53,7 @@ export function FriendRow({ user, presence, actions }: Props) {
           </span>
         </div>
       </Link>
-      <div className="flex items-center gap-2 shrink-0">{actions}</div>
+      <div className={cn('flex items-center gap-2', stackActions ? 'sm:shrink-0' : 'shrink-0')}>{actions}</div>
     </div>
   )
 }
