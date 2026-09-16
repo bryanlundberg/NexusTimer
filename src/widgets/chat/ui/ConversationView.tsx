@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { ArrowLeft } from 'lucide-react'
-import { Skeleton } from '@/components/ui/skeleton'
+import { ConversationPeerSkeleton } from '@/shared/ui/skeletons/chat-skeleton'
 import { useUser } from '@/entities/user/model/useUser'
 import { ChatAvatar } from '@/entities/chat/ui/ChatAvatar'
 import { useActiveChatStore } from '@/features/chat/model/active-chat-store'
@@ -48,7 +48,7 @@ export function ConversationView({ userId }: { userId: string }) {
             </span>
           </Link>
         ) : (
-          <Skeleton className="h-9 w-44" />
+          <ConversationPeerSkeleton />
         )}
 
         <ChatMenu userId={userId} onDeleted={clearActiveChat} className="ml-auto" />
