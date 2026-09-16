@@ -14,24 +14,22 @@ export interface RealtimeMessage {
   reactions?: MessageReaction[]
 }
 
-/** `userId` is always the other party, so the recipient knows what to refresh. */
 export type RealtimeEvent =
   | { type: 'friend:request'; userId: string }
   | { type: 'friend:accepted'; userId: string }
   | { type: 'friend:removed'; userId: string }
-  | { type: 'message:new'; userId: string; message: RealtimeMessage }
-  | { type: 'message:edited'; userId: string; message: RealtimeMessage }
-  | { type: 'message:deleted'; userId: string; messageId: string; scope: 'me' | 'all' }
-  | { type: 'message:reactions'; userId: string; messageId: string; reactions: MessageReaction[] }
-  | { type: 'chat:read'; userId: string }
-  | { type: 'chat:cleared'; userId: string }
-  | { type: 'chat:removed'; userId: string }
-  | { type: 'chat:delivered'; userId: string; deliveredAt: string }
-  | { type: 'chat:seen'; userId: string; readAt: string }
-  | { type: 'typing'; userId: string }
+  | { type: 'message:new'; chatId: string; message: RealtimeMessage }
+  | { type: 'message:edited'; chatId: string; message: RealtimeMessage }
+  | { type: 'message:deleted'; chatId: string; messageId: string; scope: 'me' | 'all' }
+  | { type: 'message:reactions'; chatId: string; messageId: string; reactions: MessageReaction[] }
+  | { type: 'chat:read'; chatId: string }
+  | { type: 'chat:cleared'; chatId: string }
+  | { type: 'chat:removed'; chatId: string }
+  | { type: 'chat:delivered'; chatId: string; deliveredAt: string }
+  | { type: 'chat:seen'; chatId: string; readAt: string }
+  | { type: 'typing'; chatId: string; userId: string }
 
-/** Frames the browser sends through the gateway (see services/realtime/internal/broker/relay.go). */
-export type RealtimeClientFrame = { type: 'typing'; to: string }
+export type RealtimeClientFrame = { type: 'typing'; to: string; chatId: string }
 
 export type RealtimeTicketResponse = { url: string; ticket: string }
 
