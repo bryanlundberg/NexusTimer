@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import dayjs from '@/shared/lib/dayjs'
 import { cn } from '@/shared/lib/utils'
-import type { ChatMessage, ChatPeer, Receipts } from '@/entities/chat/model/types'
+import type { ChatMessage, ChatPeer, DeleteScope, Receipts } from '@/entities/chat/model/types'
 import { messageStatus } from '@/entities/chat/lib/message-status'
 import { ChatAvatar } from '@/entities/chat/ui/ChatAvatar'
 import { MessageBubble } from '@/entities/chat/ui/MessageBubble'
@@ -28,6 +28,9 @@ interface Props {
   compact?: boolean
   onLoadOlder: () => void
   onRetry: (message: ChatMessage) => void
+  onReact: (messageId: string, emoji: string) => void
+  onEdit: (message: ChatMessage) => void
+  onDelete: (messageId: string, scope: DeleteScope) => void
 }
 
 export function MessageList({
@@ -41,7 +44,10 @@ export function MessageList({
   isOtherTyping,
   compact = false,
   onLoadOlder,
-  onRetry
+  onRetry,
+  onReact,
+  onEdit,
+  onDelete
 }: Props) {
   const t = useTranslations('Index.ChatPage')
   const locale = useLocale()
@@ -148,8 +154,12 @@ export function MessageList({
               <MessageBubble
                 message={message}
                 isOwn={isOwn}
+                myId={myId}
                 status={isOwn ? messageStatus(message, receipts) : undefined}
                 onRetry={() => onRetry(message)}
+                onReact={(emoji) => onReact(message._id, emoji)}
+                onEdit={() => onEdit(message)}
+                onDelete={(scope) => onDelete(message._id, scope)}
               />
             </div>
           </Fragment>
