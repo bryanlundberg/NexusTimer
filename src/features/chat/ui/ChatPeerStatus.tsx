@@ -4,19 +4,19 @@ import { useLocale, useTranslations } from 'next-intl'
 import dayjs from '@/shared/lib/dayjs'
 import { cn } from '@/shared/lib/utils'
 import { resolvePresenceDisplay, type PresenceState } from '@/features/presence/model/usePresence'
-import { useTypingUsers } from '@/features/chat/model/typing-store'
+import { useTypingChats } from '@/features/chat/model/typing-store'
 
 interface Props {
-  userId: string
+  chatId: string
   presence: PresenceState
   className?: string
 }
 
-export function ChatPeerStatus({ userId, presence, className }: Props) {
+export function ChatPeerStatus({ chatId, presence, className }: Props) {
   const tChat = useTranslations('Index.ChatPage')
   const tPresence = useTranslations('Index.Presence')
   const locale = useLocale()
-  const isTyping = useTypingUsers().has(userId)
+  const isTyping = useTypingChats().has(chatId)
   const display = resolvePresenceDisplay(presence)
 
   let label: string | null
