@@ -12,6 +12,11 @@ export function isBigEmoji(text: string): boolean {
   return (compact.match(EMOJI_UNIT)?.length ?? 0) <= MAX_BIG_EMOJI
 }
 
+export function isSingleEmoji(text: string): boolean {
+  if (!EMOJI_ONLY.test(text)) return false
+  return (text.match(EMOJI_UNIT)?.length ?? 0) === 1
+}
+
 export type MessagePart = { type: 'text'; value: string } | { type: 'link'; value: string; href: string }
 
 const URL_PATTERN = /\bhttps?:\/\/[^\s<>"']+[^\s<>"'.,;:!?)\]}]/gi
