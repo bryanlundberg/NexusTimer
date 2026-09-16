@@ -22,15 +22,15 @@ import { cn } from '@/shared/lib/utils'
 type Pending = 'clear' | 'delete'
 
 interface Props {
-  userId: string
+  chatId: string
   onDeleted?: () => void
   className?: string
 }
 
 /** Both entries only affect this side of the conversation. */
-export function ChatMenu({ userId, onDeleted, className }: Props) {
+export function ChatMenu({ chatId, onDeleted, className }: Props) {
   const t = useTranslations('Index.ChatPage')
-  const { clearChat, deleteChat } = useChatActions(userId)
+  const { clearChat, deleteChat } = useChatActions(chatId)
   const [pending, setPending] = useState<Pending | null>(null)
   const [busy, setBusy] = useState(false)
 
