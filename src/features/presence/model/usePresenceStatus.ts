@@ -1,37 +1,23 @@
 'use client'
-import { useCallback, useEffect, useState } from 'react'
-import { useSession } from 'next-auth/react'
-import { onValue, ref, set } from '@firebase/database'
-import { rtdb } from '@/shared/config/firebase'
-import type { PresenceStatus } from '@/features/presence/model/usePresence'
+import { useCallback, useSyncExternalStore } from 'react'
+import { apiPatch } from '@/shared/api/client'
+import { selfStatusStore } from '@/features/presence/model/presence-store'
+import type { PresenceStatus } from '@/shared/lib/realtime/events'
 
-const VALID: PresenceStatus[] = ['online', 'away', 'busy', 'invisible']
-const isValid = (v: unknown): v is PresenceStatus => typeof v === 'string' && VALID.includes(v as PresenceStatus)
+export const PRESENCE_STATUS_KEY = '/api/v1/presence/me'
 
 export function usePresenceStatus() {
-  const { data: session } = useSession()
-  const userId = session?.user?.id
-  const [status, setStatusState] = useState<PresenceStatus>('online')
-
-  useEffect(() => {
-    if (!userId) {
-      setStatusState('online')
-      return
-    }
-    const statusRef = ref(rtdb, `presence/${userId}/status`)
-    const unsubscribe = onValue(statusRef, (snapshot) => {
-      const value = snapshot.val()
-      setStatusState(isValid(value) ? value : 'online')
-    })
-    return () => unsubscribe()
-  }, [userId])
+  const status = useSyncExternalStore(selfStatusStore.subscribe, selfStatusStore.get, () => 'online' as PresenceStatus)
 
   const setStatus = useCallback(
     (next: PresenceStatus) => {
-      if (!userId) return
-      set(ref(rtdb, `presence/${userId}/status`), next).catch(() => {})
+      if (next === status) return
+
+      // The picker answers immediately; the dot follows once the gateway publishes the result
+      selfStatusStore.set(next)
+      apiPatch(PRESENCE_STATUS_KEY, { status: next }).catch(() => selfStatusStore.set(status))
     },
-    [userId]
+    [status]
   )
 
   return { status, setStatus }
