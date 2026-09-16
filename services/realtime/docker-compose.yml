@@ -1,18 +1,50 @@
 services:
+  redis:
+    image: redis:8-alpine
+    restart: unless-stopped
+    command:
+      - redis-server
+      - --requirepass
+      - ${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}
+      - --maxmemory
+      - 64mb
+      - --maxmemory-policy
+      - noeviction
+      - --save
+      - '900'
+      - '1'
+      - --appendonly
+      - 'no'
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    volumes:
+      - redis:/data
+    mem_limit: 96m
+    healthcheck:
+      test: ['CMD-SHELL', 'redis-cli -a "$$REDIS_PASSWORD" ping | grep -q PONG']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
   gateway:
+    image: nexustimer-realtime:latest
     build: .
     restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
     ports:
       - '80:80'
       - '443:443'
     environment:
       REALTIME_DOMAIN: ${REALTIME_DOMAIN}
-      REDIS_URL: ${REDIS_URL}
       REALTIME_SECRET: ${REALTIME_SECRET}
       ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
-      GOMEMLIMIT: ${GOMEMLIMIT:-600MiB}
+      REDIS_URL: redis://default:${REDIS_PASSWORD}@redis:6379
+      GOMEMLIMIT: 256MiB
     volumes:
       - autocert:/data/autocert
+    mem_limit: 320m
     ulimits:
       nofile:
         soft: 65535
@@ -20,3 +52,4 @@ services:
 
 volumes:
   autocert:
+  redis:
