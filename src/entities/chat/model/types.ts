@@ -12,7 +12,6 @@ export const MAX_REACTIONS_PER_USER = 6
 export type DeleteScope = 'me' | 'all'
 
 export interface ChatMessage extends RealtimeMessage {
-  /** Optimistic message not confirmed by the server yet. */
   pending?: boolean
   failed?: boolean
 }
@@ -21,7 +20,6 @@ export type { MessageReaction } from '@/shared/lib/realtime/events'
 
 export type ChatPeer = Pick<FriendUser, '_id' | 'name' | 'image'>
 
-/** The other member's receipts, which decide the checks on our messages. */
 export interface Receipts {
   deliveredAt: string | null
   readAt: string | null
@@ -29,11 +27,15 @@ export interface Receipts {
 
 export const NO_RECEIPTS: Receipts = { deliveredAt: null, readAt: null }
 
-export interface ChatThread {
+export interface ChatSummary {
+  _id: string
   user: FriendUser
-  lastMessage: Omit<RealtimeMessage, '_id'> | null
   unread: number
   receipts: Receipts
+}
+
+export interface ChatThread extends ChatSummary {
+  lastMessage: Omit<RealtimeMessage, '_id'> | null
 }
 
 export interface InboxResponse {
