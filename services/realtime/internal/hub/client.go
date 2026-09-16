@@ -1,6 +1,9 @@
 package hub
 
 import (
+	"crypto/rand"
+	"encoding/hex"
+	"strconv"
 	"sync"
 	"time"
 
@@ -12,22 +15,67 @@ import (
 type client struct {
 	hub    *Hub
 	userID string
+	connID string
 	conn   *websocket.Conn
 
 	mu        sync.Mutex
 	queue     [][]byte
 	flushing  bool
 	closed    bool
+	idle      bool
 	pingTimer *time.Timer
 
+	// watched is guarded by hub.mu, since the hub keeps the reverse index.
+	watched map[string]struct{}
+
 	// Only touched by readPump.
-	lastInbound time.Time
+	tokens     float64
+	lastRefill time.Time
 }
 
 func newClient(h *Hub, userID string, conn *websocket.Conn) *client {
-	c := &client{hub: h, userID: userID, conn: conn}
+	c := &client{
+		hub:        h,
+		userID:     userID,
+		connID:     newConnID(),
+		conn:       conn,
+		tokens:     float64(h.opts.InboundBurst),
+		lastRefill: time.Now(),
+	}
 	c.pingTimer = time.AfterFunc(h.opts.PingPeriod, c.ping)
 	return c
+}
+
+func newConnID() string {
+	var buf [8]byte
+	if _, err := rand.Read(buf[:]); err != nil {
+		return strconv.FormatInt(time.Now().UnixNano(), 36)
+	}
+	return hex.EncodeToString(buf[:])
+}
+
+func (c *client) UserID() string { return c.userID }
+
+func (c *client) ConnID() string { return c.connID }
+
+func (c *client) Send(payload []byte) { c.enqueue(payload) }
+
+func (c *client) Watch(userIDs []string) []string { return c.hub.watch(c, userIDs) }
+
+func (c *client) Idle() bool {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	return c.idle
+}
+
+func (c *client) SetIdle(idle bool) bool {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	if c.idle == idle {
+		return false
+	}
+	c.idle = idle
+	return true
 }
 
 // enqueue never blocks: a client that falls behind is disconnected instead of slowing others down.
@@ -71,6 +119,8 @@ func (c *client) flush() {
 	}
 }
 
+// ping deliberately does not refresh presence: the gateway's own lease covers the same
+// failure for one write per instance instead of one per connection.
 func (c *client) ping() {
 	deadline := time.Now().Add(c.hub.opts.WriteWait)
 	if err := c.conn.WriteControl(websocket.PingMessage, nil, deadline); err != nil {
@@ -123,13 +173,27 @@ func (c *client) readPump() {
 }
 
 func (c *client) receive(payload []byte) {
-	if c.hub.onInbound == nil {
+	if c.hub.onInbound == nil || !c.takeToken() {
 		return
 	}
+	c.hub.onInbound(c, payload)
+}
+
+// takeToken spends one token from the bucket, so a socket can burst but cannot flood Redis.
+func (c *client) takeToken() bool {
 	now := time.Now()
-	if now.Sub(c.lastInbound) < c.hub.opts.MinInboundInterval {
-		return
+	refill := c.hub.opts.InboundRefill
+	if refill > 0 {
+		c.tokens += now.Sub(c.lastRefill).Seconds() / refill.Seconds()
+		if limit := float64(c.hub.opts.InboundBurst); c.tokens > limit {
+			c.tokens = limit
+		}
 	}
-	c.lastInbound = now
-	c.hub.onInbound(c.userID, payload)
+	c.lastRefill = now
+
+	if c.tokens < 1 {
+		return false
+	}
+	c.tokens--
+	return true
 }
