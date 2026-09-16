@@ -1,12 +1,17 @@
+import { NextRequest } from 'next/server'
+import { z } from 'zod'
 import connectDB from '@/shared/config/mongodb/mongodb'
 import Conversation, { type ConversationDocument } from '@/entities/chat/model/conversation'
 import Message, { type MessageDocument } from '@/entities/chat/model/message'
-import { otherMemberId } from '@/entities/chat/server/chat'
+import { ensureConversationId, otherMemberId, toChatSummary } from '@/entities/chat/server/chat'
 import { INBOX_LIMIT, type ChatThread, type InboxResponse } from '@/entities/chat/model/types'
-import { toReceipts } from '@/entities/chat/lib/message-status'
-import { findFriendUsers } from '@/entities/friendship/server/friends'
+import { areFriends, findFriendUsers } from '@/entities/friendship/server/friends'
 import { requireUser } from '@/shared/api/require-user'
-import { ok, serverError } from '@/shared/api/responses'
+import { parseJsonBody } from '@/shared/api/parse-json'
+import { objectIdSchema } from '@/shared/api/zod-helpers'
+import { badRequest, forbidden, notFound, ok, serverError } from '@/shared/api/responses'
+
+const openSchema = z.object({ userId: objectIdSchema }).strict()
 
 /** Ids of the previewed messages this member deleted just for themselves. */
 async function findHiddenPreviews(conversations: ConversationDocument[], userId: string): Promise<Set<string>> {
@@ -57,9 +62,7 @@ export async function GET() {
         !(lastMessage.messageId && hiddenPreviews.has(lastMessage.messageId.toString()))
 
       threads.push({
-        user,
-        unread: conversation.unread?.[userId] ?? 0,
-        receipts: toReceipts(conversation, user._id),
+        ...toChatSummary(conversation, user, userId),
         lastMessage:
           visible && lastMessage
             ? {
@@ -78,5 +81,41 @@ export async function GET() {
     return ok(response)
   } catch (error) {
     return serverError('chats:GET', error)
+  }
+}
+
+/**
+ * Opens the direct conversation with someone and returns its id, creating the document the
+ * first time. Everything else in the chat API is addressed by that id.
+ */
+export async function POST(request: NextRequest) {
+  try {
+    const userId = await requireUser()
+    if (userId instanceof Response) return userId
+
+    const body = await parseJsonBody(request, openSchema)
+    if (body instanceof Response) return body
+
+    const otherId = body.userId
+    if (otherId === userId) return badRequest('Cannot target yourself')
+
+    await connectDB()
+
+    if (!(await areFriends(userId, otherId))) return forbidden('You can only message friends')
+
+    const users = await findFriendUsers([otherId])
+    const user = users.get(otherId)
+    if (!user) return notFound('User not found')
+
+    const chatId = await ensureConversationId(userId, otherId)
+    const conversation = await Conversation.findOne(
+      { _id: chatId },
+      { members: 1, unread: 1, deliveredAt: 1, readAt: 1 }
+    ).lean<ConversationDocument>()
+    if (!conversation) return notFound('Chat not found')
+
+    return ok(toChatSummary(conversation, user, userId))
+  } catch (error) {
+    return serverError('chats:POST', error)
   }
 }
