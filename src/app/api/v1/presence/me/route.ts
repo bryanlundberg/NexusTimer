@@ -1,7 +1,5 @@
 import { NextRequest } from 'next/server'
 import { z } from 'zod'
-import connectDB from '@/shared/config/mongodb/mongodb'
-import User from '@/entities/user/model/user'
 import { requireUser } from '@/shared/api/require-user'
 import { parseJsonBody } from '@/shared/api/parse-json'
 import { ok, serverError } from '@/shared/api/responses'
@@ -21,8 +19,6 @@ export async function PATCH(request: NextRequest) {
   if (body instanceof Response) return body
 
   try {
-    await connectDB()
-    await User.findByIdAndUpdate(userId, { presenceStatus: body.status })
     await writePresenceStatus(userId, body.status)
     return ok<PresenceStatusResponse>({ status: body.status })
   } catch (error) {
