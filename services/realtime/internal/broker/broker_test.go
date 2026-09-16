@@ -36,7 +36,7 @@ func TestRunDeliversPublishedEvents(t *testing.T) {
 	received := make(chan delivery, 1)
 	done := make(chan struct{})
 	go func() {
-		b.Run(ctx, func(userID string, payload []byte) { received <- delivery{userID, string(payload)} })
+		b.Run(ctx, func(userID string, payload []byte) { received <- delivery{userID, string(payload)} }, func(string, []byte) {})
 		close(done)
 	}()
 
