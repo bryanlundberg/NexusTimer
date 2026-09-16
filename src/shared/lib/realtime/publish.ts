@@ -11,6 +11,11 @@ export async function publishToUser(userId: string, event: RealtimeEvent): Promi
   }
 }
 
+/** Same event to every member. Filter the list to leave someone out, such as the actor. */
+export async function publishToChat(members: string[], event: RealtimeEvent): Promise<void> {
+  await Promise.all(members.map((memberId) => publishToUser(memberId, event)))
+}
+
 type PairEventType = Extract<RealtimeEvent, { type: `friend:${string}` }>['type']
 
 export async function publishToPair(userId: string, otherId: string, type: PairEventType): Promise<void> {
