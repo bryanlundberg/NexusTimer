@@ -10,12 +10,12 @@ import { cn } from '@/shared/lib/utils'
 import { InboxListSkeleton } from '@/shared/ui/skeletons/chat-skeleton'
 import { useInbox } from '@/entities/chat/model/useInbox'
 import { useActiveChatStore } from '@/features/chat/model/active-chat-store'
-import { useTypingUsers } from '@/features/chat/model/typing-store'
+import { useTypingChats } from '@/features/chat/model/typing-store'
 import { usePresenceList } from '@/features/presence/model/usePresence'
 import { ChatEmptyState } from '@/widgets/chat/ui/ChatEmptyState'
 import { ThreadPreview } from '@/widgets/chat/ui/ThreadPreview'
 
-export function InboxList({ activeUserId }: { activeUserId: string | null }) {
+export function InboxList({ activeChatId }: { activeChatId: string | null }) {
   const t = useTranslations('Index.ChatPage')
   const { data: session } = useSession()
   const { data, isLoading } = useInbox()
@@ -23,7 +23,7 @@ export function InboxList({ activeUserId }: { activeUserId: string | null }) {
 
   const userIds = useMemo(() => (data?.threads ?? []).map((thread) => thread.user._id), [data?.threads])
   const presence = usePresenceList(userIds)
-  const typingUsers = useTypingUsers()
+  const typingChats = useTypingChats()
 
   if (isLoading || !data) return <InboxListSkeleton />
 
@@ -49,13 +49,13 @@ export function InboxList({ activeUserId }: { activeUserId: string | null }) {
   return (
     <div aria-label={t('title')} className="min-h-0 flex-1 overflow-y-auto">
       {data.threads.map((thread) => {
-        const isActive = thread.user._id === activeUserId
+        const isActive = thread._id === activeChatId
 
         return (
           <button
-            key={thread.user._id}
+            key={thread._id}
             type="button"
-            onClick={() => setActiveChat(thread.user._id)}
+            onClick={() => setActiveChat(thread._id)}
             aria-current={isActive || undefined}
             className={cn(
               'flex w-full items-center gap-3 border-b border-l-2 border-b-border/40 border-l-transparent px-3 py-3 text-left transition-colors duration-150 hover:bg-muted/20',
@@ -66,7 +66,7 @@ export function InboxList({ activeUserId }: { activeUserId: string | null }) {
               thread={thread}
               myId={session?.user?.id}
               presence={presence[thread.user._id]}
-              isTyping={typingUsers.has(thread.user._id)}
+              isTyping={typingChats.has(thread._id)}
             />
           </button>
         )
