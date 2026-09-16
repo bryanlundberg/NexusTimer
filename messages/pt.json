@@ -436,6 +436,7 @@
       "results": "Resultados",
       "user-card": {
         "compare": "Comparar",
+        "compare-stats": "Comparar estatísticas",
         "view-profile": "Ver Perfil"
       },
       "tabs": {
@@ -509,6 +510,8 @@
       "add-friend": "Adicionar amigo",
       "request-sent": "Solicitação enviada",
       "cancel-request": "Cancelar solicitação",
+      "request-label": "Pedido de amizade",
+      "request-received": "{name} quer adicionar-te como amigo.",
       "accept": "Aceitar",
       "decline": "Recusar",
       "remove-friend": "Remover amigo",
@@ -534,7 +537,7 @@
       "no-messages": "Nenhuma mensagem ainda. Diga oi!",
       "only-friends": "Você só pode enviar mensagens para amigos.",
       "failed": "Não enviada. Toque para tentar de novo.",
-      "message": "Mensagem",
+      "message": "Enviar mensagem",
       "back": "Voltar",
       "typing": "digitando…",
       "minimize": "Minimizar",

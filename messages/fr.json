@@ -436,6 +436,7 @@
       "results": "Résultats",
       "user-card": {
         "compare": "Comparer",
+        "compare-stats": "Comparer les stats",
         "view-profile": "Voir le profil"
       },
       "tabs": {
@@ -509,6 +510,8 @@
       "add-friend": "Ajouter en ami",
       "request-sent": "Demande envoyée",
       "cancel-request": "Annuler la demande",
+      "request-label": "Demande d'ami",
+      "request-received": "{name} souhaite vous ajouter en ami.",
       "accept": "Accepter",
       "decline": "Refuser",
       "remove-friend": "Retirer des amis",
@@ -534,7 +537,7 @@
       "no-messages": "Aucun message pour le moment. Dites bonjour !",
       "only-friends": "Vous ne pouvez envoyer des messages qu'à vos amis.",
       "failed": "Non envoyé. Touchez pour réessayer.",
-      "message": "Message",
+      "message": "Envoyer un message",
       "back": "Retour",
       "typing": "en train d'écrire…",
       "minimize": "Réduire",

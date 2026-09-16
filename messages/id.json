@@ -439,6 +439,7 @@
       "results": "Hasil",
       "user-card": {
         "compare": "Bandingkan",
+        "compare-stats": "Bandingkan statistik",
         "view-profile": "Lihat Profil"
       },
       "tabs": {
@@ -512,6 +513,8 @@
       "add-friend": "Tambah teman",
       "request-sent": "Permintaan terkirim",
       "cancel-request": "Batalkan permintaan",
+      "request-label": "Permintaan teman",
+      "request-received": "{name} ingin menambahkanmu sebagai teman.",
       "accept": "Terima",
       "decline": "Tolak",
       "remove-friend": "Hapus teman",
@@ -537,7 +540,7 @@
       "no-messages": "Belum ada pesan. Sapa dulu!",
       "only-friends": "Kamu hanya bisa mengirim pesan ke teman.",
       "failed": "Gagal terkirim. Ketuk untuk mencoba lagi.",
-      "message": "Pesan",
+      "message": "Kirim pesan",
       "back": "Kembali",
       "typing": "sedang mengetik…",
       "minimize": "Perkecil",

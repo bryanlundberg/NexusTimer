@@ -439,6 +439,7 @@
       "results": "Wyniki",
       "user-card": {
         "compare": "Porównaj",
+        "compare-stats": "Porównaj statystyki",
         "view-profile": "Zobacz profil"
       },
       "tabs": {
@@ -512,6 +513,8 @@
       "add-friend": "Dodaj znajomego",
       "request-sent": "Zaproszenie wysłane",
       "cancel-request": "Anuluj zaproszenie",
+      "request-label": "Zaproszenie do znajomych",
+      "request-received": "{name} chce dodać cię do znajomych.",
       "accept": "Akceptuj",
       "decline": "Odrzuć",
       "remove-friend": "Usuń znajomego",
@@ -537,7 +540,7 @@
       "no-messages": "Brak wiadomości. Przywitaj się!",
       "only-friends": "Możesz pisać tylko do znajomych.",
       "failed": "Nie wysłano. Dotknij, aby ponowić.",
-      "message": "Wiadomość",
+      "message": "Wyślij wiadomość",
       "back": "Wstecz",
       "typing": "pisze…",
       "minimize": "Minimalizuj",

@@ -439,6 +439,7 @@
       "results": "Mga Resulta",
       "user-card": {
         "compare": "Ikumpara",
+        "compare-stats": "Ikumpara ang stats",
         "view-profile": "Tingnan ang Profile"
       },
       "tabs": {
@@ -512,6 +513,8 @@
       "add-friend": "Magdagdag ng kaibigan",
       "request-sent": "Naipadala ang request",
       "cancel-request": "Kanselahin ang request",
+      "request-label": "Friend request",
+      "request-received": "Gusto kang idagdag ni {name} bilang kaibigan.",
       "accept": "Tanggapin",
       "decline": "Tanggihan",
       "remove-friend": "Alisin sa kaibigan",
@@ -537,7 +540,7 @@
       "no-messages": "Walang mensahe pa. Bumati!",
       "only-friends": "Maaari kang magmensahe sa mga kaibigan lamang.",
       "failed": "Hindi naipadala. I-tap para subukang muli.",
-      "message": "Mensahe",
+      "message": "Magpadala ng mensahe",
       "back": "Bumalik",
       "typing": "nagta-type…",
       "minimize": "I-minimize",

@@ -439,6 +439,7 @@
       "results": "Results",
       "user-card": {
         "compare": "Compare",
+        "compare-stats": "Compare stats",
         "view-profile": "View Profile"
       },
       "tabs": {
@@ -512,6 +513,8 @@
       "add-friend": "Add friend",
       "request-sent": "Request sent",
       "cancel-request": "Cancel request",
+      "request-label": "Friend request",
+      "request-received": "{name} wants to add you as a friend.",
       "accept": "Accept",
       "decline": "Decline",
       "remove-friend": "Remove friend",
@@ -537,7 +540,7 @@
       "no-messages": "No messages yet. Say hi!",
       "only-friends": "You can only message friends.",
       "failed": "Not sent. Tap to retry.",
-      "message": "Message",
+      "message": "Send message",
       "back": "Back",
       "typing": "typing…",
       "minimize": "Minimize",

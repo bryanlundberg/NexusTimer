@@ -436,6 +436,7 @@
       "results": "结果",
       "user-card": {
         "compare": "对比成绩",
+        "compare-stats": "对比统计数据",
         "view-profile": "查看资料"
       },
       "tabs": {
@@ -509,6 +510,8 @@
       "add-friend": "添加好友",
       "request-sent": "已发送请求",
       "cancel-request": "取消请求",
+      "request-label": "好友请求",
+      "request-received": "{name} 想添加你为好友。",
       "accept": "接受",
       "decline": "拒绝",
       "remove-friend": "删除好友",
@@ -534,7 +537,7 @@
       "no-messages": "还没有消息，打个招呼吧！",
       "only-friends": "只能给好友发送消息。",
       "failed": "发送失败，点击重试。",
-      "message": "发消息",
+      "message": "发送消息",
       "back": "返回",
       "typing": "正在输入…",
       "minimize": "最小化",

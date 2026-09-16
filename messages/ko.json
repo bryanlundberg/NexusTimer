@@ -436,6 +436,7 @@
       "results": "결과",
       "user-card": {
         "compare": "비교하기",
+        "compare-stats": "통계 비교하기",
         "view-profile": "프로필 보기"
       },
       "tabs": {
@@ -509,6 +510,8 @@
       "add-friend": "친구 추가",
       "request-sent": "요청 보냄",
       "cancel-request": "요청 취소",
+      "request-label": "친구 요청",
+      "request-received": "{name} 님이 친구 요청을 보냈습니다.",
       "accept": "수락",
       "decline": "거절",
       "remove-friend": "친구 삭제",
@@ -534,7 +537,7 @@
       "no-messages": "아직 메시지가 없습니다. 인사해 보세요!",
       "only-friends": "친구에게만 메시지를 보낼 수 있습니다.",
       "failed": "전송 실패. 탭하여 다시 시도하세요.",
-      "message": "메시지",
+      "message": "메시지 보내기",
       "back": "뒤로",
       "typing": "입력 중…",
       "minimize": "최소화",

@@ -439,6 +439,7 @@
       "results": "ผลลัพธ์",
       "user-card": {
         "compare": "เปรียบเทียบ",
+        "compare-stats": "เปรียบเทียบสถิติ",
         "view-profile": "ดูโปรไฟล์"
       },
       "tabs": {
@@ -512,6 +513,8 @@
       "add-friend": "เพิ่มเพื่อน",
       "request-sent": "ส่งคำขอแล้ว",
       "cancel-request": "ยกเลิกคำขอ",
+      "request-label": "คำขอเป็นเพื่อน",
+      "request-received": "{name} ต้องการเพิ่มคุณเป็นเพื่อน",
       "accept": "ยอมรับ",
       "decline": "ปฏิเสธ",
       "remove-friend": "ลบเพื่อน",

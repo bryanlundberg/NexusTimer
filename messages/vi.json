@@ -439,6 +439,7 @@
       "results": "Kết quả",
       "user-card": {
         "compare": "So sánh",
+        "compare-stats": "So sánh thống kê",
         "view-profile": "Xem hồ sơ"
       },
       "tabs": {
@@ -512,6 +513,8 @@
       "add-friend": "Kết bạn",
       "request-sent": "Đã gửi lời mời",
       "cancel-request": "Hủy lời mời",
+      "request-label": "Lời mời kết bạn",
+      "request-received": "{name} muốn kết bạn với bạn.",
       "accept": "Chấp nhận",
       "decline": "Từ chối",
       "remove-friend": "Hủy kết bạn",
@@ -537,7 +540,7 @@
       "no-messages": "Chưa có tin nhắn. Hãy chào nhau!",
       "only-friends": "Bạn chỉ có thể nhắn tin cho bạn bè.",
       "failed": "Chưa gửi được. Chạm để thử lại.",
-      "message": "Nhắn tin",
+      "message": "Gửi tin nhắn",
       "back": "Quay lại",
       "typing": "đang nhập…",
       "minimize": "Thu nhỏ",

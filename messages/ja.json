@@ -436,6 +436,7 @@
       "results": "件の結果",
       "user-card": {
         "compare": "比較する",
+        "compare-stats": "統計を比較",
         "view-profile": "プロフィールを見る"
       },
       "tabs": {
@@ -509,6 +510,8 @@
       "add-friend": "フレンド追加",
       "request-sent": "申請済み",
       "cancel-request": "申請を取り消す",
+      "request-label": "フレンド申請",
+      "request-received": "{name} からフレンド申請が届いています。",
       "accept": "承認",
       "decline": "拒否",
       "remove-friend": "フレンド解除",
@@ -534,7 +537,7 @@
       "no-messages": "まだメッセージはありません。あいさつしてみましょう！",
       "only-friends": "メッセージを送れるのはフレンドだけです。",
       "failed": "送信できませんでした。タップして再試行。",
-      "message": "メッセージ",
+      "message": "メッセージを送る",
       "back": "戻る",
       "typing": "入力中…",
       "minimize": "最小化",
