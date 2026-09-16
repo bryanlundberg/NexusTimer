@@ -8,11 +8,11 @@ import { ConversationView } from '@/widgets/chat/ui/ConversationView'
 
 export default function MessagesPage() {
   const t = useTranslations('Index.ChatPage')
-  const activeUserId = useActiveChatStore((state) => state.activeUserId)
+  const activeChatId = useActiveChatStore((state) => state.activeChatId)
 
-  if (!activeUserId) {
+  if (!activeChatId) {
     return <ChatEmptyState icon={MessagesSquare} title={t('select')} description={t('select-hint')} />
   }
 
-  return <ConversationView key={activeUserId} userId={activeUserId} />
+  return <ConversationView key={activeChatId} chatId={activeChatId} />
 }
