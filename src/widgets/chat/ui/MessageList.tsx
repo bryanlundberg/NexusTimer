@@ -4,7 +4,6 @@ import { Fragment, useLayoutEffect, useRef } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
 import dayjs from '@/shared/lib/dayjs'
 import { cn } from '@/shared/lib/utils'
 import type { ChatMessage, ChatPeer, DeleteScope, Receipts } from '@/entities/chat/model/types'
@@ -81,15 +80,7 @@ export function MessageList({
     if (el) nearBottom.current = el.scrollHeight - el.scrollTop - el.clientHeight < NEAR_BOTTOM_PX
   }
 
-  if (isLoading) {
-    return (
-      <div className={cn('flex flex-1 flex-col gap-3', compact ? 'p-3' : 'p-4')}>
-        {Array.from({ length: 5 }, (_, i) => (
-          <Skeleton key={i} className={i % 2 ? 'h-9 w-2/5 self-end' : 'h-9 w-1/2'} />
-        ))}
-      </div>
-    )
-  }
+  if (isLoading) return <div className={cn('min-h-0 flex-1', compact ? 'p-3' : 'p-4')} />
 
   const avatarSlot = (visible: boolean) =>
     peer && (visible ? <ChatAvatar peer={peer} className="size-6 shrink-0" /> : <span className="w-6 shrink-0" />)
