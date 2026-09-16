@@ -1,6 +1,6 @@
 import type { RealtimeClientFrame, RealtimeEvent } from '@/shared/lib/realtime/events'
 
-export type RealtimeClientEvent = RealtimeEvent | { type: 'realtime:reconnected' }
+export type RealtimeClientEvent = RealtimeEvent | { type: 'realtime:connected' } | { type: 'realtime:reconnected' }
 
 type Listener = (event: RealtimeClientEvent) => void
 
