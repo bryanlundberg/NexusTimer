@@ -1,0 +1,22 @@
+services:
+  gateway:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      REALTIME_DOMAIN: ${REALTIME_DOMAIN}
+      REDIS_URL: ${REDIS_URL}
+      REALTIME_SECRET: ${REALTIME_SECRET}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
+      GOMEMLIMIT: ${GOMEMLIMIT:-600MiB}
+    volumes:
+      - autocert:/data/autocert
+    ulimits:
+      nofile:
+        soft: 65535
+        hard: 65535
+
+volumes:
+  autocert:
