@@ -22,6 +22,8 @@ export function ThreadPreview({ thread: { user, lastMessage, unread, receipts },
   const t = useTranslations('Index.ChatPage')
   const locale = useLocale()
   const isMine = lastMessage?.senderId === myId
+  // Only a message deleted for everyone can reach the inbox with no text
+  const isDeleted = !!lastMessage && lastMessage.text === ''
 
   return (
     <>
@@ -52,10 +54,11 @@ export function ThreadPreview({ thread: { user, lastMessage, unread, receipts },
               <span
                 className={cn(
                   'truncate text-xs',
-                  unread > 0 ? 'font-semibold text-foreground' : 'text-muted-foreground'
+                  isDeleted && 'italic',
+                  unread > 0 && !isDeleted ? 'font-semibold text-foreground' : 'text-muted-foreground'
                 )}
               >
-                {lastMessage?.text}
+                {isDeleted ? t('deleted-message') : lastMessage?.text}
               </span>
             </span>
           )}
