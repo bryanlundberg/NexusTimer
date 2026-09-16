@@ -2,29 +2,25 @@
 
 import { Tabs } from '@/components/ui/tabs'
 import ScrollableUnderlineTabs from '@/shared/ui/animated-tabs/ScrollableUnderlineTabs'
-import { Button } from '@/components/ui/button'
 import { usePeopleTab } from '@/features/people-tab/model/usePeopleTab'
 import { PeopleTabs as PTabs } from '@/widgets/people/model/types'
 import { PeopleContent } from '@/widgets/people/ui/PeopleContent'
 import { ProfileHeroBanner } from '@/widgets/people/ui/profile-hero-banner'
 import { ProfileBadgesStrip } from '@/widgets/people/ui/profile-badges-strip'
 import { ProfileCompletenessBar } from '@/widgets/people/ui/profile-completeness'
+import { ProfileActions } from '@/widgets/people/ui/profile-actions'
+import { CompareUserButton } from '@/widgets/people/ui/compare-user-button'
 import { TabTableSkeleton } from '@/shared/ui/skeletons/people-skeleton'
 import { UserProfile } from '@/entities/user/model/user'
 import { Cube } from '@/entities/cube/model/types'
 import useUserBadges from '@/entities/achievement/model/useUserBadges'
 import { useUserLearned } from '@/entities/trainer-learned/model/useUserLearned'
 import { useTranslations } from 'next-intl'
-import { useMemo, useRef, useState } from 'react'
+import { useMemo } from 'react'
 import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { useCompareUsersStore } from '@/features/compare-users/model/useCompareUsersStore'
-import { FlyingAvatar } from '@/features/compare-users/ui/FlyingAvatar'
-import { CheckCircle2, GitCompareIcon, Pencil } from 'lucide-react'
 import { useRelationship } from '@/entities/friendship/model/useFriends'
 import { FriendButton } from '@/features/friends/ui/FriendButton'
 import { MutualFriends } from '@/features/friends/ui/MutualFriends'
-import { MessageLink } from '@/features/chat/ui/MessageLink'
 
 interface PeopleTabsProps {
   user: UserProfile
@@ -38,35 +34,11 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
   const t = useTranslations('Index.PeoplePage.tabs')
   const userBadges = useUserBadges({ user, cubes })
   const { data: learned } = useUserLearned(user._id)
-  const tProfile = useTranslations('Index.PeoplePage')
-  const tCard = useTranslations('Index.PeoplePage.user-card')
 
   const { data: session } = useSession()
   const isCurrentUser = session?.user?.id === user._id
-  const router = useRouter()
   const { data: relationship } = useRelationship(user._id)
-
-  const addUser = useCompareUsersStore((state) => state.addUser)
-  const removeUser = useCompareUsersStore((state) => state.removeUser)
-  const users = useCompareUsersStore((state) => state.users)
-  const isAdded = !!users.find((u) => u._id === user._id)
-
-  const [isFlying, setIsFlying] = useState(false)
-  const [startPos, setStartPos] = useState({ x: 0, y: 0 })
-  const compareRef = useRef<HTMLButtonElement>(null)
-
-  const handleCompareClick = () => {
-    if (!isAdded) {
-      if (compareRef.current) {
-        const rect = compareRef.current.getBoundingClientRect()
-        setStartPos({ x: rect.left, y: rect.top })
-        setIsFlying(true)
-      }
-      addUser(user)
-    } else {
-      removeUser(user._id)
-    }
-  }
+  const hasIncomingRequest = relationship?.status === 'pending_in'
 
   const { value, set } = usePeopleTab()
 
@@ -94,16 +66,38 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
 
   return (
     <div className="flex flex-col w-full">
-      {isFlying && <FlyingAvatar src={user.image} startPos={startPos} onComplete={() => setIsFlying(false)} />}
-
-      <ProfileHeroBanner user={user} level={userBadges.earnedTiers}>
+      <ProfileHeroBanner
+        user={user}
+        level={userBadges.earnedTiers}
+        actions={
+          <ProfileActions
+            user={user}
+            isCurrentUser={isCurrentUser}
+            status={relationship?.status}
+            className="max-sm:hidden sm:self-end"
+          />
+        }
+      >
         {relationship?.mutual && <MutualFriends mutual={relationship.mutual} />}
+        {hasIncomingRequest && (
+          <div className="mt-1.5">
+            <FriendButton userId={user._id} name={user.name} status="pending_in" />
+          </div>
+        )}
+        <ProfileActions
+          user={user}
+          isCurrentUser={isCurrentUser}
+          status={relationship?.status}
+          className="mt-1.5 sm:hidden"
+        >
+          <CompareUserButton user={user} />
+        </ProfileActions>
       </ProfileHeroBanner>
       {isCurrentUser && <ProfileCompletenessBar user={user} />}
       {!isLoadingStats && <ProfileBadgesStrip badges={userBadges} />}
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
-        {/* Tabs nav + actions row */}
+        {/* Tabs nav + compare */}
         <div className="flex flex-wrap items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
           <div className="min-w-0 flex-1">
             <ScrollableUnderlineTabs
@@ -125,30 +119,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
             />
           </div>
 
-          <div className="flex items-center justify-end gap-2 max-sm:w-full sm:shrink-0">
-            {isCurrentUser && (
-              <Button variant="secondary" size="sm" className="gap-1.5" onClick={() => router.push('/account')}>
-                <Pencil className="size-4" />
-                <span className="hidden sm:inline">{tProfile('edit-profile')}</span>
-              </Button>
-            )}
-            {relationship?.status === 'friends' && <MessageLink userId={user._id} />}
-            {relationship?.status && <FriendButton userId={user._id} name={user.name} status={relationship.status} />}
-            <Button
-              ref={compareRef}
-              variant={isAdded ? 'secondary' : 'outline'}
-              size="sm"
-              className="gap-1.5"
-              onClick={handleCompareClick}
-            >
-              {isAdded ? (
-                <CheckCircle2 className="size-4 text-primary animate-in zoom-in duration-300" />
-              ) : (
-                <GitCompareIcon className="size-4" />
-              )}
-              <span className="hidden sm:inline">{tCard('compare')}</span>
-            </Button>
-          </div>
+          <CompareUserButton user={user} className="max-sm:hidden sm:shrink-0" />
         </div>
 
         {/* Tab content */}
