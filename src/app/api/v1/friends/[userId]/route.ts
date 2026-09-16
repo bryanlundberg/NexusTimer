@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import connectDB from '@/shared/config/mongodb/mongodb'
-import Friendship, { pairKeyOf, type FriendshipDocument } from '@/entities/friendship/model/friendship'
+import Friendship, { type FriendshipDocument } from '@/entities/friendship/model/friendship'
 import { friendsCache } from '@/entities/friendship/model/friends-cache'
 import {
   findFriendship,
@@ -9,29 +9,16 @@ import {
   relationshipOf
 } from '@/entities/friendship/server/friends'
 import type { RelationshipResponse } from '@/entities/friendship/model/types'
-import { requireUser } from '@/shared/api/require-user'
-import { objectIdSchema } from '@/shared/api/zod-helpers'
-import { badRequest, ok, serverError } from '@/shared/api/responses'
+import { requireUserPair, type UserIdParams } from '@/shared/api/require-user-pair'
+import { ok, serverError } from '@/shared/api/responses'
 import { publishToPair } from '@/shared/lib/realtime/publish'
+import { pairKeyOf } from '@/shared/lib/pair-key'
 
 const MUTUAL_SAMPLE_SIZE = 3
 
-type Params = { params: Promise<{ userId: string }> }
-
-async function resolveIds({ params }: Params) {
-  const userId = await requireUser()
-  if (userId instanceof Response) return userId
-
-  const otherId = (await params).userId
-  if (!objectIdSchema.safeParse(otherId).success) return badRequest('Invalid user id')
-  if (otherId === userId) return badRequest('Cannot target yourself')
-
-  return { userId, otherId }
-}
-
-export async function GET(_request: NextRequest, context: Params) {
+export async function GET(_request: NextRequest, context: UserIdParams) {
   try {
-    const ids = await resolveIds(context)
+    const ids = await requireUserPair(context)
     if (ids instanceof Response) return ids
     const { userId, otherId } = ids
 
@@ -54,9 +41,9 @@ export async function GET(_request: NextRequest, context: Params) {
 }
 
 /** Removes a friend, cancels a sent request or declines a received one. */
-export async function DELETE(_request: NextRequest, context: Params) {
+export async function DELETE(_request: NextRequest, context: UserIdParams) {
   try {
-    const ids = await resolveIds(context)
+    const ids = await requireUserPair(context)
     if (ids instanceof Response) return ids
     const { userId, otherId } = ids
 
