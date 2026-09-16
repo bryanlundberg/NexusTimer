@@ -380,31 +380,38 @@ func expiredFields(conns map[string]string, live map[string]bool) []string {
 	return expired
 }
 
+// liveInstances answers for the referenced gateways only, and the answer it returns belongs to
+// the caller: b.live is shared between concurrent resolves, so it never leaves this function.
+// The Redis read runs without the lock, since two resolves asking the same question is cheaper
+// than every resolve queueing behind one round trip.
 func (b *Broker) liveInstances(ctx context.Context, referenced map[string]struct{}) map[string]bool {
 	if len(referenced) == 0 {
 		return nil
 	}
 
-	b.liveMu.Lock()
-	defer b.liveMu.Unlock()
+	live := make(map[string]bool, len(referenced))
+	unknown := make([]string, 0, len(referenced))
 
+	b.liveMu.Lock()
 	if time.Now().After(b.liveUntil) {
 		b.live = make(map[string]bool, len(referenced))
 		b.liveUntil = time.Now().Add(liveCacheTTL)
 	}
-
-	unknown := make([]string, 0, len(referenced))
 	for id := range referenced {
 		if id == b.instanceID {
-			b.live[id] = true
+			live[id] = true
 			continue
 		}
-		if _, known := b.live[id]; !known {
-			unknown = append(unknown, id)
+		if known, cached := b.live[id]; cached {
+			live[id] = known
+			continue
 		}
+		unknown = append(unknown, id)
 	}
+	b.liveMu.Unlock()
+
 	if len(unknown) == 0 {
-		return b.live
+		return live
 	}
 
 	pipe := b.client.Pipeline()
@@ -414,16 +421,23 @@ func (b *Broker) liveInstances(ctx context.Context, referenced map[string]struct
 	}
 	if _, err := pipe.Exec(ctx); err != nil && !errors.Is(err, redis.Nil) {
 		b.logger.Warn("gateway lease read failed", "error", err)
-		// Assume the gateways are up rather than reporting everyone on them offline
+		// Assume the gateways are up rather than reporting everyone on them offline, and do not
+		// cache a guess: the next resolve should ask again.
 		for _, id := range unknown {
-			b.live[id] = true
+			live[id] = true
 		}
-		return b.live
+		return live
 	}
+
+	b.liveMu.Lock()
 	for i, id := range unknown {
-		b.live[id] = checks[i].Val() == 1
+		alive := checks[i].Val() == 1
+		live[id] = alive
+		b.live[id] = alive
 	}
-	return b.live
+	b.liveMu.Unlock()
+
+	return live
 }
 
 // prune is best effort: a failure only means the next read prunes them instead.

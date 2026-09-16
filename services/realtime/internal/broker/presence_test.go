@@ -2,8 +2,11 @@ package broker
 
 import (
 	"context"
+	"io"
+	"log/slog"
 	"strconv"
 	"strings"
+	"sync"
 	"testing"
 	"time"
 
@@ -329,4 +332,30 @@ func TestConnectedDefaultsToOnlineWhenNothingWasDeclared(t *testing.T) {
 	if got := conn.lastSent(); got != `{"type":"presence:self","status":"online"}` {
 		t.Fatalf("got %q, want online", got)
 	}
+}
+
+// resolve reads the answer after liveInstances has released the lock, so what it hands back
+// cannot be the shared cache. Needs no Redis: a reference to this gateway never reaches it.
+// Only fails under -race.
+func TestLiveInstancesDoesNotShareItsCache(t *testing.T) {
+	b := &Broker{
+		logger:     slog.New(slog.NewTextHandler(io.Discard, nil)),
+		instanceID: "abcdef0123456789",
+		live:       make(map[string]bool),
+		done:       make(chan struct{}),
+	}
+	referenced := map[string]struct{}{b.instanceID: {}}
+
+	var wg sync.WaitGroup
+	for range 8 {
+		wg.Go(func() {
+			for range 2000 {
+				if live := b.liveInstances(context.Background(), referenced); !live[b.instanceID] {
+					t.Error("this gateway read as gone")
+					return
+				}
+			}
+		})
+	}
+	wg.Wait()
 }
