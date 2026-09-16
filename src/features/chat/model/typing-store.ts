@@ -13,20 +13,20 @@ function publish() {
   for (const listener of listeners) listener()
 }
 
-export function markTyping(userId: string) {
-  const isNew = !timers.has(userId)
-  clearTimeout(timers.get(userId))
+export function markTyping(chatId: string) {
+  const isNew = !timers.has(chatId)
+  clearTimeout(timers.get(chatId))
   timers.set(
-    userId,
-    setTimeout(() => clearTyping(userId), TYPING_TTL_MS)
+    chatId,
+    setTimeout(() => clearTyping(chatId), TYPING_TTL_MS)
   )
   if (isNew) publish()
 }
 
-export function clearTyping(userId: string) {
-  if (!timers.has(userId)) return
-  clearTimeout(timers.get(userId))
-  timers.delete(userId)
+export function clearTyping(chatId: string) {
+  if (!timers.has(chatId)) return
+  clearTimeout(timers.get(chatId))
+  timers.delete(chatId)
   publish()
 }
 
@@ -37,7 +37,8 @@ function subscribe(listener: () => void) {
   }
 }
 
-export function useTypingUsers(): ReadonlySet<string> {
+/** Chats where someone is typing right now. */
+export function useTypingChats(): ReadonlySet<string> {
   return useSyncExternalStore(
     subscribe,
     () => snapshot,
