@@ -6,8 +6,8 @@ import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { MessagesSquare, Users } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
 import { cn } from '@/shared/lib/utils'
+import { InboxListSkeleton } from '@/shared/ui/skeletons/chat-skeleton'
 import { useInbox } from '@/entities/chat/model/useInbox'
 import { useActiveChatStore } from '@/features/chat/model/active-chat-store'
 import { useTypingUsers } from '@/features/chat/model/typing-store'
@@ -25,15 +25,7 @@ export function InboxList({ activeUserId }: { activeUserId: string | null }) {
   const presence = usePresenceList(userIds)
   const typingUsers = useTypingUsers()
 
-  if (isLoading || !data) {
-    return (
-      <div className="flex flex-col gap-2 p-3">
-        {Array.from({ length: 6 }, (_, i) => (
-          <Skeleton key={i} className="h-14 w-full" />
-        ))}
-      </div>
-    )
-  }
+  if (isLoading || !data) return <InboxListSkeleton />
 
   if (data.threads.length === 0) {
     return (
