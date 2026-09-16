@@ -14,6 +14,7 @@ import (
 	"os/signal"
 	"sync"
 	"syscall"
+	"time"
 
 	"nexustimer/realtime/internal/broker"
 	"nexustimer/realtime/internal/config"
@@ -52,10 +53,20 @@ func run(logger *slog.Logger) error {
 	}
 	defer events.Close()
 
-	connections := hub.New(hub.DefaultOptions(), logger, events.Relay)
+	connections := hub.New(hub.DefaultOptions(), logger, events, events.Inbound)
+
+	// The lease has to exist before the first connection, since an entry only counts while the
+	// gateway that wrote it does. A Redis that is down at boot is not fatal: KeepLease retries.
+	claim, cancelClaim := context.WithTimeout(ctx, 5*time.Second)
+	if err := events.ClaimLease(claim); err != nil {
+		logger.Warn("claiming lease failed, presence is blind until Redis answers", "error", err)
+	}
+	cancelClaim()
+	logger.Info("gateway identity", "instance", events.InstanceID())
 
 	var wg sync.WaitGroup
-	wg.Go(func() { events.Run(ctx, connections.Deliver) })
+	wg.Go(func() { events.Run(ctx, connections.Deliver, connections.Broadcast) })
+	wg.Go(func() { events.KeepLease(ctx, connections.Connections) })
 
 	err = server.New(cfg, connections, events, logger).Run(ctx)
 
