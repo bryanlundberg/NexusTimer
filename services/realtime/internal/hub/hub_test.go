@@ -5,7 +5,10 @@ import (
 	"log/slog"
 	"net/http"
 	"net/http/httptest"
+	"slices"
+	"strconv"
 	"strings"
+	"sync"
 	"testing"
 	"time"
 
@@ -13,6 +16,46 @@ import (
 )
 
 var discardLogger = slog.New(slog.NewTextHandler(io.Discard, nil))
+
+// watchOnInbound treats every frame as a comma separated list of people to follow.
+func watchOnInbound(c Conn, payload []byte) { c.Watch(strings.Split(string(payload), ",")) }
+
+type presenceCall struct {
+	kind   string
+	userID string
+}
+
+// recordingPresence greets every new connection, which is what the real one does to hand a
+// tab its own declared status.
+type recordingPresence struct {
+	mu    sync.Mutex
+	calls []presenceCall
+}
+
+func (p *recordingPresence) Connected(c Conn) {
+	p.record(presenceCall{"connected", c.UserID()})
+	c.Send([]byte("hello " + c.UserID()))
+}
+
+func (p *recordingPresence) Disconnected(userID, _ string) {
+	p.record(presenceCall{"disconnected", userID})
+}
+
+func (p *recordingPresence) record(call presenceCall) {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+	p.calls = append(p.calls, call)
+}
+
+func (p *recordingPresence) kinds() []string {
+	p.mu.Lock()
+	defer p.mu.Unlock()
+	kinds := make([]string, len(p.calls))
+	for i, call := range p.calls {
+		kinds[i] = call.kind
+	}
+	return kinds
+}
 
 func connect(t *testing.T, h *Hub, userID string) *websocket.Conn {
 	t.Helper()
@@ -60,8 +103,36 @@ func read(t *testing.T, conn *websocket.Conn) string {
 	return string(data)
 }
 
+// readNothing leaves the connection unusable, so it has to be the last read of a test.
+func readNothing(t *testing.T, conn *websocket.Conn) {
+	t.Helper()
+	_ = conn.SetReadDeadline(time.Now().Add(100 * time.Millisecond))
+	if _, data, err := conn.ReadMessage(); err == nil {
+		t.Fatalf("unexpected frame %q", data)
+	}
+}
+
+// watchAndWait waits until the hub has applied the frame, which it handles on the
+// connection's own goroutine.
+func watchAndWait(t *testing.T, h *Hub, conn *websocket.Conn, ids ...string) {
+	t.Helper()
+	if err := conn.WriteMessage(websocket.TextMessage, []byte(strings.Join(ids, ","))); err != nil {
+		t.Fatal(err)
+	}
+	waitFor(t, func() bool {
+		h.mu.RLock()
+		defer h.mu.RUnlock()
+		for _, id := range ids {
+			if len(h.watchers[id]) == 0 {
+				return false
+			}
+		}
+		return true
+	})
+}
+
 func TestDeliverReachesEveryTabOfTheUserInOrder(t *testing.T) {
-	h := New(DefaultOptions(), discardLogger, nil)
+	h := New(DefaultOptions(), discardLogger, nil, nil)
 	tabA := connect(t, h, "u1")
 	tabB := connect(t, h, "u1")
 	other := connect(t, h, "u2")
@@ -76,14 +147,11 @@ func TestDeliverReachesEveryTabOfTheUserInOrder(t *testing.T) {
 		}
 	}
 
-	_ = other.SetReadDeadline(time.Now().Add(100 * time.Millisecond))
-	if _, data, err := other.ReadMessage(); err == nil {
-		t.Fatalf("other user received %q", data)
-	}
+	readNothing(t, other)
 }
 
 func TestClosedConnectionIsUnregistered(t *testing.T) {
-	h := New(DefaultOptions(), discardLogger, nil)
+	h := New(DefaultOptions(), discardLogger, nil, nil)
 	tabA := connect(t, h, "u1")
 	connect(t, h, "u1")
 	waitForConnections(t, h, 2)
@@ -94,7 +162,7 @@ func TestClosedConnectionIsUnregistered(t *testing.T) {
 }
 
 func TestSlowClientIsDisconnected(t *testing.T) {
-	h := New(DefaultOptions(), discardLogger, nil)
+	h := New(DefaultOptions(), discardLogger, nil, nil)
 	connect(t, h, "u1")
 	waitForConnections(t, h, 1)
 
@@ -119,7 +187,7 @@ func TestSilentConnectionIsDropped(t *testing.T) {
 	opts := DefaultOptions()
 	opts.PingPeriod = 50 * time.Millisecond
 	opts.PongWait = 150 * time.Millisecond
-	h := New(opts, discardLogger, nil)
+	h := New(opts, discardLogger, nil, nil)
 
 	// Never reading means the browser side never answers pings
 	connect(t, h, "u1")
@@ -133,9 +201,10 @@ func TestInboundFramesReachTheHandlerThrottled(t *testing.T) {
 	received := make(chan frame, 4)
 
 	opts := DefaultOptions()
-	opts.MinInboundInterval = 200 * time.Millisecond
-	h := New(opts, discardLogger, func(userID string, payload []byte) {
-		received <- frame{userID, string(payload)}
+	opts.InboundBurst = 1
+	opts.InboundRefill = 200 * time.Millisecond
+	h := New(opts, discardLogger, nil, func(c Conn, payload []byte) {
+		received <- frame{c.UserID(), string(payload)}
 	})
 
 	conn := connect(t, h, "u1")
@@ -168,8 +237,189 @@ func TestInboundFramesReachTheHandlerThrottled(t *testing.T) {
 	}
 }
 
+// A burst is what a page navigation looks like: a watch frame right after a typing frame.
+func TestInboundBurstIsNotDropped(t *testing.T) {
+	received := make(chan string, 8)
+
+	opts := DefaultOptions()
+	opts.InboundBurst = 3
+	opts.InboundRefill = time.Hour
+	h := New(opts, discardLogger, nil, func(_ Conn, payload []byte) { received <- string(payload) })
+
+	conn := connect(t, h, "u1")
+	waitForConnections(t, h, 1)
+
+	for _, payload := range []string{"one", "two", "three", "over-budget"} {
+		if err := conn.WriteMessage(websocket.TextMessage, []byte(payload)); err != nil {
+			t.Fatal(err)
+		}
+	}
+
+	for _, want := range []string{"one", "two", "three"} {
+		select {
+		case got := <-received:
+			if got != want {
+				t.Fatalf("got %q, want %q", got, want)
+			}
+		case <-time.After(2 * time.Second):
+			t.Fatalf("missing %q", want)
+		}
+	}
+	select {
+	case got := <-received:
+		t.Fatalf("over budget frame was delivered: %q", got)
+	case <-time.After(100 * time.Millisecond):
+	}
+}
+
+func TestRegisterFollowsTheUserOwnPresence(t *testing.T) {
+	h := New(DefaultOptions(), discardLogger, nil, nil)
+	conn := connect(t, h, "u1")
+	waitForConnections(t, h, 1)
+
+	h.Broadcast("u1", []byte("mine"))
+
+	if got := read(t, conn); got != "mine" {
+		t.Fatalf("got %q, want mine", got)
+	}
+}
+
+func TestBroadcastOnlyReachesFollowers(t *testing.T) {
+	h := New(DefaultOptions(), discardLogger, nil, watchOnInbound)
+	follower := connect(t, h, "u1")
+	bystander := connect(t, h, "u2")
+	waitForConnections(t, h, 2)
+
+	watchAndWait(t, h, follower, "u3")
+
+	// The watch is answered by the inbound handler in production; here it only registers.
+	h.Broadcast("u3", []byte("u3-online"))
+
+	if got := read(t, follower); got != "u3-online" {
+		t.Fatalf("got %q, want u3-online", got)
+	}
+	readNothing(t, bystander)
+}
+
+func TestWatchReplacesThePreviousSet(t *testing.T) {
+	h := New(DefaultOptions(), discardLogger, nil, watchOnInbound)
+	conn := connect(t, h, "u1")
+	waitForConnections(t, h, 1)
+
+	watchAndWait(t, h, conn, "u2")
+	watchAndWait(t, h, conn, "u3")
+
+	// Both go out in order, so the first frame that arrives says which set is in effect
+	h.Broadcast("u2", []byte("stale"))
+	h.Broadcast("u3", []byte("current"))
+
+	if got := read(t, conn); got != "current" {
+		t.Fatalf("got %q, want current", got)
+	}
+}
+
+func TestWatchIsCapped(t *testing.T) {
+	opts := DefaultOptions()
+	opts.MaxWatched = 2
+	h := New(opts, discardLogger, nil, watchOnInbound)
+	conn := connect(t, h, "u1")
+	waitForConnections(t, h, 1)
+
+	ids := make([]string, 50)
+	for i := range ids {
+		ids[i] = "w" + strconv.Itoa(i)
+	}
+	if err := conn.WriteMessage(websocket.TextMessage, []byte(strings.Join(ids, ","))); err != nil {
+		t.Fatal(err)
+	}
+
+	waitFor(t, func() bool {
+		h.mu.RLock()
+		defer h.mu.RUnlock()
+		return len(h.watchers) == opts.MaxWatched
+	})
+
+	h.Broadcast(ids[len(ids)-1], []byte("over-cap"))
+	readNothing(t, conn)
+}
+
+func TestClosingStopsBroadcastsAndClearsWatchers(t *testing.T) {
+	h := New(DefaultOptions(), discardLogger, nil, watchOnInbound)
+	conn := connect(t, h, "u1")
+	waitForConnections(t, h, 1)
+	watchAndWait(t, h, conn, "u2")
+
+	_ = conn.Close()
+	waitForConnections(t, h, 0)
+
+	waitFor(t, func() bool {
+		h.mu.RLock()
+		defer h.mu.RUnlock()
+		return len(h.watchers) == 0
+	})
+}
+
+func TestPresenceSeesConnectAndDisconnect(t *testing.T) {
+	presence := &recordingPresence{}
+	h := New(DefaultOptions(), discardLogger, presence, nil)
+
+	conn := connect(t, h, "u1")
+	waitForConnections(t, h, 1)
+
+	if got := read(t, conn); got != "hello u1" {
+		t.Fatalf("got %q, want hello u1", got)
+	}
+
+	_ = conn.Close()
+	waitForConnections(t, h, 0)
+	waitFor(t, func() bool { return slices.Contains(presence.kinds(), "disconnected") })
+
+	if kinds := presence.kinds(); kinds[0] != "connected" {
+		t.Fatalf("first call was %q, want connected", kinds[0])
+	}
+}
+
+func TestPingDoesNotTouchPresence(t *testing.T) {
+	presence := &recordingPresence{}
+	opts := DefaultOptions()
+	opts.PingPeriod = 20 * time.Millisecond
+	h := New(opts, discardLogger, presence, nil)
+
+	connect(t, h, "u1")
+	waitForConnections(t, h, 1)
+	time.Sleep(150 * time.Millisecond)
+
+	if kinds := presence.kinds(); len(kinds) != 1 {
+		t.Fatalf("got %v after several pings, want a single connect", kinds)
+	}
+}
+
+func TestConnectionsListsEveryOpenTab(t *testing.T) {
+	h := New(DefaultOptions(), discardLogger, nil, nil)
+	connect(t, h, "u1")
+	connect(t, h, "u1")
+	connect(t, h, "u2")
+	waitForConnections(t, h, 3)
+
+	conns := h.Connections()
+	if len(conns) != 3 {
+		t.Fatalf("got %d connections, want 3", len(conns))
+	}
+
+	ids := make(map[string]struct{}, len(conns))
+	for _, conn := range conns {
+		if conn.ConnID == "" {
+			t.Fatal("a connection has no id")
+		}
+		ids[conn.ConnID] = struct{}{}
+	}
+	if len(ids) != 3 {
+		t.Fatalf("got %d distinct ids, want 3", len(ids))
+	}
+}
+
 func TestCloseAllSendsServiceRestart(t *testing.T) {
-	h := New(DefaultOptions(), discardLogger, nil)
+	h := New(DefaultOptions(), discardLogger, nil, nil)
 	conn := connect(t, h, "u1")
 	waitForConnections(t, h, 1)
 
