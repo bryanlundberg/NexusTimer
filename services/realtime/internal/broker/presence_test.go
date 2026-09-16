@@ -300,6 +300,22 @@ func TestConnectedHandsTheTabItsOwnStatus(t *testing.T) {
 	}
 }
 
+func TestConnectedClearsAnExpiryLeftOnTheStatus(t *testing.T) {
+	b := testBroker(t)
+	ctx := context.Background()
+	keys := []string{connsKeyPrefix + alice, statusKeyPrefix + alice}
+	b.client.Del(ctx, keys...)
+	t.Cleanup(func() { b.client.Del(context.Background(), keys...) })
+
+	b.client.Set(ctx, statusKeyPrefix+alice, statusInvisible, time.Minute)
+
+	b.Connected(newFakeConn(alice))
+
+	if ttl := b.client.TTL(ctx, statusKeyPrefix+alice).Val(); ttl >= 0 {
+		t.Fatalf("got ttl %v, want none: nothing rewrites the declared status", ttl)
+	}
+}
+
 func TestConnectedDefaultsToOnlineWhenNothingWasDeclared(t *testing.T) {
 	b := testBroker(t)
 	ctx := context.Background()
