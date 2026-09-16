@@ -1,8 +1,17 @@
+export interface MessageReaction {
+  userId: string
+  emoji: string
+}
+
 export interface RealtimeMessage {
   _id: string
   senderId: string
   text: string
   createdAt: string
+  editedAt?: string
+  /** Deleted for everyone: `text` comes back empty and the UI shows a tombstone. */
+  deletedAt?: string
+  reactions?: MessageReaction[]
 }
 
 /** `userId` is always the other party, so the recipient knows what to refresh. */
@@ -11,7 +20,12 @@ export type RealtimeEvent =
   | { type: 'friend:accepted'; userId: string }
   | { type: 'friend:removed'; userId: string }
   | { type: 'message:new'; userId: string; message: RealtimeMessage }
+  | { type: 'message:edited'; userId: string; message: RealtimeMessage }
+  | { type: 'message:deleted'; userId: string; messageId: string; scope: 'me' | 'all' }
+  | { type: 'message:reactions'; userId: string; messageId: string; reactions: MessageReaction[] }
   | { type: 'chat:read'; userId: string }
+  | { type: 'chat:cleared'; userId: string }
+  | { type: 'chat:removed'; userId: string }
   | { type: 'chat:delivered'; userId: string; deliveredAt: string }
   | { type: 'chat:seen'; userId: string; readAt: string }
   | { type: 'typing'; userId: string }
