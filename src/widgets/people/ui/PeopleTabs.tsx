@@ -104,7 +104,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
 
       <Tabs value={value} onValueChange={(e) => set(e as PTabs)} className="w-full mb-5">
         {/* Tabs nav + actions row */}
-        <div className="flex flex-row items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
+        <div className="flex flex-wrap items-center justify-between gap-3 px-4 md:px-6 py-3 mt-3">
           <div className="min-w-0 flex-1">
             <ScrollableUnderlineTabs
               items={tabs.map((tab) => ({
@@ -125,7 +125,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
             />
           </div>
 
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center justify-end gap-2 max-sm:w-full sm:shrink-0">
             {isCurrentUser && (
               <Button variant="secondary" size="sm" className="gap-1.5" onClick={() => router.push('/account')}>
                 <Pencil className="size-4" />
@@ -133,7 +133,7 @@ export function PeopleTabs({ user, cubes, isLoadingStats = false }: PeopleTabsPr
               </Button>
             )}
             {relationship?.status === 'friends' && <MessageLink userId={user._id} />}
-            {relationship?.status && <FriendButton userId={user._id} status={relationship.status} />}
+            {relationship?.status && <FriendButton userId={user._id} name={user.name} status={relationship.status} />}
             <Button
               ref={compareRef}
               variant={isAdded ? 'secondary' : 'outline'}
