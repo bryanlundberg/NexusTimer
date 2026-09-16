@@ -9,17 +9,17 @@ import { MessageComposer, type ComposerEdit } from '@/features/chat/ui/MessageCo
 import { MessageList } from '@/widgets/chat/ui/MessageList'
 
 interface Props {
-  userId: string
+  chatId: string
   peer?: ChatPeer
   compact?: boolean
   focusRequested?: boolean
   onFocused?: () => void
 }
 
-export function ConversationBody({ userId, peer, compact = false, focusRequested, onFocused }: Props) {
+export function ConversationBody({ chatId, peer, compact = false, focusRequested, onFocused }: Props) {
   const t = useTranslations('Index.ChatPage')
-  const { data: relationship } = useRelationship(userId)
-  const conversation = useConversation(userId)
+  const { data: relationship } = useRelationship(peer?._id ?? '')
+  const conversation = useConversation(chatId, peer?._id)
   const [editing, setEditing] = useState<ComposerEdit | null>(null)
 
   const canMessage = relationship?.status === 'friends'
