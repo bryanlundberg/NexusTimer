@@ -9,8 +9,8 @@ import { MessageCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { formatBadgeCount } from '@/shared/lib/badge-count'
 import { CountBadge } from '@/shared/ui/count-badge/CountBadge'
-import { Skeleton } from '@/components/ui/skeleton'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { InboxListSkeleton } from '@/shared/ui/skeletons/chat-skeleton'
 import { useInbox } from '@/entities/chat/model/useInbox'
 import { useOpenChat } from '@/features/chat/model/useOpenChat'
 import { getDockCapacity } from '@/features/chat/model/dock-capacity'
@@ -83,13 +83,7 @@ export function MessagesMenu() {
         </div>
 
         <div className="max-h-[26rem] overflow-y-auto">
-          {isLoading && (
-            <div className="flex flex-col gap-2 p-3">
-              {Array.from({ length: 4 }, (_, i) => (
-                <Skeleton key={i} className="h-12 w-full" />
-              ))}
-            </div>
-          )}
+          {isLoading && <InboxListSkeleton rows={4} compact />}
 
           {!isLoading && threads.length === 0 && (
             <div className="flex flex-col items-center gap-2 px-4 py-8 text-center">
