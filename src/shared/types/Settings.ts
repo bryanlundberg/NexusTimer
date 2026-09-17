@@ -36,6 +36,9 @@ type Sounds = {
   newPersonalBest: boolean
   inspection: boolean
   newRound: boolean
+  messageReceived: boolean
+  messageSent: boolean
+  newFriend: boolean
   voiceGender: 'male' | 'female'
 }
 
