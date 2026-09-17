@@ -33,6 +33,9 @@ export const defaultSettings: Settings = {
     newPersonalBest: true,
     inspection: true,
     newRound: true,
+    messageReceived: true,
+    messageSent: true,
+    newFriend: true,
     voiceGender: 'male'
   },
   sync: {
