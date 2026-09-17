@@ -6,6 +6,9 @@ export interface FriendUser {
   image: string
   country?: string
   wcaId?: string
+  pronoun?: string
+  method?: string
+  bio?: string
 }
 
 export interface FriendEntry {
