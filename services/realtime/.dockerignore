@@ -4,4 +4,4 @@
 *.md
 **/*_test.go
 docker-compose.yml
-deploy.sh
+deploy
