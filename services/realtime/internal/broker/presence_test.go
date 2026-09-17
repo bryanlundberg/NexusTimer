@@ -109,14 +109,15 @@ func TestResolve(t *testing.T) {
 		wantState    State
 		wantLastSeen int64
 	}{
-		"connected":            {active, "", "", StateOnline, 0},
-		"connected and online": {active, "online", "", StateOnline, 0},
-		"busy beats idle":      {idle, "busy", "", StateBusy, 0},
-		"declared away":        {active, "away", "", StateAway, 0},
-		"idle tab is away":     {idle, "", "", StateAway, 0},
-		"invisible hides both": {active, statusInvisible, "1700000000000", StateOffline, 0},
-		"gone with last seen":  {nil, "", "1700000000000", StateOffline, 1700000000000},
-		"never seen":           {nil, "", "", StateOffline, 0},
+		"connected":                {active, "", "", StateOnline, 0},
+		"connected and online":     {active, "online", "", StateOnline, 0},
+		"busy beats idle":          {idle, "busy", "", StateBusy, 0},
+		"declared away":            {active, "away", "", StateAway, 0},
+		"idle tab is away":         {idle, "", "", StateAway, 0},
+		"gone with last seen":      {nil, "", "1700000000000", StateOffline, 1700000000000},
+		"never seen":               {nil, "", "", StateOffline, 0},
+		"invisible looks gone":     {active, statusInvisible, "1700000000000", StateOffline, 1700000000000},
+		"invisible and never seen": {active, statusInvisible, "", StateOffline, 0},
 	}
 
 	for name, tc := range cases {
@@ -261,6 +262,25 @@ func TestDisconnectWaitsBeforeCallingSomeoneOffline(t *testing.T) {
 
 	if got := b.resolve(ctx, []string{alice})[0]; got.State != StateOffline {
 		t.Fatalf("got %q, want offline: Redis is right away even before the announcement", got.State)
+	}
+}
+
+func TestDisconnectLeavesAnInvisibleLastSeenAlone(t *testing.T) {
+	b := testBroker(t)
+	ctx := context.Background()
+	keys := []string{connsKeyPrefix + alice, lastSeenKeyPrefix + alice, statusKeyPrefix + alice}
+	b.client.Del(ctx, keys...)
+	t.Cleanup(func() { b.client.Del(context.Background(), keys...) })
+
+	// Stamped when they turned invisible, which is what everyone has been reading since
+	b.client.Set(ctx, statusKeyPrefix+alice, statusInvisible, time.Minute)
+	b.client.Set(ctx, lastSeenKeyPrefix+alice, "1700000000000", time.Minute)
+
+	b.Connected(newFakeConn(alice))
+	b.Disconnected(alice, "conn-"+alice)
+
+	if got := b.client.Get(ctx, lastSeenKeyPrefix+alice).Val(); got != "1700000000000" {
+		t.Fatalf("last seen moved to %q: closing the tab gave away the invisible spell", got)
 	}
 }
 

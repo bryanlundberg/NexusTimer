@@ -209,7 +209,10 @@ func (b *Broker) Disconnected(userID, connID string) {
 	pipe := b.client.Pipeline()
 	pipe.HDel(ctx, key, connID)
 	left := pipe.HLen(ctx, key)
-	if _, err := pipe.Exec(ctx); err != nil {
+	// Rides along so the write below costs no extra round trip. redis.Nil only means the status
+	// key is missing, which is every person who never picked one.
+	declared := pipe.Get(ctx, statusKeyPrefix+userID)
+	if _, err := pipe.Exec(ctx); err != nil && !errors.Is(err, redis.Nil) {
 		b.logger.Warn("presence disconnect failed", "error", err)
 		return
 	}
@@ -219,9 +222,14 @@ func (b *Broker) Disconnected(userID, connID string) {
 		return
 	}
 
-	stamp := strconv.FormatInt(time.Now().UnixMilli(), 10)
-	if err := b.client.Set(ctx, lastSeenKeyPrefix+userID, stamp, lastSeenTTL).Err(); err != nil {
-		b.logger.Warn("last seen failed", "error", err)
+	// An invisible person was already stamped when they declared it, and they have read as
+	// offline ever since. Moving the stamp now would jump their last seen forward with no online
+	// spell in between, which is exactly how a watcher spots that they had been there all along.
+	if declared.Val() != statusInvisible {
+		stamp := strconv.FormatInt(time.Now().UnixMilli(), 10)
+		if err := b.client.Set(ctx, lastSeenKeyPrefix+userID, stamp, lastSeenTTL).Err(); err != nil {
+			b.logger.Warn("last seen failed", "error", err)
+		}
 	}
 	b.publishAfterGrace(userID)
 }
@@ -332,8 +340,9 @@ func (b *Broker) resolve(ctx context.Context, userIDs []string) []presenceUser {
 		declared := reads[i].status.Val()
 
 		switch {
-		case declared == statusInvisible:
-		case !reachable:
+		// An invisible person reports their last seen like anyone offline: without it they would
+		// be the only row with no wording under the dot, which is the tell the status avoids.
+		case declared == statusInvisible || !reachable:
 			users[i].LastSeen, _ = strconv.ParseInt(reads[i].lastSeen.Val(), 10, 64)
 		case declared == string(StateBusy):
 			users[i].State = StateBusy
