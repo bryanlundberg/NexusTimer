@@ -507,9 +507,7 @@
       "find-cubers": "Mag-browse ng mga cuber.",
       "showing-members": "Ipinapakita ang <b>{showing}</b> sa <b>{total}</b> na miyembro",
       "search": "Maghanap",
-      "compare-basket": "<b>{count}</b> sa compare basket",
-      "col-country": "Bansa",
-      "col-actions": "Mga Aksyon"
+      "compare-basket": "<b>{count}</b> sa compare basket"
     },
     "FriendsPage": {
       "title": "Mga Kaibigan",

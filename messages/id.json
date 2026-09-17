@@ -507,9 +507,7 @@
       "find-cubers": "Jelajahi para cuber.",
       "showing-members": "Menampilkan <b>{showing}</b> dari <b>{total}</b> anggota",
       "search": "Cari",
-      "compare-basket": "<b>{count}</b> di keranjang perbandingan",
-      "col-country": "Negara",
-      "col-actions": "Aksi"
+      "compare-basket": "<b>{count}</b> di keranjang perbandingan"
     },
     "FriendsPage": {
       "title": "Teman",

@@ -502,8 +502,6 @@
       "showing-members": "Показано <b>{showing}</b> з <b>{total}</b> учасників",
       "search": "Пошук",
       "compare-basket": "<b>{count}</b> у кошику порівняння",
-      "col-country": "Країна",
-      "col-actions": "Дії",
       "badges": {
         "counter": "{unlocked} / {total}",
         "empty": "Ще немає розблокованих досягнень.",
