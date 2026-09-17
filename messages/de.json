@@ -522,6 +522,7 @@
       "no-sent": "Du hast keine Anfragen gesendet.",
       "find-cubers": "Cuber finden",
       "mutual": "{count, plural, one {# gemeinsamer Freund} other {# gemeinsame Freunde}}",
+      "friends-since": "Befreundet seit {date}",
       "action-failed": "Etwas ist schiefgelaufen. Versuche es erneut.",
       "cancel": "Abbrechen",
       "remove-friend-hint": "{name} wird aus deinen Freunden entfernt und ihr könnt einander keine Nachrichten mehr senden. Du kannst später eine neue Anfrage stellen.",
@@ -588,6 +589,9 @@
       "view-label": "Ansicht",
       "view-all": "Alle Zeiten",
       "view-persons": "Pro Person",
+      "next-refresh": "Nächste Aktualisierung in {time}",
+      "refreshing": "Wird aktualisiert",
+      "refresh-hint": "Die Rangliste wird jede volle Stunde neu erstellt, in Serverzeit (UTC).",
       "type": "Typ",
       "table": {
         "user": "Nutzer",

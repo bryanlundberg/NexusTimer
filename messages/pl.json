@@ -525,6 +525,7 @@
       "no-sent": "Nie wysłano żadnych zaproszeń.",
       "find-cubers": "Znajdź cuberów",
       "mutual": "{count, plural, one {# wspólny znajomy} few {# wspólnych znajomych} many {# wspólnych znajomych} other {# wspólnego znajomego}}",
+      "friends-since": "Znajomi od {date}",
       "action-failed": "Coś poszło nie tak. Spróbuj ponownie.",
       "cancel": "Anuluj",
       "remove-friend-hint": "{name} zostanie usunięty z twoich znajomych i nie będziecie mogli do siebie pisać. Możesz wysłać nowe zaproszenie później.",
@@ -591,6 +592,9 @@
       "view-label": "Widok",
       "view-all": "Wszystkie czasy",
       "view-persons": "Na osobę",
+      "next-refresh": "Następne odświeżenie za {time}",
+      "refreshing": "Odświeżanie",
+      "refresh-hint": "Ranking jest przebudowywany co godzinę, o pełnej godzinie, w czasie serwera (UTC).",
       "type": "Typ",
       "table": {
         "user": "Użytkownik",

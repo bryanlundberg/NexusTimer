@@ -525,6 +525,7 @@
       "no-sent": "Non hai inviato nessuna richiesta.",
       "find-cubers": "Trova cuber",
       "mutual": "{count, plural, one {# amico in comune} other {# amici in comune}}",
+      "friends-since": "Amici da {date}",
       "action-failed": "Qualcosa è andato storto. Riprova.",
       "cancel": "Annulla",
       "remove-friend-hint": "{name} verrà rimosso dai tuoi amici e non potrete più scrivervi. Potrai inviare una nuova richiesta più avanti.",
@@ -591,6 +592,9 @@
       "view-label": "Vista",
       "view-all": "Tutti i tempi",
       "view-persons": "Per persona",
+      "next-refresh": "Prossimo aggiornamento tra {time}",
+      "refreshing": "Aggiornamento",
+      "refresh-hint": "La classifica viene ricostruita ogni ora esatta, nell'ora del server (UTC).",
       "type": "Tipo",
       "table": {
         "user": "Utente",

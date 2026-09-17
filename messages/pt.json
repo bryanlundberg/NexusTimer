@@ -522,6 +522,7 @@
       "no-sent": "Você não enviou nenhuma solicitação.",
       "find-cubers": "Buscar cubeiros",
       "mutual": "{count, plural, one {# amigo em comum} other {# amigos em comum}}",
+      "friends-since": "Amigos desde {date}",
       "action-failed": "Algo deu errado. Tente novamente.",
       "cancel": "Cancelar",
       "remove-friend-hint": "{name} deixará de ser teu amigo e não poderão enviar mensagens um ao outro. Podes enviar um novo pedido mais tarde.",
@@ -588,6 +589,9 @@
       "view-label": "Vista",
       "view-all": "Todos os tempos",
       "view-persons": "Por pessoa",
+      "next-refresh": "Próxima atualização em {time}",
+      "refreshing": "Atualizando",
+      "refresh-hint": "A classificação é reconstruída a cada hora cheia, no horário do servidor (UTC).",
       "type": "Tipo",
       "table": {
         "user": "Usuário",

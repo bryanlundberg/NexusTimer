@@ -525,6 +525,7 @@
       "no-sent": "Wala kang naipadalang request.",
       "find-cubers": "Maghanap ng mga cuber",
       "mutual": "{count, plural, one {# mutual na kaibigan} other {# mutual na kaibigan}}",
+      "friends-since": "Magkaibigan mula {date}",
       "action-failed": "Nagkaproblema. Subukang muli.",
       "cancel": "Kanselahin",
       "remove-friend-hint": "Aalisin si {name} sa iyong mga kaibigan at hindi na kayo makakapagpadala ng mensahe sa isa't isa. Maaari kang magpadala ng bagong request mamaya.",
@@ -591,6 +592,9 @@
       "view-label": "View",
       "view-all": "Lahat ng oras",
       "view-persons": "Bawat tao",
+      "next-refresh": "Susunod na pag-refresh sa {time}",
+      "refreshing": "Nagre-refresh",
+      "refresh-hint": "Muling binubuo ang ranking kada oras, sa simula ng oras, sa oras ng server (UTC).",
       "type": "Uri",
       "table": {
         "user": "User",

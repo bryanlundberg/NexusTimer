@@ -522,6 +522,7 @@
       "no-sent": "送信した申請はありません。",
       "find-cubers": "キューバーを探す",
       "mutual": "{count, plural, other {共通のフレンド#人}}",
+      "friends-since": "{date}から友達",
       "action-failed": "問題が発生しました。もう一度お試しください。",
       "cancel": "キャンセル",
       "remove-friend-hint": "{name} は友だちから削除され、メッセージのやり取りができなくなります。あとで新しいリクエストを送ることはできます。",
@@ -588,6 +589,9 @@
       "view-label": "表示",
       "view-all": "全記録",
       "view-persons": "ユーザー別",
+      "next-refresh": "次の更新まで {time}",
+      "refreshing": "更新中",
+      "refresh-hint": "ランキングはサーバー時間 (UTC) の毎正時に再構築されます。",
       "type": "タイプ",
       "table": {
         "user": "ユーザー",

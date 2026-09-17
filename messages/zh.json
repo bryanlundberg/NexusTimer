@@ -522,6 +522,7 @@
       "no-sent": "你还没有发送任何请求。",
       "find-cubers": "寻找魔友",
       "mutual": "{count, plural, other {# 位共同好友}}",
+      "friends-since": "{date} 起成为好友",
       "action-failed": "出错了，请重试。",
       "cancel": "取消",
       "remove-friend-hint": "{name} 将从你的好友中移除，你们将无法互发消息。你之后可以再次发送好友请求。",
@@ -588,6 +589,9 @@
       "view-label": "视图",
       "view-all": "全部成绩",
       "view-persons": "每人一条",
+      "next-refresh": "距下次刷新 {time}",
+      "refreshing": "刷新中",
+      "refresh-hint": "排行榜按服务器时间（UTC）每小时整点重新生成。",
       "type": "类型",
       "table": {
         "user": "魔友",

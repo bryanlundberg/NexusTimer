@@ -525,6 +525,7 @@
       "no-sent": "Kamu belum mengirim permintaan apa pun.",
       "find-cubers": "Cari cuber",
       "mutual": "{count, plural, other {# teman bersama}}",
+      "friends-since": "Berteman sejak {date}",
       "action-failed": "Terjadi kesalahan. Coba lagi.",
       "cancel": "Batal",
       "remove-friend-hint": "{name} akan dihapus dari daftar temanmu dan kalian tidak bisa saling berkirim pesan. Kamu bisa mengirim permintaan baru nanti.",
@@ -591,6 +592,9 @@
       "view-label": "Tampilan",
       "view-all": "Semua waktu",
       "view-persons": "Per orang",
+      "next-refresh": "Pembaruan berikutnya dalam {time}",
+      "refreshing": "Memperbarui",
+      "refresh-hint": "Papan peringkat dibangun ulang setiap jam tepat, dalam waktu server (UTC).",
       "type": "Tipe",
       "table": {
         "user": "Pengguna",

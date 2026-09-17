@@ -522,6 +522,7 @@
       "no-sent": "보낸 요청이 없습니다.",
       "find-cubers": "큐버 찾기",
       "mutual": "{count, plural, other {함께 아는 친구 #명}}",
+      "friends-since": "{date}부터 친구",
       "action-failed": "문제가 발생했습니다. 다시 시도해 주세요.",
       "cancel": "취소",
       "remove-friend-hint": "{name} 님이 친구에서 삭제되고 서로 메시지를 보낼 수 없게 됩니다. 나중에 새로 요청을 보낼 수 있습니다.",
@@ -588,6 +589,9 @@
       "view-label": "보기",
       "view-all": "전체 기록",
       "view-persons": "큐버별",
+      "next-refresh": "다음 갱신까지 {time}",
+      "refreshing": "갱신 중",
+      "refresh-hint": "순위는 서버 시간(UTC) 기준 매 정시마다 새로 집계됩니다.",
       "type": "유형",
       "table": {
         "user": "사용자",

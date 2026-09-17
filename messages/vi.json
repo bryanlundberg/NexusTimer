@@ -525,6 +525,7 @@
       "no-sent": "Bạn chưa gửi lời mời nào.",
       "find-cubers": "Tìm cuber",
       "mutual": "{count, plural, other {# bạn chung}}",
+      "friends-since": "Bạn bè từ {date}",
       "action-failed": "Đã xảy ra lỗi. Vui lòng thử lại.",
       "cancel": "Hủy",
       "remove-friend-hint": "{name} sẽ bị xóa khỏi danh sách bạn bè và hai bạn sẽ không thể nhắn tin cho nhau. Bạn có thể gửi lời mời mới sau.",
@@ -591,6 +592,9 @@
       "view-label": "Chế độ xem",
       "view-all": "Tất cả thành tích",
       "view-persons": "Theo người",
+      "next-refresh": "Làm mới tiếp theo sau {time}",
+      "refreshing": "Đang làm mới",
+      "refresh-hint": "Bảng xếp hạng được dựng lại mỗi giờ, vào đầu giờ, theo giờ máy chủ (UTC).",
       "type": "Loại",
       "table": {
         "user": "Người dùng",
