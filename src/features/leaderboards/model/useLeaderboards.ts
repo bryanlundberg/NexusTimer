@@ -1,5 +1,11 @@
 import useSWR from 'swr'
 import { fetcher } from '@/shared/lib/fetcher'
+import type { SolveServer } from '@/entities/solve/model/types'
+
+interface LeaderboardsResponse {
+  solves: SolveServer[]
+  nextRefreshAt: string
+}
 
 export const useLeaderboards = (puzzle?: string, smart?: boolean, unique?: boolean) => {
   const params = new URLSearchParams()
@@ -10,10 +16,11 @@ export const useLeaderboards = (puzzle?: string, smart?: boolean, unique?: boole
   const query = params.toString()
   const url = query ? `/api/v1/leaderboards?${query}` : '/api/v1/leaderboards'
 
-  const { data, error, isLoading, mutate } = useSWR(url, fetcher)
+  const { data, error, isLoading, mutate } = useSWR<LeaderboardsResponse>(url, fetcher)
 
   return {
-    data,
+    solves: data?.solves,
+    nextRefreshAt: data?.nextRefreshAt,
     isLoading,
     isError: error,
     mutate
