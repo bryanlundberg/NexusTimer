@@ -54,20 +54,25 @@ export function FriendsPanel() {
     return (
       <div className="flex flex-col gap-2">
         {Array.from({ length: 4 }, (_, i) => (
-          <Skeleton key={i} className="h-14 w-full" />
+          <Skeleton key={i} className="h-20 w-full" />
         ))}
       </div>
     )
   }
 
-  const renderRows = (entries: FriendEntry[], actions: (user: FriendUser) => React.ReactNode, stackActions = false) =>
-    entries.map(({ user }) => (
+  const renderRows = (
+    entries: FriendEntry[],
+    actions: (user: FriendUser) => React.ReactNode,
+    options: { stackActions?: boolean; showSince?: boolean } = {}
+  ) =>
+    entries.map(({ user, since }) => (
       <FriendRow
         key={user._id}
         user={user}
         presence={presence[user._id]}
+        friendsSince={options.showSince ? since : undefined}
         actions={actions(user)}
-        stackActions={stackActions}
+        stackActions={options.stackActions}
       />
     ))
 
@@ -114,21 +119,25 @@ export function FriendsPanel() {
           </EmptyTable>
         ) : (
           <FriendTable>
-            {renderRows(data.friends, (user) => (
-              <>
-                <MessageLink userId={user._id} className="h-8" />
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  className="gap-1.5 h-8 text-muted-foreground"
-                  disabled={pendingId === user._id}
-                  onClick={() => setConfirming({ user, action: 'remove-friend' })}
-                >
-                  <UserMinus className="size-3.5" />
-                  <span className="hidden sm:inline">{t('remove-friend')}</span>
-                </Button>
-              </>
-            ))}
+            {renderRows(
+              data.friends,
+              (user) => (
+                <>
+                  <MessageLink userId={user._id} className="h-8" />
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="gap-1.5 h-8 text-muted-foreground"
+                    disabled={pendingId === user._id}
+                    onClick={() => setConfirming({ user, action: 'remove-friend' })}
+                  >
+                    <UserMinus className="size-3.5" />
+                    <span className="hidden sm:inline">{t('remove-friend')}</span>
+                  </Button>
+                </>
+              ),
+              { showSince: true }
+            )}
           </FriendTable>
         )}
       </TabsContent>
@@ -163,7 +172,7 @@ export function FriendsPanel() {
                   </Button>
                 </>
               ),
-              true
+              { stackActions: true }
             )}
           </FriendTable>
         )}
@@ -188,7 +197,7 @@ export function FriendsPanel() {
                   {t('cancel-request')}
                 </Button>
               ),
-              true
+              { stackActions: true }
             )}
           </FriendTable>
         )}
