@@ -6,8 +6,16 @@ services:
       - redis-server
       - --requirepass
       - ${REDIS_PASSWORD:?set REDIS_PASSWORD in .env}
+      - --tls-port
+      - '6380'
+      - --tls-cert-file
+      - /certs/fullchain.pem
+      - --tls-key-file
+      - /certs/privkey.pem
+      - --tls-auth-clients
+      - 'no'
       - --maxmemory
-      - 64mb
+      - 128mb
       - --maxmemory-policy
       - noeviction
       - --save
@@ -17,8 +25,11 @@ services:
       - 'no'
     environment:
       REDIS_PASSWORD: ${REDIS_PASSWORD}
+    ports:
+      - '6380:6380'
     volumes:
       - redis:/data
+      - ./certs:/certs:ro
     mem_limit: 96m
     healthcheck:
       test: ['CMD-SHELL', 'redis-cli -a "$$REDIS_PASSWORD" ping | grep -q PONG']
