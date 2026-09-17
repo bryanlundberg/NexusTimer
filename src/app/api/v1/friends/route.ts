@@ -4,7 +4,13 @@ import connectDB from '@/shared/config/mongodb/mongodb'
 import User from '@/entities/user/model/user'
 import Friendship, { type FriendshipDocument } from '@/entities/friendship/model/friendship'
 import { friendsCache } from '@/entities/friendship/model/friends-cache'
-import { findFriendship, findFriendUsers, otherUserId, relationshipOf } from '@/entities/friendship/server/friends'
+import {
+  FRIEND_PROFILE_PROJECTION,
+  findFriendship,
+  findFriendUsers,
+  otherUserId,
+  relationshipOf
+} from '@/entities/friendship/server/friends'
 import type { FriendEntry, FriendsResponse } from '@/entities/friendship/model/types'
 import { requireUser } from '@/shared/api/require-user'
 import { parseJsonBody } from '@/shared/api/parse-json'
@@ -24,7 +30,10 @@ export async function GET() {
     await connectDB()
 
     const docs = await Friendship.find({ users: userId }).sort({ createdAt: -1 }).lean<FriendshipDocument[]>()
-    const users = await findFriendUsers(docs.map((doc) => otherUserId(doc, userId)))
+    const users = await findFriendUsers(
+      docs.map((doc) => otherUserId(doc, userId)),
+      FRIEND_PROFILE_PROJECTION
+    )
 
     const response: FriendsResponse = { friends: [], incoming: [], outgoing: [] }
 
