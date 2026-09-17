@@ -3,6 +3,8 @@ import { useSWRConfig } from 'swr'
 import { toast } from 'sonner'
 import { useTranslations } from 'next-intl'
 import { apiDelete, apiPost } from '@/shared/api/client'
+import { playSound } from '@/shared/lib/play-sound'
+import type { RelationshipStatus } from '@/entities/friendship/model/types'
 import { FRIENDS_KEY, relationshipKey } from '@/entities/friendship/model/useFriends'
 
 export function useFriendActions() {
@@ -25,7 +27,12 @@ export function useFriendActions() {
   return {
     pendingId,
     /** Sends a request, or accepts one the other user already sent. */
-    add: (userId: string) => run(userId, () => apiPost(FRIENDS_KEY, { userId })),
+    add: (userId: string) =>
+      run(userId, async () => {
+        const { status } = await apiPost<{ status: RelationshipStatus }>(FRIENDS_KEY, { userId })
+        // Only accepting settles the relationship in one call: a fresh request stays pending
+        if (status === 'friends') playSound('newFriend')
+      }),
     remove: (userId: string) => run(userId, () => apiDelete(relationshipKey(userId)))
   }
 }
