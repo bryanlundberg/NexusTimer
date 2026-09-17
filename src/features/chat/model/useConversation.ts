@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/react'
 import { useSWRConfig } from 'swr'
 import useSWRInfinite from 'swr/infinite'
 import { fetcher } from '@/shared/lib/fetcher'
+import { playSound } from '@/shared/lib/play-sound'
 import { apiDelete, apiPatch, apiPost } from '@/shared/api/client'
 import {
   NO_RECEIPTS,
@@ -57,6 +58,7 @@ export function useConversation(chatId: string, peerId?: string) {
 
   const deliver = async (text: string) => {
     lastTypingSentAt.current = 0
+    playSound('messageSent')
     const temp: ChatMessage = {
       _id: `temp-${crypto.randomUUID()}`,
       senderId: myId ?? '',
