@@ -10,6 +10,8 @@ const GATEWAY_PREFIX = 'rt:gw:'
 /** Backstop for an entry whose delete never landed. Nothing refreshes the timestamp. */
 const CONN_MAX_AGE_SECONDS = 24 * 60 * 60
 
+const LAST_SEEN_TTL_SECONDS = 30 * 24 * 60 * 60
+
 export const statusKey = (userId: string) => STATUS_PREFIX + userId
 
 interface ConnEntry {
@@ -51,8 +53,6 @@ export function resolvePresence(
   lastSeen: string | null,
   liveGateways: ReadonlySet<string>
 ): PresenceUser {
-  if (status === 'invisible') return { userId, state: 'offline' }
-
   let reachable = false
   let allIdle = true
   for (const value of Object.values(conns)) {
@@ -62,7 +62,9 @@ export function resolvePresence(
     if (!entry.idle) allIdle = false
   }
 
-  if (!reachable) {
+  // An invisible person reports their last seen like anyone offline: without it they would be
+  // the only row with no wording under the dot, which is the tell the status exists to avoid.
+  if (status === 'invisible' || !reachable) {
     const stamp = Number(lastSeen)
     return Number.isFinite(stamp) && stamp > 0
       ? { userId, state: 'offline', lastSeen: stamp }
@@ -122,7 +124,20 @@ async function readLiveGateways(instanceIds: string[]): Promise<ReadonlySet<stri
  */
 export async function writePresenceStatus(userId: string, status: PresenceStatus): Promise<void> {
   const redis = await getRedis()
-  await redis.set(statusKey(userId), status)
+  const write = redis.multi()
+  write.get(statusKey(userId))
+  write.set(statusKey(userId), status)
+  const [previous] = (await write.exec()) as unknown[]
+
+  // Turning invisible has to read like leaving, so it stamps the same key a disconnect would.
+  // Only on the way in: restamping an already invisible person would walk their last seen
+  // forward and show they were still around. The gateway skips the write on disconnect for the
+  // same reason, which leaves this stamp standing as the last thing anyone sees.
+  if (status === 'invisible' && previous !== 'invisible') {
+    await redis.set(LAST_SEEN_PREFIX + userId, String(Date.now()), {
+      expiration: { type: 'EX', value: LAST_SEEN_TTL_SECONDS }
+    })
+  }
 
   try {
     const [user] = await readPresence([userId])

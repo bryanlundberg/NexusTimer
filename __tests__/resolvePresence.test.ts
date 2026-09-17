@@ -32,8 +32,16 @@ describe('resolvePresence', () => {
     expect(resolvePresence(ALICE, { a: tab(UP, true), b: tab(UP) }, null, null, LIVE).state).toBe('online')
   })
 
-  it('hides an invisible person entirely, last seen included', () => {
-    expect(resolvePresence(ALICE, { a: tab(UP) }, 'invisible', '1700000000000', LIVE)).toEqual({
+  it('hides an invisible person behind the same shape as someone who left', () => {
+    const invisible = resolvePresence(ALICE, { a: tab(UP) }, 'invisible', '1700000000000', LIVE)
+
+    expect(invisible).toEqual({ userId: ALICE, state: 'offline', lastSeen: 1700000000000 })
+    // Telling the two apart is the whole tell the status exists to avoid
+    expect(invisible).toEqual(resolvePresence(ALICE, {}, null, '1700000000000', LIVE))
+  })
+
+  it('omits an invisible last seen it never had', () => {
+    expect(resolvePresence(ALICE, { a: tab(UP) }, 'invisible', null, LIVE)).toEqual({
       userId: ALICE,
       state: 'offline'
     })
