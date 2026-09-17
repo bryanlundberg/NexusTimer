@@ -525,6 +525,7 @@
       "no-sent": "Nie wysłano żadnych zaproszeń.",
       "find-cubers": "Znajdź cuberów",
       "mutual": "{count, plural, one {# wspólny znajomy} few {# wspólnych znajomych} many {# wspólnych znajomych} other {# wspólnego znajomego}}",
+      "mutual-one": "<accent>{name}</accent> to wspólny znajomy",
       "friends-since": "Znajomi od {date}",
       "action-failed": "Coś poszło nie tak. Spróbuj ponownie.",
       "cancel": "Anuluj",

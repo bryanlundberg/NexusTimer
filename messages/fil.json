@@ -525,6 +525,7 @@
       "no-sent": "Wala kang naipadalang request.",
       "find-cubers": "Maghanap ng mga cuber",
       "mutual": "{count, plural, one {# mutual na kaibigan} other {# mutual na kaibigan}}",
+      "mutual-one": "<accent>{name}</accent> ay mutual na kaibigan",
       "friends-since": "Magkaibigan mula {date}",
       "action-failed": "Nagkaproblema. Subukang muli.",
       "cancel": "Kanselahin",

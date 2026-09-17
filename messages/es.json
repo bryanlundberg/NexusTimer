@@ -483,6 +483,7 @@
       "no-sent": "No has enviado ninguna solicitud.",
       "find-cubers": "Buscar cuberos",
       "mutual": "{count, plural, one {# amigo en común} other {# amigos en común}}",
+      "mutual-one": "<accent>{name}</accent> es amigo en común",
       "friends-since": "Amigos desde {date}",
       "action-failed": "Algo salió mal. Inténtalo de nuevo.",
       "cancel": "Cancelar",

@@ -525,6 +525,7 @@
       "no-sent": "Kamu belum mengirim permintaan apa pun.",
       "find-cubers": "Cari cuber",
       "mutual": "{count, plural, other {# teman bersama}}",
+      "mutual-one": "<accent>{name}</accent> adalah teman bersama",
       "friends-since": "Berteman sejak {date}",
       "action-failed": "Terjadi kesalahan. Coba lagi.",
       "cancel": "Batal",

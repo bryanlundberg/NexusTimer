@@ -522,6 +522,7 @@
       "no-sent": "Du hast keine Anfragen gesendet.",
       "find-cubers": "Cuber finden",
       "mutual": "{count, plural, one {# gemeinsamer Freund} other {# gemeinsame Freunde}}",
+      "mutual-one": "<accent>{name}</accent> ist ein gemeinsamer Freund",
       "friends-since": "Befreundet seit {date}",
       "action-failed": "Etwas ist schiefgelaufen. Versuche es erneut.",
       "cancel": "Abbrechen",

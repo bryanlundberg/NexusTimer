@@ -522,6 +522,7 @@
       "no-sent": "送信した申請はありません。",
       "find-cubers": "キューバーを探す",
       "mutual": "{count, plural, other {共通のフレンド#人}}",
+      "mutual-one": "<accent>{name}</accent>さんは共通のフレンドです",
       "friends-since": "{date}から友達",
       "action-failed": "問題が発生しました。もう一度お試しください。",
       "cancel": "キャンセル",

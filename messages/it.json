@@ -525,6 +525,7 @@
       "no-sent": "Non hai inviato nessuna richiesta.",
       "find-cubers": "Trova cuber",
       "mutual": "{count, plural, one {# amico in comune} other {# amici in comune}}",
+      "mutual-one": "<accent>{name}</accent> è un amico in comune",
       "friends-since": "Amici da {date}",
       "action-failed": "Qualcosa è andato storto. Riprova.",
       "cancel": "Annulla",

@@ -525,6 +525,7 @@
       "no-sent": "Ви не надіслали жодного запиту.",
       "find-cubers": "Знайти кьюберів",
       "mutual": "{count, plural, one {# спільний друг} few {# спільні друзі} many {# спільних друзів} other {# спільного друга}}",
+      "mutual-one": "<accent>{name}</accent> у вас у спільних друзях",
       "friends-since": "Друзі з {date}",
       "action-failed": "Щось пішло не так. Спробуйте ще раз.",
       "cancel": "Скасувати",

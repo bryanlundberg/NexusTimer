@@ -522,6 +522,7 @@
       "no-sent": "Вы не отправили ни одной заявки.",
       "find-cubers": "Найти кубистов",
       "mutual": "{count, plural, one {# общий друг} few {# общих друга} many {# общих друзей} other {# общего друга}}",
+      "mutual-one": "<accent>{name}</accent> у вас в общих друзьях",
       "friends-since": "Друзья с {date}",
       "action-failed": "Что-то пошло не так. Попробуйте ещё раз.",
       "cancel": "Отмена",

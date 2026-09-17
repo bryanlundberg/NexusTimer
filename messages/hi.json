@@ -522,6 +522,7 @@
       "no-sent": "आपने कोई अनुरोध नहीं भेजा है।",
       "find-cubers": "क्यूबर खोजें",
       "mutual": "{count, plural, one {# साझा मित्र} other {# साझा मित्र}}",
+      "mutual-one": "<accent>{name}</accent> एक साझा मित्र हैं",
       "friends-since": "{date} से मित्र",
       "action-failed": "कुछ गलत हो गया। फिर से कोशिश करें।",
       "cancel": "रद्द करें",

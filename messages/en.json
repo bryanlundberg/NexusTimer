@@ -525,6 +525,7 @@
       "no-sent": "You have not sent any requests.",
       "find-cubers": "Find cubers",
       "mutual": "{count, plural, one {# mutual friend} other {# mutual friends}}",
+      "mutual-one": "<accent>{name}</accent> is a mutual friend",
       "friends-since": "Friends since {date}",
       "action-failed": "Something went wrong. Try again.",
       "cancel": "Cancel",

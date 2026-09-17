@@ -525,6 +525,7 @@
       "no-sent": "คุณยังไม่ได้ส่งคำขอใด ๆ",
       "find-cubers": "ค้นหา cuber",
       "mutual": "{count, plural, other {เพื่อนร่วมกัน # คน}}",
+      "mutual-one": "<accent>{name}</accent> เป็นเพื่อนร่วมกัน",
       "friends-since": "เป็นเพื่อนกันตั้งแต่ {date}",
       "action-failed": "เกิดข้อผิดพลาด โปรดลองอีกครั้ง",
       "cancel": "ยกเลิก",

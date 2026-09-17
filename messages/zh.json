@@ -522,6 +522,7 @@
       "no-sent": "你还没有发送任何请求。",
       "find-cubers": "寻找魔友",
       "mutual": "{count, plural, other {# 位共同好友}}",
+      "mutual-one": "<accent>{name}</accent> 是共同好友",
       "friends-since": "{date} 起成为好友",
       "action-failed": "出错了，请重试。",
       "cancel": "取消",
