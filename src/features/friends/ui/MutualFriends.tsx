@@ -5,9 +5,15 @@ import { useTranslations } from 'next-intl'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import type { RelationshipResponse } from '@/entities/friendship/model/types'
 
+function shortName(name: string) {
+  return name.trim().split(/\s+/).slice(0, 2).join(' ')
+}
+
 export function MutualFriends({ mutual }: { mutual: RelationshipResponse['mutual'] }) {
   const t = useTranslations('Index.FriendsPage')
   if (mutual.count === 0) return null
+
+  const onlyFriend = mutual.count === 1 ? mutual.users[0] : undefined
 
   return (
     <div className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -23,7 +29,18 @@ export function MutualFriends({ mutual }: { mutual: RelationshipResponse['mutual
           </Link>
         ))}
       </div>
-      <span>{t('mutual', { count: mutual.count })}</span>
+      <span>
+        {onlyFriend
+          ? t.rich('mutual-one', {
+              name: shortName(onlyFriend.name),
+              accent: (chunks) => (
+                <Link href={`/people/${onlyFriend._id}`} className="font-medium text-primary hover:underline">
+                  {chunks}
+                </Link>
+              )
+            })
+          : t('mutual', { count: mutual.count })}
+      </span>
     </div>
   )
 }
