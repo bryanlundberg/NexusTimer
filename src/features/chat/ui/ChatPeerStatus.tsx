@@ -1,9 +1,9 @@
 'use client'
 
-import { useLocale, useTranslations } from 'next-intl'
-import dayjs from '@/shared/lib/dayjs'
+import { useTranslations } from 'next-intl'
 import { cn } from '@/shared/lib/utils'
-import { resolvePresenceDisplay, type PresenceState } from '@/features/presence/model/usePresence'
+import { type PresenceState } from '@/features/presence/model/usePresence'
+import { usePresenceLabel } from '@/features/presence/model/usePresenceLabel'
 import { useTypingChats } from '@/features/chat/model/typing-store'
 
 interface Props {
@@ -14,18 +14,10 @@ interface Props {
 
 export function ChatPeerStatus({ chatId, presence, className }: Props) {
   const tChat = useTranslations('Index.ChatPage')
-  const tPresence = useTranslations('Index.Presence')
-  const locale = useLocale()
   const isTyping = useTypingChats().has(chatId)
-  const display = resolvePresenceDisplay(presence)
+  const presenceLabel = usePresenceLabel(presence)
 
-  let label: string | null
-  if (isTyping) label = tChat('typing')
-  else if (display !== 'offline') label = tPresence(display)
-  else if (presence.lastSeen)
-    label = tPresence('last-seen', { time: dayjs(presence.lastSeen).locale(locale).fromNow() })
-  else label = null
-
+  const label = isTyping ? tChat('typing') : presenceLabel
   if (!label) return null
 
   return (
