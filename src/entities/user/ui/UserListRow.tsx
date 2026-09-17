@@ -21,7 +21,6 @@ import { WcaBadge } from '@/shared/ui/wca-badge/WcaBadge'
 import { useMainColorsLabel, useMethodLabel } from '@/entities/user/model/useProfileTraitLabels'
 import { PresenceDot } from '@/features/presence/ui/PresenceDot'
 import { resolvePresenceDisplay, type PresenceState } from '@/features/presence/model/usePresence'
-import { usePresenceLabel } from '@/features/presence/model/usePresenceLabel'
 
 const MAX_LINK_ICONS = 4
 
@@ -54,7 +53,6 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
   const tAccount = useTranslations('Index.AccountPage')
   const locale = useLocale()
   const methodLabel = useMethodLabel()
-  const presenceLabel = usePresenceLabel(presence)
   const colors = sortFaceColors(user.mainColors)
   const colorsLabel = useMainColorsLabel(colors)
 
@@ -109,7 +107,7 @@ export function UserListRow({ user, presence, meta, actions, stackActions = fals
   const memberSince = user.createdAt
     ? tHero('member-since', { date: dayjs(user.createdAt).locale(locale).format('MMM YYYY') })
     : null
-  const footer = [presenceLabel, meta, memberSince].filter(Boolean).join(' · ')
+  const footer = [meta, memberSince].filter(Boolean).join(' · ')
 
   return (
     <div
