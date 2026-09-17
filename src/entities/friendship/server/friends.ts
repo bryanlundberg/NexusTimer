@@ -6,6 +6,8 @@ import { pairKeyOf } from '@/shared/lib/pair-key'
 
 export const FRIEND_USER_PROJECTION = 'name image country wcaId'
 
+export const FRIEND_PROFILE_PROJECTION = `${FRIEND_USER_PROJECTION} pronoun method bio`
+
 export async function getFriendIds(userId: string): Promise<string[]> {
   const cached = await friendsCache.get(userId)
   if (cached) return cached
@@ -44,10 +46,13 @@ export function otherUserId(doc: Pick<FriendshipDocument, 'users'>, userId: stri
   return (other ?? doc.users[0]).toString()
 }
 
-export async function findFriendUsers(ids: string[]): Promise<Map<string, FriendUser>> {
+export async function findFriendUsers(
+  ids: string[],
+  projection: string = FRIEND_USER_PROJECTION
+): Promise<Map<string, FriendUser>> {
   if (ids.length === 0) return new Map()
   const users = await User.find({ _id: { $in: ids } })
-    .select(FRIEND_USER_PROJECTION)
+    .select(projection)
     .lean<FriendUser[]>()
   return new Map(users.map((user) => [user._id.toString(), { ...user, _id: user._id.toString() }]))
 }
