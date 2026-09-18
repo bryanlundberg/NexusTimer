@@ -55,9 +55,8 @@ export default function ImportBackupInline() {
   const handleConfirmReview = async (editedCubes: Cube[]) => {
     try {
       setIsImporting(true)
-      await cubesDB.replaceAll(preventDuplicateDeleteStatus(normalizeOldData(editedCubes)))
+      const cubes = await cubesDB.replaceAll(preventDuplicateDeleteStatus(normalizeOldData(editedCubes)))
 
-      const cubes = await cubesDB.getAll()
       setCubes(cubes)
       router.push('/cubes')
       setSelectedCube(null)
