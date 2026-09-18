@@ -1,5 +1,3 @@
-// Package broker receives the events the Next.js app publishes to Redis, and owns the
-// presence state, since holding the sockets is what makes the gateway able to know it.
 package broker
 
 import (
@@ -22,14 +20,12 @@ const ChannelPrefix = "rt:user:"
 type DeliverFunc func(userID string, payload []byte)
 
 type Broker struct {
-	client *redis.Client
-	logger *slog.Logger
-	// instanceID ties every connection this gateway holds to its own lease.
+	client     *redis.Client
+	logger     *slog.Logger
 	instanceID string
 	done       chan struct{}
 	once       sync.Once
 
-	// live caches which gateways are up, refreshed at most every liveCacheTTL.
 	liveMu    sync.Mutex
 	live      map[string]bool
 	liveUntil time.Time
@@ -59,8 +55,6 @@ func newInstanceID() string {
 
 func (b *Broker) InstanceID() string { return b.instanceID }
 
-// Run blocks until ctx is done. Every instance receives every event and only delivers to its
-// own sockets: deliver reaches every tab of one person, broadcast everyone following them.
 func (b *Broker) Run(ctx context.Context, deliver, broadcast DeliverFunc) {
 	patterns := []string{ChannelPrefix + "*", PresenceChannelPrefix + "*"}
 	pubsub := b.client.PSubscribe(ctx, patterns...)

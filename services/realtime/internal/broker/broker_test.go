@@ -14,7 +14,6 @@ type delivery struct {
 	payload string
 }
 
-// Runs against a real Redis only when REDIS_TEST_URL is set, e.g. redis://localhost:6379.
 func TestRunDeliversPublishedEvents(t *testing.T) {
 	url := os.Getenv("REDIS_TEST_URL")
 	if url == "" {
@@ -40,7 +39,6 @@ func TestRunDeliversPublishedEvents(t *testing.T) {
 		close(done)
 	}()
 
-	// PSubscribe is asynchronous: publish until the subscription is live
 	want := delivery{"broker-test-user", `{"type":"friend:request","userId":"x"}`}
 	ticker := time.NewTicker(50 * time.Millisecond)
 	defer ticker.Stop()
