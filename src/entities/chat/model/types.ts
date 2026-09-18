@@ -32,6 +32,7 @@ export interface ChatSummary {
   user: FriendUser
   unread: number
   receipts: Receipts
+  muted: boolean
 }
 
 export interface ChatThread extends ChatSummary {
