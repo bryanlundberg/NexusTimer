@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import type { ChatPeer, DeleteScope } from '@/entities/chat/model/types'
 import { useRelationship } from '@/entities/friendship/model/useFriends'
 import { useConversation } from '@/features/chat/model/useConversation'
+import { useChatDraftStore } from '@/features/chat/model/draft-store'
 import { MessageComposer, type ComposerEdit } from '@/features/chat/ui/MessageComposer'
 import { MessageList } from '@/widgets/chat/ui/MessageList'
 
@@ -21,6 +22,8 @@ export function ConversationBody({ chatId, peer, compact = false, focusRequested
   const { data: relationship } = useRelationship(peer?._id ?? '')
   const conversation = useConversation(chatId, peer?._id)
   const [editing, setEditing] = useState<ComposerEdit | null>(null)
+  const draft = useChatDraftStore((state) => state.drafts[chatId])
+  const clearDraft = useChatDraftStore((state) => state.clearDraft)
 
   const canMessage = relationship?.status === 'friends'
   const { messages } = conversation
@@ -69,6 +72,8 @@ export function ConversationBody({ chatId, peer, compact = false, focusRequested
           editing={editing}
           onSaveEdit={(messageId, text) => void conversation.editMessage(messageId, text)}
           onCancelEdit={() => setEditing(null)}
+          draft={draft}
+          onDraftApplied={() => clearDraft(chatId)}
         />
       )}
     </>
