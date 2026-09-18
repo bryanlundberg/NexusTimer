@@ -6,6 +6,9 @@ import {
 } from '@/features/deep-statistics/model/defaultChartValues'
 import { Cube } from '@/entities/cube/model/types'
 import { Solve } from '@/entities/solve/model/types'
+import getSolvesMetrics from '@/shared/lib/statistics/getSolvesMetrics'
+import { metricsToColumns } from '@/features/deep-statistics/lib/solveColumns'
+import { CubeSolves } from '@/features/deep-statistics/model/types'
 
 export type DeepStatsState = {
   stats: {
@@ -103,11 +106,9 @@ function getWorker(): Worker | null {
   return worker
 }
 
-function filterSolves(solves: Solve[] | undefined, startTimestamp: number): Solve[] {
-  if (!solves) return []
-  const nonDeleted = solves.filter((s) => !s.isDeleted)
-  if (!startTimestamp || startTimestamp <= 0) return nonDeleted
-  return nonDeleted.filter((s) => {
+function filterSolves(solves: Solve[], startTimestamp: number): Solve[] {
+  if (!startTimestamp || startTimestamp <= 0) return solves
+  return solves.filter((s) => {
     const ts = s.endTime ?? s.startTime
     return ts >= startTimestamp
   })
@@ -141,35 +142,21 @@ export function requestDeepStats(cubes: Cube[] | null, selectedCube: Cube | null
   lastSelectedRef = selectedCube
   lastStartTimestamp = startTimestamp
 
-  const filteredCubes = cubes.map((c) => ({
-    ...c,
-    solves: {
-      session: filterSolves(c.solves?.session, startTimestamp),
-      all: filterSolves(c.solves?.all, startTimestamp)
-    }
-  }))
-
-  const filteredSelected = {
-    ...selectedCube,
-    solves: {
-      session: filterSolves(selectedCube.solves?.session, startTimestamp),
-      all: filterSolves(selectedCube.solves?.all, startTimestamp)
-    }
-  } as Cube
+  const all = getSolvesMetrics({ cubesDB: cubes, category: selectedCube.category, cubeName: selectedCube.name })
+  const metrics: CubeSolves = {
+    global: filterSolves(all.global, startTimestamp),
+    session: filterSolves(all.session, startTimestamp),
+    cubeSession: filterSolves(all.cubeSession, startTimestamp),
+    cubeAll: filterSolves(all.cubeAll, startTimestamp)
+  }
 
   activeRequestId = ++nextRequestId
 
   setState({
-    stats: initialState.stats,
-    loadingProps: { ...initialState.loadingProps }
+    stats: { ...initialState.stats, data: metrics },
+    loadingProps: { ...initialState.loadingProps, data: false }
   })
 
-  w.postMessage({
-    command: 'start',
-    requestId: activeRequestId,
-    data: {
-      cubes: filteredCubes,
-      selectedCube: filteredSelected
-    }
-  })
+  const { columns, transfer } = metricsToColumns(metrics)
+  w.postMessage({ command: 'start', requestId: activeRequestId, data: columns }, transfer)
 }
