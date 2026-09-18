@@ -15,7 +15,7 @@ services:
       - --tls-auth-clients
       - 'no'
       - --maxmemory
-      - 128mb
+      - 192mb
       - --maxmemory-policy
       - noeviction
       - --save
@@ -30,7 +30,7 @@ services:
     volumes:
       - redis:/data
       - ./certs:/certs:ro
-    mem_limit: 96m
+    mem_limit: 256m
     healthcheck:
       test: ['CMD-SHELL', 'redis-cli -a "$$REDIS_PASSWORD" ping | grep -q PONG']
       interval: 30s
