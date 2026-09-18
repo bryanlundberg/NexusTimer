@@ -6,7 +6,7 @@ import { Check, Star, Trophy } from 'lucide-react'
 import { QaCommentIcon } from '@/components/ui/quick-action-icons'
 import useSolveGridItem from '@/features/solves-grid/model/useSolveGridItem'
 import { useSolvesSelection } from '@/features/solves-grid/model/SolvesSelectionContext'
-import { useLongPress } from '@/features/solves-grid/model/useLongPress'
+import { useLongPress } from '@/shared/model/useLongPress'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/shared/lib/utils'
 
