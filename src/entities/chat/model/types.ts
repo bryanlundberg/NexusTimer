@@ -14,6 +14,8 @@ export type DeleteScope = 'me' | 'all'
 export interface ChatMessage extends RealtimeMessage {
   pending?: boolean
   failed?: boolean
+  /** Id the message was rendered under before the server confirmed it, so it keeps its React key */
+  clientKey?: string
 }
 
 export type { MessageReaction } from '@/shared/lib/realtime/events'
