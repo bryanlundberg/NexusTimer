@@ -15,7 +15,7 @@ import calcCurrentAo from '@/shared/lib/statistics/calcCurrentAo'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
 import getBestTime from '@/shared/lib/statistics/getBestTime'
 import { Solve } from '@/entities/solve/model/types'
-import { sortSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
+import { mergeSolvesNewestFirst, sortSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
 import { useTimerStore } from '@/shared/model/timer/useTimerStore'
 import { useTimerRailStore } from '@/features/timer-solves-rail/model/useTimerRailStore'
 import { useOverlayStore } from '@/shared/model/overlay-store/useOverlayStore'
@@ -48,13 +48,10 @@ export default function TimerSolvesRail() {
 
   const solves = useMemo<Solve[]>(() => {
     if (!selectedCube) return []
-    const source =
-      tab === 'cube'
-        ? selectedCube.solves.session
-        : (cubes ?? [])
-            .filter((cube) => cube.category === selectedCube.category)
-            .flatMap((cube) => cube.solves?.session ?? [])
-    return sortSolvesNewestFirst(source)
+    if (tab === 'cube') return sortSolvesNewestFirst(selectedCube.solves.session)
+    return mergeSolvesNewestFirst(
+      (cubes ?? []).filter((cube) => cube.category === selectedCube.category).map((cube) => cube.solves?.session ?? [])
+    )
   }, [cubes, selectedCube, tab])
 
   const { stats, bestTime, bestAo5, bestAo12 } = useMemo(() => {
