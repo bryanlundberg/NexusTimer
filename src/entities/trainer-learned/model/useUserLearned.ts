@@ -10,6 +10,7 @@ export interface LearnedMethod {
 export interface UserLearnedResponse {
   total: number
   methods: LearnedMethod[]
+  hidden?: boolean
 }
 
 export const useUserLearned = (userId: string) => {
