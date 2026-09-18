@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import calcBestTime from '@/shared/lib/statistics/calcBestTime'
 import calcTotalSolvesStatistics from '@/shared/lib/statistics/calcTotalSolvesStatistics'
 import calcBestAo from '@/shared/lib/statistics/calcBestAo'
-import { sortSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
+import { mergeSolvesNewestFirst } from '@/entities/solve/lib/sortSolves'
 import { CompareUser } from '@/features/compare-users/model/compare'
 import { Cube } from '@/entities/cube/model/types'
 import { CUBE_CATEGORIES } from '@/shared/const/cube-categories'
@@ -22,9 +22,7 @@ export function useCompareUsersStats(users: User[], userCubes: Record<string, an
 
         const single = calcBestTime({ cubesDB: cubeData, category, cubeName }).global
         const average = calcBestAo(
-          sortSolvesNewestFirst(
-            cubeData.flatMap((cube: Cube) => [...(cube.solves.all || []), ...(cube.solves.session || [])])
-          ),
+          mergeSolvesNewestFirst(cubeData.flatMap((cube: Cube) => [cube.solves.all || [], cube.solves.session || []])),
           5
         )
         const count = calcTotalSolvesStatistics({ cubesDB: cubeData, category, cubeName }).global
