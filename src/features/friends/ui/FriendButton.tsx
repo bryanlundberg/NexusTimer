@@ -2,7 +2,18 @@
 
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { Check, ChevronDown, Clock, UserCheck, UserMinus, UserPlus, UserRoundPlus, X } from 'lucide-react'
+import {
+  Check,
+  ChevronDown,
+  Clock,
+  UserCheck,
+  UserLock,
+  UserMinus,
+  UserPlus,
+  UserRoundPlus,
+  UserX,
+  X
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import type { RelationshipStatus } from '@/entities/friendship/model/types'
@@ -13,11 +24,12 @@ interface Props {
   userId: string
   name: string
   status: RelationshipStatus
+  canRequest?: boolean
 }
 
-export function FriendButton({ userId, name, status }: Props) {
+export function FriendButton({ userId, name, status, canRequest = true }: Props) {
   const t = useTranslations('Index.FriendsPage')
-  const { add, remove, pendingId } = useFriendActions()
+  const { add, remove, unblock, pendingId } = useFriendActions()
   const [confirming, setConfirming] = useState(false)
   const busy = pendingId === userId
 
@@ -60,6 +72,24 @@ export function FriendButton({ userId, name, status }: Props) {
           onConfirm={remove}
         />
       </>
+    )
+  }
+
+  if (status === 'blocked') {
+    return (
+      <Button size="sm" variant="secondary" className="gap-1.5" disabled={busy} onClick={() => unblock(userId)}>
+        <UserX className="size-4" />
+        {t('unblock')}
+      </Button>
+    )
+  }
+
+  if (status === 'none' && !canRequest) {
+    return (
+      <Button size="sm" variant="secondary" className="gap-1.5" disabled>
+        <UserLock className="size-4" />
+        {t('requests-closed-label')}
+      </Button>
     )
   }
 
