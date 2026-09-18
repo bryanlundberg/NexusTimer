@@ -8,6 +8,7 @@ import type { ChatThread } from '@/entities/chat/model/types'
 import { ChatAvatar } from '@/entities/chat/ui/ChatAvatar'
 import { MessageStatusIcon } from '@/entities/chat/ui/MessageStatusIcon'
 import { messageStatus } from '@/entities/chat/lib/message-status'
+import { parseMessage, toPlainText } from '@/entities/chat/lib/message-content'
 import { PresenceDot } from '@/features/presence/ui/PresenceDot'
 import { resolvePresenceDisplay, type PresenceState } from '@/features/presence/model/usePresence'
 
@@ -58,7 +59,7 @@ export function ThreadPreview({ thread: { user, lastMessage, unread, receipts },
                   unread > 0 && !isDeleted ? 'font-semibold text-foreground' : 'text-muted-foreground'
                 )}
               >
-                {isDeleted ? t('deleted-message') : lastMessage?.text}
+                {isDeleted ? t('deleted-message') : lastMessage && toPlainText(parseMessage(lastMessage.text))}
               </span>
             </span>
           )}
