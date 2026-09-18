@@ -33,7 +33,8 @@ export default function ConfirmSolveModal({ isOpen, onClose, onChoose, category 
 
   useEffect(() => {
     if (!isOpen) return
-    cubesDB.getAll().then((all) => {
+    const cached = useTimerStore.getState().cubes
+    ;(cached ? Promise.resolve(cached) : cubesDB.getAll()).then((all) => {
       const filtered = category ? all.filter((c) => c.category === category) : all
       setCubes(filtered)
 
