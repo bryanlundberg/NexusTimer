@@ -1,4 +1,6 @@
 import { isBigEmoji, parseMessage, toPlainText } from '@/entities/chat/lib/message-content'
+import { decodeSolveCard, encodeSolveCard } from '@/entities/chat/lib/solve-card'
+import { MAX_MESSAGE_LENGTH } from '@/entities/chat/model/types'
 
 describe('isBigEmoji', () => {
   it.each(['👍', '😂😂', '🔥 🔥 🔥', '👍🏽', '👨‍👩‍👧', '❤️', '🇲🇽'])('accepts %s', (text) => {
@@ -105,5 +107,58 @@ describe('parseMessage', () => {
 describe('toPlainText', () => {
   it('drops the markers', () => {
     expect(toPlainText(parseMessage('**hola** _mundo_ `x` ~~y~~'))).toBe('hola mundo x y')
+  })
+})
+
+describe('solve cards', () => {
+  const card = {
+    puzzle: '3x3' as const,
+    time: 9043,
+    scramble: "R U' D F",
+    moves: "R U R' U'",
+    date: 1789000000000,
+    plus2: false,
+    dnf: false
+  }
+
+  it('round-trips through the message text', () => {
+    const text = encodeSolveCard(card)
+    expect(text).toBe("[solve;puzzle:3x3;time:9043;scramble:R U' D F;moves:R U R' U';date:1789000000000]")
+    expect(parseMessage(text)).toEqual([{ type: 'solve', data: card }])
+  })
+
+  it('keeps penalties as flags', () => {
+    const text = encodeSolveCard({ ...card, moves: undefined, plus2: true })
+    expect(text.endsWith(';plus2]')).toBe(true)
+    expect(decodeSolveCard(text.slice(7, -1))).toMatchObject({ plus2: true, dnf: false })
+  })
+
+  it('sits among text and styles', () => {
+    expect(parseMessage(`**mira** ${encodeSolveCard(card)} _xd_`)).toEqual([
+      { type: 'bold', children: [text('mira')] },
+      text(' '),
+      { type: 'solve', data: card },
+      text(' '),
+      { type: 'italic', children: [text('xd')] }
+    ])
+  })
+
+  it('leaves an invalid card as text', () => {
+    expect(parseMessage('[solve;puzzle:9x9;time:1;scramble:R]')).toEqual([text('[solve;puzzle:9x9;time:1;scramble:R]')])
+    expect(parseMessage('[solve;puzzle:3x3;time:abc;scramble:R]')).toEqual([
+      text('[solve;puzzle:3x3;time:abc;scramble:R]')
+    ])
+    expect(parseMessage('[solve;puzzle:3x3;time:100]')).toEqual([text('[solve;puzzle:3x3;time:100]')])
+  })
+
+  it('drops the moves when the card would not fit in a message', () => {
+    const text = encodeSolveCard({ ...card, moves: 'R '.repeat(1500) })
+    expect(text.includes('moves:')).toBe(false)
+    expect(text.length).toBeLessThanOrEqual(MAX_MESSAGE_LENGTH)
+  })
+
+  it('previews as plain text', () => {
+    expect(toPlainText(parseMessage(encodeSolveCard({ ...card, plus2: true })))).toBe('Solve 3x3 · 9.04+')
+    expect(toPlainText(parseMessage(encodeSolveCard({ ...card, dnf: true })))).toBe('Solve 3x3 · DNF')
   })
 })
