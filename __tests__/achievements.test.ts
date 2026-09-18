@@ -411,6 +411,20 @@ describe('computeSolveStats — aggregates behind the ladders', () => {
     expect(stats.longestCleanStreak).toBe(22)
   })
 
+  it('measures the clean streak in the order the solves happened, not the stored order', () => {
+    const at = (endTime: number, dnf = false) => solve({ id: `t-${endTime}`, endTime, dnf })
+    const stats = computeSolveStats([
+      makeCube({ allSolves: [at(4), at(5), at(6)], sessionSolves: [at(1, true), at(2), at(3), at(7)] })
+    ])
+    expect(stats.longestCleanStreak).toBe(6)
+  })
+
+  it('does not break the clean streak on a deleted tombstone', () => {
+    const at = (endTime: number, isDeleted = false) => solve({ id: `t-${endTime}`, endTime, isDeleted })
+    const stats = computeSolveStats([makeCube({ allSolves: [at(1), at(2), at(3, true), at(4)] })])
+    expect(stats.longestCleanStreak).toBe(3)
+  })
+
   it('records the largest 3x3 solve count held by any single cube', () => {
     const cubes = [cubeWith(bulkSolves(40)), cubeWith(bulkSolves(90)), cubeWith(bulkSolves(90), '4x4')]
     expect(computeSolveStats(cubes).max3x3SolvesPerCube).toBe(90)
